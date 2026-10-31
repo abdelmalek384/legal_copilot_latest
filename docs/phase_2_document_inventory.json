@@ -103,6 +103,41 @@
       "source_class": "official_government_supporting_source",
       "permission": "unknown",
       "next_action": "Use the canonical central permission-register source ID; pin exact document URLs, review current terms, and establish intended-use permission before acquisition."
+    },
+    "EG-IDSC-DSPACE-GAZETTE": {
+      "authority": "Information and Decision Support Center (IDSC) digital repository; item metadata identifies Amiri Press as publisher",
+      "source_url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+      "source_class": "official_gazette_catalogue_metadata",
+      "permission": "unknown",
+      "next_action": "Use catalogue metadata only. The 6.13 MB original bundle is request-copy restricted; do not bypass the restriction. Obtain original bytes only through an ordinary authorized route and record SHA-256 when lawfully available."
+    },
+    "EG-ALMASDAR-SECONDARY-LEGAL-NEWS": {
+      "authority": "Almasdar news publisher and secondary legal-text reproductions",
+      "source_url": "https://www.almasdar.com/keyword/5037?page=1",
+      "source_class": "secondary_legal_news",
+      "permission": "unknown",
+      "next_action": "Use individual article pages and watermarked images for manual discovery/link-out only. No bulk collection, redistribution or commercial reuse permission is established."
+    },
+    "EG-EGYIN-SECONDARY-LEGAL-NEWS": {
+      "authority": "Egyin (إيجي إن) news publisher",
+      "source_url": "https://www.egyin.com/article/154732/%D8%A7%D9%84%D8%AC%D8%B1%D9%8A%D8%AF%D8%A9-%D8%A7%D9%84%D8%B1%D8%B3%D9%85%D9%8A%D8%A9-%D8%AA%D9%86%D8%B4%D8%B1-%D9%82%D8%B1%D8%A7%D8%B1-%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A8%D8%B4%D8%A3%D9%86",
+      "source_class": "secondary_legal_news",
+      "permission": "unknown",
+      "next_action": "Use the article as a manual secondary summary/link-out only. No collection, redistribution or commercial reuse permission is established."
+    },
+    "EG-RIWAQ-ALJAMAL-DECISION-250-2026": {
+      "authority": "Riwaq al-Jamal legal blog (secondary transcription)",
+      "source_url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+      "source_class": "secondary_legal_transcription",
+      "permission": "unknown",
+      "next_action": "Manual discovery/link-out only; collection and commercial reuse rights remain unknown. Do not bulk-copy or ingest row-level text."
+    },
+    "EG-LAW-HUB-DECISION-250-2026": {
+      "authority": "Law Hub / Al-Mawsoua al-Qanuniya (secondary legal information site)",
+      "source_url": "https://lawhub.info/eg/?p=19706",
+      "source_class": "secondary_legal_archive",
+      "permission": "unknown",
+      "next_action": "Manual discovery/link-out only; follow published attribution and no-profit terms. Do not bulk-copy or monetize site materials."
     }
   },
   "documents": [
@@ -2351,6 +2386,227 @@
           "status": "secondary_text_not_primary"
         }
       ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-248-2026",
+      "official_title_ar": "قرار وزير العمل رقم 248 لسنة 2026 بشأن نماذج وإحصائيات الأمراض العادية والمزمنة والمهنية والحوادث الجسيمة والإصابات",
+      "practice_areas": [
+        "labour",
+        "occupational_safety"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 248,
+      "instrument_year": 2026,
+      "source_id": "EG-IDSC-DSPACE-GAZETTE",
+      "source_status": "official_Gazette_metadata_plus_secondary_indexed_text_found; primary_comparison_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette PDF bytes and SHA-256",
+        "printed page range and page-by-page comparison against original Gazette images",
+        "complete article and form/annex inventory",
+        "currentness, amendments, corrections and replacement instruments",
+        "source-specific collection, extraction, indexing, display and commercial reuse terms",
+        "crosswalk to Labour Law 14/2025 and related implementing instruments",
+        "qualified Egyptian labour/occupational-safety counsel review"
+      ],
+      "notes": "The IDSC repository catalogue identifies Official Gazette Proceedings issue 225 supplement (A), dated 2026-10-12, publisher Amiri Press, Ministry of Labour, and lists Decisions 248–252 in a 6.13 MB original PDF bundle. The download is request-copy restricted; no original bytes or SHA-256 were obtained. A public Egyin secondary article summarizes Decision 248, including scope, serious-accident criteria, notification windows and semi-annual statistics. It is a secondary summary, not the complete official decision. Collection/reuse rights, legal status, full text, currentness and counsel approval remain unresolved.",
+      "publication_date": "2026-10-12",
+      "official_gazette_issue": "225 تابع (أ)",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+          "source_role": "official Gazette catalogue metadata; original bundle request-copy restricted",
+          "status": "catalogue_metadata_located_original_bytes_not_obtained"
+        },
+        {
+          "url": "https://www.labour.gov.eg/ar/القوانين-والتشريعات/",
+          "source_role": "official Ministry of Labour discovery index",
+          "status": "index_only_no_item_level_reuse_permission"
+        },
+        {
+          "url": "https://www.egyin.com/article/154732/%D8%A7%D9%84%D8%AC%D8%B1%D9%8A%D8%AF%D8%A9-%D8%A7%D9%84%D8%B1%D8%B3%D9%85%D9%8A%D8%A9-%D8%AA%D9%86%D8%B4%D8%B1-%D9%82%D8%B1%D8%A7%D8%B1-%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A8%D8%B4%D8%A3%D9%86",
+          "source_role": "Egyin secondary summary",
+          "status": "secondary_summary_only_not_authoritative"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-249-2026",
+      "official_title_ar": "قرار وزير العمل رقم 249 لسنة 2026 بتحديد المنشآت وفروعها التي تلتزم بإنشاء أجهزة وظيفية للسلامة والصحة المهنية وتأمين بيئة العمل واللجان المختصة",
+      "practice_areas": [
+        "labour",
+        "occupational_safety"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 249,
+      "instrument_year": 2026,
+      "source_id": "EG-IDSC-DSPACE-GAZETTE",
+      "source_status": "official_Gazette_metadata_verified_primary_text_restricted_secondary_full_text_crosscheck_found",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette PDF bytes and SHA-256",
+        "printed pages and page-by-page comparison against original Gazette images",
+        "complete articles, tables and appendices inventory",
+        "currentness, amendments, corrections and replacement instruments",
+        "source-specific collection, extraction, indexing, display and commercial reuse terms",
+        "crosswalk to Labour Law 14/2025 Article 259 and related instruments",
+        "qualified Egyptian labour/occupational-safety counsel review"
+      ],
+      "notes": "The IDSC catalogue metadata identifies the decision in issue 225 supplement (A), 2026-10-12. A secondary Almasdar page reproduces decision text and PR #964 added a quarantined third-party Gazette-image locator set with 22 article records, 3 table records and 1 appendix record mapped to reproduced printed pages 19–44. Those images are not the original Gazette bytes and do not establish official row/page matches. The original bundle remains request-copy restricted; no hash or original visual comparison is claimed. All content remains discovery-only; rights, currentness and counsel approval are unresolved.",
+      "publication_date": "2026-10-12",
+      "official_gazette_issue": "225 تابع (أ)",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+          "source_role": "official Gazette catalogue metadata; original bundle request-copy restricted",
+          "status": "catalogue_metadata_located_original_bytes_not_obtained"
+        },
+        {
+          "url": "https://www.almasdar.com/175150",
+          "source_role": "Almasdar secondary text reproduction",
+          "status": "secondary_full_text_lead_not_primary"
+        },
+        {
+          "url": "https://www.labour.gov.eg/ar/القوانين-والتشريعات/",
+          "source_role": "official Ministry of Labour discovery index",
+          "status": "index_only_no_item_level_reuse_permission"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-250-2026",
+      "official_title_ar": "قرار وزير العمل رقم 250 لسنة 2026 بشأن قواعد ومعايير وبيان حدود الأمان في أماكن العمل والاشتراطات والاحتياطات اللازمة لدرء المخاطر",
+      "practice_areas": [
+        "labour",
+        "occupational_safety"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 250,
+      "instrument_year": 2026,
+      "source_id": "EG-IDSC-DSPACE-GAZETTE",
+      "source_status": "official_Gazette_metadata_verified_primary_text_restricted_secondary_full_text_crosscheck_found",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette PDF bytes and SHA-256",
+        "printed pages and page-by-page comparison against original Gazette images",
+        "complete Table 23 and Table 24 hierarchy and appendix inventory",
+        "row-by-row primary comparison for all 781 secondary Table 24 entries",
+        "resolve candidate discrepancies at rows 34, 61 and 64 from the original Gazette",
+        "currentness, amendments, corrections and replacement instruments",
+        "source-specific collection, extraction, indexing, display and commercial reuse terms",
+        "qualified Egyptian occupational-safety/labour counsel review"
+      ],
+      "notes": "The IDSC catalogue identifies issue 225 supplement (A), 2026-10-12, and the 6.13 MB original bundle, but the download is request-copy restricted. Riwaq publishes a secondary transcription whose own text numbers Table 24 entries 1–781; Law Hub provides a secondary item page with a Google Drive PDF preview that was not readable in this review. Almasdar also publishes a secondary news page. The metadata-only Table 24 source inventory is data/candidates/labour_law_14_2025/decision_250_table24_secondary_source_inventory_2026-10-31.md. Official Gazette matches remain 0/781; counsel-approved and retrieval-eligible rows remain 0/781. Rows 34, 61 and 64 remain unresolved. No row-level secondary transcription is imported.",
+      "publication_date": "2026-10-12",
+      "official_gazette_issue": "225 تابع (أ)",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+          "source_role": "official Gazette catalogue metadata; original bundle request-copy restricted",
+          "status": "catalogue_metadata_located_original_bytes_not_obtained"
+        },
+        {
+          "url": "https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html",
+          "source_role": "Riwaq secondary full transcription",
+          "status": "secondary_text_only_rights_unknown"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=19706",
+          "source_role": "Law Hub secondary item page with Google Drive preview link",
+          "status": "preview_not_readable_site_terms_restrict_commercial_republishing"
+        },
+        {
+          "url": "https://www.almasdar.com/175151",
+          "source_role": "Almasdar secondary legal-news page",
+          "status": "secondary_news_and_watermarked_image_leads"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-251-2026",
+      "official_title_ar": "قرار وزير العمل رقم 251 لسنة 2026 بتحديد شروط وقواعد وإجراءات منح ترخيص مزاولة أعمال الخبرة والاستشارات في مجال السلامة والصحة المهنية وتأمين بيئة العمل",
+      "practice_areas": [
+        "labour",
+        "occupational_safety"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 251,
+      "instrument_year": 2026,
+      "source_id": "EG-IDSC-DSPACE-GAZETTE",
+      "source_status": "official_Gazette_metadata_plus_secondary_indexed_text_found; primary_comparison_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette PDF bytes and SHA-256",
+        "printed pages and page-by-page comparison against original Gazette images",
+        "complete articles and licence-level requirements inventory",
+        "currentness, amendments, corrections and replacement instruments",
+        "source-specific collection, extraction, indexing, display and commercial reuse terms",
+        "crosswalk to Labour Law 14/2025 and related licensing provisions",
+        "qualified Egyptian labour/occupational-safety counsel review"
+      ],
+      "notes": "The IDSC catalogue identifies the decision in issue 225 supplement (A), 2026-10-12. Almasdar publishes a secondary text page with excerpts through Article 3 and links to watermarked page images; a sampled image shows a reproduced page headed page 371 and Decision 251, but this is not an original Gazette file. The original bundle remains request-copy restricted; no original bytes, hash or official page-by-page comparison are claimed. Keep all evidence discovery-only and retrieval-ineligible pending rights, currentness and counsel review.",
+      "publication_date": "2026-10-12",
+      "official_gazette_issue": "225 تابع (أ)",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+          "source_role": "official Gazette catalogue metadata; original bundle request-copy restricted",
+          "status": "catalogue_metadata_located_original_bytes_not_obtained"
+        },
+        {
+          "url": "https://www.almasdar.com/175152",
+          "source_role": "Almasdar secondary text and watermarked image gallery",
+          "status": "secondary_partial_text_and_reproduced_image_lead"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-252-2026",
+      "official_title_ar": "قرار وزير العمل رقم 252 لسنة 2026 بشأن قواعد منح تراخيص ونظم التدريب في مجال السلامة والصحة المهنية وتأمين بيئة العمل",
+      "practice_areas": [
+        "labour",
+        "occupational_safety"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 252,
+      "instrument_year": 2026,
+      "source_id": "EG-IDSC-DSPACE-GAZETTE",
+      "source_status": "official_Gazette_metadata_plus_secondary_indexed_text_found; primary_comparison_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "original Official Gazette PDF bytes and SHA-256",
+        "printed pages and page-by-page comparison against original Gazette images",
+        "complete articles, training programme and licence requirements inventory",
+        "currentness, amendments, corrections and replacement instruments",
+        "source-specific collection, extraction, indexing, display and commercial reuse terms",
+        "crosswalk to Labour Law 14/2025 and related training provisions",
+        "qualified Egyptian labour/occupational-safety counsel review"
+      ],
+      "notes": "The IDSC catalogue identifies the decision in issue 225 supplement (A), 2026-10-12. Almasdar publishes a secondary text page with excerpts beginning at Article 1. Additional numeric and article candidate maps remain in the unmerged draft evidence workstream and are not authoritative. The original Gazette bundle remains request-copy restricted; no original bytes, hash or official page-by-page comparison are claimed. Keep the record discovery-only and retrieval-ineligible pending rights, currentness and counsel review.",
+      "publication_date": "2026-10-12",
+      "official_gazette_issue": "225 تابع (أ)",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+          "source_role": "official Gazette catalogue metadata; original bundle request-copy restricted",
+          "status": "catalogue_metadata_located_original_bytes_not_obtained"
+        },
+        {
+          "url": "https://www.almasdar.com/175156",
+          "source_role": "Almasdar secondary text excerpt",
+          "status": "secondary_partial_text_not_authoritative"
+        }
+      ]
     }
   ],
   "next_actions": [
@@ -2424,6 +2680,20 @@
       "action": "Authenticate and review Ministerial Decision 50/2026 on child employment and training: establish Official Gazette issue/pages, obtain or verify complete Arabic text and annexed prohibited-work schedules through an authorized route, hash original bytes, confirm publication/commencement and later amendments, assess reuse rights, and obtain qualified Egyptian-lawyer review; keep search eligibility disabled until all gates pass.",
       "owner": "legal corpus lead",
       "status": "not_started"
+    },
+    {
+      "id": "ACT-LABOUR-DECISIONS-248-252-2026-ORIGINAL-GAZETTE-VERIFY",
+      "action": "Obtain the original Official Gazette issue 225 supplement (A) through an ordinary authorized route, record the exact file SHA-256, visually compare Decisions 248–252 and all tables/appendices page by page, verify amendments/currentness and source-use scope, and obtain qualified Egyptian labour/occupational-safety counsel review. Do not bypass the request-copy restriction; keep all five records discovery-only until each gate is evidenced.",
+      "owner": "legal corpus lead",
+      "status": "blocked",
+      "blocking": true
+    },
+    {
+      "id": "ACT-LABOUR-DECISION-250-TABLE24-ROW-MATCH",
+      "action": "For Decision 250 Table 24, reconcile the 781 numbered secondary entries to the original Gazette page images, preserve hierarchy and blank cells, resolve rows 34, 61 and 64 from the original, and keep official matches/counsel-approved/retrieval-eligible counts at zero until evidenced.",
+      "owner": "legal corpus lead",
+      "status": "blocked",
+      "blocking": true
     }
   ],
   "research_log": {
