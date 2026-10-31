@@ -2163,7 +2163,7 @@
         "qualified Egyptian labour-lawyer review",
         "source-specific collection and commercial reuse terms"
       ],
-      "notes": "Discovery-only candidate. A Ministry of Labour announcement dated 2026-01-05 cites Decision 294/2025 as identifying paid holidays and occasions for covered private-sector workers. This confirms a current official reference to the decision but does not supply its complete text, Gazette pages, amendment history, or reuse rights. Keep legal status and permission unknown pending primary-text verification. Official 2026 event-specific Ministry notices were also added: the October 2026 notice cites Ministry Circular 22/2026 and Prime Minister Decision 2898/2026 substituting 8 October for 6 October for the specified public-sector groups; a July 2026 SIS-hosted Ministry notice cites Prime Minister Decision 2181/2026 for the July Revolution Day date. These are event-specific date notices, not evidence that Decision 294 was permanently amended or replaced.",
+      "notes": "Discovery-only candidate. A Ministry of Labour announcement dated 2026-01-05 cites Decision 294/2025 as identifying paid holidays and occasions for covered private-sector workers. This confirms a current official reference to the decision but does not supply its complete text, Gazette pages, amendment history, or reuse rights. Keep legal status and permission unknown pending primary-text verification. Official 2026 event-specific Ministry notices were also added: the October 2026 notice cites Ministry Circular 22/2026 and Prime Minister Decision 2898/2026 substituting 8 October for 6 October for the specified public-sector groups; a July 2026 SIS-hosted Ministry notice cites Prime Minister Decision 2181/2026 for the July Revolution Day date. These are event-specific date notices, not evidence that Decision 294 was permanently amended or replaced. A Ministry-hosted SIS PDF was opened; it contains Decision 294/2025 Articles 1–4. Article 1 lists twelve paid-holiday categories and the Minister's substitution power; Article 2 provides full-pay leave, no annual-leave deduction, and double pay or a substitute day on written request when work is required; Article 3 addresses non-Muslim religious holidays; Article 4 provides next-day commencement after Gazette publication. This is not the Official Gazette scan; reuse terms and local binary/hash remain unverified.",
       "source_urls": [
         {
           "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
@@ -2219,6 +2219,11 @@
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_role": "Primary Official Gazette text of parent Law 14/2025; related article locator only, not implementing-decision text",
           "status": "primary_parent_law_text_extracted_decision_comparison_pending"
+        },
+        {
+          "url": "https://mediadr.sis.gov.eg/bitstream/handle/123456789/117216/MOM20251226_0805.pdf?isAllowed=y&sequence=4",
+          "source_role": "Ministry-hosted PDF containing Decision 294/2025 Articles 1–4; government-hosted text copy, not Gazette scan",
+          "status": "government_hosted_decision_text_opened; reuse_rights_unknown"
         }
       ]
     },
