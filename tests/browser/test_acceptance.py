@@ -171,6 +171,12 @@ class BrowserAcceptanceTests(unittest.TestCase):
             "licensing",
             "lawyer_approval",
         ):
+            notes = "Synthetic fixture only; not a legal review."
+            if review_type == "lawyer_approval":
+                notes = (
+                    f"[qualified_egyptian_counsel_attested:user_id={reviewer_id}] "
+                    "synthetic fixture marker only; no real legal review occurred."
+                )
             corpus.execute(
                 """INSERT INTO legal_review_events(
                        version_id,reviewer,review_type,outcome,notes,evidence_url
@@ -180,7 +186,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
                     "Synthetic fixture reviewer",
                     review_type,
                     "pass",
-                    "Synthetic fixture only; not a legal review.",
+                    notes,
                     "https://example.test/synthetic-review-evidence",
                 ),
             )
