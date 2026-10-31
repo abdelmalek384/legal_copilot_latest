@@ -4492,5 +4492,51 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         ))
 
 
+    def test_case_lead_cannot_add_revoked_firm_member_to_case(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        switched = self._mutate(
+            "post", "/session/firm", json={"firm_id": self.firm_a}
+        )
+        self.assertEqual(switched.status_code, 200, switched.text)
+        case = self._mutate(
+            "post", "/cases", json={"title": "Revoked member must stay excluded"}
+        )
+        self.assertEqual(case.status_code, 200, case.text)
+        case_id = case.json()["id"]
+
+        target_id = self.runtime.create_global_identity(
+            "Revoked Case Member", "revoked-case-member@example.test",
+            app.hash_pw(self.password),
+        )
+        self.runtime.create_firm_membership(target_id, self.firm_a, "lawyer")
+        control = self.runtime.control_connection()
+        control.execute(
+            "UPDATE firm_memberships SET status='revoked',updated_at=datetime('now') "
+            "WHERE user_id=? AND firm_id=?",
+            (target_id, self.firm_a),
+        )
+        control.commit()
+
+        denied = self._mutate(
+            "post", f"/cases/{case_id}/members",
+            json={"user_id": target_id, "role": "associate"},
+        )
+        self.assertEqual(denied.status_code, 404, denied.text)
+        self.assertIn("active firm member not found", denied.text)
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        tenant = self.runtime.firm_connection(context)
+        self.assertEqual(
+            tenant.execute(
+                "SELECT COUNT(*) FROM members WHERE case_id=? AND user_id=?",
+                (case_id, target_id),
+            ).fetchone()[0],
+            0,
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
