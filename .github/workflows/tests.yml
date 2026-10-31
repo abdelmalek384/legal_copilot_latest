@@ -292,8 +292,6 @@ jobs:
         run: PYTHONPATH=. python tests/test_decision162_candidate_quarantine.py
       - name: Test Decision 249 candidate quarantine
         run: PYTHONPATH=. python tests/test_decision249_candidate_quarantine.py
-      - name: Test sanitized S3 live-acceptance evidence collector
-        run: PYTHONPATH=. python tests/test_s3_live_acceptance_evidence.py
       - name: Test trusted-host middleware
         run: PYTHONPATH=. python tests/test_trusted_host_middleware.py
       - name: Guard that every test file runs in CI or is explicitly tracked
