@@ -3119,7 +3119,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "post", f"/cases/{case_id}/tasks", json={"title": "PRIVATE_TASK_STATE_SENTINEL"}
         )
         self.assertEqual(task_response.status_code, 200, task_response.text)
-        task_id = tenant_task_id = self.runtime.firm_connection(
+        task_id = self.runtime.firm_connection(
             self.runtime.resolve_context(self.user_id, self.firm_a)
         ).execute(
             "SELECT id FROM tasks WHERE case_id=? AND title=?",
