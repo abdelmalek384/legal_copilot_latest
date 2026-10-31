@@ -242,6 +242,10 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
             "COPILOT_S3_REGION": "eu-central-1",
             "COPILOT_S3_KMS_KEY_ID": key,
             "COPILOT_S3_ENDPOINT_URL": "",
+            "COPILOT_S3_RECOVERY_BUCKET": "private-recovery-bucket",
+            "COPILOT_S3_RECOVERY_REGION": "eu-central-1",
+            "COPILOT_S3_RECOVERY_KMS_KEY_ID": "arn:aws:kms:eu-central-1:123456789012:key/recovery",
+            "COPILOT_S3_RECOVERY_ENDPOINT_URL": "",
             "COPILOT_DATABASE_ACCEPTANCE_FILE": "/nonexistent/acceptance.json",
         }
         with patch.dict(os.environ, environment, clear=True):
@@ -270,6 +274,10 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
             "COPILOT_S3_REGION": "eu-central-1",
             "COPILOT_S3_KMS_KEY_ID": key,
             "COPILOT_S3_ENDPOINT_URL": "",
+            "COPILOT_S3_RECOVERY_BUCKET": "private-recovery-bucket",
+            "COPILOT_S3_RECOVERY_REGION": "eu-central-1",
+            "COPILOT_S3_RECOVERY_KMS_KEY_ID": "arn:aws:kms:eu-central-1:123456789012:key/recovery",
+            "COPILOT_S3_RECOVERY_ENDPOINT_URL": "",
             "COPILOT_DATABASE_ACCEPTANCE_FILE": "/nonexistent/acceptance.json",
         }
         with patch.dict(os.environ, dict(base, COPILOT_ENV="development"), clear=True):
