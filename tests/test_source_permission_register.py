@@ -280,6 +280,8 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertEqual(source["terms_url"], "https://dspace.id.com.eg/info/end-user-agreement")
         self.assertEqual(source["terms_checked_on"], "2026-10-31")
         self.assertIn("request-a-copy", source["access_status"])
+        self.assertIn("license.txt", source["permission_evidence"])
+        self.assertIn("license filename", source["permission_evidence"])
         self.assertIn("systematic retrieval", source["permission_evidence"])
         self.assertIn("personal, non-commercial use", source["permission_evidence"])
         self.assertEqual(MODULE.validate(data), [])
