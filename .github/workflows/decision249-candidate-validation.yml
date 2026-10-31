@@ -1,0 +1,33 @@
+name: Decision 249 Candidate Validation
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'data/candidates/labour_law_14_2025/decision_249_scan_index_and_circular_tracker_2026-10-29.md'
+      - 'data/candidates/labour_law_14_2025/decision_249_secondary_article_table_map_2026-10-30.json'
+      - 'data/candidates/labour_law_14_2025/decision_249_secondary_gazette_image_locator_map_2026-10-30.md'
+      - 'data/candidates/labour_law_14_2025/decision_249_table3_continuous_monitoring_candidate_2026-10-29.json'
+      - 'tests/test_decision249_candidate_quarantine.py'
+      - '.github/workflows/decision249-candidate-validation.yml'
+  push:
+    branches:
+      - 'legal/decision-249-*'
+    paths:
+      - 'data/candidates/labour_law_14_2025/decision_249_secondary_article_table_map_2026-10-30.json'
+      - 'data/candidates/labour_law_14_2025/decision_249_table3_continuous_monitoring_candidate_2026-10-29.json'
+      - 'tests/test_decision249_candidate_quarantine.py'
+      - '.github/workflows/decision249-candidate-validation.yml'
+
+jobs:
+  decision-249:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Test Decision 249 candidate quarantine
+        run: PYTHONPATH=. python tests/test_decision249_candidate_quarantine.py
