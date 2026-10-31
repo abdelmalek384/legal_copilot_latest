@@ -459,14 +459,14 @@
         "Egyptian Proceedings issue metadata",
         "PDF listings"
       ],
-      "access_status": "public repository item pages located; access varies by item and some copies are request-copy restricted",
+      "access_status": "public catalogue metadata; the 6.13 MB original PDF and 55-byte license.txt are both request-copy restricted; neither file is publicly readable",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": "Public item pages expose bibliographic metadata and PDF listings; individual items may include an item-specific license bundle. Example records identify Amiri Press as publisher. An item page or download control alone does not establish unrestricted download or commercial reuse rights.",
+      "permission_evidence": "The public item page exposes issue metadata and lists a 6.13 MB original PDF plus a 55-byte license.txt. Clicking the license.txt download resolves to a request-a-copy form, so the item-specific licence text itself is not publicly readable; the original PDF download is likewise request-copy restricted. No original bytes, license text or SHA-256 were obtained. The item page does not establish collection or commercial reuse permission.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established; item-level access controls and licenses must be checked",
-      "required_next_action": "For each issue, inspect its license.txt and download/access state, retain issue metadata only where rights are unclear, and do not bypass request-copy restrictions. Record issue number, publication date, publisher, document IDs, exact file hash, and item-specific license evidence."
+      "required_next_action": "Use catalogue metadata only. Do not bypass either request-copy restriction. No copy request has been submitted. Obtain the original PDF and license.txt only through an ordinary authorized route; inspect the licence scope before any collection, extraction, indexing, display or commercial use, and record the exact original-file hash only after lawful receipt."
     },
     {
       "source_id": "EG-MANSHURAT-LEGAL-ARCHIVE",
