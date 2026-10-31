@@ -6,6 +6,7 @@ same case-membership boundary as the existing case workspace.
 import os
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 from fastapi.testclient import TestClient
