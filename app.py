@@ -3,6 +3,7 @@ Run: pip install -r requirements.txt && uvicorn app:app --reload"""
 import base64, sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging
 from pathlib import Path
 from cryptography.fernet import Fernet
+import deadline_calculator as deadline_calc
 from urllib.parse import urlsplit, quote
 from contextvars import ContextVar
 from collections import Counter
@@ -1931,6 +1932,11 @@ class NoteIn(BaseModel): text: str = Field(min_length=1, max_length=10000)
 class DeadlineIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); due: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
     _valid_due = field_validator("due")(validate_operational_deadline)
+class DeadlineEstimateIn(BaseModel):
+    rule_id: str = Field(min_length=1, max_length=100)
+    trigger: str = Field(pattern=r"^\\d{4}-\\d{2}-\\d{2}$")
+    distance_days: int = Field(0, ge=0, le=365)
+    _valid_trigger = field_validator("trigger")(validate_calendar_date)
 class FeeIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); amount: float = Field(ge=0, le=1_000_000_000_000); paid: float = Field(ge=0, le=1_000_000_000_000)
     due: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
@@ -4524,6 +4530,30 @@ def new_note(cid: int, b: NoteIn, u: dict = Depends(user)):
     c.execute("INSERT INTO notes(case_id,created_by,text) VALUES(?,?,?)", (cid, u["id"], b.text.strip()))
     log(c, cid, u["name"], "إضافة ملاحظة"); c.commit()
     return {"ok": True}
+
+
+@app.get("/deadline-rules")
+def deadline_rules(u: dict = Depends(user)):
+    try:
+        return deadline_calc.rule_catalog()
+    except deadline_calc.DeadlineError as exc:
+        logger.warning("deadline rule catalog unavailable: %s", exc)
+        raise HTTPException(503, "deadline rule catalog unavailable")
+
+
+@app.post("/cases/{cid}/deadline-estimate")
+def deadline_estimate(cid: int, b: DeadlineEstimateIn, u: dict = Depends(user)):
+    c = conn()
+    need(c, u, cid)
+    try:
+        result = deadline_calc.estimate_rule_deadline(
+            b.rule_id, date.fromisoformat(b.trigger), distance_days=b.distance_days
+        )
+    except deadline_calc.DeadlineError as exc:
+        message = str(exc)
+        status = 404 if message == "unknown deadline rule" else 422
+        raise HTTPException(status, message)
+    return result
 
 
 @app.post("/cases/{cid}/deadlines")
