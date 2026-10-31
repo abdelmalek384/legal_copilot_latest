@@ -105,5 +105,15 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
         self.assertIn("not proof", item["annual_overtime_maximum_followup"]["followup_status"])
         self.assertIn("reuse permissions are not established", check["caveat"])
 
+
+    def test_decision_289_ministry_hosted_text_is_separate_from_gazette_verification(self):
+        data = json.loads(DATA.read_text(encoding="utf-8"))
+        item = next(x for x in data["decisions"] if x["document_id"] == "EG-LABOUR-DECISION-289-2025")
+        copy = item["ministry_hosted_text_copy"]
+        self.assertIn("not the Official Gazette", copy["caveat"])
+        self.assertIn("eight hours", " ".join(copy["articles"][0]["observations"]))
+        self.assertIn("Article 121", " ".join(copy["articles"][0]["observations"]))
+        self.assertIn("Gazette issue PDF not compared", item["secondary_text"]["status"])
+
 if __name__ == "__main__":
     unittest.main()
