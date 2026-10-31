@@ -117,7 +117,7 @@ class CaseDeadlineEstimateRouteTests(unittest.TestCase):
 
     def test_case_brief_does_not_call_model_without_firm_data_approval(self):
         with patch.dict("os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": ""}), patch.object(app, "LLM") as llm:
-            response = self.client.post(f"/cases/{self.case_id}/brief", json={})
+            response = self._mutate("post", f"/cases/{self.case_id}/brief", json={})
         self.assertEqual(response.status_code, 200, response.text)
         self.assertFalse(response.json()["available"])
         self.assertTrue(response.json()["abstained"])
