@@ -338,7 +338,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
 
     def test_decision_289_ministry_text_copy_is_discovery_only(self):
         record = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-DECISION-289-2025")
-        self.assertIn("Ministry_hosted_decision_text_found", record["source_status"])
+        self.assertEqual(record["source_status"], "official_Gazette_metadata_and_secondary_full_text_found; primary_comparison_pending")
         self.assertEqual(record["legal_status"], "unknown")
         self.assertEqual(record["review_status"], "discovery_only")
         self.assertEqual(record["collection_permission"], "not_allowed_without_explicit_exception_or_license")
