@@ -288,6 +288,27 @@ class ProductionReleaseGateTests(unittest.TestCase):
                 self.assertEqual(result, 2)
                 self.assertEqual(manifest_path.read_text(encoding="utf-8"), "{}")
 
+    def test_release_report_cannot_overwrite_device_acceptance_evidence(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            evidence_path = root / "device-acceptance.json"
+            evidence_path.write_text(json.dumps(self._device_acceptance_records()), encoding="utf-8")
+            reviewer_path = root / "reviewers.json"
+            reviewer_path.write_text(json.dumps(self._reviewer_registry()), encoding="utf-8")
+            with patch.dict(os.environ, {
+                "COPILOT_DEVICE_ACCEPTANCE_FILE": str(evidence_path),
+                "COPILOT_RELEASE_COMMIT": "a" * 40,
+            }), patch.object(gate, "evaluate_release", return_value={"ready": True}):
+                result = gate.main([
+                    "--reviewer-registry", str(reviewer_path),
+                    "--out", str(evidence_path),
+                ])
+                self.assertEqual(result, 2)
+                self.assertEqual(
+                    json.loads(evidence_path.read_text(encoding="utf-8")),
+                    self._device_acceptance_records(),
+                )
+
     def test_pending_tenant_schema_migrations_block_release(self):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
