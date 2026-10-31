@@ -28,16 +28,8 @@
       "pinpoint": {
         "part": "مواد الإصدار",
         "article": "المادة الأولى",
-        "official_gazette_printed_page": 111,
-        "pdf_page_index_zero_based": 109,
-        "pinpoint_status": "visually_verified_on_official_eta_pdf",
-        "visual_verification": {
-          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
-          "checked_on": "2026-10-31",
-          "printed_page": 111,
-          "pdf_page_index_zero_based": 109,
-          "evidence": "Official PDF screenshot shows this article on printed page 111."
-        }
+        "official_gazette_printed_page": 2,
+        "pdf_page_index_zero_based": 0
       },
       "primary_evidence": [
         {
@@ -45,14 +37,14 @@
           "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
           "source_type": "official_publisher_text_page",
           "supports": "عنوان القانون ونص مواد الإصدار؛ صفحة النص قابلة للبحث",
-          "retrieved_or_checked_on": "2026-10-31"
+          "retrieved_or_checked_on": "2026-10-28"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government-hosted_official_gazette_pdf_text_extraction",
-          "supports": "مطابقة بصرية مباشرة للمادة NaN في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 111 (فهرس PDF الصفري 109).",
-          "retrieved_or_checked_on": "2026-10-31"
+          "supports": "استخراج نص الصفحة المطبوعة 2؛ لم يُنزّل الملف أو يُفحص بصرياً",
+          "retrieved_or_checked_on": "2026-10-28"
         }
       ],
       "cross_checks": [
