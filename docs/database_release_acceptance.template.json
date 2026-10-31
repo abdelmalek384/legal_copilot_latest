@@ -41,6 +41,15 @@
       "reviewed_at": "",
       "reviewer": "",
       "unresolved_critical_high": null
+    },
+    "purge_writer_quiescence": {
+      "status": "pending",
+      "evidence_ref": "",
+      "verified_at": "",
+      "verified_by": "",
+      "witnessed_by": "",
+      "storage_config_sha256": "",
+      "verified_scenarios": []
     }
   }
 }
