@@ -18,7 +18,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 
 ## Provision cards
 
-### 20. EG-LABOUR-14-2025-PROMULGATION-ART-1-SCOPE
+### 1. EG-LABOUR-14-2025-PROMULGATION-ART-1-SCOPE
 
 **Question:** What scope exclusions does the promulgation text identify?
 
@@ -47,7 +47,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice, definitive scope decision, or authoritative retrieval.
 
-### 49. EG-LABOUR-14-2025-PROMULGATION-ART-12-REPEALS
+### 2. EG-LABOUR-14-2025-PROMULGATION-ART-12-REPEALS
 
 **Question:** Which prior laws are expressly named in the repeal clause?
 
@@ -76,7 +76,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final opinion on current status of every repealed instrument.
 
-### 78. EG-LABOUR-14-2025-PROMULGATION-ART-13-COMMENCEMENT
+### 3. EG-LABOUR-14-2025-PROMULGATION-ART-13-COMMENCEMENT
 
 **Question:** What commencement dates are stated for the law and specialized labour courts?
 
@@ -106,7 +106,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** timeline research lead.
 **Not usable for:** automated deadline calculation or final temporal-law advice.
 
-### 108. EG-LABOUR-14-2025-ART-89-WRITTEN-CONTRACT
+### 4. EG-LABOUR-14-2025-ART-89-WRITTEN-CONTRACT
 
 **Question:** What does Article 89 say about documenting an employment contract?
 
@@ -135,7 +135,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 137. EG-LABOUR-14-2025-ART-90-PROBATION
+### 5. EG-LABOUR-14-2025-ART-90-PROBATION
 
 **Question:** What is the statutory maximum probation period stated in Article 90?
 
@@ -164,7 +164,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 166. EG-LABOUR-14-2025-ART-117-ORDINARY-HOURS
+### 6. EG-LABOUR-14-2025-ART-117-ORDINARY-HOURS
 
 **Question:** What ordinary actual working-hour limits does Article 117 state?
 
@@ -202,7 +202,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** automated overtime calculation or final advice.
 
-### 204. EG-LABOUR-14-2025-ART-124-ANNUAL-LEAVE
+### 7. EG-LABOUR-14-2025-ART-124-ANNUAL-LEAVE
 
 **Question:** What annual paid-leave entitlement tiers does Article 124 list?
 
@@ -245,7 +245,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final leave balance or payroll determination.
 
-### 247. EG-LABOUR-14-2025-ART-165-UNLAWFUL-TERMINATION
+### 8. EG-LABOUR-14-2025-ART-165-UNLAWFUL-TERMINATION
 
 **Question:** What minimum compensation does Article 165 state for unlawful termination of an indefinite-term contract?
 
@@ -279,7 +279,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** settlement valuation, case prediction, or final legal advice.
 
-### 281. EG-LABOUR-14-2025-ART-129-PAID-HOLIDAYS
+### 9. EG-LABOUR-14-2025-ART-129-PAID-HOLIDAYS
 
 **Question:** What does Article 129 provide when a worker is required to work on a designated paid holiday?
 
@@ -323,7 +323,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** complete holiday calendar, payroll calculation, or final advice.
 
-### 325. EG-LABOUR-14-2025-ART-118-120-REST
+### 10. EG-LABOUR-14-2025-ART-118-120-REST
 
 **Question:** What general meal/rest-break, daily-span, and weekly-rest rules appear in Articles 118–120?
 
@@ -361,7 +361,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final shift scheduling, overtime calculation, or legal advice.
 
-### 363. EG-LABOUR-14-2025-ART-125-ANNUAL-LEAVE-ADMIN
+### 11. EG-LABOUR-14-2025-ART-125-ANNUAL-LEAVE-ADMIN
 
 **Question:** What administration and carry-over rules does Article 125 state for annual leave?
 
@@ -397,7 +397,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final leave balance or payroll determination.
 
-### 399. EG-LABOUR-14-2025-ART-164-NOTICE-PAY
+### 12. EG-LABOUR-14-2025-ART-164-NOTICE-PAY
 
 **Question:** What does Article 164 provide for termination of an indefinite-term contract without full notice?
 
@@ -431,7 +431,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final notice-pay calculation or legal advice.
 
-### 433. EG-LABOUR-14-2025-ART-128-CASUAL-LEAVE
+### 13. EG-LABOUR-14-2025-ART-128-CASUAL-LEAVE
 
 **Question:** What limits does Article 128 state for casual absence and birth-related emergency leave?
 
@@ -466,7 +466,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** leave-balance calculation or final advice.
 
-### 468. EG-LABOUR-14-2025-ART-130-PILGRIMAGE-LEAVE
+### 14. EG-LABOUR-14-2025-ART-130-PILGRIMAGE-LEAVE
 
 **Question:** What eligibility conditions does Article 130 state for paid pilgrimage leave?
 
@@ -496,7 +496,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final eligibility determination or legal advice.
 
-### 498. EG-LABOUR-14-2025-ART-131-SICK-LEAVE
+### 15. EG-LABOUR-14-2025-ART-131-SICK-LEAVE
 
 **Question:** How does Article 131 frame sick-leave entitlement and wage compensation?
 
@@ -527,7 +527,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** sick-pay calculation or final advice.
 
-### 529. EG-LABOUR-14-2025-ART-91-ASSIGNMENT-LIMITS
+### 16. EG-LABOUR-14-2025-ART-91-ASSIGNMENT-LIMITS
 
 **Question:** When may an employer assign work outside the agreed individual or collective contract terms?
 
@@ -555,7 +555,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** deciding an individual workplace dispute without facts and counsel review.
 
-### 557. EG-LABOUR-14-2025-ART-92-EMPLOYEE-FILE
+### 17. EG-LABOUR-14-2025-ART-92-EMPLOYEE-FILE
 
 **Question:** What employee-file, access, and retention duties does Article 92 state?
 
@@ -584,7 +584,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and compliance-review checklist.
 **Not usable for:** standalone retention policy or final compliance advice.
 
-### 586. EG-LABOUR-14-2025-ART-93-RETURN-TRANSPORT
+### 18. EG-LABOUR-14-2025-ART-93-RETURN-TRANSPORT
 
 **Question:** What return-transport obligation does Article 93 describe when employment ends?
 
@@ -612,7 +612,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final liability or reimbursement determination.
 
-### 614. EG-LABOUR-14-2025-ART-94-OUTSOURCING-EQUAL-RIGHTS
+### 19. EG-LABOUR-14-2025-ART-94-OUTSOURCING-EQUAL-RIGHTS
 
 **Question:** What obligations arise when one employer assigns work to another employer in the same work area?
 
@@ -640,7 +640,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final liability allocation or legal advice.
 
-### 642. EG-LABOUR-14-2025-ART-95-TRAINING-COSTS
+### 20. EG-LABOUR-14-2025-ART-95-TRAINING-COSTS
 
 **Question:** What does Article 95 provide when a worker leaves before completing an agreed post-training period?
 
@@ -669,7 +669,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** calculating or asserting a worker debt without contract review.
 
-### 671. EG-LABOUR-14-2025-ART-96-NEW-WORK-PATTERNS
+### 21. EG-LABOUR-14-2025-ART-96-NEW-WORK-PATTERNS
 
 **Question:** How does Article 96 define new work patterns and what examples are identified in the reviewed text?
 
@@ -698,7 +698,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** full remote-work compliance checklist or final advice.
 
-### 700. EG-LABOUR-14-2025-ART-4-FORCED-LABOUR-HARASSMENT
+### 22. EG-LABOUR-14-2025-ART-4-FORCED-LABOUR-HARASSMENT
 
 **Question:** What workplace conduct does Article 4 expressly prohibit?
 
@@ -732,7 +732,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice, definitive liability assessment, or authoritative retrieval.
 
-### 734. EG-LABOUR-14-2025-ART-5-NONDISCRIMINATION
+### 23. EG-LABOUR-14-2025-ART-5-NONDISCRIMINATION
 
 **Question:** What employment-related discrimination does Article 5 address?
 
@@ -766,7 +766,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 768. EG-LABOUR-14-2025-ART-6-VOID-WAIVERS
+### 24. EG-LABOUR-14-2025-ART-6-VOID-WAIVERS
 
 **Question:** What kinds of contractual terms or waivers does Article 6 treat as void?
 
@@ -800,7 +800,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 802. EG-LABOUR-14-2025-ART-7-LITIGATION-FEES
+### 25. EG-LABOUR-14-2025-ART-7-LITIGATION-FEES
 
 **Question:** What fee and cost treatment does Article 7 describe for labour disputes?
 
@@ -829,7 +829,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice on court costs or authoritative retrieval.
 
-### 831. EG-LABOUR-14-2025-ART-8-WORKER-DUES-PRIORITY
+### 26. EG-LABOUR-14-2025-ART-8-WORKER-DUES-PRIORITY
 
 **Question:** What priority does Article 8 give certain worker dues?
 
@@ -858,7 +858,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final ranking of creditor claims or authoritative retrieval.
 
-### 860. EG-LABOUR-14-2025-ART-9-CLOSURE-DOES-NOT-ERASE-DUES
+### 27. EG-LABOUR-14-2025-ART-9-CLOSURE-DOES-NOT-ERASE-DUES
 
 **Question:** Does closing or liquidating an establishment by itself remove its labour-law obligations?
 
@@ -887,7 +887,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 889. EG-LABOUR-14-2025-ART-10-JOINT-LIABILITY
+### 28. EG-LABOUR-14-2025-ART-10-JOINT-LIABILITY
 
 **Question:** When can multiple employers or an authorized delegate be jointly responsible for labour obligations?
 
@@ -916,7 +916,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 918. EG-LABOUR-14-2025-ART-11-TRANSFER-OF-ESTABLISHMENT
+### 29. EG-LABOUR-14-2025-ART-11-TRANSFER-OF-ESTABLISHMENT
 
 **Question:** What does Article 11 say about employment contracts when an establishment is transferred?
 
@@ -945,7 +945,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 947. EG-LABOUR-14-2025-ART-12-ANNUAL-INCREMENT
+### 30. EG-LABOUR-14-2025-ART-12-ANNUAL-INCREMENT
 
 **Question:** What annual periodic increment does Article 12 describe, and what happens in specified economic hardship?
 
@@ -974,7 +974,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 976. EG-LABOUR-14-2025-ART-16-TRAINING-SCOPE
+### 31. EG-LABOUR-14-2025-ART-16-TRAINING-SCOPE
 
 **Question:** Which groups and training centres are covered by the training chapter in Article 16?
 
@@ -1003,7 +1003,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1005. EG-LABOUR-14-2025-ART-22-ELIGIBLE-TRAINING-ENTITIES
+### 32. EG-LABOUR-14-2025-ART-22-ELIGIBLE-TRAINING-ENTITIES
 
 **Question:** Which legal forms may conduct training operations, and what exceptions does Article 22 list?
 
@@ -1032,7 +1032,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1034. EG-LABOUR-14-2025-ART-23-TRAINING-CENTRE-LICENCE
+### 33. EG-LABOUR-14-2025-ART-23-TRAINING-CENTRE-LICENCE
 
 **Question:** What licensing framework does Article 23 establish for training operations?
 
@@ -1061,7 +1061,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1063. EG-LABOUR-14-2025-ART-25-TRAINER-LICENCE
+### 34. EG-LABOUR-14-2025-ART-25-TRAINER-LICENCE
 
 **Question:** Does Article 25 require trainers to be licensed?
 
@@ -1090,7 +1090,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1092. EG-LABOUR-14-2025-ART-27-OCCUPATIONAL-PRACTICE-LICENCE
+### 35. EG-LABOUR-14-2025-ART-27-OCCUPATIONAL-PRACTICE-LICENCE
 
 **Question:** When does Article 27 require a licence to practise a profession or craft?
 
@@ -1119,7 +1119,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1121. EG-LABOUR-14-2025-ART-28-APPRENTICE-MINIMUM-AGE
+### 36. EG-LABOUR-14-2025-ART-28-APPRENTICE-MINIMUM-AGE
 
 **Question:** What minimum age does Article 28 set for an apprentice?
 
@@ -1148,7 +1148,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1150. EG-LABOUR-14-2025-ART-29-WRITTEN-APPRENTICESHIP-AGREEMENT
+### 37. EG-LABOUR-14-2025-ART-29-WRITTEN-APPRENTICESHIP-AGREEMENT
 
 **Question:** What must an apprenticeship agreement cover under Article 29?
 
@@ -1177,7 +1177,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1179. EG-LABOUR-14-2025-ART-30-APPRENTICESHIP-TERMINATION
+### 38. EG-LABOUR-14-2025-ART-30-APPRENTICESHIP-TERMINATION
 
 **Question:** When may an apprenticeship agreement be terminated under Article 30?
 
@@ -1206,7 +1206,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1208. EG-LABOUR-14-2025-ART-31-APPRENTICE-HOURS-REST-LEAVE
+### 39. EG-LABOUR-14-2025-ART-31-APPRENTICE-HOURS-REST-LEAVE
 
 **Question:** Which working-time, rest and leave rules apply to apprentices under Article 31?
 
@@ -1235,7 +1235,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1237. EG-LABOUR-14-2025-ART-32-NATIONAL-EMPLOYMENT-PLANNING
+### 40. EG-LABOUR-14-2025-ART-32-NATIONAL-EMPLOYMENT-PLANNING
 
 **Question:** What is the role of the higher council for domestic and foreign employment planning under Article 32?
 
@@ -1264,7 +1264,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1266. EG-LABOUR-14-2025-ART-33-WORKER-REGISTRATION-CERTIFICATE
+### 41. EG-LABOUR-14-2025-ART-33-WORKER-REGISTRATION-CERTIFICATE
 
 **Question:** What does Article 33 require for worker registration and employment certificates?
 
@@ -1293,7 +1293,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1295. EG-LABOUR-14-2025-ART-34-SKILL-CERTIFICATE-FOR-LICENCE
+### 42. EG-LABOUR-14-2025-ART-34-SKILL-CERTIFICATE-FOR-LICENCE
 
 **Question:** What document does Article 34 require when applying to practise a designated profession or craft?
 
@@ -1322,7 +1322,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1324. EG-LABOUR-14-2025-ART-36-EMPLOYER-REPORTING
+### 43. EG-LABOUR-14-2025-ART-36-EMPLOYER-REPORTING
 
 **Question:** What workforce information must an establishment report under Article 36?
 
@@ -1351,7 +1351,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final compliance checklist or authoritative retrieval.
 
-### 1353. EG-LABOUR-14-2025-ART-37-DISABILITY-EMPLOYEE-REGISTER
+### 44. EG-LABOUR-14-2025-ART-37-DISABILITY-EMPLOYEE-REGISTER
 
 **Question:** What employee register does Article 37 require for certain workers with disabilities?
 
@@ -1380,7 +1380,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final compliance checklist or authoritative retrieval.
 
-### 1382. EG-LABOUR-14-2025-ART-40-EMPLOYMENT-CHANNELS
+### 45. EG-LABOUR-14-2025-ART-40-EMPLOYMENT-CHANNELS
 
 **Question:** Through which entities may Egyptians be employed domestically or abroad under Article 40?
 
@@ -1409,7 +1409,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1411. EG-LABOUR-14-2025-ART-41-PRIVATE-AGENCY-LICENSING
+### 46. EG-LABOUR-14-2025-ART-41-PRIVATE-AGENCY-LICENSING
 
 **Question:** What licensing conditions does Article 41 set for private employment agencies?
 
@@ -1438,7 +1438,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1440. EG-LABOUR-14-2025-ART-42-PRIVATE-AGENCY-OBLIGATIONS
+### 47. EG-LABOUR-14-2025-ART-42-PRIVATE-AGENCY-OBLIGATIONS
 
 **Question:** What operational obligations must licensed private employment agencies follow under Article 42?
 
@@ -1467,7 +1467,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1469. EG-LABOUR-14-2025-ART-43-FEES-CHARGED-TO-WORKERS
+### 48. EG-LABOUR-14-2025-ART-43-FEES-CHARGED-TO-WORKERS
 
 **Question:** May a private employment agency charge a worker for placement under Article 43?
 
@@ -1496,7 +1496,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1498. EG-LABOUR-14-2025-ART-44-AGENCY-LICENCE-SUSPENSION-REVOCATION
+### 49. EG-LABOUR-14-2025-ART-44-AGENCY-LICENCE-SUSPENSION-REVOCATION
 
 **Question:** What circumstances can lead to suspension or revocation of a private employment agency licence under Article 44?
 
@@ -1525,7 +1525,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1527. EG-LABOUR-14-2025-ART-45-BAN-ON-LABOUR-SUPPLY-CONTRACTORS
+### 50. EG-LABOUR-14-2025-ART-45-BAN-ON-LABOUR-SUPPLY-CONTRACTORS
 
 **Question:** May an establishment employ workers through a contractor or labour-supply intermediary under Article 45?
 
@@ -1554,7 +1554,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1556. EG-LABOUR-14-2025-ART-46-NGO-EMPLOYMENT-OFFICES
+### 51. EG-LABOUR-14-2025-ART-46-NGO-EMPLOYMENT-OFFICES
 
 **Question:** Can eligible associations or civil institutions establish offices to employ unemployed people domestically?
 
@@ -1583,7 +1583,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1585. EG-LABOUR-14-2025-ART-47-VACANCY-ANNOUNCEMENTS
+### 52. EG-LABOUR-14-2025-ART-47-VACANCY-ANNOUNCEMENTS
 
 **Question:** What does Article 47 require employers to do about advertised vacancies?
 
@@ -1612,7 +1612,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1614. EG-LABOUR-14-2025-ART-48-FOREIGN-EMPLOYMENT-CONTRACT-REVIEW
+### 53. EG-LABOUR-14-2025-ART-48-FOREIGN-EMPLOYMENT-CONTRACT-REVIEW
 
 **Question:** What review process does Article 48 describe for contracts arranging work abroad?
 
@@ -1641,7 +1641,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1643. EG-LABOUR-14-2025-ART-49-OVERSEAS-LABOUR-AGREEMENTS
+### 54. EG-LABOUR-14-2025-ART-49-OVERSEAS-LABOUR-AGREEMENTS
 
 **Question:** What role does Article 49 assign to the Ministry regarding agreements on Egyptians working abroad?
 
@@ -1670,7 +1670,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1672. EG-LABOUR-14-2025-ART-50-FOREIGN-RECRUITMENT-CHANNELS
+### 55. EG-LABOUR-14-2025-ART-50-FOREIGN-RECRUITMENT-CHANNELS
 
 **Question:** When may international organizations recruit Egyptian workers for work abroad under Article 50?
 
@@ -1699,7 +1699,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1701. EG-LABOUR-14-2025-ART-51-EMPLOYMENT-ACTIVITY-REPORTING
+### 56. EG-LABOUR-14-2025-ART-51-EMPLOYMENT-ACTIVITY-REPORTING
 
 **Question:** How often must employment operators report their activity under Article 51?
 
@@ -1728,7 +1728,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1730. EG-LABOUR-14-2025-ART-52-ONLINE-RECRUITMENT-LICENCE
+### 57. EG-LABOUR-14-2025-ART-52-ONLINE-RECRUITMENT-LICENCE
 
 **Question:** Can a website or electronic platform recruit Egyptians for work without a licence under Article 52?
 
@@ -1757,7 +1757,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1759. EG-LABOUR-14-2025-ART-53-EQUAL-PAY
+### 58. EG-LABOUR-14-2025-ART-53-EQUAL-PAY
 
 **Question:** What equal-pay rule does Article 53 state for women and men?
 
@@ -1786,7 +1786,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1788. EG-LABOUR-14-2025-ART-54-MATERNITY-LEAVE-AND-HOURS
+### 59. EG-LABOUR-14-2025-ART-54-MATERNITY-LEAVE-AND-HOURS
 
 **Question:** What maternity leave and working-time protections does Article 54 describe?
 
@@ -1815,7 +1815,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final advice or authoritative retrieval.
 
-### 1817. EG-LABOUR-14-2025-ART-256-OSH-INSPECTION-UNIT
+### 60. EG-LABOUR-14-2025-ART-256-OSH-INSPECTION-UNIT
 
 **Question:** ما واجب الجهة الإدارية في إنشاء جهاز تفتيش السلامة المهنية؟
 
@@ -1846,7 +1846,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative advice or final compliance decision until full official text and applicable decisions are verified.
 
-### 1848. EG-LABOUR-14-2025-ART-257-OSH-DANGEROUS-ESTABLISHMENT-CLOSURE
+### 61. EG-LABOUR-14-2025-ART-257-OSH-DANGEROUS-ESTABLISHMENT-CLOSURE
 
 **Question:** متى يجوز إغلاق منشأة أو جزء منها بسبب خطر داهم؟
 
@@ -1877,7 +1877,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative advice or final compliance decision until full official text and applicable decisions are verified.
 
-### 1879. EG-LABOUR-14-2025-ART-258-OSH-INSPECTOR-INSPECTION-RIGHTS
+### 62. EG-LABOUR-14-2025-ART-258-OSH-INSPECTOR-INSPECTION-RIGHTS
 
 **Question:** ما صلاحيات مفتشي السلامة والصحة المهنية؟
 
@@ -1908,7 +1908,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
 
-### 1910. EG-LABOUR-14-2025-ART-259-OSH-DEVICES-AND-COMMITTEES
+### 63. EG-LABOUR-14-2025-ART-259-OSH-DEVICES-AND-COMMITTEES
 
 **Question:** متى يجب إنشاء أجهزة ولجان السلامة المهنية والتدريب؟
 
@@ -1939,7 +1939,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
 
-### 1941. EG-LABOUR-14-2025-ART-260-OSH-HEALTH-AND-ACCIDENT-STATISTICS
+### 64. EG-LABOUR-14-2025-ART-260-OSH-HEALTH-AND-ACCIDENT-STATISTICS
 
 **Question:** ما مواعيد الإحصاءات والإبلاغ عن الحوادث والأمراض المهنية؟
 
@@ -1970,7 +1970,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
 
-### 1972. EG-LABOUR-14-2025-ART-261-OSH-TRAINING-LICENSING
+### 65. EG-LABOUR-14-2025-ART-261-OSH-TRAINING-LICENSING
 
 **Question:** من يجوز له تقديم التدريب المتخصص في السلامة والصحة المهنية؟
 
@@ -2001,7 +2001,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
 
-### 2003. EG-LABOUR-14-2025-ART-262-OSH-CONSULTANT-LICENSING
+### 66. EG-LABOUR-14-2025-ART-262-OSH-CONSULTANT-LICENSING
 
 **Question:** هل يلزم ترخيص لممارسة الاستشارات في السلامة والصحة المهنية؟
 
@@ -2032,7 +2032,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
 
-### 2034. EG-LABOUR-14-2025-ART-263-OSH-NATIONAL-CENTRE-RESEARCH-PLANS
+### 67. EG-LABOUR-14-2025-ART-263-OSH-NATIONAL-CENTRE-RESEARCH-PLANS
 
 **Question:** ما اختصاص المركز القومي لدراسات السلامة والصحة المهنية؟
 
@@ -2063,7 +2063,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
 
-### 2065. EG-LABOUR-14-2025-ART-264-OSH-SUPREME-COUNCIL
+### 68. EG-LABOUR-14-2025-ART-264-OSH-SUPREME-COUNCIL
 
 **Question:** ما المجلس الأعلى للسلامة والصحة المهنية وما اختصاصه؟
 
@@ -2094,7 +2094,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
 
-### 2096. EG-LABOUR-14-2025-ART-265-OSH-GOVERNORATE-SUBCOMMITTEES
+### 69. EG-LABOUR-14-2025-ART-265-OSH-GOVERNORATE-SUBCOMMITTEES
 
 **Question:** كيف تُشكل اللجان الفرعية للمجلس الأعلى بالمحافظات؟
 
@@ -2125,7 +2125,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
 
-### 2127. EG-LABOUR-14-2025-ART-266-IMPLEMENTING-DECISION-IDENTIFICATION
+### 70. EG-LABOUR-14-2025-ART-266-IMPLEMENTING-DECISION-IDENTIFICATION
 
 **Question:** ما رقم القرار الوزاري الذي يحدد مستويات اللياقة الصحية المطلوبة وفق المادة 266؟
 
@@ -2157,7 +2157,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** abstention benchmark and manual verification of the implementing decision.
 **Not usable for:** authoritative answer identifying the current decision or medical-fitness thresholds.
 
-### 2159. EG-LABOUR-14-2025-ART-267-OSH-EMPLOYER-TRAINING-PPE-NO-COST
+### 71. EG-LABOUR-14-2025-ART-267-OSH-EMPLOYER-TRAINING-PPE-NO-COST
 
 **Question:** هل يجوز تحميل العامل تكلفة معدات الوقاية؟
 
@@ -2188,7 +2188,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative advice or final compliance decision until full official text and applicable decisions are verified.
 
-### 2190. EG-LABOUR-14-2025-ART-268-OSH-WORKER-USE-OF-PROTECTIVE-EQUIPMENT
+### 72. EG-LABOUR-14-2025-ART-268-OSH-WORKER-USE-OF-PROTECTIVE-EQUIPMENT
 
 **Question:** ما واجبات العامل تجاه معدات الوقاية؟
 
@@ -2219,7 +2219,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative advice or final compliance decision until full official text and applicable decisions are verified.
 
-### 2221. EG-LABOUR-14-2025-ART-269-OSH-SHIFT-INSPECTIONS-AND-PERIODIC-EXAMS
+### 73. EG-LABOUR-14-2025-ART-269-OSH-SHIFT-INSPECTIONS-AND-PERIODIC-EXAMS
 
 **Question:** ما واجبات التفتيش اليومي والفحص الطبي الدوري؟
 
@@ -2250,7 +2250,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative advice or final compliance decision until full official text and applicable decisions are verified.
 
-### 2252. EG-LABOUR-14-2025-ART-270-SOCIAL-HEALTH-CARE-OBLIGATIONS
+### 74. EG-LABOUR-14-2025-ART-270-SOCIAL-HEALTH-CARE-OBLIGATIONS
 
 **Question:** ما واجب المنشأة في الإسعاف والعلاج الأولي؟
 
@@ -2281,7 +2281,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
 
-### 2283. EG-LABOUR-14-2025-ART-271-WORKPLACE-MEALS-AND-NUTRITION
+### 75. EG-LABOUR-14-2025-ART-271-WORKPLACE-MEALS-AND-NUTRITION
 
 **Question:** ما التزامات النقل والسكن والتغذية للعمال في المناطق البعيدة؟
 
@@ -2312,7 +2312,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
 
-### 2314. EG-LABOUR-14-2025-ART-272-WORKPLACE-SOCIAL-SERVICE-FACILITIES
+### 76. EG-LABOUR-14-2025-ART-272-WORKPLACE-SOCIAL-SERVICE-FACILITIES
 
 **Question:** متى يجب على المنشأة تقديم خدمات اجتماعية وثقافية؟
 
@@ -2343,7 +2343,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
 
-### 2345. EG-LABOUR-14-2025-ART-273-SOCIAL-HEALTH-IMPLEMENTING-DECISIONS
+### 77. EG-LABOUR-14-2025-ART-273-SOCIAL-HEALTH-IMPLEMENTING-DECISIONS
 
 **Question:** ما غرض صندوق الخدمات الاجتماعية والصحية والثقافية؟
 
@@ -2374,7 +2374,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
 
-### 2376. EG-LABOUR-14-2025-ART-274-SOCIAL-HEALTH-CHAPTER-BOUNDARY
+### 78. EG-LABOUR-14-2025-ART-274-SOCIAL-HEALTH-CHAPTER-BOUNDARY
 
 **Question:** ما الميزة أو الإعفاء المتعلق بالخدمات التي تقدمها المنشأة؟
 
@@ -2405,7 +2405,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified.
 
-### 2407. EG-LABOUR-14-2025-ART-275-IMPLEMENTING-APPOINTMENT-DECISION-IDENTIFICATION
+### 79. EG-LABOUR-14-2025-ART-275-IMPLEMENTING-APPOINTMENT-DECISION-IDENTIFICATION
 
 **Question:** ما رقم قرار وزير العدل الذي يحدد العاملين الممنوحين صفة مأمور الضبط القضائي وفق المادة 275؟
 
@@ -2438,7 +2438,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** abstention benchmark and manual verification of the implementing appointment decision.
 **Not usable for:** authoritative answer identifying appointed judicial officers or criminal enforcement scope.
 
-### 2440. EG-LABOUR-14-2025-ART-276-LABOUR-INSPECTOR-POWERS-AND-OATH
+### 80. EG-LABOUR-14-2025-ART-276-LABOUR-INSPECTOR-POWERS-AND-OATH
 
 **Question:** ما سلطات مفتشي العمل وما شروط مباشرتها؟
 
@@ -2470,7 +2470,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative advice or criminal exposure calculation until official text and currentness are verified.
 
-### 2472. EG-LABOUR-14-2025-ART-277-EMPLOYER-DUTY-TO-COOPERATE-WITH-INSPECTORS
+### 81. EG-LABOUR-14-2025-ART-277-EMPLOYER-DUTY-TO-COOPERATE-WITH-INSPECTORS
 
 **Question:** ما واجب صاحب العمل تجاه المفتشين؟
 
@@ -2509,7 +2509,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative advice or criminal exposure calculation until official text and currentness are verified.
 
-### 2511. EG-LABOUR-14-2025-ART-278-EMPLOYER-ATTENDANCE-ON-INSPECTOR-SUMMONS
+### 82. EG-LABOUR-14-2025-ART-278-EMPLOYER-ATTENDANCE-ON-INSPECTOR-SUMMONS
 
 **Question:** هل يجب على صاحب العمل الاستجابة لطلب الحضور؟
 
@@ -2541,7 +2541,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative advice or criminal exposure calculation until official text and currentness are verified.
 
-### 2543. EG-LABOUR-14-2025-ART-279-PUBLIC-AUTHORITY-ASSISTANCE-TO-INSPECTORS
+### 83. EG-LABOUR-14-2025-ART-279-PUBLIC-AUTHORITY-ASSISTANCE-TO-INSPECTORS
 
 **Question:** هل يجب على الجهات العامة مساعدة مفتشي العمل؟
 
@@ -2580,7 +2580,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative advice or criminal exposure calculation until official text and currentness are verified.
 
-### 2582. EG-LABOUR-14-2025-ART-280-LABOUR-LAW-PENALTIES-GENERAL-CLAUSE
+### 84. EG-LABOUR-14-2025-ART-280-LABOUR-LAW-PENALTIES-GENERAL-CLAUSE
 
 **Question:** كيف تُقرأ أحكام العقوبات في قانون العمل؟
 
@@ -2612,7 +2612,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative advice or criminal exposure calculation until official text and currentness are verified.
 
-### 2614. EG-LABOUR-14-2025-ART-281-LABOUR-OFFENCE-PENALTY-ARTICLE-281
+### 85. EG-LABOUR-14-2025-ART-281-LABOUR-OFFENCE-PENALTY-ARTICLE-281
 
 **Question:** ما غرامة مخالفة المادتين 4 و5 من قانون العمل؟
 
@@ -2644,7 +2644,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
 
-### 2646. EG-LABOUR-14-2025-ART-282-LABOUR-OFFENCE-PENALTY-ARTICLE-282
+### 86. EG-LABOUR-14-2025-ART-282-LABOUR-OFFENCE-PENALTY-ARTICLE-282
 
 **Question:** ما العقوبة على مخالفة الأحكام المحددة بالمادة 282؟
 
@@ -2676,7 +2676,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
 
-### 2678. EG-LABOUR-14-2025-ART-283-LABOUR-OFFENCE-PENALTY-ARTICLE-283
+### 87. EG-LABOUR-14-2025-ART-283-LABOUR-OFFENCE-PENALTY-ARTICLE-283
 
 **Question:** ما العقوبة على مخالفة المواد المحددة بالمادة 283؟
 
@@ -2708,7 +2708,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
 
-### 2710. EG-LABOUR-14-2025-ART-284-LABOUR-OFFENCE-PENALTY-ARTICLE-284
+### 88. EG-LABOUR-14-2025-ART-284-LABOUR-OFFENCE-PENALTY-ARTICLE-284
 
 **Question:** ما العقوبة على مخالفة المادة 26؟
 
@@ -2740,7 +2740,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
 
-### 2742. EG-LABOUR-14-2025-ART-285-LABOUR-OFFENCE-PENALTY-ARTICLE-285
+### 89. EG-LABOUR-14-2025-ART-285-LABOUR-OFFENCE-PENALTY-ARTICLE-285
 
 **Question:** ما العقوبة على مخالفة المادة 23؟
 
@@ -2772,7 +2772,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
 
-### 2774. EG-LABOUR-14-2025-ART-286-LABOUR-OFFENCE-PENALTY-ARTICLE-286
+### 90. EG-LABOUR-14-2025-ART-286-LABOUR-OFFENCE-PENALTY-ARTICLE-286
 
 **Question:** ما العقوبة على مخالفة مواد الإصدار والمادة 24 ومواد أخرى محددة؟
 
@@ -2804,7 +2804,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
 
-### 2806. EG-LABOUR-14-2025-ART-287-LABOUR-OFFENCE-PENALTY-ARTICLE-287
+### 91. EG-LABOUR-14-2025-ART-287-LABOUR-OFFENCE-PENALTY-ARTICLE-287
 
 **Question:** ما العقوبة على مخالفة المواد 45 و104 و108؟
 
@@ -2836,7 +2836,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
 
-### 2838. EG-LABOUR-14-2025-ART-288-LABOUR-OFFENCE-PENALTY-ARTICLE-288
+### 92. EG-LABOUR-14-2025-ART-288-LABOUR-OFFENCE-PENALTY-ARTICLE-288
 
 **Question:** ما الغرامة على مخالفة المواد المحددة بالمادة 288؟
 
@@ -2868,7 +2868,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
 
-### 2870. EG-LABOUR-14-2025-ART-289-LABOUR-OFFENCE-PENALTY-ARTICLE-289
+### 93. EG-LABOUR-14-2025-ART-289-LABOUR-OFFENCE-PENALTY-ARTICLE-289
 
 **Question:** ما غرامة مخالفة أحكام تشغيل الأطفال المحددة بالمادة 289؟
 
@@ -2901,7 +2901,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
 
-### 2903. EG-LABOUR-14-2025-ART-290-LABOUR-OFFENCE-PENALTY-ARTICLE-290
+### 94. EG-LABOUR-14-2025-ART-290-LABOUR-OFFENCE-PENALTY-ARTICLE-290
 
 **Question:** ما غرامة مخالفة المادتين 33 و37؟
 
@@ -2933,7 +2933,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
 
-### 2935. EG-LABOUR-14-2025-ART-291-LABOUR-OFFENCE-PENALTY-ARTICLE-291
+### 95. EG-LABOUR-14-2025-ART-291-LABOUR-OFFENCE-PENALTY-ARTICLE-291
 
 **Question:** ما عقوبة تشغيل العمالة دون ترخيص أو تحصيل مبالغ غير مستحقة؟
 
@@ -2965,7 +2965,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
 
-### 2967. EG-LABOUR-14-2025-ART-292-LABOUR-OFFENCE-PENALTY-ARTICLE-292
+### 96. EG-LABOUR-14-2025-ART-292-LABOUR-OFFENCE-PENALTY-ARTICLE-292
 
 **Question:** ما غرامة مخالفة المادة 42؟
 
@@ -2997,7 +2997,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
 
-### 2999. EG-LABOUR-14-2025-ART-293-LABOUR-OFFENCE-PENALTY-ARTICLE-293
+### 97. EG-LABOUR-14-2025-ART-293-LABOUR-OFFENCE-PENALTY-ARTICLE-293
 
 **Question:** ما غرامة مخالفة المواد 70 و71 و72 و74؟
 
@@ -3029,7 +3029,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
 
-### 3031. EG-LABOUR-14-2025-ART-294-LABOUR-OFFENCE-PENALTY-ARTICLE-294
+### 98. EG-LABOUR-14-2025-ART-294-LABOUR-OFFENCE-PENALTY-ARTICLE-294
 
 **Question:** ما غرامة مخالفة المواد 140–145 و151 و152 و198؟
 
@@ -3062,7 +3062,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
 
-### 3064. EG-LABOUR-14-2025-ART-295-LABOUR-OFFENCE-PENALTY-ARTICLE-295
+### 99. EG-LABOUR-14-2025-ART-295-LABOUR-OFFENCE-PENALTY-ARTICLE-295
 
 **Question:** ما غرامة مخالفة المواد 236 و237 و239 وما يرتبط بها؟
 
@@ -3094,7 +3094,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative criminal penalty determination until official Gazette text, currentness and lawyer review are verified.
 
-### 3096. EG-LABOUR-14-2025-ART-296-OSH-AND-HEALTH-SAFETY-FINES
+### 100. EG-LABOUR-14-2025-ART-296-OSH-AND-HEALTH-SAFETY-FINES
 
 **Question:** ما الغرامات المقررة لبعض مخالفات السلامة والصحة المهنية؟
 
@@ -3126,7 +3126,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative advice or criminal exposure calculation until official text and currentness are verified.
 
-### 3128. EG-LABOUR-14-2025-ART-297-LABOUR-INSPECTION-OBSTRUCTION-FINE
+### 101. EG-LABOUR-14-2025-ART-297-LABOUR-INSPECTION-OBSTRUCTION-FINE
 
 **Question:** ما غرامة مخالفة واجب تمكين التفتيش أو الاستجابة لطلب الحضور؟
 
@@ -3158,7 +3158,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative advice or criminal exposure calculation until official text and currentness are verified.
 
-### 3160. EG-LABOUR-14-2025-ART-298-CORPORATE-MANAGER-AND-ENTITY-FINANCIAL-LIABILITY
+### 102. EG-LABOUR-14-2025-ART-298-CORPORATE-MANAGER-AND-ENTITY-FINANCIAL-LIABILITY
 
 **Question:** متى يسأل المدير الفعلي والشخص الاعتباري عن مخالفة قانون العمل؟
 
@@ -3190,7 +3190,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** authoritative advice or criminal exposure calculation until official text and currentness are verified.
 
-### 3192. EG-LABOUR-14-2025-ART-1-COVERAGE-GAP-DEFINED-TERMS
+### 103. EG-LABOUR-14-2025-ART-1-COVERAGE-GAP-DEFINED-TERMS
 
 **Question:** ما أهم التعريفات التي يضعها قانون العمل؟
 
@@ -3220,7 +3220,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تفسير مصطلح اعتماداً على ملخص بدلاً من التعريف الحرفي الكامل.
 
-### 3222. EG-LABOUR-14-2025-ART-2-COVERAGE-GAP-TIME-CALCULATION-DEFAULTS
+### 104. EG-LABOUR-14-2025-ART-2-COVERAGE-GAP-TIME-CALCULATION-DEFAULTS
 
 **Question:** كيف يحسب الشهر والسنة ما لم يوجد اتفاق مخالف؟
 
@@ -3250,7 +3250,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب ميعاد فعلي دون فحص النص الخاص والاتفاق وقواعد احتساب المواعيد.
 
-### 3252. EG-LABOUR-14-2025-ART-3-COVERAGE-GAP-GENERAL-LAW-STATUS
+### 105. EG-LABOUR-14-2025-ART-3-COVERAGE-GAP-GENERAL-LAW-STATUS
 
 **Question:** ما موقع قانون العمل في تنظيم علاقات العمل؟
 
@@ -3280,7 +3280,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** القول باستبعاد كل قانون خاص دون فحص النصوص الخاصة.
 
-### 3282. EG-LABOUR-14-2025-ART-14-COVERAGE-GAP-PENALTY-PROCEEDS-ALLOCATION
+### 106. EG-LABOUR-14-2025-ART-14-COVERAGE-GAP-PENALTY-PROCEEDS-ALLOCATION
 
 **Question:** كيف توزع حصيلة المبالغ المحكوم بها عن مخالفات القانون؟
 
@@ -3310,7 +3310,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تحديد وجه صرف أو مستفيد دون قرار التوزيع الساري.
 
-### 3312. EG-LABOUR-14-2025-ART-15-COVERAGE-GAP-NONCASH-FEES
+### 107. EG-LABOUR-14-2025-ART-15-COVERAGE-GAP-NONCASH-FEES
 
 **Question:** كيف تحصل الرسوم ومقابل الخدمات المنصوص عليها في القانون؟
 
@@ -3340,7 +3340,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تحديد وسيلة دفع أو إعفاء دون مراجعة القانون والقرار المختص.
 
-### 3342. EG-LABOUR-14-2025-ART-17-COVERAGE-GAP-VOCATIONAL-GUIDANCE
+### 108. EG-LABOUR-14-2025-ART-17-COVERAGE-GAP-VOCATIONAL-GUIDANCE
 
 **Question:** من يتولى التوجيه المهني والتصنيف المهني الوطني؟
 
@@ -3370,7 +3370,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تحديد تصنيف أو شروط مستفيد دون التصنيف والقرار الحالي.
 
-### 3372. EG-LABOUR-14-2025-ART-18-COVERAGE-GAP-SKILLS-COUNCIL
+### 109. EG-LABOUR-14-2025-ART-18-COVERAGE-GAP-SKILLS-COUNCIL
 
 **Question:** ما المجلس الأعلى لتنمية مهارات الموارد البشرية؟
 
@@ -3400,7 +3400,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تحديد التشكيل أو الإجراء الحالي دون قرار التشكيل.
 
-### 3402. EG-LABOUR-14-2025-ART-19-COVERAGE-GAP-LOCAL-SKILLS-COUNCILS
+### 110. EG-LABOUR-14-2025-ART-19-COVERAGE-GAP-LOCAL-SKILLS-COUNCILS
 
 **Question:** هل يجوز تشكيل مجالس تنفيذية محلية لتنمية المهارات؟
 
@@ -3430,7 +3430,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** افتراض وجود مجلس محلي أو تحديد اختصاصاته دون قرار.
 
-### 3432. EG-LABOUR-14-2025-ART-20-COVERAGE-GAP-TRAINING-FUND-FUNCTIONS
+### 111. EG-LABOUR-14-2025-ART-20-COVERAGE-GAP-TRAINING-FUND-FUNCTIONS
 
 **Question:** ما اختصاصات صندوق تمويل التدريب والتأهيل؟
 
@@ -3460,7 +3460,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تقرير أهلية تمويل دون قواعد التمويل والقرارات.
 
-### 3462. EG-LABOUR-14-2025-ART-21-COVERAGE-GAP-TRAINING-FUND-REVENUE
+### 112. EG-LABOUR-14-2025-ART-21-COVERAGE-GAP-TRAINING-FUND-REVENUE
 
 **Question:** ما موارد صندوق تمويل التدريب والتأهيل؟
 
@@ -3490,7 +3490,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب اشتراك أو إعفاء دون عدد العمال والقرار الساري.
 
-### 3492. EG-LABOUR-14-2025-ART-24-COVERAGE-GAP-TRAINING-PROGRAMME-APPROVAL
+### 113. EG-LABOUR-14-2025-ART-24-COVERAGE-GAP-TRAINING-PROGRAMME-APPROVAL
 
 **Question:** ما البيانات المطلوبة لاعتماد البرامج التدريبية؟
 
@@ -3520,7 +3520,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تقرير اعتماد برنامج أو إعفاء دون نوع الجهة والقرار التنفيذي.
 
-### 3522. EG-LABOUR-14-2025-ART-26-COVERAGE-GAP-TRAINING-CERTIFICATE
+### 114. EG-LABOUR-14-2025-ART-26-COVERAGE-GAP-TRAINING-CERTIFICATE
 
 **Question:** ما الشهادة التي تمنح للمتدرب بعد إتمام البرنامج؟
 
@@ -3550,7 +3550,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تحديد صلاحية شهادة أو رسم دون القرار والسجل.
 
-### 3552. EG-LABOUR-14-2025-ART-35-COVERAGE-GAP-WORKER-REGISTRATION-CERTIFICATE
+### 115. EG-LABOUR-14-2025-ART-35-COVERAGE-GAP-WORKER-REGISTRATION-CERTIFICATE
 
 **Question:** ما واجب المنشأة بشأن شهادة قيد العامل؟
 
@@ -3580,7 +3580,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب مهلة الإعادة دون تاريخ بدء العمل والشهادة.
 
-### 3582. EG-LABOUR-14-2025-ART-38-COVERAGE-GAP-LABOUR-MARKET-DATA
+### 116. EG-LABOUR-14-2025-ART-38-COVERAGE-GAP-LABOUR-MARKET-DATA
 
 **Question:** ما واجب المنشآت في تقديم بيانات سوق العمل؟
 
@@ -3610,7 +3610,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب مهلة أو تقرير عدم امتثال دون الطلب وتاريخه.
 
-### 3612. EG-LABOUR-14-2025-ART-39-COVERAGE-GAP-RECRUITMENT-EXCEPTIONS
+### 117. EG-LABOUR-14-2025-ART-39-COVERAGE-GAP-RECRUITMENT-EXCEPTIONS
 
 **Question:** ما الاستثناءات من أحكام التشغيل في الداخل والخارج؟
 
@@ -3640,7 +3640,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** اعتبار وظيفة مستثناة دون طبيعة العمل والقرار الساري.
 
-### 3642. EG-LABOUR-14-2025-PROMULGATION-ART-2-PROMULGATION-TRAINING-FUND-TRANSITION
+### 118. EG-LABOUR-14-2025-PROMULGATION-ART-2-PROMULGATION-TRAINING-FUND-TRANSITION
 
 **Question:** ما مصير صندوق تمويل التدريب والدعاوى المتعلقة بنسبة 1%؟
 
@@ -3670,7 +3670,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
 
-### 3672. EG-LABOUR-14-2025-PROMULGATION-ART-3-PROMULGATION-SOCIAL-HEALTH-FUND-AND-WAGES-COUNCIL
+### 119. EG-LABOUR-14-2025-PROMULGATION-ART-3-PROMULGATION-SOCIAL-HEALTH-FUND-AND-WAGES-COUNCIL
 
 **Question:** ما وضع صندوق الخدمات الاجتماعية والصحية والمجلس القومي للأجور بعد صدور القانون؟
 
@@ -3700,7 +3700,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
 
-### 3702. EG-LABOUR-14-2025-PROMULGATION-ART-4-PROMULGATION-PRESERVATION-OF-BETTER-BENEFITS
+### 120. EG-LABOUR-14-2025-PROMULGATION-ART-4-PROMULGATION-PRESERVATION-OF-BETTER-BENEFITS
 
 **Question:** هل يحتفظ العمال بالمزايا السابقة الأفضل؟
 
@@ -3730,7 +3730,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
 
-### 3732. EG-LABOUR-14-2025-PROMULGATION-ART-5-PROMULGATION-INDUSTRIAL-LICENSING-LAW-SAVINGS
+### 121. EG-LABOUR-14-2025-PROMULGATION-ART-5-PROMULGATION-INDUSTRIAL-LICENSING-LAW-SAVINGS
 
 **Question:** هل يلغي قانون العمل أحكام قانون تراخيص المنشآت الصناعية؟
 
@@ -3760,7 +3760,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
 
-### 3762. EG-LABOUR-14-2025-PROMULGATION-ART-6-PROMULGATION-TRANSITIONAL-PROFESSION-LICENSING
+### 122. EG-LABOUR-14-2025-PROMULGATION-ART-6-PROMULGATION-TRANSITIONAL-PROFESSION-LICENSING
 
 **Question:** ما المهل الانتقالية لتوفيق أوضاع ترخيص المهن والحرف والتشغيل؟
 
@@ -3790,7 +3790,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
 
-### 3792. EG-LABOUR-14-2025-PROMULGATION-ART-7-PROMULGATION-TRANSFER-IRREGULAR-WORKER-FUNDS
+### 123. EG-LABOUR-14-2025-PROMULGATION-ART-7-PROMULGATION-TRANSFER-IRREGULAR-WORKER-FUNDS
 
 **Question:** إلى أين تؤول أموال حسابات الرعاية الاجتماعية والصحية للعمالة غير المنتظمة؟
 
@@ -3820,7 +3820,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
 
-### 3822. EG-LABOUR-14-2025-PROMULGATION-ART-8-PROMULGATION-EMPLOYER-EMPLOYEE-ROSTER-DEADLINE
+### 124. EG-LABOUR-14-2025-PROMULGATION-ART-8-PROMULGATION-EMPLOYER-EMPLOYEE-ROSTER-DEADLINE
 
 **Question:** ما البيان الذي يجب على المنشأة تقديمه خلال 30 يوماً؟
 
@@ -3850,7 +3850,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
 
-### 3852. EG-LABOUR-14-2025-PROMULGATION-ART-9-PROMULGATION-TRANSFER-PENDING-LABOUR-CASES
+### 125. EG-LABOUR-14-2025-PROMULGATION-ART-9-PROMULGATION-TRANSFER-PENDING-LABOUR-CASES
 
 **Question:** كيف تُعامل الدعاوى القائمة التي أصبحت من اختصاص المحاكم العمالية المتخصصة؟
 
@@ -3880,7 +3880,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
 
-### 3882. EG-LABOUR-14-2025-PROMULGATION-ART-10-PROMULGATION-APPEALS-TRANSITION
+### 126. EG-LABOUR-14-2025-PROMULGATION-ART-10-PROMULGATION-APPEALS-TRANSITION
 
 **Question:** من يستمر في نظر الطعون القائمة عند بدء نظام المحاكم العمالية؟
 
@@ -3910,7 +3910,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
 
-### 3912. EG-LABOUR-14-2025-PROMULGATION-ART-11-PROMULGATION-IMPLEMENTING-DECISIONS-TRANSITION
+### 127. EG-LABOUR-14-2025-PROMULGATION-ART-11-PROMULGATION-IMPLEMENTING-DECISIONS-TRANSITION
 
 **Question:** ما مصير القرارات التنفيذية السابقة وما مهلة إصدار القرارات الجديدة؟
 
@@ -3940,7 +3940,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final determination of transitional deadlines or case disposition until official text and case dates are checked.
 
-### 3942. EG-LABOUR-14-2025-ART-126-EXAM-LEAVE
+### 128. EG-LABOUR-14-2025-ART-126-EXAM-LEAVE
 
 **Question:** What notice and evidence conditions apply to annual-leave scheduling and paid exam leave under Article 126?
 
@@ -3975,7 +3975,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** automatic approval or denial of a specific leave request.
 
-### 3977. EG-LABOUR-14-2025-ART-127-WORK-DURING-LEAVE
+### 129. EG-LABOUR-14-2025-ART-127-WORK-DURING-LEAVE
 
 **Question:** What consequence does Article 127 state if a worker works for another party during leave?
 
@@ -4010,7 +4010,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final finding of misconduct or payroll recovery decision.
 
-### 4012. EG-LABOUR-14-2025-ART-121-OVERTIME-EXCEPTION
+### 130. EG-LABOUR-14-2025-ART-121-OVERTIME-EXCEPTION
 
 **Question:** What minimum overtime compensation and notification rules does Article 121 state for exceptional work?
 
@@ -4048,7 +4048,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** automated overtime payroll calculation or final legal advice.
 
-### 4050. EG-LABOUR-14-2025-ART-122-WORK-SCHEDULE-DISPLAY
+### 131. EG-LABOUR-14-2025-ART-122-WORK-SCHEDULE-DISPLAY
 
 **Question:** What workplace schedule and notification duties does Article 122 impose?
 
@@ -4082,7 +4082,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final compliance determination for a specific establishment.
 
-### 4084. EG-LABOUR-14-2025-ART-123-WORK-HOUR-EXEMPTIONS
+### 132. EG-LABOUR-14-2025-ART-123-WORK-HOUR-EXEMPTIONS
 
 **Question:** Which worker categories does Article 123 exclude from specified working-hour and rest rules?
 
@@ -4117,7 +4117,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** final classification of a worker or determination of applicable hours without the implementing decision.
 
-### 4119. EG-LABOUR-14-2025-ART-117-DAILY-WEEKLY-HOURS
+### 133. EG-LABOUR-14-2025-ART-117-DAILY-WEEKLY-HOURS
 
 **Question:** ما الحد العام لساعات العمل الفعلية اليومية والأسبوعية؟
 
@@ -4156,7 +4156,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حسم مشروعية جدول عمل فردي دون مراجعة الاستثناءات والقرارات المنفذة.
 
-### 4158. EG-LABOUR-14-2025-ART-118-BREAKS
+### 134. EG-LABOUR-14-2025-ART-118-BREAKS
 
 **Question:** ما الحد الأدنى لفترات الطعام والراحة ومتى يجوز استمرار العمل دونها؟
 
@@ -4195,7 +4195,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تقرير مخالفة نهائية دون مراجعة القرارات الوزارية والوقائع.
 
-### 4197. EG-LABOUR-14-2025-ART-119-WORKDAY-SPAN
+### 135. EG-LABOUR-14-2025-ART-119-WORKDAY-SPAN
 
 **Question:** ما الحد العام للفترة بين بداية العمل ونهايته؟
 
@@ -4234,7 +4234,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** احتساب مخالفة نهائية من جدول الدوام وحده.
 
-### 4236. EG-LABOUR-14-2025-ART-120-WEEKLY-REST
+### 136. EG-LABOUR-14-2025-ART-120-WEEKLY-REST
 
 **Question:** ما الحد الأدنى للراحة الأسبوعية ومتى يمكن تجميعها؟
 
@@ -4270,7 +4270,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حسم استحقاق راحة أسبوعية أو مشروعية تجميعها دون فحص الوقائع والقرارات.
 
-### 4272. EG-LABOUR-14-2025-ART-124-ANNUAL-LEAVE-ENTITLEMENT
+### 137. EG-LABOUR-14-2025-ART-124-ANNUAL-LEAVE-ENTITLEMENT
 
 **Question:** ما مدد الإجازة السنوية المدفوعة التي تقررها المادة 124؟
 
@@ -4308,7 +4308,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** إصدار حساب نهائي لرصيد الإجازات دون بيانات الخدمة والفئة والقرارات المنفذة.
 
-### 4310. EG-LABOUR-14-2025-ART-125-ANNUAL-LEAVE-SCHEDULING
+### 138. EG-LABOUR-14-2025-ART-125-ANNUAL-LEAVE-SCHEDULING
 
 **Question:** من يحدد موعد الإجازة السنوية وما القيود على تجزئتها وتسوية رصيدها؟
 
@@ -4344,7 +4344,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب تعويض نهائي أو تقرير سقوط حق دون مراجعة ملف العامل والوقائع.
 
-### 4346. EG-LABOUR-14-2025-ART-128-CASUAL-AND-CHILDBIRTH-LEAVE
+### 139. EG-LABOUR-14-2025-ART-128-CASUAL-AND-CHILDBIRTH-LEAVE
 
 **Question:** ما الحد السنوي للإجازة العارضة وما الإجازة المستحقة عند ولادة مولود؟
 
@@ -4380,7 +4380,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تقرير الاستحقاق النهائي دون مراجعة سجل الإجازات والوقائع.
 
-### 4382. EG-LABOUR-14-2025-ART-129-PUBLIC-HOLIDAY-WORK-COMPENSATION
+### 140. EG-LABOUR-14-2025-ART-129-PUBLIC-HOLIDAY-WORK-COMPENSATION
 
 **Question:** ما حق العامل إذا عمل في عطلة أو عيد أو مناسبة رسمية؟
 
@@ -4420,7 +4420,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** احتساب مستحق مالي نهائي دون مراجعة قرار العطلة وسجل الأجر والطلب.
 
-### 4422. EG-LABOUR-14-2025-ART-131-SICK-LEAVE-AND-WAGE-COMPENSATION
+### 141. EG-LABOUR-14-2025-ART-131-SICK-LEAVE-AND-WAGE-COMPENSATION
 
 **Question:** ما الإطار العام للإجازة المرضية وما القواعد الخاصة ببعض المنشآت الصناعية؟
 
@@ -4451,7 +4451,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب تعويض المرض أو تقرير إنهاء الخدمة دون مراجعة قانون التأمينات والملف الطبي والقرارات المنفذة.
 
-### 4453. EG-LABOUR-14-2025-ART-132-INFECTIOUS-DISEASE-CONTACT-LEAVE
+### 142. EG-LABOUR-14-2025-ART-132-INFECTIOUS-DISEASE-CONTACT-LEAVE
 
 **Question:** متى يجوز منع العامل المخالط لمريض بمرض معد من مزاولة العمل؟
 
@@ -4482,7 +4482,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** إصدار قرار غياب أو عزل نهائي دون التحقق من القرار الوزاري والتقييم الطبي.
 
-### 4484. EG-LABOUR-14-2025-ART-133-MEDICAL-UNFITNESS-DETERMINATION
+### 143. EG-LABOUR-14-2025-ART-133-MEDICAL-UNFITNESS-DETERMINATION
 
 **Question:** كيف تثبت عدم اللياقة الصحية للخدمة؟
 
@@ -4513,7 +4513,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** اتخاذ قرار بإنهاء الخدمة أو تحديد الاستحقاقات من المادة 133 وحدها.
 
-### 4515. EG-LABOUR-14-2025-ART-134-WORKER-DUTIES
+### 144. EG-LABOUR-14-2025-ART-134-WORKER-DUTIES
 
 **Question:** ما أبرز الواجبات القانونية للعامل أثناء العمل؟
 
@@ -4544,7 +4544,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تقرير ثبوت مخالفة تأديبية أو مشروعية جزاء بعينه دون وقائع ومستندات ولائحة المنشأة.
 
-### 4546. EG-LABOUR-14-2025-ART-135-MEDICAL-TESTING-AND-HEALTH
+### 145. EG-LABOUR-14-2025-ART-135-MEDICAL-TESTING-AND-HEALTH
 
 **Question:** متى يجوز طلب الاختبارات الطبية للعامل ومن يتحمل تكلفتها؟
 
@@ -4575,7 +4575,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تقرير مشروعية فحص محدد أو التعامل مع نتيجته دون مراجعة القواعد الصحية والخصوصية والوقائع.
 
-### 4577. EG-LABOUR-14-2025-ART-136-WORKER-CONFLICTS-AND-UNDUE-BENEFITS
+### 146. EG-LABOUR-14-2025-ART-136-WORKER-CONFLICTS-AND-UNDUE-BENEFITS
 
 **Question:** ما الأفعال التي تحظرها المادة 136 على العامل أثناء علاقة العمل؟
 
@@ -4606,7 +4606,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** الجزم بوجود تضارب مصالح أو مخالفة أو استحقاق فصل دون مراجعة الأدلة والاستثناءات والإجراءات.
 
-### 4608. EG-LABOUR-14-2025-ART-137-WORK-REGULATIONS-REQUIREMENTS
+### 147. EG-LABOUR-14-2025-ART-137-WORK-REGULATIONS-REQUIREMENTS
 
 **Question:** متى يجب على المنشأة إعداد لائحة تنظيم العمل وما أبرز متطلباتها؟
 
@@ -4642,7 +4642,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** إقرار لائحة منشأة بأنها معتمدة أو نافذة دون مراجعة النص الكامل والقرار التنفيذي وإجراءات التقديم.
 
-### 4644. EG-LABOUR-14-2025-ART-138-DISCIPLINARY-SCOPE-AND-PROPORTIONALITY
+### 148. EG-LABOUR-14-2025-ART-138-DISCIPLINARY-SCOPE-AND-PROPORTIONALITY
 
 **Question:** ما حدود سلطة صاحب العمل في توقيع الجزاء التأديبي؟
 
@@ -4678,7 +4678,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** الجزم بمشروعية جزاء تأديبي دون مراجعة لائحة المنشأة والتناسب والإجراءات.
 
-### 4680. EG-LABOUR-14-2025-ART-139-DISCIPLINARY-PENALTIES-LIST
+### 149. EG-LABOUR-14-2025-ART-139-DISCIPLINARY-PENALTIES-LIST
 
 **Question:** ما الجزاءات التأديبية التي يجيزها القانون للعامل؟
 
@@ -4714,7 +4714,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** اختيار أو احتساب جزاء نهائي دون التحقق من الحد القانوني ولائحة المنشأة والواقعة.
 
-### 4716. EG-LABOUR-14-2025-ART-140-SINGLE-PENALTY-AND-DEDUCTION-LIMIT
+### 150. EG-LABOUR-14-2025-ART-140-SINGLE-PENALTY-AND-DEDUCTION-LIMIT
 
 **Question:** هل يجوز توقيع أكثر من جزاء عن المخالفة الواحدة أو الجمع بين الخصم والجزاء المالي؟
 
@@ -4750,7 +4750,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** اعتماد خصم أو جزاء مالي دون احتساب مجموع الاقتطاعات ومراجعة المادة 139 واللائحة.
 
-### 4752. EG-LABOUR-14-2025-ART-141-DISCIPLINARY-INVESTIGATION-TIME-LIMITS
+### 151. EG-LABOUR-14-2025-ART-141-DISCIPLINARY-INVESTIGATION-TIME-LIMITS
 
 **Question:** ما الضمانات والمواعيد الأساسية قبل توقيع الجزاء التأديبي؟
 
@@ -4786,7 +4786,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** الحكم ببطلان أو صحة إجراء تأديبي دون مراجعة ملف التحقيق والنص الكامل والوقائع.
 
-### 4788. EG-LABOUR-14-2025-ART-142-DISCIPLINARY-INVESTIGATION-ASSIGNMENT
+### 152. EG-LABOUR-14-2025-ART-142-DISCIPLINARY-INVESTIGATION-ASSIGNMENT
 
 **Question:** من يتولى التحقيق في المخالفات التأديبية داخل المنشأة؟
 
@@ -4822,7 +4822,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** الحكم ببطلان التحقيق أو صحته دون معرفة هيكل المنشأة وصفة المحقق وملف الواقعة.
 
-### 4824. EG-LABOUR-14-2025-ART-143-DISCIPLINARY-DEDUCTION-CAPS
+### 153. EG-LABOUR-14-2025-ART-143-DISCIPLINARY-DEDUCTION-CAPS
 
 **Question:** ما الحدود القصوى للخصم التأديبي من أجر العامل؟
 
@@ -4858,7 +4858,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** اعتماد خصم دون حساب الحد للمخالفة الواحدة وإجمالي الخصومات الشهرية.
 
-### 4860. EG-LABOUR-14-2025-ART-144-REPEAT-VIOLATION-AGGRAVATION
+### 154. EG-LABOUR-14-2025-ART-144-REPEAT-VIOLATION-AGGRAVATION
 
 **Question:** متى يجوز تشديد الجزاء بسبب تكرار المخالفة؟
 
@@ -4894,7 +4894,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تشديد جزاء دون إثبات المخالفة السابقة وتاريخ الإبلاغ والتطابق في نوع المخالفة.
 
-### 4896. EG-LABOUR-14-2025-ART-145-TEMPORARY-SUSPENSION-FULL-PAY
+### 155. EG-LABOUR-14-2025-ART-145-TEMPORARY-SUSPENSION-FULL-PAY
 
 **Question:** متى يجوز وقف العامل مؤقتاً عن العمل وبأي أجر؟
 
@@ -4930,7 +4930,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تقرير مشروعية وقف عامل دون فحص السبب والقرار المكتوب والمدة والأجر.
 
-### 4932. EG-LABOUR-14-2025-ART-146-SUSPENSION-GRIEVANCE-REVIEW
+### 156. EG-LABOUR-14-2025-ART-146-SUSPENSION-GRIEVANCE-REVIEW
 
 **Question:** كيف يتظلم العامل من قرار الوقف المؤقت في الحالات المحددة بالقانون؟
 
@@ -4966,7 +4966,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب ميعاد أو تقرير أثر التظلم دون مستند قرار الوقف وتاريخ العلم والقرار القضائي.
 
-### 4968. EG-LABOUR-14-2025-ART-147-EMPLOYER-REQUEST-TO-EXTEND-SUSPENSION
+### 157. EG-LABOUR-14-2025-ART-147-EMPLOYER-REQUEST-TO-EXTEND-SUSPENSION
 
 **Question:** هل يجوز تمديد وقف العامل وما أثر عدم صدور قرار قبل انتهائه؟
 
@@ -5002,7 +5002,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب الأجر أو تقرير استمرار الوقف دون مراجعة الطلب وتاريخه وقرار القاضي.
 
-### 5004. EG-LABOUR-14-2025-ART-148-AUTHORITY-TO-IMPOSE-DISCIPLINE
+### 158. EG-LABOUR-14-2025-ART-148-AUTHORITY-TO-IMPOSE-DISCIPLINE
 
 **Question:** من يملك توقيع الفصل والجزاءات التأديبية الأخرى؟
 
@@ -5038,7 +5038,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** الحكم بصحة جزاء أو فصل دون فحص الاختصاص والتفويض والنص الكامل.
 
-### 5040. EG-LABOUR-14-2025-ART-149-INDIVIDUAL-DISPUTE-AMICABLE-SETTLEMENT
+### 159. EG-LABOUR-14-2025-ART-149-INDIVIDUAL-DISPUTE-AMICABLE-SETTLEMENT
 
 **Question:** ما آلية التسوية الودية الأولية للنزاع الفردي بين العامل وصاحب العمل؟
 
@@ -5069,7 +5069,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** اعتبار المطالبة قد سقطت أو أن التسوية قابلة للتنفيذ دون مراجعة الوقائع والمحضر والنص الكامل.
 
-### 5071. EG-LABOUR-14-2025-ART-150-INDIVIDUAL-DISPUTE-LABOUR-COURT-PROCESS
+### 160. EG-LABOUR-14-2025-ART-150-INDIVIDUAL-DISPUTE-LABOUR-COURT-PROCESS
 
 **Question:** ماذا يحدث إذا لم تنته التسوية الودية للنزاع الفردي إلى اتفاق؟
 
@@ -5100,7 +5100,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب ميعاد تقاضٍ أو استحقاق أجر أو تعويض من الملخص دون مراجعة النص الكامل وملف الدعوى.
 
-### 5102. EG-LABOUR-14-2025-ART-151-WORKER-LIABILITY-FOR-DAMAGE
+### 161. EG-LABOUR-14-2025-ART-151-WORKER-LIABILITY-FOR-DAMAGE
 
 **Question:** متى يمكن مطالبة العامل بقيمة تلف أو فقد ممتلكات صاحب العمل؟
 
@@ -5131,7 +5131,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** خصم قيمة تلف من أجر العامل أو تحديد المسؤولية دون التحقيق والنص الكامل وتقدير الضرر.
 
-### 5133. EG-LABOUR-14-2025-ART-152-TRADE-UNION-REPRESENTATIVE-PROTECTIONS
+### 162. EG-LABOUR-14-2025-ART-152-TRADE-UNION-REPRESENTATIVE-PROTECTIONS
 
 **Question:** هل تؤثر أحكام المساءلة التأديبية على ضمانات أعضاء مجالس إدارة المنظمات النقابية؟
 
@@ -5162,7 +5162,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تقرير مشروعية إجراء تأديبي ضد ممثل نقابي دون مراجعة الضمانات الخاصة.
 
-### 5164. EG-LABOUR-14-2025-ART-153-DISCIPLINARY-FINES-ACCOUNTING
+### 163. EG-LABOUR-14-2025-ART-153-DISCIPLINARY-FINES-ACCOUNTING
 
 **Question:** كيف يجب تسجيل حصيلة الجزاءات المالية على العمال والتصرف فيها؟
 
@@ -5193,7 +5193,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** اعتماد استخدام حصيلة الجزاءات أو تقييم مخالفة محاسبية دون فحص السجل والحساب والنص الكامل.
 
-### 5195. EG-LABOUR-14-2025-ART-154-FIXED-TERM-CONTRACT-EXPIRY
+### 164. EG-LABOUR-14-2025-ART-154-FIXED-TERM-CONTRACT-EXPIRY
 
 **Question:** متى ينتهي عقد العمل محدد المدة وما القاعدة الخاصة بالعقد الذي تجاوز خمس سنوات؟
 
@@ -5229,7 +5229,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تقرير صحة إنهاء عقد أو استحقاق تعويض دون مراجعة العقد الكامل والتواريخ والنص الكامل.
 
-### 5231. EG-LABOUR-14-2025-ART-155-SPECIFIC-WORK-CONTRACT-COMPLETION
+### 165. EG-LABOUR-14-2025-ART-155-SPECIFIC-WORK-CONTRACT-COMPLETION
 
 **Question:** ما أثر إتمام العمل المحدد الذي أبرم العقد لإنجازه؟
 
@@ -5265,7 +5265,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تحديد انتهاء العقد أو تجديده دون مراجعة العقد والوقائع الفعلية.
 
-### 5267. EG-LABOUR-14-2025-ART-156-INDEFINITE-CONTRACT-THREE-MONTH-NOTICE
+### 166. EG-LABOUR-14-2025-ART-156-INDEFINITE-CONTRACT-THREE-MONTH-NOTICE
 
 **Question:** ما مهلة الإخطار العامة لإنهاء عقد العمل غير محدد المدة؟
 
@@ -5301,7 +5301,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب تاريخ انتهاء الخدمة أو استحقاق التعويض دون فحص العقد والإخطار والاستثناءات.
 
-### 5303. EG-LABOUR-14-2025-ART-157-INDEFINITE-CONTRACT-LEGITIMATE-REASON
+### 167. EG-LABOUR-14-2025-ART-157-INDEFINITE-CONTRACT-LEGITIMATE-REASON
 
 **Question:** هل يجوز إنهاء عقد العمل غير محدد المدة دون مبرر مشروع وكاف؟
 
@@ -5337,7 +5337,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تقرير مشروعية إنهاء عقد غير محدد المدة اعتماداً على الإخطار وحده.
 
-### 5339. EG-LABOUR-14-2025-ART-158-TERMINATION-NOTICE-CANNOT-BE-CONDITIONAL
+### 168. EG-LABOUR-14-2025-ART-158-TERMINATION-NOTICE-CANNOT-BE-CONDITIONAL
 
 **Question:** متى تبدأ مهلة الإخطار بإنهاء عقد العمل؟
 
@@ -5373,7 +5373,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب مهلة الإخطار دون دليل على التسلم ومراجعة نوع العقد والاستثناءات.
 
-### 5375. EG-LABOUR-14-2025-ART-159-NOTICE-DURING-LEAVE-AND-SICKNESS
+### 169. EG-LABOUR-14-2025-ART-159-NOTICE-DURING-LEAVE-AND-SICKNESS
 
 **Question:** هل يجوز توجيه إخطار الإنهاء أثناء الإجازة وكيف تؤثر الإجازة المرضية على المهلة؟
 
@@ -5409,7 +5409,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب تاريخ انتهاء الخدمة دون مراجعة الإخطار وسجلات الإجازات.
 
-### 5411. EG-LABOUR-14-2025-ART-160-CONTRACT-OBLIGATIONS-DURING-NOTICE
+### 170. EG-LABOUR-14-2025-ART-160-CONTRACT-OBLIGATIONS-DURING-NOTICE
 
 **Question:** هل يستمر عقد العمل وواجبات الطرفين خلال مهلة الإخطار؟
 
@@ -5445,7 +5445,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** اعتبار العلاقة منتهية بمجرد إرسال الإخطار دون حساب المهلة.
 
-### 5447. EG-LABOUR-14-2025-ART-161-NOTICE-PERIOD-WAIVER-OR-EXTENSION
+### 171. EG-LABOUR-14-2025-ART-161-NOTICE-PERIOD-WAIVER-OR-EXTENSION
 
 **Question:** هل يجوز الاتفاق على إسقاط مهلة الإخطار أو تقصيرها؟
 
@@ -5481,7 +5481,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** اعتبار اتفاق تقصير مهلة الإخطار صحيحاً دون مراجعة المادة والنصوص الخاصة.
 
-### 5483. EG-LABOUR-14-2025-ART-162-PAID-TIME-TO-SEARCH-DURING-NOTICE
+### 172. EG-LABOUR-14-2025-ART-162-PAID-TIME-TO-SEARCH-DURING-NOTICE
 
 **Question:** ما حق العامل في وقت مدفوع للبحث عن عمل جديد خلال مهلة الإخطار؟
 
@@ -5517,7 +5517,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** خصم أجر وقت البحث أو تقرير مخالفة دون فحص شروط المادة والإخطار.
 
-### 5519. EG-LABOUR-14-2025-ART-163-EMPLOYER-WAIVER-OF-WORK-DURING-NOTICE
+### 173. EG-LABOUR-14-2025-ART-163-EMPLOYER-WAIVER-OF-WORK-DURING-NOTICE
 
 **Question:** هل يمكن لصاحب العمل إعفاء العامل من أداء العمل خلال مهلة الإخطار؟
 
@@ -5553,7 +5553,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** اعتبار الإعفاء من الحضور إنهاءً فورياً للخدمة دون فحص القرار والمهلة.
 
-### 5555. EG-LABOUR-14-2025-ART-164-PAYMENT-IN-LIEU-OF-UNSERVED-NOTICE
+### 174. EG-LABOUR-14-2025-ART-164-PAYMENT-IN-LIEU-OF-UNSERVED-NOTICE
 
 **Question:** ما الأثر المالي إذا أنهى أحد الطرفين العقد غير محدد المدة دون استكمال مهلة الإخطار؟
 
@@ -5589,7 +5589,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب مقابل الإخطار أو مدة الخدمة دون مراجعة العقد والإخطار والأجر والنص الكامل.
 
-### 5591. EG-LABOUR-14-2025-ART-165-UNLAWFUL-TERMINATION-COMPENSATION
+### 175. EG-LABOUR-14-2025-ART-165-UNLAWFUL-TERMINATION-COMPENSATION
 
 **Question:** ما الحد الأدنى للتعويض عند إنهاء عقد غير محدد المدة لسبب غير مشروع؟
 
@@ -5625,7 +5625,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب التعويض أو الجزم بعدم مشروعية الإنهاء دون فحص الملف القانوني الكامل.
 
-### 5627. EG-LABOUR-14-2025-ART-166-ABSENCE-DEEMED-RESIGNATION
+### 176. EG-LABOUR-14-2025-ART-166-ABSENCE-DEEMED-RESIGNATION
 
 **Question:** متى تعتبر المادة 166 العامل مستقيلاً بسبب الغياب؟
 
@@ -5661,7 +5661,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** اعتبار الغياب وحده استقالة صحيحة دون التحقق من الشروط والإخطار.
 
-### 5663. EG-LABOUR-14-2025-ART-167-RESIGNATION-FORMALITY-ACCEPTANCE-WITHDRAWAL
+### 177. EG-LABOUR-14-2025-ART-167-RESIGNATION-FORMALITY-ACCEPTANCE-WITHDRAWAL
 
 **Question:** ما الإجراءات والآجال الأساسية لاستقالة العامل؟
 
@@ -5698,7 +5698,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تقرير انتهاء الخدمة أو صحة العدول دون فحص الأصول والتواريخ.
 
-### 5700. EG-LABOUR-14-2025-ART-168-WORKER-TERMINATION-EMPLOYER-BREACH-OR-ASSAULT
+### 178. EG-LABOUR-14-2025-ART-168-WORKER-TERMINATION-EMPLOYER-BREACH-OR-ASSAULT
 
 **Question:** متى يمكن للعامل إنهاء العقد بسبب إخلال صاحب العمل؟
 
@@ -5734,7 +5734,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** توجيه العامل للإنهاء أو تقدير التعويض دون فحص الوقائع والمخاطر الإجرائية.
 
-### 5736. EG-LABOUR-14-2025-ART-169-DEATH-EMPLOYEE-EMPLOYER-AND-FAMILY-PAYMENTS
+### 179. EG-LABOUR-14-2025-ART-169-DEATH-EMPLOYEE-EMPLOYER-AND-FAMILY-PAYMENTS
 
 **Question:** ما آثار وفاة العامل أو صاحب العمل على عقد العمل والمبالغ المرتبطة بالوفاة؟
 
@@ -5770,7 +5770,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب نهائي أو تحديد المستحقين دون مراجعة النصوص المرتبطة والوثائق.
 
-### 5772. EG-LABOUR-14-2025-ART-170-TOTAL-PARTIAL-DISABILITY
+### 180. EG-LABOUR-14-2025-ART-170-TOTAL-PARTIAL-DISABILITY
 
 **Question:** كيف يؤثر العجز الكلي أو الجزئي على عقد العمل؟
 
@@ -5806,7 +5806,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** إنهاء الخدمة تلقائياً عند أي عجز دون فحص الشروط.
 
-### 5808. EG-LABOUR-14-2025-ART-171-RETIREMENT-AGE-AND-FIXED-TERM
+### 181. EG-LABOUR-14-2025-ART-171-RETIREMENT-AGE-AND-FIXED-TERM
 
 **Question:** ما القاعدة بشأن سن التقاعد وإنهاء العقد عند بلوغه؟
 
@@ -5842,7 +5842,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تحديد تاريخ انتهاء العقد أو المعاش دون مراجعة العقد والقانون المرتبط.
 
-### 5844. EG-LABOUR-14-2025-ART-172-POST-RETIREMENT-SERVICE-GRATUITY
+### 182. EG-LABOUR-14-2025-ART-172-POST-RETIREMENT-SERVICE-GRATUITY
 
 **Question:** كيف تحسب مكافأة مدة العمل بعد سن الستين؟
 
@@ -5878,7 +5878,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب مكافأة نهائية دون مراجعة كشوف الأجر والتأمينات.
 
-### 5880. EG-LABOUR-14-2025-ART-173-TERMINATION-DURING-ILLNESS-LEAVE
+### 183. EG-LABOUR-14-2025-ART-173-TERMINATION-DURING-ILLNESS-LEAVE
 
 **Question:** متى يجوز إنهاء العقد بسبب مرض العامل؟
 
@@ -5914,7 +5914,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تأكيد مشروعية الإنهاء بسبب المرض دون مراجعة السجلات والتواريخ.
 
-### 5916. EG-LABOUR-14-2025-ART-174-FINAL-CRIMINAL-CONVICTION-TERMINATION
+### 184. EG-LABOUR-14-2025-ART-174-FINAL-CRIMINAL-CONVICTION-TERMINATION
 
 **Question:** هل تؤثر الإدانة الجنائية النهائية على عقد العمل؟
 
@@ -5950,7 +5950,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** إنهاء الخدمة استناداً إلى اتهام أو حكم غير نهائي دون فحص الحكم.
 
-### 5952. EG-LABOUR-14-2025-ART-175-EMPLOYMENT-CERTIFICATE-AND-RETURN-OF-DOCUMENTS
+### 185. EG-LABOUR-14-2025-ART-175-EMPLOYMENT-CERTIFICATE-AND-RETURN-OF-DOCUMENTS
 
 **Question:** ما المستندات التي يجب تسليمها للعامل عند انتهاء علاقة العمل؟
 
@@ -5986,7 +5986,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تقرير إخلال أو حساب تعويض دون إثبات الطلب والوقائع ذات الصلة.
 
-### 5988. EG-LABOUR-14-2025-ART-176-SPECIALIZED-LABOUR-COURTS
+### 186. EG-LABOUR-14-2025-ART-176-SPECIALIZED-LABOUR-COURTS
 
 **Question:** ما هي بنية المحاكم العمالية المتخصصة التي ينظمها القانون؟
 
@@ -6017,7 +6017,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تحديد جهة رفع دعوى فعلية دون مراجعة القرارات التنفيذية والاختصاص.
 
-### 6019. EG-LABOUR-14-2025-ART-177-LABOUR-COURT-SUBJECT-MATTER-JURISDICTION
+### 187. EG-LABOUR-14-2025-ART-177-LABOUR-COURT-SUBJECT-MATTER-JURISDICTION
 
 **Question:** ما أنواع المنازعات التي تختص بها المحكمة العمالية؟
 
@@ -6048,7 +6048,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تقرير الاختصاص القضائي النهائي دون فحص موضوع الطلب والنصوص المتداخلة.
 
-### 6050. EG-LABOUR-14-2025-ART-178-LABOUR-COURT-CHAMBER-COMPOSITION
+### 188. EG-LABOUR-14-2025-ART-178-LABOUR-COURT-CHAMBER-COMPOSITION
 
 **Question:** كيف تشكل دوائر المحاكم العمالية ودوائرها الاستئنافية؟
 
@@ -6079,7 +6079,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** الطعن في تشكيل دائرة بعينها دون الاطلاع على التشكيل الرسمي والقواعد السارية.
 
-### 6081. EG-LABOUR-14-2025-ART-179-URGENT-MATTERS-LABOUR-COURT-JUDGE
+### 189. EG-LABOUR-14-2025-ART-179-URGENT-MATTERS-LABOUR-COURT-JUDGE
 
 **Question:** من يختص بالمسائل المستعجلة والأوامر الوقتية في المنازعات العمالية؟
 
@@ -6110,7 +6110,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** اختيار إجراء مستعجل أو ادعاء توافر شروطه دون مراجعة المستندات والقواعد الإجرائية.
 
-### 6112. EG-LABOUR-14-2025-ART-180-CHALLENGE-URGENT-ORDERS
+### 190. EG-LABOUR-14-2025-ART-180-CHALLENGE-URGENT-ORDERS
 
 **Question:** أين يتم التظلم من أوامر قاضي الأمور المستعجلة بالمحكمة العمالية؟
 
@@ -6141,7 +6141,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب ميعاد طعن أو اختيار طريق إجرائي دون فحص القرار والقواعد المطبقة.
 
-### 6143. EG-LABOUR-14-2025-ART-181-LABOUR-COURT-CRIMINAL-JURISDICTION
+### 191. EG-LABOUR-14-2025-ART-181-LABOUR-COURT-CRIMINAL-JURISDICTION
 
 **Question:** ما نطاق اختصاص دوائر المحاكم العمالية في الجرائم؟
 
@@ -6172,7 +6172,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تقرير اختصاص المحكمة أو مسار الاستئناف في قضية جنائية دون مراجعة مواد الاتهام.
 
-### 6174. EG-LABOUR-14-2025-ART-182-CASSATION-LIMITS-LABOUR-CRIMINAL-CASES
+### 192. EG-LABOUR-14-2025-ART-182-CASSATION-LIMITS-LABOUR-CRIMINAL-CASES
 
 **Question:** هل يجوز الطعن بالنقض في أحكام بعض الجرائم العمالية؟
 
@@ -6203,7 +6203,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** إسقاط حق في الطعن أو الجزم بعدم جوازه دون تحليل كامل.
 
-### 6205. EG-LABOUR-14-2025-ART-183-LABOUR-JUDGMENT-ENFORCEMENT-DISPUTES
+### 193. EG-LABOUR-14-2025-ART-183-LABOUR-JUDGMENT-ENFORCEMENT-DISPUTES
 
 **Question:** من يفصل في منازعات التنفيذ المتعلقة بأحكام وأوامر المحاكم العمالية؟
 
@@ -6234,7 +6234,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تحديد إجراء التنفيذ أو ميعاد الطعن دون فحص ملف التنفيذ والقرار.
 
-### 6236. EG-LABOUR-14-2025-ART-184-LABOUR-COURT-REGISTRY-ENFORCEMENT-OFFICE
+### 194. EG-LABOUR-14-2025-ART-184-LABOUR-COURT-REGISTRY-ENFORCEMENT-OFFICE
 
 **Question:** ما التنظيم الإداري لتنفيذ أحكام المحاكم العمالية؟
 
@@ -6265,7 +6265,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** إعطاء تعليمات إيداع أو تنفيذ محلية دون التحقق من القرار التنظيمي الحالي.
 
-### 6267. EG-LABOUR-14-2025-ART-185-LABOUR-COURT-LEGAL-AID-OFFICE
+### 195. EG-LABOUR-14-2025-ART-185-LABOUR-COURT-LEGAL-AID-OFFICE
 
 **Question:** هل توجد مكاتب للمساعدة القانونية داخل المحاكم العمالية؟
 
@@ -6296,7 +6296,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** ضمان توفر خدمة أو تحديد مقرها دون تحقق محلي حديث.
 
-### 6298. EG-LABOUR-14-2025-ART-186-COURT-OF-CASSATION-LABOUR-CHAMBERS
+### 196. EG-LABOUR-14-2025-ART-186-COURT-OF-CASSATION-LABOUR-CHAMBERS
 
 **Question:** كيف ينظم القانون نظر الطعون بالنقض في أحكام المحاكم العمالية؟
 
@@ -6327,7 +6327,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** تقرير قبول طعن بالنقض أو رفضه دون فحص الحكم وأسباب الطعن والإجراءات.
 
-### 6329. EG-LABOUR-14-2025-ART-187-LABOUR-JUDGMENT-APPEAL-PROCEDURE
+### 197. EG-LABOUR-14-2025-ART-187-LABOUR-JUDGMENT-APPEAL-PROCEDURE
 
 **Question:** ما القواعد الإجرائية التي تحكم الطعن على أحكام المحاكم العمالية؟
 
@@ -6358,7 +6358,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** حساب ميعاد أو تحديد شكل الطعن دون مراجعة القانون الإجرائي المحال إليه والنصوص الخاصة.
 
-### 6360. EG-LABOUR-14-2025-ART-188-SUPREME-SOCIAL-CONSULTATION-COUNCIL
+### 198. EG-LABOUR-14-2025-ART-188-SUPREME-SOCIAL-CONSULTATION-COUNCIL
 
 **Question:** ما المجلس الأعلى للتشاور الاجتماعي الذي ينشئه قانون العمل؟
 
@@ -6389,7 +6389,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6391. EG-LABOUR-14-2025-ART-189-SOCIAL-CONSULTATION-COUNCIL-COMPETENCIES
+### 199. EG-LABOUR-14-2025-ART-189-SOCIAL-CONSULTATION-COUNCIL-COMPETENCIES
 
 **Question:** ما اختصاصات المجلس الأعلى للتشاور الاجتماعي؟
 
@@ -6420,7 +6420,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6422. EG-LABOUR-14-2025-ART-190-SOCIAL-COUNCIL-COMPOSITION
+### 200. EG-LABOUR-14-2025-ART-190-SOCIAL-COUNCIL-COMPOSITION
 
 **Question:** كيف يشكل المجلس الأعلى للتشاور الاجتماعي ومن يمثل فيه؟
 
@@ -6451,7 +6451,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6453. EG-LABOUR-14-2025-ART-191-SOCIAL-COUNCIL-TERM
+### 201. EG-LABOUR-14-2025-ART-191-SOCIAL-COUNCIL-TERM
 
 **Question:** ما مدة دورة المجلس الأعلى للتشاور الاجتماعي؟
 
@@ -6482,7 +6482,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6484. EG-LABOUR-14-2025-ART-192-SOCIAL-COUNCIL-BRANCHES-COMMITTEES
+### 202. EG-LABOUR-14-2025-ART-192-SOCIAL-COUNCIL-BRANCHES-COMMITTEES
 
 **Question:** هل يجوز إنشاء فروع ولجان ووحدات بحثية للمجلس؟
 
@@ -6513,7 +6513,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6515. EG-LABOUR-14-2025-ART-193-SOCIAL-COUNCIL-FUNDING-AND-AUDIT
+### 203. EG-LABOUR-14-2025-ART-193-SOCIAL-COUNCIL-FUNDING-AND-AUDIT
 
 **Question:** ما قواعد قبول المنح وإدارة أموال المجلس الأعلى للتشاور الاجتماعي؟
 
@@ -6544,7 +6544,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6546. EG-LABOUR-14-2025-ART-194-COLLECTIVE-BARGAINING-PURPOSES
+### 204. EG-LABOUR-14-2025-ART-194-COLLECTIVE-BARGAINING-PURPOSES
 
 **Question:** ما أهداف المفاوضة الجماعية وفق قانون العمل؟
 
@@ -6575,7 +6575,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6577. EG-LABOUR-14-2025-ART-195-COLLECTIVE-BARGAINING-LEVELS
+### 205. EG-LABOUR-14-2025-ART-195-COLLECTIVE-BARGAINING-LEVELS
 
 **Question:** على أي مستوى يمكن إجراء المفاوضة الجماعية؟
 
@@ -6606,7 +6606,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6608. EG-LABOUR-14-2025-ART-196-COLLECTIVE-DISPUTE-MANDATORY-NEGOTIATION
+### 206. EG-LABOUR-14-2025-ART-196-COLLECTIVE-DISPUTE-MANDATORY-NEGOTIATION
 
 **Question:** ما الالتزامات عند نشوء نزاع عمل جماعي؟
 
@@ -6637,7 +6637,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6639. EG-LABOUR-14-2025-ART-197-COLLECTIVE-AGREEMENT-FROM-NEGOTIATION
+### 207. EG-LABOUR-14-2025-ART-197-COLLECTIVE-AGREEMENT-FROM-NEGOTIATION
 
 **Question:** ماذا يحدث إذا انتهت المفاوضة الجماعية إلى اتفاق؟
 
@@ -6668,7 +6668,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6670. EG-LABOUR-14-2025-ART-198-NO-UNILATERAL-ACTIONS-DURING-NEGOTIATION
+### 208. EG-LABOUR-14-2025-ART-198-NO-UNILATERAL-ACTIONS-DURING-NEGOTIATION
 
 **Question:** هل يجوز اتخاذ قرارات بشأن موضوعات التفاوض أثناء المفاوضة الجماعية؟
 
@@ -6699,7 +6699,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6701. EG-LABOUR-14-2025-ART-199-COLLECTIVE-AGREEMENT-DURATION
+### 209. EG-LABOUR-14-2025-ART-199-COLLECTIVE-AGREEMENT-DURATION
 
 **Question:** ما الحد الأقصى لمدة اتفاقية العمل الجماعية؟
 
@@ -6730,7 +6730,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6732. EG-LABOUR-14-2025-ART-200-COLLECTIVE-AGREEMENT-CONFLICT-AND-BETTER-BENEFIT
+### 210. EG-LABOUR-14-2025-ART-200-COLLECTIVE-AGREEMENT-CONFLICT-AND-BETTER-BENEFIT
 
 **Question:** ما أثر مخالفة الاتفاقية الجماعية للقانون أو تعارضها مع عقد العمل الفردي؟
 
@@ -6761,7 +6761,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6763. EG-LABOUR-14-2025-ART-201-COLLECTIVE-AGREEMENT-ARABIC-LANGUAGE
+### 211. EG-LABOUR-14-2025-ART-201-COLLECTIVE-AGREEMENT-ARABIC-LANGUAGE
 
 **Question:** ما اللغة التي يجب أن تحرر بها اتفاقية العمل الجماعية؟
 
@@ -6792,7 +6792,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6794. EG-LABOUR-14-2025-ART-202-COLLECTIVE-AGREEMENT-RENEWAL-TIMELINE
+### 212. EG-LABOUR-14-2025-ART-202-COLLECTIVE-AGREEMENT-RENEWAL-TIMELINE
 
 **Question:** متى يجب التفاوض لتجديد اتفاقية العمل الجماعية؟
 
@@ -6823,7 +6823,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6825. EG-LABOUR-14-2025-ART-203-COLLECTIVE-AGREEMENT-FILING-AND-OBJECTION
+### 213. EG-LABOUR-14-2025-ART-203-COLLECTIVE-AGREEMENT-FILING-AND-OBJECTION
 
 **Question:** ما إجراءات إيداع اتفاقية العمل الجماعية وقيدها؟
 
@@ -6854,7 +6854,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6856. EG-LABOUR-14-2025-ART-204-COLLECTIVE-AGREEMENT-REGISTRATION-COURT-CHALLENGE
+### 214. EG-LABOUR-14-2025-ART-204-COLLECTIVE-AGREEMENT-REGISTRATION-COURT-CHALLENGE
 
 **Question:** ما الإجراء عند رفض الجهة الإدارية قيد اتفاقية جماعية؟
 
@@ -6885,7 +6885,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6887. EG-LABOUR-14-2025-ART-205-COLLECTIVE-AGREEMENT-WORKPLACE-DISPLAY
+### 215. EG-LABOUR-14-2025-ART-205-COLLECTIVE-AGREEMENT-WORKPLACE-DISPLAY
 
 **Question:** ما واجب صاحب العمل بشأن إظهار الاتفاقية الجماعية في مكان العمل؟
 
@@ -6916,7 +6916,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6918. EG-LABOUR-14-2025-ART-206-COLLECTIVE-AGREEMENT-JOINING-AFTER-REGISTRATION
+### 216. EG-LABOUR-14-2025-ART-206-COLLECTIVE-AGREEMENT-JOINING-AFTER-REGISTRATION
 
 **Question:** كيف تنضم أطراف جديدة إلى اتفاقية عمل جماعية قائمة؟
 
@@ -6947,7 +6947,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6949. EG-LABOUR-14-2025-ART-207-COLLECTIVE-AGREEMENT-REGISTER-UPDATES
+### 217. EG-LABOUR-14-2025-ART-207-COLLECTIVE-AGREEMENT-REGISTER-UPDATES
 
 **Question:** ما التزام الجهة الإدارية عند تجديد أو تعديل اتفاقية جماعية أو انضمام طرف جديد؟
 
@@ -6978,7 +6978,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 6980. EG-LABOUR-14-2025-ART-208-COLLECTIVE-AGREEMENT-GOOD-FAITH-IMPLEMENTATION
+### 218. EG-LABOUR-14-2025-ART-208-COLLECTIVE-AGREEMENT-GOOD-FAITH-IMPLEMENTATION
 
 **Question:** ما واجب الطرفين في تنفيذ الاتفاقية الجماعية؟
 
@@ -7009,7 +7009,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7011. EG-LABOUR-14-2025-ART-209-COLLECTIVE-AGREEMENT-UNFORESEEN-HARDSHIP
+### 219. EG-LABOUR-14-2025-ART-209-COLLECTIVE-AGREEMENT-UNFORESEEN-HARDSHIP
 
 **Question:** ماذا إذا طرأت ظروف استثنائية غير متوقعة جعلت تنفيذ الاتفاقية مرهقاً؟
 
@@ -7040,7 +7040,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7042. EG-LABOUR-14-2025-ART-210-COLLECTIVE-AGREEMENT-ENFORCEMENT-AND-COMPENSATION
+### 220. EG-LABOUR-14-2025-ART-210-COLLECTIVE-AGREEMENT-ENFORCEMENT-AND-COMPENSATION
 
 **Question:** من يجوز له طلب تنفيذ الاتفاقية الجماعية أو التعويض عن مخالفتها؟
 
@@ -7071,7 +7071,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7073. EG-LABOUR-14-2025-ART-211-COLLECTIVE-AGREEMENT-UNION-REPRESENTATIVE-ACTIONS
+### 221. EG-LABOUR-14-2025-ART-211-COLLECTIVE-AGREEMENT-UNION-REPRESENTATIVE-ACTIONS
 
 **Question:** هل تستطيع المنظمة النقابية أو منظمة أصحاب الأعمال رفع دعوى لمصلحة عضو؟
 
@@ -7102,7 +7102,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7104. EG-LABOUR-14-2025-ART-212-COLLECTIVE-AGREEMENT-DISPUTE-PROCEDURES
+### 222. EG-LABOUR-14-2025-ART-212-COLLECTIVE-AGREEMENT-DISPUTE-PROCEDURES
 
 **Question:** كيف تسوى المنازعات الناشئة عن اتفاقية عمل جماعية؟
 
@@ -7133,7 +7133,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7135. EG-LABOUR-14-2025-ART-213-COLLECTIVE-LABOUR-DISPUTE-SCOPE
+### 223. EG-LABOUR-14-2025-ART-213-COLLECTIVE-LABOUR-DISPUTE-SCOPE
 
 **Question:** ما المنازعات التي تدخل ضمن أحكام منازعات العمل الجماعية؟
 
@@ -7164,7 +7164,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7166. EG-LABOUR-14-2025-ART-214-COLLECTIVE-DISPUTE-CONCILIATION-THRESHOLD
+### 224. EG-LABOUR-14-2025-ART-214-COLLECTIVE-DISPUTE-CONCILIATION-THRESHOLD
 
 **Question:** متى يجوز إحالة نزاع العمل الجماعي إلى إجراءات التوفيق؟
 
@@ -7195,7 +7195,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7197. EG-LABOUR-14-2025-ART-215-COLLECTIVE-DISPUTE-CONCILIATION-HEARING
+### 225. EG-LABOUR-14-2025-ART-215-COLLECTIVE-DISPUTE-CONCILIATION-HEARING
 
 **Question:** متى يجب تحديد جلسة التوفيق وإخطار طرفي النزاع؟
 
@@ -7226,7 +7226,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7228. EG-LABOUR-14-2025-ART-216-COLLECTIVE-DISPUTE-CONCILIATION-SETTLEMENT
+### 226. EG-LABOUR-14-2025-ART-216-COLLECTIVE-DISPUTE-CONCILIATION-SETTLEMENT
 
 **Question:** ما أثر اتفاق الطرفين على تسوية النزاع الجماعي ودياً؟
 
@@ -7257,7 +7257,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7259. EG-LABOUR-14-2025-ART-217-COLLECTIVE-DISPUTE-REFERRAL-TO-MEDIATION-ARBITRATION
+### 227. EG-LABOUR-14-2025-ART-217-COLLECTIVE-DISPUTE-REFERRAL-TO-MEDIATION-ARBITRATION
 
 **Question:** متى يمكن إحالة النزاع الجماعي إلى مركز الوساطة والتحكيم؟
 
@@ -7288,7 +7288,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7290. EG-LABOUR-14-2025-ART-218-LABOUR-MEDIATION-ARBITRATION-CENTRE
+### 228. EG-LABOUR-14-2025-ART-218-LABOUR-MEDIATION-ARBITRATION-CENTRE
 
 **Question:** ما مركز الوساطة والتحكيم العمالي الذي ينص عليه القانون؟
 
@@ -7319,7 +7319,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7321. EG-LABOUR-14-2025-ART-219-LABOUR-MEDIATOR-AND-ARBITRATOR-LISTS
+### 229. EG-LABOUR-14-2025-ART-219-LABOUR-MEDIATOR-AND-ARBITRATOR-LISTS
 
 **Question:** كيف تُعد قوائم الوسطاء والمحكمين وما واجب السرية؟
 
@@ -7350,7 +7350,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7352. EG-LABOUR-14-2025-ART-220-JUDICIAL-MEMBERS-MEDIATION-ARBITRATION
+### 230. EG-LABOUR-14-2025-ART-220-JUDICIAL-MEMBERS-MEDIATION-ARBITRATION
 
 **Question:** هل يجوز للمركز الاستعانة بأعضاء الجهات والهيئات القضائية؟
 
@@ -7381,7 +7381,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7383. EG-LABOUR-14-2025-ART-221-LABOUR-MEDIATOR-ELIGIBILITY
+### 231. EG-LABOUR-14-2025-ART-221-LABOUR-MEDIATOR-ELIGIBILITY
 
 **Question:** ما شروط القيد في قائمة الوسطاء العمالية؟
 
@@ -7412,7 +7412,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7414. EG-LABOUR-14-2025-ART-222-LABOUR-MEDIATOR-SELECTION-DEADLINE
+### 232. EG-LABOUR-14-2025-ART-222-LABOUR-MEDIATOR-SELECTION-DEADLINE
 
 **Question:** كيف يختار طرفا النزاع الوسيط وما المهلة عند عدم الاتفاق؟
 
@@ -7443,7 +7443,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7445. EG-LABOUR-14-2025-ART-223-LABOUR-MEDIATOR-TASK-AND-DURATION
+### 233. EG-LABOUR-14-2025-ART-223-LABOUR-MEDIATOR-TASK-AND-DURATION
 
 **Question:** ما مدة مهمة الوسيط وما صلاحياته؟
 
@@ -7474,7 +7474,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7476. EG-LABOUR-14-2025-ART-224-LABOUR-MEDIATOR-REPLACEMENT
+### 234. EG-LABOUR-14-2025-ART-224-LABOUR-MEDIATOR-REPLACEMENT
 
 **Question:** هل يجوز طلب استبدال الوسيط وما المواعيد؟
 
@@ -7505,7 +7505,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7507. EG-LABOUR-14-2025-ART-225-LABOUR-MEDIATION-RECOMMENDATIONS-AND-REPORT
+### 235. EG-LABOUR-14-2025-ART-225-LABOUR-MEDIATION-RECOMMENDATIONS-AND-REPORT
 
 **Question:** ما أثر توصيات الوسيط إذا قبلها الطرفان أو رفضاها؟
 
@@ -7536,7 +7536,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7538. EG-LABOUR-14-2025-ART-226-LABOUR-ARBITRATOR-ELIGIBILITY
+### 236. EG-LABOUR-14-2025-ART-226-LABOUR-ARBITRATOR-ELIGIBILITY
 
 **Question:** ما شروط القيد في قائمة المحكمين العمالية؟
 
@@ -7567,7 +7567,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7569. EG-LABOUR-14-2025-ART-227-LABOUR-ARBITRATION-TRIBUNAL-COMPOSITION
+### 237. EG-LABOUR-14-2025-ART-227-LABOUR-ARBITRATION-TRIBUNAL-COMPOSITION
 
 **Question:** كيف تتشكل هيئة التحكيم العمالية؟
 
@@ -7598,7 +7598,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7600. EG-LABOUR-14-2025-ART-228-LABOUR-ARBITRATION-SUBMISSION
+### 238. EG-LABOUR-14-2025-ART-228-LABOUR-ARBITRATION-SUBMISSION
 
 **Question:** ما الذي يجب أن تتضمنه مشارطة التحكيم العمالي؟
 
@@ -7629,7 +7629,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7631. EG-LABOUR-14-2025-ART-229-LABOUR-ARBITRAL-AWARD-RULES-AND-DEADLINE
+### 239. EG-LABOUR-14-2025-ART-229-LABOUR-ARBITRAL-AWARD-RULES-AND-DEADLINE
 
 **Question:** ما القواعد والمهلة لإصدار حكم التحكيم العمالي؟
 
@@ -7660,7 +7660,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7662. EG-LABOUR-14-2025-ART-230-LABOUR-ARBITRAL-AWARD-REVIEW
+### 240. EG-LABOUR-14-2025-ART-230-LABOUR-ARBITRAL-AWARD-REVIEW
 
 **Question:** متى يمكن عرض حكم التحكيم العمالي على دائرة إعادة النظر؟
 
@@ -7691,7 +7691,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7693. EG-LABOUR-14-2025-ART-231-WORKERS-STRIKE-PREREQUISITES
+### 241. EG-LABOUR-14-2025-ART-231-WORKERS-STRIKE-PREREQUISITES
 
 **Question:** ما الشروط العامة لحق العمال في الإضراب؟
 
@@ -7722,7 +7722,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7724. EG-LABOUR-14-2025-ART-232-STRIKE-ADVANCE-NOTICE
+### 242. EG-LABOUR-14-2025-ART-232-STRIKE-ADVANCE-NOTICE
 
 **Question:** ما مهلة إخطار صاحب العمل والجهة الإدارية بالإضراب؟
 
@@ -7753,7 +7753,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7755. EG-LABOUR-14-2025-ART-233-STRIKE-DURING-COLLECTIVE-AGREEMENT
+### 243. EG-LABOUR-14-2025-ART-233-STRIKE-DURING-COLLECTIVE-AGREEMENT
 
 **Question:** هل يجوز الدعوة إلى الإضراب لتعديل اتفاقية جماعية أثناء سريانها؟
 
@@ -7784,7 +7784,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7786. EG-LABOUR-14-2025-ART-234-STRIKE-ESSENTIAL-SERVICES-AND-EXCEPTIONAL-CIRCUMSTANCES
+### 244. EG-LABOUR-14-2025-ART-234-STRIKE-ESSENTIAL-SERVICES-AND-EXCEPTIONAL-CIRCUMSTANCES
 
 **Question:** ما القيود على الإضراب في المنشآت الحيوية والظروف الاستثنائية؟
 
@@ -7815,7 +7815,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7817. EG-LABOUR-14-2025-ART-235-STRIKE-EFFECT-ON-EMPLOYMENT-OBLIGATIONS
+### 245. EG-LABOUR-14-2025-ART-235-STRIKE-EFFECT-ON-EMPLOYMENT-OBLIGATIONS
 
 **Question:** ما أثر الإضراب على الالتزامات الناشئة عن عقد العمل؟
 
@@ -7846,7 +7846,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7848. EG-LABOUR-14-2025-ART-236-EMPLOYER-ECONOMIC-CLOSURE-OR-DOWNSIZING
+### 246. EG-LABOUR-14-2025-ART-236-EMPLOYER-ECONOMIC-CLOSURE-OR-DOWNSIZING
 
 **Question:** متى يجوز لصاحب العمل الإغلاق أو تقليص النشاط لأسباب اقتصادية؟
 
@@ -7877,7 +7877,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7879. EG-LABOUR-14-2025-ART-237-ECONOMIC-CLOSURE-COMMITTEE-APPLICATION
+### 247. EG-LABOUR-14-2025-ART-237-ECONOMIC-CLOSURE-COMMITTEE-APPLICATION
 
 **Question:** ما متطلبات طلب الإغلاق الاقتصادي وقرار اللجنة؟
 
@@ -7908,7 +7908,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7910. EG-LABOUR-14-2025-ART-238-ECONOMIC-CLOSURE-NOTICE-AND-IMPLEMENTATION
+### 248. EG-LABOUR-14-2025-ART-238-ECONOMIC-CLOSURE-NOTICE-AND-IMPLEMENTATION
 
 **Question:** من يجب إخطارهم بقرار الإغلاق أو تقليص النشاط ومتى ينفذ؟
 
@@ -7939,7 +7939,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7941. EG-LABOUR-14-2025-ART-239-ECONOMIC-DOWNSIZING-SELECTION-CRITERIA
+### 249. EG-LABOUR-14-2025-ART-239-ECONOMIC-DOWNSIZING-SELECTION-CRITERIA
 
 **Question:** كيف يتم اختيار العمال عند الإغلاق الجزئي أو تقليص النشاط؟
 
@@ -7970,7 +7970,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 7972. EG-LABOUR-14-2025-ART-240-ECONOMIC-CLOSURE-DURING-COLLECTIVE-DISPUTE-OR-STRIKE
+### 250. EG-LABOUR-14-2025-ART-240-ECONOMIC-CLOSURE-DURING-COLLECTIVE-DISPUTE-OR-STRIKE
 
 **Question:** هل يجوز طلب الإغلاق الاقتصادي أثناء تسوية نزاع جماعي أو أثناء الإضراب؟
 
@@ -8001,7 +8001,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8003. EG-LABOUR-14-2025-ART-241-TEMPORARY-ECONOMIC-CHANGES-IN-EMPLOYMENT-TERMS
+### 251. EG-LABOUR-14-2025-ART-241-TEMPORARY-ECONOMIC-CHANGES-IN-EMPLOYMENT-TERMS
 
 **Question:** ما البدائل المؤقتة لإنهاء العقد لأسباب اقتصادية وما أثرها؟
 
@@ -8032,7 +8032,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8034. EG-LABOUR-14-2025-ART-242-OCCUPATIONAL-SAFETY-CHAPTER-SCOPE
+### 252. EG-LABOUR-14-2025-ART-242-OCCUPATIONAL-SAFETY-CHAPTER-SCOPE
 
 **Question:** ما موضوع أحكام السلامة والصحة المهنية في قانون العمل؟
 
@@ -8063,7 +8063,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8065. EG-LABOUR-14-2025-ART-243-OCCUPATIONAL-SAFETY-ESTABLISHMENT-DEFINITION
+### 253. EG-LABOUR-14-2025-ART-243-OCCUPATIONAL-SAFETY-ESTABLISHMENT-DEFINITION
 
 **Question:** ما المقصود بالمنشأة لأغراض أحكام السلامة المهنية؟
 
@@ -8094,7 +8094,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8096. EG-LABOUR-14-2025-ART-244-OCCUPATIONAL-SAFETY-APPLICATION-SCOPE
+### 254. EG-LABOUR-14-2025-ART-244-OCCUPATIONAL-SAFETY-APPLICATION-SCOPE
 
 **Question:** على أي مواقع عمل ومنشآت تسري أحكام السلامة المهنية؟
 
@@ -8125,7 +8125,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8127. EG-LABOUR-14-2025-ART-245-OCCUPATIONAL-COMPLIANCE-OFFICES
+### 255. EG-LABOUR-14-2025-ART-245-OCCUPATIONAL-COMPLIANCE-OFFICES
 
 **Question:** هل يجوز الترخيص بمكاتب امتثال للسلامة والصحة المهنية؟
 
@@ -8156,7 +8156,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8158. EG-LABOUR-14-2025-ART-246-OCCUPATIONAL-PHYSICAL-HAZARDS
+### 256. EG-LABOUR-14-2025-ART-246-OCCUPATIONAL-PHYSICAL-HAZARDS
 
 **Question:** ما أمثلة المخاطر الفيزيائية التي يجب الوقاية منها في مكان العمل؟
 
@@ -8187,7 +8187,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8189. EG-LABOUR-14-2025-ART-247-OCCUPATIONAL-ENGINEERING-HAZARDS
+### 257. EG-LABOUR-14-2025-ART-247-OCCUPATIONAL-ENGINEERING-HAZARDS
 
 **Question:** ما التزامات الوقاية من المخاطر الهندسية؟
 
@@ -8218,7 +8218,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8220. EG-LABOUR-14-2025-ART-248-OCCUPATIONAL-BIOLOGICAL-HAZARDS
+### 258. EG-LABOUR-14-2025-ART-248-OCCUPATIONAL-BIOLOGICAL-HAZARDS
 
 **Question:** ما واجبات المنشأة تجاه المخاطر البيولوجية؟
 
@@ -8249,7 +8249,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8251. EG-LABOUR-14-2025-ART-249-OCCUPATIONAL-CHEMICAL-HAZARDS
+### 259. EG-LABOUR-14-2025-ART-249-OCCUPATIONAL-CHEMICAL-HAZARDS
 
 **Question:** ما متطلبات الوقاية من المخاطر الكيميائية؟
 
@@ -8280,7 +8280,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8282. EG-LABOUR-14-2025-ART-250-OCCUPATIONAL-INDIRECT-HAZARDS
+### 260. EG-LABOUR-14-2025-ART-250-OCCUPATIONAL-INDIRECT-HAZARDS
 
 **Question:** ما أمثلة المخاطر غير المباشرة التي يجب الوقاية منها؟
 
@@ -8311,7 +8311,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8313. EG-LABOUR-14-2025-ART-251-OCCUPATIONAL-FIRE-PREVENTION
+### 261. EG-LABOUR-14-2025-ART-251-OCCUPATIONAL-FIRE-PREVENTION
 
 **Question:** من يحدد احتياطات الوقاية من مخاطر الحريق في المنشأة؟
 
@@ -8342,7 +8342,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8344. EG-LABOUR-14-2025-ART-252-OCCUPATIONAL-CONFINED-SPACE-SAFETY
+### 262. EG-LABOUR-14-2025-ART-252-OCCUPATIONAL-CONFINED-SPACE-SAFETY
 
 **Question:** ما الالتزام المتعلق بالأماكن الضيقة والمغلقة؟
 
@@ -8373,7 +8373,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8375. EG-LABOUR-14-2025-ART-253-OCCUPATIONAL-EMERGENCY-PLANS-AND-WORKER-WITHDRAWAL
+### 263. EG-LABOUR-14-2025-ART-253-OCCUPATIONAL-EMERGENCY-PLANS-AND-WORKER-WITHDRAWAL
 
 **Question:** ما التزامات خطط الطوارئ ومتى يجوز للعامل مغادرة مكان خطر؟
 
@@ -8404,7 +8404,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8406. EG-LABOUR-14-2025-ART-254-WORKPLACE-HARASSMENT-BULLYING-VIOLENCE-PREVENTION
+### 264. EG-LABOUR-14-2025-ART-254-WORKPLACE-HARASSMENT-BULLYING-VIOLENCE-PREVENTION
 
 **Question:** ما واجب المنشأة في منع التحرش والتنمر والعنف؟
 
@@ -8435,7 +8435,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8437. EG-LABOUR-14-2025-ART-255-OCCUPATIONAL-SAFETY-TECHNICAL-STANDARDS
+### 265. EG-LABOUR-14-2025-ART-255-OCCUPATIONAL-SAFETY-TECHNICAL-STANDARDS
 
 **Question:** من يحدد قواعد ومعايير وحدود الأمان في أماكن العمل؟
 
@@ -8466,7 +8466,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8468. EG-LABOUR-14-2025-ART-256-OCCUPATIONAL-SAFETY-INSPECTION-UNIT
+### 266. EG-LABOUR-14-2025-ART-256-OCCUPATIONAL-SAFETY-INSPECTION-UNIT
 
 **Question:** ما الجهاز المختص بتفتيش السلامة والصحة المهنية؟
 
@@ -8497,7 +8497,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8499. EG-LABOUR-14-2025-ART-257-OCCUPATIONAL-SAFETY-INSPECTOR-POWERS
+### 267. EG-LABOUR-14-2025-ART-257-OCCUPATIONAL-SAFETY-INSPECTOR-POWERS
 
 **Question:** ما أبرز صلاحيات جهاز تفتيش السلامة والصحة المهنية؟
 
@@ -8528,7 +8528,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8530. EG-LABOUR-14-2025-ART-258-OCCUPATIONAL-SAFETY-INSPECTOR-ACCESS
+### 268. EG-LABOUR-14-2025-ART-258-OCCUPATIONAL-SAFETY-INSPECTOR-ACCESS
 
 **Question:** ما أساس حق مفتشي السلامة في التفتيش على المنشآت؟
 
@@ -8559,7 +8559,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8561. EG-LABOUR-14-2025-ART-259-OCCUPATIONAL-SAFETY-INTERNAL-UNITS-COMMITTEES
+### 269. EG-LABOUR-14-2025-ART-259-OCCUPATIONAL-SAFETY-INTERNAL-UNITS-COMMITTEES
 
 **Question:** متى تلزم المنشأة بإنشاء أجهزة ولجان للسلامة المهنية؟
 
@@ -8590,7 +8590,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8592. EG-LABOUR-14-2025-ART-260-OCCUPATIONAL-ACCIDENT-REPORTING-DEADLINES
+### 270. EG-LABOUR-14-2025-ART-260-OCCUPATIONAL-ACCIDENT-REPORTING-DEADLINES
 
 **Question:** ما مواعيد الإحصاءات والإبلاغ عن الحوادث الجسيمة والأمراض المهنية؟
 
@@ -8621,7 +8621,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8623. EG-LABOUR-14-2025-ART-261-OCCUPATIONAL-SAFETY-TRAINING-LICENSING
+### 271. EG-LABOUR-14-2025-ART-261-OCCUPATIONAL-SAFETY-TRAINING-LICENSING
 
 **Question:** من يجوز له تقديم التدريب المتخصص في السلامة والصحة المهنية؟
 
@@ -8652,7 +8652,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8654. EG-LABOUR-14-2025-ART-262-OCCUPATIONAL-SAFETY-CONSULTANT-LICENSE
+### 272. EG-LABOUR-14-2025-ART-262-OCCUPATIONAL-SAFETY-CONSULTANT-LICENSE
 
 **Question:** هل يحتاج خبير السلامة والصحة المهنية إلى ترخيص؟
 
@@ -8683,7 +8683,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8685. EG-LABOUR-14-2025-ART-263-NATIONAL-OCCUPATIONAL-SAFETY-CENTRE
+### 273. EG-LABOUR-14-2025-ART-263-NATIONAL-OCCUPATIONAL-SAFETY-CENTRE
 
 **Question:** ما دور المركز القومي لدراسات السلامة والصحة المهنية؟
 
@@ -8714,7 +8714,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8716. EG-LABOUR-14-2025-ART-264-SUPREME-OCCUPATIONAL-SAFETY-COUNCIL
+### 274. EG-LABOUR-14-2025-ART-264-SUPREME-OCCUPATIONAL-SAFETY-COUNCIL
 
 **Question:** ما المجلس الأعلى للسلامة والصحة المهنية؟
 
@@ -8745,7 +8745,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8747. EG-LABOUR-14-2025-ART-265-GOVERNORATE-OCCUPATIONAL-SAFETY-COMMITTEES
+### 275. EG-LABOUR-14-2025-ART-265-GOVERNORATE-OCCUPATIONAL-SAFETY-COMMITTEES
 
 **Question:** هل توجد لجان فرعية للسلامة والصحة المهنية في المحافظات؟
 
@@ -8776,7 +8776,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8778. EG-LABOUR-14-2025-ART-266-PRE-EMPLOYMENT-MEDICAL-AND-CAPABILITY-EXAMS
+### 276. EG-LABOUR-14-2025-ART-266-PRE-EMPLOYMENT-MEDICAL-AND-CAPABILITY-EXAMS
 
 **Question:** ما الفحوص المطلوبة قبل التحاق العامل بالعمل؟
 
@@ -8807,7 +8807,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8809. EG-LABOUR-14-2025-ART-267-EMPLOYER-TRAINING-AND-PPE-NO-CHARGE
+### 277. EG-LABOUR-14-2025-ART-267-EMPLOYER-TRAINING-AND-PPE-NO-CHARGE
 
 **Question:** ما واجبات صاحب العمل في التدريب ومعدات الوقاية الشخصية؟
 
@@ -8838,7 +8838,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8840. EG-LABOUR-14-2025-ART-268-WORKER-USE-AND-CARE-OF-PPE
+### 278. EG-LABOUR-14-2025-ART-268-WORKER-USE-AND-CARE-OF-PPE
 
 **Question:** ما التزامات العامل بشأن معدات الوقاية والتعليمات؟
 
@@ -8869,7 +8869,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8871. EG-LABOUR-14-2025-ART-269-WORKPLACE-DAILY-SAFETY-INSPECTIONS-AND-MEDICAL-CHECKS
+### 279. EG-LABOUR-14-2025-ART-269-WORKPLACE-DAILY-SAFETY-INSPECTIONS-AND-MEDICAL-CHECKS
 
 **Question:** ما الفحوص الدورية التي يجب أن تجريها المنشأة؟
 
@@ -8900,7 +8900,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8902. EG-LABOUR-14-2025-ART-270-WORKPLACE-FIRST-AID-AND-NURSING
+### 280. EG-LABOUR-14-2025-ART-270-WORKPLACE-FIRST-AID-AND-NURSING
 
 **Question:** متى يجب توفير ممرض وطبيب وأدوية للعمال؟
 
@@ -8931,7 +8931,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8933. EG-LABOUR-14-2025-ART-271-REMOTE-WORKSITE-TRANSPORT-FOOD-HOUSING
+### 281. EG-LABOUR-14-2025-ART-271-REMOTE-WORKSITE-TRANSPORT-FOOD-HOUSING
 
 **Question:** ما التزامات صاحب العمل تجاه العمال في المواقع البعيدة؟
 
@@ -8962,7 +8962,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8964. EG-LABOUR-14-2025-ART-272-SOCIAL-CULTURAL-SERVICES-50-WORKERS
+### 282. EG-LABOUR-14-2025-ART-272-SOCIAL-CULTURAL-SERVICES-50-WORKERS
 
 **Question:** متى يجب على المنشأة توفير خدمات اجتماعية وثقافية؟
 
@@ -8993,7 +8993,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 8995. EG-LABOUR-14-2025-ART-273-SOCIAL-HEALTH-CULTURAL-SERVICES-FUND
+### 283. EG-LABOUR-14-2025-ART-273-SOCIAL-HEALTH-CULTURAL-SERVICES-FUND
 
 **Question:** ما طبيعة صندوق الخدمات الاجتماعية والصحية والثقافية وكيف يمول؟
 
@@ -9024,7 +9024,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9026. EG-LABOUR-14-2025-ART-274-SOCIAL-SERVICES-FUND-BENEFITS
+### 284. EG-LABOUR-14-2025-ART-274-SOCIAL-SERVICES-FUND-BENEFITS
 
 **Question:** ما الخدمات التي يمولها صندوق الخدمات الاجتماعية والصحية والثقافية؟
 
@@ -9055,7 +9055,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9057. EG-LABOUR-14-2025-ART-275-LABOUR-INSPECTOR-JUDICIAL-POLICE-STATUS
+### 285. EG-LABOUR-14-2025-ART-275-LABOUR-INSPECTOR-JUDICIAL-POLICE-STATUS
 
 **Question:** من يملك صفة مأمور الضبط القضائي لمراقبة تطبيق قانون العمل؟
 
@@ -9086,7 +9086,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9088. EG-LABOUR-14-2025-ART-276-LABOUR-INSPECTOR-ENTRY-AND-RECORDS
+### 286. EG-LABOUR-14-2025-ART-276-LABOUR-INSPECTOR-ENTRY-AND-RECORDS
 
 **Question:** ما صلاحيات مفتش العمل الحامل لصفة الضبط القضائي؟
 
@@ -9117,7 +9117,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9119. EG-LABOUR-14-2025-ART-278-EMPLOYER-ATTENDANCE-REQUESTS
+### 287. EG-LABOUR-14-2025-ART-278-EMPLOYER-ATTENDANCE-REQUESTS
 
 **Question:** هل يجب على صاحب العمل الاستجابة لطلب الحضور من مفتش العمل؟
 
@@ -9148,7 +9148,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9150. EG-LABOUR-14-2025-ART-280-LABOUR-OFFENCES-PENALTY-INTRODUCTION
+### 288. EG-LABOUR-14-2025-ART-280-LABOUR-OFFENCES-PENALTY-INTRODUCTION
 
 **Question:** كيف تطبق مواد العقوبات الواردة في قانون العمل؟
 
@@ -9179,7 +9179,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9181. EG-LABOUR-14-2025-ART-281-LABOUR-PENALTY-ARTICLES-4-5
+### 289. EG-LABOUR-14-2025-ART-281-LABOUR-PENALTY-ARTICLES-4-5
 
 **Question:** ما الغرامة المقررة لمخالفة المادتين 4 و5 من قانون العمل؟
 
@@ -9210,7 +9210,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9212. EG-LABOUR-14-2025-ART-282-LABOUR-PENALTY-ARTICLES-82-273-21
+### 290. EG-LABOUR-14-2025-ART-282-LABOUR-PENALTY-ARTICLES-82-273-21
 
 **Question:** ما العقوبة المرتبطة بمخالفات محددة في المواد 21 و82 و273؟
 
@@ -9241,7 +9241,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9243. EG-LABOUR-14-2025-ART-283-LABOUR-PENALTY-ARTICLES-37-48-153-137
+### 291. EG-LABOUR-14-2025-ART-283-LABOUR-PENALTY-ARTICLES-37-48-153-137
 
 **Question:** ما العقوبة المقررة لمخالفات المواد 37 و48 و153 و137؟
 
@@ -9272,7 +9272,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9274. EG-LABOUR-14-2025-ART-284-LABOUR-PENALTY-ARTICLE-26
+### 292. EG-LABOUR-14-2025-ART-284-LABOUR-PENALTY-ARTICLE-26
 
 **Question:** ما العقوبة المقررة لمخالفة المادة 26؟
 
@@ -9303,7 +9303,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9305. EG-LABOUR-14-2025-ART-285-LABOUR-PENALTY-ARTICLE-23
+### 293. EG-LABOUR-14-2025-ART-285-LABOUR-PENALTY-ARTICLE-23
 
 **Question:** ما العقوبة المقررة لمخالفة المادة 23؟
 
@@ -9334,7 +9334,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9336. EG-LABOUR-14-2025-ART-286-LABOUR-PENALTY-ARTICLES-7-24-25-36-46-51-52-68
+### 294. EG-LABOUR-14-2025-ART-286-LABOUR-PENALTY-ARTICLES-7-24-25-36-46-51-52-68
 
 **Question:** ما العقوبة المقررة لمجموعة من مخالفات مواد الإصدار والمواد 24 و25 و36 و46 و51 و52 و68؟
 
@@ -9365,7 +9365,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9367. EG-LABOUR-14-2025-ART-287-LABOUR-PENALTY-ARTICLES-45-104-108
+### 295. EG-LABOUR-14-2025-ART-287-LABOUR-PENALTY-ARTICLES-45-104-108
 
 **Question:** ما العقوبة المقررة لمخالفات المواد 45 و104 و108؟
 
@@ -9396,7 +9396,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9398. EG-LABOUR-14-2025-ART-288-LABOUR-PENALTY-MULTIPLE-WORKER-RIGHTS-ARTICLES
+### 296. EG-LABOUR-14-2025-ART-288-LABOUR-PENALTY-MULTIPLE-WORKER-RIGHTS-ARTICLES
 
 **Question:** ما العقوبة المقررة لمجموعة من مخالفات حقوق العمال وساعات العمل والإجازات؟
 
@@ -9427,7 +9427,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9429. EG-LABOUR-14-2025-ART-289-LABOUR-PENALTY-ARTICLES-62-66
+### 297. EG-LABOUR-14-2025-ART-289-LABOUR-PENALTY-ARTICLES-62-66
 
 **Question:** ما العقوبة المقررة لمخالفات المواد 62–66؟
 
@@ -9458,7 +9458,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9460. EG-LABOUR-14-2025-ART-290-LABOUR-PENALTY-ARTICLES-33-37-35-205
+### 298. EG-LABOUR-14-2025-ART-290-LABOUR-PENALTY-ARTICLES-33-37-35-205
 
 **Question:** ما العقوبة المقررة لمخالفات المواد 33 و37 و35 و205؟
 
@@ -9489,7 +9489,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9491. EG-LABOUR-14-2025-ART-291-LABOUR-PENALTY-UNLICENSED-RECRUITMENT-AND-UNLAWFUL-CHARGES
+### 299. EG-LABOUR-14-2025-ART-291-LABOUR-PENALTY-UNLICENSED-RECRUITMENT-AND-UNLAWFUL-CHARGES
 
 **Question:** ما الجرائم التي تعاقب عليها المادة 291 بشأن إلحاق العمالة؟
 
@@ -9520,7 +9520,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9522. EG-LABOUR-14-2025-ART-292-LABOUR-PENALTY-ARTICLE-42
+### 300. EG-LABOUR-14-2025-ART-292-LABOUR-PENALTY-ARTICLE-42
 
 **Question:** ما العقوبة المقررة لمخالفة المادة 42؟
 
@@ -9551,7 +9551,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9553. EG-LABOUR-14-2025-ART-293-LABOUR-PENALTY-ARTICLES-70-74
+### 301. EG-LABOUR-14-2025-ART-293-LABOUR-PENALTY-ARTICLES-70-74
 
 **Question:** ما العقوبة المقررة لمخالفات المواد 70 و71 و72 و74؟
 
@@ -9582,7 +9582,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9584. EG-LABOUR-14-2025-ART-294-LABOUR-PENALTY-DISCIPLINE-AND-RELATED-ARTICLES
+### 302. EG-LABOUR-14-2025-ART-294-LABOUR-PENALTY-DISCIPLINE-AND-RELATED-ARTICLES
 
 **Question:** ما العقوبة المقررة لبعض مخالفات التأديب والمواد 140–145 و198؟
 
@@ -9613,7 +9613,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9615. EG-LABOUR-14-2025-ART-295-LABOUR-PENALTY-ECONOMIC-CLOSURE-ARTICLES
+### 303. EG-LABOUR-14-2025-ART-295-LABOUR-PENALTY-ECONOMIC-CLOSURE-ARTICLES
 
 **Question:** ما العقوبة المقررة لبعض مخالفات الإغلاق الاقتصادي وتقليص النشاط؟
 
@@ -9644,7 +9644,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9646. EG-LABOUR-14-2025-ART-296-LABOUR-PENALTY-OCCUPATIONAL-SAFETY-ARTICLES
+### 304. EG-LABOUR-14-2025-ART-296-LABOUR-PENALTY-OCCUPATIONAL-SAFETY-ARTICLES
 
 **Question:** ما العقوبة المقررة لمخالفات السلامة والصحة المهنية؟
 
@@ -9675,7 +9675,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9677. EG-LABOUR-14-2025-ART-297-LABOUR-PENALTY-INSPECTION-OBSTRUCTION
+### 305. EG-LABOUR-14-2025-ART-297-LABOUR-PENALTY-INSPECTION-OBSTRUCTION
 
 **Question:** ما العقوبة المقررة لمخالفة واجب تسهيل التفتيش أو الحضور؟
 
@@ -9706,7 +9706,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9708. EG-LABOUR-14-2025-ART-298-LABOUR-CORPORATE-MANAGER-AND-ENTITY-LIABILITY
+### 306. EG-LABOUR-14-2025-ART-298-LABOUR-CORPORATE-MANAGER-AND-ENTITY-LIABILITY
 
 **Question:** متى تمتد المسؤولية عن مخالفة قانون العمل إلى المسؤول الفعلي والشخص الاعتباري؟
 
@@ -9737,7 +9737,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9739. EG-LABOUR-14-2025-ART-55-MATERNITY-RETURN-AND-TERMINATION-PROTECTION
+### 307. EG-LABOUR-14-2025-ART-55-MATERNITY-RETURN-AND-TERMINATION-PROTECTION
 
 **Question:** ما حقوق العاملة عند العودة من إجازة الوضع؟
 
@@ -9768,7 +9768,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9770. EG-LABOUR-14-2025-ART-56-BREASTFEEDING-BREAKS
+### 308. EG-LABOUR-14-2025-ART-56-BREASTFEEDING-BREAKS
 
 **Question:** ما فترات الرضاعة التي تستحقها العاملة؟
 
@@ -9799,7 +9799,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9801. EG-LABOUR-14-2025-ART-57-CHILDCARE-UNPAID-LEAVE
+### 309. EG-LABOUR-14-2025-ART-57-CHILDCARE-UNPAID-LEAVE
 
 **Question:** متى تستحق العاملة إجازة دون أجر لرعاية طفلها؟
 
@@ -9830,7 +9830,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9832. EG-LABOUR-14-2025-ART-58-WOMAN-TERMINATION-MARRIAGE-PREGNANCY-CHILDBIRTH
+### 310. EG-LABOUR-14-2025-ART-58-WOMAN-TERMINATION-MARRIAGE-PREGNANCY-CHILDBIRTH
 
 **Question:** هل يجوز للعاملة إنهاء عقدها بسبب الزواج أو الحمل أو الإنجاب؟
 
@@ -9861,7 +9861,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9863. EG-LABOUR-14-2025-ART-59-WOMEN-EMPLOYMENT-RULES-AND-FLEXIBLE-WORK
+### 311. EG-LABOUR-14-2025-ART-59-WOMEN-EMPLOYMENT-RULES-AND-FLEXIBLE-WORK
 
 **Question:** ما الذي يجب أن يعلنه صاحب العمل بشأن نظام تشغيل النساء؟
 
@@ -9892,7 +9892,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9894. EG-LABOUR-14-2025-ART-60-WORKPLACE-CHILDCARE-100-WOMEN
+### 312. EG-LABOUR-14-2025-ART-60-WORKPLACE-CHILDCARE-100-WOMEN
 
 **Question:** متى يجب توفير دار حضانة للعاملات؟
 
@@ -9923,7 +9923,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9925. EG-LABOUR-14-2025-ART-61-CHILD-LABOUR-CHAPTER-CHILD-DEFINITION
+### 313. EG-LABOUR-14-2025-ART-61-CHILD-LABOUR-CHAPTER-CHILD-DEFINITION
 
 **Question:** ما السن الذي يعتبر عنده الشخص طفلاً لأغراض قانون العمل؟
 
@@ -9954,7 +9954,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9956. EG-LABOUR-14-2025-ART-62-CHILD-MINIMUM-EMPLOYMENT-AGE
+### 314. EG-LABOUR-14-2025-ART-62-CHILD-MINIMUM-EMPLOYMENT-AGE
 
 **Question:** ما الحد الأدنى لسن تشغيل الأطفال وتدريبهم؟
 
@@ -9985,7 +9985,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 9987. EG-LABOUR-14-2025-ART-63-CHILD-EMPLOYMENT-RULES-IMPLEMENTING-DECISION
+### 315. EG-LABOUR-14-2025-ART-63-CHILD-EMPLOYMENT-RULES-IMPLEMENTING-DECISION
 
 **Question:** من يحدد ظروف وقواعد تشغيل الأطفال وتدريبهم؟
 
@@ -10016,7 +10016,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10018. EG-LABOUR-14-2025-ART-64-CHILD-HAZARDOUS-WORK-PROHIBITION
+### 316. EG-LABOUR-14-2025-ART-64-CHILD-HAZARDOUS-WORK-PROHIBITION
 
 **Question:** هل يحظر تشغيل الأطفال في أعمال معينة؟
 
@@ -10047,7 +10047,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10049. EG-LABOUR-14-2025-ART-65-CHILD-WORKING-HOURS-AND-NIGHT-WORK
+### 317. EG-LABOUR-14-2025-ART-65-CHILD-WORKING-HOURS-AND-NIGHT-WORK
 
 **Question:** ما حدود ساعات عمل الطفل والراحة والعمل الليلي؟
 
@@ -10078,7 +10078,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10080. EG-LABOUR-14-2025-ART-66-CHILD-EMPLOYMENT-RECORDS-AND-NOTICES
+### 318. EG-LABOUR-14-2025-ART-66-CHILD-EMPLOYMENT-RECORDS-AND-NOTICES
 
 **Question:** ما السجلات والإخطارات التي يجب على صاحب العمل الاحتفاظ بها بشأن الأطفال؟
 
@@ -10109,7 +10109,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10111. EG-LABOUR-14-2025-ART-67-CHILDREN-WITH-DISABILITIES-TRAINING-AND-PLACEMENT
+### 319. EG-LABOUR-14-2025-ART-67-CHILDREN-WITH-DISABILITIES-TRAINING-AND-PLACEMENT
 
 **Question:** ما دور جهات التأهيل والجهة الإدارية في تشغيل الأطفال ذوي الإعاقة؟
 
@@ -10140,7 +10140,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10142. EG-LABOUR-14-2025-ART-68-PARENTS-PROHIBITED-CHILD-EMPLOYMENT
+### 320. EG-LABOUR-14-2025-ART-68-PARENTS-PROHIBITED-CHILD-EMPLOYMENT
 
 **Question:** هل يحظر على الوالدين تشغيل الطفل بالمخالفة للقانون؟
 
@@ -10171,7 +10171,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10173. EG-LABOUR-14-2025-ART-69-FOREIGN-WORKER-CHAPTER-DEFINITION
+### 321. EG-LABOUR-14-2025-ART-69-FOREIGN-WORKER-CHAPTER-DEFINITION
 
 **Question:** ما المقصود بالعمل في أحكام تشغيل الأجانب؟
 
@@ -10202,7 +10202,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10204. EG-LABOUR-14-2025-ART-70-FOREIGN-WORKERS-SCOPE-AND-RECIPROCITY
+### 322. EG-LABOUR-14-2025-ART-70-FOREIGN-WORKERS-SCOPE-AND-RECIPROCITY
 
 **Question:** على أي جهات يسري تنظيم عمل الأجانب؟
 
@@ -10233,7 +10233,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10235. EG-LABOUR-14-2025-ART-71-FOREIGN-WORKER-PERMIT-AND-EMPLOYER-DUTY
+### 323. EG-LABOUR-14-2025-ART-71-FOREIGN-WORKER-PERMIT-AND-EMPLOYER-DUTY
 
 **Question:** ما شروط عمل الأجنبي وترخيصه في مصر؟
 
@@ -10264,7 +10264,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10266. EG-LABOUR-14-2025-ART-72-FOREIGN-WORKER-ABSENCE-NOTICE
+### 324. EG-LABOUR-14-2025-ART-72-FOREIGN-WORKER-ABSENCE-NOTICE
 
 **Question:** ما واجب صاحب العمل عند غياب العامل الأجنبي خمسة عشر يوماً متصلة؟
 
@@ -10295,7 +10295,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10297. EG-LABOUR-14-2025-ART-73-FOREIGN-WORKER-INVESTMENT-LAW-RULES
+### 325. EG-LABOUR-14-2025-ART-73-FOREIGN-WORKER-INVESTMENT-LAW-RULES
 
 **Question:** هل توجد قواعد خاصة لترخيص الأجانب الخاضعين لقانون الاستثمار؟
 
@@ -10326,7 +10326,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10328. EG-LABOUR-14-2025-ART-74-FOREIGN-WORKER-RETURN-TRAVEL-COSTS
+### 326. EG-LABOUR-14-2025-ART-74-FOREIGN-WORKER-RETURN-TRAVEL-COSTS
 
 **Question:** من يتحمل تكلفة إعادة العامل الأجنبي بعد انتهاء علاقة العمل؟
 
@@ -10357,7 +10357,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10359. EG-LABOUR-14-2025-ART-75-IRREGULAR-AND-INFORMAL-WORKER-PROTECTION
+### 327. EG-LABOUR-14-2025-ART-75-IRREGULAR-AND-INFORMAL-WORKER-PROTECTION
 
 **Question:** ما أهداف تنظيم العمالة غير المنتظمة والقطاع غير الرسمي؟
 
@@ -10388,7 +10388,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10390. EG-LABOUR-14-2025-ART-76-IRREGULAR-WORKER-POLICY-AND-CATEGORIES
+### 328. EG-LABOUR-14-2025-ART-76-IRREGULAR-WORKER-POLICY-AND-CATEGORIES
 
 **Question:** من يضع سياسة تشغيل العمالة غير المنتظمة وما الفئات التي تشملها؟
 
@@ -10419,7 +10419,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10421. EG-LABOUR-14-2025-ART-77-IRREGULAR-WORKER-REGISTRY-AND-DATABASE
+### 329. EG-LABOUR-14-2025-ART-77-IRREGULAR-WORKER-REGISTRY-AND-DATABASE
 
 **Question:** ما واجب الجهة الإدارية في حصر العمالة غير المنتظمة؟
 
@@ -10450,7 +10450,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10452. EG-LABOUR-14-2025-ART-78-IRREGULAR-WORKER-EMERGENCY-SERVICES-FUND
+### 330. EG-LABOUR-14-2025-ART-78-IRREGULAR-WORKER-EMERGENCY-SERVICES-FUND
 
 **Question:** ما صندوق إعانات الطوارئ والخدمات الاجتماعية والصحية للعمالة غير المنتظمة؟
 
@@ -10481,7 +10481,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10483. EG-LABOUR-14-2025-ART-79-IRREGULAR-WORKER-FUND-BENEFITS
+### 331. EG-LABOUR-14-2025-ART-79-IRREGULAR-WORKER-FUND-BENEFITS
 
 **Question:** ما أوجه الدعم التي يقدمها صندوق العمالة غير المنتظمة؟
 
@@ -10512,7 +10512,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10514. EG-LABOUR-14-2025-ART-80-IRREGULAR-WORKER-FUND-REGULATIONS
+### 332. EG-LABOUR-14-2025-ART-80-IRREGULAR-WORKER-FUND-REGULATIONS
 
 **Question:** من يحدد اللوائح المالية والخدمات وإعانات الطوارئ للصندوق؟
 
@@ -10543,7 +10543,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10545. EG-LABOUR-14-2025-ART-81-EMERGENCY-AID-BY-PRESIDENTIAL-DECISION
+### 333. EG-LABOUR-14-2025-ART-81-EMERGENCY-AID-BY-PRESIDENTIAL-DECISION
 
 **Question:** هل يمكن صرف إعانات طوارئ عاجلة للعمالة غير المنتظمة؟
 
@@ -10574,7 +10574,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10576. EG-LABOUR-14-2025-ART-82-IRREGULAR-WORKER-FUND-REVENUE-SOURCES
+### 334. EG-LABOUR-14-2025-ART-82-IRREGULAR-WORKER-FUND-REVENUE-SOURCES
 
 **Question:** ما مصادر تمويل صندوق العمالة غير المنتظمة؟
 
@@ -10605,7 +10605,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10607. EG-LABOUR-14-2025-ART-83-IRREGULAR-WORKER-FUND-ACCOUNTING-AND-AUDIT
+### 335. EG-LABOUR-14-2025-ART-83-IRREGULAR-WORKER-FUND-ACCOUNTING-AND-AUDIT
 
 **Question:** كيف تدار حسابات صندوق العمالة غير المنتظمة وتخضع للرقابة؟
 
@@ -10636,7 +10636,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10638. EG-LABOUR-14-2025-ART-84-IRREGULAR-WORKER-FUND-PUBLIC-MONEY-ENFORCEMENT
+### 336. EG-LABOUR-14-2025-ART-84-IRREGULAR-WORKER-FUND-PUBLIC-MONEY-ENFORCEMENT
 
 **Question:** ما الطبيعة القانونية لأموال صندوق العمالة غير المنتظمة؟
 
@@ -10667,7 +10667,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10669. EG-LABOUR-14-2025-ART-85-IRREGULAR-WORKER-FUND-ADMINISTRATION
+### 337. EG-LABOUR-14-2025-ART-85-IRREGULAR-WORKER-FUND-ADMINISTRATION
 
 **Question:** من ينفذ أحكام باب العمالة غير المنتظمة وقرارات الصندوق؟
 
@@ -10698,7 +10698,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10700. EG-LABOUR-14-2025-ART-86-INDIVIDUAL-EMPLOYMENT-CONTRACT-SCOPE
+### 338. EG-LABOUR-14-2025-ART-86-INDIVIDUAL-EMPLOYMENT-CONTRACT-SCOPE
 
 **Question:** متى تسري أحكام عقد العمل الفردي؟
 
@@ -10729,7 +10729,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10731. EG-LABOUR-14-2025-ART-87-FIXED-TERM-AND-INDEFINITE-EMPLOYMENT-CONTRACTS
+### 339. EG-LABOUR-14-2025-ART-87-FIXED-TERM-AND-INDEFINITE-EMPLOYMENT-CONTRACTS
 
 **Question:** هل يمكن أن يكون عقد العمل محدد المدة أو غير محدد المدة؟
 
@@ -10760,7 +10760,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10762. EG-LABOUR-14-2025-ART-88-CONVERSION-TO-INDEFINITE-TERM-CONTRACT
+### 340. EG-LABOUR-14-2025-ART-88-CONVERSION-TO-INDEFINITE-TERM-CONTRACT
 
 **Question:** متى يعتبر عقد العمل غير محدد المدة منذ إبرامه؟
 
@@ -10791,7 +10791,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10793. EG-LABOUR-14-2025-ART-97-NEW-WORK-PATTERN-EMPLOYMENT-RIGHTS
+### 341. EG-LABOUR-14-2025-ART-97-NEW-WORK-PATTERN-EMPLOYMENT-RIGHTS
 
 **Question:** ما الحقوق التي يتمتع بها العاملون في أنماط العمل الجديدة؟
 
@@ -10822,7 +10822,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10824. EG-LABOUR-14-2025-ART-98-NEW-WORK-PATTERNS-MULTIPLE-EMPLOYERS
+### 342. EG-LABOUR-14-2025-ART-98-NEW-WORK-PATTERNS-MULTIPLE-EMPLOYERS
 
 **Question:** هل يجوز للعامل في أنماط العمل الجديدة العمل لدى أكثر من صاحب عمل؟
 
@@ -10853,7 +10853,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10855. EG-LABOUR-14-2025-ART-99-NEW-WORK-PATTERN-WRITTEN-CONTRACT-AND-PROOF
+### 343. EG-LABOUR-14-2025-ART-99-NEW-WORK-PATTERN-WRITTEN-CONTRACT-AND-PROOF
 
 **Question:** كيف تثبت علاقة العمل في أنماط العمل الجديدة؟
 
@@ -10884,7 +10884,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10886. EG-LABOUR-14-2025-ART-100-NEW-WORK-PATTERN-IMPLEMENTING-RULES
+### 344. EG-LABOUR-14-2025-ART-100-NEW-WORK-PATTERN-IMPLEMENTING-RULES
 
 **Question:** من ينظم أنماط العمل الجديدة ونماذج عقودها؟
 
@@ -10915,7 +10915,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10917. EG-LABOUR-14-2025-ART-101-NATIONAL-WAGES-COUNCIL-COMPOSITION
+### 345. EG-LABOUR-14-2025-ART-101-NATIONAL-WAGES-COUNCIL-COMPOSITION
 
 **Question:** كيف يشكل المجلس القومي للأجور؟
 
@@ -10946,7 +10946,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10948. EG-LABOUR-14-2025-ART-102-NATIONAL-WAGES-COUNCIL-COMPETENCIES
+### 346. EG-LABOUR-14-2025-ART-102-NATIONAL-WAGES-COUNCIL-COMPETENCIES
 
 **Question:** ما اختصاصات المجلس القومي للأجور؟
 
@@ -10977,7 +10977,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 10979. EG-LABOUR-14-2025-ART-103-NATIONAL-WAGES-COUNCIL-MEETINGS-AND-VOTING
+### 347. EG-LABOUR-14-2025-ART-103-NATIONAL-WAGES-COUNCIL-MEETINGS-AND-VOTING
 
 **Question:** ما دورية اجتماعات المجلس القومي للأجور وكيف تصدر قراراته؟
 
@@ -11008,7 +11008,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 11010. EG-LABOUR-14-2025-ART-104-NATIONAL-WAGES-COUNCIL-DECISION-COMPLIANCE
+### 348. EG-LABOUR-14-2025-ART-104-NATIONAL-WAGES-COUNCIL-DECISION-COMPLIANCE
 
 **Question:** هل تلتزم المنشآت بقرارات المجلس القومي للأجور؟
 
@@ -11039,7 +11039,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 11041. EG-LABOUR-14-2025-ART-105-NATIONAL-WAGES-COUNCIL-INSPECTION-AND-PAYROLL-RECORDS
+### 349. EG-LABOUR-14-2025-ART-105-NATIONAL-WAGES-COUNCIL-INSPECTION-AND-PAYROLL-RECORDS
 
 **Question:** ما واجب التفتيش والمنشآت للتحقق من قرارات الأجور؟
 
@@ -11070,7 +11070,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 11072. EG-LABOUR-14-2025-ART-106-NATIONAL-WAGES-COUNCIL-DECISION-CHALLENGE
+### 350. EG-LABOUR-14-2025-ART-106-NATIONAL-WAGES-COUNCIL-DECISION-CHALLENGE
 
 **Question:** ما ميعاد الطعن على قرارات تخفيض أو إعفاء العلاوة الدورية؟
 
@@ -11101,7 +11101,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 11103. EG-LABOUR-14-2025-ART-107-WAGE-DETERMINATION-HIERARCHY
+### 351. EG-LABOUR-14-2025-ART-107-WAGE-DETERMINATION-HIERARCHY
 
 **Question:** كيف يحدد أجر العامل إذا لم يكن محدداً صراحة؟
 
@@ -11132,7 +11132,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 11134. EG-LABOUR-14-2025-ART-108-WAGE-PAYMENT-FREQUENCY-AND-FINAL-DUES
+### 352. EG-LABOUR-14-2025-ART-108-WAGE-PAYMENT-FREQUENCY-AND-FINAL-DUES
 
 **Question:** متى يجب دفع الأجر والمستحقات بعد انتهاء علاقة العمل؟
 
@@ -11163,7 +11163,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 11165. EG-LABOUR-14-2025-ART-109-DAILY-WAGE-AVERAGE-FOR-PRODUCTION-WORKERS
+### 353. EG-LABOUR-14-2025-ART-109-DAILY-WAGE-AVERAGE-FOR-PRODUCTION-WORKERS
 
 **Question:** كيف يحسب متوسط الأجر اليومي لعمال الإنتاج أو العمولة؟
 
@@ -11194,7 +11194,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 11196. EG-LABOUR-14-2025-ART-110-MONTHLY-WAGE-CATEGORY-CHANGE-CONSENT
+### 354. EG-LABOUR-14-2025-ART-110-MONTHLY-WAGE-CATEGORY-CHANGE-CONSENT
 
 **Question:** هل يجوز نقل العامل من الأجر الشهري إلى أجر يومي أو بالساعة دون موافقته؟
 
@@ -11225,7 +11225,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 11227. EG-LABOUR-14-2025-ART-111-WAGE-WHEN-WORK-PREVENTED
+### 355. EG-LABOUR-14-2025-ART-111-WAGE-WHEN-WORK-PREVENTED
 
 **Question:** ما أجر العامل إذا حضر وكان مستعداً للعمل لكن تعذر عليه؟
 
@@ -11256,7 +11256,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 11258. EG-LABOUR-14-2025-ART-112-EMPLOYER-PROHIBITED-FORCED-PURCHASES
+### 356. EG-LABOUR-14-2025-ART-112-EMPLOYER-PROHIBITED-FORCED-PURCHASES
 
 **Question:** هل يجوز إلزام العامل بشراء سلع أو خدمات من جهة يحددها صاحب العمل؟
 
@@ -11287,7 +11287,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 11289. EG-LABOUR-14-2025-ART-113-EMPLOYER-LOAN-DEDUCTION-LIMIT
+### 357. EG-LABOUR-14-2025-ART-113-EMPLOYER-LOAN-DEDUCTION-LIMIT
 
 **Question:** ما الحد الأقصى لخصم أقساط القرض الذي يمنحه صاحب العمل؟
 
@@ -11318,7 +11318,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 11320. EG-LABOUR-14-2025-ART-114-WAGE-ATTACHMENT-AND-DEDUCTION-LIMITS
+### 358. EG-LABOUR-14-2025-ART-114-WAGE-ATTACHMENT-AND-DEDUCTION-LIMITS
 
 **Question:** ما الحدود العامة للحجز أو الخصم من أجر العامل وفاءً للديون؟
 
@@ -11349,7 +11349,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 11351. EG-LABOUR-14-2025-ART-115-WAGE-RECEIPT-AND-PAYSLIP
+### 359. EG-LABOUR-14-2025-ART-115-WAGE-RECEIPT-AND-PAYSLIP
 
 **Question:** كيف يثبت صاحب العمل الوفاء بالأجر وما البيان الذي يجب تسليمه؟
 
@@ -11380,7 +11380,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Usable for:** source-linked research lead and manual verification.
 **Not usable for:** Authoritative legal advice, definitive current-law conclusions, or operational compliance decisions until authenticity, currentness, amendment history, source-use rights, and qualified Egyptian-lawyer review are complete..
 
-### 11382. EG-LABOUR-14-2025-ART-116-CHILD-WAGE-PAYMENT
+### 360. EG-LABOUR-14-2025-ART-116-CHILD-WAGE-PAYMENT
 
 **Question:** لمن يسلم صاحب العمل أجور الأطفال أو مكافآتهم؟
 
