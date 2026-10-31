@@ -96,6 +96,9 @@ class CaseDeadlineEstimateRouteTests(unittest.TestCase):
         self.assertFalse(result["verified_rule"])
         self.assertTrue(result["warnings"])
         self.assertIn("disclaimer", result)
+        self.assertTrue(result["calculation_assumptions_ar"])
+        self.assertIn("تاريخ بدء الميعاد يحتاج إلى مراجعة محامٍ", result["starts_from_ar"])
+        self.assertIsNone(result["rule_source_article"])
 
     def test_unknown_rule_and_impossible_trigger_are_rejected(self):
         unknown = self.client.get(
