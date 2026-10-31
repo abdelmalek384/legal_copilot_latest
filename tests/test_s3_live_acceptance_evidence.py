@@ -36,7 +36,7 @@ class FakeKMS:
 class FakeSTS:
     def get_caller_identity(self):
         return {"Account": "123456789012",
-                "Arn": "arn:aws:sts::123456789012:assumed-role/legal-runtime/session",
+                "Arn": "arn:aws:sts::123456789012:assumed-role/team/legal-runtime/session",
                 "UserId": "AROAX:session"}
 
 
@@ -69,14 +69,15 @@ class FakeIAM:
 
 class S3LiveEvidenceTests(unittest.TestCase):
     def test_collects_sanitized_caller_bucket_kms_and_role_evidence(self):
+        fake_iam = FakeIAM()
         report = collect_live_evidence(
-            FakeS3(), FakeKMS(), FakeSTS(), FakeIAM(),
+            FakeS3(), FakeKMS(), FakeSTS(), fake_iam,
             bucket="private-originals", key_id="alias/legal-originals",
         )
         self.assertFalse(report["production_ready"])
         self.assertEqual(report["caller"]["account"], "123456789012")
         self.assertEqual(report["caller_role"]["role_name"], "legal-runtime")
-        self.assertEqual(FakeIAM.last_role_name if hasattr(FakeIAM, "last_role_name") else "legal-runtime", "legal-runtime")
+        self.assertEqual(fake_iam.last_role_name, "legal-runtime")
         self.assertEqual(report["caller_role"]["inline_policies"][0]["name"], "runtime-inline")
         self.assertEqual(report["caller_role"]["attached_policies"][0]["default_version_id"], "v1")
         self.assertEqual(report["caller_role"]["trust_policy"]["statement_count"], 1)
