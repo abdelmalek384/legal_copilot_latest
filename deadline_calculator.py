@@ -279,6 +279,9 @@ def rule_catalog(path: Path = DEFAULT_RULES) -> dict:
                 "amount": rule["amount"],
                 "unit": rule["unit"],
                 "verified": _is_verified(rule),
+                "starts_from_ar": rule.get("starts_from_ar"),
+                "source_article": rule.get("source_article"),
+                "review_status": "verified" if _is_verified(rule) else "draft_unverified",
             }
             for rule in rules.values()
         ],
@@ -311,6 +314,15 @@ def estimate_rule_deadline(rule_id: str, trigger: dt.date, *, distance_days: int
     )
     result["rule_label_ar"] = rule["label_ar"]
     result["rule_catalog_status"] = rule_catalog(rules_path)["status"]
+    result["rule_source_article"] = rule.get("source_article")
+    result["starts_from_ar"] = rule.get("starts_from_ar")
+    result["calculation_assumptions_ar"] = [
+        "تاريخ البداية المدخل افتراض يحتاج إلى تأكيد المحامي من واقع الإعلان أو الحكم أو الواقعة؛ الأداة لا تستنتج تاريخ بدء الميعاد.",
+        "في حساب الأيام، لا يدخل يوم الواقعة المدخل في عدد الأيام؛ أما قواعد الشهور والسنوات فتستخدم مقابلة التاريخ مع ضبط نهاية الشهر.",
+        "تضاف أيام المسافة المدخلة يدوياً قبل فحص العطلات.",
+        "يفترض الحساب الجمعة والسبت يومي عطلة أسبوعية، ويمدد النهاية إذا وافقت عطلة مسجلة؛ يجب التحقق من القاعدة القانونية والاستثناءات الخاصة.",
+        "تقويم العطلات جزئي وغير معتمد ولا يشمل بالضرورة العطلات المتغيرة أو قرارات نقل العطلات.",
+    ]
     try:
         holiday_data = json.loads(Path(holidays_path).read_text(encoding="utf-8"))
     except (OSError, ValueError) as exc:
