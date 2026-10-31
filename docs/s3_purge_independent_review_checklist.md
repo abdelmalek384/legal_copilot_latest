@@ -1,0 +1,82 @@
+# S3 original-file physical-purge — independent review and deployment acceptance
+
+**Status:** Open. This checklist is a review instrument, not evidence that any control has passed. A passing CI run with fake S3 clients does not establish live AWS account, bucket, KMS, IAM, retention, or recovery behavior.
+
+## Review record
+
+- Repository commit / PR:
+- Independent reviewer:
+- Reviewer role and independence from implementation:
+- Review date:
+- Deployment environment:
+- AWS account ID (record in protected evidence store; do not put secrets here):
+- Region:
+- Bucket name:
+- Storage-target SHA-256 fingerprint:
+- KMS key ARN:
+- Purge operator identity:
+- Change / approval reference:
+- Result: Not started / Pass / Fail / Blocked
+- Evidence references:
+
+## 1. Destructive authorization and separation of duties
+
+- [ ] Deletion request is scoped to the correct firm, object, document, and tenant database.
+- [ ] Requester and approver are distinct active firm administrators.
+- [ ] Purge operator is an active platform administrator and is distinct from both requester and approver.
+- [ ] Firm and tenant catalog are disabled; all firm memberships are inactive.
+- [ ] Legal hold is absent at the final authorization check; hold/release events remain immutable and auditable.
+- [ ] The exact approved request reason and approval reason are retained in the purge audit record.
+- [ ] A failed or interrupted purge cannot be reported as completed.
+
+## 2. Bucket, object, and concurrency controls
+
+- [ ] Live `GetBucketVersioning` confirms the target bucket has never had versioning enabled; `Enabled`, `Suspended`, unknown, or unexpected response states block deletion.
+- [ ] The bucket policy and account controls prevent enabling versioning or changing relevant bucket controls during the purge window.
+- [ ] The exact bucket, region, endpoint, and storage fingerprint match the signed/current acceptance evidence.
+- [ ] Object key namespace is derived from the trusted firm ID and opaque object ID; no user-supplied key or URL is accepted.
+- [ ] Staged and finalized object presence is reconciled; staged copies block physical purge.
+- [ ] SHA-256, byte size, and KMS metadata are verified against tenant metadata immediately before deletion.
+- [ ] **Time-of-check/time-of-use review:** demonstrate that an external writer cannot overwrite or recreate the object between integrity verification and deletion. The CLI `--quiesced` flag is an operator assertion only; it does not create a distributed lock or block S3 writes.
+- [ ] The IAM policy and operational change freeze enforce the no-writer condition for the entire purge interval.
+- [ ] Delete response, post-delete object absence, and post-delete bucket-versioning state are checked; ambiguous outcomes enter manual review.
+
+## 3. KMS and IAM
+
+- [ ] Live object metadata identifies the exact expected customer-managed KMS key ARN, not merely an alias or a generic SSE-KMS marker.
+- [ ] KMS key policy permits only the intended application and recovery principals; no broad account-wide decrypt grant is present without documented approval.
+- [ ] Purge operator role has only the minimum required read/verify/delete and KMS metadata permissions.
+- [ ] Application runtime role cannot perform physical deletion.
+- [ ] Bucket policy denies public access and unapproved principals; access logging/audit evidence is enabled and retained.
+- [ ] KMS key is enabled, not pending deletion, and has a documented recovery/retention dependency.
+
+## 4. Retention, legal holds, and recovery
+
+- [ ] Data-retention schedule and tenant export/deletion policy are formally approved by the accountable owner.
+- [ ] Applicable legal hold, litigation hold, and regulatory preservation requirements are checked before approval and again before purge.
+- [ ] Backup retention, deletion, and key-retention behavior are consistent with the approved policy.
+- [ ] A witnessed staging restore proves original bytes, metadata, firm binding, and KMS access are recoverable before any production purge.
+- [ ] Rollback, staged-upload recovery, and deletion-recovery drills are witnessed and recorded.
+- [ ] RPO/RTO objectives are approved and measured; no values are inferred from test results.
+
+## 5. Execution evidence
+
+- [ ] Read-only offboarding preflight is clear for the exact firm and deployment.
+- [ ] Current production acceptance manifest matches the exact storage fingerprint.
+- [ ] Synthetic staging drill has passed with an explicitly allowlisted synthetic firm and bucket.
+- [ ] Dry-run report identifies only the expected approved requests and no other objects.
+- [ ] Quiescence is enforced by deployment/IAM controls, not solely by the CLI flag.
+- [ ] Apply is executed by the authorized operator under the approved change window.
+- [ ] Post-run object inventory, tenant metadata, immutable audit events, and request states reconcile.
+- [ ] Any mismatch or interrupted operation remains in manual review; no automatic retry or inferred success is allowed.
+
+## 6. Reviewer conclusion
+
+- Findings:
+- Required remediations:
+- Evidence locations:
+- Final decision: Approve / Reject / Blocked
+- Reviewer signature or approved review-system reference:
+- Change owner acknowledgement:
+
+**No production physical deletion is authorized by completing this document alone.** The release owner must also approve the retention policy, live cloud configuration, recovery evidence, and deployment change.

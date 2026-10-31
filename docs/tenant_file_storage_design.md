@@ -99,6 +99,6 @@ Do not enable original-binary retention for confidential matter data until:
 - Upload failure and crash-window reconciliation tests pass.
 - Encrypted backup/restore includes originals and verifies their digests; for S3, run the restore-to-S3 importer and verify the resulting inventory in staging.
 - Legal-hold set/release, two-admin deletion approval, legal-hold cancellation, gated local purge, tombstone retention, and backup/restore are tested; retention schedules and automated offboarding orchestration remain outstanding.
-- The witnessed staging recovery drill and independent security review are complete.
+- The witnessed staging recovery drill and independent security review are complete. The review must verify the live bucket's never-versioned state, exact KMS key and IAM policy, and a control that prevents concurrent object writes throughout purge; the CLI `--quiesced` flag is only an operator assertion and is not itself a lock.
 
 This is an initial end-to-end development implementation, not release completion. Do not enable it for confidential production matter data until the production object-store/KMS adapter, complete retention/deletion/offboarding lifecycle, object/database reconciliation, coordinated encrypted backup/restore, failure/crash-window tests, witnessed recovery drill, and independent security review are complete.
