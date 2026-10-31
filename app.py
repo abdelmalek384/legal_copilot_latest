@@ -3242,7 +3242,7 @@ def legal_review_coverage(u: dict = Depends(user)):
         "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(text_sha256,''))='') AS versions_missing_text_hash, "
         "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(gazette_issue,''))='' OR TRIM(COALESCE(gazette_pages,''))='' OR TRIM(COALESCE(publication_evidence_url,''))='') AS versions_missing_publication_metadata, "
         "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(effective_date,''))='') AS versions_missing_effective_date, "
-        "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(original_path,''))<>'' AND TRIM(COALESCE(original_sha256,''))='') AS versions_missing_original_hash, "
+        "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(original_sha256,''))='') AS versions_missing_original_hash, "
         "(SELECT COUNT(*) FROM legal_document_versions v WHERE TRIM(COALESCE(v.permission_evidence,''))='' OR EXISTS (SELECT 1 FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id WHERE d.document_id=v.document_id AND TRIM(COALESCE(s.permission_evidence,''))='')) AS versions_missing_permission_evidence"
     ).fetchone()
 
