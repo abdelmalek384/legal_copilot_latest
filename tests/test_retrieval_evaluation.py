@@ -48,6 +48,16 @@ class RetrievalEvaluationTests(unittest.TestCase):
         self.assertIsNone(result["citation_precision"])
         self.assertTrue(all("not marked" in " ".join(x["reasons"]) for x in result["excluded_cases"]))
 
+    def test_egyptian_colloquial_seed_questions_remain_excluded_until_lawyer_review(self):
+        seeds = _load_jsonl(DEFAULT_QUESTIONS)
+        dialect = [item for item in seeds if item.get("id", "").startswith("Q-EG-DIALECT-")]
+        self.assertEqual(len(dialect), 10)
+        self.assertTrue(all(item["review_status"] == "needs_lawyer_review" for item in dialect))
+        self.assertTrue(all(item["expected_sources"] == [] for item in dialect))
+        result = score_evaluation(dialect, [])
+        self.assertEqual(result["reviewed_cases_scored"], 0)
+        self.assertEqual(len(result["excluded_cases"]), 10)
+
     def test_seed_schema_expected_sources_alias_is_supported_after_review(self):
         question = reviewed_question()
         question["expected_sources"] = question.pop("expected_source_ids")
