@@ -295,6 +295,17 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIn("Direct opening of the item page failed", source["permission_evidence"])
         self.assertEqual(MODULE.validate(data), [])
 
+
+    def test_eastlaws_secondary_transcriptions_do_not_clear_reuse_rights(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-EASTLAWS-LABOUR-DECISIONS-290-291-2025")
+        self.assertEqual(source["collection_permission"], "unknown")
+        self.assertEqual(source["commercial_reuse_permission"], "unknown")
+        self.assertIn("HTTP 403", source["access_status"])
+        self.assertIn("no EastLaws terms", source["permission_evidence"])
+        self.assertEqual(MODULE.validate(data), [])
+
 if __name__ == "__main__":
     unittest.main()
 
