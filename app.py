@@ -4674,6 +4674,8 @@ def case_brief(cid: int, body: CaseBriefAuthorizationIn, u: dict = Depends(user)
         "The brief is temporary and must not imply that a lawyer reviewed it.\n\n"
         "Authorized case records (JSON lines):\n" + "\n".join(source_blocks)
     )
+    log(c, cid, u["name"], "طلب إنشاء ملخص ذكي مؤقت — أقر المستخدم بوجود تفويض المكتب والعميل")
+    c.commit()
     try:
         answer = LLM(prompt)
     except Exception:
@@ -4695,8 +4697,6 @@ def case_brief(cid: int, body: CaseBriefAuthorizationIn, u: dict = Depends(user)
             "message": "تعذر التحقق من استشهادات الملخص أو ارتباطها بسجل القضية؛ عُرضت المصادر فقط.",
             "sources": records,
         }
-    log(c, cid, u["name"], "إنشاء ملخص ذكي مؤقت — أقر المستخدم بوجود تفويض المكتب والعميل")
-    c.commit()
     return {
         "available": True, "generated": True, "abstained": False,
         "message": "ملخص واقعي مؤقت من سجلات القضية، وليس رأياً قانونياً أو مراجعة من محامٍ.",
