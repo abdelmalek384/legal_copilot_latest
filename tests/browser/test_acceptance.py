@@ -337,7 +337,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
     def test_corpus_coverage_requires_platform_reviewer_and_drilldown_is_metadata_only(self) -> None:
         self.login(self.state["owner_a_email"])
-        denied = self.page.request.get(self.base_url + "/legal-review/coverage")
+        denied = self.page.request.get(self.base_url + "/legal-review/coverage", timeout=8000)
         self.assertEqual(denied.status, 403)
         self.assertNotIn("SYNTHETIC METADATA ONLY", denied.text())
 
@@ -365,6 +365,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             self.base_url + "/cases",
             data={"title": "SYNTHETIC MATTER ONLY FIXTURE"},
             headers=self.csrf_headers(),
+            timeout=8000,
         )
         self.assertEqual(case_response.status, 200, case_response.text())
         case_id = case_response.json()["id"]
@@ -380,6 +381,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 }
             },
             headers=self.csrf_headers(),
+            timeout=8000,
         )
         self.assertEqual(upload.status, 200, upload.text())
 
@@ -417,7 +419,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
         self.page.get_by_role("button", name="حفظ إلى ملف قضية").click()
         self.page.get_by_text("تم حفظ مذكرة البحث في ملاحظات القضية", exact=False).wait_for(timeout=10000)
-        saved_case = self.page.request.get(self.base_url + f"/cases/{case_id}")
+        saved_case = self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
         self.assertEqual(saved_case.status, 200, saved_case.text())
         self.assertTrue(any(sentinel in note["text"] for note in saved_case.json()["notes"]))
 
@@ -448,7 +450,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
     def test_cross_firm_case_identifier_does_not_reveal_other_firm_sentinel(self) -> None:
         self.login(self.state["owner_a_email"])
         response = self.page.request.get(
-            self.base_url + f"/cases/{self.state['firm_b_case_id']}"
+            self.base_url + f"/cases/{self.state['firm_b_case_id']}", timeout=8000
         )
         self.assertIn(response.status, (403, 404))
         self.assertNotIn("CROSS_FIRM_PRIVATE_SENTINEL_7D3A", response.text())
