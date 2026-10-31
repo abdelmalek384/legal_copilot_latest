@@ -371,7 +371,7 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertEqual(source["collection_permission"], "unknown")
         self.assertEqual(source["commercial_reuse_permission"], "unknown")
         self.assertIsNone(source["terms_checked_on"])
-        self.assertIn("not the complete decision", source["material_types"][1])
+        self.assertIn("not the complete ministerial decision", source["material_types"][1])
         self.assertIn("HTTP 502", source["access_status"])
         self.assertIn("proof of a formal amendment", source["permission_evidence"])
         self.assertEqual(MODULE.validate(data), [])
