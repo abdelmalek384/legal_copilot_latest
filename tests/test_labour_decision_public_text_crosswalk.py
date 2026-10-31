@@ -115,5 +115,14 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
         self.assertIn("Article 121", " ".join(copy["articles"][0]["observations"]))
         self.assertIn("Gazette issue PDF not compared", item["secondary_text"]["status"])
 
+
+    def test_decision_288_meles_repository_lead_does_not_claim_gazette_verification(self):
+        data = json.loads(DATA.read_text(encoding="utf-8"))
+        item = next(x for x in data["decisions"] if x["document_id"] == "EG-LABOUR-DECISION-288-2025")
+        lead = item["additional_repository_lead"]
+        self.assertIn("not the Official Gazette issue scan", lead["caveat"])
+        self.assertIn("request-copy restricted", lead["status"])
+        self.assertIn("license.txt", " ".join(lead["files"]))
+
 if __name__ == "__main__":
     unittest.main()
