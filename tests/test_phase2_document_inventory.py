@@ -213,6 +213,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             record = records[f"EG-LABOUR-DECISION-{number}-2026"]
             self.assertEqual(record["instrument_number"], number)
             self.assertEqual(record["instrument_year"], 2026)
+            self.assertIn(f"قرار رقم {number} لسنة 2026", record["official_title_ar"])
             self.assertEqual(record["source_id"], "EG-IDSC-DSPACE-GAZETTE")
             self.assertEqual(record["publication_date"], "2026-10-12")
             self.assertEqual(record["official_gazette_issue"], "225 تابع (أ)")
