@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Read-only audit of Legal Copilot's SQLite legal corpus."""
 from __future__ import annotations
-import argparse, hashlib, json, os, sqlite3
+import argparse, hashlib, json, os, re, sqlite3
 from collections import Counter
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -156,7 +156,7 @@ def audit(db_path: Path, *, check_fts_index: bool = False):
                         quality["passing_event_without_valid_evidence"] += 1
                     if event["review_type"] == "lawyer_approval" and event["outcome"] == "pass":
                         notes = event["notes"]
-                        if not isinstance(notes, str) or not __import__("re").search(
+                        if not isinstance(notes, str) or not re.search(
                             r"\\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\\]", notes
                         ):
                             quality["lawyer_approval_without_counsel_attestation"] += 1
