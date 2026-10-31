@@ -2790,7 +2790,7 @@
       "instrument_number": 289,
       "instrument_year": 2025,
       "source_id": "EG-IDSC-GAZETTE-2025-295-SUPPLEMENT-D",
-      "source_status": "official_Gazette_metadata_and_Ministry_hosted_decision_text_found; Gazette_page_comparison_pending",
+      "source_status": "official_Gazette_metadata_and_secondary_full_text_found; primary_comparison_pending",
       "collection_permission": "not_allowed_without_explicit_exception_or_license",
       "legal_status": "unknown",
       "review_status": "discovery_only",
