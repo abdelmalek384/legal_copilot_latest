@@ -18,6 +18,10 @@ class ProductionDatabaseModeTests(unittest.TestCase):
             "COPILOT_S3_REGION": "us-east-1",
             "COPILOT_S3_KMS_KEY_ID": "test-kms-key",
             "COPILOT_S3_ENDPOINT_URL": "",
+            "COPILOT_S3_RECOVERY_BUCKET": "acceptance-recovery-test-bucket",
+            "COPILOT_S3_RECOVERY_REGION": "us-east-1",
+            "COPILOT_S3_RECOVERY_KMS_KEY_ID": "test-recovery-kms-key",
+            "COPILOT_S3_RECOVERY_ENDPOINT_URL": "",
         }
 
     def _write_acceptance_manifest(self, path):
