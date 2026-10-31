@@ -656,6 +656,21 @@
       "access_terms_state": "repository_end_user_agreement_reviewed",
       "collection_permission": "not_allowed_without_explicit_exception_or_license",
       "notes": "The item page identifies Ministry Of Labor as author, MELES as publisher and 2025-12-11 issue date metadata. It lists two PDF files (75.85 KB and 125.39 KB) and a 55-byte item-specific license.txt; both PDF and license links open request-a-copy forms stating all files are in restricted access. The repository agreement permits personal/non-commercial use only, requires express prior written permission for commercial exploitation and written permission for systematic database compilation. No files or license bytes were obtained."
+    },
+    {
+      "source_id": "EG-MOL-SIS-DECISION-294-2025-PDF",
+      "publisher": "Egyptian Ministry of Labour; hosted by Egyptian State Information Service",
+      "source_type": "Ministry-hosted PDF containing the text of Ministerial Decision 294/2025",
+      "url": "https://mediadr.sis.gov.eg/bitstream/handle/123456789/117216/MOM20251226_0805.pdf?isAllowed=y&sequence=4",
+      "observed_title": "وزير العمل يصدر قرارًا وزاريًا رقم 294 لسنة 2025 بشأن تحديد العطلات والأعياد والمناسبات التي تُعد إجازة بأجر كامل للعمال",
+      "publication_date": "2025-12-26",
+      "document_ids": [
+        "EG-LABOUR-DECISION-294-2025"
+      ],
+      "source_state": "government_hosted_decision_text_opened_and_text_layer_reviewed",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "notes": "PDF opened through SIS. It identifies the Ministry of Labour and contains Decision 294/2025 Articles 1–4. Article 1 lists twelve paid holiday categories and allows substitution of another day for national uniformity; Article 2 grants full-pay leave, prohibits deduction from annual leave, and provides double pay or a substitute day on written request if work is required; Article 3 adds religious holidays for non-Muslim workers under the relevant Prime Minister decision; Article 4 provides next-day commencement after Gazette publication. This is a Ministry-hosted text copy, not the Official Gazette PDF; no local binary/hash or reuse terms were obtained."
     }
   ],
   "document_records_to_create_from_batch": [
