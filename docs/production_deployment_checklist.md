@@ -102,6 +102,7 @@ Also run the CI workflow and confirm all jobs pass for the exact commit being de
 - [ ] Test backup restore and verify that deleted-case audit snapshots remain firm-scoped and admin-only. Confirm the separately managed MFA_ENCRYPTION_KEY is available before testing TOTP-secret restoration.
 - [ ] Test degraded LLM behavior, timeout handling, and source-only fallback.
 - [ ] Conduct an independent security assessment and remediate high/critical findings before storing client-confidential matters.
+- [ ] Collect the four-cell desktop/phone × ar-EG/en-US manual acceptance matrix for the exact release commit and run the aggregate production release gate with COPILOT_DEVICE_ACCEPTANCE_FILE and COPILOT_RELEASE_COMMIT set. A passing CI run or automated browser suite is not a substitute for this manual evidence.
 
 ## 7. Live HTTP deployment smoke test
 
