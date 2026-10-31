@@ -4743,6 +4743,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 "answer": None,
                 "sources": [],
                 "message": assistant_only_sentinel,
+                "scope": scope,
+                "case_id": case_id,
             }
 
         with patch.object(app, "ask", side_effect=fake_ask):
