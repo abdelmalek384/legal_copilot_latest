@@ -80,7 +80,7 @@ class CitationCoverageTests(unittest.TestCase):
     def test_citation_relevance_guard_ignores_code_samples_but_fails_invalid_indices(self):
         hits = [{"text": "The tenant must pay rent on the agreed date."}]
         self.assertFalse(app._answer_has_unanchored_citations(
-            "The tenant must pay rent on the agreed date [1].\n\n\`\`\`text\nAn unrelated example [2].\n\`\`\`", hits
+            "The tenant must pay rent on the agreed date [1].\n\n```text\nAn unrelated example [2].\n```", hits
         ))
         self.assertTrue(app._answer_has_unanchored_citations(
             "The tenant must pay rent [2].", hits
