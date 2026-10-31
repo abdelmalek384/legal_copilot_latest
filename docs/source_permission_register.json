@@ -197,14 +197,15 @@
         "ministerial decisions",
         "labour-related legislation indexes"
       ],
-      "access_status": "official legislation index located",
+      "access_status": "official Ministry of Labour legislation index search-indexed; Law 14/2025 entry observed; direct page fetch returned 502; no direct file URL or PDF bytes obtained",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
       "permission_evidence": null,
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Identify exact direct document URLs, review current terms, and establish permission scope for local storage, text extraction, indexing, display, commercial use, and redistribution before acquisition."
+      "required_next_action": "Use the Ministry index as an official discovery/cross-reference source only. Identify the exact direct PDF URL through ordinary authorized access when available; compare any Ministry copy against the Official Gazette; review current terms and establish separate permission for local storage, extraction, indexing, display, commercial use and redistribution. Do not infer that the index entry itself provides the Gazette bytes or a reuse licence.",
+      "access_evidence": "On 2026-10-31 the official Ministry of Labour laws-and-legislation index was visible in search results and listed Law No. 14/2025 as a Basic Law, alongside the repealed 2003 Labour Law and related legislation. The Ministry's official publications index also lists Law 14/2025 and a Q&A publication. Direct page opening returned HTTP 502, and no direct PDF download URL was exposed in the search-indexed text. This is an official index/discovery lead only; it does not establish that the Ministry page hosts the authoritative Gazette bytes or grants collection/commercial reuse permission."
     },
     {
       "source_id": "EG-MIFT-LEGISLATION",
