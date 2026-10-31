@@ -37,5 +37,20 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
             self.assertTrue(any(source["url"] == url and "secondary" in source["status"] for source in record["source_urls"]))
 
 
+
+    def test_decisions_292_and_294_have_issue_metadata_and_secondary_text(self):
+        data = json.loads(DATA.read_text(encoding="utf-8"))
+        records = {item["document_id"]: item for item in data["decisions"]}
+        for document_id in ("EG-LABOUR-DECISION-292-2025", "EG-LABOUR-DECISION-294-2025"):
+            item = records[document_id]
+            self.assertEqual(item["primary_lead"]["url"], "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full")
+            self.assertIn("request-a-copy restricted", item["primary_lead"]["status"])
+            self.assertIn("Two public secondary", item["secondary_text"]["status"])
+            self.assertIn("neither compared", item["secondary_text"]["status"])
+            self.assertTrue(item["currentness"].startswith("not fully verified"))
+            self.assertIn("unknown", item["reuse_rights"])
+        self.assertIn("48 hours", records["EG-LABOUR-DECISION-292-2025"]["secondary_text"]["summary"])
+        self.assertIn("12 occasions", records["EG-LABOUR-DECISION-294-2025"]["secondary_text"]["summary"])
+
 if __name__ == "__main__":
     unittest.main()
