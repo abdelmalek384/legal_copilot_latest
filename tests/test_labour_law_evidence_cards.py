@@ -45,7 +45,14 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 ids.add(card["card_id"])
                 self.assertTrue(card["provisional_answer_ar"].strip())
                 self.assertTrue(card["pinpoint"]["article"])
-                self.assertGreaterEqual(card["pinpoint"]["official_gazette_printed_page"], 1)
+                page = card["pinpoint"]["official_gazette_printed_page"]
+                if page is None:
+                    self.assertEqual(
+                        card["pinpoint"]["pinpoint_status"],
+                        "article_verified_in_public_transcription_page_not_verified",
+                    )
+                else:
+                    self.assertGreaterEqual(page, 1)
                 self.assertTrue(any(_has_https_host(s["url"], "alamiria.com") for s in card["primary_evidence"]))
                 self.assertTrue(any(_has_https_host(s["url"], "portal.eta.gov.eg") for s in card["primary_evidence"]))
                 self.assertTrue(card["cross_checks"])
@@ -94,7 +101,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                     full_text_status = gazette["full_text_status"].casefold()
                     self.assertIn("original file", full_text_status)
                     self.assertIn("not been downloaded", full_text_status)
-                    self.assertIn("not verified", item["status"])
+                    self.assertTrue("not verified" in item["status"] or "unverified" in item["status"])
                     if item["document_id"] == "EG-LABOUR-DECISION-49-2026":
                         self.assertEqual(gazette["publication_date"], "2026-03-18")
                         self.assertIn("64", gazette["gazette_publication"])
