@@ -61,6 +61,52 @@ class CitationCoverageTests(unittest.TestCase):
             "The deadline is 30 days.\n```text\n[1]"
         ))
 
+    def test_citation_relevance_guard_accepts_arabic_and_english_source_anchors(self):
+        arabic_hits = [{"text": "يستحق العامل مقابلاً عن ساعات العمل الإضافية."}]
+        self.assertFalse(app._answer_has_unanchored_citations(
+            "يستحق العامل مقابلاً عن ساعات العمل الإضافية [1].", arabic_hits
+        ))
+        english_hits = [{"text": "The tenant must pay rent on the agreed date."}]
+        self.assertFalse(app._answer_has_unanchored_citations(
+            "The tenant must pay rent on the agreed date [1].", english_hits
+        ))
+
+    def test_arabic_duration_claim_can_anchor_to_english_deadline_source(self):
+        hits = [{"text": "The statutory deadline is 25 days."}]
+        self.assertFalse(app._answer_has_unanchored_citations(
+            "المدة خمسة وعشرون يوما [1].", hits
+        ))
+
+    def test_citation_relevance_guard_rejects_unrelated_cited_passage(self):
+        hits = [{"text": "تحدد المحكمة الاختصاص المحلي ونطاق نظر الدعوى."}]
+        self.assertTrue(app._answer_has_unanchored_citations(
+            "يستحق العامل مقابلاً عن ساعات العمل الإضافية [1].", hits
+        ))
+
+    def test_citation_relevance_guard_ignores_code_samples_but_fails_invalid_indices(self):
+        hits = [{"text": "The tenant must pay rent on the agreed date."}]
+        self.assertFalse(app._answer_has_unanchored_citations(
+            "The tenant must pay rent on the agreed date [1].\n\n```text\nAn unrelated example [2].\n```", hits
+        ))
+        self.assertTrue(app._answer_has_unanchored_citations(
+            "The tenant must pay rent [2].", hits
+        ))
+
+    def test_ask_abstains_when_cited_passage_is_unrelated_to_claim(self):
+        hit = {
+            "cos": 1.0, "score": 1, "ref": "LAW-UNRELATED",
+            "text": "تحدد المحكمة الاختصاص المحلي ونطاق نظر الدعوى.",
+            "verified": True, "in_force": True, "applies_as_of": True,
+            "case_id": None, "source_status": app.STATUS_VERIFIED, "provenance": {},
+        }
+        with patch.object(app, "search", return_value=[hit]), patch.object(
+            app, "LLM", return_value="يستحق العامل مقابلاً عن ساعات العمل الإضافية [1]."
+        ):
+            result = app.ask(None, "ما المقابل عن ساعات العمل الإضافية؟", scope="verified_corpus")
+        self.assertIsNone(result["answer"])
+        self.assertTrue(result["abstained"])
+        self.assertIn("ارتباط لفظي", result["message"])
+
     def test_ask_abstains_when_corpus_source_permission_evidence_is_unresolved(self):
         hit = {
             "cos": 1.0, "score": 1, "ref": "LAW-UNLICENSED", "text": "A source passage.",

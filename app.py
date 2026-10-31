@@ -1441,6 +1441,54 @@ def _answer_has_unsupported_quantities(answer, hits, cited_indices):
     return False
 
 
+_CITATION_SUPPORT_GENERIC_TERMS = set(tokens(
+    "the a an is are was were be been being and or but if then this that these those "
+    "source sources passage passages rule rules stated legal law article section under pursuant in of by for from it as at on "
+    "النص النصوص المادة المواد القانون القوانين وفقا بموجب حيث يجوز يجب يحق يلتزم "
+    "يكون تكون كانت كان على في من عن الى إلى مع هذا هذه ذلك الذي التي"
+))
+
+
+def _answer_has_unanchored_citations(answer, hits):
+    """Fail closed when a cited claim has no meaningful lexical anchor in its cited passages.
+
+    This is a conservative citation-relevance screen, not semantic entailment or legal review.
+    """
+    if not isinstance(answer, str) or not answer.strip() or not isinstance(hits, (list, tuple)):
+        return True
+    visible = _mask_markdown_code(answer)
+    for raw_line in visible.splitlines():
+        line = raw_line.strip()
+        if (not line or re.match(r"^#{1,6}\s+", line)
+                or re.fullmatch(r"[-*_]{3,}", line)
+                or re.fullmatch(r"\*\*[^*]{1,100}[:：]\*\*", line)):
+            continue
+        if line.endswith((":", "：")) and len(line) <= 100:
+            continue
+        for sentence in re.split(r"(?<=[.!?؟])\s+", line):
+            sentence = re.sub(r"^(?:[-*+]\s+|\d+[.)]\s+|>\s*)", "", sentence).strip()
+            if not sentence:
+                continue
+            cited = {int(value) for value in re.findall(r"\[(\d+)\]", sentence)}
+            if not cited:
+                continue  # The separate uncited-claim gate handles missing citations.
+            if any(index < 1 or index > len(hits) for index in cited):
+                return True
+            claim_text = re.sub(r"\[\d+\]", " ", sentence)
+            claim_terms = set(expanded_tokens(claim_text, limit=96)) - _CITATION_SUPPORT_GENERIC_TERMS
+            # Keep generic duration expansion local to citation checking; global query expansion
+            # changes retrieval ranking and can hide otherwise relevant firm-document matches.
+            if set(tokens(claim_text)) & set(tokens("مدة ميعاد أجل فترة")):
+                claim_terms.update(tokens("deadline period time limit"))
+            if not claim_terms:
+                continue
+            evidence = " ".join(str(hits[index - 1].get("text") or "") for index in cited)
+            evidence_terms = set(tokens(evidence))
+            if not (claim_terms & evidence_terms):
+                return True
+    return False
+
+
 def _answer_has_uncited_claims(answer):
     """Fail closed when a generated legal claim sentence has no inline source citation."""
     if not isinstance(answer, str) or not answer.strip():
@@ -1524,6 +1572,8 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
             ans, msg = None, "تعذر التحقق من الأرقام أو المدد من نصوص المصادر المستشهد بها، تُعرض المصادر فقط."
         elif _answer_has_uncited_claims(ans):
             ans, msg = None, "توجد عبارة قانونية بلا استشهاد مباشر، تُعرض المصادر فقط."
+        elif _answer_has_unanchored_citations(ans, hits):
+            ans, msg = None, "لم يظهر ارتباط لفظي كافٍ بين إحدى العبارات ومصادرها المستشهد بها؛ تُعرض المصادر فقط."
     return {"found": True, "answer": ans, "abstained": not bool(ans), "message": msg, "sources": hits, "scope": scope, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
 
 
