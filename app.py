@@ -8,7 +8,7 @@ from contextvars import ContextVar
 from collections import Counter
 from datetime import date, datetime, timedelta, timezone
 from functools import wraps
-from tools.research_inspector import source_status, citation_text, research_memo
+from tools.research_inspector import STATUS_VERIFIED, source_status, citation_text, research_memo
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
     generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
@@ -771,6 +771,63 @@ SQL = ("SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts JOIN chunks ON ch
        + "AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)"
        ")) ORDER BY r LIMIT 40")
 
+def _https_source_host(value):
+    """Normalize an HTTPS source host for source-ID/host permission-register matching."""
+    if not isinstance(value, str) or value != value.strip():
+        return None
+    try:
+        parsed = urlsplit(value)
+        port = parsed.port
+        if (parsed.scheme != "https" or not parsed.hostname or parsed.username is not None
+                or parsed.password is not None or (port is not None and not 1 <= port <= 65535)):
+            return None
+        host = parsed.hostname.lower().rstrip(".")
+        return host[4:] if host.startswith("www.") else host
+    except ValueError:
+        return None
+
+
+def _central_source_permission_evidence(source_id, source_page):
+    """Return rights evidence only for one exact source-ID and normalized-host match."""
+    blocked = {
+        "source_permission_register_match": False,
+        "source_permission_register_collection_permission": "unknown",
+        "source_permission_register_commercial_reuse_permission": "unknown",
+        "permission_evidence_url": None,
+        "commercial_reuse_evidence_url": None,
+        "terms_checked_on": None,
+        "commercial_terms_checked_on": None,
+    }
+    source_host = _https_source_host(source_page)
+    if not isinstance(source_id, str) or not source_id.strip() or source_host is None:
+        return blocked
+    register_path = Path(__file__).resolve().parent / "docs" / "source_permission_register.json"
+    try:
+        register = json.loads(register_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError, TypeError):
+        return blocked
+    if not isinstance(register, dict) or not isinstance(register.get("sources"), list):
+        return blocked
+    matches = [
+        item for item in register["sources"]
+        if isinstance(item, dict)
+        and item.get("source_id") == source_id
+        and _https_source_host(item.get("source_page")) == source_host
+    ]
+    if len(matches) != 1:
+        return blocked
+    item = matches[0]
+    return {
+        "source_permission_register_match": True,
+        "source_permission_register_collection_permission": item.get("collection_permission"),
+        "source_permission_register_commercial_reuse_permission": item.get("commercial_reuse_permission"),
+        "permission_evidence_url": item.get("permission_evidence_url"),
+        "commercial_reuse_evidence_url": item.get("commercial_reuse_evidence_url"),
+        "terms_checked_on": item.get("terms_checked_on"),
+        "commercial_terms_checked_on": item.get("commercial_terms_checked_on"),
+    }
+
+
 def citation_provenance(c, version_id):
     """Return registry-backed metadata for a cited passage; never infer missing legal facts."""
     if version_id is None:
@@ -779,13 +836,14 @@ def citation_provenance(c, version_id):
         "SELECT v.version_id,v.document_id,v.version_label,v.source_url,v.original_sha256,"
         "v.publication_date,v.effective_date,v.repeal_date,v.consolidated_as_of,v.gazette_issue,v.gazette_pages,"
         "v.legal_status,v.review_status,v.permission_evidence,v.authenticity_verified,v.status_verified,v.amendment_history_verified,"
-        "d.official_title,d.document_type,d.source_id,d.law_number,d.law_year,d.language,s.authority,s.collection_permission,s.commercial_reuse_permission,s.permission_evidence AS source_permission_evidence "
+        "d.official_title,d.document_type,d.source_id,d.law_number,d.law_year,d.language,s.authority,s.source_page,s.collection_permission,s.commercial_reuse_permission,s.permission_evidence AS source_permission_evidence "
         "FROM legal_document_versions v JOIN legal_documents d ON d.document_id=v.document_id JOIN legal_sources s ON s.source_id=d.source_id "
         "WHERE v.version_id=?", (version_id,)).fetchone()
     if not row:
         return {"status": "registry_record_missing", "version_id": version_id}
     data = dict(row)
     data["status"] = "registry_linked"
+    data.update(_central_source_permission_evidence(data.get("source_id"), data.get("source_page")))
     data["authenticity_verified"] = bool(data["authenticity_verified"])
     data["status_verified"] = bool(data["status_verified"])
     data["amendment_history_verified"] = bool(data["amendment_history_verified"])
@@ -1300,6 +1358,25 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
                 "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])],
                 "unverified_sources": [h["ref"] for h in hits if not h["verified"]],
                 "requested_as_of": as_of or date.today().isoformat()}
+    # Corpus passages must satisfy the same evidence gate as the inspector label
+    # before any model answer is generated. Database flags alone are insufficient.
+    unverified_corpus_hits = [
+        hit for hit in hits
+        if hit.get("case_id") is None
+        and (hit.get("verified") is not True or hit.get("source_status") != STATUS_VERIFIED)
+    ]
+    if unverified_corpus_hits:
+        return {
+            "found": True, "answer": None, "abstained": True,
+            "message": "تم استرجاع نصوص قانونية لا تستوفي بوابات المصدر والإذن القابلة للفحص؛ تُعرض المصادر فقط.",
+            "sources": hits, "scope": scope,
+            "not_in_force": [h.get("ref") for h in hits if h.get("verified") and not h.get("applies_as_of", h.get("in_force"))],
+            "unverified_sources": [
+                h.get("ref") for h in hits
+                if h.get("verified") is not True or h.get("source_status") != STATUS_VERIFIED
+            ],
+            "requested_as_of": as_of or date.today().isoformat(),
+        }
     # Serialize retrieved records as JSON data rather than interpolating source text
     # into instruction-like prose. JSON encoding preserves evidence text while keeping
     # embedded newlines/labels inside the passage field; it is not a substitute for
