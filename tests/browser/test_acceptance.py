@@ -3,10 +3,12 @@ from __future__ import annotations
 
 import json
 import os
+import secrets
 import socket
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 import unittest
 import urllib.error
@@ -33,7 +35,6 @@ class BrowserAcceptanceTests(unittest.TestCase):
         cls.temp_path = Path(cls.temp.name)
         cls.port = _free_port()
         cls.base_url = f"http://127.0.0.1:{cls.port}"
-        cls.state_path = cls.temp_path / "fixture-state.json"
         env = os.environ.copy()
         env.update(
             {
@@ -43,8 +44,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 "COPILOT_CORPUS_DB": str(cls.temp_path / "corpus.sqlite3"),
                 "COPILOT_OBJECT_STORAGE_ROOT": str(cls.temp_path / "objects"),
                 "COPILOT_OBJECT_STORAGE_BACKEND": "local",
-                "ADMIN_TOKEN": "synthetic-browser-fixture-token-only",
-                "BROWSER_FIXTURE_STATE": str(cls.state_path),
+                "ADMIN_TOKEN": secrets.token_urlsafe(32),
                 "BROWSER_FIXTURE_PORT": str(cls.port),
             }
         )
@@ -54,9 +54,29 @@ class BrowserAcceptanceTests(unittest.TestCase):
             [sys.executable, "-m", "tests.browser.fixture_server"],
             cwd=ROOT,
             env=env,
-            stdout=subprocess.DEVNULL,
+            stdout=subprocess.PIPE,
             stderr=subprocess.DEVNULL,
+            text=True,
+            bufsize=1,
         )
+        cls.state_ready = threading.Event()
+
+        def read_fixture_state() -> None:
+            line = cls.server.stdout.readline()
+            prefix = "BROWSER_FIXTURE_STATE="
+            if line.startswith(prefix):
+                cls.state = json.loads(line[len(prefix):])
+                cls.state_ready.set()
+
+        cls.state_reader = threading.Thread(target=read_fixture_state, daemon=True)
+        cls.state_reader.start()
+        deadline = time.monotonic() + 45
+        while time.monotonic() < deadline and not cls.state_ready.wait(0.1):
+            if cls.server.poll() is not None:
+                raise RuntimeError("Synthetic fixture server exited before publishing fixture state.")
+        if not cls.state_ready.is_set():
+            raise RuntimeError("Synthetic fixture server did not publish fixture state.")
+
         deadline = time.monotonic() + 45
         last_error = None
         while time.monotonic() < deadline:
@@ -71,7 +91,6 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 time.sleep(0.25)
         else:
             raise RuntimeError(f"Synthetic fixture server did not become ready: {last_error}")
-        cls.state = json.loads(cls.state_path.read_text(encoding="utf-8"))
         cls.playwright = sync_playwright().start()
         cls.browser: Browser = cls.playwright.chromium.launch(headless=True)
 
