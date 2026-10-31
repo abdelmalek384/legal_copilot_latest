@@ -31,10 +31,15 @@ class TestLabourLawCoverageGapSupplement(unittest.TestCase):
     def test_combined_main_and_supplement_cover_all_298_law_articles(self):
         main = json.loads(MAIN.read_text(encoding="utf-8"))
         supplement = json.loads(DATA.read_text(encoding="utf-8"))
-        all_cards = main["cards"] + supplement["cards"]
-        articles = {int("".join(ch for ch in card["pinpoint"]["article"] if ch.isdigit())) for card in all_cards}
-        self.assertEqual(len(main["cards"]), 294)
+        main_ids = [card["card_id"] for card in main["cards"]]
+        supplement_ids = {card["card_id"] for card in supplement["cards"]}
+        self.assertEqual(len(main["cards"]), 360)
+        self.assertEqual(len(main_ids), len(set(main_ids)))
         self.assertEqual(len(supplement["cards"]), 15)
+        # These early-article supplement records are already in the reconciled
+        # canonical inventory; do not count them twice.
+        self.assertTrue(supplement_ids.issubset(set(main_ids)))
+        articles = {_article_number(card["pinpoint"]["article"]) for card in main["cards"]}
         self.assertEqual(articles, set(range(1, 299)))
         self.assertFalse(main["instrument"]["search_eligible"])
         self.assertFalse(supplement["instrument"]["search_eligible"])
