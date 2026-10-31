@@ -10,7 +10,7 @@ Provide the exact commit being released and the restricted manual device/browser
 
 The same inputs can be passed explicitly with `--release-commit` and `--device-acceptance`. The gate fails closed if either is missing, the evidence is malformed, any required check is not PASS, records refer to another commit or mixed environments, or the minimum desktop/phone × Arabic/English matrix is incomplete. See [the manual device/browser acceptance runbook](device_browser_acceptance_runbook.md) and [validator guide](device_browser_acceptance_validator.md).
 
-It combines four independent checks:
+It combines five independent checks:
 
 1. **Deployment configuration:** the strict deployment preflight must have no errors or warnings, including separate control-plane, per-firm, and shared legal-corpus database paths, secure public-origin/host settings, valid backup encryption, and administrator MFA policy.
 2. **Database operational acceptance:** the controlled manifest must document required original-file storage, backup/restore, retention-policy, identity-email, privileged-recovery, and independent security-review evidence.
