@@ -24,14 +24,22 @@ _REQUIRED_REVIEW_TYPES = {
 
 
 def _valid_review_evidence_url(value):
-    if not isinstance(value, str) or not value.strip():
+    """Reject ambiguous HTTPS URLs before treating a review as current evidence."""
+    if not isinstance(value, str) or not value or value != value.strip():
+        return False
+    if any(ch.isspace() or ord(ch) < 32 for ch in value):
         return False
     try:
-        parsed = urlsplit(value.strip())
-        if parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password:
-            return False
-        _ = parsed.port
-        return True
+        parsed = urlsplit(value)
+        port = parsed.port  # Force urllib to reject malformed and out-of-range ports.
+        return (
+            parsed.scheme.lower() == "https"
+            and bool(parsed.hostname)
+            and parsed.username is None
+            and parsed.password is None
+            and not parsed.netloc.endswith(":")
+            and (port is None or 1 <= port <= 65535)
+        )
     except (TypeError, ValueError):
         return False
 
