@@ -146,7 +146,7 @@
       "source_url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
       "source_class": "third_party_official_gazette_issue_metadata",
       "permission": "not_allowed_without_explicit_exception_or_license",
-      "next_action": "Metadata-only. The issue PDF is request-a-copy restricted; no PDF bytes or item-specific license were obtained. Do not request or bypass the restriction. Written permission is required before collection; prior written permission is required for commercial reuse."
+      "next_action": "Metadata-only. The issue PDF is request-a-copy restricted; no PDF bytes or item-specific license were obtained. Do not request or bypass the restriction. Written permission is required before collection; prior written permission is required for commercial reuse. Decisions 288 and 289 are also listed in the issue abstract; their full text is available only in secondary transcriptions in this review."
     },
     "EG-SIS-GAZETTE-2025-295-SUPPLEMENT-D": {
       "authority": "Egyptian State Information Service digital repository; metadata identifies Amiri Press as issuing authority",
@@ -2708,6 +2708,88 @@
         }
       ],
       "repository_brand": "Ibrachy & Dermarkar Repository"
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-288-2025",
+      "official_title_ar": "قرار وزير العمل رقم 288 لسنة 2025 بشأن تحديد الحالات أو الأعمال التي يتحتم استمرار العمل فيها دون فترة راحة نمطية والأعمال المرهقة التي يمنح العاملون فيها فترات راحة تحسب من ساعات العمل الفعلية",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 288,
+      "instrument_year": 2025,
+      "source_id": "EG-IDSC-GAZETTE-2025-295-SUPPLEMENT-D",
+      "source_status": "official_Gazette_issue_metadata_plus_two_secondary_full_texts_found; primary_comparison_pending",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "complete official Gazette PDF and exact full text, including all work-category lists",
+        "relation to Law 14/2025 Articles 118–119",
+        "precise rest-break rules and arduous-work classifications",
+        "later amendments/repeal and currentness",
+        "source-specific collection/reuse permission",
+        "qualified Egyptian-lawyer review"
+      ],
+      "notes": "Official Gazette publisher metadata for Supplement issue 295 (تابع د), dated 2025-12-30, lists Decision 288/2025. Law Hub secondary text exposes the two-chapter structure: work that must continue without a standard rest break for technical/operational reasons, and arduous work for which rest periods count as actual working hours. The indexed text describes a baseline one-hour total rest and no more than five consecutive hours, specified exceptions with compensatory breaks/food-drink and safety safeguards, and designated arduous work categories. EastLaws states publication 2025-12-30 and commencement 2025-12-31. No official PDF bytes or exact Gazette comparison; full categories and operative wording remain unverified. Do not decide an individual worker's rest entitlement from secondary text alone.",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+          "source_role": "Official Gazette Supplement issue 295 metadata; PDF request-copy restricted",
+          "status": "metadata_only_restricted_pdf"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=17305",
+          "source_role": "Law Hub secondary full-text transcription; not compared with Official Gazette PDF",
+          "status": "secondary_full_text_not_primary_verified"
+        },
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-288?id=5064169&type=1",
+          "source_role": "EastLaws secondary legal text/index; direct page access returned 403 in this session",
+          "status": "secondary_full_text_indexed_not_primary_verified"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-289-2025",
+      "official_title_ar": "قرار وزير العمل رقم 289 لسنة 2025 بشأن تحديد ساعات العمل في المنشآت الصناعية",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 289,
+      "instrument_year": 2025,
+      "source_id": "EG-IDSC-GAZETTE-2025-295-SUPPLEMENT-D",
+      "source_status": "official_Gazette_issue_metadata_plus_two_secondary_full_texts_found; primary_comparison_pending",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "complete official Gazette PDF and exact text",
+        "relation to Law 14/2025 Articles 117 and 121 and Industrial Establishments Law 133/1961",
+        "interaction with better individual/collective contract or workplace rules",
+        "later amendments/repeal and currentness",
+        "source-specific collection/reuse permission",
+        "qualified Egyptian-lawyer review"
+      ],
+      "notes": "Official Gazette publisher metadata for Supplement issue 295 (تابع د), dated 2025-12-30, lists Decision 289/2025. Law Hub secondary text states that actual work in industrial establishments must not exceed eight hours per day or 48 hours per week, excluding meal/rest periods, and that unusual/exceptional work necessities are governed by Law 14/2025 Article 121; Article 2 provides next-day commencement. EastLaws confirms Gazette publication 2025-12-30; effective date 2025-12-31 is derived from the secondary Article 2 clause. No official PDF bytes or exact Gazette comparison; applicability of the Industrial Establishments Law 133/1961 and better contractual/collective terms must be assessed. Do not advise on a specific plant/worker until primary text and currentness are reviewed.",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+          "source_role": "Official Gazette Supplement issue 295 metadata; PDF request-copy restricted",
+          "status": "metadata_only_restricted_pdf"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=17304",
+          "source_role": "Law Hub secondary full-text transcription; not compared with Official Gazette PDF",
+          "status": "secondary_full_text_not_primary_verified"
+        },
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-289?id=5008502&type=1",
+          "source_role": "EastLaws secondary legal text/index; direct page access returned 403 in this session",
+          "status": "secondary_full_text_indexed_not_primary_verified"
+        }
+      ]
     }
   ],
   "next_actions": [
