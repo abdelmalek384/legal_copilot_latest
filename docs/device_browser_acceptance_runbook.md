@@ -111,6 +111,7 @@ Create one record per device/browser/locale combination. Set device_class to des
   "environment": "local-or-staging",
   "os_and_build": "exact OS/build",
   "device": "device model",
+  "device_class": "desktop",
   "browser_and_version": "browser/version",
   "locale": "ar-EG or en-US",
   "viewport": "width x height; orientation",
