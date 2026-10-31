@@ -511,11 +511,15 @@ class BrowserAcceptanceTests(unittest.TestCase):
         composer.fill("synthetic verified fixture deadline example")
         self.page.locator(".research-composer button").click()
         self.page.get_by_text("CORPUS_ONLY_VERIFIED_SENTINEL_2C77").wait_for(timeout=12000)
-        verified_body = self.page.locator(".research-thread").inner_text()
-        self.assertIn("نص ساري متحقق منه", verified_body)
-        self.assertIn("المادة 12", verified_body)
-        self.assertIn("الصفحة 17", verified_body)
-        self.assertNotIn("FIRM_DOCUMENT_ONLY_SENTINEL_4B91", verified_body)
+        candidate_body = self.page.locator(".research-thread").inner_text()
+        # The fixture uses example.test and has no central permission-register
+        # record, so it must remain under review rather than become verified.
+        self.assertIn("قيد المراجعة", candidate_body)
+        self.assertIn("لا تعتبره نصاً سارياً متحققاً", candidate_body)
+        self.assertNotIn("نص ساري متحقق منه", candidate_body)
+        self.assertIn("المادة 12", candidate_body)
+        self.assertIn("الصفحة 17", candidate_body)
+        self.assertNotIn("FIRM_DOCUMENT_ONLY_SENTINEL_4B91", candidate_body)
 
         scope.select_option("metadata_only")
         composer.fill("SYNTHETIC METADATA ONLY INSTRUMENT 2026")
