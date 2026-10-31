@@ -232,3 +232,14 @@ EastLaws search-indexed records for Decision 290/2025 (https://www.eastlaws.com/
 **Currentness lead:** Official Ministry of Labour notices in 2026 cite Decision 294 and issue circulars that substitute dates for particular occasions (including October 2026 Armed Forces Day and July 2026 Revolution Day). These event-specific directions affect the date observed for that occasion; they are not treated as permanent amendments to Decision 294. Always check the current Ministry circular and any Prime Minister decision before answering a specific holiday-date question.
 
 Both decisions remain discovery-only, legal status unknown, source collection restricted pending explicit permission, commercial reuse not cleared, and `search_eligible=false`.
+
+
+## Rest-break and industrial-hours instruments — Decisions 288/289 (2026-10-31)
+
+The issue 295 Amiri Press metadata already registered for Decisions 290/291 also lists Decisions 288/289. The 550.3 KB issue PDF remains request-a-copy restricted; no primary bytes were obtained.
+
+**Decision 288/2025:** Law Hub (https://lawhub.info/eg/?p=17305) and EastLaws (https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-288?id=5064169&type=1) provide secondary text/indexes. The decision has two chapters: work that must continue without a standard rest break for technical/operational reasons, and arduous work for which rest periods count as actual working hours. The secondary text describes a baseline one-hour total rest and no more than five consecutive hours, with specified exceptions, compensatory rest/food-drink/safety safeguards and listed arduous work. EastLaws states publication 2025-12-30 and commencement 2025-12-31. Exact lists and full Gazette wording remain unverified.
+
+**Decision 289/2025:** Law Hub (https://lawhub.info/eg/?p=17304) and EastLaws (https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-289?id=5008502&type=1) provide secondary text/indexes. The secondary text sets eight hours of actual work per day or 48 hours per week in industrial establishments, excluding meal/rest periods, and subjects unusual/exceptional work to Law 14/2025 Article 121. Its Article 2 provides next-day commencement; EastLaws states Gazette publication 2025-12-30, making 2025-12-31 the candidate effective date. Applicability of Industrial Establishments Law 133/1961 and better individual/collective terms requires review.
+
+Neither decision has been compared with the official Gazette PDF. Both remain discovery-only, legal status unknown, source collection restricted pending explicit permission, commercial reuse not cleared and `search_eligible=false`.
