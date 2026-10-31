@@ -44,6 +44,9 @@ class ContainerDeploymentContractTests(unittest.TestCase):
             "COPILOT_S3_BUCKET=",
             "COPILOT_S3_REGION=",
             "COPILOT_S3_KMS_KEY_ID=",
+            "COPILOT_S3_RECOVERY_BUCKET=",
+            "COPILOT_S3_RECOVERY_REGION=",
+            "COPILOT_S3_RECOVERY_KMS_KEY_ID=",
             "COPILOT_EMAIL_SMTP_HOST=",
             "COPILOT_EMAIL_FROM=",
         ):
