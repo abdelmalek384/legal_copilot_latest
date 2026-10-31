@@ -53,7 +53,7 @@ The 49% whole-product score above is unchanged pending a formal scorecard recalc
 **Active PRs — not complete until the latest head passes all required checks:**
 
 - **#1057:** real-browser acceptance harness. Normal Tests, CodeQL and dependency audit passed; Chromium acceptance has been rerun after cancelled attempts and remains pending. Manual lawyer, device, screen-reader and accessibility acceptance remain separate.
-- **#1064:** official Ministry clarification lead for Decision 249/2026. The Ministry search result is dated 2026-10-27, but direct page retrieval returned HTTP 502. It is not the full decision or a Gazette amendment; rights remain unknown and the instrument stays discovery-only. CI is running.
+- **#1064:** merged the official Ministry clarification lead for Decision 249/2026. The Ministry search result is dated 2026-10-27, but direct page retrieval returned HTTP 502. It is not the full decision or a Gazette amendment; rights remain unknown and the instrument stays discovery-only.
 - **#1063:** closed as superseded by rebased PR #1064 after Decision 290's merge changed shared evidence-register files.
 
 **Operational issue updates:**
