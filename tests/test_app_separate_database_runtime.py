@@ -2884,7 +2884,9 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(denied.status_code, 403, denied.text)
 
         # The retired shared-database mode must not restore the former admin/token bypass.
-        with patch.object(app, "_separate_runtime_enabled", return_value=False):
+        with patch.object(app, "_separate_runtime_enabled", return_value=False), patch.object(
+            app, "control_conn", return_value=self.runtime.control_connection()
+        ):
             with self.assertRaises(HTTPException) as legacy_denied:
                 app.law_import(
                     [app.LawRow(**payload[0])],
