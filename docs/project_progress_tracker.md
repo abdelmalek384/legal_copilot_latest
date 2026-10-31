@@ -5,12 +5,12 @@
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49% technical completion** (48.50/100, rounded) as of 2026-10-31. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **48.85/100 technical completion** (up 0.35 points; rounds to 49%) as of 2026-10-31. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Latest whole-product checkpoint — 2026-10-31
 
-The current source of truth is [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49% technical completion** (48.50/100, rounded). Qualified Egyptian-counsel acceptance remains **0% / not started** and is still a mandatory post-build release gate.
+The current source of truth is [the weighted whole-project completion scorecard](project_completion_scorecard.md): **48.85/100 technical completion** (up 0.35 points; rounds to 49%). Qualified Egyptian-counsel acceptance remains **0% / not started** and is still a mandatory post-build release gate.
 
 ### Merged since the 30 October checkpoint and 31 October follow-up
 
@@ -35,6 +35,7 @@ The current source of truth is [the weighted whole-project completion scorecard]
 - **#1052:** integrated the existing deadline calculator into the case Legal Deadlines screen as an authenticated, read-only preview; rules and holiday data remain unverified, so no legal reliance is permitted.
 - **#1053:** expanded Egyptian colloquial retrieval hints across major practice areas; this is retrieval-only and has no lawyer-labelled accuracy benchmark yet.
 - **#1054:** added a fail-closed lexical citation-relevance guard; this checks textual anchors, not semantic entailment or legal correctness.
+- **#1066:** merged the qualified-counsel approval gate. Passing lawyer-approval events require an authenticated account ID from the operator-managed allowlist; the marker gates normal/exact retrieval and is checked by provenance, corpus audit and reviewer queue. Full Tests, CodeQL, dependency audit, non-database safety regression, and amd64/arm64 container builds passed. This is operator attestation, not independent credential verification; no primary-source legal material was promoted.
 
 
 ### 31 October live follow-up — additional merged work and active gates
@@ -67,6 +68,12 @@ The 49% whole-product score above is unchanged pending a formal scorecard recalc
 - **AWS/storage:** live bucket, KMS, IAM, conditional-delete, writer-quiescence and witnessed restore/deletion acceptance still require the actual staging account and named operator evidence.
 - **Legal authority:** none of the six 2025 Labour working-time/holiday decisions is promoted to authoritative status by these changes. All dependent cards remain search_eligible=false pending original-source comparison, source-specific rights, currentness and qualified Egyptian-lawyer review.
 
+
+### Current open PRs and acceptance
+
+- **#1057:** browser acceptance harness remains open/draft. Tests, CodeQL and dependency audit passed; the real Chromium acceptance suite has not returned a final result. Do not count browser acceptance complete.
+- **#840:** remains draft/open; Decisions 248–252 and Table 24 source comparison remain discovery-only pending lawful original Gazette access and rights review.
+- **#1065:** this tracker/scorecard refresh remains open pending its current-head checks and merge.
 
 ### Current non-database priorities
 
