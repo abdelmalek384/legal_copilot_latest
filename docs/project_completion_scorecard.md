@@ -5,7 +5,7 @@
 
 ## Current score
 
-<escape>**Technical project completion: 48%** (weighted estimate; rounded from 47.90%).</escape>
+<escape>**Technical project completion: 49%** (weighted estimate; rounded from 48.50%).</escape>
 
 **Final Egyptian-counsel acceptance: 0% / not started.** This is a separate post-build acceptance gate, as planned. It must be completed before the product is represented as legally approved or used for client-facing legal reliance.
 
@@ -15,14 +15,14 @@ Open pull requests do not count as completed deliverables. Their changes are tre
 
 | Workstream | Weight | Completion | Weighted points | Current evidence and remaining blockers |
 |---|---:|---:|---:|---|
-| Core case-management and collaboration workflows | 15% | 75% | 11.25 | Case folders, teams, tasks, sessions, notes, files, fees, activity history and dashboard workflows exist. Remaining: end-to-end workflow acceptance, edge-case QA, and operational polish. |
-| Legal research, retrieval and citation quality | 15% | 65% | 9.75 | Arabic/English lexical retrieval, source scoping, citation validation, abstention, provenance display and evaluation tooling exist. Remaining: real lawyer-labelled evaluation, retrieval tuning on reviewed material, and broader practice-area coverage. |
+| Core case-management and collaboration workflows | 15% | 76% | 11.40 | Case folders, teams, tasks, sessions, notes, files, fees, activity history, dashboard workflows, and the case-screen deadline calculator preview exist. The calculator remains explicitly non-authoritative because its rule and holiday data are unverified. Remaining: end-to-end workflow acceptance, edge-case QA, and operational polish. |
+| Legal research, retrieval and citation quality | 15% | 68% | 10.20 | Arabic/English retrieval, expanded Egyptian colloquial phrase hints, source scoping, citation validation, a fail-closed lexical citation-relevance guard, abstention, provenance display and evaluation tooling exist. The relevance guard is not semantic entailment. Remaining: real lawyer-labelled evaluation, retrieval tuning on reviewed material, and broader practice-area coverage. |
 | Verified Egyptian legal knowledge and source rights | 25% | 6% | 1.50 | Candidate catalogues, source registers, permission gates, version metadata, audit tools and review queues exist. The verified corpus remains very small; original primary-source matching, reuse rights, amendment/currentness review and qualified counsel sign-off are still blockers. Candidate counts and secondary copies do not count as verified law. |
 | Security, privacy and firm isolation | 15% | 72% | 10.80 | Separate profile architecture, access controls, MFA, audit events, backup tooling and isolation tests exist. The MFA lifecycle audit-failure rollback regression merged in PR #925; CodeQL/Bandit security analysis merged in PR #907. Remaining: complete DB/storage workstream, exhaustive route/job isolation evidence, independent security assessment, and witnessed recovery/rollback. |
 | UI, accessibility and device usability | 10% | 45% | 4.50 | Responsive Arabic-first interface, installable privacy-safe PWA shell (PR #903 merged), and current-main Windows/Mac first-run launchers (PR #909 merged) exist. Physical Windows/macOS checks and manual RTL/LTR, keyboard, screen-reader, mobile/tablet and browser acceptance remain incomplete. |
 | Automated testing and reliability | 10% | 66% | 6.60 | Broad CI coverage, hash-locked Python dependency baseline (PR #910 merged), CodeQL/Bandit static analysis (PR #907 merged), and current-main legal PDF integrity/OCR regressions (PR #923 merged) exist. Remaining: fresh full-suite evidence for the exact release candidate, operational smoke tests, and resolution of any current failures. |
 | Production operations and deployment readiness | 10% | 35% | 3.50 | Strict preflight, release gates, encrypted backup/restore code, storage adapters and reminder outbox/scheduler foundations exist. Remaining: real staging configuration, live provider tests, monitoring/alerting, operator reconciliation, witnessed restore drill, and controlled deployment rehearsal. |
-| **Total** | **100%** |  | **47.90 / 100** | **Rounded technical completion: 48%.** |
+| **Total** | **100%** |  | **48.50 / 100** | **Rounded technical completion: 49%.** |
 
 ## Completion rules
 
@@ -57,6 +57,13 @@ The product cannot be called production-ready or legally approved until all appl
 - **PR #940 merged:** registered the public Dataflare Egyptian Legal Corpus dataset (2,434 records, 25M+ tokens, dataset card claims MIT) as a provenance-gated candidate. It lacks record-level source URLs, dates, Gazette pinpoints and currentness metadata; underlying provenance and rights scope remain unknown. No Parquet file or legal text was downloaded or imported.
 - **PR #914 and #917 merged:** Boto3 and Pillow dependency updates passed Tests, CodeQL and dependency audit before merge.
 - **No completion-percentage increase is claimed:** provisional cards and source-discovery metadata improve research preparation, but do not establish verified law or counsel-approved answers. The verified Egyptian legal corpus remains 6%.
+
+## Latest merged progress — 2026-10-31 (deadline workflow and AI quality)
+
+- **PR #1052 merged:** integrated the existing deadline calculator into the case Legal Deadlines screen, with authenticated, case-scoped read-only preview, trigger-date validation, raw and adjusted dates, and explicit draft warnings. Full Tests, CodeQL, dependency audit and non-database safety regression passed. The calculator's legal rules and holiday calendar remain unverified; this is not a legally reliable deadline engine.
+- **PR #1053 merged:** expanded retrieval-only Egyptian colloquial phrase hints across labour, tenancy, family, civil, commercial, procedural and accident-related questions. Original query wording and negation remain preserved. Full Tests, CodeQL, dependency audit and non-database safety regression passed. No lawyer-labelled top-k accuracy claim is made.
+- **PR #1054 merged:** added a fail-closed lexical citation-relevance check that rejects cited claim sentences with no meaningful lexical anchor in their cited passages. Full Tests, CodeQL, dependency audit and non-database safety regression passed. This is not semantic entailment or legal review.
+- **Score recalculation:** case-management workflow completion moves from 75% to 76%; research/retrieval/citation quality moves from 65% to 68%. Weighted technical completion is 48.50/100, rounded to 49%. Verified Egyptian legal knowledge remains 6%; qualified Egyptian-counsel acceptance remains 0%.
 
 ## Latest merged progress — 2026-10-31 (security and legal-source discovery)
 

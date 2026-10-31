@@ -5,12 +5,12 @@
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **48% technical completion** (47.95/100, rounded) as of 2026-10-31. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49% technical completion** (48.50/100, rounded) as of 2026-10-31. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Latest whole-product checkpoint — 2026-10-31
 
-The current source of truth is [the weighted whole-project completion scorecard](project_completion_scorecard.md): **48% technical completion** (47.95/100, rounded). Qualified Egyptian-counsel acceptance remains **0% / not started** and is still a mandatory post-build release gate.
+The current source of truth is [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49% technical completion** (48.50/100, rounded). Qualified Egyptian-counsel acceptance remains **0% / not started** and is still a mandatory post-build release gate.
 
 ### Merged since the 30 October checkpoint and 31 October follow-up
 
@@ -31,6 +31,10 @@ The current source of truth is [the weighted whole-project completion scorecard]
 - **#1044 and #1047:** merged the Law 14/2025 accompanying-law Articles 1–120 Gazette checklist and populated all 120 article-heading page locators from the ETA-hosted Official Gazette PDF. The corresponding page images for printed pages 6–52 / PDF indexes 4–50 were inspected for locator confirmation. This is not a full article-text/OCR comparison; all verification, currentness, rights and counsel gates remain open, and every card remains `search_eligible=false`.
 - **#1048:** merged the invoice-module implementation contract covering invoice lifecycle, line items, exact EGP amounts, append-only payments, derived payment states, firm/case authorization, print/export and required regression tests. This is a schema-review proposal, not invoice implementation; table/API/UI work remains gated on database-owner approval.
 - **#1049:** corrected the Law 14/2025 Gazette source-evidence register to record the IDSC item-specific Gazette PDF and license file as request-a-copy/restricted, and added a regression test for the restricted collection-permission state. No restricted files were obtained; commercial reuse remains unapproved.
+
+- **#1052:** integrated the existing deadline calculator into the case Legal Deadlines screen as an authenticated, read-only preview; rules and holiday data remain unverified, so no legal reliance is permitted.
+- **#1053:** expanded Egyptian colloquial retrieval hints across major practice areas; this is retrieval-only and has no lawyer-labelled accuracy benchmark yet.
+- **#1054:** added a fail-closed lexical citation-relevance guard; this checks textual anchors, not semantic entailment or legal correctness.
 
 ### Current non-database priorities
 
