@@ -77,3 +77,8 @@ The reproduced Gazette image endpoints were opened directly and visually checked
 - Printed p.44: https://www.almasdar.com/WebP/libfiles/46/3/735.webp — Table 3, activities requiring continuous monitoring and listed pollutant/hazard identifiers.
 
 This confirms the page sequence and table locations in the reproduced scan, not the authenticity of the original file bytes. The images are hosted by a secondary publisher and are watermarked. No original Gazette PDF was obtained or hashed. Table 1–3 cell-level transcription remains unverified; do not derive a worker-count staffing ratio, risk classification or continuous-monitoring duty from the low-resolution images alone. The official Gazette catalogue remains the primary metadata locator; the Ministry's 2026-10-27 clarification is an official administrative explanation, not a replacement for the full operative instrument.
+
+
+## Commencement clause visual check — 2026-10-31
+
+Printed p.32 image (https://www.almasdar.com/WebP/libfiles/46/3/723.webp) was opened and visually inspected. It shows Article 22 stating publication in Egyptian Proceedings and commencement on the day following publication; the signature block shows a decision date of 2026/9/1. The official DSpace catalogue record gives the Gazette issue publication date as 2026-10-12. Accordingly, 2026-10-13 is recorded as a **candidate effective date inferred from a secondary reproduced image**, not a verified legal date. The original Gazette PDF remains request-copy restricted, has not been obtained or hashed, and must be inspected before the date can be used for deadlines, compliance or legal advice.
