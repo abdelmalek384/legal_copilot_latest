@@ -139,13 +139,21 @@ class SecureCookieTransportTests(unittest.TestCase):
             "LLM_KEY": "test-key",
             "LLM_DATA_PROCESSING_APPROVED": "1",
         }
-        valid = io.BytesIO(b'{"choices":[{"message":{"content":"safe answer"}}]}')
+        valid_body = b'{"choices":[{"message":{"content":"safe answer"}}]}'
+        valid = io.BytesIO(valid_body)
         with patch.dict(os.environ, settings), patch.object(app, "_llm_open", return_value=valid):
             self.assertEqual(app.llm("question"), "safe answer")
+        self.assertTrue(valid.closed)
+
+        exact_limit = io.BytesIO(valid_body + b" " * (app.MAX_LLM_RESPONSE_BYTES - len(valid_body)))
+        with patch.dict(os.environ, settings), patch.object(app, "_llm_open", return_value=exact_limit):
+            self.assertEqual(app.llm("question"), "safe answer")
+        self.assertTrue(exact_limit.closed)
 
         oversized = io.BytesIO(b"x" * (app.MAX_LLM_RESPONSE_BYTES + 1))
         with patch.dict(os.environ, settings), patch.object(app, "_llm_open", return_value=oversized):
             self.assertIsNone(app.llm("question"))
+        self.assertTrue(oversized.closed)
 
         for raw in (
             b"not-json",
