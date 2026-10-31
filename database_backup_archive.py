@@ -164,6 +164,21 @@ def upload_encrypted_bundle(
     version_id = response.get("VersionId")
     if not isinstance(version_id, str) or not version_id or version_id == "null":
         _fail("S3 did not return an immutable archive version ID; upload is not accepted")
+    try:
+        accepted = s3_client.head_object(
+            Bucket=bucket, Key=object_key, VersionId=version_id
+        )
+    except Exception as exc:
+        raise DatabaseBundleError("Uploaded recovery archive version could not be verified") from exc
+    if (
+        accepted.get("VersionId") != version_id
+        or accepted.get("ServerSideEncryption") != "aws:kms"
+        or accepted.get("SSEKMSKeyId") != key_arn
+        or accepted.get("ContentLength") != size
+        or accepted.get("Metadata", {}).get("sha256") != digest
+        or accepted.get("Metadata", {}).get("format") != "encrypted-database-bundle-v2"
+    ):
+        _fail("Uploaded recovery archive version failed exact-version KMS/metadata acceptance")
     return {
         "bucket": bucket,
         "key": object_key,
