@@ -99,7 +99,7 @@ Record each result as `PASS`, `FAIL`, or `N/A`. Attach evidence references; reda
 | Pre-deletion synthetic matter, metadata, and original bytes recovered with matching SHA-256/size | | |
 | S3 versioning, delete-marker, KMS, and lifecycle behavior reviewed | | |
 
-**Production S3 limitation:** the current purge CLI and offboarding preflight support local development storage only and explicitly reject production/S3. For an S3 deployment, mark the deletion-recovery scenario BLOCKED until an S3-aware purge path is implemented and independently reviewed. Do not manually delete S3 objects or mark this scenario passed based on a local-only rehearsal.
+**Production S3 limitation:** an S3-aware purge CLI and offboarding preflight now exist on `main`, with fake-S3 state-machine coverage and fail-closed checks for bucket versioning, staged objects, byte integrity, KMS identity, and post-delete absence. This does not prove live AWS behavior. Mark the deletion-recovery scenario BLOCKED until live bucket/KMS/IAM verification, independent review of the IAM-enforced no-writer control during the integrity-check/delete interval, approved retention/export/deletion policy, and a witnessed synthetic-staging deletion-recovery rehearsal are complete. The CLI `--quiesced` flag is an operator assertion, not a distributed lock. Do not manually delete S3 objects or mark this scenario passed based on local-only or fake-S3 tests.
 
 ## 8. Findings and approval
 
