@@ -310,6 +310,9 @@ class BrowserAcceptanceTests(unittest.TestCase):
         body = self.page.locator("body").inner_text()
         self.assertIn("Shared legal-registry metadata only", body)
         self.assertNotIn("CROSS_FIRM_PRIVATE_SENTINEL_7D3A", body)
+        search.fill("NO_MATCHING_SYNTHETIC_CATALOG_ENTRY_2026")
+        self.page.get_by_role("button", name="بحث").click()
+        self.page.get_by_text("لا توجد سجلات مطابقة.").wait_for(timeout=10000)
 
     def test_research_scopes_keep_metadata_and_firm_documents_separate(self) -> None:
         self.login(self.state["owner_a_email"])
@@ -352,6 +355,10 @@ class BrowserAcceptanceTests(unittest.TestCase):
         body = self.page.locator("body").inner_text()
         self.assertIn(sentinel, body)
         self.assertIn("مستند مكتب غير متحقق", body)
+
+        self.page.get_by_role("button", name="نسخ الاستشهاد").click()
+        copied_citation = self.page.evaluate("() => navigator.clipboard.readText()")
+        self.assertTrue(copied_citation.strip())
 
         self.page.get_by_role("button", name="نسخ المقطع الحرفي").click()
         copied_passage = self.page.evaluate("() => navigator.clipboard.readText()")
