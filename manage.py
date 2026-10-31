@@ -586,11 +586,14 @@ def _recovery_archive_clients():
     region = os.environ.get("COPILOT_S3_RECOVERY_REGION", "").strip()
     key_id = os.environ.get("COPILOT_S3_RECOVERY_KMS_KEY_ID", "").strip()
     endpoint = os.environ.get("COPILOT_S3_RECOVERY_ENDPOINT_URL", "").strip() or None
-    if not bucket or not region or not key_id:
+    original_bucket = os.environ.get("COPILOT_S3_BUCKET", "").strip()
+    if not bucket or not region or not key_id or not original_bucket:
         raise SystemExit(
-            "COPILOT_S3_RECOVERY_BUCKET, COPILOT_S3_RECOVERY_REGION, and "
-            "COPILOT_S3_RECOVERY_KMS_KEY_ID are required."
+            "COPILOT_S3_RECOVERY_BUCKET, COPILOT_S3_RECOVERY_REGION, "
+            "COPILOT_S3_RECOVERY_KMS_KEY_ID, and COPILOT_S3_BUCKET are required."
         )
+    if bucket == original_bucket:
+        raise SystemExit("Recovery archive bucket must be distinct from original-object storage.")
     try:
         import boto3
     except ImportError as exc:
