@@ -416,7 +416,7 @@ def expanded_tokens(q, limit=48):
     normalized_query = norm(q)
     for phrase, aliases in _LEGAL_PHRASE_SYNONYMS_RAW.items():
         normalized_phrase = norm(phrase)
-        if re.search(r"(?<!\\w)" + re.escape(normalized_phrase) + r"(?!\\w)", normalized_query):
+        if re.search(r"(?<!\w)" + re.escape(normalized_phrase) + r"(?!\w)", normalized_query):
             expanded.extend(tokens(" ".join(aliases)))
     for token in original:
         expanded.extend(LEGAL_SYNONYMS.get(token, ()))
