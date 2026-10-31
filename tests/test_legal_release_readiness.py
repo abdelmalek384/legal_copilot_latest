@@ -79,6 +79,26 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         result = MODULE.audit_candidate(self.candidate, self.register, self.root)
         self.assertTrue(result["ready"], result["blockers"])
 
+    def test_candidate_collection_permission_must_exactly_match_register(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        register = json.loads(json.dumps(self.register))
+        candidate["sources"][0]["collection_permission"] = "allowed_limited"
+        result = MODULE.audit_candidate(candidate, register, self.root)
+        self.assertIn(
+            "candidate_register_permission_state_mismatch",
+            {item["code"] for item in result["blockers"]},
+        )
+
+    def test_candidate_commercial_permission_must_exactly_match_register(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        register = json.loads(json.dumps(self.register))
+        register["sources"][0]["commercial_reuse_permission"] = "allowed_limited"
+        result = MODULE.audit_candidate(candidate, register, self.root)
+        self.assertIn(
+            "candidate_register_permission_state_mismatch",
+            {item["code"] for item in result["blockers"]},
+        )
+
     def test_lawyer_approval_requires_runtime_counsel_attestation_marker(self):
         candidate = json.loads(json.dumps(self.candidate))
         approval = next(
