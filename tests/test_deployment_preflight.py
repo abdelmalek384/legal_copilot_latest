@@ -322,6 +322,11 @@ class DeploymentPreflightTests(unittest.TestCase):
         _, _, errors = preflight.inspect_environment(env)
         self.assertTrue(any("must be distinct from COPILOT_S3_BUCKET" in item for item in errors))
 
+        env["COPILOT_S3_RECOVERY_BUCKET"] = "private-recovery-test"
+        env["COPILOT_S3_RECOVERY_KMS_KEY_ID"] = env["COPILOT_S3_KMS_KEY_ID"]
+        _, _, errors = preflight.inspect_environment(env)
+        self.assertTrue(any("must be distinct from COPILOT_S3_KMS_KEY_ID" in item for item in errors))
+
     def test_accepts_complete_separate_database_path_configuration_without_shared_warning(self):
         root = Path(self.tempdir.name)
         tenant_root = root / "tenants"
