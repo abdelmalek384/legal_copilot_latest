@@ -289,8 +289,9 @@ def collect_live_evidence(s3_client, kms_client, sts_client, iam_client, *, buck
                 for item in attached if isinstance(item.get("PolicyArn"), str)
             ]
             inline_evidence = []
-            for item in inline:
-                name = item.get("PolicyName")
+            for name in inline:
+                # IAM ListRolePolicies returns policy names as strings, unlike
+                # ListAttachedRolePolicies which returns objects.
                 if not isinstance(name, str):
                     continue
                 document = iam_client.get_role_policy(RoleName=role_name, PolicyName=name).get("PolicyDocument")
