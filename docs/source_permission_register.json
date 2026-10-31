@@ -752,6 +752,22 @@
       "terms_checked_on": "2026-10-31",
       "bulk_download_or_api": "not allowed without written permission under published terms",
       "required_next_action": "Use public catalogue metadata only. Do not request or bypass the restricted PDF or license file under the current acquisition constraint. Collection remains blocked absent explicit permission; commercial reuse requires prior written permission. Do not infer rights from the 55-byte license filename."
+    },
+    {
+      "source_id": "EG-MOL-SIS-DECISION-294-2025-PDF",
+      "authority": "Egyptian Ministry of Labour; PDF hosted on Egyptian State Information Service digital repository",
+      "source_page": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117216",
+      "material_types": [
+        "Ministry-hosted PDF containing Ministry announcement and text of Ministerial Decision 294/2025"
+      ],
+      "access_status": "Publicly accessible PDF opened in browser. The document is dated 2025-12-26 and contains the text of Decision 294/2025, Articles 1–4. No local PDF bytes/hash or applicable reuse terms were obtained.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-10-31. The PDF is hosted by the Egyptian State Information Service and identifies the Ministry of Labour. It contains a Ministry announcement followed by the text of Decision 294/2025, Articles 1–4. Public accessibility and government hosting do not by themselves establish permission for bulk collection, copying, redistribution or commercial reuse. No SIS terms were reviewed and no local binary/hash was obtained.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Use as a manually reviewed government-hosted text copy for Decision 294/2025 only. Check applicable SIS reuse terms and compare against the Official Gazette issue PDF when lawfully accessible. Do not treat this PDF as the Official Gazette itself or infer bulk/commercial reuse permission."
     }
   ]
 }
