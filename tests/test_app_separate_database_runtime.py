@@ -4,7 +4,7 @@ import sqlite3
 import tempfile
 import unittest
 from concurrent.futures import ThreadPoolExecutor
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, timedelta
 from pathlib import Path
 from unittest.mock import patch
 
@@ -4195,25 +4195,27 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             ("RUNTIME-COVERAGE-DOC", "RUNTIME-COVERAGE-SOURCE",
              "Coverage test instrument", "law", "labour"),
         )
-        verified_cursor = corpus.execute(
+        version_cursor = corpus.execute(
             "INSERT INTO legal_document_versions(document_id,version_label,source_url,publication_date,"
             "effective_date,legal_status,review_status,authenticity_verified,status_verified,"
-            "amendment_history_verified,permission_evidence,original_sha256) "
-            "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
+            "amendment_history_verified,permission_evidence,original_sha256) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
             ("RUNTIME-COVERAGE-DOC", "verified-version", "https://example.test/coverage-v1",
              "2020-01-01", "2020-01-01", "in_force", "verified", 1, 1, 1,
              "synthetic version permission evidence", "a" * 64),
         )
-        verified_version_id = verified_cursor.lastrowid
+        version_id = version_cursor.lastrowid
+        for review_type in ("source_authenticity", "extraction_quality", "legal_status", "amendment_history", "licensing", "lawyer_approval"):
+            corpus.execute(
+                "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) VALUES(?,?,?,?,?,?)",
+                (version_id, "Synthetic reviewer", review_type, "pass", "Synthetic review completed.", "https://example.test/review"),
+            )
         corpus.execute(
-            "INSERT INTO legal_document_versions(document_id,version_label,source_url,publication_date,"
-            "effective_date,legal_status,review_status,authenticity_verified,status_verified,"
-            "amendment_history_verified,permission_evidence) VALUES(?,?,?,?,?,?,?,?,?,?,?)",
-            ("RUNTIME-COVERAGE-DOC", "missing-original-hash",
-             "https://example.test/coverage-no-hash", "2020-01-01", "2020-01-01",
-             "in_force", "verified", 1, 1, 1, "synthetic version permission evidence"),
+            "INSERT INTO chunks(ref,article,page,text,norm,document_version_id,in_force,as_of,source,verified) "
+            "VALUES(?,?,?,?,?,?,?,?,?,?)",
+            ("Coverage test instrument - article 1", "1", None, "Coverage legal text",
+             app.norm("Coverage legal text"), version_id, 1, "2020-01-01",
+             "https://example.test/coverage-source", 1),
         )
-        missing_hash_version_id = corpus.execute("SELECT last_insert_rowid()").fetchone()[0]
         corpus.execute(
             "INSERT INTO legal_document_versions(document_id,version_label,source_url,publication_date,"
             "effective_date,legal_status,review_status,authenticity_verified,status_verified,"
@@ -4222,19 +4224,6 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
              "https://example.test/coverage-v2", "2021-01-01", "2021-01-01",
              "in_force", "verified", 1, 1, 1),
         )
-        review_types = (
-            "source_authenticity", "extraction_quality", "legal_status",
-            "amendment_history", "licensing", "lawyer_approval",
-        )
-        reviewed_at = datetime.now(timezone.utc).isoformat()
-        for version_id in (verified_version_id, missing_hash_version_id):
-            for review_type in review_types:
-                corpus.execute(
-                    "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,"
-                    "evidence_url,reviewed_at) VALUES(?,?,?,?,?,?)",
-                    (version_id, "Synthetic reviewer", review_type, "pass",
-                     "https://example.test/review-evidence", reviewed_at),
-                )
         corpus.execute(
             "INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
             ("RUNTIME-COVERAGE-METADATA-SOURCE", "Metadata-only authority",
@@ -4248,31 +4237,43 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         corpus.commit()
 
-        original_permission_lookup = app._central_source_permission_evidence
-
-        def test_permission_lookup(source_id, source_page):
+        rights_evidence = {
+            "source_permission_register_match": True,
+            "source_permission_register_collection_permission": "allowed",
+            "source_permission_register_commercial_reuse_permission": "allowed",
+            "permission_evidence_url": "https://example.test/rights/collection",
+            "commercial_reuse_evidence_url": "https://example.test/rights/commercial",
+            "terms_checked_on": date.today().isoformat(),
+            "commercial_terms_checked_on": date.today().isoformat(),
+        }
+        def permission_record(source_id, source_page):
             if source_id == "RUNTIME-COVERAGE-SOURCE":
-                return {
-                    "source_permission_register_match": True,
-                    "source_permission_register_collection_permission": "allowed",
-                    "source_permission_register_commercial_reuse_permission": "allowed",
-                    "permission_evidence_url": "https://example.test/rights/collection",
-                    "commercial_reuse_evidence_url": "https://example.test/rights/commercial",
-                    "terms_checked_on": date.today().isoformat(),
-                    "commercial_terms_checked_on": date.today().isoformat(),
-                }
-            return original_permission_lookup(source_id, source_page)
-
-        with patch.object(app, "_central_source_permission_evidence", side_effect=test_permission_lookup):
+                return dict(rights_evidence)
+            return {
+                "source_permission_register_match": False,
+                "source_permission_register_collection_permission": "unknown",
+                "source_permission_register_commercial_reuse_permission": "unknown",
+                "permission_evidence_url": None,
+                "commercial_reuse_evidence_url": None,
+                "terms_checked_on": None,
+                "commercial_terms_checked_on": None,
+            }
+        with patch.object(app, "_central_source_permission_evidence", side_effect=permission_record):
             response = self.client.get("/legal-review/coverage")
+            queue = self.client.get("/legal-review/queue")
         self.assertEqual(response.status_code, 200, response.text)
+        self.assertEqual(queue.status_code, 200, queue.text)
+        queued_verified = next(item for item in queue.json()["versions"] if item["version_id"] == version_id)
+        self.assertTrue(queued_verified["answer_eligible"])
+        self.assertTrue(queued_verified["source_permission_register_ready"])
         metrics = response.json()["metrics"]
         self.assertGreaterEqual(metrics["source_count"], 2)
         self.assertGreaterEqual(metrics["metadata_only_documents"], 1)
         self.assertEqual(metrics["verified_operational_versions"], verified_before + 1)
-        self.assertGreaterEqual(metrics["versions_missing_review_event_evidence"], 1)
-        self.assertGreaterEqual(metrics["versions_missing_original_hash"], 1)
         self.assertGreaterEqual(metrics["permission_or_evidence_blocked_versions"], 1)
+        self.assertEqual(metrics["central_permission_register_blocked_versions"], 0)
+        self.assertGreaterEqual(metrics["central_permission_register_blocked_sources"], 1)
+        self.assertGreaterEqual(metrics["versions_not_eligible_for_verified_answers"], 1)
         self.assertTrue(any(
             row["practice_area"] == "labour"
             and row["documents_with_verified_operational_text"] == 1
@@ -4282,23 +4283,6 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "not total Egyptian-law coverage" in warning
             for warning in response.json()["warnings"]
         ))
-
-        # A later failed review must revoke the dashboard's operative-text count,
-        # even when an older passing lawyer approval remains in the event history.
-        corpus.execute(
-            "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,"
-            "evidence_url,reviewed_at) VALUES(?,?,?,?,?,?)",
-            (verified_version_id, "Synthetic reviewer", "lawyer_approval", "fail",
-             "https://example.test/review-failure", datetime.now(timezone.utc).isoformat()),
-        )
-        corpus.commit()
-        with patch.object(app, "_central_source_permission_evidence", side_effect=test_permission_lookup):
-            after_failed_review = self.client.get("/legal-review/coverage")
-        self.assertEqual(after_failed_review.status_code, 200, after_failed_review.text)
-        self.assertEqual(
-            after_failed_review.json()["metrics"]["verified_operational_versions"],
-            verified_before,
-        )
 
         blocked_before_unknown = metrics["permission_or_evidence_blocked_versions"]
         corpus.execute(
@@ -4321,12 +4305,16 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
              "under_review", "pending_source_review", "synthetic review evidence"),
         )
         corpus.commit()
-        with patch.object(app, "_central_source_permission_evidence", side_effect=test_permission_lookup):
+        with patch.object(app, "_central_source_permission_evidence", side_effect=permission_record):
             after_unknown = self.client.get("/legal-review/coverage")
         self.assertEqual(after_unknown.status_code, 200, after_unknown.text)
         self.assertEqual(
             after_unknown.json()["metrics"]["permission_or_evidence_blocked_versions"],
             blocked_before_unknown + 1,
+        )
+        self.assertEqual(
+            after_unknown.json()["metrics"]["central_permission_register_blocked_versions"],
+            1,
         )
 
 

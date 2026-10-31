@@ -436,14 +436,18 @@ async function corpusCoverage(){
  pending_lawyer_review:'بانتظار مراجعة المحامي',rejected_versions:'إصدارات مرفوضة',
  labelled_verified_versions:'إصدارات موسومة كمتحقق منها',verified_operational_versions:'نصوص سارية اجتازت جميع بوابات التحقق',
  missing_authenticity_review:'تحتاج مراجعة الأصالة',missing_status_review:'تحتاج مراجعة الحالة القانونية',
- missing_amendment_history:'تاريخ التعديلات غير متحقق',permission_or_evidence_blocked_versions:'محجوبة بسبب الإذن أو الدليل'
+ missing_amendment_history:'تاريخ التعديلات غير متحقق',permission_or_evidence_blocked_versions:'محجوبة بسبب الإذن أو الدليل',
+ central_permission_register_blocked_versions:'محجوبة بسبب سجل الأذونات المركزي',
+ versions_not_eligible_for_verified_answers:'غير مؤهلة للإجابة القانونية الموثقة'
  }:{
  source_count:'Registered sources',document_count:'Registered instruments',version_count:'Document versions',
  metadata_only_documents:'Metadata-only instruments',pending_source_review:'Awaiting source review',
  pending_lawyer_review:'Awaiting lawyer review',rejected_versions:'Rejected versions',
  labelled_verified_versions:'Versions labelled verified',verified_operational_versions:'Operative texts passing all verification gates',
  missing_authenticity_review:'Missing authenticity review',missing_status_review:'Missing legal-status review',
- missing_amendment_history:'Amendment history unverified',permission_or_evidence_blocked_versions:'Blocked by permission or evidence'
+ missing_amendment_history:'Amendment history unverified',permission_or_evidence_blocked_versions:'Blocked by permission or evidence',
+ central_permission_register_blocked_versions:'Blocked by central permission register',
+ versions_not_eligible_for_verified_answers:'Not eligible for verified-corpus answers'
  };
  const cards=h('div',{className:'grid'});
  Object.entries(labels).forEach(([key,label])=>{
@@ -461,7 +465,9 @@ async function corpusCoverage(){
      missing_authenticity_review:'إصدارات لا يحمل سجلها تحقق الأصالة.',
      missing_status_review:'إصدارات لا يحمل سجلها تحقق الحالة القانونية.',
      missing_amendment_history:'إصدارات لا يحمل سجلها تحقق تاريخ التعديلات.',
-     permission_or_evidence_blocked_versions:'إصدارات ينقصها إذن مطلوب أو دليل إذن.'
+     permission_or_evidence_blocked_versions:'إصدارات ينقصها إذن مطلوب أو دليل إذن.',
+     central_permission_register_blocked_versions:'إصدارات لا يطابق مصدرها سجل الأذونات المركزي أو تنقصها روابط دليل الجمع والاستخدام التجاري.',
+     versions_not_eligible_for_verified_answers:'كل الإصدارات التي لا تجتاز بوابة الإجابة من النصوص القانونية الموثقة.'
    }:{
      source_count:'Count of registered source records, not verified laws.',
      document_count:'Count of instruments registered in the catalog.',
@@ -475,11 +481,13 @@ async function corpusCoverage(){
      missing_authenticity_review:'Versions whose authenticity flag is not verified.',
      missing_status_review:'Versions whose legal-status flag is not verified.',
      missing_amendment_history:'Versions whose amendment-history flag is not verified.',
-     permission_or_evidence_blocked_versions:'Versions missing required permission or permission evidence.'
+     permission_or_evidence_blocked_versions:'Versions missing required permission or permission evidence.',
+     central_permission_register_blocked_versions:'Versions whose source lacks a unique central-register match, explicit reuse permissions, or separate inspectable rights-evidence URLs.',
+     versions_not_eligible_for_verified_answers:'All versions that fail at least one gate required before the legal answer generator may use a corpus passage.'
    };
    const card=h('div',{className:'card stat',role:'button',tabIndex:0,'aria-label':label+'. '+metricHelp[key],style:'cursor:pointer'},h('b',{textContent:String(value)}),h('span',{textContent:label}));
    card.title=metricHelp[key]||label;
-   const queueModes={pending_source_review:'pending_source_review',pending_lawyer_review:'pending_lawyer_review',rejected_versions:'rejected_versions',labelled_verified_versions:'labelled_verified_versions',verified_operational_versions:'verified_operational_versions',missing_authenticity_review:'missing_authenticity_review',missing_status_review:'missing_status_review',missing_amendment_history:'missing_amendment_history',permission_or_evidence_blocked_versions:'permission_or_evidence_blocked_versions'};
+   const queueModes={pending_source_review:'pending_source_review',pending_lawyer_review:'pending_lawyer_review',rejected_versions:'rejected_versions',labelled_verified_versions:'labelled_verified_versions',verified_operational_versions:'verified_operational_versions',missing_authenticity_review:'missing_authenticity_review',missing_status_review:'missing_status_review',missing_amendment_history:'missing_amendment_history',permission_or_evidence_blocked_versions:'permission_or_evidence_blocked_versions',central_permission_register_blocked_versions:'central_permission_register_blocked_versions',versions_not_eligible_for_verified_answers:'not_answer_eligible'};
    card.onclick=()=>{
      if(queueModes[key]){window.COVERAGE_QUEUE_FILTER=queueModes[key];reviewWorkbench();return}
      if(key==='source_count'){openCatalog('sources');return}
@@ -489,7 +497,7 @@ async function corpusCoverage(){
      toast(ar?'تعذر فتح قائمة هذا المؤشر.':'No drill-down is available for this metric.');
    };
    card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();card.click()}};
-   if(key==='verified_operational_versions')card.append(h('p',{className:'mut',textContent:ar?'يتطلب الإذن التجاري ودليل الإذن وتحقق الأصالة والسريان والتعديلات.':'Requires commercial reuse permission, evidence, authenticity, legal-status and amendment checks.'}));
+   if(key==='verified_operational_versions')card.append(h('p',{className:'mut',textContent:ar?'يستخدم نفس بوابة أهلية المصدر التي تمنع مولد الإجابة من استخدام نص غير مستوفٍ.':'Uses the same source-eligibility gate that prevents the answer generator from using an ineligible passage.'}));
    if(key==='labelled_verified_versions')card.append(h('p',{className:'mut',textContent:ar?'الوسم وحده لا يعني أن النص اجتاز جميع البوابات.':'The label alone does not mean all verification gates passed.'}));
    cards.append(card);
  });
@@ -520,10 +528,10 @@ async function reviewWorkbench(){
  let data; try{data=await api('/legal-review/queue')}catch(_){main.append(h('div',{className:'card'},txt('تعذر تحميل قائمة المراجعة.','Could not load the review queue.')));return}
  const list=h('div',{className:'card'}), filter=h('input',{placeholder:txt('ابحث بالعنوان أو رقم الإصدار أو الحالة','Filter by title, version ID, or status'),style:'width:min(100%,460px)'}), rows=h('div',{}), versions=data.versions||[];
  let queueMode=window.COVERAGE_QUEUE_FILTER||'';window.COVERAGE_QUEUE_FILTER='';
- const modeLabels={pending_source_review:txt('بانتظار مراجعة المصدر','Awaiting source review'),pending_lawyer_review:txt('بانتظار مراجعة المحامي','Awaiting lawyer review'),rejected_versions:txt('إصدارات مرفوضة','Rejected versions'),labelled_verified_versions:txt('موسومة كمتحقق منها','Labelled verified'),verified_operational_versions:txt('نصوص سارية متحققة','Verified operative text'),missing_authenticity_review:txt('الأصالة غير متحققة','Authenticity missing'),missing_status_review:txt('الحالة القانونية غير متحققة','Legal status missing'),missing_amendment_history:txt('تاريخ التعديلات غير متحقق','Amendment history missing'),permission_or_evidence_blocked_versions:txt('الإذن أو الدليل ناقص','Permission or evidence blocked')};
+ const modeLabels={pending_source_review:txt('بانتظار مراجعة المصدر','Awaiting source review'),pending_lawyer_review:txt('بانتظار مراجعة المحامي','Awaiting lawyer review'),rejected_versions:txt('إصدارات مرفوضة','Rejected versions'),labelled_verified_versions:txt('موسومة كمتحقق منها','Labelled verified'),verified_operational_versions:txt('نصوص سارية متحققة','Verified operative text'),missing_authenticity_review:txt('الأصالة غير متحققة','Authenticity missing'),missing_status_review:txt('الحالة القانونية غير متحققة','Legal status missing'),missing_amendment_history:txt('تاريخ التعديلات غير متحقق','Amendment history missing'),permission_or_evidence_blocked_versions:txt('الإذن أو الدليل ناقص','Permission or evidence blocked'),central_permission_register_blocked_versions:txt('سجل الأذونات المركزي غير مستوفٍ','Central permission register blocked'),not_answer_eligible:txt('غير مؤهلة للإجابة الموثقة','Not eligible for verified answers')};
  if(queueMode)filter.value=modeLabels[queueMode]||'';
  const chosen=h('select',{style:'width:100%'},h('option',{value:'',textContent:txt('اختر إصداراً قانونياً','Select a legal document version')}),versions.map(v=>h('option',{value:String(v.version_id),textContent:'#'+v.version_id+' · '+v.official_title+' · '+v.version_label})));
- const draw=()=>{const q=filter.value.trim().toLocaleLowerCase();const visible=versions.filter(v=>{if(queueMode==='pending_source_review')return v.review_status==='pending_source_review';if(queueMode==='pending_lawyer_review')return v.review_status==='pending_lawyer_review';if(queueMode==='rejected_versions')return v.review_status==='rejected';if(queueMode==='labelled_verified_versions')return v.review_status==='verified';if(queueMode==='verified_operational_versions')return v.review_status==='verified'&&v.legal_status==='in_force'&&v.authenticity_verified&&v.status_verified&&v.amendment_history_verified&&v.collection_permission==='allowed'&&v.commercial_reuse_permission==='allowed'&&String(v.version_permission_evidence||'').trim()!==''&&String(v.source_permission_evidence||'').trim()!==''&&v.effective_date&&v.effective_date<=today&&(!v.repeal_date||v.repeal_date>today);if(queueMode==='missing_authenticity_review')return !v.authenticity_verified;if(queueMode==='missing_status_review')return !v.status_verified;if(queueMode==='missing_amendment_history')return !v.amendment_history_verified;if(queueMode==='permission_or_evidence_blocked_versions')return v.collection_permission!=='allowed'||v.commercial_reuse_permission!=='allowed'||!String(v.version_permission_evidence||'').trim()||!String(v.source_permission_evidence||'').trim();return !q||(String(v.official_title)+' '+v.version_id+' '+v.version_label+' '+v.review_status+' '+v.legal_status+' '+v.authority+' '+v.collection_permission+' '+v.commercial_reuse_permission).toLocaleLowerCase().includes(q)});rows.replaceChildren(...(visible.length?visible.map(v=>{
+ const draw=()=>{const q=filter.value.trim().toLocaleLowerCase();const visible=versions.filter(v=>{if(queueMode==='pending_source_review')return v.review_status==='pending_source_review';if(queueMode==='pending_lawyer_review')return v.review_status==='pending_lawyer_review';if(queueMode==='rejected_versions')return v.review_status==='rejected';if(queueMode==='labelled_verified_versions')return v.review_status==='verified';if(queueMode==='verified_operational_versions')return v.answer_eligible===true;if(queueMode==='central_permission_register_blocked_versions')return v.source_permission_register_ready!==true;if(queueMode==='not_answer_eligible')return v.answer_eligible!==true;if(queueMode==='permission_or_evidence_blocked_versions')return v.source_permission_evidence_ready!==true||!String(v.version_permission_evidence||'').trim();if(queueMode==='missing_authenticity_review')return !v.authenticity_verified;if(queueMode==='missing_status_review')return !v.status_verified;if(queueMode==='missing_amendment_history')return !v.amendment_history_verified;if(queueMode==='permission_or_evidence_blocked_versions')return v.collection_permission!=='allowed'||v.commercial_reuse_permission!=='allowed'||!String(v.version_permission_evidence||'').trim()||!String(v.source_permission_evidence||'').trim();return !q||(String(v.official_title)+' '+v.version_id+' '+v.version_label+' '+v.review_status+' '+v.legal_status+' '+v.authority+' '+v.collection_permission+' '+v.commercial_reuse_permission).toLocaleLowerCase().includes(q)});rows.replaceChildren(...(visible.length?visible.map(v=>{
  const versionUrl=safeHttpsUrl(v.source_url);
  const missing=[];
  if(v.review_status!=='verified')missing.push(txt('مراجعة المصدر/المحامي','review status'));
@@ -533,7 +541,7 @@ async function reviewWorkbench(){
  if(!v.amendment_history_verified)missing.push(txt('تاريخ التعديلات','amendment history'));
  if(v.collection_permission!=='allowed')missing.push(txt('إذن الجمع','collection permission'));
  if(v.commercial_reuse_permission!=='allowed')missing.push(txt('إذن الاستخدام التجاري','commercial reuse permission'));
- if(!String(v.source_permission_evidence||'').trim())missing.push(txt('دليل إذن المصدر','source permission evidence'));
+ if(!String(v.source_permission_evidence||'').trim())missing.push(txt('دليل إذن المصدر','source permission evidence'));if(v.source_permission_register_ready!==true)missing.push(txt('مطابقة سجل الأذونات المركزي وروابط الحقوق','central permission register match and rights-evidence URLs'));
  if(!String(v.version_permission_evidence||'').trim())missing.push(txt('دليل إذن الإصدار','version permission evidence'));
  if(!v.effective_date||v.effective_date>today)missing.push(txt('تاريخ النفاذ','effective date'));
  if(v.repeal_date&&v.repeal_date<=today)missing.push(txt('تاريخ الإلغاء/الانتهاء','repeal date'));

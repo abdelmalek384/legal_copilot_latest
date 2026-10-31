@@ -109,6 +109,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("filters.commercial_reuse_permission", HTML)
         self.assertIn("View sources with permission state ", HTML)
         self.assertIn("openCatalog('sources','',{collection_permission:r.collection_permission||'unknown'", HTML)
+        self.assertIn("central_permission_register_blocked_versions", HTML)
+        self.assertIn("versions_not_eligible_for_verified_answers", HTML)
+        self.assertIn("same source-eligibility gate", HTML)
 
     def test_corpus_registry_drilldowns_can_search_beyond_the_first_page(self):
         self.assertIn("const openCatalog=async(kind,query='',filters={})=>", HTML)
@@ -123,6 +126,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Gates not met: ", HTML)
         self.assertIn("v.version_permission_evidence", HTML)
         self.assertIn("v.source_permission_evidence", HTML)
+        self.assertIn("v.source_permission_register_ready", HTML)
+        self.assertIn("v.answer_eligible===true", HTML)
+        self.assertIn("central permission register match and rights-evidence URLs", HTML)
         self.assertIn("independent source/lawyer verification is still required", HTML)
 
     def test_source_status_labels_have_plain_language_explanations_and_original_host(self):
