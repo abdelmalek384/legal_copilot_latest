@@ -284,6 +284,17 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIn("personal, non-commercial use", source["permission_evidence"])
         self.assertEqual(MODULE.validate(data), [])
 
+
+    def test_sis_gazette_public_viewing_metadata_does_not_clear_rights(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-SIS-GAZETTE-2025-295-SUPPLEMENT-D")
+        self.assertEqual(source["collection_permission"], "unknown")
+        self.assertEqual(source["commercial_reuse_permission"], "unknown")
+        self.assertIn("public viewing", source["access_status"])
+        self.assertIn("could not be opened", source["permission_evidence"])
+        self.assertEqual(MODULE.validate(data), [])
+
 if __name__ == "__main__":
     unittest.main()
 
