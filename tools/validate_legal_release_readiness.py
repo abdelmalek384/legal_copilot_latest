@@ -423,9 +423,15 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
                 r"^\[qualified_egyptian_counsel_attested:user_id=([1-9][0-9]*)\](?:\s|$)",
                 notes if isinstance(notes, str) else "",
             )
-            if marker is None or not isinstance(reviewer_id, str) or reviewer_id != marker.group(1):
+            marker_id = marker.group(1) if marker is not None else None
+            marker_id_valid = (
+                isinstance(marker_id, str)
+                and len(marker_id) <= 19
+                and int(marker_id) <= (2**63 - 1)
+            )
+            if not marker_id_valid or not isinstance(reviewer_id, str) or reviewer_id != marker_id:
                 add(blockers, "counsel_attestation_missing_or_mismatched",
-                    "lawyer_approval must carry the runtime counsel-allowlist marker, and its account ID must match reviewer_id.")
+                    "lawyer_approval must carry a positive signed-64-bit runtime counsel-allowlist ID matching reviewer_id.")
         if not valid_date(review.get("reviewed_on")):
             add(blockers, "review_date_invalid", f"{review_type} review needs a valid, non-future reviewed_on date.")
         evidence_host = https_host(review.get("evidence_url"))

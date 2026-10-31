@@ -105,6 +105,39 @@ class LegalReleaseReadinessTests(unittest.TestCase):
             {item["code"] for item in result["blockers"]},
         )
 
+    def test_counsel_attestation_accepts_maximum_signed_64_bit_account_id(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        approval = next(
+            item for item in candidate["reviews"]
+            if item["review_type"] == "lawyer_approval"
+        )
+        approval["reviewer_id"] = "9223372036854775807"
+        approval["notes"] = (
+            "[qualified_egyptian_counsel_attested:user_id=9223372036854775807] "
+            "Reviewed against evidence."
+        )
+        result = MODULE.audit_candidate(candidate, self.register, self.root)
+        self.assertTrue(result["ready"], result["blockers"])
+
+    def test_counsel_attestation_rejects_out_of_range_and_oversized_ids(self):
+        candidate = json.loads(json.dumps(self.candidate))
+        approval = next(
+            item for item in candidate["reviews"]
+            if item["review_type"] == "lawyer_approval"
+        )
+        for account_id in ("9223372036854775808", "9" * 5000):
+            with self.subTest(account_id_length=len(account_id)):
+                approval["reviewer_id"] = account_id
+                approval["notes"] = (
+                    f"[qualified_egyptian_counsel_attested:user_id={account_id}] "
+                    "Synthetic malformed marker."
+                )
+                result = MODULE.audit_candidate(candidate, self.register, self.root)
+                self.assertIn(
+                    "counsel_attestation_missing_or_mismatched",
+                    {item["code"] for item in result["blockers"]},
+                )
+
     def test_collection_rights_require_inspectable_evidence_url(self):
         candidate = json.loads(json.dumps(self.candidate))
         candidate["sources"][0].pop("permission_evidence_url")
