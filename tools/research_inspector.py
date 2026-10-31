@@ -103,6 +103,41 @@ def _calendar_date(value):
     return parsed if parsed.isoformat() == value else None
 
 
+def central_permission_register_ready(provenance):
+    """Return whether the central register independently clears both reuse rights."""
+    if not isinstance(provenance, Mapping):
+        return False
+    if provenance.get("source_permission_register_match") is not True:
+        return False
+    if provenance.get("source_permission_register_collection_permission") != "allowed":
+        return False
+    if provenance.get("source_permission_register_commercial_reuse_permission") != "allowed":
+        return False
+    if not _valid_review_evidence_url(provenance.get("permission_evidence_url")):
+        return False
+    if not _valid_review_evidence_url(provenance.get("commercial_reuse_evidence_url")):
+        return False
+    permission_review_today = date.today()
+    for field in ("terms_checked_on", "commercial_terms_checked_on"):
+        checked = _calendar_date(provenance.get(field))
+        if checked is None or checked > permission_review_today:
+            return False
+    return True
+
+
+def source_permission_evidence_ready(provenance):
+    """Return whether source-level collection and commercial reuse evidence is complete."""
+    if not isinstance(provenance, Mapping):
+        return False
+    if provenance.get("collection_permission") != "allowed":
+        return False
+    if provenance.get("commercial_reuse_permission") != "allowed":
+        return False
+    if not str(provenance.get("source_permission_evidence") or "").strip():
+        return False
+    return central_permission_register_ready(provenance)
+
+
 def source_status(source, as_of=None):
     """Return a conservative, UI-ready source state based only on recorded fields."""
     if not isinstance(source, Mapping):
@@ -155,30 +190,7 @@ def source_status(source, as_of=None):
         return STATUS_REVIEW
     if not all(provenance.get(key) is True or (type(provenance.get(key)) is int and provenance.get(key) == 1) for key in required_true):
         return STATUS_REVIEW
-    if provenance.get("collection_permission") != "allowed":
-        return STATUS_REVIEW
-    if provenance.get("commercial_reuse_permission") != "allowed":
-        return STATUS_REVIEW
-    # Narrative database fields cannot replace inspectable collection/commercial
-    # rights evidence in the central, versioned permission register.
-    if provenance.get("source_permission_register_match") is not True:
-        return STATUS_REVIEW
-    if provenance.get("source_permission_register_collection_permission") != "allowed":
-        return STATUS_REVIEW
-    if provenance.get("source_permission_register_commercial_reuse_permission") != "allowed":
-        return STATUS_REVIEW
-    if not _valid_review_evidence_url(provenance.get("permission_evidence_url")):
-        return STATUS_REVIEW
-    if not _valid_review_evidence_url(provenance.get("commercial_reuse_evidence_url")):
-        return STATUS_REVIEW
-    # Permission review dates describe the current reuse-rights assessment,
-    # not the historical legal date requested by the researcher.
-    permission_review_today = date.today()
-    for field in ("terms_checked_on", "commercial_terms_checked_on"):
-        checked = _calendar_date(provenance.get(field))
-        if checked is None or checked > permission_review_today:
-            return STATUS_REVIEW
-    if not str(provenance.get("source_permission_evidence") or "").strip():
+    if not source_permission_evidence_ready(provenance):
         return STATUS_REVIEW
     if not str(provenance.get("permission_evidence") or "").strip():
         return STATUS_REVIEW
