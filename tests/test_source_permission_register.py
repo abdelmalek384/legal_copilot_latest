@@ -373,7 +373,7 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIsNone(source["terms_checked_on"])
         self.assertIn("not the complete ministerial decision", source["material_types"][1])
         self.assertIn("HTTP 502", source["access_status"])
-        self.assertIn("not a Gazette amendment", source["permission_evidence"])
+        self.assertIn("or a Gazette amendment", source["permission_evidence"])
         self.assertEqual(MODULE.validate(data), [])
 
 if __name__ == "__main__":
