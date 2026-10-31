@@ -32,12 +32,6 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         cls.inventory = json.loads(DEFAULT_PATH.read_text(encoding="utf-8"))
 
     def test_current_inventory_is_metadata_only_and_structurally_valid(self):
-        for document_id in ("EG-LABOUR-DECISION-292-2025", "EG-LABOUR-DECISION-294-2025"):
-            record = records[document_id]
-            self.assertEqual(record["source_id"], "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR")
-            self.assertEqual(record["collection_permission"], "not_allowed_without_explicit_exception_or_license")
-            self.assertTrue(any("dspace.id.com.eg/items/37add437" in item["url"] for item in record["source_urls"]))
-            self.assertTrue(any("lawhub.info" in item["url"] for item in record["source_urls"]))
         self.assertEqual(validate_inventory(self.inventory), [])
         self.assertEqual(len(self.inventory["documents"]), 83)
         self.assertTrue(all(d["review_status"] != "verified" for d in self.inventory["documents"]))
@@ -301,6 +295,26 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertEqual(sis_source["commercial_reuse_permission"], "unknown")
         self.assertIn("public viewing", sis_source["access_status"])
         self.assertEqual(validate_inventory(self.inventory), [])
+
+
+    def test_decisions_292_and_294_use_restricted_issue_291_metadata(self):
+        records = {item["document_id"]: item for item in self.inventory["documents"]}
+        source_id = "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR"
+        for document_id in ("EG-LABOUR-DECISION-292-2025", "EG-LABOUR-DECISION-294-2025"):
+            record = records[document_id]
+            self.assertEqual(record["source_id"], source_id)
+            self.assertEqual(record["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+            self.assertEqual(record["legal_status"], "unknown")
+            self.assertEqual(record["review_status"], "discovery_only")
+            self.assertTrue(any("dspace.id.com.eg/items/37add437" in item["url"] for item in record["source_urls"]))
+            self.assertTrue(any("lawhub.info" in item["url"] for item in record["source_urls"]))
+        self.assertIn(source_id, self.inventory["source_ids"])
+        register = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in register["sources"] if item["source_id"] == source_id)
+        self.assertEqual(source["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+        self.assertEqual(source["commercial_reuse_permission"], "prior_written_permission_required_per_published_terms")
+        self.assertEqual(validate_inventory(self.inventory), [])
+
 
 if __name__ == "__main__":
     unittest.main()
