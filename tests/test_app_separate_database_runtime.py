@@ -3096,6 +3096,82 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             nonmember_client.close()
 
 
+    def test_case_member_cannot_mutate_other_cases_tasks_or_deadlines_by_guessed_ids(self):
+        owner_login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(owner_login.status_code, 200, owner_login.text)
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_a})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        case_a = self._mutate("post", "/cases", json={"title": "Authorized Case A"})
+        case_b = self._mutate("post", "/cases", json={"title": "Private Case B"})
+        self.assertEqual(case_a.status_code, 200, case_a.text)
+        self.assertEqual(case_b.status_code, 200, case_b.text)
+        case_a_id, case_b_id = case_a.json()["id"], case_b.json()["id"]
+
+        tenant = self.runtime.firm_connection(
+            self.runtime.resolve_context(self.user_id, self.firm_a)
+        )
+        nonmember_id = self.runtime.create_global_identity(
+            "Case A Member", "case-a-member@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(nonmember_id, self.firm_a, "lawyer")
+        tenant.execute(
+            "INSERT INTO members(case_id,user_id,role) VALUES(?,?,?)",
+            (case_a_id, nonmember_id, "lawyer"),
+        )
+        tenant.execute(
+            "INSERT INTO tasks(case_id,title,assignee,status) VALUES(?,?,NULL,'open')",
+            (case_b_id, "CASE_B_GUESSED_TASK_SENTINEL"),
+        )
+        task_id = tenant.execute(
+            "SELECT id FROM tasks WHERE case_id=? AND title=?",
+            (case_b_id, "CASE_B_GUESSED_TASK_SENTINEL"),
+        ).fetchone()["id"]
+        tenant.execute(
+            "INSERT INTO deadlines(case_id,title,due,note,created_by,status) VALUES(?,?,?,?,?,'open')",
+            (case_b_id, "CASE_B_GUESSED_DEADLINE_SENTINEL", "2026-11-10", "", self.user_id),
+        )
+        deadline_id = tenant.execute(
+            "SELECT id FROM deadlines WHERE case_id=? AND title=?",
+            (case_b_id, "CASE_B_GUESSED_DEADLINE_SENTINEL"),
+        ).fetchone()["id"]
+        tenant.commit()
+
+        outsider = TestClient(app.app)
+        try:
+            login = outsider.post(
+                "/login",
+                json={"email": "case-a-member@example.test", "password": self.password},
+            )
+            self.assertEqual(login.status_code, 200, login.text)
+            csrf = outsider.cookies.get("lc_csrf") or ""
+            headers = {"X-CSRF-Token": csrf}
+            switched = outsider.post(
+                "/session/firm", json={"firm_id": self.firm_a}, headers=headers
+            )
+            self.assertEqual(switched.status_code, 200, switched.text)
+            for path in (
+                f"/tasks/{task_id}/claim",
+                f"/tasks/{task_id}/done",
+                f"/deadlines/{deadline_id}/done",
+            ):
+                with self.subTest(path=path):
+                    response = outsider.post(path, headers=headers)
+                    self.assertEqual(response.status_code, 404, response.text)
+        finally:
+            outsider.close()
+
+        task = tenant.execute(
+            "SELECT status,assignee FROM tasks WHERE id=?", (task_id,)
+        ).fetchone()
+        deadline = tenant.execute(
+            "SELECT status FROM deadlines WHERE id=?", (deadline_id,)
+        ).fetchone()
+        self.assertEqual(task["status"], "open")
+        self.assertIsNone(task["assignee"])
+        self.assertEqual(deadline["status"], "open")
+
     def test_same_firm_nonmember_cannot_read_or_mutate_case_data(self):
         owner_login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
