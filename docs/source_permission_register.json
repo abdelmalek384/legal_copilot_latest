@@ -16,12 +16,13 @@
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": null,
+      "permission_evidence": "The official Presidency page footer states 'All rights reserved' (© 2020). No affirmative license or terms granting local archiving, Arabic extraction, indexing, commercial product use, excerpt display, or redistribution was identified. This is a rights notice, not a grant of permission; collection_permission and commercial_reuse_permission remain unknown pending written authorization.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Review current site terms and obtain written permission for local archiving, Arabic text extraction, indexing, commercial product use, excerpt display, and redistribution. Obtain original PDF bytes/hash through authorized access; compare against the relevant Official Gazette pages and check all post-2019 amendments/currentness with qualified Egyptian counsel. Keep collection_permission and commercial_reuse_permission unknown until evidence is recorded.",
+      "required_next_action": "Obtain written authorization covering local archiving, Arabic text extraction, indexing, commercial product use, excerpt display, and redistribution. Obtain original PDF bytes/hash through authorized access; compare against the relevant Official Gazette pages and check all post-2019 amendments/currentness with qualified Egyptian counsel. Keep collection_permission and commercial_reuse_permission unknown until affirmative permission evidence is recorded.",
       "official_pdf_url": "https://www.presidency.eg/media/46122/%D8%AF%D8%B3%D8%AA%D9%88%D8%B1-%D8%AC%D9%85%D9%87%D9%88%D8%B1%D9%8A%D8%A9-%D9%85%D8%B5%D8%B1-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-2019.pdf",
-      "access_evidence": "On 2026-10-31 the Presidency page's full-constitution download link and its hosted 2019 PDF were opened. The PDF front matter identifies the amended Constitution (April 2019) and cites Official Gazette issue 14 (supplement), 19 January 2014, and Official Gazette issue 16 repeated (w), 23 April 2019. This is access/provenance discovery only: no PDF bytes or SHA-256 were stored, no later amendments/currentness were checked, and no collection or reuse permission was established."
+      "access_evidence": "On 2026-10-31 the Presidency page's full-constitution download link and its hosted 2019 PDF were opened. The PDF front matter identifies the amended Constitution (April 2019) and cites Official Gazette issue 14 (supplement), 19 January 2014, and Official Gazette issue 16 repeated (w), 23 April 2019. This is access/provenance discovery only: no PDF bytes or SHA-256 were stored, no later amendments/currentness were checked, and no collection or reuse permission was established.",
+      "rights_notice_checked_on": "2026-10-31"
     },
     {
       "source_id": "EG-AMIRI-PRESS",
