@@ -836,7 +836,7 @@ def _central_source_permission_evidence(source_id, source_page):
 def _version_answer_eligible(c, version_id, as_of=None):
     """Use the same source-status gate as retrieval for dashboard and queue eligibility."""
     chunk = c.execute(
-        "SELECT text FROM chunks WHERE document_version_id=? AND verified=1 AND case_id IS NULL LIMIT 1",
+        "SELECT text FROM chunks WHERE document_version_id=? AND verified=1 LIMIT 1",
         (version_id,),
     ).fetchone()
     if not chunk or not isinstance(chunk["text"], str) or not chunk["text"].strip():
@@ -3314,7 +3314,7 @@ def legal_review_coverage(u: dict = Depends(user)):
         "AND v.effective_date IS NOT NULL AND v.effective_date<=? "
         "AND (v.repeal_date IS NULL OR v.repeal_date>?) "
         "AND EXISTS (SELECT 1 FROM chunks ch WHERE ch.document_version_id=v.version_id "
-        "AND ch.verified=1 AND ch.case_id IS NULL)",
+        "AND ch.verified=1)",
         (today, today),
     ).fetchall()
     eligible_version_ids = set()
