@@ -1,6 +1,7 @@
 import importlib.util
 import asyncio
 import os
+import io
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
@@ -130,6 +131,47 @@ class SecureCookieTransportTests(unittest.TestCase):
             with patch.object(app.urllib.request, "urlopen") as open_url:
                 self.assertIsNone(app.llm("CONFIDENTIAL-SENTINEL"))
                 open_url.assert_not_called()
+
+    def test_llm_provider_response_is_bounded_and_malformed_payloads_fail_closed(self):
+        settings = {
+            "LLM_URL": "https://llm.example.test/v1/chat/completions",
+            "LLM_MODEL": "test-model",
+            "LLM_KEY": "test-key",
+            "LLM_DATA_PROCESSING_APPROVED": "1",
+        }
+        valid = io.BytesIO(b'{"choices":[{"message":{"content":"safe answer"}}]}')
+        with patch.dict(os.environ, settings), patch.object(app, "_llm_open", return_value=valid):
+            self.assertEqual(app.llm("question"), "safe answer")
+
+        oversized = io.BytesIO(b"x" * (app.MAX_LLM_RESPONSE_BYTES + 1))
+        with patch.dict(os.environ, settings), patch.object(app, "_llm_open", return_value=oversized):
+            self.assertIsNone(app.llm("question"))
+
+        for raw in (
+            b"not-json",
+            b"[]",
+            b'{"choices":[]}',
+            b'{"choices":[{"message":{}}]}',
+            b'{"choices":[{"message":{"content":42}}]}',
+            b'{"choices":[{"message":{"content":"  "}}]}',
+            b"\\xff",
+        ):
+            with self.subTest(payload=raw[:40]), patch.dict(os.environ, settings), patch.object(
+                app, "_llm_open", return_value=io.BytesIO(raw)
+            ):
+                self.assertIsNone(app.llm("question"))
+
+    def test_llm_response_reader_requests_only_limit_plus_one_bytes(self):
+        class BoundedReadProbe:
+            def __init__(self):
+                self.requested = None
+            def read(self, size=-1):
+                self.requested = size
+                return b'{"choices":[{"message":{"content":"answer"}}]}'
+
+        probe = BoundedReadProbe()
+        self.assertEqual(app._read_llm_response_content(probe), "answer")
+        self.assertEqual(probe.requested, app.MAX_LLM_RESPONSE_BYTES + 1)
 
     def test_direct_https_always_marks_cookie_transport_secure(self):
         request = SimpleNamespace(url=SimpleNamespace(scheme="https", netloc="legal.example.com"))
