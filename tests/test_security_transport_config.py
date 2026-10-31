@@ -154,7 +154,7 @@ class SecureCookieTransportTests(unittest.TestCase):
             b'{"choices":[{"message":{}}]}',
             b'{"choices":[{"message":{"content":42}}]}',
             b'{"choices":[{"message":{"content":"  "}}]}',
-            b"\\xff",
+            bytes([0xFF]),
         ):
             with self.subTest(payload=raw[:40]), patch.dict(os.environ, settings), patch.object(
                 app, "_llm_open", return_value=io.BytesIO(raw)
