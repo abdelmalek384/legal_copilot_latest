@@ -8,7 +8,9 @@ from pathlib import Path
 
 from original_file_storage import ObjectStorageError
 from s3_original_file_storage import S3PrivateObjectStore
-from tools.verify_s3_original_file_roundtrip import build_acceptance_report, run_s3_roundtrip
+from tools.verify_s3_original_file_roundtrip import (
+    build_acceptance_report, roundtrip_preflight_blockers, run_s3_roundtrip,
+)
 from original_file_reconciliation import TenantDatabase
 from original_file_s3_reconciliation import reconcile_s3_original_file_storage
 from database_backup import _copy_s3_original_objects, _scan_s3_original_object_inventory
@@ -133,6 +135,22 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
 
         operation = Session().get_service_model("s3").operation_model("DeleteObject")
         self.assertIn("IfMatch", operation.input_shape.members)
+
+    def test_versioned_bucket_can_run_non_destructive_roundtrip_while_purge_gate_stays_blocked(self):
+        preflight = {
+            "failed_checks": ["physical_purge_versioning_compatibility"],
+            "checks": [
+                {"name": "versioning", "passed": True},
+                {"name": "physical_purge_versioning_compatibility", "passed": False},
+            ],
+        }
+        self.assertEqual(roundtrip_preflight_blockers(preflight), [])
+
+    def test_roundtrip_still_blocks_other_live_configuration_failures(self):
+        preflight = {
+            "failed_checks": ["kms_key", "physical_purge_versioning_compatibility"],
+        }
+        self.assertEqual(roundtrip_preflight_blockers(preflight), ["kms_key"])
 
     def test_acceptance_report_binds_evidence_to_non_secret_storage_target_fingerprint(self):
         from unittest.mock import patch
