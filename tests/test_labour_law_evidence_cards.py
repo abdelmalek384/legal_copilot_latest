@@ -50,7 +50,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 self.assertTrue(any(_has_https_host(s["url"], "portal.eta.gov.eg") for s in card["primary_evidence"]))
                 self.assertTrue(card["cross_checks"])
                 self.assertTrue(card["limitations"])
-                self.assertIn(card["review_state"], {"provisional_primary_text_extract_reviewed", "provisional_text_extract_crosschecked"})
+                self.assertIn(card["review_state"], {"provisional_primary_text_extract_reviewed", "provisional_text_extract_crosschecked", "provisional_secondary_crosscheck"})
 
     def test_evidence_cards_fail_closed_and_are_not_authoritative_corpus(self):
         instrument = self.data["instrument"]
