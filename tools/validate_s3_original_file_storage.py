@@ -53,12 +53,30 @@ def validate_s3_configuration(s3_client, kms_client, *, bucket: str, configured_
     except Exception:
         check("bucket_owner_enforced", False, "bucket ownership controls are missing or unreadable")
 
+    versioning_status = None
+    versioning_read = False
     try:
         response = s3_client.get_bucket_versioning(Bucket=bucket)
-        passed = response.get("Status") == "Enabled"
-        check("versioning", passed, "bucket versioning must be enabled for recovery and incident response")
+        versioning_read = isinstance(response, dict)
+        versioning_status = response.get("Status") if versioning_read else None
+        check(
+            "versioning",
+            versioning_status == "Enabled",
+            "bucket versioning must be enabled for version-history recovery; this requirement conflicts with the current physical-purge implementation",
+        )
+        never_versioned = versioning_read and versioning_status is None and set(response) <= {"ResponseMetadata"}
+        check(
+            "physical_purge_versioning_compatibility",
+            never_versioned,
+            "current physical purge requires a confirmed never-versioned bucket; Enabled, Suspended, unknown, and unexpected response states block purge",
+        )
     except Exception:
         check("versioning", False, "bucket versioning state could not be verified")
+        check(
+            "physical_purge_versioning_compatibility",
+            False,
+            "physical purge compatibility cannot be established because bucket versioning state could not be verified",
+        )
 
     try:
         response = s3_client.get_bucket_encryption(Bucket=bucket)
@@ -88,6 +106,7 @@ def validate_s3_configuration(s3_client, kms_client, *, bucket: str, configured_
     failed = [item["name"] for item in checks if not item["passed"]]
     return {
         "bucket": bucket,
+        "bucket_versioning_status": versioning_status if versioning_read else "unknown",
         "configured_kms_key": configured_key,
         "checks": checks,
         "failed_checks": failed,
@@ -96,6 +115,7 @@ def validate_s3_configuration(s3_client, kms_client, *, bucket: str, configured_
             "firm-isolation policy and KMS grants",
             "key rotation and recovery rehearsal",
             "live upload/download/reconciliation/backup/restore/deletion drill",
+            "resolve incompatible versioning requirements: recovery preflight requires Enabled while physical purge requires a never-versioned bucket; use separate buckets or implement and review version-aware deletion of every retained version",
         ],
         "production_ready": False,
     }
