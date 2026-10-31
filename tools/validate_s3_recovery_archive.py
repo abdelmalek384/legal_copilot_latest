@@ -9,7 +9,8 @@ import sys
 
 
 def validate_recovery_archive_configuration(
-    s3_client, kms_client, *, bucket: str, configured_key: str, original_bucket: str
+    s3_client, kms_client, *, bucket: str, configured_key: str, original_bucket: str,
+    original_key: str,
 ) -> dict:
     checks: list[dict[str, object]] = []
 
@@ -59,6 +60,11 @@ def validate_recovery_archive_configuration(
         check("recovery_versioning_enabled", False, "recovery archive bucket versioning state could not be verified")
 
     key_arn = None
+    original_key_arn = None
+    try:
+        original_key_arn = kms_client.describe_key(KeyId=original_key).get("KeyMetadata", {}).get("Arn")
+    except Exception:
+        original_key_arn = None
     try:
         response = kms_client.describe_key(KeyId=configured_key)
         metadata = response.get("KeyMetadata", {})
@@ -73,6 +79,11 @@ def validate_recovery_archive_configuration(
         check("recovery_kms_key", valid_key, "archive key must be enabled, customer-managed, symmetric, and usable for encryption")
     except Exception:
         check("recovery_kms_key", False, "configured recovery KMS key could not be inspected")
+    check(
+        "separate_recovery_kms_key",
+        bool(key_arn and original_key_arn and key_arn != original_key_arn),
+        "recovery archive must use a different canonical KMS key from original-object storage",
+    )
 
     try:
         response = s3_client.get_bucket_encryption(Bucket=bucket)
@@ -122,18 +133,20 @@ def main(argv=None) -> int:
     region = os.environ.get("COPILOT_S3_RECOVERY_REGION", "").strip()
     key_id = os.environ.get("COPILOT_S3_RECOVERY_KMS_KEY_ID", "").strip()
     original_bucket = os.environ.get("COPILOT_S3_BUCKET", "").strip()
+    original_key = os.environ.get("COPILOT_S3_KMS_KEY_ID", "").strip()
     endpoint = os.environ.get("COPILOT_S3_RECOVERY_ENDPOINT_URL", "").strip() or None
-    if not bucket or not region or not key_id or not original_bucket:
+    if not bucket or not region or not key_id or not original_bucket or not original_key:
         parser.error(
             "COPILOT_S3_RECOVERY_BUCKET, COPILOT_S3_RECOVERY_REGION, "
-            "COPILOT_S3_RECOVERY_KMS_KEY_ID, and COPILOT_S3_BUCKET are required"
+            "COPILOT_S3_RECOVERY_KMS_KEY_ID, COPILOT_S3_BUCKET, and COPILOT_S3_KMS_KEY_ID are required"
         )
     try:
         import boto3
         s3 = boto3.client("s3", region_name=region, endpoint_url=endpoint)
         kms = boto3.client("kms", region_name=region)
         result = validate_recovery_archive_configuration(
-            s3, kms, bucket=bucket, configured_key=key_id, original_bucket=original_bucket
+            s3, kms, bucket=bucket, configured_key=key_id,
+            original_bucket=original_bucket, original_key=original_key
         )
     except ImportError:
         print("S3/KMS recovery-archive preflight unavailable: AWS SDK is not installed", file=sys.stderr)
