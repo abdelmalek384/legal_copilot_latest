@@ -81,18 +81,20 @@
       "title_ar": "قرار وزير العمل رقم 292 لسنة 2025 بشأن تحديد الحد الأقصى لساعات العمل الفعلية والإضافية في الأعمال التجهيزية والتكميلية وأعمال الحراسة والنظافة",
       "primary_lead": {
         "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full",
-        "status": "Official Gazette Supplement issue 291 (تابع), dated 2025-12-25, metadata and PDF bundle listed"
+        "status": "Official Gazette Supplement issue 291 metadata (2025-12-25), Ministry of Labour/Amiri Press; 834.25 KB PDF and 1.71 KB item-specific license listed, both request-a-copy restricted"
       },
       "secondary_text": {
-        "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-292?id=5042304&type=1",
-        "status": "Search-indexed secondary legal text shows decision date 2025-12-04, Gazette publication 2025-12-25, effective 2025-12-26, and article headings/partial text for preparatory, complementary, guarding and cleaning work; full detailed limits require full-text comparison"
+        "url": "https://lawhub.info/eg/?p=17022",
+        "corroborating_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-292?id=5042304&type=1",
+        "status": "Two public secondary full-text/index sources; neither compared with official Gazette PDF",
+        "summary": "Law Hub transcription exposes Articles 1–7. Articles 1–4 define preparatory, complementary, guarding and cleaning work with examples. Article 5 caps actual work at 48 hours weekly. Article 6 caps overtime for these categories at 12 hours weekly and two hours daily, subject to Law 14/2025 Article 121. Article 7 states next-day commencement. EastLaws metadata states Gazette publication 2025-12-25 and effective date 2025-12-26. Exact text and applicability to individual roles remain unverified against the Gazette."
       },
-      "gazette_date": "2025-12-25",
-      "effective_date": "2025-12-26 (secondary source; verify against Gazette)",
-      "article_2_schedule_status": "partial secondary article text surfaced; full detailed limits and all provisions not verified",
-      "reuse_rights": "unknown",
-      "currentness": "not verified",
-      "card_action": "cross-reference only; no hour calculations until full exact provisions are checked"
+      "gazette_date": "2025-12-25 (official Amiri Press issue metadata; secondary EastLaws record states same)",
+      "effective_date": "2025-12-26 (stated by EastLaws and derived from Article 7 in Law Hub; not primary-PDF verified)",
+      "article_2_schedule_status": "Articles 1–7 available in Law Hub secondary transcription; exact classifications, caps and all wording not compared with Gazette",
+      "reuse_rights": "unknown; DSpace PDF and item-specific license file are request-a-copy restricted; secondary-source reuse not cleared",
+      "currentness": "not fully verified; later amendments, repeal and current application to each role not checked",
+      "card_action": "cross-reference lead only; do not calculate or advise on working-hour/overtime limits until primary text, employee role classification and currentness are reviewed"
     },
     {
       "document_id": "EG-LABOUR-DECISION-294-2025",
@@ -103,19 +105,21 @@
       ],
       "title_ar": "قرار وزير العمل رقم 294 لسنة 2025 بشأن تحديد العطلات والأعياد والمناسبات التي تعتبر إجازة بأجر كامل للعمال",
       "primary_lead": {
-        "url": "https://dspace.id.com.eg/items/f66386dd-dcb6-4ba9-b231-23f3f5a0c68f/full",
-        "status": "Official Gazette repository metadata identifies Decision 294/2025; PDF files listed"
+        "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full",
+        "status": "Official Gazette Supplement issue 291 metadata (2025-12-25), Ministry of Labour/Amiri Press; 834.25 KB PDF and 1.71 KB item-specific license listed, both request-a-copy restricted"
       },
       "secondary_text": {
         "url": "https://lawhub.info/eg/?p=17019",
-        "status": "Public secondary full-text transcription found; lists official holidays under Article 1. A separate repository abstract lists 12 days including Hijri New Year, Mawlid, Eid al-Fitr first two days, Eid al-Adha Arafah and first two days, Coptic Christmas, 25 January, Sham El-Nessim, Sinai Liberation Day, Labour Day, 30 June, 23 July and Armed Forces Day."
+        "corroborating_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-294?id=5008509&type=1",
+        "status": "Two public secondary full-text/index sources; neither compared with official Gazette PDF",
+        "summary": "Law Hub transcription exposes Articles 1–4. Article 1 lists 12 paid holidays/occasions: Hijri New Year, Mawlid, first two Eid al-Fitr days, Arafah and first two Eid al-Adha days, Coptic Christmas, 25 January/Police Day, Sham El-Nessim, Sinai Liberation Day, Labour Day, 30 June, 23 July and Armed Forces Day. The Minister may substitute another day for national uniformity. Article 2 provides paid leave not deducted from annual leave; if work is required, the worker receives double pay for the day or an alternative day on written request. Article 3 adds non-Muslim religious holidays under the relevant Prime Minister decision. Article 4 states next-day commencement. EastLaws states publication 2025-12-25 and effective date 2025-12-26. Ministry circulars in 2026 show event-specific date substitutions; these are not treated as permanent amendments."
       },
-      "gazette_date": "2025-12-25 (Supplement issue 291 تابع; metadata)",
-      "effective_date": "2025-12-26 (secondary legal database; verify official Gazette)",
-      "article_2_schedule_status": "Article 1 list found in secondary transcription; full text and all operative clauses still need primary comparison",
-      "reuse_rights": "unknown",
-      "currentness": "not verified; event-specific Ministry circulars can affect a particular holiday date but do not themselves prove permanent amendment",
-      "card_action": "cross-reference only; check full current text and any current-year holiday guidance before answering a specific date"
+      "gazette_date": "2025-12-25 (official Amiri Press issue metadata; secondary EastLaws record states same)",
+      "effective_date": "2025-12-26 (stated by EastLaws and derived from Article 4 in Law Hub; not primary-PDF verified)",
+      "article_2_schedule_status": "12-occasion list and Articles 2–4 available in Law Hub secondary transcription; no primary Gazette comparison",
+      "reuse_rights": "unknown; DSpace PDF and item-specific license file are request-a-copy restricted; secondary-source reuse not cleared",
+      "currentness": "not fully verified; 2026 Ministry circulars substitute dates for specific holidays, but a full amendment/repeal review is outstanding",
+      "card_action": "cross-reference lead only; for a specific date, check the current Ministry circular and any Prime Minister substitution; do not assume the fixed statutory date is always the actual leave date"
     },
     {
       "document_id": "EG-LABOUR-DECISION-49-2026",
