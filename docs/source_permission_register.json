@@ -716,7 +716,7 @@
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
       "permission_evidence": "Checked 2026-10-31. The publicly accessible Law Hub PDF visibly reproduces two Gazette pages for Decision 291/2025 (issue 295, dated 2025-12-30), including Articles 1–5 and printed page numbers 21–22. It is hosted by a third party, not the Amiri Press or DSpace item. No licence, reuse terms, source acquisition chain, or item-specific permission was established. Visual inspection of a reproduction does not establish rights to download, collect, embed, redistribute or commercially reuse it.",
-      "terms_checked_on": "2026-10-31",
+      "terms_checked_on": null,
       "bulk_download_or_api": "not established; no collection/API permission reviewed",
       "required_next_action": "Use only as a manual research cross-check. Do not ingest or redistribute the PDF or extracted text until source provenance and applicable collection/commercial reuse rights are reviewed. Original DSpace issue PDF remains request-a-copy restricted."
     }
