@@ -147,6 +147,13 @@
       "source_class": "third_party_official_gazette_issue_metadata",
       "permission": "not_allowed_without_explicit_exception_or_license",
       "next_action": "Metadata-only. The issue PDF is request-a-copy restricted; no PDF bytes or item-specific license were obtained. Do not request or bypass the restriction. Written permission is required before collection; prior written permission is required for commercial reuse."
+    },
+    "EG-SIS-GAZETTE-2025-295-SUPPLEMENT-D": {
+      "authority": "Egyptian State Information Service digital repository; metadata identifies Amiri Press as issuing authority",
+      "source_url": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117733?locale-attribute=ar",
+      "source_class": "official_government_gazette_public_viewing_metadata_lead",
+      "permission": "unknown",
+      "next_action": "The SIS search-indexed item says public viewing and lists a 550.3 KB PDF, but the item page/PDF could not be opened in this session. Review site terms and confirm ordinary authorized access before download; do not bypass host restrictions or infer bulk/commercial rights."
     }
   },
   "documents": [
@@ -2285,6 +2292,11 @@
           "url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829",
           "source_role": "Third-party DSpace item from Middle East Library for Economic Services; partial Article 1 abstract, not Amiri Press primary text",
           "status": "secondary_partial_text_pdf_request_copy_restricted"
+        },
+        {
+          "url": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117733?locale-attribute=ar",
+          "source_role": "SIS government-repository public-viewing metadata lead for Gazette issue 295; PDF not opened",
+          "status": "public_viewing_metadata_pdf_not_opened_terms_unreviewed"
         }
       ]
     },
@@ -2322,6 +2334,11 @@
           "url": "https://lawhub.info/eg/?p=17302",
           "source_role": "Secondary full-text transcription of Articles 1–5; not primary",
           "status": "secondary_full_text_not_primary_verified"
+        },
+        {
+          "url": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117733?locale-attribute=ar",
+          "source_role": "SIS government-repository public-viewing metadata lead for Gazette issue 295; PDF not opened",
+          "status": "public_viewing_metadata_pdf_not_opened_terms_unreviewed"
         }
       ]
     },
