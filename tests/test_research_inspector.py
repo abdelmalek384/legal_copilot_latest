@@ -161,7 +161,7 @@ class ResearchInspectorTests(unittest.TestCase):
             "https://example.gov:99999/evidence",
             "https://example.gov:0/evidence",
             "https://example.gov:/evidence",
-            "https://example.gov/\\tunsafe",
+            "https://example.gov/\tunsafe",
             None,
             "",
         )
