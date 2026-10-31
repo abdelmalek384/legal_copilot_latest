@@ -70,6 +70,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_s3_storage_preflight.py
       - name: Test separate versioned S3 recovery archive preflight
         run: PYTHONPATH=. python tests/test_s3_recovery_archive_preflight.py
+      - name: Test encrypted S3 recovery archive transport
+        run: PYTHONPATH=. python tests/test_database_backup_archive.py
       - name: Test sanitized live S3 acceptance evidence collector
         run: PYTHONPATH=. python tests/test_s3_live_acceptance_evidence.py
       - name: Test S3 original-file storage adapter
