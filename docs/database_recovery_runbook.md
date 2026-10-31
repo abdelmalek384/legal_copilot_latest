@@ -128,7 +128,7 @@ The --quiesced flag is an operator assertion, not an automated lock on all appli
 
 The recovery archive is not the original-object bucket. Configure the separate `COPILOT_S3_RECOVERY_BUCKET`, `COPILOT_S3_RECOVERY_REGION`, `COPILOT_S3_RECOVERY_KMS_KEY_ID`, and optional `COPILOT_S3_RECOVERY_ENDPOINT_URL` values. The AWS identity used for backup must have only the reviewed archive write permissions; restore operators need exact-version read permissions. The application runtime and original-object purge role must have no recovery-archive access. These IAM boundaries must be independently verified before production use.
 
-After creating the local encrypted bundle and while preserving the approved operator evidence, upload it:
+After creating the local encrypted bundle, the archive-upload command first runs the existing encrypted-bundle verifier with `BACKUP_KEY`; it refuses to upload unless the full bundle and tenant/object inventory pass. While preserving the approved operator evidence, upload it:
 
 ```bash
 python manage.py archive-upload-tenancy /protected/backup-directory/backup-file.bundle.enc \
