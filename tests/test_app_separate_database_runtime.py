@@ -4322,6 +4322,55 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertGreaterEqual(metrics["permission_or_evidence_blocked_versions"], 1)
         self.assertEqual(metrics["central_permission_register_blocked_versions"], 0)
         self.assertGreaterEqual(metrics["central_permission_register_blocked_sources"], 1)
+
+        # Coverage must use the latest event for every required review type,
+        # matching the runtime answer-eligibility gate. Historical passes cannot
+        # mask a later failure or an unattested latest lawyer approval.
+        missing_review_events_before = metrics["versions_missing_review_event_evidence"]
+        corpus.execute(
+            "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) "
+            "VALUES(?,?,?,?,?,?)",
+            (version_id, "Synthetic reviewer", "source_authenticity", "fail",
+             "Synthetic later withdrawal", "https://example.test/review-later-fail"),
+        )
+        corpus.execute(
+            "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) "
+            "VALUES(?,?,?,?,?,?)",
+            (version_id, "Synthetic reviewer", "lawyer_approval", "pass",
+             "Synthetic pass without counsel attestation", "https://example.test/review-unattested"),
+        )
+        corpus.commit()
+        with patch.object(app, "_central_source_permission_evidence", side_effect=permission_record):
+            latest_blocked = self.client.get("/legal-review/coverage")
+        self.assertEqual(latest_blocked.status_code, 200, latest_blocked.text)
+        self.assertEqual(
+            latest_blocked.json()["metrics"]["versions_missing_review_event_evidence"],
+            missing_review_events_before + 1,
+        )
+
+        # A later pass on both review types restores eligibility in the metric;
+        # tie timestamps are resolved by the monotonically increasing event ID.
+        corpus.execute(
+            "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) "
+            "VALUES(?,?,?,?,?,?)",
+            (version_id, "Synthetic reviewer", "source_authenticity", "pass",
+             "Synthetic current authenticity review", "https://example.test/review-latest-pass"),
+        )
+        corpus.execute(
+            "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) "
+            "VALUES(?,?,?,?,?,?)",
+            (version_id, "Synthetic counsel", "lawyer_approval", "pass",
+             "[qualified_egyptian_counsel_attested:user_id=42] Synthetic current counsel review",
+             "https://example.test/review-current-counsel"),
+        )
+        corpus.commit()
+        with patch.object(app, "_central_source_permission_evidence", side_effect=permission_record):
+            latest_restored = self.client.get("/legal-review/coverage")
+        self.assertEqual(latest_restored.status_code, 200, latest_restored.text)
+        self.assertEqual(
+            latest_restored.json()["metrics"]["versions_missing_review_event_evidence"],
+            missing_review_events_before,
+        )
         self.assertGreaterEqual(metrics["versions_not_eligible_for_verified_answers"], 1)
         self.assertTrue(any(
             row["practice_area"] == "labour"
