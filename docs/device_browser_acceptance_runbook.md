@@ -20,7 +20,7 @@
 | iPhone/iPad | Current Safari | Share → Add to Home Screen, standalone launch, viewport/safe-area behavior, offline privacy |
 | Tablet/large viewport | One supported browser | Responsive navigation, two-column layouts, no clipped controls |
 
-At minimum, record a desktop run and a phone run. Do not mark untested platforms as passed.
+At minimum, record desktop and phone runs. For a release-gate pass, cover desktop and phone in both ar-EG and en-US (four distinct device-class/locale cells) against the same application commit and environment. Additional OS/browser combinations in this table remain separately tracked; passing the minimum matrix does not certify every listed platform. Do not mark untested platforms as passed.
 
 ## Test sequence
 
@@ -101,7 +101,7 @@ Replace the example hostname with the approved staging origin. The probe must be
 
 ## Evidence record template
 
-Create one record per device/browser combination. Use `PASS`, `FAIL`, `BLOCKED`, or `NOT_TESTED`; never infer a pass from automated CI.
+Create one record per device/browser/locale combination. Set device_class to desktop, phone, or tablet. Use `PASS`, `FAIL`, `BLOCKED`, or `NOT_TESTED`; never infer a pass from automated CI.
 
 ```json
 {
@@ -136,4 +136,4 @@ Store completed evidence in the restricted release workspace, not in a public re
 
 ## Acceptance rule
 
-The device workstream is complete only when required device records identify the exact build, tester, environment, results and defects, all mandatory tests pass, and no unresolved high/critical usability, privacy, or authorization defect remains. A runbook, static contract test, or CI pass is not a substitute for a manual run.
+The device workstream is complete only when the minimum desktop/phone × Arabic/English matrix is present for one exact commit/environment, all mandatory tests pass, and no unresolved high/critical usability, privacy, or authorization defect remains. A runbook, static contract test, or CI pass is not a substitute for a manual run.
