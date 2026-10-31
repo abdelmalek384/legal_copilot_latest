@@ -607,9 +607,12 @@ def _recovery_archive_clients():
 
 
 def archive_upload_tenancy(a):
-    """Upload an already-encrypted bundle and print its exact-version locator."""
-    s3, kms, bucket, key_id = _recovery_archive_clients()
+    """Verify an encrypted tenancy bundle, upload it, and print its exact-version locator."""
     try:
+        report = verify_backup_bundle(a.file, _backup_fernet())
+        if not report.get("verified"):
+            raise DatabaseBundleError("Backup bundle verification did not pass")
+        s3, kms, bucket, key_id = _recovery_archive_clients()
         locator = upload_encrypted_bundle(
             s3, kms, a.file, bucket=bucket, kms_key_id=key_id
         )
