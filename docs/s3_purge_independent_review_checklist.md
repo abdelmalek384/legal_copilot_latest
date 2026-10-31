@@ -43,6 +43,7 @@
 - [ ] The live bucket policy enforces conditional deletes with the `s3:if-match` condition key and denies unconditioned `DeleteObject`/`DeleteObjects` requests; verify the actual provider supports this API behavior.
 - [ ] **Time-of-check/time-of-use review:** demonstrate that an external writer cannot overwrite or recreate the object between integrity verification and deletion. Conditional ETag deletion protects against a changed current object, but does not replace the IAM-enforced no-writer control; the CLI `--quiesced` flag is an operator assertion only and does not create a distributed lock or block S3 writes.
 - [ ] The IAM policy and operational change freeze enforce the no-writer condition for the entire purge interval.
+- [ ] The accepted `purge_writer_quiescence` manifest gate contains target-bound, independently witnessed evidence for worker drain, denial of writes by every non-purge principal, denial of writes by the purge role, policy-change freeze, and retained CloudTrail/negative-test evidence. A CLI `--quiesced` assertion alone is insufficient.
 - [ ] Delete response, post-delete object absence, and post-delete bucket-versioning state are checked; ambiguous outcomes enter manual review.
 
 ## 3. KMS and IAM
