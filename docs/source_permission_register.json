@@ -567,6 +567,25 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "No API or bulk-export permission established; browser-viewable secondary text only",
       "required_next_action": "Use only for manual discovery and cross-check/link-out. Do not bulk-copy, redistribute, or ingest row-level text into the product corpus while reuse rights remain unknown. Compare the original Gazette bundle through an ordinary authorized route; preserve the unresolved Table 24 discrepancies at rows 34, 61 and 64. Keep all candidates non-authoritative and retrieval-ineligible."
+    },
+    {
+      "source_id": "EG-LAW-HUB-DECISION-250-2026",
+      "authority": "Law Hub / Al-Mawsoua al-Qanuniya (secondary legal information site)",
+      "source_page": "https://lawhub.info/eg/?p=19706",
+      "material_types": [
+        "secondary metadata/transcription for Ministerial Decision 250/2026",
+        "PDF and Word attachment links",
+        "legal information compilation"
+      ],
+      "access_status": "public item page located; links to PDF/Word; PDF link opens a Google Drive preview that returned only a loading placeholder/sign-in route in this review; no document bytes or pages inspected",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "not_allowed_without_explicit_exception_or_license",
+      "terms_url": "https://lawhub.info/eg/?page_id=778",
+      "permission_evidence": "The site's published terms state that its free services are available for use and copying subject to preserving the site's rights and attribution to the original post, and state that it does not permit others to profit by republishing those free services for money. This is a site-level restriction; it does not establish rights over underlying official legal texts or authorize bulk extraction, redistribution, or commercial reuse of the attached PDF/Word files. The linked PDF preview was not readable in this review.",
+      "permission_evidence_url": "https://lawhub.info/eg/?page_id=778",
+      "terms_checked_on": "2026-10-31",
+      "bulk_download_or_api": "No API or bulk-export permission established; individual post and attachment preview links only",
+      "required_next_action": "Use the page only as a manual discovery/link-out lead. Preserve attribution and do not monetize or redistribute Law Hub's site materials; do not bulk-extract its attachments. Verify any legal text against the original Official Gazette and assess rights in the underlying official text separately. Keep Decision 250 candidates non-authoritative and retrieval-ineligible."
     }
   ]
 }
