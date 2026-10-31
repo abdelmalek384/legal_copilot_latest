@@ -145,37 +145,22 @@ _database_runtime_lock = threading.Lock()
 
 
 def _separate_runtime_enabled():
-    separate_paths = any(os.environ.get(name, "").strip() for name in (
-        "COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB"
-    ))
-    if separate_paths:
-        return True
-    # The shared-database development harness is never an implicit fallback.
-    # Explicitly select development mode or configure the approved profile-separated
-    # runtime; staging/production and unconfigured environments fail closed.
-    legacy_path = os.environ.get("COPILOT_DB", "").strip()
-    if legacy_path:
-        environment = os.environ.get("COPILOT_ENV", "").strip().lower()
-        if environment not in {"development", "dev", "test"}:
-            raise RuntimeError(
-                "COPILOT_DB is restricted to explicit development/test mode; "
-                "configure COPILOT_CONTROL_DB, COPILOT_TENANT_DB_ROOT, and COPILOT_CORPUS_DB."
-            )
-        return False
+    """The application supports only the profile-separated database architecture."""
+    if os.environ.get("COPILOT_DB", "").strip():
+        raise RuntimeError(
+            "COPILOT_DB is no longer supported; configure "
+            "COPILOT_CONTROL_DB, COPILOT_TENANT_DB_ROOT, and COPILOT_CORPUS_DB."
+        )
     return True
 
 
-# Reject shared-database mode during import outside explicitly selected local
-# development/test runs. Production retains its more specific configuration error
-# below, while staging and unset/unknown environments cannot defer failure until
-# the first database request.
+# The shared-database compatibility runtime has been retired. Reject its
+# configuration during import in every environment, including development/test.
 _environment_mode = os.environ.get("COPILOT_ENV", "").strip().lower()
-if os.environ.get("COPILOT_DB", "").strip() and _environment_mode not in {
-    "development", "dev", "test", "prod", "production"
-}:
+if os.environ.get("COPILOT_DB", "").strip():
     raise RuntimeError(
-        "COPILOT_DB is restricted to explicit development/test mode; "
-        "configure COPILOT_CONTROL_DB, COPILOT_TENANT_DB_ROOT, and COPILOT_CORPUS_DB."
+        "COPILOT_DB is no longer supported; configure "
+        "COPILOT_CONTROL_DB, COPILOT_TENANT_DB_ROOT, and COPILOT_CORPUS_DB."
     )
 
 # Never start production with the legacy shared-database compatibility path. The
@@ -306,45 +291,11 @@ def _ensure_legacy_firm_ownership(c):
 
 
 def _legacy_conn():
-    """Return the legacy shared connection only when separate database paths are unset.
-
-    The profile-separated runtime is the target architecture. This compatibility
-    path exists only when COPILOT_DB is explicitly configured and none of the
-    separate-database paths is set. Unconfigured startup must fail closed.
-    """
-    global _schema_ready
-    c = _connection_provider.connection()
-    if not _schema_ready:
-        with _init_lock:
-            if not _schema_ready:
-                c.execute("PRAGMA journal_mode=WAL")
-                c.executescript(SCHEMA)
-                _ensure_legacy_firm_ownership(c)
-                deadline_cols = {r[1] for r in c.execute("PRAGMA table_info(deadlines)")}
-                if "status" not in deadline_cols: c.execute("ALTER TABLE deadlines ADD COLUMN status TEXT DEFAULT 'open'")
-                chunk_cols = {r[1] for r in c.execute("PRAGMA table_info(chunks)")}
-                if "document_id" not in chunk_cols:
-                    c.execute("ALTER TABLE chunks ADD COLUMN document_id INT")
-                c.execute("""CREATE TABLE IF NOT EXISTS document_extraction_reviews(
-                    id INTEGER PRIMARY KEY,
-                    document_id INTEGER NOT NULL,
-                    case_id INTEGER NOT NULL,
-                    firm_id INTEGER NOT NULL,
-                    chunk_id INTEGER NOT NULL,
-                    reviewer_user_id INTEGER NOT NULL,
-                    outcome TEXT NOT NULL CHECK(outcome IN ('accepted','corrected','needs_recheck')),
-                    original_text TEXT NOT NULL,
-                    reviewed_text TEXT NOT NULL,
-                    note TEXT NOT NULL DEFAULT '',
-                    page_reference TEXT NOT NULL DEFAULT '',
-                    created_at TEXT NOT NULL DEFAULT (datetime('now'))
-                )""")
-                c.commit()
-                # Versioned migrations run after the legacy bootstrap has prepared columns
-                # required by earlier immutable migrations.
-                apply_migrations(c, os.path.join(os.path.dirname(__file__), "migrations"))
-                _schema_ready = True
-    return c
+    """Fail closed: the single-file database compatibility runtime is retired."""
+    raise RuntimeError(
+        "The shared COPILOT_DB database runtime is retired; configure "
+        "COPILOT_CONTROL_DB, COPILOT_TENANT_DB_ROOT, and COPILOT_CORPUS_DB."
+    )
 
 def norm(t):
     return re.sub("[\u064b-\u0652\u0670\u0640]", "", unicodedata.normalize("NFKC", t or "")).translate(_TR).lower()
