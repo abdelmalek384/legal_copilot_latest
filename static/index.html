@@ -779,7 +779,7 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
     if(!trigger.value||!ruleSelect.value){toast(uiText('حدد القاعدة وتاريخ بداية الحساب الذي راجعه المحامي','Choose a rule and the trigger date confirmed by counsel'));return}
     estimateButton.disabled=true;preview.replaceChildren(h('p',{className:'mut',textContent:uiText('جارٍ الحساب...','Calculating...')}));
     try{
-     const result=await api('/cases/'+id+'/deadline-estimate','POST',{rule_id:ruleSelect.value,trigger:trigger.value,distance_days:Number(distance.value||0)});
+     const result=await api('/cases/'+id+'/deadline-estimate?'+new URLSearchParams({rule_id:ruleSelect.value,trigger:trigger.value,distance_days:String(Number(distance.value||0))}).toString());
      const warnings=h('ul',{},...(result.warnings||[]).map(w=>h('li',{textContent:w})));
      const apply=btn('استخدام التاريخ في نموذج الموعد',()=>{due.value=result.final_due;if(!title.value.trim())title.value=result.rule_label_ar;note.value=uiText('حساب مبدئي غير معتمد. ','Preliminary unverified calculation. ')+uiText('القاعدة: ','Rule: ')+result.rule_id+'؛ '+uiText('بداية الحساب: ','Trigger: ')+result.trigger_date+'؛ '+uiText('النهاية الحسابية: ','Raw end: ')+result.raw_end+'؛ '+uiText('التاريخ بعد امتداد العطلات: ','Adjusted date: ')+result.final_due+'؛ '+(result.warnings||[]).join(' ');due.focus()});
      preview.replaceChildren(h('div',{className:'card'},h('b',{textContent:uiText('التاريخ الحسابي المقترح: ','Calculated suggested date: ')+fd(result.final_due)}),h('p',{className:'mut',textContent:uiText('نهاية المدة قبل الامتدادات: ','Raw end before extensions: ')+result.raw_end}),h('p',{className:'mut',textContent:result.disclaimer}),warnings,apply));
