@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "inventory_id": "EG-PHASE2-LEGAL-DOCUMENT-INVENTORY",
-  "prepared_on": "2026-10-28",
+  "prepared_on": "2026-10-31",
   "purpose": "Structured discovery inventory for Phase 2. Entries are research leads, not collected files, verified current law, permission to collect, or lawyer-approved legal advice.",
   "policy": {
     "default_collection_permission": "unknown",
@@ -1982,7 +1982,7 @@
       "instrument_number": 162,
       "instrument_year": 2026,
       "source_id": "EG-MINISTRY-LABOUR-LAWS",
-      "source_status": "official_index_discovered_primary_text_pending",
+      "source_status": "official_Gazette_metadata_verified_primary_text_restricted_secondary_full_text_crosscheck_found",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -1994,7 +1994,7 @@
         "source-specific collection, storage, extraction, indexing, excerpt display and commercial reuse terms",
         "qualified Egyptian labour-lawyer review and approval"
       ],
-      "notes": "Discovery-only. The Official Gazette DSpace catalogue identifies Ministerial Decision 162/2026 in الوقائع المصرية, issue 176 (تابع), publication date 2026-08-13, issuing body Ministry of Labour, publisher General Authority for Amiri Press. A full 66-article secondary transcription and a separate legal archive newsletter entry cross-check the instrument number, title and date. The secondary Article 66 says the decision takes effect the day after publication; 2026-08-14 is a candidate effective date, not an authoritative conclusion until the original Gazette PDF is visually checked. Articles 38–41 organize internal rules for working hours, rest, flexible/remote work, leave and exceptional overtime, but do not themselves state replacement numerical statutory limits. They are operationally relevant to Law 14/2025 Articles 117–123 and 124–129; Article 2 reflects the ten-worker threshold in Article 137. Articles 46–48 require close comparison with Article 141: the secondary Article 46 does not expressly restate the statute's additional three-month investigation extension when new facts/documents appear. Do not infer that the decree overrides or narrows the statute. Article 47 must be read without impairing the statutory union-representative attendance safeguard. No original Gazette bytes were obtained, hashed or visually inspected. Keep legal status and collection/commercial reuse unknown, discovery-only and retrieval-ineligible. Detailed secondary-text crosswalk and counsel questions: data/candidates/labour_law_14_2025/related_instruments/decree_162_2026_secondary_text_crosswalk_2026-10-31.md.",
+      "notes": "Discovery-only. The Official Gazette DSpace catalogue identifies Ministerial Decision 162/2026 in الوقائع المصرية, issue 176 (تابع), publication date 2026-08-13, issuing body Ministry of Labour, publisher General Authority for Amiri Press. A full 66-article secondary transcription and a separate legal archive newsletter entry cross-check the instrument number, title and date. The secondary Article 66 says the decision takes effect the day after publication; 2026-08-14 is a candidate effective date, not an authoritative conclusion until the original Gazette PDF is visually checked. Articles 38–41 organize internal rules for working hours, rest, flexible/remote work, leave and exceptional overtime, but do not themselves state replacement numerical statutory limits. They are operationally relevant to Law 14/2025 Articles 117–123 and 124–129; Article 2 reflects the ten-worker threshold in Article 137. Articles 46–48 require close comparison with Article 141: the secondary Article 46 does not expressly restate the statute's additional three-month investigation extension when new facts/documents appear. Do not infer that the decree overrides or narrows the statute. Article 47 must be read without impairing the statutory union-representative attendance safeguard. No original Gazette bytes were obtained, hashed or visually inspected. Keep legal status and collection/commercial reuse unknown, discovery-only and retrieval-ineligible. Detailed secondary-text crosswalk and counsel questions: data/candidates/labour_law_14_2025/related_instruments/decree_162_2026_secondary_text_crosswalk_2026-10-31.md. The original Gazette download control resolves to a request-a-copy form; no request was submitted and no access control was bypassed. Detailed secondary-text crosswalk: data/candidates/labour_law_14_2025/related_instruments/decision_162_2026_work_rules_crosswalk_2026-10-31.md. No copy was requested; no request-copy access control was bypassed.",
       "source_urls": [
         {
           "url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
@@ -2052,6 +2052,26 @@
           "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%84%D8%AA%D8%AD%D9%82%D9%82-%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B2%D9%86-%D8%A8%D9%8A%D9%86-%D9%85%D8%AA%D8%B7%D9%84%D8%A8%D8%A7%D8%AA-%D8%A7%D9%84%D8%A5%D9%86%D8%AA%D8%A7%D8%AC-%D9%88%D8%B5%D9%88%D9%86-%D8%AD%D9%82%D9%88%D9%82-%D8%A7%D9%84%D9%82%D9%88%D9%89-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D9%84%D8%A9-%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%8A%D8%B5%D8%AF%D8%B1-%D9%82%D8%B1%D8%A7%D8%B1-%D8%A7-%D9%88%D8%B2%D8%A7%D8%B1%D9%8A-%D8%A7-%D8%A8%D8%AA%D8%AD%D8%AF%D9%8A%D8%AF-%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84-%D8%A7%D9%84%D8%AE%D8%B7%D8%B1%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B7%D9%82-%D8%A7%D9%84%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D8%A7%D9%84%D8%AA%D9%8A-%D8%AA-%D8%B2%D8%A7%D8%AF-%D9%81%D9%8A%D9%87%D8%A7-%D8%A7%D9%84%D8%A5%D8%AC%D8%A7%D8%B2%D8%A7%D8%AA-%D8%A7%D9%84%D8%B3%D9%86%D9%88%D9%8A%D8%A9-7-%D8%A3%D9%8A%D8%A7%D9%85-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86/",
           "source_role": "official Ministry of Labour announcement; discovery evidence only",
           "status": "discovered_not_downloaded"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/f32b4a07-6598-4ed8-a170-60d631a57221",
+          "source_role": "Official Gazette repository metadata for Supplement issue 64 (تابع)",
+          "status": "metadata_discovered_primary_pdf_not_independently_reviewed"
+        },
+        {
+          "url": "https://www.labour.gov.eg/ar/الأخبار/لتحقق-التوازن-بين-متطلبات-الإنتاج-وصون-حقوق-القوى-العاملة-وزير-العمل-يصدر-قرار-ا-وزاري-ا-بتحديد-الأعمال-الخطرة-والمناطق-النائية-التي-ت-زاد-فيها-الإجازات-السنوية-7-أيام-للعاملين/",
+          "source_role": "official Ministry of Labour announcement",
+          "status": "official_announcement_discovery_only"
+        },
+        {
+          "url": "https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html",
+          "source_role": "public secondary full-text transcription; cross-check only",
+          "status": "discovered_not_primary"
+        },
+        {
+          "url": "https://www.cairo24.com/Upload/libfiles/180/1/188.pdf",
+          "source_role": "third-party-hosted 28-page scan candidate of Egyptian Proceedings issue 64 supplement; Article 3 geographic wording and Article 5 commencement pinpoint",
+          "status": "third_party_scan_candidate_not_authenticated_or_hashed"
         }
       ]
     },
@@ -2084,6 +2104,251 @@
           "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D8%A3%D8%B1%D8%A8%D8%B9%D8%A7%D8%A1-%D8%A7%D9%84%D9%85%D9%82%D8%A8%D9%84-%D8%A5%D8%AC%D8%A7%D8%B2%D8%A9-%D9%85%D8%AF%D9%81%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%A3%D8%AC%D8%B1-%D9%84%D9%84%D8%B9%D8%A7%D9%85%D9%84%D9%8A%D9%86-%D8%A8%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9-%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D9%8A%D9%84%D8%A7%D8%AF-%D8%A7%D9%84%D9%85%D8%AC%D9%8A%D8%AF-%D8%AC%D8%A8%D8%B1%D8%A7%D9%86-%D9%88%D8%AD%D8%AF%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D9%8A%D9%86-%D9%88%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D9%85%D8%B4%D8%AA%D8%B1%D9%83-%D8%A3%D8%B3%D8%A7%D8%B3-%D9%82%D9%88%D8%A9-%D8%A7%D9%84%D9%88%D8%B7%D9%86/",
           "source_role": "official Ministry announcement citing Decision 294/2025; discovery evidence only",
           "status": "discovered_not_downloaded"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/f66386dd-dcb6-4ba9-b231-23f3f5a0c68f/full",
+          "source_role": "Official Gazette repository metadata and file listing",
+          "status": "metadata_and_PDF_listing_found"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=17019",
+          "source_role": "public secondary full-text transcription",
+          "status": "secondary_text_not_primary"
+        },
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-294?id=5008509&type=1",
+          "source_role": "secondary legal text/index",
+          "status": "indexed_text_and_effective_date_lead_not_primary"
+        },
+        {
+          "url": "https://mediadr.sis.gov.eg/handle/123456789/117216?locale-attribute=ar",
+          "source_role": "State Information Service public Ministry announcement about Decision 294/2025",
+          "status": "official_announcement_summary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-214-2025",
+      "official_title_ar": "قرار وزير العمل رقم 214 لسنة 2025 بشأن ضوابط وآليات تحرير عقود العمل",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 214,
+      "instrument_year": 2025,
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
+      "source_status": "official_publisher_text_found_currentness_and_reuse_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "full article-by-article primary-text comparison",
+        "Gazette issue and effective date",
+        "relationship to Labour Law Arts. 86–89 and later amendments",
+        "source-specific reuse review",
+        "qualified Egyptian-lawyer review"
+      ],
+      "notes": "Official Amiri Press searchable text was found for Decision 214/2025, including the Arabic-language written contract in four copies, distribution to employer/worker/social insurance/competent administrative entity, and advice guidance. Gazette repository metadata lists the decision issued 2025-10-05. The full text is publicly searchable at the official publisher page, but the source binary has not been downloaded or hashed and reuse terms remain unknown. Do not treat source availability as reuse permission; verify Gazette publication/effective date, all articles and amendments before activation.",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=5EinXV37k4w%3D",
+          "source_role": "official Amiri Press searchable decision text",
+          "status": "official_text_searchable_not_downloaded_or_hashed"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/8ebcec10-0c45-4fbf-9a56-44ca409dc6c4/full",
+          "source_role": "Official Gazette repository metadata and file listing",
+          "status": "metadata_found_files_not_independently_reviewed"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-187-2025",
+      "official_title_ar": "قرار وزير العمل رقم 187 لسنة 2025 بشأن وضع آليات وضوابط لاعتماد الاستقالات العمالية من جانب مكتب العمل",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 187,
+      "instrument_year": 2025,
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
+      "source_status": "official_metadata_or_text_lead_found_primary_comparison_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "complete official decision text and Gazette issue/pages",
+        "exact procedure and scope of Office of Labour Relations authentication",
+        "relation to Law 14/2025 Article 167",
+        "later amendment/repeal/currentness",
+        "reuse review",
+        "qualified Egyptian-lawyer review"
+      ],
+      "notes": "Public Ministry statements describe Decision 187/2025 as regulating Labour Office authentication of worker resignations; a secondary full-text landing page on Eastlaws gives partial article headings/text but restricts full access. This is relevant to Law 14/2025 Article 167, but do not conflate the decision's administrative authentication procedure with the statute's substantive resignation requirements. Exact official Gazette issue/pages, complete text, commencement, amendments and reuse rights remain unverified.",
+      "source_urls": [
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/14-09-2025/no-187?id=2177898&type=1",
+          "source_role": "secondary legal database; partial public preview",
+          "status": "partial_preview_full_text_restricted"
+        },
+        {
+          "url": "https://www.almasryalyoum.com/news/details/3550680",
+          "source_role": "news report summarizing Ministry announcement",
+          "status": "secondary_summary_only"
+        },
+        {
+          "url": "https://www.youm7.com/story/2025/9/15/وزير-العمل-يُصدر-قرارا-لضبط-آليات-اعتماد-الاستقالات-العمالية-طبقا/7122177",
+          "source_role": "news report summarizing Ministry announcement",
+          "status": "secondary_summary_only"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-290-2025",
+      "official_title_ar": "قرار وزير العمل رقم 290 لسنة 2025 بتحديد الأعمال المتقطعة بطبيعتها التي يجوز تواجد العامل فيها أكثر من عشر ساعات ولا تتجاوز اثنتي عشرة ساعة في اليوم الواحد",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 290,
+      "instrument_year": 2025,
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
+      "source_status": "official_Gazette_repository_metadata_and_public_secondary_Article_1_abstract_found; Article_2_schedule_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "complete official text and Article 2 list of intermittent work",
+        "Gazette issue/date/page range and commencement",
+        "relation to Law 14/2025 Articles 117–119",
+        "later amendments/repeal",
+        "reuse review",
+        "qualified Egyptian-lawyer review"
+      ],
+      "notes": "Public Official Gazette repository record at https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829 lists Arabic and English PDF files and exposes an Arabic/English Article 1 abstract: ordinary span between start and end of work is limited to ten hours; rest counts within presence when the worker stays at the workplace; the Article 2 intermittent-work exception permits presence up to twelve hours. The full Article 2 list is not transcribed/verified here. Do not classify a job as intermittent or calculate working time without the full schedule and facts. Currentness and reuse remain unknown.",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829",
+          "source_role": "Official Gazette repository metadata, PDF file listing and Article 1 abstract",
+          "status": "public_metadata_and_partial_text"
+        },
+        {
+          "url": "https://dspace.id.com.eg/handle/123456789/6142",
+          "source_role": "repository item URI",
+          "status": "metadata_lead"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-291-2025",
+      "official_title_ar": "قرار وزير العمل رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 291,
+      "instrument_year": 2025,
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
+      "source_status": "official_metadata_or_text_lead_found_primary_comparison_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "complete decision text",
+        "Gazette pages and effective date",
+        "relation to Law 14/2025 Articles 117–121 and Decision 162/2026",
+        "later amendments/repeal",
+        "reuse review",
+        "qualified Egyptian-lawyer review"
+      ],
+      "notes": "Official Gazette repository metadata for the Gazette Supplement issue 295 (تابع د), dated 2025-12-30, lists Decision 291/2025 on controls and justifications for overtime. Full operative text and detailed exceptions were not verified in this review. Keep as a discovery lead; do not infer the allowed reasons, procedures or limits from the title alone.",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+          "source_role": "Official Gazette supplement metadata",
+          "status": "metadata_found_full_text_not_reviewed"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-292-2025",
+      "official_title_ar": "قرار وزير العمل رقم 292 لسنة 2025 بشأن تحديد الحد الأقصى لساعات العمل الفعلية والإضافية في الأعمال التجهيزية والتكميلية وأعمال الحراسة والنظافة",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 292,
+      "instrument_year": 2025,
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
+      "source_status": "official_Gazette_metadata_plus_secondary_indexed_text_found; primary_comparison_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "complete decision text and exact hourly limits",
+        "Gazette pages and commencement",
+        "relation to Law 14/2025 Articles 117–121",
+        "later amendments/repeal",
+        "reuse review",
+        "qualified Egyptian-lawyer review"
+      ],
+      "notes": "Official Gazette Supplement issue 291 (تابع), dated 2025-12-25, lists Decision 292/2025. An indexed secondary legal-text page at https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-292?id=5042304&type=1 surfaces decision date 2025-12-04, publication date 2025-12-25, claimed effective date 2025-12-26, and article headings/text fragments for preparatory work, complementary work and guarding. These dates and operative limits are secondary leads only; the full official PDF has not been compared. No hours/overtime calculation should be made from the title or fragments. Reuse rights and currentness remain unknown.",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full",
+          "source_role": "Official Gazette Supplement issue 291 metadata and PDF bundle",
+          "status": "metadata_and_PDF_listing_found"
+        },
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-292?id=5042304&type=1",
+          "source_role": "secondary indexed legal text",
+          "status": "partial_indexed_text_currentness_and_primary_comparison_pending"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-50-2026",
+      "official_title_ar": "قرار وزير العمل رقم 50 لسنة 2026 بشأن تحديد قواعد وظروف وأحوال تشغيل الأطفال وتدريبهم والأعمال والمهن والصناعات التي يحظر تشغيلهم أو تدريبهم فيها",
+      "practice_areas": [
+        "labour"
+      ],
+      "document_type": "ministerial_decision",
+      "instrument_number": 50,
+      "instrument_year": 2026,
+      "source_id": "EG-MINISTRY-LABOUR-LAWS",
+      "source_status": "third_party_hosted_gazette_scan_candidate",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "official Gazette issue identity and complete Arabic text; preserve exact bytes and SHA-256 through an authorized route",
+        "visual review of all 28 pages and all annexed prohibited-work tables/schedules",
+        "compare third-party-hosted scan against the official Gazette archive record and any official Ministry publication",
+        "verify publication date, signature date, commencement clause, age thresholds, working-time limits, prohibited work schedules and later amendments",
+        "assess source-specific collection, indexing, display and commercial reuse rights",
+        "qualified Egyptian labour-lawyer review and child-labour specialist review before authoritative use"
+      ],
+      "notes": "Official Gazette repository metadata identifies Decision 50/2026 under Ministry of Labour and links it to Egyptian Proceedings Supplement issue 64 (تابع), dated 2026-03-18. The same issue is represented by a 28-page PDF hosted by Cairo24; extracted text shows Decision 50 beginning after Decisions 48 and 49, around printed page 13 / PDF index 12, with annex material. A public secondary transcription exists, but neither it nor the third-party-hosted scan is treated as authenticated primary evidence. Provenance, completeness, page integrity and reuse rights have not been established. No legal text is copied into the inventory; do not enable retrieval.",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/73e51760-61b7-4091-8ca1-fd9505f530ae",
+          "source_role": "Official Gazette repository metadata for Ministry of Labour Decision 50/2026 and listed files",
+          "status": "metadata_verified_file_access_restricted"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/f32b4a07-6598-4ed8-a170-60d631a57221",
+          "source_role": "Official Gazette repository metadata for issue 64 (تابع), listing Decisions 48, 49 and 50",
+          "status": "metadata_verified_file_access_restricted"
+        },
+        {
+          "url": "https://www.cairo24.com/Upload/libfiles/180/1/188.pdf",
+          "source_role": "third-party-hosted Gazette scan candidate; not independently authenticated",
+          "status": "third_party_scan_candidate_not_authenticated_or_hashed"
+        },
+        {
+          "url": "https://ahmedazimelgamel.blogspot.com/2026/03/50-2026.html?hl=ar",
+          "source_role": "public secondary full-text transcription; cross-check only",
+          "status": "secondary_text_not_primary"
         }
       ]
     }
@@ -2153,10 +2418,16 @@
       "action": "Independently determine whether the full executive regulations for Labour Law 14/2025 have been issued; search official Gazette/ministerial publication and record exact number, publication/effective date, source text and amendment history. The Ministry index snapshot did not show a separate entry, which is not proof of non-existence.",
       "owner": "legal corpus lead",
       "status": "not_started"
+    },
+    {
+      "id": "ACT-LABOUR-DECISION-50-2026-VERIFY",
+      "action": "Authenticate and review Ministerial Decision 50/2026 on child employment and training: establish Official Gazette issue/pages, obtain or verify complete Arabic text and annexed prohibited-work schedules through an authorized route, hash original bytes, confirm publication/commencement and later amendments, assess reuse rights, and obtain qualified Egyptian-lawyer review; keep search eligibility disabled until all gates pass.",
+      "owner": "legal corpus lead",
+      "status": "not_started"
     }
   ],
   "research_log": {
-    "checked_on": "2026-10-23",
+    "checked_on": "2026-10-31",
     "purpose": "Public-web source discovery and temporal-risk identification. These findings do not grant collection permission, establish a complete amendment chain, or constitute lawyer approval.",
     "evidence": [
       {
