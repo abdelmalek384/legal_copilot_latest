@@ -178,6 +178,8 @@ jobs:
         run: python tests/test_labour_law_supplement_cards.py
       - name: Test canonical Labour Law evidence cards
         run: PYTHONPATH=. python tests/test_labour_law_evidence_cards.py
+      - name: Test Labour Law promulgation page pinpoints
+        run: python tests/test_labour_law_promulgation_pinpoints.py
       - name: Test Labour Law implementing-instrument register
         run: python tests/test_labour_law_instrument_register.py
       - name: Test reconciled Labour Law card manifest
