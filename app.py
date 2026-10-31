@@ -1934,7 +1934,7 @@ class DeadlineIn(BaseModel):
     _valid_due = field_validator("due")(validate_operational_deadline)
 class DeadlineEstimateIn(BaseModel):
     rule_id: str = Field(min_length=1, max_length=100)
-    trigger: str = Field(pattern=r"^\\d{4}-\\d{2}-\\d{2}$")
+    trigger: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
     distance_days: int = Field(0, ge=0, le=365)
     _valid_trigger = field_validator("trigger")(validate_calendar_date)
 class FeeIn(BaseModel):
