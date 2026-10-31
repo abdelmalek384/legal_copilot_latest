@@ -766,10 +766,13 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
     btn('حذف القضية',async()=>{if(confirm(uiText('حذف نهائي لكل بيانات القضية؟','Permanently delete all case data?'))){await api('/cases/'+id,'DELETE');PAGE='clients';clients()}},'d')))}
  if(TAB==='brief'){
   const result=h('div',{});
+  const firmConsent=h('input',{type:'checkbox'});
+  const clientConsent=h('input',{type:'checkbox'});
   const run=btn(uiText('إنشاء ملخص ذكي','Generate AI brief'),async()=>{
+   if(!firmConsent.checked||!clientConsent.checked){toast(uiText('يلزم تأكيد تفويض المكتب والعميل لهذه القضية قبل الإرسال','Confirm firm and client authorization for this matter before sending'));return}
    run.disabled=true;result.replaceChildren(h('p',{className:'mut',textContent:uiText('جارٍ إعداد الملخص من سجلات القضية...','Preparing a brief from case records...')}));
    try{
-    const data=await api('/cases/'+id+'/brief','POST',{});
+    const data=await api('/cases/'+id+'/brief','POST',{firm_authorized:firmConsent.checked,client_authorized:clientConsent.checked});
     const nodes=[h('p',{className:'mut',textContent:data.message||''})];
     if(data.answer)nodes.push(h('div',{className:'research-content',style:'white-space:pre-wrap'},data.answer));
     if(data.sources&&data.sources.length)nodes.push(h('div',{className:'card'},h('b',{textContent:uiText('السجلات المستخدمة','Records used')}),...data.sources.map(src=>h('div',{className:'row'},h('span',{textContent:'['+src.citation_index+'] '+src.reference}),h('span',{className:'mut',textContent:src.record_type})))));
@@ -778,7 +781,9 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    finally{run.disabled=false}
   });
   body=h('div',{className:'card'},h('h3',{textContent:uiText('ملخص ذكي للقضية','AI case brief')}),
-   h('p',{className:'mut',textContent:uiText('ينشئ ملخصاً واقعياً مؤقتاً من بيانات القضية والملاحظات والجلسات والمهام والمواعيد ومقاطع المستندات. تُحذف معرفات القضية والعميل والخصم المباشرة وتُحجب أنماط شائعة للبريد والهاتف والرقم القومي. هذا ليس إخفاءً كاملاً للهوية؛ قد تبقى أسماء أو معلومات حساسة داخل النصوص. راجع المحتوى وتأكد من تفويض العميل والمكتب؛ موافقة إعدادات النشر ليست موافقة من العميل أو المكتب على هذه القضية. الملخص ليس رأياً قانونياً ولا يُحفظ.','Creates a temporary factual summary from case metadata, notes, sessions, tasks, deadlines and extracted document excerpts. Direct case/client/opposing-party identifiers are omitted and common email, phone and national-ID patterns are redacted. This is not complete anonymization: names or sensitive context may remain in free text. Review the content and confirm client/firm authorization; deployment approval is not per-client or per-firm consent. The brief is not legal advice and is not saved.')}),
+   h('p',{className:'mut',textContent:uiText('ينشئ ملخصاً واقعياً مؤقتاً من بيانات القضية والملاحظات والجلسات والمهام والمواعيد ومقاطع المستندات. تُحذف معرفات القضية والعميل والخصم المباشرة وتُحجب أنماط شائعة للبريد والهاتف والرقم القومي. هذا ليس إخفاءً كاملاً للهوية؛ قد تبقى أسماء أو معلومات حساسة داخل النصوص. موافقة إعدادات النشر ليست موافقة من المكتب أو العميل على هذه القضية. لا تتابع إلا إذا كان لديك تفويض موثق من المكتب والعميل؛ سيُسجل النظام إقرارك بهذا التفويض. الإقرار لا يغني عن الموافقة الصحيحة أو مراجعة سياسة المكتب. الملخص ليس رأياً قانونياً ولا يُحفظ.','Creates a temporary factual summary from case metadata, notes, sessions, tasks, deadlines and extracted document excerpts. Direct case/client/opposing-party identifiers are omitted and common email, phone and national-ID patterns are redacted. This is not complete anonymization: names or sensitive context may remain in free text. Deployment approval is not firm or client authorization for this matter. Proceed only if you have documented authorization from both the firm and client; the system records your attestation. This attestation does not replace valid consent or firm policy review. The brief is not legal advice and is not saved.')}),
+   h('label',{className:'row'},firmConsent,h('span',{textContent:uiText('أؤكد وجود تفويض موثق من المكتب لإرسال بيانات هذه القضية إلى مزود النموذج المحدد.','I confirm documented firm authorization to send this matter data to the configured model provider.')})),
+   h('label',{className:'row'},clientConsent,h('span',{textContent:uiText('أؤكد وجود تفويض/أساس قانوني موثق من العميل لمعالجة بيانات هذه القضية بواسطة مزود النموذج.','I confirm documented client authorization/lawful basis for this matter data to be processed by the model provider.')})),
    run,result)
  }
  if(TAB==='tasks'){const tt=h('input',{placeholder:uiText('مهمة جديدة','New task')}),as=h('select',{},new Option(uiText('غير معيّن','Unassigned'),''),...c.members.map(m=>new Option(m.name,m.user_id))),due=h('input',{type:'date'});
