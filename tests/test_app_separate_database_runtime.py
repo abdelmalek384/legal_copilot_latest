@@ -4348,6 +4348,24 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             missing_review_events_before + 1,
         )
 
+        # SQL-prefix lookalikes and credential-bearing HTTPS URLs are not
+        # valid counsel evidence; the dashboard must use the strict shared gate.
+        corpus.execute(
+            "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) "
+            "VALUES(?,?,?,?,?,?)",
+            (version_id, "Synthetic counsel", "lawyer_approval", "pass",
+             "[qualified_egyptian_counsel_attested:user_id=0] Synthetic malformed marker",
+             "https://user:secret@example.test/review"),
+        )
+        corpus.commit()
+        with patch.object(app, "_central_source_permission_evidence", side_effect=permission_record):
+            malformed_latest = self.client.get("/legal-review/coverage")
+        self.assertEqual(malformed_latest.status_code, 200, malformed_latest.text)
+        self.assertEqual(
+            malformed_latest.json()["metrics"]["versions_missing_review_event_evidence"],
+            missing_review_events_before + 1,
+        )
+
         # A later pass on both review types restores eligibility in the metric;
         # tie timestamps are resolved by the monotonically increasing event ID.
         corpus.execute(
