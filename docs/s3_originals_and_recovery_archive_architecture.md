@@ -53,6 +53,10 @@ Purpose: encrypted multi-database backup bundles, including original-file bytes,
 - Include both targets in non-secret configuration fingerprints; evidence for one target must not be reused for the other.
 - Change the original-object preflight to require never-versioned state only; add a separate recovery-archive preflight requiring versioning enabled.
 - Add an encrypted backup-archive upload operation and exact-version restore retrieval. Keep local encrypted bundle creation available for development and controlled offline workflows.
+
+**Transport implementation (PR in progress):** `database_backup_archive.py` uploads the already-Fernet-encrypted bundle to the recovery bucket with SSE-KMS, requires bucket versioning Enabled and an enabled customer-managed symmetric KMS key, and returns a locator containing the exact S3 `VersionId`, SHA-256, size, and canonical KMS key ARN. Downloads issue both `HeadObject` and `GetObject` with that exact `VersionId`, validate SSE-KMS/key identity and immutable metadata, stream to a new exclusive local file, and recompute size/SHA-256. Multipart upload is used above the single-PUT size limit and aborts incomplete multipart uploads. The CLI commands are `archive-upload-tenancy` and `archive-download-tenancy`; the latter only downloads the encrypted bundle. Operators must still run `verify-backup-tenancy` and `restore-tenancy` to a new isolated destination. No command activates restored databases or overwrites configured live paths.
+
+The locator is recovery evidence and must be stored separately in a restricted evidence system. Do not rely on the object key, S3 latest-version behavior, ETag, or bucket versioning alone. The transport requires the recovery archive KMS key; the application `BACKUP_KEY` remains a separate encryption layer and must be escrowed independently. The transport code does not create IAM policies or approve retention/lifecycle semantics.
 - Enforce separate IAM roles and bucket policies; verify effective policies and organization-level controls, not only role policy names.
 - Add tests for same-bucket misconfiguration, missing/ambiguous versioning state, wrong KMS key, cross-role access denial, archive object-version selection, tamper detection, and restore integrity.
 - Update deployment configuration examples, recovery runbook, purge checklist, and operational acceptance manifest.
@@ -68,7 +72,7 @@ Purpose: encrypted multi-database backup bundles, including original-file bytes,
 
 ## Implementation status (2026-10-31)
 
-PR #1024 implements the two independent read-only preflights, requires distinct bucket and KMS configuration in production preflight, changes the original-object validator to require never-versioned state, and binds the acceptance fingerprint to both targets. It also updates the runbook and deployment example. These are configuration and validation controls only. Encrypted backup-bundle upload, exact-version retrieval, backup/restore IAM separation, lifecycle/retention approval, and witnessed live recovery remain unimplemented and block acceptance of this architecture.
+PR #1024 implements the two independent read-only preflights, requires distinct bucket and KMS configuration in production preflight, changes the original-object validator to require never-versioned state, and binds the acceptance fingerprint to both targets. It also updates the runbook and deployment example. These are configuration and validation controls only. Encrypted backup-bundle upload and exact-version retrieval are implemented in the current PR but remain subject to CI review/merge and live acceptance. Backup/restore IAM separation, lifecycle/retention approval, and witnessed live recovery remain open and block acceptance of this architecture.
 
 ## Acceptance criteria
 
