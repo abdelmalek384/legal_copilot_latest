@@ -834,16 +834,21 @@ def delete_case(c, u, cid):
 
 
 def _qualified_egyptian_counsel_user_ids() -> set[int]:
-    """Return operator-attested counsel account IDs; unset/invalid entries fail closed."""
+    """Return bounded operator-attested account IDs; malformed entries fail closed."""
     raw = os.environ.get("LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS", "")
     values = set()
     for item in raw.split(","):
         item = item.strip()
-        if not item:
+        # Control-plane IDs are positive signed 64-bit integers. Bound the token
+        # before int() so hostile/mistyped environment values cannot raise.
+        if not item or len(item) > 19 or not item.isascii() or not item.isdecimal():
             continue
-        if not item.isascii() or not item.isdecimal() or int(item) <= 0:
+        try:
+            user_id = int(item)
+        except ValueError:
             continue
-        values.add(int(item))
+        if 0 < user_id <= (2**63 - 1):
+            values.add(user_id)
     return values
 
 
