@@ -76,6 +76,7 @@ class S3LiveEvidenceTests(unittest.TestCase):
         )
         self.assertFalse(report["production_ready"])
         self.assertEqual(report["caller"]["account"], "123456789012")
+        self.assertTrue(report["caller"]["arn"].endswith("/[session]"))
         self.assertEqual(report["caller_role"]["role_name"], "legal-runtime")
         self.assertEqual(fake_iam.last_role_name, "legal-runtime")
         self.assertEqual(report["caller_role"]["inline_policies"][0]["name"], "runtime-inline")
