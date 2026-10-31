@@ -1406,8 +1406,8 @@ def _answer_has_unsupported_quantities(answer, hits, cited_indices):
 
 _CITATION_SUPPORT_GENERIC_TERMS = set(tokens(
     "the a an is are was were be been being and or but if then this that these those "
-    "source sources passage passages rule rules legal law article section under pursuant "
-    "النص النصوص المادة المواد القانون القوانين وفقا بموجب حيث يجوز يجب يحق يلتزم يلتزم "
+    "source sources passage passages rule rules stated legal law article section under pursuant "
+    "النص النصوص المادة المواد القانون القوانين وفقا بموجب حيث يجوز يجب يحق يلتزم "
     "يكون تكون كانت كان على في من عن الى إلى مع هذا هذه ذلك الذي التي"
 ))
 
@@ -1422,22 +1422,22 @@ def _answer_has_unanchored_citations(answer, hits):
     visible = _mask_markdown_code(answer)
     for raw_line in visible.splitlines():
         line = raw_line.strip()
-        if (not line or re.match(r"^#{1,6}\\s+", line)
+        if (not line or re.match(r"^#{1,6}\s+", line)
                 or re.fullmatch(r"[-*_]{3,}", line)
-                or re.fullmatch(r"\\*\\*[^*]{1,100}[:：]\\*\\*", line)):
+                or re.fullmatch(r"\*\*[^*]{1,100}[:：]\*\*", line)):
             continue
         if line.endswith((":", "：")) and len(line) <= 100:
             continue
-        for sentence in re.split(r"(?<=[.!?؟])\\s+", line):
-            sentence = re.sub(r"^(?:[-*+]\\s+|\\d+[.)]\\s+|>\\s*)", "", sentence).strip()
+        for sentence in re.split(r"(?<=[.!?؟])\s+", line):
+            sentence = re.sub(r"^(?:[-*+]\s+|\d+[.)]\s+|>\s*)", "", sentence).strip()
             if not sentence:
                 continue
-            cited = {int(value) for value in re.findall(r"\\[(\\d+)\\]", sentence)}
+            cited = {int(value) for value in re.findall(r"\[(\d+)\]", sentence)}
             if not cited:
                 continue  # The separate uncited-claim gate handles missing citations.
             if any(index < 1 or index > len(hits) for index in cited):
                 return True
-            claim_text = re.sub(r"\\[\\d+\\]", " ", sentence)
+            claim_text = re.sub(r"\[\d+\]", " ", sentence)
             claim_terms = set(expanded_tokens(claim_text, limit=96)) - _CITATION_SUPPORT_GENERIC_TERMS
             if not claim_terms:
                 continue
