@@ -420,7 +420,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.get_by_text("الأدوات القانونية المسجلة", exact=True).click()
         search = self.page.get_by_placeholder("ابحث بالعنوان أو المعرف أو الجهة")
         search.fill("SYNTHETIC METADATA ONLY INSTRUMENT 2026")
-        self.page.get_by_role("button", name="بحث").click()
+        self.page.get_by_role("button", name="بحث", exact=True).click()
         self.page.get_by_text("SYNTHETIC METADATA ONLY INSTRUMENT 2026").wait_for(timeout=10000)
         body = self.page.locator("body").inner_text()
         self.assertIn("Shared legal-registry metadata only", body)
@@ -459,7 +459,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         )
         self.assertEqual(upload.status, 200, upload.text())
 
-        self.page.get_by_role("button", name="البحث القانوني").click()
+        self.page.locator("#side").get_by_role("button", name="البحث القانوني").click()
         scope = self.page.locator(".research-controls select").nth(0)
         matter = self.page.locator(".research-controls select").nth(1)
         composer = self.page.locator(".research-composer textarea")
@@ -564,7 +564,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.stage("rtl.login.done")
         self.page.get_by_role("button", name="تغطية المجموعة القانونية").click()
         self.stage("rtl.coverage.click.done")
-        self.page.get_by_text("تغطية المجموعة القانونية").wait_for(timeout=10000)
+        self.page.get_by_role("heading", name="تغطية المجموعة القانونية").wait_for(timeout=10000)
         self.stage("rtl.coverage.visible")
 
         for width, height in ((1440, 900), (375, 812)):
