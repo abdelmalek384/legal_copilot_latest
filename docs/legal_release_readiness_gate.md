@@ -1,6 +1,6 @@
 # Legal release readiness gate
 
-The read-only gate in tools/validate_legal_release_readiness.py is a structural safety check, not a legal opinion. It never downloads or imports legal text and cannot independently prove that permission or review evidence is genuine.
+The read-only gate in tools/validate_legal_release_readiness.py is a structural safety check, not a legal opinion. It never downloads or imports legal text and cannot independently prove that permission or review evidence is genuine. The deliberately bounded initial instrument scope and source-specific exclusions are recorded in [legal_initial_release_scope.md](legal_initial_release_scope.md); scope definition is not release approval.
 
 ## Required extracted-text evidence
 
