@@ -833,6 +833,25 @@ def delete_case(c, u, cid):
         raise
 
 
+def _qualified_egyptian_counsel_user_ids() -> set[int]:
+    """Return operator-attested counsel account IDs; unset/invalid entries fail closed."""
+    raw = os.environ.get("LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS", "")
+    values = set()
+    for item in raw.split(","):
+        item = item.strip()
+        if not item:
+            continue
+        if not item.isascii() or not item.isdecimal() or int(item) <= 0:
+            continue
+        values.add(int(item))
+    return values
+
+
+def _counsel_attestation_marker(user_id: int) -> str:
+    """Stable, explicit attestation marker stored in the existing review-event notes."""
+    return f"[qualified_egyptian_counsel_attested:user_id={int(user_id)}]"
+
+
 _REQUIRED_REVIEW_EVENTS_SQL = (
     "AND (SELECT COUNT(DISTINCT e.review_type) FROM legal_review_events e "
     "WHERE e.version_id=v.version_id "
@@ -841,6 +860,7 @@ _REQUIRED_REVIEW_EVENTS_SQL = (
     "WHERE e2.version_id=v.version_id AND e2.review_type=e.review_type "
     "ORDER BY e2.reviewed_at DESC, e2.review_event_id DESC LIMIT 1) "
     "AND e.outcome='pass' AND TRIM(COALESCE(e.notes,''))<>'' "
+    "AND (e.review_type<>'lawyer_approval' OR e.notes LIKE '%[qualified_egyptian_counsel_attested:user_id=%') "
     "AND TRIM(COALESCE(e.reviewer,''))<>'' AND e.evidence_url LIKE 'https://%')=6 "
 )
 
@@ -957,7 +977,7 @@ def citation_provenance(c, version_id):
     data["status_verified"] = bool(data["status_verified"])
     data["amendment_history_verified"] = bool(data["amendment_history_verified"])
     data["review_evidence"] = [dict(e) for e in c.execute(
-        "SELECT e.review_event_id,e.review_type,e.outcome,e.evidence_url,e.reviewer,e.reviewed_at "
+        "SELECT e.review_event_id,e.review_type,e.outcome,e.evidence_url,e.reviewer,e.notes,e.reviewed_at "
         "FROM legal_review_events e WHERE e.version_id=? AND e.review_event_id=("
         "SELECT e2.review_event_id FROM legal_review_events e2 "
         "WHERE e2.version_id=e.version_id AND e2.review_type=e.review_type "
@@ -3657,12 +3677,17 @@ def create_legal_review_event(version_id: int, b: LegalReviewEventIn, u: dict = 
     evidence_url = validate_review_evidence_url(b.evidence_url)
     if b.outcome == "pass" and not evidence_url:
         raise HTTPException(422, "a passing review requires an HTTPS evidence_url")
+    notes = b.notes.strip()
+    if b.review_type == "lawyer_approval" and b.outcome == "pass":
+        if u["id"] not in _qualified_egyptian_counsel_user_ids():
+            raise HTTPException(403, "qualified Egyptian counsel attestation is required for lawyer approval")
+        notes = (_counsel_attestation_marker(u["id"]) + (" " + notes if notes else "")).strip()
     c = corpus_conn()
     if not c.execute("SELECT 1 FROM legal_document_versions WHERE version_id=?", (version_id,)).fetchone():
         raise HTTPException(404, "legal document version not found")
     cur = c.execute(
         "INSERT INTO legal_review_events(version_id,reviewer,review_type,outcome,notes,evidence_url) VALUES(?,?,?,?,?,?)",
-        (version_id, u["name"], b.review_type, b.outcome, b.notes.strip(), evidence_url))
+        (version_id, u["name"], b.review_type, b.outcome, notes, evidence_url))
     c.commit()
     event = c.execute(
         "SELECT review_event_id,version_id,reviewer,review_type,outcome,notes,evidence_url,reviewed_at "
