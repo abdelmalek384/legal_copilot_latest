@@ -21,7 +21,7 @@ class TestLabourDecisionPublicTextCrosswalk(unittest.TestCase):
         self.assertEqual(records["EG-LABOUR-DECISION-290-2025"]["primary_lead"]["url"], "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1")
         self.assertIn("request-a-copy restricted", records["EG-LABOUR-DECISION-290-2025"]["primary_lead"]["status"])
         self.assertEqual(records["EG-LABOUR-DECISION-290-2025"]["secondary_text"]["url"], "https://lawhub.info/eg/?p=17303")
-        self.assertIn("not compared", records["EG-LABOUR-DECISION-290-2025"]["secondary_text"]["status"])
+        self.assertIn("not checked", records["EG-LABOUR-DECISION-290-2025"]["secondary_text"]["status"])
         self.assertEqual(records["EG-LABOUR-DECISION-291-2025"]["primary_lead"]["url"], "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1")
         self.assertEqual(records["EG-LABOUR-DECISION-291-2025"]["secondary_text"]["url"], "https://lawhub.info/eg/?p=17302")
         self.assertIn("not checked", records["EG-LABOUR-DECISION-291-2025"]["secondary_text"]["status"])
