@@ -1845,7 +1845,15 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(history.status_code, 200, history.text)
         self.assertEqual(len(history.json()["events"]), 3)
         self.assertEqual(history.json()["events"][0]["review_type"], "lawyer_approval")
-        self.assertEqual(history.json()["events"][0]["reviewer"], "First Owner")
+        self.assertIn(
+            "source_authenticity",
+            [event["review_type"] for event in history.json()["events"]],
+        )
+        source_review = next(
+            event for event in history.json()["events"]
+            if event["review_type"] == "source_authenticity"
+        )
+        self.assertEqual(source_review["reviewer"], "First Owner")
 
         control.execute(
             "DELETE FROM user_platform_roles WHERE user_id=? AND role_name='platform_reviewer'",
