@@ -70,6 +70,18 @@ For a reviewed dataset and a real run file:
 python tools/evaluate_retrieval_quality.py --questions path/to/reviewed_questions.jsonl --runs path/to/runner_output.jsonl --output evaluation-report.json
 ```
 
+## Synthetic end-to-end retrieval regression
+
+Run:
+
+```bash
+PYTHONPATH=. python tests/test_synthetic_retrieval.py
+```
+
+This test exercises the production `app.search` path against an in-memory SQLite/FTS5 corpus containing only explicitly fictional passages. It checks that a colloquial Egyptian query (for example, `شغال من غير عقد`) can retrieve its intended synthetic passage; unrelated questions do not acquire irrelevant passages; unverified, permission-blocked, future-effective and expired versions are filtered; empty retrieval abstains; and unrelated/uncited answer claims fail the existing citation guards.
+
+The fixture marks its synthetic records as verified solely to exercise the positive branch of the retrieval gate. It patches the provenance display helpers and uses reserved `example.test` evidence URLs. None of these records is Egyptian law, a legal authority, a lawyer-reviewed label, or a benchmark of legal-answer accuracy. The test proves behavior of the code paths under controlled fixtures only. It does not measure recall or precision on the real corpus, prove semantic entailment, validate the production databases, or replace a lawyer-reviewed end-to-end model run.
+
 ## Release gates
 
 Do not claim legal-answer accuracy from retrieval metrics alone. Before a release decision, review:
