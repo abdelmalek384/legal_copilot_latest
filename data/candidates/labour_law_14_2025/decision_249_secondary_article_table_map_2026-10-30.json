@@ -34,6 +34,11 @@
         "printed_page": 44,
         "url": "https://www.almasdar.com/WebP/libfiles/46/3/735.webp",
         "observed": "Table 3"
+      },
+      {
+        "printed_page": 32,
+        "url": "https://www.almasdar.com/WebP/libfiles/46/3/723.webp",
+        "observed": "Article 22 publication/commencement clause and signature block; reproduced page shows decision date 2026-09-01"
       }
     ]
   },
@@ -535,7 +540,11 @@
       "retrieval_eligible": false,
       "candidate_decision_date": "2026-09-01",
       "candidate_effective_date": "2026-10-13",
-      "date_calculation_note": "Candidate only: publication 2026-10-12; Article 22 says day following publication. Confirm original Gazette date and exact wording."
+      "date_calculation_note": "Candidate only: official catalogue publication date 2026-10-12 plus Article 22 in a secondary reproduced image stating the day following publication. Original Gazette wording/date not independently verified.",
+      "visual_reviewed_on": "2026-10-31",
+      "effective_date_candidate": "2026-10-13",
+      "effective_date_candidate_status": "secondary_scan_inference_not_verified",
+      "effective_date_verified": false
     },
     {
       "record_type": "table",
@@ -627,5 +636,9 @@
       "retrieval_eligible": false
     }
   ],
-  "validation_note": "2026-10-30: 26 secondary image locators mapped; structural validator checks article/table coverage and enforces candidate-only quarantine. No original Gazette match is claimed."
+  "validation_note": "2026-10-30: 26 secondary image locators mapped; structural validator checks article/table coverage and enforces candidate-only quarantine. No original Gazette match is claimed.",
+  "effective_date_candidate": "2026-10-13",
+  "effective_date_candidate_status": "secondary_scan_inference_not_verified",
+  "effective_date_verified": false,
+  "effective_date_basis": "Official Gazette catalogue metadata gives publication date 2026-10-12; Article 22 in the Almasdar-hosted secondary image reproduction states effectiveness the day following publication. Candidate date only; original Gazette PDF has not been obtained, hashed or compared."
 }

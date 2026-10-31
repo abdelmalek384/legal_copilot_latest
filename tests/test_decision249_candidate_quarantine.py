@@ -19,7 +19,7 @@ class Decision249CandidateQuarantineTests(unittest.TestCase):
         self.assertEqual(record["source"]["visual_reviewed_on"], "2026-10-31")
         self.assertEqual(
             [item["printed_page"] for item in record["source"]["visual_reviewed_images"]],
-            [19, 33, 43, 44],
+            [19, 33, 43, 44, 32],
         )
         kinds = {}
         for item in record["records"]:
@@ -30,6 +30,13 @@ class Decision249CandidateQuarantineTests(unittest.TestCase):
             self.assertFalse(item["retrieval_eligible"])
             self.assertEqual(item["status"], "candidate_only_pending_official_match")
         self.assertEqual(kinds, {"article": 22, "table": 3, "appendix": 1})
+        self.assertEqual(record["effective_date_candidate"], "2026-10-13")
+        self.assertEqual(record["effective_date_candidate_status"], "secondary_scan_inference_not_verified")
+        self.assertIs(record["effective_date_verified"], False)
+        self.assertIn(
+            32,
+            [item["printed_page"] for item in record["source"]["visual_reviewed_images"]],
+        )
 
     def test_table3_candidate_is_not_a_compliance_rule(self):
         path = DATA / "decision_249_table3_continuous_monitoring_candidate_2026-10-29.json"
