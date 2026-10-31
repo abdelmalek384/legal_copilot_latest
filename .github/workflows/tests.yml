@@ -220,6 +220,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_identity_lifecycle.py
       - name: Test secure SMTP identity email adapter
         run: PYTHONPATH=. python tests/test_identity_email.py
+      - name: Test controlled identity SMTP acceptance probe
+        run: PYTHONPATH=. python tests/test_verify_identity_email.py
       - name: Test one-time platform-admin bootstrap CLI
         run: PYTHONPATH=. python tests/test_platform_admin_bootstrap_cli.py
       - name: Test profile-separated CLI write commands
