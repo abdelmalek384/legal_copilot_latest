@@ -3469,7 +3469,15 @@ def legal_review_coverage(u: dict = Depends(user)):
         "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(effective_date,''))='') AS versions_missing_effective_date, "
         "(SELECT COUNT(*) FROM legal_document_versions WHERE TRIM(COALESCE(original_path,''))<>'' AND TRIM(COALESCE(original_sha256,''))='') AS versions_missing_original_hash, "
         "(SELECT COUNT(*) FROM legal_document_versions v WHERE TRIM(COALESCE(v.permission_evidence,''))='' OR EXISTS (SELECT 1 FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id WHERE d.document_id=v.document_id AND TRIM(COALESCE(s.permission_evidence,''))='')) AS versions_missing_permission_evidence, "
-        "(SELECT COUNT(*) FROM legal_document_versions v WHERE EXISTS (SELECT 1 FROM (SELECT 'source_authenticity' AS review_type UNION ALL SELECT 'extraction_quality' UNION ALL SELECT 'legal_status' UNION ALL SELECT 'amendment_history' UNION ALL SELECT 'licensing' UNION ALL SELECT 'lawyer_approval') required WHERE NOT EXISTS (SELECT 1 FROM legal_review_events e WHERE e.version_id=v.version_id AND e.review_type=required.review_type AND e.outcome='pass' AND TRIM(COALESCE(e.evidence_url,''))<>''))) AS versions_missing_review_event_evidence",
+        "(SELECT COUNT(*) FROM legal_document_versions v WHERE EXISTS ("
+        "SELECT 1 FROM (SELECT 'source_authenticity' AS review_type UNION ALL SELECT 'extraction_quality' UNION ALL SELECT 'legal_status' UNION ALL SELECT 'amendment_history' UNION ALL SELECT 'licensing' UNION ALL SELECT 'lawyer_approval') required "
+        "WHERE NOT EXISTS (SELECT 1 FROM legal_review_events e WHERE e.version_id=v.version_id AND e.review_type=required.review_type "
+        "AND e.review_event_id=(SELECT e2.review_event_id FROM legal_review_events e2 "
+        "WHERE e2.version_id=v.version_id AND e2.review_type=required.review_type "
+        "ORDER BY e2.reviewed_at DESC,e2.review_event_id DESC LIMIT 1) "
+        "AND e.outcome='pass' AND TRIM(COALESCE(e.notes,''))<>'' "
+        "AND (e.review_type<>'lawyer_approval' OR e.notes LIKE '%[qualified_egyptian_counsel_attested:user_id=%') "
+        "AND TRIM(COALESCE(e.reviewer,''))<>'' AND e.evidence_url LIKE 'https://%'))) AS versions_missing_review_event_evidence",
         (today, today)
     ).fetchone()
     metrics = dict(metrics)
