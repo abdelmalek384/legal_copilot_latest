@@ -365,7 +365,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         record = next(d for d in self.inventory["documents"] if d["document_id"] == "EG-LABOUR-DECISION-249-2026")
         self.assertEqual(record["legal_status"], "unknown")
         self.assertEqual(record["review_status"], "discovery_only")
-        source = next(item for item in record["source_urls"] if "بيان-%D8%AA%D9%88%D8%B6%D9%8A%D8%AD%D9%8A" in item["url"])
+        source = next(item for item in record["source_urls"] if "%D8%A8%D9%8A%D8%A7%D9%86-%D8%AA%D9%88%D8%B6%D9%8A%D8%AD%D9%8A" in item["url"])
         self.assertIn("not full decision text", source["source_role"])
         self.assertIn("page_fetch_failed", source["status"])
         currentness = (ROOT / "data" / "candidates" / "labour_law_14_2025" / "related_instruments" / "currentness_register_2026-10-28.md").read_text(encoding="utf-8")
