@@ -63,8 +63,6 @@ class FakeIAM:
     def get_role_policy(self, **kwargs):
         return {"PolicyDocument": {"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Action": ["kms:Decrypt"], "Resource": "arn:aws:kms:eu-central-1:123456789012:key/test-key"}]}}
 
-    def list_role_policies(self, **kwargs):
-        return {"PolicyNames": ["runtime-inline"]}
 
 
 class S3LiveEvidenceTests(unittest.TestCase):
