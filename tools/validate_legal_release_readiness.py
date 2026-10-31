@@ -420,7 +420,7 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
                     "lawyer_approval must identify a qualified Egyptian lawyer/counsel role.")
             notes = review.get("notes")
             marker = re.match(
-                r"^\\[qualified_egyptian_counsel_attested:user_id=([1-9][0-9]*)\\](?:\\s|$)",
+                r"^\[qualified_egyptian_counsel_attested:user_id=([1-9][0-9]*)\](?:\s|$)",
                 notes if isinstance(notes, str) else "",
             )
             if marker is None or not isinstance(reviewer_id, str) or reviewer_id != marker.group(1):
