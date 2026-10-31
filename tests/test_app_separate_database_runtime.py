@@ -4137,7 +4137,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "INSERT INTO chunks(ref,article,page,text,norm,document_version_id,in_force,as_of,source,verified) "
             "VALUES(?,?,?,?,?,?,?,?,?,?)",
             ("Coverage test instrument - article 1", "1", None, "Coverage legal text",
-             self.app.norm("Coverage legal text"), version_id, 1, "2020-01-01",
+             app.norm("Coverage legal text"), version_id, 1, "2020-01-01",
              "https://example.test/coverage-source", 1),
         )
         corpus.execute(
