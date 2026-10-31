@@ -35,6 +35,13 @@ def valid_source():
             "commercial_reuse_permission": "allowed",
             "source_permission_evidence": "license ref",
             "permission_evidence": "version permission ref",
+            "source_permission_register_match": True,
+            "source_permission_register_collection_permission": "allowed",
+            "source_permission_register_commercial_reuse_permission": "allowed",
+            "permission_evidence_url": "https://example.gov/rights/collection",
+            "commercial_reuse_evidence_url": "https://example.gov/rights/commercial",
+            "terms_checked_on": "2026-10-20",
+            "commercial_terms_checked_on": "2026-10-20",
             "effective_date": "2020-01-01",
             "repeal_date": None,
             "review_evidence": [
@@ -61,6 +68,13 @@ class ResearchInspectorTests(unittest.TestCase):
             ("commercial_reuse_permission", "unknown"),
             ("source_permission_evidence", ""),
             ("permission_evidence", ""),
+            ("source_permission_register_match", False),
+            ("source_permission_register_collection_permission", "unknown"),
+            ("source_permission_register_commercial_reuse_permission", "unknown"),
+            ("permission_evidence_url", None),
+            ("commercial_reuse_evidence_url", None),
+            ("terms_checked_on", None),
+            ("commercial_terms_checked_on", None),
             ("review_status", "pending_lawyer_review"),
             ("legal_status", "under_review"),
         ):
@@ -120,6 +134,12 @@ class ResearchInspectorTests(unittest.TestCase):
         source = valid_source()
         source["provenance"]["review_evidence"][0]["reviewer"] = " "
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+    def test_current_permission_review_dates_do_not_override_historical_legal_as_of_date(self):
+        source = valid_source()
+        self.assertEqual(source_status(source, "2020-01-01"), STATUS_VERIFIED)
+        source["provenance"]["terms_checked_on"] = "2999-01-01"
+        self.assertEqual(source_status(source, "2030-01-01"), STATUS_REVIEW)
 
     def test_future_or_repealed_version_is_not_labelled_current(self):
         source = valid_source()

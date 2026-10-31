@@ -61,11 +61,27 @@ class CitationCoverageTests(unittest.TestCase):
             "The deadline is 30 days.\n```text\n[1]"
         ))
 
+    def test_ask_abstains_when_corpus_source_permission_evidence_is_unresolved(self):
+        hit = {
+            "cos": 1.0, "score": 1, "ref": "LAW-UNLICENSED", "text": "A source passage.",
+            "verified": True, "in_force": True, "applies_as_of": True, "case_id": None,
+            "source_status": app.STATUS_REVIEW, "provenance": {},
+        }
+        with patch.object(app, "search", return_value=[hit]), patch.object(
+            app, "LLM", return_value="The rule is stated in the source [1]."
+        ) as llm:
+            result = app.ask(None, "What is the rule?", scope="verified_corpus")
+        self.assertTrue(result["found"])
+        self.assertTrue(result["abstained"])
+        self.assertIsNone(result["answer"])
+        self.assertIn("المصادر فقط", result["message"])
+        llm.assert_not_called()
+
     def test_ask_rejects_answer_citing_only_a_code_block(self):
         hit = {
             "cos": 1.0, "score": 1, "ref": "LAW-1", "text": "A source passage.",
             "verified": True, "in_force": True, "applies_as_of": True, "case_id": None,
-            "provenance": {},
+            "source_status": app.STATUS_VERIFIED, "provenance": {},
         }
         with patch.object(app, "search", return_value=[hit]), patch.object(
             app, "LLM", return_value="The deadline is 30 days.\n```text\n[1]\n```"
@@ -79,7 +95,7 @@ class CitationCoverageTests(unittest.TestCase):
         hit = {
             "cos": 1.0, "score": 1, "ref": "LAW-1", "text": "A source passage.",
             "verified": True, "in_force": True, "applies_as_of": True, "case_id": None,
-            "provenance": {},
+            "source_status": app.STATUS_VERIFIED, "provenance": {},
         }
         with patch.object(app, "search", return_value=[hit]), patch.object(
             app, "LLM", return_value="The rule is stated in the source [1].\n```text\n[99]\n```"

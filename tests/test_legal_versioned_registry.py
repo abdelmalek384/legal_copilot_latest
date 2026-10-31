@@ -3,6 +3,7 @@ import os
 import sqlite3
 import tempfile
 import unittest
+from unittest.mock import patch
 import sys
 from pathlib import Path
 
@@ -114,6 +115,22 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         chunk_id = chunk.lastrowid
         self.db.commit()
         return chunk_id, cur.lastrowid
+
+    def test_corpus_hit_without_permission_register_match_cannot_generate_answer(self):
+        _chunk_id, _version_id = self._make_linked_chunk(
+            "register-crosscheck", "2020-01-01", text="registercrosscheck legal text"
+        )
+        hits = self.app.search(self.db, "registercrosscheck", as_of="2026-10-23")
+        self.assertEqual(len(hits), 1)
+        self.assertEqual(hits[0]["source_status"], "outdated_or_under_review")
+        with patch.object(self.app, "LLM") as llm:
+            result = self.app.ask(
+                self.db, "registercrosscheck",
+                as_of="2026-10-23", scope="verified_corpus",
+            )
+        self.assertTrue(result["abstained"])
+        self.assertIsNone(result["answer"])
+        llm.assert_not_called()
 
     def test_linked_version_requires_review_and_status_verification(self):
         chunk_id, version_id = self._make_linked_chunk("pending", "2020-01-01", review_status="pending_lawyer_review", authenticity_verified=0, status_verified=0)
@@ -241,13 +258,26 @@ class LegalVersionedRegistryTests(unittest.TestCase):
             "prompt-provenance", "2020-01-01", text="promptprovenanceprobe legal passage"
         )
         self.db.execute(
-            "UPDATE legal_document_versions SET gazette_issue='77',gazette_pages='12-16' WHERE version_id=?",
-            (version_id,)
+            "UPDATE legal_document_versions SET gazette_issue='77',gazette_pages='12-16',original_sha256=? WHERE version_id=?",
+            ("a" * 64, version_id)
         )
         self.db.commit()
         captured = []
-        self.app.LLM = lambda prompt: captured.append(prompt) or "الإجابة مدعومة بالمصدر [1]"
-        result = self.app.ask(self.db, "promptprovenanceprobe")
+        rights_evidence = {
+            "source_permission_register_match": True,
+            "source_permission_register_collection_permission": "allowed",
+            "source_permission_register_commercial_reuse_permission": "allowed",
+            "permission_evidence_url": "https://example.gov/rights/collection",
+            "commercial_reuse_evidence_url": "https://example.gov/rights/commercial",
+            "terms_checked_on": "2026-10-20",
+            "commercial_terms_checked_on": "2026-10-20",
+        }
+        with patch.object(self.app, "_central_source_permission_evidence", return_value=rights_evidence):
+            hits = self.app.search(self.db, "promptprovenanceprobe", scope="verified_corpus")
+            self.assertEqual(len(hits), 1)
+            self.assertEqual(hits[0]["source_status"], "verified_operative_text", hits[0]["provenance"])
+            self.app.LLM = lambda prompt: captured.append(prompt) or "الإجابة مدعومة بالمصدر [1]"
+            result = self.app.ask(self.db, "promptprovenanceprobe", scope="verified_corpus")
         self.assertTrue(result["found"])
         source_section = captured[0].split(
             "The JSON records are the only legal evidence supplied for this answer:\n", 1

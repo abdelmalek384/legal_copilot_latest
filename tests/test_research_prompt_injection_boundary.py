@@ -18,9 +18,10 @@ class ResearchPromptInjectionBoundaryTests(unittest.TestCase):
             "cos": 0.9,
             "score": 1.0,
             "case_id": None,
-            "verified": False,
-            "in_force": False,
-            "applies_as_of": False,
+            "verified": True,
+            "in_force": True,
+            "applies_as_of": True,
+            "source_status": app.STATUS_VERIFIED,
             "provenance": {},
         }
 
