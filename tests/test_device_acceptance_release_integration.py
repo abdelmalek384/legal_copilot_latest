@@ -32,15 +32,6 @@ def evidence_record(device_class, locale, suffix):
     }
 
 
-def write_manifest(path, records):
-    for record in records:
-        for relative in record.get("evidence_paths", []):
-            evidence = path.parent / relative
-            evidence.parent.mkdir(parents=True, exist_ok=True)
-            evidence.write_bytes(b"synthetic evidence fixture")
-    path.write_text(json.dumps(records), encoding="utf-8")
-
-
 def complete_matrix():
     return [
         evidence_record("desktop", "ar-EG", "130"),
@@ -48,6 +39,15 @@ def complete_matrix():
         evidence_record("phone", "ar-EG", "132"),
         evidence_record("phone", "en-US", "133"),
     ]
+
+
+def write_manifest(path, records):
+    for record in records:
+        for relative in record.get("evidence_paths", []):
+            evidence = path.parent / relative
+            evidence.parent.mkdir(parents=True, exist_ok=True)
+            evidence.write_bytes(b"synthetic evidence fixture")
+    path.write_text(json.dumps(records), encoding="utf-8")
 
 
 class DeviceAcceptanceReleaseIntegrationTests(unittest.TestCase):
@@ -70,7 +70,7 @@ class DeviceAcceptanceReleaseIntegrationTests(unittest.TestCase):
             record["application_commit"] = "b" * 40
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "evidence.json"
-            path.write_text(json.dumps(records), encoding="utf-8")
+            write_manifest(path, records)
             result = _evaluate_device_acceptance(path, COMMIT)
         self.assertFalse(result["ready"])
         self.assertIn("does not match expected commit", result["error"])
@@ -79,7 +79,7 @@ class DeviceAcceptanceReleaseIntegrationTests(unittest.TestCase):
         records = complete_matrix()[:-1]
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "evidence.json"
-            path.write_text(json.dumps(records), encoding="utf-8")
+            write_manifest(path, records)
             result = _evaluate_device_acceptance(path, COMMIT)
         self.assertFalse(result["ready"])
         self.assertIn("matrix is incomplete", result["error"])
@@ -90,7 +90,7 @@ class DeviceAcceptanceReleaseIntegrationTests(unittest.TestCase):
         records[0]["defect_ids"] = ["QA-101"]
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "evidence.json"
-            path.write_text(json.dumps(records), encoding="utf-8")
+            write_manifest(path, records)
             result = _evaluate_device_acceptance(path, COMMIT)
         self.assertFalse(result["ready"])
         self.assertIn("requires PASS", result["error"])
@@ -98,7 +98,7 @@ class DeviceAcceptanceReleaseIntegrationTests(unittest.TestCase):
     def test_complete_matrix_for_exact_commit_passes_structural_gate(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "evidence.json"
-            path.write_text(json.dumps(complete_matrix()), encoding="utf-8")
+            write_manifest(path, complete_matrix())
             result = _evaluate_device_acceptance(path, COMMIT)
         self.assertTrue(result["ready"], result["error"])
         self.assertEqual(result["records_validated"], 4)
