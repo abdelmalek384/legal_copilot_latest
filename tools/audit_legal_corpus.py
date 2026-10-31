@@ -88,7 +88,7 @@ def latest_review_has_passing_evidence(db, event_columns, version_id, review_typ
     ):
         return False
     if review_type == "lawyer_approval" and not re.search(
-        r"\\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\\]",
+        r"\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\]",
         event["notes"],
     ):
         return False
