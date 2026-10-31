@@ -292,7 +292,7 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertEqual(source["collection_permission"], "unknown")
         self.assertEqual(source["commercial_reuse_permission"], "unknown")
         self.assertIn("public viewing", source["access_status"])
-        self.assertIn("could not be opened", source["permission_evidence"])
+        self.assertIn("Direct opening of the item page failed", source["permission_evidence"])
         self.assertEqual(MODULE.validate(data), [])
 
 if __name__ == "__main__":
