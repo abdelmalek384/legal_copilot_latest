@@ -132,7 +132,7 @@ The table list below is a schema-review queue. “Needs schema-level review” i
 - **Exports and generated artifacts:** inspect source-inspector memo export/save, downloads, generated files and any route that serializes matter or client content. Static route scan alone cannot establish all export paths.
 - **Authentication/session:** login attempts, sessions, password change, disabled users, cookie/token lifecycle, session expiry/revocation and concurrent login behavior.
 - **Audit/security events:** ensure audit endpoints are role-gated, events are firm-scoped where appropriate, and logs never expose client text, secrets or authentication material.
-- **Storage and operations:** database files, uploaded binary storage (currently binaries are not retained by the ingestion flow), temp files, deployment volumes, backups, restore tooling, deletion, logs and operator access.
+- **Storage and operations:** database files, tenant-scoped original binary storage (local adapter for development and S3/KMS adapter foundation), staged-upload recovery, temporary files, deployment volumes, encrypted multi-database backups, restore/rollback tooling, legal holds, deletion, logs and operator access. Live bucket/key-policy validation, approved retention schedules, and a witnessed coordinated recovery/deletion drill remain open.
 - **External/background execution:** review GitHub Actions workflows, deployment platform jobs, shell scripts, imported modules and any future queue/worker before declaring the background-job inventory complete.
 
 ## Status and next actions
