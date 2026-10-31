@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Read-only reviewer queue for legal-source provenance and version checks."""
 from __future__ import annotations
-import argparse, json, os, sqlite3
+import argparse, json, os, re, sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
@@ -115,7 +115,7 @@ def review_queue(db_path: Path) -> dict:
                 if not matching:
                     reasons.append("review_evidence_missing:"+rt)
                 elif rt == "lawyer_approval" and not any(
-                    isinstance(e.get("notes"), str) and __import__("re").search(
+                    isinstance(e.get("notes"), str) and re.search(
                         r"\\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\\]", e["notes"]
                     ) for e in matching
                 ):
