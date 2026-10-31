@@ -34,9 +34,9 @@ Substitute exact account, region, bucket, prefix, role names, and key ARN. Do no
 
 Required S3 actions:
 - `s3:GetBucketVersioning` on the exact bucket.
-- `s3:PutObject`, `s3:GetObject`, and `s3:AbortMultipartUpload` on `arn:aws:s3:::<RECOVERY_BUCKET>/database-recovery/v1/*`.
+- `s3:PutObject`, `s3:GetObjectVersion`, and `s3:AbortMultipartUpload` on `arn:aws:s3:::<RECOVERY_BUCKET>/database-recovery/v1/*`.
 
-The exact-version `HeadObject` and `GetObject` verification uses `s3:GetObject`. The role does not need `s3:ListBucket`, `s3:ListBucketVersions`, `s3:DeleteObject`, or `s3:DeleteObjectVersion`.
+Both the post-upload verification and the restore flow explicitly supply `VersionId`; their `HeadObject`/`GetObject` requests therefore require `s3:GetObjectVersion`, not unversioned `s3:GetObject`. The role does not need `s3:ListBucket`, `s3:ListBucketVersions`, `s3:DeleteObject`, or `s3:DeleteObjectVersion`.
 
 Required KMS actions on the one archive key:
 - `kms:GenerateDataKey` for SSE-KMS uploads.
