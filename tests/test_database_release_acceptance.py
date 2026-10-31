@@ -73,6 +73,10 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
             "COPILOT_S3_REGION": "us-east-1",
             "COPILOT_S3_KMS_KEY_ID": "key-a",
             "COPILOT_S3_ENDPOINT_URL": "",
+            "COPILOT_S3_RECOVERY_BUCKET": "bucket-a-recovery",
+            "COPILOT_S3_RECOVERY_REGION": "us-east-1",
+            "COPILOT_S3_RECOVERY_KMS_KEY_ID": "key-recovery-a",
+            "COPILOT_S3_RECOVERY_ENDPOINT_URL": "",
         }
         first = original_storage_config_fingerprint(config)
         self.assertRegex(first or "", r"^[0-9a-f]{64}$")
