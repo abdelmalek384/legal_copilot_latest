@@ -306,6 +306,18 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIn("no EastLaws terms", source["permission_evidence"])
         self.assertEqual(MODULE.validate(data), [])
 
+
+    def test_gazette_issue_291_license_file_is_itself_restricted(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR")
+        self.assertEqual(source["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+        self.assertEqual(source["commercial_reuse_permission"], "prior_written_permission_required_per_published_terms")
+        self.assertIn("834.25 KB PDF", source["access_status"])
+        self.assertIn("1.71 KB item-specific license.txt", source["access_status"])
+        self.assertIn("all files are in restricted access", source["permission_evidence"])
+        self.assertEqual(MODULE.validate(data), [])
+
 if __name__ == "__main__":
     unittest.main()
 
