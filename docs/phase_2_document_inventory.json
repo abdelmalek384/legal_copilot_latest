@@ -2163,7 +2163,7 @@
         "qualified Egyptian labour-lawyer review",
         "source-specific collection and commercial reuse terms"
       ],
-      "notes": "Discovery-only candidate. A Ministry of Labour announcement dated 2026-01-05 cites Decision 294/2025 as identifying paid holidays and occasions for covered private-sector workers. This confirms a current official reference to the decision but does not supply its complete text, Gazette pages, amendment history, or reuse rights. Keep legal status and permission unknown pending primary-text verification.",
+      "notes": "Discovery-only candidate. A Ministry of Labour announcement dated 2026-01-05 cites Decision 294/2025 as identifying paid holidays and occasions for covered private-sector workers. This confirms a current official reference to the decision but does not supply its complete text, Gazette pages, amendment history, or reuse rights. Keep legal status and permission unknown pending primary-text verification. Official 2026 event-specific Ministry notices were also added: the October 2026 notice cites Ministry Circular 22/2026 and Prime Minister Decision 2898/2026 substituting 8 October for 6 October for the specified public-sector groups; a July 2026 SIS-hosted Ministry notice cites Prime Minister Decision 2181/2026 for the July Revolution Day date. These are event-specific date notices, not evidence that Decision 294 was permanently amended or replaced.",
       "source_urls": [
         {
           "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
@@ -2204,6 +2204,16 @@
           "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-294?id=5008509&type=1",
           "source_role": "EastLaws secondary full-text/index; direct page access returned 403 in this session",
           "status": "secondary_full_text_indexed_not_primary_verified"
+        },
+        {
+          "url": "https://www.labour.gov.eg/ar/الأخبار/لتوحيد-مواعيد-الإجازات-الرسمية-في-قطاعات-الدولة-المختلفة-وزير-العمل-الخميس-المقبل-إجازة-مدفوعة-الأجر-للعاملين-بالقطاع-الخاص-بمناسبة-ذكرى-نصر-أكتوبر-المجيد/",
+          "source_role": "Official Ministry notice citing Decision 294/2025 and 2026 Circular 22/2026; event-specific October holiday substitution, not permanent amendment",
+          "status": "official_event_specific_currentness_notice"
+        },
+        {
+          "url": "https://sis.gov.eg/ar/المركز-الإعلامي/الأخبار/وزير-العمل-الخميس-المقبل-إجازة-رسمية-بمناسبة-عيد-ثورة-٢٣-يوليو/",
+          "source_role": "Official SIS-hosted Ministry notice citing Decision 294/2025 and 2026 July Revolution Day holiday circular; event-specific date, not permanent amendment",
+          "status": "official_event_specific_currentness_notice"
         }
       ]
     },
