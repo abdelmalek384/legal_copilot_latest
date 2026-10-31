@@ -604,11 +604,11 @@ if __name__ == "__main__":
             "EG-LABOUR-14-2025-ART-291-LABOUR-PENALTY-UNLICENSED-RECRUITMENT-AND-UNLAWFUL-CHARGES": ("المادة 291", 94, 92),
             "EG-LABOUR-14-2025-ART-292-LABOUR-PENALTY-ARTICLE-42": ("المادة 292", 94, 92),
             "EG-LABOUR-14-2025-ART-293-LABOUR-PENALTY-ARTICLES-70-74": ("المادة 293", 94, 92),
-            "EG-LABOUR-14-2025-ART-294-LABOUR-PENALTY-DISCIPLINE-AND-RELATED-ARTICLES": ("المادة 294", 94, 92),
-            "EG-LABOUR-14-2025-ART-295-LABOUR-PENALTY-ECONOMIC-CLOSURE-ARTICLES": ("المادة 295", 94, 92),
-            "EG-LABOUR-14-2025-ART-296-LABOUR-PENALTY-OCCUPATIONAL-SAFETY-ARTICLES": ("المادة 296", 94, 92),
-            "EG-LABOUR-14-2025-ART-297-LABOUR-PENALTY-INSPECTION-OBSTRUCTION": ("المادة 297", 94, 92),
-            "EG-LABOUR-14-2025-ART-298-LABOUR-CORPORATE-MANAGER-AND-ENTITY-LIABILITY": ("المادة 298", 94, 92),
+            "EG-LABOUR-14-2025-ART-294-LABOUR-PENALTY-DISCIPLINE-AND-RELATED-ARTICLES": ("المادة 294", 110, 108),
+            "EG-LABOUR-14-2025-ART-295-LABOUR-PENALTY-ECONOMIC-CLOSURE-ARTICLES": ("المادة 295", 110, 108),
+            "EG-LABOUR-14-2025-ART-296-LABOUR-PENALTY-OCCUPATIONAL-SAFETY-ARTICLES": ("المادة 296", 111, 109),
+            "EG-LABOUR-14-2025-ART-297-LABOUR-PENALTY-INSPECTION-OBSTRUCTION": ("المادة 297", 111, 109),
+            "EG-LABOUR-14-2025-ART-298-LABOUR-CORPORATE-MANAGER-AND-ENTITY-LIABILITY": ("المادة 298", 111, 109),
         }
         self.assertEqual(len(self.data["cards"]), 360)
         for card_id, (article, printed_page, pdf_index) in expected.items():
@@ -620,3 +620,32 @@ if __name__ == "__main__":
                 self.assertTrue(card["limitations"])
                 self.assertFalse(self.data["instrument"]["search_eligible"])
 
+    def test_final_penalty_articles_use_visually_verified_official_pdf_pages(self):
+        cards = {card["card_id"]: card for card in self.data["cards"]}
+        expected = {
+            "EG-LABOUR-14-2025-ART-294-LABOUR-OFFENCE-PENALTY-ARTICLE-294": (110, 108),
+            "EG-LABOUR-14-2025-ART-295-LABOUR-OFFENCE-PENALTY-ARTICLE-295": (110, 108),
+            "EG-LABOUR-14-2025-ART-296-OSH-AND-HEALTH-SAFETY-FINES": (111, 109),
+            "EG-LABOUR-14-2025-ART-297-LABOUR-INSPECTION-OBSTRUCTION-FINE": (111, 109),
+            "EG-LABOUR-14-2025-ART-298-CORPORATE-MANAGER-AND-ENTITY-FINANCIAL-LIABILITY": (111, 109),
+            "EG-LABOUR-14-2025-ART-294-LABOUR-PENALTY-DISCIPLINE-AND-RELATED-ARTICLES": (110, 108),
+            "EG-LABOUR-14-2025-ART-295-LABOUR-PENALTY-ECONOMIC-CLOSURE-ARTICLES": (110, 108),
+            "EG-LABOUR-14-2025-ART-296-LABOUR-PENALTY-OCCUPATIONAL-SAFETY-ARTICLES": (111, 109),
+            "EG-LABOUR-14-2025-ART-297-LABOUR-PENALTY-INSPECTION-OBSTRUCTION": (111, 109),
+            "EG-LABOUR-14-2025-ART-298-LABOUR-CORPORATE-MANAGER-AND-ENTITY-LIABILITY": (111, 109),
+        }
+        for card_id, (printed_page, pdf_index) in expected.items():
+            with self.subTest(card_id=card_id):
+                pinpoint = cards[card_id]["pinpoint"]
+                self.assertEqual(pinpoint["official_gazette_printed_page"], printed_page)
+                self.assertEqual(pinpoint["pdf_page_index_zero_based"], pdf_index)
+                self.assertEqual(pinpoint["pinpoint_status"], "visually_verified_on_official_eta_pdf")
+                visual = pinpoint["visual_verification"]
+                self.assertEqual(visual["checked_on"], "2026-10-31")
+                self.assertEqual(visual["printed_page"], printed_page)
+                self.assertEqual(visual["pdf_page_index_zero_based"], pdf_index)
+                self.assertEqual(
+                    visual["source_url"],
+                    "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+                )
+        self.assertFalse(self.data["instrument"]["search_eligible"])
