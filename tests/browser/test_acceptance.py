@@ -15,7 +15,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-from playwright.sync_api import Browser, BrowserContext, Page, sync_playwright
+from playwright.sync_api import Browser, BrowserContext, Page, TimeoutError as PlaywrightTimeoutError, sync_playwright
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -116,9 +116,13 @@ class BrowserAcceptanceTests(unittest.TestCase):
             accept_downloads=True,
         )
         self.page: Page = self.context.new_page()
+        self.browser_errors: list[str] = []
+        self.page.on("pageerror", lambda error: self.browser_errors.append(str(error)))
 
     def tearDown(self) -> None:
-        if sys.exc_info()[0] is not None:
+        result = getattr(getattr(self, "_outcome", None), "result", None)
+        failed = bool(result and any(test is self for test, _ in result.errors + result.failures))
+        if failed:
             ARTIFACT_DIR.mkdir(parents=True, exist_ok=True)
             safe_name = self.id().rsplit(".", 1)[-1]
             self.page.screenshot(
@@ -129,9 +133,17 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
     def login(self, email: str) -> None:
         self.page.goto(self.base_url, wait_until="domcontentloaded")
-        self.page.get_by_label("البريد الإلكتروني").fill(email)
-        self.page.get_by_label("كلمة المرور").fill(self.state["password"])
-        self.page.get_by_role("button", name="تسجيل الدخول").click()
+        email_input = self.page.locator('input[type="email"]')
+        try:
+            email_input.wait_for(state="visible", timeout=15000)
+        except PlaywrightTimeoutError as exc:
+            raise AssertionError(
+                "Login UI did not render. URL=%s body=%s browser_errors=%s"
+                % (self.page.url, self.page.locator("body").inner_text()[:2000], self.browser_errors)
+            ) from exc
+        email_input.fill(email)
+        self.page.locator('input[type="password"]').fill(self.state["password"])
+        self.page.locator('button[type="submit"]').click()
         self.page.locator("#side").wait_for(state="visible", timeout=15000)
 
     def csrf_headers(self) -> dict[str, str]:
