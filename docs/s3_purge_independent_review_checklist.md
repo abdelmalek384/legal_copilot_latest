@@ -45,6 +45,16 @@
 - [ ] The IAM policy and operational change freeze enforce the no-writer condition for the entire purge interval.
 - [ ] Delete response, post-delete object absence, and post-delete bucket-versioning state are checked; ambiguous outcomes enter manual review.
 
+### Read-only live evidence collection
+
+Run the collector in the protected deployment environment under each actual application, backup/recovery, and purge identity:
+
+```bash
+COPILOT_OBJECT_STORAGE_BACKEND=s3 python tools/collect_s3_live_acceptance_evidence.py --json
+```
+
+The report records the current STS caller, bucket-policy and KMS-key-policy fingerprints, selected policy checks, KMS grants, and the current assumed role's attached/inline policy names. It does not print raw policy documents or credentials and never changes cloud configuration. A single report describes only the identity that ran it; it does not establish another role's effective permissions. Access-point policies, account controls, SCPs, permission boundaries, session policies and cross-account trust still require independent evaluation. Retain the sanitized output and the exact storage-target fingerprint in the restricted evidence store.
+
 ## 3. KMS and IAM
 
 - [ ] Live object metadata identifies the exact expected customer-managed KMS key ARN, not merely an alias or a generic SSE-KMS marker.
