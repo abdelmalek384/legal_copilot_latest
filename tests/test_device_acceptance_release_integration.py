@@ -38,7 +38,7 @@ def write_manifest(path, records):
             evidence = path.parent / relative
             evidence.parent.mkdir(parents=True, exist_ok=True)
             evidence.write_bytes(b"synthetic evidence fixture")
-    write_manifest(path, records)
+    path.write_text(json.dumps(records), encoding="utf-8")
 
 
 def complete_matrix():
