@@ -1,6 +1,7 @@
 """Real Chromium acceptance tests using synthetic disposable firm/corpus data only."""
 from __future__ import annotations
 
+import faulthandler
 import os
 import secrets
 import socket
@@ -28,6 +29,9 @@ def _free_port() -> int:
 class BrowserAcceptanceTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
+        # If setup or a browser call deadlocks, emit Python thread stacks before
+        # the CI job timeout; stack traces contain no fixture credentials/data.
+        faulthandler.dump_traceback_later(90, repeat=True)
         print("[browser-acceptance] creating disposable environment", flush=True)
         cls.temp = tempfile.TemporaryDirectory(prefix="legal-copilot-browser-")
         cls.temp_path = Path(cls.temp.name)
@@ -268,6 +272,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls) -> None:
+        faulthandler.cancel_dump_traceback_later()
         if hasattr(cls, "browser"):
             cls.browser.close()
         if hasattr(cls, "playwright"):
