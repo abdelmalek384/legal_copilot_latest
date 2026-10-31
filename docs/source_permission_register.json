@@ -719,6 +719,22 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established; no collection/API permission reviewed",
       "required_next_action": "Use only as a manual research cross-check. Do not ingest or redistribute the PDF or extracted text until source provenance and applicable collection/commercial reuse rights are reviewed. Original DSpace issue PDF remains request-a-copy restricted."
+    },
+    {
+      "source_id": "EG-MOL-SIS-DECISION-289-2025-PDF",
+      "authority": "Egyptian Ministry of Labour; PDF hosted on Egyptian State Information Service digital repository",
+      "source_page": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117208",
+      "material_types": [
+        "Ministry-hosted PDF containing Ministry announcement and text of Ministerial Decision 289/2025"
+      ],
+      "access_status": "Publicly accessible PDF opened in browser. The document is dated 2025-12-27 and contains the text of Decision 289/2025, Articles 1–2. The SIS repository identifies the related Ministry announcement as public viewing. No local PDF bytes/hash or applicable reuse terms were obtained.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-10-31. The PDF is hosted by the Egyptian State Information Service and identifies the Ministry of Labour. Its first page contains the Ministry announcement and then the text of Decision 289/2025, including Articles 1–2. Public accessibility and government hosting do not by themselves establish permission for bulk collection, copying, redistribution or commercial reuse. No SIS terms were reviewed and no local binary/hash was obtained.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Use as a manually reviewed government-hosted text copy for Decision 289/2025 only. Check applicable SIS reuse terms and compare against the Official Gazette issue PDF when lawfully accessible. Do not treat this PDF as the Official Gazette itself or infer bulk/commercial reuse permission."
     }
   ]
 }
