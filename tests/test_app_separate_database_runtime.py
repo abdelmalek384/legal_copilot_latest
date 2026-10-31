@@ -4743,6 +4743,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 "answer": None,
                 "sources": [],
                 "message": assistant_only_sentinel,
+                "scope": scope,
+                "case_id": case_id,
             }
 
         with patch.object(app, "ask", side_effect=fake_ask):
@@ -4869,6 +4871,58 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             0,
         )
 
+
+    def test_research_context_does_not_cross_scope_or_matter_boundaries(self):
+        prior = [
+            {"role": "user", "content": "FIRM_ONLY_SENTINEL_8C21", "message_json": None},
+            {
+                "role": "assistant",
+                "content": "Firm document answer",
+                "message_json": json.dumps({"scope": "firm_documents", "case_id": 41}),
+            },
+            {"role": "user", "content": "VERIFIED_CORPUS_QUESTION", "message_json": None},
+            {
+                "role": "assistant",
+                "content": "Verified corpus answer",
+                "message_json": json.dumps({"scope": "verified_corpus", "case_id": None}),
+            },
+        ]
+        corpus_context = app._research_context_for_scope(
+            prior, "verified_corpus", None
+        )
+        self.assertEqual(corpus_context, "VERIFIED_CORPUS_QUESTION")
+        self.assertNotIn("FIRM_ONLY_SENTINEL_8C21", corpus_context or "")
+
+        same_matter = [
+            {"role": "user", "content": "FIRST MATTER QUESTION", "message_json": None},
+            {
+                "role": "assistant",
+                "content": "First answer",
+                "message_json": json.dumps({"scope": "firm_documents", "case_id": 41}),
+            },
+            {"role": "user", "content": "FOLLOW-UP QUESTION", "message_json": None},
+            {
+                "role": "assistant",
+                "content": "Follow-up answer",
+                "message_json": json.dumps({"scope": "firm_documents", "case_id": 41}),
+            },
+        ]
+        self.assertEqual(
+            app._research_context_for_scope(same_matter, "firm_documents", 41),
+            "FIRST MATTER QUESTION\nFOLLOW-UP QUESTION",
+        )
+        self.assertEqual(
+            app._research_context_for_scope(same_matter, "firm_documents", 99),
+            None,
+        )
+
+        legacy = [
+            {"role": "user", "content": "LEGACY_PRIVATE_QUESTION", "message_json": None},
+            {"role": "assistant", "content": "Legacy answer", "message_json": None},
+        ]
+        self.assertIsNone(
+            app._research_context_for_scope(legacy, "verified_corpus", None)
+        )
 
 if __name__ == "__main__":
     unittest.main()
