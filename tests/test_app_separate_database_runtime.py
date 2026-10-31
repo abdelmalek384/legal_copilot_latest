@@ -3115,6 +3115,16 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(document_response.status_code, 200, document_response.text)
         document_id = document_response.json()["document_id"]
+        task_response = self._mutate(
+            "post", f"/cases/{case_id}/tasks", json={"title": "PRIVATE_TASK_STATE_SENTINEL"}
+        )
+        self.assertEqual(task_response.status_code, 200, task_response.text)
+        task_id = self.runtime.firm_connection(
+            self.runtime.resolve_context(self.user_id, self.firm_a)
+        ).execute(
+            "SELECT id FROM tasks WHERE case_id=? AND title=?",
+            (case_id, "PRIVATE_TASK_STATE_SENTINEL"),
+        ).fetchone()["id"]
 
         nonmember_id = self.runtime.create_global_identity(
             "Same Firm Nonmember", "same-firm-nonmember@example.test", app.hash_pw(self.password)
@@ -3157,6 +3167,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 ("post", f"/cases/{case_id}/fees", {"title": "unauthorized fee", "amount": 10, "paid": 0}),
                 ("post", f"/cases/{case_id}/sessions", {"date": "2026-11-10", "note": "unauthorized session"}),
                 ("post", f"/cases/{case_id}/tasks", {"title": "unauthorized task"}),
+                ("post", f"/tasks/{task_id}/claim", {}),
+                ("post", f"/tasks/{task_id}/done", {}),
                 ("post", f"/cases/{case_id}/docs", {"name": "unauthorized.txt", "text": "unauthorized document"}),
             )
             for method_name, path, payload in mutations:
@@ -3177,6 +3189,11 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         finally:
             nonmember_client.close()
 
+        task_after = tenant.execute(
+            "SELECT status,assignee FROM tasks WHERE id=?", (task_id,)
+        ).fetchone()
+        self.assertEqual(task_after["status"], "open")
+        self.assertIsNone(task_after["assignee"])
         case_after = tenant.execute(
             "SELECT title,stage,status FROM cases WHERE id=?", (case_id,)
         ).fetchone()
