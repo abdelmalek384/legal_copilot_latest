@@ -438,6 +438,7 @@ def main(argv=None):
     parser.add_argument("reviews", type=Path, help="UTF-8 JSONL containing human review records")
     parser.add_argument("--reviewer-registry", type=Path, required=True, help="Private JSON registry of reviewer qualification checks")
     parser.add_argument("--output", type=Path, help="Optional path for the JSON report")
+    parser.add_argument("--aggregate-only", action="store_true", help="Redact assessment, case, reviewer, and defect-description details from the output")
     args = parser.parse_args(argv)
     try:
         registry_bytes = args.reviewer_registry.read_bytes()
@@ -446,6 +447,22 @@ def main(argv=None):
     except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
         parser.error(f"invalid review input: {exc}")
     report = summarize_reviews(records, registry)
+    if args.aggregate_only:
+        # Keep useful aggregate metrics while removing matter/reviewer-level details.
+        invalid_records = report.get("invalid_records", [])
+        registry_errors = report.get("reviewer_registry_errors", [])
+        report["invalid_records"] = [
+            {
+                "record_index": item.get("record_index"),
+                "error_count": len(item.get("errors", [])),
+            }
+            for item in invalid_records
+        ]
+        report["reviewer_registry_error_count"] = len(registry_errors)
+        report["reviewer_registry_errors"] = []
+        report["redacted_critical_defect_record_count"] = len(report.get("critical_defects", []))
+        report["critical_defects"] = []
+        report["privacy_mode"] = "aggregate_only"
     report["provenance"] = _report_provenance({
         "reviews": records_meta,
         "reviewer_registry": {"sha256": hashlib.sha256(registry_bytes).hexdigest(), "size_bytes": len(registry_bytes)},
