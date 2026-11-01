@@ -243,6 +243,9 @@ class RetrievalEvaluationTests(unittest.TestCase):
             ({"review_evidence_url": "https://user:pass@example.gov/review"}, "HTTPS"),
             ({"review_evidence_url": "https://example.gov/review?token=secret"}, "HTTPS"),
             ({"review_evidence_url": "https://example.gov/review#private"}, "HTTPS"),
+            ({"review_evidence_url": "https://example.gov:/review"}, "HTTPS"),
+            ({"review_evidence_url": "https://example.gov/review\\x00"}, "HTTPS"),
+            ({"review_evidence_url": "https://example.gov/review\\x7f"}, "HTTPS"),
             ({"review_date": "2999-01-01"}, "real YYYY-MM-DD"),
         )
         for overrides, expected_error in cases:
