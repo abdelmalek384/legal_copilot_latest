@@ -90,6 +90,9 @@ def validate_review(record):
     disposition = record.get("disposition")
     if not isinstance(disposition, str) or disposition not in DISPOSITIONS:
         errors.append("disposition must be one of the documented values")
+    answer_id = record.get("answer_id")
+    if answer_id is not None and (not isinstance(answer_id, str) or not answer_id.strip()):
+        errors.append("answer_id must be a non-empty string when supplied")
     review_date = record.get("review_date")
     if isinstance(review_date, str) and review_date.strip():
         try:
@@ -254,6 +257,85 @@ def summarize_reviews(records, reviewer_registry):
         seen.add(assessment_id)
         valid.append(record)
 
+    # Compare only independent reviews of the exact same generated answer.
+    # A case can contain many answers, so case_id alone is not a comparison key.
+    answer_groups = defaultdict(list)
+    without_answer_id = 0
+    reviewer_answer_pairs = set()
+    duplicate_review_ids = set()
+    for record in valid:
+        answer_id = record.get("answer_id")
+        if answer_id is None:
+            without_answer_id += 1
+            continue
+        group_key = (record["case_id"], answer_id)
+        reviewer_pair = (group_key, record["reviewer_id"])
+        if reviewer_pair in reviewer_answer_pairs:
+            duplicate_review_ids.add(record["assessment_id"])
+            invalid.append({
+                "record": record["assessment_id"],
+                "record_index": None,
+                "errors": ["duplicate reviewer assessment for the same case_id and answer_id; independent review requires distinct reviewers"],
+            })
+            continue
+        reviewer_answer_pairs.add(reviewer_pair)
+        answer_groups[group_key].append(record)
+
+    if duplicate_review_ids:
+        valid = [record for record in valid if record["assessment_id"] not in duplicate_review_ids]
+        answer_groups = defaultdict(list)
+        without_answer_id = 0
+        for record in valid:
+            answer_id = record.get("answer_id")
+            if answer_id is None:
+                without_answer_id += 1
+            else:
+                answer_groups[(record["case_id"], answer_id)].append(record)
+
+    reviewer_agreement = []
+    dimension_disagreement_counts = Counter()
+    disposition_conflicts = 0
+    disposition_agreements = 0
+    evidence_conflicts = 0
+    dimension_exact_agreement_counts = Counter()
+    for (case_id, answer_id), group in sorted(answer_groups.items()):
+        if len(group) < 2:
+            continue
+        dispositions = sorted({record["disposition"] for record in group})
+        if len(dispositions) > 1:
+            disposition_conflicts += 1
+        else:
+            disposition_agreements += 1
+        if "not_scored_insufficient_evidence" in dispositions and len(dispositions) > 1:
+            evidence_conflicts += 1
+        dimension_results = {}
+        differing_dimensions = []
+        for dimension in DIMENSIONS:
+            values = [record["scores"][dimension] for record in group]
+            distinct = sorted(set(values), key=lambda value: (str(type(value)), str(value)))
+            agrees = len(distinct) == 1
+            dimension_results[dimension] = {
+                "exact_agreement": agrees,
+                "values": distinct,
+                "review_count": len(values),
+            }
+            if not agrees:
+                differing_dimensions.append(dimension)
+                dimension_disagreement_counts[dimension] += 1
+            else:
+                dimension_exact_agreement_counts[dimension] += 1
+        reviewer_agreement.append({
+            "case_id": case_id,
+            "answer_id": answer_id,
+            "review_count": len(group),
+            "reviewer_ids": sorted(record["reviewer_id"] for record in group),
+            "dispositions": dispositions,
+            "disposition_agreement": len(dispositions) == 1,
+            "dimension_disagreements": differing_dimensions,
+            "dimension_results": dimension_results,
+            "requires_adjudication": len(dispositions) > 1 or bool(differing_dimensions),
+        })
+
     counts = Counter(record["disposition"] for record in valid)
     dimension_values = defaultdict(list)
     for record in valid:
@@ -304,11 +386,40 @@ def summarize_reviews(records, reviewer_registry):
         },
         "critical_defects": critical_defects,
         "dimension_summary": dimension_summary,
+        "reviewer_agreement": {
+            "answers_with_multiple_independent_reviews": len(reviewer_agreement),
+            "answers_requiring_adjudication": sum(1 for item in reviewer_agreement if item["requires_adjudication"]),
+            "disposition_conflicts": disposition_conflicts,
+            "disposition_exact_agreement_count": disposition_agreements,
+            "disposition_comparison_count": len(reviewer_agreement),
+            "disposition_exact_agreement_rate": (
+                round(disposition_agreements / len(reviewer_agreement), 4)
+                if reviewer_agreement else None
+            ),
+            "insufficient_evidence_conflicts": evidence_conflicts,
+            "dimension_agreement": {
+                dimension: {
+                    "exact_agreement_count": dimension_exact_agreement_counts.get(dimension, 0),
+                    "disagreement_count": dimension_disagreement_counts.get(dimension, 0),
+                    "comparison_count": len(reviewer_agreement),
+                    "exact_agreement_rate": (
+                        round(dimension_exact_agreement_counts.get(dimension, 0) / len(reviewer_agreement), 4)
+                        if reviewer_agreement else None
+                    ),
+                }
+                for dimension in DIMENSIONS
+            },
+            "valid_assessments_without_answer_id": without_answer_id,
+            "answer_groups": reviewer_agreement,
+        },
         "limitations": [
             "Only recorded qualified-human assessments that pass schema validation are summarized.",
             "not_scored_insufficient_evidence is not a pass and is excluded from dimension means.",
             "Critical defects are reported separately and must not be hidden by averages.",
             "Defect categories are human-assigned review labels, not automated model judgments; counts may include multiple categories per assessment.",
+            "Reviewer agreement is descriptive only; agreement does not prove legal correctness and disagreement does not identify which reviewer is right.",
+            "Only records sharing both case_id and an explicit answer_id are compared; case_id alone is not enough to identify the same generated answer.",
+            "No chance-corrected reliability statistic is reported; small or unbalanced samples are not suitable for broad reviewer-reliability claims.",
             "A benchmark summary does not establish general legal accuracy, current-law coverage, or production readiness.",
             "Do not publish confidential, privileged, or re-identifiable matter data in evaluation records.",
         ],
