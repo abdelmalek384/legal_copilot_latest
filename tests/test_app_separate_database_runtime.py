@@ -5039,6 +5039,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             len(payload["checks"]),
         )
         self.assertIn("live SMTP", payload["note"])
+        self.assertEqual(payload["mfa"]["active_firm_admins"], 1)
+        self.assertEqual(payload["mfa"]["missing_firm_admins"], 1)
         self.assertNotIn(self.admin_token, health.text)
         self.assertNotIn("password_hash", health.text)
         switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
