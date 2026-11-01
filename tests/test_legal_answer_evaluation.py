@@ -156,18 +156,48 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             questions = Path(td) / "questions.jsonl"
             results = Path(td) / "results.jsonl"
             report_path = Path(td) / "report.json"
-            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\n", encoding="utf-8")
-            results.write_text(json.dumps(result(), ensure_ascii=False) + "\n", encoding="utf-8")
+            q1 = approved("Q1")
+            q2 = approved("Q2", answerable=False)
+            questions.write_text("".join(json.dumps(q, ensure_ascii=False) + "\n" for q in (q1, q2)), encoding="utf-8")
+            results.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in
+                                        (result("Q1"), result("Q2", abstained=True))), encoding="utf-8")
             code = run_main([
                 "--questions", str(questions), "--results", str(results), "--out", str(report_path),
-                "--min-questions", "1", "--min-practice-areas", "1", "--min-questions-per-practice-area", "1",
-                "--min-source-precision", "1", "--min-pin-cite-precision", "1",
-                "--min-abstention-accuracy", "1", "--max-invalid-citation-question-rate", "0",
+                "--min-questions", "2", "--min-practice-areas", "1", "--min-questions-per-practice-area", "2",
+                "--min-source-precision", "1", "--min-source-recall", "1",
+                "--min-pin-cite-precision", "1", "--min-pin-cite-recall", "1",
+                "--min-abstention-accuracy", "1", "--min-unanswerable-abstention-recall", "1",
+                "--max-invalid-citation-question-rate", "0",
             ])
             self.assertEqual(code, 0)
             report = json.loads(report_path.read_text(encoding="utf-8"))
             self.assertTrue(report["release_gate"]["enabled"])
             self.assertTrue(report["release_gate"]["passed"])
+
+    def test_recall_and_unanswerable_abstention_recall_are_release_gates(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions = Path(td) / "questions.jsonl"
+            results = Path(td) / "results.jsonl"
+            report_path = Path(td) / "report.json"
+            q1 = approved("Q1")
+            q2 = approved("Q2", answerable=False)
+            questions.write_text("".join(json.dumps(q, ensure_ascii=False) + "\n" for q in (q1, q2)), encoding="utf-8")
+            bad_answerable = result("Q1", sources=[], pins=[])
+            bad_unanswerable = result("Q2", abstained=False)
+            results.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n"
+                                     for r in (bad_answerable, bad_unanswerable)), encoding="utf-8")
+            code = run_main([
+                "--questions", str(questions), "--results", str(results), "--out", str(report_path),
+                "--min-questions", "2", "--min-practice-areas", "1", "--min-questions-per-practice-area", "2",
+                "--min-source-recall", "1", "--min-pin-cite-recall", "1",
+                "--min-unanswerable-abstention-recall", "1",
+            ])
+            self.assertEqual(code, 1)
+            report = json.loads(report_path.read_text(encoding="utf-8"))
+            checks = {item["metric"]: item for item in report["release_gate"]["checks"]}
+            for metric in ("source_recall", "pin_cite_recall", "unanswerable_abstention_recall"):
+                self.assertEqual(checks[metric]["actual"], 0.0)
+                self.assertFalse(checks[metric]["passed"])
 
     def test_cli_release_gate_fails_and_preserves_report_on_precision_failure(self):
         with tempfile.TemporaryDirectory() as td:
