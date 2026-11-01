@@ -184,6 +184,27 @@ class SyntheticRetrievalTests(unittest.TestCase):
                 self.assertTrue(hits, f"no synthetic passage retrieved for {query!r}")
                 self.assertEqual(hits[0]["id"], intended_id, f"wrong passage ranked first for {query!r}")
 
+    def test_new_lexicon_phrases_retrieve_the_intended_passage_in_top_three(self):
+        cases = (
+            ("فصلني من الشغل", "فصل العامل وإنهاء عقد العمل وإنهاء الخدمة"),
+            ("عايز إجازة", "الإجازة السنوية للعامل وشروط الإجازة"),
+            ("الإيجار القديم", "امتداد عقد الإيجار القديم والعلاقة الإيجارية القديمة"),
+        )
+        for index, (query, passage) in enumerate(cases, start=1):
+            with self.subTest(query=query):
+                self.fixture.db.close()
+                self.fixture = SyntheticCorpus()
+                intended_id = self.fixture.add_passage(
+                    f"SYNTH-LEXICON-{index:02d}",
+                    f"نص اختبار خيالي وليس قانونا: {passage}.",
+                )
+                self.fixture.add_passage(
+                    f"SYNTH-LEXICON-DECOY-{index:02d}",
+                    "نص اختبار خيالي وليس قانونا: صيانة المحركات البحرية وجدول المد والجزر.",
+                )
+                hits = self.search(query)
+                self.assertIn(intended_id, [hit["id"] for hit in hits[:3]])
+
     def test_unrelated_synthetic_passage_does_not_become_a_result(self):
         self.fixture.add_passage(
             "SYNTH-CRIM-01",
