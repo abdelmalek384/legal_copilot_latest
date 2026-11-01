@@ -2412,15 +2412,15 @@ class InvoiceLineIn(BaseModel):
 
 
 class InvoiceIn(BaseModel):
-    issue_date: str = Field(pattern=r"^\\d{4}-\\d{2}-\\d{2}$")
-    due_date: str | None = Field(default=None, pattern=r"^\\d{4}-\\d{2}-\\d{2}$")
+    issue_date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
+    due_date: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$")
     notes: str = Field(default="", max_length=2000)
     lines: list[InvoiceLineIn] = Field(min_length=1, max_length=50)
 
 
 class InvoicePaymentIn(BaseModel):
     amount_piasters: int = Field(gt=0, le=9_000_000_000_000_000)
-    paid_at: str = Field(pattern=r"^\\d{4}-\\d{2}-\\d{2}$")
+    paid_at: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
     method: str = Field(pattern=r"^(cash|bank_transfer|instapay|other)$")
     reference: str = Field(default="", max_length=160)
 
