@@ -342,8 +342,11 @@ def evaluate(question_rows, result_rows, reviewer_registry):
 def _release_gate(report, args):
     minimums = {
         "source_precision": args.min_source_precision,
+        "source_recall": args.min_source_recall,
         "pin_cite_precision": args.min_pin_cite_precision,
+        "pin_cite_recall": args.min_pin_cite_recall,
         "abstention_accuracy": args.min_abstention_accuracy,
+        "unanswerable_abstention_recall": args.min_unanswerable_abstention_recall,
         "stable_answer_id_coverage": args.min_stable_answer_id_coverage,
     }
     maximums = {
@@ -390,8 +393,11 @@ def main(argv=None):
     parser.add_argument("--reviewer-registry", required=True, help="Private JSON registry of verified reviewer qualification checks")
     parser.add_argument("--out", help="Write report JSON here; default is stdout")
     parser.add_argument("--min-source-precision", type=float, help="Fail the technical gate if source precision is below this 0..1 threshold")
+    parser.add_argument("--min-source-recall", type=float, help="Fail the technical gate if expected-source recall is below this 0..1 threshold")
     parser.add_argument("--min-pin-cite-precision", type=float, help="Fail the technical gate if pinpoint-citation precision is below this 0..1 threshold")
+    parser.add_argument("--min-pin-cite-recall", type=float, help="Fail the technical gate if expected pinpoint-citation recall is below this 0..1 threshold")
     parser.add_argument("--min-abstention-accuracy", type=float, help="Fail the technical gate if abstention accuracy is below this 0..1 threshold")
+    parser.add_argument("--min-unanswerable-abstention-recall", type=float, help="Fail the technical gate if recall of lawyer-labelled unanswerable cases correctly abstained on is below this 0..1 threshold")
     parser.add_argument("--min-stable-answer-id-coverage", type=float, help="Fail the technical gate if fewer than this fraction of scored answers have stable review-linking IDs")
     parser.add_argument("--max-unanswerable-citation-rate", type=float, help="Fail the technical gate if unanswerable cases contain citations above this 0..1 rate")
     parser.add_argument("--max-invalid-citation-question-rate", type=float, help="Fail the technical gate if questions with invalid citation indexes exceed this 0..1 rate")
@@ -410,7 +416,9 @@ def main(argv=None):
             parser.error(f"--{name.replace('_', '-')} must be a positive integer")
     if (args.min_practice_areas is None) != (args.min_questions_per_practice_area is None):
         parser.error("--min-practice-areas and --min-questions-per-practice-area must be configured together")
-    quality_thresholds = (args.min_source_precision, args.min_pin_cite_precision, args.min_abstention_accuracy,
+    quality_thresholds = (args.min_source_precision, args.min_source_recall,
+                          args.min_pin_cite_precision, args.min_pin_cite_recall,
+                          args.min_abstention_accuracy, args.min_unanswerable_abstention_recall,
                           args.min_stable_answer_id_coverage, args.max_unanswerable_citation_rate,
                           args.max_invalid_citation_question_rate)
     if any(value is not None for value in quality_thresholds):
@@ -418,7 +426,8 @@ def main(argv=None):
             parser.error("quality thresholds require an explicit --min-questions sample-size gate")
         if args.min_practice_areas is None:
             parser.error("quality thresholds require explicit practice-area coverage gates")
-    for name in ("min_source_precision", "min_pin_cite_precision", "min_abstention_accuracy",
+    for name in ("min_source_precision", "min_source_recall", "min_pin_cite_precision",
+                 "min_pin_cite_recall", "min_abstention_accuracy", "min_unanswerable_abstention_recall",
                  "min_stable_answer_id_coverage", "max_unanswerable_citation_rate",
                  "max_invalid_citation_question_rate"):
         value = getattr(args, name)
