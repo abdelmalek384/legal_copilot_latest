@@ -325,7 +325,7 @@ class RetrievalEvaluationTests(unittest.TestCase):
             runs_path = Path(td) / "runs.jsonl"
             q1 = reviewed_question(id="Q-ANSWERABLE")
             q2 = reviewed_question(id="Q-UNANSWERABLE", answerable=False, expected_pin_cites=[])
-            questions_path.write_text("".join(json.dumps(q, ensure_ascii=False) + "\\n" for q in (q1, q2)), encoding="utf-8")
+            questions_path.write_text("".join(json.dumps(q, ensure_ascii=False) + "\n" for q in (q1, q2)), encoding="utf-8")
             runs = [
                 {"question_id": "Q-ANSWERABLE", "retrieved_source_ids": ["LAW-A", "LAW-B"],
                  "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
@@ -334,7 +334,7 @@ class RetrievalEvaluationTests(unittest.TestCase):
                 {"question_id": "Q-UNANSWERABLE", "retrieved_source_ids": ["LAW-A", "LAW-B"],
                  "citations": [], "abstained": True, "used_unverified_source": False},
             ]
-            runs_path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\\n" for r in runs), encoding="utf-8")
+            runs_path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in runs), encoding="utf-8")
             output = io.StringIO()
             with contextlib.redirect_stdout(output):
                 code = main([
@@ -359,14 +359,14 @@ class RetrievalEvaluationTests(unittest.TestCase):
             runs_path = Path(td) / "runs.jsonl"
             q1 = reviewed_question(id="Q-ANSWERABLE")
             q2 = reviewed_question(id="Q-UNANSWERABLE", answerable=False, expected_pin_cites=[])
-            questions_path.write_text("".join(json.dumps(q, ensure_ascii=False) + "\\n" for q in (q1, q2)), encoding="utf-8")
+            questions_path.write_text("".join(json.dumps(q, ensure_ascii=False) + "\n" for q in (q1, q2)), encoding="utf-8")
             runs = [
                 {"question_id": "Q-ANSWERABLE", "retrieved_source_ids": [], "citations": [],
                  "abstained": False, "used_unverified_source": False},
                 {"question_id": "Q-UNANSWERABLE", "retrieved_source_ids": ["LAW-A", "LAW-B"], "citations": [],
                  "abstained": False, "used_unverified_source": True},
             ]
-            runs_path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\\n" for r in runs), encoding="utf-8")
+            runs_path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in runs), encoding="utf-8")
             output = io.StringIO()
             with contextlib.redirect_stdout(output):
                 code = main([
@@ -390,11 +390,11 @@ class RetrievalEvaluationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             questions_path = Path(td) / "questions.jsonl"
             runs_path = Path(td) / "runs.jsonl"
-            questions_path.write_text(json.dumps(reviewed_question()) + "\\n", encoding="utf-8")
+            questions_path.write_text(json.dumps(reviewed_question()) + "\n", encoding="utf-8")
             runs_path.write_text(json.dumps({
                 "question_id": "Q-TEST-001", "retrieved_source_ids": ["LAW-A"],
                 "citations": [], "abstained": False, "used_unverified_source": False,
-            }) + "\\n", encoding="utf-8")
+            }) + "\n", encoding="utf-8")
             with self.assertRaises(SystemExit) as raised:
                 main(["--questions", str(questions_path), "--runs", str(runs_path),
                       "--min-reviewed-cases", "1", "--min-practice-areas", "1",
