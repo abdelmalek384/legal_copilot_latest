@@ -40,6 +40,15 @@ class FakeBillingProviderTests(unittest.TestCase):
             with self.subTest(kwargs=kwargs), self.assertRaises(ValueError):
                 self.provider.create_payment_request(**kwargs)
 
+    def test_rejects_cardholder_fields_in_metadata(self):
+        with self.assertRaises(ValueError):
+            self.provider.create_payment_request(
+                merchant_reference="SUB-43",
+                amount_minor=9900,
+                currency="EGP",
+                metadata={"card_number": "4111111111111111"},
+            )
+
     def test_unknown_reference_is_not_found(self):
         self.assertIsNone(self.provider.get_payment_request("fake_missing"))
         with self.assertRaises(KeyError):
