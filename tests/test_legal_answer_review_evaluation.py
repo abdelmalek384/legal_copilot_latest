@@ -18,6 +18,7 @@ def review(**overrides):
     scores = {dimension: 2 for dimension in DIMENSIONS}
     rationales = {dimension: "Checked against the reviewed source passage." for dimension in DIMENSIONS}
     record = {
+        "review_schema_version": 2,
         "assessment_id": "ASSESS-001",
         "case_id": "CASE-001",
         "practice_area": "labour_law",
@@ -162,13 +163,73 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
         self.assertIsNone(result["dimension_summary"]["legal_correctness"]["mean_score_0_to_2"])
 
     def test_critical_defect_requires_unsafe_disposition_and_description(self):
-        record = review(critical_defect=True, critical_defect_description="Invented article citation.")
+        record = review(critical_defect=True, critical_defect_categories=["incorrect_article_or_page_pin"], critical_defect_description="Invented article citation.")
         self.assertTrue(any("requires disposition=unsafe" in e for e in validate_review(record)))
         record["disposition"] = "unsafe"
         self.assertEqual(validate_review(record), [])
         result = summarize_reviews([record], reviewer_registry())
         self.assertEqual(result["critical_defect_count"], 1)
         self.assertEqual(result["disposition_counts"]["unsafe"], 1)
+        self.assertEqual(result["critical_defect_category_counts"]["incorrect_article_or_page_pin"], 1)
+        self.assertEqual(result["critical_defects"][0]["categories"], ["incorrect_article_or_page_pin"])
+
+
+    def test_critical_defect_requires_a_documented_human_category(self):
+        missing = review(
+            disposition="unsafe",
+            critical_defect=True,
+            critical_defect_description="The cited sentence reverses a prohibition.",
+        )
+        self.assertTrue(any("review_schema_version=2 critical defects require at least one critical_defect_category" in error
+                            for error in validate_review(missing)))
+
+        categorized = dict(missing, critical_defect_categories=["contradicted_source_or_polarity"])
+        self.assertEqual(validate_review(categorized), [])
+
+    def test_defect_categories_reject_unknown_duplicate_and_noncritical_labels(self):
+        base = review()
+        for categories in (["made_up_category"], ["unsupported_legal_claim", "unsupported_legal_claim"], ["unsupported_legal_claim", 7]):
+            with self.subTest(categories=categories):
+                errors = validate_review(dict(base, critical_defect_categories=categories))
+                self.assertTrue(any("unique documented category values" in error for error in errors))
+        errors = validate_review(dict(base, critical_defect_categories=["missing_material_issue"]))
+        self.assertTrue(any("only valid when critical_defect=true" in error for error in errors))
+
+    def test_multiple_human_defect_categories_are_counted_without_inference(self):
+        first = review(
+            disposition="unsafe", critical_defect=True,
+            critical_defect_categories=["unsupported_legal_claim", "wrong_legal_actor_or_role"],
+            critical_defect_description="Synthetic reviewed defect fixture.",
+        )
+        second = review(
+            assessment_id="ASSESS-002", reviewer_id="reviewer-b", reviewer_name="Reviewer B",
+            disposition="unsafe", critical_defect=True,
+            critical_defect_categories=["unsupported_legal_claim"],
+            critical_defect_description="Second synthetic reviewed defect fixture.",
+        )
+        report = summarize_reviews([first, second], reviewer_registry())
+        self.assertEqual(report["critical_defect_count"], 2)
+        self.assertEqual(report["critical_defect_category_counts"]["unsupported_legal_claim"], 2)
+        self.assertEqual(report["critical_defect_category_counts"]["wrong_legal_actor_or_role"], 1)
+        self.assertEqual(report["critical_defect_category_counts"]["overbroad_conditional_scope"], 0)
+
+
+    def test_legacy_v1_unsafe_reviews_remain_readable_and_are_counted_as_uncategorized(self):
+        legacy = review(
+            disposition="unsafe",
+            critical_defect=True,
+            critical_defect_description="Legacy record predating the defect taxonomy.",
+        )
+        legacy["review_schema_version"] = 1
+        report = summarize_reviews([legacy], reviewer_registry())
+        self.assertEqual(report["valid_assessments"], 1)
+        self.assertEqual(report["critical_defect_count"], 1)
+        self.assertEqual(report["critical_defect_category_counts"]["uncategorized_legacy_v1"], 1)
+        self.assertEqual(report["critical_defect_category_counts"]["unsupported_legal_claim"], 0)
+
+    def test_unknown_review_schema_version_is_rejected(self):
+        errors = validate_review(review(review_schema_version=3))
+        self.assertTrue(any("review_schema_version must be 1 (legacy) or 2" in error for error in errors))
 
     def test_missing_rationale_invalidates_record(self):
         rationales = dict(review()["rationales"])
