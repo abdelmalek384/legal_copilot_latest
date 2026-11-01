@@ -1549,21 +1549,21 @@ def _answer_has_cited_actor_role_mismatch(answer, hits):
 
     for raw_line in visible.splitlines():
         line = raw_line.strip()
-        if (not line or re.match(r"^#{1,6}\\s+", line)
+        if (not line or re.match(r"^#{1,6}\s+", line)
                 or re.fullmatch(r"[-*_]{3,}", line)
-                or re.fullmatch(r"\\*\\*[^*]{1,100}[:：]\\*\\*", line)):
+                or re.fullmatch(r"\*\*[^*]{1,100}[:：]\*\*", line)):
             continue
         if line.endswith((":", "：")) and len(line) <= 100:
             continue
-        for sentence in re.split(r"(?<=[.!?؟])\\s+", line):
-            sentence = re.sub(r"^(?:[-*+]\\s+|\\d+[.)]\\s+|>\\s*)", "", sentence).strip()
-            cited = {int(value) for value in re.findall(r"\\[(\\d+)\\]", sentence)}
+        for sentence in re.split(r"(?<=[.!?؟])\s+", line):
+            sentence = re.sub(r"^(?:[-*+]\s+|\d+[.)]\s+|>\s*)", "", sentence).strip()
+            cited = {int(value) for value in re.findall(r"\[(\d+)\]", sentence)}
             if not cited:
                 continue
             if any(index < 1 or index > len(hits) for index in cited):
                 return True
             evidence = " ".join(str(hits[index - 1].get("text") or "") for index in cited)
-            answer_terms = set(tokens(re.sub(r"\\[\\d+\\]", " ", sentence)))
+            answer_terms = set(tokens(re.sub(r"\[\d+\]", " ", sentence)))
             evidence_terms = set(tokens(evidence))
             for left, right in _LEGAL_ACTOR_ROLE_PAIRS:
                 source_left, source_right = has_phrase(evidence, left), has_phrase(evidence, right)
