@@ -1,11 +1,11 @@
 # Legal Copilot — Project Progress Tracker
 
-**Last updated:** 2026-10-31 (current whole-product checkpoint; historical snapshots retained; workstream percentages are not additive)
+**Last updated:** 2026-11-01 (current whole-product checkpoint; historical snapshots retained; workstream percentages are not additive)
 **Tracking method:** deliverable-level checklist, not an estimate of engineering hours. A task is “complete” only when its change is merged and its acceptance criteria are met. Open PRs are in progress, not complete.
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.60/100 technical completion** (up 0.02 points from 49.58; rounds to 49%) as of 2026-10-31. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.78/100 technical completion** (up 0.18 points from 49.60; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Previous whole-product checkpoint — 2026-10-31
@@ -70,10 +70,8 @@ The weighted scorecard has now been recalculated to **49.45/100** after #1066 an
 
 **Open PRs — not complete until merged and all required checks pass:**
 
-- **#1057:** real-browser acceptance harness with stage diagnostics and periodic Python stack dumps. The latest Chromium job was cancelled while the test command was running; no browser-test pass/fail result was produced. Do not count browser acceptance complete.
-- **#1068:** current-main rebase of the browser harness. Tests, CodeQL and dependency audit passed, but its Chromium job was also cancelled; it remains draft until a real browser run passes. Manual lawyer, device, screen-reader and accessibility acceptance remain separate.
-- **#1090:** corpus audit now evaluates latest review events rather than historical passes; Tests/CodeQL are running after fixture corrections; dependency audit passed.
-- **#1091:** scorecard/tracker refresh to 49.60/100, including merged #1087–#1089; awaiting Tests (CodeQL and dependency audit passed).
+- **#840:** remains draft/open; Decisions 248–252 and Table 24 source comparison remain discovery-only pending lawful original Gazette access, item-specific rights evidence and primary-source comparison.
+- **#1097:** this current-main scorecard/tracker reconciliation is in review; it records only merged work and keeps legal corpus and counsel acceptance percentages unchanged.
 
 **Superseded PR:**
 
@@ -90,9 +88,11 @@ The weighted scorecard has now been recalculated to **49.45/100** after #1066 an
 
 ### Current open PRs and acceptance
 
-- **#1057:** browser acceptance harness remains open/draft. Its synthetic verified-corpus fixture now includes the runtime counsel-attestation marker required after #1066. The corrected head still needs a definitive Chromium acceptance result; do not count browser acceptance complete.
+- **#1078 merged:** synthetic browser acceptance passed 6/6 tests on the exact head; the full 1,391-test workflow, CodeQL, Bandit, dependency audit and non-database safety regression passed. This is automated acceptance only; manual lawyer/device/screen-reader/accessibility acceptance remains open.
+- **#1057 and #1068:** closed as superseded by #1078; no unique implementation was discarded.
+- **#1093 merged:** strict HTTPS URL validation is now aligned in the offline release validator and the runtime/review evidence validators.
+- **#1097:** scorecard/tracker reconciliation is the current documentation review path.
 - **#840:** remains draft/open; Decisions 248–252 and Table 24 source comparison remain discovery-only pending lawful original Gazette access and rights review.
-- **#1069:** merged the scorecard/tracker reconciliation after Tests, CodeQL and dependency audit passed. This is not an open PR.
 
 ### Current non-database priorities
 
@@ -651,4 +651,11 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - #1057's synthetic browser corpus fixture was corrected for the new marker requirement. The corrected head's browser CI result is pending; the browser acceptance gate is not complete.
 - The weighted engineering score is **49.20/100** (up 0.70 from 48.50; rounded to 49%). This increase reflects merged release-governance and regression coverage, not new verified legal material.
 
+### Latest checkpoint — 2026-11-01 (browser acceptance and release-validator alignment)
 
+- **#1093 merged:** strict HTTPS URL validation now rejects malformed/out-of-range ports, empty port suffixes, URL credentials, whitespace and control characters in the offline legal release validator. Tests (1,392 across 128 scripts), CodeQL, dependency audit and non-database safety regression passed.
+- **#1078 merged:** the synthetic Chromium acceptance harness passed 6/6 browser tests. The full Tests workflow passed 1,391 tests across 128 scripts; CodeQL, Bandit, dependency audit and non-database safety regression passed.
+- **#1057 and #1068 closed:** superseded by #1078. The old failed browser branch's ambiguous Arabic locators and invalid text/plain upload fixture were corrected in the merged harness; application PDF/DOCX-only validation was preserved.
+- **Current technical completion: 49.78/100**, up 0.18 from 49.60. This reflects the latest-event audit/permission/release-gate consistency and merged automated browser acceptance.
+- **Verified Egyptian legal corpus remains 6%; final Egyptian-counsel acceptance remains 0%.** No legal instrument was newly verified, no restricted source was acquired, and no reuse permission was inferred.
+- Manual physical-device, screen-reader, accessibility and lawyer-workflow acceptance remain outstanding. PR #840 remains discovery-only pending lawful source access and rights review.
