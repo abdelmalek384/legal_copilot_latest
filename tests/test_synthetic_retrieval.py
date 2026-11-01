@@ -151,6 +151,40 @@ class SyntheticRetrievalTests(unittest.TestCase):
         self.assertEqual(hits[0]["id"], intended_id)
         self.assertIn("عقد", hits[0]["matched_terms"])
 
+    def test_multi_area_egyptian_colloquial_queries_retrieve_their_intended_synthetic_passages(self):
+        # These fictional passages validate retrieval routing only. They are not
+        # Egyptian legal authorities or lawyer-approved expected answers.
+        cases = (
+            ("المرتب متأخر", "تأخر صرف الأجر ومستحقات العامل"),
+            ("طردني من الشغل", "فصل العامل وإنهاء الخدمة"),
+            ("صاحب البيت عايز يطردني", "إخلاء المستأجر ودعوى الإخلاء"),
+            ("جوزي مش بيصرف", "نفقة الزوجة والامتناع عن الإنفاق"),
+            ("مش عارف آخد ورثي", "قسمة التركة وحقوق الورثة"),
+            ("اتقبض عليا", "القبض وضمانات القبض"),
+            ("اتظلمت من قرار", "التظلم من القرار الإداري والقرار الإداري"),
+            ("الشيك رجع", "شيك مرتجع وشيك مرفوض"),
+            ("حد نصب عليا أونلاين", "الاحتيال الإلكتروني وجرائم تقنية المعلومات"),
+            ("مش بيرجعلي فلوسي", "رد المبالغ ودعوى المطالبة"),
+        )
+
+        for index, (query, expected_phrase) in enumerate(cases, start=1):
+            with self.subTest(query=query):
+                self.fixture.db.close()
+                self.fixture = SyntheticCorpus()
+                intended_id = self.fixture.add_passage(
+                    f"SYNTH-DIALECT-{index:02d}",
+                    f"نص اختبار خيالي وليس قانونا: {expected_phrase}.",
+                )
+                self.fixture.add_passage(
+                    f"SYNTH-DECOY-{index:02d}",
+                    "نص اختبار خيالي وليس قانونا: صيانة المحركات البحرية وجدول المد والجزر.",
+                )
+
+                hits = self.search(query)
+
+                self.assertTrue(hits, f"no synthetic passage retrieved for {query!r}")
+                self.assertEqual(hits[0]["id"], intended_id, f"wrong passage ranked first for {query!r}")
+
     def test_unrelated_synthetic_passage_does_not_become_a_result(self):
         self.fixture.add_passage(
             "SYNTH-CRIM-01",
