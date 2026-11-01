@@ -852,6 +852,39 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    c.deadlines.length?c.deadlines.map(d=>h('div',{className:'row'},h('div',{},h('b',{textContent:d.title}),h('div',{className:'mut',textContent:d.note||''})),duePill({due:d.due})||pill(fd(d.due),'open'))):empty('لا توجد مواعيد قانونية مسجلة. هذه المواعيد منفصلة عن جلسات المحكمة.'),
    h('div',{className:'row'},title,due,btn('إضافة موعد',async()=>{if(!title.value.trim()||!due.value){toast(uiText('أدخل نوع الموعد وتاريخه','Enter the deadline type and date'));return}await api('/cases/'+id+'/deadlines','POST',{title:title.value,due:due.value,note:note.value});again()})),note)
  }
+ if(TAB==='dead'&&ME.role==='admin'){
+  const holidayDate=h('input',{type:'date','aria-label':uiText('تاريخ العطلة','Holiday date')}),
+   holidayName=h('input',{placeholder:uiText('اسم العطلة بالعربية','Holiday name in Arabic'),'aria-label':uiText('اسم العطلة','Holiday name')}),
+   holidayList=h('div',{}),holidayAudit=h('div',{}),holidayPanel=h('section',{className:'card'});
+  let firmHolidays=[];
+  const renderFirmHolidays=()=>{
+   holidayList.replaceChildren(...(firmHolidays.length?firmHolidays.map((item,index)=>h('div',{className:'row'},
+    h('span',{textContent:item.date+' — '+item.name_ar}),
+    btn(uiText('حذف','Remove'),()=>{firmHolidays=firmHolidays.filter((_,i)=>i!==index);renderFirmHolidays()},'g')
+   )):[h('p',{className:'mut',textContent:uiText('لا توجد عطلات إضافية للمكتب.','No firm-specific dated holidays.')} )]));
+  };
+  const saveHolidays=btn(uiText('حفظ تقويم المكتب','Save firm calendar'),async()=>{
+   try{await api('/deadline-holidays','PUT',{holidays:firmHolidays});toast(uiText('تم حفظ تقويم العطلات مع تسجيل التغيير','Holiday calendar saved and change recorded'));await loadHolidays()}
+   catch(_){}
+  });
+  const loadHolidays=async()=>{
+   const data=await api('/deadline-holidays');
+   firmHolidays=(data.firm_dated_holidays||[]).map(x=>({date:x.date,name_ar:x.name_ar}));
+   renderFirmHolidays();
+   holidayAudit.replaceChildren(h('p',{className:'mut',textContent:uiText('العطلات الثابتة والمشتركة تظل مسودة جزئية؛ هذه الإضافات خاصة بهذا المكتب فقط.','Shared fixed holidays remain a partial draft; these additions apply only to this firm.')}),...(data.audit||[]).slice(0,5).map(item=>h('p',{className:'mut',textContent:item.created_at+' · '+uiText('المستخدم','User')+' '+item.actor_user_id+' · '+item.action})));
+  };
+  const addHoliday=btn(uiText('إضافة عطلة','Add holiday'),()=>{
+   if(!holidayDate.value||!holidayName.value.trim()){toast(uiText('أدخل التاريخ واسم العطلة','Enter a date and holiday name'));return}
+   if(firmHolidays.some(x=>x.date===holidayDate.value)){toast(uiText('هذا التاريخ موجود بالفعل','That date already exists'));return}
+   firmHolidays.push({date:holidayDate.value,name_ar:holidayName.value.trim()});
+   firmHolidays.sort((a,b)=>a.date.localeCompare(b.date));holidayDate.value='';holidayName.value='';renderFirmHolidays();
+  });
+  holidayPanel.append(h('h3',{textContent:uiText('تقويم العطلات الخاص بالمكتب','Firm holiday calendar')}),
+   h('p',{className:'mut',textContent:uiText('يمكن لمسؤول المكتب إضافة العطلات المؤرخة أو حذفها. كل حفظ يسجل نسخة قبل/بعد في سجل المراجعة. لا يجعل ذلك القواعد أو التقويم معتمدين قانونياً.','Firm admins can add or remove dated holidays. Each save records before/after snapshots. This does not make the rules or calendar legally verified.')}),
+   h('div',{className:'grid'},holidayDate,holidayName),addHoliday,holidayList,saveHolidays,holidayAudit);
+  body.append(holidayPanel);
+  loadHolidays().catch(e=>holidayList.replaceChildren(h('p',{className:'bad',textContent:String(e.message||e)})));
+ }
  if(TAB==='notes'){const txt=h('textarea',{placeholder:uiText('اكتب ملاحظة داخلية للقضية...','Write an internal case note...'),rows:4,style:'width:100%;font:inherit;border:1px solid var(--line);border-radius:8px;padding:10px'});
   body=h('div',{className:'card'},h('h3',{textContent:'ملاحظات القضية'}),c.notes.length?c.notes.map(n=>h('div',{className:'src'},h('div',{textContent:n.text,style:'white-space:pre-wrap'}),h('div',{className:'mut',textContent:(n.author||'')+' · '+(n.created_at||'')}))):empty('لا توجد ملاحظات بعد.'),
    txt,h('div',{className:'row'},btn('حفظ الملاحظة',async()=>{if(!txt.value.trim()){toast(uiText('اكتب الملاحظة أولا','Write a note first'));return}await api('/cases/'+id+'/notes','POST',{text:txt.value});again()})))}
