@@ -53,6 +53,7 @@ class RecordManualCaptureTests(unittest.TestCase):
         self.assertFalse(meta["commercial_reuse_permission_verified"])
         self.assertEqual(meta["collection_permission"], "not_established_manual_capture")
         self.assertTrue((self.out / meta["original_path"]).exists())
+        self.assertTrue(Path(meta["original_path"]).name.startswith("original"))
         queue = [json.loads(l) for l in (self.out / "review_queue.jsonl").read_text(encoding="utf-8").splitlines()]
         self.assertEqual(queue[-1]["review_status"], "pending_human_review")
         self.assertTrue(any("permission" in r for r in queue[-1]["review_reasons"]))
