@@ -5025,5 +5025,51 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             app._research_context_for_scope(legacy, "verified_corpus", None)
         )
 
+    def test_case_draft_skeleton_is_scoped_and_explicitly_unfiled(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate(
+            "post",
+            "/cases",
+            json={
+                "title": "Contract Claim",
+                "client": "Client A",
+                "case_number": "1234",
+                "case_year": "2026",
+                "court": "محكمة القاهرة",
+                "circuit": "الدائرة التجارية",
+                "opposing_party": "Counterparty",
+            },
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        memo = self.client.get(f"/cases/{case_id}/draft-skeleton")
+        self.assertEqual(memo.status_code, 200, memo.text)
+        payload = memo.json()
+        self.assertTrue(payload["draft_only"])
+        self.assertTrue(payload["lawyer_review_required"])
+        self.assertIn("محكمة القاهرة", payload["content"])
+        self.assertIn("أولاً: موجز الوقائع", payload["content"])
+        self.assertIn("يلزم استكمال الوقائع", payload["content"])
+
+        pleading = self.client.get(
+            f"/cases/{case_id}/draft-skeleton", params={"document_type": "pleading"}
+        )
+        self.assertEqual(pleading.status_code, 200, pleading.text)
+        self.assertIn("صحيفة دعوى", pleading.json()["content"])
+        invalid = self.client.get(
+            f"/cases/{case_id}/draft-skeleton", params={"document_type": "contract"}
+        )
+        self.assertEqual(invalid.status_code, 422, invalid.text)
+
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        denied = self.client.get(f"/cases/{case_id}/draft-skeleton")
+        self.assertEqual(denied.status_code, 404, denied.text)
+
+
 if __name__ == "__main__":
     unittest.main()

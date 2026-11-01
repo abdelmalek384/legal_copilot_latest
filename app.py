@@ -11,6 +11,7 @@ from datetime import date, datetime, timedelta, timezone
 from functools import lru_cache, wraps
 from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_permission_register_ready, source_permission_evidence_ready, source_status, citation_text, research_memo, has_current_review_evidence)
 from tools.arabic_legal_matching import expand_lexicon_hints
+from tools.arabic_drafting_skeletons import build_arabic_skeleton
 from tools.claim_support import claim_support_enabled, has_unsupported_claims
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
@@ -4931,6 +4932,31 @@ def case(cid: int, u: dict = Depends(user)):
             "deadlines": rows("SELECT * FROM deadlines WHERE case_id=? ORDER BY due"),
             "fees": rows("SELECT * FROM fees WHERE case_id=? ORDER BY due"),
             "events": rows("SELECT who, at, text FROM events WHERE case_id=? ORDER BY id DESC LIMIT 100")}
+
+
+@app.get("/cases/{cid}/draft-skeleton")
+def case_draft_skeleton(
+    cid: int,
+    document_type: str = Query(default="memorandum", pattern="^(memorandum|pleading)$"),
+    u: dict = Depends(user),
+):
+    """Build a heading-only Arabic draft from metadata of an authorized case."""
+    c = conn()
+    need(c, u, cid)
+    record = c.execute(
+        "SELECT title, client, case_number, case_year, court, circuit, opposing_party "
+        "FROM cases WHERE id=? AND firm_id=?",
+        (cid, u["firm_id"]),
+    ).fetchone()
+    if record is None:
+        raise HTTPException(404, "case not found")
+    return {
+        "document_type": document_type,
+        "content": build_arabic_skeleton(dict(record), document_type),
+        "draft_only": True,
+        "lawyer_review_required": True,
+        "message": "هيكل أولي فقط؛ يجب استكمال الوقائع والأسانيد والطلبات ومراجعته بواسطة محامٍ.",
+    }
 
 
 def _redact_case_brief_identifiers(value):

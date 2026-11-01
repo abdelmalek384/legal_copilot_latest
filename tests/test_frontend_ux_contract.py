@@ -240,5 +240,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("@media(max-width:420px)", HTML)
         self.assertIn("@media(forced-colors:active)", HTML)
 
+    def test_case_notes_surface_safe_arabic_drafting_skeletons(self):
+        self.assertIn("/draft-skeleton?document_type=", HTML)
+        self.assertIn("Generate memo skeleton", HTML)
+        self.assertIn("Generate pleading skeleton", HTML)
+        self.assertIn("Heading-only templates", HTML)
+        self.assertIn("محامٍ", HTML)
+
 if __name__ == "__main__":
     unittest.main()
