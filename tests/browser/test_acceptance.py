@@ -503,9 +503,16 @@ class BrowserAcceptanceTests(unittest.TestCase):
             )
             self.assertEqual(denied_delete.status, 404, denied_delete.text())
 
-            # Restore the case owner's firm context before continuing case mutations.
-            self.login(self.state["owner_a_email"])
-            headers = self.csrf_headers()
+            # The associate uses a separate browser context, so selecting Firm A
+            # must not alter the owner's session or CSRF token.
+            owner_session_after_switch = self.page.request.get(
+                self.base_url + "/session", timeout=8000
+            )
+            self.assertEqual(owner_session_after_switch.status, 200, owner_session_after_switch.text())
+            owner_case_after_switch = self.page.request.get(
+                self.base_url + f"/cases/{case_id}", timeout=8000
+            )
+            self.assertEqual(owner_case_after_switch.status, 200, owner_case_after_switch.text())
 
             task = self.page.request.post(
                 self.base_url + f"/cases/{case_id}/tasks",
