@@ -1,6 +1,5 @@
-import contextlib
-import io
 import json
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -71,10 +70,24 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
             original = "previous human-review summary\n"
             output_path.write_text(original, encoding="utf-8")
 
-            with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
-                code = main([str(reviews_path), "--reviewer-registry", str(registry_path), "--output", str(output_path)])
+            completed = subprocess.run(
+                [
+                    sys.executable,
+                    str(ROOT / "tools" / "evaluate_legal_answer_reviews.py"),
+                    str(reviews_path),
+                    "--reviewer-registry",
+                    str(registry_path),
+                    "--output",
+                    str(output_path),
+                ],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
 
-            self.assertEqual(code, 2)
+            self.assertEqual(completed.returncode, 2, completed.stderr)
+            self.assertIn("evaluation refused: output already exists", completed.stderr)
             self.assertEqual(output_path.read_text(encoding="utf-8"), original)
 
     def test_unregistered_or_pending_reviewer_is_excluded(self):
