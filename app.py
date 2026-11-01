@@ -1545,7 +1545,7 @@ def _answer_has_mismatched_pincites(answer, hits):
         return True
     visible = _mask_markdown_code(answer)
     article_pattern = re.compile(r"(?<![\w])(?:الماده|ماده|article|art\.?)\s*(?:رقم\s*)?[\(\[]?\s*(\d+)(?:\s*[-–—]\s*(\d+))?[\)\]]?", re.IGNORECASE)
-    page_pattern = re.compile(r"(?<![\w])(?:صفحه|ص|page|p\.)\s*(?:رقم\s*)?[\(\[]?\s*(\d+)(?:\s*[-–—]\s*(\d+))?[\)\]]?", re.IGNORECASE)
+    page_pattern = re.compile(r"(?<![\w])(?:ال)?(?:صفحه|ص|page|p\.)\s*(?:رقم\s*)?[\(\[]?\s*(\d+)(?:\s*[-–—]\s*(\d+))?[\)\]]?", re.IGNORECASE)
     for raw_line in visible.splitlines():
         line = raw_line.strip()
         if (not line or re.match(r"^#{1,6}\s+", line)
