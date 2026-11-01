@@ -172,12 +172,15 @@ def _validate_result(row):
         raise EvaluationError("result id must be a non-empty string")
     if not isinstance(row.get("abstained"), bool):
         raise EvaluationError(f"{qid}: result abstained must be true or false")
+    answer_id = row.get("answer_id")
+    if answer_id is not None and not _nonempty(answer_id):
+        raise EvaluationError(f"{qid}: answer_id must be a non-empty stable identifier when supplied")
     sources = _string_list(row.get("cited_sources", []), "cited_sources", qid)
     pins = _pin_cites(row.get("cited_pin_cites", []), "cited_pin_cites", qid)
     unlisted_pin_sources = sorted({source_id for source_id, _ in pins} - set(sources))
     if unlisted_pin_sources:
         raise EvaluationError(f"{qid}: result pin citations reference sources absent from cited_sources")
-    return sources, pins
+    return sources, pins, answer_id.strip() if isinstance(answer_id, str) else None
 
 
 def _invalid_citation_indices(row):
@@ -246,9 +249,18 @@ def evaluate(question_rows, result_rows, reviewer_registry):
 
     rows = []
     by_area = defaultdict(list)
+    answer_id_owners = {}
     for qid, (expected_sources, expected_pins) in reviewed.items():
         q = question_map[qid]
-        actual_sources, actual_pins = _validate_result(result_map[qid])
+        actual_sources, actual_pins, answer_id = _validate_result(result_map[qid])
+        if answer_id:
+            previous_qid = answer_id_owners.get(answer_id)
+            if previous_qid is not None:
+                raise EvaluationError(
+                    f"duplicate answer_id {answer_id!r} across result IDs {previous_qid!r} and {qid!r}; "
+                    "each generated answer must have its own stable identifier"
+                )
+            answer_id_owners[answer_id] = qid
         invalid_indices = _invalid_citation_indices(result_map[qid])
         source_hits = len(set(expected_sources) & set(actual_sources))
         pin_hits = len(set(expected_pins) & set(actual_pins))
@@ -257,6 +269,7 @@ def evaluate(question_rows, result_rows, reviewer_registry):
         citation_present = bool(actual_sources or actual_pins)
         item = {
             "id": qid,
+            "answer_id": answer_id,
             "practice_area": q.get("practice_area", "unspecified").strip(),
             "answerable": q["answerable"],
             "expected_abstain": expected_abstain,
@@ -309,12 +322,15 @@ def evaluate(question_rows, result_rows, reviewer_registry):
         }
 
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "evaluation_scope": "citation_and_abstention_behavior_only",
         "semantic_legal_correctness_scored": False,
         "approval_gate": APPROVED,
         "questions_available": len(question_map),
         "questions_scored": len(rows),
+        "results_with_stable_answer_id": len(answer_id_owners),
+        "results_missing_stable_answer_id": len(rows) - len(answer_id_owners),
+        "stable_answer_id_coverage": _ratio(len(answer_id_owners), len(rows)),
         "unreviewed_questions_excluded": len(excluded),
         "excluded_question_ids": sorted(excluded),
         "overall": summarize(rows),
