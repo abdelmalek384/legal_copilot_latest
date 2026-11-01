@@ -240,9 +240,6 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("@media(max-width:420px)", HTML)
         self.assertIn("@media(forced-colors:active)", HTML)
 
-if __name__ == "__main__":
-    unittest.main()
-
     def test_primary_navigation_uses_a_nav_landmark(self):
         self.assertIn("h('nav',{className:'primary-nav'", HTML)
 
