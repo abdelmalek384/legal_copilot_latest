@@ -28,6 +28,7 @@ from tools.collect_legal_documents import (  # noqa: E402
     append_jsonl,
     process_document,
     sha256_bytes,
+    validate_output_layout,
 )
 
 CATALOG = ROOT / "docs" / "legal_document_candidates.json"
@@ -85,6 +86,8 @@ def detect_content_type(path: Path, data: bytes) -> str:
 
 
 def record_capture(args) -> dict:
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,127}", args.document_id):
+        raise ValueError("--document-id must start with a letter/digit and contain only letters, digits, '_' or '-' (max 128 characters)")
     path = Path(args.file).expanduser()
     if not path.is_file():
         raise ValueError(f"file not found: {path}")
@@ -119,8 +122,13 @@ def record_capture(args) -> dict:
     sha = sha256_bytes(data)
     ext = ALLOWED_TYPES.get(content_type) or path.suffix.lower()
     out = Path(args.out)
+    validate_output_layout(out)
     original_dir = out / "originals" / args.document_id
+    if original_dir.is_symlink():
+        raise ValueError("original document directory must not be a symbolic link")
     original_path = original_dir / f"manual-{sha[:16]}{ext}"
+    if original_path.is_symlink():
+        raise ValueError("original capture target must not be a symbolic link")
     already = original_path.exists()
     metadata = {
         "document_id": args.document_id,
@@ -163,8 +171,13 @@ def record_capture(args) -> dict:
     if not already:
         shutil.copyfile(path, original_path)
     meta_dir = out / "metadata"
+    if meta_dir.is_symlink():
+        raise ValueError("metadata directory must not be a symbolic link")
     meta_dir.mkdir(parents=True, exist_ok=True)
-    (meta_dir / f"{args.document_id}.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    metadata_path = meta_dir / f"{args.document_id}.json"
+    if metadata_path.is_symlink():
+        raise ValueError("metadata file must not be a symbolic link")
+    metadata_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     audit = process_document(out, metadata)
     reasons = list(audit["audit"]["warnings"])
     if audit["extraction_error"]:
