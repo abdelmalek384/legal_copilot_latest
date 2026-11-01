@@ -370,7 +370,8 @@ def _release_gate(report, args):
                            "passed": actual >= args.min_questions_per_practice_area})
     for metric, threshold in minimums.items():
         if threshold is not None:
-            actual = report["overall"].get(metric)
+            actual = (report.get(metric) if metric == "stable_answer_id_coverage"
+                      else report["overall"].get(metric))
             checks.append({"metric": metric, "operator": ">=", "threshold": threshold,
                            "actual": actual, "passed": actual is not None and actual >= threshold})
     for metric, threshold in maximums.items():
