@@ -288,6 +288,80 @@ class MFAAccountSecurityTests(unittest.TestCase):
         ).fetchone())
 
 
+    def test_mfa_verification_audit_failure_rolls_back_factor_and_session(self):
+        secret = self.enroll()
+        codes = self.confirm(secret)
+        failure_client = TestClient(app.app, raise_server_exceptions=False)
+        try:
+            login = failure_client.post(
+                "/login", json={"email": "MFA-OWNER@example.test", "password": self.password}
+            )
+            self.assertEqual(login.status_code, 200, login.text)
+            self.assertTrue(login.json()["mfa_verification_required"])
+            control = self.runtime.control_connection()
+            control.execute("""
+                CREATE TRIGGER reject_mfa_verification_audit
+                BEFORE INSERT ON mfa_security_events
+                WHEN NEW.event_type='recovery_code_used'
+                BEGIN SELECT RAISE(ABORT, 'injected MFA verification audit failure'); END
+            """)
+            control.commit()
+
+            response = failure_client.post(
+                "/account/mfa/verify",
+                json={"recovery_code": codes[0]},
+                headers={"X-CSRF-Token": failure_client.cookies.get("lc_csrf") or ""},
+            )
+            self.assertEqual(response.status_code, 500, response.text)
+
+            recovery = control.execute(
+                "SELECT used_at FROM mfa_recovery_codes WHERE user_id=? ORDER BY id LIMIT 1",
+                (self.user_id,),
+            ).fetchone()
+            self.assertIsNone(recovery["used_at"])
+            session = control.execute(
+                "SELECT mfa_verified FROM auth_sessions WHERE token_hash=? AND user_id=?",
+                (app.sha(failure_client.cookies.get("lc_session") or ""), self.user_id),
+            ).fetchone()
+            self.assertEqual(session["mfa_verified"], 0)
+            self.assertEqual(control.execute(
+                "SELECT COUNT(*) FROM mfa_security_events WHERE actor_user_id=? AND event_type='recovery_code_used'",
+                (self.user_id,),
+            ).fetchone()[0], 0)
+        finally:
+            failure_client.close()
+
+    def test_mfa_security_events_are_append_only(self):
+        self.enroll()
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO mfa_security_events(actor_user_id,target_user_id,event_type,detail_json) "
+            "VALUES(?,?,'verification_failed','{}')",
+            (self.user_id, self.user_id),
+        )
+        control.commit()
+        event_id = control.execute(
+            "SELECT id FROM mfa_security_events WHERE actor_user_id=? AND event_type='verification_failed' "
+            "ORDER BY id DESC LIMIT 1",
+            (self.user_id,),
+        ).fetchone()["id"]
+
+        with self.assertRaises(sqlite3.IntegrityError):
+            control.execute(
+                "UPDATE mfa_security_events SET detail_json='{\"tampered\":true}' WHERE id=?",
+                (event_id,),
+            )
+        control.rollback()
+        with self.assertRaises(sqlite3.IntegrityError):
+            control.execute("DELETE FROM mfa_security_events WHERE id=?", (event_id,))
+        control.rollback()
+
+        persisted = control.execute(
+            "SELECT event_type,detail_json FROM mfa_security_events WHERE id=?", (event_id,)
+        ).fetchone()
+        self.assertEqual(persisted["event_type"], "verification_failed")
+        self.assertEqual(persisted["detail_json"], "{}")
+
     def test_mfa_enrollment_audit_failure_rolls_back_pending_credential(self):
         failure_client = TestClient(app.app, raise_server_exceptions=False)
         try:
