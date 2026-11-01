@@ -462,6 +462,9 @@ def main(argv=None):
         report["reviewer_registry_errors"] = []
         report["redacted_critical_defect_record_count"] = len(report.get("critical_defects", []))
         report["critical_defects"] = []
+        # Per-answer agreement rows contain case, answer, and reviewer identifiers.
+        # Preserve the aggregate agreement metrics above, but omit these rows in this mode.
+        report["reviewer_agreement"]["answer_groups"] = []
         report["privacy_mode"] = "aggregate_only"
     report["provenance"] = _report_provenance({
         "reviews": records_meta,
