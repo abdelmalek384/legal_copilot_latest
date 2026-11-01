@@ -134,6 +134,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_pdf_page_references.py
       - name: Test inline legal citation coverage
         run: PYTHONPATH=. python tests/test_answer_citation_coverage.py
+      - name: Test Arabic answer/source polarity guard
+        run: PYTHONPATH=. python tests/test_answer_source_polarity.py
       - name: Test sentence-level legal quantity citation binding
         run: PYTHONPATH=. python tests/test_citation_quantity_binding.py
       - name: Test retrieval and citation evaluation harness
