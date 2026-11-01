@@ -5054,6 +5054,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertEqual(len(current.json()["payment_requests"]), 1)
 
             control = self.runtime.control_connection()
+            denied_queue = self.client.get("/platform/billing/payment-requests")
+            self.assertEqual(denied_queue.status_code, 403, denied_queue.text)
             control.execute(
                 "INSERT INTO user_platform_roles(user_id,role_name,granted_by_user_id) VALUES(?,'platform_admin',?)",
                 (self.user_id, self.user_id),
