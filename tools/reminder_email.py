@@ -17,6 +17,10 @@ class ReminderEmailError(ValueError):
     """Raised when configuration or a reminder payload is unsafe."""
 
 
+class SMTPSubmissionAmbiguous(Exception):
+    """SMTP transport failed after message submission began; do not retry automatically."""
+
+
 @dataclass(frozen=True)
 class SMTPConfig:
     host: str
@@ -113,19 +117,42 @@ def _safe_message(reminder: Mapping[str, object], recipient: str, app_url: str, 
 def _smtp_send(config: SMTPConfig, message: EmailMessage) -> None:
     config.validated()
     context = ssl.create_default_context()
-    if config.security == "ssl":
-        with smtplib.SMTP_SSL(config.host, config.port, timeout=config.timeout_seconds, context=context) as client:
-            client.login(config.username, config.password)
-            refused = client.send_message(message)
-    else:
-        with smtplib.SMTP(config.host, config.port, timeout=config.timeout_seconds) as client:
-            client.ehlo()
-            client.starttls(context=context)
-            client.ehlo()
-            client.login(config.username, config.password)
-            refused = client.send_message(message)
-    if refused:
-        raise smtplib.SMTPRecipientsRefused({})
+    submission_started = False
+    submission_confirmed = False
+    try:
+        if config.security == "ssl":
+            with smtplib.SMTP_SSL(config.host, config.port, timeout=config.timeout_seconds, context=context) as client:
+                client.login(config.username, config.password)
+                submission_started = True
+                refused = client.send_message(message)
+                if refused:
+                    raise smtplib.SMTPRecipientsRefused(refused)
+                submission_confirmed = True
+        else:
+            with smtplib.SMTP(config.host, config.port, timeout=config.timeout_seconds) as client:
+                client.ehlo()
+                client.starttls(context=context)
+                client.ehlo()
+                client.login(config.username, config.password)
+                submission_started = True
+                refused = client.send_message(message)
+                if refused:
+                    raise smtplib.SMTPRecipientsRefused(refused)
+                submission_confirmed = True
+    except Exception as exc:
+        # A successful send_message response confirms SMTP acceptance. A later
+        # QUIT/close error must not trigger a duplicate submission.
+        if submission_confirmed:
+            return
+        # Once send_message starts, a transport failure may mean the server
+        # accepted DATA but its response was lost. Quarantine rather than retry.
+        is_transport_disconnect = isinstance(exc, smtplib.SMTPServerDisconnected)
+        is_non_protocol_transport_error = (
+            isinstance(exc, (TimeoutError, OSError)) and not isinstance(exc, smtplib.SMTPException)
+        )
+        if submission_started and (is_transport_disconnect or is_non_protocol_transport_error):
+            raise SMTPSubmissionAmbiguous("SMTP submission outcome is ambiguous") from exc
+        raise
 
 
 def _is_transient(exc: Exception) -> bool:
@@ -163,6 +190,12 @@ def send_reminder_email(reminder: Mapping[str, object], recipient: str, app_url:
                     "accepted_by_smtp": True, "error_code": None,
                     "warning": "SMTP acceptance is not confirmation of inbox delivery."}
         except Exception as exc:
+            if isinstance(exc, SMTPSubmissionAmbiguous):
+                return {
+                    "status": "ambiguous", "attempts": attempt, "accepted_by_smtp": False,
+                    "error_code": "smtp_submission_ambiguous",
+                    "warning": "Submission may have been accepted; operator reconciliation is required and automatic retry is disabled.",
+                }
             transient = _is_transient(exc)
             if transient and attempt < max_attempts:
                 sleep(min(float(base_backoff_seconds) * (2 ** (attempt - 1)), 60.0))

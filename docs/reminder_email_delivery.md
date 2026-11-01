@@ -29,9 +29,10 @@ Return statuses are deliberately precise:
 
 - disabled: no attempt was made.
 - accepted_by_smtp: the SMTP server accepted the message submission; this does not prove inbox delivery.
-- failed: retries ended or a permanent error occurred. Only a sanitized error code is returned; provider response text and credentials are not returned.
+- ambiguous: transport failed after SMTP message submission began; the provider may have accepted the message, so the outbox quarantines it for operator reconciliation and does not automatically retry.
+- failed: retries ended or a permanent error occurred before an ambiguous submission. Only a sanitized error code is returned; provider response text and credentials are not returned.
 
-Retries are bounded to 1–5 attempts with exponential backoff for likely transient connection or SMTP 4xx failures. Authentication failures and SMTP 5xx failures are not retried. A timeout can occur after a provider accepted a message, so retries can still duplicate an email. Durable idempotency and reconciliation are mandatory before scheduled production use.
+Retries are bounded to 1–5 attempts with exponential backoff for likely transient connection/handshake failures before message submission and explicit SMTP 4xx rejection responses. Authentication failures and SMTP 5xx failures are not retried. Once `send_message` begins, a transport timeout/disconnect is recorded as `smtp_submission_ambiguous` and is not automatically retried, because the provider may already have accepted the message. A confirmed SMTP acceptance response is recorded as `accepted_by_smtp`; this is not proof of inbox delivery. Exactly-once delivery is not guaranteed, and ambiguous outcomes require provider reconciliation before any explicit retry.
 
 ## Tests
 

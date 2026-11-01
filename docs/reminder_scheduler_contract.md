@@ -6,7 +6,7 @@ The project now includes a tenant-local durable outbox (tools/reminder_outbox.py
 
 The scheduler resolves each firm through the trusted control-plane catalog, plans only for active memberships, limits task/deadline reminders to the assigned/creating user (or authorized firm admin) with case access, and limits court-session reminders to explicit case members. It rechecks recipient membership, case access, event state, and due date immediately before sending. Each firm's outbox resides in that firm's database; unique idempotency keys and transactional claims suppress duplicate scheduler claims. Expired in-flight leases become ambiguous rather than being silently resent.
 
-SMTP acceptance is not proof of inbox delivery. A timeout may leave provider acceptance ambiguous; the scheduler records connection-failure outcomes as ambiguous and requires operator reconciliation rather than automatically retrying that outbox row. The SMTP adapter still performs bounded retries for transient errors within a single claimed delivery, so a provider timeout may still be ambiguous. Do not claim exactly-once email delivery.
+SMTP acceptance is not proof of inbox delivery. A timeout may leave provider acceptance ambiguous; the scheduler records connection-failure outcomes as ambiguous and requires operator reconciliation rather than automatically retrying that outbox row. The SMTP adapter retries bounded connection/handshake failures before message submission and explicit SMTP 4xx rejection responses. Once `send_message` begins, transport timeouts/disconnects are recorded as `smtp_submission_ambiguous` and are not retried automatically; a confirmed SMTP acceptance response is not proof of inbox delivery. Exactly-once email delivery is not guaranteed.
 
 ## Normalized input
 
@@ -37,7 +37,7 @@ The input root must be an object with an events array and optional already_sent 
 
 ## Email adapter
 
-The SMTP adapter in docs/reminder_email_delivery.md supports TLS-protected SMTP with a timeout, generic message content, disabled-by-default delivery, bounded retries for likely transient failures, and sanitized error codes. Status accepted_by_smtp means only that the SMTP server accepted the submission; it is not proof of inbox delivery. A timeout may leave acceptance ambiguous and retries may duplicate a message.
+The SMTP adapter in docs/reminder_email_delivery.md supports TLS-protected SMTP with a timeout, generic message content, disabled-by-default delivery, bounded retries only before submission or after explicit transient SMTP rejection, and sanitized error codes. Transport failure after `send_message` begins becomes `smtp_submission_ambiguous` and is not automatically retried. Status `accepted_by_smtp` means the server confirmed message submission; it is not proof of inbox delivery.
 
 ## Operator-run scheduler
 

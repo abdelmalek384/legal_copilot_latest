@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 from database_runtime import DatabaseRuntime
 from tools.reminder_email import SMTPConfig
-from tools.reminder_outbox import enqueue_plan
+from tools.reminder_outbox import enqueue_plan, retry_failed
 from tools.reminder_schedule import build_reminder_plan
 from tools.reminder_service import (
     _ReadOnlyReminderRuntime, main, outbox_status, run_scheduler,
@@ -130,6 +130,30 @@ class ReminderServiceTests(unittest.TestCase):
         row = self.tenant.execute("SELECT * FROM reminder_deliveries").fetchone()
         self.assertEqual(row["status"], "accepted_by_smtp")
         self.assertEqual(row["attempt_count"], 1)
+
+    def test_post_submission_ambiguity_is_quarantined_and_not_retryable(self):
+        with patch(
+            "tools.reminder_service.send_reminder_email",
+            return_value={
+                "status": "ambiguous", "attempts": 1,
+                "error_code": "smtp_submission_ambiguous",
+            },
+        ) as sender:
+            report = run_scheduler(
+                self.runtime, now=self.now, timezone_name="Africa/Cairo", send=True,
+                smtp_config=self.smtp, app_url="https://app.example.test", max_send=10,
+            )
+
+        self.assertEqual(sender.call_count, 1)
+        self.assertEqual(report["ambiguous"], 1)
+        self.assertEqual(report["failed"], 0)
+        row = self.tenant.execute("SELECT * FROM reminder_deliveries").fetchone()
+        self.assertEqual(row["status"], "ambiguous")
+        self.assertEqual(row["last_error_code"], "smtp_submission_ambiguous")
+        attempt = self.tenant.execute("SELECT * FROM reminder_delivery_attempts").fetchone()
+        self.assertEqual(attempt["status"], "ambiguous")
+        self.assertEqual(attempt["error_code"], "smtp_submission_ambiguous")
+        self.assertFalse(retry_failed(self.tenant, row["idempotency_key"], now=self.now))
 
     def test_nonmember_assignee_is_not_queued(self):
         other_id = self.runtime.create_global_identity(
