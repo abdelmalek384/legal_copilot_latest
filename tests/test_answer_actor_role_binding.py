@@ -12,6 +12,11 @@ class CitedActorRoleBindingTests(unittest.TestCase):
                 answer = f"يجوز لـ{answer_actor} طلب التعويض عن الضرر [1]."
                 self.assertTrue(app._answer_has_cited_actor_role_mismatch(answer, [source]))
 
+    def test_husband_phrase_does_not_match_inside_wife_phrase(self):
+        hits = [{"text": "يجوز للزوجة طلب فسخ عقد الزواج والتعويض عن الضرر."}]
+        self.assertTrue(app._answer_has_cited_actor_role_mismatch(
+            "يجوز للزوج طلب فسخ عقد الزواج والتعويض عن الضرر [1].", hits
+        ))
     def test_same_actor_and_same_action_pass(self):
         hits = [{"text": "يجوز لصاحب العمل إنهاء العقد في الحالة المحددة."}]
         self.assertFalse(app._answer_has_cited_actor_role_mismatch(
