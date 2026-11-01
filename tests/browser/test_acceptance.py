@@ -545,6 +545,76 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertTrue(any(row["name"] == "synthetic-caseflow-note.txt" for row in record["docs"]))
         self.assertTrue(any("SYNTHETIC CASEFLOW" in row["text"] for row in record["events"]))
 
+        # Use an isolated browser context so the associate's firm switch cannot
+        # mutate the case owner's active-firm cookie or session.
+        member_context = self.browser.new_context(viewport={"width": 1280, "height": 800})
+        try:
+            member_page = member_context.new_page()
+            member_page.set_default_timeout(8000)
+            member_page.goto(self.base_url, wait_until="domcontentloaded")
+            member_page.locator('input[type="email"]').fill(self.state["reviewer_email"])
+            member_page.locator('input[type="password"]').fill(self.state["password"])
+            member_page.locator('button[type="submit"]').click()
+            member_page.locator("#side").wait_for(state="visible", timeout=15000)
+            selected_firm = member_page.evaluate(
+                """async (firmId) => {
+                    const csrf = document.cookie.split("; ")
+                        .find((item) => item.startsWith("lc_csrf="))?.split("=", 2)[1] || "";
+                    const response = await fetch("/session/firm", {
+                        method: "POST", credentials: "same-origin",
+                        headers: {"Content-Type": "application/json", "X-CSRF-Token": csrf},
+                        body: JSON.stringify({firm_id: firmId})
+                    });
+                    return {status: response.status, body: await response.json()};
+                }""",
+                self.state["firm_a_id"],
+            )
+            self.assertEqual(selected_firm["status"], 200, str(selected_firm["body"]))
+            self.assertEqual(selected_firm["body"]["firm_id"], self.state["firm_a_id"])
+            self.assertEqual(
+                member_page.evaluate(
+                    """() => document.cookie.split("; ").find((item) => item.startsWith("lc_firm="))?.split("=", 2)[1] || """""
+                ),
+                str(self.state["firm_a_id"]),
+            )
+            member_detail = member_page.evaluate(
+                """async (caseId) => {
+                    const response = await fetch("/cases/" + caseId, {credentials: "same-origin"});
+                    return {status: response.status, body: await response.json()};
+                }""",
+                case_id,
+            )
+            self.assertEqual(member_detail["status"], 200, str(member_detail["body"]))
+            denied_patch = member_page.evaluate(
+                """async (caseId) => {
+                    const csrf = document.cookie.split("; ")
+                        .find((item) => item.startsWith("lc_csrf="))?.split("=", 2)[1] || "";
+                    const response = await fetch("/cases/" + caseId, {
+                        method: "PATCH", credentials: "same-origin",
+                        headers: {"Content-Type": "application/json", "X-CSRF-Token": csrf},
+                        body: JSON.stringify({stage: "UNAUTHORIZED_ASSOCIATE_EDIT"})
+                    });
+                    return {status: response.status, body: await response.json()};
+                }""",
+                case_id,
+            )
+            self.assertEqual(denied_patch["status"], 403, str(denied_patch["body"]))
+            denied_delete = member_page.evaluate(
+                """async (caseId) => {
+                    const csrf = document.cookie.split("; ")
+                        .find((item) => item.startsWith("lc_csrf="))?.split("=", 2)[1] || "";
+                    const response = await fetch("/cases/" + caseId, {
+                        method: "DELETE", credentials: "same-origin",
+                        headers: {"X-CSRF-Token": csrf}
+                    });
+                    return {status: response.status, body: await response.json()};
+                }""",
+                case_id,
+            )
+            self.assertEqual(denied_delete["status"], 403, str(denied_delete["body"]))
+        finally:
+            member_context.close()
+
         removed = self.page.request.delete(
             self.base_url + f"/cases/{case_id}/members/{member_id}",
             headers=headers,
@@ -734,17 +804,22 @@ class BrowserAcceptanceTests(unittest.TestCase):
         # matter selection, query entry, and submission; no pointer interaction.
         scope.focus()
         self.assertTrue(scope.evaluate("(el) => document.activeElement === el"))
-        self.page.keyboard.press("Tab")
-        self.assertTrue(matter.evaluate("(el) => document.activeElement === el"))
-        # The conversation sidebar contains additional legitimate tab stops
-        # between the scope controls and composer. Verify they do not trap or
-        # skip keyboard focus rather than assuming an artificially short path.
-        composer_reached = False
         focusable_count = self.page.locator(
             "button:not([disabled]), a[href], select:not([disabled]), "
             "textarea:not([disabled]), input:not([disabled]), "
             "[tabindex]:not([tabindex='-1'])"
         ).count()
+        matter_reached = False
+        for _ in range(focusable_count + 2):
+            self.page.keyboard.press("Tab")
+            if matter.evaluate("(el) => document.activeElement === el"):
+                matter_reached = True
+                break
+        self.assertTrue(matter_reached, "matter selector was not reachable by Tab after scope")
+        # The conversation sidebar contains additional legitimate tab stops
+        # between the scope controls and composer. Verify they do not trap or
+        # skip keyboard focus rather than assuming an artificially short path.
+        composer_reached = False
         # The shared synthetic fixture accumulates research-conversation
         # controls across earlier browser cases. Bound traversal by the actual
         # number of focusable elements rather than assuming a fixed list size.
