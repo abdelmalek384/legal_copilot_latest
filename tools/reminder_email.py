@@ -146,9 +146,11 @@ def _smtp_send(config: SMTPConfig, message: EmailMessage) -> None:
             return
         # Once send_message starts, a transport failure may mean the server
         # accepted DATA but its response was lost. Quarantine rather than retry.
-        if submission_started and isinstance(
-            exc, (TimeoutError, OSError, smtplib.SMTPServerDisconnected, smtplib.SMTPConnectError)
-        ):
+        is_transport_disconnect = isinstance(exc, smtplib.SMTPServerDisconnected)
+        is_non_protocol_transport_error = (
+            isinstance(exc, (TimeoutError, OSError)) and not isinstance(exc, smtplib.SMTPException)
+        )
+        if submission_started and (is_transport_disconnect or is_non_protocol_transport_error):
             raise SMTPSubmissionAmbiguous("SMTP submission outcome is ambiguous") from exc
         raise
 
