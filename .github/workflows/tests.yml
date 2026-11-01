@@ -156,6 +156,8 @@ jobs:
         run: python tests/test_collection_pipeline.py
       - name: Test corpus-to-reference comparison tool
         run: PYTHONPATH=. python tests/test_compare_corpus_to_reference.py
+      - name: Test manual capture recorder
+        run: PYTHONPATH=. python tests/test_record_manual_capture.py
       - name: Test legal versioned registry
         run: python tests/test_legal_versioned_registry.py
       - name: Test read-only legal version comparison
