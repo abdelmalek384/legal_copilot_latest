@@ -250,7 +250,9 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
         self.assertEqual(agreement["answers_with_multiple_independent_reviews"], 1)
         self.assertEqual(agreement["answers_requiring_adjudication"], 1)
         self.assertEqual(agreement["disposition_conflicts"], 1)
-        self.assertEqual(agreement["dimension_disagreement_counts"]["legal_correctness"], 1)
+        self.assertEqual(agreement["dimension_agreement"]["legal_correctness"]["disagreement_count"], 1)
+        self.assertEqual(agreement["dimension_agreement"]["legal_correctness"]["exact_agreement_rate"], 0.0)
+        self.assertEqual(agreement["disposition_exact_agreement_rate"], 0.0)
         group = agreement["answer_groups"][0]
         self.assertFalse(group["disposition_agreement"])
         self.assertTrue(group["requires_adjudication"])
@@ -296,6 +298,22 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
         self.assertTrue(any("answer_id must be a non-empty string" in error
                             for error in validate_review(review(answer_id="  "))))
         self.assertEqual(validate_review(review()), [])
+
+
+    def test_legacy_reviews_without_answer_id_are_counted_but_not_compared(self):
+        first = review()
+        second = review(
+            assessment_id="ASSESS-002",
+            reviewer_id="reviewer-b",
+            reviewer_name="Reviewer B",
+            disposition="needs_revision",
+        )
+        result = summarize_reviews([first, second], reviewer_registry())
+        agreement = result["reviewer_agreement"]
+        self.assertEqual(agreement["valid_assessments_without_answer_id"], 2)
+        self.assertEqual(agreement["answers_with_multiple_independent_reviews"], 0)
+        self.assertIsNone(agreement["disposition_exact_agreement_rate"])
+        self.assertEqual(agreement["dimension_agreement"]["legal_correctness"]["comparison_count"], 0)
 
     def test_missing_rationale_invalidates_record(self):
         rationales = dict(review()["rationales"])
