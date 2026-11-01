@@ -126,7 +126,7 @@ def record_capture(args) -> dict:
     original_dir = out / "originals" / args.document_id
     if original_dir.is_symlink():
         raise ValueError("original document directory must not be a symbolic link")
-    original_path = original_dir / f"manual-{sha[:16]}{ext}"
+    original_path = original_dir / f"original-manual-{sha[:16]}{ext}"
     if original_path.is_symlink():
         raise ValueError("original capture target must not be a symbolic link")
     already = original_path.exists()
