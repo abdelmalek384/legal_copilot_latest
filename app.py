@@ -6165,6 +6165,22 @@ def admin_setup_health(u: dict = Depends(user)):
     if u.get("role") != "admin":
         raise HTTPException(403, "admin only")
     passed, warnings, errors = inspect_environment(require_separate=True)
+    control = control_conn()
+    policy_mode = _mfa_enforcement_mode()
+    admin_rows = control.execute(
+        "SELECT fm.user_id,COALESCE(mc.status,'missing') AS mfa_status "
+        "FROM firm_memberships fm LEFT JOIN mfa_credentials mc ON mc.user_id=fm.user_id "
+        "WHERE fm.firm_id=? AND fm.status='active' AND fm.firm_role='admin' "
+        "ORDER BY fm.user_id",
+        (u["firm_id"],),
+    ).fetchall()
+    missing_admin_mfa = sum(row["mfa_status"] != "enabled" for row in admin_rows)
+    if policy_mode == "admins_required" and missing_admin_mfa:
+        errors.append(f"{missing_admin_mfa} active firm administrator account(s) have not enabled MFA.")
+    elif policy_mode == "optional":
+        warnings.append("MFA_ENFORCEMENT is optional in this environment; production automatically requires administrator MFA.")
+    else:
+        passed.append("The configured MFA policy requires enrollment for privileged accounts.")
     checks = (
         [{"status": "pass", "message": item} for item in passed]
         + [{"status": "warning", "message": item} for item in warnings]
@@ -6174,7 +6190,13 @@ def admin_setup_health(u: dict = Depends(user)):
         "status": "blocked" if errors else ("warning" if warnings else "ready"),
         "ready": not errors and not warnings,
         "counts": {"passed": len(passed), "warnings": len(warnings), "errors": len(errors)},
+        "mfa": {
+            "policy_mode": policy_mode,
+            "active_firm_admins": len(admin_rows),
+            "enabled_firm_admins": len(admin_rows) - missing_admin_mfa,
+            "missing_firm_admins": missing_admin_mfa,
+        },
         "checks": checks,
-        "note": "Configuration checks only; this does not prove live SMTP, AWS/KMS, backup/restore, or MFA delivery/acceptance.",
+        "note": "Configuration checks only; this does not prove live SMTP, AWS/KMS, backup/restore, or witnessed operational acceptance.",
     }
 
