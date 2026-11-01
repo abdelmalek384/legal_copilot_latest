@@ -5034,6 +5034,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(conversation.status_code, 200, conversation.text)
         conversation_id = conversation.json()["id"]
         answer_id = "ans_" + ("A" * 32)
+        malformed = self._mutate(
+            "post",
+            f"/research/conversations/{conversation_id}/answers/not-an-answer-id/corrections",
+            json={"category": "other", "correction_text": "Malformed answer identifiers are rejected."},
+        )
+        self.assertEqual(malformed.status_code, 404, malformed.text)
 
         context_a = self.runtime.resolve_context(self.user_id, self.firm_a)
         firm_a_db = self.runtime.firm_connection(context_a)
