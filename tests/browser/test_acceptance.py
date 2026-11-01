@@ -466,7 +466,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             member_page.locator("#side").wait_for(state="visible", timeout=15000)
             member_session = member_page.request.get(self.base_url + "/session", timeout=8000)
             self.assertEqual(member_session.status, 200, member_session.text())
-            member_id = member_session.json()["id"]
+            member_id = self.state["reviewer_id"]
             member_csrf = {item["name"]: item["value"] for item in member_context.cookies()}
             member_headers = {"X-CSRF-Token": member_csrf.get("lc_csrf", "")}
 
