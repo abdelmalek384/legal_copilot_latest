@@ -56,7 +56,7 @@ class RecordManualCaptureTests(unittest.TestCase):
         queue = [json.loads(l) for l in (self.out / "review_queue.jsonl").read_text(encoding="utf-8").splitlines()]
         self.assertEqual(queue[-1]["review_status"], "pending_human_review")
         self.assertTrue(any("permission" in r for r in queue[-1]["review_reasons"]))
-        result = json.loads(stdout)
+        result, _ = json.JSONDecoder().raw_decode(stdout)
         audit = result["audit"]
         self.assertEqual(audit["audit"]["article_headings_detected"], 2)
         self.assertTrue((self.out / audit["audit_path"]).is_file())
