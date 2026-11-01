@@ -5,7 +5,7 @@
 
 ## Current score
 
-<escape>**Technical project completion: 49.83/100** (weighted estimate; up 0.05 points from 49.78; rounds to 50%).</escape>
+<escape>**Technical project completion: 49.85/100** (weighted estimate; up 0.02 points from 49.83; rounds to 50%).</escape>
 
 **Final Egyptian-counsel acceptance: 0% / not started.** This is a separate post-build acceptance gate, as planned. It must be completed before the product is represented as legally approved or used for client-facing legal reliance.
 
@@ -21,8 +21,8 @@ Open pull requests do not count as completed deliverables. Their changes are tre
 | Security, privacy and firm isolation | 15% | 72.5% | 10.875 | Separate profile architecture, access controls, MFA, audit events, backup tooling and isolation tests exist. PR #1088 scopes prior research context to completed turns in the same search scope and matter ID, and explicitly persists those boundaries in assistant metadata; its Tests, CodeQL, dependency audit and non-database safety regression passed. The MFA lifecycle audit-failure rollback regression merged in PR #925; CodeQL/Bandit security analysis merged in PR #907. Remaining: complete DB/storage workstream, exhaustive route/job isolation evidence, independent security assessment, and witnessed recovery/rollback. |
 | UI, accessibility and device usability | 10% | 45% | 4.50 | Responsive Arabic-first interface, installable privacy-safe PWA shell (PR #903 merged), and current-main Windows/Mac first-run launchers (PR #909 merged) exist. Automated Chromium acceptance is merged and passed 6/6 tests in PR #1078. Physical Windows/macOS checks and manual RTL/LTR, keyboard, screen-reader, mobile/tablet and lawyer-workflow acceptance remain incomplete. |
 | Automated testing and reliability | 10% | 69.5% | 6.95 | Broad CI coverage, hash-locked Python dependency baseline (PR #910 merged), CodeQL/Bandit static analysis (PR #907 merged), legal PDF integrity/OCR regressions (PR #923 merged), exact-head counsel-attestation and release-marker regressions, and merged 6/6 Chromium acceptance (PR #1078) exist. PR #1095 adds no-clobber output protection with real-CLI exit-code regression coverage; PR #1098 binds generated reports to exact input SHA-256/size metadata and a UTC host-clock timestamp. Both PRs passed their exact-head Tests, CodeQL, dependency and browser workflows. Remaining: manual device/accessibility acceptance, operational smoke tests and witnessed production recovery. |
-| Production operations and deployment readiness | 10% | 35% | 3.50 | Strict preflight, release gates, encrypted backup/restore code, storage adapters and reminder outbox/scheduler foundations exist. Remaining: real staging configuration, live provider tests, monitoring/alerting, operator reconciliation, witnessed restore drill, and controlled deployment rehearsal. |
-| **Total** | **100%** |  | **49.83 / 100** | **Rounded technical completion: 50%.** |
+| Production operations and deployment readiness | 10% | 35.2% | 3.52 | Strict preflight, release gates, encrypted backup/restore code, storage adapters and reminder outbox/scheduler foundations exist. PR #1102 adds post-submission SMTP ambiguity quarantine, no automatic retry after a possible acceptance, and no duplicate resend after confirmed SMTP acceptance; its exact-head tests and safety regression passed. Remaining: real staging configuration, live provider tests, monitoring/alerting, operator reconciliation, witnessed restore drill, and controlled deployment rehearsal. |
+| **Total** | **100%** |  | **49.85 / 100** | **Rounded technical completion: 50%.** |
 
 ## Completion rules
 
@@ -163,3 +163,9 @@ The product cannot be called production-ready or legally approved until all appl
 - **PR #1098 merged:** report provenance now identifies exact question, result, review-record and reviewer-registry input bytes by SHA-256 and size, while omitting local paths and contents and disclaiming trusted timestamp/authenticity claims.
 - **Automated testing and reliability** moves from 69% to 69.5% for the additional evidence-preservation and reproducibility controls and their exact-head regression coverage. Weighted technical completion moves from **49.78 to 49.83/100** (up 0.05).
 - This remains engineering/evidence-integrity progress only. Verified Egyptian legal corpus remains 6%; final Egyptian-counsel acceptance remains 0%.
+
+## Score recalculation — 2026-11-01 (SMTP ambiguous-submission safety)
+
+- **PR #1102 merged:** the reminder adapter now quarantines transport failures after SMTP submission starts as `smtp_submission_ambiguous` and does not automatically retry. Explicit SMTP 4xx rejections remain retryable; confirmed SMTP acceptance followed by close/QUIT failure does not trigger a resend.
+- **Production operations and deployment readiness** moves from 35.0% to 35.2% for this code-level duplicate-risk control and its regression coverage. Weighted technical completion moves from **49.83 to 49.85/100** (up 0.02).
+- This is not production-delivery acceptance. Live SMTP provider staging, credentials, external scheduler monitoring, provider reconciliation and independent operational recovery review remain outstanding.
