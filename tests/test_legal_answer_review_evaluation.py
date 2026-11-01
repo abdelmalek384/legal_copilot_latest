@@ -102,15 +102,15 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
                 reviewer_name="MISMATCHED PRIVATE REVIEWER",
             )
             reviews_path.write_text(
-                json.dumps(critical, ensure_ascii=False) + "\\n"
-                + json.dumps(invalid, ensure_ascii=False) + "\\n",
+                json.dumps(critical, ensure_ascii=False) + "\n"
+                + json.dumps(invalid, ensure_ascii=False) + "\n",
                 encoding="utf-8",
             )
             registry = reviewer_registry()
             registry["reviewers"].append({
                 "reviewer_id": "REGISTRY-PRIVATE-REVIEWER",
                 "display_name": "PRIVATE REGISTRY NAME",
-                "status": "pending",
+                "status": "invalid-status",
                 "professional_role": "egyptian_lawyer",
                 "jurisdiction": "Egypt",
                 "practice_areas": ["labour_law"],
