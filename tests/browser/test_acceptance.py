@@ -259,6 +259,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             "owner_a_email": "owner-a@example.test",
             "owner_b_email": "owner-b@example.test",
             "reviewer_email": "reviewer@example.test",
+            "reviewer_id": reviewer_id,
             "password": password,
             "firm_a_id": firm_a,
             "firm_b_id": firm_b,
@@ -405,6 +406,182 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 ))
             ])"""
         )
+
+    def test_primary_case_management_lifecycle_workflow(self) -> None:
+        self.login(self.state["owner_a_email"])
+        headers = self.csrf_headers()
+        client_name = "SYNTHETIC CLIENT CASEFLOW 2026"
+        first = self.page.request.post(
+            self.base_url + "/cases",
+            data={
+                "title": "SYNTHETIC CASEFLOW PRIMARY MATTER",
+                "client": client_name,
+                "stage": "initial",
+                "case_number": "CF-001",
+                "case_year": "2026",
+                "court": "Synthetic Cairo Court",
+                "circuit": "Synthetic Circuit A",
+                "opposing_party": "Synthetic Opponent",
+            },
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(first.status, 200, first.text())
+        case_id = first.json()["id"]
+
+        second = self.page.request.post(
+            self.base_url + "/cases",
+            data={"title": "SYNTHETIC CASEFLOW SECOND MATTER", "client": client_name},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(second.status, 200, second.text())
+        second_case_id = second.json()["id"]
+        self.assertNotEqual(case_id, second_case_id)
+
+        updated = self.page.request.patch(
+            self.base_url + f"/cases/{case_id}",
+            data={
+                "stage": "hearing_preparation",
+                "status": "open",
+                "case_number": "CF-001-REV",
+                "case_year": "2026",
+                "court": "Synthetic Appeal Court",
+                "circuit": "Synthetic Circuit B",
+                "opposing_party": "Synthetic Updated Opponent",
+            },
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(updated.status, 200, updated.text())
+
+        member_id = self.state["reviewer_id"]
+        member = self.page.request.post(
+            self.base_url + f"/cases/{case_id}/members",
+            data={"user_id": member_id, "role": "associate"},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(member.status, 200, member.text())
+
+        task = self.page.request.post(
+            self.base_url + f"/cases/{case_id}/tasks",
+            data={"title": "SYNTHETIC CASEFLOW PREPARE BUNDLE", "assignee": member_id, "due": "2026-12-01"},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(task.status, 200, task.text())
+
+        session = self.page.request.post(
+            self.base_url + f"/cases/{case_id}/sessions",
+            data={"date": "2026-11-15", "note": "SYNTHETIC CASEFLOW HEARING NOTE"},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(session.status, 200, session.text())
+
+        note = self.page.request.post(
+            self.base_url + f"/cases/{case_id}/notes",
+            data={"text": "SYNTHETIC CASEFLOW CLIENT UPDATE"},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(note.status, 200, note.text())
+
+        deadline = self.page.request.post(
+            self.base_url + f"/cases/{case_id}/deadlines",
+            data={"title": "SYNTHETIC CASEFLOW FILING DEADLINE", "due": "2026-12-10", "note": "Draft only"},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(deadline.status, 200, deadline.text())
+
+        fee = self.page.request.post(
+            self.base_url + f"/cases/{case_id}/fees",
+            data={"title": "SYNTHETIC CASEFLOW LEGAL FEE", "amount": 12000, "paid": 5000,
+                  "due": "2026-12-20", "note": "Synthetic test amount only"},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(fee.status, 200, fee.text())
+
+        document = self.page.request.post(
+            self.base_url + f"/cases/{case_id}/docs",
+            data={"name": "synthetic-caseflow-note.txt",
+                  "text": "SYNTHETIC CASEFLOW DOCUMENT CONTENT ONLY"},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(document.status, 200, document.text())
+
+        detail = self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
+        self.assertEqual(detail.status, 200, detail.text())
+        record = detail.json()
+        self.assertEqual(record["client"], client_name)
+        self.assertEqual(record["case_number"], "CF-001-REV")
+        self.assertEqual(record["court"], "Synthetic Appeal Court")
+        self.assertTrue(any(row["user_id"] == member_id and row["role"] == "associate"
+                            for row in record["members"]))
+        task_row = next(row for row in record["tasks"] if row["title"] == "SYNTHETIC CASEFLOW PREPARE BUNDLE")
+        self.assertEqual(task_row["assignee"], member_id)
+        self.assertEqual(task_row["status"], "open")
+
+        completed = self.page.request.post(
+            self.base_url + f"/tasks/{task_row['id']}/done",
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(completed.status, 200, completed.text())
+
+        refreshed = self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
+        self.assertEqual(refreshed.status, 200, refreshed.text())
+        record = refreshed.json()
+        self.assertEqual(next(row for row in record["tasks"] if row["id"] == task_row["id"])["status"], "done")
+        self.assertTrue(any(row["note"] == "SYNTHETIC CASEFLOW HEARING NOTE" for row in record["sessions"]))
+        self.assertTrue(any(row["text"] == "SYNTHETIC CASEFLOW CLIENT UPDATE" for row in record["notes"]))
+        self.assertTrue(any(row["title"] == "SYNTHETIC CASEFLOW FILING DEADLINE" for row in record["deadlines"]))
+        self.assertTrue(any(row["title"] == "SYNTHETIC CASEFLOW LEGAL FEE" and row["amount"] == 12000
+                            and row["paid"] == 5000 for row in record["fees"]))
+        self.assertTrue(any(row["name"] == "synthetic-caseflow-note.txt" for row in record["docs"]))
+        self.assertTrue(any("SYNTHETIC CASEFLOW" in row["text"] for row in record["events"]))
+
+        removed = self.page.request.delete(
+            self.base_url + f"/cases/{case_id}/members/{member_id}",
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(removed.status, 200, removed.text())
+        after_removal = self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
+        self.assertEqual(after_removal.status, 200, after_removal.text())
+        self.assertFalse(any(row["user_id"] == member_id for row in after_removal.json()["members"]))
+
+        self.page.locator("#side").get_by_role("button", name="القضايا").click()
+        self.page.get_by_text("SYNTHETIC CASEFLOW PRIMARY MATTER", exact=True).wait_for(timeout=10000)
+        self.assertIn("SYNTHETIC CASEFLOW SECOND MATTER", self.page.locator("body").inner_text())
+
+        # The runbook requires synthetic-only deletion to preserve a firm-scoped audit snapshot.
+        deleted_primary = self.page.request.delete(
+            self.base_url + f"/cases/{case_id}", headers=headers, timeout=8000
+        )
+        self.assertEqual(deleted_primary.status, 200, deleted_primary.text())
+        deleted_second = self.page.request.delete(
+            self.base_url + f"/cases/{second_case_id}", headers=headers, timeout=8000
+        )
+        self.assertEqual(deleted_second.status, 200, deleted_second.text())
+        self.assertEqual(
+            self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000).status,
+            404,
+        )
+        audit = self.page.request.get(self.base_url + "/audit/case-deletions?limit=100", timeout=8000)
+        self.assertEqual(audit.status, 200, audit.text())
+        snapshots = {item["case_id"]: item for item in audit.json()["items"]}
+        snapshot = snapshots[case_id]
+        self.assertEqual(snapshot["case_snapshot"]["title"], "SYNTHETIC CASEFLOW PRIMARY MATTER")
+        self.assertGreaterEqual(snapshot["related_counts"]["tasks"], 1)
+        self.assertGreaterEqual(snapshot["related_counts"]["sessions"], 1)
+        self.assertGreaterEqual(snapshot["related_counts"]["notes"], 1)
+        self.assertGreaterEqual(snapshot["related_counts"]["fees"], 1)
+        self.assertTrue(any("SYNTHETIC CASEFLOW" in row["text"] for row in snapshot["events_snapshot"]))
 
     def test_corpus_coverage_requires_platform_reviewer_and_drilldown_is_metadata_only(self) -> None:
         self.login(self.state["owner_a_email"])
@@ -557,17 +734,22 @@ class BrowserAcceptanceTests(unittest.TestCase):
         # matter selection, query entry, and submission; no pointer interaction.
         scope.focus()
         self.assertTrue(scope.evaluate("(el) => document.activeElement === el"))
-        self.page.keyboard.press("Tab")
-        self.assertTrue(matter.evaluate("(el) => document.activeElement === el"))
-        # The conversation sidebar contains additional legitimate tab stops
-        # between the scope controls and composer. Verify they do not trap or
-        # skip keyboard focus rather than assuming an artificially short path.
-        composer_reached = False
         focusable_count = self.page.locator(
             "button:not([disabled]), a[href], select:not([disabled]), "
             "textarea:not([disabled]), input:not([disabled]), "
             "[tabindex]:not([tabindex='-1'])"
         ).count()
+        matter_reached = False
+        for _ in range(focusable_count + 2):
+            self.page.keyboard.press("Tab")
+            if matter.evaluate("(el) => document.activeElement === el"):
+                matter_reached = True
+                break
+        self.assertTrue(matter_reached, "matter selector was not reachable by Tab after scope")
+        # The conversation sidebar contains additional legitimate tab stops
+        # between the scope controls and composer. Verify they do not trap or
+        # skip keyboard focus rather than assuming an artificially short path.
+        composer_reached = False
         # The shared synthetic fixture accumulates research-conversation
         # controls across earlier browser cases. Bound traversal by the actual
         # number of focusable elements rather than assuming a fixed list size.
