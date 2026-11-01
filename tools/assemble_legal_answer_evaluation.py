@@ -274,7 +274,7 @@ def assemble(machine_report, human_report):
 
 
 def _write_report(path, rendered):
-    with Path(path).open("x", encoding="utf-8", newline="\\n") as handle:
+    with Path(path).open("x", encoding="utf-8", newline="\n") as handle:
         handle.write(rendered)
 
 
@@ -311,7 +311,7 @@ def main(argv=None):
             "SHA-256 identifies the exact input bytes; it does not prove authorship or provide a trusted timestamp.",
         ],
     }
-    rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\\n"
+    rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
     if args.out:
         try:
             _write_report(args.out, rendered)
