@@ -561,8 +561,8 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.keyboard.press("Enter")
         self.page.get_by_text("لم يُعثر على بيانات وصفية مطابقة", exact=False).wait_for(timeout=10000)
         self.assertIn(
-            "metadata-only",
-            self.page.locator(".research-thread").inner_text().lower(),
+            "بيانات وصفية فقط",
+            self.page.locator(".research-thread").inner_text(),
         )
 
     def test_cross_firm_case_identifier_does_not_reveal_other_firm_sentinel(self) -> None:
