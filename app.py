@@ -2398,6 +2398,15 @@ class NoteIn(BaseModel): text: str = Field(min_length=1, max_length=10000)
 class DeadlineIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); due: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
     _valid_due = field_validator("due")(validate_operational_deadline)
+class DeadlineHolidayEntry(BaseModel):
+    date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
+    name_ar: str = Field(min_length=1, max_length=120)
+    _valid_date = field_validator("date")(validate_calendar_date)
+
+
+class DeadlineHolidayUpdate(BaseModel):
+    holidays: list[DeadlineHolidayEntry] = Field(max_length=250)
+
 class DeadlineEstimateIn(BaseModel):
     rule_id: str = Field(min_length=1, max_length=100)
     trigger: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
@@ -5179,6 +5188,64 @@ def new_note(cid: int, b: NoteIn, u: dict = Depends(user)):
     return {"ok": True}
 
 
+@app.get("/deadline-holidays")
+def get_deadline_holidays(u: dict = Depends(user)):
+    c = conn()
+    try:
+        shared = json.loads(Path(deadline_calc.DEFAULT_HOLIDAYS).read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        logger.warning("deadline holiday catalog unavailable: %s", exc)
+        raise HTTPException(503, "deadline holiday catalog unavailable")
+    firm_rows = c.execute(
+        "SELECT holiday_date AS date,name_ar FROM firm_deadline_holidays ORDER BY holiday_date"
+    ).fetchall()
+    audit_rows = c.execute(
+        "SELECT actor_user_id,action,before_json,after_json,created_at "
+        "FROM firm_deadline_holiday_audit ORDER BY id DESC LIMIT 10"
+    ).fetchall()
+    return {
+        "status": shared.get("status", "unknown"),
+        "note": shared.get("note", ""),
+        "fixed_holidays": shared.get("fixed_holidays", []),
+        "shared_dated_holidays": shared.get("dated_holidays", []),
+        "firm_dated_holidays": [dict(row) for row in firm_rows],
+        "audit": [dict(row) for row in audit_rows],
+    }
+
+
+@app.put("/deadline-holidays")
+@rollback_tenant_transaction_on_error
+def put_deadline_holidays(b: DeadlineHolidayUpdate, u: dict = Depends(user)):
+    require_admin(u)
+    c = conn()
+    normalized = [{"date": item.date, "name_ar": item.name_ar.strip()} for item in b.holidays]
+    dates = [item["date"] for item in normalized]
+    if len(dates) != len(set(dates)):
+        raise HTTPException(422, "holiday dates must be unique")
+    before = [
+        dict(row) for row in c.execute(
+            "SELECT holiday_date AS date,name_ar FROM firm_deadline_holidays ORDER BY holiday_date"
+        ).fetchall()
+    ]
+    c.execute("DELETE FROM firm_deadline_holidays")
+    c.executemany(
+        "INSERT INTO firm_deadline_holidays(holiday_date,name_ar,updated_by) VALUES(?,?,?)",
+        [(item["date"], item["name_ar"], u["id"]) for item in normalized],
+    )
+    c.execute(
+        "INSERT INTO firm_deadline_holiday_audit(actor_user_id,action,before_json,after_json) "
+        "VALUES(?,?,?,?)",
+        (u["id"], "replace_calendar", json.dumps(before, ensure_ascii=False, separators=(",", ":")),
+         json.dumps(normalized, ensure_ascii=False, separators=(",", ":"))),
+    )
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (u["firm_id"], u["id"], "deadline_holiday_calendar_updated:" + str(len(normalized))),
+    )
+    c.commit()
+    return {"ok": True, "holidays": normalized}
+
+
 @app.get("/deadline-rules")
 def deadline_rules(u: dict = Depends(user)):
     try:
@@ -5199,8 +5266,15 @@ def deadline_estimate(
     c = conn()
     need(c, u, cid)
     try:
+        firm_holidays = [
+            {"date": row["holiday_date"], "name_ar": row["name_ar"]}
+            for row in c.execute(
+                "SELECT holiday_date,name_ar FROM firm_deadline_holidays ORDER BY holiday_date"
+            ).fetchall()
+        ]
         result = deadline_calc.estimate_rule_deadline(
-            rule_id, trigger, distance_days=distance_days
+            rule_id, trigger, distance_days=distance_days,
+            additional_dated_holidays=firm_holidays,
         )
     except deadline_calc.DeadlineError as exc:
         message = str(exc)

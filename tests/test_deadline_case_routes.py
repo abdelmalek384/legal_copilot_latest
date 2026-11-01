@@ -255,5 +255,66 @@ class CaseDeadlineEstimateRouteTests(unittest.TestCase):
         self.assertEqual(denied.status_code, 404, denied.text)
 
 
+    def test_firm_admin_can_manage_dated_holidays_with_before_after_audit(self):
+        saved = self._mutate(
+            "put", "/deadline-holidays",
+            json={"holidays": [{"date": "2026-12-27", "name_ar": "عطلة اختبار المكتب"}]},
+        )
+        self.assertEqual(saved.status_code, 200, saved.text)
+        calendar = self.client.get("/deadline-holidays")
+        self.assertEqual(calendar.status_code, 200, calendar.text)
+        self.assertEqual(calendar.json()["firm_dated_holidays"], [
+            {"date": "2026-12-27", "name_ar": "عطلة اختبار المكتب"}
+        ])
+        self.assertEqual(calendar.json()["audit"][0]["action"], "replace_calendar")
+        self.assertEqual(calendar.json()["audit"][0]["before_json"], "[]")
+        self.assertIn("عطلة اختبار المكتب", calendar.json()["audit"][0]["after_json"])
+        estimate = self.client.get(
+            f"/cases/{self.case_id}/deadline-estimate",
+            params={"rule_id": "civil_cassation_60d", "trigger": "2026-10-26"},
+        )
+        self.assertEqual(estimate.status_code, 200, estimate.text)
+        self.assertEqual(estimate.json()["final_due"], "2026-12-28")
+        self.client.cookies.clear()
+        login = self.client.post(
+            "/login", json={"email": "deadline-b@example.test", "password": self.password_b}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        other_firm_calendar = self.client.get("/deadline-holidays")
+        self.assertEqual(other_firm_calendar.status_code, 200, other_firm_calendar.text)
+        self.assertEqual(other_firm_calendar.json()["firm_dated_holidays"], [])
+
+    def test_non_admin_cannot_change_firm_holidays(self):
+        password = "Deadline-holiday-member-password-2026!"
+        user_id = self.runtime.create_global_identity(
+            "Deadline Holiday Member", "deadline-holiday-member@example.test", app.hash_pw(password)
+        )
+        self.runtime.create_firm_membership(user_id, self.firm_a, "lawyer")
+        self.client.cookies.clear()
+        login = self.client.post(
+            "/login", json={"email": "deadline-holiday-member@example.test", "password": password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        denied = self._mutate(
+            "put", "/deadline-holidays",
+            json={"holidays": [{"date": "2026-12-27", "name_ar": "محاولة غير مصرح بها"}]},
+        )
+        self.assertEqual(denied.status_code, 403, denied.text)
+
+    def test_holiday_calendar_rejects_duplicate_and_impossible_dates(self):
+        duplicate = self._mutate(
+            "put", "/deadline-holidays",
+            json={"holidays": [
+                {"date": "2026-12-27", "name_ar": "عطلة أ"},
+                {"date": "2026-12-27", "name_ar": "عطلة ب"},
+            ]},
+        )
+        self.assertEqual(duplicate.status_code, 422, duplicate.text)
+        impossible = self._mutate(
+            "put", "/deadline-holidays",
+            json={"holidays": [{"date": "2026-02-30", "name_ar": "تاريخ غير صحيح"}]},
+        )
+        self.assertEqual(impossible.status_code, 422, impossible.text)
+
 if __name__ == "__main__":
     unittest.main()
