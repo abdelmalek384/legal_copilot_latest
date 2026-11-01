@@ -12,6 +12,7 @@ from functools import lru_cache, wraps
 from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_permission_register_ready, source_permission_evidence_ready, source_status, citation_text, research_memo, has_current_review_evidence)
 from tools.arabic_legal_matching import expand_lexicon_hints
 from tools.claim_support import claim_support_enabled, has_unsupported_claims
+from tools.subscription_policy import PlanPolicy, trial_end_at, validate_transfer_reference
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
     generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
@@ -2403,6 +2404,22 @@ class DeadlineEstimateIn(BaseModel):
     trigger: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
     distance_days: int = Field(0, ge=0, le=365)
     _valid_trigger = field_validator("trigger")(validate_calendar_date)
+class SubscriptionTrialIn(BaseModel):
+    plan_code: str = Field(pattern=r"^(solo|small_firm)$")
+
+
+class SubscriptionPaymentRequestIn(BaseModel):
+    plan_code: str = Field(pattern=r"^(solo|small_firm)$")
+    amount_piasters: int = Field(gt=0, le=9_000_000_000_000_000)
+    transfer_reference: str = Field(min_length=6, max_length=80)
+
+
+class SubscriptionReviewIn(BaseModel):
+    decision: str = Field(pattern=r"^(approved|rejected)$")
+    paid_through: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$")
+    review_note: str = Field(default="", max_length=2000)
+
+
 class FeeIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); amount: float = Field(ge=0, le=1_000_000_000_000); paid: float = Field(ge=0, le=1_000_000_000_000)
     due: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
@@ -2598,6 +2615,175 @@ def require_platform_legal_reviewer(u):
     """Authorize corpus administration through the separate platform-role domain."""
     if not _user_can_review_legal(u):
         raise HTTPException(403, "platform legal reviewer only")
+
+
+def _require_platform_billing_admin(u: dict) -> None:
+    row = control_conn().execute(
+        "SELECT 1 FROM user_platform_roles WHERE user_id=? AND role_name='platform_admin'",
+        (u["id"],),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(403, "platform billing administrator only")
+
+
+def _subscription_plan_policy(plan_code: str) -> PlanPolicy:
+    seat_name = "SUBSCRIPTION_SOLO_SEAT_LIMIT" if plan_code == "solo" else "SUBSCRIPTION_SMALL_FIRM_SEAT_LIMIT"
+    raw_seats = os.environ.get(seat_name, "").strip()
+    raw_trial = os.environ.get("SUBSCRIPTION_TRIAL_DAYS", "").strip()
+    if not raw_seats or not raw_trial:
+        raise HTTPException(503, "subscription plan limits and trial duration are not configured")
+    try:
+        return PlanPolicy(plan_code, int(raw_seats), int(raw_trial))
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(503, "subscription plan configuration is invalid") from exc
+
+
+def _subscription_event(control, firm_id: int, actor_id: int, event_type: str, details: dict | None = None):
+    control.execute(
+        "INSERT INTO subscription_events(firm_id,actor_user_id,event_type,details_json) VALUES(?,?,?,?)",
+        (firm_id, actor_id, event_type, json.dumps(details or {}, sort_keys=True, separators=(",", ":"))),
+    )
+
+
+@app.get("/billing/subscription")
+def get_firm_subscription(u: dict = Depends(user)):
+    require_admin(u)
+    control = control_conn()
+    subscription = control.execute(
+        "SELECT firm_id,plan_code,status,seat_limit,trial_started_at,trial_ends_at,paid_through,updated_at "
+        "FROM firm_subscriptions WHERE firm_id=?", (u["firm_id"],)
+    ).fetchone()
+    requests = control.execute(
+        "SELECT id,plan_code,amount_piasters,transfer_reference,status,review_note,created_at,reviewed_at "
+        "FROM subscription_payment_requests WHERE firm_id=? ORDER BY id DESC LIMIT 20",
+        (u["firm_id"],),
+    ).fetchall()
+    return {"subscription": dict(subscription) if subscription else None,
+            "payment_requests": [dict(row) for row in requests]}
+
+
+@app.post("/billing/trial")
+def start_firm_trial(body: SubscriptionTrialIn, u: dict = Depends(user)):
+    require_admin(u)
+    policy = _subscription_plan_policy(body.plan_code)
+    control = control_conn()
+    existing = control.execute(
+        "SELECT status,trial_started_at FROM firm_subscriptions WHERE firm_id=?", (u["firm_id"],)
+    ).fetchone()
+    if existing and (existing["trial_started_at"] or existing["status"] in {"active","pending_payment","trialing"}):
+        raise HTTPException(409, "a trial or paid subscription has already been started for this firm")
+    now = datetime.now(timezone.utc)
+    ends = trial_end_at(now, policy.trial_days)
+    control.execute(
+        "INSERT INTO firm_subscriptions(firm_id,plan_code,status,seat_limit,trial_started_at,trial_ends_at) "
+        "VALUES(?,?,'trialing',?,?,?) ON CONFLICT(firm_id) DO UPDATE SET "
+        "plan_code=excluded.plan_code,status='trialing',seat_limit=excluded.seat_limit,"
+        "trial_started_at=excluded.trial_started_at,trial_ends_at=excluded.trial_ends_at,"
+        "paid_through=NULL,updated_at=datetime('now')",
+        (u["firm_id"], body.plan_code, policy.seat_limit, now.isoformat(timespec="seconds"),
+         ends.isoformat(timespec="seconds")),
+    )
+    _subscription_event(control, u["firm_id"], u["id"], "trial_started",
+                        {"plan_code": body.plan_code, "seat_limit": policy.seat_limit,
+                         "trial_days": policy.trial_days})
+    control.commit()
+    return {"status": "trialing", "plan_code": body.plan_code, "seat_limit": policy.seat_limit,
+            "trial_ends_at": ends.isoformat(timespec="seconds")}
+
+
+@app.post("/billing/payment-requests")
+def create_subscription_payment_request(body: SubscriptionPaymentRequestIn, u: dict = Depends(user)):
+    require_admin(u)
+    policy = _subscription_plan_policy(body.plan_code)
+    try:
+        reference = validate_transfer_reference(body.transfer_reference)
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(422, str(exc)) from exc
+    control = control_conn()
+    try:
+        cur = control.execute(
+            "INSERT INTO subscription_payment_requests(firm_id,requested_by,plan_code,amount_piasters,transfer_reference) "
+            "VALUES(?,?,?,?,?)",
+            (u["firm_id"], u["id"], body.plan_code, body.amount_piasters, reference),
+        )
+        current = control.execute(
+            "SELECT status FROM firm_subscriptions WHERE firm_id=?", (u["firm_id"],)
+        ).fetchone()
+        if current is None:
+            control.execute(
+                "INSERT INTO firm_subscriptions(firm_id,plan_code,status,seat_limit) VALUES(?,?,'pending_payment',?)",
+                (u["firm_id"], body.plan_code, policy.seat_limit),
+            )
+        elif current["status"] not in {"active","trialing"}:
+            control.execute(
+                "UPDATE firm_subscriptions SET plan_code=?,status='pending_payment',seat_limit=?,updated_at=datetime('now') WHERE firm_id=?",
+                (body.plan_code, policy.seat_limit, u["firm_id"]),
+            )
+        _subscription_event(control, u["firm_id"], u["id"], "payment_requested",
+                            {"request_id": int(cur.lastrowid), "plan_code": body.plan_code,
+                             "amount_piasters": body.amount_piasters})
+        control.commit()
+    except sqlite3.IntegrityError as exc:
+        control.rollback()
+        raise HTTPException(409, "transfer reference has already been submitted") from exc
+    return {"request_id": int(cur.lastrowid), "status": "pending",
+            "message": "Payment is not active until a platform billing administrator verifies and approves the transfer."}
+
+
+@app.get("/platform/billing/payment-requests")
+def list_subscription_payment_requests(u: dict = Depends(user)):
+    _require_platform_billing_admin(u)
+    rows = control_conn().execute(
+        "SELECT r.id,r.firm_id,f.name AS firm_name,r.requested_by,r.plan_code,r.amount_piasters,"
+        "r.transfer_reference,r.status,r.created_at FROM subscription_payment_requests r "
+        "JOIN firms f ON f.id=r.firm_id WHERE r.status='pending' ORDER BY r.created_at,r.id LIMIT 100"
+    ).fetchall()
+    return [dict(row) for row in rows]
+
+
+@app.post("/platform/billing/payment-requests/{request_id}/review")
+def review_subscription_payment_request(request_id: int, body: SubscriptionReviewIn, u: dict = Depends(user)):
+    _require_platform_billing_admin(u)
+    control = control_conn()
+    request = control.execute(
+        "SELECT * FROM subscription_payment_requests WHERE id=?", (request_id,)
+    ).fetchone()
+    if request is None:
+        raise HTTPException(404, "payment request not found")
+    if request["status"] != "pending":
+        raise HTTPException(409, "payment request has already been reviewed")
+    if body.decision == "approved":
+        if not body.paid_through:
+            raise HTTPException(422, "paid_through is required for approval")
+        try:
+            paid_through = date.fromisoformat(body.paid_through)
+        except ValueError as exc:
+            raise HTTPException(422, "paid_through must be a valid calendar date") from exc
+        if paid_through <= date.today():
+            raise HTTPException(422, "paid_through must be a future date")
+        policy = _subscription_plan_policy(request["plan_code"])
+        control.execute(
+            "INSERT INTO firm_subscriptions(firm_id,plan_code,status,seat_limit,paid_through) "
+            "VALUES(?,?,'active',?,?) ON CONFLICT(firm_id) DO UPDATE SET "
+            "plan_code=excluded.plan_code,status='active',seat_limit=excluded.seat_limit,"
+            "trial_started_at=NULL,trial_ends_at=NULL,paid_through=excluded.paid_through,"
+            "updated_at=datetime('now')",
+            (request["firm_id"], request["plan_code"], policy.seat_limit, body.paid_through),
+        )
+        event_type = "payment_approved"
+    else:
+        event_type = "payment_rejected"
+    control.execute(
+        "UPDATE subscription_payment_requests SET status=?,reviewed_by=?,reviewed_at=datetime('now'),"
+        "review_note=? WHERE id=? AND status='pending'",
+        (body.decision, u["id"], body.review_note, request_id),
+    )
+    _subscription_event(control, int(request["firm_id"]), u["id"], event_type,
+                        {"request_id": request_id, "plan_code": request["plan_code"]})
+    control.commit()
+    return {"request_id": request_id, "status": body.decision}
+
+
 
 
 def _pdf_page_texts(extracted_text):
