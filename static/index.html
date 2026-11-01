@@ -825,9 +825,10 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
   body=h('div',{className:'card'},c.tasks.length?c.tasks.map(t=>h('div',{className:'row'},h('div',{},h('b',{textContent:t.title}),h('div',{className:'mut',textContent:t.assignee_name||'غير معيّن'})),
    h('div',{},t.status==='done'?pill('منجزة','done'):[duePill(t)||pill('مفتوحة','open'),' ',btn('تم',async()=>{await api('/tasks/'+t.id+'/done','POST');again()},'g')]))):empty('لا توجد مهام'),
    h('div',{className:'row'},tt,as,due,btn('إضافة مهمة',async()=>{if(!tt.value.trim()){toast(uiText('أدخل اسم المهمة','Enter a task title'));tt.focus();return}await api('/cases/'+id+'/tasks','POST',{title:tt.value.trim(),assignee:as.value?+as.value:null,due:due.value||null});again()})))}
- if(TAB==='sess'){const sd=h('input',{type:'date'}),sn=h('input',{placeholder:uiText('ملاحظة (المحكمة، الدائرة، الغرض)','Note (court, circuit, purpose)')});
+ if(TAB==='sess'){const sd=h('input',{type:'date'}),sn=h('input',{placeholder:uiText('ملاحظة (المحكمة، الدائرة، الغرض)','Note (court, circuit, purpose)')}),sp=h('input',{type:'tel',placeholder:uiText('رقم واتساب العميل أو المحامي','Client or lawyer WhatsApp number')});
   body=h('div',{className:'card'},c.sessions.length?c.sessions.map(s=>h('div',{className:'row'},h('span',{textContent:s.note||uiText('جلسة','Hearing')}),pill(fd(s.date),s.date<today?'closed':'open'))):empty('لا توجد جلسات'),
-   h('div',{className:'row'},sd,sn,btn('إضافة جلسة',async()=>{if(!sd.value){toast(uiText('أدخل تاريخ الجلسة','Enter a hearing date'));sd.focus();return}await api('/cases/'+id+'/sessions','POST',{date:sd.value,note:sn.value});again()})))}
+   h('div',{className:'row'},sd,sn,btn('إضافة جلسة',async()=>{if(!sd.value){toast(uiText('أدخل تاريخ الجلسة','Enter a hearing date'));sd.focus();return}await api('/cases/'+id+'/sessions','POST',{date:sd.value,note:sn.value});again()})),
+   h('div',{className:'row'},sp,btn(uiText('فتح واتساب برسالة تذكير','Open WhatsApp reminder'),()=>openWhatsAppReminder(sp.value,uiText('تذكير بموعد جلسة مسجل لدى المكتب بتاريخ '+(sd.value||'—')+'، يرجى التواصل مع المكتب لتأكيد التفاصيل.','Reminder of a court session recorded by the firm for '+(sd.value||'—')+'. Please contact the firm to confirm details.')),'g')))}
  if(TAB==='dead'){
   const title=h('input',{placeholder:uiText('نوع الموعد (استئناف، طعن، تقديم مستند...)','Deadline type (appeal, challenge, filing...)')}),
    due=h('input',{type:'date'}),note=h('textarea',{placeholder:uiText('ملاحظة (اختياري)','Note (optional)'),rows:2,style:'width:100%'}),
