@@ -240,5 +240,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("@media(max-width:420px)", HTML)
         self.assertIn("@media(forced-colors:active)", HTML)
 
+    def test_case_fees_surface_integer_piaster_invoice_workflow(self):
+        self.assertIn("/cases/'+id+'/invoices", HTML)
+        self.assertIn("/invoices/'+inv.id+'/payments", HTML)
+        self.assertIn("/invoices/'+inv.id+'/print", HTML)
+        self.assertIn("egpToPiasters", HTML)
+        self.assertIn("localPaidDate", HTML)
+        self.assertIn("unit_amount_piasters", HTML)
+
 if __name__ == "__main__":
     unittest.main()
