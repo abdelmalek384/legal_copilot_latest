@@ -84,6 +84,98 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
             self.assertEqual(provenance["inputs"]["reviews"]["size_bytes"], reviews_path.stat().st_size)
             self.assertNotIn(td, output.getvalue())
 
+    def test_aggregate_only_cli_redacts_case_reviewer_and_defect_details(self):
+        with tempfile.TemporaryDirectory() as td:
+            reviews_path = Path(td) / "reviews.jsonl"
+            registry_path = Path(td) / "reviewers.json"
+            critical = review(
+                assessment_id="ASSESSMENT-PRIVATE-001",
+                case_id="CASE-PRIVATE-001",
+                answer_id="ANSWER-PRIVATE-001",
+                disposition="unsafe",
+                critical_defect=True,
+                critical_defect_categories=["unsupported_legal_claim"],
+                critical_defect_description="CONFIDENTIAL MATTER FACTS MUST NOT LEAK",
+            )
+            independent = review(
+                assessment_id="ASSESSMENT-PRIVATE-003",
+                case_id="CASE-PRIVATE-001",
+                answer_id="ANSWER-PRIVATE-001",
+                reviewer_id="reviewer-b",
+                reviewer_name="Reviewer B",
+                disposition="needs_revision",
+            )
+            invalid = review(
+                assessment_id="ASSESSMENT-PRIVATE-002",
+                case_id="CASE-PRIVATE-002",
+                reviewer_name="MISMATCHED PRIVATE REVIEWER",
+            )
+            reviews_path.write_text(
+                json.dumps(critical, ensure_ascii=False) + "\n"
+                + json.dumps(independent, ensure_ascii=False) + "\n"
+                + json.dumps(invalid, ensure_ascii=False) + "\n",
+                encoding="utf-8",
+            )
+            registry = reviewer_registry()
+            registry["reviewers"].append({
+                "reviewer_id": "REGISTRY-PRIVATE-REVIEWER",
+                "display_name": "PRIVATE REGISTRY NAME",
+                "status": "invalid-status",
+                "professional_role": "egyptian_lawyer",
+                "jurisdiction": "Egypt",
+                "practice_areas": ["labour_law"],
+                "qualification_basis": "private qualification note",
+                "evidence_reference": "private credential reference",
+                "verified_by": "private operator",
+                "verified_on": "2026-10-25",
+            })
+            registry_path.write_text(json.dumps(registry, ensure_ascii=False), encoding="utf-8")
+
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                code = main([
+                    str(reviews_path), "--reviewer-registry", str(registry_path),
+                    "--aggregate-only",
+                ])
+
+            self.assertEqual(code, 0)
+            rendered = output.getvalue()
+            report = json.loads(rendered)
+            self.assertEqual(report["privacy_mode"], "aggregate_only")
+            self.assertEqual(report["critical_defect_count"], 1)
+            self.assertEqual(report["redacted_critical_defect_record_count"], 1)
+            self.assertEqual(report["critical_defects"], [])
+            self.assertEqual(report["invalid_assessments_excluded"], 1)
+            self.assertEqual(report["invalid_records"][0]["error_count"], 1)
+            self.assertEqual(report["reviewer_registry_error_count"], 1)
+            self.assertEqual(report["reviewer_registry_errors"], [])
+            self.assertEqual(report["reviewer_agreement"]["answers_with_multiple_independent_reviews"], 1)
+            self.assertEqual(report["reviewer_agreement"]["answer_groups"], [])
+            for secret in (
+                "ASSESSMENT-PRIVATE-001", "ASSESSMENT-PRIVATE-002", "ASSESSMENT-PRIVATE-003",
+                "CASE-PRIVATE-001", "CASE-PRIVATE-002", "ANSWER-PRIVATE-001",
+                "reviewer-a", "reviewer-b",
+                "CONFIDENTIAL MATTER FACTS MUST NOT LEAK",
+                "MISMATCHED PRIVATE REVIEWER", "REGISTRY-PRIVATE-REVIEWER",
+                "PRIVATE REGISTRY NAME", "private qualification note",
+                "private credential reference", "private operator",
+            ):
+                self.assertNotIn(secret, rendered)
+
+            # The detailed mode remains opt-in behavior: the default report is unchanged.
+            detailed_output = io.StringIO()
+            with contextlib.redirect_stdout(detailed_output):
+                detailed_code = main([
+                    str(reviews_path), "--reviewer-registry", str(registry_path),
+                ])
+            self.assertEqual(detailed_code, 0)
+            detailed = detailed_output.getvalue()
+            for expected in (
+                "CASE-PRIVATE-001", "ANSWER-PRIVATE-001", "reviewer-a",
+                "reviewer-b", "CONFIDENTIAL MATTER FACTS MUST NOT LEAK",
+            ):
+                self.assertIn(expected, detailed)
+
     def test_cli_refuses_to_overwrite_existing_review_summary(self):
         with tempfile.TemporaryDirectory() as td:
             reviews_path = Path(td) / "reviews.jsonl"
