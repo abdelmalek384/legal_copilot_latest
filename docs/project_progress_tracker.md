@@ -5,7 +5,7 @@
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.78/100 technical completion** (up 0.18 points from 49.60; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.83/100 technical completion** (up 0.05 points from 49.78; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Previous whole-product checkpoint — 2026-10-31
@@ -666,4 +666,10 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - **#1095 merged:** legal-answer evaluation and qualified-human review summaries now use exclusive file creation. Existing report paths are refused with exit code 2; regression coverage verifies the existing evidence remains unchanged. The human-review evaluator's command-line entry point now propagates that exit status.
 - **#1098 merged:** evaluation reports bind themselves to the exact input bytes used by recording SHA-256 and byte size for question seeds, model results, review records and reviewer registries. Reports include a UTC generation timestamp, omit local paths and raw inputs, and explicitly state that hashes are not proof of authorship/qualification/correctness and that the timestamp is not a trusted timestamp.
 - **#1034 closed as completed:** merged #1078 satisfies the automated browser-test scope. Manual lawyer, screen-reader, physical-device and visual accessibility acceptance remain separate and outstanding.
-- **No weighted-score recalculation:** these changes improve evaluation-evidence integrity and reproducibility; they do not establish new legal correctness, expand the verified corpus or complete counsel acceptance.
+- **Initial assessment:** the first evidence-integrity checkpoint did not recalculate the score; the subsequent 69.5% reliability recalculation is recorded below. No legal correctness, corpus-volume or counsel-acceptance credit is claimed.
+
+### Latest checkpoint — 2026-11-01 (evaluation evidence integrity score recalculation)
+
+- **#1095 and #1098 merged:** evaluator outputs now refuse to overwrite existing evidence and include hashes/byte counts for exact input artifacts, with no raw paths or contents disclosed.
+- Automated testing/reliability is **69.5%**; weighted technical completion is **49.83/100**. The 0.05-point increase reflects evidence-preservation and reproducibility controls with exact-head regression coverage.
+- **Verified Egyptian legal corpus remains 6%; final Egyptian-counsel acceptance remains 0%.** No legal source was promoted or reuse permission inferred.
