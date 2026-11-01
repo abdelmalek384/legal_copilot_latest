@@ -57,7 +57,7 @@ class MultiAreaDraftBenchmarkTests(unittest.TestCase):
             q = by_id[row["id"]]
             self.assertEqual(row["السؤال"], q["question_ar"])
             self.assertEqual(row["مجال القانون"], q["practice_area"])
-            self.assertEqual(row["هل يجب الامتناع؟ (نعم/لا)"].strip() == "نعم", q["must_abstain_if_unverified"])
+            self.assertEqual(row["هل يجب الامتناع؟ (نعم/لا)"].strip() == "نعم", q["must_abstain"])
             self.assertEqual(row["صفة المراجع"], "")
             self.assertEqual(row["رابط دليل المراجعة"], "")
 
