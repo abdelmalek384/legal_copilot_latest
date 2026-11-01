@@ -63,3 +63,19 @@ CREATE TRIGGER invoice_lines_no_delete_after_payment
 BEFORE DELETE ON invoice_lines
 WHEN EXISTS (SELECT 1 FROM invoice_payments p WHERE p.invoice_id=OLD.invoice_id)
 BEGIN SELECT RAISE(ABORT, 'invoice lines cannot be deleted after a payment'); END;
+
+CREATE TRIGGER invoice_payments_no_update
+BEFORE UPDATE ON invoice_payments
+BEGIN SELECT RAISE(ABORT, 'invoice payments are append-only'); END;
+
+CREATE TRIGGER invoice_payments_no_delete
+BEFORE DELETE ON invoice_payments
+BEGIN SELECT RAISE(ABORT, 'invoice payments are append-only'); END;
+
+CREATE TRIGGER invoice_receipts_no_update
+BEFORE UPDATE ON invoice_receipts
+BEGIN SELECT RAISE(ABORT, 'invoice receipts are append-only'); END;
+
+CREATE TRIGGER invoice_receipts_no_delete
+BEFORE DELETE ON invoice_receipts
+BEGIN SELECT RAISE(ABORT, 'invoice receipts are append-only'); END;
