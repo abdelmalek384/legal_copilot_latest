@@ -6,12 +6,13 @@ draft questions and reports source-ID recall, pin-citation recall, citation pres
 and abstention agreement against a lawyer-authored answerability label.
 """
 import argparse
+import hashlib
 import json
 import math
 import re
 import sys
 from collections import defaultdict
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -27,9 +28,9 @@ class EvaluationError(ValueError):
     pass
 
 
-def read_jsonl(path):
+def _parse_jsonl_text(text, path):
     rows = []
-    for line_no, raw in enumerate(Path(path).read_text(encoding="utf-8-sig").splitlines(), 1):
+    for line_no, raw in enumerate(text.splitlines(), 1):
         if not raw.strip():
             continue
         try:
@@ -40,6 +41,28 @@ def read_jsonl(path):
             raise EvaluationError(f"{path}:{line_no}: each JSONL row must be an object")
         rows.append(row)
     return rows
+
+
+def read_jsonl(path):
+    return _parse_jsonl_text(Path(path).read_text(encoding="utf-8-sig"), path)
+
+
+def _read_jsonl_with_provenance(path):
+    raw = Path(path).read_bytes()
+    rows = _parse_jsonl_text(raw.decode("utf-8-sig"), path)
+    return rows, {"sha256": hashlib.sha256(raw).hexdigest(), "size_bytes": len(raw)}
+
+
+def _report_provenance(inputs):
+    return {
+        "generated_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
+        "inputs": inputs,
+        "limitations": [
+            "SHA-256 values identify the exact input bytes used; they do not prove authorship, reviewer qualification, or legal correctness.",
+            "Input paths and input contents are intentionally omitted from this provenance block.",
+            "The UTC timestamp reflects the evaluator host clock; it is not an independent trusted timestamp or digital signature.",
+        ],
+    }
 
 
 def _nonempty(value):
@@ -358,8 +381,9 @@ def main(argv=None):
     parser.add_argument("--min-questions-per-practice-area", type=int, help="Fail if any scored practice area has fewer reviewed questions than this value")
     args = parser.parse_args(argv)
     try:
-        reviewer_registry = json.loads(Path(args.reviewer_registry).read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
+        reviewer_registry_bytes = Path(args.reviewer_registry).read_bytes()
+        reviewer_registry = json.loads(reviewer_registry_bytes.decode("utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
         parser.error(f"invalid reviewer registry: {exc}")
     for name in ("min_questions", "min_practice_areas", "min_questions_per_practice_area"):
         value = getattr(args, name)
@@ -380,10 +404,20 @@ def main(argv=None):
         if value is not None and (not math.isfinite(value) or not 0 <= value <= 1):
             parser.error(f"--{name.replace('_', '-')} must be a finite number between 0 and 1")
     try:
-        report = evaluate(read_jsonl(args.questions), read_jsonl(args.results), reviewer_registry)
-    except (OSError, EvaluationError) as exc:
+        question_rows, questions_meta = _read_jsonl_with_provenance(args.questions)
+        result_rows, results_meta = _read_jsonl_with_provenance(args.results)
+        report = evaluate(question_rows, result_rows, reviewer_registry)
+    except (OSError, UnicodeDecodeError, EvaluationError) as exc:
         print(f"evaluation refused: {exc}", file=sys.stderr)
         return 2
+    report["provenance"] = _report_provenance({
+        "questions": questions_meta,
+        "results": results_meta,
+        "reviewer_registry": {
+            "sha256": hashlib.sha256(reviewer_registry_bytes).hexdigest(),
+            "size_bytes": len(reviewer_registry_bytes),
+        },
+    })
     report["release_gate"] = _release_gate(report, args)
     rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
     if args.out:

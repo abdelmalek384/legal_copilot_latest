@@ -6,9 +6,10 @@ legal answers automatically, infer ground truth, or establish legal accuracy.
 Use synthetic or approved anonymized records only.
 """
 import argparse
+import hashlib
 import json
 import sys
-from datetime import date
+from datetime import date, datetime, timezone
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -25,21 +26,42 @@ DISPOSITIONS = {
 }
 
 
-def load_jsonl(path):
-    """Read JSONL, preserving line numbers in errors."""
+def _parse_jsonl_text(text, path):
+    """Parse JSONL while preserving line numbers in errors."""
     rows = []
-    with Path(path).open(encoding="utf-8") as handle:
-        for line_number, line in enumerate(handle, start=1):
-            if not line.strip() or line.lstrip().startswith("#"):
-                continue
-            try:
-                row = json.loads(line)
-            except json.JSONDecodeError as exc:
-                raise ValueError(f"{path}:{line_number}: invalid JSON: {exc}") from exc
-            if not isinstance(row, dict):
-                raise ValueError(f"{path}:{line_number}: each JSONL row must be an object")
-            rows.append(row)
+    for line_number, line in enumerate(text.splitlines(), start=1):
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        try:
+            row = json.loads(line)
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"{path}:{line_number}: invalid JSON: {exc}") from exc
+        if not isinstance(row, dict):
+            raise ValueError(f"{path}:{line_number}: each JSONL row must be an object")
+        rows.append(row)
     return rows
+
+
+def load_jsonl(path):
+    return _parse_jsonl_text(Path(path).read_text(encoding="utf-8"), path)
+
+
+def _load_jsonl_with_provenance(path):
+    raw = Path(path).read_bytes()
+    rows = _parse_jsonl_text(raw.decode("utf-8"), path)
+    return rows, {"sha256": hashlib.sha256(raw).hexdigest(), "size_bytes": len(raw)}
+
+
+def _report_provenance(inputs):
+    return {
+        "generated_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
+        "inputs": inputs,
+        "limitations": [
+            "SHA-256 values identify the exact input bytes used; they do not prove authorship, reviewer qualification, or legal correctness.",
+            "Input paths and input contents are intentionally omitted from this provenance block.",
+            "The UTC timestamp reflects the evaluator host clock; it is not an independent trusted timestamp or digital signature.",
+        ],
+    }
 
 
 def validate_review(record):
@@ -264,10 +286,16 @@ def main(argv=None):
     parser.add_argument("--output", type=Path, help="Optional path for the JSON report")
     args = parser.parse_args(argv)
     try:
-        registry = json.loads(args.reviewer_registry.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
-        parser.error(f"invalid reviewer registry: {exc}")
-    report = summarize_reviews(load_jsonl(args.reviews), registry)
+        registry_bytes = args.reviewer_registry.read_bytes()
+        registry = json.loads(registry_bytes.decode("utf-8"))
+        records, records_meta = _load_jsonl_with_provenance(args.reviews)
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
+        parser.error(f"invalid review input: {exc}")
+    report = summarize_reviews(records, registry)
+    report["provenance"] = _report_provenance({
+        "reviews": records_meta,
+        "reviewer_registry": {"sha256": hashlib.sha256(registry_bytes).hexdigest(), "size_bytes": len(registry_bytes)},
+    })
     rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
     if args.output:
         try:

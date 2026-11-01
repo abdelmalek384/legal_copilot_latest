@@ -1,3 +1,6 @@
+import contextlib
+import hashlib
+import io
 import json
 import subprocess
 import sys
@@ -8,7 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from tools.evaluate_legal_answer_reviews import DIMENSIONS, summarize_reviews, validate_review, validate_reviewer_registry
+from tools.evaluate_legal_answer_reviews import DIMENSIONS, main, summarize_reviews, validate_review, validate_reviewer_registry
 
 
 def review(**overrides):
@@ -60,6 +63,26 @@ def reviewer_registry():
 
 
 class LegalAnswerReviewEvaluationTests(unittest.TestCase):
+    def test_cli_summary_records_hashes_of_exact_input_bytes_without_paths(self):
+        with tempfile.TemporaryDirectory() as td:
+            reviews_path = Path(td) / "reviews.jsonl"
+            registry_path = Path(td) / "reviewers.json"
+            reviews_path.write_text(json.dumps(review(), ensure_ascii=False) + "\n", encoding="utf-8")
+            registry_path.write_text(json.dumps(reviewer_registry(), ensure_ascii=False), encoding="utf-8")
+
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                code = main([str(reviews_path), "--reviewer-registry", str(registry_path)])
+
+            self.assertEqual(code, 0)
+            report = json.loads(output.getvalue())
+            provenance = report["provenance"]
+            self.assertRegex(provenance["generated_at_utc"], r"^\d{4}-\d{2}-\d{2}T.*Z$")
+            self.assertEqual(provenance["inputs"]["reviews"]["sha256"], hashlib.sha256(reviews_path.read_bytes()).hexdigest())
+            self.assertEqual(provenance["inputs"]["reviewer_registry"]["sha256"], hashlib.sha256(registry_path.read_bytes()).hexdigest())
+            self.assertEqual(provenance["inputs"]["reviews"]["size_bytes"], reviews_path.stat().st_size)
+            self.assertNotIn(td, output.getvalue())
+
     def test_cli_refuses_to_overwrite_existing_review_summary(self):
         with tempfile.TemporaryDirectory() as td:
             reviews_path = Path(td) / "reviews.jsonl"
