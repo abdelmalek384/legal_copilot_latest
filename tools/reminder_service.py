@@ -341,7 +341,11 @@ def run_scheduler(
                 )
                 summary["smtp_accepted"] += 1
             else:
-                status = "ambiguous" if outcome.get("error_code") in {"smtp_connection_failure", "smtp_submission_ambiguous"} else "failed"
+                status = (
+                    "ambiguous"
+                    if outcome.get("error_code") in {"smtp_connection_failure", "smtp_submission_ambiguous"}
+                    else "failed"
+                )
                 finish_attempt(
                     tenant, int(delivery["id"]), result_status=status,
                     error_code=outcome.get("error_code") or "smtp_delivery_failure",
