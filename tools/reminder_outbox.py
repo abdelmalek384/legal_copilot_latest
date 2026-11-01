@@ -75,6 +75,9 @@ def enqueue_plan(
         event_id = item.get("event_id")
         due_date = item.get("due_date")
         window = item.get("window")
+        lead_days = item.get("lead_days", 1)
+        if type(lead_days) is not int or not 0 <= lead_days <= 30:
+            raise ReminderOutboxError(f"reminder {index} has an invalid lead_days value")
         if not isinstance(key, str) or not _KEY_RE.fullmatch(key):
             raise ReminderOutboxError(f"reminder {index} has an invalid idempotency key")
         if not isinstance(kind, str) or kind not in _EVENT_TYPES:
@@ -92,17 +95,19 @@ def enqueue_plan(
             raise ReminderOutboxError(f"reminder {index} has an unsupported window")
         if item.get("scope_id") != str(firm_id) or item.get("recipient_id") != str(recipient_user_id):
             raise ReminderOutboxError(f"reminder {index} scope or recipient does not match the trusted firm/user")
+        identity = ["case-reminder-v1", str(firm_id), str(recipient_user_id), kind,
+                    event_id.strip(), due_date, window]
+        if window == "due_soon" and lead_days != 1:
+            identity.append(lead_days)
         key_material = json.dumps(
-            ["case-reminder-v1", str(firm_id), str(recipient_user_id), kind,
-             event_id.strip(), due_date, window],
-            ensure_ascii=False, separators=(",", ":"),
+            identity, ensure_ascii=False, separators=(",", ":"),
         ).encode("utf-8")
         if key != hashlib.sha256(key_material).hexdigest():
             raise ReminderOutboxError(f"reminder {index} idempotency key does not match its event identity")
         if key in seen:
             raise ReminderOutboxError("plan contains duplicate idempotency keys")
         seen.add(key)
-        prepared.append((key, recipient_user_id, kind, event_id.strip(), due_date, window))
+        prepared.append((key, recipient_user_id, kind, event_id.strip(), due_date, window, lead_days))
 
     _require_outbox(connection)
     inserted = 0
@@ -112,8 +117,8 @@ def enqueue_plan(
             before = connection.total_changes
             connection.execute(
                 "INSERT OR IGNORE INTO reminder_deliveries "
-                "(idempotency_key,recipient_user_id,event_type,event_id,due_date,reminder_window) "
-                "VALUES(?,?,?,?,?,?)",
+                "(idempotency_key,recipient_user_id,event_type,event_id,due_date,reminder_window,lead_days) "
+                "VALUES(?,?,?,?,?,?,?)",
                 row,
             )
             inserted += connection.total_changes - before
