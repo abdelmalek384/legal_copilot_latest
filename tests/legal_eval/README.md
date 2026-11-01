@@ -21,6 +21,13 @@ This directory is a scaffold for a lawyer-reviewed benchmark. The seed questions
 - review_status (needs_lawyer_review in seed)
 - expected_pin_cites (empty until reviewed; each entry has source_id and pin_cite)\n- answerable (explicit true/false after legal review)\n- reviewer_name and review_date (blank until review)
 
+
+## Stable application answer IDs
+
+Each newly generated assistant answer in the research conversation API receives a random opaque `answer_id`. The value is returned by `POST /research/conversations/{conversation_id}/messages` and appears on assistant message records returned by `GET /research/conversations/{conversation_id}`. It is persisted with that exact assistant message; a later answer to the same question receives a different ID. Historical assistant messages created before this feature may not have an ID.
+
+Copy the returned value unchanged when preparing the model-output evaluation row and the corresponding human-review record. Never derive it from a question ID, case number, client name, or other personal data. The evaluator's stable-ID propagation is tracked separately in PR #1127; until that change is merged, the current main-branch evaluator does not include this ID in its report.
+
 ## Initial release gate
 Do not describe Legal Copilot as legally accurate or production-ready until an Egyptian lawyer reviews the answer key and results, corpus provenance is audited, and failures are documented.
 
