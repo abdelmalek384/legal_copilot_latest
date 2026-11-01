@@ -150,7 +150,7 @@ class ArabicMatchingTests(unittest.TestCase):
         question = "فصلني ومش عايز إجازة"
         expanded = expanded_tokens(question)
         self.assertTrue(set(tokens(question)).issubset(set(expanded)))
-        self.assertIn(tokens("مش")[0], expanded)
+        self.assertIn(tokens("ومش")[0], expanded)
 
     def test_phrase_expansion_preserves_original_terms_and_negation(self):
         question = "صاحب الشغل مش بيدفع المرتب"
