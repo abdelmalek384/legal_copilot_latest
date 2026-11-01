@@ -456,122 +456,133 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertEqual(updated.status, 200, updated.text())
 
         member_context = self.browser.new_context()
-        member_page = member_context.new_page()
-        member_page.set_default_timeout(8000)
-        member_page.goto(self.base_url, wait_until="domcontentloaded")
-        member_page.locator('input[type="email"]').fill(self.state["reviewer_email"])
-        member_page.locator('input[type="password"]').fill(self.state["password"])
-        member_page.locator('button[type="submit"]').click()
-        member_page.locator("#side").wait_for(state="visible", timeout=15000)
-        member_session = member_page.request.get(self.base_url + "/session", timeout=8000)
-        self.assertEqual(member_session.status, 200, member_session.text())
-        member_id = member_session.json()["id"]
-        member_csrf = {item["name"]: item["value"] for item in member_context.cookies()}
-        member_headers = {"X-CSRF-Token": member_csrf.get("lc_csrf", "")}
+        try:
+            member_page = member_context.new_page()
+            member_page.set_default_timeout(8000)
+            member_page.goto(self.base_url, wait_until="domcontentloaded")
+            member_page.locator('input[type="email"]').fill(self.state["reviewer_email"])
+            member_page.locator('input[type="password"]').fill(self.state["password"])
+            member_page.locator('button[type="submit"]').click()
+            member_page.locator("#side").wait_for(state="visible", timeout=15000)
+            member_session = member_page.request.get(self.base_url + "/session", timeout=8000)
+            self.assertEqual(member_session.status, 200, member_session.text())
+            member_id = member_session.json()["id"]
+            member_csrf = {item["name"]: item["value"] for item in member_context.cookies()}
+            member_headers = {"X-CSRF-Token": member_csrf.get("lc_csrf", "")}
 
-        member = self.page.request.post(
-            self.base_url + f"/cases/{case_id}/members",
-            data={"user_id": member_id, "role": "associate"},
-            headers=headers,
-            timeout=8000,
-        )
-        self.assertEqual(member.status, 200, member.text())
+            selected_firm = member_page.request.post(
+                self.base_url + "/session/firm",
+                data={"firm_id": self.state["firm_a_id"]},
+                headers={**member_headers, "Content-Type": "application/json"},
+                timeout=8000,
+            )
+            self.assertEqual(selected_firm.status, 200, selected_firm.text())
 
-        task = self.page.request.post(
-            self.base_url + f"/cases/{case_id}/tasks",
-            data={"title": "SYNTHETIC CASEFLOW PREPARE BUNDLE", "assignee": member_id, "due": "2026-12-01"},
-            headers=headers,
-            timeout=8000,
-        )
-        self.assertEqual(task.status, 200, task.text())
+            member = self.page.request.post(
+                self.base_url + f"/cases/{case_id}/members",
+                data={"user_id": member_id, "role": "associate"},
+                headers=headers,
+                timeout=8000,
+            )
+            self.assertEqual(member.status, 200, member.text())
 
-        session = self.page.request.post(
-            self.base_url + f"/cases/{case_id}/sessions",
-            data={"date": "2026-11-15", "note": "SYNTHETIC CASEFLOW HEARING NOTE"},
-            headers=headers,
-            timeout=8000,
-        )
-        self.assertEqual(session.status, 200, session.text())
+            task = self.page.request.post(
+                self.base_url + f"/cases/{case_id}/tasks",
+                data={"title": "SYNTHETIC CASEFLOW PREPARE BUNDLE", "assignee": member_id, "due": "2026-12-01"},
+                headers=headers,
+                timeout=8000,
+            )
+            self.assertEqual(task.status, 200, task.text())
 
-        note = self.page.request.post(
-            self.base_url + f"/cases/{case_id}/notes",
-            data={"text": "SYNTHETIC CASEFLOW CLIENT UPDATE"},
-            headers=headers,
-            timeout=8000,
-        )
-        self.assertEqual(note.status, 200, note.text())
+            session = self.page.request.post(
+                self.base_url + f"/cases/{case_id}/sessions",
+                data={"date": "2026-11-15", "note": "SYNTHETIC CASEFLOW HEARING NOTE"},
+                headers=headers,
+                timeout=8000,
+            )
+            self.assertEqual(session.status, 200, session.text())
 
-        deadline = self.page.request.post(
-            self.base_url + f"/cases/{case_id}/deadlines",
-            data={"title": "SYNTHETIC CASEFLOW FILING DEADLINE", "due": "2026-12-10", "note": "Draft only"},
-            headers=headers,
-            timeout=8000,
-        )
-        self.assertEqual(deadline.status, 200, deadline.text())
+            note = self.page.request.post(
+                self.base_url + f"/cases/{case_id}/notes",
+                data={"text": "SYNTHETIC CASEFLOW CLIENT UPDATE"},
+                headers=headers,
+                timeout=8000,
+            )
+            self.assertEqual(note.status, 200, note.text())
 
-        fee = self.page.request.post(
-            self.base_url + f"/cases/{case_id}/fees",
-            data={"title": "SYNTHETIC CASEFLOW LEGAL FEE", "amount": 12000, "paid": 5000,
-                  "due": "2026-12-20", "note": "Synthetic test amount only"},
-            headers=headers,
-            timeout=8000,
-        )
-        self.assertEqual(fee.status, 200, fee.text())
+            deadline = self.page.request.post(
+                self.base_url + f"/cases/{case_id}/deadlines",
+                data={"title": "SYNTHETIC CASEFLOW FILING DEADLINE", "due": "2026-12-10", "note": "Draft only"},
+                headers=headers,
+                timeout=8000,
+            )
+            self.assertEqual(deadline.status, 200, deadline.text())
 
-        document = self.page.request.post(
-            self.base_url + f"/cases/{case_id}/docs",
-            data={"name": "synthetic-caseflow-note.txt",
-                  "text": "SYNTHETIC CASEFLOW DOCUMENT CONTENT ONLY"},
-            headers=headers,
-            timeout=8000,
-        )
-        self.assertEqual(document.status, 200, document.text())
+            fee = self.page.request.post(
+                self.base_url + f"/cases/{case_id}/fees",
+                data={"title": "SYNTHETIC CASEFLOW LEGAL FEE", "amount": 12000, "paid": 5000,
+                      "due": "2026-12-20", "note": "Synthetic test amount only"},
+                headers=headers,
+                timeout=8000,
+            )
+            self.assertEqual(fee.status, 200, fee.text())
 
-        detail = self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
-        self.assertEqual(detail.status, 200, detail.text())
-        record = detail.json()
-        self.assertEqual(record["client"], client_name)
-        self.assertEqual(record["case_number"], "CF-001-REV")
-        self.assertEqual(record["court"], "Synthetic Appeal Court")
-        self.assertTrue(any(row["user_id"] == member_id and row["role"] == "associate"
-                            for row in record["members"]))
-        task_row = next(row for row in record["tasks"] if row["title"] == "SYNTHETIC CASEFLOW PREPARE BUNDLE")
-        self.assertEqual(task_row["assignee"], member_id)
-        self.assertEqual(task_row["status"], "open")
+            document = self.page.request.post(
+                self.base_url + f"/cases/{case_id}/docs",
+                data={"name": "synthetic-caseflow-note.txt",
+                      "text": "SYNTHETIC CASEFLOW DOCUMENT CONTENT ONLY"},
+                headers=headers,
+                timeout=8000,
+            )
+            self.assertEqual(document.status, 200, document.text())
 
-        completed = self.page.request.post(
-            self.base_url + f"/tasks/{task_row['id']}/done",
-            headers=headers,
-            timeout=8000,
-        )
-        self.assertEqual(completed.status, 200, completed.text())
+            detail = self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
+            self.assertEqual(detail.status, 200, detail.text())
+            record = detail.json()
+            self.assertEqual(record["client"], client_name)
+            self.assertEqual(record["case_number"], "CF-001-REV")
+            self.assertEqual(record["court"], "Synthetic Appeal Court")
+            self.assertTrue(any(row["user_id"] == member_id and row["role"] == "associate"
+                                for row in record["members"]))
+            task_row = next(row for row in record["tasks"] if row["title"] == "SYNTHETIC CASEFLOW PREPARE BUNDLE")
+            self.assertEqual(task_row["assignee"], member_id)
+            self.assertEqual(task_row["status"], "open")
 
-        refreshed = self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
-        self.assertEqual(refreshed.status, 200, refreshed.text())
-        record = refreshed.json()
-        self.assertEqual(next(row for row in record["tasks"] if row["id"] == task_row["id"])["status"], "done")
-        self.assertTrue(any(row["note"] == "SYNTHETIC CASEFLOW HEARING NOTE" for row in record["sessions"]))
-        self.assertTrue(any(row["text"] == "SYNTHETIC CASEFLOW CLIENT UPDATE" for row in record["notes"]))
-        self.assertTrue(any(row["title"] == "SYNTHETIC CASEFLOW FILING DEADLINE" for row in record["deadlines"]))
-        self.assertTrue(any(row["title"] == "SYNTHETIC CASEFLOW LEGAL FEE" and row["amount"] == 12000
-                            and row["paid"] == 5000 for row in record["fees"]))
-        self.assertTrue(any(row["name"] == "synthetic-caseflow-note.txt" for row in record["docs"]))
-        self.assertTrue(any("SYNTHETIC CASEFLOW" in row["text"] for row in record["events"]))
+            completed = self.page.request.post(
+                self.base_url + f"/tasks/{task_row['id']}/done",
+                headers=headers,
+                timeout=8000,
+            )
+            self.assertEqual(completed.status, 200, completed.text())
 
-        removed = self.page.request.delete(
-            self.base_url + f"/cases/{case_id}/members/{member_id}",
-            headers=headers,
-            timeout=8000,
-        )
-        self.assertEqual(removed.status, 200, removed.text())
-        after_removal = self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
-        self.assertEqual(after_removal.status, 200, after_removal.text())
-        self.assertFalse(any(row["user_id"] == member_id for row in after_removal.json()["members"]))
-        revoked = member_page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
-        self.assertEqual(revoked.status, 404, revoked.text())
+            refreshed = self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
+            self.assertEqual(refreshed.status, 200, refreshed.text())
+            record = refreshed.json()
+            self.assertEqual(next(row for row in record["tasks"] if row["id"] == task_row["id"])["status"], "done")
+            self.assertTrue(any(row["note"] == "SYNTHETIC CASEFLOW HEARING NOTE" for row in record["sessions"]))
+            self.assertTrue(any(row["text"] == "SYNTHETIC CASEFLOW CLIENT UPDATE" for row in record["notes"]))
+            self.assertTrue(any(row["title"] == "SYNTHETIC CASEFLOW FILING DEADLINE" for row in record["deadlines"]))
+            self.assertTrue(any(row["title"] == "SYNTHETIC CASEFLOW LEGAL FEE" and row["amount"] == 12000
+                                and row["paid"] == 5000 for row in record["fees"]))
+            self.assertTrue(any(row["name"] == "synthetic-caseflow-note.txt" for row in record["docs"]))
+            self.assertTrue(any("SYNTHETIC CASEFLOW" in row["text"] for row in record["events"]))
 
-        member_context.close()
+            removed = self.page.request.delete(
+                self.base_url + f"/cases/{case_id}/members/{member_id}",
+                headers=headers,
+                timeout=8000,
+            )
+            self.assertEqual(removed.status, 200, removed.text())
+            after_removal = self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
+            self.assertEqual(after_removal.status, 200, after_removal.text())
+            self.assertFalse(any(row["user_id"] == member_id for row in after_removal.json()["members"]))
+            revoked = member_page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
+            self.assertEqual(revoked.status, 404, revoked.text())
 
+
+
+        finally:
+            member_context.close()
         self.page.locator("#side").get_by_role("button", name="القضايا").click()
         self.page.get_by_text("SYNTHETIC CASEFLOW PRIMARY MATTER", exact=True).wait_for(timeout=10000)
         self.assertIn("SYNTHETIC CASEFLOW SECOND MATTER", self.page.locator("body").inner_text())
