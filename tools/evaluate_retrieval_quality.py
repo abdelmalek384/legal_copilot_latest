@@ -7,6 +7,7 @@ Malformed records are reported and excluded rather than crashing or being scored
 """
 import argparse
 import json
+import math
 import re
 import sys
 from datetime import date
@@ -440,7 +441,7 @@ def _write_report(path, rendered):
         handle.write(rendered)
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--questions", type=Path, default=DEFAULT_QUESTIONS)
     parser.add_argument("--runs", type=Path, default=DEFAULT_RUNS)
@@ -459,7 +460,7 @@ def main():
     parser.add_argument("--min-abstention-compliance", type=float)
     parser.add_argument("--max-excluded-cases", type=int)
     parser.add_argument("--max-unsafe-unverified-source-uses", type=int)
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     for name in ("min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
                  "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
                  "max_excluded_cases", "max_unsafe_unverified_source_uses"):
@@ -474,7 +475,7 @@ def main():
     for name in ("min_recall_at_5", "min_mrr_at_5", "min_citation_precision",
                  "min_citation_coverage", "min_expected_pin_cite_recall", "min_abstention_compliance"):
         value = getattr(args, name)
-        if value is not None and (not isinstance(value, (int, float)) or not __import__("math").isfinite(value)
+        if value is not None and (not isinstance(value, (int, float)) or not math.isfinite(value)
                                   or not 0 <= value <= 1):
             parser.error("--" + name.replace("_", "-") + " must be a finite number between 0 and 1")
     quality_thresholds = (args.min_recall_at_5, args.min_mrr_at_5, args.min_citation_precision,
