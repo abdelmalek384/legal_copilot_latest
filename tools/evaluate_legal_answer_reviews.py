@@ -366,6 +366,41 @@ def summarize_reviews(records, reviewer_registry):
         for record in valid if record["critical_defect"]
         for category in record.get("critical_defect_categories", [])
     )
+    # Distinguish genuine cross-case recurrence from repeated assessments of one case.
+    # Only human-assigned critical-defect categories from valid records are counted.
+    recurrence = defaultdict(lambda: {
+        "assessment_ids": set(), "case_counts": Counter(), "reviewer_ids": set()
+    })
+    for record in valid:
+        if not record["critical_defect"]:
+            continue
+        for category in record.get("critical_defect_categories", []):
+            item = recurrence[category]
+            item["assessment_ids"].add(record["assessment_id"])
+            item["case_counts"][record["case_id"]] += 1
+            item["reviewer_ids"].add(record["reviewer_id"])
+    critical_defect_category_analysis = []
+    for category in CRITICAL_DEFECT_CATEGORIES:
+        item = recurrence.get(category)
+        if not item:
+            continue
+        case_count = len(item["case_counts"])
+        assessment_count = len(item["assessment_ids"])
+        critical_defect_category_analysis.append({
+            "category": category,
+            "assessment_count": assessment_count,
+            "distinct_case_count": case_count,
+            "distinct_reviewer_count": len(item["reviewer_ids"]),
+            "repeat_assessments_within_same_case": sum(
+                max(0, count - 1) for count in item["case_counts"].values()
+            ),
+            "recurs_across_multiple_cases": case_count >= 2,
+            "reported_by_multiple_reviewers": len(item["reviewer_ids"]) >= 2,
+        })
+    recurring_critical_defect_categories = [
+        item["category"] for item in critical_defect_category_analysis
+        if item["recurs_across_multiple_cases"]
+    ]
     uncategorized_legacy_defects = sum(
         1 for record in valid
         if record["critical_defect"] and not record.get("critical_defect_categories")
@@ -380,6 +415,8 @@ def summarize_reviews(records, reviewer_registry):
         "disposition_counts": {name: counts.get(name, 0) for name in sorted(DISPOSITIONS)},
         "practice_area_counts": dict(sorted(practice_areas.items())),
         "critical_defect_count": len(critical_defects),
+        "critical_defect_category_analysis": critical_defect_category_analysis,
+        "recurring_critical_defect_categories": recurring_critical_defect_categories,
         "critical_defect_category_counts": {
             **{category: defect_category_counts.get(category, 0) for category in CRITICAL_DEFECT_CATEGORIES},
             "uncategorized_legacy_v1": uncategorized_legacy_defects,
