@@ -2820,6 +2820,72 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             0,
         )
 
+
+    def test_research_answers_receive_stable_opaque_ids_in_send_and_history(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/research/conversations")
+        self.assertEqual(created.status_code, 200, created.text)
+        conversation_id = created.json()["id"]
+
+        synthetic_result = {
+            "found": True,
+            "answer": "Synthetic answer [1].",
+            "abstained": False,
+            "sources": [{"ref": "SYNTHETIC-LAW-1", "text": "Synthetic source passage."}],
+            "scope": "verified_corpus",
+            "case_id": None,
+            "requested_as_of": "2026-11-01",
+        }
+        with patch("app.ask", return_value=synthetic_result):
+            first = self._mutate(
+                "post",
+                f"/research/conversations/{conversation_id}/messages",
+                json={"message": "Synthetic question", "scope": "verified_corpus"},
+            )
+            second = self._mutate(
+                "post",
+                f"/research/conversations/{conversation_id}/messages",
+                json={"message": "Synthetic question", "scope": "verified_corpus"},
+            )
+
+        self.assertEqual(first.status_code, 200, first.text)
+        self.assertEqual(second.status_code, 200, second.text)
+        first_id = first.json()["answer_id"]
+        second_id = second.json()["answer_id"]
+        self.assertRegex(first_id, r"^ans_[A-Za-z0-9_-]{32}$")
+        self.assertRegex(second_id, r"^ans_[A-Za-z0-9_-]{32}$")
+        self.assertNotEqual(first_id, second_id, "each generated answer needs its own identifier")
+
+        detail = self.client.get(f"/research/conversations/{conversation_id}")
+        self.assertEqual(detail.status_code, 200, detail.text)
+        assistant_messages = [
+            item for item in detail.json()["messages"] if item["role"] == "assistant"
+        ]
+        self.assertEqual(len(assistant_messages), 2)
+        self.assertEqual(
+            [item["answer_id"] for item in assistant_messages],
+            [first_id, second_id],
+        )
+        self.assertEqual(
+            [item["result"]["answer_id"] for item in assistant_messages],
+            [first_id, second_id],
+        )
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        stored = firm_db.execute(
+            "SELECT message_json FROM research_messages "
+            "WHERE conversation_id=? AND role='assistant' ORDER BY id",
+            (conversation_id,),
+        ).fetchall()
+        self.assertEqual(
+            [json.loads(row["message_json"])["answer_id"] for row in stored],
+            [first_id, second_id],
+        )
+
     def test_login_firm_switch_and_shared_corpus_are_separated(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
