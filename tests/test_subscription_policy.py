@@ -66,7 +66,7 @@ class SubscriptionPolicyTests(unittest.TestCase):
 
     def test_transfer_reference_validation_rejects_credentials_and_controls(self):
         self.assertEqual(validate_transfer_reference("  InstaPay-2026/ABC123  "), "InstaPay-2026/ABC123")
-        for value in ("", "abc", "123456\nInjected", "account number 123456", "123456 "):
+        for value in ("", "abc", "123456\nInjected", "account number 123456", "123456 789"):
             with self.subTest(value=value), self.assertRaises(ValueError):
                 validate_transfer_reference(value)
 
