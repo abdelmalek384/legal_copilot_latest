@@ -2398,6 +2398,16 @@ class NoteIn(BaseModel): text: str = Field(min_length=1, max_length=10000)
 class DeadlineIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); due: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
     _valid_due = field_validator("due")(validate_operational_deadline)
+class ReminderPreferencesIn(BaseModel):
+    email_enabled: bool = True
+    deadline_7_days: bool = True
+    deadline_3_days: bool = True
+    deadline_1_day: bool = True
+    deadline_day_of: bool = True
+    deadline_overdue: bool = True
+    session_day_of: bool = True
+    task_reminders: bool = True
+
 class DeadlineEstimateIn(BaseModel):
     rule_id: str = Field(min_length=1, max_length=100)
     trigger: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
@@ -5177,6 +5187,43 @@ def new_note(cid: int, b: NoteIn, u: dict = Depends(user)):
     c.execute("INSERT INTO notes(case_id,created_by,text) VALUES(?,?,?)", (cid, u["id"], b.text.strip()))
     log(c, cid, u["name"], "إضافة ملاحظة"); c.commit()
     return {"ok": True}
+
+
+@app.get("/reminder-preferences")
+def get_reminder_preferences(u: dict = Depends(user)):
+    c = conn()
+    row = c.execute(
+        "SELECT email_enabled,deadline_7_days,deadline_3_days,deadline_1_day,"
+        "deadline_day_of,deadline_overdue,session_day_of,task_reminders "
+        "FROM reminder_preferences WHERE user_id=?", (u["id"],)
+    ).fetchone()
+    keys = ("email_enabled", "deadline_7_days", "deadline_3_days", "deadline_1_day",
+            "deadline_day_of", "deadline_overdue", "session_day_of", "task_reminders")
+    if row is None:
+        return {key: True for key in keys}
+    return {key: bool(row[key]) for key in keys}
+
+
+@app.put("/reminder-preferences")
+@rollback_tenant_transaction_on_error
+def put_reminder_preferences(b: ReminderPreferencesIn, u: dict = Depends(user)):
+    c = conn()
+    keys = ("email_enabled", "deadline_7_days", "deadline_3_days", "deadline_1_day",
+            "deadline_day_of", "deadline_overdue", "session_day_of", "task_reminders")
+    values = [int(getattr(b, key)) for key in keys]
+    c.execute(
+        "INSERT INTO reminder_preferences(user_id,email_enabled,deadline_7_days,deadline_3_days,"
+        "deadline_1_day,deadline_day_of,deadline_overdue,session_day_of,task_reminders) "
+        "VALUES(?,?,?,?,?,?,?,?,?) ON CONFLICT(user_id) DO UPDATE SET "
+        "email_enabled=excluded.email_enabled,deadline_7_days=excluded.deadline_7_days,"
+        "deadline_3_days=excluded.deadline_3_days,deadline_1_day=excluded.deadline_1_day,"
+        "deadline_day_of=excluded.deadline_day_of,deadline_overdue=excluded.deadline_overdue,"
+        "session_day_of=excluded.session_day_of,task_reminders=excluded.task_reminders,"
+        "updated_at=datetime('now')",
+        (u["id"], *values),
+    )
+    c.commit()
+    return {"ok": True, **{key: bool(value) for key, value in zip(keys, values)}}
 
 
 @app.get("/deadline-rules")
