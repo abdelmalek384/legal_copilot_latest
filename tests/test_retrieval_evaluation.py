@@ -233,6 +233,43 @@ class RetrievalEvaluationTests(unittest.TestCase):
         self.assertEqual(result["abstention_compliance"], 0.0)
         self.assertEqual(result["unsafe_unverified_source_uses"], 1)
 
+    def test_retrieval_labels_require_approved_registry_identity_and_scope(self):
+        cases = (
+            ({"reviewer_id": "not-registered"}, "approved reviewer registry"),
+            ({"reviewer_name": "Unmatched name"}, "display_name"),
+            ({"practice_area": "criminal_law"}, "not approved for this practice_area"),
+            ({"reviewer_role": "administrator"}, "registry role"),
+            ({"review_evidence_url": "http://example.gov/review"}, "HTTPS"),
+            ({"review_evidence_url": "https://user:pass@example.gov/review"}, "HTTPS"),
+            ({"review_evidence_url": "https://example.gov/review?token=secret"}, "HTTPS"),
+            ({"review_evidence_url": "https://example.gov/review#private"}, "HTTPS"),
+            ({"review_date": "2999-01-01"}, "real YYYY-MM-DD"),
+        )
+        for overrides, expected_error in cases:
+            with self.subTest(overrides=overrides):
+                question = reviewed_question(**overrides)
+                result = score_evaluation([question], [])
+                self.assertEqual(result["reviewed_cases_scored"], 0)
+                self.assertIn(expected_error, " ".join(result["excluded_cases"][0]["reasons"]))
+
+    def test_retrieval_evaluator_rejects_malformed_reviewer_registry(self):
+        question = reviewed_question()
+        bad_registry = {"reviewers": [{
+            "reviewer_id": "reviewer-a",
+            "display_name": "Reviewer A",
+            "status": "approved",
+            "professional_role": "administrator",
+            "jurisdiction": "Egypt",
+            "practice_areas": ["civil_law"],
+            "qualification_basis": "test",
+            "evidence_reference": "test",
+            "verified_by": "test",
+            "verified_on": "2026-10-24",
+        }]}
+        from tools.evaluate_retrieval_quality import score_evaluation as raw_score_evaluation
+        with self.assertRaisesRegex(ValueError, "reviewer registry is invalid"):
+            raw_score_evaluation([question], [], reviewer_registry=bad_registry)
+
     def test_invalid_reviewed_labels_are_excluded(self):
         question = reviewed_question(expected_source_ids=[], reviewer_name=None)
         result = score_evaluation([question], [{"question_id": question["id"]}])
