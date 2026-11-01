@@ -6011,6 +6011,11 @@ def get_research_conversation(conversation_id: int, u: dict = Depends(user)):
         except (ValueError, TypeError): item["sources"] = []
         try: item["result"] = json.loads(item.pop("message_json"))
         except (ValueError, TypeError): item["result"] = {}
+        # Older assistant messages have no stable answer ID; preserve them unchanged.
+        if row["role"] == "assistant" and isinstance(item["result"], dict):
+            answer_id = item["result"].get("answer_id")
+            if isinstance(answer_id, str) and answer_id.strip():
+                item["answer_id"] = answer_id
         out.append(item)
     conversation["messages"] = out
     return conversation
@@ -6135,6 +6140,9 @@ def send_research_message(conversation_id: int, b: ResearchMessageIn, u: dict = 
     message_metadata = dict(result)
     message_metadata["scope"] = b.scope
     message_metadata["case_id"] = b.case_id
+    # Persist a fresh opaque ID with this exact assistant message; no schema change is needed.
+    answer_id = "ans_" + secrets.token_urlsafe(24)
+    message_metadata["answer_id"] = answer_id
     c.execute("INSERT INTO research_messages(conversation_id,role,content,sources_json,message_json) VALUES(?,?,?,?,?)",
               (conversation_id, "assistant", answer, json.dumps(sources, ensure_ascii=False),
                json.dumps(message_metadata, ensure_ascii=False)))
@@ -6144,5 +6152,5 @@ def send_research_message(conversation_id: int, b: ResearchMessageIn, u: dict = 
     c.execute("UPDATE research_conversations SET title=?,updated_at=datetime('now') WHERE id=?",
               (title, conversation_id))
     c.commit()
-    return {"question": question, "answer": answer, **result}
+    return {"question": question, "answer": answer, **result, "answer_id": answer_id}
 
