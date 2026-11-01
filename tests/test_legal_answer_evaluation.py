@@ -163,7 +163,8 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
                                         (result("Q1"), result("Q2", abstained=True))), encoding="utf-8")
             code = run_main([
                 "--questions", str(questions), "--results", str(results), "--out", str(report_path),
-                "--min-questions", "2", "--min-practice-areas", "1", "--min-questions-per-practice-area", "2",
+                "--min-questions", "2", "--min-answerable-questions", "1", "--min-unanswerable-questions", "1",
+                "--min-practice-areas", "1", "--min-questions-per-practice-area", "2",
                 "--min-source-precision", "1", "--min-source-recall", "1",
                 "--min-pin-cite-precision", "1", "--min-pin-cite-recall", "1",
                 "--min-abstention-accuracy", "1", "--min-unanswerable-abstention-recall", "1",
@@ -210,7 +211,8 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
                                      for r in (bad_answerable, bad_unanswerable)), encoding="utf-8")
             code = run_main([
                 "--questions", str(questions), "--results", str(results), "--out", str(report_path),
-                "--min-questions", "2", "--min-practice-areas", "1", "--min-questions-per-practice-area", "2",
+                "--min-questions", "2", "--min-answerable-questions", "1", "--min-unanswerable-questions", "1",
+                "--min-practice-areas", "1", "--min-questions-per-practice-area", "2",
                 "--min-source-recall", "1", "--min-pin-cite-recall", "1",
                 "--min-unanswerable-abstention-recall", "1",
             ])
@@ -220,6 +222,25 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             for metric in ("source_recall", "pin_cite_recall", "unanswerable_abstention_recall"):
                 self.assertEqual(checks[metric]["actual"], 0.0)
                 self.assertFalse(checks[metric]["passed"])
+
+    def test_recall_gates_require_matching_answerability_cohort_minimums(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions = Path(td) / "questions.jsonl"
+            results = Path(td) / "results.jsonl"
+            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\n", encoding="utf-8")
+            results.write_text(json.dumps(result(), ensure_ascii=False) + "\n", encoding="utf-8")
+            common = ["--questions", str(questions), "--results", str(results),
+                      "--min-questions", "1", "--min-practice-areas", "1",
+                      "--min-questions-per-practice-area", "1"]
+            for args, message in (
+                (["--min-source-recall", "1"], "--min-answerable-questions"),
+                (["--min-pin-cite-recall", "1"], "--min-answerable-questions"),
+                (["--min-unanswerable-abstention-recall", "1"], "--min-unanswerable-questions"),
+            ):
+                with self.subTest(args=args):
+                    with self.assertRaises(SystemExit) as raised:
+                        run_main([*common, *args])
+                    self.assertEqual(raised.exception.code, 2)
 
     def test_cli_release_gate_fails_and_preserves_report_on_precision_failure(self):
         with tempfile.TemporaryDirectory() as td:
