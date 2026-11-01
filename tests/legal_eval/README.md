@@ -37,10 +37,10 @@ The tool `tools/evaluate_legal_answers.py` computes source-ID recall, exact revi
 
 Only rows with `review_status: "lawyer_approved"` are scored. Each scored row must include a non-empty expected answer, named reviewer, ISO review date, explicit boolean `answerable`, and reviewed citations for answerable questions. Unreviewed drafts are reported as excluded. The evaluator refuses to run if no reviewed questions exist, if results are missing for reviewed IDs, or if result IDs are unknown.
 
-Model-output JSONL format (one record per question ID):
+Model-output JSONL format (one record per question ID). Include `answer_id` as a stable, non-empty, unique identifier for that exact generated answer/version whenever available. It is propagated into the evaluation report so the same identifier can be copied into each independent human-review record. Do not put client names, case numbers, emails, or other personal data in the identifier. Legacy rows without `answer_id` remain scoreable, but are counted as missing stable IDs and cannot be joined reliably to independent reviews:
 
 ```json
-{"id":"Q-CIVIL-001","answer":"...","abstained":false,"cited_sources":["LAW-123"],"cited_pin_cites":[{"source_id":"LAW-123","pin_cite":"المادة 163"}]}
+{"id":"Q-CIVIL-001","answer_id":"opaque-unique-answer-id","answer":"...","abstained":false,"cited_sources":["LAW-123"],"cited_pin_cites":[{"source_id":"LAW-123","pin_cite":"المادة 163"}]}
 ```
 
 Run it after a lawyer has approved the benchmark and a model-output JSONL has been collected:
@@ -49,7 +49,7 @@ Run it after a lawyer has approved the benchmark and a model-output JSONL has be
 python tools/evaluate_legal_answers.py --questions tests/legal_eval/reviewed_questions.jsonl --results model_outputs.jsonl --reviewer-registry /secure/private/reviewer-registry.json --out evaluation-report.json
 ```
 
-Do not turn this report into a claim of legal accuracy. A lawyer must separately review substantive correctness, source authenticity/currentness, and whether citations actually support each legal proposition. Keep the real reviewer registry and credential evidence in private controlled storage; the registry is an accountable human assertion, not independent proof of a license.
+The report schema is version 2 and includes stable-answer-ID coverage. Duplicate supplied answer IDs across different question results are rejected. If the app does not yet supply a stable answer ID, do not manufacture one from the question ID: a question may produce multiple answers across runs. Do not turn this report into a claim of legal accuracy. A lawyer must separately review substantive correctness, source authenticity/currentness, and whether citations actually support each legal proposition. Keep the real reviewer registry and credential evidence in private controlled storage; the registry is an accountable human assertion, not independent proof of a license.
 
 
 The evaluation runner validates the API base URL before sending requests. It rejects whitespace, embedded credentials (including empty userinfo), malformed URL structures, and invalid ports. Remote targets still require explicit `--allow-remote` opt-in and HTTPS. These checks validate URL syntax and target policy; they do not establish that a remote service is trusted.
