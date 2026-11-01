@@ -398,7 +398,7 @@ def _retrieval_release_gate(report, args):
                or any(getattr(args, name) is not None for name in (
                    "min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
                    "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
-                   "max_excluded_cases", "max_unsafe_unverified_source_uses")))
+                   "max_excluded_cases", "max_invalid_records", "max_unsafe_unverified_source_uses")))
     checks = []
     def add(metric, actual, operator, threshold):
         passed = actual is not None and (actual >= threshold if operator == ">=" else actual <= threshold)
@@ -427,6 +427,10 @@ def _retrieval_release_gate(report, args):
             add(metric, actual, ">=", threshold)
     if args.max_excluded_cases is not None:
         add("excluded_cases", len(report["excluded_cases"]), "<=", args.max_excluded_cases)
+    if args.max_invalid_records is not None:
+        invalid_count = (len(report["invalid_question_records"]) + len(report["invalid_run_records"])
+                         + len(report["duplicate_question_ids"]) + len(report["duplicate_run_question_ids"]))
+        add("invalid_records_and_duplicate_ids", invalid_count, "<=", args.max_invalid_records)
     if args.max_unsafe_unverified_source_uses is not None:
         add("unsafe_unverified_source_uses", report["unsafe_unverified_source_uses"], "<=",
             args.max_unsafe_unverified_source_uses)
@@ -459,11 +463,12 @@ def main(argv=None):
     parser.add_argument("--min-expected-pin-cite-recall", type=float)
     parser.add_argument("--min-abstention-compliance", type=float)
     parser.add_argument("--max-excluded-cases", type=int)
+    parser.add_argument("--max-invalid-records", type=int)
     parser.add_argument("--max-unsafe-unverified-source-uses", type=int)
     args = parser.parse_args(argv)
     for name in ("min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
                  "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
-                 "max_excluded_cases", "max_unsafe_unverified_source_uses"):
+                 "max_excluded_cases", "max_invalid_records", "max_unsafe_unverified_source_uses"):
         value = getattr(args, name)
         if value is not None and value < 0:
             parser.error("--" + name.replace("_", "-") + " must be a non-negative integer")
@@ -485,7 +490,7 @@ def main(argv=None):
                     or any(getattr(args, name) is not None for name in (
                         "min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
                         "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
-                        "max_excluded_cases", "max_unsafe_unverified_source_uses")))
+                        "max_excluded_cases", "max_invalid_records", "max_unsafe_unverified_source_uses")))
     if gate_enabled and args.min_reviewed_cases is None:
         parser.error("retrieval release gates require --min-reviewed-cases to prevent empty-sample passes")
     if args.min_cases_per_practice_area is not None and args.min_practice_areas is None:
