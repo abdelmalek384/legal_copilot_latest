@@ -18,6 +18,7 @@ def review(**overrides):
     scores = {dimension: 2 for dimension in DIMENSIONS}
     rationales = {dimension: "Checked against the reviewed source passage." for dimension in DIMENSIONS}
     record = {
+        "review_schema_version": 2,
         "assessment_id": "ASSESS-001",
         "case_id": "CASE-001",
         "practice_area": "labour_law",
@@ -179,7 +180,7 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
             critical_defect=True,
             critical_defect_description="The cited sentence reverses a prohibition.",
         )
-        self.assertTrue(any("requires at least one critical_defect_category" in error
+        self.assertTrue(any("review_schema_version=2 critical defects require at least one critical_defect_category" in error
                             for error in validate_review(missing)))
 
         categorized = dict(missing, critical_defect_categories=["contradicted_source_or_polarity"])
@@ -211,6 +212,24 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
         self.assertEqual(report["critical_defect_category_counts"]["unsupported_legal_claim"], 2)
         self.assertEqual(report["critical_defect_category_counts"]["wrong_legal_actor_or_role"], 1)
         self.assertEqual(report["critical_defect_category_counts"]["overbroad_conditional_scope"], 0)
+
+
+    def test_legacy_v1_unsafe_reviews_remain_readable_and_are_counted_as_uncategorized(self):
+        legacy = review(
+            disposition="unsafe",
+            critical_defect=True,
+            critical_defect_description="Legacy record predating the defect taxonomy.",
+        )
+        legacy["review_schema_version"] = 1
+        report = summarize_reviews([legacy], reviewer_registry())
+        self.assertEqual(report["valid_assessments"], 1)
+        self.assertEqual(report["critical_defect_count"], 1)
+        self.assertEqual(report["critical_defect_category_counts"]["uncategorized_legacy_v1"], 1)
+        self.assertEqual(report["critical_defect_category_counts"]["unsupported_legal_claim"], 0)
+
+    def test_unknown_review_schema_version_is_rejected(self):
+        errors = validate_review(review(review_schema_version=3))
+        self.assertTrue(any("review_schema_version must be 1 (legacy) or 2" in error for error in errors))
 
     def test_missing_rationale_invalidates_record(self):
         rationales = dict(review()["rationales"])
