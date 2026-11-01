@@ -53,14 +53,16 @@ def _valid_calendar_date(value):
 
 def _valid_review_evidence_url(value):
     if (not isinstance(value, str) or not value.strip() or value != value.strip()
-            or any(ch.isspace() for ch in value)):
+            or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value)):
         return False
     try:
         parsed = urlsplit(value)
-        if (parsed.scheme != "https" or not parsed.hostname or parsed.username is not None
-                or parsed.password is not None or parsed.query or parsed.fragment):
+        port = parsed.port
+        if (parsed.scheme.lower() != "https" or not parsed.hostname
+                or parsed.username is not None or parsed.password is not None
+                or parsed.query or parsed.fragment or parsed.netloc.endswith(":")
+                or (port is not None and not 1 <= port <= 65535)):
             return False
-        _ = parsed.port
         return True
     except ValueError:
         return False
