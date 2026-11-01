@@ -288,6 +288,39 @@ class MFAAccountSecurityTests(unittest.TestCase):
         ).fetchone())
 
 
+    def test_mfa_verification_audit_failure_rolls_back_factor_and_session(self):
+        secret = self.enroll()
+        codes = self.confirm(secret)
+        self.login()
+        control = self.runtime.control_connection()
+        control.execute("""
+            CREATE TRIGGER reject_mfa_verification_audit
+            BEFORE INSERT ON mfa_security_events
+            WHEN NEW.event_type='recovery_code_used'
+            BEGIN SELECT RAISE(ABORT, 'injected MFA verification audit failure'); END
+        """)
+        control.commit()
+
+        response = self.mutate(
+            "post", "/account/mfa/verify", json={"recovery_code": codes[0]}
+        )
+        self.assertEqual(response.status_code, 500, response.text)
+
+        recovery = control.execute(
+            "SELECT used_at FROM mfa_recovery_codes WHERE user_id=? ORDER BY id LIMIT 1",
+            (self.user_id,),
+        ).fetchone()
+        self.assertIsNone(recovery["used_at"])
+        session = control.execute(
+            "SELECT mfa_verified FROM auth_sessions WHERE user_id=? ORDER BY created_at DESC LIMIT 1",
+            (self.user_id,),
+        ).fetchone()
+        self.assertEqual(session["mfa_verified"], 0)
+        self.assertEqual(control.execute(
+            "SELECT COUNT(*) FROM mfa_security_events WHERE actor_user_id=? AND event_type='recovery_code_used'",
+            (self.user_id,),
+        ).fetchone()[0], 0)
+
     def test_mfa_enrollment_audit_failure_rolls_back_pending_credential(self):
         failure_client = TestClient(app.app, raise_server_exceptions=False)
         try:
