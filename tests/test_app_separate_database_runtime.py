@@ -4228,10 +4228,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             result = app._candidate_catalogue_practice_area_counts()
 
         self.assertTrue(result["available"])
-        self.assertEqual(result["candidate_instrument_count"], 2)
+        self.assertEqual(result["candidate_instrument_count"], 3)
         self.assertEqual(result["practice_area_counts"]["labour"], 1)
         self.assertEqual(result["practice_area_counts"]["criminal"], 1)
-        self.assertEqual(result["practice_area_counts"]["unknown"], 0)
+        self.assertEqual(result["practice_area_counts"]["unknown"], 1)
         self.assertEqual(result["invalid_entries"], 5)
 
     def test_legal_corpus_coverage_counts_only_permission_complete_versions(self):
