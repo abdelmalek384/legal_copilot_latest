@@ -40,11 +40,11 @@ class AnswerSourcePolarityTests(unittest.TestCase):
         for positive, _negative_pattern in app._ARABIC_POLARITY_PREDICATES:
             with self.subTest(predicate=positive):
                 negative_source = {"text": "ولا " + positive + " ذلك."}
-                positive_answer = "وي" + positive[1:] + " ذلك [1]."
+                positive_answer = "و" + positive + " ذلك [1]."
                 self.assertTrue(app._answer_has_source_polarity_conflict(
                     positive_answer, [negative_source]
                 ))
-                positive_source = {"text": "وي" + positive[1:] + " ذلك."}
+                positive_source = {"text": "و" + positive + " ذلك."}
                 negative_answer = "ولا " + positive + " ذلك [1]."
                 self.assertTrue(app._answer_has_source_polarity_conflict(
                     negative_answer, [positive_source]
