@@ -16,7 +16,7 @@ Use `tools/record_manual_capture.py` when a source cannot or should not be colle
        --retrieved-on 2026-10-26 \
        --gazette-issue "18 (تابع)"
    ```
-   Add `--dry-run` first to see what would be written. The document id must exist in `docs/legal_document_candidates.json` (or pass `--source-id`).
+   Add `--dry-run` first to see what would be written. The document id must exist in `docs/legal_document_candidates.json`. The source ID defaults to the document's catalog source; if you captured from a different registered host, pass `--source-id` for that source. The selected source ID must exist in the catalog and its registered host must match `--source-url`. For example, when using the ETA-hosted Labour Law Gazette PDF, pass `--source-id EG-ETA-LABOUR-GAZETTE`.
 3. **Read the result.** The tool copies the original into `legal_corpus/originals/<id>/`, writes `metadata/<id>.json`, extracts text, runs the article audit, and appends a `pending_human_review` entry to `review_queue.jsonl`.
 4. **Compare and review.** Use `tools/compare_corpus_to_reference.py` to compare any candidate corpus with this text, then have a lawyer review the differences.
 
