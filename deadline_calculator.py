@@ -291,7 +291,8 @@ def rule_catalog(path: Path = DEFAULT_RULES) -> dict:
 def estimate_rule_deadline(rule_id: str, trigger: dt.date, *, distance_days: int = 0,
                            today: dt.date | None = None,
                            rules_path: Path = DEFAULT_RULES,
-                           holidays_path: Path = DEFAULT_HOLIDAYS) -> dict:
+                           holidays_path: Path = DEFAULT_HOLIDAYS,
+                           additional_dated_holidays: list[dict] | None = None) -> dict:
     """Build a non-authoritative preview from a selected rule and draft holiday calendar.
 
     The UI may explicitly preview unverified rules, but the returned warning and
@@ -308,6 +309,22 @@ def estimate_rule_deadline(rule_id: str, trigger: dt.date, *, distance_days: int
     holidays, complete = load_holidays(
         holidays_path, range(trigger.year, min(2201, trigger.year + 13))
     )
+    if additional_dated_holidays is not None:
+        if not isinstance(additional_dated_holidays, list):
+            raise DeadlineError("additional dated holidays must be a list")
+        for item in additional_dated_holidays:
+            if not isinstance(item, dict):
+                raise DeadlineError("invalid firm holiday entry")
+            date_text, name = item.get("date"), item.get("name_ar")
+            if not isinstance(date_text, str) or not isinstance(name, str) or not name.strip():
+                raise DeadlineError("invalid firm holiday entry")
+            try:
+                parsed = dt.date.fromisoformat(date_text)
+            except ValueError as exc:
+                raise DeadlineError("invalid firm holiday date") from exc
+            if parsed.isoformat() != date_text:
+                raise DeadlineError("firm holiday date must use YYYY-MM-DD")
+            holidays[parsed] = name.strip()
     result = compute_from_rule(
         rule, trigger, allow_unverified=True, holidays=holidays,
         complete_holiday_years=complete, distance_days=distance_days, today=today,
