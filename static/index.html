@@ -832,7 +832,7 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    h('div',{className:'row'},sp,btn(uiText('فتح واتساب برسالة تذكير','Open WhatsApp reminder'),()=>openWhatsAppReminder(sp.value,uiText('تذكير بموعد جلسة مسجل لدى المكتب بتاريخ '+(sd.value||'—')+'، يرجى التواصل مع المكتب لتأكيد التفاصيل.','Reminder of a court session recorded by the firm for '+(sd.value||'—')+'. Please contact the firm to confirm details.')),'g')))}
  if(TAB==='dead'){
   const title=h('input',{placeholder:uiText('نوع الموعد (استئناف، طعن، تقديم مستند...)','Deadline type (appeal, challenge, filing...)')}),
-   due=h('input',{type:'date'}),note=h('textarea',{placeholder:uiText('ملاحظة (اختياري)','Note (optional)'),rows:2,style:'width:100%'}),
+   due=h('input',{type:'date'}),whatsappPhone=h('input',{type:'tel',placeholder:uiText('رقم واتساب العميل أو المحامي','Client or lawyer WhatsApp number')}),note=h('textarea',{placeholder:uiText('ملاحظة (اختياري)','Note (optional)'),rows:2,style:'width:100%'}),
    trigger=h('input',{type:'date'}),distance=h('input',{type:'number',min:'0',max:'365',step:'1',value:'0'}),
    ruleSelect=h('select',{}),preview=h('div',{}),estimateButton=btn('حساب موعد مبدئي',async()=>{
     if(!trigger.value||!ruleSelect.value){toast(uiText('حدد القاعدة وتاريخ بداية الحساب الذي راجعه المحامي','Choose a rule and the trigger date confirmed by counsel'));return}
@@ -862,7 +862,8 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    h('div',{className:'grid'},ruleSelect,h('label',{},h('span',{textContent:uiText('تاريخ بداية الحساب (بعد التحقق)','Trigger date (after confirmation)')}),trigger),h('label',{},h('span',{textContent:uiText('أيام مسافة إضافية (اختياري)','Additional distance days (optional)')}),distance)),
    estimateButton,preview,h('hr',{}),h('h3',{textContent:uiText('المواعيد المسجلة في القضية','Saved case deadlines')}),
    c.deadlines.length?c.deadlines.map(d=>h('div',{className:'row'},h('div',{},h('b',{textContent:d.title}),h('div',{className:'mut',textContent:d.note||''})),duePill({due:d.due})||pill(fd(d.due),'open'))):empty('لا توجد مواعيد قانونية مسجلة. هذه المواعيد منفصلة عن جلسات المحكمة.'),
-   h('div',{className:'row'},title,due,btn('إضافة موعد',async()=>{if(!title.value.trim()||!due.value){toast(uiText('أدخل نوع الموعد وتاريخه','Enter the deadline type and date'));return}await api('/cases/'+id+'/deadlines','POST',{title:title.value,due:due.value,note:note.value});again()})),note)
+   h('div',{className:'row'},title,due,btn('إضافة موعد',async()=>{if(!title.value.trim()||!due.value){toast(uiText('أدخل نوع الموعد وتاريخه','Enter the deadline type and date'));return}await api('/cases/'+id+'/deadlines','POST',{title:title.value,due:due.value,note:note.value});again()})),note,
+   h('div',{className:'row'},whatsappPhone,btn(uiText('فتح واتساب برسالة تذكير','Open WhatsApp reminder'),()=>openWhatsAppReminder(whatsappPhone.value,uiText('تذكير بموعد مسجل لدى المكتب بتاريخ '+(due.value||'—')+'، يرجى التواصل مع المكتب لتأكيد التفاصيل.','Reminder of an office-recorded date '+(due.value||'—')+'. Please contact the firm to confirm details.')),'g')))
  }
  if(TAB==='notes'){const txt=h('textarea',{placeholder:uiText('اكتب ملاحظة داخلية للقضية...','Write an internal case note...'),rows:4,style:'width:100%;font:inherit;border:1px solid var(--line);border-radius:8px;padding:10px'});
   body=h('div',{className:'card'},h('h3',{textContent:'ملاحظات القضية'}),c.notes.length?c.notes.map(n=>h('div',{className:'src'},h('div',{textContent:n.text,style:'white-space:pre-wrap'}),h('div',{className:'mut',textContent:(n.author||'')+' · '+(n.created_at||'')}))):empty('لا توجد ملاحظات بعد.'),
