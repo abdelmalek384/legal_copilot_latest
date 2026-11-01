@@ -6110,6 +6110,16 @@ class ResearchMessageIn(BaseModel):
     case_id: int | None = None
 
 
+class AnswerCorrectionIn(BaseModel):
+    category: str = Field(pattern=r"^(legal_accuracy|citation|completeness|clarity|other)$")
+    correction_text: str = Field(min_length=5, max_length=4000)
+
+
+class AnswerCorrectionReviewIn(BaseModel):
+    status: str = Field(pattern=r"^(accepted|rejected)$")
+    review_note: str = Field(default="", max_length=2000)
+
+
 @app.post("/research/conversations/{conversation_id}/messages")
 @rollback_tenant_transaction_on_error
 def send_research_message(conversation_id: int, b: ResearchMessageIn, u: dict = Depends(user)):
@@ -6157,4 +6167,127 @@ def send_research_message(conversation_id: int, b: ResearchMessageIn, u: dict = 
               (title, conversation_id))
     c.commit()
     return {"question": question, "answer": answer, **result, "answer_id": answer_id}
+
+
+@app.post("/research/conversations/{conversation_id}/answers/{answer_id}/corrections", status_code=201)
+@rollback_tenant_transaction_on_error
+def submit_answer_correction(
+    conversation_id: int,
+    answer_id: str,
+    b: AnswerCorrectionIn,
+    u: dict = Depends(user),
+):
+    """Submit private feedback on one exact answer in the caller's own conversation."""
+    c = conn()
+    _owned_research_conversation(c, u, conversation_id)
+    if not re.fullmatch(r"ans_[A-Za-z0-9_-]{32}", answer_id):
+        raise HTTPException(404, "answer not found")
+    message = None
+    rows = c.execute(
+        "SELECT content,message_json FROM research_messages "
+        "WHERE conversation_id=? AND role='assistant' ORDER BY id DESC",
+        (conversation_id,),
+    ).fetchall()
+    for row in rows:
+        try:
+            metadata = json.loads(row["message_json"] or "{}")
+        except (TypeError, ValueError):
+            metadata = {}
+        if isinstance(metadata, dict) and metadata.get("answer_id") == answer_id:
+            message = row
+            break
+    if message is None:
+        raise HTTPException(404, "answer not found")
+    correction_text = b.correction_text.strip()
+    if len(correction_text) < 5:
+        raise HTTPException(422, "correction must contain at least five non-space characters")
+    try:
+        cur = c.execute(
+            "INSERT INTO answer_corrections "
+            "(firm_id,conversation_id,answer_id,reporter_user_id,category,correction_text,answer_excerpt) "
+            "VALUES(?,?,?,?,?,?,?)",
+            (u["firm_id"], conversation_id, answer_id, u["id"], b.category,
+             correction_text, str(message["content"] or "")[:2000]),
+        )
+    except sqlite3.IntegrityError as exc:
+        c.rollback()
+        if "answer_corrections_one_open_per_reporter" in str(exc) or "UNIQUE constraint failed" in str(exc):
+            raise HTTPException(409, "an open correction already exists for this answer")
+        raise
+    correction_id = cur.lastrowid
+    c.execute(
+        "INSERT INTO answer_correction_events(correction_id,firm_id,actor_user_id,action,note) "
+        "VALUES(?,?,?,'submitted','')",
+        (correction_id, u["firm_id"], u["id"]),
+    )
+    c.commit()
+    return {"id": correction_id, "status": "open"}
+
+
+@app.get("/research/corrections")
+def list_answer_corrections(
+    status: str | None = None,
+    limit: int = 50,
+    u: dict = Depends(user),
+):
+    """Firm-admin-only correction queue; tenant DB routing provides firm isolation."""
+    if u.get("role") != "admin":
+        raise HTTPException(403, "admin only")
+    if status not in (None, "open", "accepted", "rejected"):
+        raise HTTPException(422, "invalid correction status")
+    if isinstance(limit, bool) or not isinstance(limit, int) or not 1 <= limit <= 100:
+        raise HTTPException(422, "limit must be between 1 and 100")
+    c = conn()
+    sql = (
+        "SELECT ac.id,ac.conversation_id,ac.answer_id,ac.reporter_user_id,ac.category,"
+        "ac.correction_text,ac.answer_excerpt,ac.status,ac.review_note,ac.reviewed_by_user_id,"
+        "ac.reviewed_at,ac.created_at,ac.updated_at,rc.title AS conversation_title "
+        "FROM answer_corrections ac JOIN research_conversations rc "
+        "ON rc.id=ac.conversation_id AND rc.firm_id=ac.firm_id "
+        "WHERE ac.firm_id=?"
+    )
+    params = [u["firm_id"]]
+    if status:
+        sql += " AND ac.status=?"
+        params.append(status)
+    sql += " ORDER BY ac.created_at DESC,ac.id DESC LIMIT ?"
+    params.append(limit)
+    return [dict(row) for row in c.execute(sql, params).fetchall()]
+
+
+@app.patch("/research/corrections/{correction_id}")
+@rollback_tenant_transaction_on_error
+def review_answer_correction(
+    correction_id: int,
+    b: AnswerCorrectionReviewIn,
+    u: dict = Depends(user),
+):
+    if u.get("role") != "admin":
+        raise HTTPException(403, "admin only")
+    c = conn()
+    row = c.execute(
+        "SELECT id,status FROM answer_corrections WHERE id=? AND firm_id=?",
+        (correction_id, u["firm_id"]),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "correction not found")
+    if row["status"] != "open":
+        raise HTTPException(409, "correction has already been reviewed")
+    note = b.review_note.strip()
+    updated = c.execute(
+        "UPDATE answer_corrections SET status=?,review_note=?,reviewed_by_user_id=?,"
+        "reviewed_at=datetime('now'),updated_at=datetime('now') "
+        "WHERE id=? AND firm_id=? AND status='open'",
+        (b.status, note, u["id"], correction_id, u["firm_id"]),
+    )
+    if updated.rowcount != 1:
+        c.rollback()
+        raise HTTPException(409, "correction has already been reviewed")
+    c.execute(
+        "INSERT INTO answer_correction_events(correction_id,firm_id,actor_user_id,action,note) "
+        "VALUES(?,?,?,?,?)",
+        (correction_id, u["firm_id"], u["id"], b.status, note),
+    )
+    c.commit()
+    return {"id": correction_id, "status": b.status}
 
