@@ -769,3 +769,11 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - API regression coverage verifies uniqueness, persistence, send/history consistency and legacy messages without fabricated IDs. Browser acceptance verifies the copy action.
 - Exact-head CI passed Tests (154 steps), Browser acceptance, dependency audit, Python/JavaScript CodeQL, Bandit and non-database safety regression.
 - PR #1129 was closed as superseded. The weighted technical score is now **50.10/100**; verified corpus coverage and counsel acceptance are unchanged.
+
+
+### Latest checkpoint — 2026-11-01 (recall and abstention release-gate readiness)
+
+- **PR #1143 remains open and mergeable:** adds configurable source-recall, pinpoint-recall and unanswerable-abstention-recall thresholds, with explicit answerable/unanswerable cohort-size floors. Exact-head Tests, Browser acceptance, dependency audit and CodeQL all passed.
+- Product-owner approval is the remaining merge decision. No credit is added to the technical score while the PR remains open.
+- PR #1142 was closed as superseded by #1143; PR #1119 was closed because its scorecard update is stale; PR #1129 was closed as superseded by merged #1141.
+- The current weighted technical score remains **50.10/100** until another deliverable is merged and its evidence is reconciled. This release-gate work still requires actual lawyer-approved benchmark data before any quality threshold can be meaningfully applied.
