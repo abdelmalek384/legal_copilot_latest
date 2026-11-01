@@ -5,7 +5,7 @@
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.90/100 technical completion** (up 0.02 points from 49.88; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.91/100 technical completion** (up 0.01 points from 49.90; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Previous whole-product checkpoint — 2026-10-31
@@ -709,3 +709,11 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - **PR #1115 merged:** made focus traversal fixture-aware by deriving the tab bound from actual focusable controls; the final browser run passed.
 - Exact-head validation passed Browser acceptance (10/10), Tests (150/150), dependency audit, Bandit and both CodeQL analyses.
 - UI/accessibility automated acceptance is now 45.2%; weighted technical completion is **49.90/100**. Manual screen-reader, device, RTL/LTR and lawyer acceptance remain unperformed. Verified Egyptian legal corpus remains 6%; Egyptian-counsel acceptance remains 0%.
+
+
+### Latest checkpoint — 2026-11-01 (MFA audit integrity)
+
+- **PR #1120 merged:** fault-injection test confirms MFA recovery-code consumption, session verification and audit-event insertion roll back atomically when audit persistence fails.
+- Added append-only audit regression: UPDATE and DELETE operations are rejected and the event remains unchanged.
+- Exact-head CI passed Tests (149 workflow steps), Browser acceptance (10/10), dependency audit, Bandit, Python CodeQL and JavaScript CodeQL.
+- Automated testing/reliability is 69.6%; weighted technical completion is **49.91/100**. Verified Egyptian legal corpus remains 6%; final Egyptian-counsel acceptance remains 0%.
