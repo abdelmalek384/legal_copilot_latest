@@ -7,6 +7,7 @@ Use synthetic or approved anonymized records only.
 """
 import argparse
 import json
+import sys
 from datetime import date
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -249,12 +250,19 @@ def summarize_reviews(records, reviewer_registry):
     }
 
 
-def main():
+def _write_report(path, rendered):
+    """Create a review summary without overwriting prior evaluation evidence."""
+    target = Path(path)
+    with target.open("x", encoding="utf-8", newline="\\n") as handle:
+        handle.write(rendered)
+
+
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("reviews", type=Path, help="UTF-8 JSONL containing human review records")
     parser.add_argument("--reviewer-registry", type=Path, required=True, help="Private JSON registry of reviewer qualification checks")
     parser.add_argument("--output", type=Path, help="Optional path for the JSON report")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     try:
         registry = json.loads(args.reviewer_registry.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
@@ -262,8 +270,13 @@ def main():
     report = summarize_reviews(load_jsonl(args.reviews), registry)
     rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
     if args.output:
-        args.output.write_text(rendered, encoding="utf-8")
+        try:
+            _write_report(args.output, rendered)
+        except FileExistsError:
+            print(f"evaluation refused: output already exists: {args.output}; choose a new path to preserve prior results", file=sys.stderr)
+            return 2
     print(rendered, end="")
+    return 0
 
 
 if __name__ == "__main__":
