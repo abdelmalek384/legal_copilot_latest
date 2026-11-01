@@ -155,7 +155,7 @@ The product cannot be called production-ready or legally approved until all appl
 
 - **PR #1095 merged:** legal-answer evaluation and qualified-human review summary CLIs refuse to overwrite existing report files. A collision returns exit code 2 and leaves the original bytes unchanged; the human-review CLI's process exit status is verified through a subprocess regression.
 - **PR #1098 merged:** both report types now record SHA-256 and byte size for the exact input artifacts parsed, plus a UTC host-clock generation timestamp. Local paths and raw input contents are omitted. The report explicitly disclaims cryptographic authenticity, reviewer qualification and trusted timestamp guarantees.
-- **Score unchanged:** these are evidence-preservation and reproducibility controls. They do not change legal-answer metrics, verified Egyptian legal corpus volume, source permission status or Egyptian-counsel acceptance.
+- **Initial assessment:** the first evidence-integrity checkpoint did not recalculate the score; the subsequent 69.5% reliability recalculation is recorded below and supersedes that provisional assessment.
 
 ## Score recalculation — 2026-11-01 (evaluation evidence integrity)
 
