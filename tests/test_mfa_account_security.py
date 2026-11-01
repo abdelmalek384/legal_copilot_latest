@@ -331,6 +331,37 @@ class MFAAccountSecurityTests(unittest.TestCase):
         finally:
             failure_client.close()
 
+    def test_mfa_security_events_are_append_only(self):
+        self.enroll()
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO mfa_security_events(actor_user_id,target_user_id,event_type,detail_json) "
+            "VALUES(?,?,'verification_failed','{}')",
+            (self.user_id, self.user_id),
+        )
+        control.commit()
+        event_id = control.execute(
+            "SELECT id FROM mfa_security_events WHERE actor_user_id=? AND event_type='verification_failed' "
+            "ORDER BY id DESC LIMIT 1",
+            (self.user_id,),
+        ).fetchone()["id"]
+
+        with self.assertRaises(sqlite3.IntegrityError):
+            control.execute(
+                "UPDATE mfa_security_events SET detail_json='{\"tampered\":true}' WHERE id=?",
+                (event_id,),
+            )
+        control.rollback()
+        with self.assertRaises(sqlite3.IntegrityError):
+            control.execute("DELETE FROM mfa_security_events WHERE id=?", (event_id,))
+        control.rollback()
+
+        persisted = control.execute(
+            "SELECT event_type,detail_json FROM mfa_security_events WHERE id=?", (event_id,)
+        ).fetchone()
+        self.assertEqual(persisted["event_type"], "verification_failed")
+        self.assertEqual(persisted["detail_json"], "{}")
+
     def test_mfa_enrollment_audit_failure_rolls_back_pending_credential(self):
         failure_client = TestClient(app.app, raise_server_exceptions=False)
         try:
