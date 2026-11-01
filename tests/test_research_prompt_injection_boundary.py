@@ -66,6 +66,35 @@ class ResearchPromptInjectionBoundaryTests(unittest.TestCase):
         self.assertEqual([record["citation_index"] for record in records], [1, 2])
         self.assertEqual(records[1]["reference"], "Second source")
 
+    def test_prompt_includes_only_recorded_article_and_page_pinpoints(self):
+        hit = dict(self.hit, article=12, page="94–95")
+        with patch.object(app, "search", return_value=[hit]), patch.object(
+            app, "LLM", return_value="The source discusses the rule [1]."
+        ) as llm:
+            app.ask(object(), "What does the cited passage say?")
+        prompt = llm.call_args.args[0]
+        section = prompt.split(
+            "The JSON records are the only legal evidence supplied for this answer:\n", 1
+        )[1].split("\n\nCurrent question", 1)[0]
+        record = json.loads(section)
+        self.assertEqual(record["article_pin"], "12")
+        self.assertEqual(record["page_pin"], "94–95")
+        self.assertIn("include the exact supplied locator", prompt)
+        self.assertIn("never invent a missing locator", prompt)
+
+    def test_prompt_does_not_invent_missing_article_or_page_pinpoints(self):
+        with patch.object(app, "search", return_value=[self.hit]), patch.object(
+            app, "LLM", return_value="The source discusses the rule [1]."
+        ) as llm:
+            app.ask(object(), "What does the cited passage say?")
+        prompt = llm.call_args.args[0]
+        section = prompt.split(
+            "The JSON records are the only legal evidence supplied for this answer:\n", 1
+        )[1].split("\n\nCurrent question", 1)[0]
+        record = json.loads(section)
+        self.assertNotIn("article_pin", record)
+        self.assertNotIn("page_pin", record)
+
     def test_case_scoped_prompt_is_blocked_without_firm_approval_even_if_hits_are_public(self):
         with patch.dict("os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": ""}):
             with patch.object(app, "search", return_value=[self.hit]), patch.object(
