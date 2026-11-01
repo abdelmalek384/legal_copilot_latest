@@ -102,7 +102,8 @@ class CandidateCatalogTests(unittest.TestCase):
         self.assertIn("Article 82 uses «الخدمات والمصنعية»", labour["notes"])
         self.assertIn("Article 82 OCR mismatch", labour["notes"])
         self.assertIn("Earlier discrepancy assertions", labour["notes"])
-        self.assertIn("not a complete article-by-article comparison", labour["notes"])
+        self.assertIn("full 311-row comparison", labour["notes"])
+        self.assertIn("Text-extraction spot-check", labour["notes"])
         self.assertIn("limited text-extraction spot-check only", labour["notes"])
 
     def test_labour_law_candidate_records_public_gazette_pdf_locators_without_upgrading_status(self):
