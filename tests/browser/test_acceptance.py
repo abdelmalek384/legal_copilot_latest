@@ -526,6 +526,13 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertIn("الصفحة 17", candidate_body)
         candidate_assistant = self.page.locator(".research-thread .research-message.assistant").last.inner_text()
         self.assertNotIn("FIRM_DOCUMENT_ONLY_SENTINEL_4B91", candidate_assistant)
+        assistant_bubble = self.page.locator(".research-thread .research-message.assistant").last
+        copy_answer_id = assistant_bubble.get_by_role("button", name="نسخ معرّف الإجابة")
+        self.assertEqual(copy_answer_id.count(), 1)
+        copy_answer_id.click()
+        copied_answer_id = self.read_clipboard()
+        self.assertTrue(copied_answer_id.startswith("ans_"))
+        self.assertEqual(len(copied_answer_id), 36)
 
         scope.select_option("metadata_only")
         composer.fill("SYNTHETIC METADATA ONLY INSTRUMENT 2026")
