@@ -19,6 +19,7 @@ DIMENSIONS = (
     "arabic_clarity", "uncertainty_abstention",
 )
 SCORES = {0, 1, 2}
+REVIEW_SCHEMA_VERSION = 2
 NOT_APPLICABLE = "not_applicable"
 DISPOSITIONS = {
     "pass_for_this_case", "needs_revision", "unsafe",
@@ -79,6 +80,10 @@ def _report_provenance(inputs):
 def validate_review(record):
     """Return schema/evidence errors without inventing or repairing labels."""
     errors = []
+    schema_version = record.get("review_schema_version", 1)
+    if type(schema_version) is not int or schema_version not in {1, REVIEW_SCHEMA_VERSION}:
+        errors.append("review_schema_version must be 1 (legacy) or 2")
+        schema_version = 1
     for field in ("assessment_id", "case_id", "practice_area", "reviewer_id", "reviewer_name", "review_date", "disposition"):
         if not isinstance(record.get(field), str) or not record[field].strip():
             errors.append(f"missing or empty {field}")
@@ -133,8 +138,8 @@ def validate_review(record):
         errors.append("unsafe disposition requires critical_defect=true and a recorded critical_defect_description")
     if critical and not (isinstance(record.get("critical_defect_description"), str) and record["critical_defect_description"].strip()):
         errors.append("critical_defect=true requires critical_defect_description")
-    if critical is True and not categories:
-        errors.append("critical_defect=true requires at least one critical_defect_category")
+    if critical is True and schema_version >= REVIEW_SCHEMA_VERSION and not categories:
+        errors.append("review_schema_version=2 critical defects require at least one critical_defect_category")
     if critical is False and categories:
         errors.append("critical_defect_categories are only valid when critical_defect=true")
     if record.get("disposition") == "pass_for_this_case":
@@ -279,6 +284,11 @@ def summarize_reviews(records, reviewer_registry):
         for record in valid if record["critical_defect"]
         for category in record.get("critical_defect_categories", [])
     )
+    uncategorized_legacy_defects = sum(
+        1 for record in valid
+        if record["critical_defect"] and not record.get("critical_defect_categories")
+        and record.get("review_schema_version", 1) == 1
+    )
     return {
         "valid_assessments": len(valid),
         "invalid_assessments_excluded": len(invalid),
@@ -289,8 +299,8 @@ def summarize_reviews(records, reviewer_registry):
         "practice_area_counts": dict(sorted(practice_areas.items())),
         "critical_defect_count": len(critical_defects),
         "critical_defect_category_counts": {
-            category: defect_category_counts.get(category, 0)
-            for category in CRITICAL_DEFECT_CATEGORIES
+            **{category: defect_category_counts.get(category, 0) for category in CRITICAL_DEFECT_CATEGORIES},
+            "uncategorized_legacy_v1": uncategorized_legacy_defects,
         },
         "critical_defects": critical_defects,
         "dimension_summary": dimension_summary,
