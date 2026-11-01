@@ -275,9 +275,26 @@ def summarize_reviews(records, reviewer_registry):
     practice_areas = Counter(record["practice_area"] for record in valid)
     critical_defects = [
         {"assessment_id": record["assessment_id"], "case_id": record["case_id"],
+         "answer_id": record.get("answer_id"),
          "categories": record.get("critical_defect_categories", []),
          "description": record["critical_defect_description"]}
         for record in valid if record["critical_defect"]
+    ]
+    # Private, minimal per-assessment linkage records allow a separate assembler
+    # to join reviews to the exact machine-evaluated answer without exposing
+    # reviewer names, rationales, or client matter text.
+    answer_assessments = [
+        {
+            "assessment_id": record["assessment_id"],
+            "case_id": record["case_id"],
+            "answer_id": record.get("answer_id"),
+            "reviewer_id": record["reviewer_id"],
+            "disposition": record["disposition"],
+            "scores": {dimension: record["scores"][dimension] for dimension in DIMENSIONS},
+            "critical_defect": record["critical_defect"],
+            "critical_defect_categories": record.get("critical_defect_categories", []),
+        }
+        for record in valid
     ]
     defect_category_counts = Counter(
         category
@@ -290,6 +307,7 @@ def summarize_reviews(records, reviewer_registry):
         and record.get("review_schema_version", 1) == 1
     )
     return {
+        "schema_version": 2,
         "valid_assessments": len(valid),
         "invalid_assessments_excluded": len(invalid),
         "approved_reviewers_available": len(approved_reviewers),
@@ -303,6 +321,7 @@ def summarize_reviews(records, reviewer_registry):
             "uncategorized_legacy_v1": uncategorized_legacy_defects,
         },
         "critical_defects": critical_defects,
+        "answer_assessments": answer_assessments,
         "dimension_summary": dimension_summary,
         "limitations": [
             "Only recorded qualified-human assessments that pass schema validation are summarized.",
