@@ -163,7 +163,7 @@ def _validate_reviewed_question(row, approved_reviewers):
         raise EvaluationError(f"{qid}: answerable questions require at least one expected pin citation")
     if not row["answerable"] and row.get("must_abstain_if_unverified", True) is not True:
         raise EvaluationError(f"{qid}: unanswerable questions must require abstention")
-    return sources, pins, answer_id.strip() if isinstance(answer_id, str) else None
+    return sources, pins
 
 
 def _validate_result(row):
@@ -180,7 +180,7 @@ def _validate_result(row):
     unlisted_pin_sources = sorted({source_id for source_id, _ in pins} - set(sources))
     if unlisted_pin_sources:
         raise EvaluationError(f"{qid}: result pin citations reference sources absent from cited_sources")
-    return sources, pins
+    return sources, pins, answer_id.strip() if isinstance(answer_id, str) else None
 
 
 def _invalid_citation_indices(row):
