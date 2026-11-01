@@ -552,7 +552,15 @@ class BrowserAcceptanceTests(unittest.TestCase):
         # between the scope controls and composer. Verify they do not trap or
         # skip keyboard focus rather than assuming an artificially short path.
         composer_reached = False
-        for _ in range(8):
+        focusable_count = self.page.locator(
+            "button:not([disabled]), a[href], select:not([disabled]), "
+            "textarea:not([disabled]), input:not([disabled]), "
+            "[tabindex]:not([tabindex='-1'])"
+        ).count()
+        # The shared synthetic fixture accumulates research-conversation
+        # controls across earlier browser cases. Bound traversal by the actual
+        # number of focusable elements rather than assuming a fixed list size.
+        for _ in range(focusable_count + 2):
             self.page.keyboard.press("Tab")
             if composer.evaluate("(el) => document.activeElement === el"):
                 composer_reached = True
