@@ -162,6 +162,20 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
             ):
                 self.assertNotIn(secret, rendered)
 
+            # The detailed mode remains opt-in behavior: the default report is unchanged.
+            detailed_output = io.StringIO()
+            with contextlib.redirect_stdout(detailed_output):
+                detailed_code = main([
+                    str(reviews_path), "--reviewer-registry", str(registry_path),
+                ])
+            self.assertEqual(detailed_code, 0)
+            detailed = detailed_output.getvalue()
+            for expected in (
+                "CASE-PRIVATE-001", "ANSWER-PRIVATE-001", "reviewer-a",
+                "reviewer-b", "CONFIDENTIAL MATTER FACTS MUST NOT LEAK",
+            ):
+                self.assertIn(expected, detailed)
+
     def test_cli_refuses_to_overwrite_existing_review_summary(self):
         with tempfile.TemporaryDirectory() as td:
             reviews_path = Path(td) / "reviews.jsonl"
