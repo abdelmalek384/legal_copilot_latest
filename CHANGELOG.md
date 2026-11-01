@@ -10,7 +10,7 @@
 - Added public government-hosted Gazette PDF locators for Labour Law 14/2025 while preserving discovery-only status and explicitly recording the restricted DSpace copy (PR #1166).
 - Documented the Article 140/141 distinction for Egyptian official legal documents and creative compilations; source permissions and release gates remain unchanged pending counsel review (PR #1167).
 - Registered ETA and SIS Gazette sources with unknown permissions and required manual-capture source IDs to match the captured URL host, preventing false provenance attribution (PR #1169).
-- Recorded three Labour Law 14/2025 Gazette spot-check wording discrepancies (Arts. 124, 134, 141), documented an Article 103 OCR mismatch, and retained discovery-only status pending full comparison and lawyer review (PR #1171).
+- Recorded a limited Labour Law 14/2025 Gazette text spot-check for Arts. 103, 124, 134, and 141; a later correction withdrew three unsupported discrepancy claims and retained discovery-only status (PRs #1171 and #1179).
 
 ## Prepared update
 - Improved login form: trims/lowercases email, supports Enter-to-submit, displays clearer errors, and adds show/hide password.
