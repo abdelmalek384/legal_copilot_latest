@@ -1,6 +1,6 @@
 # Multi-area legal benchmark draft
 
-This benchmark contains 94 unreviewed questions across ten practice areas. It is a review queue, not an answer key and not a legal accuracy score set. Expected answers, expected sources, pin citations, and answerability remain blank pending review by qualified Egyptian counsel.
+This benchmark contains 94 unreviewed questions across ten practice areas. It is a review queue, not an answer key and not a legal accuracy score set. Expected answers, expected sources, pin citations, and answerability remain blank pending review by qualified Egyptian counsel. All 94 now set `must_abstain_if_unverified=true`; the seven explicitly out-of-scope questions are a separate abstention cohort, not the only questions that must abstain when sources are unverified.
 
 - All rows use `review_status=needs_lawyer_review` and `answerable=null`.
 - Seven questions are explicitly marked as requiring abstention because they ask for unknowable case outcomes, exact personal predictions, current case assignments, or other out-of-scope judgments.

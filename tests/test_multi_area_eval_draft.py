@@ -49,15 +49,16 @@ class MultiAreaDraftBenchmarkTests(unittest.TestCase):
                 self.assertIsNone(q["review_date"])
 
     def test_seven_explicit_abstention_cases_and_csv_jsonl_id_parity(self):
-        abstain = [q for q in self.questions if q["must_abstain_if_unverified"]]
+        abstain = [q for q in self.questions if q["must_abstain"]]
         self.assertEqual(len(abstain), 7)
+        self.assertTrue(all(q["must_abstain_if_unverified"] is True for q in self.questions))
         self.assertEqual({q["id"] for q in self.questions}, {r["id"] for r in self.csv_rows})
         by_id = {q["id"]: q for q in self.questions}
         for row in self.csv_rows:
             q = by_id[row["id"]]
             self.assertEqual(row["السؤال"], q["question_ar"])
             self.assertEqual(row["مجال القانون"], q["practice_area"])
-            self.assertEqual(row["هل يجب الامتناع؟ (نعم/لا)"].strip() == "نعم", q["must_abstain_if_unverified"])
+            self.assertEqual(row["هل يجب الامتناع؟ (نعم/لا)"].strip() == "نعم", q["must_abstain"])
             self.assertEqual(row["صفة المراجع"], "")
             self.assertEqual(row["رابط دليل المراجعة"], "")
 
