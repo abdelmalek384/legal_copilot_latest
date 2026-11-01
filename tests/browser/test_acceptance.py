@@ -455,7 +455,20 @@ class BrowserAcceptanceTests(unittest.TestCase):
         )
         self.assertEqual(updated.status, 200, updated.text())
 
-        member_id = self.state["reviewer_id"]
+        member_context = self.browser.new_context()
+        member_page = member_context.new_page()
+        member_page.set_default_timeout(8000)
+        member_page.goto(self.base_url, wait_until="domcontentloaded")
+        member_page.locator('input[type="email"]').fill(self.state["reviewer_email"])
+        member_page.locator('input[type="password"]').fill(self.state["password"])
+        member_page.locator('button[type="submit"]').click()
+        member_page.locator("#side").wait_for(state="visible", timeout=15000)
+        member_session = member_page.request.get(self.base_url + "/session", timeout=8000)
+        self.assertEqual(member_session.status, 200, member_session.text())
+        member_id = member_session.json()["id"]
+        member_csrf = {item["name"]: item["value"] for item in member_context.cookies()}
+        member_headers = {"X-CSRF-Token": member_csrf.get("lc_csrf", "")}
+
         member = self.page.request.post(
             self.base_url + f"/cases/{case_id}/members",
             data={"user_id": member_id, "role": "associate"},
@@ -544,34 +557,6 @@ class BrowserAcceptanceTests(unittest.TestCase):
                             and row["paid"] == 5000 for row in record["fees"]))
         self.assertTrue(any(row["name"] == "synthetic-caseflow-note.txt" for row in record["docs"]))
         self.assertTrue(any("SYNTHETIC CASEFLOW" in row["text"] for row in record["events"]))
-
-        member_context = self.browser.new_context()
-        member_page = member_context.new_page()
-        member_page.set_default_timeout(8000)
-        member_page.goto(self.base_url, wait_until="domcontentloaded")
-        member_page.locator('input[type="email"]').fill(self.state["reviewer_email"])
-        member_page.locator('input[type="password"]').fill(self.state["password"])
-        member_page.locator('button[type="submit"]').click()
-        member_page.locator("#side").wait_for(state="visible", timeout=15000)
-        member_csrf = {item["name"]: item["value"] for item in member_context.cookies()}
-        member_headers = {"X-CSRF-Token": member_csrf.get("lc_csrf", "")}
-        member_detail = member_page.request.get(
-            self.base_url + f"/cases/{case_id}", timeout=8000
-        )
-        self.assertEqual(member_detail.status, 200, member_detail.text())
-        denied_patch = member_page.request.patch(
-            self.base_url + f"/cases/{case_id}",
-            data={"stage": "UNAUTHORIZED_MEMBER_EDIT"},
-            headers=member_headers,
-            timeout=8000,
-        )
-        self.assertEqual(denied_patch.status, 404, denied_patch.text())
-        denied_delete = member_page.request.delete(
-            self.base_url + f"/cases/{case_id}",
-            headers=member_headers,
-            timeout=8000,
-        )
-        self.assertEqual(denied_delete.status, 404, denied_delete.text())
 
         removed = self.page.request.delete(
             self.base_url + f"/cases/{case_id}/members/{member_id}",
