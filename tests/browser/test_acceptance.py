@@ -416,6 +416,11 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.login(self.state["reviewer_email"])
         self.page.get_by_role("button", name="تغطية المجموعة القانونية").click()
         self.page.get_by_role("heading", name="تغطية المجموعة القانونية").wait_for(timeout=10000)
+        self.page.get_by_role("heading", name="فهرس الأدوات المرشحة").wait_for(timeout=10000)
+        dashboard_text = self.page.locator("body").inner_text()
+        self.assertIn("عدد الأدوات في فهرس التخطيط", dashboard_text)
+        self.assertIn("سجلات بها مشكلات تحقق", dashboard_text)
+        self.assertIn("هذا المقام يصف سجل التخطيط فقط", dashboard_text)
 
         self.page.get_by_text("الأدوات القانونية المسجلة", exact=True).click()
         search = self.page.get_by_placeholder("ابحث بالعنوان أو المعرف أو الجهة")
@@ -640,6 +645,8 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.locator("[data-lang-switch='1']").click()
         self.stage("ltr.switch.click.done")
         self.page.get_by_text("Corpus Coverage & Provenance").wait_for(timeout=10000)
+        self.page.get_by_role("heading", name="Candidate instrument inventory").wait_for(timeout=10000)
+        self.page.get_by_text("This denominator describes the planning inventory only", exact=False).wait_for(timeout=10000)
         self.page.wait_for_function(
             "() => document.documentElement.dir === 'ltr'",
             timeout=8000,
