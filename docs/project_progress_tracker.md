@@ -5,7 +5,7 @@
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.99/100 technical completion** (up 0.04 points from 49.95; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **50.01/100 technical completion** (up 0.02 points from 49.99; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Previous whole-product checkpoint — 2026-10-31
@@ -741,3 +741,12 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - Exact-head validation for all three PRs passed Tests, Browser acceptance, dependency audit, non-database safety regression, Bandit, and Python/JavaScript CodeQL. The new regression modules are explicitly wired into CI.
 - Legal research/citation quality is 68.2%; automated testing/reliability is 69.8%. The weighted technical score is **49.99/100**. These narrow deterministic guards do not establish semantic entailment, legal correctness, or counsel approval.
 - Verified Egyptian legal corpus remains 6%; final Egyptian-counsel acceptance remains 0%. No legal source was promoted and no rights were inferred.
+
+
+### Latest checkpoint — 2026-11-01 (stable answer linkage and independent reviewer agreement)
+
+- **PR #1133 merged:** model-output evaluation accepts optional stable, opaque `answer_id` values, rejects empty/duplicate supplied IDs, propagates IDs to report rows, and reports coverage. Legacy outputs remain scoreable but are explicitly unlinked; no IDs are fabricated from question IDs.
+- **PR #1134 merged:** reviewer assessments may carry the same stable answer ID. Agreement is calculated only for records sharing both `case_id` and `answer_id`, with distinct approved reviewers. Duplicate same-reviewer assessments are excluded; insufficient-evidence conflicts and adjudication needs are reported separately. Rates are descriptive exact-match proportions, not chance-corrected reliability or proof of legal correctness.
+- Exact-head validation for both PRs passed Tests, Browser acceptance, dependency audit, and Python/JavaScript CodeQL/Bandit.
+- Legal research/citation quality is 68.3%; automated testing/reliability is 69.9%. The weighted technical estimate is **50.01/100**. This is evaluation tooling progress only; no actual lawyer-reviewed benchmark answers or new legal sources were added.
+- Verified Egyptian legal corpus remains 6%; final Egyptian-counsel acceptance remains 0%.
