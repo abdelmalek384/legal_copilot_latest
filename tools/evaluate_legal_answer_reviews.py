@@ -295,13 +295,17 @@ def summarize_reviews(records, reviewer_registry):
     reviewer_agreement = []
     dimension_disagreement_counts = Counter()
     disposition_conflicts = 0
+    disposition_agreements = 0
     evidence_conflicts = 0
+    dimension_exact_agreement_counts = Counter()
     for (case_id, answer_id), group in sorted(answer_groups.items()):
         if len(group) < 2:
             continue
         dispositions = sorted({record["disposition"] for record in group})
         if len(dispositions) > 1:
             disposition_conflicts += 1
+        else:
+            disposition_agreements += 1
         if "not_scored_insufficient_evidence" in dispositions and len(dispositions) > 1:
             evidence_conflicts += 1
         dimension_results = {}
@@ -318,6 +322,8 @@ def summarize_reviews(records, reviewer_registry):
             if not agrees:
                 differing_dimensions.append(dimension)
                 dimension_disagreement_counts[dimension] += 1
+            else:
+                dimension_exact_agreement_counts[dimension] += 1
         reviewer_agreement.append({
             "case_id": case_id,
             "answer_id": answer_id,
@@ -384,9 +390,23 @@ def summarize_reviews(records, reviewer_registry):
             "answers_with_multiple_independent_reviews": len(reviewer_agreement),
             "answers_requiring_adjudication": sum(1 for item in reviewer_agreement if item["requires_adjudication"]),
             "disposition_conflicts": disposition_conflicts,
+            "disposition_exact_agreement_count": disposition_agreements,
+            "disposition_comparison_count": len(reviewer_agreement),
+            "disposition_exact_agreement_rate": (
+                round(disposition_agreements / len(reviewer_agreement), 4)
+                if reviewer_agreement else None
+            ),
             "insufficient_evidence_conflicts": evidence_conflicts,
-            "dimension_disagreement_counts": {
-                dimension: dimension_disagreement_counts.get(dimension, 0)
+            "dimension_agreement": {
+                dimension: {
+                    "exact_agreement_count": dimension_exact_agreement_counts.get(dimension, 0),
+                    "disagreement_count": dimension_disagreement_counts.get(dimension, 0),
+                    "comparison_count": len(reviewer_agreement),
+                    "exact_agreement_rate": (
+                        round(dimension_exact_agreement_counts.get(dimension, 0) / len(reviewer_agreement), 4)
+                        if reviewer_agreement else None
+                    ),
+                }
                 for dimension in DIMENSIONS
             },
             "valid_assessments_without_answer_id": without_answer_id,
