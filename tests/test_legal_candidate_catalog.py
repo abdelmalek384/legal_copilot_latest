@@ -105,6 +105,8 @@ class CandidateCatalogTests(unittest.TestCase):
         self.assertIn("Article 71's 5,000–150,000 EGP", labour["notes"])
         self.assertIn("Article 82's «الخدمات والمصنعية»", labour["notes"])
         self.assertIn("Article 82 OCR mismatch", labour["notes"])
+        self.assertIn("Art. 21 p. 16", labour["notes"])
+        self.assertIn("Art. 141 p. 59", labour["notes"])
         self.assertIn("Earlier discrepancy assertions", labour["notes"])
         self.assertIn("full 311-row comparison", labour["notes"])
         self.assertIn("Text-extraction spot-check", labour["notes"])
