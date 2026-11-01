@@ -133,6 +133,36 @@ class ReminderEmailTests(unittest.TestCase):
         self.assertEqual(result["attempts"], 1)
         self.assertEqual(self.sleep_calls, [])
 
+    def test_explicit_smtp_4xx_rejection_is_retryable(self):
+        calls = []
+        class FakeSMTP:
+            def __enter__(self):
+                return self
+            def __exit__(self, exc_type, exc, tb):
+                return False
+            def ehlo(self):
+                pass
+            def starttls(self, context=None):
+                pass
+            def login(self, username, password):
+                pass
+            def send_message(self, message):
+                calls.append(1)
+                if len(calls) == 1:
+                    raise smtplib.SMTPDataError(451, b"temporary rejection")
+                return {}
+
+        with patch("tools.reminder_email.smtplib.SMTP", side_effect=lambda *args, **kwargs: FakeSMTP()):
+            result = send_reminder_email(
+                self.reminder, "user@example.test", "https://legal.example.test", self.config,
+                enabled=True, max_attempts=3, base_backoff_seconds=1, sleep=self.sleeper,
+            )
+
+        self.assertEqual(result["status"], "accepted_by_smtp")
+        self.assertEqual(result["attempts"], 2)
+        self.assertEqual(len(calls), 2)
+        self.assertEqual(self.sleep_calls, [1.0])
+
     def test_auth_failure_is_not_retried_and_error_is_sanitized(self):
         calls = []
         def sender(config, message):
