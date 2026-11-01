@@ -3,6 +3,7 @@ import os
 import unittest
 from unittest import mock
 
+import app
 from app import norm, tokens, _mask_markdown_code
 from tools.claim_support import claim_support_enabled, has_unsupported_claims
 
