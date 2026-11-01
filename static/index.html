@@ -509,11 +509,35 @@ async function corpusCoverage(){
  const areaRows=data.coverage_by_practice_area||[];
  if(!areaRows.length)areas.append(h('p',{className:'mut',textContent:ar?'لا توجد أدوات قانونية مسجلة بعد.':'No instruments registered yet.'}));
  areaRows.forEach(r=>areas.append(h('div',{className:'row'},h('div',{},h('b',{textContent:r.practice_area==='unknown'?(ar?'غير مصنف':'Unclassified'):r.practice_area}),h('div',{className:'mut',textContent:ar?'عدد الأدوات المسجلة':'Registered instruments'})),h('span',{textContent:String(r.document_count)+' · '+String(r.documents_with_verified_operational_text||0)+' '+(ar?'نص ساري متحقق':'verified operative text')}))));
+ const candidateCatalogue=data.candidate_catalogue||{};
+ const candidatePanel=h('section',{className:'card'},h('h3',{textContent:ar?'فهرس الأدوات المرشحة':'Candidate instrument inventory'}));
+ if(candidateCatalogue.available===true){
+   const candidateCount=Number.isInteger(candidateCatalogue.candidate_instrument_count)
+     ? String(candidateCatalogue.candidate_instrument_count) : (ar?'غير متاح':'Unavailable');
+   const issueCount=Number.isInteger(candidateCatalogue.invalid_entries)
+     ? String(candidateCatalogue.invalid_entries) : '—';
+   candidatePanel.append(
+     h('div',{className:'row'},h('span',{textContent:ar?'عدد الأدوات في فهرس التخطيط':'Candidate instruments in planning catalogue'}),h('b',{textContent:candidateCount})),
+     h('div',{className:'row'},h('span',{textContent:ar?'سجلات بها مشكلات تحقق':'Catalogue rows with validation issues'}),h('b',{textContent:issueCount})),
+     h('p',{className:'mut',textContent:ar
+       ?'هذا المقام يصف سجل التخطيط فقط، ولا يقيس توافر النصوص القانونية أو التحقق من سريانها.'
+       :'This denominator describes the planning inventory only; it does not measure legal-text availability or verification.'})
+   );
+   if(candidateCatalogue.invalid_entries>0){
+     candidatePanel.append(h('p',{className:'mut',role:'status',textContent:ar
+       ?'تحتاج بعض سجلات الفهرس إلى تصحيح أو تصنيف قبل الاعتماد على المقام.'
+       :'Some catalogue rows need correction or classification before relying on the denominator.'}));
+   }
+ }else{
+   candidatePanel.append(h('p',{className:'mut',role:'status',textContent:ar
+     ?'فهرس الأدوات المرشحة غير متاح؛ مقام مجالات الممارسة غير محسوم.'
+     :'Candidate inventory is unavailable; practice-area denominators are not assessed.'}));
+ }
  const warning=h('section',{className:'card'},h('h3',{textContent:ar?'حدود المؤشرات':'Metric limitations'}));
  (data.warnings||[]).forEach(w=>warning.append(h('p',{className:'mut',textContent:'• '+w})));
  const actions=h('div',{className:'row'},btn(ar?'فتح قائمة مراجعة المصادر':'Open source review queue',()=>reviewWorkbench(),'g'),btn(ar?'تحديث':'Refresh',()=>corpusCoverage(),'primary'));
  loading.remove();
- main.append(cards,h('div',{className:'cols'},permissions,areas),warning,actions);
+ main.append(cards,h('div',{className:'cols'},permissions,areas),candidatePanel,warning,actions);
  applyLanguage();
 }
 
