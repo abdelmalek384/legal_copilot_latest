@@ -571,12 +571,15 @@ class BrowserAcceptanceTests(unittest.TestCase):
             )
             self.assertEqual(selected_firm["status"], 200, str(selected_firm["body"]))
             self.assertEqual(selected_firm["body"]["firm_id"], self.state["firm_a_id"])
-            self.assertEqual(
-                member_page.evaluate(
-                    """() => document.cookie.split("; ").find((item) => item.startsWith("lc_firm="))?.split("=", 2)[1] || """""
-                ),
-                str(self.state["firm_a_id"]),
+            member_session = member_page.evaluate(
+                """async () => {
+                    const response = await fetch("/session", {credentials: "same-origin"});
+                    return {status: response.status, body: await response.json()};
+                }"""
             )
+            self.assertEqual(member_session["status"], 200, str(member_session["body"]))
+            self.assertEqual(member_session["body"]["id"], member_id)
+            self.assertEqual(member_session["body"]["firm_id"], self.state["firm_a_id"])
             member_detail = member_page.evaluate(
                 """async (caseId) => {
                     const response = await fetch("/cases/" + caseId, {credentials: "same-origin"});
