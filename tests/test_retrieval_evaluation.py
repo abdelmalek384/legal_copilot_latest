@@ -345,7 +345,8 @@ class RetrievalEvaluationTests(unittest.TestCase):
                     "--min-recall-at-5", "1", "--min-mrr-at-5", "1",
                     "--min-citation-precision", "1", "--min-citation-coverage", "1",
                     "--min-expected-pin-cite-recall", "1", "--min-abstention-compliance", "1",
-                    "--max-excluded-cases", "0", "--max-unsafe-unverified-source-uses", "0",
+                    "--max-excluded-cases", "0", "--max-invalid-records", "0",
+                    "--max-unsafe-unverified-source-uses", "0",
                 ])
             self.assertEqual(code, 0)
             report = json.loads(output.getvalue())
@@ -415,6 +416,28 @@ class RetrievalEvaluationTests(unittest.TestCase):
                     with self.assertRaises(SystemExit) as raised:
                         main(["--questions", str(questions_path), "--runs", str(runs_path), *args])
                     self.assertEqual(raised.exception.code, 2)
+
+    def test_retrieval_release_gate_fails_on_malformed_run_records(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            questions_path.write_text(json.dumps(reviewed_question()) + "\n", encoding="utf-8")
+            runs_path.write_text(json.dumps({
+                "question_id": "Q-TEST-001", "retrieved_source_ids": "LAW-A",
+                "citations": [], "abstained": False, "used_unverified_source": False,
+            }) + "\n", encoding="utf-8")
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                code = main([
+                    "--questions", str(questions_path), "--runs", str(runs_path),
+                    "--min-reviewed-cases", "1", "--max-invalid-records", "0",
+                ])
+            self.assertEqual(code, 1)
+            report = json.loads(output.getvalue())
+            check = next(item for item in report["release_gate"]["checks"]
+                         if item["metric"] == "invalid_records_and_duplicate_ids")
+            self.assertEqual(check["actual"], 1)
+            self.assertFalse(check["passed"])
 
 if __name__ == "__main__":
     unittest.main()
