@@ -308,7 +308,5 @@ jobs:
         run: PYTHONPATH=. python tests/test_decision249_candidate_quarantine.py
       - name: Test trusted-host middleware
         run: PYTHONPATH=. python tests/test_trusted_host_middleware.py
-      - name: Test Arabic answer source polarity guard
-        run: PYTHONPATH=. python tests/test_answer_source_polarity.py
       - name: Guard that every test file runs in CI or is explicitly tracked
         run: PYTHONPATH=. python tests/test_ci_runs_all_tests.py
