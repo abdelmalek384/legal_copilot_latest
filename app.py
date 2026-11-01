@@ -12,6 +12,8 @@ from functools import lru_cache, wraps
 from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_permission_register_ready, source_permission_evidence_ready, source_status, citation_text, research_memo, has_current_review_evidence)
 from tools.arabic_legal_matching import expand_lexicon_hints
 from tools.claim_support import claim_support_enabled, has_unsupported_claims
+from tools.invoice_ledger import InvoiceLine, invoice_total_piasters, outstanding_piasters, invoice_payment_status, receivables_aging_bucket, format_document_number
+import html as html_lib
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
     generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
@@ -2403,6 +2405,26 @@ class DeadlineEstimateIn(BaseModel):
     trigger: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
     distance_days: int = Field(0, ge=0, le=365)
     _valid_trigger = field_validator("trigger")(validate_calendar_date)
+class InvoiceLineIn(BaseModel):
+    description: str = Field(min_length=1, max_length=500)
+    quantity: int = Field(gt=0, le=1_000_000)
+    unit_amount_piasters: int = Field(ge=0, le=9_000_000_000_000_000)
+
+
+class InvoiceIn(BaseModel):
+    issue_date: str = Field(pattern=r"^\\d{4}-\\d{2}-\\d{2}$")
+    due_date: str | None = Field(default=None, pattern=r"^\\d{4}-\\d{2}-\\d{2}$")
+    notes: str = Field(default="", max_length=2000)
+    lines: list[InvoiceLineIn] = Field(min_length=1, max_length=50)
+
+
+class InvoicePaymentIn(BaseModel):
+    amount_piasters: int = Field(gt=0, le=9_000_000_000_000_000)
+    paid_at: str = Field(pattern=r"^\\d{4}-\\d{2}-\\d{2}$")
+    method: str = Field(pattern=r"^(cash|bank_transfer|instapay|other)$")
+    reference: str = Field(default="", max_length=160)
+
+
 class FeeIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); amount: float = Field(ge=0, le=1_000_000_000_000); paid: float = Field(ge=0, le=1_000_000_000_000)
     due: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
@@ -5230,6 +5252,204 @@ def deadline_done(did: int, u: dict = Depends(user)):
     c.execute("UPDATE deadlines SET status='done' WHERE id=?", (did,))
     log(c, row["case_id"], u["name"], "إكمال موعد قانوني"); c.commit()
     return {"ok": True}
+
+
+def _invoice_date(value: str, field_name: str) -> str:
+    try:
+        date.fromisoformat(value)
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(422, f"{field_name} must be a valid calendar date") from exc
+    return value
+
+
+def _piasters_display(value: int) -> str:
+    return f"{value // 100:,}.{value % 100:02d} EGP"
+
+
+def _next_invoice_number(c, kind: str, year: int) -> str:
+    row = c.execute(
+        "INSERT INTO invoice_number_sequences(document_kind,calendar_year,last_sequence) "
+        "VALUES(?,?,1) ON CONFLICT(document_kind,calendar_year) DO UPDATE "
+        "SET last_sequence=last_sequence+1 RETURNING last_sequence",
+        (kind, year),
+    ).fetchone()
+    return format_document_number(kind, year, int(row["last_sequence"]))
+
+
+@app.post("/cases/{cid}/invoices")
+@rollback_tenant_transaction_on_error
+def create_invoice(cid: int, body: InvoiceIn, u: dict = Depends(user)):
+    c = conn()
+    need(c, u, cid)
+    _invoice_date(body.issue_date, "issue_date")
+    if body.due_date:
+        _invoice_date(body.due_date, "due_date")
+        if body.due_date < body.issue_date:
+            raise HTTPException(422, "due_date cannot precede issue_date")
+    lines = [InvoiceLine(item.description, item.quantity, item.unit_amount_piasters) for item in body.lines]
+    try:
+        total = invoice_total_piasters(lines)
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(422, str(exc)) from exc
+    c.execute("BEGIN IMMEDIATE")
+    number = _next_invoice_number(c, "invoice", int(body.issue_date[:4]))
+    cur = c.execute(
+        "INSERT INTO invoices(case_id,invoice_number,issue_date,due_date,total_piasters,notes,created_by) "
+        "VALUES(?,?,?,?,?,?,?)",
+        (cid, number, body.issue_date, body.due_date, total, body.notes, u["id"]),
+    )
+    invoice_id = int(cur.lastrowid)
+    for index, item in enumerate(lines, 1):
+        c.execute(
+            "INSERT INTO invoice_lines(invoice_id,line_number,description,quantity,unit_amount_piasters,line_total_piasters) "
+            "VALUES(?,?,?,?,?,?)",
+            (invoice_id, index, item.description.strip(), item.quantity,
+             item.unit_amount_piasters, item.total_piasters()),
+        )
+    log(c, cid, u["name"], "إصدار فاتورة " + number)
+    c.commit()
+    return {"invoice_id": invoice_id, "invoice_number": number, "total_piasters": total, "status": "unpaid"}
+
+
+@app.get("/cases/{cid}/invoices")
+def list_case_invoices(cid: int, u: dict = Depends(user)):
+    c = conn()
+    need(c, u, cid)
+    rows = c.execute(
+        "SELECT i.id,i.invoice_number,i.issue_date,i.due_date,i.total_piasters,i.status,"
+        "COALESCE((SELECT SUM(p.amount_piasters) FROM invoice_payments p WHERE p.invoice_id=i.id),0) AS paid_piasters "
+        "FROM invoices i WHERE i.case_id=? ORDER BY i.issue_date DESC,i.id DESC",
+        (cid,),
+    ).fetchall()
+    return [dict(row) | {"outstanding_piasters": int(row["total_piasters"]) - int(row["paid_piasters"])} for row in rows]
+
+
+@app.get("/invoices/{invoice_id}")
+def get_invoice(invoice_id: int, u: dict = Depends(user)):
+    c = conn()
+    row = c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone()
+    if row is None:
+        raise HTTPException(404, "invoice not found")
+    need(c, u, int(row["case_id"]))
+    lines = [dict(item) for item in c.execute(
+        "SELECT line_number,description,quantity,unit_amount_piasters,line_total_piasters "
+        "FROM invoice_lines WHERE invoice_id=? ORDER BY line_number", (invoice_id,)
+    ).fetchall()]
+    payments = [dict(item) for item in c.execute(
+        "SELECT p.id,p.amount_piasters,p.paid_at,p.method,p.reference,r.receipt_number "
+        "FROM invoice_payments p LEFT JOIN invoice_receipts r ON r.payment_id=p.id "
+        "WHERE p.invoice_id=? ORDER BY p.paid_at,p.id", (invoice_id,)
+    ).fetchall()]
+    paid = sum(int(item["amount_piasters"]) for item in payments)
+    return {**dict(row), "lines": lines, "payments": payments,
+            "paid_piasters": paid, "outstanding_piasters": int(row["total_piasters"]) - paid}
+
+
+@app.post("/invoices/{invoice_id}/payments")
+@rollback_tenant_transaction_on_error
+def record_invoice_payment(invoice_id: int, body: InvoicePaymentIn, u: dict = Depends(user)):
+    c = conn()
+    invoice = c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone()
+    if invoice is None:
+        raise HTTPException(404, "invoice not found")
+    need(c, u, int(invoice["case_id"]))
+    _invoice_date(body.paid_at, "paid_at")
+    c.execute("BEGIN IMMEDIATE")
+    invoice = c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone()
+    paid_rows = c.execute(
+        "SELECT amount_piasters FROM invoice_payments WHERE invoice_id=?", (invoice_id,)
+    ).fetchall()
+    try:
+        outstanding = outstanding_piasters(
+            int(invoice["total_piasters"]), [int(row["amount_piasters"]) for row in paid_rows]
+        )
+    except ValueError as exc:
+        raise HTTPException(409, "invoice payment ledger is inconsistent") from exc
+    if invoice["status"] == "void":
+        raise HTTPException(409, "void invoices cannot receive payments")
+    if body.amount_piasters > outstanding:
+        raise HTTPException(422, "payment exceeds outstanding invoice balance")
+    payment = c.execute(
+        "INSERT INTO invoice_payments(invoice_id,amount_piasters,paid_at,method,reference,received_by) "
+        "VALUES(?,?,?,?,?,?)",
+        (invoice_id, body.amount_piasters, body.paid_at, body.method, body.reference.strip(), u["id"]),
+    )
+    payment_id = int(payment.lastrowid)
+    receipt = _next_invoice_number(c, "receipt", int(body.paid_at[:4]))
+    c.execute(
+        "INSERT INTO invoice_receipts(payment_id,receipt_number,issued_by) VALUES(?,?,?)",
+        (payment_id, receipt, u["id"]),
+    )
+    amounts = [int(row["amount_piasters"]) for row in paid_rows] + [body.amount_piasters]
+    status = invoice_payment_status(int(invoice["total_piasters"]), amounts)
+    c.execute("UPDATE invoices SET status=?,updated_at=datetime('now') WHERE id=?", (status, invoice_id))
+    log(c, int(invoice["case_id"]), u["name"], "تسجيل دفعة على الفاتورة " + invoice["invoice_number"])
+    c.commit()
+    return {"payment_id": payment_id, "receipt_number": receipt, "status": status,
+            "outstanding_piasters": outstanding - body.amount_piasters}
+
+
+@app.get("/invoices/{invoice_id}/print", response_class=HTMLResponse)
+def print_invoice(invoice_id: int, u: dict = Depends(user)):
+    payload = get_invoice(invoice_id, u)
+    esc = html_lib.escape
+    lines_html = "".join(
+        "<tr><td>" + esc(item["description"]) + "</td><td>" + str(item["quantity"]) +
+        "</td><td>" + _piasters_display(int(item["unit_amount_piasters"])) +
+        "</td><td>" + _piasters_display(int(item["line_total_piasters"])) + "</td></tr>"
+        for item in payload["lines"]
+    )
+    payment_html = "".join(
+        "<tr><td>" + esc(item["receipt_number"] or "—") + "</td><td>" +
+        esc(item["paid_at"]) + "</td><td>" + _piasters_display(int(item["amount_piasters"])) +
+        "</td></tr>" for item in payload["payments"]
+    )
+    content = (
+        "<!doctype html><html lang='ar' dir='rtl'><meta charset='utf-8'><title>فاتورة " +
+        esc(payload["invoice_number"]) + "</title><style>body{font:16px Arial;margin:32px}table{width:100%;border-collapse:collapse}td,th{border:1px solid #999;padding:8px;text-align:right}@media print{button{display:none}}</style>"
+        "<h1>فاتورة أتعاب</h1><p>رقم الفاتورة: " + esc(payload["invoice_number"]) +
+        "</p><p>تاريخ الإصدار: " + esc(payload["issue_date"]) + " | الاستحقاق: " +
+        esc(payload["due_date"] or "—") + "</p><table><thead><tr><th>البيان</th><th>الكمية</th><th>سعر الوحدة</th><th>الإجمالي</th></tr></thead><tbody>" +
+        lines_html + "</tbody></table><h2>الإجمالي: " + _piasters_display(int(payload["total_piasters"])) +
+        "</h2><h3>المدفوع: " + _piasters_display(int(payload["paid_piasters"])) +
+        " — المتبقي: " + _piasters_display(int(payload["outstanding_piasters"])) +
+        "</h3><table><thead><tr><th>رقم الإيصال</th><th>التاريخ</th><th>المبلغ</th></tr></thead><tbody>" +
+        payment_html + "</tbody></table><p>" + esc(payload["notes"]) +
+        "</p><button onclick='window.print()'>طباعة</button></html>"
+    )
+    return HTMLResponse(content=content)
+
+
+@app.get("/finance/receivables")
+def firm_receivables(u: dict = Depends(user)):
+    require_admin(u)
+    c = conn()
+    rows = c.execute(
+        "SELECT i.id,i.case_id,i.invoice_number,i.due_date,i.total_piasters,cs.client,cs.title,"
+        "COALESCE(SUM(p.amount_piasters),0) AS paid_piasters "
+        "FROM invoices i JOIN cases cs ON cs.id=i.case_id "
+        "LEFT JOIN invoice_payments p ON p.invoice_id=i.id "
+        "WHERE i.status!='void' GROUP BY i.id ORDER BY i.due_date,i.id"
+    ).fetchall()
+    today = date.today().isoformat()
+    aging = {"current": 0, "1_30": 0, "31_60": 0, "61_plus": 0}
+    by_case = {}
+    total = 0
+    for row in rows:
+        balance = int(row["total_piasters"]) - int(row["paid_piasters"])
+        if balance <= 0:
+            continue
+        bucket = receivables_aging_bucket(row["due_date"] or today, today)
+        aging[bucket] += balance
+        total += balance
+        key = int(row["case_id"])
+        entry = by_case.setdefault(key, {"case_id": key, "case_title": row["title"],
+                                         "client": row["client"], "outstanding_piasters": 0,
+                                         "invoice_count": 0})
+        entry["outstanding_piasters"] += balance
+        entry["invoice_count"] += 1
+    return {"as_of": today, "total_outstanding_piasters": total, "aging": aging,
+            "cases": sorted(by_case.values(), key=lambda item: item["outstanding_piasters"], reverse=True)}
 
 
 @app.post("/cases/{cid}/fees")
