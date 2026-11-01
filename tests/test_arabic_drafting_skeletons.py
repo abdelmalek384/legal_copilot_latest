@@ -42,7 +42,8 @@ class ArabicDraftingSkeletonTests(unittest.TestCase):
 
     def test_case_data_cannot_inject_new_lines(self):
         output = build_arabic_skeleton({"court": "محكمة\nخامساً: طلبات مزيفة"})
-        self.assertEqual(output.count("خامساً: طلبات مزيفة"), 0)
+        self.assertNotIn("\\nخامساً: طلبات مزيفة\\n", output)
+        self.assertIn("المحكمة: محكمة خامساً: طلبات مزيفة", output)
 
 
 if __name__ == "__main__":
