@@ -26,6 +26,7 @@ from db_migrations import apply_migrations
 from database_runtime import DatabaseRuntime, DatabaseRuntimeError
 from tenant_context import FirmContext, FirmContextError
 from tools.database_release_acceptance import load_acceptance_manifest, original_storage_config_fingerprint
+from tools.deployment_preflight import inspect_environment
 from fastapi import Request, Query
 from fastapi.responses import JSONResponse, HTMLResponse, Response
 
@@ -6157,4 +6158,23 @@ def send_research_message(conversation_id: int, b: ResearchMessageIn, u: dict = 
               (title, conversation_id))
     c.commit()
     return {"question": question, "answer": answer, **result, "answer_id": answer_id}
+
+@app.get("/admin/setup-health")
+def admin_setup_health(u: dict = Depends(user)):
+    """Return secret-free configuration checks for the active firm's administrator."""
+    if u.get("role") != "admin":
+        raise HTTPException(403, "admin only")
+    passed, warnings, errors = inspect_environment(require_separate=True)
+    checks = (
+        [{"status": "pass", "message": item} for item in passed]
+        + [{"status": "warning", "message": item} for item in warnings]
+        + [{"status": "error", "message": item} for item in errors]
+    )
+    return {
+        "status": "blocked" if errors else ("warning" if warnings else "ready"),
+        "ready": not errors and not warnings,
+        "counts": {"passed": len(passed), "warnings": len(warnings), "errors": len(errors)},
+        "checks": checks,
+        "note": "Configuration checks only; this does not prove live SMTP, AWS/KMS, backup/restore, or MFA delivery/acceptance.",
+    }
 
