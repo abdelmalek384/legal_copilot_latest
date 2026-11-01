@@ -9,7 +9,7 @@ The rubric in [Human Review Rubric for Egyptian Legal Answers](legal_answer_revi
 Create a UTF-8 JSONL file with one assessment per line. Use synthetic scenarios or approved anonymized material only; never commit privileged/client facts, secrets, or re-identifiable records.
 
 Each record requires:
-- Unique `assessment_id`, `case_id`, `practice_area`, `reviewer_id`, `reviewer_name`, `review_date`, and `disposition`. The reviewer ID and name must match a separate approved reviewer registry. `review_date` must be a real calendar date in `YYYY-MM-DD` format; malformed disposition values are rejected without crashing the validator.
+- Unique `assessment_id`, `case_id`, `practice_area`, `reviewer_id`, `reviewer_name`, `review_date`, and `disposition`. The reviewer ID and name must match a separate approved reviewer registry. `review_date` must be a real calendar date in `YYYY-MM-DD` format; malformed disposition values are rejected without crashing the validator. For independent comparison, include `answer_id`, a stable non-empty identifier for the exact generated answer/version shown to reviewers. It is optional for legacy/single-review records.
 - `scores`: all seven dimensions, each scored `0`, `1`, `2`, or `not_applicable`.
 - `rationales`: an evidence-based rationale for every dimension. A not-applicable rationale must explain why the dimension does not apply.
 - `critical_defect`: explicit boolean. If true, disposition must be `unsafe` and `critical_defect_description` is required.
@@ -23,7 +23,7 @@ Allowed dispositions:
 - `unsafe`
 - `not_scored_insufficient_evidence`
 
-The last disposition is not a pass and is excluded from dimension means. Invalid records and duplicate assessment IDs are reported and excluded rather than silently scored. Multiple reviewers may assess the same `case_id`; each assessment must have its own unique `assessment_id` so independent reviews and adjudications remain countable.
+The last disposition is not a pass and is excluded from dimension means. Invalid records and duplicate assessment IDs are reported and excluded rather than silently scored. Multiple reviewers may assess the same `case_id`; each assessment must have its own unique `assessment_id`. Reviewer agreement is calculated only for records sharing both `case_id` and `answer_id`, and requires distinct approved reviewers. Repeated assessments by the same reviewer for the same answer are excluded as duplicates. Different answer IDs in one case are never compared.
 
 ## Run
 
@@ -33,7 +33,7 @@ python tools/evaluate_legal_answer_reviews.py /secure/path/legal-answer-reviews.
 python -m unittest tests.test_legal_answer_review_evaluation
 ```
 
-The JSON report includes disposition counts, practice-area counts, per-dimension score counts and means, invalid records, and critical defects. Critical defects remain separately visible and must never be hidden inside an average.
+The JSON report includes disposition counts, practice-area counts, per-dimension score counts and means, invalid records, critical defects, and reviewer-agreement results. For each exact answer reviewed by at least two independent reviewers, it reports disposition agreement, dimension-level exact agreement, conflicts involving insufficient evidence, and whether adjudication is needed. Agreement is descriptive only: it does not prove legal correctness or identify which reviewer is right. The tool deliberately does not calculate a chance-corrected reliability statistic; that requires a sufficiently large, balanced and methodologically approved sample. Records without `answer_id` remain in ordinary review summaries but are counted separately and are not used for reviewer-agreement comparisons.
 
 ## Reviewer registry
 
