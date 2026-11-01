@@ -18,7 +18,7 @@ This workflow is evidence-preserving and deliberately separates acquisition, tex
    python tools/record_manual_capture.py \
      --file ~/Downloads/official_gazette.pdf \
      --document-id EG-LABOUR-14-2025 \
-     --source-url "https://official-source.example/document-page" \
+     --source-url "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf" \
      --captured-by "Reviewer name" \
      --capture-method browser_download \
      --retrieved-on YYYY-MM-DD \
