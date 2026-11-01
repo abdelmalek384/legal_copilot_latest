@@ -587,7 +587,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
         member_context.close()
 
-            self.page.locator("#side").get_by_role("button", name="القضايا").click()
+        self.page.locator("#side").get_by_role("button", name="القضايا").click()
         self.page.get_by_text("SYNTHETIC CASEFLOW PRIMARY MATTER", exact=True).wait_for(timeout=10000)
         self.assertIn("SYNTHETIC CASEFLOW SECOND MATTER", self.page.locator("body").inner_text())
 
