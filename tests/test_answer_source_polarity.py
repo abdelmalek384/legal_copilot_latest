@@ -36,6 +36,20 @@ class AnswerSourcePolarityTests(unittest.TestCase):
             "يحق للعامل طلب التعويض [1].", hits
         ))
 
+    def test_every_registered_predicate_pair_detects_opposite_polarity(self):
+        for positive, _negative_pattern in app._ARABIC_POLARITY_PREDICATES:
+            with self.subTest(predicate=positive):
+                negative_source = {"text": "ولا " + positive + " ذلك."}
+                positive_answer = "وي" + positive[1:] + " ذلك [1]."
+                self.assertTrue(app._answer_has_source_polarity_conflict(
+                    positive_answer, [negative_source]
+                ))
+                positive_source = {"text": "وي" + positive[1:] + " ذلك."}
+                negative_answer = "ولا " + positive + " ذلك [1]."
+                self.assertTrue(app._answer_has_source_polarity_conflict(
+                    negative_answer, [positive_source]
+                ))
+
     def test_unrelated_predicates_do_not_create_a_conflict(self):
         hits = [{"text": "لا يجوز إنهاء العقد دون إخطار."}]
         self.assertFalse(app._answer_has_source_polarity_conflict(
