@@ -3410,16 +3410,30 @@ def _candidate_catalogue_practice_area_counts():
             invalid_entries += 1
             continue
         document_id = item.get("document_id")
-        if isinstance(document_id, str) and document_id.strip():
-            if document_id in seen_ids:
+        if not isinstance(document_id, str) or not document_id.strip():
+            # A catalogue row without a stable identity cannot safely contribute
+            # to the candidate denominator or be reconciled with registry records.
+            invalid_entries += 1
+            continue
+        document_id = document_id.strip()
+        if document_id in seen_ids:
+            invalid_entries += 1
+            continue
+        seen_ids.add(document_id)
+        if "practice_areas" in item:
+            # The plural field is a list contract; accepting a scalar here can
+            # silently turn malformed catalogue data into a fake practice area.
+            areas = item.get("practice_areas")
+            if not isinstance(areas, list):
                 invalid_entries += 1
-                continue
-            seen_ids.add(document_id)
-        areas = item.get("practice_areas", item.get("practice_area"))
-        if isinstance(areas, str):
-            areas = [areas]
-        if not isinstance(areas, list):
-            areas = []
+                areas = []
+        else:
+            # The legacy singular field intentionally accepts one string value.
+            area = item.get("practice_area")
+            areas = [area] if isinstance(area, str) else area
+            if not isinstance(areas, list):
+                invalid_entries += 1
+                areas = []
         normalized_areas = {
             _normalize_legal_practice_area(area)
             for area in areas if isinstance(area, str) and area.strip()

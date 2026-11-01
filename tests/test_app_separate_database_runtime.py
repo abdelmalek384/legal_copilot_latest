@@ -4210,6 +4210,30 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
 
 
+    def test_candidate_catalogue_dashboard_denominator_requires_unique_stable_ids(self):
+        catalogue = {
+            "documents": [
+                {"document_id": "LAW-001", "practice_areas": ["Labour", "employment law"]},
+                {"document_id": " LAW-001 ", "practice_area": "civil law"},
+                {"document_id": "LAW-002", "practice_area": "criminal law"},
+                {"document_id": "  ", "practice_area": "tax law"},
+                {"practice_area": "family law"},
+                {"document_id": "LAW-003", "practice_areas": "not-a-list"},
+                None,
+            ]
+        }
+        path = self.root / "candidate-catalogue.json"
+        path.write_text(json.dumps(catalogue), encoding="utf-8")
+        with patch.object(app, "LEGAL_CANDIDATE_CATALOG_PATH", path):
+            result = app._candidate_catalogue_practice_area_counts()
+
+        self.assertTrue(result["available"])
+        self.assertEqual(result["candidate_instrument_count"], 3)
+        self.assertEqual(result["practice_area_counts"]["labour"], 1)
+        self.assertEqual(result["practice_area_counts"]["criminal"], 1)
+        self.assertEqual(result["practice_area_counts"]["unknown"], 1)
+        self.assertEqual(result["invalid_entries"], 5)
+
     def test_legal_corpus_coverage_counts_only_permission_complete_versions(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
