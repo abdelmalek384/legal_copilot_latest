@@ -236,6 +236,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_platform_admin_bootstrap_cli.py
       - name: Test profile-separated CLI write commands
         run: python tests/test_manage_cli_profile_only.py
+      - name: Test exact article and page pin citation binding
+        run: PYTHONPATH=. python tests/test_answer_pincite_binding.py
       - name: Run unit tests
         run: python selftest.py
       - name: Run Arabic multi-case scenario tests
