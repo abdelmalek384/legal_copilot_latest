@@ -107,7 +107,7 @@ class SyntheticRetrievalTests(unittest.TestCase):
     def setUp(self):
         self.fixture = SyntheticCorpus()
         self.patches = [
-            mock.patch.object(app, "corpus_conn", return_value=self.fixture.db),
+            mock.patch.object(app, "corpus_conn", side_effect=lambda: self.fixture.db),
             mock.patch.object(
                 app, "citation_provenance",
                 side_effect=lambda _db, version_id: {
