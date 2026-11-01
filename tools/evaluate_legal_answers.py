@@ -355,12 +355,21 @@ def _release_gate(report, args):
     }
     configured = {**minimums, **maximums}
     enabled = (any(value is not None for value in configured.values()) or args.min_questions is not None
+               or args.min_answerable_questions is not None or args.min_unanswerable_questions is not None
                or args.min_practice_areas is not None or args.min_questions_per_practice_area is not None)
     checks = []
     if args.min_questions is not None:
         actual = report["questions_scored"]
         checks.append({"metric": "questions_scored", "operator": ">=", "threshold": args.min_questions,
                        "actual": actual, "passed": actual >= args.min_questions})
+    if args.min_answerable_questions is not None:
+        actual = report["overall"]["answerable_questions"]
+        checks.append({"metric": "answerable_questions", "operator": ">=", "threshold": args.min_answerable_questions,
+                       "actual": actual, "passed": actual >= args.min_answerable_questions})
+    if args.min_unanswerable_questions is not None:
+        actual = report["overall"]["abstention_cases"]
+        checks.append({"metric": "unanswerable_questions", "operator": ">=", "threshold": args.min_unanswerable_questions,
+                       "actual": actual, "passed": actual >= args.min_unanswerable_questions})
     if args.min_practice_areas is not None:
         actual = len(report["by_practice_area"])
         checks.append({"metric": "practice_area_count", "operator": ">=", "threshold": args.min_practice_areas,
@@ -402,6 +411,8 @@ def main(argv=None):
     parser.add_argument("--max-unanswerable-citation-rate", type=float, help="Fail the technical gate if unanswerable cases contain citations above this 0..1 rate")
     parser.add_argument("--max-invalid-citation-question-rate", type=float, help="Fail the technical gate if questions with invalid citation indexes exceed this 0..1 rate")
     parser.add_argument("--min-questions", type=int, help="Fail the technical gate if fewer lawyer-approved questions are scored; required with quality thresholds")
+    parser.add_argument("--min-answerable-questions", type=int, help="Fail if fewer answerable benchmark cases are scored")
+    parser.add_argument("--min-unanswerable-questions", type=int, help="Fail if fewer lawyer-labelled unanswerable cases are scored")
     parser.add_argument("--min-practice-areas", type=int, help="Fail the technical gate if fewer distinct reviewed practice areas are scored")
     parser.add_argument("--min-questions-per-practice-area", type=int, help="Fail if any scored practice area has fewer reviewed questions than this value")
     args = parser.parse_args(argv)
@@ -410,10 +421,18 @@ def main(argv=None):
         reviewer_registry = json.loads(reviewer_registry_bytes.decode("utf-8"))
     except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
         parser.error(f"invalid reviewer registry: {exc}")
-    for name in ("min_questions", "min_practice_areas", "min_questions_per_practice_area"):
+    for name in ("min_questions", "min_answerable_questions", "min_unanswerable_questions",
+                 "min_practice_areas", "min_questions_per_practice_area"):
         value = getattr(args, name)
         if value is not None and value < 1:
             parser.error(f"--{name.replace('_', '-')} must be a positive integer")
+    if args.min_source_recall is not None and args.min_answerable_questions is None:
+        parser.error("--min-source-recall requires an explicit --min-answerable-questions cohort-size gate")
+    if args.min_pin_cite_recall is not None and args.min_answerable_questions is None:
+        parser.error("--min-pin-cite-recall requires an explicit --min-answerable-questions cohort-size gate")
+    if (args.min_unanswerable_abstention_recall is not None
+            and args.min_unanswerable_questions is None):
+        parser.error("--min-unanswerable-abstention-recall requires an explicit --min-unanswerable-questions cohort-size gate")
     if (args.min_practice_areas is None) != (args.min_questions_per_practice_area is None):
         parser.error("--min-practice-areas and --min-questions-per-practice-area must be configured together")
     quality_thresholds = (args.min_source_precision, args.min_source_recall,
