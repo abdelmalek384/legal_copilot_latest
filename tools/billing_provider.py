@@ -56,8 +56,16 @@ class FakeBillingProvider:
         if not isinstance(currency, str) or len(currency) != 3 or not currency.isalpha():
             raise ValueError("Currency must be a three-letter code")
         safe_metadata = dict(metadata or {})
+        allowed_metadata_keys = {
+            "firm_id", "plan", "plan_code", "subscription_id",
+            "invoice_id", "transfer_reference",
+        }
         if any(not isinstance(k, str) or not isinstance(v, str) for k, v in safe_metadata.items()):
             raise TypeError("Payment metadata must contain string keys and values")
+        if any(k not in allowed_metadata_keys for k in safe_metadata):
+            raise ValueError("Payment metadata contains an unsupported field")
+        if any(len(v) > 200 or any(ord(char) < 32 for char in v) for v in safe_metadata.values()):
+            raise ValueError("Payment metadata values must be bounded plain text")
         with self._lock:
             provider_reference = f"fake_{self._next_id:08d}"
             self._next_id += 1
