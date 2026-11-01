@@ -5112,7 +5112,11 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertEqual(client_b.get("/research/corrections").json(), [])
             missing = client_b.get(f"/research/corrections?status=open")
             self.assertEqual(missing.status_code, 200, missing.text)
-            foreign = client_b.get(f"/research/corrections/{correction_id}")
+            foreign = client_b.patch(
+                f"/research/corrections/{correction_id}",
+                headers={"X-CSRF-Token": client_b.cookies.get("lc_csrf") or ""},
+                json={"status": "rejected", "review_note": "Must not cross firm boundary."},
+            )
             self.assertEqual(foreign.status_code, 404, foreign.text)
         finally:
             client_b.close()
