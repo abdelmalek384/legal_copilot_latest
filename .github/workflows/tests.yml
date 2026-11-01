@@ -322,5 +322,7 @@ jobs:
         run: PYTHONPATH=. python tests/test_claim_support.py
       - name: Test article-rows audit tool
         run: PYTHONPATH=. python tests/test_audit_article_rows.py
+      - name: Test provider-neutral billing fake
+        run: PYTHONPATH=. python tests/test_billing_provider.py
       - name: Guard that every test file runs in CI or is explicitly tracked
         run: PYTHONPATH=. python tests/test_ci_runs_all_tests.py
