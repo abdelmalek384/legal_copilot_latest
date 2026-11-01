@@ -1565,16 +1565,16 @@ def _answer_has_unanchored_citations(answer, hits):
 # This catches only explicit opposite-polarity formulations; it does not infer the
 # scope of negation, exceptions, conditions, or the legal meaning of a passage.
 _ARABIC_POLARITY_PREDICATES = (
-    ("يجوز", "لا\s+يجوز"),
-    ("يحق", "لا\s+يحق"),
-    ("يستحق", "لا\s+يستحق"),
-    ("يلتزم", "لا\s+يلتزم"),
-    ("يجب", "لا\s+يجب"),
-    ("يسمح", "لا\s+يسمح"),
-    ("يقبل", "لا\s+يقبل"),
-    ("يكون", "لا\s+يكون"),
-    ("تسري", "لا\s+تسري"),
-    ("ينطبق", "لا\s+ينطبق"),
+    ("يجوز", r"لا\s+يجوز"),
+    ("يحق", r"لا\s+يحق"),
+    ("يستحق", r"لا\s+يستحق"),
+    ("يلتزم", r"لا\s+يلتزم"),
+    ("يجب", r"لا\s+يجب"),
+    ("يسمح", r"لا\s+يسمح"),
+    ("يقبل", r"لا\s+يقبل"),
+    ("يكون", r"لا\s+يكون"),
+    ("تسري", r"لا\s+تسري"),
+    ("ينطبق", r"لا\s+ينطبق"),
 )
 
 
