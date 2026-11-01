@@ -387,7 +387,11 @@ def main(argv=None):
     report["release_gate"] = _release_gate(report, args)
     rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
     if args.out:
-        Path(args.out).write_text(rendered, encoding="utf-8")
+        try:
+            _write_report(args.out, rendered)
+        except FileExistsError:
+            print(f"evaluation refused: output already exists: {args.out}; choose a new path to preserve prior results", file=sys.stderr)
+            return 2
     else:
         print(rendered, end="")
     if report["release_gate"]["enabled"] and not report["release_gate"]["passed"]:
