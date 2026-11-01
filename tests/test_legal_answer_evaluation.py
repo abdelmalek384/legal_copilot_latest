@@ -175,10 +175,10 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             questions = Path(td) / "questions.jsonl"
             results = Path(td) / "results.jsonl"
             report_path = Path(td) / "report.json"
-            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\n", encoding="utf-8")
             legacy = result()
             legacy.pop("answer_id")
-            results.write_text(json.dumps(legacy, ensure_ascii=False) + "\\n", encoding="utf-8")
+            results.write_text(json.dumps(legacy, ensure_ascii=False) + "\n", encoding="utf-8")
             code = run_main([
                 "--questions", str(questions), "--results", str(results), "--out", str(report_path),
                 "--min-questions", "1", "--min-practice-areas", "1",
