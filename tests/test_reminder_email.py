@@ -1,6 +1,7 @@
 import smtplib
 import unittest
 from email.message import EmailMessage
+from unittest.mock import patch
 from tools.reminder_email import ReminderEmailError, SMTPConfig, send_reminder_email
 
 
@@ -46,6 +47,91 @@ class ReminderEmailTests(unittest.TestCase):
         self.assertEqual(result["status"], "accepted_by_smtp")
         self.assertEqual(result["attempts"], 3)
         self.assertEqual(self.sleep_calls, [2.0, 4.0])
+
+    def test_timeout_after_send_message_starts_is_ambiguous_and_never_retried(self):
+        class FakeSMTP:
+            def __enter__(self):
+                return self
+            def __exit__(self, exc_type, exc, tb):
+                return False
+            def ehlo(self):
+                pass
+            def starttls(self, context=None):
+                pass
+            def login(self, username, password):
+                pass
+            def send_message(self, message):
+                raise TimeoutError("provider accepted then lost the response")
+
+        with patch("tools.reminder_email.smtplib.SMTP", return_value=FakeSMTP()):
+            result = send_reminder_email(
+                self.reminder, "user@example.test", "https://legal.example.test", self.config,
+                enabled=True, max_attempts=5, base_backoff_seconds=0, sleep=self.sleeper,
+            )
+
+        self.assertEqual(result["status"], "ambiguous")
+        self.assertEqual(result["error_code"], "smtp_submission_ambiguous")
+        self.assertEqual(result["attempts"], 1)
+        self.assertEqual(self.sleep_calls, [])
+        self.assertNotIn("provider accepted", str(result))
+
+    def test_pre_submission_connection_failure_can_be_retried(self):
+        class FakeSMTP:
+            def __enter__(self):
+                return self
+            def __exit__(self, exc_type, exc, tb):
+                return False
+            def ehlo(self):
+                pass
+            def starttls(self, context=None):
+                pass
+            def login(self, username, password):
+                pass
+            def send_message(self, message):
+                return {}
+
+        factories = []
+        def smtp_factory(*args, **kwargs):
+            factories.append(1)
+            if len(factories) == 1:
+                raise TimeoutError("connect failed before DATA")
+            return FakeSMTP()
+
+        with patch("tools.reminder_email.smtplib.SMTP", side_effect=smtp_factory):
+            result = send_reminder_email(
+                self.reminder, "user@example.test", "https://legal.example.test", self.config,
+                enabled=True, max_attempts=3, base_backoff_seconds=2, sleep=self.sleeper,
+            )
+
+        self.assertEqual(result["status"], "accepted_by_smtp")
+        self.assertEqual(result["attempts"], 2)
+        self.assertEqual(len(factories), 2)
+        self.assertEqual(self.sleep_calls, [2.0])
+
+    def test_close_error_after_confirmed_smtp_acceptance_does_not_resend(self):
+        class FakeSMTP:
+            def __enter__(self):
+                return self
+            def __exit__(self, exc_type, exc, tb):
+                raise OSError("QUIT failed after server accepted DATA")
+            def ehlo(self):
+                pass
+            def starttls(self, context=None):
+                pass
+            def login(self, username, password):
+                pass
+            def send_message(self, message):
+                return {}
+
+        with patch("tools.reminder_email.smtplib.SMTP", return_value=FakeSMTP()):
+            result = send_reminder_email(
+                self.reminder, "user@example.test", "https://legal.example.test", self.config,
+                enabled=True, max_attempts=5, base_backoff_seconds=0, sleep=self.sleeper,
+            )
+
+        self.assertEqual(result["status"], "accepted_by_smtp")
+        self.assertEqual(result["attempts"], 1)
+        self.assertEqual(self.sleep_calls, [])
 
     def test_auth_failure_is_not_retried_and_error_is_sanitized(self):
         calls = []
