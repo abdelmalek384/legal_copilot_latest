@@ -214,6 +214,67 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
         self.assertEqual(report["critical_defect_category_counts"]["overbroad_conditional_scope"], 0)
 
 
+    def test_same_case_repeat_is_not_misreported_as_cross_case_recurrence(self):
+        first = review(
+            disposition="unsafe", critical_defect=True,
+            critical_defect_categories=["unsupported_legal_claim"],
+            critical_defect_description="Synthetic first assessment.",
+        )
+        second = review(
+            assessment_id="ASSESS-002", reviewer_id="reviewer-b", reviewer_name="Reviewer B",
+            disposition="unsafe", critical_defect=True,
+            critical_defect_categories=["unsupported_legal_claim"],
+            critical_defect_description="Synthetic independent assessment of same case.",
+        )
+        report = summarize_reviews([first, second], reviewer_registry())
+        item = report["critical_defect_category_analysis"][0]
+        self.assertEqual(item["category"], "unsupported_legal_claim")
+        self.assertEqual(item["assessment_count"], 2)
+        self.assertEqual(item["distinct_case_count"], 1)
+        self.assertEqual(item["distinct_reviewer_count"], 2)
+        self.assertEqual(item["repeat_assessments_within_same_case"], 1)
+        self.assertFalse(item["recurs_across_multiple_cases"])
+        self.assertTrue(item["reported_by_multiple_reviewers"])
+        self.assertEqual(report["recurring_critical_defect_categories"], [])
+
+    def test_defect_recurrence_requires_distinct_cases_not_just_more_reviews(self):
+        first = review(
+            disposition="unsafe", critical_defect=True,
+            critical_defect_categories=["incorrect_article_or_page_pin"],
+            critical_defect_description="Synthetic defect in case one.",
+        )
+        second = review(
+            assessment_id="ASSESS-002", case_id="CASE-002", reviewer_id="reviewer-b",
+            reviewer_name="Reviewer B", disposition="unsafe", critical_defect=True,
+            critical_defect_categories=["incorrect_article_or_page_pin"],
+            critical_defect_description="Synthetic defect in case two.",
+        )
+        third = review(
+            assessment_id="ASSESS-003", case_id="CASE-002", reviewer_id="reviewer-a",
+            reviewer_name="Qualified Reviewer A", disposition="unsafe", critical_defect=True,
+            critical_defect_categories=["incorrect_article_or_page_pin"],
+            critical_defect_description="Second synthetic assessment in case two.",
+        )
+        report = summarize_reviews([first, second, third], reviewer_registry())
+        item = next(x for x in report["critical_defect_category_analysis"]
+                    if x["category"] == "incorrect_article_or_page_pin")
+        self.assertEqual(item["assessment_count"], 3)
+        self.assertEqual(item["distinct_case_count"], 2)
+        self.assertEqual(item["distinct_reviewer_count"], 2)
+        self.assertEqual(item["repeat_assessments_within_same_case"], 1)
+        self.assertTrue(item["recurs_across_multiple_cases"])
+        self.assertTrue(item["reported_by_multiple_reviewers"])
+        self.assertEqual(report["recurring_critical_defect_categories"], ["incorrect_article_or_page_pin"])
+
+    def test_legacy_uncategorized_defects_do_not_get_invented_recurrence_categories(self):
+        legacy = review(
+            review_schema_version=1, disposition="unsafe", critical_defect=True,
+            critical_defect_description="Legacy defect without a taxonomy label.",
+        )
+        report = summarize_reviews([legacy], reviewer_registry())
+        self.assertEqual(report["critical_defect_category_analysis"], [])
+        self.assertEqual(report["recurring_critical_defect_categories"], [])
+
     def test_legacy_v1_unsafe_reviews_remain_readable_and_are_counted_as_uncategorized(self):
         legacy = review(
             disposition="unsafe",
