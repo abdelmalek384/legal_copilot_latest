@@ -314,5 +314,7 @@ jobs:
         run: PYTHONPATH=. python tests/test_decision249_candidate_quarantine.py
       - name: Test trusted-host middleware
         run: PYTHONPATH=. python tests/test_trusted_host_middleware.py
+      - name: Test fixture-based law ingestion pipeline
+        run: PYTHONPATH=. python tests/test_law_ingestion_fixture_pipeline.py
       - name: Guard that every test file runs in CI or is explicitly tracked
         run: PYTHONPATH=. python tests/test_ci_runs_all_tests.py
