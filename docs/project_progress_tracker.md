@@ -5,7 +5,7 @@
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **50.08/100 technical completion** (up 0.07 points from 50.01; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **50.10/100 technical completion** (up 0.02 points from 50.08; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Previous whole-product checkpoint — 2026-10-31
@@ -761,3 +761,11 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - All four exact-head PR runs passed Tests (154 steps each), Browser acceptance, dependency audit and CodeQL.
 - Scorecard recalculated: legal research/retrieval/citation quality 68.5%; security/privacy 72.6%; automated testing/reliability 70.1%; weighted technical completion **50.08/100**.
 - Verified Egyptian legal corpus remains 6%; final Egyptian-counsel acceptance remains 0%. These engineering changes do not establish legal correctness, source rights, or counsel approval.
+
+
+### Latest checkpoint — 2026-11-01 (application-side stable answer IDs)
+
+- **PR #1141 merged:** newly persisted assistant research messages receive fresh random opaque answer IDs. IDs are stored in message JSON, returned by the send API, exposed in conversation history, and copyable in Arabic and English.
+- API regression coverage verifies uniqueness, persistence, send/history consistency and legacy messages without fabricated IDs. Browser acceptance verifies the copy action.
+- Exact-head CI passed Tests (154 steps), Browser acceptance, dependency audit, Python/JavaScript CodeQL, Bandit and non-database safety regression.
+- PR #1129 was closed as superseded. The weighted technical score is now **50.10/100**; verified corpus coverage and counsel acceptance are unchanged.
