@@ -10,6 +10,7 @@ from collections import Counter
 from datetime import date, datetime, timedelta, timezone
 from functools import lru_cache, wraps
 from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_permission_register_ready, source_permission_evidence_ready, source_status, citation_text, research_memo, has_current_review_evidence)
+from tools.claim_support import claim_support_enabled, has_unsupported_claims
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
     generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
@@ -1923,6 +1924,8 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
             ans, msg = None, "توجد عبارة تنسب الفعل إلى طرف قانوني مختلف عن الطرف المذكور في المصدر؛ تُعرض المصادر فقط."
         elif _answer_has_unqualified_claim_against_conditional_source(ans, hits):
             ans, msg = None, "تعمم إحدى العبارات قاعدة وردت في المصدر مقيدة بشرط؛ تُعرض المصادر فقط."
+        elif claim_support_enabled() and has_unsupported_claims(ans, hits, tokens, norm, _mask_markdown_code):
+            ans, msg = None, "تعذر إثبات دعم كل عبارة واقعية من نصوص مصادرها؛ تُعرض المصادر فقط."
     return {"found": True, "answer": ans, "abstained": not bool(ans), "message": msg, "sources": hits, "scope": scope, "case_id": case_id, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
 
 
