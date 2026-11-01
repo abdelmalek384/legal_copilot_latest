@@ -242,3 +242,20 @@ class FrontendUXContractTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+    def test_primary_navigation_uses_a_nav_landmark(self):
+        self.assertIn("h('nav',{className:'primary-nav'", HTML)
+
+    def test_mobile_controls_and_body_copy_meet_readability_targets(self):
+        self.assertIn("min-height:44px", HTML)
+        self.assertIn(".mut{color:var(--mut);font-size:14px}", HTML)
+        self.assertIn(".stat span{color:var(--mut);font-size:14px}", HTML)
+        self.assertIn("overflow-x:auto;overscroll-behavior-inline:contain", HTML)
+
+    def test_signup_tab_is_named_request_an_account(self):
+        self.assertIn("textContent:LANG==='ar'?'طلب حساب':'Request an account'", HTML)
+
+    def test_deadline_preview_persists_an_audit_summary_and_draft_warning(self):
+        self.assertIn("Draft — not verified by a lawyer", HTML)
+        self.assertIn("Calculation steps: ", HTML)
+        self.assertIn("(result.steps_ar||[]).join(' | ')", HTML)
