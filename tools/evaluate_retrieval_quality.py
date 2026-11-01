@@ -481,6 +481,15 @@ def main(argv=None):
     quality_thresholds = (args.min_recall_at_5, args.min_mrr_at_5, args.min_citation_precision,
                           args.min_citation_coverage, args.min_expected_pin_cite_recall,
                           args.min_abstention_compliance)
+    gate_enabled = (any(value is not None for value in quality_thresholds)
+                    or any(getattr(args, name) is not None for name in (
+                        "min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
+                        "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
+                        "max_excluded_cases", "max_unsafe_unverified_source_uses")))
+    if gate_enabled and args.min_reviewed_cases is None:
+        parser.error("retrieval release gates require --min-reviewed-cases to prevent empty-sample passes")
+    if args.min_cases_per_practice_area is not None and args.min_practice_areas is None:
+        parser.error("--min-cases-per-practice-area requires --min-practice-areas")
     if any(value is not None for value in quality_thresholds):
         if args.min_reviewed_cases is None:
             parser.error("quality thresholds require --min-reviewed-cases")
