@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from tools.evaluate_legal_answer_reviews import DIMENSIONS, main, summarize_reviews, validate_review, validate_reviewer_registry
+from tools.evaluate_legal_answer_reviews import DIMENSIONS, summarize_reviews, validate_review, validate_reviewer_registry
 
 
 def review(**overrides):
