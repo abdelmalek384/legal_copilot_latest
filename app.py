@@ -794,6 +794,7 @@ def delete_case(c, u, cid):
     # reset that transaction before taking the deletion's explicit write lock.
     if c.in_transaction:
         c.rollback()
+    c.execute("BEGIN IMMEDIATE")
     try:
         if not is_lead(c, u, cid):
             c.rollback()
@@ -3039,6 +3040,7 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
     finally:
         _LOGIN_HASH_SLOTS.release()
 
+    c.execute("BEGIN IMMEDIATE")
     c.execute("DELETE FROM login_attempts WHERE locked_until<=? AND window_start<?", (now, now - 86400))
     c.execute("DELETE FROM login_attempts WHERE email IN ("
               "SELECT email FROM login_attempts ORDER BY window_start DESC, rowid DESC LIMIT -1 OFFSET 10000)")
@@ -3138,6 +3140,7 @@ def login(b: LoginIn, request: Request, response: Response):
         _LOGIN_HASH_SLOTS.release()
 
     # Keep the write transaction short; never hold SQLite's writer lock during scrypt.
+    c.execute("BEGIN IMMEDIATE")
     c.execute("DELETE FROM login_attempts WHERE locked_until<=? AND window_start<?", (now, now - 86400))
     c.execute("DELETE FROM login_attempts WHERE email IN ("
               "SELECT email FROM login_attempts ORDER BY window_start DESC, rowid DESC LIMIT -1 OFFSET 10000)")
@@ -3601,7 +3604,8 @@ def change_password(b: PasswordChangeIn, request: Request, response: Response, u
             raise HTTPException(403, "current password is incorrect")
         if check_pw(b.new_password, row["pw"]):
             raise HTTPException(422, "new password must differ from current password")
-            c.execute("UPDATE users SET pw=? WHERE id=? AND active=1", (hash_pw(b.new_password), u["id"]))
+        c.execute("BEGIN IMMEDIATE")
+        c.execute("UPDATE users SET pw=? WHERE id=? AND active=1", (hash_pw(b.new_password), u["id"]))
         c.execute("DELETE FROM auth_sessions WHERE user_id=?", (u["id"],))
         c.execute("INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
                   (u["firm_id"], u["id"], "password_changed_sessions_revoked"))
@@ -4715,7 +4719,8 @@ def disable_user(uid: int, u: dict = Depends(user)):
         raise HTTPException(422, "cannot disable your own account")
     if _separate_runtime_enabled():
         c = control_conn()
-            try:
+        c.execute("BEGIN IMMEDIATE")
+        try:
             target = c.execute(
                 "SELECT id FROM firm_memberships WHERE user_id=? AND firm_id=? AND status='active'",
                 (uid, u["firm_id"]),
@@ -5522,7 +5527,8 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
             # Keep the metadata/chunk transaction open while publishing the staged
             # object. The download route cannot see the object until this commits.
             if not c.in_transaction:
-                        chunks, document_id = save_doc(
+                c.execute("BEGIN IMMEDIATE")
+            chunks, document_id = save_doc(
                 c, u, cid, name, text, content_hash=digest, content_type=content_type,
                 byte_size=len(data), extraction_status=extraction_status, ocr_used=ocr_used,
                 original_file=staged, storage_backend=("s3" if isinstance(store, S3PrivateObjectStore) else "local"), commit=False)
