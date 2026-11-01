@@ -5083,5 +5083,63 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 self.assertEqual(second_invite.status_code, 409, second_invite.text)
 
 
+    def test_subscription_trial_transfer_approval_and_seat_limit(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        with patch.dict(os.environ, {
+            "SUBSCRIPTION_SOLO_SEAT_LIMIT": "2",
+            "SUBSCRIPTION_SMALL_FIRM_SEAT_LIMIT": "5",
+            "SUBSCRIPTION_TRIAL_DAYS": "14",
+        }):
+            trial = self._mutate("post", "/billing/trial", json={"plan_code": "solo"})
+            self.assertEqual(trial.status_code, 200, trial.text)
+            self.assertEqual(trial.json()["seat_limit"], 2)
+            duplicate = self._mutate("post", "/billing/trial", json={"plan_code": "solo"})
+            self.assertEqual(duplicate.status_code, 409, duplicate.text)
+
+            request = self._mutate(
+                "post", "/billing/payment-requests",
+                json={"plan_code": "solo", "amount_piasters": 500000,
+                      "transfer_reference": "IP-2026-XYZ123"},
+            )
+            self.assertEqual(request.status_code, 200, request.text)
+            self.assertEqual(request.json()["status"], "pending")
+            self.assertIn("not active until", request.json()["message"])
+            current = self.client.get("/billing/subscription")
+            self.assertEqual(current.status_code, 200, current.text)
+            self.assertEqual(len(current.json()["payment_requests"]), 1)
+
+            control = self.runtime.control_connection()
+            control.execute(
+                "INSERT INTO user_platform_roles(user_id,role_name,granted_by_user_id) VALUES(?,'platform_admin',?)",
+                (self.user_id, self.user_id),
+            )
+            control.commit()
+            queue = self.client.get("/platform/billing/payment-requests")
+            self.assertEqual(queue.status_code, 200, queue.text)
+            self.assertEqual(queue.json()[0]["id"], request.json()["request_id"])
+
+            approval = self._mutate(
+                "post", f"/platform/billing/payment-requests/{request.json()['request_id']}/review",
+                json={"decision": "approved", "paid_through": "2099-01-01", "review_note": "Transfer verified"},
+            )
+            self.assertEqual(approval.status_code, 200, approval.text)
+            subscription = self.client.get("/billing/subscription").json()["subscription"]
+            self.assertEqual(subscription["status"], "active")
+            self.assertEqual(subscription["seat_limit"], 2)
+
+            with patch("app._send_identity_link", return_value=None):
+                first_invite = self._mutate(
+                    "post", "/invitations", json={"email": "seat-one@example.test", "role": "lawyer"}
+                )
+                self.assertEqual(first_invite.status_code, 200, first_invite.text)
+                second_invite = self._mutate(
+                    "post", "/invitations", json={"email": "seat-two@example.test", "role": "lawyer"}
+                )
+                self.assertEqual(second_invite.status_code, 409, second_invite.text)
+
+
 if __name__ == "__main__":
     unittest.main()
