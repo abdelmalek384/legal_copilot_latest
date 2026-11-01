@@ -298,6 +298,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_tenant_context.py
       - name: Test tenant storage routing
         run: PYTHONPATH=. python tests/test_tenant_storage.py
+      - name: Test WhatsApp provider contract
+        run: PYTHONPATH=. python tests/test_whatsapp_provider.py
       - name: Test tenant fleet migration
         run: PYTHONPATH=. python tests/test_tenant_fleet_migration.py
       - name: Test labour law evidence cards
