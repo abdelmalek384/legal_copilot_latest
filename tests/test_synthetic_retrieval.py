@@ -269,14 +269,19 @@ class SyntheticRetrievalTests(unittest.TestCase):
                     f"SYNTH-TOP3-{index:02d}",
                     f"نص اختبار خيالي وليس قانونا: {intended_text}.",
                 )
-                self.fixture.add_passage(
-                    f"SYNTH-TOP3-DECOY-{index:02d}",
-                    "نص اختبار خيالي وليس قانونا: إجراءات التقاضي والإعلان ومواعيد الطعن والمحاكم المختصة.",
+                decoys = (
+                    ("PROCEDURE", "إجراءات التقاضي والإعلان ومواعيد الطعن والمحاكم المختصة"),
+                    ("IP", "الملكية الفكرية وتسجيل العلامات التجارية وبراءات الاختراع"),
+                    ("LABOUR", "إجازات العامل وساعات العمل والجزاءات التأديبية"),
+                    ("TENANCY", "عقد الإيجار وتسليم العين المؤجرة وتحديد الأجرة"),
+                    ("CRIMINAL", "التحقيق الجنائي وضمانات المتهم والحبس الاحتياطي"),
+                    ("CIVIL", "الالتزامات المدنية وتنفيذ الأحكام والمطالبة بالتعويض"),
                 )
-                self.fixture.add_passage(
-                    f"SYNTH-TOP3-OFFTOPIC-{index:02d}",
-                    "نص اختبار خيالي وليس قانونا: صيانة المحركات البحرية وجدول المد والجزر.",
-                )
+                for suffix, decoy_text in decoys:
+                    self.fixture.add_passage(
+                        f"SYNTH-TOP3-{suffix}-{index:02d}",
+                        f"نص اختبار خيالي وليس قانونا: {decoy_text}.",
+                    )
                 hits = self.search(query)
                 ids = [hit["id"] for hit in hits[:3]]
                 self.assertIn(intended_id, ids, f"intended passage fell outside top three for {query!r}")
