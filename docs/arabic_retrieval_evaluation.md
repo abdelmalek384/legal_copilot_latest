@@ -78,6 +78,28 @@ For a reviewed dataset and a real run file:
 python tools/evaluate_retrieval_quality.py --questions path/to/reviewed_questions.jsonl --runs path/to/runner_output.jsonl --output evaluation-report.json
 ```
 
+## Configurable retrieval release gate
+
+The evaluator can optionally fail a command with exit code 1 when reviewed-data coverage or quality thresholds are not met. These are engineering gates over lawyer-supplied labels, not legal-correctness certification.
+
+Example (thresholds are illustrative and must be approved for the actual benchmark before use):
+
+```bash
+python tools/evaluate_retrieval_quality.py \
+  --questions reviewed_questions.jsonl --runs model_runs.jsonl \
+  --min-reviewed-cases 100 --min-practice-areas 3 --min-cases-per-practice-area 20 \
+  --min-answerable-cases 60 --min-unanswerable-cases 20 --min-expected-pin-cites 50 \
+  --min-recall-at-5 0.90 --min-mrr-at-5 0.80 \
+  --min-citation-precision 0.95 --min-citation-coverage 0.90 \
+  --min-expected-pin-cite-recall 0.90 --min-abstention-compliance 0.98 \
+  --max-excluded-cases 0 --max-unsafe-unverified-source-uses 0 \
+  --output retrieval-release-report.json
+```
+
+Quality thresholds require explicit total sample-size and practice-area coverage gates. Citation coverage requires a minimum answerable cohort; abstention compliance requires a minimum unanswerable cohort; expected pin-cite recall requires a minimum count of expected pin-cites. The gate also supports maximum excluded-case and unsafe-unverified-source-use counts. Missing metric denominators fail a configured threshold rather than being treated as a pass. The report always retains excluded records and data-quality findings.
+
+The example thresholds above are placeholders, not a recommendation or current product policy. Set them only after qualified Egyptian counsel approves the benchmark composition, risk tolerance and threshold policy. An empty or unreviewed seed set cannot pass a meaningful quality gate.
+
 ## Synthetic end-to-end retrieval regression
 
 Run:
