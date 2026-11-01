@@ -66,9 +66,9 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
             reviews_path = Path(td) / "reviews.jsonl"
             registry_path = Path(td) / "reviewers.json"
             output_path = Path(td) / "summary.json"
-            reviews_path.write_text(json.dumps(review(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            reviews_path.write_text(json.dumps(review(), ensure_ascii=False) + "\n", encoding="utf-8")
             registry_path.write_text(json.dumps(reviewer_registry(), ensure_ascii=False), encoding="utf-8")
-            original = "previous human-review summary\\n"
+            original = "previous human-review summary\n"
             output_path.write_text(original, encoding="utf-8")
 
             with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
