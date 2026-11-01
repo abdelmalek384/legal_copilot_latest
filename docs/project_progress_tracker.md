@@ -5,7 +5,7 @@
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.90/100 technical completion** (up 0.02 points from 49.88; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.94/100 technical completion** (up 0.04 points from 49.90; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Previous whole-product checkpoint — 2026-10-31
@@ -709,3 +709,10 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - **PR #1115 merged:** made focus traversal fixture-aware by deriving the tab bound from actual focusable controls; the final browser run passed.
 - Exact-head validation passed Browser acceptance (10/10), Tests (150/150), dependency audit, Bandit and both CodeQL analyses.
 - UI/accessibility automated acceptance is now 45.2%; weighted technical completion is **49.90/100**. Manual screen-reader, device, RTL/LTR and lawyer acceptance remain unperformed. Verified Egyptian legal corpus remains 6%; Egyptian-counsel acceptance remains 0%.
+
+
+### Latest checkpoint — 2026-11-01 (candidate inventory dashboard transparency)
+
+- **PR #1118 merged:** Corpus Coverage & Provenance now exposes the planning catalogue denominator and validation-issue count, with an unavailable state and clear non-coverage caveat in Arabic and English.
+- Exact-head validation passed Tests (150/150), Browser acceptance (10/10), non-database safety regression (24/24), dependency audit, Bandit and both CodeQL analyses.
+- Source-governance metadata integrity is 9.8%; UI/accessibility automated acceptance is 45.3%; weighted technical completion is **49.94/100**. Verified Egyptian legal corpus remains 6%; Egyptian-counsel acceptance remains 0%.
