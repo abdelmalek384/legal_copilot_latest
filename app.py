@@ -1581,12 +1581,14 @@ _ARABIC_POLARITY_PREDICATES = (
 def _arabic_predicate_polarity(text, positive, negative):
     """Return one unambiguous polarity for a predicate, or None if absent/ambiguous."""
     normalized = norm(text)
-    negative_re = re.compile(r"(?<![\w])" + negative + r"(?![\u0621-\u064a])")
+    # Arabic conjunction prefixes (و/ف) are attached orthographically; allow them
+    # while still requiring a token boundary before the complete predicate phrase.
+    negative_re = re.compile(r"(?<![\u0621-\u064a])(?:و|ف)?" + negative + r"(?![\u0621-\u064a])")
     negative_found = bool(negative_re.search(normalized))
     # Remove explicit negative phrases before looking for the positive predicate,
     # so the verb inside a negative phrase is not also counted as positive.
     positive_view = negative_re.sub(" ", normalized)
-    positive_re = re.compile(r"(?<![\u0621-\u064a])" + positive + r"(?![\u0621-\u064a])")
+    positive_re = re.compile(r"(?<![\u0621-\u064a])(?:و|ف)?" + positive + r"(?![\u0621-\u064a])")
     positive_found = bool(positive_re.search(positive_view))
     if negative_found == positive_found:
         return None
