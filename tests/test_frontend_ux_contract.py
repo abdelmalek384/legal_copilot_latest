@@ -257,5 +257,10 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Calculation steps: ", HTML)
         self.assertIn("(result.steps_ar||[]).join(' | ')", HTML)
 
+    def test_admin_deadline_holiday_editor_is_available(self):
+        self.assertIn("api('/deadline-holidays')", HTML)
+        self.assertIn("api('/deadline-holidays','PUT'", HTML)
+        self.assertIn("ME.role==='admin'", HTML)
+
 if __name__ == "__main__":
     unittest.main()
