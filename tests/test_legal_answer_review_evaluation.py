@@ -77,7 +77,7 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
             self.assertEqual(code, 0)
             report = json.loads(output.getvalue())
             provenance = report["provenance"]
-            self.assertRegex(provenance["generated_at_utc"], r"^\\d{4}-\\d{2}-\\d{2}T.*Z$")
+            self.assertRegex(provenance["generated_at_utc"], r"^\d{4}-\d{2}-\d{2}T.*Z$")
             self.assertEqual(provenance["inputs"]["reviews"]["sha256"], hashlib.sha256(reviews_path.read_bytes()).hexdigest())
             self.assertEqual(provenance["inputs"]["reviewer_registry"]["sha256"], hashlib.sha256(registry_path.read_bytes()).hexdigest())
             self.assertEqual(provenance["inputs"]["reviews"]["size_bytes"], reviews_path.stat().st_size)
