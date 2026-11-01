@@ -17,6 +17,17 @@ class ConditionalScopeBindingTests(unittest.TestCase):
             "The employer may always terminate the contract [1].", hits
         ))
 
+    def test_bishart_an_condition_is_recognized(self):
+        hits = [{"text": "يحق للدائن طلب التنفيذ بشرط أن يحل الأجل."}]
+        self.assertTrue(app._answer_has_unqualified_claim_against_conditional_source(
+            "يحق للدائن طلب التنفيذ في جميع الحالات [1].", hits
+        ))
+
+    def test_ma_lam_exception_is_recognized_as_a_condition(self):
+        hits = [{"text": "يجوز للمؤجر إنهاء العقد ما لم يسدد المستأجر الأجرة."}]
+        self.assertTrue(app._answer_has_unqualified_claim_against_conditional_source(
+            "يجوز للمؤجر إنهاء العقد في جميع الحالات [1].", hits
+        ))
     def test_answer_that_preserves_the_condition_passes(self):
         hits = [{"text": "يجوز لصاحب العمل إنهاء العقد إذا ارتكب العامل مخالفة جسيمة."}]
         self.assertFalse(app._answer_has_unqualified_claim_against_conditional_source(
