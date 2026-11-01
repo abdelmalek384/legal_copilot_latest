@@ -5,7 +5,7 @@
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **50.01/100 technical completion** (up 0.02 points from 49.99; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **50.08/100 technical completion** (up 0.07 points from 50.01; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Previous whole-product checkpoint — 2026-10-31
@@ -750,3 +750,14 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - Exact-head validation for both PRs passed Tests, Browser acceptance, dependency audit, and Python/JavaScript CodeQL/Bandit.
 - Legal research/citation quality is 68.3%; automated testing/reliability is 69.9%. The weighted technical estimate is **50.01/100**. This is evaluation tooling progress only; no actual lawyer-reviewed benchmark answers or new legal sources were added.
 - Verified Egyptian legal corpus remains 6%; final Egyptian-counsel acceptance remains 0%.
+
+
+### Latest checkpoint — 2026-11-01 (review analytics, aggregate privacy and pinpoint prompt validation)
+
+- **PR #1135 merged:** human-assigned critical-defect recurrence is distinguished across cases from repeated assessments within one case; legacy uncategorized findings are not assigned inferred labels.
+- **PR #1137 merged:** aggregate-only human-review reporting removes per-answer identifiers and confidential defect details while retaining useful aggregate metrics. Detailed output remains unchanged by default; small-cohort disclosure and tenant isolation remain separate risks.
+- **PR #1138 merged:** stable answer-ID coverage can now be enforced as a configurable benchmark release-gate threshold.
+- **PR #1139 merged:** answer-prompt regressions verify exact recorded article/page locator pass-through and non-fabrication when locators are missing.
+- All four exact-head PR runs passed Tests (154 steps each), Browser acceptance, dependency audit and CodeQL.
+- Scorecard recalculated: legal research/retrieval/citation quality 68.5%; security/privacy 72.6%; automated testing/reliability 70.1%; weighted technical completion **50.08/100**.
+- Verified Egyptian legal corpus remains 6%; final Egyptian-counsel acceptance remains 0%. These engineering changes do not establish legal correctness, source rights, or counsel approval.
