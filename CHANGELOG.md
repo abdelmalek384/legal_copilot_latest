@@ -8,6 +8,7 @@
 - Added a manual-capture provenance recorder with strict document-ID/output-path safeguards, CI tests, and a law-ingestion runbook; captures remain unverified and do not grant reuse permission (PR #1160).
 - Expanded synthetic Egyptian-colloquial retrieval regressions to 51 top-three queries with six competing passages each, ten out-of-corpus abstention cases, and a no-model-call check for empty retrieval (PR #1165).
 - Added public government-hosted Gazette PDF locators for Labour Law 14/2025 while preserving discovery-only status and explicitly recording the restricted DSpace copy (PR #1166).
+- Documented the Article 140/141 distinction for Egyptian official legal documents and creative compilations; source permissions and release gates remain unchanged pending counsel review (PR #1167).
 
 ## Prepared update
 - Improved login form: trims/lowercases email, supports Enter-to-submit, displays clearer errors, and adds show/hide password.
