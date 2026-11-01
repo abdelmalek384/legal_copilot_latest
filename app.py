@@ -5291,22 +5291,26 @@ def create_invoice(cid: int, body: InvoiceIn, u: dict = Depends(user)):
     except (TypeError, ValueError) as exc:
         raise HTTPException(422, str(exc)) from exc
     c.execute("BEGIN IMMEDIATE")
-    number = _next_invoice_number(c, "invoice", int(body.issue_date[:4]))
-    cur = c.execute(
-        "INSERT INTO invoices(case_id,invoice_number,issue_date,due_date,total_piasters,notes,created_by) "
-        "VALUES(?,?,?,?,?,?,?)",
-        (cid, number, body.issue_date, body.due_date, total, body.notes, u["id"]),
-    )
-    invoice_id = int(cur.lastrowid)
-    for index, item in enumerate(lines, 1):
-        c.execute(
-            "INSERT INTO invoice_lines(invoice_id,line_number,description,quantity,unit_amount_piasters,line_total_piasters) "
-            "VALUES(?,?,?,?,?,?)",
-            (invoice_id, index, item.description.strip(), item.quantity,
-             item.unit_amount_piasters, item.total_piasters()),
+    try:
+        number = _next_invoice_number(c, "invoice", int(body.issue_date[:4]))
+        cur = c.execute(
+            "INSERT INTO invoices(case_id,invoice_number,issue_date,due_date,total_piasters,notes,created_by) "
+            "VALUES(?,?,?,?,?,?,?)",
+            (cid, number, body.issue_date, body.due_date, total, body.notes, u["id"]),
         )
-    log(c, cid, u["name"], "إصدار فاتورة " + number)
-    c.commit()
+        invoice_id = int(cur.lastrowid)
+        for index, item in enumerate(lines, 1):
+            c.execute(
+                "INSERT INTO invoice_lines(invoice_id,line_number,description,quantity,unit_amount_piasters,line_total_piasters) "
+                "VALUES(?,?,?,?,?,?)",
+                (invoice_id, index, item.description.strip(), item.quantity,
+                 item.unit_amount_piasters, item.total_piasters()),
+            )
+        log(c, cid, u["name"], "إصدار فاتورة " + number)
+        c.commit()
+    except sqlite3.Error:
+        logger.exception("Invoice creation persistence failure")
+        raise
     return {"invoice_id": invoice_id, "invoice_number": number, "total_piasters": total, "status": "unpaid"}
 
 
