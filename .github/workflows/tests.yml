@@ -240,6 +240,10 @@ jobs:
         run: PYTHONPATH=. python tests/test_answer_pincite_binding.py
       - name: Test Arabic answer/source polarity guard
         run: PYTHONPATH=. python tests/test_answer_source_polarity.py
+      - name: Test cited legal actor role binding
+        run: PYTHONPATH=. python tests/test_answer_actor_role_binding.py
+      - name: Test conditional legal claim scope binding
+        run: PYTHONPATH=. python tests/test_answer_conditional_scope_binding.py
       - name: Run unit tests
         run: python selftest.py
       - name: Run Arabic multi-case scenario tests
