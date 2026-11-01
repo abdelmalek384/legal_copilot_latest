@@ -169,3 +169,9 @@ The product cannot be called production-ready or legally approved until all appl
 - **PR #1102 merged:** the reminder adapter now quarantines transport failures after SMTP submission starts as `smtp_submission_ambiguous` and does not automatically retry. Explicit SMTP 4xx rejections remain retryable; confirmed SMTP acceptance followed by close/QUIT failure does not trigger a resend.
 - **Production operations and deployment readiness** moves from 35.0% to 35.2% for this code-level duplicate-risk control and its regression coverage. Weighted technical completion moves from **49.83 to 49.85/100** (up 0.02).
 - This is not production-delivery acceptance. Live SMTP provider staging, credentials, external scheduler monitoring, provider reconciliation and independent operational recovery review remain outstanding.
+
+## Pending review candidates — 2026-11-01
+
+- **PR #1105:** explicit Arabic answer/source polarity conflict guard. Exact-head Tests (151/151), browser acceptance, non-database safety regression, dependency audit, Bandit and CodeQL passed. Product-owner approval remains pending; the change is not included in the weighted score.
+- **PR #1106:** ten additional synthetic Egyptian colloquial retrieval scenarios across practice areas. Exact-head Tests (150/150), browser acceptance, dependency audit and CodeQL passed. Product-owner approval remains pending; the test-only change is not included in the weighted score.
+- **PR #1099:** closed as superseded by current-main PR #1106. No unique implementation was discarded.

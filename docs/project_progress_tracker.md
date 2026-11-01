@@ -70,6 +70,8 @@ The weighted scorecard has now been recalculated to **49.45/100** after #1066 an
 
 **Open PRs — not complete until merged and all required checks pass:**
 
+- **#1105:** Arabic answer/source polarity guard; all exact-head checks passed, but explicit product-owner approval remains pending.
+- **#1106:** ten additional synthetic Egyptian colloquial retrieval scenarios; all exact-head checks passed, but explicit product-owner approval remains pending.
 - **#840:** remains draft/open; Decisions 248–252 and Table 24 source comparison remain discovery-only pending lawful original Gazette access, item-specific rights evidence and primary-source comparison.
 
 **Superseded PR:**
@@ -92,6 +94,10 @@ The weighted scorecard has now been recalculated to **49.45/100** after #1066 an
 - **#1093 merged:** strict HTTPS URL validation is now aligned in the offline release validator and the runtime/review evidence validators.
 - **#1095 merged:** evaluation and human-review report writers now refuse to overwrite existing evidence files; the human-review CLI propagates exit code 2 and is covered by a subprocess regression.
 - **#1098 merged:** both evaluation report types now include exact-input SHA-256 hashes, byte counts and a UTC host-clock timestamp without exposing input paths or contents.
+- **#1102 merged:** post-submission SMTP timeouts/disconnects are quarantined as ambiguous and are not automatically retried; explicit 4xx rejections remain retryable.
+- **#1104 merged:** manual UI, accessibility, device and counsel-acceptance runbook prepared; it does not claim manual acceptance.
+- **#1105 and #1106:** exact-head checks passed; both await explicit product-owner approval and are not counted as merged progress.
+- **#1099 closed:** superseded by current-main #1106.
 - **#1034 closed as completed:** its automated browser-acceptance scope is delivered by #1078; manual lawyer/device/screen-reader acceptance remains separate.
 - **#840:** remains draft/open; Decisions 248–252 and Table 24 source comparison remain discovery-only pending lawful original Gazette access and rights review.
 
@@ -680,3 +686,11 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - Exact-head validation passed Tests (150/150 steps), non-database safety regression, Chromium acceptance, dependency security audit, Bandit and CodeQL.
 - **Issue #474 remains open:** live provider staging/credentials, external scheduler monitoring, provider reconciliation and independent operational review remain outstanding. No production reminder delivery is claimed.
 - Production operations/deployment readiness is now 35.2%; weighted technical completion is 49.85/100. Verified Egyptian legal corpus remains 6%; final Egyptian-counsel acceptance remains 0%.
+
+### Latest checkpoint — 2026-11-01 (pending review and manual acceptance preparation)
+
+- **PR #1105:** exact-head Tests (151/151), Browser acceptance, non-database safety regression, dependency audit, Bandit and CodeQL passed. It remains open pending explicit product-owner approval.
+- **PR #1106:** exact-head Tests (150/150), Browser acceptance, dependency audit and CodeQL passed. All ten fictional colloquial retrieval scenarios passed. It remains open pending explicit product-owner approval.
+- **PR #1104 merged:** manual acceptance runbook now provides the device/browser/screen-reader matrix, evidence record, firm-isolation checks and separate Egyptian-counsel sign-off procedure. Actual manual acceptance remains unperformed.
+- **PR #1099 closed:** superseded by current-main #1106.
+- **#840 remains discovery-only** pending lawful original Gazette access and rights review. #474 remains open for live SMTP/provider staging and operational review. #93/#95 remain open for human manual acceptance. #473/#886 remain open for independent security review and live storage/operations acceptance.
