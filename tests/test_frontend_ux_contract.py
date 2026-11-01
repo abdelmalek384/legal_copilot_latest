@@ -259,3 +259,6 @@ if __name__ == "__main__":
         self.assertIn("Draft — not verified by a lawyer", HTML)
         self.assertIn("Calculation steps: ", HTML)
         self.assertIn("(result.steps_ar||[]).join(' | ')", HTML)
+
+if __name__ == "__main__":
+    unittest.main()
