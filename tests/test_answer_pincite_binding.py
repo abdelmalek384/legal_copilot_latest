@@ -26,6 +26,11 @@ class AnswerPinCitationBindingTests(unittest.TestCase):
         hits = [{"text": "تقرر المادة 12 القاعدة القانونية.", "article": "12"}]
         self.assertFalse(app._answer_has_mismatched_pincites("تقرر المادة ١٢ [1].", hits))
 
+    def test_complex_recorded_locator_is_left_for_manual_review(self):
+        hits = [{"text": "تقرر المادة 12 مكرر القاعدة القانونية.", "article": "12 مكرر"}]
+        self.assertFalse(app._answer_has_mismatched_pincites(
+            "تقرر المادة 12 مكرر القاعدة القانونية [1].", hits
+        ))
     def test_article_pin_without_recorded_locator_fails_closed(self):
         hits = [{"text": "تقرر القاعدة القانونية."}]
         self.assertTrue(app._answer_has_mismatched_pincites("المادة 12 تقرر القاعدة [1].", hits))
