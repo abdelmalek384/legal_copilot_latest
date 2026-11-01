@@ -21,6 +21,8 @@ class AnswerPinCitationBindingTests(unittest.TestCase):
         hits = [{"text": "The passage is on pages 94 to 95.", "page": "94–95"}]
         self.assertFalse(app._answer_has_mismatched_pincites("راجع ص 95 [1].", hits))
         self.assertTrue(app._answer_has_mismatched_pincites("راجع ص 96 [1].", hits))
+        self.assertFalse(app._answer_has_mismatched_pincites("راجع الصفحة 95 [1].", hits))
+        self.assertTrue(app._answer_has_mismatched_pincites("راجع الصفحة 96 [1].", hits))
 
     def test_arabic_indic_article_digits_are_normalized(self):
         hits = [{"text": "تقرر المادة 12 القاعدة القانونية.", "article": "12"}]
