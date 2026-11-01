@@ -13,12 +13,13 @@ Do not use model-to-model agreement, a plausible-sounding answer, or a high auto
 Record these fields for every reviewed answer:
 
 - Stable question ID and practice area.
+- Stable `answer_id` for the exact generated answer/version being reviewed; copy it unchanged from the model-output evaluation record. Do not reuse a question ID as an answer ID or derive an identifier from personal/client information.
 - Exact question and relevant facts, using synthetic or anonymized facts only.
 - Relevant as_of_date (or explicitly record why the date is not applicable/known).
 - Exact answer text shown to the user.
 - Run/model identifier and configuration sufficient to reproduce the run, without recording secrets.
 - Retrieved source IDs and versions, cited source IDs, article/paragraph/page pin-cites, and source hashes or stable evidence references where available.
-- Stable reviewer ID matched to a separately maintained approved qualification registry, reviewer name/role, and review date.
+- Stable reviewer ID matched to a separately maintained approved qualification registry, reviewer name/role, and review date. Independent reviews of the same answer must carry the same `answer_id` and distinct reviewer IDs.
 - Per-dimension score, concise evidence-based rationale, and any critical defect.
 - Final disposition: pass_for_this_case, needs_revision, unsafe, or not_scored_insufficient_evidence.
 
