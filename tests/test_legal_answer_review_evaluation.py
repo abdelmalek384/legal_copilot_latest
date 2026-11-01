@@ -231,6 +231,72 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
         errors = validate_review(review(review_schema_version=3))
         self.assertTrue(any("review_schema_version must be 1 (legacy) or 2" in error for error in errors))
 
+
+    def test_same_answer_independent_reviewers_report_disagreement_and_adjudication(self):
+        first = review(answer_id="ANSWER-001")
+        second_scores = dict(review()["scores"])
+        second_scores["legal_correctness"] = 1
+        second_scores["source_support"] = 1
+        second = review(
+            assessment_id="ASSESS-002",
+            answer_id="ANSWER-001",
+            reviewer_id="reviewer-b",
+            reviewer_name="Reviewer B",
+            disposition="needs_revision",
+            scores=second_scores,
+        )
+        result = summarize_reviews([first, second], reviewer_registry())
+        agreement = result["reviewer_agreement"]
+        self.assertEqual(agreement["answers_with_multiple_independent_reviews"], 1)
+        self.assertEqual(agreement["answers_requiring_adjudication"], 1)
+        self.assertEqual(agreement["disposition_conflicts"], 1)
+        self.assertEqual(agreement["dimension_disagreement_counts"]["legal_correctness"], 1)
+        group = agreement["answer_groups"][0]
+        self.assertFalse(group["disposition_agreement"])
+        self.assertTrue(group["requires_adjudication"])
+        self.assertIn("legal_correctness", group["dimension_disagreements"])
+        self.assertEqual(group["review_count"], 2)
+
+    def test_insufficient_evidence_conflict_is_separate_from_disposition_conflict(self):
+        first = review(answer_id="ANSWER-002")
+        second = review(
+            assessment_id="ASSESS-002",
+            answer_id="ANSWER-002",
+            reviewer_id="reviewer-b",
+            reviewer_name="Reviewer B",
+            disposition="not_scored_insufficient_evidence",
+        )
+        result = summarize_reviews([first, second], reviewer_registry())
+        self.assertEqual(result["reviewer_agreement"]["disposition_conflicts"], 1)
+        self.assertEqual(result["reviewer_agreement"]["insufficient_evidence_conflicts"], 1)
+        self.assertEqual(result["dimension_summary"]["legal_correctness"]["scored_assessments"], 1)
+
+    def test_same_case_different_answer_ids_are_not_compared(self):
+        first = review(answer_id="ANSWER-A")
+        second = review(
+            assessment_id="ASSESS-002",
+            answer_id="ANSWER-B",
+            reviewer_id="reviewer-b",
+            reviewer_name="Reviewer B",
+            disposition="needs_revision",
+        )
+        result = summarize_reviews([first, second], reviewer_registry())
+        self.assertEqual(result["reviewer_agreement"]["answers_with_multiple_independent_reviews"], 0)
+        self.assertEqual(result["reviewer_agreement"]["answers_requiring_adjudication"], 0)
+
+    def test_same_reviewer_cannot_supply_two_independent_reviews_of_one_answer(self):
+        first = review(answer_id="ANSWER-003")
+        second = review(assessment_id="ASSESS-002", answer_id="ANSWER-003")
+        result = summarize_reviews([first, second], reviewer_registry())
+        self.assertEqual(result["valid_assessments"], 1)
+        self.assertEqual(result["invalid_assessments_excluded"], 1)
+        self.assertIn("distinct reviewers", " ".join(result["invalid_records"][0]["errors"]))
+
+    def test_answer_id_must_be_non_empty_when_provided(self):
+        self.assertTrue(any("answer_id must be a non-empty string" in error
+                            for error in validate_review(review(answer_id="  "))))
+        self.assertEqual(validate_review(review()), [])
+
     def test_missing_rationale_invalidates_record(self):
         rationales = dict(review()["rationales"])
         rationales["temporal_correctness"] = " "
