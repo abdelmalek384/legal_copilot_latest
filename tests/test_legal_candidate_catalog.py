@@ -83,6 +83,15 @@ class CandidateCatalogTests(unittest.TestCase):
         self.assertTrue(all(d["source_id"] in known for d in data["documents"]))
         self.assertTrue(all(d["candidate_status"]=="discovery_only" for d in data["documents"]))
 
+    def test_labour_law_pdf_mirror_sources_remain_permission_unknown(self):
+        data = MODULE.load_catalog()
+        sources = {item["source_id"]: item for item in data["sources"]}
+        for source_id in ("EG-ETA-LABOUR-GAZETTE", "EG-SIS-LABOUR-GAZETTE"):
+            with self.subTest(source_id=source_id):
+                self.assertIn(source_id, sources)
+                self.assertEqual(sources[source_id]["collection_permission"], "unknown")
+                self.assertEqual(sources[source_id]["commercial_reuse_permission"], "unknown")
+
     def test_labour_law_candidate_records_public_gazette_pdf_locators_without_upgrading_status(self):
         data = MODULE.load_catalog()
         labour = next(item for item in data["documents"] if item["document_id"] == "EG-LABOUR-14-2025")
