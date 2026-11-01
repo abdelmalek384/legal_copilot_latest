@@ -246,6 +246,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("/billing/payment-requests", HTML)
         self.assertIn("Bank/InstaPay transfer reference", HTML)
         self.assertIn("Do not enter card or bank credentials", HTML)
+        self.assertIn("/platform/billing/payment-requests", HTML)
+        self.assertIn("Subscription transfer review queue", HTML)
+        self.assertIn("platform_admin", HTML)
         self.assertNotIn("card_number", HTML)
 
 if __name__ == "__main__":
