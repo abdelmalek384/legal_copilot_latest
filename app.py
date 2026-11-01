@@ -1569,9 +1569,14 @@ def _answer_has_mismatched_pincites(answer, hits):
                 claims = list(pattern.finditer(norm(sentence)))
                 if not claims:
                     continue
-                expected = _parse_simple_pin_locator(hit.get(field))
-                if expected is None:
+                raw_expected = hit.get(field)
+                if raw_expected is None or isinstance(raw_expected, bool) or not str(raw_expected).strip():
                     return True
+                expected = _parse_simple_pin_locator(raw_expected)
+                if expected is None:
+                    # Complex recorded locators (e.g. "12 مكرر") are not compared by
+                    # this numeric-only guard; leave them for manual pinpoint review.
+                    continue
                 for claim in claims:
                     actual = (int(claim.group(1)), int(claim.group(2) or claim.group(1)))
                     if actual[0] < expected[0] or actual[1] > expected[1] or actual[1] < actual[0]:
