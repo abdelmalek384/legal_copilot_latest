@@ -171,6 +171,13 @@ def _ratio(numerator, denominator):
     return round(numerator / denominator, 4) if denominator else None
 
 
+def _write_report(path, rendered):
+    """Create a report without overwriting prior evaluation evidence."""
+    target = Path(path)
+    with target.open("x", encoding="utf-8", newline="\\n") as handle:
+        handle.write(rendered)
+
+
 def evaluate(question_rows, result_rows, reviewer_registry):
     question_map = {}
     for row in question_rows:
