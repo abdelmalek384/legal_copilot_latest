@@ -37,7 +37,7 @@ The input root must be an object with an events array and optional already_sent 
 
 ## Email adapter
 
-The SMTP adapter in docs/reminder_email_delivery.md supports TLS-protected SMTP with a timeout, generic message content, disabled-by-default delivery, bounded retries for likely transient failures, and sanitized error codes. Status accepted_by_smtp means only that the SMTP server accepted the submission; it is not proof of inbox delivery. A timeout may leave acceptance ambiguous and retries may duplicate a message.
+The SMTP adapter in docs/reminder_email_delivery.md supports TLS-protected SMTP with a timeout, generic message content, disabled-by-default delivery, bounded retries only before submission or after explicit transient SMTP rejection, and sanitized error codes. Transport failure after `send_message` begins becomes `smtp_submission_ambiguous` and is not automatically retried. Status `accepted_by_smtp` means the server confirmed message submission; it is not proof of inbox delivery.
 
 ## Operator-run scheduler
 
