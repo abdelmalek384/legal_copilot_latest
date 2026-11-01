@@ -357,10 +357,12 @@ class SyntheticRetrievalTests(unittest.TestCase):
         self.assertEqual([hit["id"] for hit in hits], [valid_id])
 
     def test_empty_retrieval_abstains_without_calling_the_model(self):
-        result = app.ask(
-            None, "سؤال غير موجود في بيانات الاختبار",
-            scope="verified_corpus", as_of="2026-01-01",
-        )
+        with mock.patch.object(app, "LLM") as model:
+            result = app.ask(
+                None, "سؤال غير موجود في بيانات الاختبار",
+                scope="verified_corpus", as_of="2026-01-01",
+            )
+            model.assert_not_called()
 
         self.assertFalse(result["found"])
         self.assertTrue(result["abstained"])
