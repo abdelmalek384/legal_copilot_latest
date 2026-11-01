@@ -4337,6 +4337,26 @@ def create_firm_invitation(b: InvitationCreateIn, u: dict = Depends(user)):
         firm = control.execute("SELECT status FROM firms WHERE id=?", (u["firm_id"],)).fetchone()
         if firm is None or firm["status"] != "active":
             raise HTTPException(409, "cannot invite a member to an inactive firm")
+        subscription = control.execute(
+            "SELECT status,seat_limit,trial_ends_at,paid_through FROM firm_subscriptions WHERE firm_id=?",
+            (u["firm_id"],),
+        ).fetchone()
+        if subscription is not None:
+            today = date.today().isoformat()
+            trial_expired = subscription["status"] == "trialing" and subscription["trial_ends_at"] and subscription["trial_ends_at"][:10] <= today
+            paid_expired = subscription["status"] == "active" and subscription["paid_through"] and subscription["paid_through"] < today
+            if subscription["status"] not in {"trialing","active"} or trial_expired or paid_expired:
+                raise HTTPException(402, "subscription is not active; new invitations are disabled")
+            active_seats = int(control.execute(
+                "SELECT COUNT(*) FROM firm_memberships WHERE firm_id=? AND status='active'",
+                (u["firm_id"],),
+            ).fetchone()[0])
+            pending_seats = int(control.execute(
+                "SELECT COUNT(*) FROM identity_invitations WHERE firm_id=? AND status IN ('pending','sent') AND expires_at>?",
+                (u["firm_id"], now),
+            ).fetchone()[0])
+            if active_seats + pending_seats >= int(subscription["seat_limit"]):
+                raise HTTPException(409, "firm subscription seat limit reached")
         existing_membership = control.execute(
             "SELECT fm.status FROM users x JOIN firm_memberships fm ON fm.user_id=x.id "
             "WHERE x.email_normalized=? AND fm.firm_id=?",
