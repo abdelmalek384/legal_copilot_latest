@@ -1549,10 +1549,10 @@ def _answer_has_cited_actor_role_mismatch(answer, hits):
         # Match complete Arabic role phrases. Handle ordinary attached prefixes and
         # the contracted lam+article spelling (e.g. للزوج / للعامل) explicitly.
         patterns = [
-            r"(?<![\\u0621-\\u064a])(?:و|ف|ب|ل|ك)?" + re.escape(normalized_phrase) + r"(?![\\u0621-\\u064a])"
+            r"(?<![\u0621-\u064a])(?:و|ف|ب|ل|ك)?" + re.escape(normalized_phrase) + r"(?![\u0621-\u064a])"
         ]
         if normalized_phrase.startswith("ال"):
-            patterns.append(r"(?<![\\u0621-\\u064a])" + re.escape("ل" + normalized_phrase[1:]) + r"(?![\\u0621-\\u064a])")
+            patterns.append(r"(?<![\u0621-\u064a])" + re.escape("ل" + normalized_phrase[1:]) + r"(?![\u0621-\u064a])")
         return any(re.search(pattern, normalized_text) for pattern in patterns)
 
     for raw_line in visible.splitlines():
