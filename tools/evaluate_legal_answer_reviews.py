@@ -59,6 +59,7 @@ def _report_provenance(inputs):
         "limitations": [
             "SHA-256 values identify the exact input bytes used; they do not prove authorship, reviewer qualification, or legal correctness.",
             "Input paths and input contents are intentionally omitted from this provenance block.",
+            "The UTC timestamp reflects the evaluator host clock; it is not an independent trusted timestamp or digital signature.",
         ],
     }
 
