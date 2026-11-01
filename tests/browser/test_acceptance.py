@@ -574,18 +574,20 @@ class BrowserAcceptanceTests(unittest.TestCase):
             )
             self.assertEqual(denied_delete.status, 404, denied_delete.text())
 
-        removed = self.page.request.delete(
-            self.base_url + f"/cases/{case_id}/members/{member_id}",
-            headers=headers,
-            timeout=8000,
-        )
-        self.assertEqual(removed.status, 200, removed.text())
-        after_removal = self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
-        self.assertEqual(after_removal.status, 200, after_removal.text())
-        self.assertFalse(any(row["user_id"] == member_id for row in after_removal.json()["members"]))
-        revoked = member_page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
-        self.assertEqual(revoked.status, 404, revoked.text())
-        member_context.close()
+            removed = self.page.request.delete(
+                self.base_url + f"/cases/{case_id}/members/{member_id}",
+                headers=headers,
+                timeout=8000,
+            )
+            self.assertEqual(removed.status, 200, removed.text())
+            after_removal = self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
+            self.assertEqual(after_removal.status, 200, after_removal.text())
+            self.assertFalse(any(row["user_id"] == member_id for row in after_removal.json()["members"]))
+            revoked = member_page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
+            self.assertEqual(revoked.status, 404, revoked.text())
+
+        finally:
+            member_context.close()
 
         self.page.locator("#side").get_by_role("button", name="القضايا").click()
         self.page.get_by_text("SYNTHETIC CASEFLOW PRIMARY MATTER", exact=True).wait_for(timeout=10000)
