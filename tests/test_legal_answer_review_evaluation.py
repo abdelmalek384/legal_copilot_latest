@@ -91,10 +91,19 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
             critical = review(
                 assessment_id="ASSESSMENT-PRIVATE-001",
                 case_id="CASE-PRIVATE-001",
+                answer_id="ANSWER-PRIVATE-001",
                 disposition="unsafe",
                 critical_defect=True,
                 critical_defect_categories=["unsupported_legal_claim"],
                 critical_defect_description="CONFIDENTIAL MATTER FACTS MUST NOT LEAK",
+            )
+            independent = review(
+                assessment_id="ASSESSMENT-PRIVATE-003",
+                case_id="CASE-PRIVATE-001",
+                answer_id="ANSWER-PRIVATE-001",
+                reviewer_id="reviewer-b",
+                reviewer_name="Reviewer B",
+                disposition="needs_revision",
             )
             invalid = review(
                 assessment_id="ASSESSMENT-PRIVATE-002",
@@ -103,6 +112,7 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
             )
             reviews_path.write_text(
                 json.dumps(critical, ensure_ascii=False) + "\n"
+                + json.dumps(independent, ensure_ascii=False) + "\n"
                 + json.dumps(invalid, ensure_ascii=False) + "\n",
                 encoding="utf-8",
             )
@@ -139,9 +149,12 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
             self.assertEqual(report["invalid_records"][0]["error_count"], 1)
             self.assertEqual(report["reviewer_registry_error_count"], 1)
             self.assertEqual(report["reviewer_registry_errors"], [])
+            self.assertEqual(report["reviewer_agreement"]["answers_with_multiple_independent_reviews"], 1)
+            self.assertEqual(report["reviewer_agreement"]["answer_groups"], [])
             for secret in (
-                "ASSESSMENT-PRIVATE-001", "ASSESSMENT-PRIVATE-002",
-                "CASE-PRIVATE-001", "CASE-PRIVATE-002",
+                "ASSESSMENT-PRIVATE-001", "ASSESSMENT-PRIVATE-002", "ASSESSMENT-PRIVATE-003",
+                "CASE-PRIVATE-001", "CASE-PRIVATE-002", "ANSWER-PRIVATE-001",
+                "reviewer-a", "reviewer-b",
                 "CONFIDENTIAL MATTER FACTS MUST NOT LEAK",
                 "MISMATCHED PRIVATE REVIEWER", "REGISTRY-PRIVATE-REVIEWER",
                 "PRIVATE REGISTRY NAME", "private qualification note",
