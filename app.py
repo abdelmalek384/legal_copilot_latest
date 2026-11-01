@@ -794,7 +794,6 @@ def delete_case(c, u, cid):
     # reset that transaction before taking the deletion's explicit write lock.
     if c.in_transaction:
         c.rollback()
-    c.execute("BEGIN IMMEDIATE")
     try:
         if not is_lead(c, u, cid):
             c.rollback()
