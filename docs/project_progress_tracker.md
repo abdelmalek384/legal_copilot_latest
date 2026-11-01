@@ -5,7 +5,7 @@
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.95/100 technical completion** (up 0.04 points from 49.91; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.99/100 technical completion** (up 0.04 points from 49.95; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Previous whole-product checkpoint — 2026-10-31
@@ -731,3 +731,13 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - **PR #1118 merged:** added Arabic/English candidate-inventory health and validation-issue diagnostics to the corpus dashboard, with a clear statement that the planning catalogue denominator is not legal-text availability, currentness, verified corpus coverage or counsel acceptance. Exact-head Tests, Browser acceptance, dependency audit, CodeQL and non-database safety regression passed.
 - Source-governance metadata integrity is now 9.8%; UI/accessibility automated acceptance is 45.3%. With the already merged MFA reliability increment from PR #1120 and all previously recorded changes, the weighted technical score is recalculated to **49.95/100**.
 - Verified Egyptian legal corpus remains 6%; final Egyptian-counsel acceptance remains 0%. No source was promoted and no rights were inferred.
+
+
+### Latest checkpoint — 2026-11-01 (exact pinpoint, polarity, actor and conditional-scope safeguards)
+
+- **PR #1128 merged:** answer prompts include only recorded article/page locators; conflicting explicit numeric pinpoints cause abstention. Complex locators and ambiguous multi-source assignments remain for human review.
+- **PR #1130 merged:** added a narrow guard against ten explicit Arabic legal predicate-polarity reversals in cited prose; code samples and ambiguous source polarity are excluded.
+- **PR #1131 merged:** added cited actor-role substitution and conditional-source overgeneralization guards, with shared action anchors and false-positive controls.
+- Exact-head validation for all three PRs passed Tests, Browser acceptance, dependency audit, non-database safety regression, Bandit, and Python/JavaScript CodeQL. The new regression modules are explicitly wired into CI.
+- Legal research/citation quality is 68.2%; automated testing/reliability is 69.8%. The weighted technical score is **49.99/100**. These narrow deterministic guards do not establish semantic entailment, legal correctness, or counsel approval.
+- Verified Egyptian legal corpus remains 6%; final Egyptian-counsel acceptance remains 0%. No legal source was promoted and no rights were inferred.
