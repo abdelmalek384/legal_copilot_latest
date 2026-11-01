@@ -12,12 +12,13 @@ Each record requires:
 - Unique `assessment_id`, `case_id`, `practice_area`, `reviewer_id`, `reviewer_name`, `review_date`, and `disposition`. The reviewer ID and name must match a separate approved reviewer registry. `review_date` must be a real calendar date in `YYYY-MM-DD` format; malformed disposition values are rejected without crashing the validator.
 - `scores`: all seven dimensions, each scored `0`, `1`, `2`, or `not_applicable`.
 - `rationales`: an evidence-based rationale for every dimension. A not-applicable rationale must explain why the dimension does not apply.
-- `critical_defect`: explicit boolean. If true, disposition must be `unsafe`, `critical_defect_description` is required, and `critical_defect_categories` must contain at least one unique category from the taxonomy below. Categories are reviewer-entered labels, never inferred by the evaluator. If false, the category list must be empty or omitted.
+- `review_schema_version`: use `2` for new review records. Version `1` is the legacy format and remains readable; its uncategorized critical defects are reported under `uncategorized_legacy_v1` rather than silently assigned a category.
+- `critical_defect`: explicit boolean. For version 2, if true, disposition must be `unsafe`, `critical_defect_description` is required, and `critical_defect_categories` must contain at least one unique category from the taxonomy below. Categories are reviewer-entered labels, never inferred by the evaluator. If false, the category list must be empty or omitted.
 
 Critical-defect categories:
 `unsupported_legal_claim`, `contradicted_source_or_polarity`, `wrong_legal_actor_or_role`, `overbroad_conditional_scope`, `incorrect_article_or_page_pin`, `missing_material_issue`, `temporal_or_currentness_error`, `source_authenticity_or_status`, `privacy_or_confidentiality`, `other`.
 
-The report includes a count for each category and preserves category labels on each critical-defect record. One assessment may have multiple categories, so category counts can sum to more than the number of critical defects. These are human-review findings, not automated measurements of model behavior or legal correctness.
+The report includes a count for each category and preserves category labels on each critical-defect record. A version-1 record without categories is retained as legacy evidence and counted separately; migrate it only through an explicit human re-review, not an inferred label. One assessment may have multiple categories, so category counts can sum to more than the number of critical defects. These are human-review findings, not automated measurements of model behavior or legal correctness.
 
 Dimensions:
 `legal_correctness`, `source_support`, `citation_precision`, `temporal_correctness`, `completeness_issue_spotting`, `arabic_clarity`, `uncertainty_abstention`.
