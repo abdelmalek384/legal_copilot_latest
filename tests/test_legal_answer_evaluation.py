@@ -58,10 +58,10 @@ def run_main(args):
         return main([*args, "--reviewer-registry", str(registry_path)])
 
 
-def result(qid="Q1", abstained=False, sources=None, pins=None):
+def result(qid="Q1", abstained=False, sources=None, pins=None, answer_id=None):
     return {
         "id": qid,
-        "answer_id": f"ANSWER-{qid}",
+        "answer_id": answer_id if answer_id is not None else f"ANSWER-{qid}",
         "answer": "model output",
         "abstained": abstained,
         "cited_sources": ["LAW-10"] if sources is None and not abstained else (sources or []),
