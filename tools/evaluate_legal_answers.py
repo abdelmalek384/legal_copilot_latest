@@ -174,7 +174,7 @@ def _ratio(numerator, denominator):
 def _write_report(path, rendered):
     """Create a report without overwriting prior evaluation evidence."""
     target = Path(path)
-    with target.open("x", encoding="utf-8", newline="\\n") as handle:
+    with target.open("x", encoding="utf-8", newline="\n") as handle:
         handle.write(rendered)
 
 
