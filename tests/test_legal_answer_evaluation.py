@@ -103,6 +103,23 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
                 with self.assertRaises(EvaluationError):
                     score([bad], [result()])
 
+    def test_cli_refuses_to_overwrite_existing_evaluation_evidence(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions = Path(td) / "questions.jsonl"
+            results = Path(td) / "results.jsonl"
+            report_path = Path(td) / "report.json"
+            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\n", encoding="utf-8")
+            results.write_text(json.dumps(result(), ensure_ascii=False) + "\n", encoding="utf-8")
+            original = "previous reviewed evaluation evidence\n"
+            report_path.write_text(original, encoding="utf-8")
+
+            code = run_main([
+                "--questions", str(questions), "--results", str(results), "--out", str(report_path),
+            ])
+
+            self.assertEqual(code, 2)
+            self.assertEqual(report_path.read_text(encoding="utf-8"), original)
+
     def test_cli_release_gate_passes_when_thresholds_are_met(self):
         with tempfile.TemporaryDirectory() as td:
             questions = Path(td) / "questions.jsonl"

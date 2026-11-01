@@ -1,4 +1,7 @@
+import json
+import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -57,6 +60,36 @@ def reviewer_registry():
 
 
 class LegalAnswerReviewEvaluationTests(unittest.TestCase):
+    def test_cli_refuses_to_overwrite_existing_review_summary(self):
+        with tempfile.TemporaryDirectory() as td:
+            reviews_path = Path(td) / "reviews.jsonl"
+            registry_path = Path(td) / "reviewers.json"
+            output_path = Path(td) / "summary.json"
+            reviews_path.write_text(json.dumps(review(), ensure_ascii=False) + "\n", encoding="utf-8")
+            registry_path.write_text(json.dumps(reviewer_registry(), ensure_ascii=False), encoding="utf-8")
+            original = "previous human-review summary\n"
+            output_path.write_text(original, encoding="utf-8")
+
+            completed = subprocess.run(
+                [
+                    sys.executable,
+                    str(ROOT / "tools" / "evaluate_legal_answer_reviews.py"),
+                    str(reviews_path),
+                    "--reviewer-registry",
+                    str(registry_path),
+                    "--output",
+                    str(output_path),
+                ],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(completed.returncode, 2, completed.stderr)
+            self.assertIn("evaluation refused: output already exists", completed.stderr)
+            self.assertEqual(output_path.read_text(encoding="utf-8"), original)
+
     def test_unregistered_or_pending_reviewer_is_excluded(self):
         unregistered = review(reviewer_id="reviewer-unknown")
         pending_registry = reviewer_registry()
