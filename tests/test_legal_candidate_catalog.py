@@ -96,10 +96,14 @@ class CandidateCatalogTests(unittest.TestCase):
         data = MODULE.load_catalog()
         labour = next(item for item in data["documents"] if item["document_id"] == "EG-LABOUR-14-2025")
         self.assertEqual(labour["candidate_status"], "discovery_only")
-        for article in ("Article 82", "Article 103", "Article 124", "Article 134", "Article 141"):
+        for article in ("Article 21", "Article 54", "Article 62", "Article 71", "Article 82", "Article 103", "Article 124", "Article 134", "Article 141"):
             self.assertIn(article, labour["notes"])
         self.assertIn("wording matching the candidate transcription", labour["notes"])
-        self.assertIn("Article 82 uses «الخدمات والمصنعية»", labour["notes"])
+        self.assertIn("Article 21's 0.25%", labour["notes"])
+        self.assertIn("Article 54's four-month maternity leave", labour["notes"])
+        self.assertIn("Article 62's 15/14-year thresholds", labour["notes"])
+        self.assertIn("Article 71's 5,000–150,000 EGP", labour["notes"])
+        self.assertIn("Article 82's «الخدمات والمصنعية»", labour["notes"])
         self.assertIn("Article 82 OCR mismatch", labour["notes"])
         self.assertIn("Earlier discrepancy assertions", labour["notes"])
         self.assertIn("full 311-row comparison", labour["notes"])
