@@ -1,5 +1,7 @@
 # Changelog — Legal Copilot
 
+- Added a separate, data-driven Arabic legal retrieval lexicon with conservative spelling variants and synthetic top-three retrieval regressions (PR #1148).
+
 ## Prepared update
 - Improved login form: trims/lowercases email, supports Enter-to-submit, displays clearer errors, and adds show/hide password.
 - Added `manage.py resetpw EMAIL` to reset a forgotten password safely through a hidden terminal prompt.
