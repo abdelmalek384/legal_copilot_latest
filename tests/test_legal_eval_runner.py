@@ -40,10 +40,7 @@ class LegalEvalRunnerTests(unittest.TestCase):
             "question_ar": "سؤال اختباري",
             "practice_area": "civil_law",
             "review_status": "lawyer_reviewed",
-            "reviewer_id": "reviewer-a",
             "reviewer_name": "Reviewer A",
-            "reviewer_role": "qualified_egyptian_counsel",
-            "review_evidence_url": "https://example.gov/review-record",
             "review_date": "2026-10-24",
             "expected_source_ids": ["EG-LAW-10"],
             "expected_pin_cites": [{"source_id": "EG-LAW-10", "pin_cite": "المادة 12"}],
@@ -65,19 +62,7 @@ class LegalEvalRunnerTests(unittest.TestCase):
             },
         )
 
-        reviewer_registry = {"reviewers": [{
-            "reviewer_id": "reviewer-a",
-            "display_name": "Reviewer A",
-            "status": "approved",
-            "professional_role": "qualified_egyptian_counsel",
-            "jurisdiction": "Egypt",
-            "practice_areas": ["civil_law"],
-            "qualification_basis": "Synthetic test fixture only",
-            "evidence_reference": "private-test-reference",
-            "verified_by": "test-operator",
-            "verified_on": "2026-10-24",
-        }]}
-        report = score_evaluation([question], [row], reviewer_registry=reviewer_registry)
+        report = score_evaluation([question], [row])
 
         self.assertEqual(report["reviewed_cases_scored"], 1)
         self.assertEqual(report["citation_precision"], 1.0)
