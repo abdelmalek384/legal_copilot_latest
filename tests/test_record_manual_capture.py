@@ -58,10 +58,13 @@ class RecordManualCaptureTests(unittest.TestCase):
         self.assertEqual(queue[-1]["review_status"], "pending_human_review")
         self.assertTrue(any("permission" in r for r in queue[-1]["review_reasons"]))
         result, _ = json.JSONDecoder().raw_decode(stdout)
-        audit = result["audit"]
-        self.assertEqual(audit["audit"]["article_headings_detected"], 2)
-        self.assertTrue((self.out / audit["audit_path"]).is_file())
-        self.assertTrue((self.out / audit["extracted_text_path"]).is_file())
+        self.assertEqual(result["audit"]["article_headings_detected"], 2)
+        audit_dir = self.out / "audits" / "EG-LABOUR-14-2025"
+        audit_files = list(audit_dir.glob("*.json"))
+        self.assertEqual(len(audit_files), 1)
+        audit_record = json.loads(audit_files[0].read_text(encoding="utf-8"))
+        self.assertEqual(audit_record["audit"]["article_headings_detected"], 2)
+        self.assertTrue((self.out / audit_record["extracted_text_path"]).is_file())
 
     def test_hash_matches_file(self):
         import hashlib
