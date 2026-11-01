@@ -58,9 +58,10 @@ def run_main(args):
         return main([*args, "--reviewer-registry", str(registry_path)])
 
 
-def result(qid="Q1", abstained=False, sources=None, pins=None):
+def result(qid="Q1", abstained=False, sources=None, pins=None, answer_id=None):
     return {
         "id": qid,
+        "answer_id": answer_id if answer_id is not None else f"ANSWER-{qid}",
         "answer": "model output",
         "abstained": abstained,
         "cited_sources": ["LAW-10"] if sources is None and not abstained else (sources or []),
@@ -279,6 +280,36 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
         self.assertEqual(report["overall"]["abstention_accuracy"], 1.0)
         self.assertFalse(report["semantic_legal_correctness_scored"])
         self.assertEqual(report["unreviewed_questions_excluded"], 0)
+
+
+    def test_stable_answer_id_is_propagated_and_coverage_is_reported(self):
+        report = score([approved()], [result()])
+        self.assertEqual(report["schema_version"], 2)
+        self.assertEqual(report["results"][0]["answer_id"], "ANSWER-Q1")
+        self.assertEqual(report["results_with_stable_answer_id"], 1)
+        self.assertEqual(report["results_missing_stable_answer_id"], 0)
+        self.assertEqual(report["stable_answer_id_coverage"], 1.0)
+
+    def test_legacy_result_without_answer_id_remains_scoreable_but_is_not_linkable(self):
+        legacy = result()
+        legacy.pop("answer_id")
+        report = score([approved()], [legacy])
+        self.assertIsNone(report["results"][0]["answer_id"])
+        self.assertEqual(report["results_with_stable_answer_id"], 0)
+        self.assertEqual(report["results_missing_stable_answer_id"], 1)
+        self.assertEqual(report["stable_answer_id_coverage"], 0.0)
+
+    def test_supplied_answer_id_must_be_non_empty(self):
+        for value in ("", "   ", 7, [], {}):
+            with self.subTest(answer_id=value):
+                with self.assertRaisesRegex(EvaluationError, "answer_id must be a non-empty stable identifier"):
+                    score([approved()], [dict(result(), answer_id=value)])
+
+    def test_duplicate_answer_ids_across_questions_are_rejected(self):
+        first = result("Q1", answer_id="SAME-ANSWER")
+        second = result("Q2", answer_id="SAME-ANSWER")
+        with self.assertRaisesRegex(EvaluationError, "duplicate answer_id"):
+            score([approved("Q1"), approved("Q2")], [first, second])
 
     def test_precision_penalizes_unexpected_sources_and_pin_citations(self):
         pins = [
