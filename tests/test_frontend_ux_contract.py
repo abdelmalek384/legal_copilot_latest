@@ -245,7 +245,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Generate memo skeleton", HTML)
         self.assertIn("Generate pleading skeleton", HTML)
         self.assertIn("Heading-only templates", HTML)
-        self.assertIn("lawyer", HTML.lower())
+        self.assertIn("محامٍ", HTML)
 
 if __name__ == "__main__":
     unittest.main()
