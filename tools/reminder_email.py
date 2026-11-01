@@ -90,6 +90,11 @@ def _safe_message(reminder: Mapping[str, object], recipient: str, app_url: str, 
         raise ReminderEmailError("reminder due_date must be a real calendar date") from exc
     if not isinstance(window, str) or window not in {"due_soon", "due_today", "overdue"}:
         raise ReminderEmailError("reminder window is unsupported")
+    lead_days = reminder.get("lead_days", 1)
+    if type(lead_days) is not int or not 0 <= lead_days <= 30:
+        raise ReminderEmailError("reminder lead_days is invalid")
+    if window == "due_soon" and lead_days not in {1, 3, 7}:
+        raise ReminderEmailError("upcoming reminder lead_days must be 1, 3, or 7")
     if not isinstance(app_url, str):
         raise ReminderEmailError("application URL must be HTTPS")
     try:
@@ -103,7 +108,10 @@ def _safe_message(reminder: Mapping[str, object], recipient: str, app_url: str, 
     message["To"] = recipient
     message["From"] = _validate_email(sender, "sender")
     message["Subject"] = "Legal Copilot reminder"
-    window_text = {"due_soon": "is due soon", "due_today": "is due today", "overdue": "is overdue"}[str(window)]
+    window_text = (
+        f"is due in {lead_days} days" if window == "due_soon"
+        else {"due_today": "is due today", "overdue": "is overdue"}[str(window)]
+    )
     kind_text = {"task": "A task", "deadline": "A case deadline", "session": "A session"}[str(kind)]
     message.set_content(
         f"{kind_text} {window_text} (date: {due_date}).\n\n"
