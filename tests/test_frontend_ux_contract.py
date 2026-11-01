@@ -240,5 +240,17 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("@media(max-width:420px)", HTML)
         self.assertIn("@media(forced-colors:active)", HTML)
 
+    def test_research_answers_offer_private_correction_submission(self):
+        self.assertIn("Suggest an answer correction", HTML)
+        self.assertIn("اقتراح تصحيح للإجابة", HTML)
+        self.assertIn("/answers/'+encodeURIComponent(m.answer_id)+'/corrections", HTML)
+
+    def test_admin_settings_render_private_answer_correction_review_queue(self):
+        self.assertIn("/research/corrections?status=open", HTML)
+        self.assertIn("Answer correction review queue", HTML)
+        self.assertIn("Accept", HTML)
+        self.assertIn("Reject", HTML)
+        self.assertIn("review_note", HTML)
+
 if __name__ == "__main__":
     unittest.main()
