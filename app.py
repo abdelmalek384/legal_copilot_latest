@@ -1632,16 +1632,21 @@ def _answer_has_unqualified_claim_against_conditional_source(answer, hits):
             evidence = " ".join(str(hits[index - 1].get("text") or "") for index in cited)
             normalized_evidence = norm(evidence)
             normalized_sentence = norm(sentence)
-            if not any(re.search(marker, normalized_evidence, re.IGNORECASE) for marker in _LEGAL_CONDITION_MARKERS):
-                continue
             if any(re.search(marker, normalized_evidence, re.IGNORECASE) for marker in _LEGAL_UNIVERSAL_CLAIM_MARKERS):
                 continue
             if not any(re.search(marker, normalized_sentence, re.IGNORECASE) for marker in _LEGAL_UNIVERSAL_CLAIM_MARKERS):
                 continue
             answer_terms = set(tokens(re.sub(r"\[\d+\]", " ", sentence)))
-            evidence_terms = set(tokens(evidence))
-            if len((answer_terms & evidence_terms) - _CONDITION_SCOPE_GENERIC_TERMS - _CITATION_SUPPORT_GENERIC_TERMS) >= 2:
-                return True
+            # A conditional in a different sentence of the same passage must not
+            # taint an otherwise unconditional rule. Require the condition and
+            # the shared action anchors to occur in the same source sentence/clause.
+            for evidence_sentence in re.split(r"(?<=[.!?؟؛;])\s+", evidence):
+                normalized_segment = norm(evidence_sentence)
+                if not any(re.search(marker, normalized_segment, re.IGNORECASE) for marker in _LEGAL_CONDITION_MARKERS):
+                    continue
+                evidence_terms = set(tokens(evidence_sentence))
+                if len((answer_terms & evidence_terms) - _CONDITION_SCOPE_GENERIC_TERMS - _CITATION_SUPPORT_GENERIC_TERMS) >= 2:
+                    return True
     return False
 
 def _answer_has_unanchored_citations(answer, hits):
