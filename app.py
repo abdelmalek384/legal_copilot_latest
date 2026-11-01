@@ -1589,6 +1589,61 @@ def _answer_has_cited_actor_role_mismatch(answer, hits):
                     return True
     return False
 
+_LEGAL_CONDITION_MARKERS = (
+    r"(?<![\u0621-\u064a])(?:اذا|متى|ما\s+لم|الا\s+اذا|بشرط(?:\s+ان)?|شريطه|طالما|كلما|على\s+ان|في\s+حاله)(?![\u0621-\u064a])",
+    r"\b(?:if|unless|only\s+if|provided\s+that|subject\s+to|when|in\s+the\s+event\s+that|as\s+long\s+as)\b",
+)
+_LEGAL_UNIVERSAL_CLAIM_MARKERS = (
+    r"(?<![\u0621-\u064a])(?:في\s+جميع\s+الحالات|في\s+كل\s+الاحوال|دائما|مطلقا|دون\s+استثناء|بلا\s+استثناء|باي\s+حال|على\s+الاطلاق|بلا\s+قيد|في\s+كل\s+حاله)(?![\u0621-\u064a])",
+    r"\b(?:always|in\s+all\s+cases|without\s+exception|unconditionally|regardless\s+of\s+circumstances|under\s+all\s+circumstances)\b",
+)
+_CONDITION_SCOPE_GENERIC_TERMS = set(tokens(
+    "اذا متى بشرط شريطه طالما كلما على ان في حاله جميع الحالات الاحوال دائما مطلقا دون استثناء بلا باي حال الاطلاق قيد "
+    "if unless only provided subject when event as long always without exception unconditionally regardless circumstances under all cases"
+))
+
+
+def _answer_has_unqualified_claim_against_conditional_source(answer, hits):
+    """Reject explicit universal wording when its cited source states a condition.
+
+    The guard requires a clear conditional marker in the cited evidence, an explicit
+    universal claim in the answer, no universal wording in that evidence, and at
+    least two shared non-generic content tokens. It is a narrow overgeneralization
+    screen, not clause-level semantic entailment or legal interpretation.
+    """
+    if not isinstance(answer, str) or not answer.strip() or not isinstance(hits, (list, tuple)):
+        return True
+    visible = _mask_markdown_code(answer)
+    for raw_line in visible.splitlines():
+        line = raw_line.strip()
+        if (not line or re.match(r"^#{1,6}\s+", line)
+                or re.fullmatch(r"[-*_]{3,}", line)
+                or re.fullmatch(r"\*\*[^*]{1,100}[:：]\*\*", line)):
+            continue
+        if line.endswith((":", "：")) and len(line) <= 100:
+            continue
+        for sentence in re.split(r"(?<=[.!?؟])\s+", line):
+            sentence = re.sub(r"^(?:[-*+]\s+|\d+[.)]\s+|>\s*)", "", sentence).strip()
+            cited = {int(value) for value in re.findall(r"\[(\d+)\]", sentence)}
+            if not cited:
+                continue
+            if any(index < 1 or index > len(hits) for index in cited):
+                return True
+            evidence = " ".join(str(hits[index - 1].get("text") or "") for index in cited)
+            normalized_evidence = norm(evidence)
+            normalized_sentence = norm(sentence)
+            if not any(re.search(marker, normalized_evidence, re.IGNORECASE) for marker in _LEGAL_CONDITION_MARKERS):
+                continue
+            if any(re.search(marker, normalized_evidence, re.IGNORECASE) for marker in _LEGAL_UNIVERSAL_CLAIM_MARKERS):
+                continue
+            if not any(re.search(marker, normalized_sentence, re.IGNORECASE) for marker in _LEGAL_UNIVERSAL_CLAIM_MARKERS):
+                continue
+            answer_terms = set(tokens(re.sub(r"\[\d+\]", " ", sentence)))
+            evidence_terms = set(tokens(evidence))
+            if len((answer_terms & evidence_terms) - _CONDITION_SCOPE_GENERIC_TERMS - _CITATION_SUPPORT_GENERIC_TERMS) >= 2:
+                return True
+    return False
+
 def _answer_has_unanchored_citations(answer, hits):
     """Fail closed when a cited claim has no meaningful lexical anchor in its cited passages.
 
@@ -1716,6 +1771,8 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
             ans, msg = None, "لم يظهر ارتباط لفظي كافٍ بين إحدى العبارات ومصادرها المستشهد بها؛ تُعرض المصادر فقط."
         elif _answer_has_cited_actor_role_mismatch(ans, hits):
             ans, msg = None, "قد تنسب إحدى العبارات الحق أو الالتزام إلى طرف قانوني مختلف عما يذكره المصدر؛ تُعرض المصادر فقط."
+        elif _answer_has_unqualified_claim_against_conditional_source(ans, hits):
+            ans, msg = None, "تعمم إحدى العبارات قاعدة قانونية رغم أن المصدر يقيدها بشرط؛ تُعرض المصادر فقط."
     return {"found": True, "answer": ans, "abstained": not bool(ans), "message": msg, "sources": hits, "scope": scope, "case_id": case_id, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
 
 
