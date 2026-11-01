@@ -10,7 +10,7 @@ class ReminderScheduleTests(unittest.TestCase):
         self.events = [
             {"kind": "task", "event_id": "11", "due_date": "2026-10-27", "is_complete": False},
             {"kind": "deadline", "event_id": "22", "due_date": "2026-10-26", "is_complete": False},
-            {"kind": "session", "event_id": "33", "due_date": "2026-10-25", "is_complete": False},
+            {"kind": "deadline", "event_id": "33", "due_date": "2026-10-25", "is_complete": False},
             {"kind": "task", "event_id": "44", "due_date": "2026-10-26", "is_complete": True},
             {"kind": "deadline", "event_id": "55", "due_date": "2026-10-29", "is_complete": False},
         ]
@@ -85,6 +85,36 @@ class ReminderScheduleTests(unittest.TestCase):
             build_reminder_plan(event, "user-7", self.now, "Africa/Cairo", "")
         with self.assertRaises(ReminderScheduleError):
             build_reminder_plan(event, "user-7", self.now, "Africa/Cairo", "firm-1", already_sent=[])
+
+
+    def test_multiple_deadline_lead_windows_and_session_day_of_only(self):
+        events = [
+            {"kind": "deadline", "event_id": "7", "due_date": "2026-11-02", "is_complete": False},
+            {"kind": "deadline", "event_id": "3", "due_date": "2026-10-29", "is_complete": False},
+            {"kind": "deadline", "event_id": "1", "due_date": "2026-10-27", "is_complete": False},
+            {"kind": "session", "event_id": "today", "due_date": "2026-10-26", "is_complete": False},
+            {"kind": "session", "event_id": "tomorrow", "due_date": "2026-10-27", "is_complete": False},
+        ]
+        report = build_reminder_plan(
+            events, "user-7", self.now, "Africa/Cairo", "firm-1", lead_days=(7, 3, 1)
+        )
+        self.assertEqual(report["planned_count"], 4)
+        by_id = {item["event_id"]: item for item in report["reminders"]}
+        self.assertEqual(by_id["7"]["lead_days"], 7)
+        self.assertEqual(by_id["3"]["lead_days"], 3)
+        self.assertEqual(by_id["1"]["lead_days"], 1)
+        self.assertEqual(by_id["today"]["window"], "due_today")
+        self.assertNotIn("tomorrow", by_id)
+
+    def test_same_deadline_can_have_distinct_idempotency_keys_for_each_lead_window(self):
+        event = [{"kind": "deadline", "event_id": "22", "due_date": "2026-11-02", "is_complete": False}]
+        seven = build_reminder_plan(event, "user-7", self.now, "Africa/Cairo", "firm-1", lead_days=7)
+        three = build_reminder_plan(
+            event, "user-7", datetime(2026, 10, 30, 8, 0, tzinfo=timezone.utc),
+            "Africa/Cairo", "firm-1", lead_days=3,
+        )
+        self.assertNotEqual(seven["reminders"][0]["idempotency_key"], three["reminders"][0]["idempotency_key"])
+
 
     def test_rejects_noncanonical_dates_and_bad_lead_windows(self):
         event = [{"kind": "task", "event_id": "1", "due_date": "2026-1-2", "is_complete": False}]
