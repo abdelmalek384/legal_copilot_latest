@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from tools.evaluate_legal_answer_reviews import DIMENSIONS, main, summarize_reviews, validate_review, validate_reviewer_registry
+from tools.assemble_legal_answer_evaluation import AssemblyError, assemble, main as assemble_main
 
 
 def review(**overrides):
@@ -61,6 +62,39 @@ def reviewer_registry():
             "verified_on": "2026-10-25",
         },
     ]}
+
+
+
+def machine_evaluation(results=None):
+    return {
+        "schema_version": 2,
+        "results": results if results is not None else [
+            {"id": "Q-001", "answer_id": "ans-001", "source_precision": 1.0,
+             "pin_cite_precision": 0.5, "abstention_accuracy": 1.0},
+        ],
+    }
+
+
+def linked_assessment(assessment_id, answer_id, reviewer_id, disposition="pass_for_this_case",
+                      case_id="CASE-001", critical=False, categories=None, score=2):
+    return {
+        "assessment_id": assessment_id,
+        "case_id": case_id,
+        "answer_id": answer_id,
+        "reviewer_id": reviewer_id,
+        "disposition": disposition,
+        "scores": {dimension: score for dimension in DIMENSIONS},
+        "critical_defect": critical,
+        "critical_defect_categories": categories or [],
+    }
+
+
+def human_evaluation(assessments):
+    return {
+        "schema_version": 2,
+        "valid_assessments": len(assessments),
+        "answer_assessments": assessments,
+    }
 
 
 class LegalAnswerReviewEvaluationTests(unittest.TestCase):
@@ -255,6 +289,122 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
         self.assertEqual(report["valid_assessments"], 1)
         self.assertEqual(report["invalid_assessments_excluded"], 1)
         self.assertEqual([item["answer_id"] for item in report["answer_assessments"]], ["ans-good"])
+
+
+    def test_assembler_links_machine_and_human_reviews_by_exact_answer_id(self):
+        machine = machine_evaluation([
+            {"id": "Q-001", "answer_id": "ans-001", "source_precision": 1.0},
+            {"id": "Q-002", "answer_id": None, "source_precision": 0.5},
+        ])
+        human = human_evaluation([
+            linked_assessment("A-001", "ans-001", "reviewer-a"),
+            linked_assessment(
+                "A-002", "ans-001", "reviewer-b", disposition="unsafe",
+                critical=True, categories=["contradicted_source_or_polarity"], score=1,
+            ),
+            linked_assessment("A-003", "ans-orphan", "reviewer-a"),
+            linked_assessment("A-004", None, "reviewer-b"),
+        ])
+        report = assemble(machine, human)
+        self.assertEqual(report["counts"]["linked_answers"], 1)
+        self.assertEqual(report["counts"]["machine_results_without_answer_id"], 1)
+        self.assertEqual(report["counts"]["human_assessments_without_answer_id"], 1)
+        self.assertEqual(report["counts"]["unmatched_human_answer_ids"], 1)
+        self.assertEqual(report["counts"]["answers_requiring_adjudication"], 1)
+        self.assertEqual(report["counts"]["answers_with_critical_defects"], 1)
+        self.assertEqual(report["answer_id_linkage_coverage"], 1.0)
+        linked = report["results"][0]
+        self.assertEqual(linked["human_review_status"], "linked")
+        self.assertFalse(linked["human_review"]["disposition_agreement"])
+        self.assertTrue(linked["human_review"]["insufficient_evidence_conflict"] is False)
+        self.assertEqual(
+            linked["human_review"]["critical_defect_category_counts"],
+            {"contradicted_source_or_polarity": 1},
+        )
+        self.assertTrue(linked["human_review"]["requires_follow_up"])
+        self.assertEqual(report["results"][1]["human_review_status"], "missing_answer_id")
+
+    def test_assembler_separates_insufficient_evidence_conflicts(self):
+        human = human_evaluation([
+            linked_assessment("A-001", "ans-001", "reviewer-a"),
+            linked_assessment(
+                "A-002", "ans-001", "reviewer-b",
+                disposition="not_scored_insufficient_evidence",
+            ),
+        ])
+        report = assemble(machine_evaluation(), human)
+        review = report["results"][0]["human_review"]
+        self.assertTrue(review["insufficient_evidence_conflict"])
+        self.assertTrue(review["requires_adjudication"])
+
+    def test_assembler_does_not_join_answer_id_reused_across_cases(self):
+        human = human_evaluation([
+            linked_assessment("A-001", "ans-001", "reviewer-a", case_id="CASE-001"),
+            linked_assessment("A-002", "ans-001", "reviewer-b", case_id="CASE-002"),
+        ])
+        report = assemble(machine_evaluation(), human)
+        self.assertEqual(report["counts"]["linked_answers"], 0)
+        self.assertEqual(report["counts"]["ambiguous_cross_case_answer_ids"], 1)
+        self.assertEqual(report["results"][0]["human_review_status"], "ambiguous_cross_case_answer_id")
+        self.assertIsNone(report["results"][0]["human_review"].get("dispositions"))
+
+    def test_assembler_rejects_unsupported_schemas_duplicate_ids_and_duplicate_reviewers(self):
+        with self.assertRaisesRegex(AssemblyError, "machine report must use schema_version=2"):
+            assemble({"schema_version": 1, "results": []}, human_evaluation([]))
+        with self.assertRaisesRegex(AssemblyError, "human review report must use schema_version=2"):
+            assemble(machine_evaluation(), {"schema_version": 1, "answer_assessments": [], "valid_assessments": 0})
+        duplicate_machine = machine_evaluation([
+            {"id": "Q-001", "answer_id": "ans-dup"},
+            {"id": "Q-002", "answer_id": "ans-dup"},
+        ])
+        with self.assertRaisesRegex(AssemblyError, "duplicate machine answer_id"):
+            assemble(duplicate_machine, human_evaluation([]))
+        duplicate_reviewer = human_evaluation([
+            linked_assessment("A-001", "ans-001", "reviewer-a"),
+            linked_assessment("A-002", "ans-001", "reviewer-a"),
+        ])
+        with self.assertRaisesRegex(AssemblyError, "duplicate reviewer assessment"):
+            assemble(machine_evaluation(), duplicate_reviewer)
+
+    def test_assembler_rejects_mismatched_human_assessment_count_and_empty_answer_id(self):
+        bad_count = {"schema_version": 2, "valid_assessments": 2, "answer_assessments": []}
+        with self.assertRaisesRegex(AssemblyError, "valid_assessments does not match"):
+            assemble(machine_evaluation(), bad_count)
+        bad_id = human_evaluation([linked_assessment("A-001", "   ", "reviewer-a")])
+        with self.assertRaisesRegex(AssemblyError, "answer_id must be non-empty"):
+            assemble(machine_evaluation(), bad_id)
+
+    def test_assembler_cli_records_input_hashes_and_never_overwrites(self):
+        with tempfile.TemporaryDirectory() as td:
+            machine_path = Path(td) / "machine.json"
+            human_path = Path(td) / "human.json"
+            output_path = Path(td) / "combined.json"
+            machine_bytes = json.dumps(machine_evaluation(), ensure_ascii=False).encode("utf-8")
+            human_bytes = json.dumps(
+                human_evaluation([linked_assessment("A-001", "ans-001", "reviewer-a")]),
+                ensure_ascii=False,
+            ).encode("utf-8")
+            machine_path.write_bytes(machine_bytes)
+            human_path.write_bytes(human_bytes)
+            args = [
+                "--machine-report", str(machine_path),
+                "--human-review-report", str(human_path),
+                "--out", str(output_path),
+            ]
+            self.assertEqual(assemble_main(args), 0)
+            rendered = output_path.read_text(encoding="utf-8")
+            report = json.loads(rendered)
+            self.assertEqual(
+                report["provenance"]["inputs"]["machine_report"]["sha256"],
+                hashlib.sha256(machine_bytes).hexdigest(),
+            )
+            self.assertEqual(
+                report["provenance"]["inputs"]["human_review_report"]["sha256"],
+                hashlib.sha256(human_bytes).hexdigest(),
+            )
+            self.assertNotIn(td, rendered)
+            self.assertEqual(assemble_main(args), 2)
+            self.assertEqual(output_path.read_text(encoding="utf-8"), rendered)
 
     def test_missing_rationale_invalidates_record(self):
         rationales = dict(review()["rationales"])
