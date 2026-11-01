@@ -556,12 +556,14 @@ class ProfileInitialSchemaTests(unittest.TestCase):
             db.commit()
 
             applied = apply_profile_migrations(db, "control_plane", ROOT)
-            self.assertEqual(applied, [6, 7, 8, 9, 10, 11, 12, 13, 14])
+            self.assertEqual(applied, [6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
             previous = db.execute(
                 "SELECT event_type,detail_json FROM platform_security_events"
             ).fetchone()
             self.assertEqual(previous["event_type"], "password_reset_cli")
             self.assertEqual(previous["detail_json"], '{"sessions_revoked":true}')
+            self.assertIsNotNone(db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='firm_subscriptions'").fetchone())
+            self.assertIsNotNone(db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='subscription_payment_requests'").fetchone())
             db.execute(
                 "INSERT INTO platform_security_events(event_type,detail_json) "
                 "VALUES('identity_created_cli','{}')"
