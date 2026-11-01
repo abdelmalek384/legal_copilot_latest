@@ -10,6 +10,7 @@ from collections import Counter
 from datetime import date, datetime, timedelta, timezone
 from functools import lru_cache, wraps
 from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_permission_register_ready, source_permission_evidence_ready, source_status, citation_text, research_memo, has_current_review_evidence)
+from tools.arabic_legal_matching import expand_lexicon_hints
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
     generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
@@ -475,7 +476,7 @@ def expanded_tokens(q, limit=48):
             expanded.extend(tokens(" ".join(aliases)))
     for token in original:
         expanded.extend(LEGAL_SYNONYMS.get(token, ()))
-    return list(dict.fromkeys(expanded))[:limit]
+    return expand_lexicon_hints(q, expanded, tokens, norm, limit=limit)
 
 
 def matched_surface_terms(text, expanded_terms, limit=12):
