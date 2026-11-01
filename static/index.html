@@ -315,6 +315,16 @@ const prog=c=>{const t=c.done_tasks+c.open_tasks;return h('div',{className:'bar'
 const money=n=>new Intl.NumberFormat(LANG==='ar'?'ar-EG':'en-US',{maximumFractionDigits:2}).format(Number(n)||0);
 const empty=t=>h('div',{className:'mut',textContent:t});
 function uiText(ar,en){return LANG==='ar'?ar:en}
+function openWhatsAppReminder(rawPhone,message){
+ let digits=String(rawPhone||'').replace(/[^0-9]/g,'');
+ if(digits.startsWith('00'))digits=digits.slice(2);
+ else if(digits.startsWith('0'))digits='20'+digits.slice(1);
+ if(!/^[1-9][0-9]{7,14}$/.test(digits)){
+  toast(uiText('أدخل رقم واتساب دولياً صحيحاً مع مفتاح الدولة','Enter a valid international WhatsApp number including country code'));return
+ }
+ const url='https://wa.me/'+digits+'?text='+encodeURIComponent(message);
+ window.open(url,'_blank','noopener,noreferrer');
+}
 function openPage(id,fn){PAGE=id;window.CASE_ID=null;fn()}
 function localReminderSettingKey(){return 'lc_local_reminders_enabled_'+String(ME.firm_id||'0')+'_'+String(ME.id||'0')}
 function localReminderSentKey(day){return 'lc_local_reminder_sent_'+String(ME.firm_id||'0')+'_'+String(ME.id||'0')+'_'+day}
