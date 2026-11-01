@@ -401,5 +401,20 @@ class RetrievalEvaluationTests(unittest.TestCase):
                       "--min-cases-per-practice-area", "1", "--min-citation-coverage", "1"])
             self.assertEqual(raised.exception.code, 2)
 
+    def test_retrieval_release_gate_rejects_empty_sample_and_orphan_area_thresholds(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            questions_path.write_text("", encoding="utf-8")
+            runs_path.write_text("", encoding="utf-8")
+            for args in (
+                ["--max-excluded-cases", "0"],
+                ["--min-reviewed-cases", "1", "--min-cases-per-practice-area", "1"],
+            ):
+                with self.subTest(args=args):
+                    with self.assertRaises(SystemExit) as raised:
+                        main(["--questions", str(questions_path), "--runs", str(runs_path), *args])
+                    self.assertEqual(raised.exception.code, 2)
+
 if __name__ == "__main__":
     unittest.main()
