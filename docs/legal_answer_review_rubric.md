@@ -13,6 +13,7 @@ Do not use model-to-model agreement, a plausible-sounding answer, or a high auto
 Record these fields for every reviewed answer:
 
 - Stable question ID and practice area.
+- Stable `answer_id` for the exact generated answer/version being reviewed; copy it unchanged from the model-output evaluation record. Do not reuse a question ID as an answer ID or derive an identifier from personal/client information.
 - Exact question and relevant facts, using synthetic or anonymized facts only.
 - Relevant as_of_date (or explicitly record why the date is not applicable/known).
 - Exact answer text shown to the user.
