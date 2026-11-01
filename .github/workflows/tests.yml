@@ -141,7 +141,7 @@ jobs:
       - name: Test production retrieval against fictional evidence fixtures
         run: PYTHONPATH=. python tests/test_synthetic_retrieval.py
       - name: Smoke-test evaluation report on unreviewed seeds
-        run: python tools/evaluate_retrieval_quality.py
+        run: python tools/evaluate_retrieval_quality.py --reviewer-registry tests/legal_eval/reviewer_registry.empty.example.json
       - name: Validate Phase 2 metadata-only instrument inventory
         run: python tools/validate_phase2_document_inventory.py
       - name: Test Phase 2 instrument inventory safeguards

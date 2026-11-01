@@ -25,13 +25,15 @@ The evaluator requires:
 
 - `id`, `practice_area`, and `question_ar`
 - `review_status` equal to `lawyer_reviewed` or `approved_for_evaluation`
-- `reviewer_name` and `review_date`
+- `reviewer_id`, `reviewer_name`, `reviewer_role`, and `review_date`
+- `review_evidence_url`, an HTTPS evidence reference without credentials, query strings, or fragments
+- a matching entry in the separately supplied approved Egyptian-counsel reviewer registry, including matching display name, authorized practice area, Egyptian jurisdiction, qualification basis, evidence reference, verifier and verification date
 - non-empty `expected_source_ids`
 - explicit boolean `answerable`
 - `must_abstain_if_unverified: true`
 - optional `expected_pin_cites`, as a list of objects with non-empty string `source_id` and `pin_cite` values
 
-Do not mark a question reviewed merely to make it count. Keep the seed file unlabelled until the review occurs.
+Do not mark a question reviewed merely to make it count. Keep the seed file unlabelled until the review occurs. The registry is an operator-maintained attestation, not independent identity or professional-licence verification. Registry approval alone does not prove that a reviewer actually authored a particular label; preserve the review evidence URL and source/version record for audit.
 
 ## Run record
 
@@ -68,14 +70,14 @@ Metrics are `null` when there is no eligible denominator (for example, no answer
 ## Run locally
 
 ```bash
-python tools/evaluate_retrieval_quality.py
+python tools/evaluate_retrieval_quality.py --reviewer-registry path/to/approved_reviewer_registry.json
 python tests/test_retrieval_evaluation.py
 ```
 
 For a reviewed dataset and a real run file:
 
 ```bash
-python tools/evaluate_retrieval_quality.py --questions path/to/reviewed_questions.jsonl --runs path/to/runner_output.jsonl --output evaluation-report.json
+python tools/evaluate_retrieval_quality.py --questions path/to/reviewed_questions.jsonl --runs path/to/runner_output.jsonl --reviewer-registry path/to/approved_reviewer_registry.json --output evaluation-report.json
 ```
 
 ## Synthetic end-to-end retrieval regression

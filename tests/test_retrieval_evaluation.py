@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from tools.evaluate_retrieval_quality import DEFAULT_QUESTIONS, _load_jsonl, _write_report, score_evaluation, validate_reviewed_question
+from tools.evaluate_retrieval_quality import DEFAULT_QUESTIONS, _load_jsonl, _write_report, score_evaluation as _score_evaluation, validate_reviewed_question
 
 
 def reviewed_question(**overrides):
@@ -16,7 +16,10 @@ def reviewed_question(**overrides):
         "practice_area": "civil_law",
         "question_ar": "سؤال اختباري لا يمثل استشارة قانونية",
         "review_status": "lawyer_reviewed",
+        "reviewer_id": "reviewer-a",
         "reviewer_name": "Reviewer A",
+        "reviewer_role": "qualified_egyptian_counsel",
+        "review_evidence_url": "https://example.gov/review-record",
         "review_date": "2026-10-24",
         "expected_source_ids": ["LAW-A", "LAW-B"],
         "expected_pin_cites": [
@@ -27,6 +30,25 @@ def reviewed_question(**overrides):
     }
     question.update(overrides)
     return question
+
+
+def reviewer_registry():
+    return {"reviewers": [{
+        "reviewer_id": "reviewer-a",
+        "display_name": "Reviewer A",
+        "status": "approved",
+        "professional_role": "qualified_egyptian_counsel",
+        "jurisdiction": "Egypt",
+        "practice_areas": ["civil_law"],
+        "qualification_basis": "Synthetic test fixture only",
+        "evidence_reference": "private-test-reference",
+        "verified_by": "test-operator",
+        "verified_on": "2026-10-24",
+    }]}
+
+
+def score_evaluation(questions, runs, k_values=(1, 3, 5)):
+    return _score_evaluation(questions, runs, k_values, reviewer_registry())
 
 
 class RetrievalEvaluationTests(unittest.TestCase):
@@ -210,6 +232,46 @@ class RetrievalEvaluationTests(unittest.TestCase):
         result = score_evaluation([question], [unsafe])
         self.assertEqual(result["abstention_compliance"], 0.0)
         self.assertEqual(result["unsafe_unverified_source_uses"], 1)
+
+    def test_retrieval_labels_require_approved_registry_identity_and_scope(self):
+        cases = (
+            ({"reviewer_id": "not-registered"}, "approved reviewer registry"),
+            ({"reviewer_name": "Unmatched name"}, "display_name"),
+            ({"practice_area": "criminal_law"}, "not approved for this practice_area"),
+            ({"reviewer_role": "administrator"}, "registry role"),
+            ({"review_evidence_url": "http://example.gov/review"}, "HTTPS"),
+            ({"review_evidence_url": "https://user:pass@example.gov/review"}, "HTTPS"),
+            ({"review_evidence_url": "https://example.gov/review?token=secret"}, "HTTPS"),
+            ({"review_evidence_url": "https://example.gov/review#private"}, "HTTPS"),
+            ({"review_evidence_url": "https://example.gov:/review"}, "HTTPS"),
+            ({"review_evidence_url": "https://example.gov/review\x00"}, "HTTPS"),
+            ({"review_evidence_url": "https://example.gov/review\x7f"}, "HTTPS"),
+            ({"review_date": "2999-01-01"}, "real YYYY-MM-DD"),
+        )
+        for overrides, expected_error in cases:
+            with self.subTest(overrides=overrides):
+                question = reviewed_question(**overrides)
+                result = score_evaluation([question], [])
+                self.assertEqual(result["reviewed_cases_scored"], 0)
+                self.assertIn(expected_error, " ".join(result["excluded_cases"][0]["reasons"]))
+
+    def test_retrieval_evaluator_rejects_malformed_reviewer_registry(self):
+        question = reviewed_question()
+        bad_registry = {"reviewers": [{
+            "reviewer_id": "reviewer-a",
+            "display_name": "Reviewer A",
+            "status": "approved",
+            "professional_role": "administrator",
+            "jurisdiction": "Egypt",
+            "practice_areas": ["civil_law"],
+            "qualification_basis": "test",
+            "evidence_reference": "test",
+            "verified_by": "test",
+            "verified_on": "2026-10-24",
+        }]}
+        from tools.evaluate_retrieval_quality import score_evaluation as raw_score_evaluation
+        with self.assertRaisesRegex(ValueError, "reviewer registry is invalid"):
+            raw_score_evaluation([question], [], reviewer_registry=bad_registry)
 
     def test_invalid_reviewed_labels_are_excluded(self):
         question = reviewed_question(expected_source_ids=[], reviewer_name=None)
