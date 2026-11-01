@@ -312,8 +312,8 @@ class MFAAccountSecurityTests(unittest.TestCase):
         ).fetchone()
         self.assertIsNone(recovery["used_at"])
         session = control.execute(
-            "SELECT mfa_verified FROM auth_sessions WHERE user_id=? ORDER BY created_at DESC LIMIT 1",
-            (self.user_id,),
+            "SELECT mfa_verified FROM auth_sessions WHERE token_hash=? AND user_id=?",
+            (app.sha(self.client.cookies.get("lc_session") or ""), self.user_id),
         ).fetchone()
         self.assertEqual(session["mfa_verified"], 0)
         self.assertEqual(control.execute(
