@@ -21,6 +21,21 @@ class ClaimSupportTests(unittest.TestCase):
             hits, tokens, norm, _mask_markdown_code
         ))
 
+    def test_arabic_no_expiry_claim_is_blocked_by_finite_limitation_period(self):
+        hits = [{"text": "مدة التقادم خمس سنوات."}]
+        for claim in ("الحق لا يتقادم أبدا [1].", "الدعوى لا تسقط مطلقا [1]."):
+            with self.subTest(claim=claim):
+                self.assertTrue(has_unsupported_claims(
+                    claim, hits, tokens, norm, _mask_markdown_code
+                ))
+
+    def test_faithful_arabic_limitation_paraphrase_passes(self):
+        hits = [{"text": "مدة التقادم خمس سنوات."}]
+        self.assertFalse(has_unsupported_claims(
+            "التقادم مدته خمس سنوات [1].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
+
     def test_invalid_citation_fails_closed(self):
         self.assertTrue(has_unsupported_claims(
             "The limitation period is five years [2].",
