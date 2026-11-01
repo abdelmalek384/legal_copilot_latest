@@ -1,11 +1,15 @@
+import contextlib
+import io
+import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from tools.evaluate_legal_answer_reviews import DIMENSIONS, summarize_reviews, validate_review, validate_reviewer_registry
+from tools.evaluate_legal_answer_reviews import DIMENSIONS, main, summarize_reviews, validate_review, validate_reviewer_registry
 
 
 def review(**overrides):
@@ -57,6 +61,22 @@ def reviewer_registry():
 
 
 class LegalAnswerReviewEvaluationTests(unittest.TestCase):
+    def test_cli_refuses_to_overwrite_existing_review_summary(self):
+        with tempfile.TemporaryDirectory() as td:
+            reviews_path = Path(td) / "reviews.jsonl"
+            registry_path = Path(td) / "reviewers.json"
+            output_path = Path(td) / "summary.json"
+            reviews_path.write_text(json.dumps(review(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            registry_path.write_text(json.dumps(reviewer_registry(), ensure_ascii=False), encoding="utf-8")
+            original = "previous human-review summary\\n"
+            output_path.write_text(original, encoding="utf-8")
+
+            with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+                code = main([str(reviews_path), "--reviewer-registry", str(registry_path), "--output", str(output_path)])
+
+            self.assertEqual(code, 2)
+            self.assertEqual(output_path.read_text(encoding="utf-8"), original)
+
     def test_unregistered_or_pending_reviewer_is_excluded(self):
         unregistered = review(reviewer_id="reviewer-unknown")
         pending_registry = reviewer_registry()
