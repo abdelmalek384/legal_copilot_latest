@@ -246,5 +246,10 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("window.open(url,'_blank','noopener,noreferrer')", HTML)
         self.assertIn("Client or lawyer WhatsApp number", HTML)
 
+    def test_research_answers_offer_private_correction_submission(self):
+        self.assertIn("Suggest an answer correction", HTML)
+        self.assertIn("اقتراح تصحيح للإجابة", HTML)
+        self.assertIn("/answers/'+encodeURIComponent(m.answer_id)+'/corrections", HTML)
+
 if __name__ == "__main__":
     unittest.main()
