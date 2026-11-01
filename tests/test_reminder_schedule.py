@@ -61,6 +61,26 @@ class ReminderScheduleTests(unittest.TestCase):
         self.assertEqual(report["evaluated_at_local"][:10], "2026-03-29")
         self.assertEqual(report["reminders"][0]["window"], "due_today")
 
+    def test_dst_fall_back_repeated_hour_keeps_one_local_day_idempotency_key(self):
+        event = [{"kind": "deadline", "event_id": "fall-back-1",
+                  "due_date": "2026-10-26", "is_complete": False}]
+        before_fallback = build_reminder_plan(
+            event, "user-7", datetime(2026, 10, 25, 0, 30, tzinfo=timezone.utc),
+            "Europe/Paris", "firm-1",
+        )
+        after_fallback = build_reminder_plan(
+            event, "user-7", datetime(2026, 10, 25, 1, 30, tzinfo=timezone.utc),
+            "Europe/Paris", "firm-1",
+        )
+        self.assertTrue(before_fallback["evaluated_at_local"].endswith("+02:00"))
+        self.assertTrue(after_fallback["evaluated_at_local"].endswith("+01:00"))
+        self.assertEqual(before_fallback["reminders"][0]["window"], "due_soon")
+        self.assertEqual(after_fallback["reminders"][0]["window"], "due_soon")
+        self.assertEqual(
+            before_fallback["reminders"][0]["idempotency_key"],
+            after_fallback["reminders"][0]["idempotency_key"],
+        )
+
     def test_rejects_naive_time_invalid_timezone_bad_status_and_duplicate_events(self):
         with self.assertRaises(ReminderScheduleError):
             build_reminder_plan(self.events, "user-7", datetime(2026, 10, 26), "Africa/Cairo", "firm-1")
