@@ -7,7 +7,9 @@ Malformed records are reported and excluded rather than crashing or being scored
 """
 import argparse
 import json
+import math
 import re
+import sys
 from datetime import date
 from pathlib import Path
 
@@ -330,8 +332,17 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
         if _effective_unverified_source(run) and run["abstained"] is not True:
             unsafe_unverified_uses += 1
 
+    practice_area_counts = {}
+    for question, _run in reviewed:
+        area = question["practice_area"].strip()
+        counts = practice_area_counts.setdefault(area, {"reviewed_cases": 0, "answerable_cases": 0,
+                                                          "unanswerable_cases": 0})
+        counts["reviewed_cases"] += 1
+        counts["answerable_cases" if question["answerable"] else "unanswerable_cases"] += 1
+
     return {
         "reviewed_cases_scored": len(reviewed),
+        "practice_area_counts": {area: practice_area_counts[area] for area in sorted(practice_area_counts)},
         "excluded_cases": excluded,
         "invalid_question_records": invalid_questions,
         "invalid_run_records": invalid_runs,
@@ -373,6 +384,60 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
     }
 
 
+def _retrieval_release_gate(report, args):
+    """Evaluate explicitly configured quality and benchmark-coverage thresholds."""
+    thresholds = {
+        "recall_at_5": args.min_recall_at_5,
+        "mrr_at_5": args.min_mrr_at_5,
+        "citation_precision": args.min_citation_precision,
+        "citation_coverage": args.min_citation_coverage,
+        "expected_pin_cite_recall": args.min_expected_pin_cite_recall,
+        "abstention_compliance": args.min_abstention_compliance,
+    }
+    enabled = (any(value is not None for value in thresholds.values())
+               or any(getattr(args, name) is not None for name in (
+                   "min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
+                   "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
+                   "max_excluded_cases", "max_invalid_records", "max_unsafe_unverified_source_uses")))
+    checks = []
+    def add(metric, actual, operator, threshold):
+        passed = actual is not None and (actual >= threshold if operator == ">=" else actual <= threshold)
+        checks.append({"metric": metric, "operator": operator, "threshold": threshold,
+                       "actual": actual, "passed": passed})
+
+    if args.min_reviewed_cases is not None:
+        add("reviewed_cases_scored", report["reviewed_cases_scored"], ">=", args.min_reviewed_cases)
+    if args.min_practice_areas is not None:
+        add("practice_area_count", len(report["practice_area_counts"]), ">=", args.min_practice_areas)
+    if args.min_cases_per_practice_area is not None:
+        for area, counts in report["practice_area_counts"].items():
+            add("cases_per_practice_area:" + area, counts["reviewed_cases"], ">=",
+                args.min_cases_per_practice_area)
+    if args.min_answerable_cases is not None:
+        add("answerable_reviewed_cases", report["answerable_reviewed_cases"], ">=", args.min_answerable_cases)
+    if args.min_unanswerable_cases is not None:
+        add("unanswerable_reviewed_cases", report["unanswerable_reviewed_cases"], ">=",
+            args.min_unanswerable_cases)
+    if args.min_expected_pin_cites is not None:
+        add("expected_pin_cite_count", report["expected_pin_cite_count"], ">=",
+            args.min_expected_pin_cites)
+    for metric, threshold in thresholds.items():
+        if threshold is not None:
+            actual = report["metrics"].get(metric) if metric in {"recall_at_5", "mrr_at_5"} else report.get(metric)
+            add(metric, actual, ">=", threshold)
+    if args.max_excluded_cases is not None:
+        add("excluded_cases", len(report["excluded_cases"]), "<=", args.max_excluded_cases)
+    if args.max_invalid_records is not None:
+        invalid_count = (len(report["invalid_question_records"]) + len(report["invalid_run_records"])
+                         + len(report["duplicate_question_ids"]) + len(report["duplicate_run_question_ids"]))
+        add("invalid_records_and_duplicate_ids", invalid_count, "<=", args.max_invalid_records)
+    if args.max_unsafe_unverified_source_uses is not None:
+        add("unsafe_unverified_source_uses", report["unsafe_unverified_source_uses"], "<=",
+            args.max_unsafe_unverified_source_uses)
+    return {"enabled": enabled, "passed": all(item["passed"] for item in checks) if enabled else None,
+            "checks": checks}
+
+
 def _write_report(path, rendered):
     """Create a new report without ever overwriting prior evaluation evidence."""
     target = Path(path)
@@ -380,13 +445,69 @@ def _write_report(path, rendered):
         handle.write(rendered)
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--questions", type=Path, default=DEFAULT_QUESTIONS)
     parser.add_argument("--runs", type=Path, default=DEFAULT_RUNS)
     parser.add_argument("--output", type=Path)
-    args = parser.parse_args()
+    parser.add_argument("--min-reviewed-cases", type=int)
+    parser.add_argument("--min-practice-areas", type=int)
+    parser.add_argument("--min-cases-per-practice-area", type=int)
+    parser.add_argument("--min-answerable-cases", type=int)
+    parser.add_argument("--min-unanswerable-cases", type=int)
+    parser.add_argument("--min-expected-pin-cites", type=int)
+    parser.add_argument("--min-recall-at-5", type=float)
+    parser.add_argument("--min-mrr-at-5", type=float)
+    parser.add_argument("--min-citation-precision", type=float)
+    parser.add_argument("--min-citation-coverage", type=float)
+    parser.add_argument("--min-expected-pin-cite-recall", type=float)
+    parser.add_argument("--min-abstention-compliance", type=float)
+    parser.add_argument("--max-excluded-cases", type=int)
+    parser.add_argument("--max-invalid-records", type=int)
+    parser.add_argument("--max-unsafe-unverified-source-uses", type=int)
+    args = parser.parse_args(argv)
+    for name in ("min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
+                 "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
+                 "max_excluded_cases", "max_invalid_records", "max_unsafe_unverified_source_uses"):
+        value = getattr(args, name)
+        if value is not None and value < 0:
+            parser.error("--" + name.replace("_", "-") + " must be a non-negative integer")
+    for name in ("min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
+                 "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites"):
+        value = getattr(args, name)
+        if value is not None and value < 1:
+            parser.error("--" + name.replace("_", "-") + " must be a positive integer")
+    for name in ("min_recall_at_5", "min_mrr_at_5", "min_citation_precision",
+                 "min_citation_coverage", "min_expected_pin_cite_recall", "min_abstention_compliance"):
+        value = getattr(args, name)
+        if value is not None and (not isinstance(value, (int, float)) or not math.isfinite(value)
+                                  or not 0 <= value <= 1):
+            parser.error("--" + name.replace("_", "-") + " must be a finite number between 0 and 1")
+    quality_thresholds = (args.min_recall_at_5, args.min_mrr_at_5, args.min_citation_precision,
+                          args.min_citation_coverage, args.min_expected_pin_cite_recall,
+                          args.min_abstention_compliance)
+    gate_enabled = (any(value is not None for value in quality_thresholds)
+                    or any(getattr(args, name) is not None for name in (
+                        "min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
+                        "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
+                        "max_excluded_cases", "max_invalid_records", "max_unsafe_unverified_source_uses")))
+    if gate_enabled and args.min_reviewed_cases is None:
+        parser.error("retrieval release gates require --min-reviewed-cases to prevent empty-sample passes")
+    if args.min_cases_per_practice_area is not None and args.min_practice_areas is None:
+        parser.error("--min-cases-per-practice-area requires --min-practice-areas")
+    if any(value is not None for value in quality_thresholds):
+        if args.min_reviewed_cases is None:
+            parser.error("quality thresholds require --min-reviewed-cases")
+        if args.min_practice_areas is None or args.min_cases_per_practice_area is None:
+            parser.error("quality thresholds require --min-practice-areas and --min-cases-per-practice-area")
+    if args.min_citation_coverage is not None and args.min_answerable_cases is None:
+        parser.error("--min-citation-coverage requires --min-answerable-cases")
+    if args.min_expected_pin_cite_recall is not None and args.min_expected_pin_cites is None:
+        parser.error("--min-expected-pin-cite-recall requires --min-expected-pin-cites")
+    if args.min_abstention_compliance is not None and args.min_unanswerable_cases is None:
+        parser.error("--min-abstention-compliance requires --min-unanswerable-cases")
     result = score_evaluation(_load_jsonl(args.questions), _load_jsonl(args.runs))
+    result["release_gate"] = _retrieval_release_gate(result, args)
     rendered = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
     if args.output:
         try:
@@ -395,6 +516,8 @@ def main():
             print(f"evaluation report refused: output already exists: {args.output}; choose a new path to preserve prior results", file=sys.stderr)
             return 2
     print(rendered, end="")
+    if result["release_gate"]["enabled"] and not result["release_gate"]["passed"]:
+        return 1
     return 0
 
 

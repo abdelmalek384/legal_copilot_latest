@@ -1,3 +1,5 @@
+import contextlib
+import io
 import json
 import sys
 import tempfile
@@ -7,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from tools.evaluate_retrieval_quality import DEFAULT_QUESTIONS, _load_jsonl, _write_report, score_evaluation, validate_reviewed_question
+from tools.evaluate_retrieval_quality import DEFAULT_QUESTIONS, _load_jsonl, _write_report, main, score_evaluation, validate_reviewed_question
 
 
 def reviewed_question(**overrides):
@@ -316,6 +318,126 @@ class RetrievalEvaluationTests(unittest.TestCase):
         self.assertEqual(result["answerable_reviewed_cases"], 0)
         self.assertEqual(result["abstention_compliance"], 1.0)
 
+
+    def test_retrieval_release_gate_passes_with_balanced_reviewed_cohorts(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            q1 = reviewed_question(id="Q-ANSWERABLE")
+            q2 = reviewed_question(id="Q-UNANSWERABLE", answerable=False, expected_pin_cites=[])
+            questions_path.write_text("".join(json.dumps(q, ensure_ascii=False) + "\n" for q in (q1, q2)), encoding="utf-8")
+            runs = [
+                {"question_id": "Q-ANSWERABLE", "retrieved_source_ids": ["LAW-A", "LAW-B"],
+                 "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
+                 "source_summary": [{"source_id": "LAW-A", "source_status": "verified_operative_text"}],
+                 "abstained": False, "used_unverified_source": False},
+                {"question_id": "Q-UNANSWERABLE", "retrieved_source_ids": ["LAW-A", "LAW-B"],
+                 "citations": [], "abstained": True, "used_unverified_source": False},
+            ]
+            runs_path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in runs), encoding="utf-8")
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                code = main([
+                    "--questions", str(questions_path), "--runs", str(runs_path),
+                    "--min-reviewed-cases", "2", "--min-practice-areas", "1",
+                    "--min-cases-per-practice-area", "2", "--min-answerable-cases", "1",
+                    "--min-unanswerable-cases", "1", "--min-expected-pin-cites", "1",
+                    "--min-recall-at-5", "1", "--min-mrr-at-5", "1",
+                    "--min-citation-precision", "1", "--min-citation-coverage", "1",
+                    "--min-expected-pin-cite-recall", "1", "--min-abstention-compliance", "1",
+                    "--max-excluded-cases", "0", "--max-invalid-records", "0",
+                    "--max-unsafe-unverified-source-uses", "0",
+                ])
+            self.assertEqual(code, 0)
+            report = json.loads(output.getvalue())
+            self.assertTrue(report["release_gate"]["passed"])
+            self.assertEqual(report["practice_area_counts"]["civil_law"]["answerable_cases"], 1)
+            self.assertEqual(report["practice_area_counts"]["civil_law"]["unanswerable_cases"], 1)
+
+    def test_retrieval_release_gate_fails_on_low_recall_missing_citations_and_unsafe_abstention(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            q1 = reviewed_question(id="Q-ANSWERABLE")
+            q2 = reviewed_question(id="Q-UNANSWERABLE", answerable=False, expected_pin_cites=[])
+            questions_path.write_text("".join(json.dumps(q, ensure_ascii=False) + "\n" for q in (q1, q2)), encoding="utf-8")
+            runs = [
+                {"question_id": "Q-ANSWERABLE", "retrieved_source_ids": [], "citations": [],
+                 "abstained": False, "used_unverified_source": False},
+                {"question_id": "Q-UNANSWERABLE", "retrieved_source_ids": ["LAW-A", "LAW-B"], "citations": [],
+                 "abstained": False, "used_unverified_source": True},
+            ]
+            runs_path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in runs), encoding="utf-8")
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                code = main([
+                    "--questions", str(questions_path), "--runs", str(runs_path),
+                    "--min-reviewed-cases", "2", "--min-practice-areas", "1",
+                    "--min-cases-per-practice-area", "2", "--min-answerable-cases", "1",
+                    "--min-unanswerable-cases", "1", "--min-expected-pin-cites", "1",
+                    "--min-recall-at-5", "1", "--min-citation-coverage", "1",
+                    "--min-expected-pin-cite-recall", "1", "--min-abstention-compliance", "1",
+                    "--max-excluded-cases", "0", "--max-unsafe-unverified-source-uses", "0",
+                ])
+            self.assertEqual(code, 1)
+            report = json.loads(output.getvalue())
+            self.assertFalse(report["release_gate"]["passed"])
+            checks = {item["metric"]: item for item in report["release_gate"]["checks"]}
+            for metric in ("recall_at_5", "citation_coverage", "expected_pin_cite_recall",
+                           "abstention_compliance", "unsafe_unverified_source_uses"):
+                self.assertFalse(checks[metric]["passed"])
+
+    def test_retrieval_release_threshold_requires_its_matching_cohort_gate(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            questions_path.write_text(json.dumps(reviewed_question()) + "\n", encoding="utf-8")
+            runs_path.write_text(json.dumps({
+                "question_id": "Q-TEST-001", "retrieved_source_ids": ["LAW-A"],
+                "citations": [], "abstained": False, "used_unverified_source": False,
+            }) + "\n", encoding="utf-8")
+            with self.assertRaises(SystemExit) as raised:
+                main(["--questions", str(questions_path), "--runs", str(runs_path),
+                      "--min-reviewed-cases", "1", "--min-practice-areas", "1",
+                      "--min-cases-per-practice-area", "1", "--min-citation-coverage", "1"])
+            self.assertEqual(raised.exception.code, 2)
+
+    def test_retrieval_release_gate_rejects_empty_sample_and_orphan_area_thresholds(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            questions_path.write_text("", encoding="utf-8")
+            runs_path.write_text("", encoding="utf-8")
+            for args in (
+                ["--max-excluded-cases", "0"],
+                ["--min-reviewed-cases", "1", "--min-cases-per-practice-area", "1"],
+            ):
+                with self.subTest(args=args):
+                    with self.assertRaises(SystemExit) as raised:
+                        main(["--questions", str(questions_path), "--runs", str(runs_path), *args])
+                    self.assertEqual(raised.exception.code, 2)
+
+    def test_retrieval_release_gate_fails_on_malformed_run_records(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            questions_path.write_text(json.dumps(reviewed_question()) + "\n", encoding="utf-8")
+            runs_path.write_text(json.dumps({
+                "question_id": "Q-TEST-001", "retrieved_source_ids": "LAW-A",
+                "citations": [], "abstained": False, "used_unverified_source": False,
+            }) + "\n", encoding="utf-8")
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                code = main([
+                    "--questions", str(questions_path), "--runs", str(runs_path),
+                    "--min-reviewed-cases", "1", "--max-invalid-records", "0",
+                ])
+            self.assertEqual(code, 1)
+            report = json.loads(output.getvalue())
+            check = next(item for item in report["release_gate"]["checks"]
+                         if item["metric"] == "invalid_records_and_duplicate_ids")
+            self.assertEqual(check["actual"], 1)
+            self.assertFalse(check["passed"])
 
 if __name__ == "__main__":
     unittest.main()
