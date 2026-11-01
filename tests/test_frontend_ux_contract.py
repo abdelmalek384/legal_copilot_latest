@@ -240,5 +240,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("@media(max-width:420px)", HTML)
         self.assertIn("@media(forced-colors:active)", HTML)
 
+    def test_subscription_settings_use_transfer_reference_not_card_credentials(self):
+        self.assertIn("/billing/subscription", HTML)
+        self.assertIn("/billing/trial", HTML)
+        self.assertIn("/billing/payment-requests", HTML)
+        self.assertIn("Bank/InstaPay transfer reference", HTML)
+        self.assertIn("Do not enter card or bank credentials", HTML)
+        self.assertNotIn("card_number", HTML)
+
 if __name__ == "__main__":
     unittest.main()
