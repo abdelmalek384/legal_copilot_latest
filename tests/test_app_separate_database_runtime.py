@@ -5025,5 +5025,113 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             app._research_context_for_scope(legacy, "verified_corpus", None)
         )
 
+    def test_answer_correction_queue_is_private_reviewable_and_firm_scoped(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        conversation = self._mutate("post", "/research/conversations")
+        self.assertEqual(conversation.status_code, 200, conversation.text)
+        conversation_id = conversation.json()["id"]
+        answer_id = "ans_" + ("A" * 32)
+        malformed = self._mutate(
+            "post",
+            f"/research/conversations/{conversation_id}/answers/not-an-answer-id/corrections",
+            json={"category": "other", "correction_text": "Malformed answer identifiers are rejected."},
+        )
+        self.assertEqual(malformed.status_code, 404, malformed.text)
+
+        context_a = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_a_db = self.runtime.firm_connection(context_a)
+        firm_a_db.execute(
+            "INSERT INTO research_messages(conversation_id,role,content,message_json) "
+            "VALUES(?, 'assistant', ?, ?)",
+            (conversation_id, "Synthetic answer excerpt", json.dumps({"answer_id": answer_id})),
+        )
+        firm_a_db.commit()
+
+        submitted = self._mutate(
+            "post",
+            f"/research/conversations/{conversation_id}/answers/{answer_id}/corrections",
+            json={
+                "category": "citation",
+                "correction_text": "The answer cites the wrong article; please verify the source.",
+            },
+        )
+        self.assertEqual(submitted.status_code, 201, submitted.text)
+        correction_id = submitted.json()["id"]
+        duplicate = self._mutate(
+            "post",
+            f"/research/conversations/{conversation_id}/answers/{answer_id}/corrections",
+            json={
+                "category": "citation",
+                "correction_text": "A second open correction for the same answer.",
+            },
+        )
+        self.assertEqual(duplicate.status_code, 409, duplicate.text)
+
+        queue = self.client.get("/research/corrections")
+        self.assertEqual(queue.status_code, 200, queue.text)
+        self.assertEqual(len(queue.json()), 1)
+        self.assertEqual(queue.json()[0]["id"], correction_id)
+        self.assertEqual(queue.json()[0]["answer_id"], answer_id)
+        self.assertEqual(queue.json()[0]["reporter_user_id"], self.user_id)
+
+        reviewed = self._mutate(
+            "patch",
+            f"/research/corrections/{correction_id}",
+            json={"status": "accepted", "review_note": "Confirmed; update the citation."},
+        )
+        self.assertEqual(reviewed.status_code, 200, reviewed.text)
+        self.assertEqual(reviewed.json()["status"], "accepted")
+        repeated_review = self._mutate(
+            "patch",
+            f"/research/corrections/{correction_id}",
+            json={"status": "rejected", "review_note": "Conflicting second decision."},
+        )
+        self.assertEqual(repeated_review.status_code, 409, repeated_review.text)
+        self.assertEqual(
+            firm_a_db.execute(
+                "SELECT COUNT(*) FROM answer_correction_events WHERE correction_id=?",
+                (correction_id,),
+            ).fetchone()[0],
+            2,
+        )
+        with self.assertRaises(sqlite3.IntegrityError):
+            firm_a_db.execute(
+                "UPDATE answer_correction_events SET note='tampered' WHERE correction_id=?",
+                (correction_id,),
+            )
+        firm_a_db.rollback()
+
+        # A separate firm admin sees an empty queue and cannot guess Firm A's ID.
+        firm_c, _ = self.runtime.provision_firm("Firm C")
+        firm_c_owner = self.runtime.create_initial_firm_owner(
+            firm_c, "Firm C Owner", "firm-c-owner@example.test", app.hash_pw(self.password)
+        )
+        client_b = TestClient(app.app)
+        try:
+            login_b = client_b.post(
+                "/login", json={"email": "firm-c-owner@example.test", "password": self.password}
+            )
+            self.assertEqual(login_b.status_code, 200, login_b.text)
+            self.assertEqual(client_b.get("/research/corrections").json(), [])
+            missing = client_b.get(f"/research/corrections?status=open")
+            self.assertEqual(missing.status_code, 200, missing.text)
+            foreign = client_b.patch(
+                f"/research/corrections/{correction_id}",
+                headers={"X-CSRF-Token": client_b.cookies.get("lc_csrf") or ""},
+                json={"status": "rejected", "review_note": "Must not cross firm boundary."},
+            )
+            self.assertEqual(foreign.status_code, 404, foreign.text)
+        finally:
+            client_b.close()
+
+        # The existing identity is a non-admin in Firm B and cannot inspect the queue.
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        denied = self.client.get("/research/corrections")
+        self.assertEqual(denied.status_code, 403, denied.text)
+
 if __name__ == "__main__":
     unittest.main()
