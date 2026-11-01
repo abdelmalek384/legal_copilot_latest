@@ -145,6 +145,38 @@
       "permission_evidence": "The official National Elections Authority digital-library page identifies the Constitution as the January 2014 Constitution amended by the 2019 referendum, links to a 63-page PDF at https://www.elections.eg/images/pdfs/laws/Constitution_2014.pdf, and displays the footer 'All rights reserved to the National Elections Authority'. This is a rights notice, not a licence. No permission for local archiving, text extraction, indexing, commercial use, excerpt display or redistribution was established.",
       "official_pdf_url": "https://www.elections.eg/images/pdfs/laws/Constitution_2014.pdf",
       "access_evidence": "On 2026-10-31 the official NEA digital-library page was opened and its Constitution link followed to the official-hosted 63-page PDF. The catalogue description explicitly identifies the 2014 Constitution as amended by the 2019 referendum. No PDF bytes or SHA-256 were stored; no Gazette-page comparison, later-amendment/currentness review, or permission review was completed. The NEA page footer states all rights reserved."
+    },
+    {
+      "source_id": "EG-ETA-LABOUR-GAZETTE",
+      "authority": "Egyptian Tax Authority, Arab Republic of Egypt",
+      "source_page": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+      "material_types": [
+        "Official Gazette issue 18 (تابع), 2025",
+        "Labour Law 14/2025 PDF"
+      ],
+      "access_status": "public_government_hosted_pdf_locator_observed; terms_not_reviewed; reuse_permission_not_established",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": null,
+      "required_next_action": "Use as a public source locator for manual comparison only. Review applicable site terms and source-specific rights with qualified Egyptian counsel. Do not infer collection, indexing, display, or commercial-reuse permission from public accessibility."
+    },
+    {
+      "source_id": "EG-SIS-LABOUR-GAZETTE",
+      "authority": "Egyptian State Information Service, Arab Republic of Egypt",
+      "source_page": "https://sis.gov.eg/media/760267/القانون-رقم-14-لسنة-2025-بإصدار-قانون-العمل.pdf",
+      "material_types": [
+        "Official Gazette issue 18 (تابع), 2025",
+        "Labour Law 14/2025 PDF"
+      ],
+      "access_status": "public_government_hosted_pdf_locator_observed; terms_not_reviewed; reuse_permission_not_established",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": null,
+      "required_next_action": "Use as a public source locator for manual comparison only. Review applicable site terms and source-specific rights with qualified Egyptian counsel. Do not infer collection, indexing, display, or commercial-reuse permission from public accessibility."
     }
   ],
   "documents": [
