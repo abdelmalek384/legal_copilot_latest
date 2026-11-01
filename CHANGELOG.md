@@ -3,6 +3,7 @@
 - Added a separate, data-driven Arabic legal retrieval lexicon with conservative spelling variants and synthetic top-three retrieval regressions (PR #1148).
 - Added fictional fixture-only legal-ingestion tests for manual-capture hash integrity, article comparison, numeric mismatch detection, and commencement-date extraction (PR #1151).
 - Added a policy proposal for a separately gated, production-disabled source-matched/unreviewed trust tier without weakening existing lawyer-approval gates (PR #1150).
+- Added an opt-in, fail-closed factual claim-support check for cited answers, including finite-period contradiction tests; disabled by default (PR #1154).
 
 ## Prepared update
 - Improved login form: trims/lowercases email, supports Enter-to-submit, displays clearer errors, and adds show/hide password.
