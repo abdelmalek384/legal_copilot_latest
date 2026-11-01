@@ -530,7 +530,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertIn("لم يُسترجع أي نص قانوني", discovery)
         self.assertNotIn(sentinel, discovery)
 
-    def test_research_inspector_scope_and_empty_state_are_keyboard_operable(self) -> None:
+    def test_z_research_inspector_scope_and_empty_state_are_keyboard_operable(self) -> None:
         self.login(self.state["owner_a_email"])
         research_nav = self.page.locator("#side").get_by_role("button", name="البحث القانوني")
         research_nav.focus()
