@@ -5071,6 +5071,20 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(detail.json()["outstanding_piasters"], 20100)
         self.assertEqual(len(detail.json()["lines"]), 2)
         self.assertEqual(len(detail.json()["payments"]), 1)
+        firm_context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        tenant_db = self.runtime.firm_connection(firm_context)
+        with self.assertRaises(sqlite3.IntegrityError):
+            tenant_db.execute(
+                "UPDATE invoice_payments SET amount_piasters=9999 WHERE invoice_id=?",
+                (payload["invoice_id"],),
+            )
+        tenant_db.rollback()
+        with self.assertRaises(sqlite3.IntegrityError):
+            tenant_db.execute(
+                "DELETE FROM invoice_receipts WHERE payment_id=?",
+                (detail.json()["payments"][0]["id"],),
+            )
+        tenant_db.rollback()
 
         printed = self.client.get(f"/invoices/{payload['invoice_id']}/print")
         self.assertEqual(printed.status_code, 200, printed.text)
