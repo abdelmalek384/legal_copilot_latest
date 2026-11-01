@@ -71,7 +71,6 @@ The weighted scorecard has now been recalculated to **49.45/100** after #1066 an
 **Open PRs — not complete until merged and all required checks pass:**
 
 - **#840:** remains draft/open; Decisions 248–252 and Table 24 source comparison remain discovery-only pending lawful original Gazette access, item-specific rights evidence and primary-source comparison.
-- **#1097:** this current-main scorecard/tracker reconciliation is in review; it records only merged work and keeps legal corpus and counsel acceptance percentages unchanged.
 
 **Superseded PR:**
 
@@ -91,7 +90,9 @@ The weighted scorecard has now been recalculated to **49.45/100** after #1066 an
 - **#1078 merged:** synthetic browser acceptance passed 6/6 tests on the exact head; the full 1,391-test workflow, CodeQL, Bandit, dependency audit and non-database safety regression passed. This is automated acceptance only; manual lawyer/device/screen-reader/accessibility acceptance remains open.
 - **#1057 and #1068:** closed as superseded by #1078; no unique implementation was discarded.
 - **#1093 merged:** strict HTTPS URL validation is now aligned in the offline release validator and the runtime/review evidence validators.
-- **#1097:** scorecard/tracker reconciliation is the current documentation review path.
+- **#1095 merged:** evaluation and human-review report writers now refuse to overwrite existing evidence files; the human-review CLI propagates exit code 2 and is covered by a subprocess regression.
+- **#1098 merged:** both evaluation report types now include exact-input SHA-256 hashes, byte counts and a UTC host-clock timestamp without exposing input paths or contents.
+- **#1034 closed as completed:** its automated browser-acceptance scope is delivered by #1078; manual lawyer/device/screen-reader acceptance remains separate.
 - **#840:** remains draft/open; Decisions 248–252 and Table 24 source comparison remain discovery-only pending lawful original Gazette access and rights review.
 
 ### Current non-database priorities
@@ -659,3 +660,10 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - **Current technical completion: 49.78/100**, up 0.18 from 49.60. This reflects the latest-event audit/permission/release-gate consistency and merged automated browser acceptance.
 - **Verified Egyptian legal corpus remains 6%; final Egyptian-counsel acceptance remains 0%.** No legal instrument was newly verified, no restricted source was acquired, and no reuse permission was inferred.
 - Manual physical-device, screen-reader, accessibility and lawyer-workflow acceptance remain outstanding. PR #840 remains discovery-only pending lawful source access and rights review.
+
+### Latest checkpoint — 2026-11-01 (evaluation evidence integrity)
+
+- **#1095 merged:** legal-answer evaluation and qualified-human review summaries now use exclusive file creation. Existing report paths are refused with exit code 2; regression coverage verifies the existing evidence remains unchanged. The human-review evaluator's command-line entry point now propagates that exit status.
+- **#1098 merged:** evaluation reports bind themselves to the exact input bytes used by recording SHA-256 and byte size for question seeds, model results, review records and reviewer registries. Reports include a UTC generation timestamp, omit local paths and raw inputs, and explicitly state that hashes are not proof of authorship/qualification/correctness and that the timestamp is not a trusted timestamp.
+- **#1034 closed as completed:** merged #1078 satisfies the automated browser-test scope. Manual lawyer, screen-reader, physical-device and visual accessibility acceptance remain separate and outstanding.
+- **No weighted-score recalculation:** these changes improve evaluation-evidence integrity and reproducibility; they do not establish new legal correctness, expand the verified corpus or complete counsel acceptance.
