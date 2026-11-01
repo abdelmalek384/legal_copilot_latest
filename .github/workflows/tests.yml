@@ -322,5 +322,7 @@ jobs:
         run: PYTHONPATH=. python tests/test_audit_article_rows.py
       - name: Test exact piaster money helpers
         run: PYTHONPATH=. python tests/test_money.py
+      - name: Test integer-piaster invoice ledger
+        run: PYTHONPATH=. python tests/test_invoice_ledger.py
       - name: Guard that every test file runs in CI or is explicitly tracked
         run: PYTHONPATH=. python tests/test_ci_runs_all_tests.py
