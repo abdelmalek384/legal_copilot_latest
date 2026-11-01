@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from tools.evaluate_retrieval_quality import DEFAULT_QUESTIONS, _load_jsonl, _write_report, score_evaluation, validate_reviewed_question
+from tools.evaluate_retrieval_quality import DEFAULT_QUESTIONS, _load_jsonl, _write_report, score_evaluation as _score_evaluation, validate_reviewed_question
 
 
 def reviewed_question(**overrides):
@@ -16,7 +16,10 @@ def reviewed_question(**overrides):
         "practice_area": "civil_law",
         "question_ar": "سؤال اختباري لا يمثل استشارة قانونية",
         "review_status": "lawyer_reviewed",
+        "reviewer_id": "reviewer-a",
         "reviewer_name": "Reviewer A",
+        "reviewer_role": "qualified_egyptian_counsel",
+        "review_evidence_url": "https://example.gov/review-record",
         "review_date": "2026-10-24",
         "expected_source_ids": ["LAW-A", "LAW-B"],
         "expected_pin_cites": [
@@ -27,6 +30,25 @@ def reviewed_question(**overrides):
     }
     question.update(overrides)
     return question
+
+
+def reviewer_registry():
+    return {"reviewers": [{
+        "reviewer_id": "reviewer-a",
+        "display_name": "Reviewer A",
+        "status": "approved",
+        "professional_role": "qualified_egyptian_counsel",
+        "jurisdiction": "Egypt",
+        "practice_areas": ["civil_law"],
+        "qualification_basis": "Synthetic test fixture only",
+        "evidence_reference": "private-test-reference",
+        "verified_by": "test-operator",
+        "verified_on": "2026-10-24",
+    }]}
+
+
+def score_evaluation(questions, runs, k_values=(1, 3, 5)):
+    return _score_evaluation(questions, runs, k_values, reviewer_registry())
 
 
 class RetrievalEvaluationTests(unittest.TestCase):
