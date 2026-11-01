@@ -5025,5 +5025,28 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             app._research_context_for_scope(legacy, "verified_corpus", None)
         )
 
+    def test_admin_setup_health_is_secret_free_and_admin_only(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        health = self.client.get("/admin/setup-health")
+        self.assertEqual(health.status_code, 200, health.text)
+        payload = health.json()
+        self.assertIn(payload["status"], {"ready", "warning", "blocked"})
+        self.assertEqual(
+            payload["counts"]["passed"] + payload["counts"]["warnings"] + payload["counts"]["errors"],
+            len(payload["checks"]),
+        )
+        self.assertIn("live SMTP", payload["note"])
+        self.assertEqual(payload["mfa"]["active_firm_admins"], 1)
+        self.assertEqual(payload["mfa"]["missing_firm_admins"], 1)
+        self.assertNotIn(self.admin_token, health.text)
+        self.assertNotIn("password_hash", health.text)
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        denied = self.client.get("/admin/setup-health")
+        self.assertEqual(denied.status_code, 403, denied.text)
+
 if __name__ == "__main__":
     unittest.main()

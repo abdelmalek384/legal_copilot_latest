@@ -240,5 +240,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("@media(max-width:420px)", HTML)
         self.assertIn("@media(forced-colors:active)", HTML)
 
+    def test_admin_settings_include_setup_health_panel(self):
+        self.assertIn("/admin/setup-health", HTML)
+        self.assertIn("Setup health", HTML)
+        self.assertIn("صحة الإعداد والتشغيل", HTML)
+        self.assertIn("Configuration checks only", HTML)
+
 if __name__ == "__main__":
     unittest.main()
