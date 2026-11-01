@@ -9,6 +9,7 @@
 - Expanded synthetic Egyptian-colloquial retrieval regressions to 51 top-three queries with six competing passages each, ten out-of-corpus abstention cases, and a no-model-call check for empty retrieval (PR #1165).
 - Added public government-hosted Gazette PDF locators for Labour Law 14/2025 while preserving discovery-only status and explicitly recording the restricted DSpace copy (PR #1166).
 - Documented the Article 140/141 distinction for Egyptian official legal documents and creative compilations; source permissions and release gates remain unchanged pending counsel review (PR #1167).
+- Registered ETA and SIS Gazette sources with unknown permissions and required manual-capture source IDs to match the captured URL host, preventing false provenance attribution (PR #1169).
 
 ## Prepared update
 - Improved login form: trims/lowercases email, supports Enter-to-submit, displays clearer errors, and adds show/hide password.
