@@ -18,14 +18,14 @@ This workflow is evidence-preserving and deliberately separates acquisition, tex
    python tools/record_manual_capture.py \
      --file ~/Downloads/official_gazette.pdf \
      --document-id EG-LABOUR-14-2025 \
-     --source-url "https://official-source.example/document-page" \
+     --source-url "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf" \
      --captured-by "Reviewer name" \
      --capture-method browser_download \
      --retrieved-on YYYY-MM-DD \
      --gazette-issue "Issue as printed" \
      --dry-run
    ```
-   Review the dry-run output, then repeat without `--dry-run` to record the capture. The recorder does not fetch the URL. Its output remains pending human review and does not grant permission to store, index, display, or reuse the content.
+   Review the dry-run output, then repeat without `--dry-run` to record the capture. The recorder does not fetch the URL. If the capture URL host differs from the document's default source, select the registered matching source with `--source-id`; the recorder rejects a source-ID/host mismatch. Its output remains pending human review and does not grant permission to store, index, display, or reuse the content.
 
 ## 3. Preserve provenance and extract text
 

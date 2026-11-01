@@ -49,9 +49,11 @@ EXT_TO_TYPE = {
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 
-def load_catalog_documents(path: Path = CATALOG) -> dict:
+def load_catalog(path: Path = CATALOG) -> tuple[dict, dict]:
     data = json.loads(path.read_text(encoding="utf-8"))
-    return {d["document_id"]: d for d in data.get("documents", []) if isinstance(d, dict) and d.get("document_id")}
+    documents = {d["document_id"]: d for d in data.get("documents", []) if isinstance(d, dict) and d.get("document_id")}
+    sources = {s["source_id"]: s for s in data.get("sources", []) if isinstance(s, dict) and s.get("source_id")}
+    return documents, sources
 
 
 def validate_reference_url(url: str) -> str:
@@ -112,12 +114,19 @@ def record_capture(args) -> dict:
     if retrieved > dt.date.today():
         raise ValueError("--retrieved-on cannot be in the future")
 
-    catalog = load_catalog_documents()
-    doc = catalog.get(args.document_id)
+    documents, sources = load_catalog()
+    doc = documents.get(args.document_id)
     if doc is None and not args.source_id:
         raise ValueError(f"document id {args.document_id!r} is not in docs/legal_document_candidates.json; "
-                         "add it to the catalog first, or pass --source-id to record it anyway")
-    source_id = args.source_id or doc["source_id"]
+                         "add it to the catalog first, or pass a registered --source-id")
+    source_id = args.source_id or (doc or {}).get("source_id")
+    source = sources.get(source_id)
+    if source is None:
+        raise ValueError(f"source id {source_id!r} is not registered in docs/legal_document_candidates.json")
+    registered_host = validate_reference_url(source.get("source_page", ""))
+    if host != registered_host:
+        raise ValueError(f"source URL host {host!r} does not match registered source {source_id!r} host {registered_host!r}; "
+                         "select the correct registered --source-id")
 
     sha = sha256_bytes(data)
     ext = ALLOWED_TYPES.get(content_type) or path.suffix.lower()
@@ -222,7 +231,7 @@ def build_parser():
     ap.add_argument("--publication-date", help="publication date shown by the source (YYYY-MM-DD), if known")
     ap.add_argument("--effective-date", help="effective date shown by the source (YYYY-MM-DD); unverified until reviewed")
     ap.add_argument("--gazette-issue", help="Official Gazette issue as printed, for example '18 (تابع)'")
-    ap.add_argument("--source-id", help="only needed when the document id is not in the catalog")
+    ap.add_argument("--source-id", help="registered source id for this capture; must match the source URL host (defaults to the document catalog source)")
     ap.add_argument("--notes", help="free-text notes about how the file was obtained")
     ap.add_argument("--out", default="legal_corpus", help="corpus folder (same layout as the collector)")
     ap.add_argument("--max-mb", type=int, default=DEFAULT_MAX_MB)

@@ -11,7 +11,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from tools.record_manual_capture import main  # noqa: E402
 
 TEXT = "مادة (1)\nنص تجريبي للمادة الأولى.\n\nمادة (2)\nنص تجريبي للمادة الثانية.\n" + ("وصف إضافي لاستيفاء الحد الأدنى للطول. " * 12)
-URL = "https://example.gov.eg/law/14"
+URL = "https://www.alamiria.com/law/14"
 
 
 def run(*argv):
@@ -108,6 +108,22 @@ class RecordManualCaptureTests(unittest.TestCase):
         code, _, err = run(*self.base(**{"--file": str(bad)}))
         self.assertEqual(code, 2)
         self.assertIn("UTF-8", err)
+
+    def test_registered_source_override_matches_actual_capture_host(self):
+        eta_url = "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
+        code, _, err = run(*self.base(**{"--source-id": "EG-ETA-LABOUR-GAZETTE", "--source-url": eta_url}))
+        self.assertEqual(code, 0, err)
+        meta = json.loads((self.out / "metadata" / "EG-LABOUR-14-2025.json").read_text(encoding="utf-8"))
+        self.assertEqual(meta["source_id"], "EG-ETA-LABOUR-GAZETTE")
+        self.assertEqual(meta["source_host"], "portal.eta.gov.eg")
+
+    def test_rejects_source_id_host_mismatch_and_unknown_source(self):
+        code, _, err = run(*self.base(**{"--source-id": "EG-AMIRI-PRESS", "--source-url": "https://portal.eta.gov.eg/law.pdf"}))
+        self.assertEqual(code, 2)
+        self.assertIn("does not match registered source", err)
+        code, _, err = run(*self.base(**{"--source-id": "EG-DOES-NOT-EXIST"}))
+        self.assertEqual(code, 2)
+        self.assertIn("not registered", err)
 
     def test_unknown_document_requires_source_id(self):
         code, _, err = run(*self.base(**{"--document-id": "EG-NOT-IN-CATALOG"}))
