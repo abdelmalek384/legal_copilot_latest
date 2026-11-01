@@ -231,6 +231,31 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
         errors = validate_review(review(review_schema_version=3))
         self.assertTrue(any("review_schema_version must be 1 (legacy) or 2" in error for error in errors))
 
+
+    def test_review_report_exports_minimal_answer_assessment_linkage(self):
+        record = review(answer_id="ans_synthetic_opaque_id")
+        report = summarize_reviews([record], reviewer_registry())
+        self.assertEqual(report["schema_version"], 2)
+        self.assertEqual(len(report["answer_assessments"]), 1)
+        assessment = report["answer_assessments"][0]
+        self.assertEqual(assessment["answer_id"], "ans_synthetic_opaque_id")
+        self.assertEqual(assessment["assessment_id"], record["assessment_id"])
+        self.assertEqual(assessment["reviewer_id"], record["reviewer_id"])
+        self.assertEqual(assessment["disposition"], record["disposition"])
+        self.assertEqual(assessment["scores"], record["scores"])
+        self.assertNotIn("reviewer_name", assessment)
+        self.assertNotIn("rationales", assessment)
+        self.assertNotIn("critical_defect_description", assessment)
+
+    def test_invalid_reviews_are_not_exported_in_answer_assessment_linkage(self):
+        good = review(answer_id="ans-good")
+        bad = review(assessment_id="ASSESS-BAD", answer_id="ans-bad")
+        bad["reviewer_id"] = "unregistered-reviewer"
+        report = summarize_reviews([good, bad], reviewer_registry())
+        self.assertEqual(report["valid_assessments"], 1)
+        self.assertEqual(report["invalid_assessments_excluded"], 1)
+        self.assertEqual([item["answer_id"] for item in report["answer_assessments"]], ["ans-good"])
+
     def test_missing_rationale_invalidates_record(self):
         rationales = dict(review()["rationales"])
         rationales["temporal_correctness"] = " "
