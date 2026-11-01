@@ -45,6 +45,8 @@ Model-output JSONL format (one record per question ID):
 
 Include `answer_id` as a stable, non-empty, unique identifier for that exact generated answer/version whenever available. It is propagated into the evaluation report so the same identifier can be copied into each independent human-review record. Do not put client names, case numbers, emails, or other personal data in the identifier. Legacy rows without `answer_id` remain scoreable, but are counted as missing stable IDs and cannot be joined reliably to independent reviews. The report schema is version 2 and includes stable-answer-ID coverage; duplicate supplied answer IDs across different scored question results are rejected. Never manufacture an ID from a question ID because a question may produce multiple answers across runs.
 
+The application assigns a fresh random opaque ID to each newly generated assistant research message. The ID is returned by `POST /research/conversations/{conversation_id}/messages`, appears on assistant message records from `GET /research/conversations/{conversation_id}`, and can be copied from the Arabic/English message action. Each new answer gets a different ID, even when the question is repeated. Historical messages created before this feature may not have an ID; leave those records unlinked rather than inventing one.
+
 Run it after a lawyer has approved the benchmark and a model-output JSONL has been collected:
 
 ```bash
