@@ -162,12 +162,35 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
                 "--questions", str(questions), "--results", str(results), "--out", str(report_path),
                 "--min-questions", "1", "--min-practice-areas", "1", "--min-questions-per-practice-area", "1",
                 "--min-source-precision", "1", "--min-pin-cite-precision", "1",
-                "--min-abstention-accuracy", "1", "--max-invalid-citation-question-rate", "0",
+                "--min-abstention-accuracy", "1", "--min-stable-answer-id-coverage", "1",
+                "--max-invalid-citation-question-rate", "0",
             ])
             self.assertEqual(code, 0)
             report = json.loads(report_path.read_text(encoding="utf-8"))
             self.assertTrue(report["release_gate"]["enabled"])
             self.assertTrue(report["release_gate"]["passed"])
+
+    def test_stable_answer_id_coverage_is_a_release_gate(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions = Path(td) / "questions.jsonl"
+            results = Path(td) / "results.jsonl"
+            report_path = Path(td) / "report.json"
+            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            legacy = result()
+            legacy.pop("answer_id")
+            results.write_text(json.dumps(legacy, ensure_ascii=False) + "\\n", encoding="utf-8")
+            code = run_main([
+                "--questions", str(questions), "--results", str(results), "--out", str(report_path),
+                "--min-questions", "1", "--min-practice-areas", "1",
+                "--min-questions-per-practice-area", "1", "--min-stable-answer-id-coverage", "1",
+            ])
+            self.assertEqual(code, 1)
+            report = json.loads(report_path.read_text(encoding="utf-8"))
+            self.assertEqual(report["stable_answer_id_coverage"], 0.0)
+            check = next(item for item in report["release_gate"]["checks"]
+                         if item["metric"] == "stable_answer_id_coverage")
+            self.assertEqual(check["actual"], 0.0)
+            self.assertFalse(check["passed"])
 
     def test_cli_release_gate_fails_and_preserves_report_on_precision_failure(self):
         with tempfile.TemporaryDirectory() as td:
