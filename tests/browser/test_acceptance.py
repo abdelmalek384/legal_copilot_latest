@@ -455,6 +455,15 @@ class BrowserAcceptanceTests(unittest.TestCase):
         )
         self.assertEqual(updated.status, 200, updated.text())
 
+        member_id = self.state["reviewer_id"]
+        member = self.page.request.post(
+            self.base_url + f"/cases/{case_id}/members",
+            data={"user_id": member_id, "role": "associate"},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(member.status, 200, member.text())
+
         member_context = self.browser.new_context()
         try:
             member_page = member_context.new_page()
@@ -466,7 +475,6 @@ class BrowserAcceptanceTests(unittest.TestCase):
             member_page.locator("#side").wait_for(state="visible", timeout=15000)
             member_session = member_page.request.get(self.base_url + "/session", timeout=8000)
             self.assertEqual(member_session.status, 200, member_session.text())
-            member_id = self.state["reviewer_id"]
             member_csrf = {item["name"]: item["value"] for item in member_context.cookies()}
             member_headers = {"X-CSRF-Token": member_csrf.get("lc_csrf", "")}
 
@@ -484,13 +492,6 @@ class BrowserAcceptanceTests(unittest.TestCase):
             )
             self.assertEqual(owner_case_after_switch.status, 200, owner_case_after_switch.text())
 
-            member = self.page.request.post(
-                self.base_url + f"/cases/{case_id}/members",
-                data={"user_id": member_id, "role": "associate"},
-                headers=headers,
-                timeout=8000,
-            )
-            self.assertEqual(member.status, 200, member.text())
             member_detail = member_page.request.get(
                 self.base_url + f"/cases/{case_id}", timeout=8000
             )
