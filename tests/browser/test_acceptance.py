@@ -485,6 +485,23 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 timeout=8000,
             )
             self.assertEqual(member.status, 200, member.text())
+            member_detail = member_page.request.get(
+                self.base_url + f"/cases/{case_id}", timeout=8000
+            )
+            self.assertEqual(member_detail.status, 200, member_detail.text())
+            denied_patch = member_page.request.patch(
+                self.base_url + f"/cases/{case_id}",
+                data={"stage": "UNAUTHORIZED_MEMBER_EDIT"},
+                headers=member_headers,
+                timeout=8000,
+            )
+            self.assertEqual(denied_patch.status, 404, denied_patch.text())
+            denied_delete = member_page.request.delete(
+                self.base_url + f"/cases/{case_id}",
+                headers=member_headers,
+                timeout=8000,
+            )
+            self.assertEqual(denied_delete.status, 404, denied_delete.text())
 
             task = self.page.request.post(
                 self.base_url + f"/cases/{case_id}/tasks",
