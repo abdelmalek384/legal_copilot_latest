@@ -1520,6 +1520,63 @@ _CITATION_SUPPORT_GENERIC_TERMS = set(tokens(
 ))
 
 
+_LEGAL_ACTOR_ROLE_PAIRS = (
+    ("العامل", "صاحب العمل"),
+    ("المؤجر", "المستأجر"),
+    ("الدائن", "المدين"),
+    ("المدعي", "المدعى عليه"),
+    ("الزوج", "الزوجة"),
+)
+_ACTOR_ROLE_GENERIC_TERMS = set(tokens(
+    "يجوز يجب يحق يلتزم يستحق يكون تكون كان كانت هو هي من على في الى عن"
+))
+
+
+def _answer_has_cited_actor_role_mismatch(answer, hits):
+    """Reject a clear cited-sentence substitution of one legal actor for its opposite.
+
+    This narrow guard only fires when cited evidence contains exactly one member of a
+    known role pair, the answer contains exactly the opposite member, and both share
+    at least two non-generic action/content tokens. It is not semantic entailment.
+    """
+    if not isinstance(answer, str) or not answer.strip() or not isinstance(hits, (list, tuple)):
+        return True
+    visible = _mask_markdown_code(answer)
+
+    def has_phrase(text, phrase):
+        pattern = r"(?<![\\u0621-\\u064a])(?:و|ف|ب|ل|ك)?" + re.escape(norm(phrase)) + r"(?![\\u0621-\\u064a])"
+        return bool(re.search(pattern, norm(text)))
+
+    for raw_line in visible.splitlines():
+        line = raw_line.strip()
+        if (not line or re.match(r"^#{1,6}\\s+", line)
+                or re.fullmatch(r"[-*_]{3,}", line)
+                or re.fullmatch(r"\\*\\*[^*]{1,100}[:：]\\*\\*", line)):
+            continue
+        if line.endswith((":", "：")) and len(line) <= 100:
+            continue
+        for sentence in re.split(r"(?<=[.!?؟])\\s+", line):
+            sentence = re.sub(r"^(?:[-*+]\\s+|\\d+[.)]\\s+|>\\s*)", "", sentence).strip()
+            cited = {int(value) for value in re.findall(r"\\[(\\d+)\\]", sentence)}
+            if not cited:
+                continue
+            if any(index < 1 or index > len(hits) for index in cited):
+                return True
+            evidence = " ".join(str(hits[index - 1].get("text") or "") for index in cited)
+            answer_terms = set(tokens(re.sub(r"\\[\\d+\\]", " ", sentence)))
+            evidence_terms = set(tokens(evidence))
+            for left, right in _LEGAL_ACTOR_ROLE_PAIRS:
+                source_left, source_right = has_phrase(evidence, left), has_phrase(evidence, right)
+                answer_left, answer_right = has_phrase(sentence, left), has_phrase(sentence, right)
+                if source_left == source_right or answer_left == answer_right:
+                    continue
+                if source_left == answer_left:
+                    continue
+                excluded = set(tokens(left)) | set(tokens(right)) | _ACTOR_ROLE_GENERIC_TERMS
+                if len((answer_terms & evidence_terms) - excluded) >= 2:
+                    return True
+    return False
+
 def _answer_has_unanchored_citations(answer, hits):
     """Fail closed when a cited claim has no meaningful lexical anchor in its cited passages.
 
@@ -1645,6 +1702,8 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
             ans, msg = None, "توجد عبارة قانونية بلا استشهاد مباشر، تُعرض المصادر فقط."
         elif _answer_has_unanchored_citations(ans, hits):
             ans, msg = None, "لم يظهر ارتباط لفظي كافٍ بين إحدى العبارات ومصادرها المستشهد بها؛ تُعرض المصادر فقط."
+        elif _answer_has_cited_actor_role_mismatch(ans, hits):
+            ans, msg = None, "قد تنسب إحدى العبارات الحق أو الالتزام إلى طرف قانوني مختلف عما يذكره المصدر؛ تُعرض المصادر فقط."
     return {"found": True, "answer": ans, "abstained": not bool(ans), "message": msg, "sources": hits, "scope": scope, "case_id": case_id, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
 
 
