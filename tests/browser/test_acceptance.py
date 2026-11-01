@@ -477,6 +477,12 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 timeout=8000,
             )
             self.assertEqual(selected_firm.status, 200, selected_firm.text())
+            owner_session_after_switch = self.page.request.get(self.base_url + "/session", timeout=8000)
+            self.assertEqual(owner_session_after_switch.status, 200, owner_session_after_switch.text())
+            owner_case_after_switch = self.page.request.get(
+                self.base_url + f"/cases/{case_id}", timeout=8000
+            )
+            self.assertEqual(owner_case_after_switch.status, 200, owner_case_after_switch.text())
 
             member = self.page.request.post(
                 self.base_url + f"/cases/{case_id}/members",
