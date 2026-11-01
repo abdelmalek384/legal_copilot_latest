@@ -151,6 +151,8 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
             self.assertEqual(report["reviewer_registry_errors"], [])
             self.assertEqual(report["reviewer_agreement"]["answers_with_multiple_independent_reviews"], 1)
             self.assertEqual(report["reviewer_agreement"]["answer_groups"], [])
+            for private_key in ('"assessment_id"', '"case_id"', '"answer_id"', '"reviewer_id"', '"reviewer_ids"'):
+                self.assertNotIn(private_key, rendered)
             for secret in (
                 "ASSESSMENT-PRIVATE-001", "ASSESSMENT-PRIVATE-002", "ASSESSMENT-PRIVATE-003",
                 "CASE-PRIVATE-001", "CASE-PRIVATE-002", "ANSWER-PRIVATE-001",
