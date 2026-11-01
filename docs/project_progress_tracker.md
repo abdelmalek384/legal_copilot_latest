@@ -5,7 +5,7 @@
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.85/100 technical completion** (up 0.02 points from 49.83; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.88/100 technical completion** (up 0.03 points from 49.85; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Previous whole-product checkpoint — 2026-10-31
@@ -694,3 +694,10 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - **PR #1104 merged:** manual acceptance runbook now provides the device/browser/screen-reader matrix, evidence record, firm-isolation checks and separate Egyptian-counsel sign-off procedure. Actual manual acceptance remains unperformed.
 - **PR #1099 closed:** superseded by current-main #1106.
 - **#840 remains discovery-only** pending lawful original Gazette access and rights review. #474 remains open for live SMTP/provider staging and operational review. #93/#95 remain open for human manual acceptance. #473/#886 remain open for independent security review and live storage/operations acceptance.
+
+
+### Latest checkpoint — 2026-11-01 (candidate catalogue denominator integrity)
+
+- **PR #1108 merged:** candidate catalogue denominator now excludes rows without a stable non-empty instrument ID and duplicate IDs after whitespace normalization. The plural practice_areas field must be a list; malformed values are diagnosed and valid identified instruments without a usable classification remain visible under unknown.
+- Exact-head validation passed Tests (150/150 workflow steps), Browser acceptance (10/10), non-database safety regression (24/24), dependency audit, Bandit, Python CodeQL and JavaScript CodeQL.
+- The weighted scorecard is now **49.88/100**. This is an engineering metadata-integrity improvement only; verified Egyptian legal corpus remains 6%, and final Egyptian-counsel acceptance remains 0%.
