@@ -100,7 +100,7 @@ class CandidateCatalogTests(unittest.TestCase):
             self.assertIn(article, labour["notes"])
         self.assertIn("Article 103 was also visually checked", labour["notes"])
         self.assertIn("not a complete article-by-article comparison", labour["notes"])
-        self.assertIn("page image, not OCR text alone", labour["notes"])
+        self.assertIn("page images, not OCR text alone", labour["notes"])
 
     def test_labour_law_candidate_records_public_gazette_pdf_locators_without_upgrading_status(self):
         data = MODULE.load_catalog()
