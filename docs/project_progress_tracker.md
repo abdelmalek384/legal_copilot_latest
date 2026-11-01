@@ -5,7 +5,7 @@
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.83/100 technical completion** (up 0.05 points from 49.78; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.85/100 technical completion** (up 0.02 points from 49.83; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Previous whole-product checkpoint — 2026-10-31
@@ -673,3 +673,10 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - **#1095 and #1098 merged:** evaluator outputs now refuse to overwrite existing evidence and include hashes/byte counts for exact input artifacts, with no raw paths or contents disclosed.
 - Automated testing/reliability is **69.5%**; weighted technical completion is **49.83/100**. The 0.05-point increase reflects evidence-preservation and reproducibility controls with exact-head regression coverage.
 - **Verified Egyptian legal corpus remains 6%; final Egyptian-counsel acceptance remains 0%.** No legal source was promoted or reuse permission inferred.
+
+### Latest checkpoint — 2026-11-01 (reminder SMTP ambiguity safety)
+
+- **PR #1102 merged:** post-submission SMTP timeout/disconnect is recorded as `smtp_submission_ambiguous` and not automatically retried. Explicit SMTP 4xx rejection remains retryable. A close/QUIT error after confirmed acceptance does not trigger another send.
+- Exact-head validation passed Tests (150/150 steps), non-database safety regression, Chromium acceptance, dependency security audit, Bandit and CodeQL.
+- **Issue #474 remains open:** live provider staging/credentials, external scheduler monitoring, provider reconciliation and independent operational review remain outstanding. No production reminder delivery is claimed.
+- Production operations/deployment readiness is now 35.2%; weighted technical completion is 49.85/100. Verified Egyptian legal corpus remains 6%; final Egyptian-counsel acceptance remains 0%.
