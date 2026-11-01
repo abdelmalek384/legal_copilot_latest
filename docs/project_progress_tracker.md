@@ -717,3 +717,10 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - Added append-only audit regression: UPDATE and DELETE operations are rejected and the event remains unchanged.
 - Exact-head CI passed Tests (149 workflow steps), Browser acceptance (10/10), dependency audit, Bandit, Python CodeQL and JavaScript CodeQL.
 - Automated testing/reliability is 69.6%; weighted technical completion is **49.91/100**. Verified Egyptian legal corpus remains 6%; final Egyptian-counsel acceptance remains 0%.
+
+
+### Latest checkpoint — 2026-11-01 (human-reviewed legal-answer defect taxonomy)
+
+- **PR #1121 merged:** added a versioned taxonomy for critical defects identified by qualified-human review. New v2 unsafe assessments require a substantive defect description and at least one human-assigned category; v1 legacy findings remain readable, and uncategorized legacy critical defects are reported separately rather than auto-labelled.
+- Exact-head validation passed Tests, Browser acceptance, dependency security audit, and Python/JavaScript CodeQL. No legal content was promoted and no reviewer qualification is independently certified by the evaluator.
+- This strengthens review traceability but does not create lawyer-labelled benchmark data or change the verified Egyptian legal corpus (6%) or final Egyptian-counsel acceptance (0%). The weighted technical score remains unchanged pending a defensible workstream recalculation.
