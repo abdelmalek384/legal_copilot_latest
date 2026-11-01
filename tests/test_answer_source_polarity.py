@@ -18,6 +18,12 @@ class AnswerSourcePolarityTests(unittest.TestCase):
             "لا يجوز لصاحب العمل إنهاء العقد في الحالة المحددة [1].", hits
         ))
 
+    def test_attached_arabic_conjunction_does_not_hide_negative_polarity(self):
+        hits = [{"text": "ولا يجوز لصاحب العمل إنهاء العقد دون إخطار."}]
+        self.assertTrue(app._answer_has_source_polarity_conflict(
+            "ويجوز لصاحب العمل إنهاء العقد دون إخطار [1].", hits
+        ))
+
     def test_matching_negative_polarity_passes(self):
         hits = [{"text": "لا يجوز لصاحب العمل إنهاء العقد دون إخطار."}]
         self.assertFalse(app._answer_has_source_polarity_conflict(
