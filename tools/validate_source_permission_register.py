@@ -41,11 +41,12 @@ def _https_url(value: object) -> bool:
         parsed = urlparse(value)
         port = parsed.port
         return (
-            parsed.scheme == "https"
+            parsed.scheme.lower() == "https"
             and bool(parsed.hostname)
             and (port is None or 1 <= port <= 65535)
             and parsed.username is None
             and parsed.password is None
+            and not parsed.netloc.endswith(":")
             and not any(ord(char) < 32 for char in value)
         )
     except ValueError:

@@ -65,14 +65,15 @@ def valid_timestamp(value: object) -> bool:
 def https_host(value: object) -> str | None:
     if not isinstance(value, str):
         return None
-    if value != value.strip() or any(char.isspace() for char in value):
+    if value != value.strip() or any(char.isspace() or ord(char) < 32 for char in value):
         return None
     try:
         parsed = urlparse(value)
         port = parsed.port
         if (
-            parsed.scheme != "https" or not parsed.hostname
+            parsed.scheme.lower() != "https" or not parsed.hostname
             or parsed.username is not None or parsed.password is not None
+            or parsed.netloc.endswith(":")
             or (port is not None and not 1 <= port <= 65535)
         ):
             return None
@@ -80,7 +81,6 @@ def https_host(value: object) -> str | None:
         return host[4:] if host.startswith("www.") else host
     except ValueError:
         return None
-
 
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
