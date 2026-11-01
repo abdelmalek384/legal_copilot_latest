@@ -112,6 +112,18 @@ class RecordManualCaptureTests(unittest.TestCase):
         code, _, err = run(*self.base(**{"--document-id": "EG-NOT-IN-CATALOG", "--source-id": "EG-AMIRI-PRESS"}))
         self.assertEqual(code, 0, err)
 
+    def test_rejects_unsafe_document_id_even_with_source_id(self):
+        code, _, err = run(*self.base(**{"--document-id": "../outside", "--source-id": "EG-AMIRI-PRESS"}))
+        self.assertEqual(code, 2)
+        self.assertIn("document-id must start", err)
+
+    def test_rejects_symlinked_output_directory(self):
+        self.out.mkdir()
+        (self.out / "metadata").symlink_to(self.dir, target_is_directory=True)
+        code, _, err = run(*self.base())
+        self.assertEqual(code, 2)
+        self.assertIn("symbolic link", err)
+
     def test_rejects_bad_or_future_dates_and_blank_name(self):
         self.assertEqual(run(*self.base(**{"--retrieved-on": "20-10-2026"}))[0], 2)
         self.assertEqual(run(*self.base(**{"--retrieved-on": "2999-01-01"}))[0], 2)
