@@ -2,6 +2,7 @@
 import unittest
 
 from app import SYS, conflict_name_matches, expanded_tokens, matched_surface_terms, tokens
+from tools.arabic_legal_matching import orthographic_variants
 
 
 class ArabicMatchingTests(unittest.TestCase):
@@ -124,6 +125,32 @@ class ArabicMatchingTests(unittest.TestCase):
             expanded = expanded_tokens(question)
             self.assertTrue(set(tokens(question)).issubset(set(expanded)))
             self.assertTrue(any(token in expanded for token in tokens("مش")))
+
+    def test_separate_lexicon_covers_missing_labour_and_legacy_rent_phrases(self):
+        cases = (
+            ("فصلني من الشغل", ("فصل العامل", "إنهاء عقد العمل")),
+            ("عايز إجازة", ("إجازة سنوية", "الإجازة السنوية")),
+            ("الإيجار القديم", ("العلاقة الإيجارية القديمة", "امتداد عقد الإيجار")),
+        )
+        for question, expected_phrases in cases:
+            with self.subTest(question=question):
+                expanded = set(expanded_tokens(question))
+                for phrase in expected_phrases:
+                    self.assertTrue(
+                        set(tokens(phrase)).issubset(expanded),
+                        f"{question!r} did not expand to {phrase!r}",
+                    )
+
+    def test_orthographic_variants_are_narrow_and_symmetric(self):
+        self.assertEqual(orthographic_variants("اجازة"), ("اجازة", "اجازه"))
+        self.assertEqual(orthographic_variants("اجازه"), ("اجازه", "اجازة"))
+        self.assertEqual(orthographic_variants("عامل"), ("عامل",))
+
+    def test_lexicon_expansion_preserves_negation_and_original_query_terms(self):
+        question = "فصلني ومش عايز إجازة"
+        expanded = expanded_tokens(question)
+        self.assertTrue(set(tokens(question)).issubset(set(expanded)))
+        self.assertIn(tokens("مش")[0], expanded)
 
     def test_phrase_expansion_preserves_original_terms_and_negation(self):
         question = "صاحب الشغل مش بيدفع المرتب"
