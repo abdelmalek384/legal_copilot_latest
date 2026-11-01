@@ -1,3 +1,6 @@
+import contextlib
+import hashlib
+import io
 import json
 import tempfile
 import sys
@@ -102,6 +105,33 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
                 bad = dict(base, **{key: value})
                 with self.assertRaises(EvaluationError):
                     score([bad], [result()])
+
+    def test_cli_report_records_hashes_of_exact_input_bytes_without_paths(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            results_path = Path(td) / "results.jsonl"
+            registry_path = Path(td) / "reviewers.json"
+            questions_path.write_text(json.dumps(approved(), ensure_ascii=False) + "\n", encoding="utf-8")
+            results_path.write_text(json.dumps(result(), ensure_ascii=False) + "\n", encoding="utf-8")
+            registry_path.write_text(json.dumps(reviewer_registry(), ensure_ascii=False), encoding="utf-8")
+
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                code = main([
+                    "--questions", str(questions_path),
+                    "--results", str(results_path),
+                    "--reviewer-registry", str(registry_path),
+                ])
+
+            self.assertEqual(code, 0)
+            report = json.loads(output.getvalue())
+            provenance = report["provenance"]
+            self.assertRegex(provenance["generated_at_utc"], r"^\\d{4}-\\d{2}-\\d{2}T.*Z$")
+            self.assertEqual(provenance["inputs"]["questions"]["sha256"], hashlib.sha256(questions_path.read_bytes()).hexdigest())
+            self.assertEqual(provenance["inputs"]["results"]["sha256"], hashlib.sha256(results_path.read_bytes()).hexdigest())
+            self.assertEqual(provenance["inputs"]["reviewer_registry"]["sha256"], hashlib.sha256(registry_path.read_bytes()).hexdigest())
+            self.assertEqual(provenance["inputs"]["questions"]["size_bytes"], questions_path.stat().st_size)
+            self.assertNotIn(td, output.getvalue())
 
     def test_cli_refuses_to_overwrite_existing_evaluation_evidence(self):
         with tempfile.TemporaryDirectory() as td:
