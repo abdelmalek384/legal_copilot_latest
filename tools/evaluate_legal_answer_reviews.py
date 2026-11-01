@@ -253,7 +253,7 @@ def summarize_reviews(records, reviewer_registry):
 def _write_report(path, rendered):
     """Create a review summary without overwriting prior evaluation evidence."""
     target = Path(path)
-    with target.open("x", encoding="utf-8", newline="\\n") as handle:
+    with target.open("x", encoding="utf-8", newline="\n") as handle:
         handle.write(rendered)
 
 
