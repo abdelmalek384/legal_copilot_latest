@@ -530,6 +530,41 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertIn("لم يُسترجع أي نص قانوني", discovery)
         self.assertNotIn(sentinel, discovery)
 
+    def test_research_inspector_scope_and_empty_state_are_keyboard_operable(self) -> None:
+        self.login(self.state["owner_a_email"])
+        research_nav = self.page.locator("#side").get_by_role("button", name="البحث القانوني")
+        research_nav.focus()
+        research_nav.press("Enter")
+        self.page.locator(".research-controls select").nth(0).wait_for(state="visible", timeout=10000)
+
+        scope = self.page.locator(".research-controls select").nth(0)
+        matter = self.page.locator(".research-controls select").nth(1)
+        composer = self.page.locator(".research-composer textarea")
+        send = self.page.locator(".research-composer button")
+
+        # Verify the actual Tab sequence from the scope selector through
+        # matter selection, query entry, and submission; no pointer interaction.
+        scope.focus()
+        self.assertTrue(scope.evaluate("(el) => document.activeElement === el"))
+        self.page.keyboard.press("Tab")
+        self.assertTrue(matter.evaluate("(el) => document.activeElement === el"))
+        self.page.keyboard.press("Tab")
+        self.assertTrue(composer.evaluate("(el) => document.activeElement === el"))
+        self.page.keyboard.press("Tab")
+        self.assertTrue(send.evaluate("(el) => document.activeElement === el"))
+
+        scope.select_option("metadata_only")
+        composer.focus()
+        self.page.keyboard.type("keyboard-only-no-source-query-xyz-2026")
+        self.page.keyboard.press("Tab")
+        self.assertTrue(send.evaluate("(el) => document.activeElement === el"))
+        self.page.keyboard.press("Enter")
+        self.page.get_by_text("لم يُعثر على بيانات وصفية مطابقة", exact=False).wait_for(timeout=10000)
+        self.assertIn(
+            "metadata-only",
+            self.page.locator(".research-thread").inner_text().lower(),
+        )
+
     def test_cross_firm_case_identifier_does_not_reveal_other_firm_sentinel(self) -> None:
         self.login(self.state["owner_a_email"])
         response = self.page.request.get(
