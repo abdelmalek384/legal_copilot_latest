@@ -5025,5 +5025,67 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             app._research_context_for_scope(legacy, "verified_corpus", None)
         )
 
+    def test_integer_piaster_invoices_payments_receipts_and_firm_isolation(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Invoice Matter", "client": "Client A"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        invoice = self._mutate(
+            "post",
+            f"/cases/{case_id}/invoices",
+            json={
+                "issue_date": "2026-11-02",
+                "due_date": "2026-11-30",
+                "notes": "Initial retainer",
+                "lines": [
+                    {"description": "Legal consultation", "quantity": 2, "unit_amount_piasters": 12550},
+                    {"description": "Document review", "quantity": 1, "unit_amount_piasters": 5000},
+                ],
+            },
+        )
+        self.assertEqual(invoice.status_code, 200, invoice.text)
+        payload = invoice.json()
+        self.assertEqual(payload["invoice_number"], "INV-2026-000001")
+        self.assertEqual(payload["total_piasters"], 30100)
+
+        partial = self._mutate(
+            "post", f"/invoices/{payload['invoice_id']}/payments",
+            json={"amount_piasters": 10000, "paid_at": "2026-11-02", "method": "instapay", "reference": "IP-2026-ABC123"},
+        )
+        self.assertEqual(partial.status_code, 200, partial.text)
+        self.assertEqual(partial.json()["status"], "partially_paid")
+        self.assertEqual(partial.json()["receipt_number"], "RCT-2026-000001")
+
+        overpay = self._mutate(
+            "post", f"/invoices/{payload['invoice_id']}/payments",
+            json={"amount_piasters": 20101, "paid_at": "2026-11-03", "method": "cash"},
+        )
+        self.assertEqual(overpay.status_code, 422, overpay.text)
+
+        detail = self.client.get(f"/invoices/{payload['invoice_id']}")
+        self.assertEqual(detail.status_code, 200, detail.text)
+        self.assertEqual(detail.json()["outstanding_piasters"], 20100)
+        self.assertEqual(len(detail.json()["lines"]), 2)
+        self.assertEqual(len(detail.json()["payments"]), 1)
+
+        printed = self.client.get(f"/invoices/{payload['invoice_id']}/print")
+        self.assertEqual(printed.status_code, 200, printed.text)
+        self.assertIn("dir='rtl'", printed.text)
+        self.assertIn("INV-2026-000001", printed.text)
+
+        receivables = self.client.get("/finance/receivables")
+        self.assertEqual(receivables.status_code, 200, receivables.text)
+        self.assertEqual(receivables.json()["total_outstanding_piasters"], 20100)
+
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        hidden = self.client.get(f"/invoices/{payload['invoice_id']}")
+        self.assertEqual(hidden.status_code, 404, hidden.text)
+
+
 if __name__ == "__main__":
     unittest.main()
