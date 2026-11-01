@@ -70,6 +70,22 @@ class RetrievalEvaluationTests(unittest.TestCase):
         self.assertEqual(len(out_of_scope), 7)
         self.assertTrue(all(q["answerable"] is None and q["expected_sources"] == [] for q in questions))
 
+    def test_all_unreviewed_legal_question_sets_default_to_abstention(self):
+        paths = (
+            ROOT / "tests" / "legal_eval" / "practice_questions.seed.jsonl",
+            ROOT / "tests" / "legal_eval" / "multi_area_questions.draft.jsonl",
+            ROOT / "tests" / "legal_eval" / "labour_law_questions.draft.jsonl",
+            ROOT / "tests" / "legal_eval" / "labour_law_14_2025_provisional_review_questions.draft.jsonl",
+        )
+        total = 0
+        for path in paths:
+            questions = _load_jsonl(path)
+            unreviewed = [q for q in questions if q.get("review_status") == "needs_lawyer_review"]
+            total += len(unreviewed)
+            with self.subTest(path=path.name):
+                self.assertTrue(all(q.get("must_abstain_if_unverified") is True for q in unreviewed))
+        self.assertEqual(total, 251)
+
     def test_seed_schema_expected_sources_alias_is_supported_after_review(self):
         question = reviewed_question()
         question["expected_sources"] = question.pop("expected_source_ids")
