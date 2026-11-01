@@ -4,6 +4,7 @@
 - Added fictional fixture-only legal-ingestion tests for manual-capture hash integrity, article comparison, numeric mismatch detection, and commencement-date extraction (PR #1151).
 - Added a policy proposal for a separately gated, production-disabled source-matched/unreviewed trust tier without weakening existing lawyer-approval gates (PR #1150).
 - Added an opt-in, fail-closed factual claim-support check for cited answers, including finite-period contradiction tests; disabled by default (PR #1154).
+- Added an offline structural audit for candidate article-row corpora, including a quantity-bearing article checklist and CI regressions; does not establish Gazette fidelity or legal verification (PR #1158).
 
 ## Prepared update
 - Improved login form: trims/lowercases email, supports Enter-to-submit, displays clearer errors, and adds show/hide password.
