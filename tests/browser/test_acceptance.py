@@ -585,36 +585,35 @@ class BrowserAcceptanceTests(unittest.TestCase):
         revoked = member_page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
         self.assertEqual(revoked.status, 404, revoked.text())
 
-    finally:
         member_context.close()
 
-    self.page.locator("#side").get_by_role("button", name="القضايا").click()
-    self.page.get_by_text("SYNTHETIC CASEFLOW PRIMARY MATTER", exact=True).wait_for(timeout=10000)
-    self.assertIn("SYNTHETIC CASEFLOW SECOND MATTER", self.page.locator("body").inner_text())
+            self.page.locator("#side").get_by_role("button", name="القضايا").click()
+        self.page.get_by_text("SYNTHETIC CASEFLOW PRIMARY MATTER", exact=True).wait_for(timeout=10000)
+        self.assertIn("SYNTHETIC CASEFLOW SECOND MATTER", self.page.locator("body").inner_text())
 
-    # The runbook requires synthetic-only deletion to preserve a firm-scoped audit snapshot.
-    deleted_primary = self.page.request.delete(
-        self.base_url + f"/cases/{case_id}", headers=headers, timeout=8000
-    )
-    self.assertEqual(deleted_primary.status, 200, deleted_primary.text())
-    deleted_second = self.page.request.delete(
-        self.base_url + f"/cases/{second_case_id}", headers=headers, timeout=8000
-    )
-    self.assertEqual(deleted_second.status, 200, deleted_second.text())
-    self.assertEqual(
-        self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000).status,
-        404,
-    )
-    audit = self.page.request.get(self.base_url + "/audit/case-deletions?limit=100", timeout=8000)
-    self.assertEqual(audit.status, 200, audit.text())
-    snapshots = {item["case_id"]: item for item in audit.json()["items"]}
-    snapshot = snapshots[case_id]
-    self.assertEqual(snapshot["case_snapshot"]["title"], "SYNTHETIC CASEFLOW PRIMARY MATTER")
-    self.assertGreaterEqual(snapshot["related_counts"]["tasks"], 1)
-    self.assertGreaterEqual(snapshot["related_counts"]["sessions"], 1)
-    self.assertGreaterEqual(snapshot["related_counts"]["notes"], 1)
-    self.assertGreaterEqual(snapshot["related_counts"]["fees"], 1)
-    self.assertTrue(any("SYNTHETIC CASEFLOW" in row["text"] for row in snapshot["events_snapshot"]))
+        # The runbook requires synthetic-only deletion to preserve a firm-scoped audit snapshot.
+        deleted_primary = self.page.request.delete(
+            self.base_url + f"/cases/{case_id}", headers=headers, timeout=8000
+        )
+        self.assertEqual(deleted_primary.status, 200, deleted_primary.text())
+        deleted_second = self.page.request.delete(
+            self.base_url + f"/cases/{second_case_id}", headers=headers, timeout=8000
+        )
+        self.assertEqual(deleted_second.status, 200, deleted_second.text())
+        self.assertEqual(
+            self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000).status,
+            404,
+        )
+        audit = self.page.request.get(self.base_url + "/audit/case-deletions?limit=100", timeout=8000)
+        self.assertEqual(audit.status, 200, audit.text())
+        snapshots = {item["case_id"]: item for item in audit.json()["items"]}
+        snapshot = snapshots[case_id]
+        self.assertEqual(snapshot["case_snapshot"]["title"], "SYNTHETIC CASEFLOW PRIMARY MATTER")
+        self.assertGreaterEqual(snapshot["related_counts"]["tasks"], 1)
+        self.assertGreaterEqual(snapshot["related_counts"]["sessions"], 1)
+        self.assertGreaterEqual(snapshot["related_counts"]["notes"], 1)
+        self.assertGreaterEqual(snapshot["related_counts"]["fees"], 1)
+        self.assertTrue(any("SYNTHETIC CASEFLOW" in row["text"] for row in snapshot["events_snapshot"]))
 
     def test_corpus_coverage_requires_platform_reviewer_and_drilldown_is_metadata_only(self) -> None:
         self.login(self.state["owner_a_email"])
