@@ -247,6 +247,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("egpToPiasters", HTML)
         self.assertIn("localPaidDate", HTML)
         self.assertIn("unit_amount_piasters", HTML)
+        self.assertIn("/finance/receivables", HTML)
+        self.assertIn("Firm-wide receivables", HTML)
+        self.assertIn("formatPiasters", HTML)
 
 if __name__ == "__main__":
     unittest.main()
