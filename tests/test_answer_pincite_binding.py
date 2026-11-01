@@ -65,5 +65,55 @@ class AnswerPinCitationBindingTests(unittest.TestCase):
         self.assertIn("لا يطابق محدد الموقع", result["message"])
 
 
+    def test_ask_passes_only_recorded_article_and_page_locators_to_prompt(self):
+        hit = {
+            "cos": 1.0, "score": 1, "ref": "SYNTHETIC-PIN-PROMPT",
+            "text": "تقرر المادة 12 القاعدة القانونية.", "article": "12", "page": "94",
+            "verified": True, "in_force": True, "applies_as_of": True,
+            "case_id": None, "source_status": app.STATUS_VERIFIED, "provenance": {},
+        }
+        prompts = []
+
+        def capture_prompt(prompt):
+            prompts.append(prompt)
+            return "تقرر المادة 12 القاعدة القانونية [1]."
+
+        with patch.object(app, "search", return_value=[hit]), patch.object(
+            app, "LLM", side_effect=capture_prompt
+        ):
+            result = app.ask(None, "ما رقم المادة؟", scope="verified_corpus")
+
+        self.assertFalse(result["abstained"])
+        self.assertEqual(result["answer"], "تقرر المادة 12 القاعدة القانونية [1].")
+        self.assertEqual(len(prompts), 1)
+        self.assertIn('"article_pin": "12"', prompts[0])
+        self.assertIn('"page_pin": "94"', prompts[0])
+
+    def test_ask_does_not_invent_missing_article_or_page_locators_in_prompt(self):
+        hit = {
+            "cos": 1.0, "score": 1, "ref": "SYNTHETIC-PIN-NO-LOCATOR",
+            "text": "تقرر القاعدة القانونية.",
+            "verified": True, "in_force": True, "applies_as_of": True,
+            "case_id": None, "source_status": app.STATUS_VERIFIED, "provenance": {},
+        }
+        prompts = []
+
+        def capture_prompt(prompt):
+            prompts.append(prompt)
+            return "تقرر القاعدة القانونية [1]."
+
+        with patch.object(app, "search", return_value=[hit]), patch.object(
+            app, "LLM", side_effect=capture_prompt
+        ):
+            result = app.ask(None, "ما القاعدة؟", scope="verified_corpus")
+
+        self.assertFalse(result["abstained"])
+        self.assertEqual(result["answer"], "تقرر القاعدة القانونية [1].")
+        self.assertEqual(len(prompts), 1)
+        self.assertNotIn('"article_pin"', prompts[0])
+        self.assertNotIn('"page_pin"', prompts[0])
+
+
+
 if __name__ == "__main__":
     unittest.main()
