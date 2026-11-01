@@ -92,11 +92,12 @@ python tools/evaluate_retrieval_quality.py \
   --min-recall-at-5 0.90 --min-mrr-at-5 0.80 \
   --min-citation-precision 0.95 --min-citation-coverage 0.90 \
   --min-expected-pin-cite-recall 0.90 --min-abstention-compliance 0.98 \
-  --max-excluded-cases 0 --max-unsafe-unverified-source-uses 0 \
+  --max-excluded-cases 0 --max-invalid-records 0 \
+  --max-unsafe-unverified-source-uses 0 \
   --output retrieval-release-report.json
 ```
 
-Quality thresholds require explicit total sample-size and practice-area coverage gates. Citation coverage requires a minimum answerable cohort; abstention compliance requires a minimum unanswerable cohort; expected pin-cite recall requires a minimum count of expected pin-cites. The gate also supports maximum excluded-case and unsafe-unverified-source-use counts. Missing metric denominators fail a configured threshold rather than being treated as a pass. The report always retains excluded records and data-quality findings.
+Quality thresholds require explicit total sample-size and practice-area coverage gates. Citation coverage requires a minimum answerable cohort; abstention compliance requires a minimum unanswerable cohort; expected pin-cite recall requires a minimum count of expected pin-cites. The gate also supports maximum excluded-case and unsafe-unverified-source-use counts. Missing metric denominators fail a configured threshold rather than being treated as a pass. The report always retains excluded records and data-quality findings. `--max-invalid-records` independently gates malformed question/run records and duplicate IDs; `--max-excluded-cases` gates reviewed questions that could not be scored.
 
 The example thresholds above are placeholders, not a recommendation or current product policy. Set them only after qualified Egyptian counsel approves the benchmark composition, risk tolerance and threshold policy. An empty or unreviewed seed set cannot pass a meaningful quality gate.
 
