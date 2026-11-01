@@ -108,9 +108,9 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             questions = Path(td) / "questions.jsonl"
             results = Path(td) / "results.jsonl"
             report_path = Path(td) / "report.json"
-            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\\n", encoding="utf-8")
-            results.write_text(json.dumps(result(), ensure_ascii=False) + "\\n", encoding="utf-8")
-            original = "previous reviewed evaluation evidence\\n"
+            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\n", encoding="utf-8")
+            results.write_text(json.dumps(result(), ensure_ascii=False) + "\n", encoding="utf-8")
+            original = "previous reviewed evaluation evidence\n"
             report_path.write_text(original, encoding="utf-8")
 
             code = run_main([
