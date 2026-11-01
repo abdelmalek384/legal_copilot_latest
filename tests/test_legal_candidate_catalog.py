@@ -92,6 +92,16 @@ class CandidateCatalogTests(unittest.TestCase):
                 self.assertEqual(sources[source_id]["collection_permission"], "unknown")
                 self.assertEqual(sources[source_id]["commercial_reuse_permission"], "unknown")
 
+    def test_labour_law_visual_spot_check_discrepancies_remain_unverified(self):
+        data = MODULE.load_catalog()
+        labour = next(item for item in data["documents"] if item["document_id"] == "EG-LABOUR-14-2025")
+        self.assertEqual(labour["candidate_status"], "discovery_only")
+        for article in ("Article 124", "Article 134", "Article 141"):
+            self.assertIn(article, labour["notes"])
+        self.assertIn("Article 103 was also visually checked", labour["notes"])
+        self.assertIn("not a complete article-by-article comparison", labour["notes"])
+        self.assertIn("page images, not OCR text alone", labour["notes"])
+
     def test_labour_law_candidate_records_public_gazette_pdf_locators_without_upgrading_status(self):
         data = MODULE.load_catalog()
         labour = next(item for item in data["documents"] if item["document_id"] == "EG-LABOUR-14-2025")
