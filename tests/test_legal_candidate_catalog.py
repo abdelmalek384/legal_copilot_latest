@@ -83,6 +83,15 @@ class CandidateCatalogTests(unittest.TestCase):
         self.assertTrue(all(d["source_id"] in known for d in data["documents"]))
         self.assertTrue(all(d["candidate_status"]=="discovery_only" for d in data["documents"]))
 
+    def test_labour_law_candidate_records_public_gazette_pdf_locators_without_upgrading_status(self):
+        data = MODULE.load_catalog()
+        labour = next(item for item in data["documents"] if item["document_id"] == "EG-LABOUR-14-2025")
+        self.assertEqual(labour["candidate_status"], "discovery_only")
+        self.assertIn("portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf", labour["notes"])
+        self.assertIn("sis.gov.eg/media/760267/", labour["notes"])
+        self.assertIn("Public accessibility does not establish reuse permission", labour["notes"])
+        self.assertIn("not been fully compared article-by-article", labour["notes"])
+
     def test_malformed_catalog_entries_fail_with_clear_validation_errors(self):
         cases = [
             ({"sources": [None], "documents": []}, "sources[0] must be an object"),
