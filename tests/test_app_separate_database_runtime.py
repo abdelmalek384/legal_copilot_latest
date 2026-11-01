@@ -5099,13 +5099,14 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         firm_a_db.rollback()
 
         # A separate firm admin sees an empty queue and cannot guess Firm A's ID.
-        firm_b_owner = self.runtime.create_initial_firm_owner(
-            self.firm_b, "Firm B Owner", "firm-b-owner@example.test", app.hash_pw(self.password)
+        firm_c, _ = self.runtime.provision_firm("Firm C")
+        firm_c_owner = self.runtime.create_initial_firm_owner(
+            firm_c, "Firm C Owner", "firm-c-owner@example.test", app.hash_pw(self.password)
         )
         client_b = TestClient(app.app)
         try:
             login_b = client_b.post(
-                "/login", json={"email": "firm-b-owner@example.test", "password": self.password}
+                "/login", json={"email": "firm-c-owner@example.test", "password": self.password}
             )
             self.assertEqual(login_b.status_code, 200, login_b.text)
             self.assertEqual(client_b.get("/research/corrections").json(), [])
