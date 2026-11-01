@@ -2859,31 +2859,42 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertRegex(second_id, r"^ans_[A-Za-z0-9_-]{32}$")
         self.assertNotEqual(first_id, second_id, "each generated answer needs its own identifier")
 
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        # Historical assistant rows without an answer_id remain readable and unmodified.
+        firm_db.execute(
+            "INSERT INTO research_messages(conversation_id,role,content,sources_json,message_json) "
+            "VALUES(?,?,?,?,?)",
+            (conversation_id, "assistant", "Legacy synthetic answer", "[]",
+             json.dumps({"scope": "verified_corpus", "case_id": None})),
+        )
+        firm_db.commit()
+
         detail = self.client.get(f"/research/conversations/{conversation_id}")
         self.assertEqual(detail.status_code, 200, detail.text)
         assistant_messages = [
             item for item in detail.json()["messages"] if item["role"] == "assistant"
         ]
-        self.assertEqual(len(assistant_messages), 2)
+        self.assertEqual(len(assistant_messages), 3)
         self.assertEqual(
-            [item["answer_id"] for item in assistant_messages],
+            [item["answer_id"] for item in assistant_messages[:2]],
             [first_id, second_id],
         )
         self.assertEqual(
-            [item["result"]["answer_id"] for item in assistant_messages],
+            [item["result"]["answer_id"] for item in assistant_messages[:2]],
             [first_id, second_id],
         )
+        self.assertNotIn("answer_id", assistant_messages[2])
+        self.assertNotIn("answer_id", assistant_messages[2]["result"])
 
-        context = self.runtime.resolve_context(self.user_id, self.firm_a)
-        firm_db = self.runtime.firm_connection(context)
         stored = firm_db.execute(
             "SELECT message_json FROM research_messages "
             "WHERE conversation_id=? AND role='assistant' ORDER BY id",
             (conversation_id,),
         ).fetchall()
         self.assertEqual(
-            [json.loads(row["message_json"])["answer_id"] for row in stored],
-            [first_id, second_id],
+            [json.loads(row["message_json"]).get("answer_id") for row in stored],
+            [first_id, second_id, None],
         )
 
     def test_login_firm_switch_and_shared_corpus_are_separated(self):
