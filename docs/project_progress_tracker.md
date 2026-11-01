@@ -5,7 +5,7 @@
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.91/100 technical completion** (up 0.01 points from 49.90; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **49.95/100 technical completion** (up 0.04 points from 49.91; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
 
 ## Previous whole-product checkpoint — 2026-10-31
@@ -724,3 +724,10 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - **PR #1121 merged:** added a versioned taxonomy for critical defects identified by qualified-human review. New v2 unsafe assessments require a substantive defect description and at least one human-assigned category; v1 legacy findings remain readable, and uncategorized legacy critical defects are reported separately rather than auto-labelled.
 - Exact-head validation passed Tests, Browser acceptance, dependency security audit, and Python/JavaScript CodeQL. No legal content was promoted and no reviewer qualification is independently certified by the evaluator.
 - This strengthens review traceability but does not create lawyer-labelled benchmark data or change the verified Egyptian legal corpus (6%) or final Egyptian-counsel acceptance (0%). The weighted technical score remains unchanged pending a defensible workstream recalculation.
+
+
+### Latest checkpoint — 2026-11-01 (candidate inventory dashboard transparency score reconciliation)
+
+- **PR #1118 merged:** added Arabic/English candidate-inventory health and validation-issue diagnostics to the corpus dashboard, with a clear statement that the planning catalogue denominator is not legal-text availability, currentness, verified corpus coverage or counsel acceptance. Exact-head Tests, Browser acceptance, dependency audit, CodeQL and non-database safety regression passed.
+- Source-governance metadata integrity is now 9.8%; UI/accessibility automated acceptance is 45.3%. With the already merged MFA reliability increment from PR #1120 and all previously recorded changes, the weighted technical score is recalculated to **49.95/100**.
+- Verified Egyptian legal corpus remains 6%; final Egyptian-counsel acceptance remains 0%. No source was promoted and no rights were inferred.
