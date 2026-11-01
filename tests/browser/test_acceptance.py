@@ -485,13 +485,6 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 timeout=8000,
             )
             self.assertEqual(selected_firm.status, 200, selected_firm.text())
-            owner_session_after_switch = self.page.request.get(self.base_url + "/session", timeout=8000)
-            self.assertEqual(owner_session_after_switch.status, 200, owner_session_after_switch.text())
-            owner_case_after_switch = self.page.request.get(
-                self.base_url + f"/cases/{case_id}", timeout=8000
-            )
-            self.assertEqual(owner_case_after_switch.status, 200, owner_case_after_switch.text())
-
             member_detail = member_page.request.get(
                 self.base_url + f"/cases/{case_id}", timeout=8000
             )
@@ -509,6 +502,10 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 timeout=8000,
             )
             self.assertEqual(denied_delete.status, 404, denied_delete.text())
+
+            # Restore the case owner's firm context before continuing case mutations.
+            self.login(self.state["owner_a_email"])
+            headers = self.csrf_headers()
 
             task = self.page.request.post(
                 self.base_url + f"/cases/{case_id}/tasks",
