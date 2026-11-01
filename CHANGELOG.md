@@ -5,6 +5,7 @@
 - Added a policy proposal for a separately gated, production-disabled source-matched/unreviewed trust tier without weakening existing lawyer-approval gates (PR #1150).
 - Added an opt-in, fail-closed factual claim-support check for cited answers, including finite-period contradiction tests; disabled by default (PR #1154).
 - Added Arabic claim-support regressions for no-limitation assertions contradicted by a finite period and a faithful five-year paraphrase; feature remains opt-in and heuristic (PR #1178).
+- Set `must_abstain_if_unverified=true` across all 94 unreviewed multi-area questions and separated the seven inherently out-of-scope cases into a distinct `must_abstain` field (PR #1177).
 - Added an offline structural audit for candidate article-row corpora, including a quantity-bearing article checklist and CI regressions; does not establish Gazette fidelity or legal verification (PR #1158).
 - Added a manual-capture provenance recorder with strict document-ID/output-path safeguards, CI tests, and a law-ingestion runbook; captures remain unverified and do not grant reuse permission (PR #1160).
 - Expanded synthetic Egyptian-colloquial retrieval regressions to 51 top-three queries with six competing passages each, ten out-of-corpus abstention cases, and a no-model-call check for empty retrieval (PR #1165).
