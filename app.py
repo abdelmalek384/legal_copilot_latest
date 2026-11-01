@@ -1560,6 +1560,74 @@ def _answer_has_unanchored_citations(answer, hits):
     return False
 
 
+
+# Exact, high-confidence Arabic legal predicate pairs for a narrow contradiction screen.
+# This catches only explicit opposite-polarity formulations; it does not infer the
+# scope of negation, exceptions, conditions, or the legal meaning of a passage.
+_ARABIC_POLARITY_PREDICATES = (
+    ("يجوز", "لا\s+يجوز"),
+    ("يحق", "لا\s+يحق"),
+    ("يستحق", "لا\s+يستحق"),
+    ("يلتزم", "لا\s+يلتزم"),
+    ("يجب", "لا\s+يجب"),
+    ("يسمح", "لا\s+يسمح"),
+    ("يقبل", "لا\s+يقبل"),
+    ("يكون", "لا\s+يكون"),
+    ("تسري", "لا\s+تسري"),
+    ("ينطبق", "لا\s+ينطبق"),
+)
+
+
+def _arabic_predicate_polarity(text, positive, negative):
+    """Return one unambiguous polarity for a predicate, or None if absent/ambiguous."""
+    normalized = norm(text)
+    negative_re = re.compile(r"(?<![\w])" + negative + r"(?![\u0621-\u064a])")
+    negative_found = bool(negative_re.search(normalized))
+    # Remove explicit negative phrases before looking for the positive predicate,
+    # so the verb inside a negative phrase is not also counted as positive.
+    positive_view = negative_re.sub(" ", normalized)
+    positive_re = re.compile(r"(?<![\u0621-\u064a])" + positive + r"(?![\u0621-\u064a])")
+    positive_found = bool(positive_re.search(positive_view))
+    if negative_found == positive_found:
+        return None
+    return "negative" if negative_found else "positive"
+
+
+def _answer_has_source_polarity_conflict(answer, hits):
+    """Fail closed on a cited sentence that explicitly reverses a cited Arabic predicate.
+
+    This is a narrow contradiction heuristic, not semantic entailment or legal review.
+    It ignores a predicate when either the answer or cited evidence expresses both
+    polarities, and it only compares predicates explicitly present on both sides.
+    """
+    if not isinstance(answer, str) or not answer.strip() or not isinstance(hits, (list, tuple)):
+        return True
+    visible = _mask_markdown_code(answer)
+    for raw_line in visible.splitlines():
+        line = raw_line.strip()
+        if (not line or re.match(r"^#{1,6}\s+", line)
+                or re.fullmatch(r"[-*_]{3,}", line)
+                or re.fullmatch(r"\*\*[^*]{1,100}[:：]\*\*", line)):
+            continue
+        if line.endswith((":", "：")) and len(line) <= 100:
+            continue
+        for sentence in re.split(r"(?<=[.!?؟])\s+", line):
+            sentence = sentence.strip()
+            cited = {int(value) for value in re.findall(r"\[(\d+)\]", sentence)}
+            if not cited:
+                continue
+            if any(index < 1 or index > len(hits) for index in cited):
+                return True
+            claim = re.sub(r"\[\d+\]", " ", sentence)
+            evidence = " ".join(str(hits[index - 1].get("text") or "") for index in cited)
+            for positive, negative in _ARABIC_POLARITY_PREDICATES:
+                claim_polarity = _arabic_predicate_polarity(claim, positive, negative)
+                evidence_polarity = _arabic_predicate_polarity(evidence, positive, negative)
+                if (claim_polarity is not None and evidence_polarity is not None
+                        and claim_polarity != evidence_polarity):
+                    return True
+    return False
+
 def _answer_has_uncited_claims(answer):
     """Fail closed when a generated legal claim sentence has no inline source citation."""
     if not isinstance(answer, str) or not answer.strip():
@@ -1645,6 +1713,8 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
             ans, msg = None, "توجد عبارة قانونية بلا استشهاد مباشر، تُعرض المصادر فقط."
         elif _answer_has_unanchored_citations(ans, hits):
             ans, msg = None, "لم يظهر ارتباط لفظي كافٍ بين إحدى العبارات ومصادرها المستشهد بها؛ تُعرض المصادر فقط."
+        elif _answer_has_source_polarity_conflict(ans, hits):
+            ans, msg = None, "توجد عبارة تعكس صياغة صريحة في أحد المصادر المستشهد بها؛ تُعرض المصادر فقط."
     return {"found": True, "answer": ans, "abstained": not bool(ans), "message": msg, "sources": hits, "scope": scope, "case_id": case_id, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
 
 
