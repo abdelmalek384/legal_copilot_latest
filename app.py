@@ -1544,8 +1544,8 @@ def _answer_has_cited_actor_role_mismatch(answer, hits):
     visible = _mask_markdown_code(answer)
 
     def has_phrase(text, phrase):
-        pattern = r"(?<![\\u0621-\\u064a])(?:و|ف|ب|ل|ك)?" + re.escape(norm(phrase)) + r"(?![\\u0621-\\u064a])"
-        return bool(re.search(pattern, norm(text)))
+        # Substring matching handles attached Arabic prepositions and doubled lam forms.
+        return norm(phrase) in norm(text)
 
     for raw_line in visible.splitlines():
         line = raw_line.strip()
