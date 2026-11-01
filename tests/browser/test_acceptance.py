@@ -545,6 +545,49 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertTrue(any(row["name"] == "synthetic-caseflow-note.txt" for row in record["docs"]))
         self.assertTrue(any("SYNTHETIC CASEFLOW" in row["text"] for row in record["events"]))
 
+        # Use an independent browser context so the associate's selected firm
+        # cannot mutate the owner's active-firm cookie or session.
+        member_context = self.browser.new_context(viewport={"width": 1280, "height": 800})
+        try:
+            member_page = member_context.new_page()
+            member_page.set_default_timeout(8000)
+            member_page.goto(self.base_url, wait_until="domcontentloaded")
+            member_page.locator('input[type="email"]').fill(self.state["reviewer_email"])
+            member_page.locator('input[type="password"]').fill(self.state["password"])
+            member_page.locator('button[type="submit"]').click()
+            member_page.locator("#side").wait_for(state="visible", timeout=15000)
+            member_cookies = {item["name"]: item["value"] for item in member_context.cookies()}
+            member_headers = {
+                "X-CSRF-Token": member_cookies.get("lc_csrf", ""),
+                "Content-Type": "application/json",
+            }
+            selected_firm = member_page.request.post(
+                self.base_url + "/session/firm",
+                data={"firm_id": self.state["firm_a_id"]},
+                headers=member_headers,
+                timeout=8000,
+            )
+            self.assertEqual(selected_firm.status, 200, selected_firm.text())
+            member_detail = member_page.request.get(
+                self.base_url + f"/cases/{case_id}", timeout=8000
+            )
+            self.assertEqual(member_detail.status, 200, member_detail.text())
+            denied_patch = member_page.request.patch(
+                self.base_url + f"/cases/{case_id}",
+                data={"stage": "UNAUTHORIZED_ASSOCIATE_EDIT"},
+                headers=member_headers,
+                timeout=8000,
+            )
+            self.assertEqual(denied_patch.status, 403, denied_patch.text())
+            denied_delete = member_page.request.delete(
+                self.base_url + f"/cases/{case_id}",
+                headers={"X-CSRF-Token": member_cookies.get("lc_csrf", "")},
+                timeout=8000,
+            )
+            self.assertEqual(denied_delete.status, 403, denied_delete.text())
+        finally:
+            member_context.close()
+
         removed = self.page.request.delete(
             self.base_url + f"/cases/{case_id}/members/{member_id}",
             headers=headers,
