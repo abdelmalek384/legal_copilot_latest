@@ -6,6 +6,7 @@
 - Added an opt-in, fail-closed factual claim-support check for cited answers, including finite-period contradiction tests; disabled by default (PR #1154).
 - Added an offline structural audit for candidate article-row corpora, including a quantity-bearing article checklist and CI regressions; does not establish Gazette fidelity or legal verification (PR #1158).
 - Added a manual-capture provenance recorder with strict document-ID/output-path safeguards, CI tests, and a law-ingestion runbook; captures remain unverified and do not grant reuse permission (PR #1160).
+- Expanded synthetic Egyptian-colloquial retrieval regressions to 51 top-three queries with six competing passages each, ten out-of-corpus abstention cases, and a no-model-call check for empty retrieval (PR #1165).
 
 ## Prepared update
 - Improved login form: trims/lowercases email, supports Enter-to-submit, displays clearer errors, and adds show/hide password.
