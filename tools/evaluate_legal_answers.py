@@ -344,6 +344,7 @@ def _release_gate(report, args):
         "source_precision": args.min_source_precision,
         "pin_cite_precision": args.min_pin_cite_precision,
         "abstention_accuracy": args.min_abstention_accuracy,
+        "stable_answer_id_coverage": args.min_stable_answer_id_coverage,
     }
     maximums = {
         "unanswerable_citation_rate": args.max_unanswerable_citation_rate,
@@ -369,7 +370,8 @@ def _release_gate(report, args):
                            "passed": actual >= args.min_questions_per_practice_area})
     for metric, threshold in minimums.items():
         if threshold is not None:
-            actual = report["overall"].get(metric)
+            actual = (report.get(metric) if metric == "stable_answer_id_coverage"
+                      else report["overall"].get(metric))
             checks.append({"metric": metric, "operator": ">=", "threshold": threshold,
                            "actual": actual, "passed": actual is not None and actual >= threshold})
     for metric, threshold in maximums.items():
@@ -390,6 +392,7 @@ def main(argv=None):
     parser.add_argument("--min-source-precision", type=float, help="Fail the technical gate if source precision is below this 0..1 threshold")
     parser.add_argument("--min-pin-cite-precision", type=float, help="Fail the technical gate if pinpoint-citation precision is below this 0..1 threshold")
     parser.add_argument("--min-abstention-accuracy", type=float, help="Fail the technical gate if abstention accuracy is below this 0..1 threshold")
+    parser.add_argument("--min-stable-answer-id-coverage", type=float, help="Fail the technical gate if fewer than this fraction of scored answers have stable review-linking IDs")
     parser.add_argument("--max-unanswerable-citation-rate", type=float, help="Fail the technical gate if unanswerable cases contain citations above this 0..1 rate")
     parser.add_argument("--max-invalid-citation-question-rate", type=float, help="Fail the technical gate if questions with invalid citation indexes exceed this 0..1 rate")
     parser.add_argument("--min-questions", type=int, help="Fail the technical gate if fewer lawyer-approved questions are scored; required with quality thresholds")
@@ -408,14 +411,16 @@ def main(argv=None):
     if (args.min_practice_areas is None) != (args.min_questions_per_practice_area is None):
         parser.error("--min-practice-areas and --min-questions-per-practice-area must be configured together")
     quality_thresholds = (args.min_source_precision, args.min_pin_cite_precision, args.min_abstention_accuracy,
-                          args.max_unanswerable_citation_rate, args.max_invalid_citation_question_rate)
+                          args.min_stable_answer_id_coverage, args.max_unanswerable_citation_rate,
+                          args.max_invalid_citation_question_rate)
     if any(value is not None for value in quality_thresholds):
         if args.min_questions is None:
             parser.error("quality thresholds require an explicit --min-questions sample-size gate")
         if args.min_practice_areas is None:
             parser.error("quality thresholds require explicit practice-area coverage gates")
     for name in ("min_source_precision", "min_pin_cite_precision", "min_abstention_accuracy",
-                 "max_unanswerable_citation_rate", "max_invalid_citation_question_rate"):
+                 "min_stable_answer_id_coverage", "max_unanswerable_citation_rate",
+                 "max_invalid_citation_question_rate"):
         value = getattr(args, name)
         if value is not None and (not math.isfinite(value) or not 0 <= value <= 1):
             parser.error(f"--{name.replace('_', '-')} must be a finite number between 0 and 1")
