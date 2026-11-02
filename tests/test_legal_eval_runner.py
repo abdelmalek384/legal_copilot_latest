@@ -141,6 +141,23 @@ class LegalEvalRunnerTests(unittest.TestCase):
         row = result_from_response({"id": "Q3", "question_ar": "سؤال"}, {"found": False, "answer": None})
         self.assertTrue(row["abstained"])
 
+    def test_empty_answer_is_abstention_even_when_api_explicitly_says_false(self):
+        for answer in (None, "", "   "):
+            with self.subTest(answer=answer):
+                row = result_from_response(
+                    {"id": "Q-EMPTY", "question_ar": "سؤال"},
+                    {"found": False, "answer": answer, "abstained": False},
+                )
+                self.assertIsNone(row["answer"])
+                self.assertTrue(row["abstained"])
+
+    def test_explicit_api_abstention_is_preserved_when_answer_text_is_present(self):
+        row = result_from_response(
+            {"id": "Q-ABSTAIN", "question_ar": "سؤال"},
+            {"found": True, "answer": "نص", "abstained": True},
+        )
+        self.assertTrue(row["abstained"])
+
     def test_remote_targets_require_explicit_opt_in_and_https(self):
         self.assertEqual(validate_base_url("http://127.0.0.1:8000"), "http://127.0.0.1:8000")
         self.assertEqual(validate_base_url("http://localhost:8000/path"), "http://localhost:8000/path")

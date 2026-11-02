@@ -211,7 +211,9 @@ def result_from_response(question, response):
         "id": question["id"],
         "question_id": question["id"],
         "answer": answer,
-        "abstained": bool(response.get("abstained", answer is None)),
+        # A missing/empty answer is an abstention even if an inconsistent API
+        # response explicitly reports abstained=false.
+        "abstained": bool(response.get("abstained")) or answer is None,
         "retrieved_source_ids": retrieved_source_ids,
         "citations": citations,
         "used_unverified_source": used_unverified_source,
