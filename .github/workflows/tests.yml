@@ -262,6 +262,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_deadline_case_routes.py
       - name: Test firm-scoped invoice draft and issue routes
         run: PYTHONPATH=. python tests/test_invoice_core_routes.py
+      - name: Test invoice payments, aging, and receipts
+        run: PYTHONPATH=. python tests/test_invoice_payment_routes.py
       - name: Test platform security audit events
         run: PYTHONPATH=. python tests/test_platform_security_audit.py
       - name: Test platform security audit migrations
