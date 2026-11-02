@@ -303,7 +303,35 @@ function mfaSettingsCard(){
  }
  return card;
 }
-async function settingsPage(){PAGE='settings';const isAdmin=ME.role==='admin';const users=isAdmin?await api('/users').catch(()=>[]):[];const invitationResult=isAdmin?await api('/invitations').catch(()=>({invitations:[]})):{invitations:[]};const invitations=Array.isArray(invitationResult.invitations)?invitationResult.invitations:[];const langBtn=btn(LANG==='ar'?'English':'العربية',switchLanguage,'g');const items=[h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'تفضيلات اللغة':'Language preferences'}),h('p',{className:'mut',textContent:LANG==='ar'?'اختر لغة الواجهة. سيتم حفظ اختيارك في هذا المتصفح.':'Choose the interface language. Your choice is saved in this browser.'}),langBtn,h('p',{className:'mut',textContent:LANG==='ar'?'اتجاه الصفحة يتغير تلقائيا مع اللغة.':'Page direction follows the selected language.'}))];if(Array.isArray(ME.firms))items.push(mfaSettingsCard());const currentPassword=h('input',{type:'password',autocomplete:'current-password',placeholder:LANG==='ar'?'كلمة المرور الحالية':'Current password',required:true,maxLength:200});
+async function settingsPage(){PAGE='settings';const reminderPrefs=await api('/reminder-preferences').catch(()=>null);const isAdmin=ME.role==='admin';const users=isAdmin?await api('/users').catch(()=>[]):[];const invitationResult=isAdmin?await api('/invitations').catch(()=>({invitations:[]})):{invitations:[]};const invitations=Array.isArray(invitationResult.invitations)?invitationResult.invitations:[];const langBtn=btn(LANG==='ar'?'English':'العربية',switchLanguage,'g');const items=[h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'تفضيلات اللغة':'Language preferences'}),h('p',{className:'mut',textContent:LANG==='ar'?'اختر لغة الواجهة. سيتم حفظ اختيارك في هذا المتصفح.':'Choose the interface language. Your choice is saved in this browser.'}),langBtn,h('p',{className:'mut',textContent:LANG==='ar'?'اتجاه الصفحة يتغير تلقائيا مع اللغة.':'Page direction follows the selected language.'}))];if(Array.isArray(ME.firms))items.push(mfaSettingsCard());
+if(reminderPrefs){
+ const reminderFields=[
+  ['email_enabled','تفعيل تذكيرات البريد الإلكتروني','Enable email reminders'],
+  ['deadline_7_days','قبل الموعد القانوني بسبعة أيام','7 days before a deadline'],
+  ['deadline_3_days','قبل الموعد القانوني بثلاثة أيام','3 days before a deadline'],
+  ['deadline_1_day','قبل الموعد القانوني بيوم','1 day before a deadline'],
+  ['deadline_day_of','في يوم الموعد القانوني','On the deadline date'],
+  ['deadline_overdue','للمواعيد القانونية المتأخرة','Overdue legal deadlines'],
+  ['session_day_of','في يوم جلسة المحكمة','On the hearing date'],
+  ['task_reminders','تذكيرات المهام','Task reminders']
+ ];
+ const preferenceControls=reminderFields.map(([key,ar,en])=>{
+  const input=h('input',{type:'checkbox',checked:!!reminderPrefs[key],'aria-label':LANG==='ar'?ar:en});
+  input.dataset.preferenceKey=key;
+  return {key,input,label:h('label',{className:'row'},input,h('span',{textContent:LANG==='ar'?ar:en}))};
+ });
+ const savePreferences=btn(LANG==='ar'?'حفظ تفضيلات التذكير':'Save reminder preferences',async()=>{
+  const payload={};preferenceControls.forEach(item=>payload[item.key]=item.input.checked);
+  savePreferences.disabled=true;
+  try{const saved=await api('/reminder-preferences','PUT',payload);Object.assign(reminderPrefs,saved);toast(LANG==='ar'?'تم حفظ تفضيلات التذكير':'Reminder preferences saved')}
+  catch(_){toast(LANG==='ar'?'تعذر حفظ التفضيلات':'Could not save preferences')}
+  finally{savePreferences.disabled=false}
+ });
+ items.push(h('section',{className:'card'},h('h3',{textContent:LANG==='ar'?'تفضيلات تذكيرات البريد الإلكتروني':'Email reminder preferences'}),h('p',{className:'mut',textContent:LANG==='ar'?'تُطبق هذه الخيارات على حسابك داخل هذا المكتب فقط. تذكيرات المواعيد القانونية قبل 7 و3 و1 أيام، وتذكير الجلسة في يومها.':'These settings apply only to your account in this firm. Deadline reminders are scheduled 7, 3 and 1 days ahead; hearing reminders are sent on the day.'}),...preferenceControls.map(item=>item.label),savePreferences));
+}else{
+ items.push(h('section',{className:'card'},h('h3',{textContent:LANG==='ar'?'تفضيلات التذكير':'Reminder preferences'}),h('p',{className:'mut',textContent:LANG==='ar'?'تعذر تحميل تفضيلات البريد الإلكتروني. أعد تحميل الصفحة لاحقاً.':'Email reminder preferences could not be loaded. Reload this page later.'})));
+}
+const currentPassword=h('input',{type:'password',autocomplete:'current-password',placeholder:LANG==='ar'?'كلمة المرور الحالية':'Current password',required:true,maxLength:200});
 const newPassword=h('input',{type:'password',autocomplete:'new-password',placeholder:LANG==='ar'?'كلمة مرور جديدة (12 حرفا على الأقل)':'New password (at least 12 characters)',required:true,minLength:12,maxLength:200});
 const confirmPassword=h('input',{type:'password',autocomplete:'new-password',placeholder:LANG==='ar'?'تأكيد كلمة المرور الجديدة':'Confirm new password',required:true,minLength:12,maxLength:200});
 const passwordSubmit=h('button',{type:'submit',className:'primary',textContent:LANG==='ar'?'تغيير كلمة المرور':'Change password'});
