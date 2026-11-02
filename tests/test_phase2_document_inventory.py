@@ -257,6 +257,33 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertEqual(validate_inventory(self.inventory), [])
 
 
+    def test_law_14_gazette_pdf_crosscheck_provenance_is_recorded(self):
+        register = json.loads(
+            (ROOT / "docs" / "phase_2_source_evidence_register.json").read_text(encoding="utf-8")
+        )
+        eta = next(item for item in register["sources"] if item["source_id"] == "EG-ETA-GAZETTE-2025-18-LABOUR-PDF")
+        self.assertIn("selected_page_images_reviewed", eta["source_state"])
+        expected = {
+            (33, "35", "المادة 66"),
+            (46, "48", "المادة 103"),
+            (52, "54", "المادة 124"),
+            (55, "57", "المادة 134"),
+            (59, "61", "المادة 141"),
+            (104, "106", "المادة 278"),
+        }
+        observed = {
+            (item["pdf_page_index_zero_based"], item["printed_page_label"], item["provision"])
+            for item in eta["visual_page_checks"]
+        }
+        self.assertEqual(observed, expected)
+        self.assertIn("undownloaded and unhashed", eta["notes"])
+        sis = next(item for item in register["sources"] if item["source_id"] == "EG-SIS-GAZETTE-2025-18-LABOUR-PDF")
+        self.assertIn("page_image_not_visually_checked", sis["source_state"])
+        self.assertEqual(sis["collection_permission"], "unknown")
+        self.assertEqual(sis["commercial_reuse_permission"], "unknown")
+        self.assertIn("سنة", sis["notes"])
+        self.assertIn("كل ستة أشهر", sis["notes"])
+
     def test_labour_law_gazette_repository_access_terms_are_restricted(self):
         register = json.loads(
             (ROOT / "docs" / "phase_2_source_evidence_register.json").read_text(encoding="utf-8")
