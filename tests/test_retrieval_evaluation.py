@@ -41,9 +41,20 @@ def reviewer_registry():
         "status": "approved",
         "professional_role": "qualified_egyptian_counsel",
         "jurisdiction": "Egypt",
-        "practice_areas": ["civil_law"],
+        "practice_areas": ["civil_law", "labor_law"],
         "qualification_basis": "Synthetic test fixture only",
-        "evidence_reference": "private-test-reference",
+        "evidence_reference": "private-test-reference-a",
+        "verified_by": "test-operator",
+        "verified_on": "2026-10-24",
+    }, {
+        "reviewer_id": "reviewer-b",
+        "display_name": "Reviewer B",
+        "status": "approved",
+        "professional_role": "qualified_egyptian_counsel",
+        "jurisdiction": "Egypt",
+        "practice_areas": ["civil_law", "labor_law"],
+        "qualification_basis": "Synthetic test fixture only",
+        "evidence_reference": "private-test-reference-b",
         "verified_by": "test-operator",
         "verified_on": "2026-10-24",
     }]}
@@ -447,6 +458,299 @@ class RetrievalEvaluationTests(unittest.TestCase):
             self.assertTrue(report["release_gate"]["passed"])
             self.assertEqual(report["practice_area_counts"]["civil_law"]["answerable_cases"], 1)
             self.assertEqual(report["practice_area_counts"]["civil_law"]["unanswerable_cases"], 1)
+
+    def test_per_practice_area_quality_gate_catches_weak_area_hidden_by_global_scores(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            questions = [
+                reviewed_question(id="Q-CIVIL-ANSWERABLE", practice_area="civil_law"),
+                reviewed_question(
+                    id="Q-CIVIL-UNANSWERABLE", practice_area="civil_law",
+                    answerable=False, expected_pin_cites=[],
+                ),
+                reviewed_question(id="Q-LABOR-ANSWERABLE", practice_area="labor_law"),
+                reviewed_question(
+                    id="Q-LABOR-UNANSWERABLE", practice_area="labor_law",
+                    answerable=False, expected_pin_cites=[],
+                ),
+            ]
+            runs = [
+                {
+                    "question_id": "Q-CIVIL-ANSWERABLE",
+                    "retrieved_source_ids": ["LAW-A", "LAW-B"],
+                    "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
+                    "source_summary": [{"source_id": "LAW-A", "source_status": "verified_operative_text"}],
+                    "abstained": False, "used_unverified_source": False,
+                },
+                {
+                    "question_id": "Q-CIVIL-UNANSWERABLE",
+                    "retrieved_source_ids": ["LAW-A", "LAW-B"],
+                    "citations": [], "abstained": True, "used_unverified_source": False,
+                },
+                {
+                    "question_id": "Q-LABOR-ANSWERABLE",
+                    "retrieved_source_ids": ["OTHER-SOURCE"],
+                    "citations": [{"source_id": "OTHER-SOURCE", "pin_cite": "Article 9"}],
+                    "source_summary": [{"source_id": "OTHER-SOURCE", "source_status": "verified_operative_text"}],
+                    "abstained": False, "used_unverified_source": False,
+                },
+                {
+                    "question_id": "Q-LABOR-UNANSWERABLE",
+                    "retrieved_source_ids": ["LAW-A", "LAW-B"],
+                    "citations": [], "abstained": False, "used_unverified_source": False,
+                },
+            ]
+            questions_path.write_text("".join(
+                json.dumps(q, ensure_ascii=False) + "\n" for q in questions
+            ), encoding="utf-8")
+            runs_path.write_text("".join(
+                json.dumps(run, ensure_ascii=False) + "\n" for run in runs
+            ), encoding="utf-8")
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                code = run_main([
+                    "--questions", str(questions_path), "--runs", str(runs_path),
+                    "--min-reviewed-cases", "4", "--min-practice-areas", "2",
+                    "--min-cases-per-practice-area", "2",
+                    "--min-answerable-cases", "2", "--min-unanswerable-cases", "2",
+                    "--min-answerable-cases-per-practice-area", "1",
+                    "--min-unanswerable-cases-per-practice-area", "1",
+                    "--min-recall-at-5", "0.5", "--min-mrr-at-5", "0.5",
+                    "--min-citation-precision", "0.4", "--min-citation-coverage", "0.4",
+                    "--min-abstention-compliance", "0.4",
+                    "--min-recall-at-5-per-practice-area", "0.75",
+                    "--min-mrr-at-5-per-practice-area", "0.75",
+                    "--min-citation-precision-per-practice-area", "0.75",
+                    "--min-citation-coverage-per-practice-area", "0.75",
+                    "--min-abstention-compliance-per-practice-area", "0.75",
+                ])
+            self.assertEqual(code, 1)
+            report = json.loads(output.getvalue())
+            self.assertTrue(report["release_gate"]["passed"] is False)
+            self.assertEqual(report["practice_area_metrics"]["civil_law"]["recall_at_5"], 1.0)
+            self.assertEqual(report["practice_area_metrics"]["labor_law"]["recall_at_5"], 0.5)
+            self.assertEqual(report["practice_area_metrics"]["labor_law"]["citation_precision"], 0.0)
+            self.assertEqual(report["practice_area_metrics"]["labor_law"]["citation_coverage"], 0.0)
+            self.assertEqual(report["practice_area_metrics"]["labor_law"]["abstention_compliance"], 0.0)
+            checks = {item["metric"]: item for item in report["release_gate"]["checks"]}
+            for metric in (
+                "recall_at_5", "mrr_at_5", "citation_precision",
+                "citation_coverage", "abstention_compliance",
+            ):
+                self.assertTrue(checks[metric]["passed"])
+                self.assertTrue(checks[f"{metric}_per_practice_area:civil_law"]["passed"])
+                self.assertFalse(checks[f"{metric}_per_practice_area:labor_law"]["passed"])
+
+    def test_per_area_citation_and_abstention_thresholds_require_per_area_cohort_minimums(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            questions_path.write_text("", encoding="utf-8")
+            runs_path.write_text("", encoding="utf-8")
+            for flag in (
+                "--min-citation-precision-per-practice-area",
+                "--min-citation-coverage-per-practice-area",
+                "--min-abstention-compliance-per-practice-area",
+                "--min-pin-cite-accuracy-per-practice-area",
+                "--min-expected-pin-cite-recall-per-practice-area",
+            ):
+                with self.subTest(flag=flag):
+                    with self.assertRaises(SystemExit) as raised:
+                        run_main([
+                            "--questions", str(questions_path), "--runs", str(runs_path),
+                            "--min-reviewed-cases", "1", "--min-practice-areas", "1",
+                            "--min-cases-per-practice-area", "1", flag, "0.8",
+                        ])
+                    self.assertEqual(raised.exception.code, 2)
+
+    def test_per_practice_area_pin_cite_gates_detect_wrong_article_when_global_recall_passes(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            questions = [
+                reviewed_question(id="Q-CIVIL-PIN-CITE", practice_area="civil_law"),
+                reviewed_question(id="Q-LABOR-PIN-CITE", practice_area="labor_law"),
+            ]
+            runs = [
+                {
+                    "question_id": "Q-CIVIL-PIN-CITE",
+                    "retrieved_source_ids": ["LAW-A", "LAW-B"],
+                    "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
+                    "source_summary": [{"source_id": "LAW-A", "source_status": "verified_operative_text"}],
+                    "abstained": False, "used_unverified_source": False,
+                },
+                {
+                    "question_id": "Q-LABOR-PIN-CITE",
+                    "retrieved_source_ids": ["LAW-A", "LAW-B"],
+                    "citations": [{"source_id": "LAW-A", "pin_cite": "Article 13"}],
+                    "source_summary": [{"source_id": "LAW-A", "source_status": "verified_operative_text"}],
+                    "abstained": False, "used_unverified_source": False,
+                },
+            ]
+            questions_path.write_text("".join(
+                json.dumps(q, ensure_ascii=False) + "\n" for q in questions
+            ), encoding="utf-8")
+            runs_path.write_text("".join(
+                json.dumps(run, ensure_ascii=False) + "\n" for run in runs
+            ), encoding="utf-8")
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                code = run_main([
+                    "--questions", str(questions_path), "--runs", str(runs_path),
+                    "--min-reviewed-cases", "2", "--min-practice-areas", "2",
+                    "--min-cases-per-practice-area", "1",
+                    "--min-expected-pin-cites", "2", "--min-expected-pin-cite-recall", "0.5",
+                    "--min-expected-pin-cites-per-practice-area", "1",
+                    "--min-pin-cite-accuracy-per-practice-area", "0.75",
+                    "--min-expected-pin-cite-recall-per-practice-area", "0.75",
+                ])
+            self.assertEqual(code, 1)
+            report = json.loads(output.getvalue())
+            self.assertEqual(report["expected_pin_cite_recall"], 0.5)
+            self.assertEqual(report["practice_area_metrics"]["civil_law"]["pin_cite_accuracy"], 1.0)
+            self.assertEqual(report["practice_area_metrics"]["labor_law"]["pin_cite_accuracy"], 0.0)
+            self.assertEqual(report["practice_area_metrics"]["labor_law"]["expected_pin_cite_recall"], 0.0)
+            checks = {item["metric"]: item for item in report["release_gate"]["checks"]}
+            self.assertTrue(checks["expected_pin_cite_recall"]["passed"])
+            self.assertTrue(checks["pin_cite_accuracy_per_practice_area:civil_law"]["passed"])
+            self.assertFalse(checks["pin_cite_accuracy_per_practice_area:labor_law"]["passed"])
+            self.assertFalse(checks["expected_pin_cite_recall_per_practice_area:labor_law"]["passed"])
+
+    def test_min_reviewers_per_practice_area_counts_distinct_approved_reviewers(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            questions = [
+                reviewed_question(id="Q-REVIEWER-A"),
+                reviewed_question(
+                    id="Q-REVIEWER-B", reviewer_id="reviewer-b",
+                    reviewer_name="Reviewer B", answerable=False, expected_pin_cites=[],
+                ),
+            ]
+            runs = [
+                {
+                    "question_id": "Q-REVIEWER-A",
+                    "retrieved_source_ids": ["LAW-A", "LAW-B"],
+                    "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
+                    "source_summary": [{"source_id": "LAW-A", "source_status": "verified_operative_text"}],
+                    "abstained": False, "used_unverified_source": False,
+                },
+                {
+                    "question_id": "Q-REVIEWER-B",
+                    "retrieved_source_ids": ["LAW-A", "LAW-B"],
+                    "citations": [], "abstained": True, "used_unverified_source": False,
+                },
+            ]
+            questions_path.write_text("".join(
+                json.dumps(q, ensure_ascii=False) + "\n" for q in questions
+            ), encoding="utf-8")
+            for second_reviewer, expected_code, expected_count in (
+                ("reviewer-b", 0, 2),
+                ("reviewer-a", 1, 1),
+            ):
+                with self.subTest(second_reviewer=second_reviewer):
+                    questions[1]["reviewer_id"] = second_reviewer
+                    questions[1]["reviewer_name"] = (
+                        "Reviewer B" if second_reviewer == "reviewer-b" else "Reviewer A"
+                    )
+                    questions_path.write_text("".join(
+                        json.dumps(q, ensure_ascii=False) + "\n" for q in questions
+                    ), encoding="utf-8")
+                    runs_path.write_text("".join(
+                        json.dumps(run, ensure_ascii=False) + "\n" for run in runs
+                    ), encoding="utf-8")
+                    output = io.StringIO()
+                    with contextlib.redirect_stdout(output):
+                        code = run_main([
+                            "--questions", str(questions_path), "--runs", str(runs_path),
+                            "--min-reviewed-cases", "2", "--min-practice-areas", "1",
+                            "--min-cases-per-practice-area", "2",
+                            "--min-reviewers-per-practice-area", "2",
+                        ])
+                    self.assertEqual(code, expected_code)
+                    report = json.loads(output.getvalue())
+                    self.assertEqual(report["practice_area_counts"]["civil_law"]["reviewer_count"],
+                                     expected_count)
+                    self.assertNotIn("reviewer_ids", report["practice_area_counts"]["civil_law"])
+                    check = next(item for item in report["release_gate"]["checks"]
+                                 if item["metric"] == "reviewers_per_practice_area:civil_law")
+                    self.assertEqual(check["passed"], expected_count >= 2)
+
+    def test_per_practice_area_cohort_thresholds_require_area_coverage_gates(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            questions_path.write_text("", encoding="utf-8")
+            runs_path.write_text("", encoding="utf-8")
+            with self.assertRaises(SystemExit) as raised:
+                run_main([
+                    "--questions", str(questions_path), "--runs", str(runs_path),
+                    "--min-reviewed-cases", "1",
+                    "--min-answerable-cases-per-practice-area", "1",
+                ])
+            self.assertEqual(raised.exception.code, 2)
+
+    def test_release_gate_requires_answerable_and_unanswerable_cases_in_each_practice_area(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            questions = [
+                reviewed_question(id="Q-CIVIL-ANSWERABLE", practice_area="civil_law"),
+                reviewed_question(
+                    id="Q-CIVIL-UNANSWERABLE", practice_area="civil_law",
+                    answerable=False, expected_pin_cites=[],
+                ),
+                reviewed_question(id="Q-LABOR-ANSWERABLE", practice_area="labor_law"),
+            ]
+            questions_path.write_text("".join(
+                json.dumps(q, ensure_ascii=False) + "\n" for q in questions
+            ), encoding="utf-8")
+            runs = [
+                {
+                    "question_id": "Q-CIVIL-ANSWERABLE",
+                    "retrieved_source_ids": ["LAW-A", "LAW-B"],
+                    "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
+                    "source_summary": [{"source_id": "LAW-A", "source_status": "verified_operative_text"}],
+                    "abstained": False, "used_unverified_source": False,
+                },
+                {
+                    "question_id": "Q-CIVIL-UNANSWERABLE",
+                    "retrieved_source_ids": ["LAW-A", "LAW-B"],
+                    "citations": [], "abstained": True, "used_unverified_source": False,
+                },
+                {
+                    "question_id": "Q-LABOR-ANSWERABLE",
+                    "retrieved_source_ids": ["LAW-A", "LAW-B"],
+                    "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
+                    "source_summary": [{"source_id": "LAW-A", "source_status": "verified_operative_text"}],
+                    "abstained": False, "used_unverified_source": False,
+                },
+            ]
+            runs_path.write_text("".join(
+                json.dumps(run, ensure_ascii=False) + "\n" for run in runs
+            ), encoding="utf-8")
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                code = run_main([
+                    "--questions", str(questions_path), "--runs", str(runs_path),
+                    "--min-reviewed-cases", "3", "--min-practice-areas", "2",
+                    "--min-cases-per-practice-area", "1",
+                    "--min-answerable-cases", "1", "--min-unanswerable-cases", "1",
+                    "--min-answerable-cases-per-practice-area", "1",
+                    "--min-unanswerable-cases-per-practice-area", "1",
+                ])
+            self.assertEqual(code, 1)
+            report = json.loads(output.getvalue())
+            self.assertEqual(report["practice_area_counts"]["civil_law"]["answerable_cases"], 1)
+            self.assertEqual(report["practice_area_counts"]["civil_law"]["unanswerable_cases"], 1)
+            self.assertEqual(report["practice_area_counts"]["labor_law"]["answerable_cases"], 1)
+            self.assertEqual(report["practice_area_counts"]["labor_law"]["unanswerable_cases"], 0)
+            checks = {item["metric"]: item for item in report["release_gate"]["checks"]}
+            self.assertTrue(checks["answerable_cases_per_practice_area:civil_law"]["passed"])
+            self.assertTrue(checks["unanswerable_cases_per_practice_area:civil_law"]["passed"])
+            self.assertTrue(checks["answerable_cases_per_practice_area:labor_law"]["passed"])
+            self.assertFalse(checks["unanswerable_cases_per_practice_area:labor_law"]["passed"])
 
     def test_retrieval_release_gate_fails_on_low_recall_missing_citations_and_unsafe_abstention(self):
         with tempfile.TemporaryDirectory() as td:
