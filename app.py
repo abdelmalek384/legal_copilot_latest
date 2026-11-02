@@ -26,6 +26,8 @@ from db_migrations import apply_migrations
 from database_runtime import DatabaseRuntime, DatabaseRuntimeError
 from tenant_context import FirmContext, FirmContextError
 from tools.database_release_acceptance import load_acceptance_manifest, original_storage_config_fingerprint
+from html import escape as html_escape
+from tools.invoice_money import InvoiceMoneyError, egp_to_piasters, piasters_to_egp
 from fastapi import Request, Query
 from fastapi.responses import JSONResponse, HTMLResponse, Response
 
@@ -2424,6 +2426,30 @@ class DeadlineEstimateIn(BaseModel):
     trigger: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
     distance_days: int = Field(0, ge=0, le=365)
     _valid_trigger = field_validator("trigger")(validate_calendar_date)
+class InvoiceLineIn(BaseModel):
+    description: str = Field(min_length=1, max_length=300)
+    quantity: int = Field(1, ge=1, le=10000)
+    unit_price_egp: str = Field(pattern=r"^(?:0|[1-9][0-9]{0,11})(?:\\.[0-9]{1,2})?$")
+
+
+class InvoiceCreateIn(BaseModel):
+    client_name: str = Field("", max_length=200)
+    issue_date: str = Field(pattern=r"^\\d{4}-\\d{2}-\\d{2}$")
+    due_date: str | None = Field(None, pattern=r"^\\d{4}-\\d{2}-\\d{2}$")
+    note: str = Field("", max_length=1000)
+    lines: list[InvoiceLineIn] = Field(min_length=1, max_length=50)
+    _valid_issue_date = field_validator("issue_date")(validate_calendar_date)
+    _valid_due_date = field_validator("due_date")(validate_calendar_date)
+
+
+class InvoicePaymentIn(BaseModel):
+    amount_egp: str = Field(pattern=r"^(?:0|[1-9][0-9]{0,11})(?:\\.[0-9]{1,2})?$")
+    method: str = Field(pattern=r"^(cash|bank_transfer|instapay|cheque|other)$")
+    reference: str = Field("", max_length=200)
+    paid_on: str = Field(pattern=r"^\\d{4}-\\d{2}-\\d{2}$")
+    _valid_paid_on = field_validator("paid_on")(validate_calendar_date)
+
+
 class FeeIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); amount: float = Field(ge=0, le=1_000_000_000_000); paid: float = Field(ge=0, le=1_000_000_000_000)
     due: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
@@ -4889,6 +4915,281 @@ def export_calendar(u: dict = Depends(user)):
             "Pragma": "no-cache",
         },
     )
+
+
+
+def _invoice_details(c, u, invoice_id: int):
+    row = c.execute(
+        "SELECT i.*,cs.title AS case_title,cs.case_number,cs.case_year,cs.court "
+        "FROM invoices i JOIN cases cs ON cs.id=i.case_id "
+        "WHERE i.id=? AND cs.firm_id=?",
+        (invoice_id, u["firm_id"]),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "invoice not found")
+    need(c, u, int(row["case_id"]))
+    lines = [dict(item) for item in c.execute(
+        "SELECT line_number,description,quantity,unit_price_piasters,line_total_piasters "
+        "FROM invoice_lines WHERE invoice_id=? ORDER BY line_number", (invoice_id,)
+    ).fetchall()]
+    payments = [dict(item) for item in c.execute(
+        "SELECT id,receipt_number,amount_piasters,method,reference,paid_on,recorded_by,created_at "
+        "FROM invoice_payments WHERE invoice_id=? ORDER BY paid_on,id", (invoice_id,)
+    ).fetchall()]
+    paid = sum(int(item["amount_piasters"]) for item in payments)
+    result = dict(row)
+    result["lines"] = lines
+    result["payments"] = payments
+    result["paid_piasters"] = paid
+    result["outstanding_piasters"] = max(0, int(row["total_piasters"]) - paid)
+    return result
+
+
+@app.get("/invoices")
+def list_invoices(u: dict = Depends(user)):
+    c = conn()
+    rows = c.execute(
+        "SELECT i.id,i.invoice_number,i.case_id,i.client_name,i.issue_date,i.due_date,"
+        "i.status,i.total_piasters,cs.title AS case_title,"
+        "COALESCE((SELECT SUM(p.amount_piasters) FROM invoice_payments p WHERE p.invoice_id=i.id),0) AS paid_piasters "
+        "FROM invoices i JOIN cases cs ON cs.id=i.case_id "
+        "WHERE cs.firm_id=? AND (?='admin' OR cs.id IN (SELECT case_id FROM members WHERE user_id=?)) "
+        "ORDER BY i.issue_date DESC,i.id DESC",
+        (u["firm_id"], u["role"], u["id"]),
+    ).fetchall()
+    return [
+        {**dict(row), "outstanding_piasters": max(0, int(row["total_piasters"]) - int(row["paid_piasters"]))}
+        for row in rows
+    ]
+
+
+@app.post("/cases/{cid}/invoices")
+@rollback_tenant_transaction_on_error
+def create_invoice(cid: int, b: InvoiceCreateIn, u: dict = Depends(user)):
+    c = conn()
+    need(c, u, cid)
+    case = c.execute(
+        "SELECT client,title FROM cases WHERE id=? AND firm_id=?", (cid, u["firm_id"])
+    ).fetchone()
+    if case is None:
+        raise HTTPException(404, "case not found")
+    try:
+        lines = []
+        subtotal = 0
+        for item in b.lines:
+            unit_price = egp_to_piasters(item.unit_price_egp)
+            line_total = unit_price * item.quantity
+            if line_total > 9_000_000_000_000_000:
+                raise InvoiceMoneyError("line total exceeds the supported limit")
+            subtotal += line_total
+            if subtotal > 9_000_000_000_000_000:
+                raise InvoiceMoneyError("invoice total exceeds the supported limit")
+            lines.append((item.description.strip(), item.quantity, unit_price, line_total))
+    except InvoiceMoneyError as exc:
+        raise HTTPException(422, str(exc)) from exc
+    year = int(b.issue_date[:4])
+    sequence = c.execute(
+        "INSERT INTO invoice_sequences(year,next_number) VALUES(?,2) "
+        "ON CONFLICT(year) DO UPDATE SET next_number=next_number+1 "
+        "RETURNING next_number-1 AS allocated",
+        (year,),
+    ).fetchone()["allocated"]
+    invoice_number = f"LC-{year}-{int(sequence):05d}"
+    client_name = b.client_name.strip() or (case["client"] or "").strip()
+    if not client_name:
+        raise HTTPException(422, "client name is required")
+    cursor = c.execute(
+        "INSERT INTO invoices(case_id,invoice_number,client_name,issue_date,due_date,status,"
+        "subtotal_piasters,total_piasters,note,created_by) VALUES(?,?,?,?,?,'draft',?,?,?,?,?)",
+        (cid, invoice_number, client_name, b.issue_date, b.due_date, subtotal, subtotal, b.note.strip(), u["id"]),
+    )
+    invoice_id = int(cursor.lastrowid)
+    c.executemany(
+        "INSERT INTO invoice_lines(invoice_id,line_number,description,quantity,unit_price_piasters,line_total_piasters) "
+        "VALUES(?,?,?,?,?,?)",
+        [(invoice_id, index, *line) for index, line in enumerate(lines, 1)],
+    )
+    c.commit()
+    return {"id": invoice_id, "invoice_number": invoice_number, "status": "draft",
+            "subtotal_piasters": subtotal, "total_piasters": subtotal}
+
+
+@app.post("/invoices/{invoice_id}/issue")
+@rollback_tenant_transaction_on_error
+def issue_invoice(invoice_id: int, u: dict = Depends(user)):
+    c = conn()
+    invoice = _invoice_details(c, u, invoice_id)
+    if invoice["status"] != "draft":
+        raise HTTPException(409, "only draft invoices can be issued")
+    if not invoice["lines"]:
+        raise HTTPException(422, "invoice must contain at least one line")
+    snapshot = {
+        "invoice_number": invoice["invoice_number"], "client_name": invoice["client_name"],
+        "issue_date": invoice["issue_date"], "due_date": invoice["due_date"],
+        "case_title": invoice["case_title"], "case_number": invoice["case_number"],
+        "case_year": invoice["case_year"], "court": invoice["court"],
+        "currency": "EGP", "subtotal_piasters": int(invoice["subtotal_piasters"]),
+        "total_piasters": int(invoice["total_piasters"]), "note": invoice["note"],
+        "lines": invoice["lines"],
+    }
+    c.execute(
+        "UPDATE invoices SET status='issued',snapshot_json=?,issued_at=? WHERE id=? AND status='draft'",
+        (json.dumps(snapshot, ensure_ascii=False, separators=(",", ":")),
+         datetime.now(timezone.utc).isoformat(), invoice_id),
+    )
+    if c.execute("SELECT changes()").fetchone()[0] != 1:
+        raise HTTPException(409, "invoice could not be issued")
+    c.commit()
+    return {"ok": True, "status": "issued", "snapshot": snapshot}
+
+
+@app.post("/invoices/{invoice_id}/payments")
+@rollback_tenant_transaction_on_error
+def record_invoice_payment(invoice_id: int, b: InvoicePaymentIn, u: dict = Depends(user)):
+    c = conn()
+    invoice = _invoice_details(c, u, invoice_id)
+    if invoice["status"] != "issued":
+        raise HTTPException(409, "payments can be recorded only against issued invoices")
+    try:
+        amount = egp_to_piasters(b.amount_egp)
+    except InvoiceMoneyError as exc:
+        raise HTTPException(422, str(exc)) from exc
+    if amount <= 0:
+        raise HTTPException(422, "payment amount must be greater than zero")
+    if amount > int(invoice["outstanding_piasters"]):
+        raise HTTPException(422, "payment exceeds the invoice outstanding balance")
+    year = int(b.paid_on[:4])
+    sequence = c.execute(
+        "INSERT INTO receipt_sequences(year,next_number) VALUES(?,2) "
+        "ON CONFLICT(year) DO UPDATE SET next_number=next_number+1 "
+        "RETURNING next_number-1 AS allocated",
+        (year,),
+    ).fetchone()["allocated"]
+    receipt_number = f"RC-{year}-{int(sequence):06d}"
+    cursor = c.execute(
+        "INSERT INTO invoice_payments(invoice_id,receipt_number,amount_piasters,method,reference,paid_on,recorded_by) "
+        "VALUES(?,?,?,?,?,?,?)",
+        (invoice_id, receipt_number, amount, b.method, b.reference.strip(), b.paid_on, u["id"]),
+    )
+    payment_id = int(cursor.lastrowid)
+    c.commit()
+    return {"id": payment_id, "receipt_number": receipt_number, "amount_piasters": amount}
+
+
+@app.get("/invoices/{invoice_id}")
+def get_invoice(invoice_id: int, u: dict = Depends(user)):
+    return _invoice_details(conn(), u, invoice_id)
+
+
+@app.get("/invoices/{invoice_id}/print", response_class=HTMLResponse)
+def print_invoice(invoice_id: int, u: dict = Depends(user)):
+    invoice = _invoice_details(conn(), u, invoice_id)
+    snapshot = json.loads(invoice["snapshot_json"]) if invoice["snapshot_json"] else {
+        "invoice_number": invoice["invoice_number"], "client_name": invoice["client_name"],
+        "issue_date": invoice["issue_date"], "due_date": invoice["due_date"],
+        "case_title": invoice["case_title"], "case_number": invoice["case_number"],
+        "court": invoice["court"], "note": invoice["note"], "lines": invoice["lines"],
+        "subtotal_piasters": invoice["subtotal_piasters"], "total_piasters": invoice["total_piasters"],
+    }
+    lines_html = "".join(
+        "<tr><td>" + html_escape(str(line["description"])) + "</td><td>" +
+        str(int(line["quantity"])) + "</td><td>" +
+        html_escape(piasters_to_egp(int(line["unit_price_piasters"]))) + "</td><td>" +
+        html_escape(piasters_to_egp(int(line["line_total_piasters"]))) + "</td></tr>"
+        for line in snapshot["lines"]
+    )
+    status = "مسودة" if invoice["status"] == "draft" else "فاتورة"
+    html = (
+        "<!doctype html><html lang='ar' dir='rtl'><meta charset='utf-8'><title>فاتورة "
+        + html_escape(snapshot["invoice_number"]) + "</title><style>"
+        "body{font:16px/1.7 Tahoma,Arial,sans-serif;color:#172033;margin:32px}"
+        "h1,h2{margin:0 0 12px}table{width:100%;border-collapse:collapse;margin:24px 0}"
+        "th,td{border:1px solid #d8deea;padding:10px;text-align:right}"
+        ".total{font-size:20px;font-weight:bold}.muted{color:#596579}"
+        "@media print{body{margin:10mm}.no-print{display:none}}"
+        "</style><body><button class='no-print' onclick='window.print()'>طباعة</button>"
+        "<h1>Legal Copilot — فاتورة " + html_escape(status) + "</h1><h2>" +
+        html_escape(snapshot["invoice_number"]) + "</h2><p>العميل: " +
+        html_escape(snapshot["client_name"]) + "</p><p>القضية: " +
+        html_escape(snapshot.get("case_title") or "") + "</p><p>تاريخ الإصدار: " +
+        html_escape(snapshot["issue_date"]) + "</p><p>تاريخ الاستحقاق: " +
+        html_escape(snapshot.get("due_date") or "—") + "</p><table><thead><tr><th>الوصف</th><th>الكمية</th>"
+        "<th>سعر الوحدة (جنيه)</th><th>الإجمالي (جنيه)</th></tr></thead><tbody>" +
+        lines_html + "</tbody></table><p class='total'>الإجمالي: " +
+        html_escape(piasters_to_egp(int(snapshot["total_piasters"]))) +
+        " جنيه مصري</p><p class='muted'>المدفوع: " +
+        html_escape(piasters_to_egp(int(invoice["paid_piasters"]))) +
+        " — المتبقي: " + html_escape(piasters_to_egp(int(invoice["outstanding_piasters"]))) +
+        "</p><p>" + html_escape(snapshot.get("note") or "") + "</p></body></html>"
+    )
+    return HTMLResponse(html, headers={"Cache-Control": "no-store"})
+
+
+@app.get("/invoices/{invoice_id}/payments/{payment_id}/receipt", response_class=HTMLResponse)
+def print_invoice_receipt(invoice_id: int, payment_id: int, u: dict = Depends(user)):
+    invoice = _invoice_details(conn(), u, invoice_id)
+    payment = next((item for item in invoice["payments"] if int(item["id"]) == payment_id), None)
+    if payment is None:
+        raise HTTPException(404, "receipt not found")
+    html = (
+        "<!doctype html><html lang='ar' dir='rtl'><meta charset='utf-8'><title>إيصال "
+        + html_escape(payment["receipt_number"]) + "</title><style>"
+        "body{font:16px/1.8 Tahoma,Arial,sans-serif;margin:32px;color:#172033}"
+        "@media print{body{margin:10mm}.no-print{display:none}}"
+        "</style><body><button class='no-print' onclick='window.print()'>طباعة</button>"
+        "<h1>إيصال استلام</h1><h2>" + html_escape(payment["receipt_number"]) +
+        "</h2><p>رقم الفاتورة: " + html_escape(invoice["invoice_number"]) +
+        "</p><p>استلمنا من: " + html_escape(invoice["client_name"]) +
+        "</p><p>مبلغ: " + html_escape(piasters_to_egp(int(payment["amount_piasters"]))) +
+        " جنيه مصري</p><p>طريقة الدفع: " + html_escape(payment["method"]) +
+        "</p><p>المرجع: " + html_escape(payment["reference"] or "—") +
+        "</p><p>التاريخ: " + html_escape(payment["paid_on"]) + "</p></body></html>"
+    )
+    return HTMLResponse(html, headers={"Cache-Control": "no-store"})
+
+
+@app.get("/finance/invoices/overview")
+def invoice_finance_overview(u: dict = Depends(user)):
+    c = conn()
+    rows = c.execute(
+        "SELECT i.id,i.case_id,i.client_name,i.total_piasters,i.due_date,"
+        "COALESCE(SUM(p.amount_piasters),0) AS paid_piasters "
+        "FROM invoices i JOIN cases cs ON cs.id=i.case_id "
+        "LEFT JOIN invoice_payments p ON p.invoice_id=i.id "
+        "WHERE cs.firm_id=? AND i.status='issued' "
+        "AND (?='admin' OR cs.id IN (SELECT case_id FROM members WHERE user_id=?)) "
+        "GROUP BY i.id ORDER BY i.due_date,i.id",
+        (u["firm_id"], u["role"], u["id"]),
+    ).fetchall()
+    today_date = date.today()
+    summary = {"invoiced_piasters": 0, "paid_piasters": 0, "outstanding_piasters": 0,
+               "aging": {"not_due": 0, "1_30_days": 0, "31_60_days": 0, "61_plus_days": 0, "undated": 0},
+               "by_case": {}, "by_client": {}}
+    for row in rows:
+        total, paid = int(row["total_piasters"]), int(row["paid_piasters"])
+        outstanding = max(0, total - paid)
+        summary["invoiced_piasters"] += total
+        summary["paid_piasters"] += paid
+        summary["outstanding_piasters"] += outstanding
+        if outstanding:
+            due = date.fromisoformat(row["due_date"]) if row["due_date"] else None
+            if due is None:
+                bucket = "undated"
+            elif due >= today_date:
+                bucket = "not_due"
+            else:
+                age = (today_date - due).days
+                bucket = "1_30_days" if age <= 30 else "31_60_days" if age <= 60 else "61_plus_days"
+            summary["aging"][bucket] += outstanding
+        key_case = str(row["case_id"])
+        case_bucket = summary["by_case"].setdefault(key_case, {"outstanding_piasters": 0, "invoiced_piasters": 0})
+        case_bucket["outstanding_piasters"] += outstanding
+        case_bucket["invoiced_piasters"] += total
+        key_client = str(row["client_name"])
+        client_bucket = summary["by_client"].setdefault(key_client, {"outstanding_piasters": 0, "invoiced_piasters": 0})
+        client_bucket["outstanding_piasters"] += outstanding
+        client_bucket["invoiced_piasters"] += total
+    return summary
 
 
 @app.get("/finance/overview")
