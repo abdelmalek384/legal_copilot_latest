@@ -433,6 +433,8 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None
 def _retrieval_release_gate(report, args):
     """Evaluate explicitly configured quality and benchmark-coverage thresholds."""
     thresholds = {
+        "recall_at_3": args.min_recall_at_3,
+        "mrr_at_3": args.min_mrr_at_3,
         "recall_at_5": args.min_recall_at_5,
         "mrr_at_5": args.min_mrr_at_5,
         "citation_precision": args.min_citation_precision,
@@ -469,7 +471,9 @@ def _retrieval_release_gate(report, args):
             args.min_expected_pin_cites)
     for metric, threshold in thresholds.items():
         if threshold is not None:
-            actual = report["metrics"].get(metric) if metric in {"recall_at_5", "mrr_at_5"} else report.get(metric)
+            actual = report["metrics"].get(metric) if metric in {
+                "recall_at_3", "mrr_at_3", "recall_at_5", "mrr_at_5"
+            } else report.get(metric)
             add(metric, actual, ">=", threshold)
     if args.max_excluded_cases is not None:
         add("excluded_cases", len(report["excluded_cases"]), "<=", args.max_excluded_cases)
@@ -504,6 +508,8 @@ def main(argv=None):
     parser.add_argument("--min-answerable-cases", type=int)
     parser.add_argument("--min-unanswerable-cases", type=int)
     parser.add_argument("--min-expected-pin-cites", type=int)
+    parser.add_argument("--min-recall-at-3", type=float)
+    parser.add_argument("--min-mrr-at-3", type=float)
     parser.add_argument("--min-recall-at-5", type=float)
     parser.add_argument("--min-mrr-at-5", type=float)
     parser.add_argument("--min-citation-precision", type=float)
@@ -529,13 +535,14 @@ def main(argv=None):
         value = getattr(args, name)
         if value is not None and value < 1:
             parser.error("--" + name.replace("_", "-") + " must be a positive integer")
-    for name in ("min_recall_at_5", "min_mrr_at_5", "min_citation_precision",
+    for name in ("min_recall_at_3", "min_mrr_at_3", "min_recall_at_5", "min_mrr_at_5", "min_citation_precision",
                  "min_citation_coverage", "min_expected_pin_cite_recall", "min_abstention_compliance"):
         value = getattr(args, name)
         if value is not None and (not isinstance(value, (int, float)) or not math.isfinite(value)
                                   or not 0 <= value <= 1):
             parser.error("--" + name.replace("_", "-") + " must be a finite number between 0 and 1")
-    quality_thresholds = (args.min_recall_at_5, args.min_mrr_at_5, args.min_citation_precision,
+    quality_thresholds = (args.min_recall_at_3, args.min_mrr_at_3, args.min_recall_at_5,
+                          args.min_mrr_at_5, args.min_citation_precision,
                           args.min_citation_coverage, args.min_expected_pin_cite_recall,
                           args.min_abstention_compliance)
     gate_enabled = (any(value is not None for value in quality_thresholds)
