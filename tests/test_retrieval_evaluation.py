@@ -448,6 +448,75 @@ class RetrievalEvaluationTests(unittest.TestCase):
             self.assertEqual(report["practice_area_counts"]["civil_law"]["answerable_cases"], 1)
             self.assertEqual(report["practice_area_counts"]["civil_law"]["unanswerable_cases"], 1)
 
+    def test_source_status_evidence_missing_release_gate_fails_closed(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            q1 = reviewed_question(id="Q-ANSWERABLE")
+            q2 = reviewed_question(id="Q-UNANSWERABLE", answerable=False, expected_pin_cites=[])
+            questions_path.write_text("".join(
+                json.dumps(q, ensure_ascii=False) + "\n" for q in (q1, q2)
+            ), encoding="utf-8")
+            run_without_status = {
+                "question_id": "Q-ANSWERABLE",
+                "retrieved_source_ids": ["LAW-A"],
+                "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
+                "abstained": False,
+                "used_unverified_source": False,
+            }
+            run_with_status = {
+                "question_id": "Q-ANSWERABLE",
+                "retrieved_source_ids": ["LAW-A"],
+                "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
+                "source_summary": [{"source_id": "LAW-A", "source_status": "verified_operative_text"}],
+                "abstained": False,
+                "used_unverified_source": False,
+            }
+            abstention = {
+                "question_id": "Q-UNANSWERABLE",
+                "retrieved_source_ids": [],
+                "citations": [],
+                "abstained": True,
+                "used_unverified_source": False,
+            }
+            for answer_run, expected_code, expected_missing in (
+                (run_without_status, 1, 1),
+                (run_with_status, 0, 0),
+            ):
+                with self.subTest(expected_missing=expected_missing):
+                    runs_path.write_text("".join(
+                        json.dumps(row, ensure_ascii=False) + "\n"
+                        for row in (answer_run, abstention)
+                    ), encoding="utf-8")
+                    output = io.StringIO()
+                    with contextlib.redirect_stdout(output):
+                        code = run_main([
+                            "--questions", str(questions_path), "--runs", str(runs_path),
+                            "--min-reviewed-cases", "2", "--min-practice-areas", "1",
+                            "--min-cases-per-practice-area", "2",
+                            "--max-source-status-evidence-missing", "0",
+                        ])
+                    self.assertEqual(code, expected_code)
+                    report = json.loads(output.getvalue())
+                    self.assertEqual(report["source_status_evidence_missing_count"], expected_missing)
+                    check = next(item for item in report["release_gate"]["checks"]
+                                 if item["metric"] == "source_status_evidence_missing_count")
+                    self.assertEqual(check["actual"], expected_missing)
+                    self.assertEqual(check["passed"], expected_missing == 0)
+
+    def test_source_status_evidence_threshold_rejects_negative_values(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            questions_path.write_text("", encoding="utf-8")
+            runs_path.write_text("", encoding="utf-8")
+            with self.assertRaises(SystemExit) as raised:
+                run_main([
+                    "--questions", str(questions_path), "--runs", str(runs_path),
+                    "--max-source-status-evidence-missing", "-1",
+                ])
+            self.assertEqual(raised.exception.code, 2)
+
     def test_retrieval_release_gate_fails_on_low_recall_missing_citations_and_unsafe_abstention(self):
         with tempfile.TemporaryDirectory() as td:
             questions_path = Path(td) / "questions.jsonl"
