@@ -126,7 +126,7 @@ class LawIngestionFixturePipelineTests(unittest.TestCase):
                 },
             ]
             audit_input.write_text(
-                "".join(json.dumps(row, ensure_ascii=False) + "\\n" for row in audit_rows),
+                "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in audit_rows),
                 encoding="utf-8",
             )
             audit_dir = root / "article-audit"
