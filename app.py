@@ -8,6 +8,7 @@ from urllib.parse import urlsplit, quote
 from contextvars import ContextVar
 from collections import Counter
 from datetime import date, datetime, timedelta, timezone
+import html as html_lib
 from zoneinfo import ZoneInfo
 from functools import lru_cache, wraps
 from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_permission_register_ready, source_permission_evidence_ready, source_status, citation_text, research_memo, has_current_review_evidence)
@@ -2469,6 +2470,20 @@ class InvoiceDraftIn(BaseModel):
     due_date: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$")
     lines: list[InvoiceLineIn] = Field(min_length=1, max_length=30)
     _valid_due = field_validator("due_date")(validate_calendar_date)
+
+
+class InvoicePaymentIn(BaseModel):
+    amount_piasters: int = Field(strict=True, gt=0, le=1_000_000_000_000)
+    paid_on: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
+    method: str = Field(pattern=r"^(cash|bank_transfer|instapay|other)$")
+    reference: str = Field("", max_length=200)
+    note: str = Field("", max_length=1000)
+    idempotency_key: str = Field(min_length=8, max_length=100)
+    _valid_paid_on = field_validator("paid_on")(validate_calendar_date)
+
+
+class InvoiceVoidIn(BaseModel):
+    reason: str = Field(min_length=5, max_length=1000)
 
 
 class DocIn(BaseModel): name: str = Field(min_length=1, max_length=200); text: str = Field(min_length=1, max_length=300_000)
@@ -6004,6 +6019,219 @@ def issue_invoice(invoice_id: int, u: dict = Depends(user)):
     c.execute("RELEASE SAVEPOINT invoice_write")
     c.commit()
     return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
+
+
+@app.get("/finance/invoices/overview")
+def invoice_finance_overview(u: dict = Depends(user)):
+    c = conn()
+    if u["role"] == "admin":
+        rows = c.execute(
+            "SELECT i.* FROM invoices i JOIN cases cs ON cs.id=i.case_id WHERE cs.firm_id=? "
+            "ORDER BY i.id", (u["firm_id"],)
+        ).fetchall()
+    else:
+        rows = c.execute(
+            "SELECT i.* FROM invoices i JOIN cases cs ON cs.id=i.case_id "
+            "WHERE cs.firm_id=? AND EXISTS (SELECT 1 FROM members m "
+            "WHERE m.case_id=i.case_id AND m.user_id=?) ORDER BY i.id",
+            (u["firm_id"], u["id"]),
+        ).fetchall()
+    today_date = _invoice_today()
+    case_totals = {}
+    client_totals = {}
+    total_issued = total_paid = total_outstanding = 0
+    for row in rows:
+        item = _invoice_record(c, row)
+        if item["status"] != "issued":
+            continue
+        balance = int(item["balance_piasters"])
+        paid = int(item["paid_piasters"])
+        total_issued += int(item["total_piasters"])
+        total_paid += paid
+        total_outstanding += balance
+        if balance <= 0:
+            bucket = "settled"
+        elif not item["due_date"] or item["due_date"] >= today_date.isoformat():
+            bucket = "current"
+        else:
+            overdue_days = (today_date - date.fromisoformat(item["due_date"])).days
+            bucket = "1_30" if overdue_days <= 30 else "31_60" if overdue_days <= 60 else "61_90" if overdue_days <= 90 else "over_90"
+        cid = int(item["case_id"])
+        case_entry = case_totals.setdefault(cid, {
+            "case_id": cid, "case_title": item["case_title_snapshot"],
+            "client_name": item["client_name_snapshot"], "invoice_count": 0,
+            "issued_piasters": 0, "paid_piasters": 0, "outstanding_piasters": 0,
+            "aging": {"current": 0, "1_30": 0, "31_60": 0, "61_90": 0, "over_90": 0},
+        })
+        case_entry["invoice_count"] += 1
+        case_entry["issued_piasters"] += int(item["total_piasters"])
+        case_entry["paid_piasters"] += paid
+        case_entry["outstanding_piasters"] += balance
+        if bucket != "settled":
+            case_entry["aging"][bucket] += balance
+        client_key = (item["client_name_snapshot"] or "").strip() or "غير محدد"
+        client_entry = client_totals.setdefault(client_key, {
+            "client_name": client_key, "invoice_count": 0,
+            "issued_piasters": 0, "paid_piasters": 0, "outstanding_piasters": 0,
+            "aging": {"current": 0, "1_30": 0, "31_60": 0, "61_90": 0, "over_90": 0},
+        })
+        client_entry["invoice_count"] += 1
+        client_entry["issued_piasters"] += int(item["total_piasters"])
+        client_entry["paid_piasters"] += paid
+        client_entry["outstanding_piasters"] += balance
+        if bucket != "settled":
+            client_entry["aging"][bucket] += balance
+    return {
+        "currency": "EGP", "as_of_date": today_date.isoformat(),
+        "issued_piasters": total_issued, "paid_piasters": total_paid,
+        "outstanding_piasters": total_outstanding,
+        "cases": sorted(case_totals.values(), key=lambda x: x["outstanding_piasters"], reverse=True),
+        "clients": sorted(client_totals.values(), key=lambda x: x["outstanding_piasters"], reverse=True),
+    }
+
+
+@app.post("/invoices/{invoice_id}/payments")
+@rollback_tenant_transaction_on_error
+def record_invoice_payment(invoice_id: int, b: InvoicePaymentIn, u: dict = Depends(user)):
+    c = conn()
+    row = _invoice_for_user(c, u, invoice_id)
+    c.execute("SAVEPOINT invoice_write")
+    row = _invoice_for_user(c, u, invoice_id)
+    if row["status"] != "issued":
+        raise HTTPException(409, "payments can only be recorded against issued invoices")
+    existing = c.execute(
+        "SELECT * FROM invoice_payments WHERE invoice_id=? AND idempotency_key=?",
+        (invoice_id, b.idempotency_key),
+    ).fetchone()
+    if existing is not None:
+        same = (
+            int(existing["amount_piasters"]) == b.amount_piasters
+            and existing["paid_on"] == b.paid_on
+            and existing["method"] == b.method
+            and existing["reference"] == b.reference
+            and existing["note"] == b.note
+        )
+        if not same:
+            raise HTTPException(409, "idempotency key was already used for a different payment")
+        c.execute("RELEASE SAVEPOINT invoice_write")
+        return _invoice_record(c, row)
+    paid = int(c.execute(
+        "SELECT COALESCE(SUM(amount_piasters),0) FROM invoice_payments WHERE invoice_id=?",
+        (invoice_id,),
+    ).fetchone()[0])
+    balance = int(row["total_piasters"]) - paid
+    if b.amount_piasters > balance:
+        raise HTTPException(422, "payment exceeds the outstanding invoice balance")
+    payment_id = c.execute(
+        "INSERT INTO invoice_payments(invoice_id,amount_piasters,paid_on,method,reference,note,"
+        "idempotency_key,recorded_by) VALUES(?,?,?,?,?,?,?,?)",
+        (invoice_id, b.amount_piasters, b.paid_on, b.method, b.reference.strip(),
+         b.note.strip(), b.idempotency_key, u["id"]),
+    ).lastrowid
+    _invoice_event(c, invoice_id, int(u["id"]), "payment_recorded", {
+        "payment_id": payment_id, "amount_piasters": b.amount_piasters,
+        "method": b.method, "paid_on": b.paid_on,
+    })
+    c.execute("RELEASE SAVEPOINT invoice_write")
+    c.commit()
+    return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
+
+
+@app.post("/invoices/{invoice_id}/void")
+@rollback_tenant_transaction_on_error
+def void_invoice(invoice_id: int, b: InvoiceVoidIn, u: dict = Depends(user)):
+    c = conn()
+    row = _invoice_for_user(c, u, invoice_id)
+    c.execute("SAVEPOINT invoice_write")
+    row = _invoice_for_user(c, u, invoice_id)
+    if row["status"] != "issued":
+        raise HTTPException(409, "only issued invoices can be voided")
+    paid = int(c.execute(
+        "SELECT COALESCE(SUM(amount_piasters),0) FROM invoice_payments WHERE invoice_id=?",
+        (invoice_id,),
+    ).fetchone()[0])
+    if paid:
+        raise HTTPException(409, "an invoice with recorded payments cannot be voided; refund policy is not configured")
+    c.execute(
+        "UPDATE invoices SET status='void',void_reason=?,voided_by=?,voided_at=datetime('now') "
+        "WHERE id=? AND status='issued'",
+        (b.reason.strip(), u["id"], invoice_id),
+    )
+    _invoice_event(c, invoice_id, int(u["id"]), "voided", {"reason": b.reason.strip()})
+    c.execute("RELEASE SAVEPOINT invoice_write")
+    c.commit()
+    return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
+
+
+@app.get("/invoices/{invoice_id}/payments/{payment_id}/receipt")
+def print_invoice_payment_receipt(invoice_id: int, payment_id: int, u: dict = Depends(user)):
+    c = conn()
+    row = _invoice_for_user(c, u, invoice_id)
+    payment = c.execute(
+        "SELECT * FROM invoice_payments WHERE id=? AND invoice_id=?",
+        (payment_id, invoice_id),
+    ).fetchone()
+    if payment is None:
+        raise HTTPException(404, "payment receipt not found")
+    esc = html_lib.escape
+    amount = int(payment["amount_piasters"])
+    number = row["invoice_number"] or "مسودة"
+    body = f"""<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<title>إيصال سداد {esc(str(number))}</title><style>
+body{{font-family:Tahoma,Arial,sans-serif;margin:32px;line-height:1.8;color:#111}}
+main{{max-width:760px;margin:auto;border:1px solid #aaa;padding:24px}}
+@media print{{body{{margin:10mm}}.no-print{{display:none}}}}
+</style></head><body><main><button class="no-print" onclick="window.print()">طباعة / حفظ PDF</button>
+<h1>إيصال استلام دفعة أتعاب</h1><p>إيصال داخلي — ليس إيصالاً ضريبياً إلكترونياً.</p>
+<p>رقم الإيصال: {int(payment["id"])}</p><p>رقم الفاتورة: {esc(str(number))}</p>
+<p>العميل: {esc(str(row["client_name_snapshot"]))}</p>
+<p>المبلغ المستلم: {amount // 100}.{amount % 100:02d} جنيه مصري</p>
+<p>تاريخ السداد: {esc(str(payment["paid_on"]))}</p>
+<p>طريقة السداد: {esc(str(payment["method"]))}</p>
+<p>المرجع: {esc(str(payment["reference"]))}</p>
+<p>ملاحظة: {esc(str(payment["note"]))}</p></main></body></html>"""
+    return HTMLResponse(body)
+
+
+@app.get("/invoices/{invoice_id}/print")
+def print_invoice(invoice_id: int, u: dict = Depends(user)):
+    c = conn()
+    row = _invoice_for_user(c, u, invoice_id)
+    data = _invoice_record(c, row)
+    esc = html_lib.escape
+    line_rows = "".join(
+        "<tr><td>" + esc(str(item["description"])) + "</td><td>" +
+        esc(f'{int(item["quantity_milli"]) / 1000:.3f}'.rstrip("0").rstrip(".")) +
+        "</td><td>" + esc(f'{int(item["unit_price_piasters"]) // 100}.{int(item["unit_price_piasters"]) % 100:02d}') +
+        "</td><td>" + esc(f'{int(item["line_total_piasters"]) // 100}.{int(item["line_total_piasters"]) % 100:02d}') +
+        "</td></tr>" for item in data["lines"]
+    )
+    payment_rows = "".join(
+        "<tr><td>" + esc(str(item["paid_on"])) + "</td><td>" +
+        esc(str(item["method"])) + "</td><td>" +
+        esc(f'{int(item["amount_piasters"]) // 100}.{int(item["amount_piasters"]) % 100:02d}') +
+        "</td><td>" + esc(str(item["reference"])) + "</td></tr>" for item in data["payments"]
+    )
+    invoice_number = data["invoice_number"] or "مسودة"
+    body = f"""<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<title>{esc(str(invoice_number))}</title><style>
+body{{font-family:Tahoma,Arial,sans-serif;color:#111;margin:32px;line-height:1.7}}
+h1,h2{{margin:0 0 12px}}.meta{{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:18px 0}}
+table{{width:100%;border-collapse:collapse;margin:18px 0}}th,td{{border:1px solid #aaa;padding:8px;text-align:right}}
+.total{{font-size:1.15rem;font-weight:bold;margin-top:16px}}.muted{{color:#555}}
+@media print{{body{{margin:12mm}}.no-print{{display:none}}}}
+</style></head><body><button class="no-print" onclick="window.print()">طباعة / حفظ PDF</button>
+<h1>فاتورة أتعاب قانونية</h1><p class="muted">مستند أتعاب عادي — ليس فاتورة ضريبية إلكترونية أو إيصالاً ضريبياً.</p>
+<div class="meta"><div>رقم الفاتورة: {esc(str(invoice_number))}</div><div>الحالة: {esc(str(data["payment_state"]))}</div>
+<div>العميل: {esc(str(data["client_name_snapshot"]))}</div><div>القضية: {esc(str(data["case_title_snapshot"]))}</div>
+<div>تاريخ الإصدار: {esc(str(data["issue_date"] or "—"))}</div><div>تاريخ الاستحقاق: {esc(str(data["due_date"] or "—"))}</div></div>
+<p>{esc(str(data["description"]))}</p><table><thead><tr><th>البيان</th><th>الكمية</th><th>سعر الوحدة (جنيه)</th><th>الإجمالي (جنيه)</th></tr></thead>
+<tbody>{line_rows}</tbody></table><div class="total">الإجمالي: {data["total_piasters"] // 100}.{data["total_piasters"] % 100:02d} ج.م</div>
+<div>المدفوع: {data["paid_piasters"] // 100}.{data["paid_piasters"] % 100:02d} ج.م</div>
+<div>المتبقي: {data["balance_piasters"] // 100}.{data["balance_piasters"] % 100:02d} ج.م</div>
+<h2>سجل المدفوعات</h2><table><thead><tr><th>التاريخ</th><th>الطريقة</th><th>المبلغ (جنيه)</th><th>المرجع</th></tr></thead><tbody>{payment_rows}</tbody></table>
+</body></html>"""
+    return HTMLResponse(body)
 
 
 @app.post("/cases/{cid}/fees")
