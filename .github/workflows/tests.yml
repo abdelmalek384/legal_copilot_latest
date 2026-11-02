@@ -330,6 +330,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_audit_article_rows.py
       - name: Test subscription trial, transfer review and seat limits
         run: PYTHONPATH=. python tests/test_subscription_billing_routes.py
+      - name: Test per-firm MFA policy and setup health
+        run: PYTHONPATH=. python tests/test_firm_security_policy_setup_health.py
       - name: Test provider-neutral billing fake
         run: PYTHONPATH=. python tests/test_billing_provider.py
       - name: Guard that every test file runs in CI or is explicitly tracked
