@@ -5052,6 +5052,21 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(payload["invoice_number"], "INV-2026-000001")
         self.assertEqual(payload["total_piasters"], 30100)
 
+        zero_invoice = self._mutate(
+            "post", f"/cases/{case_id}/invoices",
+            json={"issue_date": "2026-11-02", "lines": [
+                {"description": "Zero value", "quantity": 1, "unit_amount_piasters": 0}
+            ]},
+        )
+        self.assertEqual(zero_invoice.status_code, 422, zero_invoice.text)
+        invalid_date = self._mutate(
+            "post", f"/cases/{case_id}/invoices",
+            json={"issue_date": "2026-99-99", "lines": [
+                {"description": "Invalid date", "quantity": 1, "unit_amount_piasters": 100}
+            ]},
+        )
+        self.assertEqual(invalid_date.status_code, 422, invalid_date.text)
+
         partial = self._mutate(
             "post", f"/invoices/{payload['invoice_id']}/payments",
             json={"amount_piasters": 10000, "paid_at": "2026-11-02", "method": "instapay", "reference": "IP-2026-ABC123"},
