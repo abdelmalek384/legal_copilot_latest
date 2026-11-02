@@ -262,5 +262,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("api('/deadline-holidays','PUT'", HTML)
         self.assertIn("ME.role==='admin'", HTML)
 
+
+    def test_email_reminder_preferences_are_user_scoped_and_saved(self):
+        self.assertIn("api('/reminder-preferences')", HTML)
+        self.assertIn("api('/reminder-preferences','PUT'", HTML)
+        self.assertIn("deadline_7_days", HTML)
+        self.assertIn("deadline_3_days", HTML)
+        self.assertIn("deadline_1_day", HTML)
+        self.assertIn("session_day_of", HTML)
+
 if __name__ == "__main__":
     unittest.main()
