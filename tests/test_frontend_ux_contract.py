@@ -252,5 +252,10 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Reject", HTML)
         self.assertIn("review_note", HTML)
 
+    def test_answer_correction_feedback_supports_categories(self):
+        self.assertIn("legal_accuracy", HTML)
+        self.assertIn("completeness", HTML)
+        self.assertIn("Invalid correction category", HTML)
+
 if __name__ == "__main__":
     unittest.main()
