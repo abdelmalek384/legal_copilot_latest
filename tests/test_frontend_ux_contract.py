@@ -280,5 +280,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("instapay", HTML)
         self.assertIn("platformBillingPage", HTML)
 
+
+    def test_firm_mfa_policy_and_setup_health_controls_are_exposed(self):
+        self.assertIn("api('/admin/security-policy')", HTML)
+        self.assertIn("api('/admin/security-policy','PUT'", HTML)
+        self.assertIn("require_mfa_for_admins", HTML)
+        self.assertIn("require_mfa_for_everyone", HTML)
+        self.assertIn("api('/admin/setup-health')", HTML)
+        self.assertIn("MFA_ENCRYPTION_KEY", HTML)
+        self.assertIn("setupHealthPage", HTML)
+
 if __name__ == "__main__":
     unittest.main()
