@@ -324,6 +324,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_decision162_candidate_quarantine.py
       - name: Test Decision 249 candidate quarantine
         run: PYTHONPATH=. python tests/test_decision249_candidate_quarantine.py
+      - name: Test tenant write failure diagnostics
+        run: PYTHONPATH=. python tests/test_tenant_write_failure_diagnostics.py
       - name: Test trusted-host middleware
         run: PYTHONPATH=. python tests/test_trusted_host_middleware.py
       - name: Test fixture-based law ingestion pipeline
