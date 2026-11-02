@@ -285,6 +285,11 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertIn("سنة", sis["notes"])
         self.assertIn("كل ستة أشهر", sis["notes"])
         self.assertIn("search-indexed extraction", eta["notes"])
+        for source_id in ("EG-LABOUR-MINISTRY-LAWS-LEGISLATIONS-INDEX", "EG-ETA-LAWS-RELATED-REGULATIONS-INDEX"):
+            index_source = next(item for item in register["sources"] if item["source_id"] == source_id)
+            self.assertIn("not_exhaustive", index_source["source_state"])
+            self.assertEqual(index_source["collection_permission"], "unknown")
+            self.assertEqual(index_source["commercial_reuse_permission"], "unknown")
 
     def test_labour_law_gazette_repository_access_terms_are_restricted(self):
         register = json.loads(
