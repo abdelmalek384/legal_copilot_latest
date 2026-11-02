@@ -1,5 +1,6 @@
 """Firm-scoped exact-piaster invoice and payment API tests."""
 import os
+import sqlite3
 import tempfile
 import unittest
 from pathlib import Path
@@ -234,6 +235,40 @@ class InvoiceLedgerRouteTests(unittest.TestCase):
             self.client_b.get(f"/invoices/{issued['id']}/payments/{payment_id}/receipt").status_code,
             404,
         )
+
+    def test_issued_lines_and_payment_ledger_are_append_only(self):
+        draft = self.create_draft().json()
+        issued = self.mutate(self.client_a, "post", f"/invoices/{draft['id']}/issue").json()
+        tenant = self.runtime._tenant_router.connection_for_firm(self.firm_a)
+        with self.assertRaises(sqlite3.IntegrityError):
+            tenant.execute(
+                "UPDATE invoice_lines SET description='tampered' WHERE invoice_id=?",
+                (issued["id"],),
+            )
+        tenant.rollback()
+        payment = {
+            "amount_piasters": 1000, "paid_on": "2026-11-02", "method": "cash",
+            "reference": "", "note": "", "idempotency_key": "append-only-key-01",
+        }
+        recorded = self.mutate(
+            self.client_a, "post", f"/invoices/{issued['id']}/payments", json=payment,
+        )
+        self.assertEqual(recorded.status_code, 200, recorded.text)
+        payment_id = recorded.json()["payments"][0]["id"]
+        with self.assertRaises(sqlite3.IntegrityError):
+            tenant.execute(
+                "UPDATE invoice_payments SET amount_piasters=1 WHERE id=?",
+                (payment_id,),
+            )
+        tenant.rollback()
+        with self.assertRaises(sqlite3.IntegrityError):
+            tenant.execute("DELETE FROM invoice_payments WHERE id=?", (payment_id,))
+        tenant.rollback()
+        blocked_void = self.mutate(
+            self.client_a, "post", f"/invoices/{issued['id']}/void",
+            json={"reason": "Attempt to void paid invoice"},
+        )
+        self.assertEqual(blocked_void.status_code, 409)
 
     def test_print_view_is_arabic_and_disclaims_tax_invoice_status(self):
         invoice = self.create_draft().json()
