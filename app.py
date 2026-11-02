@@ -2419,7 +2419,7 @@ class SubscribePlanIn(BaseModel):
 
 
 class SubscriptionPaymentSubmissionIn(BaseModel):
-    amount_piasters: int = Field(ge=1, le=9_000_000_000_000_000)
+    amount_piasters: int = Field(strict=True, ge=1, le=9_000_000_000_000_000)
     method: str = Field(pattern=r"^(bank_transfer|instapay)$")
     transfer_reference: str = Field(min_length=3, max_length=200)
 
@@ -4314,6 +4314,9 @@ def submit_subscription_payment(b: SubscriptionPaymentSubmissionIn, u: dict = De
     subscription = control.execute(
         "SELECT status FROM firm_subscriptions WHERE firm_id=?", (u["firm_id"],)
     ).fetchone()
+    transfer_reference = b.transfer_reference.strip()
+    if len(transfer_reference) < 3:
+        raise HTTPException(422, "transfer reference is required")
     if subscription is None:
         raise HTTPException(409, "select a subscription plan before submitting payment")
     try:
@@ -4321,7 +4324,7 @@ def submit_subscription_payment(b: SubscriptionPaymentSubmissionIn, u: dict = De
         cursor = control.execute(
             "INSERT INTO subscription_payment_submissions(firm_id,amount_piasters,method,transfer_reference,submitted_by_user_id,created_at) "
             "VALUES(?,?,?,?,?,?)",
-            (u["firm_id"], b.amount_piasters, b.method, b.transfer_reference.strip(), u["id"], int(time.time())),
+            (u["firm_id"], b.amount_piasters, b.method, transfer_reference, u["id"], int(time.time())),
         )
         if subscription["status"] != "active":
             control.execute(
@@ -4368,9 +4371,13 @@ def approve_subscription_payment(submission_id: int, u: dict = Depends(user)):
             "UPDATE subscription_payment_submissions SET status='approved',reviewed_by_user_id=?,reviewed_at=?,decision_note='' WHERE id=? AND status='pending'",
             (u["id"], now, submission_id),
         )
+        current = control.execute(
+            "SELECT current_period_end FROM firm_subscriptions WHERE firm_id=?", (payment["firm_id"],)
+        ).fetchone()
+        period_start = max(now, int(current["current_period_end"] or 0)) if current else now
         control.execute(
             "UPDATE firm_subscriptions SET status='active',current_period_start=?,current_period_end=?,updated_at=? WHERE firm_id=?",
-            (now, now + 30 * 86400, now, payment["firm_id"]),
+            (period_start, period_start + 30 * 86400, now, payment["firm_id"]),
         )
         _subscription_audit(control, payment["firm_id"], u["id"], "payment_approved", {
             "submission_id": submission_id, "amount_piasters": int(payment["amount_piasters"]),
@@ -4404,9 +4411,14 @@ def reject_subscription_payment(submission_id: int, b: SubscriptionPaymentDecisi
             (u["id"], now, b.reason.strip(), submission_id),
         )
         subscription = control.execute(
-            "SELECT trial_ends_at FROM firm_subscriptions WHERE firm_id=?", (payment["firm_id"],)
+            "SELECT trial_ends_at,current_period_end FROM firm_subscriptions WHERE firm_id=?", (payment["firm_id"],)
         ).fetchone()
-        status = "trial" if subscription and subscription["trial_ends_at"] and int(subscription["trial_ends_at"]) > now else "expired"
+        if subscription and subscription["current_period_end"] and int(subscription["current_period_end"]) > now:
+            status = "active"
+        elif subscription and subscription["trial_ends_at"] and int(subscription["trial_ends_at"]) > now:
+            status = "trial"
+        else:
+            status = "expired"
         control.execute(
             "UPDATE firm_subscriptions SET status=?,updated_at=? WHERE firm_id=?",
             (status, now, payment["firm_id"]),
