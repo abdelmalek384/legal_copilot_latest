@@ -31,6 +31,8 @@ class PiasterMoneyTests(unittest.TestCase):
 
     def test_integer_piaster_contract(self):
         self.assertEqual(require_piasters(1), 1)
+        self.assertEqual(require_piasters(9_000_000_000_000_000), 9_000_000_000_000_000)
+        self.assertEqual(egp_to_piasters("90000000000000.00"), 9_000_000_000_000_000)
         for value in (1.0, True, "100"):
             with self.subTest(value=value):
                 with self.assertRaises(TypeError):
