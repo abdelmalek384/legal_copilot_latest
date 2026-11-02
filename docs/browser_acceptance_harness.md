@@ -19,6 +19,7 @@ The suite chooses an available loopback port, creates synthetic accounts and fix
 - Firm-document search from an uploaded synthetic text file, including the required matter selection.
 - Separation between firm-document search, verified-corpus search, and metadata-only discovery.
 - Cross-firm case-ID denial without returning the other firm's sentinel.
+- End-to-end synthetic case-management lifecycle: two cases for one client, case metadata edits, associate assignment, task completion, court session, notes, deadline, fee record, document extraction record, activity history, member removal, and deletion of both synthetic cases with verification of the firm-scoped immutable audit snapshot; the case list is checked in Chromium.
 - Arabic RTL and English LTR page direction, desktop/mobile horizontal-overflow checks, and basic keyboard focus movement.
 
 The firm-document fixture deliberately leaves LLM_FIRM_DATA_PROCESSING_APPROVED unset. The application therefore returns matching matter passages without sending them to an LLM. This verifies retrieval scope and display without authorizing confidential matter data for model processing.
