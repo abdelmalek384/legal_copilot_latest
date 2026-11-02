@@ -9,7 +9,6 @@ from contextvars import ContextVar
 from collections import Counter
 from datetime import date, datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
-import html as html_lib
 from functools import lru_cache, wraps
 from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_permission_register_ready, source_permission_evidence_ready, source_status, citation_text, research_memo, has_current_review_evidence)
 from tools.arabic_legal_matching import expand_lexicon_hints
@@ -5586,47 +5585,6 @@ def issue_invoice(invoice_id: int, u: dict = Depends(user)):
     c.execute("RELEASE SAVEPOINT invoice_write")
     c.commit()
     return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
-
-
-@app.get("/invoices/{invoice_id}/print")
-def print_invoice(invoice_id: int, u: dict = Depends(user)):
-    c = conn()
-    row = _invoice_for_user(c, u, invoice_id)
-    data = _invoice_record(c, row)
-    esc = html_lib.escape
-    line_rows = "".join(
-        "<tr><td>" + esc(str(item["description"])) + "</td><td>" +
-        esc(f'{int(item["quantity_milli"]) / 1000:.3f}'.rstrip("0").rstrip(".")) +
-        "</td><td>" + esc(f'{int(item["unit_price_piasters"]) // 100}.{int(item["unit_price_piasters"]) % 100:02d}') +
-        "</td><td>" + esc(f'{int(item["line_total_piasters"]) // 100}.{int(item["line_total_piasters"]) % 100:02d}') +
-        "</td></tr>" for item in data["lines"]
-    )
-    payment_rows = "".join(
-        "<tr><td>" + esc(str(item["paid_on"])) + "</td><td>" +
-        esc(str(item["method"])) + "</td><td>" +
-        esc(f'{int(item["amount_piasters"]) // 100}.{int(item["amount_piasters"]) % 100:02d}') +
-        "</td><td>" + esc(str(item["reference"])) + "</td></tr>" for item in data["payments"]
-    )
-    invoice_number = data["invoice_number"] or "مسودة"
-    body = f"""<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
-<title>{esc(str(invoice_number))}</title><style>
-body{{font-family:Tahoma,Arial,sans-serif;color:#111;margin:32px;line-height:1.7}}
-h1,h2{{margin:0 0 12px}}.meta{{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:18px 0}}
-table{{width:100%;border-collapse:collapse;margin:18px 0}}th,td{{border:1px solid #aaa;padding:8px;text-align:right}}
-.total{{font-size:1.15rem;font-weight:bold;margin-top:16px}}.muted{{color:#555}}
-@media print{{body{{margin:12mm}}.no-print{{display:none}}}}
-</style></head><body><button class="no-print" onclick="window.print()">طباعة / حفظ PDF</button>
-<h1>فاتورة أتعاب قانونية</h1><p class="muted">مستند أتعاب عادي — ليس فاتورة ضريبية إلكترونية أو إيصالاً ضريبياً.</p>
-<div class="meta"><div>رقم الفاتورة: {esc(str(invoice_number))}</div><div>الحالة: {esc(str(data["payment_state"]))}</div>
-<div>العميل: {esc(str(data["client_name_snapshot"]))}</div><div>القضية: {esc(str(data["case_title_snapshot"]))}</div>
-<div>تاريخ الإصدار: {esc(str(data["issue_date"] or "—"))}</div><div>تاريخ الاستحقاق: {esc(str(data["due_date"] or "—"))}</div></div>
-<p>{esc(str(data["description"]))}</p><table><thead><tr><th>البيان</th><th>الكمية</th><th>سعر الوحدة (جنيه)</th><th>الإجمالي (جنيه)</th></tr></thead>
-<tbody>{line_rows}</tbody></table><div class="total">الإجمالي: {data["total_piasters"] // 100}.{data["total_piasters"] % 100:02d} ج.م</div>
-<div>المدفوع: {data["paid_piasters"] // 100}.{data["paid_piasters"] % 100:02d} ج.م</div>
-<div>المتبقي: {data["balance_piasters"] // 100}.{data["balance_piasters"] % 100:02d} ج.م</div>
-<h2>سجل المدفوعات</h2><table><thead><tr><th>التاريخ</th><th>الطريقة</th><th>المبلغ (جنيه)</th><th>المرجع</th></tr></thead><tbody>{payment_rows}</tbody></table>
-</body></html>"""
-    return HTMLResponse(body)
 
 
 @app.post("/cases/{cid}/fees")
