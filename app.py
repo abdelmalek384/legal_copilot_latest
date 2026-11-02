@@ -6099,6 +6099,8 @@ def record_invoice_payment(invoice_id: int, b: InvoicePaymentIn, u: dict = Depen
     row = _invoice_for_user(c, u, invoice_id)
     if row["status"] != "issued":
         raise HTTPException(409, "payments can only be recorded against issued invoices")
+    reference = b.reference.strip()
+    note = b.note.strip()
     existing = c.execute(
         "SELECT * FROM invoice_payments WHERE invoice_id=? AND idempotency_key=?",
         (invoice_id, b.idempotency_key),
@@ -6108,8 +6110,8 @@ def record_invoice_payment(invoice_id: int, b: InvoicePaymentIn, u: dict = Depen
             int(existing["amount_piasters"]) == b.amount_piasters
             and existing["paid_on"] == b.paid_on
             and existing["method"] == b.method
-            and existing["reference"] == b.reference
-            and existing["note"] == b.note
+            and existing["reference"] == reference
+            and existing["note"] == note
         )
         if not same:
             raise HTTPException(409, "idempotency key was already used for a different payment")
@@ -6125,8 +6127,8 @@ def record_invoice_payment(invoice_id: int, b: InvoicePaymentIn, u: dict = Depen
     payment_id = c.execute(
         "INSERT INTO invoice_payments(invoice_id,amount_piasters,paid_on,method,reference,note,"
         "idempotency_key,recorded_by) VALUES(?,?,?,?,?,?,?,?)",
-        (invoice_id, b.amount_piasters, b.paid_on, b.method, b.reference.strip(),
-         b.note.strip(), b.idempotency_key, u["id"]),
+        (invoice_id, b.amount_piasters, b.paid_on, b.method, reference,
+         note, b.idempotency_key, u["id"]),
     ).lastrowid
     _invoice_event(c, invoice_id, int(u["id"]), "payment_recorded", {
         "payment_id": payment_id, "amount_piasters": b.amount_piasters,
