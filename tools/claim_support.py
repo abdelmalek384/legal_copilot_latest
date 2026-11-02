@@ -41,13 +41,15 @@ _GENERIC_TERMS = {
 
 _ENGLISH_MODAL_PATTERNS = {
     "permission": re.compile(r"\b(?:may(?!\s+not)|is permitted to|are permitted to|can)\b", re.IGNORECASE),
-    "obligation": re.compile(r"\b(?:must|shall|required to|is required to)\b", re.IGNORECASE),
+    "obligation": re.compile(r"(?<!not )\b(?:must|shall|required to|is required to)\b", re.IGNORECASE),
+    "non_obligation": re.compile(r"\b(?:is\s+)?not required to\b|\b(?:need not|does not have to|do not have to|is not obligated to)\b", re.IGNORECASE),
     "prohibition": re.compile(r"\b(?:may not|must not|shall not|is prohibited from|cannot)\b", re.IGNORECASE),
 }
 _ARABIC_MODAL_PATTERNS = {
     "permission": re.compile(r"(?<!لا )(?:يجوز|يحق)"),
-    "obligation": re.compile(r"(?:يجب|يلتزم|يتعين)"),
-    "prohibition": re.compile(r"(?:لا يجوز|يحظر|يمتنع عن)"),
+    "obligation": re.compile(r"(?<!لا )(?:يجب|يلتزم|يتعين)"),
+    "non_obligation": re.compile(r"لا\s+(?:يجب|يلتزم|يتعين|يلزم)"),
+    "prohibition": re.compile(r"(?:لا يجوز|لا يحق|يحظر|يمتنع عن)"),
 }
 
 
