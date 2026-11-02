@@ -5291,6 +5291,62 @@ def deadline_rules(u: dict = Depends(user)):
         raise HTTPException(503, "deadline rule catalog unavailable")
 
 
+@app.get("/cases/{cid}/draft-skeleton")
+def get_case_draft_skeleton(
+    cid: int,
+    document_type: str = Query("memo", pattern=r"^(pleading|memo)$"),
+    u: dict = Depends(user),
+):
+    c = conn()
+    need(c, u, cid)
+    case = c.execute(
+        "SELECT title,client,case_number,case_year,court,circuit,opposing_party "
+        "FROM cases WHERE id=? AND firm_id=?",
+        (cid, u["firm_id"]),
+    ).fetchone()
+    if case is None:
+        raise HTTPException(404, "case not found")
+    value = lambda key: (str(case[key] or "").strip() or "[يُستكمل بواسطة المحامي]")
+    case_ref = "رقم " + value("case_number") + " لسنة " + value("case_year")
+    if document_type == "pleading":
+        title = "مسودة هيكل صحيفة / مذكرة"
+        headings = [
+            "بسم الله الرحمن الرحيم",
+            "أمام محكمة " + value("court"),
+            "الدائرة: " + value("circuit"),
+            "مذكرة بدفاع",
+            "مقدمة من: " + value("client"),
+            "ضد: " + value("opposing_party"),
+            "في القضية " + case_ref,
+            "أولاً: الوقائع",
+            "ثانياً: الطلبات",
+            "ثالثاً: المستندات والمرفقات",
+            "التوقيع",
+        ]
+    else:
+        title = "مسودة هيكل مذكرة قانونية"
+        headings = [
+            "مذكرة قانونية",
+            "بيانات القضية: " + value("title"),
+            "المحكمة: " + value("court") + " — الدائرة: " + value("circuit"),
+            "أطراف القضية: " + value("client") + " / " + value("opposing_party"),
+            "رقم القضية: " + case_ref,
+            "الموضوع / السؤال محل البحث",
+            "الوقائع",
+            "المسائل المطلوب بحثها",
+            "المستندات والمرفقات",
+            "ملاحظات المحامي",
+            "النتيجة والطلبات — يستكملها المحامي",
+            "المراجعة والتوقيع",
+        ]
+    skeleton = "\n\n".join(headings) + "\n\nمسودة — يجب مراجعتها بواسطة محامٍ قبل الاستخدام."
+    return {
+        "document_type": document_type, "title": title, "case_id": cid,
+        "case_title": case["title"], "headings": headings, "skeleton_text": skeleton,
+        "draft": True, "lawyer_review_required": True, "contains_legal_advice": False,
+    }
+
+
 @app.get("/cases/{cid}/deadline-estimate")
 def deadline_estimate(
     cid: int,
