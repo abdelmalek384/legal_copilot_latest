@@ -141,6 +141,16 @@ class ArabicMatchingTests(unittest.TestCase):
                         f"{question!r} did not expand to {phrase!r}",
                     )
 
+    def test_negated_colloquial_intent_does_not_add_positive_legal_hints(self):
+        expanded = set(expanded_tokens("مش عايز إجازة"))
+        self.assertIn(tokens("مش")[0], expanded)
+        self.assertIn(tokens("إجازة")[0], expanded)
+        self.assertNotIn(tokens("الإجازة السنوية")[0], expanded)
+
+    def test_positive_occurrence_still_expands_when_same_query_also_has_negation(self):
+        expanded = set(expanded_tokens("مش عايز إجازة لكن عايز إجازة"))
+        self.assertIn(tokens("الإجازة السنوية")[0], expanded)
+
     def test_orthographic_variants_are_narrow_and_symmetric(self):
         self.assertEqual(orthographic_variants("اجازة"), ("اجازة", "اجازه"))
         self.assertEqual(orthographic_variants("اجازه"), ("اجازه", "اجازة"))
