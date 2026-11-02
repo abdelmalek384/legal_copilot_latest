@@ -2440,6 +2440,19 @@ class SubscriptionPaymentDecisionIn(BaseModel):
     reason: str = Field(min_length=1, max_length=500)
 
 
+class AnswerCorrectionCreateIn(BaseModel):
+    case_id: int | None = Field(None, ge=1)
+    answer_id: str = Field("", max_length=128)
+    question: str = Field("", max_length=1000)
+    answer_excerpt: str = Field(min_length=1, max_length=4000)
+    correction_note: str = Field(min_length=1, max_length=2000)
+
+
+class AnswerCorrectionReviewIn(BaseModel):
+    status: str = Field(pattern=r"^(accepted|rejected)$")
+    review_note: str = Field("", max_length=1000)
+
+
 class FeeIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); amount: float = Field(ge=0, le=1_000_000_000_000); paid: float = Field(ge=0, le=1_000_000_000_000)
     due: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
@@ -5632,6 +5645,76 @@ def put_reminder_preferences(b: ReminderPreferencesIn, u: dict = Depends(user)):
     )
     c.commit()
     return {"ok": True, **{key: bool(value) for key, value in values.items()}}
+
+
+@app.post("/answers/corrections")
+@rollback_tenant_transaction_on_error
+def suggest_answer_correction(b: AnswerCorrectionCreateIn, u: dict = Depends(user)):
+    c = conn()
+    if b.case_id is not None:
+        need(c, u, b.case_id)
+    answer_excerpt = b.answer_excerpt.strip()
+    correction_note = b.correction_note.strip()
+    if not answer_excerpt or not correction_note:
+        raise HTTPException(422, "answer excerpt and correction note are required")
+    cursor = c.execute(
+        "INSERT INTO answer_correction_suggestions(case_id,answer_id,question,answer_excerpt,correction_note,created_by) "
+        "VALUES(?,?,?,?,?,?)",
+        (b.case_id, b.answer_id.strip(), b.question.strip(), answer_excerpt, correction_note, u["id"]),
+    )
+    suggestion_id = int(cursor.lastrowid)
+    c.execute(
+        "INSERT INTO answer_correction_events(suggestion_id,actor_user_id,event_type,detail_json) "
+        "VALUES(?,?,'submitted',?)",
+        (suggestion_id, u["id"], json.dumps({"training_use": "none"}, sort_keys=True)),
+    )
+    c.commit()
+    return {"id": suggestion_id, "status": "pending", "training_use": "none"}
+
+
+@app.get("/corrections")
+def list_my_answer_corrections(u: dict = Depends(user)):
+    return [dict(row) for row in conn().execute(
+        "SELECT id,case_id,answer_id,question,correction_note,status,training_use,created_at,review_note "
+        "FROM answer_correction_suggestions WHERE created_by=? ORDER BY created_at DESC,id DESC",
+        (u["id"],),
+    ).fetchall()]
+
+
+@app.get("/admin/corrections")
+def list_firm_answer_corrections(u: dict = Depends(user)):
+    require_admin(u)
+    return [dict(row) for row in conn().execute(
+        "SELECT id,case_id,answer_id,question,answer_excerpt,correction_note,status,training_use,"
+        "created_by,created_at,reviewed_by,reviewed_at,review_note "
+        "FROM answer_correction_suggestions ORDER BY CASE status WHEN 'pending' THEN 0 ELSE 1 END,created_at DESC,id DESC"
+    ).fetchall()]
+
+
+@app.post("/admin/corrections/{suggestion_id}/review")
+@rollback_tenant_transaction_on_error
+def review_answer_correction(suggestion_id: int, b: AnswerCorrectionReviewIn, u: dict = Depends(user)):
+    require_admin(u)
+    c = conn()
+    row = c.execute(
+        "SELECT status FROM answer_correction_suggestions WHERE id=?", (suggestion_id,)
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "correction suggestion not found")
+    if row["status"] != "pending":
+        raise HTTPException(409, "correction suggestion has already been reviewed")
+    c.execute(
+        "UPDATE answer_correction_suggestions SET status=?,reviewed_by=?,reviewed_at=datetime('now'),review_note=? "
+        "WHERE id=? AND status='pending'",
+        (b.status, u["id"], b.review_note.strip(), suggestion_id),
+    )
+    c.execute(
+        "INSERT INTO answer_correction_events(suggestion_id,actor_user_id,event_type,detail_json) "
+        "VALUES(?,?,?,?)",
+        (suggestion_id, u["id"], b.status, json.dumps({"review_note": b.review_note.strip()}, ensure_ascii=False)),
+    )
+    c.commit()
+    return {"ok": True, "status": b.status}
 
 
 @app.get("/deadline-rules")
