@@ -68,7 +68,7 @@ def read_reference(path):
  p=Path(path)
  if p.suffix.lower()==".pdf":
   try:
-   reader=PdfReader(str(p),strict=True)
+   reader=PdfReader(str(p),strict=False)
    if reader.is_encrypted:raise ValueError("encrypted reference PDFs are not supported; provide an authorized readable copy")
    page_texts=[];warnings=[]
    for page_number,page in enumerate(reader.pages,1):
