@@ -95,12 +95,8 @@ def validate_review(record):
         errors.append("answer_id must be a non-empty string when supplied")
     review_date = record.get("review_date")
     if isinstance(review_date, str) and review_date.strip():
-        try:
-            parsed_review_date = date.fromisoformat(review_date)
-            if parsed_review_date.isoformat() != review_date:
-                raise ValueError("date must use YYYY-MM-DD")
-        except ValueError:
-            errors.append("review_date must be a real calendar date in YYYY-MM-DD format")
+        if not _valid_iso_date(review_date):
+            errors.append("review_date must be a real ISO calendar date in YYYY-MM-DD format that is not in the future")
 
     scores = record.get("scores")
     rationales = record.get("rationales")
