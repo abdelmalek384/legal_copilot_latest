@@ -421,6 +421,7 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
         report = score([approved()], [result(retrieved=["LAW-OTHER", "LAW-10", "LAW-EXTRA"])])
         row = report["results"][0]
         self.assertTrue(report["retrieval_ranking_scored"])
+        self.assertEqual(report["evaluation_scope"], "citation_abstention_and_retrieval_ranking")
         self.assertEqual(row["first_relevant_rank"], 2)
         self.assertEqual(row["retrieval_recall_at_1"], 0.0)
         self.assertEqual(row["retrieval_recall_at_3"], 1.0)
