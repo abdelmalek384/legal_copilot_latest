@@ -699,7 +699,7 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
 #toast { max-width: min(440px,calc(100vw - 32px)); }
 .login, .auth-card {
   border: 1px solid var(--ui-border);
-  background: rgba(255,255,255,.97);
+  background: var(--ui-surface);
 }
 .login { width: min(420px,calc(100% - 28px)); padding: 26px; border-radius: 20px; box-shadow: var(--ui-shadow); }
 .login input { min-width: 0; }
@@ -1463,11 +1463,11 @@ async function law(){
  const researchStatus=h('div',{className:'visually-hidden',role:'status','aria-live':'polite','aria-atomic':'true'});const thread=h('div',{className:'research-thread card'});
  let activeId=null, sending=false, conversationItems=[];
  const conversationFilter=h('input',{type:'search',placeholder:LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations','aria-label':LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations'});
-  const scopeSelect=h('select',{'aria-label':LANG==='ar'?'نطاق البحث':'Research scope'},
+  const scopeSelect=h('select',{tabIndex:0,'aria-label':LANG==='ar'?'نطاق البحث':'Research scope'},
     h('option',{value:'verified_corpus',textContent:LANG==='ar'?'النصوص القانونية المتحقق منها':'Verified legal corpus'}),
     h('option',{value:'firm_documents',textContent:LANG==='ar'?'مستندات المكتب داخل ملف قضية':'Firm documents in a matter'}),
     h('option',{value:'metadata_only',textContent:LANG==='ar'?'اكتشاف فهرس المصادر (بيانات وصفية فقط)':'Source catalog discovery (metadata only)'}));
-  const matterSelect=h('select',{'aria-label':LANG==='ar'?'ملف القضية':'Matter'},h('option',{value:'',textContent:LANG==='ar'?'اختر ملف قضية':'Select a matter'}));
+  const matterSelect=h('select',{tabIndex:0,'aria-label':LANG==='ar'?'ملف القضية':'Matter'},h('option',{value:'',textContent:LANG==='ar'?'اختر ملف قضية':'Select a matter'}));
   let accessibleCases=[];
   try{accessibleCases=await api('/cases');accessibleCases.forEach(c=>matterSelect.append(new Option((c.title||('Matter '+c.id))+' (#'+c.id+')',String(c.id))))}catch(_){}
   scopeSelect.onchange=()=>{if(scopeSelect.value==='firm_documents'&&!matterSelect.value)toast(LANG==='ar'?'اختر ملف قضية للبحث في مستندات المكتب':'Select a matter to search firm documents')};
