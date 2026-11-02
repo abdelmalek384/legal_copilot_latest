@@ -2441,7 +2441,7 @@ class InvoiceDraftIn(BaseModel):
 class InvoicePaymentIn(BaseModel):
     amount_piasters: int = Field(strict=True, gt=0, le=1_000_000_000_000)
     paid_on: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
-    method: str = Field(pattern=r"^(cash|bank_transfer|instapay|card|other)$")
+    method: str = Field(pattern=r"^(cash|bank_transfer|instapay|other)$")
     reference: str = Field("", max_length=200)
     note: str = Field("", max_length=1000)
     idempotency_key: str = Field(min_length=8, max_length=100)
@@ -5415,10 +5415,13 @@ def _invoice_write_lines(c, invoice_id: int, lines: list[InvoiceLineIn]) -> int:
         subtotal += line_total
         if subtotal > 1_000_000_000_000:
             raise HTTPException(422, "invoice total exceeds the supported limit")
+        description = line.description.strip()
+        if not description:
+            raise HTTPException(422, "invoice line description must not be empty")
         c.execute(
             "INSERT INTO invoice_lines(invoice_id,position,description,quantity_milli,"
             "unit_price_piasters,line_total_piasters) VALUES(?,?,?,?,?,?)",
-            (invoice_id, position, line.description.strip(), line.quantity_milli,
+            (invoice_id, position, description, line.quantity_milli,
              line.unit_price_piasters, line_total),
         )
     return subtotal
@@ -5471,6 +5474,75 @@ def list_invoices(
     if payment_state:
         result = [item for item in result if item["payment_state"] == payment_state]
     return {"invoices": result, "as_of_date": _invoice_today().isoformat()}
+
+
+@app.get("/finance/invoices/overview")
+def invoice_finance_overview(u: dict = Depends(user)):
+    c = conn()
+    if u["role"] == "admin":
+        rows = c.execute(
+            "SELECT i.* FROM invoices i JOIN cases cs ON cs.id=i.case_id WHERE cs.firm_id=? "
+            "ORDER BY i.id", (u["firm_id"],)
+        ).fetchall()
+    else:
+        rows = c.execute(
+            "SELECT i.* FROM invoices i JOIN cases cs ON cs.id=i.case_id "
+            "WHERE cs.firm_id=? AND EXISTS (SELECT 1 FROM members m "
+            "WHERE m.case_id=i.case_id AND m.user_id=?) ORDER BY i.id",
+            (u["firm_id"], u["id"]),
+        ).fetchall()
+    today_date = _invoice_today()
+    case_totals = {}
+    client_totals = {}
+    total_issued = total_paid = total_outstanding = 0
+    for row in rows:
+        item = _invoice_record(c, row)
+        if item["status"] != "issued":
+            continue
+        balance = int(item["balance_piasters"])
+        paid = int(item["paid_piasters"])
+        total_issued += int(item["total_piasters"])
+        total_paid += paid
+        total_outstanding += balance
+        if balance <= 0:
+            bucket = "settled"
+        elif not item["due_date"] or item["due_date"] >= today_date.isoformat():
+            bucket = "current"
+        else:
+            overdue_days = (today_date - date.fromisoformat(item["due_date"])).days
+            bucket = "1_30" if overdue_days <= 30 else "31_60" if overdue_days <= 60 else "61_90" if overdue_days <= 90 else "over_90"
+        cid = int(item["case_id"])
+        case_entry = case_totals.setdefault(cid, {
+            "case_id": cid, "case_title": item["case_title_snapshot"],
+            "client_name": item["client_name_snapshot"], "invoice_count": 0,
+            "issued_piasters": 0, "paid_piasters": 0, "outstanding_piasters": 0,
+            "aging": {"current": 0, "1_30": 0, "31_60": 0, "61_90": 0, "over_90": 0},
+        })
+        case_entry["invoice_count"] += 1
+        case_entry["issued_piasters"] += int(item["total_piasters"])
+        case_entry["paid_piasters"] += paid
+        case_entry["outstanding_piasters"] += balance
+        if bucket != "settled":
+            case_entry["aging"][bucket] += balance
+        client_key = (item["client_name_snapshot"] or "").strip() or "غير محدد"
+        client_entry = client_totals.setdefault(client_key, {
+            "client_name": client_key, "invoice_count": 0,
+            "issued_piasters": 0, "paid_piasters": 0, "outstanding_piasters": 0,
+            "aging": {"current": 0, "1_30": 0, "31_60": 0, "61_90": 0, "over_90": 0},
+        })
+        client_entry["invoice_count"] += 1
+        client_entry["issued_piasters"] += int(item["total_piasters"])
+        client_entry["paid_piasters"] += paid
+        client_entry["outstanding_piasters"] += balance
+        if bucket != "settled":
+            client_entry["aging"][bucket] += balance
+    return {
+        "currency": "EGP", "as_of_date": today_date.isoformat(),
+        "issued_piasters": total_issued, "paid_piasters": total_paid,
+        "outstanding_piasters": total_outstanding,
+        "cases": sorted(case_totals.values(), key=lambda x: x["outstanding_piasters"], reverse=True),
+        "clients": sorted(client_totals.values(), key=lambda x: x["outstanding_piasters"], reverse=True),
+    }
 
 
 @app.get("/invoices/{invoice_id}")
@@ -5589,6 +5661,36 @@ def void_invoice(invoice_id: int, b: InvoiceVoidIn, u: dict = Depends(user)):
     _invoice_event(c, invoice_id, int(u["id"]), "voided", {"reason": b.reason.strip()})
     c.commit()
     return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
+
+
+@app.get("/invoices/{invoice_id}/payments/{payment_id}/receipt")
+def print_invoice_payment_receipt(invoice_id: int, payment_id: int, u: dict = Depends(user)):
+    c = conn()
+    row = _invoice_for_user(c, u, invoice_id)
+    payment = c.execute(
+        "SELECT * FROM invoice_payments WHERE id=? AND invoice_id=?",
+        (payment_id, invoice_id),
+    ).fetchone()
+    if payment is None:
+        raise HTTPException(404, "payment receipt not found")
+    esc = html_lib.escape
+    amount = int(payment["amount_piasters"])
+    number = row["invoice_number"] or "مسودة"
+    body = f"""<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<title>إيصال سداد {esc(str(number))}</title><style>
+body{{font-family:Tahoma,Arial,sans-serif;margin:32px;line-height:1.8;color:#111}}
+main{{max-width:760px;margin:auto;border:1px solid #aaa;padding:24px}}
+@media print{{body{{margin:10mm}}.no-print{{display:none}}}}
+</style></head><body><main><button class="no-print" onclick="window.print()">طباعة / حفظ PDF</button>
+<h1>إيصال استلام دفعة أتعاب</h1><p>إيصال داخلي — ليس إيصالاً ضريبياً إلكترونياً.</p>
+<p>رقم الإيصال: {int(payment["id"])}</p><p>رقم الفاتورة: {esc(str(number))}</p>
+<p>العميل: {esc(str(row["client_name_snapshot"]))}</p>
+<p>المبلغ المستلم: {amount // 100}.{amount % 100:02d} جنيه مصري</p>
+<p>تاريخ السداد: {esc(str(payment["paid_on"]))}</p>
+<p>طريقة السداد: {esc(str(payment["method"]))}</p>
+<p>المرجع: {esc(str(payment["reference"]))}</p>
+<p>ملاحظة: {esc(str(payment["note"]))}</p></main></body></html>"""
+    return HTMLResponse(body)
 
 
 @app.get("/invoices/{invoice_id}/print")
