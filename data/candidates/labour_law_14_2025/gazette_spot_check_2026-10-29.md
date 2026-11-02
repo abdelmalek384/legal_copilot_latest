@@ -20,9 +20,9 @@ The Gazette PDF text layer was opened around each article heading. These checks 
 | 66 | 35 | 33 | Heading “مادة (٦٦)” and the employer duties concerning employed children appear at PDF text lines around 803–813. | Locator confirmed; character-level comparison to JSONL blocked because that file is not in this branch. |
 | 103 | 49 | 46 | Heading “مادة (١٠٣)” and the National Council for Wages meeting/quorum provision appear around lines 1141–1145. | Locator confirmed; character-level comparison to JSONL blocked. |
 | 124 | 54 | 52 | Heading “مادة (١٢٤)” and annual-leave entitlements, including the seven-day increase for specified hazardous/unhealthy/remote work, appear around lines 1292–1304. | Locator confirmed; related Decree 49/2026 still requires full-text review before eligibility decisions are made. |
-| 134 | 58 | 56 | Heading “مادة (١٣٤)” and worker duties appear around lines 1371–1391. | Locator confirmed; character-level comparison to JSONL blocked. |
-| 141 | 62 | 60 | Heading “مادة (١٤١)” and disciplinary investigation/time-limit language appear around lines 1468–1478. | Locator confirmed; character-level comparison to JSONL blocked. |
-| 278 | 107 | 104 | Heading “مادة (٢٧٨)” and attendance-request compliance provision appear around lines 2597–2600. | Locator confirmed; character-level comparison to JSONL blocked. |
+| 134 | 58 | 55 | Heading “مادة (١٣٤)” and worker duties appear around lines 1371–1391. | Locator confirmed; character-level comparison to JSONL blocked. |
+| 141 | 62 | 59 | Heading “مادة (١٤١)” and disciplinary investigation/time-limit language appear around lines 1468–1478. | Locator confirmed; character-level comparison to JSONL blocked. |
+| 278 | 106 | 104 | Heading “مادة (٢٧٨)” and attendance-request compliance provision appear around lines 2597–2600. | Locator confirmed; character-level comparison to JSONL blocked. |
 
 **Important page-numbering note:** The PDF index is zero-based; the printed Gazette page is the number shown in the document. Do not treat the PDF index as the printed page.
 
@@ -76,7 +76,7 @@ The additional word **"سنة"** appears in the SIS extraction but not in the ET
 
 ### Cross-check scope and limitations
 
-- The ETA PDF text layer independently exposes the Article 66 locator at printed page 35 / PDF index 33; Article 103 at page 49 / index 46; Article 124 at page 54 / index 52; Article 134 at page 58 / index 56; Article 141 at page 62 / index 60; and Article 278 at page 107 / index 104.
+- The ETA PDF text layer independently exposes the Article 66 locator at printed page 35 / PDF index 33; Article 103 at page 49 / index 46; Article 124 at page 54 / index 52; Article 134 at page 58 / index 55; Article 141 at page 62 / index 59; and Article 278 at page 106 / index 104.
 - The SIS PDF text layer independently exposes the same six article/page locators. The earlier spot-check table remains a locator check only.
 - Attempts to retrieve rendered page images from both PDF viewers failed in this session. No visual page verification is claimed.
 - The ETA and SIS source URLs are public viewing links. This check does not establish binary equality, original-file SHA-256, systematic reuse permission, amendment completeness, or qualified-counsel approval.
