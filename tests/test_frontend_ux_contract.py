@@ -297,6 +297,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("await api('/cases/'+id+'/deadlines','POST'", HTML)
         self.assertIn("Calculation steps", HTML)
         self.assertIn("Warnings", HTML)
+        self.assertIn("Preliminary unverified calculation — not a confirmed legal deadline.", HTML)
 
 if __name__ == "__main__":
     unittest.main()
