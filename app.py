@@ -5590,7 +5590,7 @@ def update_invoice(invoice_id: int, b: InvoiceDraftIn, u: dict = Depends(user)):
 def issue_invoice(invoice_id: int, u: dict = Depends(user)):
     c = conn()
     row = _invoice_for_user(c, u, invoice_id)
-    c.execute("BEGIN IMMEDIATE")
+    c.execute("SAVEPOINT invoice_write")
     row = _invoice_for_user(c, u, invoice_id)
     if row["status"] != "draft":
         raise HTTPException(409, "only draft invoices can be issued")
@@ -5611,6 +5611,7 @@ def issue_invoice(invoice_id: int, u: dict = Depends(user)):
         (number, today_date.isoformat(), invoice_id),
     )
     _invoice_event(c, invoice_id, int(u["id"]), "issued", {"invoice_number": number})
+    c.execute("RELEASE SAVEPOINT invoice_write")
     c.commit()
     return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
 
@@ -5620,7 +5621,7 @@ def issue_invoice(invoice_id: int, u: dict = Depends(user)):
 def record_invoice_payment(invoice_id: int, b: InvoicePaymentIn, u: dict = Depends(user)):
     c = conn()
     row = _invoice_for_user(c, u, invoice_id)
-    c.execute("BEGIN IMMEDIATE")
+    c.execute("SAVEPOINT invoice_write")
     row = _invoice_for_user(c, u, invoice_id)
     if row["status"] != "issued":
         raise HTTPException(409, "payments can only be recorded against issued invoices")
@@ -5638,6 +5639,7 @@ def record_invoice_payment(invoice_id: int, b: InvoicePaymentIn, u: dict = Depen
         )
         if not same:
             raise HTTPException(409, "idempotency key was already used for a different payment")
+        c.execute("RELEASE SAVEPOINT invoice_write")
         return _invoice_record(c, row)
     paid = int(c.execute(
         "SELECT COALESCE(SUM(amount_piasters),0) FROM invoice_payments WHERE invoice_id=?",
@@ -5656,6 +5658,7 @@ def record_invoice_payment(invoice_id: int, b: InvoicePaymentIn, u: dict = Depen
         "payment_id": payment_id, "amount_piasters": b.amount_piasters,
         "method": b.method, "paid_on": b.paid_on,
     })
+    c.execute("RELEASE SAVEPOINT invoice_write")
     c.commit()
     return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
 
@@ -5665,7 +5668,7 @@ def record_invoice_payment(invoice_id: int, b: InvoicePaymentIn, u: dict = Depen
 def void_invoice(invoice_id: int, b: InvoiceVoidIn, u: dict = Depends(user)):
     c = conn()
     row = _invoice_for_user(c, u, invoice_id)
-    c.execute("BEGIN IMMEDIATE")
+    c.execute("SAVEPOINT invoice_write")
     row = _invoice_for_user(c, u, invoice_id)
     if row["status"] != "issued":
         raise HTTPException(409, "only issued invoices can be voided")
@@ -5681,6 +5684,7 @@ def void_invoice(invoice_id: int, b: InvoiceVoidIn, u: dict = Depends(user)):
         (b.reason.strip(), u["id"], invoice_id),
     )
     _invoice_event(c, invoice_id, int(u["id"]), "voided", {"reason": b.reason.strip()})
+    c.execute("RELEASE SAVEPOINT invoice_write")
     c.commit()
     return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
 
