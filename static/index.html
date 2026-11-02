@@ -630,6 +630,113 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
   #main > .workspace-hero + .grid,
   #main > .workspace-section-title + .grid { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Final UX refinement: persistent navigation, clear page rhythm, and touch-friendly controls. */
+@media (min-width: 801px) {
+  #side {
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    height: 100vh;
+    min-height: 680px;
+    overflow-y: auto;
+  }
+  #side .primary-nav { flex: 1; align-content: start; }
+}
+#side .primary-nav a { text-decoration: none; }
+#side .primary-nav a:focus-visible {
+  outline: 3px solid #91b4ff;
+  outline-offset: 2px;
+}
+#side .nav-scroll-hint {
+  display: none;
+  color: #c9d4e8;
+  font-size: 11px;
+  opacity: .8;
+}
+#main {
+  min-width: 0;
+  min-height: 100vh;
+}
+#main > h2 {
+  padding-block-end: 12px;
+  border-bottom: 1px solid rgba(20,40,75,.07);
+}
+#main > .workspace-subtitle {
+  max-width: 900px;
+}
+#main .card > h3:first-child { margin-top: 0; }
+#main .workspace-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+#main .workspace-section-title h3 { margin: 0; }
+#main .workspace-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+#main .workspace-list-item > .item-main { min-width: 0; flex: 1 1 220px; }
+#main .workspace-list-item button { flex: 0 0 auto; }
+#main .card :where(input:not([type=checkbox]):not([type=radio]), select, textarea) {
+  max-width: 100%;
+}
+#main .card :where(input, select, textarea):disabled {
+  background: #f3f5f8;
+  color: #7a8798;
+}
+#main a:not(.primary-nav a) {
+  text-underline-offset: 3px;
+}
+#main :where(.pill,.badge) { white-space: nowrap; }
+#main .bar { background: #edf1f7; }
+#main .bar i { border-radius: inherit; }
+#toast { max-width: min(440px,calc(100vw - 32px)); }
+.login, .auth-card {
+  border: 1px solid var(--ui-border);
+  background: rgba(255,255,255,.97);
+}
+.login { width: min(420px,calc(100% - 28px)); padding: 26px; border-radius: 20px; box-shadow: var(--ui-shadow); }
+.login input { min-width: 0; }
+.login button[type=submit] { min-height: 46px; border-radius: 11px; }
+.skip-link {
+  position: fixed;
+  inset-block-start: 10px;
+  inset-inline-start: 10px;
+  z-index: 4000;
+  padding: 9px 13px;
+  transform: translateY(-160%);
+  border-radius: 9px;
+  background: #fff;
+  color: #14284b;
+  box-shadow: 0 4px 18px rgba(0,0,0,.18);
+}
+.skip-link:focus { transform: translateY(0); }
+@media (max-width: 800px) {
+  #side { min-height: 0; }
+  #side .lang-switch { flex: 0 0 auto; margin: 0 4px; }
+  #side .lang-switch button { width: auto; min-width: 78px; min-height: 40px; padding-inline: 10px; }
+  #side .firm-switch { flex: 0 0 min(190px,42vw); margin: 0 4px; }
+  #side .firm-switch label { display: none; }
+  #side .firm-switch select { min-height: 40px; }
+  #side .primary-nav { flex: 1 1 auto; min-width: 0; }
+  #side .nav-scroll-hint { display: none; }
+  #main > h2 { margin-bottom: 18px; }
+  #main .workspace-list-item { align-items: flex-start; }
+}
+@media (max-width: 480px) {
+  #side { gap: 2px; padding: 7px 8px; }
+  #side .lang-switch button { min-width: 68px; font-size: 12px; }
+  #side .firm-switch { flex-basis: 128px; }
+  #side nav a { white-space: nowrap; }
+  #main .workspace-list-item button { width: 100%; }
+  .login { padding: 19px; }
+}
 </style>
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <script>
