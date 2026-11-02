@@ -3012,47 +3012,6 @@ def _mfa_is_enabled(user_id: int, control=None) -> bool:
     return row is not None
 
 
-def _mfa_user_is_privileged(user_id: int, control=None) -> bool:
-    db = control or control_conn()
-    firm_admin = db.execute(
-        "SELECT 1 FROM firm_memberships WHERE user_id=? AND status='active' AND firm_role='admin' LIMIT 1",
-        (user_id,),
-    ).fetchone()
-    platform_admin = db.execute(
-        "SELECT 1 FROM user_platform_roles WHERE user_id=? "
-        "AND role_name IN ('platform_admin','platform_reviewer') LIMIT 1",
-        (user_id,),
-    ).fetchone()
-    return firm_admin is not None or platform_admin is not None
-
-
-def _mfa_user_is_privileged(user_id: int, control=None) -> bool:
-    db = control or control_conn()
-    firm_admin = db.execute(
-        "SELECT 1 FROM firm_memberships WHERE user_id=? AND status='active' AND firm_role='admin' LIMIT 1",
-        (user_id,),
-    ).fetchone()
-    platform_admin = db.execute(
-        "SELECT 1 FROM user_platform_roles WHERE user_id=? "
-        "AND role_name IN ('platform_admin','platform_reviewer') LIMIT 1",
-        (user_id,),
-    ).fetchone()
-    return firm_admin is not None or platform_admin is not None
-
-
-def _mfa_policy_requires_user(user_id: int, control=None) -> bool:
-    db = control or control_conn()
-    mode = _mfa_enforcement_mode()
-    if mode == "all_required":
-        return True
-    return mode == "admins_required" and _mfa_user_is_privileged(user_id, db)
-
-
-def _mfa_required_for_user(user_id: int, control=None) -> bool:
-    db = control or control_conn()
-    return _mfa_is_enabled(user_id, db) or _mfa_policy_requires_user(user_id, db)
-
-
 def _mfa_user_is_privileged(user_id: int, control=None, firm_id: int | None = None) -> bool:
     db = control or control_conn()
     if firm_id is None:
@@ -3078,7 +3037,7 @@ def _mfa_policy_requires_user(user_id: int, control=None, firm_id: int | None = 
     mode = _mfa_enforcement_mode()
     if mode == "all_required":
         return True
-    if mode == "admins_required" and _mfa_user_is_privileged(user_id, db):
+    if mode == "admins_required" and _mfa_user_is_privileged(user_id, db, firm_id):
         return True
     if firm_id is None:
         return False
@@ -3096,8 +3055,6 @@ def _mfa_policy_requires_user(user_id: int, control=None, firm_id: int | None = 
 def _mfa_required_for_user(user_id: int, control=None, firm_id: int | None = None) -> bool:
     db = control or control_conn()
     return _mfa_is_enabled(user_id, db) or _mfa_policy_requires_user(user_id, db, firm_id)
-
-
 
 
 def _record_mfa_event(control, actor_user_id: int, event_type: str, detail: dict | None = None) -> None:
