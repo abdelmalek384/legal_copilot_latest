@@ -1641,6 +1641,8 @@ async function law(){
  await drawList();
  if(activeId)await loadConversation(activeId);
  else {const list=await api('/research/conversations');if(list.length)await loadConversation(list[0].id);else await newChat(false)}
+ // Place keyboard focus at the first research control only after async page setup is complete.
+ scopeSelect.focus({preventScroll:true});
 }
 async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=await api('/users'),again=()=>view(id);
  const lead=ME.role==='admin'||c.members.some(m=>m.role==='lead'&&m.user_id===ME.id),dn=c.tasks.filter(t=>t.status==='done').length,tot=c.tasks.length;
