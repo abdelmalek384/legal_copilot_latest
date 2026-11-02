@@ -348,6 +348,10 @@ jobs:
         run: PYTHONPATH=. python tests/test_arabic_drafting_skeletons.py
       - name: Test provider-neutral billing fake
         run: PYTHONPATH=. python tests/test_billing_provider.py
+      - name: Test product feedback frontend contract
+        run: PYTHONPATH=. python tests/test_product_feedback_frontend_contract.py
+      - name: Test firm-private product feedback lifecycle
+        run: PYTHONPATH=. python tests/test_product_feedback_routes.py
       - name: Test private answer correction queue and firm isolation
         run: PYTHONPATH=. python tests/test_answer_correction_routes.py
       - name: Guard that every test file runs in CI or is explicitly tracked
