@@ -270,5 +270,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn(".auth-card form>label{display:block;width:100%", HTML)
         self.assertIn(".auth-card .password-row input{min-width:0;flex:1}", HTML)
 
+
+    def test_whatsapp_reminder_handoff_uses_explicit_click_and_encoded_wa_me_url(self):
+        self.assertIn("const whatsappReminder=(dueDate,kind)=>", HTML)
+        self.assertIn("window.prompt(", HTML)
+        self.assertIn("https://wa.me/", HTML)
+        self.assertIn("encodeURIComponent(message)", HTML)
+        self.assertIn("whatsappReminder(s.date,'session')", HTML)
+        self.assertIn("whatsappReminder(d.due,'deadline')", HTML)
+        self.assertIn("Please confirm the details with the law office.", HTML)
+
 if __name__ == "__main__":
     unittest.main()
