@@ -282,6 +282,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("api('/finance/invoices/overview')", HTML)
         self.assertIn("/payments/'+payment.id+'/receipt", HTML)
         self.assertIn("not an Egyptian e-tax invoice", HTML)
+        self.assertIn("api('/invoices/'+item.id+'/void','POST'", HTML)
 
 if __name__ == "__main__":
     unittest.main()
