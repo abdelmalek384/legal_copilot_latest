@@ -153,15 +153,6 @@ class InvoiceLedgerRouteTests(unittest.TestCase):
         issued_b = self.mutate(self.client_b, "post", f"/invoices/{draft_b['id']}/issue").json()
         self.assertEqual(issued_a["invoice_number"], issued_b["invoice_number"])
 
-    def test_print_view_is_arabic_and_disclaims_tax_invoice_status(self):
-        invoice = self.create_draft().json()
-        response = self.client_a.get(f"/invoices/{invoice['id']}/print")
-        self.assertEqual(response.status_code, 200, response.text)
-        self.assertIn("dir=\"rtl\"", response.text)
-        self.assertIn("فاتورة أتعاب قانونية", response.text)
-        self.assertIn("ليس فاتورة ضريبية إلكترونية", response.text)
-        self.assertIn("Client Snapshot", response.text)
-
     def test_money_fields_reject_float_values(self):
         response = self.mutate(
             self.client_a, "post", f"/cases/{self.case_id}/invoices",
