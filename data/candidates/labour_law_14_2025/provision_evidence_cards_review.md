@@ -215,7 +215,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ تم فحص استخراج النص لهذه المادة، لا صورة الصفحة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; Official Gazette PDF, visually checked via browser PDF rendering for printed page 54 (PDF page index 52) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review. (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 54؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
 - [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 54؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
 
 **Cross-checks:**
@@ -2522,7 +2522,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 278؛ النص والموضع بحاجة إلى مطابقة مباشرة (checked 2026-10-31).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; مطابقة بصرية مباشرة للمادة 278 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104). (checked 2026-10-31).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; Direct browser PDF page-image check confirms Article 278 on printed Gazette page 106 (PDF index 104); original PDF bytes were not downloaded or hashed. (checked 2026-11-02).
 
 **Cross-checks:**
 
@@ -4526,7 +4526,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; المرجع الرسمي القابل للبحث للنص؛ تُراجع المادة المحددة في النسخة الكاملة قبل الاعتماد (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf; الصفحة المطبوعة 58 تعرض البنود 3–11 من المادة 134 وتؤكد استمرار تعداد الواجبات بعد بدايته في الصفحة 57؛ الصفحة روجعت بصرياً في عارض PDF بتاريخ 2026-10-28، لكن الملف الأصلي لم يُنزّل ولم يُحسب SHA-256 (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; Direct browser PDF page-image check confirms Article 134 on printed Gazette page 57 (PDF index 55); original PDF bytes were not downloaded or hashed. (checked 2026-11-02).
 
 **Cross-checks:**
 
@@ -4763,7 +4763,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; المرجع الرسمي القابل للبحث؛ يجب مطابقة المادة والحدود الرقمية قبل الاعتماد (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf; الصفحة المطبوعة 61 تعرض المادة 141 بشأن إخطار العامل والتحقيق والتسبيب ومواعيد التحقيق والاستثناء الشفهي المحدود؛ الصفحة روجعت بصرياً في عارض PDF بتاريخ 2026-10-28، لكن الملف الأصلي لم يُنزّل ولم يُحسب SHA-256 (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; Direct browser PDF page-image check confirms Article 141 on printed Gazette page 61 (PDF index 59); original PDF bytes were not downloaded or hashed. (checked 2026-11-02).
 
 **Cross-checks:**
 
@@ -10091,7 +10091,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 66؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; Direct browser PDF page-image check confirms Article 66 on printed Gazette page 35 (PDF index 33); original PDF bytes were not downloaded or hashed. (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; Direct browser PDF page-image check confirms Article 66 on printed Gazette page 35 (PDF index 33); original PDF bytes were not downloaded or hashed. (checked 2026-11-02).
 
 **Cross-checks:**
 
@@ -10990,8 +10990,8 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; مرجع للمادة 103؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; ETA page image visibly shows Article 103 at printed page 48 (PDF index 46), reading «كل ستة أشهر على الأقل» without «سنة». One indexed extraction of this same PDF returns the extra word; original PDF bytes were not downloaded or hashed.
-- [EG-SIS-GAZETTE-2025-18-LABOUR-PDF](https://sis.gov.eg/media/760267/القانون-رقم-14-لسنة-2025-بإصدار-قانون-العمل.pdf) — government_hosted_official_gazette_pdf_text_extraction; SIS text layer includes an additional «سنة»; its page image has not been checked. Treat this as an unresolved extraction-layer discrepancy, not a confirmed difference in the Gazette image. (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; Direct browser PDF page-image check confirms Article 103 on printed page 48 (PDF index 46), visibly reading «كل ستة أشهر على الأقل» without «سنة». One indexed text extraction of this same PDF returns an extra «سنة», so page-image inspection takes precedence over that extraction artifact; original PDF bytes were not downloaded or hashed. (checked 2026-11-02).
+- [EG-SIS-GAZETTE-2025-18-LABOUR-PDF](https://sis.gov.eg/media/760267/القانون-رقم-14-لسنة-2025-بإصدار-قانون-العمل.pdf) — government_hosted_official_gazette_pdf_text_extraction; SIS-hosted PDF text extraction around Article 103 includes an additional «سنة»; the SIS page image has not been visually inspected. The ETA-hosted page image visibly reads «كل ستة أشهر على الأقل» without that word, so retain this as a text-layer discrepancy rather than a confirmed difference in the Gazette image. (checked 2026-11-02).
 
 **Cross-checks:**
 
