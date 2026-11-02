@@ -312,6 +312,7 @@ items.push(h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'تغيي�
 const duePill=t=>{if(!t.due)return null;const d=Math.round((new Date(t.due+'T00:00:00')-new Date(today+'T00:00:00'))/864e5);const label=d<0?uiText(Math.abs(d)+' يوم متأخر',Math.abs(d)+'d overdue'):d===0?uiText('مستحق اليوم','Due today'):d===1?uiText('غداً','Due tomorrow'):uiText('متبقي '+d+' يوم',d+'d left');return pill(fd(t.due)+' · '+label,d<0?'late':d<=3?'soon':'open')};
 const prog=c=>{const t=c.done_tasks+c.open_tasks;return h('div',{className:'bar',title:c.done_tasks+'/'+t},h('i',{style:'width:'+(t?100*c.done_tasks/t:0)+'%'}))};
 const money=n=>new Intl.NumberFormat(LANG==='ar'?'ar-EG':'en-US',{maximumFractionDigits:2}).format(Number(n)||0);
+const piasterMoney=value=>{const n=Math.max(0,Number(value)||0);return Math.floor(n/100).toLocaleString(LANG==='ar'?'ar-EG':'en-US')+'.'+String(n%100).padStart(2,'0')+(LANG==='ar'?' ج.م':' EGP')};
 const empty=t=>h('div',{className:'mut',textContent:t});
 function uiText(ar,en){return LANG==='ar'?ar:en}
 function openPage(id,fn){PAGE=id;window.CASE_ID=null;fn()}
@@ -337,7 +338,7 @@ function startLocalReminderPolling(){
  if(localStorage.getItem(localReminderSettingKey())!=='1'||!('Notification' in window)||Notification.permission!=='granted'||window.__lcReminderTimer)return;
  window.__lcReminderTimer=window.setInterval(async()=>{try{sendLocalReminderSummary(await api('/dashboard'))}catch(_){}},15*60*1000);
 }
-async function dash(){PAGE='dash';const [d,cs,finance]=await Promise.all([api('/dashboard'),api('/cases'),api('/finance/overview')]);sendLocalReminderSummary(d);startLocalReminderPolling();
+async function dash(){PAGE='dash';const [d,cs,finance,invoiceFinance]=await Promise.all([api('/dashboard'),api('/cases'),api('/finance/overview'),api('/finance/invoices/overview').catch(()=>null)]);sendLocalReminderSummary(d);startLocalReminderPolling();
  const active=cs.filter(c=>c.status==='open'),overdueTasks=d.tasks.filter(t=>t.due&&t.due<today).length;
  const overdueDeadlines=(d.deadlines||[]).filter(x=>x.due&&x.due<today);
  const st=(n,l,sub,kind='')=>h('div',{className:'card stat'},h('b',{textContent:n,style:kind==='bad'?'color:var(--bad)':kind==='good'?'color:var(--ok)':''}),h('span',{textContent:l}),sub?h('div',{className:'mut',textContent:sub}):null);
@@ -349,6 +350,10 @@ async function dash(){PAGE='dash';const [d,cs,finance]=await Promise.all([api('/
  h('div',{className:'grid'},st(active.length,uiText('قضايا نشطة','Active cases'),uiText('من الملفات التي يمكنك الوصول إليها','Cases you can access')),st(d.tasks.length,uiText('مهام مفتوحة مسندة إليك','Open tasks assigned to you'),overdueTasks?overdueTasks+' '+uiText('متأخرة','overdue'):'',overdueTasks?'bad':''),st((d.sessions||[]).length,uiText('جلسات قادمة','Upcoming hearings'),uiText('ضمن نطاق العرض الحالي','Within the current dashboard window')),st((d.deadlines||[]).length,uiText('مواعيد قانونية مفتوحة','Open legal deadlines'),overdueDeadlines.length?overdueDeadlines.length+' '+uiText('متأخرة','overdue'):'',overdueDeadlines.length?'bad':''),st(money(finance.total_amount),uiText('إجمالي الأتعاب المسجلة','Recorded fees'),finance.fee_count+' '+uiText('سجل أتعاب','fee records')),st(money(finance.outstanding_amount),uiText('الأتعاب غير المحصلة','Outstanding fees'),finance.overdue_count?money(finance.overdue_amount)+' '+uiText('متأخرة','overdue amount'):uiText('لا توجد أتعاب متأخرة مسجلة','No recorded overdue fees'),finance.overdue_count?'bad':'')),
  h('div',{className:'workspace-section-title'},h('h3',{textContent:uiText('وصول سريع','Quick access')})),
  h('div',{className:'grid'},action(uiText('المهام','Tasks'),uiText('تابع وأنهِ الأعمال المسندة إليك','Review and complete assigned work'),()=>openPage('tasks',tasksPage)),action(uiText('الأجندة','Calendar'),uiText('اجمع الجلسات والمواعيد والمهام','See hearings, deadlines and tasks together'),()=>openPage('calendar',calendarPage)),action(uiText('ملفات القضايا','Case files'),uiText('ابحث وافتح ملف القضية','Find and open a case file'),()=>openPage('cases',casesPage)),action(uiText('العملاء والتعارض','Clients & conflicts'),uiText('راجع العملاء وافحص التعارض المحتمل','Review clients and check potential conflicts'),()=>openPage('clients',clients))),
+ invoiceFinance&&h('section',{className:'card'},h('div',{className:'workspace-section-title'},h('h3',{textContent:uiText('نظرة عامة على الفواتير','Invoice overview')}),pill(uiText('بالقروش المصرية','EGP piasters'),'open')),
+  h('div',{className:'grid'},st(piasterMoney(invoiceFinance.invoiced_piasters),uiText('إجمالي الفواتير الصادرة','Issued invoices'),''),st(piasterMoney(invoiceFinance.paid_piasters),uiText('المدفوع','Paid'),''),st(piasterMoney(invoiceFinance.outstanding_piasters),uiText('المتبقي','Outstanding'),'')),
+  h('p',{className:'mut',textContent:uiText('أعمار المبالغ المستحقة: ','Outstanding aging: ')+Object.entries(invoiceFinance.aging||{}).map(([k,v])=>k+': '+piasterMoney(v)).join(' · ')}),
+  ...Object.entries(invoiceFinance.by_client||{}).map(([name,values])=>h('div',{className:'row'},h('span',{textContent:name}),h('b',{textContent:piasterMoney(values.outstanding_piasters)})))),
  h('div',{className:'cols'},
  h('div',{className:'card'},h('div',{className:'workspace-section-title'},h('h3',{textContent:uiText('أولوية اليوم: مهامك','Your tasks')}),btn(uiText('عرض الكل','View all'),()=>openPage('tasks',tasksPage),'g')),d.tasks.length?d.tasks.slice(0,5).map(t=>listItem(t.title,(t.case_title||'')+' · '+(t.due?fd(t.due):uiText('بلا موعد','No due date')),h('div',{style:'display:flex;gap:7px;align-items:center;flex-wrap:wrap'},duePill(t),btn(uiText('تم','Done'),async()=>{await api('/tasks/'+t.id+'/done','POST');dash()},'g')))):empty(uiText('لا توجد مهام مفتوحة مسندة إليك.','No open tasks assigned to you.'))),
  h('div',{className:'card'},h('div',{className:'workspace-section-title'},h('h3',{textContent:uiText('المواعيد القانونية','Legal deadlines')}),btn(uiText('فتح الأجندة','Open calendar'),()=>openPage('calendar',calendarPage),'g')),(d.deadlines||[]).length?d.deadlines.slice(0,5).map(x=>listItem(x.title,(x.case_title||'')+' · '+fd(x.due),h('div',{style:'display:flex;gap:7px;align-items:center;flex-wrap:wrap'},duePill(x),btn(uiText('تم','Done'),async()=>{await api('/deadlines/'+x.id+'/done','POST');dash()},'g')))):empty(uiText('لا توجد مواعيد قانونية مفتوحة خلال الثلاثين يوماً القادمة.','No open legal deadlines in the next 30 days.'))),
@@ -779,7 +784,7 @@ async function law(){
 }
 async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=await api('/users'),again=()=>view(id);
  const lead=ME.role==='admin'||c.members.some(m=>m.role==='lead'&&m.user_id===ME.id),dn=c.tasks.filter(t=>t.status==='done').length,tot=c.tasks.length;
- const tabs=[['sum',uiText('الملخص','Overview')],['brief',uiText('ملخص ذكي','AI brief')],['tasks',uiText('المهام','Tasks')],['sess',uiText('الجلسات','Hearings')],['dead',uiText('المواعيد القانونية','Legal deadlines')],['notes',uiText('الملاحظات','Notes')],['fees',uiText('الأتعاب','Fees')],['docs',uiText('المستندات','Documents')],['team',uiText('الفريق','Team')],['ask',uiText('اسأل','Ask')],['log',uiText('السجل','Activity log')]];let body;
+ const tabs=[['sum',uiText('الملخص','Overview')],['brief',uiText('ملخص ذكي','AI brief')],['tasks',uiText('المهام','Tasks')],['sess',uiText('الجلسات','Hearings')],['dead',uiText('المواعيد القانونية','Legal deadlines')],['notes',uiText('الملاحظات','Notes')],['fees',uiText('الأتعاب','Fees')],['invoices',uiText('الفواتير','Invoices')],['docs',uiText('المستندات','Documents')],['team',uiText('الفريق','Team')],['ask',uiText('اسأل','Ask')],['log',uiText('السجل','Activity log')]];let body;
  if(TAB==='sum'){
   const fields=[['case_number',uiText('رقم القضية','Case number')],['case_year',uiText('السنة','Year')],['court',uiText('المحكمة','Court')],['circuit',uiText('الدائرة','Circuit')],['opposing_party',uiText('الخصم','Opposing party')],['stage',uiText('المرحلة','Stage')]];
   const inputs={};fields.forEach(([k,label])=>inputs[k]=h('input',{value:c[k]||'',placeholder:label,style:'width:100%'}));
@@ -892,6 +897,51 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
   const money=n=>new Intl.NumberFormat(LANG==='ar'?'ar-EG':'en-US',{maximumFractionDigits:2}).format(Number(n||0))+(LANG==='ar'?' ج.م':' EGP');
   body=h('div',{className:'card'},c.fees.length?c.fees.map(f=>h('div',{className:'row'},h('div',{},h('b',{textContent:f.title}),h('div',{className:'mut',textContent:(f.note||'')+(f.due?' · '+fd(f.due):'')})),h('span',{textContent:uiText('الإجمالي ','Total ')+money(f.amount)+' · '+uiText('المدفوع ','Paid ')+money(f.paid)+' · '+uiText('المتبقي ','Remaining ')+money(Number(f.amount)-Number(f.paid))}))):empty('لا توجد أتعاب مسجلة.'),
    h('div',{className:'grid'},title,amount,paid,due,note),h('div',{className:'row'},btn('إضافة أتعاب',async()=>{if(!title.value.trim()||amount.value===''||paid.value===''){toast(uiText('أدخل الوصف والإجمالي والمدفوع','Enter the description, total, and paid amount'));return}await api('/cases/'+id+'/fees','POST',{title:title.value,amount:Number(amount.value),paid:Number(paid.value),due:due.value||null,note:note.value});again()})))}
+ if(TAB==='invoices'){
+  const clientName=h('input',{value:c.client||'',placeholder:uiText('اسم العميل في الفاتورة','Invoice client name')});
+  const issueDate=h('input',{type:'date',value:today,'aria-label':uiText('تاريخ الإصدار','Issue date')});
+  const dueDate=h('input',{type:'date','aria-label':uiText('تاريخ الاستحقاق','Due date')});
+  const description=h('input',{placeholder:uiText('وصف بند الفاتورة','Invoice line description')});
+  const quantity=h('input',{type:'number',min:'1',max:'10000',step:'1',value:'1','aria-label':uiText('الكمية','Quantity')});
+  const unitPrice=h('input',{type:'text',inputMode:'decimal',placeholder:'0.00','aria-label':uiText('سعر الوحدة بالجنيه','Unit price in EGP')});
+  const invoiceNote=h('textarea',{rows:2,placeholder:uiText('ملاحظة على الفاتورة','Invoice note')});
+  const invoiceList=h('div',{});
+  const piasterMoney=value=>{const n=Math.max(0,Number(value)||0);return Math.floor(n/100).toLocaleString(LANG==='ar'?'ar-EG':'en-US')+'.'+String(n%100).padStart(2,'0')+(LANG==='ar'?' ج.م':' EGP')};
+  const refreshInvoices=async()=>{
+   const rows=(await api('/invoices')).filter(x=>Number(x.case_id)===Number(id));
+   invoiceList.replaceChildren();
+   if(!rows.length){invoiceList.append(empty(uiText('لا توجد فواتير لهذه القضية بعد.','No invoices for this case yet.')));return}
+   const details=await Promise.all(rows.map(x=>api('/invoices/'+x.id)));
+   details.forEach(inv=>{
+    const card=h('section',{className:'card'});
+    card.append(h('div',{className:'row'},h('div',{},h('b',{textContent:inv.invoice_number}),h('div',{className:'mut',textContent:inv.client_name+' · '+fd(inv.issue_date)}),pill(inv.status==='issued'?uiText('صادرة','Issued'):uiText('مسودة','Draft'),inv.status==='issued'?'open':'soon')),h('b',{textContent:piasterMoney(inv.total_piasters)})));
+    card.append(h('p',{className:'mut',textContent:uiText('المدفوع: ','Paid: ')+piasterMoney(inv.paid_piasters)+' · '+uiText('المتبقي: ','Outstanding: ')+piasterMoney(inv.outstanding_piasters)}));
+    card.append(h('div',{className:'row'},btn(uiText('طباعة الفاتورة','Print invoice'),()=>window.open('/invoices/'+inv.id+'/print','_blank','noopener,noreferrer'),'g'),
+     inv.status==='draft'?btn(uiText('إصدار الفاتورة','Issue invoice'),async()=>{try{await api('/invoices/'+inv.id+'/issue','POST');toast(uiText('تم إصدار الفاتورة','Invoice issued'));await refreshInvoices()}catch(e){toast(String(e.message||e))}},'g'):null));
+    if(inv.status==='issued'&&inv.outstanding_piasters>0){
+     const payAmount=h('input',{type:'text',inputMode:'decimal',placeholder:uiText('مبلغ الدفعة بالجنيه','Payment amount in EGP')});
+     const payMethod=h('select',{},new Option(uiText('تحويل بنكي','Bank transfer'),'bank_transfer'),new Option('InstaPay','instapay'),new Option(uiText('نقدي','Cash'),'cash'),new Option(uiText('شيك','Cheque'),'cheque'),new Option(uiText('أخرى','Other'),'other'));
+     const payReference=h('input',{placeholder:uiText('مرجع الدفع (اختياري)','Payment reference (optional)')});
+     const paidOn=h('input',{type:'date',value:today,'aria-label':uiText('تاريخ الدفع','Payment date')});
+     card.append(h('div',{className:'grid'},payAmount,payMethod,payReference,paidOn),
+      btn(uiText('تسجيل دفعة','Record payment'),async()=>{if(!payAmount.value.trim()){toast(uiText('أدخل مبلغ الدفعة','Enter a payment amount'));return}try{await api('/invoices/'+inv.id+'/payments','POST',{amount_egp:payAmount.value.trim(),method:payMethod.value,reference:payReference.value,paid_on:paidOn.value});toast(uiText('تم تسجيل الدفعة','Payment recorded'));await refreshInvoices()}catch(e){toast(String(e.message||e))}},'g'));
+    }
+    if(inv.payments.length)card.append(h('h4',{textContent:uiText('الإيصالات','Receipts')}),...inv.payments.map(p=>h('div',{className:'row'},h('span',{textContent:p.receipt_number+' · '+piasterMoney(p.amount_piasters)}),btn(uiText('طباعة الإيصال','Print receipt'),()=>window.open('/invoices/'+inv.id+'/payments/'+p.id+'/receipt','_blank','noopener,noreferrer'),'g'))));
+    invoiceList.append(card);
+   });
+  };
+  const createInvoice=btn(uiText('إنشاء مسودة فاتورة','Create invoice draft'),async()=>{
+   if(!description.value.trim()||!unitPrice.value.trim()||!issueDate.value){toast(uiText('أدخل وصف البند والسعر وتاريخ الإصدار','Enter a line description, price and issue date'));return}
+   createInvoice.disabled=true;
+   try{await api('/cases/'+id+'/invoices','POST',{client_name:clientName.value,issue_date:issueDate.value,due_date:dueDate.value||null,note:invoiceNote.value,lines:[{description:description.value,quantity:Number(quantity.value||1),unit_price_egp:unitPrice.value.trim()}]});toast(uiText('تم إنشاء مسودة الفاتورة','Invoice draft created'));description.value='';unitPrice.value='';invoiceNote.value='';await refreshInvoices()}
+   catch(e){toast(String(e.message||e))}
+   finally{createInvoice.disabled=false}
+  });
+  body=h('div',{className:'card'},h('h3',{textContent:uiText('الفواتير والمدفوعات','Invoices & payments')}),
+   h('p',{className:'mut',textContent:uiText('تُحفظ المبالغ بالقروش المصرية كأعداد صحيحة. إصدار الفاتورة يثبت نسخة غير قابلة للتحرير؛ ويمكن تسجيل دفعات جزئية وطباعة إيصال لكل دفعة.','Amounts are stored as integer EGP piasters. Issuing an invoice freezes its snapshot; partial payments and printable receipts are supported.')}),
+   h('div',{className:'grid'},clientName,issueDate,dueDate,description,quantity,unitPrice),invoiceNote,createInvoice,invoiceList);
+  refreshInvoices().catch(e=>invoiceList.replaceChildren(h('p',{className:'bad',textContent:String(e.message||e)})));
+ }
  if(TAB==='docs'){
   const f=h('input',{type:'file',accept:'.pdf,.docx'});
   const panel=h('div',{});
