@@ -289,5 +289,15 @@ class FrontendUXContractTests(unittest.TestCase):
             self.assertIn("['" + key + "'", HTML)
         self.assertIn("تُطبق هذه الخيارات على حسابك داخل هذا المكتب فقط", HTML)
 
+
+    def test_deadline_calculation_can_be_saved_with_visible_audit_note(self):
+        self.assertIn("const calculationNote=", HTML)
+        self.assertIn("const saveCalculated=btn(", HTML)
+        self.assertIn("Save calculated deadline to case", HTML)
+        self.assertIn("await api('/cases/'+id+'/deadlines','POST'", HTML)
+        self.assertIn("Calculation steps", HTML)
+        self.assertIn("Warnings", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
