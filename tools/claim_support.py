@@ -10,7 +10,7 @@ import re
 _ENGLISH_NO_EXPIRY = re.compile(
     r"\b(?:never\s+(?:expires?|ends?|lapses?)|does\s+not\s+expire|"
     r"doesn't\s+expire|no\s+limitation\s+period|not\s+subject\s+to\s+limitation|"
-    r"immune\s+from\s+limitation|not\s+time[- ]barred|cannot\s+be\s+time[- ]barred)\b",
+    r"immune\s+from\s+limitation|cannot\s+be\s+time[- ]barred)\b",
     re.IGNORECASE,
 )
 _ARABIC_NO_EXPIRY = re.compile(
