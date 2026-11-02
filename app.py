@@ -2643,15 +2643,10 @@ SUBSCRIPTION_TRIAL_DAYS = 14
 
 def _firm_seat_usage(control, firm_id: int, exclude_invitation_id: int | None = None):
     subscription = control.execute(
-        "SELECT plan_code,status,seat_limit,trial_ends_at FROM firm_subscriptions WHERE firm_id=?",
+        "SELECT plan_code,status,seat_limit,trial_ends_at,current_period_end FROM firm_subscriptions WHERE firm_id=?",
         (firm_id,),
     ).fetchone()
     seat_limit = int(subscription["seat_limit"]) if subscription else 1
-    if subscription:
-        if subscription["status"] in {"expired", "cancelled", "past_due"}:
-            raise HTTPException(409, "subscription is not active; renew before adding seats")
-        if subscription["status"] == "trial" and subscription["trial_ends_at"] and int(subscription["trial_ends_at"]) <= int(time.time()):
-            raise HTTPException(409, "free trial has expired; submit payment before adding seats")
     active = int(control.execute(
         "SELECT COUNT(*) FROM firm_memberships WHERE firm_id=? AND status='active'", (firm_id,)
     ).fetchone()[0])
@@ -2665,11 +2660,26 @@ def _firm_seat_usage(control, firm_id: int, exclude_invitation_id: int | None = 
 
 
 def _require_firm_seat(control, firm_id: int, exclude_invitation_id: int | None = None):
+    subscription = control.execute(
+        "SELECT status,trial_ends_at,current_period_end FROM firm_subscriptions WHERE firm_id=?",
+        (firm_id,),
+    ).fetchone()
+    now = int(time.time())
+    if subscription:
+        status = subscription["status"]
+        if status in {"expired", "cancelled", "past_due"}:
+            raise HTTPException(409, "subscription is not active; renew before adding seats")
+        if status == "trial" and subscription["trial_ends_at"] and int(subscription["trial_ends_at"]) <= now:
+            raise HTTPException(409, "free trial has expired; submit payment before adding seats")
+        if status == "pending_payment":
+            trial_live = subscription["trial_ends_at"] and int(subscription["trial_ends_at"]) > now
+            period_live = subscription["current_period_end"] and int(subscription["current_period_end"]) > now
+            if not (trial_live or period_live):
+                raise HTTPException(409, "payment is pending; verify payment before adding seats")
     active, pending, limit = _firm_seat_usage(control, firm_id, exclude_invitation_id)
     if active + pending >= limit:
         raise HTTPException(409, "firm seat limit reached for the selected plan")
     return active, pending, limit
-
 
 def _subscription_audit(control, firm_id: int, actor_user_id: int | None, event_type: str, detail: dict):
     control.execute(
