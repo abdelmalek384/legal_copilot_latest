@@ -266,6 +266,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_invoice_core_routes.py
       - name: Test invoice ledger CSV export
         run: PYTHONPATH=. python tests/test_invoice_csv_export.py
+      - name: Test exact-piaster money primitives
+        run: PYTHONPATH=. python tests/test_money.py
       - name: Test invoice payments, aging, and receipts
         run: PYTHONPATH=. python tests/test_invoice_payment_routes.py
       - name: Test platform security audit events
