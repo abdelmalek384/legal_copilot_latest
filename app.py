@@ -4434,6 +4434,7 @@ def create_firm_invitation(b: InvitationCreateIn, u: dict = Depends(user)):
         firm = control.execute("SELECT status FROM firms WHERE id=?", (u["firm_id"],)).fetchone()
         if firm is None or firm["status"] != "active":
             raise HTTPException(409, "cannot invite a member to an inactive firm")
+        _require_firm_seat(control, u["firm_id"])
         existing_membership = control.execute(
             "SELECT fm.status FROM users x JOIN firm_memberships fm ON fm.user_id=x.id "
             "WHERE x.email_normalized=? AND fm.firm_id=?",
@@ -4630,6 +4631,7 @@ def accept_invitation_new_identity(b: InvitationAcceptNewIn):
         firm = control.execute("SELECT status FROM firms WHERE id=?", (invitation["firm_id"],)).fetchone()
         if firm is None or firm["status"] != "active":
             raise HTTPException(409, "invitation firm is no longer active")
+        _require_firm_seat(control, invitation["firm_id"], invitation["id"])
         existing = control.execute(
             "SELECT id,status FROM users WHERE email_normalized=?",
             (invitation["email_normalized"],),
@@ -4716,6 +4718,7 @@ def accept_invitation_existing_identity(b: InvitationAcceptExistingIn, u: dict =
         firm = control.execute("SELECT status FROM firms WHERE id=?", (invitation["firm_id"],)).fetchone()
         if firm is None or firm["status"] != "active":
             raise HTTPException(409, "invitation firm is no longer active")
+        _require_firm_seat(control, invitation["firm_id"], invitation["id"])
         existing = control.execute(
             "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
             (u["id"], invitation["firm_id"]),
