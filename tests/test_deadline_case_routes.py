@@ -255,5 +255,32 @@ class CaseDeadlineEstimateRouteTests(unittest.TestCase):
         self.assertEqual(denied.status_code, 404, denied.text)
 
 
+    def test_reminder_preferences_are_per_user_and_firm(self):
+        initial = self.client.get("/reminder-preferences")
+        self.assertEqual(initial.status_code, 200, initial.text)
+        self.assertTrue(initial.json()["email_enabled"])
+        updated = self._mutate(
+            "put", "/reminder-preferences",
+            json={
+                "email_enabled": True, "deadline_7_days": True, "deadline_3_days": False,
+                "deadline_1_day": False, "deadline_day_of": True, "deadline_overdue": False,
+                "session_day_of": True, "task_reminders": False,
+            },
+        )
+        self.assertEqual(updated.status_code, 200, updated.text)
+        reread = self.client.get("/reminder-preferences")
+        self.assertFalse(reread.json()["deadline_3_days"])
+        self.assertFalse(reread.json()["task_reminders"])
+
+        self.client.cookies.clear()
+        login = self.client.post(
+            "/login", json={"email": "deadline-b@example.test", "password": self.password_b}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        other_firm = self.client.get("/reminder-preferences")
+        self.assertEqual(other_firm.status_code, 200, other_firm.text)
+        self.assertTrue(other_firm.json()["deadline_3_days"])
+        self.assertTrue(other_firm.json()["task_reminders"])
+
 if __name__ == "__main__":
     unittest.main()

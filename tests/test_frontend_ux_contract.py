@@ -240,5 +240,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("@media(max-width:420px)", HTML)
         self.assertIn("@media(forced-colors:active)", HTML)
 
+    def test_whatsapp_reminders_are_user_initiated_deep_links(self):
+        self.assertIn("function openWhatsAppReminder", HTML)
+        self.assertIn("https://wa.me/", HTML)
+        self.assertIn("window.open(url,'_blank','noopener,noreferrer')", HTML)
+        self.assertIn("Client or lawyer WhatsApp number", HTML)
+
 if __name__ == "__main__":
     unittest.main()
