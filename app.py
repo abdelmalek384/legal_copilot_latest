@@ -5357,6 +5357,8 @@ def record_invoice_payment(invoice_id: int, body: InvoicePaymentIn, u: dict = De
         raise HTTPException(404, "invoice not found")
     need(c, u, int(invoice["case_id"]))
     _invoice_date(body.paid_at, "paid_at")
+    # Serialize balance-check + insert so concurrent payments cannot over-collect.
+    c.execute("BEGIN IMMEDIATE")
     invoice = c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone()
     paid_rows = c.execute(
         "SELECT amount_piasters FROM invoice_payments WHERE invoice_id=?", (invoice_id,)
