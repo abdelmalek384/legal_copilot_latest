@@ -47,7 +47,7 @@ The private registry must contain a `reviewers` list. Each entry records `review
 
 ## Limits
 
-A valid schema does not prove that a source was authentic or current, or that the rationale is correct. The report is only as reliable as the source/version verification and human review behind each record. Do not set release thresholds from a small or unbalanced seed set. Have qualified Egyptian-law reviewers and the product owner approve the benchmark and release policy.
+A valid schema does not prove that a source was authentic or current, or that the rationale is correct. The report is only as reliable as the source/version verification and human review behind each record. Review dates must be real ISO calendar dates no later than the evaluation date; future-dated assessments are rejected. Do not set release thresholds from a small or unbalanced seed set. Have qualified Egyptian-law reviewers and the product owner approve the benchmark and release policy.
 
 
 Approved reviewer registry entries must identify Egyptian legal counsel, Egypt as jurisdiction, and an explicit non-empty list of approved practice areas. Reviews outside the registered scope are excluded. The registry remains a human-verified administrative assertion, not independent license verification.
