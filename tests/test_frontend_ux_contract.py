@@ -350,13 +350,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("not an Egyptian e-tax invoice", HTML)
         self.assertIn("api('/invoices/'+item.id+'/void','POST'", HTML)
 
-    def test_invoice_amount_input_accepts_arabic_indic_digits_and_valid_grouping(self):
-        self.assertIn("type:'text',inputMode:'decimal'", HTML)
+    def test_invoice_and_subscription_amounts_share_arabic_piaster_parser(self):
+        self.assertIn("const egpToPiasters=raw=>", HTML)
+        self.assertIn("const toPiasters=egpToPiasters", HTML)
+        self.assertIn("piasters=egpToPiasters(amount.value)", HTML)
         self.assertIn(r".replace(/[٠-٩۰-۹]/g", HTML)
         self.assertIn(".replace(/٫/g,'.').replace(/٬/g,',')", HTML)
-        self.assertIn(r"/^\d{1,3}(?:,\d{3})+(?:\.\d{1,2})?$/", HTML)
-        self.assertIn("text.replace(/,/g,'')", HTML)
+        self.assertIn("Check the amount thousands separators", HTML)
         self.assertIn("Number(parts[0])*100", HTML)
+
 
 if __name__ == "__main__":
     unittest.main()
