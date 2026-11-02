@@ -350,5 +350,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("not an Egyptian e-tax invoice", HTML)
         self.assertIn("api('/invoices/'+item.id+'/void','POST'", HTML)
 
+    def test_whatsapp_handoff_is_explicit_and_uses_encoded_wa_me_links(self):
+        self.assertIn("const whatsappReminder=(dueDate,kind)=>", HTML)
+        self.assertIn("window.prompt(", HTML)
+        self.assertIn("https://wa.me/", HTML)
+        self.assertIn("encodeURIComponent(message)", HTML)
+        self.assertIn("window.open(url,'_blank','noopener,noreferrer')", HTML)
+        self.assertIn("whatsappReminder(s.date,'session')", HTML)
+        self.assertIn("whatsappReminder(d.due,'deadline')", HTML)
+
 if __name__ == "__main__":
     unittest.main()
