@@ -63,24 +63,24 @@ _EXPLICIT_POLARITY_PAIRS = (
     # Each pair is (negative form, positive form). Keep these deliberately narrow:
     # the checker should reject clear reversals, not infer unstated legal meaning.
     (
-        re.compile(r"\\b(?:may\\s+not|cannot|is\\s+not\\s+permitted\\s+to|are\\s+not\\s+permitted\\s+to)\\b", re.IGNORECASE),
-        re.compile(r"\\b(?:may(?!\\s+not)|can|is\\s+permitted\\s+to|are\\s+permitted\\s+to)\\b", re.IGNORECASE),
+        re.compile(r"\b(?:may\s+not|cannot|is\s+not\s+permitted\s+to|are\s+not\s+permitted\s+to)\b", re.IGNORECASE),
+        re.compile(r"\b(?:may(?!\s+not)|can|is\s+permitted\s+to|are\s+permitted\s+to)\b", re.IGNORECASE),
     ),
     (
-        re.compile(r"\\bmust\\s+not\\b", re.IGNORECASE),
-        re.compile(r"\\bmust\\b(?!\\s+not)", re.IGNORECASE),
+        re.compile(r"\bmust\s+not\b", re.IGNORECASE),
+        re.compile(r"\bmust\b(?!\s+not)", re.IGNORECASE),
     ),
     (
-        re.compile(r"\\bshall\\s+not\\b", re.IGNORECASE),
-        re.compile(r"\\bshall\\b(?!\\s+not)", re.IGNORECASE),
+        re.compile(r"\bshall\s+not\b", re.IGNORECASE),
+        re.compile(r"\bshall\b(?!\s+not)", re.IGNORECASE),
     ),
     (
-        re.compile(r"لا\\s+يجوز"),
-        re.compile(r"(?<!لا\\s)يجوز"),
+        re.compile(r"لا\s+يجوز"),
+        re.compile(r"(?<!لا\s)يجوز"),
     ),
     (
-        re.compile(r"لا\\s+يحق"),
-        re.compile(r"(?<!لا\\s)يحق"),
+        re.compile(r"لا\s+يحق"),
+        re.compile(r"(?<!لا\s)يحق"),
     ),
 )
 
