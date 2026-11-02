@@ -321,5 +321,18 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("platformBillingPage", HTML)
 
 
+    def test_case_invoice_and_finance_screens_use_integer_piasters(self):
+        self.assertIn("['invoices',uiText('الفواتير','Invoices')]", HTML)
+        self.assertIn("['finance',navLabel('الفواتير والتحصيل','Invoices & Finance'),financePage]", HTML)
+        self.assertIn("const toPiasters=value=>", HTML)
+        self.assertIn("const toMilli=value=>", HTML)
+        self.assertIn("api('/cases/'+id+'/invoices','POST'", HTML)
+        self.assertIn("api('/invoices/'+item.id+'/issue','POST')", HTML)
+        self.assertIn("api('/invoices/'+item.id+'/payments','POST'", HTML)
+        self.assertIn("api('/finance/invoices/overview')", HTML)
+        self.assertIn("/payments/'+payment.id+'/receipt", HTML)
+        self.assertIn("not an Egyptian e-tax invoice", HTML)
+        self.assertIn("api('/invoices/'+item.id+'/void','POST'", HTML)
+
 if __name__ == "__main__":
     unittest.main()
