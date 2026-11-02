@@ -150,6 +150,42 @@ class ClaimSupportTests(unittest.TestCase):
             "يجوز للعامل طلب الإجازة."
         ))
 
+    def test_english_must_not_reversal_is_blocked_in_both_directions(self):
+        cases = (
+            ("The employer must pay wages [1].", "The employer must not pay wages."),
+            ("The employer must not pay wages [1].", "The employer must pay wages."),
+        )
+        for claim, evidence in cases:
+            with self.subTest(claim=claim):
+                self.assertTrue(has_unsupported_claims(
+                    claim, [{"text": evidence}], tokens, norm, _mask_markdown_code
+                ))
+
+    def test_english_may_not_reversal_is_blocked(self):
+        self.assertTrue(has_unsupported_claims(
+            "The employer may deduct wages [1].",
+            [{"text": "The employer may not deduct wages."}],
+            tokens, norm, _mask_markdown_code
+        ))
+
+    def test_arabic_no_right_vs_right_reversal_is_blocked(self):
+        cases = (
+            ("يحق للعامل المطالبة بالمكافأة [1].", "لا يحق للعامل المطالبة بالمكافأة."),
+            ("لا يحق للعامل المطالبة بالمكافأة [1].", "يحق للعامل المطالبة بالمكافأة."),
+        )
+        for claim, evidence in cases:
+            with self.subTest(claim=claim):
+                self.assertTrue(has_unsupported_claims(
+                    claim, [{"text": evidence}], tokens, norm, _mask_markdown_code
+                ))
+
+    def test_matching_negative_modal_polarity_is_not_rejected(self):
+        self.assertFalse(has_unsupported_claims(
+            "The employer must not deduct wages [1].",
+            [{"text": "The employer must not deduct wages."}],
+            tokens, norm, _mask_markdown_code
+        ))
+
     def test_faithful_permission_paraphrase_is_not_rejected(self):
         hits = [{"text": "The employee may request leave after six months."}]
         self.assertFalse(has_unsupported_claims(
