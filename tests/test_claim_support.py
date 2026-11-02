@@ -5,7 +5,7 @@ from unittest import mock
 
 import app
 from app import norm, tokens, _mask_markdown_code
-from tools.claim_support import claim_support_enabled, has_unsupported_claims
+from tools.claim_support import _has_modal_mismatch, claim_support_enabled, has_unsupported_claims
 
 
 class ClaimSupportTests(unittest.TestCase):
@@ -138,6 +138,16 @@ class ClaimSupportTests(unittest.TestCase):
         self.assertTrue(has_unsupported_claims(
             "The employer may deduct wages [1].",
             hits, tokens, norm, _mask_markdown_code
+        ))
+
+    def test_modality_comparison_does_not_mix_english_and_arabic(self):
+        self.assertFalse(_has_modal_mismatch(
+            "The employer must provide notice.",
+            "يجب على صاحب العمل تقديم إخطار."
+        ))
+        self.assertFalse(_has_modal_mismatch(
+            "The employee may request leave.",
+            "يجوز للعامل طلب الإجازة."
         ))
 
     def test_faithful_permission_paraphrase_is_not_rejected(self):
