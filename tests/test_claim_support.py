@@ -37,6 +37,31 @@ class ClaimSupportTests(unittest.TestCase):
             hits, tokens, norm, _mask_markdown_code
         ))
 
+    def test_arabic_decades_and_compound_period_words_are_detected(self):
+        cases = (
+            ("الحق لا يتقادم أبدا [1].", "مدة التقادم عشرون عاما."),
+            ("الدعوى لا تسقط مطلقا [1].", "مدة التقادم خمسة عشر سنة."),
+            ("الحق لا ينقضي نهائيا [1].", "مدة التقادم ثلاثين يوما."),
+            ("الحق لا يتقادم أبدا [1].", "مدة التقادم عامين."),
+        )
+        for claim, source in cases:
+            with self.subTest(source=source):
+                self.assertTrue(has_unsupported_claims(
+                    claim, [{"text": source}], tokens, norm, _mask_markdown_code
+                ))
+
+    def test_english_teens_and_compound_period_words_are_detected(self):
+        cases = (
+            ("The claim never expires [1].", "The limitation period is sixteen years."),
+            ("The claim never expires [1].", "The limitation period is nineteen months."),
+            ("The claim never expires [1].", "The limitation period is twenty-five years."),
+        )
+        for claim, source in cases:
+            with self.subTest(source=source):
+                self.assertTrue(has_unsupported_claims(
+                    claim, [{"text": source}], tokens, norm, _mask_markdown_code
+                ))
+
     def test_invalid_citation_fails_closed(self):
         self.assertTrue(has_unsupported_claims(
             "The limitation period is five years [2].",
