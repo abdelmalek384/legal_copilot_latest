@@ -2429,13 +2429,13 @@ class DeadlineEstimateIn(BaseModel):
 class InvoiceLineIn(BaseModel):
     description: str = Field(min_length=1, max_length=300)
     quantity: int = Field(1, ge=1, le=10000)
-    unit_price_egp: str = Field(pattern=r"^(?:0|[1-9][0-9]{0,11})(?:\\.[0-9]{1,2})?$")
+    unit_price_egp: str = Field(pattern=r"^(?:0|[1-9][0-9]{0,11})(?:\.[0-9]{1,2})?$")
 
 
 class InvoiceCreateIn(BaseModel):
     client_name: str = Field("", max_length=200)
-    issue_date: str = Field(pattern=r"^\\d{4}-\\d{2}-\\d{2}$")
-    due_date: str | None = Field(None, pattern=r"^\\d{4}-\\d{2}-\\d{2}$")
+    issue_date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
+    due_date: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$")
     note: str = Field("", max_length=1000)
     lines: list[InvoiceLineIn] = Field(min_length=1, max_length=50)
     _valid_issue_date = field_validator("issue_date")(validate_calendar_date)
@@ -2443,10 +2443,10 @@ class InvoiceCreateIn(BaseModel):
 
 
 class InvoicePaymentIn(BaseModel):
-    amount_egp: str = Field(pattern=r"^(?:0|[1-9][0-9]{0,11})(?:\\.[0-9]{1,2})?$")
+    amount_egp: str = Field(pattern=r"^(?:0|[1-9][0-9]{0,11})(?:\.[0-9]{1,2})?$")
     method: str = Field(pattern=r"^(cash|bank_transfer|instapay|cheque|other)$")
     reference: str = Field("", max_length=200)
-    paid_on: str = Field(pattern=r"^\\d{4}-\\d{2}-\\d{2}$")
+    paid_on: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
     _valid_paid_on = field_validator("paid_on")(validate_calendar_date)
 
 
@@ -5000,7 +5000,7 @@ def create_invoice(cid: int, b: InvoiceCreateIn, u: dict = Depends(user)):
         raise HTTPException(422, "client name is required")
     cursor = c.execute(
         "INSERT INTO invoices(case_id,invoice_number,client_name,issue_date,due_date,status,"
-        "subtotal_piasters,total_piasters,note,created_by) VALUES(?,?,?,?,?,'draft',?,?,?,?,?)",
+        "subtotal_piasters,total_piasters,note,created_by) VALUES(?,?,?,?,?,'draft',?,?,?,?)",
         (cid, invoice_number, client_name, b.issue_date, b.due_date, subtotal, subtotal, b.note.strip(), u["id"]),
     )
     invoice_id = int(cursor.lastrowid)
