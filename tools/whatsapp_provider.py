@@ -21,7 +21,7 @@ class WhatsAppProvider(Protocol):
 def normalize_international_phone(phone: str) -> str:
     if not isinstance(phone, str):
         raise ValueError("phone must be a string")
-    digits = re.sub(r"\\D", "", phone)
+    digits = re.sub(r"\D", "", phone)
     if not 8 <= len(digits) <= 15 or digits.startswith("0"):
         raise ValueError("phone must include an international country code")
     return digits
