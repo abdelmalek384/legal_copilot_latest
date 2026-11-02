@@ -181,8 +181,8 @@ def _validate_result(row):
     if unlisted_pin_sources:
         raise EvaluationError(f"{qid}: result pin citations reference sources absent from cited_sources")
     retrieved = None
-    if "retrieved_sources" in row:
-        retrieved = _string_list(row["retrieved_sources"], "retrieved_sources", qid)
+    if "retrieved_source_ids" in row:
+        retrieved = _string_list(row["retrieved_source_ids"], "retrieved_source_ids", qid)
     return sources, pins, answer_id.strip() if isinstance(answer_id, str) else None, retrieved
 
 
@@ -256,8 +256,8 @@ def evaluate(question_rows, result_rows, reviewer_registry):
     retrieval_presence = []
     for qid, (expected_sources, expected_pins) in reviewed.items():
         q = question_map[qid]
-        actual_sources, actual_pins, answer_id, retrieved_sources = _validate_result(result_map[qid])
-        retrieval_presence.append(retrieved_sources is not None)
+        actual_sources, actual_pins, answer_id, retrieved_source_ids = _validate_result(result_map[qid])
+        retrieval_presence.append(retrieved_source_ids is not None)
         if answer_id:
             previous_qid = answer_id_owners.get(answer_id)
             if previous_qid is not None:
@@ -273,43 +273,43 @@ def evaluate(question_rows, result_rows, reviewer_registry):
         abstention_correct = result_map[qid]["abstained"] == expected_abstain
         citation_present = bool(actual_sources or actual_pins)
         first_relevant_rank = next(
-            (rank for rank, source_id in enumerate(retrieved_sources or [], start=1)
+            (rank for rank, source_id in enumerate(retrieved_source_ids or [], start=1)
              if source_id in expected_sources),
             None,
         )
         retrieval_item = {
-            "retrieved_source_count": len(retrieved_sources or []),
+            "retrieved_source_count": len(retrieved_source_ids or []),
             "retrieved_expected_source_count": (
-                sum(source_id in set(expected_sources) for source_id in (retrieved_sources or []))
+                sum(source_id in set(expected_sources) for source_id in (retrieved_source_ids or []))
             ),
             "retrieved_expected_source_count_at_1": (
-                sum(source_id in set(expected_sources) for source_id in (retrieved_sources or [])[:1])
+                sum(source_id in set(expected_sources) for source_id in (retrieved_source_ids or [])[:1])
             ),
             "retrieved_expected_source_count_at_3": (
-                sum(source_id in set(expected_sources) for source_id in (retrieved_sources or [])[:3])
+                sum(source_id in set(expected_sources) for source_id in (retrieved_source_ids or [])[:3])
             ),
             "retrieved_expected_source_count_at_5": (
-                sum(source_id in set(expected_sources) for source_id in (retrieved_sources or [])[:5])
+                sum(source_id in set(expected_sources) for source_id in (retrieved_source_ids or [])[:5])
             ),
             "first_relevant_rank": first_relevant_rank,
             "retrieval_recall_at_1": (
-                _ratio(sum(source_id in set(expected_sources) for source_id in (retrieved_sources or [])[:1]),
-                       len(expected_sources)) if retrieved_sources is not None and q["answerable"] else None
+                _ratio(sum(source_id in set(expected_sources) for source_id in (retrieved_source_ids or [])[:1]),
+                       len(expected_sources)) if retrieved_source_ids is not None and q["answerable"] else None
             ),
             "retrieval_recall_at_3": (
-                _ratio(sum(source_id in set(expected_sources) for source_id in (retrieved_sources or [])[:3]),
-                       len(expected_sources)) if retrieved_sources is not None and q["answerable"] else None
+                _ratio(sum(source_id in set(expected_sources) for source_id in (retrieved_source_ids or [])[:3]),
+                       len(expected_sources)) if retrieved_source_ids is not None and q["answerable"] else None
             ),
             "retrieval_recall_at_5": (
-                _ratio(sum(source_id in set(expected_sources) for source_id in (retrieved_sources or [])[:5]),
-                       len(expected_sources)) if retrieved_sources is not None and q["answerable"] else None
+                _ratio(sum(source_id in set(expected_sources) for source_id in (retrieved_source_ids or [])[:5]),
+                       len(expected_sources)) if retrieved_source_ids is not None and q["answerable"] else None
             ),
             "retrieval_mrr": (
                 (1 / first_relevant_rank if first_relevant_rank else 0.0)
-                if retrieved_sources is not None and q["answerable"] else None
+                if retrieved_source_ids is not None and q["answerable"] else None
             ),
             "unanswerable_retrieval_nonempty": (
-                bool(retrieved_sources) if retrieved_sources is not None and not q["answerable"] else None
+                bool(retrieved_source_ids) if retrieved_source_ids is not None and not q["answerable"] else None
             ),
         }
         item = {
@@ -341,7 +341,7 @@ def evaluate(question_rows, result_rows, reviewer_registry):
         by_area[item["practice_area"]].append(item)
 
     if any(retrieval_presence) and not all(retrieval_presence):
-        raise EvaluationError("retrieved_sources must be supplied for every scored question when retrieval ranking is evaluated")
+        raise EvaluationError("retrieved_source_ids must be supplied for every scored question when retrieval ranking is evaluated")
 
     def summarize(items):
         n = len(items)
