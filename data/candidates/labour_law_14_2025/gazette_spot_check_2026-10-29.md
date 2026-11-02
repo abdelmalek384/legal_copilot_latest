@@ -63,16 +63,13 @@ A second official-hosted copy was located through the Egyptian Tax Authority leg
 
 Both are government-hosted copies of the Official Gazette issue 18 (تابع), 3 May 2025. Their web PDF text layers expose the six targeted article locations. This is an additional official-hosted source cross-check, not proof that either PDF's bytes are identical to the other.
 
-### Article 103 — cross-copy text-layer discrepancy and ETA page-image check
+### Article 103 — text-layer discrepancy and ETA page-image check
 
-The two official-hosted PDF text layers differ in one word:
+The ETA-hosted PDF page image (PDF index 46; printed Gazette page 48) was visually inspected in the public PDF viewer. It visibly reads **"كل ستة أشهر على الأقل"**, with no intervening word "سنة". This confirms the wording shown in the ETA rendered page and supports the provisional Article 103 summary in the card inventory.
 
-- SIS-hosted PDF text layer, around extracted lines 784–787: **"يجتمع المجلس القومي للأجور بدعوة من رئيسه كل سنة ستة أشهر على الأقل"**.
-- ETA-hosted PDF text layer, PDF page index 46: **"يجتمع المجلس القومي للأجور بدعوة من رئيسه كل ستة أشهر على الأقل"**.
+However, the SIS-hosted PDF text layer around the same provision includes **"كل سنة ستة أشهر على الأقل"**. One search-indexed extraction of the ETA PDF also returns the extra word "سنة", even though the rendered ETA page image does not show it. This points to an extraction/OCR-layer discrepancy; the SIS page image remains unavailable for visual inspection. Do not treat the extracted extra word as definitive statutory wording.
 
-The ETA-hosted PDF page image (PDF index 46; printed Gazette page 48) was then visually inspected in the public PDF viewer. It visibly reads **"كل ستة أشهر على الأقل"**, with no intervening word "سنة". This confirms the ETA copy's rendered wording and supports the provisional Article 103 summary already in the card inventory. The SIS text-layer difference remains unresolved because its corresponding page image was not available for visual inspection. It may be an extraction/OCR issue or a difference in the hosted copies; do not treat the SIS text layer alone as conclusive.
-
-**Disposition:** The ETA page-image wording is visually confirmed. Keep the SIS-vs-ETA text-layer difference recorded as an unresolved cross-copy discrepancy until the SIS page image can be checked. This does not establish an amendment or change the legal status of the Law.
+**Disposition:** The ETA page-image wording is visually confirmed. Keep the text-layer discrepancy documented until the SIS page image can be checked. This does not establish an amendment or change the legal status of the Law.
 
 ### Cross-check scope and limitations
 

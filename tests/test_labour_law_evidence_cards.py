@@ -234,6 +234,9 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
         sis = [item for item in article_103["primary_evidence"] if item["source_id"] == "EG-SIS-GAZETTE-2025-18-LABOUR-PDF"]
         self.assertEqual(len(sis), 1)
         self.assertIn("سنة", sis[0]["supports"])
+        eta = [item for item in article_103["primary_evidence"] if item["source_id"] == "EG-ETA-GAZETTE-2025-18-LABOUR-PDF"]
+        self.assertEqual(len(eta), 1)
+        self.assertIn("indexed text extraction", eta[0]["supports"])
         self.assertTrue(any("سنة" in item for item in article_103["limitations"]))
         self.assertFalse(self.data["instrument"]["search_eligible"])
 

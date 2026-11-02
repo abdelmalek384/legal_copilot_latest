@@ -283,6 +283,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertEqual(sis["commercial_reuse_permission"], "unknown")
         self.assertIn("سنة", sis["notes"])
         self.assertIn("كل ستة أشهر", sis["notes"])
+        self.assertIn("search-indexed extraction", eta["notes"])
 
     def test_labour_law_gazette_repository_access_terms_are_restricted(self):
         register = json.loads(
