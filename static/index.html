@@ -1112,6 +1112,7 @@ async function financePage(){
  const clients=h('div',{},...(overview.clients||[]).map(item=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:item.client_name}),h('span',{textContent:fmt(item.outstanding_piasters)})),h('p',{className:'mut',textContent:uiText('فواتير: ','Invoices: ')+item.invoice_count}),h('div',{className:'mut',textContent:agingLabels.map(([key,label])=>label+': '+fmt(item.aging[key])).join(' · ')}))));
  const invoices=h('div',{},...(invoiceData.invoices||[]).map(item=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:item.invoice_number||uiText('مسودة','Draft')}),h('span',{textContent:fmt(item.balance_piasters)})),h('p',{className:'mut',textContent:(item.client_name_snapshot||'—')+' · '+(item.case_title_snapshot||'—')}),btn(uiText('فتح القضية','Open case'),()=>view(item.case_id),'g'))));
  shell(uiText('الفواتير والتحصيل','Invoices & Finance'),
+  h('div',{className:'row'},btn(uiText('تصدير سجل الفواتير CSV','Export invoice ledger CSV'),()=>{window.location.href='/invoices/export.csv'},'g')),
   h('div',{className:'grid'},metric(uiText('إجمالي الفواتير الصادرة','Issued invoices'),overview.issued_piasters),metric(uiText('إجمالي المحصل','Collected'),overview.paid_piasters),metric(uiText('إجمالي المستحق','Outstanding'),overview.outstanding_piasters)),
   h('h3',{textContent:uiText('المستحقات حسب القضية','Outstanding by case')}),cases,
   h('h3',{textContent:uiText('المستحقات حسب العميل','Outstanding by client')}),clients,
