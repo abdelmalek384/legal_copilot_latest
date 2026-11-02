@@ -64,7 +64,7 @@ _EXPLICIT_POLARITY_PAIRS = (
     # the checker should reject clear reversals, not infer unstated legal meaning.
     (
         re.compile(r"\\b(?:may\\s+not|cannot|is\\s+not\\s+permitted\\s+to|are\\s+not\\s+permitted\\s+to)\\b", re.IGNORECASE),
-        re.compile(r"\\b(?:may|can|is\\s+permitted\\s+to|are\\s+permitted\\s+to)\\b", re.IGNORECASE),
+        re.compile(r"\\b(?:may(?!\\s+not)|can|is\\s+permitted\\s+to|are\\s+permitted\\s+to)\\b", re.IGNORECASE),
     ),
     (
         re.compile(r"\\bmust\\s+not\\b", re.IGNORECASE),
@@ -89,9 +89,9 @@ def _has_explicit_polarity_mismatch(claim, evidence):
     """Reject an explicit positive/negative reversal of the same modal predicate."""
     for negative, positive in _EXPLICIT_POLARITY_PAIRS:
         claim_negative = bool(negative.search(claim))
-        claim_positive = bool(positive.search(negative.sub(" ", claim)))
+        claim_positive = bool(positive.search(claim))
         evidence_negative = bool(negative.search(evidence))
-        evidence_positive = bool(positive.search(negative.sub(" ", evidence)))
+        evidence_positive = bool(positive.search(evidence))
         # Mixed or absent polarity is ambiguous; leave it to other safeguards.
         if claim_negative and not claim_positive and evidence_positive and not evidence_negative:
             return True
