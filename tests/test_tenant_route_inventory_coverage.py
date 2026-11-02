@@ -16,6 +16,10 @@ TEST_COVERED_ROUTES = {
     "GET /invoices/{invoice_id}/print": "tests/test_invoice_routes.py",
     "GET /invoices/{invoice_id}/payments/{payment_id}/receipt": "tests/test_invoice_routes.py",
     "GET /finance/invoices/overview": "tests/test_invoice_routes.py",
+    "POST /answers/corrections": "tests/test_answer_correction_routes.py",
+    "GET /corrections": "tests/test_answer_correction_routes.py",
+    "GET /admin/corrections": "tests/test_answer_correction_routes.py",
+    "POST /admin/corrections/{suggestion_id}/review": "tests/test_answer_correction_routes.py",
 }
 
 
