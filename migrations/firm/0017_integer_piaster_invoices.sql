@@ -80,22 +80,6 @@ CREATE TRIGGER invoice_receipts_no_delete
 BEFORE DELETE ON invoice_receipts
 BEGIN SELECT RAISE(ABORT, 'invoice receipts are append-only'); END;
 
-CREATE TRIGGER invoice_payments_no_update
-BEFORE UPDATE ON invoice_payments
-BEGIN SELECT RAISE(ABORT, 'invoice payments are append-only'); END;
-
-CREATE TRIGGER invoice_payments_no_delete
-BEFORE DELETE ON invoice_payments
-BEGIN SELECT RAISE(ABORT, 'invoice payments are append-only'); END;
-
-CREATE TRIGGER invoice_receipts_no_update
-BEFORE UPDATE ON invoice_receipts
-BEGIN SELECT RAISE(ABORT, 'invoice receipts are append-only'); END;
-
-CREATE TRIGGER invoice_receipts_no_delete
-BEFORE DELETE ON invoice_receipts
-BEGIN SELECT RAISE(ABORT, 'invoice receipts are append-only'); END;
-
 CREATE TRIGGER invoice_status_void_is_terminal
 BEFORE UPDATE OF status ON invoices
 WHEN OLD.status='void' AND NEW.status!='void'
