@@ -258,6 +258,37 @@ class RetrievalEvaluationTests(unittest.TestCase):
             [{"question_id": question["id"], "source_id": "LAW-A", "pin_cite": "Article 12"}],
         )
 
+    def test_source_summary_must_cover_every_ranked_candidate_when_supplied(self):
+        question = reviewed_question()
+        run = {
+            "question_id": question["id"],
+            "retrieved_source_ids": ["LAW-A", "LAW-B"],
+            "citations": [],
+            "source_summary": [{"source_id": "LAW-A", "source_status": "verified_operative_text"}],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+        result = score_evaluation([question], [run])
+        self.assertEqual(result["reviewed_cases_scored"], 0)
+        self.assertIn("missing retrieved source IDs", " ".join(result["invalid_run_records"][0]["reasons"]))
+
+    def test_duplicate_source_summary_ids_are_rejected_even_when_status_matches(self):
+        question = reviewed_question()
+        run = {
+            "question_id": question["id"],
+            "retrieved_source_ids": ["LAW-A"],
+            "citations": [],
+            "source_summary": [
+                {"source_id": "LAW-A", "source_status": "verified_operative_text"},
+                {"source_id": "LAW-A", "source_status": "verified_operative_text"},
+            ],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+        result = score_evaluation([question], [run])
+        self.assertEqual(result["reviewed_cases_scored"], 0)
+        self.assertIn("duplicate source IDs", " ".join(result["invalid_run_records"][0]["reasons"]))
+
     def test_source_summary_cannot_contradict_unverified_source_flag(self):
         question = reviewed_question()
         run = {
