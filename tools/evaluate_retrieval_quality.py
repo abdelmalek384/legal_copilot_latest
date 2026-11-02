@@ -174,9 +174,17 @@ def validate_run_record(run):
                 status = item.get("source_status")
                 if status is not None and not _nonempty_string(status):
                     errors.append(f"source_summary[{index}].source_status must be non-empty when supplied")
-                if source_id in summary_by_id and summary_by_id[source_id] != status:
-                    errors.append("source_summary contains conflicting statuses for " + source_id)
-                summary_by_id[source_id] = status
+                if source_id in summary_by_id:
+                    if summary_by_id[source_id] != status:
+                        errors.append("source_summary contains conflicting statuses for " + source_id)
+                    else:
+                        errors.append("source_summary contains duplicate source IDs: " + source_id)
+                else:
+                    summary_by_id[source_id] = status
+            if isinstance(retrieved, list) and all(_nonempty_string(source_id) for source_id in retrieved):
+                missing_retrieved = sorted(set(retrieved) - set(summary_by_id))
+                if missing_retrieved:
+                    errors.append("source_summary is missing retrieved source IDs: " + ", ".join(missing_retrieved))
             if isinstance(citations, list):
                 for citation in citations:
                     if not isinstance(citation, dict) or not _nonempty_string(citation.get("source_id")):
