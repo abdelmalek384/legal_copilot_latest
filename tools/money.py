@@ -9,13 +9,14 @@ import re
 
 
 _ARABIC_DIGITS = str.maketrans("٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹", "01234567890123456789")
+MAX_PIASTERS = 9_000_000_000_000_000
 
 
 def egp_to_piasters(value: str | int) -> int:
     """Convert an EGP decimal string (or whole-pound integer) to piasters."""
     if isinstance(value, bool) or not isinstance(value, (str, int)):
         raise TypeError("EGP amount must be a decimal string or whole-pound integer")
-    raw = str(value).translate(_ARABIC_DIGITS).strip()
+    raw = str(value).translate(_ARABIC_DIGITS).replace("٫", ".").replace("٬", ",").strip()
     if not raw:
         raise ValueError("EGP amount is required")
     # Commas are accepted only as correctly grouped thousands separators.
@@ -28,7 +29,10 @@ def egp_to_piasters(value: str | int) -> int:
         raise ValueError("Amount must be a non-negative EGP value with at most 2 decimals")
     pounds = int(match.group(1))
     fraction = (match.group(2) or "").ljust(2, "0")
-    return pounds * 100 + int(fraction or "0")
+    amount = pounds * 100 + int(fraction or "0")
+    if amount > MAX_PIASTERS:
+        raise ValueError("EGP amount exceeds the supported piaster range")
+    return amount
 
 
 def require_piasters(value: int) -> int:
@@ -37,6 +41,8 @@ def require_piasters(value: int) -> int:
         raise TypeError("Money must be stored as integer piasters")
     if value < 0:
         raise ValueError("Money amount cannot be negative")
+    if value > MAX_PIASTERS:
+        raise ValueError("Money amount exceeds the supported piaster range")
     return value
 
 
