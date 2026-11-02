@@ -299,6 +299,36 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.assertIn("version_not_verified", codes)
         self.assertIn("original_file_missing", codes)
 
+    def test_labour_law_visual_page_evidence_does_not_promote_verification(self):
+        candidate = json.loads(
+            (ROOT / "data/candidates/labour_law_14_2025/registry_candidate.json").read_text(encoding="utf-8")
+        )
+        version = candidate["version"]
+        expected = {
+            (66, 35, 33), (103, 48, 46), (124, 54, 52),
+            (134, 57, 55), (141, 61, 59), (278, 106, 104),
+        }
+        observed = set()
+        for item in version["targeted_page_evidence"]:
+            if item.get("review_status") != "targeted_page_image_visually_reviewed":
+                continue
+            import re
+            article_match = re.search(r"المادة\s+(\d+)", item.get("pinpoint", ""))
+            if article_match:
+                observed.add((
+                    int(article_match.group(1)),
+                    item["printed_page"],
+                    item["pdf_page_index_zero_based"],
+                ))
+        self.assertTrue(expected.issubset(observed))
+        self.assertEqual(version["authenticity_verified"], 0)
+        self.assertEqual(version["status_verified"], 0)
+        self.assertEqual(version["amendment_history_verified"], 0)
+        self.assertEqual(version["review_status"], "pending_source_review")
+        sis = next(item for item in candidate["sources"] if item["source_id"] == "EG-SIS-GAZETTE-2025-18-LABOUR-PDF")
+        self.assertEqual(sis["collection_permission"], "unknown")
+        self.assertEqual(sis["commercial_reuse_permission"], "unknown")
+
     def test_historical_version_can_pass_when_its_status_and_end_date_are_verified(self):
         self.candidate["version"]["legal_status"] = "historical"
         self.candidate["version"]["repeal_date"] = "2025-06-01"
