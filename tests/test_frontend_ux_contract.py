@@ -257,5 +257,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("completeness", HTML)
         self.assertIn("Invalid correction category", HTML)
 
+    def test_answer_correction_submission_uses_bilingual_modal_and_category(self):
+        self.assertIn("Suggest an answer correction", HTML)
+        self.assertIn("Legal accuracy", HTML)
+        self.assertIn("maxLength:4000", HTML)
+        self.assertIn("aria-modal", HTML)
+        self.assertIn("correction.value.trim().length<5", HTML)
+
 if __name__ == "__main__":
     unittest.main()
