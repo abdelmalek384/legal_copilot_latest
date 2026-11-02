@@ -443,7 +443,9 @@ def _retrieval_release_gate(report, args):
     enabled = (any(value is not None for value in thresholds.values())
                or any(getattr(args, name) is not None for name in (
                    "min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
-                   "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
+                   "min_answerable_cases", "min_unanswerable_cases",
+                   "min_answerable_cases_per_practice_area", "min_unanswerable_cases_per_practice_area",
+                   "min_expected_pin_cites",
                    "max_excluded_cases", "max_invalid_records", "max_unsafe_unverified_source_uses")))
     checks = []
     def add(metric, actual, operator, threshold):
@@ -464,6 +466,14 @@ def _retrieval_release_gate(report, args):
     if args.min_unanswerable_cases is not None:
         add("unanswerable_reviewed_cases", report["unanswerable_reviewed_cases"], ">=",
             args.min_unanswerable_cases)
+    if args.min_answerable_cases_per_practice_area is not None:
+        for area, counts in report["practice_area_counts"].items():
+            add("answerable_cases_per_practice_area:" + area, counts["answerable_cases"], ">=",
+                args.min_answerable_cases_per_practice_area)
+    if args.min_unanswerable_cases_per_practice_area is not None:
+        for area, counts in report["practice_area_counts"].items():
+            add("unanswerable_cases_per_practice_area:" + area, counts["unanswerable_cases"], ">=",
+                args.min_unanswerable_cases_per_practice_area)
     if args.min_expected_pin_cites is not None:
         add("expected_pin_cite_count", report["expected_pin_cite_count"], ">=",
             args.min_expected_pin_cites)
@@ -503,6 +513,8 @@ def main(argv=None):
     parser.add_argument("--min-cases-per-practice-area", type=int)
     parser.add_argument("--min-answerable-cases", type=int)
     parser.add_argument("--min-unanswerable-cases", type=int)
+    parser.add_argument("--min-answerable-cases-per-practice-area", type=int)
+    parser.add_argument("--min-unanswerable-cases-per-practice-area", type=int)
     parser.add_argument("--min-expected-pin-cites", type=int)
     parser.add_argument("--min-recall-at-5", type=float)
     parser.add_argument("--min-mrr-at-5", type=float)
@@ -519,13 +531,17 @@ def main(argv=None):
     except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
         parser.error(f"invalid reviewer registry: {exc}")
     for name in ("min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
-                 "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
+                 "min_answerable_cases", "min_unanswerable_cases",
+                 "min_answerable_cases_per_practice_area", "min_unanswerable_cases_per_practice_area",
+                 "min_expected_pin_cites",
                  "max_excluded_cases", "max_invalid_records", "max_unsafe_unverified_source_uses"):
         value = getattr(args, name)
         if value is not None and value < 0:
             parser.error("--" + name.replace("_", "-") + " must be a non-negative integer")
     for name in ("min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
-                 "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites"):
+                 "min_answerable_cases", "min_unanswerable_cases",
+                 "min_answerable_cases_per_practice_area", "min_unanswerable_cases_per_practice_area",
+                 "min_expected_pin_cites"):
         value = getattr(args, name)
         if value is not None and value < 1:
             parser.error("--" + name.replace("_", "-") + " must be a positive integer")
