@@ -270,5 +270,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn(".auth-card form>label{display:block;width:100%", HTML)
         self.assertIn(".auth-card .password-row input{min-width:0;flex:1}", HTML)
 
+
+    def test_deadline_calculation_can_be_saved_with_visible_audit_note(self):
+        self.assertIn("const calculationNote=", HTML)
+        self.assertIn("const saveCalculated=btn(", HTML)
+        self.assertIn("Save calculated deadline to case", HTML)
+        self.assertIn("await api('/cases/'+id+'/deadlines','POST'", HTML)
+        self.assertIn("Calculation steps", HTML)
+        self.assertIn("Warnings", HTML)
+
 if __name__ == "__main__":
     unittest.main()
