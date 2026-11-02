@@ -319,8 +319,12 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         self.assertIn("Metadata is not a substitute for the cited legal text.", captured[0])
 
     def test_invalid_as_of_date_is_rejected(self):
-        with self.assertRaises(ValueError):
-            self.app.search(self.db, "anything", as_of="not-a-date")
+        for value in ("not-a-date", "20261102", "2026-W45-1", "2026-02-30", " 2026-11-02"):
+            with self.subTest(as_of=value), self.assertRaisesRegex(ValueError, "YYYY-MM-DD"):
+                self.app.search(self.db, "anything", as_of=value)
+
+    def test_canonical_as_of_date_remains_accepted(self):
+        self.assertEqual(self.app.search(self.db, "anything", as_of="2026-11-02"), [])
 
     def test_search_citation_contains_exact_version_and_review_provenance(self):
         chunk_id, version_id = self._make_linked_chunk("provenance", "2020-01-01", text="provenanceprobe legal passage")
