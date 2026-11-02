@@ -11,7 +11,8 @@ class PiasterMoneyTests(unittest.TestCase):
 
     def test_grouped_and_arabic_indic_input(self):
         self.assertEqual(egp_to_piasters("1,234.56"), 123456)
-        self.assertEqual(egp_to_piasters("١٢٣٫٤٥".replace("٫", ".")), 12345)
+        self.assertEqual(egp_to_piasters("١٢٣٫٤٥"), 12345)
+        self.assertEqual(egp_to_piasters("١٬٢٣٤٫٥٦"), 123456)
 
     def test_round_trip_format_is_fixed_two_decimals(self):
         self.assertEqual(piasters_to_egp(0), "0.00")
@@ -36,6 +37,10 @@ class PiasterMoneyTests(unittest.TestCase):
                     require_piasters(value)
         with self.assertRaises(ValueError):
             require_piasters(-1)
+        with self.assertRaises(ValueError):
+            require_piasters(9_000_000_000_000_001)
+        with self.assertRaises(ValueError):
+            egp_to_piasters("90000000000000.01")
 
 
 if __name__ == "__main__":
