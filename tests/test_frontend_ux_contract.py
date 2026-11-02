@@ -270,5 +270,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn(".auth-card form>label{display:block;width:100%", HTML)
         self.assertIn(".auth-card .password-row input{min-width:0;flex:1}", HTML)
 
+
+    def test_case_document_skeleton_ui_is_draft_only_and_case_filled(self):
+        self.assertIn("['templates',uiText('قوالب المستندات','Templates')]", HTML)
+        self.assertIn("/draft-skeleton?document_type=", HTML)
+        self.assertIn("مسودة — يجب مراجعتها بواسطة محامٍ", HTML)
+        self.assertIn("contains no legal text", HTML)
+
 if __name__ == "__main__":
     unittest.main()
