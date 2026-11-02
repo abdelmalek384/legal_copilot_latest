@@ -39,6 +39,34 @@ _GENERIC_TERMS = {
 }
 
 
+_ENGLISH_MODAL_PATTERNS = {
+    "permission": re.compile(r"\\b(?:may|is permitted to|are permitted to|can)\\b", re.IGNORECASE),
+    "obligation": re.compile(r"\\b(?:must|shall|required to|is required to)\\b", re.IGNORECASE),
+    "prohibition": re.compile(r"\\b(?:may not|must not|shall not|is prohibited from|cannot)\\b", re.IGNORECASE),
+}
+_ARABIC_MODAL_PATTERNS = {
+    "permission": re.compile(r"(?:يجوز|يحق)"),
+    "obligation": re.compile(r"(?:يجب|يلتزم|يتعين)"),
+    "prohibition": re.compile(r"(?:لا يجوز|يحظر|يمتنع عن)"),
+}
+
+
+def _modal_classes(text):
+    """Return explicit modal classes; absence of a marker is deliberately unknown."""
+    found = set()
+    for label, pattern in (*_ENGLISH_MODAL_PATTERNS.items(), *_ARABIC_MODAL_PATTERNS.items()):
+        if pattern.search(text):
+            found.add(label)
+    return found
+
+
+def _has_modal_mismatch(claim, evidence):
+    """Reject a claim whose explicit permission/obligation/prohibition conflicts with evidence."""
+    claim_classes = _modal_classes(claim)
+    evidence_classes = _modal_classes(evidence)
+    return bool(claim_classes and evidence_classes and claim_classes.isdisjoint(evidence_classes))
+
+
 def claim_support_enabled():
     """Opt in explicitly; default remains off until evaluated on reviewed answers."""
     return os.environ.get("LEGAL_CLAIM_SUPPORT_CHECK", "").strip() == "1"
