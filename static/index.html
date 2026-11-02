@@ -484,6 +484,119 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
 @media (forced-colors: active) {
   #side nav a.on, .quick-link, .card { border: 1px solid CanvasText; }
 }
+
+/* Consistent treatment for dense matter-management screens. */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 16px;
+  padding: 12px;
+  border: 1px solid var(--ui-border);
+  border-radius: 14px;
+  background: rgba(255,255,255,.82);
+}
+.filter-bar input, .filter-bar select {
+  flex: 1 1 190px;
+  min-width: min(100%, 180px);
+}
+#main .row {
+  border-bottom-color: #edf0f5;
+}
+#main .row:last-child { border-bottom: 0; }
+#main .tabs {
+  padding-inline: 2px;
+  scrollbar-width: thin;
+}
+#main .tabs a {
+  border-radius: 9px 9px 0 0;
+}
+#main .tabs a.on {
+  background: #f3f6fd;
+}
+#main label {
+  color: #34445c;
+  font-size: 13px;
+  font-weight: 650;
+}
+#main label input, #main label select, #main label textarea {
+  margin-top: 5px;
+}
+#main textarea {
+  width: 100%;
+  border: 1px solid #dbe3ed;
+  border-radius: 10px;
+  padding: 11px 12px;
+  line-height: 1.7;
+}
+#main table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border: 1px solid var(--ui-border);
+  border-radius: 12px;
+  background: #fff;
+}
+#main th {
+  background: #f5f7fb;
+  color: #34445c;
+  font-size: 12px;
+  font-weight: 800;
+  text-align: start;
+}
+#main th, #main td {
+  padding: 11px 13px;
+  border-bottom: 1px solid #edf0f5;
+  vertical-align: top;
+}
+#main tr:last-child td { border-bottom: 0; }
+#main td { color: #35445a; font-size: 13px; }
+#main .research-exact-passage {
+  padding: 13px 15px;
+  border: 1px solid #dbe5f6;
+  border-inline-start: 3px solid #315fca;
+  border-radius: 10px;
+  background: #f8faff;
+  line-height: 1.9;
+}
+#main .research-discovery-result {
+  padding: 13px 15px;
+  margin: 10px 0;
+  box-shadow: 0 2px 8px rgba(20,40,75,.035);
+}
+#main .research-source {
+  padding: 13px 15px;
+  margin: 10px 0;
+  box-shadow: 0 2px 8px rgba(20,40,75,.035);
+}
+#main .research-sources-title {
+  margin: 18px 0 8px;
+  color: var(--ui-navy);
+  font-size: 13px;
+  letter-spacing: .1px;
+}
+#main .document-review-group {
+  margin: 12px 0;
+  padding: 15px;
+  border: 1px solid var(--ui-border);
+  border-radius: 13px;
+  background: #fbfcff;
+}
+#main .empty, #main .research-empty {
+  color: var(--ui-muted);
+}
+#main button:disabled {
+  cursor: not-allowed;
+  opacity: .58;
+  box-shadow: none;
+}
+@media (max-width: 800px) {
+  .filter-bar { align-items: stretch; padding: 10px; }
+  .filter-bar input, .filter-bar select { flex-basis: 100%; width: 100%; }
+  #main table { display: block; overflow-x: auto; white-space: nowrap; }
+}
 </style>
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <script>
