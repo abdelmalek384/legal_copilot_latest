@@ -73,7 +73,7 @@ However, the SIS-hosted PDF text layer around the same provision includes **"ك�
 
 ### Cross-check scope and limitations
 
-- The ETA-hosted PDF page images were visually inspected for all six target provisions: Article 66 at printed page 35 / PDF index 33; Article 103 at page 48 / index 46; Article 124 at page 54 / index 52; Article 134 at page 57 / index 55; Article 141 at page 61 / index 59; and Article 278 at page 106 / index 104.
+- The ETA-hosted PDF page images were visually inspected for all six target provisions: Article 66 at printed page 35 / PDF index 33; Article 103 at page 48 / index 46; Article 124 at page 54 / index 52; Article 134 starts at page 57 / index 55 and continues on page 58 / index 56 (duties 3–11); Article 141 at page 61 / index 59; and Article 278 at page 106 / index 104.
 - The SIS PDF text layer independently exposes the same six article locators, but its rendered page images were not visually checked in this session.
 - The ETA and SIS URLs are public viewing links. This check does not establish binary equality, original-file SHA-256, systematic reuse permission, amendment completeness, or qualified-counsel approval.
 - The missing 311-row `law_rows_ar.jsonl` and 120-item numeric checklist are still not present in the Library or repository checkout inspected. No full candidate-to-Gazette comparison is claimed.

@@ -568,9 +568,16 @@
           "provisions": [
             "القانون المرافق، المادة 278"
           ]
+        },
+        {
+          "pdf_page_index_zero_based": 56,
+          "printed_page_label": "58",
+          "provisions": [
+            "القانون المرافق، المادة 134 — استكمال الواجبات 3–11"
+          ]
         }
       ],
-      "notes": "Targeted PDF text extraction was reviewed for the listed pages. The original file was not downloaded, hashed, or visually inspected. This does not establish a complete article-by-article match, amendment history, current status, or permission for systematic retrieval/commercial use. Additional targeted pages reviewed: printed page 52 (Articles 117 and 121), and printed pages 54-55 (Article 124). Additional targeted pages reviewed: printed pages 68-70 (Article 165) and 73-74 (Article 177). Additional targeted pages reviewed: printed pages 61-62 (Article 141) and 63-64 (Article 148). Additional targeted review covers Article 120 on printed pages 52-53. Additional targeted review covers Articles 118-119 and 122 on printed pages 52-54. Printed page 55 also contains Article 129 on paid holidays; the relevant ministerial/cabinet designation decisions remain to be verified. Additional targeted pages reviewed: printed page 71 (Article 173) and page 72 (Article 171). Additional targeted review covers Article 164 on printed page 69 and Article 166 on printed page 70. On 2026-11-02, public browser PDF page images were visually checked for Articles 66 (printed p.35/PDF index 33), 103 (p.48/index 46), 124 (p.54/index 52), 134 (p.57/index 55), 141 (p.61/index 59), and 278 (p.106/index 104). The Article 103 ETA page image visibly reads «كل ستة أشهر على الأقل». The original PDF binary remains undownloaded and unhashed. One search-indexed extraction of the ETA PDF also returned an additional «سنة» in Article 103, while the visually checked page image shows «كل ستة أشهر على الأقل» without that word; treat the indexed text discrepancy as extraction-layer noise unless a visual page check shows otherwise.",
+      "notes": "Targeted PDF text extraction was reviewed for the listed pages. The original file was not downloaded, hashed, or visually inspected. This does not establish a complete article-by-article match, amendment history, current status, or permission for systematic retrieval/commercial use. Additional targeted pages reviewed: printed page 52 (Articles 117 and 121), and printed pages 54-55 (Article 124). Additional targeted pages reviewed: printed pages 68-70 (Article 165) and 73-74 (Article 177). Additional targeted pages reviewed: printed pages 61-62 (Article 141) and 63-64 (Article 148). Additional targeted review covers Article 120 on printed pages 52-53. Additional targeted review covers Articles 118-119 and 122 on printed pages 52-54. Printed page 55 also contains Article 129 on paid holidays; the relevant ministerial/cabinet designation decisions remain to be verified. Additional targeted pages reviewed: printed page 71 (Article 173) and page 72 (Article 171). Additional targeted review covers Article 164 on printed page 69 and Article 166 on printed page 70. On 2026-11-02, public browser PDF page images were visually checked for Articles 66 (printed p.35/PDF index 33), 103 (p.48/index 46), 124 (p.54/index 52), 134 (p.57/index 55), 141 (p.61/index 59), and 278 (p.106/index 104). The Article 103 ETA page image visibly reads «كل ستة أشهر على الأقل». The original PDF binary remains undownloaded and unhashed. One search-indexed extraction of the ETA PDF also returned an additional «سنة» in Article 103, while the visually checked page image shows «كل ستة أشهر على الأقل» without that word; treat the indexed text discrepancy as extraction-layer noise unless a visual page check shows otherwise. The Article 134 continuation was also visually checked on printed page 58 (PDF index 56), covering duties 3–11.",
       "visual_page_checks": [
         {
           "pdf_page_index_zero_based": 33,
@@ -612,6 +619,13 @@
           "pdf_page_index_zero_based": 104,
           "printed_page_label": "106",
           "provision": "المادة 278",
+          "checked_on": "2026-11-02",
+          "method": "public_browser_pdf_page_image"
+        },
+        {
+          "pdf_page_index_zero_based": 56,
+          "printed_page_label": "58",
+          "provision": "المادة 134 — استكمال الواجبات 3–11",
           "checked_on": "2026-11-02",
           "method": "public_browser_pdf_page_image"
         }

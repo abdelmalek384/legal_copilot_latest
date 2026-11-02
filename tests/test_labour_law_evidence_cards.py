@@ -230,6 +230,12 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 self.assertEqual(pinpoint["pdf_page_index_zero_based"], pdf_index)
                 self.assertEqual(pinpoint["pinpoint_status"], "visually_verified_on_official_eta_pdf")
                 self.assertEqual(pinpoint["visual_verification"]["checked_on"], "2026-11-02")
+        article_134 = cards["EG-LABOUR-14-2025-ART-134-WORKER-DUTIES"]
+        reviewed_pages = article_134["pinpoint"]["visual_verification"]["pages_reviewed"]
+        self.assertEqual(
+            [(item["printed_page"], item["pdf_page_index_zero_based"]) for item in reviewed_pages],
+            [(57, 55), (58, 56)],
+        )
         article_103 = cards["EG-LABOUR-14-2025-ART-103-NATIONAL-WAGES-COUNCIL-MEETINGS-AND-VOTING"]
         sis = [item for item in article_103["primary_evidence"] if item["source_id"] == "EG-SIS-GAZETTE-2025-18-LABOUR-PDF"]
         self.assertEqual(len(sis), 1)
