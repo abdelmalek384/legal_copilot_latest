@@ -52,6 +52,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_security_audit_export.py
       - name: Test versioned database migrations
         run: PYTHONPATH=. python tests/test_db_migrations.py
+      - name: Test invoice schema migration and immutable ledger guards
+        run: PYTHONPATH=. python tests/test_invoice_schema_migration.py
       - name: Test profile-aware migration binding
         run: PYTHONPATH=. python tests/test_schema_profiles.py
       - name: Test initial isolated database profile schemas
