@@ -19,7 +19,7 @@
     "commercial_reuse_permission": "unknown",
     "search_eligible": false
   },
-  "source_method_note": "Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. On 2026-10-30, 43 additional occupational-safety and labour-inspection cards for Articles 256–298 were selectively reconciled from the previously split review snapshots. Their pinpoint pages are inferred and not visually verified; all 43 are secondary-cross-checked only, have explicit limitations and not-usable-for boundaries, and remain search_eligible=false. Article 266's supplemental card asks only for the identity of its implementing ministerial decision and abstains because the decision's text/currentness is not verified. The original Gazette PDF remains undownloaded/unhashed and the full article-by-article comparison, rights review and Egyptian-lawyer review remain open. On 2026-10-30, 15 additional coverage-gap cards for accompanying-law Articles 1–39 were selectively reconciled from the earlier review snapshot. Their printed-page numbers are inferred from extracted text sequence, not visually checked; each remains provisional_text_extract_crosschecked with explicit limitations. Ten separate promulgation cards for Articles 2–11 were also added as provisional_secondary_crosscheck records; the article identities are present in public transcriptions, but their Gazette page pinpoints are not established. These cards address transitional funds, preservation of benefits, licensing, worker data, pending cases and implementing decisions; their time limits and legal effects must not be applied without primary Gazette comparison, commencement-date verification, later-instrument review and qualified Egyptian-lawyer review. All cards remain search_eligible=false. Reconciliation update 2026-10-31: merged current main (127 cards) with the 294-card Labour Law evidence PR snapshot. The combined inventory contains 360 unique card IDs (61 shared IDs reconciled; 233 PR-only and 66 main-only retained). For shared IDs, current-main scalar text is retained; evidence, cross-checks, limitations and related-instrument leads are unioned without duplicate entries. Corrected Gazette page locators from the PR snapshot are retained where the current-main locator differed. This is inventory reconciliation only: all 360 cards remain search_eligible=false; source binary hash, full currentness/amendment review, rights clearance and Egyptian-lawyer review remain outstanding. Visual page-pinpoint correction 2026-10-31: 90 cards for Articles 250–298 were checked against the government-hosted Official Gazette PDF. Correct mapping: Arts.250–252 → printed p.94/PDF index 92; Art.253 → p.95/index 93; Arts.254–256 → p.96/index 94; Art.257 → p.97/index 95; Arts.258–259 → p.98/index 96; Arts.260–262 → p.99/index 97; Arts.263–264 → p.100/index 98; Arts.265–267 → p.101/index 99; Arts.268–270 → p.102/index 100; Arts.271–272 → p.103/index 101; Arts.273–274 → p.104/index 102; Art.275 → p.105/index 103; Arts.276–280 → p.106/index 104; Arts.281–285 → p.107/index 105; Arts.286–288 → p.108/index 106; Arts.289–291 → p.109/index 107; Arts.292–295 → p.110/index 108; Arts.296–298 → p.111/index 109. Earlier inferred pp.86–94 locators were wrong and have been replaced. This corrects pinpoint accuracy only; it does not complete full-law review, currentness/amendment verification, reuse-rights clearance or counsel approval.",
+  "source_method_note": "Primary-source evidence below is based on searchable/extracted text returned for an official Amiri Press page and a government-hosted Gazette PDF. The PDF has not been downloaded, hashed, or visually inspected; no full article-by-article comparison has been completed. The cards paraphrase rather than reproduce statutory wording. Additional cards for accompanying-law Articles 4–9 were prepared from text extraction of the government-hosted Official Gazette PDF on 2026-10-28. The PDF has not been downloaded, hashed, or visually inspected; page pinpointing is provisional and all cards remain non-authoritative. Additional cards for accompanying-law Articles 10–12 were prepared from the government-hosted Official Gazette PDF text extraction on 2026-10-28. Page references are based on the extracted page labels; the PDF has not been downloaded, hashed, or visually inspected. Cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 16, 22, 23, 25 and 27 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; these cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 28–31 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 32–34 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 36–37 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshot checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 40–43 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 44–48 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. Additional cards for accompanying-law Articles 49–54 were prepared from the government-hosted Official Gazette PDF text extraction and page screenshots checked on 2026-10-28. The PDF remains undownloaded and unhashed; cards remain provisional and non-authoritative. On 2026-10-30, 43 additional occupational-safety and labour-inspection cards for Articles 256–298 were selectively reconciled from the previously split review snapshots. Their pinpoint pages are inferred and not visually verified; all 43 are secondary-cross-checked only, have explicit limitations and not-usable-for boundaries, and remain search_eligible=false. Article 266's supplemental card asks only for the identity of its implementing ministerial decision and abstains because the decision's text/currentness is not verified. The original Gazette PDF remains undownloaded/unhashed and the full article-by-article comparison, rights review and Egyptian-lawyer review remain open. On 2026-10-30, 15 additional coverage-gap cards for accompanying-law Articles 1–39 were selectively reconciled from the earlier review snapshot. Their printed-page numbers are inferred from extracted text sequence, not visually checked; each remains provisional_text_extract_crosschecked with explicit limitations. Ten separate promulgation cards for Articles 2–11 were also added as provisional_secondary_crosscheck records; the article identities are present in public transcriptions, but their Gazette page pinpoints are not established. These cards address transitional funds, preservation of benefits, licensing, worker data, pending cases and implementing decisions; their time limits and legal effects must not be applied without primary Gazette comparison, commencement-date verification, later-instrument review and qualified Egyptian-lawyer review. All cards remain search_eligible=false. Reconciliation update 2026-10-31: merged current main (127 cards) with the 294-card Labour Law evidence PR snapshot. The combined inventory contains 360 unique card IDs (61 shared IDs reconciled; 233 PR-only and 66 main-only retained). For shared IDs, current-main scalar text is retained; evidence, cross-checks, limitations and related-instrument leads are unioned without duplicate entries. Corrected Gazette page locators from the PR snapshot are retained where the current-main locator differed. This is inventory reconciliation only: all 360 cards remain search_eligible=false; source binary hash, full currentness/amendment review, rights clearance and Egyptian-lawyer review remain outstanding. Visual page-pinpoint correction 2026-10-31: 90 cards for Articles 250–298 were checked against the government-hosted Official Gazette PDF. Correct mapping: Arts.250–252 → printed p.94/PDF index 92; Art.253 → p.95/index 93; Arts.254–256 → p.96/index 94; Art.257 → p.97/index 95; Arts.258–259 → p.98/index 96; Arts.260–262 → p.99/index 97; Arts.263–264 → p.100/index 98; Arts.265–267 → p.101/index 99; Arts.268–270 → p.102/index 100; Arts.271–272 → p.103/index 101; Arts.273–274 → p.104/index 102; Art.275 → p.105/index 103; Arts.276–280 → p.106/index 104; Arts.281–285 → p.107/index 105; Arts.286–288 → p.108/index 106; Arts.289–291 → p.109/index 107; Arts.292–295 → p.110/index 108; Arts.296–298 → p.111/index 109. Earlier inferred pp.86–94 locators were wrong and have been replaced. This corrects pinpoint accuracy only; it does not complete full-law review, currentness/amendment verification, reuse-rights clearance or counsel approval. Update 2026-11-02: the ETA-hosted PDF page images were visually checked for Articles 66 (printed p.35/PDF index 33), 103 (p.48/index 46), 124 (p.54/index 52), 134 (p.57/index 55), 141 (p.61/index 59), and 278 (p.106/index 104). The original PDF binary remains undownloaded and unhashed. The SIS-hosted Article 103 text layer differs from the ETA page image by an additional «سنة»; the SIS page image remains unchecked. All cards remain search_eligible=false.",
   "cards": [
     {
       "card_id": "EG-LABOUR-14-2025-PROMULGATION-ART-1-SCOPE",
@@ -349,7 +349,15 @@
         "part": "القانون المرافق",
         "article": "المادة 124",
         "official_gazette_printed_page": 54,
-        "pdf_page_index_zero_based": 52
+        "pdf_page_index_zero_based": 52,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-11-02",
+          "printed_page": 54,
+          "pdf_page_index_zero_based": 52,
+          "evidence": "Official PDF page image visibly shows Article 124 on printed Gazette page 54."
+        }
       },
       "primary_evidence": [
         {
@@ -362,9 +370,9 @@
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
-          "source_type": "government-hosted_official_gazette_pdf_text_extraction",
-          "supports": "Official Gazette PDF, visually checked via browser PDF rendering for printed page 54 (PDF page index 52) on 2026-10-28; the file binary was not downloaded and no SHA-256 was computed. This is a page-level check, not a full article-by-article/currentness review.",
-          "retrieved_or_checked_on": "2026-10-28"
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "Direct browser PDF page-image check confirms Article 124 on printed Gazette page 54 (PDF index 52); original PDF bytes were not downloaded or hashed.",
+          "retrieved_or_checked_on": "2026-11-02"
         },
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
@@ -4265,11 +4273,11 @@
         "pinpoint_status": "visually_verified_on_official_eta_pdf",
         "part": "القانون المرافق",
         "visual_verification": {
-          "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
-          "checked_on": "2026-10-31",
+          "source_url": "https://eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-11-02",
           "printed_page": 106,
           "pdf_page_index_zero_based": 104,
-          "evidence": "Official PDF screenshot shows Article 278 on printed page 106."
+          "evidence": "Official PDF page image visibly shows Article 278 on printed Gazette page 106."
         }
       },
       "primary_evidence": [
@@ -4284,8 +4292,8 @@
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_type": "government_hosted_official_gazette_pdf",
-          "supports": "مطابقة بصرية مباشرة للمادة 278 في نسخة الجريدة الرسمية المستضافة على بوابة مصلحة الضرائب المصرية، الصفحة المطبوعة 106 (فهرس PDF الصفري 104).",
-          "retrieved_or_checked_on": "2026-10-31"
+          "supports": "Direct browser PDF page-image check confirms Article 278 on printed Gazette page 106 (PDF index 104); original PDF bytes were not downloaded or hashed.",
+          "retrieved_or_checked_on": "2026-11-02"
         }
       ],
       "cross_checks": [
@@ -7760,7 +7768,15 @@
         "part": "القانون المرافق",
         "article": "المادة 134",
         "official_gazette_printed_page": 57,
-        "pdf_page_index_zero_based": 55
+        "pdf_page_index_zero_based": 55,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-11-02",
+          "printed_page": 57,
+          "pdf_page_index_zero_based": 55,
+          "evidence": "Official PDF page image visibly shows Article 134 on printed Gazette page 57."
+        }
       },
       "primary_evidence": [
         {
@@ -7773,9 +7789,9 @@
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
-          "source_type": "government-hosted_official_gazette_pdf",
-          "supports": "الصفحة المطبوعة 58 تعرض البنود 3–11 من المادة 134 وتؤكد استمرار تعداد الواجبات بعد بدايته في الصفحة 57؛ الصفحة روجعت بصرياً في عارض PDF بتاريخ 2026-10-28، لكن الملف الأصلي لم يُنزّل ولم يُحسب SHA-256",
-          "retrieved_or_checked_on": "2026-10-28"
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "Direct browser PDF page-image check confirms Article 134 on printed Gazette page 57 (PDF index 55); original PDF bytes were not downloaded or hashed.",
+          "retrieved_or_checked_on": "2026-11-02"
         }
       ],
       "cross_checks": [
@@ -8159,7 +8175,15 @@
         "part": "القانون المرافق",
         "article": "المادة 141",
         "official_gazette_printed_page": 61,
-        "pdf_page_index_zero_based": 59
+        "pdf_page_index_zero_based": 59,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-11-02",
+          "printed_page": 61,
+          "pdf_page_index_zero_based": 59,
+          "evidence": "Official PDF page image visibly shows Article 141 on printed Gazette page 61."
+        }
       },
       "primary_evidence": [
         {
@@ -8172,9 +8196,9 @@
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
-          "source_type": "government-hosted_official_gazette_pdf",
-          "supports": "الصفحة المطبوعة 61 تعرض المادة 141 بشأن إخطار العامل والتحقيق والتسبيب ومواعيد التحقيق والاستثناء الشفهي المحدود؛ الصفحة روجعت بصرياً في عارض PDF بتاريخ 2026-10-28، لكن الملف الأصلي لم يُنزّل ولم يُحسب SHA-256",
-          "retrieved_or_checked_on": "2026-10-28"
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "Direct browser PDF page-image check confirms Article 141 on printed Gazette page 61 (PDF index 59); original PDF bytes were not downloaded or hashed.",
+          "retrieved_or_checked_on": "2026-11-02"
         }
       ],
       "cross_checks": [
@@ -16760,9 +16784,16 @@
       "pinpoint": {
         "part": "الكتاب الثاني — علاقات العمل الفردية",
         "article": "المادة 66",
-        "official_gazette_printed_page": 33,
-        "pdf_page_index_zero_based": 31,
-        "pinpoint_status": "inferred_not_visually_verified"
+        "official_gazette_printed_page": 35,
+        "pdf_page_index_zero_based": 33,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-11-02",
+          "printed_page": 35,
+          "pdf_page_index_zero_based": 33,
+          "evidence": "Official PDF page image visibly shows Article 66 on printed Gazette page 35."
+        }
       },
       "primary_evidence": [
         {
@@ -16775,9 +16806,9 @@
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
-          "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 66؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "Direct browser PDF page-image check confirms Article 66 on printed Gazette page 35 (PDF index 33); original PDF bytes were not downloaded or hashed.",
+          "retrieved_or_checked_on": "2026-11-02"
         }
       ],
       "cross_checks": [
@@ -18094,9 +18125,16 @@
       "pinpoint": {
         "part": "الكتاب الثالث — علاقات العمل",
         "article": "المادة 103",
-        "official_gazette_printed_page": 47,
-        "pdf_page_index_zero_based": 45,
-        "pinpoint_status": "inferred_not_visually_verified"
+        "official_gazette_printed_page": 48,
+        "pdf_page_index_zero_based": 46,
+        "pinpoint_status": "visually_verified_on_official_eta_pdf",
+        "visual_verification": {
+          "source_url": "https://eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "checked_on": "2026-11-02",
+          "printed_page": 48,
+          "pdf_page_index_zero_based": 46,
+          "evidence": "Official PDF page image visibly shows Article 103 on printed Gazette page 48."
+        }
       },
       "primary_evidence": [
         {
@@ -18109,9 +18147,16 @@
         {
           "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "Direct browser PDF page-image check confirms Article 103 on printed Gazette page 48 (PDF index 46); original PDF bytes were not downloaded or hashed.",
+          "retrieved_or_checked_on": "2026-11-02"
+        },
+        {
+          "source_id": "EG-SIS-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://sis.gov.eg/media/760267/القانون-رقم-14-لسنة-2025-بإصدار-قانون-العمل.pdf",
           "source_type": "government_hosted_official_gazette_pdf_text_extraction",
-          "supports": "مرجع للمادة 103؛ pinpoint الصفحة مستنتج من تسلسل النص ويحتاج مطابقة رسمية",
-          "retrieved_or_checked_on": "2026-10-28"
+          "supports": "SIS-hosted PDF text extraction around Article 103 includes an additional «سنة» in the meeting-frequency phrase; the SIS page image has not been visually inspected, so this remains an unresolved text-layer discrepancy against the ETA page image.",
+          "retrieved_or_checked_on": "2026-11-02"
         }
       ],
       "cross_checks": [
@@ -18126,7 +18171,8 @@
         "موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً",
         "القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة",
         "لا توجد مراجعة محامٍ مصري مسجلة",
-        "لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني."
+        "لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.",
+        "The ETA-hosted page image visibly reads «كل ستة أشهر على الأقل». The SIS-hosted PDF text layer includes an additional «سنة»; its corresponding page image has not been checked, so preserve this as an unresolved cross-copy discrepancy."
       ],
       "review_state": "provisional_text_extract_crosschecked",
       "usable_for": "source-linked research lead and manual verification",

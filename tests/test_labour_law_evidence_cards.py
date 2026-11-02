@@ -213,6 +213,30 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                 self.assertIn("visually checked", pdf_evidence[0]["supports"])
         self.assertFalse(self.data["instrument"]["search_eligible"])
 
+    def test_six_targeted_articles_match_visual_gazette_page_map(self):
+        expected = {
+            "EG-LABOUR-14-2025-ART-66-CHILD-EMPLOYMENT-RECORDS-AND-NOTICES": (35, 33),
+            "EG-LABOUR-14-2025-ART-103-NATIONAL-WAGES-COUNCIL-MEETINGS-AND-VOTING": (48, 46),
+            "EG-LABOUR-14-2025-ART-124-ANNUAL-LEAVE": (54, 52),
+            "EG-LABOUR-14-2025-ART-134-WORKER-DUTIES": (57, 55),
+            "EG-LABOUR-14-2025-ART-141-DISCIPLINARY-INVESTIGATION-TIME-LIMITS": (61, 59),
+            "EG-LABOUR-14-2025-ART-278-EMPLOYER-ATTENDANCE-ON-INSPECTOR-SUMMONS": (106, 104),
+        }
+        cards = {card["card_id"]: card for card in self.data["cards"]}
+        for card_id, (printed_page, pdf_index) in expected.items():
+            with self.subTest(card_id=card_id):
+                pinpoint = cards[card_id]["pinpoint"]
+                self.assertEqual(pinpoint["official_gazette_printed_page"], printed_page)
+                self.assertEqual(pinpoint["pdf_page_index_zero_based"], pdf_index)
+                self.assertEqual(pinpoint["pinpoint_status"], "visually_verified_on_official_eta_pdf")
+                self.assertEqual(pinpoint["visual_verification"]["checked_on"], "2026-11-02")
+        article_103 = cards["EG-LABOUR-14-2025-ART-103-NATIONAL-WAGES-COUNCIL-MEETINGS-AND-VOTING"]
+        sis = [item for item in article_103["primary_evidence"] if item["source_id"] == "EG-SIS-GAZETTE-2025-18-LABOUR-PDF"]
+        self.assertEqual(len(sis), 1)
+        self.assertIn("سنة", sis[0]["supports"])
+        self.assertTrue(any("سنة" in item for item in article_103["limitations"]))
+        self.assertFalse(self.data["instrument"]["search_eligible"])
+
     def test_worker_duties_and_medical_fitness_cards_have_official_page_evidence(self):
         expected = {
             "EG-LABOUR-14-2025-ART-133-MEDICAL-UNFITNESS-DETERMINATION": ("المادة 133", 57),
