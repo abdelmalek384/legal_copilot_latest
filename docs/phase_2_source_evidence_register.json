@@ -813,6 +813,40 @@
         }
       ],
       "notes": "The SIS-hosted PDF text layer around Article 103 includes «كل سنة ستة أشهر على الأقل», while the ETA-hosted page image visibly reads «كل ستة أشهر على الأقل». The SIS page image could not be retrieved for visual inspection; treat this as an unresolved text-layer discrepancy, not evidence of an amendment or definitive difference in the underlying Gazette. Original file not downloaded or hashed. Access terms, systematic collection permission and commercial reuse permission remain unreviewed/unknown."
+    },
+    {
+      "source_id": "EG-LABOUR-MINISTRY-LAWS-LEGISLATIONS-INDEX",
+      "publisher": "Ministry of Labour, Egypt",
+      "source_type": "official_government_legislation_index",
+      "url": "https://www.labour.gov.eg/en/laws-and-legislations/",
+      "observed_title": "Laws and Legislations",
+      "checked_on": "2026-11-02",
+      "document_ids": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
+      "source_state": "official_index_page_viewed_law14_listed_no_separate_amendment_entry_observed_not_exhaustive",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "reviewed_pdf_pages": [],
+      "notes": "The Ministry of Labour legislation index lists Law No. 14 of 2025 under Basic Laws. No separate amendment entry for Law 14/2025 was visible in the index at the time checked. This index is not an exhaustive Gazette or corrigenda search and does not establish that the law is unamended or current."
+    },
+    {
+      "source_id": "EG-ETA-LAWS-RELATED-REGULATIONS-INDEX",
+      "publisher": "Egyptian Tax Authority, Egypt",
+      "source_type": "official_government_legislation_index",
+      "url": "https://eta.gov.eg/ar/content/qwanyn-w-lwayh-akhry-dhat-slt",
+      "observed_title": "قوانين ولوائح أخرى ذات صلة",
+      "checked_on": "2026-11-02",
+      "document_ids": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
+      "source_state": "official_index_page_viewed_law14_listed_no_separate_amendment_entry_observed_not_exhaustive",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "reviewed_pdf_pages": [],
+      "notes": "The Tax Authority related-laws index lists Law No. 14 of 2025 (قانون العمل الجديد) and also lists other 2026 enactments. No separate amendment entry for Law 14/2025 was visible in the index at the time checked. This index is not an exhaustive Gazette or corrigenda search and does not establish that the law is unamended or current."
     }
   ],
   "document_records_to_create_from_batch": [
