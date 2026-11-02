@@ -64,3 +64,8 @@ The report is a review aid only; it does not change any source-permission, legal
 
 The provisional evidence-card inventory currently represents 294 unique records in the canonical main file. Use [`provision_evidence_cards_manifest.json`](provision_evidence_cards_manifest.json) as the manifest; the report builder loads the canonical file, validates unique card IDs and preserves non-authoritative status. The split snapshots are intentionally excluded until duplicate IDs and divergent content have been reconciled. The original Official Gazette PDF binary is still not downloaded/hashed and Gazette page pinpoints for supplements have not been visually checked. All cards remain disabled for authoritative retrieval pending currentness, reuse and Egyptian-lawyer review.
 
+
+
+## Latest candidate-row spot-check (2026-11-02)
+
+The Library copy of `/legal/law_rows_ar.jsonl` was structurally audited (311 rows; 13 promulgation + 298 provisions). Six provisions were visually compared against the ETA-hosted Official Gazette PDF: five match after normalization; Article 134 omits the suffix `ه` in `ما يعرضه للخطر`. See [the six-article comparison report](six_article_candidate_comparison_2026-11-02.md). This is not a full 311-row comparison; all rows remain unverified and no chunks are search-eligible.
