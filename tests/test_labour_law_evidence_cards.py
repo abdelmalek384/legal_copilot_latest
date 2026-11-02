@@ -236,6 +236,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
             [(item["printed_page"], item["pdf_page_index_zero_based"]) for item in reviewed_pages],
             [(57, 55), (58, 56)],
         )
+        self.assertTrue(any("يعرضه للخطر" in item and "law_rows_ar.jsonl" in item for item in article_134["limitations"]))
         article_103 = cards["EG-LABOUR-14-2025-ART-103-NATIONAL-WAGES-COUNCIL-MEETINGS-AND-VOTING"]
         sis = [item for item in article_103["primary_evidence"] if item["source_id"] == "EG-SIS-GAZETTE-2025-18-LABOUR-PDF"]
         self.assertEqual(len(sis), 1)
