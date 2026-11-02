@@ -40,6 +40,7 @@ class ProductFeedbackRouteTests(unittest.TestCase):
             ("a-admin", self.firm_a, "admin"),
             ("b-admin", self.firm_b, "admin"),
             ("a-lawyer", self.firm_a, "lawyer"),
+            ("a-lawyer-other", self.firm_a, "lawyer"),
         ):
             email = f"feedback-{suffix}@example.test"
             password = f"Feedback-{suffix}-password-2026!"
@@ -95,6 +96,7 @@ class ProductFeedbackRouteTests(unittest.TestCase):
         self.assertEqual(mine.status_code, 200, mine.text)
         self.assertEqual(mine.json()[0]["id"], feedback_id)
         self.assertEqual(self.clients["a-admin"].get("/admin/feedback").json()[0]["id"], feedback_id)
+        self.assertEqual(self.clients["a-lawyer-other"].get("/feedback/mine").json(), [])
         self.assertEqual(self.clients["b-admin"].get("/admin/feedback").json(), [])
         self.assertEqual(self.clients["b-admin"].get("/feedback/mine").json(), [])
         self.assertEqual(self.clients["a-lawyer"].get("/admin/feedback").status_code, 403)
