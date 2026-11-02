@@ -2414,6 +2414,20 @@ class DeadlineEstimateIn(BaseModel):
     trigger: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
     distance_days: int = Field(0, ge=0, le=365)
     _valid_trigger = field_validator("trigger")(validate_calendar_date)
+class SubscribePlanIn(BaseModel):
+    plan_code: str = Field(pattern=r"^(solo|small_firm)$")
+
+
+class SubscriptionPaymentSubmissionIn(BaseModel):
+    amount_piasters: int = Field(ge=1, le=9_000_000_000_000_000)
+    method: str = Field(pattern=r"^(bank_transfer|instapay)$")
+    transfer_reference: str = Field(min_length=3, max_length=200)
+
+
+class SubscriptionPaymentDecisionIn(BaseModel):
+    reason: str = Field(min_length=1, max_length=500)
+
+
 class FeeIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); amount: float = Field(ge=0, le=1_000_000_000_000); paid: float = Field(ge=0, le=1_000_000_000_000)
     due: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
@@ -2609,6 +2623,61 @@ def require_platform_legal_reviewer(u):
     """Authorize corpus administration through the separate platform-role domain."""
     if not _user_can_review_legal(u):
         raise HTTPException(403, "platform legal reviewer only")
+
+
+def require_platform_admin(u):
+    row = control_conn().execute(
+        "SELECT 1 FROM user_platform_roles WHERE user_id=? AND role_name='platform_admin' LIMIT 1",
+        (u["id"],),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(403, "platform administrator only")
+
+
+SUBSCRIPTION_PLANS = {
+    "solo": {"label_ar": "فردي", "seat_limit": 1},
+    "small_firm": {"label_ar": "مكتب صغير", "seat_limit": 5},
+}
+SUBSCRIPTION_TRIAL_DAYS = 14
+
+
+def _firm_seat_usage(control, firm_id: int, exclude_invitation_id: int | None = None):
+    subscription = control.execute(
+        "SELECT plan_code,status,seat_limit,trial_ends_at FROM firm_subscriptions WHERE firm_id=?",
+        (firm_id,),
+    ).fetchone()
+    seat_limit = int(subscription["seat_limit"]) if subscription else 1
+    if subscription:
+        if subscription["status"] in {"expired", "cancelled", "past_due"}:
+            raise HTTPException(409, "subscription is not active; renew before adding seats")
+        if subscription["status"] == "trial" and subscription["trial_ends_at"] and int(subscription["trial_ends_at"]) <= int(time.time()):
+            raise HTTPException(409, "free trial has expired; submit payment before adding seats")
+    active = int(control.execute(
+        "SELECT COUNT(*) FROM firm_memberships WHERE firm_id=? AND status='active'", (firm_id,)
+    ).fetchone()[0])
+    query = "SELECT COUNT(*) FROM identity_invitations WHERE firm_id=? AND status IN ('pending','sent')"
+    params = [firm_id]
+    if exclude_invitation_id is not None:
+        query += " AND id<>?"
+        params.append(exclude_invitation_id)
+    pending = int(control.execute(query, tuple(params)).fetchone()[0])
+    return active, pending, seat_limit
+
+
+def _require_firm_seat(control, firm_id: int, exclude_invitation_id: int | None = None):
+    active, pending, limit = _firm_seat_usage(control, firm_id, exclude_invitation_id)
+    if active + pending >= limit:
+        raise HTTPException(409, "firm seat limit reached for the selected plan")
+    return active, pending, limit
+
+
+def _subscription_audit(control, firm_id: int, actor_user_id: int | None, event_type: str, detail: dict):
+    control.execute(
+        "INSERT INTO subscription_audit_events(firm_id,actor_user_id,event_type,detail_json,created_at) "
+        "VALUES(?,?,?,?,?)",
+        (firm_id, actor_user_id, event_type,
+         json.dumps(detail, ensure_ascii=False, sort_keys=True, separators=(",", ":")), int(time.time())),
+    )
 
 
 def _pdf_page_texts(extracted_text):
@@ -4142,6 +4211,209 @@ result.textContent="Password reset successful. Sign in with your new password.";
 }catch(err){result.textContent=err.message;}});
 if(!token)result.textContent="This recovery link is missing its token. Request a new recovery email.";
 </script></body></html>""".replace("__CSP_NONCE__", request.state.csp_nonce))
+
+
+
+@app.get("/billing")
+def get_firm_billing(u: dict = Depends(user)):
+    require_admin(u)
+    control = control_conn()
+    now = int(time.time())
+    subscription = control.execute(
+        "SELECT * FROM firm_subscriptions WHERE firm_id=?", (u["firm_id"],)
+    ).fetchone()
+    if subscription and subscription["status"] == "trial" and subscription["trial_ends_at"] and int(subscription["trial_ends_at"]) <= now:
+        control.execute(
+            "UPDATE firm_subscriptions SET status='expired',updated_at=? WHERE firm_id=? AND status='trial'",
+            (now, u["firm_id"]),
+        )
+        control.commit()
+        subscription = control.execute(
+            "SELECT * FROM firm_subscriptions WHERE firm_id=?", (u["firm_id"],)
+        ).fetchone()
+    payments = [dict(row) for row in control.execute(
+        "SELECT id,amount_piasters,method,transfer_reference,status,created_at,reviewed_at,decision_note "
+        "FROM subscription_payment_submissions WHERE firm_id=? ORDER BY id DESC LIMIT 20",
+        (u["firm_id"],),
+    ).fetchall()]
+    active, pending, limit = _firm_seat_usage(control, u["firm_id"]) if subscription and subscription["status"] not in {"expired","cancelled","past_due"} else (
+        int(control.execute("SELECT COUNT(*) FROM firm_memberships WHERE firm_id=? AND status='active'", (u["firm_id"],)).fetchone()[0]),
+        int(control.execute("SELECT COUNT(*) FROM identity_invitations WHERE firm_id=? AND status IN ('pending','sent')", (u["firm_id"],)).fetchone()[0]),
+        int(subscription["seat_limit"]) if subscription else 1,
+    )
+    return {
+        "plans": [{"code": code, **value} for code, value in SUBSCRIPTION_PLANS.items()],
+        "trial_days": SUBSCRIPTION_TRIAL_DAYS,
+        "subscription": dict(subscription) if subscription else None,
+        "seat_usage": {"active": active, "pending_invitations": pending, "limit": limit},
+        "payments": payments,
+    }
+
+
+@app.post("/billing/subscribe")
+def start_firm_subscription_trial(b: SubscribePlanIn, u: dict = Depends(user)):
+    require_admin(u)
+    control = control_conn()
+    now = int(time.time())
+    plan = SUBSCRIPTION_PLANS[b.plan_code]
+    firm = control.execute("SELECT status FROM firms WHERE id=?", (u["firm_id"],)).fetchone()
+    if firm is None or firm["status"] != "active":
+        raise HTTPException(409, "firm is not active")
+    try:
+        control.execute("BEGIN IMMEDIATE")
+        existing = control.execute(
+            "SELECT status,trial_started_at FROM firm_subscriptions WHERE firm_id=?", (u["firm_id"],)
+        ).fetchone()
+        if existing and existing["status"] == "active":
+            raise HTTPException(409, "an active subscription already exists")
+        if existing and existing["status"] in {"expired","cancelled","past_due"}:
+            raise HTTPException(409, "trial cannot be restarted; submit a payment request")
+        if existing:
+            control.execute(
+                "UPDATE firm_subscriptions SET plan_code=?,seat_limit=?,updated_at=? WHERE firm_id=?",
+                (b.plan_code, plan["seat_limit"], now, u["firm_id"]),
+            )
+            _subscription_audit(control, u["firm_id"], u["id"], "plan_changed", {"plan_code": b.plan_code})
+        else:
+            control.execute(
+                "INSERT INTO firm_subscriptions(firm_id,plan_code,status,seat_limit,trial_started_at,trial_ends_at,created_at,updated_at) "
+                "VALUES(?,?,'trial',?,?,?,?,?)",
+                (u["firm_id"], b.plan_code, plan["seat_limit"], now, now + SUBSCRIPTION_TRIAL_DAYS * 86400, now, now),
+            )
+            _subscription_audit(control, u["firm_id"], u["id"], "trial_started", {
+                "plan_code": b.plan_code, "trial_days": SUBSCRIPTION_TRIAL_DAYS,
+                "seat_limit": plan["seat_limit"],
+            })
+        control.commit()
+    except HTTPException:
+        if control.in_transaction:
+            control.rollback()
+        raise
+    except sqlite3.Error as exc:
+        if control.in_transaction:
+            control.rollback()
+        logger.exception("subscription trial could not be started")
+        raise HTTPException(503, "subscription could not be started") from exc
+    return get_firm_billing(u)
+
+
+@app.post("/billing/payment-submissions")
+def submit_subscription_payment(b: SubscriptionPaymentSubmissionIn, u: dict = Depends(user)):
+    require_admin(u)
+    control = control_conn()
+    subscription = control.execute(
+        "SELECT status FROM firm_subscriptions WHERE firm_id=?", (u["firm_id"],)
+    ).fetchone()
+    if subscription is None:
+        raise HTTPException(409, "select a subscription plan before submitting payment")
+    try:
+        control.execute("BEGIN IMMEDIATE")
+        cursor = control.execute(
+            "INSERT INTO subscription_payment_submissions(firm_id,amount_piasters,method,transfer_reference,submitted_by_user_id,created_at) "
+            "VALUES(?,?,?,?,?,?)",
+            (u["firm_id"], b.amount_piasters, b.method, b.transfer_reference.strip(), u["id"], int(time.time())),
+        )
+        if subscription["status"] != "active":
+            control.execute(
+                "UPDATE firm_subscriptions SET status='pending_payment',updated_at=? WHERE firm_id=?",
+                (int(time.time()), u["firm_id"]),
+            )
+        _subscription_audit(control, u["firm_id"], u["id"], "payment_submitted", {
+            "submission_id": int(cursor.lastrowid), "method": b.method, "amount_piasters": b.amount_piasters,
+        })
+        control.commit()
+    except sqlite3.IntegrityError as exc:
+        if control.in_transaction:
+            control.rollback()
+        raise HTTPException(409, "this transfer reference has already been submitted") from exc
+    except sqlite3.Error as exc:
+        if control.in_transaction:
+            control.rollback()
+        raise HTTPException(503, "payment submission could not be saved") from exc
+    return {"ok": True, "submission_id": int(cursor.lastrowid), "status": "pending"}
+
+
+@app.get("/platform/billing/payment-submissions")
+def list_platform_payment_submissions(u: dict = Depends(user)):
+    require_platform_admin(u)
+    return [dict(row) for row in control_conn().execute(
+        "SELECT p.*,f.name AS firm_name FROM subscription_payment_submissions p "
+        "JOIN firms f ON f.id=p.firm_id WHERE p.status='pending' ORDER BY p.created_at,p.id"
+    ).fetchall()]
+
+
+@app.post("/platform/billing/payment-submissions/{submission_id}/approve")
+def approve_subscription_payment(submission_id: int, u: dict = Depends(user)):
+    require_platform_admin(u)
+    control = control_conn()
+    now = int(time.time())
+    try:
+        control.execute("BEGIN IMMEDIATE")
+        payment = control.execute(
+            "SELECT * FROM subscription_payment_submissions WHERE id=?", (submission_id,)
+        ).fetchone()
+        if payment is None or payment["status"] != "pending":
+            raise HTTPException(404, "pending payment submission not found")
+        control.execute(
+            "UPDATE subscription_payment_submissions SET status='approved',reviewed_by_user_id=?,reviewed_at=?,decision_note='' WHERE id=? AND status='pending'",
+            (u["id"], now, submission_id),
+        )
+        control.execute(
+            "UPDATE firm_subscriptions SET status='active',current_period_start=?,current_period_end=?,updated_at=? WHERE firm_id=?",
+            (now, now + 30 * 86400, now, payment["firm_id"]),
+        )
+        _subscription_audit(control, payment["firm_id"], u["id"], "payment_approved", {
+            "submission_id": submission_id, "amount_piasters": int(payment["amount_piasters"]),
+        })
+        control.commit()
+    except HTTPException:
+        if control.in_transaction:
+            control.rollback()
+        raise
+    except sqlite3.Error as exc:
+        if control.in_transaction:
+            control.rollback()
+        raise HTTPException(503, "payment approval could not be saved") from exc
+    return {"ok": True, "status": "approved"}
+
+
+@app.post("/platform/billing/payment-submissions/{submission_id}/reject")
+def reject_subscription_payment(submission_id: int, b: SubscriptionPaymentDecisionIn, u: dict = Depends(user)):
+    require_platform_admin(u)
+    control = control_conn()
+    now = int(time.time())
+    try:
+        control.execute("BEGIN IMMEDIATE")
+        payment = control.execute(
+            "SELECT * FROM subscription_payment_submissions WHERE id=?", (submission_id,)
+        ).fetchone()
+        if payment is None or payment["status"] != "pending":
+            raise HTTPException(404, "pending payment submission not found")
+        control.execute(
+            "UPDATE subscription_payment_submissions SET status='rejected',reviewed_by_user_id=?,reviewed_at=?,decision_note=? WHERE id=? AND status='pending'",
+            (u["id"], now, b.reason.strip(), submission_id),
+        )
+        subscription = control.execute(
+            "SELECT trial_ends_at FROM firm_subscriptions WHERE firm_id=?", (payment["firm_id"],)
+        ).fetchone()
+        status = "trial" if subscription and subscription["trial_ends_at"] and int(subscription["trial_ends_at"]) > now else "expired"
+        control.execute(
+            "UPDATE firm_subscriptions SET status=?,updated_at=? WHERE firm_id=?",
+            (status, now, payment["firm_id"]),
+        )
+        _subscription_audit(control, payment["firm_id"], u["id"], "payment_rejected", {
+            "submission_id": submission_id, "reason": b.reason.strip(),
+        })
+        control.commit()
+    except HTTPException:
+        if control.in_transaction:
+            control.rollback()
+        raise
+    except sqlite3.Error as exc:
+        if control.in_transaction:
+            control.rollback()
+        raise HTTPException(503, "payment rejection could not be saved") from exc
+    return {"ok": True, "status": "rejected"}
 
 
 @app.post("/invitations")
