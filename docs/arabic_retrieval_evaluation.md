@@ -33,7 +33,7 @@ The evaluator requires:
 - `must_abstain_if_unverified: true`
 - optional `expected_pin_cites`, as a list of objects with non-empty string `source_id` and `pin_cite` values
 
-Do not mark a question reviewed merely to make it count. Keep the seed file unlabelled until the review occurs. The registry is an operator-maintained attestation, not independent identity or professional-licence verification. Registry approval alone does not prove that a reviewer actually authored a particular label; preserve the review evidence URL and source/version record for audit.
+Do not mark a question reviewed merely to make it count. Keep the seed file unlabelled until the review occurs. Expected source IDs must be unique and free of surrounding whitespace. Each expected pin-cite must refer to one of those expected source IDs; duplicate source/pin-cite pairs and whitespace-padded values are invalid. The registry is an operator-maintained attestation, not independent identity or professional-licence verification. Registry approval alone does not prove that a reviewer actually authored a particular label; preserve the review evidence URL and source/version record for audit.
 
 ## Run record
 
