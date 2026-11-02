@@ -1,4 +1,5 @@
 import json,sys,tempfile,unittest
+from unittest import mock
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from tools.compare_corpus_to_reference import build_report,label,segment,main
@@ -32,6 +33,45 @@ class T(unittest.TestCase):
   o=self.d/"out";self.assertEqual(main(["--candidate",str(self.c),"--reference",str(self.ref),"--out-dir",str(o)]),0)
   self.assertTrue((o/"comparison_report.json").exists());self.assertIn("evidence only",(o/"comparison_report.md").read_text().lower())
   self.assertEqual(main(["--candidate",str(self.c),"--reference",str(self.ref),"--out-dir",str(o),"--fail-on-difference"]),1)
+ def test_pdf_reference_preserves_article_page_ranges(self):
+  pdf=self.d/"official.pdf";pdf.write_bytes(b"%PDF synthetic fixture")
+  rows=[
+   {"article":"1","text":"يعمل بأحكام القانون. ويستمر العمل به."},
+   {"article":"2","text":"تنشر في الوقائع."},
+  ]
+  self.c.write_text("\n".join(json.dumps(x,ensure_ascii=False) for x in rows),encoding="utf-8")
+  class Page:
+   def __init__(self,text):self.text=text
+   def extract_text(self):return self.text
+  class Reader:
+   def __init__(self,*args,**kwargs):
+    self.is_encrypted=False
+    self.pages=[
+     Page("الجريدة الرسمية العدد 18\nالمادة الأولى\nيعمل بأحكام القانون."),
+     Page("ويستمر العمل به.\nالمادة الثانية\nتنشر في الوقائع.\nالجريدة الرسمية العدد 18"),
+    ]
+  with mock.patch("tools.compare_corpus_to_reference.PdfReader",Reader):
+   report=build_report(self.c,pdf)
+  self.assertEqual(report["reference"]["format"],"pdf")
+  self.assertEqual(report["reference"]["page_count"],2)
+  self.assertEqual(report["reference"]["page_matter_lines_removed"],2)
+  self.assertTrue(any("header/footer" in warning for warning in report["warnings"]))
+  self.assertTrue(report["all_identical"])
+  by_article={x["article"]:x for x in report["articles"]}
+  self.assertEqual((by_article["1"]["reference_page_start"],by_article["1"]["reference_page_end"]),(1,2))
+  self.assertEqual((by_article["2"]["reference_page_start"],by_article["2"]["reference_page_end"]),(2,2))
+
+ def test_pdf_reference_warns_when_a_page_has_no_extractable_text(self):
+  pdf=self.d/"scanned.pdf";pdf.write_bytes(b"%PDF synthetic fixture")
+  class Page:
+   def extract_text(self):return ""
+  class Reader:
+   def __init__(self,*args,**kwargs):self.is_encrypted=False;self.pages=[Page()]
+  with mock.patch("tools.compare_corpus_to_reference.PdfReader",Reader):
+   report=build_report(self.c,pdf)
+  self.assertTrue(any("no extractable text" in warning for warning in report["warnings"]))
+  self.assertFalse(report["all_identical"])
+
  def test_bad_json_warns(self):
   b=self.d/"bad.jsonl";b.write_text('bad json\n[1]\n{"article":"???","text":"x"}',encoding="utf-8");self.assertTrue(build_report(b,self.ref)["warnings"])
 if __name__=="__main__":unittest.main()

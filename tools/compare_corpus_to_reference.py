@@ -1,5 +1,6 @@
 """Evidence-only comparison of JSONL article rows with manually saved reference text."""
 import argparse,difflib,hashlib,json,re,sys,unicodedata
+from pypdf import PdfReader
 from collections import Counter
 from pathlib import Path
 DIGITS=str.maketrans("٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹","01234567890123456789")
@@ -44,17 +45,56 @@ def extract_heading(line):
   if rest.startswith(ordinal+" "):return str(ORD[ordinal]),rest[len(ordinal):].strip()
  return None,None
 
-def segment(s):
+def _segment_lines(lines):
  out=[];cur=None;seen=Counter()
- for line in s.splitlines():
+ for line,page_number in lines:
   key,body=extract_heading(line) if len(line)<400 else (None,None)
   key=label(key) if key is not None else None
+  if cur is not None and page_number is not None:cur["page_end"]=page_number
   if key:
-   seen[key]+=1;cur={"key":key,"occurrence":seen[key],"heading":line.strip()[:120],"parts":[]};out.append(cur)
+   seen[key]+=1
+   cur={"key":key,"occurrence":seen[key],"heading":line.strip()[:120],"parts":[]}
+   if page_number is not None:cur.update(page_start=page_number,page_end=page_number)
+   out.append(cur)
    if body:cur["parts"].append(body)
   elif cur is not None:cur["parts"].append(line)
  for x in out:x["text"]="\n".join(x.pop("parts")).strip()
  return out
+def segment(s):
+ return _segment_lines((line,None) for line in s.splitlines())
+def segment_pages(pages):
+ return _segment_lines((line,page_number) for page_number,page_text in enumerate(pages,1) for line in page_text.splitlines())
+def _is_gazette_page_matter(line):
+ s=norm(line)
+ return "الجريدة الرسمية" in s or "الوقائع المصرية" in s
+def _clean_pdf_page_matter(page_text):
+ lines=page_text.splitlines();kept=[];removed=0
+ for index,line in enumerate(lines):
+  at_page_edge=index<3 or index>=max(0,len(lines)-3)
+  if at_page_edge and _is_gazette_page_matter(line):
+   removed+=1
+  else:kept.append(line)
+ return "\n".join(kept),removed
+def read_reference(path):
+ p=Path(path)
+ if p.suffix.lower()==".pdf":
+  try:
+   reader=PdfReader(str(p),strict=False)
+   if reader.is_encrypted:raise ValueError("encrypted reference PDFs are not supported; provide an authorized readable copy")
+   page_texts=[];warnings=[];page_matter_removed=0
+   for page_number,page in enumerate(reader.pages,1):
+    try:text=page.extract_text() or ""
+    except Exception as exc:
+     text="";warnings.append(f"PDF page {page_number} text extraction failed ({type(exc).__name__}); review that page manually.")
+    if not text.strip():warnings.append(f"PDF page {page_number} yielded no extractable text; image/OCR review is still required.")
+    text,removed=_clean_pdf_page_matter(text);page_matter_removed+=removed
+    page_texts.append(text)
+   if page_matter_removed:
+    warnings.append(f"Excluded {page_matter_removed} apparent Gazette header/footer line(s) from page edges; verify the original page images before accepting matches.")
+   return segment_pages(page_texts),warnings,{"format":"pdf","page_count":len(page_texts),"extraction":"pypdf text extraction","page_matter_lines_removed":page_matter_removed}
+  except ValueError:raise
+  except Exception as exc:raise ValueError(f"could not read reference PDF ({type(exc).__name__})") from exc
+ return segment(p.read_text(encoding="utf-8")),[],{"format":"text","page_count":None,"extraction":"UTF-8 text"}
 def readcand(p):
  out=[];warn=[];seen=Counter()
  for i,line in enumerate(Path(p).read_text(encoding="utf-8").splitlines(),1):
@@ -70,6 +110,7 @@ def compare(c,r,ratio=.97):
  cm={(x["key"],x["occurrence"]):x for x in c};rm={(x["key"],x["occurrence"]):x for x in r};out=[]
  for k in list(rm)+[k for k in cm if k not in rm]:
   a,b=rm.get(k),cm.get(k);x={"article":k[0],"occurrence":k[1]}
+  if a is not None and "page_start" in a:x.update(reference_page_start=a["page_start"],reference_page_end=a["page_end"])
   if a is None:x.update(status="extra_in_candidate",candidate_line=b["line"])
   elif b is None:x.update(status="missing_in_candidate",reference_heading=a["heading"])
   else:
@@ -86,16 +127,20 @@ def compare(c,r,ratio=.97):
   out.append(x)
  return out
 def build_report(cp,rp,ratio=.97):
- c,w=readcand(cp);r=segment(Path(rp).read_text(encoding="utf-8"))
+ c,w=readcand(cp);r,reference_warnings,reference_meta=read_reference(rp);w.extend(reference_warnings)
  if not r:w.append("No article headings detected in reference; nothing aligned.")
  res=compare(c,r,ratio);counts=Counter(x["status"] for x in res)
- return {"tool":"compare_corpus_to_reference","evidence_only":True,"disclaimer":"Text comparison only; it does not authenticate sources, establish legal status, prove amendment completeness, or authorize reuse/import. Human and lawyer review remain required.","candidate":{"path":str(cp),"sha256":digest(cp),"rows_compared":len(c)},"reference":{"path":str(rp),"sha256":digest(rp),"articles_detected":len(r)},"min_ratio":ratio,"summary":dict(sorted(counts.items())),"all_identical":bool(res) and set(counts)=={"identical_after_normalization"} and not w,"warnings":w,"articles":res}
+ disclaimer="Text comparison only; it does not authenticate sources, establish legal status, prove amendment completeness, or authorize reuse/import. PDF text extraction is not visual page review or OCR verification. Human and lawyer review remain required."
+ substantive_warnings=[warning for warning in w if not warning.startswith("Excluded ") or "apparent Gazette header/footer" not in warning]
+ all_identical=bool(res) and set(counts)=={"identical_after_normalization"} and not substantive_warnings
+ return {"tool":"compare_corpus_to_reference","evidence_only":True,"disclaimer":disclaimer,"candidate":{"path":str(cp),"sha256":digest(cp),"rows_compared":len(c)},"reference":{"path":str(rp),"sha256":digest(rp),"articles_detected":len(r),**reference_meta},"min_ratio":ratio,"summary":dict(sorted(counts.items())),"all_identical":all_identical,"warnings":w,"articles":res}
 def render(r):
- lines=["# Corpus vs reference comparison (evidence only)","",r["disclaimer"],"",f"- Candidate SHA-256: {r['candidate']['sha256']}; rows: {r['candidate']['rows_compared']}",f"- Reference SHA-256: {r['reference']['sha256']}; articles: {r['reference']['articles_detected']}","","## Summary",""]+[f"- {k}: {v}" for k,v in r["summary"].items()]+[f"- all identical: {r['all_identical']}",""]
+ lines=["# Corpus vs reference comparison (evidence only)","",r["disclaimer"],"",f"- Candidate SHA-256: {r['candidate']['sha256']}; rows: {r['candidate']['rows_compared']}",f"- Reference SHA-256: {r['reference']['sha256']}; articles: {r['reference']['articles_detected']}",f"- Reference format: {r['reference']['format']}; extraction: {r['reference']['extraction']}","","## Summary",""]+[f"- {k}: {v}" for k,v in r["summary"].items()]+[f"- all identical: {r['all_identical']}",""]
  if r["warnings"]:lines+=["## Warnings",""]+["- "+w for w in r["warnings"]]+[""]
  pr={"numeric_difference":0,"major_difference":1,"missing_in_candidate":2,"extra_in_candidate":3,"minor_difference":4}
  for x in sorted([x for x in r["articles"] if x["status"]!="identical_after_normalization"],key=lambda z:(pr.get(z["status"],9),z["article"]))[:200]:
   lines += [f"### Article {x['article']} occurrence {x['occurrence']}: {x['status']}"]
+  if x.get("reference_page_start") is not None:lines.append(f"- reference PDF pages: {x['reference_page_start']}–{x['reference_page_end']}")
   if x.get("numeric_difference"):lines.append("- numeric differences: "+json.dumps(x["numeric_difference"],ensure_ascii=False))
   if "reference_excerpt" in x:lines += ["- reference: …"+x["reference_excerpt"]+"…","- candidate: …"+x["candidate_excerpt"]+"…"]
   lines.append("")
