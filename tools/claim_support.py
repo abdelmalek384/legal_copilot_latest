@@ -51,21 +51,22 @@ _ARABIC_MODAL_PATTERNS = {
 }
 
 
-def _modal_classes(text):
-    """Return explicit modal classes; absence of a marker is deliberately unknown."""
-    found = set()
-    for label, pattern in (*_ENGLISH_MODAL_PATTERNS.items(), *_ARABIC_MODAL_PATTERNS.items()):
-        if pattern.search(text):
-            found.add(label)
-    return found
+def _modal_classes(text, patterns):
+    """Return explicit modality classes for one language; absence is unknown."""
+    return {
+        label for label, pattern in patterns.items()
+        if pattern.search(text)
+    }
 
 
 def _has_modal_mismatch(claim, evidence):
-    """Reject a claim whose explicit permission/obligation/prohibition conflicts with evidence."""
-    claim_classes = _modal_classes(claim)
-    evidence_classes = _modal_classes(evidence)
-    return bool(claim_classes and evidence_classes and claim_classes.isdisjoint(evidence_classes))
-
+    """Compare explicit modality only within the same language."""
+    for patterns in (_ENGLISH_MODAL_PATTERNS, _ARABIC_MODAL_PATTERNS):
+        claim_classes = _modal_classes(claim, patterns)
+        evidence_classes = _modal_classes(evidence, patterns)
+        if claim_classes and evidence_classes and claim_classes.isdisjoint(evidence_classes):
+            return True
+    return False
 
 def claim_support_enabled():
     """Opt in explicitly; default remains off until evaluated on reviewed answers."""
