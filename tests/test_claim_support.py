@@ -5,7 +5,7 @@ from unittest import mock
 
 import app
 from app import norm, tokens, _mask_markdown_code
-from tools.claim_support import claim_support_enabled, has_unsupported_claims
+from tools.claim_support import _has_modal_mismatch, claim_support_enabled, has_unsupported_claims
 
 
 class ClaimSupportTests(unittest.TestCase):
@@ -103,6 +103,59 @@ class ClaimSupportTests(unittest.TestCase):
         with mock.patch.dict(os.environ, {"LEGAL_CLAIM_SUPPORT_CHECK": "1"}):
             self.assertTrue(claim_support_enabled())
 
+
+
+    def test_modal_strength_change_from_may_to_must_is_blocked(self):
+        hits = [{"text": "The employee may request leave after six months."}]
+        self.assertTrue(has_unsupported_claims(
+            "The employee must request leave after six months [1].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
+
+    def test_modal_strength_change_from_must_to_may_is_blocked(self):
+        hits = [{"text": "The employer must provide written notice."}]
+        self.assertTrue(has_unsupported_claims(
+            "The employer may provide written notice [1].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
+
+    def test_arabic_permission_to_obligation_change_is_blocked(self):
+        hits = [{"text": "يجوز للعامل طلب الإجازة بعد ستة أشهر."}]
+        self.assertTrue(has_unsupported_claims(
+            "يجب على العامل طلب الإجازة بعد ستة أشهر [1].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
+
+    def test_arabic_prohibition_is_not_misread_as_permission(self):
+        hits = [{"text": "لا يجوز لصاحب العمل خصم الأجر."}]
+        self.assertFalse(has_unsupported_claims(
+            "لا يجوز لصاحب العمل خصم الأجر [1].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
+
+    def test_english_prohibition_change_is_blocked(self):
+        hits = [{"text": "The employer may not deduct wages."}]
+        self.assertTrue(has_unsupported_claims(
+            "The employer may deduct wages [1].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
+
+    def test_modality_comparison_does_not_mix_english_and_arabic(self):
+        self.assertFalse(_has_modal_mismatch(
+            "The employer must provide notice.",
+            "يجب على صاحب العمل تقديم إخطار."
+        ))
+        self.assertFalse(_has_modal_mismatch(
+            "The employee may request leave.",
+            "يجوز للعامل طلب الإجازة."
+        ))
+
+    def test_faithful_permission_paraphrase_is_not_rejected(self):
+        hits = [{"text": "The employee may request leave after six months."}]
+        self.assertFalse(has_unsupported_claims(
+            "The employee is permitted to request leave after six months [1].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
 
 if __name__ == "__main__":
     unittest.main()

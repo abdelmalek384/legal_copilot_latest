@@ -39,6 +39,35 @@ _GENERIC_TERMS = {
 }
 
 
+_ENGLISH_MODAL_PATTERNS = {
+    "permission": re.compile(r"\b(?:may(?!\s+not)|is permitted to|are permitted to|can)\b", re.IGNORECASE),
+    "obligation": re.compile(r"\b(?:must|shall|required to|is required to)\b", re.IGNORECASE),
+    "prohibition": re.compile(r"\b(?:may not|must not|shall not|is prohibited from|cannot)\b", re.IGNORECASE),
+}
+_ARABIC_MODAL_PATTERNS = {
+    "permission": re.compile(r"(?<!لا )(?:يجوز|يحق)"),
+    "obligation": re.compile(r"(?:يجب|يلتزم|يتعين)"),
+    "prohibition": re.compile(r"(?:لا يجوز|يحظر|يمتنع عن)"),
+}
+
+
+def _modal_classes(text, patterns):
+    """Return explicit modality classes for one language; absence is unknown."""
+    return {
+        label for label, pattern in patterns.items()
+        if pattern.search(text)
+    }
+
+
+def _has_modal_mismatch(claim, evidence):
+    """Compare explicit modality only within the same language."""
+    for patterns in (_ENGLISH_MODAL_PATTERNS, _ARABIC_MODAL_PATTERNS):
+        claim_classes = _modal_classes(claim, patterns)
+        evidence_classes = _modal_classes(evidence, patterns)
+        if claim_classes and evidence_classes and claim_classes.isdisjoint(evidence_classes):
+            return True
+    return False
+
 def claim_support_enabled():
     """Opt in explicitly; default remains off until evaluated on reviewed answers."""
     return os.environ.get("LEGAL_CLAIM_SUPPORT_CHECK", "").strip() == "1"
@@ -88,6 +117,8 @@ def has_unsupported_claims(answer, hits, tokens_fn, norm_fn, mask_code=None):
         claim = re.sub(r"\[\d+\]", " ", sentence)
         normalized_claim = norm_fn(claim)
         normalized_evidence = norm_fn(evidence)
+        if _has_modal_mismatch(normalized_claim, normalized_evidence):
+            return True
 
         claim_says_no_expiry = bool(
             _ENGLISH_NO_EXPIRY.search(normalized_claim)
