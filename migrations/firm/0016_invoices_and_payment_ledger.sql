@@ -57,7 +57,7 @@ CREATE TABLE invoice_events (
     id INTEGER PRIMARY KEY,
     invoice_id INTEGER NOT NULL REFERENCES invoices(id) ON DELETE RESTRICT,
     actor_user_id INTEGER NOT NULL CHECK(actor_user_id > 0),
-    event_type TEXT NOT NULL CHECK(event_type IN ('created','issued','payment_recorded','voided')),
+    event_type TEXT NOT NULL CHECK(event_type IN ('created','draft_updated','issued','payment_recorded','voided')),
     details_json TEXT NOT NULL DEFAULT '{}',
     created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
