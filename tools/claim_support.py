@@ -40,12 +40,12 @@ _GENERIC_TERMS = {
 
 
 _ENGLISH_MODAL_PATTERNS = {
-    "permission": re.compile(r"\b(?:may|is permitted to|are permitted to|can)\b", re.IGNORECASE),
+    "permission": re.compile(r"\b(?:may(?!\s+not)|is permitted to|are permitted to|can)\b", re.IGNORECASE),
     "obligation": re.compile(r"\b(?:must|shall|required to|is required to)\b", re.IGNORECASE),
     "prohibition": re.compile(r"\b(?:may not|must not|shall not|is prohibited from|cannot)\b", re.IGNORECASE),
 }
 _ARABIC_MODAL_PATTERNS = {
-    "permission": re.compile(r"\b(?:may|is permitted to|are permitted to|can)\b", re.IGNORECASE),
+    "permission": re.compile(r"\b(?:may(?!\s+not)|is permitted to|are permitted to|can)\b", re.IGNORECASE),
     "obligation": re.compile(r"\b(?:must|shall|required to|is required to)\b", re.IGNORECASE),
     "prohibition": re.compile(r"\b(?:may not|must not|shall not|is prohibited from|cannot)\b", re.IGNORECASE),
 }
