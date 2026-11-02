@@ -289,5 +289,16 @@ class FrontendUXContractTests(unittest.TestCase):
             self.assertIn("['" + key + "'", HTML)
         self.assertIn("تُطبق هذه الخيارات على حسابك داخل هذا المكتب فقط", HTML)
 
+
+    def test_mobile_navigation_hint_typography_and_touch_targets(self):
+        self.assertIn("className:'nav-scroll-hint'", HTML)
+        self.assertIn("Swipe for more", HTML)
+        self.assertIn("#side a[role=button]{min-height:44px}", HTML)
+        self.assertIn(".tabs a{min-height:44px", HTML)
+        self.assertIn("font-size:14px", HTML)
+        self.assertIn("@media(max-width:420px)", HTML)
+        self.assertIn("Request an account", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
