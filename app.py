@@ -2896,6 +2896,13 @@ def rollback_tenant_transaction_on_error(func):
         try:
             return func(*args, **kwargs)
         except sqlite3.Error as exc:
+            # Keep the client response generic, but preserve the original SQLite
+            # exception in server logs so operational failures can be diagnosed.
+            logger.exception(
+                "Tenant database write failed (sqlite_errorcode=%s, sqlite_errorname=%s)",
+                getattr(exc, "sqlite_errorcode", None),
+                getattr(exc, "sqlite_errorname", None),
+            )
             try:
                 conn().rollback()
             except Exception:

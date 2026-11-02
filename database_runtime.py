@@ -1129,6 +1129,23 @@ class DatabaseRuntime:
         # Existing matter handlers expect a firm-scoped users table. A temp
         # context table prevents a user with multiple memberships from appearing
         # multiple times or exposing another firm's role in joins.
+        context_table_exists = connection.execute(
+            "SELECT 1 FROM sqlite_temp_master WHERE type='table' AND name='_active_firm_context'"
+        ).fetchone()
+        if context_table_exists:
+            active_context = connection.execute(
+                "SELECT firm_id FROM _active_firm_context LIMIT 1"
+            ).fetchone()
+            if active_context is not None and int(active_context["firm_id"]) == firm_id:
+                # Do not rewrite the TEMP context on every request. A TEMP-table
+                # write opens a connection transaction; leaving it open lets a
+                # concurrent tenant writer make this connection's WAL snapshot
+                # stale (SQLITE_BUSY_SNAPSHOT) before the route's first INSERT.
+                return
+            if connection.in_transaction:
+                raise DatabaseRuntimeError(
+                    "Cannot change active firm context while a tenant transaction is open"
+                )
         connection.execute(
             "CREATE TEMP TABLE IF NOT EXISTS _active_firm_context(firm_id INTEGER NOT NULL)"
         )
@@ -1150,6 +1167,10 @@ class DatabaseRuntime:
             SELECT f.id, f.name, f.status, f.created_at FROM control.firms f
             JOIN _active_firm_context current_firm ON current_firm.firm_id=f.id
         """)
+        # Finish the TEMP context setup before any route reads/writes the main
+        # tenant database. This prevents a stale WAL read snapshot from being
+        # upgraded to a write transaction after another request commits.
+        connection.commit()
 
     def firm_connection(self, context: FirmContext) -> sqlite3.Connection:
         """Return a firm connection only after revalidating membership and current role."""

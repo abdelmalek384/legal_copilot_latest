@@ -60,6 +60,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_profile_initial_schemas.py
       - name: Test profile-separated runtime and firm isolation
         run: PYTHONPATH=. python tests/test_database_runtime.py
+      - name: Test tenant context transaction boundary
+        run: PYTHONPATH=. python tests/test_tenant_context_transaction_boundary.py
       - name: Test application routing across firm and corpus databases
         run: PYTHONPATH=. python tests/test_app_separate_database_runtime.py
       - name: Test encrypted multi-database backup and restore
@@ -324,6 +326,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_decision162_candidate_quarantine.py
       - name: Test Decision 249 candidate quarantine
         run: PYTHONPATH=. python tests/test_decision249_candidate_quarantine.py
+      - name: Test tenant write failure diagnostics
+        run: PYTHONPATH=. python tests/test_tenant_write_failure_diagnostics.py
       - name: Test trusted-host middleware
         run: PYTHONPATH=. python tests/test_trusted_host_middleware.py
       - name: Test fixture-based law ingestion pipeline
