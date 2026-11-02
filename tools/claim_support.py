@@ -59,6 +59,47 @@ def _modal_classes(text, patterns):
     }
 
 
+_EXPLICIT_POLARITY_PAIRS = (
+    # Each pair is (negative form, positive form). Keep these deliberately narrow:
+    # the checker should reject clear reversals, not infer unstated legal meaning.
+    (
+        re.compile(r"\\b(?:may\\s+not|cannot|is\\s+not\\s+permitted\\s+to|are\\s+not\\s+permitted\\s+to)\\b", re.IGNORECASE),
+        re.compile(r"\\b(?:may|can|is\\s+permitted\\s+to|are\\s+permitted\\s+to)\\b", re.IGNORECASE),
+    ),
+    (
+        re.compile(r"\\bmust\\s+not\\b", re.IGNORECASE),
+        re.compile(r"\\bmust\\b(?!\\s+not)", re.IGNORECASE),
+    ),
+    (
+        re.compile(r"\\bshall\\s+not\\b", re.IGNORECASE),
+        re.compile(r"\\bshall\\b(?!\\s+not)", re.IGNORECASE),
+    ),
+    (
+        re.compile(r"لا\\s+يجوز"),
+        re.compile(r"(?<!لا\\s)يجوز"),
+    ),
+    (
+        re.compile(r"لا\\s+يحق"),
+        re.compile(r"(?<!لا\\s)يحق"),
+    ),
+)
+
+
+def _has_explicit_polarity_mismatch(claim, evidence):
+    """Reject an explicit positive/negative reversal of the same modal predicate."""
+    for negative, positive in _EXPLICIT_POLARITY_PAIRS:
+        claim_negative = bool(negative.search(claim))
+        claim_positive = bool(positive.search(negative.sub(" ", claim)))
+        evidence_negative = bool(negative.search(evidence))
+        evidence_positive = bool(positive.search(negative.sub(" ", evidence)))
+        # Mixed or absent polarity is ambiguous; leave it to other safeguards.
+        if claim_negative and not claim_positive and evidence_positive and not evidence_negative:
+            return True
+        if claim_positive and not claim_negative and evidence_negative and not evidence_positive:
+            return True
+    return False
+
+
 def _has_modal_mismatch(claim, evidence):
     """Compare explicit modality only within the same language."""
     for patterns in (_ENGLISH_MODAL_PATTERNS, _ARABIC_MODAL_PATTERNS):
@@ -118,6 +159,8 @@ def has_unsupported_claims(answer, hits, tokens_fn, norm_fn, mask_code=None):
         normalized_claim = norm_fn(claim)
         normalized_evidence = norm_fn(evidence)
         if _has_modal_mismatch(normalized_claim, normalized_evidence):
+            return True
+        if _has_explicit_polarity_mismatch(normalized_claim, normalized_evidence):
             return True
 
         claim_says_no_expiry = bool(
