@@ -64,20 +64,34 @@ def segment(s):
  return _segment_lines((line,None) for line in s.splitlines())
 def segment_pages(pages):
  return _segment_lines((line,page_number) for page_number,page_text in enumerate(pages,1) for line in page_text.splitlines())
+def _is_gazette_page_matter(line):
+ s=norm(line)
+ return "الجريدة الرسمية" in s or "الوقائع المصرية" in s
+def _clean_pdf_page_matter(page_text):
+ lines=page_text.splitlines();kept=[];removed=0
+ for index,line in enumerate(lines):
+  at_page_edge=index<3 or index>=max(0,len(lines)-3)
+  if at_page_edge and _is_gazette_page_matter(line):
+   removed+=1
+  else:kept.append(line)
+ return "\\n".join(kept),removed
 def read_reference(path):
  p=Path(path)
  if p.suffix.lower()==".pdf":
   try:
    reader=PdfReader(str(p),strict=False)
    if reader.is_encrypted:raise ValueError("encrypted reference PDFs are not supported; provide an authorized readable copy")
-   page_texts=[];warnings=[]
+   page_texts=[];warnings=[];page_matter_removed=0
    for page_number,page in enumerate(reader.pages,1):
     try:text=page.extract_text() or ""
     except Exception as exc:
      text="";warnings.append(f"PDF page {page_number} text extraction failed ({type(exc).__name__}); review that page manually.")
     if not text.strip():warnings.append(f"PDF page {page_number} yielded no extractable text; image/OCR review is still required.")
+    text,removed=_clean_pdf_page_matter(text);page_matter_removed+=removed
     page_texts.append(text)
-   return segment_pages(page_texts),warnings,{"format":"pdf","page_count":len(page_texts),"extraction":"pypdf text extraction"}
+   if page_matter_removed:
+    warnings.append(f"Excluded {page_matter_removed} apparent Gazette header/footer line(s) from page edges; verify the original page images before accepting matches.")
+   return segment_pages(page_texts),warnings,{"format":"pdf","page_count":len(page_texts),"extraction":"pypdf text extraction","page_matter_lines_removed":page_matter_removed}
   except ValueError:raise
   except Exception as exc:raise ValueError(f"could not read reference PDF ({type(exc).__name__})") from exc
  return segment(p.read_text(encoding="utf-8")),[],{"format":"text","page_count":None,"extraction":"UTF-8 text"}
