@@ -6,6 +6,9 @@ ROOT = Path(__file__).resolve().parents[1]
 import app  # noqa: E402
 
 TEST_COVERED_ROUTES = {
+    "GET /admin/security-policy": "tests/test_firm_security_policy_setup_health.py",
+    "PUT /admin/security-policy": "tests/test_firm_security_policy_setup_health.py",
+    "GET /admin/setup-health": "tests/test_firm_security_policy_setup_health.py",
     "GET /billing": "tests/test_subscription_billing_routes.py",
     "POST /billing/subscribe": "tests/test_subscription_billing_routes.py",
     "POST /billing/payment-submissions": "tests/test_subscription_billing_routes.py",
