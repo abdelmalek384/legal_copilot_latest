@@ -2425,6 +2425,11 @@ class DeadlineEstimateIn(BaseModel):
     trigger: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
     distance_days: int = Field(0, ge=0, le=365)
     _valid_trigger = field_validator("trigger")(validate_calendar_date)
+class FirmSecurityPolicyIn(BaseModel):
+    require_mfa_for_admins: bool = False
+    require_mfa_for_everyone: bool = False
+
+
 class SubscribePlanIn(BaseModel):
     plan_code: str = Field(pattern=r"^(solo|small_firm)$")
 
@@ -2565,7 +2570,7 @@ def _user_separate(
         if origin and not _origin_matches_request(origin, request):
             raise HTTPException(403, "cross-origin request blocked")
     mfa_enabled = _mfa_is_enabled(int(account["id"]), c)
-    mfa_required = _mfa_required_for_user(int(account["id"]), c)
+    mfa_required = _mfa_required_for_user(int(account["id"]), c, context.firm_id)
     mfa_verified = bool(account["mfa_verified"])
     enrollment_required = mfa_required and not mfa_enabled
     verification_required = mfa_enabled and not mfa_verified
@@ -2580,7 +2585,7 @@ def _user_separate(
         "platform_roles": _platform_roles_for_user(account["id"]),
         "can_review_legal": _user_can_review_legal({"id": account["id"], "role": context.role, "email": account["email_display"]}),
         "mfa_enabled": mfa_enabled, "mfa_required": mfa_required,
-        "mfa_policy_required": _mfa_policy_requires_user(int(account["id"]), c),
+        "mfa_policy_required": _mfa_policy_requires_user(int(account["id"]), c, context.firm_id),
         "mfa_verified": mfa_verified, "mfa_verified_at": int(account["mfa_verified_at"] or 0),
         "mfa_enrollment_required": enrollment_required,
         "mfa_verification_required": verification_required,
@@ -3007,6 +3012,20 @@ def _mfa_user_is_privileged(user_id: int, control=None) -> bool:
     return firm_admin is not None or platform_admin is not None
 
 
+def _mfa_user_is_privileged(user_id: int, control=None) -> bool:
+    db = control or control_conn()
+    firm_admin = db.execute(
+        "SELECT 1 FROM firm_memberships WHERE user_id=? AND status='active' AND firm_role='admin' LIMIT 1",
+        (user_id,),
+    ).fetchone()
+    platform_admin = db.execute(
+        "SELECT 1 FROM user_platform_roles WHERE user_id=? "
+        "AND role_name IN ('platform_admin','platform_reviewer') LIMIT 1",
+        (user_id,),
+    ).fetchone()
+    return firm_admin is not None or platform_admin is not None
+
+
 def _mfa_policy_requires_user(user_id: int, control=None) -> bool:
     db = control or control_conn()
     mode = _mfa_enforcement_mode()
@@ -3018,6 +3037,51 @@ def _mfa_policy_requires_user(user_id: int, control=None) -> bool:
 def _mfa_required_for_user(user_id: int, control=None) -> bool:
     db = control or control_conn()
     return _mfa_is_enabled(user_id, db) or _mfa_policy_requires_user(user_id, db)
+
+
+def _mfa_user_is_privileged(user_id: int, control=None, firm_id: int | None = None) -> bool:
+    db = control or control_conn()
+    if firm_id is None:
+        firm_admin = db.execute(
+            "SELECT 1 FROM firm_memberships WHERE user_id=? AND status='active' AND firm_role='admin' LIMIT 1",
+            (user_id,),
+        ).fetchone()
+    else:
+        firm_admin = db.execute(
+            "SELECT 1 FROM firm_memberships WHERE user_id=? AND firm_id=? AND status='active' AND firm_role='admin' LIMIT 1",
+            (user_id, firm_id),
+        ).fetchone()
+    platform_admin = db.execute(
+        "SELECT 1 FROM user_platform_roles WHERE user_id=? "
+        "AND role_name IN ('platform_admin','platform_reviewer') LIMIT 1",
+        (user_id,),
+    ).fetchone()
+    return firm_admin is not None or platform_admin is not None
+
+
+def _mfa_policy_requires_user(user_id: int, control=None, firm_id: int | None = None) -> bool:
+    db = control or control_conn()
+    mode = _mfa_enforcement_mode()
+    if mode == "all_required":
+        return True
+    if mode == "admins_required" and _mfa_user_is_privileged(user_id, db):
+        return True
+    if firm_id is None:
+        return False
+    policy = db.execute(
+        "SELECT require_mfa_for_admins,require_mfa_for_everyone "
+        "FROM firm_security_policies WHERE firm_id=?", (firm_id,)
+    ).fetchone()
+    if policy is None:
+        return False
+    if bool(policy["require_mfa_for_everyone"]):
+        return True
+    return bool(policy["require_mfa_for_admins"]) and _mfa_user_is_privileged(user_id, db, firm_id)
+
+
+def _mfa_required_for_user(user_id: int, control=None, firm_id: int | None = None) -> bool:
+    db = control or control_conn()
+    return _mfa_is_enabled(user_id, db) or _mfa_policy_requires_user(user_id, db, firm_id)
 
 
 def _record_mfa_event(control, actor_user_id: int, event_type: str, detail: dict | None = None) -> None:
@@ -3174,7 +3238,7 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
     c.execute("DELETE FROM login_attempts WHERE email IN (?,?)", identifiers)
     token, csrf = secrets.token_urlsafe(32), secrets.token_urlsafe(32)
     mfa_enabled = _mfa_is_enabled(int(account["id"]), c)
-    mfa_required = _mfa_required_for_user(int(account["id"]), c)
+    mfa_required = _mfa_required_for_user(int(account["id"]), c, memberships[0]["firm_id"])
     mfa_verified = not mfa_required
     c.execute("DELETE FROM auth_sessions WHERE expires<?", (now,))
     c.execute("INSERT INTO auth_sessions(token_hash,user_id,expires,mfa_verified,mfa_verified_at) VALUES(?,?,?,?,?)",
@@ -3191,7 +3255,7 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
         "platform_roles": _platform_roles_for_user(account["id"]),
         "can_review_legal": _user_can_review_legal({"id": account["id"], "role": first_firm["role"], "email": account["email_display"]}),
         "mfa_enabled": mfa_enabled, "mfa_required": mfa_required,
-        "mfa_policy_required": _mfa_policy_requires_user(int(account["id"]), c),
+        "mfa_policy_required": _mfa_policy_requires_user(int(account["id"]), c, memberships[0]["firm_id"]),
         "mfa_verified": mfa_verified, "mfa_verified_at": now if mfa_verified else 0,
         "mfa_enrollment_required": mfa_required and not mfa_enabled,
         "mfa_verification_required": mfa_enabled and not mfa_verified,
@@ -4248,6 +4312,101 @@ result.textContent="Password reset successful. Sign in with your new password.";
 }catch(err){result.textContent=err.message;}});
 if(!token)result.textContent="This recovery link is missing its token. Request a new recovery email.";
 </script></body></html>""".replace("__CSP_NONCE__", request.state.csp_nonce))
+
+
+@app.get("/admin/security-policy")
+def get_firm_security_policy(u: dict = Depends(user)):
+    require_admin(u)
+    row = control_conn().execute(
+        "SELECT require_mfa_for_admins,require_mfa_for_everyone,updated_at "
+        "FROM firm_security_policies WHERE firm_id=?", (u["firm_id"],)
+    ).fetchone()
+    if row is None:
+        return {"require_mfa_for_admins": False, "require_mfa_for_everyone": False, "updated_at": None}
+    return {key: bool(row[key]) for key in ("require_mfa_for_admins","require_mfa_for_everyone")} | {"updated_at": row["updated_at"]}
+
+
+@app.put("/admin/security-policy")
+def put_firm_security_policy(b: FirmSecurityPolicyIn, u: dict = Depends(user)):
+    require_admin(u)
+    control = control_conn()
+    now = int(time.time())
+    after = {
+        "require_mfa_for_admins": bool(b.require_mfa_for_admins or b.require_mfa_for_everyone),
+        "require_mfa_for_everyone": bool(b.require_mfa_for_everyone),
+    }
+    try:
+        control.execute("BEGIN IMMEDIATE")
+        before_row = control.execute(
+            "SELECT require_mfa_for_admins,require_mfa_for_everyone "
+            "FROM firm_security_policies WHERE firm_id=?", (u["firm_id"],)
+        ).fetchone()
+        before = {
+            "require_mfa_for_admins": bool(before_row["require_mfa_for_admins"]) if before_row else False,
+            "require_mfa_for_everyone": bool(before_row["require_mfa_for_everyone"]) if before_row else False,
+        }
+        control.execute(
+            "INSERT INTO firm_security_policies(firm_id,require_mfa_for_admins,require_mfa_for_everyone,updated_by_user_id,updated_at) "
+            "VALUES(?,?,?,?,?) ON CONFLICT(firm_id) DO UPDATE SET "
+            "require_mfa_for_admins=excluded.require_mfa_for_admins,"
+            "require_mfa_for_everyone=excluded.require_mfa_for_everyone,"
+            "updated_by_user_id=excluded.updated_by_user_id,updated_at=excluded.updated_at",
+            (u["firm_id"], int(after["require_mfa_for_admins"]), int(after["require_mfa_for_everyone"]), u["id"], now),
+        )
+        control.execute(
+            "INSERT INTO firm_security_policy_audit(firm_id,actor_user_id,before_json,after_json,created_at) "
+            "VALUES(?,?,?,?,?)",
+            (u["firm_id"], u["id"], json.dumps(before, sort_keys=True),
+             json.dumps(after, sort_keys=True), now),
+        )
+        control.commit()
+    except sqlite3.Error as exc:
+        if control.in_transaction:
+            control.rollback()
+        raise HTTPException(503, "security policy could not be saved") from exc
+    return {"ok": True, **after, "mfa_enrollment_may_be_required": bool(after["require_mfa_for_admins"] or after["require_mfa_for_everyone"])}
+
+
+@app.get("/admin/setup-health")
+def get_admin_setup_health(u: dict = Depends(user)):
+    require_admin(u)
+    env = os.environ
+    identity_smtp = bool(env.get("COPILOT_EMAIL_SMTP_HOST", "").strip() and env.get("COPILOT_EMAIL_FROM", "").strip())
+    reminder_smtp = bool(
+        env.get("REMINDER_SMTP_HOST", "").strip()
+        and env.get("REMINDER_SMTP_SENDER", "").strip()
+        and env.get("REMINDER_SMTP_USERNAME", "").strip()
+        and env.get("REMINDER_SMTP_PASSWORD", "")
+    )
+    try:
+        public_base_url = _identity_public_base_url()
+        public_url_ok = True
+    except IdentityEmailError:
+        public_base_url = None
+        public_url_ok = False
+    mfa_key_ok = False
+    key = env.get("MFA_ENCRYPTION_KEY", "").strip()
+    if key:
+        try:
+            Fernet(key.encode("ascii"))
+            mfa_key_ok = True
+        except (ValueError, TypeError, UnicodeError):
+            mfa_key_ok = False
+    policy = control_conn().execute(
+        "SELECT require_mfa_for_admins,require_mfa_for_everyone FROM firm_security_policies WHERE firm_id=?",
+        (u["firm_id"],),
+    ).fetchone()
+    return {
+        "mail": {"identity_smtp_configured": identity_smtp, "reminder_smtp_configured": reminder_smtp,
+                 "configured": identity_smtp and reminder_smtp},
+        "public_base_url": {"configured": public_url_ok, "value": public_base_url},
+        "mfa_encryption_key": {"configured": mfa_key_ok},
+        "mfa_enforcement_mode": _mfa_enforcement_mode(),
+        "firm_policy": {
+            "require_mfa_for_admins": bool(policy["require_mfa_for_admins"]) if policy else False,
+            "require_mfa_for_everyone": bool(policy["require_mfa_for_everyone"]) if policy else False,
+        },
+    }
 
 
 @app.get("/billing")
