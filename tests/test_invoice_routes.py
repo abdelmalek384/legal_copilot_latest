@@ -90,7 +90,7 @@ class InvoiceRouteTests(unittest.TestCase):
     def _create_and_issue(self):
         created = self._mutate(self.client_a, "post", f"/cases/{self.case_id}/invoices", json={
             "client_name": "شركة اختبار",
-            "issue_date": "2026-11-02",
+            "issue_date": "2026-09-01",
             "due_date": "2026-10-01",
             "note": "فاتورة تجريبية",
             "lines": [
