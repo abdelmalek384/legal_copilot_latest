@@ -401,7 +401,11 @@ def evaluate(question_rows, result_rows, reviewer_registry):
     return {
         "schema_version": 3,
         "retrieval_ranking_scored": bool(retrieval_presence and all(retrieval_presence)),
-        "evaluation_scope": "citation_and_abstention_behavior_only",
+        "evaluation_scope": (
+            "citation_abstention_and_retrieval_ranking"
+            if retrieval_presence and all(retrieval_presence)
+            else "citation_and_abstention_behavior_only"
+        ),
         "semantic_legal_correctness_scored": False,
         "approval_gate": APPROVED,
         "questions_available": len(question_map),
