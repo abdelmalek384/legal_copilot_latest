@@ -251,5 +251,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("اقتراح تصحيح للإجابة", HTML)
         self.assertIn("/answers/'+encodeURIComponent(m.answer_id)+'/corrections", HTML)
 
+    def test_admin_settings_render_private_feedback_queue(self):
+        self.assertIn("/research/corrections?status=open", HTML)
+        self.assertIn("Answer correction review", HTML)
+        self.assertIn("Suggested correction", HTML)
+        self.assertIn("Original answer excerpt", HTML)
+
 if __name__ == "__main__":
     unittest.main()
