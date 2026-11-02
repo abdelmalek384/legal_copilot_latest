@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "report_id": "EG-LABOUR-14-2025-LAW-ROWS-SIX-ARTICLE-SPOT-CHECK-2026-11-02",
+  "checked_on": "2026-11-02",
+  "status": "partial_spot_check_not_full_comparison",
+  "candidate_file": {
+    "library_path": "/legal/law_rows_ar.jsonl",
+    "size_bytes": 393861,
+    "row_count": 311,
+    "promulgation_rows": 13,
+    "law_provision_rows": 298,
+    "parse_errors": 0,
+    "duplicate_law_article_keys": 0,
+    "missing_article_sequence_entries": 0,
+    "verified_values": [
+      0
+    ],
+    "in_force_values": [
+      1
+    ],
+    "as_of_values": [
+      "2025-05-03"
+    ],
+    "explicit_effective_from_field_present": false,
+    "raw_file_sha256_verified": false,
+    "raw_bytes_materialized": false,
+    "embedded_source_hash_prefix": "dd3a52c346fb",
+    "embedded_hash_is_jsonl_file_hash": false,
+    "source_url": "https://manshurat.org/node/76602",
+    "source_description": "Manshurat secondary transcription; its row metadata labels it unofficial pending Gazette comparison.",
+    "source_retrieved_on": "2026-10-22"
+  },
+  "official_reference": {
+    "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+    "url": "https://eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+    "gazette_issue": "Official Gazette No. 18 (تابع)",
+    "publication_date": "2025-05-03",
+    "page_images_visually_reviewed": [
+      {
+        "article": 66,
+        "printed_page": 35,
+        "pdf_page_index_zero_based": 33
+      },
+      {
+        "article": 103,
+        "printed_page": 48,
+        "pdf_page_index_zero_based": 46
+      },
+      {
+        "article": 124,
+        "printed_page": 54,
+        "pdf_page_index_zero_based": 52
+      },
+      {
+        "article": 134,
+        "printed_page": 57,
+        "pdf_page_index_zero_based": 55
+      },
+      {
+        "article": 134,
+        "printed_page": 58,
+        "pdf_page_index_zero_based": 56,
+        "role": "continuation"
+      },
+      {
+        "article": 141,
+        "printed_page": 61,
+        "pdf_page_index_zero_based": 59
+      },
+      {
+        "article": 278,
+        "printed_page": 106,
+        "pdf_page_index_zero_based": 104
+      }
+    ],
+    "raw_pdf_sha256_verified": false
+  },
+  "commencement": {
+    "article": "promulgation Article 13",
+    "publication_date": "2025-05-03",
+    "general_effective_date": "2025-09-01",
+    "specialized_labour_courts_effective_date": "2025-10-01",
+    "as_of_field_interpretation": "2025-05-03 is the Gazette publication date, not the general commencement date.",
+    "in_force_flag_warning": "All candidate rows carry in_force=1 but have no explicit effective_from field or documented in_force semantics. Do not infer that the provisions were in force on as_of=2025-05-03."
+  },
+  "comparison_method": {
+    "compared_articles": [
+      66,
+      103,
+      124,
+      134,
+      141,
+      278
+    ],
+    "normalization": "NFKC; remove Arabic diacritics/tatweel; normalize alef variants and ى/ي; remove punctuation and collapse whitespace.",
+    "source": "Manual comparison against ETA-hosted Official Gazette page images and corresponding PDF text extraction.",
+    "numerical_differences_in_compared_articles": 0,
+    "full_311_row_comparison": false
+  },
+  "results": [
+    {
+      "article": 66,
+      "printed_page": 35,
+      "pdf_page_index_zero_based": 33,
+      "status": "match_after_normalization",
+      "substantive_difference": false
+    },
+    {
+      "article": 103,
+      "printed_page": 48,
+      "pdf_page_index_zero_based": 46,
+      "status": "match_after_normalization",
+      "substantive_difference": false,
+      "orthographic_variants": [
+        "الذى / الذي"
+      ],
+      "note": "The page image reads «كل ستة أشهر على الأقل». SIS text and one indexed ETA extraction include an extra «سنة» not present in the page image."
+    },
+    {
+      "article": 124,
+      "printed_page": 54,
+      "pdf_page_index_zero_based": 52,
+      "status": "match_after_normalization",
+      "substantive_difference": false
+    },
+    {
+      "article": 134,
+      "printed_page": 57,
+      "continuation_printed_page": 58,
+      "pdf_page_indices_zero_based": [
+        55,
+        56
+      ],
+      "status": "text_difference",
+      "substantive_difference": true,
+      "candidate_excerpt": "ما يعرض للخطر",
+      "gazette_excerpt": "ما يعرضه للخطر",
+      "candidate_only": [
+        "يعرض"
+      ],
+      "official_only": [
+        "يعرضه"
+      ],
+      "difference": "Candidate omits the final pronoun suffix «ه»."
+    },
+    {
+      "article": 141,
+      "printed_page": 61,
+      "pdf_page_index_zero_based": 59,
+      "status": "match_after_normalization",
+      "substantive_difference": false,
+      "orthographic_variants": [
+        "فى / في",
+        "التى / التي"
+      ]
+    },
+    {
+      "article": 278,
+      "printed_page": 106,
+      "pdf_page_index_zero_based": 104,
+      "status": "match_after_normalization",
+      "substantive_difference": false,
+      "orthographic_variants": [
+        "فى / في",
+        "التى / التي"
+      ]
+    }
+  ],
+  "summary": {
+    "articles_compared": 6,
+    "match_after_normalization": 5,
+    "textual_differences_requiring_correction": 1,
+    "numeric_differences": 0,
+    "verified_candidate_rows": 0,
+    "full_corpus_comparison_complete": false,
+    "search_eligible": false
+  },
+  "remaining_work": [
+    "Compare all 311 candidate rows against the official Gazette PDF/text, including the 120 quantitative provisions identified in the earlier inventory.",
+    "Correct or explicitly quarantine the Article 134 «يعرضه» transcription difference.",
+    "Define in_force/as_of semantics and add an explicit effective_from value; general commencement is 2025-09-01 and specialized labour courts commence 2025-10-01.",
+    "Obtain and hash the original candidate JSONL bytes and official Gazette PDF binary.",
+    "Complete amendment/corrigenda/currentness review, source-rights review, and qualified Egyptian-counsel review."
+  ]
+}
