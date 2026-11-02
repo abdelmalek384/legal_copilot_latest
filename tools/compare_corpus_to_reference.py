@@ -74,7 +74,7 @@ def _clean_pdf_page_matter(page_text):
   if at_page_edge and _is_gazette_page_matter(line):
    removed+=1
   else:kept.append(line)
- return "\\n".join(kept),removed
+ return "\n".join(kept),removed
 def read_reference(path):
  p=Path(path)
  if p.suffix.lower()==".pdf":
