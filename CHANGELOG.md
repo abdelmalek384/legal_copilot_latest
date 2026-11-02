@@ -1,5 +1,7 @@
 # Changelog — Legal Copilot
 
+- Extended the evidence-only corpus comparator to accept official PDF references directly, preserve per-article PDF page ranges, hash the source file, and warn on pages without extractable text; does not authenticate or verify legal content.
+
 - Reject future-dated qualified-counsel answer reviews so evaluation reports cannot count assessments dated after the current day.
 
 - Added a separate, data-driven Arabic legal retrieval lexicon with conservative spelling variants and synthetic top-three retrieval regressions (PR #1148).
