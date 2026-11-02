@@ -207,7 +207,7 @@ def result_from_response(question, response):
             used_unverified_source = True
 
     requested_as_of = question.get("as_of_date")
-    return {
+    result = {
         "id": question["id"],
         "question_id": question["id"],
         "answer": answer,
@@ -235,6 +235,11 @@ def result_from_response(question, response):
             for hit in sources if isinstance(hit, dict)
         ],
     }
+    answer_id = response.get("answer_id")
+    if isinstance(answer_id, str) and answer_id.strip():
+        result["answer_id"] = answer_id.strip()
+    return result
+
 
 def _request_json(opener, url, payload, headers=None, timeout=180):
     request_headers = {"Content-Type": "application/json", "Accept": "application/json"}
