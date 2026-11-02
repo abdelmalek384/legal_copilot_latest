@@ -62,6 +62,48 @@ class ReminderServiceTests(unittest.TestCase):
             self.tenant.execute("SELECT COUNT(*) FROM reminder_deliveries").fetchone()[0], 0
         )
 
+    def test_scheduler_respects_per_user_deadline_and_session_preferences(self):
+        self.tenant.execute(
+            "INSERT INTO deadlines(case_id,title,due,status,created_by) VALUES(?,?,?,?,?)",
+            (self.case_id, "Private deadline", "2026-10-27", "open", self.user_id),
+        )
+        self.tenant.execute(
+            "INSERT INTO sessions(case_id,date,note,done) VALUES(?,?,?,0)",
+            (self.case_id, "2026-10-26", "Private hearing",),
+        )
+        self.tenant.execute(
+            "INSERT INTO reminder_preferences(user_id,email_enabled,deadline_7_days,deadline_3_days,"
+            "deadline_1_day,deadline_day_of,deadline_overdue,session_day_of,task_reminders) "
+            "VALUES(?,1,1,1,0,1,1,0,0)",
+            (self.user_id,),
+        )
+        self.tenant.commit()
+        report = run_scheduler(
+            self.runtime, now=self.now, timezone_name="Africa/Cairo", send=False
+        )
+        self.assertEqual(report["reminders_planned"], 0)
+
+    def test_scheduler_plans_court_sessions_on_the_day_only(self):
+        self.tenant.execute(
+            "INSERT INTO sessions(case_id,date,note,done) VALUES(?,?,?,0)",
+            (self.case_id, "2026-10-26", "Private hearing",),
+        )
+        self.tenant.execute(
+            "INSERT INTO sessions(case_id,date,note,done) VALUES(?,?,?,0)",
+            (self.case_id, "2026-10-27", "Next-day hearing",),
+        )
+        self.tenant.execute(
+            "INSERT INTO reminder_preferences(user_id,email_enabled,deadline_7_days,deadline_3_days,"
+            "deadline_1_day,deadline_day_of,deadline_overdue,session_day_of,task_reminders) "
+            "VALUES(?,1,1,1,1,1,1,1,0)",
+            (self.user_id,),
+        )
+        self.tenant.commit()
+        report = run_scheduler(
+            self.runtime, now=self.now, timezone_name="Africa/Cairo", send=False
+        )
+        self.assertEqual(report["reminders_planned"], 1)
+
     def test_read_only_dry_run_uses_query_only_connections(self):
         readonly = _ReadOnlyReminderRuntime(self.runtime)
         try:

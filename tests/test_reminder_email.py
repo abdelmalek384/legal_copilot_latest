@@ -35,6 +35,18 @@ class ReminderEmailTests(unittest.TestCase):
         self.assertNotIn("private-case-id", body)
         self.assertNotIn("client names", message["Subject"].lower())
 
+    def test_email_states_the_configured_lead_days_without_matter_details(self):
+        captured = []
+        reminder = dict(self.reminder, lead_days=7)
+        result = send_reminder_email(
+            reminder, "user@example.test", "https://legal.example.test", self.config,
+            enabled=True, send_once=lambda config, message: captured.append(message),
+        )
+        self.assertEqual(result["status"], "accepted_by_smtp")
+        body = captured[0].get_content()
+        self.assertIn("case deadline is due in 7 days", body)
+        self.assertNotIn("private-case-id", body)
+
     def test_retries_transient_errors_with_exponential_backoff(self):
         calls = []
         def sender(config, message):

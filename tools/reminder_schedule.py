@@ -35,9 +35,12 @@ def _parse_due_date(value: object, event_id: str) -> date:
     return parsed
 
 
-def _idempotency_key(scope_id: str, recipient_id: str, kind: str, event_id: str, due_date: str, window: str) -> str:
+def _idempotency_key(scope_id: str, recipient_id: str, kind: str, event_id: str, due_date: str, window: str, lead_days: int = 1) -> str:
+    identity = ["case-reminder-v1", scope_id, recipient_id, kind, event_id, due_date, window]
+    if window == "due_soon" and lead_days != 1:
+        identity.append(lead_days)
     material = json.dumps(
-        ["case-reminder-v1", scope_id, recipient_id, kind, event_id, due_date, window],
+        identity,
         ensure_ascii=False, separators=(",", ":"),
     ).encode("utf-8")
     return hashlib.sha256(material).hexdigest()
@@ -50,9 +53,9 @@ def build_reminder_plan(
     timezone_name: str,
     scope_id: str,
     already_sent: set[str] | None = None,
-    lead_days: int = 1,
+    lead_days: int | Iterable[int] = 1,
 ) -> dict:
-    """Return a deterministic dry-run plan for events due tomorrow, today, or overdue.
+    """Return a deterministic dry-run plan for configured lead windows and due-day events.
 
     Required normalized event fields: kind (task/deadline/session), event_id,
     due_date (YYYY-MM-DD), and is_complete (bool). now must be timezone-aware.
@@ -65,8 +68,20 @@ def build_reminder_plan(
         raise ReminderScheduleError("scope_id must be a non-empty firm/scope identifier")
     if not isinstance(now, datetime) or now.tzinfo is None or now.utcoffset() is None:
         raise ReminderScheduleError("now must be a timezone-aware datetime")
-    if type(lead_days) is not int or not 1 <= lead_days <= 30:
-        raise ReminderScheduleError("lead_days must be an integer from 1 through 30")
+    if type(lead_days) is int:
+        lead_windows = {lead_days}
+    else:
+        try:
+            raw_windows = list(lead_days)
+        except TypeError as exc:
+            raise ReminderScheduleError("lead_days must be an integer or a collection of integers") from exc
+        if not raw_windows:
+            raise ReminderScheduleError("lead_days must contain at least one lead window")
+        if any(type(value) is not int or not 1 <= value <= 30 for value in raw_windows):
+            raise ReminderScheduleError("lead_days values must be integers from 1 through 30")
+        lead_windows = set(raw_windows)
+    if any(type(value) is not int or not 1 <= value <= 30 for value in lead_windows):
+        raise ReminderScheduleError("lead_days values must be integers from 1 through 30")
     try:
         local_zone = ZoneInfo(timezone_name)
     except (ZoneInfoNotFoundError, TypeError) as exc:
@@ -102,17 +117,23 @@ def build_reminder_plan(
             continue
 
         days_until_due = (due - local_today).days
-        if days_until_due == lead_days:
-            window = "due_soon"
+        if kind == "session":
+            if days_until_due != 0:
+                continue
+            window, lead_value = "due_today", 0
+        elif days_until_due in lead_windows:
+            window, lead_value = "due_soon", days_until_due
         elif days_until_due == 0:
-            window = "due_today"
+            window, lead_value = "due_today", 0
         elif days_until_due < 0:
-            window = "overdue"
+            window, lead_value = "overdue", 0
         else:
             continue
 
         due_text = due.isoformat()
-        key = _idempotency_key(scope_id.strip(), recipient_id.strip(), str(kind), event_id, due_text, window)
+        key = _idempotency_key(
+            scope_id.strip(), recipient_id.strip(), str(kind), event_id, due_text, window, lead_value
+        )
         if key in sent:
             continue
         prepared.append({
@@ -122,6 +143,7 @@ def build_reminder_plan(
             "event_id": event_id,
             "due_date": due_text,
             "days_until_due": days_until_due,
+            "lead_days": lead_value,
             "window": window,
             "idempotency_key": key,
         })

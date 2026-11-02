@@ -42,6 +42,23 @@ class ReminderOutboxTests(unittest.TestCase):
         self.assertEqual(enqueue_plan(self.db, self.plan, firm_id=self.firm_id, recipient_user_id=7), 0)
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM reminder_deliveries").fetchone()[0], 1)
 
+    def test_same_deadline_can_queue_separate_lead_windows(self):
+        event = [{"kind": "deadline", "event_id": "22", "due_date": "2026-11-02", "is_complete": False}]
+        seven = build_reminder_plan(
+            event, str(7), self.now, "Africa/Cairo", str(self.firm_id), lead_days=7
+        )
+        three = build_reminder_plan(
+            event, str(7), datetime(2026, 10, 30, 8, 0, tzinfo=timezone.utc),
+            "Africa/Cairo", str(self.firm_id), lead_days=3,
+        )
+        self.assertEqual(enqueue_plan(self.db, seven, firm_id=self.firm_id, recipient_user_id=7), 1)
+        self.assertEqual(enqueue_plan(self.db, three, firm_id=self.firm_id, recipient_user_id=7), 1)
+        rows = self.db.execute(
+            "SELECT lead_days,reminder_window FROM reminder_deliveries ORDER BY lead_days DESC"
+        ).fetchall()
+        self.assertEqual([(row["lead_days"], row["reminder_window"]) for row in rows],
+                         [(7, "due_soon"), (3, "due_soon")])
+
     def test_scope_and_recipient_mismatch_are_rejected_before_writes(self):
         with self.assertRaisesRegex(ReminderOutboxError, "scope or recipient"):
             enqueue_plan(self.db, self.plan, firm_id=self.firm_id + 1, recipient_user_id=7)

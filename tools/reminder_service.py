@@ -17,6 +17,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Mapping
 from urllib.parse import urlsplit
+from zoneinfo import ZoneInfo
 
 from database_runtime import DatabaseRuntime, DatabaseRuntimeError
 from tenant_storage import TenantSQLiteConnectionRouter
@@ -129,6 +130,87 @@ def _case_member(tenant: sqlite3.Connection, case_id: int, user_id: int) -> bool
     ).fetchone() is not None
 
 
+_DEFAULT_REMINDER_PREFERENCES = {
+    "email_enabled": 1, "deadline_7_days": 1, "deadline_3_days": 1,
+    "deadline_1_day": 1, "deadline_day_of": 1, "deadline_overdue": 1,
+    "session_day_of": 1, "task_reminders": 1,
+}
+
+
+def _reminder_preferences(tenant: sqlite3.Connection, user_id: int) -> dict[str, int]:
+    try:
+        row = tenant.execute(
+            "SELECT email_enabled,deadline_7_days,deadline_3_days,deadline_1_day,"
+            "deadline_day_of,deadline_overdue,session_day_of,task_reminders "
+            "FROM reminder_preferences WHERE user_id=?", (user_id,)
+        ).fetchone()
+    except sqlite3.Error:
+        return dict(_DEFAULT_REMINDER_PREFERENCES)
+    if row is None:
+        return dict(_DEFAULT_REMINDER_PREFERENCES)
+    return {key: int(row[key]) for key in _DEFAULT_REMINDER_PREFERENCES}
+
+
+def _preference_allows_event(event: Mapping[str, object], preferences: Mapping[str, int],
+                             local_today, lead_windows: set[int]) -> bool:
+    if not preferences.get("email_enabled", 0):
+        return False
+    due = _date_only(event.get("due_date"))
+    if due is None:
+        return False
+    days = (datetime.strptime(due, "%Y-%m-%d").date() - local_today).days
+    kind = event.get("kind")
+    if kind == "session":
+        return days == 0 and bool(preferences.get("session_day_of", 0))
+    if kind == "task":
+        return bool(preferences.get("task_reminders", 0)) and (
+            days in lead_windows or days <= 0
+        )
+    if kind == "deadline":
+        if days == 7:
+            return bool(preferences.get("deadline_7_days", 0))
+        if days == 3:
+            return bool(preferences.get("deadline_3_days", 0))
+        if days == 1:
+            return bool(preferences.get("deadline_1_day", 0))
+        if days == 0:
+            return bool(preferences.get("deadline_day_of", 0))
+        if days < 0:
+            return bool(preferences.get("deadline_overdue", 0))
+    return False
+
+
+def _filter_events_by_preferences(events, preferences, now, timezone_name, lead_days):
+    if isinstance(lead_days, int):
+        lead_windows = {lead_days}
+    else:
+        lead_windows = set(lead_days)
+    local_today = now.astimezone(ZoneInfo(timezone_name)).date()
+    return [
+        event for event in events
+        if _preference_allows_event(event, preferences, local_today, lead_windows)
+    ]
+
+
+def _preference_allows_delivery(delivery: Mapping[str, object], preferences: Mapping[str, int]) -> bool:
+    if not preferences.get("email_enabled", 0):
+        return False
+    kind = delivery.get("event_type")
+    window = delivery.get("reminder_window")
+    lead = delivery.get("lead_days", 1)
+    if kind == "session":
+        return window == "due_today" and bool(preferences.get("session_day_of", 0))
+    if kind == "task":
+        return bool(preferences.get("task_reminders", 0))
+    if kind == "deadline":
+        if window == "due_today":
+            return bool(preferences.get("deadline_day_of", 0))
+        if window == "overdue":
+            return bool(preferences.get("deadline_overdue", 0))
+        return bool(preferences.get({7: "deadline_7_days", 3: "deadline_3_days", 1: "deadline_1_day"}.get(lead, ""), 0))
+    return False
+
+
 def _events_for_recipients(
     tenant: sqlite3.Connection, recipients: Mapping[int, Mapping[str, object]]
 ) -> dict[int, list[dict]]:
@@ -198,6 +280,8 @@ def _still_authorized(
     ).fetchone()
     if membership is None or membership["status"] != "active" or membership["membership_status"] != "active":
         return None, "recipient_not_active"
+    if not _preference_allows_delivery(delivery, _reminder_preferences(tenant, user_id)):
+        return None, "reminder_preference_changed"
 
     kind = str(delivery["event_type"])
     event_id = int(delivery["event_id"])
@@ -236,7 +320,7 @@ def run_scheduler(
     *,
     now: datetime,
     timezone_name: str,
-    lead_days: int = 1,
+    lead_days: int | tuple[int, ...] = (7, 3, 1),
     send: bool = False,
     smtp_config: SMTPConfig | None = None,
     app_url: str | None = None,
@@ -292,6 +376,13 @@ def run_scheduler(
         summary["firms_scanned"] += 1
         recipients = _active_recipients(control, firm_id)
         events_by_user = _events_for_recipients(tenant, recipients)
+        events_by_user = {
+            user_id: _filter_events_by_preferences(
+                events, _reminder_preferences(tenant, user_id), now, timezone_name, lead_days
+            )
+            for user_id, events in events_by_user.items()
+        }
+        events_by_user = {user_id: events for user_id, events in events_by_user.items() if events}
         if not send:
             for user_id, events in events_by_user.items():
                 plan = build_reminder_plan(
@@ -330,6 +421,7 @@ def run_scheduler(
                 "event_type": delivery["event_type"],
                 "due_date": delivery["due_date"],
                 "window": delivery["reminder_window"],
+                "lead_days": delivery["lead_days"],
             }
             outcome = send_reminder_email(
                 payload, recipient, app_url or "", smtp_config, enabled=True,
@@ -392,6 +484,16 @@ def outbox_status(runtime: DatabaseRuntime) -> dict:
     return report
 
 
+def _parse_lead_days(value: str) -> tuple[int, ...]:
+    try:
+        parsed = tuple(sorted({int(item.strip()) for item in value.split(",") if item.strip()}, reverse=True))
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError("lead days must be comma-separated integers") from exc
+    if not parsed or any(not 1 <= day <= 30 for day in parsed):
+        raise argparse.ArgumentTypeError("lead days must be between 1 and 30")
+    return parsed
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group()
@@ -401,7 +503,7 @@ def main(argv: list[str] | None = None) -> int:
                       help="show read-only per-firm outbox counts without scheduling or delivery")
     parser.add_argument("--timezone", default="Africa/Cairo", help="IANA timezone (default: Africa/Cairo)")
     parser.add_argument("--now", help="optional ISO timestamp with timezone offset")
-    parser.add_argument("--lead-days", type=int, default=1)
+    parser.add_argument("--lead-days", type=_parse_lead_days, default=(7, 3, 1), help="comma-separated deadline lead windows (default: 7,3,1)")
     parser.add_argument("--max-send", type=int, default=100, help="maximum queued messages to claim per firm")
     parser.add_argument("--retry-failed-key", help="explicitly requeue one failed idempotency key in each firm")
     parser.add_argument("--out", type=Path, help="write sanitized JSON summary to this path")
@@ -411,8 +513,8 @@ def main(argv: list[str] | None = None) -> int:
         now = _parse_now(args.now)
         if args.retry_failed_key and (not args.send or args.status):
             raise ReminderOutboxError("--retry-failed-key requires --send")
-        if type(args.lead_days) is not int or not 1 <= args.lead_days <= 30:
-            raise ReminderScheduleError("--lead-days must be between 1 and 30")
+        if not isinstance(args.lead_days, tuple) or not args.lead_days:
+            raise ReminderScheduleError("--lead-days must contain one or more windows from 1 through 30")
         if type(args.max_send) is not int or not 1 <= args.max_send <= 1000:
             raise ReminderOutboxError("--max-send must be between 1 and 1000")
         if args.send:
