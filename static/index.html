@@ -737,6 +737,33 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
   #main .workspace-list-item button { width: 100%; }
   .login { padding: 19px; }
 }
+
+/* Research keyboard flow: controls -> question -> send -> conversation history.
+   Visual placement remains RTL: history on the right, active workspace on the left. */
+@media (min-width: 801px) {
+  .research-layout > .research-main { grid-column: 2; grid-row: 1; }
+  .research-layout > .research-list { grid-column: 1; grid-row: 1; }
+}
+.research-controls label { font-size: 13px; }
+.research-controls select { min-height: 46px; }
+.research-composer textarea { min-height: 104px; }
+.research-composer button { min-width: 104px; }
+.research-composer textarea:focus-visible,
+.research-composer button:focus-visible,
+.research-controls select:focus-visible {
+  outline: 3px solid rgba(49,95,202,.42);
+  outline-offset: 3px;
+}
+.research-list { scrollbar-gutter: stable; }
+.research-conversation-row { min-width: 0; }
+.research-conversation { min-width: 0; text-align: start; }
+.research-delete { min-width: 40px; min-height: 40px; }
+@media (max-width: 800px) {
+  .research-layout > .research-main,
+  .research-layout > .research-list { grid-column: 1; }
+  .research-layout > .research-main { grid-row: 1; }
+  .research-layout > .research-list { grid-row: 2; }
+}
 </style>
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <script>
@@ -1503,7 +1530,7 @@ async function law(){
  },'primary');
  composer.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send.click()}});
  const composerArea=h('div',{className:'research-composer'},composer,send,h('div',{className:'mut',textContent:LANG==='ar'?'Enter للإرسال · Shift+Enter لسطر جديد':'Enter to send · Shift+Enter for a new line'}));
- shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-controls'},h('label',{},h('span',{textContent:LANG==='ar'?'نطاق البحث':'Search scope'}),scopeSelect),h('label',{},h('span',{textContent:LANG==='ar'?'ملف القضية (للبحث والحفظ)':'Matter (for search and saving)'}),matterSelect)),h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},researchStatus,thread,composerArea)));
+ shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-controls'},h('label',{},h('span',{textContent:LANG==='ar'?'نطاق البحث':'Search scope'}),scopeSelect),h('label',{},h('span',{textContent:LANG==='ar'?'ملف القضية (للبحث والحفظ)':'Matter (for search and saving)'}),matterSelect)),h('div',{className:'research-layout'},h('section',{className:'research-main'},researchStatus,thread,composerArea),sidebar));
  await drawList();
  if(activeId)await loadConversation(activeId);
  else {const list=await api('/research/conversations');if(list.length)await loadConversation(list[0].id);else await newChat()}
