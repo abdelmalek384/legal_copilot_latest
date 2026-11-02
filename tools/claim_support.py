@@ -116,6 +116,8 @@ def has_unsupported_claims(answer, hits, tokens_fn, norm_fn, mask_code=None):
         claim = re.sub(r"\[\d+\]", " ", sentence)
         normalized_claim = norm_fn(claim)
         normalized_evidence = norm_fn(evidence)
+        if _has_modal_mismatch(normalized_claim, normalized_evidence):
+            return True
 
         claim_says_no_expiry = bool(
             _ENGLISH_NO_EXPIRY.search(normalized_claim)
