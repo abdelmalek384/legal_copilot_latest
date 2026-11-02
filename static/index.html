@@ -816,7 +816,7 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    h('div',{},t.status==='done'?pill('منجزة','done'):[duePill(t)||pill('مفتوحة','open'),' ',btn('تم',async()=>{await api('/tasks/'+t.id+'/done','POST');again()},'g')]))):empty('لا توجد مهام'),
    h('div',{className:'row'},tt,as,due,btn('إضافة مهمة',async()=>{if(!tt.value.trim()){toast(uiText('أدخل اسم المهمة','Enter a task title'));tt.focus();return}await api('/cases/'+id+'/tasks','POST',{title:tt.value.trim(),assignee:as.value?+as.value:null,due:due.value||null});again()})))}
  if(TAB==='sess'){const sd=h('input',{type:'date'}),sn=h('input',{placeholder:uiText('ملاحظة (المحكمة، الدائرة، الغرض)','Note (court, circuit, purpose)')});
-  body=h('div',{className:'card'},c.sessions.length?c.sessions.map(s=>h('div',{className:'row'},h('span',{textContent:s.note||uiText('جلسة','Hearing')}),pill(fd(s.date),s.date<today?'closed':'open'))):empty('لا توجد جلسات'),
+  body=h('div',{className:'card'},c.sessions.length?c.sessions.map(s=>h('div',{className:'row'},h('span',{textContent:s.note||uiText('جلسة','Hearing')}),pill(fd(s.date),s.date<today?'closed':'open'),whatsappReminder(s.date,'session'))):empty('لا توجد جلسات'),
    h('div',{className:'row'},sd,sn,btn('إضافة جلسة',async()=>{if(!sd.value){toast(uiText('أدخل تاريخ الجلسة','Enter a hearing date'));sd.focus();return}await api('/cases/'+id+'/sessions','POST',{date:sd.value,note:sn.value});again()})))}
  if(TAB==='dead'){
   const title=h('input',{placeholder:uiText('نوع الموعد (استئناف، طعن، تقديم مستند...)','Deadline type (appeal, challenge, filing...)')}),
@@ -849,7 +849,7 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    h('p',{className:'mut',textContent:uiText('اختر القاعدة وتاريخ بداية الحساب بعد مراجعتهما. القواعد والعطلات الحالية مسودات غير معتمدة؛ لا تعتمد على الناتج قبل مراجعة محامٍ مصري.','Select a rule and trigger date only after reviewing them. Current rules and holidays are unverified drafts; do not rely on the result before review by an Egyptian lawyer.')}),
    h('div',{className:'grid'},ruleSelect,h('label',{},h('span',{textContent:uiText('تاريخ بداية الحساب (بعد التحقق)','Trigger date (after confirmation)')}),trigger),h('label',{},h('span',{textContent:uiText('أيام مسافة إضافية (اختياري)','Additional distance days (optional)')}),distance)),
    estimateButton,preview,h('hr',{}),h('h3',{textContent:uiText('المواعيد المسجلة في القضية','Saved case deadlines')}),
-   c.deadlines.length?c.deadlines.map(d=>h('div',{className:'row'},h('div',{},h('b',{textContent:d.title}),h('div',{className:'mut',textContent:d.note||''})),duePill({due:d.due})||pill(fd(d.due),'open'))):empty('لا توجد مواعيد قانونية مسجلة. هذه المواعيد منفصلة عن جلسات المحكمة.'),
+   c.deadlines.length?c.deadlines.map(d=>h('div',{className:'row'},h('div',{},h('b',{textContent:d.title}),h('div',{className:'mut',textContent:d.note||''})),duePill({due:d.due})||pill(fd(d.due),'open'),whatsappReminder(d.due,'deadline'))):empty('لا توجد مواعيد قانونية مسجلة. هذه المواعيد منفصلة عن جلسات المحكمة.'),
    h('div',{className:'row'},title,due,btn('إضافة موعد',async()=>{if(!title.value.trim()||!due.value){toast(uiText('أدخل نوع الموعد وتاريخه','Enter the deadline type and date'));return}await api('/cases/'+id+'/deadlines','POST',{title:title.value,due:due.value,note:note.value});again()})),note)
  }
  if(TAB==='dead'&&ME.role==='admin'){
