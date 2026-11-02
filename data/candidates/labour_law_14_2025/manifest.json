@@ -13,7 +13,7 @@
     "current_page_url": "https://manshurat.org/content/qnwn-lml-ljdyd-rqm-14-lsn-2025",
     "source_class": "secondary_text_copy",
     "stated_origin": "Egyptian Official Gazette issue 18 (supplement), dated 2025-05-03",
-    "official_gazette_match": "partial_structural_and_spot_check_only; full article-by-article comparison not completed",
+    "official_gazette_match": "partial_structural_and_six_article_visual_spot_check_only; five rows match after normalization and Article 134 has one suffix omission; full article-by-article comparison not completed",
     "terms_review": "reviewed_on_2026-10-24; no affirmative redistribution_or_commercial_reuse_license located",
     "collection_permission": "unknown_pending_written_permission_or_terms_confirmation",
     "redistribution_permission": "unknown",
@@ -32,7 +32,10 @@
     "observed_as_of_field": "2025-05-03",
     "observed_source_retrieval_date": "2026-10-22",
     "embedded_verified_flags": "0 for all 311 records",
-    "embedded_in_force_flags": "1 for all 311 records; untrusted and must not be imported as verified status"
+    "embedded_in_force_flags": "1 for all 311 records; untrusted and must not be imported as verified status",
+    "sha256_verification_status": "recorded_in_repository_manifest; Library copy size matches; original raw-byte hash not independently recomputed in this session",
+    "library_copy_size_bytes": 393861,
+    "library_copy_size_matches_manifest": true
   },
   "legal_review": {
     "official_gazette_issue": "18 (تابع)",
@@ -44,13 +47,13 @@
     "direct_amendment_search": "No direct amending statute identified in the limited review; not a complete negative certification",
     "amendment_chain_status": "partial; implementing instruments identified but not exhaustively verified",
     "commencement_and_transitional_rules_status": "promulgation articles reviewed in accessible text; article-by-article official Gazette verification pending",
-    "extraction_quality_status": "311 records parse; structure and selected promulgation/opening/closing provisions spot-checked against accessible secondary text; no full Gazette comparison",
-    "official_gazette_access": "IDSC item metadata verified; PDF is behind request-a-copy workflow; repository terms require written permission for systematic retrieval/database compilation and limit content use to personal non-commercial use absent permission",
+    "extraction_quality_status": "311 records parse; six articles visually spot-checked against the ETA-hosted Gazette PDF; five match after normalization and Article 134 has a missing pronoun suffix in the candidate transcription; no full Gazette comparison",
+    "official_gazette_access": "IDSC item metadata verified; original Gazette PDF remains behind a request-a-copy workflow; ETA-hosted government PDF is accessible for targeted page review; repository terms require written permission for systematic retrieval/database compilation and limit use to personal non-commercial absent permission",
     "egyptian_lawyer_review_status": "pending",
     "search_eligible": false,
     "provisional_desk_review": "completed_with_blockers",
     "permissions_review_outcome": "unresolved_keep_unknown",
-    "article_by_article_gazette_comparison": "not_completed; exact Gazette PDF not obtained/page-reviewed",
+    "article_by_article_gazette_comparison": "partial_six_article_spot_check_only; five rows match after normalization; Article 134 candidate omits «ه» in «يعرضه للخطر»; full 311-row comparison not completed",
     "general_commencement_date_candidate": "2025-09-01 — provisional lead only; confirm against page-verified Official Gazette and qualified Egyptian legal review",
     "specialized_labour_courts_commencement_date_candidate": "2025-10-01 — provisional lead only; confirm against page-verified Official Gazette and qualified Egyptian legal review",
     "amendment_history_verified": false,
@@ -67,7 +70,7 @@
   "terms_review": "reviewed_on_2026-10-24; no affirmative redistribution_or_commercial_reuse permission located",
   "collection_permission": "unknown_pending_written_permission_or_terms_confirmation",
   "official_primary_source_evidence": {
-    "source_assessment": "Official government-hosted Official Gazette PDF text was opened and targeted relevant pages were reviewed through extracted text; the PDF itself was not downloaded or visually inspected.",
+    "source_assessment": "Official government-hosted ETA PDF text and seven targeted page images were inspected on 2026-11-02. Six candidate article rows were compared; five match after normalization and Article 134 omits the suffix «ه» in «يعرضه للخطر». Original PDF bytes were not downloaded or hashed; this is not a full article-by-article comparison.",
     "official_gazette_issue": "18 (تابع)",
     "publication_date": "2025-05-03",
     "primary_text_page_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
@@ -76,14 +79,14 @@
     "source_retrieval_date": "2026-10-28",
     "original_pdf_downloaded": false,
     "original_pdf_sha256": null,
-    "page_level_review": false,
+    "page_level_review": true,
     "article_by_article_comparison": false,
     "source_reuse_permission": "unknown",
     "commercial_reuse_permission": "unknown",
     "legal_status": "under_review",
     "lawyer_review_status": "pending",
     "search_eligible": false,
-    "notes": "Indexed content supports the promulgation metadata and selected provisions, but this is not a page-level comparison of the Gazette scan, does not establish reuse permission, and does not verify the complete amendment/repeal chain. Do not import article chunks or mark the instrument fully verified from this record.",
+    "notes": "Targeted page-image review now covers Articles 66, 103, 124, 134 (printed pages 57–58), 141 and 278. Five of six candidate rows match after normalization; Article 134 contains a missing suffix «ه». This does not establish reuse permission or complete amendment/currentness status. Do not import article chunks or mark the instrument fully verified.",
     "egyptian_official_document_copyright_basis": {
       "statute": "Egyptian Intellectual Property Rights Law No. 82 of 2002, Article 141",
       "evidence_url": "https://www.wipo.int/wipolex/en/legislation/details/22066",
@@ -101,8 +104,8 @@
     },
     "targeted_pdf_text_page_review": {
       "source_url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
-      "reviewed_on": "2026-10-28",
-      "method": "Web-accessible PDF text extraction",
+      "reviewed_on": "2026-11-02",
+      "method": "Web-accessible ETA-hosted PDF text extraction plus targeted page-image inspection; original PDF binary not downloaded.",
       "reviewed_pdf_pages": [
         {
           "pdf_page_index_zero_based": 0,
@@ -120,14 +123,29 @@
           "pinpoint": "القانون المرافق، المواد 4-6"
         },
         {
+          "pdf_page_index_zero_based": 33,
+          "printed_page_label": "35",
+          "pinpoint": "القانون المرافق، المادة 66"
+        },
+        {
           "pdf_page_index_zero_based": 41,
           "printed_page_label": "43",
           "pinpoint": "القانون المرافق، المادتان 89 و90"
         },
         {
+          "pdf_page_index_zero_based": 46,
+          "printed_page_label": "48",
+          "pinpoint": "القانون المرافق، المادة 103"
+        },
+        {
           "pdf_page_index_zero_based": 50,
           "printed_page_label": "52",
           "pinpoint": "القانون المرافق، المادتان 117 و121; القانون المرافق، المواد 117 و120 و121; القانون المرافق، المواد 117-121"
+        },
+        {
+          "pdf_page_index_zero_based": 51,
+          "printed_page_label": "53",
+          "pinpoint": "القانون المرافق، المادتان 120 و121; القانون المرافق، المواد 120 و122"
         },
         {
           "pdf_page_index_zero_based": 52,
@@ -140,29 +158,14 @@
           "pinpoint": "القانون المرافق، المادة 124; القانون المرافق، المادة 129"
         },
         {
-          "pdf_page_index_zero_based": 66,
-          "printed_page_label": "68",
-          "pinpoint": "القانون المرافق، المادة 165"
+          "pdf_page_index_zero_based": 55,
+          "printed_page_label": "57",
+          "pinpoint": "القانون المرافق، المادة 134"
         },
         {
-          "pdf_page_index_zero_based": 67,
-          "printed_page_label": "69",
-          "pinpoint": "القانون المرافق، المادة 165; القانون المرافق، المادتان 164 و165"
-        },
-        {
-          "pdf_page_index_zero_based": 68,
-          "printed_page_label": "70",
-          "pinpoint": "القانون المرافق، المادة 165; القانون المرافق، المادتان 165 و166"
-        },
-        {
-          "pdf_page_index_zero_based": 71,
-          "printed_page_label": "73",
-          "pinpoint": "القانون المرافق، المادة 177"
-        },
-        {
-          "pdf_page_index_zero_based": 72,
-          "printed_page_label": "74",
-          "pinpoint": "القانون المرافق، المادة 177"
+          "pdf_page_index_zero_based": 56,
+          "printed_page_label": "58",
+          "pinpoint": "القانون المرافق، المادة 134 — استكمال"
         },
         {
           "pdf_page_index_zero_based": 59,
@@ -185,9 +188,19 @@
           "pinpoint": "القانون المرافق، المادة 148"
         },
         {
-          "pdf_page_index_zero_based": 51,
-          "printed_page_label": "53",
-          "pinpoint": "القانون المرافق، المادتان 120 و121; القانون المرافق، المواد 120 و122"
+          "pdf_page_index_zero_based": 66,
+          "printed_page_label": "68",
+          "pinpoint": "القانون المرافق، المادة 165"
+        },
+        {
+          "pdf_page_index_zero_based": 67,
+          "printed_page_label": "69",
+          "pinpoint": "القانون المرافق، المادة 165; القانون المرافق، المادتان 164 و165"
+        },
+        {
+          "pdf_page_index_zero_based": 68,
+          "printed_page_label": "70",
+          "pinpoint": "القانون المرافق، المادة 165; القانون المرافق، المادتان 165 و166"
         },
         {
           "pdf_page_index_zero_based": 69,
@@ -198,6 +211,21 @@
           "pdf_page_index_zero_based": 70,
           "printed_page_label": "72",
           "pinpoint": "القانون المرافق، المادتان 171-173"
+        },
+        {
+          "pdf_page_index_zero_based": 71,
+          "printed_page_label": "73",
+          "pinpoint": "القانون المرافق، المادة 177"
+        },
+        {
+          "pdf_page_index_zero_based": 72,
+          "printed_page_label": "74",
+          "pinpoint": "القانون المرافق، المادة 177"
+        },
+        {
+          "pdf_page_index_zero_based": 104,
+          "printed_page_label": "106",
+          "pinpoint": "القانون المرافق، المادة 278"
         }
       ],
       "original_pdf_downloaded": false,
@@ -205,6 +233,7 @@
       "full_visual_review": false,
       "full_article_by_article_comparison": false,
       "note": "Targeted extracted text supports the listed pinpoints. Do not imply that all 311 candidate rows were checked against the Gazette."
-    }
+    },
+    "six_article_comparison_report": "data/candidates/labour_law_14_2025/six_article_candidate_comparison_2026-11-02.md"
   }
 }
