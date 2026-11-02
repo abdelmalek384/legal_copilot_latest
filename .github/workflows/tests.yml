@@ -226,6 +226,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_mfa_primitives.py
       - name: Test MFA enrollment, login, recovery, and enforcement
         run: PYTHONPATH=. python tests/test_mfa_account_security.py
+      - name: Test per-firm MFA policy and setup health
+        run: PYTHONPATH=. python tests/test_firm_security_policy_setup_health.py
       - name: Test two-admin MFA break-glass recovery
         run: PYTHONPATH=. python tests/test_mfa_break_glass_cli.py
       - name: Test invitation and account recovery lifecycle
