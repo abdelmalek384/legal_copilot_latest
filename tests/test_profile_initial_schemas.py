@@ -92,7 +92,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
             "cases", "members", "tasks", "events", "notes", "deadlines", "fees",
             "sessions", "docs", "document_extraction_reviews", "research_conversations",
             "research_messages", "case_deletion_audit", "security_audit_events",
-            "tenant_database_binding",
+            "tenant_database_binding", "product_feedback", "product_feedback_events",
         }
         corpus_owned = {
             "legal_sources", "legal_documents", "legal_document_versions",

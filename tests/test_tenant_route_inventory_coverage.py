@@ -6,6 +6,10 @@ ROOT = Path(__file__).resolve().parents[1]
 import app  # noqa: E402
 
 TEST_COVERED_ROUTES = {
+    "POST /feedback": "tests/test_product_feedback_routes.py",
+    "GET /feedback/mine": "tests/test_product_feedback_routes.py",
+    "GET /admin/feedback": "tests/test_product_feedback_routes.py",
+    "POST /admin/feedback/{feedback_id}/review": "tests/test_product_feedback_routes.py",
     "GET /finance/invoices/overview": "tests/test_invoice_payment_routes.py",
     "POST /invoices/{invoice_id}/payments": "tests/test_invoice_payment_routes.py",
     "POST /invoices/{invoice_id}/void": "tests/test_invoice_payment_routes.py",

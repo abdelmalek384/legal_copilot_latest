@@ -2455,6 +2455,18 @@ class AnswerCorrectionReviewIn(BaseModel):
     review_note: str = Field("", max_length=1000)
 
 
+class ProductFeedbackCreateIn(BaseModel):
+    category: str = Field(pattern=r"^(bug|idea|usability|other)$")
+    title: str = Field(min_length=3, max_length=160)
+    message: str = Field(min_length=10, max_length=4000)
+    page_path: str = Field("", max_length=300)
+
+
+class ProductFeedbackReviewIn(BaseModel):
+    status: str = Field(pattern=r"^(acknowledged|planned|declined)$")
+    response: str = Field("", max_length=2000)
+
+
 class FeeIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); amount: float = Field(ge=0, le=1_000_000_000_000); paid: float = Field(ge=0, le=1_000_000_000_000)
     due: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
@@ -5832,6 +5844,73 @@ def review_answer_correction(suggestion_id: int, b: AnswerCorrectionReviewIn, u:
         "INSERT INTO answer_correction_events(suggestion_id,actor_user_id,event_type,detail_json) "
         "VALUES(?,?,?,?)",
         (suggestion_id, u["id"], b.status, json.dumps({"review_note": b.review_note.strip()}, ensure_ascii=False)),
+    )
+    c.commit()
+    return {"ok": True, "status": b.status}
+
+
+@app.post("/feedback")
+@rollback_tenant_transaction_on_error
+def submit_product_feedback(b: ProductFeedbackCreateIn, u: dict = Depends(user)):
+    c = conn()
+    title, message, page_path = b.title.strip(), b.message.strip(), b.page_path.strip()
+    if len(title) < 3 or len(message) < 10:
+        raise HTTPException(422, "feedback title and message are required")
+    cursor = c.execute(
+        "INSERT INTO product_feedback(category,title,message,page_path,created_by) VALUES(?,?,?,?,?)",
+        (b.category, title, message, page_path, u["id"]),
+    )
+    feedback_id = int(cursor.lastrowid)
+    c.execute(
+        "INSERT INTO product_feedback_events(feedback_id,actor_user_id,event_type,detail_json) "
+        "VALUES(?,?,'submitted',?)",
+        (feedback_id, u["id"], json.dumps({"category": b.category}, sort_keys=True)),
+    )
+    c.commit()
+    return {"id": feedback_id, "status": "pending", "privacy": "firm_private", "training_use": "none"}
+
+
+@app.get("/feedback/mine")
+def list_my_product_feedback(u: dict = Depends(user)):
+    return [dict(row) for row in conn().execute(
+        "SELECT id,category,title,message,page_path,status,response,created_at,reviewed_at "
+        "FROM product_feedback WHERE created_by=? ORDER BY created_at DESC,id DESC",
+        (u["id"],),
+    ).fetchall()]
+
+
+@app.get("/admin/feedback")
+def list_firm_product_feedback(u: dict = Depends(user)):
+    require_admin(u)
+    return [dict(row) for row in conn().execute(
+        "SELECT id,category,title,message,page_path,status,created_by,created_at,"
+        "reviewed_by,reviewed_at,response FROM product_feedback "
+        "ORDER BY CASE status WHEN 'pending' THEN 0 ELSE 1 END,created_at DESC,id DESC"
+    ).fetchall()]
+
+
+@app.post("/admin/feedback/{feedback_id}/review")
+@rollback_tenant_transaction_on_error
+def review_product_feedback(feedback_id: int, b: ProductFeedbackReviewIn, u: dict = Depends(user)):
+    require_admin(u)
+    c = conn()
+    row = c.execute(
+        "SELECT status FROM product_feedback WHERE id=?", (feedback_id,)
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "feedback not found")
+    if row["status"] != "pending":
+        raise HTTPException(409, "feedback has already been reviewed")
+    response = b.response.strip()
+    c.execute(
+        "UPDATE product_feedback SET status=?,reviewed_by=?,reviewed_at=datetime('now'),response=? "
+        "WHERE id=? AND status='pending'",
+        (b.status, u["id"], response, feedback_id),
+    )
+    c.execute(
+        "INSERT INTO product_feedback_events(feedback_id,actor_user_id,event_type,detail_json) "
+        "VALUES(?,?,?,?)",
+        (feedback_id, u["id"], b.status, json.dumps({"response": response}, ensure_ascii=False)),
     )
     c.commit()
     return {"ok": True, "status": b.status}
