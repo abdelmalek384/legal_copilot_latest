@@ -140,6 +140,27 @@ class ClaimSupportTests(unittest.TestCase):
             hits, tokens, norm, _mask_markdown_code
         ))
 
+    def test_must_not_to_must_change_is_blocked(self):
+        hits = [{"text": "The employer must not deduct wages."}]
+        self.assertTrue(has_unsupported_claims(
+            "The employer must deduct wages [1].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
+
+    def test_must_to_must_not_is_blocked(self):
+        hits = [{"text": "The employer must deduct wages."}]
+        self.assertTrue(has_unsupported_claims(
+            "The employer must not deduct wages [1].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
+
+    def test_prohibition_paraphrase_is_not_rejected(self):
+        hits = [{"text": "The employer must not deduct wages."}]
+        self.assertFalse(has_unsupported_claims(
+            "The employer is prohibited from deducting wages [1].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
+
     def test_modality_comparison_does_not_mix_english_and_arabic(self):
         self.assertFalse(_has_modal_mismatch(
             "The employer must provide notice.",
