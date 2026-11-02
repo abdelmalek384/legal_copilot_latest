@@ -2751,6 +2751,58 @@ def _require_firm_seat(control, firm_id: int, exclude_invitation_id: int | None 
         raise HTTPException(409, "firm seat limit reached for the selected plan")
     return active, pending, limit
 
+_FIRM_USAGE_EVENT_TYPES = frozenset({
+    "research_query", "document_upload", "ocr_processing", "draft_generation",
+})
+
+
+def _record_firm_usage(control, firm_id: int, user_id: int, event_type: str, units: int = 1):
+    """Persist a minimal usage event; never accept query text, matter IDs or file contents."""
+    if event_type not in _FIRM_USAGE_EVENT_TYPES:
+        raise ValueError("unsupported firm usage event")
+    if isinstance(units, bool) or not isinstance(units, int) or not 1 <= units <= 1_000_000:
+        raise ValueError("usage units must be a positive bounded integer")
+    control.execute(
+        "INSERT INTO firm_usage_events(firm_id,user_id,event_type,units,occurred_at) VALUES(?,?,?,?,?)",
+        (int(firm_id), int(user_id), event_type, units, int(time.time())),
+    )
+    control.commit()
+
+
+def _meter_firm_usage(u: dict, event_type: str, units: int = 1):
+    """Usage telemetry must not turn a successful legal workflow into a failed request."""
+    try:
+        _record_firm_usage(control_conn(), u["firm_id"], u["id"], event_type, units)
+    except Exception:
+        logger.exception("firm usage event could not be recorded")
+
+
+def _firm_usage_summary(control, firm_id: int, now: int):
+    month_start = int(datetime.fromtimestamp(now, timezone.utc).replace(
+        day=1, hour=0, minute=0, second=0, microsecond=0
+    ).timestamp())
+
+    def grouped(start_at):
+        rows = control.execute(
+            "SELECT event_type,COUNT(*) AS events,SUM(units) AS units "
+            "FROM firm_usage_events WHERE firm_id=? AND occurred_at>=? "
+            "GROUP BY event_type ORDER BY event_type",
+            (firm_id, start_at),
+        ).fetchall()
+        return {
+            row["event_type"]: {"events": int(row["events"]), "units": int(row["units"] or 0)}
+            for row in rows
+        }
+
+    return {
+        "month_start": month_start,
+        "as_of": now,
+        "month_to_date": grouped(month_start),
+        "last_30_days": grouped(now - 30 * 86400),
+        "limits_enforced": False,
+    }
+
+
 def _subscription_audit(control, firm_id: int, actor_user_id: int | None, event_type: str, detail: dict):
     control.execute(
         "INSERT INTO subscription_audit_events(firm_id,actor_user_id,event_type,detail_json,created_at) "
@@ -4332,6 +4384,7 @@ def get_firm_billing(u: dict = Depends(user)):
         "trial_days": SUBSCRIPTION_TRIAL_DAYS,
         "subscription": dict(subscription) if subscription else None,
         "seat_usage": {"active": active, "pending_invitations": pending, "limit": limit},
+        "usage": _firm_usage_summary(control, u["firm_id"], now),
         "payments": payments,
     }
 
@@ -5333,9 +5386,11 @@ def case_draft_skeleton(
     ).fetchone()
     if record is None:
         raise HTTPException(404, "case not found")
+    content = build_arabic_skeleton(dict(record), document_type)
+    _meter_firm_usage(u, "draft_generation")
     return {
         "document_type": document_type,
-        "content": build_arabic_skeleton(dict(record), document_type),
+        "content": content,
         "draft_only": True,
         "lawyer_review_required": True,
         "message": "هيكل أولي فقط؛ يجب استكمال الوقائع والأسانيد والطلبات ومراجعته بواسطة محامٍ.",
@@ -6260,6 +6315,7 @@ def doc(cid: int, b: DocIn, u: dict = Depends(user)):
     c = conn(); need(c, u, cid)
     chunks, document_id = save_doc(c, u, cid, b.name, b.text)
     row = c.execute("SELECT sha256 FROM docs WHERE id=?", (document_id,)).fetchone()
+    _meter_firm_usage(u, "document_upload")
     return {"document_id": document_id, "sha256": row["sha256"], "chunks": chunks}
 
 
@@ -6336,6 +6392,9 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
             if updated.rowcount != 1:
                 raise RuntimeError("original file metadata state changed during upload")
             c.commit()
+        _meter_firm_usage(u, "document_upload")
+        if ocr_used:
+            _meter_firm_usage(u, "ocr_processing")
         return {"document_id": document_id, "sha256": digest, "chunks": chunks, "ocr_used": ocr_used,
                 "text_status": extraction_status, "ocr_warning": ocr_warning,
                 "original_file_retained": staged is not None}
@@ -6894,7 +6953,9 @@ def do_search(b: Q, u: dict = Depends(user)):
     c = conn(); need(c, u, b.case_id)
     try:
         need(c, u, b.case_id)
-        return search(c, b.q, b.case_id, firm_id=u["firm_id"], as_of=b.as_of, scope=b.scope)
+        result = search(c, b.q, b.case_id, firm_id=u["firm_id"], as_of=b.as_of, scope=b.scope)
+        _meter_firm_usage(u, "research_query")
+        return result
     except ValueError as e: raise HTTPException(422, str(e))
 
 
@@ -6903,7 +6964,9 @@ def do_ask(b: Q, u: dict = Depends(user)):
     c = conn(); need(c, u, b.case_id)
     try:
         need(c, u, b.case_id)
-        return ask(c, b.q, b.case_id, firm_id=u["firm_id"], as_of=b.as_of, scope=b.scope)
+        result = ask(c, b.q, b.case_id, firm_id=u["firm_id"], as_of=b.as_of, scope=b.scope)
+        _meter_firm_usage(u, "research_query")
+        return result
     except ValueError as e: raise HTTPException(422, str(e))
 
 def _owned_research_conversation(c, u, conversation_id):
@@ -7167,5 +7230,6 @@ def send_research_message(conversation_id: int, b: ResearchMessageIn, u: dict = 
     c.execute("UPDATE research_conversations SET title=?,updated_at=datetime('now') WHERE id=?",
               (title, conversation_id))
     c.commit()
+    _meter_firm_usage(u, "research_query")
     return {"question": question, "answer": answer, **result, "answer_id": answer_id}
 

@@ -46,6 +46,11 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         self.assertIn("firm_memberships", names(control))
         self.assertIn("user_platform_roles", names(control))
         self.assertIn("platform_security_events", names(control))
+        self.assertIn("firm_usage_events", names(control))
+        usage_triggers = {row[0] for row in control.execute(
+            "SELECT name FROM sqlite_master WHERE type='trigger' AND name LIKE 'firm_usage_events_%'"
+        )}
+        self.assertTrue({"firm_usage_events_no_update", "firm_usage_events_no_delete"} <= usage_triggers)
         event_triggers = {r[0] for r in control.execute("SELECT name FROM sqlite_master WHERE type='trigger'")}
         self.assertTrue({"platform_security_events_no_update", "platform_security_events_no_delete"} <= event_triggers)
         self.assertNotIn("users", names(firm))
@@ -556,7 +561,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
             db.commit()
 
             applied = apply_profile_migrations(db, "control_plane", ROOT)
-            self.assertEqual(applied, [6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
+            self.assertEqual(applied, [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
             previous = db.execute(
                 "SELECT event_type,detail_json FROM platform_security_events"
             ).fetchone()
