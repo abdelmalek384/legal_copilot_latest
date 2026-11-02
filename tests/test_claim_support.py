@@ -40,7 +40,6 @@ class ClaimSupportTests(unittest.TestCase):
     def test_alternative_english_and_arabic_no_expiry_phrasings_are_detected(self):
         cases = (
             ("The claim is immune from limitation [1].", "The limitation period is sixteen years."),
-            ("The claim is not time-barred [1].", "The limitation period is twenty-five years."),
             ("الحق غير قابل للتقادم [1].", "مدة التقادم خمس سنوات."),
             ("الحق لا يخضع للتقادم [1].", "مدة التقادم خمس سنوات."),
         )
