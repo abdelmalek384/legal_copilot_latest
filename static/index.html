@@ -779,7 +779,7 @@ async function law(){
 }
 async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=await api('/users'),again=()=>view(id);
  const lead=ME.role==='admin'||c.members.some(m=>m.role==='lead'&&m.user_id===ME.id),dn=c.tasks.filter(t=>t.status==='done').length,tot=c.tasks.length;
- const tabs=[['sum',uiText('الملخص','Overview')],['brief',uiText('ملخص ذكي','AI brief')],['tasks',uiText('المهام','Tasks')],['sess',uiText('الجلسات','Hearings')],['dead',uiText('المواعيد القانونية','Legal deadlines')],['notes',uiText('الملاحظات','Notes')],['fees',uiText('الأتعاب','Fees')],['docs',uiText('المستندات','Documents')],['team',uiText('الفريق','Team')],['ask',uiText('اسأل','Ask')],['log',uiText('السجل','Activity log')]];let body;
+ const tabs=[['sum',uiText('الملخص','Overview')],['brief',uiText('ملخص ذكي','AI brief')],['tasks',uiText('المهام','Tasks')],['sess',uiText('الجلسات','Hearings')],['dead',uiText('المواعيد القانونية','Legal deadlines')],['notes',uiText('الملاحظات','Notes')],['fees',uiText('الأتعاب','Fees')],['templates',uiText('قوالب المستندات','Templates')],['docs',uiText('المستندات','Documents')],['team',uiText('الفريق','Team')],['ask',uiText('اسأل','Ask')],['log',uiText('السجل','Activity log')]];let body;
  if(TAB==='sum'){
   const fields=[['case_number',uiText('رقم القضية','Case number')],['case_year',uiText('السنة','Year')],['court',uiText('المحكمة','Court')],['circuit',uiText('الدائرة','Circuit')],['opposing_party',uiText('الخصم','Opposing party')],['stage',uiText('المرحلة','Stage')]];
   const inputs={};fields.forEach(([k,label])=>inputs[k]=h('input',{value:c[k]||'',placeholder:label,style:'width:100%'}));
@@ -892,6 +892,16 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
   const money=n=>new Intl.NumberFormat(LANG==='ar'?'ar-EG':'en-US',{maximumFractionDigits:2}).format(Number(n||0))+(LANG==='ar'?' ج.م':' EGP');
   body=h('div',{className:'card'},c.fees.length?c.fees.map(f=>h('div',{className:'row'},h('div',{},h('b',{textContent:f.title}),h('div',{className:'mut',textContent:(f.note||'')+(f.due?' · '+fd(f.due):'')})),h('span',{textContent:uiText('الإجمالي ','Total ')+money(f.amount)+' · '+uiText('المدفوع ','Paid ')+money(f.paid)+' · '+uiText('المتبقي ','Remaining ')+money(Number(f.amount)-Number(f.paid))}))):empty('لا توجد أتعاب مسجلة.'),
    h('div',{className:'grid'},title,amount,paid,due,note),h('div',{className:'row'},btn('إضافة أتعاب',async()=>{if(!title.value.trim()||amount.value===''||paid.value===''){toast(uiText('أدخل الوصف والإجمالي والمدفوع','Enter the description, total, and paid amount'));return}await api('/cases/'+id+'/fees','POST',{title:title.value,amount:Number(amount.value),paid:Number(paid.value),due:due.value||null,note:note.value});again()})))}
+ if(TAB==='templates'){
+  const type=h('select',{},new Option(uiText('مذكرة قانونية','Legal memo'),'memo'),new Option(uiText('هيكل صحيفة / مذكرة بدفاع','Pleading skeleton'),'pleading'));
+  const output=h('textarea',{rows:18,readOnly:true,dir:'rtl',placeholder:uiText('اختر نوع المستند ثم أنشئ الهيكل.','Choose a document type and generate the skeleton.')});
+  const warning=pill(uiText('مسودة — يجب مراجعتها بواسطة محامٍ','Draft — lawyer must review'),'soon');
+  const generate=btn(uiText('إنشاء الهيكل من بيانات القضية','Generate from case data'),async()=>{generate.disabled=true;try{const data=await api('/cases/'+id+'/draft-skeleton?document_type='+encodeURIComponent(type.value));output.value=data.skeleton_text;warning.textContent=uiText('مسودة — يجب مراجعتها بواسطة محامٍ','Draft — lawyer must review');toast(uiText('تم إنشاء الهيكل. لا يحتوي على نص قانوني.','Skeleton generated. It contains no legal text.'))}catch(e){toast(String(e.message||e))}finally{generate.disabled=false}},'g');
+  const copy=btn(uiText('نسخ الهيكل','Copy skeleton'),async()=>{if(!output.value)return;try{await navigator.clipboard.writeText(output.value);toast(uiText('تم النسخ','Copied'))}catch(_){output.focus();output.select();toast(uiText('حدد النص وانسخه يدوياً','Select and copy the text manually'))}},'g');
+  body=h('section',{className:'card'},h('h3',{textContent:uiText('قوالب عربية بهيكل فقط','Arabic skeleton templates')}),
+   h('p',{className:'mut',textContent:uiText('تُملأ بيانات الأطراف والمحكمة ورقم القضية من ملف القضية. لا يتضمن القالب أي صياغة قانونية أو رأي قانوني.','Party, court and case-number fields are filled from the matter. Templates contain headings only, no legal drafting or legal opinion.')}),
+   warning,h('div',{className:'row'},type,generate,copy),output);
+ }
  if(TAB==='docs'){
   const f=h('input',{type:'file',accept:'.pdf,.docx'});
   const panel=h('div',{});
