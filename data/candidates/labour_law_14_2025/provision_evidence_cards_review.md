@@ -215,7 +215,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Primary-source leads:**
 
 - [EG-AMIRI-PRESS-LABOUR-14-2025](https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D) — official_publisher_text_page; النص الرسمي القابل للبحث؛ تم فحص استخراج النص لهذه المادة، لا صورة الصفحة (checked 2026-10-28).
-- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 54؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
+- [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government_hosted_official_gazette_pdf; Direct browser PDF page-image check confirms Article 124 on printed Gazette page 54 (PDF index 52); original PDF bytes were not downloaded or hashed. (checked 2026-11-02).
 - [EG-ETA-GAZETTE-2025-18-LABOUR-PDF](https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf) — government-hosted_official_gazette_pdf_text_extraction; استخراج نص الصفحة المطبوعة 54؛ الملف الأصلي لم يُنزّل أو يُفحص بصرياً (checked 2026-10-28).
 
 **Cross-checks:**
@@ -10100,7 +10100,7 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Limitations:**
 
 - تقرير الامتثال دون السجلات والإخطارات وظروف السكن
-- تم التحقق بصرياً من موضع المادة في صورة الصفحة المطبوعة 35 بعارض PDF بتاريخ 2026-11-02؛ لم تُنزّل بايتات الملف الأصلي ولم يُحسب SHA-256
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
@@ -11000,10 +11000,11 @@ Primary-source evidence below is based on searchable/extracted text returned for
 **Limitations:**
 
 - الطعن أو الاعتماد على قرار دون محضر الاجتماع والنصاب والتصويت
-- تم التحقق بصرياً من موضع المادة ونص «كل ستة أشهر على الأقل» في صورة الصفحة المطبوعة 48 بعارض PDF بتاريخ 2026-11-02؛ نص SIS المستخرج وإحدى نتائج فهرسة ETA يضيفان «سنة»؛ صورة SIS لم تُراجع
+- موضع الصفحة مستنتج من تسلسل النص المستخرج وليس فحصاً بصرياً مستقلاً
 - القرارات التنفيذية والتعديلات الحالية لم تُراجع بصورة شاملة
 - لا توجد مراجعة محامٍ مصري مسجلة
 - لا توجد مراجعة محامٍ مسجلة لهذا الملخص أو لحداثة النص؛ يلزم اعتماد محامٍ مصري قبل أي استخدام قانوني.
+- The ETA-hosted page image visibly reads «كل ستة أشهر على الأقل» without «سنة». One indexed ETA text extraction and the SIS text layer include an extra «سنة»; the SIS page image has not been checked, so the extraction discrepancy remains documented.
 
 **Review state:** `provisional_text_extract_crosschecked`.
 **Usable for:** source-linked research lead and manual verification.
