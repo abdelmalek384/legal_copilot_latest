@@ -380,15 +380,19 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None
     for question, _run in reviewed:
         area = question["practice_area"].strip()
         counts = practice_area_counts.setdefault(area, {"reviewed_cases": 0, "answerable_cases": 0,
-                                                          "unanswerable_cases": 0})
+                                                          "unanswerable_cases": 0, "reviewer_ids": set()})
         counts["reviewed_cases"] += 1
         counts["answerable_cases" if question["answerable"] else "unanswerable_cases"] += 1
+        counts["reviewer_ids"].add(question["reviewer_id"])
 
     return {
         "reviewed_cases_scored": len(reviewed),
         "approved_reviewer_registry_entries": len(approved_reviewers),
         "reviewer_qualification_note": "Registry approval is an operator attestation; the evaluator does not independently verify identity or professional licensure.",
-        "practice_area_counts": {area: practice_area_counts[area] for area in sorted(practice_area_counts)},
+        "practice_area_counts": {
+            area: {**counts, "reviewer_count": len(counts.pop("reviewer_ids"))}
+            for area, counts in sorted(practice_area_counts.items())
+        },
         "excluded_cases": excluded,
         "invalid_question_records": invalid_questions,
         "invalid_run_records": invalid_runs,
@@ -445,7 +449,7 @@ def _retrieval_release_gate(report, args):
                    "min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
                    "min_answerable_cases", "min_unanswerable_cases",
                    "min_answerable_cases_per_practice_area", "min_unanswerable_cases_per_practice_area",
-                   "min_expected_pin_cites",
+                   "min_reviewers_per_practice_area", "min_expected_pin_cites",
                    "max_excluded_cases", "max_invalid_records", "max_unsafe_unverified_source_uses")))
     checks = []
     def add(metric, actual, operator, threshold):
@@ -474,6 +478,10 @@ def _retrieval_release_gate(report, args):
         for area, counts in report["practice_area_counts"].items():
             add("unanswerable_cases_per_practice_area:" + area, counts["unanswerable_cases"], ">=",
                 args.min_unanswerable_cases_per_practice_area)
+    if args.min_reviewers_per_practice_area is not None:
+        for area, counts in report["practice_area_counts"].items():
+            add("reviewers_per_practice_area:" + area, counts["reviewer_count"], ">=",
+                args.min_reviewers_per_practice_area)
     if args.min_expected_pin_cites is not None:
         add("expected_pin_cite_count", report["expected_pin_cite_count"], ">=",
             args.min_expected_pin_cites)
@@ -515,6 +523,8 @@ def main(argv=None):
     parser.add_argument("--min-unanswerable-cases", type=int)
     parser.add_argument("--min-answerable-cases-per-practice-area", type=int)
     parser.add_argument("--min-unanswerable-cases-per-practice-area", type=int)
+    parser.add_argument("--min-reviewers-per-practice-area", type=int,
+                        help="Minimum distinct approved reviewer IDs represented in every practice area")
     parser.add_argument("--min-expected-pin-cites", type=int)
     parser.add_argument("--min-recall-at-5", type=float)
     parser.add_argument("--min-mrr-at-5", type=float)
@@ -533,7 +543,7 @@ def main(argv=None):
     for name in ("min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
                  "min_answerable_cases", "min_unanswerable_cases",
                  "min_answerable_cases_per_practice_area", "min_unanswerable_cases_per_practice_area",
-                 "min_expected_pin_cites",
+                 "min_reviewers_per_practice_area", "min_expected_pin_cites",
                  "max_excluded_cases", "max_invalid_records", "max_unsafe_unverified_source_uses"):
         value = getattr(args, name)
         if value is not None and value < 0:
@@ -559,7 +569,8 @@ def main(argv=None):
                         "min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
                         "min_answerable_cases", "min_unanswerable_cases",
                         "min_answerable_cases_per_practice_area", "min_unanswerable_cases_per_practice_area",
-                        "min_expected_pin_cites", "max_excluded_cases", "max_invalid_records",
+                        "min_reviewers_per_practice_area", "min_expected_pin_cites",
+                        "max_excluded_cases", "max_invalid_records",
                         "max_unsafe_unverified_source_uses")))
     if gate_enabled and args.min_reviewed_cases is None:
         parser.error("retrieval release gates require --min-reviewed-cases to prevent empty-sample passes")
@@ -569,6 +580,9 @@ def main(argv=None):
          or args.min_unanswerable_cases_per_practice_area is not None)
             and (args.min_practice_areas is None or args.min_cases_per_practice_area is None)):
         parser.error("per-practice-area cohort thresholds require --min-practice-areas and --min-cases-per-practice-area")
+    if args.min_reviewers_per_practice_area is not None and (
+            args.min_practice_areas is None or args.min_cases_per_practice_area is None):
+        parser.error("--min-reviewers-per-practice-area requires --min-practice-areas and --min-cases-per-practice-area")
     if any(value is not None for value in quality_thresholds):
         if args.min_reviewed_cases is None:
             parser.error("quality thresholds require --min-reviewed-cases")
