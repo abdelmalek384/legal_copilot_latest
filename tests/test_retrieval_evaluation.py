@@ -448,6 +448,20 @@ class RetrievalEvaluationTests(unittest.TestCase):
             self.assertEqual(report["practice_area_counts"]["civil_law"]["answerable_cases"], 1)
             self.assertEqual(report["practice_area_counts"]["civil_law"]["unanswerable_cases"], 1)
 
+    def test_per_practice_area_cohort_thresholds_require_area_coverage_gates(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            questions_path.write_text("", encoding="utf-8")
+            runs_path.write_text("", encoding="utf-8")
+            with self.assertRaises(SystemExit) as raised:
+                run_main([
+                    "--questions", str(questions_path), "--runs", str(runs_path),
+                    "--min-reviewed-cases", "1",
+                    "--min-answerable-cases-per-practice-area", "1",
+                ])
+            self.assertEqual(raised.exception.code, 2)
+
     def test_release_gate_requires_answerable_and_unanswerable_cases_in_each_practice_area(self):
         with tempfile.TemporaryDirectory() as td:
             questions_path = Path(td) / "questions.jsonl"
