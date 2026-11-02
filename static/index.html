@@ -764,6 +764,113 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
   .research-layout > .research-main { grid-row: 1; }
   .research-layout > .research-list { grid-row: 2; }
 }
+
+/* Final interaction and data-density pass: consistent controls across every workspace. */
+:root {
+  --ui-focus-ring: #2457c5;
+  --ui-control-border: #cbd5e1;
+  --ui-control-hover: #9aabc2;
+}
+:where(input,select,textarea) {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  color: var(--ui-ink);
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-control-border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  line-height: 1.5;
+}
+:where(input,select,textarea):hover:not(:disabled) { border-color: var(--ui-control-hover); }
+:where(input,select,textarea):focus-visible,
+:where(button,a,[role="button"],[tabindex]):focus-visible {
+  outline: 3px solid color-mix(in srgb,var(--ui-focus-ring) 32%,transparent);
+  outline-offset: 2px;
+}
+:where(button) {
+  min-height: 44px;
+  border-radius: 10px;
+  transition: background-color .16s ease,border-color .16s ease,box-shadow .16s ease,transform .16s ease;
+}
+:where(button):hover:not(:disabled) { filter: brightness(.97); }
+:where(button):active:not(:disabled) { transform: translateY(1px); }
+:where(button):disabled,
+:where(input,select,textarea):disabled {
+  opacity: .58;
+  cursor: not-allowed;
+}
+:where(a) { text-underline-offset: 3px; }
+:where(table) {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+}
+:where(th,td) {
+  padding: 11px 12px;
+  border-bottom: 1px solid var(--ui-border);
+  text-align: start;
+  vertical-align: top;
+}
+:where(th) {
+  color: #42536c;
+  background: #f7f9fc;
+  font-weight: 750;
+  white-space: nowrap;
+}
+:where(tr:last-child td) { border-bottom: 0; }
+:where(pre,code) { overflow-wrap: anywhere; }
+:where(.card,.modal,.research-discovery-result,.research-message) {
+  overflow-wrap: anywhere;
+}
+:where(.modal-backdrop) { overscroll-behavior: contain; }
+:where(.modal) {
+  border: 1px solid var(--ui-border);
+  border-radius: 18px;
+  box-shadow: 0 24px 70px rgba(15,30,55,.24);
+  background: var(--ui-surface);
+  padding: clamp(16px,3vw,26px);
+}
+:where(.research-composer) {
+  position: sticky;
+  bottom: 0;
+  z-index: 3;
+  padding: 12px;
+  margin-top: 12px;
+  border: 1px solid var(--ui-border);
+  border-radius: 14px;
+  background: rgba(255,255,255,.97);
+  box-shadow: 0 -6px 24px rgba(20,40,75,.06);
+  backdrop-filter: blur(12px);
+}
+:where(.research-composer textarea) { min-height: 88px; }
+:where(.research-thread) { scroll-behavior: smooth; scrollbar-gutter: stable; }
+:where(.research-list,.research-thread) { overscroll-behavior: contain; }
+:where(.workspace-list-item,.row) { min-width: 0; }
+:where(.pill) { white-space: normal; }
+@media(max-width:800px) {
+  :where(table) { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  :where(.research-composer) { position: static; }
+  :where(.research-thread) { scroll-behavior: auto; }
+}
+@media(max-width:420px) {
+  :where(input,select,textarea) { font-size: 16px; }
+  :where(.modal) { border-radius: 14px; }
+  :where(th,td) { padding: 9px 10px; }
+}
+@media(forced-colors:active) {
+  :where(button,input,select,textarea,a):focus-visible { outline: 2px solid Highlight; }
+  :where(.card,.modal,.research-message,.research-discovery-result) { border: 1px solid CanvasText; }
+}
+@media(prefers-reduced-motion:reduce) {
+  :where(*),:where(*::before),:where(*::after) {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
 </style>
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <script>
