@@ -380,15 +380,134 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None
     for question, _run in reviewed:
         area = question["practice_area"].strip()
         counts = practice_area_counts.setdefault(area, {"reviewed_cases": 0, "answerable_cases": 0,
-                                                          "unanswerable_cases": 0})
+                                                          "unanswerable_cases": 0, "reviewer_ids": set()})
         counts["reviewed_cases"] += 1
         counts["answerable_cases" if question["answerable"] else "unanswerable_cases"] += 1
+        counts["reviewer_ids"].add(question["reviewer_id"])
+
+    practice_area_metric_totals = {}
+    for question, run in reviewed:
+        area = question["practice_area"].strip()
+        totals = practice_area_metric_totals.setdefault(area, {
+            "recall_at_5_total": 0.0,
+            "mrr_at_5_total": 0.0,
+            "citation_correct": 0,
+            "citation_count": 0,
+            "invalid_citation_index_count": 0,
+            "answerable_cases": 0,
+            "answerable_with_expected_citation": 0,
+            "unanswerable_cases": 0,
+            "abstention_correct": 0,
+            "pin_cite_correct": 0,
+            "pin_cite_total": 0,
+            "expected_pin_cite_correct": 0,
+            "expected_pin_cite_total": 0,
+        })
+        expected_sources = set(_expected_source_ids(question))
+        ranked_sources = _unique_ids(run["retrieved_source_ids"])
+        top_five = set(ranked_sources[:5])
+        totals["recall_at_5_total"] += len(expected_sources & top_five) / len(expected_sources)
+        first_relevant_rank = next(
+            (rank for rank, source_id in enumerate(ranked_sources, 1)
+             if source_id in expected_sources),
+            None,
+        )
+        if first_relevant_rank is not None and first_relevant_rank <= 5:
+            totals["mrr_at_5_total"] += 1.0 / first_relevant_rank
+
+        retrieved_sources = set(ranked_sources)
+        citations = run["citations"]
+        totals["citation_count"] += len(citations)
+        totals["invalid_citation_index_count"] += len(run.get("invalid_citation_indices", []))
+        expected_pin_cites = question.get("expected_pin_cites") or []
+        for citation in citations:
+            source_id = citation["source_id"].strip()
+            is_retrieved_expected = source_id in retrieved_sources and source_id in expected_sources
+            if is_retrieved_expected:
+                totals["citation_correct"] += 1
+            if expected_pin_cites:
+                totals["pin_cite_total"] += 1
+                if is_retrieved_expected and any(
+                    source_id == expected["source_id"]
+                    and citation.get("pin_cite") == expected["pin_cite"]
+                    for expected in expected_pin_cites
+                ):
+                    totals["pin_cite_correct"] += 1
+
+        expected_pairs = {
+            (item["source_id"], item["pin_cite"])
+            for item in expected_pin_cites
+        }
+        actual_pairs = {
+            (citation["source_id"].strip(), citation.get("pin_cite"))
+            for citation in citations
+            if citation["source_id"].strip() in retrieved_sources
+        }
+        totals["expected_pin_cite_total"] += len(expected_pairs)
+        totals["expected_pin_cite_correct"] += len(expected_pairs & actual_pairs)
+
+        expected_cited_sources = {
+            citation["source_id"].strip()
+            for citation in citations
+            if citation["source_id"].strip() in expected_sources
+            and citation["source_id"].strip() in retrieved_sources
+        }
+        if question["answerable"] is True:
+            totals["answerable_cases"] += 1
+            if expected_cited_sources:
+                totals["answerable_with_expected_citation"] += 1
+        else:
+            totals["unanswerable_cases"] += 1
+            if run["abstained"] is True and run["used_unverified_source"] is not True:
+                totals["abstention_correct"] += 1
+
+    practice_area_metrics = {}
+    for area, totals in sorted(practice_area_metric_totals.items()):
+        scored_cases = practice_area_counts[area]["reviewed_cases"]
+        citation_denominator = totals["citation_count"] + totals["invalid_citation_index_count"]
+        practice_area_metrics[area] = {
+            "recall_at_5": round(totals["recall_at_5_total"] / scored_cases, 4) if scored_cases else None,
+            "mrr_at_5": round(totals["mrr_at_5_total"] / scored_cases, 4) if scored_cases else None,
+            "citation_precision": (
+                round(totals["citation_correct"] / citation_denominator, 4)
+                if citation_denominator else None
+            ),
+            "citation_coverage": (
+                round(totals["answerable_with_expected_citation"] / totals["answerable_cases"], 4)
+                if totals["answerable_cases"] else None
+            ),
+            "abstention_compliance": (
+                round(totals["abstention_correct"] / totals["unanswerable_cases"], 4)
+                if totals["unanswerable_cases"] else None
+            ),
+            "pin_cite_accuracy": (
+                round(totals["pin_cite_correct"] / totals["pin_cite_total"], 4)
+                if totals["pin_cite_total"] else None
+            ),
+            "expected_pin_cite_recall": (
+                round(totals["expected_pin_cite_correct"] / totals["expected_pin_cite_total"], 4)
+                if totals["expected_pin_cite_total"] else None
+            ),
+            "expected_pin_cite_count": totals["expected_pin_cite_total"],
+            "answerable_cases": totals["answerable_cases"],
+            "unanswerable_cases": totals["unanswerable_cases"],
+            "citation_count": citation_denominator,
+        }
 
     return {
         "reviewed_cases_scored": len(reviewed),
         "approved_reviewer_registry_entries": len(approved_reviewers),
         "reviewer_qualification_note": "Registry approval is an operator attestation; the evaluator does not independently verify identity or professional licensure.",
-        "practice_area_counts": {area: practice_area_counts[area] for area in sorted(practice_area_counts)},
+        "practice_area_counts": {
+            area: {
+                "reviewed_cases": counts["reviewed_cases"],
+                "answerable_cases": counts["answerable_cases"],
+                "unanswerable_cases": counts["unanswerable_cases"],
+                "reviewer_count": len(counts["reviewer_ids"]),
+            }
+            for area, counts in sorted(practice_area_counts.items())
+        },
+        "practice_area_metrics": practice_area_metrics,
         "excluded_cases": excluded,
         "invalid_question_records": invalid_questions,
         "invalid_run_records": invalid_runs,
@@ -440,10 +559,23 @@ def _retrieval_release_gate(report, args):
         "expected_pin_cite_recall": args.min_expected_pin_cite_recall,
         "abstention_compliance": args.min_abstention_compliance,
     }
+    practice_area_thresholds = {
+        "recall_at_5": args.min_recall_at_5_per_practice_area,
+        "mrr_at_5": args.min_mrr_at_5_per_practice_area,
+        "citation_precision": args.min_citation_precision_per_practice_area,
+        "citation_coverage": args.min_citation_coverage_per_practice_area,
+        "abstention_compliance": args.min_abstention_compliance_per_practice_area,
+        "pin_cite_accuracy": args.min_pin_cite_accuracy_per_practice_area,
+        "expected_pin_cite_recall": args.min_expected_pin_cite_recall_per_practice_area,
+    }
     enabled = (any(value is not None for value in thresholds.values())
+               or any(value is not None for value in practice_area_thresholds.values())
                or any(getattr(args, name) is not None for name in (
                    "min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
-                   "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
+                   "min_answerable_cases", "min_unanswerable_cases",
+                   "min_answerable_cases_per_practice_area", "min_unanswerable_cases_per_practice_area",
+                   "min_reviewers_per_practice_area", "min_expected_pin_cites",
+                   "min_expected_pin_cites_per_practice_area",
                    "max_excluded_cases", "max_invalid_records", "max_unsafe_unverified_source_uses")))
     checks = []
     def add(metric, actual, operator, threshold):
@@ -464,6 +596,23 @@ def _retrieval_release_gate(report, args):
     if args.min_unanswerable_cases is not None:
         add("unanswerable_reviewed_cases", report["unanswerable_reviewed_cases"], ">=",
             args.min_unanswerable_cases)
+    if args.min_answerable_cases_per_practice_area is not None:
+        for area, counts in report["practice_area_counts"].items():
+            add("answerable_cases_per_practice_area:" + area, counts["answerable_cases"], ">=",
+                args.min_answerable_cases_per_practice_area)
+    if args.min_unanswerable_cases_per_practice_area is not None:
+        for area, counts in report["practice_area_counts"].items():
+            add("unanswerable_cases_per_practice_area:" + area, counts["unanswerable_cases"], ">=",
+                args.min_unanswerable_cases_per_practice_area)
+    if args.min_reviewers_per_practice_area is not None:
+        for area, counts in report["practice_area_counts"].items():
+            add("reviewers_per_practice_area:" + area, counts["reviewer_count"], ">=",
+                args.min_reviewers_per_practice_area)
+    if args.min_expected_pin_cites_per_practice_area is not None:
+        for area, area_metrics in report["practice_area_metrics"].items():
+            add("expected_pin_cites_per_practice_area:" + area,
+                area_metrics["expected_pin_cite_count"], ">=",
+                args.min_expected_pin_cites_per_practice_area)
     if args.min_expected_pin_cites is not None:
         add("expected_pin_cite_count", report["expected_pin_cite_count"], ">=",
             args.min_expected_pin_cites)
@@ -471,6 +620,10 @@ def _retrieval_release_gate(report, args):
         if threshold is not None:
             actual = report["metrics"].get(metric) if metric in {"recall_at_5", "mrr_at_5"} else report.get(metric)
             add(metric, actual, ">=", threshold)
+    for metric, threshold in practice_area_thresholds.items():
+        if threshold is not None:
+            for area, area_metrics in report["practice_area_metrics"].items():
+                add(metric + "_per_practice_area:" + area, area_metrics[metric], ">=", threshold)
     if args.max_excluded_cases is not None:
         add("excluded_cases", len(report["excluded_cases"]), "<=", args.max_excluded_cases)
     if args.max_invalid_records is not None:
@@ -503,6 +656,10 @@ def main(argv=None):
     parser.add_argument("--min-cases-per-practice-area", type=int)
     parser.add_argument("--min-answerable-cases", type=int)
     parser.add_argument("--min-unanswerable-cases", type=int)
+    parser.add_argument("--min-answerable-cases-per-practice-area", type=int)
+    parser.add_argument("--min-unanswerable-cases-per-practice-area", type=int)
+    parser.add_argument("--min-reviewers-per-practice-area", type=int,
+                        help="Minimum distinct approved reviewer IDs represented in every practice area")
     parser.add_argument("--min-expected-pin-cites", type=int)
     parser.add_argument("--min-recall-at-5", type=float)
     parser.add_argument("--min-mrr-at-5", type=float)
@@ -510,6 +667,14 @@ def main(argv=None):
     parser.add_argument("--min-citation-coverage", type=float)
     parser.add_argument("--min-expected-pin-cite-recall", type=float)
     parser.add_argument("--min-abstention-compliance", type=float)
+    parser.add_argument("--min-recall-at-5-per-practice-area", type=float)
+    parser.add_argument("--min-mrr-at-5-per-practice-area", type=float)
+    parser.add_argument("--min-citation-precision-per-practice-area", type=float)
+    parser.add_argument("--min-citation-coverage-per-practice-area", type=float)
+    parser.add_argument("--min-abstention-compliance-per-practice-area", type=float)
+    parser.add_argument("--min-pin-cite-accuracy-per-practice-area", type=float)
+    parser.add_argument("--min-expected-pin-cite-recall-per-practice-area", type=float)
+    parser.add_argument("--min-expected-pin-cites-per-practice-area", type=int)
     parser.add_argument("--max-excluded-cases", type=int)
     parser.add_argument("--max-invalid-records", type=int)
     parser.add_argument("--max-unsafe-unverified-source-uses", type=int)
@@ -519,34 +684,62 @@ def main(argv=None):
     except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
         parser.error(f"invalid reviewer registry: {exc}")
     for name in ("min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
-                 "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
+                 "min_answerable_cases", "min_unanswerable_cases",
+                 "min_answerable_cases_per_practice_area", "min_unanswerable_cases_per_practice_area",
+                 "min_reviewers_per_practice_area", "min_expected_pin_cites",
+                 "min_expected_pin_cites_per_practice_area",
                  "max_excluded_cases", "max_invalid_records", "max_unsafe_unverified_source_uses"):
         value = getattr(args, name)
         if value is not None and value < 0:
             parser.error("--" + name.replace("_", "-") + " must be a non-negative integer")
     for name in ("min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
-                 "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites"):
+                 "min_answerable_cases", "min_unanswerable_cases",
+                 "min_answerable_cases_per_practice_area", "min_unanswerable_cases_per_practice_area",
+                 "min_reviewers_per_practice_area", "min_expected_pin_cites",
+                 "min_expected_pin_cites_per_practice_area"):
         value = getattr(args, name)
         if value is not None and value < 1:
             parser.error("--" + name.replace("_", "-") + " must be a positive integer")
     for name in ("min_recall_at_5", "min_mrr_at_5", "min_citation_precision",
-                 "min_citation_coverage", "min_expected_pin_cite_recall", "min_abstention_compliance"):
+                 "min_citation_coverage", "min_expected_pin_cite_recall", "min_abstention_compliance",
+                 "min_recall_at_5_per_practice_area", "min_mrr_at_5_per_practice_area",
+                 "min_citation_precision_per_practice_area", "min_citation_coverage_per_practice_area",
+                 "min_abstention_compliance_per_practice_area", "min_pin_cite_accuracy_per_practice_area",
+                 "min_expected_pin_cite_recall_per_practice_area"):
         value = getattr(args, name)
         if value is not None and (not isinstance(value, (int, float)) or not math.isfinite(value)
                                   or not 0 <= value <= 1):
             parser.error("--" + name.replace("_", "-") + " must be a finite number between 0 and 1")
     quality_thresholds = (args.min_recall_at_5, args.min_mrr_at_5, args.min_citation_precision,
                           args.min_citation_coverage, args.min_expected_pin_cite_recall,
-                          args.min_abstention_compliance)
+                          args.min_abstention_compliance, args.min_recall_at_5_per_practice_area,
+                          args.min_mrr_at_5_per_practice_area, args.min_citation_precision_per_practice_area,
+                          args.min_citation_coverage_per_practice_area,
+                          args.min_abstention_compliance_per_practice_area,
+                          args.min_pin_cite_accuracy_per_practice_area,
+                          args.min_expected_pin_cite_recall_per_practice_area)
     gate_enabled = (any(value is not None for value in quality_thresholds)
                     or any(getattr(args, name) is not None for name in (
                         "min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
-                        "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
-                        "max_excluded_cases", "max_invalid_records", "max_unsafe_unverified_source_uses")))
+                        "min_answerable_cases", "min_unanswerable_cases",
+                        "min_answerable_cases_per_practice_area", "min_unanswerable_cases_per_practice_area",
+                        "min_reviewers_per_practice_area", "min_expected_pin_cites",
+                        "min_expected_pin_cites_per_practice_area", "max_excluded_cases", "max_invalid_records",
+                        "max_unsafe_unverified_source_uses")))
     if gate_enabled and args.min_reviewed_cases is None:
         parser.error("retrieval release gates require --min-reviewed-cases to prevent empty-sample passes")
     if args.min_cases_per_practice_area is not None and args.min_practice_areas is None:
         parser.error("--min-cases-per-practice-area requires --min-practice-areas")
+    if ((args.min_answerable_cases_per_practice_area is not None
+         or args.min_unanswerable_cases_per_practice_area is not None)
+            and (args.min_practice_areas is None or args.min_cases_per_practice_area is None)):
+        parser.error("per-practice-area cohort thresholds require --min-practice-areas and --min-cases-per-practice-area")
+    if args.min_reviewers_per_practice_area is not None and (
+            args.min_practice_areas is None or args.min_cases_per_practice_area is None):
+        parser.error("--min-reviewers-per-practice-area requires --min-practice-areas and --min-cases-per-practice-area")
+    if args.min_expected_pin_cites_per_practice_area is not None and (
+            args.min_practice_areas is None or args.min_cases_per_practice_area is None):
+        parser.error("--min-expected-pin-cites-per-practice-area requires --min-practice-areas and --min-cases-per-practice-area")
     if any(value is not None for value in quality_thresholds):
         if args.min_reviewed_cases is None:
             parser.error("quality thresholds require --min-reviewed-cases")
@@ -558,6 +751,16 @@ def main(argv=None):
         parser.error("--min-expected-pin-cite-recall requires --min-expected-pin-cites")
     if args.min_abstention_compliance is not None and args.min_unanswerable_cases is None:
         parser.error("--min-abstention-compliance requires --min-unanswerable-cases")
+    if args.min_citation_precision_per_practice_area is not None and args.min_answerable_cases_per_practice_area is None:
+        parser.error("--min-citation-precision-per-practice-area requires --min-answerable-cases-per-practice-area")
+    if args.min_citation_coverage_per_practice_area is not None and args.min_answerable_cases_per_practice_area is None:
+        parser.error("--min-citation-coverage-per-practice-area requires --min-answerable-cases-per-practice-area")
+    if args.min_abstention_compliance_per_practice_area is not None and args.min_unanswerable_cases_per_practice_area is None:
+        parser.error("--min-abstention-compliance-per-practice-area requires --min-unanswerable-cases-per-practice-area")
+    if (args.min_pin_cite_accuracy_per_practice_area is not None
+            or args.min_expected_pin_cite_recall_per_practice_area is not None):
+        if args.min_expected_pin_cites_per_practice_area is None:
+            parser.error("per-practice-area pin-cite quality thresholds require --min-expected-pin-cites-per-practice-area")
     result = score_evaluation(_load_jsonl(args.questions), _load_jsonl(args.runs),
                               reviewer_registry=reviewer_registry)
     result["release_gate"] = _retrieval_release_gate(result, args)
