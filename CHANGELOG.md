@@ -8,6 +8,7 @@
 - Added `ask()` integration regressions proving the optional claim-support screen returns sources only on failure when enabled and is bypassed when disabled (PR #1182).
 - Set `must_abstain_if_unverified=true` across all 94 unreviewed multi-area questions and separated the seven inherently out-of-scope cases into a distinct `must_abstain` field (PR #1177).
 - Added a cross-dataset CI invariant requiring all 251 currently unreviewed legal evaluation questions to default to abstention when sources are unverified (PR #1183).
+- Required the retrieval-quality evaluator to validate reviewer identity, counsel role, practice-area authorization, review date, and HTTPS evidence against the approved reviewer registry before scoring labels.
 - Enforced canonical `YYYY-MM-DD` dates for legal `as_of` retrieval inputs so ISO week-date/compact forms cannot reach lexicographic SQL date boundaries.
 - Made evaluation-runner abstention records fail closed when an API response contains no usable answer but incorrectly reports `abstained=false`; added regressions for contradictory response fields.
 - Added an offline structural audit for candidate article-row corpora, including a quantity-bearing article checklist and CI regressions; does not establish Gazette fidelity or legal verification (PR #1158).
