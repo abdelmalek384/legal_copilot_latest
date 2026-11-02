@@ -357,7 +357,7 @@ class LegalReleaseReadinessTests(unittest.TestCase):
             "EG-ETA-LAWS-RELATED-REGULATIONS-INDEX",
         }
         self.assertTrue(index_ids.issubset({item["source_id"] for item in candidate["sources"]}))
-        self.assertEqual(version["currentness_verified"], 0)
+        self.assertEqual(version["status_verified"], 0)
         self.assertEqual(version["amendment_history_verified"], 0)
 
     def test_historical_version_can_pass_when_its_status_and_end_date_are_verified(self):
