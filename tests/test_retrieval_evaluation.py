@@ -43,7 +43,18 @@ def reviewer_registry():
         "jurisdiction": "Egypt",
         "practice_areas": ["civil_law", "labor_law"],
         "qualification_basis": "Synthetic test fixture only",
-        "evidence_reference": "private-test-reference",
+        "evidence_reference": "private-test-reference-a",
+        "verified_by": "test-operator",
+        "verified_on": "2026-10-24",
+    }, {
+        "reviewer_id": "reviewer-b",
+        "display_name": "Reviewer B",
+        "status": "approved",
+        "professional_role": "qualified_egyptian_counsel",
+        "jurisdiction": "Egypt",
+        "practice_areas": ["civil_law", "labor_law"],
+        "qualification_basis": "Synthetic test fixture only",
+        "evidence_reference": "private-test-reference-b",
         "verified_by": "test-operator",
         "verified_on": "2026-10-24",
     }]}
@@ -447,6 +458,65 @@ class RetrievalEvaluationTests(unittest.TestCase):
             self.assertTrue(report["release_gate"]["passed"])
             self.assertEqual(report["practice_area_counts"]["civil_law"]["answerable_cases"], 1)
             self.assertEqual(report["practice_area_counts"]["civil_law"]["unanswerable_cases"], 1)
+
+    def test_min_reviewers_per_practice_area_counts_distinct_approved_reviewers(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            questions = [
+                reviewed_question(id="Q-REVIEWER-A"),
+                reviewed_question(
+                    id="Q-REVIEWER-B", reviewer_id="reviewer-b",
+                    reviewer_name="Reviewer B", answerable=False, expected_pin_cites=[],
+                ),
+            ]
+            runs = [
+                {
+                    "question_id": "Q-REVIEWER-A",
+                    "retrieved_source_ids": ["LAW-A", "LAW-B"],
+                    "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
+                    "source_summary": [{"source_id": "LAW-A", "source_status": "verified_operative_text"}],
+                    "abstained": False, "used_unverified_source": False,
+                },
+                {
+                    "question_id": "Q-REVIEWER-B",
+                    "retrieved_source_ids": ["LAW-A", "LAW-B"],
+                    "citations": [], "abstained": True, "used_unverified_source": False,
+                },
+            ]
+            questions_path.write_text("".join(
+                json.dumps(q, ensure_ascii=False) + "\n" for q in questions
+            ), encoding="utf-8")
+            for second_reviewer, expected_code, expected_count in (
+                ("reviewer-b", 0, 2),
+                ("reviewer-a", 1, 1),
+            ):
+                with self.subTest(second_reviewer=second_reviewer):
+                    questions[1]["reviewer_id"] = second_reviewer
+                    questions[1]["reviewer_name"] = (
+                        "Reviewer B" if second_reviewer == "reviewer-b" else "Reviewer A"
+                    )
+                    questions_path.write_text("".join(
+                        json.dumps(q, ensure_ascii=False) + "\n" for q in questions
+                    ), encoding="utf-8")
+                    runs_path.write_text("".join(
+                        json.dumps(run, ensure_ascii=False) + "\n" for run in runs
+                    ), encoding="utf-8")
+                    output = io.StringIO()
+                    with contextlib.redirect_stdout(output):
+                        code = run_main([
+                            "--questions", str(questions_path), "--runs", str(runs_path),
+                            "--min-reviewed-cases", "2", "--min-practice-areas", "1",
+                            "--min-cases-per-practice-area", "2",
+                            "--min-reviewers-per-practice-area", "2",
+                        ])
+                    self.assertEqual(code, expected_code)
+                    report = json.loads(output.getvalue())
+                    self.assertEqual(report["practice_area_counts"]["civil_law"]["reviewer_count"],
+                                     expected_count)
+                    check = next(item for item in report["release_gate"]["checks"]
+                                 if item["metric"] == "reviewers_per_practice_area:civil_law")
+                    self.assertEqual(check["passed"], expected_count >= 2)
 
     def test_per_practice_area_cohort_thresholds_require_area_coverage_gates(self):
         with tempfile.TemporaryDirectory() as td:
