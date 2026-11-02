@@ -123,11 +123,26 @@ def validate_reviewed_question(question, approved_reviewers=None):
         if not isinstance(pin_cites, list):
             errors.append("expected_pin_cites must be a list when supplied")
         else:
+            seen_pin_cites = set()
+            expected_source_set = set(expected) if (
+                isinstance(expected, list) and all(_nonempty_string(source_id) for source_id in expected)
+            ) else set()
             for index, item in enumerate(pin_cites):
                 if (not isinstance(item, dict)
                         or not _nonempty_string(item.get("source_id"))
                         or not _nonempty_string(item.get("pin_cite"))):
                     errors.append(f"expected_pin_cites[{index}] must contain non-empty source_id and pin_cite strings")
+                    continue
+                source_id = item["source_id"]
+                pin_cite = item["pin_cite"]
+                if source_id != source_id.strip() or pin_cite != pin_cite.strip():
+                    errors.append(f"expected_pin_cites[{index}] must not contain surrounding whitespace")
+                if expected_source_set and source_id not in expected_source_set:
+                    errors.append(f"expected_pin_cites[{index}] references a source absent from expected_source_ids")
+                pair = (source_id, pin_cite)
+                if pair in seen_pin_cites:
+                    errors.append("expected_pin_cites must not contain duplicate source/pin-cite pairs")
+                seen_pin_cites.add(pair)
     if not isinstance(question.get("answerable"), bool):
         errors.append("answerable must be an explicit boolean")
     if question.get("must_abstain_if_unverified") is not True:
@@ -158,8 +173,12 @@ def validate_run_record(run):
             if not isinstance(citation, dict) or not _nonempty_string(citation.get("source_id")):
                 errors.append(f"citations[{index}] must contain a non-empty source_id")
                 continue
+            if citation["source_id"] != citation["source_id"].strip():
+                errors.append(f"citations[{index}].source_id must not contain surrounding whitespace")
             if "pin_cite" in citation and not _nonempty_string(citation.get("pin_cite")):
                 errors.append(f"citations[{index}].pin_cite must be a non-empty string when supplied")
+            elif "pin_cite" in citation and citation["pin_cite"] != citation["pin_cite"].strip():
+                errors.append(f"citations[{index}].pin_cite must not contain surrounding whitespace")
     source_summary = run.get("source_summary")
     if source_summary is not None:
         if not isinstance(source_summary, list):
@@ -171,6 +190,8 @@ def validate_run_record(run):
                     errors.append(f"source_summary[{index}] must contain a non-empty source_id")
                     continue
                 source_id = item["source_id"].strip()
+                if item["source_id"] != source_id:
+                    errors.append(f"source_summary[{index}].source_id must not contain surrounding whitespace")
                 status = item.get("source_status")
                 if status is not None and not _nonempty_string(status):
                     errors.append(f"source_summary[{index}].source_status must be non-empty when supplied")
