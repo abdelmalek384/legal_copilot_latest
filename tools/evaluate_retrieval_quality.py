@@ -436,6 +436,7 @@ def _retrieval_release_gate(report, args):
         "recall_at_5": args.min_recall_at_5,
         "mrr_at_5": args.min_mrr_at_5,
         "citation_precision": args.min_citation_precision,
+        "pin_cite_accuracy": args.min_pin_cite_accuracy,
         "citation_coverage": args.min_citation_coverage,
         "expected_pin_cite_recall": args.min_expected_pin_cite_recall,
         "abstention_compliance": args.min_abstention_compliance,
@@ -507,6 +508,8 @@ def main(argv=None):
     parser.add_argument("--min-recall-at-5", type=float)
     parser.add_argument("--min-mrr-at-5", type=float)
     parser.add_argument("--min-citation-precision", type=float)
+    parser.add_argument("--min-pin-cite-accuracy", type=float,
+                        help="Minimum precision of emitted article/page pin-cites against reviewed expected pin-cites")
     parser.add_argument("--min-citation-coverage", type=float)
     parser.add_argument("--min-expected-pin-cite-recall", type=float)
     parser.add_argument("--min-abstention-compliance", type=float)
@@ -529,13 +532,14 @@ def main(argv=None):
         value = getattr(args, name)
         if value is not None and value < 1:
             parser.error("--" + name.replace("_", "-") + " must be a positive integer")
-    for name in ("min_recall_at_5", "min_mrr_at_5", "min_citation_precision",
+    for name in ("min_recall_at_5", "min_mrr_at_5", "min_citation_precision", "min_pin_cite_accuracy",
                  "min_citation_coverage", "min_expected_pin_cite_recall", "min_abstention_compliance"):
         value = getattr(args, name)
         if value is not None and (not isinstance(value, (int, float)) or not math.isfinite(value)
                                   or not 0 <= value <= 1):
             parser.error("--" + name.replace("_", "-") + " must be a finite number between 0 and 1")
     quality_thresholds = (args.min_recall_at_5, args.min_mrr_at_5, args.min_citation_precision,
+                          args.min_pin_cite_accuracy,
                           args.min_citation_coverage, args.min_expected_pin_cite_recall,
                           args.min_abstention_compliance)
     gate_enabled = (any(value is not None for value in quality_thresholds)
@@ -554,8 +558,8 @@ def main(argv=None):
             parser.error("quality thresholds require --min-practice-areas and --min-cases-per-practice-area")
     if args.min_citation_coverage is not None and args.min_answerable_cases is None:
         parser.error("--min-citation-coverage requires --min-answerable-cases")
-    if args.min_expected_pin_cite_recall is not None and args.min_expected_pin_cites is None:
-        parser.error("--min-expected-pin-cite-recall requires --min-expected-pin-cites")
+    if (args.min_expected_pin_cite_recall is not None or args.min_pin_cite_accuracy is not None) and args.min_expected_pin_cites is None:
+        parser.error("pin-cite quality thresholds require --min-expected-pin-cites")
     if args.min_abstention_compliance is not None and args.min_unanswerable_cases is None:
         parser.error("--min-abstention-compliance requires --min-unanswerable-cases")
     result = score_evaluation(_load_jsonl(args.questions), _load_jsonl(args.runs),
