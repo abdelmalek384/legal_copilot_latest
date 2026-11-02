@@ -58,8 +58,8 @@ def run_main(args):
         return main([*args, "--reviewer-registry", str(registry_path)])
 
 
-def result(qid="Q1", abstained=False, sources=None, pins=None, answer_id=None):
-    return {
+def result(qid="Q1", abstained=False, sources=None, pins=None, answer_id=None, retrieved=None):
+    row = {
         "id": qid,
         "answer_id": answer_id if answer_id is not None else f"ANSWER-{qid}",
         "answer": "model output",
@@ -68,6 +68,9 @@ def result(qid="Q1", abstained=False, sources=None, pins=None, answer_id=None):
         "cited_pin_cites": ([{"source_id": "LAW-10", "pin_cite": "المادة 12"}]
                             if pins is None and not abstained else (pins or [])),
     }
+    if retrieved is not None:
+        row["retrieved_sources"] = retrieved
+    return row
 
 
 class LegalAnswerEvaluationTests(unittest.TestCase):
@@ -346,6 +349,56 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
                 with self.assertRaisesRegex(EvaluationError, "practice_area"):
                     score([q], [result()])
 
+    def test_ranked_retrieval_reports_recall_at_k_and_reciprocal_rank(self):
+        report = score([approved()], [result(retrieved=["LAW-OTHER", "LAW-10", "LAW-EXTRA"])])
+        row = report["results"][0]
+        self.assertTrue(report["retrieval_ranking_scored"])
+        self.assertEqual(row["first_relevant_rank"], 2)
+        self.assertEqual(row["retrieval_recall_at_1"], 0.0)
+        self.assertEqual(row["retrieval_recall_at_3"], 1.0)
+        self.assertEqual(row["retrieval_recall_at_5"], 1.0)
+        self.assertEqual(row["retrieval_mrr"], 0.5)
+        self.assertEqual(report["overall"]["retrieval_recall_at_3"], 1.0)
+        self.assertEqual(report["overall"]["retrieval_mrr"], 0.5)
+
+    def test_ranked_retrieval_recall_uses_expected_source_denominator(self):
+        question = dict(approved())
+        question["expected_sources"] = ["LAW-10", "LAW-20"]
+        report = score(
+            [question],
+            [result(retrieved=["LAW-OTHER", "LAW-10", "LAW-20"])],
+        )
+        row = report["results"][0]
+        self.assertEqual(row["retrieval_recall_at_1"], 0.0)
+        self.assertEqual(row["retrieval_recall_at_3"], 1.0)
+        self.assertEqual(row["retrieved_expected_source_count_at_3"], 2)
+
+    def test_unanswerable_retrieval_rate_exposes_nonempty_candidates(self):
+        question = approved("Q-ABSTAIN", answerable=False)
+        empty = score([question], [result("Q-ABSTAIN", abstained=True, retrieved=[])])
+        nonempty = score([question], [result("Q-ABSTAIN", abstained=True, retrieved=["LAW-10"])])
+        self.assertEqual(empty["overall"]["unanswerable_retrieval_rate"], 0.0)
+        self.assertEqual(nonempty["overall"]["unanswerable_retrieval_rate"], 1.0)
+
+    def test_ranked_retrieval_must_be_supplied_for_all_scored_questions(self):
+        with self.assertRaisesRegex(EvaluationError, "retrieved_sources must be supplied for every scored question"):
+            score(
+                [approved("Q1"), approved("Q2")],
+                [result("Q1", retrieved=["LAW-10"]), result("Q2")],
+            )
+
+    def test_ranked_retrieval_rejects_duplicate_or_malformed_source_ids(self):
+        for value in (["LAW-10", "LAW-10"], ["LAW-10", ""], "LAW-10", None):
+            with self.subTest(value=value):
+                with self.assertRaisesRegex(EvaluationError, "retrieved_sources"):
+                    score([approved()], [dict(result(), retrieved_sources=value)])
+
+    def test_legacy_evaluation_without_retrieval_ranking_remains_supported(self):
+        report = score([approved()], [result()])
+        self.assertFalse(report["retrieval_ranking_scored"])
+        self.assertIsNone(report["overall"]["retrieval_recall_at_3"])
+        self.assertEqual(report["overall"]["source_recall"], 1.0)
+
     def test_scores_citation_recall_and_abstention_without_claiming_semantic_accuracy(self):
         report = score([approved()], [result()])
         self.assertEqual(report["overall"]["source_recall"], 1.0)
@@ -357,7 +410,7 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
 
     def test_stable_answer_id_is_propagated_and_coverage_is_reported(self):
         report = score([approved()], [result()])
-        self.assertEqual(report["schema_version"], 2)
+        self.assertEqual(report["schema_version"], 3)
         self.assertEqual(report["results"][0]["answer_id"], "ANSWER-Q1")
         self.assertEqual(report["results_with_stable_answer_id"], 1)
         self.assertEqual(report["results_missing_stable_answer_id"], 0)
