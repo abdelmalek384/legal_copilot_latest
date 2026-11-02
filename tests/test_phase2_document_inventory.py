@@ -290,6 +290,8 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             self.assertIn("not_exhaustive", index_source["source_state"])
             self.assertEqual(index_source["collection_permission"], "unknown")
             self.assertEqual(index_source["commercial_reuse_permission"], "unknown")
+            if source_id == "EG-LABOUR-MINISTRY-LAWS-LEGISLATIONS-INDEX":
+                self.assertIn("Article 12 of Law No. 14 of 2025 repealed Law No. 12 of 2003", index_source["notes"])
 
     def test_labour_law_gazette_repository_access_terms_are_restricted(self):
         register = json.loads(
