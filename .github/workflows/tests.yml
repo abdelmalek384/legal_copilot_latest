@@ -332,6 +332,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_audit_article_rows.py
       - name: Test subscription trial, transfer review and seat limits
         run: PYTHONPATH=. python tests/test_subscription_billing_routes.py
+      - name: Test Arabic drafting skeletons
+        run: PYTHONPATH=. python tests/test_arabic_drafting_skeletons.py
       - name: Test provider-neutral billing fake
         run: PYTHONPATH=. python tests/test_billing_provider.py
       - name: Test private answer correction queue and firm isolation
