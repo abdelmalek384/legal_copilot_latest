@@ -270,5 +270,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn(".auth-card form>label{display:block;width:100%", HTML)
         self.assertIn(".auth-card .password-row input{min-width:0;flex:1}", HTML)
 
+
+    def test_subscription_billing_ui_has_trial_transfer_and_operator_review(self):
+        self.assertIn("api('/billing')", HTML)
+        self.assertIn("api('/billing/subscribe','POST'", HTML)
+        self.assertIn("api('/billing/payment-submissions','POST'", HTML)
+        self.assertIn("api('/platform/billing/payment-submissions')", HTML)
+        self.assertIn("bank_transfer", HTML)
+        self.assertIn("instapay", HTML)
+        self.assertIn("platformBillingPage", HTML)
+
 if __name__ == "__main__":
     unittest.main()
