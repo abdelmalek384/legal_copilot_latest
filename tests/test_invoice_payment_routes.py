@@ -11,7 +11,7 @@ class InvoicePaymentRouteTests(InvoiceTestSupport, unittest.TestCase):
         invoice = self.mutate(self.client_a, "post", f"/invoices/{invoice['id']}/issue").json()
         payload = {
             "amount_piasters": 5000, "paid_on": "2026-11-02", "method": "instapay",
-            "reference": "IP-REF-001", "note": "Part payment", "idempotency_key": "payment-key-0001",
+            "reference": " IP-REF-001 ", "note": " Part payment ", "idempotency_key": "payment-key-0001",
         }
         first = self.mutate(self.client_a, "post", f"/invoices/{invoice['id']}/payments", json=payload)
         self.assertEqual(first.status_code, 200, first.text)
