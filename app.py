@@ -5590,7 +5590,7 @@ def update_invoice(invoice_id: int, b: InvoiceDraftIn, u: dict = Depends(user)):
 def issue_invoice(invoice_id: int, u: dict = Depends(user)):
     c = conn()
     row = _invoice_for_user(c, u, invoice_id)
-    c.execute("BEGIN IMMEDIATE")
+    c.execute("SAVEPOINT invoice_write")
     row = _invoice_for_user(c, u, invoice_id)
     if row["status"] != "draft":
         raise HTTPException(409, "only draft invoices can be issued")
@@ -5611,6 +5611,7 @@ def issue_invoice(invoice_id: int, u: dict = Depends(user)):
         (number, today_date.isoformat(), invoice_id),
     )
     _invoice_event(c, invoice_id, int(u["id"]), "issued", {"invoice_number": number})
+    c.execute("RELEASE SAVEPOINT invoice_write")
     c.commit()
     return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
 
@@ -5656,6 +5657,7 @@ def record_invoice_payment(invoice_id: int, b: InvoicePaymentIn, u: dict = Depen
         "payment_id": payment_id, "amount_piasters": b.amount_piasters,
         "method": b.method, "paid_on": b.paid_on,
     })
+    c.execute("RELEASE SAVEPOINT invoice_write")
     c.commit()
     return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
 
@@ -5681,6 +5683,7 @@ def void_invoice(invoice_id: int, b: InvoiceVoidIn, u: dict = Depends(user)):
         (b.reason.strip(), u["id"], invoice_id),
     )
     _invoice_event(c, invoice_id, int(u["id"]), "voided", {"reason": b.reason.strip()})
+    c.execute("RELEASE SAVEPOINT invoice_write")
     c.commit()
     return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
 
