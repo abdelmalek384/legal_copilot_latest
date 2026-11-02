@@ -18,10 +18,10 @@ The Gazette PDF text layer was opened around each article heading. These checks 
 | Article | Gazette printed page | PDF zero-based page index | Evidence seen in extracted text | Status |
 |---:|---:|---:|---|---|
 | 66 | 35 | 33 | Heading “مادة (٦٦)” and the employer duties concerning employed children appear at PDF text lines around 803–813. | Locator confirmed; character-level comparison to JSONL blocked because that file is not in this branch. |
-| 103 | 49 | 46 | Heading “مادة (١٠٣)” and the National Council for Wages meeting/quorum provision appear around lines 1141–1145. | Locator confirmed; character-level comparison to JSONL blocked. |
+| 103 | 48 | 46 | Heading “مادة (١٠٣)” and the National Council for Wages meeting/quorum provision appear around lines 1141–1145. | Locator confirmed; character-level comparison to JSONL blocked. |
 | 124 | 54 | 52 | Heading “مادة (١٢٤)” and annual-leave entitlements, including the seven-day increase for specified hazardous/unhealthy/remote work, appear around lines 1292–1304. | Locator confirmed; related Decree 49/2026 still requires full-text review before eligibility decisions are made. |
-| 134 | 58 | 55 | Heading “مادة (١٣٤)” and worker duties appear around lines 1371–1391. | Locator confirmed; character-level comparison to JSONL blocked. |
-| 141 | 62 | 59 | Heading “مادة (١٤١)” and disciplinary investigation/time-limit language appear around lines 1468–1478. | Locator confirmed; character-level comparison to JSONL blocked. |
+| 134 | 57 | 55 | Heading “مادة (١٣٤)” and worker duties appear around lines 1371–1391. | Locator confirmed; character-level comparison to JSONL blocked. |
+| 141 | 61 | 59 | Heading “مادة (١٤١)” and disciplinary investigation/time-limit language appear around lines 1468–1478. | Locator confirmed; character-level comparison to JSONL blocked. |
 | 278 | 106 | 104 | Heading “مادة (٢٧٨)” and attendance-request compliance provision appear around lines 2597–2600. | Locator confirmed; character-level comparison to JSONL blocked. |
 
 **Important page-numbering note:** The PDF index is zero-based; the printed Gazette page is the number shown in the document. Do not treat the PDF index as the printed page.
@@ -63,26 +63,25 @@ A second official-hosted copy was located through the Egyptian Tax Authority leg
 
 Both are government-hosted copies of the Official Gazette issue 18 (تابع), 3 May 2025. Their web PDF text layers expose the six targeted article locations. This is an additional official-hosted source cross-check, not proof that either PDF's bytes are identical to the other.
 
-### Article 103 — unresolved extracted-text discrepancy
+### Article 103 — cross-copy text-layer discrepancy and ETA page-image check
 
-The two text layers differ in a legally meaningful phrase:
+The two official-hosted PDF text layers differ in one word:
 
-- SIS-hosted PDF text layer, printed page 49 / PDF index 46, around extracted lines 784–787: **"يجتمع المجلس القومي للأجور بدعوة من رئيسه كل سنة ستة أشهر على الأقل"**.
-- ETA-hosted PDF text layer, printed page 49 / PDF index 46, around extracted lines 1141–1145: **"يجتمع المجلس القومي للأجور بدعوة من رئيسه كل ستة أشهر على الأقل"**.
+- SIS-hosted PDF text layer, around extracted lines 784–787: **"يجتمع المجلس القومي للأجور بدعوة من رئيسه كل سنة ستة أشهر على الأقل"**.
+- ETA-hosted PDF text layer, PDF page index 46: **"يجتمع المجلس القومي للأجور بدعوة من رئيسه كل ستة أشهر على الأقل"**.
 
-The additional word **"سنة"** appears in the SIS extraction but not in the ETA extraction. Do not silently normalize this difference or use either text layer as conclusive visual evidence. It may reflect an extraction/OCR problem, a difference between the hosted files, or a source rendering issue. The original page images could not be retrieved for visual comparison in this session, and neither original PDF binary was obtained or hashed.
+The ETA-hosted PDF page image (PDF index 46; printed Gazette page 48) was then visually inspected in the public PDF viewer. It visibly reads **"كل ستة أشهر على الأقل"**, with no intervening word "سنة". This confirms the ETA copy's rendered wording and supports the provisional Article 103 summary already in the card inventory. The SIS text-layer difference remains unresolved because its corresponding page image was not available for visual inspection. It may be an extraction/OCR issue or a difference in the hosted copies; do not treat the SIS text layer alone as conclusive.
 
-**Disposition:** Article 103 is now flagged for priority visual comparison against both original PDF page images. Until resolved, any candidate wording for this sentence remains unverified. This discrepancy does not establish an amendment or change the legal status of the Law.
+**Disposition:** The ETA page-image wording is visually confirmed. Keep the SIS-vs-ETA text-layer difference recorded as an unresolved cross-copy discrepancy until the SIS page image can be checked. This does not establish an amendment or change the legal status of the Law.
 
 ### Cross-check scope and limitations
 
-- The ETA PDF text layer independently exposes the Article 66 locator at printed page 35 / PDF index 33; Article 103 at page 49 / index 46; Article 124 at page 54 / index 52; Article 134 at page 58 / index 55; Article 141 at page 62 / index 59; and Article 278 at page 106 / index 104.
-- The SIS PDF text layer independently exposes the same six article/page locators. The earlier spot-check table remains a locator check only.
-- Attempts to retrieve rendered page images from both PDF viewers failed in this session. No visual page verification is claimed.
-- The ETA and SIS source URLs are public viewing links. This check does not establish binary equality, original-file SHA-256, systematic reuse permission, amendment completeness, or qualified-counsel approval.
+- The ETA-hosted PDF page images were visually inspected for all six target provisions: Article 66 at printed page 35 / PDF index 33; Article 103 at page 48 / index 46; Article 124 at page 54 / index 52; Article 134 at page 57 / index 55; Article 141 at page 61 / index 59; and Article 278 at page 106 / index 104.
+- The SIS PDF text layer independently exposes the same six article locators, but its rendered page images were not visually checked in this session.
+- The ETA and SIS URLs are public viewing links. This check does not establish binary equality, original-file SHA-256, systematic reuse permission, amendment completeness, or qualified-counsel approval.
 - The missing 311-row `law_rows_ar.jsonl` and 120-item numeric checklist are still not present in the Library or repository checkout inspected. No full candidate-to-Gazette comparison is claimed.
 - All Labour Law cards remain `search_eligible: false`; no verification or release gate is changed.
 
 ### Immediate next action
 
-Obtain the original page image for printed Gazette page 49 from each official-hosted PDF through the ordinary public viewer or an authorized local copy. Compare the visible glyphs around Article 103, record each PDF's SHA-256 only after obtaining its actual bytes, and then compare the resolved wording with the candidate article row when that row is available. Keep the discrepancy open if the images remain inaccessible.
+Obtain or open the SIS-hosted page image corresponding to printed page 48 / PDF index 46 through the ordinary public viewer or an authorized local copy. Compare the visible Article 103 wording with the ETA page image, record each PDF's SHA-256 only after obtaining its actual bytes, and then compare the resolved wording with the candidate article row when that row is available. Keep the cross-copy discrepancy open if the SIS image remains inaccessible.
