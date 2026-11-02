@@ -1137,9 +1137,11 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
     # Linked legal versions require verified provenance, status, dates, and reuse permission.
     # Unlinked legacy law chunks fail closed unless explicitly enabled for a controlled migration.
     as_of = as_of or date.today().isoformat()
+    if not isinstance(as_of, str) or re.fullmatch(r"\d{4}-\d{2}-\d{2}", as_of) is None:
+        raise ValueError("as_of must be an ISO date YYYY-MM-DD")
     try:
         date.fromisoformat(as_of)
-    except (TypeError, ValueError):
+    except ValueError:
         raise ValueError("as_of must be an ISO date YYYY-MM-DD")
     if _separate_runtime_enabled():
         return _search_separate(c, q, case_id, k, firm_id, as_of, scope)
