@@ -129,6 +129,9 @@ class SubscriptionBillingRouteTests(unittest.TestCase):
         self.assertGreater(active["current_period_end"], active["current_period_start"])
         self.assertEqual(self.client_b.get("/billing").json()["subscription"], None)
         self.assertEqual(self.client_b.get("/platform/billing/payment-submissions").json(), [])
+        small_firm = self._mutate(self.client_b, "post", "/billing/subscribe", json={"plan_code": "small_firm"})
+        self.assertEqual(small_firm.status_code, 200, small_firm.text)
+        self.assertEqual(small_firm.json()["subscription"]["seat_limit"], 5)
 
     def test_seat_limit_blocks_invites_and_non_admin_cannot_manage_billing(self):
         started = self._mutate(self.client_a, "post", "/billing/subscribe", json={"plan_code": "solo"})
