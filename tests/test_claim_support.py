@@ -5,7 +5,10 @@ from unittest import mock
 
 import app
 from app import norm, tokens, _mask_markdown_code
-from tools.claim_support import claim_support_enabled, has_unsupported_claims
+from tools.claim_support import (
+    _ARABIC_FINITE_PERIOD, _ENGLISH_FINITE_PERIOD,
+    claim_support_enabled, has_unsupported_claims,
+)
 
 
 class ClaimSupportTests(unittest.TestCase):
@@ -74,6 +77,30 @@ class ClaimSupportTests(unittest.TestCase):
                 self.assertTrue(has_unsupported_claims(
                     claim, [{"text": source}], tokens, norm, _mask_markdown_code
                 ))
+
+    def test_finite_period_recognizers_match_duration_phrases_directly(self):
+        # Assert the recognizers themselves, so lexical-coverage failure cannot
+        # make a broken duration regex look like a successful contradiction test.
+        english = (
+            "five years", "sixteen years", "nineteen months",
+            "twenty-five years", "1.5 weeks",
+        )
+        arabic = (
+            "خمس سنوات", "عشرون عاما", "خمسة عشر سنة",
+            "ثلاثين يوما", "عامين", "سنتين", "شهرين", "يومين",
+            "١٥ سنة", "مئة عام",
+        )
+        for phrase in english:
+            with self.subTest(language="en", phrase=phrase):
+                self.assertIsNotNone(_ENGLISH_FINITE_PERIOD.search(phrase))
+        for phrase in arabic:
+            with self.subTest(language="ar", phrase=phrase):
+                self.assertIsNotNone(_ARABIC_FINITE_PERIOD.search(phrase))
+
+    def test_finite_period_recognizers_do_not_match_embedded_fragments(self):
+        self.assertIsNone(_ARABIC_FINITE_PERIOD.search("كلمتين"))
+        self.assertIsNone(_ARABIC_FINITE_PERIOD.search("سنوات"))
+        self.assertIsNone(_ENGLISH_FINITE_PERIOD.search("yearly"))
 
     def test_invalid_citation_fails_closed(self):
         self.assertTrue(has_unsupported_claims(
