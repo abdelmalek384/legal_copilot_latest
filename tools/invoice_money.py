@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import re
 
-_EGP_AMOUNT = re.compile(r"^(?:0|[1-9][0-9]{0,11})(?:\\.[0-9]{1,2})?$")
+_EGP_AMOUNT = re.compile(r"^(?:0|[1-9][0-9]{0,11})(?:\.[0-9]{1,2})?$")
 
 
 class InvoiceMoneyError(ValueError):
