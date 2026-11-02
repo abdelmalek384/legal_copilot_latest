@@ -131,7 +131,9 @@ def build_report(cp,rp,ratio=.97):
  if not r:w.append("No article headings detected in reference; nothing aligned.")
  res=compare(c,r,ratio);counts=Counter(x["status"] for x in res)
  disclaimer="Text comparison only; it does not authenticate sources, establish legal status, prove amendment completeness, or authorize reuse/import. PDF text extraction is not visual page review or OCR verification. Human and lawyer review remain required."
- return {"tool":"compare_corpus_to_reference","evidence_only":True,"disclaimer":disclaimer,"candidate":{"path":str(cp),"sha256":digest(cp),"rows_compared":len(c)},"reference":{"path":str(rp),"sha256":digest(rp),"articles_detected":len(r),**reference_meta},"min_ratio":ratio,"summary":dict(sorted(counts.items())),"all_identical":bool(res) and set(counts)=={"identical_after_normalization"} and not w,"warnings":w,"articles":res}
+ substantive_warnings=[warning for warning in w if not warning.startswith("Excluded ") or "apparent Gazette header/footer" not in warning]
+ all_identical=bool(res) and set(counts)=={"identical_after_normalization"} and not substantive_warnings
+ return {"tool":"compare_corpus_to_reference","evidence_only":True,"disclaimer":disclaimer,"candidate":{"path":str(cp),"sha256":digest(cp),"rows_compared":len(c)},"reference":{"path":str(rp),"sha256":digest(rp),"articles_detected":len(r),**reference_meta},"min_ratio":ratio,"summary":dict(sorted(counts.items())),"all_identical":all_identical,"warnings":w,"articles":res}
 def render(r):
  lines=["# Corpus vs reference comparison (evidence only)","",r["disclaimer"],"",f"- Candidate SHA-256: {r['candidate']['sha256']}; rows: {r['candidate']['rows_compared']}",f"- Reference SHA-256: {r['reference']['sha256']}; articles: {r['reference']['articles_detected']}",f"- Reference format: {r['reference']['format']}; extraction: {r['reference']['extraction']}","","## Summary",""]+[f"- {k}: {v}" for k,v in r["summary"].items()]+[f"- all identical: {r['all_identical']}",""]
  if r["warnings"]:lines+=["## Warnings",""]+["- "+w for w in r["warnings"]]+[""]
