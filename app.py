@@ -5359,8 +5359,15 @@ def record_invoice_payment(invoice_id: int, body: InvoicePaymentIn, u: dict = De
         raise HTTPException(404, "invoice not found")
     need(c, u, int(invoice["case_id"]))
     _invoice_date(body.paid_at, "paid_at")
-    # Serialize balance-check + insert so concurrent payments cannot over-collect.
-    c.execute("BEGIN IMMEDIATE")
+    # Acquire SQLite's write reservation before reading the balance. The no-op
+    # row update starts the transaction without nesting an explicit BEGIN inside
+    # a transaction potentially opened by request middleware.
+    reserved = c.execute(
+        "UPDATE invoices SET updated_at=updated_at WHERE id=? AND status!='void'",
+        (invoice_id,),
+    )
+    if reserved.rowcount != 1:
+        raise HTTPException(409, "void invoices cannot receive payments")
     invoice = c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone()
     paid_rows = c.execute(
         "SELECT amount_piasters FROM invoice_payments WHERE invoice_id=?", (invoice_id,)
