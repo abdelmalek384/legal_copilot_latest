@@ -2409,6 +2409,16 @@ class DeadlineHolidayEntry(BaseModel):
 class DeadlineHolidayUpdate(BaseModel):
     holidays: list[DeadlineHolidayEntry] = Field(max_length=250)
 
+class ReminderPreferencesIn(BaseModel):
+    email_enabled: bool = True
+    deadline_7_days: bool = True
+    deadline_3_days: bool = True
+    deadline_1_day: bool = True
+    deadline_day_of: bool = True
+    deadline_overdue: bool = True
+    session_day_of: bool = True
+    task_reminders: bool = True
+
 class DeadlineEstimateIn(BaseModel):
     rule_id: str = Field(min_length=1, max_length=100)
     trigger: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
@@ -5246,6 +5256,47 @@ def put_deadline_holidays(b: DeadlineHolidayUpdate, u: dict = Depends(user)):
     )
     c.commit()
     return {"ok": True, "holidays": normalized}
+
+
+
+@app.get("/reminder-preferences")
+def get_reminder_preferences(u: dict = Depends(user)):
+    c = conn()
+    defaults = {
+        "email_enabled": True, "deadline_7_days": True, "deadline_3_days": True,
+        "deadline_1_day": True, "deadline_day_of": True, "deadline_overdue": True,
+        "session_day_of": True, "task_reminders": True,
+    }
+    row = c.execute(
+        "SELECT email_enabled,deadline_7_days,deadline_3_days,deadline_1_day,"
+        "deadline_day_of,deadline_overdue,session_day_of,task_reminders "
+        "FROM reminder_preferences WHERE user_id=?", (u["id"],)
+    ).fetchone()
+    if row is None:
+        return defaults
+    return {key: bool(row[key]) for key in defaults}
+
+
+@app.put("/reminder-preferences")
+@rollback_tenant_transaction_on_error
+def put_reminder_preferences(b: ReminderPreferencesIn, u: dict = Depends(user)):
+    c = conn()
+    values = {key: int(getattr(b, key)) for key in ReminderPreferencesIn.model_fields}
+    c.execute(
+        "INSERT INTO reminder_preferences(user_id,email_enabled,deadline_7_days,deadline_3_days,"
+        "deadline_1_day,deadline_day_of,deadline_overdue,session_day_of,task_reminders) "
+        "VALUES(?,?,?,?,?,?,?,?,?) ON CONFLICT(user_id) DO UPDATE SET "
+        "email_enabled=excluded.email_enabled,deadline_7_days=excluded.deadline_7_days,"
+        "deadline_3_days=excluded.deadline_3_days,deadline_1_day=excluded.deadline_1_day,"
+        "deadline_day_of=excluded.deadline_day_of,deadline_overdue=excluded.deadline_overdue,"
+        "session_day_of=excluded.session_day_of,task_reminders=excluded.task_reminders,"
+        "updated_at=datetime('now')",
+        (u["id"], values["email_enabled"], values["deadline_7_days"], values["deadline_3_days"],
+         values["deadline_1_day"], values["deadline_day_of"], values["deadline_overdue"],
+         values["session_day_of"], values["task_reminders"]),
+    )
+    c.commit()
+    return {"ok": True, **{key: bool(value) for key, value in values.items()}}
 
 
 @app.get("/deadline-rules")
