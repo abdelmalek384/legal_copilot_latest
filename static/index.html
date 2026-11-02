@@ -699,7 +699,20 @@ async function law(){
        const result=m.result||{answer:m.content||'',sources:m.sources||[],requested_as_of:new Date().toISOString().slice(0,10),scope:scopeSelect.value};
        const actions=h('div',{className:'research-message-actions'});
        actions.append(makeBtn(LANG==='ar'?'تصدير مذكرة بحث':'Export research memo',()=>exportMemo(priorQuestion,result),'g'));
-       if(typeof m.answer_id==='string'&&/^ans_[A-Za-z0-9_-]{32}$/.test(m.answer_id))actions.append(makeBtn(LANG==='ar'?'اقتراح تصحيح للإجابة':'Suggest an answer correction',async()=>{const correction=window.prompt(LANG==='ar'?'اكتب التصحيح المقترح أو سبب الملاحظة':'Describe the suggested correction or issue');if(!correction||!correction.trim())return;const category=window.prompt(LANG==='ar'?'نوع الملاحظة: legal_accuracy أو citation أو completeness أو clarity أو other':'Category: legal_accuracy, citation, completeness, clarity, or other','other')||'other';const allowed=['legal_accuracy','citation','completeness','clarity','other'];if(!allowed.includes(category)){toast(LANG==='ar'?'نوع الملاحظة غير صحيح':'Invalid correction category');return}try{await api('/research/conversations/'+activeId+'/answers/'+encodeURIComponent(m.answer_id)+'/corrections','POST',{category,correction_text:correction.trim()});toast(LANG==='ar'?'تم إرسال الملاحظة إلى قائمة مراجعة المكتب':'Feedback submitted to the firm review queue')}catch(_){}},'g'));
+       if(typeof m.answer_id==='string'&&/^ans_[A-Za-z0-9_-]{32}$/.test(m.answer_id))actions.append(makeBtn(LANG==='ar'?'اقتراح تصحيح للإجابة':'Suggest an answer correction',()=>{
+ const correction=h('textarea',{rows:5,maxLength:4000,placeholder:LANG==='ar'?'اكتب التصحيح المقترح أو سبب الملاحظة':'Describe the suggested correction or issue',style:'width:100%'});
+ const category=h('select',{style:'width:100%'},h('option',{value:'legal_accuracy',textContent:uiText('الدقة القانونية','Legal accuracy')}),h('option',{value:'citation',textContent:uiText('الاستشهادات والمراجع','Citation')}),h('option',{value:'completeness',textContent:uiText('الاكتمال','Completeness')}),h('option',{value:'clarity',textContent:uiText('الوضوح','Clarity')}),h('option',{value:'other',textContent:uiText('أخرى','Other')}));
+ const cancel=btn(uiText('إلغاء','Cancel'),()=>closeModal(overlay),'g');
+ const submit=btn(uiText('إرسال للمراجعة','Submit for review'),async()=>{if(correction.value.trim().length<5){toast(uiText('اكتب خمس حروف على الأقل','Enter at least five characters'));correction.focus();return}submit.disabled=true;try{await api('/research/conversations/'+activeId+'/answers/'+encodeURIComponent(m.answer_id)+'/corrections','POST',{category:category.value,correction_text:correction.value.trim()});closeModal(overlay);toast(uiText('تم إرسال الملاحظة إلى قائمة مراجعة المكتب','Feedback submitted to the firm review queue'))}catch(_){submit.disabled=false;toast(uiText('تعذر إرسال الملاحظة','Could not submit feedback'))}});
+ const opener=document.activeElement;
+ const overlay=h('div',{className:'modal-backdrop',onclick:e=>{if(e.target===overlay)closeModal(overlay)}},
+  h('section',{className:'modal card',role:'dialog','aria-modal':true,'aria-label':uiText('اقتراح تصحيح للإجابة','Suggest an answer correction')},
+   h('h2',{textContent:uiText('اقتراح تصحيح للإجابة','Suggest an answer correction')}),
+   h('label',{},h('span',{className:'mut',textContent:uiText('نوع الملاحظة','Correction category')}),category),
+   h('label',{},h('span',{className:'mut',textContent:uiText('التصحيح المقترح','Suggested correction')}),correction),
+   h('div',{className:'row'},cancel,submit)));
+ overlay.__focusReturn=opener;A.append(overlay);correction.focus()
+},'g'));
        if(typeof m.answer_id==='string'&&/^ans_[A-Za-z0-9_-]{32}$/.test(m.answer_id))actions.append(makeBtn(LANG==='ar'?'نسخ معرّف الإجابة':'Copy answer ID',()=>copyText(m.answer_id),'g'));
        if(m.id)actions.append(makeBtn(LANG==='ar'?'حفظ إلى ملف قضية':'Save to matter',async()=>{if(!matterSelect.value){toast(LANG==='ar'?'اختر ملف قضية أولاً':'Select a matter first');matterSelect.focus();return}try{await api('/research/conversations/'+activeId+'/save-to-matter','POST',{case_id:Number(matterSelect.value),message_id:m.id});toast(LANG==='ar'?'تم حفظ مذكرة البحث في ملاحظات القضية':'Research memo saved to matter notes')}catch(_){}},'g'));
        bubble.append(actions);
