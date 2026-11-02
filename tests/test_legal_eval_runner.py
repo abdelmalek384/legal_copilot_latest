@@ -34,6 +34,21 @@ class LegalEvalRunnerTests(unittest.TestCase):
         self.assertFalse(row["abstained"])
         self.assertEqual(row["invalid_citation_indices"], [2])
 
+    def test_runner_preserves_stable_answer_id_when_api_supplies_it(self):
+        row = result_from_response(
+            {"id": "Q-ANSWER-ID", "question_ar": "سؤال"},
+            {"answer": "إجابة [1]", "answer_id": "ans_opaque_123",
+             "sources": [{"source_id": "LAW-1", "article": "2"}]},
+        )
+        self.assertEqual(row["answer_id"], "ans_opaque_123")
+
+    def test_runner_does_not_invent_answer_id_when_api_omits_it(self):
+        row = result_from_response(
+            {"id": "Q-NO-ANSWER-ID", "question_ar": "سؤال"},
+            {"answer": "إجابة", "sources": []},
+        )
+        self.assertNotIn("answer_id", row)
+
     def test_runner_row_can_be_scored_without_manual_schema_conversion(self):
         question = {
             "id": "Q-SCORABLE",
