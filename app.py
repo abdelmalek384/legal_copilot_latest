@@ -8,6 +8,8 @@ from urllib.parse import urlsplit, quote
 from contextvars import ContextVar
 from collections import Counter
 from datetime import date, datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
+import html as html_lib
 from functools import lru_cache, wraps
 from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_permission_register_ready, source_permission_evidence_ready, source_status, citation_text, research_memo, has_current_review_evidence)
 from tools.arabic_legal_matching import expand_lexicon_hints
@@ -2414,10 +2416,33 @@ class DeadlineEstimateIn(BaseModel):
     trigger: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
     distance_days: int = Field(0, ge=0, le=365)
     _valid_trigger = field_validator("trigger")(validate_calendar_date)
-class FeeIn(BaseModel):
-    title: str = Field(min_length=1, max_length=200); amount: float = Field(ge=0, le=1_000_000_000_000); paid: float = Field(ge=0, le=1_000_000_000_000)
-    due: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
-    _valid_due = field_validator("due")(validate_calendar_date)
+class InvoiceLineIn(BaseModel):
+    description: str = Field(min_length=1, max_length=500)
+    quantity_milli: int = Field(1000, strict=True, ge=1, le=1_000_000)
+    unit_price_piasters: int = Field(strict=True, ge=0, le=1_000_000_000_000)
+
+
+class InvoiceDraftIn(BaseModel):
+    description: str = Field("", max_length=2000)
+    due_date: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$")
+    lines: list[InvoiceLineIn] = Field(min_length=1, max_length=30)
+    _valid_due = field_validator("due_date")(validate_calendar_date)
+
+
+class InvoicePaymentIn(BaseModel):
+    amount_piasters: int = Field(strict=True, gt=0, le=1_000_000_000_000)
+    paid_on: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
+    method: str = Field(pattern=r"^(cash|bank_transfer|instapay|card|other)$")
+    reference: str = Field("", max_length=200)
+    note: str = Field("", max_length=1000)
+    idempotency_key: str = Field(min_length=8, max_length=100)
+    _valid_paid_on = field_validator("paid_on")(validate_calendar_date)
+
+
+class InvoiceVoidIn(BaseModel):
+    reason: str = Field(min_length=5, max_length=1000)
+
+
 class DocIn(BaseModel): name: str = Field(min_length=1, max_length=200); text: str = Field(min_length=1, max_length=300_000)
 class SessIn(BaseModel):
     date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=500)
@@ -5306,6 +5331,294 @@ def deadline_done(did: int, u: dict = Depends(user)):
     c.execute("UPDATE deadlines SET status='done' WHERE id=?", (did,))
     log(c, row["case_id"], u["name"], "إكمال موعد قانوني"); c.commit()
     return {"ok": True}
+
+
+def _invoice_today() -> date:
+    return datetime.now(ZoneInfo("Africa/Cairo")).date()
+
+
+def _invoice_line_total(quantity_milli: int, unit_price_piasters: int) -> int:
+    product = quantity_milli * unit_price_piasters
+    total = (product + 500) // 1000
+    if total > 1_000_000_000_000:
+        raise HTTPException(422, "invoice line total exceeds the supported limit")
+    return total
+
+
+def _invoice_event(c, invoice_id: int, actor_id: int, event_type: str, details: dict):
+    c.execute(
+        "INSERT INTO invoice_events(invoice_id,actor_user_id,event_type,details_json) VALUES(?,?,?,?)",
+        (invoice_id, actor_id, event_type, json.dumps(details, ensure_ascii=False, separators=(",", ":"))),
+    )
+
+
+def _invoice_record(c, row):
+    invoice_id = int(row["id"])
+    lines = [dict(item) for item in c.execute(
+        "SELECT id,position,description,quantity_milli,unit_price_piasters,line_total_piasters "
+        "FROM invoice_lines WHERE invoice_id=? ORDER BY position,id", (invoice_id,)
+    ).fetchall()]
+    payments = [dict(item) for item in c.execute(
+        "SELECT id,amount_piasters,paid_on,method,reference,note,recorded_by,created_at "
+        "FROM invoice_payments WHERE invoice_id=? ORDER BY paid_on,id", (invoice_id,)
+    ).fetchall()]
+    events = [dict(item) for item in c.execute(
+        "SELECT id,actor_user_id,event_type,details_json,created_at "
+        "FROM invoice_events WHERE invoice_id=? ORDER BY id", (invoice_id,)
+    ).fetchall()]
+    paid = sum(int(item["amount_piasters"]) for item in payments)
+    total = int(row["total_piasters"])
+    balance = max(0, total - paid)
+    as_of = _invoice_today().isoformat()
+    if row["status"] == "draft":
+        payment_state = "draft"
+    elif row["status"] == "void":
+        payment_state = "void"
+    elif balance == 0:
+        payment_state = "paid"
+    elif row["due_date"] and row["due_date"] < as_of:
+        payment_state = "overdue"
+    elif paid:
+        payment_state = "partially_paid"
+    else:
+        payment_state = "unpaid"
+    result = dict(row)
+    result.update({
+        "lines": lines, "payments": payments, "events": events,
+        "paid_piasters": paid, "balance_piasters": balance,
+        "payment_state": payment_state, "as_of_date": as_of,
+    })
+    return result
+
+
+def _invoice_for_user(c, u, invoice_id: int):
+    row = c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone()
+    if row is None:
+        raise HTTPException(404, "invoice not found")
+    need(c, u, int(row["case_id"]))
+    return row
+
+
+def _invoice_write_lines(c, invoice_id: int, lines: list[InvoiceLineIn]) -> int:
+    subtotal = 0
+    for position, line in enumerate(lines, start=1):
+        line_total = _invoice_line_total(line.quantity_milli, line.unit_price_piasters)
+        subtotal += line_total
+        if subtotal > 1_000_000_000_000:
+            raise HTTPException(422, "invoice total exceeds the supported limit")
+        c.execute(
+            "INSERT INTO invoice_lines(invoice_id,position,description,quantity_milli,"
+            "unit_price_piasters,line_total_piasters) VALUES(?,?,?,?,?,?)",
+            (invoice_id, position, line.description.strip(), line.quantity_milli,
+             line.unit_price_piasters, line_total),
+        )
+    return subtotal
+
+
+@app.post("/cases/{cid}/invoices")
+@rollback_tenant_transaction_on_error
+def create_invoice(cid: int, b: InvoiceDraftIn, u: dict = Depends(user)):
+    c = conn()
+    need(c, u, cid)
+    case = c.execute("SELECT title,client FROM cases WHERE id=?", (cid,)).fetchone()
+    if case is None:
+        raise HTTPException(404, "case not found")
+    invoice_id = c.execute(
+        "INSERT INTO invoices(case_id,client_name_snapshot,case_title_snapshot,description,"
+        "due_date,created_by) VALUES(?,?,?,?,?,?)",
+        (cid, case["client"] or "", case["title"] or "", b.description.strip(),
+         b.due_date, u["id"]),
+    ).lastrowid
+    total = _invoice_write_lines(c, invoice_id, b.lines)
+    c.execute("UPDATE invoices SET subtotal_piasters=?,total_piasters=? WHERE id=?",
+              (total, total, invoice_id))
+    _invoice_event(c, invoice_id, int(u["id"]), "created", {"line_count": len(b.lines)})
+    c.commit()
+    row = c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone()
+    return _invoice_record(c, row)
+
+
+@app.get("/invoices")
+def list_invoices(
+    case_id: int | None = Query(None, ge=1),
+    payment_state: str | None = Query(None, pattern=r"^(draft|unpaid|partially_paid|paid|overdue|void)$"),
+    u: dict = Depends(user),
+):
+    c = conn()
+    params = [u["id"]]
+    where = ["m.user_id=?"]
+    if case_id is not None:
+        where.append("i.case_id=?")
+        params.append(case_id)
+    rows = c.execute(
+        "SELECT DISTINCT i.* FROM invoices i JOIN members m ON m.case_id=i.case_id "
+        "JOIN cases cs ON cs.id=i.case_id WHERE " + " AND ".join(where) +
+        " ORDER BY i.created_at DESC,i.id DESC",
+        tuple(params),
+    ).fetchall()
+    result = [_invoice_record(c, row) for row in rows]
+    if payment_state:
+        result = [item for item in result if item["payment_state"] == payment_state]
+    return {"invoices": result, "as_of_date": _invoice_today().isoformat()}
+
+
+@app.get("/invoices/{invoice_id}")
+def get_invoice(invoice_id: int, u: dict = Depends(user)):
+    c = conn()
+    return _invoice_record(c, _invoice_for_user(c, u, invoice_id))
+
+
+@app.put("/invoices/{invoice_id}")
+@rollback_tenant_transaction_on_error
+def update_invoice(invoice_id: int, b: InvoiceDraftIn, u: dict = Depends(user)):
+    c = conn()
+    row = _invoice_for_user(c, u, invoice_id)
+    if row["status"] != "draft":
+        raise HTTPException(409, "only draft invoices can be edited")
+    c.execute("DELETE FROM invoice_lines WHERE invoice_id=?", (invoice_id,))
+    total = _invoice_write_lines(c, invoice_id, b.lines)
+    c.execute(
+        "UPDATE invoices SET description=?,due_date=?,subtotal_piasters=?,total_piasters=? "
+        "WHERE id=? AND status='draft'",
+        (b.description.strip(), b.due_date, total, total, invoice_id),
+    )
+    _invoice_event(c, invoice_id, int(u["id"]), "created", {"action": "draft_updated", "line_count": len(b.lines)})
+    c.commit()
+    return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
+
+
+@app.post("/invoices/{invoice_id}/issue")
+@rollback_tenant_transaction_on_error
+def issue_invoice(invoice_id: int, u: dict = Depends(user)):
+    c = conn()
+    row = _invoice_for_user(c, u, invoice_id)
+    if row["status"] != "draft":
+        raise HTTPException(409, "only draft invoices can be issued")
+    if int(row["total_piasters"]) <= 0:
+        raise HTTPException(422, "invoice total must be greater than zero")
+    today_date = _invoice_today()
+    year = today_date.year
+    sequence = c.execute(
+        "INSERT INTO invoice_sequences(issue_year,next_sequence) VALUES(?,2) "
+        "ON CONFLICT(issue_year) DO UPDATE SET next_sequence=next_sequence+1 "
+        "RETURNING next_sequence-1",
+        (year,),
+    ).fetchone()[0]
+    number = f"INV-{year}-{int(sequence):06d}"
+    c.execute(
+        "UPDATE invoices SET status='issued',invoice_number=?,issue_date=?,issued_at=datetime('now') "
+        "WHERE id=? AND status='draft'",
+        (number, today_date.isoformat(), invoice_id),
+    )
+    _invoice_event(c, invoice_id, int(u["id"]), "issued", {"invoice_number": number})
+    c.commit()
+    return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
+
+
+@app.post("/invoices/{invoice_id}/payments")
+@rollback_tenant_transaction_on_error
+def record_invoice_payment(invoice_id: int, b: InvoicePaymentIn, u: dict = Depends(user)):
+    c = conn()
+    row = _invoice_for_user(c, u, invoice_id)
+    if row["status"] != "issued":
+        raise HTTPException(409, "payments can only be recorded against issued invoices")
+    existing = c.execute(
+        "SELECT * FROM invoice_payments WHERE invoice_id=? AND idempotency_key=?",
+        (invoice_id, b.idempotency_key),
+    ).fetchone()
+    if existing is not None:
+        same = (
+            int(existing["amount_piasters"]) == b.amount_piasters
+            and existing["paid_on"] == b.paid_on
+            and existing["method"] == b.method
+            and existing["reference"] == b.reference
+        )
+        if not same:
+            raise HTTPException(409, "idempotency key was already used for a different payment")
+        return _invoice_record(c, row)
+    paid = int(c.execute(
+        "SELECT COALESCE(SUM(amount_piasters),0) FROM invoice_payments WHERE invoice_id=?",
+        (invoice_id,),
+    ).fetchone()[0])
+    balance = int(row["total_piasters"]) - paid
+    if b.amount_piasters > balance:
+        raise HTTPException(422, "payment exceeds the outstanding invoice balance")
+    payment_id = c.execute(
+        "INSERT INTO invoice_payments(invoice_id,amount_piasters,paid_on,method,reference,note,"
+        "idempotency_key,recorded_by) VALUES(?,?,?,?,?,?,?,?)",
+        (invoice_id, b.amount_piasters, b.paid_on, b.method, b.reference.strip(),
+         b.note.strip(), b.idempotency_key, u["id"]),
+    ).lastrowid
+    _invoice_event(c, invoice_id, int(u["id"]), "payment_recorded", {
+        "payment_id": payment_id, "amount_piasters": b.amount_piasters,
+        "method": b.method, "paid_on": b.paid_on,
+    })
+    c.commit()
+    return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
+
+
+@app.post("/invoices/{invoice_id}/void")
+@rollback_tenant_transaction_on_error
+def void_invoice(invoice_id: int, b: InvoiceVoidIn, u: dict = Depends(user)):
+    c = conn()
+    row = _invoice_for_user(c, u, invoice_id)
+    if row["status"] != "issued":
+        raise HTTPException(409, "only issued invoices can be voided")
+    paid = int(c.execute(
+        "SELECT COALESCE(SUM(amount_piasters),0) FROM invoice_payments WHERE invoice_id=?",
+        (invoice_id,),
+    ).fetchone()[0])
+    if paid:
+        raise HTTPException(409, "an invoice with recorded payments cannot be voided; refund policy is not configured")
+    c.execute(
+        "UPDATE invoices SET status='void',void_reason=?,voided_by=?,voided_at=datetime('now') "
+        "WHERE id=? AND status='issued'",
+        (b.reason.strip(), u["id"], invoice_id),
+    )
+    _invoice_event(c, invoice_id, int(u["id"]), "voided", {"reason": b.reason.strip()})
+    c.commit()
+    return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
+
+
+@app.get("/invoices/{invoice_id}/print")
+def print_invoice(invoice_id: int, u: dict = Depends(user)):
+    c = conn()
+    row = _invoice_for_user(c, u, invoice_id)
+    data = _invoice_record(c, row)
+    esc = html_lib.escape
+    line_rows = "".join(
+        "<tr><td>" + esc(str(item["description"])) + "</td><td>" +
+        esc(f'{int(item["quantity_milli"]) / 1000:.3f}'.rstrip("0").rstrip(".")) +
+        "</td><td>" + esc(f'{int(item["unit_price_piasters"]) // 100}.{int(item["unit_price_piasters"]) % 100:02d}') +
+        "</td><td>" + esc(f'{int(item["line_total_piasters"]) // 100}.{int(item["line_total_piasters"]) % 100:02d}') +
+        "</td></tr>" for item in data["lines"]
+    )
+    payment_rows = "".join(
+        "<tr><td>" + esc(str(item["paid_on"])) + "</td><td>" +
+        esc(str(item["method"])) + "</td><td>" +
+        esc(f'{int(item["amount_piasters"]) // 100}.{int(item["amount_piasters"]) % 100:02d}') +
+        "</td><td>" + esc(str(item["reference"])) + "</td></tr>" for item in data["payments"]
+    )
+    invoice_number = data["invoice_number"] or "مسودة"
+    body = f"""<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<title>{esc(str(invoice_number))}</title><style>
+body{{font-family:Tahoma,Arial,sans-serif;color:#111;margin:32px;line-height:1.7}}
+h1,h2{{margin:0 0 12px}}.meta{{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:18px 0}}
+table{{width:100%;border-collapse:collapse;margin:18px 0}}th,td{{border:1px solid #aaa;padding:8px;text-align:right}}
+.total{{font-size:1.15rem;font-weight:bold;margin-top:16px}}.muted{{color:#555}}
+@media print{{body{{margin:12mm}}.no-print{{display:none}}}}
+</style></head><body><button class="no-print" onclick="window.print()">طباعة / حفظ PDF</button>
+<h1>فاتورة أتعاب قانونية</h1><p class="muted">مستند أتعاب عادي — ليس فاتورة ضريبية إلكترونية أو إيصالاً ضريبياً.</p>
+<div class="meta"><div>رقم الفاتورة: {esc(str(invoice_number))}</div><div>الحالة: {esc(str(data["payment_state"]))}</div>
+<div>العميل: {esc(str(data["client_name_snapshot"]))}</div><div>القضية: {esc(str(data["case_title_snapshot"]))}</div>
+<div>تاريخ الإصدار: {esc(str(data["issue_date"] or "—"))}</div><div>تاريخ الاستحقاق: {esc(str(data["due_date"] or "—"))}</div></div>
+<p>{esc(str(data["description"]))}</p><table><thead><tr><th>البيان</th><th>الكمية</th><th>سعر الوحدة (جنيه)</th><th>الإجمالي (جنيه)</th></tr></thead>
+<tbody>{line_rows}</tbody></table><div class="total">الإجمالي: {data["total_piasters"] // 100}.{data["total_piasters"] % 100:02d} ج.م</div>
+<div>المدفوع: {data["paid_piasters"] // 100}.{data["paid_piasters"] % 100:02d} ج.م</div>
+<div>المتبقي: {data["balance_piasters"] // 100}.{data["balance_piasters"] % 100:02d} ج.م</div>
+<h2>سجل المدفوعات</h2><table><thead><tr><th>التاريخ</th><th>الطريقة</th><th>المبلغ (جنيه)</th><th>المرجع</th></tr></thead><tbody>{payment_rows}</tbody></table>
+</body></html>"""
+    return HTMLResponse(body)
 
 
 @app.post("/cases/{cid}/fees")
