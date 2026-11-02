@@ -53,6 +53,13 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
     return _score_evaluation(questions, runs, k_values, reviewer_registry=reviewer_registry())
 
 
+def run_main(args):
+    with tempfile.TemporaryDirectory() as td:
+        registry_path = Path(td) / "reviewers.json"
+        registry_path.write_text(json.dumps(reviewer_registry()), encoding="utf-8")
+        return main([*args, "--reviewer-registry", str(registry_path)])
+
+
 class RetrievalEvaluationTests(unittest.TestCase):
     def test_report_writer_creates_new_file_and_never_overwrites_existing_evidence(self):
         with tempfile.TemporaryDirectory() as td:
