@@ -4977,6 +4977,9 @@ def create_invoice(cid: int, b: InvoiceCreateIn, u: dict = Depends(user)):
         lines = []
         subtotal = 0
         for item in b.lines:
+            description = item.description.strip()
+            if not description:
+                raise HTTPException(422, "invoice line description is required")
             unit_price = egp_to_piasters(item.unit_price_egp)
             line_total = unit_price * item.quantity
             if line_total > 9_000_000_000_000_000:
@@ -4984,7 +4987,7 @@ def create_invoice(cid: int, b: InvoiceCreateIn, u: dict = Depends(user)):
             subtotal += line_total
             if subtotal > 9_000_000_000_000_000:
                 raise InvoiceMoneyError("invoice total exceeds the supported limit")
-            lines.append((item.description.strip(), item.quantity, unit_price, line_total))
+            lines.append((description, item.quantity, unit_price, line_total))
     except InvoiceMoneyError as exc:
         raise HTTPException(422, str(exc)) from exc
     year = int(b.issue_date[:4])
