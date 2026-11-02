@@ -597,6 +597,39 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
   .filter-bar input, .filter-bar select { flex-basis: 100%; width: 100%; }
   #main table { display: block; overflow-x: auto; white-space: nowrap; }
 }
+
+/* Dashboard composition: balanced grids and readable contrast on the hero. */
+#main .workspace-hero h3 { color: #fff !important; }
+#main .workspace-hero p { color: #e4edfb !important; }
+#main .workspace-hero .workspace-actions button:not(.g) {
+  background: #fff;
+  color: #17345f;
+}
+#main .workspace-hero .workspace-actions button.g {
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  border-color: rgba(255,255,255,.35);
+}
+#main > .workspace-hero + .grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+#main > .workspace-section-title + .grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+#main > .cols {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 1050px) {
+  #main > .workspace-section-title + .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 800px) {
+  #main > .workspace-hero + .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #main > .cols { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 480px) {
+  #main > .workspace-hero + .grid,
+  #main > .workspace-section-title + .grid { grid-template-columns: minmax(0, 1fr); }
+}
 </style>
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <script>
