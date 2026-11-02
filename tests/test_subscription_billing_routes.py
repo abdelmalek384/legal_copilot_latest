@@ -128,6 +128,14 @@ class SubscriptionBillingRouteTests(unittest.TestCase):
         self.assertEqual(active["status"], "active")
         self.assertGreater(active["current_period_end"], active["current_period_start"])
         self.assertEqual(self.client_b.get("/billing").json()["subscription"], None)
+        self.assertEqual(self.client_b.get("/billing").json()["subscription_events"], [])
+        audit = self.client_a.get("/billing").json()["subscription_events"]
+        self.assertEqual(
+            {event["event_type"] for event in audit},
+            {"trial_started", "payment_submitted", "payment_approved"},
+        )
+        self.assertTrue(all(event["actor_name"] for event in audit if event["event_type"] != "trial_started"))
+        self.assertEqual(audit[0]["details"]["amount_piasters"], 250000)
         self.assertEqual(self.client_b.get("/platform/billing/payment-submissions").json(), [])
         small_firm = self._mutate(self.client_b, "post", "/billing/subscribe", json={"plan_code": "small_firm"})
         self.assertEqual(small_firm.status_code, 200, small_firm.text)

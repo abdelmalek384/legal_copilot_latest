@@ -1080,9 +1080,33 @@ async function billingPage(){
  const paymentCard=h('section',{className:'card'},h('h3',{textContent:uiText('الدفع بتحويل بنكي أو InstaPay','Pay by bank transfer or InstaPay')}),
   h('p',{className:'mut',textContent:uiText('حوّل المبلغ إلى حساب المكتب المحدد خارج التطبيق ثم أدخل المبلغ ومرجع التحويل. لن يتم تفعيل الاشتراك قبل مراجعة مسؤول المنصة. لا تُدخل بيانات بطاقة بنكية.','Transfer externally to the firm’s designated account, then enter the amount and transfer reference. The subscription is not activated until a platform operator reviews it. Do not enter card details.')}),
   sub?h('div',{className:'grid'},amount,method,reference,paymentButton):h('p',{className:'mut',textContent:uiText('ابدأ باختيار خطة أولاً.','Choose a plan first.')}));
+ const auditLabels={
+  trial_started:uiText('بدء فترة تجريبية','Trial started'),
+  plan_changed:uiText('تغيير الخطة','Plan changed'),
+  payment_submitted:uiText('إرسال إثبات الدفع','Payment submitted'),
+  payment_approved:uiText('اعتماد الدفع','Payment approved'),
+  payment_rejected:uiText('رفض الدفع','Payment rejected')
+ };
+ const auditEvents=data.subscription_events||[];
+ const auditCard=h('section',{className:'card'},h('h3',{textContent:uiText('سجل نشاط الاشتراك','Subscription activity history')}),
+  ...(auditEvents.length?auditEvents.map(event=>{
+   const details=event.details||{};
+   const detailParts=[];
+   if(details.plan_code)detailParts.push(uiText('الخطة: ','Plan: ')+details.plan_code);
+   if(details.trial_days)detailParts.push(uiText('مدة التجربة: ','Trial: ')+details.trial_days+uiText(' يوماً',' days'));
+   if(Number.isInteger(details.amount_piasters))detailParts.push(uiText('المبلغ: ','Amount: ')+details.amount_piasters+' '+uiText('قرش','piasters'));
+   if(details.method)detailParts.push(details.method);
+   if(details.reason)detailParts.push(uiText('السبب: ','Reason: ')+details.reason);
+   return h('article',{className:'row'},
+    h('div',{},h('b',{textContent:auditLabels[event.event_type]||event.event_type}),
+     h('p',{className:'mut',textContent:detailParts.join(' · ')}),
+     h('p',{className:'mut',textContent:(event.actor_name||uiText('النظام','System'))+' · '+new Date(event.created_at*1000).toLocaleString(LANG==='ar'?'ar-EG':'en-US')}))
+   );
+  }):[empty(uiText('لا يوجد نشاط اشتراك مسجل بعد.','No subscription activity recorded yet.'))])
+ );
  const history=h('section',{className:'card'},h('h3',{textContent:uiText('سجل التحويلات','Transfer submissions')}),
   ...(data.payments.length?data.payments.map(p=>h('div',{className:'row'},h('span',{textContent:p.method+' · '+p.transfer_reference+' · '+p.amount_piasters+' '+uiText('قرش','piasters')}),pill(statusLabel(p.status),p.status==='approved'?'done':p.status==='pending'?'soon':'late'))):[empty(uiText('لا توجد تحويلات مسجلة.','No transfer submissions yet.'))]));
- shell(uiText('الاشتراك والفوترة','Subscription & billing'),usageCard,planCard,paymentCard,history);
+ shell(uiText('الاشتراك والفوترة','Subscription & billing'),usageCard,planCard,paymentCard,auditCard,history);
 }
 async function platformBillingPage(){
  PAGE='platform-billing';
