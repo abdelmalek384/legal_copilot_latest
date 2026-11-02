@@ -47,8 +47,8 @@ class T(unittest.TestCase):
    def __init__(self,*args,**kwargs):
     self.is_encrypted=False
     self.pages=[
-     Page("المادة الأولى\nيعمل بأحكام القانون."),
-     Page("ويستمر العمل به.\nالمادة الثانية\nتنشر في الوقائع."),
+     Page("الجريدة الرسمية العدد 18\nالمادة الأولى\nيعمل بأحكام القانون."),
+     Page("ويستمر العمل به.\nالمادة الثانية\nتنشر في الوقائع.\nالجريدة الرسمية العدد 18"),
     ]
   with mock.patch("tools.compare_corpus_to_reference.PdfReader",Reader):
    report=build_report(self.c,pdf)
