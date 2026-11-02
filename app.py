@@ -2439,6 +2439,19 @@ class SubscriptionPaymentDecisionIn(BaseModel):
     reason: str = Field(min_length=1, max_length=500)
 
 
+class AnswerCorrectionCreateIn(BaseModel):
+    case_id: int | None = Field(None, ge=1)
+    answer_id: str = Field("", max_length=128)
+    question: str = Field("", max_length=1000)
+    answer_excerpt: str = Field(min_length=1, max_length=4000)
+    correction_note: str = Field(min_length=1, max_length=2000)
+
+
+class AnswerCorrectionReviewIn(BaseModel):
+    status: str = Field(pattern=r"^(accepted|rejected)$")
+    review_note: str = Field("", max_length=1000)
+
+
 class FeeIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); amount: float = Field(ge=0, le=1_000_000_000_000); paid: float = Field(ge=0, le=1_000_000_000_000)
     due: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
