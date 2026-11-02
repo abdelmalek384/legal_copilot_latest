@@ -338,6 +338,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_audit_article_rows.py
       - name: Test firm-private usage metering and audit ledger
         run: PYTHONPATH=. python tests/test_firm_usage_metering.py
+      - name: Test subscription audit timeline frontend contract
+        run: PYTHONPATH=. python tests/test_subscription_audit_frontend_contract.py
       - name: Test subscription trial, transfer review and seat limits
         run: PYTHONPATH=. python tests/test_subscription_billing_routes.py
       - name: Test Arabic drafting skeletons
