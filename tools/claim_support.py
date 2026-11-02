@@ -89,8 +89,17 @@ def _has_modal_mismatch(claim, evidence):
     for patterns in (_ENGLISH_MODAL_PATTERNS, _ARABIC_MODAL_PATTERNS):
         claim_classes = _modal_classes(claim, patterns)
         evidence_classes = _modal_classes(evidence, patterns)
-        if claim_classes and evidence_classes and claim_classes.isdisjoint(evidence_classes):
-            return True
+        if claim_classes and evidence_classes:
+            # "must not" also contains the token "must"; do not let that
+            # shared token hide a direct prohibition/permission conflict.
+            if ("prohibition" in claim_classes
+                    and evidence_classes & {"permission", "obligation"}):
+                return True
+            if ("prohibition" in evidence_classes
+                    and claim_classes & {"permission", "obligation"}):
+                return True
+            if claim_classes.isdisjoint(evidence_classes):
+                return True
     return False
 
 def claim_support_enabled():
