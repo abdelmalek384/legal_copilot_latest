@@ -88,6 +88,18 @@ class InvoicePaymentRouteTests(InvoiceTestSupport, unittest.TestCase):
             self.client_b.get(f"/invoices/{issued['id']}/payments/{payment_id}/receipt").status_code,
             404,
         )
+        self.assertEqual(
+            self.client_nonmember.get(f"/invoices/{issued['id']}/payments/{payment_id}/receipt").status_code,
+            404,
+        )
+        self.assertEqual(
+            self.mutate(self.client_nonmember, "post", f"/invoices/{issued['id']}/payments", json=payment).status_code,
+            404,
+        )
+        self.assertEqual(
+            self.client_nonmember.get("/finance/invoices/overview").json()["outstanding_piasters"],
+            0,
+        )
 
     def test_issued_lines_and_payment_ledger_are_append_only(self):
         draft = self.create_draft().json()
