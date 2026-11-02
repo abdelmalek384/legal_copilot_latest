@@ -4315,6 +4315,24 @@ def get_firm_billing(u: dict = Depends(user)):
         "FROM subscription_payment_submissions WHERE firm_id=? ORDER BY id DESC LIMIT 20",
         (u["firm_id"],),
     ).fetchall()]
+    subscription_events = []
+    for event in control.execute(
+        "SELECT e.id,e.event_type,e.detail_json,e.created_at,u.name AS actor_name "
+        "FROM subscription_audit_events e LEFT JOIN users u ON u.id=e.actor_user_id "
+        "WHERE e.firm_id=? ORDER BY e.id DESC LIMIT 50",
+        (u["firm_id"],),
+    ).fetchall():
+        try:
+            details = json.loads(event["detail_json"] or "{}")
+        except (TypeError, ValueError):
+            details = {}
+        subscription_events.append({
+            "id": int(event["id"]),
+            "event_type": event["event_type"],
+            "details": details if isinstance(details, dict) else {},
+            "created_at": int(event["created_at"]),
+            "actor_name": event["actor_name"] or "",
+        })
     active, pending, limit = _firm_seat_usage(control, u["firm_id"]) if subscription and subscription["status"] not in {"expired","cancelled","past_due"} else (
         int(control.execute("SELECT COUNT(*) FROM firm_memberships WHERE firm_id=? AND status='active'", (u["firm_id"],)).fetchone()[0]),
         int(control.execute("SELECT COUNT(*) FROM identity_invitations WHERE firm_id=? AND status IN ('pending','sent')", (u["firm_id"],)).fetchone()[0]),
@@ -4326,6 +4344,7 @@ def get_firm_billing(u: dict = Depends(user)):
         "subscription": dict(subscription) if subscription else None,
         "seat_usage": {"active": active, "pending_invitations": pending, "limit": limit},
         "payments": payments,
+        "subscription_events": subscription_events,
     }
 
 
