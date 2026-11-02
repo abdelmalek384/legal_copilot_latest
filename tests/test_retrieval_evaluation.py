@@ -431,7 +431,7 @@ class RetrievalEvaluationTests(unittest.TestCase):
             runs_path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in runs), encoding="utf-8")
             output = io.StringIO()
             with contextlib.redirect_stdout(output):
-                code = main([
+                code = run_main([
                     "--questions", str(questions_path), "--runs", str(runs_path),
                     "--min-reviewed-cases", "2", "--min-practice-areas", "1",
                     "--min-cases-per-practice-area", "2", "--min-answerable-cases", "1",
@@ -464,7 +464,7 @@ class RetrievalEvaluationTests(unittest.TestCase):
             runs_path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in runs), encoding="utf-8")
             output = io.StringIO()
             with contextlib.redirect_stdout(output):
-                code = main([
+                code = run_main([
                     "--questions", str(questions_path), "--runs", str(runs_path),
                     "--min-reviewed-cases", "2", "--min-practice-areas", "1",
                     "--min-cases-per-practice-area", "2", "--min-answerable-cases", "1",
@@ -491,7 +491,7 @@ class RetrievalEvaluationTests(unittest.TestCase):
                 "citations": [], "abstained": False, "used_unverified_source": False,
             }) + "\n", encoding="utf-8")
             with self.assertRaises(SystemExit) as raised:
-                main(["--questions", str(questions_path), "--runs", str(runs_path),
+                run_main(["--questions", str(questions_path), "--runs", str(runs_path),
                       "--min-reviewed-cases", "1", "--min-practice-areas", "1",
                       "--min-cases-per-practice-area", "1", "--min-citation-coverage", "1"])
             self.assertEqual(raised.exception.code, 2)
@@ -508,7 +508,7 @@ class RetrievalEvaluationTests(unittest.TestCase):
             ):
                 with self.subTest(args=args):
                     with self.assertRaises(SystemExit) as raised:
-                        main(["--questions", str(questions_path), "--runs", str(runs_path), *args])
+                        run_main(["--questions", str(questions_path), "--runs", str(runs_path), *args])
                     self.assertEqual(raised.exception.code, 2)
 
     def test_retrieval_release_gate_fails_on_malformed_run_records(self):
@@ -522,7 +522,7 @@ class RetrievalEvaluationTests(unittest.TestCase):
             }) + "\n", encoding="utf-8")
             output = io.StringIO()
             with contextlib.redirect_stdout(output):
-                code = main([
+                code = run_main([
                     "--questions", str(questions_path), "--runs", str(runs_path),
                     "--min-reviewed-cases", "1", "--max-invalid-records", "0",
                 ])
