@@ -63,6 +63,30 @@ def _modal_classes(text, patterns):
 
 def _has_modal_mismatch(claim, evidence):
     """Compare explicit modality only within the same language."""
+    # Check polarity before generic modality classes. Keeping the negative
+    # phrase intact avoids treating its embedded verb as a positive obligation.
+    english_non_obligation = re.compile(
+        r"\\b(?:is\\s+)?not\\s+required\\s+to\\b|"
+        r"\\b(?:need\\s+not|does\\s+not\\s+have\\s+to|"
+        r"do\\s+not\\s+have\\s+to|is\\s+not\\s+obligated\\s+to)\\b",
+        re.IGNORECASE,
+    )
+    arabic_non_obligation = re.compile(r"لا\\s+(?:يجب|يلتزم|يتعين|يلزم)")
+    english_positive_obligation = re.compile(
+        r"\\b(?:must|shall|required\\s+to|is\\s+required\\s+to)\\b",
+        re.IGNORECASE,
+    )
+    arabic_positive_obligation = re.compile(r"(?:يجب|يلتزم|يتعين)")
+
+    if english_non_obligation.search(evidence) and english_positive_obligation.search(claim):
+        return True
+    if english_non_obligation.search(claim) and english_positive_obligation.search(evidence):
+        return True
+    if arabic_non_obligation.search(evidence) and arabic_positive_obligation.search(claim):
+        return True
+    if arabic_non_obligation.search(claim) and arabic_positive_obligation.search(evidence):
+        return True
+
     for patterns in (_ENGLISH_MODAL_PATTERNS, _ARABIC_MODAL_PATTERNS):
         claim_classes = _modal_classes(claim, patterns)
         evidence_classes = _modal_classes(evidence, patterns)
