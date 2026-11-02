@@ -89,6 +89,7 @@ Example (thresholds are illustrative and must be approved for the actual benchma
 ```bash
 python tools/evaluate_retrieval_quality.py \
   --questions reviewed_questions.jsonl --runs model_runs.jsonl \
+  --reviewer-registry approved_reviewer_registry.json \
   --min-reviewed-cases 100 --min-practice-areas 3 --min-cases-per-practice-area 20 \
   --min-answerable-cases 60 --min-unanswerable-cases 20 --min-expected-pin-cites 50 \
   --min-recall-at-5 0.90 --min-mrr-at-5 0.80 \
