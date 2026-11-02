@@ -6,7 +6,7 @@
 
 ## Sources used
 
-1. **Primary source:** Government-hosted Official Gazette PDF, *الجريدة الرسمية، العدد 18 (تابع)، 3 مايو 2025*, Law No. 14 of 2025. URL: https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf
+1. **Primary source:** Government-hosted Official Gazette PDF, *الجريدة الرسمية، العدد 18 (تابع)، 3 مايو 2025*, Law No. 14 of 2025. URL: https://eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf
 2. **Independent official-publisher text page:** Amiri Press, Law No. 14 of 2025. URL: https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D (the page was indexed by search, but direct open returned HTTP 502 during this check).
 3. **Public secondary transcription for fallback comparison:** Wikisource, “قانون العمل 14 لسنة 2025 - مصر”. URL: https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر
 4. **Additional secondary transcription:** Law Hub, Law No. 14 of 2025. URL: https://lawhub.info/eg/?p=11848
@@ -52,3 +52,37 @@ The missing `law_rows_ar.jsonl` is deliberately not distributed in the repositor
 **Partial progress:** six article/page locators now have official-PDF text-layer support.  
 **Still blocked:** the six exact spelling comparisons, all 311 JSONL-to-Gazette comparisons, the 120-item numeric checklist, original-PDF SHA-256, full currentness/reuse review, and qualified lawyer sign-off.  
 **Safety:** no card is activated by this log.
+
+
+## Additional official-hosted PDF cross-check — 2026-11-02
+
+A second official-hosted copy was located through the Egyptian Tax Authority legislation index. The index links directly to the 110-page PDF:
+
+- Egyptian Tax Authority: https://eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf
+- State Information Service: https://sis.gov.eg/media/760267/القانون-رقم-14-لسنة-2025-بإصدار-قانون-العمل.pdf
+
+Both are government-hosted copies of the Official Gazette issue 18 (تابع), 3 May 2025. Their web PDF text layers expose the six targeted article locations. This is an additional official-hosted source cross-check, not proof that either PDF's bytes are identical to the other.
+
+### Article 103 — unresolved extracted-text discrepancy
+
+The two text layers differ in a legally meaningful phrase:
+
+- SIS-hosted PDF text layer, printed page 49 / PDF index 46, around extracted lines 784–787: **"يجتمع المجلس القومي للأجور بدعوة من رئيسه كل سنة ستة أشهر على الأقل"**.
+- ETA-hosted PDF text layer, printed page 49 / PDF index 46, around extracted lines 1141–1145: **"يجتمع المجلس القومي للأجور بدعوة من رئيسه كل ستة أشهر على الأقل"**.
+
+The additional word **"سنة"** appears in the SIS extraction but not in the ETA extraction. Do not silently normalize this difference or use either text layer as conclusive visual evidence. It may reflect an extraction/OCR problem, a difference between the hosted files, or a source rendering issue. The original page images could not be retrieved for visual comparison in this session, and neither original PDF binary was obtained or hashed.
+
+**Disposition:** Article 103 is now flagged for priority visual comparison against both original PDF page images. Until resolved, any candidate wording for this sentence remains unverified. This discrepancy does not establish an amendment or change the legal status of the Law.
+
+### Cross-check scope and limitations
+
+- The ETA PDF text layer independently exposes the Article 66 locator at printed page 35 / PDF index 33; Article 103 at page 49 / index 46; Article 124 at page 54 / index 52; Article 134 at page 58 / index 56; Article 141 at page 62 / index 60; and Article 278 at page 107 / index 104.
+- The SIS PDF text layer independently exposes the same six article/page locators. The earlier spot-check table remains a locator check only.
+- Attempts to retrieve rendered page images from both PDF viewers failed in this session. No visual page verification is claimed.
+- The ETA and SIS source URLs are public viewing links. This check does not establish binary equality, original-file SHA-256, systematic reuse permission, amendment completeness, or qualified-counsel approval.
+- The missing 311-row `law_rows_ar.jsonl` and 120-item numeric checklist are still not present in the Library or repository checkout inspected. No full candidate-to-Gazette comparison is claimed.
+- All Labour Law cards remain `search_eligible: false`; no verification or release gate is changed.
+
+### Immediate next action
+
+Obtain the original page image for printed Gazette page 49 from each official-hosted PDF through the ordinary public viewer or an authorized local copy. Compare the visible glyphs around Article 103, record each PDF's SHA-256 only after obtaining its actual bytes, and then compare the resolved wording with the candidate article row when that row is available. Keep the discrepancy open if the images remain inaccessible.
