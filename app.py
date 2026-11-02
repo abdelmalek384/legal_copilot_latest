@@ -5972,6 +5972,60 @@ def list_invoices(
     return {"invoices": result, "as_of_date": _invoice_today().isoformat()}
 
 
+def _invoice_csv_text(value):
+    """Neutralize spreadsheet formula prefixes in untrusted text cells."""
+    text_value = "" if value is None else str(value)
+    if text_value.lstrip(" \t\r\n").startswith(("=", "+", "-", "@")):
+        return "'" + text_value
+    return text_value
+
+
+def _piasters_csv(value: int) -> str:
+    amount = int(value or 0)
+    sign = "-" if amount < 0 else ""
+    amount = abs(amount)
+    return f"{sign}{amount // 100}.{amount % 100:02d}"
+
+
+@app.get("/invoices/export.csv")
+def export_invoice_ledger_csv(
+    case_id: int | None = Query(None, ge=1),
+    payment_state: str | None = Query(None, pattern=r"^(draft|unpaid|partially_paid|paid|overdue|void)$"),
+    u: dict = Depends(user),
+):
+    """Export only invoices visible through the same firm/case authorization as the invoice list."""
+    payload = list_invoices(case_id=case_id, payment_state=payment_state, u=u)
+    output = io.StringIO(newline="")
+    writer = csv.writer(output, lineterminator="\r\n")
+    writer.writerow([
+        "invoice_number", "status", "payment_state", "issue_date", "due_date",
+        "client_name", "case_title", "total_egp", "paid_egp", "balance_egp",
+        "currency", "created_at",
+    ])
+    for invoice in payload["invoices"]:
+        writer.writerow([
+            _invoice_csv_text(invoice.get("invoice_number")),
+            _invoice_csv_text(invoice.get("status")),
+            _invoice_csv_text(invoice.get("payment_state")),
+            _invoice_csv_text(invoice.get("issue_date")),
+            _invoice_csv_text(invoice.get("due_date")),
+            _invoice_csv_text(invoice.get("client_name_snapshot")),
+            _invoice_csv_text(invoice.get("case_title_snapshot")),
+            _piasters_csv(invoice.get("total_piasters")),
+            _piasters_csv(invoice.get("paid_piasters")),
+            _piasters_csv(invoice.get("balance_piasters")),
+            _invoice_csv_text(invoice.get("currency") or "EGP"),
+            _invoice_csv_text(invoice.get("created_at")),
+        ])
+    content = "\ufeff" + output.getvalue()
+    return Response(
+        content=content,
+        media_type="text/csv; charset=utf-8",
+        headers={"Content-Disposition": 'attachment; filename="legal-copilot-invoices.csv"'},
+    )
+
+
+
 @app.get("/invoices/{invoice_id}")
 def get_invoice(invoice_id: int, u: dict = Depends(user)):
     c = conn()
