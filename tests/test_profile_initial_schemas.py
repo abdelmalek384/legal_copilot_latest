@@ -23,7 +23,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
     def test_firm_binding_schema_is_migration_managed_and_immutable(self):
         db = self.build("firm")
         self.assertIn(
-            "tenant_database_binding", "product_feedback", "product_feedback_events",
+            "tenant_database_binding",
             {row[0] for row in db.execute(
                 "SELECT name FROM sqlite_master WHERE type='table'"
             )},
