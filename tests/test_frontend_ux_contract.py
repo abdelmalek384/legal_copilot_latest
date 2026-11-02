@@ -255,7 +255,8 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_answer_correction_feedback_supports_categories(self):
         self.assertIn("legal_accuracy", HTML)
         self.assertIn("completeness", HTML)
-        self.assertIn("Invalid correction category", HTML)
+        self.assertIn("Correction category", HTML)
+        self.assertIn("aria-modal", HTML)
 
     def test_answer_correction_submission_uses_bilingual_modal_and_category(self):
         self.assertIn("Suggest an answer correction", HTML)
