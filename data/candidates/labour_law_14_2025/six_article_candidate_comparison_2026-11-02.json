@@ -28,7 +28,11 @@
     "embedded_hash_is_jsonl_file_hash": false,
     "source_url": "https://manshurat.org/node/76602",
     "source_description": "Manshurat secondary transcription; its row metadata labels it unofficial pending Gazette comparison.",
-    "source_retrieved_on": "2026-10-22"
+    "source_retrieved_on": "2026-10-22",
+    "manifest_sha256": "3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600",
+    "manifest_size_bytes": 393861,
+    "library_copy_size_matches_manifest": true,
+    "manifest_sha256_recomputed_from_original_bytes": false
   },
   "official_reference": {
     "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
