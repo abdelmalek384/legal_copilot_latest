@@ -178,6 +178,74 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             self.assertTrue(report["release_gate"]["enabled"])
             self.assertTrue(report["release_gate"]["passed"])
 
+    def test_ranked_retrieval_thresholds_gate_recall_mrr_and_unanswerable_candidates(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions = Path(td) / "questions.jsonl"
+            results = Path(td) / "results.jsonl"
+            report_path = Path(td) / "report.json"
+            q1 = approved("Q1")
+            q2 = approved("Q2", answerable=False)
+            questions.write_text("".join(json.dumps(q, ensure_ascii=False) + "\\n" for q in (q1, q2)), encoding="utf-8")
+            results.write_text("".join(json.dumps(r, ensure_ascii=False) + "\\n" for r in (
+                result("Q1", retrieved=["LAW-10"]),
+                result("Q2", abstained=True, retrieved=[]),
+            )), encoding="utf-8")
+            code = run_main([
+                "--questions", str(questions), "--results", str(results), "--out", str(report_path),
+                "--min-questions", "2", "--min-answerable-questions", "1", "--min-unanswerable-questions", "1",
+                "--min-practice-areas", "1", "--min-questions-per-practice-area", "2",
+                "--min-retrieval-recall-at-3", "1", "--min-retrieval-mrr", "1",
+                "--max-unanswerable-retrieval-rate", "0",
+            ])
+            self.assertEqual(code, 0)
+            report = json.loads(report_path.read_text(encoding="utf-8"))
+            self.assertTrue(report["release_gate"]["passed"])
+
+    def test_ranked_retrieval_thresholds_fail_when_relevant_source_is_not_retrieved(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions = Path(td) / "questions.jsonl"
+            results = Path(td) / "results.jsonl"
+            report_path = Path(td) / "report.json"
+            q1 = approved("Q1")
+            q2 = approved("Q2", answerable=False)
+            questions.write_text("".join(json.dumps(q, ensure_ascii=False) + "\\n" for q in (q1, q2)), encoding="utf-8")
+            results.write_text("".join(json.dumps(r, ensure_ascii=False) + "\\n" for r in (
+                result("Q1", retrieved=["OTHER-LAW"]),
+                result("Q2", abstained=True, retrieved=["OTHER-LAW"]),
+            )), encoding="utf-8")
+            code = run_main([
+                "--questions", str(questions), "--results", str(results), "--out", str(report_path),
+                "--min-questions", "2", "--min-answerable-questions", "1", "--min-unanswerable-questions", "1",
+                "--min-practice-areas", "1", "--min-questions-per-practice-area", "2",
+                "--min-retrieval-recall-at-3", "1", "--min-retrieval-mrr", "1",
+                "--max-unanswerable-retrieval-rate", "0",
+            ])
+            self.assertEqual(code, 1)
+            report = json.loads(report_path.read_text(encoding="utf-8"))
+            checks = {item["metric"]: item for item in report["release_gate"]["checks"]}
+            self.assertFalse(checks["retrieval_recall_at_3"]["passed"])
+            self.assertFalse(checks["retrieval_mrr"]["passed"])
+            self.assertFalse(checks["unanswerable_retrieval_rate"]["passed"])
+
+    def test_retrieval_thresholds_require_matching_cohort_size_gates(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions = Path(td) / "questions.jsonl"
+            results = Path(td) / "results.jsonl"
+            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            results.write_text(json.dumps(result(retrieved=["LAW-10"]), ensure_ascii=False) + "\\n", encoding="utf-8")
+            common = ["--questions", str(questions), "--results", str(results),
+                      "--min-questions", "1", "--min-practice-areas", "1",
+                      "--min-questions-per-practice-area", "1"]
+            for args in (
+                ["--min-retrieval-recall-at-3", "1"],
+                ["--min-retrieval-mrr", "1"],
+                ["--max-unanswerable-retrieval-rate", "0"],
+            ):
+                with self.subTest(args=args):
+                    with self.assertRaises(SystemExit) as raised:
+                        run_main([*common, *args])
+                    self.assertEqual(raised.exception.code, 2)
+
     def test_stable_answer_id_coverage_is_a_release_gate(self):
         with tempfile.TemporaryDirectory() as td:
             questions = Path(td) / "questions.jsonl"
