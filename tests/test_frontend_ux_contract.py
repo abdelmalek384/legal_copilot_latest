@@ -270,5 +270,16 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn(".auth-card form>label{display:block;width:100%", HTML)
         self.assertIn(".auth-card .password-row input{min-width:0;flex:1}", HTML)
 
+
+    def test_invoice_workflow_exposes_case_creation_payment_print_and_receipt_actions(self):
+        self.assertIn("['invoices',uiText('الفواتير','Invoices')]", HTML)
+        self.assertIn("api('/invoices?case_id='+id)", HTML)
+        self.assertIn("api('/cases/'+id+'/invoices','POST'", HTML)
+        self.assertIn("api('/invoices/'+inv.id+'/issue','POST')", HTML)
+        self.assertIn("api('/invoices/'+inv.id+'/payments','POST'", HTML)
+        self.assertIn("/invoices/'+inv.id+'/print", HTML)
+        self.assertIn("/payments/'+p.id+'/receipt", HTML)
+        self.assertIn("api('/finance/invoices/overview')", HTML)
+
 if __name__ == "__main__":
     unittest.main()
