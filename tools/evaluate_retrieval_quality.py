@@ -390,7 +390,12 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None
         "approved_reviewer_registry_entries": len(approved_reviewers),
         "reviewer_qualification_note": "Registry approval is an operator attestation; the evaluator does not independently verify identity or professional licensure.",
         "practice_area_counts": {
-            area: {**counts, "reviewer_count": len(counts.pop("reviewer_ids"))}
+            area: {
+                "reviewed_cases": counts["reviewed_cases"],
+                "answerable_cases": counts["answerable_cases"],
+                "unanswerable_cases": counts["unanswerable_cases"],
+                "reviewer_count": len(counts["reviewer_ids"]),
+            }
             for area, counts in sorted(practice_area_counts.items())
         },
         "excluded_cases": excluded,
