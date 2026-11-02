@@ -282,6 +282,15 @@ def evaluate(question_rows, result_rows, reviewer_registry):
             "retrieved_expected_source_count": (
                 sum(source_id in set(expected_sources) for source_id in (retrieved_sources or []))
             ),
+            "retrieved_expected_source_count_at_1": (
+                sum(source_id in set(expected_sources) for source_id in (retrieved_sources or [])[:1])
+            ),
+            "retrieved_expected_source_count_at_3": (
+                sum(source_id in set(expected_sources) for source_id in (retrieved_sources or [])[:3])
+            ),
+            "retrieved_expected_source_count_at_5": (
+                sum(source_id in set(expected_sources) for source_id in (retrieved_sources or [])[:5])
+            ),
             "first_relevant_rank": first_relevant_rank,
             "retrieval_recall_at_1": (
                 _ratio(sum(source_id in set(expected_sources) for source_id in (retrieved_sources or [])[:1]),
@@ -361,19 +370,19 @@ def evaluate(question_rows, result_rows, reviewer_registry):
             "questions_with_invalid_citation_indices": sum(bool(x["invalid_citation_indices"]) for x in items),
             "invalid_citation_question_rate": _ratio(sum(bool(x["invalid_citation_indices"]) for x in items), n),
             "retrieval_recall_at_1": (
-                _ratio(sum(x["retrieved_expected_source_count"] if x["retrieved_source_count"] else 0
+                _ratio(sum(x["retrieved_expected_source_count_at_1"]
                            for x in answerable if x["retrieval_recall_at_1"] is not None),
                        sum(x["expected_source_count"] for x in answerable))
                 if retrieval_scored else None
             ),
             "retrieval_recall_at_3": (
-                _ratio(sum(x["retrieved_expected_source_count"] if x["retrieved_source_count"] else 0
+                _ratio(sum(x["retrieved_expected_source_count_at_3"]
                            for x in answerable if x["retrieval_recall_at_3"] is not None),
                        sum(x["expected_source_count"] for x in answerable))
                 if retrieval_scored else None
             ),
             "retrieval_recall_at_5": (
-                _ratio(sum(x["retrieved_expected_source_count"] if x["retrieved_source_count"] else 0
+                _ratio(sum(x["retrieved_expected_source_count_at_5"]
                            for x in answerable if x["retrieval_recall_at_5"] is not None),
                        sum(x["expected_source_count"] for x in answerable))
                 if retrieval_scored else None
