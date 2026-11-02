@@ -290,6 +290,82 @@ class SyntheticRetrievalTests(unittest.TestCase):
         print(f"synthetic colloquial retrieval: top-3 {len(ranks)}/{len(cases)}; top-1 {top_one}/{len(cases)}")
         self.assertEqual(len(ranks), len(cases))
 
+    def test_colloquial_retrieval_resists_high_overlap_wrong_issue_decoys(self):
+        # Deliberately similar legal vocabulary: only the intended issue is relevant.
+        cases = (
+            (
+                "خصموا من مرتبي",
+                "خصم الأجر والاستقطاع من أجر العامل دون سند",
+                (
+                    "خصم الأجرة وزيادة القيمة الإيجارية في عقد الإيجار",
+                    "استقطاع اشتراكات التأمينات الاجتماعية من أجر العامل",
+                    "تأخر صرف الأجر ومستحقات نهاية الخدمة",
+                ),
+            ),
+            (
+                "مأمنوش عليا",
+                "عدم تسجيل العامل لدى التأمينات الاجتماعية والتزام صاحب العمل بالتأمين",
+                (
+                    "صرف المعاش التأميني للمؤمن عليه وشروط استحقاق المعاش",
+                    "خصم اشتراكات التأمين الاجتماعي من الأجر",
+                    "إصابة العمل والتعويض عن إصابات العامل",
+                ),
+            ),
+            (
+                "مضوني على استقالة",
+                "صحة الاستقالة المكتوبة وإثبات إرادة العامل عند تقديم الاستقالة",
+                (
+                    "إنهاء خدمة العامل والفصل التأديبي من صاحب العمل",
+                    "الإكراه في التوقيع على المحررات وإبطال التصرف",
+                    "طلب إنهاء عقد الإيجار بالتراضي بين المؤجر والمستأجر",
+                ),
+            ),
+            (
+                "وصلني إنذار",
+                "إعلان الإنذار الرسمي على يد محضر وإجراءات إعلان الخصوم",
+                (
+                    "إنذار المستأجر بالإخلاء بسبب التأخر في سداد الأجرة",
+                    "مواعيد الطعن على الأحكام والإعلان بالحكم",
+                    "إنذار العامل بالجزاء التأديبي والتحقيق معه",
+                ),
+            ),
+            (
+                "مش بيرجعلي التأمين",
+                "رد مبلغ التأمين النقدي بعد انتهاء عقد الإيجار والتزام المؤجر برده",
+                (
+                    "التأمينات الاجتماعية واشتراكات العامل وصاحب العمل",
+                    "التعويض التأميني عن حوادث السيارات وإجراءات صرف التعويض",
+                    "تأمين تنفيذ الالتزامات وضمان الديون المدنية",
+                ),
+            ),
+        )
+        ranks = []
+        for index, (query, intended_text, decoy_texts) in enumerate(cases, start=1):
+            with self.subTest(query=query):
+                self.fixture.db.close()
+                self.fixture = SyntheticCorpus()
+                intended_id = self.fixture.add_passage(
+                    f"SYNTH-HARD-INTENDED-{index:02d}",
+                    f"نص اختبار خيالي وليس قانونا: {intended_text}.",
+                )
+                for decoy_index, decoy_text in enumerate(decoy_texts, start=1):
+                    self.fixture.add_passage(
+                        f"SYNTH-HARD-DECOY-{index:02d}-{decoy_index:02d}",
+                        f"نص اختبار خيالي وليس قانونا: {decoy_text}.",
+                    )
+                hits = self.search(query)
+                ids = [hit["id"] for hit in hits[:3]]
+                self.assertIn(
+                    intended_id, ids,
+                    f"high-overlap wrong-issue passage displaced intended issue for {query!r}",
+                )
+                ranks.append(ids.index(intended_id) + 1)
+        print(
+            "synthetic hard-negative retrieval: "
+            f"top-3 {len(ranks)}/{len(cases)}; "
+            f"top-1 {sum(rank == 1 for rank in ranks)}/{len(cases)}"
+        )
+
     def test_out_of_corpus_questions_abstain_on_unrelated_fictional_corpus(self):
         unrelated_questions = (
             "حالة الطقس غدا",
