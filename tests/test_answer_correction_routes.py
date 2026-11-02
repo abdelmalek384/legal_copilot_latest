@@ -35,10 +35,18 @@ class AnswerCorrectionRouteTests(unittest.TestCase):
         self.runtime.initialize()
         self.firm_a, _ = self.runtime.provision_firm("Correction Firm A")
         self.firm_b, _ = self.runtime.provision_firm("Correction Firm B")
+        self.password_a = "Correction-owner-A-password-2026!"
+        self.password_b = "Correction-owner-B-password-2026!"
+        self.runtime.create_initial_firm_owner(
+            self.firm_a, "Correction Owner A", "correction-a@example.test", app.hash_pw(self.password_a)
+        )
+        self.runtime.create_initial_firm_owner(
+            self.firm_b, "Correction Owner B", "correction-b@example.test", app.hash_pw(self.password_b)
+        )
         self.client_a = TestClient(app.app)
         self.client_b = TestClient(app.app)
-        self._login(self.client_a, "correction-a@example.test", "Correction-owner-A-password-2026!", self.firm_a)
-        self._login(self.client_b, "correction-b@example.test", "Correction-owner-B-password-2026!", self.firm_b)
+        self._login(self.client_a, "correction-a@example.test", self.password_a, self.firm_a)
+        self._login(self.client_b, "correction-b@example.test", self.password_b, self.firm_b)
         created = self._mutate(self.client_a, "post", "/cases", json={
             "title": "Correction test matter", "client": "Client A",
         })
