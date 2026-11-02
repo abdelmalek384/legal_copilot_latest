@@ -129,6 +129,44 @@ class RetrievalEvaluationTests(unittest.TestCase):
         self.assertEqual(result["reviewed_cases_scored"], 1)
         self.assertEqual(result["metrics"]["recall_at_5"], 1.0)
 
+    def test_duplicate_or_whitespace_padded_expected_source_ids_are_excluded(self):
+        cases = (
+            (["LAW-A", "LAW-A"], "duplicates"),
+            ([" LAW-A", "LAW-B"], "surrounding whitespace"),
+        )
+        for expected_ids, reason in cases:
+            with self.subTest(expected_ids=expected_ids):
+                result = score_evaluation(
+                    [reviewed_question(expected_source_ids=expected_ids)], []
+                )
+                self.assertEqual(result["reviewed_cases_scored"], 0)
+                self.assertIn(reason, " ".join(result["excluded_cases"][0]["reasons"]))
+
+    def test_duplicate_or_whitespace_padded_ranked_source_ids_are_invalid_runs(self):
+        cases = (
+            (["LAW-A", "LAW-A"], "duplicate source IDs"),
+            (["LAW-A", " LAW-B"], "surrounding whitespace"),
+        )
+        for ranked_ids, reason in cases:
+            with self.subTest(ranked_ids=ranked_ids):
+                run = {
+                    "question_id": "Q-TEST-001",
+                    "retrieved_source_ids": ranked_ids,
+                    "citations": [],
+                    "abstained": False,
+                    "used_unverified_source": False,
+                }
+                result = score_evaluation([reviewed_question()], [run])
+                self.assertEqual(result["reviewed_cases_scored"], 0)
+                self.assertIn(reason, " ".join(result["invalid_run_records"][0]["reasons"]))
+
+    def test_duplicate_retrieval_cutoffs_are_rejected(self):
+        with self.assertRaisesRegex(ValueError, "k_values must not contain duplicates"):
+            _score_evaluation(
+                [reviewed_question()], [], k_values=(1, 3, 3),
+                reviewer_registry=reviewer_registry(),
+            )
+
     def test_conflicting_expected_source_aliases_are_excluded(self):
         question = reviewed_question(expected_sources=["LAW-X"])
         result = score_evaluation([question], [])
