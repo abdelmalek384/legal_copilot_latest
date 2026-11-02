@@ -73,11 +73,14 @@ def expand_lexicon_hints(query, existing_tokens, tokens_fn, norm_fn, limit=48):
         token_terms = tokens_fn(token)
         if not token_terms:
             continue
+        normalized_token = norm_fn(token)
         occurrences = [
             match.start()
-            for term in token_terms
-            for match in re.finditer(r"(?<!\w)" + re.escape(term) + r"(?!\w)", normalized_query)
-        ]
+            for match in re.finditer(
+                r"(?<!\w)" + re.escape(normalized_token) + r"(?!\w)",
+                normalized_query,
+            )
+        ] if normalized_token else []
         if any(term in current for term in token_terms) and (
             not occurrences or any(not is_negated_at(start) for start in occurrences)
         ):
