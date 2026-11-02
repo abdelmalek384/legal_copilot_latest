@@ -163,7 +163,7 @@ async function api(p,m='GET',b){const headers={};if(b!==undefined)headers['Conte
  if(r.status===401&&p!=='/login'&&!p.startsWith('/account/mfa/')){sessionStorage.removeItem('me');ME={};login();throw new Error('auth')}
  const j=await r.json().catch(()=>({}));if(!r.ok){toast(err(j));throw new Error('api')}return j}
 function shell(title,...k){const navLabel=(ar,en)=>LANG==='ar'?ar:en;const firmOptions=Array.isArray(ME.firms)?ME.firms:[];const firmSwitch=firmOptions.length>1?h('div',{className:'firm-switch'},h('label',{textContent:navLabel('المكتب النشط','Active firm')}),h('select',{'aria-label':navLabel('اختيار المكتب النشط','Select active firm'),value:String(ME.firm_id||firmOptions[0].firm_id),onchange:async e=>{try{const result=await api('/session/firm','POST',{firm_id:Number(e.target.value)});ME={...ME,...result};sessionStorage.me=JSON.stringify(ME);dash()}catch(_){e.target.value=String(ME.firm_id||'')}}},...firmOptions.map(f=>h('option',{value:String(f.firm_id),textContent:f.firm_name+(f.role?' — '+f.role:'')})))):null;A.replaceChildren(h('div',{id:'shell'},h('a',{className:'skip-link',href:'#main',textContent:navLabel('تخطي إلى المحتوى الرئيسي','Skip to main content'),onclick:e=>{e.preventDefault();const main=$('main');if(main)main.focus()} }),h('aside',{id:'side','aria-label':navLabel('التنقل الرئيسي','Primary navigation')},h('h1',{textContent:'⚖️ '+navLabel('مساحة المكتب القانوني','Firm Workspace')}),h('div',{className:'lang-switch'},h('button',{type:'button','data-lang-switch':'1',textContent:LANG==='ar'?'English':'العربية',onclick:switchLanguage})),firmSwitch,
- h('nav',{className:'primary-nav','aria-label':navLabel('روابط التنقل','Navigation links')},[['dash',navLabel('نظرة عامة','Overview'),dash],['cases',navLabel('القضايا','Cases'),casesPage],['clients',navLabel('العملاء وتعارض المصالح','Clients & Conflicts'),clients],['tasks',navLabel('المهام','Tasks'),tasksPage],['calendar',navLabel('الأجندة والمواعيد','Calendar'),calendarPage],['law',navLabel('البحث القانوني','Legal Research'),law],...(ME.can_review_legal?[['coverage',navLabel('تغطية المجموعة القانونية','Corpus Coverage'),corpusCoverage],['review',navLabel('مراجعة المصادر القانونية','Legal Source Review'),reviewWorkbench]]:[]),['settings',navLabel('الإعدادات والأمان','Settings & Security'),settingsPage]].map(([id,t,f])=>h('a',{className:PAGE===id?'on':'',role:'button',tabIndex:0,'aria-current':PAGE===id?'page':null,textContent:t,onclick:()=>{PAGE=id;window.CASE_ID=null;f()},onkeydown:e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();PAGE=id;window.CASE_ID=null;f()}}}))),
+ h('nav',{className:'primary-nav','aria-label':navLabel('روابط التنقل','Navigation links')},[['dash',navLabel('نظرة عامة','Overview'),dash],['cases',navLabel('القضايا','Cases'),casesPage],['clients',navLabel('العملاء وتعارض المصالح','Clients & Conflicts'),clients],['tasks',navLabel('المهام','Tasks'),tasksPage],['calendar',navLabel('الأجندة والمواعيد','Calendar'),calendarPage],['finance',navLabel('الفواتير والتحصيل','Invoices & Finance'),financePage],['law',navLabel('البحث القانوني','Legal Research'),law],...(ME.can_review_legal?[['coverage',navLabel('تغطية المجموعة القانونية','Corpus Coverage'),corpusCoverage],['review',navLabel('مراجعة المصادر القانونية','Legal Source Review'),reviewWorkbench]]:[]),['settings',navLabel('الإعدادات والأمان','Settings & Security'),settingsPage]].map(([id,t,f])=>h('a',{className:PAGE===id?'on':'',role:'button',tabIndex:0,'aria-current':PAGE===id?'page':null,textContent:t,onclick:()=>{PAGE=id;window.CASE_ID=null;f()},onkeydown:e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();PAGE=id;window.CASE_ID=null;f()}}}))),
  h('div',{className:'me'},h('div',{textContent:ME.name||''}),h('a',{textContent:navLabel('تسجيل الخروج','Sign out'),onclick:async()=>{try{await api('/logout','POST')}catch(_){}sessionStorage.removeItem('me');ME={};login()}}))),
  h('main',{id:'main',tabIndex:-1,'aria-label':title},h('h2',{textContent:title}),...k)))}
 function mfaChallengePage(){
@@ -311,6 +311,23 @@ function mfaSettingsCard(){
    else card.append(h('p',{className:'mut',textContent:ar?'تمنع سياسة الأمان إيقاف المصادقة لهذا الحساب.':'Security policy prevents disabling MFA for this account.'}));
  }
  return card;
+}
+async function financePage(){
+ PAGE='finance';
+ let overview={},invoiceData={invoices:[]};
+ try{[overview,invoiceData]=await Promise.all([api('/finance/invoices/overview'),api('/invoices')])}
+ catch(_){shell(uiText('الفواتير والتحصيل','Invoices & Finance'),empty(uiText('تعذر تحميل بيانات التحصيل.','Could not load receivables.')));return}
+ const fmt=n=>new Intl.NumberFormat(LANG==='ar'?'ar-EG':'en-US',{minimumFractionDigits:2,maximumFractionDigits:2}).format(Number(n||0)/100)+(LANG==='ar'?' ج.م':' EGP');
+ const metric=(label,value)=>h('section',{className:'card'},h('div',{className:'mut',textContent:label}),h('h3',{textContent:fmt(value)}));
+ const agingLabels=[['current',uiText('غير متأخر','Current')],['1_30',uiText('1–30 يوماً','1–30 days')],['31_60',uiText('31–60 يوماً','31–60 days')],['61_90',uiText('61–90 يوماً','61–90 days')],['over_90',uiText('أكثر من 90 يوماً','Over 90 days')]];
+ const cases=h('div',{},...(overview.cases||[]).map(item=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:item.case_title||uiText('قضية دون عنوان','Untitled case')}),h('span',{textContent:fmt(item.outstanding_piasters)})),h('p',{className:'mut',textContent:item.client_name||'—'}),h('div',{className:'row',wrap:'wrap'},...agingLabels.map(([key,label])=>h('span',{className:'mut',textContent:label+': '+fmt(item.aging[key])})),btn(uiText('فتح القضية','Open case'),()=>view(item.case_id),'g')))));
+ const clients=h('div',{},...(overview.clients||[]).map(item=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:item.client_name}),h('span',{textContent:fmt(item.outstanding_piasters)})),h('p',{className:'mut',textContent:uiText('فواتير: ','Invoices: ')+item.invoice_count}),h('div',{className:'mut',textContent:agingLabels.map(([key,label])=>label+': '+fmt(item.aging[key])).join(' · ')}))));
+ const invoices=h('div',{},...(invoiceData.invoices||[]).map(item=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:item.invoice_number||uiText('مسودة','Draft')}),h('span',{textContent:fmt(item.balance_piasters)})),h('p',{className:'mut',textContent:(item.client_name_snapshot||'—')+' · '+(item.case_title_snapshot||'—')}),btn(uiText('فتح القضية','Open case'),()=>view(item.case_id),'g'))));
+ shell(uiText('الفواتير والتحصيل','Invoices & Finance'),
+  h('div',{className:'grid'},metric(uiText('إجمالي الفواتير الصادرة','Issued invoices'),overview.issued_piasters),metric(uiText('إجمالي المحصل','Collected'),overview.paid_piasters),metric(uiText('إجمالي المستحق','Outstanding'),overview.outstanding_piasters)),
+  h('h3',{textContent:uiText('المستحقات حسب القضية','Outstanding by case')}),cases,
+  h('h3',{textContent:uiText('المستحقات حسب العميل','Outstanding by client')}),clients,
+  h('h3',{textContent:uiText('سجل الفواتير','Invoice history')}),invoices);
 }
 async function settingsPage(){PAGE='settings';const isAdmin=ME.role==='admin';const users=isAdmin?await api('/users').catch(()=>[]):[];const invitationResult=isAdmin?await api('/invitations').catch(()=>({invitations:[]})):{invitations:[]};const invitations=Array.isArray(invitationResult.invitations)?invitationResult.invitations:[];const langBtn=btn(LANG==='ar'?'English':'العربية',switchLanguage,'g');const items=[h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'تفضيلات اللغة':'Language preferences'}),h('p',{className:'mut',textContent:LANG==='ar'?'اختر لغة الواجهة. سيتم حفظ اختيارك في هذا المتصفح.':'Choose the interface language. Your choice is saved in this browser.'}),langBtn,h('p',{className:'mut',textContent:LANG==='ar'?'اتجاه الصفحة يتغير تلقائيا مع اللغة.':'Page direction follows the selected language.'}))];if(Array.isArray(ME.firms))items.push(mfaSettingsCard());const currentPassword=h('input',{type:'password',autocomplete:'current-password',placeholder:LANG==='ar'?'كلمة المرور الحالية':'Current password',required:true,maxLength:200});
 const newPassword=h('input',{type:'password',autocomplete:'new-password',placeholder:LANG==='ar'?'كلمة مرور جديدة (12 حرفا على الأقل)':'New password (at least 12 characters)',required:true,minLength:12,maxLength:200});
@@ -788,7 +805,7 @@ async function law(){
 }
 async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=await api('/users'),again=()=>view(id);
  const lead=ME.role==='admin'||c.members.some(m=>m.role==='lead'&&m.user_id===ME.id),dn=c.tasks.filter(t=>t.status==='done').length,tot=c.tasks.length;
- const tabs=[['sum',uiText('الملخص','Overview')],['brief',uiText('ملخص ذكي','AI brief')],['tasks',uiText('المهام','Tasks')],['sess',uiText('الجلسات','Hearings')],['dead',uiText('المواعيد القانونية','Legal deadlines')],['notes',uiText('الملاحظات','Notes')],['fees',uiText('الأتعاب','Fees')],['docs',uiText('المستندات','Documents')],['team',uiText('الفريق','Team')],['ask',uiText('اسأل','Ask')],['log',uiText('السجل','Activity log')]];let body;
+ const tabs=[['sum',uiText('الملخص','Overview')],['brief',uiText('ملخص ذكي','AI brief')],['tasks',uiText('المهام','Tasks')],['sess',uiText('الجلسات','Hearings')],['dead',uiText('المواعيد القانونية','Legal deadlines')],['notes',uiText('الملاحظات','Notes')],['fees',uiText('الأتعاب','Fees')],['invoices',uiText('الفواتير','Invoices')],['docs',uiText('المستندات','Documents')],['team',uiText('الفريق','Team')],['ask',uiText('اسأل','Ask')],['log',uiText('السجل','Activity log')]];let body;
  if(TAB==='sum'){
   const fields=[['case_number',uiText('رقم القضية','Case number')],['case_year',uiText('السنة','Year')],['court',uiText('المحكمة','Court')],['circuit',uiText('الدائرة','Circuit')],['opposing_party',uiText('الخصم','Opposing party')],['stage',uiText('المرحلة','Stage')]];
   const inputs={};fields.forEach(([k,label])=>inputs[k]=h('input',{value:c[k]||'',placeholder:label,style:'width:100%'}));
@@ -901,6 +918,71 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
   const money=n=>new Intl.NumberFormat(LANG==='ar'?'ar-EG':'en-US',{maximumFractionDigits:2}).format(Number(n||0))+(LANG==='ar'?' ج.م':' EGP');
   body=h('div',{className:'card'},c.fees.length?c.fees.map(f=>h('div',{className:'row'},h('div',{},h('b',{textContent:f.title}),h('div',{className:'mut',textContent:(f.note||'')+(f.due?' · '+fd(f.due):'')})),h('span',{textContent:uiText('الإجمالي ','Total ')+money(f.amount)+' · '+uiText('المدفوع ','Paid ')+money(f.paid)+' · '+uiText('المتبقي ','Remaining ')+money(Number(f.amount)-Number(f.paid))}))):empty('لا توجد أتعاب مسجلة.'),
    h('div',{className:'grid'},title,amount,paid,due,note),h('div',{className:'row'},btn('إضافة أتعاب',async()=>{if(!title.value.trim()||amount.value===''||paid.value===''){toast(uiText('أدخل الوصف والإجمالي والمدفوع','Enter the description, total, and paid amount'));return}await api('/cases/'+id+'/fees','POST',{title:title.value,amount:Number(amount.value),paid:Number(paid.value),due:due.value||null,note:note.value});again()})))}
+ if(TAB==='invoices'){
+  const invoiceDescription=h('input',{placeholder:uiText('وصف الفاتورة أو نطاق العمل','Invoice description or scope')});
+  const invoiceDue=h('input',{type:'date','aria-label':uiText('تاريخ الاستحقاق','Due date')});
+  const lineRows=[];
+  const lineContainer=h('div',{});
+  const renderLines=()=>lineContainer.replaceChildren(...lineRows.map((line,index)=>h('div',{className:'grid'},line.description,line.quantity,line.price,btn(uiText('حذف','Remove'),()=>{lineRows.splice(index,1);renderLines()},'g'))));
+  const addLine=()=>{
+   const line={description:h('input',{placeholder:uiText('بيان الخدمة','Service description')}),quantity:h('input',{type:'number',min:'0.001',step:'0.001',value:'1','aria-label':uiText('الكمية','Quantity')}),price:h('input',{type:'number',min:'0',step:'0.01',placeholder:uiText('سعر الوحدة بالجنيه','Unit price in EGP')})};
+   lineRows.push(line);renderLines();
+  };
+  const toPiasters=value=>{
+   const text=String(value||'').trim();if(!/^\d+(?:\.\d{1,2})?$/.test(text))throw new Error(uiText('أدخل مبلغاً صحيحاً حتى قرشين عشريين','Enter a valid amount with at most two decimal places'));
+   const parts=text.split('.');const amount=Number(parts[0])*100+Number(((parts[1]||'')+'00').slice(0,2));
+   if(!Number.isSafeInteger(amount)||amount>1000000000000)throw new Error(uiText('المبلغ خارج النطاق المسموح','Amount exceeds the supported limit'));
+   return amount;
+  };
+  const toMilli=value=>{
+   const text=String(value||'').trim();if(!/^\d+(?:\.\d{1,3})?$/.test(text))throw new Error(uiText('أدخل كمية صحيحة حتى ثلاث خانات عشرية','Enter a valid quantity with at most three decimal places'));
+   const parts=text.split('.');const amount=Number(parts[0])*1000+Number(((parts[1]||'')+'000').slice(0,3));
+   if(!Number.isSafeInteger(amount)||amount<1||amount>1000000)throw new Error(uiText('الكمية خارج النطاق المسموح','Quantity exceeds the supported limit'));
+   return amount;
+  };
+  addLine();
+  const createButton=btn(uiText('إنشاء مسودة فاتورة','Create invoice draft'),async()=>{
+   try{
+    const lines=lineRows.map(line=>({description:line.description.value.trim(),quantity_milli:toMilli(line.quantity.value),unit_price_piasters:toPiasters(line.price.value)}));
+    if(lines.some(line=>!line.description)){toast(uiText('أدخل بياناً لكل بند','Enter a description for every line'));return}
+    createButton.disabled=true;
+    await api('/cases/'+id+'/invoices','POST',{description:invoiceDescription.value.trim(),due_date:invoiceDue.value||null,lines});
+    toast(uiText('تم إنشاء مسودة الفاتورة','Invoice draft created'));await loadInvoices();
+   }catch(e){toast(String(e.message||e))}
+   finally{createButton.disabled=false}
+  });
+  const invoiceList=h('div',{});
+  const fmt=n=>new Intl.NumberFormat(LANG==='ar'?'ar-EG':'en-US',{minimumFractionDigits:2,maximumFractionDigits:2}).format(Number(n||0)/100)+(LANG==='ar'?' ج.م':' EGP');
+  const stateLabel=state=>({draft:uiText('مسودة','Draft'),unpaid:uiText('غير مدفوعة','Unpaid'),partially_paid:uiText('مدفوعة جزئياً','Partially paid'),paid:uiText('مدفوعة','Paid'),overdue:uiText('متأخرة','Overdue'),void:uiText('ملغاة','Void')}[state]||state);
+  const renderInvoices=items=>invoiceList.replaceChildren(...(items.length?items.map(item=>{
+   const card=h('article',{className:'card'});
+   card.append(h('div',{className:'row'},h('b',{textContent:item.invoice_number||uiText('مسودة فاتورة','Invoice draft')}),pill(stateLabel(item.payment_state),item.payment_state==='paid'?'done':item.payment_state==='overdue'?'late':'soon')));
+   card.append(h('p',{className:'mut',textContent:(item.client_name_snapshot||'—')+' · '+(item.case_title_snapshot||'—')}));
+   card.append(h('p',{textContent:uiText('الإجمالي: ','Total: ')+fmt(item.total_piasters)+' · '+uiText('المدفوع: ','Paid: ')+fmt(item.paid_piasters)+' · '+uiText('المتبقي: ','Balance: ')+fmt(item.balance_piasters)}));
+   card.append(h('ul',{},...item.lines.map(line=>h('li',{textContent:line.description+' · '+(line.quantity_milli/1000)+' × '+fmt(line.unit_price_piasters)+' = '+fmt(line.line_total_piasters)}))));
+   const actions=h('div',{className:'row'});
+   actions.append(btn(uiText('طباعة الفاتورة','Print invoice'),()=>window.open('/invoices/'+item.id+'/print','_blank','noopener,noreferrer'),'g'));
+   if(item.status==='draft')actions.append(btn(uiText('إصدار الفاتورة','Issue invoice'),async()=>{if(!confirm(uiText('إصدار الفاتورة وتثبيت رقمها؟ لا يمكن تعديلها بعد الإصدار.','Issue this invoice and lock its number? It cannot be edited after issue.')))return;try{await api('/invoices/'+item.id+'/issue','POST');await loadInvoices()}catch(_){}}));
+   if(item.status==='issued'&&item.balance_piasters>0){
+    const amount=h('input',{type:'number',min:'0.01',step:'0.01',placeholder:uiText('مبلغ الدفعة بالجنيه','Payment amount in EGP')});
+    const method=h('select',{},new Option(uiText('نقداً','Cash'),'cash'),new Option(uiText('تحويل بنكي','Bank transfer'),'bank_transfer'),new Option('InstaPay','instapay'),new Option(uiText('أخرى','Other'),'other'));
+    const reference=h('input',{placeholder:uiText('مرجع التحويل (اختياري)','Transfer reference (optional)')});
+    actions.append(amount,method,reference,btn(uiText('تسجيل دفعة','Record payment'),async()=>{
+     try{
+      const key=window.crypto&&window.crypto.randomUUID?window.crypto.randomUUID():('pay-'+Date.now()+'-'+Math.random().toString(36).slice(2));
+      await api('/invoices/'+item.id+'/payments','POST',{amount_piasters:toPiasters(amount.value),paid_on:today,method:method.value,reference:reference.value.trim(),note:'',idempotency_key:key});
+      toast(uiText('تم تسجيل الدفعة','Payment recorded'));await loadInvoices();
+     }catch(e){toast(String(e.message||e))}
+    }));
+   }
+   item.payments.forEach(payment=>actions.append(btn(uiText('إيصال الدفعة #','Receipt #')+payment.id,()=>window.open('/invoices/'+item.id+'/payments/'+payment.id+'/receipt','_blank','noopener,noreferrer'),'g')));
+   card.append(actions);return card;
+  }):[empty(uiText('لا توجد فواتير لهذه القضية بعد.','No invoices for this case yet.'))]));
+  async function loadInvoices(){try{const data=await api('/invoices?case_id='+id);renderInvoices(data.invoices||[])}catch(_){invoiceList.replaceChildren(empty(uiText('تعذر تحميل الفواتير','Could not load invoices')))}}
+  const createCard=h('section',{className:'card'},h('h3',{textContent:uiText('إنشاء فاتورة أتعاب','Create fee invoice')}),h('p',{className:'mut',textContent:uiText('تُحسب المبالغ بدقة بالقرش. الفاتورة المطبوعة مستند أتعاب عادي وليست فاتورة ضريبية إلكترونية.','Amounts are calculated in integer piasters. The printed document is an ordinary fee invoice, not an Egyptian e-tax invoice.')}),invoiceDescription,invoiceDue,lineContainer,h('div',{className:'row'},btn(uiText('إضافة بند','Add line'),addLine,'g'),createButton));
+  body=h('div',{},createCard,h('h3',{textContent:uiText('فواتير القضية وسجل التحصيل','Case invoices and payments')}),invoiceList);
+  loadInvoices();
+ }
  if(TAB==='docs'){
   const f=h('input',{type:'file',accept:'.pdf,.docx'});
   const panel=h('div',{});
