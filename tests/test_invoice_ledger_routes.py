@@ -178,6 +178,63 @@ class InvoiceLedgerRouteTests(unittest.TestCase):
         self.assertEqual(self.client_nonmember.get(f"/invoices/{invoice['id']}").status_code, 404)
         self.assertEqual(self.client_b.get("/invoices").json()["invoices"], [])
 
+    def test_invoice_number_sequence_is_independent_per_firm(self):
+        draft_a = self.create_draft().json()
+        issued_a = self.mutate(self.client_a, "post", f"/invoices/{draft_a['id']}/issue").json()
+        case_b = self.mutate(
+            self.client_b, "post", "/cases",
+            json={"title": "Firm B matter", "client": "Firm B client"},
+        ).json()
+        draft_b = self.mutate(
+            self.client_b, "post", f"/cases/{case_b['id']}/invoices",
+            json={"description": "Services", "lines": [
+                {"description": "Consultation", "quantity_milli": 1000, "unit_price_piasters": 10000},
+            ]},
+        ).json()
+        issued_b = self.mutate(self.client_b, "post", f"/invoices/{draft_b['id']}/issue").json()
+        self.assertEqual(issued_a["invoice_number"], issued_b["invoice_number"])
+
+    def test_finance_overview_aggregates_case_client_and_aging_totals(self):
+        draft = self.create_draft().json()
+        issued = self.mutate(self.client_a, "post", f"/invoices/{draft['id']}/issue").json()
+        payment = {
+            "amount_piasters": 5000, "paid_on": "2026-11-02", "method": "bank_transfer",
+            "reference": "BANK-001", "note": "", "idempotency_key": "overview-key-001",
+        }
+        self.mutate(self.client_a, "post", f"/invoices/{issued['id']}/payments", json=payment)
+        overview = self.client_a.get("/finance/invoices/overview")
+        self.assertEqual(overview.status_code, 200, overview.text)
+        data = overview.json()
+        self.assertEqual(data["currency"], "EGP")
+        self.assertEqual(data["issued_piasters"], 17500)
+        self.assertEqual(data["paid_piasters"], 5000)
+        self.assertEqual(data["outstanding_piasters"], 12500)
+        self.assertEqual(data["cases"][0]["case_id"], self.case_id)
+        self.assertEqual(data["clients"][0]["client_name"], "Client Snapshot")
+        self.assertEqual(data["cases"][0]["aging"]["current"], 12500)
+        other = self.client_b.get("/finance/invoices/overview").json()
+        self.assertEqual(other["outstanding_piasters"], 0)
+
+    def test_payment_receipt_is_printable_and_bound_to_invoice(self):
+        draft = self.create_draft().json()
+        issued = self.mutate(self.client_a, "post", f"/invoices/{draft['id']}/issue").json()
+        payment = {
+            "amount_piasters": 5000, "paid_on": "2026-11-02", "method": "instapay",
+            "reference": "IP-RECEIPT-1", "note": "دفعة أولى", "idempotency_key": "receipt-key-001",
+        }
+        recorded = self.mutate(self.client_a, "post", f"/invoices/{issued['id']}/payments", json=payment)
+        self.assertEqual(recorded.status_code, 200, recorded.text)
+        payment_id = recorded.json()["payments"][0]["id"]
+        receipt = self.client_a.get(f"/invoices/{issued['id']}/payments/{payment_id}/receipt")
+        self.assertEqual(receipt.status_code, 200, receipt.text)
+        self.assertIn("إيصال استلام دفعة أتعاب", receipt.text)
+        self.assertIn("IP-RECEIPT-1", receipt.text)
+        self.assertIn("ليس إيصالاً ضريبياً إلكترونياً", receipt.text)
+        self.assertEqual(
+            self.client_b.get(f"/invoices/{issued['id']}/payments/{payment_id}/receipt").status_code,
+            404,
+        )
+
     def test_print_view_is_arabic_and_disclaims_tax_invoice_status(self):
         invoice = self.create_draft().json()
         response = self.client_a.get(f"/invoices/{invoice['id']}/print")
