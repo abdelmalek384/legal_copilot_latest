@@ -2670,6 +2670,22 @@ def _require_firm_seat(control, firm_id: int, exclude_invitation_id: int | None 
         (firm_id,),
     ).fetchone()
     now = int(time.time())
+    if subscription is None:
+        default_plan = SUBSCRIPTION_PLANS["small_firm"]
+        trial_end = now + SUBSCRIPTION_TRIAL_DAYS * 86400
+        control.execute(
+            "INSERT INTO firm_subscriptions(firm_id,plan_code,status,seat_limit,trial_started_at,trial_ends_at,created_at,updated_at) "
+            "VALUES(?,'small_firm','trial',?,?,?,?,?)",
+            (firm_id, default_plan["seat_limit"], now, trial_end, now, now),
+        )
+        _subscription_audit(control, firm_id, None, "trial_started", {
+            "plan_code": "small_firm", "trial_days": SUBSCRIPTION_TRIAL_DAYS,
+            "seat_limit": default_plan["seat_limit"], "started_by": "first_invitation",
+        })
+        subscription = control.execute(
+            "SELECT status,trial_ends_at,current_period_end FROM firm_subscriptions WHERE firm_id=?",
+            (firm_id,),
+        ).fetchone()
     if subscription:
         status = subscription["status"]
         if status in {"expired", "cancelled", "past_due"}:
