@@ -5291,6 +5291,8 @@ def create_invoice(cid: int, body: InvoiceIn, u: dict = Depends(user)):
         total = invoice_total_piasters(lines)
     except (TypeError, ValueError) as exc:
         raise HTTPException(422, str(exc)) from exc
+    if total <= 0:
+        raise HTTPException(422, "Invoice total must be greater than zero")
     try:
         number = _next_invoice_number(c, "invoice", int(body.issue_date[:4]))
         cur = c.execute(
