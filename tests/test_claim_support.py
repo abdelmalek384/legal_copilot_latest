@@ -157,5 +157,32 @@ class ClaimSupportTests(unittest.TestCase):
             hits, tokens, norm, _mask_markdown_code
         ))
 
+
+    def test_negated_obligation_cannot_be_rewritten_as_positive_obligation(self):
+        cases = (
+            ("The employer is not required to provide notice.", "The employer must provide notice."),
+            ("لا يجب على صاحب العمل تقديم الإخطار.", "يجب على صاحب العمل تقديم الإخطار."),
+            ("لا يلتزم صاحب العمل بتقديم الإخطار.", "يلتزم صاحب العمل بتقديم الإخطار."),
+        )
+        for evidence, claim in cases:
+            with self.subTest(evidence=evidence):
+                self.assertTrue(has_unsupported_claims(
+                    claim + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
+    def test_faithful_negated_obligation_paraphrases_are_not_rejected(self):
+        cases = (
+            ("The employer is not required to provide notice.", "The employer is not required to provide notice."),
+            ("لا يجب على صاحب العمل تقديم الإخطار.", "لا يجب على صاحب العمل تقديم الإخطار."),
+        )
+        for evidence, claim in cases:
+            with self.subTest(evidence=evidence):
+                self.assertFalse(has_unsupported_claims(
+                    claim + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
+
 if __name__ == "__main__":
     unittest.main()
