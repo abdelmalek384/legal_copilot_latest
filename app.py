@@ -5639,6 +5639,7 @@ def record_invoice_payment(invoice_id: int, b: InvoicePaymentIn, u: dict = Depen
         )
         if not same:
             raise HTTPException(409, "idempotency key was already used for a different payment")
+        c.execute("RELEASE SAVEPOINT invoice_write")
         return _invoice_record(c, row)
     paid = int(c.execute(
         "SELECT COALESCE(SUM(amount_piasters),0) FROM invoice_payments WHERE invoice_id=?",
