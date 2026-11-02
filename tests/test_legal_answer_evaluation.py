@@ -185,8 +185,8 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             report_path = Path(td) / "report.json"
             q1 = approved("Q1")
             q2 = approved("Q2", answerable=False)
-            questions.write_text("".join(json.dumps(q, ensure_ascii=False) + "\\n" for q in (q1, q2)), encoding="utf-8")
-            results.write_text("".join(json.dumps(r, ensure_ascii=False) + "\\n" for r in (
+            questions.write_text("".join(json.dumps(q, ensure_ascii=False) + "\n" for q in (q1, q2)), encoding="utf-8")
+            results.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in (
                 result("Q1", retrieved=["LAW-10"]),
                 result("Q2", abstained=True, retrieved=[]),
             )), encoding="utf-8")
@@ -208,8 +208,8 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             report_path = Path(td) / "report.json"
             q1 = approved("Q1")
             q2 = approved("Q2", answerable=False)
-            questions.write_text("".join(json.dumps(q, ensure_ascii=False) + "\\n" for q in (q1, q2)), encoding="utf-8")
-            results.write_text("".join(json.dumps(r, ensure_ascii=False) + "\\n" for r in (
+            questions.write_text("".join(json.dumps(q, ensure_ascii=False) + "\n" for q in (q1, q2)), encoding="utf-8")
+            results.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in (
                 result("Q1", retrieved=["OTHER-LAW"]),
                 result("Q2", abstained=True, retrieved=["OTHER-LAW"]),
             )), encoding="utf-8")
@@ -231,8 +231,8 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             questions = Path(td) / "questions.jsonl"
             results = Path(td) / "results.jsonl"
-            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\\n", encoding="utf-8")
-            results.write_text(json.dumps(result(retrieved=["LAW-10"]), ensure_ascii=False) + "\\n", encoding="utf-8")
+            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\n", encoding="utf-8")
+            results.write_text(json.dumps(result(retrieved=["LAW-10"]), ensure_ascii=False) + "\n", encoding="utf-8")
             common = ["--questions", str(questions), "--results", str(results),
                       "--min-questions", "1", "--min-practice-areas", "1",
                       "--min-questions-per-practice-area", "1"]
