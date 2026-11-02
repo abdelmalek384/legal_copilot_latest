@@ -328,5 +328,7 @@ jobs:
         run: PYTHONPATH=. python tests/test_invoice_routes.py
       - name: Test provider-neutral billing fake
         run: PYTHONPATH=. python tests/test_billing_provider.py
+      - name: Test private answer correction queue and firm isolation
+        run: PYTHONPATH=. python tests/test_answer_correction_routes.py
       - name: Guard that every test file runs in CI or is explicitly tracked
         run: PYTHONPATH=. python tests/test_ci_runs_all_tests.py
