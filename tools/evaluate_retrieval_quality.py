@@ -112,6 +112,10 @@ def validate_reviewed_question(question, approved_reviewers=None):
     if (not isinstance(expected, list) or not expected
             or not all(_nonempty_string(x) for x in expected)):
         errors.append("expected_source_ids/expected_sources must be a non-empty list of reviewed source IDs")
+    elif any(source_id != source_id.strip() for source_id in expected):
+        errors.append("expected source IDs must not contain surrounding whitespace")
+    elif len(expected) != len(set(expected)):
+        errors.append("expected source IDs must not contain duplicates")
     if "expected_source_ids" in question and "expected_sources" in question and question["expected_source_ids"] != question["expected_sources"]:
         errors.append("expected_source_ids and expected_sources conflict; keep one canonical reviewed source list")
     pin_cites = question.get("expected_pin_cites")
@@ -142,6 +146,10 @@ def validate_run_record(run):
     if (not isinstance(retrieved, list)
             or not all(_nonempty_string(source_id) for source_id in retrieved)):
         errors.append("retrieved_source_ids must be a list of non-empty source ID strings")
+    elif any(source_id != source_id.strip() for source_id in retrieved):
+        errors.append("retrieved_source_ids must not contain surrounding whitespace")
+    elif len(retrieved) != len(set(retrieved)):
+        errors.append("retrieved_source_ids must not contain duplicate source IDs")
     citations = run.get("citations")
     if not isinstance(citations, list):
         errors.append("citations must be a list")
@@ -235,6 +243,8 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None
     if (not isinstance(k_values, (list, tuple)) or not k_values
             or any(type(k) is not int or k < 1 for k in k_values)):
         raise ValueError("k_values must contain positive integers")
+    if len(k_values) != len(set(k_values)):
+        raise ValueError("k_values must not contain duplicates")
 
     question_by_id = {}
     question_counts = {}
