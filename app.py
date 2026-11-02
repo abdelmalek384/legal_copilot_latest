@@ -5457,19 +5457,34 @@ def list_invoices(
     u: dict = Depends(user),
 ):
     c = conn()
-    where = ["cs.firm_id=?"]
-    params = [u["firm_id"]]
-    if u["role"] != "admin":
-        where.append("EXISTS (SELECT 1 FROM members m WHERE m.case_id=i.case_id AND m.user_id=?)")
-        params.append(u["id"])
-    if case_id is not None:
-        where.append("i.case_id=?")
-        params.append(case_id)
-    rows = c.execute(
-        "SELECT i.* FROM invoices i JOIN cases cs ON cs.id=i.case_id WHERE " +
-        " AND ".join(where) + " ORDER BY i.created_at DESC,i.id DESC",
-        tuple(params),
-    ).fetchall()
+    if u["role"] == "admin" and case_id is None:
+        rows = c.execute(
+            "SELECT i.* FROM invoices i JOIN cases cs ON cs.id=i.case_id "
+            "WHERE cs.firm_id=? ORDER BY i.created_at DESC,i.id DESC",
+            (u["firm_id"],),
+        ).fetchall()
+    elif u["role"] == "admin":
+        rows = c.execute(
+            "SELECT i.* FROM invoices i JOIN cases cs ON cs.id=i.case_id "
+            "WHERE cs.firm_id=? AND i.case_id=? ORDER BY i.created_at DESC,i.id DESC",
+            (u["firm_id"], case_id),
+        ).fetchall()
+    elif case_id is None:
+        rows = c.execute(
+            "SELECT i.* FROM invoices i JOIN cases cs ON cs.id=i.case_id "
+            "WHERE cs.firm_id=? AND EXISTS (SELECT 1 FROM members m "
+            "WHERE m.case_id=i.case_id AND m.user_id=?) "
+            "ORDER BY i.created_at DESC,i.id DESC",
+            (u["firm_id"], u["id"]),
+        ).fetchall()
+    else:
+        rows = c.execute(
+            "SELECT i.* FROM invoices i JOIN cases cs ON cs.id=i.case_id "
+            "WHERE cs.firm_id=? AND i.case_id=? AND EXISTS (SELECT 1 FROM members m "
+            "WHERE m.case_id=i.case_id AND m.user_id=?) "
+            "ORDER BY i.created_at DESC,i.id DESC",
+            (u["firm_id"], case_id, u["id"]),
+        ).fetchall()
     result = [_invoice_record(c, row) for row in rows]
     if payment_state:
         result = [item for item in result if item["payment_state"] == payment_state]
