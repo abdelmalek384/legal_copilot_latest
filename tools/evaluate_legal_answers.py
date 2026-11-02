@@ -426,10 +426,13 @@ def _release_gate(report, args):
         "abstention_accuracy": args.min_abstention_accuracy,
         "unanswerable_abstention_recall": args.min_unanswerable_abstention_recall,
         "stable_answer_id_coverage": args.min_stable_answer_id_coverage,
+        "retrieval_recall_at_3": args.min_retrieval_recall_at_3,
+        "retrieval_mrr": args.min_retrieval_mrr,
     }
     maximums = {
         "unanswerable_citation_rate": args.max_unanswerable_citation_rate,
         "invalid_citation_question_rate": args.max_invalid_citation_question_rate,
+        "unanswerable_retrieval_rate": args.max_unanswerable_retrieval_rate,
     }
     configured = {**minimums, **maximums}
     enabled = (any(value is not None for value in configured.values()) or args.min_questions is not None
@@ -486,6 +489,9 @@ def main(argv=None):
     parser.add_argument("--min-abstention-accuracy", type=float, help="Fail the technical gate if abstention accuracy is below this 0..1 threshold")
     parser.add_argument("--min-unanswerable-abstention-recall", type=float, help="Fail the technical gate if recall of lawyer-labelled unanswerable cases correctly abstained on is below this 0..1 threshold")
     parser.add_argument("--min-stable-answer-id-coverage", type=float, help="Fail the technical gate if fewer than this fraction of scored answers have stable review-linking IDs")
+    parser.add_argument("--min-retrieval-recall-at-3", type=float, help="Fail the technical gate if ranked retrieval recall at three is below this 0..1 threshold")
+    parser.add_argument("--min-retrieval-mrr", type=float, help="Fail the technical gate if mean reciprocal rank is below this 0..1 threshold")
+    parser.add_argument("--max-unanswerable-retrieval-rate", type=float, help="Fail if lawyer-labelled unanswerable questions return ranked candidates above this 0..1 rate")
     parser.add_argument("--max-unanswerable-citation-rate", type=float, help="Fail the technical gate if unanswerable cases contain citations above this 0..1 rate")
     parser.add_argument("--max-invalid-citation-question-rate", type=float, help="Fail the technical gate if questions with invalid citation indexes exceed this 0..1 rate")
     parser.add_argument("--min-questions", type=int, help="Fail the technical gate if fewer lawyer-approved questions are scored; required with quality thresholds")
@@ -511,13 +517,20 @@ def main(argv=None):
     if (args.min_unanswerable_abstention_recall is not None
             and args.min_unanswerable_questions is None):
         parser.error("--min-unanswerable-abstention-recall requires an explicit --min-unanswerable-questions cohort-size gate")
+    if ((args.min_retrieval_recall_at_3 is not None or args.min_retrieval_mrr is not None)
+            and args.min_answerable_questions is None):
+        parser.error("retrieval recall/MRR thresholds require an explicit --min-answerable-questions cohort-size gate")
+    if (args.max_unanswerable_retrieval_rate is not None
+            and args.min_unanswerable_questions is None):
+        parser.error("--max-unanswerable-retrieval-rate requires an explicit --min-unanswerable-questions cohort-size gate")
     if (args.min_practice_areas is None) != (args.min_questions_per_practice_area is None):
         parser.error("--min-practice-areas and --min-questions-per-practice-area must be configured together")
     quality_thresholds = (args.min_source_precision, args.min_source_recall,
                           args.min_pin_cite_precision, args.min_pin_cite_recall,
                           args.min_abstention_accuracy, args.min_unanswerable_abstention_recall,
                           args.min_stable_answer_id_coverage, args.max_unanswerable_citation_rate,
-                          args.max_invalid_citation_question_rate)
+                          args.max_invalid_citation_question_rate, args.min_retrieval_recall_at_3,
+                          args.min_retrieval_mrr, args.max_unanswerable_retrieval_rate)
     if any(value is not None for value in quality_thresholds):
         if args.min_questions is None:
             parser.error("quality thresholds require an explicit --min-questions sample-size gate")
@@ -526,7 +539,8 @@ def main(argv=None):
     for name in ("min_source_precision", "min_source_recall", "min_pin_cite_precision",
                  "min_pin_cite_recall", "min_abstention_accuracy", "min_unanswerable_abstention_recall",
                  "min_stable_answer_id_coverage", "max_unanswerable_citation_rate",
-                 "max_invalid_citation_question_rate"):
+                 "max_invalid_citation_question_rate", "min_retrieval_recall_at_3",
+                 "min_retrieval_mrr", "max_unanswerable_retrieval_rate"):
         value = getattr(args, name)
         if value is not None and (not math.isfinite(value) or not 0 <= value <= 1):
             parser.error(f"--{name.replace('_', '-')} must be a finite number between 0 and 1")
