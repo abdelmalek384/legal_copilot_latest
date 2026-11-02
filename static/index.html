@@ -312,7 +312,7 @@ items.push(h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'تغيي�
 const whatsappReminder=(dueDate,kind)=>btn(uiText('تذكير عبر واتساب','WhatsApp reminder'),()=>{
  const raw=window.prompt(uiText('أدخل رقم الهاتف الدولي مع مفتاح الدولة','Enter the international phone number including country code'));
  if(!raw)return;
- const phone=String(raw).replace(/\\D/g,'');
+ const phone=String(raw).replace(/\D/g,'');
  if(phone.length<8||phone.length>15||phone.startsWith('0')){toast(uiText('أدخل رقماً دولياً صحيحاً متضمناً مفتاح الدولة','Enter a valid international number including its country code'));return}
  const label=kind==='session'?uiText('جلسة','hearing'):uiText('موعد قانوني','legal deadline');
  const message=uiText('تذكير: '+label+' بتاريخ '+dueDate+'. يرجى مراجعة التفاصيل مع مكتب المحاماة.','Reminder: '+label+' on '+dueDate+'. Please confirm the details with the law office.');
