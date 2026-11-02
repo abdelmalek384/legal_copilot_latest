@@ -138,5 +138,5 @@ class ProductFeedbackRouteTests(unittest.TestCase):
         self.assertEqual(self.clients["a-admin"].get("/admin/feedback").json(), [])
 
 
-if __app__ == "__main__":
+if __name__ == "__main__":
     unittest.main()
