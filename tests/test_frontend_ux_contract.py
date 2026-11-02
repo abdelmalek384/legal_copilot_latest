@@ -263,6 +263,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("ME.role==='admin'", HTML)
 
 
+    def test_phone_layout_keeps_body_copy_and_tap_targets_readable(self):
+        self.assertIn("button{min-height:44px}", HTML)
+        self.assertIn(".research-role,.research-sources-title,.research-pin,#main .quick-link span,#main .workspace-list-item .item-meta,.research-controls label,.research-source-actions button,.research-message-actions button,#side .me,#side .me a,.pill{font-size:14px}", HTML)
+        self.assertIn("@media(max-width:420px){body{font-size:15px}", HTML)
+        self.assertIn(".auth-card form>label{display:block;width:100%", HTML)
+        self.assertIn(".auth-card .password-row input{min-width:0;flex:1}", HTML)
+
     def test_reminder_preferences_screen_exposes_per_user_schedule_controls(self):
         self.assertIn("api('/reminder-preferences')", HTML)
         self.assertIn("api('/reminder-preferences','PUT',payload)", HTML)
