@@ -44,7 +44,7 @@ CREATE TABLE invoice_payments (
     invoice_id INTEGER NOT NULL REFERENCES invoices(id) ON DELETE RESTRICT,
     amount_piasters INTEGER NOT NULL CHECK(amount_piasters > 0),
     paid_on TEXT NOT NULL,
-    method TEXT NOT NULL CHECK(method IN ('cash','bank_transfer','instapay','card','other')),
+    method TEXT NOT NULL CHECK(method IN ('cash','bank_transfer','instapay','other')),
     reference TEXT NOT NULL DEFAULT '' CHECK(length(reference) <= 200),
     note TEXT NOT NULL DEFAULT '' CHECK(length(note) <= 1000),
     idempotency_key TEXT NOT NULL CHECK(length(idempotency_key) BETWEEN 8 AND 100),
