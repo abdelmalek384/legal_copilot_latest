@@ -95,3 +95,14 @@ Further targeted extracted-text review on 2026-10-28 covered printed page 71 (Ar
 
 
 Further targeted extracted-text review on 2026-10-28 covered printed page 69 (Article 164: notice-period compensation) and page 70 (Article 166: absence deemed resignation and required warnings). These summaries remain provisional and require case-specific procedural review.
+
+
+## 2026-11-02 addendum — Library candidate file and six-article visual spot-check
+
+The Library copy of `/legal/law_rows_ar.jsonl` was located. Its size (393,861 bytes) matches the supplied-artifact size recorded in `manifest.json`; the manifest records SHA-256 `3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600`. The original Library bytes could not be materialized in this session, so this recorded hash was not independently recomputed.
+
+Structural audit: 311 JSONL rows (13 promulgation provisions and 298 accompanying-law articles), zero parse errors, duplicate law/article keys, or missing article-sequence entries. All rows retain `verified: 0`; all carry `in_force: 1` and `as_of: 2025-05-03`; no row-level `effective_from` field is present. The embedded `in_force` flags remain untrusted. Article 13 commencement metadata is recorded separately: general commencement 2025-09-01; specialized labour courts 2025-10-01.
+
+Six candidate rows were visually compared with ETA-hosted Official Gazette page images: Articles 66 (printed p.35), 103 (p.48), 124 (p.54), 134 (pp.57–58), 141 (p.61), and 278 (p.106). Five match after normalization. Article 134 has one confirmed transcription difference: the candidate says `ما يعرض للخطر`, while the Gazette reads `ما يعرضه للخطر` (missing suffix `ه`). No numeric difference was identified in these six rows. The comparison report is `six_article_candidate_comparison_2026-11-02.md`.
+
+This remains a partial spot-check, not a full 311-row comparison. The 120 quantitative provisions remain unreviewed, and source reuse permission, full amendment/corrigenda/currentness review, original Gazette PDF hash, and qualified Egyptian-counsel review remain outstanding. No candidate row or evidence card has been promoted to verified/search-eligible.
