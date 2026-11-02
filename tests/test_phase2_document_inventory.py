@@ -285,6 +285,10 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertIn("سنة", sis["notes"])
         self.assertIn("كل ستة أشهر", sis["notes"])
         self.assertIn("search-indexed extraction", eta["notes"])
+        manshurat = next(item for item in register["sources"] if item["source_id"] == "EG-MANSHURAT-LABOUR-14-2025")
+        self.assertIn("six_articles_only", manshurat["source_state"])
+        self.assertEqual(manshurat["collection_permission"], "unknown")
+        self.assertEqual(manshurat["commercial_reuse_permission"], "unknown")
         for source_id in ("EG-LABOUR-MINISTRY-LAWS-LEGISLATIONS-INDEX", "EG-ETA-LAWS-RELATED-REGULATIONS-INDEX"):
             index_source = next(item for item in register["sources"] if item["source_id"] == source_id)
             self.assertIn("not_exhaustive", index_source["source_state"])
