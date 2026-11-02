@@ -321,5 +321,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("platformBillingPage", HTML)
 
 
+    def test_answer_correction_button_and_trust_tier_badges_are_rendered(self):
+        self.assertIn("Suggest a correction", HTML)
+        self.assertIn("api('/answers/corrections','POST'", HTML)
+        self.assertIn("api('/admin/corrections')", HTML)
+        self.assertIn("trustTierBadge", HTML)
+        self.assertIn("Source-matched — not verified", HTML)
+        self.assertIn("Unreviewed", HTML)
+        self.assertIn("Verified", HTML)
+
 if __name__ == "__main__":
     unittest.main()
