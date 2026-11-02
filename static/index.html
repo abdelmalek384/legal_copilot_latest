@@ -138,6 +138,15 @@ button{min-height:40px}
  .auth-tabs button{min-width:0;overflow-wrap:anywhere}
  .stat b{font-size:26px}
 }
+
+/* Pilot phone-readability contract: body copy and every interactive target stay legible/tappable. */
+.research-role,.research-sources-title,.research-pin,#main .quick-link span,#main .workspace-list-item .item-meta,.research-controls label,.research-source-actions button,.research-message-actions button,#side .me,#side .me a,.pill{font-size:14px}
+button{min-height:44px}
+.auth-card form>label{display:block;width:100%;margin:12px 0 5px;line-height:1.5;overflow-wrap:anywhere}
+.auth-card .password-row{display:flex;width:100%;min-width:0;align-items:stretch}
+.auth-card .password-row input{min-width:0;flex:1}
+.auth-card .password-row button{min-height:44px;flex:0 0 auto}
+@media(max-width:420px){body{font-size:15px}.auth-card{width:calc(100% - 20px);padding:16px}.auth-card form>label{font-size:14px}.research-source-actions button,.research-message-actions button{min-height:44px}}
 </style>
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <script>
