@@ -1046,6 +1046,17 @@ async function billingPage(){
  const planSelect=h('select',{},...data.plans.map(p=>new Option((LANG==='ar'?p.label_ar:p.code)+' · '+p.seat_limit+' '+uiText('مقاعد','seats'),p.code)));
  if(data.subscription)planSelect.value=data.subscription.plan_code;
  const sub=data.subscription;
+ const usage=data.usage?.month_to_date||{};
+ const usageLabels=[
+  ['research_query',uiText('عمليات البحث القانوني','Legal research queries')],
+  ['document_upload',uiText('المستندات المضافة','Documents added')],
+  ['ocr_processing',uiText('عمليات معالجة OCR','OCR processing jobs')],
+  ['draft_generation',uiText('مسودات أولية','Draft skeletons generated')]
+ ];
+ const usageCard=h('section',{className:'card'},h('h3',{textContent:uiText('الاستخدام خلال الشهر الحالي','Usage this month')}),
+  ...usageLabels.map(([key,label])=>h('div',{className:'row'},h('span',{textContent:label}),h('b',{textContent:String(usage[key]?.units||0)}))),
+  h('p',{className:'mut',textContent:uiText('هذه أرقام قياس للاستخدام فقط؛ لا تُطبق حدود أو رسوم تلقائية في هذه المرحلة. لا يتم تخزين نصوص الاستعلامات أو محتوى القضايا ضمن سجل القياس.','Usage measurement only: no automatic quotas or charges are applied at this stage. Query text and matter contents are not stored in the usage ledger.')})
+ );
  const statusLabel=st=>({trial:uiText('فترة تجريبية','Free trial'),pending_payment:uiText('بانتظار مراجعة الدفع','Payment review pending'),active:uiText('نشط','Active'),expired:uiText('انتهت التجربة','Trial expired'),past_due:uiText('متأخر','Past due'),cancelled:uiText('ملغي','Cancelled')}[st]||st);
  const seat=data.seat_usage;
  const trialDate=sub&&sub.trial_ends_at?new Date(sub.trial_ends_at*1000).toLocaleDateString(LANG==='ar'?'ar-EG':'en-US'):'—';
@@ -1071,7 +1082,7 @@ async function billingPage(){
   sub?h('div',{className:'grid'},amount,method,reference,paymentButton):h('p',{className:'mut',textContent:uiText('ابدأ باختيار خطة أولاً.','Choose a plan first.')}));
  const history=h('section',{className:'card'},h('h3',{textContent:uiText('سجل التحويلات','Transfer submissions')}),
   ...(data.payments.length?data.payments.map(p=>h('div',{className:'row'},h('span',{textContent:p.method+' · '+p.transfer_reference+' · '+p.amount_piasters+' '+uiText('قرش','piasters')}),pill(statusLabel(p.status),p.status==='approved'?'done':p.status==='pending'?'soon':'late'))):[empty(uiText('لا توجد تحويلات مسجلة.','No transfer submissions yet.'))]));
- shell(uiText('الاشتراك والفوترة','Subscription & billing'),planCard,paymentCard,history);
+ shell(uiText('الاشتراك والفوترة','Subscription & billing'),usageCard,planCard,paymentCard,history);
 }
 async function platformBillingPage(){
  PAGE='platform-billing';
