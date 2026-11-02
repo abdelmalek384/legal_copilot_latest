@@ -148,6 +148,16 @@ const h=(t,p={},...k)=>{const e=document.createElement(t);for(const [key,value] 
 const pill=(t,k)=>h('span',{className:'pill '+k,textContent:t}),btn=(t,f,c='')=>h('button',{textContent:t,onclick:f,className:c});
 const fd=s=>s?s.slice(0,10).split('-').reverse().join('/'):'',err=j=>typeof j.detail==='string'?j.detail:'بيانات غير صحيحة';
 const safeHttpsUrl=v=>{try{const u=new URL(v);return u.protocol==='https:'&&!u.username&&!u.password?u.href:null}catch(_){return null}};const sourceHostLabel=v=>{try{return new URL(v).hostname}catch(_){return ''}};
+const whatsappReminder=(dueDate,kind)=>btn(uiText('تذكير عبر واتساب','WhatsApp reminder'),()=>{
+ const raw=window.prompt(uiText('أدخل رقم الهاتف الدولي للعميل أو المحامي مع مفتاح الدولة','Enter the client or lawyer phone number with country code'));
+ if(!raw)return;
+ const phone=String(raw).replace(/\D/g,'');
+ if(phone.length<8||phone.length>15||phone.startsWith('0')){toast(uiText('أدخل رقماً دولياً صحيحاً متضمناً مفتاح الدولة','Enter a valid international number including its country code'));return}
+ const label=kind==='session'?uiText('جلسة','hearing'):uiText('موعد قانوني','legal deadline');
+ const message=uiText('تذكير: '+label+' بتاريخ '+dueDate+'. يرجى مراجعة التفاصيل مع مكتب المحاماة.','Reminder: '+label+' on '+dueDate+'. Please confirm the details with the law office.');
+ const url='https://wa.me/'+phone+'?text='+encodeURIComponent(message);
+ window.open(url,'_blank','noopener,noreferrer');
+},'g');
 const toast=t=>{const e=$('toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',3500)};
 function csrfToken(){return document.cookie.split('; ').find(x=>x.startsWith('lc_csrf='))?.split('=').slice(1).join('=')||''}
 async function api(p,m='GET',b){const headers={};if(b!==undefined)headers['Content-Type']='application/json';const csrf=csrfToken();if(csrf)headers['X-CSRF-Token']=decodeURIComponent(csrf);const r=await fetch(p,{method:m,credentials:'same-origin',headers,body:b!==undefined?JSON.stringify(b):undefined});
