@@ -93,6 +93,7 @@ python tools/evaluate_retrieval_quality.py \
   --min-reviewed-cases 100 --min-practice-areas 3 --min-cases-per-practice-area 20 \
   --min-answerable-cases 60 --min-unanswerable-cases 20 \
   --min-answerable-cases-per-practice-area 10 --min-unanswerable-cases-per-practice-area 5 \
+  --min-reviewers-per-practice-area 2 \
   --min-expected-pin-cites 50 \
   --min-recall-at-5 0.90 --min-mrr-at-5 0.80 \
   --min-citation-precision 0.95 --min-citation-coverage 0.90 \
@@ -102,7 +103,7 @@ python tools/evaluate_retrieval_quality.py \
   --output retrieval-release-report.json
 ```
 
-Quality thresholds require explicit total sample-size and practice-area coverage gates. The global answerable/unanswerable minimums can be supplemented with `--min-answerable-cases-per-practice-area` and `--min-unanswerable-cases-per-practice-area` so each represented practice area has both cohorts, rather than allowing one area's cases to mask a missing cohort in another. Citation coverage requires a minimum answerable cohort; abstention compliance requires a minimum unanswerable cohort; expected pin-cite recall requires a minimum count of expected pin-cites. The gate also supports maximum excluded-case and unsafe-unverified-source-use counts. Missing metric denominators fail a configured threshold rather than being treated as a pass. The report always retains excluded records and data-quality findings. `--max-invalid-records` independently gates malformed question/run records and duplicate IDs; `--max-excluded-cases` gates reviewed questions that could not be scored.
+Quality thresholds require explicit total sample-size and practice-area coverage gates. The global answerable/unanswerable minimums can be supplemented with `--min-answerable-cases-per-practice-area` and `--min-unanswerable-cases-per-practice-area` so each represented practice area has both cohorts, rather than allowing one area's cases to mask a missing cohort in another. `--min-reviewers-per-practice-area` can additionally require distinct approved reviewer IDs in each area. This measures registry-ID diversity only: the registry remains an operator attestation, and the evaluator does not independently verify reviewer identity, licensure, or independence. Citation coverage requires a minimum answerable cohort; abstention compliance requires a minimum unanswerable cohort; expected pin-cite recall requires a minimum count of expected pin-cites. The gate also supports maximum excluded-case and unsafe-unverified-source-use counts. Missing metric denominators fail a configured threshold rather than being treated as a pass. The report always retains excluded records and data-quality findings. `--max-invalid-records` independently gates malformed question/run records and duplicate IDs; `--max-excluded-cases` gates reviewed questions that could not be scored.
 
 The example thresholds above are placeholders, not a recommendation or current product policy. Set them only after qualified Egyptian counsel approves the benchmark composition, risk tolerance and threshold policy. An empty or unreviewed seed set cannot pass a meaningful quality gate.
 
