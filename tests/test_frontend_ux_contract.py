@@ -270,5 +270,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn(".auth-card form>label{display:block;width:100%", HTML)
         self.assertIn(".auth-card .password-row input{min-width:0;flex:1}", HTML)
 
+
+    def test_answer_correction_button_and_trust_tier_badges_are_rendered(self):
+        self.assertIn("Suggest a correction", HTML)
+        self.assertIn("api('/answers/corrections','POST'", HTML)
+        self.assertIn("api('/admin/corrections')", HTML)
+        self.assertIn("trustTierBadge", HTML)
+        self.assertIn("Source-matched — not verified", HTML)
+        self.assertIn("Unreviewed", HTML)
+        self.assertIn("Verified", HTML)
+
 if __name__ == "__main__":
     unittest.main()
