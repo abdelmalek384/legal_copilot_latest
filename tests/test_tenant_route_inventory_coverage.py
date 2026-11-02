@@ -11,7 +11,10 @@ TEST_COVERED_ROUTES = {
     "POST /billing/payment-submissions": "tests/test_subscription_billing_routes.py",
     "GET /platform/billing/payment-submissions": "tests/test_subscription_billing_routes.py",
     "POST /platform/billing/payment-submissions/{submission_id}/approve": "tests/test_subscription_billing_routes.py",
-    "POST /platform/billing/payment-submissions/{submission_id}/reject": "tests/test_subscription_billing_routes.py",
+    "POST /platform/billing/payment-submissions/{submission_id}/reject": "tests/test_subscription_billing_routes.py",,
+    "GET /admin/security-policy": "tests/test_firm_security_policy_setup_health.py",
+    "PUT /admin/security-policy": "tests/test_firm_security_policy_setup_health.py",
+    "GET /admin/setup-health": "tests/test_firm_security_policy_setup_health.py",
 }
 
 
