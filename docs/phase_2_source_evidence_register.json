@@ -372,7 +372,7 @@
       "document_ids": [
         "EG-LABOUR-LAW-14-2025"
       ],
-      "source_state": "pdf_url_and_indexed_text_discovered_not_downloaded_or_page_reviewed",
+      "source_state": "pdf_url_and_indexed_text_discovered_original_file_not_downloaded_or_hashed_page_image_not_visually_checked",
       "access_terms_state": "not_reviewed",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
