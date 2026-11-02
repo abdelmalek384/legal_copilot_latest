@@ -322,6 +322,10 @@ jobs:
         run: PYTHONPATH=. python tests/test_claim_support.py
       - name: Test article-rows audit tool
         run: PYTHONPATH=. python tests/test_audit_article_rows.py
+      - name: Test exact integer-piaster invoice money helpers
+        run: PYTHONPATH=. python tests/test_invoice_money.py
+      - name: Test invoice ledger, payments, receipts and firm isolation
+        run: PYTHONPATH=. python tests/test_invoice_routes.py
       - name: Test provider-neutral billing fake
         run: PYTHONPATH=. python tests/test_billing_provider.py
       - name: Guard that every test file runs in CI or is explicitly tracked
