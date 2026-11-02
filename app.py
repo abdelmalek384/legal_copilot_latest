@@ -5565,7 +5565,7 @@ def update_invoice(invoice_id: int, b: InvoiceDraftIn, u: dict = Depends(user)):
         "WHERE id=? AND status='draft'",
         (b.description.strip(), b.due_date, total, total, invoice_id),
     )
-    _invoice_event(c, invoice_id, int(u["id"]), "created", {"action": "draft_updated", "line_count": len(b.lines)})
+    _invoice_event(c, invoice_id, int(u["id"]), "draft_updated", {"line_count": len(b.lines)})
     c.commit()
     return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
 
@@ -5574,6 +5574,8 @@ def update_invoice(invoice_id: int, b: InvoiceDraftIn, u: dict = Depends(user)):
 @rollback_tenant_transaction_on_error
 def issue_invoice(invoice_id: int, u: dict = Depends(user)):
     c = conn()
+    row = _invoice_for_user(c, u, invoice_id)
+    c.execute("BEGIN IMMEDIATE")
     row = _invoice_for_user(c, u, invoice_id)
     if row["status"] != "draft":
         raise HTTPException(409, "only draft invoices can be issued")
@@ -5603,6 +5605,8 @@ def issue_invoice(invoice_id: int, u: dict = Depends(user)):
 def record_invoice_payment(invoice_id: int, b: InvoicePaymentIn, u: dict = Depends(user)):
     c = conn()
     row = _invoice_for_user(c, u, invoice_id)
+    c.execute("BEGIN IMMEDIATE")
+    row = _invoice_for_user(c, u, invoice_id)
     if row["status"] != "issued":
         raise HTTPException(409, "payments can only be recorded against issued invoices")
     existing = c.execute(
@@ -5615,6 +5619,7 @@ def record_invoice_payment(invoice_id: int, b: InvoicePaymentIn, u: dict = Depen
             and existing["paid_on"] == b.paid_on
             and existing["method"] == b.method
             and existing["reference"] == b.reference
+            and existing["note"] == b.note
         )
         if not same:
             raise HTTPException(409, "idempotency key was already used for a different payment")
@@ -5644,6 +5649,8 @@ def record_invoice_payment(invoice_id: int, b: InvoicePaymentIn, u: dict = Depen
 @rollback_tenant_transaction_on_error
 def void_invoice(invoice_id: int, b: InvoiceVoidIn, u: dict = Depends(user)):
     c = conn()
+    row = _invoice_for_user(c, u, invoice_id)
+    c.execute("BEGIN IMMEDIATE")
     row = _invoice_for_user(c, u, invoice_id)
     if row["status"] != "issued":
         raise HTTPException(409, "only issued invoices can be voided")
