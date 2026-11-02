@@ -220,6 +220,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_reminder_outbox.py
       - name: Test tenant-scoped reminder scheduler and authorization
         run: PYTHONPATH=. python tests/test_reminder_service.py
+      - name: Test tenant-local reminder preference API
+        run: PYTHONPATH=. python tests/test_reminder_preferences_routes.py
       - name: Test read-only reminder outbox health monitoring
         run: PYTHONPATH=. python tests/test_reminder_healthcheck.py
       - name: Test database-independent MFA primitives
