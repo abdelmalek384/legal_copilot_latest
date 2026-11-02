@@ -397,13 +397,13 @@
       "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
       "publisher": "Egyptian Tax Authority (government-hosted copy of Official Gazette publication; original publisher identified as Amiri Press)",
       "source_type": "government-hosted Official Gazette PDF",
-      "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+      "url": "https://eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
       "observed_title": "الجريدة الرسمية – العدد 18 (تابع) في 3 مايو سنة 2025؛ قانون رقم 14 لسنة 2025 بإصدار قانون العمل",
       "publication_date": "2025-05-03",
       "document_ids": [
         "EG-LABOUR-LAW-14-2025"
       ],
-      "source_state": "pdf_text_opened_targeted_pages_reviewed_original_file_not_downloaded_or_hashed",
+      "source_state": "pdf_text_and_selected_page_images_reviewed_original_file_not_downloaded_or_hashed",
       "access_terms_state": "not_reviewed",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
@@ -540,9 +540,82 @@
           "provisions": [
             "القانون المرافق، المادتان 171-173"
           ]
+        },
+        {
+          "pdf_page_index_zero_based": 33,
+          "printed_page_label": "35",
+          "provisions": [
+            "القانون المرافق، المادة 66"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 46,
+          "printed_page_label": "48",
+          "provisions": [
+            "القانون المرافق، المادة 103"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 55,
+          "printed_page_label": "57",
+          "provisions": [
+            "القانون المرافق، المادة 134"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 104,
+          "printed_page_label": "106",
+          "provisions": [
+            "القانون المرافق، المادة 278"
+          ]
         }
       ],
-      "notes": "Targeted PDF text extraction was reviewed for the listed pages. The original file was not downloaded, hashed, or visually inspected. This does not establish a complete article-by-article match, amendment history, current status, or permission for systematic retrieval/commercial use. Additional targeted pages reviewed: printed page 52 (Articles 117 and 121), and printed pages 54-55 (Article 124). Additional targeted pages reviewed: printed pages 68-70 (Article 165) and 73-74 (Article 177). Additional targeted pages reviewed: printed pages 61-62 (Article 141) and 63-64 (Article 148). Additional targeted review covers Article 120 on printed pages 52-53. Additional targeted review covers Articles 118-119 and 122 on printed pages 52-54. Printed page 55 also contains Article 129 on paid holidays; the relevant ministerial/cabinet designation decisions remain to be verified. Additional targeted pages reviewed: printed page 71 (Article 173) and page 72 (Article 171). Additional targeted review covers Article 164 on printed page 69 and Article 166 on printed page 70."
+      "notes": "Targeted PDF text extraction was reviewed for the listed pages. The original file was not downloaded, hashed, or visually inspected. This does not establish a complete article-by-article match, amendment history, current status, or permission for systematic retrieval/commercial use. Additional targeted pages reviewed: printed page 52 (Articles 117 and 121), and printed pages 54-55 (Article 124). Additional targeted pages reviewed: printed pages 68-70 (Article 165) and 73-74 (Article 177). Additional targeted pages reviewed: printed pages 61-62 (Article 141) and 63-64 (Article 148). Additional targeted review covers Article 120 on printed pages 52-53. Additional targeted review covers Articles 118-119 and 122 on printed pages 52-54. Printed page 55 also contains Article 129 on paid holidays; the relevant ministerial/cabinet designation decisions remain to be verified. Additional targeted pages reviewed: printed page 71 (Article 173) and page 72 (Article 171). Additional targeted review covers Article 164 on printed page 69 and Article 166 on printed page 70. On 2026-11-02, public browser PDF page images were visually checked for Articles 66 (printed p.35/PDF index 33), 103 (p.48/index 46), 124 (p.54/index 52), 134 (p.57/index 55), 141 (p.61/index 59), and 278 (p.106/index 104). The Article 103 ETA page image visibly reads «كل ستة أشهر على الأقل». The original PDF binary remains undownloaded and unhashed.",
+      "visual_page_checks": [
+        {
+          "pdf_page_index_zero_based": 33,
+          "printed_page_label": "35",
+          "provision": "المادة 66",
+          "checked_on": "2026-11-02",
+          "method": "public_browser_pdf_page_image"
+        },
+        {
+          "pdf_page_index_zero_based": 46,
+          "printed_page_label": "48",
+          "provision": "المادة 103",
+          "checked_on": "2026-11-02",
+          "method": "public_browser_pdf_page_image",
+          "visible_text": "كل ستة أشهر على الأقل"
+        },
+        {
+          "pdf_page_index_zero_based": 52,
+          "printed_page_label": "54",
+          "provision": "المادة 124",
+          "checked_on": "2026-11-02",
+          "method": "public_browser_pdf_page_image"
+        },
+        {
+          "pdf_page_index_zero_based": 55,
+          "printed_page_label": "57",
+          "provision": "المادة 134",
+          "checked_on": "2026-11-02",
+          "method": "public_browser_pdf_page_image"
+        },
+        {
+          "pdf_page_index_zero_based": 59,
+          "printed_page_label": "61",
+          "provision": "المادة 141",
+          "checked_on": "2026-11-02",
+          "method": "public_browser_pdf_page_image"
+        },
+        {
+          "pdf_page_index_zero_based": 104,
+          "printed_page_label": "106",
+          "provision": "المادة 278",
+          "checked_on": "2026-11-02",
+          "method": "public_browser_pdf_page_image"
+        }
+      ]
     },
     {
       "source_id": "EG-IDSC-GAZETTE-2025-295-SUPPLEMENT-D",
@@ -701,6 +774,31 @@
       "access_terms_state": "not_reviewed",
       "collection_permission": "unknown",
       "notes": "The search-indexed Ministry result dated 2026-10-27 says the clarification responds to questions following Decision 249/2026. It states that implementation will not harm current workers or remove acquired legal positions, discusses recognition of prior qualifications and experience for occupational-safety specialists, and says the competent central administration will issue circulars to standardize application. Direct page retrieval returned HTTP 502 in this session; no PDF or local bytes/hash were obtained and no reuse terms were reviewed. This is a Ministry clarification lead, not the full decision, a Gazette page comparison, or proof of a formal amendment."
+    },
+    {
+      "source_id": "EG-SIS-GAZETTE-2025-18-LABOUR-PDF",
+      "publisher": "State Information Service, Egypt (government-hosted copy of Official Gazette publication; original publisher identified as Amiri Press)",
+      "source_type": "government-hosted Official Gazette PDF",
+      "url": "https://sis.gov.eg/media/760267/القانون-رقم-14-لسنة-2025-بإصدار-قانون-العمل.pdf",
+      "observed_title": "الجريدة الرسمية – العدد 18 (تابع) في 3 مايو سنة 2025؛ قانون رقم 14 لسنة 2025 بإصدار قانون العمل",
+      "publication_date": "2025-05-03",
+      "document_ids": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
+      "source_state": "pdf_text_layer_opened_targeted_page_46_original_file_not_downloaded_or_hashed_page_image_not_visually_checked",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "reviewed_pdf_pages": [
+        {
+          "pdf_page_index_zero_based": 46,
+          "printed_page_label": "48",
+          "provisions": [
+            "القانون المرافق، المادة 103 — text layer only; page image not visually checked"
+          ]
+        }
+      ],
+      "notes": "The SIS-hosted PDF text layer around Article 103 includes «كل سنة ستة أشهر على الأقل», while the ETA-hosted page image visibly reads «كل ستة أشهر على الأقل». The SIS page image could not be retrieved for visual inspection; treat this as an unresolved text-layer discrepancy, not evidence of an amendment or definitive difference in the underlying Gazette. Original file not downloaded or hashed. Access terms, systematic collection permission and commercial reuse permission remain unreviewed/unknown."
     }
   ],
   "document_records_to_create_from_batch": [
