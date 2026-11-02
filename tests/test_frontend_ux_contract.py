@@ -270,5 +270,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn(".auth-card form>label{display:block;width:100%", HTML)
         self.assertIn(".auth-card .password-row input{min-width:0;flex:1}", HTML)
 
+    def test_reminder_preferences_screen_exposes_per_user_schedule_controls(self):
+        self.assertIn("api('/reminder-preferences')", HTML)
+        self.assertIn("api('/reminder-preferences','PUT',payload)", HTML)
+        for key in ("email_enabled", "deadline_7_days", "deadline_3_days",
+                    "deadline_1_day", "deadline_day_of", "deadline_overdue",
+                    "session_day_of", "task_reminders"):
+            self.assertIn("['" + key + "'", HTML)
+        self.assertIn("تُطبق هذه الخيارات على حسابك داخل هذا المكتب فقط", HTML)
+
 if __name__ == "__main__":
     unittest.main()
