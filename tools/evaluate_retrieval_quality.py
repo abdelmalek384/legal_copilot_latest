@@ -551,7 +551,7 @@ def main(argv=None):
     for name in ("min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
                  "min_answerable_cases", "min_unanswerable_cases",
                  "min_answerable_cases_per_practice_area", "min_unanswerable_cases_per_practice_area",
-                 "min_expected_pin_cites"):
+                 "min_reviewers_per_practice_area", "min_expected_pin_cites"):
         value = getattr(args, name)
         if value is not None and value < 1:
             parser.error("--" + name.replace("_", "-") + " must be a positive integer")
