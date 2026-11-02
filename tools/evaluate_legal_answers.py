@@ -389,12 +389,12 @@ def evaluate(question_rows, result_rows, reviewer_registry):
             ),
             "retrieval_mrr": (
                 _ratio(sum(x["retrieval_mrr"] for x in answerable), len(answerable))
-                if retrieval_scored and answerable else (0.0 if retrieval_scored else None)
+                if retrieval_scored and answerable else None
             ),
             "unanswerable_retrieval_rate": (
                 _ratio(sum(bool(x["unanswerable_retrieval_nonempty"]) for x in abstention_cases),
                        len(abstention_cases))
-                if retrieval_scored and abstention_cases else (0.0 if retrieval_scored else None)
+                if retrieval_scored and abstention_cases else None
             ),
         }
 
