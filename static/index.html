@@ -1640,7 +1640,7 @@ async function law(){
  shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-controls'},h('label',{},h('span',{textContent:LANG==='ar'?'نطاق البحث':'Search scope'}),scopeSelect),h('label',{},h('span',{textContent:LANG==='ar'?'ملف القضية (للبحث والحفظ)':'Matter (for search and saving)'}),matterSelect)),h('div',{className:'research-layout'},h('section',{className:'research-main'},researchStatus,thread,composerArea),sidebar));
  await drawList();
  if(activeId)await loadConversation(activeId);
- else {const list=await api('/research/conversations');if(list.length)await loadConversation(list[0].id);else await newChat()}
+ else {const list=await api('/research/conversations');if(list.length)await loadConversation(list[0].id);else await newChat(false)}
 }
 async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=await api('/users'),again=()=>view(id);
  const lead=ME.role==='admin'||c.members.some(m=>m.role==='lead'&&m.user_id===ME.id),dn=c.tasks.filter(t=>t.status==='done').length,tot=c.tasks.length;
