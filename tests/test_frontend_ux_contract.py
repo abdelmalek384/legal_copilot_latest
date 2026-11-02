@@ -271,5 +271,16 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("deadline_1_day", HTML)
         self.assertIn("session_day_of", HTML)
 
+
+    def test_invoice_workflow_exposes_case_creation_payment_print_and_receipt_actions(self):
+        self.assertIn("['invoices',uiText('الفواتير','Invoices')]", HTML)
+        self.assertIn("api('/cases/'+id+'/invoices','POST'", HTML)
+        self.assertIn("api('/invoices/'+inv.id+'/issue','POST')", HTML)
+        self.assertIn("api('/invoices/'+inv.id+'/payments','POST'", HTML)
+        self.assertIn("/invoices/'+inv.id+'/print", HTML)
+        self.assertIn("/payments/'+p.id+'/receipt", HTML)
+        self.assertIn("api('/finance/invoices/overview')", HTML)
+        self.assertIn("piasterMoney(invoiceFinance.outstanding_piasters)", HTML)
+
 if __name__ == "__main__":
     unittest.main()
