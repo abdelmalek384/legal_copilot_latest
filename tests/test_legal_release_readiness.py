@@ -333,6 +333,9 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.assertEqual(row_review["normalized_matches"], [66, 103, 124, 141, 278])
         self.assertEqual(row_review["textual_difference_articles"], [134])
         self.assertFalse(row_review["raw_file_sha256_verified"])
+        self.assertEqual(row_review["manifest_sha256"], "3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600")
+        self.assertTrue(row_review["library_copy_size_matches_manifest"])
+        self.assertFalse(row_review["manifest_sha256_recomputed_from_original_bytes"])
         self.assertEqual(row_review["commencement"]["general_effective_date"], "2025-09-01")
         self.assertEqual(row_review["commencement"]["specialized_labour_courts_effective_date"], "2025-10-01")
         comparison = json.loads(
@@ -345,6 +348,8 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.assertEqual(article_134_result["candidate_excerpt"], "ما يعرض للخطر")
         self.assertEqual(article_134_result["gazette_excerpt"], "ما يعرضه للخطر")
         self.assertFalse(comparison["candidate_file"]["raw_file_sha256_verified"])
+        self.assertEqual(comparison["candidate_file"]["manifest_sha256"], "3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600")
+        self.assertTrue(comparison["candidate_file"]["library_copy_size_matches_manifest"])
         self.assertFalse(comparison["comparison_method"]["full_311_row_comparison"])
         ministry_index = next(item for item in candidate["sources"] if item["source_id"] == "EG-LABOUR-MINISTRY-LAWS-LEGISLATIONS-INDEX")
         self.assertIn("Article 12 of Law 14/2025 repealing Law 12/2003", ministry_index["permission_evidence"])
