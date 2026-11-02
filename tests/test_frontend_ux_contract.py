@@ -240,5 +240,27 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("@media(max-width:420px)", HTML)
         self.assertIn("@media(forced-colors:active)", HTML)
 
+    def test_primary_navigation_uses_a_nav_landmark(self):
+        self.assertIn("h('nav',{className:'primary-nav'", HTML)
+
+    def test_mobile_controls_and_body_copy_meet_readability_targets(self):
+        self.assertIn("min-height:44px", HTML)
+        self.assertIn(".mut{color:var(--mut);font-size:14px}", HTML)
+        self.assertIn(".stat span{color:var(--mut);font-size:14px}", HTML)
+        self.assertIn("overflow-x:auto;overscroll-behavior-inline:contain", HTML)
+
+    def test_signup_tab_is_named_request_an_account(self):
+        self.assertIn("textContent:LANG==='ar'?'طلب حساب':'Request an account'", HTML)
+
+    def test_deadline_preview_persists_an_audit_summary_and_draft_warning(self):
+        self.assertIn("Draft — not verified by a lawyer", HTML)
+        self.assertIn("Calculation steps: ", HTML)
+        self.assertIn("(result.steps_ar||[]).join(' | ')", HTML)
+
+    def test_admin_deadline_holiday_editor_is_available(self):
+        self.assertIn("api('/deadline-holidays')", HTML)
+        self.assertIn("api('/deadline-holidays','PUT'", HTML)
+        self.assertIn("ME.role==='admin'", HTML)
+
 if __name__ == "__main__":
     unittest.main()
