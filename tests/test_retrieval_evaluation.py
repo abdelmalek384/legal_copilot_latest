@@ -514,6 +514,7 @@ class RetrievalEvaluationTests(unittest.TestCase):
                     report = json.loads(output.getvalue())
                     self.assertEqual(report["practice_area_counts"]["civil_law"]["reviewer_count"],
                                      expected_count)
+                    self.assertNotIn("reviewer_ids", report["practice_area_counts"]["civil_law"])
                     check = next(item for item in report["release_gate"]["checks"]
                                  if item["metric"] == "reviewers_per_practice_area:civil_law")
                     self.assertEqual(check["passed"], expected_count >= 2)
