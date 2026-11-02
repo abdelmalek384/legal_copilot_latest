@@ -58,10 +58,18 @@ class SubscriptionBillingRouteTests(unittest.TestCase):
         self.client_b = TestClient(app.app)
         self._login(self.client_a, "subscription-a@example.test", self.password_a)
         self._login(self.client_b, "subscription-b@example.test", self.password_b)
+        lawyer_password = "Subscription-lawyer-password-2026!"
+        lawyer_id = self.runtime.create_global_identity(
+            "Subscription Lawyer", "subscription-lawyer@example.test", app.hash_pw(lawyer_password)
+        )
+        self.runtime.create_firm_membership(lawyer_id, self.firm_a, "lawyer")
+        self.client_lawyer = TestClient(app.app)
+        self._login(self.client_lawyer, "subscription-lawyer@example.test", lawyer_password)
 
     def tearDown(self):
         self.client_a.close()
         self.client_b.close()
+        self.client_lawyer.close()
         try:
             self.runtime.close_current_thread()
         except Exception:
@@ -132,6 +140,9 @@ class SubscriptionBillingRouteTests(unittest.TestCase):
         self.assertEqual(invite.status_code, 409)
         self.assertEqual(self.client_b.get("/billing").status_code, 200)
         self.assertEqual(self.client_b.get("/platform/billing/payment-submissions").status_code, 200)
+        self.assertEqual(self.client_lawyer.get("/billing").status_code, 403)
+        denied_plan = self._mutate(self.client_lawyer, "post", "/billing/subscribe", json={"plan_code": "small_firm"})
+        self.assertEqual(denied_plan.status_code, 403)
 
 
 if __name__ == "__main__":
