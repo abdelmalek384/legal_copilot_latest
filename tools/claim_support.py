@@ -17,16 +17,23 @@ _ARABIC_NO_EXPIRY = re.compile(
     r"(?:\s+(?:ابدا|مطلقا|نهائيا))?"
 )
 _ENGLISH_FINITE_PERIOD = re.compile(
-    r"\b(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|"
-    r"eleven|twelve|thirteen|fourteen|fifteen|twenty|thirty|forty|"
-    r"fifty|sixty|ninety|hundred)\s*[- ]?"
-    r"(?:year|years|month|months|week|weeks|day|days)\b",
+    r"\b(?:\d+(?:[.,]\d+)?|zero|one|two|three|four|five|six|seven|eight|"
+    r"nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|"
+    r"eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|"
+    r"ninety|hundred|thousand)(?:[- ](?:one|two|three|four|five|six|seven|"
+    r"eight|nine))?\s*(?:year|years|month|months|week|weeks|day|days)\b",
     re.IGNORECASE,
 )
 _ARABIC_FINITE_PERIOD = re.compile(
-    r"(?:\d+|واحد|واحدة|اثنين|اثنتين|ثلاث|ثلاثة|اربع|اربعة|خمس|خمسة|"
-    r"ست|ستة|سبع|سبعة|ثمان|ثمانية|تسع|تسعة|عشر|عشرة)"
-    r"\s*(?:سنه|سنوات|شهر|اشهر|اسبوع|اسابيع|يوم|ايام)"
+    r"(?:\d+(?:[.,]\d+)?|واحد|واحدة|احد|احدى|اثنين|اثنتين|ثلاث|ثلاثة|"
+    r"اربع|اربعة|خمس|خمسة|ست|ستة|سبع|سبعة|ثمان|ثمانية|تسع|تسعة|عشر|"
+    r"عشرة|احد عشر|احدى عشرة|اثنا عشر|اثنتا عشرة|ثلاثة عشر|ثلاث عشر|"
+    r"اربعة عشر|اربع عشر|خمسة عشر|خمس عشر|ستة عشر|ست عشر|سبعة عشر|"
+    r"سبع عشر|ثمانية عشر|ثمان عشر|تسعة عشر|تسع عشر|عشرون|عشرين|"
+    r"ثلاثون|ثلاثين|اربعون|اربعين|خمسون|خمسين|ستون|ستين|سبعون|سبعين|"
+    r"ثمانون|ثمانين|تسعون|تسعين|مائه|مئة|ميه|مائه)"
+    r"\s*(?:سنه|سنوات|سنين|عام|اعوام|عامين|عامان|شهر|شهور|اشهر|شهرين|"
+    r"اسبوع|اسابيع|اسبوعين|يوم|ايام|يومين)"
 )
 _GENERIC_TERMS = {
     "a", "an", "the", "is", "are", "was", "were", "be", "been", "being",
