@@ -9,11 +9,13 @@ import re
 
 _ENGLISH_NO_EXPIRY = re.compile(
     r"\b(?:never\s+(?:expires?|ends?|lapses?)|does\s+not\s+expire|"
-    r"doesn't\s+expire|no\s+limitation\s+period|not\s+subject\s+to\s+limitation)\b",
+    r"doesn't\s+expire|no\s+limitation\s+period|not\s+subject\s+to\s+limitation|"
+    r"immune\s+from\s+limitation|not\s+time[- ]barred|cannot\s+be\s+time[- ]barred)\b",
     re.IGNORECASE,
 )
 _ARABIC_NO_EXPIRY = re.compile(
-    r"(?:لا\s+(?:يسقط|يتقادم|ينقضي|تنقضي)|بلا\s+تقادم|دون\s+تقادم)"
+    r"(?:لا\s+(?:يسقط|يتقادم|ينقضي|تنقضي|يخضع|تخضع)|"
+    r"بلا\s+تقادم|دون\s+تقادم|غير\s+(?:خاضع|خاضعة|قابل|قابلة)\s+للتقادم)"
     r"(?:\s+(?:ابدا|مطلقا|نهائيا))?"
 )
 _ENGLISH_FINITE_PERIOD = re.compile(
