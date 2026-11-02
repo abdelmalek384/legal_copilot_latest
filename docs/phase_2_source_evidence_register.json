@@ -847,6 +847,23 @@
       "commercial_reuse_permission": "unknown",
       "reviewed_pdf_pages": [],
       "notes": "The Tax Authority related-laws index lists Law No. 14 of 2025 (قانون العمل الجديد) and also lists other 2026 enactments. No separate amendment entry for Law 14/2025 was visible in the index at the time checked. This index is not an exhaustive Gazette or corrigenda search and does not establish that the law is unamended or current."
+    },
+    {
+      "source_id": "EG-MANSHURAT-LABOUR-14-2025",
+      "publisher": "Manshurat (secondary legal transcription)",
+      "source_type": "secondary_legal_transcription",
+      "url": "https://manshurat.org/node/76602",
+      "observed_title": "قانون العمل رقم 14 لسنة 2025 — نص عربي منقول عن الجريدة الرسمية",
+      "publication_date": "2025-05-03",
+      "document_ids": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
+      "source_state": "secondary_transcription_spot_checked_six_articles_only_one_article_134_difference_found",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "reviewed_pdf_pages": [],
+      "notes": "The Library candidate JSONL identifies this page as its source, says the text is unofficial until Gazette comparison, and records retrieval on 2026-10-22. Six rows were spot-checked against the ETA-hosted Gazette PDF on 2026-11-02: five match after normalization; Article 134 omits the suffix «ه» in «ما يعرضه للخطر». The full 311-row comparison and source reuse terms remain unreviewed."
     }
   ],
   "document_records_to_create_from_batch": [
