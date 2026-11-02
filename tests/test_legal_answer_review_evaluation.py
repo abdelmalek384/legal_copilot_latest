@@ -1,4 +1,5 @@
 import contextlib
+from datetime import date
 import hashlib
 import io
 import json
@@ -505,12 +506,12 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
                 errors = validate_review(review(disposition=value))
                 self.assertTrue(any("disposition must be one" in error for error in errors))
 
-    def test_review_date_must_be_a_real_iso_calendar_date(self):
-        for value in ("2026-02-30", "26-10-25", "20261025", "not-a-date"):
+    def test_review_date_must_be_a_real_non_future_iso_calendar_date(self):
+        for value in ("2026-02-30", "26-10-25", "20261025", "not-a-date", "2999-01-01"):
             with self.subTest(review_date=value):
                 errors = validate_review(review(review_date=value))
-                self.assertTrue(any("review_date must be a real calendar date" in error for error in errors))
-        self.assertEqual(validate_review(review(review_date="2026-10-25")), [])
+                self.assertTrue(any("review_date must be a real ISO calendar date" in error for error in errors))
+        self.assertEqual(validate_review(review(review_date=date.today().isoformat())), [])
 
     def test_unknown_dimensions_are_rejected(self):
         scores = dict(review()["scores"])
