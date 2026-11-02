@@ -69,7 +69,7 @@ def result(qid="Q1", abstained=False, sources=None, pins=None, answer_id=None, r
                             if pins is None and not abstained else (pins or [])),
     }
     if retrieved is not None:
-        row["retrieved_sources"] = retrieved
+        row["retrieved_source_ids"] = retrieved
     return row
 
 
@@ -450,7 +450,7 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
         self.assertEqual(nonempty["overall"]["unanswerable_retrieval_rate"], 1.0)
 
     def test_ranked_retrieval_must_be_supplied_for_all_scored_questions(self):
-        with self.assertRaisesRegex(EvaluationError, "retrieved_sources must be supplied for every scored question"):
+        with self.assertRaisesRegex(EvaluationError, "retrieved_source_ids must be supplied for every scored question"):
             score(
                 [approved("Q1"), approved("Q2")],
                 [result("Q1", retrieved=["LAW-10"]), result("Q2")],
@@ -459,8 +459,8 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
     def test_ranked_retrieval_rejects_duplicate_or_malformed_source_ids(self):
         for value in (["LAW-10", "LAW-10"], ["LAW-10", ""], "LAW-10", None):
             with self.subTest(value=value):
-                with self.assertRaisesRegex(EvaluationError, "retrieved_sources"):
-                    score([approved()], [dict(result(), retrieved_sources=value)])
+                with self.assertRaisesRegex(EvaluationError, "retrieved_source_ids"):
+                    score([approved()], [dict(result(), retrieved_source_ids=value)])
 
     def test_legacy_evaluation_without_retrieval_ranking_remains_supported(self):
         report = score([approved()], [result()])
