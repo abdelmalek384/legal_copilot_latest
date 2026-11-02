@@ -324,6 +324,8 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.assertEqual(version["authenticity_verified"], 0)
         self.assertEqual(version["status_verified"], 0)
         self.assertEqual(version["amendment_history_verified"], 0)
+        ministry_index = next(item for item in candidate["sources"] if item["source_id"] == "EG-LABOUR-MINISTRY-LAWS-LEGISLATIONS-INDEX")
+        self.assertIn("Article 12 of Law 14/2025 repealing Law 12/2003", ministry_index["permission_evidence"])
         self.assertEqual(version["review_status"], "pending_source_review")
         sis = next(item for item in candidate["sources"] if item["source_id"] == "EG-SIS-GAZETTE-2025-18-LABOUR-PDF")
         self.assertEqual(sis["collection_permission"], "unknown")
