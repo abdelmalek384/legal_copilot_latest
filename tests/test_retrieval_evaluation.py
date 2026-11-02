@@ -226,7 +226,9 @@ class RetrievalEvaluationTests(unittest.TestCase):
                 {"source_id": "LAW-X", "pin_cite": "Article 99"},
             ],
             "source_summary": [
+                {"source_id": "IRRELEVANT", "source_status": "verified_operative_text"},
                 {"source_id": "LAW-A", "source_status": "verified_operative_text"},
+                {"source_id": "LAW-B", "source_status": "verified_operative_text"},
                 {"source_id": "LAW-X", "source_status": "verified_operative_text"},
             ],
             "abstained": False,
@@ -535,7 +537,10 @@ class RetrievalEvaluationTests(unittest.TestCase):
             runs = [
                 {"question_id": "Q-ANSWERABLE", "retrieved_source_ids": ["LAW-A", "LAW-B"],
                  "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
-                 "source_summary": [{"source_id": "LAW-A", "source_status": "verified_operative_text"}],
+                 "source_summary": [
+                     {"source_id": "LAW-A", "source_status": "verified_operative_text"},
+                     {"source_id": "LAW-B", "source_status": "verified_operative_text"},
+                 ],
                  "abstained": False, "used_unverified_source": False},
                 {"question_id": "Q-UNANSWERABLE", "retrieved_source_ids": ["LAW-A", "LAW-B"],
                  "citations": [], "abstained": True, "used_unverified_source": False},
