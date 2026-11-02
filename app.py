@@ -5621,7 +5621,7 @@ def issue_invoice(invoice_id: int, u: dict = Depends(user)):
 def record_invoice_payment(invoice_id: int, b: InvoicePaymentIn, u: dict = Depends(user)):
     c = conn()
     row = _invoice_for_user(c, u, invoice_id)
-    c.execute("BEGIN IMMEDIATE")
+    c.execute("SAVEPOINT invoice_write")
     row = _invoice_for_user(c, u, invoice_id)
     if row["status"] != "issued":
         raise HTTPException(409, "payments can only be recorded against issued invoices")
@@ -5668,7 +5668,7 @@ def record_invoice_payment(invoice_id: int, b: InvoicePaymentIn, u: dict = Depen
 def void_invoice(invoice_id: int, b: InvoiceVoidIn, u: dict = Depends(user)):
     c = conn()
     row = _invoice_for_user(c, u, invoice_id)
-    c.execute("BEGIN IMMEDIATE")
+    c.execute("SAVEPOINT invoice_write")
     row = _invoice_for_user(c, u, invoice_id)
     if row["status"] != "issued":
         raise HTTPException(409, "only issued invoices can be voided")
