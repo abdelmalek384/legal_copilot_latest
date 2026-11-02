@@ -341,10 +341,9 @@ async function billingPage(){
  const method=h('select',{},new Option(uiText('تحويل بنكي','Bank transfer'),'bank_transfer'),new Option('InstaPay','instapay'));
  const reference=h('input',{placeholder:uiText('رقم مرجع التحويل','Transfer reference')});
  const paymentButton=btn(uiText('إرسال إثبات التحويل للمراجعة','Submit transfer for review'),async()=>{
-  const raw=amount.value.trim();
-  if(!/^(?:0|[1-9][0-9]{0,11})(?:\.[0-9]{1,2})?$/.test(raw)||!reference.value.trim()){toast(uiText('أدخل مبلغاً صحيحاً ومرجع التحويل','Enter a valid amount and transfer reference'));return}
-  const parts=raw.split('.'),piasters=Number(parts[0])*100+Number(((parts[1]||'')+'00').slice(0,2));
-  if(!Number.isSafeInteger(piasters)||piasters<=0){toast(uiText('المبلغ غير صالح','Invalid amount'));return}
+  let piasters;
+  try{piasters=egpToPiasters(amount.value)}catch(e){toast(String(e.message||e));return}
+  if(piasters<=0||!reference.value.trim()){toast(uiText('أدخل مبلغاً موجباً ومرجع التحويل','Enter a positive amount and transfer reference'));return}
   paymentButton.disabled=true;
   try{await api('/billing/payment-submissions','POST',{amount_piasters:piasters,method:method.value,transfer_reference:reference.value.trim()});toast(uiText('تم إرسال التحويل للمراجعة','Transfer submitted for review'));billingPage()}
   catch(e){toast(String(e.message||e))}
@@ -448,6 +447,14 @@ const whatsappReminder=(dueDate,kind)=>btn(uiText('تذكير عبر واتسا�
 const duePill=t=>{if(!t.due)return null;const d=Math.round((new Date(t.due+'T00:00:00')-new Date(today+'T00:00:00'))/864e5);const label=d<0?uiText(Math.abs(d)+' يوم متأخر',Math.abs(d)+'d overdue'):d===0?uiText('مستحق اليوم','Due today'):d===1?uiText('غداً','Due tomorrow'):uiText('متبقي '+d+' يوم',d+'d left');return pill(fd(t.due)+' · '+label,d<0?'late':d<=3?'soon':'open')};
 const prog=c=>{const t=c.done_tasks+c.open_tasks;return h('div',{className:'bar',title:c.done_tasks+'/'+t},h('i',{style:'width:'+(t?100*c.done_tasks/t:0)+'%'}))};
 const money=n=>new Intl.NumberFormat(LANG==='ar'?'ar-EG':'en-US',{maximumFractionDigits:2}).format(Number(n)||0);
+const egpToPiasters=raw=>{
+ let text=String(raw||'').trim().replace(/[٠-٩۰-۹]/g,ch=>{const code=ch.charCodeAt(0);return String(code-(code>=0x06F0?0x06F0:0x0660))}).replace(/٫/g,'.').replace(/٬/g,',');
+ if(text.includes(',')){if(!/^\d{1,3}(?:,\d{3})+(?:\.\d{1,2})?$/.test(text))throw new Error(uiText('تحقق من فواصل الآلاف في المبلغ','Check the amount thousands separators'));text=text.replace(/,/g,'')}
+ if(!/^\d+(?:\.\d{1,2})?$/.test(text))throw new Error(uiText('أدخل مبلغاً صحيحاً حتى قرشين عشريين','Enter a valid amount with at most two decimal places'));
+ const parts=text.split('.');const amount=Number(parts[0])*100+Number(((parts[1]||'')+'00').slice(0,2));
+ if(!Number.isSafeInteger(amount)||amount>1000000000000)throw new Error(uiText('المبلغ خارج النطاق المسموح','Amount exceeds the supported limit'));
+ return amount;
+};
 const empty=t=>h('div',{className:'mut',textContent:t});
 function uiText(ar,en){return LANG==='ar'?ar:en}
 function openPage(id,fn){PAGE=id;window.CASE_ID=null;fn()}
@@ -1055,15 +1062,10 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
   const lineContainer=h('div',{});
   const renderLines=()=>lineContainer.replaceChildren(...lineRows.map((line,index)=>h('div',{className:'grid'},line.description,line.quantity,line.price,btn(uiText('حذف','Remove'),()=>{lineRows.splice(index,1);renderLines()},'g'))));
   const addLine=()=>{
-   const line={description:h('input',{placeholder:uiText('بيان الخدمة','Service description')}),quantity:h('input',{type:'number',min:'0.001',step:'0.001',value:'1','aria-label':uiText('الكمية','Quantity')}),price:h('input',{type:'number',min:'0',step:'0.01',placeholder:uiText('سعر الوحدة بالجنيه','Unit price in EGP')})};
+   const line={description:h('input',{placeholder:uiText('بيان الخدمة','Service description')}),quantity:h('input',{type:'number',min:'0.001',step:'0.001',value:'1','aria-label':uiText('الكمية','Quantity')}),price:h('input',{type:'text',inputMode:'decimal',placeholder:uiText('سعر الوحدة بالجنيه','Unit price in EGP')})};
    lineRows.push(line);renderLines();
   };
-  const toPiasters=value=>{
-   const text=String(value||'').trim();if(!/^\d+(?:\.\d{1,2})?$/.test(text))throw new Error(uiText('أدخل مبلغاً صحيحاً حتى قرشين عشريين','Enter a valid amount with at most two decimal places'));
-   const parts=text.split('.');const amount=Number(parts[0])*100+Number(((parts[1]||'')+'00').slice(0,2));
-   if(!Number.isSafeInteger(amount)||amount>1000000000000)throw new Error(uiText('المبلغ خارج النطاق المسموح','Amount exceeds the supported limit'));
-   return amount;
-  };
+  const toPiasters=value=>egpToPiasters(value);
   const toMilli=value=>{
    const text=String(value||'').trim();if(!/^\d+(?:\.\d{1,3})?$/.test(text))throw new Error(uiText('أدخل كمية صحيحة حتى ثلاث خانات عشرية','Enter a valid quantity with at most three decimal places'));
    const parts=text.split('.');const amount=Number(parts[0])*1000+Number(((parts[1]||'')+'000').slice(0,3));
