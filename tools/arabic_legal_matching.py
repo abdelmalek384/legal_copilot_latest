@@ -50,18 +50,37 @@ def expand_lexicon_hints(query, existing_tokens, tokens_fn, norm_fn, limit=48):
     expanded = list(existing_tokens)
     normalized_query = norm_fn(query)
 
+    def is_negated_at(start):
+        # Avoid positive legal-intent hints when a colloquial negator governs
+        # the matched phrase/token, e.g. "مش عايز إجازة".
+        prefix = normalized_query[:start]
+        return bool(re.search(r"(?:^|\s)(?:مش|ما)\s+(?:\S+\s+){0,2}$", prefix))
+
     for phrase, aliases in payload.get("phrase_aliases", {}).items():
         normalized_phrase = norm_fn(phrase)
-        if normalized_phrase and re.search(
+        if not normalized_phrase:
+            continue
+        for match in re.finditer(
             r"(?<!\w)" + re.escape(normalized_phrase) + r"(?!\w)",
             normalized_query,
         ):
-            expanded.extend(tokens_fn(" ".join(aliases)))
+            if not is_negated_at(match.start()):
+                expanded.extend(tokens_fn(" ".join(aliases)))
+                break
 
     current = set(expanded)
     for token, aliases in payload.get("token_aliases", {}).items():
         token_terms = tokens_fn(token)
-        if token_terms and any(term in current for term in token_terms):
+        if not token_terms:
+            continue
+        occurrences = [
+            match.start()
+            for term in token_terms
+            for match in re.finditer(r"(?<!\w)" + re.escape(term) + r"(?!\w)", normalized_query)
+        ]
+        if any(term in current for term in token_terms) and (
+            not occurrences or any(not is_negated_at(start) for start in occurrences)
+        ):
             expanded.extend(tokens_fn(" ".join(aliases)))
 
     # Existing stem() already handles common clitics and plural suffixes.
