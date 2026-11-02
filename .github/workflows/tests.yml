@@ -222,6 +222,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_reminder_service.py
       - name: Test read-only reminder outbox health monitoring
         run: PYTHONPATH=. python tests/test_reminder_healthcheck.py
+      - name: Test WhatsApp provider boundary and wa.me links
+        run: PYTHONPATH=. python tests/test_whatsapp_provider.py
       - name: Test database-independent MFA primitives
         run: PYTHONPATH=. python tests/test_mfa_primitives.py
       - name: Test MFA enrollment, login, recovery, and enforcement
