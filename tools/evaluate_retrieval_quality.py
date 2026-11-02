@@ -12,6 +12,12 @@ import re
 import sys
 from datetime import date
 from pathlib import Path
+from urllib.parse import urlsplit
+
+try:
+    from tools.evaluate_legal_answer_reviews import validate_reviewer_registry
+except ModuleNotFoundError:  # direct script execution from tools/
+    from evaluate_legal_answer_reviews import validate_reviewer_registry
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_QUESTIONS = ROOT / "tests" / "legal_eval" / "practice_questions.seed.jsonl"
@@ -41,7 +47,25 @@ def _valid_calendar_date(value):
     if not isinstance(value, str) or not _DATE_RE.fullmatch(value):
         return False
     try:
-        return date.fromisoformat(value).isoformat() == value
+        parsed = date.fromisoformat(value)
+        return parsed.isoformat() == value and parsed <= date.today()
+    except ValueError:
+        return False
+
+
+def _valid_review_evidence_url(value):
+    if (not isinstance(value, str) or not value.strip() or value != value.strip()
+            or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value)):
+        return False
+    try:
+        parsed = urlsplit(value)
+        port = parsed.port
+        if (parsed.scheme.lower() != "https" or not parsed.hostname
+                or parsed.username is not None or parsed.password is not None
+                or parsed.query or parsed.fragment or parsed.netloc.endswith(":")
+                or (port is not None and not 1 <= port <= 65535)):
+            return False
+        return True
     except ValueError:
         return False
 
@@ -55,7 +79,7 @@ def _expected_source_ids(question):
     return question.get("expected_source_ids", question.get("expected_sources"))
 
 
-def validate_reviewed_question(question):
+def validate_reviewed_question(question, approved_reviewers=None):
     """Return validation errors; no labels are inferred or generated."""
     if not isinstance(question, dict):
         return ["question record must be a JSON object"]
@@ -67,6 +91,21 @@ def validate_reviewed_question(question):
             errors.append("missing or invalid " + field)
     if not _nonempty_string(question.get("reviewer_name")):
         errors.append("reviewer_name is required")
+    reviewer_id = question.get("reviewer_id")
+    reviewer = (approved_reviewers or {}).get(reviewer_id) if isinstance(reviewer_id, str) else None
+    if reviewer is None:
+        errors.append("reviewer_id must match a valid approved reviewer registry entry")
+    else:
+        if question.get("reviewer_name") != reviewer.get("display_name"):
+            errors.append("reviewer_name must match the approved registry display_name")
+        if question.get("practice_area") not in reviewer.get("practice_areas", []):
+            errors.append("reviewer is not approved for this practice_area")
+        reviewer_role = question.get("reviewer_role")
+        if (reviewer_role not in {"egyptian_lawyer", "qualified_egyptian_counsel"}
+                or reviewer_role != reviewer.get("professional_role")):
+            errors.append("reviewer_role must match the approved Egyptian counsel registry role")
+    if not _valid_review_evidence_url(question.get("review_evidence_url")):
+        errors.append("review_evidence_url must be HTTPS without credentials, query strings, or fragments")
     if not _valid_calendar_date(question.get("review_date")):
         errors.append("review_date must be a real YYYY-MM-DD calendar date")
     expected = _expected_source_ids(question)
@@ -178,7 +217,7 @@ def _effective_unverified_source(run):
     return any(statuses.get(source_id) != "verified_operative_text" for source_id in cited_ids)
 
 
-def score_evaluation(questions, runs, k_values=(1, 3, 5)):
+def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None):
     """Calculate retrieval, citation, and abstention metrics on reviewed cases only.
 
     Each run row: {"question_id": "...", "retrieved_source_ids": [...],
@@ -188,6 +227,11 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
     """
     if not isinstance(questions, list) or not isinstance(runs, list):
         raise ValueError("questions and runs must each be a list of JSON objects")
+    approved_reviewers, registry_errors = validate_reviewer_registry(reviewer_registry)
+    if registry_errors:
+        raise ValueError("reviewer registry is invalid: " + "; ".join(
+            f"{item.get('record')}: {', '.join(item.get('errors', []))}" for item in registry_errors
+        ))
     if (not isinstance(k_values, (list, tuple)) or not k_values
             or any(type(k) is not int or k < 1 for k in k_values)):
         raise ValueError("k_values must contain positive integers")
@@ -196,7 +240,7 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
     question_counts = {}
     invalid_questions = []
     for index, question in enumerate(questions, start=1):
-        errors = validate_reviewed_question(question)
+        errors = validate_reviewed_question(question, approved_reviewers)
         qid = question.get("id") if isinstance(question, dict) else None
         if not isinstance(qid, str) or not qid.strip():
             invalid_questions.append({"record": index, "question_id": None, "reasons": errors or ["id must be a non-empty string"]})
@@ -234,8 +278,8 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
     for qid, question in question_by_id.items():
         if qid in duplicate_question_ids:
             excluded.append({"question_id": qid, "reasons": ["duplicate question ID; resolve the reviewed labels before scoring"]})
-        elif validate_reviewed_question(question):
-            excluded.append({"question_id": qid, "reasons": validate_reviewed_question(question)})
+        elif validate_reviewed_question(question, approved_reviewers):
+            excluded.append({"question_id": qid, "reasons": validate_reviewed_question(question, approved_reviewers)})
         elif qid in duplicate_run_ids:
             excluded.append({"question_id": qid, "reasons": ["duplicate run records; resolve the runs before scoring"]})
         elif qid in invalid_run_ids:
@@ -342,6 +386,8 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
 
     return {
         "reviewed_cases_scored": len(reviewed),
+        "approved_reviewer_registry_entries": len(approved_reviewers),
+        "reviewer_qualification_note": "Registry approval is an operator attestation; the evaluator does not independently verify identity or professional licensure.",
         "practice_area_counts": {area: practice_area_counts[area] for area in sorted(practice_area_counts)},
         "excluded_cases": excluded,
         "invalid_question_records": invalid_questions,
@@ -450,6 +496,8 @@ def main(argv=None):
     parser.add_argument("--questions", type=Path, default=DEFAULT_QUESTIONS)
     parser.add_argument("--runs", type=Path, default=DEFAULT_RUNS)
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--reviewer-registry", type=Path, required=True,
+                        help="JSON registry of operator-approved Egyptian counsel reviewers")
     parser.add_argument("--min-reviewed-cases", type=int)
     parser.add_argument("--min-practice-areas", type=int)
     parser.add_argument("--min-cases-per-practice-area", type=int)
@@ -466,6 +514,10 @@ def main(argv=None):
     parser.add_argument("--max-invalid-records", type=int)
     parser.add_argument("--max-unsafe-unverified-source-uses", type=int)
     args = parser.parse_args(argv)
+    try:
+        reviewer_registry = json.loads(args.reviewer_registry.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        parser.error(f"invalid reviewer registry: {exc}")
     for name in ("min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
                  "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
                  "max_excluded_cases", "max_invalid_records", "max_unsafe_unverified_source_uses"):
@@ -506,7 +558,8 @@ def main(argv=None):
         parser.error("--min-expected-pin-cite-recall requires --min-expected-pin-cites")
     if args.min_abstention_compliance is not None and args.min_unanswerable_cases is None:
         parser.error("--min-abstention-compliance requires --min-unanswerable-cases")
-    result = score_evaluation(_load_jsonl(args.questions), _load_jsonl(args.runs))
+    result = score_evaluation(_load_jsonl(args.questions), _load_jsonl(args.runs),
+                              reviewer_registry=reviewer_registry)
     result["release_gate"] = _retrieval_release_gate(result, args)
     rendered = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
     if args.output:
