@@ -2416,6 +2416,15 @@ class DeadlineEstimateIn(BaseModel):
     trigger: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
     distance_days: int = Field(0, ge=0, le=365)
     _valid_trigger = field_validator("trigger")(validate_calendar_date)
+class FeeIn(BaseModel):
+    title: str = Field(min_length=1, max_length=200)
+    amount: float = Field(ge=0, le=1_000_000_000_000)
+    paid: float = Field(ge=0, le=1_000_000_000_000)
+    due: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$")
+    note: str = Field("", max_length=1000)
+    _valid_due = field_validator("due")(validate_calendar_date)
+
+
 class InvoiceLineIn(BaseModel):
     description: str = Field(min_length=1, max_length=500)
     quantity_milli: int = Field(1000, strict=True, ge=1, le=1_000_000)
@@ -5445,15 +5454,17 @@ def list_invoices(
     u: dict = Depends(user),
 ):
     c = conn()
-    params = [u["id"]]
-    where = ["m.user_id=?"]
+    where = ["cs.firm_id=?"]
+    params = [u["firm_id"]]
+    if u["role"] != "admin":
+        where.append("EXISTS (SELECT 1 FROM members m WHERE m.case_id=i.case_id AND m.user_id=?)")
+        params.append(u["id"])
     if case_id is not None:
         where.append("i.case_id=?")
         params.append(case_id)
     rows = c.execute(
-        "SELECT DISTINCT i.* FROM invoices i JOIN members m ON m.case_id=i.case_id "
-        "JOIN cases cs ON cs.id=i.case_id WHERE " + " AND ".join(where) +
-        " ORDER BY i.created_at DESC,i.id DESC",
+        "SELECT i.* FROM invoices i JOIN cases cs ON cs.id=i.case_id WHERE " +
+        " AND ".join(where) + " ORDER BY i.created_at DESC,i.id DESC",
         tuple(params),
     ).fetchall()
     result = [_invoice_record(c, row) for row in rows]
