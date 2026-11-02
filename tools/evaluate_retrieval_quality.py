@@ -557,12 +557,18 @@ def main(argv=None):
     gate_enabled = (any(value is not None for value in quality_thresholds)
                     or any(getattr(args, name) is not None for name in (
                         "min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
-                        "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
-                        "max_excluded_cases", "max_invalid_records", "max_unsafe_unverified_source_uses")))
+                        "min_answerable_cases", "min_unanswerable_cases",
+                        "min_answerable_cases_per_practice_area", "min_unanswerable_cases_per_practice_area",
+                        "min_expected_pin_cites", "max_excluded_cases", "max_invalid_records",
+                        "max_unsafe_unverified_source_uses")))
     if gate_enabled and args.min_reviewed_cases is None:
         parser.error("retrieval release gates require --min-reviewed-cases to prevent empty-sample passes")
     if args.min_cases_per_practice_area is not None and args.min_practice_areas is None:
         parser.error("--min-cases-per-practice-area requires --min-practice-areas")
+    if ((args.min_answerable_cases_per_practice_area is not None
+         or args.min_unanswerable_cases_per_practice_area is not None)
+            and (args.min_practice_areas is None or args.min_cases_per_practice_area is None)):
+        parser.error("per-practice-area cohort thresholds require --min-practice-areas and --min-cases-per-practice-area")
     if any(value is not None for value in quality_thresholds):
         if args.min_reviewed_cases is None:
             parser.error("quality thresholds require --min-reviewed-cases")
