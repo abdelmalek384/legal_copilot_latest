@@ -60,6 +60,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_profile_initial_schemas.py
       - name: Test profile-separated runtime and firm isolation
         run: PYTHONPATH=. python tests/test_database_runtime.py
+      - name: Test tenant context transaction boundary
+        run: PYTHONPATH=. python tests/test_tenant_context_transaction_boundary.py
       - name: Test application routing across firm and corpus databases
         run: PYTHONPATH=. python tests/test_app_separate_database_runtime.py
       - name: Test encrypted multi-database backup and restore
