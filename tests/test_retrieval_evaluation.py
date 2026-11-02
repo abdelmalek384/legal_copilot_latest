@@ -160,6 +160,49 @@ class RetrievalEvaluationTests(unittest.TestCase):
                 self.assertEqual(result["reviewed_cases_scored"], 0)
                 self.assertIn(reason, " ".join(result["invalid_run_records"][0]["reasons"]))
 
+    def test_reviewed_pin_cites_must_be_unique_trimmed_and_reference_expected_sources(self):
+        cases = (
+            ([{"source_id": "LAW-X", "pin_cite": "Article 12"}], "absent from expected_source_ids"),
+            ([{"source_id": "LAW-A", "pin_cite": "Article 12"},
+              {"source_id": "LAW-A", "pin_cite": "Article 12"}], "duplicate source/pin-cite"),
+            ([{"source_id": " LAW-A", "pin_cite": "Article 12"}], "surrounding whitespace"),
+            ([{"source_id": "LAW-A", "pin_cite": " Article 12 "}], "surrounding whitespace"),
+        )
+        for pin_cites, reason in cases:
+            with self.subTest(pin_cites=pin_cites):
+                result = score_evaluation(
+                    [reviewed_question(expected_pin_cites=pin_cites)], []
+                )
+                self.assertEqual(result["reviewed_cases_scored"], 0)
+                self.assertIn(reason, " ".join(result["excluded_cases"][0]["reasons"]))
+
+    def test_run_citation_and_source_summary_ids_reject_surrounding_whitespace(self):
+        base = {
+            "question_id": "Q-TEST-001",
+            "retrieved_source_ids": ["LAW-A", "LAW-B"],
+            "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
+            "source_summary": [
+                {"source_id": "LAW-A", "source_status": "verified_operative_text"},
+                {"source_id": "LAW-B", "source_status": "verified_operative_text"},
+            ],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+        cases = (
+            ({"citations": [{"source_id": " LAW-A", "pin_cite": "Article 12"}]}, "citations[0].source_id"),
+            ({"citations": [{"source_id": "LAW-A", "pin_cite": " Article 12"}]}, "citations[0].pin_cite"),
+            ({"source_summary": [
+                {"source_id": " LAW-A", "source_status": "verified_operative_text"},
+                {"source_id": "LAW-B", "source_status": "verified_operative_text"},
+            ]}, "source_summary[0].source_id"),
+        )
+        for overrides, reason in cases:
+            with self.subTest(overrides=overrides):
+                run = dict(base, **overrides)
+                result = score_evaluation([reviewed_question()], [run])
+                self.assertEqual(result["reviewed_cases_scored"], 0)
+                self.assertIn(reason, " ".join(result["invalid_run_records"][0]["reasons"]))
+
     def test_duplicate_retrieval_cutoffs_are_rejected(self):
         with self.assertRaisesRegex(ValueError, "k_values must not contain duplicates"):
             _score_evaluation(
