@@ -16,6 +16,7 @@ TEST_COVERED_ROUTES = {
     "GET /invoices/{invoice_id}/print": "tests/test_invoice_routes.py",
     "GET /invoices/{invoice_id}/payments/{payment_id}/receipt": "tests/test_invoice_routes.py",
     "GET /finance/invoices/overview": "tests/test_invoice_routes.py",
+    "GET /cases/{cid}/draft-skeleton": "tests/test_document_skeleton_routes.py",
 }
 
 
