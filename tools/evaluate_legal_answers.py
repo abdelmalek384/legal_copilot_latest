@@ -180,7 +180,10 @@ def _validate_result(row):
     unlisted_pin_sources = sorted({source_id for source_id, _ in pins} - set(sources))
     if unlisted_pin_sources:
         raise EvaluationError(f"{qid}: result pin citations reference sources absent from cited_sources")
-    return sources, pins, answer_id.strip() if isinstance(answer_id, str) else None
+    retrieved = None
+    if "retrieved_sources" in row:
+        retrieved = _string_list(row["retrieved_sources"], "retrieved_sources", qid)
+    return sources, pins, answer_id.strip() if isinstance(answer_id, str) else None, retrieved
 
 
 def _invalid_citation_indices(row):
@@ -250,9 +253,11 @@ def evaluate(question_rows, result_rows, reviewer_registry):
     rows = []
     by_area = defaultdict(list)
     answer_id_owners = {}
+    retrieval_presence = []
     for qid, (expected_sources, expected_pins) in reviewed.items():
         q = question_map[qid]
-        actual_sources, actual_pins, answer_id = _validate_result(result_map[qid])
+        actual_sources, actual_pins, answer_id, retrieved_sources = _validate_result(result_map[qid])
+        retrieval_presence.append(retrieved_sources is not None)
         if answer_id:
             previous_qid = answer_id_owners.get(answer_id)
             if previous_qid is not None:
@@ -267,6 +272,37 @@ def evaluate(question_rows, result_rows, reviewer_registry):
         expected_abstain = not q["answerable"]
         abstention_correct = result_map[qid]["abstained"] == expected_abstain
         citation_present = bool(actual_sources or actual_pins)
+        first_relevant_rank = next(
+            (rank for rank, source_id in enumerate(retrieved_sources or [], start=1)
+             if source_id in expected_sources),
+            None,
+        )
+        retrieval_item = {
+            "retrieved_source_count": len(retrieved_sources or []),
+            "retrieved_expected_source_count": (
+                sum(source_id in set(expected_sources) for source_id in (retrieved_sources or []))
+            ),
+            "first_relevant_rank": first_relevant_rank,
+            "retrieval_recall_at_1": (
+                _ratio(sum(source_id in set(expected_sources) for source_id in (retrieved_sources or [])[:1]),
+                       len(expected_sources)) if retrieved_sources is not None and q["answerable"] else None
+            ),
+            "retrieval_recall_at_3": (
+                _ratio(sum(source_id in set(expected_sources) for source_id in (retrieved_sources or [])[:3]),
+                       len(expected_sources)) if retrieved_sources is not None and q["answerable"] else None
+            ),
+            "retrieval_recall_at_5": (
+                _ratio(sum(source_id in set(expected_sources) for source_id in (retrieved_sources or [])[:5]),
+                       len(expected_sources)) if retrieved_sources is not None and q["answerable"] else None
+            ),
+            "retrieval_mrr": (
+                (1 / first_relevant_rank if first_relevant_rank else 0.0)
+                if retrieved_sources is not None and q["answerable"] else None
+            ),
+            "unanswerable_retrieval_nonempty": (
+                bool(retrieved_sources) if retrieved_sources is not None and not q["answerable"] else None
+            ),
+        }
         item = {
             "id": qid,
             "answer_id": answer_id,
@@ -290,14 +326,19 @@ def evaluate(question_rows, result_rows, reviewer_registry):
             "citation_present": citation_present,
             "invalid_citation_indices": invalid_indices,
             "invalid_citation_index_count": len(invalid_indices),
+            **retrieval_item,
         }
         rows.append(item)
         by_area[item["practice_area"]].append(item)
+
+    if any(retrieval_presence) and not all(retrieval_presence):
+        raise EvaluationError("retrieved_sources must be supplied for every scored question when retrieval ranking is evaluated")
 
     def summarize(items):
         n = len(items)
         answerable = [x for x in items if x["answerable"]]
         abstention_cases = [x for x in items if not x["answerable"]]
+        retrieval_scored = bool(retrieval_presence and all(retrieval_presence))
         return {
             "questions_scored": n,
             "answerable_questions": len(answerable),
@@ -319,10 +360,38 @@ def evaluate(question_rows, result_rows, reviewer_registry):
             "invalid_citation_index_count": sum(x["invalid_citation_index_count"] for x in items),
             "questions_with_invalid_citation_indices": sum(bool(x["invalid_citation_indices"]) for x in items),
             "invalid_citation_question_rate": _ratio(sum(bool(x["invalid_citation_indices"]) for x in items), n),
+            "retrieval_recall_at_1": (
+                _ratio(sum(x["retrieved_expected_source_count"] if x["retrieved_source_count"] else 0
+                           for x in answerable if x["retrieval_recall_at_1"] is not None),
+                       sum(x["expected_source_count"] for x in answerable))
+                if retrieval_scored else None
+            ),
+            "retrieval_recall_at_3": (
+                _ratio(sum(x["retrieved_expected_source_count"] if x["retrieved_source_count"] else 0
+                           for x in answerable if x["retrieval_recall_at_3"] is not None),
+                       sum(x["expected_source_count"] for x in answerable))
+                if retrieval_scored else None
+            ),
+            "retrieval_recall_at_5": (
+                _ratio(sum(x["retrieved_expected_source_count"] if x["retrieved_source_count"] else 0
+                           for x in answerable if x["retrieval_recall_at_5"] is not None),
+                       sum(x["expected_source_count"] for x in answerable))
+                if retrieval_scored else None
+            ),
+            "retrieval_mrr": (
+                _ratio(sum(x["retrieval_mrr"] for x in answerable), len(answerable))
+                if retrieval_scored and answerable else (0.0 if retrieval_scored else None)
+            ),
+            "unanswerable_retrieval_rate": (
+                _ratio(sum(bool(x["unanswerable_retrieval_nonempty"]) for x in abstention_cases),
+                       len(abstention_cases))
+                if retrieval_scored and abstention_cases else (0.0 if retrieval_scored else None)
+            ),
         }
 
     return {
-        "schema_version": 2,
+        "schema_version": 3,
+        "retrieval_ranking_scored": bool(retrieval_presence and all(retrieval_presence)),
         "evaluation_scope": "citation_and_abstention_behavior_only",
         "semantic_legal_correctness_scored": False,
         "approval_gate": APPROVED,
