@@ -54,6 +54,8 @@ class T(unittest.TestCase):
    report=build_report(self.c,pdf)
   self.assertEqual(report["reference"]["format"],"pdf")
   self.assertEqual(report["reference"]["page_count"],2)
+  self.assertEqual(report["reference"]["page_matter_lines_removed"],2)
+  self.assertTrue(any("header/footer" in warning for warning in report["warnings"]))
   by_article={x["article"]:x for x in report["articles"]}
   self.assertEqual((by_article["1"]["reference_page_start"],by_article["1"]["reference_page_end"]),(1,2))
   self.assertEqual((by_article["2"]["reference_page_start"],by_article["2"]["reference_page_end"]),(2,2))
