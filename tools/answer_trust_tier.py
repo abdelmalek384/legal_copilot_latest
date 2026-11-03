@@ -85,7 +85,7 @@ def classify_answer_trust_tier(
     *,
     claims_supported: object,
     citations_complete: object,
-    contradictory_sources: object = False,
+    contradictory_sources: object = None,
     source_matched_policy_approved: object = False,
     source_matched_feature_enabled: object = False,
 ) -> dict:
