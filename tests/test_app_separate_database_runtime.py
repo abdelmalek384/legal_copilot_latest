@@ -4344,10 +4344,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         version_cursor = corpus.execute(
             "INSERT INTO legal_document_versions(document_id,version_label,source_url,publication_date,"
-            "effective_date,legal_status,review_status,authenticity_verified,status_verified,"
-            "amendment_history_verified,permission_evidence,original_sha256) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
+            "effective_date,gazette_issue,gazette_pages,legal_status,review_status,authenticity_verified,status_verified,"
+            "amendment_history_verified,permission_evidence,original_sha256) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
             ("RUNTIME-COVERAGE-DOC", "verified-version", "https://example.test/coverage-v1",
-             "2020-01-01", "2020-01-01", "in_force", "verified", 1, 1, 1,
+             "2020-01-01", "2020-01-01", "TEST-ISSUE", "1-2", "in_force", "verified", 1, 1, 1,
              "synthetic version permission evidence", "a" * 64),
         )
         version_id = version_cursor.lastrowid

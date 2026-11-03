@@ -91,8 +91,8 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         self.db.execute("INSERT INTO legal_documents(document_id,source_id,official_title,document_type) VALUES(?,?,?,?)",
                         ("D_" + version_label, "S_" + version_label, "Test law", "legislation"))
         cur = self.db.execute(
-            "INSERT INTO legal_document_versions(document_id,version_label,source_url,effective_date,repeal_date,legal_status,review_status,authenticity_verified,status_verified) VALUES(?,?,?,?,?,?,?,?,?)",
-            ("D_" + version_label, version_label, "https://example.gov/" + version_label + ".pdf", effective_date, repeal_date, legal_status, review_status, authenticity_verified, status_verified)
+            "INSERT INTO legal_document_versions(document_id,version_label,source_url,publication_date,effective_date,repeal_date,gazette_issue,gazette_pages,legal_status,review_status,authenticity_verified,status_verified) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
+            ("D_" + version_label, version_label, "https://example.gov/" + version_label + ".pdf", effective_date, effective_date, repeal_date, "TEST-ISSUE", "1-2", legal_status, review_status, authenticity_verified, status_verified)
         )
         self.db.execute(
             "UPDATE legal_document_versions SET amendment_history_verified=?,permission_evidence=? WHERE version_id=?",

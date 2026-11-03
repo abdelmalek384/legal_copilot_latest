@@ -218,8 +218,15 @@ def source_status(source, as_of=None):
     if not _has_current_review_evidence(provenance):
         return STATUS_REVIEW
 
+    publication = _calendar_date(provenance.get("publication_date"))
+    if publication is None or publication > as_of_date:
+        return STATUS_REVIEW
+    if not isinstance(provenance.get("gazette_issue"), str) or not provenance["gazette_issue"].strip():
+        return STATUS_REVIEW
+    if not isinstance(provenance.get("gazette_pages"), str) or not provenance["gazette_pages"].strip():
+        return STATUS_REVIEW
     effective = _calendar_date(provenance.get("effective_date"))
-    if effective is None or effective > as_of_date:
+    if effective is None or effective > as_of_date or effective < publication:
         return STATUS_REVIEW
     repeal_value = provenance.get("repeal_date")
     if repeal_value not in (None, ""):
@@ -253,6 +260,14 @@ def citation_text(source, as_of=None):
         parts.append("Page %s" % page)
     if p.get("version_label"):
         parts.append("Version: %s" % p["version_label"])
+    for label, field in (
+        ("Published", "publication_date"),
+        ("Effective", "effective_date"),
+        ("Repeal/end", "repeal_date"),
+        ("Consolidated as of", "consolidated_as_of"),
+    ):
+        if p.get(field):
+            parts.append("%s: %s" % (label, p[field]))
     if p.get("gazette_issue"):
         issue = "Official Gazette %s" % p["gazette_issue"]
         if p.get("gazette_pages"):
