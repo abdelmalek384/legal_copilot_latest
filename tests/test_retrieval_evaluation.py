@@ -609,9 +609,21 @@ class AnswerTrustTierTests(unittest.TestCase):
         result = self.classify([source], source_matched_policy_approved=True, source_matched_feature_enabled=True)
         self.assertEqual(result["trust_tier"], TIER_UNREVIEWED)
 
+    def test_whitespace_padded_independent_source_id_blocks_source_matched_tier(self):
+        source = source_matched_source()
+        source["source_match_evidence"]["independent_copy_source_id"] = " INDEPENDENT-SOURCE-2 "
+        result = self.classify([source], source_matched_policy_approved=True, source_matched_feature_enabled=True)
+        self.assertEqual(result["trust_tier"], TIER_UNREVIEWED)
+
     def test_missing_reuse_rights_evidence_url_blocks_source_matched_tier(self):
         source = source_matched_source()
         source["source_match_evidence"]["reuse_rights_evidence_url"] = "http://example.gov/terms"
+        result = self.classify([source], source_matched_policy_approved=True, source_matched_feature_enabled=True)
+        self.assertEqual(result["trust_tier"], TIER_UNREVIEWED)
+
+    def test_whitespace_rights_evidence_url_blocks_source_matched_tier(self):
+        source = source_matched_source()
+        source["source_match_evidence"]["reuse_rights_evidence_url"] = "https://example.gov/terms with spaces"
         result = self.classify([source], source_matched_policy_approved=True, source_matched_feature_enabled=True)
         self.assertEqual(result["trust_tier"], TIER_UNREVIEWED)
 
