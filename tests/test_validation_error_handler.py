@@ -59,6 +59,18 @@ class ValidationErrorHandlerTests(unittest.TestCase):
         self.assertNotIn(secret, body)
         self.assertEqual(json.loads(body)["detail"][0]["msg"], "Invalid value")
 
+    def test_nested_submitted_values_are_not_echoed(self):
+        secret = "confidential-client"
+        status, body = run_handler([{
+            "type": "value_error",
+            "loc": ("body", "client"),
+            "msg": f"Invalid client: {secret}",
+            "input": {"client": {"name": secret}},
+        }])
+        self.assertEqual(status, 422)
+        self.assertNotIn(secret, body)
+        self.assertEqual(json.loads(body)["detail"][0]["msg"], "Invalid value")
+
     def test_location_parts_stay_json_safe(self):
         status, body = run_handler([{
             "type": "missing",
