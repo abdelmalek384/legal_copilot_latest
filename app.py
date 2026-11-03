@@ -5975,7 +5975,7 @@ def _client_payloads(c, u):
         item = clients.setdefault(int(row["id"]), {
             "id": int(row["id"]), "name": row["name"], "phone": row["phone"],
             "email": row["email"], "address": row["address"], "notes": row["notes"],
-            "created_at": row["created_at"], "updated_at": row["updated_at"], "matters": [],
+            "created_at": row["created_at"], "updated_at": row["updated_at"], "can_edit": role == "admin" or c.execute("SELECT 1 FROM cases cs JOIN members m ON m.case_id=cs.id WHERE cs.client_id=? AND cs.firm_id=? AND m.user_id=? AND m.role=? LIMIT 1", (int(row["id"]), int(u["firm_id"]), int(u["id"]), "lead")).fetchone() is not None, "matters": [],
         })
         if row["matter_id"] is not None:
             item["matters"].append({
@@ -6026,10 +6026,15 @@ def create_client(b: ClientIn, u: dict = Depends(user)):
 @app.put("/clients/{client_id}")
 @rollback_tenant_transaction_on_error
 def update_client(client_id: int, b: ClientIn, u: dict = Depends(user)):
-    require_admin(u)
     c = conn()
     current = c.execute("SELECT id FROM clients WHERE id=?", (client_id,)).fetchone()
     if current is None:
+        raise HTTPException(404, "client profile not found")
+    if u["role"] != "admin" and not c.execute(
+        "SELECT 1 FROM cases cs JOIN members m ON m.case_id=cs.id "
+        "WHERE cs.client_id=? AND cs.firm_id=? AND m.user_id=? AND m.role=? LIMIT 1",
+        (int(client_id), int(u["firm_id"]), int(u["id"]), "lead"),
+    ).fetchone():
         raise HTTPException(404, "client profile not found")
     name = b.name.strip()
     normalized = _client_normalized_name(c, name)
