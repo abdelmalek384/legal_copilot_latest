@@ -88,7 +88,7 @@ class FirstRunWizardApiTests(unittest.TestCase):
         self.assertEqual(initial.json()["completed"], 0)
         updated = self.clients["a"].put("/firm/profile", json={
             "name": "مكتب ألف للمحاماة", "phone": "+20 100 123 4567", "address": "القاهرة — بيانات تجريبية",
-        })
+        }, headers={"X-CSRF-Token": self.clients["a"].cookies.get("lc_csrf")})
         self.assertEqual(updated.status_code, 200, updated.text)
         self.assertEqual(updated.json()["name"], "مكتب ألف للمحاماة")
         profile_b = self.clients["b"].get("/firm/profile")
@@ -108,9 +108,12 @@ class FirstRunWizardApiTests(unittest.TestCase):
         self.assertFalse(checks["public_origin"]["ok"])
         self.assertFalse(checks["mfa_key"]["ok"])
         self.assertTrue(checks["mfa_key"]["message_ar"])
-        self.assertNotIn("password", response.text.lower())
-        self.assertNotIn("secret", response.text.lower())
-        blocked = self.clients["a"].post("/setup/test-reminder")
+        self.assertNotIn(os.environ["ADMIN_TOKEN"], response.text)
+        self.assertNotIn("MFA_ENCRYPTION_KEY=", response.text)
+        blocked = self.clients["a"].post(
+            "/setup/test-reminder",
+            headers={"X-CSRF-Token": self.clients["a"].cookies.get("lc_csrf")},
+        )
         self.assertEqual(blocked.status_code, 200, blocked.text)
         self.assertEqual(blocked.json()["status"], "blocked")
 
@@ -124,7 +127,10 @@ class FirstRunWizardApiTests(unittest.TestCase):
             "MFA_ENCRYPTION_KEY": Fernet.generate_key().decode("ascii"),
         })
         with patch("tools.reminder_email._smtp_send") as fake_send:
-            response = self.clients["a"].post("/setup/test-reminder")
+            response = self.clients["a"].post(
+                "/setup/test-reminder",
+                headers={"X-CSRF-Token": self.clients["a"].cookies.get("lc_csrf")},
+            )
         self.assertEqual(response.status_code, 200, response.text)
         self.assertEqual(response.json()["status"], "accepted_by_smtp")
         fake_send.assert_called_once()
