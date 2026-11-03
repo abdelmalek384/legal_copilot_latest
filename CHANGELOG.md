@@ -68,4 +68,4 @@ This is still an MVP, not a production-hardened legal system. No independent sec
 - PR #1307: add a source-linked Arabic UI string review inventory covering 894 unique Arabic-bearing literals, with completeness regression coverage.
 - PR #1309: complete the Arabic UI review inventory for firm data export; additions remain pending native-speaker review.
 - PR #1311: add measured phone-width accessibility checks and correct 44px language/firm switch targets.
-- PR #1306: add Chromium end-to-end owner workflow coverage for login, case creation, deadline creation and invoice issuance at 390px and desktop widths.
+- PR #1313: add Chromium end-to-end owner workflow coverage for login, case creation, deadline creation and invoice issuance at 390px and desktop widths.
