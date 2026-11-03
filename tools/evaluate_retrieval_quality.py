@@ -435,8 +435,7 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None
         citation_index_errors_area = 0
         answerable_area = answerable_with_expected_area = 0
         pin_cite_total_area = pin_cite_correct_area = 0
-        expected_pairs_area = set()
-        actual_pairs_area = set()
+        expected_pin_cite_total_area = expected_pin_cite_correct_area = 0
         abstention_cases_area = abstention_correct_area = 0
         for question, run in area_cases:
             expected_sources = set(_expected_source_ids(question))
@@ -477,8 +476,8 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None
                 for citation in run["citations"]
                 if citation["source_id"].strip() in retrieved
             }
-            expected_pairs_area.update(expected_pairs)
-            actual_pairs_area.update(actual_pairs)
+            expected_pin_cite_total_area += len(expected_pairs)
+            expected_pin_cite_correct_area += len(expected_pairs & actual_pairs)
             if question["answerable"] is False:
                 abstention_cases_area += 1
                 if run["abstained"] is True and run["used_unverified_source"] is not True:
@@ -498,9 +497,9 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None
             "pin_cite_accuracy": round(pin_cite_correct_area / pin_cite_total_area, 4)
                 if pin_cite_total_area else None,
             "pin_cite_count": pin_cite_total_area,
-            "expected_pin_cite_recall": round(len(expected_pairs_area & actual_pairs_area) / len(expected_pairs_area), 4)
-                if expected_pairs_area else None,
-            "expected_pin_cite_count": len(expected_pairs_area),
+            "expected_pin_cite_recall": round(expected_pin_cite_correct_area / expected_pin_cite_total_area, 4)
+                if expected_pin_cite_total_area else None,
+            "expected_pin_cite_count": expected_pin_cite_total_area,
         }
 
     return {
