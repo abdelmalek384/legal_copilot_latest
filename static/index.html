@@ -328,6 +328,10 @@ body {
   background: linear-gradient(118deg, #14284b 0%, #1e3d70 58%, #315a9b 100%) !important;
   box-shadow: 0 16px 36px rgba(20,40,75,.16);
 }
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 12px; }
+.setup-progress { height: 9px; margin: 12px 0 8px; overflow: hidden; border-radius: 999px; background: var(--ui-border, #e4eaf2); }
+.setup-progress > div { height: 100%; border-radius: inherit; background: var(--ok); transition: width .2s ease; }
+.setup-start-card { border-inline-start: 4px solid var(--ui-blue, #315a9b) !important; }
 .workspace-hero:after {
   content: "";
   position: absolute;
@@ -889,7 +893,7 @@ async function api(p,m='GET',b){const headers={};if(b!==undefined)headers['Conte
  const j=await r.json().catch(()=>({}));if(!r.ok){toast(err(j));throw new Error('api')}return j}
 function shell(title,...k){const navLabel=(ar,en)=>LANG==='ar'?ar:en;const firmOptions=Array.isArray(ME.firms)?ME.firms:[];const firmSwitch=firmOptions.length>1?h('div',{className:'firm-switch'},h('label',{textContent:navLabel('المكتب النشط','Active firm')}),h('select',{'aria-label':navLabel('اختيار المكتب النشط','Select active firm'),value:String(ME.firm_id||firmOptions[0].firm_id),onchange:async e=>{try{const result=await api('/session/firm','POST',{firm_id:Number(e.target.value)});ME={...ME,...result};sessionStorage.me=JSON.stringify(ME);dash()}catch(_){e.target.value=String(ME.firm_id||'')}}},...firmOptions.map(f=>h('option',{value:String(f.firm_id),textContent:f.firm_name+(f.role?' — '+f.role:'')})))):null;A.replaceChildren(h('div',{id:'shell'},h('a',{className:'skip-link',href:'#main',textContent:navLabel('تخطي إلى المحتوى الرئيسي','Skip to main content'),onclick:e=>{e.preventDefault();const main=$('main');if(main)main.focus()} }),h('aside',{id:'side','aria-label':navLabel('التنقل الرئيسي','Primary navigation')},h('h1',{textContent:'⚖️ '+navLabel('مساحة المكتب القانوني','Firm Workspace')}),h('div',{className:'lang-switch'},h('button',{type:'button','data-lang-switch':'1',textContent:LANG==='ar'?'English':'العربية',onclick:switchLanguage})),firmSwitch,
  h('nav',{className:'primary-nav','aria-label':navLabel('روابط التنقل','Navigation links')},
-  [['dash',navLabel('نظرة عامة','Overview'),dash],['cases',navLabel('القضايا','Cases'),casesPage],['clients',navLabel('العملاء وتعارض المصالح','Clients & Conflicts'),clients],['tasks',navLabel('المهام','Tasks'),tasksPage],['calendar',navLabel('الأجندة والمواعيد','Calendar'),calendarPage],['finance',navLabel('الفواتير والتحصيل','Invoices & Finance'),financePage],['law',navLabel('البحث القانوني','Legal Research'),law],['feedback',navLabel('ملاحظات المنتج','Product feedback'),feedbackPage],...(ME.can_review_legal?[['coverage',navLabel('تغطية المجموعة القانونية','Corpus Coverage'),corpusCoverage],['review',navLabel('مراجعة المصادر القانونية','Legal Source Review'),reviewWorkbench]]:[]),['settings',navLabel('الإعدادات والأمان','Settings & Security'),settingsPage]]
+  [['dash',navLabel('نظرة عامة','Overview'),dash],...(ME.role==='admin'&&Array.isArray(ME.firms)?[['setup',navLabel('بدء الاستخدام','Getting started'),firstRunPage]]:[]),['cases',navLabel('القضايا','Cases'),casesPage],['clients',navLabel('العملاء وتعارض المصالح','Clients & Conflicts'),clients],['tasks',navLabel('المهام','Tasks'),tasksPage],['calendar',navLabel('الأجندة والمواعيد','Calendar'),calendarPage],['finance',navLabel('الفواتير والتحصيل','Invoices & Finance'),financePage],['law',navLabel('البحث القانوني','Legal Research'),law],['feedback',navLabel('ملاحظات المنتج','Product feedback'),feedbackPage],...(ME.can_review_legal?[['coverage',navLabel('تغطية المجموعة القانونية','Corpus Coverage'),corpusCoverage],['review',navLabel('مراجعة المصادر القانونية','Legal Source Review'),reviewWorkbench]]:[]),['settings',navLabel('الإعدادات والأمان','Settings & Security'),settingsPage]]
    .map(([id,t,f])=>h('a',{className:PAGE===id?'on':'',role:'button',tabIndex:0,'aria-current':PAGE===id?'page':null,textContent:t,onclick:()=>{PAGE=id;window.CASE_ID=null;f()},onkeydown:e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();PAGE=id;window.CASE_ID=null;f()}}})),
   h('span',{className:'nav-scroll-hint',textContent:navLabel('اسحب لعرض المزيد','Swipe for more')})
  ),
@@ -1302,15 +1306,115 @@ function startLocalReminderPolling(){
  if(localStorage.getItem(localReminderSettingKey())!=='1'||!('Notification' in window)||Notification.permission!=='granted'||window.__lcReminderTimer)return;
  window.__lcReminderTimer=window.setInterval(async()=>{try{sendLocalReminderSummary(await api('/dashboard'))}catch(_){}},15*60*1000);
 }
-async function dash(){PAGE='dash';const [d,cs,finance]=await Promise.all([api('/dashboard'),api('/cases'),api('/finance/overview')]);sendLocalReminderSummary(d);startLocalReminderPolling();
+async function sendSetupTestReminder(){
+ try{
+  const result=await api('/setup/test-reminder','POST');
+  toast(LANG==='ar'?result.message_ar:result.message_en);
+  if(result.status==='accepted_by_smtp')firstRunPage();else setupHealthPage();
+ }catch(_){}
+}
+async function setupHealthPage(){
+ PAGE='setup-health';
+ const data=await api('/setup/health');
+ const cards=(data.checks||[]).map(check=>h('section',{className:'card'},
+  h('div',{className:'row'},h('b',{textContent:uiText(check.title_ar,check.title_en)}),
+   pill(check.ok?uiText('جاهز','Ready'):uiText('يحتاج إعداداً','Needs setup'),check.ok?'open':'late')),
+  h('p',{className:'mut',textContent:uiText(check.message_ar,check.message_en)})
+ ));
+ shell(uiText('صحة إعداد المكتب','Firm setup health'),
+  h('p',{className:'workspace-subtitle',textContent:uiText('يعرض هذا الفحص حالة الإعداد فقط، ولا يكشف كلمات المرور أو مفاتيح التشفير.','This screen reports configuration status only. It never reveals passwords or encryption keys.')}),
+  h('div',{className:'workspace-actions'},btn(uiText('العودة إلى قائمة الإعداد','Back to setup checklist'),firstRunPage,'g'),
+   data.ready_for_test_reminder?btn(uiText('إرسال تذكير تجريبي','Send test reminder'),sendSetupTestReminder):null),
+  h('div',{className:'grid'},...cards)
+ );
+}
+async function firstRunPage(){
+ PAGE='setup';
+ const data=await api('/setup/first-run');
+ const profile=data.firm_profile||{};
+ const nameInput=h('input',{type:'text',value:profile.name||'',placeholder:uiText('اسم المكتب','Firm name'),maxLength:120});
+ const phoneInput=h('input',{type:'tel',value:profile.phone||'',placeholder:uiText('رقم هاتف المكتب','Firm phone number'),maxLength:30});
+ const addressInput=h('input',{type:'text',value:profile.address||'',placeholder:uiText('العنوان (اختياري)','Address (optional)'),maxLength:300});
+ const saveProfile=btn(uiText('حفظ بيانات المكتب','Save firm details'),async()=>{
+  try{
+   await api('/firm/profile','PUT',{name:nameInput.value,phone:phoneInput.value,address:addressInput.value});
+   const refreshed=await api('/session');ME={...ME,...refreshed};sessionStorage.me=JSON.stringify(ME);
+   toast(uiText('تم حفظ بيانات المكتب.','Firm details saved.'));
+   firstRunPage();
+  }catch(_){}
+ },'g');
+ const profileDone=(data.checklist||[]).find(item=>item.id==='firm_details')?.done===true;
+ const profileCard=h('section',{className:'card'},
+  h('div',{className:'row'},h('h3',{textContent:uiText('بيانات المكتب','Firm details')}),
+   pill(profileDone?uiText('مكتمل','Complete'):uiText('لم يكتمل','Not complete'),profileDone?'open':'soon')),
+  h('p',{className:'mut',textContent:uiText('أدخل اسم المكتب ورقم هاتف يمكن للعملاء والزملاء استخدامه. العنوان اختياري.','Add your firm name and a contact phone number. Address is optional.')}),
+  h('div',{className:'form-grid'},h('label',{},uiText('اسم المكتب','Firm name'),nameInput),
+   h('label',{},uiText('رقم الهاتف','Phone number'),phoneInput),
+   h('label',{},uiText('العنوان','Address'),addressInput)),
+  saveProfile
+ );
+ const descriptions={
+  invite_colleague:uiText('أرسل دعوة إلى زميل ليشارك في المكتب وفق الدور والصلاحيات التي تختارها.','Invite a colleague with the role and permissions you choose.'),
+  mfa:uiText('فعّل المصادقة الثنائية لحماية حسابك؛ قد تكون إلزامية في بيئة الإنتاج.','Enable multi-factor authentication to protect your account; production may require it.'),
+  first_case:uiText('أنشئ ملف القضية الأول. يمكنك البدء بملف حقيقي أو بيانات تدريبية واضحة.','Create your first case file. You can start with a real matter or clearly marked training data.'),
+  first_deadline:uiText('أضف موعداً بعد التحقق من مصدره. قواعد المواعيد الحالية مسودات غير معتمدة قانونياً.','Add a date only after verifying its source. Current deadline rules are unverified drafts.'),
+  test_reminder:uiText('أرسل رسالة عامة إلى بريدك المسجل لاختبار SMTP؛ لن تتضمن بيانات قضية أو عميل.','Send a generic message to your registered email to test SMTP; no case or client data is included.')
+ };
+ const actions={
+  invite_colleague:()=>settingsPage(),
+  mfa:()=>settingsPage(),
+  first_case:()=>newCase(),
+  first_deadline:()=>data.first_case_id?view(data.first_case_id):newCase(),
+  test_reminder:()=>data.health&&data.health.ready_for_test_reminder?sendSetupTestReminder():setupHealthPage()
+ };
+ const actionLabels={
+  invite_colleague:uiText('فتح إعدادات الدعوات','Open invitations'),
+  mfa:uiText('إعداد المصادقة الثنائية','Set up MFA'),
+  first_case:uiText('إنشاء أول قضية','Create first case'),
+  first_deadline:data.first_case_id?uiText('إضافة أول موعد','Add first deadline'):uiText('أنشئ قضية أولاً','Create a case first'),
+  test_reminder:data.health&&data.health.ready_for_test_reminder?uiText('إرسال رسالة اختبار','Send test message'):uiText('فحص إعدادات البريد','Check email setup')
+ };
+ const stepCards=(data.checklist||[]).filter(item=>item.id!=='firm_details').map(item=>h('section',{className:'card'},
+  h('div',{className:'row'},h('b',{textContent:uiText(item.title_ar,item.title_en)}),
+   pill(item.done?uiText('مكتمل','Complete'):uiText('لم يكتمل','Not complete'),item.done?'open':'soon')),
+  h('p',{className:'mut',textContent:descriptions[item.id]||''}),
+  item.done?null:btn(actionLabels[item.id]||uiText('متابعة','Continue'),actions[item.id]||setupHealthPage,'g')
+ ));
+ const percent=data.total?Math.round(data.completed/data.total*100):0;
+ shell(uiText('بدء استخدام المكتب','Get your firm started'),
+  h('p',{className:'workspace-subtitle',textContent:uiText('ست خطوات قصيرة — غالباً أقل من 15 دقيقة إذا كانت إعدادات الخادم جاهزة — لتجهيز المكتب ودعوة زميلك واختبار التذكيرات.','Six short steps — usually under 15 minutes when server settings are ready — to configure your firm, invite a colleague and test reminders.')}),
+  h('section',{className:'card'},
+   h('div',{className:'row'},h('b',{textContent:uiText('تقدم الإعداد','Setup progress')}),
+    pill(data.completed+'/'+data.total,percent===100?'open':'soon')),
+   h('div',{className:'setup-progress',role:'progressbar','aria-valuemin':0,'aria-valuemax':100,'aria-valuenow':percent},
+    h('div',{style:'width:'+percent+'%'})),
+   h('p',{className:'mut',textContent:uiText('لا تعتمد على أي موعد قانوني قبل مراجعته مع محامٍ ومصدر رسمي.','Do not rely on any legal deadline until a lawyer verifies it against an official source.')})
+  ),
+  profileCard,
+  h('div',{className:'grid'},...stepCards),
+  h('section',{className:'card'},
+   h('h3',{textContent:uiText('هل تحتاج مساعدة في إعداد الخادم؟','Need help configuring the server?')}),
+   h('p',{className:'mut',textContent:uiText('افتح فحص الصحة لمعرفة ما ينقص SMTP أو الرابط العام أو مفتاح MFA، مع شرح واضح دون عرض الأسرار.','Open setup health to see what is missing for SMTP, the public URL or MFA key, with clear explanations and no secret values.')}),
+   btn(uiText('فتح فحص صحة الإعداد','Open setup health'),setupHealthPage,'g')
+  )
+ );
+}
+async function dash(){PAGE='dash';const [d,cs,finance,setup]=await Promise.all([api('/dashboard'),api('/cases'),api('/finance/overview'),ME.role==='admin'&&Array.isArray(ME.firms)?api('/setup/first-run').catch(()=>null):Promise.resolve(null)]);sendLocalReminderSummary(d);startLocalReminderPolling();
  const active=cs.filter(c=>c.status==='open'),overdueTasks=d.tasks.filter(t=>t.due&&t.due<today).length;
  const overdueDeadlines=(d.deadlines||[]).filter(x=>x.due&&x.due<today);
  const st=(n,l,sub,kind='')=>h('div',{className:'card stat'},h('b',{textContent:n,style:kind==='bad'?'color:var(--bad)':kind==='good'?'color:var(--ok)':''}),h('span',{textContent:l}),sub?h('div',{className:'mut',textContent:sub}):null);
  const action=(title,desc,fn)=>h('button',{type:'button',className:'quick-link',onclick:fn},h('b',{textContent:title}),h('span',{textContent:desc}));
  const listItem=(title,meta,right)=>h('div',{className:'workspace-list-item'},h('div',{className:'item-main'},h('b',{textContent:title}),h('div',{className:'item-meta',textContent:meta||''})),right);
+ const setupCard=setup&&setup.completed<setup.total?h('section',{className:'card setup-start-card'},
+  h('div',{className:'row'},h('b',{textContent:uiText('أكمل إعداد المكتب','Complete firm setup')}),
+   pill(setup.completed+'/'+setup.total,'soon')),
+  h('p',{className:'mut',textContent:uiText('أكمل بيانات المكتب، ادعُ زميلاً، فعّل MFA واختبر التذكيرات.','Complete firm details, invite a colleague, enable MFA and test reminders.')}),
+  btn(uiText('متابعة الإعداد','Continue setup'),firstRunPage,'g')
+ ):null;
  shell(uiText('نظرة عامة','Workspace overview'),
  h('p',{className:'workspace-subtitle',textContent:uiText('مساحة عمل المكتب — أهم ما يحتاج انتباهك اليوم.','Your firm workspace — the work that needs your attention today.')}),
  h('section',{className:'card workspace-hero'},h('h3',{textContent:uiText('أهلاً، ','Welcome back, ')+(ME.name||'')}),h('p',{textContent:uiText('ابدأ من المهام المستحقة، راجع المواعيد، أو افتح ملف قضية.','Start with due work, review upcoming dates, or open a case file.')}),h('div',{className:'workspace-actions'},btn(uiText('+ قضية جديدة','+ New case'),newCase),btn(uiText('فتح البحث القانوني','Open legal research'),()=>openPage('law',law),'g'))),
+ setupCard,
  h('div',{className:'grid'},st(active.length,uiText('قضايا نشطة','Active cases'),uiText('من الملفات التي يمكنك الوصول إليها','Cases you can access')),st(d.tasks.length,uiText('مهام مفتوحة مسندة إليك','Open tasks assigned to you'),overdueTasks?overdueTasks+' '+uiText('متأخرة','overdue'):'',overdueTasks?'bad':''),st((d.sessions||[]).length,uiText('جلسات قادمة','Upcoming hearings'),uiText('ضمن نطاق العرض الحالي','Within the current dashboard window')),st((d.deadlines||[]).length,uiText('مواعيد قانونية مفتوحة','Open legal deadlines'),overdueDeadlines.length?overdueDeadlines.length+' '+uiText('متأخرة','overdue'):'',overdueDeadlines.length?'bad':''),st(money(finance.total_amount),uiText('إجمالي الأتعاب المسجلة','Recorded fees'),finance.fee_count+' '+uiText('سجل أتعاب','fee records')),st(money(finance.outstanding_amount),uiText('الأتعاب غير المحصلة','Outstanding fees'),finance.overdue_count?money(finance.overdue_amount)+' '+uiText('متأخرة','overdue amount'):uiText('لا توجد أتعاب متأخرة مسجلة','No recorded overdue fees'),finance.overdue_count?'bad':'')),
  h('div',{className:'workspace-section-title'},h('h3',{textContent:uiText('وصول سريع','Quick access')})),
  h('div',{className:'grid'},action(uiText('المهام','Tasks'),uiText('تابع وأنهِ الأعمال المسندة إليك','Review and complete assigned work'),()=>openPage('tasks',tasksPage)),action(uiText('الأجندة','Calendar'),uiText('اجمع الجلسات والمواعيد والمهام','See hearings, deadlines and tasks together'),()=>openPage('calendar',calendarPage)),action(uiText('ملفات القضايا','Case files'),uiText('ابحث وافتح ملف القضية','Find and open a case file'),()=>openPage('cases',casesPage)),action(uiText('العملاء والتعارض','Clients & conflicts'),uiText('راجع العملاء وافحص التعارض المحتمل','Review clients and check potential conflicts'),()=>openPage('clients',clients))),

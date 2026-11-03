@@ -74,7 +74,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         cls.base_url = f"http://127.0.0.1:{cls.port}"
         cls.original_env = os.environ.copy()
         sensitive_prefixes = (
-            "COPILOT_", "LEGAL_", "LLM_", "MFA_", "SMTP_", "EMAIL_",
+            "COPILOT_", "LEGAL_", "LLM_", "MFA_", "SMTP_", "REMINDER_SMTP_", "EMAIL_",
             "OPENAI_", "ANTHROPIC_", "GEMINI_", "OLLAMA_", "MISTRAL_", "AWS_",
         )
         sensitive_names = {"ADMIN_TOKEN", "BACKUP_KEY", "MFA_ENCRYPTION_KEY", "DATABASE_URL"}
@@ -781,6 +781,24 @@ class BrowserAcceptanceTests(unittest.TestCase):
         )
         self.assertIn(response.status, (403, 404))
         self.assertNotIn("CROSS_FIRM_PRIVATE_SENTINEL_7D3A", response.text())
+
+    def test_first_run_wizard_and_setup_health_are_owner_visible(self) -> None:
+        self.login(self.state["owner_a_email"])
+        language_switch = self.page.locator('[data-lang-switch="1"]').first
+        if language_switch.inner_text().strip() == "العربية":
+            language_switch.click()
+        self.page.get_by_role("button", name="بدء الاستخدام").click()
+        self.page.get_by_role("heading", name="بدء استخدام المكتب").wait_for()
+        self.assertTrue(self.page.get_by_text("بيانات المكتب", exact=True).is_visible())
+        self.assertTrue(self.page.get_by_text("ادعُ زميلاً إلى المكتب", exact=True).is_visible())
+        self.page.get_by_role("button", name="فتح فحص صحة الإعداد").click()
+        self.page.get_by_role("heading", name="صحة إعداد المكتب").wait_for()
+        for label in (
+            "خادم تذكيرات البريد الإلكتروني",
+            "الرابط العام الآمن",
+            "مفتاح تشفير المصادقة الثنائية",
+        ):
+            self.assertTrue(self.page.get_by_text(label, exact=True).is_visible(), label)
 
     def test_expired_session_returns_to_login(self) -> None:
         self.login(self.state["owner_a_email"])
