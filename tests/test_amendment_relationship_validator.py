@@ -77,6 +77,30 @@ class AmendmentRelationshipValidatorTests(unittest.TestCase):
         self.assertIn("duplicate_relationship_id", codes)
         self.assertIn("missing_relationship_id", codes)
 
+    def test_document_and_relationship_ids_must_be_trimmed_stable_ascii(self):
+        base = {
+            "source_instrument_id": "LAW-A",
+            "target_instrument_id": None,
+            "relationship_type": "base_instrument",
+            "status": "under_review",
+            "source_url": "https://gazette.example.gov/law.pdf",
+            "required_evidence": ["Original Gazette text"],
+        }
+        report = MODULE.validate(
+            {"relationships": [{**base, "relationship_id": " REL-1 "}]},
+            {"documents": [{"document_id": "LAW-A"}, {"document_id": " LAW-B "}]},
+        )
+        codes = {item["code"] for item in report["errors"]}
+        self.assertIn("invalid_document_id", codes)
+        self.assertIn("invalid_relationship_id", codes)
+
+        for value in ("LAW/1", "قانون-1", "A" * 129, "LAW 1"):
+            with self.subTest(document_id=value):
+                report = MODULE.validate(
+                    {"relationships": []}, {"documents": [{"document_id": value}]}
+                )
+                self.assertTrue(any(item["code"] == "invalid_document_id" for item in report["errors"]))
+
     def test_duplicate_relationship_edges_are_warned(self):
         base = {
             "source_instrument_id": "LAW-A",
