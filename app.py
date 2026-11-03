@@ -7649,6 +7649,32 @@ def export_firm_data_zip(u: dict = Depends(user)):
                 "JOIN docs d ON d.id=o.document_id JOIN cases c ON c.id=d.case_id "
                 "ORDER BY e.id"
             )))
+            archive.writestr("original_file_objects.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT object_id,document_id,firm_id,storage_backend,sha256,byte_size,content_type,"
+                "state,legal_hold,hold_reason,hold_set_by,hold_set_at,hold_released_by,"
+                "hold_released_at,hold_release_reason,purged_at,purged_by_user_id,purge_reason "
+                "FROM original_file_objects WHERE firm_id=? ORDER BY document_id", (firm_id,),
+            )))
+            archive.writestr("original_file_deletion_requests.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT id,object_id,document_id,firm_id,requested_by_user_id,request_reason,requested_at,"
+                "status,approved_by_user_id,approved_at,approval_reason,purge_started_by_user_id,"
+                "purge_started_at,completed_by_user_id,completed_at,cancellation_reason,"
+                "cancelled_by_user_id,cancelled_at FROM original_file_deletion_requests "
+                "WHERE firm_id=? ORDER BY id", (firm_id,),
+            )))
+            archive.writestr("original_file_deletion_events.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT id,request_id,object_id,document_id,firm_id,action,reason,actor_user_id,occurred_at "
+                "FROM original_file_deletion_events WHERE firm_id=? ORDER BY id", (firm_id,),
+            )))
+            archive.writestr("answer_correction_suggestions.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT id,case_id,answer_id,question,answer_excerpt,correction_note,status,training_use,"
+                "created_by,created_at,reviewed_by,reviewed_at,review_note "
+                "FROM answer_correction_suggestions ORDER BY id"
+            )))
+            archive.writestr("answer_correction_events.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT id,suggestion_id,actor_user_id,event_type,detail_json,created_at "
+                "FROM answer_correction_events ORDER BY id"
+            )))
             # The feedback tables live in this firm's private tenant database.
             archive.writestr("product_feedback.csv", _firm_export_csv_bytes(tenant.execute(
                 "SELECT id,category,title,message,page_path,status,created_by,created_at,"
