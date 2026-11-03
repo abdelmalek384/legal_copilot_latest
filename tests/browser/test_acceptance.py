@@ -1064,5 +1064,51 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertEqual(self.browser_errors, [], self.browser_errors)
 
 
+    def test_expired_trial_banner_keeps_payment_and_zip_export_available(self) -> None:
+        control = self.runtime.control_connection()
+        try:
+            self.login(self.state["owner_a_email"])
+            started = self.page.request.post(
+                self.base_url + "/billing/subscribe",
+                data={"plan_code": "solo"},
+                headers=self.csrf_headers(),
+            )
+            self.assertEqual(started.status, 200, started.text())
+
+            expired_at = int(time.time()) - 3600
+            control.execute(
+                "UPDATE firm_subscriptions SET trial_ends_at=? WHERE firm_id=?",
+                (expired_at, self.state["firm_a_id"]),
+            )
+            control.commit()
+
+            self.page.get_by_role("button", name="الإعدادات والأمان").click()
+            self.page.get_by_text("الاشتراك منتهي؛ الدعوات والتعديلات متوقفة في وضع القراءة فقط.", exact=True).wait_for(timeout=10000)
+            settings_body = self.page.locator("body").inner_text()
+            self.assertIn("تم الوصول إلى حد المقاعد. غيّر الخطة قبل دعوة مستخدم آخر.", settings_body)
+            self.assertTrue(self.page.get_by_role("button", name="إرسال دعوة").is_disabled())
+
+            with self.page.expect_download(timeout=15000) as download_info:
+                self.page.get_by_role("button", name="تنزيل بيانات المكتب ZIP").click()
+            download = download_info.value
+            self.assertTrue(download.suggested_filename.endswith(".zip"), download.suggested_filename)
+            self.assertIsNone(download.failure(), download.failure())
+
+            self.page.get_by_role("button", name="فتح الفوترة").click()
+            self.page.get_by_text("المكتب في وضع القراءة فقط", exact=True).wait_for(timeout=10000)
+            billing_body = self.page.locator("body").inner_text()
+            self.assertIn("الخطة:", billing_body)
+            self.assertIn("solo", billing_body)
+            self.assertIn("الأيام المتبقية: 0", billing_body)
+            self.assertIn("أيام فترة السماح للقراءة فقط:", billing_body)
+            self.assertIn("إرسال إثبات التحويل للمراجعة", billing_body)
+            self.assertEqual(self.browser_errors, [], self.browser_errors)
+        finally:
+            # This class shares one synthetic tenant across browser tests.
+            # Remove this test's temporary subscription so other workflows stay writable.
+            control.execute("DELETE FROM subscription_audit_events WHERE firm_id=?", (self.state["firm_a_id"],))
+            control.execute("DELETE FROM firm_subscriptions WHERE firm_id=?", (self.state["firm_a_id"],))
+            control.commit()
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

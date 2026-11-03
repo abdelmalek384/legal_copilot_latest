@@ -7,6 +7,8 @@ import tempfile
 import unittest
 from argparse import Namespace
 from pathlib import Path
+
+from fastapi.testclient import TestClient
 from unittest.mock import patch
 
 import app
@@ -83,6 +85,17 @@ class DemoFirmCliTests(unittest.TestCase):
         invoice = tenant.execute("SELECT status,description FROM invoices").fetchone()
         self.assertEqual(invoice["status"], "issued")
         self.assertIn("تجريبية", invoice["description"])
+
+        client = TestClient(app.app)
+        login = client.post("/login", json={
+            "email": "demo-owner@example.test",
+            "password": "DemoFirm-Strong-Password-2026!",
+        })
+        self.assertEqual(login.status_code, 200, login.text)
+        session = client.get("/session")
+        self.assertEqual(session.status_code, 200, session.text)
+        self.assertIs(session.json().get("is_demo"), True)
+        client.close()
         app._meter_pilot_metric({"firm_id": firm_id}, "cases_created")
         self.assertEqual(
             control.execute(

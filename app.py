@@ -2698,10 +2698,14 @@ def _user_separate(
         allowed_paths = {"/session", "/account/mfa/enroll", "/account/mfa/confirm", "/account/mfa/verify", "/logout"}
         if request.url.path not in allowed_paths:
             raise HTTPException(403, "MFA verification or enrollment required")
+    demo_marker = c.execute(
+        "SELECT is_demo FROM firms WHERE id=?", (context.firm_id,)
+    ).fetchone()
     return {
         "id": account["id"], "name": account["name"], "email": account["email_display"],
         "email_normalized": account["email_normalized"], "role": context.role,
         "firm_id": context.firm_id, "active": 1, "firms": firms,
+        "is_demo": bool(demo_marker and demo_marker["is_demo"]),
         "platform_roles": _platform_roles_for_user(account["id"]),
         "can_review_legal": _user_can_review_legal({"id": account["id"], "role": context.role, "email": account["email_display"]}),
         "mfa_enabled": mfa_enabled, "mfa_required": mfa_required,
@@ -2719,6 +2723,7 @@ def user(request: Request, response: Response,
          firm_cookie: str = Cookie(None, alias="lc_firm")):
     if _separate_runtime_enabled():
         authenticated = _user_separate(request, response, session_cookie, csrf_cookie, csrf_header, firm_cookie)
+        _enforce_subscription_write_access(request, authenticated)
         return authenticated
     tok = session_cookie or ""
     if not tok:
@@ -2776,6 +2781,56 @@ SUBSCRIPTION_PLANS = {
     "small_firm": {"label_ar": "مكتب صغير", "seat_limit": 5},
 }
 SUBSCRIPTION_TRIAL_DAYS = 14
+
+SUBSCRIPTION_READ_ONLY_GRACE_DAYS = 7
+SUBSCRIPTION_WRITE_EXEMPT_PATHS = frozenset({"/billing/payment-submissions", "/session/firm"})
+
+
+def _enforce_subscription_write_access(request: Request, authenticated: dict) -> None:
+    """Put expired firms into read-only mode without blocking payment or platform recovery."""
+    if request.method in {"GET", "HEAD", "OPTIONS"}:
+        return
+    path = request.url.path
+    if (
+        path in SUBSCRIPTION_WRITE_EXEMPT_PATHS
+        or path.startswith("/account/")
+        or path.startswith("/platform/")
+        or path in {"/logout", "/session"}
+    ):
+        return
+    firm_id = authenticated.get("firm_id")
+    if firm_id is None:
+        return
+    control = control_conn()
+    subscription = control.execute(
+        "SELECT status,trial_ends_at,current_period_end FROM firm_subscriptions WHERE firm_id=?",
+        (int(firm_id),),
+    ).fetchone()
+    if subscription is None:
+        return
+    now = int(time.time())
+    status = str(subscription["status"])
+    expiry = None
+    if status == "trial":
+        expiry = int(subscription["trial_ends_at"] or 0) or None
+    elif status in {"active", "pending_payment"}:
+        expiry = int(subscription["current_period_end"] or 0) or None
+        if not expiry:
+            expiry = int(subscription["trial_ends_at"] or 0) or None
+    if expiry is not None and expiry <= now and status not in {"expired", "cancelled", "past_due"}:
+        control.execute(
+            "UPDATE firm_subscriptions SET status='expired',updated_at=? WHERE firm_id=?",
+            (now, int(firm_id)),
+        )
+        control.commit()
+        status = "expired"
+    if status in {"expired", "cancelled", "past_due"}:
+        raise HTTPException(
+            423,
+            "subscription expired; firm is in read-only mode. Submit payment to restore editing. Exports remain available.",
+        )
+
+
 
 
 def _firm_seat_usage(control, firm_id: int, exclude_invitation_id: int | None = None):
@@ -4775,15 +4830,22 @@ def get_firm_billing(u: dict = Depends(user)):
     subscription = control.execute(
         "SELECT * FROM firm_subscriptions WHERE firm_id=?", (u["firm_id"],)
     ).fetchone()
-    if subscription and subscription["status"] == "trial" and subscription["trial_ends_at"] and int(subscription["trial_ends_at"]) <= now:
-        control.execute(
-            "UPDATE firm_subscriptions SET status='expired',updated_at=? WHERE firm_id=? AND status='trial'",
-            (now, u["firm_id"]),
+    if subscription:
+        status = str(subscription["status"])
+        expiry = (
+            subscription["trial_ends_at"] if status == "trial"
+            else subscription["current_period_end"] if status == "active"
+            else None
         )
-        control.commit()
-        subscription = control.execute(
-            "SELECT * FROM firm_subscriptions WHERE firm_id=?", (u["firm_id"],)
-        ).fetchone()
+        if expiry and int(expiry) <= now and status in {"trial", "active"}:
+            control.execute(
+                "UPDATE firm_subscriptions SET status='expired',updated_at=? WHERE firm_id=?",
+                (now, u["firm_id"]),
+            )
+            control.commit()
+            subscription = control.execute(
+                "SELECT * FROM firm_subscriptions WHERE firm_id=?", (u["firm_id"],)
+            ).fetchone()
     payments = [dict(row) for row in control.execute(
         "SELECT id,amount_piasters,method,transfer_reference,status,created_at,reviewed_at,decision_note "
         "FROM subscription_payment_submissions WHERE firm_id=? ORDER BY id DESC LIMIT 20",
@@ -4812,10 +4874,31 @@ def get_firm_billing(u: dict = Depends(user)):
         int(control.execute("SELECT COUNT(*) FROM identity_invitations WHERE firm_id=? AND status IN ('pending','sent')", (u["firm_id"],)).fetchone()[0]),
         int(subscription["seat_limit"]) if subscription else 1,
     )
+    subscription_data = dict(subscription) if subscription else None
+    expiry_at = None
+    if subscription_data:
+        if subscription_data["status"] in {"trial", "pending_payment"}:
+            expiry_at = subscription_data.get("trial_ends_at") or subscription_data.get("current_period_end")
+        else:
+            expiry_at = subscription_data.get("current_period_end") or subscription_data.get("trial_ends_at")
+    grace_end = int(expiry_at) + SUBSCRIPTION_READ_ONLY_GRACE_DAYS * 86400 if expiry_at else None
+    read_only = bool(subscription_data and (
+        subscription_data["status"] in {"expired", "cancelled", "past_due"}
+        or (
+            subscription_data["status"] == "pending_payment"
+            and expiry_at is not None and int(expiry_at) <= now
+        )
+    ))
+    days_remaining = max(0, (int(expiry_at) - now + 86399) // 86400) if expiry_at else None
+    grace_days_remaining = max(0, (int(grace_end) - now + 86399) // 86400) if read_only and grace_end else None
     return {
         "plans": [{"code": code, **value} for code, value in SUBSCRIPTION_PLANS.items()],
         "trial_days": SUBSCRIPTION_TRIAL_DAYS,
-        "subscription": dict(subscription) if subscription else None,
+        "subscription": subscription_data,
+        "read_only": read_only,
+        "days_remaining": days_remaining,
+        "grace_period_ends_at": grace_end,
+        "grace_days_remaining": grace_days_remaining,
         "seat_usage": {"active": active, "pending_invitations": pending, "limit": limit},
         "usage": _firm_usage_summary(control, u["firm_id"], now),
         "payments": payments,
