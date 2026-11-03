@@ -8,10 +8,10 @@ class ClientCSVImportTests(InvoiceTestSupport, unittest.TestCase):
     def test_admin_imports_profiles_and_skips_existing_names_without_auditing_pii(self):
         payload = {
             "csv": (
-                "name,phone,email,address,notes\n"
-                "New CSV Client,+20 100 222 3333,new@example.test,Cairo,Imported synthetic record\n"
-                "Client Snapshot,,,,Existing profile must not be overwritten\n"
-                " new csv client ,+20 100 999 8888,duplicate@example.test,,,\n"
+                "\\ufeffname;phone;email;address;notes\n"
+                "New CSV Client;+20 100 222 3333;new@example.test;Cairo;Imported synthetic record\n"
+                "Client Snapshot;;;;Existing profile must not be overwritten\n"
+                " new csv client ;+20 100 999 8888;duplicate@example.test;;;\n"
             )
         }
         response = self.mutate(self.client_a, "post", "/clients/import.csv", json=payload)
