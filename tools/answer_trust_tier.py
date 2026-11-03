@@ -33,9 +33,12 @@ def _source_matched_evidence_ready(source: Mapping) -> bool:
         return False
     if not _valid_sha256(evidence.get("independent_copy_sha256")):
         return False
+    source_id = source.get("source_id")
     independent_source_id = evidence.get("independent_copy_source_id")
-    if (not isinstance(independent_source_id, str) or not independent_source_id.strip()
-            or independent_source_id == source.get("source_id")):
+    if (not isinstance(source_id, str) or not source_id.strip() or source_id != source_id.strip()
+            or not isinstance(independent_source_id, str) or not independent_source_id.strip()
+            or independent_source_id != independent_source_id.strip()
+            or independent_source_id == source_id):
         return False
     for field in ("publication_date", "effective_date"):
         value = evidence.get(field)
@@ -46,6 +49,9 @@ def _source_matched_evidence_ready(source: Mapping) -> bool:
         if parsed is None or parsed.isoformat() != value:
             return False
     rights_url = evidence.get("reuse_rights_evidence_url")
+    if (not isinstance(rights_url, str) or not rights_url or rights_url != rights_url.strip()
+            or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in rights_url)):
+        return False
     try:
         parsed_url = urlsplit(rights_url) if isinstance(rights_url, str) else None
         port = parsed_url.port if parsed_url else None
