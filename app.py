@@ -2916,7 +2916,7 @@ def _meter_firm_usage(u: dict, event_type: str, units: int = 1):
 
 
 _PILOT_METRIC_TYPES = frozenset({
-    "active_users", "cases_created", "deadlines_created", "answers_requested",
+    "successful_sign_ins", "cases_created", "deadlines_created", "answers_requested",
     "invoices_issued", "corrections_submitted",
 })
 
@@ -3611,7 +3611,7 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
               (sha(token), account["id"], now + 43200, int(mfa_verified), now if mfa_verified else 0))
     c.commit()
     first_firm = memberships[0]
-    _meter_pilot_metric({"firm_id": first_firm["firm_id"]}, "active_users")
+    _meter_pilot_metric({"firm_id": first_firm["firm_id"]}, "successful_sign_ins")
     secure = _secure_cookie_transport(request)
     response.set_cookie("lc_session", token, max_age=43200, httponly=True, secure=secure, samesite="lax", path="/")
     response.set_cookie("lc_csrf", csrf, max_age=43200, httponly=False, secure=secure, samesite="lax", path="/")
@@ -3745,7 +3745,6 @@ def switch_firm(b: FirmSwitchIn, request: Request, response: Response, u: dict =
     switched_user["can_review_legal"] = _user_can_review_legal(
         {"id": u["id"], "role": context.role, "email": u.get("email")}
     )
-    _meter_pilot_metric(switched_user, "active_users")
     return switched_user
 
 
@@ -4999,7 +4998,8 @@ def platform_pilot_metrics(weeks: int = Query(12, ge=1, le=52), u: dict = Depend
     return {
         "weeks": weeks,
         "metrics": rows,
-        "active_users_definition": "Successful sign-ins and firm activations; not distinct people.",
+        "successful_sign_ins_definition": "Count of successful sign-in events for the default firm; not distinct people.",
+        "weekly_active_users_definition": "Not currently measured; successful sign-ins are event counts, not unique users.",
     }
 
 
@@ -5010,12 +5010,12 @@ def export_platform_pilot_metrics(weeks: int = Query(12, ge=1, le=52), u: dict =
     output = io.StringIO(newline="")
     writer = csv.writer(output)
     writer.writerow([
-        "firm_id", "firm_name", "week_start", "active_users", "cases_created",
+        "firm_id", "firm_name", "week_start", "successful_sign_ins", "cases_created",
         "deadlines_created", "answers_requested", "invoices_issued", "corrections_submitted",
     ])
     for row in rows:
         writer.writerow([_pilot_csv_cell(row[key]) for key in (
-            "firm_id", "firm_name", "week_start", "active_users", "cases_created",
+            "firm_id", "firm_name", "week_start", "successful_sign_ins", "cases_created",
             "deadlines_created", "answers_requested", "invoices_issued", "corrections_submitted",
         )])
     return Response(
