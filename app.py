@@ -6245,6 +6245,17 @@ def import_cases_csv(b: CaseCSVImportIn, u: dict = Depends(user)):
             columns[canonical] = index
         if "title" not in columns:
             raise ValueError("CSV must contain a matter title column")
+        def matter_key(title, client, case_number, case_year, court):
+            if str(case_number or "").strip():
+                return (
+                    "number", str(case_number).strip().casefold(),
+                    str(case_year or "").strip().casefold(), str(court or "").strip().casefold(),
+                )
+            return (
+                "title-client", str(title or "").strip().casefold(),
+                str(client or "").strip().casefold(),
+            )
+
         candidates = []
         seen = set()
         rows_seen = 0
@@ -6265,16 +6276,9 @@ def import_cases_csv(b: CaseCSVImportIn, u: dict = Depends(user)):
             matter = CaseIn.model_validate(values)
             if not matter.title.strip():
                 raise ValueError("matter title is required")
-            if matter.case_number.strip():
-                duplicate_key = (
-                    "number", matter.case_number.strip().casefold(),
-                    matter.case_year.strip().casefold(), matter.court.strip().casefold(),
-                )
-            else:
-                duplicate_key = (
-                    "title-client", matter.title.strip().casefold(),
-                    matter.client.strip().casefold(),
-                )
+            duplicate_key = matter_key(
+                matter.title, matter.client, matter.case_number, matter.case_year, matter.court
+            )
             if duplicate_key in seen:
                 duplicate_rows += 1
                 continue
@@ -6290,9 +6294,23 @@ def import_cases_csv(b: CaseCSVImportIn, u: dict = Depends(user)):
         raise
 
     c = conn()
+    existing_keys = {
+        matter_key(row["title"], row["client"], row["case_number"], row["case_year"], row["court"])
+        for row in c.execute(
+            "SELECT title,client,case_number,case_year,court FROM cases WHERE firm_id=?",
+            (int(u["firm_id"]),),
+        ).fetchall()
+    }
     created = 0
     skipped = duplicate_rows
     for matter in candidates:
+        duplicate_key = matter_key(
+            matter.title, matter.client, matter.case_number, matter.case_year, matter.court
+        )
+        if duplicate_key in existing_keys:
+            skipped += 1
+            continue
+        existing_keys.add(duplicate_key)
         client_id, client_name = _ensure_client_profile(c, u, matter.client, None)
         cursor = c.execute(
             "INSERT INTO cases(title,client,stage,created_by,firm_id,case_number,case_year,court,circuit,opposing_party,client_id) "
