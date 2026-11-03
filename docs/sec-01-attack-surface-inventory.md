@@ -81,6 +81,7 @@ The table list below is a schema-review queue. “Needs schema-level review” i
 | `api_rate_limit_windows` | control_plane | Rate-limit state; confirm retention, key normalization, and cross-process behavior. |
 | `auth_sessions` | control_plane | Global authenticated-session state; verify revocation, expiry, and credential-change invalidation. |
 | `case_deletion_audit` | firm | Matter-deletion snapshots; enforce tenant/case scope, immutable audit behavior, and retention. |
+| `clients` | firm | Persistent client profiles shared by multiple matters; expose profile fields only to admins or users with access to at least one linked matter. |
 | `cases` | firm | Confidential matter records; enforce firm/case ownership and safe export/deletion behavior. |
 | `chunks` | firm, legal_corpus | Physically separate matter extraction from legal-reference text; verify FTS and access boundaries. |
 | `chunks_fts` | firm, legal_corpus | Profile-local FTS5 indexes; verify synchronization, rebuild, and integrity checks. |
