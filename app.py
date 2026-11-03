@@ -873,7 +873,24 @@ _REQUIRED_REVIEW_EVENTS_SQL = (
     "AND e.outcome='pass' AND TRIM(COALESCE(e.notes,''))<>'' "
     "AND (e.review_type<>'lawyer_approval' OR e.notes LIKE '%[qualified_egyptian_counsel_attested:user_id=%') "
     "AND TRIM(COALESCE(e.reviewer,''))<>'' AND e.evidence_url LIKE 'https://%')=6 "
+
 )
+
+def _required_review_events_sql_for_allowlist() -> str:
+    """Require the latest counsel marker to name an operator-allowlisted account."""
+    allowed_ids = sorted(_qualified_egyptian_counsel_user_ids())
+    if not allowed_ids:
+        counsel_predicate = "0"
+    else:
+        counsel_predicate = "(" + " OR ".join(
+            f"e.notes LIKE '%[qualified_egyptian_counsel_attested:user_id={user_id}]%'"
+            for user_id in allowed_ids
+        ) + ")"
+    return _REQUIRED_REVIEW_EVENTS_SQL.replace(
+        "e.notes LIKE '%[qualified_egyptian_counsel_attested:user_id=%'",
+        counsel_predicate,
+    )
+
 
 SQL = ("SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts JOIN chunks ON chunks.id=chunks_fts.rowid "
        "WHERE chunks_fts MATCH ? AND (chunks.case_id IS NOT NULL OR (chunks.verified=1 AND (chunks.in_force=1 OR chunks.document_version_id IS NOT NULL))) AND (chunks.case_id IS NULL OR chunks.case_id IS ?) "
@@ -1074,12 +1091,16 @@ def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
 
     if scope in {"all_permitted", "verified_corpus"}:
         corpus_rows = corpus.execute(
-            _CORPUS_SEARCH_SQL, (fts_query, as_of, as_of)
+            _CORPUS_SEARCH_SQL.replace(
+                _REQUIRED_REVIEW_EVENTS_SQL, _required_review_events_sql_for_allowlist()
+            ), (fts_query, as_of, as_of)
         ).fetchall()
         seen = {row["id"] for row in corpus_rows}
         if article_match:
             for row in corpus.execute(
-                _CORPUS_EXACT_ARTICLE_SQL,
+                _CORPUS_EXACT_ARTICLE_SQL.replace(
+                    _REQUIRED_REVIEW_EVENTS_SQL, _required_review_events_sql_for_allowlist()
+                ),
                 (article_match.group(1), as_of, as_of),
             ).fetchall():
                 if row["id"] not in seen:
@@ -1155,14 +1176,16 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
         # Expand only with a small, curated bilingual lexicon; never alter the evidence text.
         allow_legacy = os.environ.get("ALLOW_UNLINKED_LEGACY_LAW_SEARCH", "").strip() == "1"
         params = (" OR ".join('"%s"' % t.replace('"', '""') for t in expanded_qt), case_id, firm_id, int(allow_legacy), scope, scope, scope, as_of, as_of)
-        for r in c.execute(SQL, params): cand[r["id"]] = (r, -r["r"])
+        for r in c.execute(SQL.replace(
+            _REQUIRED_REVIEW_EVENTS_SQL, _required_review_events_sql_for_allowlist()
+        ), params): cand[r["id"]] = (r, -r["r"])
     am = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", norm(q))
     if am and scope != "firm_documents":
         exact_sql = ("SELECT * FROM chunks WHERE article=? AND case_id IS NULL AND verified=1 AND (in_force=1 OR document_version_id IS NOT NULL) "
                      "AND (document_version_id IS NOT NULL OR ?=1) AND (document_version_id IS NULL OR EXISTS (SELECT 1 FROM legal_document_versions v "
                      "WHERE v.version_id=chunks.document_version_id AND v.review_status='verified' "
                      "AND v.authenticity_verified=1 AND v.status_verified=1 AND v.amendment_history_verified=1 AND EXISTS (SELECT 1 FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id WHERE d.document_id=v.document_id AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' AND TRIM(COALESCE(s.permission_evidence,''))<>'' AND TRIM(COALESCE(v.permission_evidence,''))<>'') AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
-                     + _REQUIRED_REVIEW_EVENTS_SQL
+                     + _required_review_events_sql_for_allowlist()
                      + "AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)) )")
         for r in c.execute(exact_sql, (am.group(1), int(allow_legacy), as_of, as_of)):
             exact.add(r["id"]); cand.setdefault(r["id"], (r, 0))
