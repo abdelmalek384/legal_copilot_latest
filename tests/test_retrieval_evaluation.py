@@ -781,6 +781,8 @@ class RetrievalEvaluationTests(unittest.TestCase):
             with contextlib.redirect_stdout(output):
                 code = run_main([
                     "--questions", str(questions_path), "--runs", str(runs_path),
+                    "--min-reviewed-cases", "2", "--min-practice-areas", "2",
+                    "--min-cases-per-practice-area", "1",
                     "--max-source-status-evidence-missing", "0",
                     "--max-source-status-evidence-missing-per-practice-area", "0",
                     "--max-unsafe-unverified-source-uses-per-practice-area", "0",
