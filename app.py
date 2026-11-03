@@ -2813,14 +2813,14 @@ def export_platform_pilot_metrics_csv(
     require_platform_admin(u)
     rows = _pilot_metrics_rows(control_conn(), weeks, int(time.time()))
     stream = io.StringIO(newline="")
-    writer = csv.writer(stream, lineterminator="\\r\\n")
+    writer = csv.writer(stream, lineterminator="\r\n")
     writer.writerow(["firm_id", "firm_name", "week_start", *_PILOT_METRICS])
     for row in rows:
         writer.writerow([_csv_safe_cell(row[key]) for key in (
             "firm_id", "firm_name", "week_start", *_PILOT_METRICS
         )])
     return Response(
-        content="\\ufeff" + stream.getvalue(),
+        content="\ufeff" + stream.getvalue(),
         media_type="text/csv; charset=utf-8",
         headers={"Content-Disposition": 'attachment; filename="pilot-weekly-metrics.csv"',
                  "Cache-Control": "no-store", "Pragma": "no-cache"},
