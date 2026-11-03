@@ -24,6 +24,8 @@ TEST_COVERED_ROUTES = {
     "GET /platform/billing/payment-submissions": "tests/test_subscription_billing_routes.py",
     "POST /platform/billing/payment-submissions/{submission_id}/approve": "tests/test_subscription_billing_routes.py",
     "POST /platform/billing/payment-submissions/{submission_id}/reject": "tests/test_subscription_billing_routes.py",
+    "GET /platform/pilot-metrics": "tests/test_pilot_metrics.py",
+    "GET /platform/pilot-metrics/export.csv": "tests/test_pilot_metrics.py",
 }
 
 
