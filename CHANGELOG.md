@@ -65,3 +65,4 @@ This is still an MVP, not a production-hardened legal system. No independent sec
 - PR #1291: add the firm-admin first-run wizard, setup-health explanations, and browser acceptance coverage.
 - PR #1297: expose weekly aggregate pilot metrics and CSV export through platform-admin-only navigation, with browser visibility coverage.
 - PR #1302: add audited, admin-only firm data ZIP export with tenant isolation, CSV formula neutralisation, rate limiting, and tests.
+- PR #1307: add a source-linked Arabic UI string review inventory covering 894 unique Arabic-bearing literals, with completeness regression coverage.
