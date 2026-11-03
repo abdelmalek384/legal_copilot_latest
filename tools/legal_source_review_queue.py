@@ -171,7 +171,7 @@ def review_queue(db_path: Path) -> dict:
                     continue
                 if rt == "lawyer_approval":
                     marker_present = isinstance(latest.get("notes"), str) and re.search(
-                        r"\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\\]",
+                        r"\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\]",
                         latest["notes"],
                     )
                     if not marker_present:
