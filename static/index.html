@@ -1108,6 +1108,35 @@ async function billingPage(){
   ...(data.payments.length?data.payments.map(p=>h('div',{className:'row'},h('span',{textContent:p.method+' · '+p.transfer_reference+' · '+p.amount_piasters+' '+uiText('قرش','piasters')}),pill(statusLabel(p.status),p.status==='approved'?'done':p.status==='pending'?'soon':'late'))):[empty(uiText('لا توجد تحويلات مسجلة.','No transfer submissions yet.'))]));
  shell(uiText('الاشتراك والفوترة','Subscription & billing'),usageCard,planCard,paymentCard,auditCard,history);
 }
+async function platformPilotMetricsPage(){
+ PAGE='platform-pilot-metrics';
+ let data;
+ try{data=await api('/platform/pilot-metrics?weeks=12')}
+ catch(_){shell(uiText('مؤشرات استخدام المكاتب التجريبية','Pilot firm usage metrics'),empty(uiText('تعذر تحميل مؤشرات الاستخدام.','Could not load usage metrics.')));return}
+ const labels=[
+  ['active_users',uiText('نشاط المستخدمين (تسجيلات دخول ناجحة)','Active users (successful sign-ins)')],
+  ['cases_created',uiText('القضايا المنشأة','Cases created')],
+  ['deadlines_created',uiText('المواعيد القانونية المنشأة','Deadlines created')],
+  ['answers_requested',uiText('الإجابات المطلوبة','Answers requested')],
+  ['invoices_issued',uiText('الفواتير الصادرة','Invoices issued')],
+  ['corrections_submitted',uiText('التصحيحات المقدمة','Corrections submitted')]
+ ];
+ const cards=data.items.map(item=>h('section',{className:'card'},
+  h('div',{className:'row'},h('h3',{textContent:item.firm_name}),pill(item.week_start,'soon')),
+  h('div',{className:'grid'},...labels.map(([key,label])=>h('div',{className:'metric-card'},
+   h('div',{className:'mut',textContent:label}),h('strong',{textContent:String(item[key]||0)}))))
+ ));
+ shell(uiText('مؤشرات استخدام المكاتب التجريبية','Pilot firm usage metrics'),
+  h('section',{className:'card'},
+   h('p',{className:'mut',textContent:uiText(
+    'تعرض هذه الصفحة أعداداً أسبوعية مجمعة فقط. لا تُحفظ أسئلة أو إجابات أو بيانات قضايا أو معرفات مستخدمين. مؤشر المستخدمين هو عدد تسجيلات الدخول الناجحة وليس عدد الأشخاص الفريدين.',
+    'This page shows weekly aggregate counts only. No questions, answers, case data or user identifiers are stored. The active-user measure counts successful sign-ins, not distinct people.'
+   )}),
+   btn(uiText('تنزيل CSV لآخر 12 أسبوعاً','Export last 12 weeks as CSV'),()=>{window.location.href='/platform/pilot-metrics.csv?weeks=12'},'g')
+  ),
+  ...(cards.length?cards:[empty(uiText('لا توجد بيانات للمكاتب بعد.','No firm metrics yet.'))])
+ );
+}
 async function platformBillingPage(){
  PAGE='platform-billing';
  const list=await api('/platform/billing/payment-submissions');
@@ -1153,7 +1182,7 @@ async function financePage(){
   h('h3',{textContent:uiText('المستحقات حسب العميل','Outstanding by client')}),clients,
   h('h3',{textContent:uiText('سجل الفواتير','Invoice history')}),invoices);
 }
-async function settingsPage(){PAGE='settings';const reminderPrefs=await api('/reminder-preferences').catch(()=>null);const isAdmin=ME.role==='admin';const users=isAdmin?await api('/users').catch(()=>[]):[];const invitationResult=isAdmin?await api('/invitations').catch(()=>({invitations:[]})):{invitations:[]};const invitations=Array.isArray(invitationResult.invitations)?invitationResult.invitations:[];const langBtn=btn(LANG==='ar'?'English':'العربية',switchLanguage,'g');const items=[h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'تفضيلات اللغة':'Language preferences'}),h('p',{className:'mut',textContent:LANG==='ar'?'اختر لغة الواجهة. سيتم حفظ اختيارك في هذا المتصفح.':'Choose the interface language. Your choice is saved in this browser.'}),langBtn,h('p',{className:'mut',textContent:LANG==='ar'?'اتجاه الصفحة يتغير تلقائيا مع اللغة.':'Page direction follows the selected language.'}))];if(isAdmin)items.push(h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'مراجعة اقتراحات التصحيح':'Correction suggestions'}),h('p',{className:'mut',textContent:LANG==='ar'?'اقتراحات خاصة بهذا المكتب فقط، ولا تُستخدم للتدريب افتراضياً.':'Suggestions are private to this firm and are not used for training by default.'}),btn(LANG==='ar'?'فتح قائمة المراجعة':'Open review queue',correctionQueuePage,'g')));if(Array.isArray(ME.firms))items.push(mfaSettingsCard());if(ME.role==='admin')items.push(h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'الاشتراك والفوترة':'Subscription & billing'}),h('p',{className:'mut',textContent:LANG==='ar'?'اختر خطة المكتب، راجع المقاعد، وأرسل مرجع التحويل البنكي أو InstaPay.':'Choose a firm plan, review seats, and submit a bank transfer or InstaPay reference.'}),btn(LANG==='ar'?'فتح الفوترة':'Open billing',billingPage,'g')));if(Array.isArray(ME.platform_roles)&&ME.platform_roles.includes('platform_admin'))items.push(h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'مراجعة مدفوعات المنصة':'Platform payment review'}),btn(LANG==='ar'?'مراجعة التحويلات المعلقة':'Review pending transfers',platformBillingPage,'g')));
+async function settingsPage(){PAGE='settings';const reminderPrefs=await api('/reminder-preferences').catch(()=>null);const isAdmin=ME.role==='admin';const users=isAdmin?await api('/users').catch(()=>[]):[];const invitationResult=isAdmin?await api('/invitations').catch(()=>({invitations:[]})):{invitations:[]};const invitations=Array.isArray(invitationResult.invitations)?invitationResult.invitations:[];const langBtn=btn(LANG==='ar'?'English':'العربية',switchLanguage,'g');const items=[h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'تفضيلات اللغة':'Language preferences'}),h('p',{className:'mut',textContent:LANG==='ar'?'اختر لغة الواجهة. سيتم حفظ اختيارك في هذا المتصفح.':'Choose the interface language. Your choice is saved in this browser.'}),langBtn,h('p',{className:'mut',textContent:LANG==='ar'?'اتجاه الصفحة يتغير تلقائيا مع اللغة.':'Page direction follows the selected language.'}))];if(isAdmin)items.push(h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'مراجعة اقتراحات التصحيح':'Correction suggestions'}),h('p',{className:'mut',textContent:LANG==='ar'?'اقتراحات خاصة بهذا المكتب فقط، ولا تُستخدم للتدريب افتراضياً.':'Suggestions are private to this firm and are not used for training by default.'}),btn(LANG==='ar'?'فتح قائمة المراجعة':'Open review queue',correctionQueuePage,'g')));if(Array.isArray(ME.firms))items.push(mfaSettingsCard());if(ME.role==='admin')items.push(h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'الاشتراك والفوترة':'Subscription & billing'}),h('p',{className:'mut',textContent:LANG==='ar'?'اختر خطة المكتب، راجع المقاعد، وأرسل مرجع التحويل البنكي أو InstaPay.':'Choose a firm plan, review seats, and submit a bank transfer or InstaPay reference.'}),btn(LANG==='ar'?'فتح الفوترة':'Open billing',billingPage,'g')));if(Array.isArray(ME.platform_roles)&&ME.platform_roles.includes('platform_admin'))items.push(h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'مراجعة مدفوعات المنصة':'Platform payment review'}),btn(LANG==='ar'?'مراجعة التحويلات المعلقة':'Review pending transfers',platformBillingPage,'g')));if(Array.isArray(ME.platform_roles)&&ME.platform_roles.includes('platform_admin'))items.push(h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'مؤشرات استخدام المكاتب التجريبية':'Pilot firm usage metrics'}),h('p',{className:'mut',textContent:LANG==='ar'?'أعداد أسبوعية مجمعة للمكاتب، متاحة لمسؤول المنصة فقط.':'Weekly aggregate counts across firms, visible only to platform administrators.'}),btn(LANG==='ar'?'عرض مؤشرات الاستخدام':'View usage metrics',platformPilotMetricsPage,'g')));
 if(reminderPrefs){
  const reminderFields=[
   ['email_enabled','تفعيل تذكيرات البريد الإلكتروني','Enable email reminders'],
