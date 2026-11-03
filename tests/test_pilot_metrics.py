@@ -88,14 +88,16 @@ class PilotMetricsTests(unittest.TestCase):
         rows = platform_response.json()["metrics"]
         by_firm = {row["firm_id"]: row for row in rows}
         self.assertEqual(set(by_firm), {self.firm_a, self.firm_b})
-        self.assertEqual(by_firm[self.firm_a]["active_users"], 1)
+        self.assertEqual(by_firm[self.firm_a]["successful_sign_ins"], 1)
         self.assertEqual(by_firm[self.firm_a]["cases_created"], 1)
         self.assertEqual(by_firm[self.firm_a]["deadlines_created"], 1)
         self.assertEqual(by_firm[self.firm_a]["answers_requested"], 1)
         self.assertEqual(by_firm[self.firm_a]["invoices_issued"], 0)
         self.assertEqual(by_firm[self.firm_a]["corrections_submitted"], 0)
-        self.assertEqual(by_firm[self.firm_b]["active_users"], 1)
+        self.assertEqual(by_firm[self.firm_b]["successful_sign_ins"], 1)
         self.assertEqual(by_firm[self.firm_b]["invoices_issued"], 1)
+        self.assertEqual(platform_response.json()["weekly_active_users_definition"], "Not currently measured; successful sign-ins are event counts, not unique users.")
+        self.assertIn("not distinct people", platform_response.json()["successful_sign_ins_definition"])
         denied = self.clients["b"].get("/platform/pilot-metrics")
         self.assertEqual(denied.status_code, 403, denied.text)
 
