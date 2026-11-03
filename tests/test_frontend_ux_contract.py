@@ -8,6 +8,13 @@ HTML = Path("static/index.html").read_text(encoding="utf-8")
 
 class FrontendUXContractTests(unittest.TestCase):
 
+    def test_case_discovery_uses_server_search_and_bounded_pagination(self):
+        self.assertIn("/cases/search?", HTML)
+        self.assertIn("limit:String(limit)", HTML)
+        self.assertIn("offset:String(offset)", HTML)
+        self.assertIn("previous.disabled=offset===0", HTML)
+        self.assertIn("next.disabled=offset+limit>=total", HTML)
+
     def test_matter_csv_import_is_admin_only_and_bounded(self):
         self.assertIn("/cases/import.csv", HTML)
         self.assertIn("ME.role==='admin'", HTML)
