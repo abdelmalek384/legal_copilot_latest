@@ -831,7 +831,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             self.page.locator(".tabs a").filter(has_text="المواعيد القانونية").click()
             deadline_title = self.page.get_by_placeholder("نوع الموعد (استئناف، طعن، تقديم مستند...)")
             deadline_title.fill(f"موعد تجريبي {width}")
-            deadline_date = self.page.locator('input[type="date"]').nth(0)
+            deadline_date = self.page.locator('input[type="date"]').nth(1)  # first date belongs to the draft calculator
             deadline_date.fill("2026-12-10")
             self.assertEqual(deadline_title.input_value(), f"موعد تجريبي {width}")
             self.assertEqual(deadline_date.input_value(), "2026-12-10")
