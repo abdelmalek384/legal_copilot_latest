@@ -2648,7 +2648,9 @@ def user(request: Request, response: Response,
          csrf_header: str = Header(None, alias="X-CSRF-Token"),
          firm_cookie: str = Cookie(None, alias="lc_firm")):
     if _separate_runtime_enabled():
-        return _user_separate(request, response, session_cookie, csrf_cookie, csrf_header, firm_cookie)
+        authenticated = _user_separate(request, response, session_cookie, csrf_cookie, csrf_header, firm_cookie)
+        _meter_pilot_metric(authenticated, "active_user")
+        return authenticated
     tok = session_cookie or ""
     if not tok:
         raise HTTPException(401, "unauthorized")
@@ -2790,7 +2792,7 @@ def _meter_firm_usage(u: dict, event_type: str, units: int = 1):
 
 
 _PILOT_METRIC_TYPES = frozenset({
-    "case_created", "deadline_created", "answer_requested",
+    "active_user", "case_created", "deadline_created", "answer_requested",
     "invoice_issued", "correction_submitted",
 })
 
@@ -2802,11 +2804,18 @@ def _record_pilot_metric(control, firm_id: int, user_id: int, metric: str, now: 
     occurred_at = int(time.time()) if now is None else int(now)
     day = datetime.fromtimestamp(occurred_at, timezone.utc).date()
     week_start = (day - timedelta(days=day.weekday())).isoformat()
-    control.execute(
-        "INSERT INTO pilot_metrics_events(firm_id,user_id,metric,week_start,occurred_at) "
-        "VALUES(?,?,?,?,?)",
-        (int(firm_id), int(user_id), metric, week_start, occurred_at),
-    )
+    if metric == "active_user":
+        control.execute(
+            "INSERT OR IGNORE INTO pilot_metrics_events(firm_id,user_id,metric,week_start,occurred_at) "
+            "VALUES(?,?,?,?,?)",
+            (int(firm_id), int(user_id), metric, week_start, occurred_at),
+        )
+    else:
+        control.execute(
+            "INSERT INTO pilot_metrics_events(firm_id,user_id,metric,week_start,occurred_at) "
+            "VALUES(?,?,?,?,?)",
+            (int(firm_id), int(user_id), metric, week_start, occurred_at),
+        )
     control.commit()
 
 
@@ -2828,7 +2837,7 @@ def _pilot_metrics_rows(control, weeks: int = 12, now: int | None = None):
     rows = control.execute(
         """
         SELECT e.firm_id, f.name AS firm_name, e.week_start,
-               COUNT(DISTINCT e.user_id) AS active_users,
+               COUNT(DISTINCT CASE WHEN e.metric='active_user' THEN e.user_id END) AS active_users,
                SUM(CASE WHEN e.metric='case_created' THEN 1 ELSE 0 END) AS cases_created,
                SUM(CASE WHEN e.metric='deadline_created' THEN 1 ELSE 0 END) AS deadlines_created,
                SUM(CASE WHEN e.metric='answer_requested' THEN 1 ELSE 0 END) AS answers_requested,
