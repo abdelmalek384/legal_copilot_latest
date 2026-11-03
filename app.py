@@ -31,6 +31,7 @@ from tenant_context import FirmContext, FirmContextError
 from tools.database_release_acceptance import load_acceptance_manifest, original_storage_config_fingerprint
 from fastapi import Request, Query
 from fastapi.exceptions import RequestValidationError
+from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse, HTMLResponse, Response
 
 logger = logging.getLogger(__name__)
@@ -2277,6 +2278,27 @@ async def security_headers(request: Request, call_next):
     if _secure_cookie_transport(request):
         response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
     return response
+
+@app.exception_handler(RequestValidationError)
+async def request_validation_handler(request: Request, exc: RequestValidationError):
+    """Return a clean 422 without reflecting submitted values or unsafe JSON numbers."""
+    safe_errors = []
+    for error in exc.errors():
+        location = [
+            part if isinstance(part, (str, int)) and not isinstance(part, bool) else str(part)
+            for part in error.get("loc", ())
+        ]
+        message = str(error.get("msg", "Invalid value"))
+        submitted = error.get("input")
+        if submitted is not None and str(submitted) and str(submitted) in message:
+            message = "Invalid value"
+        safe_errors.append({
+            "type": str(error.get("type", "")),
+            "loc": location,
+            "msg": message,
+        })
+    return JSONResponse(status_code=422, content={"detail": safe_errors})
+
 
 @app.exception_handler(RequestValidationError)
 async def request_validation_handler(request: Request, exc: RequestValidationError):
