@@ -112,6 +112,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_manage_tenancy_commands.py
       - name: Test fictional demo firm seed and removal
         run: PYTHONPATH=. python tests/test_demo_firm_cli.py
+      - name: Test firm-admin ZIP data export isolation and audit
+        run: PYTHONPATH=. python tests/test_firm_data_export.py
       - name: Test first-run setup and health API
         run: PYTHONPATH=. python tests/test_first_run_wizard_api.py
       - name: Test tenant ownership and orphan preflight
