@@ -111,6 +111,10 @@ Keep application writes paused for the full backup snapshot window. Verify a bun
 
 The first firm owner is created with `init-tenancy` during fresh setup. Platform roles are distinct from firm roles. Use the reviewed account-lifecycle and privileged-role procedures; do not treat a firm administrator as a platform administrator, and do not use an ad-hoc SQL edit to recover an account. See the current CLI help (`python manage.py --help`) and production checklist before operator actions.
 
+### Synthetic demo firms
+
+Create and remove clearly marked fictional demo tenants with the guarded `demo-firm` CLI. Demo tenants are excluded from firm exports and pilot usage aggregates. Removal refuses to delete a tenant database while original-file objects remain; see the [demo firm lifecycle and removal safeguards](docs/demo_firm_lifecycle.md).
+
 ## Loading law data
 
 There is no general Official Gazette downloader in this repository. The PDF importer processes files that you have already acquired and have a lawful basis to store and process; public visibility alone does not establish reuse permission. Prepare matching PDF/JSON sidecar pairs, install the optional dependencies from requirements-ocr.txt, and follow the [legal PDF import and provenance runbook](docs/legal_pdf_import_runbook.md).
