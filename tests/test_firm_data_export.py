@@ -155,6 +155,27 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         )
         self.assertEqual(same_firm_non_admin.status_code, 403)
 
+    def test_demo_firm_export_is_not_available(self):
+        demo_firm, _ = self.runtime.provision_firm("Demo Export Firm")
+        control = self.runtime.control_connection()
+        control.execute("UPDATE firms SET is_demo=1 WHERE id=?", (demo_firm,))
+        control.commit()
+        self.runtime.create_initial_firm_owner(
+            demo_firm, "Demo Export Owner", "demo-export-owner@example.test",
+            app.hash_pw(self.password),
+        )
+        demo_client = TestClient(app.app)
+        try:
+            login = demo_client.post(
+                "/login",
+                json={"email": "demo-export-owner@example.test", "password": self.password},
+            )
+            self.assertEqual(login.status_code, 200, login.text)
+            response = demo_client.get(f"/firm/data-export.zip?firm_id={demo_firm}")
+            self.assertEqual(response.status_code, 404)
+        finally:
+            demo_client.close()
+
     def test_export_is_rate_limited(self):
         url = f"/firm/data-export.zip?firm_id={self.firm_a}"
         for _ in range(3):
