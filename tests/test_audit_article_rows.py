@@ -58,6 +58,13 @@ class AuditArticleRowsTests(unittest.TestCase):
         refs = audit(rows)["cross_references"]
         self.assertEqual([r["ref"] for r in refs["beyond_highest_article_in_file"]], ["99"])
 
+    def test_cross_reference_bounds_are_scoped_to_each_law(self):
+        short_law = make_rows(25, law="Short law")
+        short_law[0]["text"] = "تسري أحكام المادة (99) على هذه الحالة ."
+        long_law = make_rows(100, law="Long law")
+        refs = audit(short_law + long_law)["cross_references"]["beyond_highest_article_in_file"]
+        self.assertIn({"row": "Short law / 1", "ref": "99"}, refs)
+
     def test_orthography_outliers_are_listed(self):
         rows = make_rows(40)
         rows[7]["text"] = "ويحظر في جميع الأحوال ذلك ."
