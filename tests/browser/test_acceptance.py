@@ -115,6 +115,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         reviewer_id = cls.runtime.create_global_identity(
             "Synthetic Platform Reviewer", "reviewer@example.test", app_module.hash_pw(password)
         )
+        os.environ["LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS"] = str(reviewer_id)
         cls.runtime.create_firm_membership(reviewer_id, firm_a, "lawyer")
         control = cls.runtime.control_connection()
         control.execute(
