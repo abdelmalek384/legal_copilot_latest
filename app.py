@@ -2087,6 +2087,10 @@ if _allowed_hosts:
 # Per-process fixed-window limits for expensive or abuse-prone endpoints.
 # Deliberately use the direct peer address; do not trust arbitrary X-Forwarded-For.
 _RATE_LIMITS = {
+    "/setup/test-reminder": (3, 3600),
+    "/firm/profile": (20, 60),
+    "/setup/first-run": (30, 60),
+    "/setup/health": (30, 60),
     # Platform pilot reporting is bounded separately from normal firm workflows.
     "/platform/pilot-metrics": (30, 60),
     "/platform/pilot-metrics/export.csv": (10, 60),
@@ -2414,6 +2418,33 @@ class DeadlineHolidayEntry(BaseModel):
 
 class DeadlineHolidayUpdate(BaseModel):
     holidays: list[DeadlineHolidayEntry] = Field(max_length=250)
+
+class FirmProfileIn(BaseModel):
+    name: str = Field(min_length=2, max_length=120)
+    phone: str = Field(min_length=7, max_length=30)
+    address: str = Field("", max_length=300)
+
+    @field_validator("name")
+    @classmethod
+    def validate_firm_name(cls, value):
+        value = value.strip()
+        if len(value) < 2:
+            raise ValueError("firm name must contain at least two non-space characters")
+        return value
+
+    @field_validator("phone")
+    @classmethod
+    def validate_firm_phone(cls, value):
+        value = value.strip()
+        if len(re.sub(r"\D", "", value)) < 7:
+            raise ValueError("phone must contain at least seven digits")
+        return value
+
+    @field_validator("address")
+    @classmethod
+    def clean_firm_address(cls, value):
+        return value.strip()
+
 
 class ReminderPreferencesIn(BaseModel):
     email_enabled: bool = True
@@ -2837,6 +2868,105 @@ def _meter_pilot_metric(u: dict, metric: str):
 def _firm_is_demo(firm_id: int) -> bool:
     row = control_conn().execute("SELECT is_demo FROM firms WHERE id=?", (int(firm_id),)).fetchone()
     return bool(row and row["is_demo"])
+
+
+def _setup_health_report():
+    from tools.reminder_email import SMTPConfig, ReminderEmailError
+
+    env = os.environ
+    identity_host = env.get("COPILOT_EMAIL_SMTP_HOST", "").strip()
+    identity_sender = env.get("COPILOT_EMAIL_FROM", "").strip()
+    identity_security = env.get("COPILOT_EMAIL_SMTP_SECURITY", "starttls").strip().lower()
+    identity_username = env.get("COPILOT_EMAIL_SMTP_USERNAME", "").strip()
+    identity_password = env.get("COPILOT_EMAIL_SMTP_PASSWORD", "")
+    try:
+        identity_port = int(env.get("COPILOT_EMAIL_SMTP_PORT", "587"))
+    except (TypeError, ValueError):
+        identity_port = 0
+    identity_smtp_ok = bool(
+        identity_host and re.fullmatch(r"[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+", identity_sender)
+        and 1 <= identity_port <= 65535
+        and identity_security in {"starttls", "ssl", "plain"}
+        and bool(identity_username) == bool(identity_password)
+        and not (env.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"} and identity_security == "plain")
+    )
+    try:
+        SMTPConfig.from_env()
+        reminder_smtp_ok = True
+    except (ReminderEmailError, TypeError, ValueError):
+        reminder_smtp_ok = False
+    origin = env.get("COPILOT_PUBLIC_ORIGIN", "").strip()
+    try:
+        parsed = urlsplit(origin)
+        public_origin_ok = bool(
+            parsed.scheme == "https" and parsed.netloc and not parsed.username and not parsed.password
+            and parsed.path in {"", "/"} and not parsed.query and not parsed.fragment
+        )
+    except ValueError:
+        public_origin_ok = False
+    mfa_key = env.get("MFA_ENCRYPTION_KEY", "").strip()
+    try:
+        Fernet(mfa_key.encode("ascii"))
+        mfa_key_ok = bool(mfa_key and mfa_key != env.get("BACKUP_KEY", "").strip())
+    except (ValueError, TypeError, UnicodeError):
+        mfa_key_ok = False
+    checks = [
+        {
+            "id": "identity_smtp", "ok": identity_smtp_ok,
+            "title_ar": "بريد الدعوات واستعادة الحساب",
+            "title_en": "Invitation and recovery email",
+            "message_ar": "إعداد البريد مكتمل مبدئياً؛ يلزم اختبار التسليم الفعلي." if identity_smtp_ok else
+                "خادم بريد الدعوات غير مكتمل. اضبط COPILOT_EMAIL_SMTP_HOST وCOPILOT_EMAIL_FROM والمنفذ ونوع التشفير، وأدخل اسم المستخدم وكلمة المرور معاً إن كان الخادم يتطلبهما.",
+            "message_en": "Identity email configuration is present; live delivery still needs testing." if identity_smtp_ok else
+                "Identity email is incomplete. Configure COPILOT_EMAIL_SMTP_HOST, COPILOT_EMAIL_FROM, port and transport security; configure username and password together if required.",
+        },
+        {
+            "id": "reminder_smtp", "ok": reminder_smtp_ok,
+            "title_ar": "خادم تذكيرات البريد الإلكتروني",
+            "title_en": "Reminder email SMTP",
+            "message_ar": "إعداد SMTP للتذكيرات مكتمل مبدئياً." if reminder_smtp_ok else
+                "إعداد تذكيرات البريد ناقص. اضبط REMINDER_SMTP_HOST وREMINDER_SMTP_SENDER وREMINDER_SMTP_USERNAME وREMINDER_SMTP_PASSWORD، وتحقق من المنفذ ونوع التشفير.",
+            "message_en": "Reminder SMTP configuration is present." if reminder_smtp_ok else
+                "Reminder email is incomplete. Configure REMINDER_SMTP_HOST, REMINDER_SMTP_SENDER, REMINDER_SMTP_USERNAME and REMINDER_SMTP_PASSWORD, and verify port and transport security.",
+        },
+        {
+            "id": "public_origin", "ok": public_origin_ok,
+            "title_ar": "الرابط العام الآمن",
+            "title_en": "Public HTTPS URL",
+            "message_ar": "الرابط العام مضبوط بصيغة HTTPS." if public_origin_ok else
+                "الرابط العام غير مضبوط. اضبط COPILOT_PUBLIC_ORIGIN كرابط HTTPS أساسي فقط، دون مسار أو بيانات دخول أو معاملات.",
+            "message_en": "The public origin is a valid HTTPS origin." if public_origin_ok else
+                "The public URL is missing or invalid. Set COPILOT_PUBLIC_ORIGIN to the HTTPS origin only, without a path, credentials or query parameters.",
+        },
+        {
+            "id": "mfa_key", "ok": mfa_key_ok,
+            "title_ar": "مفتاح تشفير المصادقة الثنائية",
+            "title_en": "MFA encryption key",
+            "message_ar": "مفتاح تشفير MFA صالح ومخصص." if mfa_key_ok else
+                "مفتاح MFA غير مضبوط أو غير صالح. أنشئ مفتاح Fernet مخصصاً واضبط MFA_ENCRYPTION_KEY؛ لا تستخدم BACKUP_KEY ولا ترسل المفتاح لأي شخص.",
+            "message_en": "A dedicated MFA encryption key is configured." if mfa_key_ok else
+                "MFA_ENCRYPTION_KEY is missing or invalid. Generate a dedicated Fernet key; do not reuse BACKUP_KEY or share the secret.",
+        },
+    ]
+    return {
+        "checks": checks,
+        "ready_for_test_reminder": reminder_smtp_ok and public_origin_ok,
+        "all_configured": all(item["ok"] for item in checks),
+    }
+
+
+def _firm_profile_payload(control, firm_id: int):
+    firm = control.execute("SELECT id,name FROM firms WHERE id=? AND status='active'", (firm_id,)).fetchone()
+    if firm is None:
+        raise HTTPException(404, "firm not found")
+    profile = control.execute(
+        "SELECT phone,address FROM firm_profiles WHERE firm_id=?", (firm_id,)
+    ).fetchone()
+    return {
+        "firm_id": int(firm["id"]), "name": str(firm["name"]),
+        "phone": str(profile["phone"] if profile else ""),
+        "address": str(profile["address"] if profile else ""),
+    }
 
 
 def _pilot_metrics_rows(control, weeks: int = 12, now: int | None = None):
@@ -3518,6 +3648,139 @@ def switch_firm(b: FirmSwitchIn, request: Request, response: Response, u: dict =
         {"id": u["id"], "role": context.role, "email": u.get("email")}
     )
     return switched_user
+
+
+@app.get("/firm/profile")
+def get_firm_profile(u: dict = Depends(user)):
+    require_admin(u)
+    return _firm_profile_payload(control_conn(), u["firm_id"])
+
+
+@app.put("/firm/profile")
+def update_firm_profile(b: FirmProfileIn, u: dict = Depends(user)):
+    require_admin(u)
+    control = control_conn()
+    control.execute("BEGIN IMMEDIATE")
+    try:
+        updated = control.execute(
+            "UPDATE firms SET name=? WHERE id=? AND status='active'",
+            (b.name, u["firm_id"]),
+        )
+        if updated.rowcount != 1:
+            raise HTTPException(404, "firm not found")
+        control.execute(
+            "INSERT INTO firm_profiles(firm_id,phone,address,updated_by_user_id) VALUES(?,?,?,?) "
+            "ON CONFLICT(firm_id) DO UPDATE SET phone=excluded.phone,address=excluded.address,"
+            "updated_by_user_id=excluded.updated_by_user_id,updated_at=datetime('now')",
+            (u["firm_id"], b.phone, b.address, u["id"]),
+        )
+        control.commit()
+    except Exception:
+        control.rollback()
+        raise
+    return _firm_profile_payload(control, u["firm_id"])
+
+
+@app.get("/setup/health")
+def setup_health(u: dict = Depends(user)):
+    require_admin(u)
+    return _setup_health_report()
+
+
+@app.get("/setup/first-run")
+def setup_first_run(u: dict = Depends(user)):
+    require_admin(u)
+    control = control_conn()
+    profile = _firm_profile_payload(control, u["firm_id"])
+    invitation_count = int(control.execute(
+        "SELECT COUNT(*) FROM identity_invitations WHERE firm_id=? AND status IN ('pending','sent','consumed')",
+        (u["firm_id"],),
+    ).fetchone()[0])
+    member_count = int(control.execute(
+        "SELECT COUNT(*) FROM firm_memberships WHERE firm_id=? AND status='active'",
+        (u["firm_id"],),
+    ).fetchone()[0])
+    tenant = conn()
+    first_case = tenant.execute(
+        "SELECT id FROM cases WHERE firm_id=? ORDER BY id LIMIT 1", (u["firm_id"],)
+    ).fetchone()
+    deadline_count = int(tenant.execute(
+        "SELECT COUNT(*) FROM deadlines d JOIN cases c ON c.id=d.case_id WHERE c.firm_id=?",
+        (u["firm_id"],),
+    ).fetchone()[0])
+    reminder_sent = control.execute(
+        "SELECT 1 FROM firm_setup_events WHERE firm_id=? AND event_type='test_reminder_accepted' LIMIT 1",
+        (u["firm_id"],),
+    ).fetchone() is not None
+    checklist = [
+        {"id": "firm_details", "title_ar": "أكمل بيانات المكتب", "title_en": "Complete firm details",
+         "done": bool(profile["name"] and profile["phone"])},
+        {"id": "invite_colleague", "title_ar": "ادعُ زميلاً إلى المكتب", "title_en": "Invite a colleague",
+         "done": invitation_count > 0 or member_count > 1},
+        {"id": "mfa", "title_ar": "فعّل المصادقة الثنائية", "title_en": "Enable multi-factor authentication",
+         "done": _mfa_is_enabled(int(u["id"]), control)},
+        {"id": "first_case", "title_ar": "أنشئ أول قضية", "title_en": "Create the first case",
+         "done": first_case is not None},
+        {"id": "first_deadline", "title_ar": "أضف أول موعد", "title_en": "Create the first deadline",
+         "done": deadline_count > 0},
+        {"id": "test_reminder", "title_ar": "أرسل تذكيراً تجريبياً", "title_en": "Send a test reminder",
+         "done": reminder_sent},
+    ]
+    return {
+        "firm_id": u["firm_id"], "is_demo": _firm_is_demo(u["firm_id"]),
+        "completed": sum(1 for item in checklist if item["done"]),
+        "total": len(checklist), "checklist": checklist,
+        "firm_profile": profile,
+        "first_case_id": int(first_case["id"]) if first_case else None,
+        "health": _setup_health_report(),
+    }
+
+
+@app.post("/setup/test-reminder")
+def send_setup_test_reminder(u: dict = Depends(user)):
+    require_admin(u)
+    health = _setup_health_report()
+    if not health["ready_for_test_reminder"]:
+        return {
+            "status": "blocked",
+            "message_ar": "لا يمكن إرسال التذكير التجريبي قبل استكمال إعداد SMTP ورابط HTTPS العام. راجع فحص صحة الإعداد.",
+            "message_en": "The test reminder is blocked until reminder SMTP and the public HTTPS URL are configured.",
+            "health": health,
+        }
+    from tools.reminder_email import SMTPConfig, send_reminder_email
+    try:
+        config = SMTPConfig.from_env()
+    except Exception:
+        return {
+            "status": "blocked",
+            "message_ar": "تعذر قراءة إعدادات SMTP للتذكيرات. راجع إعدادات الخادم ثم أعد المحاولة.",
+            "message_en": "Reminder SMTP settings could not be loaded. Check server configuration and retry.",
+        }
+    result = send_reminder_email(
+        {"event_type": "task", "due_date": date.today().isoformat(), "window": "due_today", "lead_days": 0},
+        str(u.get("email") or ""), os.environ["COPILOT_PUBLIC_ORIGIN"].strip(),
+        config, enabled=True, max_attempts=1,
+    )
+    if result.get("status") == "accepted_by_smtp":
+        control = control_conn()
+        control.execute(
+            "INSERT INTO firm_setup_events(firm_id,actor_user_id,event_type,provider_status) "
+            "VALUES(?,?,'test_reminder_accepted','accepted_by_smtp')",
+            (u["firm_id"], u["id"]),
+        )
+        control.commit()
+        return {
+            "status": "accepted_by_smtp",
+            "message_ar": "قبل خادم SMTP الرسالة التجريبية. هذا لا يؤكد وصولها إلى صندوق الوارد.",
+            "message_en": "The SMTP server accepted the test message. This does not confirm inbox delivery.",
+            "warning": result.get("warning"),
+        }
+    return {
+        "status": result.get("status", "failed"),
+        "message_ar": "لم يؤكد خادم البريد قبول الرسالة. إذا كانت النتيجة غير مؤكدة فلا تعاود الإرسال قبل مراجعة مزود البريد.",
+        "message_en": "The mail server did not confirm acceptance. If the outcome is ambiguous, reconcile with the provider before retrying.",
+        "error_code": result.get("error_code"),
+    }
 
 
 @app.post("/logout")

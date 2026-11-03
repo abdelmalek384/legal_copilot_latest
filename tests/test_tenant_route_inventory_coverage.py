@@ -26,6 +26,11 @@ TEST_COVERED_ROUTES = {
     "POST /platform/billing/payment-submissions/{submission_id}/reject": "tests/test_subscription_billing_routes.py",
     "GET /platform/pilot-metrics": "tests/test_pilot_metrics.py",
     "GET /platform/pilot-metrics/export.csv": "tests/test_pilot_metrics.py",
+    "GET /firm/profile": "tests/test_first_run_wizard_api.py",
+    "PUT /firm/profile": "tests/test_first_run_wizard_api.py",
+    "GET /setup/health": "tests/test_first_run_wizard_api.py",
+    "GET /setup/first-run": "tests/test_first_run_wizard_api.py",
+    "POST /setup/test-reminder": "tests/test_first_run_wizard_api.py",
 }
 
 
