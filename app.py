@@ -2825,9 +2825,18 @@ def _record_pilot_metric(control, firm_id: int, user_id: int, metric: str, now: 
 def _meter_pilot_metric(u: dict, metric: str):
     """Metrics are best-effort and must never break a successful firm workflow."""
     try:
-        _record_pilot_metric(control_conn(), u["firm_id"], u["id"], metric)
+        control = control_conn()
+        firm = control.execute("SELECT is_demo FROM firms WHERE id=?", (u["firm_id"],)).fetchone()
+        if firm is not None and bool(firm["is_demo"]):
+            return
+        _record_pilot_metric(control, u["firm_id"], u["id"], metric)
     except Exception:
         logger.exception("pilot metric could not be recorded")
+
+
+def _firm_is_demo(firm_id: int) -> bool:
+    row = control_conn().execute("SELECT is_demo FROM firms WHERE id=?", (int(firm_id),)).fetchone()
+    return bool(row and row["is_demo"])
 
 
 def _pilot_metrics_rows(control, weeks: int = 12, now: int | None = None):
@@ -3483,6 +3492,7 @@ def current_session(u: dict = Depends(user)):
     if _separate_runtime_enabled():
         result["firms"] = _active_firms_for_user(u["id"])
         result["platform_roles"] = _platform_roles_for_user(u["id"])
+        result["is_demo"] = _firm_is_demo(u["firm_id"])
         for field in ("mfa_enabled", "mfa_required", "mfa_policy_required", "mfa_verified", "mfa_verified_at",
                       "mfa_enrollment_required", "mfa_verification_required"):
             result[field] = u.get(field, False if field != "mfa_verified_at" else 0)
@@ -3502,7 +3512,8 @@ def switch_firm(b: FirmSwitchIn, request: Request, response: Response, u: dict =
                         samesite="lax", path="/")
     switched_user = {"id": u["id"], "name": u["name"], "role": context.role,
                      "firm_id": context.firm_id, "firms": _active_firms_for_user(u["id"]),
-                     "platform_roles": _platform_roles_for_user(u["id"])}
+                     "platform_roles": _platform_roles_for_user(u["id"]),
+                     "is_demo": _firm_is_demo(context.firm_id)}
     switched_user["can_review_legal"] = _user_can_review_legal(
         {"id": u["id"], "role": context.role, "email": u.get("email")}
     )

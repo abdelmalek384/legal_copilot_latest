@@ -6,7 +6,7 @@ import os
 import re
 import sqlite3
 import time
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 from cryptography.fernet import Fernet
@@ -262,6 +262,169 @@ def disable_firm_cli(a):
         raise SystemExit("Firm disable failed: " + str(exc)) from exc
     finally:
         runtime.close_current_thread()
+
+
+DEMO_CASES = (
+    ("نزاع توريد معدات — ملف تجريبي 01", "شركة النخيل الافتراضية", "تجاري"),
+    ("مطالبة بمستحقات — ملف تجريبي 02", "مؤسسة الأفق التجريبية", "مدني"),
+    ("نزاع عقد خدمات — ملف تجريبي 03", "شركة المدار الوهمية", "تجاري"),
+    ("تعويض عن إخلال تعاقدي — ملف تجريبي 04", "مركز الرواد الافتراضي", "مدني"),
+    ("نزاع إيجار — ملف تجريبي 05", "شركة الجسر التجريبية", "إيجارات"),
+    ("مطالبة مالية — ملف تجريبي 06", "مؤسسة السحاب الافتراضية", "مدني"),
+    ("نزاع شراكة — ملف تجريبي 07", "شركة البوصلة الوهمية", "تجاري"),
+    ("مراجعة عقد — ملف تجريبي 08", "مجموعة الندى الافتراضية", "عقود"),
+    ("تعويض تجاري — ملف تجريبي 09", "شركة المسار التجريبية", "تجاري"),
+    ("نزاع تنفيذ — ملف تجريبي 10", "مؤسسة المدى الوهمية", "تنفيذ"),
+)
+
+
+def demo_firm_cli(a):
+    """Create or remove a clearly marked fictional demo firm."""
+    _require_profile_separated_runtime("demo-firm")
+    runtime = DatabaseRuntime.from_env()
+    previous_runtime = app._database_runtime
+    try:
+        runtime.initialize()
+        app._database_runtime = runtime
+        control = runtime.control_connection()
+        if a.demo_action == "create":
+            password = read_password("كلمة مرور مدير المكتب التجريبي: ")
+            firm_name = a.firm_name.strip()
+            owner_name = a.owner_name.strip()
+            owner_email = a.owner_email.strip()
+            normalized_email = app.normalize_email(owner_email)
+            if not firm_name or not owner_name or not normalized_email:
+                raise SystemExit("Demo firm name, owner name, and owner email are required.")
+            if control.execute(
+                "SELECT 1 FROM users WHERE email_normalized=?", (normalized_email,)
+            ).fetchone():
+                raise SystemExit("That email already belongs to a global identity; choose a new demo-owner email.")
+            firm_id, database_path = runtime.provision_firm(firm_name)
+            control.execute("UPDATE firms SET is_demo=1 WHERE id=?", (firm_id,))
+            control.commit()
+            user_id = runtime.create_initial_firm_owner(
+                firm_id, a.owner_name, a.owner_email, app.hash_pw(password)
+            )
+            context = runtime.resolve_context(user_id, firm_id)
+            context_token = app._active_firm_context.set(context)
+            try:
+                tenant = app.conn()
+                case_ids = []
+                today = date.today()
+                for index, (title, client, stage) in enumerate(DEMO_CASES, start=1):
+                    cursor = tenant.execute(
+                        "INSERT INTO cases(title,client,stage,status,created_by,firm_id,case_number,case_year,court,circuit,opposing_party) "
+                        "VALUES(?,?,?,'open',?,?,?,?,?,?,?)",
+                        (title, client, stage, user_id, firm_id, f"DEMO-{index:02d}",
+                         today.year, "محكمة افتراضية", "دائرة تجريبية",
+                         "طرف افتراضي — بيانات تجريبية"),
+                    )
+                    case_id = int(cursor.lastrowid)
+                    case_ids.append(case_id)
+                    due = (today + timedelta(days=2 + index * 3)).isoformat()
+                    tenant.execute(
+                        "INSERT INTO deadlines(case_id,title,due,note,created_by,status) "
+                        "VALUES(?,?,?,?,?,'open')",
+                        (case_id, "موعد تجريبي — غير صالح للاعتماد القانوني", due,
+                         "بيانات تدريبية خيالية فقط؛ يجب الرجوع إلى محامٍ ومصدر رسمي لأي ميعاد حقيقي.", user_id),
+                    )
+                    tenant.execute(
+                        "INSERT INTO fees(case_id,title,amount,paid,due,note,created_by) "
+                        "VALUES(?,?,?,?,?,?,?)",
+                        (case_id, "أتعاب تجريبية", 2500 + index * 250, 500,
+                         (today + timedelta(days=15 + index)).isoformat(),
+                         "مبلغ افتراضي لعرض واجهة التحصيل فقط.", user_id),
+                    )
+                tenant.commit()
+                owner = {"id": user_id, "name": a.owner_name, "email": a.owner_email,
+                         "firm_id": firm_id, "role": "admin"}
+                draft = app.InvoiceDraftIn(
+                    description="فاتورة تجريبية — غير صالحة للتحصيل أو الاستخدام الضريبي",
+                    due_date=(today + timedelta(days=30)).isoformat(),
+                    lines=[app.InvoiceLineIn(
+                        description="أتعاب استشارية افتراضية — DEMO ONLY",
+                        quantity_milli=1000, unit_price_piasters=125000,
+                    )],
+                )
+                invoice = app.create_invoice(case_ids[0], draft, owner)
+                issued = app.issue_invoice(int(invoice["id"]), owner)
+            finally:
+                app._active_firm_context.reset(context_token)
+            print(json.dumps({
+                "status": "created", "demo": True, "firm_id": firm_id,
+                "firm_name": firm_name, "owner_email": a.owner_email,
+                "database_file": database_path.name, "cases": len(case_ids),
+                "deadlines": len(case_ids), "fees": len(case_ids),
+                "issued_invoices": 1, "invoice_number": issued.get("invoice_number"),
+            }, ensure_ascii=False, sort_keys=True))
+            return
+
+        if a.demo_action == "remove":
+            if not a.confirm_remove:
+                raise SystemExit("Refusing demo removal without --confirm-remove.")
+            firm = control.execute(
+                "SELECT is_demo,status FROM firms WHERE id=?", (a.firm_id,)
+            ).fetchone()
+            catalog = control.execute(
+                "SELECT database_file,status FROM tenant_database_catalog WHERE firm_id=?",
+                (a.firm_id,),
+            ).fetchone()
+            if firm is None or not bool(firm["is_demo"]):
+                raise SystemExit("Refusing removal: the requested firm is not marked as demo.")
+            if catalog is None or not catalog["database_file"]:
+                raise SystemExit("Demo firm has no removable tenant database file.")
+            filename = catalog["database_file"]
+            if Path(filename).name != filename or filename in {"", ".", ".."}:
+                raise SystemExit("Refusing removal: tenant database catalog path is not a safe filename.")
+            root = runtime.paths.tenant_root.resolve(strict=True)
+            target = root / filename
+            if target.is_symlink() or not target.is_file() or target.resolve(strict=True).parent != root:
+                raise SystemExit("Refusing removal: demo database file is missing or outside the tenant root.")
+            sidecars = [Path(str(target) + suffix) for suffix in ("-wal", "-shm", "-journal")]
+            for sidecar in sidecars:
+                if sidecar.is_symlink() or (sidecar.exists() and not sidecar.is_file()):
+                    raise SystemExit("Refusing removal: unsafe SQLite sidecar detected.")
+            runtime.disable_firm(a.firm_id)
+            control.execute("BEGIN IMMEDIATE")
+            control.execute(
+                "UPDATE firm_memberships SET status='revoked',updated_at=datetime('now') WHERE firm_id=?",
+                (a.firm_id,),
+            )
+            control.execute(
+                "DELETE FROM auth_sessions WHERE user_id IN ("
+                "SELECT fm.user_id FROM firm_memberships fm WHERE fm.firm_id=? "
+                "AND NOT EXISTS (SELECT 1 FROM firm_memberships other "
+                "JOIN firms active_firm ON active_firm.id=other.firm_id "
+                "WHERE other.user_id=fm.user_id AND other.status='active' AND active_firm.status='active'))",
+                (a.firm_id,),
+            )
+            control.commit()
+            runtime.close_current_thread()
+            target.unlink()
+            for sidecar in sidecars:
+                if sidecar.exists():
+                    sidecar.unlink()
+            control = runtime.control_connection()
+            control.execute(
+                "UPDATE tenant_database_catalog SET database_file=NULL,status='disabled',updated_at=datetime('now') "
+                "WHERE firm_id=?",
+                (a.firm_id,),
+            )
+            control.commit()
+            print(json.dumps({
+                "status": "removed", "demo": True, "firm_id": a.firm_id,
+                "database_deleted": True, "memberships_revoked": True,
+            }, ensure_ascii=False, sort_keys=True))
+            return
+        raise SystemExit("Unknown demo-firm action.")
+    except (DatabaseRuntimeError, ValueError, OSError, sqlite3.Error) as exc:
+        raise SystemExit("Demo firm operation failed: " + str(exc)) from exc
+    finally:
+        try:
+            runtime.close_current_thread()
+        except Exception:
+            pass
+        app._database_runtime = previous_runtime
 
 
 def addmembership_cli(a):
@@ -1045,6 +1208,17 @@ sp = p.add_subparsers(dest="cmd", required=True)
 x = sp.add_parser("adduser"); x.add_argument("name"); x.add_argument("email"); x.add_argument("role", choices=["admin", "lawyer", "junior"]); x.add_argument("--firm-id", type=int); x.set_defaults(f=adduser)
 x = sp.add_parser("init-tenancy"); x.add_argument("--firm-name", required=True); x.add_argument("--owner-name", required=True); x.add_argument("--owner-email", required=True); x.set_defaults(f=init_tenancy)
 x = sp.add_parser("provision-firm"); x.add_argument("name"); x.set_defaults(f=provision_firm_cli)
+x = sp.add_parser("demo-firm", help="Create or remove a clearly marked fictional demo firm")
+demo_sp = x.add_subparsers(dest="demo_action", required=True)
+demo_create = demo_sp.add_parser("create", help="Create a demo firm with fictional Arabic sample records")
+demo_create.add_argument("--firm-name", default="مكتب تجريبي — Legal Copilot")
+demo_create.add_argument("--owner-name", required=True)
+demo_create.add_argument("--owner-email", required=True)
+demo_create.set_defaults(f=demo_firm_cli)
+demo_remove = demo_sp.add_parser("remove", help="Permanently remove a firm only when it is marked as demo")
+demo_remove.add_argument("--firm-id", type=int, required=True)
+demo_remove.add_argument("--confirm-remove", action="store_true")
+demo_remove.set_defaults(f=demo_firm_cli)
 x = sp.add_parser("retry-failed-provisioning", help="Retry only a disabled firm with a failed tenant catalog entry")
 x.add_argument("--firm-id", type=int, required=True)
 x.add_argument("--reason", required=True)
