@@ -73,8 +73,9 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
             ),
         )
         tenant.execute(
-            "UPDATE original_file_objects SET legal_hold=1 WHERE object_id=?",
-            (staged.object_id,),
+            "UPDATE original_file_objects SET legal_hold=1,hold_reason=?,"
+            "hold_set_by=?,hold_set_at=datetime('now') WHERE object_id=?",
+            ("Retain original pleading for the pilot test", owner_id, staged.object_id),
         )
         tenant.commit()
 
