@@ -69,7 +69,7 @@ def counsel_attestation_is_allowlisted(notes: object, allowed_ids: set[int]) -> 
     """Require an exact, positive account ID present in the configured allowlist."""
     if not isinstance(notes, str) or not allowed_ids:
         return False
-    match = re.search(r"\\[qualified_egyptian_counsel_attested:user_id=([1-9][0-9]*)\\]", notes)
+    match = re.search(r"\[qualified_egyptian_counsel_attested:user_id=([1-9][0-9]*)\]", notes)
     if not match:
         return False
     try:
@@ -171,7 +171,7 @@ def review_queue(db_path: Path) -> dict:
                     continue
                 if rt == "lawyer_approval":
                     marker_present = isinstance(latest.get("notes"), str) and re.search(
-                        r"\\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\\]",
+                        r"\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\\]",
                         latest["notes"],
                     )
                     if not marker_present:
@@ -180,7 +180,7 @@ def review_queue(db_path: Path) -> dict:
                         reasons.append("lawyer_approval_counsel_not_allowlisted")
             if not has_current_review_evidence({"review_evidence": events}) and not any(
                 reason.startswith("review_evidence_missing:")
-                or reason == "lawyer_approval_counsel_attestation_missing"
+                or reason in ("lawyer_approval_counsel_attestation_missing", "lawyer_approval_counsel_not_allowlisted")
                 for reason in reasons
             ):
                 reasons.append("review_event_history_invalid_or_future")
