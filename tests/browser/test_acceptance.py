@@ -947,6 +947,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 navigationLabel: nav && nav.getAttribute('aria-label'),
                 scrollHintCount: hint ? 1 : 0,
                 scrollHintVisible: !!hint && visible(hint),
+                navigationScrollable: !!nav && nav.scrollWidth > nav.clientWidth,
                 targets,
                 documentWidth: document.documentElement.scrollWidth,
                 viewportWidth: window.innerWidth
@@ -958,6 +959,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertTrue(ui_contract["navigationLabel"], ui_contract)
         self.assertEqual(ui_contract["scrollHintCount"], 1, ui_contract)
         self.assertTrue(ui_contract["scrollHintVisible"], ui_contract)
+        self.assertTrue(ui_contract["navigationScrollable"], ui_contract)
         self.assertLessEqual(ui_contract["documentWidth"], ui_contract["viewportWidth"], ui_contract)
         undersized = [target for target in ui_contract["targets"] if target["height"] < 44]
         self.assertEqual(undersized, [], f"Interactive targets below 44px: {undersized}")
