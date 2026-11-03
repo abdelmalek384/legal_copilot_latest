@@ -1479,7 +1479,7 @@ async function clientProfileForm(profile=null){
   save.disabled=true;
   try{
    const payload={};fields.forEach(([key])=>payload[key]=inputs[key].value.trim());
-   await api(editing?'/clients/'+profile.id:'/clients','POST',payload);
+   await api(editing?'/clients/'+profile.id:'/clients',editing?'PUT':'POST',payload);
    closeModal(overlay);clients();
   }catch(_){save.disabled=false}
  });
