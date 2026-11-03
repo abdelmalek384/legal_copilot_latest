@@ -72,6 +72,17 @@ class ClientProfileTests(InvoiceTestSupport, unittest.TestCase):
         )
         self.assertEqual(updated.status_code, 200, updated.text)
         self.assertEqual(updated.json()["phone"], "+20 100 333 4444")
+        owner_id = self.runtime.control_connection().execute(
+            "SELECT id FROM users WHERE email_normalized=?", ("invoice-owner-a@example.test",)
+        ).fetchone()["id"]
+        context = self.runtime.resolve_context(owner_id, self.firm_a)
+        tenant = self.runtime.firm_connection(context)
+        audit_events = [row["event"] for row in tenant.execute(
+            "SELECT event FROM security_audit_events ORDER BY id"
+        )]
+        self.assertTrue(any(event.startswith("client_profile_created:") for event in audit_events))
+        self.assertTrue(any(event.startswith("client_profile_updated:") for event in audit_events))
+        self.assertNotIn("شركة النيل للتجارة", " ".join(audit_events))
 
         denied = self.mutate(
             self.client_nonmember, "post", "/clients",
