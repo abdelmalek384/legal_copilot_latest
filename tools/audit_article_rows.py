@@ -116,8 +116,8 @@ def audit(rows, min_len=40):
     bad_refs, total_refs = [], 0
     for row in rows:
         law_last = numbering.get(row.get("law", ""), {}).get("last")
-        for match in re.finditer(r"(?:المادة|المواد|مادة|مادتي)\\s*\\(?\\s*(\\d+)\\s*\\)?(?:\\s*(?:و|،|,)\\s*\\(?\\s*(\\d+)\\s*\\)?)*", norm(row["text"])):
-            for number in re.findall(r"\\d+", match.group(0)):
+        for match in re.finditer(r"(?:المادة|المواد|مادة|مادتي)\s*\(?\s*(\d+)\s*\)?(?:\s*(?:و|،|,)\s*\(?\s*(\d+)\s*\)?)*", norm(row["text"])):
+            for number in re.findall(r"\d+", match.group(0)):
                 total_refs += 1
                 if law_last and int(number) > law_last:
                     bad_refs.append({"row": f"{row.get('law', '')[:40]} / {row.get('article')}", "ref": number})
