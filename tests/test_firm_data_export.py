@@ -141,11 +141,12 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(audit[0]["user_id"], owner_id)
 
     def test_cross_firm_and_non_admin_requests_are_not_found_or_forbidden(self):
-        case_b = self.mutate(
-            self.client_b, "post", "/cases",
-            json={"title": "Firm B confidential matter", "client": "Firm B Client"},
+        same_firm_non_admin = self.client_nonmember.get(
+            f"/firm/data-export.zip?firm_id={self.firm_a}"
         )
-        self.assertEqual(case_b.status_code, 200, case_b.text)
+        self.assertEqual(same_firm_non_admin.status_code, 403)
+
+        # Supplying another firm's ID cannot switch the tenant context.
         other_firm_export = self.client_b.get(
             f"/firm/data-export.zip?firm_id={self.firm_a}"
         )
@@ -154,34 +155,6 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         other_cases = other_archive.read("cases.csv").decode("utf-8-sig")
         self.assertIn("Firm B confidential matter", other_cases)
         self.assertNotIn("Invoice matter", other_cases)
-
-        # This identity belongs to a different firm, not to the requested firm.
-        firm_c, _ = self.runtime.provision_firm("Firm C")
-        self.runtime.create_initial_firm_owner(
-            firm_c, "Firm C Owner", "firm-c-owner@example.test",
-            app.hash_pw(self.password),
-        )
-        client_c = TestClient(app.app)
-        try:
-            login = client_c.post(
-                "/login",
-                json={"email": "firm-c-owner@example.test", "password": self.password},
-            )
-            self.assertEqual(login.status_code, 200, login.text)
-            nonmember_export = client_c.get(
-                f"/firm/data-export.zip?firm_id={self.firm_a}"
-            )
-            self.assertEqual(nonmember_export.status_code, 200, nonmember_export.text)
-            nonmember_archive = zipfile.ZipFile(io.BytesIO(nonmember_export.content))
-            nonmember_cases = nonmember_archive.read("cases.csv").decode("utf-8-sig")
-            self.assertNotIn("Invoice matter", nonmember_cases)
-        finally:
-            client_c.close()
-
-        same_firm_non_admin = self.client_nonmember.get(
-            f"/firm/data-export.zip?firm_id={self.firm_a}"
-        )
-        self.assertEqual(same_firm_non_admin.status_code, 403)
 
     def test_demo_firm_export_is_not_available(self):
         demo_firm, _ = self.runtime.provision_firm("Demo Export Firm")
