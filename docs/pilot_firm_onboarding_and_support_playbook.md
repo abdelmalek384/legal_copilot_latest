@@ -34,7 +34,7 @@ Do not proceed to real client data if the tenant, storage, external-AI, privacy 
 2. **Complete first-run setup.** The owner completes the setup wizard, confirms firm profile and timezone, and records the actual start/end timestamps.
 3. **Add users.** Invite only named firm users, verify their identities and assign the least-privilege firm role.
 4. **Configure daily operations.** Set reminder preferences and hearing timezone; confirm who owns deadlines, tasks, document review and billing.
-5. **Import existing matters.** Use the documented UTF-8 CSV template. Review created/skipped counts, open sample matters and confirm client-profile linkage. Excel sheets must be exported as CSV UTF-8 until native XLSX upload is supported.
+5. **Import existing matters.** When the matter CSV import feature is deployed, use its documented UTF-8 CSV template. Until then, use only the currently approved owner-led import path; never alter tenant databases manually. Review created/skipped counts, open sample matters and confirm client-profile linkage. Excel sheets must be exported as CSV UTF-8 until native XLSX upload is supported.
 6. **Validate documents.** Upload only approved test documents first. Verify file type/size validation, extraction status, original-file integrity, access control and export behavior.
 7. **Validate AI boundaries.** Demonstrate the three backend trust tiers only when AI-1's backend values are present. Confirm provider/model approval and firm-data approval separately; do not infer approval from a UI toggle.
 8. **Run one real workflow.** With firm authorization, complete a representative client-to-matter workflow: search, assign a task, record a hearing/deadline, attach a document, review an answer and verify the activity history.
@@ -44,7 +44,7 @@ Do not proceed to real client data if the tenant, storage, external-AI, privacy 
 ## 4. First-week adoption review
 
 Review with the firm owner after the first working week:
-- unique weekly active users under the published qualifying-workflow definition;
+- unique weekly active users under the published qualifying-workflow definition, once that dashboard metric is deployed; otherwise record **not measured**;
 - successful sign-in events separately;
 - active users by firm role, without exposing another firm's identities;
 - matters created/imported, task assignments/completions and hearing/deadline activity;
@@ -78,7 +78,7 @@ Populate this table only from measured evidence. Keep firm names/identities in a
 | Measure | Firm A | Firm B | Firm C | Evidence |
 |---|---:|---:|---:|---|
 | Onboarding elapsed minutes | — | — | — | Wizard timestamps and support interventions |
-| Weekly active users | — | — | — | Platform aggregate under documented WAU definition |
+| Weekly active users | — | — | — | Platform aggregate under documented WAU definition; mark not measured until deployed |
 | Successful sign-in events | — | — | — | Authentication event count, separate from WAU |
 | Active matters | — | — | — | Firm-local case report |
 | Matters imported | — | — | — | Import result |
