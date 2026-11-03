@@ -1497,14 +1497,22 @@ async function clients(){
  cb.replaceChildren(h('div',{className:'card'},h('b',{textContent:uiText('نتائج الفحص الأولي: ','Preliminary conflict matches: ')+r.matches.length}),h('p',{className:'mut',textContent:r.warning}),
   r.matches.length?r.matches.map(x=>h('div',{className:'row',style:'cursor:pointer',onclick:()=>{TAB='sum';view(x.id)}},h('div',{},h('b',{textContent:x.title}),h('div',{className:'mut',textContent:uiText('العميل: ','Client: ')+(x.client||'—')+' · '+uiText('الخصم: ','Opposing party: ')+(x.opposing_party||'—')})),pill(x.status==='open'?uiText('مفتوحة','Open'):uiText('مغلقة','Closed'),x.status==='open'?'open':'closed'))):empty(uiText('لم تظهر مطابقات في القضايا التي يمكنك الوصول إليها.','No matches were found in cases you can access.'))))};
  cq.onkeydown=e=>e.key==='Enter'&&run();
- const cards=profiles.map(client=>h('section',{className:'card'},
-  h('div',{className:'row'},h('h3',{textContent:client.name}),h('span',{className:'mut'},client.matters.length+' '+uiText('قضايا','matters'))),
-  ...([['الهاتف',client.phone],['البريد الإلكتروني',client.email],['العنوان',client.address],['ملاحظات',client.notes]].filter(([,value])=>value).map(([label,value])=>h('p',{className:'mut',textContent:uiText(label,label)+': '+value}))),
-  h('div',{className:'row'},btn(uiText('+ قضية جديدة','+ New matter'),()=>newCase(client.name),'g'),...(ME.role==='admin'?[btn(uiText('تعديل الملف','Edit profile'),()=>clientProfileForm(client),'g')]:[])),
-  client.matters.length?h('div',{className:'stack'},h('b',{textContent:uiText('المسائل المرتبطة','Linked matters')}),...client.matters.map(m=>h('div',{className:'row'},h('div',{},h('b',{textContent:m.title}),h('div',{className:'mut',textContent:(m.case_number||'—')+(m.case_year?' / '+m.case_year:'')})),btn(uiText('فتح','Open'),()=>{TAB='sum';view(m.id)},'g')))):h('p',{className:'mut',textContent:uiText('لا توجد قضايا مرتبطة بهذا العميل بعد.','No matters linked to this client yet.')})
- ));
- shell(uiText('العملاء','Clients'),h('div',{className:'row'},...(ME.role==='admin'?[btn(uiText('+ ملف عميل جديد','+ New client profile'),()=>clientProfileForm(),'g')]:[]),btn(uiText('+ قضية جديدة','+ New case'),newCase)),h('div',{className:'card'},h('h3',{textContent:uiText('فحص أولي لتعارض المصالح','Preliminary conflict check')}),h('div',{className:'row'},cq,btn(uiText('فحص','Check'),run)),cb),
-  cards.length?cards:[h('div',{className:'card'},empty(uiText('لا توجد ملفات عملاء بعد.','No client profiles yet.')))]);
+ const search=h('input',{type:'search',placeholder:uiText('ابحث باسم العميل أو الهاتف أو البريد الإلكتروني','Search client name, phone or email'),'aria-label':uiText('بحث في ملفات العملاء','Search client profiles'),style:'width:min(100%,420px)'});
+ const cardContainer=h('div');
+ const drawProfiles=()=>{
+  const needle=search.value.trim().toLocaleLowerCase();
+  const matches=profiles.filter(client=>[client.name,client.phone,client.email,client.address].filter(Boolean).join(' ').toLocaleLowerCase().includes(needle));
+  const cards=matches.map(client=>h('section',{className:'card'},
+   h('div',{className:'row'},h('h3',{textContent:client.name}),h('span',{className:'mut'},client.matters.length+' '+uiText('قضايا','matters'))),
+   ...([['الهاتف',client.phone],['البريد الإلكتروني',client.email],['العنوان',client.address],['ملاحظات',client.notes]].filter(([,value])=>value).map(([label,value])=>h('p',{className:'mut',textContent:uiText(label,label)+': '+value}))),
+   h('div',{className:'row'},btn(uiText('+ قضية جديدة','+ New matter'),()=>newCase(client.name),'g'),...(ME.role==='admin'?[btn(uiText('تعديل الملف','Edit profile'),()=>clientProfileForm(client),'g')]:[])),
+   client.matters.length?h('div',{className:'stack'},h('b',{textContent:uiText('المسائل المرتبطة','Linked matters')}),...client.matters.map(m=>h('div',{className:'row'},h('div',{},h('b',{textContent:m.title}),h('div',{className:'mut',textContent:(m.case_number||'—')+(m.case_year?' / '+m.case_year:'')})),btn(uiText('فتح','Open'),()=>{TAB='sum';view(m.id)},'g')))):h('p',{className:'mut',textContent:uiText('لا توجد قضايا مرتبطة بهذا العميل بعد.','No matters linked to this client yet.')})
+  ));
+  cardContainer.replaceChildren(...(cards.length?cards:[h('div',{className:'card'},empty(uiText(needle?'لا توجد ملفات عملاء مطابقة.':'لا توجد ملفات عملاء بعد.',needle?'No matching client profiles.':'No client profiles yet.')))]));
+ };
+ search.oninput=drawProfiles;
+ shell(uiText('العملاء','Clients'),h('div',{className:'row'},...(ME.role==='admin'?[btn(uiText('+ ملف عميل جديد','+ New client profile'),()=>clientProfileForm(),'g')]:[]),btn(uiText('+ قضية جديدة','+ New case'),newCase)),search,h('div',{className:'card'},h('h3',{textContent:uiText('فحص أولي لتعارض المصالح','Preliminary conflict check')}),h('div',{className:'row'},cq,btn(uiText('فحص','Check'),run)),cb),cardContainer);
+ drawProfiles();
 }
 async function casesPage(){PAGE='cases';const cs=await api('/cases'),q=h('input',{placeholder:uiText('ابحث بالعنوان أو العميل أو رقم القضية أو الخصم','Search title, client, case number or opposing party')}),status=h('select',{},new Option(uiText('كل الحالات','All statuses'),''),new Option(uiText('مفتوحة','Open'),'open'),new Option(uiText('مغلقة','Closed'),'closed')),box=h('div',{className:'card'}),summary=h('div',{className:'mut'});const draw=()=>{const needle=q.value.trim().toLocaleLowerCase();const rows=cs.filter(c=>(!status.value||c.status===status.value)&&[c.title,c.client,c.case_number,c.case_year,c.court,c.circuit,c.opposing_party].filter(Boolean).join(' ').toLocaleLowerCase().includes(needle));summary.textContent=rows.length+' '+uiText('قضية','cases');box.replaceChildren(summary,...(rows.length?rows.map(caseRow):[empty(uiText('لا توجد قضايا مطابقة.','No matching cases.'))]))};q.oninput=status.onchange=draw;shell(uiText('القضايا','Cases'),h('p',{className:'workspace-subtitle',textContent:uiText('ابحث في بيانات القضايا الأساسية ثم افتح الملف لإدارة التفاصيل.','Search case metadata, then open a matter to manage its details.')}),h('div',{className:'filter-bar'},q,status,btn(uiText('+ قضية جديدة','+ New case'),newCase)),box);draw()}
 async function corpusCoverage(){
