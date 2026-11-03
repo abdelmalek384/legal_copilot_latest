@@ -557,7 +557,8 @@ class RetrievalEvaluationTests(unittest.TestCase):
                     "--min-cases-per-practice-area", "2", "--min-answerable-cases", "1",
                     "--min-unanswerable-cases", "1", "--min-expected-pin-cites", "1",
                     "--min-recall-at-5", "1", "--min-mrr-at-5", "1",
-                    "--min-citation-precision", "1", "--min-citation-coverage", "1",
+                    "--min-citation-precision", "1", "--min-pin-cite-accuracy", "1",
+                    "--min-citation-coverage", "1",
                     "--min-expected-pin-cite-recall", "1", "--min-abstention-compliance", "1",
                     "--max-excluded-cases", "0", "--max-invalid-records", "0",
                     "--max-unsafe-unverified-source-uses", "0",
@@ -642,6 +643,49 @@ class RetrievalEvaluationTests(unittest.TestCase):
                 "--questions", str(DEFAULT_QUESTIONS),
                 "--min-reviewed-cases", "1",
                 "--min-answerable-cases-per-practice-area", "1",
+            ])
+        self.assertEqual(raised.exception.code, 2)
+
+    def test_pin_cite_accuracy_release_gate_rejects_wrong_article_locator(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            questions = [
+                reviewed_question(id="Q-ANSWERABLE"),
+                reviewed_question(id="Q-UNANSWERABLE", answerable=False, expected_pin_cites=[]),
+            ]
+            questions_path.write_text("".join(json.dumps(q, ensure_ascii=False) + "\n" for q in questions), encoding="utf-8")
+            runs = [
+                {"question_id": "Q-ANSWERABLE", "retrieved_source_ids": ["LAW-A"],
+                 "citations": [{"source_id": "LAW-A", "pin_cite": "Article 13"}],
+                 "source_summary": [{"source_id": "LAW-A", "source_status": "verified_operative_text"}],
+                 "abstained": False, "used_unverified_source": False},
+                {"question_id": "Q-UNANSWERABLE", "retrieved_source_ids": [],
+                 "citations": [], "abstained": True, "used_unverified_source": False},
+            ]
+            runs_path.write_text("".join(json.dumps(row, ensure_ascii=False) + "\n" for row in runs), encoding="utf-8")
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                code = run_main([
+                    "--questions", str(questions_path), "--runs", str(runs_path),
+                    "--min-reviewed-cases", "2", "--min-practice-areas", "1",
+                    "--min-cases-per-practice-area", "2", "--min-expected-pin-cites", "1",
+                    "--min-pin-cite-accuracy", "1",
+                ])
+            self.assertEqual(code, 1)
+            report = json.loads(output.getvalue())
+            self.assertEqual(report["pin_cite_accuracy"], 0.0)
+            check = next(item for item in report["release_gate"]["checks"]
+                         if item["metric"] == "pin_cite_accuracy")
+            self.assertEqual(check["actual"], 0.0)
+            self.assertFalse(check["passed"])
+
+    def test_pin_cite_accuracy_requires_expected_pin_cite_denominator(self):
+        with self.assertRaises(SystemExit) as raised:
+            run_main([
+                "--questions", str(DEFAULT_QUESTIONS),
+                "--min-reviewed-cases", "1", "--min-practice-areas", "1",
+                "--min-cases-per-practice-area", "1", "--min-pin-cite-accuracy", "0.95",
             ])
         self.assertEqual(raised.exception.code, 2)
 
