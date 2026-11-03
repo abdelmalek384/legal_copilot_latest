@@ -636,6 +636,12 @@ class AnswerTrustTierTests(unittest.TestCase):
         result = self.classify([source], source_matched_policy_approved=True, source_matched_feature_enabled=True)
         self.assertEqual(result["trust_tier"], TIER_UNREVIEWED)
 
+    def test_missing_reuse_rights_description_blocks_source_matched_tier(self):
+        source = source_matched_source()
+        source["source_match_evidence"]["reuse_rights_evidence"] = ""
+        result = self.classify([source], source_matched_policy_approved=True, source_matched_feature_enabled=True)
+        self.assertEqual(result["trust_tier"], TIER_UNREVIEWED)
+
     def test_incomplete_reuse_scope_blocks_source_matched_tier(self):
         source = source_matched_source()
         source["source_match_evidence"]["approved_uses"].remove("commercial_product_use")
@@ -683,6 +689,7 @@ def source_matched_source():
             "independent_copy_source_id": "INDEPENDENT-SOURCE-2",
             "publication_date": "2025-05-03",
             "effective_date": "2025-09-01",
+            "reuse_rights_evidence": "Explicit commercial reuse scope checked against source terms.",
             "reuse_rights_evidence_url": "https://example.gov/terms/reuse",
             "article_inventory_complete": True,
             "differences_resolved_against_primary": True,
