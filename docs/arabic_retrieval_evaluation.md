@@ -131,3 +131,6 @@ Do not claim legal-answer accuracy from retrieval metrics alone. Before a releas
 
 
 The evaluator supports optional `--min-recall-at-3` and `--min-mrr-at-3` thresholds in addition to top-five thresholds. Configure these only alongside explicit minimum reviewed-case, answerable-case, and practice-area cohort gates; a top-three metric without a sufficient lawyer-reviewed denominator must not be treated as release evidence.
+
+
+Per-practice-area top-three gates are available as `--min-recall-at-3-per-practice-area` and `--min-mrr-at-3-per-practice-area`. Use them with `--min-practice-areas` and `--min-cases-per-practice-area` so missing or undersized areas cannot be silently treated as passing.
