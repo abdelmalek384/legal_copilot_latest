@@ -90,12 +90,16 @@ def classify_answer_trust_tier(
         return {"trust_tier": TIER_UNREVIEWED, "reason_codes": ["sources_missing"]}
 
     normalized = []
+    seen_source_ids = set()
     for source in sources:
         if not isinstance(source, Mapping):
             return {"trust_tier": TIER_UNREVIEWED, "reason_codes": ["source_record_invalid"]}
         source_id = source.get("source_id")
         if not isinstance(source_id, str) or not source_id.strip():
             return {"trust_tier": TIER_UNREVIEWED, "reason_codes": ["source_id_missing"]}
+        if source_id in seen_source_ids:
+            return {"trust_tier": TIER_UNREVIEWED, "reason_codes": ["duplicate_source_id"]}
+        seen_source_ids.add(source_id)
         normalized.append(source)
 
     if claims_supported is not True:
