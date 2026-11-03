@@ -81,6 +81,12 @@ class FirmDataExportTests(unittest.TestCase):
             "VALUES(?,?,?,'open',?,?)",
             (title, client_name, "استئناف", user_id, firm_id),
         ).lastrowid)
+        tenant.execute("UPDATE cases SET client=? WHERE id=?", (client_name, case_id))
+        stored_client = tenant.execute(
+            "SELECT client,firm_id FROM cases WHERE id=?", (case_id,)
+        ).fetchone()
+        if stored_client["client"] != client_name or int(stored_client["firm_id"]) != firm_id:
+            raise AssertionError("firm export fixture did not persist its client/firm linkage")
         tenant.execute(
             "INSERT INTO notes(case_id,created_by,text) VALUES(?,?,?)",
             (case_id, user_id, f"{title} private note"),
@@ -173,6 +179,7 @@ class FirmDataExportTests(unittest.TestCase):
             clients = list(csv.DictReader(io.StringIO(
                 archive.read("clients.csv").decode("utf-8-sig")
             )))
+            self.assertTrue(clients, archive.read("clients.csv").decode("utf-8-sig"))
             self.assertEqual(clients[0]["client_name"],
                              '\'=HYPERLINK("https://evil.invalid")')
             self.assertIn("Export invoice", archive.read("invoices.csv").decode("utf-8-sig"))
