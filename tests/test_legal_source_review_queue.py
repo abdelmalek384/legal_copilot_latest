@@ -28,6 +28,11 @@ def make_db(path):
     db.close()
 
 class LegalSourceReviewQueueTests(unittest.TestCase):
+    def setUp(self):
+        self.allowlist_env = patch.dict(os.environ, {"LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS": "42"})
+        self.allowlist_env.start()
+        self.addCleanup(self.allowlist_env.stop)
+
     def test_queue_flags_missing_provenance_and_permission_without_mutating_db(self):
         with tempfile.TemporaryDirectory() as td:
             path=Path(td)/"legal.db"
@@ -72,6 +77,34 @@ class LegalSourceReviewQueueTests(unittest.TestCase):
                 "lawyer_approval_counsel_attestation_missing",
                 report["records"][0]["review_reasons"],
             )
+
+    def test_counsel_attestation_must_match_operator_allowlist(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "legal.db"
+            make_db(path)
+            db = sqlite3.connect(path)
+            db.execute("ALTER TABLE legal_review_events ADD COLUMN notes TEXT")
+            db.execute(
+                "INSERT INTO legal_review_events(version_id,review_type,outcome,evidence_url,reviewer,reviewed_at,notes) "
+                "VALUES(1,'lawyer_approval','pass','https://example.gov/review','Reviewer','2026-10-25T12:00:00Z',"
+                "'[qualified_egyptian_counsel_attested:user_id=99] approved')"
+            )
+            db.commit()
+            db.close()
+
+            report = MODULE.review_queue(path)
+            self.assertIn("lawyer_approval_counsel_not_allowlisted",
+                          report["records"][0]["review_reasons"])
+
+    def test_counsel_attestation_fails_closed_when_allowlist_is_empty_or_malformed(self):
+        for raw in ("", "0,not-an-id,9223372036854775808"):
+            with self.subTest(raw=raw), patch.dict(os.environ, {
+                "LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS": raw
+            }):
+                self.assertFalse(MODULE.counsel_attestation_is_allowlisted(
+                    "[qualified_egyptian_counsel_attested:user_id=42] approved",
+                    MODULE.qualified_counsel_user_ids(),
+                ))
 
     def test_newer_failed_lawyer_review_supersedes_older_counsel_approval(self):
         with tempfile.TemporaryDirectory() as td:

@@ -49,6 +49,36 @@ def commercial_reuse_issue(value):
         return "source_commercial_reuse_permission_not_allowed"
     return "commercial_reuse_permission_unknown"
 
+def qualified_counsel_user_ids() -> set[int]:
+    """Parse the operator-managed counsel allowlist used by runtime retrieval."""
+    allowed = set()
+    for item in os.environ.get("LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS", "").split(","):
+        item = item.strip()
+        if not item or len(item) > 19 or not item.isascii() or not item.isdecimal():
+            continue
+        try:
+            user_id = int(item)
+        except ValueError:
+            continue
+        if 0 < user_id <= (2**63 - 1):
+            allowed.add(user_id)
+    return allowed
+
+
+def counsel_attestation_is_allowlisted(notes: object, allowed_ids: set[int]) -> bool:
+    """Require an exact, positive account ID present in the configured allowlist."""
+    if not isinstance(notes, str) or not allowed_ids:
+        return False
+    match = re.search(r"\[qualified_egyptian_counsel_attested:user_id=([1-9][0-9]*)\]", notes)
+    if not match:
+        return False
+    try:
+        user_id = int(match.group(1))
+    except ValueError:
+        return False
+    return user_id in allowed_ids
+
+
 def review_queue(db_path: Path) -> dict:
     if not db_path.exists():
         raise FileNotFoundError(f"Database not found: {db_path}")
@@ -96,6 +126,7 @@ def review_queue(db_path: Path) -> dict:
                 "next_action":"Review current terms and record scoped permission evidence; do not infer permission from public accessibility."})
         versions=db.execute("SELECT v.version_id,v.document_id,v.version_label,v.source_url,v.original_sha256,v.publication_date,v.effective_date,v.repeal_date,v.legal_status,v.review_status,v.authenticity_verified,v.status_verified,v.amendment_history_verified,v.permission_evidence,d.official_title,d.document_type,d.source_id,s.source_id AS matched_source_id,s.authority,s.collection_permission,s.commercial_reuse_permission FROM legal_document_versions v LEFT JOIN legal_documents d ON d.document_id=v.document_id LEFT JOIN legal_sources s ON s.source_id=d.source_id ORDER BY v.version_id").fetchall()
         review_types=("source_authenticity","extraction_quality","legal_status","amendment_history","licensing","lawyer_approval")
+        allowed_counsel_ids = qualified_counsel_user_ids()
         event_columns = cols(db, "legal_review_events") if "legal_review_events" in present else set()
         notes_select = "notes" if "notes" in event_columns else "NULL AS notes"
         for version in versions:
@@ -138,16 +169,18 @@ def review_queue(db_path: Path) -> dict:
                 ):
                     reasons.append("review_evidence_missing:"+rt)
                     continue
-                if rt == "lawyer_approval" and not (
-                    isinstance(latest.get("notes"), str) and re.search(
+                if rt == "lawyer_approval":
+                    marker_present = isinstance(latest.get("notes"), str) and re.search(
                         r"\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\]",
                         latest["notes"],
                     )
-                ):
-                    reasons.append("lawyer_approval_counsel_attestation_missing")
+                    if not marker_present:
+                        reasons.append("lawyer_approval_counsel_attestation_missing")
+                    elif not counsel_attestation_is_allowlisted(latest.get("notes"), allowed_counsel_ids):
+                        reasons.append("lawyer_approval_counsel_not_allowlisted")
             if not has_current_review_evidence({"review_evidence": events}) and not any(
                 reason.startswith("review_evidence_missing:")
-                or reason == "lawyer_approval_counsel_attestation_missing"
+                or reason in ("lawyer_approval_counsel_attestation_missing", "lawyer_approval_counsel_not_allowlisted")
                 for reason in reasons
             ):
                 reasons.append("review_event_history_invalid_or_future")
