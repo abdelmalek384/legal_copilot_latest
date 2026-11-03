@@ -7552,93 +7552,295 @@ def _csv_safe_cell(value):
     return text
 
 
+def _firm_export_csv_bytes(cursor) -> bytes:
+    headers = [column[0] for column in cursor.description]
+    stream = io.StringIO(newline="")
+    writer = csv.writer(stream, lineterminator="\r\n")
+    writer.writerow(headers)
+    for row in cursor.fetchall():
+        writer.writerow([_csv_safe_cell(row[column]) for column in headers])
+    return ("\ufeff" + stream.getvalue()).encode("utf-8")
+
+
 @app.get("/firm/data-export.zip")
 def export_firm_data_zip(u: dict = Depends(user)):
-    """Build an audited ZIP of the authenticated firm's structured matter records."""
+    """Export only the authenticated firm's tenant data and verified original files."""
     if not _separate_runtime_enabled():
         raise HTTPException(404, "firm data export is available only in separate-database mode")
     require_admin(u)
     firm_id = int(u["firm_id"])
-    db = conn()
+    tenant = conn()
+    control = control_conn()
+    firm = control.execute(
+        "SELECT id,name,status,is_demo FROM firms WHERE id=?", (firm_id,)
+    ).fetchone()
+    if firm is None or bool(firm["is_demo"]):
+        raise HTTPException(404, "firm not found")
+
     export_file = tempfile.SpooledTemporaryFile(max_size=8 * 1024 * 1024, mode="w+b")
-
-    def add_csv(archive, filename, cursor):
-        with archive.open(filename, "w") as raw:
-            text_stream = io.TextIOWrapper(raw, encoding="utf-8-sig", newline="")
-            try:
-                writer = csv.writer(text_stream, lineterminator="\\r\\n")
-                writer.writerow([column[0] for column in cursor.description])
-                for row in cursor:
-                    writer.writerow([_csv_safe_cell(value) for value in row])
-                text_stream.flush()
-            finally:
-                text_stream.detach()
-
     try:
         with zipfile.ZipFile(export_file, "w", compression=zipfile.ZIP_DEFLATED) as archive:
-            add_csv(archive, "cases.csv", db.execute(
-                "SELECT id,title,client,stage,status,created_by,firm_id,case_number,case_year,court,circuit,opposing_party,created_at FROM cases WHERE firm_id=? ORDER BY id",
-                (firm_id,),
-            ))
-            add_csv(archive, "clients.csv", db.execute(
-                "SELECT client AS client_name,COUNT(*) AS case_count FROM cases WHERE firm_id=? AND client IS NOT NULL AND trim(client)<>'' GROUP BY client ORDER BY client",
-                (firm_id,),
-            ))
-            add_csv(archive, "notes.csv", db.execute(
-                "SELECT n.id,n.case_id,n.created_by,n.text,n.created_at FROM notes n JOIN cases c ON c.id=n.case_id WHERE c.firm_id=? ORDER BY n.id",
-                (firm_id,),
-            ))
-            add_csv(archive, "deadlines.csv", db.execute(
-                "SELECT d.id,d.case_id,d.title,d.due,d.note,d.created_by,d.status FROM deadlines d JOIN cases c ON c.id=d.case_id WHERE c.firm_id=? ORDER BY d.id",
-                (firm_id,),
-            ))
-            add_csv(archive, "sessions.csv", db.execute(
-                "SELECT s.id,s.case_id,s.date,s.note,s.done FROM sessions s JOIN cases c ON c.id=s.case_id WHERE c.firm_id=? ORDER BY s.id",
-                (firm_id,),
-            ))
-            add_csv(archive, "fees.csv", db.execute(
-                "SELECT f.id,f.case_id,f.title,f.amount,f.paid,f.due,f.note,f.created_by FROM fees f JOIN cases c ON c.id=f.case_id WHERE c.firm_id=? ORDER BY f.id",
-                (firm_id,),
-            ))
-            add_csv(archive, "tasks.csv", db.execute(
-                "SELECT t.id,t.case_id,t.title,t.assignee,t.due,t.status,t.created_by FROM tasks t JOIN cases c ON c.id=t.case_id WHERE c.firm_id=? ORDER BY t.id",
-                (firm_id,),
-            ))
-            add_csv(archive, "case_history.csv", db.execute(
-                "SELECT e.id,e.case_id,e.who,e.at,e.text FROM events e JOIN cases c ON c.id=e.case_id WHERE c.firm_id=? ORDER BY e.id",
-                (firm_id,),
-            ))
-            add_csv(archive, "case_members.csv", db.execute(
-                "SELECT m.case_id,m.user_id,m.role FROM members m JOIN cases c ON c.id=m.case_id WHERE c.firm_id=? ORDER BY m.case_id,m.user_id",
-                (firm_id,),
-            ))
-            add_csv(archive, "invoices.csv", db.execute(
-                "SELECT i.id,i.case_id,i.invoice_number,i.status,i.currency,i.client_name_snapshot,i.case_title_snapshot,i.description,i.subtotal_piasters,i.total_piasters,i.issue_date,i.due_date,i.created_by,i.created_at,i.issued_at,i.void_reason,i.voided_by,i.voided_at FROM invoices i JOIN cases c ON c.id=i.case_id WHERE c.firm_id=? ORDER BY i.id",
-                (firm_id,),
-            ))
-            add_csv(archive, "invoice_lines.csv", db.execute(
-                "SELECT l.id,l.invoice_id,l.position,l.description,l.quantity_milli,l.unit_price_piasters,l.line_total_piasters FROM invoice_lines l JOIN invoices i ON i.id=l.invoice_id JOIN cases c ON c.id=i.case_id WHERE c.firm_id=? ORDER BY l.invoice_id,l.position",
-                (firm_id,),
-            ))
-            add_csv(archive, "invoice_payments.csv", db.execute(
-                "SELECT p.id,p.invoice_id,p.amount_piasters,p.paid_on,p.method,p.reference,p.note,p.recorded_by,p.created_at FROM invoice_payments p JOIN invoices i ON i.id=p.invoice_id JOIN cases c ON c.id=i.case_id WHERE c.firm_id=? ORDER BY p.id",
-                (firm_id,),
-            ))
-            add_csv(archive, "invoice_events.csv", db.execute(
-                "SELECT e.id,e.invoice_id,e.actor_user_id,e.event_type,e.details_json,e.created_at FROM invoice_events e JOIN invoices i ON i.id=e.invoice_id JOIN cases c ON c.id=i.case_id WHERE c.firm_id=? ORDER BY e.id",
-                (firm_id,),
-            ))
-        db.execute(
-            "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
-            (firm_id, int(u["id"]), "firm_data_export"),
-        )
-        db.commit()
+            archive.writestr("cases.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT c.id,c.title,c.client,c.stage,c.status,c.created_by,c.firm_id,"
+                "c.case_number,c.case_year,c.court,c.circuit,c.opposing_party,c.created_at "
+                "FROM cases c ORDER BY c.id"
+            )))
+            archive.writestr("clients.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT client AS client_name,COUNT(*) AS case_count,GROUP_CONCAT(id,';') AS case_ids "
+                "FROM cases WHERE trim(COALESCE(client,''))<>'' "
+                "GROUP BY client ORDER BY client COLLATE NOCASE"
+            )))
+            archive.writestr("notes.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT n.id,n.case_id,n.created_by,n.text,n.created_at FROM notes n "
+                "JOIN cases c ON c.id=n.case_id ORDER BY n.id"
+            )))
+            archive.writestr("deadlines.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT d.id,d.case_id,d.title,d.due,d.note,d.created_by,d.status FROM deadlines d "
+                "JOIN cases c ON c.id=d.case_id ORDER BY d.id"
+            )))
+            archive.writestr("sessions.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT s.id,s.case_id,s.date,s.note,s.done FROM sessions s "
+                "JOIN cases c ON c.id=s.case_id ORDER BY s.id"
+            )))
+            archive.writestr("fees.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT f.id,f.case_id,f.title,f.amount,f.paid,f.due,f.note,f.created_by FROM fees f "
+                "JOIN cases c ON c.id=f.case_id ORDER BY f.id"
+            )))
+            archive.writestr("tasks.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT t.id,t.case_id,t.title,t.assignee,t.due,t.status,t.created_by FROM tasks t "
+                "JOIN cases c ON c.id=t.case_id ORDER BY t.id"
+            )))
+            archive.writestr("case_members.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT m.case_id,m.user_id,m.role FROM members m "
+                "JOIN cases c ON c.id=m.case_id ORDER BY m.case_id,m.user_id"
+            )))
+            archive.writestr("case_activity.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT e.id,e.case_id,e.who,e.at,e.text FROM events e "
+                "JOIN cases c ON c.id=e.case_id ORDER BY e.id"
+            )))
+            archive.writestr("documents.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT d.id,d.case_id,d.name,d.added,d.uploader_user_id,d.sha256,"
+                "d.content_type,d.byte_size,d.extraction_status,d.ocr_used "
+                "FROM docs d JOIN cases c ON c.id=d.case_id ORDER BY d.id"
+            )))
+            archive.writestr("document_extraction_reviews.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT r.id,r.document_id,r.case_id,r.chunk_id,r.reviewer_user_id,"
+                "r.outcome,r.original_text,r.reviewed_text,r.note,r.page_reference,r.created_at "
+                "FROM document_extraction_reviews r JOIN cases c ON c.id=r.case_id "
+                "ORDER BY r.id"
+            )))
+            archive.writestr("matter_chunks.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT ch.id,ch.ref,ch.article,ch.page,ch.text,ch.norm,ch.case_id,"
+                "ch.document_id,ch.in_force,ch.as_of,ch.source,ch.verified "
+                "FROM chunks ch JOIN cases c ON c.id=ch.case_id ORDER BY ch.id"
+            )))
+            archive.writestr("research_conversations.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT id,user_id,firm_id,title,created_at,updated_at "
+                "FROM research_conversations ORDER BY id"
+            )))
+            archive.writestr("research_messages.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT m.id,m.conversation_id,m.role,m.content,m.sources_json,m.message_json,m.created_at "
+                "FROM research_messages m JOIN research_conversations r "
+                "ON r.id=m.conversation_id ORDER BY m.id"
+            )))
+            archive.writestr("original_file_hold_events.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT e.* FROM original_file_hold_events e "
+                "JOIN original_file_objects o ON o.object_id=e.object_id "
+                "JOIN docs d ON d.id=o.document_id JOIN cases c ON c.id=d.case_id "
+                "ORDER BY e.id"
+            )))
+            archive.writestr("original_file_objects.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT object_id,document_id,firm_id,storage_backend,sha256,byte_size,content_type,"
+                "state,legal_hold,hold_reason,hold_set_by,hold_set_at,hold_released_by,"
+                "hold_released_at,hold_release_reason,purged_at,purged_by_user_id,purge_reason "
+                "FROM original_file_objects WHERE firm_id=? ORDER BY document_id", (firm_id,),
+            )))
+            archive.writestr("original_file_deletion_requests.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT id,object_id,document_id,firm_id,requested_by_user_id,request_reason,requested_at,"
+                "status,approved_by_user_id,approved_at,approval_reason,purge_started_by_user_id,"
+                "purge_started_at,completed_by_user_id,completed_at,cancellation_reason,"
+                "cancelled_by_user_id,cancelled_at FROM original_file_deletion_requests "
+                "WHERE firm_id=? ORDER BY id", (firm_id,),
+            )))
+            archive.writestr("original_file_deletion_events.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT id,request_id,object_id,document_id,firm_id,action,reason,actor_user_id,occurred_at "
+                "FROM original_file_deletion_events WHERE firm_id=? ORDER BY id", (firm_id,),
+            )))
+            archive.writestr("answer_correction_suggestions.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT id,case_id,answer_id,question,answer_excerpt,correction_note,status,training_use,"
+                "created_by,created_at,reviewed_by,reviewed_at,review_note "
+                "FROM answer_correction_suggestions ORDER BY id"
+            )))
+            archive.writestr("answer_correction_events.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT id,suggestion_id,actor_user_id,event_type,detail_json,created_at "
+                "FROM answer_correction_events ORDER BY id"
+            )))
+            # The feedback tables live in this firm's private tenant database.
+            archive.writestr("product_feedback.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT id,category,title,message,page_path,status,created_by,created_at,"
+                "reviewed_by,reviewed_at,response FROM product_feedback ORDER BY id"
+            )))
+            archive.writestr("product_feedback_events.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT e.* FROM product_feedback_events e "
+                "JOIN product_feedback f ON f.id=e.feedback_id ORDER BY e.id"
+            )))
+            archive.writestr("invoices.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT i.* FROM invoices i JOIN cases c ON c.id=i.case_id "
+                "ORDER BY i.id"
+            )))
+            archive.writestr("invoice_lines.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT l.* FROM invoice_lines l JOIN invoices i ON i.id=l.invoice_id "
+                "JOIN cases c ON c.id=i.case_id ORDER BY l.invoice_id,l.position"
+            )))
+            archive.writestr("invoice_payments.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT p.* FROM invoice_payments p JOIN invoices i ON i.id=p.invoice_id "
+                "JOIN cases c ON c.id=i.case_id ORDER BY p.invoice_id,p.id"
+            )))
+            archive.writestr("invoice_events.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT e.* FROM invoice_events e JOIN invoices i ON i.id=e.invoice_id "
+                "JOIN cases c ON c.id=i.case_id ORDER BY e.invoice_id,e.id"
+            )))
+            archive.writestr("case_deletion_audit.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT id,firm_id,case_id,actor_user_id,actor_name,case_snapshot_json,"
+                "events_snapshot_json,related_counts_json,deleted_at FROM case_deletion_audit "
+                "ORDER BY id"
+            )))
+            archive.writestr("security_audit_events.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT id,firm_id,user_id,event,created_at FROM security_audit_events "
+                "ORDER BY id"
+            )))
+            archive.writestr("reminder_deliveries.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT id,idempotency_key,recipient_user_id,event_type,event_id,due_date,"
+                "reminder_window,lead_days,status,attempt_count,next_attempt_at,lease_until,"
+                "last_attempt_at,accepted_at,provider_message_id,last_error_code,created_at,updated_at "
+                "FROM reminder_deliveries ORDER BY id"
+            )))
+            archive.writestr("reminder_delivery_attempts.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT id,delivery_id,attempt_number,smtp_attempts,status,error_code,"
+                "provider_message_id,attempted_at,finished_at FROM reminder_delivery_attempts "
+                "ORDER BY delivery_id,attempt_number"
+            )))
+            archive.writestr("reminder_preferences.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT user_id,email_enabled,deadline_7_days,deadline_3_days,deadline_1_day,"
+                "deadline_day_of,deadline_overdue,session_day_of,task_reminders,updated_at "
+                "FROM reminder_preferences ORDER BY user_id"
+            )))
+
+            firm_stream = io.StringIO(newline="")
+            writer = csv.writer(firm_stream, lineterminator="\r\n")
+            writer.writerow(["firm_id", "name", "status"])
+            writer.writerow([_csv_safe_cell(firm[key]) for key in ("id", "name", "status")])
+            archive.writestr("firm.csv", "\ufeff" + firm_stream.getvalue())
+
+            archive.writestr("firm_memberships.csv", _firm_export_csv_bytes(control.execute(
+                "SELECT fm.id,fm.user_id,u.name,u.email_display,fm.firm_role,fm.status,"
+                "fm.created_at,fm.updated_at,fm.created_by_user_id "
+                "FROM firm_memberships fm JOIN users u ON u.id=fm.user_id "
+                "WHERE fm.firm_id=? ORDER BY fm.id", (firm_id,),
+            )))
+            # Never export invitation token hashes or recovery credentials.
+            archive.writestr("firm_invitations.csv", _firm_export_csv_bytes(control.execute(
+                "SELECT id,firm_id,email_display,invited_role,invited_by_user_id,"
+                "created_at,expires_at,status,consumed_by_user_id,consumed_at,updated_at "
+                "FROM identity_invitations WHERE firm_id=? ORDER BY id", (firm_id,),
+            )))
+            archive.writestr("identity_lifecycle_events.csv", _firm_export_csv_bytes(control.execute(
+                "SELECT id,actor_user_id,target_user_id,invitation_id,event_type,detail_json,created_at "
+                "FROM identity_lifecycle_events WHERE firm_id=? ORDER BY id", (firm_id,),
+            )))
+            # Export firm-owned control-plane profile, billing, setup and usage records.
+            # Exclude raw invitation/recovery token hashes and platform-only credentials.
+            archive.writestr("firm_profiles.csv", _firm_export_csv_bytes(control.execute(
+                "SELECT firm_id,phone,address,updated_by_user_id,updated_at "
+                "FROM firm_profiles WHERE firm_id=?", (firm_id,),
+            )))
+            archive.writestr("firm_subscriptions.csv", _firm_export_csv_bytes(control.execute(
+                "SELECT firm_id,plan_code,status,seat_limit,trial_started_at,trial_ends_at,"
+                "current_period_start,current_period_end,created_at,updated_at "
+                "FROM firm_subscriptions WHERE firm_id=?", (firm_id,),
+            )))
+            archive.writestr("subscription_payment_submissions.csv", _firm_export_csv_bytes(control.execute(
+                "SELECT id,firm_id,amount_piasters,method,transfer_reference,submitted_by_user_id,"
+                "status,reviewed_by_user_id,reviewed_at,decision_note,created_at "
+                "FROM subscription_payment_submissions WHERE firm_id=? ORDER BY id", (firm_id,),
+            )))
+            archive.writestr("subscription_audit_events.csv", _firm_export_csv_bytes(control.execute(
+                "SELECT id,firm_id,actor_user_id,event_type,detail_json,created_at "
+                "FROM subscription_audit_events WHERE firm_id=? ORDER BY id", (firm_id,),
+            )))
+            archive.writestr("firm_usage_events.csv", _firm_export_csv_bytes(control.execute(
+                "SELECT id,firm_id,user_id,event_type,units,occurred_at "
+                "FROM firm_usage_events WHERE firm_id=? ORDER BY id", (firm_id,),
+            )))
+            archive.writestr("firm_setup_events.csv", _firm_export_csv_bytes(control.execute(
+                "SELECT id,firm_id,actor_user_id,event_type,provider_status,created_at "
+                "FROM firm_setup_events WHERE firm_id=? ORDER BY id", (firm_id,),
+            )))
+
+            object_rows = tenant.execute(
+                "SELECT o.object_id,o.sha256,o.byte_size,o.content_type,o.state,o.legal_hold,"
+                "d.id AS document_id,d.name FROM original_file_objects o "
+                "JOIN docs d ON d.id=o.document_id JOIN cases c ON c.id=d.case_id "
+                "ORDER BY d.id"
+            ).fetchall()
+            manifest = io.StringIO(newline="")
+            manifest_writer = csv.writer(manifest, lineterminator="\r\n")
+            manifest_writer.writerow([
+                "document_id","original_name","sha256","byte_size","content_type",
+                "state","legal_hold","included_path","export_status"
+            ])
+            store = _original_file_store() if object_rows else None
+            total_original_bytes = 0
+            for obj in object_rows:
+                included_path = ""
+                export_status = "not_exported_not_ready"
+                if obj["state"] == "ready":
+                    size = int(obj["byte_size"])
+                    if total_original_bytes + size > 250_000_000:
+                        raise HTTPException(413, "firm original files exceed the 250 MB export limit")
+                    if not store.verify(
+                        firm_id, obj["object_id"],
+                        expected_sha256=obj["sha256"], expected_size=size,
+                    ):
+                        raise HTTPException(503, "an original firm file failed integrity verification")
+                    safe_name = re.sub(r"[^A-Za-z0-9._-]+", "_", str(obj["name"] or "document"))
+                    safe_name = safe_name.strip("._-")[:100] or "document"
+                    included_path = f"original_files/{int(obj['document_id'])}-{safe_name}"
+                    with store.open(firm_id, obj["object_id"]) as original:
+                        raw = original.read(size + 1)
+                    if len(raw) != size or hashlib.sha256(raw).hexdigest() != obj["sha256"]:
+                        raise HTTPException(503, "an original firm file changed during export")
+                    archive.writestr(included_path, raw)
+                    total_original_bytes += len(raw)
+                    export_status = "included"
+                elif obj["state"] == "quarantined":
+                    export_status = "not_exported_quarantined"
+                manifest_writer.writerow([
+                    obj["document_id"], _csv_safe_cell(obj["name"]),
+                    obj["sha256"], obj["byte_size"], obj["content_type"],
+                    obj["state"], obj["legal_hold"], included_path, export_status,
+                ])
+            archive.writestr("original_files_manifest.csv", "\ufeff" + manifest.getvalue())
+
         export_file.seek(0)
-    except Exception:
+        tenant.execute(
+            "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+            (firm_id, u["id"], "firm_data_export"),
+        )
+        tenant.commit()
+    except HTTPException:
+        tenant.rollback()
         export_file.close()
         raise
+    except Exception as exc:
+        tenant.rollback()
+        export_file.close()
+        logger.exception("firm data export failed")
+        raise HTTPException(503, "firm data export could not be completed") from exc
 
-    def chunks():
+    filename = f"firm-{firm_id}-data-export-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}.zip"
+
+    def export_chunks():
         try:
             while True:
                 block = export_file.read(1024 * 1024)
@@ -7649,11 +7851,12 @@ def export_firm_data_zip(u: dict = Depends(user)):
             export_file.close()
 
     return StreamingResponse(
-        chunks(),
+        export_chunks(),
         media_type="application/zip",
         headers={
-            "Content-Disposition": f'attachment; filename="legal-copilot-firm-{firm_id}-export.zip"',
+            "Content-Disposition": f'attachment; filename="{filename}"',
             "Cache-Control": "no-store",
+            "Pragma": "no-cache",
             "X-Content-Type-Options": "nosniff",
         },
     )
