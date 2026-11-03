@@ -52,6 +52,8 @@ class PilotMetricsTests(unittest.TestCase):
             response = client.post("/login", json={"email": email, "password": password})
             self.assertEqual(response.status_code, 200, response.text)
             self.clients[suffix] = client
+            active = client.get("/session")
+            self.assertEqual(active.status_code, 200, active.text)
         control = app.control_conn()
         control.execute(
             "INSERT INTO user_platform_roles(user_id,role_name,granted_by_user_id) VALUES(?,'platform_admin',?)",
