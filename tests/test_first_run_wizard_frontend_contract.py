@@ -26,7 +26,7 @@ class FirstRunWizardFrontendContractTests(unittest.TestCase):
         self.assertIn("check.message_ar", HTML)
         self.assertIn("check.message_en", HTML)
         self.assertIn("data.health.ready_for_test_reminder", HTML)
-        self.assertIn("قبول SMTP لا يؤكد وصولها إلى صندوق الوارد", HTML)
+        self.assertIn("قبول SMTP لا يؤكد وصول الرسالة إلى صندوق الوارد", HTML)
         self.assertIn("SMTP acceptance does not confirm inbox delivery", HTML)
 
 
