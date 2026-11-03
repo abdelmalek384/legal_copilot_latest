@@ -6099,13 +6099,13 @@ def import_clients_csv(b: ClientCSVImportIn, u: dict = Depends(user)):
         rows_seen = 0
         duplicate_rows = 0
         for row_number, row in enumerate(reader, start=2):
-            if row_number > 502:
-                raise HTTPException(422, "CSV import is limited to 500 data rows")
             if None in row:
                 raise ValueError("CSV row contains more values than the header")
             if not any(str(value or "").strip() for value in row.values()):
                 continue
             rows_seen += 1
+            if rows_seen > 500:
+                raise HTTPException(422, "CSV import is limited to 500 data rows")
             values = {}
             for key in ("name", "phone", "email", "address", "notes"):
                 index = columns.get(key)
