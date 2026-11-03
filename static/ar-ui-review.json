@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "565d6b4f77314462a5513b922f6578ba2bd80d0a",
   "generated_on": "2026-11-03",
-  "entry_count": 914,
+  "entry_count": 918,
   "entries": [
     {
       "id": "AR-0001",
@@ -7617,6 +7617,38 @@
       "arabic": "أدخل اسم العميل",
       "source_lines": [
         1478
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0919",
+      "arabic": "اسم العميل",
+      "source_lines": [
+        1444
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0920",
+      "arabic": "الهاتف",
+      "source_lines": [
+        1270
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0921",
+      "arabic": "فتح",
+      "source_lines": [
+        1179
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0922",
+      "arabic": "+ ملف عميل جديد",
+      "source_lines": [
+        1506
       ],
       "review_status": "pending_native_review"
     }
