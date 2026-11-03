@@ -6102,11 +6102,14 @@ def import_clients_csv(b: ClientCSVImportIn, u: dict = Depends(user)):
     if len(raw.encode("utf-8")) > 1_000_000:
         raise HTTPException(413, "CSV import exceeds the 1 MB limit")
     try:
-        try:
-            dialect = csv.Sniffer().sniff(raw[:4096], delimiters=",;")
-        except csv.Error:
-            dialect = csv.excel
-        reader = csv.DictReader(io.StringIO(raw, newline=""), dialect=dialect, strict=True)
+        header_lines = raw.splitlines()
+        if not header_lines or not header_lines[0].strip():
+            raise ValueError("CSV header row is required")
+        header_line = header_lines[0]
+        comma_columns = len(next(csv.reader([header_line], delimiter=",", strict=True)))
+        semicolon_columns = len(next(csv.reader([header_line], delimiter=";", strict=True)))
+        delimiter = ";" if semicolon_columns > comma_columns else ","
+        reader = csv.DictReader(io.StringIO(raw, newline=""), delimiter=delimiter, strict=True)
         if not reader.fieldnames:
             raise ValueError("CSV header row is required")
         aliases = {
