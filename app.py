@@ -2087,6 +2087,9 @@ if _allowed_hosts:
 # Per-process fixed-window limits for expensive or abuse-prone endpoints.
 # Deliberately use the direct peer address; do not trust arbitrary X-Forwarded-For.
 _RATE_LIMITS = {
+    # Platform pilot reporting is bounded separately from normal firm workflows.
+    "/platform/pilot-metrics": (30, 60),
+    "/platform/pilot-metrics/export.csv": (10, 60),
     # Login has a separate failed-credential throttle in the login handler.
     # A generic middleware cap would also reject correct credentials and break
     # the intentional policy that a known user can still log in during lockout.
@@ -2648,7 +2651,9 @@ def user(request: Request, response: Response,
          csrf_header: str = Header(None, alias="X-CSRF-Token"),
          firm_cookie: str = Cookie(None, alias="lc_firm")):
     if _separate_runtime_enabled():
-        return _user_separate(request, response, session_cookie, csrf_cookie, csrf_header, firm_cookie)
+        authenticated = _user_separate(request, response, session_cookie, csrf_cookie, csrf_header, firm_cookie)
+        _meter_pilot_metric(authenticated, "active_user")
+        return authenticated
     tok = session_cookie or ""
     if not tok:
         raise HTTPException(401, "unauthorized")
@@ -2787,6 +2792,81 @@ def _meter_firm_usage(u: dict, event_type: str, units: int = 1):
         _record_firm_usage(control_conn(), u["firm_id"], u["id"], event_type, units)
     except Exception:
         logger.exception("firm usage event could not be recorded")
+
+
+_PILOT_METRIC_TYPES = frozenset({
+    "active_user", "case_created", "deadline_created", "answer_requested",
+    "invoice_issued", "correction_submitted",
+})
+
+
+def _record_pilot_metric(control, firm_id: int, user_id: int, metric: str, now: int | None = None):
+    """Record one content-free pilot action; active users are derived as distinct users per week."""
+    if metric not in _PILOT_METRIC_TYPES:
+        raise ValueError("unsupported pilot metric")
+    occurred_at = int(time.time()) if now is None else int(now)
+    day = datetime.fromtimestamp(occurred_at, timezone.utc).date()
+    week_start = (day - timedelta(days=day.weekday())).isoformat()
+    if metric == "active_user":
+        control.execute(
+            "INSERT OR IGNORE INTO pilot_metrics_events(firm_id,user_id,metric,week_start,occurred_at) "
+            "VALUES(?,?,?,?,?)",
+            (int(firm_id), int(user_id), metric, week_start, occurred_at),
+        )
+    else:
+        control.execute(
+            "INSERT INTO pilot_metrics_events(firm_id,user_id,metric,week_start,occurred_at) "
+            "VALUES(?,?,?,?,?)",
+            (int(firm_id), int(user_id), metric, week_start, occurred_at),
+        )
+    control.commit()
+
+
+def _meter_pilot_metric(u: dict, metric: str):
+    """Metrics are best-effort and must never break a successful firm workflow."""
+    try:
+        _record_pilot_metric(control_conn(), u["firm_id"], u["id"], metric)
+    except Exception:
+        logger.exception("pilot metric could not be recorded")
+
+
+def _pilot_metrics_rows(control, weeks: int = 12, now: int | None = None):
+    if isinstance(weeks, bool) or not isinstance(weeks, int) or not 1 <= weeks <= 52:
+        raise ValueError("weeks must be between 1 and 52")
+    timestamp = int(time.time()) if now is None else int(now)
+    today = datetime.fromtimestamp(timestamp, timezone.utc).date()
+    current_monday = today - timedelta(days=today.weekday())
+    first_week = (current_monday - timedelta(weeks=weeks - 1)).isoformat()
+    rows = control.execute(
+        """
+        SELECT e.firm_id, f.name AS firm_name, e.week_start,
+               COUNT(DISTINCT CASE WHEN e.metric='active_user' THEN e.user_id END) AS active_users,
+               SUM(CASE WHEN e.metric='case_created' THEN 1 ELSE 0 END) AS cases_created,
+               SUM(CASE WHEN e.metric='deadline_created' THEN 1 ELSE 0 END) AS deadlines_created,
+               SUM(CASE WHEN e.metric='answer_requested' THEN 1 ELSE 0 END) AS answers_requested,
+               SUM(CASE WHEN e.metric='invoice_issued' THEN 1 ELSE 0 END) AS invoices_issued,
+               SUM(CASE WHEN e.metric='correction_submitted' THEN 1 ELSE 0 END) AS corrections_submitted
+        FROM pilot_metrics_events e
+        JOIN firms f ON f.id=e.firm_id
+        WHERE e.week_start>=?
+        GROUP BY e.firm_id, f.name, e.week_start
+        ORDER BY e.week_start DESC, f.name COLLATE NOCASE, e.firm_id
+        """,
+        (first_week,),
+    ).fetchall()
+    fields = (
+        "firm_id", "firm_name", "week_start", "active_users", "cases_created",
+        "deadlines_created", "answers_requested", "invoices_issued", "corrections_submitted",
+    )
+    return [{field: (int(row[field]) if field not in {"firm_name", "week_start"} else str(row[field]))
+             for field in fields} for row in rows]
+
+
+def _pilot_csv_cell(value):
+    text = str(value if value is not None else "")
+    if text.lstrip().startswith(("=", "+", "-", "@")):
+        return "'" + text
+    return text
 
 
 def _firm_usage_summary(control, firm_id: int, now: int):
@@ -4506,6 +4586,35 @@ def submit_subscription_payment(b: SubscriptionPaymentSubmissionIn, u: dict = De
     return {"ok": True, "submission_id": int(cursor.lastrowid), "status": "pending"}
 
 
+@app.get("/platform/pilot-metrics")
+def platform_pilot_metrics(weeks: int = Query(12, ge=1, le=52), u: dict = Depends(user)):
+    require_platform_admin(u)
+    rows = _pilot_metrics_rows(control_conn(), weeks=weeks)
+    return {"weeks": weeks, "metrics": rows}
+
+
+@app.get("/platform/pilot-metrics/export.csv")
+def export_platform_pilot_metrics(weeks: int = Query(12, ge=1, le=52), u: dict = Depends(user)):
+    require_platform_admin(u)
+    rows = _pilot_metrics_rows(control_conn(), weeks=weeks)
+    output = io.StringIO(newline="")
+    writer = csv.writer(output)
+    writer.writerow([
+        "firm_id", "firm_name", "week_start", "active_users", "cases_created",
+        "deadlines_created", "answers_requested", "invoices_issued", "corrections_submitted",
+    ])
+    for row in rows:
+        writer.writerow([_pilot_csv_cell(row[key]) for key in (
+            "firm_id", "firm_name", "week_start", "active_users", "cases_created",
+            "deadlines_created", "answers_requested", "invoices_issued", "corrections_submitted",
+        )])
+    return Response(
+        content="\ufeff" + output.getvalue(),
+        media_type="text/csv; charset=utf-8",
+        headers={"Content-Disposition": "attachment; filename=legal-copilot-pilot-metrics.csv"},
+    )
+
+
 @app.get("/platform/billing/payment-submissions")
 def list_platform_payment_submissions(u: dict = Depends(user)):
     require_platform_admin(u)
@@ -5379,7 +5488,9 @@ def cases(u: dict = Depends(user)):
 @app.post("/cases")
 @rollback_tenant_transaction_on_error
 def new_case(b: CaseIn, u: dict = Depends(user)):
-    return {"id": add_case(conn(), u, b.title, b.client, b.stage, b.case_number, b.case_year, b.court, b.circuit, b.opposing_party)}
+    case_id = add_case(conn(), u, b.title, b.client, b.stage, b.case_number, b.case_year, b.court, b.circuit, b.opposing_party)
+    _meter_pilot_metric(u, "case_created")
+    return {"id": case_id}
 
 
 @app.get("/cases/{cid}")
@@ -5801,6 +5912,7 @@ def suggest_answer_correction(b: AnswerCorrectionCreateIn, u: dict = Depends(use
         (suggestion_id, u["id"], json.dumps({"training_use": "none"}, sort_keys=True)),
     )
     c.commit()
+    _meter_pilot_metric(u, "correction_submitted")
     return {"id": suggestion_id, "status": "pending", "training_use": "none"}
 
 
@@ -5960,6 +6072,7 @@ def new_deadline(cid: int, b: DeadlineIn, u: dict = Depends(user)):
     c.execute("INSERT INTO deadlines(case_id,title,due,note,created_by) VALUES(?,?,?,?,?)",
               (cid, b.title, b.due, b.note, u["id"]))
     log(c, cid, u["name"], "موعد قانوني: " + b.title); c.commit()
+    _meter_pilot_metric(u, "deadline_created")
     return {"ok": True}
 
 
@@ -6232,6 +6345,7 @@ def issue_invoice(invoice_id: int, u: dict = Depends(user)):
     _invoice_event(c, invoice_id, int(u["id"]), "issued", {"invoice_number": number})
     c.execute("RELEASE SAVEPOINT invoice_write")
     c.commit()
+    _meter_pilot_metric(u, "invoice_issued")
     return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
 
 
@@ -7118,6 +7232,7 @@ def do_ask(b: Q, u: dict = Depends(user)):
         need(c, u, b.case_id)
         result = ask(c, b.q, b.case_id, firm_id=u["firm_id"], as_of=b.as_of, scope=b.scope)
         _meter_firm_usage(u, "research_query")
+        _meter_pilot_metric(u, "answer_requested")
         return result
     except ValueError as e: raise HTTPException(422, str(e))
 
@@ -7383,5 +7498,6 @@ def send_research_message(conversation_id: int, b: ResearchMessageIn, u: dict = 
               (title, conversation_id))
     c.commit()
     _meter_firm_usage(u, "research_query")
+    _meter_pilot_metric(u, "answer_requested")
     return {"question": question, "answer": answer, **result, "answer_id": answer_id}
 
