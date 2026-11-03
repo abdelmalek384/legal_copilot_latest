@@ -7577,9 +7577,9 @@ def export_firm_data_zip(u: dict = Depends(user)):
     if firm is None or bool(firm["is_demo"]):
         raise HTTPException(404, "firm not found")
 
-    buffer = io.BytesIO()
+    export_file = tempfile.SpooledTemporaryFile(max_size=8 * 1024 * 1024, mode="w+b")
     try:
-        with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        with zipfile.ZipFile(export_file, "w", compression=zipfile.ZIP_DEFLATED) as archive:
             archive.writestr("cases.csv", _firm_export_csv_bytes(tenant.execute(
                 "SELECT c.id,c.title,c.client,c.stage,c.status,c.created_by,c.firm_id,"
                 "c.case_number,c.case_year,c.court,c.circuit,c.opposing_party,c.created_at "
@@ -7738,7 +7738,7 @@ def export_firm_data_zip(u: dict = Depends(user)):
                     included_path = f"original_files/{int(obj['document_id'])}-{safe_name}"
                     with store.open(firm_id, obj["object_id"]) as original:
                         raw = original.read(size + 1)
-                    if len(raw) != size:
+                    if len(raw) != size or hashlib.sha256(raw).hexdigest() != obj["sha256"]:
                         raise HTTPException(503, "an original firm file changed during export")
                     archive.writestr(included_path, raw)
                     total_original_bytes += len(raw)
@@ -7752,7 +7752,7 @@ def export_firm_data_zip(u: dict = Depends(user)):
                 ])
             archive.writestr("original_files_manifest.csv", "\ufeff" + manifest.getvalue())
 
-        payload = buffer.getvalue()
+        export_file.seek(0)
         tenant.execute(
             "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
             (firm_id, u["id"], "firm_data_export"),
@@ -7760,20 +7760,34 @@ def export_firm_data_zip(u: dict = Depends(user)):
         tenant.commit()
     except HTTPException:
         tenant.rollback()
+        export_file.close()
         raise
     except Exception as exc:
         tenant.rollback()
+        export_file.close()
         logger.exception("firm data export failed")
         raise HTTPException(503, "firm data export could not be completed") from exc
 
     filename = f"firm-{firm_id}-data-export-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}.zip"
-    return Response(
-        content=payload,
+
+    def export_chunks():
+        try:
+            while True:
+                block = export_file.read(1024 * 1024)
+                if not block:
+                    break
+                yield block
+        finally:
+            export_file.close()
+
+    return StreamingResponse(
+        export_chunks(),
         media_type="application/zip",
         headers={
             "Content-Disposition": f'attachment; filename="{filename}"',
             "Cache-Control": "no-store",
             "Pragma": "no-cache",
+            "X-Content-Type-Options": "nosniff",
         },
     )
 
