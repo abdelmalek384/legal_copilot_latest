@@ -290,6 +290,8 @@ class ResearchInspectorTests(unittest.TestCase):
         source = valid_source()
         source["page"] = "17"
         self.assertIn("Page 17", citation_text(source, "2026-10-24"))
+        self.assertIn("Published: 2019-12-15", citation)
+        self.assertIn("Effective: 2020-01-01", citation)
         self.assertIn("as of 2026-10-24", citation)
         self.assertIn("https://example.gov/law", citation)
         self.assertNotIn("page", citation.lower())
