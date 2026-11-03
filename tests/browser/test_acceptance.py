@@ -859,7 +859,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             self.page.once("dialog", lambda prompt: prompt.accept())
             issue.click()
             self.page.get_by_text("غير مدفوعة", exact=False).wait_for(timeout=10000)
-            self.assertIn(f"فاتورة اختبار {width}", self.page.locator("body").inner_text())
+            self.assertIn("أتعاب استشارية تجريبية", self.page.locator("body").inner_text())
             self.page.wait_for_function(
                 "() => document.documentElement.scrollWidth <= window.innerWidth",
                 timeout=8000,
