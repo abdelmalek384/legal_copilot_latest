@@ -140,6 +140,63 @@ class ClaimSupportTests(unittest.TestCase):
             hits, tokens, norm, _mask_markdown_code
         ))
 
+    def test_must_not_is_not_misclassified_as_a_positive_obligation(self):
+        hits = [{"text": "The employer must provide written notice."}]
+        self.assertTrue(has_unsupported_claims(
+            "The employer must not provide written notice [1].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
+
+    def test_not_required_to_conflicts_with_required_to(self):
+        hits = [{"text": "The employee is required to submit the request."}]
+        self.assertTrue(has_unsupported_claims(
+            "The employee is not required to submit the request [1].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
+
+    def test_not_permitted_to_conflicts_with_permitted_to(self):
+        hits = [{"text": "The employee is permitted to request leave."}]
+        self.assertTrue(has_unsupported_claims(
+            "The employee is not permitted to request leave [1].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
+
+    def test_arabic_no_right_conflicts_with_positive_right(self):
+        hits = [{"text": "يحق للعامل طلب الإجازة بعد ستة أشهر."}]
+        self.assertTrue(has_unsupported_claims(
+            "لا يحق للعامل طلب الإجازة بعد ستة أشهر [1].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
+
+    def test_arabic_no_obligation_conflicts_with_positive_obligation(self):
+        hits = [{"text": "يلتزم صاحب العمل بتقديم إخطار مكتوب."}]
+        self.assertTrue(has_unsupported_claims(
+            "لا يلتزم صاحب العمل بتقديم إخطار مكتوب [1].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
+
+    def test_absence_of_obligation_is_not_confused_with_permission(self):
+        self.assertFalse(_has_modal_mismatch(
+            "The employee is not required to request leave.",
+            "The employee may request leave.",
+        ))
+        self.assertFalse(_has_modal_mismatch(
+            "لا يجب على العامل طلب الإجازة.",
+            "يجوز للعامل طلب الإجازة.",
+        ))
+
+    def test_faithful_negative_modality_paraphrases_pass(self):
+        english = [{"text": "The employer must not deduct wages."}]
+        arabic = [{"text": "لا يحق لصاحب العمل خصم الأجر."}]
+        self.assertFalse(has_unsupported_claims(
+            "The employer must not deduct wages [1].",
+            english, tokens, norm, _mask_markdown_code
+        ))
+        self.assertFalse(has_unsupported_claims(
+            "لا يحق لصاحب العمل خصم الأجر [1].",
+            arabic, tokens, norm, _mask_markdown_code
+        ))
+
     def test_modality_comparison_does_not_mix_english_and_arabic(self):
         self.assertFalse(_has_modal_mismatch(
             "The employer must provide notice.",
