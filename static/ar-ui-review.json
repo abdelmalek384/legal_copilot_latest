@@ -3,9 +3,9 @@
   "title": "Legal Copilot Arabic UI string review inventory",
   "purpose": "Reviewable inventory of Arabic-bearing string literals in static/index.html for a native Egyptian Arabic speaker. This is a review snapshot, not yet the runtime translation source; user-entered case and legal text is not included.",
   "source_file": "static/index.html",
-  "source_commit": "b316a04ca74ec663130ef6d64eeee22231183f97",
+  "source_commit": "a268b3527b235086f2d8196b64ec442442d124d4",
   "generated_on": "2026-11-03",
-  "entry_count": 921,
+  "entry_count": 926,
   "entries": [
     {
       "id": "AR-0001",
@@ -7673,6 +7673,46 @@
       "arabic": "لا توجد ملفات عملاء مطابقة.",
       "source_lines": [
         1511
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0922",
+      "arabic": "اختر ملف CSV",
+      "source_lines": [
+        1514
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0923",
+      "arabic": "الحد الأقصى لملف الاستيراد 1 ميغابايت",
+      "source_lines": [
+        1517
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0924",
+      "arabic": "تم استيراد ",
+      "source_lines": [
+        1520
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0925",
+      "arabic": "تم تخطي ",
+      "source_lines": [
+        1520
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0926",
+      "arabic": "استيراد CSV",
+      "source_lines": [
+        1526
       ],
       "review_status": "pending_native_review"
     }
