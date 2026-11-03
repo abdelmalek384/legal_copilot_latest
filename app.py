@@ -596,11 +596,16 @@ def _ensure_client_profile(c, u, client_name="", client_id=None):
     ).fetchone()
     if row is not None:
         return int(row["id"]), str(row["name"])
-    cursor = c.execute(
-        "INSERT INTO clients(name,normalized_name,created_by) VALUES(?,?,?)",
+    c.execute(
+        "INSERT OR IGNORE INTO clients(name,normalized_name,created_by) VALUES(?,?,?)",
         (name, normalized, int(u["id"])),
     )
-    return int(cursor.lastrowid), name
+    row = c.execute(
+        "SELECT id,name FROM clients WHERE normalized_name=?", (normalized,)
+    ).fetchone()
+    if row is None:
+        raise HTTPException(503, "client profile could not be created")
+    return int(row["id"]), str(row["name"])
 
 
 def add_case(c, u, title, client="", stage="", case_number="", case_year="", court="", circuit="", opposing_party="", client_id=None):
@@ -5987,10 +5992,12 @@ def create_client(b: ClientIn, u: dict = Depends(user)):
     if c.execute("SELECT 1 FROM clients WHERE normalized_name=?", (normalized,)).fetchone():
         raise HTTPException(409, "a client with this name already exists")
     cursor = c.execute(
-        "INSERT INTO clients(name,normalized_name,phone,email,address,notes,created_by) "
+        "INSERT OR IGNORE INTO clients(name,normalized_name,phone,email,address,notes,created_by) "
         "VALUES(?,?,?,?,?,?,?)",
         (name, normalized, b.phone.strip(), b.email.strip(), b.address.strip(), b.notes.strip(), int(u["id"])),
     )
+    if cursor.rowcount != 1:
+        raise HTTPException(409, "a client with this name already exists")
     c.commit()
     return next(row for row in _client_payloads(c, u) if row["id"] == int(cursor.lastrowid))
 
