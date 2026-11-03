@@ -260,6 +260,14 @@ def citation_text(source, as_of=None):
         parts.append("Page %s" % page)
     if p.get("version_label"):
         parts.append("Version: %s" % p["version_label"])
+    for label, field in (
+        ("Published", "publication_date"),
+        ("Effective", "effective_date"),
+        ("Repeal/end", "repeal_date"),
+        ("Consolidated as of", "consolidated_as_of"),
+    ):
+        if p.get(field):
+            parts.append("%s: %s" % (label, p[field]))
     if p.get("gazette_issue"):
         issue = "Official Gazette %s" % p["gazette_issue"]
         if p.get("gazette_pages"):
