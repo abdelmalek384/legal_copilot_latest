@@ -362,5 +362,7 @@ jobs:
         run: PYTHONPATH=. python tests/test_product_feedback_routes.py
       - name: Test private answer correction queue and firm isolation
         run: PYTHONPATH=. python tests/test_answer_correction_routes.py
+      - name: Test first-run wizard frontend contract
+        run: PYTHONPATH=. python tests/test_first_run_wizard_frontend_contract.py
       - name: Guard that every test file runs in CI or is explicitly tracked
         run: PYTHONPATH=. python tests/test_ci_runs_all_tests.py
