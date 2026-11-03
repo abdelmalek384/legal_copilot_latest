@@ -7503,7 +7503,7 @@ def export_firm_data_zip(firm_id: int = Query(..., ge=1), u: dict = Depends(user
             )))
             archive.writestr("clients.csv", _firm_export_csv_bytes(tenant.execute(
                 "SELECT client AS client_name,COUNT(*) AS case_count,GROUP_CONCAT(id,';') AS case_ids "
-                "FROM cases AND trim(COALESCE(client,''))<>'' "
+                "FROM cases WHERE trim(COALESCE(client,''))<>'' "
                 "GROUP BY client ORDER BY client COLLATE NOCASE"
             )))
             archive.writestr("notes.csv", _firm_export_csv_bytes(tenant.execute(
@@ -7537,8 +7537,7 @@ def export_firm_data_zip(firm_id: int = Query(..., ge=1), u: dict = Depends(user
             archive.writestr("documents.csv", _firm_export_csv_bytes(tenant.execute(
                 "SELECT d.id,d.case_id,d.name,d.added,d.uploader_user_id,d.sha256,"
                 "d.content_type,d.byte_size,d.extraction_status,d.ocr_used "
-                "FROM docs d JOIN cases c ON c.id=d.case_id ORDER BY d.id",
-                (firm_id,),
+                "FROM docs d JOIN cases c ON c.id=d.case_id ORDER BY d.id"
             )))
             archive.writestr("document_extraction_reviews.csv", _firm_export_csv_bytes(tenant.execute(
                 "SELECT r.id,r.document_id,r.case_id,r.chunk_id,r.reviewer_user_id,"
@@ -7549,8 +7548,7 @@ def export_firm_data_zip(firm_id: int = Query(..., ge=1), u: dict = Depends(user
             archive.writestr("matter_chunks.csv", _firm_export_csv_bytes(tenant.execute(
                 "SELECT ch.id,ch.ref,ch.article,ch.page,ch.text,ch.norm,ch.case_id,"
                 "ch.document_id,ch.in_force,ch.as_of,ch.source,ch.verified "
-                "FROM chunks ch JOIN cases c ON c.id=ch.case_id ORDER BY ch.id",
-                (firm_id,),
+                "FROM chunks ch JOIN cases c ON c.id=ch.case_id ORDER BY ch.id"
             )))
             archive.writestr("research_conversations.csv", _firm_export_csv_bytes(tenant.execute(
                 "SELECT id,user_id,firm_id,title,created_at,updated_at "
@@ -7582,18 +7580,15 @@ def export_firm_data_zip(firm_id: int = Query(..., ge=1), u: dict = Depends(user
             )))
             archive.writestr("invoice_lines.csv", _firm_export_csv_bytes(tenant.execute(
                 "SELECT l.* FROM invoice_lines l JOIN invoices i ON i.id=l.invoice_id "
-                "JOIN cases c ON c.id=i.case_id ORDER BY l.invoice_id,l.position",
-                (firm_id,),
+                "JOIN cases c ON c.id=i.case_id ORDER BY l.invoice_id,l.position"
             )))
             archive.writestr("invoice_payments.csv", _firm_export_csv_bytes(tenant.execute(
                 "SELECT p.* FROM invoice_payments p JOIN invoices i ON i.id=p.invoice_id "
-                "JOIN cases c ON c.id=i.case_id ORDER BY p.invoice_id,p.id",
-                (firm_id,),
+                "JOIN cases c ON c.id=i.case_id ORDER BY p.invoice_id,p.id"
             )))
             archive.writestr("invoice_events.csv", _firm_export_csv_bytes(tenant.execute(
                 "SELECT e.* FROM invoice_events e JOIN invoices i ON i.id=e.invoice_id "
-                "JOIN cases c ON c.id=i.case_id ORDER BY e.invoice_id,e.id",
-                (firm_id,),
+                "JOIN cases c ON c.id=i.case_id ORDER BY e.invoice_id,e.id"
             )))
             archive.writestr("case_deletion_audit.csv", _firm_export_csv_bytes(tenant.execute(
                 "SELECT id,firm_id,case_id,actor_user_id,actor_name,case_snapshot_json,"
@@ -7615,7 +7610,7 @@ def export_firm_data_zip(firm_id: int = Query(..., ge=1), u: dict = Depends(user
                 "SELECT o.object_id,o.sha256,o.byte_size,o.content_type,o.state,o.legal_hold,"
                 "d.id AS document_id,d.name FROM original_file_objects o "
                 "JOIN docs d ON d.id=o.document_id JOIN cases c ON c.id=d.case_id "
-                "ORDER BY d.id", (firm_id,),
+                "ORDER BY d.id"
             ).fetchall()
             manifest = io.StringIO(newline="")
             manifest_writer = csv.writer(manifest, lineterminator="\\r\\n")
