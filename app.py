@@ -6096,6 +6096,8 @@ def import_clients_csv(b: ClientCSVImportIn, u: dict = Depends(user)):
             raise ValueError("CSV must contain a client name column")
         candidates = []
         seen = set()
+        rows_seen = 0
+        duplicate_rows = 0
         for row_number, row in enumerate(reader, start=2):
             if row_number > 502:
                 raise HTTPException(422, "CSV import is limited to 500 data rows")
@@ -6103,6 +6105,7 @@ def import_clients_csv(b: ClientCSVImportIn, u: dict = Depends(user)):
                 raise ValueError("CSV row contains more values than the header")
             if not any(str(value or "").strip() for value in row.values()):
                 continue
+            rows_seen += 1
             values = {}
             for key in ("name", "phone", "email", "address", "notes"):
                 index = columns.get(key)
@@ -6111,6 +6114,7 @@ def import_clients_csv(b: ClientCSVImportIn, u: dict = Depends(user)):
             client = ClientIn.model_validate(values)
             normalized_name = _client_normalized_name(conn(), client.name)
             if normalized_name in seen:
+                duplicate_rows += 1
                 continue
             seen.add(normalized_name)
             candidates.append(client)
@@ -6125,7 +6129,7 @@ def import_clients_csv(b: ClientCSVImportIn, u: dict = Depends(user)):
 
     c = conn()
     created = 0
-    skipped = 0
+    skipped = duplicate_rows
     for client in candidates:
         normalized = _client_normalized_name(c, client.name)
         cursor = c.execute(
@@ -6142,7 +6146,7 @@ def import_clients_csv(b: ClientCSVImportIn, u: dict = Depends(user)):
         (int(u["firm_id"]), int(u["id"]), f"client_csv_import:created={created};skipped={skipped}"),
     )
     c.commit()
-    return {"created": created, "skipped": skipped, "rows": len(candidates)}
+    return {"created": created, "skipped": skipped, "rows": rows_seen}
 
 
 @app.get("/cases")
