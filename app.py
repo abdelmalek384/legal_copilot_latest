@@ -2289,8 +2289,21 @@ async def request_validation_handler(request: Request, exc: RequestValidationErr
             for part in error.get("loc", ())
         ]
         message = str(error.get("msg", "Invalid value"))
-        submitted = error.get("input")
-        if submitted is not None and str(submitted) and str(submitted) in message:
+
+        def contains_submitted_value(value):
+            if isinstance(value, dict):
+                return any(
+                    contains_submitted_value(key) or contains_submitted_value(item)
+                    for key, item in value.items()
+                )
+            if isinstance(value, (list, tuple, set)):
+                return any(contains_submitted_value(item) for item in value)
+            if value is None or isinstance(value, bool):
+                return False
+            rendered = str(value)
+            return bool(rendered) and rendered in message
+
+        if contains_submitted_value(error.get("input")):
             message = "Invalid value"
         safe_errors.append({
             "type": str(error.get("type", "")),
