@@ -1109,6 +1109,8 @@ class BrowserAcceptanceTests(unittest.TestCase):
             control.execute("DELETE FROM subscription_audit_events WHERE firm_id=?", (self.state["firm_a_id"],))
             control.execute("DELETE FROM firm_subscriptions WHERE firm_id=?", (self.state["firm_a_id"],))
             control.commit()
+            self.assertEqual(control.execute("SELECT COUNT(*) FROM firm_subscriptions WHERE firm_id=?", (self.state["firm_a_id"],)).fetchone()[0], 0)
+            self.assertEqual(control.execute("SELECT COUNT(*) FROM subscription_audit_events WHERE firm_id=?", (self.state["firm_a_id"],)).fetchone()[0], 0)
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
