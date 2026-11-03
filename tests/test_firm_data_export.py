@@ -155,6 +155,9 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
             "firm_profiles.csv", "firm_subscriptions.csv", "subscription_payment_submissions.csv",
             "subscription_audit_events.csv", "firm_usage_events.csv", "firm_setup_events.csv",
             "reminder_deliveries.csv", "reminder_delivery_attempts.csv", "reminder_preferences.csv",
+            "original_file_objects.csv", "original_file_deletion_requests.csv",
+            "original_file_deletion_events.csv", "answer_correction_suggestions.csv",
+            "answer_correction_events.csv",
         }
         self.assertTrue(expected.issubset(names), sorted(expected - names))
 
@@ -175,6 +178,9 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(self._zip_csv(response, "reminder_deliveries.csv")[0]["status"], "accepted_by_smtp")
         self.assertEqual(self._zip_csv(response, "reminder_delivery_attempts.csv")[0]["attempt_number"], "1")
         self.assertEqual(self._zip_csv(response, "reminder_preferences.csv")[0]["deadline_3_days"], "0")
+        self.assertEqual(self._zip_csv(response, "original_file_objects.csv")[0]["sha256"], staged.sha256)
+        self.assertEqual(self._zip_csv(response, "original_file_deletion_requests.csv"), [])
+        self.assertEqual(self._zip_csv(response, "answer_correction_suggestions.csv"), [])
         invitation_header = zipfile.ZipFile(io.BytesIO(response.content)).read(
             "firm_invitations.csv"
         ).decode("utf-8-sig").splitlines()[0]
