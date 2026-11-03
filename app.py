@@ -2436,7 +2436,7 @@ class FirmProfileIn(BaseModel):
     @classmethod
     def validate_firm_phone(cls, value):
         value = value.strip()
-        if len(re.sub(r"\\D", "", value)) < 7:
+        if len(re.sub(r"\D", "", value)) < 7:
             raise ValueError("phone must contain at least seven digits")
         return value
 
@@ -2884,7 +2884,7 @@ def _setup_health_report():
     except (TypeError, ValueError):
         identity_port = 0
     identity_smtp_ok = bool(
-        identity_host and re.fullmatch(r"[^\\s@<>]+@[^\\s@<>]+\\.[^\\s@<>]+", identity_sender)
+        identity_host and re.fullmatch(r"[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+", identity_sender)
         and 1 <= identity_port <= 65535
         and identity_security in {"starttls", "ssl", "plain"}
         and bool(identity_username) == bool(identity_password)
