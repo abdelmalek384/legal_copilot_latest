@@ -7706,6 +7706,34 @@ def export_firm_data_zip(u: dict = Depends(user)):
                 "SELECT id,actor_user_id,target_user_id,invitation_id,event_type,detail_json,created_at "
                 "FROM identity_lifecycle_events WHERE firm_id=? ORDER BY id", (firm_id,),
             )))
+            # Export firm-owned control-plane profile, billing, setup and usage records.
+            # Exclude raw invitation/recovery token hashes and platform-only credentials.
+            archive.writestr("firm_profiles.csv", _firm_export_csv_bytes(control.execute(
+                "SELECT firm_id,phone,address,updated_by_user_id,updated_at "
+                "FROM firm_profiles WHERE firm_id=?", (firm_id,),
+            )))
+            archive.writestr("firm_subscriptions.csv", _firm_export_csv_bytes(control.execute(
+                "SELECT firm_id,plan_code,status,seat_limit,trial_started_at,trial_ends_at,"
+                "current_period_start,current_period_end,created_at,updated_at "
+                "FROM firm_subscriptions WHERE firm_id=?", (firm_id,),
+            )))
+            archive.writestr("subscription_payment_submissions.csv", _firm_export_csv_bytes(control.execute(
+                "SELECT id,firm_id,amount_piasters,method,transfer_reference,submitted_by_user_id,"
+                "status,reviewed_by_user_id,reviewed_at,decision_note,created_at "
+                "FROM subscription_payment_submissions WHERE firm_id=? ORDER BY id", (firm_id,),
+            )))
+            archive.writestr("subscription_audit_events.csv", _firm_export_csv_bytes(control.execute(
+                "SELECT id,firm_id,actor_user_id,event_type,detail_json,created_at "
+                "FROM subscription_audit_events WHERE firm_id=? ORDER BY id", (firm_id,),
+            )))
+            archive.writestr("firm_usage_events.csv", _firm_export_csv_bytes(control.execute(
+                "SELECT id,firm_id,user_id,event_type,units,occurred_at "
+                "FROM firm_usage_events WHERE firm_id=? ORDER BY id", (firm_id,),
+            )))
+            archive.writestr("firm_setup_events.csv", _firm_export_csv_bytes(control.execute(
+                "SELECT id,firm_id,actor_user_id,event_type,provider_status,created_at "
+                "FROM firm_setup_events WHERE firm_id=? ORDER BY id", (firm_id,),
+            )))
 
             object_rows = tenant.execute(
                 "SELECT o.object_id,o.sha256,o.byte_size,o.content_type,o.state,o.legal_hold,"
