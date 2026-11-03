@@ -65,6 +65,24 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         )
         control.commit()
         tenant.execute(
+            "INSERT INTO reminder_preferences(user_id,email_enabled,deadline_7_days,deadline_3_days) "
+            "VALUES(?,1,1,0)",
+            (owner_id,),
+        )
+        delivery = tenant.execute(
+            "INSERT INTO reminder_deliveries(idempotency_key,recipient_user_id,event_type,event_id,due_date,"
+            "reminder_window,lead_days,status,attempt_count,created_at,updated_at) "
+            "VALUES(?,?,'deadline','deadline-1','2026-12-10','due_soon',7,'accepted_by_smtp',1,"
+            "'2026-11-03 12:00:00','2026-11-03 12:00:00')",
+            ("a" * 64, owner_id),
+        )
+        tenant.execute(
+            "INSERT INTO reminder_delivery_attempts(delivery_id,attempt_number,smtp_attempts,status,attempted_at,finished_at) "
+            "VALUES(?,1,1,'accepted_by_smtp','2026-11-03 12:00:00','2026-11-03 12:00:01')",
+            (delivery.lastrowid,),
+        )
+        tenant.commit()
+        tenant.execute(
             "INSERT INTO notes(case_id,created_by,text) VALUES(?,?,?)",
             (self.case_id, owner_id, "Firm A private note"),
         )
@@ -136,6 +154,7 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
             "firm_memberships.csv", "firm_invitations.csv", "identity_lifecycle_events.csv",
             "firm_profiles.csv", "firm_subscriptions.csv", "subscription_payment_submissions.csv",
             "subscription_audit_events.csv", "firm_usage_events.csv", "firm_setup_events.csv",
+            "reminder_deliveries.csv", "reminder_delivery_attempts.csv", "reminder_preferences.csv",
         }
         self.assertTrue(expected.issubset(names), sorted(expected - names))
 
@@ -153,6 +172,9 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(self._zip_csv(response, "subscription_audit_events.csv")[0]["event_type"], "trial_started")
         self.assertEqual(self._zip_csv(response, "firm_usage_events.csv")[0]["event_type"], "research_query")
         self.assertEqual(self._zip_csv(response, "firm_setup_events.csv")[0]["provider_status"], "accepted_by_smtp")
+        self.assertEqual(self._zip_csv(response, "reminder_deliveries.csv")[0]["status"], "accepted_by_smtp")
+        self.assertEqual(self._zip_csv(response, "reminder_delivery_attempts.csv")[0]["attempt_number"], "1")
+        self.assertEqual(self._zip_csv(response, "reminder_preferences.csv")[0]["deadline_3_days"], "0")
         invitation_header = zipfile.ZipFile(io.BytesIO(response.content)).read(
             "firm_invitations.csv"
         ).decode("utf-8-sig").splitlines()[0]
