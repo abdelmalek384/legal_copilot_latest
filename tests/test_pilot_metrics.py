@@ -77,6 +77,12 @@ class PilotMetricsTests(unittest.TestCase):
         self.temp.cleanup()
 
     def test_platform_metrics_are_weekly_counts_and_firm_users_cannot_view_them(self):
+        # A second successful authentication increments the event count again;
+        # it is not presented as a count of distinct people.
+        repeated_login = self.clients["a"].post("/login", json={
+            "email": "pilot-a@example.test", "password": "Pilot-a-password-2026!",
+        })
+        self.assertEqual(repeated_login.status_code, 200, repeated_login.text)
         now = int(time.time())
         control = app.control_conn()
         app._record_pilot_metric(control, self.firm_a, "cases_created", now)
@@ -88,14 +94,16 @@ class PilotMetricsTests(unittest.TestCase):
         rows = platform_response.json()["metrics"]
         by_firm = {row["firm_id"]: row for row in rows}
         self.assertEqual(set(by_firm), {self.firm_a, self.firm_b})
-        self.assertEqual(by_firm[self.firm_a]["active_users"], 1)
+        self.assertEqual(by_firm[self.firm_a]["successful_sign_ins"], 2)
         self.assertEqual(by_firm[self.firm_a]["cases_created"], 1)
         self.assertEqual(by_firm[self.firm_a]["deadlines_created"], 1)
         self.assertEqual(by_firm[self.firm_a]["answers_requested"], 1)
         self.assertEqual(by_firm[self.firm_a]["invoices_issued"], 0)
         self.assertEqual(by_firm[self.firm_a]["corrections_submitted"], 0)
-        self.assertEqual(by_firm[self.firm_b]["active_users"], 1)
+        self.assertEqual(by_firm[self.firm_b]["successful_sign_ins"], 1)
         self.assertEqual(by_firm[self.firm_b]["invoices_issued"], 1)
+        self.assertEqual(platform_response.json()["weekly_active_users_definition"], "Not currently measured; successful sign-ins are event counts, not unique users.")
+        self.assertIn("not distinct people", platform_response.json()["successful_sign_ins_definition"])
         denied = self.clients["b"].get("/platform/pilot-metrics")
         self.assertEqual(denied.status_code, 403, denied.text)
 

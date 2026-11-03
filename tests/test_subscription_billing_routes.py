@@ -150,6 +150,12 @@ class SubscriptionBillingRouteTests(unittest.TestCase):
             self.client_a, "post", "/billing/subscribe", json={"plan_code": "solo"}
         )
         self.assertEqual(started.status_code, 200, started.text)
+        matter = self._mutate(
+            self.client_a, "post", "/cases",
+            json={"title": "Retained after expiry", "client": "Expiry Test Client"},
+        )
+        self.assertEqual(matter.status_code, 200, matter.text)
+        matter_id = matter.json()["id"]
         control = self.runtime.control_connection()
         expired_at = int(app.time.time()) - 3600
         control.execute(
@@ -165,6 +171,19 @@ class SubscriptionBillingRouteTests(unittest.TestCase):
         self.assertGreaterEqual(billing.json()["grace_days_remaining"], 1)
         self.assertEqual(billing.json()["days_remaining"], 0)
         self.assertEqual(billing.json()["grace_period_ends_at"], expired_at + 7 * 86400)
+
+        retained_list = self.client_a.get("/cases")
+        self.assertEqual(retained_list.status_code, 200, retained_list.text)
+        self.assertIn(matter_id, {row["id"] for row in retained_list.json()})
+        retained_detail = self.client_a.get(f"/cases/{matter_id}")
+        self.assertEqual(retained_detail.status_code, 200, retained_detail.text)
+        self.assertEqual(retained_detail.json()["title"], "Retained after expiry")
+        blocked_edit = self._mutate(
+            self.client_a, "patch", f"/cases/{matter_id}", json={"stage": "should remain unchanged"}
+        )
+        self.assertEqual(blocked_edit.status_code, 423, blocked_edit.text)
+        unchanged = self.client_a.get(f"/cases/{matter_id}")
+        self.assertEqual(unchanged.json()["stage"], "")
 
         # An owner who belongs to multiple firms must be able to leave an expired firm.
         switched = self._mutate(self.client_a, "post", "/session/firm", json={"firm_id": self.firm_b})
