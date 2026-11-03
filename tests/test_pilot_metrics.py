@@ -110,6 +110,7 @@ class PilotMetricsTests(unittest.TestCase):
         self.assertEqual(by_firm[self.firm_b]["invoices_issued"], 1)
         self.assertIn("Distinct users per firm", platform_response.json()["weekly_active_users_definition"])
         self.assertIn("Successful sign-ins alone do not qualify", platform_response.json()["weekly_active_users_definition"])
+        self.assertIn("Case/task/calendar-only activity is not currently included", platform_response.json()["weekly_active_users_definition"])
         self.assertIn("not distinct people", platform_response.json()["successful_sign_ins_definition"])
         denied = self.clients["b"].get("/platform/pilot-metrics")
         self.assertEqual(denied.status_code, 403, denied.text)
