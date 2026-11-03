@@ -106,6 +106,7 @@ class PilotMetricsTests(unittest.TestCase):
         self.assertEqual(by_firm[self.firm_a]["weekly_active_users"], 1)
         self.assertEqual(by_firm[self.firm_b]["successful_sign_ins"], 1)
         self.assertEqual(by_firm[self.firm_b]["weekly_active_users"], 0)
+        self.assertNotIn('"user_id"', platform_response.text)
         self.assertEqual(by_firm[self.firm_b]["invoices_issued"], 1)
         self.assertIn("Distinct users per firm", platform_response.json()["weekly_active_users_definition"])
         self.assertIn("Successful sign-ins alone do not qualify", platform_response.json()["weekly_active_users_definition"])
