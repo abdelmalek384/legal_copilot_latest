@@ -360,5 +360,19 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Number(parts[0])*100", HTML)
 
 
+    def test_subscription_status_explains_expiry_payment_review_and_seat_capacity(self):
+        self.assertIn("trialDaysRemaining", HTML)
+        self.assertIn("Days remaining: ", HTML)
+        self.assertIn("seatLimitReached", HTML)
+        self.assertIn("Seat limit reached", HTML)
+        self.assertIn("active members and pending invitations", HTML)
+        self.assertIn("The free trial has ended", HTML)
+        self.assertIn("Your firm records remain stored and are not deleted", HTML)
+        self.assertIn("Payment review pending", HTML)
+        self.assertIn("platform administrator must review it", HTML)
+        self.assertIn("Subscription is past due", HTML)
+        self.assertIn("Subscription cancelled", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
