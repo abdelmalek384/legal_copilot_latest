@@ -540,7 +540,7 @@ class RetrievalEvaluationTests(unittest.TestCase):
 
 class AnswerTrustTierTests(unittest.TestCase):
     def classify(self, sources, **kwargs):
-        defaults = {"claims_supported": True, "citations_complete": True}
+        defaults = {"claims_supported": True, "citations_complete": True, "contradictory_sources": False}
         defaults.update(kwargs)
         return classify_answer_trust_tier(sources, **defaults)
 
@@ -568,6 +568,15 @@ class AnswerTrustTierTests(unittest.TestCase):
         ])
         self.assertEqual(result["trust_tier"], TIER_UNREVIEWED)
         self.assertIn("mixed_source_statuses", result["reason_codes"])
+
+    def test_missing_contradiction_check_fails_closed(self):
+        result = classify_answer_trust_tier(
+            [{"source_id": "LAW-1", "source_status": "verified_operative_text"}],
+            claims_supported=True,
+            citations_complete=True,
+        )
+        self.assertEqual(result["trust_tier"], TIER_UNREVIEWED)
+        self.assertIn("contradictory_sources_unresolved", result["reason_codes"])
 
     def test_conflicting_sources_force_unreviewed(self):
         result = self.classify(
