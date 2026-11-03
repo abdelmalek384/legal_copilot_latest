@@ -847,6 +847,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
                     f"browser_errors={self.browser_errors}; network_errors={self.network_errors}"
                 ) from exc
 
+            self.assertEqual(self.browser_errors, [], f"browser errors before invoice at {width}px: {self.browser_errors}")
             self.page.locator(".tabs a").filter(has_text="الفواتير").click()
             self.page.get_by_placeholder("وصف الفاتورة أو نطاق العمل").fill(
                 f"فاتورة اختبار {width}"
