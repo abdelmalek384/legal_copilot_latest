@@ -7485,9 +7485,6 @@ def export_firm_data_zip(firm_id: int = Query(..., ge=1), u: dict = Depends(user
         raise HTTPException(404, "firm not found")
 
     exports = {
-        "firm.csv": (
-            "SELECT id AS firm_id,name,status FROM firms WHERE id=?",
-        ),
         "cases.csv": (
             "SELECT c.id,c.title,c.client,c.stage,c.status,c.created_by,c.firm_id,"
             "c.case_number,c.case_year,c.court,c.circuit,c.opposing_party,c.created_at "
