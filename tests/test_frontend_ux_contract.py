@@ -411,5 +411,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Number(parts[0])*100", HTML)
 
 
+    def test_calendar_supports_today_and_monday_to_sunday_week_filters(self):
+        self.assertIn("new Option(uiText('اليوم','Today'),'today')", HTML)
+        self.assertIn("new Option(uiText('هذا الأسبوع','This week'),'week')", HTML)
+        self.assertIn("weekStart.setDate(weekStart.getDate()-((weekStart.getDay()+6)%7))", HTML)
+        self.assertIn("weekEnd.setDate(weekEnd.getDate()+6)", HTML)
+        self.assertIn("range.onchange=draw", HTML)
+        self.assertIn("itemDay(x)<weekStartKey||itemDay(x)>weekEndKey", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
