@@ -587,6 +587,12 @@ def _ensure_client_profile(c, u, client_name="", client_id=None):
             raise HTTPException(404, "client profile not found")
         if name and _client_normalized_name(c, name) != row["normalized_name"]:
             raise HTTPException(422, "client name does not match the selected profile")
+        if u["role"] != "admin" and not c.execute(
+            "SELECT 1 FROM cases cs JOIN members m ON m.case_id=cs.id "
+            "WHERE cs.client_id=? AND cs.firm_id=? AND m.user_id=? LIMIT 1",
+            (int(client_id), int(u["firm_id"]), int(u["id"])),
+        ).fetchone():
+            raise HTTPException(404, "client profile not found")
         return int(row["id"]), str(row["name"])
     if not name:
         return None, ""
@@ -595,6 +601,12 @@ def _ensure_client_profile(c, u, client_name="", client_id=None):
         "SELECT id,name FROM clients WHERE normalized_name=?", (normalized,)
     ).fetchone()
     if row is not None:
+        if u["role"] != "admin" and not c.execute(
+            "SELECT 1 FROM cases cs JOIN members m ON m.case_id=cs.id "
+            "WHERE cs.client_id=? AND cs.firm_id=? AND m.user_id=? LIMIT 1",
+            (int(row["id"]), int(u["firm_id"]), int(u["id"])),
+        ).fetchone():
+            raise HTTPException(409, "client profile exists; ask a firm administrator to link this matter")
         return int(row["id"]), str(row["name"])
     c.execute(
         "INSERT OR IGNORE INTO clients(name,normalized_name,created_by) VALUES(?,?,?)",
