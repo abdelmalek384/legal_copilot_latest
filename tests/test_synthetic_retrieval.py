@@ -136,6 +136,14 @@ class SyntheticRetrievalTests(unittest.TestCase):
             None, query, k=10, scope="verified_corpus", as_of=as_of
         )
 
+    def test_hamza_seat_variants_are_query_hints_not_source_rewrites(self):
+        self.assertIn("مسؤول", orthographic_variants("مسئول"))
+        self.assertIn("مسئول", orthographic_variants("مسؤول"))
+        self.assertIn("شئون", orthographic_variants("شؤون"))
+        expanded = expand_lexicon_hints("مسئول", app.tokens("مسئول"), app.tokens, app.norm)
+        self.assertIn("مسؤول", expanded)
+        self.assertEqual(app.norm("مسؤول"), "مسؤول")
+
     def test_egyptian_colloquial_query_retrieves_intended_synthetic_passage(self):
         intended_id = self.fixture.add_passage(
             "SYNTH-WORK-01",
