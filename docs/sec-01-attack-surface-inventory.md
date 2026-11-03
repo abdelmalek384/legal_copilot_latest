@@ -38,6 +38,10 @@ For every route, review authentication and role checks, tenant derivation from t
 | `POST` | `/users/{uid}/disable` | Review authorization, firm scoping, IDOR, rate limits, input validation, and audit behavior |
 | `POST` | `/users` | Review authorization, firm scoping, IDOR, rate limits, input validation, and audit behavior |
 | `GET` | `/dashboard` | Review authorization, firm scoping, IDOR, rate limits, input validation, and audit behavior |
+| `GET` | `/clients` | Review authorization, firm scoping, IDOR, rate limits, input validation, and audit behavior |
+| `POST` | `/clients` | Review authorization, firm scoping, IDOR, rate limits, input validation, and audit behavior |
+| `GET` | `/clients/{client_id}` | Review authorization, firm scoping, IDOR, rate limits, input validation, and audit behavior |
+| `PUT` | `/clients/{client_id}` | Review authorization, firm scoping, IDOR, rate limits, input validation, and audit behavior |
 | `GET` | `/cases` | Review authorization, firm scoping, IDOR, rate limits, input validation, and audit behavior |
 | `POST` | `/cases` | Review authorization, firm scoping, IDOR, rate limits, input validation, and audit behavior |
 | `GET` | `/cases/{cid}` | Review authorization, firm scoping, IDOR, rate limits, input validation, and audit behavior |
