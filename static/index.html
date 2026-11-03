@@ -1505,7 +1505,7 @@ async function clients(){
   const cards=matches.map(client=>h('section',{className:'card'},
    h('div',{className:'row'},h('h3',{textContent:client.name}),h('span',{className:'mut'},client.matters.length+' '+uiText('قضايا','matters'))),
    ...([['الهاتف',client.phone],['البريد الإلكتروني',client.email],['العنوان',client.address],['ملاحظات',client.notes]].filter(([,value])=>value).map(([label,value])=>h('p',{className:'mut',textContent:uiText(label,label)+': '+value}))),
-   h('div',{className:'row'},btn(uiText('+ قضية جديدة','+ New matter'),()=>newCase(client.name),'g'),...(client.can_edit?[btn(uiText('تعديل الملف','Edit profile'),()=>clientProfileForm(client),'g')]:[])),
+   h('div',{className:'row'},btn(uiText('+ قضية جديدة','+ New matter'),()=>newCase(client.name),'g'),...(ME.role==='admin'?[btn(uiText('تعديل الملف','Edit profile'),()=>clientProfileForm(client),'g')]:[])),
    client.matters.length?h('div',{className:'stack'},h('b',{textContent:uiText('المسائل المرتبطة','Linked matters')}),...client.matters.map(m=>h('div',{className:'row'},h('div',{},h('b',{textContent:m.title}),h('div',{className:'mut',textContent:(m.case_number||'—')+(m.case_year?' / '+m.case_year:'')})),btn(uiText('فتح','Open'),()=>{TAB='sum';view(m.id)},'g')))):h('p',{className:'mut',textContent:uiText('لا توجد قضايا مرتبطة بهذا العميل بعد.','No matters linked to this client yet.')})
   ));
   cardContainer.replaceChildren(...(cards.length?cards:[h('div',{className:'card'},empty(uiText(needle?'لا توجد ملفات عملاء مطابقة.':'لا توجد ملفات عملاء بعد.',needle?'No matching client profiles.':'No client profiles yet.')))]));
