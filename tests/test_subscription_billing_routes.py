@@ -45,6 +45,10 @@ class SubscriptionBillingRouteTests(unittest.TestCase):
             self.firm_b, "Subscription Owner B", "subscription-b@example.test",
             app.hash_pw(self.password_b),
         )
+        self.user_a_id = int(app.control_conn().execute(
+            "SELECT id FROM users WHERE email_normalized=?", ("subscription-a@example.test",)
+        ).fetchone()["id"])
+        self.runtime.create_firm_membership(self.user_a_id, self.firm_b, "lawyer")
         control = app.control_conn()
         self.user_b_id = int(control.execute(
             "SELECT id FROM users WHERE email_normalized=?", ("subscription-b@example.test",)
@@ -140,6 +144,55 @@ class SubscriptionBillingRouteTests(unittest.TestCase):
         small_firm = self._mutate(self.client_b, "post", "/billing/subscribe", json={"plan_code": "small_firm"})
         self.assertEqual(small_firm.status_code, 200, small_firm.text)
         self.assertEqual(small_firm.json()["subscription"]["seat_limit"], 5)
+
+    def test_expired_trial_is_read_only_but_payment_and_reads_remain_available(self):
+        started = self._mutate(
+            self.client_a, "post", "/billing/subscribe", json={"plan_code": "solo"}
+        )
+        self.assertEqual(started.status_code, 200, started.text)
+        control = self.runtime.control_connection()
+        expired_at = int(app.time.time()) - 3600
+        control.execute(
+            "UPDATE firm_subscriptions SET trial_ends_at=? WHERE firm_id=?",
+            (expired_at, self.firm_a),
+        )
+        control.commit()
+
+        billing = self.client_a.get("/billing")
+        self.assertEqual(billing.status_code, 200, billing.text)
+        self.assertTrue(billing.json()["read_only"])
+        self.assertEqual(billing.json()["subscription"]["status"], "expired")
+        self.assertGreaterEqual(billing.json()["grace_days_remaining"], 1)
+        self.assertEqual(billing.json()["days_remaining"], 0)
+        self.assertEqual(billing.json()["grace_period_ends_at"], expired_at + 7 * 86400)
+
+        # An owner who belongs to multiple firms must be able to leave an expired firm.
+        switched = self._mutate(self.client_a, "post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        switched_billing = self.client_a.get("/billing")
+        self.assertEqual(switched_billing.status_code, 403, switched_billing.text)
+        switched_back = self._mutate(self.client_a, "post", "/session/firm", json={"firm_id": self.firm_a})
+        self.assertEqual(switched_back.status_code, 200, switched_back.text)
+
+        export = self.client_a.get("/firm/data-export.zip")
+        self.assertEqual(export.status_code, 200, export.text)
+        self.assertIn("application/zip", export.headers.get("content-type", ""))
+
+        blocked = self._mutate(self.client_a, "post", "/invitations", json={
+            "email": "expired-seat@example.test", "role": "lawyer",
+        })
+        self.assertEqual(blocked.status_code, 423, blocked.text)
+
+        payment = self._mutate(self.client_a, "post", "/billing/payment-submissions", json={
+            "amount_piasters": 250000, "method": "bank_transfer",
+            "transfer_reference": "EXPIRED-TRIAL-RENEWAL-001",
+        })
+        self.assertEqual(payment.status_code, 200, payment.text)
+        self.assertEqual(payment.json()["status"], "pending")
+        after_payment = self.client_a.get("/billing")
+        self.assertEqual(after_payment.status_code, 200, after_payment.text)
+        self.assertTrue(after_payment.json()["read_only"])
+        self.assertEqual(after_payment.json()["subscription"]["status"], "pending_payment")
 
     def test_seat_limit_blocks_invites_and_non_admin_cannot_manage_billing(self):
         started = self._mutate(self.client_a, "post", "/billing/subscribe", json={"plan_code": "solo"})
