@@ -2,6 +2,7 @@
 import os
 import tempfile
 import unittest
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -77,7 +78,7 @@ class PilotMetricsTests(unittest.TestCase):
         self.temp.cleanup()
 
     def test_platform_metrics_are_weekly_counts_and_firm_users_cannot_view_them(self):
-        now = int(datetime(2026, 11, 3, 12, tzinfo=timezone.utc).timestamp())
+        now = int(time.time())
         control = app.control_conn()
         app._record_pilot_metric(control, self.firm_a, "cases_created", now)
         app._record_pilot_metric(control, self.firm_a, "deadlines_created", now)
@@ -100,7 +101,7 @@ class PilotMetricsTests(unittest.TestCase):
         self.assertEqual(denied.status_code, 403, denied.text)
 
     def test_csv_export_is_platform_only_and_contains_aggregate_columns(self):
-        now = int(datetime(2026, 11, 3, 12, tzinfo=timezone.utc).timestamp())
+        now = int(time.time())
         app._record_pilot_metric(app.control_conn(), self.firm_a, "corrections_submitted", now)
         response = self.clients["a"].get("/platform/pilot-metrics/export.csv?weeks=4")
         self.assertEqual(response.status_code, 200, response.text)
