@@ -8,6 +8,12 @@ HTML = Path("static/index.html").read_text(encoding="utf-8")
 
 class FrontendUXContractTests(unittest.TestCase):
 
+    def test_matter_csv_import_is_admin_only_and_bounded(self):
+        self.assertIn("/cases/import.csv", HTML)
+        self.assertIn("ME.role==='admin'", HTML)
+        self.assertIn("accept:'.csv,text/csv'", HTML)
+        self.assertIn("file.size>1000000", HTML)
+
     def test_arabic_ui_review_catalog_covers_source_literals(self):
         catalog_path = Path("static/ar-ui-review.json")
         catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
