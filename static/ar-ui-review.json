@@ -1,0 +1,7488 @@
+{
+  "locale": "ar-EG",
+  "title": "Legal Copilot Arabic UI string review inventory",
+  "purpose": "Reviewable inventory of Arabic-bearing string literals in static/index.html for a native Egyptian Arabic speaker. This is a review snapshot, not yet the runtime translation source; user-entered case and legal text is not included.",
+  "source_file": "static/index.html",
+  "source_commit": "8003e65c1b72d7c79c9d524adfd7481ab23d43cf",
+  "generated_on": "2026-11-03",
+  "entry_count": 897,
+  "entries": [
+    {
+      "id": "AR-0001",
+      "arabic": "رئيسي",
+      "source_lines": [
+        884,
+        2149
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0002",
+      "arabic": "محامٍ مساعد",
+      "source_lines": [
+        884,
+        2149
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0003",
+      "arabic": "متدرب",
+      "source_lines": [
+        884,
+        1217,
+        2149
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0004",
+      "arabic": "بيانات غير صحيحة",
+      "source_lines": [
+        887
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0005",
+      "arabic": "المكتب النشط",
+      "source_lines": [
+        894
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0006",
+      "arabic": "اختيار المكتب النشط",
+      "source_lines": [
+        894
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0007",
+      "arabic": "تخطي إلى المحتوى الرئيسي",
+      "source_lines": [
+        894
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0008",
+      "arabic": "التنقل الرئيسي",
+      "source_lines": [
+        894
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0009",
+      "arabic": "مساحة المكتب القانوني",
+      "source_lines": [
+        894
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0010",
+      "arabic": "العربية",
+      "source_lines": [
+        894,
+        972,
+        1184,
+        2168
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0011",
+      "arabic": "روابط التنقل",
+      "source_lines": [
+        895
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0012",
+      "arabic": "نظرة عامة",
+      "source_lines": [
+        896,
+        1414
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0013",
+      "arabic": "بدء الاستخدام",
+      "source_lines": [
+        896
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0014",
+      "arabic": "مؤشرات استخدام المكاتب",
+      "source_lines": [
+        896,
+        1143
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0015",
+      "arabic": "القضايا",
+      "source_lines": [
+        896,
+        1464,
+        2115,
+        2117,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0016",
+      "arabic": "العملاء وتعارض المصالح",
+      "source_lines": [
+        896
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0017",
+      "arabic": "المهام",
+      "source_lines": [
+        896,
+        1420,
+        1426,
+        1427,
+        1858,
+        2128,
+        2144
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0018",
+      "arabic": "الأجندة والمواعيد",
+      "source_lines": [
+        896,
+        1427
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0019",
+      "arabic": "الفواتير والتحصيل",
+      "source_lines": [
+        896,
+        1170,
+        1177
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0020",
+      "arabic": "البحث القانوني",
+      "source_lines": [
+        896,
+        1849,
+        2115,
+        2117,
+        2151
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0021",
+      "arabic": "ملاحظات المنتج",
+      "source_lines": [
+        896,
+        1261
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0022",
+      "arabic": "تغطية المجموعة القانونية",
+      "source_lines": [
+        896,
+        1468
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0023",
+      "arabic": "مراجعة المصادر القانونية",
+      "source_lines": [
+        896,
+        1619
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0024",
+      "arabic": "الإعدادات والأمان",
+      "source_lines": [
+        896
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0025",
+      "arabic": "اسحب لعرض المزيد",
+      "source_lines": [
+        898
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0026",
+      "arabic": "تسجيل الخروج",
+      "source_lines": [
+        900,
+        922,
+        963,
+        2116,
+        2117,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0027",
+      "arabic": "بيانات تجريبية فقط — لا تستخدم هذه القضايا أو المواعيد في عمل حقيقي.",
+      "source_lines": [
+        901
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0028",
+      "arabic": "التحقق بخطوتين",
+      "source_lines": [
+        905
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0029",
+      "arabic": "التحقق من الهوية",
+      "source_lines": [
+        906
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0030",
+      "arabic": "أدخل رمز تطبيق المصادقة أو رمز استرداد غير مستخدم.",
+      "source_lines": [
+        907
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0031",
+      "arabic": "رمز المصادقة المكوّن من 6 أرقام",
+      "source_lines": [
+        908
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0032",
+      "arabic": "رمز المصادقة",
+      "source_lines": [
+        908,
+        957,
+        1011,
+        1028
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0033",
+      "arabic": "رمز الاسترداد",
+      "source_lines": [
+        909
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0034",
+      "arabic": "أدخل رمزاً واحداً فقط.",
+      "source_lines": [
+        913,
+        1023
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0035",
+      "arabic": "رمز تطبيق المصادقة",
+      "source_lines": [
+        919
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0036",
+      "arabic": "أو رمز الاسترداد",
+      "source_lines": [
+        920
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0037",
+      "arabic": "تحقق",
+      "source_lines": [
+        921
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0038",
+      "arabic": "إعداد المصادقة متعددة العوامل",
+      "source_lines": [
+        928
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0039",
+      "arabic": "إعداد تطبيق المصادقة",
+      "source_lines": [
+        929,
+        1039
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0040",
+      "arabic": "استخدم تطبيق مصادقة متوافقاً. سيظهر المفتاح مرة واحدة فقط.",
+      "source_lines": [
+        930
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0041",
+      "arabic": "كلمة المرور الحالية",
+      "source_lines": [
+        931,
+        958,
+        962,
+        1010,
+        1027,
+        1212
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0042",
+      "arabic": "إنشاء إعداد المصادقة",
+      "source_lines": [
+        932
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0043",
+      "arabic": "أضف المفتاح إلى تطبيق المصادقة",
+      "source_lines": [
+        937
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0044",
+      "arabic": "أدخل المفتاح يدوياً أو استخدم رابط الإعداد من تطبيق متوافق.",
+      "source_lines": [
+        938
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0045",
+      "arabic": "المفتاح السري",
+      "source_lines": [
+        939
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0046",
+      "arabic": "رابط الإعداد",
+      "source_lines": [
+        941
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0047",
+      "arabic": "رابط إعداد تطبيق المصادقة",
+      "source_lines": [
+        942
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0048",
+      "arabic": "أدخل الرمز الحالي المكوّن من 6 أرقام لتأكيد الإعداد.",
+      "source_lines": [
+        943
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0049",
+      "arabic": "رمز التأكيد",
+      "source_lines": [
+        944
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0050",
+      "arabic": "أعد إدخال كلمة المرور",
+      "source_lines": [
+        945
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0051",
+      "arabic": "احفظ رموز الاسترداد",
+      "source_lines": [
+        952
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0052",
+      "arabic": "لن يمكن عرض هذه الرموز مرة أخرى. احفظها في مكان آمن.",
+      "source_lines": [
+        953
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0053",
+      "arabic": "متابعة",
+      "source_lines": [
+        955,
+        1381
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0054",
+      "arabic": "تأكيد وتوليد رموز الاسترداد",
+      "source_lines": [
+        959
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0055",
+      "arabic": "المساعد القانوني",
+      "source_lines": [
+        968,
+        1700,
+        2115,
+        2158,
+        2164
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0056",
+      "arabic": "تسجيل الدخول",
+      "source_lines": [
+        970,
+        982,
+        2116,
+        2117,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0057",
+      "arabic": "طلب حساب",
+      "source_lines": [
+        971
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0058",
+      "arabic": "مساحة عمل قانونية آمنة لمكتبك",
+      "source_lines": [
+        973
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0059",
+      "arabic": "الدخول إلى المساعد القانوني",
+      "source_lines": [
+        974
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0060",
+      "arabic": "البريد الإلكتروني",
+      "source_lines": [
+        976,
+        980,
+        2117,
+        2146
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0061",
+      "arabic": "كلمة المرور",
+      "source_lines": [
+        977,
+        981,
+        2117,
+        2146
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0062",
+      "arabic": "إظهار",
+      "source_lines": [
+        978,
+        2117,
+        2135,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0063",
+      "arabic": "إخفاء",
+      "source_lines": [
+        978,
+        2117,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0064",
+      "arabic": "أدخل البريد الإلكتروني وكلمة المرور",
+      "source_lines": [
+        979,
+        2117,
+        2146
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0065",
+      "arabic": "طلب الوصول إلى Legal Copilot",
+      "source_lines": [
+        985
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0066",
+      "arabic": "اطلب من مسؤول المكتب إنشاء حسابك.",
+      "source_lines": [
+        986
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0067",
+      "arabic": "التسجيل العام غير متاح",
+      "source_lines": [
+        987
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0068",
+      "arabic": "لحماية سرية ملفات القضايا، ينشئ مسؤول المكتب الحسابات من الإعدادات. لن يؤدي هذا الخيار إلى إنشاء حساب تلقائيا.",
+      "source_lines": [
+        987
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0069",
+      "arabic": "العودة إلى تسجيل الدخول",
+      "source_lines": [
+        988
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0070",
+      "arabic": "هذه الرموز لن تظهر مرة أخرى. احفظها في مكان آمن.",
+      "source_lines": [
+        996
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0071",
+      "arabic": "تم الحفظ",
+      "source_lines": [
+        998
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0072",
+      "arabic": "تدوير رموز الاسترداد",
+      "source_lines": [
+        1003,
+        1041
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0073",
+      "arabic": "أدخل كلمة المرور الحالية ورمز تطبيق المصادقة. ستُلغى الرموز القديمة.",
+      "source_lines": [
+        1004
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0074",
+      "arabic": "رموز الاسترداد الجديدة",
+      "source_lines": [
+        1009
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0075",
+      "arabic": "توليد رموز جديدة",
+      "source_lines": [
+        1012
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0076",
+      "arabic": "إلغاء",
+      "source_lines": [
+        1013,
+        1031,
+        1439,
+        2120,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0077",
+      "arabic": "إيقاف المصادقة متعددة العوامل",
+      "source_lines": [
+        1018
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0078",
+      "arabic": "يتطلب ذلك كلمة المرور الحالية ورمزاً واحداً صالحاً. قد تمنع سياسة المكتب إيقاف المصادقة.",
+      "source_lines": [
+        1019
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0079",
+      "arabic": "تم إيقاف المصادقة.",
+      "source_lines": [
+        1026
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0080",
+      "arabic": "أو رمز استرداد",
+      "source_lines": [
+        1029
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0081",
+      "arabic": "إيقاف المصادقة",
+      "source_lines": [
+        1030,
+        1043
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0082",
+      "arabic": "المصادقة متعددة العوامل",
+      "source_lines": [
+        1036
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0083",
+      "arabic": "المصادقة مفعّلة لهذا الحساب.",
+      "source_lines": [
+        1037
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0084",
+      "arabic": "يلزم إعداد المصادقة قبل استخدام مساحة العمل.",
+      "source_lines": [
+        1037
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0085",
+      "arabic": "يمكنك تفعيل المصادقة لزيادة أمان الحساب.",
+      "source_lines": [
+        1037
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0086",
+      "arabic": "استبدال تطبيق المصادقة",
+      "source_lines": [
+        1042
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0087",
+      "arabic": "تمنع سياسة الأمان إيقاف المصادقة لهذا الحساب.",
+      "source_lines": [
+        1044
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0088",
+      "arabic": "مقاعد",
+      "source_lines": [
+        1051
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0089",
+      "arabic": "عمليات البحث القانوني",
+      "source_lines": [
+        1056
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0090",
+      "arabic": "المستندات المضافة",
+      "source_lines": [
+        1057
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0091",
+      "arabic": "عمليات معالجة OCR",
+      "source_lines": [
+        1058
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0092",
+      "arabic": "مسودات أولية",
+      "source_lines": [
+        1059
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0093",
+      "arabic": "الاستخدام خلال الشهر الحالي",
+      "source_lines": [
+        1061
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0094",
+      "arabic": "هذه أرقام قياس للاستخدام فقط؛ لا تُطبق حدود أو رسوم تلقائية في هذه المرحلة. لا يتم تخزين نصوص الاستعلامات أو محتوى القضايا ضمن سجل القياس.",
+      "source_lines": [
+        1063
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0095",
+      "arabic": "فترة تجريبية",
+      "source_lines": [
+        1065
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0096",
+      "arabic": "بانتظار مراجعة الدفع",
+      "source_lines": [
+        1065
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0097",
+      "arabic": "نشط",
+      "source_lines": [
+        1065,
+        1070
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0098",
+      "arabic": "انتهت التجربة",
+      "source_lines": [
+        1065
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0099",
+      "arabic": "متأخر",
+      "source_lines": [
+        1065,
+        2150
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0100",
+      "arabic": "ملغي",
+      "source_lines": [
+        1065
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0101",
+      "arabic": "اشتراك المكتب",
+      "source_lines": [
+        1068
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0102",
+      "arabic": "الخطة:",
+      "source_lines": [
+        1069,
+        1100
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0103",
+      "arabic": "الحالة:",
+      "source_lines": [
+        1069,
+        1865,
+        2129
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0104",
+      "arabic": "لم يتم اختيار خطة بعد. اختر خطة لبدء التجربة المجانية.",
+      "source_lines": [
+        1069
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0105",
+      "arabic": "المقاعد:",
+      "source_lines": [
+        1070
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0106",
+      "arabic": "دعوات معلقة",
+      "source_lines": [
+        1070
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0107",
+      "arabic": "تنتهي التجربة في:",
+      "source_lines": [
+        1071
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0108",
+      "arabic": "تغيير الخطة",
+      "source_lines": [
+        1072,
+        1090
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0109",
+      "arabic": "بدء تجربة مجانية لمدة 14 يوماً",
+      "source_lines": [
+        1072
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0110",
+      "arabic": "تم تحديث الاشتراك",
+      "source_lines": [
+        1072
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0111",
+      "arabic": "المبلغ بالجنيه المصري مثل 500.00",
+      "source_lines": [
+        1073
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0112",
+      "arabic": "تحويل بنكي",
+      "source_lines": [
+        1074,
+        2029
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0113",
+      "arabic": "رقم مرجع التحويل",
+      "source_lines": [
+        1075
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0114",
+      "arabic": "إرسال إثبات التحويل للمراجعة",
+      "source_lines": [
+        1076
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0115",
+      "arabic": "أدخل مبلغاً موجباً ومرجع التحويل",
+      "source_lines": [
+        1079
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0116",
+      "arabic": "تم إرسال التحويل للمراجعة",
+      "source_lines": [
+        1081
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0117",
+      "arabic": "الدفع بتحويل بنكي أو InstaPay",
+      "source_lines": [
+        1085
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0118",
+      "arabic": "حوّل المبلغ إلى حساب المكتب المحدد خارج التطبيق ثم أدخل المبلغ ومرجع التحويل. لن يتم تفعيل الاشتراك قبل مراجعة مسؤول المنصة. لا تُدخل بيانات بطاقة بنكية.",
+      "source_lines": [
+        1086
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0119",
+      "arabic": "ابدأ باختيار خطة أولاً.",
+      "source_lines": [
+        1087
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0120",
+      "arabic": "بدء فترة تجريبية",
+      "source_lines": [
+        1089
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0121",
+      "arabic": "إرسال إثبات الدفع",
+      "source_lines": [
+        1091
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0122",
+      "arabic": "اعتماد الدفع",
+      "source_lines": [
+        1092
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0123",
+      "arabic": "رفض الدفع",
+      "source_lines": [
+        1093
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0124",
+      "arabic": "سجل نشاط الاشتراك",
+      "source_lines": [
+        1096
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0125",
+      "arabic": "مدة التجربة:",
+      "source_lines": [
+        1101
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0126",
+      "arabic": "يوماً",
+      "source_lines": [
+        1101
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0127",
+      "arabic": "المبلغ:",
+      "source_lines": [
+        1102
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0128",
+      "arabic": "قرش",
+      "source_lines": [
+        1102,
+        1113
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0129",
+      "arabic": "السبب:",
+      "source_lines": [
+        1104
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0130",
+      "arabic": "النظام",
+      "source_lines": [
+        1108
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0131",
+      "arabic": "لا يوجد نشاط اشتراك مسجل بعد.",
+      "source_lines": [
+        1110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0132",
+      "arabic": "سجل التحويلات",
+      "source_lines": [
+        1112
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0133",
+      "arabic": "لا توجد تحويلات مسجلة.",
+      "source_lines": [
+        1113
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0134",
+      "arabic": "الاشتراك والفوترة",
+      "source_lines": [
+        1114,
+        1184
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0135",
+      "arabic": "المبلغ بالقروش:",
+      "source_lines": [
+        1121
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0136",
+      "arabic": "المرجع:",
+      "source_lines": [
+        1121
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0137",
+      "arabic": "اعتماد التحويل",
+      "source_lines": [
+        1123
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0138",
+      "arabic": "تأكيد مراجعة التحويل واعتماد الاشتراك؟",
+      "source_lines": [
+        1123
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0139",
+      "arabic": "رفض",
+      "source_lines": [
+        1124,
+        1162,
+        1253
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0140",
+      "arabic": "سبب الرفض",
+      "source_lines": [
+        1124
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0141",
+      "arabic": "لا توجد تحويلات بانتظار المراجعة.",
+      "source_lines": [
+        1124
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0142",
+      "arabic": "مراجعة مدفوعات الاشتراك",
+      "source_lines": [
+        1125
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0143",
+      "arabic": "تسجيلات دخول المستخدمين",
+      "source_lines": [
+        1132
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0144",
+      "arabic": "القضايا المنشأة",
+      "source_lines": [
+        1133
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0145",
+      "arabic": "المواعيد المنشأة",
+      "source_lines": [
+        1134
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0146",
+      "arabic": "طلبات الإجابة",
+      "source_lines": [
+        1135
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0147",
+      "arabic": "الفواتير الصادرة",
+      "source_lines": [
+        1136
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0148",
+      "arabic": "التصحيحات المقدمة",
+      "source_lines": [
+        1137
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0149",
+      "arabic": "بيانات مجمعة أسبوعياً فقط. لا تتضمن أسماء القضايا أو العملاء أو نصوص الأسئلة والإجابات أو معرفات المستخدمين. عدد المستخدمين النشطين هنا هو عدد تسجيلات الدخول الناجحة وتفعيلات المكتب.",
+      "source_lines": [
+        1144
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0150",
+      "arabic": "تصدير CSV",
+      "source_lines": [
+        1145
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0151",
+      "arabic": "لا توجد بيانات استخدام خلال الفترة المحددة.",
+      "source_lines": [
+        1146
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0152",
+      "arabic": "بانتظار المراجعة",
+      "source_lines": [
+        1155,
+        2057
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0153",
+      "arabic": "السؤال:",
+      "source_lines": [
+        1156
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0154",
+      "arabic": "التصحيح المقترح:",
+      "source_lines": [
+        1158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0155",
+      "arabic": "مقدم الاقتراح:",
+      "source_lines": [
+        1159
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0156",
+      "arabic": "الاستخدام التدريبي: لا شيء",
+      "source_lines": [
+        1159
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0157",
+      "arabic": "قبول",
+      "source_lines": [
+        1161
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0158",
+      "arabic": "ملاحظة المراجعة (اختياري)",
+      "source_lines": [
+        1161
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0159",
+      "arabic": "سبب الرفض (اختياري)",
+      "source_lines": [
+        1162
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0160",
+      "arabic": "لا توجد اقتراحات تصحيح.",
+      "source_lines": [
+        1163
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0161",
+      "arabic": "مراجعة تصحيحات الإجابات",
+      "source_lines": [
+        1164
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0162",
+      "arabic": "تعذر تحميل بيانات التحصيل.",
+      "source_lines": [
+        1170
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0163",
+      "arabic": "ج.م",
+      "source_lines": [
+        1171,
+        1983,
+        2015
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0164",
+      "arabic": "غير متأخر",
+      "source_lines": [
+        1173
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0165",
+      "arabic": "1–30 يوماً",
+      "source_lines": [
+        1173
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0166",
+      "arabic": "31–60 يوماً",
+      "source_lines": [
+        1173
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0167",
+      "arabic": "61–90 يوماً",
+      "source_lines": [
+        1173
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0168",
+      "arabic": "أكثر من 90 يوماً",
+      "source_lines": [
+        1173
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0169",
+      "arabic": "قضية دون عنوان",
+      "source_lines": [
+        1174
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0170",
+      "arabic": "فتح القضية",
+      "source_lines": [
+        1174,
+        1176,
+        2140
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0171",
+      "arabic": "فواتير:",
+      "source_lines": [
+        1175
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0172",
+      "arabic": "مسودة",
+      "source_lines": [
+        1176,
+        2016
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0173",
+      "arabic": "تصدير سجل الفواتير CSV",
+      "source_lines": [
+        1178
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0174",
+      "arabic": "إجمالي الفواتير الصادرة",
+      "source_lines": [
+        1179
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0175",
+      "arabic": "إجمالي المحصل",
+      "source_lines": [
+        1179
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0176",
+      "arabic": "إجمالي المستحق",
+      "source_lines": [
+        1179
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0177",
+      "arabic": "المستحقات حسب القضية",
+      "source_lines": [
+        1180
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0178",
+      "arabic": "المستحقات حسب العميل",
+      "source_lines": [
+        1181
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0179",
+      "arabic": "سجل الفواتير",
+      "source_lines": [
+        1182
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0180",
+      "arabic": "تفضيلات اللغة",
+      "source_lines": [
+        1184,
+        2153
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0181",
+      "arabic": "اختر لغة الواجهة. سيتم حفظ اختيارك في هذا المتصفح.",
+      "source_lines": [
+        1184,
+        2153
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0182",
+      "arabic": "اتجاه الصفحة يتغير تلقائيا مع اللغة.",
+      "source_lines": [
+        1184,
+        2154
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0183",
+      "arabic": "مراجعة اقتراحات التصحيح",
+      "source_lines": [
+        1184
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0184",
+      "arabic": "اقتراحات خاصة بهذا المكتب فقط، ولا تُستخدم للتدريب افتراضياً.",
+      "source_lines": [
+        1184
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0185",
+      "arabic": "فتح قائمة المراجعة",
+      "source_lines": [
+        1184
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0186",
+      "arabic": "اختر خطة المكتب، راجع المقاعد، وأرسل مرجع التحويل البنكي أو InstaPay.",
+      "source_lines": [
+        1184
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0187",
+      "arabic": "فتح الفوترة",
+      "source_lines": [
+        1184
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0188",
+      "arabic": "مراجعة مدفوعات المنصة",
+      "source_lines": [
+        1184
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0189",
+      "arabic": "مراجعة التحويلات المعلقة",
+      "source_lines": [
+        1184
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0190",
+      "arabic": "مؤشرات استخدام المكاتب التجريبية",
+      "source_lines": [
+        1184
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0191",
+      "arabic": "عرض مؤشرات الاستخدام",
+      "source_lines": [
+        1184
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0192",
+      "arabic": "تفعيل تذكيرات البريد الإلكتروني",
+      "source_lines": [
+        1187
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0193",
+      "arabic": "قبل الموعد القانوني بسبعة أيام",
+      "source_lines": [
+        1188
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0194",
+      "arabic": "قبل الموعد القانوني بثلاثة أيام",
+      "source_lines": [
+        1189
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0195",
+      "arabic": "قبل الموعد القانوني بيوم",
+      "source_lines": [
+        1190
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0196",
+      "arabic": "في يوم الموعد القانوني",
+      "source_lines": [
+        1191
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0197",
+      "arabic": "للمواعيد القانونية المتأخرة",
+      "source_lines": [
+        1192
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0198",
+      "arabic": "في يوم جلسة المحكمة",
+      "source_lines": [
+        1193
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0199",
+      "arabic": "تذكيرات المهام",
+      "source_lines": [
+        1194
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0200",
+      "arabic": "حفظ تفضيلات التذكير",
+      "source_lines": [
+        1201
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0201",
+      "arabic": "تم حفظ تفضيلات التذكير",
+      "source_lines": [
+        1204
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0202",
+      "arabic": "تعذر حفظ التفضيلات",
+      "source_lines": [
+        1205
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0203",
+      "arabic": "تفضيلات تذكيرات البريد الإلكتروني",
+      "source_lines": [
+        1208
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0204",
+      "arabic": "تُطبق هذه الخيارات على حسابك داخل هذا المكتب فقط. تذكيرات المواعيد القانونية قبل 7 و3 و1 أيام، وتذكير الجلسة في يومها.",
+      "source_lines": [
+        1208
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0205",
+      "arabic": "تفضيلات التذكير",
+      "source_lines": [
+        1210
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0206",
+      "arabic": "تعذر تحميل تفضيلات البريد الإلكتروني. أعد تحميل الصفحة لاحقاً.",
+      "source_lines": [
+        1210
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0207",
+      "arabic": "كلمة مرور جديدة (12 حرفا على الأقل)",
+      "source_lines": [
+        1213
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0208",
+      "arabic": "تأكيد كلمة المرور الجديدة",
+      "source_lines": [
+        1214
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0209",
+      "arabic": "تغيير كلمة المرور",
+      "source_lines": [
+        1215,
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0210",
+      "arabic": "كلمتا المرور غير متطابقتين",
+      "source_lines": [
+        1216
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0211",
+      "arabic": "اختر كلمة مرور مختلفة",
+      "source_lines": [
+        1216
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0212",
+      "arabic": "تم تغيير كلمة المرور. سجل الدخول مجددا.",
+      "source_lines": [
+        1216
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0213",
+      "arabic": "يتطلب التغيير كلمة المرور الحالية. سيتم إنهاء جميع الجلسات، وستحتاج إلى تسجيل الدخول مجددا.",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0214",
+      "arabic": "البريد الإلكتروني للدعوة",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0215",
+      "arabic": "محامٍ",
+      "source_lines": [
+        1217,
+        2149
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0216",
+      "arabic": "إرسال دعوة",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0217",
+      "arabic": "تم إرسال الدعوة",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0218",
+      "arabic": "تعذر إرسال الدعوة. تحقق من إعداد البريد الإلكتروني.",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0219",
+      "arabic": "إدارة المستخدمين",
+      "source_lines": [
+        1217,
+        2117
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0220",
+      "arabic": "أرسل دعوة إلى البريد الإلكتروني. يختار المدعو كلمة مروره بنفسه من رابط صالح لمرة واحدة.",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0221",
+      "arabic": "الحسابات الحالية",
+      "source_lines": [
+        1217,
+        2155
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0222",
+      "arabic": "معطل",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0223",
+      "arabic": "تعطيل الحساب",
+      "source_lines": [
+        1217,
+        2155
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0224",
+      "arabic": "تعطيل هذا الحساب وإنهاء جلساته؟",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0225",
+      "arabic": "الدعوات المعلقة",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0226",
+      "arabic": "يمكن إلغاء الدعوات التي لم تُستخدم بعد.",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0227",
+      "arabic": "إلغاء الدعوة",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0228",
+      "arabic": "إلغاء هذه الدعوة؟",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0229",
+      "arabic": "تم إلغاء الدعوة",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0230",
+      "arabic": "تعذر إلغاء الدعوة",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0231",
+      "arabic": "لا توجد دعوات",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0232",
+      "arabic": "تصدير سجل الأمان",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0233",
+      "arabic": "نزّل أحداث الأمان الخاصة بهذا المكتب بصيغة CSV. متاح للمسؤول فقط.",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0234",
+      "arabic": "تنزيل سجل الأمان",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0235",
+      "arabic": "تذكيرات المتصفح",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0236",
+      "arabic": "تذكيرات محلية اختيارية للمهام والمواعيد القريبة أثناء بقاء التطبيق مفتوحا. لا تعمل بعد إغلاق المتصفح، ولا تعرض أسماء القضايا في الإشعار.",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0237",
+      "arabic": "إيقاف التذكيرات",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0238",
+      "arabic": "تفعيل التذكيرات",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0239",
+      "arabic": "تم إيقاف التذكيرات المحلية",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0240",
+      "arabic": "هذا المتصفح لا يدعم الإشعارات",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0241",
+      "arabic": "تعذر طلب إذن الإشعارات",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0242",
+      "arabic": "لم يتم منح إذن الإشعارات",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0243",
+      "arabic": "تم تفعيل التذكيرات المحلية",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0244",
+      "arabic": "الأمان والخصوصية",
+      "source_lines": [
+        1217,
+        2154
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0245",
+      "arabic": "يظل التسجيل العام واستخدام بيانات العملاء السرية في الإنتاج معطلين حتى اجتياز اختبارات عزل المكاتب في بيئة الإنتاج، وقبول ضوابط التخزين والاستعادة وسياسة الاحتفاظ والمراجعة الأمنية المستقلة.",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0246",
+      "arabic": "الإعدادات",
+      "source_lines": [
+        1217,
+        2117,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0247",
+      "arabic": "بلاغ عن مشكلة",
+      "source_lines": [
+        1222
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0248",
+      "arabic": "فكرة أو اقتراح",
+      "source_lines": [
+        1223
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0249",
+      "arabic": "سهولة الاستخدام",
+      "source_lines": [
+        1224
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0250",
+      "arabic": "أخرى",
+      "source_lines": [
+        1225,
+        2029
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0251",
+      "arabic": "عنوان مختصر للملاحظة",
+      "source_lines": [
+        1227
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0252",
+      "arabic": "اشرح الملاحظة أو الفكرة دون إدراج بيانات عملاء سرية.",
+      "source_lines": [
+        1228
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0253",
+      "arabic": "إرسال الملاحظة",
+      "source_lines": [
+        1229
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0254",
+      "arabic": "تم إرسال الملاحظة لمسؤول المكتب",
+      "source_lines": [
+        1232
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0255",
+      "arabic": "إرسال ملاحظة",
+      "source_lines": [
+        1237
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0256",
+      "arabic": "الملاحظات خاصة بمكتبك، ولا تُستخدم لتدريب النماذج. لا ترسل أسماء العملاء أو تفاصيل القضايا السرية.",
+      "source_lines": [
+        1238
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0257",
+      "arabic": "ملاحظاتي السابقة",
+      "source_lines": [
+        1239
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0258",
+      "arabic": "رد المكتب:",
+      "source_lines": [
+        1242
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0259",
+      "arabic": "لم ترسل ملاحظات بعد.",
+      "source_lines": [
+        1243
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0260",
+      "arabic": "مراجعة ملاحظات المكتب",
+      "source_lines": [
+        1247
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0261",
+      "arabic": "التصنيف:",
+      "source_lines": [
+        1250
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0262",
+      "arabic": "تمت المراجعة",
+      "source_lines": [
+        1253
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0263",
+      "arabic": "إضافة للخطة",
+      "source_lines": [
+        1253
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0264",
+      "arabic": "رد اختياري للموظف",
+      "source_lines": [
+        1254
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0265",
+      "arabic": "تم تحديث الملاحظة",
+      "source_lines": [
+        1255
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0266",
+      "arabic": "لا توجد ملاحظات",
+      "source_lines": [
+        1258
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0267",
+      "arabic": "تذكير عبر واتساب",
+      "source_lines": [
+        1263
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0268",
+      "arabic": "أدخل رقم الهاتف الدولي مع مفتاح الدولة",
+      "source_lines": [
+        1264
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0269",
+      "arabic": "أدخل رقماً دولياً صحيحاً متضمناً مفتاح الدولة",
+      "source_lines": [
+        1267
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0270",
+      "arabic": "جلسة",
+      "source_lines": [
+        1268,
+        1425,
+        1427,
+        1895
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0271",
+      "arabic": "موعد قانوني",
+      "source_lines": [
+        1268,
+        1427
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0272",
+      "arabic": "تذكير:",
+      "source_lines": [
+        1269
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0273",
+      "arabic": "بتاريخ",
+      "source_lines": [
+        1269
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0274",
+      "arabic": ". يرجى مراجعة التفاصيل مع مكتب المحاماة.",
+      "source_lines": [
+        1269
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0275",
+      "arabic": "يوم متأخر",
+      "source_lines": [
+        1273
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0276",
+      "arabic": "مستحق اليوم",
+      "source_lines": [
+        1273
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0277",
+      "arabic": "غداً",
+      "source_lines": [
+        1273
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0278",
+      "arabic": "متبقي",
+      "source_lines": [
+        1273
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0279",
+      "arabic": "يوم",
+      "source_lines": [
+        1273
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0280",
+      "arabic": "تحقق من فواصل الآلاف في المبلغ",
+      "source_lines": [
+        1278
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0281",
+      "arabic": "أدخل مبلغاً صحيحاً حتى قرشين عشريين",
+      "source_lines": [
+        1279
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0282",
+      "arabic": "المبلغ خارج النطاق المسموح",
+      "source_lines": [
+        1281
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0283",
+      "arabic": "لديك",
+      "source_lines": [
+        1302
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0284",
+      "arabic": "مهام أو مواعيد تحتاج إلى مراجعة، منها",
+      "source_lines": [
+        1302
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0285",
+      "arabic": "متأخرة. افتح التطبيق للمراجعة.",
+      "source_lines": [
+        1302
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0286",
+      "arabic": "تذكير من المساعد القانوني",
+      "source_lines": [
+        1303
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0287",
+      "arabic": "جاهز",
+      "source_lines": [
+        1321
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0288",
+      "arabic": "يحتاج إعداداً",
+      "source_lines": [
+        1321
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0289",
+      "arabic": "صحة إعداد المكتب",
+      "source_lines": [
+        1324
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0290",
+      "arabic": "يعرض هذا الفحص حالة الإعداد فقط، ولا يكشف كلمات المرور أو مفاتيح التشفير.",
+      "source_lines": [
+        1325
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0291",
+      "arabic": "العودة إلى قائمة الإعداد",
+      "source_lines": [
+        1326
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0292",
+      "arabic": "إرسال تذكير تجريبي",
+      "source_lines": [
+        1327
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0293",
+      "arabic": "اسم المكتب",
+      "source_lines": [
+        1335,
+        1351
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0294",
+      "arabic": "رقم هاتف المكتب",
+      "source_lines": [
+        1336
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0295",
+      "arabic": "العنوان (اختياري)",
+      "source_lines": [
+        1337
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0296",
+      "arabic": "حفظ بيانات المكتب",
+      "source_lines": [
+        1338
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0297",
+      "arabic": "تم حفظ بيانات المكتب.",
+      "source_lines": [
+        1342
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0298",
+      "arabic": "بيانات المكتب",
+      "source_lines": [
+        1348
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0299",
+      "arabic": "مكتمل",
+      "source_lines": [
+        1349,
+        1379,
+        2150
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0300",
+      "arabic": "لم يكتمل",
+      "source_lines": [
+        1349,
+        1379
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0301",
+      "arabic": "أدخل اسم المكتب ورقم هاتف يمكن للعملاء والزملاء استخدامه. العنوان اختياري.",
+      "source_lines": [
+        1350
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0302",
+      "arabic": "رقم الهاتف",
+      "source_lines": [
+        1352
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0303",
+      "arabic": "العنوان",
+      "source_lines": [
+        1353
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0304",
+      "arabic": "أرسل دعوة إلى زميل ليشارك في المكتب وفق الدور والصلاحيات التي تختارها.",
+      "source_lines": [
+        1357
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0305",
+      "arabic": "فعّل المصادقة الثنائية لحماية حسابك؛ قد تكون إلزامية في بيئة الإنتاج.",
+      "source_lines": [
+        1358
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0306",
+      "arabic": "أنشئ ملف القضية الأول. يمكنك البدء بملف حقيقي أو بيانات تدريبية واضحة.",
+      "source_lines": [
+        1359
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0307",
+      "arabic": "أضف موعداً بعد التحقق من مصدره. قواعد المواعيد الحالية مسودات غير معتمدة قانونياً.",
+      "source_lines": [
+        1360
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0308",
+      "arabic": "أرسل رسالة عامة إلى بريدك المسجل لاختبار SMTP؛ لن تتضمن بيانات قضية أو عميل.",
+      "source_lines": [
+        1361
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0309",
+      "arabic": "فتح إعدادات الدعوات",
+      "source_lines": [
+        1371
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0310",
+      "arabic": "إعداد المصادقة الثنائية",
+      "source_lines": [
+        1372
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0311",
+      "arabic": "إنشاء أول قضية",
+      "source_lines": [
+        1373
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0312",
+      "arabic": "إضافة أول موعد",
+      "source_lines": [
+        1374
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0313",
+      "arabic": "أنشئ قضية أولاً",
+      "source_lines": [
+        1374
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0314",
+      "arabic": "إرسال رسالة اختبار",
+      "source_lines": [
+        1375
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0315",
+      "arabic": "فحص إعدادات البريد",
+      "source_lines": [
+        1375
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0316",
+      "arabic": "بدء استخدام المكتب",
+      "source_lines": [
+        1384
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0317",
+      "arabic": "ست خطوات قصيرة — غالباً أقل من 15 دقيقة إذا كانت إعدادات الخادم جاهزة — لتجهيز المكتب ودعوة زميلك واختبار التذكيرات.",
+      "source_lines": [
+        1385
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0318",
+      "arabic": "تقدم الإعداد",
+      "source_lines": [
+        1387
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0319",
+      "arabic": "لا تعتمد على أي موعد قانوني قبل مراجعته مع محامٍ ومصدر رسمي.",
+      "source_lines": [
+        1391
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0320",
+      "arabic": "هل تحتاج مساعدة في إعداد الخادم؟",
+      "source_lines": [
+        1396
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0321",
+      "arabic": "افتح فحص الصحة لمعرفة ما ينقص SMTP أو الرابط العام أو مفتاح MFA، مع شرح واضح دون عرض الأسرار.",
+      "source_lines": [
+        1397
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0322",
+      "arabic": "فتح فحص صحة الإعداد",
+      "source_lines": [
+        1398
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0323",
+      "arabic": "أكمل إعداد المكتب",
+      "source_lines": [
+        1409
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0324",
+      "arabic": "أكمل بيانات المكتب، ادعُ زميلاً، فعّل MFA واختبر التذكيرات.",
+      "source_lines": [
+        1411
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0325",
+      "arabic": "متابعة الإعداد",
+      "source_lines": [
+        1412
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0326",
+      "arabic": "مساحة عمل المكتب — أهم ما يحتاج انتباهك اليوم.",
+      "source_lines": [
+        1415
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0327",
+      "arabic": "أهلاً،",
+      "source_lines": [
+        1416
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0328",
+      "arabic": "ابدأ من المهام المستحقة، راجع المواعيد، أو افتح ملف قضية.",
+      "source_lines": [
+        1416
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0329",
+      "arabic": "+ قضية جديدة",
+      "source_lines": [
+        1416,
+        1461,
+        1464,
+        2118
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0330",
+      "arabic": "فتح البحث القانوني",
+      "source_lines": [
+        1416
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0331",
+      "arabic": "قضايا نشطة",
+      "source_lines": [
+        1418,
+        2134,
+        2141
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0332",
+      "arabic": "من الملفات التي يمكنك الوصول إليها",
+      "source_lines": [
+        1418
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0333",
+      "arabic": "مهام مفتوحة مسندة إليك",
+      "source_lines": [
+        1418
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0334",
+      "arabic": "متأخرة",
+      "source_lines": [
+        1418,
+        1426,
+        2016
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0335",
+      "arabic": "جلسات قادمة",
+      "source_lines": [
+        1418
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0336",
+      "arabic": "ضمن نطاق العرض الحالي",
+      "source_lines": [
+        1418
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0337",
+      "arabic": "مواعيد قانونية مفتوحة",
+      "source_lines": [
+        1418
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0338",
+      "arabic": "إجمالي الأتعاب المسجلة",
+      "source_lines": [
+        1418
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0339",
+      "arabic": "سجل أتعاب",
+      "source_lines": [
+        1418
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0340",
+      "arabic": "الأتعاب غير المحصلة",
+      "source_lines": [
+        1418
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0341",
+      "arabic": "لا توجد أتعاب متأخرة مسجلة",
+      "source_lines": [
+        1418
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0342",
+      "arabic": "وصول سريع",
+      "source_lines": [
+        1419
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0343",
+      "arabic": "تابع وأنهِ الأعمال المسندة إليك",
+      "source_lines": [
+        1420
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0344",
+      "arabic": "الأجندة",
+      "source_lines": [
+        1420
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0345",
+      "arabic": "اجمع الجلسات والمواعيد والمهام",
+      "source_lines": [
+        1420
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0346",
+      "arabic": "ملفات القضايا",
+      "source_lines": [
+        1420
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0347",
+      "arabic": "ابحث وافتح ملف القضية",
+      "source_lines": [
+        1420
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0348",
+      "arabic": "العملاء والتعارض",
+      "source_lines": [
+        1420
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0349",
+      "arabic": "راجع العملاء وافحص التعارض المحتمل",
+      "source_lines": [
+        1420
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0350",
+      "arabic": "أولوية اليوم: مهامك",
+      "source_lines": [
+        1422
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0351",
+      "arabic": "عرض الكل",
+      "source_lines": [
+        1422
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0352",
+      "arabic": "بلا موعد",
+      "source_lines": [
+        1422,
+        1424,
+        1426
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0353",
+      "arabic": "تم",
+      "source_lines": [
+        1422,
+        1423,
+        1892,
+        2135,
+        2143
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0354",
+      "arabic": "لا توجد مهام مفتوحة مسندة إليك.",
+      "source_lines": [
+        1422
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0355",
+      "arabic": "المواعيد القانونية",
+      "source_lines": [
+        1423,
+        1427,
+        1858,
+        2128,
+        2144
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0356",
+      "arabic": "فتح الأجندة",
+      "source_lines": [
+        1423
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0357",
+      "arabic": "لا توجد مواعيد قانونية مفتوحة خلال الثلاثين يوماً القادمة.",
+      "source_lines": [
+        1423
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0358",
+      "arabic": "مهام غير مسندة",
+      "source_lines": [
+        1424
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0359",
+      "arabic": "استلام المهمة",
+      "source_lines": [
+        1424
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0360",
+      "arabic": "لا توجد مهام غير مسندة في ملفاتك.",
+      "source_lines": [
+        1424
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0361",
+      "arabic": "الجلسات القادمة",
+      "source_lines": [
+        1425,
+        2133
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0362",
+      "arabic": "عرض الأجندة",
+      "source_lines": [
+        1425
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0363",
+      "arabic": "لا توجد جلسات قريبة ضمن نطاق العرض الحالي.",
+      "source_lines": [
+        1425
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0364",
+      "arabic": "ابحث في مهامك أو اسم القضية",
+      "source_lines": [
+        1426
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0365",
+      "arabic": "كل المهام المفتوحة",
+      "source_lines": [
+        1426
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0366",
+      "arabic": "مهمة",
+      "source_lines": [
+        1426,
+        1427
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0367",
+      "arabic": "الاستحقاق:",
+      "source_lines": [
+        1426
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0368",
+      "arabic": "بلا موعد محدد",
+      "source_lines": [
+        1426
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0369",
+      "arabic": "مفتوحة",
+      "source_lines": [
+        1426,
+        1429,
+        1459,
+        1464,
+        1865,
+        1892,
+        2109,
+        2121,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0370",
+      "arabic": "إنجاز المهمة",
+      "source_lines": [
+        1426
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0371",
+      "arabic": "لا توجد مهام مطابقة.",
+      "source_lines": [
+        1426
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0372",
+      "arabic": "قائمة موحدة بالمهام المفتوحة المسندة إليك عبر القضايا.",
+      "source_lines": [
+        1426
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0373",
+      "arabic": "ابحث بالعنوان أو اسم القضية",
+      "source_lines": [
+        1427
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0374",
+      "arabic": "كل العناصر",
+      "source_lines": [
+        1427
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0375",
+      "arabic": "الجلسات",
+      "source_lines": [
+        1427,
+        1858,
+        2128,
+        2144
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0376",
+      "arabic": "تعرض هذه الأجندة الجلسات التي يعيدها النظام، والمواعيد المفتوحة خلال 30 يوماً، ومهامك المسندة ذات تاريخ استحقاق. تحقق من الملف والمصدر القانوني قبل الاعتماد على أي ميعاد طعن.",
+      "source_lines": [
+        1427
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0377",
+      "arabic": "إنجاز",
+      "source_lines": [
+        1427
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0378",
+      "arabic": "لا توجد عناصر مطابقة في نطاق العرض الحالي.",
+      "source_lines": [
+        1427
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0379",
+      "arabic": "عرض موحد للمهام والجلسات والمواعيد المسجلة.",
+      "source_lines": [
+        1427
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0380",
+      "arabic": "تصدير إلى التقويم",
+      "source_lines": [
+        1427
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0381",
+      "arabic": "بدون مرحلة",
+      "source_lines": [
+        1428,
+        2120
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0382",
+      "arabic": "مهام",
+      "source_lines": [
+        1429,
+        1862,
+        2137
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0383",
+      "arabic": "مغلقة",
+      "source_lines": [
+        1429,
+        1459,
+        1464,
+        1865,
+        2109,
+        2121,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0384",
+      "arabic": "عنوان القضية",
+      "source_lines": [
+        1437,
+        2118
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0385",
+      "arabic": "اسم العميل (اختياري)",
+      "source_lines": [
+        1437,
+        2118
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0386",
+      "arabic": "رقم القضية (اختياري)",
+      "source_lines": [
+        1437,
+        2118
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0387",
+      "arabic": "سنة القضية (اختياري)",
+      "source_lines": [
+        1437,
+        2119
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0388",
+      "arabic": "المحكمة (اختياري)",
+      "source_lines": [
+        1437,
+        2119
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0389",
+      "arabic": "الدائرة (اختياري)",
+      "source_lines": [
+        1437,
+        2119
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0390",
+      "arabic": "الخصم (اختياري)",
+      "source_lines": [
+        1437,
+        2119
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0391",
+      "arabic": "حفظ القضية",
+      "source_lines": [
+        1440,
+        2120,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0392",
+      "arabic": "أدخل عنوان القضية",
+      "source_lines": [
+        1441,
+        2120,
+        2146
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0393",
+      "arabic": "قضية جديدة",
+      "source_lines": [
+        1451,
+        2118,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0394",
+      "arabic": "بدون عميل",
+      "source_lines": [
+        1455,
+        2143
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0395",
+      "arabic": "اسم عميل أو خصم لفحص التعارض المحتمل",
+      "source_lines": [
+        1456,
+        2136
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0396",
+      "arabic": "بحث عن عميل أو خصم",
+      "source_lines": [
+        1456
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0397",
+      "arabic": "أدخل حرفين على الأقل",
+      "source_lines": [
+        1457,
+        2136
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0398",
+      "arabic": "نتائج الفحص الأولي:",
+      "source_lines": [
+        1458,
+        2135,
+        2157
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0399",
+      "arabic": "العميل:",
+      "source_lines": [
+        1459,
+        1865,
+        2109,
+        2129
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0400",
+      "arabic": "الخصم:",
+      "source_lines": [
+        1459
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0401",
+      "arabic": "لم تظهر مطابقات في القضايا التي يمكنك الوصول إليها.",
+      "source_lines": [
+        1459,
+        2137,
+        2157
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0402",
+      "arabic": "العملاء",
+      "source_lines": [
+        1461,
+        2115,
+        2117,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0403",
+      "arabic": "فحص أولي لتعارض المصالح",
+      "source_lines": [
+        1461,
+        2135,
+        2157
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0404",
+      "arabic": "فحص",
+      "source_lines": [
+        1461,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0405",
+      "arabic": "قضايا",
+      "source_lines": [
+        1462,
+        2137,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0406",
+      "arabic": "لا توجد قضايا بعد. أنشئ أول قضية.",
+      "source_lines": [
+        1462,
+        2132,
+        2148
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0407",
+      "arabic": "ابحث بالعنوان أو العميل أو رقم القضية أو الخصم",
+      "source_lines": [
+        1464
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0408",
+      "arabic": "كل الحالات",
+      "source_lines": [
+        1464
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0409",
+      "arabic": "قضية",
+      "source_lines": [
+        1464
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0410",
+      "arabic": "لا توجد قضايا مطابقة.",
+      "source_lines": [
+        1464
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0411",
+      "arabic": "ابحث في بيانات القضايا الأساسية ثم افتح الملف لإدارة التفاصيل.",
+      "source_lines": [
+        1464
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0412",
+      "arabic": "هذه مؤشرات لسجلات المصادر والإصدارات، وليست دليلاً على اكتمال القانون المصري.",
+      "source_lines": [
+        1469
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0413",
+      "arabic": "سجل المصادر",
+      "source_lines": [
+        1473
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0414",
+      "arabic": "أدوات ببيانات وصفية فقط",
+      "source_lines": [
+        1473,
+        1504
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0415",
+      "arabic": "سجل الأدوات القانونية",
+      "source_lines": [
+        1473
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0416",
+      "arabic": "إغلاق",
+      "source_lines": [
+        1474,
+        2143
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0417",
+      "arabic": "ابحث بالعنوان أو المعرف أو الجهة",
+      "source_lines": [
+        1475
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0418",
+      "arabic": "ابحث في سجل المصادر والأدوات",
+      "source_lines": [
+        1475
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0419",
+      "arabic": "بحث",
+      "source_lines": [
+        1476,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0420",
+      "arabic": "جارٍ تحميل السجلات…",
+      "source_lines": [
+        1477
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0421",
+      "arabic": "أدوات",
+      "source_lines": [
+        1488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0422",
+      "arabic": "إصدارات",
+      "source_lines": [
+        1489
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0423",
+      "arabic": "أذونات الجمع / الاستخدام التجاري:",
+      "source_lines": [
+        1492
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0424",
+      "arabic": "فتح المصدر الأصلي:",
+      "source_lines": [
+        1492
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0425",
+      "arabic": "لا يوجد رابط HTTPS آمن مسجل.",
+      "source_lines": [
+        1492,
+        1651
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0426",
+      "arabic": "سجلات معروضة (بحد أقصى 100).",
+      "source_lines": [
+        1494
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0427",
+      "arabic": "لا توجد سجلات مطابقة.",
+      "source_lines": [
+        1494
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0428",
+      "arabic": "تعذر تحميل السجلات. أعد المحاولة.",
+      "source_lines": [
+        1495
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0429",
+      "arabic": "جارٍ تحميل المؤشرات…",
+      "source_lines": [
+        1497
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0430",
+      "arabic": "تعذر تحميل المؤشرات. أعد المحاولة.",
+      "source_lines": [
+        1500
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0431",
+      "arabic": "المصادر المسجلة",
+      "source_lines": [
+        1503
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0432",
+      "arabic": "الأدوات القانونية المسجلة",
+      "source_lines": [
+        1503
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0433",
+      "arabic": "إصدارات المستندات",
+      "source_lines": [
+        1503
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0434",
+      "arabic": "بانتظار مراجعة المصدر",
+      "source_lines": [
+        1504,
+        1624
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0435",
+      "arabic": "بانتظار مراجعة المحامي",
+      "source_lines": [
+        1505,
+        1624
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0436",
+      "arabic": "إصدارات مرفوضة",
+      "source_lines": [
+        1505,
+        1624
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0437",
+      "arabic": "إصدارات موسومة كمتحقق منها",
+      "source_lines": [
+        1506
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0438",
+      "arabic": "نصوص سارية اجتازت جميع بوابات التحقق",
+      "source_lines": [
+        1506
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0439",
+      "arabic": "تحتاج مراجعة الأصالة",
+      "source_lines": [
+        1507
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0440",
+      "arabic": "تحتاج مراجعة الحالة القانونية",
+      "source_lines": [
+        1507
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0441",
+      "arabic": "تاريخ التعديلات غير متحقق",
+      "source_lines": [
+        1508,
+        1624,
+        1754
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0442",
+      "arabic": "محجوبة بسبب الإذن أو الدليل",
+      "source_lines": [
+        1508
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0443",
+      "arabic": "محجوبة بسبب سجل الأذونات المركزي",
+      "source_lines": [
+        1509
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0444",
+      "arabic": "غير مؤهلة للإجابة القانونية الموثقة",
+      "source_lines": [
+        1510
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0445",
+      "arabic": "عدد سجلات الجهات المصدرية، وليس عدد القوانين المتحقق منها.",
+      "source_lines": [
+        1525
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0446",
+      "arabic": "عدد الأدوات القانونية المسجلة في الفهرس.",
+      "source_lines": [
+        1526
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0447",
+      "arabic": "عدد إصدارات الأدوات المسجلة؛ لا يعني أنها سارية أو متحقق منها.",
+      "source_lines": [
+        1527
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0448",
+      "arabic": "أدوات لا يوجد لها إصدار مسجل بعد.",
+      "source_lines": [
+        1528
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0449",
+      "arabic": "إصدارات تنتظر مراجعة المصدر.",
+      "source_lines": [
+        1529
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0450",
+      "arabic": "إصدارات تنتظر مراجعة المحامي.",
+      "source_lines": [
+        1530
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0451",
+      "arabic": "إصدارات رُفضت في مسار المراجعة.",
+      "source_lines": [
+        1531
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0452",
+      "arabic": "إصدارات تحمل وسم التحقق؛ يلزم فحص جميع البوابات.",
+      "source_lines": [
+        1532
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0453",
+      "arabic": "إصدارات اجتازت بوابات الأصالة والسريان والتعديلات والأذونات والأدلة.",
+      "source_lines": [
+        1533
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0454",
+      "arabic": "إصدارات لا يحمل سجلها تحقق الأصالة.",
+      "source_lines": [
+        1534
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0455",
+      "arabic": "إصدارات لا يحمل سجلها تحقق الحالة القانونية.",
+      "source_lines": [
+        1535
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0456",
+      "arabic": "إصدارات لا يحمل سجلها تحقق تاريخ التعديلات.",
+      "source_lines": [
+        1536
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0457",
+      "arabic": "إصدارات ينقصها إذن مطلوب أو دليل إذن.",
+      "source_lines": [
+        1537
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0458",
+      "arabic": "إصدارات لا يطابق مصدرها سجل الأذونات المركزي أو تنقصها روابط دليل الجمع والاستخدام التجاري.",
+      "source_lines": [
+        1538
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0459",
+      "arabic": "كل الإصدارات التي لا تجتاز بوابة الإجابة من النصوص القانونية الموثقة.",
+      "source_lines": [
+        1539
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0460",
+      "arabic": "تعذر فتح قائمة هذا المؤشر.",
+      "source_lines": [
+        1566
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0461",
+      "arabic": "يستخدم نفس بوابة أهلية المصدر التي تمنع مولد الإجابة من استخدام نص غير مستوفٍ.",
+      "source_lines": [
+        1569
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0462",
+      "arabic": "الوسم وحده لا يعني أن النص اجتاز جميع البوابات.",
+      "source_lines": [
+        1570
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0463",
+      "arabic": "حالة الأذونات",
+      "source_lines": [
+        1573
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0464",
+      "arabic": "لا توجد مصادر مسجلة بعد.",
+      "source_lines": [
+        1575
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0465",
+      "arabic": "عرض المصادر بحالة الإذن",
+      "source_lines": [
+        1576
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0466",
+      "arabic": "التغطية حسب مجال الممارسة",
+      "source_lines": [
+        1577
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0467",
+      "arabic": "لا توجد أدوات قانونية مسجلة بعد.",
+      "source_lines": [
+        1579
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0468",
+      "arabic": "غير مصنف",
+      "source_lines": [
+        1580
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0469",
+      "arabic": "عدد الأدوات المسجلة",
+      "source_lines": [
+        1580
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0470",
+      "arabic": "نص ساري متحقق",
+      "source_lines": [
+        1580
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0471",
+      "arabic": "فهرس الأدوات المرشحة",
+      "source_lines": [
+        1582
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0472",
+      "arabic": "غير متاح",
+      "source_lines": [
+        1585
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0473",
+      "arabic": "عدد الأدوات في فهرس التخطيط",
+      "source_lines": [
+        1589
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0474",
+      "arabic": "سجلات بها مشكلات تحقق",
+      "source_lines": [
+        1590
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0475",
+      "arabic": "هذا المقام يصف سجل التخطيط فقط، ولا يقيس توافر النصوص القانونية أو التحقق من سريانها.",
+      "source_lines": [
+        1592
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0476",
+      "arabic": "تحتاج بعض سجلات الفهرس إلى تصحيح أو تصنيف قبل الاعتماد على المقام.",
+      "source_lines": [
+        1597
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0477",
+      "arabic": "فهرس الأدوات المرشحة غير متاح؛ مقام مجالات الممارسة غير محسوم.",
+      "source_lines": [
+        1602
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0478",
+      "arabic": "حدود المؤشرات",
+      "source_lines": [
+        1605
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0479",
+      "arabic": "فتح قائمة مراجعة المصادر",
+      "source_lines": [
+        1607
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0480",
+      "arabic": "تحديث",
+      "source_lines": [
+        1607
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0481",
+      "arabic": "هذه الصفحة مخصصة لمراجع قانوني معتمد",
+      "source_lines": [
+        1616
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0482",
+      "arabic": "مساحة مراجعة إدارية. تسجيل حدث لا يغيّر حالة التحقق أو السريان القانوني.",
+      "source_lines": [
+        1619
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0483",
+      "arabic": "سجل الإصدارات",
+      "source_lines": [
+        1620
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0484",
+      "arabic": "تعذر تحميل قائمة المراجعة.",
+      "source_lines": [
+        1621
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0485",
+      "arabic": "ابحث بالعنوان أو رقم الإصدار أو الحالة",
+      "source_lines": [
+        1622
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0486",
+      "arabic": "موسومة كمتحقق منها",
+      "source_lines": [
+        1624
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0487",
+      "arabic": "نصوص سارية متحققة",
+      "source_lines": [
+        1624
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0488",
+      "arabic": "الأصالة غير متحققة",
+      "source_lines": [
+        1624
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0489",
+      "arabic": "الحالة القانونية غير متحققة",
+      "source_lines": [
+        1624
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0490",
+      "arabic": "الإذن أو الدليل ناقص",
+      "source_lines": [
+        1624
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0491",
+      "arabic": "سجل الأذونات المركزي غير مستوفٍ",
+      "source_lines": [
+        1624
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0492",
+      "arabic": "غير مؤهلة للإجابة الموثقة",
+      "source_lines": [
+        1624
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0493",
+      "arabic": "اختر إصداراً قانونياً",
+      "source_lines": [
+        1626,
+        1665
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0494",
+      "arabic": "مراجعة المصدر/المحامي",
+      "source_lines": [
+        1630
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0495",
+      "arabic": "السريان القانوني",
+      "source_lines": [
+        1631
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0496",
+      "arabic": "الأصالة",
+      "source_lines": [
+        1632
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0497",
+      "arabic": "الحالة القانونية",
+      "source_lines": [
+        1633
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0498",
+      "arabic": "تاريخ التعديلات",
+      "source_lines": [
+        1634
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0499",
+      "arabic": "إذن الجمع",
+      "source_lines": [
+        1635
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0500",
+      "arabic": "إذن الاستخدام التجاري",
+      "source_lines": [
+        1636
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0501",
+      "arabic": "دليل إذن المصدر",
+      "source_lines": [
+        1637
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0502",
+      "arabic": "مطابقة سجل الأذونات المركزي وروابط الحقوق",
+      "source_lines": [
+        1637
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0503",
+      "arabic": "دليل إذن الإصدار",
+      "source_lines": [
+        1638
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0504",
+      "arabic": "تاريخ النفاذ",
+      "source_lines": [
+        1639
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0505",
+      "arabic": "تاريخ الإلغاء/الانتهاء",
+      "source_lines": [
+        1640
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0506",
+      "arabic": "بوابات غير مستوفاة:",
+      "source_lines": [
+        1642
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0507",
+      "arabic": "البوابات المسجلة مستوفاة؛ يلزم تحقق مستقل من المصدر والمحامي.",
+      "source_lines": [
+        1643
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0508",
+      "arabic": "تاريخ النفاذ:",
+      "source_lines": [
+        1648
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0509",
+      "arabic": "غير محدد",
+      "source_lines": [
+        1648,
+        1912
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0510",
+      "arabic": "أحداث المراجعة:",
+      "source_lines": [
+        1649
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0511",
+      "arabic": "فتح رابط المصدر:",
+      "source_lines": [
+        1651
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0512",
+      "arabic": "مراجعة",
+      "source_lines": [
+        1655
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0513",
+      "arabic": "لا توجد نتائج.",
+      "source_lines": [
+        1658
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0514",
+      "arabic": "إصداراً",
+      "source_lines": [
+        1659
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0515",
+      "arabic": "تسجيل حدث مراجعة",
+      "source_lines": [
+        1660
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0516",
+      "arabic": "اختر نتيجة تعكس ما راجعه الشخص فعلياً. نتيجة «اجتياز» تتطلب رابط دليل HTTPS.",
+      "source_lines": [
+        1660
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0517",
+      "arabic": "أصالة المصدر / Source authenticity",
+      "source_lines": [
+        1661
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0518",
+      "arabic": "جودة الاستخراج / Extraction quality",
+      "source_lines": [
+        1661
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0519",
+      "arabic": "الحالة القانونية / Legal status",
+      "source_lines": [
+        1661
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0520",
+      "arabic": "سجل التعديلات / Amendment history",
+      "source_lines": [
+        1661
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0521",
+      "arabic": "الترخيص / Licensing",
+      "source_lines": [
+        1661
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0522",
+      "arabic": "اعتماد المحامي / Lawyer approval",
+      "source_lines": [
+        1661
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0523",
+      "arabic": "قيد المراجعة",
+      "source_lines": [
+        1662
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0524",
+      "arabic": "اجتياز",
+      "source_lines": [
+        1662
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0525",
+      "arabic": "فشل",
+      "source_lines": [
+        1662
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0526",
+      "arabic": "يتطلب تصحيحاً",
+      "source_lines": [
+        1662
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0527",
+      "arabic": "رابط الدليل (HTTPS)؛ إلزامي عند الاجتياز",
+      "source_lines": [
+        1663
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0528",
+      "arabic": "ملاحظات: ما الذي تم فحصه وما حدوده؟",
+      "source_lines": [
+        1663
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0529",
+      "arabic": "عرض سجل المراجعة",
+      "source_lines": [
+        1664
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0530",
+      "arabic": "اختر إصداراً أولاً",
+      "source_lines": [
+        1664
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0531",
+      "arabic": "سجل المراجعة",
+      "source_lines": [
+        1664
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0532",
+      "arabic": "فتح الدليل",
+      "source_lines": [
+        1664
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0533",
+      "arabic": "لا توجد أحداث مراجعة مسجلة.",
+      "source_lines": [
+        1664
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0534",
+      "arabic": "حفظ حدث المراجعة",
+      "source_lines": [
+        1665
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0535",
+      "arabic": "رابط الدليل مطلوب عند الاجتياز",
+      "source_lines": [
+        1665
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0536",
+      "arabic": "تم تسجيل الحدث دون تغيير حالة التحقق أو السريان",
+      "source_lines": [
+        1665
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0537",
+      "arabic": "الإصدار القانوني",
+      "source_lines": [
+        1667
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0538",
+      "arabic": "نوع المراجعة",
+      "source_lines": [
+        1667
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0539",
+      "arabic": "النتيجة",
+      "source_lines": [
+        1667
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0540",
+      "arabic": "رابط الدليل",
+      "source_lines": [
+        1667
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0541",
+      "arabic": "ملاحظات",
+      "source_lines": [
+        1667
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0542",
+      "arabic": "تنبيه: هذا السجل لا يثبت صحة المصدر تلقائياً ولا يغيّر review_status أو legal_status أو أعلام التحقق.",
+      "source_lines": [
+        1667
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0543",
+      "arabic": "ابحث في المحادثات المحفوظة",
+      "source_lines": [
+        1674
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0544",
+      "arabic": "نطاق البحث",
+      "source_lines": [
+        1675,
+        1849
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0545",
+      "arabic": "النصوص القانونية المتحقق منها",
+      "source_lines": [
+        1676
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0546",
+      "arabic": "مستندات المكتب داخل ملف قضية",
+      "source_lines": [
+        1677
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0547",
+      "arabic": "اكتشاف فهرس المصادر (بيانات وصفية فقط)",
+      "source_lines": [
+        1678
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0548",
+      "arabic": "ملف القضية",
+      "source_lines": [
+        1679
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0549",
+      "arabic": "اختر ملف قضية",
+      "source_lines": [
+        1679
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0550",
+      "arabic": "اختر ملف قضية للبحث في مستندات المكتب",
+      "source_lines": [
+        1682,
+        1838
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0551",
+      "arabic": "تم النسخ",
+      "source_lines": [
+        1683
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0552",
+      "arabic": "تعذر النسخ؛ حدد النص يدوياً",
+      "source_lines": [
+        1683
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0553",
+      "arabic": "تم العثور على",
+      "source_lines": [
+        1687
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0554",
+      "arabic": "سجل بيانات وصفية.",
+      "source_lines": [
+        1687
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0555",
+      "arabic": "لم يُعثر على بيانات وصفية مطابقة.",
+      "source_lines": [
+        1687
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0556",
+      "arabic": "اكتشاف المصادر — بيانات وصفية فقط",
+      "source_lines": [
+        1687
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0557",
+      "arabic": "بيانات وصفية فقط",
+      "source_lines": [
+        1687,
+        1709
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0558",
+      "arabic": "النشر:",
+      "source_lines": [
+        1687,
+        1726
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0559",
+      "arabic": "السريان:",
+      "source_lines": [
+        1687,
+        1726
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0560",
+      "arabic": "إذن الجمع / إعادة الاستخدام التجاري:",
+      "source_lines": [
+        1687
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0561",
+      "arabic": "فتح صفحة المصدر المسجلة (",
+      "source_lines": [
+        1687
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0562",
+      "arabic": "شروط المصدر (",
+      "source_lines": [
+        1687
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0563",
+      "arabic": "لم يُسترجع أي نص قانوني. هذه النتيجة لا تثبت السريان أو الإذن.",
+      "source_lines": [
+        1687
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0564",
+      "arabic": "محادثة جديدة",
+      "source_lines": [
+        1689,
+        1796
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0565",
+      "arabic": "ابدأ محادثة بحث قانوني",
+      "source_lines": [
+        1689,
+        1697
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0566",
+      "arabic": "اسأل عن القانون المصري",
+      "source_lines": [
+        1689,
+        1697
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0567",
+      "arabic": "اكتب سؤالك هنا…",
+      "source_lines": [
+        1689,
+        1828
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0568",
+      "arabic": "إرسال",
+      "source_lines": [
+        1689,
+        1829
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0569",
+      "arabic": "مصادر الإجابة",
+      "source_lines": [
+        1689,
+        1704
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0570",
+      "arabic": "لا توجد محادثات بعد",
+      "source_lines": [
+        1689,
+        1800
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0571",
+      "arabic": "ابدأ محادثة جديدة",
+      "source_lines": [
+        1689
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0572",
+      "arabic": "بحث قانوني مدعوم بالمصادر",
+      "source_lines": [
+        1689,
+        1695
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0573",
+      "arabic": "لا توجد إجابة مولدة. راجع المصادر أدناه.",
+      "source_lines": [
+        1689
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0574",
+      "arabic": "نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.",
+      "source_lines": [
+        1689,
+        1695,
+        2131
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0575",
+      "arabic": "مصدر غير متحقق",
+      "source_lines": [
+        1689
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0576",
+      "arabic": "غير سارٍ",
+      "source_lines": [
+        1689
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0577",
+      "arabic": "لم يُتحقق من سريانه",
+      "source_lines": [
+        1689,
+        2137
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0578",
+      "arabic": "موثّق",
+      "source_lines": [
+        1691
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0579",
+      "arabic": "مطابق للمصدر — غير متحقق منه",
+      "source_lines": [
+        1691
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0580",
+      "arabic": "غير مُراجع",
+      "source_lines": [
+        1691
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0581",
+      "arabic": "اكتب التصحيح المقترح. سيظل داخل المكتب ولن يُستخدم للتدريب افتراضياً.",
+      "source_lines": [
+        1692
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0582",
+      "arabic": "لا توجد إجابة لإرفاق التصحيح بها",
+      "source_lines": [
+        1692
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0583",
+      "arabic": "تم إرسال التصحيح إلى قائمة مراجعة المكتب",
+      "source_lines": [
+        1692
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0584",
+      "arabic": "أنت",
+      "source_lines": [
+        1700
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0585",
+      "arabic": "نص ساري متحقق منه",
+      "source_lines": [
+        1709
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0586",
+      "arabic": "نسخة ثانوية",
+      "source_lines": [
+        1709
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0587",
+      "arabic": "مستند مكتب غير متحقق",
+      "source_lines": [
+        1709
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0588",
+      "arabic": "قديم أو قيد المراجعة",
+      "source_lines": [
+        1709
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0589",
+      "arabic": "لا يوجد مصدر متحقق ذو صلة",
+      "source_lines": [
+        1709
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0590",
+      "arabic": "يعكس هذا التصنيف بيانات المصدر والمراجعة والتواريخ المسجلة؛ راجع النص الرسمي قبل الاعتماد.",
+      "source_lines": [
+        1710
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0591",
+      "arabic": "نسخة ثانوية وليست النص الرسمي الأصلي؛ تحقق من النشر الرسمي.",
+      "source_lines": [
+        1710
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0592",
+      "arabic": "مستند مقدم من المكتب أو المستخدم ولم يتم التحقق منه بصورة مستقلة كنص قانوني.",
+      "source_lines": [
+        1710
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0593",
+      "arabic": "بيانات فهرس فقط؛ لم يتم استرجاع نص قانوني.",
+      "source_lines": [
+        1710
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0594",
+      "arabic": "بعض بيانات المصدر أو الحالة القانونية غير مكتملة أو قيد المراجعة؛ لا تعتبره نصاً سارياً متحققاً.",
+      "source_lines": [
+        1710
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0595",
+      "arabic": "لم يُعثر على مقطع متحقق ذي صلة في هذا النطاق؛ هذا لا يثبت عدم وجود قانون منطبق.",
+      "source_lines": [
+        1710
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0596",
+      "arabic": "المادة",
+      "source_lines": [
+        1714
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0597",
+      "arabic": "الصفحة",
+      "source_lines": [
+        1714
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0598",
+      "arabic": "نسخ الاستشهاد",
+      "source_lines": [
+        1719
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0599",
+      "arabic": "نسخ المقطع الحرفي",
+      "source_lines": [
+        1720
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0600",
+      "arabic": "فتح المصدر الأصلي (",
+      "source_lines": [
+        1722
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0601",
+      "arabic": "القانون رقم",
+      "source_lines": [
+        1726
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0602",
+      "arabic": "الإلغاء:",
+      "source_lines": [
+        1726
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0603",
+      "arabic": "مجمع حتى:",
+      "source_lines": [
+        1726
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0604",
+      "arabic": "الجريدة الرسمية:",
+      "source_lines": [
+        1726
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0605",
+      "arabic": "تاريخ البحث:",
+      "source_lines": [
+        1726
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0606",
+      "arabic": "آخر اعتماد محامٍ مسجل:",
+      "source_lines": [
+        1750
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0607",
+      "arabic": "آخر مراجعة محامٍ مسجلة:",
+      "source_lines": [
+        1750
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0608",
+      "arabic": "الحالة المسجلة: ساري في",
+      "source_lines": [
+        1752
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0609",
+      "arabic": "فتح المصدر المسجل (",
+      "source_lines": [
+        1753
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0610",
+      "arabic": "أحدث أدلة المراجعة:",
+      "source_lines": [
+        1756
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0611",
+      "arabic": "علاقات الإصدار:",
+      "source_lines": [
+        1758
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0612",
+      "arabic": "لا يرتبط بإصدار قانوني مسجل",
+      "source_lines": [
+        1760
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0613",
+      "arabic": "سجل الإصدار غير موجود",
+      "source_lines": [
+        1762
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0614",
+      "arabic": "تصدير مذكرة بحث",
+      "source_lines": [
+        1771
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0615",
+      "arabic": "اقتراح تصحيح",
+      "source_lines": [
+        1772
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0616",
+      "arabic": "نسخ معرّف الإجابة",
+      "source_lines": [
+        1773
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0617",
+      "arabic": "حفظ إلى ملف قضية",
+      "source_lines": [
+        1774
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0618",
+      "arabic": "اختر ملف قضية أولاً",
+      "source_lines": [
+        1774
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0619",
+      "arabic": "تم حفظ مذكرة البحث في ملاحظات القضية",
+      "source_lines": [
+        1774
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0620",
+      "arabic": "لم تُعثر على بيانات وصفية مطابقة؛ هذا البحث لا يسترجع النص القانوني.",
+      "source_lines": [
+        1779
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0621",
+      "arabic": "لم يُعثر على نص ذي صلة في مستندات ملف القضية المحدد.",
+      "source_lines": [
+        1781
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0622",
+      "arabic": "لم يُعثر على نص قانوني متحقق ذي صلة في بحث المجموعة القانونية.",
+      "source_lines": [
+        1783
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0623",
+      "arabic": "لم تُسجل مصادر لهذا البحث ولم يُسجل نطاقه.",
+      "source_lines": [
+        1784
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0624",
+      "arabic": "اكتشاف بيانات وصفية للمصادر",
+      "source_lines": [
+        1787
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0625",
+      "arabic": "المحادثات",
+      "source_lines": [
+        1796
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0626",
+      "arabic": "لا توجد محادثات مطابقة.",
+      "source_lines": [
+        1801
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0627",
+      "arabic": "إعادة تسمية المحادثة",
+      "source_lines": [
+        1804
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0628",
+      "arabic": "إعادة تسمية المحادثة:",
+      "source_lines": [
+        1804
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0629",
+      "arabic": "اكتب عنواناً جديداً للمحادثة",
+      "source_lines": [
+        1805
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0630",
+      "arabic": "لا يمكن أن يكون العنوان فارغاً",
+      "source_lines": [
+        1807
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0631",
+      "arabic": "حذف المحادثة",
+      "source_lines": [
+        1810
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0632",
+      "arabic": "حذف المحادثة:",
+      "source_lines": [
+        1810
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0633",
+      "arabic": "هل تريد حذف هذه المحادثة وكل رسائلها؟",
+      "source_lines": [
+        1811
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0634",
+      "arabic": "جارٍ البحث في فهرس المصادر…",
+      "source_lines": [
+        1833
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0635",
+      "arabic": "فشل البحث في فهرس المصادر.",
+      "source_lines": [
+        1835
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0636",
+      "arabic": "جارٍ البحث في المصادر…",
+      "source_lines": [
+        1840,
+        1841
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0637",
+      "arabic": "اكتمل البحث. راجع الإجابة والمصادر.",
+      "source_lines": [
+        1843
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0638",
+      "arabic": "تعذر إكمال البحث؛ تمت استعادة السؤال.",
+      "source_lines": [
+        1844
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0639",
+      "arabic": "Enter للإرسال · Shift+Enter لسطر جديد",
+      "source_lines": [
+        1848
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0640",
+      "arabic": "ملف القضية (للبحث والحفظ)",
+      "source_lines": [
+        1849
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0641",
+      "arabic": "الملخص",
+      "source_lines": [
+        1858,
+        2128,
+        2144
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0642",
+      "arabic": "ملخص ذكي",
+      "source_lines": [
+        1858
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0643",
+      "arabic": "الملاحظات",
+      "source_lines": [
+        1858,
+        2128,
+        2144
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0644",
+      "arabic": "الأتعاب",
+      "source_lines": [
+        1858,
+        2128,
+        2144
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0645",
+      "arabic": "الفواتير",
+      "source_lines": [
+        1858
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0646",
+      "arabic": "المستندات",
+      "source_lines": [
+        1858,
+        2127,
+        2144
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0647",
+      "arabic": "الفريق",
+      "source_lines": [
+        1858,
+        2128,
+        2144
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0648",
+      "arabic": "اسأل",
+      "source_lines": [
+        1858,
+        2128
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0649",
+      "arabic": "السجل",
+      "source_lines": [
+        1858,
+        2128,
+        2144
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0650",
+      "arabic": "رقم القضية",
+      "source_lines": [
+        1860,
+        2145
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0651",
+      "arabic": "السنة",
+      "source_lines": [
+        1860
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0652",
+      "arabic": "المحكمة",
+      "source_lines": [
+        1860,
+        2145
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0653",
+      "arabic": "الدائرة",
+      "source_lines": [
+        1860,
+        2145
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0654",
+      "arabic": "الخصم",
+      "source_lines": [
+        1860,
+        2145
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0655",
+      "arabic": "المرحلة",
+      "source_lines": [
+        1860
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0656",
+      "arabic": "التقدم",
+      "source_lines": [
+        1862,
+        2129
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0657",
+      "arabic": "حفظ بيانات القضية",
+      "source_lines": [
+        1864,
+        2129,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0658",
+      "arabic": "تم حفظ بيانات القضية",
+      "source_lines": [
+        1864,
+        2120
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0659",
+      "arabic": "إغلاق القضية",
+      "source_lines": [
+        1866,
+        2129,
+        2143
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0660",
+      "arabic": "إعادة فتح",
+      "source_lines": [
+        1866,
+        2129,
+        2143
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0661",
+      "arabic": "حذف القضية",
+      "source_lines": [
+        1867,
+        2129,
+        2143
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0662",
+      "arabic": "حذف نهائي لكل بيانات القضية؟",
+      "source_lines": [
+        1867,
+        2130,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0663",
+      "arabic": "إنشاء ملخص ذكي",
+      "source_lines": [
+        1872
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0664",
+      "arabic": "يلزم تأكيد تفويض المكتب والعميل لهذه القضية قبل الإرسال",
+      "source_lines": [
+        1873
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0665",
+      "arabic": "جارٍ إعداد الملخص من سجلات القضية...",
+      "source_lines": [
+        1874
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0666",
+      "arabic": "السجلات المستخدمة",
+      "source_lines": [
+        1879
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0667",
+      "arabic": "ملخص ذكي للقضية",
+      "source_lines": [
+        1884
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0668",
+      "arabic": "ينشئ ملخصاً واقعياً مؤقتاً من بيانات القضية والملاحظات والجلسات والمهام والمواعيد ومقاطع المستندات. تُحذف معرفات القضية والعميل والخصم المباشرة وتُحجب أنماط شائعة للبريد والهاتف والرقم القومي. هذا ليس إخفاءً كاملاً للهوية؛ قد تبقى أسماء أو معلومات حساسة داخل النصوص. موافقة إعدادات النشر ليست موافقة من المكتب أو العميل على هذه القضية. لا تتابع إلا إذا كان لديك تفويض موثق من المكتب والعميل؛ سيُسجل النظام إقرارك بهذا التفويض. الإقرار لا يغني عن الموافقة الصحيحة أو مراجعة سياسة المكتب. الملخص ليس رأياً قانونياً ولا يُحفظ.",
+      "source_lines": [
+        1885
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0669",
+      "arabic": "أؤكد وجود تفويض موثق من المكتب لإرسال بيانات هذه القضية إلى مزود النموذج المحدد.",
+      "source_lines": [
+        1886
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0670",
+      "arabic": "أؤكد وجود تفويض/أساس قانوني موثق من العميل لمعالجة بيانات هذه القضية بواسطة مزود النموذج.",
+      "source_lines": [
+        1887
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0671",
+      "arabic": "مهمة جديدة",
+      "source_lines": [
+        1890,
+        2121
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0672",
+      "arabic": "غير معيّن",
+      "source_lines": [
+        1890,
+        1891,
+        2121
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0673",
+      "arabic": "منجزة",
+      "source_lines": [
+        1892,
+        2121,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0674",
+      "arabic": "لا توجد مهام",
+      "source_lines": [
+        1892,
+        2121
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0675",
+      "arabic": "إضافة مهمة",
+      "source_lines": [
+        1893,
+        2121
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0676",
+      "arabic": "أدخل اسم المهمة",
+      "source_lines": [
+        1893,
+        2121,
+        2147
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0677",
+      "arabic": "ملاحظة (المحكمة، الدائرة، الغرض)",
+      "source_lines": [
+        1894,
+        2122
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0678",
+      "arabic": "لا توجد جلسات",
+      "source_lines": [
+        1895,
+        2122
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0679",
+      "arabic": "إضافة جلسة",
+      "source_lines": [
+        1896,
+        2122
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0680",
+      "arabic": "أدخل تاريخ الجلسة",
+      "source_lines": [
+        1896,
+        2122,
+        2147
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0681",
+      "arabic": "نوع الموعد (استئناف، طعن، تقديم مستند...)",
+      "source_lines": [
+        1898,
+        2123
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0682",
+      "arabic": "ملاحظة (اختياري)",
+      "source_lines": [
+        1899,
+        2123
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0683",
+      "arabic": "حساب موعد مبدئي",
+      "source_lines": [
+        1901
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0684",
+      "arabic": "حدد القاعدة وتاريخ بداية الحساب الذي راجعه المحامي",
+      "source_lines": [
+        1902
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0685",
+      "arabic": "جارٍ الحساب...",
+      "source_lines": [
+        1903
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0686",
+      "arabic": "لم يطبق تمديد عطلة في هذا الحساب.",
+      "source_lines": [
+        1911
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0687",
+      "arabic": "أساس الحساب والافتراضات — للمراجعة فقط",
+      "source_lines": [
+        1912
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0688",
+      "arabic": "بداية الميعاد التي يجب أن يؤكدها المحامي:",
+      "source_lines": [
+        1912
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0689",
+      "arabic": "المصدر القانوني:",
+      "source_lines": [
+        1912
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0690",
+      "arabic": "غير محدد في المسودة",
+      "source_lines": [
+        1912
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0691",
+      "arabic": "خطوات الحساب",
+      "source_lines": [
+        1912
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0692",
+      "arabic": "امتدادات العطلات",
+      "source_lines": [
+        1912
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0693",
+      "arabic": "حساب مبدئي غير معتمد — لا يمثل ميعاداً قانونياً مؤكداً.",
+      "source_lines": [
+        1913
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0694",
+      "arabic": "القاعدة:",
+      "source_lines": [
+        1913
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0695",
+      "arabic": "؛",
+      "source_lines": [
+        1913
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0696",
+      "arabic": "بداية الحساب:",
+      "source_lines": [
+        1913
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0697",
+      "arabic": "النهاية الحسابية:",
+      "source_lines": [
+        1913
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0698",
+      "arabic": "التاريخ بعد الامتداد:",
+      "source_lines": [
+        1913
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0699",
+      "arabic": "خطوات الحساب:",
+      "source_lines": [
+        1913
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0700",
+      "arabic": "التحذيرات:",
+      "source_lines": [
+        1913
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0701",
+      "arabic": "استخدام التاريخ في نموذج الموعد",
+      "source_lines": [
+        1914
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0702",
+      "arabic": "حفظ الموعد المحسوب في القضية",
+      "source_lines": [
+        1915
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0703",
+      "arabic": "موعد قانوني محسوب",
+      "source_lines": [
+        1916
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0704",
+      "arabic": "تم حفظ الموعد مع خطوات الحساب والتحذيرات",
+      "source_lines": [
+        1919
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0705",
+      "arabic": "مسودة — غير معتمدة من محامٍ",
+      "source_lines": [
+        1923
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0706",
+      "arabic": "تمت مراجعة القاعدة",
+      "source_lines": [
+        1923
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0707",
+      "arabic": "التاريخ الحسابي المقترح:",
+      "source_lines": [
+        1923
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0708",
+      "arabic": "نهاية المدة قبل الامتدادات:",
+      "source_lines": [
+        1923
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0709",
+      "arabic": "اختر نوع الميعاد",
+      "source_lines": [
+        1929
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0710",
+      "arabic": "مسودة غير معتمدة",
+      "source_lines": [
+        1930
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0711",
+      "arabic": "تعذر تحميل القواعد",
+      "source_lines": [
+        1932
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0712",
+      "arabic": "حاسبة المواعيد (تجريبية)",
+      "source_lines": [
+        1933
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0713",
+      "arabic": "اختر القاعدة وتاريخ بداية الحساب بعد مراجعتهما. القواعد والعطلات الحالية مسودات غير معتمدة؛ لا تعتمد على الناتج قبل مراجعة محامٍ مصري.",
+      "source_lines": [
+        1934
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0714",
+      "arabic": "تاريخ بداية الحساب (بعد التحقق)",
+      "source_lines": [
+        1935
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0715",
+      "arabic": "أيام مسافة إضافية (اختياري)",
+      "source_lines": [
+        1935
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0716",
+      "arabic": "المواعيد المسجلة في القضية",
+      "source_lines": [
+        1936
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0717",
+      "arabic": "لا توجد مواعيد قانونية مسجلة. هذه المواعيد منفصلة عن جلسات المحكمة.",
+      "source_lines": [
+        1937,
+        2124,
+        2156
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0718",
+      "arabic": "إضافة موعد",
+      "source_lines": [
+        1938,
+        2123
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0719",
+      "arabic": "أدخل نوع الموعد وتاريخه",
+      "source_lines": [
+        1938,
+        2124,
+        2147
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0720",
+      "arabic": "تاريخ العطلة",
+      "source_lines": [
+        1941
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0721",
+      "arabic": "اسم العطلة بالعربية",
+      "source_lines": [
+        1942
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0722",
+      "arabic": "اسم العطلة",
+      "source_lines": [
+        1942
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0723",
+      "arabic": "حذف",
+      "source_lines": [
+        1948,
+        1991,
+        2143
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0724",
+      "arabic": "لا توجد عطلات إضافية للمكتب.",
+      "source_lines": [
+        1949
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0725",
+      "arabic": "حفظ تقويم المكتب",
+      "source_lines": [
+        1951
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0726",
+      "arabic": "تم حفظ تقويم العطلات مع تسجيل التغيير",
+      "source_lines": [
+        1952
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0727",
+      "arabic": "العطلات الثابتة والمشتركة تظل مسودة جزئية؛ هذه الإضافات خاصة بهذا المكتب فقط.",
+      "source_lines": [
+        1959
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0728",
+      "arabic": "المستخدم",
+      "source_lines": [
+        1959
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0729",
+      "arabic": "إضافة عطلة",
+      "source_lines": [
+        1961
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0730",
+      "arabic": "أدخل التاريخ واسم العطلة",
+      "source_lines": [
+        1962
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0731",
+      "arabic": "هذا التاريخ موجود بالفعل",
+      "source_lines": [
+        1963
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0732",
+      "arabic": "تقويم العطلات الخاص بالمكتب",
+      "source_lines": [
+        1967
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0733",
+      "arabic": "يمكن لمسؤول المكتب إضافة العطلات المؤرخة أو حذفها. كل حفظ يسجل نسخة قبل/بعد في سجل المراجعة. لا يجعل ذلك القواعد أو التقويم معتمدين قانونياً.",
+      "source_lines": [
+        1968
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0734",
+      "arabic": "اكتب ملاحظة داخلية للقضية...",
+      "source_lines": [
+        1973,
+        2125
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0735",
+      "arabic": "ملاحظات القضية",
+      "source_lines": [
+        1974,
+        2125
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0736",
+      "arabic": "لا توجد ملاحظات بعد.",
+      "source_lines": [
+        1974,
+        2125,
+        2156
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0737",
+      "arabic": "حفظ الملاحظة",
+      "source_lines": [
+        1975,
+        2125
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0738",
+      "arabic": "اكتب الملاحظة أولا",
+      "source_lines": [
+        1975,
+        2125,
+        2147
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0739",
+      "arabic": "سيظهر هنا هيكل المذكرة أو صحيفة الدعوى...",
+      "source_lines": [
+        1977
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0740",
+      "arabic": "تم إنشاء هيكل أولي للمراجعة",
+      "source_lines": [
+        1978
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0741",
+      "arabic": "تعذر إنشاء الهيكل",
+      "source_lines": [
+        1978
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0742",
+      "arabic": "هياكل المذكرات وصحف الدعاوى",
+      "source_lines": [
+        1979
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0743",
+      "arabic": "قوالب عناوين فقط تُملأ ببيانات القضية. يجب استكمال الوقائع والأسانيد والطلبات ومراجعتها بواسطة محامٍ قبل الاستخدام أو التقديم.",
+      "source_lines": [
+        1979
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0744",
+      "arabic": "إنشاء هيكل مذكرة",
+      "source_lines": [
+        1979
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0745",
+      "arabic": "إنشاء هيكل صحيفة دعوى",
+      "source_lines": [
+        1979
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0746",
+      "arabic": "نسخ النص",
+      "source_lines": [
+        1979
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0747",
+      "arabic": "وصف الأتعاب",
+      "source_lines": [
+        1982,
+        2126
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0748",
+      "arabic": "المبلغ الإجمالي",
+      "source_lines": [
+        1982,
+        2126
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0749",
+      "arabic": "المدفوع",
+      "source_lines": [
+        1982,
+        1984,
+        2126
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0750",
+      "arabic": "ملاحظة",
+      "source_lines": [
+        1982,
+        2126
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0751",
+      "arabic": "الإجمالي",
+      "source_lines": [
+        1984
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0752",
+      "arabic": "المتبقي",
+      "source_lines": [
+        1984
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0753",
+      "arabic": "لا توجد أتعاب مسجلة.",
+      "source_lines": [
+        1984,
+        2126,
+        2156
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0754",
+      "arabic": "إضافة أتعاب",
+      "source_lines": [
+        1985,
+        2126
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0755",
+      "arabic": "أدخل الوصف والإجمالي والمدفوع",
+      "source_lines": [
+        1985,
+        2126
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0756",
+      "arabic": "وصف الفاتورة أو نطاق العمل",
+      "source_lines": [
+        1987
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0757",
+      "arabic": "تاريخ الاستحقاق",
+      "source_lines": [
+        1988
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0758",
+      "arabic": "بيان الخدمة",
+      "source_lines": [
+        1993
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0759",
+      "arabic": "الكمية",
+      "source_lines": [
+        1993
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0760",
+      "arabic": "سعر الوحدة بالجنيه",
+      "source_lines": [
+        1993
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0761",
+      "arabic": "أدخل كمية صحيحة حتى ثلاث خانات عشرية",
+      "source_lines": [
+        1998
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0762",
+      "arabic": "الكمية خارج النطاق المسموح",
+      "source_lines": [
+        2000
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0763",
+      "arabic": "إنشاء مسودة فاتورة",
+      "source_lines": [
+        2004
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0764",
+      "arabic": "أدخل بياناً لكل بند",
+      "source_lines": [
+        2007
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0765",
+      "arabic": "تم إنشاء مسودة الفاتورة",
+      "source_lines": [
+        2010
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0766",
+      "arabic": "غير مدفوعة",
+      "source_lines": [
+        2016
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0767",
+      "arabic": "مدفوعة جزئياً",
+      "source_lines": [
+        2016
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0768",
+      "arabic": "مدفوعة",
+      "source_lines": [
+        2016
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0769",
+      "arabic": "ملغاة",
+      "source_lines": [
+        2016
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0770",
+      "arabic": "مسودة فاتورة",
+      "source_lines": [
+        2019
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0771",
+      "arabic": "الإجمالي:",
+      "source_lines": [
+        2021
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0772",
+      "arabic": "المدفوع:",
+      "source_lines": [
+        2021
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0773",
+      "arabic": "المتبقي:",
+      "source_lines": [
+        2021
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0774",
+      "arabic": "طباعة الفاتورة",
+      "source_lines": [
+        2024
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0775",
+      "arabic": "إصدار الفاتورة",
+      "source_lines": [
+        2025
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0776",
+      "arabic": "إصدار الفاتورة وتثبيت رقمها؟ لا يمكن تعديلها بعد الإصدار.",
+      "source_lines": [
+        2025
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0777",
+      "arabic": "إلغاء الفاتورة",
+      "source_lines": [
+        2026
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0778",
+      "arabic": "أدخل سبب إلغاء الفاتورة",
+      "source_lines": [
+        2026
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0779",
+      "arabic": "مبلغ الدفعة بالجنيه",
+      "source_lines": [
+        2028
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0780",
+      "arabic": "نقداً",
+      "source_lines": [
+        2029
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0781",
+      "arabic": "مرجع التحويل (اختياري)",
+      "source_lines": [
+        2030
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0782",
+      "arabic": "تسجيل دفعة",
+      "source_lines": [
+        2031
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0783",
+      "arabic": "تم تسجيل الدفعة",
+      "source_lines": [
+        2035
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0784",
+      "arabic": "إيصال الدفعة #",
+      "source_lines": [
+        2039
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0785",
+      "arabic": "لا توجد فواتير لهذه القضية بعد.",
+      "source_lines": [
+        2041
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0786",
+      "arabic": "تعذر تحميل الفواتير",
+      "source_lines": [
+        2042
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0787",
+      "arabic": "إنشاء فاتورة أتعاب",
+      "source_lines": [
+        2043
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0788",
+      "arabic": "تُحسب المبالغ بدقة بالقرش. الفاتورة المطبوعة مستند أتعاب عادي وليست فاتورة ضريبية إلكترونية.",
+      "source_lines": [
+        2043
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0789",
+      "arabic": "إضافة بند",
+      "source_lines": [
+        2043
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0790",
+      "arabic": "فواتير القضية وسجل التحصيل",
+      "source_lines": [
+        2044
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0791",
+      "arabic": "تمت مراجعة النص",
+      "source_lines": [
+        2050
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0792",
+      "arabic": "تم تصحيح النص",
+      "source_lines": [
+        2050
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0793",
+      "arabic": "يحتاج إعادة فحص",
+      "source_lines": [
+        2050,
+        2069
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0794",
+      "arabic": "لم تتم المراجعة",
+      "source_lines": [
+        2050
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0795",
+      "arabic": "لا توجد مقاطع نصية قابلة للمراجعة",
+      "source_lines": [
+        2054
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0796",
+      "arabic": "مقطع",
+      "source_lines": [
+        2057
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0797",
+      "arabic": "رقم الصفحة المستخرج:",
+      "source_lines": [
+        2058
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0798",
+      "arabic": "ليس تحققاً مستقلاً من الأصل",
+      "source_lines": [
+        2058
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0799",
+      "arabic": "النص المستخرج الأصلي",
+      "source_lines": [
+        2059
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0800",
+      "arabic": "النص المستخرج — للقراءة فقط",
+      "source_lines": [
+        2060
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0801",
+      "arabic": "النص المصحح",
+      "source_lines": [
+        2061
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0802",
+      "arabic": "مرجع الصفحة (اختياري)",
+      "source_lines": [
+        2062
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0803",
+      "arabic": "ملاحظة المراجع (اختياري)",
+      "source_lines": [
+        2063
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0804",
+      "arabic": "اعتماد النص المستخرج",
+      "source_lines": [
+        2065
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0805",
+      "arabic": "تم تسجيل مراجعة النص",
+      "source_lines": [
+        2067
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0806",
+      "arabic": "تم وضع المقطع لإعادة الفحص",
+      "source_lines": [
+        2071
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0807",
+      "arabic": "حفظ التصحيح",
+      "source_lines": [
+        2074
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0808",
+      "arabic": "أدخل النص المصحح",
+      "source_lines": [
+        2075
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0809",
+      "arabic": "لم يتغير النص",
+      "source_lines": [
+        2076
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0810",
+      "arabic": "سيتم استبدال النص المفهرس بنسخة التصحيح مع حفظ سجل المراجعة. هل تريد المتابعة؟",
+      "source_lines": [
+        2077
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0811",
+      "arabic": "تم حفظ التصحيح وإعادة فهرسة المقطع",
+      "source_lines": [
+        2079
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0812",
+      "arabic": "النص المصحح — لا تحفظه إلا بعد مقارنته بالملف الأصلي",
+      "source_lines": [
+        2081
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0813",
+      "arabic": "هذا المقطع أطول من حد التصحيح البالغ 20,000 حرف؛ أعد تقسيم المستند أو علّمه لإعادة الفحص.",
+      "source_lines": [
+        2083
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0814",
+      "arabic": "مرجع الصفحة",
+      "source_lines": [
+        2085
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0815",
+      "arabic": "ملاحظة المراجع",
+      "source_lines": [
+        2085
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0816",
+      "arabic": "آخر مراجعة:",
+      "source_lines": [
+        2086
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0817",
+      "arabic": "مراجعة النص المستخرج",
+      "source_lines": [
+        2092
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0818",
+      "arabic": "جارٍ تحميل المقاطع…",
+      "source_lines": [
+        2094
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0819",
+      "arabic": "نص OCR غير متحقق",
+      "source_lines": [
+        2098
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0820",
+      "arabic": "بعض الصفحات لم تُفهرس: OCR غير متاح",
+      "source_lines": [
+        2098
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0821",
+      "arabic": "حالة الاستخراج غير مسجلة",
+      "source_lines": [
+        2098
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0822",
+      "arabic": "لا توجد مستندات",
+      "source_lines": [
+        2100,
+        2127,
+        2148
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0823",
+      "arabic": "رفع وفهرسة",
+      "source_lines": [
+        2101,
+        2127
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0824",
+      "arabic": "تمت فهرسة الصفحات القابلة للقراءة فقط؛ OCR غير متاح لبعض الصفحات",
+      "source_lines": [
+        2102
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0825",
+      "arabic": "تمت الفهرسة عبر OCR؛ راجع النص مقابل الأصل قبل الاعتماد عليه",
+      "source_lines": [
+        2102
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0826",
+      "arabic": "تمت الفهرسة",
+      "source_lines": [
+        2102,
+        2130,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0827",
+      "arabic": "PDF أو Word حتى 15 ميجابايت. النص المستخرج فقط هو المفهرس؛ لا تحفظ نسخة الملف الأصلي. راجع المقاطع قبل الاعتماد عليها، خصوصاً نص OCR.",
+      "source_lines": [
+        2103
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0828",
+      "arabic": "إزالة",
+      "source_lines": [
+        2105
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0829",
+      "arabic": "إزالة هذا العضو من القضية؟",
+      "source_lines": [
+        2105
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0830",
+      "arabic": "إضافة / تحديث",
+      "source_lines": [
+        2106,
+        2128
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0831",
+      "arabic": "الرئيسية",
+      "source_lines": [
+        2115,
+        2117,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0832",
+      "arabic": "استخدم الحساب الذي أنشأته من سطر الأوامر.",
+      "source_lines": [
+        2116
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0833",
+      "arabic": "دخول",
+      "source_lines": [
+        2117,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0834",
+      "arabic": "عنوان القضية *",
+      "source_lines": [
+        2118
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0835",
+      "arabic": "مرحلة",
+      "source_lines": [
+        2120
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0836",
+      "arabic": "PDF أو Word بنص قابل للنسخ (حتى 15 ميجابايت). يُحفظ النص المستخرج للبحث فقط ولا تُحفظ نسخة الملف الأصلي. الملفات الممسوحة ضوئيا غير مدعومة.",
+      "source_lines": [
+        2127
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0837",
+      "arabic": "البحث",
+      "source_lines": [
+        2130,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0838",
+      "arabic": "اكتب سؤالا أو رقم المادة",
+      "source_lines": [
+        2130,
+        2151
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0839",
+      "arabic": "اسأل عن هذه القضية والقوانين",
+      "source_lines": [
+        2131
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0840",
+      "arabic": "الإجابة",
+      "source_lines": [
+        2132
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0841",
+      "arabic": "ابحث بعنوان القضية أو العميل",
+      "source_lines": [
+        2132
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0842",
+      "arabic": "ابحث",
+      "source_lines": [
+        2133
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0843",
+      "arabic": "الكل",
+      "source_lines": [
+        2133
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0844",
+      "arabic": "مهامي المفتوحة",
+      "source_lines": [
+        2133
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0845",
+      "arabic": "لا توجد مهام مفتوحة",
+      "source_lines": [
+        2133,
+        2148
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0846",
+      "arabic": "لا توجد جلسات قريبة",
+      "source_lines": [
+        2133,
+        2148,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0847",
+      "arabic": "مهام مفتوحة في قضاياي",
+      "source_lines": [
+        2134,
+        2141
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0848",
+      "arabic": "جلسات خلال 14 يوما",
+      "source_lines": [
+        2134,
+        2141
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0849",
+      "arabic": "مهامي المتأخرة",
+      "source_lines": [
+        2134,
+        2141
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0850",
+      "arabic": "المصدر",
+      "source_lines": [
+        2137,
+        2151
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0851",
+      "arabic": "ترجمة إنجليزية غير رسمية",
+      "source_lines": [
+        2138
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0852",
+      "arabic": "لا توجد نتائج",
+      "source_lines": [
+        2138,
+        2151
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0853",
+      "arabic": "نتائج",
+      "source_lines": [
+        2138
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0854",
+      "arabic": "لم أجد مصدرا ذا صلة، ولن أخمن.",
+      "source_lines": [
+        2138
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0855",
+      "arabic": "تعذر الاتصال بالنموذج.",
+      "source_lines": [
+        2139,
+        2155
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0856",
+      "arabic": "فشل التحقق من الاستشهادات، تُعرض المصادر فقط.",
+      "source_lines": [
+        2139
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0857",
+      "arabic": "تنبيه: مصادر غير سارية:",
+      "source_lines": [
+        2140
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0858",
+      "arabic": "مرحبا",
+      "source_lines": [
+        2140,
+        2158,
+        2161
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0859",
+      "arabic": "إضافة مستند:",
+      "source_lines": [
+        2140
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0860",
+      "arabic": "مواعيد قانونية متأخرة",
+      "source_lines": [
+        2141
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0861",
+      "arabic": "المواعيد القانونية القادمة",
+      "source_lines": [
+        2142
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0862",
+      "arabic": "لا توجد مواعيد قانونية خلال 30 يوما",
+      "source_lines": [
+        2142,
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0863",
+      "arabic": "لا توجد مواعيد قانونية قريبة",
+      "source_lines": [
+        2142
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0864",
+      "arabic": "المواعيد القادمة",
+      "source_lines": [
+        2142
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0865",
+      "arabic": "لا يوجد عميل",
+      "source_lines": [
+        2143
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0866",
+      "arabic": "مهام مفتوحة",
+      "source_lines": [
+        2143
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0867",
+      "arabic": "المهام المفتوحة",
+      "source_lines": [
+        2143
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0868",
+      "arabic": "مهام مفتوحة في القضية",
+      "source_lines": [
+        2143
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0869",
+      "arabic": "تعديل",
+      "source_lines": [
+        2143
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0870",
+      "arabic": "حفظ",
+      "source_lines": [
+        2143
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0871",
+      "arabic": "سنة القضية",
+      "source_lines": [
+        2145
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0872",
+      "arabic": "العميل",
+      "source_lines": [
+        2145
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0873",
+      "arabic": "الحالة",
+      "source_lines": [
+        2145
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0874",
+      "arabic": "مرحلة القضية",
+      "source_lines": [
+        2145
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0875",
+      "arabic": "اسم المستخدم",
+      "source_lines": [
+        2146
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0876",
+      "arabic": "إضافة عضو",
+      "source_lines": [
+        2149
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0877",
+      "arabic": "إزالة عضو",
+      "source_lines": [
+        2149
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0878",
+      "arabic": "الدور",
+      "source_lines": [
+        2149
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0879",
+      "arabic": "مفتوح",
+      "source_lines": [
+        2150
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0880",
+      "arabic": "قريب الاستحقاق",
+      "source_lines": [
+        2150
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0881",
+      "arabic": "مستند جديد",
+      "source_lines": [
+        2150
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0882",
+      "arabic": "اسم المستند",
+      "source_lines": [
+        2150
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0883",
+      "arabic": "رفع المستند",
+      "source_lines": [
+        2150
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0884",
+      "arabic": "النص",
+      "source_lines": [
+        2151
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0885",
+      "arabic": "حساب جديد؟",
+      "source_lines": [
+        2152
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0886",
+      "arabic": "اطلب حسابا",
+      "source_lines": [
+        2152
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0887",
+      "arabic": "إنشاء الحسابات متاح لمسؤول المكتب فقط. اطلب من مسؤول المكتب إنشاء حسابك من الإعدادات.",
+      "source_lines": [
+        2152
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0888",
+      "arabic": "اللغة",
+      "source_lines": [
+        2153
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0889",
+      "arabic": "هذا الإصدار مخصص لمكتب واحد. لا تفتح التسجيل العام قبل تفعيل واختبار عزل بيانات المكاتب.",
+      "source_lines": [
+        2154
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0890",
+      "arabic": "يمكن للمسؤول فقط إنشاء حسابات. التسجيل العام غير متاح.",
+      "source_lines": [
+        2155
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0891",
+      "arabic": "تم إنشاء الحساب",
+      "source_lines": [
+        2155
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0892",
+      "arabic": "ملخص القضية",
+      "source_lines": [
+        2156
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0893",
+      "arabic": "فحص التعارض",
+      "source_lines": [
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0894",
+      "arabic": "لا نتائج",
+      "source_lines": [
+        2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0895",
+      "arabic": "تصدير بيانات المكتب",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0896",
+      "arabic": "تنزيل بيانات المكتب ZIP",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0897",
+      "arabic": "نزّل نسخة ZIP من القضايا والعملاء والملاحظات والمواعيد والجلسات والأتعاب والفواتير وسجل دفعاتها. يُسجل التنزيل في سجل أمان المكتب ويشمل المكتب النشط فقط.",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    }
+  ]
+}
