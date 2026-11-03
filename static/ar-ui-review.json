@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "40c280922979fb87c99bee8d97ab49486c327ecd",
   "generated_on": "2026-11-03",
-  "entry_count": 923,
+  "entry_count": 929,
   "entries": [
     {
       "id": "AR-0001",
@@ -7689,6 +7689,54 @@
       "arabic": "لا توجد ملفات عملاء مطابقة.",
       "source_lines": [
         1511
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0936",
+      "arabic": "اختر ملف CSV",
+      "source_lines": [
+        1514
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0937",
+      "arabic": "الحد الأقصى لملف الاستيراد 1 ميغابايت",
+      "source_lines": [
+        1517
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0938",
+      "arabic": "استيراد CSV",
+      "source_lines": [
+        1526
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0939",
+      "arabic": "تم استيراد",
+      "source_lines": [
+        1520
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0940",
+      "arabic": "تم تخطي",
+      "source_lines": [
+        1520
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0941",
+      "arabic": "يدعم الاستيراد أعمدة الاسم والهاتف والبريد الإلكتروني والعنوان والملاحظات، بالعربية أو الإنجليزية.",
+      "source_lines": [
+        1528
       ],
       "review_status": "pending_native_review"
     }
