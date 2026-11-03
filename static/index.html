@@ -1134,7 +1134,7 @@ async function platformPilotMetricsPage(){
  PAGE='platform-pilot-metrics';
  const data=await api('/platform/pilot-metrics?weeks=12');
  const labels=[
-  ['active_users',uiText('تسجيلات دخول المستخدمين','Successful sign-ins')],
+  ['successful_sign_ins',uiText('تسجيلات الدخول الناجحة','Successful sign-ins')],
   ['cases_created',uiText('القضايا المنشأة','Cases created')],
   ['deadlines_created',uiText('المواعيد المنشأة','Deadlines created')],
   ['answers_requested',uiText('طلبات الإجابة','Answers requested')],
@@ -1146,7 +1146,7 @@ async function platformPilotMetricsPage(){
   ...labels.map(([key,label])=>h('div',{className:'row'},h('span',{textContent:label}),h('b',{textContent:String(row[key]||0)})))
  ));
  shell(uiText('مؤشرات استخدام المكاتب','Firm pilot usage metrics'),
-  h('p',{className:'mut',textContent:uiText('بيانات مجمعة أسبوعياً فقط. لا تتضمن أسماء القضايا أو العملاء أو نصوص الأسئلة والإجابات أو معرفات المستخدمين. عدد المستخدمين النشطين هنا هو عدد تسجيلات الدخول الناجحة وتفعيلات المكتب.','Weekly aggregate counts only. No user identifiers, case/client names, or question/answer content are stored. The active-user measure counts successful sign-ins and firm activations, not distinct people.')}),
+  h('p',{className:'mut',textContent:uiText('بيانات مجمعة أسبوعياً فقط. لا تتضمن معرفات المستخدمين أو أسماء القضايا والعملاء أو نصوص الأسئلة والإجابات. تسجيلات الدخول الناجحة هي عدد أحداث الدخول وليست عدد أشخاص فريدين؛ المستخدمون النشطون أسبوعياً غير مقاسين حالياً.','Weekly aggregate counts only. No user identifiers, case/client names, or question/answer content are stored. Successful sign-ins are event counts, not distinct people; weekly active users are not currently measured.')}),
   btn(uiText('تصدير CSV','Export CSV'),()=>{window.location.href='/platform/pilot-metrics/export.csv?weeks=12'},'g'),
   ...(cards.length?cards:[empty(uiText('لا توجد بيانات استخدام خلال الفترة المحددة.','No usage data for the selected period.'))])
  );
