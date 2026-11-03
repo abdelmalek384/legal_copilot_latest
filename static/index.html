@@ -2230,7 +2230,6 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    h('h3',{textContent:uiText('توزيع عبء العمل','Team workload')}),
    workload.length?workload:empty(uiText('لا يوجد أعضاء في فريق القضية.','No case-team members.')),
    unassigned.length?h('div',{className:'row'},h('b',{textContent:uiText('مهام غير معيّنة','Unassigned tasks')}),pill(String(unassigned.length),'soon')):null,
-   h('divider',{}),
    h('h3',{textContent:uiText('أعضاء الفريق','Team members')}),
    c.members.map(m=>h('div',{className:'row'},h('b',{textContent:m.name}),pill(uiText(RL[m.role]||m.role,m.role==='lead'?'Lead':m.role==='associate'?'Associate':'Junior'),m.role==='lead'?'open':'closed'),lead&&m.user_id!==ME.id?btn(uiText('إزالة','Remove'),async()=>{if(!confirm(uiText('إزالة هذا العضو من القضية؟','Remove this member from the case?')))return;await api('/cases/'+id+'/members/'+m.user_id,'DELETE');again()},'g'):null)),
    lead&&h('div',{className:'row'},mu,mr,btn(uiText('إضافة / تحديث','Add / update'),async()=>{await api('/cases/'+id+'/members','POST',{user_id:+mu.value,role:mr.value});again()})))
