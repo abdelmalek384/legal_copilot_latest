@@ -93,7 +93,7 @@ class ClientProfileTests(InvoiceTestSupport, unittest.TestCase):
             self.client_nonmember, "put", f"/clients/{profile['id']}",
             json={"name":"شركة النيل للتجارة","phone":"","email":"","address":"","notes":""},
         )
-        self.assertEqual(hidden_update.status_code, 404)
+        self.assertEqual(hidden_update.status_code, 403)
 
         matter = self.mutate(
             self.client_a, "post", "/cases",
