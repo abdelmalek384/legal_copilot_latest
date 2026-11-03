@@ -101,6 +101,8 @@ class FirstRunWizardApiTests(unittest.TestCase):
         checklist = self.clients["a"].get("/setup/first-run").json()
         self.assertTrue(checklist["checklist"][0]["done"])
         self.assertFalse(checklist["checklist"][1]["done"])
+        self.assertIsNone(checklist["onboarding_completed_at"])
+        self.assertIsNone(checklist["onboarding_completion_seconds"])
         context = self.runtime.resolve_context(self.user_ids["a"], self.firm_a)
         tenant = self.runtime.firm_connection(context)
         case_id = tenant.execute(
