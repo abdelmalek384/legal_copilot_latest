@@ -1,411 +1,411 @@
 arabic,english,occurrences
-"مقاعد","seats","1"
-"عمليات البحث القانوني","Legal research queries","1"
-"المستندات المضافة","Documents added","1"
-"عمليات معالجة OCR","OCR processing jobs","1"
-"مسودات أولية","Draft skeletons generated","1"
-"الاستخدام خلال الشهر الحالي","Usage this month","1"
-"هذه أرقام قياس للاستخدام فقط؛ لا تُطبق حدود أو رسوم تلقائية في هذه المرحلة. لا يتم تخزين نصوص الاستعلامات أو محتوى القضايا ضمن سجل القياس.","Usage measurement only: no automatic quotas or charges are applied at this stage. Query text and matter contents are not stored in the usage ledger.","1"
-"فترة تجريبية","Free trial","1"
-"بانتظار مراجعة الدفع","Payment review pending","1"
-"نشط","Active","1"
-"انتهت التجربة","Trial expired","1"
-"متأخر","Past due","1"
-"ملغي","Cancelled","1"
-"اشتراك المكتب","Firm subscription","1"
-"الخطة: ","Plan: ","2"
-"الحالة: ","Status: ","2"
-"لم يتم اختيار خطة بعد. اختر خطة لبدء التجربة المجانية.","No plan selected yet. Choose a plan to start the free trial.","1"
-"المقاعد: ","Seats: ","1"
-"نشط","active","1"
-"دعوات معلقة","pending invitations","1"
-"تنتهي التجربة في: ","Trial ends: ","1"
-"تغيير الخطة","Change plan","1"
-"بدء تجربة مجانية لمدة 14 يوماً","Start 14-day free trial","1"
-"تم تحديث الاشتراك","Subscription updated","1"
-"المبلغ بالجنيه المصري مثل 500.00","Amount in EGP, e.g. 500.00","1"
-"تحويل بنكي","Bank transfer","2"
-"رقم مرجع التحويل","Transfer reference","1"
-"إرسال إثبات التحويل للمراجعة","Submit transfer for review","1"
-"أدخل مبلغاً موجباً ومرجع التحويل","Enter a positive amount and transfer reference","1"
-"تم إرسال التحويل للمراجعة","Transfer submitted for review","1"
-"الدفع بتحويل بنكي أو InstaPay","Pay by bank transfer or InstaPay","1"
-"حوّل المبلغ إلى حساب المكتب المحدد خارج التطبيق ثم أدخل المبلغ ومرجع التحويل. لن يتم تفعيل الاشتراك قبل مراجعة مسؤول المنصة. لا تُدخل بيانات بطاقة بنكية.","Transfer externally to the firm’s designated account, then enter the amount and transfer reference. The subscription is not activated until a platform operator reviews it. Do not enter card details.","1"
-"ابدأ باختيار خطة أولاً.","Choose a plan first.","1"
-"بدء فترة تجريبية","Trial started","1"
-"تغيير الخطة","Plan changed","1"
-"إرسال إثبات الدفع","Payment submitted","1"
-"اعتماد الدفع","Payment approved","1"
-"رفض الدفع","Payment rejected","1"
-"سجل نشاط الاشتراك","Subscription activity history","1"
-"مدة التجربة: ","Trial: ","1"
-" يوماً"," days","1"
-"المبلغ: ","Amount: ","1"
-"قرش","piasters","2"
-"السبب: ","Reason: ","1"
-"النظام","System","1"
-"لا يوجد نشاط اشتراك مسجل بعد.","No subscription activity recorded yet.","1"
-"سجل التحويلات","Transfer submissions","1"
-"لا توجد تحويلات مسجلة.","No transfer submissions yet.","1"
-"الاشتراك والفوترة","Subscription & billing","1"
-"المبلغ بالقروش: ","Amount in piasters: ","1"
-"المرجع: ","Reference: ","1"
-"اعتماد التحويل","Approve transfer","1"
-"تأكيد مراجعة التحويل واعتماد الاشتراك؟","Confirm you verified the transfer and approve the subscription?","1"
-"رفض","Reject","2"
-"سبب الرفض","Reason for rejection","1"
-"لا توجد تحويلات بانتظار المراجعة.","No transfer submissions awaiting review.","1"
-"مراجعة مدفوعات الاشتراك","Subscription payment review","1"
-"تسجيلات دخول المستخدمين","Successful sign-ins","1"
-"القضايا المنشأة","Cases created","1"
-"المواعيد المنشأة","Deadlines created","1"
-"طلبات الإجابة","Answers requested","1"
-"الفواتير الصادرة","Invoices issued","1"
-"التصحيحات المقدمة","Corrections submitted","1"
-"مؤشرات استخدام المكاتب","Firm pilot usage metrics","1"
-"بيانات مجمعة أسبوعياً فقط. لا تتضمن أسماء القضايا أو العملاء أو نصوص الأسئلة والإجابات أو معرفات المستخدمين. عدد المستخدمين النشطين هنا هو عدد تسجيلات الدخول الناجحة وتفعيلات المكتب.","Weekly aggregate counts only. No user identifiers, case/client names, or question/answer content are stored. The active-user measure counts successful sign-ins and firm activations, not distinct people.","1"
-"تصدير CSV","Export CSV","1"
-"لا توجد بيانات استخدام خلال الفترة المحددة.","No usage data for the selected period.","1"
-"بانتظار المراجعة","Pending review","2"
-"السؤال: ","Question: ","1"
-"التصحيح المقترح: ","Suggested correction: ","1"
-"مقدم الاقتراح: ","Submitted by: ","1"
-"الاستخدام التدريبي: لا شيء","Training use: none","1"
-"قبول","Accept","1"
-"ملاحظة المراجعة (اختياري)","Review note (optional)","1"
-"سبب الرفض (اختياري)","Reason (optional)","1"
-"لا توجد اقتراحات تصحيح.","No correction suggestions yet.","1"
-"مراجعة تصحيحات الإجابات","Answer correction review","1"
-"الفواتير والتحصيل","Invoices & Finance","2"
-"تعذر تحميل بيانات التحصيل.","Could not load receivables.","1"
-"غير متأخر","Current","1"
-"1–30 يوماً","1–30 days","1"
-"31–60 يوماً","31–60 days","1"
-"61–90 يوماً","61–90 days","1"
-"أكثر من 90 يوماً","Over 90 days","1"
-"قضية دون عنوان","Untitled case","1"
-"فتح القضية","Open case","2"
-"فواتير: ","Invoices: ","1"
-"مسودة","Draft","2"
-"تصدير سجل الفواتير CSV","Export invoice ledger CSV","1"
-"إجمالي الفواتير الصادرة","Issued invoices","1"
-"إجمالي المحصل","Collected","1"
-"إجمالي المستحق","Outstanding","1"
-"المستحقات حسب القضية","Outstanding by case","1"
-"المستحقات حسب العميل","Outstanding by client","1"
-"سجل الفواتير","Invoice history","1"
-"تذكير عبر واتساب","WhatsApp reminder","1"
-"أدخل رقم الهاتف الدولي مع مفتاح الدولة","Enter the international phone number including country code","1"
-"أدخل رقماً دولياً صحيحاً متضمناً مفتاح الدولة","Enter a valid international number including its country code","1"
-"جلسة","hearing","1"
-"موعد قانوني","legal deadline","1"
-"مستحق اليوم","Due today","1"
-"غداً","Due tomorrow","1"
-"تحقق من فواصل الآلاف في المبلغ","Check the amount thousands separators","1"
-"أدخل مبلغاً صحيحاً حتى قرشين عشريين","Enter a valid amount with at most two decimal places","1"
-"المبلغ خارج النطاق المسموح","Amount exceeds the supported limit","1"
-"جاهز","Ready","1"
-"يحتاج إعداداً","Needs setup","1"
-"صحة إعداد المكتب","Firm setup health","1"
-"يعرض هذا الفحص حالة الإعداد فقط، ولا يكشف كلمات المرور أو مفاتيح التشفير.","This screen reports configuration status only. It never reveals passwords or encryption keys.","1"
-"العودة إلى قائمة الإعداد","Back to setup checklist","1"
-"إرسال تذكير تجريبي","Send test reminder","1"
-"اسم المكتب","Firm name","2"
-"رقم هاتف المكتب","Firm phone number","1"
-"العنوان (اختياري)","Address (optional)","1"
-"حفظ بيانات المكتب","Save firm details","1"
-"تم حفظ بيانات المكتب.","Firm details saved.","1"
-"بيانات المكتب","Firm details","1"
-"مكتمل","Complete","2"
-"لم يكتمل","Not complete","2"
-"أدخل اسم المكتب ورقم هاتف يمكن للعملاء والزملاء استخدامه. العنوان اختياري.","Add your firm name and a contact phone number. Address is optional.","1"
-"رقم الهاتف","Phone number","1"
-"العنوان","Address","1"
-"أرسل دعوة إلى زميل ليشارك في المكتب وفق الدور والصلاحيات التي تختارها.","Invite a colleague with the role and permissions you choose.","1"
-"فعّل المصادقة الثنائية لحماية حسابك؛ قد تكون إلزامية في بيئة الإنتاج.","Enable multi-factor authentication to protect your account; production may require it.","1"
-"أنشئ ملف القضية الأول. يمكنك البدء بملف حقيقي أو بيانات تدريبية واضحة.","Create your first case file. You can start with a real matter or clearly marked training data.","1"
-"أضف موعداً بعد التحقق من مصدره. قواعد المواعيد الحالية مسودات غير معتمدة قانونياً.","Add a date only after verifying its source. Current deadline rules are unverified drafts.","1"
-"أرسل رسالة عامة إلى بريدك المسجل لاختبار SMTP؛ لن تتضمن بيانات قضية أو عميل.","Send a generic message to your registered email to test SMTP; no case or client data is included.","1"
-"فتح إعدادات الدعوات","Open invitations","1"
-"إعداد المصادقة الثنائية","Set up MFA","1"
-"إنشاء أول قضية","Create first case","1"
-"إضافة أول موعد","Add first deadline","1"
-"أنشئ قضية أولاً","Create a case first","1"
-"إرسال رسالة اختبار","Send test message","1"
-"فحص إعدادات البريد","Check email setup","1"
-"متابعة","Continue","1"
-"بدء استخدام المكتب","Get your firm started","1"
-"ست خطوات قصيرة — غالباً أقل من 15 دقيقة إذا كانت إعدادات الخادم جاهزة — لتجهيز المكتب ودعوة زميلك واختبار التذكيرات.","Six short steps — usually under 15 minutes when server settings are ready — to configure your firm, invite a colleague and test reminders.","1"
-"تقدم الإعداد","Setup progress","1"
-"لا تعتمد على أي موعد قانوني قبل مراجعته مع محامٍ ومصدر رسمي.","Do not rely on any legal deadline until a lawyer verifies it against an official source.","1"
-"هل تحتاج مساعدة في إعداد الخادم؟","Need help configuring the server?","1"
-"افتح فحص الصحة لمعرفة ما ينقص SMTP أو الرابط العام أو مفتاح MFA، مع شرح واضح دون عرض الأسرار.","Open setup health to see what is missing for SMTP, the public URL or MFA key, with clear explanations and no secret values.","1"
-"فتح فحص صحة الإعداد","Open setup health","1"
-"أكمل إعداد المكتب","Complete firm setup","1"
-"أكمل بيانات المكتب، ادعُ زميلاً، فعّل MFA واختبر التذكيرات.","Complete firm details, invite a colleague, enable MFA and test reminders.","1"
-"متابعة الإعداد","Continue setup","1"
-"نظرة عامة","Workspace overview","1"
-"مساحة عمل المكتب — أهم ما يحتاج انتباهك اليوم.","Your firm workspace — the work that needs your attention today.","1"
-"أهلاً، ","Welcome back, ","1"
-"ابدأ من المهام المستحقة، راجع المواعيد، أو افتح ملف قضية.","Start with due work, review upcoming dates, or open a case file.","1"
-"+ قضية جديدة","+ New case","3"
-"فتح البحث القانوني","Open legal research","1"
-"قضايا نشطة","Active cases","1"
-"من الملفات التي يمكنك الوصول إليها","Cases you can access","1"
-"مهام مفتوحة مسندة إليك","Open tasks assigned to you","1"
-"متأخرة","overdue","2"
-"جلسات قادمة","Upcoming hearings","1"
-"ضمن نطاق العرض الحالي","Within the current dashboard window","1"
-"مواعيد قانونية مفتوحة","Open legal deadlines","1"
-"إجمالي الأتعاب المسجلة","Recorded fees","1"
-"سجل أتعاب","fee records","1"
-"الأتعاب غير المحصلة","Outstanding fees","1"
-"متأخرة","overdue amount","1"
-"لا توجد أتعاب متأخرة مسجلة","No recorded overdue fees","1"
-"وصول سريع","Quick access","1"
-"المهام","Tasks","4"
-"تابع وأنهِ الأعمال المسندة إليك","Review and complete assigned work","1"
-"الأجندة","Calendar","1"
-"اجمع الجلسات والمواعيد والمهام","See hearings, deadlines and tasks together","1"
-"ملفات القضايا","Case files","1"
-"ابحث وافتح ملف القضية","Find and open a case file","1"
-"العملاء والتعارض","Clients & conflicts","1"
-"راجع العملاء وافحص التعارض المحتمل","Review clients and check potential conflicts","1"
-"أولوية اليوم: مهامك","Your tasks","1"
-"عرض الكل","View all","1"
-"بلا موعد","No due date","3"
-"تم","Done","2"
-"لا توجد مهام مفتوحة مسندة إليك.","No open tasks assigned to you.","1"
-"المواعيد القانونية","Legal deadlines","3"
-"فتح الأجندة","Open calendar","1"
-"لا توجد مواعيد قانونية مفتوحة خلال الثلاثين يوماً القادمة.","No open legal deadlines in the next 30 days.","1"
-"مهام غير مسندة","Unassigned tasks","1"
-"استلام المهمة","Claim task","1"
-"لا توجد مهام غير مسندة في ملفاتك.","No unassigned tasks in your accessible cases.","1"
-"الجلسات القادمة","Upcoming hearings","1"
-"عرض الأجندة","View calendar","1"
-"جلسة","Hearing","4"
-"لا توجد جلسات قريبة ضمن نطاق العرض الحالي.","No upcoming hearings in the current view.","1"
-"ابحث في مهامك أو اسم القضية","Search tasks or case name","1"
-"كل المهام المفتوحة","All open tasks","1"
-"متأخرة","Overdue","3"
-"مهمة","tasks","1"
-"الاستحقاق: ","Due: ","1"
-"بلا موعد محدد","No due date","1"
-"مفتوحة","Open","5"
-"إنجاز المهمة","Complete task","1"
-"لا توجد مهام مطابقة.","No matching tasks.","1"
-"قائمة موحدة بالمهام المفتوحة المسندة إليك عبر القضايا.","A consolidated view of your open tasks across accessible cases.","1"
-"ابحث بالعنوان أو اسم القضية","Search title or case name","1"
-"كل العناصر","All items","1"
-"الجلسات","Hearings","2"
-"تعرض هذه الأجندة الجلسات التي يعيدها النظام، والمواعيد المفتوحة خلال 30 يوماً، ومهامك المسندة ذات تاريخ استحقاق. تحقق من الملف والمصدر القانوني قبل الاعتماد على أي ميعاد طعن.","This agenda combines hearings returned by the system, open deadlines within 30 days, and assigned tasks with due dates. Verify the case file and legal source before relying on any appeal deadline.","1"
-"موعد قانوني","Legal deadline","1"
-"مهمة","Task","1"
-"إنجاز","Complete","2"
-"لا توجد عناصر مطابقة في نطاق العرض الحالي.","No matching items in the current view.","1"
-"الأجندة والمواعيد","Calendar & deadlines","1"
-"عرض موحد للمهام والجلسات والمواعيد المسجلة.","A unified view of assigned tasks, hearings and recorded deadlines.","1"
-"تصدير إلى التقويم","Export to calendar","1"
-"بدون مرحلة","No stage","1"
-"مهام","tasks","2"
-"مغلقة","Closed","4"
-"عنوان القضية","Case title","1"
-"اسم العميل (اختياري)","Client name (optional)","1"
-"رقم القضية (اختياري)","Case number (optional)","1"
-"سنة القضية (اختياري)","Case year (optional)","1"
-"المحكمة (اختياري)","Court (optional)","1"
-"الدائرة (اختياري)","Circuit (optional)","1"
-"الخصم (اختياري)","Opposing party (optional)","1"
-"إلغاء","Cancel","1"
-"حفظ القضية","Save case","1"
-"أدخل عنوان القضية","Enter a case title","1"
-"قضية جديدة","New case","2"
-"بدون عميل","No client","1"
-"اسم عميل أو خصم لفحص التعارض المحتمل","Search client or opposing party for potential conflicts","1"
-"بحث عن عميل أو خصم","Search client or opposing party","1"
-"أدخل حرفين على الأقل","Enter at least two characters","1"
-"نتائج الفحص الأولي: ","Preliminary conflict matches: ","1"
-"العميل: ","Client: ","3"
-"الخصم: ","Opposing party: ","1"
-"لم تظهر مطابقات في القضايا التي يمكنك الوصول إليها.","No matches were found in cases you can access.","1"
-"العملاء","Clients","1"
-"فحص أولي لتعارض المصالح","Preliminary conflict check","1"
-"فحص","Check","1"
-"قضايا","cases","1"
-"لا توجد قضايا بعد. أنشئ أول قضية.","No cases yet. Create your first case.","1"
-"ابحث بالعنوان أو العميل أو رقم القضية أو الخصم","Search title, client, case number or opposing party","1"
-"كل الحالات","All statuses","1"
-"قضية","cases","1"
-"لا توجد قضايا مطابقة.","No matching cases.","1"
-"القضايا","Cases","1"
-"ابحث في بيانات القضايا الأساسية ثم افتح الملف لإدارة التفاصيل.","Search case metadata, then open a matter to manage its details.","1"
-"الملخص","Overview","1"
-"ملخص ذكي","AI brief","1"
-"الملاحظات","Notes","1"
-"الأتعاب","Fees","1"
-"الفواتير","Invoices","1"
-"المستندات","Documents","1"
-"الفريق","Team","1"
-"اسأل","Ask","1"
-"السجل","Activity log","1"
-"رقم القضية","Case number","1"
-"السنة","Year","1"
-"المحكمة","Court","1"
-"الدائرة","Circuit","1"
-"الخصم","Opposing party","1"
-"المرحلة","Stage","1"
-"تم حفظ بيانات القضية","Case details saved","1"
-"حذف نهائي لكل بيانات القضية؟","Permanently delete all case data?","1"
-"إنشاء ملخص ذكي","Generate AI brief","1"
-"يلزم تأكيد تفويض المكتب والعميل لهذه القضية قبل الإرسال","Confirm firm and client authorization for this matter before sending","1"
-"جارٍ إعداد الملخص من سجلات القضية...","Preparing a brief from case records...","1"
-"السجلات المستخدمة","Records used","1"
-"ملخص ذكي للقضية","AI case brief","1"
-"ينشئ ملخصاً واقعياً مؤقتاً من بيانات القضية والملاحظات والجلسات والمهام والمواعيد ومقاطع المستندات. تُحذف معرفات القضية والعميل والخصم المباشرة وتُحجب أنماط شائعة للبريد والهاتف والرقم القومي. هذا ليس إخفاءً كاملاً للهوية؛ قد تبقى أسماء أو معلومات حساسة داخل النصوص. موافقة إعدادات النشر ليست موافقة من المكتب أو العميل على هذه القضية. لا تتابع إلا إذا كان لديك تفويض موثق من المكتب والعميل؛ سيُسجل النظام إقرارك بهذا التفويض. الإقرار لا يغني عن الموافقة الصحيحة أو مراجعة سياسة المكتب. الملخص ليس رأياً قانونياً ولا يُحفظ.","Creates a temporary factual summary from case metadata, notes, sessions, tasks, deadlines and extracted document excerpts. Direct case/client/opposing-party identifiers are omitted and common email, phone and national-ID patterns are redacted. This is not complete anonymization: names or sensitive context may remain in free text. Deployment approval is not firm or client authorization for this matter. Proceed only if you have documented authorization from both the firm and client; the system records your attestation. This attestation does not replace valid consent or firm policy review. The brief is not legal advice and is not saved.","1"
-"أؤكد وجود تفويض موثق من المكتب لإرسال بيانات هذه القضية إلى مزود النموذج المحدد.","I confirm documented firm authorization to send this matter data to the configured model provider.","1"
-"أؤكد وجود تفويض/أساس قانوني موثق من العميل لمعالجة بيانات هذه القضية بواسطة مزود النموذج.","I confirm documented client authorization/lawful basis for this matter data to be processed by the model provider.","1"
-"مهمة جديدة","New task","1"
-"غير معيّن","Unassigned","1"
-"أدخل اسم المهمة","Enter a task title","1"
-"ملاحظة (المحكمة، الدائرة، الغرض)","Note (court, circuit, purpose)","1"
-"أدخل تاريخ الجلسة","Enter a hearing date","1"
-"نوع الموعد (استئناف، طعن، تقديم مستند...)","Deadline type (appeal, challenge, filing...)","1"
-"ملاحظة (اختياري)","Note (optional)","1"
-"حدد القاعدة وتاريخ بداية الحساب الذي راجعه المحامي","Choose a rule and the trigger date confirmed by counsel","1"
-"جارٍ الحساب...","Calculating...","1"
-"لم يطبق تمديد عطلة في هذا الحساب.","No holiday extension was applied in this calculation.","1"
-"أساس الحساب والافتراضات — للمراجعة فقط","Calculation basis and assumptions — review only","1"
-"بداية الميعاد التي يجب أن يؤكدها المحامي: ","Trigger basis to be confirmed by counsel: ","1"
-"المصدر القانوني: ","Legal source: ","1"
-"غير محدد في المسودة","Not specified in draft","1"
-"خطوات الحساب","Calculation steps","1"
-"امتدادات العطلات","Holiday extensions","1"
-"حساب مبدئي غير معتمد — لا يمثل ميعاداً قانونياً مؤكداً. ","Preliminary unverified calculation — not a confirmed legal deadline. ","1"
-"القاعدة: ","Rule: ","1"
-"بداية الحساب: ","Trigger: ","1"
-"النهاية الحسابية: ","Raw end: ","1"
-"التاريخ بعد الامتداد: ","Adjusted date: ","1"
-"خطوات الحساب: ","Calculation steps: ","1"
-"التحذيرات: ","Warnings: ","1"
-"حفظ الموعد المحسوب في القضية","Save calculated deadline to case","1"
-"موعد قانوني محسوب","Calculated legal deadline","1"
-"تم حفظ الموعد مع خطوات الحساب والتحذيرات","Deadline saved with calculation steps and warnings","1"
-"مسودة — غير معتمدة من محامٍ","Draft — not verified by a lawyer","1"
-"تمت مراجعة القاعدة","Rule reviewed","1"
-"التاريخ الحسابي المقترح: ","Calculated suggested date: ","1"
-"نهاية المدة قبل الامتدادات: ","Raw end before extensions: ","1"
-"اختر نوع الميعاد","Choose deadline type","1"
-"مسودة غير معتمدة","unverified draft","1"
-"تعذر تحميل القواعد","Could not load rules","1"
-"حاسبة المواعيد (تجريبية)","Deadline calculator (experimental)","1"
-"اختر القاعدة وتاريخ بداية الحساب بعد مراجعتهما. القواعد والعطلات الحالية مسودات غير معتمدة؛ لا تعتمد على الناتج قبل مراجعة محامٍ مصري.","Select a rule and trigger date only after reviewing them. Current rules and holidays are unverified drafts; do not rely on the result before review by an Egyptian lawyer.","1"
-"تاريخ بداية الحساب (بعد التحقق)","Trigger date (after confirmation)","1"
-"أيام مسافة إضافية (اختياري)","Additional distance days (optional)","1"
-"المواعيد المسجلة في القضية","Saved case deadlines","1"
-"أدخل نوع الموعد وتاريخه","Enter the deadline type and date","1"
-"تاريخ العطلة","Holiday date","1"
-"اسم العطلة بالعربية","Holiday name in Arabic","1"
-"اسم العطلة","Holiday name","1"
-"حذف","Remove","2"
-"لا توجد عطلات إضافية للمكتب.","No firm-specific dated holidays.","1"
-"حفظ تقويم المكتب","Save firm calendar","1"
-"تم حفظ تقويم العطلات مع تسجيل التغيير","Holiday calendar saved and change recorded","1"
-"العطلات الثابتة والمشتركة تظل مسودة جزئية؛ هذه الإضافات خاصة بهذا المكتب فقط.","Shared fixed holidays remain a partial draft; these additions apply only to this firm.","1"
-"المستخدم","User","1"
-"إضافة عطلة","Add holiday","1"
-"أدخل التاريخ واسم العطلة","Enter a date and holiday name","1"
-"هذا التاريخ موجود بالفعل","That date already exists","1"
-"تقويم العطلات الخاص بالمكتب","Firm holiday calendar","1"
-"يمكن لمسؤول المكتب إضافة العطلات المؤرخة أو حذفها. كل حفظ يسجل نسخة قبل/بعد في سجل المراجعة. لا يجعل ذلك القواعد أو التقويم معتمدين قانونياً.","Firm admins can add or remove dated holidays. Each save records before/after snapshots. This does not make the rules or calendar legally verified.","1"
-"اكتب ملاحظة داخلية للقضية...","Write an internal case note...","1"
-"اكتب الملاحظة أولا","Write a note first","1"
-"سيظهر هنا هيكل المذكرة أو صحيفة الدعوى...","The memo or pleading skeleton will appear here...","1"
-"هياكل المذكرات وصحف الدعاوى","Memo and pleading skeletons","1"
-"قوالب عناوين فقط تُملأ ببيانات القضية. يجب استكمال الوقائع والأسانيد والطلبات ومراجعتها بواسطة محامٍ قبل الاستخدام أو التقديم.","Heading-only templates populated from case metadata. Counsel must complete and review all facts, legal grounds and requests before use or filing.","1"
-"إنشاء هيكل مذكرة","Generate memo skeleton","1"
-"إنشاء هيكل صحيفة دعوى","Generate pleading skeleton","1"
-"نسخ النص","Copy text","1"
-"وصف الأتعاب","Fee description","1"
-"المبلغ الإجمالي","Total amount","1"
-"المدفوع","Paid amount","1"
-"ملاحظة","Note","1"
-"الإجمالي ","Total ","1"
-"المدفوع ","Paid ","1"
-"المتبقي ","Remaining ","1"
-"أدخل الوصف والإجمالي والمدفوع","Enter the description, total, and paid amount","1"
-"وصف الفاتورة أو نطاق العمل","Invoice description or scope","1"
-"تاريخ الاستحقاق","Due date","1"
-"بيان الخدمة","Service description","1"
-"الكمية","Quantity","1"
-"سعر الوحدة بالجنيه","Unit price in EGP","1"
-"أدخل كمية صحيحة حتى ثلاث خانات عشرية","Enter a valid quantity with at most three decimal places","1"
-"الكمية خارج النطاق المسموح","Quantity exceeds the supported limit","1"
-"إنشاء مسودة فاتورة","Create invoice draft","1"
-"أدخل بياناً لكل بند","Enter a description for every line","1"
-"تم إنشاء مسودة الفاتورة","Invoice draft created","1"
-"غير مدفوعة","Unpaid","1"
-"مدفوعة جزئياً","Partially paid","1"
-"مدفوعة","Paid","1"
-"ملغاة","Void","1"
-"مسودة فاتورة","Invoice draft","1"
-"الإجمالي: ","Total: ","1"
-"المدفوع: ","Paid: ","1"
-"المتبقي: ","Balance: ","1"
-"طباعة الفاتورة","Print invoice","1"
-"إصدار الفاتورة","Issue invoice","1"
-"إصدار الفاتورة وتثبيت رقمها؟ لا يمكن تعديلها بعد الإصدار.","Issue this invoice and lock its number? It cannot be edited after issue.","1"
-"إلغاء الفاتورة","Void invoice","1"
-"أدخل سبب إلغاء الفاتورة","Enter a reason for voiding this invoice","1"
-"مبلغ الدفعة بالجنيه","Payment amount in EGP","1"
-"نقداً","Cash","1"
-"أخرى","Other","1"
-"مرجع التحويل (اختياري)","Transfer reference (optional)","1"
-"تسجيل دفعة","Record payment","1"
-"تم تسجيل الدفعة","Payment recorded","1"
-"إيصال الدفعة #","Receipt #","1"
-"لا توجد فواتير لهذه القضية بعد.","No invoices for this case yet.","1"
-"تعذر تحميل الفواتير","Could not load invoices","1"
-"إنشاء فاتورة أتعاب","Create fee invoice","1"
-"تُحسب المبالغ بدقة بالقرش. الفاتورة المطبوعة مستند أتعاب عادي وليست فاتورة ضريبية إلكترونية.","Amounts are calculated in integer piasters. The printed document is an ordinary fee invoice, not an Egyptian e-tax invoice.","1"
-"إضافة بند","Add line","1"
-"فواتير القضية وسجل التحصيل","Case invoices and payments","1"
-"تمت مراجعة النص","Text reviewed","1"
-"تم تصحيح النص","Text corrected","1"
-"يحتاج إعادة فحص","Needs recheck","2"
-"لم تتم المراجعة","Not reviewed","1"
-"لا توجد مقاطع نصية قابلة للمراجعة","No text chunks are available for review","1"
-"مقطع ","Chunk ","1"
-"رقم الصفحة المستخرج: ","Extracted page number: ","1"
-"ليس تحققاً مستقلاً من الأصل","not independently verified against the original","1"
-"النص المستخرج الأصلي","Original extracted text","1"
-"النص المستخرج — للقراءة فقط","Extracted text — read only","1"
-"النص المصحح","Corrected text","1"
-"مرجع الصفحة (اختياري)","Page reference (optional)","1"
-"ملاحظة المراجع (اختياري)","Reviewer note (optional)","1"
-"اعتماد النص المستخرج","Accept extracted text","1"
-"تم تسجيل مراجعة النص","Text review recorded","1"
-"تم وضع المقطع لإعادة الفحص","Chunk flagged for recheck","1"
-"حفظ التصحيح","Save correction","1"
-"أدخل النص المصحح","Enter corrected text","1"
-"لم يتغير النص","No changes to the text","1"
-"سيتم استبدال النص المفهرس بنسخة التصحيح مع حفظ سجل المراجعة. هل تريد المتابعة؟","This replaces the indexed text with the corrected version and preserves the review log. Continue?","1"
-"تم حفظ التصحيح وإعادة فهرسة المقطع","Correction saved and chunk re-indexed","1"
-"النص المصحح — لا تحفظه إلا بعد مقارنته بالملف الأصلي","Corrected text — save only after comparing it with the original file","1"
-"هذا المقطع أطول من حد التصحيح البالغ 20,000 حرف؛ أعد تقسيم المستند أو علّمه لإعادة الفحص.","This chunk exceeds the 20,000-character correction limit; split it or flag it for recheck.","1"
-"مرجع الصفحة","Page reference","1"
-"ملاحظة المراجع","Reviewer note","1"
-"آخر مراجعة: ","Last review: ","1"
-"مراجعة النص المستخرج","Review extracted text","1"
-"جارٍ تحميل المقاطع…","Loading text chunks…","1"
-"نص OCR غير متحقق","OCR text not verified","1"
-"بعض الصفحات لم تُفهرس: OCR غير متاح","Some pages were not indexed: OCR unavailable","1"
-"حالة الاستخراج غير مسجلة","Extraction status not recorded","1"
-"لا توجد مستندات","No documents","1"
-"رفع وفهرسة","Upload and index","1"
-"تمت الفهرسة عبر OCR؛ راجع النص مقابل الأصل قبل الاعتماد عليه","Indexed with OCR; compare against the original before relying on it","1"
-"تمت الفهرسة","Indexed","1"
-"PDF أو Word حتى 15 ميجابايت. النص المستخرج فقط هو المفهرس؛ لا تحفظ نسخة الملف الأصلي. راجع المقاطع قبل الاعتماد عليها، خصوصاً نص OCR.","PDF or Word up to 15 MB. Only extracted text is indexed; the original file is not retained. Review chunks before relying on them, especially OCR text.","1"
-"إزالة","Remove","1"
-"إزالة هذا العضو من القضية؟","Remove this member from the case?","1"
-"إضافة / تحديث","Add / update","1"
+مقاعد,seats,1
+عمليات البحث القانوني,Legal research queries,1
+المستندات المضافة,Documents added,1
+عمليات معالجة OCR,OCR processing jobs,1
+مسودات أولية,Draft skeletons generated,1
+الاستخدام خلال الشهر الحالي,Usage this month,1
+هذه أرقام قياس للاستخدام فقط؛ لا تُطبق حدود أو رسوم تلقائية في هذه المرحلة. لا يتم تخزين نصوص الاستعلامات أو محتوى القضايا ضمن سجل القياس.,Usage measurement only: no automatic quotas or charges are applied at this stage. Query text and matter contents are not stored in the usage ledger.,1
+فترة تجريبية,Free trial,1
+بانتظار مراجعة الدفع,Payment review pending,1
+نشط,Active,1
+انتهت التجربة,Trial expired,1
+متأخر,Past due,1
+ملغي,Cancelled,1
+اشتراك المكتب,Firm subscription,1
+الخطة: ,Plan: ,2
+الحالة: ,Status: ,2
+لم يتم اختيار خطة بعد. اختر خطة لبدء التجربة المجانية.,No plan selected yet. Choose a plan to start the free trial.,1
+المقاعد: ,Seats: ,1
+نشط,active,1
+دعوات معلقة,pending invitations,1
+تنتهي التجربة في: ,Trial ends: ,1
+تغيير الخطة,Change plan,1
+بدء تجربة مجانية لمدة 14 يوماً,Start 14-day free trial,1
+تم تحديث الاشتراك,Subscription updated,1
+المبلغ بالجنيه المصري مثل 500.00,"Amount in EGP, e.g. 500.00",1
+تحويل بنكي,Bank transfer,2
+رقم مرجع التحويل,Transfer reference,1
+إرسال إثبات التحويل للمراجعة,Submit transfer for review,1
+أدخل مبلغاً موجباً ومرجع التحويل,Enter a positive amount and transfer reference,1
+تم إرسال التحويل للمراجعة,Transfer submitted for review,1
+الدفع بتحويل بنكي أو InstaPay,Pay by bank transfer or InstaPay,1
+حوّل المبلغ إلى حساب المكتب المحدد خارج التطبيق ثم أدخل المبلغ ومرجع التحويل. لن يتم تفعيل الاشتراك قبل مراجعة مسؤول المنصة. لا تُدخل بيانات بطاقة بنكية.,"Transfer externally to the firm’s designated account, then enter the amount and transfer reference. The subscription is not activated until a platform operator reviews it. Do not enter card details.",1
+ابدأ باختيار خطة أولاً.,Choose a plan first.,1
+بدء فترة تجريبية,Trial started,1
+تغيير الخطة,Plan changed,1
+إرسال إثبات الدفع,Payment submitted,1
+اعتماد الدفع,Payment approved,1
+رفض الدفع,Payment rejected,1
+سجل نشاط الاشتراك,Subscription activity history,1
+مدة التجربة: ,Trial: ,1
+ يوماً, days,1
+المبلغ: ,Amount: ,1
+قرش,piasters,2
+السبب: ,Reason: ,1
+النظام,System,1
+لا يوجد نشاط اشتراك مسجل بعد.,No subscription activity recorded yet.,1
+سجل التحويلات,Transfer submissions,1
+لا توجد تحويلات مسجلة.,No transfer submissions yet.,1
+الاشتراك والفوترة,Subscription & billing,1
+المبلغ بالقروش: ,Amount in piasters: ,1
+المرجع: ,Reference: ,1
+اعتماد التحويل,Approve transfer,1
+تأكيد مراجعة التحويل واعتماد الاشتراك؟,Confirm you verified the transfer and approve the subscription?,1
+رفض,Reject,2
+سبب الرفض,Reason for rejection,1
+لا توجد تحويلات بانتظار المراجعة.,No transfer submissions awaiting review.,1
+مراجعة مدفوعات الاشتراك,Subscription payment review,1
+تسجيلات دخول المستخدمين,Successful sign-ins,1
+القضايا المنشأة,Cases created,1
+المواعيد المنشأة,Deadlines created,1
+طلبات الإجابة,Answers requested,1
+الفواتير الصادرة,Invoices issued,1
+التصحيحات المقدمة,Corrections submitted,1
+مؤشرات استخدام المكاتب,Firm pilot usage metrics,1
+بيانات مجمعة أسبوعياً فقط. لا تتضمن أسماء القضايا أو العملاء أو نصوص الأسئلة والإجابات أو معرفات المستخدمين. عدد المستخدمين النشطين هنا هو عدد تسجيلات الدخول الناجحة وتفعيلات المكتب.,"Weekly aggregate counts only. No user identifiers, case/client names, or question/answer content are stored. The active-user measure counts successful sign-ins and firm activations, not distinct people.",1
+تصدير CSV,Export CSV,1
+لا توجد بيانات استخدام خلال الفترة المحددة.,No usage data for the selected period.,1
+بانتظار المراجعة,Pending review,2
+السؤال: ,Question: ,1
+التصحيح المقترح: ,Suggested correction: ,1
+مقدم الاقتراح: ,Submitted by: ,1
+الاستخدام التدريبي: لا شيء,Training use: none,1
+قبول,Accept,1
+ملاحظة المراجعة (اختياري),Review note (optional),1
+سبب الرفض (اختياري),Reason (optional),1
+لا توجد اقتراحات تصحيح.,No correction suggestions yet.,1
+مراجعة تصحيحات الإجابات,Answer correction review,1
+الفواتير والتحصيل,Invoices & Finance,2
+تعذر تحميل بيانات التحصيل.,Could not load receivables.,1
+غير متأخر,Current,1
+1–30 يوماً,1–30 days,1
+31–60 يوماً,31–60 days,1
+61–90 يوماً,61–90 days,1
+أكثر من 90 يوماً,Over 90 days,1
+قضية دون عنوان,Untitled case,1
+فتح القضية,Open case,2
+فواتير: ,Invoices: ,1
+مسودة,Draft,2
+تصدير سجل الفواتير CSV,Export invoice ledger CSV,1
+إجمالي الفواتير الصادرة,Issued invoices,1
+إجمالي المحصل,Collected,1
+إجمالي المستحق,Outstanding,1
+المستحقات حسب القضية,Outstanding by case,1
+المستحقات حسب العميل,Outstanding by client,1
+سجل الفواتير,Invoice history,1
+تذكير عبر واتساب,WhatsApp reminder,1
+أدخل رقم الهاتف الدولي مع مفتاح الدولة,Enter the international phone number including country code,1
+أدخل رقماً دولياً صحيحاً متضمناً مفتاح الدولة,Enter a valid international number including its country code,1
+جلسة,hearing,1
+موعد قانوني,legal deadline,1
+مستحق اليوم,Due today,1
+غداً,Due tomorrow,1
+تحقق من فواصل الآلاف في المبلغ,Check the amount thousands separators,1
+أدخل مبلغاً صحيحاً حتى قرشين عشريين,Enter a valid amount with at most two decimal places,1
+المبلغ خارج النطاق المسموح,Amount exceeds the supported limit,1
+جاهز,Ready,1
+يحتاج إعداداً,Needs setup,1
+صحة إعداد المكتب,Firm setup health,1
+يعرض هذا الفحص حالة الإعداد فقط، ولا يكشف كلمات المرور أو مفاتيح التشفير.,This screen reports configuration status only. It never reveals passwords or encryption keys.,1
+العودة إلى قائمة الإعداد,Back to setup checklist,1
+إرسال تذكير تجريبي,Send test reminder,1
+اسم المكتب,Firm name,2
+رقم هاتف المكتب,Firm phone number,1
+العنوان (اختياري),Address (optional),1
+حفظ بيانات المكتب,Save firm details,1
+تم حفظ بيانات المكتب.,Firm details saved.,1
+بيانات المكتب,Firm details,1
+مكتمل,Complete,2
+لم يكتمل,Not complete,2
+أدخل اسم المكتب ورقم هاتف يمكن للعملاء والزملاء استخدامه. العنوان اختياري.,Add your firm name and a contact phone number. Address is optional.,1
+رقم الهاتف,Phone number,1
+العنوان,Address,1
+أرسل دعوة إلى زميل ليشارك في المكتب وفق الدور والصلاحيات التي تختارها.,Invite a colleague with the role and permissions you choose.,1
+فعّل المصادقة الثنائية لحماية حسابك؛ قد تكون إلزامية في بيئة الإنتاج.,Enable multi-factor authentication to protect your account; production may require it.,1
+أنشئ ملف القضية الأول. يمكنك البدء بملف حقيقي أو بيانات تدريبية واضحة.,Create your first case file. You can start with a real matter or clearly marked training data.,1
+أضف موعداً بعد التحقق من مصدره. قواعد المواعيد الحالية مسودات غير معتمدة قانونياً.,Add a date only after verifying its source. Current deadline rules are unverified drafts.,1
+أرسل رسالة عامة إلى بريدك المسجل لاختبار SMTP؛ لن تتضمن بيانات قضية أو عميل.,Send a generic message to your registered email to test SMTP; no case or client data is included.,1
+فتح إعدادات الدعوات,Open invitations,1
+إعداد المصادقة الثنائية,Set up MFA,1
+إنشاء أول قضية,Create first case,1
+إضافة أول موعد,Add first deadline,1
+أنشئ قضية أولاً,Create a case first,1
+إرسال رسالة اختبار,Send test message,1
+فحص إعدادات البريد,Check email setup,1
+متابعة,Continue,1
+بدء استخدام المكتب,Get your firm started,1
+ست خطوات قصيرة — غالباً أقل من 15 دقيقة إذا كانت إعدادات الخادم جاهزة — لتجهيز المكتب ودعوة زميلك واختبار التذكيرات.,"Six short steps — usually under 15 minutes when server settings are ready — to configure your firm, invite a colleague and test reminders.",1
+تقدم الإعداد,Setup progress,1
+لا تعتمد على أي موعد قانوني قبل مراجعته مع محامٍ ومصدر رسمي.,Do not rely on any legal deadline until a lawyer verifies it against an official source.,1
+هل تحتاج مساعدة في إعداد الخادم؟,Need help configuring the server?,1
+افتح فحص الصحة لمعرفة ما ينقص SMTP أو الرابط العام أو مفتاح MFA، مع شرح واضح دون عرض الأسرار.,"Open setup health to see what is missing for SMTP, the public URL or MFA key, with clear explanations and no secret values.",1
+فتح فحص صحة الإعداد,Open setup health,1
+أكمل إعداد المكتب,Complete firm setup,1
+أكمل بيانات المكتب، ادعُ زميلاً، فعّل MFA واختبر التذكيرات.,"Complete firm details, invite a colleague, enable MFA and test reminders.",1
+متابعة الإعداد,Continue setup,1
+نظرة عامة,Workspace overview,1
+مساحة عمل المكتب — أهم ما يحتاج انتباهك اليوم.,Your firm workspace — the work that needs your attention today.,1
+أهلاً، ,"Welcome back, ",1
+ابدأ من المهام المستحقة، راجع المواعيد، أو افتح ملف قضية.,"Start with due work, review upcoming dates, or open a case file.",1
++ قضية جديدة,+ New case,3
+فتح البحث القانوني,Open legal research,1
+قضايا نشطة,Active cases,1
+من الملفات التي يمكنك الوصول إليها,Cases you can access,1
+مهام مفتوحة مسندة إليك,Open tasks assigned to you,1
+متأخرة,overdue,2
+جلسات قادمة,Upcoming hearings,1
+ضمن نطاق العرض الحالي,Within the current dashboard window,1
+مواعيد قانونية مفتوحة,Open legal deadlines,1
+إجمالي الأتعاب المسجلة,Recorded fees,1
+سجل أتعاب,fee records,1
+الأتعاب غير المحصلة,Outstanding fees,1
+متأخرة,overdue amount,1
+لا توجد أتعاب متأخرة مسجلة,No recorded overdue fees,1
+وصول سريع,Quick access,1
+المهام,Tasks,4
+تابع وأنهِ الأعمال المسندة إليك,Review and complete assigned work,1
+الأجندة,Calendar,1
+اجمع الجلسات والمواعيد والمهام,"See hearings, deadlines and tasks together",1
+ملفات القضايا,Case files,1
+ابحث وافتح ملف القضية,Find and open a case file,1
+العملاء والتعارض,Clients & conflicts,1
+راجع العملاء وافحص التعارض المحتمل,Review clients and check potential conflicts,1
+أولوية اليوم: مهامك,Your tasks,1
+عرض الكل,View all,1
+بلا موعد,No due date,3
+تم,Done,2
+لا توجد مهام مفتوحة مسندة إليك.,No open tasks assigned to you.,1
+المواعيد القانونية,Legal deadlines,3
+فتح الأجندة,Open calendar,1
+لا توجد مواعيد قانونية مفتوحة خلال الثلاثين يوماً القادمة.,No open legal deadlines in the next 30 days.,1
+مهام غير مسندة,Unassigned tasks,1
+استلام المهمة,Claim task,1
+لا توجد مهام غير مسندة في ملفاتك.,No unassigned tasks in your accessible cases.,1
+الجلسات القادمة,Upcoming hearings,1
+عرض الأجندة,View calendar,1
+جلسة,Hearing,4
+لا توجد جلسات قريبة ضمن نطاق العرض الحالي.,No upcoming hearings in the current view.,1
+ابحث في مهامك أو اسم القضية,Search tasks or case name,1
+كل المهام المفتوحة,All open tasks,1
+متأخرة,Overdue,3
+مهمة,tasks,1
+الاستحقاق: ,Due: ,1
+بلا موعد محدد,No due date,1
+مفتوحة,Open,5
+إنجاز المهمة,Complete task,1
+لا توجد مهام مطابقة.,No matching tasks.,1
+قائمة موحدة بالمهام المفتوحة المسندة إليك عبر القضايا.,A consolidated view of your open tasks across accessible cases.,1
+ابحث بالعنوان أو اسم القضية,Search title or case name,1
+كل العناصر,All items,1
+الجلسات,Hearings,2
+تعرض هذه الأجندة الجلسات التي يعيدها النظام، والمواعيد المفتوحة خلال 30 يوماً، ومهامك المسندة ذات تاريخ استحقاق. تحقق من الملف والمصدر القانوني قبل الاعتماد على أي ميعاد طعن.,"This agenda combines hearings returned by the system, open deadlines within 30 days, and assigned tasks with due dates. Verify the case file and legal source before relying on any appeal deadline.",1
+موعد قانوني,Legal deadline,1
+مهمة,Task,1
+إنجاز,Complete,2
+لا توجد عناصر مطابقة في نطاق العرض الحالي.,No matching items in the current view.,1
+الأجندة والمواعيد,Calendar & deadlines,1
+عرض موحد للمهام والجلسات والمواعيد المسجلة.,"A unified view of assigned tasks, hearings and recorded deadlines.",1
+تصدير إلى التقويم,Export to calendar,1
+بدون مرحلة,No stage,1
+مهام,tasks,2
+مغلقة,Closed,4
+عنوان القضية,Case title,1
+اسم العميل (اختياري),Client name (optional),1
+رقم القضية (اختياري),Case number (optional),1
+سنة القضية (اختياري),Case year (optional),1
+المحكمة (اختياري),Court (optional),1
+الدائرة (اختياري),Circuit (optional),1
+الخصم (اختياري),Opposing party (optional),1
+إلغاء,Cancel,1
+حفظ القضية,Save case,1
+أدخل عنوان القضية,Enter a case title,1
+قضية جديدة,New case,2
+بدون عميل,No client,1
+اسم عميل أو خصم لفحص التعارض المحتمل,Search client or opposing party for potential conflicts,1
+بحث عن عميل أو خصم,Search client or opposing party,1
+أدخل حرفين على الأقل,Enter at least two characters,1
+نتائج الفحص الأولي: ,Preliminary conflict matches: ,1
+العميل: ,Client: ,3
+الخصم: ,Opposing party: ,1
+لم تظهر مطابقات في القضايا التي يمكنك الوصول إليها.,No matches were found in cases you can access.,1
+العملاء,Clients,1
+فحص أولي لتعارض المصالح,Preliminary conflict check,1
+فحص,Check,1
+قضايا,cases,1
+لا توجد قضايا بعد. أنشئ أول قضية.,No cases yet. Create your first case.,1
+ابحث بالعنوان أو العميل أو رقم القضية أو الخصم,"Search title, client, case number or opposing party",1
+كل الحالات,All statuses,1
+قضية,cases,1
+لا توجد قضايا مطابقة.,No matching cases.,1
+القضايا,Cases,1
+ابحث في بيانات القضايا الأساسية ثم افتح الملف لإدارة التفاصيل.,"Search case metadata, then open a matter to manage its details.",1
+الملخص,Overview,1
+ملخص ذكي,AI brief,1
+الملاحظات,Notes,1
+الأتعاب,Fees,1
+الفواتير,Invoices,1
+المستندات,Documents,1
+الفريق,Team,1
+اسأل,Ask,1
+السجل,Activity log,1
+رقم القضية,Case number,1
+السنة,Year,1
+المحكمة,Court,1
+الدائرة,Circuit,1
+الخصم,Opposing party,1
+المرحلة,Stage,1
+تم حفظ بيانات القضية,Case details saved,1
+حذف نهائي لكل بيانات القضية؟,Permanently delete all case data?,1
+إنشاء ملخص ذكي,Generate AI brief,1
+يلزم تأكيد تفويض المكتب والعميل لهذه القضية قبل الإرسال,Confirm firm and client authorization for this matter before sending,1
+جارٍ إعداد الملخص من سجلات القضية...,Preparing a brief from case records...,1
+السجلات المستخدمة,Records used,1
+ملخص ذكي للقضية,AI case brief,1
+ينشئ ملخصاً واقعياً مؤقتاً من بيانات القضية والملاحظات والجلسات والمهام والمواعيد ومقاطع المستندات. تُحذف معرفات القضية والعميل والخصم المباشرة وتُحجب أنماط شائعة للبريد والهاتف والرقم القومي. هذا ليس إخفاءً كاملاً للهوية؛ قد تبقى أسماء أو معلومات حساسة داخل النصوص. موافقة إعدادات النشر ليست موافقة من المكتب أو العميل على هذه القضية. لا تتابع إلا إذا كان لديك تفويض موثق من المكتب والعميل؛ سيُسجل النظام إقرارك بهذا التفويض. الإقرار لا يغني عن الموافقة الصحيحة أو مراجعة سياسة المكتب. الملخص ليس رأياً قانونياً ولا يُحفظ.,"Creates a temporary factual summary from case metadata, notes, sessions, tasks, deadlines and extracted document excerpts. Direct case/client/opposing-party identifiers are omitted and common email, phone and national-ID patterns are redacted. This is not complete anonymization: names or sensitive context may remain in free text. Deployment approval is not firm or client authorization for this matter. Proceed only if you have documented authorization from both the firm and client; the system records your attestation. This attestation does not replace valid consent or firm policy review. The brief is not legal advice and is not saved.",1
+أؤكد وجود تفويض موثق من المكتب لإرسال بيانات هذه القضية إلى مزود النموذج المحدد.,I confirm documented firm authorization to send this matter data to the configured model provider.,1
+أؤكد وجود تفويض/أساس قانوني موثق من العميل لمعالجة بيانات هذه القضية بواسطة مزود النموذج.,I confirm documented client authorization/lawful basis for this matter data to be processed by the model provider.,1
+مهمة جديدة,New task,1
+غير معيّن,Unassigned,1
+أدخل اسم المهمة,Enter a task title,1
+ملاحظة (المحكمة، الدائرة، الغرض),"Note (court, circuit, purpose)",1
+أدخل تاريخ الجلسة,Enter a hearing date,1
+نوع الموعد (استئناف، طعن، تقديم مستند...),"Deadline type (appeal, challenge, filing...)",1
+ملاحظة (اختياري),Note (optional),1
+حدد القاعدة وتاريخ بداية الحساب الذي راجعه المحامي,Choose a rule and the trigger date confirmed by counsel,1
+جارٍ الحساب...,Calculating...,1
+لم يطبق تمديد عطلة في هذا الحساب.,No holiday extension was applied in this calculation.,1
+أساس الحساب والافتراضات — للمراجعة فقط,Calculation basis and assumptions — review only,1
+بداية الميعاد التي يجب أن يؤكدها المحامي: ,Trigger basis to be confirmed by counsel: ,1
+المصدر القانوني: ,Legal source: ,1
+غير محدد في المسودة,Not specified in draft,1
+خطوات الحساب,Calculation steps,1
+امتدادات العطلات,Holiday extensions,1
+حساب مبدئي غير معتمد — لا يمثل ميعاداً قانونياً مؤكداً. ,Preliminary unverified calculation — not a confirmed legal deadline. ,1
+القاعدة: ,Rule: ,1
+بداية الحساب: ,Trigger: ,1
+النهاية الحسابية: ,Raw end: ,1
+التاريخ بعد الامتداد: ,Adjusted date: ,1
+خطوات الحساب: ,Calculation steps: ,1
+التحذيرات: ,Warnings: ,1
+حفظ الموعد المحسوب في القضية,Save calculated deadline to case,1
+موعد قانوني محسوب,Calculated legal deadline,1
+تم حفظ الموعد مع خطوات الحساب والتحذيرات,Deadline saved with calculation steps and warnings,1
+مسودة — غير معتمدة من محامٍ,Draft — not verified by a lawyer,1
+تمت مراجعة القاعدة,Rule reviewed,1
+التاريخ الحسابي المقترح: ,Calculated suggested date: ,1
+نهاية المدة قبل الامتدادات: ,Raw end before extensions: ,1
+اختر نوع الميعاد,Choose deadline type,1
+مسودة غير معتمدة,unverified draft,1
+تعذر تحميل القواعد,Could not load rules,1
+حاسبة المواعيد (تجريبية),Deadline calculator (experimental),1
+اختر القاعدة وتاريخ بداية الحساب بعد مراجعتهما. القواعد والعطلات الحالية مسودات غير معتمدة؛ لا تعتمد على الناتج قبل مراجعة محامٍ مصري.,Select a rule and trigger date only after reviewing them. Current rules and holidays are unverified drafts; do not rely on the result before review by an Egyptian lawyer.,1
+تاريخ بداية الحساب (بعد التحقق),Trigger date (after confirmation),1
+أيام مسافة إضافية (اختياري),Additional distance days (optional),1
+المواعيد المسجلة في القضية,Saved case deadlines,1
+أدخل نوع الموعد وتاريخه,Enter the deadline type and date,1
+تاريخ العطلة,Holiday date,1
+اسم العطلة بالعربية,Holiday name in Arabic,1
+اسم العطلة,Holiday name,1
+حذف,Remove,2
+لا توجد عطلات إضافية للمكتب.,No firm-specific dated holidays.,1
+حفظ تقويم المكتب,Save firm calendar,1
+تم حفظ تقويم العطلات مع تسجيل التغيير,Holiday calendar saved and change recorded,1
+العطلات الثابتة والمشتركة تظل مسودة جزئية؛ هذه الإضافات خاصة بهذا المكتب فقط.,Shared fixed holidays remain a partial draft; these additions apply only to this firm.,1
+المستخدم,User,1
+إضافة عطلة,Add holiday,1
+أدخل التاريخ واسم العطلة,Enter a date and holiday name,1
+هذا التاريخ موجود بالفعل,That date already exists,1
+تقويم العطلات الخاص بالمكتب,Firm holiday calendar,1
+يمكن لمسؤول المكتب إضافة العطلات المؤرخة أو حذفها. كل حفظ يسجل نسخة قبل/بعد في سجل المراجعة. لا يجعل ذلك القواعد أو التقويم معتمدين قانونياً.,Firm admins can add or remove dated holidays. Each save records before/after snapshots. This does not make the rules or calendar legally verified.,1
+اكتب ملاحظة داخلية للقضية...,Write an internal case note...,1
+اكتب الملاحظة أولا,Write a note first,1
+سيظهر هنا هيكل المذكرة أو صحيفة الدعوى...,The memo or pleading skeleton will appear here...,1
+هياكل المذكرات وصحف الدعاوى,Memo and pleading skeletons,1
+قوالب عناوين فقط تُملأ ببيانات القضية. يجب استكمال الوقائع والأسانيد والطلبات ومراجعتها بواسطة محامٍ قبل الاستخدام أو التقديم.,"Heading-only templates populated from case metadata. Counsel must complete and review all facts, legal grounds and requests before use or filing.",1
+إنشاء هيكل مذكرة,Generate memo skeleton,1
+إنشاء هيكل صحيفة دعوى,Generate pleading skeleton,1
+نسخ النص,Copy text,1
+وصف الأتعاب,Fee description,1
+المبلغ الإجمالي,Total amount,1
+المدفوع,Paid amount,1
+ملاحظة,Note,1
+الإجمالي ,Total ,1
+المدفوع ,Paid ,1
+المتبقي ,Remaining ,1
+أدخل الوصف والإجمالي والمدفوع,"Enter the description, total, and paid amount",1
+وصف الفاتورة أو نطاق العمل,Invoice description or scope,1
+تاريخ الاستحقاق,Due date,1
+بيان الخدمة,Service description,1
+الكمية,Quantity,1
+سعر الوحدة بالجنيه,Unit price in EGP,1
+أدخل كمية صحيحة حتى ثلاث خانات عشرية,Enter a valid quantity with at most three decimal places,1
+الكمية خارج النطاق المسموح,Quantity exceeds the supported limit,1
+إنشاء مسودة فاتورة,Create invoice draft,1
+أدخل بياناً لكل بند,Enter a description for every line,1
+تم إنشاء مسودة الفاتورة,Invoice draft created,1
+غير مدفوعة,Unpaid,1
+مدفوعة جزئياً,Partially paid,1
+مدفوعة,Paid,1
+ملغاة,Void,1
+مسودة فاتورة,Invoice draft,1
+الإجمالي: ,Total: ,1
+المدفوع: ,Paid: ,1
+المتبقي: ,Balance: ,1
+طباعة الفاتورة,Print invoice,1
+إصدار الفاتورة,Issue invoice,1
+إصدار الفاتورة وتثبيت رقمها؟ لا يمكن تعديلها بعد الإصدار.,Issue this invoice and lock its number? It cannot be edited after issue.,1
+إلغاء الفاتورة,Void invoice,1
+أدخل سبب إلغاء الفاتورة,Enter a reason for voiding this invoice,1
+مبلغ الدفعة بالجنيه,Payment amount in EGP,1
+نقداً,Cash,1
+أخرى,Other,1
+مرجع التحويل (اختياري),Transfer reference (optional),1
+تسجيل دفعة,Record payment,1
+تم تسجيل الدفعة,Payment recorded,1
+إيصال الدفعة #,Receipt #,1
+لا توجد فواتير لهذه القضية بعد.,No invoices for this case yet.,1
+تعذر تحميل الفواتير,Could not load invoices,1
+إنشاء فاتورة أتعاب,Create fee invoice,1
+تُحسب المبالغ بدقة بالقرش. الفاتورة المطبوعة مستند أتعاب عادي وليست فاتورة ضريبية إلكترونية.,"Amounts are calculated in integer piasters. The printed document is an ordinary fee invoice, not an Egyptian e-tax invoice.",1
+إضافة بند,Add line,1
+فواتير القضية وسجل التحصيل,Case invoices and payments,1
+تمت مراجعة النص,Text reviewed,1
+تم تصحيح النص,Text corrected,1
+يحتاج إعادة فحص,Needs recheck,2
+لم تتم المراجعة,Not reviewed,1
+لا توجد مقاطع نصية قابلة للمراجعة,No text chunks are available for review,1
+مقطع ,Chunk ,1
+رقم الصفحة المستخرج: ,Extracted page number: ,1
+ليس تحققاً مستقلاً من الأصل,not independently verified against the original,1
+النص المستخرج الأصلي,Original extracted text,1
+النص المستخرج — للقراءة فقط,Extracted text — read only,1
+النص المصحح,Corrected text,1
+مرجع الصفحة (اختياري),Page reference (optional),1
+ملاحظة المراجع (اختياري),Reviewer note (optional),1
+اعتماد النص المستخرج,Accept extracted text,1
+تم تسجيل مراجعة النص,Text review recorded,1
+تم وضع المقطع لإعادة الفحص,Chunk flagged for recheck,1
+حفظ التصحيح,Save correction,1
+أدخل النص المصحح,Enter corrected text,1
+لم يتغير النص,No changes to the text,1
+سيتم استبدال النص المفهرس بنسخة التصحيح مع حفظ سجل المراجعة. هل تريد المتابعة؟,This replaces the indexed text with the corrected version and preserves the review log. Continue?,1
+تم حفظ التصحيح وإعادة فهرسة المقطع,Correction saved and chunk re-indexed,1
+النص المصحح — لا تحفظه إلا بعد مقارنته بالملف الأصلي,Corrected text — save only after comparing it with the original file,1
+"هذا المقطع أطول من حد التصحيح البالغ 20,000 حرف؛ أعد تقسيم المستند أو علّمه لإعادة الفحص.","This chunk exceeds the 20,000-character correction limit; split it or flag it for recheck.",1
+مرجع الصفحة,Page reference,1
+ملاحظة المراجع,Reviewer note,1
+آخر مراجعة: ,Last review: ,1
+مراجعة النص المستخرج,Review extracted text,1
+جارٍ تحميل المقاطع…,Loading text chunks…,1
+نص OCR غير متحقق,OCR text not verified,1
+بعض الصفحات لم تُفهرس: OCR غير متاح,Some pages were not indexed: OCR unavailable,1
+حالة الاستخراج غير مسجلة,Extraction status not recorded,1
+لا توجد مستندات,No documents,1
+رفع وفهرسة,Upload and index,1
+تمت الفهرسة عبر OCR؛ راجع النص مقابل الأصل قبل الاعتماد عليه,Indexed with OCR; compare against the original before relying on it,1
+تمت الفهرسة,Indexed,1
+PDF أو Word حتى 15 ميجابايت. النص المستخرج فقط هو المفهرس؛ لا تحفظ نسخة الملف الأصلي. راجع المقاطع قبل الاعتماد عليها، خصوصاً نص OCR.,"PDF or Word up to 15 MB. Only extracted text is indexed; the original file is not retained. Review chunks before relying on them, especially OCR text.",1
+إزالة,Remove,1
+إزالة هذا العضو من القضية؟,Remove this member from the case?,1
+إضافة / تحديث,Add / update,1
