@@ -787,7 +787,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.get_by_role("button", name="بدء الاستخدام").click()
         self.page.get_by_role("heading", name="بدء استخدام المكتب").wait_for()
         self.assertTrue(self.page.get_by_text("بيانات المكتب", exact=True).is_visible())
-        self.assertTrue(self.page.get_by_text("دعُ زميلاً إلى المكتب", exact=True).is_visible())
+        self.assertTrue(self.page.get_by_text("ادعُ زميلاً إلى المكتب", exact=True).is_visible())
         self.page.get_by_role("button", name="فتح فحص صحة الإعداد").click()
         self.page.get_by_role("heading", name="صحة إعداد المكتب").wait_for()
         for label in (
