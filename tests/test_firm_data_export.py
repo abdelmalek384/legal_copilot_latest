@@ -112,14 +112,18 @@ class FirmDataExportTests(unittest.TestCase):
         invoice_id = int(tenant.execute(
             "INSERT INTO invoices(case_id,invoice_number,status,currency,client_name_snapshot,"
             "case_title_snapshot,description,subtotal_piasters,total_piasters,issue_date,due_date,"
-            "created_by,issued_at) VALUES(?,?,'issued','EGP',?,?,?,?,?,?,?,?,?)",
-            (case_id, f"EXP-{firm_id}-001", client_name, title, "Export invoice",
-             10000, 10000, "2026-11-03", "2026-12-03", user_id, "2026-11-03 10:00:00"),
+            "created_by,issued_at) VALUES(?,NULL,'draft','EGP',?,?,?,?,?,?,?,?,NULL)",
+            (case_id, client_name, title, "Export invoice",
+             10000, 10000, "2026-11-03", "2026-12-03", user_id),
         ).lastrowid)
         tenant.execute(
             "INSERT INTO invoice_lines(invoice_id,position,description,quantity_milli,"
             "unit_price_piasters,line_total_piasters) VALUES(?,1,?,1000,10000,10000)",
             (invoice_id, "Legal service"),
+        )
+        tenant.execute(
+            "UPDATE invoices SET status='issued',invoice_number=?,issued_at=? WHERE id=?",
+            (f"EXP-{firm_id}-001", "2026-11-03 10:00:00", invoice_id),
         )
         tenant.execute(
             "INSERT INTO invoice_payments(invoice_id,amount_piasters,paid_on,method,reference,note,"
