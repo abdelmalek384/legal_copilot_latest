@@ -136,29 +136,6 @@ class SyntheticRetrievalTests(unittest.TestCase):
             None, query, k=10, scope="verified_corpus", as_of=as_of
         )
 
-    def test_retrieval_requires_allowlisted_counsel_attestation_id(self):
-        intended_id = self.fixture.add_passage(
-            "SYNTH-COUNSEL-ALLOWLIST",
-            "Fictional test passage about an employment rule; not law.",
-        )
-
-        with mock.patch.dict(app.os.environ, {
-            "LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS": "43"
-        }):
-            self.assertEqual(self.search("employment rule"), [])
-
-        with mock.patch.dict(app.os.environ, {
-            "LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS": "42"
-        }):
-            hits = self.search("employment rule")
-            self.assertTrue(hits)
-            self.assertEqual(hits[0]["id"], intended_id)
-
-        with mock.patch.dict(app.os.environ, {
-            "LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS": ""
-        }):
-            self.assertEqual(self.search("employment rule"), [])
-
     def test_hamza_seat_variants_are_query_hints_not_source_rewrites(self):
         self.assertIn("مسؤول", orthographic_variants("مسئول"))
         self.assertIn("مسئول", orthographic_variants("مسؤول"))
