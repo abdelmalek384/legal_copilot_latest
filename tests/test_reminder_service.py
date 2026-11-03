@@ -1,6 +1,9 @@
 import sqlite3
 import tempfile
+import threading
+import time
 import unittest
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
@@ -325,6 +328,82 @@ class ReminderServiceTests(unittest.TestCase):
         self.assertEqual(attempt["smtp_attempts"], 0)
         self.assertEqual(attempt["error_code"], "event_no_longer_eligible")
 
+
+    def test_scheduler_keeps_two_firms_outboxes_and_recipients_separate(self):
+        second_firm_id, _ = self.runtime.provision_firm("Second Reminder Firm")
+        second_user_id = self.runtime.create_global_identity(
+            "Second Reminder User", "second-reminder@example.test", "test-password-hash"
+        )
+        self.runtime.create_firm_membership(second_user_id, second_firm_id, "lawyer")
+        second_tenant = self.runtime._tenant_router.connection_for_firm(second_firm_id)
+        second_case_id = second_tenant.execute(
+            "INSERT INTO cases(title,firm_id,created_by) VALUES(?,?,?)",
+            ("Second firm private matter", second_firm_id, second_user_id),
+        ).lastrowid
+        second_tenant.execute(
+            "INSERT INTO members(case_id,user_id,role) VALUES(?,?,?)",
+            (second_case_id, second_user_id, "lawyer"),
+        )
+        second_tenant.execute(
+            "INSERT INTO tasks(case_id,title,assignee,due,status,created_by) VALUES(?,?,?,?,?,?)",
+            (second_case_id, "Second firm private task", second_user_id, "2026-10-27", "open", second_user_id),
+        )
+        second_tenant.commit()
+
+        with patch(
+            "tools.reminder_service.send_reminder_email",
+            return_value={"status": "accepted_by_smtp", "attempts": 1, "error_code": None},
+        ) as sender:
+            report = run_scheduler(
+                self.runtime, now=self.now, timezone_name="Africa/Cairo", send=True,
+                smtp_config=self.smtp, app_url="https://app.example.test", max_send=10,
+            )
+
+        self.assertEqual(report["firms_scanned"], 2)
+        self.assertEqual(report["smtp_accepted"], 2)
+        recipients = {call.args[1] for call in sender.call_args_list}
+        self.assertEqual(recipients, {"reminder-user@example.test", "second-reminder@example.test"})
+        first_rows = self.tenant.execute(
+            "SELECT recipient_user_id,COUNT(*) AS total FROM reminder_deliveries GROUP BY recipient_user_id"
+        ).fetchall()
+        second_rows = second_tenant.execute(
+            "SELECT recipient_user_id,COUNT(*) AS total FROM reminder_deliveries GROUP BY recipient_user_id"
+        ).fetchall()
+        self.assertEqual([(row["recipient_user_id"], row["total"]) for row in first_rows], [(self.user_id, 1)])
+        self.assertEqual([(row["recipient_user_id"], row["total"]) for row in second_rows], [(second_user_id, 1)])
+        payloads = [call.args[0] for call in sender.call_args_list]
+        self.assertTrue(all("Private matter title" not in str(payload) for payload in payloads))
+        self.assertTrue(all("Second firm private matter" not in str(payload) for payload in payloads))
+
+    def test_concurrent_scheduler_runs_claim_and_send_each_delivery_once(self):
+        start = threading.Barrier(2)
+
+        def worker():
+            start.wait(timeout=5)
+            try:
+                return run_scheduler(
+                    self.runtime, now=self.now, timezone_name="Africa/Cairo", send=True,
+                    smtp_config=self.smtp, app_url="https://app.example.test", max_send=10,
+                )
+            finally:
+                self.runtime.close_current_thread()
+
+        def send_once(*args, **kwargs):
+            time.sleep(0.05)
+            return {"status": "accepted_by_smtp", "attempts": 1, "error_code": None}
+
+        with patch("tools.reminder_service.send_reminder_email", side_effect=send_once) as sender:
+            with ThreadPoolExecutor(max_workers=2) as pool:
+                reports = [future.result(timeout=15) for future in [
+                    pool.submit(worker), pool.submit(worker),
+                ]]
+
+        self.assertEqual(sender.call_count, 1)
+        self.assertEqual(sum(report["smtp_accepted"] for report in reports), 1)
+        self.assertEqual(sum(report["reminders_queued"] for report in reports), 1)
+        rows = self.tenant.execute("SELECT status,attempt_count FROM reminder_deliveries").fetchall()
+        self.assertEqual(len(rows), 1)
+        self.assertEqual((rows[0]["status"], rows[0]["attempt_count"]), ("accepted_by_smtp", 1))
 
 if __name__ == "__main__":
     unittest.main()
