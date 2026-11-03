@@ -6042,7 +6042,7 @@ def new_case(b: CaseIn, u: dict = Depends(user)):
     client_id, client_name = _ensure_client_profile(c, u, b.client, b.client_id)
     case_id = add_case(c, u, b.title, client_name, b.stage, b.case_number, b.case_year, b.court, b.circuit, b.opposing_party, client_id)
     _meter_pilot_metric(u, "cases_created")
-    return {"id": case_id, "client_id": client_id}
+    return {"id": case_id}
 
 
 @app.get("/cases/{cid}")
