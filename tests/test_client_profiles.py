@@ -32,6 +32,11 @@ class ClientProfileTests(InvoiceTestSupport, unittest.TestCase):
         )
         self.assertEqual(self.client_b.get("/clients").json(), [])
         self.assertEqual(self.client_nonmember.get("/clients").json(), [])
+        guessed_link = self.mutate(
+            self.client_nonmember, "post", "/cases",
+            json={"title": "Guessed profile matter", "client": "Client Snapshot"},
+        )
+        self.assertEqual(guessed_link.status_code, 409)
         self.assertEqual(
             self.client_nonmember.get(f"/clients/{profiles[0]['id']}").status_code,
             404,
