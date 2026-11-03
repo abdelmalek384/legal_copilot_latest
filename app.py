@@ -871,8 +871,11 @@ _REQUIRED_REVIEW_EVENTS_SQL = (
     "WHERE e2.version_id=v.version_id AND e2.review_type=e.review_type "
     "ORDER BY e2.reviewed_at DESC, e2.review_event_id DESC LIMIT 1) "
     "AND e.outcome='pass' AND TRIM(COALESCE(e.notes,''))<>'' "
-    "AND (e.review_type<>'lawyer_approval' OR e.notes LIKE '%[qualified_egyptian_counsel_attested:user_id=%') "
+    "AND (e.review_type<>'lawyer_approval' OR EXISTS ("
+    "SELECT 1 FROM json_each(?) AS allowed_counsel "
+    "WHERE e.notes LIKE '%[qualified_egyptian_counsel_attested:user_id=' || CAST(allowed_counsel.value AS TEXT) || ']%')) "
     "AND TRIM(COALESCE(e.reviewer,''))<>'' AND e.evidence_url LIKE 'https://%')=6 "
+
 )
 
 SQL = ("SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts JOIN chunks ON chunks.id=chunks_fts.rowid "
@@ -1065,6 +1068,7 @@ def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
     qg = grams(q)
     expanded_qg = grams(" ".join(expanded_qt))
     article_match = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", norm(q))
+    counsel_allowlist_json = json.dumps(sorted(_qualified_egyptian_counsel_user_ids()))
     rows_with_origin = []
 
     if scope in {"all_permitted", "firm_documents"} and case_id is not None:
@@ -1074,13 +1078,13 @@ def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
 
     if scope in {"all_permitted", "verified_corpus"}:
         corpus_rows = corpus.execute(
-            _CORPUS_SEARCH_SQL, (fts_query, as_of, as_of)
+            _CORPUS_SEARCH_SQL, (fts_query, counsel_allowlist_json, as_of, as_of)
         ).fetchall()
         seen = {row["id"] for row in corpus_rows}
         if article_match:
             for row in corpus.execute(
                 _CORPUS_EXACT_ARTICLE_SQL,
-                (article_match.group(1), as_of, as_of),
+                (article_match.group(1), counsel_allowlist_json, as_of, as_of),
             ).fetchall():
                 if row["id"] not in seen:
                     corpus_rows.append(row)
@@ -1154,7 +1158,8 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
     if expanded_qt:
         # Expand only with a small, curated bilingual lexicon; never alter the evidence text.
         allow_legacy = os.environ.get("ALLOW_UNLINKED_LEGACY_LAW_SEARCH", "").strip() == "1"
-        params = (" OR ".join('"%s"' % t.replace('"', '""') for t in expanded_qt), case_id, firm_id, int(allow_legacy), scope, scope, scope, as_of, as_of)
+        counsel_allowlist_json = json.dumps(sorted(_qualified_egyptian_counsel_user_ids()))
+        params = (" OR ".join('"%s"' % t.replace('"', '""') for t in expanded_qt), case_id, firm_id, int(allow_legacy), scope, scope, scope, counsel_allowlist_json, as_of, as_of)
         for r in c.execute(SQL, params): cand[r["id"]] = (r, -r["r"])
     am = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", norm(q))
     if am and scope != "firm_documents":
@@ -1164,7 +1169,7 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
                      "AND v.authenticity_verified=1 AND v.status_verified=1 AND v.amendment_history_verified=1 AND EXISTS (SELECT 1 FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id WHERE d.document_id=v.document_id AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' AND TRIM(COALESCE(s.permission_evidence,''))<>'' AND TRIM(COALESCE(v.permission_evidence,''))<>'') AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
                      + _REQUIRED_REVIEW_EVENTS_SQL
                      + "AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)) )")
-        for r in c.execute(exact_sql, (am.group(1), int(allow_legacy), as_of, as_of)):
+        for r in c.execute(exact_sql, (am.group(1), int(allow_legacy), counsel_allowlist_json, as_of, as_of)):
             exact.add(r["id"]); cand.setdefault(r["id"], (r, 0))
     if not cand: return []
     top, qg, expanded_qg, out = (max(b for _, b in cand.values()) or 1), grams(q), grams(" ".join(expanded_qt)), []

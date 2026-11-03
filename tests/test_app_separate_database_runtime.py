@@ -1743,6 +1743,51 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 denied = self.client.get(url)
                 self.assertEqual(denied.status_code, 403, denied.text)
 
+    def test_retrieval_sql_requires_allowlisted_counsel_marker_account(self):
+        db = sqlite3.connect(":memory:")
+        db.execute(
+            "CREATE TABLE legal_review_events (review_event_id INTEGER, version_id INTEGER, "
+            "review_type TEXT, outcome TEXT, notes TEXT, reviewer TEXT, evidence_url TEXT, reviewed_at TEXT)"
+        )
+        review_types = (
+            "source_authenticity", "extraction_quality", "legal_status",
+            "amendment_history", "licensing", "lawyer_approval",
+        )
+        for index, review_type in enumerate(review_types, start=1):
+            notes = (
+                "[qualified_egyptian_counsel_attested:user_id=42] synthetic fixture"
+                if review_type == "lawyer_approval" else "synthetic fixture"
+            )
+            db.execute(
+                "INSERT INTO legal_review_events VALUES(?,?,?,?,?,?,?,?)",
+                (index, 779, review_type, "pass", notes, "Synthetic reviewer",
+                 "https://example.test/evidence", f"2026-01-0{index}"),
+            )
+
+        def eligible():
+            sql = (
+                "SELECT 1 FROM (SELECT 779 AS version_id) v WHERE 1=1 "
+                + app._REQUIRED_REVIEW_EVENTS_SQL
+            )
+            allowlist_json = json.dumps(sorted(app._qualified_egyptian_counsel_user_ids()))
+            return db.execute(sql, (allowlist_json,)).fetchone() is not None
+
+        try:
+            with patch.dict(os.environ, {
+                "LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS": "43"
+            }):
+                self.assertFalse(eligible(), "an attestation for an unapproved account must fail closed")
+            with patch.dict(os.environ, {
+                "LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS": "42, 43"
+            }):
+                self.assertTrue(eligible(), "an allowlisted counsel account may satisfy the gate")
+            with patch.dict(os.environ, {
+                "LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS": ""
+            }):
+                self.assertFalse(eligible(), "an empty allowlist must reject every counsel marker")
+        finally:
+            db.close()
+
     def test_qualified_counsel_allowlist_ignores_malformed_and_oversized_ids(self):
         with patch.dict(os.environ, {
             "LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS":
@@ -2971,9 +3016,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(guessed_case.status_code, 404)
 
-        shared_search = self._mutate(
-            "post", "/search", json={"q": "corpusonlysentinel", "scope": "verified_corpus"}
-        )
+        with patch.dict(os.environ, {
+            "LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS": "42"
+        }):
+            shared_search = self._mutate(
+                "post", "/search", json={"q": "corpusonlysentinel", "scope": "verified_corpus"}
+            )
         self.assertEqual(shared_search.status_code, 200, shared_search.text)
         self.assertTrue(any("corpusonlysentinel" in hit["text"] for hit in shared_search.json()))
 

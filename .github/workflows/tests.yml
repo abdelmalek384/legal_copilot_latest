@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       COPILOT_ENV: development
+      # Synthetic corpus fixtures attest as the dedicated test-only reviewer ID.
+      LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS: "42"
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
