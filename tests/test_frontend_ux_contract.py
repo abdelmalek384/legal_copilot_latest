@@ -31,7 +31,7 @@ class FrontendUXContractTests(unittest.TestCase):
             value = []
             while index < len(source):
                 char = source[index]
-                if char == "\\\\":
+                if char == "\\":
                     value.append(char)
                     if index + 1 < len(source):
                         value.append(source[index + 1])
@@ -45,13 +45,13 @@ class FrontendUXContractTests(unittest.TestCase):
                 value.append(char)
                 index += 1
             literal = "".join(value).strip()
-            if re.search(r"[\\u0600-\\u06FF\\u0750-\\u077F\\u08A0-\\u08FF]", literal) and literal:
+            if re.search(r"[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]", literal) and literal:
                 found.add(literal)
 
         markup = re.sub(r"<script[^>]*>.*?</script>|<style[^>]*>.*?</style>", "", source, flags=re.S)
         for node in re.findall(r">([^<>]+)<", markup):
             node = node.strip()
-            if re.search(r"[\\u0600-\\u06FF\\u0750-\\u077F\\u08A0-\\u08FF]", node) and node:
+            if re.search(r"[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]", node) and node:
                 found.add(node)
         missing = sorted(found - reviewed)
         self.assertEqual(missing, [], "Arabic UI literals missing from static/ar-ui-review.json")
