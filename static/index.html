@@ -1125,7 +1125,7 @@ async function platformPilotMetricsPage(){
  PAGE='platform-pilot-metrics';
  const data=await api('/platform/pilot-metrics?weeks=12');
  const labels=[
-  ['active_users',uiText('المستخدمون النشطون','Active users')],
+  ['active_users',uiText('تسجيلات دخول المستخدمين','Successful sign-ins')],
   ['cases_created',uiText('القضايا المنشأة','Cases created')],
   ['deadlines_created',uiText('المواعيد المنشأة','Deadlines created')],
   ['answers_requested',uiText('طلبات الإجابة','Answers requested')],
@@ -1137,7 +1137,7 @@ async function platformPilotMetricsPage(){
   ...labels.map(([key,label])=>h('div',{className:'row'},h('span',{textContent:label}),h('b',{textContent:String(row[key]||0)})))
  ));
  shell(uiText('مؤشرات استخدام المكاتب','Firm pilot usage metrics'),
-  h('p',{className:'mut',textContent:uiText('بيانات مجمعة أسبوعياً. لا تتضمن أسماء القضايا أو العملاء أو نصوص الأسئلة والإجابات.','Weekly aggregate counts only. No case/client names or question/answer content is included.')}),
+  h('p',{className:'mut',textContent:uiText('بيانات مجمعة أسبوعياً فقط. لا تتضمن أسماء القضايا أو العملاء أو نصوص الأسئلة والإجابات أو معرفات المستخدمين. عدد المستخدمين النشطين هنا هو عدد تسجيلات الدخول الناجحة وتفعيلات المكتب.','Weekly aggregate counts only. No user identifiers, case/client names, or question/answer content are stored. The active-user measure counts successful sign-ins and firm activations, not distinct people.')}),
   btn(uiText('تصدير CSV','Export CSV'),()=>{window.location.href='/platform/pilot-metrics/export.csv?weeks=12'},'g'),
   ...(cards.length?cards:[empty(uiText('لا توجد بيانات استخدام خلال الفترة المحددة.','No usage data for the selected period.'))])
  );
