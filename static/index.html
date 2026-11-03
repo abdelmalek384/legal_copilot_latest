@@ -1134,6 +1134,7 @@ async function platformPilotMetricsPage(){
  PAGE='platform-pilot-metrics';
  const data=await api('/platform/pilot-metrics?weeks=12');
  const labels=[
+  ['weekly_active_users',uiText('المستخدمون النشطون أسبوعياً','Weekly active users')],
   ['successful_sign_ins',uiText('تسجيلات الدخول الناجحة','Successful sign-ins')],
   ['cases_created',uiText('القضايا المنشأة','Cases created')],
   ['deadlines_created',uiText('المواعيد المنشأة','Deadlines created')],
@@ -1153,7 +1154,7 @@ async function platformPilotMetricsPage(){
   ...labels.map(([key,label])=>h('div',{className:'row'},h('span',{textContent:label}),h('b',{textContent:String(row[key]||0)})))
  ));
  shell(uiText('مؤشرات استخدام المكاتب','Firm pilot usage metrics'),
-  h('p',{className:'mut',textContent:uiText('بيانات مجمعة أسبوعياً فقط. لا تتضمن معرفات المستخدمين أو أسماء القضايا والعملاء أو نصوص الأسئلة والإجابات. تسجيلات الدخول الناجحة هي عدد أحداث الدخول وليست عدد أشخاص فريدين؛ المستخدمون النشطون أسبوعياً غير مقاسين حالياً.','Weekly aggregate counts only. No user identifiers, case/client names, or question/answer content are stored. Successful sign-ins are event counts, not distinct people; weekly active users are not currently measured.')}),
+  h('p',{className:'mut',textContent:uiText('يعرض هذا التقرير أعداداً مجمعة فقط ولا يكشف معرفات المستخدمين أو أسماء القضايا والعملاء أو نصوص الأسئلة والإجابات. يُحتسب المستخدم النشط أسبوعياً مرة واحدة إذا نفّذ بحثاً ناجحاً أو رفع مستنداً أو عالج OCR أو أنشأ مسودة خلال أسبوع UTC. تسجيلات الدخول الناجحة تظل أحداثاً وليست أشخاصاً فريدين.','This report displays aggregate counts only; it does not expose user identifiers, case/client names, or question/answer content. A weekly active user is counted once per firm after at least one successful research query, document upload, OCR processing, or draft generation in the UTC week. Successful sign-ins remain event counts, not distinct people.')}),
   btn(uiText('تصدير CSV','Export CSV'),()=>{window.location.href='/platform/pilot-metrics/export.csv?weeks=12'},'g'),
   h('h3',{textContent:uiText('مدة إعداد المكاتب','Firm onboarding duration')}),
   h('p',{className:'mut',textContent:uiText('تُقاس المدة من أول فتح لمعالج بدء الاستخدام حتى اكتمال خطواته الست. لا تُحسب المكاتب التجريبية.','Measured from the first setup-wizard visit until all six steps are complete. Demo firms are excluded.')}),
