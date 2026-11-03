@@ -115,6 +115,8 @@ The first firm owner is created with `init-tenancy` during fresh setup. Platform
 
 Firm administrators can import up to 500 matters from a UTF-8 CSV file (1 MB maximum) on the Cases page. Imports support Arabic/English headers, multiple matters per client, and duplicate detection. See the [matter CSV import guide](docs/matter_csv_import.md) for the column map and example. Native XLSX uploads are not currently supported; save Excel worksheets as CSV UTF-8 first.
 
+The Cases page also uses [firm-scoped server-side search and pagination](docs/case_search_pagination.md), so it no longer needs to load every matter into the browser. Large-firm performance still requires measurement against a representative dataset.
+
 ## Loading law data
 
 There is no general Official Gazette downloader in this repository. The PDF importer processes files that you have already acquired and have a lawful basis to store and process; public visibility alone does not establish reuse permission. Prepare matching PDF/JSON sidecar pairs, install the optional dependencies from requirements-ocr.txt, and follow the [legal PDF import and provenance runbook](docs/legal_pdf_import_runbook.md).
