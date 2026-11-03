@@ -62,6 +62,20 @@ class ClientProfileTests(InvoiceTestSupport, unittest.TestCase):
         )
         self.assertEqual(duplicate.status_code, 409)
 
+        first_matter = self.mutate(
+            self.client_a, "post", "/cases",
+            json={"title": "First Nile matter", "client_id": profile["id"]},
+        )
+        self.assertEqual(first_matter.status_code, 200, first_matter.text)
+
+        hidden = self.client_nonmember.get(f"/clients/{profile['id']}")
+        self.assertEqual(hidden.status_code, 404)
+        forbidden_link = self.mutate(
+            self.client_nonmember, "post", "/cases",
+            json={"title": "Unauthorized client matter", "client_id": profile["id"]},
+        )
+        self.assertEqual(forbidden_link.status_code, 404)
+
         updated = self.mutate(
             self.client_a, "put", f"/clients/{profile['id']}",
             json={
@@ -104,6 +118,9 @@ class ClientProfileTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(case.status_code, 200, case.text)
         self.assertEqual(case.json()["client"], "شركة النيل للتجارة")
         self.assertEqual(case.json()["client_id"], profile["id"])
+        first_case = self.client_a.get(f"/cases/{first_matter.json()['id']}")
+        self.assertEqual(first_case.status_code, 200, first_case.text)
+        self.assertEqual(first_case.json()["client"], "شركة النيل للتجارة")
 
     def test_migration_backfills_existing_case_names_once(self):
         root = Path(__file__).resolve().parents[1] / "migrations" / "firm"
