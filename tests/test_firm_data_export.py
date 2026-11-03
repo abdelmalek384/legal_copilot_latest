@@ -169,7 +169,7 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual([row["email_display"] for row in members], ["invoice-owner-a@example.test", "invoice-nonmember@example.test"])
         self.assertEqual(members[0]["firm_role"], "admin")
         self.assertEqual(members[1]["firm_role"], "lawyer")
-        self.assertEqual(self._zip_csv(response, "firm_profiles.csv")[0]["phone"], "+20 100 000 0000")
+        self.assertEqual(self._zip_csv(response, "firm_profiles.csv")[0]["phone"], "'+20 100 0000")
         self.assertEqual(self._zip_csv(response, "firm_subscriptions.csv")[0]["plan_code"], "small_firm")
         self.assertEqual(self._zip_csv(response, "subscription_payment_submissions.csv")[0]["transfer_reference"], "PILOT-EXPORT-TEST-001")
         self.assertEqual(self._zip_csv(response, "subscription_audit_events.csv")[0]["event_type"], "trial_started")
