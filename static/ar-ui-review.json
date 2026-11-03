@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "8003e65c1b72d7c79c9d524adfd7481ab23d43cf",
   "generated_on": "2026-11-03",
-  "entry_count": 894,
+  "entry_count": 897,
   "entries": [
     {
       "id": "AR-0001",
@@ -7457,6 +7457,30 @@
       "arabic": "لا نتائج",
       "source_lines": [
         2158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0895",
+      "arabic": "تصدير بيانات المكتب",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0896",
+      "arabic": "تنزيل بيانات المكتب ZIP",
+      "source_lines": [
+        1217
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0897",
+      "arabic": "نزّل نسخة ZIP من القضايا والعملاء والملاحظات والمواعيد والجلسات والأتعاب والفواتير وسجل دفعاتها. يُسجل التنزيل في سجل أمان المكتب ويشمل المكتب النشط فقط.",
+      "source_lines": [
+        1217
       ],
       "review_status": "pending_native_review"
     }
