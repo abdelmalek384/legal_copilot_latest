@@ -328,6 +328,7 @@ body {
   background: linear-gradient(118deg, #14284b 0%, #1e3d70 58%, #315a9b 100%) !important;
   box-shadow: 0 16px 36px rgba(20,40,75,.16);
 }
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 12px; }
 .setup-progress { height: 9px; margin: 12px 0 8px; overflow: hidden; border-radius: 999px; background: var(--ui-border, #e4eaf2); }
 .setup-progress > div { height: 100%; border-radius: inherit; background: var(--ok); transition: width .2s ease; }
 .setup-start-card { border-inline-start: 4px solid var(--ui-blue, #315a9b) !important; }
@@ -1380,7 +1381,7 @@ async function firstRunPage(){
  ));
  const percent=data.total?Math.round(data.completed/data.total*100):0;
  shell(uiText('بدء استخدام المكتب','Get your firm started'),
-  h('p',{className:'workspace-subtitle',textContent:uiText('ست خطوات قصيرة لتجهيز المكتب ودعوة زميلك واختبار التذكيرات.','Six short steps to configure your firm, invite a colleague and test reminders.')}),
+  h('p',{className:'workspace-subtitle',textContent:uiText('ست خطوات قصيرة — غالباً أقل من 15 دقيقة إذا كانت إعدادات الخادم جاهزة — لتجهيز المكتب ودعوة زميلك واختبار التذكيرات.','Six short steps — usually under 15 minutes when server settings are ready — to configure your firm, invite a colleague and test reminders.')}),
   h('section',{className:'card'},
    h('div',{className:'row'},h('b',{textContent:uiText('تقدم الإعداد','Setup progress')}),
     pill(data.completed+'/'+data.total,percent===100?'open':'soon')),
