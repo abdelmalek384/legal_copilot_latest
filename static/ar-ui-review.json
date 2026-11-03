@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "a268b3527b235086f2d8196b64ec442442d124d4",
   "generated_on": "2026-11-03",
-  "entry_count": 928,
+  "entry_count": 929,
   "entries": [
     {
       "id": "AR-0001",
@@ -7729,6 +7729,14 @@
       "arabic": "تم تخطي",
       "source_lines": [
         1520
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0929",
+      "arabic": "يدعم الاستيراد أعمدة الاسم والهاتف والبريد الإلكتروني والعنوان والملاحظات، بالعربية أو الإنجليزية.",
+      "source_lines": [
+        1528
       ],
       "review_status": "pending_native_review"
     }
