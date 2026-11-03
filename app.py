@@ -2507,6 +2507,10 @@ class ClientIn(BaseModel):
         return value
 
 
+class ClientCSVImportIn(BaseModel):
+    csv: str = Field(min_length=1, max_length=1_000_000)
+
+
 class CasePatch(BaseModel):
     stage: str | None = Field(None, max_length=200); status: str | None = Field(None, pattern=r"^(open|closed)$")
     case_number: str | None = Field(None, max_length=100); case_year: str | None = Field(None, max_length=20)
@@ -6055,6 +6059,86 @@ def update_client(client_id: int, b: ClientIn, u: dict = Depends(user)):
     )
     c.commit()
     return next(row for row in _client_payloads(c, u) if row["id"] == client_id)
+
+
+@app.post("/clients/import.csv")
+@rollback_tenant_transaction_on_error
+def import_clients_csv(b: ClientCSVImportIn, u: dict = Depends(user)):
+    require_admin(u)
+    raw = b.csv
+    if len(raw.encode("utf-8")) > 1_000_000:
+        raise HTTPException(413, "CSV import exceeds the 1 MB limit")
+    try:
+        reader = csv.DictReader(io.StringIO(raw, newline=""), strict=True)
+        if not reader.fieldnames:
+            raise ValueError("CSV header row is required")
+        aliases = {
+            "name": {"name", "client", "client_name", "اسم العميل", "اسم العميل/الشركة"},
+            "phone": {"phone", "telephone", "mobile", "الهاتف", "رقم الهاتف", "الموبايل"},
+            "email": {"email", "e-mail", "البريد الإلكتروني", "البريد الالكتروني"},
+            "address": {"address", "العنوان"},
+            "notes": {"notes", "note", "ملاحظات"},
+        }
+        columns = {}
+        for index, header in enumerate(reader.fieldnames):
+            normalized = str(header or "").strip().lower()
+            canonical = next((key for key, values in aliases.items() if normalized in values), None)
+            if canonical is None:
+                continue
+            if canonical in columns:
+                raise ValueError("CSV contains duplicate client columns")
+            columns[canonical] = index
+        if "name" not in columns:
+            raise ValueError("CSV must contain a client name column")
+        candidates = []
+        seen = set()
+        for row_number, row in enumerate(reader, start=2):
+            if row_number > 502:
+                raise HTTPException(422, "CSV import is limited to 500 data rows")
+            if None in row:
+                raise ValueError("CSV row contains more values than the header")
+            if not any(str(value or "").strip() for value in row.values()):
+                continue
+            values = {}
+            for key in ("name", "phone", "email", "address", "notes"):
+                index = columns.get(key)
+                header = reader.fieldnames[index] if index is not None else None
+                values[key] = str(row.get(header) or "").strip() if header else ""
+            client = ClientIn.model_validate(values)
+            normalized_name = _client_normalized_name(conn(), client.name)
+            if normalized_name in seen:
+                continue
+            seen.add(normalized_name)
+            candidates.append(client)
+    except HTTPException:
+        raise
+    except (csv.Error, UnicodeError, ValueError) as exc:
+        raise HTTPException(422, "CSV could not be parsed; check its headers, rows and encoding") from exc
+    except Exception as exc:
+        if exc.__class__.__name__ == "ValidationError":
+            raise HTTPException(422, "CSV contains a client row with invalid or oversized fields") from exc
+        raise
+
+    c = conn()
+    created = 0
+    skipped = 0
+    for client in candidates:
+        normalized = _client_normalized_name(c, client.name)
+        cursor = c.execute(
+            "INSERT OR IGNORE INTO clients(name,normalized_name,phone,email,address,notes,created_by) "
+            "VALUES(?,?,?,?,?,?,?)",
+            (client.name, normalized, client.phone, client.email, client.address, client.notes, int(u["id"])),
+        )
+        if cursor.rowcount == 1:
+            created += 1
+        else:
+            skipped += 1
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (int(u["firm_id"]), int(u["id"]), f"client_csv_import:created={created};skipped={skipped}"),
+    )
+    c.commit()
+    return {"created": created, "skipped": skipped, "rows": len(candidates)}
 
 
 @app.get("/cases")
