@@ -572,9 +572,62 @@ def is_lead(c, u, cid):
     return u["role"] == "admin" or c.execute("SELECT 1 FROM members WHERE case_id=? AND user_id=? AND role='lead'", (cid, u["id"])).fetchone() is not None
 
 
-def add_case(c, u, title, client="", stage="", case_number="", case_year="", court="", circuit="", opposing_party=""):
-    cid = c.execute("INSERT INTO cases(title,client,stage,created_by,firm_id,case_number,case_year,court,circuit,opposing_party) VALUES(?,?,?,?,?,?,?,?,?,?)",
-                    (title, client, stage, u["id"], u["firm_id"], case_number, case_year, court, circuit, opposing_party)).lastrowid
+def _client_normalized_name(c, name):
+    row = c.execute("SELECT lower(trim(?)) AS normalized", (str(name or ""),)).fetchone()
+    return str(row["normalized"] or "")
+
+
+def _ensure_client_profile(c, u, client_name="", client_id=None):
+    name = str(client_name or "").strip()
+    if client_id is not None:
+        row = c.execute(
+            "SELECT id,name,normalized_name FROM clients WHERE id=?", (int(client_id),)
+        ).fetchone()
+        if row is None:
+            raise HTTPException(404, "client profile not found")
+        if name and _client_normalized_name(c, name) != row["normalized_name"]:
+            raise HTTPException(422, "client name does not match the selected profile")
+        if u["role"] != "admin" and not c.execute(
+            "SELECT 1 FROM cases cs JOIN members m ON m.case_id=cs.id "
+            "WHERE cs.client_id=? AND cs.firm_id=? AND m.user_id=? LIMIT 1",
+            (int(client_id), int(u["firm_id"]), int(u["id"])),
+        ).fetchone():
+            raise HTTPException(404, "client profile not found")
+        return int(row["id"]), str(row["name"])
+    if not name:
+        return None, ""
+    normalized = _client_normalized_name(c, name)
+    row = c.execute(
+        "SELECT id,name FROM clients WHERE normalized_name=?", (normalized,)
+    ).fetchone()
+    if row is not None:
+        if u["role"] != "admin" and not c.execute(
+            "SELECT 1 FROM cases cs JOIN members m ON m.case_id=cs.id "
+            "WHERE cs.client_id=? AND cs.firm_id=? AND m.user_id=? LIMIT 1",
+            (int(row["id"]), int(u["firm_id"]), int(u["id"])),
+        ).fetchone():
+            raise HTTPException(409, "client profile exists; ask a firm administrator to link this matter")
+        return int(row["id"]), str(row["name"])
+    cursor = c.execute(
+        "INSERT OR IGNORE INTO clients(name,normalized_name,created_by) VALUES(?,?,?)",
+        (name, normalized, int(u["id"])),
+    )
+    row = c.execute(
+        "SELECT id,name FROM clients WHERE normalized_name=?", (normalized,)
+    ).fetchone()
+    if cursor.rowcount == 1:
+        c.execute(
+            "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+            (int(u["firm_id"]), int(u["id"]), f"client_profile_created:{int(row['id'])}"),
+        )
+    if row is None:
+        raise HTTPException(503, "client profile could not be created")
+    return int(row["id"]), str(row["name"])
+
+
+def add_case(c, u, title, client="", stage="", case_number="", case_year="", court="", circuit="", opposing_party="", client_id=None):
+    cid = c.execute("INSERT INTO cases(title,client,stage,created_by,firm_id,case_number,case_year,court,circuit,opposing_party,client_id) VALUES(?,?,?,?,?,?,?,?,?,?,?)",
+                    (title, client, stage, u["id"], u["firm_id"], case_number, case_year, court, circuit, opposing_party, client_id)).lastrowid
     c.execute("INSERT INTO members VALUES(?,?,'lead')", (cid, u["id"])); log(c, cid, u["name"], "فتح القضية"); c.commit(); return cid
 
 
@@ -2435,8 +2488,25 @@ class RecoveryConsumeIn(BaseModel):
         return validate_password_strength(value)
 class CaseIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); client: str = Field("", max_length=200); stage: str = Field("", max_length=200)
+    client_id: int | None = Field(None, gt=0)
     case_number: str = Field("", max_length=100); case_year: str = Field("", max_length=20)
     court: str = Field("", max_length=200); circuit: str = Field("", max_length=200); opposing_party: str = Field("", max_length=200)
+class ClientIn(BaseModel):
+    name: str = Field(min_length=2, max_length=200)
+    phone: str = Field("", max_length=30)
+    email: str = Field("", max_length=200)
+    address: str = Field("", max_length=300)
+    notes: str = Field("", max_length=4000)
+
+    @field_validator("name")
+    @classmethod
+    def normalize_client_name(cls, value):
+        value = value.strip()
+        if len(value) < 2:
+            raise ValueError("client name is required")
+        return value
+
+
 class CasePatch(BaseModel):
     stage: str | None = Field(None, max_length=200); status: str | None = Field(None, pattern=r"^(open|closed)$")
     case_number: str | None = Field(None, max_length=100); case_year: str | None = Field(None, max_length=20)
@@ -5887,6 +5957,106 @@ def finance_overview(u: dict = Depends(user)):
     }
 
 
+def _client_payloads(c, u):
+    role = str(u["role"])
+    rows = c.execute(
+        "SELECT cl.id,cl.name,cl.phone,cl.email,cl.address,cl.notes,cl.created_at,cl.updated_at,"
+        "cs.id AS matter_id,cs.title AS matter_title,cs.status AS matter_status,"
+        "cs.case_number AS matter_case_number,cs.case_year AS matter_case_year "
+        "FROM clients cl LEFT JOIN cases cs ON cs.client_id=cl.id AND cs.firm_id=? "
+        "AND (?='admin' OR EXISTS(SELECT 1 FROM members m WHERE m.case_id=cs.id AND m.user_id=?)) "
+        "WHERE ?='admin' OR EXISTS(SELECT 1 FROM cases visible WHERE visible.client_id=cl.id "
+        "AND visible.firm_id=? AND EXISTS(SELECT 1 FROM members m WHERE m.case_id=visible.id AND m.user_id=?)) "
+        "ORDER BY cl.name,cs.id",
+        (int(u["firm_id"]), role, int(u["id"]), role, int(u["firm_id"]), int(u["id"])),
+    ).fetchall()
+    clients = {}
+    for row in rows:
+        item = clients.setdefault(int(row["id"]), {
+            "id": int(row["id"]), "name": row["name"], "phone": row["phone"],
+            "email": row["email"], "address": row["address"], "notes": row["notes"],
+            "created_at": row["created_at"], "updated_at": row["updated_at"], "can_edit": role == "admin" or c.execute("SELECT 1 FROM cases cs JOIN members m ON m.case_id=cs.id WHERE cs.client_id=? AND cs.firm_id=? AND m.user_id=? AND m.role=? LIMIT 1", (int(row["id"]), int(u["firm_id"]), int(u["id"]), "lead")).fetchone() is not None, "matters": [],
+        })
+        if row["matter_id"] is not None:
+            item["matters"].append({
+                "id": int(row["matter_id"]), "title": row["matter_title"],
+                "status": row["matter_status"], "case_number": row["matter_case_number"],
+                "case_year": row["matter_case_year"],
+            })
+    return list(clients.values())
+
+
+@app.get("/clients")
+def list_clients(u: dict = Depends(user)):
+    return _client_payloads(conn(), u)
+
+
+@app.get("/clients/{client_id}")
+def get_client(client_id: int, u: dict = Depends(user)):
+    item = next((row for row in _client_payloads(conn(), u) if row["id"] == client_id), None)
+    if item is None:
+        raise HTTPException(404, "client profile not found")
+    return item
+
+
+@app.post("/clients")
+@rollback_tenant_transaction_on_error
+def create_client(b: ClientIn, u: dict = Depends(user)):
+    require_admin(u)
+    c = conn()
+    name = b.name.strip()
+    normalized = _client_normalized_name(c, name)
+    if c.execute("SELECT 1 FROM clients WHERE normalized_name=?", (normalized,)).fetchone():
+        raise HTTPException(409, "a client with this name already exists")
+    cursor = c.execute(
+        "INSERT OR IGNORE INTO clients(name,normalized_name,phone,email,address,notes,created_by) "
+        "VALUES(?,?,?,?,?,?,?)",
+        (name, normalized, b.phone.strip(), b.email.strip(), b.address.strip(), b.notes.strip(), int(u["id"])),
+    )
+    if cursor.rowcount != 1:
+        raise HTTPException(409, "a client with this name already exists")
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (int(u["firm_id"]), int(u["id"]), f"client_profile_created:{int(cursor.lastrowid)}"),
+    )
+    c.commit()
+    return next(row for row in _client_payloads(c, u) if row["id"] == int(cursor.lastrowid))
+
+
+@app.put("/clients/{client_id}")
+@rollback_tenant_transaction_on_error
+def update_client(client_id: int, b: ClientIn, u: dict = Depends(user)):
+    c = conn()
+    current = c.execute("SELECT id FROM clients WHERE id=?", (client_id,)).fetchone()
+    if current is None:
+        raise HTTPException(404, "client profile not found")
+    if u["role"] != "admin" and not c.execute(
+        "SELECT 1 FROM cases cs JOIN members m ON m.case_id=cs.id "
+        "WHERE cs.client_id=? AND cs.firm_id=? AND m.user_id=? AND m.role=? LIMIT 1",
+        (int(client_id), int(u["firm_id"]), int(u["id"]), "lead"),
+    ).fetchone():
+        raise HTTPException(404, "client profile not found")
+    name = b.name.strip()
+    normalized = _client_normalized_name(c, name)
+    duplicate = c.execute(
+        "SELECT 1 FROM clients WHERE normalized_name=? AND id<>?", (normalized, client_id)
+    ).fetchone()
+    if duplicate:
+        raise HTTPException(409, "a client with this name already exists")
+    c.execute(
+        "UPDATE clients SET name=?,normalized_name=?,phone=?,email=?,address=?,notes=?,updated_at=datetime('now') WHERE id=?",
+        (name, normalized, b.phone.strip(), b.email.strip(), b.address.strip(), b.notes.strip(), client_id),
+    )
+    # Keep the legacy case-name snapshot aligned with the canonical profile name.
+    c.execute("UPDATE cases SET client=? WHERE client_id=?", (name, client_id))
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (int(u["firm_id"]), int(u["id"]), f"client_profile_updated:{int(client_id)}"),
+    )
+    c.commit()
+    return next(row for row in _client_payloads(c, u) if row["id"] == client_id)
+
+
 @app.get("/cases")
 def cases(u: dict = Depends(user)):
     q = ("SELECT cs.*, (SELECT COUNT(*) FROM tasks t WHERE t.case_id=cs.id AND t.status='open') AS open_tasks, "
@@ -5898,9 +6068,11 @@ def cases(u: dict = Depends(user)):
 @app.post("/cases")
 @rollback_tenant_transaction_on_error
 def new_case(b: CaseIn, u: dict = Depends(user)):
-    case_id = add_case(conn(), u, b.title, b.client, b.stage, b.case_number, b.case_year, b.court, b.circuit, b.opposing_party)
+    c = conn()
+    client_id, client_name = _ensure_client_profile(c, u, b.client, b.client_id)
+    case_id = add_case(c, u, b.title, client_name, b.stage, b.case_number, b.case_year, b.court, b.circuit, b.opposing_party, client_id)
     _meter_pilot_metric(u, "cases_created")
-    return {"id": case_id}
+    return {"id": case_id, "client_id": client_id}
 
 
 @app.get("/cases/{cid}")
