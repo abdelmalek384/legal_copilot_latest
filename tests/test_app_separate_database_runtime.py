@@ -1767,9 +1767,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         def eligible():
             sql = (
                 "SELECT 1 FROM (SELECT 779 AS version_id) v WHERE 1=1 "
-                + app._required_review_events_sql_for_allowlist()
+                + app._REQUIRED_REVIEW_EVENTS_SQL
             )
-            return db.execute(sql).fetchone() is not None
+            allowlist_json = json.dumps(sorted(app._qualified_egyptian_counsel_user_ids()))
+            return db.execute(sql, (allowlist_json,)).fetchone() is not None
 
         try:
             with patch.dict(os.environ, {
