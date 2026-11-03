@@ -2466,6 +2466,7 @@ class RecoveryConsumeIn(BaseModel):
         return validate_password_strength(value)
 class CaseIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); client: str = Field("", max_length=200); stage: str = Field("", max_length=200)
+    client_id: int | None = Field(None, gt=0)
     case_number: str = Field("", max_length=100); case_year: str = Field("", max_length=20)
     court: str = Field("", max_length=200); circuit: str = Field("", max_length=200); opposing_party: str = Field("", max_length=200)
 class ClientIn(BaseModel):
