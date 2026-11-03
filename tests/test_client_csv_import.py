@@ -65,7 +65,10 @@ class ClientCSVImportTests(InvoiceTestSupport, unittest.TestCase):
             self.client_a, "post", "/clients/import.csv", json={"csv": csv_text}
         )
         self.assertEqual(response.status_code, 422)
-        self.assertEqual(self.client_a.get("/clients").json(), [])
+        self.assertEqual(
+            [item["name"] for item in self.client_a.get("/clients").json()],
+            ["Client Snapshot"],
+        )
 
 
 if __name__ == "__main__":
