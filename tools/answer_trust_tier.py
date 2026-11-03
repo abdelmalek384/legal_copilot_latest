@@ -8,6 +8,8 @@ from __future__ import annotations
 
 import re
 from collections.abc import Mapping, Sequence
+from datetime import date
+from urllib.parse import urlsplit
 
 TIER_VERIFIED = "verified"
 TIER_SOURCE_MATCHED = "source_matched"
@@ -30,6 +32,29 @@ def _source_matched_evidence_ready(source: Mapping) -> bool:
     if not _valid_sha256(evidence.get("original_capture_sha256")):
         return False
     if not _valid_sha256(evidence.get("independent_copy_sha256")):
+        return False
+    independent_source_id = evidence.get("independent_copy_source_id")
+    if (not isinstance(independent_source_id, str) or not independent_source_id.strip()
+            or independent_source_id == source.get("source_id")):
+        return False
+    for field in ("publication_date", "effective_date"):
+        value = evidence.get(field)
+        try:
+            parsed = date.fromisoformat(value) if isinstance(value, str) else None
+        except ValueError:
+            return False
+        if parsed is None or parsed.isoformat() != value:
+            return False
+    rights_url = evidence.get("reuse_rights_evidence_url")
+    try:
+        parsed_url = urlsplit(rights_url) if isinstance(rights_url, str) else None
+        port = parsed_url.port if parsed_url else None
+    except ValueError:
+        return False
+    if (parsed_url is None or parsed_url.scheme.lower() != "https"
+            or not parsed_url.hostname or parsed_url.username is not None
+            or parsed_url.password is not None or parsed_url.query or parsed_url.fragment
+            or parsed_url.netloc.endswith(":") or (port is not None and not 1 <= port <= 65535)):
         return False
     required = (
         "article_inventory_complete",
