@@ -114,6 +114,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_demo_firm_cli.py
       - name: Test firm-admin ZIP data export isolation and audit
         run: PYTHONPATH=. python tests/test_firm_data_export.py
+      - name: Test firm data export frontend contract
+        run: PYTHONPATH=. python tests/test_firm_data_export_frontend_contract.py
       - name: Test first-run setup and health API
         run: PYTHONPATH=. python tests/test_first_run_wizard_api.py
       - name: Test tenant ownership and orphan preflight
