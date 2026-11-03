@@ -627,6 +627,12 @@ class AnswerTrustTierTests(unittest.TestCase):
         result = self.classify([source], source_matched_policy_approved=True, source_matched_feature_enabled=True)
         self.assertEqual(result["trust_tier"], TIER_UNREVIEWED)
 
+    def test_incomplete_reuse_scope_blocks_source_matched_tier(self):
+        source = source_matched_source()
+        source["source_match_evidence"]["approved_uses"].remove("commercial_product_use")
+        result = self.classify([source], source_matched_policy_approved=True, source_matched_feature_enabled=True)
+        self.assertEqual(result["trust_tier"], TIER_UNREVIEWED)
+
     def test_missing_reuse_rights_blocks_source_matched_tier(self):
         source = source_matched_source()
         source["source_match_evidence"]["reuse_rights_allowed"] = False
@@ -666,6 +672,10 @@ def source_matched_source():
             "differences_resolved_against_primary": True,
             "publication_and_effective_dates_verified": True,
             "reuse_rights_allowed": True,
+            "approved_uses": [
+                "collection", "storage", "text_extraction", "indexing",
+                "commercial_product_use", "excerpt_display",
+            ],
         },
     }
 
