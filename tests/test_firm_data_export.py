@@ -232,7 +232,7 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(response.status_code, 503)
         audit_count = tenant.execute(
             "SELECT COUNT(*) FROM security_audit_events "
-            "WHERE firm_id=? AND event='firm_data_export_created'",
+            "WHERE firm_id=? AND event='firm_data_export'",
             (self.firm_a,),
         ).fetchone()[0]
         self.assertEqual(audit_count, 0)
