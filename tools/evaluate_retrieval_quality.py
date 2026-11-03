@@ -254,6 +254,27 @@ def _effective_unverified_source(run):
     return any(statuses.get(source_id) != "verified_operative_text" for source_id in cited_ids)
 
 
+def _missing_source_status_evidence(run):
+    """Return true when any cited source lacks an explicit source-status record."""
+    citations = run.get("citations") if isinstance(run.get("citations"), list) else []
+    cited_ids = {
+        citation["source_id"].strip()
+        for citation in citations
+        if isinstance(citation, dict) and _nonempty_string(citation.get("source_id"))
+    }
+    if not cited_ids:
+        return False
+    summary = run.get("source_summary")
+    if not isinstance(summary, list):
+        return True
+    statuses = {
+        item["source_id"].strip(): item.get("source_status")
+        for item in summary
+        if isinstance(item, dict) and _nonempty_string(item.get("source_id"))
+    }
+    return any(not _nonempty_string(statuses.get(source_id)) for source_id in cited_ids)
+
+
 def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None):
     """Calculate retrieval, citation, and abstention metrics on reviewed cases only.
 
@@ -355,7 +376,7 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None
     for question, run in reviewed:
         expected_sources = set(_expected_source_ids(question))
         expected_pin_cites = question.get("expected_pin_cites") or []
-        if run.get("citations") and not isinstance(run.get("source_summary"), list):
+        if _missing_source_status_evidence(run):
             source_status_evidence_missing_count += 1
         invalid_indices = run.get("invalid_citation_indices", [])
         invalid_citation_index_count += len(invalid_indices)
@@ -437,8 +458,13 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None
         pin_cite_total_area = pin_cite_correct_area = 0
         expected_pin_cite_total_area = expected_pin_cite_correct_area = 0
         abstention_cases_area = abstention_correct_area = 0
+        source_status_evidence_missing_area = unsafe_unverified_uses_area = 0
         for question, run in area_cases:
             expected_sources = set(_expected_source_ids(question))
+            if _missing_source_status_evidence(run):
+                source_status_evidence_missing_area += 1
+            if _effective_unverified_source(run) and run["abstained"] is not True:
+                unsafe_unverified_uses_area += 1
             ranked = _unique_ids(run["retrieved_source_ids"])
             top_five = set(ranked[:5])
             recall_values.append(len(expected_sources & top_five) / len(expected_sources))
@@ -500,6 +526,8 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None
             "expected_pin_cite_recall": round(expected_pin_cite_correct_area / expected_pin_cite_total_area, 4)
                 if expected_pin_cite_total_area else None,
             "expected_pin_cite_count": expected_pin_cite_total_area,
+            "source_status_evidence_missing_count": source_status_evidence_missing_area,
+            "unsafe_unverified_source_uses": unsafe_unverified_uses_area,
         }
 
     return {
@@ -575,6 +603,9 @@ def _retrieval_release_gate(report, args):
     }
     enabled = (any(value is not None for value in thresholds.values())
                or any(value is not None for value in per_area_thresholds.values())
+               or args.max_source_status_evidence_missing is not None
+               or args.max_source_status_evidence_missing_per_practice_area is not None
+               or args.max_unsafe_unverified_source_uses_per_practice_area is not None
                or any(getattr(args, name) is not None for name in (
                    "min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
                    "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
@@ -584,7 +615,9 @@ def _retrieval_release_gate(report, args):
                    "min_citation_precision_per_practice_area", "min_citation_coverage_per_practice_area",
                    "min_abstention_compliance_per_practice_area", "min_pin_cite_accuracy_per_practice_area",
                    "min_expected_pin_cite_recall_per_practice_area", "max_excluded_cases", "max_invalid_records",
-                   "max_unsafe_unverified_source_uses")))
+                   "max_unsafe_unverified_source_uses", "max_source_status_evidence_missing",
+                   "max_source_status_evidence_missing_per_practice_area",
+                   "max_unsafe_unverified_source_uses_per_practice_area")))
     checks = []
     def add(metric, actual, operator, threshold):
         passed = actual is not None and (actual >= threshold if operator == ">=" else actual <= threshold)
@@ -640,6 +673,19 @@ def _retrieval_release_gate(report, args):
     if args.max_unsafe_unverified_source_uses is not None:
         add("unsafe_unverified_source_uses", report["unsafe_unverified_source_uses"], "<=",
             args.max_unsafe_unverified_source_uses)
+    if args.max_source_status_evidence_missing is not None:
+        add("source_status_evidence_missing_count", report["source_status_evidence_missing_count"], "<=",
+            args.max_source_status_evidence_missing)
+    if args.max_source_status_evidence_missing_per_practice_area is not None:
+        for area, area_metrics in report["practice_area_metrics"].items():
+            add("source_status_evidence_missing_per_practice_area:" + area,
+                area_metrics["source_status_evidence_missing_count"], "<=",
+                args.max_source_status_evidence_missing_per_practice_area)
+    if args.max_unsafe_unverified_source_uses_per_practice_area is not None:
+        for area, area_metrics in report["practice_area_metrics"].items():
+            add("unsafe_unverified_source_uses_per_practice_area:" + area,
+                area_metrics["unsafe_unverified_source_uses"], "<=",
+                args.max_unsafe_unverified_source_uses_per_practice_area)
     return {"enabled": enabled, "passed": all(item["passed"] for item in checks) if enabled else None,
             "checks": checks}
 
@@ -686,6 +732,9 @@ def main(argv=None):
     parser.add_argument("--max-excluded-cases", type=int)
     parser.add_argument("--max-invalid-records", type=int)
     parser.add_argument("--max-unsafe-unverified-source-uses", type=int)
+    parser.add_argument("--max-source-status-evidence-missing", type=int)
+    parser.add_argument("--max-source-status-evidence-missing-per-practice-area", type=int)
+    parser.add_argument("--max-unsafe-unverified-source-uses-per-practice-area", type=int)
     args = parser.parse_args(argv)
     try:
         reviewer_registry = json.loads(args.reviewer_registry.read_text(encoding="utf-8"))
@@ -696,7 +745,9 @@ def main(argv=None):
                  "min_answerable_cases_per_practice_area", "min_unanswerable_cases_per_practice_area",
                  "min_reviewers_per_practice_area", "min_expected_pin_cites_per_practice_area",
                  "max_excluded_cases", "max_invalid_records",
-                 "max_unsafe_unverified_source_uses"):
+                 "max_unsafe_unverified_source_uses", "max_source_status_evidence_missing",
+                 "max_source_status_evidence_missing_per_practice_area",
+                 "max_unsafe_unverified_source_uses_per_practice_area"):
         value = getattr(args, name)
         if value is not None and value < 0:
             parser.error("--" + name.replace("_", "-") + " must be a non-negative integer")
@@ -734,7 +785,9 @@ def main(argv=None):
                         "min_citation_precision_per_practice_area", "min_citation_coverage_per_practice_area",
                         "min_abstention_compliance_per_practice_area", "min_pin_cite_accuracy_per_practice_area",
                         "min_expected_pin_cite_recall_per_practice_area", "max_excluded_cases", "max_invalid_records",
-                        "max_unsafe_unverified_source_uses")))
+                        "max_unsafe_unverified_source_uses", "max_source_status_evidence_missing",
+                        "max_source_status_evidence_missing_per_practice_area",
+                        "max_unsafe_unverified_source_uses_per_practice_area")))
     if gate_enabled and args.min_reviewed_cases is None:
         parser.error("retrieval release gates require --min-reviewed-cases to prevent empty-sample passes")
     area_thresholds = (args.min_cases_per_practice_area, args.min_answerable_cases_per_practice_area,
@@ -743,7 +796,9 @@ def main(argv=None):
                        args.min_recall_at_5_per_practice_area, args.min_mrr_at_5_per_practice_area,
                        args.min_citation_precision_per_practice_area, args.min_citation_coverage_per_practice_area,
                        args.min_abstention_compliance_per_practice_area, args.min_pin_cite_accuracy_per_practice_area,
-                       args.min_expected_pin_cite_recall_per_practice_area)
+                       args.min_expected_pin_cite_recall_per_practice_area,
+                       args.max_source_status_evidence_missing_per_practice_area,
+                       args.max_unsafe_unverified_source_uses_per_practice_area)
     if any(value is not None for value in area_thresholds):
         if args.min_practice_areas is None or args.min_cases_per_practice_area is None:
             parser.error("per-practice-area thresholds require --min-practice-areas and --min-cases-per-practice-area")

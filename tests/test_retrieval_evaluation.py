@@ -756,6 +756,51 @@ class RetrievalEvaluationTests(unittest.TestCase):
                 self.assertTrue(checks[f"{metric}_per_practice_area:civil_law"]["passed"])
                 self.assertFalse(checks[f"{metric}_per_practice_area:labor_law"]["passed"])
 
+    def test_missing_status_evidence_for_one_cited_source_is_counted_and_gated_per_area(self):
+        registry = reviewer_registry()
+        registry["reviewers"][0]["practice_areas"] = ["civil_law", "labor_law"]
+        questions = [
+            reviewed_question(id="Q-CIVIL-STATUS", practice_area="civil_law"),
+            reviewed_question(id="Q-LABOR-STATUS", practice_area="labor_law"),
+        ]
+        runs = [
+            {"question_id": "Q-CIVIL-STATUS", "retrieved_source_ids": ["LAW-A"],
+             "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
+             "source_summary": [{"source_id": "LAW-A"}], "abstained": False, "used_unverified_source": True},
+            {"question_id": "Q-LABOR-STATUS", "retrieved_source_ids": ["LAW-A"],
+             "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
+             "source_summary": [{"source_id": "LAW-A", "source_status": "verified_operative_text"}],
+             "abstained": False, "used_unverified_source": False},
+        ]
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            questions_path.write_text("".join(json.dumps(q) + "\n" for q in questions), encoding="utf-8")
+            runs_path.write_text("".join(json.dumps(run) + "\n" for run in runs), encoding="utf-8")
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                code = run_main([
+                    "--questions", str(questions_path), "--runs", str(runs_path),
+                    "--min-reviewed-cases", "2", "--min-practice-areas", "2",
+                    "--min-cases-per-practice-area", "1",
+                    "--max-source-status-evidence-missing", "0",
+                    "--max-source-status-evidence-missing-per-practice-area", "0",
+                    "--max-unsafe-unverified-source-uses-per-practice-area", "0",
+                ], registry=registry)
+            self.assertEqual(code, 1)
+            report = json.loads(output.getvalue())
+            self.assertEqual(report["source_status_evidence_missing_count"], 1)
+            self.assertEqual(report["practice_area_metrics"]["civil_law"]["source_status_evidence_missing_count"], 1)
+            self.assertEqual(report["practice_area_metrics"]["labor_law"]["source_status_evidence_missing_count"], 0)
+            self.assertEqual(report["practice_area_metrics"]["civil_law"]["unsafe_unverified_source_uses"], 1)
+            self.assertEqual(report["practice_area_metrics"]["labor_law"]["unsafe_unverified_source_uses"], 0)
+            checks = {item["metric"]: item for item in report["release_gate"]["checks"]}
+            self.assertFalse(checks["source_status_evidence_missing_count"]["passed"])
+            self.assertFalse(checks["source_status_evidence_missing_per_practice_area:civil_law"]["passed"])
+            self.assertTrue(checks["source_status_evidence_missing_per_practice_area:labor_law"]["passed"])
+            self.assertFalse(checks["unsafe_unverified_source_uses_per_practice_area:civil_law"]["passed"])
+            self.assertTrue(checks["unsafe_unverified_source_uses_per_practice_area:labor_law"]["passed"])
+
     def test_per_area_pin_cite_gate_catches_wrong_locator_hidden_by_global_score(self):
         registry = reviewer_registry()
         registry["reviewers"][0]["practice_areas"] = ["civil_law", "labor_law"]
