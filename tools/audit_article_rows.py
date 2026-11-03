@@ -85,7 +85,6 @@ def audit(rows, min_len=40):
             "gaps": sorted(set(range(1, max(ints) + 1)) - set(ints)) if ints else [],
             "in_order": ints == sorted(ints),
         }
-    global_last = max([v["last"] for v in numbering.values() if v["last"]] or [0])
     for row in rows:
         text, label = row["text"], f"{row.get('law', '')[:40]} / {row.get('article')}"
         if not text.strip():
@@ -116,10 +115,11 @@ def audit(rows, min_len=40):
             seen[key] = f"{row.get('law', '')[:40]} / {row.get('article')}"
     bad_refs, total_refs = [], 0
     for row in rows:
-        for match in re.finditer(r"(?:المادة|المواد|مادة|مادتي)\s*\(?\s*(\d+)\s*\)?(?:\s*(?:و|،|,|إلى|الى)\s*\(?\s*(\d+)\s*\)?)*", norm(row["text"])):
+        law_last = numbering.get(row.get("law", ""), {}).get("last")
+        for match in re.finditer(r"(?:المادة|المواد|مادة|مادتي)\s*\(?\s*(\d+)\s*\)?(?:\s*(?:و|،|,)\s*\(?\s*(\d+)\s*\)?)*", norm(row["text"])):
             for number in re.findall(r"\d+", match.group(0)):
                 total_refs += 1
-                if global_last and int(number) > global_last:
+                if law_last and int(number) > law_last:
                     bad_refs.append({"row": f"{row.get('law', '')[:40]} / {row.get('article')}", "ref": number})
     outliers, styles = [], {}
     corpus = " ".join(r["text"] for r in rows)
