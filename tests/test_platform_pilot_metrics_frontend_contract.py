@@ -15,8 +15,10 @@ class PlatformPilotMetricsFrontendContractTests(unittest.TestCase):
     def test_view_discloses_counts_only_sign_in_semantics_and_exports_csv(self):
         self.assertIn("/platform/pilot-metrics?weeks=12", HTML)
         self.assertIn("/platform/pilot-metrics/export.csv?weeks=12", HTML)
+        self.assertIn("Weekly active users", HTML)
         self.assertIn("Successful sign-ins", HTML)
         self.assertIn("not distinct people", HTML)
+        self.assertIn("المستخدمون النشطون أسبوعياً", HTML)
         self.assertIn("معرفات المستخدمين", HTML)
 
 
