@@ -72,6 +72,10 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
                 staged.byte_size, "application/pdf",
             ),
         )
+        tenant.execute(
+            "UPDATE original_file_objects SET legal_hold=1 WHERE object_id=?",
+            (staged.object_id,),
+        )
         tenant.commit()
 
         draft = self.create_draft().json()
@@ -113,6 +117,7 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(documents[0]["name"], "pleading.pdf")
         manifest = self._zip_csv(response, "original_files_manifest.csv")
         self.assertEqual(manifest[0]["export_status"], "included")
+        self.assertEqual(manifest[0]["legal_hold"], "1")
         original_path = manifest[0]["included_path"]
         self.assertEqual(archive.read(original_path), original_bytes)
 
@@ -175,6 +180,44 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
             self.assertEqual(response.status_code, 404)
         finally:
             demo_client.close()
+
+    def test_original_integrity_mismatch_fails_closed_without_audit_event(self):
+        tenant, owner_id = self._tenant_a()
+        original_bytes = b"original bytes whose integrity must be checked"
+        staged = app._original_file_store().stage(self.firm_a, original_bytes)
+        app._original_file_store().finalize(self.firm_a, staged.object_id)
+        doc = tenant.execute(
+            "INSERT INTO docs(case_id,name,added,firm_id,uploader_user_id,sha256,"
+            "content_type,byte_size,extraction_status,ocr_used) "
+            "VALUES(?,?,datetime('now'),?,?,?,?,?,'complete',0)",
+            (
+                self.case_id, "integrity-check.pdf", self.firm_a, owner_id,
+                staged.sha256, "application/pdf", staged.byte_size,
+            ),
+        )
+        tenant.execute(
+            "INSERT INTO original_file_objects(object_id,document_id,firm_id,"
+            "storage_backend,sha256,byte_size,content_type,state) "
+            "VALUES(?,?,?,'local',?,?,?,'ready')",
+            (
+                staged.object_id, doc.lastrowid, self.firm_a, staged.sha256,
+                staged.byte_size, "application/pdf",
+            ),
+        )
+        tenant.execute(
+            "UPDATE original_file_objects SET sha256=? WHERE object_id=?",
+            ("0" * 64, staged.object_id),
+        )
+        tenant.commit()
+
+        response = self.client_a.get(f"/firm/data-export.zip?firm_id={self.firm_a}")
+        self.assertEqual(response.status_code, 503)
+        audit_count = tenant.execute(
+            "SELECT COUNT(*) FROM security_audit_events "
+            "WHERE firm_id=? AND event='firm_data_export_created'",
+            (self.firm_a,),
+        ).fetchone()[0]
+        self.assertEqual(audit_count, 0)
 
     def test_export_is_rate_limited(self):
         url = f"/firm/data-export.zip?firm_id={self.firm_a}"
