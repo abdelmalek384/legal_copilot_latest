@@ -43,6 +43,9 @@ def valid_source():
             "commercial_reuse_evidence_url": "https://example.gov/rights/commercial",
             "terms_checked_on": "2026-10-20",
             "commercial_terms_checked_on": "2026-10-20",
+            "publication_date": "2019-12-15",
+            "gazette_issue": "123",
+            "gazette_pages": "4-8",
             "effective_date": "2020-01-01",
             "repeal_date": None,
             "review_evidence": [
@@ -112,6 +115,26 @@ class ResearchInspectorTests(unittest.TestCase):
 
         source = valid_source()
         source["provenance"]["official_title"] = " "
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+    def test_publication_date_and_gazette_pinpoint_are_required_for_verified_status(self):
+        for field, value in (
+            ("publication_date", None),
+            ("publication_date", "not-a-date"),
+            ("publication_date", "2027-01-01"),
+            ("gazette_issue", ""),
+            ("gazette_pages", None),
+        ):
+            source = valid_source()
+            source["provenance"][field] = value
+            self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW, (field, value))
+
+        source = valid_source()
+        source["provenance"]["publication_date"] = "2020-02-01"
+        self.assertEqual(source_status(source, "2020-01-01"), STATUS_REVIEW)
+
+        source = valid_source()
+        source["provenance"]["effective_date"] = "2019-12-01"
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
 
     def test_lawyer_approval_requires_explicit_counsel_attestation_marker(self):
