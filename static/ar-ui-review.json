@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "40c280922979fb87c99bee8d97ab49486c327ecd",
   "generated_on": "2026-11-03",
-  "entry_count": 910,
+  "entry_count": 932,
   "entries": [
     {
       "id": "AR-0001",
@@ -7585,6 +7585,182 @@
       "arabic": "اليوم",
       "source_lines": [
         1279
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0911",
+      "arabic": "حفظ الملف",
+      "source_lines": [
+        1477
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0912",
+      "arabic": "ملف العميل",
+      "source_lines": [
+        1489
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0913",
+      "arabic": "تعديل ملف العميل",
+      "source_lines": [
+        1490
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0914",
+      "arabic": "ملف عميل جديد",
+      "source_lines": [
+        1490
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0915",
+      "arabic": "المسائل المرتبطة",
+      "source_lines": [
+        1504
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0916",
+      "arabic": "لا توجد قضايا مرتبطة بهذا العميل بعد.",
+      "source_lines": [
+        1504
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0917",
+      "arabic": "لا توجد ملفات عملاء بعد.",
+      "source_lines": [
+        1507
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0918",
+      "arabic": "تعديل الملف",
+      "source_lines": [
+        1503
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0919",
+      "arabic": "أدخل اسم العميل",
+      "source_lines": [
+        1478
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0920",
+      "arabic": "اسم العميل",
+      "source_lines": [
+        1444
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0921",
+      "arabic": "الهاتف",
+      "source_lines": [
+        1270
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0922",
+      "arabic": "فتح",
+      "source_lines": [
+        1179
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0923",
+      "arabic": "+ ملف عميل جديد",
+      "source_lines": [
+        1506
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0924",
+      "arabic": "ابحث باسم العميل أو الهاتف أو البريد الإلكتروني",
+      "source_lines": [
+        1500
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0925",
+      "arabic": "بحث في ملفات العملاء",
+      "source_lines": [
+        1500
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0926",
+      "arabic": "لا توجد ملفات عملاء مطابقة.",
+      "source_lines": [
+        1511
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0927",
+      "arabic": "اختر ملف CSV",
+      "source_lines": [
+        1514
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0928",
+      "arabic": "الحد الأقصى لملف الاستيراد 1 ميغابايت",
+      "source_lines": [
+        1517
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0929",
+      "arabic": "استيراد CSV",
+      "source_lines": [
+        1526
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0930",
+      "arabic": "تم استيراد",
+      "source_lines": [
+        1520
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0931",
+      "arabic": "تم تخطي",
+      "source_lines": [
+        1520
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0932",
+      "arabic": "يدعم الاستيراد أعمدة الاسم والهاتف والبريد الإلكتروني والعنوان والملاحظات، بالعربية أو الإنجليزية.",
+      "source_lines": [
+        1528
       ],
       "review_status": "pending_native_review"
     }
