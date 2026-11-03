@@ -22,6 +22,7 @@ This checklist is a release gate, not a certification. Completing it does not re
 - [ ] Generate MFA_ENCRYPTION_KEY with python manage.py gen-mfa-key and store it in the secret manager. Never reuse BACKUP_KEY or another application credential. Keep the same key available for restore of the control-plane database; loss of this key prevents decryption of enrolled TOTP secrets.
 - [ ] Set MFA_ENFORCEMENT=admins_required or all_required in production. Production preflight rejects optional enforcement and rejects a missing/invalid MFA key.
 - [ ] Keep LLM_DATA_PROCESSING_APPROVED unset until the exact configured endpoint/model and its data-handling terms have been reviewed and approved for the intended data class. Set it to 1 only with documented approval; the setting is an operator attestation, not a technical privacy guarantee.
+- [ ] Complete the [pilot privacy notice fact sheet](pilot_privacy_notice_fact_sheet.md), verify all live hosting/storage/AI/subprocessor facts, and obtain qualified Egyptian privacy-counsel approval of the customer notice, processor terms, retention, rights-request and notification workflows before publication.
 - [ ] Use unique administrator credentials, a strong password, and least-privilege role assignment.
 - [ ] Establish a documented process for administrator offboarding, password reset, and secret rotation.
 - [ ] Verify MFA enrollment and recovery-code handling with a test administrator; confirm recovery codes are shown once and stored only as salted hashes.
@@ -120,7 +121,7 @@ A passing probe confirms only the tested public HTTP surface at that time. It do
 
 - [ ] Collect access, application error, resource, disk, and backup-failure metrics without logging passwords, session tokens, case text, uploaded content, or API secrets.
 - [ ] Configure alerts for repeated authentication failures, repeated 429 responses, storage exhaustion, failed backups, and elevated 5xx responses.
-- [ ] Write an incident playbook for credential rotation, access revocation, evidence preservation, client notification assessment, and recovery.
+- [ ] Populate, exercise and approve the [pilot security incident response runbook](pilot_security_incident_response_runbook.md); record named primary/backup responders, escalation channels, tabletop evidence and corrective actions.
 - [ ] Assign an owner and review cadence for dependency updates, security patches, and legal corpus status.
 
 ## Release decision
