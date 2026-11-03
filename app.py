@@ -3793,6 +3793,12 @@ def setup_first_run(u: dict = Depends(user)):
     _require_firm_setup_runtime()
     require_admin(u)
     control = control_conn()
+    onboarding_now = int(time.time())
+    control.execute(
+        "INSERT OR IGNORE INTO firm_onboarding_timing(firm_id,started_at) VALUES(?,?)",
+        (int(u["firm_id"]), onboarding_now),
+    )
+    control.commit()
     profile = _firm_profile_payload(control, u["firm_id"])
     invitation_count = int(control.execute(
         "SELECT COUNT(*) FROM identity_invitations WHERE firm_id=? AND status IN ('pending','sent','consumed')",
@@ -3828,9 +3834,27 @@ def setup_first_run(u: dict = Depends(user)):
         {"id": "test_reminder", "title_ar": "أرسل تذكيراً تجريبياً", "title_en": "Send a test reminder",
          "done": reminder_sent},
     ]
+    completed_count = sum(1 for item in checklist if item["done"])
+    if completed_count == len(checklist):
+        control.execute(
+            "UPDATE firm_onboarding_timing SET completed_at=?,completion_seconds=? "
+            "WHERE firm_id=? AND completed_at IS NULL",
+            (onboarding_now, max(0, onboarding_now - int(control.execute(
+                "SELECT started_at FROM firm_onboarding_timing WHERE firm_id=?",
+                (int(u["firm_id"]),),
+            ).fetchone()[0])), int(u["firm_id"])),
+        )
+        control.commit()
+    timing = control.execute(
+        "SELECT started_at,completed_at,completion_seconds FROM firm_onboarding_timing WHERE firm_id=?",
+        (int(u["firm_id"]),),
+    ).fetchone()
     return {
         "firm_id": u["firm_id"], "is_demo": _firm_is_demo(u["firm_id"]),
-        "completed": sum(1 for item in checklist if item["done"]),
+        "onboarding_started_at": int(timing["started_at"]),
+        "onboarding_completed_at": int(timing["completed_at"]) if timing["completed_at"] is not None else None,
+        "onboarding_completion_seconds": int(timing["completion_seconds"]) if timing["completion_seconds"] is not None else None,
+        "completed": completed_count,
         "total": len(checklist), "checklist": checklist,
         "firm_profile": profile,
         "first_case_id": int(first_case["id"]) if first_case else None,
@@ -4994,10 +5018,17 @@ def submit_subscription_payment(b: SubscriptionPaymentSubmissionIn, u: dict = De
 @app.get("/platform/pilot-metrics")
 def platform_pilot_metrics(weeks: int = Query(12, ge=1, le=52), u: dict = Depends(user)):
     require_platform_admin(u)
-    rows = _pilot_metrics_rows(control_conn(), weeks=weeks)
+    control = control_conn()
+    rows = _pilot_metrics_rows(control, weeks=weeks)
+    onboarding = [dict(row) for row in control.execute(
+        "SELECT f.id AS firm_id,f.name AS firm_name,t.started_at,t.completed_at,t.completion_seconds "
+        "FROM firms f LEFT JOIN firm_onboarding_timing t ON t.firm_id=f.id "
+        "WHERE f.status='active' AND f.is_demo=0 ORDER BY f.id"
+    ).fetchall()]
     return {
         "weeks": weeks,
         "metrics": rows,
+        "onboarding": onboarding,
         "successful_sign_ins_definition": "Count of successful sign-in events for the default firm; not distinct people.",
         "weekly_active_users_definition": "Not currently measured; successful sign-ins are event counts, not unique users.",
     }
