@@ -3,9 +3,9 @@
   "title": "Legal Copilot Arabic UI string review inventory",
   "purpose": "Reviewable inventory of Arabic-bearing string literals in static/index.html for a native Egyptian Arabic speaker. This is a review snapshot, not yet the runtime translation source; user-entered case and legal text is not included.",
   "source_file": "static/index.html",
-  "source_commit": "b5aaea8ac43c78ea6cc6db9b1ef7b4ca1f31696f",
+  "source_commit": "3a4ae1fce27b66136740f092b9c60077dad1312a",
   "generated_on": "2026-11-03",
-  "entry_count": 907,
+  "entry_count": 917,
   "entries": [
     {
       "id": "AR-0001",
@@ -7561,6 +7561,86 @@
       "arabic": "بيانات مجمعة أسبوعياً فقط. لا تتضمن معرفات المستخدمين أو أسماء القضايا والعملاء أو نصوص الأسئلة والإجابات. تسجيلات الدخول الناجحة هي عدد أحداث الدخول وليست عدد أشخاص فريدين؛ المستخدمون النشطون أسبوعياً غير مقاسين حالياً.",
       "source_lines": [
         1149
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0908",
+      "arabic": "مدة إعداد المكاتب",
+      "source_lines": [
+        1158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0909",
+      "arabic": "تُقاس المدة من أول فتح لمعالج بدء الاستخدام حتى اكتمال خطواته الست. لا تُحسب المكاتب التجريبية.",
+      "source_lines": [
+        1159
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0910",
+      "arabic": "قيد الإعداد",
+      "source_lines": [
+        1145
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0911",
+      "arabic": "لم يبدأ",
+      "source_lines": [
+        1145
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0912",
+      "arabic": "مدة الإعداد: ",
+      "source_lines": [
+        1149
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0913",
+      "arabic": "بدأ الإعداد ولم يكتمل بعد.",
+      "source_lines": [
+        1149
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0914",
+      "arabic": "لم يبدأ الإعداد بعد.",
+      "source_lines": [
+        1149
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0915",
+      "arabic": "دقيقة",
+      "source_lines": [
+        1147
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0916",
+      "arabic": "ساعة",
+      "source_lines": [
+        1147
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0917",
+      "arabic": "الاستخدام الأسبوعي",
+      "source_lines": [
+        1161
       ],
       "review_status": "pending_native_review"
     }
