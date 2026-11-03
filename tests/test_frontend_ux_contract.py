@@ -1,10 +1,61 @@
 """Regression checks for the Arabic-first single-page frontend's accessibility contract."""
 from pathlib import Path
+import json
+import re
 import unittest
 
 HTML = Path("static/index.html").read_text(encoding="utf-8")
 
 class FrontendUXContractTests(unittest.TestCase):
+
+    def test_arabic_ui_review_catalog_covers_source_literals(self):
+        catalog_path = Path("static/ar-ui-review.json")
+        catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+        entries = catalog["entries"]
+        reviewed = {entry["arabic"] for entry in entries}
+        self.assertEqual(catalog["entry_count"], len(entries))
+        self.assertGreaterEqual(len(entries), 800)
+        self.assertEqual(len(reviewed), len(entries))
+        self.assertTrue(all(entry["source_lines"] for entry in entries))
+        self.assertTrue(all(entry["review_status"] == "pending_native_review" for entry in entries))
+
+        source = HTML
+        found = set()
+        index = 0
+        while index < len(source):
+            quote = source[index]
+            if quote not in ("'", '"', "`"):
+                index += 1
+                continue
+            index += 1
+            value = []
+            while index < len(source):
+                char = source[index]
+                if char == "\\":
+                    value.append(char)
+                    if index + 1 < len(source):
+                        value.append(source[index + 1])
+                        index += 2
+                    else:
+                        index += 1
+                    continue
+                if char == quote:
+                    index += 1
+                    break
+                value.append(char)
+                index += 1
+            literal = "".join(value).strip()
+            if re.search(r"[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]", literal) and literal:
+                found.add(literal)
+
+        markup = re.sub(r"<script[^>]*>.*?</script>|<style[^>]*>.*?</style>", "", source, flags=re.S)
+        for node in re.findall(r">([^<>]+)<", markup):
+            node = node.strip()
+            if re.search(r"[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]", node) and node:
+                found.add(node)
+        missing = sorted(found - reviewed)
+        self.assertEqual(missing, [], "Arabic UI literals missing from static/ar-ui-review.json")
+
     def test_skip_link_and_main_landmark_are_present(self):
         self.assertIn("className:'skip-link'", HTML)
         self.assertIn("id:'main',tabIndex:-1", HTML)
