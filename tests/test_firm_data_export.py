@@ -141,6 +141,11 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(audit[0]["user_id"], owner_id)
 
     def test_cross_firm_and_non_admin_requests_are_not_found_or_forbidden(self):
+        case_b = self.mutate(
+            self.client_b, "post", "/cases",
+            json={"title": "Firm B confidential matter", "client": "Firm B Client"},
+        )
+        self.assertEqual(case_b.status_code, 200, case_b.text)
         other_firm_export = self.client_b.get(
             f"/firm/data-export.zip?firm_id={self.firm_a}"
         )
