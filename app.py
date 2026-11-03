@@ -6040,10 +6040,12 @@ def update_client(client_id: int, b: ClientIn, u: dict = Depends(user)):
     ).fetchone()
     if duplicate:
         raise HTTPException(409, "a client with this name already exists")
-    c.execute(
-        "UPDATE clients SET name=?,normalized_name=?,phone=?,email=?,address=?,notes=?,updated_at=datetime('now') WHERE id=?",
+    updated = c.execute(
+        "UPDATE OR IGNORE clients SET name=?,normalized_name=?,phone=?,email=?,address=?,notes=?,updated_at=datetime('now') WHERE id=?",
         (name, normalized, b.phone.strip(), b.email.strip(), b.address.strip(), b.notes.strip(), client_id),
     )
+    if updated.rowcount != 1:
+        raise HTTPException(409, "a client with this name already exists")
     # Keep the legacy case-name snapshot aligned with the canonical profile name.
     c.execute("UPDATE cases SET client=? WHERE client_id=?", (name, client_id))
     c.execute(
