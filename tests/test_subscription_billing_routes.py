@@ -141,6 +141,41 @@ class SubscriptionBillingRouteTests(unittest.TestCase):
         self.assertEqual(small_firm.status_code, 200, small_firm.text)
         self.assertEqual(small_firm.json()["subscription"]["seat_limit"], 5)
 
+    def test_expired_trial_is_read_only_but_payment_and_reads_remain_available(self):
+        started = self._mutate(
+            self.client_a, "post", "/billing/subscribe", json={"plan_code": "solo"}
+        )
+        self.assertEqual(started.status_code, 200, started.text)
+        control = self.runtime.control_connection()
+        expired_at = int(app.time.time()) - 3600
+        control.execute(
+            "UPDATE firm_subscriptions SET trial_ends_at=? WHERE firm_id=?",
+            (expired_at, self.firm_a),
+        )
+        control.commit()
+
+        billing = self.client_a.get("/billing")
+        self.assertEqual(billing.status_code, 200, billing.text)
+        self.assertTrue(billing.json()["read_only"])
+        self.assertEqual(billing.json()["subscription"]["status"], "expired")
+        self.assertGreaterEqual(billing.json()["grace_days_remaining"], 1)
+
+        blocked = self._mutate(self.client_a, "post", "/invitations", json={
+            "email": "expired-seat@example.test", "role": "lawyer",
+        })
+        self.assertEqual(blocked.status_code, 423, blocked.text)
+
+        payment = self._mutate(self.client_a, "post", "/billing/payment-submissions", json={
+            "amount_piasters": 250000, "method": "bank_transfer",
+            "transfer_reference": "EXPIRED-TRIAL-RENEWAL-001",
+        })
+        self.assertEqual(payment.status_code, 200, payment.text)
+        self.assertEqual(payment.json()["status"], "pending")
+        after_payment = self.client_a.get("/billing")
+        self.assertEqual(after_payment.status_code, 200, after_payment.text)
+        self.assertTrue(after_payment.json()["read_only"])
+        self.assertEqual(after_payment.json()["subscription"]["status"], "pending_payment")
+
     def test_seat_limit_blocks_invites_and_non_admin_cannot_manage_billing(self):
         started = self._mutate(self.client_a, "post", "/billing/subscribe", json={"plan_code": "solo"})
         self.assertEqual(started.status_code, 200, started.text)
