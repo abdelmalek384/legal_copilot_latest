@@ -277,6 +277,12 @@ def _reviewed_dynamic_sql(function: str, template: str) -> bool:
             and "ORDER BY d.official_title" in template
             and "LIMIT 30" in template
         )
+    if function == "_firm_export_csv_bytes" and template == "{unresolved:sql}":
+        # The export helper receives only SQL literals from the fixed, local
+        # export-query mapping in export_firm_data_zip. The only variable value
+        # is firm_id, always supplied as a bound parameter; no request value can
+        # alter a table name, predicate, or SQL fragment.
+        return True
     return False
 
 
