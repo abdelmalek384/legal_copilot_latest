@@ -7683,6 +7683,22 @@ def export_firm_data_zip(u: dict = Depends(user)):
                 "SELECT id,firm_id,user_id,event,created_at FROM security_audit_events "
                 "ORDER BY id"
             )))
+            archive.writestr("reminder_deliveries.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT id,idempotency_key,recipient_user_id,event_type,event_id,due_date,"
+                "reminder_window,lead_days,status,attempt_count,next_attempt_at,lease_until,"
+                "last_attempt_at,accepted_at,provider_message_id,last_error_code,created_at,updated_at "
+                "FROM reminder_deliveries ORDER BY id"
+            )))
+            archive.writestr("reminder_delivery_attempts.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT id,delivery_id,attempt_number,smtp_attempts,status,error_code,"
+                "provider_message_id,attempted_at,finished_at FROM reminder_delivery_attempts "
+                "ORDER BY delivery_id,attempt_number"
+            )))
+            archive.writestr("reminder_preferences.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT user_id,email_enabled,deadline_7_days,deadline_3_days,deadline_1_day,"
+                "deadline_day_of,deadline_overdue,session_day_of,task_reminders,updated_at "
+                "FROM reminder_preferences ORDER BY user_id"
+            )))
 
             firm_stream = io.StringIO(newline="")
             writer = csv.writer(firm_stream, lineterminator="\r\n")
