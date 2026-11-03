@@ -120,6 +120,31 @@ class AmendmentRelationshipValidatorTests(unittest.TestCase):
         )
         self.assertTrue(any(item["code"] == "duplicate_relationship_edge" for item in report["warnings"]))
 
+    def test_long_relationship_chain_does_not_exceed_python_recursion_limit(self):
+        count = 1200
+        documents = [{"document_id": f"LAW-{index:04d}"} for index in range(count)]
+        relationships = [
+            {
+                "relationship_id": f"REL-{index:04d}",
+                "source_instrument_id": f"LAW-{index:04d}",
+                "target_instrument_id": f"LAW-{index + 1:04d}",
+                "relationship_type": "amends_specified_provisions",
+                "status": "under_review",
+                "source_url": "https://gazette.example.gov/law.pdf",
+                "required_evidence": ["Official Gazette text"],
+                "affected_provisions": ["Article 3"],
+            }
+            for index in range(count - 1)
+        ]
+        report = MODULE.validate(
+            {"relationships": relationships}, {"documents": documents}
+        )
+        self.assertEqual(report["relationships_checked"], count - 1)
+        self.assertFalse(any(
+            item["code"] == "relationship_graph_cycle_detected"
+            for item in report["warnings"]
+        ))
+
     def test_relationship_cycles_are_warned_without_claiming_legal_invalidity(self):
         base = {
             "relationship_type": "amends_specified_provisions",

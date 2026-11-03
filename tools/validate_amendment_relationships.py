@@ -322,18 +322,32 @@ def validate(relationships_doc: dict, inventory_doc: dict) -> dict:
             (target_id, rid if isinstance(rid, str) else "(missing relationship ID)")
         )
 
+    # Use an explicit DFS stack: inventories can be large and untrusted, so
+    # recursive traversal risks Python RecursionError on a long amendment chain.
     visited: set[str] = set()
-    active: list[str] = []
-    active_set: set[str] = set()
+    active_path: list[str] = []
+    active_index: dict[str, int] = {}
 
-    def visit(node: str) -> None:
-        visited.add(node)
-        active.append(node)
-        active_set.add(node)
-        for target, _relationship_id in sorted(adjacency.get(node, [])):
-            if target in active_set:
-                cycle_start = active.index(target)
-                cycle_nodes = active[cycle_start:] + [target]
+    for start in sorted(adjacency):
+        if start in visited:
+            continue
+        visited.add(start)
+        active_index[start] = 0
+        active_path.append(start)
+        stack: list[tuple[str, object]] = [
+            (start, iter(sorted(adjacency.get(start, []))))
+        ]
+        while stack:
+            node, children = stack[-1]
+            try:
+                target, _relationship_id = next(children)
+            except StopIteration:
+                stack.pop()
+                active_index.pop(node, None)
+                active_path.pop()
+                continue
+            if target in active_index:
+                cycle_nodes = active_path[active_index[target]:] + [target]
                 signature = frozenset(cycle_nodes)
                 if signature not in cycle_signatures:
                     cycle_signatures.add(signature)
@@ -344,13 +358,10 @@ def validate(relationships_doc: dict, inventory_doc: dict) -> dict:
                         "Directed instrument relationship cycle needs manual review: " + " -> ".join(cycle_nodes) + ".",
                     )
             elif target not in visited:
-                visit(target)
-        active.pop()
-        active_set.remove(node)
-
-    for node in sorted(adjacency):
-        if node not in visited:
-            visit(node)
+                visited.add(target)
+                active_index[target] = len(active_path)
+                active_path.append(target)
+                stack.append((target, iter(sorted(adjacency.get(target, [])))))
 
     return {
         "schema_version": "1.0",
