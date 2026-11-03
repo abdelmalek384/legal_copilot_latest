@@ -73,6 +73,18 @@ class AnswerTrustTierTests(unittest.TestCase):
         self.assertEqual(result["trust_tier"], TIER_SOURCE_MATCHED)
         self.assertIn("not_lawyer_reviewed", result["reason_codes"])
 
+    def test_missing_independent_source_provenance_blocks_source_matched_tier(self):
+        source = source_matched_source()
+        source["source_match_evidence"]["independent_copy_source_id"] = source["source_id"]
+        result = self.classify([source], source_matched_policy_approved=True, source_matched_feature_enabled=True)
+        self.assertEqual(result["trust_tier"], TIER_UNREVIEWED)
+
+    def test_missing_reuse_rights_evidence_url_blocks_source_matched_tier(self):
+        source = source_matched_source()
+        source["source_match_evidence"]["reuse_rights_evidence_url"] = "http://example.gov/terms"
+        result = self.classify([source], source_matched_policy_approved=True, source_matched_feature_enabled=True)
+        self.assertEqual(result["trust_tier"], TIER_UNREVIEWED)
+
     def test_missing_reuse_rights_blocks_source_matched_tier(self):
         source = source_matched_source()
         source["source_match_evidence"]["reuse_rights_allowed"] = False
@@ -104,6 +116,10 @@ def source_matched_source():
             "validator_passed": True,
             "original_capture_sha256": "a" * 64,
             "independent_copy_sha256": "b" * 64,
+            "independent_copy_source_id": "INDEPENDENT-SOURCE-2",
+            "publication_date": "2025-05-03",
+            "effective_date": "2025-09-01",
+            "reuse_rights_evidence_url": "https://example.gov/terms/reuse",
             "article_inventory_complete": True,
             "differences_resolved_against_primary": True,
             "publication_and_effective_dates_verified": True,
