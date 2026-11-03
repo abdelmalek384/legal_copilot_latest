@@ -784,6 +784,9 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
     def test_first_run_wizard_and_setup_health_are_owner_visible(self) -> None:
         self.login(self.state["owner_a_email"])
+        language_switch = self.page.locator('[data-lang-switch="1"]').first
+        if language_switch.inner_text().strip() == "العربية":
+            language_switch.click()
         self.page.get_by_role("button", name="بدء الاستخدام").click()
         self.page.get_by_role("heading", name="بدء استخدام المكتب").wait_for()
         self.assertTrue(self.page.get_by_text("بيانات المكتب", exact=True).is_visible())
