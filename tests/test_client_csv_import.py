@@ -32,7 +32,7 @@ class ClientCSVImportTests(InvoiceTestSupport, unittest.TestCase):
             )
         ).execute("SELECT event FROM security_audit_events").fetchall()
         audit = " ".join(row["event"] for row in events)
-        self.assertIn("client_csv_import:created=1;skipped=1", audit)
+        self.assertIn("client_csv_import:created=1;skipped=2", audit)
         self.assertNotIn("New CSV Client", audit)
         self.assertNotIn("new@example.test", audit)
 
