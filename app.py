@@ -7606,6 +7606,23 @@ def export_firm_data_zip(firm_id: int = Query(..., ge=1), u: dict = Depends(user
             writer.writerow([_csv_safe_cell(firm[key]) for key in ("id", "name", "status")])
             archive.writestr("firm.csv", "\ufeff" + firm_stream.getvalue())
 
+            archive.writestr("firm_memberships.csv", _firm_export_csv_bytes(control.execute(
+                "SELECT fm.id,fm.user_id,u.name,u.email_display,fm.firm_role,fm.status,"
+                "fm.created_at,fm.updated_at,fm.created_by_user_id "
+                "FROM firm_memberships fm JOIN users u ON u.id=fm.user_id "
+                "WHERE fm.firm_id=? ORDER BY fm.id", (firm_id,),
+            )))
+            # Never export invitation token hashes or recovery credentials.
+            archive.writestr("firm_invitations.csv", _firm_export_csv_bytes(control.execute(
+                "SELECT id,firm_id,email_display,invited_role,invited_by_user_id,"
+                "created_at,expires_at,status,consumed_by_user_id,consumed_at,updated_at "
+                "FROM identity_invitations WHERE firm_id=? ORDER BY id", (firm_id,),
+            )))
+            archive.writestr("identity_lifecycle_events.csv", _firm_export_csv_bytes(control.execute(
+                "SELECT id,actor_user_id,target_user_id,invitation_id,event_type,detail_json,created_at "
+                "FROM identity_lifecycle_events WHERE firm_id=? ORDER BY id", (firm_id,),
+            )))
+
             object_rows = tenant.execute(
                 "SELECT o.object_id,o.sha256,o.byte_size,o.content_type,o.state,o.legal_hold,"
                 "d.id AS document_id,d.name FROM original_file_objects o "
