@@ -358,5 +358,9 @@ jobs:
         run: PYTHONPATH=. python tests/test_product_feedback_routes.py
       - name: Test private answer correction queue and firm isolation
         run: PYTHONPATH=. python tests/test_answer_correction_routes.py
+      - name: Test platform pilot metrics dashboard contract
+        run: PYTHONPATH=. python tests/test_platform_pilot_metrics_frontend_contract.py
+      - name: Test safe request validation errors
+        run: PYTHONPATH=. python tests/test_validation_error_handler.py
       - name: Guard that every test file runs in CI or is explicitly tracked
         run: PYTHONPATH=. python tests/test_ci_runs_all_tests.py
