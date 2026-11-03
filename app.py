@@ -2955,6 +2955,11 @@ def _setup_health_report():
     }
 
 
+def _require_firm_setup_runtime():
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "firm setup is available only in separate-database mode")
+
+
 def _firm_profile_payload(control, firm_id: int):
     firm = control.execute("SELECT id,name FROM firms WHERE id=? AND status='active'", (firm_id,)).fetchone()
     if firm is None:
@@ -3652,12 +3657,14 @@ def switch_firm(b: FirmSwitchIn, request: Request, response: Response, u: dict =
 
 @app.get("/firm/profile")
 def get_firm_profile(u: dict = Depends(user)):
+    _require_firm_setup_runtime()
     require_admin(u)
     return _firm_profile_payload(control_conn(), u["firm_id"])
 
 
 @app.put("/firm/profile")
 def update_firm_profile(b: FirmProfileIn, u: dict = Depends(user)):
+    _require_firm_setup_runtime()
     require_admin(u)
     control = control_conn()
     control.execute("BEGIN IMMEDIATE")
@@ -3683,12 +3690,14 @@ def update_firm_profile(b: FirmProfileIn, u: dict = Depends(user)):
 
 @app.get("/setup/health")
 def setup_health(u: dict = Depends(user)):
+    _require_firm_setup_runtime()
     require_admin(u)
     return _setup_health_report()
 
 
 @app.get("/setup/first-run")
 def setup_first_run(u: dict = Depends(user)):
+    _require_firm_setup_runtime()
     require_admin(u)
     control = control_conn()
     profile = _firm_profile_payload(control, u["firm_id"])
@@ -3738,6 +3747,7 @@ def setup_first_run(u: dict = Depends(user)):
 
 @app.post("/setup/test-reminder")
 def send_setup_test_reminder(u: dict = Depends(user)):
+    _require_firm_setup_runtime()
     require_admin(u)
     health = _setup_health_report()
     if not health["ready_for_test_reminder"]:
