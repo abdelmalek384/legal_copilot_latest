@@ -62,6 +62,15 @@ def _source_matched_evidence_ready(source: Mapping) -> bool:
             or parsed_url.password is not None or parsed_url.query or parsed_url.fragment
             or parsed_url.netloc.endswith(":") or (port is not None and not 1 <= port <= 65535)):
         return False
+    approved_uses = evidence.get("approved_uses")
+    required_uses = {
+        "collection", "storage", "text_extraction", "indexing",
+        "commercial_product_use", "excerpt_display",
+    }
+    if not isinstance(approved_uses, list) or not required_uses.issubset(
+        {item for item in approved_uses if isinstance(item, str)}
+    ):
+        return False
     required = (
         "article_inventory_complete",
         "differences_resolved_against_primary",
