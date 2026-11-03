@@ -3551,6 +3551,7 @@ def switch_firm(b: FirmSwitchIn, request: Request, response: Response, u: dict =
     switched_user["can_review_legal"] = _user_can_review_legal(
         {"id": u["id"], "role": context.role, "email": u.get("email")}
     )
+    _meter_pilot_metric(switched_user, "active_users")
     return switched_user
 
 
