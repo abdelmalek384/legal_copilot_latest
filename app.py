@@ -7588,10 +7588,10 @@ def export_firm_data_zip(firm_id: int = Query(..., ge=1), u: dict = Depends(user
             for filename, (query,) in exports.items():
                 archive.writestr(filename, _firm_export_csv_bytes(tenant, query, firm_id))
             firm_stream = io.StringIO(newline="")
-            writer = csv.writer(firm_stream, lineterminator="\\r\\n")
+            writer = csv.writer(firm_stream, lineterminator="\r\n")
             writer.writerow(["firm_id", "name", "status"])
             writer.writerow([_csv_safe_cell(firm[key]) for key in ("id", "name", "status")])
-            archive.writestr("firm.csv", "\\ufeff" + firm_stream.getvalue())
+            archive.writestr("firm.csv", "\ufeff" + firm_stream.getvalue())
 
             # Original binaries use the same private local/S3 adapter as document
             # downloads. Verify each object against tenant metadata before inclusion.
@@ -7603,7 +7603,7 @@ def export_firm_data_zip(firm_id: int = Query(..., ge=1), u: dict = Depends(user
                 (firm_id,),
             ).fetchall()
             manifest = io.StringIO(newline="")
-            manifest_writer = csv.writer(manifest, lineterminator="\\r\\n")
+            manifest_writer = csv.writer(manifest, lineterminator="\r\n")
             manifest_writer.writerow([
                 "document_id","original_name","sha256","byte_size","content_type",
                 "state","legal_hold","included_path","export_status"
@@ -7638,7 +7638,7 @@ def export_firm_data_zip(firm_id: int = Query(..., ge=1), u: dict = Depends(user
                     obj["sha256"], obj["byte_size"], obj["content_type"],
                     obj["state"], obj["legal_hold"], included_path, export_status,
                 ])
-            archive.writestr("original_files_manifest.csv", "\\ufeff" + manifest.getvalue())
+            archive.writestr("original_files_manifest.csv", "\ufeff" + manifest.getvalue())
         payload = buffer.getvalue()
         tenant.execute(
             "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
