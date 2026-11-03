@@ -1,6 +1,6 @@
 """Legal copilot MVP: case workspace + hybrid law search + citation-checked answers.
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
-import base64, sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging
+import base64, sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging, tempfile
 from pathlib import Path
 from cryptography.fernet import Fernet
 import deadline_calculator as deadline_calc
@@ -31,7 +31,7 @@ from tenant_context import FirmContext, FirmContextError
 from tools.database_release_acceptance import load_acceptance_manifest, original_storage_config_fingerprint
 from fastapi import Request, Query
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse, HTMLResponse, Response
+from fastapi.responses import JSONResponse, HTMLResponse, Response, StreamingResponse
 
 logger = logging.getLogger(__name__)
 
@@ -2090,6 +2090,7 @@ if _allowed_hosts:
 _RATE_LIMITS = {
     "/setup/test-reminder": (3, 3600),
     "/firm/profile": (20, 60),
+    "/firm/data-export.zip": (2, 3600),
     "/setup/first-run": (30, 60),
     "/setup/health": (30, 60),
     # Platform pilot reporting is bounded separately from normal firm workflows.
@@ -7466,6 +7467,113 @@ def _csv_safe_cell(value):
     if text.lstrip(" \t\r\n\ufeff").startswith(("=", "+", "-", "@")):
         return "'" + text
     return text
+
+
+@app.get("/firm/data-export.zip")
+def export_firm_data_zip(u: dict = Depends(user)):
+    """Build an audited ZIP of the authenticated firm's structured matter records."""
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "firm data export is available only in separate-database mode")
+    require_admin(u)
+    firm_id = int(u["firm_id"])
+    db = conn()
+    export_file = tempfile.SpooledTemporaryFile(max_size=8 * 1024 * 1024, mode="w+b")
+
+    def add_csv(archive, filename, cursor):
+        with archive.open(filename, "w") as raw:
+            text_stream = io.TextIOWrapper(raw, encoding="utf-8-sig", newline="")
+            try:
+                writer = csv.writer(text_stream, lineterminator="\\r\\n")
+                writer.writerow([column[0] for column in cursor.description])
+                for row in cursor:
+                    writer.writerow([_csv_safe_cell(value) for value in row])
+                text_stream.flush()
+            finally:
+                text_stream.detach()
+
+    try:
+        with zipfile.ZipFile(export_file, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+            add_csv(archive, "cases.csv", db.execute(
+                "SELECT id,title,client,stage,status,created_by,firm_id,case_number,case_year,court,circuit,opposing_party,created_at FROM cases WHERE firm_id=? ORDER BY id",
+                (firm_id,),
+            ))
+            add_csv(archive, "clients.csv", db.execute(
+                "SELECT client AS client_name,COUNT(*) AS case_count FROM cases WHERE firm_id=? AND client IS NOT NULL AND trim(client)<>'' GROUP BY client ORDER BY client",
+                (firm_id,),
+            ))
+            add_csv(archive, "notes.csv", db.execute(
+                "SELECT n.id,n.case_id,n.created_by,n.text,n.created_at FROM notes n JOIN cases c ON c.id=n.case_id WHERE c.firm_id=? ORDER BY n.id",
+                (firm_id,),
+            ))
+            add_csv(archive, "deadlines.csv", db.execute(
+                "SELECT d.id,d.case_id,d.title,d.due,d.note,d.created_by,d.status FROM deadlines d JOIN cases c ON c.id=d.case_id WHERE c.firm_id=? ORDER BY d.id",
+                (firm_id,),
+            ))
+            add_csv(archive, "sessions.csv", db.execute(
+                "SELECT s.id,s.case_id,s.date,s.note,s.done FROM sessions s JOIN cases c ON c.id=s.case_id WHERE c.firm_id=? ORDER BY s.id",
+                (firm_id,),
+            ))
+            add_csv(archive, "fees.csv", db.execute(
+                "SELECT f.id,f.case_id,f.title,f.amount,f.paid,f.due,f.note,f.created_by FROM fees f JOIN cases c ON c.id=f.case_id WHERE c.firm_id=? ORDER BY f.id",
+                (firm_id,),
+            ))
+            add_csv(archive, "tasks.csv", db.execute(
+                "SELECT t.id,t.case_id,t.title,t.assignee,t.due,t.status,t.created_by FROM tasks t JOIN cases c ON c.id=t.case_id WHERE c.firm_id=? ORDER BY t.id",
+                (firm_id,),
+            ))
+            add_csv(archive, "case_history.csv", db.execute(
+                "SELECT e.id,e.case_id,e.who,e.at,e.text FROM events e JOIN cases c ON c.id=e.case_id WHERE c.firm_id=? ORDER BY e.id",
+                (firm_id,),
+            ))
+            add_csv(archive, "case_members.csv", db.execute(
+                "SELECT m.case_id,m.user_id,m.role FROM members m JOIN cases c ON c.id=m.case_id WHERE c.firm_id=? ORDER BY m.case_id,m.user_id",
+                (firm_id,),
+            ))
+            add_csv(archive, "invoices.csv", db.execute(
+                "SELECT i.id,i.case_id,i.invoice_number,i.status,i.currency,i.client_name_snapshot,i.case_title_snapshot,i.description,i.subtotal_piasters,i.total_piasters,i.issue_date,i.due_date,i.created_by,i.created_at,i.issued_at,i.void_reason,i.voided_by,i.voided_at FROM invoices i JOIN cases c ON c.id=i.case_id WHERE c.firm_id=? ORDER BY i.id",
+                (firm_id,),
+            ))
+            add_csv(archive, "invoice_lines.csv", db.execute(
+                "SELECT l.id,l.invoice_id,l.position,l.description,l.quantity_milli,l.unit_price_piasters,l.line_total_piasters FROM invoice_lines l JOIN invoices i ON i.id=l.invoice_id JOIN cases c ON c.id=i.case_id WHERE c.firm_id=? ORDER BY l.invoice_id,l.position",
+                (firm_id,),
+            ))
+            add_csv(archive, "invoice_payments.csv", db.execute(
+                "SELECT p.id,p.invoice_id,p.amount_piasters,p.paid_on,p.method,p.reference,p.note,p.recorded_by,p.created_at FROM invoice_payments p JOIN invoices i ON i.id=p.invoice_id JOIN cases c ON c.id=i.case_id WHERE c.firm_id=? ORDER BY p.id",
+                (firm_id,),
+            ))
+            add_csv(archive, "invoice_events.csv", db.execute(
+                "SELECT e.id,e.invoice_id,e.actor_user_id,e.event_type,e.details_json,e.created_at FROM invoice_events e JOIN invoices i ON i.id=e.invoice_id JOIN cases c ON c.id=i.case_id WHERE c.firm_id=? ORDER BY e.id",
+                (firm_id,),
+            ))
+        db.execute(
+            "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+            (firm_id, int(u["id"]), "firm_data_export"),
+        )
+        db.commit()
+        export_file.seek(0)
+    except Exception:
+        export_file.close()
+        raise
+
+    def chunks():
+        try:
+            while True:
+                block = export_file.read(1024 * 1024)
+                if not block:
+                    break
+                yield block
+        finally:
+            export_file.close()
+
+    return StreamingResponse(
+        chunks(),
+        media_type="application/zip",
+        headers={
+            "Content-Disposition": f'attachment; filename="legal-copilot-firm-{firm_id}-export.zip"',
+            "Cache-Control": "no-store",
+            "X-Content-Type-Options": "nosniff",
+        },
+    )
 
 
 @app.get("/audit/security-events.csv")
