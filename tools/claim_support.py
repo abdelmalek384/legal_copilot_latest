@@ -35,7 +35,7 @@ _GENERIC_TERMS = {
     "as", "under", "with", "without", "must", "may", "shall", "should",
     "يكون", "تكون", "كان", "كانت", "هو", "هي", "من", "على", "في", "الى",
     "عن", "مع", "هذا", "هذه", "ذلك", "وفقا", "بموجب", "حيث", "يجوز",
-    "يجب", "يحق", "يلتزم", "يستحق",
+    "يجب", "يحق", "يلتزم", "يستحق", "prohibited",
 }
 
 
@@ -150,6 +150,10 @@ def has_unsupported_claims(answer, hits, tokens_fn, norm_fn, mask_code=None):
         claim = re.sub(r"\[\d+\]", " ", sentence)
         normalized_claim = norm_fn(claim)
         normalized_evidence = norm_fn(evidence)
+        # Check polarity on the original text first; normalization/stemming may
+        # collapse negation markers and must never erase obligation direction.
+        if _has_modal_mismatch(claim, evidence):
+            return True
         if _has_modal_mismatch(normalized_claim, normalized_evidence):
             return True
 
