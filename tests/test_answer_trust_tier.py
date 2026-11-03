@@ -103,6 +103,12 @@ class AnswerTrustTierTests(unittest.TestCase):
         )
         self.assertNotEqual(result["trust_tier"], TIER_VERIFIED)
 
+    def test_duplicate_source_identifiers_fail_closed(self):
+        source = {"source_id": "LAW-1", "source_status": "verified_operative_text"}
+        result = self.classify([source, dict(source)])
+        self.assertEqual(result["trust_tier"], TIER_UNREVIEWED)
+        self.assertIn("duplicate_source_id", result["reason_codes"])
+
     def test_missing_source_identifier_fails_closed(self):
         result = self.classify([{"source_status": "verified_operative_text"}])
         self.assertEqual(result["trust_tier"], TIER_UNREVIEWED)
