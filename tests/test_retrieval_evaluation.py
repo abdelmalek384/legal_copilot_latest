@@ -733,6 +733,8 @@ class RetrievalEvaluationTests(unittest.TestCase):
                     "--min-recall-at-5", "0.5", "--min-mrr-at-5", "0.5",
                     "--min-citation-precision", "0.4", "--min-citation-coverage", "0.4",
                     "--min-abstention-compliance", "0.4",
+                    "--min-recall-at-3-per-practice-area", "0.75",
+                    "--min-mrr-at-3-per-practice-area", "0.75",
                     "--min-recall-at-5-per-practice-area", "0.75",
                     "--min-mrr-at-5-per-practice-area", "0.75",
                     "--min-citation-precision-per-practice-area", "0.75",
@@ -742,6 +744,10 @@ class RetrievalEvaluationTests(unittest.TestCase):
             self.assertEqual(code, 1)
             report = json.loads(output.getvalue())
             self.assertEqual(report["metrics"]["recall_at_5"], 0.75)
+            self.assertEqual(report["practice_area_metrics"]["civil_law"]["recall_at_3"], 1.0)
+            self.assertEqual(report["practice_area_metrics"]["labor_law"]["recall_at_3"], 0.5)
+            self.assertEqual(report["practice_area_metrics"]["civil_law"]["mrr_at_3"], 1.0)
+            self.assertEqual(report["practice_area_metrics"]["labor_law"]["mrr_at_3"], 0.5)
             self.assertEqual(report["citation_precision"], 0.5)
             self.assertEqual(report["citation_coverage"], 0.5)
             self.assertEqual(report["abstention_compliance"], 0.5)
@@ -754,6 +760,9 @@ class RetrievalEvaluationTests(unittest.TestCase):
             for metric in ("recall_at_5", "mrr_at_5", "citation_precision",
                            "citation_coverage", "abstention_compliance"):
                 self.assertTrue(checks[metric]["passed"])
+                self.assertTrue(checks[f"{metric}_per_practice_area:civil_law"]["passed"])
+                self.assertFalse(checks[f"{metric}_per_practice_area:labor_law"]["passed"])
+            for metric in ("recall_at_3", "mrr_at_3"):
                 self.assertTrue(checks[f"{metric}_per_practice_area:civil_law"]["passed"])
                 self.assertFalse(checks[f"{metric}_per_practice_area:labor_law"]["passed"])
 
