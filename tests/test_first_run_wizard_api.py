@@ -98,6 +98,21 @@ class FirstRunWizardApiTests(unittest.TestCase):
         checklist = self.clients["a"].get("/setup/first-run").json()
         self.assertTrue(checklist["checklist"][0]["done"])
         self.assertFalse(checklist["checklist"][1]["done"])
+        context = self.runtime.resolve_context(self.user_ids["a"], self.firm_a)
+        tenant = self.runtime.firm_connection(context)
+        case_id = tenant.execute(
+            "INSERT INTO cases(title,client,stage,created_by,firm_id) VALUES(?,?,?,?,?)",
+            ("قضية تجريبية", "عميل افتراضي", "تجهيز", self.user_ids["a"], self.firm_a),
+        ).lastrowid
+        tenant.execute(
+            "INSERT INTO deadlines(case_id,title,due,created_by) VALUES(?,?,?,?)",
+            (case_id, "موعد تجريبي", "2026-12-01", self.user_ids["a"]),
+        )
+        tenant.commit()
+        checklist = self.clients["a"].get("/setup/first-run").json()
+        self.assertTrue(checklist["checklist"][3]["done"])
+        self.assertTrue(checklist["checklist"][4]["done"])
+        self.assertEqual(checklist["first_case_id"], case_id)
 
     def test_setup_health_explains_missing_configuration_without_exposing_secrets(self):
         response = self.clients["a"].get("/setup/health")
