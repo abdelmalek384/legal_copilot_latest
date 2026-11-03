@@ -785,7 +785,9 @@ def main(argv=None):
                         "min_citation_precision_per_practice_area", "min_citation_coverage_per_practice_area",
                         "min_abstention_compliance_per_practice_area", "min_pin_cite_accuracy_per_practice_area",
                         "min_expected_pin_cite_recall_per_practice_area", "max_excluded_cases", "max_invalid_records",
-                        "max_unsafe_unverified_source_uses")))
+                        "max_unsafe_unverified_source_uses", "max_source_status_evidence_missing",
+                        "max_source_status_evidence_missing_per_practice_area",
+                        "max_unsafe_unverified_source_uses_per_practice_area")))
     if gate_enabled and args.min_reviewed_cases is None:
         parser.error("retrieval release gates require --min-reviewed-cases to prevent empty-sample passes")
     area_thresholds = (args.min_cases_per_practice_area, args.min_answerable_cases_per_practice_area,
@@ -794,7 +796,9 @@ def main(argv=None):
                        args.min_recall_at_5_per_practice_area, args.min_mrr_at_5_per_practice_area,
                        args.min_citation_precision_per_practice_area, args.min_citation_coverage_per_practice_area,
                        args.min_abstention_compliance_per_practice_area, args.min_pin_cite_accuracy_per_practice_area,
-                       args.min_expected_pin_cite_recall_per_practice_area)
+                       args.min_expected_pin_cite_recall_per_practice_area,
+                       args.max_source_status_evidence_missing_per_practice_area,
+                       args.max_unsafe_unverified_source_uses_per_practice_area)
     if any(value is not None for value in area_thresholds):
         if args.min_practice_areas is None or args.min_cases_per_practice_area is None:
             parser.error("per-practice-area thresholds require --min-practice-areas and --min-cases-per-practice-area")
