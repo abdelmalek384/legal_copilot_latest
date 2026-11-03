@@ -272,6 +272,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_deadline_calculator.py
       - name: Test authenticated case deadline calculator integration
         run: PYTHONPATH=. python tests/test_deadline_case_routes.py
+      - name: Test firm-isolated case communication history
+        run: PYTHONPATH=. python tests/test_case_communications.py
       - name: Test firm-scoped invoice draft and issue routes
         run: PYTHONPATH=. python tests/test_invoice_core_routes.py
       - name: Test invoice ledger CSV export
