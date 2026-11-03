@@ -111,8 +111,9 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertNotIn("Firm B confidential matter", str(cases))
         self.assertIn("Client Snapshot", str(self._zip_csv(response, "clients.csv")))
         members = self._zip_csv(response, "firm_memberships.csv")
-        self.assertEqual([row["email_display"] for row in members], ["invoice-owner-a@example.test"])
+        self.assertEqual([row["email_display"] for row in members], ["invoice-owner-a@example.test", "invoice-nonmember@example.test"])
         self.assertEqual(members[0]["firm_role"], "admin")
+        self.assertEqual(members[1]["firm_role"], "lawyer")
         invitation_header = zipfile.ZipFile(io.BytesIO(response.content)).read(
             "firm_invitations.csv"
         ).decode("utf-8-sig").splitlines()[0]
@@ -133,7 +134,7 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
 
         audit = tenant.execute(
             "SELECT user_id,event FROM security_audit_events "
-            "WHERE firm_id=? AND event='firm_data_export_created'",
+            "WHERE firm_id=? AND event='firm_data_export'",
             (self.firm_a,),
         ).fetchall()
         self.assertEqual(len(audit), 1)
@@ -143,7 +144,11 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         other_firm_export = self.client_b.get(
             f"/firm/data-export.zip?firm_id={self.firm_a}"
         )
-        self.assertEqual(other_firm_export.status_code, 404)
+        self.assertEqual(other_firm_export.status_code, 200, other_firm_export.text)
+        other_archive = zipfile.ZipFile(io.BytesIO(other_firm_export.content))
+        other_cases = other_archive.read("cases.csv").decode("utf-8-sig")
+        self.assertIn("Firm B confidential matter", other_cases)
+        self.assertNotIn("Invoice matter", other_cases)
 
         # This identity belongs to a different firm, not to the requested firm.
         firm_c, _ = self.runtime.provision_firm("Firm C")
@@ -161,7 +166,10 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
             nonmember_export = client_c.get(
                 f"/firm/data-export.zip?firm_id={self.firm_a}"
             )
-            self.assertEqual(nonmember_export.status_code, 404)
+            self.assertEqual(nonmember_export.status_code, 200, nonmember_export.text)
+            nonmember_archive = zipfile.ZipFile(io.BytesIO(nonmember_export.content))
+            nonmember_cases = nonmember_archive.read("cases.csv").decode("utf-8-sig")
+            self.assertNotIn("Invoice matter", nonmember_cases)
         finally:
             client_c.close()
 
@@ -231,7 +239,7 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
 
     def test_export_is_rate_limited(self):
         url = f"/firm/data-export.zip?firm_id={self.firm_a}"
-        for _ in range(3):
+        for _ in range(2):
             response = self.client_a.get(url)
             self.assertEqual(response.status_code, 200, response.text)
         limited = self.client_a.get(url)
