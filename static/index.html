@@ -153,8 +153,7 @@ button{min-height:44px}
  #side nav:after{background:linear-gradient(90deg,transparent,#fff)}
  #side nav .nav-scroll-hint{display:flex;position:sticky;inset-inline-end:0;align-items:center;flex:0 0 auto;z-index:2;padding:8px 10px;color:var(--pri);background:linear-gradient(90deg,#ffffffd8,#fff);font-size:14px;white-space:nowrap;border-inline-start:1px solid var(--line);pointer-events:none}
 }
-@media(max-width:420px){body{font-size:15px}.auth-card{width:calc(100% - 20px);padding:16px}.auth-card form>label{font-size:14px}.research-source-actions button,.research-message-actions button{min-height:44px}
-#side .lang-switch button,#side .firm-switch select{min-height:44px}}
+@media(max-width:420px){body{font-size:15px}.auth-card{width:calc(100% - 20px);padding:16px}.auth-card form>label{font-size:14px}.research-source-actions button,.research-message-actions button{min-height:44px}}
 </style>
 <style>
 /* Legal Copilot — premium workspace polish
@@ -877,6 +876,9 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
     animation-iteration-count: 1 !important;
   }
 }
+
+/* Keep compact header controls within the 44px touch-target contract. */
+#side .lang-switch button,#side .firm-switch select{min-height:44px}
 </style>
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <script>
