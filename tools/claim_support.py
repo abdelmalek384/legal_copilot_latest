@@ -40,14 +40,35 @@ _GENERIC_TERMS = {
 
 
 _ENGLISH_MODAL_PATTERNS = {
-    "permission": re.compile(r"\b(?:may(?!\s+not)|is permitted to|are permitted to|can)\b", re.IGNORECASE),
-    "obligation": re.compile(r"\b(?:must|shall|required to|is required to)\b", re.IGNORECASE),
-    "prohibition": re.compile(r"\b(?:may not|must not|shall not|is prohibited from|cannot)\b", re.IGNORECASE),
+    "permission": re.compile(
+        r"\b(?:may(?!\s+not)|is permitted to|are permitted to|"
+        r"is allowed to|are allowed to|can)\b",
+        re.IGNORECASE,
+    ),
+    # Exclude negated forms from the positive class so "must not" cannot
+    # simultaneously count as an obligation and a prohibition.
+    "obligation": re.compile(
+        r"\b(?:must(?!\s+not)|shall(?!\s+not)|"
+        r"(?<!not )required to|is required to|are required to)\b",
+        re.IGNORECASE,
+    ),
+    "prohibition": re.compile(
+        r"\b(?:may not|must not|shall not|is prohibited from|cannot|"
+        r"is not permitted to|are not permitted to|not permitted to|"
+        r"is not allowed to|are not allowed to|not allowed to)\b",
+        re.IGNORECASE,
+    ),
+    "non_obligation": re.compile(
+        r"\b(?:not required to|need not|is not obliged to|are not obliged to|"
+        r"is not obligated to|are not obligated to)\b",
+        re.IGNORECASE,
+    ),
 }
 _ARABIC_MODAL_PATTERNS = {
-    "permission": re.compile(r"(?<!لا )(?:يجوز|يحق)"),
-    "obligation": re.compile(r"(?:يجب|يلتزم|يتعين)"),
-    "prohibition": re.compile(r"(?:لا يجوز|يحظر|يمتنع عن)"),
+    "permission": re.compile(r"(?<!لا )(?:يجوز|يحق|يسمح)"),
+    "obligation": re.compile(r"(?<!لا )(?:يجب|يلتزم|يتعين)"),
+    "prohibition": re.compile(r"(?:لا يجوز|لا يحق|لا يسمح|يحظر|يمتنع عن)"),
+    "non_obligation": re.compile(r"(?:لا يجب|لا يلتزم|لا يتعين|ليس ملزما|غير ملزم)"),
 }
 
 
@@ -60,11 +81,23 @@ def _modal_classes(text, patterns):
 
 
 def _has_modal_mismatch(claim, evidence):
-    """Compare explicit modality only within the same language."""
+    """Compare explicit, conflicting modality classes only within one language."""
+    conflicts = {
+        ("permission", "prohibition"),
+        ("prohibition", "permission"),
+        ("permission", "obligation"),
+        ("obligation", "permission"),
+        ("obligation", "prohibition"),
+        ("prohibition", "obligation"),
+        ("obligation", "non_obligation"),
+        ("non_obligation", "obligation"),
+    }
     for patterns in (_ENGLISH_MODAL_PATTERNS, _ARABIC_MODAL_PATTERNS):
         claim_classes = _modal_classes(claim, patterns)
         evidence_classes = _modal_classes(evidence, patterns)
-        if claim_classes and evidence_classes and claim_classes.isdisjoint(evidence_classes):
+        if any((claim_class, evidence_class) in conflicts
+               for claim_class in claim_classes
+               for evidence_class in evidence_classes):
             return True
     return False
 
