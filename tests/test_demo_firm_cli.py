@@ -83,10 +83,17 @@ class DemoFirmCliTests(unittest.TestCase):
         invoice = tenant.execute("SELECT status,description FROM invoices").fetchone()
         self.assertEqual(invoice["status"], "issued")
         self.assertIn("تجريبية", invoice["description"])
+        app._meter_pilot_metric({"firm_id": firm_id}, "cases_created")
         self.assertEqual(
-            control.execute("SELECT COUNT(*) FROM pilot_metrics_events WHERE firm_id=?", (firm_id,)).fetchone()[0],
+            control.execute(
+                "SELECT COUNT(*) FROM pilot_metrics_weekly_counts WHERE firm_id=?",
+                (firm_id,),
+            ).fetchone()[0],
             0,
         )
+        self.assertFalse(any(
+            row["firm_id"] == firm_id for row in app._pilot_metrics_rows(control, weeks=1)
+        ))
 
     def test_removal_refuses_non_demo_and_removes_only_marked_demo_firm(self):
         normal_id, _ = self.runtime.provision_firm("Ordinary Firm")
