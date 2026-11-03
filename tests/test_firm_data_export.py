@@ -51,6 +51,29 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         )
         tenant.commit()
 
+        original_bytes = b"verified original pleading bytes"
+        staged = app._original_file_store().stage(self.firm_a, original_bytes)
+        app._original_file_store().finalize(self.firm_a, staged.object_id)
+        doc = tenant.execute(
+            "INSERT INTO docs(case_id,name,added,firm_id,uploader_user_id,sha256,"
+            "content_type,byte_size,extraction_status,ocr_used) "
+            "VALUES(?,?,datetime('now'),?,?,?,?,?,'complete',0)",
+            (
+                self.case_id, "pleading.pdf", self.firm_a, owner_id,
+                staged.sha256, "application/pdf", staged.byte_size,
+            ),
+        )
+        tenant.execute(
+            "INSERT INTO original_file_objects(object_id,document_id,firm_id,"
+            "storage_backend,sha256,byte_size,content_type,state) "
+            "VALUES(?,?,?,'local',?,?,?,'ready')",
+            (
+                staged.object_id, doc.lastrowid, self.firm_a, staged.sha256,
+                staged.byte_size, "application/pdf",
+            ),
+        )
+        tenant.commit()
+
         draft = self.create_draft().json()
         issued = self.mutate(
             self.client_a, "post", f"/invoices/{draft['id']}/issue"
@@ -83,6 +106,12 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertIn("Firm A session", str(self._zip_csv(response, "sessions.csv")))
         self.assertIn("Firm A fee", str(self._zip_csv(response, "fees.csv")))
         self.assertEqual(len(self._zip_csv(response, "invoices.csv")), 1)
+        documents = self._zip_csv(response, "documents.csv")
+        self.assertEqual(documents[0]["name"], "pleading.pdf")
+        manifest = self._zip_csv(response, "original_files_manifest.csv")
+        self.assertEqual(manifest[0]["export_status"], "included")
+        original_path = manifest[0]["included_path"]
+        self.assertEqual(archive.read(original_path), original_bytes)
 
         audit = tenant.execute(
             "SELECT user_id,event FROM security_audit_events "
