@@ -33,6 +33,37 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(case_b.status_code, 200, case_b.text)
 
         tenant, owner_id = self._tenant_a()
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO firm_profiles(firm_id,phone,address,updated_by_user_id) VALUES(?,?,?,?)",
+            (self.firm_a, "+20 100 000 0000", "Synthetic export address", owner_id),
+        )
+        control.execute(
+            "INSERT INTO firm_subscriptions(firm_id,plan_code,status,seat_limit,trial_started_at,trial_ends_at,created_at,updated_at) "
+            "VALUES(?, 'small_firm','trial',5,1800000000,1800600000,1800000000,1800000000)",
+            (self.firm_a,),
+        )
+        control.execute(
+            "INSERT INTO subscription_payment_submissions(firm_id,amount_piasters,method,transfer_reference,submitted_by_user_id,status,created_at) "
+            "VALUES(?,125000,'bank_transfer','PILOT-EXPORT-TEST-001',?,'pending',1800000000)",
+            (self.firm_a, owner_id),
+        )
+        control.execute(
+            "INSERT INTO subscription_audit_events(firm_id,actor_user_id,event_type,detail_json,created_at) "
+            "VALUES(?,?,'trial_started','{}',1800000000)",
+            (self.firm_a, owner_id),
+        )
+        control.execute(
+            "INSERT INTO firm_usage_events(firm_id,user_id,event_type,units,occurred_at) "
+            "VALUES(?,?,'research_query',1,1800000000)",
+            (self.firm_a, owner_id),
+        )
+        control.execute(
+            "INSERT INTO firm_setup_events(firm_id,actor_user_id,event_type,provider_status,created_at) "
+            "VALUES(?,?,'test_reminder_accepted','accepted_by_smtp','2026-11-03 12:00:00')",
+            (self.firm_a, owner_id),
+        )
+        control.commit()
         tenant.execute(
             "INSERT INTO notes(case_id,created_by,text) VALUES(?,?,?)",
             (self.case_id, owner_id, "Firm A private note"),
@@ -103,6 +134,8 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
             "research_messages.csv", "original_file_hold_events.csv", "product_feedback.csv",
             "product_feedback_events.csv", "original_files_manifest.csv",
             "firm_memberships.csv", "firm_invitations.csv", "identity_lifecycle_events.csv",
+            "firm_profiles.csv", "firm_subscriptions.csv", "subscription_payment_submissions.csv",
+            "subscription_audit_events.csv", "firm_usage_events.csv", "firm_setup_events.csv",
         }
         self.assertTrue(expected.issubset(names), sorted(expected - names))
 
@@ -114,6 +147,12 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual([row["email_display"] for row in members], ["invoice-owner-a@example.test", "invoice-nonmember@example.test"])
         self.assertEqual(members[0]["firm_role"], "admin")
         self.assertEqual(members[1]["firm_role"], "lawyer")
+        self.assertEqual(self._zip_csv(response, "firm_profiles.csv")[0]["phone"], "+20 100 000 0000")
+        self.assertEqual(self._zip_csv(response, "firm_subscriptions.csv")[0]["plan_code"], "small_firm")
+        self.assertEqual(self._zip_csv(response, "subscription_payment_submissions.csv")[0]["transfer_reference"], "PILOT-EXPORT-TEST-001")
+        self.assertEqual(self._zip_csv(response, "subscription_audit_events.csv")[0]["event_type"], "trial_started")
+        self.assertEqual(self._zip_csv(response, "firm_usage_events.csv")[0]["event_type"], "research_query")
+        self.assertEqual(self._zip_csv(response, "firm_setup_events.csv")[0]["provider_status"], "accepted_by_smtp")
         invitation_header = zipfile.ZipFile(io.BytesIO(response.content)).read(
             "firm_invitations.csv"
         ).decode("utf-8-sig").splitlines()[0]
