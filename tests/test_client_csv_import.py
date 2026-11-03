@@ -16,7 +16,7 @@ class ClientCSVImportTests(InvoiceTestSupport, unittest.TestCase):
         }
         response = self.mutate(self.client_a, "post", "/clients/import.csv", json=payload)
         self.assertEqual(response.status_code, 200, response.text)
-        self.assertEqual(response.json(), {"created": 1, "skipped": 1, "rows": 1})
+        self.assertEqual(response.json(), {"created": 1, "skipped": 2, "rows": 3})
         profiles = self.client_a.get("/clients").json()
         imported = next(item for item in profiles if item["name"] == "New CSV Client")
         self.assertEqual(imported["phone"], "+20 100 222 3333")
