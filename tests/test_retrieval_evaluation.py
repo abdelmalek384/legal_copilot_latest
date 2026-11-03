@@ -56,10 +56,10 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5)):
     return _score_evaluation(questions, runs, k_values, reviewer_registry=reviewer_registry())
 
 
-def run_main(args):
+def run_main(args, registry=None):
     with tempfile.TemporaryDirectory() as td:
         registry_path = Path(td) / "reviewers.json"
-        registry_path.write_text(json.dumps(reviewer_registry()), encoding="utf-8")
+        registry_path.write_text(json.dumps(registry or reviewer_registry()), encoding="utf-8")
         return main([*args, "--reviewer-registry", str(registry_path)])
 
 
@@ -567,6 +567,83 @@ class RetrievalEvaluationTests(unittest.TestCase):
             self.assertTrue(report["release_gate"]["passed"])
             self.assertEqual(report["practice_area_counts"]["civil_law"]["answerable_cases"], 1)
             self.assertEqual(report["practice_area_counts"]["civil_law"]["unanswerable_cases"], 1)
+
+    def test_per_practice_area_answerability_and_reviewer_diversity_gates(self):
+        second_reviewer = {
+            "reviewer_id": "reviewer-b",
+            "display_name": "Reviewer B",
+            "status": "approved",
+            "professional_role": "qualified_egyptian_counsel",
+            "jurisdiction": "Egypt",
+            "practice_areas": ["civil_law"],
+            "qualification_basis": "Synthetic test fixture only",
+            "evidence_reference": "private-test-reference-b",
+            "verified_by": "test-operator",
+            "verified_on": "2026-10-24",
+        }
+        registry = reviewer_registry()
+        registry["reviewers"].append(second_reviewer)
+        questions = [
+            reviewed_question(id="Q-CIVIL-A", reviewer_id="reviewer-a", reviewer_name="Reviewer A"),
+            reviewed_question(id="Q-CIVIL-B", reviewer_id="reviewer-b", reviewer_name="Reviewer B",
+                              answerable=False, expected_pin_cites=[]),
+        ]
+        runs = [
+            {"question_id": "Q-CIVIL-A", "retrieved_source_ids": ["LAW-A"],
+             "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
+             "abstained": False, "used_unverified_source": False},
+            {"question_id": "Q-CIVIL-B", "retrieved_source_ids": ["LAW-A"],
+             "citations": [], "abstained": True, "used_unverified_source": False},
+        ]
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            questions_path.write_text("".join(json.dumps(q) + "\\n" for q in questions), encoding="utf-8")
+            runs_path.write_text("".join(json.dumps(run) + "\\n" for run in runs), encoding="utf-8")
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                code = run_main([
+                    "--questions", str(questions_path), "--runs", str(runs_path),
+                    "--min-reviewed-cases", "2", "--min-practice-areas", "1",
+                    "--min-cases-per-practice-area", "2",
+                    "--min-answerable-cases-per-practice-area", "1",
+                    "--min-unanswerable-cases-per-practice-area", "1",
+                    "--min-reviewers-per-practice-area", "2",
+                ], registry=registry)
+            self.assertEqual(code, 0)
+            report = json.loads(output.getvalue())
+            area = report["practice_area_counts"]["civil_law"]
+            self.assertEqual(area["reviewer_count"], 2)
+            self.assertNotIn("reviewer_ids", area)
+
+            # Same reviewer on both cases must fail the diversity gate without
+            # exposing the reviewer identity in aggregate output.
+            questions[1]["reviewer_id"] = "reviewer-a"
+            questions[1]["reviewer_name"] = "Reviewer A"
+            questions_path.write_text("".join(json.dumps(q) + "\\n" for q in questions), encoding="utf-8")
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                code = run_main([
+                    "--questions", str(questions_path), "--runs", str(runs_path),
+                    "--min-reviewed-cases", "2", "--min-practice-areas", "1",
+                    "--min-cases-per-practice-area", "2",
+                    "--min-reviewers-per-practice-area", "2",
+                ], registry=registry)
+            self.assertEqual(code, 1)
+            report = json.loads(output.getvalue())
+            check = next(item for item in report["release_gate"]["checks"]
+                         if item["metric"] == "reviewers_per_practice_area:civil_law")
+            self.assertEqual(check["actual"], 1)
+            self.assertFalse(check["passed"])
+
+    def test_per_practice_area_thresholds_require_area_coverage_arguments(self):
+        with self.assertRaises(SystemExit) as raised:
+            run_main([
+                "--questions", str(DEFAULT_QUESTIONS),
+                "--min-reviewed-cases", "1",
+                "--min-answerable-cases-per-practice-area", "1",
+            ])
+        self.assertEqual(raised.exception.code, 2)
 
     def test_retrieval_release_gate_fails_on_low_recall_missing_citations_and_unsafe_abstention(self):
         with tempfile.TemporaryDirectory() as td:
