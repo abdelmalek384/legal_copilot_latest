@@ -41,6 +41,11 @@ def orthographic_variants(token):
         variants.append(token[:-1] + "ه")
     elif token.endswith("ه") and len(token) >= 4:
         variants.append(token[:-1] + "ة")
+    # Common hamza-seat spelling alternatives (e.g. مسؤول/مسئول, شؤون/شئون).
+    if "ؤ" in token:
+        variants.append(token.replace("ؤ", "ئ"))
+    elif "ئ" in token:
+        variants.append(token.replace("ئ", "ؤ"))
     return tuple(dict.fromkeys(variants))
 
 
