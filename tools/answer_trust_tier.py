@@ -52,6 +52,9 @@ def _source_matched_evidence_ready(source: Mapping) -> bool:
         parsed_dates[field] = parsed
     if parsed_dates["effective_date"] < parsed_dates["publication_date"]:
         return False
+    rights_description = evidence.get("reuse_rights_evidence")
+    if not isinstance(rights_description, str) or not rights_description.strip():
+        return False
     rights_url = evidence.get("reuse_rights_evidence_url")
     if (not isinstance(rights_url, str) or not rights_url or rights_url != rights_url.strip()
             or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in rights_url)):
