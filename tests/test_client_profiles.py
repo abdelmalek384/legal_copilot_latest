@@ -89,6 +89,11 @@ class ClientProfileTests(InvoiceTestSupport, unittest.TestCase):
             json={"name": "Unauthorized profile"},
         )
         self.assertEqual(denied.status_code, 403)
+        hidden_update = self.mutate(
+            self.client_nonmember, "put", f"/clients/{profile['id']}",
+            json={"name":"شركة النيل للتجارة","phone":"","email":"","address":"","notes":""},
+        )
+        self.assertEqual(hidden_update.status_code, 404)
 
         matter = self.mutate(
             self.client_a, "post", "/cases",
