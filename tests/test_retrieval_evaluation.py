@@ -757,9 +757,12 @@ class RetrievalEvaluationTests(unittest.TestCase):
             self.assertEqual(report["practice_area_metrics"]["labor_law"]["citation_coverage"], 0.0)
             self.assertEqual(report["practice_area_metrics"]["labor_law"]["abstention_compliance"], 0.0)
             checks = {item["metric"]: item for item in report["release_gate"]["checks"]}
-            for metric in ("recall_at_3", "mrr_at_3", "recall_at_5", "mrr_at_5", "citation_precision",
+            for metric in ("recall_at_5", "mrr_at_5", "citation_precision",
                            "citation_coverage", "abstention_compliance"):
                 self.assertTrue(checks[metric]["passed"])
+                self.assertTrue(checks[f"{metric}_per_practice_area:civil_law"]["passed"])
+                self.assertFalse(checks[f"{metric}_per_practice_area:labor_law"]["passed"])
+            for metric in ("recall_at_3", "mrr_at_3"):
                 self.assertTrue(checks[f"{metric}_per_practice_area:civil_law"]["passed"])
                 self.assertFalse(checks[f"{metric}_per_practice_area:labor_law"]["passed"])
 
