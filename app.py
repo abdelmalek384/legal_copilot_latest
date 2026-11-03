@@ -1,6 +1,6 @@
 """Legal copilot MVP: case workspace + hybrid law search + citation-checked answers.
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
-import base64, sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging
+import base64, sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging, tempfile
 from pathlib import Path
 from cryptography.fernet import Fernet
 import deadline_calculator as deadline_calc
