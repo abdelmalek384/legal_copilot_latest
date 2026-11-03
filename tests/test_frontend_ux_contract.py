@@ -417,7 +417,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("weekStart.setDate(weekStart.getDate()-((weekStart.getDay()+6)%7))", HTML)
         self.assertIn("weekEnd.setDate(weekEnd.getDate()+6)", HTML)
         self.assertIn("range.onchange=draw", HTML)
-        self.assertIn("x.date<weekStartKey||x.date>weekEndKey", HTML)
+        self.assertIn("itemDay(x)<weekStartKey||itemDay(x)>weekEndKey", HTML)
 
 
 if __name__ == "__main__":
