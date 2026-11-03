@@ -1064,11 +1064,29 @@ async function billingPage(){
  );
  const statusLabel=st=>({trial:uiText('فترة تجريبية','Free trial'),pending_payment:uiText('بانتظار مراجعة الدفع','Payment review pending'),active:uiText('نشط','Active'),expired:uiText('انتهت التجربة','Trial expired'),past_due:uiText('متأخر','Past due'),cancelled:uiText('ملغي','Cancelled')}[st]||st);
  const seat=data.seat_usage;
+ const usedSeats=Number(seat.active||0)+Number(seat.pending_invitations||0);
+ const seatsRemaining=Math.max(0,Number(seat.limit||0)-usedSeats);
+ const seatLimitReached=usedSeats>=Number(seat.limit||0);
  const trialDate=sub&&sub.trial_ends_at?new Date(sub.trial_ends_at*1000).toLocaleDateString(LANG==='ar'?'ar-EG':'en-US'):'—';
+ const trialDaysRemaining=sub&&sub.status==='trial'&&sub.trial_ends_at?Math.max(0,Math.ceil((Number(sub.trial_ends_at)*1000-Date.now())/86400000)):null;
+ const subscriptionNotice=sub&&sub.status==='expired'
+  ?h('div',{className:'auth-note',role:'status'},h('b',{textContent:uiText('انتهت الفترة التجريبية','The free trial has ended')}),h('p',{textContent:uiText('تظل سجلات المكتب محفوظة ولا تُحذف بسبب انتهاء التجربة. أرسل إثبات التحويل أدناه؛ ويجب أن يراجعه مسؤول المنصة قبل تفعيل الاشتراك.','Your firm records remain stored and are not deleted when the trial ends. Submit transfer proof below; a platform administrator must review it before the subscription is activated.')}))
+  :sub&&sub.status==='pending_payment'
+   ?h('div',{className:'auth-note',role:'status'},h('b',{textContent:uiText('الدفع قيد المراجعة','Payment review pending')}),h('p',{textContent:uiText('لم يتم تفعيل الاشتراك تلقائياً. سيظهر التغيير بعد مراجعة مسؤول المنصة لإثبات التحويل.','The subscription is not activated automatically. Its status changes after a platform administrator reviews the transfer proof.')}))
+   :sub&&sub.status==='past_due'
+    ?h('div',{className:'auth-note',role:'status'},h('b',{textContent:uiText('الاشتراك متأخر','Subscription is past due')}),h('p',{textContent:uiText('تواصل مع مسؤول المنصة أو أرسل إثبات الدفع أدناه. تظل بيانات المكتب محفوظة.','Contact the platform administrator or submit payment proof below. Your firm data remains stored.')}))
+    :sub&&sub.status==='cancelled'
+     ?h('div',{className:'auth-note',role:'status'},h('b',{textContent:uiText('الاشتراك ملغي','Subscription cancelled')}),h('p',{textContent:uiText('تظل بيانات المكتب محفوظة. تواصل مع مسؤول المنصة لمعرفة خيارات إعادة التفعيل.','Your firm data remains stored. Contact the platform administrator about reactivation options.')}))
+     :null;
+ const seatNotice=seatLimitReached
+  ?h('div',{className:'auth-note',role:'status'},h('b',{textContent:uiText('تم الوصول إلى حد المقاعد','Seat limit reached')}),h('p',{textContent:uiText('يشمل العدد الأعضاء النشطين والدعوات المعلقة. ألغِ دعوة غير مستخدمة أو غيّر الخطة قبل دعوة عضو جديد.','The count includes active members and pending invitations. Revoke an unused invitation or change the plan before inviting another member.')}))
+  :h('p',{className:'mut',textContent:uiText('المقاعد المتاحة: ','Available seats: ')+seatsRemaining});
  const planCard=h('section',{className:'card'},h('h3',{textContent:uiText('اشتراك المكتب','Firm subscription')}),
   h('p',{className:'mut',textContent:sub?uiText('الخطة: ','Plan: ')+sub.plan_code+' · '+uiText('الحالة: ','Status: ')+statusLabel(sub.status):uiText('لم يتم اختيار خطة بعد. اختر خطة لبدء التجربة المجانية.','No plan selected yet. Choose a plan to start the free trial.')}),
   h('p',{className:'mut',textContent:uiText('المقاعد: ','Seats: ')+seat.active+' '+uiText('نشط','active')+' + '+seat.pending_invitations+' '+uiText('دعوات معلقة','pending invitations')+' / '+seat.limit}),
-  sub&&sub.status==='trial'?h('p',{className:'mut',textContent:uiText('تنتهي التجربة في: ','Trial ends: ')+trialDate}):null,
+  seatNotice,
+  sub&&sub.status==='trial'?h('p',{className:'mut',textContent:uiText('تنتهي التجربة في: ','Trial ends: ')+trialDate+' · '+uiText('الأيام المتبقية: ','Days remaining: ')+trialDaysRemaining}):null,
+  subscriptionNotice,
   (!sub||sub.status==='trial')?h('div',{className:'row'},planSelect,btn(sub?uiText('تغيير الخطة','Change plan'):uiText('بدء تجربة مجانية لمدة 14 يوماً','Start 14-day free trial'),async()=>{try{await api('/billing/subscribe','POST',{plan_code:planSelect.value});toast(uiText('تم تحديث الاشتراك','Subscription updated'));billingPage()}catch(e){toast(String(e.message||e))}},'g')):null);
  const amount=h('input',{type:'text',inputMode:'decimal',placeholder:uiText('المبلغ بالجنيه المصري مثل 500.00','Amount in EGP, e.g. 500.00')});
  const method=h('select',{},new Option(uiText('تحويل بنكي','Bank transfer'),'bank_transfer'),new Option('InstaPay','instapay'));
