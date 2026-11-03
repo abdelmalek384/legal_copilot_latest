@@ -66,6 +66,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         self.assertNotIn("user_platform_roles", names(corpus))
         self.assertNotIn("chunks", names(control))
         self.assertIn("cases", names(firm)); self.assertIn("chunks_fts", names(firm))
+        self.assertIn("clients", names(firm)); self.assertNotIn("clients", names(control)); self.assertNotIn("clients", names(corpus))
         self.assertNotIn("legal_sources", names(firm))
         self.assertIn("legal_sources", names(corpus)); self.assertIn("chunks_fts", names(corpus))
         self.assertNotIn("cases", names(corpus)); self.assertNotIn("tenant_database_catalog", names(corpus))
@@ -94,7 +95,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
             "auth_sessions", "login_attempts", "api_rate_limit_windows",
         }
         matter_owned = {
-            "cases", "members", "tasks", "events", "notes", "deadlines", "fees",
+            "cases", "clients", "members", "tasks", "events", "notes", "deadlines", "fees",
             "sessions", "docs", "document_extraction_reviews", "research_conversations",
             "research_messages", "case_deletion_audit", "security_audit_events",
             "tenant_database_binding", "product_feedback", "product_feedback_events",
