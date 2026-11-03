@@ -8,6 +8,13 @@ HTML = Path("static/index.html").read_text(encoding="utf-8")
 
 class FrontendUXContractTests(unittest.TestCase):
 
+    def test_case_team_tab_shows_workload_counts_and_unassigned_tasks(self):
+        self.assertIn("Team workload", HTML)
+        self.assertIn("open tasks", HTML)
+        self.assertIn("completed tasks", HTML)
+        self.assertIn("Unassigned tasks", HTML)
+        self.assertIn("c.tasks.filter(task=>Number(task.assignee)===Number(member.user_id))", HTML)
+
     def test_arabic_ui_review_catalog_covers_source_literals(self):
         catalog_path = Path("static/ar-ui-review.json")
         catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
