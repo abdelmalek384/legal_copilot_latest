@@ -47,6 +47,11 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         self.assertIn("user_platform_roles", names(control))
         self.assertIn("platform_security_events", names(control))
         self.assertIn("firm_usage_events", names(control))
+        self.assertIn("firm_onboarding_timing", names(control))
+        self.assertNotIn("firm_onboarding_timing", names(firm))
+        self.assertNotIn("firm_onboarding_timing", names(corpus))
+        onboarding_columns = {row["name"] for row in control.execute("PRAGMA table_info(firm_onboarding_timing)")}
+        self.assertEqual(onboarding_columns, {"firm_id", "started_at", "completed_at", "completion_seconds"})
         usage_triggers = {row[0] for row in control.execute(
             "SELECT name FROM sqlite_master WHERE type='trigger' AND name LIKE 'firm_usage_events_%'"
         )}
@@ -84,7 +89,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         # sample of tables. New profile migrations must extend the appropriate
         # set when adding a table that belongs to another security domain.
         identity_and_control = {
-            "firms", "users", "firm_memberships", "user_platform_roles",
+            "firms", "users", "firm_memberships", "firm_onboarding_timing", "user_platform_roles",
             "platform_security_events", "tenant_database_catalog",
             "auth_sessions", "login_attempts", "api_rate_limit_windows",
         }
@@ -561,7 +566,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
             db.commit()
 
             applied = apply_profile_migrations(db, "control_plane", ROOT)
-            self.assertEqual(applied, [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21])
+            self.assertEqual(applied, [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22])
             previous = db.execute(
                 "SELECT event_type,detail_json FROM platform_security_events"
             ).fetchone()
