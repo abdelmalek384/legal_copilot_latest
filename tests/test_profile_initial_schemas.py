@@ -61,6 +61,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         self.assertNotIn("user_platform_roles", names(corpus))
         self.assertNotIn("chunks", names(control))
         self.assertIn("cases", names(firm)); self.assertIn("chunks_fts", names(firm))
+        self.assertIn("clients", names(firm)); self.assertNotIn("clients", names(control)); self.assertNotIn("clients", names(corpus))
         self.assertNotIn("legal_sources", names(firm))
         self.assertIn("legal_sources", names(corpus)); self.assertIn("chunks_fts", names(corpus))
         self.assertNotIn("cases", names(corpus)); self.assertNotIn("tenant_database_catalog", names(corpus))
