@@ -62,7 +62,7 @@ Required SMTP variables are documented in docs/reminder_email_delivery.md. COPIL
 ## Remaining integration/release requirements
 
 1. Configure and validate the real SMTP provider in staging; no live email was sent by automated tests.
-2. Test two-firm isolation and concurrent scheduler runs against the persistence adapter before claiming deduplication is production-safe.
+2. Automated synthetic SQLite tests cover two-firm outbox/recipient isolation and concurrent scheduler claims. Still exercise the same behavior against the production persistence adapter in staging before claiming deployment-level deduplication is production-safe.
 3. Add monitoring for failed, ambiguous, expired-lease, and stale queued records; define operator reconciliation and escalation ownership.
 4. Schedule the command with a service manager/cron and alert on nonzero exit codes and missed runs.
 5. Keep messages generic and links routed back to the authenticated app. Never treat SMTP acceptance as inbox delivery or as legal advice.
