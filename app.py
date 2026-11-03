@@ -7645,6 +7645,9 @@ def export_firm_data_zip(firm_id: int = Query(..., ge=1), u: dict = Depends(user
             (firm_id, u["id"], "firm_data_export_created"),
         )
         tenant.commit()
+    except HTTPException:
+        tenant.rollback()
+        raise
     except Exception as exc:
         tenant.rollback()
         logger.exception("firm data export failed")
