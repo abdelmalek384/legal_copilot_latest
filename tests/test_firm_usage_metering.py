@@ -120,5 +120,68 @@ class FirmUsageMeteringRouteTests(unittest.TestCase):
         ).fetchone()[0], 1)
 
 
+
+    def test_platform_pilot_metrics_are_aggregate_only_and_platform_admin_only(self):
+        control = app.control_conn()
+        # The successful sign-in during setUp contributes one active-user sign-in.
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,'platform_admin')",
+            (self.user_ids["a"],),
+        )
+        control.commit()
+        for metric in (
+            "cases_created", "deadlines_created", "answers_requested",
+            "invoices_issued", "corrections_submitted",
+        ):
+            app._record_pilot_metric(control, self.firm_a, metric)
+
+        schema_columns = {
+            row["name"] for row in control.execute(
+                "PRAGMA table_info(firm_weekly_pilot_metrics)"
+            ).fetchall()
+        }
+        self.assertEqual(
+            schema_columns,
+            {"firm_id", "week_start", "metric", "count", "updated_at"},
+        )
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM firm_weekly_pilot_metrics WHERE firm_id=?",
+                (self.firm_a,),
+            ).fetchone()[0],
+            6,
+        )
+
+        visible = self.clients["a"].get("/platform/pilot-metrics?weeks=4")
+        self.assertEqual(visible.status_code, 200, visible.text)
+        payload = visible.json()
+        self.assertEqual(set(payload["metrics"]), set(app._PILOT_METRICS))
+        self.assertIn("not distinct people", payload["active_users_definition"])
+        firm_a_rows = [row for row in payload["items"] if row["firm_id"] == self.firm_a]
+        firm_b_rows = [row for row in payload["items"] if row["firm_id"] == self.firm_b]
+        self.assertEqual(len(firm_a_rows), 4)
+        self.assertEqual(len(firm_b_rows), 4)
+        current_week = app._pilot_week_start(int(__import__("time").time()))
+        firm_a_current = next(row for row in firm_a_rows if row["week_start"] == current_week)
+        for metric in app._PILOT_METRICS:
+            self.assertEqual(firm_a_current[metric], 1, metric)
+        self.assertEqual(sum(row["active_users"] for row in firm_b_rows), 0)
+        self.assertNotIn("user_id", str(payload))
+        self.assertNotIn("case_id", str(payload))
+        self.assertNotIn("content", str(payload))
+
+        exported = self.clients["a"].get("/platform/pilot-metrics.csv?weeks=4")
+        self.assertEqual(exported.status_code, 200, exported.text)
+        self.assertIn("cases_created", exported.text)
+        self.assertNotIn("user_id", exported.text)
+        self.assertNotIn("case_id", exported.text)
+
+        # A normal firm administrator, even in a different firm, cannot inspect
+        # the platform-wide operator view or its CSV export.
+        denied_json = self.clients["b"].get("/platform/pilot-metrics?weeks=4")
+        denied_csv = self.clients["b"].get("/platform/pilot-metrics.csv?weeks=4")
+        self.assertEqual(denied_json.status_code, 403)
+        self.assertEqual(denied_csv.status_code, 403)
+
 if __name__ == "__main__":
     unittest.main()
