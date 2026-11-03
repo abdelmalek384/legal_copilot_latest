@@ -3,7 +3,6 @@ import os
 import tempfile
 import unittest
 import time
-from datetime import datetime, timezone
 from pathlib import Path
 
 from fastapi.testclient import TestClient
