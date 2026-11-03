@@ -4636,7 +4636,11 @@ def submit_subscription_payment(b: SubscriptionPaymentSubmissionIn, u: dict = De
 def platform_pilot_metrics(weeks: int = Query(12, ge=1, le=52), u: dict = Depends(user)):
     require_platform_admin(u)
     rows = _pilot_metrics_rows(control_conn(), weeks=weeks)
-    return {"weeks": weeks, "metrics": rows}
+    return {
+        "weeks": weeks,
+        "metrics": rows,
+        "active_users_definition": "Successful sign-ins and firm activations; not distinct people.",
+    }
 
 
 @app.get("/platform/pilot-metrics/export.csv")
