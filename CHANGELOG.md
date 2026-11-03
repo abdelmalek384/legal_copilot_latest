@@ -61,3 +61,4 @@ This is still an MVP, not a production-hardened legal system. No independent sec
 - PR #1283: add privacy-preserving weekly pilot metrics, platform-admin dashboard, CSV export, and isolation tests.
 - PR #1285: add a clearly marked fictional Arabic demo firm, sample cases/deadlines/fees/invoice, and guarded removal.
 - PR #1289: add firm profile setup, six-step first-run checklist API, configuration health explanations, and safe test reminders.
+- PR #1292: store weekly pilot usage as counts-only aggregates, exclude demo firms, and harden validation errors.
