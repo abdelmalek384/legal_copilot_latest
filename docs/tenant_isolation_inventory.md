@@ -103,6 +103,7 @@ The route coverage regression test compares every `@app` HTTP route in `app.py` 
 ## Data-table and storage inventory
 
 | Table / resource | Classification | Required isolation rule / gap |
+| `firm_onboarding_timing` | control_plane | Firm-level setup start/completion timestamps and elapsed seconds only; platform-admin reporting, no user or matter identifiers. |
 |---|---|---|
 | `firms`, `tenant_database_catalog`, `tenant_database_binding` | Control plane plus immutable per-firm database binding | Resolve database files only through the trusted catalog; status mismatches fail closed. This is the current separate-database runtime, not a shared firm catalog |
 | `users`, `auth_sessions`, `login_attempts`, `api_rate_limit_windows`, `firm_memberships`, `user_platform_roles` | Global identity, authentication, membership and platform authorization in the control plane | Identity is globally normalized; firm memberships and platform roles are distinct. Recheck live account/membership/role state and revoke stale sessions or cached connections on changes |

@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "40c280922979fb87c99bee8d97ab49486c327ecd",
   "generated_on": "2026-11-03",
-  "entry_count": 910,
+  "entry_count": 921,
   "entries": [
     {
       "id": "AR-0001",
@@ -7585,6 +7585,94 @@
       "arabic": "اليوم",
       "source_lines": [
         1279
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0911",
+      "arabic": "مدة إعداد المكاتب",
+      "source_lines": [
+        1158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0912",
+      "arabic": "تُقاس المدة من أول فتح لمعالج بدء الاستخدام حتى اكتمال خطواته الست. لا تُحسب المكاتب التجريبية.",
+      "source_lines": [
+        1159
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0913",
+      "arabic": "قيد الإعداد",
+      "source_lines": [
+        1145
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0914",
+      "arabic": "لم يبدأ",
+      "source_lines": [
+        1145
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0915",
+      "arabic": "مدة الإعداد:",
+      "source_lines": [
+        1149
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0916",
+      "arabic": "بدأ الإعداد ولم يكتمل بعد.",
+      "source_lines": [
+        1149
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0917",
+      "arabic": "لم يبدأ الإعداد بعد.",
+      "source_lines": [
+        1149
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0918",
+      "arabic": "دقيقة",
+      "source_lines": [
+        1147
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0919",
+      "arabic": "ساعة",
+      "source_lines": [
+        1147
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0920",
+      "arabic": "الاستخدام الأسبوعي",
+      "source_lines": [
+        1161
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0921",
+      "arabic": "لا توجد مكاتب نشطة لقياس الإعداد.",
+      "source_lines": [
+        1160
       ],
       "review_status": "pending_native_review"
     }

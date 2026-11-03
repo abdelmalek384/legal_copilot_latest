@@ -86,6 +86,9 @@ class FirstRunWizardApiTests(unittest.TestCase):
         self.assertEqual(initial.status_code, 200, initial.text)
         self.assertEqual(initial.json()["total"], 6)
         self.assertEqual(initial.json()["completed"], 0)
+        self.assertIsInstance(initial.json()["onboarding_started_at"], int)
+        self.assertIsNone(initial.json()["onboarding_completed_at"])
+        self.assertIsNone(initial.json()["onboarding_completion_seconds"])
         updated = self.clients["a"].put("/firm/profile", json={
             "name": "مكتب ألف للمحاماة", "phone": "+20 100 123 4567", "address": "القاهرة — بيانات تجريبية",
         }, headers={"X-CSRF-Token": self.clients["a"].cookies.get("lc_csrf")})
@@ -98,6 +101,8 @@ class FirstRunWizardApiTests(unittest.TestCase):
         checklist = self.clients["a"].get("/setup/first-run").json()
         self.assertTrue(checklist["checklist"][0]["done"])
         self.assertFalse(checklist["checklist"][1]["done"])
+        self.assertIsNone(checklist["onboarding_completed_at"])
+        self.assertIsNone(checklist["onboarding_completion_seconds"])
         context = self.runtime.resolve_context(self.user_ids["a"], self.firm_a)
         tenant = self.runtime.firm_connection(context)
         case_id = tenant.execute(
@@ -113,6 +118,64 @@ class FirstRunWizardApiTests(unittest.TestCase):
         self.assertTrue(checklist["checklist"][3]["done"])
         self.assertTrue(checklist["checklist"][4]["done"])
         self.assertEqual(checklist["first_case_id"], case_id)
+
+    def test_onboarding_duration_is_recorded_once_when_all_steps_complete(self):
+        initial = self.clients["a"].get("/setup/first-run")
+        self.assertEqual(initial.status_code, 200, initial.text)
+        started_at = initial.json()["onboarding_started_at"]
+        control = self.runtime.control_connection()
+        now = int(datetime.now(timezone.utc).timestamp())
+        profile = self.clients["a"].put(
+            "/firm/profile",
+            json={"name":"مكتب ألف للمحاماة","phone":"+20 100 123 4567","address":"بيانات تجريبية"},
+            headers={"X-CSRF-Token":self.clients["a"].cookies.get("lc_csrf")},
+        )
+        self.assertEqual(profile.status_code, 200, profile.text)
+        control.execute(
+            "INSERT INTO identity_invitations(firm_id,email_normalized,email_display,invited_role,token_hash,"
+            "invited_by_user_id,created_at,expires_at,status,updated_at) "
+            "VALUES(?,?,?,?,?,?,?,?, 'pending',?)",
+            (self.firm_a,"colleague-a@example.test","colleague-a@example.test","lawyer",
+             "a"*64,self.user_ids["a"],now,now+3600,now),
+        )
+        control.execute(
+            "INSERT INTO firm_setup_events(firm_id,actor_user_id,event_type,provider_status) "
+            "VALUES(?,?,'test_reminder_accepted','accepted_by_smtp')",
+            (self.firm_a,self.user_ids["a"]),
+        )
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name,granted_by_user_id) "
+            "VALUES(?,'platform_admin',?)",
+            (self.user_ids["a"],self.user_ids["a"]),
+        )
+        control.commit()
+        context = self.runtime.resolve_context(self.user_ids["a"], self.firm_a)
+        tenant = self.runtime.firm_connection(context)
+        case_id = tenant.execute(
+            "INSERT INTO cases(title,client,stage,created_by,firm_id) VALUES(?,?,?,?,?)",
+            ("Matter for onboarding", "Synthetic Client", "open", self.user_ids["a"], self.firm_a),
+        ).lastrowid
+        tenant.execute(
+            "INSERT INTO deadlines(case_id,title,due,created_by) VALUES(?,?,?,?)",
+            (case_id,"First hearing","2026-12-01",self.user_ids["a"]),
+        )
+        tenant.commit()
+        with patch("app._mfa_is_enabled", return_value=True):
+            completed = self.clients["a"].get("/setup/first-run")
+            self.assertEqual(completed.status_code, 200, completed.text)
+            self.assertEqual(completed.json()["completed"], 6)
+            self.assertIsInstance(completed.json()["onboarding_completed_at"], int)
+            self.assertGreaterEqual(completed.json()["onboarding_completion_seconds"], 0)
+            repeated = self.clients["a"].get("/setup/first-run")
+        self.assertEqual(repeated.json()["onboarding_started_at"], started_at)
+        self.assertEqual(repeated.json()["onboarding_completed_at"], completed.json()["onboarding_completed_at"])
+        self.assertEqual(repeated.json()["onboarding_completion_seconds"], completed.json()["onboarding_completion_seconds"])
+        platform = self.clients["a"].get("/platform/pilot-metrics")
+        self.assertEqual(platform.status_code, 200, platform.text)
+        measured = next(row for row in platform.json()["onboarding"] if row["firm_id"] == self.firm_a)
+        self.assertEqual(measured["completion_seconds"], completed.json()["onboarding_completion_seconds"])
+        self.assertIsNone(next(row for row in platform.json()["onboarding"] if row["firm_id"] == self.firm_b)["started_at"])
+        self.assertEqual(self.clients["b"].get("/platform/pilot-metrics").status_code, 403)
 
     def test_setup_health_explains_missing_configuration_without_exposing_secrets(self):
         response = self.clients["a"].get("/setup/health")
