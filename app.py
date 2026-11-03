@@ -4825,15 +4825,22 @@ def get_firm_billing(u: dict = Depends(user)):
     subscription = control.execute(
         "SELECT * FROM firm_subscriptions WHERE firm_id=?", (u["firm_id"],)
     ).fetchone()
-    if subscription and subscription["status"] == "trial" and subscription["trial_ends_at"] and int(subscription["trial_ends_at"]) <= now:
-        control.execute(
-            "UPDATE firm_subscriptions SET status='expired',updated_at=? WHERE firm_id=? AND status='trial'",
-            (now, u["firm_id"]),
+    if subscription:
+        status = str(subscription["status"])
+        expiry = (
+            subscription["trial_ends_at"] if status == "trial"
+            else subscription["current_period_end"] if status == "active"
+            else None
         )
-        control.commit()
-        subscription = control.execute(
-            "SELECT * FROM firm_subscriptions WHERE firm_id=?", (u["firm_id"],)
-        ).fetchone()
+        if expiry and int(expiry) <= now and status in {"trial", "active"}:
+            control.execute(
+                "UPDATE firm_subscriptions SET status='expired',updated_at=? WHERE firm_id=?",
+                (now, u["firm_id"]),
+            )
+            control.commit()
+            subscription = control.execute(
+                "SELECT * FROM firm_subscriptions WHERE firm_id=?", (u["firm_id"],)
+            ).fetchone()
     payments = [dict(row) for row in control.execute(
         "SELECT id,amount_piasters,method,transfer_reference,status,created_at,reviewed_at,decision_note "
         "FROM subscription_payment_submissions WHERE firm_id=? ORDER BY id DESC LIMIT 20",
@@ -4865,7 +4872,10 @@ def get_firm_billing(u: dict = Depends(user)):
     subscription_data = dict(subscription) if subscription else None
     expiry_at = None
     if subscription_data:
-        expiry_at = subscription_data.get("trial_ends_at") or subscription_data.get("current_period_end")
+        if subscription_data["status"] in {"trial", "pending_payment"}:
+            expiry_at = subscription_data.get("trial_ends_at") or subscription_data.get("current_period_end")
+        else:
+            expiry_at = subscription_data.get("current_period_end") or subscription_data.get("trial_ends_at")
     grace_end = int(expiry_at) + SUBSCRIPTION_READ_ONLY_GRACE_DAYS * 86400 if expiry_at else None
     read_only = bool(subscription_data and (
         subscription_data["status"] in {"expired", "cancelled", "past_due"}
