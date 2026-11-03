@@ -7523,6 +7523,39 @@ def export_firm_data_zip(firm_id: int = Query(..., ge=1), u: dict = Depends(user
             "SELECT e.id,e.case_id,e.who,e.at,e.text FROM events e "
             "JOIN cases c ON c.id=e.case_id WHERE c.firm_id=? ORDER BY e.id",
         ),
+        "documents.csv": (
+            "SELECT d.id,d.case_id,d.name,d.added,d.uploader_user_id,d.sha256,"
+            "d.content_type,d.byte_size,d.extraction_status,d.ocr_used "
+            "FROM docs d JOIN cases c ON c.id=d.case_id "
+            "WHERE c.firm_id=? ORDER BY d.id",
+        ),
+        "document_extraction_reviews.csv": (
+            "SELECT r.id,r.document_id,r.case_id,r.chunk_id,r.reviewer_user_id,"
+            "r.outcome,r.original_text,r.reviewed_text,r.note,r.page_reference,r.created_at "
+            "FROM document_extraction_reviews r JOIN cases c ON c.id=r.case_id "
+            "WHERE c.firm_id=? ORDER BY r.id",
+        ),
+        "matter_chunks.csv": (
+            "SELECT ch.id,ch.ref,ch.article,ch.page,ch.text,ch.norm,ch.case_id,"
+            "ch.document_id,ch.in_force,ch.as_of,ch.source,ch.verified "
+            "FROM chunks ch JOIN cases c ON c.id=ch.case_id "
+            "WHERE c.firm_id=? ORDER BY ch.id",
+        ),
+        "research_conversations.csv": (
+            "SELECT id,user_id,firm_id,title,created_at,updated_at "
+            "FROM research_conversations WHERE firm_id=? ORDER BY id",
+        ),
+        "research_messages.csv": (
+            "SELECT m.id,m.conversation_id,m.role,m.content,m.sources_json,m.message_json,m.created_at "
+            "FROM research_messages m JOIN research_conversations r ON r.id=m.conversation_id "
+            "WHERE r.firm_id=? ORDER BY m.id",
+        ),
+        "original_file_hold_events.csv": (
+            "SELECT e.* FROM original_file_hold_events e "
+            "JOIN original_file_objects o ON o.object_id=e.object_id "
+            "JOIN docs d ON d.id=o.document_id JOIN cases c ON c.id=d.case_id "
+            "WHERE c.firm_id=? ORDER BY e.id",
+        ),
         "invoices.csv": (
             "SELECT i.* FROM invoices i JOIN cases c ON c.id=i.case_id "
             "WHERE c.firm_id=? ORDER BY i.id",
@@ -7555,10 +7588,57 @@ def export_firm_data_zip(firm_id: int = Query(..., ge=1), u: dict = Depends(user
             for filename, (query,) in exports.items():
                 archive.writestr(filename, _firm_export_csv_bytes(tenant, query, firm_id))
             firm_stream = io.StringIO(newline="")
-            writer = csv.writer(firm_stream, lineterminator="\r\n")
+            writer = csv.writer(firm_stream, lineterminator="\\r\\n")
             writer.writerow(["firm_id", "name", "status"])
             writer.writerow([_csv_safe_cell(firm[key]) for key in ("id", "name", "status")])
-            archive.writestr("firm.csv", "\ufeff" + firm_stream.getvalue())
+            archive.writestr("firm.csv", "\\ufeff" + firm_stream.getvalue())
+
+            # Original binaries use the same private local/S3 adapter as document
+            # downloads. Verify each object against tenant metadata before inclusion.
+            object_rows = tenant.execute(
+                "SELECT o.object_id,o.sha256,o.byte_size,o.content_type,o.state,o.legal_hold,"
+                "d.id AS document_id,d.name FROM original_file_objects o "
+                "JOIN docs d ON d.id=o.document_id JOIN cases c ON c.id=d.case_id "
+                "WHERE c.firm_id=? ORDER BY d.id",
+                (firm_id,),
+            ).fetchall()
+            manifest = io.StringIO(newline="")
+            manifest_writer = csv.writer(manifest, lineterminator="\\r\\n")
+            manifest_writer.writerow([
+                "document_id","original_name","sha256","byte_size","content_type",
+                "state","legal_hold","included_path","export_status"
+            ])
+            store = _original_file_store() if object_rows else None
+            total_original_bytes = 0
+            for obj in object_rows:
+                included_path = ""
+                export_status = "not_exported_not_ready"
+                if obj["state"] == "ready":
+                    if total_original_bytes + int(obj["byte_size"]) > 250_000_000:
+                        raise HTTPException(413, "firm original files exceed the 250 MB export limit")
+                    if not store.verify(
+                        firm_id, obj["object_id"],
+                        expected_sha256=obj["sha256"], expected_size=int(obj["byte_size"]),
+                    ):
+                        raise HTTPException(503, "an original firm file failed integrity verification")
+                    safe_name = re.sub(r"[^A-Za-z0-9._-]+", "_", str(obj["name"] or "document"))
+                    safe_name = safe_name.strip("._-")[:100] or "document"
+                    included_path = f"original_files/{int(obj['document_id'])}-{safe_name}"
+                    with store.open(firm_id, obj["object_id"]) as original:
+                        raw = original.read(int(obj["byte_size"]) + 1)
+                    if len(raw) != int(obj["byte_size"]):
+                        raise HTTPException(503, "an original firm file changed during export")
+                    archive.writestr(included_path, raw)
+                    total_original_bytes += len(raw)
+                    export_status = "included"
+                elif obj["state"] == "quarantined":
+                    export_status = "not_exported_quarantined"
+                manifest_writer.writerow([
+                    obj["document_id"], _csv_safe_cell(obj["name"]),
+                    obj["sha256"], obj["byte_size"], obj["content_type"],
+                    obj["state"], obj["legal_hold"], included_path, export_status,
+                ])
+            archive.writestr("original_files_manifest.csv", "\\ufeff" + manifest.getvalue())
         payload = buffer.getvalue()
         tenant.execute(
             "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
