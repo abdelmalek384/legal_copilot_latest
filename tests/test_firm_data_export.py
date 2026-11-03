@@ -93,7 +93,10 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
             "sessions.csv", "fees.csv", "tasks.csv", "case_members.csv",
             "case_activity.csv", "invoices.csv", "invoice_lines.csv",
             "invoice_payments.csv", "invoice_events.csv",
-            "case_deletion_audit.csv", "security_audit_events.csv",
+            "case_deletion_audit.csv", "security_audit_events.csv", "documents.csv",
+            "document_extraction_reviews.csv", "matter_chunks.csv", "research_conversations.csv",
+            "research_messages.csv", "original_file_hold_events.csv", "product_feedback.csv",
+            "product_feedback_events.csv", "original_files_manifest.csv",
         }
         self.assertTrue(expected.issubset(names), sorted(expected - names))
 
