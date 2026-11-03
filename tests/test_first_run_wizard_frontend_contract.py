@@ -19,7 +19,7 @@ class FirstRunWizardFrontendContractTests(unittest.TestCase):
         self.assertIn("invite_colleague:()=>settingsPage()", HTML)
         self.assertIn("mfa:()=>settingsPage()", HTML)
         self.assertIn("first_case:()=>newCase()", HTML)
-        self.assertIn("first_deadline:data.first_case_id?view(data.first_case_id):newCase()", HTML)
+        self.assertIn("first_deadline:()=>data.first_case_id?view(data.first_case_id):newCase()", HTML)
         self.assertIn("test_reminder:data.health", HTML)
         self.assertIn("sendSetupTestReminder()", HTML)
         self.assertIn("setupHealthPage()", HTML)
