@@ -17,23 +17,25 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SOURCE = ROOT / "static" / "index.html"
 DEFAULT_OUTPUT = ROOT / "static" / "i18n" / "ui_text_pairs.csv"
-_STRING = r"""'(?:\\.|[^'\\])*'|"(?:\\.|[^"\\])*'"""
+_STRING = r"""'(?:\\.|[^'\\])*'|"(?:\\.|[^"\\])*" """
 _PAIR_RE = re.compile(
-    r"\\buiText\\s*\\(\\s*(" + _STRING + r")\\s*,\\s*(" + _STRING + r")\\s*\\)"
+    r"\buiText\s*\(\s*(" + _STRING.strip() + r")\s*,\s*(" + _STRING.strip() + r")\s*\)"
 )
-_CALL_RE = re.compile(r"\\buiText\\s*\\(")
+_CALL_RE = re.compile(r"\buiText\s*\(")
 
 
 def decode_js_string(literal: str) -> str:
-    """Decode the common JavaScript string escapes without corrupting Unicode."""
+    """Decode common JavaScript string escapes without corrupting Unicode."""
     body = literal[1:-1]
     out: list[str] = []
     index = 0
-    escapes = {"n": "\\n", "r": "\\r", "t": "\\t", "b": "\\b", "f": "\\f",
-               "v": "\\v", "0": "\\0", "\\\\": "\\\\", "'": "'", '"': '"', "/": "/"}
+    escapes = {
+        "n": "\n", "r": "\r", "t": "\t", "b": "\b", "f": "\f",
+        "v": "\v", "0": "\0", "\\": "\\", "'": "'", '"': '"', "/": "/",
+    }
     while index < len(body):
         char = body[index]
-        if char != "\\\\":
+        if char != "\\":
             out.append(char)
             index += 1
             continue
@@ -41,8 +43,8 @@ def decode_js_string(literal: str) -> str:
         if index >= len(body):
             break
         escaped = body[index]
-        if escaped in {"\\n", "\\r"}:
-            if escaped == "\\r" and index + 1 < len(body) and body[index + 1] == "\\n":
+        if escaped in {"\n", "\r"}:
+            if escaped == "\r" and index + 1 < len(body) and body[index + 1] == "\n":
                 index += 1
             index += 1
             continue
@@ -89,7 +91,7 @@ def extract_pairs(source: str) -> tuple[list[tuple[str, str, int]], int, int]:
 
 def render_catalog(pairs: list[tuple[str, str, int]]) -> str:
     stream = io.StringIO(newline="")
-    writer = csv.writer(stream, lineterminator="\\n")
+    writer = csv.writer(stream, lineterminator="\n")
     writer.writerow(["arabic", "english", "occurrences"])
     writer.writerows(pairs)
     return stream.getvalue()
