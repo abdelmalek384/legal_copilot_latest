@@ -3015,9 +3015,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(guessed_case.status_code, 404)
 
-        shared_search = self._mutate(
-            "post", "/search", json={"q": "corpusonlysentinel", "scope": "verified_corpus"}
-        )
+        with patch.dict(os.environ, {
+            "LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS": "42"
+        }):
+            shared_search = self._mutate(
+                "post", "/search", json={"q": "corpusonlysentinel", "scope": "verified_corpus"}
+            )
         self.assertEqual(shared_search.status_code, 200, shared_search.text)
         self.assertTrue(any("corpusonlysentinel" in hit["text"] for hit in shared_search.json()))
 
