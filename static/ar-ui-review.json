@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "40c280922979fb87c99bee8d97ab49486c327ecd",
   "generated_on": "2026-11-03",
-  "entry_count": 908,
+  "entry_count": 910,
   "entries": [
     {
       "id": "AR-0001",
@@ -7569,6 +7569,22 @@
       "arabic": "هذا الأسبوع",
       "source_lines": [
         1442
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0909",
+      "arabic": "كل الفترات",
+      "source_lines": [
+        1442
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0910",
+      "arabic": "اليوم",
+      "source_lines": [
+        1279
       ],
       "review_status": "pending_native_review"
     }
