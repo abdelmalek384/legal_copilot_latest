@@ -101,6 +101,7 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
             "document_extraction_reviews.csv", "matter_chunks.csv", "research_conversations.csv",
             "research_messages.csv", "original_file_hold_events.csv", "product_feedback.csv",
             "product_feedback_events.csv", "original_files_manifest.csv",
+            "firm_memberships.csv", "firm_invitations.csv", "identity_lifecycle_events.csv",
         }
         self.assertTrue(expected.issubset(names), sorted(expected - names))
 
@@ -108,6 +109,14 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual([row["title"] for row in cases], ["Invoice matter"])
         self.assertNotIn("Firm B confidential matter", str(cases))
         self.assertIn("Client Snapshot", str(self._zip_csv(response, "clients.csv")))
+        members = self._zip_csv(response, "firm_memberships.csv")
+        self.assertEqual([row["email_display"] for row in members], ["invoice-owner-a@example.test"])
+        self.assertEqual(members[0]["firm_role"], "admin")
+        invitation_header = zipfile.ZipFile(io.BytesIO(response.content)).read(
+            "firm_invitations.csv"
+        ).decode("utf-8-sig").splitlines()[0]
+        self.assertIn("email_display", invitation_header)
+        self.assertNotIn("token_hash", invitation_header)
         self.assertIn("Firm A private note", str(self._zip_csv(response, "notes.csv")))
         self.assertIn("Firm A hearing", str(self._zip_csv(response, "deadlines.csv")))
         self.assertIn("Firm A session", str(self._zip_csv(response, "sessions.csv")))
