@@ -6351,41 +6351,49 @@ def search_cases(
 ):
     if status not in ("", "open", "closed"):
         raise HTTPException(422, "status must be open or closed")
-    where = [
-        "cs.firm_id=?",
-        "(?='admin' OR cs.id IN (SELECT case_id FROM members WHERE user_id=?))",
-    ]
-    params = [int(u["firm_id"]), u["role"], int(u["id"])]
-    if status:
-        where.append("cs.status=?")
-        params.append(status)
     needle = q.strip()
-    if needle:
-        escaped = needle.replace("!", "!!").replace("%", "!%").replace("_", "!_")
-        pattern = f"%{escaped}%"
-        where.append(
-            "("
-            "COALESCE(cs.title,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
-            "COALESCE(cs.client,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
-            "COALESCE(cs.case_number,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
-            "COALESCE(cs.case_year,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
-            "COALESCE(cs.court,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
-            "COALESCE(cs.circuit,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
-            "COALESCE(cs.opposing_party,'') COLLATE NOCASE LIKE ? ESCAPE '!'"
-            ")"
-        )
-        params.extend([pattern] * 7)
-    where_sql = " AND ".join(where)
+    escaped = needle.replace("!", "!!").replace("%", "!%").replace("_", "!_")
+    pattern = f"%{escaped}%" if needle else ""
+    params = (
+        int(u["firm_id"]), u["role"], int(u["id"]), status, status,
+        needle, pattern, pattern, pattern, pattern, pattern, pattern, pattern,
+    )
     c = conn()
     total = int(c.execute(
-        "SELECT COUNT(*) FROM cases cs WHERE " + where_sql, tuple(params)
+        "SELECT COUNT(*) FROM cases cs "
+        "WHERE cs.firm_id=? "
+        "AND (?='admin' OR cs.id IN (SELECT case_id FROM members WHERE user_id=?)) "
+        "AND (?='' OR cs.status=?) "
+        "AND (?='' OR ("
+        "COALESCE(cs.title,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(cs.client,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(cs.case_number,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(cs.case_year,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(cs.court,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(cs.circuit,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(cs.opposing_party,'') COLLATE NOCASE LIKE ? ESCAPE '!'"
+        "))",
+        params,
     ).fetchone()[0])
     rows = c.execute(
         "SELECT cs.*, "
         "(SELECT COUNT(*) FROM tasks t WHERE t.case_id=cs.id AND t.status='open') AS open_tasks, "
         "(SELECT COUNT(*) FROM tasks t WHERE t.case_id=cs.id AND t.status='done') AS done_tasks "
-        "FROM cases cs WHERE " + where_sql + " ORDER BY cs.client,cs.id LIMIT ? OFFSET ?",
-        tuple(params + [limit, offset]),
+        "FROM cases cs "
+        "WHERE cs.firm_id=? "
+        "AND (?='admin' OR cs.id IN (SELECT case_id FROM members WHERE user_id=?)) "
+        "AND (?='' OR cs.status=?) "
+        "AND (?='' OR ("
+        "COALESCE(cs.title,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(cs.client,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(cs.case_number,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(cs.case_year,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(cs.court,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(cs.circuit,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(cs.opposing_party,'') COLLATE NOCASE LIKE ? ESCAPE '!'"
+        ")) "
+        "ORDER BY cs.client,cs.id LIMIT ? OFFSET ?",
+        params + (limit, offset),
     ).fetchall()
     return {"items": [dict(row) for row in rows], "total": total, "limit": limit, "offset": offset}
 
