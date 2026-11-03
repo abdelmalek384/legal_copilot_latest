@@ -1141,6 +1141,13 @@ async function platformPilotMetricsPage(){
   ['invoices_issued',uiText('الفواتير الصادرة','Invoices issued')],
   ['corrections_submitted',uiText('التصحيحات المقدمة','Corrections submitted')]
  ];
+ const onboardingCards=(data.onboarding||[]).map(row=>{
+  const status=row.completed_at!==null&&row.completed_at!==undefined?uiText('مكتمل','Completed'):(row.started_at?uiText('قيد الإعداد','In progress'):uiText('لم يبدأ','Not started'));
+  const seconds=Number(row.completion_seconds||0),minutes=Math.floor(seconds/60),hours=Math.floor(minutes/60),remainder=minutes%60;
+  const duration=hours?String(hours)+' '+uiText('ساعة','h')+' '+String(remainder)+' '+uiText('دقيقة','min'):String(minutes)+' '+uiText('دقيقة','min');
+  return h('section',{className:'card'},h('div',{className:'row'},h('b',{textContent:row.firm_name}),pill(status,row.completed_at?'open':'soon')),
+   h('div',{className:'mut',textContent:row.completed_at?uiText('مدة الإعداد: ','Completion time: ')+duration:(row.started_at?uiText('بدأ الإعداد ولم يكتمل بعد.','Setup started but is not complete yet.'):uiText('لم يبدأ الإعداد بعد.','Setup has not started yet.'))}));
+ });
  const cards=(data.metrics||[]).map(row=>h('section',{className:'card'},
   h('div',{className:'row'},h('b',{textContent:row.firm_name}),h('span',{className:'mut',textContent:row.week_start})),
   ...labels.map(([key,label])=>h('div',{className:'row'},h('span',{textContent:label}),h('b',{textContent:String(row[key]||0)})))
@@ -1148,6 +1155,10 @@ async function platformPilotMetricsPage(){
  shell(uiText('مؤشرات استخدام المكاتب','Firm pilot usage metrics'),
   h('p',{className:'mut',textContent:uiText('بيانات مجمعة أسبوعياً فقط. لا تتضمن معرفات المستخدمين أو أسماء القضايا والعملاء أو نصوص الأسئلة والإجابات. تسجيلات الدخول الناجحة هي عدد أحداث الدخول وليست عدد أشخاص فريدين؛ المستخدمون النشطون أسبوعياً غير مقاسين حالياً.','Weekly aggregate counts only. No user identifiers, case/client names, or question/answer content are stored. Successful sign-ins are event counts, not distinct people; weekly active users are not currently measured.')}),
   btn(uiText('تصدير CSV','Export CSV'),()=>{window.location.href='/platform/pilot-metrics/export.csv?weeks=12'},'g'),
+  h('h3',{textContent:uiText('مدة إعداد المكاتب','Firm onboarding duration')}),
+  h('p',{className:'mut',textContent:uiText('تُقاس المدة من أول فتح لمعالج بدء الاستخدام حتى اكتمال خطواته الست. لا تُحسب المكاتب التجريبية.','Measured from the first setup-wizard visit until all six steps are complete. Demo firms are excluded.')}),
+  ...(onboardingCards.length?onboardingCards:[empty(uiText('لا توجد مكاتب نشطة لقياس الإعداد.','No active firms to measure yet.'))]),
+  h('h3',{textContent:uiText('الاستخدام الأسبوعي','Weekly usage')}),
   ...(cards.length?cards:[empty(uiText('لا توجد بيانات استخدام خلال الفترة المحددة.','No usage data for the selected period.'))])
  );
 }
