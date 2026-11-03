@@ -278,6 +278,28 @@ DEMO_CASES = (
 )
 
 
+def _require_demo_firm_originals_absent(database_path: Path) -> None:
+    """Fail closed rather than orphan original binaries when removing a demo tenant."""
+    try:
+        uri = database_path.resolve(strict=True).as_uri() + "?mode=ro"
+        tenant = sqlite3.connect(uri, uri=True)
+        try:
+            count = tenant.execute(
+                "SELECT COUNT(*) FROM original_file_objects"
+            ).fetchone()[0]
+        finally:
+            tenant.close()
+    except (OSError, ValueError, sqlite3.Error) as exc:
+        raise SystemExit(
+            "Refusing removal: original-file metadata cannot be verified safely."
+        ) from exc
+    if int(count) > 0:
+        raise SystemExit(
+            "Refusing removal: demo firm still has original-file objects; "
+            "complete the approved file-deletion workflow before removing the tenant."
+        )
+
+
 def demo_firm_cli(a):
     """Create or remove a clearly marked fictional demo firm."""
     _require_profile_separated_runtime("demo-firm")
@@ -384,6 +406,7 @@ def demo_firm_cli(a):
             for sidecar in sidecars:
                 if sidecar.is_symlink() or (sidecar.exists() and not sidecar.is_file()):
                     raise SystemExit("Refusing removal: unsafe SQLite sidecar detected.")
+            _require_demo_firm_originals_absent(target)
             runtime.disable_firm(a.firm_id)
             control.execute("BEGIN IMMEDIATE")
             control.execute(
