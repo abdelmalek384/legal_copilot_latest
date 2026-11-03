@@ -1439,9 +1439,11 @@ function closeModal(overlay){
  overlay.remove();
  if(opener&&opener.isConnected&&typeof opener.focus==='function')opener.focus();
 }
-async function newCase(){
+async function newCase(clientName=''){
+
  const fields=[['title',uiText('عنوان القضية','Case title'),true],['client',uiText('اسم العميل (اختياري)','Client name (optional)'),false],['case_number',uiText('رقم القضية (اختياري)','Case number (optional)'),false],['case_year',uiText('سنة القضية (اختياري)','Case year (optional)'),false],['court',uiText('المحكمة (اختياري)','Court (optional)'),false],['circuit',uiText('الدائرة (اختياري)','Circuit (optional)'),false],['opposing_party',uiText('الخصم (اختياري)','Opposing party (optional)'),false]];
  const inputs={};fields.forEach(([k,label,required])=>inputs[k]=h('input',{name:k,placeholder:label,required,style:'width:100%'}));
+ if(inputs.client)inputs.client.value=clientName;
  const cancel=btn(uiText('إلغاء','Cancel'),()=>closeModal(overlay),'g');
  const save=btn(uiText('حفظ القضية','Save case'),async()=>{
    if(!inputs.title.value.trim()){toast(uiText('أدخل عنوان القضية','Enter a case title'));inputs.title.focus();return}
@@ -1457,15 +1459,52 @@ async function newCase(){
    h('section',{className:'modal card',role:'dialog','aria-modal':true,'aria-label':uiText('قضية جديدة','New case')},h('h2',{textContent:uiText('قضية جديدة','New case')}),form));
  overlay.__focusReturn=opener;A.append(overlay);inputs.title.focus()
 }
+async function clientProfileForm(profile=null){
+ const editing=Boolean(profile),fields=[
+  ['name',uiText('اسم العميل','Client name'),true],
+  ['phone',uiText('الهاتف','Phone'),false],
+  ['email',uiText('البريد الإلكتروني','Email'),false],
+  ['address',uiText('العنوان','Address'),false],
+  ['notes',uiText('ملاحظات','Notes'),false]
+ ];
+ const inputs={};
+ fields.forEach(([key,label,required])=>inputs[key]=h(key==='notes'?'textarea':'input',{
+  name:key,placeholder:label,required,rows:key==='notes'?3:undefined,
+  value:profile?.[key]||'',style:'width:100%'
+ }));
+ const overlay=h('div',{className:'modal-backdrop'});
+ const cancel=btn(uiText('إلغاء','Cancel'),()=>closeModal(overlay),'g');
+ const save=btn(uiText('حفظ الملف','Save profile'),async()=>{
+  if(!inputs.name.value.trim()){toast(uiText('أدخل اسم العميل','Enter a client name'));inputs.name.focus();return}
+  save.disabled=true;
+  try{
+   const payload={};fields.forEach(([key])=>payload[key]=inputs[key].value.trim());
+   await api(editing?'/clients/'+profile.id:'/clients','POST',payload);
+   closeModal(overlay);clients();
+  }catch(_){save.disabled=false}
+ });
+ const form=h('form',{onsubmit:e=>{e.preventDefault();save.click()}},
+  h('div',{className:'grid'},fields.map(([key,label,required])=>h('label',{style:'display:block'},h('span',{className:'mut',textContent:label+(required?' *':'')}),inputs[key]))),
+  h('div',{className:'row'},cancel,save));
+ overlay.append(h('section',{className:'modal card',role:'dialog','aria-modal':true,'aria-label':uiText('ملف العميل','Client profile')},
+  h('h2',{textContent:editing?uiText('تعديل ملف العميل','Edit client profile'):uiText('ملف عميل جديد','New client profile')}),form));
+ A.append(overlay);inputs.name.focus();
+}
 async function clients(){
- const cs=await api('/cases'),g={};cs.forEach(c=>(g[c.client||uiText('بدون عميل','No client')]??=[]).push(c));
+ const profiles=await api('/clients');
  const cq=h('input',{placeholder:uiText('اسم عميل أو خصم لفحص التعارض المحتمل','Search client or opposing party for potential conflicts'),'aria-label':uiText('بحث عن عميل أو خصم','Search client or opposing party'),style:'width:min(100%,420px)'}),cb=h('div');
  const run=async()=>{if(cq.value.trim().length<2){toast(uiText('أدخل حرفين على الأقل','Enter at least two characters'));return}const r=await api('/conflicts','POST',{q:cq.value.trim()});
  cb.replaceChildren(h('div',{className:'card'},h('b',{textContent:uiText('نتائج الفحص الأولي: ','Preliminary conflict matches: ')+r.matches.length}),h('p',{className:'mut',textContent:r.warning}),
   r.matches.length?r.matches.map(x=>h('div',{className:'row',style:'cursor:pointer',onclick:()=>{TAB='sum';view(x.id)}},h('div',{},h('b',{textContent:x.title}),h('div',{className:'mut',textContent:uiText('العميل: ','Client: ')+(x.client||'—')+' · '+uiText('الخصم: ','Opposing party: ')+(x.opposing_party||'—')})),pill(x.status==='open'?uiText('مفتوحة','Open'):uiText('مغلقة','Closed'),x.status==='open'?'open':'closed'))):empty(uiText('لم تظهر مطابقات في القضايا التي يمكنك الوصول إليها.','No matches were found in cases you can access.'))))};
  cq.onkeydown=e=>e.key==='Enter'&&run();
- shell(uiText('العملاء','Clients'),btn(uiText('+ قضية جديدة','+ New case'),newCase),h('div',{className:'card'},h('h3',{textContent:uiText('فحص أولي لتعارض المصالح','Preliminary conflict check')}),h('div',{className:'row'},cq,btn(uiText('فحص','Check'),run)),cb),
- cs.length?Object.entries(g).map(([k,v])=>h('div',{className:'card'},h('h3',{textContent:'📁 '+k}),h('div',{className:'mut',textContent:v.length+' '+uiText('قضايا','cases')}),v.map(caseRow))):h('div',{className:'card'},empty(uiText('لا توجد قضايا بعد. أنشئ أول قضية.','No cases yet. Create your first case.'))))
+ const cards=profiles.map(client=>h('section',{className:'card'},
+  h('div',{className:'row'},h('h3',{textContent:client.name}),h('span',{className:'mut'},client.matters.length+' '+uiText('قضايا','matters'))),
+  ...([['الهاتف',client.phone],['البريد الإلكتروني',client.email],['العنوان',client.address],['ملاحظات',client.notes]].filter(([,value])=>value).map(([label,value])=>h('p',{className:'mut',textContent:uiText(label,label)+': '+value}))),
+  h('div',{className:'row'},btn(uiText('+ قضية جديدة','+ New matter'),()=>newCase(client.name),'g'),...(ME.role==='admin'?[btn(uiText('تعديل الملف','Edit profile'),()=>clientProfileForm(client),'g')]:[])),
+  client.matters.length?h('div',{className:'stack'},h('b',{textContent:uiText('المسائل المرتبطة','Linked matters')}),...client.matters.map(m=>h('div',{className:'row'},h('div',{},h('b',{textContent:m.title}),h('div',{className:'mut',textContent:(m.case_number||'—')+(m.case_year?' / '+m.case_year:'')})),btn(uiText('فتح','Open'),()=>{TAB='sum';view(m.id)},'g')))):h('p',{className:'mut',textContent:uiText('لا توجد قضايا مرتبطة بهذا العميل بعد.','No matters linked to this client yet.')})
+ ));
+ shell(uiText('العملاء','Clients'),h('div',{className:'row'},...(ME.role==='admin'?[btn(uiText('+ ملف عميل جديد','+ New client profile'),()=>clientProfileForm(),'g')]:[]),btn(uiText('+ قضية جديدة','+ New case'),newCase)),h('div',{className:'card'},h('h3',{textContent:uiText('فحص أولي لتعارض المصالح','Preliminary conflict check')}),h('div',{className:'row'},cq,btn(uiText('فحص','Check'),run)),cb),
+  cards.length?cards:[h('div',{className:'card'},empty(uiText('لا توجد ملفات عملاء بعد.','No client profiles yet.')))]);
 }
 async function casesPage(){PAGE='cases';const cs=await api('/cases'),q=h('input',{placeholder:uiText('ابحث بالعنوان أو العميل أو رقم القضية أو الخصم','Search title, client, case number or opposing party')}),status=h('select',{},new Option(uiText('كل الحالات','All statuses'),''),new Option(uiText('مفتوحة','Open'),'open'),new Option(uiText('مغلقة','Closed'),'closed')),box=h('div',{className:'card'}),summary=h('div',{className:'mut'});const draw=()=>{const needle=q.value.trim().toLocaleLowerCase();const rows=cs.filter(c=>(!status.value||c.status===status.value)&&[c.title,c.client,c.case_number,c.case_year,c.court,c.circuit,c.opposing_party].filter(Boolean).join(' ').toLocaleLowerCase().includes(needle));summary.textContent=rows.length+' '+uiText('قضية','cases');box.replaceChildren(summary,...(rows.length?rows.map(caseRow):[empty(uiText('لا توجد قضايا مطابقة.','No matching cases.'))]))};q.oninput=status.onchange=draw;shell(uiText('القضايا','Cases'),h('p',{className:'workspace-subtitle',textContent:uiText('ابحث في بيانات القضايا الأساسية ثم افتح الملف لإدارة التفاصيل.','Search case metadata, then open a matter to manage its details.')}),h('div',{className:'filter-bar'},q,status,btn(uiText('+ قضية جديدة','+ New case'),newCase)),box);draw()}
 async function corpusCoverage(){
