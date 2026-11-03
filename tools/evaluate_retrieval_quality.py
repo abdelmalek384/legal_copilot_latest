@@ -488,11 +488,9 @@ def _retrieval_release_gate(report, args):
                or any(getattr(args, name) is not None for name in (
                    "min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
                    "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
-                 "min_answerable_cases_per_practice_area", "min_unanswerable_cases_per_practice_area",
-                 "min_reviewers_per_practice_area",
                    "min_answerable_cases_per_practice_area", "min_unanswerable_cases_per_practice_area",
-                   "min_reviewers_per_practice_area",
-                   "max_excluded_cases", "max_invalid_records", "max_unsafe_unverified_source_uses")))
+                   "min_reviewers_per_practice_area", "max_excluded_cases", "max_invalid_records",
+                   "max_unsafe_unverified_source_uses")))
     checks = []
     def add(metric, actual, operator, threshold):
         passed = actual is not None and (actual >= threshold if operator == ">=" else actual <= threshold)
@@ -583,12 +581,16 @@ def main(argv=None):
         parser.error(f"invalid reviewer registry: {exc}")
     for name in ("min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
                  "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
-                 "max_excluded_cases", "max_invalid_records", "max_unsafe_unverified_source_uses"):
+                 "min_answerable_cases_per_practice_area", "min_unanswerable_cases_per_practice_area",
+                 "min_reviewers_per_practice_area", "max_excluded_cases", "max_invalid_records",
+                 "max_unsafe_unverified_source_uses"):
         value = getattr(args, name)
         if value is not None and value < 0:
             parser.error("--" + name.replace("_", "-") + " must be a non-negative integer")
     for name in ("min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
-                 "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites"):
+                 "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
+                 "min_answerable_cases_per_practice_area", "min_unanswerable_cases_per_practice_area",
+                 "min_reviewers_per_practice_area"):
         value = getattr(args, name)
         if value is not None and value < 1:
             parser.error("--" + name.replace("_", "-") + " must be a positive integer")
@@ -605,7 +607,9 @@ def main(argv=None):
                     or any(getattr(args, name) is not None for name in (
                         "min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
                         "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
-                        "max_excluded_cases", "max_invalid_records", "max_unsafe_unverified_source_uses")))
+                        "min_answerable_cases_per_practice_area", "min_unanswerable_cases_per_practice_area",
+                        "min_reviewers_per_practice_area", "max_excluded_cases", "max_invalid_records",
+                        "max_unsafe_unverified_source_uses")))
     if gate_enabled and args.min_reviewed_cases is None:
         parser.error("retrieval release gates require --min-reviewed-cases to prevent empty-sample passes")
     area_thresholds = (args.min_cases_per_practice_area, args.min_answerable_cases_per_practice_area,
