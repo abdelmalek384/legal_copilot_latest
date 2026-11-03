@@ -366,5 +366,7 @@ jobs:
         run: PYTHONPATH=. python tests/test_platform_pilot_metrics_frontend_contract.py
       - name: Test safe request validation errors
         run: PYTHONPATH=. python tests/test_validation_error_handler.py
+      - name: Test first-run wizard frontend contract
+        run: PYTHONPATH=. python tests/test_first_run_wizard_frontend_contract.py
       - name: Guard that every test file runs in CI or is explicitly tracked
         run: PYTHONPATH=. python tests/test_ci_runs_all_tests.py
