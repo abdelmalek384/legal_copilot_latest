@@ -855,7 +855,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.get_by_role("heading", name="تغطية المجموعة القانونية").wait_for(timeout=10000)
         self.stage("rtl.coverage.visible")
 
-        for width, height in ((1440, 900), (375, 812)):
+        for width, height in ((1440, 900), (390, 844)):
             self.stage(f"rtl.viewport.{width}.start")
             self.page.set_viewport_size({"width": width, "height": height})
             self.stage(f"rtl.viewport.{width}.done")
@@ -875,7 +875,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             timeout=8000,
         )
         self.stage("ltr.direction.done")
-        for width, height in ((1440, 900), (375, 812)):
+        for width, height in ((1440, 900), (390, 844)):
             self.stage(f"ltr.viewport.{width}.start")
             self.page.set_viewport_size({"width": width, "height": height})
             self.stage(f"ltr.viewport.{width}.done")
