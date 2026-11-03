@@ -63,3 +63,4 @@ This is still an MVP, not a production-hardened legal system. No independent sec
 - PR #1289: add firm profile setup, six-step first-run checklist API, configuration health explanations, and safe test reminders.
 - PR #1292: store weekly pilot usage as counts-only aggregates, exclude demo firms, and harden validation errors.
 - PR #1291: add the firm-admin first-run wizard, setup-health explanations, and browser acceptance coverage.
+- PR #1297: expose weekly aggregate pilot metrics and CSV export through platform-admin-only navigation, with browser visibility coverage.
