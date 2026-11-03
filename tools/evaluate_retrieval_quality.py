@@ -452,6 +452,8 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None
     for area, area_cases in sorted(reviewed_by_area.items()):
         recall_values = []
         reciprocal_ranks = []
+        recall_at_3_values = []
+        reciprocal_ranks_at_3 = []
         citation_total_area = citation_correct_area = 0
         citation_index_errors_area = 0
         answerable_area = answerable_with_expected_area = 0
@@ -466,10 +468,13 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None
             if _effective_unverified_source(run) and run["abstained"] is not True:
                 unsafe_unverified_uses_area += 1
             ranked = _unique_ids(run["retrieved_source_ids"])
+            top_three = set(ranked[:3])
             top_five = set(ranked[:5])
+            recall_at_3_values.append(len(expected_sources & top_three) / len(expected_sources))
             recall_values.append(len(expected_sources & top_five) / len(expected_sources))
             rank = next((index for index, source_id in enumerate(ranked, 1)
                          if source_id in expected_sources), None)
+            reciprocal_ranks_at_3.append(1.0 / rank if rank is not None and rank <= 3 else 0.0)
             reciprocal_ranks.append(1.0 / rank if rank is not None and rank <= 5 else 0.0)
             retrieved = set(ranked)
             expected_pin_cites = question.get("expected_pin_cites") or []
@@ -512,6 +517,8 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None
             "reviewed_cases": len(area_cases),
             "answerable_cases": answerable_area,
             "unanswerable_cases": abstention_cases_area,
+            "recall_at_3": round(sum(recall_at_3_values) / len(recall_at_3_values), 4) if recall_at_3_values else None,
+            "mrr_at_3": round(sum(reciprocal_ranks_at_3) / len(reciprocal_ranks_at_3), 4) if reciprocal_ranks_at_3 else None,
             "recall_at_5": round(sum(recall_values) / len(recall_values), 4) if recall_values else None,
             "mrr_at_5": round(sum(reciprocal_ranks) / len(reciprocal_ranks), 4) if reciprocal_ranks else None,
             "citation_precision": round(citation_correct_area / (citation_total_area + citation_index_errors_area), 4)
@@ -595,6 +602,8 @@ def _retrieval_release_gate(report, args):
         "abstention_compliance": args.min_abstention_compliance,
     }
     per_area_thresholds = {
+        "recall_at_3": args.min_recall_at_3_per_practice_area,
+        "mrr_at_3": args.min_mrr_at_3_per_practice_area,
         "recall_at_5": args.min_recall_at_5_per_practice_area,
         "mrr_at_5": args.min_mrr_at_5_per_practice_area,
         "citation_precision": args.min_citation_precision_per_practice_area,
@@ -613,7 +622,8 @@ def _retrieval_release_gate(report, args):
                    "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
                    "min_answerable_cases_per_practice_area", "min_unanswerable_cases_per_practice_area",
                    "min_reviewers_per_practice_area", "min_expected_pin_cites_per_practice_area",
-                   "min_recall_at_5_per_practice_area", "min_mrr_at_5_per_practice_area",
+                   "min_recall_at_3_per_practice_area", "min_mrr_at_3_per_practice_area",
+                 "min_recall_at_5_per_practice_area", "min_mrr_at_5_per_practice_area",
                    "min_citation_precision_per_practice_area", "min_citation_coverage_per_practice_area",
                    "min_abstention_compliance_per_practice_area", "min_pin_cite_accuracy_per_practice_area",
                    "min_expected_pin_cite_recall_per_practice_area", "max_excluded_cases", "max_invalid_records",
@@ -726,6 +736,8 @@ def main(argv=None):
     parser.add_argument("--min-citation-coverage", type=float)
     parser.add_argument("--min-expected-pin-cite-recall", type=float)
     parser.add_argument("--min-abstention-compliance", type=float)
+    parser.add_argument("--min-recall-at-3-per-practice-area", type=float)
+    parser.add_argument("--min-mrr-at-3-per-practice-area", type=float)
     parser.add_argument("--min-recall-at-5-per-practice-area", type=float)
     parser.add_argument("--min-mrr-at-5-per-practice-area", type=float)
     parser.add_argument("--min-citation-precision-per-practice-area", type=float)
