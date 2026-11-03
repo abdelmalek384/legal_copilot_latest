@@ -766,7 +766,7 @@ class RetrievalEvaluationTests(unittest.TestCase):
         runs = [
             {"question_id": "Q-CIVIL-STATUS", "retrieved_source_ids": ["LAW-A"],
              "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
-             "source_summary": [{"source_id": "LAW-A"}], "abstained": False, "used_unverified_source": False},
+             "source_summary": [{"source_id": "LAW-A"}], "abstained": False, "used_unverified_source": True},
             {"question_id": "Q-LABOR-STATUS", "retrieved_source_ids": ["LAW-A"],
              "citations": [{"source_id": "LAW-A", "pin_cite": "Article 12"}],
              "source_summary": [{"source_id": "LAW-A", "source_status": "verified_operative_text"}],
