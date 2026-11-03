@@ -10,7 +10,6 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from tools.evaluate_retrieval_quality import DEFAULT_QUESTIONS, _load_jsonl, _write_report, main, score_evaluation as _score_evaluation, validate_reviewed_question
-from test_answer_trust_tier import AnswerTrustTierTests
 
 
 def reviewed_question(**overrides):
@@ -533,6 +532,8 @@ class RetrievalEvaluationTests(unittest.TestCase):
                          if item["metric"] == "invalid_records_and_duplicate_ids")
             self.assertEqual(check["actual"], 1)
             self.assertFalse(check["passed"])
+
+
 
 if __name__ == "__main__":
     unittest.main()
