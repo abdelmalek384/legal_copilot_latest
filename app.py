@@ -2087,6 +2087,9 @@ if _allowed_hosts:
 # Per-process fixed-window limits for expensive or abuse-prone endpoints.
 # Deliberately use the direct peer address; do not trust arbitrary X-Forwarded-For.
 _RATE_LIMITS = {
+    # Platform pilot reporting is bounded separately from normal firm workflows.
+    "/platform/pilot-metrics": (30, 60),
+    "/platform/pilot-metrics/export.csv": (10, 60),
     # Login has a separate failed-credential throttle in the login handler.
     # A generic middleware cap would also reject correct credentials and break
     # the intentional policy that a known user can still log in during lockout.
