@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from datetime import date
 from pathlib import Path
 from urllib.parse import urlparse
@@ -116,6 +117,9 @@ def validate(relationships_doc: dict, inventory_doc: dict) -> dict:
         if not isinstance(document_id, str) or not document_id.strip():
             add("error", "missing_document_id", None, f"Inventory entry at index {index} must have a non-empty document_id.")
             continue
+        if document_id != document_id.strip() or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,127}", document_id):
+            add("error", "invalid_document_id", None, f"Inventory entry at index {index} must use a trimmed stable ASCII document_id.")
+            continue
         if document_id in seen_document_ids:
             add("error", "duplicate_document_id", None, f"document_id {document_id!r} occurs more than once in the inventory.")
             continue
@@ -130,6 +134,8 @@ def validate(relationships_doc: dict, inventory_doc: dict) -> dict:
         rid_label = rid if isinstance(rid, str) and rid.strip() else None
         if rid_label is None:
             add("error", "missing_relationship_id", None, f"Entry at index {index} has no relationship_id.")
+        elif rid_label != rid_label.strip() or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,127}", rid_label):
+            add("error", "invalid_relationship_id", rid_label, "relationship_id must be a trimmed stable ASCII identifier.")
         elif rid_label in seen:
             add("error", "duplicate_relationship_id", rid_label, "relationship_id must be unique.")
         else:
