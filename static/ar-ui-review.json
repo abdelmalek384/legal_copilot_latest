@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "a268b3527b235086f2d8196b64ec442442d124d4",
   "generated_on": "2026-11-03",
-  "entry_count": 926,
+  "entry_count": 928,
   "entries": [
     {
       "id": "AR-0001",
@@ -7713,6 +7713,22 @@
       "arabic": "استيراد CSV",
       "source_lines": [
         1526
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0927",
+      "arabic": "تم استيراد",
+      "source_lines": [
+        1520
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0928",
+      "arabic": "تم تخطي",
+      "source_lines": [
+        1520
       ],
       "review_status": "pending_native_review"
     }
