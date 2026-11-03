@@ -8,6 +8,7 @@ import unittest
 from unittest import mock
 
 import app
+from tools.arabic_legal_matching import orthographic_variants, expand_lexicon_hints
 
 
 REVIEW_TYPES = (
