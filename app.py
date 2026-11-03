@@ -608,13 +608,18 @@ def _ensure_client_profile(c, u, client_name="", client_id=None):
         ).fetchone():
             raise HTTPException(409, "client profile exists; ask a firm administrator to link this matter")
         return int(row["id"]), str(row["name"])
-    c.execute(
+    cursor = c.execute(
         "INSERT OR IGNORE INTO clients(name,normalized_name,created_by) VALUES(?,?,?)",
         (name, normalized, int(u["id"])),
     )
     row = c.execute(
         "SELECT id,name FROM clients WHERE normalized_name=?", (normalized,)
     ).fetchone()
+    if cursor.rowcount == 1:
+        c.execute(
+            "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+            (int(u["firm_id"]), int(u["id"]), f"client_profile_created:{int(row['id'])}"),
+        )
     if row is None:
         raise HTTPException(503, "client profile could not be created")
     return int(row["id"]), str(row["name"])
@@ -6010,6 +6015,10 @@ def create_client(b: ClientIn, u: dict = Depends(user)):
     )
     if cursor.rowcount != 1:
         raise HTTPException(409, "a client with this name already exists")
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (int(u["firm_id"]), int(u["id"]), f"client_profile_created:{int(cursor.lastrowid)}"),
+    )
     c.commit()
     return next(row for row in _client_payloads(c, u) if row["id"] == int(cursor.lastrowid))
 
@@ -6035,6 +6044,10 @@ def update_client(client_id: int, b: ClientIn, u: dict = Depends(user)):
     )
     # Keep the legacy case-name snapshot aligned with the canonical profile name.
     c.execute("UPDATE cases SET client=? WHERE client_id=?", (name, client_id))
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (int(u["firm_id"]), int(u["id"]), f"client_profile_updated:{int(client_id)}"),
+    )
     c.commit()
     return next(row for row in _client_payloads(c, u) if row["id"] == client_id)
 
