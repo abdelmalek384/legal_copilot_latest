@@ -556,6 +556,7 @@ class RetrievalEvaluationTests(unittest.TestCase):
                     "--min-reviewed-cases", "2", "--min-practice-areas", "1",
                     "--min-cases-per-practice-area", "2", "--min-answerable-cases", "1",
                     "--min-unanswerable-cases", "1", "--min-expected-pin-cites", "1",
+                    "--min-recall-at-3", "1", "--min-mrr-at-3", "1",
                     "--min-recall-at-5", "1", "--min-mrr-at-5", "1",
                     "--min-citation-precision", "1", "--min-pin-cite-accuracy", "1",
                     "--min-citation-coverage", "1",
@@ -892,6 +893,7 @@ class RetrievalEvaluationTests(unittest.TestCase):
                     "--min-reviewed-cases", "2", "--min-practice-areas", "1",
                     "--min-cases-per-practice-area", "2", "--min-answerable-cases", "1",
                     "--min-unanswerable-cases", "1", "--min-expected-pin-cites", "1",
+                    "--min-recall-at-3", "1", "--min-mrr-at-3", "1",
                     "--min-recall-at-5", "1", "--min-citation-coverage", "1",
                     "--min-expected-pin-cite-recall", "1", "--min-abstention-compliance", "1",
                     "--max-excluded-cases", "0", "--max-unsafe-unverified-source-uses", "0",
@@ -900,7 +902,7 @@ class RetrievalEvaluationTests(unittest.TestCase):
             report = json.loads(output.getvalue())
             self.assertFalse(report["release_gate"]["passed"])
             checks = {item["metric"]: item for item in report["release_gate"]["checks"]}
-            for metric in ("recall_at_5", "citation_coverage", "expected_pin_cite_recall",
+            for metric in ("recall_at_3", "mrr_at_3", "recall_at_5", "citation_coverage", "expected_pin_cite_recall",
                            "abstention_compliance", "unsafe_unverified_source_uses"):
                 self.assertFalse(checks[metric]["passed"])
 

@@ -128,3 +128,6 @@ Do not claim legal-answer accuracy from retrieval metrics alone. Before a releas
 4. Behavior when the corpus is empty, stale, incomplete, or permissions block access.
 5. Abstention when no reviewed operative source supports an answer.
 6. Separate human legal correctness review; no automated metric replaces it.
+
+
+The evaluator supports optional `--min-recall-at-3` and `--min-mrr-at-3` thresholds in addition to top-five thresholds. Configure these only alongside explicit minimum reviewed-case, answerable-case, and practice-area cohort gates; a top-three metric without a sufficient lawyer-reviewed denominator must not be treated as release evidence.
