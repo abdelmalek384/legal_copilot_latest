@@ -1341,8 +1341,10 @@ async function firstRunPage(){
    firstRunPage();
   }catch(_){}
  },'g');
+ const profileDone=(data.checklist||[]).find(item=>item.id==='firm_details')?.done===true;
  const profileCard=h('section',{className:'card'},
-  h('h3',{textContent:uiText('بيانات المكتب','Firm details')}),
+  h('div',{className:'row'},h('h3',{textContent:uiText('بيانات المكتب','Firm details')}),
+   pill(profileDone?uiText('مكتمل','Complete'):uiText('لم يكتمل','Not complete'),profileDone?'open':'soon')),
   h('p',{className:'mut',textContent:uiText('أدخل اسم المكتب ورقم هاتف يمكن للعملاء والزملاء استخدامه. العنوان اختياري.','Add your firm name and a contact phone number. Address is optional.')}),
   h('div',{className:'form-grid'},h('label',{},uiText('اسم المكتب','Firm name'),nameInput),
    h('label',{},uiText('رقم الهاتف','Phone number'),phoneInput),
@@ -1367,7 +1369,7 @@ async function firstRunPage(){
   invite_colleague:uiText('فتح إعدادات الدعوات','Open invitations'),
   mfa:uiText('إعداد المصادقة الثنائية','Set up MFA'),
   first_case:uiText('إنشاء أول قضية','Create first case'),
-  first_deadline:uiText('إضافة أول موعد','Add first deadline'),
+  first_deadline:data.first_case_id?uiText('إضافة أول موعد','Add first deadline'):uiText('أنشئ قضية أولاً','Create a case first'),
   test_reminder:data.health&&data.health.ready_for_test_reminder?uiText('إرسال رسالة اختبار','Send test message'):uiText('فحص إعدادات البريد','Check email setup')
  };
  const stepCards=(data.checklist||[]).filter(item=>item.id!=='firm_details').map(item=>h('section',{className:'card'},
