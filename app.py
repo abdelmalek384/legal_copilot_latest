@@ -7472,11 +7472,11 @@ def _csv_safe_cell(value):
 def _firm_export_csv_bytes(cursor) -> bytes:
     headers = [column[0] for column in cursor.description]
     stream = io.StringIO(newline="")
-    writer = csv.writer(stream, lineterminator="\\r\\n")
+    writer = csv.writer(stream, lineterminator="\r\n")
     writer.writerow(headers)
     for row in cursor.fetchall():
         writer.writerow([_csv_safe_cell(row[column]) for column in headers])
-    return ("\\ufeff" + stream.getvalue()).encode("utf-8")
+    return ("\ufeff" + stream.getvalue()).encode("utf-8")
 
 
 @app.get("/firm/data-export.zip")
@@ -7601,10 +7601,10 @@ def export_firm_data_zip(firm_id: int = Query(..., ge=1), u: dict = Depends(user
             )))
 
             firm_stream = io.StringIO(newline="")
-            writer = csv.writer(firm_stream, lineterminator="\\r\\n")
+            writer = csv.writer(firm_stream, lineterminator="\r\n")
             writer.writerow(["firm_id", "name", "status"])
             writer.writerow([_csv_safe_cell(firm[key]) for key in ("id", "name", "status")])
-            archive.writestr("firm.csv", "\\ufeff" + firm_stream.getvalue())
+            archive.writestr("firm.csv", "\ufeff" + firm_stream.getvalue())
 
             object_rows = tenant.execute(
                 "SELECT o.object_id,o.sha256,o.byte_size,o.content_type,o.state,o.legal_hold,"
@@ -7613,7 +7613,7 @@ def export_firm_data_zip(firm_id: int = Query(..., ge=1), u: dict = Depends(user
                 "ORDER BY d.id"
             ).fetchall()
             manifest = io.StringIO(newline="")
-            manifest_writer = csv.writer(manifest, lineterminator="\\r\\n")
+            manifest_writer = csv.writer(manifest, lineterminator="\r\n")
             manifest_writer.writerow([
                 "document_id","original_name","sha256","byte_size","content_type",
                 "state","legal_hold","included_path","export_status"
@@ -7649,7 +7649,7 @@ def export_firm_data_zip(firm_id: int = Query(..., ge=1), u: dict = Depends(user
                     obj["sha256"], obj["byte_size"], obj["content_type"],
                     obj["state"], obj["legal_hold"], included_path, export_status,
                 ])
-            archive.writestr("original_files_manifest.csv", "\\ufeff" + manifest.getvalue())
+            archive.writestr("original_files_manifest.csv", "\ufeff" + manifest.getvalue())
 
         payload = buffer.getvalue()
         tenant.execute(
