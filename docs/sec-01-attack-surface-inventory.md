@@ -91,6 +91,7 @@ The table list below is a schema-review queue. “Needs schema-level review” i
 | `events` | firm | Matter event history; enforce case scope, audit atomicity, and retention. |
 | `fees` | firm | Financial matter data; enforce case membership and aggregate isolation. |
 | `firm_memberships` | control_plane | Global identity-to-firm access grants; audit creation, suspension, and revocation. |
+| `firm_onboarding_timing` | control_plane | Firm-level setup start/completion timestamps and elapsed seconds only; platform-admin reporting, no user or matter identifiers. |
 | `firms` | control_plane | Tenant lifecycle state; enforce provisioning, disablement, and recovery transitions. |
 | `identity_invitations` | control_plane | Single-use firm-scoped invitations; enforce expiry, revocation, and audit behavior. |
 | `identity_lifecycle_events` | control_plane | Identity and membership lifecycle audit; protect integrity and limit sensitive details. |
