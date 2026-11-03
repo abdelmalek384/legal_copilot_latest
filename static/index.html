@@ -1583,7 +1583,7 @@ async function casesPage(){
  const status=h('select',{},new Option(uiText('كل الحالات','All statuses'),''),new Option(uiText('مفتوحة','Open'),'open'),new Option(uiText('مغلقة','Closed'),'closed'));
  const box=h('div',{className:'card'}),summary=h('div',{className:'mut'}),pageLabel=h('span',{className:'mut'});
  const importInput=h('input',{type:'file',accept:'.csv,text/csv','aria-label':uiText('اختر ملف CSV','Choose CSV file'),style:'display:none'});
- const limit=50;let offset=0,total=0;
+ const limit=50;let offset=0,total=0,appliedQuery='',appliedStatus='';
  importInput.onchange=async()=>{
   const file=importInput.files?.[0];if(!file)return;
   if(file.size>1000000){toast(uiText('الحد الأقصى لملف الاستيراد 1 ميغابايت','CSV import limit is 1 MB'));importInput.value='';return}
@@ -1594,13 +1594,13 @@ async function casesPage(){
   }catch(error){toast(err(error))}
   importInput.value='';
  };
- const previous=btn(uiText('السابق','Previous'),async()=>{if(offset>=limit){offset-=limit;await load()}},'g');
- const next=btn(uiText('التالي','Next'),async()=>{if(offset+limit<total){offset+=limit;await load()}},'g');
+ const previous=btn(uiText('السابق','Previous'),async()=>{if(q.value.trim()!==appliedQuery||status.value!==appliedStatus){offset=0;await load();return}if(offset>=limit){offset-=limit;await load()}},'g');
+ const next=btn(uiText('التالي','Next'),async()=>{if(q.value.trim()!==appliedQuery||status.value!==appliedStatus){offset=0;await load();return}if(offset+limit<total){offset+=limit;await load()}},'g');
  async function load(){
   try{
    const params=new URLSearchParams({q:q.value.trim(),status:status.value,limit:String(limit),offset:String(offset)});
    const result=await api('/cases/search?'+params.toString());
-   total=result.total;const rows=result.items;
+   total=result.total;appliedQuery=q.value.trim();appliedStatus=status.value;const rows=result.items;
    summary.textContent=total+' '+uiText('قضية','cases');
    pageLabel.textContent=total?((offset+1)+'-'+Math.min(offset+limit,total)+' / '+total):'0 / 0';
    previous.disabled=offset===0;next.disabled=offset+limit>=total;
