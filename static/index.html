@@ -2107,10 +2107,25 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    h('div',{className:'row'},f,btn(uiText('رفع وفهرسة','Upload and index'),async()=>{if(!f.files[0])return;const x=new FormData();x.append('file',f.files[0]);
     const csrf=csrfToken();const headers=csrf?{'X-CSRF-Token':decodeURIComponent(csrf)}:{};const r=await fetch('/cases/'+id+'/upload',{method:'POST',credentials:'same-origin',headers,body:x}),j=await r.json().catch(()=>({}));toast(r.ok?(j.ocr_warning?(LANG==='ar'?'تمت فهرسة الصفحات القابلة للقراءة فقط؛ OCR غير متاح لبعض الصفحات':'Only readable pages were indexed; OCR was unavailable for some pages'):(j.ocr_used?uiText('تمت الفهرسة عبر OCR؛ راجع النص مقابل الأصل قبل الاعتماد عليه','Indexed with OCR; compare against the original before relying on it'):uiText('تمت الفهرسة','Indexed'))):err(j));if(r.ok)again()})),
    empty(uiText('PDF أو Word حتى 15 ميجابايت. النص المستخرج فقط هو المفهرس؛ لا تحفظ نسخة الملف الأصلي. راجع المقاطع قبل الاعتماد عليها، خصوصاً نص OCR.','PDF or Word up to 15 MB. Only extracted text is indexed; the original file is not retained. Review chunks before relying on them, especially OCR text.')))
-}if(TAB==='team'){const mu=h('select',{},...us.map(u=>new Option(u.name,u.id))),mr=h('select',{},...Object.entries(RL).reverse().map(([k,v])=>new Option(v,k)));
-  body=h('div',{className:'card'},c.members.map(m=>h('div',{className:'row'},h('b',{textContent:m.name}),pill(uiText(RL[m.role]||m.role,m.role==='lead'?'Lead':m.role==='associate'?'Associate':'Junior'),m.role==='lead'?'open':'closed'),lead&&m.user_id!==ME.id?btn(uiText('إزالة','Remove'),async()=>{if(!confirm(uiText('إزالة هذا العضو من القضية؟','Remove this member from the case?')))return;await api('/cases/'+id+'/members/'+m.user_id,'DELETE');again()},'g'):null)),
-   lead&&h('div',{className:'row'},mu,mr,btn(uiText('إضافة / تحديث','Add / update'),async()=>{await api('/cases/'+id+'/members','POST',{user_id:+mu.value,role:mr.value});again()})))}
- if(TAB==='ask')body=h('div',{className:'card'},askBox(id));
+}if(TAB==='team'){
+  const mu=h('select',{},...us.map(u=>new Option(u.name,u.id))),mr=h('select',{},...Object.entries(RL).reverse().map(([k,v])=>new Option(v,k)));
+  const workload=c.members.map(member=>{
+   const assigned=c.tasks.filter(task=>Number(task.assignee)===Number(member.user_id));
+   const openCount=assigned.filter(task=>task.status!=='done').length;
+   const doneCount=assigned.length-openCount;
+   return h('div',{className:'row'},h('div',{},h('b',{textContent:member.name}),h('div',{className:'mut',textContent:openCount+' '+uiText('مهام مفتوحة','open tasks')+' · '+doneCount+' '+uiText('مهام منجزة','completed tasks')})),pill(assigned.length+' '+uiText('إجمالي المهام','total tasks'),assigned.length?'open':'closed'));
+  });
+  const unassigned=c.tasks.filter(task=>!task.assignee);
+  body=h('div',{className:'card'},
+   h('h3',{textContent:uiText('توزيع عبء العمل','Team workload')}),
+   workload.length?workload:empty(uiText('لا يوجد أعضاء في فريق القضية.','No case-team members.')),
+   unassigned.length?h('div',{className:'row'},h('b',{textContent:uiText('مهام غير معيّنة','Unassigned tasks')}),pill(String(unassigned.length),'soon')):null,
+   h('divider',{}),
+   h('h3',{textContent:uiText('أعضاء الفريق','Team members')}),
+   c.members.map(m=>h('div',{className:'row'},h('b',{textContent:m.name}),pill(uiText(RL[m.role]||m.role,m.role==='lead'?'Lead':m.role==='associate'?'Associate':'Junior'),m.role==='lead'?'open':'closed'),lead&&m.user_id!==ME.id?btn(uiText('إزالة','Remove'),async()=>{if(!confirm(uiText('إزالة هذا العضو من القضية؟','Remove this member from the case?')))return;await api('/cases/'+id+'/members/'+m.user_id,'DELETE');again()},'g'):null)),
+   lead&&h('div',{className:'row'},mu,mr,btn(uiText('إضافة / تحديث','Add / update'),async()=>{await api('/cases/'+id+'/members','POST',{user_id:+mu.value,role:mr.value});again()})))
+ }
+if(TAB==='ask')body=h('div',{className:'card'},askBox(id));
  if(TAB==='log')body=h('div',{className:'card'},c.events.map(e=>h('div',{className:'row'},h('span',{textContent:e.text}),h('span',{className:'mut',textContent:e.who+' · '+new Date(e.at.replace(' ','T')+'Z').toLocaleString(LANG==='ar'?'ar-EG':'en-US',{dateStyle:'short',timeStyle:'short'})}))));
  shell(c.title,h('div',{},h('span',{className:'mut',textContent:uiText('العميل: ','Client: ')+(c.client||'—')+' '}),pill(c.status==='open'?'مفتوحة':'مغلقة',c.status==='open'?'open':'closed')),
   h('div',{className:'tabs'},tabs.map(([k,t])=>h('a',{className:TAB===k?'on':'',textContent:t,onclick:()=>{TAB=k;again()}}))),body)}
