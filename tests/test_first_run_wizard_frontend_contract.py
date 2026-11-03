@@ -26,7 +26,7 @@ class FirstRunWizardFrontendContractTests(unittest.TestCase):
 
     def test_progress_privacy_and_deadline_warning_are_visible(self):
         self.assertIn("role:'progressbar'", HTML)
-        self.assertIn("aria-valuenow:percent", HTML)
+        self.assertIn("'aria-valuenow':percent", HTML)
         self.assertIn("Do not rely on any legal deadline", HTML)
         self.assertIn("لا تعتمد على أي موعد قانوني", HTML)
         self.assertIn("no secret values", HTML)
