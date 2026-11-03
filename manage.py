@@ -290,6 +290,15 @@ def demo_firm_cli(a):
         if a.demo_action == "create":
             password = read_password("كلمة مرور مدير المكتب التجريبي: ")
             firm_name = a.firm_name.strip()
+            owner_name = a.owner_name.strip()
+            owner_email = a.owner_email.strip()
+            normalized_email = app.normalize_email(owner_email)
+            if not firm_name or not owner_name or not normalized_email:
+                raise SystemExit("Demo firm name, owner name, and owner email are required.")
+            if control.execute(
+                "SELECT 1 FROM users WHERE email_normalized=?", (normalized_email,)
+            ).fetchone():
+                raise SystemExit("That email already belongs to a global identity; choose a new demo-owner email.")
             firm_id, database_path = runtime.provision_firm(firm_name)
             control.execute("UPDATE firms SET is_demo=1 WHERE id=?", (firm_id,))
             control.commit()
@@ -385,7 +394,8 @@ def demo_firm_cli(a):
                 "DELETE FROM auth_sessions WHERE user_id IN ("
                 "SELECT fm.user_id FROM firm_memberships fm WHERE fm.firm_id=? "
                 "AND NOT EXISTS (SELECT 1 FROM firm_memberships other "
-                "WHERE other.user_id=fm.user_id AND other.status='active'))",
+                "JOIN firms active_firm ON active_firm.id=other.firm_id "
+                "WHERE other.user_id=fm.user_id AND other.status='active' AND active_firm.status='active'))",
                 (a.firm_id,),
             )
             control.commit()
