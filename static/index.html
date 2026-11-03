@@ -1443,6 +1443,7 @@ async function calendarPage(){
  const list=h('div',{className:'card'});
  const info=h('p',{className:'mut',textContent:uiText('تعرض هذه الأجندة الجلسات التي يعيدها النظام، والمواعيد المفتوحة خلال 30 يوماً، ومهامك المسندة ذات تاريخ استحقاق. تحقق من الملف والمصدر القانوني قبل الاعتماد على أي ميعاد طعن.','This agenda combines hearings returned by the system, open deadlines within 30 days, and assigned tasks with due dates. Verify the case file and legal source before relying on any appeal deadline.')});
  const localKey=value=>value.getFullYear()+'-'+String(value.getMonth()+1).padStart(2,'0')+'-'+String(value.getDate()).padStart(2,'0');
+ const itemDay=item=>String(item.date||'').slice(0,10);
  const todayDate=new Date();todayDate.setHours(0,0,0,0);
  const todayKey=localKey(todayDate);
  const weekStart=new Date(todayDate);weekStart.setDate(weekStart.getDate()-((weekStart.getDay()+6)%7));
@@ -1453,14 +1454,14 @@ async function calendarPage(){
   const rows=items.filter(x=>{
    if(kind.value&&x.kind!==kind.value)return false;
    if(!(x.title+' '+x.meta).toLocaleLowerCase().includes(needle))return false;
-   if(range.value==='today'&&x.date!==todayKey)return false;
-   if(range.value==='week'&&(!x.date||x.date<weekStartKey||x.date>weekEndKey))return false;
+   if(range.value==='today'&&itemDay(x)!==todayKey)return false;
+   if(range.value==='week'&&(!itemDay(x)||itemDay(x)<weekStartKey||itemDay(x)>weekEndKey))return false;
    return true;
   });
   list.replaceChildren(info,...(rows.length?rows.map(x=>{
    const label=x.kind==='session'?uiText('جلسة','Hearing'):x.kind==='deadline'?uiText('موعد قانوني','Legal deadline'):uiText('مهمة','Task');
    const action=x.kind==='task'?btn(uiText('إنجاز','Complete'),async()=>{await api('/tasks/'+x.id+'/done','POST');calendarPage()},'g'):x.kind==='deadline'?btn(uiText('إنجاز','Complete'),async()=>{await api('/deadlines/'+x.id+'/done','POST');calendarPage()},'g'):null;
-   return h('div',{className:'workspace-list-item'},h('div',{className:'item-main'},h('b',{textContent:x.title}),h('div',{className:'item-meta',textContent:label+' · '+(x.meta||'')}),pill(fd(x.date),x.date<today?'late':x.date===today?'soon':'open')),h('div',{style:'display:flex;align-items:center;gap:8px;flex-wrap:wrap'},h('b',{textContent:fd(x.date)}),action));
+   return h('div',{className:'workspace-list-item'},h('div',{className:'item-main'},h('b',{textContent:x.title}),h('div',{className:'item-meta',textContent:label+' · '+(x.meta||'')}),pill(fd(x.date),itemDay(x)<todayKey?'late':itemDay(x)===todayKey?'soon':'open')),h('div',{style:'display:flex;align-items:center;gap:8px;flex-wrap:wrap'},h('b',{textContent:fd(x.date)}),action));
   }):[empty(uiText('لا توجد عناصر مطابقة في نطاق العرض الحالي.','No matching items in the current view.'))]));
  };
  q.oninput=kind.onchange=range.onchange=draw;
