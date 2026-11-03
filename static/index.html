@@ -1441,7 +1441,6 @@ function closeModal(overlay){
 }
 async function newCase(clientName=''){
  if(typeof clientName!=='string')clientName='';
- if(typeof clientName!=='string')clientName='';
  const fields=[['title',uiText('عنوان القضية','Case title'),true],['client',uiText('اسم العميل (اختياري)','Client name (optional)'),false],['case_number',uiText('رقم القضية (اختياري)','Case number (optional)'),false],['case_year',uiText('سنة القضية (اختياري)','Case year (optional)'),false],['court',uiText('المحكمة (اختياري)','Court (optional)'),false],['circuit',uiText('الدائرة (اختياري)','Circuit (optional)'),false],['opposing_party',uiText('الخصم (اختياري)','Opposing party (optional)'),false]];
  const inputs={};fields.forEach(([k,label,required])=>inputs[k]=h('input',{name:k,placeholder:label,required,style:'width:100%'}));
  if(inputs.client)inputs.client.value=clientName;
