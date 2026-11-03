@@ -804,6 +804,68 @@ class BrowserAcceptanceTests(unittest.TestCase):
         ):
             self.assertTrue(self.page.get_by_text(label, exact=True).is_visible(), label)
 
+    def test_owner_can_login_create_case_deadline_and_issue_invoice_on_phone_and_desktop(self) -> None:
+        for width, height in ((390, 844), (1440, 900)):
+            self.page.set_viewport_size({"width": width, "height": height})
+            if self.page.url and self.page.url.startswith(self.base_url):
+                self.page.evaluate("() => { sessionStorage.clear(); localStorage.removeItem('lc_me'); }")
+                self.context.clear_cookies()
+            self.login(self.state["owner_a_email"])
+            navigation = self.page.get_by_role("navigation", name="روابط التنقل")
+            self.assertTrue(navigation.is_visible(), f"primary navigation missing at {width}px")
+            body_font_size = self.page.locator("body").evaluate("(el) => parseFloat(getComputedStyle(el).fontSize)")
+            self.assertGreaterEqual(body_font_size, 14, f"body text too small at {width}px: {body_font_size}")
+            self.page.wait_for_function(
+                "() => document.documentElement.scrollWidth <= window.innerWidth",
+                timeout=8000,
+            )
+
+            case_title = f"SYNTHETIC PILOT UI CASE {width}"
+            self.page.get_by_role("button", name="+ قضية جديدة").click()
+            dialog = self.page.get_by_role("dialog", name="قضية جديدة")
+            dialog.get_by_placeholder("عنوان القضية").fill(case_title)
+            dialog.get_by_placeholder("اسم العميل (اختياري)").fill(f"عميل تجريبي {width}")
+            dialog.get_by_role("button", name="حفظ القضية").click()
+            self.page.get_by_text(case_title, exact=True).wait_for(timeout=10000)
+
+            self.page.locator(".tabs a").filter(has_text="المواعيد القانونية").click()
+            deadline_title = self.page.get_by_placeholder("نوع الموعد (استئناف، طعن، تقديم مستند...)")
+            deadline_title.fill(f"موعد تجريبي {width}")
+            deadline_date = self.page.locator('input[type="date"]').nth(0)
+            deadline_date.fill("2026-12-10")
+            self.assertEqual(deadline_title.input_value(), f"موعد تجريبي {width}")
+            self.assertEqual(deadline_date.input_value(), "2026-12-10")
+            self.page.get_by_role("button", name="إضافة موعد").click()
+            try:
+                self.page.get_by_text(f"موعد تجريبي {width}", exact=True).wait_for(timeout=10000)
+            except PlaywrightTimeoutError as exc:
+                raise AssertionError(
+                    f"Deadline did not appear at {width}px; "
+                    f"title={deadline_title.input_value()!r}; date={deadline_date.input_value()!r}; "
+                    f"toast={self.page.locator('#toast').inner_text(timeout=1000)!r}; "
+                    f"body={self.page.locator('body').inner_text(timeout=1500)[:1800]!r}; "
+                    f"browser_errors={self.browser_errors}; network_errors={self.network_errors}"
+                ) from exc
+
+            self.page.locator(".tabs a").filter(has_text="الفواتير").click()
+            self.page.get_by_placeholder("وصف الفاتورة أو نطاق العمل").fill(
+                f"فاتورة اختبار {width}"
+            )
+            self.page.get_by_placeholder("بيان الخدمة").fill("أتعاب استشارية تجريبية")
+            self.page.get_by_placeholder("سعر الوحدة بالجنيه").fill("125.00")
+            self.page.get_by_role("button", name="إنشاء مسودة فاتورة").click()
+            issue = self.page.get_by_role("button", name="إصدار الفاتورة")
+            issue.wait_for(timeout=10000)
+            self.page.once("dialog", lambda prompt: prompt.accept())
+            issue.click()
+            self.page.get_by_text("غير مدفوعة", exact=False).wait_for(timeout=10000)
+            self.assertIn(f"فاتورة اختبار {width}", self.page.locator("body").inner_text())
+            self.page.wait_for_function(
+                "() => document.documentElement.scrollWidth <= window.innerWidth",
+                timeout=8000,
+            )
+            self.assertEqual(self.browser_errors, [], f"browser errors at {width}px: {self.browser_errors}")
+
     def test_platform_pilot_metrics_navigation_is_operator_only(self) -> None:
         self.login(self.state["owner_a_email"])
         metrics_link = self.page.get_by_role("button", name="مؤشرات استخدام المكاتب")
@@ -855,7 +917,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.get_by_role("heading", name="تغطية المجموعة القانونية").wait_for(timeout=10000)
         self.stage("rtl.coverage.visible")
 
-        for width, height in ((1440, 900), (375, 812)):
+        for width, height in ((1440, 900), (390, 844)):
             self.stage(f"rtl.viewport.{width}.start")
             self.page.set_viewport_size({"width": width, "height": height})
             self.stage(f"rtl.viewport.{width}.done")
@@ -875,7 +937,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             timeout=8000,
         )
         self.stage("ltr.direction.done")
-        for width, height in ((1440, 900), (375, 812)):
+        for width, height in ((1440, 900), (390, 844)):
             self.stage(f"ltr.viewport.{width}.start")
             self.page.set_viewport_size({"width": width, "height": height})
             self.stage(f"ltr.viewport.{width}.done")
