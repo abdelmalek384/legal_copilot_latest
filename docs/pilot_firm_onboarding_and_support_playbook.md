@@ -69,7 +69,7 @@ Assign named primary and backup contacts before onboarding. Use a restricted sup
 
 Proposed response targets must be approved by the product owner and reflected in customer terms before being promised. Support must never ask a firm to send passwords, session cookies, full client files or confidential prompts through ordinary email or chat.
 
-For any suspected security or privacy incident, stop normal support handling and follow the [pilot incident response runbook](pilot_security_incident_response_runbook.md). Do not independently decide legal notification duties or deadlines.
+For any suspected security or privacy incident, stop normal support handling and follow the approved pilot incident response runbook. Do not independently decide legal notification duties or deadlines.
 
 ## 6. Weekly pilot scoreboard
 
