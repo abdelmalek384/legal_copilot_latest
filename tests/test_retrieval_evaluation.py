@@ -598,8 +598,8 @@ class RetrievalEvaluationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             questions_path = Path(td) / "questions.jsonl"
             runs_path = Path(td) / "runs.jsonl"
-            questions_path.write_text("".join(json.dumps(q) + "\\n" for q in questions), encoding="utf-8")
-            runs_path.write_text("".join(json.dumps(run) + "\\n" for run in runs), encoding="utf-8")
+            questions_path.write_text("".join(json.dumps(q) + "\n" for q in questions), encoding="utf-8")
+            runs_path.write_text("".join(json.dumps(run) + "\n" for run in runs), encoding="utf-8")
             output = io.StringIO()
             with contextlib.redirect_stdout(output):
                 code = run_main([
@@ -620,7 +620,7 @@ class RetrievalEvaluationTests(unittest.TestCase):
             # exposing the reviewer identity in aggregate output.
             questions[1]["reviewer_id"] = "reviewer-a"
             questions[1]["reviewer_name"] = "Reviewer A"
-            questions_path.write_text("".join(json.dumps(q) + "\\n" for q in questions), encoding="utf-8")
+            questions_path.write_text("".join(json.dumps(q) + "\n" for q in questions), encoding="utf-8")
             output = io.StringIO()
             with contextlib.redirect_stdout(output):
                 code = run_main([
