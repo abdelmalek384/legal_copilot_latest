@@ -121,6 +121,10 @@ class BrowserAcceptanceTests(unittest.TestCase):
             "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,?)",
             (reviewer_id, "platform_reviewer"),
         )
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,?)",
+            (reviewer_id, "platform_admin"),
+        )
         control.commit()
 
         firm_b_context = cls.runtime.resolve_context(owner_b, firm_b)
@@ -799,6 +803,19 @@ class BrowserAcceptanceTests(unittest.TestCase):
             "مفتاح تشفير المصادقة الثنائية",
         ):
             self.assertTrue(self.page.get_by_text(label, exact=True).is_visible(), label)
+
+    def test_platform_pilot_metrics_navigation_is_operator_only(self) -> None:
+        self.login(self.state["owner_a_email"])
+        metrics_link = self.page.get_by_role("button", name="مؤشرات استخدام المكاتب")
+        self.assertEqual(metrics_link.count(), 0, "firm owners must not see platform pilot metrics")
+        self.context.clear_cookies()
+        self.login(self.state["reviewer_email"])
+        metrics_link = self.page.get_by_role("button", name="مؤشرات استخدام المكاتب")
+        self.assertEqual(metrics_link.count(), 1, "platform admins should have a metrics navigation entry")
+        metrics_link.click()
+        self.page.get_by_role("heading", name="مؤشرات استخدام المكاتب").wait_for()
+        self.assertTrue(self.page.get_by_role("button", name="تصدير CSV").is_visible())
+        self.assertTrue(self.page.get_by_text("عدد المستخدمين النشطين هنا هو عدد تسجيلات الدخول الناجحة", exact=False).is_visible())
 
     def test_expired_session_returns_to_login(self) -> None:
         self.login(self.state["owner_a_email"])
