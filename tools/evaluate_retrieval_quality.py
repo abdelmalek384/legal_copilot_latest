@@ -437,6 +437,7 @@ def _retrieval_release_gate(report, args):
         "mrr_at_5": args.min_mrr_at_5,
         "citation_precision": args.min_citation_precision,
         "pin_cite_accuracy": args.min_pin_cite_accuracy,
+        "pin_cite_accuracy": args.min_pin_cite_accuracy,
         "citation_coverage": args.min_citation_coverage,
         "expected_pin_cite_recall": args.min_expected_pin_cite_recall,
         "abstention_compliance": args.min_abstention_compliance,
@@ -510,6 +511,8 @@ def main(argv=None):
     parser.add_argument("--min-citation-precision", type=float)
     parser.add_argument("--min-pin-cite-accuracy", type=float,
                         help="Minimum precision of emitted article/page pin-cites against reviewed expected pin-cites")
+    parser.add_argument("--min-pin-cite-accuracy", type=float,
+                        help="Minimum precision of emitted article/page pin-cites against reviewed expected pin-cites")
     parser.add_argument("--min-citation-coverage", type=float)
     parser.add_argument("--min-expected-pin-cite-recall", type=float)
     parser.add_argument("--min-abstention-compliance", type=float)
@@ -539,6 +542,7 @@ def main(argv=None):
                                   or not 0 <= value <= 1):
             parser.error("--" + name.replace("_", "-") + " must be a finite number between 0 and 1")
     quality_thresholds = (args.min_recall_at_5, args.min_mrr_at_5, args.min_citation_precision,
+                          args.min_pin_cite_accuracy,
                           args.min_pin_cite_accuracy,
                           args.min_citation_coverage, args.min_expected_pin_cite_recall,
                           args.min_abstention_compliance)
