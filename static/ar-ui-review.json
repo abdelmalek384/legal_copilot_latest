@@ -3,9 +3,9 @@
   "title": "Legal Copilot Arabic UI string review inventory",
   "purpose": "Reviewable inventory of Arabic-bearing string literals in static/index.html for a native Egyptian Arabic speaker. This is a review snapshot, not yet the runtime translation source; user-entered case and legal text is not included.",
   "source_file": "static/index.html",
-  "source_commit": "c012a9787411033e50d7d73b9cef22501df62a90",
+  "source_commit": "b316a04ca74ec663130ef6d64eeee22231183f97",
   "generated_on": "2026-11-03",
-  "entry_count": 905,
+  "entry_count": 914,
   "entries": [
     {
       "id": "AR-0001",
@@ -7545,6 +7545,78 @@
       "arabic": "تم الوصول إلى حد المقاعد. غيّر الخطة قبل دعوة مستخدم آخر.",
       "source_lines": [
         1219
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0919",
+      "arabic": "حفظ الملف",
+      "source_lines": [
+        1477
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0920",
+      "arabic": "ملف العميل",
+      "source_lines": [
+        1489
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0921",
+      "arabic": "تعديل ملف العميل",
+      "source_lines": [
+        1490
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0922",
+      "arabic": "ملف عميل جديد",
+      "source_lines": [
+        1490
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0923",
+      "arabic": "المسائل المرتبطة",
+      "source_lines": [
+        1504
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0924",
+      "arabic": "لا توجد قضايا مرتبطة بهذا العميل بعد.",
+      "source_lines": [
+        1504
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0925",
+      "arabic": "لا توجد ملفات عملاء بعد.",
+      "source_lines": [
+        1507
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0926",
+      "arabic": "تعديل الملف",
+      "source_lines": [
+        1503
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0927",
+      "arabic": "أدخل اسم العميل",
+      "source_lines": [
+        1478
       ],
       "review_status": "pending_native_review"
     }
