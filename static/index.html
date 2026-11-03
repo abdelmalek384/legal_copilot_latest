@@ -1511,7 +1511,21 @@ async function clients(){
   cardContainer.replaceChildren(...(cards.length?cards:[h('div',{className:'card'},empty(uiText(needle?'لا توجد ملفات عملاء مطابقة.':'لا توجد ملفات عملاء بعد.',needle?'No matching client profiles.':'No client profiles yet.')))]));
  };
  search.oninput=drawProfiles;
- shell(uiText('العملاء','Clients'),h('div',{className:'row'},...(ME.role==='admin'?[btn(uiText('+ ملف عميل جديد','+ New client profile'),()=>clientProfileForm(),'g')]:[]),btn(uiText('+ قضية جديدة','+ New case'),newCase)),search,h('div',{className:'card'},h('h3',{textContent:uiText('فحص أولي لتعارض المصالح','Preliminary conflict check')}),h('div',{className:'row'},cq,btn(uiText('فحص','Check'),run)),cb),cardContainer);
+ const importInput=h('input',{type:'file',accept:'.csv,text/csv','aria-label':uiText('اختر ملف CSV','Choose CSV file'),style:'display:none'});
+ importInput.onchange=async()=>{
+  const file=importInput.files?.[0];if(!file)return;
+  if(file.size>1000000){toast(uiText('الحد الأقصى لملف الاستيراد 1 ميغابايت','CSV import limit is 1 MB'));importInput.value='';return}
+  try{
+   const result=await api('/clients/import.csv','POST',{csv:await file.text()});
+   toast(uiText('تم استيراد ','Imported ')+result.created+' · '+uiText('تم تخطي ','skipped ')+result.skipped);
+   clients();
+  }catch(_){}
+  importInput.value='';
+ };
+ const toolbar=h('div',{className:'row'},
+  ...(ME.role==='admin'?[btn(uiText('+ ملف عميل جديد','+ New client profile'),()=>clientProfileForm(),'g'),btn(uiText('استيراد CSV','Import CSV'),()=>importInput.click(),'g'),importInput]:[]),
+  btn(uiText('+ قضية جديدة','+ New case'),newCase));
+ shell(uiText('العملاء','Clients'),toolbar,search,h('div',{className:'card'},h('h3',{textContent:uiText('فحص أولي لتعارض المصالح','Preliminary conflict check')}),h('div',{className:'row'},cq,btn(uiText('فحص','Check'),run)),cb),cardContainer);
  drawProfiles();
 }
 async function casesPage(){PAGE='cases';const cs=await api('/cases'),q=h('input',{placeholder:uiText('ابحث بالعنوان أو العميل أو رقم القضية أو الخصم','Search title, client, case number or opposing party')}),status=h('select',{},new Option(uiText('كل الحالات','All statuses'),''),new Option(uiText('مفتوحة','Open'),'open'),new Option(uiText('مغلقة','Closed'),'closed')),box=h('div',{className:'card'}),summary=h('div',{className:'mut'});const draw=()=>{const needle=q.value.trim().toLocaleLowerCase();const rows=cs.filter(c=>(!status.value||c.status===status.value)&&[c.title,c.client,c.case_number,c.case_year,c.court,c.circuit,c.opposing_party].filter(Boolean).join(' ').toLocaleLowerCase().includes(needle));summary.textContent=rows.length+' '+uiText('قضية','cases');box.replaceChildren(summary,...(rows.length?rows.map(caseRow):[empty(uiText('لا توجد قضايا مطابقة.','No matching cases.'))]))};q.oninput=status.onchange=draw;shell(uiText('القضايا','Cases'),h('p',{className:'workspace-subtitle',textContent:uiText('ابحث في بيانات القضايا الأساسية ثم افتح الملف لإدارة التفاصيل.','Search case metadata, then open a matter to manage its details.')}),h('div',{className:'filter-bar'},q,status,btn(uiText('+ قضية جديدة','+ New case'),newCase)),box);draw()}
