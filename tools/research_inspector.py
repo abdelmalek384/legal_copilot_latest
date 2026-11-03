@@ -218,8 +218,15 @@ def source_status(source, as_of=None):
     if not _has_current_review_evidence(provenance):
         return STATUS_REVIEW
 
+    publication = _calendar_date(provenance.get("publication_date"))
+    if publication is None or publication > as_of_date:
+        return STATUS_REVIEW
+    if not isinstance(provenance.get("gazette_issue"), str) or not provenance["gazette_issue"].strip():
+        return STATUS_REVIEW
+    if not isinstance(provenance.get("gazette_pages"), str) or not provenance["gazette_pages"].strip():
+        return STATUS_REVIEW
     effective = _calendar_date(provenance.get("effective_date"))
-    if effective is None or effective > as_of_date:
+    if effective is None or effective > as_of_date or effective < publication:
         return STATUS_REVIEW
     repeal_value = provenance.get("repeal_date")
     if repeal_value not in (None, ""):
