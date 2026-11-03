@@ -10,6 +10,9 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from tools.evaluate_retrieval_quality import DEFAULT_QUESTIONS, _load_jsonl, _write_report, main, score_evaluation as _score_evaluation, validate_reviewed_question
+from tools.answer_trust_tier import (
+    TIER_SOURCE_MATCHED, TIER_UNREVIEWED, TIER_VERIFIED, classify_answer_trust_tier,
+)
 
 
 def reviewed_question(**overrides):
