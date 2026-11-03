@@ -2700,6 +2700,109 @@ def require_platform_admin(u):
         raise HTTPException(403, "platform administrator only")
 
 
+_PILOT_METRICS = (
+    "active_users", "cases_created", "deadlines_created",
+    "answers_requested", "invoices_issued", "corrections_submitted",
+)
+
+
+def _pilot_week_start(timestamp: int) -> str:
+    """Return the UTC Monday date for a Unix timestamp."""
+    day = datetime.fromtimestamp(timestamp, timezone.utc).date()
+    return (day - timedelta(days=day.weekday())).isoformat()
+
+
+def _record_pilot_metric(control, firm_id: int, metric: str, occurred_at: int | None = None):
+    """Atomically increment one firm/week count; persist no user or matter identifiers."""
+    if metric not in _PILOT_METRICS:
+        raise ValueError("unsupported pilot metric")
+    if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
+        raise ValueError("firm_id must be a positive integer")
+    timestamp = int(time.time()) if occurred_at is None else occurred_at
+    if isinstance(timestamp, bool) or not isinstance(timestamp, int) or timestamp <= 0:
+        raise ValueError("occurred_at must be a positive Unix timestamp")
+    control.execute(
+        "INSERT INTO firm_weekly_pilot_metrics(firm_id,week_start,metric,count,updated_at) "
+        "VALUES(?,?,?,?,?) ON CONFLICT(firm_id,week_start,metric) DO UPDATE SET "
+        "count=firm_weekly_pilot_metrics.count+1,updated_at=excluded.updated_at",
+        (firm_id, _pilot_week_start(timestamp), metric, 1, timestamp),
+    )
+    control.commit()
+
+
+def _meter_pilot_metric(u: dict, metric: str):
+    """Telemetry failure must not turn a completed firm workflow into a failed request."""
+    try:
+        _record_pilot_metric(control_conn(), int(u["firm_id"]), metric)
+    except Exception:
+        logger.exception("weekly pilot metric could not be recorded")
+
+
+def _pilot_metrics_rows(control, weeks: int, now: int):
+    current_week = datetime.fromtimestamp(now, timezone.utc).date()
+    current_week -= timedelta(days=current_week.weekday())
+    first_week = current_week - timedelta(weeks=weeks - 1)
+    firms = control.execute("SELECT id,name FROM firms ORDER BY id").fetchall()
+    rows = control.execute(
+        "SELECT firm_id,week_start,metric,count FROM firm_weekly_pilot_metrics "
+        "WHERE week_start>=? ORDER BY firm_id,week_start,metric",
+        (first_week.isoformat(),),
+    ).fetchall()
+    counts_by_key = {
+        (int(row["firm_id"]), row["week_start"], row["metric"]): int(row["count"])
+        for row in rows
+    }
+    result = []
+    for firm in firms:
+        for offset in range(weeks):
+            week_start = (first_week + timedelta(weeks=offset)).isoformat()
+            result.append({
+                "firm_id": int(firm["id"]),
+                "firm_name": firm["name"],
+                "week_start": week_start,
+                **{
+                    metric: counts_by_key.get((int(firm["id"]), week_start, metric), 0)
+                    for metric in _PILOT_METRICS
+                },
+            })
+    return result
+
+
+@app.get("/platform/pilot-metrics")
+def platform_pilot_metrics(
+    weeks: int = Query(default=12, ge=1, le=52),
+    u: dict = Depends(user),
+):
+    """Platform-only weekly aggregate counts; no firm member or matter data is returned."""
+    require_platform_admin(u)
+    rows = _pilot_metrics_rows(control_conn(), weeks, int(time.time()))
+    return {"weeks": weeks, "metrics": list(_PILOT_METRICS), "items": rows,
+            "active_users_definition": "Successful sign-ins during the UTC week; this is sign-in count, not distinct people."}
+
+
+@app.get("/platform/pilot-metrics.csv")
+def export_platform_pilot_metrics_csv(
+    weeks: int = Query(default=12, ge=1, le=52),
+    u: dict = Depends(user),
+):
+    """Download the same bounded, platform-only aggregate view as UTF-8 CSV."""
+    require_platform_admin(u)
+    rows = _pilot_metrics_rows(control_conn(), weeks, int(time.time()))
+    stream = io.StringIO(newline="")
+    writer = csv.writer(stream, lineterminator="\\r\\n")
+    writer.writerow(["firm_id", "firm_name", "week_start", *_PILOT_METRICS])
+    for row in rows:
+        writer.writerow([_csv_safe_cell(row[key]) for key in (
+            "firm_id", "firm_name", "week_start", *_PILOT_METRICS
+        )])
+    return Response(
+        content="\\ufeff" + stream.getvalue(),
+        media_type="text/csv; charset=utf-8",
+        headers={"Content-Disposition": 'attachment; filename="pilot-weekly-metrics.csv"',
+                 "Cache-Control": "no-store", "Pragma": "no-cache"},
+    )
+
+
 SUBSCRIPTION_PLANS = {
     "solo": {"label_ar": "فردي", "seat_limit": 1},
     "small_firm": {"label_ar": "مكتب صغير", "seat_limit": 5},
@@ -3295,6 +3398,7 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
               (sha(token), account["id"], now + 43200, int(mfa_verified), now if mfa_verified else 0))
     c.commit()
     first_firm = memberships[0]
+    _record_pilot_metric(c, int(first_firm["firm_id"]), "active_users", now)
     secure = _secure_cookie_transport(request)
     response.set_cookie("lc_session", token, max_age=43200, httponly=True, secure=secure, samesite="lax", path="/")
     response.set_cookie("lc_csrf", csrf, max_age=43200, httponly=False, secure=secure, samesite="lax", path="/")
@@ -5379,7 +5483,9 @@ def cases(u: dict = Depends(user)):
 @app.post("/cases")
 @rollback_tenant_transaction_on_error
 def new_case(b: CaseIn, u: dict = Depends(user)):
-    return {"id": add_case(conn(), u, b.title, b.client, b.stage, b.case_number, b.case_year, b.court, b.circuit, b.opposing_party)}
+    case_id = add_case(conn(), u, b.title, b.client, b.stage, b.case_number, b.case_year, b.court, b.circuit, b.opposing_party)
+    _meter_pilot_metric(u, "cases_created")
+    return {"id": case_id}
 
 
 @app.get("/cases/{cid}")
@@ -5801,6 +5907,7 @@ def suggest_answer_correction(b: AnswerCorrectionCreateIn, u: dict = Depends(use
         (suggestion_id, u["id"], json.dumps({"training_use": "none"}, sort_keys=True)),
     )
     c.commit()
+    _meter_pilot_metric(u, "corrections_submitted")
     return {"id": suggestion_id, "status": "pending", "training_use": "none"}
 
 
@@ -5960,6 +6067,7 @@ def new_deadline(cid: int, b: DeadlineIn, u: dict = Depends(user)):
     c.execute("INSERT INTO deadlines(case_id,title,due,note,created_by) VALUES(?,?,?,?,?)",
               (cid, b.title, b.due, b.note, u["id"]))
     log(c, cid, u["name"], "موعد قانوني: " + b.title); c.commit()
+    _meter_pilot_metric(u, "deadlines_created")
     return {"ok": True}
 
 
@@ -6232,6 +6340,7 @@ def issue_invoice(invoice_id: int, u: dict = Depends(user)):
     _invoice_event(c, invoice_id, int(u["id"]), "issued", {"invoice_number": number})
     c.execute("RELEASE SAVEPOINT invoice_write")
     c.commit()
+    _meter_pilot_metric(u, "invoices_issued")
     return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
 
 
@@ -7118,6 +7227,7 @@ def do_ask(b: Q, u: dict = Depends(user)):
         need(c, u, b.case_id)
         result = ask(c, b.q, b.case_id, firm_id=u["firm_id"], as_of=b.as_of, scope=b.scope)
         _meter_firm_usage(u, "research_query")
+        _meter_pilot_metric(u, "answers_requested")
         return result
     except ValueError as e: raise HTTPException(422, str(e))
 
@@ -7383,5 +7493,6 @@ def send_research_message(conversation_id: int, b: ResearchMessageIn, u: dict = 
               (title, conversation_id))
     c.commit()
     _meter_firm_usage(u, "research_query")
+    _meter_pilot_metric(u, "answers_requested")
     return {"question": question, "answer": answer, **result, "answer_id": answer_id}
 
