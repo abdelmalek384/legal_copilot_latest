@@ -579,6 +579,8 @@ def _client_normalized_name(c, name):
 
 def _ensure_client_profile(c, u, client_name="", client_id=None):
     name = str(client_name or "").strip()
+    if name and len(name) < 2:
+        raise HTTPException(422, "client name must contain at least two characters")
     if client_id is not None:
         row = c.execute(
             "SELECT id,name,normalized_name FROM clients WHERE id=?", (int(client_id),)
