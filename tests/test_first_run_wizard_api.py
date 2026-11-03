@@ -123,10 +123,12 @@ class FirstRunWizardApiTests(unittest.TestCase):
         started_at = initial.json()["onboarding_started_at"]
         control = self.runtime.control_connection()
         now = int(datetime.now(timezone.utc).timestamp())
-        control.execute(
-            "UPDATE firm_profiles SET phone='+20 100 123 4567',updated_by_user_id=? WHERE firm_id=?",
-            (self.user_ids["a"], self.firm_a),
+        profile = self.clients["a"].put(
+            "/firm/profile",
+            json={"name":"مكتب ألف للمحاماة","phone":"+20 100 123 4567","address":"بيانات تجريبية"},
+            headers={"X-CSRF-Token":self.clients["a"].cookies.get("lc_csrf")},
         )
+        self.assertEqual(profile.status_code, 200, profile.text)
         control.execute(
             "INSERT INTO identity_invitations(firm_id,email_normalized,email_display,invited_role,token_hash,"
             "invited_by_user_id,created_at,expires_at,status,updated_at) "
