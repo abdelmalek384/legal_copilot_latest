@@ -1472,7 +1472,8 @@ async function clientProfileForm(profile=null){
   name:key,placeholder:label,required,rows:key==='notes'?3:undefined,
   value:profile?.[key]||'',style:'width:100%'
  }));
- const overlay=h('div',{className:'modal-backdrop'});
+ const opener=document.activeElement;
+ const overlay=h('div',{className:'modal-backdrop',onclick:e=>{if(e.target===overlay)closeModal(overlay)}});
  const cancel=btn(uiText('إلغاء','Cancel'),()=>closeModal(overlay),'g');
  const save=btn(uiText('حفظ الملف','Save profile'),async()=>{
   if(!inputs.name.value.trim()){toast(uiText('أدخل اسم العميل','Enter a client name'));inputs.name.focus();return}
@@ -1488,7 +1489,7 @@ async function clientProfileForm(profile=null){
   h('div',{className:'row'},cancel,save));
  overlay.append(h('section',{className:'modal card',role:'dialog','aria-modal':true,'aria-label':uiText('ملف العميل','Client profile')},
   h('h2',{textContent:editing?uiText('تعديل ملف العميل','Edit client profile'):uiText('ملف عميل جديد','New client profile')}),form));
- A.append(overlay);inputs.name.focus();
+ overlay.__focusReturn=opener;A.append(overlay);inputs.name.focus();
 }
 async function clients(){
  const profiles=await api('/clients');
