@@ -1,0 +1,1 @@
+- Live SMTP acceptance for the first-run test reminder is blocked pending provider credentials and a controlled mailbox; route tests use a fake SMTP sender.
