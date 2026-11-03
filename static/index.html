@@ -1144,7 +1144,7 @@ async function platformPilotMetricsPage(){
  const onboardingCards=(data.onboarding||[]).map(row=>{
   const status=row.completed_at!==null&&row.completed_at!==undefined?uiText('مكتمل','Completed'):(row.started_at?uiText('قيد الإعداد','In progress'):uiText('لم يبدأ','Not started'));
   const seconds=Number(row.completion_seconds||0),minutes=Math.floor(seconds/60),hours=Math.floor(minutes/60),remainder=minutes%60;
-  const duration=hours?`${hours} ${uiText('ساعة','h')} ${remainder} ${uiText('دقيقة','min')}`:`${minutes} ${uiText('دقيقة','min')}`;
+  const duration=hours?String(hours)+' '+uiText('ساعة','h')+' '+String(remainder)+' '+uiText('دقيقة','min'):String(minutes)+' '+uiText('دقيقة','min');
   return h('section',{className:'card'},h('div',{className:'row'},h('b',{textContent:row.firm_name}),pill(status,row.completed_at?'open':'soon')),
    h('div',{className:'mut',textContent:row.completed_at?uiText('مدة الإعداد: ','Completion time: ')+duration:(row.started_at?uiText('بدأ الإعداد ولم يكتمل بعد.','Setup started but is not complete yet.'):uiText('لم يبدأ الإعداد بعد.','Setup has not started yet.'))}));
  });
