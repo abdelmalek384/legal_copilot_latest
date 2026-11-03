@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "3a4ae1fce27b66136740f092b9c60077dad1312a",
   "generated_on": "2026-11-03",
-  "entry_count": 917,
+  "entry_count": 918,
   "entries": [
     {
       "id": "AR-0001",
@@ -7598,7 +7598,7 @@
     },
     {
       "id": "AR-0912",
-      "arabic": "مدة الإعداد: ",
+      "arabic": "مدة الإعداد:",
       "source_lines": [
         1149
       ],
@@ -7641,6 +7641,14 @@
       "arabic": "الاستخدام الأسبوعي",
       "source_lines": [
         1161
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0918",
+      "arabic": "لا توجد مكاتب نشطة لقياس الإعداد.",
+      "source_lines": [
+        1160
       ],
       "review_status": "pending_native_review"
     }
