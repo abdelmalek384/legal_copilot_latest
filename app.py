@@ -7566,6 +7566,14 @@ def export_firm_data_zip(firm_id: int = Query(..., ge=1), u: dict = Depends(user
             "JOIN docs d ON d.id=o.document_id JOIN cases c ON c.id=d.case_id "
             "WHERE c.firm_id=? ORDER BY e.id",
         ),
+        "product_feedback.csv": (
+            "SELECT id,category,title,message,page_path,status,created_by,created_at,"
+            "reviewed_by,reviewed_at,response FROM product_feedback ORDER BY id",
+        ),
+        "product_feedback_events.csv": (
+            "SELECT e.* FROM product_feedback_events e "
+            "JOIN product_feedback f ON f.id=e.feedback_id ORDER BY e.id",
+        ),
         "invoices.csv": (
             "SELECT i.* FROM invoices i JOIN cases c ON c.id=i.case_id "
             "WHERE c.firm_id=? ORDER BY i.id",
