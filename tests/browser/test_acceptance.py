@@ -893,5 +893,109 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.stage("keyboard.focus.done")
 
 
+    def test_phone_ui_readability_navigation_targets_and_contrast(self) -> None:
+        self.page.set_viewport_size({"width": 390, "height": 844})
+        self.login(self.state["owner_a_email"])
+
+        ui_contract = self.page.evaluate("""() => {
+            const visible = (el) => {
+                const style = getComputedStyle(el);
+                return !!el.getClientRects().length &&
+                    style.display !== 'none' && style.visibility !== 'hidden';
+            };
+            const rgb = (value) => {
+                const match = value.match(/[\\d.]+/g);
+                if (!match || match.length < 3) return null;
+                return match.slice(0, 3).map(Number);
+            };
+            const luminance = (value) => {
+                const channels = rgb(value);
+                if (!channels) return null;
+                const linear = channels.map((v) => {
+                    const c = v / 255;
+                    return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+                });
+                return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2];
+            };
+            const contrast = (foreground, background) => {
+                const a = luminance(foreground), b = luminance(background);
+                if (a === null || b === null) return null;
+                return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+            };
+            const nav = document.querySelector('#side nav');
+            const hint = nav && nav.querySelector('.nav-scroll-hint');
+            const targets = [...document.querySelectorAll(
+                'button, input, select, textarea, #side a[role="button"], .tabs a'
+            )].filter(visible).map((el) => ({
+                tag: el.tagName.toLowerCase(),
+                text: (el.innerText || el.getAttribute('aria-label') || el.placeholder || '').trim().slice(0, 60),
+                height: el.getBoundingClientRect().height
+            }));
+            const bodyStyle = getComputedStyle(document.body);
+            const bodyContrast = contrast(bodyStyle.color, bodyStyle.backgroundColor);
+            const primary = [...document.querySelectorAll('button')].find(
+                (el) => visible(el) && !el.disabled && !el.classList.contains('g') && !el.classList.contains('d')
+            );
+            const primaryContrast = primary
+                ? contrast(getComputedStyle(primary).color, getComputedStyle(primary).backgroundColor)
+                : null;
+            return {
+                bodyFontSize: parseFloat(bodyStyle.fontSize),
+                bodyContrast,
+                primaryContrast,
+                navigationCount: document.querySelectorAll('nav[aria-label]').length,
+                navigationLabel: nav && nav.getAttribute('aria-label'),
+                scrollHintCount: hint ? 1 : 0,
+                scrollHintVisible: !!hint && visible(hint),
+                targets,
+                documentWidth: document.documentElement.scrollWidth,
+                viewportWidth: window.innerWidth
+            };
+        }""")
+
+        self.assertGreaterEqual(ui_contract["bodyFontSize"], 14, ui_contract)
+        self.assertEqual(ui_contract["navigationCount"], 1, ui_contract)
+        self.assertTrue(ui_contract["navigationLabel"], ui_contract)
+        self.assertEqual(ui_contract["scrollHintCount"], 1, ui_contract)
+        self.assertTrue(ui_contract["scrollHintVisible"], ui_contract)
+        self.assertLessEqual(ui_contract["documentWidth"], ui_contract["viewportWidth"], ui_contract)
+        undersized = [target for target in ui_contract["targets"] if target["height"] < 44]
+        self.assertEqual(undersized, [], f"Interactive targets below 44px: {undersized}")
+        self.assertIsNotNone(ui_contract["bodyContrast"], ui_contract)
+        self.assertGreaterEqual(ui_contract["bodyContrast"], 4.5, ui_contract)
+        self.assertIsNotNone(ui_contract["primaryContrast"], ui_contract)
+        self.assertGreaterEqual(ui_contract["primaryContrast"], 4.5, ui_contract)
+
+        # Re-open the unauthenticated login screen at phone width and verify
+        # that the card and fields remain inside the viewport.
+        self.context.clear_cookies()
+        self.page.reload(wait_until="domcontentloaded")
+        self.page.locator('input[type="email"]').wait_for(state="visible", timeout=10000)
+        login_layout = self.page.evaluate("""() => {
+            const card = document.querySelector('.auth-card');
+            const email = document.querySelector('input[type="email"]');
+            const password = document.querySelector('input[type="password"]');
+            const bounds = (el) => {
+                const r = el.getBoundingClientRect();
+                return {left: r.left, right: r.right, width: r.width, height: r.height};
+            };
+            return {
+                card: card ? bounds(card) : null,
+                email: email ? bounds(email) : null,
+                password: password ? bounds(password) : null,
+                viewportWidth: window.innerWidth,
+                documentWidth: document.documentElement.scrollWidth
+            };
+        }""")
+        self.assertIsNotNone(login_layout["card"], login_layout)
+        for name in ("card", "email", "password"):
+            bounds = login_layout[name]
+            self.assertGreaterEqual(bounds["left"], 0, login_layout)
+            self.assertLessEqual(bounds["right"], login_layout["viewportWidth"], login_layout)
+            self.assertGreaterEqual(bounds["height"], 44, login_layout)
+        self.assertLessEqual(login_layout["documentWidth"], login_layout["viewportWidth"], login_layout)
+        self.assertEqual(self.browser_errors, [], self.browser_errors)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
