@@ -3836,13 +3836,15 @@ def setup_first_run(u: dict = Depends(user)):
     ]
     completed_count = sum(1 for item in checklist if item["done"])
     if completed_count == len(checklist):
+        started_at = int(control.execute(
+            "SELECT started_at FROM firm_onboarding_timing WHERE firm_id=?",
+            (int(u["firm_id"]),),
+        ).fetchone()[0])
+        completed_at = max(onboarding_now, started_at)
         control.execute(
             "UPDATE firm_onboarding_timing SET completed_at=?,completion_seconds=? "
             "WHERE firm_id=? AND completed_at IS NULL",
-            (onboarding_now, max(0, onboarding_now - int(control.execute(
-                "SELECT started_at FROM firm_onboarding_timing WHERE firm_id=?",
-                (int(u["firm_id"]),),
-            ).fetchone()[0])), int(u["firm_id"])),
+            (completed_at, completed_at - started_at, int(u["firm_id"])),
         )
         control.commit()
     timing = control.execute(
