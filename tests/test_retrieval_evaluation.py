@@ -642,6 +642,13 @@ class AnswerTrustTierTests(unittest.TestCase):
         result = self.classify([source], source_matched_policy_approved=True, source_matched_feature_enabled=True)
         self.assertEqual(result["trust_tier"], TIER_UNREVIEWED)
 
+    def test_effective_date_before_publication_blocks_source_matched_tier(self):
+        source = source_matched_source()
+        source["source_match_evidence"]["publication_date"] = "2025-09-01"
+        source["source_match_evidence"]["effective_date"] = "2025-05-03"
+        result = self.classify([source], source_matched_policy_approved=True, source_matched_feature_enabled=True)
+        self.assertEqual(result["trust_tier"], TIER_UNREVIEWED)
+
     def test_missing_reuse_rights_blocks_source_matched_tier(self):
         source = source_matched_source()
         source["source_match_evidence"]["reuse_rights_allowed"] = False
