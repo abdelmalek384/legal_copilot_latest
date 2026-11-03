@@ -2,7 +2,7 @@
 import os
 import tempfile
 import unittest
-from datetime import datetime, timezone
+import time
 from pathlib import Path
 
 from fastapi.testclient import TestClient
@@ -77,12 +77,12 @@ class PilotMetricsTests(unittest.TestCase):
         self.temp.cleanup()
 
     def test_platform_metrics_are_weekly_counts_and_firm_users_cannot_view_them(self):
-        now = int(datetime(2026, 11, 3, 12, tzinfo=timezone.utc).timestamp())
+        now = int(time.time())
         control = app.control_conn()
-        app._record_pilot_metric(control, self.firm_a, self.user_ids["a"], "case_created", now)
-        app._record_pilot_metric(control, self.firm_a, self.user_ids["a"], "deadline_created", now)
-        app._record_pilot_metric(control, self.firm_a, self.user_ids["a"], "answer_requested", now)
-        app._record_pilot_metric(control, self.firm_b, self.user_ids["b"], "invoice_issued", now)
+        app._record_pilot_metric(control, self.firm_a, "cases_created", now)
+        app._record_pilot_metric(control, self.firm_a, "deadlines_created", now)
+        app._record_pilot_metric(control, self.firm_a, "answers_requested", now)
+        app._record_pilot_metric(control, self.firm_b, "invoices_issued", now)
         platform_response = self.clients["a"].get("/platform/pilot-metrics?weeks=4")
         self.assertEqual(platform_response.status_code, 200, platform_response.text)
         rows = platform_response.json()["metrics"]
@@ -100,8 +100,8 @@ class PilotMetricsTests(unittest.TestCase):
         self.assertEqual(denied.status_code, 403, denied.text)
 
     def test_csv_export_is_platform_only_and_contains_aggregate_columns(self):
-        now = int(datetime(2026, 11, 3, 12, tzinfo=timezone.utc).timestamp())
-        app._record_pilot_metric(app.control_conn(), self.firm_a, self.user_ids["a"], "correction_submitted", now)
+        now = int(time.time())
+        app._record_pilot_metric(app.control_conn(), self.firm_a, "corrections_submitted", now)
         response = self.clients["a"].get("/platform/pilot-metrics/export.csv?weeks=4")
         self.assertEqual(response.status_code, 200, response.text)
         self.assertIn("text/csv", response.headers.get("content-type", ""))
@@ -111,18 +111,35 @@ class PilotMetricsTests(unittest.TestCase):
         denied = self.clients["b"].get("/platform/pilot-metrics/export.csv")
         self.assertEqual(denied.status_code, 403, denied.text)
 
-    def test_metric_ledger_rejects_content_categories_and_mutations(self):
+    def test_metrics_storage_contains_only_aggregate_counts(self):
         control = app.control_conn()
         with self.assertRaises(ValueError):
-            app._record_pilot_metric(control, self.firm_a, self.user_ids["a"], "case_contents")
-        app._record_pilot_metric(control, self.firm_a, self.user_ids["a"], "case_created")
-        row_id = control.execute("SELECT id FROM pilot_metrics_events").fetchone()["id"]
-        with self.assertRaisesRegex(Exception, "immutable"):
-            control.execute("UPDATE pilot_metrics_events SET metric='invoice_issued' WHERE id=?", (row_id,))
-        with self.assertRaisesRegex(Exception, "immutable"):
-            control.execute("DELETE FROM pilot_metrics_events WHERE id=?", (row_id,))
-        columns = {row["name"] for row in control.execute("PRAGMA table_info(pilot_metrics_events)")}
-        self.assertEqual(columns, {"id", "firm_id", "user_id", "metric", "week_start", "occurred_at"})
+            app._record_pilot_metric(control, self.firm_a, "case_contents")
+        app._record_pilot_metric(control, self.firm_a, "cases_created")
+        app._record_pilot_metric(control, self.firm_a, "cases_created")
+        columns = {
+            row["name"] for row in control.execute(
+                "PRAGMA table_info(pilot_metrics_weekly_counts)"
+            )
+        }
+        self.assertEqual(
+            columns,
+            {"firm_id", "week_start", "metric", "count", "updated_at"},
+        )
+        tables = {
+            row["name"] for row in control.execute(
+                "SELECT name FROM sqlite_master WHERE type='table'"
+            )
+        }
+        self.assertNotIn("pilot_metrics_events", tables)
+        row = control.execute(
+            "SELECT firm_id,week_start,metric,count FROM pilot_metrics_weekly_counts "
+            "WHERE firm_id=? AND metric='cases_created'",
+            (self.firm_a,),
+        ).fetchone()
+        self.assertEqual(row["count"], 2)
+        self.assertNotIn("user_id", str(dict(row)))
+        self.assertNotIn("case_id", str(dict(row)))
 
 
 if __name__ == "__main__":
