@@ -2448,6 +2448,32 @@ class CasePatch(BaseModel):
     court: str | None = Field(None, max_length=200); circuit: str | None = Field(None, max_length=200)
     opposing_party: str | None = Field(None, max_length=200)
 class NoteIn(BaseModel): text: str = Field(min_length=1, max_length=10000)
+class CommunicationIn(BaseModel):
+    channel: str = Field(pattern=r"^(call|email|meeting|other)$")
+    subject: str = Field(min_length=1, max_length=200)
+    summary: str = Field(min_length=1, max_length=5000)
+    occurred_at: str | None = Field(default=None, max_length=40)
+
+    @field_validator("subject", "summary")
+    @classmethod
+    def trim_communication_text(cls, value):
+        value = value.strip()
+        if not value:
+            raise ValueError("communication text cannot be blank")
+        return value
+
+    @field_validator("occurred_at")
+    @classmethod
+    def validate_communication_time(cls, value):
+        if value is None:
+            return value
+        try:
+            parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        except ValueError as exc:
+            raise ValueError("occurred_at must be an ISO-8601 timestamp") from exc
+        if parsed.tzinfo is None:
+            raise ValueError("occurred_at must include a timezone")
+        return parsed.isoformat()
 class DeadlineIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); due: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
     _valid_due = field_validator("due")(validate_operational_deadline)
@@ -6229,6 +6255,32 @@ def new_note(cid: int, b: NoteIn, u: dict = Depends(user)):
     c.execute("INSERT INTO notes(case_id,created_by,text) VALUES(?,?,?)", (cid, u["id"], b.text.strip()))
     log(c, cid, u["name"], "إضافة ملاحظة"); c.commit()
     return {"ok": True}
+
+
+@app.get("/cases/{cid}/communications")
+def list_case_communications(cid: int, u: dict = Depends(user)):
+    c = conn()
+    need(c, u, cid)
+    return [dict(row) for row in c.execute(
+        "SELECT id,channel,subject,summary,occurred_at,created_at,created_by "
+        "FROM case_communications WHERE case_id=? ORDER BY occurred_at DESC,id DESC LIMIT 200",
+        (cid,),
+    ).fetchall()]
+
+
+@app.post("/cases/{cid}/communications")
+@rollback_tenant_transaction_on_error
+def create_case_communication(cid: int, b: CommunicationIn, u: dict = Depends(user)):
+    c = conn()
+    need(c, u, cid)
+    cursor = c.execute(
+        "INSERT INTO case_communications(case_id,created_by,channel,subject,summary,occurred_at) "
+        "VALUES(?,?,?,?,?,COALESCE(?,datetime('now')))",
+        (cid, int(u["id"]), b.channel, b.subject, b.summary, b.occurred_at),
+    )
+    log(c, cid, u["name"], "إضافة سجل تواصل")
+    c.commit()
+    return {"id": cursor.lastrowid, "ok": True}
 
 
 @app.get("/deadline-holidays")
