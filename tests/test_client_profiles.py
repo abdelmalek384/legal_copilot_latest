@@ -18,7 +18,9 @@ class ClientProfileTests(InvoiceTestSupport, unittest.TestCase):
         )
         self.assertEqual(first.status_code, 200, first.text)
         self.assertEqual(second.status_code, 200, second.text)
-        self.assertEqual(first.json()["client_id"], second.json()["client_id"])
+        first_case = self.client_a.get(f"/cases/{first.json()['id']}")
+        second_case = self.client_a.get(f"/cases/{second.json()['id']}")
+        self.assertEqual(first_case.json()["client_id"], second_case.json()["client_id"])
 
         profiles = self.client_a.get("/clients").json()
         self.assertEqual(len(profiles), 1)
