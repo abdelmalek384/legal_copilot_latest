@@ -6065,11 +6065,15 @@ def update_client(client_id: int, b: ClientIn, u: dict = Depends(user)):
 @rollback_tenant_transaction_on_error
 def import_clients_csv(b: ClientCSVImportIn, u: dict = Depends(user)):
     require_admin(u)
-    raw = b.csv
+    raw = b.csv.removeprefix("\\ufeff")
     if len(raw.encode("utf-8")) > 1_000_000:
         raise HTTPException(413, "CSV import exceeds the 1 MB limit")
     try:
-        reader = csv.DictReader(io.StringIO(raw, newline=""), strict=True)
+        try:
+            dialect = csv.Sniffer().sniff(raw[:4096], delimiters=",;")
+        except csv.Error:
+            dialect = csv.excel
+        reader = csv.DictReader(io.StringIO(raw, newline=""), dialect=dialect, strict=True)
         if not reader.fieldnames:
             raise ValueError("CSV header row is required")
         aliases = {
