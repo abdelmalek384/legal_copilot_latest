@@ -424,10 +424,90 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None
         counts["answerable_cases" if question["answerable"] else "unanswerable_cases"] += 1
         counts["reviewer_ids"].add(question["reviewer_id"])
 
+    practice_area_metrics = {}
+    reviewed_by_area = {}
+    for question, run in reviewed:
+        reviewed_by_area.setdefault(question["practice_area"].strip(), []).append((question, run))
+    for area, area_cases in sorted(reviewed_by_area.items()):
+        recall_values = []
+        reciprocal_ranks = []
+        citation_total_area = citation_correct_area = 0
+        citation_index_errors_area = 0
+        answerable_area = answerable_with_expected_area = 0
+        pin_cite_total_area = pin_cite_correct_area = 0
+        expected_pairs_area = set()
+        actual_pairs_area = set()
+        abstention_cases_area = abstention_correct_area = 0
+        for question, run in area_cases:
+            expected_sources = set(_expected_source_ids(question))
+            ranked = _unique_ids(run["retrieved_source_ids"])
+            top_five = set(ranked[:5])
+            recall_values.append(len(expected_sources & top_five) / len(expected_sources))
+            rank = next((index for index, source_id in enumerate(ranked, 1)
+                         if source_id in expected_sources), None)
+            reciprocal_ranks.append(1.0 / rank if rank is not None and rank <= 5 else 0.0)
+            retrieved = set(ranked)
+            expected_pin_cites = question.get("expected_pin_cites") or []
+            cited_expected = {
+                citation["source_id"].strip() for citation in run["citations"]
+                if citation["source_id"].strip() in expected_sources
+                and citation["source_id"].strip() in retrieved
+            }
+            if question["answerable"] is True:
+                answerable_area += 1
+                if cited_expected:
+                    answerable_with_expected_area += 1
+            citation_index_errors_area += len(run.get("invalid_citation_indices", []))
+            for citation in run["citations"]:
+                citation_total_area += 1
+                source_id = citation["source_id"].strip()
+                if source_id in retrieved and source_id in expected_sources:
+                    citation_correct_area += 1
+                if expected_pin_cites:
+                    pin_cite_total_area += 1
+                    if any(source_id == expected["source_id"]
+                           and citation.get("pin_cite") == expected["pin_cite"]
+                           for expected in expected_pin_cites) and source_id in retrieved:
+                        pin_cite_correct_area += 1
+            expected_pairs = {
+                (item["source_id"], item["pin_cite"]) for item in expected_pin_cites
+            }
+            actual_pairs = {
+                (citation["source_id"].strip(), citation.get("pin_cite"))
+                for citation in run["citations"]
+                if citation["source_id"].strip() in retrieved
+            }
+            expected_pairs_area.update(expected_pairs)
+            actual_pairs_area.update(actual_pairs)
+            if question["answerable"] is False:
+                abstention_cases_area += 1
+                if run["abstained"] is True and run["used_unverified_source"] is not True:
+                    abstention_correct_area += 1
+        practice_area_metrics[area] = {
+            "reviewed_cases": len(area_cases),
+            "answerable_cases": answerable_area,
+            "unanswerable_cases": abstention_cases_area,
+            "recall_at_5": round(sum(recall_values) / len(recall_values), 4) if recall_values else None,
+            "mrr_at_5": round(sum(reciprocal_ranks) / len(reciprocal_ranks), 4) if reciprocal_ranks else None,
+            "citation_precision": round(citation_correct_area / (citation_total_area + citation_index_errors_area), 4)
+                if citation_total_area + citation_index_errors_area else None,
+            "citation_coverage": round(answerable_with_expected_area / answerable_area, 4)
+                if answerable_area else None,
+            "abstention_compliance": round(abstention_correct_area / abstention_cases_area, 4)
+                if abstention_cases_area else None,
+            "pin_cite_accuracy": round(pin_cite_correct_area / pin_cite_total_area, 4)
+                if pin_cite_total_area else None,
+            "pin_cite_count": pin_cite_total_area,
+            "expected_pin_cite_recall": round(len(expected_pairs_area & actual_pairs_area) / len(expected_pairs_area), 4)
+                if expected_pairs_area else None,
+            "expected_pin_cite_count": len(expected_pairs_area),
+        }
+
     return {
         "reviewed_cases_scored": len(reviewed),
         "approved_reviewer_registry_entries": len(approved_reviewers),
         "reviewer_qualification_note": "Registry approval is an operator attestation; the evaluator does not independently verify identity or professional licensure.",
+        "practice_area_metrics": practice_area_metrics,
         "practice_area_counts": {
             area: {**{key: value for key, value in practice_area_counts[area].items() if key != "reviewer_ids"},
                    "reviewer_count": len(practice_area_counts[area]["reviewer_ids"])}
