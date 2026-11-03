@@ -6021,6 +6021,8 @@ def update_client(client_id: int, b: ClientIn, u: dict = Depends(user)):
         "UPDATE clients SET name=?,normalized_name=?,phone=?,email=?,address=?,notes=?,updated_at=datetime('now') WHERE id=?",
         (name, normalized, b.phone.strip(), b.email.strip(), b.address.strip(), b.notes.strip(), client_id),
     )
+    # Keep the legacy case-name snapshot aligned with the canonical profile name.
+    c.execute("UPDATE cases SET client=? WHERE client_id=?", (name, client_id))
     c.commit()
     return next(row for row in _client_payloads(c, u) if row["id"] == client_id)
 
