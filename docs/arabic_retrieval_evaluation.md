@@ -33,7 +33,7 @@ The evaluator requires:
 - `must_abstain_if_unverified: true`
 - optional `expected_pin_cites`, as a list of objects with non-empty string `source_id` and `pin_cite` values
 
-Do not mark a question reviewed merely to make it count. Keep the seed file unlabelled until the review occurs. The registry is an operator-maintained attestation, not independent identity or professional-licence verification. Registry approval alone does not prove that a reviewer actually authored a particular label; preserve the review evidence URL and source/version record for audit.
+Do not mark a question reviewed merely to make it count. Keep the seed file unlabelled until the review occurs. Expected source IDs must be unique and free of surrounding whitespace. Each expected pin-cite must refer to one of those expected source IDs; duplicate source/pin-cite pairs and whitespace-padded values are invalid. The registry is an operator-maintained attestation, not independent identity or professional-licence verification. Registry approval alone does not prove that a reviewer actually authored a particular label; preserve the review evidence URL and source/version record for audit.
 
 ## Run record
 
@@ -51,7 +51,7 @@ One JSON object per question in `runs.example.jsonl`:
 }
 ```
 
-The API runner now emits this scoring schema directly (`question_id`, `retrieved_source_ids`, `citations`, `abstained`, and `used_unverified_source`) while retaining its diagnostic fields (`answer`, `source_summary`, `invalid_citation_indices`, and `requested_as_of`). A visible citation whose source has no stable ID is listed as invalid. Missing or non-verified source status is treated conservatively as unverified. The example is not a real result; do not copy placeholder IDs into the measured dataset. If the optional `invalid_citation_indices` field is supplied, it must be a list of unique positive integers; those markers count against citation precision and are reported separately.
+The API runner now emits this scoring schema directly (`question_id`, `retrieved_source_ids`, `citations`, `abstained`, and `used_unverified_source`) while retaining its diagnostic fields (`answer`, `source_summary`, `invalid_citation_indices`, and `requested_as_of`). A visible citation whose source has no stable ID is listed as invalid. Missing or non-verified source status is treated conservatively as unverified. The example is not a real result; do not copy placeholder IDs into the measured dataset. If the optional `invalid_citation_indices` field is supplied, it must be a list of unique positive integers; those markers count against citation precision and are reported separately. Ranked `retrieved_source_ids` must be unique and must not contain surrounding whitespace; duplicate IDs are rejected as malformed rather than silently deduplicated, because duplicates can distort rank positions. Reviewed `expected_source_ids` are subject to the same uniqueness and whitespace rules. Retrieval cutoffs (`k_values`) must also be unique.
 
 ## Metrics
 
@@ -63,7 +63,7 @@ The API runner now emits this scoring schema directly (`question_id`, `retrieved
 - **Expected pin-cite recall:** fraction of distinct reviewer-expected source-ID/pin-cite pairs that were emitted exactly. A missing citation counts against recall.
 - **Abstention compliance:** among reviewed unanswerable cases, fraction where the system abstained and did not use an unverified source.
 - **Unsafe unverified-source uses:** count of runs marked as using an unverified source without abstaining.
-- **Source-status evidence:** when `source_summary` is supplied, cited source IDs must appear there and a non-verified status cannot be paired with `used_unverified_source: false`. For records with citations but no status summary, the evaluator fails closed for safety scoring and reports `source_status_evidence_missing_count`.
+- **Source-status evidence:** when `source_summary` is supplied, every ranked retrieved source ID and every cited source ID must appear there; duplicate source-summary IDs are invalid, and a non-verified status cannot be paired with `used_unverified_source: false`. For records with citations but no status summary, the evaluator fails closed for safety scoring and reports `source_status_evidence_missing_count`.
 
 Metrics are `null` when there is no eligible denominator (for example, no answerable reviewed cases for citation coverage, or no expected pin-cite pairs for pin-cite recall). The report lists excluded questions and reasons, malformed question/run records, duplicate question IDs, and duplicate run question IDs. Duplicate IDs are excluded from scoring instead of choosing an arbitrary record. Resolve these data-quality errors before relying on a score.
 
