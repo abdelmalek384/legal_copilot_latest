@@ -2697,10 +2697,14 @@ def _user_separate(
         allowed_paths = {"/session", "/account/mfa/enroll", "/account/mfa/confirm", "/account/mfa/verify", "/logout"}
         if request.url.path not in allowed_paths:
             raise HTTPException(403, "MFA verification or enrollment required")
+    demo_marker = c.execute(
+        "SELECT is_demo FROM firms WHERE id=?", (context.firm_id,)
+    ).fetchone()
     return {
         "id": account["id"], "name": account["name"], "email": account["email_display"],
         "email_normalized": account["email_normalized"], "role": context.role,
         "firm_id": context.firm_id, "active": 1, "firms": firms,
+        "is_demo": bool(demo_marker and demo_marker["is_demo"]),
         "platform_roles": _platform_roles_for_user(account["id"]),
         "can_review_legal": _user_can_review_legal({"id": account["id"], "role": context.role, "email": account["email_display"]}),
         "mfa_enabled": mfa_enabled, "mfa_required": mfa_required,
