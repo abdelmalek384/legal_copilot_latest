@@ -73,12 +73,22 @@ def expand_lexicon_hints(query, existing_tokens, tokens_fn, norm_fn, limit=48):
         token_terms = tokens_fn(token)
         if not token_terms:
             continue
-        token_term_set = set(token_terms)
-        occurrences = [
-            match.start()
-            for match in re.finditer(r"\\w+", normalized_query)
-            if token_term_set.intersection(tokens_fn(match.group()))
-        ]
+        if len(token_terms) > 1:
+            normalized_token = norm_fn(token)
+            occurrences = [
+                match.start()
+                for match in re.finditer(
+                    r"(?<!\\w)" + re.escape(normalized_token) + r"(?!\\w)",
+                    normalized_query,
+                )
+            ] if normalized_token else []
+        else:
+            token_term_set = set(token_terms)
+            occurrences = [
+                match.start()
+                for match in re.finditer(r"\\w+", normalized_query)
+                if token_term_set.intersection(tokens_fn(match.group()))
+            ]
         if any(term in current for term in token_terms) and occurrences and any(
             not is_negated_at(start) for start in occurrences
         ):
