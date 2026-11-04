@@ -854,3 +854,5 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - **Modal keyboard/focus browser test:** commit `a3e66cb` exercises Tab wraparound, Escape dismissal, dialog removal and opener-focus restoration in the new-case modal; contract test `48f0182` protects the browser assertions; UX audit `9597f70` records the acceptance scenario. CI execution remains pending.
 
 - **Async completion/error announcements:** frontend commit `6e2e7d9` adds polite success announcements after AI brief and deadline estimation and assertive alerts for deadline calculation errors; contract test `c6dc967` and UX audit `de05ca8` updated.
+
+- **Manual accessibility acceptance protocol:** added `docs/accessibility_manual_acceptance.md` (commit `4cf9dde`) with bilingual RTL/LTR, keyboard/focus, screen-reader, form semantics, dynamic announcements, contrast, zoom/reflow, forced-colors, reduced-motion and critical workflow checklists plus evidence/exit criteria. Linked it from the UX audit in `7e7ad38`. This prepares the blocked manual review; it does not mark it completed.
