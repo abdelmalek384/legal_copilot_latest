@@ -58,14 +58,15 @@ def _segment_lines(lines,reverse_rtl_digits=False):
  for line,page_number in lines:
   key,body=extract_heading(line,reverse_rtl_digits) if len(line)<400 else (None,None)
   key=label(key) if key is not None else None
-  if cur is not None and page_number is not None:cur["page_end"]=page_number
   if key:
    seen[key]+=1
    cur={"key":key,"occurrence":seen[key],"heading":line.strip()[:120],"parts":[]}
    if page_number is not None:cur.update(page_start=page_number,page_end=page_number)
    out.append(cur)
    if body:cur["parts"].append(body)
-  elif cur is not None:cur["parts"].append(line)
+  elif cur is not None:
+   if page_number is not None:cur["page_end"]=page_number
+   cur["parts"].append(line)
  for x in out:x["text"]="\n".join(x.pop("parts")).strip()
  return out
 def segment(s):
