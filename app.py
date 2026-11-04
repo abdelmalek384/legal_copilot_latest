@@ -3647,7 +3647,7 @@ def _mfa_policy_requires_user(user_id: int, control=None, firm_id: int | None = 
     mode = _mfa_enforcement_mode()
     if mode == "all_required":
         return True
-    if mode == "admins_required" and _mfa_user_is_privileged(user_id, db, firm_id):
+    if mode == "admins_required" and _mfa_user_is_privileged(user_id, db):
         return True
     if firm_id is None:
         return False
