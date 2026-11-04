@@ -39,6 +39,9 @@ class CaseCSVImportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertIn("case_csv_import:created=2;skipped=1", audit)
         self.assertNotIn("Employment claim", audit)
         self.assertNotIn("Imported CSV Client", audit)
+        metrics = app._pilot_metrics_rows(control, weeks=1)
+        firm_a_week = next(row for row in metrics if row["firm_id"] == self.firm_a)
+        self.assertEqual(firm_a_week["cases_created"], 2)
 
         repeated = self.mutate(self.client_a, "post", "/cases/import.csv", json=payload)
         self.assertEqual(repeated.status_code, 200, repeated.text)
