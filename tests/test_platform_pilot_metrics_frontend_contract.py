@@ -16,7 +16,10 @@ class PlatformPilotMetricsFrontendContractTests(unittest.TestCase):
         self.assertIn("/platform/pilot-metrics?weeks=12", HTML)
         self.assertIn("/platform/pilot-metrics/export.csv?weeks=12", HTML)
         self.assertIn("Successful sign-ins", HTML)
+        self.assertIn("Weekly active users", HTML)
         self.assertIn("not distinct people", HTML)
+        self.assertIn("case/task/calendar-only activity is not currently included", HTML.lower())
+        self.assertIn("المستخدمون النشطون أسبوعياً", HTML)
         self.assertIn("معرفات المستخدمين", HTML)
 
 
