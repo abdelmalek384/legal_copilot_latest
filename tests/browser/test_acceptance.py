@@ -1045,12 +1045,12 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 timeout=8000,
             )
             # Earlier browser cases exercise the same per-IP export budget.
-            # Reset only this synthetic disposable database bucket so this
-            # acceptance assertion measures the UI workflow, not test ordering.
+            # Reset only the loopback browser-test client's synthetic bucket in
+            # this disposable control database; preserve every other client key.
             control = self.runtime.control_connection()
             control.execute(
-                "DELETE FROM api_rate_limit_windows WHERE bucket=?",
-                ("/firm/data-export.zip",),
+                "DELETE FROM api_rate_limit_windows WHERE bucket=? AND client_key=?",
+                ("/firm/data-export.zip", "127.0.0.1"),
             )
             control.commit()
             with self.page.expect_download(timeout=15000) as export_download:
