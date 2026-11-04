@@ -454,5 +454,17 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("p.placeholder&&!e.hasAttribute('aria-label')", HTML)
 
 
+    def test_workspace_filters_and_feedback_selects_have_accessible_names(self):
+        for label in (
+            "Filter tasks by status",
+            "Filter calendar by type",
+            "Filter calendar by date",
+            "Filter cases by status",
+            "Feedback category",
+            "Invited user role",
+        ):
+            self.assertIn(label, HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
