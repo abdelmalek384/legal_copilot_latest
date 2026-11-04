@@ -74,9 +74,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Download security audit CSV", HTML)
         self.assertIn("تصدير سجل الأمان", HTML)
 
-    def test_navigation_is_keyboard_operable_and_announces_current_page(self):
-        self.assertIn("role:'button',tabIndex:0,'aria-current':PAGE===id?'page':null", HTML)
-        self.assertIn("e.key==='Enter'||e.key===' '", HTML)
+    def test_primary_navigation_uses_native_buttons_and_announces_current_page(self):
+        self.assertIn("h('button',{type:'button',className:PAGE===id?'on':'','aria-current':PAGE===id?'page':null", HTML)
+        self.assertNotIn("role:'button',tabIndex:0,'aria-current':PAGE===id?'page':null", HTML)
+        self.assertIn("#side .primary-nav button:focus-visible", HTML)
+        self.assertIn("#side .primary-nav button.on", HTML)
 
     def test_language_switch_rerenders_every_primary_workspace(self):
         switch = HTML[HTML.index("function switchLanguage()"):HTML.index("\nconst languageObserver")]
