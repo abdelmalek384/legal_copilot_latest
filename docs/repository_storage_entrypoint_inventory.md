@@ -1,7 +1,7 @@
 # SEC-01 — repository storage, file, backup, and job inventory (historical baseline)
 
 **Snapshot:** 2026-10-24  
-**Status:** Historical baseline; several architecture statements below predate the separate-database runtime and tenant backup/restore work. Use [the current tenant-isolation inventory](tenant_isolation_inventory.md), [database completion tracker](database_completion_tracker.md), and [recovery runbook](database_recovery_runbook.md) for current status.  
+**Status:** Historical baseline; several architecture statements below predate the separate-database runtime and tenant backup/restore work. Use [the current tenant-isolation inventory](tenant_isolation_inventory.md), [database completion tracker](archive/database_completion_tracker.md), and [recovery runbook](database_recovery_runbook.md) for current status.  
 **Scope:** preserve the initial static review of storage-related entry points beyond request handlers, including CLI commands, corpus tooling, backup/restore, collection outputs, and deployment guidance.  
 **Evidence level:** engineering inventory based on source inspection and repository searches. This is not an exhaustive SQL audit, a deployment-host inspection, a penetration test, or an independent security review.
 
