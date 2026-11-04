@@ -80,6 +80,22 @@ def _modal_classes(text, patterns):
     }
 
 
+_ENGLISH_NEGATED_OBLIGATION = re.compile(
+    r"\\b(?:not\\s+required\\s+to|need\\s+not|is\\s+not\\s+obliged\\s+to|"
+    r"are\\s+not\\s+obliged\\s+to|is\\s+not\\s+obligated\\s+to|"
+    r"are\\s+not\\s+obligated\\s+to)\\b",
+    re.IGNORECASE,
+)
+_ENGLISH_POSITIVE_OBLIGATION = re.compile(
+    r"\\b(?:must|shall|required\\s+to|is\\s+required\\s+to|are\\s+required\\s+to)\\b",
+    re.IGNORECASE,
+)
+_ARABIC_NEGATED_OBLIGATION = re.compile(
+    r"(?:لا\\s*(?:يجب|يلتزم|يتعين)|ليس\\s+ملزما|غير\\s+ملزم)"
+)
+_ARABIC_POSITIVE_OBLIGATION = re.compile(r"(?:يجب|يلتزم|يتعين)")
+
+
 def _has_modal_mismatch(claim, evidence):
     """Compare explicit, conflicting modality classes only within one language."""
     conflicts = {
@@ -98,6 +114,21 @@ def _has_modal_mismatch(claim, evidence):
         if any((claim_class, evidence_class) in conflicts
                for claim_class in claim_classes
                for evidence_class in evidence_classes):
+            return True
+
+    # Compare explicit positive vs negated obligations independently of the
+    # broader modality classifier. Remove the negated phrase before looking for
+    # a positive marker so "not required" cannot count as both classes.
+    for negative, positive in (
+        (_ENGLISH_NEGATED_OBLIGATION, _ENGLISH_POSITIVE_OBLIGATION),
+        (_ARABIC_NEGATED_OBLIGATION, _ARABIC_POSITIVE_OBLIGATION),
+    ):
+        claim_is_negative = bool(negative.search(claim))
+        evidence_is_negative = bool(negative.search(evidence))
+        claim_is_positive = bool(positive.search(negative.sub(" ", claim)))
+        evidence_is_positive = bool(positive.search(negative.sub(" ", evidence)))
+        if ((claim_is_positive and evidence_is_negative)
+                or (claim_is_negative and evidence_is_positive)):
             return True
     return False
 
