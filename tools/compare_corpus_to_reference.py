@@ -1,5 +1,5 @@
 """Evidence-only comparison of JSONL article rows with manually saved reference text."""
-import argparse,difflib,hashlib,json,re,sys,unicodedata
+import argparse,difflib,hashlib,json,re,shutil,subprocess,sys,unicodedata
 from pypdf import PdfReader
 from collections import Counter
 from pathlib import Path
@@ -10,7 +10,7 @@ ORD={re.sub(r"\s+"," ",k):v for k,v in ORD.items()}
 WORDS=set("واحد واحده اثنين اثنان اثنتين ثلاثه ثلاث اربعه اربع خمسه خمس سته ست سبعه سبع ثمانيه ثماني تسعه تسع عشره عشر عشرين عشرون ثلاثين ثلاثون اربعين اربعون خمسين خمسون ستين ستون سبعين سبعون ثمانين ثمانون تسعين تسعون مائه مئه ميه الف الفين مليون مليار نصف ثلث ربع".split())
 HEAD=re.compile(r"^\s*(?:المادة|مادة)\s*\(?\s*(.*?)\s*\)?\s*[:：\-–—]?\s*(.*)$")
 def norm(s):
- s=unicodedata.normalize("NFKC",str(s or "")).translate(DIGITS);s=DIAC.sub("",s);s=re.sub(r"[أإآٱ]","ا",s).replace("ى","ي").replace("ی","ي").replace("ک","ك");return re.sub(r"[\u200b-\u200f\u202a-\u202e\ufeff]","",s)
+  s=unicodedata.normalize("NFKC",str(s or "")).translate(DIGITS);s=DIAC.sub("",s);s=re.sub(r"[أإآٱ]","ا",s).replace("ى","ي").replace("ی","ي").replace("ک","ك");return re.sub(r"[\u200b-\u200f\u202a-\u202e\ufeff]","",s)
 ORD = {norm(k): v for k, v in ORD.items()}
 def label(v):
  if v is None:return None
@@ -30,22 +30,22 @@ def textnorm(s):return re.sub(r"\s+"," ",re.sub(r"[^\w\s]|_"," ",norm(s))).strip
 def nums(s):
  s=textnorm(s);return Counter(re.findall(r"\d+",s)),Counter(w for w in re.findall(r"\w+",s.replace("ة","ه")) if w in WORDS)
 def digest(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
-def extract_heading(line):
+def extract_heading(line,reverse_rtl_digits=False):
  s=norm(line).strip()
- m=re.match(r"^[\s()（）]*?(?:المادة|مادة)\s*(.*)$",s)
+ m=re.match(r"^[\s()（）]*(?:لك\s*)?(?:المادة|مادة)\s*(.*)$",s)
  if not m:return None,None
  rest=m.group(1).strip()
- rest=re.sub(r"^[\s()（）]+|[\s()（）:：\-–—]+$","",rest).strip()
+ rest=re.sub(r"^[\s()（）:：\\-–—]+|[\s()（）:：\\-–—]+$","",rest).strip()
  # pypdf can return Arabic-Indic heading digits in visual RTL order (e.g. ٠١ for article 10).
  # Correct the label only; body digits remain untouched for explicit human review.
- if re.fullmatch(r"[٠-٩۰-۹]+", "".join(ch for ch in line if ch in "٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹")):
+ if reverse_rtl_digits:
   raw_digits="".join(ch for ch in line if ch in "٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹")
   if raw_digits:
    normalized_digits=raw_digits.translate(DIGITS)
-   rest=re.sub(r"\d+",normalized_digits[::-1],rest,count=1)
- n=re.match(r"^\(?\s*(\d+)\s*\)?(?:\s+(مكرر(?:ا|ة)?(?:\s+\(?[ء-ي]\s*\)?)?))?(?:\s+(.*))?$",rest,re.I)
+   rest=re.sub(r"\\d+",normalized_digits[::-1],rest,count=1)
+ n=re.match(r"^\\(?\\s*(\\d+)\\s*\\)?(?:\\s+(مكرر(?:ا|ة)?(?:\\s+\\(?[ء-ي]\\s*\\)?)?))?(?:\\s+(.*))?$",rest,re.I)
  if n:
-  suffix_letter=re.search(r"مكرر(?:ا|ة)?\s+\(?([ء-ي])",n.group(2)) if n.group(2) else None
+  suffix_letter=re.search(r"مكرر(?:ا|ة)?\\s+\\(?([ء-ي])",n.group(2)) if n.group(2) else None
   key=n.group(1)+((" مكرر"+((" "+suffix_letter.group(1)) if suffix_letter else "")) if n.group(2) else "")
   return key,(n.group(3) or "").strip()
  for ordinal in sorted(ORD,key=len,reverse=True):
@@ -53,10 +53,10 @@ def extract_heading(line):
   if rest.startswith(ordinal+" "):return str(ORD[ordinal]),rest[len(ordinal):].strip()
  return None,None
 
-def _segment_lines(lines):
+def _segment_lines(lines,reverse_rtl_digits=False):
  out=[];cur=None;seen=Counter()
  for line,page_number in lines:
-  key,body=extract_heading(line) if len(line)<400 else (None,None)
+  key,body=extract_heading(line,reverse_rtl_digits) if len(line)<400 else (None,None)
   key=label(key) if key is not None else None
   if cur is not None and page_number is not None:cur["page_end"]=page_number
   if key:
@@ -70,42 +70,63 @@ def _segment_lines(lines):
  return out
 def segment(s):
  return _segment_lines((line,None) for line in s.splitlines())
-def segment_pages(pages):
- return _segment_lines((line,page_number) for page_number,page_text in enumerate(pages,1) for line in page_text.splitlines())
+def segment_pages(pages,reverse_rtl_digits=False):
+ return _segment_lines(((line,page_number) for page_number,page_text in enumerate(pages,1) for line in page_text.splitlines()),reverse_rtl_digits)
 def _is_gazette_page_matter(line):
- s=norm(line)
+  s=norm(line)
  return "الجريدة الرسمية" in s or "الوقائع المصرية" in s
 def _clean_pdf_page_matter(page_text):
  lines=page_text.splitlines();kept=[];removed=0
  for index,line in enumerate(lines):
-  at_page_edge=index<3 or index>=max(0,len(lines)-3)
-  if re.fullmatch(r"\s*[٠-٩0-9۰-۹]+\s*",norm(line)):
+  normalized=norm(line).strip()
+  if re.fullmatch(r"[٠-٩0-9۰-۹]+",normalized):
    # Standalone folio numbers are page furniture, not article text.
    continue
+  # The electronic-copy watermark is repeated over the page and is not statutory text.
+  if ("صورة" in normalized and ("إلكترونية" in normalized or "الكترونية" in normalized)) or ("يعتد" in normalized and "التداول" in normalized):
+   continue
+  if len(normalized)<18 and normalized in {"لك","ل","تداول","عند","بها","تروني","ة ال يع"}:
+   continue
+  at_page_edge=index<3 or index>=max(0,len(lines)-3)
   if at_page_edge and _is_gazette_page_matter(line):
    removed+=1
   else:kept.append(line)
- return "\n".join(kept),removed
+ return "\\n".join(kept),removed
+
 def read_reference(path):
  p=Path(path)
  if p.suffix.lower()==".pdf":
   try:
-   reader=PdfReader(str(p),strict=False)
-   if reader.is_encrypted:raise ValueError("encrypted reference PDFs are not supported; provide an authorized readable copy")
-   page_texts=[];warnings=[];page_matter_removed=0
-   for page_number,page in enumerate(reader.pages,1):
-    try:text=page.extract_text() or ""
-    except Exception as exc:
-     text="";warnings.append(f"PDF page {page_number} text extraction failed ({type(exc).__name__}); review that page manually.")
-    if not text.strip():warnings.append(f"PDF page {page_number} yielded no extractable text; image/OCR review is still required.")
-    text,removed=_clean_pdf_page_matter(text);page_matter_removed+=removed
-    page_texts.append(text)
+   page_texts=[];warnings=[];page_matter_removed=0;extraction="pypdf text extraction"
+   poppler=shutil.which("pdftotext")
+   if poppler:
+    try:
+     completed=subprocess.run([poppler,"-layout",str(p),"-"],capture_output=True,text=True,encoding="utf-8",errors="replace",timeout=120,check=False)
+     if completed.returncode==0 and completed.stdout.strip():
+      page_texts=completed.stdout.split("\\f")
+      if page_texts and not page_texts[-1].strip():page_texts.pop()
+      extraction="pdftotext -layout"
+    except (OSError,subprocess.TimeoutExpired):
+     page_texts=[]
+   if not page_texts:
+    reader=PdfReader(str(p),strict=False)
+    if reader.is_encrypted:raise ValueError("encrypted reference PDFs are not supported; provide an authorized readable copy")
+    for page_number,page in enumerate(reader.pages,1):
+     try:text=page.extract_text() or ""
+     except Exception as exc:
+      text="";warnings.append(f"PDF page {page_number} text extraction failed ({type(exc).__name__}); review that page manually.")
+     if not text.strip():warnings.append(f"PDF page {page_number} yielded no extractable text; image/OCR review is still required.")
+     page_texts.append(text)
+   cleaned=[]
+   for text in page_texts:
+    text,removed=_clean_pdf_page_matter(text);page_matter_removed+=removed;cleaned.append(text)
    if page_matter_removed:
     warnings.append(f"Excluded {page_matter_removed} apparent Gazette header/footer line(s) from page edges; verify the original page images before accepting matches.")
-   return segment_pages(page_texts),warnings,{"format":"pdf","page_count":len(page_texts),"extraction":"pypdf text extraction","page_matter_lines_removed":page_matter_removed}
+   return segment_pages(cleaned,reverse_rtl_digits=(extraction=="pypdf text extraction")),warnings,{"format":"pdf","page_count":len(cleaned),"extraction":extraction,"page_matter_lines_removed":page_matter_removed}
   except ValueError:raise
   except Exception as exc:raise ValueError(f"could not read reference PDF ({type(exc).__name__})") from exc
  return segment(p.read_text(encoding="utf-8")),[],{"format":"text","page_count":None,"extraction":"UTF-8 text"}
+
 def readcand(p):
  out=[];warn=[];seen=Counter()
  for i,line in enumerate(Path(p).read_text(encoding="utf-8").splitlines(),1):
