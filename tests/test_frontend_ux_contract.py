@@ -563,5 +563,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn('new_case_opener.evaluate("(el) => el === document.activeElement")', browser_tests)
 
 
+    def test_css_custom_properties_are_defined_before_use(self):
+        referenced = set(re.findall(r"var\(--([a-zA-Z0-9_-]+)", HTML))
+        defined = set(re.findall(r"--([a-zA-Z0-9_-]+)\s*:", HTML))
+        self.assertEqual(referenced - defined, set(), "Undefined CSS custom properties")
+
+
 if __name__ == "__main__":
     unittest.main()
