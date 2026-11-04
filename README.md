@@ -1,14 +1,41 @@
-# Legal Copilot MVP (Egyptian law, Arabic-first)
-Case folders with Egyptian case metadata, internal notes, legal deadlines separate from court sessions, fee tracking, team management, session tracking, hybrid law search (SQLite FTS5 + Arabic-normalized trigram similarity + exact article lookup),
-and answers that must cite numbered sources. If nothing relevant is found, or the model's citations fail the check, it shows sources only.
+# Legal Copilot — Egyptian legal practice workspace
 
-Mac quick start: double-click `start_mac.command`; it creates a virtual environment, installs dependencies, initializes separate control-plane, firm, and shared-corpus databases under `./data`, prompts to create the first firm administrator if needed, and starts the app locally. Manual run: follow the initialization and first-owner bootstrap steps under [Setup and security](#setup-and-security), set `COPILOT_CONTROL_DB`, `COPILOT_TENANT_DB_ROOT`, and `COPILOT_CORPUS_DB` to three distinct paths, then run `python -m uvicorn app:app --host 127.0.0.1 --port 8000` and open http://127.0.0.1:8000. The app fails closed unless the separate profile paths are configured. The shared `COPILOT_DB` runtime was retired in PR #972 and is rejected in every environment; configure only the three profile-separated paths. No legacy data import is part of this project.
-Load law: POST a JSON list of {law, article, text, as_of, in_force, source} to /law/import (see `tests/fixtures/sample_law.jsonl`: fictional test text only).
-Model: set LLM_URL (OpenAI-compatible /chat/completions, e.g. vLLM, Ollama, or a hosted provider), LLM_MODEL, and LLM_KEY. The app does not choose or bundle a model. LLM_URL alone is not enough to send prompts: explicitly set LLM_DATA_PROCESSING_APPROVED=1 only after reviewing the endpoint, data-processing terms, retention, and whether matter data may be sent. Case-scoped research, follow-up conversation context, and matter-file passages additionally require `LLM_FIRM_DATA_PROCESSING_APPROVED=1`; otherwise those requests return sources only. These are deployment attestations, not consent or privacy guarantees. See [LLM data-processing policy](docs/llm_data_processing_policy.md).
+Arabic-first case management and legal research for Egyptian law firms. The application includes matter folders, teams, tasks, hearings, fees, document text search, and source-cited legal research with conservative abstention.
 
-Container deployment template: see [the hardened Docker/Compose deployment guide](docs/container_deployment.md). It uses the checked-in Python 3.12 hash lock, a non-root read-only container, separate persistent database paths, S3/KMS configuration, and explicit database-acceptance evidence. It is a deployment template, not a completed production deployment; staging, recovery, security, and lawyer acceptance gates remain mandatory.
+## Quick start
 
-Not included yet: a complete verified official law/ruling corpus, production-ready reminder operations (a tenant-scoped durable outbox, dry-run-by-default operator scheduler, and read-only external health probe now exist, but SMTP provider staging, external scheduling/alerting, and operator reconciliation remain release gates; see [the scheduler contract](docs/reminder_scheduler_contract.md) and [the monitoring runbook](docs/reminder_outbox_monitoring_runbook.md)), WhatsApp/SMS delivery, embedding-model semantic search, and a complete end-to-end amendment/consolidation workflow.
+Use Python 3.12. On macOS run `./start_mac.command`; on Windows run `start_windows.bat`. The launchers create the local environment, initialize the database profiles, and guide first-firm-owner setup.
+
+For manual local setup:
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+mkdir -p data/tenants
+export COPILOT_CONTROL_DB="$PWD/data/control_plane.sqlite3"
+export COPILOT_TENANT_DB_ROOT="$PWD/data/tenants"
+export COPILOT_CORPUS_DB="$PWD/data/legal_corpus.sqlite3"
+python -c "from database_runtime import DatabaseRuntime; DatabaseRuntime.from_env().initialize()"
+python manage.py init-tenancy --firm-name "Example Firm" --owner-name "First Owner" --owner-email owner@example.com
+python -m uvicorn app:app --host 127.0.0.1 --port 8000
+```
+
+The three database domains are distinct: **control plane** for global identities and memberships, **tenant root** for one isolated database per firm, and **shared corpus** for legal-reference material. Keep all three paths persistent and distinct. Open http://127.0.0.1:8000 locally; do not expose the development server directly to the internet.
+
+## Legal-data status
+
+The repository contains candidate registers, ingestion and comparison tooling, and draft evaluation questions. It currently contains **no verified Egyptian law**. A source URL, extracted text, hash, passing test, or automated comparison is not lawyer verification. Material remains unverified until its primary Gazette text, applicable dates and legal status are checked; legal authority status requires qualified Egyptian counsel.
+
+## Known limits
+
+- **Legal knowledge:** no source-matched Law 14/2025 result yet; no lawyer-reviewed legal corpus. Draft evaluation questions measure retrieval and refusal, not legal correctness.
+- **Deadlines:** deadline rules and holiday coverage are drafts. Do not rely on calculated dates without checking the governing rule, source, and reviewer.
+- **Email features:** account invitations and identity email need an approved SMTP host and sender. Reminder delivery uses its separately configured reminder SMTP credentials and remains dry-run by default.
+- **Public deployment:** email links and external reminders need a public HTTPS origin configured as `COPILOT_PUBLIC_ORIGIN`; production also needs trusted host and secure-cookie configuration.
+- **MFA:** authenticator encryption requires a dedicated `MFA_ENCRYPTION_KEY`, generated with `python manage.py gen-mfa-key` and stored in a secret manager. Never reuse the backup or model key.
+- **AI processing:** no model is bundled. Configure an approved OpenAI-compatible endpoint and explicitly review data-processing terms before enabling prompt transmission; case data has an additional firm-data approval requirement.
+- **Semantic search:** embeddings are not implemented. Current retrieval is lexical/hybrid and depends on the coverage and quality of indexed source material.
 
 ## Egyptian legal corpus bootstrap
 
