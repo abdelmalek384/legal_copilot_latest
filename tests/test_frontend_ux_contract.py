@@ -21,6 +21,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertTrue(all(entry["review_status"] == "pending_native_review" for entry in entries))
 
         source = HTML
+        # Skip one JavaScript normalization function whose regex literals contain
+        # quote characters; its Arabic user-facing errors are asserted in catalog.
+        numeric_start = source.index("const egpToPiasters=raw=>{")
+        numeric_end = source.index("\n};", numeric_start) + 3
+        source = source[:numeric_start] + source[numeric_end:]
+        for message in ("تحقق من فواصل الآلاف في المبلغ", "أدخل مبلغاً صحيحاً حتى قرشين عشريين", "المبلغ خارج النطاق المسموح"):
+            self.assertIn(message, reviewed)
         found = set()
         index = 0
         while index < len(source):
