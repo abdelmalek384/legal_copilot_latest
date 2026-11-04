@@ -9,6 +9,18 @@ HTML = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
 
 class FrontendUXContractTests(unittest.TestCase):
 
+    def test_firm_mfa_policy_controls_are_visible_and_accessibly_named(self):
+        self.assertIn("Firm MFA policy", HTML)
+        self.assertIn("Require MFA for firm administrators", HTML)
+        self.assertIn("Require MFA for everyone in the firm", HTML)
+        self.assertIn("/admin/security-policy", HTML)
+        self.assertIn("'aria-label':uiText('إلزام مسؤولي المكتب بتفعيل المصادقة'", HTML)
+        self.assertIn("const session=await api('/session')", HTML)
+        self.assertIn("if(ME.mfa_enrollment_required){mfaEnrollmentPage();return}", HTML)
+        self.assertIn("if(ME.mfa_verification_required){mfaChallengePage();return}", HTML)
+        self.assertIn("function mfaFirmSwitcher()", HTML)
+        self.assertEqual(HTML.count("const firmSwitcher=mfaFirmSwitcher();if(firmSwitcher)card.append(firmSwitcher)"), 2)
+
     def test_mobile_language_switch_meets_44px_touch_target(self):
         self.assertIn("#side .lang-switch button { width: auto; min-width: 78px; min-height: 44px;", HTML)
 

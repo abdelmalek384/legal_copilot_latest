@@ -47,6 +47,8 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         self.assertIn("user_platform_roles", names(control))
         self.assertIn("platform_security_events", names(control))
         self.assertIn("firm_usage_events", names(control))
+        self.assertIn("firm_security_policies", names(control))
+        self.assertIn("firm_security_policy_audit", names(control))
         self.assertIn("firm_onboarding_timing", names(control))
         self.assertNotIn("firm_onboarding_timing", names(firm))
         self.assertNotIn("firm_onboarding_timing", names(corpus))
@@ -567,7 +569,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
             db.commit()
 
             applied = apply_profile_migrations(db, "control_plane", ROOT)
-            self.assertEqual(applied, [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22])
+            self.assertEqual(applied, [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23])
             previous = db.execute(
                 "SELECT event_type,detail_json FROM platform_security_events"
             ).fetchone()
