@@ -1302,6 +1302,18 @@ class BrowserAcceptanceTests(unittest.TestCase):
         opener.click()
         self.page.get_by_role("dialog", name="قضية جديدة").wait_for(state="visible")
         assert_named_controls(".modal-backdrop")
+        self.page.keyboard.press("Escape")
+
+        self.page.get_by_role("button", name="العملاء وتعارض المصالح", exact=True).click()
+        client_button = self.page.get_by_role("button", name="+ ملف عميل جديد")
+        client_button.wait_for(state="visible")
+        client_button.click()
+        client_dialog = self.page.get_by_role("dialog", name="ملف عميل جديد")
+        client_dialog.wait_for(state="visible")
+        client_labelled_by = client_dialog.get_attribute("aria-labelledby")
+        self.assertTrue(client_labelled_by, "Client dialog must reference its visible heading")
+        self.assertEqual(client_dialog.locator("#" + client_labelled_by).inner_text(), "ملف عميل جديد")
+        assert_named_controls(".modal-backdrop")
         self.assertEqual(self.browser_errors, [], self.browser_errors)
 
 
