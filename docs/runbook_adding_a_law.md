@@ -47,16 +47,27 @@ A clean structural audit only means the file is internally consistent. It does n
 
 ## 5. Compare every article with the official reference
 
-Save the manually obtained official text as UTF-8 plain text and run:
+Prefer comparing the candidate rows directly with the manually captured Official Gazette PDF. This preserves the original PDF hash and reports the Gazette page range detected for each article:
+
+```bash
+python tools/compare_corpus_to_reference.py \
+  --candidate law_rows_ar.jsonl \
+  --reference ~/Downloads/official_gazette.pdf \
+  --out-dir comparison_report
+```
+
+The PDF path must point to the exact file captured in step 2. The tool uses `pypdf` text extraction; it is not OCR, visual inspection, source authentication, or legal review. Inspect the original PDF page images for every article, especially pages with extraction warnings, empty text, tables, columns, footnotes, or Arabic glyph/order problems. Review missing/extra articles, numeric and number-word mismatches, major differences, and minor differences. A high similarity score or `all_identical` result is not an approval to import or serve the candidate.
+
+If an authorized, human-checked UTF-8 transcription is also available, it can be compared as a secondary cross-check:
 
 ```bash
 python tools/compare_corpus_to_reference.py \
   --candidate law_rows_ar.jsonl \
   --reference official_reference.txt \
-  --out-dir comparison_report
+  --out-dir text_comparison_report
 ```
 
-Review missing/extra articles, numeric mismatches, major differences, and minor differences. Check every discrepancy against the original Gazette pages; do not automatically replace text based on a comparison report. Preserve the report and reference hash.
+Check every discrepancy against the original Gazette pages; do not automatically replace text based on a comparison report. Preserve both reports, the original PDF, its SHA-256, and the extracted-text hash.
 
 ## 6. Record legal review and version status
 
