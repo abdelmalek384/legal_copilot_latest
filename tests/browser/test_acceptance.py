@@ -915,6 +915,15 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 "() => document.documentElement.scrollWidth <= window.innerWidth",
                 timeout=8000,
             )
+            # Earlier browser cases exercise the same per-IP export budget.
+            # Reset only this synthetic disposable database bucket so this
+            # acceptance assertion measures the UI workflow, not test ordering.
+            control = self.runtime.control_connection()
+            control.execute(
+                "DELETE FROM api_rate_limit_windows WHERE bucket=?",
+                ("/firm/data-export.zip",),
+            )
+            control.commit()
             with self.page.expect_download(timeout=15000) as export_download:
                 export_button.click()
             exported = export_download.value
