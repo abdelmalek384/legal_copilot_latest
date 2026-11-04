@@ -16,6 +16,9 @@ class CaseCSVImportTests(InvoiceTestSupport, unittest.TestCase):
                 "Contract dispute;Imported CSV Client;Civil;101/2025;2025;Cairo Court;Civil Circuit;Supplier B\n"
             )
         }
+        control_before = self.runtime.control_connection()
+        before_metrics = app._pilot_metrics_rows(control_before, weeks=1)
+        before_cases_created = next(row for row in before_metrics if row["firm_id"] == self.firm_a)["cases_created"]
         response = self.mutate(self.client_a, "post", "/cases/import.csv", json=payload)
         self.assertEqual(response.status_code, 200, response.text)
         self.assertEqual(response.json(), {"created": 2, "skipped": 1, "rows": 3})
@@ -43,7 +46,7 @@ class CaseCSVImportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertNotIn("Imported CSV Client", audit)
         metrics = app._pilot_metrics_rows(control, weeks=1)
         firm_a_week = next(row for row in metrics if row["firm_id"] == self.firm_a)
-        self.assertEqual(firm_a_week["cases_created"], 2)
+        self.assertEqual(firm_a_week["cases_created"], before_cases_created + 2)
 
         repeated = self.mutate(self.client_a, "post", "/cases/import.csv", json=payload)
         self.assertEqual(repeated.status_code, 200, repeated.text)
