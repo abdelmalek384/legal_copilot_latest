@@ -597,5 +597,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("type:'file',accept:'.pdf,.docx','aria-label'", HTML)
 
 
+    def test_modal_dialogs_inert_background_and_restore_it_on_close(self):
+        self.assertIn("const shell=$('shell');if(shell)shell.inert=true;A.append(overlay)", HTML)
+        self.assertIn("if(shell&&!document.querySelector('.modal-backdrop'))shell.inert=false", HTML)
+        self.assertIn("overlay.remove()", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
