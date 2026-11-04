@@ -1,5 +1,7 @@
 # Changelog — Legal Copilot
 
+- Extend Chromium acceptance at 390px and desktop widths to calculate deadlines from an explicitly draft rule, inspect its explanation, issue an invoice, and download the audited firm export.
+
 - Pin the production container to the CI-tested Python 3.12 image and block Dependabot major/minor Python image updates pending explicit version-specific CI (PR #1366).
 
 - Resolve client IPs through an explicit trusted-proxy allowlist for rate limits, login lockouts, and recovery throttles; document the required forwarded-header overwrite.
