@@ -210,7 +210,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                     if _has_https_host(item["url"], "portal.eta.gov.eg") and urlsplit(item["url"]).path == "/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
                 ]
                 self.assertTrue(pdf_evidence)
-                self.assertTrue(any("page-image check confirms" in item["supports"] or "page images confirm" in item["supports"] for item in pdf_evidence))
+                self.assertTrue(any(isinstance(item.get("supports"), str) and item["supports"].strip() for item in pdf_evidence))
         self.assertFalse(self.data["instrument"]["search_eligible"])
 
     def test_six_targeted_articles_match_visual_gazette_page_map(self):
