@@ -4,6 +4,7 @@ from unittest.mock import patch
 
 from starlette.requests import Request
 
+import app
 from app import client_ip
 
 
@@ -25,6 +26,26 @@ def make_request(peer, forwarded_for=None):
     })
 
 
+class FakeCursor:
+    def fetchone(self):
+        return {"hits": 1}
+
+    def fetchall(self):
+        return []
+
+
+class FakeConnection:
+    def __init__(self):
+        self.arguments = []
+
+    def execute(self, _sql, arguments):
+        self.arguments.append(arguments)
+        return FakeCursor()
+
+    def commit(self):
+        pass
+
+
 class TrustedProxyClientIpTests(unittest.TestCase):
     def test_untrusted_peer_cannot_spoof_forwarded_for(self):
         with patch.dict(os.environ, {"COPILOT_TRUSTED_PROXIES": "10.0.0.0/8"}):
@@ -36,11 +57,16 @@ class TrustedProxyClientIpTests(unittest.TestCase):
             request = make_request("10.0.0.8", "203.0.113.44")
             self.assertEqual(client_ip(request), "203.0.113.44")
 
-    def test_clients_behind_same_trusted_proxy_get_distinct_keys(self):
+    def test_clients_behind_same_trusted_proxy_get_distinct_rate_limit_buckets(self):
         with patch.dict(os.environ, {"COPILOT_TRUSTED_PROXIES": "10.0.0.0/8"}):
-            first = client_ip(make_request("10.0.0.8", "203.0.113.44"))
-            second = client_ip(make_request("10.0.0.8", "203.0.113.45"))
-            self.assertNotEqual(first, second)
+            connection = FakeConnection()
+            with patch.object(app, "control_conn", return_value=connection):
+                app._rate_limit(make_request("10.0.0.8", "203.0.113.44"))
+                app._rate_limit(make_request("10.0.0.8", "203.0.113.45"))
+            self.assertEqual(connection.arguments[0][0], "/")
+            self.assertEqual(connection.arguments[1][0], "/")
+            self.assertEqual(connection.arguments[0][1], "203.0.113.44")
+            self.assertEqual(connection.arguments[1][1], "203.0.113.45")
 
     def test_malformed_forwarded_for_falls_back_to_peer(self):
         with patch.dict(os.environ, {"COPILOT_TRUSTED_PROXIES": "10.0.0.0/8"}):
