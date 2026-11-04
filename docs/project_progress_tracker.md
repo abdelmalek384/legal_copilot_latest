@@ -832,3 +832,5 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - Product-owner approval is the remaining merge decision. No credit is added to the technical score while the PR remains open.
 - PR #1142 was closed as superseded by #1143; PR #1119 was closed because its scorecard update is stale; PR #1129 was closed as superseded by merged #1141.
 - The current weighted technical score remains **50.10/100** until another deliverable is merged and its evidence is reconciled. This release-gate work still requires actual lawyer-approved benchmark data before any quality threshold can be meaningfully applied.
+
+- Native navigation follow-up: mobile and forced-colors CSS still targeted anchors after the switch to buttons. Commit `24dbd01` adds horizontal-scroll sizing and a visible forced-colors active border; contract test `921f034` and UX audit `c93208a` record the correction.
