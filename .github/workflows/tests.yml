@@ -292,6 +292,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_arabic_matching.py
       - name: Test auth rate limits separate runtime
         run: PYTHONPATH=. python tests/test_auth_rate_limits_separate_runtime.py
+      - name: Test trusted reverse-proxy client IP attribution
+        run: COPILOT_ENV=development PYTHONPATH=. python tests/test_trusted_proxy_client_ip.py
       - name: Test build legal draft
         run: PYTHONPATH=. python tests/test_build_legal_draft.py
       - name: Test evaluate arabic ocr
