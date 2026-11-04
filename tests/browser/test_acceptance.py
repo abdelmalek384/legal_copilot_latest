@@ -1073,7 +1073,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             {
                 "name": "invalid-utf8.csv",
                 "mimeType": "text/csv",
-                "buffer": b"title,client\\nInvalid \\xff name,Example Client\\n",
+                "buffer": b"title,client\nInvalid \xff name,Example Client\n",
             }
         )
         self.page.get_by_text("يجب أن يكون الملف بترميز UTF-8 صالح", exact=True).wait_for(timeout=5000)
