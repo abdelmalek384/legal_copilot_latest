@@ -38,6 +38,7 @@ class ContainerDeploymentContractTests(unittest.TestCase):
         self.assertIn("ADMIN_TOKEN=PLACEHOLDER_SET_IN_SECRET_MANAGER", example)
         for required_setting in (
             "COPILOT_ALLOWED_HOSTS=",
+            "COPILOT_TRUSTED_PROXIES=",
             "COPILOT_PUBLIC_ORIGIN=",
             "BACKUP_KEY=",
             "MFA_ENCRYPTION_KEY=",
@@ -73,6 +74,9 @@ class ContainerDeploymentContractTests(unittest.TestCase):
         self.assertIn("tools/deployment_preflight.py --strict --require-separate", docs)
         self.assertIn("tools/production_release_gate.py", docs)
         self.assertIn("witnessed", docs)
+        self.assertIn("proxy_set_header X-Forwarded-For $remote_addr;", docs)
+        checklist = (ROOT / "docs" / "production_deployment_checklist.md").read_text(encoding="utf-8")
+        self.assertIn("COPILOT_TRUSTED_PROXIES` to your proxy address", checklist)
 
 
 if __name__ == "__main__":
