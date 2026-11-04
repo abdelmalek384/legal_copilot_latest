@@ -49,25 +49,71 @@ def orthographic_variants(token):
     return tuple(dict.fromkeys(variants))
 
 
-def expand_lexicon_hints(query, existing_tokens, tokens_fn, norm_fn, limit=48):
-    """Append exact-phrase, token-alias and narrow spelling hints to existing tokens."""
+def _is_negated_at(normalized_query, start):
+    """Recognize nearby Arabic negators governing this occurrence."""
+    prefix = normalized_query[:start]
+    return bool(re.search(r"(?:^|\s)(?:مش|ما)\s+(?:\S+\s+){0,2}$", prefix))
+
+
+def _phrase_occurrences(normalized_query, normalized_phrase):
+    if not normalized_phrase:
+        return []
+    pattern = r"(?<!\w)" + re.escape(normalized_phrase) + r"(?!\w)"
+    return list(re.finditer(pattern, normalized_query))
+
+
+def _positive_occurrence_starts(normalized_query, normalized_phrase):
+    return [
+        match.start() for match in _phrase_occurrences(normalized_query, normalized_phrase)
+        if not _is_negated_at(normalized_query, match.start())
+    ]
+
+
+def expand_lexicon_hints(
+    query, existing_tokens, tokens_fn, norm_fn, limit=48,
+    phrase_aliases=None, token_aliases=None,
+):
+    """Append positive-occurrence legal hints and narrow spelling variants.
+
+    Original query terms are retained. Negated occurrences do not contribute
+    positive aliases; a separate positive occurrence in the same query still does.
+    """
     payload = _load_lexicon()
     expanded = list(existing_tokens)
     normalized_query = norm_fn(query)
 
-    for phrase, aliases in payload.get("phrase_aliases", {}).items():
-        normalized_phrase = norm_fn(phrase)
-        if normalized_phrase and re.search(
-            r"(?<!\w)" + re.escape(normalized_phrase) + r"(?!\w)",
-            normalized_query,
-        ):
-            expanded.extend(tokens_fn(" ".join(aliases)))
+    phrase_sources = []
+    if isinstance(phrase_aliases, dict):
+        phrase_sources.append(phrase_aliases)
+    phrase_sources.append(payload.get("phrase_aliases", {}))
+    for phrases in phrase_sources:
+        for phrase, aliases in phrases.items():
+            if _positive_occurrence_starts(normalized_query, norm_fn(phrase)):
+                expanded.extend(tokens_fn(" ".join(aliases)))
 
     current = set(expanded)
-    for token, aliases in payload.get("token_aliases", {}).items():
-        token_terms = tokens_fn(token)
-        if token_terms and any(term in current for term in token_terms):
-            expanded.extend(tokens_fn(" ".join(aliases)))
+    token_sources = []
+    if isinstance(token_aliases, dict):
+        token_sources.append(token_aliases)
+    token_sources.append(payload.get("token_aliases", {}))
+    for aliases_by_token in token_sources:
+        for token, aliases in aliases_by_token.items():
+            token_terms = tokens_fn(token)
+            if not token_terms or not any(term in current for term in token_terms):
+                continue
+            normalized_token = norm_fn(token)
+            if len(token_terms) > 1:
+                starts = _positive_occurrence_starts(normalized_query, normalized_token)
+            else:
+                starts = [
+                    match.start()
+                    for match in re.finditer(r"\w+", normalized_query)
+                    if set(token_terms).intersection(tokens_fn(match.group()))
+                    and not _is_negated_at(normalized_query, match.start())
+                ]
+            if starts:
+                expanded.extend(tokens_fn(" ".join(aliases)))
+        current = set(expanded)
 
     # Existing stem() already handles common clitics and plural suffixes.
     # Only add ة/ه orthographic counterparts here; avoid broad root guessing.
