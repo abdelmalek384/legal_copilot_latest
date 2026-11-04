@@ -637,5 +637,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("loginError.hidden=false", HTML)
 
 
+    def test_browser_login_validation_error_and_recovery_are_exercised(self):
+        browser_tests = (ROOT / "tests" / "browser" / "test_acceptance.py").read_text(encoding="utf-8")
+        self.assertIn("test_login_form_exposes_and_clears_associated_validation_errors", browser_tests)
+        self.assertIn('email.get_attribute("aria-describedby")', browser_tests)
+        self.assertIn('password.get_attribute("aria-invalid")', browser_tests)
+        self.assertIn('email.fill("synthetic@example.test")', browser_tests)
+
+
 if __name__ == "__main__":
     unittest.main()
