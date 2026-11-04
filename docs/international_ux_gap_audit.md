@@ -121,3 +121,5 @@ Static CSS inspection found control borders and focus indicators too faint for r
 - **New-case required-field feedback:** empty case-title submission now sets `aria-invalid`, associates an inline alert via `aria-describedby`, focuses the field, and clears the error state as the user types (commit `51c49cc`); contract test `630d454` guards the behavior. Other dynamic forms still require a field-by-field error-association audit.
 
 - **New-case validation browser coverage:** the axe acceptance test now submits the dialog with an empty title, checks `aria-invalid`, `aria-describedby` and visible alert state, then fills the title and verifies the error clears (browser test `dc92989`, contract guard `2aec5bd`). This test remains pending CI execution.
+
+- The new-case inline error is rendered outside the label element (commit `d17230b`) so it remains a separate description rather than being folded into the control's accessible name; contract assertion `9cc0468` protects the structure.
