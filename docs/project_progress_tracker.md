@@ -880,3 +880,5 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - **Native constraint-validation event handling:** commit `cc8199a` adds per-field `invalid` listeners for sign-in and new-case title controls, ensuring inline alert/invalid-state feedback still appears when native required validation blocks the submit event; contract test `0b82340` and UX audit `2f6c8ff` record this important browser interaction detail.
 
 - Effective status-palette calculation now records open 5.71:1, done 6.45:1, soon 4.61:1, late 5.76:1 and closed 4.74:1 against their current status backgrounds; UX audit commit `61fd055` records these sampled pairs. Component-by-component browser verification remains outstanding.
+
+- Accessibility CI validation PR branch `a11y/validate-wcag22-mainline-20261104` was created from current main to run the complete browser workflow against the accumulated UI changes. This branch carries only the validation checkpoint note; it is not counted as a new feature or percentage increase. Await workflow evidence before marking the axe/keyboard/modal/form regressions as passed.
