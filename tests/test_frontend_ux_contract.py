@@ -429,9 +429,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("toggle.setAttribute('aria-expanded','true')", HTML)
         self.assertIn("toggle.setAttribute('aria-expanded','false');reviewPanel.replaceChildren()", HTML)
 
-    def test_document_review_loading_state_is_announced(self):
+    def test_document_review_loading_and_completion_states_are_announced(self):
         self.assertIn("role:'status','aria-live':'polite'", HTML)
         self.assertIn("role:'status','aria-live':'polite',textContent:uiText('جارٍ تحميل المقاطع…','Loading text chunks…')", HTML)
+        self.assertIn("Loaded '+chunkCount+' text chunks for review", HTML)
+        self.assertIn("تم تحميل '+chunkCount+' مقطعاً للمراجعة", HTML)
 
 
     def test_browser_acceptance_installs_and_runs_pinned_axe_wcag_gate(self):
