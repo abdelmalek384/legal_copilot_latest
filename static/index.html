@@ -879,6 +879,12 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
 
 /* Keep compact header controls within the 44px touch-target contract. */
 #side .lang-switch button,#side .firm-switch select{min-height:44px}
+
+/* Native button semantics for the SPA's in-place primary page switcher. */
+#side .primary-nav button{display:flex;align-items:center;gap:10px;width:100%;min-height:46px;padding:10px 13px;border:1px solid transparent;border-radius:11px;background:transparent;color:#52627a;text-align:start;font:inherit;font-size:14px;font-weight:650;cursor:pointer}
+#side .primary-nav button:hover{background:#f5f8fd;color:var(--ui-navy)}
+#side .primary-nav button.on{background:var(--ui-blue-soft);color:var(--ui-blue)}
+#side .primary-nav button:focus-visible{outline:3px solid #91b4ff;outline-offset:2px}
 </style>
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <script>
@@ -897,7 +903,7 @@ async function api(p,m='GET',b){const headers={};if(b!==undefined)headers['Conte
 function shell(title,...k){const navLabel=(ar,en)=>LANG==='ar'?ar:en;const firmOptions=Array.isArray(ME.firms)?ME.firms:[];const firmSwitch=firmOptions.length>1?h('div',{className:'firm-switch'},h('label',{textContent:navLabel('المكتب النشط','Active firm')}),h('select',{'aria-label':navLabel('اختيار المكتب النشط','Select active firm'),value:String(ME.firm_id||firmOptions[0].firm_id),onchange:async e=>{try{const result=await api('/session/firm','POST',{firm_id:Number(e.target.value)});ME={...ME,...result};sessionStorage.me=JSON.stringify(ME);dash()}catch(_){e.target.value=String(ME.firm_id||'')}}},...firmOptions.map(f=>h('option',{value:String(f.firm_id),textContent:f.firm_name+(f.role?' — '+f.role:'')})))):null;A.replaceChildren(h('div',{id:'shell'},h('a',{className:'skip-link',href:'#main',textContent:navLabel('تخطي إلى المحتوى الرئيسي','Skip to main content'),onclick:e=>{e.preventDefault();const main=$('main');if(main)main.focus()} }),h('aside',{id:'side','aria-label':navLabel('التنقل الرئيسي','Primary navigation')},h('h1',{textContent:'⚖️ '+navLabel('مساحة المكتب القانوني','Firm Workspace')}),h('div',{className:'lang-switch'},h('button',{type:'button','data-lang-switch':'1',textContent:LANG==='ar'?'English':'العربية',onclick:switchLanguage})),firmSwitch,
  h('nav',{className:'primary-nav','aria-label':navLabel('روابط التنقل','Navigation links')},
   [['dash',navLabel('نظرة عامة','Overview'),dash],...(ME.role==='admin'&&Array.isArray(ME.firms)?[['setup',navLabel('بدء الاستخدام','Getting started'),firstRunPage]]:[]),...(Array.isArray(ME.platform_roles)&&ME.platform_roles.includes('platform_admin')?[['platform-pilot-metrics',navLabel('مؤشرات استخدام المكاتب','Firm pilot metrics'),platformPilotMetricsPage]]:[]),['cases',navLabel('القضايا','Cases'),casesPage],['clients',navLabel('العملاء وتعارض المصالح','Clients & Conflicts'),clients],['tasks',navLabel('المهام','Tasks'),tasksPage],['calendar',navLabel('الأجندة والمواعيد','Calendar'),calendarPage],['finance',navLabel('الفواتير والتحصيل','Invoices & Finance'),financePage],['law',navLabel('البحث القانوني','Legal Research'),law],['feedback',navLabel('ملاحظات المنتج','Product feedback'),feedbackPage],...(ME.can_review_legal?[['coverage',navLabel('تغطية المجموعة القانونية','Corpus Coverage'),corpusCoverage],['review',navLabel('مراجعة المصادر القانونية','Legal Source Review'),reviewWorkbench]]:[]),['settings',navLabel('الإعدادات والأمان','Settings & Security'),settingsPage]]
-   .map(([id,t,f])=>h('a',{className:PAGE===id?'on':'',role:'button',tabIndex:0,'aria-current':PAGE===id?'page':null,textContent:t,onclick:()=>{PAGE=id;window.CASE_ID=null;f()},onkeydown:e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();PAGE=id;window.CASE_ID=null;f()}}})),
+   .map(([id,t,f])=>h('button',{type:'button',className:PAGE===id?'on':'','aria-current':PAGE===id?'page':null,textContent:t,onclick:()=>{PAGE=id;window.CASE_ID=null;f()}})),
   h('span',{className:'nav-scroll-hint',textContent:navLabel('اسحب لعرض المزيد','Swipe for more')})
  ),
  h('div',{className:'me'},h('div',{textContent:ME.name||''}),h('a',{textContent:navLabel('تسجيل الخروج','Sign out'),onclick:async()=>{try{await api('/logout','POST')}catch(_){}sessionStorage.removeItem('me');ME={};login()}}))),
