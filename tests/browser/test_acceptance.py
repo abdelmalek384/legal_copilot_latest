@@ -418,7 +418,13 @@ class BrowserAcceptanceTests(unittest.TestCase):
         axe_path = ROOT / ".ci" / "axe" / "node_modules" / "axe-core" / "axe.min.js"
         self.assertTrue(axe_path.is_file(), f"Pinned axe-core bundle is missing: {axe_path}")
         self.login(self.state["reviewer_email"])
-        self.page.add_script_tag(path=str(axe_path))
+        axe_source = axe_path.read_text(encoding="utf-8")
+        self.page.route(
+            "**/__axe__/axe.min.js",
+            lambda route: route.fulfill(status=200, content_type="application/javascript", body=axe_source),
+        )
+        # Load as a same-origin external resource so the app's strict CSP remains intact.
+        self.page.add_script_tag(url="/__axe__/axe.min.js")
 
         def audit(label: str) -> None:
             has_no_horizontal_overflow = self.page.evaluate(
@@ -503,18 +509,18 @@ class BrowserAcceptanceTests(unittest.TestCase):
             ("ملاحظات المنتج", "ملاحظات المنتج"),
             ("البحث القانوني", "البحث القانوني"),
         ):
-            self.page.get_by_role("button", name=nav_name).click()
+            self.page.get_by_role("button", name=nav_name, exact=True).click()
             self.page.get_by_role("heading", name=heading_name).wait_for(timeout=10000)
             audit(f"Arabic {heading_name} workspace")
 
     def test_primary_navigation_buttons_support_native_keyboard_activation(self) -> None:
         self.login(self.state["reviewer_email"])
-        tasks = self.page.get_by_role("button", name="المهام")
+        tasks = self.page.get_by_role("button", name="المهام", exact=True)
         tasks.focus()
         self.page.keyboard.press("Space")
         self.page.get_by_role("heading", name="المهام").wait_for(timeout=10000)
 
-        cases = self.page.get_by_role("button", name="القضايا")
+        cases = self.page.get_by_role("button", name="القضايا", exact=True)
         cases.focus()
         self.page.keyboard.press("Enter")
         self.page.get_by_role("heading", name="القضايا").wait_for(timeout=10000)
