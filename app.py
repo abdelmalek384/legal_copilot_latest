@@ -2143,6 +2143,59 @@ _allowed_hosts = os.environ.get("COPILOT_ALLOWED_HOSTS", "").strip()
 if _allowed_hosts:
     app.add_middleware(TrustedHostMiddleware, allowed_hosts=_trusted_host_patterns(_allowed_hosts))
 
+def client_ip(request: Request) -> str:
+    """Return the requester's IP, trusting X-Forwarded-For only from configured proxies.
+
+    Walk the forwarded chain from right to left and stop at the first untrusted hop.
+    Invalid forwarded values are ignored in full so malformed chains cannot select
+    an attacker-controlled address.
+    """
+    peer = client_ip(request)
+    try:
+        peer_address = ipaddress.ip_address(peer)
+    except ValueError:
+        return peer
+
+    configured = os.environ.get("COPILOT_TRUSTED_PROXIES", "").strip()
+    trusted_networks = []
+    if configured:
+        for entry in configured.split(","):
+            value = entry.strip()
+            if not value:
+                raise ValueError("COPILOT_TRUSTED_PROXIES contains an empty entry")
+            try:
+                trusted_networks.append(ipaddress.ip_network(value, strict=False))
+            except ValueError as exc:
+                raise ValueError(
+                    f"Invalid COPILOT_TRUSTED_PROXIES entry: {value!r}"
+                ) from exc
+
+    def is_trusted(address):
+        return any(address.version == network.version and address in network
+                   for network in trusted_networks)
+
+    if not is_trusted(peer_address):
+        return str(peer_address)
+
+    forwarded = request.headers.get("x-forwarded-for")
+    if not forwarded:
+        return str(peer_address)
+    try:
+        chain = [ipaddress.ip_address(value.strip())
+                 for value in forwarded.split(",")]
+    except ValueError:
+        return str(peer_address)
+
+    current = peer_address
+    for candidate in reversed(chain):
+        if not is_trusted(current):
+            break
+        current = candidate
+        if not is_trusted(candidate):
+            return str(candidate)
+    return str(chain[0]) if chain else str(peer_address)
+
+
 # Per-process fixed-window limits for expensive or abuse-prone endpoints.
 # Deliberately use the direct peer address; do not trust arbitrary X-Forwarded-For.
 _RATE_LIMITS = {
@@ -3614,7 +3667,7 @@ def _mfa_verify_factor_in_transaction(
 def _login_separate(b: LoginIn, request: Request, response: Response):
     k = normalize_email(b.email)
     now = int(time.time())
-    ip = request.client.host if request.client else "unknown"
+    ip = client_ip(request)
     identifiers = (k, "ip:" + ip)
     c = control_conn()
     attempts = {row["email"]: row for row in c.execute(
