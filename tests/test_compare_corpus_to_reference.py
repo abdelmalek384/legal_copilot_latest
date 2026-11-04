@@ -24,6 +24,7 @@ class T(unittest.TestCase):
   self.assertEqual(label("مادة (٥)"),"5");self.assertEqual(label("المادة الأولى"),"1");self.assertEqual(label("12 مكرر"),"12 مكرر");self.assertIsNone(label("غير مفهوم"))
   self.assertEqual([(x["key"],x["occurrence"]) for x in segment(REF)[:4]],[("1",1),("2",1),("1",2),("2",2)])
   self.assertEqual(segment("مادة (7) نص داخل العنوان") [0]["text"],"نص داخل العنوان")
+  self.assertEqual(segment("مادة (7): نص داخل العنوان")[0]["text"],"نص داخل العنوان")
  def test_differences(self):
   r=build_report(self.c,self.ref);s={(x["article"],x["occurrence"]):x["status"] for x in r["articles"]}
   self.assertEqual(s[("1",1)],"identical_after_normalization");self.assertEqual(s[("2",1)],"identical_after_normalization")
@@ -60,6 +61,46 @@ class T(unittest.TestCase):
   by_article={x["article"]:x for x in report["articles"]}
   self.assertEqual((by_article["1"]["reference_page_start"],by_article["1"]["reference_page_end"]),(1,2))
   self.assertEqual((by_article["2"]["reference_page_start"],by_article["2"]["reference_page_end"]),(2,2))
+
+ def test_pdf_reference_accepts_wrapped_headings_rtl_article_numbers_and_folios(self):
+  pdf=self.d/"wrapped.pdf";pdf.write_bytes(b"%PDF synthetic fixture")
+  rows=[
+   {"article":"1","text":"يعمل بالنظام."},
+   {"article":"10","text":"مدة العمل."},
+  ]
+  self.c.write_text("\n".join(json.dumps(x,ensure_ascii=False) for x in rows),encoding="utf-8")
+  class Page:
+   def __init__(self,text):self.text=text
+   def extract_text(self):return self.text
+  class Reader:
+   def __init__(self,*args,**kwargs):
+    self.is_encrypted=False
+    self.pages=[
+     Page("الجريدة الرسمية العدد 18\n) المادة الأولى (\nيعمل بالنظام.\n1"),
+     Page("الجريدة الرسمية العدد 18\nمادة )٠١( :\nمدة العمل.\n2"),
+    ]
+  with mock.patch("tools.compare_corpus_to_reference.PdfReader",Reader):
+   report=build_report(self.c,pdf)
+  self.assertEqual(report["reference"]["articles_detected"],2)
+  self.assertTrue(report["all_identical"])
+  by_article={x["article"]:x for x in report["articles"]}
+  self.assertEqual((by_article["1"]["reference_page_start"],by_article["1"]["reference_page_end"]),(1,1))
+  self.assertEqual((by_article["10"]["reference_page_start"],by_article["10"]["reference_page_end"]),(2,2))
+
+ def test_pdf_reference_prefers_poppler_layout_for_rtl_pdf_text(self):
+  pdf=self.d/"poppler.pdf";pdf.write_bytes(b"%PDF synthetic fixture")
+  rows=[
+   {"article":"1","text":"يعمل بالنظام."},
+   {"article":"10","text":"مدة العمل."},
+  ]
+  self.c.write_text("\n".join(json.dumps(x,ensure_ascii=False) for x in rows),encoding="utf-8")
+  output="الجريدة الرسمية العدد 18\n) المادة الأولى (\nيعمل بالنظام.\n1\fالجريدة الرسمية العدد 18\nمادة ): (10\nمدة العمل.\n2\f"
+  completed=mock.Mock(returncode=0,stdout=output)
+  with mock.patch("tools.compare_corpus_to_reference.shutil.which",return_value="/usr/bin/pdftotext"), mock.patch("tools.compare_corpus_to_reference.subprocess.run",return_value=completed):
+   report=build_report(self.c,pdf)
+  self.assertEqual(report["reference"]["extraction"],"pdftotext -layout")
+  self.assertEqual(report["reference"]["articles_detected"],2)
+  self.assertTrue(report["all_identical"])
 
  def test_pdf_reference_warns_when_a_page_has_no_extractable_text(self):
   pdf=self.d/"scanned.pdf";pdf.write_bytes(b"%PDF synthetic fixture")
