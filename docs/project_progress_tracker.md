@@ -850,3 +850,5 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - **Native navigation keyboard test:** browser test `53fa11b` checks that primary workspace navigation activates with Space and Enter and lands on the expected page; contract test `4bc0283` guards its presence. Exact-head CI remains unverified.
 
 - **Responsive status toast:** commits `fc84670` and `660bf84` make the shared polite live region overlay safely above workspace content, respect bottom safe-area insets, wrap long messages and constrain width on mobile; contract test `40bc9fe` guards the responsive styles. UX audit updated in `7cd31f9`.
+
+- **Modal keyboard/focus browser test:** commit `a3e66cb` exercises Tab wraparound, Escape dismissal, dialog removal and opener-focus restoration in the new-case modal; contract test `48f0182` protects the browser assertions; UX audit `9597f70` records the acceptance scenario. CI execution remains pending.
