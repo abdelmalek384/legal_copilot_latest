@@ -547,5 +547,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("overflow-wrap:anywhere", toast)
 
 
+    def test_browser_modal_acceptance_checks_focus_wrap_escape_and_return(self):
+        browser_tests = (ROOT / "tests" / "browser" / "test_acceptance.py").read_text(encoding="utf-8")
+        self.assertIn('self.page.keyboard.press("Tab")', browser_tests)
+        self.assertIn('self.page.keyboard.press("Escape")', browser_tests)
+        self.assertIn('dialog.locator("input").first.evaluate("(el) => el === document.activeElement")', browser_tests)
+        self.assertIn('new_case_opener.evaluate("(el) => el === document.activeElement")', browser_tests)
+
+
 if __name__ == "__main__":
     unittest.main()
