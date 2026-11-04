@@ -17,8 +17,8 @@ def make_request(peer, forwarded_for=None):
         "http_version": "1.1",
         "method": "GET",
         "scheme": "http",
-        "path": "/",
-        "raw_path": b"/",
+        "path": "/ask",
+        "raw_path": b"/ask",
         "query_string": b"",
         "headers": headers,
         "client": (peer, 12345),
@@ -63,8 +63,8 @@ class TrustedProxyClientIpTests(unittest.TestCase):
             with patch.object(app, "control_conn", return_value=connection):
                 app._rate_limit(make_request("10.0.0.8", "203.0.113.44"))
                 app._rate_limit(make_request("10.0.0.8", "203.0.113.45"))
-            self.assertEqual(connection.arguments[0][0], "/")
-            self.assertEqual(connection.arguments[1][0], "/")
+            self.assertEqual(connection.arguments[0][0], "/ask")
+            self.assertEqual(connection.arguments[1][0], "/ask")
             self.assertEqual(connection.arguments[0][1], "203.0.113.44")
             self.assertEqual(connection.arguments[1][1], "203.0.113.45")
 
