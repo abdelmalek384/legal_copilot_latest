@@ -108,6 +108,46 @@ class DemoFirmCliTests(unittest.TestCase):
             row["firm_id"] == firm_id for row in app._pilot_metrics_rows(control, weeks=1)
         ))
 
+    def test_removal_refuses_demo_with_original_file_objects(self):
+        result = self.run_cli(Namespace(
+            demo_action="create", firm_name="Demo with retained original",
+            owner_name="Demo Owner", owner_email="demo-original@example.test",
+        ))
+        firm_id = result["firm_id"]
+        control = self.runtime.control_connection()
+        filename = control.execute(
+            "SELECT database_file FROM tenant_database_catalog WHERE firm_id=?", (firm_id,)
+        ).fetchone()["database_file"]
+        db_path = self.root / "tenants" / filename
+        owner_id = control.execute(
+            "SELECT id FROM users WHERE email_normalized=?",
+            ("demo-original@example.test",),
+        ).fetchone()["id"]
+        context = self.runtime.resolve_context(int(owner_id), firm_id)
+        tenant = self.runtime.firm_connection(context)
+        case_id = tenant.execute("SELECT id FROM cases ORDER BY id LIMIT 1").fetchone()["id"]
+        doc = tenant.execute(
+            "INSERT INTO docs(case_id,name,added,firm_id,sha256,content_type,byte_size,extraction_status,ocr_used) "
+            "VALUES(?,?,datetime('now'),?,?,?,1,'complete',0)",
+            (case_id, "demo-original.pdf", firm_id, "a" * 64, "application/pdf"),
+        )
+        tenant.execute(
+            "INSERT INTO original_file_objects(object_id,document_id,firm_id,storage_backend,sha256,byte_size,content_type,state) "
+            "VALUES(?,?,?,'local',?,1,'application/pdf','ready')",
+            ("d" * 32, int(doc.lastrowid), firm_id, "a" * 64),
+        )
+        tenant.commit()
+
+        with self.assertRaisesRegex(SystemExit, "original-file objects"):
+            self.run_cli(Namespace(
+                demo_action="remove", firm_id=firm_id, confirm_remove=True,
+            ))
+        self.assertTrue(db_path.is_file())
+        firm = control.execute(
+            "SELECT status,is_demo FROM firms WHERE id=?", (firm_id,)
+        ).fetchone()
+        self.assertEqual((firm["status"], firm["is_demo"]), ("active", 1))
+
     def test_removal_refuses_non_demo_and_removes_only_marked_demo_firm(self):
         normal_id, _ = self.runtime.provision_firm("Ordinary Firm")
         with self.assertRaisesRegex(SystemExit, "not marked as demo"):
