@@ -475,6 +475,17 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.get_by_role("heading", name="الإعدادات").wait_for(timeout=10000)
         audit("Arabic settings and account forms")
 
+        for nav_name, heading_name in (
+            ("المهام", "المهام"),
+            ("الأجندة", "الأجندة والمواعيد"),
+            ("القضايا", "القضايا"),
+            ("ملاحظات المنتج", "ملاحظات المنتج"),
+            ("البحث القانوني", "البحث القانوني"),
+        ):
+            self.page.get_by_role("button", name=nav_name).click()
+            self.page.get_by_role("heading", name=heading_name).wait_for(timeout=10000)
+            audit(f"Arabic {heading_name} workspace")
+
     def test_primary_case_management_lifecycle_workflow(self) -> None:
         self.login(self.state["owner_a_email"])
         headers = self.csrf_headers()
