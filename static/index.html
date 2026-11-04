@@ -1504,7 +1504,7 @@ async function newCase(clientName=''){
    h('div',{className:'row'},cancel,save));
  const opener=document.activeElement;
  const overlay=h('div',{className:'modal-backdrop',onclick:e=>{if(e.target===overlay)closeModal(overlay)}},
-   h('section',{className:'modal card',role:'dialog','aria-modal':true,'aria-label':uiText('قضية جديدة','New case')},h('h2',{textContent:uiText('قضية جديدة','New case')}),form));
+   h('section',{className:'modal card',role:'dialog','aria-modal':true,'aria-labelledby':'new-case-dialog-title'},h('h2',{id:'new-case-dialog-title',textContent:uiText('قضية جديدة','New case')}),form));
  overlay.__focusReturn=opener;A.append(overlay);inputs.title.focus()
 }
 async function clientProfileForm(profile=null){
