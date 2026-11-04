@@ -52,6 +52,7 @@ See [the weighted whole-project completion scorecard](project_completion_scoreca
 - **UX audit commit `1c7815d`:** records that adjacent form-label association is now partially addressed while required/invalid state, inline error descriptions and error-summary focus remain open. Repository cross-check confirms the axe test, JSON import, dialog scan, pinned CI install and regression-contract assertions are present in the current files; this is source consistency verification, not a test run.
 - **Expanded axe coverage:** browser test `ca4ef89` now scans the new-case dialog at phone width in addition to bilingual dashboard/corpus states. The JSON report import was corrected in `7e787fe`. Harness docs were updated in `bb0daca`; UX audit and issue #95 reflect partial form-label progress.
 - **Expanded axe scan `7e8af8e`:** authenticated Arabic settings, MFA and password-preference forms are now included in the automated smoke coverage; harness documentation updated in `8dad420`, and issue #95 updated. This scan remains pending execution evidence.
+- **Async completion announcement commit `37e89be`:** extracted-text review now announces the loaded chunk count (or empty result) through a persistent polite status node after the loading state; contract test `cc24886` covers both loading and completion copy. UX audit records this as partial async-status coverage.
 
 ## Previous whole-product checkpoint — 2026-10-31
 
