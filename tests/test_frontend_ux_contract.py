@@ -434,5 +434,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("role:'status','aria-live':'polite',textContent:uiText('جارٍ تحميل المقاطع…','Loading text chunks…')", HTML)
 
 
+
+    def test_dialog_names_follow_visible_headings_and_skip_target_keeps_focus(self):
+        self.assertIn("aria-labelledby:'new-case-dialog-title'", HTML)
+        self.assertIn("id:'new-case-dialog-title'", HTML)
+        self.assertIn("aria-labelledby:'client-profile-dialog-title'", HTML)
+        self.assertIn("id:'client-profile-dialog-title'", HTML)
+        self.assertIn("#main:focus{outline:3px solid var(--ui-focus);outline-offset:2px}", HTML)
+
 if __name__ == "__main__":
     unittest.main()
