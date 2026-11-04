@@ -48,6 +48,9 @@ See [the weighted whole-project completion scorecard](project_completion_scoreca
 - Updated UX audit and issue #95. The new browser test has not yet produced a verified green CI result; do not treat the gate as passed until exact-head workflow evidence is available. axe findings, if any, must be triaged and fixed rather than suppressed without justification.
 - UI/accessibility completion remains **45.3% pending weighted rubric recalculation**; this is meaningful implementation progress but not proof of conformance or manual acceptance.
 
+- **Form-label association commit `f85ebb7`:** the shared DOM factory now connects adjacent visible `<label>` elements to sibling inputs/selects/textareas using generated IDs and `for` attributes; placeholder-derived names remain a fallback for text inputs. Contract coverage added in `daf7d2d`. This is partial form accessibility work; `aria-describedby` validation errors and unlabelled controls still need audit.
+- **Expanded axe coverage:** browser test `ca4ef89` now scans the new-case dialog at phone width in addition to bilingual dashboard/corpus states. The JSON report import was corrected in `7e787fe`. Harness docs were updated in `bb0daca`; UX audit and issue #95 reflect partial form-label progress.
+
 ## Previous whole-product checkpoint — 2026-10-31
 
 At that checkpoint the weighted scorecard recorded **49.33/100 technical completion** (up 0.13 points from 49.20; rounds to 49%). The current score is shown in the overall status above. Qualified Egyptian-counsel acceptance remains **0% / not started** and is still a mandatory post-build release gate.
