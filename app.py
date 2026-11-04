@@ -473,16 +473,11 @@ _LEGAL_PHRASE_SYNONYMS_RAW = {
 def expanded_tokens(q, limit=48):
     """Return stable retrieval hints while preserving original query terms first."""
     original = tokens(q)
-    expanded = list(original)
-    normalized_query = norm(q)
-    for phrase, aliases in _LEGAL_PHRASE_SYNONYMS_RAW.items():
-        normalized_phrase = norm(phrase)
-        if re.search(r"(?<!\w)" + re.escape(normalized_phrase) + r"(?!\w)", normalized_query):
-            expanded.extend(tokens(" ".join(aliases)))
-    for token in original:
-        expanded.extend(LEGAL_SYNONYMS.get(token, ()))
-    return expand_lexicon_hints(q, expanded, tokens, norm, limit=limit)
-
+    return expand_lexicon_hints(
+        q, original, tokens, norm, limit=limit,
+        phrase_aliases=_LEGAL_PHRASE_SYNONYMS_RAW,
+        token_aliases=LEGAL_SYNONYMS,
+    )
 
 def matched_surface_terms(text, expanded_terms, limit=12):
     """Return exact words in a passage that matched the expanded retrieval vocabulary.
