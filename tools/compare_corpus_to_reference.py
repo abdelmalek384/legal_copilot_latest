@@ -35,17 +35,17 @@ def extract_heading(line,reverse_rtl_digits=False):
  m=re.match(r"^[\s()（）]*(?:لك\s*)?(?:المادة|مادة)\s*(.*)$",s)
  if not m:return None,None
  rest=m.group(1).strip()
- rest=re.sub(r"^[\s()（）:：\\-–—]+|[\s()（）:：\\-–—]+$","",rest).strip()
+ rest=re.sub(r"^[\s()（）:：\-–—]+|[\s()（）:：\-–—]+$","",rest).strip()
  # pypdf can return Arabic-Indic heading digits in visual RTL order (e.g. ٠١ for article 10).
  # Correct the label only; body digits remain untouched for explicit human review.
  if reverse_rtl_digits:
   raw_digits="".join(ch for ch in line if ch in "٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹")
   if raw_digits:
    normalized_digits=raw_digits.translate(DIGITS)
-   rest=re.sub(r"\\d+",normalized_digits[::-1],rest,count=1)
- n=re.match(r"^\\(?\\s*(\\d+)\\s*\\)?(?:\\s+(مكرر(?:ا|ة)?(?:\\s+\\(?[ء-ي]\\s*\\)?)?))?(?:\\s+(.*))?$",rest,re.I)
+   rest=re.sub(r"\d+",normalized_digits[::-1],rest,count=1)
+ n=re.match(r"^\(?\s*(\d+)\s*\)?(?:\s+(مكرر(?:ا|ة)?(?:\s+\(?[ء-ي]\s*\)?)?))?(?:\s+(.*))?$",rest,re.I)
  if n:
-  suffix_letter=re.search(r"مكرر(?:ا|ة)?\\s+\\(?([ء-ي])",n.group(2)) if n.group(2) else None
+  suffix_letter=re.search(r"مكرر(?:ا|ة)?\s+\(?([ء-ي])",n.group(2)) if n.group(2) else None
   key=n.group(1)+((" مكرر"+((" "+suffix_letter.group(1)) if suffix_letter else "")) if n.group(2) else "")
   return key,(n.group(3) or "").strip()
  for ordinal in sorted(ORD,key=len,reverse=True):
@@ -73,7 +73,7 @@ def segment(s):
 def segment_pages(pages,reverse_rtl_digits=False):
  return _segment_lines(((line,page_number) for page_number,page_text in enumerate(pages,1) for line in page_text.splitlines()),reverse_rtl_digits)
 def _is_gazette_page_matter(line):
-  s=norm(line)
+ s=norm(line)
  return "الجريدة الرسمية" in s or "الوقائع المصرية" in s
 def _clean_pdf_page_matter(page_text):
  lines=page_text.splitlines();kept=[];removed=0
@@ -91,7 +91,7 @@ def _clean_pdf_page_matter(page_text):
   if at_page_edge and _is_gazette_page_matter(line):
    removed+=1
   else:kept.append(line)
- return "\\n".join(kept),removed
+ return "\n".join(kept),removed
 
 def read_reference(path):
  p=Path(path)
@@ -103,7 +103,7 @@ def read_reference(path):
     try:
      completed=subprocess.run([poppler,"-layout",str(p),"-"],capture_output=True,text=True,encoding="utf-8",errors="replace",timeout=120,check=False)
      if completed.returncode==0 and completed.stdout.strip():
-      page_texts=completed.stdout.split("\\f")
+      page_texts=completed.stdout.split("\f")
       if page_texts and not page_texts[-1].strip():page_texts.pop()
       extraction="pdftotext -layout"
     except (OSError,subprocess.TimeoutExpired):
