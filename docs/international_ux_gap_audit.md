@@ -14,21 +14,25 @@
 
 ## Highest-impact gaps to investigate or implement
 
-### P0 — Research trust and source transparency
-- A persistent source panel beside each answer: exact title, authority, instrument number/year, article/page pin-cite, publication date, as-of date, source URL, and status.
-- Visible source-status labels: **Verified official text**, **Secondary copy**, **User supplied — unverified**, **Metadata only**, **Outdated/under review**, **No relevant verified source found**.
-- Click-through from every citation to the exact passage and, where available, original page/PDF.
-- A visible explanation of why a result was retrieved and which exact passage supports the answer.
-- Clear no-source state that never fills gaps with fabricated law.
-- Filters for authority, instrument type, practice area, date range, in-force/repealed/unknown, and review state.
+### P0 — Delivered: Research Results & Source Inspector
 
-### P0 — Search quality and workflow
-- One prominent search box accepting natural language, exact article/instrument number, and title/citation search.
-- Search scope selector: verified corpus, firm documents, or all permitted sources; never silently blend them.
-- Search results with snippets, Arabic term highlighting, exact article numbers, source status and sorting.
-- Side-by-side source passage and answer; copy citation / copy passage / open source actions.
-- Recent searches and saved research, with clear firm/user boundaries.
-- Query suggestions and spelling/Arabic normalization feedback without silently rewriting legal meaning.
+The core P0 source-inspection workflow is implemented. See [Research Results & Source Inspector](research_source_inspector.md) and its [manual QA checklist](research_inspector_manual_qa.md).
+
+Delivered capabilities include:
+- Explicit verified-corpus, firm-document and metadata-only discovery scopes; the UI does not silently blend them.
+- Recorded source/version provenance and conservative status labels, including secondary, user-supplied/unverified, metadata-only, under-review and no-relevant-verified-source states.
+- Exact stored-passage display and copy, recorded citation copy, registered HTTPS source links, and scope/as-of-aware research memo export.
+- Save-to-matter with case authorization and audit recording.
+- Arabic matched-term highlighting, exact article-number search, keyboard-operable scope/navigation controls, and automated loading/error/empty-state coverage.
+- Fail-closed handling for malformed provenance, missing/invalid dates, unknown scope and malformed passage payloads.
+
+These are implementation and automated-test claims only. They do not establish legal correctness, a complete verified corpus, semantic entailment, or manual accessibility acceptance.
+
+### P0 — Remaining research-quality work
+- Complete lawyer-labelled retrieval and answer-quality evaluation across representative Egyptian practice areas.
+- Tune retrieval against approved, permission-cleared and lawyer-reviewed source material.
+- Continue improving Arabic query coverage without changing source text or negation meaning.
+- Preserve a clear distinction between lexical citation checks and legal reasoning; do not present either as counsel validation.
 
 ### P1 — Document analysis
 - Drag-and-drop upload with file limits, supported types, progress, cancellation and clear failure recovery.
@@ -82,5 +86,5 @@ Use restrained color for status only; do not rely on color alone. Preserve visib
 - Have 3–5 Egyptian lawyers complete core tasks and record success rate, time, errors and confidence.
 - Run automated accessibility checks plus manual WCAG 2.2 AA review; automated checks alone are insufficient.
 
-## Next UI task
-Build the **Research Results & Source Inspector** as a complete workflow: query -> ranked results -> answer with verified citations -> inspect exact passage/version -> save to case or export memo. Include metadata-only and no-source states. This is the strongest differentiator for a legal copilot and directly improves trust even before the corpus is comprehensive.
+## Next UI task — manual acceptance and lawyer usability
+The next UI deliverable is not another source-inspector implementation. Complete the [manual Research Inspector QA runbook](research_inspector_manual_qa.md) against an exact build using synthetic records, then record Arabic RTL, English LTR, keyboard-only, screen-reader, responsive and clipboard/export results. Follow with a 3–5 Egyptian-lawyer usability study and log completion rate, task time, errors and trust feedback. Do not mark visual/accessibility acceptance complete from automated browser tests alone.
