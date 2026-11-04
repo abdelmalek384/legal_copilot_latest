@@ -9,6 +9,9 @@ HTML = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
 
 class FrontendUXContractTests(unittest.TestCase):
 
+    def test_mobile_language_switch_meets_44px_touch_target(self):
+        self.assertIn("#side .lang-switch button { width: auto; min-width: 78px; min-height: 44px;", HTML)
+
     def test_case_discovery_uses_server_search_and_bounded_pagination(self):
         self.assertIn("/cases/search?", HTML)
         self.assertIn("limit:String(limit)", HTML)
