@@ -3,9 +3,9 @@
   "title": "Legal Copilot Arabic UI string review inventory",
   "purpose": "Reviewable inventory of Arabic-bearing string literals in static/index.html for a native Egyptian Arabic speaker. This is a review snapshot, not yet the runtime translation source; user-entered case and legal text is not included.",
   "source_file": "static/index.html",
-  "source_commit": "01161b4a26ccb540730699d35eb9bbc5a25d272f",
+  "source_commit": "3be71b8bd42f8671951344742c66ac9f2ed633db",
   "generated_on": "2026-11-03",
-  "entry_count": 945,
+  "entry_count": 951,
   "entries": [
     {
       "id": "AR-0001",
@@ -7865,6 +7865,54 @@
       "arabic": "لا يشمل القياس حالياً استخدام القضايا أو المهام أو التقويم وحدها.",
       "source_lines": [
         1157
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0944",
+      "arabic": "مهام منجزة",
+      "source_lines": [
+        2226
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0945",
+      "arabic": "إجمالي المهام",
+      "source_lines": [
+        2226
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0946",
+      "arabic": "توزيع عبء العمل",
+      "source_lines": [
+        2230
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0947",
+      "arabic": "لا يوجد أعضاء في فريق القضية.",
+      "source_lines": [
+        2231
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0948",
+      "arabic": "مهام غير معيّنة",
+      "source_lines": [
+        2232
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0949",
+      "arabic": "أعضاء الفريق",
+      "source_lines": [
+        2234
       ],
       "review_status": "pending_native_review"
     }
