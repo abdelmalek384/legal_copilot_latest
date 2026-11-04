@@ -569,5 +569,18 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertEqual(referenced - defined, set(), "Undefined CSS custom properties")
 
 
+    def test_case_task_session_deadline_and_payment_fields_have_explicit_names(self):
+        for label in (
+            "New task title",
+            "Hearing details",
+            "Deadline type",
+            "Deadline due date",
+            "Deadline notes",
+            "Payment amount in EGP",
+            "Transfer reference (optional)",
+        ):
+            self.assertIn(label, HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
