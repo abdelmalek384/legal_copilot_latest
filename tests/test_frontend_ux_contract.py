@@ -444,5 +444,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("test_axe_wcag_accessibility_smoke_arabic_english_and_mobile", browser_tests)
 
 
+    def test_dynamic_form_label_siblings_are_programmatically_associated(self):
+        self.assertIn("let generatedControlId=0", HTML)
+        self.assertIn("label.tagName==='LABEL'&&!label.htmlFor", HTML)
+        self.assertIn("/^(INPUT|SELECT|TEXTAREA)$/.test(control.tagName)", HTML)
+        self.assertIn("label.htmlFor=control.id", HTML)
+        self.assertIn("p.placeholder&&!e.hasAttribute('aria-label')", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
