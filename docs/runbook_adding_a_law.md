@@ -82,6 +82,55 @@ Before an instrument can support authoritative legal answers, confirm all of the
 
 If any item is missing, keep the instrument non-authoritative and make the assistant abstain or clearly state that the material was not verified. Do not weaken release gates to increase corpus coverage.
 
-## 8. Change log and rollback
+
+## 8. Disposable fictional-fixture smoke test
+
+Run this before processing a user-supplied instrument. It exercises manual capture, article auditing, numeric checklist generation, text comparison, commencement-date reading, and the source-matched-unreviewed classifier without touching an application database. The fixture is fictional and must never be indexed or treated as Egyptian law.
+
+From the repository root:
+
+```bash
+FIXTURE_OUT="$(mktemp -d "${TMPDIR:-/tmp}/legal-copilot-ingestion.XXXXXX")"
+python tools/record_manual_capture.py \
+  --file tests/fixtures/law_ingestion/fictional_reference.txt \
+  --document-id EG-LABOUR-14-2025 \
+  --source-url "https://www.alamiria.com/law/14" \
+  --captured-by "Fixture operator" \
+  --capture-method manual_transcription \
+  --retrieved-on "$(date +%F)" \
+  --publication-date 2025-05-03 \
+  --effective-date 2025-09-01 \
+  --gazette-issue "FICTIONAL-TEST-ISSUE" \
+  --notes "Fictional fixture only; Article 13 separately states 2025-10-01." \
+  --out "$FIXTURE_OUT/capture" --dry-run
+
+python tools/record_manual_capture.py \
+  --file tests/fixtures/law_ingestion/fictional_reference.txt \
+  --document-id EG-LABOUR-14-2025 \
+  --source-url "https://www.alamiria.com/law/14" \
+  --captured-by "Fixture operator" \
+  --capture-method manual_transcription \
+  --retrieved-on "$(date +%F)" \
+  --publication-date 2025-05-03 \
+  --effective-date 2025-09-01 \
+  --gazette-issue "FICTIONAL-TEST-ISSUE" \
+  --notes "Fictional fixture only; Article 13 separately states 2025-10-01." \
+  --out "$FIXTURE_OUT/capture"
+
+python tools/audit_article_rows.py \
+  --input tests/fixtures/law_ingestion/fictional_candidate.jsonl \
+  --out-dir "$FIXTURE_OUT/audit"
+
+python tools/compare_corpus_to_reference.py \
+  --candidate tests/fixtures/law_ingestion/fictional_candidate.jsonl \
+  --reference tests/fixtures/law_ingestion/fictional_reference.txt \
+  --out-dir "$FIXTURE_OUT/comparison"
+
+PYTHONPATH=. python tests/test_law_ingestion_fixture_pipeline.py
+```
+
+The fixture intentionally contains article labels 1 and 13, so the audit reports gaps 2–12; these are expected fixture gaps, not a production-law finding. The numeric checklist records the test period and amount. Read the publication date (2025-05-03), general effective date (2025-09-01), and separate specialized-courts date (2025-10-01) from the fixture text; do not infer an effective date from publication date. The test exercises the `source_matched` classifier with synthetic-only evidence and expects the explicit `not_lawyer_reviewed` reason. It does not approve real-source rights, enable the production feature, or change any legal record.
+
+## 9. Change log and rollback
 
 Keep immutable copies of source files, extracted text, hashes, comparison reports, review records, and the commit that introduced the candidate. A correction creates a new version with a documented relationship to the prior version; do not erase historical evidence. If a source, rights decision, or legal interpretation is withdrawn, quarantine the affected version and prevent it from being used for authoritative retrieval.
