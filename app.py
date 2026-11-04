@@ -2666,6 +2666,8 @@ class DeadlineEstimateIn(BaseModel):
 class FirmSecurityPolicyIn(BaseModel):
     require_mfa_for_admins: bool = False
     require_mfa_for_everyone: bool = False
+
+
 class SubscribePlanIn(BaseModel):
     plan_code: str = Field(pattern=r"^(solo|small_firm)$")
 
