@@ -164,6 +164,14 @@ class FirmSecurityPolicyTests(unittest.TestCase):
         self.assertTrue(second_session.json()["mfa_policy_required"])
         self.assertTrue(second_session.json()["mfa_enrollment_required"])
         self.assertEqual(client.get("/cases").status_code, 403)
+        # A user may switch to a different firm, but cannot access the protected firm before enrollment.
+        switched_back = self._mutate("multi", "post", "/session/firm", json={"firm_id": self.firm_a})
+        self.assertEqual(switched_back.status_code, 200, switched_back.text)
+        final_session = client.get("/session")
+        self.assertEqual(final_session.status_code, 200, final_session.text)
+        self.assertEqual(final_session.json()["firm_id"], self.firm_a)
+        self.assertFalse(final_session.json()["mfa_policy_required"])
+        self.assertEqual(client.get("/cases").status_code, 200)
 
 
 if __name__ == "__main__":
