@@ -65,6 +65,16 @@ class ContainerDeploymentContractTests(unittest.TestCase):
         self.assertIn("docker compose --env-file .env.production -f compose.production.yaml config --quiet", workflow)
         self.assertIn("contents: read", workflow)
 
+    def test_image_python_version_matches_ci_and_dependabot_blocks_unverified_minor_major(self):
+        dockerfile = (ROOT / "Dockerfile").read_text(encoding="utf-8")
+        self.assertIn("FROM python:3.12-slim-bookworm", dockerfile)
+        self.assertNotIn("FROM python:3.15-slim-bookworm", dockerfile)
+        dependabot = (ROOT / ".github" / "dependabot.yml").read_text(encoding="utf-8")
+        docker_section = dependabot.split("package-ecosystem: docker", 1)[1]
+        self.assertIn('dependency-name: "python"', docker_section)
+        self.assertIn('"version-update:semver-major"', docker_section)
+        self.assertIn('"version-update:semver-minor"', docker_section)
+
     def test_dependabot_tracks_docker_base_image_updates(self):
         dependabot = (ROOT / ".github" / "dependabot.yml").read_text(encoding="utf-8")
         self.assertIn("package-ecosystem: docker", dependabot)
