@@ -1175,5 +1175,58 @@ class BrowserAcceptanceTests(unittest.TestCase):
             self.assertEqual(control.execute("SELECT COUNT(*) FROM firm_subscriptions WHERE firm_id=?", (self.state["firm_a_id"],)).fetchone()[0], 0)
             self.assertEqual(control.execute("SELECT COUNT(*) FROM subscription_audit_events WHERE firm_id=?", (self.state["firm_a_id"],)).fetchone()[0], 0)
 
+
+    def test_skip_link_and_modal_focus_are_visible_and_keyboard_safe_at_320px(self) -> None:
+        self.page.set_viewport_size({"width": 320, "height": 740})
+        self.login(self.state["owner_a_email"])
+
+        # The skip link must be the first keyboard stop and must leave a
+        # visible focus indicator on the main landmark after activation.
+        self.page.evaluate("() => document.activeElement && document.activeElement.blur()")
+        self.page.keyboard.press("Tab")
+        skip_link = self.page.locator("a.skip-link")
+        self.assertTrue(skip_link.evaluate("(el) => document.activeElement === el"))
+        self.assertTrue(skip_link.is_visible())
+        self.page.keyboard.press("Enter")
+        main = self.page.locator("main#main")
+        self.assertTrue(main.evaluate("(el) => document.activeElement === el"))
+        main_outline = main.evaluate("(el) => getComputedStyle(el).outlineStyle")
+        self.assertNotEqual(main_outline, "none", "Skip-link destination must retain a visible focus indicator")
+
+        self.page.wait_for_function(
+            "() => document.documentElement.scrollWidth <= window.innerWidth",
+            timeout=8000,
+        )
+
+        # Verify the modal's real keyboard trap in both directions, Escape
+        # dismissal, and focus restoration to the invoking control.
+        opener = self.page.get_by_role("button", name="+ قضية جديدة")
+        opener.focus()
+        opener.click()
+        dialog = self.page.get_by_role("dialog", name="قضية جديدة")
+        dialog.wait_for(state="visible")
+        title = dialog.get_by_placeholder("عنوان القضية")
+        cancel = dialog.get_by_role("button", name="إلغاء")
+        save = dialog.get_by_role("button", name="حفظ القضية")
+        self.assertTrue(title.evaluate("(el) => document.activeElement === el"))
+
+        title.focus()
+        self.page.keyboard.press("Shift+Tab")
+        self.assertTrue(save.evaluate("(el) => document.activeElement === el"),
+                        "Shift+Tab from first modal control must wrap to last")
+        self.page.keyboard.press("Tab")
+        self.assertTrue(title.evaluate("(el) => document.activeElement === el"),
+                        "Tab from last modal control must wrap to first")
+        self.page.keyboard.press("Escape")
+        self.assertFalse(dialog.count(), "Escape should dismiss the modal")
+        self.assertTrue(opener.evaluate("(el) => document.activeElement === el"),
+                        "Closing the modal must restore focus to its opener")
+        self.page.wait_for_function(
+            "() => document.documentElement.scrollWidth <= window.innerWidth",
+            timeout=8000,
+        )
+        self.assertEqual(self.browser_errors, [], self.browser_errors)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
