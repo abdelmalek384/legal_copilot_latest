@@ -18,6 +18,7 @@ sys.path.insert(0, str(ROOT))
 from tools.audit_article_rows import main as audit_article_rows_main
 from tools.compare_corpus_to_reference import build_report
 from tools.record_manual_capture import record_capture
+from tools.answer_trust_tier import classify_answer_trust_tier
 from tools.validate_manual_capture_record import validate_capture_record
 
 
@@ -90,8 +91,8 @@ class LawIngestionFixturePipelineTests(unittest.TestCase):
                 captured_by="Fixture test operator",
                 capture_method="manual_transcription",
                 retrieved_on=date.today().isoformat(),
-                publication_date=None,
-                effective_date=None,
+                publication_date="2025-05-03",
+                effective_date="2025-09-01",
                 gazette_issue="fictional fixture only",
                 source_id=None,
                 notes="SYNTHETIC FIXTURE ONLY — not Gazette text or legal evidence",
@@ -152,6 +153,44 @@ class LawIngestionFixturePipelineTests(unittest.TestCase):
                 _fixture_commencement_dates(text),
                 ["2025-09-01", "2025-10-01"],
             )
+            self.assertEqual(metadata["publication_date"], "2025-05-03")
+            self.assertEqual(metadata["effective_date"], "2025-09-01")
+            source = {
+                "source_id": "SYNTHETIC-FIXTURE-CAPTURE",
+                "source_status": "source_matched_unreviewed",
+                "source_match_evidence": {
+                    "validator_passed": True,
+                    "original_capture_sha256": metadata["sha256"],
+                    "independent_copy_sha256": hashlib.sha256(reference.read_bytes()).hexdigest(),
+                    "independent_copy_source_id": "SYNTHETIC-FIXTURE-INDEPENDENT-COPY",
+                    "publication_date": "2025-05-03",
+                    "effective_date": "2025-09-01",
+                    "reuse_rights_evidence": "Repository-authored fictional fixture; test-only evidence, not a real legal source.",
+                    "reuse_rights_evidence_url": "https://example.test/fixture-rights",
+                    "approved_uses": [
+                        "collection", "storage", "text_extraction", "indexing",
+                        "commercial_product_use", "excerpt_display",
+                    ],
+                    "article_inventory_complete": (
+                        comparison["candidate"]["rows_compared"] == comparison["reference"]["articles_detected"] == 2
+                    ),
+                    "differences_resolved_against_primary": comparison["all_identical"],
+                    "publication_and_effective_dates_verified": (
+                        "2025-05-03" in text and _fixture_commencement_dates(text)[0] == "2025-09-01"
+                    ),
+                    "reuse_rights_allowed": True,
+                },
+            }
+            tier = classify_answer_trust_tier(
+                [source],
+                claims_supported=True,
+                citations_complete=True,
+                contradictory_sources=False,
+                source_matched_policy_approved=True,
+                source_matched_feature_enabled=True,
+            )
+            self.assertEqual(tier["trust_tier"], "source_matched")
+            self.assertEqual(tier["reason_codes"], ["not_lawyer_reviewed"])
 
     def test_commencement_dates_are_read_from_fixture_text_not_capture_metadata(self):
         text = (FIXTURES / "fictional_reference.txt").read_text(encoding="utf-8")
