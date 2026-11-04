@@ -29,6 +29,14 @@ See [the weighted whole-project completion scorecard](project_completion_scoreca
 - Updated `docs/international_ux_gap_audit.md` and issue #95 with the prioritized implementation/acceptance requirements. These are code-inspection findings and planning updates, not a claim that manual accessibility testing or WCAG 2.2 AA acceptance has passed.
 - UI/accessibility workstream baseline remains **45.3%** pending a rubric-based recalculation after implementation and acceptance evidence. Manual browser, screen-reader and lawyer usability work remains outstanding.
 
+
+### UI/accessibility implementation increment — 2026-11-04
+
+- **Frontend commit `6c8fd84`:** the document extracted-text review disclosure now has a stable controlled-panel ID, `aria-controls`, an accurate `aria-expanded` state on open/close/failure, and a polite live status for asynchronous chunk loading.
+- **Contract-test commit `c07f064`:** added frontend UX contract assertions for the disclosure relationship/state and loading announcement.
+- **Audit corrections:** confirmed the inspected new-case and client-profile modal flows already use `role="dialog"`, `aria-modal="true"`, accessible `aria-label` values, a global Tab focus trap, Escape dismissal and opener-focus restoration. The UX audit and issue #95 were corrected to reflect this existing implementation.
+- **Validation boundary:** the new contract assertions have been committed, but no CI workflow run was returned for this direct-to-main commit; do not claim the tests passed. Exact-head automated and manual browser validation remain required.
+
 ## Previous whole-product checkpoint — 2026-10-31
 
 At that checkpoint the weighted scorecard recorded **49.33/100 technical completion** (up 0.13 points from 49.20; rounds to 49%). The current score is shown in the overall status above. Qualified Egyptian-counsel acceptance remains **0% / not started** and is still a mandatory post-build release gate.
