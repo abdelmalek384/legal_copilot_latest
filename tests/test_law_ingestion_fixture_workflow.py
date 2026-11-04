@@ -54,7 +54,7 @@ class LawIngestionFixtureWorkflowTests(unittest.TestCase):
                 ]), 0)
             with (audit_out / "quantity_checklist.csv").open(encoding="utf-8") as handle:
                 quantities = list(csv.DictReader(handle))
-            self.assertTrue(any("ثلاثين يوما" in row["snippets"] for row in quantities))
+            self.assertTrue(any("ثلاثين يوما" in row["numbers_periods_amounts_found"] for row in quantities))
 
             compare_out = root / "comparison"
             with contextlib.redirect_stdout(io.StringIO()):
