@@ -8,6 +8,7 @@ TRACKER = json.loads((ROOT / "docs" / "archive" / "phase_2_permission_outreach_t
 
 class PermissionOutreachTrackerTests(unittest.TestCase):
     def test_verified_amiri_press_contact_has_official_evidence_but_is_not_sent(self):
+        self.assertTrue((ROOT / "docs" / "archive" / "phase_2_permission_outreach_tracker.json").is_file())
         request = next(item for item in TRACKER["requests"] if item["request_id"] == "PERM-001")
         self.assertTrue(request["contact_verified"])
         self.assertEqual(request["contact_verified_on"], "2026-10-24")
