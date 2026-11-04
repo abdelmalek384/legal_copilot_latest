@@ -518,7 +518,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         email = self.page.locator('input[type="email"]')
         password = self.page.locator('input[type="password"]')
         email.wait_for(state="visible", timeout=10000)
-        self.page.get_by_role("button", name="تسجيل الدخول").click()
+        self.page.locator('button[type="submit"]').click()
         self.assertEqual(email.get_attribute("aria-invalid"), "true")
         self.assertEqual(password.get_attribute("aria-invalid"), "true")
         self.assertEqual(email.get_attribute("aria-describedby"), "login-form-error")
