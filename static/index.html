@@ -2204,13 +2204,15 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    });
   };
   body=h('div',{className:'card'},c.docs.length?c.docs.map(d=>{
-    const reviewPanel=h('div',{});
+    const reviewPanel=h('div',{id:'doc-review-'+id+'-'+d.document_id});
     const toggle=btn(uiText('مراجعة النص المستخرج','Review extracted text'),async()=>{
-      if(toggle.dataset.open==='1'){toggle.dataset.open='0';reviewPanel.replaceChildren();return}
-      toggle.dataset.open='1';reviewPanel.append(h('p',{className:'mut',textContent:uiText('جارٍ تحميل المقاطع…','Loading text chunks…')}));
+      if(toggle.dataset.open==='1'){toggle.dataset.open='0';toggle.setAttribute('aria-expanded','false');reviewPanel.replaceChildren();return}
+      toggle.dataset.open='1';toggle.setAttribute('aria-expanded','true');reviewPanel.append(h('p',{className:'mut',role:'status','aria-live':'polite',textContent:uiText('جارٍ تحميل المقاطع…','Loading text chunks…')}));
       try{const data=await api('/cases/'+id+'/docs/'+d.document_id+'/chunks');renderChunkReview(reviewPanel,data)}
-      catch(_){toggle.dataset.open='0';reviewPanel.replaceChildren()}
+      catch(_){toggle.dataset.open='0';toggle.setAttribute('aria-expanded','false');reviewPanel.replaceChildren()}
     });
+    toggle.setAttribute('aria-controls',reviewPanel.id);
+    toggle.setAttribute('aria-expanded','false');
     const status=d.extraction_status==='ocr_unverified'?uiText('نص OCR غير متحقق','OCR text not verified'):d.extraction_status==='partial_text_ocr_unavailable'?uiText('بعض الصفحات لم تُفهرس: OCR غير متاح','Some pages were not indexed: OCR unavailable'):(d.extraction_status||uiText('حالة الاستخراج غير مسجلة','Extraction status not recorded'));
     return h('section',{className:'document-review-group'},h('div',{className:'row'},h('div',{},h('b',{textContent:d.name}),h('div',{className:'mut',textContent:fd(d.added)+' · '+status}),h('div',{className:'mut',textContent:d.sha256?'SHA-256: '+d.sha256:''})),toggle),reviewPanel)
   }):empty(uiText('لا توجد مستندات','No documents')),
