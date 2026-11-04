@@ -5183,7 +5183,12 @@ def platform_pilot_metrics(weeks: int = Query(12, ge=1, le=52), u: dict = Depend
         "metrics": rows,
         "onboarding": onboarding,
         "successful_sign_ins_definition": "Count of successful sign-in events for the default firm; not distinct people.",
-        "weekly_active_users_definition": (\n            "Distinct users per firm with at least one successful metered workflow in the UTC week: "\n            "research query, document upload, OCR processing, or draft generation. "\n            "Successful sign-ins alone do not qualify. "\n            "Case/task/calendar-only activity is not currently included in this qualifying workflow measure."\n        ),
+        "weekly_active_users_definition": (
+            "Distinct users per firm with at least one successful metered workflow in the UTC week: "
+            "research query, document upload, OCR processing, or draft generation. "
+            "Successful sign-ins alone do not qualify. "
+            "Case/task/calendar-only activity is not currently included in this qualifying workflow measure."
+        ),
     }
 
 
