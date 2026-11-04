@@ -26,11 +26,11 @@ The workflow uploads the generated lock as a short-lived artifact for review. Th
 4. Review transitive changes and ensure no dependency introduces telemetry, external network calls, or a new data-processing path without explicit assessment.
 5. Record the reviewed versions and merge only after required checks pass.
 
-## Current limitation: no deployment lockfile yet
+## Current limitation: keep the deployment lock synchronized
 
-The application requirements file pins most direct packages but leaves the AWS SDK as a compatible version range. It does not yet provide a fully resolved, hash-locked production requirements file for all transitive dependencies. Therefore, a clean `pip-audit` result is evidence about the versions resolved during that run, not proof that every future install will be byte-for-byte reproducible.
+The repository now contains `requirements-py312.lock`, a Python 3.12-specific, fully resolved deployment set with pinned transitive versions and artifact hashes. Production installation must use this lock with `pip install --require-hashes`; a clean audit of the unconstrained direct requirements alone is not proof that future installs are byte-for-byte reproducible.
 
-Before production, generate and review a Python 3.12 deployment lockfile with pinned transitive versions and artifact hashes, validate installation from that lockfile in a clean environment, and configure deployment to install only from it. Do not invent or hand-write hashes. Keep the source requirements file as the intentional dependency input and update the lockfile through a reproducible resolver process.
+The lock is a separately reviewed artifact, not an automatically updated mirror of `requirements.txt`. Any change to a direct dependency is incomplete for production until the resolver workflow regenerates the lock, the resulting transitive changes and hashes are reviewed, installation succeeds in a clean Python 3.12 environment, and the strict audit plus full tests pass on the exact release candidate. Do not invent or hand-write hashes. Keep `requirements.txt` as the intentional direct-dependency input and update the lock only through the documented reproducible resolver process.
 
 ## Release requirements
 
