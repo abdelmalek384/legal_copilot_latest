@@ -115,9 +115,9 @@ button{min-height:40px}
 .skip-link:focus{transform:translateY(0)}
 #side a[role=button]{display:flex;align-items:center;min-height:42px;text-decoration:none}
 #side a[role=button]:focus-visible{outline:3px solid #80a7ff;outline-offset:2px}
-#main:focus{outline:none}
+#main:focus{outline:3px solid var(--ui-focus);outline-offset:2px}
 @media(max-width:800px){.skip-link{top:6px}#side a[role=button]{white-space:nowrap;flex:none}}
-@media(forced-colors:active){.skip-link:focus,#side a[role=button]:focus-visible{outline:2px solid Highlight}}
+@media(forced-colors:active){.skip-link:focus,#side a[role=button]:focus-visible,#main:focus{outline:2px solid Highlight;outline-offset:2px}}
 
 
 /* Small-screen and long-content resilience pass from usability review. */
