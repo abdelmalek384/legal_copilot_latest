@@ -3,7 +3,7 @@ Case folders with Egyptian case metadata, internal notes, legal deadlines separa
 and answers that must cite numbered sources. If nothing relevant is found, or the model's citations fail the check, it shows sources only.
 
 Mac quick start: double-click `start_mac.command`; it creates a virtual environment, installs dependencies, initializes separate control-plane, firm, and shared-corpus databases under `./data`, prompts to create the first firm administrator if needed, and starts the app locally. Manual run: follow the initialization and first-owner bootstrap steps under [Setup and security](#setup-and-security), set `COPILOT_CONTROL_DB`, `COPILOT_TENANT_DB_ROOT`, and `COPILOT_CORPUS_DB` to three distinct paths, then run `python -m uvicorn app:app --host 127.0.0.1 --port 8000` and open http://127.0.0.1:8000. The app fails closed unless the separate profile paths are configured. The shared `COPILOT_DB` runtime was retired in PR #972 and is rejected in every environment; configure only the three profile-separated paths. No legacy data import is part of this project.
-Load law: POST a JSON list of {law, article, text, as_of, in_force, source} to /law/import (see sample_law.jsonl: FICTIONAL test text only).
+Load law: POST a JSON list of {law, article, text, as_of, in_force, source} to /law/import (see tests/fixtures/legal/sample_law.jsonl: FICTIONAL test text only).
 Model: set LLM_URL (OpenAI-compatible /chat/completions, e.g. vLLM, Ollama, or a hosted provider), LLM_MODEL, and LLM_KEY. The app does not choose or bundle a model. LLM_URL alone is not enough to send prompts: explicitly set LLM_DATA_PROCESSING_APPROVED=1 only after reviewing the endpoint, data-processing terms, retention, and whether matter data may be sent. Case-scoped research, follow-up conversation context, and matter-file passages additionally require `LLM_FIRM_DATA_PROCESSING_APPROVED=1`; otherwise those requests return sources only. These are deployment attestations, not consent or privacy guarantees. See [LLM data-processing policy](docs/llm_data_processing_policy.md).
 
 Container deployment template: see [the hardened Docker/Compose deployment guide](docs/container_deployment.md). It uses the checked-in Python 3.12 hash lock, a non-root read-only container, separate persistent database paths, S3/KMS configuration, and explicit database-acceptance evidence. It is a deployment template, not a completed production deployment; staging, recovery, security, and lawyer acceptance gates remain mandatory.
@@ -12,7 +12,7 @@ Not included yet: a complete verified official law/ruling corpus, production-rea
 
 ## Egyptian legal corpus bootstrap
 
-The repository currently contains source registers and candidate metadata, not a complete verified Egyptian legal corpus. `sample_law.jsonl` contains fictional test material and must not be used as real law.
+The repository currently contains source registers and candidate metadata, not a complete verified Egyptian legal corpus. `tests/fixtures/legal/sample_law.jsonl` contains fictional test material and must not be used as real law.
 
 Validate the initial candidate catalogue (dry run):
 
