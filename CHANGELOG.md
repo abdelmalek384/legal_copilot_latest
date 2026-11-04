@@ -1,5 +1,7 @@
 # Changelog — Legal Copilot
 
+- Resolve client IPs through an explicit trusted-proxy allowlist for rate limits, login lockouts, and recovery throttles; document the required forwarded-header overwrite.
+
 - Extended the evidence-only corpus comparator to accept official PDF references directly, preserve per-article PDF page ranges, hash the source file, and warn on pages without extractable text; does not authenticate or verify legal content.
 
 - Reject future-dated qualified-counsel answer reviews so evaluation reports cannot count assessments dated after the current day.

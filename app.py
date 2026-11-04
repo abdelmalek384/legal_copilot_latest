@@ -2143,8 +2143,61 @@ _allowed_hosts = os.environ.get("COPILOT_ALLOWED_HOSTS", "").strip()
 if _allowed_hosts:
     app.add_middleware(TrustedHostMiddleware, allowed_hosts=_trusted_host_patterns(_allowed_hosts))
 
+def client_ip(request: Request) -> str:
+    """Return the requester's IP, trusting X-Forwarded-For only from configured proxies.
+
+    Walk the forwarded chain from right to left and stop at the first untrusted hop.
+    Invalid forwarded values are ignored in full so malformed chains cannot select
+    an attacker-controlled address.
+    """
+    peer = request.client.host if request.client else "unknown"
+    try:
+        peer_address = ipaddress.ip_address(peer)
+    except ValueError:
+        return peer
+
+    configured = os.environ.get("COPILOT_TRUSTED_PROXIES", "").strip()
+    trusted_networks = []
+    if configured:
+        for entry in configured.split(","):
+            value = entry.strip()
+            if not value:
+                raise ValueError("COPILOT_TRUSTED_PROXIES contains an empty entry")
+            try:
+                trusted_networks.append(ipaddress.ip_network(value, strict=False))
+            except ValueError as exc:
+                raise ValueError(
+                    f"Invalid COPILOT_TRUSTED_PROXIES entry: {value!r}"
+                ) from exc
+
+    def is_trusted(address):
+        return any(address.version == network.version and address in network
+                   for network in trusted_networks)
+
+    if not is_trusted(peer_address):
+        return str(peer_address)
+
+    forwarded = request.headers.get("x-forwarded-for")
+    if not forwarded:
+        return str(peer_address)
+    try:
+        chain = [ipaddress.ip_address(value.strip())
+                 for value in forwarded.split(",")]
+    except ValueError:
+        return str(peer_address)
+
+    current = peer_address
+    for candidate in reversed(chain):
+        if not is_trusted(current):
+            break
+        current = candidate
+        if not is_trusted(candidate):
+            return str(candidate)
+    return str(chain[0]) if chain else str(peer_address)
+
+
 # Per-process fixed-window limits for expensive or abuse-prone endpoints.
-# Deliberately use the direct peer address; do not trust arbitrary X-Forwarded-For.
+# Resolve a client address only through the explicit trusted-proxy allowlist.
 _RATE_LIMITS = {
     "/setup/test-reminder": (3, 3600),
     "/firm/profile": (20, 60),
@@ -2195,7 +2248,7 @@ def _rate_limit(request: Request):
     if limit is None:
         return 0
     max_requests, window_seconds = limit
-    peer = request.client.host if request.client else "unknown"
+    peer = client_ip(request)
     now = time.time()
     window_start = int(now // window_seconds) * window_seconds
     db = control_conn()
@@ -3614,7 +3667,7 @@ def _mfa_verify_factor_in_transaction(
 def _login_separate(b: LoginIn, request: Request, response: Response):
     k = normalize_email(b.email)
     now = int(time.time())
-    ip = request.client.host if request.client else "unknown"
+    ip = client_ip(request)
     identifiers = (k, "ip:" + ip)
     c = control_conn()
     attempts = {row["email"]: row for row in c.execute(
@@ -3714,7 +3767,7 @@ def login(b: LoginIn, request: Request, response: Response):
         return _login_separate(b, request, response)
     k = normalize_email(b.email)
     now = int(time.time())
-    ip = request.client.host if request.client else "unknown"
+    ip = client_ip(request)
     identifiers = (k, "ip:" + ip)
     c = conn()
 
@@ -5583,7 +5636,7 @@ def request_account_recovery(b: RecoveryRequestIn, request: Request):
     if not email_normalized or len(email_normalized) > 200:
         return generic
     now = int(time.time())
-    peer = request.client.host if request.client else "unknown"
+    peer = client_ip(request)
     client_key = hashlib.sha256((peer + "|" + email_normalized).encode("utf-8")).hexdigest()
     # Keep the existing per-IP-and-address budget, but also enforce an address-
     # scoped budget so an attacker cannot bypass recovery throttling by rotating
