@@ -653,5 +653,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("loginError.hidden=true", HTML)
 
 
+    def test_case_title_validation_alert_uses_associated_hidden_state(self):
+        self.assertIn("inputs.title.setAttribute('aria-describedby',titleError.id)", HTML)
+        self.assertIn("inputs.title.addEventListener('invalid'", HTML)
+        self.assertIn("titleError.hidden=false", HTML)
+        self.assertIn("titleError.hidden=true", HTML)
+        self.assertNotIn("id:'new-case-title-error',className:'bad',role:'alert',hidden:true,style:'display:block'", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
