@@ -872,3 +872,5 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - **Frontend contract CI recovery:** the full Tests workflow at commit `5c34479` completed successfully, including the frontend UX/accessibility contract step. Subsequent modal-isolation and heading-linked dialog-name commits (`604ddad`, `2778983`, `5dcfbb9`, `de02165`) are newer than that green run and require exact-head rerun; browser acceptance has not yet produced a passing result for the latest changes.
 
 - **Browser validation-error acceptance:** axe browser test commit `dc92989` now submits the new-case dialog empty, verifies `aria-invalid`, `aria-describedby` and the visible alert, then corrects the title and confirms the error clears; contract test `2aec5bd` and UX audit `7578c9a` record it. Exact-head CI remains pending.
+
+- New-case validation error markup is now a sibling of, not a descendant of, the field label (commit `d17230b`), preserving a clean accessible name while retaining the `aria-describedby` relationship; contract assertion `9cc0468` added.
