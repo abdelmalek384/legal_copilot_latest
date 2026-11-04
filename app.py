@@ -3839,7 +3839,7 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
         "platform_roles": _platform_roles_for_user(account["id"]),
         "can_review_legal": _user_can_review_legal({"id": account["id"], "role": first_firm["role"], "email": account["email_display"]}),
         "mfa_enabled": mfa_enabled, "mfa_required": mfa_required,
-        "mfa_policy_required": _mfa_policy_requires_user(int(account["id"]), c),
+        "mfa_policy_required": _mfa_policy_requires_user(int(account["id"]), c, memberships[0]["firm_id"]),
         "mfa_verified": mfa_verified, "mfa_verified_at": now if mfa_verified else 0,
         "mfa_enrollment_required": mfa_required and not mfa_enabled,
         "mfa_verification_required": mfa_enabled and not mfa_verified,
