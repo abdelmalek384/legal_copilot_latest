@@ -531,5 +531,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertNotIn("outline:3px solid #2457C533", HTML)
 
 
+    def test_browser_suite_checks_native_navigation_space_and_enter(self):
+        browser_tests = (ROOT / "tests" / "browser" / "test_acceptance.py").read_text(encoding="utf-8")
+        self.assertIn("test_primary_navigation_buttons_support_native_keyboard_activation", browser_tests)
+        self.assertIn('self.page.keyboard.press("Space")', browser_tests)
+        self.assertIn('self.page.keyboard.press("Enter")', browser_tests)
+
+
 if __name__ == "__main__":
     unittest.main()
