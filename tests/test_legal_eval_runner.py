@@ -67,6 +67,8 @@ class LegalEvalRunnerTests(unittest.TestCase):
             },
         )
 
+        self.assertFalse(row["claim_support_blocked"])
+
         registry = {"reviewers": [{
             "reviewer_id": "reviewer-a",
             "display_name": "Reviewer A",
