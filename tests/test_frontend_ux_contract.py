@@ -610,5 +610,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("inputs.title.removeAttribute('aria-invalid');titleError.hidden=true", HTML)
 
 
+    def test_modal_accessible_names_reference_visible_headings(self):
+        self.assertIn("'aria-labelledby':'new-case-title'", HTML)
+        self.assertIn("id:'new-case-title'", HTML)
+        self.assertIn("'aria-labelledby':'client-profile-title'", HTML)
+        self.assertIn("id:'client-profile-title'", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
