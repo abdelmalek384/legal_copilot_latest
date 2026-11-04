@@ -2014,7 +2014,7 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    h('label',{className:'row'},clientConsent,h('span',{textContent:uiText('أؤكد وجود تفويض/أساس قانوني موثق من العميل لمعالجة بيانات هذه القضية بواسطة مزود النموذج.','I confirm documented client authorization/lawful basis for this matter data to be processed by the model provider.')})),
    run,result)
  }
- if(TAB==='tasks'){const tt=h('input',{placeholder:uiText('مهمة جديدة','New task')}),as=h('select',{},new Option(uiText('غير معيّن','Unassigned'),''),...c.members.map(m=>new Option(m.name,m.user_id))),due=h('input',{type:'date','aria-label':uiText('تاريخ استحقاق المهمة','Task due date')});
+ if(TAB==='tasks'){const tt=h('input',{placeholder:uiText('مهمة جديدة','New task')}),as=h('select',{'aria-label':uiText('المكلّف بالمهمة','Task assignee')},new Option(uiText('غير معيّن','Unassigned'),''),...c.members.map(m=>new Option(m.name,m.user_id))),due=h('input',{type:'date','aria-label':uiText('تاريخ استحقاق المهمة','Task due date')});
   body=h('div',{className:'card'},c.tasks.length?c.tasks.map(t=>h('div',{className:'row'},h('div',{},h('b',{textContent:t.title}),h('div',{className:'mut',textContent:t.assignee_name||'غير معيّن'})),
    h('div',{},t.status==='done'?pill('منجزة','done'):[duePill(t)||pill('مفتوحة','open'),' ',btn('تم',async()=>{await api('/tasks/'+t.id+'/done','POST');again()},'g')]))):empty('لا توجد مهام'),
    h('div',{className:'row'},tt,as,due,btn('إضافة مهمة',async()=>{if(!tt.value.trim()){toast(uiText('أدخل اسم المهمة','Enter a task title'));tt.focus();return}await api('/cases/'+id+'/tasks','POST',{title:tt.value.trim(),assignee:as.value?+as.value:null,due:due.value||null});again()})))}
