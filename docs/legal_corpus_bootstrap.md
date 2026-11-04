@@ -1,6 +1,6 @@
 # Bootstrap the Egyptian legal research workspace
 
-The repository is the current starting point. It does not contain a complete legal corpus, and the included \`sample_law.jsonl\` is fictional test data. This bootstrap creates a catalogue of candidate instruments only; it does not pretend the underlying law text has been acquired.
+The repository is the current starting point. It does not contain a complete legal corpus, and the included \`tests/fixtures/sample_law.jsonl\` is fictional test data. This bootstrap creates a catalogue of candidate instruments only; it does not pretend the underlying law text has been acquired.
 
 ## 1. Validate the candidate catalogue
 
