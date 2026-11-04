@@ -148,7 +148,6 @@ class FirmSecurityPolicyTests(unittest.TestCase):
         self.assertEqual(policy.status_code, 200, policy.text)
         self._add_client("multi", email, password)
         client = self.clients["multi"]
-        client.cookies.set("lc_firm", str(self.firm_a))
 
         first_session = client.get("/session")
         self.assertEqual(first_session.status_code, 200, first_session.text)
