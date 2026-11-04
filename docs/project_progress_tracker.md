@@ -834,3 +834,5 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - The current weighted technical score remains **50.10/100** until another deliverable is merged and its evidence is reconciled. This release-gate work still requires actual lawyer-approved benchmark data before any quality threshold can be meaningfully applied.
 
 - Native navigation follow-up: mobile and forced-colors CSS still targeted anchors after the switch to buttons. Commit `24dbd01` adds horizontal-scroll sizing and a visible forced-colors active border; contract test `921f034` and UX audit `c93208a` record the correction.
+
+- Contrast audit of the effective later CSS cascade found muted text at ~4.44:1 (`#64748B` on `#F5F7FB`) and UI-muted text at ~4.25:1 (`#68778D` on `#F5F7FB`). Commit `a6a74ac` darkens these to `#5F6B7C` and `#596579` and corrects the later success green to `#166534`; contract test `4914066` and UX audit `21a600f` record the changes. These are selected token pairs, not a complete component-by-component contrast audit.
