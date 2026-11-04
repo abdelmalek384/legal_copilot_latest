@@ -1,1 +1,2 @@
 - Live SMTP acceptance for the first-run test reminder is blocked pending provider credentials and a controlled mailbox; route tests use a fake SMTP sender.
+- 2026-11-04: The 155-question live retrieval/abstention baseline is not measurable in this session because no authenticated local Legal Copilot API endpoint or evaluation account is available; draft questions also have no lawyer-approved relevance labels, so answer correctness must remain unscored.
