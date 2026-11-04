@@ -9,6 +9,12 @@ HTML = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
 
 class FrontendUXContractTests(unittest.TestCase):
 
+    def test_firm_mfa_policy_controls_are_visible_and_accessibly_named(self):
+        self.assertIn("Firm MFA policy", HTML)
+        self.assertIn("Require MFA for firm administrators", HTML)
+        self.assertIn("Require MFA for everyone in the firm", HTML)
+        self.assertIn("/admin/security-policy", HTML)
+
     def test_mobile_language_switch_meets_44px_touch_target(self):
         self.assertIn("#side .lang-switch button { width: auto; min-width: 78px; min-height: 44px;", HTML)
 
