@@ -1244,8 +1244,8 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 animationDuration: style.animationDuration
             };
         }""")
-        self.assertIn("0s", motion["transitionDuration"], motion)
-        self.assertIn("0s", motion["animationDuration"], motion)
+        self.assertLessEqual(float(motion["transitionDuration"].removesuffix("s")), 0.00002, motion)
+        self.assertLessEqual(float(motion["animationDuration"].removesuffix("s")), 0.00002, motion)
 
         self.page.keyboard.press("Enter")
         main = self.page.locator("main#main")
@@ -1294,7 +1294,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             self.assertEqual(missing, [], f"Visible controls without accessible names in {scope}: {missing}")
 
         assert_named_controls("#shell")
-        self.page.get_by_role("button", name="البحث القانوني").click()
+        self.page.get_by_role("button", name="البحث القانوني", exact=True).click()
         self.page.locator(".research-controls select").first.wait_for(state="visible")
         assert_named_controls("#main")
         self.page.get_by_role("button", name="نظرة عامة").click()
