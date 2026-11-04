@@ -1,5 +1,7 @@
 # Changelog — Legal Copilot
 
+- Pin the production container to the CI-tested Python 3.12 image and block Dependabot major/minor Python image updates pending explicit version-specific CI (PR #1366).
+
 - Resolve client IPs through an explicit trusted-proxy allowlist for rate limits, login lockouts, and recovery throttles; document the required forwarded-header overwrite.
 
 - Extended the evidence-only corpus comparator to accept official PDF references directly, preserve per-article PDF page ranges, hash the source file, and warn on pages without extractable text; does not authenticate or verify legal content.
