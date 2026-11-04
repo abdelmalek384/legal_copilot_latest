@@ -485,5 +485,11 @@ class FrontendUXContractTests(unittest.TestCase):
             self.assertIn(label, HTML)
 
 
+    def test_case_consent_and_document_upload_controls_have_accessible_names(self):
+        self.assertIn("Confirm firm authorization to process matter data", HTML)
+        self.assertIn("Confirm client consent to process matter data", HTML)
+        self.assertIn("Choose a case document in PDF or Word format", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
