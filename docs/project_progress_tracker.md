@@ -39,6 +39,15 @@ See [the weighted whole-project completion scorecard](project_completion_scoreca
 - **Audit corrections:** confirmed the inspected new-case and client-profile modal flows already use `role="dialog"`, `aria-modal="true"`, accessible `aria-label` values, a global Tab focus trap, Escape dismissal and opener-focus restoration. The UX audit and issue #95 were corrected to reflect this existing implementation.
 - **Validation boundary:** the new contract assertions have been committed, but no CI workflow run was returned for this direct-to-main commit; do not claim the tests passed. Exact-head automated and manual browser validation remain required.
 
+
+### Additional UI/accessibility increment — 2026-11-04 (axe-core regression gate)
+
+- **Workflow commit `4879a50`:** Browser E2E CI now installs Node 22 and pinned axe-core 4.10.3 alongside the existing pinned Chromium setup.
+- **Browser test commit `f281cc3`:** added an authenticated axe scan of representative dashboard/corpus-coverage states in Arabic RTL and English LTR, with 1440px and 390px viewports. The scan enforces automated WCAG 2.1 A/AA rules and reports violation IDs, impact, targets and failure summaries.
+- **Contract commit `fed0798`:** protects the workflow installation and browser test wiring from accidental removal. **Documentation commit `1764500`:** records the exact local harness setup.
+- Updated UX audit and issue #95. The new browser test has not yet produced a verified green CI result; do not treat the gate as passed until exact-head workflow evidence is available. axe findings, if any, must be triaged and fixed rather than suppressed without justification.
+- UI/accessibility completion remains **45.3% pending weighted rubric recalculation**; this is meaningful implementation progress but not proof of conformance or manual acceptance.
+
 ## Previous whole-product checkpoint — 2026-10-31
 
 At that checkpoint the weighted scorecard recorded **49.33/100 technical completion** (up 0.13 points from 49.20; rounds to 49%). The current score is shown in the overall status above. Qualified Egyptian-counsel acceptance remains **0% / not started** and is still a mandatory post-build release gate.
