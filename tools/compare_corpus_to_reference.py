@@ -43,7 +43,7 @@ def extract_heading(line,reverse_rtl_digits=False):
   if raw_digits:
    normalized_digits=raw_digits.translate(DIGITS)
    rest=re.sub(r"\d+",normalized_digits[::-1],rest,count=1)
- n=re.match(r"^\(?\s*(\d+)\s*\)?(?:\s+(مكرر(?:ا|ة)?(?:\s+\(?[ء-ي]\s*\)?)?))?(?:\s+(.*))?$",rest,re.I)
+ n=re.match(r"^\(?\s*(\d+)\s*\)?\s*[:：]?\s*(?:(مكرر(?:ا|ة)?(?:\s+\(?[ء-ي]\s*\)?)?))?(?:\s+(.*))?$",rest,re.I)
  if n:
   suffix_letter=re.search(r"مكرر(?:ا|ة)?\s+\(?([ء-ي])",n.group(2)) if n.group(2) else None
   key=n.group(1)+((" مكرر"+((" "+suffix_letter.group(1)) if suffix_letter else "")) if n.group(2) else "")
