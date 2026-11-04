@@ -860,3 +860,5 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - **Additional form naming:** commit `784e80f` gives explicit bilingual accessible names to task title, hearing details, deadline type/date/notes and invoice-payment amount/reference; contract test `b56695c` and UX audit `605ca67` record the changes. Remaining placeholder-only fields need persistent-label review.
 
 - **Fee due-date control:** commit `cce088e` adds an explicit accessible name to the fee due-date field; contract test `dcd5a85` and UX audit `df1978c` record it. Static scan found no empty-props select constructors and identified this final unlabelled date constructor in the inspected frontend source.
+
+- **Generic control-constructor guard:** contract test `4fa0247` now prevents reintroduction of empty-props select/date constructors and requires accessible names on both CSV and case-document upload inputs. Static source scan found both file inputs named and no empty select/date constructors.
