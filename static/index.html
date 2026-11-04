@@ -989,7 +989,7 @@ function login(mode='signin'){AUTH_MODE=mode;window.CASE_ID=null;let viewMode=mo
  if(viewMode==='signin'){
   const e=h('input',{type:'email',placeholder:LANG==='ar'?'البريد الإلكتروني':'Email address',autocomplete:'username',required:true,'aria-label':LANG==='ar'?'البريد الإلكتروني':'Email address'});
   const p=h('input',{type:'password',placeholder:LANG==='ar'?'كلمة المرور':'Password',autocomplete:'current-password',required:true,'aria-label':LANG==='ar'?'كلمة المرور':'Password'});
-  const loginError=h('span',{id:'login-form-error',className:'bad',role:'alert',hidden:true,style:'display:block'});
+  const loginError=h('span',{id:'login-form-error',className:'bad',role:'alert',hidden:true});
   e.setAttribute('aria-describedby',loginError.id);p.setAttribute('aria-describedby',loginError.id);
   [e,p].forEach(field=>{field.addEventListener('invalid',()=>{field.setAttribute('aria-invalid','true');loginError.textContent=LANG==='ar'?'أدخل البريد الإلكتروني وكلمة المرور':'Enter your email and password';loginError.hidden=false});field.addEventListener('input',()=>{field.removeAttribute('aria-invalid');if(e.value.trim()&&p.value){e.removeAttribute('aria-invalid');p.removeAttribute('aria-invalid');loginError.hidden=true}})});
   const show=h('button',{type:'button',className:'g',textContent:LANG==='ar'?'إظهار':'Show',onclick:()=>{p.type=p.type==='password'?'text':'password';show.textContent=p.type==='password'?(LANG==='ar'?'إظهار':'Show'):(LANG==='ar'?'إخفاء':'Hide')}});
