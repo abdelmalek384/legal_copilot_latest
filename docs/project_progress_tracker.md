@@ -34,6 +34,8 @@ See [the weighted whole-project completion scorecard](project_completion_scoreca
 
 - **Frontend commit `6c8fd84`:** the document extracted-text review disclosure now has a stable controlled-panel ID, `aria-controls`, an accurate `aria-expanded` state on open/close/failure, and a polite live status for asynchronous chunk loading.
 - **Contract-test commit `c07f064`:** added frontend UX contract assertions for the disclosure relationship/state and loading announcement.
+
+- **Navigation semantics fix:** commit `0bfbc21` replaces primary workspace anchors with native buttons, retaining current-page state and visible focus/active styling; commit `26e57ae` updates the regression contract to prohibit the old anchor/button-role pattern. The UX audit and issue #95 now record this as implemented, pending exact-head CI/browser verification.
 - **Audit corrections:** confirmed the inspected new-case and client-profile modal flows already use `role="dialog"`, `aria-modal="true"`, accessible `aria-label` values, a global Tab focus trap, Escape dismissal and opener-focus restoration. The UX audit and issue #95 were corrected to reflect this existing implementation.
 - **Validation boundary:** the new contract assertions have been committed, but no CI workflow run was returned for this direct-to-main commit; do not claim the tests passed. Exact-head automated and manual browser validation remain required.
 
