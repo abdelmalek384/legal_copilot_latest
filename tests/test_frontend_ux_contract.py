@@ -510,5 +510,10 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertNotIn("--ok:#15803D;--ok-l:#E7F6EC", HTML)
 
 
+    def test_native_navigation_keeps_horizontal_mobile_and_forced_color_support(self):
+        self.assertIn("#side nav button { width:auto; min-width:max-content; flex:0 0 auto; white-space:nowrap; }", HTML)
+        self.assertIn("#side nav button.on { border: 1px solid Highlight; }", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
