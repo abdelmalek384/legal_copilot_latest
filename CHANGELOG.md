@@ -1,5 +1,8 @@
 # Changelog — Legal Copilot
 
+- Removed obsolete patch files and sample data from the repository root; relocated legal-evaluation inputs and corrected fixture references (PR #1375).
+- Rewrote the README quick start for the control-plane, tenant-root, and shared-corpus databases and documented current legal and deployment limits (PR #1376).
+
 - Pin the production container to the CI-tested Python 3.12 image and block Dependabot major/minor Python image updates pending explicit version-specific CI (PR #1366).
 
 - Resolve client IPs through an explicit trusted-proxy allowlist for rate limits, login lockouts, and recovery throttles; document the required forwarded-header overwrite.
