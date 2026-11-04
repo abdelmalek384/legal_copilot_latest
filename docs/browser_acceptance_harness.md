@@ -11,7 +11,7 @@ From the repository root, with Python 3.12:
     python -m playwright install chromium
     python -m unittest tests.browser.test_acceptance
 
-The suite chooses an available loopback port, creates synthetic accounts and fixtures, starts Uvicorn in-process, and deletes its temporary database directory after the run. It also runs the pinned axe-core 4.10.3 engine against authenticated Arabic RTL dashboard states at desktop/mobile widths, the case-creation dialog, an English LTR corpus-coverage state, and Arabic account-settings/password-preference forms, enforcing WCAG 2.1 A/AA automated rules. No real legal text, client matter, external source fetch, SMTP delivery, or model API approval is used.
+The suite chooses an available loopback port, creates synthetic accounts and fixtures, starts Uvicorn in-process, and deletes its temporary database directory after the run. It also runs the pinned axe-core 4.10.3 engine against authenticated Arabic RTL dashboard states at 1440px desktop, 768px tablet, 390px phone and 320px narrow-phone widths, the case-creation dialog, an English LTR corpus-coverage state, and Arabic account-settings/password-preference forms, enforcing WCAG 2.1 A/AA automated rules. No real legal text, client matter, external source fetch, SMTP delivery, or model API approval is used.
 
 ## Automated coverage
 
