@@ -522,6 +522,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_form_controls_have_high_contrast_boundaries_and_focus_rings(self):
         self.assertIn("--ui-control-border: #8292a8;", HTML)
+        self.assertIn("input,select,textarea{border-color:var(--ui-control-border);min-height:40px}", HTML)
         self.assertIn("--ui-control-hover: #7c8da3;", HTML)
         self.assertIn("outline: 3px solid var(--ui-focus-ring);", HTML)
         self.assertIn("input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #2457C5", HTML)
