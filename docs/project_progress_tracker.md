@@ -876,3 +876,5 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - New-case validation error markup is now a sibling of, not a descendant of, the field label (commit `d17230b`), preserving a clean accessible name while retaining the `aria-describedby` relationship; contract assertion `9cc0468` added.
 
 - **Sign-in validation accessibility:** commits `8dc7004` and `ea4fd0a` add associated assertive error feedback, `aria-invalid` state, focus and correction recovery for empty or failed login submissions; contract test `a6a5066`, browser test `8bb108e`/locale-independent selector `619dc93`, contract guard `0e55536` and UX audit `fc15beb` record it. CI remains unverified.
+
+- **Native constraint-validation event handling:** commit `cc8199a` adds per-field `invalid` listeners for sign-in and new-case title controls, ensuring inline alert/invalid-state feedback still appears when native required validation blocks the submit event; contract test `0b82340` and UX audit `2f6c8ff` record this important browser interaction detail.
