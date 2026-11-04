@@ -442,7 +442,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("axe-core@4.10.3", workflow)
         self.assertIn("uses: actions/setup-node@v6", workflow)
         self.assertIn("axe.min.js", browser_tests)
-        self.assertIn("'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'", browser_tests)
+        self.assertIn("'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'", browser_tests)
         self.assertIn("test_axe_wcag_accessibility_smoke_arabic_english_and_mobile", browser_tests)
 
 
