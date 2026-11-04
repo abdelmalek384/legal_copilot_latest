@@ -1060,6 +1060,25 @@ class BrowserAcceptanceTests(unittest.TestCase):
             self.assertIsNone(exported.failure(), exported.failure())
             self.assertEqual(self.browser_errors, [], f"browser errors at {width}px: {self.browser_errors}")
 
+    def test_invalid_utf8_matter_csv_is_rejected_before_network_submission(self) -> None:
+        self.login(self.state["owner_a_email"])
+        self.page.get_by_role("button", name="القضايا", exact=True).click()
+        submitted = []
+        self.page.on(
+            "request",
+            lambda request: submitted.append(request.url)
+            if request.url.endswith("/cases/import.csv") else None,
+        )
+        self.page.locator('input[type="file"][accept=".csv,text/csv"]').set_input_files(
+            {
+                "name": "invalid-utf8.csv",
+                "mimeType": "text/csv",
+                "buffer": b"title,client\nInvalid \xff name,Example Client\n",
+            }
+        )
+        self.page.get_by_text("يجب أن يكون الملف بترميز UTF-8 صالح", exact=True).wait_for(timeout=5000)
+        self.assertEqual(submitted, [], "invalid UTF-8 must be rejected before the import API is called")
+
     def test_platform_pilot_metrics_navigation_is_operator_only(self) -> None:
         self.login(self.state["owner_a_email"])
         metrics_link = self.page.get_by_role("button", name="مؤشرات استخدام المكاتب")
