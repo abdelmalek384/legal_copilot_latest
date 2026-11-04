@@ -2173,8 +2173,10 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
   const statusText=(x)=>x==='accepted'?uiText('تمت مراجعة النص','Text reviewed'):x==='corrected'?uiText('تم تصحيح النص','Text corrected'):x==='needs_recheck'?uiText('يحتاج إعادة فحص','Needs recheck'):uiText('لم تتم المراجعة','Not reviewed');
   const renderChunkReview=(container,data)=>{
    container.replaceChildren();
+   const chunkCount=Array.isArray(data.chunks)?data.chunks.length:0;
+   container.append(h('p',{className:'visually-hidden',role:'status','aria-live':'polite','aria-atomic':'true',textContent:chunkCount?uiText('تم تحميل '+chunkCount+' مقطعاً للمراجعة','Loaded '+chunkCount+' text chunks for review'):uiText('لا توجد مقاطع نصية قابلة للمراجعة','No text chunks are available for review')}));
    container.append(h('div',{className:'mut',textContent:data.warning||''}));
-   if(!data.chunks||!data.chunks.length){container.append(empty(uiText('لا توجد مقاطع نصية قابلة للمراجعة','No text chunks are available for review')));return}
+   if(!chunkCount){container.append(empty(uiText('لا توجد مقاطع نصية قابلة للمراجعة','No text chunks are available for review')));return}
    data.chunks.forEach((chunk,index)=>{
     const card=h('article',{className:'card extraction-review-card'});
     card.append(h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+(chunk.ref||(uiText('مقطع ','Chunk ')+chunk.id))}),pill(chunk.latest_review?statusText(chunk.latest_review.outcome):uiText('بانتظار المراجعة','Pending review'),chunk.latest_review&&chunk.latest_review.outcome!=='needs_recheck'?'done':'soon')));
