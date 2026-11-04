@@ -585,6 +585,7 @@ class FrontendUXContractTests(unittest.TestCase):
             "Deadline notes",
             "Payment amount in EGP",
             "Transfer reference (optional)",
+            "Fee due date",
         ):
             self.assertIn(label, HTML)
 
