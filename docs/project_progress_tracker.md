@@ -862,3 +862,5 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - **Fee due-date control:** commit `cce088e` adds an explicit accessible name to the fee due-date field; contract test `dcd5a85` and UX audit `df1978c` record it. Static scan found no empty-props select constructors and identified this final unlabelled date constructor in the inspected frontend source.
 
 - **Generic control-constructor guard:** contract test `4fa0247` now prevents reintroduction of empty-props select/date constructors and requires accessible names on both CSV and case-document upload inputs. Static source scan found both file inputs named and no empty select/date constructors.
+
+- Scorecard reconciliation: commit `ed282f9` records the 2026-11-04 UI/accessibility engineering increments while retaining the 45.3% workstream score until exact-head CI and manual acceptance evidence exist. No whole-project weighted percentage increase is claimed.
