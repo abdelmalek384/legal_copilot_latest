@@ -84,7 +84,7 @@ Install Python **3.12 or newer**, then run `./start_mac.command` from the reposi
 
 On Windows 10/11, install **Python 3.12** with the Python Launcher enabled, then double-click `start_windows.bat` from the repository folder. The launcher creates a local virtual environment, installs the requirements, initializes the separate control-plane/firm/corpus database profiles, and safely prompts for the first firm owner when needed. It binds the development server to `127.0.0.1` only; keep the terminal window open while using the app.
 
-The launcher refuses an inherited `COPILOT_DB` setting because that selects the legacy shared-database compatibility mode. It does not reset or delete existing data. For an existing installation, keep the three profile paths pointed at the same persistent directories used previously. This is a local development launcher, not a production deployment procedure.
+The launcher refuses the retired single-database compatibility mode. It does not reset or delete existing data. For an existing installation, keep the three profile paths pointed at the same persistent directories used previously. This is a local development launcher, not a production deployment procedure.
 
 
 ### Manual local setup
@@ -105,7 +105,7 @@ python manage.py init-tenancy --firm-name "Example Firm" --owner-name "First Own
 python -m uvicorn app:app --host 127.0.0.1 --port 8000
 ```
 
-Open http://127.0.0.1:8000 on the same machine. The three database paths must remain distinct. Do not set `COPILOT_DB` for a fresh install; it is legacy compatibility mode. Do not expose the development server directly to the internet.
+Open http://127.0.0.1:8000 on the same machine. The three database paths must remain distinct. Do not enable the retired shared-database compatibility mode. Do not expose the development server directly to the internet.
 
 ### Production and model-processing gates
 
