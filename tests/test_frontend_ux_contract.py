@@ -507,6 +507,9 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_success_pill_text_uses_contrast_safe_green_token(self):
         self.assertIn("--ok:#166534;--ok-l:#E7F6EC", HTML)
+        self.assertIn("--ok:#166534;--ok-l:#E8F7EF", HTML)
+        self.assertIn("--mut:#5F6B7C", HTML)
+        self.assertIn("--ui-muted: #596579;", HTML)
         self.assertNotIn("--ok:#15803D;--ok-l:#E7F6EC", HTML)
 
 
