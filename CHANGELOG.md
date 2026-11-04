@@ -1,5 +1,9 @@
 # Changelog — Legal Copilot
 
+- PR #1415: Maintain one-line changelog entries for the latest merged retrieval and evaluation updates.
+- PR #1414: Expose explicit claim-support block outcomes in evaluation runs.
+- PR #1413: Fix negation-aware Arabic query expansion and phrase boundaries.
+
 - PR #1393: Add missing one-line changelog summaries for merged PRs.
 - PR #1389: Execute the ingestion capture, article-audit, and corpus-comparison CLIs on the fictional fixture.
 - PR #1388: Prevent demo-firm removal while original files remain.
