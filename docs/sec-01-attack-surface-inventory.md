@@ -1,7 +1,7 @@
 # SEC-01 attack-surface inventory (historical static baseline)
 
 **Snapshot:** 2026-10-24  
-**Status:** Historical snapshot; do not use its old architecture/status statements as current. The current route/tenant findings are in [the tenant-isolation inventory](tenant_isolation_inventory.md), the [database completion tracker](database_completion_tracker.md), and the [repository storage entrypoint inventory](repository_storage_entrypoint_inventory.md).  
+**Status:** Historical snapshot; do not use its old architecture/status statements as current. The current route/tenant findings are in [the tenant-isolation inventory](tenant_isolation_inventory.md), the [database completion tracker](archive/database_completion_tracker.md), and the [repository storage entrypoint inventory](repository_storage_entrypoint_inventory.md).  
 **Source:** static scan of `app.py` on `main` after PR #104 merged.  
 **Purpose:** preserve the initial attack-surface baseline for audit history. This is an inventory aid, not proof of isolation or a security certification.
 
