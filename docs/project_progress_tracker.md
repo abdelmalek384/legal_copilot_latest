@@ -840,3 +840,5 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - **Control-boundary/focus contrast:** commits `fa94537` and `bea62eb` increase effective form-control borders to ~3.17:1, hover borders to ~3.39:1, and replace a translucent focus outline with a solid `#2457C5` ring. Contract test `7959431` and UX audit `0e119f7` record the changes. Browser verification across light/dark/forced-color contexts remains pending.
 
 - **Responsive accessibility scan expansion:** browser axe smoke test commit `72660ef` now scans dashboard at 1440px, 768px, 390px and 320px widths; regression contract `fa14d40`, UX audit `9d37ab1` and harness docs `bd2721c` updated. This increases automated responsive coverage but does not simulate browser zoom or replace manual reflow testing.
+
+- **Browser-test viewport correction:** code review found the new-case modal audit label said 390px while the dashboard viewport loop left the browser at 320px. Commit `4abfffc` explicitly resets the viewport to 390×844 before opening the modal; contract test `93c708e` protects this setup. The browser test docstring now reflects WCAG 2.1 A/AA plus 2.2 AA.
