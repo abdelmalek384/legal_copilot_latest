@@ -25,7 +25,7 @@ See [the weighted whole-project completion scorecard](project_completion_scoreca
 ## 2026-11-04 UI/accessibility focused checkpoint
 
 - Reconfirmed the delivered frontend foundations in `static/index.html`: skip link/main landmark, keyboard-operable primary navigation, visible focus styling, reduced-motion handling, forced-colors focus treatment, mobile touch-target sizing and polite toast announcements.
-- Static inspection identified follow-up work now recorded in the UX gap audit and issue #95: correct navigation element semantics (avoid anchors with button role), explicit accessible dialog names/semantics, disclosure state via `aria-expanded`/`aria-controls`, scoped async status announcements, programmatic form-error associations, and an automated axe-core-equivalent Chromium gate in both Arabic RTL and English LTR.
+- Static inspection identified follow-up work now recorded in the UX gap audit and issue #95: correct navigation element semantics (avoid anchors with button role), extend coverage of existing dialog semantics/focus management across modal variants, disclosure state via `aria-expanded`/`aria-controls`, scoped async status announcements, programmatic form-error associations, and an automated axe-core-equivalent Chromium gate in both Arabic RTL and English LTR.
 - Updated `docs/international_ux_gap_audit.md` and issue #95 with the prioritized implementation/acceptance requirements. These are code-inspection findings and planning updates, not a claim that manual accessibility testing or WCAG 2.2 AA acceptance has passed.
 - UI/accessibility workstream baseline remains **45.3%** pending a rubric-based recalculation after implementation and acceptance evidence. Manual browser, screen-reader and lawyer usability work remains outstanding.
 
