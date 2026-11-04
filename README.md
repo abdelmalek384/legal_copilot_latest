@@ -147,6 +147,10 @@ Keep application writes paused for the full backup snapshot window. Verify a bun
 
 The first firm owner is created with `init-tenancy` during fresh setup. Platform roles are distinct from firm roles. Use the reviewed account-lifecycle and privileged-role procedures; do not treat a firm administrator as a platform administrator, and do not use an ad-hoc SQL edit to recover an account. See the current CLI help (`python manage.py --help`) and production checklist before operator actions.
 
+## Firm matter import
+
+Firm administrators can import up to 500 matters from a UTF-8 CSV file (1 MB maximum) on the Cases page. Imports support Arabic/English headers, multiple matters per client, and duplicate detection. See the [matter CSV import guide](docs/matter_csv_import.md) for the column map and example. Native XLSX uploads are not currently supported; save Excel worksheets as CSV UTF-8 first.
+
 ## Loading law data
 
 There is no general Official Gazette downloader in this repository. The PDF importer processes files that you have already acquired and have a lawful basis to store and process; public visibility alone does not establish reuse permission. Prepare matching PDF/JSON sidecar pairs, install the optional dependencies from requirements-ocr.txt, and follow the [legal PDF import and provenance runbook](docs/legal_pdf_import_runbook.md).
