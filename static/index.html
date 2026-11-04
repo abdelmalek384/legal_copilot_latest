@@ -913,6 +913,24 @@ function shell(title,...k){const navLabel=(ar,en)=>LANG==='ar'?ar:en;const firmO
  ),
  h('div',{className:'me'},h('div',{textContent:ME.name||''}),h('a',{textContent:navLabel('تسجيل الخروج','Sign out'),onclick:async()=>{try{await api('/logout','POST')}catch(_){}sessionStorage.removeItem('me');ME={};login()}}))),
  h('main',{id:'main',tabIndex:-1,'aria-label':title},ME.is_demo?h('div',{className:'demo-banner',role:'status',textContent:navLabel('بيانات تجريبية فقط — لا تستخدم هذه القضايا أو المواعيد في عمل حقيقي.','DEMO DATA ONLY — Do not use these cases or dates for real work.')}):null,h('h2',{textContent:title}),...k)))}
+function mfaFirmSwitcher(){
+ const alternatives=Array.isArray(ME.firms)?ME.firms.filter(f=>Number(f.firm_id)!==Number(ME.firm_id)):[];
+ if(!alternatives.length)return null;
+ const select=h('select',{'aria-label':uiText('اختر مكتباً آخر للمتابعة','Choose another firm to continue')},...alternatives.map(f=>new Option(f.firm_name+(f.role?' — '+f.role:''),String(f.firm_id))));
+ const action=btn(uiText('تبديل المكتب','Switch firm'),async()=>{
+  action.disabled=true;
+  try{
+   const result=await api('/session/firm','POST',{firm_id:Number(select.value)});
+   const session=await api('/session');
+   ME={...ME,...result,...session};sessionStorage.me=JSON.stringify(ME);
+   if(ME.mfa_enrollment_required){mfaEnrollmentPage();return}
+   if(ME.mfa_verification_required){mfaChallengePage();return}
+   dash();
+  }catch(error){toast(String(error.message||error))}
+  finally{action.disabled=false}
+ },'g');
+ return h('div',{className:'card'},h('p',{className:'mut',textContent:uiText('اختر مكتباً آخر؛ ستُراجع سياسة المصادقة الخاصة به قبل المتابعة.','Choose another firm; its MFA policy will be checked before you continue.')}),select,action);
+}
 function mfaChallengePage(){
  PAGE='mfa_challenge';
  const ar=LANG==='ar';
@@ -934,6 +952,7 @@ function mfaChallengePage(){
  h('label',{textContent:ar?'أو رمز الاسترداد':'Or recovery code'}),recovery,
  h('button',{type:'submit',className:'auth-main',textContent:ar?'تحقق':'Verify'}),
  h('button',{type:'button',className:'g',textContent:ar?'تسجيل الخروج':'Sign out',onclick:async()=>{try{await api('/logout','POST')}catch(_){}sessionStorage.removeItem('me');ME={};login()}}));
+ const firmSwitcher=mfaFirmSwitcher();if(firmSwitcher)card.append(firmSwitcher);
  card.append(form);A.replaceChildren(card);
 }
 function mfaEnrollmentPage(reenroll=false){
@@ -975,6 +994,7 @@ function mfaEnrollmentPage(reenroll=false){
    }catch(_){startButton.disabled=false;password.focus()}
  }},h('label',{textContent:ar?'كلمة المرور الحالية':'Current password'}),password,startButton,
    h('button',{type:'button',className:'g',textContent:ar?'تسجيل الخروج':'Sign out',onclick:async()=>{try{await api('/logout','POST')}catch(_){}sessionStorage.removeItem('me');ME={};login()}}));
+ const firmSwitcher=mfaFirmSwitcher();if(firmSwitcher)card.append(firmSwitcher);
  card.append(startForm);A.replaceChildren(card);
 }
 let AUTH_MODE='signin';
