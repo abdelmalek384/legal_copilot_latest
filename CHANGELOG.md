@@ -2,6 +2,7 @@
 - PR #1386: Dry-run the fictional ingestion fixture through manual capture, article audit, source comparison, commencement-date extraction, and fail-closed trust-tier handling.
 
 - PR #1384: Normalize the changelog to one concise line per merged pull request.
+- PR #1383: Publish the 155-question AI evaluation data-availability baseline without inventing retrieval or legal-correctness scores.
 - PR #1382: Add one-line changelog entries for the merged root-cleanup and README PRs.
 - PR #1378: Archive historical project and database trackers and add a concise current status.
 - PR #1377: Improve skip-link focus, dialog keyboard behavior, and responsive accessibility coverage.
