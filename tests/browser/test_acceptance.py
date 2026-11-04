@@ -830,10 +830,17 @@ class BrowserAcceptanceTests(unittest.TestCase):
             self.page.get_by_text(case_title, exact=True).wait_for(timeout=10000)
 
             self.page.locator(".tabs a").filter(has_text="المواعيد القانونية").click()
-            rule_select = self.page.locator("select").filter(has_text="اختر نوع الميعاد")
-            self.assertEqual(rule_select.count(), 1, "deadline rule selector must be present")
-            self.assertGreater(rule_select.locator("option").count(), 1, "deadline rule catalog must contain a selectable rule")
-            rule_select.select_option(index=1)
+            self.page.get_by_role("button", name="حساب موعد مبدئي").wait_for(timeout=10000)
+            rule_select = self.page.locator('select:has(option[value="civil_commercial_appeal_40d"])')
+            self.assertEqual(
+                rule_select.count(), 1,
+                "deadline rule selector missing; visible selects="
+                + repr(self.page.locator("select").evaluate_all(
+                    "(items) => items.map(item => ({text:item.innerText, options:[...item.options].map(o=>o.value)}))"
+                ))
+                + "; body=" + self.page.locator("body").inner_text()[:1600],
+            )
+            rule_select.select_option(value="civil_commercial_appeal_40d")
             trigger_date = self.page.locator('input[type="date"]').nth(0)
             trigger_date.fill("2026-12-01")
             self.assertEqual(trigger_date.input_value(), "2026-12-01")
