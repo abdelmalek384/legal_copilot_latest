@@ -79,6 +79,20 @@ Use restrained color for status only; do not rely on color alone. Preserve visib
 - vLex Vincent pattern: inspectable sources and citation relationships; make verification a first-class part of the answer, not a footnote.
 - Adapt these principles to Egyptian practice and Arabic-first workflows; do not copy logos, exact screens, proprietary wording or protected assets.
 
+
+## Focused code-level accessibility follow-up — 2026-11-04
+
+A targeted static inspection of `static/index.html` and `tests/test_frontend_ux_contract.py` confirms useful foundations (skip link, main landmark, keyboard-operable primary navigation, visible focus, reduced-motion rules, forced-colors focus styling, 44px touch targets, and polite toast announcements). It also identifies the following implementation work to prioritize before manual acceptance:
+
+1. **Navigation semantics:** the primary navigation currently renders anchors with `role="button"` and JavaScript activation. Replace these with real route links (with meaningful hrefs and client-side interception) or native buttons, preserving browser history, Enter/Space behavior as appropriate, and `aria-current="page"`. Do not use an anchor with button semantics.
+2. **Dialog semantics:** modal focus trapping and opener restoration have contract tests, but the static inspection did not find a `role="dialog"` / `aria-modal="true"` contract. Audit every modal; give each an accessible name via `aria-labelledby` (or a deliberate `aria-label`), set dialog semantics, make the background inert while open where supported, and verify focus containment/restoration in a real browser.
+3. **Disclosure state:** add and maintain `aria-expanded` plus `aria-controls` on expandable panels (including document chunk review and any collapsible navigation/result sections). State must reflect the actual expanded panel after success, failure and close.
+4. **Async status:** the toast has a polite live region, but transient loading copy such as document chunk loading is inserted as ordinary text. Add scoped `role="status" aria-live="polite"` announcements for async regions, and `role="alert"` only for urgent actionable errors; avoid duplicate announcements from nested live regions.
+5. **Form errors and instructions:** audit dynamically generated forms for programmatic label association, required-state exposure, inline error association through `aria-describedby`, and an error summary/focus target after failed submission. Placeholder text must not be the only label.
+6. **Automated accessibility gate:** add an axe-core (or equivalent) browser check to the existing Chromium acceptance path on representative authenticated pages in Arabic RTL and English LTR. Treat this as a regression gate, not a substitute for keyboard, screen-reader, contrast and zoom review.
+
+These are static-code findings and implementation recommendations, not evidence of a completed WCAG audit. Verify each change against the exact build and retain manual browser/screen-reader acceptance as a separate release gate.
+
 ## Validation plan (not yet completed)
 - Run a route-by-route browser audit at desktop, tablet and mobile widths.
 - Test Arabic and English, RTL/LTR switching, long Arabic titles, keyboard-only navigation, zoom to 200%, contrast, forced colors and screen readers.
