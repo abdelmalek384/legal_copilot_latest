@@ -93,7 +93,7 @@ class T(unittest.TestCase):
    {"article":"10","text":"مدة العمل."},
   ]
   self.c.write_text("\n".join(json.dumps(x,ensure_ascii=False) for x in rows),encoding="utf-8")
-  output="الجريدة الرسمية العدد 18\\n) المادة الأولى (\\nيعمل بالنظام.\\n1\\fالجريدة الرسمية العدد 18\\nمادة ): (10\\nمدة العمل.\\n2\\f"
+  output="الجريدة الرسمية العدد 18\n) المادة الأولى (\nيعمل بالنظام.\n1\fالجريدة الرسمية العدد 18\nمادة ): (10\nمدة العمل.\n2\f"
   completed=mock.Mock(returncode=0,stdout=output)
   with mock.patch("tools.compare_corpus_to_reference.shutil.which",return_value="/usr/bin/pdftotext"), mock.patch("tools.compare_corpus_to_reference.subprocess.run",return_value=completed):
    report=build_report(self.c,pdf)
