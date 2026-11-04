@@ -137,6 +137,11 @@ class FirmSecurityPolicySetupHealthTests(unittest.TestCase):
         )
         self.runtime.create_firm_membership(user_id, self.firm_a, "lawyer")
         self.runtime.create_firm_membership(user_id, self.firm_b, "admin")
+        policy = self._mutate("b-admin", "put", "/admin/security-policy", json={
+            "require_mfa_for_admins": True,
+            "require_mfa_for_everyone": False,
+        })
+        self.assertEqual(policy.status_code, 200, policy.text)
         self._add_client("multi", email, password)
         client = self.clients["multi"]
         client.cookies.set("lc_firm", str(self.firm_a))
@@ -146,12 +151,6 @@ class FirmSecurityPolicySetupHealthTests(unittest.TestCase):
         self.assertEqual(first_session.json()["firm_id"], self.firm_a)
         self.assertFalse(first_session.json()["mfa_policy_required"])
         self.assertEqual(client.get("/cases").status_code, 200)
-
-        policy = self._mutate("b-admin", "put", "/admin/security-policy", json={
-            "require_mfa_for_admins": True,
-            "require_mfa_for_everyone": False,
-        })
-        self.assertEqual(policy.status_code, 200, policy.text)
 
         switched = self._mutate("multi", "post", "/session/firm", json={"firm_id": self.firm_b})
         self.assertEqual(switched.status_code, 200, switched.text)
