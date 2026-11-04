@@ -1990,8 +1990,8 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
     btn('حذف القضية',async()=>{if(confirm(uiText('حذف نهائي لكل بيانات القضية؟','Permanently delete all case data?'))){await api('/cases/'+id,'DELETE');PAGE='clients';clients()}},'d')))}
  if(TAB==='brief'){
   const result=h('div',{});
-  const firmConsent=h('input',{type:'checkbox'});
-  const clientConsent=h('input',{type:'checkbox'});
+  const firmConsent=h('input',{type:'checkbox','aria-label':uiText('أؤكد تفويض المكتب لمعالجة بيانات القضية','Confirm firm authorization to process matter data')});
+  const clientConsent=h('input',{type:'checkbox','aria-label':uiText('أؤكد موافقة العميل على معالجة بيانات القضية','Confirm client consent to process matter data')});
   const run=btn(uiText('إنشاء ملخص ذكي','Generate AI brief'),async()=>{
    if(!firmConsent.checked||!clientConsent.checked){toast(uiText('يلزم تأكيد تفويض المكتب والعميل لهذه القضية قبل الإرسال','Confirm firm and client authorization for this matter before sending'));return}
    run.disabled=true;result.replaceChildren(h('p',{className:'mut',textContent:uiText('جارٍ إعداد الملخص من سجلات القضية...','Preparing a brief from case records...')}));
@@ -2168,7 +2168,7 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
   loadInvoices();
  }
  if(TAB==='docs'){
-  const f=h('input',{type:'file',accept:'.pdf,.docx'});
+  const f=h('input',{type:'file',accept:'.pdf,.docx','aria-label':uiText('اختر مستند القضية بصيغة PDF أو Word','Choose a case document in PDF or Word format')});
   const panel=h('div',{});
   const statusText=(x)=>x==='accepted'?uiText('تمت مراجعة النص','Text reviewed'):x==='corrected'?uiText('تم تصحيح النص','Text corrected'):x==='needs_recheck'?uiText('يحتاج إعادة فحص','Needs recheck'):uiText('لم تتم المراجعة','Not reviewed');
   const renderChunkReview=(container,data)=>{
