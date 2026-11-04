@@ -463,7 +463,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             audit(f"Arabic dashboard {width}px")
 
         self.page.set_viewport_size({"width": 390, "height": 844})
-        self.page.get_by_role("button", name="القضايا").click()
+        self.page.get_by_role("button", name="القضايا", exact=True).click()
         new_case_opener = self.page.get_by_role("button", name="+ قضية جديدة")
         new_case_opener.click()
         dialog = self.page.get_by_role("dialog", name="قضية جديدة")
