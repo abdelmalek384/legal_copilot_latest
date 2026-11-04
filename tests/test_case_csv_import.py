@@ -1,6 +1,8 @@
 """Bounded, firm-scoped matter CSV import tests."""
 import unittest
 
+import app
+
 from tests.invoice_test_support import InvoiceTestSupport
 
 
