@@ -47,16 +47,27 @@ A clean structural audit only means the file is internally consistent. It does n
 
 ## 5. Compare every article with the official reference
 
-Save the manually obtained official text as UTF-8 plain text and run:
+Prefer comparing the candidate rows directly with the manually captured Official Gazette PDF. This preserves the original PDF hash and reports the Gazette page range detected for each article:
+
+```bash
+python tools/compare_corpus_to_reference.py \
+  --candidate law_rows_ar.jsonl \
+  --reference ~/Downloads/official_gazette.pdf \
+  --out-dir comparison_report
+```
+
+The PDF path must point to the exact file captured in step 2. The tool uses `pypdf` text extraction; it is not OCR, visual inspection, source authentication, or legal review. Inspect the original PDF page images for every article, especially pages with extraction warnings, empty text, tables, columns, footnotes, or Arabic glyph/order problems. Review missing/extra articles, numeric and number-word mismatches, major differences, and minor differences. A high similarity score or `all_identical` result is not an approval to import or serve the candidate.
+
+If an authorized, human-checked UTF-8 transcription is also available, it can be compared as a secondary cross-check:
 
 ```bash
 python tools/compare_corpus_to_reference.py \
   --candidate law_rows_ar.jsonl \
   --reference official_reference.txt \
-  --out-dir comparison_report
+  --out-dir text_comparison_report
 ```
 
-Review missing/extra articles, numeric mismatches, major differences, and minor differences. Check every discrepancy against the original Gazette pages; do not automatically replace text based on a comparison report. Preserve the report and reference hash.
+Check every discrepancy against the original Gazette pages; do not automatically replace text based on a comparison report. Preserve both reports, the original PDF, its SHA-256, and the extracted-text hash.
 
 ## 6. Record legal review and version status
 
@@ -82,44 +93,6 @@ Before an instrument can support authoritative legal answers, confirm all of the
 
 If any item is missing, keep the instrument non-authoritative and make the assistant abstain or clearly state that the material was not verified. Do not weaken release gates to increase corpus coverage.
 
-
-## 8. Disposable fictional-fixture smoke test
-
-Run this before processing a user-supplied instrument. It exercises the manual-capture CLI in dry-run mode, article audit, quantity checklist, corpus/reference comparison, commencement-date extraction, and the source-matched-unreviewed classifier without touching an application database. The fixture is fictional and must never be indexed or treated as Egyptian law. The Amiri Press URL below is a host-matching placeholder; it is never fetched.
-
-From the repository root:
-
-```bash
-FIXTURE_OUT="$(mktemp -d "${TMPDIR:-/tmp}/legal-copilot-ingestion.XXXXXX")"
-
-python tools/record_manual_capture.py \
-  --file tests/fixtures/law_ingestion/fictional_reference.txt \
-  --document-id SYNTHETIC-LAW-ONLY \
-  --source-id EG-AMIRI-PRESS \
-  --source-url "https://www.alamiria.com/fixture-only" \
-  --captured-by "Fixture operator" \
-  --capture-method manual_transcription \
-  --retrieved-on "$(date +%F)" \
-  --publication-date 2025-05-03 \
-  --effective-date 2025-09-01 \
-  --gazette-issue "fictional fixture only" \
-  --notes "SYNTHETIC FIXTURE ONLY — not Egyptian law or legal evidence" \
-  --out "$FIXTURE_OUT/capture" --dry-run
-
-python tools/audit_article_rows.py \
-  --input tests/fixtures/law_ingestion/fictional_candidate.jsonl \
-  --out-dir "$FIXTURE_OUT/audit"
-
-python tools/compare_corpus_to_reference.py \
-  --candidate tests/fixtures/law_ingestion/fictional_candidate.jsonl \
-  --reference tests/fixtures/law_ingestion/fictional_reference.txt \
-  --out-dir "$FIXTURE_OUT/comparison"
-
-PYTHONPATH=. python tests/test_law_ingestion_fixture_pipeline.py
-```
-
-The audit intentionally sees article labels 1 and 13, so gaps 2–12 are expected fixture gaps, not a production-law finding. Its `quantity_checklist.csv` must contain the test period (**five years**) and amount (**500 جنيه**). The fixture test reads the publication date (2025-05-03), general effective date (2025-09-01), and separate specialized-courts date (2025-10-01) from the text, not only from capture metadata. It also exercises the gated `source_matched` tier with synthetic-only evidence and expects the explicit `not_lawyer_reviewed` reason. This does not approve real-source rights, enable the production feature, or change any legal record.
-
-## 9. Change log and rollback
+## 8. Change log and rollback
 
 Keep immutable copies of source files, extracted text, hashes, comparison reports, review records, and the commit that introduced the candidate. A correction creates a new version with a documented relationship to the prior version; do not erase historical evidence. If a source, rights decision, or legal interpretation is withdrawn, quarantine the affected version and prevent it from being used for authoritative retrieval.
