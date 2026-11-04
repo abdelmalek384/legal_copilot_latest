@@ -50,7 +50,7 @@ class FrontendUXContractTests(unittest.TestCase):
             # containing quote characters can otherwise be mistaken for UI copy.
             if literal.startswith(").replace(/") or literal.startswith(").trim().replace(/[٠-٩۰-۹]"):
                 continue
-            if re.search(r"[\\u0600-\\u06FF\\u0750-\\u077F\\u08A0-\\u08FF]", literal) and literal:
+            if re.search(r"[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]", literal) and literal:
                 found.add(literal)
 
         markup = re.sub(r"<script[^>]*>.*?</script>|<style[^>]*>.*?</style>", "", source, flags=re.S)
