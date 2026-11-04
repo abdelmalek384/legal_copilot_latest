@@ -611,6 +611,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("id:'new-case-title-error',className:'bad',role:'alert',hidden:true", HTML)
         self.assertIn("k==='title'?titleError:null", HTML)
         self.assertIn("inputs.title.setAttribute('aria-describedby',titleError.id)", HTML)
+        self.assertIn("inputs.title.addEventListener('invalid'", HTML)
         self.assertIn("inputs.title.setAttribute('aria-invalid','true')", HTML)
         self.assertIn("inputs.title.removeAttribute('aria-invalid');titleError.hidden=true", HTML)
 
@@ -632,6 +633,7 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_login_validation_errors_are_associated_and_announced(self):
         self.assertIn("id:'login-form-error',className:'bad',role:'alert',hidden:true", HTML)
         self.assertIn("e.setAttribute('aria-describedby',loginError.id);p.setAttribute('aria-describedby',loginError.id)", HTML)
+        self.assertIn("field.addEventListener('invalid'", HTML)
         self.assertIn("e.setAttribute('aria-invalid','true')", HTML)
         self.assertIn("p.setAttribute('aria-invalid','true')", HTML)
         self.assertIn("loginError.hidden=false", HTML)
