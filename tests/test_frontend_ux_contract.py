@@ -538,5 +538,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn('self.page.keyboard.press("Enter")', browser_tests)
 
 
+    def test_live_toast_is_mobile_safe_and_does_not_clip_long_messages(self):
+        toast = HTML[HTML.index("#toast{"):HTML.index("\\n", HTML.index("#toast{"))]
+        self.assertIn("z-index:10000", toast)
+        self.assertIn("env(safe-area-inset-bottom,0px)", toast)
+        self.assertIn("max-width:min(32rem,calc(100vw - 32px))", toast)
+        self.assertIn("white-space:normal", toast)
+        self.assertIn("overflow-wrap:anywhere", toast)
+
+
 if __name__ == "__main__":
     unittest.main()
