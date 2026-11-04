@@ -222,3 +222,8 @@ The product cannot be called production-ready or legally approved until all appl
 - The older stale PR #1129 was closed as superseded by the clean current-main port.
 - Legal research/retrieval/citation quality is 68.6%; automated testing/reliability is 70.2%. The weighted technical estimate is **50.10/100** (up 0.02 from 50.08).
 - This completes the application-side identifier link needed by the evaluator and reviewer-agreement workflow. It does not supply lawyer-reviewed benchmark answers or prove legal correctness. Verified Egyptian legal corpus and final Egyptian-counsel acceptance remain unchanged.
+
+
+## UI/accessibility evidence reconciliation — 2026-11-04
+
+The UI/accessibility workstream remains **45.3%** for scorecard purposes; no weighted increase is claimed yet. Since the 2026-11-01 baseline, current-main engineering has added semantic native navigation, disclosure state and live announcements, bilingual form-control names, pinned axe-core 4.10.3 browser checks for WCAG 2.1 A/AA and 2.2 AA, expanded Arabic/English responsive viewports, focus-trap/keyboard browser assertions, and targeted contrast corrections. The exact-head CI result for these new commits has not been verified, and manual device, screen-reader, zoom/reflow, forced-colors and lawyer usability acceptance has not been performed. The new `docs/accessibility_manual_acceptance.md` is a protocol only. Recalculate this workstream only after exact-head automated results and recorded manual evidence are available.
