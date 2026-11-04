@@ -2150,7 +2150,7 @@ def client_ip(request: Request) -> str:
     Invalid forwarded values are ignored in full so malformed chains cannot select
     an attacker-controlled address.
     """
-    peer = client_ip(request)
+    peer = request.client.host if request.client else "unknown"
     try:
         peer_address = ipaddress.ip_address(peer)
     except ValueError:
@@ -2248,7 +2248,7 @@ def _rate_limit(request: Request):
     if limit is None:
         return 0
     max_requests, window_seconds = limit
-    peer = request.client.host if request.client else "unknown"
+    peer = client_ip(request)
     now = time.time()
     window_start = int(now // window_seconds) * window_seconds
     db = control_conn()
@@ -3767,7 +3767,7 @@ def login(b: LoginIn, request: Request, response: Response):
         return _login_separate(b, request, response)
     k = normalize_email(b.email)
     now = int(time.time())
-    ip = request.client.host if request.client else "unknown"
+    ip = client_ip(request)
     identifiers = (k, "ip:" + ip)
     c = conn()
 
@@ -5636,7 +5636,7 @@ def request_account_recovery(b: RecoveryRequestIn, request: Request):
     if not email_normalized or len(email_normalized) > 200:
         return generic
     now = int(time.time())
-    peer = request.client.host if request.client else "unknown"
+    peer = client_ip(request)
     client_key = hashlib.sha256((peer + "|" + email_normalized).encode("utf-8")).hexdigest()
     # Keep the existing per-IP-and-address budget, but also enforce an address-
     # scoped budget so an attacker cannot bypass recovery throttling by rotating
