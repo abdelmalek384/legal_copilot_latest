@@ -830,23 +830,23 @@ class BrowserAcceptanceTests(unittest.TestCase):
             self.page.get_by_text(case_title, exact=True).wait_for(timeout=10000)
 
             self.page.locator(".tabs a").filter(has_text="المواعيد القانونية").click()
-            deadline_title = self.page.get_by_placeholder("نوع الموعد (استئناف، طعن، تقديم مستند...)")
-            deadline_title.fill(f"موعد تجريبي {width}")
-            deadline_date = self.page.locator('input[type="date"]').nth(1)  # first date belongs to the draft calculator
-            deadline_date.fill("2026-12-10")
-            self.assertEqual(deadline_title.input_value(), f"موعد تجريبي {width}")
-            self.assertEqual(deadline_date.input_value(), "2026-12-10")
-            self.page.get_by_role("button", name="إضافة موعد").click()
-            try:
-                self.page.get_by_text(f"موعد تجريبي {width}", exact=True).wait_for(timeout=10000)
-            except PlaywrightTimeoutError as exc:
-                raise AssertionError(
-                    f"Deadline did not appear at {width}px; "
-                    f"title={deadline_title.input_value()!r}; date={deadline_date.input_value()!r}; "
-                    f"toast={self.page.locator('#toast').inner_text(timeout=1000)!r}; "
-                    f"body={self.page.locator('body').inner_text(timeout=1500)[:1800]!r}; "
-                    f"browser_errors={self.browser_errors}; network_errors={self.network_errors}"
-                ) from exc
+            rule_select = self.page.get_by_role("combobox").first
+            self.assertGreater(rule_select.locator("option").count(), 1, "deadline rule catalog must contain a selectable rule")
+            rule_select.select_option(index=1)
+            trigger_date = self.page.locator('input[type="date"]').nth(0)
+            trigger_date.fill("2026-12-01")
+            self.assertEqual(trigger_date.input_value(), "2026-12-01")
+            self.page.get_by_role("button", name="حساب موعد مبدئي").click()
+            self.page.get_by_text("مسودة — غير معتمدة من محامٍ", exact=True).wait_for(timeout=10000)
+            self.page.get_by_text("أساس الحساب والافتراضات — للمراجعة فقط", exact=True).wait_for(timeout=10000)
+            self.page.get_by_text("خطوات الحساب", exact=True).wait_for(timeout=10000)
+            self.assertIn("غير معتمد", self.page.locator("body").inner_text())
+            self.page.get_by_role("button", name="حفظ الموعد المحسوب في القضية").click()
+            self.page.get_by_text("تم حفظ الموعد مع خطوات الحساب والتحذيرات", exact=True).wait_for(timeout=10000)
+            self.page.wait_for_function(
+                "() => document.documentElement.scrollWidth <= window.innerWidth",
+                timeout=8000,
+            )
 
             self.assertEqual(self.browser_errors, [], f"browser errors before invoice at {width}px: {self.browser_errors}")
             self.page.locator(".tabs a").filter(has_text="الفواتير").click()
@@ -869,6 +869,20 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 timeout=8000,
             )
             self.assertEqual(self.browser_errors, [], f"browser errors at {width}px: {self.browser_errors}")
+
+            # Exercise the audited firm ZIP export from the actual settings UI at
+            # both responsive widths. Reset only the in-process synthetic limiter
+            # state between iterations so this test does not depend on test order.
+            self.page.get_by_role("button", name="الإعدادات والأمان").click()
+            export_button = self.page.get_by_role("button", name="تنزيل بيانات المكتب ZIP")
+            self.assertTrue(export_button.is_visible(), f"firm export action missing at {width}px")
+            self.app_module._rate_limit_state.clear()
+            with self.page.expect_download(timeout=15000) as download_info:
+                export_button.click()
+            export = download_info.value
+            self.assertTrue(export.suggested_filename.endswith(".zip"), export.suggested_filename)
+            self.assertIsNone(export.failure(), export.failure())
+            self.assertEqual(self.browser_errors, [], f"browser errors after export at {width}px: {self.browser_errors}")
 
     def test_platform_pilot_metrics_navigation_is_operator_only(self) -> None:
         self.login(self.state["owner_a_email"])
