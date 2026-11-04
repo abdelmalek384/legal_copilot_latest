@@ -3,6 +3,8 @@
 **Audit type:** code/documentation-based gap analysis, not a claim of completed live browser or screen-reader testing.  
 **Benchmark references:** Lexis+ describes unified natural-language search, document upload/analysis, practice-area task organization, and answers within results; vLex Vincent emphasizes inspectable source links and citation relationships. These are product-pattern references, not a recommendation to copy proprietary visual design.
 
+For the formal bilingual keyboard, screen-reader, zoom/reflow, contrast, forced-colors and workflow acceptance protocol, see [Accessibility Manual Acceptance](accessibility_manual_acceptance.md). The checklist is a test plan only; it must be completed on an exact candidate build before any conformance claim.
+
 ## Current baseline already implemented
 
 - Arabic-first direction, RTL UI and Arabic text normalization.
