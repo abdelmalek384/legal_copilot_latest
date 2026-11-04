@@ -1,5 +1,9 @@
 # Changelog — Legal Copilot
 
+- Added a CI-executed fictional ingestion dry run covering manual capture, article audit, reference comparison, date extraction and fail-closed trust-tier handling (PR #1385).
+- Published the 155-question AI evaluation data-availability baseline without inventing retrieval or legal-correctness scores (PR #1383).
+- Added the two missing changelog entries for the merged repository cleanup and README PRs (PR #1382).
+- Archived historical progress/completion trackers and added the concise current project status (PR #1378).
 - Removed obsolete patch files and sample data from the repository root; relocated legal-evaluation inputs and corrected fixture references (PR #1375).
 - Rewrote the README quick start for the control-plane, tenant-root, and shared-corpus databases and documented current legal and deployment limits (PR #1376).
 
