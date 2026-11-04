@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-TRACKER = json.loads((ROOT / "docs" / "phase_2_permission_outreach_tracker.json").read_text(encoding="utf-8"))
+TRACKER = json.loads((ROOT / "docs" / "archive" / "phase_2_permission_outreach_tracker.json").read_text(encoding="utf-8"))
 
 class PermissionOutreachTrackerTests(unittest.TestCase):
     def test_verified_amiri_press_contact_has_official_evidence_but_is_not_sent(self):
