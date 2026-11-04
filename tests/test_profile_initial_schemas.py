@@ -47,6 +47,8 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         self.assertIn("user_platform_roles", names(control))
         self.assertIn("platform_security_events", names(control))
         self.assertIn("firm_usage_events", names(control))
+        self.assertIn("firm_security_policies", names(control))
+        self.assertIn("firm_security_policy_audit", names(control))
         self.assertIn("firm_onboarding_timing", names(control))
         self.assertNotIn("firm_onboarding_timing", names(firm))
         self.assertNotIn("firm_onboarding_timing", names(corpus))
