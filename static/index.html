@@ -991,7 +991,7 @@ function login(mode='signin'){AUTH_MODE=mode;window.CASE_ID=null;let viewMode=mo
   const p=h('input',{type:'password',placeholder:LANG==='ar'?'كلمة المرور':'Password',autocomplete:'current-password',required:true,'aria-label':LANG==='ar'?'كلمة المرور':'Password'});
   const loginError=h('span',{id:'login-form-error',className:'bad',role:'alert',hidden:true,style:'display:block'});
   e.setAttribute('aria-describedby',loginError.id);p.setAttribute('aria-describedby',loginError.id);
-  [e,p].forEach(field=>field.addEventListener('input',()=>{field.removeAttribute('aria-invalid');if(e.value.trim()&&p.value){e.removeAttribute('aria-invalid');p.removeAttribute('aria-invalid');loginError.hidden=true}}));
+  [e,p].forEach(field=>{field.addEventListener('invalid',()=>{field.setAttribute('aria-invalid','true');loginError.textContent=LANG==='ar'?'أدخل البريد الإلكتروني وكلمة المرور':'Enter your email and password';loginError.hidden=false});field.addEventListener('input',()=>{field.removeAttribute('aria-invalid');if(e.value.trim()&&p.value){e.removeAttribute('aria-invalid');p.removeAttribute('aria-invalid');loginError.hidden=true}})});
   const show=h('button',{type:'button',className:'g',textContent:LANG==='ar'?'إظهار':'Show',onclick:()=>{p.type=p.type==='password'?'text':'password';show.textContent=p.type==='password'?(LANG==='ar'?'إظهار':'Show'):(LANG==='ar'?'إخفاء':'Hide')}});
   const form=h('form',{onsubmit:async ev=>{ev.preventDefault();if(!e.value.trim()||!p.value){const missingEmail=!e.value.trim();if(missingEmail)e.setAttribute('aria-invalid','true');if(!p.value)p.setAttribute('aria-invalid','true');loginError.textContent=LANG==='ar'?'أدخل البريد الإلكتروني وكلمة المرور':'Enter your email and password';loginError.hidden=false;(missingEmail?e:p).focus();return}try{const r=await api('/login','POST',{email:e.value.trim().toLowerCase(),password:p.value});ME={...r};sessionStorage.me=JSON.stringify(ME);if(r.mfa_enrollment_required){mfaEnrollmentPage();return}if(r.mfa_verification_required){mfaChallengePage();return}PAGE='dash';dash()}catch(_){p.setAttribute('aria-invalid','true');loginError.textContent=LANG==='ar'?'تعذر تسجيل الدخول. تحقق من البيانات وحاول مرة أخرى.':'Sign-in failed. Check your details and try again.';loginError.hidden=false;p.focus()}}},
     h('label',{textContent:LANG==='ar'?'البريد الإلكتروني':'Email address'}),e,
@@ -1509,6 +1509,7 @@ async function newCase(clientName=''){
  const inputs={};fields.forEach(([k,label,required])=>inputs[k]=h('input',{name:k,placeholder:label,required,style:'width:100%'}));
  const titleError=h('span',{id:'new-case-title-error',className:'bad',role:'alert',hidden:true,style:'display:block',textContent:uiText('عنوان القضية مطلوب.','A case title is required.')});
  inputs.title.setAttribute('aria-describedby',titleError.id);
+ inputs.title.addEventListener('invalid',()=>{inputs.title.setAttribute('aria-invalid','true');titleError.hidden=false});
  inputs.title.addEventListener('input',()=>{if(inputs.title.value.trim()){inputs.title.removeAttribute('aria-invalid');titleError.hidden=true}});
  if(inputs.client)inputs.client.value=clientName;
  const cancel=btn(uiText('إلغاء','Cancel'),()=>closeModal(overlay),'g');
