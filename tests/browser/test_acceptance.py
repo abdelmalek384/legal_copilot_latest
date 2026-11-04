@@ -1175,5 +1175,135 @@ class BrowserAcceptanceTests(unittest.TestCase):
             self.assertEqual(control.execute("SELECT COUNT(*) FROM firm_subscriptions WHERE firm_id=?", (self.state["firm_a_id"],)).fetchone()[0], 0)
             self.assertEqual(control.execute("SELECT COUNT(*) FROM subscription_audit_events WHERE firm_id=?", (self.state["firm_a_id"],)).fetchone()[0], 0)
 
+
+    def test_skip_link_and_modal_focus_are_visible_and_keyboard_safe_at_320px(self) -> None:
+        self.page.set_viewport_size({"width": 320, "height": 740})
+        self.login(self.state["owner_a_email"])
+
+        # The skip link must be the first keyboard stop and must leave a
+        # visible focus indicator on the main landmark after activation.
+        self.page.evaluate("() => document.activeElement && document.activeElement.blur()")
+        self.page.keyboard.press("Tab")
+        skip_link = self.page.locator("a.skip-link")
+        self.assertTrue(skip_link.evaluate("(el) => document.activeElement === el"))
+        self.assertTrue(skip_link.is_visible())
+        self.page.keyboard.press("Enter")
+        main = self.page.locator("main#main")
+        self.assertTrue(main.evaluate("(el) => document.activeElement === el"))
+        main_outline = main.evaluate("(el) => getComputedStyle(el).outlineStyle")
+        self.assertNotEqual(main_outline, "none", "Skip-link destination must retain a visible focus indicator")
+
+        self.page.wait_for_function(
+            "() => document.documentElement.scrollWidth <= window.innerWidth",
+            timeout=8000,
+        )
+
+        # Verify the modal's real keyboard trap in both directions, Escape
+        # dismissal, and focus restoration to the invoking control.
+        opener = self.page.get_by_role("button", name="+ قضية جديدة")
+        opener.focus()
+        opener.click()
+        dialog = self.page.get_by_role("dialog", name="قضية جديدة")
+        dialog.wait_for(state="visible")
+        labelled_by = dialog.get_attribute("aria-labelledby")
+        self.assertTrue(labelled_by, "Dialog must reference its visible heading")
+        self.assertEqual(dialog.locator("#" + labelled_by).inner_text(), "قضية جديدة")
+        title = dialog.get_by_placeholder("عنوان القضية")
+        save = dialog.get_by_role("button", name="حفظ القضية")
+        self.assertTrue(title.evaluate("(el) => document.activeElement === el"))
+
+        title.focus()
+        self.page.keyboard.press("Shift+Tab")
+        self.assertTrue(save.evaluate("(el) => document.activeElement === el"),
+                        "Shift+Tab from first modal control must wrap to last")
+        self.page.keyboard.press("Tab")
+        self.assertTrue(title.evaluate("(el) => document.activeElement === el"),
+                        "Tab from last modal control must wrap to first")
+        self.page.keyboard.press("Escape")
+        self.assertEqual(dialog.count(), 0, "Escape should dismiss the modal")
+        self.assertTrue(opener.evaluate("(el) => document.activeElement === el"),
+                        "Closing the modal must restore focus to its opener")
+        self.page.wait_for_function(
+            "() => document.documentElement.scrollWidth <= window.innerWidth",
+            timeout=8000,
+        )
+        self.assertEqual(self.browser_errors, [], self.browser_errors)
+
+    def test_forced_colors_and_reduced_motion_preserve_keyboard_focus(self) -> None:
+        self.page.emulate_media(forced_colors="active", reduced_motion="reduce")
+        self.login(self.state["owner_a_email"])
+        self.page.evaluate("() => document.activeElement && document.activeElement.blur()")
+        self.page.keyboard.press("Tab")
+        skip_link = self.page.locator("a.skip-link")
+        self.assertTrue(skip_link.evaluate("(el) => document.activeElement === el"))
+
+        motion = self.page.evaluate("""() => {
+            const style = getComputedStyle(document.querySelector('a.skip-link'));
+            return {
+                transitionDuration: style.transitionDuration,
+                animationDuration: style.animationDuration
+            };
+        }""")
+        self.assertIn("0s", motion["transitionDuration"], motion)
+        self.assertIn("0s", motion["animationDuration"], motion)
+
+        self.page.keyboard.press("Enter")
+        main = self.page.locator("main#main")
+        self.assertTrue(main.evaluate("(el) => document.activeElement === el"))
+        self.assertNotEqual(
+            main.evaluate("(el) => getComputedStyle(el).outlineStyle"),
+            "none",
+            "Keyboard focus must remain visible in forced-colors mode",
+        )
+        self.assertEqual(self.browser_errors, [], self.browser_errors)
+
+    def test_visible_controls_have_accessible_names_in_dashboard_research_and_dialog(self) -> None:
+        self.page.set_viewport_size({"width": 320, "height": 740})
+        self.login(self.state["owner_a_email"])
+
+        def assert_named_controls(scope: str) -> None:
+            missing = self.page.evaluate("""(scope) => {
+                const root = document.querySelector(scope);
+                if (!root) return [{scope, reason: 'scope missing'}];
+                const visible = (el) => {
+                    const style = getComputedStyle(el);
+                    return !!el.getClientRects().length &&
+                        style.display !== 'none' && style.visibility !== 'hidden' &&
+                        el.getAttribute('aria-hidden') !== 'true';
+                };
+                const named = (el) => {
+                    if ((el.getAttribute('aria-label') || '').trim()) return true;
+                    const ids = (el.getAttribute('aria-labelledby') || '').split(/\\s+/).filter(Boolean);
+                    if (ids.some((id) => (document.getElementById(id)?.innerText || '').trim())) return true;
+                    if (el.labels && [...el.labels].some((label) => label.innerText.trim())) return true;
+                    if ((el.getAttribute('title') || '').trim()) return true;
+                    if ((el.getAttribute('placeholder') || '').trim()) return true;
+                    if (['BUTTON', 'A'].includes(el.tagName) && (el.innerText || '').trim()) return true;
+                    if (el.tagName === 'INPUT' && ['submit', 'button', 'reset'].includes(el.type) && el.value.trim()) return true;
+                    return false;
+                };
+                return [...root.querySelectorAll(
+                    'button, input:not([type="hidden"]), select, textarea, a[href], [role="button"], [role="tab"]'
+                )].filter(visible).filter((el) => !named(el)).map((el) => ({
+                    tag: el.tagName,
+                    type: el.type || '',
+                    role: el.getAttribute('role') || '',
+                    html: el.outerHTML.slice(0, 220)
+                }));
+            }""", scope)
+            self.assertEqual(missing, [], f"Visible controls without accessible names in {scope}: {missing}")
+
+        assert_named_controls("#shell")
+        self.page.get_by_role("button", name="البحث القانوني").click()
+        self.page.locator(".research-controls select").first.wait_for(state="visible")
+        assert_named_controls("#main")
+        self.page.get_by_role("button", name="نظرة عامة").click()
+        opener = self.page.get_by_role("button", name="+ قضية جديدة")
+        opener.click()
+        self.page.get_by_role("dialog", name="قضية جديدة").wait_for(state="visible")
+        assert_named_controls(".modal-backdrop")
+        self.assertEqual(self.browser_errors, [], self.browser_errors)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
