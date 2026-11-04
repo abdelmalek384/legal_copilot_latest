@@ -513,6 +513,22 @@ class BrowserAcceptanceTests(unittest.TestCase):
             self.page.get_by_role("heading", name=heading_name).wait_for(timeout=10000)
             audit(f"Arabic {heading_name} workspace")
 
+    def test_login_form_exposes_and_clears_associated_validation_errors(self) -> None:
+        self.page.goto(self.base_url, wait_until="domcontentloaded")
+        email = self.page.locator('input[type="email"]')
+        password = self.page.locator('input[type="password"]')
+        email.wait_for(state="visible", timeout=10000)
+        self.page.get_by_role("button", name="تسجيل الدخول").click()
+        self.assertEqual(email.get_attribute("aria-invalid"), "true")
+        self.assertEqual(password.get_attribute("aria-invalid"), "true")
+        self.assertEqual(email.get_attribute("aria-describedby"), "login-form-error")
+        self.assertTrue(self.page.get_by_role("alert").is_visible())
+        email.fill("synthetic@example.test")
+        password.fill("synthetic-not-a-real-password")
+        self.assertIsNone(email.get_attribute("aria-invalid"))
+        self.assertIsNone(password.get_attribute("aria-invalid"))
+        self.assertFalse(self.page.get_by_role("alert").is_visible())
+
     def test_primary_navigation_buttons_support_native_keyboard_activation(self) -> None:
         self.login(self.state["reviewer_email"])
         tasks = self.page.get_by_role("button", name="المهام", exact=True)
