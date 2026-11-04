@@ -1994,14 +1994,14 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
   const clientConsent=h('input',{type:'checkbox','aria-label':uiText('أؤكد موافقة العميل على معالجة بيانات القضية','Confirm client consent to process matter data')});
   const run=btn(uiText('إنشاء ملخص ذكي','Generate AI brief'),async()=>{
    if(!firmConsent.checked||!clientConsent.checked){toast(uiText('يلزم تأكيد تفويض المكتب والعميل لهذه القضية قبل الإرسال','Confirm firm and client authorization for this matter before sending'));return}
-   run.disabled=true;result.replaceChildren(h('p',{className:'mut',textContent:uiText('جارٍ إعداد الملخص من سجلات القضية...','Preparing a brief from case records...')}));
+   run.disabled=true;result.replaceChildren(h('p',{className:'mut',role:'status','aria-live':'polite','aria-atomic':'true',textContent:uiText('جارٍ إعداد الملخص من سجلات القضية...','Preparing a brief from case records...')}));
    try{
     const data=await api('/cases/'+id+'/brief','POST',{firm_authorized:firmConsent.checked,client_authorized:clientConsent.checked});
     const nodes=[h('p',{className:'mut',textContent:data.message||''})];
     if(data.answer)nodes.push(h('div',{className:'research-content',style:'white-space:pre-wrap'},data.answer));
     if(data.sources&&data.sources.length)nodes.push(h('div',{className:'card'},h('b',{textContent:uiText('السجلات المستخدمة','Records used')}),...data.sources.map(src=>h('div',{className:'row'},h('span',{textContent:'['+src.citation_index+'] '+src.reference}),h('span',{className:'mut',textContent:src.record_type})))));
     result.replaceChildren(...nodes);
-   }catch(e){result.replaceChildren(h('p',{className:'bad',textContent:String(e.message||e)}))}
+   }catch(e){result.replaceChildren(h('p',{className:'bad',role:'alert','aria-live':'assertive',textContent:String(e.message||e)}))}
    finally{run.disabled=false}
   });
   body=h('div',{className:'card'},h('h3',{textContent:uiText('ملخص ذكي للقضية','AI case brief')}),
@@ -2023,7 +2023,7 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    trigger=h('input',{type:'date','aria-label':uiText('تاريخ بدء حساب الموعد','Deadline trigger date')}),distance=h('input',{type:'number',min:'0',max:'365',step:'1',value:'0','aria-label':uiText('عدد الأيام الإضافية','Additional days')}),
    ruleSelect=h('select',{'aria-label':uiText('قاعدة حساب الموعد','Deadline calculation rule')}),preview=h('div',{}),estimateButton=btn('حساب موعد مبدئي',async()=>{
     if(!trigger.value||!ruleSelect.value){toast(uiText('حدد القاعدة وتاريخ بداية الحساب الذي راجعه المحامي','Choose a rule and the trigger date confirmed by counsel'));return}
-    estimateButton.disabled=true;preview.replaceChildren(h('p',{className:'mut',textContent:uiText('جارٍ الحساب...','Calculating...')}));
+    estimateButton.disabled=true;preview.replaceChildren(h('p',{className:'mut',role:'status','aria-live':'polite','aria-atomic':'true',textContent:uiText('جارٍ الحساب...','Calculating...')}));
     try{
      const result=await api('/cases/'+id+'/deadline-estimate?'+new URLSearchParams({rule_id:ruleSelect.value,trigger:trigger.value,distance_days:String(Number(distance.value||0))}).toString());
      const warnings=h('ul',{},...(result.warnings||[]).map(w=>h('li',{textContent:w})));
