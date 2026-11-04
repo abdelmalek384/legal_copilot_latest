@@ -9,6 +9,9 @@ HTML = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
 
 class FrontendUXContractTests(unittest.TestCase):
 
+    def test_mobile_language_switch_meets_44px_touch_target(self):
+        self.assertIn("#side .lang-switch button { width: auto; min-width: 78px; min-height: 44px;", HTML)
+
     def test_matter_csv_import_is_admin_only_and_bounded(self):
         self.assertIn("/cases/import.csv", HTML)
         self.assertIn("ME.role==='admin'", HTML)
