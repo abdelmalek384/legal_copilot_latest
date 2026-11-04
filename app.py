@@ -2569,6 +2569,10 @@ class ClientCSVImportIn(BaseModel):
     csv: str = Field(min_length=1, max_length=1_000_000)
 
 
+class CaseCSVImportIn(BaseModel):
+    csv: str = Field(min_length=1, max_length=1_000_000)
+
+
 class CasePatch(BaseModel):
     stage: str | None = Field(None, max_length=200); status: str | None = Field(None, pattern=r"^(open|closed)$")
     case_number: str | None = Field(None, max_length=100); case_year: str | None = Field(None, max_length=20)
@@ -3081,12 +3085,16 @@ _PILOT_METRIC_TYPES = frozenset({
 })
 
 
-def _record_pilot_metric(control, firm_id: int, metric: str, now: int | None = None):
-    """Increment one firm/week aggregate; persist no user, matter, or answer identifiers."""
+def _record_pilot_metric_batch(
+    control, firm_id: int, metric: str, count: int, now: int | None = None
+):
+    """Increment a bounded firm/week aggregate without persisting event identifiers."""
     if metric not in _PILOT_METRIC_TYPES:
         raise ValueError("unsupported pilot metric")
     if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
         raise ValueError("firm_id must be a positive integer")
+    if isinstance(count, bool) or not isinstance(count, int) or not 1 <= count <= 500:
+        raise ValueError("pilot metric batch count must be between 1 and 500")
     occurred_at = int(time.time()) if now is None else now
     if isinstance(occurred_at, bool) or not isinstance(occurred_at, int) or occurred_at <= 0:
         raise ValueError("now must be a positive Unix timestamp")
@@ -3095,13 +3103,17 @@ def _record_pilot_metric(control, firm_id: int, metric: str, now: int | None = N
     control.execute(
         "INSERT INTO pilot_metrics_weekly_counts(firm_id,week_start,metric,count,updated_at) "
         "VALUES(?,?,?,?,?) ON CONFLICT(firm_id,week_start,metric) DO UPDATE SET "
-        "count=pilot_metrics_weekly_counts.count+1,updated_at=excluded.updated_at",
-        (firm_id, week_start, metric, 1, occurred_at),
+        "count=pilot_metrics_weekly_counts.count+excluded.count,updated_at=excluded.updated_at",
+        (firm_id, week_start, metric, count, occurred_at),
     )
     control.commit()
 
 
-def _meter_pilot_metric(u: dict, metric: str):
+def _record_pilot_metric(control, firm_id: int, metric: str, now: int | None = None):
+    _record_pilot_metric_batch(control, firm_id, metric, 1, now)
+
+
+def _meter_pilot_metric_batch(u: dict, metric: str, count: int):
     """Metrics are best-effort and skip synthetic demo firms."""
     try:
         control = control_conn()
@@ -3110,9 +3122,13 @@ def _meter_pilot_metric(u: dict, metric: str):
         ).fetchone()
         if firm is None or bool(firm["is_demo"]):
             return
-        _record_pilot_metric(control, int(u["firm_id"]), metric)
+        _record_pilot_metric_batch(control, int(u["firm_id"]), metric, count)
     except Exception:
-        logger.exception("pilot metric could not be recorded")
+        logger.exception("pilot metric batch could not be recorded")
+
+
+def _meter_pilot_metric(u: dict, metric: str):
+    _meter_pilot_metric_batch(u, metric, 1)
 
 
 def _firm_is_demo(firm_id: int) -> bool:
@@ -6292,6 +6308,133 @@ def import_clients_csv(b: ClientCSVImportIn, u: dict = Depends(user)):
         (int(u["firm_id"]), int(u["id"]), f"client_csv_import:created={created};skipped={skipped}"),
     )
     c.commit()
+    return {"created": created, "skipped": skipped, "rows": rows_seen}
+
+
+@app.post("/cases/import.csv")
+@rollback_tenant_transaction_on_error
+def import_cases_csv(b: CaseCSVImportIn, u: dict = Depends(user)):
+    require_admin(u)
+    raw = b.csv.removeprefix("\ufeff")
+    if len(raw.encode("utf-8")) > 1_000_000:
+        raise HTTPException(413, "CSV import exceeds the 1 MB limit")
+    try:
+        header_lines = raw.splitlines()
+        if not header_lines or not header_lines[0].strip():
+            raise ValueError("CSV header row is required")
+        header_line = header_lines[0]
+        comma_columns = len(next(csv.reader([header_line], delimiter=",", strict=True)))
+        semicolon_columns = len(next(csv.reader([header_line], delimiter=";", strict=True)))
+        delimiter = ";" if semicolon_columns > comma_columns else ","
+        reader = csv.DictReader(io.StringIO(raw, newline=""), delimiter=delimiter, strict=True)
+        if not reader.fieldnames:
+            raise ValueError("CSV header row is required")
+        aliases = {
+            "title": {"title", "case_title", "matter", "matter_title", "عنوان القضية", "عنوان الدعوى"},
+            "client": {"client", "client_name", "اسم العميل", "اسم العميل/الشركة"},
+            "stage": {"stage", "case_stage", "نوع القضية", "المرحلة"},
+            "case_number": {"case_number", "number", "رقم القضية", "رقم الدعوى"},
+            "case_year": {"case_year", "year", "السنة", "سنة القضية"},
+            "court": {"court", "المحكمة"},
+            "circuit": {"circuit", "المحكمة/الدائرة", "الدائرة"},
+            "opposing_party": {"opposing_party", "opposing party", "opponent", "الخصم", "الطرف المقابل"},
+        }
+        columns = {}
+        for index, header in enumerate(reader.fieldnames):
+            normalized = str(header or "").strip().lower()
+            canonical = next((key for key, values in aliases.items() if normalized in values), None)
+            if canonical is None:
+                continue
+            if canonical in columns:
+                raise ValueError("CSV contains duplicate matter columns")
+            columns[canonical] = index
+        if "title" not in columns:
+            raise ValueError("CSV must contain a matter title column")
+        def matter_key(title, client, case_number, case_year, court):
+            if str(case_number or "").strip():
+                return (
+                    "number", str(case_number).strip().casefold(),
+                    str(case_year or "").strip().casefold(), str(court or "").strip().casefold(),
+                )
+            return (
+                "title-client", str(title or "").strip().casefold(),
+                str(client or "").strip().casefold(),
+            )
+
+        candidates = []
+        seen = set()
+        rows_seen = 0
+        duplicate_rows = 0
+        for row in reader:
+            if None in row:
+                raise ValueError("CSV row contains more values than the header")
+            if not any(str(value or "").strip() for value in row.values()):
+                continue
+            rows_seen += 1
+            if rows_seen > 500:
+                raise HTTPException(422, "CSV import is limited to 500 data rows")
+            values = {}
+            for key in ("title", "client", "stage", "case_number", "case_year", "court", "circuit", "opposing_party"):
+                index = columns.get(key)
+                header = reader.fieldnames[index] if index is not None else None
+                values[key] = str(row.get(header) or "").strip() if header else ""
+            matter = CaseIn.model_validate(values)
+            if not matter.title.strip():
+                raise ValueError("matter title is required")
+            duplicate_key = matter_key(
+                matter.title, matter.client, matter.case_number, matter.case_year, matter.court
+            )
+            if duplicate_key in seen:
+                duplicate_rows += 1
+                continue
+            seen.add(duplicate_key)
+            candidates.append(matter)
+    except HTTPException:
+        raise
+    except (csv.Error, UnicodeError, ValueError) as exc:
+        raise HTTPException(422, "CSV could not be parsed; check its headers, rows and encoding") from exc
+    except Exception as exc:
+        if exc.__class__.__name__ == "ValidationError":
+            raise HTTPException(422, "CSV contains a matter row with invalid or oversized fields") from exc
+        raise
+
+    c = conn()
+    existing_keys = {
+        matter_key(row["title"], row["client"], row["case_number"], row["case_year"], row["court"])
+        for row in c.execute(
+            "SELECT title,client,case_number,case_year,court FROM cases WHERE firm_id=?",
+            (int(u["firm_id"]),),
+        ).fetchall()
+    }
+    created = 0
+    skipped = duplicate_rows
+    for matter in candidates:
+        duplicate_key = matter_key(
+            matter.title, matter.client, matter.case_number, matter.case_year, matter.court
+        )
+        if duplicate_key in existing_keys:
+            skipped += 1
+            continue
+        existing_keys.add(duplicate_key)
+        client_id, client_name = _ensure_client_profile(c, u, matter.client, None)
+        cursor = c.execute(
+            "INSERT INTO cases(title,client,stage,created_by,firm_id,case_number,case_year,court,circuit,opposing_party,client_id) "
+            "VALUES(?,?,?,?,?,?,?,?,?,?,?)",
+            (matter.title.strip(), client_name, matter.stage.strip(), int(u["id"]), int(u["firm_id"]),
+             matter.case_number.strip(), matter.case_year.strip(), matter.court.strip(),
+             matter.circuit.strip(), matter.opposing_party.strip(), client_id),
+        )
+        case_id = int(cursor.lastrowid)
+        c.execute("INSERT INTO members(case_id,user_id,role) VALUES(?,?,'lead')", (case_id, int(u["id"])))
+        log(c, case_id, u["name"], "استيراد قضية من CSV")
+        created += 1
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (int(u["firm_id"]), int(u["id"]), f"case_csv_import:created={created};skipped={skipped}"),
+    )
+    c.commit()
+    if created:
+        _meter_pilot_metric_batch(u, "cases_created", created)
     return {"created": created, "skipped": skipped, "rows": rows_seen}
 
 

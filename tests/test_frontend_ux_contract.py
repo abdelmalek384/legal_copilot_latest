@@ -9,6 +9,12 @@ HTML = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
 
 class FrontendUXContractTests(unittest.TestCase):
 
+    def test_matter_csv_import_is_admin_only_and_bounded(self):
+        self.assertIn("/cases/import.csv", HTML)
+        self.assertIn("ME.role==='admin'", HTML)
+        self.assertIn("accept:'.csv,text/csv'", HTML)
+        self.assertIn("file.size>1000000", HTML)
+
     def test_case_team_tab_shows_workload_counts_and_unassigned_tasks(self):
         self.assertIn("Team workload", HTML)
         self.assertIn("open tasks", HTML)
