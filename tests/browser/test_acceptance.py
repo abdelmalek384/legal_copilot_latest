@@ -883,6 +883,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             # state between iterations so this test does not depend on test order.
             self.page.get_by_role("button", name="الإعدادات والأمان").click()
             export_button = self.page.get_by_role("button", name="تنزيل بيانات المكتب ZIP")
+            export_button.wait_for(state="visible", timeout=10000)
             self.assertTrue(export_button.is_visible(), f"firm export action missing at {width}px")
             self.app_module._rate_limit_state.clear()
             with self.page.expect_download(timeout=15000) as download_info:
