@@ -518,5 +518,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("#side nav button.on { border: 1px solid Highlight; }", HTML)
 
 
+    def test_form_controls_have_high_contrast_boundaries_and_focus_rings(self):
+        self.assertIn("--ui-control-border: #8292a8;", HTML)
+        self.assertIn("--ui-control-hover: #7c8da3;", HTML)
+        self.assertIn("outline: 3px solid var(--ui-focus-ring);", HTML)
+        self.assertIn("input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #2457C5", HTML)
+        self.assertNotIn("outline:3px solid #2457C533", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
