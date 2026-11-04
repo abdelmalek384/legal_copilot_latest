@@ -278,6 +278,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_invoice_core_routes.py
       - name: Test persistent client profiles and multi-matter linkage
         run: PYTHONPATH=. python tests/test_client_profiles.py
+      - name: Test bounded firm-local matter CSV import
+        run: PYTHONPATH=. python tests/test_case_csv_import.py
       - name: Test bounded firm-local CSV client import
         run: PYTHONPATH=. python tests/test_client_csv_import.py
       - name: Test invoice ledger CSV export
