@@ -989,10 +989,13 @@ function login(mode='signin'){AUTH_MODE=mode;window.CASE_ID=null;let viewMode=mo
  if(viewMode==='signin'){
   const e=h('input',{type:'email',placeholder:LANG==='ar'?'البريد الإلكتروني':'Email address',autocomplete:'username',required:true,'aria-label':LANG==='ar'?'البريد الإلكتروني':'Email address'});
   const p=h('input',{type:'password',placeholder:LANG==='ar'?'كلمة المرور':'Password',autocomplete:'current-password',required:true,'aria-label':LANG==='ar'?'كلمة المرور':'Password'});
+  const loginError=h('span',{id:'login-form-error',className:'bad',role:'alert',hidden:true,style:'display:block'});
+  e.setAttribute('aria-describedby',loginError.id);p.setAttribute('aria-describedby',loginError.id);
+  [e,p].forEach(field=>field.addEventListener('input',()=>{field.removeAttribute('aria-invalid');loginError.hidden=true}));
   const show=h('button',{type:'button',className:'g',textContent:LANG==='ar'?'إظهار':'Show',onclick:()=>{p.type=p.type==='password'?'text':'password';show.textContent=p.type==='password'?(LANG==='ar'?'إظهار':'Show'):(LANG==='ar'?'إخفاء':'Hide')}});
-  const form=h('form',{onsubmit:async ev=>{ev.preventDefault();if(!e.value.trim()||!p.value){toast(LANG==='ar'?'أدخل البريد الإلكتروني وكلمة المرور':'Enter your email and password');return}try{const r=await api('/login','POST',{email:e.value.trim().toLowerCase(),password:p.value});ME={...r};sessionStorage.me=JSON.stringify(ME);if(r.mfa_enrollment_required){mfaEnrollmentPage();return}if(r.mfa_verification_required){mfaChallengePage();return}PAGE='dash';dash()}catch(_){p.focus()}}},
+  const form=h('form',{onsubmit:async ev=>{ev.preventDefault();if(!e.value.trim()||!p.value){const missingEmail=!e.value.trim();if(missingEmail)e.setAttribute('aria-invalid','true');if(!p.value)p.setAttribute('aria-invalid','true');loginError.textContent=LANG==='ar'?'أدخل البريد الإلكتروني وكلمة المرور':'Enter your email and password';loginError.hidden=false;(missingEmail?e:p).focus();return}try{const r=await api('/login','POST',{email:e.value.trim().toLowerCase(),password:p.value});ME={...r};sessionStorage.me=JSON.stringify(ME);if(r.mfa_enrollment_required){mfaEnrollmentPage();return}if(r.mfa_verification_required){mfaChallengePage();return}PAGE='dash';dash()}catch(_){p.setAttribute('aria-invalid','true');loginError.textContent=LANG==='ar'?'تعذر تسجيل الدخول. تحقق من البيانات وحاول مرة أخرى.':'Sign-in failed. Check your details and try again.';loginError.hidden=false;p.focus()}}},
     h('label',{textContent:LANG==='ar'?'البريد الإلكتروني':'Email address'}),e,
-    h('label',{textContent:LANG==='ar'?'كلمة المرور':'Password'}),h('div',{className:'password-row'},p,show),
+    h('label',{textContent:LANG==='ar'?'كلمة المرور':'Password'}),h('div',{className:'password-row'},p,show),loginError,
     h('button',{type:'submit',className:'auth-main',textContent:LANG==='ar'?'تسجيل الدخول':'Sign in'}));
   card.append(form);
  }else{
