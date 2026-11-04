@@ -10,7 +10,7 @@ ORD={re.sub(r"\s+"," ",k):v for k,v in ORD.items()}
 WORDS=set("واحد واحده اثنين اثنان اثنتين ثلاثه ثلاث اربعه اربع خمسه خمس سته ست سبعه سبع ثمانيه ثماني تسعه تسع عشره عشر عشرين عشرون ثلاثين ثلاثون اربعين اربعون خمسين خمسون ستين ستون سبعين سبعون ثمانين ثمانون تسعين تسعون مائه مئه ميه الف الفين مليون مليار نصف ثلث ربع".split())
 HEAD=re.compile(r"^\s*(?:المادة|مادة)\s*\(?\s*(.*?)\s*\)?\s*[:：\-–—]?\s*(.*)$")
 def norm(s):
- s=unicodedata.normalize("NFKC",str(s or "")).translate(DIGITS);s=DIAC.sub("",s);s=re.sub(r"[أإآٱ]","ا",s).replace("ى","ي");return re.sub(r"[\u200b-\u200f\u202a-\u202e\ufeff]","",s)
+ s=unicodedata.normalize("NFKC",str(s or "")).translate(DIGITS);s=DIAC.sub("",s);s=re.sub(r"[أإآٱ]","ا",s).replace("ى","ي").replace("ی","ي").replace("ک","ك");return re.sub(r"[\u200b-\u200f\u202a-\u202e\ufeff]","",s)
 ORD = {norm(k): v for k, v in ORD.items()}
 def label(v):
  if v is None:return None
@@ -32,9 +32,17 @@ def nums(s):
 def digest(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def extract_heading(line):
  s=norm(line).strip()
- m=re.match(r"^(?:المادة|مادة)\s*(.*)$",s)
+ m=re.match(r"^[\s()（）]*?(?:المادة|مادة)\s*(.*)$",s)
  if not m:return None,None
  rest=m.group(1).strip()
+ rest=re.sub(r"^[\s()（）]+|[\s()（）:：\-–—]+$","",rest).strip()
+ # pypdf can return Arabic-Indic heading digits in visual RTL order (e.g. ٠١ for article 10).
+ # Correct the label only; body digits remain untouched for explicit human review.
+ if re.fullmatch(r"[٠-٩۰-۹]+", "".join(ch for ch in line if ch in "٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹")):
+  raw_digits="".join(ch for ch in line if ch in "٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹")
+  if raw_digits:
+   normalized_digits=raw_digits.translate(DIGITS)
+   rest=re.sub(r"\d+",normalized_digits[::-1],rest,count=1)
  n=re.match(r"^\(?\s*(\d+)\s*\)?(?:\s+(مكرر(?:ا|ة)?(?:\s+\(?[ء-ي]\s*\)?)?))?(?:\s+(.*))?$",rest,re.I)
  if n:
   suffix_letter=re.search(r"مكرر(?:ا|ة)?\s+\(?([ء-ي])",n.group(2)) if n.group(2) else None
@@ -71,6 +79,9 @@ def _clean_pdf_page_matter(page_text):
  lines=page_text.splitlines();kept=[];removed=0
  for index,line in enumerate(lines):
   at_page_edge=index<3 or index>=max(0,len(lines)-3)
+  if re.fullmatch(r"\s*[٠-٩0-9۰-۹]+\s*",norm(line)):
+   # Standalone folio numbers are page furniture, not article text.
+   continue
   if at_page_edge and _is_gazette_page_matter(line):
    removed+=1
   else:kept.append(line)
