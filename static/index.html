@@ -1507,7 +1507,7 @@ async function newCase(clientName=''){
  if(typeof clientName!=='string')clientName='';
  const fields=[['title',uiText('عنوان القضية','Case title'),true],['client',uiText('اسم العميل (اختياري)','Client name (optional)'),false],['case_number',uiText('رقم القضية (اختياري)','Case number (optional)'),false],['case_year',uiText('سنة القضية (اختياري)','Case year (optional)'),false],['court',uiText('المحكمة (اختياري)','Court (optional)'),false],['circuit',uiText('الدائرة (اختياري)','Circuit (optional)'),false],['opposing_party',uiText('الخصم (اختياري)','Opposing party (optional)'),false]];
  const inputs={};fields.forEach(([k,label,required])=>inputs[k]=h('input',{name:k,placeholder:label,required,style:'width:100%'}));
- const titleError=h('span',{id:'new-case-title-error',className:'bad',role:'alert',hidden:true,style:'display:block',textContent:uiText('عنوان القضية مطلوب.','A case title is required.')});
+ const titleError=h('span',{id:'new-case-title-error',className:'bad',role:'alert',hidden:true,textContent:uiText('عنوان القضية مطلوب.','A case title is required.')});
  inputs.title.setAttribute('aria-describedby',titleError.id);
  inputs.title.addEventListener('invalid',()=>{inputs.title.setAttribute('aria-invalid','true');titleError.hidden=false});
  inputs.title.addEventListener('input',()=>{if(inputs.title.value.trim()){inputs.title.removeAttribute('aria-invalid');titleError.hidden=true}});
