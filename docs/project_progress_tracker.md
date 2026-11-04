@@ -866,3 +866,5 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - Scorecard reconciliation: commit `ed282f9` records the 2026-11-04 UI/accessibility engineering increments while retaining the 45.3% workstream score until exact-head CI and manual acceptance evidence exist. No whole-project weighted percentage increase is claimed.
 
 - **Modal background isolation:** commit `604ddad` sets the workspace shell inert for new-case/client-profile dialogs and restores it when the last dialog closes; browser acceptance assertion `2778983` and contract test `a6632bd` cover the state transition. UX audit `b0d81f1` and issue #95 updated. Manual nested-focus and assistive-technology validation remains open.
+
+- **New-case validation accessibility:** commit `51c49cc` exposes the required title error through `aria-invalid` and a linked `role=alert` referenced by `aria-describedby`, focuses the field and clears the error on input; contract test `630d454` and UX audit `aa8e576` record it. Other dynamic forms still need the same treatment.
