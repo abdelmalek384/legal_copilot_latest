@@ -18,6 +18,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("const session=await api('/session')", HTML)
         self.assertIn("if(ME.mfa_enrollment_required){mfaEnrollmentPage();return}", HTML)
         self.assertIn("if(ME.mfa_verification_required){mfaChallengePage();return}", HTML)
+        self.assertIn("function mfaFirmSwitcher()", HTML)
+        self.assertEqual(HTML.count("const firmSwitcher=mfaFirmSwitcher();if(firmSwitcher)card.append(firmSwitcher)"), 2)
 
     def test_mobile_language_switch_meets_44px_touch_target(self):
         self.assertIn("#side .lang-switch button { width: auto; min-width: 78px; min-height: 44px;", HTML)
