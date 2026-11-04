@@ -1,4 +1,4 @@
-"""Per-firm MFA enforcement and onboarding setup-health reporting."""
+"""Per-firm MFA enforcement and firm-context isolation tests."""
 import os
 import tempfile
 import unittest
@@ -11,7 +11,7 @@ import app
 from database_runtime import DatabaseRuntime
 
 
-class FirmSecurityPolicySetupHealthTests(unittest.TestCase):
+class FirmSecurityPolicyTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix="legal-copilot-firm-policy-")
         self.root = Path(self.temp.name)
@@ -115,6 +115,9 @@ class FirmSecurityPolicySetupHealthTests(unittest.TestCase):
         self.assertEqual(self.clients["a-admin"].get("/cases").status_code, 403)
         self.assertEqual(self.clients["a-lawyer"].get("/cases").status_code, 200)
 
+        self.assertEqual(self.clients["b-admin"].get("/admin/security-policy").json(), {
+            "require_mfa_for_admins": False, "require_mfa_for_everyone": False, "updated_at": None,
+        })
         self.assertEqual(self.clients["b-admin"].get("/cases").status_code, 200)
         everyone_policy = self._mutate("b-admin", "put", "/admin/security-policy", json={
             "require_mfa_for_admins": False, "require_mfa_for_everyone": True,
