@@ -100,7 +100,7 @@ Do not choose plan limits solely from average usage. Use measured P95 demand plu
 
 ## 5. First-three-firm evidence
 
-Use one row per firm and a fixed measurement window. A sign-in event is not a unique active user. When the WAU dashboard metric is deployed, use its published qualifying-workflow definition and keep sign-ins separate; until then mark WAU **not measured**.
+Use one row per firm and a fixed measurement window. A sign-in event is not a unique active user. Use the deployed WAU dashboard metric and its published qualifying-workflow definition; keep sign-ins separate. Until a complete reporting window exists, mark WAU **not yet measured**.
 
 | Evidence | Firm A | Firm B | Firm C |
 |---|---:|---:|---:|
