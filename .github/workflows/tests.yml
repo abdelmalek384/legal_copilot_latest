@@ -280,6 +280,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_client_profiles.py
       - name: Test bounded firm-local matter CSV import
         run: PYTHONPATH=. python tests/test_case_csv_import.py
+      - name: Test firm-scoped case search and pagination
+        run: PYTHONPATH=. python tests/test_case_search_pagination.py
       - name: Test bounded firm-local CSV client import
         run: PYTHONPATH=. python tests/test_client_csv_import.py
       - name: Test invoice ledger CSV export
