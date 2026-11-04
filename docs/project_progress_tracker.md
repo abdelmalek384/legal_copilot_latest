@@ -870,3 +870,5 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - **New-case validation accessibility:** commit `51c49cc` exposes the required title error through `aria-invalid` and a linked `role=alert` referenced by `aria-describedby`, focuses the field and clears the error on input; contract test `630d454` and UX audit `aa8e576` record it. Other dynamic forms still need the same treatment.
 
 - **Frontend contract CI recovery:** the full Tests workflow at commit `5c34479` completed successfully, including the frontend UX/accessibility contract step. Subsequent modal-isolation and heading-linked dialog-name commits (`604ddad`, `2778983`, `5dcfbb9`, `de02165`) are newer than that green run and require exact-head rerun; browser acceptance has not yet produced a passing result for the latest changes.
+
+- **Browser validation-error acceptance:** axe browser test commit `dc92989` now submits the new-case dialog empty, verifies `aria-invalid`, `aria-describedby` and the visible alert, then corrects the title and confirms the error clears; contract test `2aec5bd` and UX audit `7578c9a` record it. Exact-head CI remains pending.
