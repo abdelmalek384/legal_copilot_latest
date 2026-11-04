@@ -846,3 +846,5 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - **Cascade-specific border fix:** commit `4162fab` replaces the legacy higher-specificity `input,select,textarea` border color with the contrast-safe `--ui-control-border` token, so the measured ~3.17:1 default border is actually applied; contract assertion `c241b59` and UX audit `6973954` record this. This follow-up prevents the earlier token-only change from being silently overridden.
 
 - **Reflow/overflow regression gate:** browser axe test commit `c8443e0` adds a 640px reduced-layout/zoom-proxy viewport and asserts no document-level horizontal overflow at every dashboard viewport (1440/768/640/390/320px); contract test `e15eec1`, UX audit `e07f226` and harness docs `a612a5c` updated. This is responsive-width coverage, not a substitute for real browser zoom/reflow testing.
+
+- **Native navigation keyboard test:** browser test `53fa11b` checks that primary workspace navigation activates with Space and Enter and lands on the expected page; contract test `4bc0283` guards its presence. Exact-head CI remains unverified.
