@@ -7,24 +7,24 @@
 - PR #1375: Remove misplaced root artifacts and relocate the fictional legal fixture.
 - PR #1371: Extend browser acceptance for draft deadline workflow and firm data export.
 - PR #1366: Pin the production container to the CI-tested Python 3.12 image.
-- PR #1308: Enforce reversible firm read-only mode after subscription expiry with owner-facing status.
 - PR #1313: Add Chromium owner-workflow acceptance for login, case, deadline, and invoice flows.
 - PR #1311: Add measured phone-width accessibility checks and correct minimum touch targets.
 - PR #1309: Complete the Arabic UI review inventory for firm data export; retain native-speaker review status.
+- PR #1308: Enforce reversible firm read-only mode after subscription expiry with owner-facing status.
 - PR #1307: Add a source-linked Arabic UI string review inventory with completeness checks.
 - PR #1302: Add audited, admin-only firm ZIP export with tenant isolation and safe CSV handling.
 - PR #1297: Expose weekly aggregate pilot metrics and CSV export to platform administrators.
-- PR #1291: Add the firm-admin first-run wizard and browser acceptance coverage.
 - PR #1292: Store weekly pilot usage as counts-only aggregates and harden validation errors.
+- PR #1291: Add the firm-admin first-run wizard and browser acceptance coverage.
 - PR #1289: Add firm profile setup, first-run checklist API, configuration health, and safe test reminders.
 - PR #1285: Add a fictional Arabic demo firm with guarded creation and removal.
 - PR #1283: Add privacy-preserving weekly pilot metrics, platform-admin dashboard, and CSV export.
 - PR #1183: Require unreviewed legal evaluation questions to abstain when sources are unverified.
 - PR #1182: Test the optional claim-support screen's fail-closed behavior in the answer path.
+- PR #1180: Spot-check selected Labour Law 14/2025 text passages while retaining discovery-only status.
 - PR #1178: Add Arabic claim-support regressions for finite-period contradictions and faithful paraphrases.
 - PR #1177: Require abstention by default across the unreviewed multi-area question set.
 - PR #1171: Spot-check selected Labour Law 14/2025 text passages while retaining discovery-only status.
-- PR #1180: Spot-check selected Labour Law 14/2025 text passages while retaining discovery-only status.
 - PR #1169: Register Gazette source leads with unknown permissions and enforce capture source-host matching.
 - PR #1167: Document the distinction between official legal texts and protected compilations.
 - PR #1166: Add public Gazette PDF locators for Labour Law 14/2025 without changing discovery-only status.
