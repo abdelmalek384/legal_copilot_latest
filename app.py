@@ -5066,6 +5066,8 @@ if(!token)result.textContent="This recovery link is missing its token. Request a
 
 @app.get("/admin/security-policy")
 def get_firm_security_policy(u: dict = Depends(user)):
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "firm security policy requires separate-database mode")
     require_admin(u)
     row = control_conn().execute(
         "SELECT require_mfa_for_admins,require_mfa_for_everyone,updated_at "
@@ -5078,6 +5080,8 @@ def get_firm_security_policy(u: dict = Depends(user)):
 
 @app.put("/admin/security-policy")
 def put_firm_security_policy(b: FirmSecurityPolicyIn, u: dict = Depends(user)):
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "firm security policy requires separate-database mode")
     require_admin(u)
     control = control_conn()
     now = int(time.time())
