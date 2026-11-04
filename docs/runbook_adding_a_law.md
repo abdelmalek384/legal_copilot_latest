@@ -58,6 +58,45 @@ python tools/compare_corpus_to_reference.py \
 
 Review missing/extra articles, numeric mismatches, major differences, and minor differences. Check every discrepancy against the original Gazette pages; do not automatically replace text based on a comparison report. Preserve the report and reference hash.
 
+## 5A. Fixture-only end-to-end dry run
+
+Run the complete recorder → structural audit → reference comparison path using only the fictional fixtures. The URL below is a host-matching placeholder; it is not a real capture URL. Keep `--dry-run` on and do not persist this record.
+
+```bash
+FIXTURE_OUT="$(mktemp -d)"
+
+python tools/record_manual_capture.py \
+  --file tests/fixtures/law_ingestion/fictional_reference.txt \
+  --document-id EG-INGESTION-FIXTURE \
+  --source-id EG-AMIRI-PRESS \
+  --source-url "https://www.alamiria.com/fixture-only-not-a-source" \
+  --captured-by "Local fixture dry-run" \
+  --capture-method manual_transcription \
+  --retrieved-on 2026-10-20 \
+  --notes "Synthetic fixture only; placeholder URL; do not persist." \
+  --out "$FIXTURE_OUT/capture" \
+  --dry-run
+
+python tools/audit_article_rows.py \
+  --input tests/fixtures/law_ingestion/fictional_candidate.jsonl \
+  --out-dir "$FIXTURE_OUT/audit"
+
+python tools/compare_corpus_to_reference.py \
+  --candidate tests/fixtures/law_ingestion/fictional_candidate.jsonl \
+  --reference tests/fixtures/law_ingestion/fictional_reference.txt \
+  --out-dir "$FIXTURE_OUT/comparison"
+
+cat "$FIXTURE_OUT/audit/quantity_checklist.csv"
+cat "$FIXTURE_OUT/comparison/comparison_report.md"
+grep -nE '1 سبتمبر 2025|1 أكتوبر 2025' tests/fixtures/law_ingestion/fictional_reference.txt
+
+COPILOT_ENV=development PYTHONPATH=. python tests/test_law_ingestion_fixture_pipeline.py
+```
+
+Expected fixture-only result: two candidate articles align with the two reference headings; the quantity checklist identifies the fictional thirty-day period; the reference text contains two separate candidate commencement dates (1 September 2025 and 1 October 2025). These are synthetic examples, not dates for any Egyptian law. Do not infer dates from the capture metadata.
+
+The test also confirms that a source comparison does **not** automatically promote content to `source_matched`: the feature/policy flags remain off and the incomplete fixture evidence stays `unreviewed`. The proposed source-matched tier additionally requires independent-source evidence, rights evidence, resolved primary-source differences, and date checks. Never enable it from a fixture run.
+
 ## 6. Record legal review and version status
 
 A qualified Egyptian lawyer must review:
