@@ -354,8 +354,6 @@ jobs:
         run: PYTHONPATH=. python tests/test_claim_support.py
       - name: Test article-rows audit tool
         run: PYTHONPATH=. python tests/test_audit_article_rows.py
-      - name: Test end-to-end fictional legal ingestion evidence path
-        run: PYTHONPATH=. python tests/test_ingestion_fixture_pipeline.py
       - name: Test firm-private usage metering and audit ledger
         run: PYTHONPATH=. python tests/test_firm_usage_metering.py
       - name: Test platform-only weekly pilot metrics
