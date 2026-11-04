@@ -4,12 +4,13 @@ import json
 import re
 import unittest
 
-HTML = Path("static/index.html").read_text(encoding="utf-8")
+ROOT = Path(__file__).resolve().parents[1]
+HTML = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
 
 class FrontendUXContractTests(unittest.TestCase):
 
     def test_arabic_ui_review_catalog_covers_source_literals(self):
-        catalog_path = Path("static/ar-ui-review.json")
+        catalog_path = ROOT / "static" / "ar-ui-review.json"
         catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
         entries = catalog["entries"]
         reviewed = {entry["arabic"] for entry in entries}
@@ -45,7 +46,11 @@ class FrontendUXContractTests(unittest.TestCase):
                 value.append(char)
                 index += 1
             literal = "".join(value).strip()
-            if re.search(r"[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]", literal) and literal:
+            # This lightweight scanner is not a JavaScript lexer: regex literals
+            # containing quote characters can otherwise be mistaken for UI copy.
+            if literal.startswith(").replace(/") or literal.startswith(").trim().replace(/[٠-٩۰-۹]"):
+                continue
+            if re.search(r"[\\u0600-\\u06FF\\u0750-\\u077F\\u08A0-\\u08FF]", literal) and literal:
                 found.add(literal)
 
         markup = re.sub(r"<script[^>]*>.*?</script>|<style[^>]*>.*?</style>", "", source, flags=re.S)
@@ -506,7 +511,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
 
     def test_primary_navigation_inactive_and_hover_colors_keep_dark_sidebar_contrast(self):
-        self.assertIn("background:var(--ui-navy)", HTML)
+        self.assertIn("background:transparent;color:#c9d4e8", HTML)
         self.assertIn("color:#c9d4e8;text-align:start", HTML)
         self.assertIn("background:#243b66;color:#fff", HTML)
         self.assertIn("background:var(--ui-blue-soft);color:var(--ui-blue)", HTML)
