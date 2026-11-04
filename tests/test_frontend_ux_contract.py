@@ -445,6 +445,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'", browser_tests)
         self.assertIn("test_axe_wcag_accessibility_smoke_arabic_english_and_mobile", browser_tests)
         self.assertIn("((1440, 900), (768, 900), (390, 844), (320, 720))", browser_tests)
+        self.assertIn('self.page.set_viewport_size({"width": 390, "height": 844})', browser_tests)
 
 
     def test_dynamic_form_label_siblings_are_programmatically_associated(self):
