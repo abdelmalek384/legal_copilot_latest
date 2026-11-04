@@ -1496,6 +1496,8 @@ function closeModal(overlay){
  if(!overlay)return;
  const opener=overlay.__focusReturn;
  overlay.remove();
+ const shell=$('shell');
+ if(shell&&!document.querySelector('.modal-backdrop'))shell.inert=false;
  if(opener&&opener.isConnected&&typeof opener.focus==='function')opener.focus();
 }
 async function newCase(clientName=''){
@@ -1516,7 +1518,7 @@ async function newCase(clientName=''){
  const opener=document.activeElement;
  const overlay=h('div',{className:'modal-backdrop',onclick:e=>{if(e.target===overlay)closeModal(overlay)}},
    h('section',{className:'modal card',role:'dialog','aria-modal':true,'aria-label':uiText('قضية جديدة','New case')},h('h2',{textContent:uiText('قضية جديدة','New case')}),form));
- overlay.__focusReturn=opener;A.append(overlay);inputs.title.focus()
+ overlay.__focusReturn=opener;const shell=$('shell');if(shell)shell.inert=true;A.append(overlay);inputs.title.focus()
 }
 async function clientProfileForm(profile=null){
  const editing=Boolean(profile),fields=[
@@ -1548,7 +1550,7 @@ async function clientProfileForm(profile=null){
   h('div',{className:'row'},cancel,save));
  overlay.append(h('section',{className:'modal card',role:'dialog','aria-modal':true,'aria-label':uiText('ملف العميل','Client profile')},
   h('h2',{textContent:editing?uiText('تعديل ملف العميل','Edit client profile'):uiText('ملف عميل جديد','New client profile')}),form));
- overlay.__focusReturn=opener;A.append(overlay);inputs.name.focus();
+ overlay.__focusReturn=opener;const shell=$('shell');if(shell)shell.inert=true;A.append(overlay);inputs.name.focus();
 }
 async function clients(){
  const profiles=await api('/clients');
