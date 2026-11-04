@@ -452,6 +452,13 @@ class BrowserAcceptanceTests(unittest.TestCase):
             self.page.set_viewport_size({"width": width, "height": height})
             audit(f"Arabic dashboard {width}px")
 
+        self.page.get_by_role("button", name="القضايا").click()
+        self.page.get_by_role("button", name="+ قضية جديدة").click()
+        dialog = self.page.get_by_role("dialog", name="قضية جديدة")
+        dialog.wait_for(state="visible", timeout=8000)
+        audit("Arabic new-case dialog 390px")
+        dialog.get_by_role("button", name="إلغاء").click()
+
         self.page.get_by_role("button", name="تغطية المجموعة القانونية").click()
         self.page.get_by_role("heading", name="تغطية المجموعة القانونية").wait_for(timeout=10000)
         audit(f"Arabic corpus coverage {self.page.viewport_size['width']}px")
