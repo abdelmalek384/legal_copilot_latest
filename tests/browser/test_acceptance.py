@@ -448,7 +448,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 + json.dumps(result["violations"], ensure_ascii=False, indent=2),
             )
 
-        for width, height in ((1440, 900), (390, 844)):
+        for width, height in ((1440, 900), (768, 900), (390, 844), (320, 720)):
             self.page.set_viewport_size({"width": width, "height": height})
             audit(f"Arabic dashboard {width}px")
 
