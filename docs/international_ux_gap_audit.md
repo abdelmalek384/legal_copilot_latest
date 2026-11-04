@@ -125,3 +125,5 @@ Static CSS inspection found control borders and focus indicators too faint for r
 - The new-case inline error is rendered outside the label element (commit `d17230b`) so it remains a separate description rather than being folded into the control's accessible name; contract assertion `9cc0468` protects the structure.
 
 - **Sign-in form validation:** empty email/password submission now marks the missing controls invalid, associates an assertive inline alert through `aria-describedby`, focuses the first missing field and clears errors after correction. Frontend commits `8dc7004` and `ea4fd0a`; contract test `a6a5066`; browser scenario `8bb108e`/locale-independent locator `619dc93`; contract guard `0e55536`. Automated execution remains pending.
+
+- Native browser constraint validation now also triggers the inline accessible error state through per-field `invalid` listeners for sign-in and new-case title controls (commit `cc8199a`); contract test `0b82340` guards the listeners. This closes the gap where browser-native required validation prevents the form submit handler from running.
