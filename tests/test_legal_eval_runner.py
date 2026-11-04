@@ -17,6 +17,7 @@ class LegalEvalRunnerTests(unittest.TestCase):
             "found": True,
             "answer": "قاعدة قانونية [1]. وشرح آخر [1] ومصدر ثان [2].",
             "abstained": False,
+            "claim_support_blocked": True,
             "scope": "verified_corpus",
             "sources": [
                 {"source_id": "EG-LAW-10", "article": "12", "citation": "القانون 10 المادة 12", "source_status": "verified_operative_text"},
@@ -32,6 +33,7 @@ class LegalEvalRunnerTests(unittest.TestCase):
         self.assertFalse(row["used_unverified_source"])
         self.assertEqual(row["citation_marker_count"], 2)
         self.assertFalse(row["abstained"])
+        self.assertTrue(row["claim_support_blocked"])
         self.assertEqual(row["invalid_citation_indices"], [2])
 
     def test_runner_row_can_be_scored_without_manual_schema_conversion(self):
@@ -65,6 +67,8 @@ class LegalEvalRunnerTests(unittest.TestCase):
             },
         )
 
+        self.assertFalse(row["claim_support_blocked"])
+
         registry = {"reviewers": [{
             "reviewer_id": "reviewer-a",
             "display_name": "Reviewer A",
@@ -92,6 +96,7 @@ class LegalEvalRunnerTests(unittest.TestCase):
         self.assertEqual(row["retrieved_source_ids"], [])
         self.assertEqual(row["citations"], [])
         self.assertEqual(row["cited_sources"], [])
+        self.assertFalse(row["claim_support_blocked"])
         self.assertTrue(row["abstained"] is False)
 
     def test_missing_source_id_for_visible_citation_is_reported_invalid(self):

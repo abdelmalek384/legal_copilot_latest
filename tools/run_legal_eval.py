@@ -214,6 +214,8 @@ def result_from_response(question, response):
         # A missing/empty answer is an abstention even if an inconsistent API
         # response explicitly reports abstained=false.
         "abstained": bool(response.get("abstained")) or answer is None,
+        # Count only an explicit answer-path claim-support rejection; other abstentions are distinct.
+        "claim_support_blocked": response.get("claim_support_blocked") is True,
         "retrieved_source_ids": retrieved_source_ids,
         "citations": citations,
         "used_unverified_source": used_unverified_source,

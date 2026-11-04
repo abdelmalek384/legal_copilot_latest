@@ -28,7 +28,7 @@
 - `tools/evaluate_retrieval_quality.py` scores lawyer-reviewed labels and excludes unreviewed draft seeds; there are no reviewed expected-source labels from which to calculate top-1/top-3.
 - `tools/evaluate_legal_answers.py` requires lawyer-approved question records, answerability labels, expected sources/pin-cites, and corresponding result records.
 - `tools/run_legal_eval.py` collects actual API runs but does not create expected-source ground truth. No authenticated local API run or run output is present in this snapshot.
-- The existing run/result schema does not provide an observed claim-support-block outcome for these 155 questions. Claim-support block rate cannot be inferred from the feature being enabled or from unit tests.
+- `ask()` now returns an explicit `claim_support_blocked` outcome only when the optional claim-support check rejects an answer, and `run_legal_eval.py` preserves that flag. This snapshot still has zero run records, so the observed rate remains N/A.
 
 ## Interpretation and next measurement
 

@@ -69,6 +69,7 @@ class ClaimSupportTests(unittest.TestCase):
         self.assertIsNone(response["answer"])
         self.assertTrue(response["abstained"])
         self.assertEqual(response["sources"], [hit])
+        self.assertTrue(response["claim_support_blocked"])
         checker.assert_called_once()
 
     def test_claim_support_is_not_applied_by_ask_when_feature_flag_is_off(self):
@@ -95,6 +96,7 @@ class ClaimSupportTests(unittest.TestCase):
             response = app.ask(None, "سؤال اختباري", scope="verified_corpus")
         self.assertEqual(response["answer"], "Supported-looking claim [1].")
         self.assertFalse(response["abstained"])
+        self.assertFalse(response["claim_support_blocked"])
         checker.assert_not_called()
 
     def test_feature_flag_is_off_by_default_and_requires_explicit_opt_in(self):
