@@ -498,5 +498,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("role:'status','aria-live':'polite','aria-atomic':'true',textContent:uiText('جارٍ الحساب...','Calculating...')", HTML)
 
 
+    def test_primary_navigation_inactive_and_hover_colors_keep_dark_sidebar_contrast(self):
+        self.assertIn("background:var(--ui-navy)", HTML)
+        self.assertIn("color:#c9d4e8;text-align:start", HTML)
+        self.assertIn("background:#243b66;color:#fff", HTML)
+        self.assertIn("background:var(--ui-blue-soft);color:var(--ui-blue)", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
