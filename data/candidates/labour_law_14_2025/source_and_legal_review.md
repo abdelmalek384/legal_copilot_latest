@@ -26,15 +26,15 @@ No written permission was requested or obtained in this review. Keep collection,
 
 ## 2. Text comparison status
 
-**Outcome: structural and spot checks only; full official-Gazette comparison remains blocked.**
+**Outcome: quantitative comparison completed for 120 checklist entries; full 311-record source comparison remains incomplete.**
 
-The supplied file was parsed and its article numbering/counts inspected. The accessible Manshurat PDF text was checked at the promulgation provisions and sampled at the beginning and end of the accompanying law. The title, Gazette issue/date, promulgation clauses, Article 12 repeal clause, Article 13 commencement clause, and sampled opening/closing article text are consistent with those visible text extracts.
+On 2026-11-04, the user supplied the Official Gazette issue 18 (supplement), dated 3 May 2025, and instructed that it be treated as the authenticated reference for this comparison. A visual page-image comparison was completed for all 120 entries in the quantitative checklist. Result: 120/120 checked, zero pending, and no numerical mismatches recorded. The scope includes 5 issuance provisions and selected accompanying-law articles; it is not a sequential comparison of all 298 articles.
 
-Supplemental review on 2026-10-28 located a government-hosted copy of the Official Gazette PDF at the Egyptian Tax Authority portal. Extracted text was reviewed for printed pages 2, 5, 12, and 43, covering promulgation Article 1, promulgation Articles 12–13, accompanying-law Articles 4–6, and accompanying-law Articles 89–90. The PDF file itself was not downloaded, hashed, or visually inspected. Therefore, no claim is made that all 311 rows have been matched verbatim to the Gazette. The following remain outstanding:
-- page-by-page and article-by-article comparison of all 13 promulgation provisions and all 298 law articles;
-- exact wording, numbering, paragraph boundaries, omissions, insertions, and duplicates;
-- full page-by-page and article-by-article comparison beyond the four targeted pages;
-- visual scan integrity, exact PDF hash, and any corrigenda.
+The detailed result and checked provision identifiers are recorded in [quantitative_gazette_comparison_2026-11-04.md](quantitative_gazette_comparison_2026-11-04.md).
+
+**This is not a full text match.** It does not establish verbatim identity, paragraph boundaries, punctuation, headings, omissions, insertions, cross-references, or completeness of all 311 JSONL records. The comparison also does not establish legal currentness, amendment history, corrigenda, rights, or lawyer approval. No original Gazette hash is claimed in this update.
+
+The JSONL remains outside the public repository because redistribution and commercial-reuse permissions have not been established. Keep every row's `verified=0` unchanged; do not treat `in_force=1` as a trusted legal-status determination.
 
 ## 3. Commencement, repeals, and subsequent instruments
 
@@ -64,34 +64,11 @@ This session cannot access or modify the user's local SQLite database. The regis
 ## Required gates before activation
 
 1. Obtain written permission covering the intended storage, extraction, indexing, embeddings, display, and commercial use, or identify a separately confirmed lawful/licensed source.
-2. Obtain the exact Official Gazette issue through an authorized route and complete the 311-record comparison with page-level evidence.
+2. Complete the remaining article-by-article comparison of all 311 records, including exact wording and page-level evidence; the 120-item quantitative check is not a substitute.
 3. Register and review relevant implementing instruments and their temporal effects; distinguish `implements` from `amends`.
 4. Have qualified Egyptian counsel verify commencement, transition, repeal/supersession, and the relevant as-of timeline.
 5. Only then record affirmative review events and consider enabling eligible version-linked chunks.
 
+## Historical targeted review notes
 
-Further targeted extracted-text review on 2026-10-28 also covered printed page 43 (PDF page index 41), containing accompanying-law Articles 89–90 on written employment contracts and probation. This adds two provision pinpoints to the provisional review seed; it does not change the pending authenticity, currentness, amendment-history, permission, or lawyer-review statuses.
-
-
-Further targeted text review on 2026-10-28 covered printed page 52 (Articles 117 and 121: ordinary working hours and overtime) and printed pages 54–55 (Article 124: annual leave). These are provision summaries for review, not lawyer-approved advice; no full-law comparison or currentness certification is claimed.
-
-
-Further targeted extracted-text review on 2026-10-28 covered printed pages 68–70 (Article 165: compensation for unlawful termination of an indefinite-term contract) and pages 73–74 (Article 177: specialized labour-court jurisdiction). These are provisional summaries and do not certify currentness or substitute for counsel review.
-
-
-Further targeted extracted-text review on 2026-10-28 covered printed pages 61–62 (Article 141: disciplinary investigation and reasoned decisions) and pages 63–64 (Article 148: dismissal authority and gross-misconduct conditions). These are provisional summaries; the full legal context and counsel review remain pending.
-
-
-Further targeted extracted-text review on 2026-10-28 covered printed pages 52–53 for Article 120 (weekly rest period and limited aggregation exception). The summary remains provisional and requires review against the full text and applicable implementing rules.
-
-
-Further targeted extracted-text review on 2026-10-28 covered printed page 52 (Articles 118–119: meal/rest breaks and daily presence span) and printed pages 53–54 (Article 122: posted work schedule and notice of changes). These summaries remain provisional and require counsel review.
-
-
-Further targeted extracted-text review on 2026-10-28 covered printed page 55 for Article 129 (paid holidays and compensation if work is required on those days). The specific ministerial or cabinet decision designating a holiday must be verified for each query.
-
-
-Further targeted extracted-text review on 2026-10-28 covered printed page 71 (Article 173: termination due to illness) and page 72 (Article 171: retirement age and fixed-term contracts). These remain provisional summaries pending review of connected laws and case-specific conditions.
-
-
-Further targeted extracted-text review on 2026-10-28 covered printed page 69 (Article 164: notice-period compensation) and page 70 (Article 166: absence deemed resignation and required warnings). These summaries remain provisional and require case-specific procedural review.
+Further targeted extracted-text reviews on 2026-10-28 covered selected provisions on probation, working hours, overtime, annual leave, termination, specialized labour-court jurisdiction, disciplinary investigations, dismissal, weekly rest, breaks, work schedules, paid holidays, illness, retirement age, notice-period compensation, and absence. These remain provisional summaries and are not a substitute for the complete text comparison or counsel review.
