@@ -7,10 +7,11 @@ The Playwright suite launches the application in a dedicated local server thread
 From the repository root, with Python 3.12:
 
     python -m pip install -r requirements.txt -r requirements-browser.txt
+    npm install --prefix .ci/axe --no-save --ignore-scripts --no-audit --no-fund axe-core@4.10.3
     python -m playwright install chromium
     python -m unittest tests.browser.test_acceptance
 
-The suite chooses an available loopback port, creates synthetic accounts and fixtures, starts Uvicorn in-process, and deletes its temporary database directory after the run. No real legal text, client matter, external source fetch, SMTP delivery, or model API approval is used.
+The suite chooses an available loopback port, creates synthetic accounts and fixtures, starts Uvicorn in-process, and deletes its temporary database directory after the run. It also runs the pinned axe-core 4.10.3 engine against representative authenticated Arabic RTL and English LTR screens at desktop/mobile widths, enforcing WCAG 2.1 A/AA automated rules. No real legal text, client matter, external source fetch, SMTP delivery, or model API approval is used.
 
 ## Automated coverage
 
