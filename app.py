@@ -2865,7 +2865,7 @@ def _user_separate(
     enrollment_required = mfa_required and not mfa_enabled
     verification_required = mfa_enabled and not mfa_verified
     if enrollment_required or verification_required:
-        allowed_paths = {"/session", "/account/mfa/enroll", "/account/mfa/confirm", "/account/mfa/verify", "/logout"}
+        allowed_paths = {"/session", "/session/firm", "/account/mfa/enroll", "/account/mfa/confirm", "/account/mfa/verify", "/logout"}
         if request.url.path not in allowed_paths:
             raise HTTPException(403, "MFA verification or enrollment required")
     demo_marker = c.execute(
