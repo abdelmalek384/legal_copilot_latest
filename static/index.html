@@ -1520,7 +1520,7 @@ async function newCase(clientName=''){
    h('div',{className:'row'},cancel,save));
  const opener=document.activeElement;
  const overlay=h('div',{className:'modal-backdrop',onclick:e=>{if(e.target===overlay)closeModal(overlay)}},
-   h('section',{className:'modal card',role:'dialog','aria-modal':true,'aria-label':uiText('قضية جديدة','New case')},h('h2',{textContent:uiText('قضية جديدة','New case')}),form));
+   h('section',{className:'modal card',role:'dialog','aria-modal':true,'aria-labelledby':'new-case-title'},h('h2',{id:'new-case-title',textContent:uiText('قضية جديدة','New case')}),form));
  overlay.__focusReturn=opener;const shell=$('shell');if(shell)shell.inert=true;A.append(overlay);inputs.title.focus()
 }
 async function clientProfileForm(profile=null){
@@ -1551,8 +1551,8 @@ async function clientProfileForm(profile=null){
  const form=h('form',{onsubmit:e=>{e.preventDefault();save.click()}},
   h('div',{className:'grid'},fields.map(([key,label,required])=>h('label',{style:'display:block'},h('span',{className:'mut',textContent:label+(required?' *':'')}),inputs[key]))),
   h('div',{className:'row'},cancel,save));
- overlay.append(h('section',{className:'modal card',role:'dialog','aria-modal':true,'aria-label':uiText('ملف العميل','Client profile')},
-  h('h2',{textContent:editing?uiText('تعديل ملف العميل','Edit client profile'):uiText('ملف عميل جديد','New client profile')}),form));
+ overlay.append(h('section',{className:'modal card',role:'dialog','aria-modal':true,'aria-labelledby':'client-profile-title'},
+  h('h2',{id:'client-profile-title',textContent:editing?uiText('تعديل ملف العميل','Edit client profile'):uiText('ملف عميل جديد','New client profile')}),form));
  overlay.__focusReturn=opener;const shell=$('shell');if(shell)shell.inert=true;A.append(overlay);inputs.name.focus();
 }
 async function clients(){
