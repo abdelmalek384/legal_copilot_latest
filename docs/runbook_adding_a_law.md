@@ -85,53 +85,51 @@ If any item is missing, keep the instrument non-authoritative and make the assis
 
 ## 8. Disposable fictional-fixture smoke test
 
-Run this before processing a user-supplied instrument. It exercises the manual-capture, article-audit, comparison, numeric-checklist, date-reading, and source-matched classifier paths without touching an application database. The fixture is fictional and must never be indexed or treated as Egyptian law.
+Run this before processing a user-supplied instrument. It exercises manual capture, article auditing, numeric checklist generation, text comparison, commencement-date reading, and the source-matched-unreviewed classifier without touching an application database. The fixture is fictional and must never be indexed or treated as Egyptian law.
 
 From the repository root:
 
 ```bash
 FIXTURE_OUT="$(mktemp -d "${TMPDIR:-/tmp}/legal-copilot-ingestion.XXXXXX")"
 python tools/record_manual_capture.py \
-  --file tests/fixtures/legal_ingestion/fictional_gazette.txt \
-  --document-id EG-TEST-FICTIONAL-001 \
-  --source-id EG-AMIRI-PRESS \
-  --source-url "https://www.alamiria.com/fictional-fixture" \
+  --file tests/fixtures/law_ingestion/fictional_reference.txt \
+  --document-id EG-LABOUR-14-2025 \
+  --source-url "https://www.alamiria.com/law/14" \
   --captured-by "Fixture operator" \
   --capture-method manual_transcription \
   --retrieved-on "$(date +%F)" \
   --publication-date 2025-05-03 \
   --effective-date 2025-09-01 \
   --gazette-issue "FICTIONAL-TEST-ISSUE" \
-  --notes "Fixture only; Article 3 separately states 2025-10-01." \
+  --notes "Fictional fixture only; Article 13 separately states 2025-10-01." \
   --out "$FIXTURE_OUT/capture" --dry-run
 
 python tools/record_manual_capture.py \
-  --file tests/fixtures/legal_ingestion/fictional_gazette.txt \
-  --document-id EG-TEST-FICTIONAL-001 \
-  --source-id EG-AMIRI-PRESS \
-  --source-url "https://www.alamiria.com/fictional-fixture" \
+  --file tests/fixtures/law_ingestion/fictional_reference.txt \
+  --document-id EG-LABOUR-14-2025 \
+  --source-url "https://www.alamiria.com/law/14" \
   --captured-by "Fixture operator" \
   --capture-method manual_transcription \
   --retrieved-on "$(date +%F)" \
   --publication-date 2025-05-03 \
   --effective-date 2025-09-01 \
   --gazette-issue "FICTIONAL-TEST-ISSUE" \
-  --notes "Fixture only; Article 3 separately states 2025-10-01." \
+  --notes "Fictional fixture only; Article 13 separately states 2025-10-01." \
   --out "$FIXTURE_OUT/capture"
 
 python tools/audit_article_rows.py \
-  --input tests/fixtures/legal_ingestion/fictional_law_rows.jsonl \
+  --input tests/fixtures/law_ingestion/fictional_candidate.jsonl \
   --out-dir "$FIXTURE_OUT/audit"
 
 python tools/compare_corpus_to_reference.py \
-  --candidate tests/fixtures/legal_ingestion/fictional_law_rows.jsonl \
-  --reference tests/fixtures/legal_ingestion/fictional_gazette.txt \
+  --candidate tests/fixtures/law_ingestion/fictional_candidate.jsonl \
+  --reference tests/fixtures/law_ingestion/fictional_reference.txt \
   --out-dir "$FIXTURE_OUT/comparison"
 
-PYTHONPATH=. python tests/test_ingestion_fixture_pipeline.py
+PYTHONPATH=. python tests/test_law_ingestion_fixture_pipeline.py
 ```
 
-The fixture asserts three article matches, a clean numbering sequence, and one quantity-bearing article in the generated numeric checklist. Read the publication date (2025-05-03), general effective date (2025-09-01), and separate specialized-courts date (2025-10-01) directly from the fixture text; do not infer any effective date from publication date. The test exercises the `source_matched` classifier with synthetic-only evidence and expects the explicit `not_lawyer_reviewed` reason. It does not approve real-source rights, enable the production feature, or change any legal record.
+The fixture intentionally contains article labels 1 and 13, so the audit reports gaps 2–12; these are expected fixture gaps, not a production-law finding. The numeric checklist records the test period and amount. Read the publication date (2025-05-03), general effective date (2025-09-01), and separate specialized-courts date (2025-10-01) from the fixture text; do not infer an effective date from publication date. The test exercises the `source_matched` classifier with synthetic-only evidence and expects the explicit `not_lawyer_reviewed` reason. It does not approve real-source rights, enable the production feature, or change any legal record.
 
 ## 9. Change log and rollback
 
