@@ -7936,7 +7936,7 @@
       "id": "AR-0955",
       "arabic": "سياسة المصادقة متعددة العوامل للمكتب",
       "source_lines": [
-        8000
+        1231
       ],
       "review_status": "pending_native_review"
     },
@@ -7944,7 +7944,7 @@
       "id": "AR-0956",
       "arabic": "تُفرض السياسة عند كل طلب موثّق داخل هذا المكتب. تفعيلها قد يطلب من المستخدمين إعداد تطبيق المصادقة عند طلبهم التالي.",
       "source_lines": [
-        8001
+        1232
       ],
       "review_status": "pending_native_review"
     },
@@ -7952,7 +7952,8 @@
       "id": "AR-0957",
       "arabic": "إلزام مسؤولي المكتب بتفعيل المصادقة",
       "source_lines": [
-        8002
+        1218,
+        1233
       ],
       "review_status": "pending_native_review"
     },
@@ -7960,7 +7961,8 @@
       "id": "AR-0958",
       "arabic": "إلزام جميع أعضاء المكتب بتفعيل المصادقة",
       "source_lines": [
-        8003
+        1219,
+        1234
       ],
       "review_status": "pending_native_review"
     },
@@ -7968,7 +7970,8 @@
       "id": "AR-0959",
       "arabic": "حفظ سياسة المصادقة",
       "source_lines": [
-        8004
+        1220,
+        1225
       ],
       "review_status": "pending_native_review"
     },
@@ -7976,7 +7979,7 @@
       "id": "AR-0960",
       "arabic": "تم حفظ سياسة المصادقة",
       "source_lines": [
-        8005
+        1225
       ],
       "review_status": "pending_native_review"
     }
