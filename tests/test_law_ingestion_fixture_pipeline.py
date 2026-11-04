@@ -5,6 +5,7 @@ The source and article text used here are fictional and do not represent Egyptia
 import hashlib
 import json
 import re
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -15,7 +16,6 @@ from types import SimpleNamespace
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from tools.audit_article_rows import main as audit_article_rows_main
 from tools.compare_corpus_to_reference import build_report
 from tools.record_manual_capture import record_capture
 from tools.answer_trust_tier import classify_answer_trust_tier
@@ -84,17 +84,42 @@ class LawIngestionFixturePipelineTests(unittest.TestCase):
             supplied.write_bytes(reference.read_bytes())
             corpus = root / "captured-corpus"
 
+            capture_cli = subprocess.run(
+                [
+                    sys.executable, str(ROOT / "tools" / "record_manual_capture.py"),
+                    "--file", str(supplied),
+                    "--document-id", "SYNTHETIC-LAW-ONLY",
+                    "--source-id", "EG-AMIRI-PRESS",
+                    "--source-url", "https://www.alamiria.com/fixture-only",
+                    "--captured-by", "Fixture test operator",
+                    "--capture-method", "manual_transcription",
+                    "--retrieved-on", date.today().isoformat(),
+                    "--publication-date", "2025-05-03",
+                    "--effective-date", "2025-09-01",
+                    "--gazette-issue", "fictional fixture only",
+                    "--notes", "SYNTHETIC FIXTURE ONLY — not Egyptian law or legal evidence",
+                    "--out", str(corpus),
+                    "--dry-run",
+                ],
+                cwd=ROOT, capture_output=True, text=True, check=False,
+            )
+            self.assertEqual(capture_cli.returncode, 0, capture_cli.stderr)
+            capture_result = json.loads(capture_cli.stdout)
+            self.assertTrue(capture_result["dry_run"])
+            self.assertEqual(capture_result["metadata"]["document_id"], "SYNTHETIC-LAW-ONLY")
+            self.assertFalse(capture_result["metadata"]["legal_authenticity_verified"])
+
             capture = record_capture(SimpleNamespace(
                 file=str(supplied),
-                document_id="EG-LABOUR-14-2025",
-                source_url="https://www.alamiria.com/law/14",
+                document_id="SYNTHETIC-LAW-ONLY",
+                source_url="https://www.alamiria.com/fixture-only",
                 captured_by="Fixture test operator",
                 capture_method="manual_transcription",
                 retrieved_on=date.today().isoformat(),
                 publication_date="2025-05-03",
                 effective_date="2025-09-01",
                 gazette_issue="fictional fixture only",
-                source_id=None,
+                source_id="EG-AMIRI-PRESS",
                 notes="SYNTHETIC FIXTURE ONLY — not Gazette text or legal evidence",
                 out=str(corpus),
                 max_mb=100,
@@ -103,7 +128,7 @@ class LawIngestionFixturePipelineTests(unittest.TestCase):
             self.assertFalse(capture["dry_run"])
             self.assertIsNone(capture["extraction_error"])
             metadata = json.loads(
-                (corpus / "metadata" / "EG-LABOUR-14-2025.json").read_text(encoding="utf-8")
+                (corpus / "metadata" / "SYNTHETIC-LAW-ONLY.json").read_text(encoding="utf-8")
             )
             self.assertEqual(metadata["sha256"], hashlib.sha256(supplied.read_bytes()).hexdigest())
             self.assertEqual(metadata["review_status"], "pending_human_review")
@@ -112,37 +137,36 @@ class LawIngestionFixturePipelineTests(unittest.TestCase):
             self.assertFalse(metadata["current_legal_status_verified"])
             self.assertFalse(metadata["commercial_reuse_permission_verified"])
 
-            audit_input = root / "candidate_rows.jsonl"
-            audit_rows = [
-                {
-                    "law": "Synthetic fixture only",
-                    "article": "1",
-                    "text": "مدة النص التجريبي خمس سنوات، ويبلغ المقابل 500 جنيه.",
-                },
-                {
-                    "law": "Synthetic fixture only",
-                    "article": "13",
-                    "text": "يبدأ تطبيق النص التجريبي اعتبارا من 1 سبتمبر 2025. "
-                            "وتبدأ الجهة التجريبية عملها اعتبارا من 1 أكتوبر 2025.",
-                },
-            ]
-            audit_input.write_text(
-                "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in audit_rows),
-                encoding="utf-8",
-            )
             audit_dir = root / "article-audit"
-            self.assertEqual(
-                audit_article_rows_main(["--input", str(audit_input), "--out-dir", str(audit_dir)]),
-                0,
+            audit_process = subprocess.run(
+                [
+                    sys.executable, str(ROOT / "tools" / "audit_article_rows.py"),
+                    "--input", str(candidate), "--out-dir", str(audit_dir),
+                ],
+                cwd=ROOT, capture_output=True, text=True, check=False,
             )
+            self.assertEqual(audit_process.returncode, 0, audit_process.stderr)
             audit_report = json.loads((audit_dir / "audit.json").read_text(encoding="utf-8"))
             self.assertEqual(audit_report["rows"], 2)
-            self.assertEqual(audit_report["numbering"]["Synthetic fixture only"]["gaps"], list(range(2, 13)))
+            self.assertEqual(audit_report["numbering"]["نص تجريبي خيالي"]["gaps"], list(range(2, 13)))
             checklist = (audit_dir / "quantity_checklist.csv").read_text(encoding="utf-8-sig")
             self.assertIn("خمس سنوات", checklist)
             self.assertIn("500 جنيه", checklist)
 
-            comparison = build_report(candidate, reference)
+            comparison_dir = root / "comparison"
+            comparison_process = subprocess.run(
+                [
+                    sys.executable, str(ROOT / "tools" / "compare_corpus_to_reference.py"),
+                    "--candidate", str(candidate),
+                    "--reference", str(reference),
+                    "--out-dir", str(comparison_dir),
+                ],
+                cwd=ROOT, capture_output=True, text=True, check=False,
+            )
+            self.assertEqual(comparison_process.returncode, 0, comparison_process.stderr)
+            comparison = json.loads(
+                (comparison_dir / "comparison_report.json").read_text(encoding="utf-8")
+            )
             self.assertTrue(comparison["evidence_only"])
             self.assertTrue(comparison["all_identical"])
             self.assertEqual(comparison["candidate"]["rows_compared"], 2)
