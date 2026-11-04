@@ -475,14 +475,25 @@ def expanded_tokens(q, limit=48):
     original = tokens(q)
     expanded = list(original)
     normalized_query = norm(q)
+
+    def is_negated_at(start):
+        prefix = normalized_query[:start]
+        return bool(re.search(r"(?:^|\\s)(?:مش|ما)\\s+(?:\\S+\\s+){0,2}$", prefix))
+
     for phrase, aliases in _LEGAL_PHRASE_SYNONYMS_RAW.items():
         normalized_phrase = norm(phrase)
-        if re.search(r"(?<!\w)" + re.escape(normalized_phrase) + r"(?!\w)", normalized_query):
-            expanded.extend(tokens(" ".join(aliases)))
+        if not normalized_phrase:
+            continue
+        for match in re.finditer(r"(?<!\\w)" + re.escape(normalized_phrase) + r"(?!\\w)", normalized_query):
+            if not is_negated_at(match.start()):
+                expanded.extend(tokens(" ".join(aliases)))
+                break
     for token in original:
-        expanded.extend(LEGAL_SYNONYMS.get(token, ()))
+        occurrences = [match.start() for match in re.finditer(r"\\w+", normalized_query)
+                       if stem(match.group()) == token]
+        if not occurrences or any(not is_negated_at(start) for start in occurrences):
+            expanded.extend(LEGAL_SYNONYMS.get(token, ()))
     return expand_lexicon_hints(q, expanded, tokens, norm, limit=limit)
-
 
 def matched_surface_terms(text, expanded_terms, limit=12):
     """Return exact words in a passage that matched the expanded retrieval vocabulary.
