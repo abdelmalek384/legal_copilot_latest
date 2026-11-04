@@ -45,6 +45,10 @@ class FrontendUXContractTests(unittest.TestCase):
                 value.append(char)
                 index += 1
             literal = "".join(value).strip()
+            # Ignore Arabic punctuation/digit normalization embedded in JavaScript regex code;
+            # these are implementation literals, not user-facing UI copy for native review.
+            if ".replace(/" in literal:
+                continue
             if re.search(r"[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]", literal) and literal:
                 found.add(literal)
 
