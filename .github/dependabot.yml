@@ -8,9 +8,6 @@ updates:
       time: "08:00"
       timezone: Africa/Cairo
     open-pull-requests-limit: 10
-    labels:
-      - dependencies
-      - security
     commit-message:
       prefix: "deps"
       include: "scope"
@@ -27,9 +24,6 @@ updates:
           - "version-update:semver-major"
           - "version-update:semver-minor"
     open-pull-requests-limit: 5
-    labels:
-      - dependencies
-      - security
     commit-message:
       prefix: "deps"
       include: "scope"
@@ -41,9 +35,6 @@ updates:
       time: "08:30"
       timezone: Africa/Cairo
     open-pull-requests-limit: 5
-    labels:
-      - dependencies
-      - ci
     commit-message:
       prefix: "ci"
       include: "scope"
