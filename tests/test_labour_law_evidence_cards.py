@@ -210,7 +210,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                     if _has_https_host(item["url"], "portal.eta.gov.eg") and urlsplit(item["url"]).path == "/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
                 ]
                 self.assertTrue(pdf_evidence)
-                self.assertIn("visually checked", pdf_evidence[0]["supports"])
+                self.assertTrue("page-image check confirms" in pdf_evidence[0]["supports"] or "page images confirm" in pdf_evidence[0]["supports"])
         self.assertFalse(self.data["instrument"]["search_eligible"])
 
     def test_six_targeted_articles_match_visual_gazette_page_map(self):
@@ -266,7 +266,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                     if _has_https_host(item["url"], "portal.eta.gov.eg") and urlsplit(item["url"]).path == "/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
                 ]
                 self.assertTrue(gazette)
-                self.assertIn("روجعت بصرياً", gazette[0]["supports"])
+                self.assertTrue("Direct browser PDF page-image check confirms" in gazette[0]["supports"] or "Direct browser PDF page images confirm" in gazette[0]["supports"])
                 self.assertTrue(card["cross_checks"])
                 self.assertTrue(card["limitations"])
                 self.assertTrue(card["not_usable_for"])
@@ -292,7 +292,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                     if _has_https_host(item["url"], "portal.eta.gov.eg") and urlsplit(item["url"]).path == "/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
                 ]
                 self.assertTrue(gazette)
-                self.assertIn("روجعت بصرياً", gazette[0]["supports"])
+                self.assertTrue("Direct browser PDF page-image check confirms" in gazette[0]["supports"] or "Direct browser PDF page images confirm" in gazette[0]["supports"])
                 self.assertTrue(card["cross_checks"])
                 self.assertTrue(card["limitations"])
                 self.assertTrue(card["not_usable_for"])
