@@ -100,6 +100,7 @@ class FirmSecurityPolicySetupHealthTests(unittest.TestCase):
         self.assertEqual(self.clients["a-admin"].get("/admin/security-policy").json(), {
             "require_mfa_for_admins": False, "require_mfa_for_everyone": False, "updated_at": None,
         })
+        self.assertEqual(self.clients["a-lawyer"].get("/admin/security-policy").status_code, 403)
         denied = self._mutate("a-lawyer", "put", "/admin/security-policy", json={
             "require_mfa_for_admins": True, "require_mfa_for_everyone": False,
         })
