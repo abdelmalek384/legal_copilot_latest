@@ -90,7 +90,7 @@ cat "$FIXTURE_OUT/audit/quantity_checklist.csv"
 cat "$FIXTURE_OUT/comparison/comparison_report.md"
 grep -nE '1 سبتمبر 2025|1 أكتوبر 2025' tests/fixtures/law_ingestion/fictional_reference.txt
 
-COPILOT_ENV=development PYTHONPATH=. python tests/test_law_ingestion_fixture_workflow.py
+COPILOT_ENV=development PYTHONPATH=. python tests/test_law_ingestion_fixture_pipeline.py
 ```
 
 Expected fixture-only result: two candidate articles align with the two reference headings; the quantity checklist identifies the fictional thirty-day period; the reference text contains two separate candidate commencement dates (1 September 2025 and 1 October 2025). These are synthetic examples, not dates for any Egyptian law. Do not infer dates from the capture metadata.
