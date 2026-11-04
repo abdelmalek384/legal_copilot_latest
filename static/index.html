@@ -2014,16 +2014,16 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    h('label',{className:'row'},clientConsent,h('span',{textContent:uiText('أؤكد وجود تفويض/أساس قانوني موثق من العميل لمعالجة بيانات هذه القضية بواسطة مزود النموذج.','I confirm documented client authorization/lawful basis for this matter data to be processed by the model provider.')})),
    run,result)
  }
- if(TAB==='tasks'){const tt=h('input',{placeholder:uiText('مهمة جديدة','New task')}),as=h('select',{'aria-label':uiText('المكلّف بالمهمة','Task assignee')},new Option(uiText('غير معيّن','Unassigned'),''),...c.members.map(m=>new Option(m.name,m.user_id))),due=h('input',{type:'date','aria-label':uiText('تاريخ استحقاق المهمة','Task due date')});
+ if(TAB==='tasks'){const tt=h('input',{placeholder:uiText('مهمة جديدة','New task'),'aria-label':uiText('عنوان المهمة الجديدة','New task title')}),as=h('select',{'aria-label':uiText('المكلّف بالمهمة','Task assignee')},new Option(uiText('غير معيّن','Unassigned'),''),...c.members.map(m=>new Option(m.name,m.user_id))),due=h('input',{type:'date','aria-label':uiText('تاريخ استحقاق المهمة','Task due date')});
   body=h('div',{className:'card'},c.tasks.length?c.tasks.map(t=>h('div',{className:'row'},h('div',{},h('b',{textContent:t.title}),h('div',{className:'mut',textContent:t.assignee_name||'غير معيّن'})),
    h('div',{},t.status==='done'?pill('منجزة','done'):[duePill(t)||pill('مفتوحة','open'),' ',btn('تم',async()=>{await api('/tasks/'+t.id+'/done','POST');again()},'g')]))):empty('لا توجد مهام'),
    h('div',{className:'row'},tt,as,due,btn('إضافة مهمة',async()=>{if(!tt.value.trim()){toast(uiText('أدخل اسم المهمة','Enter a task title'));tt.focus();return}await api('/cases/'+id+'/tasks','POST',{title:tt.value.trim(),assignee:as.value?+as.value:null,due:due.value||null});again()})))}
- if(TAB==='sess'){const sd=h('input',{type:'date','aria-label':uiText('تاريخ الجلسة','Hearing date')}),sn=h('input',{placeholder:uiText('ملاحظة (المحكمة، الدائرة، الغرض)','Note (court, circuit, purpose)')});
+ if(TAB==='sess'){const sd=h('input',{type:'date','aria-label':uiText('تاريخ الجلسة','Hearing date')}),sn=h('input',{placeholder:uiText('ملاحظة (المحكمة، الدائرة، الغرض)','Note (court, circuit, purpose)'),'aria-label':uiText('تفاصيل الجلسة','Hearing details')});
   body=h('div',{className:'card'},c.sessions.length?c.sessions.map(s=>h('div',{className:'row'},h('span',{textContent:s.note||uiText('جلسة','Hearing')}),pill(fd(s.date),s.date<today?'closed':'open'),whatsappReminder(s.date,'session'))):empty('لا توجد جلسات'),
    h('div',{className:'row'},sd,sn,btn('إضافة جلسة',async()=>{if(!sd.value){toast(uiText('أدخل تاريخ الجلسة','Enter a hearing date'));sd.focus();return}await api('/cases/'+id+'/sessions','POST',{date:sd.value,note:sn.value});again()})))}
  if(TAB==='dead'){
-  const title=h('input',{placeholder:uiText('نوع الموعد (استئناف، طعن، تقديم مستند...)','Deadline type (appeal, challenge, filing...)')}),
-   due=h('input',{type:'date'}),note=h('textarea',{placeholder:uiText('ملاحظة (اختياري)','Note (optional)'),rows:2,style:'width:100%'}),
+  const title=h('input',{placeholder:uiText('نوع الموعد (استئناف، طعن، تقديم مستند...)','Deadline type (appeal, challenge, filing...)'),'aria-label':uiText('نوع الموعد','Deadline type')}),
+   due=h('input',{type:'date','aria-label':uiText('تاريخ استحقاق الموعد','Deadline due date')}),note=h('textarea',{placeholder:uiText('ملاحظة (اختياري)','Note (optional)'),rows:2,style:'width:100%','aria-label':uiText('ملاحظات الموعد','Deadline notes')}),
    trigger=h('input',{type:'date','aria-label':uiText('تاريخ بدء حساب الموعد','Deadline trigger date')}),distance=h('input',{type:'number',min:'0',max:'365',step:'1',value:'0','aria-label':uiText('عدد الأيام الإضافية','Additional days')}),
    ruleSelect=h('select',{'aria-label':uiText('قاعدة حساب الموعد','Deadline calculation rule')}),preview=h('div',{}),estimateButton=btn('حساب موعد مبدئي',async()=>{
     if(!trigger.value||!ruleSelect.value){toast(uiText('حدد القاعدة وتاريخ بداية الحساب الذي راجعه المحامي','Choose a rule and the trigger date confirmed by counsel'));return}
@@ -2152,9 +2152,9 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    if(item.status==='draft')actions.append(btn(uiText('إصدار الفاتورة','Issue invoice'),async()=>{if(!confirm(uiText('إصدار الفاتورة وتثبيت رقمها؟ لا يمكن تعديلها بعد الإصدار.','Issue this invoice and lock its number? It cannot be edited after issue.')))return;try{await api('/invoices/'+item.id+'/issue','POST');await loadInvoices()}catch(_){}}));
    if(item.status==='issued'&&item.payments.length===0)actions.append(btn(uiText('إلغاء الفاتورة','Void invoice'),async()=>{const reason=window.prompt(uiText('أدخل سبب إلغاء الفاتورة','Enter a reason for voiding this invoice'));if(!reason||reason.trim().length<5)return;try{await api('/invoices/'+item.id+'/void','POST',{reason:reason.trim()});await loadInvoices()}catch(e){toast(String(e.message||e))}},'d'));
    if(item.status==='issued'&&item.balance_piasters>0){
-    const amount=h('input',{type:'number',min:'0.01',step:'0.01',placeholder:uiText('مبلغ الدفعة بالجنيه','Payment amount in EGP')});
+    const amount=h('input',{type:'number',min:'0.01',step:'0.01',placeholder:uiText('مبلغ الدفعة بالجنيه','Payment amount in EGP'),'aria-label':uiText('مبلغ الدفعة بالجنيه','Payment amount in EGP')});
     const method=h('select',{'aria-label':uiText('طريقة الدفع','Payment method')},new Option(uiText('نقداً','Cash'),'cash'),new Option(uiText('تحويل بنكي','Bank transfer'),'bank_transfer'),new Option('InstaPay','instapay'),new Option(uiText('أخرى','Other'),'other'));
-    const reference=h('input',{placeholder:uiText('مرجع التحويل (اختياري)','Transfer reference (optional)')});
+    const reference=h('input',{placeholder:uiText('مرجع التحويل (اختياري)','Transfer reference (optional)'),'aria-label':uiText('مرجع التحويل (اختياري)','Transfer reference (optional)')});
     actions.append(amount,method,reference,btn(uiText('تسجيل دفعة','Record payment'),async()=>{
      try{
       const key=window.crypto&&window.crypto.randomUUID?window.crypto.randomUUID():('pay-'+Date.now()+'-'+Math.random().toString(36).slice(2));
