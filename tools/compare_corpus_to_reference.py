@@ -83,6 +83,8 @@ def _clean_pdf_page_matter(page_text):
   if re.fullmatch(r"[٠-٩0-9۰-۹]+",normalized):
    # Standalone folio numbers are page furniture, not article text.
    continue
+  if normalized in {"قانون العمل","التعاريف","التعاريف والاحكام العامة","الاحكام العامة"}:
+   continue
   if re.match(r"^(?:الكتاب|الباب|الفصل|القسم)\s+(?:الاول|الثاني|الثالث|الرابع|الخامس|السادس|السابع|الثامن|التاسع|العاشر|\d+)(?:\s|$)",normalized):
    # Section titles between articles must not extend the preceding article's page range.
    continue
