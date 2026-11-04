@@ -1,1 +1,2 @@
 - Live SMTP acceptance for the first-run test reminder is blocked pending provider credentials and a controlled mailbox; route tests use a fake SMTP sender.
+- Browser core-flow acceptance remains blocked after three CI failures in the same responsive case/deadline/invoice/export test; diagnose the mobile settings/export render path before retrying, while existing acceptance coverage remains intact.
