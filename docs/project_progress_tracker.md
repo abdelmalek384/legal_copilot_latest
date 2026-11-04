@@ -874,3 +874,5 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - **Browser validation-error acceptance:** axe browser test commit `dc92989` now submits the new-case dialog empty, verifies `aria-invalid`, `aria-describedby` and the visible alert, then corrects the title and confirms the error clears; contract test `2aec5bd` and UX audit `7578c9a` record it. Exact-head CI remains pending.
 
 - New-case validation error markup is now a sibling of, not a descendant of, the field label (commit `d17230b`), preserving a clean accessible name while retaining the `aria-describedby` relationship; contract assertion `9cc0468` added.
+
+- **Sign-in validation accessibility:** commits `8dc7004` and `ea4fd0a` add associated assertive error feedback, `aria-invalid` state, focus and correction recovery for empty or failed login submissions; contract test `a6a5066`, browser test `8bb108e`/locale-independent selector `619dc93`, contract guard `0e55536` and UX audit `fc15beb` record it. CI remains unverified.
