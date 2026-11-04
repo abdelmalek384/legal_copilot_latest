@@ -434,5 +434,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("role:'status','aria-live':'polite',textContent:uiText('جارٍ تحميل المقاطع…','Loading text chunks…')", HTML)
 
 
+    def test_browser_acceptance_installs_and_runs_pinned_axe_wcag_gate(self):
+        workflow = (ROOT / ".github" / "workflows" / "browser-e2e.yml").read_text(encoding="utf-8")
+        browser_tests = (ROOT / "tests" / "browser" / "test_acceptance.py").read_text(encoding="utf-8")
+        self.assertIn("axe-core@4.10.3", workflow)
+        self.assertIn("uses: actions/setup-node@v6", workflow)
+        self.assertIn("axe.min.js", browser_tests)
+        self.assertIn("'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'", browser_tests)
+        self.assertIn("test_axe_wcag_accessibility_smoke_arabic_english_and_mobile", browser_tests)
+
+
 if __name__ == "__main__":
     unittest.main()
