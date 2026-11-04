@@ -23,6 +23,19 @@ The login response and GET /session indicate whether the client must enroll or c
 - Set MFA_ENFORCEMENT=admins_required to require MFA for firm administrators and platform administrators/reviewers. Use all_required to require it for every user. optional is intended for development only; production preflight rejects optional mode.
 - Keep MFA_ENCRYPTION_KEY out of source control, logs, issue comments, and backup bundles. Back it up through the secret-management system with separate access controls.
 
+## Per-firm enforcement policy
+
+In separate-database mode, each firm administrator can read and update that firm's policy through `GET /admin/security-policy` and `PUT /admin/security-policy`. The policy supports:
+
+- `require_mfa_for_admins`: require MFA for administrators of the active firm (and privileged platform administrators/reviewers).
+- `require_mfa_for_everyone`: require MFA for every active member of the active firm. Enabling this also records the administrators-required flag.
+
+The firm policy is stored in the control plane and evaluated against the authenticated active-firm context on each request. A user's membership or administrator role in another firm does not silently widen a firm-specific policy. The global `MFA_ENFORCEMENT=admins_required` and `all_required` settings remain additive global controls; global privileged enforcement still applies to an account that administers any firm or has a privileged platform role.
+
+When a policy is enabled, affected users are restricted on their next request to session status, MFA enrollment/confirmation/verification, and logout until they complete the required step. Switching into a firm with a policy is followed by enforcement on the next authenticated request for that firm. Policy changes append before/after state, actor and timestamp to a firm-scoped audit table; the audit record contains no TOTP or recovery secrets.
+
+A firm administrator must understand that enabling an all-member policy can interrupt every member who has not enrolled. Coordinate enrollment before a live-firm rollout, keep the dedicated MFA key available, and rehearse the approved recovery procedure. This policy is not a substitute for independent security review or production recovery testing.
+
 ## Security behavior
 
 - TOTP secrets are encrypted at rest and shown only during enrollment/re-enrollment. Responses containing setup secrets or recovery codes use no-store headers.
