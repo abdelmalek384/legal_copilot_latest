@@ -603,5 +603,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("overlay.remove()", HTML)
 
 
+    def test_new_case_validation_error_is_associated_and_clears_on_input(self):
+        self.assertIn("id:'new-case-title-error',className:'bad',role:'alert',hidden:true", HTML)
+        self.assertIn("inputs.title.setAttribute('aria-describedby',titleError.id)", HTML)
+        self.assertIn("inputs.title.setAttribute('aria-invalid','true')", HTML)
+        self.assertIn("inputs.title.removeAttribute('aria-invalid');titleError.hidden=true", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
