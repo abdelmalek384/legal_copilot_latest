@@ -420,5 +420,17 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("itemDay(x)<weekStartKey||itemDay(x)>weekEndKey", HTML)
 
 
+    def test_document_review_disclosure_exposes_controlled_expanded_state(self):
+        self.assertIn("id:'doc-review-'+id+'-'+d.document_id", HTML)
+        self.assertIn("toggle.setAttribute('aria-controls',reviewPanel.id)", HTML)
+        self.assertIn("toggle.setAttribute('aria-expanded','false')", HTML)
+        self.assertIn("toggle.setAttribute('aria-expanded','true')", HTML)
+        self.assertIn("toggle.setAttribute('aria-expanded','false');reviewPanel.replaceChildren()", HTML)
+
+    def test_document_review_loading_state_is_announced(self):
+        self.assertIn("role:'status','aria-live':'polite'", HTML)
+        self.assertIn("role:'status','aria-live':'polite',textContent:uiText('جارٍ تحميل المقاطع…','Loading text chunks…')", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
