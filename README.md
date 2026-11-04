@@ -2,13 +2,49 @@
 Case folders with Egyptian case metadata, internal notes, legal deadlines separate from court sessions, fee tracking, team management, session tracking, hybrid law search (SQLite FTS5 + Arabic-normalized trigram similarity + exact article lookup),
 and answers that must cite numbered sources. If nothing relevant is found, or the model's citations fail the check, it shows sources only.
 
-Mac quick start: double-click `start_mac.command`; it creates a virtual environment, installs dependencies, initializes separate control-plane, firm, and shared-corpus databases under `./data`, prompts to create the first firm administrator if needed, and starts the app locally. Manual run: follow the initialization and first-owner bootstrap steps under [Setup and security](#setup-and-security), set `COPILOT_CONTROL_DB`, `COPILOT_TENANT_DB_ROOT`, and `COPILOT_CORPUS_DB` to three distinct paths, then run `python -m uvicorn app:app --host 127.0.0.1 --port 8000` and open http://127.0.0.1:8000. The app fails closed unless the separate profile paths are configured. The shared `COPILOT_DB` runtime was retired in PR #972 and is rejected in every environment; configure only the three profile-separated paths. No legacy data import is part of this project.
-Load law: POST a JSON list of {law, article, text, as_of, in_force, source} to /law/import (see tests/fixtures/legal/sample_law.jsonl: FICTIONAL test text only).
+## Quick start (local development)
+
+Use Python **3.12**. The supported runtime has three separate database domains: a control-plane database, one database per firm under a tenant root, and a shared legal-corpus database. Keep all three paths distinct.
+
+**Mac:** run `./start_mac.command` (or double-click it in Finder).  
+**Windows 10/11:** install Python 3.12 with the Python Launcher, then run `start_windows.bat`.
+
+**Manual setup (Mac/Linux):**
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+
+mkdir -p data/tenants
+export COPILOT_CONTROL_DB="$PWD/data/control_plane.sqlite3"
+export COPILOT_TENANT_DB_ROOT="$PWD/data/tenants"
+export COPILOT_CORPUS_DB="$PWD/data/legal_corpus.sqlite3"
+
+python -c "from database_runtime import DatabaseRuntime; DatabaseRuntime.from_env().initialize()"
+python manage.py init-tenancy --firm-name "Example Firm" --owner-name "First Owner" --owner-email owner@example.com
+python -m uvicorn app:app --host 127.0.0.1 --port 8000
+```
+
+Open http://127.0.0.1:8000 on the same machine. The launchers and commands initialize local development databases; they are not production deployment or migration instructions. See [Setup and security](#setup-and-security) before using real client data.
+
+The repository includes case-management workflows, profile-separated storage, Arabic lexical retrieval, citation checks, and fail-closed source-only behavior. These are software capabilities with automated tests; they do not establish the correctness of legal content.
+
+## Known limits
+
+- **No verified Egyptian law is currently available in the product.** The repository contains candidate/source metadata and fictional fixtures, not a lawyer-verified legal corpus. `tests/fixtures/legal/sample_law.jsonl` is fictional test data and must never be treated as law.
+- **Legal correctness is not established.** Retrieval, citation validation, and abstention checks are software safeguards, not proof that a legal proposition is accurate, current, complete, or supported by an official Gazette source.
+- **Deadline calculations use draft rules.** Coverage of court holidays and exceptions is incomplete; independently check the applicable rule, triggering event, and calendar before relying on a calculated date.
+- **Email-dependent features require SMTP configuration and staging.** Account/invitation/recovery email uses `COPILOT_EMAIL_SMTP_*` and `COPILOT_EMAIL_FROM`; reminder delivery has a separate `REMINDER_SMTP_*` configuration. SMTP acceptance does not prove inbox delivery.
+- **Production origin checks require a public HTTPS origin** configured as `COPILOT_PUBLIC_ORIGIN`; it must be the origin only, without a path or query.
+- **MFA encryption requires a dedicated secret.** Generate `MFA_ENCRYPTION_KEY` with `python manage.py gen-mfa-key` and store it in the deployment secret manager. Losing it makes enrolled TOTP secrets unrecoverable.
+- WhatsApp/SMS delivery, embedding-based semantic search, and a complete end-to-end amendment/consolidation workflow are not included.
+
 Model: set LLM_URL (OpenAI-compatible /chat/completions, e.g. vLLM, Ollama, or a hosted provider), LLM_MODEL, and LLM_KEY. The app does not choose or bundle a model. LLM_URL alone is not enough to send prompts: explicitly set LLM_DATA_PROCESSING_APPROVED=1 only after reviewing the endpoint, data-processing terms, retention, and whether matter data may be sent. Case-scoped research, follow-up conversation context, and matter-file passages additionally require `LLM_FIRM_DATA_PROCESSING_APPROVED=1`; otherwise those requests return sources only. These are deployment attestations, not consent or privacy guarantees. See [LLM data-processing policy](docs/llm_data_processing_policy.md).
 
 Container deployment template: see [the hardened Docker/Compose deployment guide](docs/container_deployment.md). It uses the checked-in Python 3.12 hash lock, a non-root read-only container, separate persistent database paths, S3/KMS configuration, and explicit database-acceptance evidence. It is a deployment template, not a completed production deployment; staging, recovery, security, and lawyer acceptance gates remain mandatory.
 
-Not included yet: a complete verified official law/ruling corpus, production-ready reminder operations (a tenant-scoped durable outbox, dry-run-by-default operator scheduler, and read-only external health probe now exist, but SMTP provider staging, external scheduling/alerting, and operator reconciliation remain release gates; see [the scheduler contract](docs/reminder_scheduler_contract.md) and [the monitoring runbook](docs/reminder_outbox_monitoring_runbook.md)), WhatsApp/SMS delivery, embedding-model semantic search, and a complete end-to-end amendment/consolidation workflow.
+Reminder operations remain dry-run by default pending provider staging, external scheduling/alerting, and operator reconciliation; see [the scheduler contract](docs/reminder_scheduler_contract.md) and [the monitoring runbook](docs/reminder_outbox_monitoring_runbook.md).
 
 ## Egyptian legal corpus bootstrap
 
@@ -57,7 +93,7 @@ Install Python **3.12 or newer**, then run `./start_mac.command` from the reposi
 
 On Windows 10/11, install **Python 3.12** with the Python Launcher enabled, then double-click `start_windows.bat` from the repository folder. The launcher creates a local virtual environment, installs the requirements, initializes the separate control-plane/firm/corpus database profiles, and safely prompts for the first firm owner when needed. It binds the development server to `127.0.0.1` only; keep the terminal window open while using the app.
 
-The launcher refuses an inherited `COPILOT_DB` setting because that selects the legacy shared-database compatibility mode. It does not reset or delete existing data. For an existing installation, keep the three profile paths pointed at the same persistent directories used previously. This is a local development launcher, not a production deployment procedure.
+The launchers do not reset or delete existing data. For an existing installation, keep the three profile paths pointed at the same persistent directories used previously. This is a local development launcher, not a production deployment procedure.
 
 
 ### Manual local setup
@@ -78,7 +114,7 @@ python manage.py init-tenancy --firm-name "Example Firm" --owner-name "First Own
 python -m uvicorn app:app --host 127.0.0.1 --port 8000
 ```
 
-Open http://127.0.0.1:8000 on the same machine. The three database paths must remain distinct. Do not set `COPILOT_DB` for a fresh install; it is legacy compatibility mode. Do not expose the development server directly to the internet.
+Open http://127.0.0.1:8000 on the same machine. The three database paths must remain distinct. Do not expose the development server directly to the internet.
 
 ### Production and model-processing gates
 
