@@ -113,3 +113,5 @@ Static CSS inspection found control borders and focus indicators too faint for r
 - **Native navigation keyboard regression:** browser test `53fa11b` verifies the primary workspace buttons activate using both Space and Enter, with the expected page heading; contract test `4bc0283` protects the browser test. This supplements semantic/static assertions and still requires CI execution.
 
 - **Modal browser focus acceptance:** the axe browser test now focuses the final action in the new-case dialog, presses Tab to verify wraparound to the first field, presses Escape, verifies dialog removal, and checks focus returns to the opener. Browser test commit `a3e66cb`; contract guard `48f0182`. Exact-head CI remains pending.
+
+- **Remaining casework field names:** task title, hearing details, deadline type/date/notes, and invoice-payment amount/reference now have explicit bilingual accessible names (commit `784e80f`); contract test `b56695c` guards them. Placeholder-derived fallback names remain in less critical fields and persistent visible-label review is still required.
