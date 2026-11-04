@@ -1,12 +1,22 @@
 # Legal Copilot — Project Progress Tracker
 
-**Last updated:** 2026-11-01 (current whole-product checkpoint; historical snapshots retained; workstream percentages are not additive)
+**Last updated:** 2026-11-04 (latest merged engineering checkpoint; formal weighted scorecard baseline remains 2026-11-01 pending recalculation)
 **Tracking method:** deliverable-level checklist, not an estimate of engineering hours. A task is “complete” only when its change is merged and its acceptance criteria are met. Open PRs are in progress, not complete.
 
 ## Overall status
 
-See [the weighted whole-project completion scorecard](project_completion_scorecard.md): **50.10/100 technical completion** (up 0.02 points from 50.08; rounds to 50%) as of 2026-11-01. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
+See [the weighted whole-project completion scorecard](project_completion_scorecard.md): the last formally recalculated baseline is **50.10/100 technical completion** as of 2026-11-01 (rounds to 50%). Merged work through 2026-11-04 is recorded below but has not yet been reweighted; do not interpret 50.10 as a live recalculation. Final Egyptian-counsel acceptance is **0% / not started** and remains a separate mandatory post-build release gate. Open PRs are not counted as completed work.
 
+
+
+
+## Latest merged engineering checkpoint — 2026-11-04
+
+- **PR #1361 merged:** trusted reverse-proxy client-IP resolution is implemented for rate limits, login lockouts and related throttles. The change validates the direct peer against `COPILOT_TRUSTED_PROXIES`, applies rightmost-untrusted chain handling, falls back safely for malformed chains, and includes regression coverage for spoofing and separate client buckets. Production still requires the operator to configure the actual proxy allowlist and overwrite forwarded headers correctly.
+- **PR #1366 merged:** the production container is pinned to the CI-tested Python 3.12 image, with an upgrade guard against untested major/minor image changes.
+- **2026-11-04 browser acceptance follow-up merged:** synthetic acceptance now covers draft-rule explanations, unverified rule status, saved calculated deadlines and firm ZIP export at 390px and 1440px. The commit reports passing full Tests, browser E2E, dependency audit, CodeQL and Bandit checks. This is automated synthetic acceptance, not manual device or lawyer acceptance.
+- **Documentation consistency fixes merged:** the reminder scheduler contract now distinguishes existing health-check tooling from still-required external scheduling/alert routing; the production checklist's trusted-proxy instruction capitalization was corrected.
+- **No weighted percentage increase is asserted in this checkpoint.** The scorecard rubric has not yet been recalculated for these merges. Live SMTP, real AWS/S3/KMS/IAM acceptance, verified Egyptian legal content and rights, manual device/browser acceptance, witnessed recovery, and independent security/counsel sign-off remain outstanding.
 
 ## Previous whole-product checkpoint — 2026-10-31
 
