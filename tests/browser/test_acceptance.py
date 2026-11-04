@@ -414,7 +414,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         )
 
     def test_axe_wcag_accessibility_smoke_arabic_english_and_mobile(self) -> None:
-        """Run axe-core WCAG 2.1 A/AA checks on representative authenticated UI states."""
+        """Run axe-core WCAG 2.1 A/AA and 2.2 AA checks on authenticated UI states."""
         axe_path = ROOT / ".ci" / "axe" / "node_modules" / "axe-core" / "axe.min.js"
         self.assertTrue(axe_path.is_file(), f"Pinned axe-core bundle is missing: {axe_path}")
         self.login(self.state["reviewer_email"])
@@ -452,6 +452,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             self.page.set_viewport_size({"width": width, "height": height})
             audit(f"Arabic dashboard {width}px")
 
+        self.page.set_viewport_size({"width": 390, "height": 844})
         self.page.get_by_role("button", name="القضايا").click()
         self.page.get_by_role("button", name="+ قضية جديدة").click()
         dialog = self.page.get_by_role("dialog", name="قضية جديدة")
