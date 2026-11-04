@@ -421,6 +421,10 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.add_script_tag(path=str(axe_path))
 
         def audit(label: str) -> None:
+            has_no_horizontal_overflow = self.page.evaluate(
+                "() => document.documentElement.scrollWidth <= window.innerWidth + 1"
+            )
+            self.assertTrue(has_no_horizontal_overflow, f"Horizontal page overflow at {label}")
             result = self.page.evaluate("""async () => {
                 const report = await axe.run(document, {
                     runOnly: {
@@ -448,7 +452,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 + json.dumps(result["violations"], ensure_ascii=False, indent=2),
             )
 
-        for width, height in ((1440, 900), (768, 900), (390, 844), (320, 720)):
+        for width, height in ((1440, 900), (768, 900), (640, 900), (390, 844), (320, 720)):
             self.page.set_viewport_size({"width": width, "height": height})
             audit(f"Arabic dashboard {width}px")
 
