@@ -9,6 +9,11 @@ HTML = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
 
 class FrontendUXContractTests(unittest.TestCase):
 
+    def test_matter_csv_import_uses_strict_utf8_decoder(self):
+        self.assertIn("new TextDecoder('utf-8',{fatal:true}).decode(await file.arrayBuffer())", HTML)
+        self.assertIn("The file must use valid UTF-8 encoding", HTML)
+        self.assertNotIn("csv:await file.text()", HTML)
+
     def test_firm_mfa_policy_controls_are_visible_and_accessibly_named(self):
         self.assertIn("Firm MFA policy", HTML)
         self.assertIn("Require MFA for firm administrators", HTML)
