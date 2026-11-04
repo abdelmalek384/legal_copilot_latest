@@ -96,6 +96,23 @@ _ARABIC_NEGATED_OBLIGATION = re.compile(
 _ARABIC_POSITIVE_OBLIGATION = re.compile(r"(?:يجب|يلتزم|يتعين)")
 
 
+def _has_negated_obligation_mismatch(claim, evidence):
+    """Detect direct positive/negative obligation reversals before normalization."""
+    pairs = (
+        (_ENGLISH_NEGATED_OBLIGATION, _ENGLISH_POSITIVE_OBLIGATION),
+        (_ARABIC_NEGATED_OBLIGATION, _ARABIC_POSITIVE_OBLIGATION),
+    )
+    for negative, positive in pairs:
+        claim_negative = negative.search(claim)
+        evidence_negative = negative.search(evidence)
+        claim_positive = positive.search(negative.sub(" ", claim))
+        evidence_positive = positive.search(negative.sub(" ", evidence))
+        if ((claim_positive and evidence_negative)
+                or (claim_negative and evidence_positive)):
+            return True
+    return False
+
+
 def _has_modal_mismatch(claim, evidence):
     """Compare explicit, conflicting modality classes only within one language."""
     conflicts = {
@@ -183,7 +200,8 @@ def has_unsupported_claims(answer, hits, tokens_fn, norm_fn, mask_code=None):
         normalized_evidence = norm_fn(evidence)
         # Preserve negation and modality before normalization: the normalizer may remove
         # function words that determine whether an obligation is positive or negated.
-        if _has_modal_mismatch(claim, evidence):
+        if (_has_negated_obligation_mismatch(claim, evidence)
+                or _has_modal_mismatch(claim, evidence)):
             return True
 
         claim_says_no_expiry = bool(
