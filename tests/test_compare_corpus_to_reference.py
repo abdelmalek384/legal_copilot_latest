@@ -61,6 +61,31 @@ class T(unittest.TestCase):
   self.assertEqual((by_article["1"]["reference_page_start"],by_article["1"]["reference_page_end"]),(1,2))
   self.assertEqual((by_article["2"]["reference_page_start"],by_article["2"]["reference_page_end"]),(2,2))
 
+ def test_pdf_reference_accepts_wrapped_headings_rtl_article_numbers_and_folios(self):
+  pdf=self.d/"wrapped.pdf";pdf.write_bytes(b"%PDF synthetic fixture")
+  rows=[
+   {"article":"1","text":"يعمل بالنظام."},
+   {"article":"10","text":"مدة العمل."},
+  ]
+  self.c.write_text("\n".join(json.dumps(x,ensure_ascii=False) for x in rows),encoding="utf-8")
+  class Page:
+   def __init__(self,text):self.text=text
+   def extract_text(self):return self.text
+  class Reader:
+   def __init__(self,*args,**kwargs):
+    self.is_encrypted=False
+    self.pages=[
+     Page("الجريدة الرسمية العدد 18\\n) المادة الأولى (\\nيعمل بالنظام.\\n1"),
+     Page("الجريدة الرسمية العدد 18\\nمادة )٠١( :\\nمدة العمل.\\n2"),
+    ]
+  with mock.patch("tools.compare_corpus_to_reference.PdfReader",Reader):
+   report=build_report(self.c,pdf)
+  self.assertEqual(report["reference"]["articles_detected"],2)
+  self.assertTrue(report["all_identical"])
+  by_article={x["article"]:x for x in report["articles"]}
+  self.assertEqual((by_article["1"]["reference_page_start"],by_article["1"]["reference_page_end"]),(1,1))
+  self.assertEqual((by_article["10"]["reference_page_start"],by_article["10"]["reference_page_end"]),(2,2))
+
  def test_pdf_reference_warns_when_a_page_has_no_extractable_text(self):
   pdf=self.d/"scanned.pdf";pdf.write_bytes(b"%PDF synthetic fixture")
   class Page:
