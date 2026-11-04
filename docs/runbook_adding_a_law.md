@@ -31,8 +31,8 @@ python tools/compare_corpus_to_reference.py \
   --reference tests/fixtures/law_ingestion/fictional_reference.txt \
   --out-dir "$FIXTURE_OUT/comparison"
 
-PYTHONPATH=. python tests/test_law_ingestion_fixture_pipeline.py
-PYTHONPATH=. python tests/test_retrieval_evaluation.py
+COPILOT_ENV=development PYTHONPATH=. python tests/test_law_ingestion_fixture_pipeline.py
+COPILOT_ENV=development PYTHONPATH=. python tests/test_retrieval_evaluation.py
 ```
 
 The audit produces `quantity_checklist.csv` (the fixture includes **five years** and **500 pounds**). The comparison should report two identical fixture articles. The fixture test reads the two commencement dates from the text itself (**2025-09-01** and **2025-10-01**), not from capture metadata. The retrieval-evaluation test exercises the gated `source_matched` tier and confirms it is never promoted to `verified`. These are synthetic workflow tests only; they do not source-match, verify, or authorize any real Egyptian law.
