@@ -773,8 +773,8 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
 /* Final interaction and data-density pass: consistent controls across every workspace. */
 :root {
   --ui-focus-ring: #2457c5;
-  --ui-control-border: #cbd5e1;
-  --ui-control-hover: #9aabc2;
+  --ui-control-border: #8292a8;
+  --ui-control-hover: #7c8da3;
 }
 :where(input,select,textarea) {
   width: 100%;
@@ -790,7 +790,7 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
 :where(input,select,textarea):hover:not(:disabled) { border-color: var(--ui-control-hover); }
 :where(input,select,textarea):focus-visible,
 :where(button,a,[role="button"],[tabindex]):focus-visible {
-  outline: 3px solid color-mix(in srgb,var(--ui-focus-ring) 32%,transparent);
+  outline: 3px solid var(--ui-focus-ring);
   outline-offset: 2px;
 }
 :where(button) {
