@@ -625,5 +625,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn('title_field.fill("Synthetic accessibility case")', browser_tests)
 
 
+    def test_login_validation_errors_are_associated_and_announced(self):
+        self.assertIn("id:'login-form-error',className:'bad',role:'alert',hidden:true", HTML)
+        self.assertIn("e.setAttribute('aria-describedby',loginError.id);p.setAttribute('aria-describedby',loginError.id)", HTML)
+        self.assertIn("e.setAttribute('aria-invalid','true')", HTML)
+        self.assertIn("p.setAttribute('aria-invalid','true')", HTML)
+        self.assertIn("loginError.hidden=false", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
