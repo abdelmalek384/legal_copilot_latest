@@ -491,5 +491,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Choose a case document in PDF or Word format", HTML)
 
 
+    def test_ai_brief_and_deadline_async_states_are_announced(self):
+        self.assertIn("Preparing a brief from case records...", HTML)
+        self.assertIn("role:'status','aria-live':'polite','aria-atomic':'true',textContent:uiText('جارٍ إعداد الملخص", HTML)
+        self.assertIn("role:'alert','aria-live':'assertive'", HTML)
+        self.assertIn("role:'status','aria-live':'polite','aria-atomic':'true',textContent:uiText('جارٍ الحساب...','Calculating...')", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
