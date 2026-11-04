@@ -412,6 +412,55 @@ class BrowserAcceptanceTests(unittest.TestCase):
             ])"""
         )
 
+    def test_axe_wcag_accessibility_smoke_arabic_english_and_mobile(self) -> None:
+        """Run axe-core WCAG 2.1 A/AA checks on representative authenticated UI states."""
+        axe_path = ROOT / ".ci" / "axe" / "node_modules" / "axe-core" / "axe.min.js"
+        self.assertTrue(axe_path.is_file(), f"Pinned axe-core bundle is missing: {axe_path}")
+        self.login(self.state["reviewer_email"])
+        self.page.add_script_tag(path=str(axe_path))
+
+        def audit(label: str) -> None:
+            result = self.page.evaluate("""async () => {
+                const report = await axe.run(document, {
+                    runOnly: {
+                        type: 'tag',
+                        values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']
+                    }
+                });
+                return {
+                    violations: report.violations.map((item) => ({
+                        id: item.id,
+                        impact: item.impact,
+                        description: item.help,
+                        nodes: item.nodes.slice(0, 8).map((node) => ({
+                            target: node.target,
+                            summary: node.failureSummary
+                        }))
+                    })),
+                    incomplete: report.incomplete.map((item) => item.id)
+                };
+            }""")
+            self.assertEqual(
+                result["violations"],
+                [],
+                f"axe-core WCAG 2.1 A/AA violations at {label}: "
+                + json.dumps(result["violations"], ensure_ascii=False, indent=2),
+            )
+
+        for width, height in ((1440, 900), (390, 844)):
+            self.page.set_viewport_size({"width": width, "height": height})
+            audit(f"Arabic dashboard {width}px")
+
+        self.page.get_by_role("button", name="تغطية المجموعة القانونية").click()
+        self.page.get_by_role("heading", name="تغطية المجموعة القانونية").wait_for(timeout=10000)
+        audit(f"Arabic corpus coverage {self.page.viewport_size['width']}px")
+
+        self.page.locator("[data-lang-switch='1']").click()
+        self.page.get_by_text("Corpus Coverage & Provenance").wait_for(timeout=10000)
+        self.page.get_by_role("heading", name="Candidate instrument inventory").wait_for(timeout=10000)
+        self.page.wait_for_function("() => document.documentElement.dir === 'ltr'", timeout=8000)
+        audit(f"English corpus coverage {self.page.viewport_size['width']}px")
+
     def test_primary_case_management_lifecycle_workflow(self) -> None:
         self.login(self.state["owner_a_email"])
         headers = self.csrf_headers()
