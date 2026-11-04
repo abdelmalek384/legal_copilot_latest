@@ -590,5 +590,12 @@ class FrontendUXContractTests(unittest.TestCase):
             self.assertIn(label, HTML)
 
 
+    def test_select_date_and_file_controls_do_not_use_unnamed_constructors(self):
+        self.assertNotIn("h('select',{})", HTML)
+        self.assertNotIn("h('input',{type:'date'})", HTML)
+        self.assertIn("type:'file',accept:'.csv,text/csv','aria-label'", HTML)
+        self.assertIn("type:'file',accept:'.pdf,.docx','aria-label'", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
