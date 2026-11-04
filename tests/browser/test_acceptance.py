@@ -491,6 +491,18 @@ class BrowserAcceptanceTests(unittest.TestCase):
             self.page.get_by_role("heading", name=heading_name).wait_for(timeout=10000)
             audit(f"Arabic {heading_name} workspace")
 
+    def test_primary_navigation_buttons_support_native_keyboard_activation(self) -> None:
+        self.login(self.state["reviewer_email"])
+        tasks = self.page.get_by_role("button", name="المهام")
+        tasks.focus()
+        self.page.keyboard.press("Space")
+        self.page.get_by_role("heading", name="المهام").wait_for(timeout=10000)
+
+        cases = self.page.get_by_role("button", name="القضايا")
+        cases.focus()
+        self.page.keyboard.press("Enter")
+        self.page.get_by_role("heading", name="القضايا").wait_for(timeout=10000)
+
     def test_primary_case_management_lifecycle_workflow(self) -> None:
         self.login(self.state["owner_a_email"])
         headers = self.csrf_headers()
