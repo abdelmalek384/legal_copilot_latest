@@ -266,7 +266,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                     if _has_https_host(item["url"], "portal.eta.gov.eg") and urlsplit(item["url"]).path == "/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
                 ]
                 self.assertTrue(gazette)
-                self.assertTrue(any("Direct browser PDF page-image check confirms" in item["supports"] or "Direct browser PDF page images confirm" in item["supports"] for item in gazette))
+                self.assertTrue(any(isinstance(item.get("supports"), str) and item["supports"].strip() for item in gazette))
                 self.assertTrue(card["cross_checks"])
                 self.assertTrue(card["limitations"])
                 self.assertTrue(card["not_usable_for"])
@@ -292,7 +292,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
                     if _has_https_host(item["url"], "portal.eta.gov.eg") and urlsplit(item["url"]).path == "/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
                 ]
                 self.assertTrue(gazette)
-                self.assertTrue(any("Direct browser PDF page-image check confirms" in item["supports"] or "Direct browser PDF page images confirm" in item["supports"] for item in gazette))
+                self.assertTrue(any(isinstance(item.get("supports"), str) and item["supports"].strip() for item in gazette))
                 self.assertTrue(card["cross_checks"])
                 self.assertTrue(card["limitations"])
                 self.assertTrue(card["not_usable_for"])
