@@ -117,3 +117,5 @@ Static CSS inspection found control borders and focus indicators too faint for r
 - **Remaining casework field names:** task title, hearing details, deadline type/date/notes, and invoice-payment amount/reference now have explicit bilingual accessible names (commit `784e80f`); contract test `b56695c` guards them. Placeholder-derived fallback names remain in less critical fields and persistent visible-label review is still required.
 
 - **Fee form date control:** the case-fee due-date input now has an explicit bilingual accessible name (commit `cce088e`); contract test `dcd5a85` guards it. Static scan now finds no empty-props select constructors; one fee date field identified by the scan has been named.
+
+- **New-case required-field feedback:** empty case-title submission now sets `aria-invalid`, associates an inline alert via `aria-describedby`, focuses the field, and clears the error state as the user types (commit `51c49cc`); contract test `630d454` guards the behavior. Other dynamic forms still require a field-by-field error-association audit.
