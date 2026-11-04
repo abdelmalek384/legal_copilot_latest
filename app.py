@@ -2197,7 +2197,7 @@ def client_ip(request: Request) -> str:
 
 
 # Per-process fixed-window limits for expensive or abuse-prone endpoints.
-# Deliberately use the direct peer address; do not trust arbitrary X-Forwarded-For.
+# Resolve a client address only through the explicit trusted-proxy allowlist.
 _RATE_LIMITS = {
     "/setup/test-reminder": (3, 3600),
     "/firm/profile": (20, 60),
