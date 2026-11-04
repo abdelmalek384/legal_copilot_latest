@@ -35,6 +35,14 @@ jobs:
       - name: Install application and pinned browser-test dependencies
         run: python -m pip install -r requirements.txt -r requirements-browser.txt
 
+      - name: Set up Node for pinned axe-core accessibility checks
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+
+      - name: Install pinned axe-core browser audit engine
+        run: npm install --prefix .ci/axe --no-save --ignore-scripts --no-audit --no-fund axe-core@4.10.3
+
       - name: Install pinned Chromium runtime
         run: python -m playwright install --with-deps chromium
 
