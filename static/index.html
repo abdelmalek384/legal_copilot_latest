@@ -1058,7 +1058,7 @@ function mfaSettingsCard(){
 async function billingPage(){
  PAGE='billing';
  const data=await api('/billing');
- const planSelect=h('select',{},...data.plans.map(p=>new Option((LANG==='ar'?p.label_ar:p.code)+' · '+p.seat_limit+' '+uiText('مقاعد','seats'),p.code)));
+ const planSelect=h('select',{'aria-label':uiText('الخطة المطلوبة','Selected subscription plan')},...data.plans.map(p=>new Option((LANG==='ar'?p.label_ar:p.code)+' · '+p.seat_limit+' '+uiText('مقاعد','seats'),p.code)));
  if(data.subscription)planSelect.value=data.subscription.plan_code;
  const sub=data.subscription;
  const usage=data.usage?.month_to_date||{};
