@@ -57,6 +57,11 @@ class TrustedProxyClientIpTests(unittest.TestCase):
             request = make_request("10.0.0.8", "203.0.113.44")
             self.assertEqual(client_ip(request), "203.0.113.44")
 
+    def test_rightmost_untrusted_hop_is_selected_through_proxy_chain(self):
+        with patch.dict(os.environ, {"COPILOT_TRUSTED_PROXIES": "10.0.0.0/8"}):
+            request = make_request("10.0.0.8", "203.0.113.44, 10.0.0.7")
+            self.assertEqual(client_ip(request), "203.0.113.44")
+
     def test_clients_behind_same_trusted_proxy_get_distinct_rate_limit_buckets(self):
         with patch.dict(os.environ, {"COPILOT_TRUSTED_PROXIES": "10.0.0.0/8"}):
             connection = FakeConnection()
