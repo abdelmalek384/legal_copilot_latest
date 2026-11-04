@@ -616,6 +616,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("'aria-labelledby':'client-profile-title'", HTML)
         self.assertIn("id:'client-profile-title'", HTML)
 
+    def test_browser_modal_checks_required_title_error_and_recovery(self):
+        browser_tests = (ROOT / "tests" / "browser" / "test_acceptance.py").read_text(encoding="utf-8")
+        self.assertIn('title_field.get_attribute("aria-invalid")', browser_tests)
+        self.assertIn('title_field.get_attribute("aria-describedby")', browser_tests)
+        self.assertIn('dialog.get_by_role("alert").is_visible()', browser_tests)
+        self.assertIn('title_field.fill("Synthetic accessibility case")', browser_tests)
+
 
 if __name__ == "__main__":
     unittest.main()
