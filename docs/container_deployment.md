@@ -10,7 +10,19 @@
 - Keep the three SQLite profiles on one persistent host and run **one application replica**. Do not scale this Compose service horizontally or share local SQLite files across hosts.
 - Mount application data separately from the image. The database acceptance manifest is mounted read-only. No database is created, migrated, restored, or reset by the image entrypoint.
 - Original matter binaries must use the approved S3/KMS storage backend. The local filesystem adapter is not approved for production.
-- Uvicorn proxy-header processing is disabled. Do not enable forwarded-header trust without a separate trusted-proxy allowlist and security review.
+- Uvicorn proxy-header processing is disabled. Set `COPILOT_TRUSTED_PROXIES` to the reverse proxy's container IP (or its narrowly scoped CIDR) in `.env.production`; leave it empty for direct connections. Only a request whose direct peer matches this allowlist can supply the client address through `X-Forwarded-For`.
+
+For a single Nginx edge proxy attached to `legal-copilot-proxy`, configure the application location as follows so the header is overwritten with the actual TCP peer address rather than accepting a caller-supplied chain:
+
+```nginx
+location / {
+    proxy_pass http://legal-copilot:8000;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $remote_addr;
+}
+```
+
+If the proxy has a static container address, put that exact address in `COPILOT_TRUSTED_PROXIES`; if it uses a controlled subnet, use the smallest appropriate CIDR. The application applies the rightmost-untrusted rule, ignores forwarded headers from untrusted peers, and falls back to the direct peer when the forwarded chain is malformed. Do not enable Uvicorn's `--proxy-headers`.
 
 ## Prepare a host
 
