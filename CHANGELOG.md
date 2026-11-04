@@ -1,13 +1,22 @@
 # Changelog — Legal Copilot
 
+- PR #1393: Add missing one-line changelog summaries for merged PRs.
+- PR #1389: Execute the ingestion capture, article-audit, and corpus-comparison CLIs on the fictional fixture.
+- PR #1388: Prevent demo-firm removal while original files remain.
 - PR #1384: Normalize the changelog to one concise line per merged pull request.
+- PR #1383: Document AI-quality measurement availability and explain why performance rates remain unavailable.
 - PR #1382: Add one-line changelog entries for the merged root-cleanup and README PRs.
+- PR #1379: Scope browser export rate-limit fixture resets to the synthetic client.
 - PR #1378: Archive historical project and database trackers and add a concise current status.
 - PR #1377: Improve skip-link focus, dialog keyboard behavior, and responsive accessibility coverage.
 - PR #1376: Rewrite the README quick start for the three-database runtime and document known limits.
 - PR #1375: Remove misplaced root artifacts and relocate the fictional legal fixture.
 - PR #1371: Extend browser acceptance for draft deadline workflow and firm data export.
+- PR #1370: Fix Gazette PDF article-heading segmentation.
+- PR #1369: Update the boto3 dependency within the supported major-version range.
+- PR #1367: Update python-multipart to the patched release.
 - PR #1366: Pin the production container to the CI-tested Python 3.12 image.
+- PR #1364: Exercise source-matched tier classification in the existing fictional ingestion fixture.
 - PR #1313: Add Chromium owner-workflow acceptance for login, case, deadline, and invoice flows.
 - PR #1311: Add measured phone-width accessibility checks and correct minimum touch targets.
 - PR #1309: Complete the Arabic UI review inventory for firm data export; retain native-speaker review status.
