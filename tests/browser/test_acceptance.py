@@ -1276,12 +1276,16 @@ class BrowserAcceptanceTests(unittest.TestCase):
                     const ids = (el.getAttribute('aria-labelledby') || '').split(/\\s+/).filter(Boolean);
                     if (ids.some((id) => (document.getElementById(id)?.innerText || '').trim())) return true;
                     if (el.labels && [...el.labels].some((label) => label.innerText.trim())) return true;
-                    if ((el.getAttribute('title') || '').trim()) return true;
-                    if ((el.getAttribute('placeholder') || '').trim()) return true;
                     if (['BUTTON', 'A'].includes(el.tagName) && (el.innerText || '').trim()) return true;
                     if (el.tagName === 'INPUT' && ['submit', 'button', 'reset'].includes(el.type) && el.value.trim()) return true;
                     return false;
                 };
+                // Regression guard: placeholder-only text must never count as a persistent label.
+                const placeholderOnly = document.createElement('input');
+                placeholderOnly.placeholder = 'Only placeholder; intentionally no label';
+                if (named(placeholderOnly)) {
+                    return [{tag: 'INPUT', reason: 'placeholder-only input was incorrectly accepted as named'}];
+                }
                 return [...root.querySelectorAll(
                     'button, input:not([type="hidden"]), select, textarea, a[href], [role="button"], [role="tab"]'
                 )].filter(visible).filter((el) => !named(el)).map((el) => ({
