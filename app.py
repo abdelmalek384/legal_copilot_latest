@@ -3211,6 +3211,24 @@ def _pilot_metrics_rows(control, weeks: int = 12, now: int | None = None):
             (first_monday.isoformat(),),
         ).fetchall()
     }
+    # Derive WAU from the existing firm-scoped workflow ledger. Only distinct
+    # counts are returned; user identifiers never enter the aggregate response.
+    activity_start = int(datetime.combine(
+        first_monday, datetime.min.time(), tzinfo=timezone.utc
+    ).timestamp())
+    active_users = {
+        (int(row["firm_id"]), str(row["week_start"])): int(row["active_users"])
+        for row in control.execute(
+            "SELECT e.firm_id, "
+            "date(e.occurred_at,'unixepoch','-' || "
+            "((CAST(strftime('%w',e.occurred_at,'unixepoch') AS INTEGER)+6)%7) || ' days') "
+            "AS week_start, COUNT(DISTINCT e.user_id) AS active_users "
+            "FROM firm_usage_events e JOIN firms f ON f.id=e.firm_id "
+            "WHERE f.is_demo=0 AND e.occurred_at>=? AND e.occurred_at<=? "
+            "GROUP BY e.firm_id, week_start",
+            (activity_start, timestamp),
+        ).fetchall()
+    }
     result = []
     firms = control.execute(
         "SELECT id,name FROM firms WHERE is_demo=0 ORDER BY id"
@@ -3226,6 +3244,7 @@ def _pilot_metrics_rows(control, weeks: int = 12, now: int | None = None):
                     metric: counts.get((int(firm["id"]), week_start, metric), 0)
                     for metric in _PILOT_METRIC_TYPES
                 },
+                "weekly_active_users": active_users.get((int(firm["id"]), week_start), 0),
             })
     return result
 
@@ -5164,7 +5183,7 @@ def platform_pilot_metrics(weeks: int = Query(12, ge=1, le=52), u: dict = Depend
         "metrics": rows,
         "onboarding": onboarding,
         "successful_sign_ins_definition": "Count of successful sign-in events for the default firm; not distinct people.",
-        "weekly_active_users_definition": "Not currently measured; successful sign-ins are event counts, not unique users.",
+        "weekly_active_users_definition": (\n            "Distinct users per firm with at least one successful metered workflow in the UTC week: "\n            "research query, document upload, OCR processing, or draft generation. "\n            "Successful sign-ins alone do not qualify. "\n            "Case/task/calendar-only activity is not currently included in this qualifying workflow measure."\n        ),
     }
 
 
@@ -5175,12 +5194,12 @@ def export_platform_pilot_metrics(weeks: int = Query(12, ge=1, le=52), u: dict =
     output = io.StringIO(newline="")
     writer = csv.writer(output)
     writer.writerow([
-        "firm_id", "firm_name", "week_start", "successful_sign_ins", "cases_created",
+        "firm_id", "firm_name", "week_start", "weekly_active_users", "successful_sign_ins", "cases_created",
         "deadlines_created", "answers_requested", "invoices_issued", "corrections_submitted",
     ])
     for row in rows:
         writer.writerow([_pilot_csv_cell(row[key]) for key in (
-            "firm_id", "firm_name", "week_start", "successful_sign_ins", "cases_created",
+            "firm_id", "firm_name", "week_start", "weekly_active_users", "successful_sign_ins", "cases_created",
             "deadlines_created", "answers_requested", "invoices_issued", "corrections_submitted",
         )])
     return Response(
