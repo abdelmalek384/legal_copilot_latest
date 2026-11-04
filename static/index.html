@@ -866,7 +866,11 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
 }
 @media(forced-colors:active) {
   :where(button,input,select,textarea,a):focus-visible { outline: 2px solid Highlight; }
+  #side nav button.on { border: 1px solid Highlight; }
   :where(.card,.modal,.research-message,.research-discovery-result) { border: 1px solid CanvasText; }
+}
+@media(max-width:800px) {
+  #side nav button { width:auto; min-width:max-content; flex:0 0 auto; white-space:nowrap; }
 }
 @media(prefers-reduced-motion:reduce) {
   :where(*),:where(*::before),:where(*::after) {
