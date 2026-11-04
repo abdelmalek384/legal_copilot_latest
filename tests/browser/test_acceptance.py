@@ -1231,5 +1231,35 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertEqual(self.browser_errors, [], self.browser_errors)
 
 
+
+    def test_forced_colors_and_reduced_motion_preserve_keyboard_focus(self) -> None:
+        self.page.emulate_media(forced_colors="active", reduced_motion="reduce")
+        self.login(self.state["owner_a_email"])
+        self.page.evaluate("() => document.activeElement && document.activeElement.blur()")
+        self.page.keyboard.press("Tab")
+        skip_link = self.page.locator("a.skip-link")
+        self.assertTrue(skip_link.evaluate("(el) => document.activeElement === el"))
+
+        motion = self.page.evaluate("""() => {
+            const style = getComputedStyle(document.querySelector('a.skip-link'));
+            return {
+                transitionDuration: style.transitionDuration,
+                animationDuration: style.animationDuration
+            };
+        }""")
+        self.assertIn("0s", motion["transitionDuration"], motion)
+        self.assertIn("0s", motion["animationDuration"], motion)
+
+        self.page.keyboard.press("Enter")
+        main = self.page.locator("main#main")
+        self.assertTrue(main.evaluate("(el) => document.activeElement === el"))
+        self.assertNotEqual(
+            main.evaluate("(el) => getComputedStyle(el).outlineStyle"),
+            "none",
+            "Keyboard focus must remain visible in forced-colors mode",
+        )
+        self.assertEqual(self.browser_errors, [], self.browser_errors)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
