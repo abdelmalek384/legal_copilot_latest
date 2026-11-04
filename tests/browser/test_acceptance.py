@@ -1261,5 +1261,54 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertEqual(self.browser_errors, [], self.browser_errors)
 
 
+
+    def test_visible_controls_have_accessible_names_in_dashboard_research_and_dialog(self) -> None:
+        self.page.set_viewport_size({"width": 320, "height": 740})
+        self.login(self.state["owner_a_email"])
+
+        def assert_named_controls(scope: str) -> None:
+            missing = self.page.evaluate("""(scope) => {
+                const root = document.querySelector(scope);
+                if (!root) return [{scope, reason: 'scope missing'}];
+                const visible = (el) => {
+                    const style = getComputedStyle(el);
+                    return !!el.getClientRects().length &&
+                        style.display !== 'none' && style.visibility !== 'hidden' &&
+                        el.getAttribute('aria-hidden') !== 'true';
+                };
+                const named = (el) => {
+                    if ((el.getAttribute('aria-label') || '').trim()) return true;
+                    const ids = (el.getAttribute('aria-labelledby') || '').split(/\\s+/).filter(Boolean);
+                    if (ids.some((id) => (document.getElementById(id)?.innerText || '').trim())) return true;
+                    if (el.labels && [...el.labels].some((label) => label.innerText.trim())) return true;
+                    if ((el.getAttribute('title') || '').trim()) return true;
+                    if ((el.getAttribute('placeholder') || '').trim()) return true;
+                    if (['BUTTON', 'A'].includes(el.tagName) && (el.innerText || '').trim()) return true;
+                    if (el.tagName === 'INPUT' && ['submit', 'button', 'reset'].includes(el.type) && el.value.trim()) return true;
+                    return false;
+                };
+                return [...root.querySelectorAll(
+                    'button, input:not([type="hidden"]), select, textarea, a[href], [role="button"], [role="tab"]'
+                )].filter(visible).filter((el) => !named(el)).map((el) => ({
+                    tag: el.tagName,
+                    type: el.type || '',
+                    role: el.getAttribute('role') || '',
+                    html: el.outerHTML.slice(0, 220)
+                }));
+            }""", scope)
+            self.assertEqual(missing, [], f"Visible controls without accessible names in {scope}: {missing}")
+
+        assert_named_controls("#shell")
+        self.page.get_by_role("button", name="البحث القانوني").click()
+        self.page.locator(".research-controls select").first.wait_for(state="visible")
+        assert_named_controls("#main")
+        self.page.get_by_role("button", name="نظرة عامة").click()
+        opener = self.page.get_by_role("button", name="+ قضية جديدة")
+        opener.click()
+        self.page.get_by_role("dialog", name="قضية جديدة").wait_for(state="visible")
+        assert_named_controls(".modal-backdrop")
+        self.assertEqual(self.browser_errors, [], self.browser_errors)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
