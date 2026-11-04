@@ -5,6 +5,7 @@ The source and article text used here are fictional and do not represent Egyptia
 import hashlib
 import json
 import re
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -191,6 +192,70 @@ class LawIngestionFixturePipelineTests(unittest.TestCase):
             )
             self.assertEqual(tier["trust_tier"], "source_matched")
             self.assertEqual(tier["reason_codes"], ["not_lawyer_reviewed"])
+
+
+    def test_manual_capture_audit_and_comparison_cli_dry_run(self):
+        reference = FIXTURES / "fictional_reference.txt"
+        candidate = FIXTURES / "fictional_candidate.jsonl"
+
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            capture_out = root / "capture"
+            capture = subprocess.run(
+                [
+                    sys.executable, str(ROOT / "tools" / "record_manual_capture.py"),
+                    "--file", str(reference),
+                    "--document-id", "SYNTHETIC-LAW-ONLY",
+                    "--source-id", "EG-AMIRI-PRESS",
+                    "--source-url", "https://www.alamiria.com/fixture-only",
+                    "--captured-by", "Fixture test operator",
+                    "--capture-method", "manual_transcription",
+                    "--retrieved-on", date.today().isoformat(),
+                    "--gazette-issue", "fictional fixture only",
+                    "--notes", "SYNTHETIC FIXTURE ONLY — not Egyptian law or legal evidence",
+                    "--out", str(capture_out),
+                    "--dry-run",
+                ],
+                cwd=ROOT, capture_output=True, text=True, check=False,
+            )
+            self.assertEqual(capture.returncode, 0, capture.stderr)
+            capture_result = json.loads(capture.stdout)
+            self.assertTrue(capture_result["dry_run"])
+            self.assertFalse(capture_result["metadata"]["legal_authenticity_verified"])
+            self.assertFalse(capture_result["metadata"]["commercial_reuse_permission_verified"])
+            self.assertFalse(capture_out.exists())
+
+            audit_out = root / "audit"
+            audit = subprocess.run(
+                [
+                    sys.executable, str(ROOT / "tools" / "audit_article_rows.py"),
+                    "--input", str(candidate), "--out-dir", str(audit_out),
+                ],
+                cwd=ROOT, capture_output=True, text=True, check=False,
+            )
+            self.assertEqual(audit.returncode, 0, audit.stderr)
+            checklist = (audit_out / "quantity_checklist.csv").read_text(encoding="utf-8-sig")
+            self.assertIn("خمس سنوات", checklist)
+            self.assertIn("500 جنيه", checklist)
+
+            comparison_out = root / "comparison"
+            comparison = subprocess.run(
+                [
+                    sys.executable, str(ROOT / "tools" / "compare_corpus_to_reference.py"),
+                    "--candidate", str(candidate),
+                    "--reference", str(reference),
+                    "--out-dir", str(comparison_out),
+                ],
+                cwd=ROOT, capture_output=True, text=True, check=False,
+            )
+            self.assertEqual(comparison.returncode, 0, comparison.stderr)
+            report = json.loads(
+                (comparison_out / "comparison_report.json").read_text(encoding="utf-8")
+            )
+            self.assertTrue(report["evidence_only"])
+            self.assertTrue(report["all_identical"])
+            self.assertEqual(report["candidate"]["rows_compared"], 2)
+            self.assertEqual(report["reference"]["articles_detected"], 2)
 
     def test_commencement_dates_are_read_from_fixture_text_not_capture_metadata(self):
         text = (FIXTURES / "fictional_reference.txt").read_text(encoding="utf-8")
