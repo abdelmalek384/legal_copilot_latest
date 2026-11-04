@@ -1071,7 +1071,8 @@ class BrowserAcceptanceTests(unittest.TestCase):
         metrics_link.click()
         self.page.get_by_role("heading", name="مؤشرات استخدام المكاتب").wait_for()
         self.assertTrue(self.page.get_by_role("button", name="تصدير CSV").is_visible())
-        self.assertTrue(self.page.get_by_text("تسجيلات الدخول الناجحة هي عدد أحداث الدخول وليست عدد أشخاص فريدين", exact=False).is_visible())
+        self.assertTrue(self.page.get_by_text("تسجيلات الدخول الناجحة تظل أحداثاً وليست أشخاصاً فريدين", exact=False).is_visible())
+        self.assertTrue(self.page.get_by_text("المستخدمون النشطون أسبوعياً", exact=False).first.is_visible())
         self.assertTrue(self.page.get_by_text("مدة إعداد المكاتب", exact=False).is_visible())
 
     def test_expired_session_returns_to_login(self) -> None:
