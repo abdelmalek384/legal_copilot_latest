@@ -858,3 +858,5 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - **Manual accessibility acceptance protocol:** added `docs/accessibility_manual_acceptance.md` (commit `4cf9dde`) with bilingual RTL/LTR, keyboard/focus, screen-reader, form semantics, dynamic announcements, contrast, zoom/reflow, forced-colors, reduced-motion and critical workflow checklists plus evidence/exit criteria. Linked it from the UX audit in `7e7ad38`. This prepares the blocked manual review; it does not mark it completed.
 
 - **Additional form naming:** commit `784e80f` gives explicit bilingual accessible names to task title, hearing details, deadline type/date/notes and invoice-payment amount/reference; contract test `b56695c` and UX audit `605ca67` record the changes. Remaining placeholder-only fields need persistent-label review.
+
+- **Fee due-date control:** commit `cce088e` adds an explicit accessible name to the fee due-date field; contract test `dcd5a85` and UX audit `df1978c` record it. Static scan found no empty-props select constructors and identified this final unlabelled date constructor in the inspected frontend source.
