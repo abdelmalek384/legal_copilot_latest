@@ -16,9 +16,10 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from tools.audit_article_rows import main as audit_article_rows_main
-from tools.compare_corpus_to_reference import build_report
-from tools.record_manual_capture import record_capture
+from tools.compare_corpus_to_reference import build_report, main as compare_corpus_main
+from tools.record_manual_capture import record_capture, main as record_manual_capture_main
 from tools.validate_manual_capture_record import validate_capture_record
+from tools.answer_trust_tier import TIER_UNREVIEWED, classify_answer_trust_tier
 
 
 FIXTURES = ROOT / "tests" / "fixtures" / "law_ingestion"
@@ -152,6 +153,73 @@ class LawIngestionFixturePipelineTests(unittest.TestCase):
                 _fixture_commencement_dates(text),
                 ["2025-09-01", "2025-10-01"],
             )
+
+
+    def test_cli_dry_run_recorder_then_audit_compare_and_source_tier(self):
+        reference = FIXTURES / "fictional_reference.txt"
+        candidate = FIXTURES / "fictional_candidate.jsonl"
+
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            capture_out = root / "capture"
+            import contextlib
+            import io
+            capture_stdout = io.StringIO()
+            with contextlib.redirect_stdout(capture_stdout):
+                code = record_manual_capture_main([
+                    "--file", str(reference),
+                    "--document-id", "EG-INGESTION-FIXTURE",
+                    "--source-id", "EG-AMIRI-PRESS",
+                    "--source-url", "https://www.alamiria.com/fixture-only-not-a-source",
+                    "--captured-by", "Local fixture dry-run",
+                    "--capture-method", "manual_transcription",
+                    "--retrieved-on", "2026-10-20",
+                    "--notes", "Synthetic fixture only; placeholder URL; do not persist.",
+                    "--out", str(capture_out),
+                    "--dry-run",
+                ])
+            self.assertEqual(code, 0)
+            capture = json.loads(capture_stdout.getvalue())
+            self.assertTrue(capture["dry_run"])
+            self.assertFalse(capture["metadata"]["legal_authenticity_verified"])
+            self.assertFalse(capture["metadata"]["current_legal_status_verified"])
+            self.assertFalse(capture["metadata"]["commercial_reuse_permission_verified"])
+            self.assertIsNone(capture["metadata"]["effective_date"])
+            self.assertFalse(capture_out.exists())
+
+            audit_dir = root / "audit"
+            self.assertEqual(
+                audit_article_rows_main(["--input", str(candidate), "--out-dir", str(audit_dir)]),
+                0,
+            )
+            checklist = (audit_dir / "quantity_checklist.csv").read_text(encoding="utf-8-sig")
+            self.assertIn("ثلاثين يوما", checklist)
+
+            comparison_dir = root / "comparison"
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(compare_corpus_main([
+                    "--candidate", str(candidate),
+                    "--reference", str(reference),
+                    "--out-dir", str(comparison_dir),
+                ]), 0)
+            report = json.loads(
+                (comparison_dir / "comparison_report.json").read_text(encoding="utf-8")
+            )
+            self.assertTrue(report["evidence_only"])
+            self.assertTrue(report["all_identical"])
+            self.assertEqual(report["summary"], {"identical_after_normalization": 2})
+
+            dates = _fixture_commencement_dates(reference.read_text(encoding="utf-8"))
+            self.assertEqual(dates, ["2025-09-01", "2025-10-01"])
+
+            tier = classify_answer_trust_tier(
+                [{"source_id": "FIXTURE", "source_status": "source_matched_unreviewed"}],
+                claims_supported=True,
+                citations_complete=True,
+                contradictory_sources=False,
+            )
+            self.assertEqual(tier["trust_tier"], TIER_UNREVIEWED)
+            self.assertEqual(tier["reason_codes"], ["source_matched_policy_not_approved"])
 
     def test_commencement_dates_are_read_from_fixture_text_not_capture_metadata(self):
         text = (FIXTURES / "fictional_reference.txt").read_text(encoding="utf-8")
