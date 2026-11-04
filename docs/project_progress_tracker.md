@@ -53,6 +53,8 @@ See [the weighted whole-project completion scorecard](project_completion_scoreca
 - **Expanded axe coverage:** browser test `ca4ef89` now scans the new-case dialog at phone width in addition to bilingual dashboard/corpus states. The JSON report import was corrected in `7e787fe`. Harness docs were updated in `bb0daca`; UX audit and issue #95 reflect partial form-label progress.
 - **Expanded axe scan `7e8af8e`:** authenticated Arabic settings, MFA and password-preference forms are now included in the automated smoke coverage; harness documentation updated in `8dad420`, and issue #95 updated. This scan remains pending execution evidence.
 - **Async completion announcement commit `37e89be`:** extracted-text review now announces the loaded chunk count (or empty result) through a persistent polite status node after the loading state; contract test `cc24886` covers both loading and completion copy. UX audit records this as partial async-status coverage.
+- **Accessible filter labels commit `e54a083`:** task-status, calendar-type/date, case-status, feedback-category and invited-user-role selects now have explicit bilingual accessible names. Regression contract added in `8cf2458`.
+- **Expanded multi-screen axe coverage:** browser test commits `0955bf5` and `bc4c44e` add authenticated Arabic scans of task, calendar, case, feedback and research workspaces, in addition to settings and the case-creation dialog. UX audit commit `bfe59ac` and issue #95 reflect the expanded scope. Exact-head CI remains unverified; do not count the new scans as passing yet.
 
 ## Previous whole-product checkpoint — 2026-10-31
 
