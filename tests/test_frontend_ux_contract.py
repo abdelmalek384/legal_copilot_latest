@@ -15,6 +15,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Require MFA for everyone in the firm", HTML)
         self.assertIn("/admin/security-policy", HTML)
         self.assertIn("'aria-label':uiText('إلزام مسؤولي المكتب بتفعيل المصادقة'", HTML)
+        self.assertIn("const session=await api('/session')", HTML)
+        self.assertIn("if(ME.mfa_enrollment_required){mfaEnrollmentPage();return}", HTML)
+        self.assertIn("if(ME.mfa_verification_required){mfaChallengePage();return}", HTML)
 
     def test_mobile_language_switch_meets_44px_touch_target(self):
         self.assertIn("#side .lang-switch button { width: auto; min-width: 78px; min-height: 44px;", HTML)
