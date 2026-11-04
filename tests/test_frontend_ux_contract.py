@@ -466,5 +466,24 @@ class FrontendUXContractTests(unittest.TestCase):
             self.assertIn(label, HTML)
 
 
+    def test_dynamic_casework_billing_and_legal_review_selects_are_named(self):
+        for label in (
+            "Selected subscription plan",
+            "Payment method",
+            "Legal version",
+            "Review type",
+            "Review outcome",
+            "Task assignee",
+            "Task due date",
+            "Hearing date",
+            "Deadline calculation rule",
+            "Deadline trigger date",
+            "Additional days",
+            "Team member",
+            "Case member role",
+        ):
+            self.assertIn(label, HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
