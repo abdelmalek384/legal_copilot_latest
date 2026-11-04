@@ -11,7 +11,8 @@ This checklist is a release gate, not a certification. Completing it does not re
 - [ ] Bind Uvicorn to loopback or a private interface only; do not expose port 8000 directly to the public internet.
 - [ ] Terminate TLS at a maintained reverse proxy and redirect HTTP to HTTPS.
 - [ ] Set `COPILOT_ENV=production` and configure `COPILOT_ALLOWED_HOSTS` as an explicit production host allowlist; verify runtime middleware rejects unlisted Host headers. Do not rely on reverse-proxy routing alone; strict deployment preflight must block a missing or invalid allowlist.
-- [ ] Configure the proxy to overwrite, not append blindly to, forwarded headers. The application currently uses the direct peer address for rate limiting and does not trust X-Forwarded-For; do not enable proxy-header trust without an explicit trusted-proxy allowlist and deployment tests.
+- [ ] Set `COPILOT_TRUSTED_PROXIES` to your proxy address (or its narrowly scoped CIDR); leave it empty when requests connect directly. The application trusts `X-Forwarded-For` only when the direct peer matches this allowlist, and uses the rightmost-untrusted address for rate limits and login lockouts. Invalid proxy entries are rejected; malformed forwarded chains fall back to the direct peer.
+- [ ] Configure the TLS proxy to replace, not blindly append to, the client header. For a single Nginx edge proxy, use `proxy_set_header X-Forwarded-For $remote_addr;` in the application `location` block. Do not enable Uvicorn's `--proxy-headers`; the application resolves the client address itself.
 - [ ] Set a request-body size limit and upload timeout at the proxy as well as the application's upload validation.
 - [ ] Restrict inbound traffic to the proxy and restrict outbound traffic to required services (including the configured LLM endpoint).
 
