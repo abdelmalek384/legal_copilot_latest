@@ -505,5 +505,10 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("background:var(--ui-blue-soft);color:var(--ui-blue)", HTML)
 
 
+    def test_success_pill_text_uses_contrast_safe_green_token(self):
+        self.assertIn("--ok:#166534;--ok-l:#E7F6EC", HTML)
+        self.assertNotIn("--ok:#15803D;--ok-l:#E7F6EC", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
