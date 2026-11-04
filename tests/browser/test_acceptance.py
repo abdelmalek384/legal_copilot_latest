@@ -848,6 +848,37 @@ class BrowserAcceptanceTests(unittest.TestCase):
                     f"browser_errors={self.browser_errors}; network_errors={self.network_errors}"
                 ) from exc
 
+            # Exercise the actual rule-driven calculator, including its explanation
+            # and explicit unverified-draft status, at both phone and desktop widths.
+            catalog = self.page.request.get(self.base_url + "/deadline-rules", timeout=8000)
+            self.assertEqual(catalog.status, 200, catalog.text())
+            draft_rule = next(rule for rule in catalog.json()["rules"] if not rule["verified"])
+            rule_select = self.page.locator(".card select").first
+            rule_select.select_option(draft_rule["id"])
+            trigger_date = self.page.locator('.card input[type="date"]').first
+            trigger_date.fill("2026-10-26")
+            self.page.get_by_role("button", name="حساب موعد مبدئي").click()
+            self.page.get_by_text("مسودة — غير معتمدة من محامٍ", exact=False).wait_for(timeout=10000)
+            self.page.get_by_text("أساس الحساب والافتراضات — للمراجعة فقط", exact=False).wait_for(timeout=10000)
+            self.page.get_by_text("خطوات الحساب", exact=True).wait_for(timeout=10000)
+            self.page.wait_for_function(
+                "() => document.documentElement.scrollWidth <= window.innerWidth",
+                timeout=8000,
+            )
+            for selector in (
+                '.card input[type="date"]',
+                ".card select",
+            ):
+                bounds = self.page.locator(selector).first.bounding_box()
+                self.assertIsNotNone(bounds, f"{selector} is not laid out at {width}px")
+                self.assertGreaterEqual(bounds["x"], 0, f"{selector} clipped at {width}px: {bounds}")
+                self.assertLessEqual(
+                    bounds["x"] + bounds["width"], width,
+                    f"{selector} clipped at {width}px: {bounds}",
+                )
+            self.page.get_by_role("button", name="حفظ الموعد المحسوب في القضية").click()
+            self.page.get_by_text("تم حفظ الموعد مع خطوات الحساب والتحذيرات", exact=False).wait_for(timeout=10000)
+
             self.assertEqual(self.browser_errors, [], f"browser errors before invoice at {width}px: {self.browser_errors}")
             self.page.locator(".tabs a").filter(has_text="الفواتير").click()
             self.page.get_by_placeholder("وصف الفاتورة أو نطاق العمل").fill(
@@ -868,6 +899,36 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 "() => document.documentElement.scrollWidth <= window.innerWidth",
                 timeout=8000,
             )
+
+            # Firm export is an end-user workflow, not merely an API contract.
+            self.page.get_by_role("button", name="الإعدادات والأمان").click()
+            export_button = self.page.get_by_role("button", name="تنزيل بيانات المكتب ZIP")
+            export_button.wait_for(state="visible", timeout=10000)
+            export_bounds = export_button.bounding_box()
+            self.assertIsNotNone(export_bounds, f"firm export action missing at {width}px")
+            self.assertGreaterEqual(export_bounds["x"], 0, f"firm export clipped at {width}px: {export_bounds}")
+            self.assertLessEqual(
+                export_bounds["x"] + export_bounds["width"], width,
+                f"firm export clipped at {width}px: {export_bounds}",
+            )
+            self.page.wait_for_function(
+                "() => document.documentElement.scrollWidth <= window.innerWidth",
+                timeout=8000,
+            )
+            # Earlier browser cases exercise the same per-IP export budget.
+            # Reset only this synthetic disposable database bucket so this
+            # acceptance assertion measures the UI workflow, not test ordering.
+            control = self.runtime.control_connection()
+            control.execute(
+                "DELETE FROM api_rate_limit_windows WHERE bucket=?",
+                ("/firm/data-export.zip",),
+            )
+            control.commit()
+            with self.page.expect_download(timeout=15000) as export_download:
+                export_button.click()
+            exported = export_download.value
+            self.assertTrue(exported.suggested_filename.endswith(".zip"), exported.suggested_filename)
+            self.assertIsNone(exported.failure(), exported.failure())
             self.assertEqual(self.browser_errors, [], f"browser errors at {width}px: {self.browser_errors}")
 
     def test_platform_pilot_metrics_navigation_is_operator_only(self) -> None:
