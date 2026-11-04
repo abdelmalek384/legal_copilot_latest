@@ -102,3 +102,8 @@ These are static-code findings and implementation recommendations, not evidence 
 
 ## Next UI task — manual acceptance and lawyer usability
 The next UI deliverable is not another source-inspector implementation. Complete the [manual Research Inspector QA runbook](research_inspector_manual_qa.md) against an exact build using synthetic records, then record Arabic RTL, English LTR, keyboard-only, screen-reader, responsive and clipboard/export results. Follow with a 3–5 Egyptian-lawyer usability study and log completion rate, task time, errors and trust feedback. Do not mark visual/accessibility acceptance complete from automated browser tests alone.
+
+
+### Form-control boundaries and focus visibility — 2026-11-04
+
+Static CSS inspection found control borders and focus indicators too faint for reliable identification. The effective control border `#CBD5E1` provided only about 1.48:1 against white, hover border `#9AABC2` about 2.34:1, and a 32%-opacity focus ring was unnecessarily translucent. Commits `fa94537` and `bea62eb` strengthen default/hover borders to `#8292A8` (about 3.17:1) and `#7C8DA3` (about 3.39:1), and use a solid `#2457C5` focus ring. Contract test `7959431` guards these styles. This is a targeted CSS audit; check every control on varied backgrounds in the browser before claiming 1.4.11 conformance.
