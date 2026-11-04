@@ -1,7 +1,8 @@
 # Changelog — Legal Copilot
 
-- PR #1390: Add concise changelog entries for all intervening merged PRs.
+- PR #1393: Add missing one-line changelog summaries for merged PRs.
 - PR #1389: Execute the ingestion capture, article-audit, and corpus-comparison CLIs on the fictional fixture.
+- PR #1388: Prevent demo-firm removal while original files remain.
 - PR #1384: Normalize the changelog to one concise line per merged pull request.
 - PR #1383: Document AI-quality measurement availability and explain why performance rates remain unavailable.
 - PR #1382: Add one-line changelog entries for the merged root-cleanup and README PRs.
