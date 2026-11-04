@@ -1,4 +1,5 @@
 # Changelog — Legal Copilot
+- PR #1388: Add a CI-executed fictional CLI dry run for manual capture, article audit, reference comparison, and the numeric checklist.
 
 - PR #1384: Normalize the changelog to one concise line per merged pull request.
 - PR #1382: Add one-line changelog entries for the merged root-cleanup and README PRs.
