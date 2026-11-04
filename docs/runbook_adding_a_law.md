@@ -2,6 +2,42 @@
 
 This workflow is evidence-preserving and deliberately separates acquisition, text comparison, legal review, currentness, and reuse permission. **A successful script run never makes a law authoritative.** Do not set a candidate to verified or in-force until the required primary-source and lawyer-review gates have been met.
 
+## Fixture dry run (fictional test data only)
+
+The following commands exercise the existing tools without using or promoting Egyptian legal text. The fixture is deliberately synthetic; the Amiri Press URL below is a host-matching placeholder and is **never fetched**. Do not use this URL, document ID, or fixture output as provenance for a real instrument.
+
+```bash
+FIXTURE_OUT="$(mktemp -d)"
+
+python tools/record_manual_capture.py \
+  --file tests/fixtures/law_ingestion/fictional_reference.txt \
+  --document-id SYNTHETIC-LAW-ONLY \
+  --source-id EG-AMIRI-PRESS \
+  --source-url "https://www.alamiria.com/fixture-only" \
+  --captured-by "Fixture test operator" \
+  --capture-method manual_transcription \
+  --retrieved-on "$(date +%F)" \
+  --gazette-issue "fictional fixture only" \
+  --notes "SYNTHETIC FIXTURE ONLY — not Egyptian law or legal evidence" \
+  --out "$FIXTURE_OUT/capture" \
+  --dry-run
+
+python tools/audit_article_rows.py \
+  --input tests/fixtures/law_ingestion/fictional_candidate.jsonl \
+  --out-dir "$FIXTURE_OUT/article-audit"
+
+python tools/compare_corpus_to_reference.py \
+  --candidate tests/fixtures/law_ingestion/fictional_candidate.jsonl \
+  --reference tests/fixtures/law_ingestion/fictional_reference.txt \
+  --out-dir "$FIXTURE_OUT/comparison"
+
+PYTHONPATH=. python tests/test_law_ingestion_fixture_pipeline.py
+PYTHONPATH=. python tests/test_retrieval_evaluation.py
+```
+
+The audit produces `quantity_checklist.csv` (the fixture includes **five years** and **500 pounds**). The comparison should report two identical fixture articles. The fixture test reads the two commencement dates from the text itself (**2025-09-01** and **2025-10-01**), not from capture metadata. The retrieval-evaluation test exercises the gated `source_matched` tier and confirms it is never promoted to `verified`. These are synthetic workflow tests only; they do not source-match, verify, or authorize any real Egyptian law.
+
+
 ## 1. Identify the legal instrument
 
 1. Create or locate its entry in `docs/legal_document_candidates.json`. Record the exact official title, instrument type, number/year, jurisdiction, issuing authority, and candidate source.
