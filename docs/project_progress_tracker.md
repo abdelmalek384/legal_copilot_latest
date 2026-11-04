@@ -836,3 +836,5 @@ This checkpoint supersedes the earlier 47%/42% estimates recorded above. The who
 - Native navigation follow-up: mobile and forced-colors CSS still targeted anchors after the switch to buttons. Commit `24dbd01` adds horizontal-scroll sizing and a visible forced-colors active border; contract test `921f034` and UX audit `c93208a` record the correction.
 
 - Contrast audit of the effective later CSS cascade found muted text at ~4.44:1 (`#64748B` on `#F5F7FB`) and UI-muted text at ~4.25:1 (`#68778D` on `#F5F7FB`). Commit `a6a74ac` darkens these to `#5F6B7C` and `#596579` and corrects the later success green to `#166534`; contract test `4914066` and UX audit `21a600f` record the changes. These are selected token pairs, not a complete component-by-component contrast audit.
+
+- **Control-boundary/focus contrast:** commits `fa94537` and `bea62eb` increase effective form-control borders to ~3.17:1, hover borders to ~3.39:1, and replace a translucent focus outline with a solid `#2457C5` ring. Contract test `7959431` and UX audit `0e119f7` record the changes. Browser verification across light/dark/forced-color contexts remains pending.
