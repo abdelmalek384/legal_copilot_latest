@@ -85,37 +85,26 @@ If any item is missing, keep the instrument non-authoritative and make the assis
 
 ## 8. Disposable fictional-fixture smoke test
 
-Run this before processing a user-supplied instrument. It exercises manual capture, article auditing, numeric checklist generation, text comparison, commencement-date reading, and the source-matched-unreviewed classifier without touching an application database. The fixture is fictional and must never be indexed or treated as Egyptian law.
+Run this before processing a user-supplied instrument. It exercises the manual-capture CLI in dry-run mode, article audit, quantity checklist, corpus/reference comparison, commencement-date extraction, and the source-matched-unreviewed classifier without touching an application database. The fixture is fictional and must never be indexed or treated as Egyptian law. The Amiri Press URL below is a host-matching placeholder; it is never fetched.
 
 From the repository root:
 
 ```bash
 FIXTURE_OUT="$(mktemp -d "${TMPDIR:-/tmp}/legal-copilot-ingestion.XXXXXX")"
-python tools/record_manual_capture.py \
-  --file tests/fixtures/law_ingestion/fictional_reference.txt \
-  --document-id EG-LABOUR-14-2025 \
-  --source-url "https://www.alamiria.com/law/14" \
-  --captured-by "Fixture operator" \
-  --capture-method manual_transcription \
-  --retrieved-on "$(date +%F)" \
-  --publication-date 2025-05-03 \
-  --effective-date 2025-09-01 \
-  --gazette-issue "FICTIONAL-TEST-ISSUE" \
-  --notes "Fictional fixture only; Article 13 separately states 2025-10-01." \
-  --out "$FIXTURE_OUT/capture" --dry-run
 
 python tools/record_manual_capture.py \
   --file tests/fixtures/law_ingestion/fictional_reference.txt \
-  --document-id EG-LABOUR-14-2025 \
-  --source-url "https://www.alamiria.com/law/14" \
+  --document-id SYNTHETIC-LAW-ONLY \
+  --source-id EG-AMIRI-PRESS \
+  --source-url "https://www.alamiria.com/fixture-only" \
   --captured-by "Fixture operator" \
   --capture-method manual_transcription \
   --retrieved-on "$(date +%F)" \
   --publication-date 2025-05-03 \
   --effective-date 2025-09-01 \
-  --gazette-issue "FICTIONAL-TEST-ISSUE" \
-  --notes "Fictional fixture only; Article 13 separately states 2025-10-01." \
-  --out "$FIXTURE_OUT/capture"
+  --gazette-issue "fictional fixture only" \
+  --notes "SYNTHETIC FIXTURE ONLY — not Egyptian law or legal evidence" \
+  --out "$FIXTURE_OUT/capture" --dry-run
 
 python tools/audit_article_rows.py \
   --input tests/fixtures/law_ingestion/fictional_candidate.jsonl \
@@ -129,7 +118,7 @@ python tools/compare_corpus_to_reference.py \
 PYTHONPATH=. python tests/test_law_ingestion_fixture_pipeline.py
 ```
 
-The fixture intentionally contains article labels 1 and 13, so the audit reports gaps 2–12; these are expected fixture gaps, not a production-law finding. The numeric checklist records the test period and amount. Read the publication date (2025-05-03), general effective date (2025-09-01), and separate specialized-courts date (2025-10-01) from the fixture text; do not infer an effective date from publication date. The test exercises the `source_matched` classifier with synthetic-only evidence and expects the explicit `not_lawyer_reviewed` reason. It does not approve real-source rights, enable the production feature, or change any legal record.
+The audit intentionally sees article labels 1 and 13, so gaps 2–12 are expected fixture gaps, not a production-law finding. Its `quantity_checklist.csv` must contain the test period (**five years**) and amount (**500 جنيه**). The fixture test reads the publication date (2025-05-03), general effective date (2025-09-01), and separate specialized-courts date (2025-10-01) from the text, not only from capture metadata. It also exercises the gated `source_matched` tier with synthetic-only evidence and expects the explicit `not_lawyer_reviewed` reason. This does not approve real-source rights, enable the production feature, or change any legal record.
 
 ## 9. Change log and rollback
 
