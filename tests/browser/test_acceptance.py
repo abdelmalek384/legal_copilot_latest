@@ -469,6 +469,12 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.wait_for_function("() => document.documentElement.dir === 'ltr'", timeout=8000)
         audit(f"English corpus coverage {self.page.viewport_size['width']}px")
 
+        self.page.locator("[data-lang-switch='1']").click()
+        self.page.wait_for_function("() => document.documentElement.dir === 'rtl'", timeout=8000)
+        self.page.get_by_role("button", name="الإعدادات والأمان").click()
+        self.page.get_by_role("heading", name="الإعدادات").wait_for(timeout=10000)
+        audit("Arabic settings and account forms")
+
     def test_primary_case_management_lifecycle_workflow(self) -> None:
         self.login(self.state["owner_a_email"])
         headers = self.csrf_headers()
