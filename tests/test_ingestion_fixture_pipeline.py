@@ -46,7 +46,7 @@ class FixtureIngestionPipelineTests(unittest.TestCase):
             ]
             with contextlib.redirect_stdout(stdout):
                 self.assertEqual(record_capture_main(args), 0)
-            captured = json.loads(stdout.getvalue())
+            captured, _ = json.JSONDecoder().raw_decode(stdout.getvalue())
             metadata = json.loads(
                 (capture_out / "metadata" / "EG-TEST-FICTIONAL-001.json").read_text(encoding="utf-8")
             )
@@ -100,7 +100,7 @@ class FixtureIngestionPipelineTests(unittest.TestCase):
                     "article_inventory_complete": len(rows) == comparison["candidate"]["rows_compared"],
                     "differences_resolved_against_primary": comparison["all_identical"],
                     "publication_and_effective_dates_verified": (
-                        "2025-05-03" in extracted_text and "2025-09-01" in extracted_text
+                        "2025-05-03" in extracted_text and "2025-09-01" in extracted_text and "2025-10-01" in extracted_text
                     ),
                     "reuse_rights_allowed": True,
                 },
