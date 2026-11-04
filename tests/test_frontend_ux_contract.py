@@ -647,5 +647,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn('email.fill("synthetic@example.test")', browser_tests)
 
 
+    def test_login_validation_alert_hidden_attribute_is_not_overridden_by_inline_display(self):
+        self.assertIn("role:'alert',hidden:true", HTML)
+        self.assertNotIn("role:'alert',hidden:true,style:'display:block'", HTML)
+        self.assertIn("loginError.hidden=true", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
