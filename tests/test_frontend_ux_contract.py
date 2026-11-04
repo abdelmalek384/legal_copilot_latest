@@ -499,6 +499,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Preparing a brief from case records...", HTML)
         self.assertIn("role:'status','aria-live':'polite','aria-atomic':'true',textContent:uiText('جارٍ إعداد الملخص", HTML)
         self.assertIn("role:'alert','aria-live':'assertive'", HTML)
+        self.assertIn("Brief generation completed", HTML)
+        self.assertIn("A preliminary deadline has been calculated", HTML)
+        self.assertIn("catch(e){preview.replaceChildren(h('p',{className:'bad',role:'alert'", HTML)
         self.assertIn("role:'status','aria-live':'polite','aria-atomic':'true',textContent:uiText('جارٍ الحساب...','Calculating...')", HTML)
 
 
