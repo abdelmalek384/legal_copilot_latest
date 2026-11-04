@@ -51,6 +51,7 @@ See [the weighted whole-project completion scorecard](project_completion_scoreca
 - **Form-label association commit `f85ebb7`:** the shared DOM factory now connects adjacent visible `<label>` elements to sibling inputs/selects/textareas using generated IDs and `for` attributes; placeholder-derived names remain a fallback for text inputs. Contract coverage added in `daf7d2d`. This is partial form accessibility work; `aria-describedby` validation errors and unlabelled controls still need audit.
 - **UX audit commit `1c7815d`:** records that adjacent form-label association is now partially addressed while required/invalid state, inline error descriptions and error-summary focus remain open. Repository cross-check confirms the axe test, JSON import, dialog scan, pinned CI install and regression-contract assertions are present in the current files; this is source consistency verification, not a test run.
 - **Expanded axe coverage:** browser test `ca4ef89` now scans the new-case dialog at phone width in addition to bilingual dashboard/corpus states. The JSON report import was corrected in `7e787fe`. Harness docs were updated in `bb0daca`; UX audit and issue #95 reflect partial form-label progress.
+- **Expanded axe scan `7e8af8e`:** authenticated Arabic settings, MFA and password-preference forms are now included in the automated smoke coverage; harness documentation updated in `8dad420`, and issue #95 updated. This scan remains pending execution evidence.
 
 ## Previous whole-product checkpoint — 2026-10-31
 
