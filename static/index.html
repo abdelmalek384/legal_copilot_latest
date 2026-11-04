@@ -2001,7 +2001,7 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    run.disabled=true;result.replaceChildren(h('p',{className:'mut',role:'status','aria-live':'polite','aria-atomic':'true',textContent:uiText('جارٍ إعداد الملخص من سجلات القضية...','Preparing a brief from case records...')}));
    try{
     const data=await api('/cases/'+id+'/brief','POST',{firm_authorized:firmConsent.checked,client_authorized:clientConsent.checked});
-    const nodes=[h('p',{className:'mut',textContent:data.message||''})];
+    const nodes=[h('p',{className:'mut',role:'status','aria-live':'polite','aria-atomic':'true',textContent:data.message||uiText('اكتمل إعداد الملخص','Brief generation completed')})];
     if(data.answer)nodes.push(h('div',{className:'research-content',style:'white-space:pre-wrap'},data.answer));
     if(data.sources&&data.sources.length)nodes.push(h('div',{className:'card'},h('b',{textContent:uiText('السجلات المستخدمة','Records used')}),...data.sources.map(src=>h('div',{className:'row'},h('span',{textContent:'['+src.citation_index+'] '+src.reference}),h('span',{className:'mut',textContent:src.record_type})))));
     result.replaceChildren(...nodes);
@@ -2047,8 +2047,8 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
       catch(e){toast(String(e.message||e))}
       finally{saveCalculated.disabled=false}
      },'primary');
-     preview.replaceChildren(h('div',{className:'card'},!result.verified_rule?pill(uiText('مسودة — غير معتمدة من محامٍ','Draft — not verified by a lawyer'),'soon'):pill(uiText('تمت مراجعة القاعدة','Rule reviewed'),'done'),h('b',{textContent:uiText('التاريخ الحسابي المقترح: ','Calculated suggested date: ')+fd(result.final_due)}),h('p',{className:'mut',textContent:uiText('نهاية المدة قبل الامتدادات: ','Raw end before extensions: ')+result.raw_end}),h('p',{className:'mut',textContent:result.disclaimer}),warnings,basis,apply,saveCalculated));
-    }catch(e){preview.replaceChildren(h('p',{className:'bad',textContent:String(e.message||e)}))}
+     preview.replaceChildren(h('p',{className:'visually-hidden',role:'status','aria-live':'polite','aria-atomic':'true',textContent:uiText('تم حساب موعد مبدئي. راجع التحذيرات والافتراضات قبل الاستخدام.','A preliminary deadline has been calculated. Review warnings and assumptions before use.')}),h('div',{className:'card'},!result.verified_rule?pill(uiText('مسودة — غير معتمدة من محامٍ','Draft — not verified by a lawyer'),'soon'):pill(uiText('تمت مراجعة القاعدة','Rule reviewed'),'done'),h('b',{textContent:uiText('التاريخ الحسابي المقترح: ','Calculated suggested date: ')+fd(result.final_due)}),h('p',{className:'mut',textContent:uiText('نهاية المدة قبل الامتدادات: ','Raw end before extensions: ')+result.raw_end}),h('p',{className:'mut',textContent:result.disclaimer}),warnings,basis,apply,saveCalculated));
+    }catch(e){preview.replaceChildren(h('p',{className:'bad',role:'alert','aria-live':'assertive',textContent:String(e.message||e)}))}
     finally{estimateButton.disabled=false}
    });
   try{
