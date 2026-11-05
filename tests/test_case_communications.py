@@ -27,8 +27,12 @@ class CaseCommunicationRouteTests(unittest.TestCase):
         self.firm_b, _ = self.runtime.provision_firm("Communications Firm B")
         self.password_a = "Communications-password-A-2026!"
         self.password_b = "Communications-password-B-2026!"
-        self.runtime.create_initial_firm_owner(self.firm_a,"Owner A","comm-a@example.test",app.hash_pw(self.password_a))
-        self.runtime.create_initial_firm_owner(self.firm_b,"Owner B","comm-b@example.test",app.hash_pw(self.password_b))
+        self.owner_a_id = self.runtime.create_initial_firm_owner(
+            self.firm_a, "Owner A", "comm-a@example.test", app.hash_pw(self.password_a)
+        )
+        self.runtime.create_initial_firm_owner(
+            self.firm_b, "Owner B", "comm-b@example.test", app.hash_pw(self.password_b)
+        )
         self.client = TestClient(app.app)
         self._login("comm-a@example.test",self.password_a)
         created = self._mutate("post","/cases",json={"title":"Synthetic communications matter","client":"Synthetic client"})
@@ -67,6 +71,49 @@ class CaseCommunicationRouteTests(unittest.TestCase):
         self._login("comm-b@example.test",self.password_b)
         denied=self.client.get(f"/cases/{self.case_id}/communications")
         self.assertEqual(denied.status_code,404)
+
+    def test_same_firm_nonmember_cannot_read_or_write_case_communications(self):
+        password = "Communications-nonmember-password-2026!"
+        user_id = self.runtime.create_global_identity(
+            "Same Firm Nonmember", "comm-nonmember@example.test", app.hash_pw(password)
+        )
+        self.runtime.create_firm_membership(
+            user_id, self.firm_a, "lawyer", created_by_user_id=self.owner_a_id
+        )
+        nonmember = TestClient(app.app)
+        try:
+            login = nonmember.post(
+                "/login", json={"email": "comm-nonmember@example.test", "password": password}
+            )
+            self.assertEqual(login.status_code, 200, login.text)
+            headers = {"X-CSRF-Token": nonmember.cookies.get("lc_csrf", "")}
+            before = self.runtime.firm_connection(
+                self.runtime.resolve_context(self.owner_a_id, self.firm_a)
+            ).execute(
+                "SELECT COUNT(*) FROM case_communications WHERE case_id=?",
+                (self.case_id,),
+            ).fetchone()[0]
+            read = nonmember.get(f"/cases/{self.case_id}/communications")
+            write = nonmember.post(
+                f"/cases/{self.case_id}/communications",
+                headers=headers,
+                json={
+                    "channel": "call",
+                    "subject": "Unauthorized",
+                    "summary": "Must not be recorded",
+                },
+            )
+            self.assertEqual(read.status_code, 404, read.text)
+            self.assertEqual(write.status_code, 404, write.text)
+            after = self.runtime.firm_connection(
+                self.runtime.resolve_context(self.owner_a_id, self.firm_a)
+            ).execute(
+                "SELECT COUNT(*) FROM case_communications WHERE case_id=?",
+                (self.case_id,),
+            ).fetchone()[0]
+            self.assertEqual(after, before)
+        finally:
+            nonmember.close()
 
     def test_reject_invalid_channel_and_timezone_less_timestamp(self):
         for payload in (
