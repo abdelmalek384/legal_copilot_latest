@@ -209,5 +209,42 @@ class ClientProfileTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(tenant.execute("SELECT COUNT(*) FROM clients").fetchone()[0], before)
 
 
+    def test_client_csv_import_rolls_back_prior_rows_on_non_duplicate_integrity_error(self):
+        owner_id = self.runtime.control_connection().execute(
+            "SELECT id FROM users WHERE email_normalized=?",
+            ("invoice-owner-a@example.test",),
+        ).fetchone()["id"]
+        tenant = self.runtime.firm_connection(
+            self.runtime.resolve_context(owner_id, self.firm_a)
+        )
+        trigger_name = "fail_synthetic_client_insert"
+        tenant.execute(
+            f"""
+            CREATE TRIGGER {trigger_name}
+            BEFORE INSERT ON clients
+            WHEN NEW.name = 'Trigger failure'
+            BEGIN
+                SELECT RAISE(ABORT, 'synthetic constraint failure');
+            END
+            """
+        )
+        tenant.commit()
+        before = tenant.execute("SELECT COUNT(*) FROM clients").fetchone()[0]
+        try:
+            response = self.mutate(
+                self.client_a, "post", "/clients/import.csv",
+                json={"csv": "name\\nFirst valid row\\nTrigger failure\\n"},
+            )
+            self.assertEqual(response.status_code, 503, response.text)
+            self.assertEqual(
+                tenant.execute("SELECT COUNT(*) FROM clients").fetchone()[0],
+                before,
+                "a non-duplicate constraint failure must roll back earlier CSV rows",
+            )
+        finally:
+            tenant.execute(f"DROP TRIGGER IF EXISTS {trigger_name}")
+            tenant.commit()
+
+
 if __name__ == "__main__":
     unittest.main()
