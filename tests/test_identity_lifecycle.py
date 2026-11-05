@@ -4,6 +4,7 @@ import re
 import tempfile
 import unittest
 from pathlib import Path
+from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 
@@ -13,6 +14,8 @@ import app
 from database_runtime import DatabaseRuntime
 from identity_email import IdentityEmailError
 
+
+ROOT = Path(__file__).resolve().parents[1]
 
 class IdentityLifecycleTests(unittest.TestCase):
     def setUp(self):
