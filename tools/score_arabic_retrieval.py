@@ -93,23 +93,35 @@ def score(questions, runs):
 
     answerable = [q for q in reviewed if q["answerable"]]
     top3_hits = []
-    wrong_answers = non_abstained = abstained = 0
+    colloquial_synonym_hits = []
+    wrong_answers = cited_non_abstained = non_abstained = abstained = 0
+    uncited_non_abstained = 0
     unanswerable = unanswerable_abstained = 0
     for q in reviewed:
         run = r_by_id[q["id"]]
         abstained += int(run["abstained"])
         if q["answerable"]:
             expected = q["expected_article"].strip()
-            top3_hits.append(int(expected in run["retrieved_article_ids"][:3]))
+            hit = int(expected in run["retrieved_article_ids"][:3])
+            top3_hits.append(hit)
+            tags = q.get("retrieval_tags", [])
+            if not isinstance(tags, list) or any(not isinstance(tag, str) for tag in tags):
+                raise ValueError(f'{q["id"]}: retrieval_tags must be a list of strings')
+            if q.get("question_style") == "colloquial" or "synonym" in tags:
+                colloquial_synonym_hits.append(hit)
         else:
             unanswerable += 1
             unanswerable_abstained += int(run["abstained"])
         if not run["abstained"]:
             non_abstained += 1
             cited = run["cited_article_ids"]
-            expected = q.get("expected_article")
-            if (not q["answerable"] and cited) or (q["answerable"] and any(x != expected for x in cited)):
-                wrong_answers += 1
+            if not cited:
+                uncited_non_abstained += 1
+            else:
+                cited_non_abstained += 1
+                expected = q.get("expected_article")
+                if (not q["answerable"]) or any(x != expected for x in cited):
+                    wrong_answers += 1
 
     return {
         "reviewed_questions": len(reviewed),
@@ -117,9 +129,13 @@ def score(questions, runs):
         "unanswerable_questions": unanswerable,
         "unlabeled_or_unreviewed_excluded": excluded,
         "top3_hit_rate": round(sum(top3_hits) / len(top3_hits), 4) if top3_hits else None,
-        "wrong_article_rate": round(wrong_answers / non_abstained, 4) if non_abstained else None,
+        "top3_hit_rate_colloquial_or_synonym": round(sum(colloquial_synonym_hits) / len(colloquial_synonym_hits), 4) if colloquial_synonym_hits else None,
+        "colloquial_or_synonym_questions": len(colloquial_synonym_hits),
+        "wrong_article_rate": round(wrong_answers / cited_non_abstained, 4) if cited_non_abstained else None,
         "wrong_article_answers": wrong_answers,
+        "cited_non_abstained_answers": cited_non_abstained,
         "non_abstained_answers": non_abstained,
+        "uncited_non_abstained_answers": uncited_non_abstained,
         "abstention_rate": round(abstained / len(reviewed), 4) if reviewed else None,
         "abstention_compliance_unanswerable": round(unanswerable_abstained / unanswerable, 4) if unanswerable else None,
         "abstained_answers": abstained,
