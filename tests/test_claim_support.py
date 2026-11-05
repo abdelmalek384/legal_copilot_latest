@@ -88,7 +88,8 @@ class ClaimSupportTests(unittest.TestCase):
         arabic = (
             "خمس سنوات", "عشرون عاما", "خمسة عشر سنة",
             "ثلاثين يوما", "عامين", "سنتين", "شهرين", "يومين",
-            "١٥ سنة", "مئة عام",
+            "واحد وعشرون سنة", "خمسة وعشرون عاما", "ثلاث وعشرون يوما",
+            "تسعة وتسعون شهرا", "١٥ سنة", "مئة عام",
         )
         for phrase in english:
             with self.subTest(language="en", phrase=phrase):
