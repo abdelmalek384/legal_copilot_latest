@@ -28,7 +28,7 @@
     "Visual page-image review completed only for the five numeric-alert locations; the remaining 268 non-identical text-difference records and 120 quantitative provisions still require full review",
     "Six known orthography-outlier passages were visually inspected and matched on the checked passages; this is not a complete review of all 311 records",
     "All 47 major-difference records were visually spot-checked and matched on the inspected passages; 221 minor-difference records remain unreviewed",
-    "Ten of 221 minor-difference records were visually checked and matched on the inspected passages; 211 minor-difference records remain unreviewed"
+    "Twenty of 221 minor-difference records were visually checked and matched on the inspected passages; 201 minor-difference records remain unreviewed"
   ],
   "numeric_alert_page_images_reviewed": true,
   "numeric_alert_reviewed_articles": [
@@ -174,8 +174,8 @@
     ]
   },
   "minor_difference_visual_spot_checks": {
-    "checked": 10,
-    "matching_on_checked_passage": 10,
+    "checked": 20,
+    "matching_on_checked_passage": 20,
     "confirmed_textual_discrepancies": 0,
     "articles": [
       245,
@@ -187,7 +187,17 @@
       87,
       16,
       162,
-      221
+      221,
+      227,
+      145,
+      126,
+      208,
+      43,
+      90,
+      184,
+      267,
+      39,
+      175
     ],
     "gazette_pdf_pages": [
       92,
@@ -200,7 +210,21 @@
       42,
       15,
       68,
-      85
+      85,
+      87,
+      62,
+      63,
+      55,
+      82,
+      27,
+      28,
+      43,
+      75,
+      101,
+      102,
+      25,
+      72,
+      73
     ]
   }
 }
