@@ -141,6 +141,29 @@ class SecureCookieTransportTests(unittest.TestCase):
             with self.subTest(url=url):
                 self.assertFalse(app._safe_llm_endpoint(url))
 
+    def test_llm_https_connection_pins_validated_ip_and_keeps_tls_hostname(self):
+        class FakeTLSContext:
+            def __init__(self):
+                self.arguments = None
+
+            def wrap_socket(self, sock, server_hostname):
+                self.arguments = (sock, server_hostname)
+                return "wrapped-tls-socket"
+
+        raw_socket = object()
+        context = FakeTLSContext()
+        connection = app._PinnedHTTPSConnection(
+            "provider.example.test",
+            "93.184.216.34",
+            context=context,
+            timeout=7,
+        )
+        with patch.object(app.socket, "create_connection", return_value=raw_socket) as connect:
+            connection.connect()
+        connect.assert_called_once_with(("93.184.216.34", 443), 7, None)
+        self.assertEqual(context.arguments, (raw_socket, "provider.example.test"))
+        self.assertEqual(connection.sock, "wrapped-tls-socket")
+
     def test_llm_https_hostname_is_rejected_if_any_dns_answer_is_non_global(self):
         private_dns = [(2, 1, 6, "", ("10.0.0.8", 443))]
         with patch.object(app.socket, "getaddrinfo", return_value=private_dns):
