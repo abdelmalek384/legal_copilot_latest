@@ -26,7 +26,7 @@
   "limitations": [
     "Source authenticity, amendments, currentness, effective-date interpretation, and reuse rights not established",
     "Visual page-image review completed only for the five numeric-alert locations; the remaining 268 non-identical text-difference records and 120 quantitative provisions still require full review",
-    "Six known orthography-outlier passages were visually inspected; one confirmed candidate-text omission is recorded for Article 134; this is not a complete review of all 311 records"
+    "Six known orthography-outlier passages were visually inspected and matched on the checked passages; this is not a complete review of all 311 records"
   ],
   "numeric_alert_page_images_reviewed": true,
   "numeric_alert_reviewed_articles": [
@@ -68,13 +68,9 @@
       106
     ],
     "checked": 6,
-    "matching_on_checked_passage": 5,
-    "confirmed_textual_discrepancies": 1,
-    "discrepancy": {
-      "article": 134,
-      "gazette": "ما يعرضها للخطر",
-      "candidate": "ما يعرض للخطر",
-      "missing_suffix": "ها"
-    }
+    "matching_on_checked_passage": 6,
+    "confirmed_textual_discrepancies": 0,
+    "discrepancy": null,
+    "article_134_independent_locator": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
   }
 }
