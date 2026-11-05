@@ -73,17 +73,26 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
                "cited_article_ids": ["LABOUR-ART-1"], "abstained": False}
         result = score([q], [run])
         self.assertEqual(result["top3_hit_rate"], 1.0)
+        self.assertEqual(result["top3_hit_rate_colloquial"], 1.0)
         self.assertEqual(result["top3_hit_rate_colloquial_or_synonym"], 1.0)
         self.assertEqual(result["wrong_article_rate"], 0.0)
 
-    def test_targets_met_only_when_colloquial_recall_and_wrong_article_threshold_pass(self):
-        q = reviewed("Q1", style="colloquial")
-        good = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
-                "cited_article_ids": ["LABOUR-ART-1"], "abstained": False}
-        self.assertEqual(score([q], [good])["target_status"], "targets_met")
-        bad = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1", "LABOUR-ART-2"],
-               "cited_article_ids": ["LABOUR-ART-2"], "abstained": False}
-        self.assertEqual(score([q], [bad])["target_status"], "below_target")
+    def test_targets_require_both_colloquial_and_synonym_recall_and_zero_wrong_articles(self):
+        colloquial = reviewed("Q-C", style="colloquial")
+        synonym = reviewed("Q-S", style="formal", tags=["synonym"])
+        good = [
+            {"question_id": "Q-C", "retrieved_article_ids": ["LABOUR-ART-1"],
+             "cited_article_ids": ["LABOUR-ART-1"], "abstained": False},
+            {"question_id": "Q-S", "retrieved_article_ids": ["LABOUR-ART-1"],
+             "cited_article_ids": ["LABOUR-ART-1"], "abstained": False},
+        ]
+        self.assertEqual(score([colloquial, synonym], good)["target_status"], "targets_met")
+        bad = [
+            {"question_id": "Q-C", "retrieved_article_ids": ["LABOUR-ART-1", "LABOUR-ART-2"],
+             "cited_article_ids": ["LABOUR-ART-2"], "abstained": False},
+            good[1],
+        ]
+        self.assertEqual(score([colloquial, synonym], bad)["target_status"], "below_target")
 
     def test_target_status_is_not_evaluable_without_approved_slice_or_citations(self):
         q = reviewed("Q1", style="formal")
@@ -124,6 +133,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
                "cited_article_ids": ["LABOUR-ART-1"], "abstained": False}
         result = score([q], [run])
+        self.assertEqual(result["top3_hit_rate_synonym"], 1.0)
         self.assertEqual(result["top3_hit_rate_colloquial_or_synonym"], 1.0)
         self.assertEqual(result["colloquial_or_synonym_questions"], 1)
 
