@@ -179,17 +179,17 @@ browser and use `--file saved_page.html`.
 
 ## Arabic law dataset (not bundled)
 
-The repository does not bundle the 311-row Labour Law candidate JSONL or the original Gazette PDF. For a lawyer-supplied UTF-8 Arabic Gazette transcription, use:
+The repository does not bundle the original Gazette PDF or the complete candidate JSONL. For a lawyer-supplied UTF-8 Arabic Gazette transcription, use:
 
 ```bash
 python tools/import_gazette_text.py /secure/input/gazette.txt /secure/input/gazette.json /secure/output/law14-review
 ```
 
-The metadata sidecar must include the exact text SHA-256, Gazette issue/publication date, source URL or source reference, supplier name/role, capture method and permission status. The importer segments articles and writes law_rows.jsonl plus import_report.md. It forces every row to verified=0, in_force=0 and as_of=null. It does not authenticate the source, grant reuse rights, determine current force, or activate legal retrieval.
+The metadata sidecar must include the exact text SHA-256, Gazette issue/publication date, source URL/reference, supplier identity and role, capture method and permission status. The supplier role must identify an Egyptian lawyer or qualified Egyptian counsel. The importer segments articles and writes `law_rows.jsonl` plus `import_report.md`, including numbering-gap, duplicate-number and empty-body checks. Every row is forced to `verified=0`, `in_force=0`, and `as_of=null`. This does not authenticate the Gazette, grant reuse rights, establish current force, or activate retrieval.
 
-The older fetch_arabic_law.py workflow relies on an unofficial republication. Treat its output only as an unverified candidate lead; it is not a substitute for the Official Gazette. Compare the exact supplied text with the relevant Gazette pages and obtain source-rights/currentness and qualified Egyptian-lawyer review before relying on it.
+The older `fetch_arabic_law.py` workflow uses an unofficial republication. Treat its output only as an unverified candidate lead. Compare the exact supplied text with the Gazette pages and complete source-rights, currentness and lawyer review before relying on it.
 
-Database staging with python manage.py importlaws [path-to-law_rows.jsonl] is a separate shared-corpus write operation. Only run it after the report has been checked and the database/storage owner has approved the profile-separated target and timing. Staging does not mark rows verified or in force.
+Controlled database staging is a separate operation: `python manage.py importlaws /secure/output/law14-review/law_rows.jsonl`. Run it only after checking the import report and obtaining approval from the database/storage owner for the profile-separated target and timing. Staging does not mark rows verified or in force.
 
 ## Legal Research chat behavior
 
