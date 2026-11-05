@@ -38,6 +38,36 @@ class ClaimSupportTests(unittest.TestCase):
             hits, tokens, norm, _mask_markdown_code
         ))
 
+    def test_raw_negated_obligation_cannot_be_rewritten_as_positive(self):
+        cases = (
+            ("The employer is not required to provide notice.", "The employer must provide notice."),
+            ("The employer must not deduct wages.", "The employer must deduct wages."),
+            ("لا يجب على صاحب العمل تقديم الإخطار.", "يجب على صاحب العمل تقديم الإخطار."),
+            ("لا يلتزم صاحب العمل بتقديم الإخطار.", "يلتزم صاحب العمل بتقديم الإخطار."),
+            ("The employer must provide notice.", "The employer is not required to provide notice."),
+            ("يجب على صاحب العمل تقديم الإخطار.", "لا يجب على صاحب العمل تقديم الإخطار."),
+        )
+        for evidence, claim in cases:
+            with self.subTest(evidence=evidence, claim=claim):
+                self.assertTrue(has_unsupported_claims(
+                    claim + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
+    def test_faithful_raw_negated_obligation_paraphrases_pass(self):
+        cases = (
+            ("The employer is not required to provide notice.", "The employer is not required to provide notice."),
+            ("The employer must not deduct wages.", "The employer must not deduct wages."),
+            ("لا يجب على صاحب العمل تقديم الإخطار.", "لا يجب على صاحب العمل تقديم الإخطار."),
+            ("لا يلتزم صاحب العمل بتقديم الإخطار.", "لا يلتزم صاحب العمل بتقديم الإخطار."),
+        )
+        for evidence, claim in cases:
+            with self.subTest(evidence=evidence):
+                self.assertFalse(has_unsupported_claims(
+                    claim + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
     def test_invalid_citation_fails_closed(self):
         self.assertTrue(has_unsupported_claims(
             "The limitation period is five years [2].",
