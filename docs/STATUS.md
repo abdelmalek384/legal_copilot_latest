@@ -6,9 +6,9 @@
 ## Current state
 
 - Runtime architecture requires separate control-plane, per-firm database and shared legal-corpus profiles.
-- Law 14/2025 PR #1451 is merged. Its 311-row machine comparison and planned page-image review aids are in docs/legal_evidence/. The new 311-row lawyer tick-sheet leaves every decision blank and every verified value at 0.
+- Law 14/2025 PR #1451 is merged. Its 311-row machine comparison is in docs/legal_evidence/: 282 unique provisions have prior page-image review records and 29 have no targeted page-image review record. The new 311-row lawyer tick-sheet leaves every decision blank and every verified value at 0.
 - Law 14/2025 remains source_matched_not_lawyer_reviewed, non-authoritative and retrieval-ineligible. Counsel review, full currentness/amendment/corrigenda analysis, effective-date interpretation and source/reuse-rights review remain outstanding.
-- A lawyer-supplied UTF-8 Gazette text importer, 110-question Egyptian-Arabic benchmark template, article-specific scorer and deadline-rules approval packet are proposed in the current PR branch; they are not merged or locally executed.
+- PR #1461 contains a lawyer-supplied UTF-8 Gazette text importer, 110-question Egyptian-Arabic benchmark template, article-specific scorer and deadline-rules approval packet; it remains unmerged and has not been locally executed.
 - Existing retrieval evaluation supports Recall@3/MRR and citation/abstention metrics. Wrong-article answer scoring is added separately. All 110 questions remain unlabeled; no before/after metrics are available and MIN_SCORE remains 0.30.
 - Five deadline rules and the fixed-date holiday list remain unverified drafts. The holiday calendar has no dated movable holidays and no complete years.
 - Negation guard PR #1460 adds raw-text checks before normalization. It is not merged; exact-head CI is failing before useful job diagnostics are available.
