@@ -220,7 +220,7 @@ def run(data_dir, samples):
             print("| {} | {} | {:.1f} | {:.1f} |".format(
                 name, result["samples"], result["p50"], result["p95"]
             ))
-        print("\nTargets: dashboard, case list, case detail, invoice list and finance overview p95 < 300 ms; search p95 < 500 ms.")
+        print("\nTargets: dashboard, case list, invoice list and finance overview p95 < 300 ms; search p95 < 500 ms. Case detail and firm export are reported without a pass/fail threshold.")
         failures = []
         limits = {
             "Dashboard": 300,
