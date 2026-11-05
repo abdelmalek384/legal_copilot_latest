@@ -23,7 +23,7 @@
 | Abstention compliance on unanswerable questions | Not measurable | Not run |
 | MIN_SCORE | 0.30 (existing default) | unchanged; tuning blocked |
 
-The machine-readable comparison file is docs/arabic_retrieval_measurement.json. It is initialized with null metrics, not fabricated zeros. The scorer updates one phase at a time while enforcing the same benchmark SHA-256.
+The machine-readable comparison file is docs/arabic_retrieval_measurement.json. It is initialized with null metrics, not fabricated zeros. The scorer updates one phase at a time while enforcing a stable benchmark SHA-256 over sorted question IDs, practice areas, prompt text and origin only. Lawyer-approved answers, expected articles, reviewer fields and style/synonym approval labels may be added later without invalidating the captured baseline; editing a question's text or identity requires a new comparison report.
 
 ## Why there are no numbers yet
 
