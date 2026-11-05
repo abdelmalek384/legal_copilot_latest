@@ -7399,8 +7399,9 @@ def list_invoices(
     c = conn()
     if u["role"] == "admin" and case_id is None:
         rows = c.execute(
-            "SELECT i.* FROM invoices i JOIN cases cs ON cs.id=i.case_id "
-            "WHERE cs.firm_id=? ORDER BY i.created_at DESC,i.id DESC",
+            "SELECT i.* FROM invoices i WHERE i.case_id IN "
+            "(SELECT id FROM cases WHERE firm_id=?) "
+            "ORDER BY i.created_at DESC,i.id DESC",
             (u["firm_id"],),
         ).fetchall()
     elif u["role"] == "admin":
