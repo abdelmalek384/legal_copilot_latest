@@ -7172,20 +7172,23 @@ def _invoice_event(c, invoice_id: int, actor_id: int, event_type: str, details: 
     )
 
 
-def _invoice_record(c, row):
+def _invoice_record(c, row, *, lines=None, payments=None, events=None):
     invoice_id = int(row["id"])
-    lines = [dict(item) for item in c.execute(
-        "SELECT id,position,description,quantity_milli,unit_price_piasters,line_total_piasters "
-        "FROM invoice_lines WHERE invoice_id=? ORDER BY position,id", (invoice_id,)
-    ).fetchall()]
-    payments = [dict(item) for item in c.execute(
-        "SELECT id,amount_piasters,paid_on,method,reference,note,recorded_by,created_at "
-        "FROM invoice_payments WHERE invoice_id=? ORDER BY paid_on,id", (invoice_id,)
-    ).fetchall()]
-    events = [dict(item) for item in c.execute(
-        "SELECT id,actor_user_id,event_type,details_json,created_at "
-        "FROM invoice_events WHERE invoice_id=? ORDER BY id", (invoice_id,)
-    ).fetchall()]
+    if lines is None:
+        lines = [dict(item) for item in c.execute(
+            "SELECT id,position,description,quantity_milli,unit_price_piasters,line_total_piasters "
+            "FROM invoice_lines WHERE invoice_id=? ORDER BY position,id", (invoice_id,)
+        ).fetchall()]
+    if payments is None:
+        payments = [dict(item) for item in c.execute(
+            "SELECT id,amount_piasters,paid_on,method,reference,note,recorded_by,created_at "
+            "FROM invoice_payments WHERE invoice_id=? ORDER BY paid_on,id", (invoice_id,)
+        ).fetchall()]
+    if events is None:
+        events = [dict(item) for item in c.execute(
+            "SELECT id,actor_user_id,event_type,details_json,created_at "
+            "FROM invoice_events WHERE invoice_id=? ORDER BY id", (invoice_id,)
+        ).fetchall()]
     paid = sum(int(item["amount_piasters"]) for item in payments)
     total = int(row["total_piasters"])
     balance = max(0, total - paid)
