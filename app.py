@@ -7395,8 +7395,7 @@ def issue_invoice(invoice_id: int, u: dict = Depends(user)):
     c.execute("RELEASE SAVEPOINT invoice_write")
     c.commit()
     _meter_pilot_metric(u, "invoices_issued")
-    rnts": sorted(client_totals.values(), key=lambda x: x["outstanding_piasters"], reverse=True),
-    }
+    return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
 
 
 @app.post("/invoices/{invoice_id}/payments")
