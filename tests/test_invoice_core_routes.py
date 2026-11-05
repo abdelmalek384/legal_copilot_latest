@@ -18,6 +18,17 @@ class InvoiceCoreRouteTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(invoice["total_piasters"], 17500)
         self.assertEqual([line["line_total_piasters"] for line in invoice["lines"]], [15000, 2500])
 
+    def test_issue_invoice_route_remains_registered_in_app(self):
+        import app
+
+        routes = [
+            route for route in app.app.routes
+            if getattr(route, "path", None) == "/invoices/{invoice_id}/issue"
+            and "POST" in getattr(route, "methods", set())
+        ]
+        self.assertEqual(len(routes), 1)
+        self.assertEqual(routes[0].endpoint.__module__, "app")
+
     def test_issue_assigns_firm_local_sequential_number_and_freezes_content(self):
         first = self.create_draft().json()
         second = self.create_draft().json()
