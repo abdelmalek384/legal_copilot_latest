@@ -6,6 +6,7 @@ import math
 import os
 import re
 import stat
+import socket
 import sys
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -14,7 +15,7 @@ from cryptography.fernet import Fernet
 
 
 def valid_llm_endpoint(value):
-    """Require HTTPS remotely; plain HTTP is allowed only for loopback model services."""
+    """Require public-address HTTPS endpoints; plain HTTP is allowed only for loopback."""
     if not isinstance(value, str) or not value.strip():
         return False
     try:
@@ -23,15 +24,31 @@ def valid_llm_endpoint(value):
         if (parsed.scheme not in {"https", "http"} or not host or parsed.username or parsed.password
                 or parsed.query or parsed.fragment):
             return False
-        _ = parsed.port
-        if parsed.scheme == "https":
-            return True
-        if host.lower().rstrip(".") == "localhost":
-            return True
+        port = parsed.port or (443 if parsed.scheme == "https" else 80)
+        if parsed.scheme == "http":
+            if host.lower().rstrip(".") == "localhost":
+                return True
+            try:
+                return ipaddress.ip_address(host).is_loopback
+            except ValueError:
+                return False
         try:
-            return ipaddress.ip_address(host).is_loopback
+            return ipaddress.ip_address(host).is_global
         except ValueError:
-            return False
+            try:
+                answers = socket.getaddrinfo(host, port, type=socket.SOCK_STREAM)
+            except OSError:
+                return False
+            if not answers:
+                return False
+            for answer in answers:
+                try:
+                    address = ipaddress.ip_address(answer[4][0].split("%", 1)[0])
+                except (IndexError, ValueError, TypeError):
+                    return False
+                if not address.is_global:
+                    return False
+            return True
     except (TypeError, ValueError):
         return False
 
