@@ -1,6 +1,6 @@
 # Production deployment gate
 
-Production mode is deliberately stricter than local development. Do not deploy the shared `COPILOT_DB` compatibility configuration for a multi-firm legal product.
+Production mode is deliberately stricter than local development. It requires distinct control-plane, per-firm and shared legal-corpus stores.
 
 ## Required configuration
 
