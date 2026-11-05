@@ -120,7 +120,13 @@ class FictionalRetrievalMeasurementTests(unittest.TestCase):
             for variants in topics:
                 article_number += 1
                 direct, paraphrase, colloquial, synonym, word_form = variants
-                body = "نص قانون خيالي للاختبار فقط: " + "؛ ".join(variants)
+                # Keep only the canonical article formulation in the corpus. Query variants
+                # must not be copied into the passage, or the benchmark would test exact
+                # phrase lookup rather than paraphrase, dialect, synonym, and word-form recall.
+                body = (
+                    f"نص قانون خيالي للاختبار فقط: {direct}. "
+                    "وتحدد هذه المادة شروط المسألة وإجراءاتها والجهة المختصة."
+                )
                 source_id = f"BENCH-{area.upper()}-{article_number:02d}"
                 self.fixture.add_passage(source_id, body, article=str(article_number))
                 queries = {
