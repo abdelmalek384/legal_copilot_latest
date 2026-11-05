@@ -143,6 +143,9 @@ class SecureCookieTransportTests(unittest.TestCase):
 
     def test_llm_https_connection_pins_validated_ip_and_keeps_tls_hostname(self):
         class FakeTLSContext:
+            verify_mode = 2
+            check_hostname = True
+
             def __init__(self):
                 self.arguments = None
 
