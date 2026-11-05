@@ -89,7 +89,7 @@ class CaseCSVImportTests(InvoiceTestSupport, unittest.TestCase):
         rows = list(csv.DictReader(io.StringIO(exported.content.decode("utf-8-sig"))))
         exported_case = next(row for row in rows if row["invoice_number"] == issued.json()["invoice_number"])
         self.assertEqual(exported_case["case_title"], "'" + formula)
-        self.assertNotIn("\\r\n" + formula, exported.text)
+        self.assertNotIn("\r\n" + formula, exported.text)
 
     def test_non_admin_and_malformed_imports_are_rejected_without_partial_writes(self):
         denied = self.mutate(
