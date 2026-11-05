@@ -1,0 +1,1 @@
+# One JSON object per reviewed question: question_id, retrieved_article_ids (ranked), cited_article_ids, abstained.
