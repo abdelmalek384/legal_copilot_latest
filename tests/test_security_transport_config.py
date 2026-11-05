@@ -161,7 +161,7 @@ class SecureCookieTransportTests(unittest.TestCase):
 
     def test_llm_provider_response_is_bounded_and_malformed_payloads_fail_closed(self):
         settings = {
-            "LLM_URL": "https://llm.example.test/v1/chat/completions",
+            "LLM_URL": "https://93.184.216.34/v1/chat/completions",
             "LLM_MODEL": "test-model",
             "LLM_KEY": "test-key",
             "LLM_DATA_PROCESSING_APPROVED": "1",
