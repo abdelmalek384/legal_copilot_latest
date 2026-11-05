@@ -25,6 +25,8 @@ class CasesRouterContractTests(unittest.TestCase):
         expected = {
             ("/cases", "GET"),
             ("/cases/{cid}", "PATCH"),
+            ("/cases/{cid}/members", "POST"),
+            ("/cases/{cid}/members/{uid}", "DELETE"),
             ("/cases", "POST"),
             ("/cases/search", "GET"),
             ("/cases/{cid}", "GET"),
