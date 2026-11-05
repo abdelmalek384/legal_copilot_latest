@@ -159,6 +159,20 @@ class SecureCookieTransportTests(unittest.TestCase):
                 self.assertIsNone(app.llm("CONFIDENTIAL-SENTINEL"))
                 open_url.assert_not_called()
 
+    def test_llm_without_processing_approval_does_not_resolve_provider_hostname(self):
+        with patch.dict(
+            os.environ,
+            {
+                "LLM_URL": "https://provider.example.test/v1/chat/completions",
+                "LLM_DATA_PROCESSING_APPROVED": "",
+            },
+        ):
+            with patch.object(app.socket, "getaddrinfo") as resolve:
+                with patch.object(app.urllib.request, "urlopen") as open_url:
+                    self.assertIsNone(app.llm("CONFIDENTIAL-SENTINEL"))
+                resolve.assert_not_called()
+                open_url.assert_not_called()
+
     def test_llm_provider_response_is_bounded_and_malformed_payloads_fail_closed(self):
         settings = {
             "LLM_URL": "https://93.184.216.34/v1/chat/completions",
