@@ -390,3 +390,6 @@ jobs:
         run: PYTHONPATH=. python tests/test_first_run_wizard_frontend_contract.py
       - name: Guard that every test file runs in CI or is explicitly tracked
         run: PYTHONPATH=. python tests/test_ci_runs_all_tests.py
+      - name: One-off AI-2 scale smoke measurement
+        if: github.event_name == 'pull_request' && github.head_ref == 'ai2/scale-smoke-rebased2'
+        run: PYTHONPATH=. python tools/scale_smoke.py
