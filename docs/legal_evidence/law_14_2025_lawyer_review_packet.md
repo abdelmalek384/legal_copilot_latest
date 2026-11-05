@@ -20,6 +20,19 @@
 
 The page numbers in the tick-sheet refer to the recorded 112-page comparison PDF identified by its SHA-256 above. The original 112-page PDF and 311-row JSONL are not committed in the repository; the reviewer must obtain those exact hash-matching files before signing off. If the reviewer uses the 110-page ETA copy, page locators must be independently remapped.
 
+## Supporting article-by-article comparison records
+
+Use these committed artifacts together with the 311-row lawyer tick-sheet:
+
+- `docs/legal_evidence/README_law_14_2025.md` — complete artifact index and trust boundary.
+- `docs/legal_evidence/law_14_2025_comparison_report.md` — comparison method, 311-row structure, 38 identical / 221 minor / 47 major / 5 numeric-alert machine results, and prior visual-check summaries.
+- `docs/legal_evidence/law_14_2025_differing_articles_part1.csv`, `part2.csv`, `part3.csv` — all 273 machine-difference records with article, occurrence, machine status, similarity, Gazette PDF page range and review note.
+- `docs/legal_evidence/law_14_2025_quantity_tick_sheet_part1.csv` and `part2.csv` — 120 quantitative text cues, page locators and prior visual-check notes.
+- `docs/legal_evidence/law_14_2025_numeric_alert_review.csv`, `law_14_2025_major_difference_visual_spot_checks.csv`, `law_14_2025_major_difference_visual_spot_checks_part2.csv`, and the minor-difference spot-check batches — prior page-image checks, not lawyer sign-off.
+- `docs/legal_evidence/law_14_2025_discrepancy_article_index.md` and `law_14_2025_quantitative_review_checklist.md` — review navigation aids.
+
+The 273 difference records, 120 quantitative cues and prior page-image checks overlap; they are not additive counts. The tick-sheet contains one row per candidate provision (13 promulgation provisions + 298 attached-law articles). The original candidate JSONL and exact 112-page Gazette PDF are not committed, so the reviewer must obtain those exact hash-matching inputs and compare the full text, not rely only on the machine similarity or prior spot-check note.
+
 ## How to use the tick-sheet
 
 Open law_14_2025_lawyer_review_tick_sheet.csv. It has one row for each of the 311 candidate provisions, including the separate numbering blocks for promulgation provisions and the attached law.
