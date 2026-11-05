@@ -1,3 +1,4 @@
 - Live SMTP acceptance for the first-run test reminder is blocked pending provider credentials and a controlled mailbox; route tests use a fake SMTP sender.
 - 2026-11-04: The 155-question live retrieval/abstention baseline is not measurable in this session because no authenticated local Legal Copilot API endpoint or evaluation account is available; draft questions also have no lawyer-approved relevance labels, so answer correctness must remain unscored.
 - 2026-11-04: PR #1404's optional claim-support polarity guard still fails the same three English/Arabic negated-obligation regressions after three attempts; stop speculative retries and resume only with a local minimal reproduction that identifies why the guard is bypassed.
+- 2026-11-05: Law 14/2025 source comparison is blocked until the user supplies both `law_rows_ar.jsonl` and the manually saved Gazette text; neither source file is to be committed.
