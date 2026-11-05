@@ -75,7 +75,7 @@ The deadline reminder scheduler is dry-run by default. Do not enable SMTP delive
 ## Arabic handling
 Normalizes diacritics, tatweel, alef/hamza forms, ya/alef maqsura, ta marbuta, and Arabic-Indic digits (so "المادة ٥" finds article 5);
 light prefix/suffix stemming and stopword removal at both index and query time; exact article-number lookup; RTL UI with Arabic fonts.
-Known limits: only a small curated set of Egyptian colloquial forms is expanded for selected wage, dismissal, cheque, rent, and family-support queries; this is not broad dialect understanding and needs evaluation on real lawyer-reviewed queries. Broken-plural handling and semantic embeddings are not implemented yet (a future Arabic-capable multilingual embedding model such as bge-m3 or multilingual-e5 would also require an approved vector-storage design). MIN_SCORE (default 0.3) must be tuned on a real evaluation set.
+Known limits: only a small curated set of Egyptian colloquial forms is expanded for selected wage, dismissal, cheque, rent, and family-support queries; this is not broad dialect understanding and needs evaluation on real lawyer-reviewed queries. Broken-plural handling and semantic embeddings are not implemented yet (a future Arabic-capable multilingual embedding model such as bge-m3 or multilingual-e5 would also require an approved vector-storage design). MIN_SCORE (default 0.3) must remain unchanged until a lawyer-reviewed article benchmark and baseline run exist; do not tune it on unlabeled seeds.
 
 ## Install on a phone or desktop
 
@@ -178,7 +178,18 @@ browser and use `--file saved_page.html`.
 
 
 ## Arabic law dataset (not bundled)
-This repository does **not** contain `data/law_rows_ar.jsonl`. Generate an Arabic dataset with `python tools/fetch_arabic_law.py out_dir`, or obtain a separately supplied dataset and verify its provenance. The fetch script uses an unofficial republication of Labor Law No. 14 of 2025; compare every imported text with the Official Gazette (issue 18 bis, 3 May 2025) before relying on it. Imported rows should remain marked unverified until reviewed by a qualified person. Do not assume that a downloaded dataset is official or complete.
+
+The repository does not bundle the 311-row Labour Law candidate JSONL or the original Gazette PDF. For a lawyer-supplied UTF-8 Arabic Gazette transcription, use:
+
+```bash
+python tools/import_gazette_text.py /secure/input/gazette.txt /secure/input/gazette.json /secure/output/law14-review
+```
+
+The metadata sidecar must include the exact text SHA-256, Gazette issue/publication date, source URL or source reference, supplier name/role, capture method and permission status. The importer segments articles and writes law_rows.jsonl plus import_report.md. It forces every row to verified=0, in_force=0 and as_of=null. It does not authenticate the source, grant reuse rights, determine current force, or activate legal retrieval.
+
+The older fetch_arabic_law.py workflow relies on an unofficial republication. Treat its output only as an unverified candidate lead; it is not a substitute for the Official Gazette. Compare the exact supplied text with the relevant Gazette pages and obtain source-rights/currentness and qualified Egyptian-lawyer review before relying on it.
+
+Database staging with python manage.py importlaws <law_rows.jsonl> is a separate shared-corpus write operation. Only run it after the report has been checked and the database/storage owner has approved the profile-separated target and timing. Staging does not mark rows verified or in force.
 
 ## Legal Research chat behavior
 
