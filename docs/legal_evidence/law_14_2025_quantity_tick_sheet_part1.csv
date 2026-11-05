@@ -14,22 +14,22 @@ labour_law,23,19-20,,، ورسومه بما لا يزيد على مائة ألف
 labour_law,26,21,,رسم المقابل لذلك بما لا يجاوز خمسمائة جنيه .,identical_after_normalization,yes,Page 21 Gazette image checked: the provision states a fee cap of 500 Egyptian pounds; candidate cue matches.
 labour_law,27,21,,رسوم المقررة عنه بما لا يجاوز خمسمائة جنيه ، وحالات الإعفاء منها . | لرسم المقرر عنها بما لا يج,minor_difference,yes,Page 21 checked: the skill-practice licence fee cap of 500 EGP matches the candidate.
 labour_law,30,22,,الطرف الآخر بذلك قبل الإنهاء بثلاثة أيام على الأقل .,minor_difference,yes,Page 22 checked: the three-day notice period before ending the apprenticeship agreement matches the candidate.
-labour_law,32,22-23,,يس مجلس الوزراء فى مدة أقصاها ستة أشهر من تاريخ العمل بهذا القا,minor_difference,,
+labour_law,32,22-23,,يس مجلس الوزراء فى مدة أقصاها ستة أشهر من تاريخ العمل بهذا القا,minor_difference,yes,Pages 22-23 checked: the Higher Council is to be established within six months of the law's commencement; candidate cue matches.
 labour_law,33,23,,بالجهة الإدارية المختصة خلال ثلاثين يومًا من تاريخ تسلمه العمل .,minor_difference,yes,Page 23 checked: the 30-day worker-registration period matches the candidate.
 labour_law,35,24,,لعامل الصادرة عنها خلال خمسة وأربعين يومًا من تاريخ استلام العمل ب,minor_difference,yes,Page 24 checked: the 45-day worker-registration certificate return period matches the candidate.
 labour_law,36,24,,ى الجهة الإدارية المختصة خلال ثلاثين يومًا من تاريخ بدء العمل بالم,minor_difference,yes,Page 24 checked: the 30-day establishment workforce-data reporting period matches the candidate.
-labour_law,38,25,,ونظام معلومات سوق العمل خلال ثلاثين يومًا من تاريخ طلبها . كما يج,major_difference,,
+labour_law,38,25,,ونظام معلومات سوق العمل خلال ثلاثين يومًا من تاريخ طلبها . كما يج,major_difference,yes,Page 25 checked: labour-market information must be provided within 30 days of request; candidate cue matches.
 labour_law,41,26-27,,سب الأحوال ، عن مائتين وخمسين ألف جنيه وأن يكون مملوكًا بأكمله | بالداخل ، وألا يقل عن خمسمائة ,minor_difference,yes,Pages 26-27 checked: EGP 250,000/500,000 capital thresholds, 51% Egyptian ownership, EGP 1,000,000 security, 15-day top-up and EGP 10,000 fee cap match the candidate.
 labour_law,43,27-28,,ون أن تتقاضى مبلغًا لا يجاوز (1٪) من أجر العامل الذى يتم إلحاق,minor_difference,yes,Pages 27-28 checked: the 1% worker-wage fee cap for the stated exception matches the candidate.
 labour_law,48,29-30,,تقدم إلى الوزارة المختصة خلال خمسة أيام عمل فعلية صورة طبق الأصل | كون للوزارة المختصة خلال خمس,minor_difference,yes,Pages 29-30 checked: the five-actual-business-day deadline matches the candidate.
-labour_law,51,30,,ت ونتائج أعمالها على الأقل كل ستة أشهر ، ويصدر بتحديد قواعد وإج,identical_after_normalization,,
-labour_law,52,30-31,,وم المقررة عليه بما لا يقل عن ألف جنيه ولا يزيد على عشرة آلاف ج,major_difference,,
-labour_law,54,31-32,,لعاملة الحق فى إجازة وضع لمدة أربعة أشهر تشمل المدة التى تسبق الو | ذه الإجازة بعد الوضع عن خمس,minor_difference,,
-labour_law,56,32,,ين للرضاعة لا تقل كل منهما عن نصف ساعة ، وللعاملة الحق فى ضم ها,identical_after_normalization,,
-labour_law,58,33,,عمل كتابة برغبتها فى ذلك خلال ثلاثة أشهر من تاريخ إبرام عقد الزوا,minor_difference,,
-labour_law,61,33-34,,القانون ، كل من لم يبلغ ثمانى عشرة سنة .,identical_after_normalization,,
-labour_law,62,34,,تشغيل الأطفال قبل بلوغهم خمس عشرة سنة ، ومع ذلك يجوز تدريبهم مت | وز تدريبهم متى بلغت سنهم أربع,minor_difference,,
-labour_law,65,34-35,,يُحظر تشغيل الطفل أكثر من ست ساعات يوميًا ، ويجب أن تتخلل | ات بحيث لا يعمل الطفل أكثر من أربع ,minor_difference,,
+labour_law,51,30,,ت ونتائج أعمالها على الأقل كل ستة أشهر ، ويصدر بتحديد قواعد وإج,identical_after_normalization,yes,Page 30 checked: operational agencies submit activity data at least every six months; candidate cue matches.
+labour_law,52,30-31,,وم المقررة عليه بما لا يقل عن ألف جنيه ولا يزيد على عشرة آلاف ج,major_difference,yes,Page 30 checked: the stated licence fee range is EGP 1,000-10,000; candidate cue matches.
+labour_law,54,31-32,,لعاملة الحق فى إجازة وضع لمدة أربعة أشهر تشمل المدة التى تسبق الو | ذه الإجازة بعد الوضع عن خمس,minor_difference,yes,Page 31 checked: maternity leave is four months, with at least 45 days after birth and the statutory repeat limit; candidate cue matches.
+labour_law,56,32,,ين للرضاعة لا تقل كل منهما عن نصف ساعة ، وللعاملة الحق فى ضم ها,identical_after_normalization,yes,Page 32 checked: the worker receives two nursing breaks of at least 30 minutes each (or the combined hour); candidate cue matches.
+labour_law,58,33,,عمل كتابة برغبتها فى ذلك خلال ثلاثة أشهر من تاريخ إبرام عقد الزوا,minor_difference,yes,Page 33 checked: the worker must notify the employer in writing within three months after marriage/pregnancy as specified; candidate cue matches.
+labour_law,61,33-34,,القانون ، كل من لم يبلغ ثمانى عشرة سنة .,identical_after_normalization,yes,Page 33 checked: child status is defined as a person under 18; candidate cue matches.
+labour_law,62,34,,تشغيل الأطفال قبل بلوغهم خمس عشرة سنة ، ومع ذلك يجوز تدريبهم مت | وز تدريبهم متى بلغت سنهم أربع,minor_difference,yes,Page 34 checked: employment below age 15 is prohibited, with training permitted from age 14 subject to conditions; candidate cue matches.
+labour_law,65,34-35,,يُحظر تشغيل الطفل أكثر من ست ساعات يوميًا ، ويجب أن تتخلل | ات بحيث لا يعمل الطفل أكثر من أربع ,minor_difference,yes,Pages 34-35 checked: child work is capped at six hours daily with no more than four consecutive hours; candidate cue matches.
 labour_law,71,36-37,,يه ، ولا يزيد على مائة وخمسين ألف جنيه ، ويحدد حالات إلغاء التر | هة الإدارية المختصة بذلك خلال,minor_difference,yes,Pages 36-37 checked: the EGP 150,000 licence-fee cap and cancellation rule match the candidate cue.
 labour_law,72,37,,مل الأجنبى عن العمل لمدة خمسة عشر يومًا متصلة دون مسوغ قانونى ي,minor_difference,yes,Page 37 checked: the 15-consecutive-day absence period matches the candidate cue.
 labour_law,82,40-41,,مما يأتي : 1- نسبة لا تقل عن (1٪) ولا تزيد على (3٪) من قيمة ال | لا تقل عن (1٪) ولا تزيد على (3,numeric_difference,yes,Numeric alert visually checked on pages 40-41: the 1%-3% range and related figures match; tokenization caused the machine alert.
