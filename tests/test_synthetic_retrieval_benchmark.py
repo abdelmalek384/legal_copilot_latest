@@ -160,20 +160,23 @@ class FictionalRetrievalMeasurementTests(unittest.TestCase):
         for style in styles:
             cases = expected[style]
             top1 = top3 = wrong = served = 0
+            wrong_details = []
             for query, intended_article in cases:
                 hits = self.search(query)
                 articles = [str(hit["article"]) for hit in hits]
                 rank = articles.index(intended_article) + 1 if intended_article in articles else None
                 top1 += int(rank == 1)
                 top3 += int(rank is not None and rank <= 3)
-                wrong += int(bool(articles) and articles[0] != intended_article)
+                if articles and articles[0] != intended_article:
+                    wrong += 1
+                    wrong_details.append({"query": query, "expected": intended_article, "actual": articles[0], "top3": articles[:3]})
                 served += int(bool(hits))
             report[style] = {
                 "n": len(cases), "top1": top1, "top3": top3,
                 "wrong_article_answers": wrong,
                 "refusal_correct": served, "refusal_total": len(cases),
             }
-            self.assertEqual(wrong, 0, f"wrong article ranked to answer position for {style}")
+            self.assertEqual(wrong, 0, f"wrong article ranked to answer position for {style}: {json.dumps(wrong_details, ensure_ascii=False)}")
             self.assertEqual(served, len(cases), f"answerable {style} query was refused")
 
         abstained = 0
