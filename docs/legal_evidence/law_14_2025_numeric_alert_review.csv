@@ -1,0 +1,6 @@
+law_part,article,machine_status,similarity,gazette_pdf_pages,review_note
+labour_law,21,numeric_difference,0.9821,18-19,examined_extraction_artifact_both_show_0.25_percent
+labour_law,82,numeric_difference,0.9818,40-41,examined_extraction_artifact_both_show_0.5_percent
+labour_law,124,numeric_difference,0.9832,54-55,examined_word_segmentation_both_numeric_sets_match
+labour_law,146,numeric_difference,0.9888,63,examined_RTL_extraction_order_artifact_both_show_three_days
+labour_law,298,numeric_difference,0.8411,111-112,examined_printer_colophon_after_article_end
