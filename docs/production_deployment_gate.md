@@ -1,6 +1,6 @@
 # Production deployment gate
 
-Production mode is deliberately stricter than local development. Do not deploy the shared `COPILOT_DB` compatibility configuration for a multi-firm legal product.
+Production mode is deliberately stricter than local development. It requires distinct control-plane, per-firm and shared legal-corpus stores.
 
 ## Required configuration
 
@@ -10,7 +10,7 @@ Set `COPILOT_ENV=production` and configure all three separate database locations
 - `COPILOT_TENANT_DB_ROOT`: per-firm database files.
 - `COPILOT_CORPUS_DB`: shared legal corpus.
 
-Do not set `COPILOT_DB` in production. The application refuses to start if production is configured with the legacy shared database or any required separate path is missing.
+Production startup requires all three distinct control-plane, per-firm and shared legal-corpus profiles. Preflight blocks missing, overlapping or invalid database paths.
 
 The release preflight also requires:
 
