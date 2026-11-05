@@ -89,3 +89,45 @@ Staging does not activate rows as verified law. Keep the legal review queue, per
 `tools/fetch_arabic_law.py` is a separate convenience fetcher for an unofficial republication of Labour Law No. 14 of 2025. It is not an Official Gazette downloader and its output must remain a candidate until compared with the original Gazette issue and reviewed.
 
 For the specific Action 1 source intake, use the dedicated evidence-only hash/intake tools and preserve the original Gazette PDF and `law_rows_ar.jsonl` locally. Do not commit the source bytes. Keep primary-source matching, source rights, legal status, and lawyer review as separate gates.
+
+
+## 7. Lawyer-supplied Gazette text
+
+For an existing UTF-8 Arabic transcription supplied by a qualified Egyptian lawyer, use the text-only importer:
+
+```bash
+python tools/import_gazette_text.py /secure/input/gazette.txt /secure/input/gazette.json /secure/output/law14-review
+```
+
+The sidecar must identify the Gazette issue/date, exact text SHA-256, source URL/reference, supplier identity and Egyptian-lawyer role, capture method, and collection permission status.
+
+Example sidecar (replace every illustrative value; the hash must match the exact bytes of the supplied text file):
+
+```json
+{
+  "document_id": "EG-LABOUR-14-2025-GAZETTE",
+  "official_title": "قانون العمل رقم 14 لسنة 2025",
+  "language": "ar",
+  "gazette_issue": "الجريدة الرسمية، العدد 18 مكرر (ب)",
+  "publication_date": "2025-05-03",
+  "retrieved_at": "2026-11-06T10:00:00+02:00",
+  "captured_by": "اسم المحامي مقدم النص",
+  "supplier_role": "egyptian_lawyer",
+  "capture_method": "lawyer_supplied_text",
+  "source_reference": "مرجع النسخة المصورة المطابقة للعدد وصفحاتها",
+  "content_sha256": "REPLACE_WITH_64_CHARACTER_SHA256",
+  "collection_permission": "unknown"
+}
+```
+
+One-sitting command sequence:
+
+```bash
+sha256sum /secure/input/gazette.txt
+python tools/import_gazette_text.py /secure/input/gazette.txt /secure/input/gazette.json /secure/output/law14-review
+cat /secure/output/law14-review/import_report.md
+```
+
+Confirm the output's article count, numbering gaps/duplicates, empty bodies, source/hash and supplier metadata. Confirm every JSONL row still has `verified=0`, `in_force=0`, and `as_of=null`. Do not edit those flags manually. The importer rejects an unqualified supplier role and disallowed collection permission. It audits article numbering gaps, duplicates and empty bodies. It never verifies the source or changes legal status: all generated rows remain `verified=0`, `in_force=0`, and `as_of=null`.
+
+Review `import_report.md` before any database write. If and only if the report and target have been approved, the database/storage owner may separately stage with `python manage.py importlaws /secure/output/law14-review/law_rows.jsonl`. This is a shared-corpus write; it is not legal approval or activation.
