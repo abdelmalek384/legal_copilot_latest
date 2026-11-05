@@ -44,6 +44,8 @@ jobs:
           node --check /tmp/legal-copilot.js
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
+      - name: Test optional factual claim support validation
+        run: PYTHONPATH=. python tests/test_claim_support.py
       - name: Smoke-test public PWA HTTP routes and security headers
         run: PYTHONPATH=. python tests/test_pwa_http_routes.py
       - name: Test live deployment HTTP smoke probe
@@ -358,8 +360,6 @@ jobs:
         run: PYTHONPATH=. python tests/test_trusted_host_middleware.py
       - name: Test fixture-based law ingestion pipeline
         run: PYTHONPATH=. python tests/test_law_ingestion_fixture_pipeline.py
-      - name: Test optional factual claim support validation
-        run: PYTHONPATH=. python tests/test_claim_support.py
       - name: Test article-rows audit tool
         run: PYTHONPATH=. python tests/test_audit_article_rows.py
       - name: Test firm-private usage metering and audit ledger
