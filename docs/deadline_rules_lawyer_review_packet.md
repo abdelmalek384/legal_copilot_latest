@@ -4,13 +4,13 @@
 
 ## Draft rules to approve or correct
 
-| Rule ID | Draft period | Current trigger assumption / uncertainty | Assumed source |
-|---|---:|---|---|
-| civil_commercial_appeal_40d | 40 days | Start depends on the judgment type and applicable service/announcement rule; exact trigger is not identified. | source_article=null; no primary citation supplied. |
-| civil_cassation_60d | 60 days | Start depends on judgment type and procedural route; exact trigger is not identified. | source_article=null; no primary citation supplied. |
-| misdemeanor_appeal_10d | 10 days | Start depends on the case/judgment status and service rules; exact trigger is not identified. | source_article=null; no primary citation supplied. |
-| misdemeanor_opposition_3d | 3 days | Draft text refers to notification, but the precise valid notice event and exceptions need review. | source_article=null; no primary citation supplied. |
-| administrative_annulment_60d | 60 days | Publication, notification or proven knowledge may be relevant; which event controls needs review. | source_article=null; no primary citation supplied. |
+| Rule ID | الاسم العربي | Draft period | Current start-event assumption (as stored) | Assumed source |
+|---|---|---:|---|---|
+| civil_commercial_appeal_40d | الاستئناف في المواد المدنية والتجارية | 40 days | تاريخ بدء الميعاد يحتاج إلى مراجعة محامٍ بحسب نوع الحكم | source_article=null; no primary citation supplied; verified=false. |
+| civil_cassation_60d | الطعن بالنقض | 60 days | تاريخ بدء الميعاد يحتاج إلى مراجعة محامٍ بحسب نوع الحكم | source_article=null; no primary citation supplied; verified=false. |
+| misdemeanor_appeal_10d | استئناف الحكم في الجنح | 10 days | تاريخ بدء الميعاد يحتاج إلى مراجعة محامٍ بحسب حالة الحكم | source_article=null; no primary citation supplied; verified=false. |
+| misdemeanor_opposition_3d | المعارضة في الحكم الغيابي في الجنح | 3 days | تاريخ الإعلان وغيره من التفاصيل يحتاج إلى مراجعة محامٍ | source_article=null; no primary citation supplied; verified=false. |
+| administrative_annulment_60d | دعوى إلغاء القرار الإداري | 60 days | نشر القرار أو إعلانه أو العلم به يحتاج إلى مراجعة محامٍ | source_article=null; no primary citation supplied; verified=false. |
 
 ## Calculator assumptions (not legal conclusions)
 
