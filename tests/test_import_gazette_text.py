@@ -71,6 +71,19 @@ class GazetteTextImportTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "source_url"):
             import_text(self.text_path, self.meta_path, self.output)
 
+    def test_not_allowed_collection_permission_is_rejected(self):
+        self.metadata["collection_permission"] = "not_allowed"
+        self.write_metadata()
+        with self.assertRaisesRegex(ValueError, "not_allowed"):
+            import_text(self.text_path, self.meta_path, self.output)
+        self.assertFalse(self.output.exists())
+
+    def test_output_inside_source_directory_is_rejected(self):
+        nested = self.root / "nested-output"
+        with self.assertRaisesRegex(ValueError, "outside the source directory"):
+            import_text(self.text_path, self.meta_path, nested)
+        self.assertFalse(nested.exists())
+
     def test_missing_article_headings_are_rejected(self):
         self.text_path.write_text("هذا نص بلا عناوين مواد.", encoding="utf-8")
         self.metadata["content_sha256"] = hashlib.sha256(self.text_path.read_bytes()).hexdigest()
