@@ -12,7 +12,9 @@ def reviewed(qid, *, answerable=True, article="LABOUR-ART-1", style="formal", ta
     return {
         "id": qid,
         "question_style": style,
+        "question_style_review_status": "lawyer_approved",
         "retrieval_tags": tags or [],
+        "retrieval_tags_review_status": "lawyer_approved",
         "review_status": "lawyer_reviewed",
         "label_status": "lawyer_approved",
         "reviewer_id": "reviewer-test-1",
