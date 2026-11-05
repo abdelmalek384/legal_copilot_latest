@@ -56,6 +56,9 @@ class GazetteTextImportTests(unittest.TestCase):
         self.assertTrue(all(row["in_force"] == 0 for row in rows))
         self.assertTrue(all(row["as_of"] is None for row in rows))
         self.assertTrue((self.output / "import_report.md").is_file())
+        report = (self.output / "import_report.md").read_text(encoding="utf-8")
+        self.assertIn("Block 1 missing: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12", report)
+        self.assertIn("Blocks with duplicate article numbers: 0", report)
 
     def test_non_lawyer_supplier_role_is_rejected(self):
         self.metadata["supplier_role"] = "unknown"
