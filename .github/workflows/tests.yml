@@ -188,6 +188,10 @@ jobs:
         run: PYTHONPATH=. python tests/test_multi_area_eval_draft.py
       - name: Test Arabic OCR quality evaluator
         run: PYTHONPATH=. python tests/test_ocr_quality_evaluation.py
+      - name: Test lawyer-supplied Gazette text importer
+        run: PYTHONPATH=. python tests/test_import_gazette_text.py
+      - name: Test article-specific Arabic retrieval scorer
+        run: PYTHONPATH=. python tests/test_score_arabic_retrieval.py
       - name: Test legal evaluation API runner
         run: PYTHONPATH=. python tests/test_legal_eval_runner.py
       - name: Test lawyer-reviewed legal answer evaluation
