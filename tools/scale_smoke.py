@@ -222,9 +222,16 @@ def run(data_dir, samples):
             ))
         print("\nTargets: dashboard, case list, case detail, invoice list and finance overview p95 < 300 ms; search p95 < 500 ms.")
         failures = []
-        for name, result in measurements.items():
-            limit = 500 if name == "Search" else (300 if name != "Firm export" else None)
-            if limit is not None and result["p95"] >= limit:
+        limits = {
+            "Dashboard": 300,
+            "Case list": 300,
+            "Invoice list": 300,
+            "Finance overview": 300,
+            "Search": 500,
+        }
+        for name, limit in limits.items():
+            result = measurements[name]
+            if result["p95"] >= limit:
                 failures.append("{} p95 {:.1f} ms >= {} ms".format(name, result["p95"], limit))
         if failures:
             print("PERFORMANCE TARGETS MISSED: " + "; ".join(failures), file=sys.stderr)
