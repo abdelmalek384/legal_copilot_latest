@@ -1326,8 +1326,11 @@ def llm(prompt):
     bounded to MAX_LLM_RESPONSE_BYTES and malformed responses fail closed to sources-only.
     """
     url = os.environ.get("LLM_URL")
-    if not url or not _safe_llm_endpoint(url): return None
-    if os.environ.get("LLM_DATA_PROCESSING_APPROVED", "").strip() != "1":
+    # Do not even resolve a configured provider hostname until the operator has
+    # explicitly approved model processing; DNS itself is an external disclosure.
+    if not url or os.environ.get("LLM_DATA_PROCESSING_APPROVED", "").strip() != "1":
+        return None
+    if not _safe_llm_endpoint(url):
         return None
     body = json.dumps({"model": os.environ.get("LLM_MODEL", "local"), "temperature": 0,
                        "messages": [{"role": "system", "content": SYS}, {"role": "user", "content": prompt}]}).encode()
