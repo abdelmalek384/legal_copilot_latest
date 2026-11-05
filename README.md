@@ -81,6 +81,10 @@ Known limits: only a small curated set of Egyptian colloquial forms is expanded 
 
 The web app includes an installable PWA shell for compatible browsers. Serve it over HTTPS, then use the browser's **Install app** or **Add to Home Screen** action. The service worker caches only a static offline notice; case data, uploaded files, account/session data, and research responses are never cached. See [PWA installation and privacy limits](docs/pwa_installation.md) and the [manual device/browser acceptance runbook](docs/device_browser_acceptance_runbook.md).
 
+## Deployment
+
+For a concise production operator guide, see [Deploy Legal Copilot](docs/DEPLOY.md). The longer [production deployment checklist](docs/production_deployment_checklist.md) and [container deployment template](docs/container_deployment.md) remain mandatory release references.
+
 ## Setup and security
 
 For a fresh installation, use the separate-database architecture. Do not follow old single-file database instructions for a fresh install.
