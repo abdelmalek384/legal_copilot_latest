@@ -135,6 +135,7 @@ def score(questions, runs):
     colloquial_synonym_hits = []
     wrong_answers = cited_non_abstained = non_abstained = abstained = 0
     uncited_non_abstained = 0
+    unverified_source_answers = 0
     unanswerable = unanswerable_abstained = 0
     for q in reviewed:
         run = r_by_id[q["id"]]
@@ -161,6 +162,10 @@ def score(questions, runs):
             unanswerable_abstained += int(run["abstained"])
         if not run["abstained"]:
             non_abstained += 1
+            if run.get("used_unverified_source") is True:
+                unverified_source_answers += 1
+            elif run.get("used_unverified_source") not in (None, False):
+                raise ValueError(f"{q['id']}: used_unverified_source must be boolean")
             cited = run["cited_article_ids"]
             if not cited:
                 uncited_non_abstained += 1
@@ -179,7 +184,8 @@ def score(questions, runs):
     wrong_rate = round(wrong_answers / cited_non_abstained, 4) if cited_non_abstained else None
     if (not top3_hits or colloquial_rate is None or synonym_rate is None or wrong_rate is None):
         target_status = "not_evaluable_missing_approved_labels_or_cited_runs"
-    elif colloquial_rate < 0.80 or synonym_rate < 0.80 or wrong_rate != 0.0:
+    elif (colloquial_rate < 0.80 or synonym_rate < 0.80 or wrong_rate != 0.0
+          or unverified_source_answers != 0):
         target_status = "below_target"
     else:
         target_status = "targets_met"
@@ -207,6 +213,9 @@ def score(questions, runs):
         "non_abstained_answers": non_abstained,
         "uncited_non_abstained_answers": uncited_non_abstained,
         "abstention_rate": round(abstained / len(reviewed), 4) if reviewed else None,
+        "unverified_source_answers": unverified_source_answers,
+        "unverified_source_rate": round(unverified_source_answers / non_abstained, 4) if non_abstained else None,
+        "target_unverified_source_answers": 0,
         "abstention_compliance_unanswerable": round(unanswerable_abstained / unanswerable, 4) if unanswerable else None,
         "abstained_answers": abstained,
     }
