@@ -35,6 +35,15 @@ class DocumentExtractionBudgetTests(unittest.TestCase):
         self.assertEqual(caught.exception.status_code, 413)
         self.assertEqual(calls, ["extracted"])
 
+    def test_pdf_page_limit_is_checked_before_extracting_any_page(self):
+        calls = []
+        FakeReader.pages = [FakePage("must not be extracted", calls) for _ in range(501)]
+        with patch("pypdf.PdfReader", FakeReader):
+            with self.assertRaises(app.HTTPException) as caught:
+                app.extract("too-many-pages.pdf", b"fake PDF")
+        self.assertEqual(caught.exception.status_code, 413)
+        self.assertEqual(calls, [])
+
     def test_pdf_text_at_budget_is_preserved_with_page_marker(self):
         FakeReader.pages = [FakePage("Readable legal text")]
         with patch("pypdf.PdfReader", FakeReader):
