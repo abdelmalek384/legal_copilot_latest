@@ -1,0 +1,85 @@
+"""Tests for the reviewed-label-only Arabic retrieval scorer."""
+import sys
+from pathlib import Path
+import unittest
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from tools.score_arabic_retrieval import score
+
+
+def reviewed(qid, *, answerable=True, article="LABOUR-ART-1", style="formal", tags=None):
+    return {
+        "id": qid,
+        "question_style": style,
+        "retrieval_tags": tags or [],
+        "review_status": "lawyer_reviewed",
+        "answerable": answerable,
+        "expected_article": article if answerable else None,
+        "must_abstain_if_unverified": True,
+        "reviewer_name": "Test Reviewer",
+        "review_date": "2026-11-05",
+        "review_evidence_url": "https://example.gov.eg/review-record",
+    }
+
+
+class ArabicRetrievalScorerTests(unittest.TestCase):
+    def test_unlabeled_rows_are_excluded_and_metrics_are_null(self):
+        q = {"id": "Q1", "review_status": "needs_lawyer_review", "expected_article": None}
+        result = score([q], [])
+        self.assertEqual(result["reviewed_questions"], 0)
+        self.assertEqual(result["unlabeled_or_unreviewed_excluded"], 1)
+        self.assertIsNone(result["top3_hit_rate"])
+        self.assertIsNone(result["wrong_article_rate"])
+        self.assertIsNone(result["abstention_rate"])
+
+    def test_correct_colloquial_article_is_a_top3_hit_with_zero_wrong_article_rate(self):
+        q = reviewed("Q1", style="colloquial")
+        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1", "LABOUR-ART-2"],
+               "cited_article_ids": ["LABOUR-ART-1"], "abstained": False}
+        result = score([q], [run])
+        self.assertEqual(result["top3_hit_rate"], 1.0)
+        self.assertEqual(result["top3_hit_rate_colloquial_or_synonym"], 1.0)
+        self.assertEqual(result["wrong_article_rate"], 0.0)
+
+    def test_wrong_cited_article_is_counted(self):
+        q = reviewed("Q1")
+        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
+               "cited_article_ids": ["LABOUR-ART-2"], "abstained": False}
+        result = score([q], [run])
+        self.assertEqual(result["wrong_article_rate"], 1.0)
+        self.assertEqual(result["wrong_article_answers"], 1)
+
+    def test_synonym_tag_is_included_in_target_slice(self):
+        q = reviewed("Q1", tags=["synonym"])
+        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
+               "cited_article_ids": ["LABOUR-ART-1"], "abstained": False}
+        result = score([q], [run])
+        self.assertEqual(result["top3_hit_rate_colloquial_or_synonym"], 1.0)
+        self.assertEqual(result["colloquial_or_synonym_questions"], 1)
+
+    def test_unanswerable_case_requires_abstention(self):
+        q = reviewed("Q1", answerable=False)
+        run = {"question_id": "Q1", "retrieved_article_ids": [], "cited_article_ids": [],
+               "abstained": True}
+        result = score([q], [run])
+        self.assertEqual(result["abstention_rate"], 1.0)
+        self.assertEqual(result["abstention_compliance_unanswerable"], 1.0)
+
+    def test_uncited_non_abstained_answer_is_reported_separately(self):
+        q = reviewed("Q1")
+        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
+               "cited_article_ids": [], "abstained": False}
+        result = score([q], [run])
+        self.assertEqual(result["uncited_non_abstained_answers"], 1)
+        self.assertIsNone(result["wrong_article_rate"])
+
+    def test_run_for_unreviewed_question_is_rejected(self):
+        q = {"id": "Q1", "review_status": "needs_lawyer_review"}
+        run = {"question_id": "Q1", "retrieved_article_ids": [], "cited_article_ids": [], "abstained": True}
+        with self.assertRaisesRegex(ValueError, "unreviewed"):
+            score([q], [run])
+
+
+if __name__ == "__main__":
+    unittest.main()
