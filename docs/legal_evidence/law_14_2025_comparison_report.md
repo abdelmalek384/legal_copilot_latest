@@ -18,7 +18,7 @@
 | Numeric difference alerts | 5 |
 | Missing / extra headings | 0 / 0 |
 
-273 of 311 rows are non-identical under the machine comparison. These are triage results, not proof that the candidate text is wrong. The complete article-level difference export and 120-row tick sheet remain local working artifacts pending transfer; no original source file is included in this repository change.
+273 of 311 rows are non-identical under the machine comparison. These are triage results, not proof that the candidate text is wrong. The complete article-level CSV with similarity/page ranges and the detailed 120-row cue worksheet remain local working artifacts pending transfer. Repository review aids now include `law_14_2025_discrepancy_article_index.md` (all 273 differing article IDs) and `law_14_2025_quantitative_review_checklist.md` (all 120 quantitative provision IDs). No original source file is included in this repository change.
 
 ## Numeric alerts examined individually
 
