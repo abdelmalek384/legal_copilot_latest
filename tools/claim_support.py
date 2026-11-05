@@ -82,17 +82,17 @@ def _modal_classes(text, patterns):
 
 
 _ENGLISH_NEGATED_OBLIGATION = re.compile(
-    r"\\b(?:not\\s+required\\s+to|need\\s+not|is\\s+not\\s+obliged\\s+to|"
-    r"are\\s+not\\s+obliged\\s+to|is\\s+not\\s+obligated\\s+to|"
-    r"are\\s+not\\s+obligated\\s+to)\\b",
+    r"\b(?:must\s+not|shall\s+not|not\s+required\s+to|need\s+not|is\s+not\s+obliged\s+to|"
+    r"are\s+not\s+obliged\s+to|is\s+not\s+obligated\s+to|"
+    r"are\s+not\s+obligated\s+to)\b",
     re.IGNORECASE,
 )
 _ENGLISH_POSITIVE_OBLIGATION = re.compile(
-    r"\\b(?:must|shall|required\\s+to|is\\s+required\\s+to|are\\s+required\\s+to)\\b",
+    r"\b(?:must|shall|required\s+to|is\s+required\s+to|are\s+required\s+to)\b",
     re.IGNORECASE,
 )
 _ARABIC_NEGATED_OBLIGATION = re.compile(
-    r"(?:لا\\s*(?:يجب|يلتزم|يتعين)|ليس\\s+ملزما|غير\\s+ملزم)"
+    r"(?:لا\s*(?:يجب|يلتزم|يتعين)|ليس\s+ملزما|غير\s+ملزم)"
 )
 _ARABIC_POSITIVE_OBLIGATION = re.compile(r"(?:يجب|يلتزم|يتعين)")
 
