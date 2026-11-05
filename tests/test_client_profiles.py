@@ -233,7 +233,7 @@ class ClientProfileTests(InvoiceTestSupport, unittest.TestCase):
         try:
             response = self.mutate(
                 self.client_a, "post", "/clients/import.csv",
-                json={"csv": "name\\nFirst valid row\\nTrigger failure\\n"},
+                json={"csv": "name\nFirst valid row\nTrigger failure\n"},
             )
             self.assertEqual(response.status_code, 503, response.text)
             self.assertEqual(
