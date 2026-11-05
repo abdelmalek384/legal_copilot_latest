@@ -178,6 +178,423 @@
     "checked": 83,
     "matching_on_checked_passage": 83,
     "confirmed_textual_discrepancies": 0,
+    "records": [
+      {
+        "law_part": "labour_law",
+        "article": 245,
+        "gazette_pdf_pages": "92"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 111,
+        "gazette_pdf_pages": "50"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 88,
+        "gazette_pdf_pages": "42-43"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 251,
+        "gazette_pdf_pages": "94"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 290,
+        "gazette_pdf_pages": "109"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 188,
+        "gazette_pdf_pages": "76"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 87,
+        "gazette_pdf_pages": "42"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 16,
+        "gazette_pdf_pages": "15"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 162,
+        "gazette_pdf_pages": "68"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 221,
+        "gazette_pdf_pages": "85"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 227,
+        "gazette_pdf_pages": "87"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 145,
+        "gazette_pdf_pages": "62-63"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 126,
+        "gazette_pdf_pages": "55"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 208,
+        "gazette_pdf_pages": "82"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 43,
+        "gazette_pdf_pages": "27-28"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 90,
+        "gazette_pdf_pages": "43"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 184,
+        "gazette_pdf_pages": "75"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 267,
+        "gazette_pdf_pages": "101-102"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 39,
+        "gazette_pdf_pages": "25"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 175,
+        "gazette_pdf_pages": "72-73"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 204,
+        "gazette_pdf_pages": "81"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 152,
+        "gazette_pdf_pages": "66"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 65,
+        "gazette_pdf_pages": "34-35"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 171,
+        "gazette_pdf_pages": "71"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 83,
+        "gazette_pdf_pages": "41"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 168,
+        "gazette_pdf_pages": "70"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 81,
+        "gazette_pdf_pages": "40"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 57,
+        "gazette_pdf_pages": "32-33"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 277,
+        "gazette_pdf_pages": "106"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 10,
+        "gazette_pdf_pages": "13"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 194,
+        "gazette_pdf_pages": "79"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 140,
+        "gazette_pdf_pages": "61"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 47,
+        "gazette_pdf_pages": "29"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 165,
+        "gazette_pdf_pages": "69-70"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 209,
+        "gazette_pdf_pages": "82"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 36,
+        "gazette_pdf_pages": "24"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 219,
+        "gazette_pdf_pages": "85"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 161,
+        "gazette_pdf_pages": "68"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 109,
+        "gazette_pdf_pages": "50"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 25,
+        "gazette_pdf_pages": "20-21"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 220,
+        "gazette_pdf_pages": "85"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 236,
+        "gazette_pdf_pages": "89"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 23,
+        "gazette_pdf_pages": "19-20"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 44,
+        "gazette_pdf_pages": "28"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 102,
+        "gazette_pdf_pages": "48"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 283,
+        "gazette_pdf_pages": "107"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 119,
+        "gazette_pdf_pages": "52"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 226,
+        "gazette_pdf_pages": "87"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 234,
+        "gazette_pdf_pages": "89"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 138,
+        "gazette_pdf_pages": "60-61"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 121,
+        "gazette_pdf_pages": "53"
+      },
+      {
+        "law_part": "promulgation",
+        "article": 12,
+        "gazette_pdf_pages": "5"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 170,
+        "gazette_pdf_pages": "71"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 17,
+        "gazette_pdf_pages": "15"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 150,
+        "gazette_pdf_pages": "65"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 132,
+        "gazette_pdf_pages": "57"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 181,
+        "gazette_pdf_pages": "74"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 196,
+        "gazette_pdf_pages": "79-80"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 107,
+        "gazette_pdf_pages": "49"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 149,
+        "gazette_pdf_pages": "64-65"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 96,
+        "gazette_pdf_pages": "45-46"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 41,
+        "gazette_pdf_pages": "26-27"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 54,
+        "gazette_pdf_pages": "31-32"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 261,
+        "gazette_pdf_pages": "99"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 291,
+        "gazette_pdf_pages": "109-110"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 179,
+        "gazette_pdf_pages": "74"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 192,
+        "gazette_pdf_pages": "78"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 224,
+        "gazette_pdf_pages": "86"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 289,
+        "gazette_pdf_pages": "109"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 18,
+        "gazette_pdf_pages": "16"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 19,
+        "gazette_pdf_pages": "17"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 20,
+        "gazette_pdf_pages": "17-18"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 22,
+        "gazette_pdf_pages": "19"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 24,
+        "gazette_pdf_pages": "20"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 27,
+        "gazette_pdf_pages": "21"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 28,
+        "gazette_pdf_pages": "21"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 29,
+        "gazette_pdf_pages": "22"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 30,
+        "gazette_pdf_pages": "22"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 32,
+        "gazette_pdf_pages": "22-23"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 33,
+        "gazette_pdf_pages": "23"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 34,
+        "gazette_pdf_pages": "23-24"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 35,
+        "gazette_pdf_pages": "24"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 37,
+        "gazette_pdf_pages": "24-25"
+      }
+    ],
     "articles": [
       245,
       111,
@@ -266,7 +683,6 @@
     "gazette_pdf_pages": [
       5,
       13,
-      14,
       15,
       16,
       17,
@@ -334,340 +750,6 @@
       107,
       109,
       110
-    ],
-    "records": [
-      {
-        "law_part": "labour_law",
-        "article": 245
-      },
-      {
-        "law_part": "labour_law",
-        "article": 111
-      },
-      {
-        "law_part": "labour_law",
-        "article": 88
-      },
-      {
-        "law_part": "labour_law",
-        "article": 251
-      },
-      {
-        "law_part": "labour_law",
-        "article": 290
-      },
-      {
-        "law_part": "labour_law",
-        "article": 188
-      },
-      {
-        "law_part": "labour_law",
-        "article": 87
-      },
-      {
-        "law_part": "labour_law",
-        "article": 16
-      },
-      {
-        "law_part": "labour_law",
-        "article": 162
-      },
-      {
-        "law_part": "labour_law",
-        "article": 221
-      },
-      {
-        "law_part": "labour_law",
-        "article": 227
-      },
-      {
-        "law_part": "labour_law",
-        "article": 145
-      },
-      {
-        "law_part": "labour_law",
-        "article": 126
-      },
-      {
-        "law_part": "labour_law",
-        "article": 208
-      },
-      {
-        "law_part": "labour_law",
-        "article": 43
-      },
-      {
-        "law_part": "labour_law",
-        "article": 90
-      },
-      {
-        "law_part": "labour_law",
-        "article": 184
-      },
-      {
-        "law_part": "labour_law",
-        "article": 267
-      },
-      {
-        "law_part": "labour_law",
-        "article": 39
-      },
-      {
-        "law_part": "labour_law",
-        "article": 175
-      },
-      {
-        "law_part": "labour_law",
-        "article": 204
-      },
-      {
-        "law_part": "labour_law",
-        "article": 152
-      },
-      {
-        "law_part": "labour_law",
-        "article": 65
-      },
-      {
-        "law_part": "labour_law",
-        "article": 171
-      },
-      {
-        "law_part": "labour_law",
-        "article": 83
-      },
-      {
-        "law_part": "labour_law",
-        "article": 168
-      },
-      {
-        "law_part": "labour_law",
-        "article": 81
-      },
-      {
-        "law_part": "labour_law",
-        "article": 57
-      },
-      {
-        "law_part": "labour_law",
-        "article": 277
-      },
-      {
-        "law_part": "labour_law",
-        "article": 10
-      },
-      {
-        "law_part": "labour_law",
-        "article": 194
-      },
-      {
-        "law_part": "labour_law",
-        "article": 140
-      },
-      {
-        "law_part": "labour_law",
-        "article": 47
-      },
-      {
-        "law_part": "labour_law",
-        "article": 165
-      },
-      {
-        "law_part": "labour_law",
-        "article": 209
-      },
-      {
-        "law_part": "labour_law",
-        "article": 36
-      },
-      {
-        "law_part": "labour_law",
-        "article": 219
-      },
-      {
-        "law_part": "labour_law",
-        "article": 161
-      },
-      {
-        "law_part": "labour_law",
-        "article": 109
-      },
-      {
-        "law_part": "labour_law",
-        "article": 25
-      },
-      {
-        "law_part": "labour_law",
-        "article": 220
-      },
-      {
-        "law_part": "labour_law",
-        "article": 236
-      },
-      {
-        "law_part": "labour_law",
-        "article": 23
-      },
-      {
-        "law_part": "labour_law",
-        "article": 44
-      },
-      {
-        "law_part": "labour_law",
-        "article": 102
-      },
-      {
-        "law_part": "labour_law",
-        "article": 283
-      },
-      {
-        "law_part": "labour_law",
-        "article": 119
-      },
-      {
-        "law_part": "labour_law",
-        "article": 226
-      },
-      {
-        "law_part": "labour_law",
-        "article": 234
-      },
-      {
-        "law_part": "labour_law",
-        "article": 138
-      },
-      {
-        "law_part": "labour_law",
-        "article": 121
-      },
-      {
-        "law_part": "labour_law",
-        "article": 12
-      },
-      {
-        "law_part": "labour_law",
-        "article": 170
-      },
-      {
-        "law_part": "labour_law",
-        "article": 17
-      },
-      {
-        "law_part": "labour_law",
-        "article": 150
-      },
-      {
-        "law_part": "labour_law",
-        "article": 132
-      },
-      {
-        "law_part": "labour_law",
-        "article": 181
-      },
-      {
-        "law_part": "labour_law",
-        "article": 196
-      },
-      {
-        "law_part": "labour_law",
-        "article": 107
-      },
-      {
-        "law_part": "labour_law",
-        "article": 149
-      },
-      {
-        "law_part": "labour_law",
-        "article": 96
-      },
-      {
-        "law_part": "labour_law",
-        "article": 41
-      },
-      {
-        "law_part": "labour_law",
-        "article": 54
-      },
-      {
-        "law_part": "labour_law",
-        "article": 261
-      },
-      {
-        "law_part": "labour_law",
-        "article": 291
-      },
-      {
-        "law_part": "labour_law",
-        "article": 179
-      },
-      {
-        "law_part": "labour_law",
-        "article": 192
-      },
-      {
-        "law_part": "labour_law",
-        "article": 224
-      },
-      {
-        "law_part": "labour_law",
-        "article": 289
-      },
-      {
-        "law_part": "labour_law",
-        "article": 18
-      },
-      {
-        "law_part": "labour_law",
-        "article": 19
-      },
-      {
-        "law_part": "labour_law",
-        "article": 20
-      },
-      {
-        "law_part": "labour_law",
-        "article": 22
-      },
-      {
-        "law_part": "labour_law",
-        "article": 24
-      },
-      {
-        "law_part": "labour_law",
-        "article": 27
-      },
-      {
-        "law_part": "labour_law",
-        "article": 28
-      },
-      {
-        "law_part": "labour_law",
-        "article": 29
-      },
-      {
-        "law_part": "labour_law",
-        "article": 30
-      },
-      {
-        "law_part": "labour_law",
-        "article": 32
-      },
-      {
-        "law_part": "labour_law",
-        "article": 33
-      },
-      {
-        "law_part": "labour_law",
-        "article": 34
-      },
-      {
-        "law_part": "labour_law",
-        "article": 35
-      },
-      {
-        "law_part": "labour_law",
-        "article": 37
-      }
     ]
   },
   "quantitative_visual_checks": {
