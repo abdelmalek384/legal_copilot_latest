@@ -95,6 +95,12 @@ class IdentityLifecycleTests(unittest.TestCase):
         self.assertIn('@router.get("/invite/accept", response_class=HTMLResponse)', router_source)
         self.assertIn('@router.get("/account/recovery", response_class=HTMLResponse)', router_source)
         self.assertIn("request.state.csp_nonce", router_source)
+        logout_routes = [
+            route for route in app.app.routes
+            if getattr(route, "path", None) == "/logout"
+        ]
+        self.assertEqual(len(logout_routes), 1)
+        self.assertEqual(logout_routes[0].endpoint.__module__, "routers.identity")
 
     def test_admin_can_list_and_revoke_only_own_firm_invitations(self):
         self.assertEqual(self._login(self.client, "invitation-owner@example.test", self.password).status_code, 200)
