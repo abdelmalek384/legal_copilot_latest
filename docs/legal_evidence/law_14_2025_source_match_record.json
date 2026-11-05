@@ -28,8 +28,8 @@
     "Six known orthography-outlier passages were visually inspected and matched on the checked passages; this is not a complete review of all 311 records",
     "All 120 quantitative provision cues remain unreviewed",
     "Seventy-nine of 221 minor-difference records were visually checked and matched on the inspected passages; 142 minor-difference records remain unreviewed",
-    "Twenty-six of 120 quantitative provision cues were visually checked and matched; 94 quantitative cues remain unreviewed",
-    "One hundred seventeen of 221 minor-difference records were visually checked and matched on the inspected passages; 104 minor-difference records remain unreviewed"
+    "One hundred twenty-seven of 221 minor-difference records were visually checked and matched on the inspected passages; 94 minor-difference records remain unreviewed",
+    "Thirty-three of 120 quantitative provision cues were visually checked and matched; 87 quantitative cues remain unreviewed"
   ],
   "numeric_alert_page_images_reviewed": true,
   "numeric_alert_reviewed_articles": [
@@ -175,8 +175,8 @@
     ]
   },
   "minor_difference_visual_spot_checks": {
-    "checked": 117,
-    "matching_on_checked_passage": 117,
+    "checked": 127,
+    "matching_on_checked_passage": 127,
     "confirmed_textual_discrepancies": 0,
     "records": [
       {
@@ -763,6 +763,56 @@
         "law_part": "labour_law",
         "article": 108,
         "gazette_pdf_pages": "49-50"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 117,
+        "gazette_pdf_pages": "52"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 118,
+        "gazette_pdf_pages": "52"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 120,
+        "gazette_pdf_pages": "52-53"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 122,
+        "gazette_pdf_pages": "53-54"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 125,
+        "gazette_pdf_pages": "55"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 129,
+        "gazette_pdf_pages": "56"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 131,
+        "gazette_pdf_pages": "56-57"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 135,
+        "gazette_pdf_pages": "58-59"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 136,
+        "gazette_pdf_pages": "59"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 137,
+        "gazette_pdf_pages": "60"
       }
     ],
     "articles": [
@@ -882,7 +932,17 @@
       99,
       101,
       106,
-      108
+      108,
+      117,
+      118,
+      120,
+      122,
+      125,
+      129,
+      131,
+      135,
+      136,
+      137
     ],
     "gazette_pdf_pages": [
       5,
@@ -925,8 +985,12 @@
       50,
       52,
       53,
+      54,
       55,
+      56,
       57,
+      58,
+      59,
       60,
       61,
       62,
@@ -964,8 +1028,8 @@
     ]
   },
   "quantitative_visual_checks": {
-    "checked": 26,
-    "matching_on_checked_passage": 26,
+    "checked": 33,
+    "matching_on_checked_passage": 33,
     "confirmed_quantitative_discrepancies": 0,
     "records": [
       {
@@ -1097,6 +1161,41 @@
         "law_part": "labour_law",
         "article": 72,
         "gazette_pdf_pages": "37"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 117,
+        "gazette_pdf_pages": "52"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 118,
+        "gazette_pdf_pages": "52"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 120,
+        "gazette_pdf_pages": "52-53"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 122,
+        "gazette_pdf_pages": "53-54"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 125,
+        "gazette_pdf_pages": "55"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 131,
+        "gazette_pdf_pages": "56-57"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 137,
+        "gazette_pdf_pages": "60"
       }
     ]
   },
