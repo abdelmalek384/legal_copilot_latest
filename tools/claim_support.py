@@ -101,6 +101,134 @@ def _has_modal_mismatch(claim, evidence):
             return True
     return False
 
+
+_ARABIC_DIGITS = str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789")
+_NUMBER_WORDS = {
+    "zero": 0, "one": 1, "first": 1, "two": 2, "second": 2,
+    "three": 3, "third": 3, "four": 4, "five": 5, "fifth": 5,
+    "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
+    "eleven": 11, "twelve": 12, "thirteen": 13, "fourteen": 14,
+    "fifteen": 15, "eighteen": 18, "twenty": 20, "thirty": 30,
+    "forty": 40, "fifty": 50, "sixty": 60, "seventy": 70,
+    "eighty": 80, "ninety": 90, "hundred": 100,
+    "صفر": 0, "واحد": 1, "واحدة": 1, "واحده": 1,
+    "اثنين": 2, "اثنتين": 2, "اثنان": 2, "اثنتان": 2,
+    "ثلاث": 3, "ثلاثة": 3, "ثلاثه": 3, "اربع": 4, "أربع": 4,
+    "اربعة": 4, "أربعة": 4, "خمس": 5, "خمسة": 5, "خمسه": 5,
+    "ست": 6, "ستة": 6, "سته": 6, "سبع": 7, "سبعة": 7,
+    "سبعه": 7, "ثمان": 8, "ثمانية": 8, "ثمانيه": 8,
+    "تسع": 9, "تسعة": 9, "تسعه": 9, "عشر": 10, "عشرة": 10,
+    "عشره": 10, "عشرين": 20, "ثلاثين": 30, "اربعين": 40,
+    "أربعين": 40, "خمسين": 50, "ستين": 60, "سبعين": 70,
+    "ثمانين": 80, "تسعين": 90, "مئة": 100, "مائة": 100,
+}
+_NUMERIC_UNITS = {
+    "year": "year", "years": "year", "سنة": "year", "سنوات": "year",
+    "month": "month", "months": "month", "شهر": "month",
+    "أشهر": "month", "اشهر": "month", "شهور": "month",
+    "week": "week", "weeks": "week", "أسبوع": "week",
+    "اسبوع": "week", "أسابيع": "week", "اسابيع": "week",
+    "day": "day", "days": "day", "يوم": "day", "أيام": "day", "ايام": "day",
+    "hour": "hour", "hours": "hour", "ساعة": "hour", "ساعات": "hour",
+    "minute": "minute", "minutes": "minute", "دقيقة": "minute", "دقائق": "minute",
+    "percent": "percent", "percentage": "percent", "بالمئة": "percent",
+    "percent": "percent", "unit": "unit", "units": "unit",
+    "وحدة": "unit", "وحدات": "unit", "egp": "currency",
+    "pound": "currency", "pounds": "currency", "جنيه": "currency",
+    "جنيهات": "currency",
+}
+_CURRENCY_PREFIXES = {"egp", "pound", "pounds", "جنيه", "جنيهات"}
+
+
+def _numeric_markers(text):
+    """Extract numeric values and optional units, including common Arabic/English words."""
+    value = str(text or "").translate(_ARABIC_DIGITS).lower()
+    parts = re.findall(r"[a-z]+|[0-9]+(?:[.,][0-9]+)?|[\u0600-\u06ff]+", value)
+    values = set()
+    markers = set()
+    for index, part in enumerate(parts):
+        if re.fullmatch(r"[0-9]+(?:[.,][0-9]+)?", part):
+            number = str(float(part.replace(",", "."))).rstrip("0").rstrip(".")
+        elif part in _NUMBER_WORDS:
+            number = str(_NUMBER_WORDS[part])
+        else:
+            continue
+        values.add(number)
+        unit = None
+        if index + 1 < len(parts):
+            unit = _NUMERIC_UNITS.get(parts[index + 1])
+        if unit is None and index > 0 and parts[index - 1] in _CURRENCY_PREFIXES:
+            unit = "currency"
+        markers.add((number, unit))
+    return values, markers
+
+
+def _has_unsupported_numbers(claim, evidence):
+    claim_values, claim_markers = _numeric_markers(claim)
+    evidence_values, evidence_markers = _numeric_markers(evidence)
+    if not claim_values.issubset(evidence_values):
+        return True
+    for number, unit in claim_markers:
+        if unit is not None and (number, unit) not in evidence_markers:
+            return True
+    return False
+
+
+_QUALIFIER_PATTERNS = {
+    "universal": (r"\b(?:all|every|each|any)\b", r"(?:^|\s)(?:كل|جميع|كافة)(?:\s|$)"),
+    "always": (r"\balways\b", r"(?:^|\s)دائما(?:\s|$)"),
+    "never": (r"\bnever\b", r"(?:^|\s)(?:ابدا|أبدا)(?:\s|$)"),
+    "perpetual": (r"\b(?:forever|unlimited|without\s+limit)\b", r"(?:بلا|دون)\s+(?:حدود|نهاية)"),
+    "exclusive": (r"\b(?:only|solely|exclusively)\b", r"(?:^|\s)(?:فقط|حصرا)(?:\s|$)"),
+    "automatic": (r"\bautomatically\b", r"(?:^|\s)تلقائيا(?:\s|$)"),
+    "guaranteed": (r"\bguarantee(?:s|d)?\b", r"(?:^|\s)مضمون(?:ة)?(?:\s|$)"),
+    "no_exception": (r"\b(?:without\s+exception|no\s+exceptions)\b", r"(?:بلا|دون)\s+استثناء"),
+}
+
+
+def _has_unsupported_qualifiers(claim, evidence):
+    for patterns in _QUALIFIER_PATTERNS.values():
+        claim_has = any(re.search(pattern, claim) for pattern in patterns)
+        evidence_has = any(re.search(pattern, evidence) for pattern in patterns)
+        if claim_has and not evidence_has:
+            return True
+    return False
+
+
+_REVERSAL_GROUPS = (
+    (
+        (r"\b(?:increase|increases|increased|go\s+up|goes\s+up|rise|rises|rose)\b",),
+        (r"\b(?:decrease|decreases|decreased|go\s+down|goes\s+down|fall|falls|fell)\b",),
+    ),
+    ((r"\b(?:before|prior\s+to|earlier)\b",), (r"\b(?:after|following|later)\b",)),
+    ((r"\b(?:include|includes|included)\b",), (r"\b(?:exclude|excludes|excluded)\b",)),
+    ((r"\bvalid\b",), (r"\b(?:invalid|void)\b",)),
+    ((r"(?<!non-)\brenewable\b",), (r"\bnon-renewable\b|\bnot\s+renewable\b",)),
+    ((r"\b(?:accept|accepts|accepted)\b",), (r"\b(?:reject|rejects|rejected|deny|denies)\b",)),
+    ((r"(?<!not\s)\bpayable\b",), (r"\b(?:not\s+payable|nonpayable)\b",)),
+    ((r"\bmaximum\b",), (r"\bminimum\b",)),
+    ((r"\b(?:applies|apply|applied)\b",), (r"\b(?:does\s+not\s+apply|not\s+applicable)\b",)),
+    ((r"(?:^|\s)(?:تزيد|يزيد|زيادة)(?:\s|$)",), (r"(?:^|\s)(?:تنقص|ينقص|انخفاض)(?:\s|$)",)),
+    ((r"(?:^|\s)قبل(?:\s|$)",), (r"(?:^|\s)بعد(?:\s|$)",)),
+    ((r"(?:^|\s)(?:يشمل|يشملون|تضم)(?:\s|$)",), (r"(?:^|\s)(?:يستثني|تستثني|يستبعد)(?:\s|$)",)),
+    ((r"(?:^|\s)(?:صحيح|سليم)(?:\s|$)",), (r"(?:^|\s)(?:باطل|غير\s+صحيح)(?:\s|$)",)),
+    ((r"(?:^|\s)(?:يقبل|تقبل|قبول)(?:\s|$)",), (r"(?:^|\s)(?:يرفض|ترفض|رفض)(?:\s|$)",)),
+)
+
+
+def _has_reversal_mismatch(claim, evidence):
+    for positive_patterns, negative_patterns in _REVERSAL_GROUPS:
+        claim_positive = any(re.search(pattern, claim) for pattern in positive_patterns)
+        claim_negative = any(re.search(pattern, claim) for pattern in negative_patterns)
+        evidence_positive = any(re.search(pattern, evidence) for pattern in positive_patterns)
+        evidence_negative = any(re.search(pattern, evidence) for pattern in negative_patterns)
+        if claim_positive and evidence_negative and not claim_negative:
+            return True
+        if claim_negative and evidence_positive and not claim_positive:
+            return True
+    return False
+
+
 def claim_support_enabled():
     """Opt in explicitly; default remains off until evaluated on reviewed answers."""
     return os.environ.get("LEGAL_CLAIM_SUPPORT_CHECK", "").strip() == "1"
@@ -151,6 +279,12 @@ def has_unsupported_claims(answer, hits, tokens_fn, norm_fn, mask_code=None):
         normalized_claim = norm_fn(claim)
         normalized_evidence = norm_fn(evidence)
         if _has_modal_mismatch(normalized_claim, normalized_evidence):
+            return True
+        if _has_unsupported_numbers(normalized_claim, normalized_evidence):
+            return True
+        if _has_unsupported_qualifiers(normalized_claim, normalized_evidence):
+            return True
+        if _has_reversal_mismatch(normalized_claim, normalized_evidence):
             return True
 
         claim_says_no_expiry = bool(
