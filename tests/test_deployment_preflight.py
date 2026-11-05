@@ -93,6 +93,14 @@ class DeploymentPreflightTests(unittest.TestCase):
             )
         self.assertTrue(any("LLM_URL must use HTTPS" in item for item in errors))
 
+    def test_readme_quick_start_documents_three_database_profiles(self):
+        readme = (Path(__file__).resolve().parents[1] / "README.md").read_text(encoding="utf-8")
+        quick_start = readme.split("## Quick start (local development)", 1)[1].split("## Known limits", 1)[0]
+        for setting in ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB"):
+            with self.subTest(setting=setting):
+                self.assertIn(setting, quick_start)
+        self.assertIn("three separate database domains", quick_start)
+
     def test_rejects_unlinked_legacy_law_search_override(self):
         _, _, errors = preflight.inspect_environment(dict(self.env, ALLOW_UNLINKED_LEGACY_LAW_SEARCH="1"))
         self.assertTrue(any("ALLOW_UNLINKED_LEGACY_LAW_SEARCH" in item for item in errors))
