@@ -9,6 +9,7 @@ class CasesRouterContractTests(unittest.TestCase):
     def test_case_read_routes_are_registered_from_cases_router(self):
         expected = {
             ("/cases", "GET"),
+            ("/cases", "POST"),
             ("/cases/search", "GET"),
             ("/cases/{cid}", "GET"),
             ("/cases/{cid}/draft-skeleton", "GET"),
