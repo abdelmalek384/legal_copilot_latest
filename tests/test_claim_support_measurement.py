@@ -92,6 +92,8 @@ class FictionalClaimSupportMeasurementTests(unittest.TestCase):
         report = {}
         false_pass = 0
         false_block = 0
+        false_pass_examples = []
+        false_block_examples = []
         unsupported_total = 0
         supported_total = 0
 
@@ -107,10 +109,14 @@ class FictionalClaimSupportMeasurementTests(unittest.TestCase):
 
             if expected_block:
                 unsupported_total += 1
-                false_pass += int(not blocked)
+                if not blocked:
+                    false_pass += 1
+                    false_pass_examples.append({"label": label, "answer": answer, "evidence": evidence})
             else:
                 supported_total += 1
-                false_block += int(blocked)
+                if blocked:
+                    false_block += 1
+                    false_block_examples.append({"answer": answer, "evidence": evidence})
 
         for label, count in expected_counts.items():
             self.assertEqual(report[label]["n"], count)
@@ -123,6 +129,8 @@ class FictionalClaimSupportMeasurementTests(unittest.TestCase):
             "false_block": false_block,
             "supported_total": supported_total,
             "false_block_rate": false_block / supported_total,
+            "false_pass_examples": false_pass_examples,
+            "false_block_examples": false_block_examples,
         }
         print("FICTIONAL_CLAIM_SUPPORT_BENCHMARK=" + json.dumps(report, ensure_ascii=False, sort_keys=True))
         self.assertEqual(false_pass, 0, "unsupported fictional claims passed the checker")
