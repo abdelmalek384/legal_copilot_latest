@@ -79,6 +79,13 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         self.assertEqual(result["top3_hit_rate"], 1.0)
         self.assertEqual(result["wrong_article_rate"], 0.0)
 
+    def test_rejects_cited_article_not_present_in_retrieved_results(self):
+        q = reviewed("Q1")
+        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
+               "cited_article_ids": ["LABOUR-ART-2"], "abstained": False}
+        with self.assertRaisesRegex(ValueError, "must be present in retrieved_article_ids"):
+            score([q], [run])
+
     def test_wrong_cited_article_is_counted(self):
         q = reviewed("Q1")
         run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
