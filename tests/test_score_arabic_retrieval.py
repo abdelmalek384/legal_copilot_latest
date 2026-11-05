@@ -48,6 +48,22 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         self.assertEqual(result["top3_hit_rate_colloquial_or_synonym"], 1.0)
         self.assertEqual(result["wrong_article_rate"], 0.0)
 
+    def test_targets_met_only_when_colloquial_recall_and_wrong_article_threshold_pass(self):
+        q = reviewed("Q1", style="colloquial")
+        good = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
+                "cited_article_ids": ["LABOUR-ART-1"], "abstained": False}
+        self.assertEqual(score([q], [good])["target_status"], "targets_met")
+        bad = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
+               "cited_article_ids": ["LABOUR-ART-2"], "abstained": False}
+        self.assertEqual(score([q], [bad])["target_status"], "below_target")
+
+    def test_target_status_is_not_evaluable_without_approved_slice_or_citations(self):
+        q = reviewed("Q1", style="formal")
+        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
+               "cited_article_ids": [], "abstained": False}
+        self.assertEqual(score([q], [run])["target_status"],
+                         "not_evaluable_missing_approved_labels_or_cited_runs")
+
     def test_wrong_cited_article_is_counted(self):
         q = reviewed("Q1")
         run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
