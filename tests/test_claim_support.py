@@ -68,6 +68,13 @@ class ClaimSupportTests(unittest.TestCase):
                     tokens, norm, _mask_markdown_code
                 ))
 
+    def test_prohibition_paraphrase_is_not_rejected(self):
+        hits = [{"text": "The employer must not deduct wages."}]
+        self.assertFalse(has_unsupported_claims(
+            "The employer is prohibited from deducting wages [1].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
+
     def test_invalid_citation_fails_closed(self):
         self.assertTrue(has_unsupported_claims(
             "The limitation period is five years [2].",
