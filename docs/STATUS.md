@@ -10,7 +10,8 @@
 - A lawyer-supplied UTF-8 Gazette text importer and article-number audit are prepared in the current work branch. Output rows remain `verified=0`, `in_force=0`, and `as_of=null`; database staging is a separate approved operation.
 - The 110-question Arabic benchmark is a curated template, not production query data. All expected articles and lawyer-approved answers are unlabeled. No before/after retrieval metrics exist; `MIN_SCORE` remains 0.30 and must not be tuned yet.
 - Five deadline rules and the holiday calendar remain unverified drafts. The counsel packet records the assumed periods/triggers and missing primary citations; no rule values were changed.
-- A raw-text negated-obligation guard is included in the current work branch. It compares obligation polarity before Arabic normalization; exact-head CI is still required.
+- A raw-text negated-obligation guard is included in PR #1466. It compares obligation polarity before Arabic normalization. Exact-head GitHub Actions jobs currently fail before any execution step; job logs are unavailable, so no test/security pass is claimed.
+- PR #1466 is the clean current-main review target. Stale drafts #1461 and #1464 have been closed without merge.
 
 ## Human and release gates
 
@@ -24,7 +25,7 @@
 
 - #1451 — merged; provisional evidence only.
 - #1449, #1212, #1208 and #840 — closed without merge.
-- #1460 — closed without merge; superseded by current-main negation guard.
-- #1464 — draft negation guard; superseded by the combined current-main work branch.
+- #1460, #1461 and #1464 — closed without merge; superseded by PR #1466.
+- #1466 — current-main combined deliverable; awaiting usable CI results and review.
 
 Historical tracker material is retained under `docs/archive/` where appropriate. This file is the short current status entry point.
