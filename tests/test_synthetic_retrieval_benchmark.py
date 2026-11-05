@@ -217,6 +217,18 @@ class FictionalRetrievalMeasurementTests(unittest.TestCase):
                 f"answerable {style} query was refused",
             )
 
+    def test_lexicon_expands_measured_paraphrase_colloquial_synonym_and_word_forms(self):
+        for area, topics in TOPICS.items():
+            for direct, paraphrase, colloquial, synonym, word_form in topics:
+                for query in (paraphrase, colloquial, synonym, word_form):
+                    with self.subTest(area=area, query=query):
+                        expanded = set(app.expanded_tokens(query))
+                        self.assertTrue(
+                            set(app.tokens(direct)).issubset(expanded),
+                            f"missing canonical article terms for {query!r}",
+                        )
+
+
 
 if __name__ == "__main__":
     unittest.main()
