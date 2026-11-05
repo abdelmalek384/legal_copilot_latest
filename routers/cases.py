@@ -22,6 +22,7 @@ def create_router(
     session_model,
     note_model,
     add_session_helper,
+    case_patch_model,
 ):
     router = APIRouter()
 
@@ -146,6 +147,19 @@ def create_router(
             "lawyer_review_required": True,
             "message": "هيكل أولي فقط؛ يجب استكمال الوقائع والأسانيد والطلبات ومراجعته بواسطة محامٍ.",
         }
+    @router.patch("/cases/{cid}")
+    @rollback_tenant_transaction
+    def patch_case(cid: int, b: case_patch_model, u: dict = Depends(user_dependency)):
+        c = connection_provider()
+        need_dependency(c, u, cid, lead=True)
+        for field in ("stage", "status", "case_number", "case_year", "court", "circuit", "opposing_party"):
+            value = getattr(b, field)
+            if value is not None:
+                c.execute("UPDATE cases SET %s=? WHERE id=?" % field, (value, cid))
+                log_event(c, cid, u["name"], "%s: %s" % (field, value))
+        c.commit()
+        return {"ok": True}
+
     @router.post("/cases/{cid}/sessions")
     @rollback_tenant_transaction
     def new_session(cid: int, b: session_model, u: dict = Depends(user_dependency)):
