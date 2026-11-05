@@ -37,7 +37,12 @@ def _measure(client, method, path, *, samples=30, json_body=None):
     timings = []
     for _ in range(samples):
         started = time.perf_counter()
-        response = getattr(client, method)(path, json=json_body) if json_body is not None else getattr(client, method)(path)
+        headers = {"X-CSRF-Token": client.cookies.get("lc_csrf", "")}
+        response = (
+            getattr(client, method)(path, json=json_body, headers=headers)
+            if json_body is not None
+            else getattr(client, method)(path, headers=headers)
+        )
         elapsed = (time.perf_counter() - started) * 1000
         if response.status_code != 200:
             raise RuntimeError(
