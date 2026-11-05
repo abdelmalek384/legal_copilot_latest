@@ -3529,40 +3529,9 @@ def rollback_corpus_transaction_on_error(func):
     return wrapped
 
 
-def _read_pwa_asset(filename: str) -> str:
-    """Read one fixed, public PWA asset; callers cannot choose a filesystem path."""
-    asset_path = Path(__file__).resolve().parent / "static" / filename
-    return asset_path.read_text(encoding="utf-8")
+from routers.platform import router as platform_router
 
-
-@app.get("/manifest.webmanifest")
-def pwa_manifest():
-    return Response(_read_pwa_asset("manifest.webmanifest"), media_type="application/manifest+json")
-
-
-@app.get("/service-worker.js")
-def pwa_service_worker():
-    return Response(
-        _read_pwa_asset("service-worker.js"),
-        media_type="application/javascript",
-        headers={"Service-Worker-Allowed": "/"},
-    )
-
-
-@app.get("/offline.html")
-def pwa_offline_page():
-    return HTMLResponse(_read_pwa_asset("offline.html"))
-
-
-@app.get("/app-icon.svg")
-def pwa_app_icon():
-    return Response(_read_pwa_asset("app-icon.svg"), media_type="image/svg+xml")
-
-
-@app.get("/apple-touch-icon.png")
-def pwa_apple_touch_icon():
-    encoded = _read_pwa_asset("apple-touch-icon.png.b64").strip()
-    return Response(base64.b64decode(encoded, validate=True), media_type="image/png")
+app.include_router(platform_router)
 
 
 @app.get("/")
