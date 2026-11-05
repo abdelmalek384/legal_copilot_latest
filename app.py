@@ -6467,39 +6467,12 @@ app.include_router(
         communication_model=CommunicationIn,
         rollback_tenant_transaction=rollback_tenant_transaction_on_error,
         log_event=log,
+        case_model=CaseIn,
+        ensure_client_profile=_ensure_client_profile,
+        add_case_helper=add_case,
+        meter_pilot_metric=_meter_pilot_metric,
     )
 )
-
-
-@app.post("/cases")
-@rollback_tenant_transaction_on_error
-def new_case(b: CaseIn, u: dict = Depends(user)):
-    c = conn()
-    client_id, client_name = _ensure_client_profile(c, u, b.client, b.client_id)
-    case_id = add_case(c, u, b.title, client_name, b.stage, b.case_number, b.case_year, b.court, b.circuit, b.opposing_party, client_id)
-    _meter_pilot_metric(u, "cases_created")
-    return {"id": case_id, "client_id": client_id}
-
-
-
-def _redact_case_brief_identifiers(value):
-    """Redact common structured identifiers; this is not complete anonymization."""
-    if not isinstance(value, str):
-        return value
-    patterns = (
-        (r"(?<![\w.+-])[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}(?![\w.-])", "[بريد إلكتروني محجوب]"),
-        (r"(?<!\d)\d{14}(?!\d)", "[رقم قومي محجوب]"),
-        (r"(?<!\d)(?:\+?20[\s-]?|0)?1[0125](?:[\s-]?\d){8}(?!\d)", "[رقم هاتف محجوب]"),
-        (r"(?<!\d)(?:\+?20[\s-]?|0)[23](?:[\s-]?\d){7,8}(?!\d)", "[رقم هاتف محجوب]"),
-    )
-    for pattern, replacement in patterns:
-        value = re.sub(pattern, replacement, value, flags=re.IGNORECASE)
-    return value
-
-
-class CaseBriefAuthorizationIn(BaseModel):
-    firm_authorized: bool = False
-    client_authorized: bool = False
 
 
 @app.post("/cases/{cid}/brief")
