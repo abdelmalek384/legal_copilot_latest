@@ -99,8 +99,11 @@ def _validate_metadata(meta: object, text_bytes: bytes) -> dict:
             raise ValueError("source_url must not contain signed or credential query parameters")
     elif not (isinstance(meta.get("source_reference"), str) and meta["source_reference"].strip()):
         raise ValueError("provide source_url or a non-empty source_reference")
-    if meta.get("collection_permission", "unknown") not in {"unknown", "allowed", "not_allowed"}:
+    permission = meta.get("collection_permission", "unknown")
+    if permission not in {"unknown", "allowed", "not_allowed"}:
         raise ValueError("collection_permission must be unknown, allowed, or not_allowed")
+    if permission == "not_allowed":
+        raise ValueError("collection permission is marked not_allowed; refusing to create candidate rows")
     return {**meta, "publication_date": publication.isoformat(), "actual_sha256": actual}
 
 
@@ -110,6 +113,10 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
         raise ValueError("text and metadata paths must be different")
     if output_dir.is_symlink():
         raise ValueError("output directory must not be a symlink")
+    source_parent = text_path.resolve().parent
+    output_resolved = output_dir.resolve()
+    if output_resolved == source_parent or source_parent in output_resolved.parents:
+        raise ValueError("output directory must be outside the source directory")
     if output_dir.exists() and not output_dir.is_dir():
         raise ValueError("output path must be a directory")
     if output_dir.exists() and any((output_dir / name).exists() or (output_dir / name).is_symlink()
