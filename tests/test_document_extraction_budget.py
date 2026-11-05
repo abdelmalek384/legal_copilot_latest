@@ -60,6 +60,26 @@ class DocumentExtractionBudgetTests(unittest.TestCase):
             app.extract("large.docx", stream.getvalue())
         self.assertEqual(caught.exception.status_code, 413)
 
+    def test_docx_compressed_entry_expansion_is_rejected_before_parsing(self):
+        class Info:
+            file_size = 10_000_001
+            compress_size = 1
+
+        class Archive:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+            def infolist(self):
+                return [Info()]
+
+        with patch("app.zipfile.ZipFile", return_value=Archive()):
+            with self.assertRaises(app.HTTPException) as caught:
+                app.extract("suspicious.docx", b"not expanded in this test")
+        self.assertEqual(caught.exception.status_code, 413)
+
     def test_unsupported_extension_still_rejected(self):
         with self.assertRaises(app.HTTPException) as caught:
             app.extract("case.txt", b"plain text")
