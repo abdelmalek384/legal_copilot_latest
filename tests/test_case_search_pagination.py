@@ -62,12 +62,18 @@ class CaseSearchPaginationTests(InvoiceTestSupport, unittest.TestCase):
         nonmember = self.client_nonmember.get(
             "/cases/search", params={"q": "Invoice matter"}
         )
+        firm_b_list = self.client_b.get("/cases")
+        nonmember_list = self.client_nonmember.get("/cases")
         self.assertEqual(firm_b.status_code, 200, firm_b.text)
         self.assertEqual(firm_b.json()["total"], 0)
         self.assertEqual(firm_b.json()["items"], [])
         self.assertEqual(nonmember.status_code, 200, nonmember.text)
         self.assertEqual(nonmember.json()["total"], 0)
         self.assertEqual(nonmember.json()["items"], [])
+        self.assertEqual(firm_b_list.status_code, 200, firm_b_list.text)
+        self.assertEqual(nonmember_list.status_code, 200, nonmember_list.text)
+        self.assertFalse(any(row["title"] == "Firm A confidential matter" for row in firm_b_list.json()))
+        self.assertFalse(any(row["title"] == "Invoice matter" for row in nonmember_list.json()))
 
     def test_search_enforces_page_bounds(self):
         for params in ({"limit": 0}, {"limit": 101}, {"offset": -1}, {"offset": 100001}):
