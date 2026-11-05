@@ -819,12 +819,12 @@ def verify_deadline_rule_file(
     temporary_path = None
     try:
         with tempfile.NamedTemporaryFile(
-            mode="w", encoding="utf-8", newline="\\n",
+            mode="w", encoding="utf-8", newline=None,
             dir=str(path.parent), prefix=f".{path.name}.", suffix=".tmp",
             delete=False,
         ) as temporary:
             temporary_path = Path(temporary.name)
-            temporary.write(json.dumps(catalog, ensure_ascii=False, indent=2) + "\\n")
+            temporary.write(json.dumps(catalog, ensure_ascii=False, indent=2) + "\n")
             temporary.flush()
             os.fsync(temporary.fileno())
         os.chmod(temporary_path, path.stat().st_mode & 0o777)
