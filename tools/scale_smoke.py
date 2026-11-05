@@ -336,7 +336,7 @@ def run(args: argparse.Namespace) -> int:
         tenant = runtime.firm_connection(runtime.resolve_context(owner_id, firm_id))
         plan = tenant.execute(
             "EXPLAIN QUERY PLAN SELECT i.* FROM invoices i "
-            "JOIN cases cs ON cs.id=i.case_id WHERE cs.firm_id=? "
+            "WHERE i.case_id IN (SELECT id FROM cases WHERE firm_id=?) "
             "ORDER BY i.created_at DESC,i.id DESC",
             (firm_id,),
         ).fetchall()
