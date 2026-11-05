@@ -30,6 +30,8 @@ def load_jsonl(path):
 def _valid_reviewed(row):
     if row.get("review_status") not in REVIEWED:
         return False
+    if row.get("label_status") not in {"lawyer_approved", "approved_for_evaluation"}:
+        raise ValueError(f'{row.get("id")}: reviewed question must have an approved label_status')
     if not isinstance(row.get("answerable"), bool):
         raise ValueError(f"{row.get('id')}: reviewed question needs answerable=true/false")
     if not isinstance(row.get("reviewer_id"), str) or not row["reviewer_id"].strip():
