@@ -49,7 +49,7 @@ class LegalEvalRunnerTests(unittest.TestCase):
         }
         row = result_from_response(q, response)
         self.assertEqual(row["retrieved_article_ids"], [
-            "EG-LABOUR-14-2025::article:12",
+            "EG-LABOUR-14-2025::law:قانون العمل رقم 14 لسنة 2025 [block 1]::article:12",
             "EG-LABOUR-14-2025::article:13",
         ])
         self.assertEqual(row["cited_article_ids"], ["EG-LABOUR-14-2025::article:13"])
