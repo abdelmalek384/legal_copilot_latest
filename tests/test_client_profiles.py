@@ -184,6 +184,8 @@ class ClientProfileTests(InvoiceTestSupport, unittest.TestCase):
                     self.client_a, "post", "/clients", json={"name": name},
                 )
                 self.assertEqual(response.status_code, 422, response.text)
+                self.assertIn("اسم العميل", response.text)
+                self.assertNotEqual(response.status_code, 503)
 
             with self.subTest(path="client update", name_length=len(name)):
                 response = self.mutate(
@@ -191,6 +193,8 @@ class ClientProfileTests(InvoiceTestSupport, unittest.TestCase):
                     json={"name": name},
                 )
                 self.assertEqual(response.status_code, 422, response.text)
+                self.assertIn("اسم العميل", response.text)
+                self.assertNotEqual(response.status_code, 503)
 
             with self.subTest(path="client CSV import", name_length=len(name)):
                 response = self.mutate(
@@ -198,6 +202,8 @@ class ClientProfileTests(InvoiceTestSupport, unittest.TestCase):
                     json={"csv": "name" + chr(10) + name + chr(10)},
                 )
                 self.assertEqual(response.status_code, 422, response.text)
+                self.assertIn("اسم العميل", response.text)
+                self.assertNotEqual(response.status_code, 503)
 
             with self.subTest(path="case CSV import", name_length=len(name)):
                 response = self.mutate(
@@ -205,6 +211,8 @@ class ClientProfileTests(InvoiceTestSupport, unittest.TestCase):
                     json={"csv": "title,client" + chr(10) + "Invalid matter," + name + chr(10)},
                 )
                 self.assertEqual(response.status_code, 422, response.text)
+                self.assertIn("اسم العميل", response.text)
+                self.assertNotEqual(response.status_code, 503)
 
         self.assertEqual(tenant.execute("SELECT COUNT(*) FROM clients").fetchone()[0], before)
 
