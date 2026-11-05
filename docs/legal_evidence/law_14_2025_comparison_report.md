@@ -28,11 +28,11 @@
 - Article 146: PDF text extraction reverses RTL list order as (2, 1); Gazette page layout and candidate show (1, 2). Both show three days.
 - Article 298: extra digits are the printer/deposit colophon on PDF page 112, after Article 298 ends on page 111.
 
-None of these five is a confirmed statutory numeric difference. Original page images should still be retained for visual confirmation.
+All five numeric-alert locations were visually inspected against the supplied Gazette page images (pages 18, 40, 54, 63, 111 and 112). The visual checks confirm the tokenization/RTL/colophon explanations above; none is a confirmed statutory numeric difference. The detailed page-by-page notes are in `law_14_2025_numeric_alert_review.csv`.
 
 ## Required review
 
-- All remaining non-identical machine results require inspection of original Gazette page images. Similarity classes are triage labels, not proof of error.
+- All 273 non-identical machine results still require article-level visual comparison and disposition. The five numeric alerts have been visually checked; the remaining 268 text-difference records have not. Similarity classes are triage labels, not proof of error.
 - The 120-row quantitative tick sheet remains unreviewed; every lawyer decision field is blank.
 - Six spelling outliers (66, 103, 124, 134, 141, 278) remain first-priority visual checks.
 - Publication date: 2025-05-03. Do not treat this as commencement. Project context records general commencement as 2025-09-01 and specialized labour courts as 2025-10-01 (promulgation Article 13), both subject to counsel review.
@@ -43,6 +43,6 @@ Trust tier: `source_matched_not_lawyer_reviewed`. This does not mean lawyer-veri
 
 ## Limitations
 
-- PDF text extraction is not visual page-image review or OCR verification.
+- PDF text extraction was used for the 311-row comparison. Manual page-image inspection was limited to the five numeric-alert locations; the other discrepancy records have not been visually reviewed. No OCR output is treated as verified text.
 - This comparison does not establish source authenticity, amendment/corrigendum completeness, legal currentness, effective-date interpretation, or collection/commercial-reuse permission.
 - Neither the original PDF nor `law_rows_ar.jsonl` is included in this repository output.
