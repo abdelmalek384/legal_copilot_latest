@@ -129,7 +129,7 @@ class FictionalRetrievalMeasurementTests(unittest.TestCase):
                     "colloquial": colloquial,
                     "synonym": synonym,
                     "word_form": word_form,
-                    "date_sensitive": f"{direct} 2024-06-01",
+                    "date_sensitive": direct,
                 }
                 for style, query in queries.items():
                     expected.setdefault(style, []).append((query, str(article_number)))
@@ -162,7 +162,8 @@ class FictionalRetrievalMeasurementTests(unittest.TestCase):
             top1 = top3 = wrong = served = 0
             wrong_details = []
             for query, intended_article in cases:
-                hits = self.search(query)
+                as_of = "2024-06-01" if style == "date_sensitive" else "2026-06-01"
+                hits = self.search(query, as_of=as_of)
                 articles = [str(hit["article"]) for hit in hits]
                 rank = articles.index(intended_article) + 1 if intended_article in articles else None
                 top1 += int(rank == 1)
