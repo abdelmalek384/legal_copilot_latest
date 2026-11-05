@@ -3975,13 +3975,6 @@ def update_firm_profile(b: FirmProfileIn, u: dict = Depends(user)):
     return _firm_profile_payload(control, u["firm_id"])
 
 
-@app.get("/setup/health")
-def setup_health(u: dict = Depends(user)):
-    _require_firm_setup_runtime()
-    require_admin(u)
-    return _setup_health_report()
-
-
 @app.get("/setup/first-run")
 def setup_first_run(u: dict = Depends(user)):
     _require_firm_setup_runtime()
