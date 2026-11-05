@@ -270,9 +270,6 @@ def measure(
 
 
 def run(args: argparse.Namespace) -> int:
-    import app as app_module
-    from database_runtime import DatabaseRuntime
-
     if args.keep_data:
         root = Path(tempfile.mkdtemp(prefix="legal-copilot-scale-"))
         temporary = None
@@ -283,7 +280,12 @@ def run(args: argparse.Namespace) -> int:
     previous_env = set_disposable_environment(root)
     runtime = None
     client = None
+    app_module = None
     try:
+        # Import only after forcing disposable development database paths.
+        import app as app_module
+        from database_runtime import DatabaseRuntime
+
         app_module._database_runtime = None
         runtime = DatabaseRuntime.from_env()
         runtime.initialize()
@@ -384,8 +386,12 @@ def run(args: argparse.Namespace) -> int:
         if client is not None:
             client.close()
         if runtime is not None:
-            runtime.close_current_thread()
-        app_module._database_runtime = None
+            try:
+                runtime.close_current_thread()
+            except Exception:
+                pass
+        if app_module is not None:
+            app_module._database_runtime = None
         restore_environment(previous_env)
         if temporary is not None:
             temporary.cleanup()
