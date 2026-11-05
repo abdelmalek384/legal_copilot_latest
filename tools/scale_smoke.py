@@ -115,12 +115,17 @@ def _seed(runtime, client, firm_id, app_module):
             print("Created {} / {} cases.".format(index + 1, CASE_COUNT), flush=True)
     print("Seeded {} cases.".format(len(case_ids)), flush=True)
 
-    # add_doc splits each 300,000-character document into 75 searchable passages.
-    # 266 x 75 plus one 200,000-character document x 50 = exactly 20,000.
-    passage_text = (("scaleprobe searchable synthetic legal passage. ") * 7000)[:300000]
-    short_passage_text = (("scaleprobe searchable synthetic legal passage. ") * 5000)[:200000]
+    # Each 2,998-character paragraph becomes one passage: add_doc flushes
+    # before combining it with the next paragraph. 100 paragraphs fit under
+    # DocIn's 300,000-character limit; 200 documents therefore create exactly
+    # 20,000 searchable passages without relying on implementation-specific
+    # long-paragraph split boundaries.
+    paragraph = "scaleprobe " + ("x" * 2987)
+    passage_text = "\\n\\n".join([paragraph] * 100)
+    if len(passage_text) > 300000:
+        raise RuntimeError("synthetic passage document exceeds the API text limit")
     expected_chunks = 0
-    for index in range(266):
+    for index in range(200):
         result = _request(
             client, "post", "/cases/{}/docs".format(case_ids[0]),
             json_body={
@@ -128,16 +133,12 @@ def _seed(runtime, client, firm_id, app_module):
                 "text": passage_text,
             },
         )
-        expected_chunks += int(result["chunks"])
-    result = _request(
-        client, "post", "/cases/{}/docs".format(case_ids[0]),
-        json_body={"name": "Scale smoke passages 267.txt", "text": short_passage_text},
-    )
-    expected_chunks += int(result["chunks"])
-    if expected_chunks != PASSAGE_COUNT:
-        raise RuntimeError(
-            "expected exactly {} searchable passages, seeded {}".format(PASSAGE_COUNT, expected_chunks)
-        )
+        chunks = int(result["chunks"])
+        if chunks != 100:
+            raise RuntimeError(
+                "expected 100 passages per synthetic document, got {}".format(chunks)
+            )
+        expected_chunks += chunks
     print("Seeded {} searchable passages.".format(expected_chunks), flush=True)
 
     invoice_payload = {
