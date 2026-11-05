@@ -8,6 +8,12 @@
 - PDF extraction: `pdftotext -layout`
 - Candidate structural audit: 311 rows; 13 promulgation provisions + 298 law articles; no numbering gaps, duplicate labels or duplicate texts; 120 quantitative articles; six orthography outliers.
 
+## Counsel sign-off boundary
+
+A separate 311-row lawyer tick-sheet now covers all 13 promulgation provisions and 298 attached-law articles. It records prior page-image review separately from lawyer review; every lawyer decision remains blank and every `verified` value remains 0. The current tick-sheet has page locators and prior page-image review records for 282 unique provisions. The remaining 29 provisions have neither a targeted page-image review record nor a Gazette page locator and must be mapped from the exact original Gazette PDF before counsel can sign off.
+
+The machine and visual checks below do not amount to complete legal proofread, amendment/currentness review, rights clearance or qualified counsel approval. See `law_14_2025_lawyer_review_packet.md` and `law_14_2025_lawyer_review_tick_sheet.csv`.
+
 ## Machine comparison results
 
 | Machine status | Rows |
