@@ -4,10 +4,10 @@ promulgation,6,3-4,,فيق أوضاعهم خلال مدة لا تجاوز ثلا
 promulgation,8,4,,زارة المعنية بشئون العمل خلال ثلاثين يومًا من تاريخ العمل به بيانً,major_difference,yes,Page 4 checked: 30-day employer workforce-data submission period matches the candidate.
 promulgation,11,5,,نون المرافق خلال مدة لا تجاوز تسعين يومًا من تاريخ العمل به وإلى,minor_difference,yes,Page 5 checked: 90-day period for implementing ministerial decisions matches the candidate.
 promulgation,13,5-6,,ه من أول الشهر التالى لانقضاء تسعين يومًا من تاريخ نشره ، ويُعمل,major_difference,yes,Pages 5-6 checked: 90-day commencement rule and 1 October specialized-court start match the candidate wording.
-labour_law,1,6-11,,شاط ولا يستغرق إنجازه أكثر من ستة أشهر . 8-العمل الموسمى : العم,minor_difference,,
+labour_law,1,6-11,,شاط ولا يستغرق إنجازه أكثر من ستة أشهر . 8-العمل الموسمى : العم,minor_difference,yes,Pages 6-11 reviewed for the quantitative cue: the definition of occasional work sets a six-month maximum; candidate cue matches.
 labour_law,2,11,,ر السنة ( 365) يومًا ، والشهر ثلاثون يومًا ما لم يتم الاتفاق على خ,major_difference,yes,Page 11 checked: year defined as 365 days and month as 30 days match the candidate.
-labour_law,6,12,,لعمل خلال مدة سريانه، أو خلال ثلاثة أشهر من تاريخ انتهائه. ويستمر,minor_difference,,
-labour_law,12,14,,فى تاريخ استحقاقها لا تقل عن (3٪) من الأجر التأميني ، وتستحق ت | ضها أو الإعفاء منها وذلك خلال ,minor_difference,,
+labour_law,6,12,,لعمل خلال مدة سريانه، أو خلال ثلاثة أشهر من تاريخ انتهائه. ويستمر,minor_difference,yes,Page 12 checked: the three-month period after contract end matches the candidate cue.
+labour_law,12,14,,فى تاريخ استحقاقها لا تقل عن (3٪) من الأجر التأميني ، وتستحق ت | ضها أو الإعفاء منها وذلك خلال ,minor_difference,yes,Page 14 checked: the periodic allowance is at least 3% of insured wage; candidate cue matches.
 labour_law,18,16-17,,س الوزراء ، فى موعد لا يتجاوز ستة أشهر من تاريخ العمل بهذا القا | يجتمع المجلس مرة على الأقل كل,minor_difference,yes,Pages 16-17 checked: six-month council formation deadline and at-least-quarterly meeting cadence match the candidate.
 labour_law,21,18-19,,0 من هذا القانون من : 1- نسبة 0.25٪ (ربع فى المائة) من الحد الأدن | ا القانون من : 1- نسبة 0.25,numeric_difference,,
 labour_law,23,19-20,,، ورسومه بما لا يزيد على مائة ألف جنيه ، وحالات الإعفاء منها .,minor_difference,,
