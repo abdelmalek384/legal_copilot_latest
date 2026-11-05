@@ -117,7 +117,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn(".auth-card .password-row button{min-height:44px;flex:0 0 auto}", HTML)
 
     def test_primary_navigation_exposes_a_named_navigation_landmark(self):
-        self.assertIn("aria-label':navLabel('التنقل الرئيسي','Primary navigation')", HTML)
+        self.assertIn("aria-label':navLabel('روابط التنقل','Navigation links')", HTML)
         self.assertIn("className:'primary-nav'", HTML)
         self.assertIn("'aria-current':PAGE===id?'page':null", HTML)
 
