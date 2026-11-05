@@ -70,7 +70,18 @@ class CaseCommunicationRouteTests(unittest.TestCase):
         self.assertEqual(listed.json()[0]["summary"],"Sent revised draft to client.")
         self._login("comm-b@example.test",self.password_b)
         denied=self.client.get(f"/cases/{self.case_id}/communications")
+        denied_write=self._mutate("post",f"/cases/{self.case_id}/communications",json=payload)
         self.assertEqual(denied.status_code,404)
+        self.assertEqual(denied_write.status_code,404)
+        owner_context=self.runtime.resolve_context(self.owner_a_id,self.firm_a)
+        owner_db=self.runtime.firm_connection(owner_context)
+        self.assertEqual(
+            owner_db.execute(
+                "SELECT COUNT(*) FROM case_communications WHERE case_id=?",
+                (self.case_id,),
+            ).fetchone()[0],
+            1,
+        )
 
     def test_same_firm_nonmember_cannot_read_or_write_case_communications(self):
         password = "Communications-nonmember-password-2026!"
