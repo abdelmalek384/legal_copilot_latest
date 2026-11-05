@@ -2,7 +2,7 @@
   "document_id": "EG-LABOUR-14-2025",
   "instrument": "Egyptian Labour Law 14/2025",
   "trust_tier": "source_matched_not_lawyer_reviewed",
-  "comparison_status": "machine_comparison_completed_with_numeric_major_and_80_minor_page_image_checks",
+  "comparison_status": "machine_comparison_completed_with_numeric_major_orthography_and_175_minor_page_image_checks;_46_minor_and_87_quantitative_cues_pending",
   "candidate_rows": 311,
   "gazette_pages": 112,
   "headings_detected": 311,
@@ -25,11 +25,10 @@
   "source_files_committed": false,
   "limitations": [
     "Source authenticity, amendments, currentness, effective-date interpretation, and reuse rights not established",
+    "All 47 major-difference records and all 5 numeric alerts were visually checked; no confirmed textual discrepancy was found in the inspected passages",
     "Six known orthography-outlier passages were visually inspected and matched on the checked passages; this is not a complete review of all 311 records",
-    "All 120 quantitative provision cues remain unreviewed",
-    "Seventy-nine of 221 minor-difference records were visually checked and matched on the inspected passages; 142 minor-difference records remain unreviewed",
-    "Thirty-three of 120 quantitative provision cues were visually checked and matched; 87 quantitative cues remain unreviewed",
-    "One hundred seventy-five of 221 minor-difference records were visually checked and matched on the inspected passages; 46 minor-difference records remain unreviewed"
+    "175 of 221 minor-difference records were visually checked and matched on the inspected passages; 46 minor-difference records remain unreviewed",
+    "33 of 120 quantitative provision cues were visually checked and matched; 87 quantitative cues remain unreviewed"
   ],
   "numeric_alert_page_images_reviewed": true,
   "numeric_alert_reviewed_articles": [
@@ -1322,12 +1321,13 @@
       107,
       109,
       110
-    ]
+    ],
+    "remaining": 46
   },
   "quantitative_visual_checks": {
     "checked": 33,
     "matching_on_checked_passage": 33,
-    "confirmed_quantitative_discrepancies": 0,
+    "remaining": 87,
     "records": [
       {
         "law_part": "labour_law",
