@@ -20,7 +20,7 @@ The five CSV files were fetched back from the PR branch and checked for headers 
 - `law_14_2025_numeric_alert_review.csv`: five individually inspected numeric alerts.
 - `law_14_2025_discrepancy_article_index.md`: grouped list of differing article identifiers.
 - `law_14_2025_quantitative_review_checklist.md`: article ID checklist for visual review.
-- `law_14_2025_minor_difference_visual_spot_checks_part1.csv` through `part11.csv`: 89 unique minor-difference page-image spot checks (one duplicate Article 23 row was removed).
+- `law_14_2025_minor_difference_visual_spot_checks_part1.csv` through `part12.csv`: 96 unique minor-difference page-image spot checks (one duplicate Article 23 row was removed).
 - `law_14_2025_source_match_record.json`: machine comparison metadata and release restrictions.
 
 ## Trust boundary
