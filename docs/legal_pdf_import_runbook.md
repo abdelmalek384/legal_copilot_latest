@@ -89,3 +89,34 @@ Staging does not activate rows as verified law. Keep the legal review queue, per
 `tools/fetch_arabic_law.py` is a separate convenience fetcher for an unofficial republication of Labour Law No. 14 of 2025. It is not an Official Gazette downloader and its output must remain a candidate until compared with the original Gazette issue and reviewed.
 
 For the specific Action 1 source intake, use the dedicated evidence-only hash/intake tools and preserve the original Gazette PDF and `law_rows_ar.jsonl` locally. Do not commit the source bytes. Keep primary-source matching, source rights, legal status, and lawyer review as separate gates.
+
+## Lawyer-supplied Gazette text — one-sitting path
+
+For a UTF-8 Arabic transcription supplied by a lawyer (not a PDF/OCR workflow), prepare exactly two local files: the text and a JSON sidecar. Keep both outside Git and do not include client facts.
+
+Example sidecar (replace every value with the actual capture details; do not copy the illustrative source reference):
+```json
+{
+  "document_id": "EG-LABOUR-14-2025",
+  "official_title": "قانون العمل رقم 14 لسنة 2025",
+  "language": "ar",
+  "gazette_issue": "الجريدة الرسمية العدد 18 (تابع)",
+  "publication_date": "2025-05-03",
+  "retrieved_at": "2026-11-06T10:00:00+02:00",
+  "captured_by": "Name of the person supplying the text",
+  "supplier_role": "egyptian_lawyer",
+  "capture_method": "lawyer_supplied_text",
+  "source_reference": "Describe the physical or official source if no URL is supplied",
+  "content_sha256": "SHA-256 of the exact UTF-8 text bytes",
+  "collection_permission": "unknown"
+}
+```
+
+Run the entire offline import in one command:
+```bash
+python tools/import_gazette_text.py /secure/input/labour_law_14_2025.txt /secure/input/labour_law_14_2025.json /secure/output/law14-review
+```
+
+The importer validates UTF-8, file identity/size, metadata, source reference and exact SHA-256; recognizes Arabic/English article headings and numbering resets; chunks long article bodies; and writes law_rows.jsonl plus import_report.md. Every output row is forced to verified=0, in_force=0, and as_of=null. It never fetches the source or infers legal force/reuse permission. Review the import report for empty bodies and numbering blocks, then compare the output against the original Gazette before staging.
+
+Run focused tests with: PYTHONPATH=. python tests/test_import_gazette_text.py. The PDF importer remains separate: python tools/import_laws.py SOURCE_DIR OUTPUT_DIR.
