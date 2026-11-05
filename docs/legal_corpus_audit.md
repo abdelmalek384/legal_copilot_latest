@@ -7,7 +7,7 @@ export COPILOT_CORPUS_DB="/absolute/path/to/legal-corpus.sqlite3"
 python tools/audit_legal_corpus.py --out-dir audit_out
 ```
 
-An explicit `--db` path is also supported. The audit rejects databases without a legal-corpus profile marker, databases bound to another profile, and any run with `COPILOT_DB` compatibility mode configured.
+An explicit `--db` path is also supported. The audit rejects databases without a legal-corpus profile marker, databases bound to another profile, and any run that is not explicitly bound to the legal-corpus profile.
 
 The tool opens SQLite in read-only mode and writes \`legal_corpus_audit.json\` and \`legal_corpus_audit.md\`. It reports row counts, missing provenance, missing original files and hashes, unknown legal status, missing dates, unverified sources, and chunks not linked to a legal version.
 
