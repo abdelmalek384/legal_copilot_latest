@@ -111,7 +111,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_mobile_body_text_and_login_layout_remain_legible_at_phone_width(self):
         self.assertIn("@media(max-width:420px){body{font-size:15px}", HTML)
-        self.assertIn(".auth-card{width:calc(100% - 20px);padding:16px}", HTML)
+        self.assertIn(".auth-card{width:calc(100% - 20px);margin:4vh auto;padding:16px}", HTML)
         self.assertIn(".auth-card .password-row{display:flex;width:100%;min-width:0;align-items:stretch}", HTML)
         self.assertIn(".auth-card .password-row input{min-width:0;flex:1}", HTML)
         self.assertIn(".auth-card .password-row button{min-height:44px;flex:0 0 auto}", HTML)
