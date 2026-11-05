@@ -108,6 +108,12 @@ class SyntheticRetrievalTests(unittest.TestCase):
     def setUp(self):
         self.fixture = SyntheticCorpus()
         self.patches = [
+            # The fixture attests as synthetic reviewer 42; scope that allowlist to
+            # this test class and never depend on a developer or CI shell environment.
+            mock.patch.dict(
+                "os.environ",
+                {"LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS": "42"},
+            ),
             mock.patch.object(app, "corpus_conn", side_effect=lambda: self.fixture.db),
             mock.patch.object(
                 app, "citation_provenance",
