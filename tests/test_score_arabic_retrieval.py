@@ -106,8 +106,8 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         q["expected_article"] = "المادة 12 من قانون العمل"
         q["expected_article_id"] = "EG-LABOUR-14-2025::law:قانون العمل رقم 14 لسنة 2025 [block 1]::article:12"
         run = {"question_id": "Q1",
-               "retrieved_article_ids": ["EG-LABOUR-14-2025::article:12"],
-               "cited_article_ids": ["EG-LABOUR-14-2025::article:12"],
+               "retrieved_article_ids": ["EG-LABOUR-14-2025::law:قانون العمل رقم 14 لسنة 2025 [block 1]::article:12"],
+               "cited_article_ids": ["EG-LABOUR-14-2025::law:قانون العمل رقم 14 لسنة 2025 [block 1]::article:12"],
                "abstained": False}
         result = score([q], [run])
         self.assertEqual(result["top3_hit_rate"], 1.0)
