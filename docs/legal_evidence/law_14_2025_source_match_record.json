@@ -29,7 +29,7 @@
     "All 120 quantitative provision cues remain unreviewed",
     "Seventy-nine of 221 minor-difference records were visually checked and matched on the inspected passages; 142 minor-difference records remain unreviewed",
     "Thirty-three of 120 quantitative provision cues were visually checked and matched; 87 quantitative cues remain unreviewed",
-    "One hundred twenty-six of 221 minor-difference records were visually checked and matched on the inspected passages; 95 minor-difference records remain unreviewed"
+    "One hundred thirty-four of 221 minor-difference records were visually checked and matched on the inspected passages; 87 minor-difference records remain unreviewed"
   ],
   "numeric_alert_page_images_reviewed": true,
   "numeric_alert_reviewed_articles": [
@@ -175,8 +175,8 @@
     ]
   },
   "minor_difference_visual_spot_checks": {
-    "checked": 126,
-    "matching_on_checked_passage": 126,
+    "checked": 134,
+    "matching_on_checked_passage": 134,
     "confirmed_textual_discrepancies": 0,
     "records": [
       {
@@ -808,6 +808,46 @@
         "law_part": "labour_law",
         "article": 137,
         "gazette_pdf_pages": "60"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 66,
+        "gazette_pdf_pages": "35"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 134,
+        "gazette_pdf_pages": "57-58"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 139,
+        "gazette_pdf_pages": "61"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 141,
+        "gazette_pdf_pages": "61-62"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 143,
+        "gazette_pdf_pages": "62"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 147,
+        "gazette_pdf_pages": "63"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 148,
+        "gazette_pdf_pages": "63-64"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 278,
+        "gazette_pdf_pages": "106"
       }
     ],
     "articles": [
@@ -936,7 +976,15 @@
       131,
       135,
       136,
-      137
+      137,
+      66,
+      134,
+      139,
+      141,
+      143,
+      147,
+      148,
+      278
     ],
     "gazette_pdf_pages": [
       5,
