@@ -6104,35 +6104,20 @@ def export_calendar(u: dict = Depends(user)):
     )
 
 
-@app.get("/finance/overview")
-def finance_overview(u: dict = Depends(user)):
-    """Aggregate recorded fees only for cases the signed-in user is allowed to access."""
-    c = conn()
-    row = c.execute(
-        """
-        SELECT
-            COUNT(f.id) AS fee_count,
-            COALESCE(SUM(f.amount), 0) AS total_amount,
-            COALESCE(SUM(f.paid), 0) AS total_paid,
-            COALESCE(SUM(CASE WHEN f.amount > f.paid THEN f.amount - f.paid ELSE 0 END), 0) AS outstanding_amount,
-            COALESCE(SUM(CASE WHEN f.amount > f.paid AND f.due IS NOT NULL AND date(f.due) < date('now') THEN 1 ELSE 0 END), 0) AS overdue_count,
-            COALESCE(SUM(CASE WHEN f.amount > f.paid AND f.due IS NOT NULL AND date(f.due) < date('now') THEN f.amount - f.paid ELSE 0 END), 0) AS overdue_amount
-        FROM fees f
-        JOIN cases cs ON cs.id = f.case_id
-        WHERE cs.firm_id = ?
-          AND (? = 'admin' OR cs.id IN (SELECT case_id FROM members WHERE user_id = ?))
-        """,
-        (u["firm_id"], u["role"], u["id"]),
-    ).fetchone()
-    return {
-        "fee_count": int(row["fee_count"] or 0),
-        "total_amount": round(float(row["total_amount"] or 0), 2),
-        "total_paid": round(float(row["total_paid"] or 0), 2),
-        "outstanding_amount": round(float(row["outstanding_amount"] or 0), 2),
-        "overdue_count": int(row["overdue_count"] or 0),
-        "overdue_amount": round(float(row["overdue_amount"] or 0), 2),
-    }
+from routers.finance import create_router as create_finance_router
 
+app.include_router(
+    create_finance_router(
+        connection_provider=conn,
+        user_dependency=user,
+        invoice_today=_invoice_today,
+        invoice_record=_invoice_record,
+        fee_model=FeeIn,
+        need_dependency=need,
+        rollback_tenant_transaction=rollback_tenant_transaction_on_error,
+        log_event=log,
+    )
+)
 
 def _client_payloads(c, u):
     role = str(u["role"])
@@ -7410,75 +7395,7 @@ def issue_invoice(invoice_id: int, u: dict = Depends(user)):
     c.execute("RELEASE SAVEPOINT invoice_write")
     c.commit()
     _meter_pilot_metric(u, "invoices_issued")
-    return _invoice_record(c, c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone())
-
-
-@app.get("/finance/invoices/overview")
-def invoice_finance_overview(u: dict = Depends(user)):
-    c = conn()
-    if u["role"] == "admin":
-        rows = c.execute(
-            "SELECT i.* FROM invoices i JOIN cases cs ON cs.id=i.case_id WHERE cs.firm_id=? "
-            "ORDER BY i.id", (u["firm_id"],)
-        ).fetchall()
-    else:
-        rows = c.execute(
-            "SELECT i.* FROM invoices i JOIN cases cs ON cs.id=i.case_id "
-            "WHERE cs.firm_id=? AND EXISTS (SELECT 1 FROM members m "
-            "WHERE m.case_id=i.case_id AND m.user_id=?) ORDER BY i.id",
-            (u["firm_id"], u["id"]),
-        ).fetchall()
-    today_date = _invoice_today()
-    case_totals = {}
-    client_totals = {}
-    total_issued = total_paid = total_outstanding = 0
-    for row in rows:
-        item = _invoice_record(c, row)
-        if item["status"] != "issued":
-            continue
-        balance = int(item["balance_piasters"])
-        paid = int(item["paid_piasters"])
-        total_issued += int(item["total_piasters"])
-        total_paid += paid
-        total_outstanding += balance
-        if balance <= 0:
-            bucket = "settled"
-        elif not item["due_date"] or item["due_date"] >= today_date.isoformat():
-            bucket = "current"
-        else:
-            overdue_days = (today_date - date.fromisoformat(item["due_date"])).days
-            bucket = "1_30" if overdue_days <= 30 else "31_60" if overdue_days <= 60 else "61_90" if overdue_days <= 90 else "over_90"
-        cid = int(item["case_id"])
-        case_entry = case_totals.setdefault(cid, {
-            "case_id": cid, "case_title": item["case_title_snapshot"],
-            "client_name": item["client_name_snapshot"], "invoice_count": 0,
-            "issued_piasters": 0, "paid_piasters": 0, "outstanding_piasters": 0,
-            "aging": {"current": 0, "1_30": 0, "31_60": 0, "61_90": 0, "over_90": 0},
-        })
-        case_entry["invoice_count"] += 1
-        case_entry["issued_piasters"] += int(item["total_piasters"])
-        case_entry["paid_piasters"] += paid
-        case_entry["outstanding_piasters"] += balance
-        if bucket != "settled":
-            case_entry["aging"][bucket] += balance
-        client_key = (item["client_name_snapshot"] or "").strip() or "غير محدد"
-        client_entry = client_totals.setdefault(client_key, {
-            "client_name": client_key, "invoice_count": 0,
-            "issued_piasters": 0, "paid_piasters": 0, "outstanding_piasters": 0,
-            "aging": {"current": 0, "1_30": 0, "31_60": 0, "61_90": 0, "over_90": 0},
-        })
-        client_entry["invoice_count"] += 1
-        client_entry["issued_piasters"] += int(item["total_piasters"])
-        client_entry["paid_piasters"] += paid
-        client_entry["outstanding_piasters"] += balance
-        if bucket != "settled":
-            client_entry["aging"][bucket] += balance
-    return {
-        "currency": "EGP", "as_of_date": today_date.isoformat(),
-        "issued_piasters": total_issued, "paid_piasters": total_paid,
-        "outstanding_piasters": total_outstanding,
-        "cases": sorted(case_totals.values(), key=lambda x: x["outstanding_piasters"], reverse=True),
-        "clients": sorted(client_totals.values(), key=lambda x: x["outstanding_piasters"], reverse=True),
+    rnts": sorted(client_totals.values(), key=lambda x: x["outstanding_piasters"], reverse=True),
     }
 
 
@@ -7623,18 +7540,7 @@ table{{width:100%;border-collapse:collapse;margin:18px 0}}th,td{{border:1px soli
 <tbody>{line_rows}</tbody></table><div class="total">الإجمالي: {data["total_piasters"] // 100}.{data["total_piasters"] % 100:02d} ج.م</div>
 <div>المدفوع: {data["paid_piasters"] // 100}.{data["paid_piasters"] % 100:02d} ج.م</div>
 <div>المتبقي: {data["balance_piasters"] // 100}.{data["balance_piasters"] % 100:02d} ج.م</div>
-<h2>سجل المدفوعات</h2><table><thead><tr><th>التاريخ</th><th>الطريقة</th><th>المبلغ (جنيه)</th><th>المرجع</th></tr></thead><tbody>{payment_rows}</tbody></table>
-</body></html>"""
-    return HTMLResponse(body)
-
-
-@app.post("/cases/{cid}/fees")
-@rollback_tenant_transaction_on_error
-def new_fee(cid: int, b: FeeIn, u: dict = Depends(user)):
-    c = conn(); need(c, u, cid)
-    if b.paid > b.amount: raise HTTPException(422, "paid amount cannot exceed total")
-    c.execute("INSERT INTO fees(case_id,title,amount,paid,due,note,created_by) VALUES(?,?,?,?,?,?,?)",
-              (cid, b.title, b.amount, b.paid, b.due, b.note, u["id"]))
+<h2>سجل المدفوعات</h2><table><thead><tr><th>التاريخ</th><t  (cid, b.title, b.amount, b.paid, b.due, b.note, u["id"]))
     log(c, cid, u["name"], "تسجيل أتعاب: " + b.title); c.commit()
     return {"ok": True}
 
