@@ -28,7 +28,7 @@
     "All 47 major-difference records and all 5 numeric alerts were visually checked; no confirmed textual discrepancy was found in the inspected passages",
     "Six known orthography-outlier passages were visually inspected and matched on the checked passages; this is not a complete review of all 311 records",
     "33 of 120 quantitative provision cues were visually checked and matched; 87 quantitative cues remain unreviewed",
-    "220 of 221 minor-difference records were visually checked and matched on the inspected passages; 1 minor-difference records remain unreviewed"
+    "221 of 221 minor-difference records were visually checked and matched on the inspected passages; 0 minor-difference records remain unreviewed"
   ],
   "numeric_alert_page_images_reviewed": true,
   "numeric_alert_reviewed_articles": [
@@ -174,8 +174,8 @@
     ]
   },
   "minor_difference_visual_spot_checks": {
-    "checked": 220,
-    "matching_on_checked_passage": 220,
+    "checked": 221,
+    "matching_on_checked_passage": 221,
     "confirmed_textual_discrepancies": 0,
     "records": [
       {
@@ -1277,6 +1277,11 @@
         "law_part": "labour_law",
         "article": 297,
         "gazette_pdf_pages": "111"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 216,
+        "gazette_pdf_pages": "84"
       }
     ],
     "articles": [
@@ -1499,7 +1504,8 @@
       282,
       285,
       292,
-      297
+      297,
+      216
     ],
     "gazette_pdf_pages": [
       2,
@@ -1609,7 +1615,7 @@
       110,
       111
     ],
-    "remaining": 1
+    "remaining": 0
   },
   "quantitative_visual_checks": {
     "checked": 33,
