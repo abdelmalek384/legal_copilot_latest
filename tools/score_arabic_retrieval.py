@@ -58,6 +58,12 @@ def _valid_reviewed(row):
         raise ValueError(f"{row.get('id')}: review_evidence_url must be clean HTTPS")
     expected = row.get("expected_article")
     expected_id = row.get("expected_article_id")
+    if expected not in (None, "") and (not isinstance(expected, str) or expected != expected.strip()):
+        raise ValueError(f"{row.get('id')}: expected_article must be a trimmed string")
+    if expected_id not in (None, "") and (
+            not isinstance(expected_id, str) or expected_id != expected_id.strip()
+            or "::article:" not in expected_id):
+        raise ValueError(f"{row.get('id')}: expected_article_id must use source_id::article:<number>")
     if row["answerable"] and not any(
             isinstance(value, str) and value.strip() for value in (expected, expected_id)):
         raise ValueError(f"{row.get('id')}: answerable reviewed question needs expected_article or expected_article_id")
@@ -90,6 +96,8 @@ def score(questions, runs):
                 raise ValueError(f"{qid}: {field} must be a list of non-empty article IDs")
             if len(value) != len(set(value)):
                 raise ValueError(f"{qid}: {field} contains duplicates")
+        if not set(r.get("cited_article_ids", [])).issubset(set(r.get("retrieved_article_ids", []))):
+            raise ValueError(f"{qid}: cited_article_ids must be present in retrieved_article_ids")
         r_by_id[qid] = r
 
     reviewed = [q for q in questions if _valid_reviewed(q)]
