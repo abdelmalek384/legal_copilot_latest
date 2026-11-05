@@ -97,7 +97,7 @@ class DeploymentPreflightTests(unittest.TestCase):
     def test_repository_root_has_no_patch_or_csv_fixture_files(self):
         root = Path(__file__).resolve().parents[1]
         misplaced = sorted(
-            path.name for pattern in ("*.patch", "*.csv") for path in root.glob(pattern)
+            path.name for pattern in ("*.patch", "*.diff", "*.csv") for path in root.glob(pattern)
         )
         self.assertEqual(misplaced, [], "Move root-level patch/CSV fixtures under tests/fixtures")
 
