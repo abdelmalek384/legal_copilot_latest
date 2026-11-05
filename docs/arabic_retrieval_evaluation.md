@@ -137,7 +137,7 @@ Per-practice-area top-three gates are available as `--min-recall-at-3-per-practi
 
 ## 100+ Egyptian-Arabic benchmark template
 
-tests/legal_eval/arabic_retrieval_110.template.jsonl contains 110 realistic prompts in formal and colloquial Egyptian Arabic: the existing 38 general seeds, 61 labour-law draft questions and 11 additional curated prompts. The 11 additions are explicitly marked curated_candidate_not_user_observed; this is not a log of actual user queries. All 110 rows are unlabelled, with expected_article, lawyer_approved_answer, expected sources/pin-cites and answerability left blank. Do not fill these from model guesses.
+tests/legal_eval/arabic_retrieval_110.template.jsonl contains 110 curated benchmark candidates in formal and colloquial Egyptian Arabic: the existing 38 general seeds, 61 labour-law draft questions and 11 additional curated prompts. All 110 are curated prompts, not production user-query logs; the 11 new additions are separately marked curated_candidate_not_user_observed. All 110 rows are unlabelled, with expected_article, lawyer_approved_answer, expected sources/pin-cites and answerability left blank. Do not fill these from model guesses.
 
 Use tools/score_arabic_retrieval.py for article-specific top-3 hit rate, top-3 hit rate on colloquial-or-synonym questions, wrong-article answer rate and abstention rate. Only lawyer_reviewed or approved_for_evaluation rows with reviewer/date/evidence metadata are scored; all other rows are counted as excluded. Runs use question_id, ranked retrieved_article_ids, cited_article_ids and boolean abstained. The tool writes before/after phases to one JSON report and binds both phases to the same benchmark hash.
 
