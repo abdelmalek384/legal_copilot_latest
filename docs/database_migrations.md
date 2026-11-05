@@ -1,6 +1,6 @@
 # Versioned database migrations
 
-**Status:** The versioned migration runner is used for the three approved separate-database profiles. The shared `COPILOT_DB` runtime was retired in PR #972 and is rejected in every environment. All supported installations use the three profile-separated paths and versioned profile migrations. No legacy database has been deployed or used, and no import/reconciliation is planned.
+**Status:** The versioned migration runner is used for the three approved separate-database profiles. The supported runtime uses only the three profile-separated paths and versioned profile migrations. All supported installations use the three profile-separated paths and versioned profile migrations. No legacy database has been deployed or used, and no import/reconciliation is planned.
 
 ## Workflow
 
