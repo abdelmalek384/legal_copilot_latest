@@ -23,6 +23,7 @@ def create_router(
     note_model,
     add_session_helper,
     case_patch_model,
+    member_model,
 ):
     router = APIRouter()
 
@@ -147,6 +148,38 @@ def create_router(
             "lawyer_review_required": True,
             "message": "هيكل أولي فقط؛ يجب استكمال الوقائع والأسانيد والطلبات ومراجعته بواسطة محامٍ.",
         }
+    @router.post("/cases/{cid}/members")
+    @rollback_tenant_transaction
+    def add_member(cid: int, b: member_model, u: dict = Depends(user_dependency)):
+        c = connection_provider()
+        need_dependency(c, u, cid, lead=True)
+        if not c.execute(
+            "SELECT 1 FROM users WHERE id=? AND firm_id=? AND active=1",
+            (b.user_id, u["firm_id"]),
+        ).fetchone():
+            raise HTTPException(404, "active firm member not found")
+        c.execute("INSERT OR REPLACE INTO members VALUES(?,?,?)", (cid, b.user_id, b.role))
+        log_event(c, cid, u["name"], "تحديث الفريق")
+        c.commit()
+        return {"ok": True}
+
+    @router.delete("/cases/{cid}/members/{uid}")
+    @rollback_tenant_transaction
+    def remove_member(cid: int, uid: int, u: dict = Depends(user_dependency)):
+        c = connection_provider()
+        need_dependency(c, u, cid, lead=True)
+        target = c.execute(
+            "SELECT id FROM users WHERE id=? AND firm_id=?",
+            (uid, u["firm_id"]),
+        ).fetchone()
+        if not target:
+            raise HTTPException(404, "user not found")
+        c.execute("DELETE FROM members WHERE case_id=? AND user_id=?", (cid, uid))
+        c.execute("UPDATE tasks SET assignee=NULL WHERE case_id=? AND assignee=?", (cid, uid))
+        log_event(c, cid, u["name"], "إزالة عضو من القضية")
+        c.commit()
+        return {"ok": True}
+
     @router.patch("/cases/{cid}")
     @rollback_tenant_transaction
     def patch_case(cid: int, b: case_patch_model, u: dict = Depends(user_dependency)):
