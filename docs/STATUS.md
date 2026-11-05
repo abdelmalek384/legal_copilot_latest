@@ -13,6 +13,8 @@
 - A raw-text negated-obligation guard is included in PR #1466. It compares obligation polarity before Arabic normalization. Exact-head GitHub Actions jobs currently fail before any execution step; job logs are unavailable, so no test/security pass is claimed.
 - PR #1466 is the clean current-main review target. Stale drafts #1461 and #1464 have been closed without merge.
 
+An independent pilot security-review handoff is available at `docs/security/INDEPENDENT_REVIEW_HANDOFF.md`; it is a reviewer plan, not a completed penetration test or release approval.
+
 ## Human and release gates
 
 1. Qualified Egyptian counsel signs the Law 14/2025 article-by-article tick-sheet and reviews currentness, source rights and effective dates.
