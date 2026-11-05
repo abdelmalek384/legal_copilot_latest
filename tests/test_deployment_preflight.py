@@ -78,6 +78,7 @@ class DeploymentPreflightTests(unittest.TestCase):
             "https://10.0.0.8/v1",
             "https://169.254.169.254/latest/meta-data",
             "https://[::1]/v1",
+            "https://llm.example.com:0/v1",
             "https://user:pass@llm.example.com/v1",
             "https://llm.example.com/v1?key=x",
         ):
