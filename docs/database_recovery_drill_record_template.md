@@ -42,7 +42,7 @@ Record each result as `PASS`, `FAIL`, or `N/A`. Attach evidence references; reda
 | Manifest checksums, database profiles, firm bindings, catalog consistency, and SQLite integrity pass | | |
 | Restricted temporary plaintext is cleaned up after verification | | |
 | `python tools/deployment_preflight.py --strict` passes against restored staging paths | | |
-| Staging application starts and completes migration checks without fallback to `COPILOT_DB` | | |
+| Staging application starts and completes migration checks using only the approved database profiles | | |
 | Each expected firm resolves to its catalog-bound database | | |
 | A synthetic case in Firm A is not readable from Firm B | | |
 | Active membership works; suspended/revoked membership remains denied | | |
