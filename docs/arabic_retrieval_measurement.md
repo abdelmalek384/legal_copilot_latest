@@ -9,7 +9,7 @@
 - Existing evaluator tools/evaluate_retrieval_quality.py already measures Recall@3, MRR@3, citation metrics and abstention compliance against lawyer-reviewed labels.
 - tools/score_arabic_retrieval.py adds article-specific top-3 hit rate, wrong-article answer rate and abstention rate. It excludes all unlabeled questions.
 - Run records must contain ranked retrieved_article_ids, cited_article_ids and abstained for each reviewed question.
-- Target after tuning: top-3 hit rate at least 0.80 on the colloquial/synonym slice and wrong-article answer rate 0.00. Report abstention separately; do not improve recall by answering without adequate verified evidence.
+- Target after tuning: top-3 hit rate at least 0.80 on the colloquial-or-synonym slice and wrong-article answer rate 0.00. Report abstention separately; do not improve recall by answering without adequate verified evidence.
 
 ## Results
 
@@ -17,7 +17,7 @@
 |---|---:|---:|
 | Lawyer-approved questions scored | Not available | Not run |
 | Top-3 hit rate — all reviewed answerable | Not measurable | Not run |
-| Top-3 hit rate — colloquial/synonym slice | Not measurable | Not run |
+| Top-3 hit rate — colloquial-or-synonym slice | Not measurable | Not run |
 | Wrong-article answer rate | Not measurable | Not run |
 | Abstention rate | Not measurable | Not run |
 | Abstention compliance on unanswerable questions | Not measurable | Not run |
