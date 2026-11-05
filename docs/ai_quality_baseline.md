@@ -14,7 +14,7 @@
 
 ## Results
 
-| Style | Queries | Top-1 | Top-3 | Wrong-article answers | Refusal correctness |
+| Style | Queries | Top-1 | Top-3 | Wrong-article answers | Expected outcome correct* |
 |---|---:|---:|---:|---:|---:|
 | Direct | 32 | 32/32 (100%) | 32/32 (100%) | 0 | 32/32 (100%) |
 | Paraphrase | 32 | 32/32 (100%) | 32/32 (100%) | 0 | 32/32 (100%) |
@@ -29,6 +29,26 @@
 
 - Top-1/top-3 count whether the intended article appears at rank 1 / within the first three results for answerable queries.
 - A wrong-article answer is a top-ranked retrieved article different from the intended article. The required count is zero.
-- Refusal correctness means answerable queries return at least one result and must-abstain queries return none. Two answerable queries were refused; neither produced a wrong-article result.
+- *Expected outcome correct* means answerable queries return at least one result and must-abstain queries return none. Two answerable queries returned no result; neither produced a wrong-article result.
 - These scores reflect a controlled fictional corpus whose query/article relationships are known by construction. They must not be generalized to real Egyptian laws, unfamiliar wording, source currentness, or lawyer-reviewed legal correctness.
 - This is a retrieval/refusal engineering measurement only. It does not establish legal accuracy, completeness, authority, licensing, or lawyer approval.
+
+
+## Fictional claim-support measurement
+
+**Snapshot:** 2026-11-05  
+**Scope:** 60 fictional answer sentences paired with fictional evidence. This measures the optional lexical claim-support screen only; it is not semantic entailment, Egyptian legal correctness, or lawyer review.
+
+| Claim class | Cases | Misclassified |
+|---|---:|---:|
+| Supported | 12 | 0 false blocks |
+| Unsupported number / amount / period | 12 | 0 false passes |
+| Unsupported qualitative / absolute claim | 12 | 0 false passes |
+| Reversed meaning / polarity | 12 | 0 false passes |
+| Over-generalization | 12 | 0 false passes |
+| **Total unsupported** | **48** | **0 false passes (0%)** |
+
+- False-block rate on supported fictional claims: **0/12 (0%)**.
+- False-pass rate on unsupported fictional claims: **0/48 (0%)**.
+- The measured gaps were addressed with conservative number/unit comparison, unsupported qualifier detection, and reversal-polarity checks.
+- The screen remains optional and disabled unless `LEGAL_CLAIM_SUPPORT_CHECK=1` is explicitly configured. A zero false-pass rate on this small constructed set does not establish broad accuracy.
