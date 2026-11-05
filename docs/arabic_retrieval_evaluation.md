@@ -134,3 +134,25 @@ The evaluator supports optional `--min-recall-at-3` and `--min-mrr-at-3` thresho
 
 
 Per-practice-area top-three gates are available as `--min-recall-at-3-per-practice-area` and `--min-mrr-at-3-per-practice-area`. Use them with `--min-practice-areas` and `--min-cases-per-practice-area` so missing or undersized areas cannot be silently treated as passing.
+
+
+## Article-specific Egyptian-Arabic benchmark
+
+`tests/legal_eval/arabic_retrieval_110.template.jsonl` contains 110 curated candidate questions, including formal and colloquial Egyptian Arabic. They are not production user-query logs and none is lawyer-approved ground truth. Expected articles and lawyer-approved answers remain blank until counsel labels them. Per-row question-style and synonym tags are also preliminary and excluded from the colloquial/synonym target metric until approved.
+
+Use `tools/score_arabic_retrieval.py` with the same lawyer-approved question set and recorded ranked article IDs for before/after runs. It reports top-3 article hit rate, wrong-article citation rate, abstention rate, and the approved separate colloquial and synonym cohorts. It excludes unlabeled rows from metrics while allowing their run captures to be retained for later scoring. It reports colloquial and synonym cohorts separately; both must reach 80% top-3 hit rate with zero wrong-article answers. Do not tune `MIN_SCORE` until the lawyer-approved baseline exists.
+
+
+## Preliminary register and synonym tags
+
+The 110 curated prompts currently have 82 preliminary formal labels and 28 preliminary colloquial labels. Twenty-eight rows also carry a preliminary `synonym` retrieval tag to help counsel identify likely dialect-to-legal-term mapping cases. Every style/synonym review status remains `needs_lawyer_review`; these labels are not lawyer-approved and are excluded from the target slice until reviewed.
+
+
+### Article ID and run capture contract
+
+Run candidate questions through `tools/run_legal_eval.py`. It records ranked `retrieved_article_ids` and answer-cited `cited_article_ids` in addition to the existing source IDs. Article IDs are source-scoped and canonicalized as `<source_id>::article:<article-number>`; Arabic-Indic digits are converted to ASCII and a leading `المادة`/`Article` label is removed. For example, source `EG-LABOUR-14-2025`, article `١٢` becomes `EG-LABOUR-14-2025::article:12`. Counsel should put that exact ID in `expected_article_id` and a human-readable citation in `expected_article`.
+
+The runner may capture runs while questions are still unlabeled. The scorer accepts runs for known unlabeled questions, records their count as excluded, and excludes them from all metrics until counsel approves labels. Runs for unknown question IDs are rejected. This allows baseline retrieval artifacts to be captured before lawyer labeling without pretending they are scored.
+
+
+The measurement fingerprint is based only on immutable prompt identity/text (question ID, practice area, Arabic question text and origin), sorted by question ID. Adding lawyer-approved expected articles, answers, reviewer evidence or approved style/synonym labels does not invalidate the before-run capture. Editing the question text or identity does require a new measurement report.
