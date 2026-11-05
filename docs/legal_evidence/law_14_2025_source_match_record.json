@@ -29,7 +29,7 @@
     "All 120 quantitative provision cues remain unreviewed",
     "Seventy-nine of 221 minor-difference records were visually checked and matched on the inspected passages; 142 minor-difference records remain unreviewed",
     "Ninety-six of 221 minor-difference records were visually checked and matched on the inspected passages; 125 minor-difference records remain unreviewed",
-    "Eleven of 120 quantitative provision cues were visually checked and matched; 109 quantitative cues remain unreviewed"
+    "Fifteen of 120 quantitative provision cues were visually checked and matched; 105 quantitative cues remain unreviewed"
   ],
   "numeric_alert_page_images_reviewed": true,
   "numeric_alert_reviewed_articles": [
@@ -832,8 +832,8 @@
     ]
   },
   "quantitative_visual_checks": {
-    "checked": 11,
-    "matching_on_checked_passage": 11,
+    "checked": 15,
+    "matching_on_checked_passage": 15,
     "confirmed_quantitative_discrepancies": 0,
     "records": [
       {
@@ -890,6 +890,26 @@
         "law_part": "labour_law",
         "article": 12,
         "gazette_pdf_pages": "14"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 21,
+        "gazette_pdf_pages": "18-19"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 82,
+        "gazette_pdf_pages": "40-41"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 124,
+        "gazette_pdf_pages": "54-55"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 146,
+        "gazette_pdf_pages": "63"
       }
     ]
   },
