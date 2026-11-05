@@ -172,7 +172,9 @@ def _article_identifier(hit):
     article = re.sub(r"^\s*(?:(?:المادة|مادة)\s*|(?:article|art\.?)\s*)", "", article, flags=re.I).strip()
     if not article:
         return None
-    return f"{source_id.strip()}::article:{article}"
+    law = re.sub(r"\s+", " ", str(hit.get("law") or "").strip())
+    law_part = f"::law:{law}" if law else ""
+    return f"{source_id.strip()}{law_part}::article:{article}"
 
 
 def result_from_response(question, response):
