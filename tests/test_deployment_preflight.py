@@ -70,7 +70,7 @@ class DeploymentPreflightTests(unittest.TestCase):
         with patch.object(preflight.socket, "getaddrinfo", return_value=public_dns):
             for url in ("https://llm.example.com/v1/chat/completions", "http://127.0.0.1:11434/v1", "http://localhost:11434/v1"):
                 with self.subTest(url=url):
-                    _, _, errors = preflight.inspect_environment(dict(self.env, LLM_URL=url))
+                    _, _, errors = preflight.inspect_environment(dict(self.env, LLM_URL=url, LLM_DATA_PROCESSING_APPROVED="1"))
                     self.assertFalse(any("LLM_URL must use HTTPS" in item for item in errors))
         for url in (
             "http://llm.example.com/v1",
@@ -90,9 +90,18 @@ class DeploymentPreflightTests(unittest.TestCase):
         private_dns = [(2, 1, 6, "", ("10.0.0.8", 443))]
         with patch.object(preflight.socket, "getaddrinfo", return_value=private_dns):
             _, _, errors = preflight.inspect_environment(
-                dict(self.env, LLM_URL="https://model.example.test/v1/chat/completions")
+                dict(self.env, LLM_URL="https://model.example.test/v1/chat/completions", LLM_DATA_PROCESSING_APPROVED="1")
             )
         self.assertTrue(any("LLM_URL must use HTTPS" in item for item in errors))
+
+    def test_preflight_defers_llm_dns_until_processing_approval(self):
+        with patch.object(preflight.socket, "getaddrinfo") as resolve:
+            passed, _, errors = preflight.inspect_environment(
+                dict(self.env, LLM_URL="https://provider.example.test/v1/chat/completions")
+            )
+        self.assertFalse(errors)
+        self.assertTrue(any("DNS destination validation is deferred" in item for item in passed))
+        resolve.assert_not_called()
 
     def test_repository_root_has_no_patch_or_csv_fixture_files(self):
         root = Path(__file__).resolve().parents[1]
