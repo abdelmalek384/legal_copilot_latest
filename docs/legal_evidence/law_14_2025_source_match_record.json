@@ -26,8 +26,8 @@
   "limitations": [
     "Source authenticity, amendments, currentness, effective-date interpretation, and reuse rights not established",
     "Six known orthography-outlier passages were visually inspected and matched on the checked passages; this is not a complete review of all 311 records",
-    "Eighty of 221 minor-difference records were visually checked and matched on the inspected passages; 141 minor-difference records remain unreviewed",
-    "All 120 quantitative provision cues remain unreviewed"
+    "All 120 quantitative provision cues remain unreviewed",
+    "Eighty-five of 221 minor-difference records were visually checked and matched on the inspected passages; 136 minor-difference records remain unreviewed"
   ],
   "numeric_alert_page_images_reviewed": true,
   "numeric_alert_reviewed_articles": [
@@ -173,8 +173,8 @@
     ]
   },
   "minor_difference_visual_spot_checks": {
-    "checked": 80,
-    "matching_on_checked_passage": 80,
+    "checked": 85,
+    "matching_on_checked_passage": 85,
     "confirmed_textual_discrepancies": 0,
     "articles": [
       245,
@@ -256,7 +256,12 @@
       27,
       28,
       29,
-      30
+      30,
+      32,
+      33,
+      34,
+      35,
+      37
     ],
     "gazette_pdf_pages": [
       92,
@@ -351,7 +356,11 @@
       19,
       20,
       21,
-      22
+      22,
+      22,
+      23,
+      24,
+      25
     ]
   }
 }
