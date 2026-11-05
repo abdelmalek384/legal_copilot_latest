@@ -370,6 +370,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_firm_usage_metering.py
       - name: Test platform-only weekly pilot metrics
         run: PYTHONPATH=. python tests/test_pilot_metrics.py
+      - name: Test platform router ownership contract
+        run: PYTHONPATH=. python tests/test_platform_router_contract.py
       - name: Test subscription audit timeline frontend contract
         run: PYTHONPATH=. python tests/test_subscription_audit_frontend_contract.py
       - name: Test subscription trial, transfer review and seat limits
