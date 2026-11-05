@@ -1,7 +1,5 @@
 # Changelog — Legal Copilot
 
-- PR #1436: Extract public invitation-acceptance and account-recovery pages into the identity router.
-
 - PR #1434: Add the human-attested deadline verification command and correct deployment backup instructions.
 
 - PR #1431: Extract public PWA asset endpoints into a platform router.
