@@ -176,6 +176,7 @@ class ClientProfileTests(InvoiceTestSupport, unittest.TestCase):
                     json={"title": "Invalid client name matter", "client": name},
                 )
                 self.assertEqual(response.status_code, 422, response.text)
+                self.assertIn("اسم العميل", response.text)
                 self.assertNotEqual(response.status_code, 503)
 
             with self.subTest(path="client creation", name_length=len(name)):
