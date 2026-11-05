@@ -12,7 +12,7 @@ A category passes only when: (1) positive control proves the test reaches the in
 
 These are pointers for reviewer orientation, **not proof of current passing tests**:
 
-- `tests/test_invoice_payment_routes.py`: payment idempotency, partial/full payment, overpayment rejection, append-only ledger, receipt binding and cross-firm receipt denial. PR #1465 additionally asserts the `payment_recorded` event includes the immutable payment ID and amount.
+- `tests/test_invoice_payment_routes.py`: payment idempotency, partial/full payment, overpayment rejection, append-only ledger, receipt binding and cross-firm receipt denial. PR #1465 additionally asserts the `payment_recorded` event includes the immutable payment ID and amount, and explicitly denies cross-firm invoice reads/payment writes.
 - `tests/invoice_test_support.py`: shared invoice test setup; inspect fixture isolation and role membership.
 - `tests/browser/test_acceptance.py`: browser test `test_cross_firm_case_identifier_does_not_reveal_other_firm_sentinel`.
 - `tests/test_security_transport_config.py`: unsafe remote HTTP `LLM_URL` must not trigger a network call, even with processing approval.
