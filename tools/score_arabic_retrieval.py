@@ -74,6 +74,24 @@ def _valid_reviewed(row):
     return True
 
 
+def benchmark_fingerprint(questions):
+    """Hash immutable prompt identity/text, not counsel labels added after baseline capture."""
+    stable = [
+        {
+            "id": q["id"],
+            "practice_area": q.get("practice_area"),
+            "question_ar": q.get("question_ar"),
+            "question_origin": q.get("question_origin"),
+        }
+        for q in questions
+    ]
+    stable.sort(key=lambda row: row["id"])
+    payload = json.dumps(
+        stable, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
 def score(questions, runs):
     q_by_id = {}
     for q in questions:
@@ -193,8 +211,7 @@ def main():
     questions = load_jsonl(args.questions)
     runs = load_jsonl(args.runs)
     metrics = score(questions, runs)
-    raw = Path(args.questions).read_bytes()
-    digest = hashlib.sha256(raw).hexdigest()
+    digest = benchmark_fingerprint(questions)
     report_path = Path(args.output)
     if report_path.exists():
         report = json.loads(report_path.read_text(encoding="utf-8"))
