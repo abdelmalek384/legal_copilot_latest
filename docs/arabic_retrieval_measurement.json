@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "benchmark": "tests/legal_eval/arabic_retrieval_110.template.jsonl",
+  "benchmark_sha256": null,
+  "phases": {
+    "before": {
+      "min_score": 0.3,
+      "metrics": {
+        "reviewed_questions": 0,
+        "answerable_questions": 0,
+        "unanswerable_questions": 0,
+        "unlabeled_or_unreviewed_excluded": 110,
+        "top3_hit_rate": null,
+        "wrong_article_rate": null,
+        "wrong_article_answers": 0,
+        "non_abstained_answers": 0,
+        "abstention_rate": null,
+        "abstention_compliance_unanswerable": null,
+        "abstained_answers": 0
+      },
+      "status": "not_scored_no_lawyer_approved_labels"
+    },
+    "after": null
+  },
+  "limitations": [
+    "Null metrics mean not measured; they are not zero error or zero abstention.",
+    "All questions are currently unlabeled and excluded.",
+    "No real retrieval-run output is committed.",
+    "Do not tune MIN_SCORE until lawyer labels and a before-run exist."
+  ]
+}
