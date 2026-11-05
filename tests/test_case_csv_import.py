@@ -52,6 +52,45 @@ class CaseCSVImportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(repeated.status_code, 200, repeated.text)
         self.assertEqual(repeated.json(), {"created": 0, "skipped": 3, "rows": 3})
 
+    def test_formula_like_imported_case_title_is_inert_and_neutralized_on_invoice_export(self):
+        formula = '=HYPERLINK("https://attacker.invalid","open")'
+        csv_text = (
+            'title;client;stage;case_number;case_year;court;circuit;opposing_party\\n'
+            '"=HYPERLINK(""https://attacker.invalid"",""open"")";Synthetic CSV Client;Labour;901/2026;2026;Cairo Court;Labour Circuit;Synthetic Opponent\\n'
+        )
+        imported = self.mutate(
+            self.client_a, "post", "/cases/import.csv", json={"csv": csv_text}
+        )
+        self.assertEqual(imported.status_code, 200, imported.text)
+        case = next(
+            row for row in self.client_a.get("/cases").json()
+            if row["title"] == formula
+        )
+        self.assertEqual(case["client"], "Synthetic CSV Client")
+
+        draft = self.mutate(
+            self.client_a, "post", f"/cases/{case['id']}/invoices",
+            json={
+                "description": "Synthetic import security test",
+                "due_date": "2099-01-01",
+                "lines": [{"description": "Synthetic service", "quantity_milli": 1000, "unit_price_piasters": 100}],
+            },
+        )
+        self.assertEqual(draft.status_code, 200, draft.text)
+        issued = self.mutate(
+            self.client_a, "post", f"/invoices/{draft.json()['id']}/issue"
+        )
+        self.assertEqual(issued.status_code, 200, issued.text)
+
+        import csv
+        import io
+        exported = self.client_a.get("/invoices/export.csv")
+        self.assertEqual(exported.status_code, 200, exported.text)
+        rows = list(csv.DictReader(io.StringIO(exported.content.decode("utf-8-sig"))))
+        exported_case = next(row for row in rows if row["invoice_number"] == issued.json()["invoice_number"])
+        self.assertEqual(exported_case["case_title"], "'" + formula)
+        self.assertNotIn("\\r\\n" + formula, exported.text)
+
     def test_non_admin_and_malformed_imports_are_rejected_without_partial_writes(self):
         denied = self.mutate(
             self.client_nonmember, "post", "/cases/import.csv",
