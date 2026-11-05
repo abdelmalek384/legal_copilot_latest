@@ -95,6 +95,12 @@ class IdentityLifecycleTests(unittest.TestCase):
         self.assertIn('@router.get("/invite/accept", response_class=HTMLResponse)', router_source)
         self.assertIn('@router.get("/account/recovery", response_class=HTMLResponse)', router_source)
         self.assertIn("request.state.csp_nonce", router_source)
+        session_routes = {
+            route.path: route for route in app.app.routes
+            if getattr(route, "path", None) in {"/session", "/session/firm"}
+        }
+        self.assertEqual(set(session_routes), {"/session", "/session/firm"})
+        self.assertTrue(all(route.endpoint.__module__ == "routers.identity" for route in session_routes.values()))
 
     def test_admin_can_list_and_revoke_only_own_firm_invitations(self):
         self.assertEqual(self._login(self.client, "invitation-owner@example.test", self.password).status_code, 200)
@@ -479,6 +485,23 @@ class IdentityLifecycleTests(unittest.TestCase):
             "SELECT status FROM identity_invitations WHERE id=?",
             (invitation.json()["invitation_id"],),
         ).fetchone()["status"], "sent")
+
+
+    def test_session_and_logout_routes_are_owned_by_identity_router(self):
+        expected = {
+            ("/logout", "POST"),
+            ("/session", "GET"),
+            ("/session/firm", "POST"),
+        }
+        actual = {
+            (route.path, method): route.endpoint.__module__
+            for route in app.app.routes
+            if getattr(route, "path", None) in {path for path, _ in expected}
+            for method in getattr(route, "methods", set())
+            if (route.path, method) in expected
+        }
+        self.assertEqual(set(actual), expected)
+        self.assertTrue(all(module == "routers.identity" for module in actual.values()))
 
 
 if __name__ == "__main__":

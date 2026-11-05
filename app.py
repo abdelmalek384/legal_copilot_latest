@@ -3907,41 +3907,22 @@ def login(b: LoginIn, request: Request, response: Response):
     return legacy_user
 
 
-@app.get("/session")
-def current_session(u: dict = Depends(user)):
-    result = {"id": u["id"], "name": u["name"], "role": u["role"], "firm_id": u["firm_id"],
-              "can_review_legal": _user_can_review_legal(u)}
-    if _separate_runtime_enabled():
-        result["firms"] = _active_firms_for_user(u["id"])
-        result["platform_roles"] = _platform_roles_for_user(u["id"])
-        result["is_demo"] = _firm_is_demo(u["firm_id"])
-        for field in ("mfa_enabled", "mfa_required", "mfa_policy_required", "mfa_verified", "mfa_verified_at",
-                      "mfa_enrollment_required", "mfa_verification_required"):
-            result[field] = u.get(field, False if field != "mfa_verified_at" else 0)
-    return result
+from routers.identity import create_session_router
 
-
-@app.post("/session/firm")
-def switch_firm(b: FirmSwitchIn, request: Request, response: Response, u: dict = Depends(user)):
-    if not _separate_runtime_enabled():
-        raise HTTPException(404, "firm switching is available only in separate-database mode")
-    try:
-        context = get_database_runtime().resolve_context(u["id"], b.firm_id)
-    except FirmContextError as exc:
-        raise HTTPException(403, "active firm membership required") from exc
-    response.set_cookie("lc_firm", str(context.firm_id), max_age=43200,
-                        httponly=True, secure=_secure_cookie_transport(request),
-                        samesite="lax", path="/")
-    switched_user = {"id": u["id"], "name": u["name"], "role": context.role,
-                     "firm_id": context.firm_id, "firms": _active_firms_for_user(u["id"]),
-                     "platform_roles": _platform_roles_for_user(u["id"]),
-                     "is_demo": _firm_is_demo(context.firm_id)}
-    switched_user["can_review_legal"] = _user_can_review_legal(
-        {"id": u["id"], "role": context.role, "email": u.get("email")}
+app.include_router(
+    create_session_router(
+        user_dependency=user,
+        firm_switch_model=FirmSwitchIn,
+        user_can_review_legal=_user_can_review_legal,
+        separate_runtime_enabled=_separate_runtime_enabled,
+        active_firms_for_user=_active_firms_for_user,
+        platform_roles_for_user=_platform_roles_for_user,
+        firm_is_demo=_firm_is_demo,
+        database_runtime_provider=get_database_runtime,
+        firm_context_error=FirmContextError,
+        secure_cookie_transport=_secure_cookie_transport,
     )
-    return switched_user
-
-
+)
 @app.get("/firm/profile")
 def get_firm_profile(u: dict = Depends(user)):
     _require_firm_setup_runtime()
@@ -4106,16 +4087,16 @@ def send_setup_test_reminder(u: dict = Depends(user)):
     }
 
 
-@app.post("/logout")
-def logout(request: Request, response: Response, u: dict = Depends(user)):
-    tok = request.cookies.get("lc_session", "")
-    c = control_conn()
-    c.execute("DELETE FROM auth_sessions WHERE token_hash=? AND user_id=?", (sha(tok), u["id"]))
-    c.commit()
-    for cookie in ("lc_session", "lc_csrf", "lc_firm"):
-        response.delete_cookie(cookie, path="/", httponly=(cookie != "lc_csrf"),
-                               samesite="lax", secure=_secure_cookie_transport(request))
-    return {"ok": True}
+from routers.identity import create_logout_router
+
+app.include_router(
+    create_logout_router(
+        control_connection_provider=control_conn,
+        user_dependency=user,
+        token_hash=sha,
+        secure_cookie_transport=_secure_cookie_transport,
+    )
+)
 
 
 

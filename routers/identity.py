@@ -1,6 +1,6 @@
 """Public identity invitation and account-recovery pages."""
 
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Depends, HTTPException, Request, Response
 from fastapi.responses import HTMLResponse
 
 
@@ -53,4 +53,102 @@ result.textContent="Password reset successful. Sign in with your new password.";
 if(!token)result.textContent="This recovery link is missing its token. Request a new recovery email.";
 </script></body></html>""".replace("__CSP_NONCE__", request.state.csp_nonce))
 
+def create_session_router(
+    *,
+    user_dependency,
+    firm_switch_model,
+    user_can_review_legal,
+    separate_runtime_enabled,
+    active_firms_for_user,
+    platform_roles_for_user,
+    firm_is_demo,
+    database_runtime_provider,
+    firm_context_error,
+    secure_cookie_transport,
+):
+    session_router = APIRouter()
+
+    @session_router.get("/session")
+    def current_session(u: dict = Depends(user_dependency)):
+        result = {
+            "id": u["id"],
+            "name": u["name"],
+            "role": u["role"],
+            "firm_id": u["firm_id"],
+            "can_review_legal": user_can_review_legal(u),
+        }
+        if separate_runtime_enabled():
+            result["firms"] = active_firms_for_user(u["id"])
+            result["platform_roles"] = platform_roles_for_user(u["id"])
+            result["is_demo"] = firm_is_demo(u["firm_id"])
+            for field in (
+                "mfa_enabled", "mfa_required", "mfa_policy_required", "mfa_verified",
+                "mfa_verified_at", "mfa_enrollment_required", "mfa_verification_required",
+            ):
+                result[field] = u.get(field, False if field != "mfa_verified_at" else 0)
+        return result
+
+    @session_router.post("/session/firm")
+    def switch_firm(b: firm_switch_model, request: Request, response: Response, u: dict = Depends(user_dependency)):
+        if not separate_runtime_enabled():
+            raise HTTPException(404, "firm switching is available only in separate-database mode")
+        try:
+            context = database_runtime_provider().resolve_context(u["id"], b.firm_id)
+        except firm_context_error as exc:
+            raise HTTPException(403, "active firm membership required") from exc
+        response.set_cookie(
+            "lc_firm",
+            str(context.firm_id),
+            max_age=43200,
+            httponly=True,
+            secure=secure_cookie_transport(request),
+            samesite="lax",
+            path="/",
+        )
+        switched_user = {
+            "id": u["id"],
+            "name": u["name"],
+            "role": context.role,
+            "firm_id": context.firm_id,
+            "firms": active_firms_for_user(u["id"]),
+            "platform_roles": platform_roles_for_user(u["id"]),
+            "is_demo": firm_is_demo(context.firm_id),
+        }
+        switched_user["can_review_legal"] = user_can_review_legal(
+            {"id": u["id"], "role": context.role, "email": u.get("email")}
+        )
+        return switched_user
+
+    return session_router
+
+
+def create_logout_router(
+    *,
+    control_connection_provider,
+    user_dependency,
+    token_hash,
+    secure_cookie_transport,
+):
+    logout_router = APIRouter()
+
+    @logout_router.post("/logout")
+    def logout(request: Request, response: Response, u: dict = Depends(user_dependency)):
+        tok = request.cookies.get("lc_session", "")
+        c = control_connection_provider()
+        c.execute(
+            "DELETE FROM auth_sessions WHERE token_hash=? AND user_id=?",
+            (token_hash(tok), u["id"]),
+        )
+        c.commit()
+        for cookie in ("lc_session", "lc_csrf", "lc_firm"):
+            response.delete_cookie(
+                cookie,
+                path="/",
+                httponly=(cookie != "lc_csrf"),
+                samesite="lax",
+                secure=secure_cookie_transport(request),
+            )
+        return {"ok": True}
+
+    return logout_router
 
