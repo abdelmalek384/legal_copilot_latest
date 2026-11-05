@@ -41,8 +41,8 @@ labour_law,102,48,,صاصاته الأخرى ، فى موعد أقصاه ستة 
 labour_law,103,48-49,yes,قومى للأجور بدعوة من رئيسه كل ستة أشهر على الأقل ، أو كلما دعت,identical_after_normalization,,
 labour_law,106,49,,المحكمة العمالية ، وذلك خلال ثلاثين يومًا من التاريخ المقرر لصرف,minor_difference,,
 labour_law,108,49-50,,غ المستحقة له فى مدة لا تجاوز سبعة أيام من تاريخ مطالبة العامل ب,minor_difference,,
-labour_law,113,51,,ن يقتطع من أجر العامل أكثر من عشرة بالمائة ، وفاء لما يكون قد أق,minor_difference,,
-labour_law,114,51,,أداء أى دين إلا فى حدود خمسة وعشرين بالمائة من هذا الأجر ، ويجوز | جر ، ويجوز رفع نسبة الخصم إل,minor_difference,,
+labour_law,113,51,,ن يقتطع من أجر العامل أكثر من عشرة بالمائة ، وفاء لما يكون قد أق,minor_difference,yes,Page 51 checked: deduction for employer loans is capped at 10%; candidate cue matches.
+labour_law,114,51,,أداء أى دين إلا فى حدود خمسة وعشرين بالمائة من هذا الأجر ، ويجوز | جر ، ويجوز رفع نسبة الخصم إل,minor_difference,yes,Page 51 checked: wage deduction/attachment is generally capped at 25%, with the stated maintenance exception up to 50%; candidate cue matches.
 labour_law,117,52,,العامل تشغيلاً فعليًا أكثر من ثمانى ساعات فى اليوم ، أو ثمان وأرب | انى ساعات فى اليوم ، أو ثما,minor_difference,yes,Page 52 checked: the 8-hour daily/48-hour weekly ordinary work limit matches the candidate cue.
 labour_law,118,52,,لفترة ألا يعمل العامل أكثر من خمس ساعات متصلة . وللوزير المختص,minor_difference,yes,Page 52 checked: the five-consecutive-hour work limit before a break matches the candidate cue.
 labour_law,119,52,,ساعات العمل ونهايتها أكثر من عشر ساعات فى اليوم الواحد ، وتحسب | تواجدهم فى المنشأة على اثنتى ع,minor_difference,,
