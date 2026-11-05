@@ -5,8 +5,21 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException, Query
 
 
-def create_router(*, connection_provider, user_dependency, need_dependency, arabic_skeleton_builder, meter_firm_usage, communication_model, rollback_tenant_transaction, log_event):
+def create_router(*, connection_provider, user_dependency, need_dependency, arabic_skeleton_builder, meter_firm_usage, communication_model, rollback_tenant_transaction, log_event, case_model, ensure_client_profile, add_case_helper, meter_pilot_metric):
     router = APIRouter()
+
+
+    @router.post("/cases")
+    @rollback_tenant_transaction
+    def new_case(b: case_model, u: dict = Depends(user_dependency)):
+        c = connection_provider()
+        client_id, client_name = ensure_client_profile(c, u, b.client, b.client_id)
+        case_id = add_case_helper(
+            c, u, b.title, client_name, b.stage, b.case_number, b.case_year,
+            b.court, b.circuit, b.opposing_party, client_id,
+        )
+        meter_pilot_metric(u, "cases_created")
+        return {"id": case_id, "client_id": client_id}
 
     @router.get("/cases")
     def cases(u: dict = Depends(user_dependency)):
