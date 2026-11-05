@@ -3,7 +3,9 @@
 import base64
 from pathlib import Path
 
-from fastapi import APIRouter, Response
+from fastapi import APIRouter, Depends, Response
+
+import app as core
 from fastapi.responses import HTMLResponse
 
 
@@ -44,3 +46,10 @@ def pwa_app_icon():
 def pwa_apple_touch_icon():
     encoded = _read_pwa_asset("apple-touch-icon.png.b64").strip()
     return Response(base64.b64decode(encoded, validate=True), media_type="image/png")
+
+
+@router.get("/setup/health")
+def setup_health(u: dict = Depends(core.user)):
+    core._require_firm_setup_runtime()
+    core.require_admin(u)
+    return core._setup_health_report()
