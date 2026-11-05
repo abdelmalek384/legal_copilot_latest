@@ -1489,6 +1489,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             ("post", f"/cases/{case_id}/docs", {"name": "secret.txt", "text": "firm A private evidence"}),
             ("post", f"/cases/{case_id}/members", {"user_id": self.user_id, "role": "lead"}),
             ("post", f"/cases/{case_id}/tasks", {"title": "Cross-firm task"}),
+            ("post", f"/cases/{case_id}/sessions", {"date": "2026-11-10", "note": "Cross-firm session"}),
+            ("post", f"/cases/{case_id}/notes", {"text": "Cross-firm note"}),
         )
         for method, path, payload in attempts:
             with self.subTest(path=path):
