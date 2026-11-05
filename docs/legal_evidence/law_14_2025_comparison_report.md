@@ -26,11 +26,11 @@
 |---|---:|---:|---|
 | Numeric alerts | 5/5 | 0 | All five explained by extraction, RTL ordering or colophon artifacts |
 | Major differences | 47/47 | 0 | All inspected passages match candidate |
-| Minor differences | 175/221 | 46 | All inspected passages match candidate |
+| Minor differences | 184/221 | 46 | All inspected passages match candidate |
 | Quantitative provision cues | 33/120 | 87 | All inspected cues match candidate |
 | Known orthography outliers | 6/6 | 0 | All checked passages match candidate; this overlaps the groups above |
 
-The minor-difference visual review contains 175 unique article records across 20 CSV batches. Duplicate entries were removed and metadata was reconciled against the review record. The reviewed passages are not a substitute for a complete legal proofread or counsel sign-off.
+The minor-difference visual review contains 184 unique article records across 20 CSV batches. Duplicate entries were removed and metadata was reconciled against the review record. The reviewed passages are not a substitute for a complete legal proofread or counsel sign-off.
 
 ## Numeric alerts examined individually
 
@@ -52,11 +52,11 @@ All 47 machine-classified major differences were inspected against the supplied 
 
 ## Minor-difference visual checks
 
-One hundred seventy-five unique minor-difference records were inspected against the supplied Gazette page images; all 175 inspected passages match the candidate JSONL on the checked text. The remaining 46 minor-difference records have not been visually reviewed. Article 26 was moved to the quantitative worksheet because its machine status is identical after normalization; its 500 EGP quantitative cue was visually checked and marked there. A separate check of promulgation Article 14 was moved to `law_14_2025_other_visual_control_checks.csv` because it is not one of the 273 machine-difference rows. The minor-difference checks are listed in `law_14_2025_minor_difference_visual_spot_checks_part1.csv` through `part20.csv`.
+One hundred eighty-four unique minor-difference records were inspected against the supplied Gazette page images; all 184 inspected passages match the candidate JSONL on the checked text. The remaining 37 minor-difference records have not been visually reviewed. Article 26 was moved to the quantitative worksheet because its machine status is identical after normalization; its 500 EGP quantitative cue was visually checked and marked there. A separate check of promulgation Article 14 was moved to `law_14_2025_other_visual_control_checks.csv` because it is not one of the 273 machine-difference rows. The minor-difference checks are listed in `law_14_2025_minor_difference_visual_spot_checks_part1.csv` through `part21.csv`.
 
 ## Required review and release gates
 
-- Visually review the remaining 46 minor-difference records.
+- Visually review the remaining 37 minor-difference records.
 - Review the remaining 87 quantitative provision cues against the original Gazette pages and complete the lawyer decision fields in the tick sheet.
 - Obtain the exact source URL and capture date for the user-supplied PDF; the ETA-hosted PDF URL above is an independent comparison locator, not proven upload provenance.
 - Verify subsequent amendments, corrigenda, currentness, legal effective-date interpretation, and source/reuse rights.
