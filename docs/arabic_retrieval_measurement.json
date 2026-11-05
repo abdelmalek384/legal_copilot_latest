@@ -16,7 +16,11 @@
         "non_abstained_answers": 0,
         "abstention_rate": null,
         "abstention_compliance_unanswerable": null,
-        "abstained_answers": 0
+        "abstained_answers": 0,
+        "top3_hit_rate_colloquial_or_synonym": null,
+        "colloquial_or_synonym_questions": 0,
+        "cited_non_abstained_answers": 0,
+        "uncited_non_abstained_answers": 0
       },
       "status": "not_scored_no_lawyer_approved_labels"
     },
