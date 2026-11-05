@@ -30,6 +30,10 @@
 
 All five numeric-alert locations were visually inspected against the supplied Gazette page images (pages 18, 40, 54, 63, 111 and 112). The visual checks confirm the tokenization/RTL/colophon explanations above; none is a confirmed statutory numeric difference. The detailed page-by-page notes are in `law_14_2025_numeric_alert_review.csv`.
 
+## Visual spot checks — six orthography outliers
+
+The six known orthography outlier locations were inspected against the supplied Gazette page images (pages 35, 48, 54–55, 57–58, 61–62 and 106). Five checked passages match the candidate text. **Article 134 has a confirmed textual discrepancy:** the Gazette reads «ما يعرضها للخطر», while the candidate JSONL reads «ما يعرض للخطر» and omits «ها». This is recorded as a discrepancy only; the candidate was not silently edited or promoted. See `law_14_2025_orthography_spot_checks.csv`.
+
 ## Required review
 
 - All 273 non-identical machine results still require article-level visual comparison and disposition. The five numeric alerts have been visually checked; the remaining 268 text-difference records have not. Similarity classes are triage labels, not proof of error.
