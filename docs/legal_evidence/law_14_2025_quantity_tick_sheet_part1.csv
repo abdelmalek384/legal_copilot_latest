@@ -10,18 +10,18 @@ labour_law,6,12,,لعمل خلال مدة سريانه، أو خلال ثلاث�
 labour_law,12,14,,فى تاريخ استحقاقها لا تقل عن (3٪) من الأجر التأميني ، وتستحق ت | ضها أو الإعفاء منها وذلك خلال ,minor_difference,yes,Page 14 checked: the periodic allowance is at least 3% of insured wage; candidate cue matches.
 labour_law,18,16-17,,س الوزراء ، فى موعد لا يتجاوز ستة أشهر من تاريخ العمل بهذا القا | يجتمع المجلس مرة على الأقل كل,minor_difference,yes,Pages 16-17 checked: six-month council formation deadline and at-least-quarterly meeting cadence match the candidate.
 labour_law,21,18-19,,0 من هذا القانون من : 1- نسبة 0.25٪ (ربع فى المائة) من الحد الأدن | ا القانون من : 1- نسبة 0.25,numeric_difference,yes,Numeric alert visually checked on pages 18-19: 0.25% and «ربع في المائة» match; tokenization caused the machine alert.
-labour_law,23,19-20,,، ورسومه بما لا يزيد على مائة ألف جنيه ، وحالات الإعفاء منها .,minor_difference,,
+labour_law,23,19-20,,، ورسومه بما لا يزيد على مائة ألف جنيه ، وحالات الإعفاء منها .,minor_difference,yes,Pages 19-20 checked: the training-operations licence fee cap of 100,000 EGP matches the candidate.
 labour_law,26,21,,رسم المقابل لذلك بما لا يجاوز خمسمائة جنيه .,identical_after_normalization,yes,Page 21 Gazette image checked: the provision states a fee cap of 500 Egyptian pounds; candidate cue matches.
-labour_law,27,21,,رسوم المقررة عنه بما لا يجاوز خمسمائة جنيه ، وحالات الإعفاء منها . | لرسم المقرر عنها بما لا يج,minor_difference,,
-labour_law,30,22,,الطرف الآخر بذلك قبل الإنهاء بثلاثة أيام على الأقل .,minor_difference,,
+labour_law,27,21,,رسوم المقررة عنه بما لا يجاوز خمسمائة جنيه ، وحالات الإعفاء منها . | لرسم المقرر عنها بما لا يج,minor_difference,yes,Page 21 checked: the skill-practice licence fee cap of 500 EGP matches the candidate.
+labour_law,30,22,,الطرف الآخر بذلك قبل الإنهاء بثلاثة أيام على الأقل .,minor_difference,yes,Page 22 checked: the three-day notice period before ending the apprenticeship agreement matches the candidate.
 labour_law,32,22-23,,يس مجلس الوزراء فى مدة أقصاها ستة أشهر من تاريخ العمل بهذا القا,minor_difference,,
-labour_law,33,23,,بالجهة الإدارية المختصة خلال ثلاثين يومًا من تاريخ تسلمه العمل .,minor_difference,,
-labour_law,35,24,,لعامل الصادرة عنها خلال خمسة وأربعين يومًا من تاريخ استلام العمل ب,minor_difference,,
-labour_law,36,24,,ى الجهة الإدارية المختصة خلال ثلاثين يومًا من تاريخ بدء العمل بالم,minor_difference,,
+labour_law,33,23,,بالجهة الإدارية المختصة خلال ثلاثين يومًا من تاريخ تسلمه العمل .,minor_difference,yes,Page 23 checked: the 30-day worker-registration period matches the candidate.
+labour_law,35,24,,لعامل الصادرة عنها خلال خمسة وأربعين يومًا من تاريخ استلام العمل ب,minor_difference,yes,Page 24 checked: the 45-day worker-registration certificate return period matches the candidate.
+labour_law,36,24,,ى الجهة الإدارية المختصة خلال ثلاثين يومًا من تاريخ بدء العمل بالم,minor_difference,yes,Page 24 checked: the 30-day establishment workforce-data reporting period matches the candidate.
 labour_law,38,25,,ونظام معلومات سوق العمل خلال ثلاثين يومًا من تاريخ طلبها . كما يج,major_difference,,
-labour_law,41,26-27,,سب الأحوال ، عن مائتين وخمسين ألف جنيه وأن يكون مملوكًا بأكمله | بالداخل ، وألا يقل عن خمسمائة ,minor_difference,,
-labour_law,43,27-28,,ون أن تتقاضى مبلغًا لا يجاوز (1٪) من أجر العامل الذى يتم إلحاق,minor_difference,,
-labour_law,48,29-30,,تقدم إلى الوزارة المختصة خلال خمسة أيام عمل فعلية صورة طبق الأصل | كون للوزارة المختصة خلال خمس,minor_difference,,
+labour_law,41,26-27,,سب الأحوال ، عن مائتين وخمسين ألف جنيه وأن يكون مملوكًا بأكمله | بالداخل ، وألا يقل عن خمسمائة ,minor_difference,yes,Pages 26-27 checked: EGP 250,000/500,000 capital thresholds, 51% Egyptian ownership, EGP 1,000,000 security, 15-day top-up and EGP 10,000 fee cap match the candidate.
+labour_law,43,27-28,,ون أن تتقاضى مبلغًا لا يجاوز (1٪) من أجر العامل الذى يتم إلحاق,minor_difference,yes,Pages 27-28 checked: the 1% worker-wage fee cap for the stated exception matches the candidate.
+labour_law,48,29-30,,تقدم إلى الوزارة المختصة خلال خمسة أيام عمل فعلية صورة طبق الأصل | كون للوزارة المختصة خلال خمس,minor_difference,yes,Pages 29-30 checked: the five-actual-business-day deadline matches the candidate.
 labour_law,51,30,,ت ونتائج أعمالها على الأقل كل ستة أشهر ، ويصدر بتحديد قواعد وإج,identical_after_normalization,,
 labour_law,52,30-31,,وم المقررة عليه بما لا يقل عن ألف جنيه ولا يزيد على عشرة آلاف ج,major_difference,,
 labour_law,54,31-32,,لعاملة الحق فى إجازة وضع لمدة أربعة أشهر تشمل المدة التى تسبق الو | ذه الإجازة بعد الوضع عن خمس,minor_difference,,
