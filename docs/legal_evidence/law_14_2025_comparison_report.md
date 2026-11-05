@@ -32,7 +32,7 @@ All five numeric-alert locations were visually inspected against the supplied Ga
 
 ## Visual spot checks — six orthography outliers
 
-The six known orthography outlier locations were inspected against the supplied Gazette page images (pages 35, 48, 54–55, 57–58, 61–62 and 106). Five checked passages match the candidate text. **Article 134 has a confirmed textual discrepancy:** the Gazette reads «ما يعرضها للخطر», while the candidate JSONL reads «ما يعرض للخطر» and omits «ها». This is recorded as a discrepancy only; the candidate was not silently edited or promoted. See `law_14_2025_orthography_spot_checks.csv`.
+The six known orthography outlier locations were inspected against the supplied Gazette page images (pages 35, 48, 54–55, 57–58, 61–62 and 106). All six checked passages match the candidate text. I cross-checked Article 134 against the government-hosted ETA PDF (page 57): it reads «ولم يكن في تنفيذها ما يعرض للخطر», matching the candidate. An earlier apparent suffix discrepancy was a visual misread and is not retained as a finding. The ETA URL is an independent locator, not proof that the user-supplied PDF was downloaded from that URL. See `law_14_2025_orthography_spot_checks.csv`. Government-hosted comparison locator: https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf.
 
 ## Required review
 
