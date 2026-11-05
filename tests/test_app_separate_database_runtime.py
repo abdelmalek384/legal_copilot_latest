@@ -1489,6 +1489,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             ("patch", f"/cases/{case_id}", {"stage": "closed"}),
             ("post", f"/cases/{case_id}/docs", {"name": "secret.txt", "text": "firm A private evidence"}),
             ("post", f"/cases/{case_id}/members", {"user_id": self.user_id, "role": "lead"}),
+            ("delete", f"/cases/{case_id}/members/{self.user_id}", None),
             ("post", f"/cases/{case_id}/tasks", {"title": "Cross-firm task"}),
             ("post", f"/cases/{case_id}/sessions", {"date": "2026-11-10", "note": "Cross-firm session"}),
             ("post", f"/cases/{case_id}/notes", {"text": "Cross-firm note"}),
@@ -3430,6 +3431,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             mutations = (
                 ("patch", f"/cases/{case_id}", {"stage": "closed"}),
                 ("post", f"/cases/{case_id}/notes", {"text": "unauthorized note"}),
+                ("post", f"/cases/{case_id}/members", {"user_id": self.user_id, "role": "lead"}),
+                ("delete", f"/cases/{case_id}/members/{self.user_id}", None),
                 ("post", f"/cases/{case_id}/deadlines", {"title": "unauthorized deadline", "due": "2026-11-10"}),
                 ("post", f"/cases/{case_id}/fees", {"title": "unauthorized fee", "amount": 10, "paid": 0}),
                 ("post", f"/cases/{case_id}/sessions", {"date": "2026-11-10", "note": "unauthorized session"}),
