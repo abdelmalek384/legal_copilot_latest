@@ -157,8 +157,8 @@ def _numeric_markers(text):
         unit = None
         if index + 1 < len(parts):
             unit = _NUMERIC_UNITS.get(parts[index + 1])
-        if unit is None and index > 0 and parts[index - 1] in _CURRENCY_PREFIXES:
-            unit = "currency"
+        if unit is None and index > 0:
+            unit = _NUMERIC_UNITS.get(parts[index - 1])
         markers.add((number, unit))
     return values, markers
 
@@ -175,7 +175,7 @@ def _has_unsupported_numbers(claim, evidence):
 
 
 _QUALIFIER_PATTERNS = {
-    "universal": (r"\b(?:all|every|each|any)\b", r"(?:^|\s)(?:كل|جميع|كافة)(?:\s|$)"),
+    "universal": (r"\b(?:all|every|each|any)\b", r"(?:^|\s)(?:لكل|كل|جميع|كافة)(?:\s|$)"),
     "always": (r"\balways\b", r"(?:^|\s)دائما(?:\s|$)"),
     "never": (r"\bnever\b", r"(?:^|\s)(?:ابدا|أبدا)(?:\s|$)"),
     "perpetual": (r"\b(?:forever|unlimited|without\s+limit)\b", r"(?:بلا|دون)\s+(?:حدود|نهاية)"),
@@ -214,6 +214,15 @@ _REVERSAL_GROUPS = (
     ((r"(?:^|\s)(?:صحيح|سليم)(?:\s|$)",), (r"(?:^|\s)(?:باطل|غير\s+صحيح)(?:\s|$)",)),
     ((r"(?:^|\s)(?:يقبل|تقبل|قبول)(?:\s|$)",), (r"(?:^|\s)(?:يرفض|ترفض|رفض)(?:\s|$)",)),
 )
+
+
+def _canonicalize_coverage_text(text):
+    """Normalize a small set of faithful lexical paraphrases before coverage scoring."""
+    return re.sub(
+        r"\b(?:goes\s+up|go\s+up|rises?|rose|increases?|increased)\b",
+        "increase",
+        text,
+    )
 
 
 def _has_reversal_mismatch(claim, evidence):
@@ -303,10 +312,10 @@ def has_unsupported_claims(answer, hits, tokens_fn, norm_fn, mask_code=None):
         if claim_says_no_expiry and source_has_finite_period and source_mentions_limitation:
             return True
 
-        claim_terms = set(tokens_fn(claim)) - _GENERIC_TERMS
+        claim_terms = set(tokens_fn(_canonicalize_coverage_text(normalized_claim))) - _GENERIC_TERMS
         if not claim_terms:
             continue
-        evidence_terms = set(tokens_fn(evidence))
+        evidence_terms = set(tokens_fn(_canonicalize_coverage_text(normalized_evidence)))
         coverage = len(claim_terms & evidence_terms) / len(claim_terms)
         if coverage < 0.65:
             return True
