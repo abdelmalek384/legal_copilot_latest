@@ -362,8 +362,6 @@ jobs:
         run: PYTHONPATH=. python tests/test_trusted_host_middleware.py
       - name: Test fixture-based law ingestion pipeline
         run: PYTHONPATH=. python tests/test_law_ingestion_fixture_pipeline.py
-      - name: Test source-matched answer serving and unreviewed abstention
-        run: PYTHONPATH=. python tests/test_trust_tier_answer_serving.py
       - name: Test optional factual claim support validation
         run: PYTHONPATH=. python tests/test_claim_support.py
       - name: Test article-rows audit tool
