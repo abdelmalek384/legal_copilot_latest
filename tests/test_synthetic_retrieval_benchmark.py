@@ -129,7 +129,7 @@ class FictionalRetrievalMeasurementTests(unittest.TestCase):
                     "colloquial": colloquial,
                     "synonym": synonym,
                     "word_form": word_form,
-                    "date_sensitive": f"ما القاعدة بشأن {direct} بتاريخ 2024-06-01",
+                    "date_sensitive": f"{direct} 2024-06-01",
                 }
                 for style, query in queries.items():
                     expected.setdefault(style, []).append((query, str(article_number)))
