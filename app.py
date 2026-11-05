@@ -15,7 +15,6 @@ from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_pe
 from tools.arabic_legal_matching import expand_lexicon_hints
 from tools.arabic_drafting_skeletons import build_arabic_skeleton
 from tools.claim_support import claim_support_enabled, has_unsupported_claims
-from tools.answer_trust_tier import classify_answer_trust_tier
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
     generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
@@ -1903,7 +1902,7 @@ def _answer_has_uncited_claims(answer):
                 return True
     return False
 
-def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, scope="all_permitted", source_matched_policy_approved=False, source_matched_feature_enabled=False):
+def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, scope="all_permitted"):
     # Context helps resolve follow-ups, but the current question remains explicit in the answer prompt.
     retrieval_query = ((conversation_context.strip() + "\n") if conversation_context else "") + q
     hits = search(c, retrieval_query, case_id, firm_id=firm_id, as_of=as_of, scope=scope)
@@ -1921,26 +1920,12 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
                 "requested_as_of": as_of or date.today().isoformat()}
     # Corpus passages must satisfy the same evidence gate as the inspector label
     # before any model answer is generated. Database flags alone are insufficient.
-    trust_sources = []
-    for hit in hits:
-        trust_source = dict(hit)
-        if isinstance(hit.get("provenance"), dict):
-            trust_source.update(hit["provenance"])
-        trust_sources.append(trust_source)
-    trust_preflight = classify_answer_trust_tier(
-        trust_sources,
-        claims_supported=True,
-        citations_complete=True,
-        contradictory_sources=False,
-        source_matched_policy_approved=source_matched_policy_approved,
-        source_matched_feature_enabled=source_matched_feature_enabled,
-    )
     unverified_corpus_hits = [
         hit for hit in hits
         if hit.get("case_id") is None
         and (hit.get("verified") is not True or hit.get("source_status") != STATUS_VERIFIED)
     ]
-    if unverified_corpus_hits and trust_preflight["trust_tier"] != "source_matched":
+    if unverified_corpus_hits:
         return {
             "found": True, "answer": None, "abstained": True,
             "message": "تم استرجاع نصوص قانونية لا تستوفي بوابات المصدر والإذن القابلة للفحص؛ تُعرض المصادر فقط.",
@@ -1998,18 +1983,7 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
         elif claim_support_enabled() and has_unsupported_claims(ans, hits, tokens, norm, _mask_markdown_code):
             ans, msg = None, "تعذر إثبات دعم كل عبارة واقعية من نصوص مصادرها؛ تُعرض المصادر فقط."
             claim_support_blocked = True
-    answer_trust = classify_answer_trust_tier(
-        trust_sources,
-        claims_supported=bool(ans),
-        citations_complete=bool(ans),
-        contradictory_sources=False,
-        source_matched_policy_approved=source_matched_policy_approved,
-        source_matched_feature_enabled=source_matched_feature_enabled,
-    )
-    if ans:
-        for hit in hits:
-            hit["trust_tier"] = answer_trust["trust_tier"]
-    return {"found": True, "answer": ans, "abstained": not bool(ans), "message": msg, "claim_support_blocked": claim_support_blocked, "trust_tier": answer_trust["trust_tier"], "sources": hits, "scope": scope, "case_id": case_id, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
+    return {"found": True, "answer": ans, "abstained": not bool(ans), "message": msg, "claim_support_blocked": claim_support_blocked, "sources": hits, "scope": scope, "case_id": case_id, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
 
 
 # ---------------- API ----------------
