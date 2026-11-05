@@ -1235,7 +1235,7 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
 
 
 def _safe_llm_endpoint(value):
-    """Require HTTPS for remote model endpoints; allow plain HTTP only on loopback."""
+    """Require public-address HTTPS endpoints; allow plain HTTP only on loopback."""
     from urllib.parse import urlsplit
     if not isinstance(value, str) or not value.strip():
         return False
@@ -1246,15 +1246,35 @@ def _safe_llm_endpoint(value):
         if (parsed.scheme not in {"https", "http"} or not host or parsed.username or parsed.password
                 or parsed.query or parsed.fragment):
             return False
-        _ = parsed.port  # Force invalid/out-of-range ports to raise ValueError.
-        if parsed.scheme == "https":
-            return True
-        if host.lower().rstrip(".") == "localhost":
-            return True
+        port = parsed.port or (443 if parsed.scheme == "https" else 80)
+        if parsed.scheme == "http":
+            if host.lower().rstrip(".") == "localhost":
+                return True
+            try:
+                return ipaddress.ip_address(host).is_loopback
+            except ValueError:
+                return False
+
+        # HTTPS does not make a private destination safe. Reject literal private,
+        # loopback, link-local, reserved and metadata-service IPs as well as hostnames
+        # that currently resolve to any non-global address.
         try:
-            return ipaddress.ip_address(host).is_loopback
+            return ipaddress.ip_address(host).is_global
         except ValueError:
-            return False
+            try:
+                answers = socket.getaddrinfo(host, port, type=socket.SOCK_STREAM)
+            except OSError:
+                return False
+            if not answers:
+                return False
+            for answer in answers:
+                try:
+                    address = ipaddress.ip_address(answer[4][0].split("%", 1)[0])
+                except (IndexError, ValueError, TypeError):
+                    return False
+                if not address.is_global:
+                    return False
+            return True
     except (TypeError, ValueError):
         return False
 
