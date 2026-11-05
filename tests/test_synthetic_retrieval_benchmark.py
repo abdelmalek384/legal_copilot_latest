@@ -183,9 +183,6 @@ class FictionalRetrievalMeasurementTests(unittest.TestCase):
                 "wrong_article_answers": wrong,
                 "refusal_correct": served, "refusal_total": len(cases),
             }
-            self.assertEqual(wrong, 0, f"wrong article ranked to answer position for {style}: {json.dumps(wrong_details, ensure_ascii=False)}")
-            self.assertEqual(served, len(cases), f"answerable {style} query was refused")
-
         abstained = 0
         for query in MUST_ABSTAIN:
             hits = self.search(query)
@@ -206,7 +203,18 @@ class FictionalRetrievalMeasurementTests(unittest.TestCase):
 
         total = sum(item["n"] for item in report.values())
         self.assertEqual(total, 200)
+        # Emit the full measurements before safety assertions so a failing run still
+        # provides actionable per-style numbers in the CI log.
         print("FICTIONAL_RETRIEVAL_BENCHMARK=" + json.dumps(report, ensure_ascii=False, sort_keys=True))
+        for style in styles:
+            self.assertEqual(
+                report[style]["wrong_article_answers"], 0,
+                f"wrong article ranked first for {style}",
+            )
+            self.assertEqual(
+                report[style]["refusal_correct"], report[style]["refusal_total"],
+                f"answerable {style} query was refused",
+            )
 
 
 if __name__ == "__main__":
