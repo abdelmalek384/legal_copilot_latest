@@ -29,7 +29,7 @@
     "All 120 quantitative provision cues remain unreviewed",
     "Seventy-nine of 221 minor-difference records were visually checked and matched on the inspected passages; 142 minor-difference records remain unreviewed",
     "One of 120 quantitative provision cues was visually checked and matched; 119 quantitative cues remain unreviewed",
-    "Eighty-three of 221 minor-difference records were visually checked and matched on the inspected passages; 138 minor-difference records remain unreviewed"
+    "Eighty-nine of 221 minor-difference records were visually checked and matched on the inspected passages; 132 minor-difference records remain unreviewed"
   ],
   "numeric_alert_page_images_reviewed": true,
   "numeric_alert_reviewed_articles": [
@@ -175,8 +175,8 @@
     ]
   },
   "minor_difference_visual_spot_checks": {
-    "checked": 83,
-    "matching_on_checked_passage": 83,
+    "checked": 89,
+    "matching_on_checked_passage": 89,
     "confirmed_textual_discrepancies": 0,
     "records": [
       {
@@ -593,6 +593,36 @@
         "law_part": "labour_law",
         "article": 37,
         "gazette_pdf_pages": "24-25"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 40,
+        "gazette_pdf_pages": "26"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 42,
+        "gazette_pdf_pages": "27"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 45,
+        "gazette_pdf_pages": "28-29"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 46,
+        "gazette_pdf_pages": "29"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 48,
+        "gazette_pdf_pages": "29-30"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 50,
+        "gazette_pdf_pages": "30"
       }
     ],
     "articles": [
@@ -678,7 +708,13 @@
       33,
       34,
       35,
-      37
+      37,
+      40,
+      42,
+      45,
+      46,
+      48,
+      50
     ],
     "gazette_pdf_pages": [
       5,
@@ -698,6 +734,7 @@
       27,
       28,
       29,
+      30,
       31,
       32,
       33,
