@@ -1,6 +1,6 @@
 """Legal copilot MVP: case workspace + hybrid law search + citation-checked answers.
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
-import base64, sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging, tempfile, socket, http.client
+import base64, sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging, tempfile, socket, http.client, math
 from pathlib import Path
 from cryptography.fernet import Fernet
 import deadline_calculator as deadline_calc
@@ -3487,6 +3487,18 @@ def ocr_pdf_text(data, lang=None, max_pages=30, existing_pages=None):
             if len(existing) >= 20:
                 page_text = existing
             else:
+                try:
+                    rect = page.rect
+                    width_pt = float(rect.width)
+                    height_pt = float(rect.height)
+                except (AttributeError, TypeError, ValueError):
+                    raise HTTPException(422, "PDF page dimensions are invalid")
+                if (not math.isfinite(width_pt) or not math.isfinite(height_pt)
+                        or width_pt <= 0 or height_pt <= 0):
+                    raise HTTPException(422, "PDF page dimensions are invalid")
+                estimated_pixels = width_pt * height_pt * (160 / 72) ** 2
+                if estimated_pixels > 20_000_000:
+                    raise HTTPException(413, "PDF page exceeds the 20-megapixel OCR limit")
                 pix = page.get_pixmap(dpi=160, alpha=False)
                 image = Image.open(io.BytesIO(pix.tobytes("png")))
                 page_text = pytesseract.image_to_string(image, lang=lang, timeout=30).strip()
