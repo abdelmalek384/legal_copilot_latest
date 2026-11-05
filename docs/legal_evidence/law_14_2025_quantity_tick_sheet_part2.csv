@@ -1,26 +1,26 @@
 law_part,article,gazette_pdf_pages,orthography_outlier_check_first,quantitative_text_cue,machine_comparison_status,matches_gazette_yes_no,reviewer_notes
-labour_law,140,61,,ذا زاد ما يجب اقتطاعه على أجر خمسة أيام فى الشهر الواحد .,minor_difference,,
-labour_law,141,61-62,yes,اص ، على أن يبدأ التحقيق خلال سبعة أيام على الأكثر من تاريخ اكتش | يخ اكتشاف المخالفة ولا يتجاو,minor_difference,,
-labour_law,143,62,,المخالفة الواحدة بما يزيد على خمسة أيام من الأجر الأساسي ، كما ل | زاءات التى يوقعها أكثر من أج,minor_difference,,
-labour_law,145,62-63,,ب قرار مكتوب لمدة لا تزيد على ستين يومًا مع صرف أجره كاملاً ، وذ,minor_difference,,
+labour_law,140,61,,ذا زاد ما يجب اقتطاعه على أجر خمسة أيام فى الشهر الواحد .,minor_difference,yes,Page 61 checked: wage deduction is constrained by the five-day monthly threshold; candidate cue matches.
+labour_law,141,61-62,yes,اص ، على أن يبدأ التحقيق خلال سبعة أيام على الأكثر من تاريخ اكتش | يخ اكتشاف المخالفة ولا يتجاو,minor_difference,yes,Pages 61-62 checked: investigation begins within seven days, with the stated extension only for newly discovered evidence; candidate cue matches.
+labour_law,143,62,,المخالفة الواحدة بما يزيد على خمسة أيام من الأجر الأساسي ، كما ل | زاءات التى يوقعها أكثر من أج,minor_difference,yes,Page 62 checked: a single fine/deduction penalty may not exceed five days of basic wage; candidate cue matches.
+labour_law,145,62-63,,ب قرار مكتوب لمدة لا تزيد على ستين يومًا مع صرف أجره كاملاً ، وذ,minor_difference,yes,Pages 62-63 checked: temporary suspension is limited to 60 days with full wage, subject to the stated conditions; candidate cue matches.
 labour_law,146,63,,العمالية المختصة ، وذلك خلال ثلاثة أيام من تاريخ إخطاره ، أو علم,numeric_difference,yes,Numeric alert visually checked on page 63: the three-day period and list order (1, 2) match; RTL extraction reversed the order.
-labour_law,147,63,,وذلك قبل انتهاء مدة الإيقاف بعشرة أيام . وعلى قاضى الأمور الوقت,minor_difference,,
-labour_law,148,63-64,,والخصم من الأجر لمدة لا تجاوز ثلاثة أيام . وفى جميع الأحوال ، لا | لواقعة ، أو الحادث خلال أربع,minor_difference,,
-labour_law,149,64-65,,ذات الصلة كان لأى منهما خلال عشرة أيام من تاريخ نشوء النزاع أن | اللجنة من أعمالها خلال واحد وع,minor_difference,,
-labour_law,150,65,,ة لنظر النزاع فى مدة لا تجاوز عشرين يومًا من تاريخ ورود الطلب ، و | ى هذا الطلب بصفة مستعجلة خل,minor_difference,,
-labour_law,151,65-66,,د ما يقتطع لهذا الغرض على أجر خمسة أيام فى الشهر الواحد . ويجوز | ه رد ما اقتطع دون وجه حق خلال,minor_difference,,
-labour_law,154,66-67,,رم العقد أو جدد لمدة تزيد على خمس سنوات ، جاز للعامل إنهاؤه دون | ل إنهاؤه دون تعويض عند انقضاء,minor_difference,,
-labour_law,155,67,,الأعمال التى جدد لها لأكثر من خمس سنوات ، لا يجوز للعامل إنهاء,minor_difference,,
-labour_law,156,67,,لطرف الآخر كتابة قبل الإنهاء بثلاثة أشهر .,minor_difference,,
-labour_law,162,68,,يب يومًا كاملاً فى الأسبوع أو ثمانى ساعات أثناء الأسبوع ، وذلك لل,minor_difference,,
-labour_law,166,70,,تغيب بدون مبرر مشروع أكثر من عشرين يومًا متقطعة خلال السنة الواح | ال السنة الواحدة ، أو أكثر م,minor_difference,,
-labour_law,167,70,,بت جهة عمله فى الاستقالة خلال عشرة أيام من تاريخ تقديمها ، وإلا | لخاص العدول عن الاستقالة خلال,minor_difference,,
-labour_law,169,70-71,,نفقات الجنازة ، وذلك بحد أدنى ألف جنيه . كما تصرف منحة تعادل أج,minor_difference,,
-labour_law,171,71-72,,يجوز تحديد سن للتقاعد تقل عن ستين سنة . ويجوز لصاحب العمل إنهاء,minor_difference,,
-labour_law,172,72,,سن الستين ، مكافأة بواقع أجر نصف شهر عن كل سنة من السنوات الخم,minor_difference,,
-labour_law,173,72,,ه فى إنهاء العقد قبل مضى خمسة عشر يومًا من تاريخ استنفاد العامل,minor_difference,,
-labour_law,175,72-73,,علاقة العمل ، وذلك خلال خمسة عشر يومًا من تاريخ طلبها . كما يل,minor_difference,,
-labour_law,191,78,,دورة انعقاد المجلس أربع سنوات ، تبدأ من اليوم التالى | التشكيل ، ويعاد تشكيله خلال الستين يومًا,minor_difference,,
+labour_law,147,63,,وذلك قبل انتهاء مدة الإيقاف بعشرة أيام . وعلى قاضى الأمور الوقت,minor_difference,yes,Page 63 checked: the worker must be notified ten days before the suspension period ends; candidate cue matches.
+labour_law,148,63-64,,والخصم من الأجر لمدة لا تجاوز ثلاثة أيام . وفى جميع الأحوال ، لا | لواقعة ، أو الحادث خلال أربع,minor_difference,yes,Pages 63-64 checked: wage deduction for a single violation may not exceed three days; candidate cue matches.
+labour_law,149,64-65,,ذات الصلة كان لأى منهما خلال عشرة أيام من تاريخ نشوء النزاع أن | اللجنة من أعمالها خلال واحد وع,minor_difference,yes,Page 64 checked: individual labour dispute referral is due within ten days of the dispute arising; candidate cue matches.
+labour_law,150,65,,ة لنظر النزاع فى مدة لا تجاوز عشرين يومًا من تاريخ ورود الطلب ، و | ى هذا الطلب بصفة مستعجلة خل,minor_difference,yes,Page 65 checked: the committee hearing is scheduled within 20 days of receiving the request; candidate cue matches.
+labour_law,151,65-66,,د ما يقتطع لهذا الغرض على أجر خمسة أيام فى الشهر الواحد . ويجوز | ه رد ما اقتطع دون وجه حق خلال,minor_difference,yes,Pages 65-66 checked: deductions for the stated purpose are capped at five days' wage per month; candidate cue matches.
+labour_law,154,66-67,,رم العقد أو جدد لمدة تزيد على خمس سنوات ، جاز للعامل إنهاؤه دون | ل إنهاؤه دون تعويض عند انقضاء,minor_difference,yes,Pages 66-67 checked: a worker may end a contract after more than five years without compensation under the stated notice conditions; candidate cue matches.
+labour_law,155,67,,الأعمال التى جدد لها لأكثر من خمس سنوات ، لا يجوز للعامل إنهاء,minor_difference,yes,Page 67 checked: fixed-term renewal beyond five years triggers the stated three-month notice rule; candidate cue matches.
+labour_law,156,67,,لطرف الآخر كتابة قبل الإنهاء بثلاثة أشهر .,minor_difference,yes,Page 67 checked: written notice is required three months before termination in the specified case; candidate cue matches.
+labour_law,162,68,,يب يومًا كاملاً فى الأسبوع أو ثمانى ساعات أثناء الأسبوع ، وذلك لل,minor_difference,yes,Page 68 checked: during employer notice, the worker may take one full day or eight hours per week to seek other work; candidate cue matches.
+labour_law,166,70,,تغيب بدون مبرر مشروع أكثر من عشرين يومًا متقطعة خلال السنة الواح | ال السنة الواحدة ، أو أكثر م,minor_difference,yes,Page 70 checked: absence exceeding 20 intermittent days or ten consecutive days can trigger the stated consequence; candidate cue matches.
+labour_law,167,70,,بت جهة عمله فى الاستقالة خلال عشرة أيام من تاريخ تقديمها ، وإلا | لخاص العدول عن الاستقالة خلال,minor_difference,yes,Page 70 checked: employer response to resignation is due within ten days; candidate cue matches.
+labour_law,169,70-71,,نفقات الجنازة ، وذلك بحد أدنى ألف جنيه . كما تصرف منحة تعادل أج,minor_difference,yes,Page 71 checked: funeral expenses have a minimum of EGP 1,000; candidate cue matches.
+labour_law,171,71-72,,يجوز تحديد سن للتقاعد تقل عن ستين سنة . ويجوز لصاحب العمل إنهاء,minor_difference,yes,Pages 71-72 checked: retirement age may not be set below 60; candidate cue matches.
+labour_law,172,72,,سن الستين ، مكافأة بواقع أجر نصف شهر عن كل سنة من السنوات الخم,minor_difference,yes,Page 72 checked: compensation is half a month's wage per year for the first five years, then one month's wage per year; candidate cue matches.
+labour_law,173,72,,ه فى إنهاء العقد قبل مضى خمسة عشر يومًا من تاريخ استنفاد العامل,minor_difference,yes,Page 72 checked: the worker must give 15 days' notice before ending the contract after exhausting sick leave; candidate cue matches.
+labour_law,175,72-73,,علاقة العمل ، وذلك خلال خمسة عشر يومًا من تاريخ طلبها . كما يل,minor_difference,yes,Pages 72-73 checked: the employer issues the experience certificate within 15 days of request; candidate cue matches.
+labour_law,191,78,,دورة انعقاد المجلس أربع سنوات ، تبدأ من اليوم التالى | التشكيل ، ويعاد تشكيله خلال الستين يومًا,minor_difference,yes,Page 78 checked: the council's term is four years and reconstitution is within the last 60 days; candidate cue matches.
 labour_law,199,80,,قية الجماعية لمدة لا تزيد على ثلاث سنوات ، أو للمدة اللازمة لتنف | ت المدة فى الحالة الأخيرة عل,minor_difference,yes,Page 80 checked: collective agreement term is capped at three years except for the stated project-duration case; candidate cue matches.
 labour_law,202,81,,ية لتجديدها قبل انتهاء مدتها بثلاثة أشهر ، فإذا انقضت المدة الأخي | ديد امتد العمل بالاتفاقية م,minor_difference,yes,Page 81 checked: renewal negotiation starts three months before expiry; default extension is three months and referral follows two months without agreement; candidate cue matches.
 labour_law,203,81,,الإدارية المختصة لقيدها خلال ثلاثين يومًا من تاريخ التوقيع عليها,minor_difference,yes,Page 81 checked: filing the signed collective agreement is due within 30 days; candidate cue matches.
