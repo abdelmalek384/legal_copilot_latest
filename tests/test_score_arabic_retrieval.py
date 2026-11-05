@@ -5,7 +5,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from tools.score_arabic_retrieval import score
+from tools.score_arabic_retrieval import benchmark_fingerprint, score
 
 
 def reviewed(qid, *, answerable=True, article="LABOUR-ART-1", style="formal", tags=None):
@@ -30,6 +30,31 @@ def reviewed(qid, *, answerable=True, article="LABOUR-ART-1", style="formal", ta
 
 
 class ArabicRetrievalScorerTests(unittest.TestCase):
+    def test_benchmark_fingerprint_survives_counsel_labeling_but_detects_prompt_edits(self):
+        q = {
+            "id": "Q1", "practice_area": "labour", "question_ar": "سؤال تجريبي",
+            "question_origin": "curated_candidate_not_user_observed",
+            "expected_article": None, "expected_article_id": None,
+            "lawyer_approved_answer": None, "review_status": "needs_lawyer_review",
+            "label_status": "unlabeled", "question_style": "colloquial",
+            "question_style_review_status": "needs_lawyer_review",
+            "retrieval_tags": ["synonym"], "retrieval_tags_review_status": "needs_lawyer_review",
+        }
+        before = benchmark_fingerprint([q])
+        labeled = dict(q)
+        labeled.update({
+            "expected_article": "المادة 12",
+            "expected_article_id": "EG-LABOUR-14-2025::article:12",
+            "lawyer_approved_answer": "إجابة معتمدة للاختبار",
+            "review_status": "lawyer_reviewed",
+            "label_status": "lawyer_approved",
+            "question_style_review_status": "lawyer_approved",
+            "retrieval_tags_review_status": "lawyer_approved",
+        })
+        self.assertEqual(before, benchmark_fingerprint([labeled]))
+        edited = dict(labeled, question_ar="سؤال مختلف")
+        self.assertNotEqual(before, benchmark_fingerprint([edited]))
+
     def test_unlabeled_rows_and_their_captured_runs_are_excluded_and_metrics_are_null(self):
         q = {"id": "Q1", "review_status": "needs_lawyer_review", "expected_article": None}
         run = {"question_id": "Q1", "retrieved_article_ids": ["EG-LAW::article:1"],
