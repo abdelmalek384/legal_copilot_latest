@@ -21,7 +21,7 @@ The five CSV files were fetched back from the PR branch and checked for headers 
 - `law_14_2025_discrepancy_article_index.md`: grouped list of differing article identifiers.
 - `law_14_2025_quantitative_review_checklist.md`: article ID checklist for visual review.
 - `law_14_2025_minor_difference_visual_spot_checks_part1.csv` through `part22.csv`: 221 unique minor-difference page-image spot checks (one duplicate Article 23 row was removed); all 221 minor-difference records are checked; none remain.
-- `law_14_2025_source_match_record.json`: machine comparison metadata and release restrictions; 62/120 quantitative cues are checked and 58 remain.
+- `law_14_2025_source_match_record.json`: machine comparison metadata and release restrictions; 73/120 quantitative cues are checked and 47 remain.
 
 ## Trust boundary
 
