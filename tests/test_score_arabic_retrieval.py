@@ -14,6 +14,7 @@ def reviewed(qid, *, answerable=True, article="LABOUR-ART-1", style="formal", ta
         "question_style": style,
         "retrieval_tags": tags or [],
         "review_status": "lawyer_reviewed",
+        "label_status": "lawyer_approved",
         "reviewer_id": "reviewer-test-1",
         "reviewer_role": "egyptian_lawyer",
         "lawyer_approved_answer": "Approved test answer.",
@@ -60,6 +61,14 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         result = score([q], [run])
         self.assertEqual(result["top3_hit_rate_colloquial_or_synonym"], 1.0)
         self.assertEqual(result["colloquial_or_synonym_questions"], 1)
+
+    def test_review_status_without_approved_label_status_is_rejected(self):
+        q = reviewed("Q1")
+        q["label_status"] = "unlabeled"
+        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
+               "cited_article_ids": ["LABOUR-ART-1"], "abstained": False}
+        with self.assertRaisesRegex(ValueError, "approved label_status"):
+            score([q], [run])
 
     def test_unanswerable_case_requires_abstention(self):
         q = reviewed("Q1", answerable=False)
