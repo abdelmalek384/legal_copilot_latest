@@ -24,10 +24,11 @@
   "manual_page_review_pending": false,
   "source_files_committed": false,
   "limitations": [
-    "Source authenticity, amendments, currentness, effective-date interpretation, and reuse rights not established",
     "All 47 major-difference records and all 5 numeric alerts were visually checked; no confirmed textual discrepancy was found in the inspected passages",
     "Six known orthography-outlier passages were visually inspected and matched on the checked passages; this is not a complete review of all 311 records",
-    "All planned manual Gazette page-image checks are complete: 221 minor-difference records, 47 major-difference records, 5 numeric alerts, 120 quantitative provision cues, and six orthography outliers. These checks are not an Egyptian lawyer's legal verification."
+    "All planned manual Gazette page-image checks are complete: 221 minor-difference records, 47 major-difference records, 5 numeric alerts, 120 quantitative provision cues, and six orthography outliers. These checks are not an Egyptian lawyer's legal verification.",
+    "Government-hosted official copies corroborate the law's identity and Gazette publication, but byte identity with the 112-page user-uploaded PDF is unverified; ETA-hosted indexed PDF has 110 pages",
+    "A limited currentness search found related 2026 implementing instruments; their full texts and interactions are not yet ingested or counsel-reviewed"
   ],
   "numeric_alert_page_images_reviewed": true,
   "numeric_alert_reviewed_articles": [
@@ -2231,5 +2232,31 @@
       "checked": true,
       "match": true
     }
-  ]
+  ],
+  "official_corroborating_sources": [
+    {
+      "source": "Egyptian Tax Authority hosted PDF",
+      "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+      "accessed_on": "2026-11-05",
+      "title": "Official Gazette issue 18 (supplement), 3 May 2025; Law 14/2025",
+      "role": "independent_official_publication_copy",
+      "same_bytes_as_uploaded_pdf": "unknown",
+      "pdf_pages": 110
+    },
+    {
+      "source": "Official Printing Authority",
+      "url": "https://alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+      "accessed_on": "2026-11-05",
+      "title": "Law No. 14 of 2025 issuing the Labour Law",
+      "role": "official_law_text_record"
+    },
+    {
+      "source": "Ministry of Labour",
+      "url": "https://www.labour.gov.eg/ar/القوانين-والتشريعات/",
+      "accessed_on": "2026-11-05",
+      "title": "Current laws and legislations listing Law 14/2025 as a basic law",
+      "role": "official_ministry_listing"
+    }
+  ],
+  "currentness_snapshot": "Related official instruments found through 2026-11-05: PM Decision 982/2026 remote-work system and extension decisions 1305/1572/2033/2377/2590 of 2026; Ministerial Decision 49/2026 on hazardous/difficult work and remote areas for seven extra leave days; Ministry announced general workplace-regulation rules Aug/Sep 2026. These are related implementing instruments, not identified amendments to Law 14/2025. Search not exhaustive; full texts and currentness need counsel review."
 }
