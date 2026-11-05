@@ -292,6 +292,11 @@ def run(args: argparse.Namespace) -> int:
         firm_id, _ = runtime.provision_firm("Synthetic Scale Smoke Firm")
         seed_users(runtime, app_module, firm_id, args.users)
         app_module._database_runtime = runtime
+        # The real upload quota is an abuse-control policy, not a benchmark
+        # target. Raise it only inside this disposable process so the full
+        # 20,000-passage fixture can still use the authenticated upload route.
+        required_uploads = math.ceil(args.passages / 650)
+        app_module._UPLOAD_RATE_LIMIT = (max(10, required_uploads), 3600)
 
         client = TestClient(app_module.app)
         login = client.post(
