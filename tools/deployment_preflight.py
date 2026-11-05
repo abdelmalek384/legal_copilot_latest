@@ -14,7 +14,7 @@ from urllib.parse import urlsplit
 from cryptography.fernet import Fernet
 
 
-def valid_llm_endpoint(value):
+def valid_llm_endpoint(value, resolve_dns=True):
     """Require public-address HTTPS endpoints; plain HTTP is allowed only for loopback."""
     if not isinstance(value, str) or not value.strip():
         return False
@@ -38,6 +38,8 @@ def valid_llm_endpoint(value):
         try:
             return ipaddress.ip_address(host).is_global
         except ValueError:
+            if not resolve_dns:
+                return True
             try:
                 answers = socket.getaddrinfo(host, port, type=socket.SOCK_STREAM)
             except OSError:
@@ -174,8 +176,12 @@ def inspect_environment(env=None, *, require_separate=False):
 
     llm_url = env.get("LLM_URL", "").strip()
     if llm_url:
-        if valid_llm_endpoint(llm_url):
-            passed.append("LLM_URL uses HTTPS to a globally routable destination or loopback-only HTTP; DNS answers are checked for non-global addresses.")
+        processing_approved = env.get("LLM_DATA_PROCESSING_APPROVED", "").strip() == "1"
+        if valid_llm_endpoint(llm_url, resolve_dns=processing_approved):
+            if processing_approved:
+                passed.append("LLM_URL uses HTTPS to a globally routable destination or loopback-only HTTP; DNS answers are checked for non-global addresses.")
+            else:
+                passed.append("LLM_URL syntax is valid; DNS destination validation is deferred until explicit model-processing approval.")
         else:
             errors.append("LLM_URL must use HTTPS to a globally routable destination or loopback HTTP for local model services; private DNS answers, credentials, query strings, fragments, and other HTTP hosts are not allowed.")
 
