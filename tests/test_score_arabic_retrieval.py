@@ -56,7 +56,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         good = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
                 "cited_article_ids": ["LABOUR-ART-1"], "abstained": False}
         self.assertEqual(score([q], [good])["target_status"], "targets_met")
-        bad = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
+        bad = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1", "LABOUR-ART-2"],
                "cited_article_ids": ["LABOUR-ART-2"], "abstained": False}
         self.assertEqual(score([q], [bad])["target_status"], "below_target")
 
@@ -88,7 +88,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
 
     def test_wrong_cited_article_is_counted(self):
         q = reviewed("Q1")
-        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
+        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1", "LABOUR-ART-2"],
                "cited_article_ids": ["LABOUR-ART-2"], "abstained": False}
         result = score([q], [run])
         self.assertEqual(result["wrong_article_rate"], 1.0)
