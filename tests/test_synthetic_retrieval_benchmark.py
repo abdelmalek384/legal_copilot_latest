@@ -197,3 +197,7 @@ class FictionalRetrievalMeasurementTests(unittest.TestCase):
         total = sum(item["n"] for item in report.values())
         self.assertEqual(total, 200)
         print("FICTIONAL_RETRIEVAL_BENCHMARK=" + json.dumps(report, ensure_ascii=False, sort_keys=True))
+
+
+if __name__ == "__main__":
+    unittest.main()
