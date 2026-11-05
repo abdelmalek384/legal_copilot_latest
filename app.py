@@ -6350,7 +6350,7 @@ def import_clients_csv(b: ClientCSVImportIn, u: dict = Depends(user)):
         for row_number, row in enumerate(reader, start=2):
             if None in row:
                 raise ValueError("CSV row contains more values than the header")
-            if not any(str(value or "").strip() for value in row.values()):
+            if not any(value not in (None, "") for value in row.values()):
                 continue
             rows_seen += 1
             if rows_seen > 500:
