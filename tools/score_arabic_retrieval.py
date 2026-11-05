@@ -32,8 +32,14 @@ def _valid_reviewed(row):
         return False
     if not isinstance(row.get("answerable"), bool):
         raise ValueError(f"{row.get('id')}: reviewed question needs answerable=true/false")
+    if not isinstance(row.get("reviewer_id"), str) or not row["reviewer_id"].strip():
+        raise ValueError(f"{row.get('id')}: reviewer_id is required")
     if not isinstance(row.get("reviewer_name"), str) or not row["reviewer_name"].strip():
         raise ValueError(f"{row.get('id')}: reviewer_name is required")
+    if row.get("reviewer_role") not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
+        raise ValueError(f"{row.get('id')}: reviewer_role must identify qualified Egyptian counsel")
+    if not isinstance(row.get("lawyer_approved_answer"), str) or not row["lawyer_approved_answer"].strip():
+        raise ValueError(f"{row.get('id')}: lawyer_approved_answer is required")
     if not isinstance(row.get("review_date"), str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", row["review_date"]):
         raise ValueError(f"{row.get('id')}: review_date must be YYYY-MM-DD")
     if date.fromisoformat(row["review_date"]).isoformat() != row["review_date"] or date.fromisoformat(row["review_date"]) > date.today():
