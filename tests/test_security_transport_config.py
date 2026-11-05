@@ -141,6 +141,33 @@ class SecureCookieTransportTests(unittest.TestCase):
             with self.subTest(url=url):
                 self.assertFalse(app._safe_llm_endpoint(url))
 
+    def test_llm_open_uses_pinned_handler_without_ambient_proxy(self):
+        class FakeOpener:
+            def __init__(self):
+                self.opened = None
+
+            def open(self, request, timeout):
+                self.opened = (request, timeout)
+                return "synthetic-response"
+
+        opener = FakeOpener()
+        request = app.urllib.request.Request(
+            "https://provider.example.test/v1/chat/completions",
+            data=b"{}",
+            headers={"Content-Type": "application/json"},
+        )
+        with patch.object(app, "_resolve_public_llm_address", return_value="93.184.216.34"):
+            with patch.object(app.urllib.request, "build_opener", return_value=opener) as build:
+                result = app._llm_open(request, timeout=9)
+
+        self.assertEqual(result, "synthetic-response")
+        self.assertEqual(opener.opened, (request, 9))
+        handlers = build.call_args.args
+        self.assertTrue(any(isinstance(handler, app.urllib.request.ProxyHandler) and handler.proxies == {} for handler in handlers))
+        self.assertTrue(any(isinstance(handler, app._RejectLLMRedirects) for handler in handlers))
+        pinned = next(handler for handler in handlers if isinstance(handler, app._PinnedHTTPSHandler))
+        self.assertEqual(pinned._resolved_ip, "93.184.216.34")
+
     def test_llm_https_connection_pins_validated_ip_and_keeps_tls_hostname(self):
         class FakeTLSContext:
             verify_mode = 2
