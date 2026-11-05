@@ -7,9 +7,9 @@
 - Benchmark: tests/legal_eval/arabic_retrieval_110.template.jsonl.
 - All 110 questions are currently unlabeled; expected article, lawyer-approved answer, answerability and pin-cites are blank.
 - Existing evaluator tools/evaluate_retrieval_quality.py already measures Recall@3, MRR@3, citation metrics and abstention compliance against lawyer-reviewed labels.
-- tools/score_arabic_retrieval.py adds article-specific top-3 hit rate, wrong-article answer rate and abstention rate. It excludes all unlabeled questions. The scorer also reports target_status as not_evaluable, below_target, or targets_met; targets_met requires at least 80% top-3 hit rate on the counsel-approved colloquial/synonym slice and a 0.00 wrong-article rate.
+- tools/score_arabic_retrieval.py adds article-specific top-3 hit rate, wrong-article answer rate and abstention rate. It excludes all unlabeled questions. The scorer also reports target_status as not_evaluable, below_target, or targets_met; targets_met requires at least 80% top-3 hit rate in each separately approved cohort (colloquial and synonym) and a 0.00 wrong-article rate.
 - The API runner `tools/run_legal_eval.py` emits ranked `retrieved_article_ids`, answer-cited `cited_article_ids`, and `abstained`. IDs use `<source_id>::article:<article-number>`; counsel labels the matching value in `expected_article_id`. Runs for known unlabeled questions can be captured now and are excluded from metrics until labels are approved. Wrong-article rate is the share of non-abstained answers with article citations that contain at least one article outside the lawyer-approved expected article; uncited answers are reported separately.
-- Target after tuning: top-3 hit rate at least 0.80 on the colloquial-or-synonym slice and wrong-article answer rate 0.00. Report abstention separately; do not improve recall by answering without adequate verified evidence.
+- Target after tuning: top-3 hit rate at least 0.80 on the approved colloquial cohort and at least 0.80 on the approved synonym cohort, measured separately, with wrong-article answer rate 0.00. Report abstention separately; do not improve recall by answering without adequate verified evidence.
 
 ## Results
 
@@ -17,7 +17,9 @@
 |---|---:|---:|
 | Lawyer-approved questions scored | Not available | Not run |
 | Top-3 hit rate — all reviewed answerable | Not measurable | Not run |
-| Top-3 hit rate — colloquial-or-synonym slice | Not measurable | Not run |
+| Top-3 hit rate — colloquial cohort | Not measurable | Not run |
+| Top-3 hit rate — synonym cohort | Not measurable | Not run |
+| Top-3 hit rate — combined colloquial-or-synonym | Not measurable | Not run |
 | Wrong-article answer rate | Not measurable | Not run |
 | Abstention rate | Not measurable | Not run |
 | Abstention compliance on unanswerable questions | Not measurable | Not run |
