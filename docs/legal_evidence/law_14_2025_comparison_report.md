@@ -52,7 +52,7 @@ All 47 machine-classified major differences were inspected against the supplied 
 
 ## Minor-difference visual checks
 
-Eighty unique minor-difference article records were inspected against the supplied Gazette page images; all 80 inspected passages match the candidate JSONL on the checked text. The remaining 141 minor-difference records have not been visually reviewed. The checks are listed in `law_14_2025_minor_difference_visual_spot_checks_part1.csv` through `part9.csv`.
+Eighty-five unique minor-difference article records were inspected against the supplied Gazette page images; all 85 inspected passages match the candidate JSONL on the checked text. The remaining 136 minor-difference records have not been visually reviewed. The checks are listed in `law_14_2025_minor_difference_visual_spot_checks_part1.csv` through `part10.csv`.
 
 ## Required review and release gates
 
