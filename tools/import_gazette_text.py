@@ -194,8 +194,31 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
         "| numbering block | first label | last label | headings |",
         "|---|---|---|---:|",
     ]
+    numbering_gaps = {}
+    duplicate_numbers = {}
     for block, labels in sorted(block_articles.items()):
+        numeric = []
+        for label in labels:
+            match = re.match(r"^\s*([0-9٠-٩]+)", str(label))
+            if match:
+                try:
+                    numeric.append(int(match.group(1)))
+                except ValueError:
+                    pass
+        missing = sorted(set(range(1, max(numeric, default=0) + 1)) - set(numeric))
+        duplicates = sorted({number for number in numeric if numeric.count(number) > 1})
+        if missing:
+            numbering_gaps[str(block)] = missing
+        if duplicates:
+            duplicate_numbers[str(block)] = duplicates
         report.append(f"| {block} | {labels[0]} | {labels[-1]} | {len(labels)} |")
+    report += ["", "## Numbering audit", "",
+               f"- Blocks with missing article numbers: {len(numbering_gaps)}",
+               f"- Blocks with duplicate article numbers: {len(duplicate_numbers)}"]
+    for block, missing in numbering_gaps.items():
+        report.append(f"- Block {block} missing: {', '.join(map(str, missing))}")
+    for block, duplicates in duplicate_numbers.items():
+        report.append(f"- Block {block} duplicates: {', '.join(map(str, duplicates))}")
     if empty_articles:
         report += ["", "## Empty article bodies", "", ", ".join(empty_articles)]
     report += ["", "## Human review", "",
