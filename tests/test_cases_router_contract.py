@@ -6,6 +6,15 @@ import app
 
 
 class CasesRouterContractTests(unittest.TestCase):
+    def test_note_write_route_remains_registered_in_app(self):
+        notes = [
+            route for route in app.app.routes
+            if getattr(route, "path", None) == "/cases/{cid}/notes"
+            and "POST" in getattr(route, "methods", set())
+        ]
+        self.assertEqual(len(notes), 1)
+        self.assertEqual(notes[0].endpoint.__module__, "app")
+
     def test_case_read_routes_are_registered_from_cases_router(self):
         expected = {
             ("/cases", "GET"),
