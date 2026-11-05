@@ -24,22 +24,22 @@ labour_law,191,78,,دورة انعقاد المجلس أربع سنوات ، ت�
 labour_law,199,80,,قية الجماعية لمدة لا تزيد على ثلاث سنوات ، أو للمدة اللازمة لتنف | ت المدة فى الحالة الأخيرة عل,minor_difference,yes,Page 80 checked: collective agreement term is capped at three years except for the stated project-duration case; candidate cue matches.
 labour_law,202,81,,ية لتجديدها قبل انتهاء مدتها بثلاثة أشهر ، فإذا انقضت المدة الأخي | ديد امتد العمل بالاتفاقية م,minor_difference,yes,Page 81 checked: renewal negotiation starts three months before expiry; default extension is three months and referral follows two months without agreement; candidate cue matches.
 labour_law,203,81,,الإدارية المختصة لقيدها خلال ثلاثين يومًا من تاريخ التوقيع عليها,minor_difference,yes,Page 81 checked: filing the signed collective agreement is due within 30 days; candidate cue matches.
-labour_law,204,81,,عتادة لرفع الدعوى ، وذلك خلال ثلاثين يومًا من تاريخ الإخطار بالاعت,minor_difference,,
+labour_law,204,81,,عتادة لرفع الدعوى ، وذلك خلال ثلاثين يومًا من تاريخ الإخطار بالاعت,minor_difference,yes,Page 81 checked: the administrative authority's objection period is 30 days; candidate cue matches.
 labour_law,207,82,,و انضمام ، أو تعديل خلال خمسة عشر يومًا من تاريخ حصوله .,minor_difference,yes,Page 82 checked: administrative endorsement of renewal/accession/amendment is due within 15 days; candidate cue matches.
 labour_law,215,84,,ق فى النزاع فى موعد لا يتجاوز خمسة أيام من تاريخ تقديم الطلب إلي | رفا النزاع قبل الموعد المحدد,minor_difference,yes,Page 84 checked: conciliation session is set within five days and parties receive at least three days' notice; candidate cue matches.
-labour_law,217,84,,م تتم تسوية النزاع خلال واحد وعشرين يومًا من تاريخ بدء التوفيق ،,major_difference,,
+labour_law,217,84,,م تتم تسوية النزاع خلال واحد وعشرين يومًا من تاريخ بدء التوفيق ،,major_difference,yes,Page 84 checked: the conciliation stage is limited to 21 days; candidate cue matches.
 labour_law,218,84-85,,من الوزير المختص ، وذلك لمدة ثلاث سنوات قابلة للتجديد . ويصدر ر | على خدماته بما لا يجاوز خمسين,minor_difference,yes,Pages 84-85 checked: executive appointment term is three years, renewable; centre fees do not exceed EGP 50,000; candidate cue matches.
-labour_law,221,85-86,,ساطة والتحكيم بدرجة لا تقل عن سبعين بالمائة .,minor_difference,,
-labour_law,222,86,,مقيدين بالقائمة فى موعد غايته سبعة أيام من تاريخ تقديم طلب الوسا | ولى المركز اختيار الوسيط خلا,identical_after_normalization,,
-labour_law,224,86,,فى النزاع أو أحدهما خلال خمسة عشر يومًا أن يطلب من مركز الوساطة,minor_difference,,
+labour_law,221,85-86,,ساطة والتحكيم بدرجة لا تقل عن سبعين بالمائة .,minor_difference,yes,Pages 85-86 checked: the mediator/arbitrator eligibility test requires a score of at least 70%; candidate cue matches.
+labour_law,222,86,,مقيدين بالقائمة فى موعد غايته سبعة أيام من تاريخ تقديم طلب الوسا | ولى المركز اختيار الوسيط خلا,identical_after_normalization,yes,Page 86 checked: mediator selection is due within seven days; candidate cue matches.
+labour_law,224,86,,فى النزاع أو أحدهما خلال خمسة عشر يومًا أن يطلب من مركز الوساطة,minor_difference,yes,Page 86 checked: either party may request mediation within 15 days; candidate cue matches.
 labour_law,225,86-87,,على وسيط النزاع أن يقدم خلال خمسة أيام من تاريخ انتهاء مهمته تق,minor_difference,yes,Pages 86-87 checked: mediator report is due within five days after the assignment ends; candidate cue matches.
-labour_law,226,87,,التحكيم بدرجة لا تقل عن خمسة وسبعين بالمائة .,minor_difference,,
-labour_law,227,87,,ائم ، وذلك فى موعد غايته خمسة عشر يومًا من تاريخ إحالة النزاع ل,minor_difference,,
-labour_law,229,88,,الفصل فى النزاع المعروض خلال ثلاثين يومًا من تاريخ إحالة النزاع .,minor_difference,,
-labour_law,230,88,,زاع إلى تلك الدائرة خلال خمسة عشر يومًا من تاريخ صدور حكم أول د | ها الفصل فى النزاع خلال خمسة ,major_difference,,
-labour_law,232,89,,ة قبل التاريخ المحدد للإضراب بعشرة أيام على الأقل ، وذلك بكتاب م,identical_after_normalization,,
+labour_law,226,87,,التحكيم بدرجة لا تقل عن خمسة وسبعين بالمائة .,minor_difference,yes,Page 87 checked: the arbitration test requires a score of at least 75%; candidate cue matches.
+labour_law,227,87,,ائم ، وذلك فى موعد غايته خمسة عشر يومًا من تاريخ إحالة النزاع ل,minor_difference,yes,Page 87 checked: arbitrators are selected within 15 days; candidate cue matches.
+labour_law,229,88,,الفصل فى النزاع المعروض خلال ثلاثين يومًا من تاريخ إحالة النزاع .,minor_difference,yes,Page 88 checked: the panel must decide the dispute within 30 days; candidate cue matches.
+labour_law,230,88,,زاع إلى تلك الدائرة خلال خمسة عشر يومًا من تاريخ صدور حكم أول د | ها الفصل فى النزاع خلال خمسة ,major_difference,yes,Page 88 checked: appeal transfer is due within 15 days and decision within the stated 45-day period; candidate cue matches.
+labour_law,232,89,,ة قبل التاريخ المحدد للإضراب بعشرة أيام على الأقل ، وذلك بكتاب م,identical_after_normalization,yes,Page 89 checked: strike notice must be delivered at least ten days before the stated date; candidate cue matches.
 labour_law,237,89-90,,تصدر قرارها مسببًا خلال خمسة وأربعين يومًا على الأكثر من تاريخ تقد,minor_difference,yes,Pages 89-90 checked: committee decision is due within 45 days; candidate cue matches.
-labour_law,245,92,,قررة عليه ، بما لا يجاوز مائة ألف جنيه .,minor_difference,,
+labour_law,245,92,,قررة عليه ، بما لا يجاوز مائة ألف جنيه .,minor_difference,yes,Page 92 checked: the licensing fee cap is EGP 100,000; candidate cue matches.
 labour_law,260,99,,اض مرض مهني ، وذلك خلال أربع وعشرين ساعة من وقوعه ، ويصدر الوزير,minor_difference,yes,Page 99 checked: establishments with 30 or more workers submit the stated half-year statistics in the first half of July; accident notice is within 24 hours; candidate cue matches.
 labour_law,261,99,,ر عنه ، بما لا يزيد على خمسين ألف جنيه ، وحالات الإعفاء منه .,minor_difference,yes,Page 99 checked: licensing/training fees are capped at EGP 50,000; candidate cue matches.
 labour_law,262,99-100,,ررة عنه بما لا يزيد على خمسين ألف جنيه ، وحالات الإعفاء منه .,major_difference,yes,Pages 99-100 checked: the occupational safety consultancy licence fee is capped at EGP 50,000; candidate cue matches.
