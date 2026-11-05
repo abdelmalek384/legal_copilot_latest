@@ -11,6 +11,16 @@ from database_runtime import DatabaseRuntime
 
 
 class SubscriptionBillingRouteTests(unittest.TestCase):
+    def test_platform_payment_review_routes_are_owned_by_platform_router(self):
+        expected = {
+            "/platform/billing/payment-submissions": {"GET"},
+            "/platform/billing/payment-submissions/{submission_id}/approve": {"POST"},
+            "/platform/billing/payment-submissions/{submission_id}/reject": {"POST"},
+        }
+        routes = {r.path: r for r in app.app.routes if getattr(r, "path", None) in expected}
+        self.assertEqual(set(routes), set(expected))
+        self.assertTrue(all(routes[p].methods == methods and routes[p].endpoint.__module__ == "routers.platform" for p, methods in expected.items()))
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix="legal-copilot-subscription-")
         self.root = Path(self.temp.name)
