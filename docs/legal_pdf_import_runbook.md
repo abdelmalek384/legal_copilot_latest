@@ -89,3 +89,16 @@ Staging does not activate rows as verified law. Keep the legal review queue, per
 `tools/fetch_arabic_law.py` is a separate convenience fetcher for an unofficial republication of Labour Law No. 14 of 2025. It is not an Official Gazette downloader and its output must remain a candidate until compared with the original Gazette issue and reviewed.
 
 For the specific Action 1 source intake, use the dedicated evidence-only hash/intake tools and preserve the original Gazette PDF and `law_rows_ar.jsonl` locally. Do not commit the source bytes. Keep primary-source matching, source rights, legal status, and lawyer review as separate gates.
+
+
+## 7. Lawyer-supplied Gazette text
+
+For an existing UTF-8 Arabic transcription supplied by a qualified Egyptian lawyer, use the text-only importer:
+
+```bash
+python tools/import_gazette_text.py /secure/input/gazette.txt /secure/input/gazette.json /secure/output/law14-review
+```
+
+The sidecar must identify the Gazette issue/date, exact text SHA-256, source URL/reference, supplier identity and Egyptian-lawyer role, capture method, and collection permission status. The importer rejects an unqualified supplier role and disallowed collection permission. It audits article numbering gaps, duplicates and empty bodies. It never verifies the source or changes legal status: all generated rows remain `verified=0`, `in_force=0`, and `as_of=null`.
+
+Review `import_report.md` before any database write. If and only if the report and target have been approved, the database/storage owner may separately stage with `python manage.py importlaws /secure/output/law14-review/law_rows.jsonl`. This is a shared-corpus write; it is not legal approval or activation.
