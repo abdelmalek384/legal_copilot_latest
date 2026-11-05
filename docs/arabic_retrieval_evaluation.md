@@ -141,3 +141,8 @@ Per-practice-area top-three gates are available as `--min-recall-at-3-per-practi
 `tests/legal_eval/arabic_retrieval_110.template.jsonl` contains 110 curated candidate questions, including formal and colloquial Egyptian Arabic. They are not production user-query logs and none is lawyer-approved ground truth. Expected articles and lawyer-approved answers remain blank until counsel labels them. Per-row question-style and synonym tags are also preliminary and excluded from the colloquial/synonym target metric until approved.
 
 Use `tools/score_arabic_retrieval.py` with the same lawyer-approved question set and recorded ranked article IDs for before/after runs. It reports top-3 article hit rate, wrong-article citation rate, abstention rate, and the approved colloquial-or-synonym slice. It refuses to score unlabeled rows. Do not tune `MIN_SCORE` until the baseline exists.
+
+
+## Preliminary register and synonym tags
+
+The 110 curated prompts currently have 82 preliminary formal labels and 28 preliminary colloquial labels. Twenty-eight rows also carry a preliminary `synonym` retrieval tag to help counsel identify likely dialect-to-legal-term mapping cases. Every style/synonym review status remains `needs_lawyer_review`; these labels are not lawyer-approved and are excluded from the target slice until reviewed.
