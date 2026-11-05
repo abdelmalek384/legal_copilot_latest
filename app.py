@@ -1921,8 +1921,14 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
                 "requested_as_of": as_of or date.today().isoformat()}
     # Corpus passages must satisfy the same evidence gate as the inspector label
     # before any model answer is generated. Database flags alone are insufficient.
+    trust_sources = []
+    for hit in hits:
+        trust_source = dict(hit)
+        if isinstance(hit.get("provenance"), dict):
+            trust_source.update(hit["provenance"])
+        trust_sources.append(trust_source)
     trust_preflight = classify_answer_trust_tier(
-        hits,
+        trust_sources,
         claims_supported=True,
         citations_complete=True,
         contradictory_sources=False,
@@ -1993,7 +1999,7 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
             ans, msg = None, "تعذر إثبات دعم كل عبارة واقعية من نصوص مصادرها؛ تُعرض المصادر فقط."
             claim_support_blocked = True
     answer_trust = classify_answer_trust_tier(
-        hits,
+        trust_sources,
         claims_supported=bool(ans),
         citations_complete=bool(ans),
         contradictory_sources=False,
