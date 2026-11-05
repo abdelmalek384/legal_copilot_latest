@@ -7211,6 +7211,58 @@ def _invoice_record(c, row):
     return result
 
 
+def _invoice_records(c, rows):
+    """Build invoice list records with bounded batched child lookups, not N+1 queries."""
+    if not rows:
+        return []
+    records = {
+        int(row["id"]): {"lines": [], "payments": [], "events": []}
+        for row in rows
+    }
+    invoice_ids = list(records)
+    # Keep each IN clause below SQLite's conservative 999-parameter limit.
+    for offset in range(0, len(invoice_ids), 500):
+        batch_json = json.dumps(invoice_ids[offset:offset + 500])
+        for item in c.execute(
+            "SELECT invoice_id,id,position,description,quantity_milli,unit_price_piasters,line_total_piasters "
+            "FROM invoice_lines WHERE invoice_id IN "
+            "(SELECT CAST(value AS INTEGER) FROM json_each(?)) ORDER BY invoice_id,position,id",
+            (batch_json,),
+        ).fetchall():
+            invoice_id = int(item["invoice_id"])
+            record = dict(item)
+            record.pop("invoice_id", None)
+            records[invoice_id]["lines"].append(record)
+        for item in c.execute(
+            "SELECT invoice_id,id,amount_piasters,paid_on,method,reference,note,recorded_by,created_at "
+            "FROM invoice_payments WHERE invoice_id IN "
+            "(SELECT CAST(value AS INTEGER) FROM json_each(?)) ORDER BY invoice_id,paid_on,id",
+            (batch_json,),
+        ).fetchall():
+            invoice_id = int(item["invoice_id"])
+            record = dict(item)
+            record.pop("invoice_id", None)
+            records[invoice_id]["payments"].append(record)
+        for item in c.execute(
+            "SELECT invoice_id,id,actor_user_id,event_type,details_json,created_at "
+            "FROM invoice_events WHERE invoice_id IN "
+            "(SELECT CAST(value AS INTEGER) FROM json_each(?)) ORDER BY invoice_id,id",
+            (batch_json,),
+        ).fetchall():
+            invoice_id = int(item["invoice_id"])
+            record = dict(item)
+            record.pop("invoice_id", None)
+            records[invoice_id]["events"].append(record)
+    return [
+        _invoice_record(
+            c, row,
+            lines=records[int(row["id"])]["lines"],
+            payments=records[int(row["id"])]["payments"],
+            events=records[int(row["id"])]["events"],
+        )
+        for row in rows
+    ]
+
 def _invoice_for_user(c, u, invoice_id: int):
     row = c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone()
     if row is None:
@@ -7270,8 +7322,9 @@ def list_invoices(
     c = conn()
     if u["role"] == "admin" and case_id is None:
         rows = c.execute(
-            "SELECT i.* FROM invoices i JOIN cases cs ON cs.id=i.case_id "
-            "WHERE cs.firm_id=? ORDER BY i.created_at DESC,i.id DESC",
+            "SELECT i.* FROM invoices i WHERE i.case_id IN "
+            "(SELECT id FROM cases WHERE firm_id=?) "
+            "ORDER BY i.created_at DESC,i.id DESC",
             (u["firm_id"],),
         ).fetchall()
     elif u["role"] == "admin":
@@ -7296,7 +7349,7 @@ def list_invoices(
             "ORDER BY i.created_at DESC,i.id DESC",
             (u["firm_id"], case_id, u["id"]),
         ).fetchall()
-    result = [_invoice_record(c, row) for row in rows]
+    result = _invoice_records(c, rows)
     if payment_state:
         result = [item for item in result if item["payment_state"] == payment_state]
     return {"invoices": result, "as_of_date": _invoice_today().isoformat()}

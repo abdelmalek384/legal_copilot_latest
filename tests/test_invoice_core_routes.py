@@ -66,5 +66,38 @@ class InvoiceCoreRouteTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(response.status_code, 422)
 
 
+    def test_invoice_list_batches_child_queries_instead_of_n_plus_one(self):
+        import app
+
+        for _ in range(4):
+            response = self.create_draft()
+            self.assertEqual(response.status_code, 200, response.text)
+        control = self.runtime.control_connection()
+        owner_id = control.execute(
+            "SELECT id FROM users WHERE email_normalized=?",
+            ("invoice-owner-a@example.test",),
+        ).fetchone()["id"]
+        tenant = self.runtime.firm_connection(
+            self.runtime.resolve_context(owner_id, self.firm_a)
+        )
+        rows = tenant.execute("SELECT * FROM invoices ORDER BY id").fetchall()
+        statements = []
+        tenant.set_trace_callback(statements.append)
+        try:
+            records = app._invoice_records(tenant, rows)
+        finally:
+            tenant.set_trace_callback(None)
+        child_queries = [
+            statement for statement in statements
+            if any(table in statement for table in (
+                "FROM invoice_lines", "FROM invoice_payments", "FROM invoice_events",
+            ))
+        ]
+        self.assertEqual(len(records), 4)
+        self.assertEqual(len(child_queries), 3)
+        self.assertTrue(all(len(record["lines"]) == 2 for record in records))
+        self.assertTrue(all(len(record["events"]) == 1 for record in records))
+
+
 if __name__ == "__main__":
     unittest.main()

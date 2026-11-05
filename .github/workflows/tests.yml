@@ -280,6 +280,9 @@ jobs:
         run: PYTHONPATH=. python tests/test_case_communications.py
       - name: Test firm-scoped invoice draft and issue routes
         run: PYTHONPATH=. python tests/test_invoice_core_routes.py
+      - name: One-off AI-2 scale smoke measurement
+        if: github.event_name == 'pull_request' && github.head_ref == 'ai2/scale-smoke-final'
+        run: PYTHONPATH=. python tools/scale_smoke.py
       - name: Test persistent client profiles and multi-matter linkage
         run: PYTHONPATH=. python tests/test_client_profiles.py
       - name: Test bounded firm-local matter CSV import
