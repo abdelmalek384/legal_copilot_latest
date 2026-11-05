@@ -132,6 +132,7 @@ class SecureCookieTransportTests(unittest.TestCase):
             "https://169.254.169.254/latest/meta-data",
             "https://[::1]/v1",
             "https://[fe80::1]/v1",
+            "https://[::ffff:10.0.0.1]/v1",
             "https://user:pass@llm.example.com/v1",
             "https://llm.example.com/v1?api_key=secret",
             "https://llm.example.com/v1#fragment",
