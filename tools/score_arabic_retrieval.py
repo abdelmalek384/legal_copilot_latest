@@ -57,10 +57,12 @@ def _valid_reviewed(row):
             or parsed.query or parsed.fragment):
         raise ValueError(f"{row.get('id')}: review_evidence_url must be clean HTTPS")
     expected = row.get("expected_article")
-    if row["answerable"] and (not isinstance(expected, str) or not expected.strip()):
-        raise ValueError(f"{row.get('id')}: answerable reviewed question needs expected_article")
-    if not row["answerable"] and expected not in (None, ""):
-        raise ValueError(f"{row.get('id')}: unanswerable question must not have an expected_article")
+    expected_id = row.get("expected_article_id")
+    if row["answerable"] and not any(
+            isinstance(value, str) and value.strip() for value in (expected, expected_id)):
+        raise ValueError(f"{row.get('id')}: answerable reviewed question needs expected_article or expected_article_id")
+    if not row["answerable"] and (expected not in (None, "") or expected_id not in (None, "")):
+        raise ValueError(f"{row.get('id')}: unanswerable question must not have an expected article")
     if not row["answerable"] and row.get("must_abstain_if_unverified") is not True:
         raise ValueError(f"{row.get('id')}: unanswerable question must require abstention")
     return True
@@ -95,9 +97,10 @@ def score(questions, runs):
     missing = sorted(q["id"] for q in reviewed if q["id"] not in r_by_id)
     if missing:
         raise ValueError("missing run records for reviewed questions: " + ", ".join(missing))
-    extra = sorted(set(r_by_id) - {q["id"] for q in reviewed})
-    if extra:
-        raise ValueError("run records supplied for unreviewed questions: " + ", ".join(extra))
+    reviewed_ids = {q["id"] for q in reviewed}
+    # Keep baseline run artifacts for known unlabeled questions, but exclude them
+    # from every metric until counsel approves their labels.
+    excluded_run_ids = set(r_by_id) - reviewed_ids
 
     answerable = [q for q in reviewed if q["answerable"]]
     top3_hits = []
@@ -109,7 +112,7 @@ def score(questions, runs):
         run = r_by_id[q["id"]]
         abstained += int(run["abstained"])
         if q["answerable"]:
-            expected = q["expected_article"].strip()
+            expected = (q.get("expected_article_id") or q.get("expected_article") or "").strip()
             hit = int(expected in run["retrieved_article_ids"][:3])
             top3_hits.append(hit)
             tags = q.get("retrieval_tags", [])
@@ -130,7 +133,7 @@ def score(questions, runs):
                 uncited_non_abstained += 1
             else:
                 cited_non_abstained += 1
-                expected = q.get("expected_article")
+                expected = q.get("expected_article_id") or q.get("expected_article")
                 if (not q["answerable"]) or any(x != expected for x in cited):
                     wrong_answers += 1
 
@@ -151,6 +154,7 @@ def score(questions, runs):
         "answerable_questions": len(answerable),
         "unanswerable_questions": unanswerable,
         "unlabeled_or_unreviewed_excluded": excluded,
+        "unlabeled_run_records_excluded": len(excluded_run_ids),
         "top3_hit_rate": round(sum(top3_hits) / len(top3_hits), 4) if top3_hits else None,
         "top3_hit_rate_colloquial_or_synonym": colloquial_rate,
         "target_status": target_status,
