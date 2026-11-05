@@ -432,7 +432,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("api('/answers/corrections','POST'", HTML)
         self.assertIn("api('/admin/corrections')", HTML)
         self.assertIn("trustTierBadge", HTML)
-        self.assertIn("Source-matched — not verified", HTML)
+        self.assertIn("Source-matched — not lawyer-reviewed", HTML)
         self.assertIn("Unreviewed", HTML)
         self.assertIn("Verified", HTML)
 
