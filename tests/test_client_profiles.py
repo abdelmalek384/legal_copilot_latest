@@ -195,14 +195,14 @@ class ClientProfileTests(InvoiceTestSupport, unittest.TestCase):
             with self.subTest(path="client CSV import", name_length=len(name)):
                 response = self.mutate(
                     self.client_a, "post", "/clients/import.csv",
-                    json={"csv": "name\\n" + name + "\\n"},
+                    json={"csv": "name" + chr(10) + name + chr(10)},
                 )
                 self.assertEqual(response.status_code, 422, response.text)
 
             with self.subTest(path="case CSV import", name_length=len(name)):
                 response = self.mutate(
                     self.client_a, "post", "/cases/import.csv",
-                    json={"csv": "title,client\\nInvalid matter," + name + "\\n"},
+                    json={"csv": "title,client" + chr(10) + "Invalid matter," + name + chr(10)},
                 )
                 self.assertEqual(response.status_code, 422, response.text)
 
