@@ -1486,6 +1486,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(draft_read.status_code, 404, draft_read.text)
 
         attempts = (
+            ("patch", f"/cases/{case_id}", {"stage": "closed"}),
             ("post", f"/cases/{case_id}/docs", {"name": "secret.txt", "text": "firm A private evidence"}),
             ("post", f"/cases/{case_id}/members", {"user_id": self.user_id, "role": "lead"}),
             ("post", f"/cases/{case_id}/tasks", {"title": "Cross-firm task"}),
