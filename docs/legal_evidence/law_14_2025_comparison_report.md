@@ -36,7 +36,7 @@ The six known orthography outlier locations were inspected against the supplied 
 
 ## Major-difference visual spot checks
 
-All 47 machine-classified major differences were inspected against the supplied Gazette page images in two CSV batches. All 47 checked passages match the candidate JSONL on the inspected text; no major-difference record produced a confirmed textual mismatch. These are resolved as extraction/comparison false positives for the inspected passages only. Sixty of the 221 minor-difference records (the lowest-similarity cases) have now been inspected against original Gazette page images; all sixty checked passages match the candidate text. The remaining 161 minor-difference records are still unreviewed. See the six `law_14_2025_minor_difference_visual_spot_checks_part*.csv` batches. See `law_14_2025_major_difference_visual_spot_checks.csv` and `law_14_2025_major_difference_visual_spot_checks_part2.csv`.
+All 47 machine-classified major differences were inspected against the supplied Gazette page images in two CSV batches. All 47 checked passages match the candidate JSONL on the inspected text; no major-difference record produced a confirmed textual mismatch. These are resolved as extraction/comparison false positives for the inspected passages only. Seventy of the 221 minor-difference records (the lowest-similarity cases) have now been inspected against original Gazette page images; all seventy checked passages match the candidate text. The remaining 151 minor-difference records are still unreviewed. See the seven `law_14_2025_minor_difference_visual_spot_checks_part*.csv` batches. See `law_14_2025_major_difference_visual_spot_checks.csv` and `law_14_2025_major_difference_visual_spot_checks_part2.csv`.
 
 ## Required review
 
