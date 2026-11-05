@@ -57,6 +57,13 @@ class GazetteTextImportTests(unittest.TestCase):
         self.assertTrue(all(row["as_of"] is None for row in rows))
         self.assertTrue((self.output / "import_report.md").is_file())
 
+    def test_non_lawyer_supplier_role_is_rejected(self):
+        self.metadata["supplier_role"] = "unknown"
+        self.write_metadata()
+        with self.assertRaisesRegex(ValueError, "supplier_role"):
+            import_text(self.text_path, self.meta_path, self.output)
+        self.assertFalse(self.output.exists())
+
     def test_hash_mismatch_is_rejected_before_output(self):
         self.metadata["content_sha256"] = "0" * 64
         self.write_metadata()
