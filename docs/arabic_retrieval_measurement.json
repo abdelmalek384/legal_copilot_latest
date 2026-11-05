@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "benchmark": "tests/legal_eval/arabic_retrieval_110.template.jsonl",
+  "benchmark_sha256": null,
+  "phases": {
+    "before": {
+      "min_score": 0.3,
+      "metrics": {
+        "reviewed_questions": 0,
+        "answerable_questions": 0,
+        "unanswerable_questions": 0,
+        "unlabeled_or_unreviewed_excluded": 110,
+        "top3_hit_rate": null,
+        "wrong_article_rate": null,
+        "wrong_article_answers": 0,
+        "non_abstained_answers": 0,
+        "abstention_rate": null,
+        "abstention_compliance_unanswerable": null,
+        "abstained_answers": 0,
+        "cited_non_abstained_answers": 0,
+        "uncited_non_abstained_answers": 0,
+        "target_status": "not_evaluable_missing_approved_labels_or_cited_runs",
+        "target_wrong_article_rate": 0,
+        "unlabeled_run_records_excluded": 0,
+        "top3_hit_rate_colloquial": null,
+        "top3_hit_rate_synonym": null,
+        "top3_hit_rate_colloquial_or_synonym": null,
+        "colloquial_questions": 0,
+        "synonym_questions": 0,
+        "colloquial_or_synonym_questions": 0,
+        "target_top3_hit_rate_colloquial": 0.8,
+        "target_top3_hit_rate_synonym": 0.8
+      },
+      "status": "not_scored_no_lawyer_approved_labels"
+    },
+    "after": null
+  },
+  "limitations": [
+    "Null metrics mean not measured; they are not zero error or zero abstention.",
+    "All questions are currently unlabeled and excluded.",
+    "No real retrieval-run output is committed.",
+    "Do not tune MIN_SCORE until lawyer labels and a before-run exist."
+  ]
+}
