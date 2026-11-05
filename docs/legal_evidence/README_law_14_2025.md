@@ -6,6 +6,8 @@ All files in this directory are derived review artifacts. The Gazette PDF and ca
 
 | File | Data rows | Contents |
 |---|---:|---|
+| `law_14_2025_lawyer_review_tick_sheet.csv` | 311 | One lawyer decision row per promulgation provision / attached-law article; blank decisions and verified=0 |
+| `law_14_2025_lawyer_review_packet.md` | — | Counsel instructions, source identity, page-locator gaps, currentness leads and sign-off |
 | `law_14_2025_differing_articles_part1.csv` | 100 | Difference records 1–100 |
 | `law_14_2025_differing_articles_part2.csv` | 100 | Difference records 101–200 |
 | `law_14_2025_differing_articles_part3.csv` | 73 | Difference records 201–273 |
@@ -16,6 +18,7 @@ The five CSV files were fetched back from the PR branch and checked for headers 
 
 ## Other review artifacts
 
+- `law_14_2025_lawyer_review_packet.md` and `law_14_2025_lawyer_review_tick_sheet.csv`: 311-row counsel packet; every decision is blank and every verification flag is 0. 282 rows have prior page-image review records/page locators; 29 have neither a page-image review record nor a page locator.
 - `law_14_2025_comparison_report.md`: method, counts, five numeric-alert triage notes, limitations, trust status.
 - `law_14_2025_numeric_alert_review.csv`: five individually inspected numeric alerts.
 - `law_14_2025_discrepancy_article_index.md`: grouped list of differing article identifiers.
