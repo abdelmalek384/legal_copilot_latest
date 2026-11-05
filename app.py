@@ -1,6 +1,6 @@
 """Legal copilot MVP: case workspace + hybrid law search + citation-checked answers.
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
-import base64, sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging, tempfile
+import base64, sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging, tempfile, socket, http.client
 from pathlib import Path
 from cryptography.fernet import Fernet
 import deadline_calculator as deadline_calc
@@ -1279,6 +1279,68 @@ def _safe_llm_endpoint(value):
         return False
 
 
+def _resolve_public_llm_address(url):
+    """Resolve a remote HTTPS endpoint once and return a public address to pin."""
+    parsed = urlsplit(url)
+    host = parsed.hostname
+    port = parsed.port or 443
+    try:
+        literal = ipaddress.ip_address(host)
+    except ValueError:
+        try:
+            answers = socket.getaddrinfo(host, port, type=socket.SOCK_STREAM)
+        except OSError as exc:
+            raise ValueError("LLM endpoint hostname could not be resolved") from exc
+        addresses = []
+        for answer in answers:
+            try:
+                address = ipaddress.ip_address(answer[4][0].split("%", 1)[0])
+            except (IndexError, ValueError, TypeError) as exc:
+                raise ValueError("LLM endpoint returned an invalid address") from exc
+            if not address.is_global:
+                raise ValueError("LLM endpoint resolved to a non-public address")
+            addresses.append(address.compressed)
+        if not addresses:
+            raise ValueError("LLM endpoint returned no addresses")
+        return addresses[0]
+    if not literal.is_global:
+        raise ValueError("LLM endpoint is not a public address")
+    return literal.compressed
+
+
+class _PinnedHTTPSConnection(http.client.HTTPSConnection):
+    """Connect to a validated IP while retaining the configured hostname for TLS."""
+
+    def __init__(self, host, resolved_ip, **kwargs):
+        self._resolved_ip = resolved_ip
+        super().__init__(host, **kwargs)
+
+    def connect(self):
+        sock = socket.create_connection(
+            (self._resolved_ip, self.port), self.timeout, self.source_address
+        )
+        if self._tunnel_host:
+            self.sock = sock
+            self._tunnel()
+        self.sock = self._context.wrap_socket(sock, server_hostname=self.host)
+
+
+class _PinnedHTTPSHandler(urllib.request.HTTPSHandler):
+    def __init__(self, resolved_ip):
+        super().__init__()
+        self._resolved_ip = resolved_ip
+
+    def https_open(self, req):
+        return self.do_open(
+            lambda host, **kwargs: _PinnedHTTPSConnection(
+                host, self._resolved_ip, **kwargs
+            ),
+            req,
+            context=self._context,
+            check_hostname=self._check_hostname,
+        )
+
+
 class _RejectLLMRedirects(urllib.request.HTTPRedirectHandler):
     """Never forward confidential prompts to an endpoint reached through a redirect."""
     def redirect_request(self, req, fp, code, msg, headers, newurl):
@@ -1286,7 +1348,14 @@ class _RejectLLMRedirects(urllib.request.HTTPRedirectHandler):
 
 
 def _llm_open(request, timeout=120):
-    opener = urllib.request.build_opener(_RejectLLMRedirects)
+    # Disable ambient proxy discovery: the endpoint is resolved, checked and pinned
+    # here so a second DNS lookup cannot redirect the prompt to a private address.
+    parsed = urlsplit(request.full_url)
+    handlers = [urllib.request.ProxyHandler({}), _RejectLLMRedirects()]
+    if parsed.scheme == "https":
+        resolved_ip = _resolve_public_llm_address(request.full_url)
+        handlers.append(_PinnedHTTPSHandler(resolved_ip))
+    opener = urllib.request.build_opener(*handlers)
     return opener.open(request, timeout=timeout)
 
 
