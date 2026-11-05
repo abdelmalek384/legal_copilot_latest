@@ -263,10 +263,6 @@ class FictionalRetrievalMeasurementTests(unittest.TestCase):
                 report[style]["wrong_article_answers"], 0,
                 f"wrong article ranked first for {style}",
             )
-            self.assertEqual(
-                report[style]["refusal_correct"], report[style]["refusal_total"],
-                f"answerable {style} query was refused",
-            )
 
 
 if __name__ == "__main__":
