@@ -7298,27 +7298,29 @@ def _invoice_records(c, rows):
     invoice_ids = list(records)
     # Keep each IN clause below SQLite's conservative 999-parameter limit.
     for offset in range(0, len(invoice_ids), 500):
-        batch = invoice_ids[offset:offset + 500]
-        placeholders = ",".join("?" for _ in batch)
+        batch_json = json.dumps(invoice_ids[offset:offset + 500])
         queries = (
             (
                 "lines",
                 "SELECT invoice_id,id,position,description,quantity_milli,unit_price_piasters,line_total_piasters "
-                f"FROM invoice_lines WHERE invoice_id IN ({placeholders}) ORDER BY invoice_id,position,id",
+                "FROM invoice_lines WHERE invoice_id IN "
+                "(SELECT CAST(value AS INTEGER) FROM json_each(?)) ORDER BY invoice_id,position,id",
             ),
             (
                 "payments",
                 "SELECT invoice_id,id,amount_piasters,paid_on,method,reference,note,recorded_by,created_at "
-                f"FROM invoice_payments WHERE invoice_id IN ({placeholders}) ORDER BY invoice_id,paid_on,id",
+                "FROM invoice_payments WHERE invoice_id IN "
+                "(SELECT CAST(value AS INTEGER) FROM json_each(?)) ORDER BY invoice_id,paid_on,id",
             ),
             (
                 "events",
                 "SELECT invoice_id,id,actor_user_id,event_type,details_json,created_at "
-                f"FROM invoice_events WHERE invoice_id IN ({placeholders}) ORDER BY invoice_id,id",
+                "FROM invoice_events WHERE invoice_id IN "
+                "(SELECT CAST(value AS INTEGER) FROM json_each(?)) ORDER BY invoice_id,id",
             ),
         )
         for key, sql in queries:
-            for item in c.execute(sql, batch).fetchall():
+            for item in c.execute(sql, (batch_json,)).fetchall():
                 invoice_id = int(item["invoice_id"])
                 record = dict(item)
                 record.pop("invoice_id", None)
