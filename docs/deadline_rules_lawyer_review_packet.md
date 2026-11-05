@@ -15,7 +15,8 @@
 ## Calculator assumptions (not legal conclusions)
 
 - Day-count arithmetic currently excludes the trigger date and adds calendar days.
-- The default weekend is Friday/Saturday; the calculator extends a result across configured non-working days.
+- The default weekend is Friday/Saturday; the calculator extends a result across configured non-working days, subject to its 31-day extension cap.
+- An optional manually supplied distance-day adjustment can be added before non-working-day extension; its legal basis and value must be reviewed for each rule.
 - The fixed draft holiday list contains: 7 January, 25 January, 25 April, 1 May, 30 June, 23 July and 6 October.
 - No dated movable holidays are listed. complete_years=[]; no year is certified as having a complete holiday calendar.
 - Eid holidays, Coptic Easter-related closures, official holiday-transfer decisions, court-specific closures and judicial recess are not comprehensively represented.
