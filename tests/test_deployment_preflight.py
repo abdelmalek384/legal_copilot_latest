@@ -93,6 +93,13 @@ class DeploymentPreflightTests(unittest.TestCase):
             )
         self.assertTrue(any("LLM_URL must use HTTPS" in item for item in errors))
 
+    def test_repository_root_has_no_patch_or_csv_fixture_files(self):
+        root = Path(__file__).resolve().parents[1]
+        misplaced = sorted(
+            path.name for pattern in ("*.patch", "*.csv") for path in root.glob(pattern)
+        )
+        self.assertEqual(misplaced, [], "Move root-level patch/CSV fixtures under tests/fixtures")
+
     def test_readme_quick_start_documents_three_database_profiles(self):
         readme = (Path(__file__).resolve().parents[1] / "README.md").read_text(encoding="utf-8")
         quick_start = readme.split("## Quick start (local development)", 1)[1].split("## Known limits", 1)[0]
