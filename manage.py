@@ -744,6 +744,121 @@ def importlaws(a):
         runtime.close_current_thread()
 
 
+
+def verify_deadline_rule_file(
+    rules_path: str | Path,
+    *,
+    rule_id: str,
+    lawyer_name: str,
+    source_article: str,
+    verified_on: str,
+    lawyer_role: str,
+    review_evidence_url: str,
+) -> dict:
+    """Record an explicit human counsel attestation in the reviewed rule catalog.
+
+    This command validates and records supplied metadata; it cannot establish
+    that the named lawyer reviewed the rule or that the citation is correct.
+    """
+    from urllib.parse import urlsplit
+    import tempfile
+
+    path = Path(rules_path)
+    if not path.is_file() or path.is_symlink():
+        raise ValueError("deadline rule catalog must be an existing regular, non-symlink file")
+    if not isinstance(rule_id, str) or not rule_id.strip() or rule_id != rule_id.strip():
+        raise ValueError("rule ID must be a non-empty exact identifier")
+    if not isinstance(lawyer_name, str) or not lawyer_name.strip() or len(lawyer_name.strip()) > 200:
+        raise ValueError("lawyer name must contain 1 to 200 characters")
+    if not isinstance(source_article, str) or not source_article.strip() or len(source_article.strip()) > 500:
+        raise ValueError("Gazette article citation must contain 1 to 500 characters")
+    if not isinstance(verified_on, str):
+        raise ValueError("verification date must use YYYY-MM-DD")
+    try:
+        parsed_date = date.fromisoformat(verified_on)
+    except ValueError as exc:
+        raise ValueError("verification date must be a real YYYY-MM-DD date") from exc
+    if parsed_date.isoformat() != verified_on or parsed_date > date.today():
+        raise ValueError("verification date must be a real date that is not in the future")
+    if lawyer_role not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
+        raise ValueError("lawyer role must be egyptian_lawyer or qualified_egyptian_counsel")
+    if not isinstance(review_evidence_url, str) or not review_evidence_url.strip():
+        raise ValueError("review evidence URL is required")
+    try:
+        parsed_url = urlsplit(review_evidence_url.strip())
+        if (parsed_url.scheme != "https" or not parsed_url.hostname
+                or parsed_url.username or parsed_url.password):
+            raise ValueError("review evidence URL must be HTTPS without embedded credentials")
+        _ = parsed_url.port
+    except ValueError as exc:
+        raise ValueError("review evidence URL must be a valid HTTPS URL without credentials") from exc
+
+    try:
+        catalog = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        raise ValueError("deadline rule catalog is unreadable or invalid JSON") from exc
+    if not isinstance(catalog, dict) or not isinstance(catalog.get("rules"), list):
+        raise ValueError("deadline rule catalog must contain a rules list")
+    matches = [
+        rule for rule in catalog["rules"]
+        if isinstance(rule, dict) and rule.get("id") == rule_id
+    ]
+    if len(matches) != 1:
+        raise ValueError("rule ID must identify exactly one catalog rule")
+
+    rule = matches[0]
+    rule.update({
+        "verified": True,
+        "verified_by": lawyer_name.strip(),
+        "verified_by_role": lawyer_role,
+        "verified_on": verified_on,
+        "source_article": source_article.strip(),
+        "review_evidence_url": review_evidence_url.strip(),
+    })
+
+    temporary_path = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", newline="\\n",
+            dir=str(path.parent), prefix=f".{path.name}.", suffix=".tmp",
+            delete=False,
+        ) as temporary:
+            temporary_path = Path(temporary.name)
+            temporary.write(json.dumps(catalog, ensure_ascii=False, indent=2) + "\\n")
+            temporary.flush()
+            os.fsync(temporary.fileno())
+        os.chmod(temporary_path, path.stat().st_mode & 0o777)
+        os.replace(temporary_path, path)
+    except OSError:
+        if temporary_path is not None:
+            try:
+                temporary_path.unlink()
+            except OSError:
+                pass
+        raise
+    return dict(rule)
+
+
+def verify_deadline_rule(a):
+    """Record lawyer-supplied verification; never independently verify legal rules."""
+    try:
+        rule = verify_deadline_rule_file(
+            Path(__file__).resolve().parent / "data" / "deadline_rules.draft.json",
+            rule_id=a.rule_id,
+            lawyer_name=a.lawyer_name,
+            source_article=a.source_article,
+            verified_on=a.verified_on,
+            lawyer_role=a.lawyer_role,
+            review_evidence_url=a.review_evidence_url,
+        )
+    except (OSError, ValueError) as exc:
+        raise SystemExit("Deadline rule was not changed: " + str(exc)) from exc
+    print("Human verification metadata recorded for:", rule["id"])
+    print("verified_by:", rule["verified_by"])
+    print("verified_on:", rule["verified_on"])
+    print("The command does not validate the lawyer's identity or the legal correctness of the rule.")
+
+
 def backup_tenancy(a):
     if not app._separate_runtime_enabled():
         raise SystemExit("Set the three separate database paths before creating a tenancy bundle.")
@@ -1321,6 +1436,17 @@ x = sp.add_parser("verify-backup-tenancy", help="Verify an encrypted tenancy bun
 x = sp.add_parser("archive-upload-tenancy", help="Upload an encrypted bundle to the separate versioned S3 recovery archive"); x.add_argument("file"); x.set_defaults(f=archive_upload_tenancy)
 x = sp.add_parser("archive-download-tenancy", help="Download one exact S3 recovery archive version from a protected locator JSON file"); x.add_argument("locator"); x.add_argument("--out", required=True); x.set_defaults(f=archive_download_tenancy)
 x = sp.add_parser("importlaws"); x.add_argument("file"); x.set_defaults(f=importlaws)
+x = sp.add_parser(
+    "verify-deadline-rule",
+    help="Record a qualified lawyer's human verification in the version-controlled draft rule catalog",
+)
+x.add_argument("rule_id")
+x.add_argument("lawyer_name")
+x.add_argument("source_article", help="Official Gazette article citation")
+x.add_argument("verified_on", help="Human review date in YYYY-MM-DD form")
+x.add_argument("--lawyer-role", required=True, choices=["egyptian_lawyer", "qualified_egyptian_counsel"])
+x.add_argument("--review-evidence-url", required=True, help="HTTPS record of the human review")
+x.set_defaults(f=verify_deadline_rule)
 x = sp.add_parser("restore"); x.add_argument("file"); x.add_argument("out"); x.set_defaults(f=restore)
 def main(argv=None):
     args = p.parse_args(argv)
