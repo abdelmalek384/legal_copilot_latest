@@ -115,7 +115,10 @@ def score(questions, runs):
             tags = q.get("retrieval_tags", [])
             if not isinstance(tags, list) or any(not isinstance(tag, str) for tag in tags):
                 raise ValueError(f'{q["id"]}: retrieval_tags must be a list of strings')
-            if q.get("question_style") == "colloquial" or "synonym" in tags:
+            style_reviewed = q.get("question_style_review_status") == "lawyer_approved"
+            tags_reviewed = q.get("retrieval_tags_review_status") == "lawyer_approved"
+            if ((q.get("question_style") == "colloquial" and style_reviewed)
+                    or ("synonym" in tags and tags_reviewed)):
                 colloquial_synonym_hits.append(hit)
         else:
             unanswerable += 1
