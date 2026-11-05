@@ -65,6 +65,10 @@ def _validate_metadata(meta: object, text_bytes: bytes) -> dict:
         raise ValueError("document_id contains unsupported characters")
     if meta["language"].strip().lower() != "ar":
         raise ValueError("language must be ar for the Arabic-first Gazette text importer")
+    if meta.get("supplier_role") not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
+        raise ValueError("supplier_role must identify an Egyptian lawyer or qualified counsel")
+    if meta["capture_method"] not in {"lawyer_supplied_text", "manual_transcription"}:
+        raise ValueError("capture_method must be lawyer_supplied_text or manual_transcription")
     try:
         publication = dt.date.fromisoformat(meta["publication_date"])
         if publication.isoformat() != meta["publication_date"]:
