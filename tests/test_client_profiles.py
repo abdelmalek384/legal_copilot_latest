@@ -149,5 +149,65 @@ class ClientProfileTests(InvoiceTestSupport, unittest.TestCase):
         db.close()
 
 
+    def test_invalid_client_names_return_422_on_every_write_path(self):
+        invalid_names = ("A", "   ", "X" * 201)
+        tenant = self.runtime.firm_connection(
+            self.runtime.resolve_context(
+                self.runtime.control_connection().execute(
+                    "SELECT id FROM users WHERE email_normalized=?",
+                    ("invoice-owner-a@example.test",),
+                ).fetchone()["id"],
+                self.firm_a,
+            )
+        )
+        before = tenant.execute("SELECT COUNT(*) FROM clients").fetchone()[0]
+        profile = self.mutate(
+            self.client_a, "post", "/clients",
+            json={"name": "Validation target"},
+        )
+        self.assertEqual(profile.status_code, 200, profile.text)
+        profile_id = profile.json()["id"]
+        before += 1
+
+        for name in invalid_names:
+            with self.subTest(path="case creation", name_length=len(name)):
+                response = self.mutate(
+                    self.client_a, "post", "/cases",
+                    json={"title": "Invalid client name matter", "client": name},
+                )
+                self.assertEqual(response.status_code, 422, response.text)
+                self.assertIn("اسم العميل", response.text)
+                self.assertNotEqual(response.status_code, 503)
+
+            with self.subTest(path="client creation", name_length=len(name)):
+                response = self.mutate(
+                    self.client_a, "post", "/clients", json={"name": name},
+                )
+                self.assertEqual(response.status_code, 422, response.text)
+
+            with self.subTest(path="client update", name_length=len(name)):
+                response = self.mutate(
+                    self.client_a, "put", f"/clients/{profile_id}",
+                    json={"name": name},
+                )
+                self.assertEqual(response.status_code, 422, response.text)
+
+            with self.subTest(path="client CSV import", name_length=len(name)):
+                response = self.mutate(
+                    self.client_a, "post", "/clients/import.csv",
+                    json={"csv": "name" + chr(10) + name + chr(10)},
+                )
+                self.assertEqual(response.status_code, 422, response.text)
+
+            with self.subTest(path="case CSV import", name_length=len(name)):
+                response = self.mutate(
+                    self.client_a, "post", "/cases/import.csv",
+                    json={"csv": "title,client" + chr(10) + "Invalid matter," + name + chr(10)},
+                )
+                self.assertEqual(response.status_code, 422, response.text)
+
+        self.assertEqual(tenant.execute("SELECT COUNT(*) FROM clients").fetchone()[0], before)
+
+
 if __name__ == "__main__":
     unittest.main()

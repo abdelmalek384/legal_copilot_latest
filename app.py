@@ -604,20 +604,15 @@ def _ensure_client_profile(c, u, client_name="", client_id=None):
             raise HTTPException(409, "client profile exists; ask a firm administrator to link this matter")
         return int(row["id"]), str(row["name"])
     cursor = c.execute(
-        "INSERT OR IGNORE INTO clients(name,normalized_name,created_by) VALUES(?,?,?)",
+        "INSERT INTO clients(name,normalized_name,created_by) VALUES(?,?,?)",
         (name, normalized, int(u["id"])),
     )
-    row = c.execute(
-        "SELECT id,name FROM clients WHERE normalized_name=?", (normalized,)
-    ).fetchone()
-    if cursor.rowcount == 1:
-        c.execute(
-            "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
-            (int(u["firm_id"]), int(u["id"]), f"client_profile_created:{int(row['id'])}"),
-        )
-    if row is None:
-        raise HTTPException(503, "client profile could not be created")
-    return int(row["id"]), str(row["name"])
+    client_profile_id = int(cursor.lastrowid)
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (int(u["firm_id"]), int(u["id"]), f"client_profile_created:{client_profile_id}"),
+    )
+    return client_profile_id, name
 
 
 def add_case(c, u, title, client="", stage="", case_number="", case_year="", court="", circuit="", opposing_party="", client_id=None):
@@ -2542,23 +2537,37 @@ class RecoveryConsumeIn(BaseModel):
     def validate_recovery_password(cls, value):
         return validate_password_strength(value)
 class CaseIn(BaseModel):
-    title: str = Field(min_length=1, max_length=200); client: str = Field("", max_length=200); stage: str = Field("", max_length=200)
+    title: str = Field(min_length=1, max_length=200); client: str = Field(""); stage: str = Field("", max_length=200)
     client_id: int | None = Field(None, gt=0)
     case_number: str = Field("", max_length=100); case_year: str = Field("", max_length=20)
     court: str = Field("", max_length=200); circuit: str = Field("", max_length=200); opposing_party: str = Field("", max_length=200)
+
+    @field_validator("client", mode="before")
+    @classmethod
+    def validate_case_client_name(cls, value):
+        if value == "":
+            return value
+        if isinstance(value, str):
+            value = value.strip()
+            if len(value) < 2 or len(value) > 200:
+                raise ValueError("اسم العميل يجب أن يتكون من حرفين على الأقل ولا يتجاوز 200 حرف")
+        return value
+
+
 class ClientIn(BaseModel):
-    name: str = Field(min_length=2, max_length=200)
+    name: str
     phone: str = Field("", max_length=30)
     email: str = Field("", max_length=200)
     address: str = Field("", max_length=300)
     notes: str = Field("", max_length=4000)
 
-    @field_validator("name")
+    @field_validator("name", mode="before")
     @classmethod
     def normalize_client_name(cls, value):
-        value = value.strip()
-        if len(value) < 2:
-            raise ValueError("client name is required")
+        if isinstance(value, str):
+            value = value.strip()
+            if len(value) < 2 or len(value) > 200:
+                raise ValueError("اسم العميل يجب أن يتكون من حرفين على الأقل ولا يتجاوز 200 حرف")
         return value
 
 
@@ -6250,7 +6259,7 @@ def create_client(b: ClientIn, u: dict = Depends(user)):
     if c.execute("SELECT 1 FROM clients WHERE normalized_name=?", (normalized,)).fetchone():
         raise HTTPException(409, "a client with this name already exists")
     cursor = c.execute(
-        "INSERT OR IGNORE INTO clients(name,normalized_name,phone,email,address,notes,created_by) "
+        "INSERT INTO clients(name,normalized_name,phone,email,address,notes,created_by) "
         "VALUES(?,?,?,?,?,?,?)",
         (name, normalized, b.phone.strip(), b.email.strip(), b.address.strip(), b.notes.strip(), int(u["id"])),
     )
@@ -6341,7 +6350,7 @@ def import_clients_csv(b: ClientCSVImportIn, u: dict = Depends(user)):
         for row_number, row in enumerate(reader, start=2):
             if None in row:
                 raise ValueError("CSV row contains more values than the header")
-            if not any(str(value or "").strip() for value in row.values()):
+            if not any(value not in (None, "") for value in row.values()):
                 continue
             rows_seen += 1
             if rows_seen > 500:
@@ -6455,7 +6464,10 @@ def import_cases_csv(b: CaseCSVImportIn, u: dict = Depends(user)):
             for key in ("title", "client", "stage", "case_number", "case_year", "court", "circuit", "opposing_party"):
                 index = columns.get(key)
                 header = reader.fieldnames[index] if index is not None else None
-                values[key] = str(row.get(header) or "").strip() if header else ""
+                raw_value = str(row.get(header) or "") if header else ""
+                # Preserve whitespace-only client input so CaseIn can reject it
+                # instead of silently treating it as an omitted optional client.
+                values[key] = raw_value if key == "client" else raw_value.strip()
             matter = CaseIn.model_validate(values)
             if not matter.title.strip():
                 raise ValueError("matter title is required")
