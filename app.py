@@ -4106,16 +4106,16 @@ def send_setup_test_reminder(u: dict = Depends(user)):
     }
 
 
-@app.post("/logout")
-def logout(request: Request, response: Response, u: dict = Depends(user)):
-    tok = request.cookies.get("lc_session", "")
-    c = control_conn()
-    c.execute("DELETE FROM auth_sessions WHERE token_hash=? AND user_id=?", (sha(tok), u["id"]))
-    c.commit()
-    for cookie in ("lc_session", "lc_csrf", "lc_firm"):
-        response.delete_cookie(cookie, path="/", httponly=(cookie != "lc_csrf"),
-                               samesite="lax", secure=_secure_cookie_transport(request))
-    return {"ok": True}
+from routers.identity import create_logout_router
+
+app.include_router(
+    create_logout_router(
+        control_connection_provider=control_conn,
+        user_dependency=user,
+        token_hash=sha,
+        secure_cookie_transport=_secure_cookie_transport,
+    )
+)
 
 
 
