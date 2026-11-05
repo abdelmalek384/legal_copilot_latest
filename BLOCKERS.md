@@ -1,3 +1,4 @@
 - Live SMTP acceptance for the first-run test reminder is blocked pending provider credentials and a controlled mailbox; route tests use a fake SMTP sender.
 - 2026-11-04: The 155-question live retrieval/abstention baseline is not measurable in this session because no authenticated local Legal Copilot API endpoint or evaluation account is available; draft questions also have no lawyer-approved relevance labels, so answer correctness must remain unscored.
 - 2026-11-04: PR #1404's optional claim-support polarity guard still fails the same three English/Arabic negated-obligation regressions after three attempts; stop speculative retries and resume only with a local minimal reproduction that identifies why the guard is bypassed.
+- 2026-11-05: PRs #1438 and #1439 share the GitHub Actions runner-start failure (all workflow jobs terminate before the first step, with no logs); do not infer test success or merge until a healthy runner executes the full suite.

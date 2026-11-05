@@ -374,6 +374,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_subscription_audit_frontend_contract.py
       - name: Test subscription trial, transfer review and seat limits
         run: PYTHONPATH=. python tests/test_subscription_billing_routes.py
+      - name: Test billing router ownership contract
+        run: PYTHONPATH=. python tests/test_billing_router_contract.py
       - name: Test per-firm MFA enforcement policy
         run: PYTHONPATH=. python tests/test_firm_security_policy.py
       - name: Test Arabic drafting skeletons
