@@ -295,6 +295,8 @@ class ClaimSupportTests(unittest.TestCase):
 
         self.assertEqual(sum(len(items) for items in groups.values()), 60)
         false_passes = {}
+        false_pass_examples = {}
+        false_block_examples = []
         false_blocks = 0
         for category, examples in groups.items():
             blocked_count = 0
@@ -304,8 +306,12 @@ class ClaimSupportTests(unittest.TestCase):
                 )
                 if category == "supported":
                     false_blocks += int(blocked)
+                    if blocked:
+                        false_block_examples.append({"claim": claim, "evidence": evidence})
                 else:
                     blocked_count += int(blocked)
+                    if not blocked:
+                        false_pass_examples.setdefault(category, []).append({"claim": claim, "evidence": evidence})
             if category != "supported":
                 false_passes[category] = len(examples) - blocked_count
 
@@ -319,6 +325,8 @@ class ClaimSupportTests(unittest.TestCase):
                 "by_category": false_passes,
             },
             "false_block_rate": round(false_blocks / 12, 4),
+            "false_block_examples": false_block_examples,
+            "false_pass_examples": false_pass_examples,
         }
         print("FICTIONAL_CLAIM_SUPPORT_BENCHMARK=" + json.dumps(report, ensure_ascii=False, sort_keys=True))
         self.assertEqual(false_pass_total, 0, "unsupported fictional claim passed the support check")
