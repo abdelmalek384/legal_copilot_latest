@@ -1286,6 +1286,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
 
     def test_expired_trial_banner_keeps_payment_and_zip_export_available(self) -> None:
+        self.page.set_viewport_size({"width": 390, "height": 844})
         control = self.runtime.control_connection()
         try:
             self.login(self.state["owner_a_email"])
@@ -1305,6 +1306,10 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
             self.page.get_by_role("button", name="الإعدادات والأمان").click()
             self.page.get_by_text("الاشتراك منتهي؛ الدعوات والتعديلات متوقفة في وضع القراءة فقط.", exact=True).wait_for(timeout=10000)
+            self.page.wait_for_function(
+                "() => document.documentElement.scrollWidth <= window.innerWidth",
+                timeout=8000,
+            )
             settings_body = self.page.locator("body").inner_text()
             self.assertIn("تم الوصول إلى حد المقاعد. غيّر الخطة قبل دعوة مستخدم آخر.", settings_body)
             self.assertTrue(self.page.get_by_role("button", name="إرسال دعوة").is_disabled())
@@ -1317,6 +1322,10 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
             self.page.get_by_role("button", name="فتح الفوترة").click()
             self.page.get_by_text("المكتب في وضع القراءة فقط", exact=True).wait_for(timeout=10000)
+            self.page.wait_for_function(
+                "() => document.documentElement.scrollWidth <= window.innerWidth",
+                timeout=8000,
+            )
             billing_body = self.page.locator("body").inner_text()
             self.assertIn("الخطة:", billing_body)
             self.assertIn("solo", billing_body)
