@@ -27,7 +27,7 @@
 | Numeric alerts | 5/5 | 0 | All five explained by extraction, RTL ordering or colophon artifacts |
 | Major differences | 47/47 | 0 | All inspected passages match candidate |
 | Minor differences | 221/221 | 46 | All inspected passages match candidate |
-| Quantitative provision cues | 50/120 | 70 | All inspected cues match candidate |
+| Quantitative provision cues | 62/120 | 58 | All inspected cues match candidate |
 | Known orthography outliers | 6/6 | 0 | All checked passages match candidate; this overlaps the groups above |
 
 The minor-difference visual review contains 221 unique article records across 20 CSV batches. Duplicate entries were removed and metadata was reconciled against the review record. The reviewed passages are not a substitute for a complete legal proofread or counsel sign-off.
