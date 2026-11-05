@@ -20,11 +20,10 @@ Each accepted item must have `status: "passed"`, an evidence reference, a timezo
 
 ## Fresh-install database bootstrap
 
-The first production app process must not create missing database files implicitly. Provision the profile schemas and first firm owner in a restricted maintenance shell before production startup. Use the three separate paths and keep `COPILOT_DB` unset:
+The first production app process must not create missing database files implicitly. Provision the profile schemas and first firm owner in a restricted maintenance shell before production startup. Use the three separate profile paths:
 
 ```bash
 export COPILOT_ENV=development
-unset COPILOT_DB
 export COPILOT_CONTROL_DB=/secure/persistent/control-plane.sqlite3
 export COPILOT_TENANT_DB_ROOT=/secure/persistent/tenants
 export COPILOT_CORPUS_DB=/secure/persistent/legal-corpus.sqlite3
