@@ -19,8 +19,12 @@ class LegalVersionedRegistryTests(unittest.TestCase):
         self.env_names = (
             "COPILOT_DB", "COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT",
             "COPILOT_CORPUS_DB", "COPILOT_ENV",
+            "LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS",
         )
         self.old_env = {name: os.environ.get(name) for name in self.env_names}
+        # Registry fixtures use the explicitly synthetic counsel account 42.
+        # Save/restore the variable so standalone runs cannot inherit ambient state.
+        os.environ["LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS"] = "42"
         root = Path(self.tmp.name)
         os.environ.pop("COPILOT_DB", None)
         os.environ["COPILOT_ENV"] = "development"
