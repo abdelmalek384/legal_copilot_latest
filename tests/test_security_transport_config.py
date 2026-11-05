@@ -118,13 +118,40 @@ class SecureCookieTransportTests(unittest.TestCase):
             with self.subTest(code=code, target=target):
                 self.assertIsNone(handler.redirect_request(None, None, code, "redirect", {}, target))
 
-    def test_llm_endpoint_requires_https_remotely_and_allows_loopback_http(self):
-        for url in ("https://llm.example.com/v1/chat/completions", "http://127.0.0.1:11434/v1/chat/completions", "http://[::1]:11434/v1/chat/completions", "http://localhost:11434/v1/chat/completions"):
-            with self.subTest(url=url):
-                self.assertTrue(app._safe_llm_endpoint(url))
-        for url in ("http://llm.example.com/v1/chat/completions", "http://192.168.1.20:11434/v1", "https://user:pass@llm.example.com/v1", "https://llm.example.com/v1?api_key=secret", "https://llm.example.com/v1#fragment", "https://llm.example.com:99999/v1", "file:///tmp/model"):
+    def test_llm_endpoint_requires_public_https_or_loopback_http(self):
+        public_dns = [(2, 1, 6, "", ("93.184.216.34", 443))]
+        with patch.object(app.socket, "getaddrinfo", return_value=public_dns):
+            for url in ("https://llm.example.com/v1/chat/completions", "http://127.0.0.1:11434/v1/chat/completions", "http://[::1]:11434/v1/chat/completions", "http://localhost:11434/v1/chat/completions"):
+                with self.subTest(url=url):
+                    self.assertTrue(app._safe_llm_endpoint(url))
+        for url in (
+            "http://llm.example.com/v1/chat/completions",
+            "http://192.168.1.20:11434/v1",
+            "https://127.0.0.1/v1",
+            "https://10.0.0.8/v1",
+            "https://169.254.169.254/latest/meta-data",
+            "https://[::1]/v1",
+            "https://[fe80::1]/v1",
+            "https://user:pass@llm.example.com/v1",
+            "https://llm.example.com/v1?api_key=secret",
+            "https://llm.example.com/v1#fragment",
+            "https://llm.example.com:99999/v1",
+            "file:///tmp/model",
+        ):
             with self.subTest(url=url):
                 self.assertFalse(app._safe_llm_endpoint(url))
+
+    def test_llm_https_hostname_is_rejected_if_any_dns_answer_is_non_global(self):
+        private_dns = [(2, 1, 6, "", ("10.0.0.8", 443))]
+        with patch.object(app.socket, "getaddrinfo", return_value=private_dns):
+            self.assertFalse(app._safe_llm_endpoint("https://model.example.test/v1"))
+
+        mixed_dns = [
+            (2, 1, 6, "", ("93.184.216.34", 443)),
+            (2, 1, 6, "", ("192.168.1.8", 443)),
+        ]
+        with patch.object(app.socket, "getaddrinfo", return_value=mixed_dns):
+            self.assertFalse(app._safe_llm_endpoint("https://model.example.test/v1"))
 
     def test_unsafe_llm_endpoint_never_calls_network_even_with_processing_approval(self):
         with patch.dict(os.environ, {"LLM_URL": "http://remote.example/v1", "LLM_DATA_PROCESSING_APPROVED": "1"}):
