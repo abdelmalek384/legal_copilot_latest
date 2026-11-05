@@ -1,5 +1,9 @@
 # Changelog — Legal Copilot
 
+- PR #1434: Add the human-attested deadline verification command and correct deployment backup instructions.
+
+- PR #1431: Extract public PWA asset endpoints into a platform router.
+
 
 - PR #1421: Add a concise production deployment guide and link it from README.
 
