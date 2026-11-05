@@ -153,6 +153,40 @@ class ArabicMatchingTests(unittest.TestCase):
         self.assertIn(tokens("الإجازة السنوية")[0], expanded)
         self.assertIn("leave", expanded)
 
+    def test_measured_legal_phrase_variants_expand_to_canonical_terms(self):
+        cases = (
+            ("عدم دفع المقابل المالي عن العمل", "تأخر صرف الأجر"),
+            ("المرتب متأخر ومش نازل", "تأخر صرف الأجر"),
+            ("الأجر المستحق", "تأخر صرف الأجر"),
+            ("أجور العاملين المتأخرة", "تأخر صرف الأجر"),
+            ("الضريبة اللي على البيع والخدمات", "ضريبة القيمة المضافة"),
+            ("ضرائب القيمة المضافة", "ضريبة القيمة المضافة"),
+            ("مواعيد الاستئنافات", "ميعاد الاستئناف"),
+            ("حقوق الأفراد في بياناتهم", "حقوق صاحب البيانات"),
+        )
+        for query, canonical in cases:
+            with self.subTest(query=query):
+                self.assertTrue(
+                    set(tokens(canonical)).issubset(set(expanded_tokens(query))),
+                    f"{query!r} did not expand to {canonical!r}",
+                )
+
+    def test_narrow_plural_word_forms_expand_to_singular_terms(self):
+        cases = (
+            ("الشيكات", "شيك"),
+            ("الإقرارات", "إقرار"),
+            ("المعاشات", "معاش"),
+            ("الإصابات", "إصابة"),
+            ("التعويضات", "تعويض"),
+            ("الإخطارات", "إخطار"),
+        )
+        for query, canonical in cases:
+            with self.subTest(query=query):
+                self.assertTrue(
+                    set(tokens(canonical)).issubset(set(expanded_tokens(query))),
+                    f"{query!r} did not expand to {canonical!r}",
+                )
+
     def test_orthographic_variants_are_narrow_and_symmetric(self):
         self.assertEqual(orthographic_variants("اجازة"), ("اجازة", "اجازه"))
         self.assertEqual(orthographic_variants("اجازه"), ("اجازه", "اجازة"))
