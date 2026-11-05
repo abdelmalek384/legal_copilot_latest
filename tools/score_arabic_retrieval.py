@@ -62,8 +62,8 @@ def _valid_reviewed(row):
         raise ValueError(f"{row.get('id')}: expected_article must be a trimmed string")
     if expected_id not in (None, "") and (
             not isinstance(expected_id, str) or expected_id != expected_id.strip()
-            or "::article:" not in expected_id):
-        raise ValueError(f"{row.get('id')}: expected_article_id must use source_id::article:<number>")
+            or "::law:" not in expected_id or "::article:" not in expected_id):
+        raise ValueError(f"{row.get('id')}: expected_article_id must use source_id::law:<law-label>::article:<number>")
     if row["answerable"] and not any(
             isinstance(value, str) and value.strip() for value in (expected, expected_id)):
         raise ValueError(f"{row.get('id')}: answerable reviewed question needs expected_article or expected_article_id")
