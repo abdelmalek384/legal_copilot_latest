@@ -12,6 +12,14 @@
 - Machine comparison: 38 identical after normalization; 221 minor differences; 47 major differences; 5 numeric alerts; 0 missing/extra headings.
 - The 273 non-identical machine records and 120 quantitative cue records overlap: 282 unique provisions have prior page-image review records, while 29 provisions have no targeted page-image review recorded. Those checks are evidence aids, not counsel sign-off.
 
+## Official corroborating sources and pagination caution
+
+- Egyptian Tax Authority hosted PDF: https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf — accessed 2026-11-05; indexed as Official Gazette issue 18 (supplement), 3 May 2025; 110 pages. The repository comparison PDF is 112 pages. Byte identity between the two PDFs is unknown, so do not transfer page locators between them without checking.
+- Official Printing Authority law text record: https://alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D — corroborates the instrument's identity; it is not the 112-page comparison PDF.
+- Ministry of Labour legislation listing: https://www.labour.gov.eg/ar/القوانين-والتشريعات/ — lists Law 14/2025 as a basic law; it does not prove the Gazette PDF's byte identity or currentness.
+
+The page numbers in the tick-sheet refer to the recorded 112-page comparison PDF identified by its SHA-256 above. The original 112-page PDF and 311-row JSONL are not committed in the repository; the reviewer must obtain those exact hash-matching files before signing off. If the reviewer uses the 110-page ETA copy, page locators must be independently remapped.
+
 ## How to use the tick-sheet
 
 Open law_14_2025_lawyer_review_tick_sheet.csv. It has one row for each of the 311 candidate provisions, including the separate numbering blocks for promulgation provisions and the attached law.
