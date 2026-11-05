@@ -83,6 +83,11 @@ class TrustedProxyClientIpTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 client_ip(make_request("10.0.0.8", "203.0.113.44"))
 
+    def test_wildcard_trusted_proxy_configuration_is_rejected(self):
+        with patch.dict(os.environ, {"COPILOT_TRUSTED_PROXIES": "*"}):
+            with self.assertRaises(ValueError):
+                client_ip(make_request("10.0.0.8", "203.0.113.44"))
+
 
 if __name__ == "__main__":
     unittest.main()
