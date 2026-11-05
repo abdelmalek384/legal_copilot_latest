@@ -130,6 +130,8 @@ def score(questions, runs):
 
     answerable = [q for q in reviewed if q["answerable"]]
     top3_hits = []
+    colloquial_hits = []
+    synonym_hits = []
     colloquial_synonym_hits = []
     wrong_answers = cited_non_abstained = non_abstained = abstained = 0
     uncited_non_abstained = 0
@@ -146,8 +148,13 @@ def score(questions, runs):
                 raise ValueError(f'{q["id"]}: retrieval_tags must be a list of strings')
             style_reviewed = q.get("question_style_review_status") == "lawyer_approved"
             tags_reviewed = q.get("retrieval_tags_review_status") == "lawyer_approved"
-            if ((q.get("question_style") == "colloquial" and style_reviewed)
-                    or ("synonym" in tags and tags_reviewed)):
+            is_colloquial = q.get("question_style") == "colloquial" and style_reviewed
+            is_synonym = "synonym" in tags and tags_reviewed
+            if is_colloquial:
+                colloquial_hits.append(hit)
+            if is_synonym:
+                synonym_hits.append(hit)
+            if is_colloquial or is_synonym:
                 colloquial_synonym_hits.append(hit)
         else:
             unanswerable += 1
@@ -163,14 +170,16 @@ def score(questions, runs):
                 if (not q["answerable"]) or any(x != expected for x in cited):
                     wrong_answers += 1
 
-    colloquial_rate = (
+    colloquial_rate = round(sum(colloquial_hits) / len(colloquial_hits), 4) if colloquial_hits else None
+    synonym_rate = round(sum(synonym_hits) / len(synonym_hits), 4) if synonym_hits else None
+    combined_rate = (
         round(sum(colloquial_synonym_hits) / len(colloquial_synonym_hits), 4)
         if colloquial_synonym_hits else None
     )
     wrong_rate = round(wrong_answers / cited_non_abstained, 4) if cited_non_abstained else None
-    if not top3_hits or colloquial_rate is None or wrong_rate is None:
+    if (not top3_hits or colloquial_rate is None or synonym_rate is None or wrong_rate is None):
         target_status = "not_evaluable_missing_approved_labels_or_cited_runs"
-    elif colloquial_rate < 0.80 or wrong_rate != 0.0:
+    elif colloquial_rate < 0.80 or synonym_rate < 0.80 or wrong_rate != 0.0:
         target_status = "below_target"
     else:
         target_status = "targets_met"
@@ -182,10 +191,15 @@ def score(questions, runs):
         "unlabeled_or_unreviewed_excluded": excluded,
         "unlabeled_run_records_excluded": len(excluded_run_ids),
         "top3_hit_rate": round(sum(top3_hits) / len(top3_hits), 4) if top3_hits else None,
-        "top3_hit_rate_colloquial_or_synonym": colloquial_rate,
+        "top3_hit_rate_colloquial": colloquial_rate,
+        "top3_hit_rate_synonym": synonym_rate,
+        "top3_hit_rate_colloquial_or_synonym": combined_rate,
         "target_status": target_status,
-        "target_top3_hit_rate_colloquial_or_synonym": 0.80,
+        "target_top3_hit_rate_colloquial": 0.80,
+        "target_top3_hit_rate_synonym": 0.80,
         "target_wrong_article_rate": 0.0,
+        "colloquial_questions": len(colloquial_hits),
+        "synonym_questions": len(synonym_hits),
         "colloquial_or_synonym_questions": len(colloquial_synonym_hits),
         "wrong_article_rate": wrong_rate,
         "wrong_article_answers": wrong_answers,
