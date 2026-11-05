@@ -4,13 +4,17 @@
 
 ## Draft rules to approve or correct
 
-| Rule ID | الاسم العربي | Draft period | Current start-event assumption (as stored) | Assumed source |
+| Rule ID | الاسم العربي | Draft period | Current start-event assumption (as stored) | Likely instrument to inspect (unverified) |
 |---|---|---:|---|---|
-| civil_commercial_appeal_40d | الاستئناف في المواد المدنية والتجارية | 40 days | تاريخ بدء الميعاد يحتاج إلى مراجعة محامٍ بحسب نوع الحكم | source_article=null; no primary citation supplied; verified=false. |
-| civil_cassation_60d | الطعن بالنقض | 60 days | تاريخ بدء الميعاد يحتاج إلى مراجعة محامٍ بحسب نوع الحكم | source_article=null; no primary citation supplied; verified=false. |
-| misdemeanor_appeal_10d | استئناف الحكم في الجنح | 10 days | تاريخ بدء الميعاد يحتاج إلى مراجعة محامٍ بحسب حالة الحكم | source_article=null; no primary citation supplied; verified=false. |
-| misdemeanor_opposition_3d | المعارضة في الحكم الغيابي في الجنح | 3 days | تاريخ الإعلان وغيره من التفاصيل يحتاج إلى مراجعة محامٍ | source_article=null; no primary citation supplied; verified=false. |
-| administrative_annulment_60d | دعوى إلغاء القرار الإداري | 60 days | نشر القرار أو إعلانه أو العلم به يحتاج إلى مراجعة محامٍ | source_article=null; no primary citation supplied; verified=false. |
+| civil_commercial_appeal_40d | الاستئناف في المواد المدنية والتجارية | 40 days | تاريخ بدء الميعاد يحتاج إلى مراجعة محامٍ بحسب نوع الحكم | قانون المرافعات المدنية والتجارية رقم 13 لسنة 1968؛ exact article/paragraph not supplied; source_article=null; verified=false. |
+| civil_cassation_60d | الطعن بالنقض | 60 days | تاريخ بدء الميعاد يحتاج إلى مراجعة محامٍ بحسب نوع الحكم | قانون المرافعات المدنية والتجارية رقم 13 لسنة 1968؛ exact article/paragraph not supplied; source_article=null; verified=false. |
+| misdemeanor_appeal_10d | استئناف الحكم في الجنح | 10 days | تاريخ بدء الميعاد يحتاج إلى مراجعة محامٍ بحسب حالة الحكم | قانون الإجراءات الجنائية رقم 150 لسنة 1950؛ exact article/paragraph not supplied; source_article=null; verified=false. |
+| misdemeanor_opposition_3d | المعارضة في الحكم الغيابي في الجنح | 3 days | تاريخ الإعلان وغيره من التفاصيل يحتاج إلى مراجعة محامٍ | قانون الإجراءات الجنائية رقم 150 لسنة 1950؛ exact article/paragraph not supplied; source_article=null; verified=false. |
+| administrative_annulment_60d | دعوى إلغاء القرار الإداري | 60 days | نشر القرار أو إعلانه أو العلم به يحتاج إلى مراجعة محامٍ | قانون مجلس الدولة رقم 47 لسنة 1972 and applicable administrative-procedure rules; exact article/paragraph not supplied; source_article=null; verified=false. |
+
+
+
+The instruments named above are only likely source families inferred from the draft rule type. They are not confirmed citations; counsel must confirm the governing statute, amendments, special-law overrides and exact article before approving any period.
 
 ## Calculator assumptions (not legal conclusions)
 
