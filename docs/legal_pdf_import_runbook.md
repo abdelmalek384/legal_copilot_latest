@@ -117,7 +117,7 @@ Run the entire offline import in one command:
 python tools/import_gazette_text.py /secure/input/labour_law_14_2025.txt /secure/input/labour_law_14_2025.json /secure/output/law14-review
 ```
 
-The importer validates UTF-8, file identity/size, metadata, source reference and exact SHA-256; recognizes Arabic/English article headings and numbering resets; chunks long article bodies; and writes law_rows.jsonl plus import_report.md. Every output row is forced to verified=0, in_force=0, and as_of=null. It never fetches the source or infers legal force/reuse permission. Review the import report for empty bodies and numbering blocks, then compare the output against the original Gazette before staging.
+The importer validates UTF-8, file identity/size, metadata, source reference and exact SHA-256; recognizes Arabic/English article headings and numbering resets; audits missing/duplicate article numbers and empty bodies; chunks long article bodies; and writes law_rows.jsonl plus import_report.md. Every output row is forced to verified=0, in_force=0, and as_of=null. It never fetches the source or infers legal force/reuse permission. Review the import report for empty bodies and numbering blocks, then compare the output against the original Gazette before staging.
 
 Run focused tests with: PYTHONPATH=. python tests/test_import_gazette_text.py. The PDF importer remains separate: python tools/import_laws.py SOURCE_DIR OUTPUT_DIR.
 
