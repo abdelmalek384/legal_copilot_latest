@@ -26,3 +26,5 @@ The five CSV files were fetched back from the PR branch and checked for headers 
 ## Trust boundary
 
 Status is **source-matched, not lawyer-reviewed**. No row is represented as legally verified. The instrument remains non-authoritative and retrieval-ineligible until original page review, provenance/currentness/rights checks, and qualified Egyptian lawyer review are completed.
+
+- `law_14_2025_currentness_snapshot_2026-11-05.md`: government-hosted corroborating copies and limited 2026 implementing-instrument watch list; not counsel-approved.
