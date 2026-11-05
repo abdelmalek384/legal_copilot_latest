@@ -1,0 +1,30 @@
+{
+  "document_id": "EG-LABOUR-14-2025",
+  "instrument": "Egyptian Labour Law 14/2025",
+  "trust_tier": "source_matched_not_lawyer_reviewed",
+  "comparison_status": "machine_comparison_completed_manual_page_review_pending",
+  "candidate_rows": 311,
+  "gazette_pages": 112,
+  "headings_detected": 311,
+  "counts": {
+    "identical_after_normalization": 38,
+    "minor_difference": 221,
+    "major_difference": 47,
+    "numeric_difference_alerts": 5,
+    "missing": 0,
+    "extra": 0
+  },
+  "source_hashes": {
+    "candidate_jsonl_sha256": "3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600",
+    "gazette_pdf_sha256": "b0a47cefe18722d3f23e004ac7e78e6e309010e13124413e7e7018820c9581be"
+  },
+  "lawyer_reviewed": false,
+  "authoritative": false,
+  "retrieval_eligible": false,
+  "manual_page_review_pending": true,
+  "source_files_committed": false,
+  "limitations": [
+    "Text extraction comparison only; no complete page-image review",
+    "Source authenticity, amendments, currentness, effective-date interpretation, and reuse rights not established"
+  ]
+}
