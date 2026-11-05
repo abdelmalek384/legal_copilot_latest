@@ -1,0 +1,2 @@
+# One JSON object per question: question_id, retrieved_article_ids (ranked), cited_article_ids, abstained.
+# Canonical article ID: <source_id>::article:<article-number>; known unlabeled rows may be captured and are excluded by the scorer.
