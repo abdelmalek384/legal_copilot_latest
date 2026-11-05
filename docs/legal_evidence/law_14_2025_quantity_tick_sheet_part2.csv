@@ -3,7 +3,7 @@ labour_law,140,61,,ذا زاد ما يجب اقتطاعه على أجر خمسة
 labour_law,141,61-62,yes,اص ، على أن يبدأ التحقيق خلال سبعة أيام على الأكثر من تاريخ اكتش | يخ اكتشاف المخالفة ولا يتجاو,minor_difference,,
 labour_law,143,62,,المخالفة الواحدة بما يزيد على خمسة أيام من الأجر الأساسي ، كما ل | زاءات التى يوقعها أكثر من أج,minor_difference,,
 labour_law,145,62-63,,ب قرار مكتوب لمدة لا تزيد على ستين يومًا مع صرف أجره كاملاً ، وذ,minor_difference,,
-labour_law,146,63,,العمالية المختصة ، وذلك خلال ثلاثة أيام من تاريخ إخطاره ، أو علم,numeric_difference,,
+labour_law,146,63,,العمالية المختصة ، وذلك خلال ثلاثة أيام من تاريخ إخطاره ، أو علم,numeric_difference,yes,Numeric alert visually checked on page 63: the three-day period and list order (1, 2) match; RTL extraction reversed the order.
 labour_law,147,63,,وذلك قبل انتهاء مدة الإيقاف بعشرة أيام . وعلى قاضى الأمور الوقت,minor_difference,,
 labour_law,148,63-64,,والخصم من الأجر لمدة لا تجاوز ثلاثة أيام . وفى جميع الأحوال ، لا | لواقعة ، أو الحادث خلال أربع,minor_difference,,
 labour_law,149,64-65,,ذات الصلة كان لأى منهما خلال عشرة أيام من تاريخ نشوء النزاع أن | اللجنة من أعمالها خلال واحد وع,minor_difference,,
