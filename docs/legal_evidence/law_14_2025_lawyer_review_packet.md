@@ -27,7 +27,7 @@ Open law_14_2025_lawyer_review_tick_sheet.csv. It has one row for each of the 31
 For every row, counsel should:
 1. Open the exact candidate row in the original law_rows_ar.jsonl and the corresponding printed Gazette page(s).
 2. Compare the complete Arabic wording, not just the excerpt or machine similarity: article heading, words, punctuation where material, amounts, dates, periods, percentages, conditions, exceptions, cross-references, provisos, tables and annexes.
-3. Enter exactly one lawyer_decision: match, mismatch, or unresolved.
+3. Tick exactly one of lawyer_tick_match, lawyer_tick_mismatch, or lawyer_tick_unresolved, then mirror that choice in lawyer_decision as match, mismatch, or unresolved.
 4. For a mismatch, record the Gazette wording, proposed correction, printed page and the reason. Do not overwrite the source candidate during review.
 5. Complete reviewer name, role, review date and a durable signature/review-record reference.
 
