@@ -6475,6 +6475,7 @@ app.include_router(
         note_model=NoteIn,
         add_session_helper=add_session,
         case_patch_model=CasePatch,
+        member_model=MemberIn,
     )
 )
 
@@ -6610,26 +6611,6 @@ def case_brief(cid: int, body: CaseBriefAuthorizationIn, u: dict = Depends(user)
         "answer": answer,
         "sources": records,
     }
-
-
-@app.post("/cases/{cid}/members")
-@rollback_tenant_transaction_on_error
-def add_member(cid: int, b: MemberIn, u: dict = Depends(user)):
-    c = conn(); need(c, u, cid, lead=True)
-    if not c.execute("SELECT 1 FROM users WHERE id=? AND firm_id=? AND active=1", (b.user_id, u["firm_id"])).fetchone(): raise HTTPException(404, "active firm member not found")
-    c.execute("INSERT OR REPLACE INTO members VALUES(?,?,?)", (cid, b.user_id, b.role)); log(c, cid, u["name"], "تحديث الفريق"); c.commit(); return {"ok": True}
-
-
-@app.delete("/cases/{cid}/members/{uid}")
-@rollback_tenant_transaction_on_error
-def remove_member(cid: int, uid: int, u: dict = Depends(user)):
-    c = conn(); need(c, u, cid, lead=True)
-    target = c.execute("SELECT id FROM users WHERE id=? AND firm_id=?", (uid, u["firm_id"])).fetchone()
-    if not target: raise HTTPException(404, "user not found")
-    c.execute("DELETE FROM members WHERE case_id=? AND user_id=?", (cid, uid))
-    c.execute("UPDATE tasks SET assignee=NULL WHERE case_id=? AND assignee=?", (cid, uid))
-    log(c, cid, u["name"], "إزالة عضو من القضية"); c.commit()
-    return {"ok": True}
 
 
 @app.post("/cases/{cid}/tasks")
