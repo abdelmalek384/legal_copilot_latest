@@ -28,7 +28,7 @@
     "All 47 major-difference records and all 5 numeric alerts were visually checked; no confirmed textual discrepancy was found in the inspected passages",
     "Six known orthography-outlier passages were visually inspected and matched on the checked passages; this is not a complete review of all 311 records",
     "33 of 120 quantitative provision cues were visually checked and matched; 87 quantitative cues remain unreviewed",
-    "184 of 221 minor-difference records were visually checked and matched on the inspected passages; 37 minor-difference records remain unreviewed"
+    "220 of 221 minor-difference records were visually checked and matched on the inspected passages; 1 minor-difference records remain unreviewed"
   ],
   "numeric_alert_page_images_reviewed": true,
   "numeric_alert_reviewed_articles": [
@@ -174,8 +174,8 @@
     ]
   },
   "minor_difference_visual_spot_checks": {
-    "checked": 184,
-    "matching_on_checked_passage": 184,
+    "checked": 220,
+    "matching_on_checked_passage": 220,
     "confirmed_textual_discrepancies": 0,
     "records": [
       {
@@ -1097,6 +1097,186 @@
         "law_part": "labour_law",
         "article": 211,
         "gazette_pdf_pages": "83"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 215,
+        "gazette_pdf_pages": "84"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 218,
+        "gazette_pdf_pages": "84-85"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 225,
+        "gazette_pdf_pages": "86-87"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 229,
+        "gazette_pdf_pages": "88"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 231,
+        "gazette_pdf_pages": "88-89"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 233,
+        "gazette_pdf_pages": "89"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 237,
+        "gazette_pdf_pages": "89-90"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 238,
+        "gazette_pdf_pages": "90"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 239,
+        "gazette_pdf_pages": "90-91"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 240,
+        "gazette_pdf_pages": "91"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 243,
+        "gazette_pdf_pages": "91-92"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 244,
+        "gazette_pdf_pages": "92"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 247,
+        "gazette_pdf_pages": "93"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 248,
+        "gazette_pdf_pages": "93"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 249,
+        "gazette_pdf_pages": "93-94"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 250,
+        "gazette_pdf_pages": "94"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 253,
+        "gazette_pdf_pages": "95"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 254,
+        "gazette_pdf_pages": "96"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 256,
+        "gazette_pdf_pages": "96"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 257,
+        "gazette_pdf_pages": "97-98"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 259,
+        "gazette_pdf_pages": "98"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 260,
+        "gazette_pdf_pages": "99"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 263,
+        "gazette_pdf_pages": "100"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 264,
+        "gazette_pdf_pages": "100-101"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 266,
+        "gazette_pdf_pages": "101"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 269,
+        "gazette_pdf_pages": "102"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 270,
+        "gazette_pdf_pages": "102-103"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 271,
+        "gazette_pdf_pages": "103"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 272,
+        "gazette_pdf_pages": "103-104"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 273,
+        "gazette_pdf_pages": "104"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 275,
+        "gazette_pdf_pages": "105-106"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 281,
+        "gazette_pdf_pages": "107"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 282,
+        "gazette_pdf_pages": "107"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 285,
+        "gazette_pdf_pages": "107-108"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 292,
+        "gazette_pdf_pages": "110"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 297,
+        "gazette_pdf_pages": "111"
       }
     ],
     "articles": [
@@ -1283,7 +1463,43 @@
       202,
       203,
       207,
-      211
+      211,
+      215,
+      218,
+      225,
+      229,
+      231,
+      233,
+      237,
+      238,
+      239,
+      240,
+      243,
+      244,
+      247,
+      248,
+      249,
+      250,
+      253,
+      254,
+      256,
+      257,
+      259,
+      260,
+      263,
+      264,
+      266,
+      269,
+      270,
+      271,
+      272,
+      273,
+      275,
+      281,
+      282,
+      285,
+      292,
+      297
     ],
     "gazette_pdf_pages": [
       2,
@@ -1364,21 +1580,36 @@
       81,
       82,
       83,
+      84,
       85,
       86,
       87,
+      88,
       89,
+      90,
+      91,
       92,
+      93,
       94,
+      95,
+      96,
+      97,
+      98,
       99,
+      100,
       101,
       102,
+      103,
+      104,
+      105,
       106,
       107,
+      108,
       109,
-      110
+      110,
+      111
     ],
-    "remaining": 37
+    "remaining": 1
   },
   "quantitative_visual_checks": {
     "checked": 33,
