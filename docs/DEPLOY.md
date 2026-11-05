@@ -30,7 +30,7 @@ Set `COPILOT_TRUSTED_PROXIES` to that proxy's exact container IP or smallest con
 
 ## 3. Secrets, email and public links
 
-Generate independent keys: `python manage.py genkey` for `BACKUP_KEY`, and `python manage.py gen-mfa-key` for `MFA_ENCRYPTION_KEY`. Never reuse or commit either key; preserve both securely for recovery. Set `COPILOT_PUBLIC_BASE_URL` to the clean public HTTPS base URL used in invitation/recovery links.
+Generate independent keys: `python manage.py genkey` for `BACKUP_KEY`, and `python manage.py gen-mfa-key` for `MFA_ENCRYPTION_KEY`. Never reuse or commit either key; preserve both securely for recovery. Set `COPILOT_PUBLIC_BASE_URL` to the public application base URL used in invitation/recovery links: HTTPS in production, with no path, credentials, query or fragment (HTTP is allowed only for localhost development). This is separate from `COPILOT_PUBLIC_ORIGIN`, which the setup-health screen checks.
 
 For identity email set `COPILOT_EMAIL_SMTP_HOST`, `COPILOT_EMAIL_SMTP_PORT` (default 587), `COPILOT_EMAIL_SMTP_SECURITY` (`starttls` or `ssl`), `COPILOT_EMAIL_FROM`, and the username/password together when authentication is required. For reminders set `REMINDER_SMTP_HOST`, `REMINDER_SMTP_PORT` (default 587), `REMINDER_SMTP_SECURITY` (`starttls` or `ssl`), `REMINDER_SMTP_SENDER`, `REMINDER_SMTP_USERNAME`, and `REMINDER_SMTP_PASSWORD`. Use encrypted transport; production identity email forbids plaintext. SMTP configuration checks do not prove delivery: test with an operator-controlled mailbox.
 
