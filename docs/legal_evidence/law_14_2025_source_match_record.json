@@ -27,7 +27,7 @@
     "Source authenticity, amendments, currentness, effective-date interpretation, and reuse rights not established",
     "Visual page-image review completed only for the five numeric-alert locations; the remaining 268 non-identical text-difference records and 120 quantitative provisions still require full review",
     "Six known orthography-outlier passages were visually inspected and matched on the checked passages; this is not a complete review of all 311 records",
-    "Twenty of 47 major-difference records were visually checked and matched on the inspected passages; 27 major-difference and 221 minor-difference records remain unreviewed"
+    "All 47 major-difference records were visually spot-checked and matched on the inspected passages; 221 minor-difference records remain unreviewed"
   ],
   "numeric_alert_page_images_reviewed": true,
   "numeric_alert_reviewed_articles": [
@@ -75,8 +75,8 @@
     "article_134_independent_locator": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf"
   },
   "major_difference_visual_spot_checks": {
-    "checked": 20,
-    "matching_on_checked_passage": 20,
+    "checked": 47,
+    "matching_on_checked_passage": 47,
     "confirmed_textual_discrepancies": 0,
     "articles": [
       2,
@@ -98,7 +98,34 @@
       123,
       133,
       153,
-      157
+      157,
+      174,
+      187,
+      193,
+      198,
+      200,
+      212,
+      213,
+      214,
+      217,
+      230,
+      241,
+      242,
+      246,
+      255,
+      258,
+      262,
+      265,
+      274,
+      279,
+      284,
+      286,
+      287,
+      288,
+      293,
+      294,
+      295,
+      296
     ],
     "gazette_pdf_pages": [
       4,
@@ -119,7 +146,30 @@
       54,
       57,
       66,
-      67
+      67,
+      72,
+      76,
+      78,
+      79,
+      80,
+      83,
+      84,
+      88,
+      91,
+      92,
+      96,
+      98,
+      99,
+      100,
+      101,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111
     ]
   }
 }
