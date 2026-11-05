@@ -11,13 +11,14 @@
 - PR #1461 contains a lawyer-supplied UTF-8 Gazette text importer, 110-question Egyptian-Arabic benchmark template, article-specific scorer and deadline-rules approval packet; it remains unmerged and has not been locally executed.
 - Existing retrieval evaluation supports Recall@3/MRR and citation/abstention metrics. Wrong-article answer scoring is added separately. All 110 questions remain unlabeled; no before/after metrics are available and MIN_SCORE remains 0.30.
 - Five deadline rules and the fixed-date holiday list remain unverified drafts. The holiday calendar has no dated movable holidays and no complete years.
-- Negation guard PR #1460 adds raw-text checks before normalization. It is not merged; exact-head CI is failing before useful job diagnostics are available.
+- Negation guard PR #1464 adds raw-text checks before normalization. It remains draft; exact-head CI failed before any job step ran.
 
 ## PR decisions
 
 - #1451 — merged; provisional evidence only.
 - #1449, #1212, #1208 and #840 — closed without merge with documented reasons.
-- #1460 — open draft; requires green exact-head tests and security checks.
+- #1460 — closed without merge; superseded by current-main port #1464.
+- #1464 — open draft; requires green exact-head tests and security checks.
 
 ## Mandatory human gates
 
