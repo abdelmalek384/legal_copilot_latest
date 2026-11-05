@@ -44,6 +44,8 @@ jobs:
           node --check /tmp/legal-copilot.js
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
+      - name: Measure retrieval and abstention on 200 fictional known-answer queries
+        run: PYTHONPATH=. python tests/test_synthetic_retrieval_benchmark.py
       - name: Smoke-test public PWA HTTP routes and security headers
         run: PYTHONPATH=. python tests/test_pwa_http_routes.py
       - name: Test live deployment HTTP smoke probe
