@@ -41,21 +41,21 @@ labour_law,232,89,,ة قبل التاريخ المحدد للإضراب بعشر
 labour_law,237,89-90,,تصدر قرارها مسببًا خلال خمسة وأربعين يومًا على الأكثر من تاريخ تقد,minor_difference,yes,Pages 89-90 checked: committee decision is due within 45 days; candidate cue matches.
 labour_law,245,92,,قررة عليه ، بما لا يجاوز مائة ألف جنيه .,minor_difference,,
 labour_law,260,99,,اض مرض مهني ، وذلك خلال أربع وعشرين ساعة من وقوعه ، ويصدر الوزير,minor_difference,yes,Page 99 checked: establishments with 30 or more workers submit the stated half-year statistics in the first half of July; accident notice is within 24 hours; candidate cue matches.
-labour_law,261,99,,ر عنه ، بما لا يزيد على خمسين ألف جنيه ، وحالات الإعفاء منه .,minor_difference,,
-labour_law,262,99-100,,ررة عنه بما لا يزيد على خمسين ألف جنيه ، وحالات الإعفاء منه .,major_difference,,
+labour_law,261,99,,ر عنه ، بما لا يزيد على خمسين ألف جنيه ، وحالات الإعفاء منه .,minor_difference,yes,Page 99 checked: licensing/training fees are capped at EGP 50,000; candidate cue matches.
+labour_law,262,99-100,,ررة عنه بما لا يزيد على خمسين ألف جنيه ، وحالات الإعفاء منه .,major_difference,yes,Pages 99-100 checked: the occupational safety consultancy licence fee is capped at EGP 50,000; candidate cue matches.
 labour_law,273,104,,ر بسداد اشتراك سنوى لا يقل عن ثمانية جنيهات ولا يجاوز ستة عشر جنيه | ن ثمانية جنيهات ولا يجاوز ,minor_difference,yes,Page 104 checked: establishments with 20 or more workers pay annual subscriptions from EGP 8 to EGP 16; candidate cue matches.
 labour_law,281,107,,آلاف جنيه ولا تزيد على خمسين ألف جنيه ، وتتعدد الغرامة بتعدد ا,minor_difference,yes,Page 107 checked: fine range is EGP 5,000-50,000; candidate cue matches.
 labour_law,282,107,,لمنفذة لها ، بغرامة لا تقل عن ألف جنيه ولا تزيد على عشرة آلاف ج,minor_difference,yes,Page 107 checked: fine range is EGP 1,000-10,000; candidate cue matches.
-labour_law,284,107,,المنفذة لها بغرامة لا تقل عن ألف جنيه ولا تزيد على عشرة آلاف ج,major_difference,,
+labour_law,284,107,,المنفذة لها بغرامة لا تقل عن ألف جنيه ولا تزيد على عشرة آلاف ج,major_difference,yes,Page 107 checked: the fine range is EGP 1,000-10,000; candidate cue matches.
 labour_law,285,107-108,,لها ، بغرامة لا تقل عن عشرين ألف جنيه ولا تزيد على مائة ألف جن | ين ألف جنيه ولا تزيد على مائة ,minor_difference,yes,Pages 107-108 checked: fine range is EGP 20,000-100,000; candidate cue matches.
-labour_law,286,108,,لمنفذة لها ، بغرامة لا تقل عن ألف جنيه ولا تزيد على عشرين ألف ج | ن ألف جنيه ولا تزيد على عشرين,major_difference,,
-labour_law,287,108,,ألفى جنيه ولا تزيد على عشرين ألف جنيه ، وتتعدد الغرامة بتعدد ا,major_difference,,
-labour_law,288,108-109,,لمنفذة لها ، بغرامة لا تقل عن خمسمائة جنيه ولا تزيد على خمسة آلاف ج,major_difference,,
-labour_law,289,109,,بغلق المنشأة لمدة لا تجاوز الستة أشهر . كما يُعاقب بذات العقوب,minor_difference,,
-labour_law,290,109,,لمنفذة لها ، بغرامة لا تقل عن خمسمائة جنيه ولا تزيد على ألف جنيه ، | عن خمسمائة جنيه ولا تزيد ع,minor_difference,,
-labour_law,291,109-110,,الحبس وبغرامة لا تقل عن عشرين ألف جنيه ولا تزيد على مائة ألف جن | ين ألف جنيه ولا تزيد على مائة,minor_difference,,
+labour_law,286,108,,لمنفذة لها ، بغرامة لا تقل عن ألف جنيه ولا تزيد على عشرين ألف ج | ن ألف جنيه ولا تزيد على عشرين,major_difference,yes,Page 108 checked: the fine range is EGP 1,000-20,000; candidate cue matches.
+labour_law,287,108,,ألفى جنيه ولا تزيد على عشرين ألف جنيه ، وتتعدد الغرامة بتعدد ا,major_difference,yes,Page 108 checked: the fine range is EGP 2,000-20,000; candidate cue matches.
+labour_law,288,108-109,,لمنفذة لها ، بغرامة لا تقل عن خمسمائة جنيه ولا تزيد على خمسة آلاف ج,major_difference,yes,Page 108 checked: the fine range is EGP 500-5,000; candidate cue matches.
+labour_law,289,109,,بغلق المنشأة لمدة لا تجاوز الستة أشهر . كما يُعاقب بذات العقوب,minor_difference,yes,Page 109 checked: the fine range is EGP 2,000-10,000 and closure may not exceed six months; candidate cue matches.
+labour_law,290,109,,لمنفذة لها ، بغرامة لا تقل عن خمسمائة جنيه ولا تزيد على ألف جنيه ، | عن خمسمائة جنيه ولا تزيد ع,minor_difference,yes,Page 109 checked: the fine range is EGP 500-1,000; candidate cue matches.
+labour_law,291,109-110,,الحبس وبغرامة لا تقل عن عشرين ألف جنيه ولا تزيد على مائة ألف جن | ين ألف جنيه ولا تزيد على مائة,minor_difference,yes,Page 109 checked: the fine range is EGP 20,000-100,000; candidate cue matches.
 labour_law,292,110,,ة آلاف جنيه ولا تزيد على مائة ألف جنيه ، وتتعدد الغرامة بتعدد ا,minor_difference,yes,Page 110 checked: fine range is EGP 5,000-100,000; candidate cue matches.
-labour_law,293,110,,لها ، بغرامة لا تقل عن عشرين ألف جنيه ولا تزيد على مائة ألف جن | ين ألف جنيه ولا تزيد على مائة ,major_difference,,
-labour_law,294,110,,ذا القانون ، بغرامة لا تقل عن ألف جنيه ولا تزيد على عشرين ألف ج | ن ألف جنيه ولا تزيد على عشرين,major_difference,,
-labour_law,296,111,,خمسة آلاف جنيه ولا تجاوز مائة ألف جنيه ، وتضاعف الغرامة فى حالة,major_difference,,
+labour_law,293,110,,لها ، بغرامة لا تقل عن عشرين ألف جنيه ولا تزيد على مائة ألف جن | ين ألف جنيه ولا تزيد على مائة ,major_difference,yes,Page 110 checked: the fine range is EGP 20,000-100,000; candidate cue matches.
+labour_law,294,110,,ذا القانون ، بغرامة لا تقل عن ألف جنيه ولا تزيد على عشرين ألف ج | ن ألف جنيه ولا تزيد على عشرين,major_difference,yes,Page 110 checked: the fine range is EGP 1,000-20,000; candidate cue matches.
+labour_law,296,111,,خمسة آلاف جنيه ولا تجاوز مائة ألف جنيه ، وتضاعف الغرامة فى حالة,major_difference,yes,Page 111 checked: the fine range is EGP 5,000-100,000; candidate cue matches.
 labour_law,297,111,,مسة آلاف جنيه ولا تجاوز عشرين ألف جنيه ، وتضاعف الغرامة فى حالة,minor_difference,yes,Page 111 checked: fine range is EGP 5,000-20,000; candidate cue matches.
