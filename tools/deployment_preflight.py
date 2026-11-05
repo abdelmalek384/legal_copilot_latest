@@ -24,7 +24,10 @@ def valid_llm_endpoint(value):
         if (parsed.scheme not in {"https", "http"} or not host or parsed.username or parsed.password
                 or parsed.query or parsed.fragment):
             return False
-        port = parsed.port or (443 if parsed.scheme == "https" else 80)
+        parsed_port = parsed.port
+        if parsed_port is not None and not 1 <= parsed_port <= 65535:
+            return False
+        port = parsed_port or (443 if parsed.scheme == "https" else 80)
         if parsed.scheme == "http":
             if host.lower().rstrip(".") == "localhost":
                 return True
