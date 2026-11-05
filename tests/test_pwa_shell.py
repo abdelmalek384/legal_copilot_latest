@@ -5,6 +5,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 APP = (ROOT / "app.py").read_text(encoding="utf-8")
+PLATFORM_ROUTER = (ROOT / "routers" / "platform.py").read_text(encoding="utf-8")
 SERVICE_WORKER = (ROOT / "static" / "service-worker.js").read_text(encoding="utf-8")
 OFFLINE = (ROOT / "static" / "offline.html").read_text(encoding="utf-8")
 
@@ -33,14 +34,15 @@ class PwaShellTests(unittest.TestCase):
 
     def test_public_routes_serve_only_fixed_assets(self):
         for route, asset in (
-            ('@app.get("/manifest.webmanifest")', 'manifest.webmanifest'),
-            ('@app.get("/service-worker.js")', 'service-worker.js'),
-            ('@app.get("/offline.html")', 'offline.html'),
-            ('@app.get("/app-icon.svg")', 'app-icon.svg'),
-            ('@app.get("/apple-touch-icon.png")', 'apple-touch-icon.png.b64'),
+            ('@router.get("/manifest.webmanifest")', 'manifest.webmanifest'),
+            ('@router.get("/service-worker.js")', 'service-worker.js'),
+            ('@router.get("/offline.html")', 'offline.html'),
+            ('@router.get("/app-icon.svg")', 'app-icon.svg'),
+            ('@router.get("/apple-touch-icon.png")', 'apple-touch-icon.png.b64'),
         ):
-            self.assertIn(route, APP)
-            self.assertIn(f'_read_pwa_asset("{asset}")', APP)
+            self.assertIn(route, PLATFORM_ROUTER)
+            self.assertIn(f'_read_pwa_asset("{asset}")', PLATFORM_ROUTER)
+        self.assertIn("app.include_router(platform_router)", APP)
 
     def test_service_worker_caches_only_the_static_offline_notice(self):
         self.assertIn('cache.add(OFFLINE_URL)', SERVICE_WORKER)
