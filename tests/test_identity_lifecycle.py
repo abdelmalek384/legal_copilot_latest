@@ -85,6 +85,15 @@ class IdentityLifecycleTests(unittest.TestCase):
             self.assertEqual(response.headers.get("Cache-Control"), "no-store")
             self.assertEqual(response.headers.get("Referrer-Policy"), "no-referrer")
 
+    def test_public_identity_pages_are_registered_from_identity_router(self):
+        app_source = (ROOT / "app.py").read_text(encoding="utf-8")
+        router_source = (ROOT / "routers" / "identity.py").read_text(encoding="utf-8")
+        self.assertIn('from routers.identity import router as identity_router', app_source)
+        self.assertIn("app.include_router(identity_router)", app_source)
+        self.assertIn('@router.get("/invite/accept", response_class=HTMLResponse)', router_source)
+        self.assertIn('@router.get("/account/recovery", response_class=HTMLResponse)', router_source)
+        self.assertIn("request.state.csp_nonce", router_source)
+
     def test_admin_can_list_and_revoke_only_own_firm_invitations(self):
         self.assertEqual(self._login(self.client, "invitation-owner@example.test", self.password).status_code, 200)
         with patch.object(app, "send_identity_email") as send:
