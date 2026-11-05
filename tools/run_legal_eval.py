@@ -173,8 +173,9 @@ def _article_identifier(hit):
     if not article:
         return None
     law = re.sub(r"\s+", " ", str(hit.get("law") or "").strip())
-    law_part = f"::law:{law}" if law else ""
-    return f"{source_id.strip()}{law_part}::article:{article}"
+    if not law:
+        return None
+    return f"{source_id.strip()}::law:{law}::article:{article}"
 
 
 def result_from_response(question, response):
