@@ -7299,32 +7299,36 @@ def _invoice_records(c, rows):
     # Keep each IN clause below SQLite's conservative 999-parameter limit.
     for offset in range(0, len(invoice_ids), 500):
         batch_json = json.dumps(invoice_ids[offset:offset + 500])
-        queries = (
-            (
-                "lines",
-                "SELECT invoice_id,id,position,description,quantity_milli,unit_price_piasters,line_total_piasters "
-                "FROM invoice_lines WHERE invoice_id IN "
-                "(SELECT CAST(value AS INTEGER) FROM json_each(?)) ORDER BY invoice_id,position,id",
-            ),
-            (
-                "payments",
-                "SELECT invoice_id,id,amount_piasters,paid_on,method,reference,note,recorded_by,created_at "
-                "FROM invoice_payments WHERE invoice_id IN "
-                "(SELECT CAST(value AS INTEGER) FROM json_each(?)) ORDER BY invoice_id,paid_on,id",
-            ),
-            (
-                "events",
-                "SELECT invoice_id,id,actor_user_id,event_type,details_json,created_at "
-                "FROM invoice_events WHERE invoice_id IN "
-                "(SELECT CAST(value AS INTEGER) FROM json_each(?)) ORDER BY invoice_id,id",
-            ),
-        )
-        for key, sql in queries:
-            for item in c.execute(sql, (batch_json,)).fetchall():
-                invoice_id = int(item["invoice_id"])
-                record = dict(item)
-                record.pop("invoice_id", None)
-                records[invoice_id][key].append(record)
+        for item in c.execute(
+            "SELECT invoice_id,id,position,description,quantity_milli,unit_price_piasters,line_total_piasters "
+            "FROM invoice_lines WHERE invoice_id IN "
+            "(SELECT CAST(value AS INTEGER) FROM json_each(?)) ORDER BY invoice_id,position,id",
+            (batch_json,),
+        ).fetchall():
+            invoice_id = int(item["invoice_id"])
+            record = dict(item)
+            record.pop("invoice_id", None)
+            records[invoice_id]["lines"].append(record)
+        for item in c.execute(
+            "SELECT invoice_id,id,amount_piasters,paid_on,method,reference,note,recorded_by,created_at "
+            "FROM invoice_payments WHERE invoice_id IN "
+            "(SELECT CAST(value AS INTEGER) FROM json_each(?)) ORDER BY invoice_id,paid_on,id",
+            (batch_json,),
+        ).fetchall():
+            invoice_id = int(item["invoice_id"])
+            record = dict(item)
+            record.pop("invoice_id", None)
+            records[invoice_id]["payments"].append(record)
+        for item in c.execute(
+            "SELECT invoice_id,id,actor_user_id,event_type,details_json,created_at "
+            "FROM invoice_events WHERE invoice_id IN "
+            "(SELECT CAST(value AS INTEGER) FROM json_each(?)) ORDER BY invoice_id,id",
+            (batch_json,),
+        ).fetchall():
+            invoice_id = int(item["invoice_id"])
+            record = dict(item)
+            record.pop("invoice_id", None)
+            records[invoice_id]["events"].append(record)
     return [
         _invoice_record(
             c, row,
