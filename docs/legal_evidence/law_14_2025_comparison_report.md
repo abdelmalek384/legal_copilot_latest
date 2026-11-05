@@ -52,7 +52,7 @@ All 47 machine-classified major differences were inspected against the supplied 
 
 ## Minor-difference visual checks
 
-Seventy-nine unique minor-difference records were inspected against the supplied Gazette page images; all 79 inspected passages match the candidate JSONL on the checked text. The remaining 142 minor-difference records have not been visually reviewed. Article 26 was removed from this group because its machine status is identical after normalization; its 500 EGP quantitative cue was instead checked and marked in the quantitative worksheet. The minor-difference checks are listed in `law_14_2025_minor_difference_visual_spot_checks_part1.csv` through `part10.csv`.
+Eighty-four unique minor-difference records were inspected against the supplied Gazette page images; all 84 inspected passages match the candidate JSONL on the checked text. The remaining 137 minor-difference records have not been visually reviewed. Article 26 was removed from this group because its machine status is identical after normalization; its 500 EGP quantitative cue was instead checked and marked in the quantitative worksheet. The minor-difference checks are listed in `law_14_2025_minor_difference_visual_spot_checks_part1.csv` through `part10.csv`.
 
 ## Required review and release gates
 
