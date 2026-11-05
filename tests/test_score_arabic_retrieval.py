@@ -44,7 +44,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         labeled = dict(q)
         labeled.update({
             "expected_article": "المادة 12",
-            "expected_article_id": "EG-LABOUR-14-2025::article:12",
+            "expected_article_id": "EG-LABOUR-14-2025::law:قانون العمل رقم 14 لسنة 2025 [block 1]::article:12",
             "lawyer_approved_answer": "إجابة معتمدة للاختبار",
             "review_status": "lawyer_reviewed",
             "label_status": "lawyer_approved",
