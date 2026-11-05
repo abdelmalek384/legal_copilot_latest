@@ -25,7 +25,8 @@
   "source_files_committed": false,
   "limitations": [
     "Source authenticity, amendments, currentness, effective-date interpretation, and reuse rights not established",
-    "Visual page-image review completed only for the five numeric-alert locations; the remaining 268 non-identical text-difference records and 120 quantitative provisions still require full review"
+    "Visual page-image review completed only for the five numeric-alert locations; the remaining 268 non-identical text-difference records and 120 quantitative provisions still require full review",
+    "Six known orthography-outlier passages were visually inspected; one confirmed candidate-text omission is recorded for Article 134; this is not a complete review of all 311 records"
   ],
   "numeric_alert_page_images_reviewed": true,
   "numeric_alert_reviewed_articles": [
@@ -45,5 +46,35 @@
     63,
     111,
     112
-  ]
+  ],
+  "orthography_spot_checks": {
+    "articles": [
+      66,
+      103,
+      124,
+      134,
+      141,
+      278
+    ],
+    "gazette_pdf_pages": [
+      35,
+      48,
+      54,
+      55,
+      57,
+      58,
+      61,
+      62,
+      106
+    ],
+    "checked": 6,
+    "matching_on_checked_passage": 5,
+    "confirmed_textual_discrepancies": 1,
+    "discrepancy": {
+      "article": 134,
+      "gazette": "ما يعرضها للخطر",
+      "candidate": "ما يعرض للخطر",
+      "missing_suffix": "ها"
+    }
+  }
 }
