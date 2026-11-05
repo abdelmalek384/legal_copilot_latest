@@ -34,6 +34,10 @@ All five numeric-alert locations were visually inspected against the supplied Ga
 
 The six known orthography outlier locations were inspected against the supplied Gazette page images (pages 35, 48, 54–55, 57–58, 61–62 and 106). All six checked passages match the candidate text. I cross-checked Article 134 against the government-hosted ETA PDF (page 57): it reads «ولم يكن في تنفيذها ما يعرض للخطر», matching the candidate. An earlier apparent suffix discrepancy was a visual misread and is not retained as a finding. The ETA URL is an independent locator, not proof that the user-supplied PDF was downloaded from that URL. See `law_14_2025_orthography_spot_checks.csv`. Government-hosted comparison locator: https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf.
 
+## Major-difference visual spot checks
+
+Twenty of the 47 machine-classified major differences were inspected against the supplied Gazette page images (Articles 2, 8, 13, 15, 31, 38, 52, 60, 68, 74, 85, 95, 98, 100, 115, 116, 123, 133, 153 and 157). All twenty checked passages match the candidate JSONL on the inspected text. These are resolved as extraction/comparison false positives for those passages only; 27 major-difference records and all 221 minor-difference records remain unreviewed. See `law_14_2025_major_difference_visual_spot_checks.csv`.
+
 ## Required review
 
 - All 273 non-identical machine results still require article-level visual comparison and disposition. The five numeric alerts have been visually checked; the remaining 268 text-difference records have not. Similarity classes are triage labels, not proof of error.
