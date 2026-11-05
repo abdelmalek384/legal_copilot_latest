@@ -2,7 +2,7 @@
   "document_id": "EG-LABOUR-14-2025",
   "instrument": "Egyptian Labour Law 14/2025",
   "trust_tier": "source_matched_not_lawyer_reviewed",
-  "comparison_status": "machine_comparison_completed_numeric_alert_page_reviewed_other_discrepancies_pending",
+  "comparison_status": "machine_comparison_completed_with_numeric_major_and_80_minor_page_image_checks",
   "candidate_rows": 311,
   "gazette_pages": 112,
   "headings_detected": 311,
@@ -25,11 +25,9 @@
   "source_files_committed": false,
   "limitations": [
     "Source authenticity, amendments, currentness, effective-date interpretation, and reuse rights not established",
-    "Visual page-image review completed only for the five numeric-alert locations; the remaining 268 non-identical text-difference records and 120 quantitative provisions still require full review",
     "Six known orthography-outlier passages were visually inspected and matched on the checked passages; this is not a complete review of all 311 records",
-    "All 47 major-difference records were visually spot-checked and matched on the inspected passages; 221 minor-difference records remain unreviewed",
-    "Seventy of 221 minor-difference records were visually checked and matched on the inspected passages; 151 minor-difference records remain unreviewed",
-    "Seventy-one of 221 minor-difference records were visually checked and matched on the inspected passages; 150 minor-difference records remain unreviewed"
+    "Eighty of 221 minor-difference records were visually checked and matched on the inspected passages; 141 minor-difference records remain unreviewed",
+    "All 120 quantitative provision cues remain unreviewed"
   ],
   "numeric_alert_page_images_reviewed": true,
   "numeric_alert_reviewed_articles": [
@@ -175,8 +173,8 @@
     ]
   },
   "minor_difference_visual_spot_checks": {
-    "checked": 71,
-    "matching_on_checked_passage": 71,
+    "checked": 80,
+    "matching_on_checked_passage": 80,
     "confirmed_textual_discrepancies": 0,
     "articles": [
       245,
@@ -253,7 +251,6 @@
       19,
       20,
       22,
-      23,
       24,
       26,
       27,
@@ -352,7 +349,6 @@
       17,
       18,
       19,
-      20,
       20,
       21,
       22
