@@ -285,6 +285,10 @@ def has_unsupported_claims(answer, hits, tokens_fn, norm_fn, mask_code=None):
             return True
 
         claim = re.sub(r"\[\d+\]", " ", sentence)
+        # Negation is legally material: compare raw text before Arabic normalization
+        # can remove particles such as "لا" and invert the obligation.
+        if _has_modal_mismatch(claim, evidence):
+            return True
         normalized_claim = norm_fn(claim)
         normalized_evidence = norm_fn(evidence)
         if _has_modal_mismatch(normalized_claim, normalized_evidence):
