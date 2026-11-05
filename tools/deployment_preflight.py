@@ -172,9 +172,9 @@ def inspect_environment(env=None, *, require_separate=False):
     llm_url = env.get("LLM_URL", "").strip()
     if llm_url:
         if valid_llm_endpoint(llm_url):
-            passed.append("LLM_URL uses HTTPS or a loopback-only HTTP endpoint and contains no URL credentials/query/fragment.")
+            passed.append("LLM_URL uses HTTPS to a globally routable destination or loopback-only HTTP; DNS answers are checked for non-global addresses.")
         else:
-            errors.append("LLM_URL must use HTTPS for remote endpoints or loopback HTTP for local model services; credentials, query strings, fragments, and other HTTP hosts are not allowed.")
+            errors.append("LLM_URL must use HTTPS to a globally routable destination or loopback HTTP for local model services; private DNS answers, credentials, query strings, fragments, and other HTTP hosts are not allowed.")
 
     raw_score = env.get("MIN_SCORE", "0.3")
     try:
