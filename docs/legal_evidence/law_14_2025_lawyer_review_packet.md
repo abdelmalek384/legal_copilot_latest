@@ -10,7 +10,7 @@
 - Gazette reference PDF: 112 pages; recorded SHA-256 b0a47cefe18722d3f23e004ac7e78e6e309010e13124413e7e7018820c9581be.
 - Candidate structure: 13 promulgation provisions + 298 provisions in the attached Labour Law.
 - Machine comparison: 38 identical after normalization; 221 minor differences; 47 major differences; 5 numeric alerts; 0 missing/extra headings.
-- The 273 non-identical machine records and 120 quantitative cue records have prior page-image review records. Those checks are evidence aids, not counsel sign-off.
+- The 273 non-identical machine records and 120 quantitative cue records overlap: 282 unique provisions have prior page-image review records, while 29 provisions have no targeted page-image review recorded. Those checks are evidence aids, not counsel sign-off.
 
 ## How to use the tick-sheet
 
