@@ -39,20 +39,23 @@ class LegalEvalRunnerTests(unittest.TestCase):
     def test_emits_source_scoped_article_ids_in_retrieval_order_and_citation_order(self):
         q = {"id": "Q-ARTICLE-ID", "question_ar": "سؤال"}
         response = {
-            "answer": "قاعدة المادة ١٢ [2].",
+            "answer": "قاعدة المادة ١ [3].",
             "abstained": False,
             "sources": [
-                {"source_id": "EG-LABOUR-14-2025", "article": "المادة ١٢"},
-                {"source_id": "EG-LABOUR-14-2025", "article": "13"},
-                {"source_id": "EG-LABOUR-14-2025", "article": None},
+                {"source_id": "EG-LABOUR-14-2025", "law": "قانون العمل [block 1]", "article": "المادة ١٢"},
+                {"source_id": "EG-LABOUR-14-2025", "law": "قانون العمل [block 1]", "article": "13"},
+                {"source_id": "EG-LABOUR-14-2025", "law": "قانون العمل [block 2]", "article": "المادة 1"},
             ],
         }
         row = result_from_response(q, response)
         self.assertEqual(row["retrieved_article_ids"], [
-            "EG-LABOUR-14-2025::law:قانون العمل رقم 14 لسنة 2025 [block 1]::article:12",
-            "EG-LABOUR-14-2025::article:13",
+            "EG-LABOUR-14-2025::law:قانون العمل [block 1]::article:12",
+            "EG-LABOUR-14-2025::law:قانون العمل [block 1]::article:13",
+            "EG-LABOUR-14-2025::law:قانون العمل [block 2]::article:1",
         ])
-        self.assertEqual(row["cited_article_ids"], ["EG-LABOUR-14-2025::article:13"])
+        self.assertEqual(row["cited_article_ids"], [
+            "EG-LABOUR-14-2025::law:قانون العمل [block 2]::article:1"
+        ])
 
     def test_runner_row_can_be_scored_without_manual_schema_conversion(self):
         question = {
