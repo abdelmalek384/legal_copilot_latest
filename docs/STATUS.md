@@ -5,7 +5,7 @@
 
 ## Current state
 
-- Runtime architecture is the separated control-plane, per-firm database and shared legal-corpus design. The old single-database deployment path is not an approved operating mode.
+- Runtime architecture requires separate control-plane, per-firm database and shared legal-corpus profiles.
 - Law 14/2025 PR #1451 is merged. Its 311-row machine comparison and planned page-image review aids are in docs/legal_evidence/. The new 311-row lawyer tick-sheet leaves every decision blank and every verified value at 0.
 - Law 14/2025 remains source_matched_not_lawyer_reviewed, non-authoritative and retrieval-ineligible. Counsel review, full currentness/amendment/corrigenda analysis, effective-date interpretation and source/reuse-rights review remain outstanding.
 - A lawyer-supplied UTF-8 Gazette text importer, 110-question Egyptian-Arabic benchmark template, article-specific scorer and deadline-rules approval packet are proposed in the current PR branch; they are not merged or locally executed.
