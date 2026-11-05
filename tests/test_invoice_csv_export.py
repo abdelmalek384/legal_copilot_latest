@@ -55,7 +55,9 @@ class InvoiceCsvExportTests(InvoiceTestSupport, unittest.TestCase):
 
         self.assertEqual(app_safe("=HYPERLINK(\"https://bad.example\")"),
                          "'=HYPERLINK(\"https://bad.example\")")
-        self.assertEqual(app_safe("  @SUM(1,1)"), "'  @SUM(1,1)")
+        for value in ("+1+1", "-1+1", "@SUM(1,1)", "\\t=1+1", " \\r@SUM(1,1)", "\\n+1+1"):
+            with self.subTest(value=value):
+                self.assertEqual(app_safe(value), "'" + value)
         self.assertEqual(app_safe("Client Snapshot"), "Client Snapshot")
 
 
