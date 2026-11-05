@@ -80,7 +80,7 @@ A clean hash check, successful extraction, no missing article numbers, or a publ
 
 ## 6. Database staging is a separate controlled action
 
-`python manage.py importlaws <law_rows.jsonl>` writes rows to the shared legal-corpus staging table; it is a database mutation, not a read-only extraction step. It requires the profile-separated control-plane, tenant-root, and legal-corpus configuration and refuses the legacy `COPILOT_DB` mode. Do not run it against production or change database configuration as part of this document-preparation workflow. The database/storage workstream owner must approve the staging target and timing first.
+`python manage.py importlaws <law_rows.jsonl>` writes rows to the shared legal-corpus staging table; it is a database mutation, not a read-only extraction step. It requires the profile-separated control-plane, tenant-root, and legal-corpus configuration. Do not run it against production or change database configuration as part of this document-preparation workflow. The database/storage workstream owner must approve the staging target and timing first.
 
 Staging does not activate rows as verified law. Keep the legal review queue, permission evidence, original-source comparison, and counsel approval gates intact.
 
