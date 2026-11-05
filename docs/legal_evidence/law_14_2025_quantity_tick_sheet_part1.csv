@@ -30,8 +30,8 @@ labour_law,58,33,,عمل كتابة برغبتها فى ذلك خلال ثلاث
 labour_law,61,33-34,,القانون ، كل من لم يبلغ ثمانى عشرة سنة .,identical_after_normalization,,
 labour_law,62,34,,تشغيل الأطفال قبل بلوغهم خمس عشرة سنة ، ومع ذلك يجوز تدريبهم مت | وز تدريبهم متى بلغت سنهم أربع,minor_difference,,
 labour_law,65,34-35,,يُحظر تشغيل الطفل أكثر من ست ساعات يوميًا ، ويجب أن تتخلل | ات بحيث لا يعمل الطفل أكثر من أربع ,minor_difference,,
-labour_law,71,36-37,,يه ، ولا يزيد على مائة وخمسين ألف جنيه ، ويحدد حالات إلغاء التر | هة الإدارية المختصة بذلك خلال,minor_difference,,
-labour_law,72,37,,مل الأجنبى عن العمل لمدة خمسة عشر يومًا متصلة دون مسوغ قانونى ي,minor_difference,,
+labour_law,71,36-37,,يه ، ولا يزيد على مائة وخمسين ألف جنيه ، ويحدد حالات إلغاء التر | هة الإدارية المختصة بذلك خلال,minor_difference,yes,Pages 36-37 checked: the EGP 150,000 licence-fee cap and cancellation rule match the candidate cue.
+labour_law,72,37,,مل الأجنبى عن العمل لمدة خمسة عشر يومًا متصلة دون مسوغ قانونى ي,minor_difference,yes,Page 37 checked: the 15-consecutive-day absence period matches the candidate cue.
 labour_law,82,40-41,,مما يأتي : 1- نسبة لا تقل عن (1٪) ولا تزيد على (3٪) من قيمة ال | لا تقل عن (1٪) ولا تزيد على (3,numeric_difference,yes,Numeric alert visually checked on pages 40-41: the 1%-3% range and related figures match; tokenization caused the machine alert.
 labour_law,90,43-44,,فى عقد العمل لمدة لا تزيد على ثلاثة أشهر . ولا يجوز تعيين العامل,minor_difference,,
 labour_law,92,44,,امل ورقيًا أو إلكترونيًا لمدة خمس سنوات على الأقل تبدأ من تاريخ,minor_difference,,
