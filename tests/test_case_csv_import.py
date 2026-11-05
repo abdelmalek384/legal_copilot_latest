@@ -55,8 +55,8 @@ class CaseCSVImportTests(InvoiceTestSupport, unittest.TestCase):
     def test_formula_like_imported_case_title_is_inert_and_neutralized_on_invoice_export(self):
         formula = '=HYPERLINK("https://attacker.invalid","open")'
         csv_text = (
-            'title;client;stage;case_number;case_year;court;circuit;opposing_party\\n'
-            '"=HYPERLINK(""https://attacker.invalid"",""open"")";Synthetic CSV Client;Labour;901/2026;2026;Cairo Court;Labour Circuit;Synthetic Opponent\\n'
+            'title;client;stage;case_number;case_year;court;circuit;opposing_party\n'
+            '"=HYPERLINK(""https://attacker.invalid"",""open"")";Synthetic CSV Client;Labour;901/2026;2026;Cairo Court;Labour Circuit;Synthetic Opponent\n'
         )
         imported = self.mutate(
             self.client_a, "post", "/cases/import.csv", json={"csv": csv_text}
@@ -89,7 +89,7 @@ class CaseCSVImportTests(InvoiceTestSupport, unittest.TestCase):
         rows = list(csv.DictReader(io.StringIO(exported.content.decode("utf-8-sig"))))
         exported_case = next(row for row in rows if row["invoice_number"] == issued.json()["invoice_number"])
         self.assertEqual(exported_case["case_title"], "'" + formula)
-        self.assertNotIn("\\r\\n" + formula, exported.text)
+        self.assertNotIn("\\r\n" + formula, exported.text)
 
     def test_non_admin_and_malformed_imports_are_rejected_without_partial_writes(self):
         denied = self.mutate(
