@@ -120,3 +120,11 @@ python tools/import_gazette_text.py /secure/input/labour_law_14_2025.txt /secure
 The importer validates UTF-8, file identity/size, metadata, source reference and exact SHA-256; recognizes Arabic/English article headings and numbering resets; chunks long article bodies; and writes law_rows.jsonl plus import_report.md. Every output row is forced to verified=0, in_force=0, and as_of=null. It never fetches the source or infers legal force/reuse permission. Review the import report for empty bodies and numbering blocks, then compare the output against the original Gazette before staging.
 
 Run focused tests with: PYTHONPATH=. python tests/test_import_gazette_text.py. The PDF importer remains separate: python tools/import_laws.py SOURCE_DIR OUTPUT_DIR.
+
+After reviewing the generated report and confirming that the candidate text is ready for controlled staging, the database/storage owner may run:
+
+```bash
+python manage.py importlaws /secure/output/law14-review/law_rows.jsonl
+```
+
+This writes candidate rows to the shared legal-corpus staging table. It is not an activation or lawyer-approval step. It requires the profile-separated runtime and explicit approval of the target/timing; do not run against production merely because extraction succeeded.
