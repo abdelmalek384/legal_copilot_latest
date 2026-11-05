@@ -1,37 +1,33 @@
-# AI quality baseline — measurement availability
+# AI quality baseline — fictional retrieval measurement
 
-**Snapshot:** 2026-11-04  
-**Scope:** 155 draft questions in `tests/legal_eval/`; retrieval/refusal measurement only, not legal correctness.
+**Snapshot:** 2026-11-05  
+**Scope:** 200 known-answer queries against an 80-article fictional Arabic corpus. This measures retrieval and refusal only, not Egyptian legal correctness.
 
-## Benchmark composition
+## Benchmark design
 
-| Category | Draft questions | Run records | Top-1 | Top-3 | Wrong-article answers | Abstention correctness | Claim-support block rate |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Direct | 64 | 0 | N/A | N/A | 0 observed (n=0) | N/A | N/A |
-| Paraphrase | 24 | 0 | N/A | N/A | 0 observed (n=0) | N/A | N/A |
-| Colloquial | 24 | 0 | N/A | N/A | 0 observed (n=0) | N/A | N/A |
-| Synonym / simplified terms | 17 | 0 | N/A | N/A | 0 observed (n=0) | N/A | N/A |
-| Date-sensitive | 14 | 0 | N/A | N/A | 0 observed (n=0) | N/A | N/A |
-| Must-abstain / out of scope | 12 | 0 | N/A | N/A | 0 observed (n=0) | N/A | N/A |
-| **Total** | **155** | **0** | **N/A** | **N/A** | **0 observed (n=0)** | **N/A** | **N/A** |
+- 80 fictional articles across employment, tenancy, family, procedure, cheques, tax, social insurance, and data protection (32 target articles plus 48 distractors).
+- 192 answerable queries: 32 each for direct, paraphrase, Egyptian colloquial, synonym, word-form, and date-sensitive styles.
+- 8 must-abstain queries, including out-of-corpus questions and requests to predict a case outcome.
+- Date-sensitive retrieval uses the explicit `as_of` parameter. Future-effective and expired versions are excluded from the 2024-06-01 result set.
+- The benchmark runs through production `app.search()` with synthetic registry fixtures. No Egyptian legislation or legal answers are included.
 
-## What is actually measured
+## Results — pre-lexicon baseline
 
-- The two draft benchmark files contain 61 labour questions and 94 multi-area questions. Category mapping uses the explicit multi-area `question_type` and the labour question-ID suffixes (D/P/C/S/T/X).
-- All 155 rows are `needs_lawyer_review`; all require abstention when sources are unverified. None has lawyer-approved expected sources or answerability labels.
-- `tests/legal_eval/runs.example.jsonl` contains zero run records.
-- The repository status says there are zero verified Egyptian laws available to the product.
-- Therefore the only numeric quality observations are sample availability: 155 draft questions, 0 reviewed labels, 0 run records, and 0 observed wrong-article answers in an empty run set. **Zero observed wrong-article answers at n=0 is not a passing safety result.**
+| Style | Queries | Top-1 | Top-3 | Wrong top-ranked article | Refusal correctness |
+|---|---:|---:|---:|---:|---:|
+| Direct | 32 | 31/32 (96.9%) | 32/32 (100%) | 1 | 32/32 (100%) |
+| Paraphrase | 32 | 6/32 (18.8%) | 11/32 (34.4%) | 25 | 31/32 (96.9%) |
+| Egyptian colloquial | 32 | 9/32 (28.1%) | 12/32 (37.5%) | 15 | 24/32 (75%) |
+| Synonym | 32 | 14/32 (43.8%) | 19/32 (59.4%) | 16 | 30/32 (93.8%) |
+| Word-form | 32 | 22/32 (68.8%) | 30/32 (93.8%) | 10 | 32/32 (100%) |
+| Date-sensitive | 32 | 31/32 (96.9%) | 32/32 (100%) | 1 | 32/32 (100%) |
+| Must-abstain | 8 | — | — | 0 | 8/8 (100%) |
+| **Total** | **200** | **113/192 (58.9%)** | **136/192 (70.8%)** | **68** | **189/200 (94.5%)** |
 
-## Why the requested rates are N/A
+## Metric definitions and limits
 
-- `tools/evaluate_retrieval_quality.py` scores lawyer-reviewed labels and excludes unreviewed draft seeds; there are no reviewed expected-source labels from which to calculate top-1/top-3.
-- `tools/evaluate_legal_answers.py` requires lawyer-approved question records, answerability labels, expected sources/pin-cites, and corresponding result records.
-- `tools/run_legal_eval.py` collects actual API runs but does not create expected-source ground truth. No authenticated local API run or run output is present in this snapshot.
-- `ask()` now returns an explicit `claim_support_blocked` outcome only when the optional claim-support check rejects an answer, and `run_legal_eval.py` preserves that flag. This snapshot still has zero run records, so the observed rate remains N/A.
-
-## Interpretation and next measurement
-
-This is a **data-availability baseline, not a retrieval-performance score**. It does not measure legal correctness. Draft questions have no lawyer-approved answers, so any future score on them must be explicitly limited to retrieval behaviour and safe refusal, not substantive legal correctness.
-
-To produce actual rates, run the 155 questions against a controlled local test corpus/API, preserve the raw run output, and add reviewed retrieval relevance labels where appropriate. Measure refusal against the explicit unverified-source requirement without presenting draft provisional answers as approved ground truth. Keep wrong-article answers at zero; do not weaken abstention to improve recall.
+- Top-1/top-3 count whether the intended article appears at rank 1 / within the first three results for answerable queries.
+- A wrong-article answer is a top-ranked retrieved article different from the intended article. The required count is zero.
+- Refusal correctness means answerable queries return at least one result and must-abstain queries return none. It does not grade generated legal answers.
+- PR #1424 adds measured phrase and word-form aliases. Re-run the benchmark on the updated lexicon before replacing this pre-change table.
+- These are controlled fictional-text results. They do not establish Egyptian legal accuracy, completeness, authority, licensing, currentness, or lawyer approval.
