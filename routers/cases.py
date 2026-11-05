@@ -5,7 +5,24 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException, Query
 
 
-def create_router(*, connection_provider, user_dependency, need_dependency, arabic_skeleton_builder, meter_firm_usage, communication_model, rollback_tenant_transaction, log_event, case_model, ensure_client_profile, add_case_helper, meter_pilot_metric):
+def create_router(
+    *,
+    connection_provider,
+    user_dependency,
+    need_dependency,
+    arabic_skeleton_builder,
+    meter_firm_usage,
+    communication_model,
+    rollback_tenant_transaction,
+    log_event,
+    case_model,
+    ensure_client_profile,
+    add_case_helper,
+    meter_pilot_metric,
+    session_model,
+    note_model,
+    add_session_helper,
+):
     router = APIRouter()
 
 
@@ -129,6 +146,27 @@ def create_router(*, connection_provider, user_dependency, need_dependency, arab
             "lawyer_review_required": True,
             "message": "هيكل أولي فقط؛ يجب استكمال الوقائع والأسانيد والطلبات ومراجعته بواسطة محامٍ.",
         }
+    @router.post("/cases/{cid}/sessions")
+    @rollback_tenant_transaction
+    def new_session(cid: int, b: session_model, u: dict = Depends(user_dependency)):
+        c = connection_provider()
+        need_dependency(c, u, cid)
+        add_session_helper(c, u, cid, b.date, b.note)
+        return {"ok": True}
+
+    @router.post("/cases/{cid}/notes")
+    @rollback_tenant_transaction
+    def new_note(cid: int, b: note_model, u: dict = Depends(user_dependency)):
+        c = connection_provider()
+        need_dependency(c, u, cid)
+        c.execute(
+            "INSERT INTO notes(case_id,created_by,text) VALUES(?,?,?)",
+            (cid, u["id"], b.text.strip()),
+        )
+        log_event(c, cid, u["name"], "إضافة ملاحظة")
+        c.commit()
+        return {"ok": True}
+
     @router.get("/cases/{cid}/communications")
     def list_case_communications(cid: int, u: dict = Depends(user_dependency)):
         c = connection_provider()
