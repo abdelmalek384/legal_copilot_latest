@@ -119,6 +119,7 @@ def seed_users(runtime, app_module, firm_id: int, count: int) -> None:
             user_id, firm_id, "lawyer" if number % 2 else "junior",
             created_by_user_id=owner_id,
         )
+    return owner_id
 
 
 def seed_cases(client: TestClient, case_count: int) -> list[dict]:
@@ -290,7 +291,7 @@ def run(args: argparse.Namespace) -> int:
         runtime = DatabaseRuntime.from_env()
         runtime.initialize()
         firm_id, _ = runtime.provision_firm("Synthetic Scale Smoke Firm")
-        seed_users(runtime, app_module, firm_id, args.users)
+        owner_id = seed_users(runtime, app_module, firm_id, args.users)
         app_module._database_runtime = runtime
         # The real upload quota is an abuse-control policy, not a benchmark
         # target. Raise it only inside this disposable process so the full
@@ -332,6 +333,19 @@ def run(args: argparse.Namespace) -> int:
         if not search_response.json():
             raise RuntimeError("scale search fixture returned no searchable passages")
 
+        tenant = runtime.firm_connection(runtime.resolve_context(owner_id, firm_id))
+        plan = tenant.execute(
+            "EXPLAIN QUERY PLAN SELECT i.* FROM invoices i "
+            "JOIN cases cs ON cs.id=i.case_id WHERE cs.firm_id=? "
+            "ORDER BY i.created_at DESC,i.id DESC",
+            (firm_id,),
+        ).fetchall()
+        print(
+            "Invoice list query plan: "
+            + " | ".join(str(row["detail"]) for row in plan),
+            flush=True,
+        )
+
         checks = [
             ("dashboard", "get", "/dashboard", 300.0, None),
             ("case_list", "get", "/cases", 300.0, None),
@@ -353,13 +367,35 @@ def run(args: argparse.Namespace) -> int:
             ("firm_export", "get", "/firm/data-export.zip", None, None),
         ]
         results = []
+        invoice_record_build_ms = []
+        original_invoice_records = app_module._invoice_records
+
+        def profile_invoice_records(connection, rows):
+            started = time.perf_counter()
+            try:
+                return original_invoice_records(connection, rows)
+            finally:
+                invoice_record_build_ms.append((time.perf_counter() - started) * 1000)
+
+        app_module._invoice_records = profile_invoice_records
         print("Measuring authenticated read paths...", flush=True)
-        for name, method, path, target, body in checks:
-            results.append(
-                measure(
-                    client, name, method, path, samples=args.samples,
-                    warmups=args.warmups, target_ms=target, json_body=body,
+        try:
+            for name, method, path, target, body in checks:
+                results.append(
+                    measure(
+                        client, name, method, path, samples=args.samples,
+                        warmups=args.warmups, target_ms=target, json_body=body,
+                    )
                 )
+        finally:
+            app_module._invoice_records = original_invoice_records
+
+        if invoice_record_build_ms:
+            print(
+                "Invoice child-record builder p50/p95 ms: "
+                f"{statistics.median(invoice_record_build_ms):.2f}/"
+                f"{percentile(invoice_record_build_ms, 0.95):.2f}",
+                flush=True,
             )
 
         print("\nSeeded fixture:")
