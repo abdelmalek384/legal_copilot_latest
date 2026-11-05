@@ -27,7 +27,7 @@ At minimum, record desktop and phone runs. For a release-gate pass, cover deskto
 ### A. Installation and startup
 
 1. Start from a clean test workspace with no existing application virtual environment.
-2. Run the platform's documented launcher. Confirm it refuses unsupported Python versions and legacy `COPILOT_DB` mode.
+2. Run the platform's documented launcher. Confirm it refuses unsupported Python versions and requires the profile-separated database configuration.
 3. Confirm the first-firm bootstrap runs once, prompts only when no active firm owner exists, and does not reset or delete existing database files.
 4. Restart the launcher with an existing active firm owner. Confirm it does not create a duplicate firm or owner.
 5. Confirm the server binds to loopback for local development and the browser reaches the login screen.
