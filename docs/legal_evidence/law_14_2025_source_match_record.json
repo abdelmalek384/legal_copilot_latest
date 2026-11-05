@@ -21,14 +21,13 @@
   "lawyer_reviewed": false,
   "authoritative": false,
   "retrieval_eligible": false,
-  "manual_page_review_pending": true,
+  "manual_page_review_pending": false,
   "source_files_committed": false,
   "limitations": [
     "Source authenticity, amendments, currentness, effective-date interpretation, and reuse rights not established",
     "All 47 major-difference records and all 5 numeric alerts were visually checked; no confirmed textual discrepancy was found in the inspected passages",
     "Six known orthography-outlier passages were visually inspected and matched on the checked passages; this is not a complete review of all 311 records",
-    "221 of 221 minor-difference records were visually checked and matched on the inspected passages; 0 minor-difference records remain unreviewed",
-    "120 of 120 quantitative provision cues were visually checked and matched; 0 quantitative cues remain unreviewed"
+    "All planned manual Gazette page-image checks are complete: 221 minor-difference records, 47 major-difference records, 5 numeric alerts, 120 quantitative provision cues, and six orthography outliers. These checks are not an Egyptian lawyer's legal verification."
   ],
   "numeric_alert_page_images_reviewed": true,
   "numeric_alert_reviewed_articles": [
