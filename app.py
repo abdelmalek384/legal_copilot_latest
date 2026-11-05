@@ -6308,15 +6308,28 @@ def import_clients_csv(b: ClientCSVImportIn, u: dict = Depends(user)):
     skipped = duplicate_rows
     for client in candidates:
         normalized = _client_normalized_name(c, client.name)
-        cursor = c.execute(
-            "INSERT OR IGNORE INTO clients(name,normalized_name,phone,email,address,notes,created_by) "
-            "VALUES(?,?,?,?,?,?,?)",
-            (client.name, normalized, client.phone, client.email, client.address, client.notes, int(u["id"])),
-        )
-        if cursor.rowcount == 1:
-            created += 1
-        else:
+        existing = c.execute(
+            "SELECT 1 FROM clients WHERE normalized_name=?", (normalized,)
+        ).fetchone()
+        if existing is not None:
             skipped += 1
+            continue
+        try:
+            c.execute(
+                "INSERT INTO clients(name,normalized_name,phone,email,address,notes,created_by) "
+                "VALUES(?,?,?,?,?,?,?)",
+                (client.name, normalized, client.phone, client.email, client.address, client.notes, int(u["id"])),
+            )
+        except sqlite3.IntegrityError:
+            # Only a concurrent duplicate-name insert is an expected skip.
+            # Other constraint failures must surface and roll back the import.
+            if c.execute(
+                "SELECT 1 FROM clients WHERE normalized_name=?", (normalized,)
+            ).fetchone() is None:
+                raise
+            skipped += 1
+            continue
+        created += 1
     c.execute(
         "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
         (int(u["firm_id"]), int(u["id"]), f"client_csv_import:created={created};skipped={skipped}"),
