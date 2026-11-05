@@ -1,4 +1,5 @@
 """Tests for the optional claim-support screen using fictional passages only."""
+import json
 import os
 import unittest
 from unittest import mock
@@ -215,6 +216,112 @@ class ClaimSupportTests(unittest.TestCase):
             "The employee is permitted to request leave after six months [1].",
             hits, tokens, norm, _mask_markdown_code
         ))
+
+
+    def test_fictional_60_sentence_claim_support_measurement(self):
+        """Measure false passes/blocks on fictional claims with known labels."""
+        groups = {
+            "supported": (
+                ("The filing period lasts five years [1].", "The fictional filing period is five years."),
+                ("تبلغ مدة الإجراء الخيالي خمس سنوات [1].", "مدة الإجراء الخيالي خمس سنوات."),
+                ("The request must be submitted within 30 days [1].", "The fictional request must be filed within 30 days."),
+                ("يحق للعضو طلب تمديد واحد عقب ستة أشهر [1].", "يجوز للعضو طلب تمديد واحد بعد ستة أشهر."),
+                ("The fee amounts to 10 units [1].", "The fictional fee is 10 units."),
+                ("The applicant is permitted to request one extension [1].", "The applicant may request one extension."),
+                ("The board always meets on the fifth day [1].", "The fictional board always meets on day 5."),
+                ("Every registered member may use the fictional form [1].", "All registered members may use the fictional form."),
+                ("The allowance goes up by 2 units [1].", "The fictional allowance increases by 2 units."),
+                ("The form covers registered members [1].", "The fictional form includes registered members."),
+                ("The notice is valid prior to day 10 [1].", "The fictional notice is valid before day 10."),
+                ("لا يجوز للجهة رفض الطلب المستوفي للشروط [1].", "لا يجوز للجهة رفض الطلب المستوفي للشروط."),
+            ),
+            "unsupported_number": (
+                ("The fictional limitation period is seven years [1].", "The fictional limitation period is five years."),
+                ("The fictional filing window is 45 days [1].", "The fictional filing window is 30 days."),
+                ("The fictional fee is 15 units [1].", "The fictional fee is 10 units."),
+                ("The fictional rate is 15 percent [1].", "The fictional rate is 10 percent."),
+                ("The fictional charge is EGP 1500 [1].", "The fictional charge is EGP 1000."),
+                ("مدة الإجراء الخيالي 7 أيام [1].", "مدة الإجراء الخيالي 5 أيام."),
+                ("مدة المراجعة الخيالية 6 أشهر [1].", "مدة المراجعة الخيالية 3 أشهر."),
+                ("The fictional response window is 48 hours [1].", "The fictional response window is 24 hours."),
+                ("The fictional review cycle is eight weeks [1].", "The fictional review cycle is four weeks."),
+                ("The fictional permit lasts 18 months [1].", "The fictional permit lasts 12 months."),
+                ("The fictional allowance is 25 units [1].", "The fictional allowance is 20 units."),
+                ("The applicant may request two extensions [1].", "The applicant may request one extension."),
+            ),
+            "unsupported_qualitative": (
+                ("The fictional permit is renewable forever for five years [1].", "The fictional permit is renewable for five years."),
+                ("The board may always approve the request after review [1].", "The board may approve the request after review."),
+                ("The fictional rule applies only to registered applicants before day 10 [1].", "The fictional rule applies to registered applicants before day 10."),
+                ("All applicants may submit the fictional form before day 10 [1].", "Registered applicants may submit the fictional form before day 10."),
+                ("The board never rejects a complete fictional request [1].", "The board may reject a complete fictional request."),
+                ("The fictional permit is automatically renewed for five years [1].", "The fictional permit may be renewed for five years."),
+                ("The fictional extension lasts five years after approval without limit [1].", "The fictional extension lasts five years after approval."),
+                ("The fictional fee is always refundable on request [1].", "The fictional fee is refundable on request."),
+                ("The fictional notice always takes effect on day 5 [1].", "The fictional notice may take effect on day 5."),
+                ("The fictional board automatically approves each complete request [1].", "The fictional board approves complete requests."),
+                ("يسري النموذج على كل الأعضاء المسجلين [1].", "يسري النموذج على الأعضاء المسجلين."),
+                ("يجوز للمجلس دائما تمديد المدة بعد الإخطار [1].", "يجوز للمجلس تمديد المدة بعد الإخطار."),
+            ),
+            "reversed_meaning": (
+                ("The fictional allowance decreases by 2 units [1].", "The fictional allowance increases by 2 units."),
+                ("The fictional review happens after day 10 [1].", "The fictional review happens before day 10."),
+                ("The fictional form excludes registered members [1].", "The fictional form includes registered members."),
+                ("The fictional request is invalid [1].", "The fictional request is valid."),
+                ("The fictional permit is non-renewable [1].", "The fictional permit is renewable."),
+                ("The board rejects complete requests [1].", "The board accepts complete requests."),
+                ("The fictional fee is not payable in advance [1].", "The fictional fee is payable in advance."),
+                ("The minimum fictional period is 10 days [1].", "The maximum fictional period is 10 days."),
+                ("تنقص القيمة الخيالية بمقدار وحدتين [1].", "تزيد القيمة الخيالية بمقدار وحدتين."),
+                ("تتم المراجعة الخيالية بعد اليوم العاشر [1].", "تتم المراجعة الخيالية قبل اليوم العاشر."),
+                ("يستثني النموذج الأعضاء المسجلين [1].", "يشمل النموذج الأعضاء المسجلين."),
+                ("يرفض المجلس الطلب المستوفي [1].", "يقبل المجلس الطلب المستوفي."),
+            ),
+            "over_generalization": (
+                ("Every applicant may request one extension after a valid notice [1].", "A registered applicant may request one extension after a valid notice."),
+                ("The board always grants extensions when evidence is complete [1].", "The board may grant extensions when evidence is complete."),
+                ("The fictional fee applies to all requests [1].", "The fictional fee applies to commercial requests."),
+                ("Every member with any permit may use the fictional form [1].", "A member with an active permit may use the fictional form."),
+                ("The rule applies to all requests [1].", "The rule applies to requests submitted online."),
+                ("The board may extend the period in all cases [1].", "The board may extend the period in exceptional cases."),
+                ("The fictional fee applies to every request [1].", "The fictional fee applies to commercial requests."),
+                ("Any request may be reviewed by the board [1].", "A request filed before day 10 may be reviewed by the board."),
+                ("يجوز لكل عضو طلب تمديد واحد بعد إخطار صحيح [1].", "يجوز للعضو المسجل طلب تمديد واحد بعد إخطار صحيح."),
+                ("تطبق الرسوم على جميع الطلبات [1].", "تطبق الرسوم على الطلبات التجارية."),
+                ("يجوز للمجلس تمديد المدة في كل الحالات [1].", "يجوز للمجلس تمديد المدة في حالات استثنائية."),
+                ("يسري النموذج على كل الأعضاء [1].", "يسري النموذج على الأعضاء المسجلين."),
+            ),
+        }
+
+        self.assertEqual(sum(len(items) for items in groups.values()), 60)
+        false_passes = {}
+        false_blocks = 0
+        for category, examples in groups.items():
+            blocked_count = 0
+            for claim, evidence in examples:
+                blocked = has_unsupported_claims(
+                    claim, [{"text": evidence}], tokens, norm, _mask_markdown_code
+                )
+                if category == "supported":
+                    false_blocks += int(blocked)
+                else:
+                    blocked_count += int(blocked)
+            if category != "supported":
+                false_passes[category] = len(examples) - blocked_count
+
+        false_pass_total = sum(false_passes.values())
+        report = {
+            "total": 60,
+            "supported": {"n": 12, "false_blocks": false_blocks},
+            "unsupported": {
+                "n": 48, "false_passes": false_pass_total,
+                "false_pass_rate": round(false_pass_total / 48, 4),
+                "by_category": false_passes,
+            },
+            "false_block_rate": round(false_blocks / 12, 4),
+        }
+        print("FICTIONAL_CLAIM_SUPPORT_BENCHMARK=" + json.dumps(report, ensure_ascii=False, sort_keys=True))
+        self.assertEqual(false_pass_total, 0, "unsupported fictional claim passed the support check")
 
 if __name__ == "__main__":
     unittest.main()
