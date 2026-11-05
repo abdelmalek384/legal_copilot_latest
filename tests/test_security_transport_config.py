@@ -135,6 +135,7 @@ class SecureCookieTransportTests(unittest.TestCase):
             "https://user:pass@llm.example.com/v1",
             "https://llm.example.com/v1?api_key=secret",
             "https://llm.example.com/v1#fragment",
+            "https://llm.example.com:0/v1",
             "https://llm.example.com:99999/v1",
             "file:///tmp/model",
         ):
