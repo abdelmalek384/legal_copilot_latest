@@ -297,6 +297,10 @@ def run(args: argparse.Namespace) -> int:
         # 20,000-passage fixture can still use the authenticated upload route.
         required_uploads = math.ceil(args.passages / 650)
         app_module._UPLOAD_RATE_LIMIT = (max(10, required_uploads), 3600)
+        app_module._RATE_LIMITS = dict(app_module._RATE_LIMITS)
+        app_module._RATE_LIMITS["/firm/data-export.zip"] = (
+            max(2, args.samples + args.warmups), 3600
+        )
 
         client = TestClient(app_module.app)
         login = client.post(
