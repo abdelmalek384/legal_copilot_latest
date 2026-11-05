@@ -80,6 +80,40 @@ def _modal_classes(text, patterns):
     }
 
 
+
+_ENGLISH_NEGATED_OBLIGATION = re.compile(
+    r"\\b(?:not\\s+required\\s+to|need\\s+not|is\\s+not\\s+obliged\\s+to|"
+    r"are\\s+not\\s+obliged\\s+to|is\\s+not\\s+obligated\\s+to|"
+    r"are\\s+not\\s+obligated\\s+to)\\b",
+    re.IGNORECASE,
+)
+_ENGLISH_POSITIVE_OBLIGATION = re.compile(
+    r"\\b(?:must|shall|required\\s+to|is\\s+required\\s+to|are\\s+required\\s+to)\\b",
+    re.IGNORECASE,
+)
+_ARABIC_NEGATED_OBLIGATION = re.compile(
+    r"(?:لا\\s*(?:يجب|يلتزم|يتعين)|ليس\\s+ملزما|غير\\s+ملزم)"
+)
+_ARABIC_POSITIVE_OBLIGATION = re.compile(r"(?:يجب|يلتزم|يتعين)")
+
+
+def _has_negated_obligation_mismatch(claim, evidence):
+    """Check raw text before normalization can discard obligation negation."""
+    pairs = (
+        (_ENGLISH_NEGATED_OBLIGATION, _ENGLISH_POSITIVE_OBLIGATION),
+        (_ARABIC_NEGATED_OBLIGATION, _ARABIC_POSITIVE_OBLIGATION),
+    )
+    for negative, positive in pairs:
+        claim_negative = negative.search(claim)
+        evidence_negative = negative.search(evidence)
+        claim_positive = positive.search(negative.sub(" ", claim))
+        evidence_positive = positive.search(negative.sub(" ", evidence))
+        if ((claim_positive and evidence_negative)
+                or (claim_negative and evidence_positive)):
+            return True
+    return False
+
+
 def _has_modal_mismatch(claim, evidence):
     """Compare explicit, conflicting modality classes only within one language."""
     conflicts = {
@@ -285,6 +319,10 @@ def has_unsupported_claims(answer, hits, tokens_fn, norm_fn, mask_code=None):
             return True
 
         claim = re.sub(r"\[\d+\]", " ", sentence)
+        # Negation is legally material; compare raw wording before normalization.
+        # Some Arabic normalizers remove particles such as لا, which can invert duty.
+        if _has_negated_obligation_mismatch(claim, evidence):
+            return True
         normalized_claim = norm_fn(claim)
         normalized_evidence = norm_fn(evidence)
         if _has_modal_mismatch(normalized_claim, normalized_evidence):
