@@ -20,7 +20,10 @@
         "top3_hit_rate_colloquial_or_synonym": null,
         "colloquial_or_synonym_questions": 0,
         "cited_non_abstained_answers": 0,
-        "uncited_non_abstained_answers": 0
+        "uncited_non_abstained_answers": 0,
+        "target_status": "not_evaluable_missing_approved_labels_or_cited_runs",
+        "target_top3_hit_rate_colloquial_or_synonym": 0.8,
+        "target_wrong_article_rate": 0
       },
       "status": "not_scored_no_lawyer_approved_labels"
     },
