@@ -29,7 +29,7 @@
     "All 120 quantitative provision cues remain unreviewed",
     "Seventy-nine of 221 minor-difference records were visually checked and matched on the inspected passages; 142 minor-difference records remain unreviewed",
     "Thirty-three of 120 quantitative provision cues were visually checked and matched; 87 quantitative cues remain unreviewed",
-    "One hundred fifty-four of 221 minor-difference records were visually checked and matched on the inspected passages; 67 minor-difference records remain unreviewed"
+    "One hundred seventy-five of 221 minor-difference records were visually checked and matched on the inspected passages; 46 minor-difference records remain unreviewed"
   ],
   "numeric_alert_page_images_reviewed": true,
   "numeric_alert_reviewed_articles": [
@@ -175,8 +175,8 @@
     ]
   },
   "minor_difference_visual_spot_checks": {
-    "checked": 154,
-    "matching_on_checked_passage": 154,
+    "checked": 175,
+    "matching_on_checked_passage": 175,
     "confirmed_textual_discrepancies": 0,
     "records": [
       {
@@ -948,6 +948,111 @@
         "law_part": "labour_law",
         "article": 191,
         "gazette_pdf_pages": "78"
+      },
+      {
+        "law_part": "promulgation",
+        "article": 1,
+        "gazette_pdf_pages": "2"
+      },
+      {
+        "law_part": "promulgation",
+        "article": 2,
+        "gazette_pdf_pages": "2-3"
+      },
+      {
+        "law_part": "promulgation",
+        "article": 3,
+        "gazette_pdf_pages": "3"
+      },
+      {
+        "law_part": "promulgation",
+        "article": 4,
+        "gazette_pdf_pages": "3"
+      },
+      {
+        "law_part": "promulgation",
+        "article": 5,
+        "gazette_pdf_pages": "3"
+      },
+      {
+        "law_part": "promulgation",
+        "article": 6,
+        "gazette_pdf_pages": "3-4"
+      },
+      {
+        "law_part": "promulgation",
+        "article": 7,
+        "gazette_pdf_pages": "4"
+      },
+      {
+        "law_part": "promulgation",
+        "article": 9,
+        "gazette_pdf_pages": "4-5"
+      },
+      {
+        "law_part": "promulgation",
+        "article": 10,
+        "gazette_pdf_pages": "5"
+      },
+      {
+        "law_part": "promulgation",
+        "article": 11,
+        "gazette_pdf_pages": "5"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 1,
+        "gazette_pdf_pages": "6-11"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 3,
+        "gazette_pdf_pages": "11"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 4,
+        "gazette_pdf_pages": "11"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 5,
+        "gazette_pdf_pages": "11-12"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 6,
+        "gazette_pdf_pages": "12"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 7,
+        "gazette_pdf_pages": "12-13"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 8,
+        "gazette_pdf_pages": "13"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 9,
+        "gazette_pdf_pages": "13"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 12,
+        "gazette_pdf_pages": "14"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 13,
+        "gazette_pdf_pages": "14"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 14,
+        "gazette_pdf_pages": "14"
       }
     ],
     "articles": [
@@ -1104,11 +1209,39 @@
       186,
       189,
       190,
-      191
+      191,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      9,
+      10,
+      11,
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      12,
+      13,
+      14
     ],
     "gazette_pdf_pages": [
+      2,
+      3,
+      4,
       5,
+      6,
+      11,
+      12,
       13,
+      14,
       15,
       16,
       17,
