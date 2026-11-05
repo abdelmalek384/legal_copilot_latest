@@ -60,6 +60,15 @@ class GazetteTextImportTests(unittest.TestCase):
         self.assertIn("Block 1 missing: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12", report)
         self.assertIn("Blocks with duplicate article numbers: 0", report)
 
+    def test_duplicate_article_number_is_reported_without_auto_repair(self):
+        duplicate_text = "المادة 1\nنص أول.\nالمادة 2\nنص ثان.\nالمادة 2\nنص مكرر."
+        self.text_path.write_text(duplicate_text, encoding="utf-8")
+        self.metadata["content_sha256"] = hashlib.sha256(duplicate_text.encode("utf-8")).hexdigest()
+        self.write_metadata()
+        import_text(self.text_path, self.meta_path, self.output)
+        report = (self.output / "import_report.md").read_text(encoding="utf-8")
+        self.assertIn("Block 1 duplicates: 2", report)
+
     def test_non_lawyer_supplier_role_is_rejected(self):
         self.metadata["supplier_role"] = "unknown"
         self.write_metadata()
