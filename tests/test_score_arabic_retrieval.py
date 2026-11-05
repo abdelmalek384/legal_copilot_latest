@@ -30,11 +30,14 @@ def reviewed(qid, *, answerable=True, article="LABOUR-ART-1", style="formal", ta
 
 
 class ArabicRetrievalScorerTests(unittest.TestCase):
-    def test_unlabeled_rows_are_excluded_and_metrics_are_null(self):
+    def test_unlabeled_rows_and_their_captured_runs_are_excluded_and_metrics_are_null(self):
         q = {"id": "Q1", "review_status": "needs_lawyer_review", "expected_article": None}
-        result = score([q], [])
+        run = {"question_id": "Q1", "retrieved_article_ids": ["EG-LAW::article:1"],
+               "cited_article_ids": [], "abstained": True}
+        result = score([q], [run])
         self.assertEqual(result["reviewed_questions"], 0)
         self.assertEqual(result["unlabeled_or_unreviewed_excluded"], 1)
+        self.assertEqual(result["unlabeled_run_records_excluded"], 1)
         self.assertIsNone(result["top3_hit_rate"])
         self.assertIsNone(result["wrong_article_rate"])
         self.assertIsNone(result["abstention_rate"])
@@ -104,7 +107,13 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         self.assertEqual(result["uncited_non_abstained_answers"], 1)
         self.assertIsNone(result["wrong_article_rate"])
 
-    def test_run_for_unreviewed_question_is_rejected(self):
+    def test_run_for_unknown_question_is_rejected(self):
+        q = reviewed("Q1")
+        run = {"question_id": "UNKNOWN", "retrieved_article_ids": [], "cited_article_ids": [], "abstained": True}
+        with self.assertRaisesRegex(ValueError, "unknown question_id"):
+            score([q], [run])
+
+
         q = {"id": "Q1", "review_status": "needs_lawyer_review"}
         run = {"question_id": "Q1", "retrieved_article_ids": [], "cited_article_ids": [], "abstained": True}
         with self.assertRaisesRegex(ValueError, "unreviewed"):
