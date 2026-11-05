@@ -6474,6 +6474,7 @@ app.include_router(
         session_model=SessIn,
         note_model=NoteIn,
         add_session_helper=add_session,
+        case_patch_model=CasePatch,
     )
 )
 
@@ -6609,16 +6610,6 @@ def case_brief(cid: int, body: CaseBriefAuthorizationIn, u: dict = Depends(user)
         "answer": answer,
         "sources": records,
     }
-
-
-@app.patch("/cases/{cid}")
-@rollback_tenant_transaction_on_error
-def patch_case(cid: int, b: CasePatch, u: dict = Depends(user)):
-    c = conn(); need(c, u, cid, lead=True)
-    for f in ("stage", "status", "case_number", "case_year", "court", "circuit", "opposing_party"):
-        if getattr(b, f) is not None:
-            c.execute("UPDATE cases SET %s=? WHERE id=?" % f, (getattr(b, f), cid)); log(c, cid, u["name"], "%s: %s" % (f, getattr(b, f)))
-    c.commit(); return {"ok": True}
 
 
 @app.post("/cases/{cid}/members")
