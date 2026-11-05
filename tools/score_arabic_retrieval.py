@@ -134,15 +134,30 @@ def score(questions, runs):
                 if (not q["answerable"]) or any(x != expected for x in cited):
                     wrong_answers += 1
 
+    colloquial_rate = (
+        round(sum(colloquial_synonym_hits) / len(colloquial_synonym_hits), 4)
+        if colloquial_synonym_hits else None
+    )
+    wrong_rate = round(wrong_answers / cited_non_abstained, 4) if cited_non_abstained else None
+    if not top3_hits or colloquial_rate is None or wrong_rate is None:
+        target_status = "not_evaluable_missing_approved_labels_or_cited_runs"
+    elif colloquial_rate < 0.80 or wrong_rate != 0.0:
+        target_status = "below_target"
+    else:
+        target_status = "targets_met"
+
     return {
         "reviewed_questions": len(reviewed),
         "answerable_questions": len(answerable),
         "unanswerable_questions": unanswerable,
         "unlabeled_or_unreviewed_excluded": excluded,
         "top3_hit_rate": round(sum(top3_hits) / len(top3_hits), 4) if top3_hits else None,
-        "top3_hit_rate_colloquial_or_synonym": round(sum(colloquial_synonym_hits) / len(colloquial_synonym_hits), 4) if colloquial_synonym_hits else None,
+        "top3_hit_rate_colloquial_or_synonym": colloquial_rate,
+        "target_status": target_status,
+        "target_top3_hit_rate_colloquial_or_synonym": 0.80,
+        "target_wrong_article_rate": 0.0,
         "colloquial_or_synonym_questions": len(colloquial_synonym_hits),
-        "wrong_article_rate": round(wrong_answers / cited_non_abstained, 4) if cited_non_abstained else None,
+        "wrong_article_rate": wrong_rate,
         "wrong_article_answers": wrong_answers,
         "cited_non_abstained_answers": cited_non_abstained,
         "non_abstained_answers": non_abstained,
