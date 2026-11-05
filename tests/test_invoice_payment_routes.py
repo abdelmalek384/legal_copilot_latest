@@ -1,4 +1,5 @@
 """Invoice payment, aging, and receipt route tests."""
+import json
 import sqlite3
 import unittest
 
@@ -17,6 +18,13 @@ class InvoicePaymentRouteTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(first.status_code, 200, first.text)
         self.assertEqual(first.json()["payment_state"], "partially_paid")
         self.assertEqual(first.json()["balance_piasters"], 12500)
+        payment_event = next(
+            event for event in first.json()["events"]
+            if event["event_type"] == "payment_recorded"
+        )
+        event_details = json.loads(payment_event["details_json"])
+        self.assertEqual(event_details["amount_piasters"], 5000)
+        self.assertEqual(event_details["payment_id"], first.json()["payments"][0]["id"])
         duplicate = self.mutate(self.client_a, "post", f"/invoices/{invoice['id']}/payments", json=payload)
         self.assertEqual(duplicate.status_code, 200, duplicate.text)
         self.assertEqual(len(duplicate.json()["payments"]), 1)
