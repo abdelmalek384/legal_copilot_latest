@@ -14,7 +14,7 @@
 
 ## Results
 
-| Style | Queries | Top-1 | Top-3 | Wrong-article answers | Refusal correctness |
+| Style | Queries | Top-1 | Top-3 | Wrong-article answers | Expected outcome correct* |
 |---|---:|---:|---:|---:|---:|
 | Direct | 32 | 32/32 (100%) | 32/32 (100%) | 0 | 32/32 (100%) |
 | Paraphrase | 32 | 32/32 (100%) | 32/32 (100%) | 0 | 32/32 (100%) |
@@ -29,7 +29,7 @@
 
 - Top-1/top-3 count whether the intended article appears at rank 1 / within the first three results for answerable queries.
 - A wrong-article answer is a top-ranked retrieved article different from the intended article. The required count is zero.
-- Refusal correctness means answerable queries return at least one result and must-abstain queries return none. Two answerable queries were refused; neither produced a wrong-article result.
+- *Expected outcome correct* means answerable queries return at least one result and must-abstain queries return none. Two answerable queries returned no result; neither produced a wrong-article result.
 - These scores reflect a controlled fictional corpus whose query/article relationships are known by construction. They must not be generalized to real Egyptian laws, unfamiliar wording, source currentness, or lawyer-reviewed legal correctness.
 - This is a retrieval/refusal engineering measurement only. It does not establish legal accuracy, completeness, authority, licensing, or lawyer approval.
 
