@@ -336,8 +336,9 @@ def run(args: argparse.Namespace) -> int:
                 },
             ),
             ("invoice_list", "get", "/invoices", 300.0, None),
+            ("finance_overview", "get", "/finance/overview", 300.0, None),
             (
-                "finance_overview", "get", "/finance/invoices/overview",
+                "invoice_finance_overview", "get", "/finance/invoices/overview",
                 300.0, None,
             ),
             ("firm_export", "get", "/firm/data-export.zip", None, None),
