@@ -1,6 +1,6 @@
 """Public identity invitation and account-recovery pages."""
 
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Depends, Request, Response
 from fastapi.responses import HTMLResponse
 
 
@@ -53,4 +53,33 @@ result.textContent="Password reset successful. Sign in with your new password.";
 if(!token)result.textContent="This recovery link is missing its token. Request a new recovery email.";
 </script></body></html>""".replace("__CSP_NONCE__", request.state.csp_nonce))
 
+def create_logout_router(
+    *,
+    control_connection_provider,
+    user_dependency,
+    token_hash,
+    secure_cookie_transport,
+):
+    logout_router = APIRouter()
+
+    @logout_router.post("/logout")
+    def logout(request: Request, response: Response, u: dict = Depends(user_dependency)):
+        tok = request.cookies.get("lc_session", "")
+        c = control_connection_provider()
+        c.execute(
+            "DELETE FROM auth_sessions WHERE token_hash=? AND user_id=?",
+            (token_hash(tok), u["id"]),
+        )
+        c.commit()
+        for cookie in ("lc_session", "lc_csrf", "lc_firm"):
+            response.delete_cookie(
+                cookie,
+                path="/",
+                httponly=(cookie != "lc_csrf"),
+                samesite="lax",
+                secure=secure_cookie_transport(request),
+            )
+        return {"ok": True}
+
+    return logout_router
 
