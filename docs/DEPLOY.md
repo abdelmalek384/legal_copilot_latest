@@ -6,7 +6,7 @@ This is the short operator guide for a **single-host, single-app-replica** produ
 
 Use patched Linux, Docker/Compose or Python 3.12, a dedicated unprivileged service account, and a TLS reverse proxy. Keep the three SQLite profiles on one persistent host; do not run multiple replicas or share SQLite files across hosts. Keep secrets outside Git and protect them from Docker/socket administrators.
 
-Set these three **distinct, absolute** paths (the legacy `COPILOT_DB` must be unset):
+Set these three **distinct, absolute** database paths:
 
 - `COPILOT_CONTROL_DB`: control-plane SQLite file.
 - `COPILOT_TENANT_DB_ROOT`: directory containing firm databases.
@@ -55,7 +55,7 @@ Start the reviewed immutable image using the [container deployment template](con
 - [ ] **Public HTTPS origin:** `COPILOT_PUBLIC_ORIGIN` is a bare HTTPS origin and matches the public host.
 - [ ] **MFA key:** `MFA_ENCRYPTION_KEY` is valid Fernet material and differs from `BACKUP_KEY`.
 - [ ] All three profile database paths are distinct, persistent and accessible to the service account.
-- [ ] `COPILOT_DB` is unset; allowed hosts and trusted-proxy entries are correct.
+- [ ] Allowed hosts and trusted-proxy entries are correct.
 - [ ] The accepted database-operations manifest exists at `COPILOT_DATABASE_ACCEPTANCE_FILE`.
 - [ ] S3/KMS object storage is configured and original-file access is tested.
 - [ ] Encrypted backup verification and a witnessed restore/rollback drill have passed.
