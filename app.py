@@ -6696,11 +6696,9 @@ def new_session(cid: int, b: SessIn, u: dict = Depends(user)):
 @rollback_tenant_transaction_on_error
 def new_note(cid: int, b: NoteIn, u: dict = Depends(user)):
     c = conn(); need(c, u, cid)
-    c.execute("INSERT INTO notes(case_id,creab.summary, occurred_at),
-    )
-    log(c, cid, u["name"], "إضافة سجل تواصل")
-    c.commit()
-    return {"id": cursor.lastrowid, "ok": True}
+    c.execute("INSERT INTO notes(case_id,created_by,text) VALUES(?,?,?)", (cid, u["id"], b.text.strip()))
+    log(c, cid, u["name"], "إضافة ملاحظة"); c.commit()
+    return {"ok": True}
 
 
 @app.get("/deadline-holidays")
