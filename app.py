@@ -6464,7 +6464,10 @@ def import_cases_csv(b: CaseCSVImportIn, u: dict = Depends(user)):
             for key in ("title", "client", "stage", "case_number", "case_year", "court", "circuit", "opposing_party"):
                 index = columns.get(key)
                 header = reader.fieldnames[index] if index is not None else None
-                values[key] = str(row.get(header) or "").strip() if header else ""
+                raw_value = str(row.get(header) or "") if header else ""
+                # Preserve whitespace-only client input so CaseIn can reject it
+                # instead of silently treating it as an omitted optional client.
+                values[key] = raw_value if key == "client" else raw_value.strip()
             matter = CaseIn.model_validate(values)
             if not matter.title.strip():
                 raise ValueError("matter title is required")
