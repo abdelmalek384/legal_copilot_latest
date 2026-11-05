@@ -122,6 +122,25 @@ class MFAAccountSecurityTests(unittest.TestCase):
         self.assertTrue(all(value.startswith("scrypt$") for value in hashes))
         self.assertEqual(self.client.get("/cases").status_code, 200)
 
+    def test_all_required_policy_blocks_non_admin_until_mfa_enrollment(self):
+        os.environ["MFA_ENFORCEMENT"] = "all_required"
+        password = "MFA-Lawyer-Required-Password-2026!"
+        lawyer_id = self.runtime.create_global_identity(
+            "MFA Required Lawyer",
+            "mfa-required-lawyer@example.test",
+            app.hash_pw(password),
+        )
+        self.runtime.create_firm_membership(lawyer_id, self.firm_id, "lawyer")
+
+        with TestClient(app.app) as lawyer_client:
+            login = lawyer_client.post(
+                "/login",
+                json={"email": "mfa-required-lawyer@example.test", "password": password},
+            )
+            self.assertEqual(login.status_code, 200, login.text)
+            self.assertTrue(login.json()["mfa_enrollment_required"])
+            self.assertEqual(lawyer_client.get("/cases").status_code, 403)
+
     def test_login_requires_totp_and_replayed_step_is_rejected(self):
         secret = self.enroll()
         self.confirm(secret)
