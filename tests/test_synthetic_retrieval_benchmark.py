@@ -181,6 +181,7 @@ class FictionalRetrievalMeasurementTests(unittest.TestCase):
             report[style] = {
                 "n": len(cases), "top1": top1, "top3": top3,
                 "wrong_article_answers": wrong,
+                "wrong_article_examples": wrong_details,
                 "refusal_correct": served, "refusal_total": len(cases),
             }
         abstained = 0
