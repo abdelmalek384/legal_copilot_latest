@@ -1,28 +1,30 @@
-# Project status
+# Legal Copilot status
 
-**Updated:** 2026-11-04  
-**Scope:** engineering and knowledge quality; not a legal-readiness certification.
+**Updated:** 2026-11-06  
+**Scope:** engineering and evidence status only; not legal-readiness or production certification.
 
-## Working
+## Current state
 
-- Core case-management workflows and the profile-separated control / per-firm / shared-corpus database architecture are implemented.
-- Authentication, firm access controls, MFA, audit, billing/invoices, reminders, deadline workflow, exports and first-run setup have automated regression coverage.
-- Arabic/English lexical retrieval, source citation checks, abstention behavior, legal-source registry and evidence-preserving ingestion tools are implemented.
-- Repository CI includes unit/integration tests, browser acceptance, dependency audit, CodeQL and Bandit.
+- Runtime uses separate control-plane, per-firm database and shared legal-corpus profiles.
+- Labour Law 14/2025 PR #1451 is merged as a provisional source-comparison package. The 311-row lawyer tick-sheet leaves all decisions blank and every `verified` value at 0. The law remains non-authoritative and retrieval-ineligible pending qualified counsel review, source-rights review, currentness/amendment/corrigenda checks and commencement analysis.
+- A lawyer-supplied UTF-8 Gazette text importer and article-number audit are prepared in the current work branch. Output rows remain `verified=0`, `in_force=0`, and `as_of=null`; database staging is a separate approved operation.
+- The 110-question Arabic benchmark is a curated template, not production query data. All expected articles and lawyer-approved answers are unlabeled. No before/after retrieval metrics exist; `MIN_SCORE` remains 0.30 and must not be tuned yet.
+- Five deadline rules and the holiday calendar remain unverified drafts. The counsel packet records the assumed periods/triggers and missing primary citations; no rule values were changed.
+- A raw-text negated-obligation guard is included in the current work branch. It compares obligation polarity before Arabic normalization; exact-head CI is still required.
 
-## Not verified / blocked
+## Human and release gates
 
-- **No Egyptian law in the product is lawyer-verified.** Candidate metadata, unofficial transcriptions and fictional fixtures are not legal authority.
-- Law 14/2025 source matching is waiting for the user-supplied `law_rows_ar.jsonl` (311 rows) and manually saved Gazette text. The 120 quantity-bearing provisions require individual numeric checks; six orthography outliers should be compared first.
-- The draft evaluation questions have no lawyer-approved answers. Their metrics can measure retrieval and refusal, not legal correctness.
-- Deadline rules and holiday coverage remain draft; calculated dates require independent legal/calendar review.
-- Production email, public-origin and MFA functions require deployment-specific SMTP, HTTPS-origin and dedicated MFA-key configuration and staging.
+1. Qualified Egyptian counsel signs the Law 14/2025 article-by-article tick-sheet and reviews currentness, source rights and effective dates.
+2. Counsel labels expected articles, answers, answerability and question style/synonym tags for the Arabic benchmark.
+3. Counsel approves or corrects each deadline rule and the applicable holiday calendar.
+4. Run the Gazette importer against the lawyer-supplied text; review the report before separately approved staging.
+5. Exact-head unit/integration tests, browser acceptance, Bandit, CodeQL and dependency audit must pass before merge or release claims.
 
-## Next
+## PR triage
 
-1. Measure the existing 155-question draft set with the three legal evaluation tools; report per-category top-1/top-3, wrong-article, abstention and claim-support metrics.
-2. Tune Arabic colloquial/synonym handling only if measured top-3 recall is below 80%, preserving wrong-article = 0 and must-abstain behavior.
-3. Dry-run the manual-capture, article-row audit and corpus/reference comparison path on a fixture; record exact commands in the law-ingestion runbook.
-4. When both Law 14/2025 files arrive, produce the comparison report and 120-article numeric tick-sheet; register the result as **source-matched, not lawyer-reviewed**.
+- #1451 — merged; provisional evidence only.
+- #1449, #1212, #1208 and #840 — closed without merge.
+- #1460 — closed without merge; superseded by current-main negation guard.
+- #1464 — draft negation guard; superseded by the combined current-main work branch.
 
-Never describe a source-matched result as verified without qualified Egyptian-lawyer review.
+Historical tracker material is retained under `docs/archive/` where appropriate. This file is the short current status entry point.
