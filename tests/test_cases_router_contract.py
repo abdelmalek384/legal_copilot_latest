@@ -21,9 +21,10 @@ class CasesRouterContractTests(unittest.TestCase):
         self.assertEqual(set(actual), expected)
         self.assertTrue(all(module == "routers.cases" for module in actual.values()))
 
-    def test_case_read_routes_are_registered_from_cases_router(self):
+    def test_case_read_and_update_routes_are_registered_from_cases_router(self):
         expected = {
             ("/cases", "GET"),
+            ("/cases/{cid}", "PATCH"),
             ("/cases", "POST"),
             ("/cases/search", "GET"),
             ("/cases/{cid}", "GET"),
