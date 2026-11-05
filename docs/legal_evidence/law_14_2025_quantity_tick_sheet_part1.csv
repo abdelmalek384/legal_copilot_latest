@@ -9,7 +9,7 @@ labour_law,2,11,,ر السنة ( 365) يومًا ، والشهر ثلاثون ي
 labour_law,6,12,,لعمل خلال مدة سريانه، أو خلال ثلاثة أشهر من تاريخ انتهائه. ويستمر,minor_difference,yes,Page 12 checked: the three-month period after contract end matches the candidate cue.
 labour_law,12,14,,فى تاريخ استحقاقها لا تقل عن (3٪) من الأجر التأميني ، وتستحق ت | ضها أو الإعفاء منها وذلك خلال ,minor_difference,yes,Page 14 checked: the periodic allowance is at least 3% of insured wage; candidate cue matches.
 labour_law,18,16-17,,س الوزراء ، فى موعد لا يتجاوز ستة أشهر من تاريخ العمل بهذا القا | يجتمع المجلس مرة على الأقل كل,minor_difference,yes,Pages 16-17 checked: six-month council formation deadline and at-least-quarterly meeting cadence match the candidate.
-labour_law,21,18-19,,0 من هذا القانون من : 1- نسبة 0.25٪ (ربع فى المائة) من الحد الأدن | ا القانون من : 1- نسبة 0.25,numeric_difference,,
+labour_law,21,18-19,,0 من هذا القانون من : 1- نسبة 0.25٪ (ربع فى المائة) من الحد الأدن | ا القانون من : 1- نسبة 0.25,numeric_difference,yes,Numeric alert visually checked on pages 18-19: 0.25% and «ربع في المائة» match; tokenization caused the machine alert.
 labour_law,23,19-20,,، ورسومه بما لا يزيد على مائة ألف جنيه ، وحالات الإعفاء منها .,minor_difference,,
 labour_law,26,21,,رسم المقابل لذلك بما لا يجاوز خمسمائة جنيه .,identical_after_normalization,yes,Page 21 Gazette image checked: the provision states a fee cap of 500 Egyptian pounds; candidate cue matches.
 labour_law,27,21,,رسوم المقررة عنه بما لا يجاوز خمسمائة جنيه ، وحالات الإعفاء منها . | لرسم المقرر عنها بما لا يج,minor_difference,,
@@ -32,7 +32,7 @@ labour_law,62,34,,تشغيل الأطفال قبل بلوغهم خمس عشرة 
 labour_law,65,34-35,,يُحظر تشغيل الطفل أكثر من ست ساعات يوميًا ، ويجب أن تتخلل | ات بحيث لا يعمل الطفل أكثر من أربع ,minor_difference,,
 labour_law,71,36-37,,يه ، ولا يزيد على مائة وخمسين ألف جنيه ، ويحدد حالات إلغاء التر | هة الإدارية المختصة بذلك خلال,minor_difference,,
 labour_law,72,37,,مل الأجنبى عن العمل لمدة خمسة عشر يومًا متصلة دون مسوغ قانونى ي,minor_difference,,
-labour_law,82,40-41,,مما يأتي : 1- نسبة لا تقل عن (1٪) ولا تزيد على (3٪) من قيمة ال | لا تقل عن (1٪) ولا تزيد على (3,numeric_difference,,
+labour_law,82,40-41,,مما يأتي : 1- نسبة لا تقل عن (1٪) ولا تزيد على (3٪) من قيمة ال | لا تقل عن (1٪) ولا تزيد على (3,numeric_difference,yes,Numeric alert visually checked on pages 40-41: the 1%-3% range and related figures match; tokenization caused the machine alert.
 labour_law,90,43-44,,فى عقد العمل لمدة لا تزيد على ثلاثة أشهر . ولا يجوز تعيين العامل,minor_difference,,
 labour_law,92,44,,امل ورقيًا أو إلكترونيًا لمدة خمس سنوات على الأقل تبدأ من تاريخ,minor_difference,,
 labour_law,93,44-45,,زم بإعادته إلى تلك الجهة خلال ثلاثة أيام من تاريخ انتهاء عقد العم,minor_difference,,
@@ -49,7 +49,7 @@ labour_law,119,52,,ساعات العمل ونهايتها أكثر من عشر �
 labour_law,120,52-53,,راحة أسبوعية لا تقل عن أربع وعشرين ساعة كاملة بعد ستة أيام عمل م | عن أربع وعشرين ساعة كاملة بع,minor_difference,,
 labour_law,121,53,,لجهة الإدارية المختصة فى خلال سبعة أيام من وقوع ظروف العمل غير ا | ذى يستحقه العامل مضافًا إليه,minor_difference,,
 labour_law,122,53-54,,أو ما يطرأ عليه من تعديل خلال سبعة أيام من تنفيذه على الأكثر .,minor_difference,,
-labour_law,124,54-55,yes,ذلك على الوجه الآتى : 1- خمسة عشر يومًا فى السنة الأولى . 2- وا | ًا فى السنة الأولى . 2- واحد ,numeric_difference,,
+labour_law,124,54-55,yes,ذلك على الوجه الآتى : 1- خمسة عشر يومًا فى السنة الأولى . 2- وا | ًا فى السنة الأولى . 2- واحد ,numeric_difference,yes,Numeric/orthography passage visually checked on pages 54-55: 15, 21, 30 and 45 days, age/service conditions and related periods match the candidate.
 labour_law,125,55,,مل على إجازة سنوية مدتها خمسة عشر يومًا ، منها ستة أيام متصلة ع | ة مدتها خمسة عشر يومًا ، منها,minor_difference,,
 labour_law,126,55,,لعمل قبل قيامه بالإجازة بخمسة عشر يومًا على الأقل . وللعامل الح | حب العمل قبل القيام بالإجازة ,minor_difference,,
 labour_law,128,56,,العمل لسبب عارض لمدة لا تجاوز سبعة أيام خلال السنة ، وبحد أقصى ي,identical_after_normalization,,
