@@ -1,6 +1,6 @@
-law_part,article,machine_status,similarity,gazette_pdf_pages,review_note
-labour_law,21,numeric_difference,0.9821,18-19,examined_extraction_artifact_both_show_0.25_percent
-labour_law,82,numeric_difference,0.9818,40-41,examined_extraction_artifact_both_show_0.5_percent
-labour_law,124,numeric_difference,0.9832,54-55,examined_word_segmentation_both_numeric_sets_match
-labour_law,146,numeric_difference,0.9888,63,examined_RTL_extraction_order_artifact_both_show_three_days
-labour_law,298,numeric_difference,0.8411,111-112,examined_printer_colophon_after_article_end
+law_part,article,machine_status,similarity,gazette_pdf_pages,page_image_reviewed,review_note
+labour_law,21,numeric_difference,0.9821,18-19,yes,Page 18 image visibly shows 0.25 percent and quarter percent; numeric alert is extraction/tokenization artifact
+labour_law,82,numeric_difference,0.9818,40-41,yes,Page 40 image visibly shows the 1-3 percent range and related figures; alert is tokenization/layout artifact
+labour_law,124,numeric_difference,0.9832,54-55,yes,Page 54 image shows 15 21 30 and 45 days plus the age/service conditions; page 55 continues the provision; word segmentation caused alert
+labour_law,146,numeric_difference,0.9888,63,yes,Page 63 image visibly gives references in order (1, 2) and a three-day period; PDF text layer reverses RTL list order
+labour_law,298,numeric_difference,0.8411,111-112,yes,Page 111 image shows Article 298 ending; page 112 is printer/deposit colophon only, after the article
