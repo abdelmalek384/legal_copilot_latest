@@ -10,8 +10,8 @@
 - A lawyer-supplied UTF-8 Gazette text importer and article-number audit are prepared in the current work branch. Output rows remain `verified=0`, `in_force=0`, and `as_of=null`; database staging is a separate approved operation.
 - The 110-question Arabic benchmark is a curated template, not production query data. It has 82 preliminary formal labels, 28 preliminary colloquial labels and 28 preliminary synonym tags; all remain unreviewed. The API runner now emits canonical source-scoped article IDs, and the scorer can retain unlabeled run captures while excluding them from metrics. No actual baseline run or before/after rates exist; `MIN_SCORE` remains 0.30 and must not be tuned yet.
 - Five deadline rules and the holiday calendar remain unverified drafts. The counsel packet records the assumed periods/triggers and missing primary citations; no rule values were changed.
-- A raw-text negated-obligation guard is included in PR #1466. It compares obligation polarity before Arabic normalization. Exact-head GitHub Actions jobs currently fail before any execution step; job logs are unavailable, so no test/security pass is claimed.
-- PR #1466 is the clean current-main review target. Stale drafts #1461 and #1464 have been closed without merge.
+- A raw-text negated-obligation guard is included in PR #1470. It compares obligation polarity before Arabic normalization. Exact-head GitHub Actions jobs currently fail before any execution step; job logs are unavailable, so no test/security pass is claimed.
+- PR #1470 is the clean current-main review target. Stale drafts #1461 and #1464 have been closed without merge.
 
 An independent pilot security-review handoff is available at `docs/security/INDEPENDENT_REVIEW_HANDOFF.md`; it is a reviewer plan, not a completed penetration test or release approval.
 
@@ -27,7 +27,7 @@ An independent pilot security-review handoff is available at `docs/security/INDE
 
 - #1451 — merged; provisional evidence only.
 - #1449, #1212, #1208 and #840 — closed without merge.
-- #1460, #1461 and #1464 — closed without merge; superseded by PR #1466.
-- #1466 — current-main combined deliverable; awaiting usable CI results and review.
+- #1460, #1461, #1464 and #1466 — closed without merge; superseded by PR #1470.
+- #1470 — current-main combined deliverable; awaiting usable CI results and review.
 
 Historical tracker material is retained under `docs/archive/` where appropriate. This file is the short current status entry point.
