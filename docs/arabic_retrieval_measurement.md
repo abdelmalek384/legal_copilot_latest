@@ -27,7 +27,7 @@ The machine-readable comparison file is docs/arabic_retrieval_measurement.json. 
 
 ## Why there are no numbers yet
 
-A retrieval score without expected article labels would be meaningless. All 110 questions are curated prompts, not production user-query logs or lawyer-approved ground truth; the 11 newly added candidates are separately marked as not user-observed. No baseline run output with ranked article IDs is available in the repository. Therefore neither a before score nor an after score can honestly be reported.
+A retrieval score without expected article labels would be meaningless. All 110 questions are curated prompts, not production user-query logs or lawyer-approved ground truth; the 11 newly added candidates are separately marked as not user-observed. The style/synonym slice is excluded until a lawyer approves the per-row style and retrieval tags. No baseline run output with ranked article IDs is available in the repository. Therefore neither a before score nor an after score can honestly be reported.
 
 ## Run after counsel labels the set
 
