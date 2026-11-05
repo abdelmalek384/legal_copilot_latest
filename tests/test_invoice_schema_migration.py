@@ -16,6 +16,7 @@ class InvoiceSchemaMigrationTests(unittest.TestCase):
         try:
             applied = apply_profile_migrations(connection, "firm", ROOT / "migrations")
             self.assertIn(16, applied)
+            self.assertIn(21, applied)
             tables = {
                 row["name"] for row in connection.execute(
                     "SELECT name FROM sqlite_master WHERE type='table'"
@@ -30,6 +31,12 @@ class InvoiceSchemaMigrationTests(unittest.TestCase):
                     "SELECT name FROM sqlite_master WHERE type='trigger'"
                 )
             }
+            indexes = {
+                row["name"] for row in connection.execute(
+                    "SELECT name FROM sqlite_master WHERE type='index'"
+                )
+            }
+            self.assertIn("idx_invoices_created_id_case", indexes)
             self.assertTrue({
                 "invoice_lines_insert_only_draft",
                 "invoice_lines_update_only_draft",
