@@ -87,6 +87,8 @@ For a concise production operator guide, see [Deploy Legal Copilot](docs/DEPLOY.
 
 ## Setup and security
 
+For the pilot security review, use the [independent reviewer handoff](docs/security/INDEPENDENT_REVIEW_HANDOFF.md). It is a test/evidence plan, not a completed penetration test or release approval.
+
 For a fresh installation, use the separate-database architecture. Do not follow old single-file database instructions for a fresh install.
 
 ### Mac quick start
