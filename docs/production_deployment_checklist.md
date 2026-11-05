@@ -56,8 +56,8 @@ Do not mark `production_identity_email` or `privileged_recovery_bootstrap` passe
 
 ## 3. Database, uploads, and backups
 
-- [ ] Configure three distinct absolute persistent paths: `COPILOT_CONTROL_DB`, `COPILOT_TENANT_DB_ROOT`, and `COPILOT_CORPUS_DB`. Keep `COPILOT_DB` unset; the shared-database compatibility harness is not an approved deployment architecture.
-- [ ] Before serving production traffic, provision the profile schemas and first firm owner through the restricted maintenance/bootstrap procedure. Use the three profile-separated paths and no `COPILOT_DB`; production startup refuses to create missing/empty databases implicitly and blocks pending or drifted profile migrations and unresolved tenant-fleet lifecycle states.
+- [ ] Configure three distinct absolute persistent paths: `COPILOT_CONTROL_DB`, `COPILOT_TENANT_DB_ROOT`, and `COPILOT_CORPUS_DB`. Firm data must never share a runtime database with another firm or the control plane.
+- [ ] Before serving production traffic, provision the profile schemas and first firm owner through the restricted maintenance/bootstrap procedure. Use only the three profile-separated paths; production startup refuses to create missing/empty databases implicitly and blocks pending or drifted profile migrations and unresolved tenant-fleet lifecycle states.
 - [ ] Run `python tools/deployment_preflight.py --strict` against the exact production environment and retain its output. Fix every error and warning that blocks the release.
 - [ ] Keep the legacy tenant-import preflight out of first-deployment acceptance. No legacy database has been deployed or used; only run import/reconciliation tools if a separate, approved external-data import is later proposed.
 - [ ] Set `COPILOT_DATABASE_ACCEPTANCE_FILE` to the controlled, completed operational-evidence manifest. Startup and the aggregate release gate both reject missing, incomplete, or stale evidence.
