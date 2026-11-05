@@ -360,6 +360,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_law_ingestion_fixture_pipeline.py
       - name: Test optional factual claim support validation
         run: PYTHONPATH=. python tests/test_claim_support.py
+      - name: Measure claim-support false-pass and false-block rates on 60 fictional claims
+        run: PYTHONPATH=. python tests/test_claim_support_measurement.py
       - name: Test article-rows audit tool
         run: PYTHONPATH=. python tests/test_audit_article_rows.py
       - name: Test firm-private usage metering and audit ledger
