@@ -29,7 +29,7 @@
     "All 120 quantitative provision cues remain unreviewed",
     "Seventy-nine of 221 minor-difference records were visually checked and matched on the inspected passages; 142 minor-difference records remain unreviewed",
     "One of 120 quantitative provision cues was visually checked and matched; 119 quantitative cues remain unreviewed",
-    "Eighty-nine of 221 minor-difference records were visually checked and matched on the inspected passages; 132 minor-difference records remain unreviewed"
+    "Ninety-six of 221 minor-difference records were visually checked and matched on the inspected passages; 125 minor-difference records remain unreviewed"
   ],
   "numeric_alert_page_images_reviewed": true,
   "numeric_alert_reviewed_articles": [
@@ -175,8 +175,8 @@
     ]
   },
   "minor_difference_visual_spot_checks": {
-    "checked": 89,
-    "matching_on_checked_passage": 89,
+    "checked": 96,
+    "matching_on_checked_passage": 96,
     "confirmed_textual_discrepancies": 0,
     "records": [
       {
@@ -623,6 +623,41 @@
         "law_part": "labour_law",
         "article": 50,
         "gazette_pdf_pages": "30"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 53,
+        "gazette_pdf_pages": "31"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 55,
+        "gazette_pdf_pages": "32"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 58,
+        "gazette_pdf_pages": "33"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 62,
+        "gazette_pdf_pages": "34"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 63,
+        "gazette_pdf_pages": "34"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 64,
+        "gazette_pdf_pages": "34"
+      },
+      {
+        "law_part": "labour_law",
+        "article": 67,
+        "gazette_pdf_pages": "35"
       }
     ],
     "articles": [
@@ -714,7 +749,14 @@
       45,
       46,
       48,
-      50
+      50,
+      53,
+      55,
+      58,
+      62,
+      63,
+      64,
+      67
     ],
     "gazette_pdf_pages": [
       5,
