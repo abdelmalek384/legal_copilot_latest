@@ -41,6 +41,16 @@ The CSV deliberately leaves every lawyer decision and reviewer field blank. Its 
 - Review collection, storage, display, indexing and commercial-reuse rights. A public URL or manual copy does not establish permission.
 - Confirm the exact provenance of the supplied PDF and candidate JSONL. Their recorded hashes identify files but do not prove who published or supplied them.
 
+## Currentness leads requiring counsel review
+
+The targeted official-source snapshot recorded in the comparison manifest (search through 2026-11-05) identified related implementing instruments, not confirmed amendments to Law 14/2025:
+
+- Prime Minister Decision 982/2026 applied remote work on Sundays during April 2026 for specified sectors/administrative functions. The manifest records extensions 1305/2026, 1572/2026, 2033/2026, 2377/2026 and 2590/2026 through September 2026; no October/November extension surfaced in that limited search.
+- The Ministry of Labour announced Ministerial Decision 49/2026 concerning seven additional annual-leave days for specified hazardous/difficult work or remote areas, and general workplace-regulation rules for establishments with 10 or more workers. The full signed texts were not captured in the manifest.
+- These are leads for currentness and implementation review, not verified amendments and not a complete search.
+
+Counsel should obtain the signed instruments, check publication/effective dates and scope, determine whether they amend, implement or merely supplement the Labour Law, and identify any later decisions or corrigenda before giving current-law advice.
+
 ## Sign-off
 
 - Reviewing lawyer: ______________________________
