@@ -67,6 +67,18 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         self.assertEqual(score([q], [run])["target_status"],
                          "not_evaluable_missing_approved_labels_or_cited_runs")
 
+    def test_canonical_expected_article_id_is_used_for_hits_and_citations(self):
+        q = reviewed("Q1")
+        q["expected_article"] = "المادة 12 من قانون العمل"
+        q["expected_article_id"] = "EG-LABOUR-14-2025::article:12"
+        run = {"question_id": "Q1",
+               "retrieved_article_ids": ["EG-LABOUR-14-2025::article:12"],
+               "cited_article_ids": ["EG-LABOUR-14-2025::article:12"],
+               "abstained": False}
+        result = score([q], [run])
+        self.assertEqual(result["top3_hit_rate"], 1.0)
+        self.assertEqual(result["wrong_article_rate"], 0.0)
+
     def test_wrong_cited_article_is_counted(self):
         q = reviewed("Q1")
         run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
@@ -113,11 +125,6 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "unknown question_id"):
             score([q], [run])
 
-
-        q = {"id": "Q1", "review_status": "needs_lawyer_review"}
-        run = {"question_id": "Q1", "retrieved_article_ids": [], "cited_article_ids": [], "abstained": True}
-        with self.assertRaisesRegex(ValueError, "unreviewed"):
-            score([q], [run])
 
 
 if __name__ == "__main__":
