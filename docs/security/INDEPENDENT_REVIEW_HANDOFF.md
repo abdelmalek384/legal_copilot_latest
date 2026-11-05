@@ -69,6 +69,29 @@ Test loopback, RFC1918, link-local, IPv6 loopback/link-local, cloud metadata add
 
 Enumerate every payment-review and platform-admin route from the current route registry. Test anonymous, ordinary firm member, firm owner, firm admin, reviewer, and platform admin as applicable. Verify object-level firm scoping, least privilege, method parity, CSRF on browser mutations, audit actor/target integrity, and denial without side effects. Test guessed IDs, replay, duplicate approval, state transitions, and privilege changes. Ensure a firm admin cannot access platform administration and that a platform role does not implicitly grant access to firm matter content.
 
+## Focused test commands
+
+Run from the repository root in the same Python 3.12 environment and isolated configuration used by the candidate build. These are starting points; add the reviewer-specific adversarial cases from the matrix above.
+
+```sh
+PYTHONPATH=. python tests/test_trusted_proxy_client_ip.py
+PYTHONPATH=. python tests/test_app_separate_database_runtime.py
+PYTHONPATH=. python tests/test_invoice_payment_routes.py
+PYTHONPATH=. python tests/test_invoice_csv_export.py
+PYTHONPATH=. python tests/test_case_csv_import.py
+PYTHONPATH=. python tests/test_subscription_billing_routes.py
+PYTHONPATH=. python tests/test_mfa_account_security.py
+PYTHONPATH=. python tests/test_security_transport_config.py
+PYTHONPATH=. python tests/test_deployment_preflight.py
+PYTHONPATH=. python tests/test_document_extraction_budget.py
+PYTHONPATH=. python tests/test_import_laws_bundle.py
+PYTHONPATH=. python tests/test_research_prompt_injection_boundary.py
+PYTHONPATH=. python tests/test_first_run_wizard_api.py
+PYTHONPATH=. python tests/test_frontend_ux_contract.py
+```
+
+Run the complete repository Tests workflow and Browser acceptance workflow against the exact candidate SHA after focused tests. Preserve exit codes and full logs; a workflow that never starts its test step is NOT RUN, not FAIL evidence for the code and not a pass.
+
 ## Execution and evidence
 
 1. Pin the candidate commit SHA and record Python/runtime, OS/container image digest, dependency lock hash, and test configuration.
