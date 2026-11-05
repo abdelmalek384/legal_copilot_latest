@@ -8,7 +8,7 @@
 - All 110 questions are currently unlabeled; expected article, lawyer-approved answer, answerability and pin-cites are blank.
 - Existing evaluator tools/evaluate_retrieval_quality.py already measures Recall@3, MRR@3, citation metrics and abstention compliance against lawyer-reviewed labels.
 - tools/score_arabic_retrieval.py adds article-specific top-3 hit rate, wrong-article answer rate and abstention rate. It excludes all unlabeled questions.
-- Run records must contain ranked retrieved_article_ids, cited_article_ids and abstained for each reviewed question.
+- Run records must contain ranked retrieved_article_ids, cited_article_ids and abstained for each reviewed question. Wrong-article rate is the share of non-abstained answers with article citations that contain at least one article outside the lawyer-approved expected article; uncited answers are reported separately.
 - Target after tuning: top-3 hit rate at least 0.80 on the colloquial-or-synonym slice and wrong-article answer rate 0.00. Report abstention separately; do not improve recall by answering without adequate verified evidence.
 
 ## Results
