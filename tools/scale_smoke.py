@@ -126,7 +126,7 @@ def _seed(runtime, client, firm_id, app_module):
     # 20,000 searchable passages without relying on implementation-specific
     # long-paragraph split boundaries.
     paragraph = "scaleprobe " + ("x" * 2987)
-    passage_text = "\\n\\n".join([paragraph] * 100)
+    passage_text = "\n\n".join([paragraph] * 100)
     if len(passage_text) > 300000:
         raise RuntimeError("synthetic passage document exceeds the API text limit")
     expected_chunks = 0
