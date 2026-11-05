@@ -10,6 +10,7 @@ import app
 class FakePdfPage:
     def __init__(self, number):
         self.number = number
+        self.rect = types.SimpleNamespace(width=595, height=842)
     def get_pixmap(self, dpi, alpha):
         return FakePixmap()
 
@@ -76,6 +77,26 @@ class PdfOcrFallbackTests(unittest.TestCase):
                 app.ocr_pdf_text(b"pdf", existing_pages={i: "" for i in range(1, 32)})
         self.assertEqual(caught.exception.status_code, 413)
 
+
+    def test_ocr_rejects_huge_page_dimensions_before_rasterizing(self):
+        document = FakePdfDoc(1)
+        document.pages[0].rect = types.SimpleNamespace(width=20000, height=20000)
+        fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: document)
+        fake_pytesseract = types.SimpleNamespace(image_to_string=MagicMock(return_value="never called"))
+        fake_image = types.SimpleNamespace(open=lambda value: object())
+        fake_pil = types.ModuleType("PIL")
+        fake_pil.Image = fake_image
+        with patch.dict(sys.modules, {
+            "pymupdf": fake_pymupdf,
+            "pytesseract": fake_pytesseract,
+            "PIL": fake_pil,
+        }):
+            with patch.object(document.pages[0], "get_pixmap") as render:
+                with self.assertRaises(app.HTTPException) as caught:
+                    app.ocr_pdf_text(b"pdf")
+        self.assertEqual(caught.exception.status_code, 413)
+        render.assert_not_called()
+        fake_pytesseract.image_to_string.assert_not_called()
 
     def test_ocr_worker_timeout_is_bounded_and_fails_closed(self):
         fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: FakePdfDoc(1))
