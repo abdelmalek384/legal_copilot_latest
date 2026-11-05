@@ -2,7 +2,7 @@
   "document_id": "EG-LABOUR-14-2025",
   "instrument": "Egyptian Labour Law 14/2025",
   "trust_tier": "source_matched_not_lawyer_reviewed",
-  "comparison_status": "machine_comparison_completed_manual_page_review_pending",
+  "comparison_status": "machine_comparison_completed_numeric_alert_page_reviewed_other_discrepancies_pending",
   "candidate_rows": 311,
   "gazette_pages": 112,
   "headings_detected": 311,
@@ -24,7 +24,26 @@
   "manual_page_review_pending": true,
   "source_files_committed": false,
   "limitations": [
-    "Text extraction comparison only; no complete page-image review",
-    "Source authenticity, amendments, currentness, effective-date interpretation, and reuse rights not established"
+    "Source authenticity, amendments, currentness, effective-date interpretation, and reuse rights not established",
+    "Visual page-image review completed only for the five numeric-alert locations; the remaining 268 non-identical text-difference records and 120 quantitative provisions still require full review"
+  ],
+  "numeric_alert_page_images_reviewed": true,
+  "numeric_alert_reviewed_articles": [
+    21,
+    82,
+    124,
+    146,
+    298
+  ],
+  "numeric_alert_reviewed_pdf_pages": [
+    18,
+    19,
+    40,
+    41,
+    54,
+    55,
+    63,
+    111,
+    112
   ]
 }
