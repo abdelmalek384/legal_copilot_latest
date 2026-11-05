@@ -19,6 +19,14 @@ These are pointers for reviewer orientation, **not proof of current passing test
 - `tests/test_deployment_preflight.py`: endpoint-scheme validation for `LLM_URL`.
 - `docs/llm_data_processing_policy.md`: approval gates, response-size bounds, and sources-only fallback policy.
 - `tests/test_trusted_proxy_client_ip.py`: forwarded-header spoofing from an untrusted peer and trusted-proxy parsing. The pilot proxy regression PR adds explicit wildcard rejection.
+- `tests/test_mfa_account_security.py`: admin enrollment requirement, TOTP replay rejection, one-time recovery codes, throttling, and recovery-code rotation. Continue review for all-required mode, session lifecycle and bypass permutations.
+- `tests/test_client_csv_import.py` and `tests/test_case_csv_import.py`: firm-admin authorization, bounded rows/fields, malformed-input rollback, duplicate handling, and tenant separation. Add explicit formula-prefix/leading-control-character cases and verify any downstream spreadsheet export neutralizes them.
+- `tests/test_subscription_billing_routes.py`: trial, manual payment submission, platform approval, and firm scoping. Inspect the full test body for denial coverage by each role before sign-off.
+- `tests/test_first_run_wizard_api.py`: first-run checklist/profile isolation and completion tracking; it is API coverage, not phone acceptance.
+- `tests/test_security_transport_config.py`: request-body limits, content-length validation, remote LLM HTTPS restrictions and redirect refusal. These checks do not establish DNS-rebinding resistance or a full PDF/OCR parser resource budget.
+- `tests/test_frontend_ux_contract.py` and `tests/browser/test_acceptance.py`: navigation landmark, phone-width focus behavior, keyboard operation and responsive UI contracts. Browser execution and physical-device acceptance remain separate gates.
+
+**Coverage gaps identified during preparation:** code search did not locate a dedicated matter-file prompt-injection regression test or a focused end-to-end PDF/OCR resource-exhaustion suite. The independent reviewer must verify current paths and add/execute these cases; do not infer coverage from general upload limits or the legal-corpus PDF importer.
 
 Inspect the current candidate tree before relying on any pointer; paths or test names may change.
 
