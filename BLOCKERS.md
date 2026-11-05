@@ -1,5 +1,4 @@
 - Live SMTP acceptance for the first-run test reminder is blocked pending provider credentials and a controlled mailbox; route tests use a fake SMTP sender.
 - 2026-11-04: The 155-question live retrieval/abstention baseline is not measurable in this session because no authenticated local Legal Copilot API endpoint or evaluation account is available; draft questions also have no lawyer-approved relevance labels, so answer correctness must remain unscored.
 - 2026-11-04: PR #1404's optional claim-support polarity guard still fails the same three English/Arabic negated-obligation regressions after three attempts; stop speculative retries and resume only with a local minimal reproduction that identifies why the guard is bypassed.
-- 2026-11-05: The Actions runner-start outage also blocks router PRs #1442, #1443 and #1444; each required workflow fails before its first step, with no job logs, so no CI pass is claimed.
-- 2026-11-05: PR #1444 platform-router validation is blocked by the repository-wide GitHub Actions runner-start outage; jobs finish without a runner or executed steps, so test status is unverified.
+- 2026-11-05: GitHub Actions jobs for AI-2 scale-smoke and router PRs repeatedly fail before runner startup (no steps or logs are provisioned); benchmark and router validation are blocked until Actions runners provision jobs normally.
