@@ -1480,7 +1480,9 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         ).fetchone()[0]
         switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
         self.assertEqual(switched.status_code, 200, switched.text)
+        case_read = self.client.get(f"/cases/{case_id}")
         draft_read = self.client.get(f"/cases/{case_id}/draft-skeleton")
+        self.assertEqual(case_read.status_code, 404, case_read.text)
         self.assertEqual(draft_read.status_code, 404, draft_read.text)
 
         attempts = (
