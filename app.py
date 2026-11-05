@@ -6471,6 +6471,9 @@ app.include_router(
         ensure_client_profile=_ensure_client_profile,
         add_case_helper=add_case,
         meter_pilot_metric=_meter_pilot_metric,
+        session_model=SessIn,
+        note_model=NoteIn,
+        add_session_helper=add_session,
     )
 )
 
@@ -6684,21 +6687,6 @@ def finish(tid: int, u: dict = Depends(user)):
     c = conn(); t = c.execute("SELECT * FROM tasks WHERE id=?", (tid,)).fetchone()
     if not t: raise HTTPException(404, "task not found")
     need(c, u, t["case_id"]); c.execute("UPDATE tasks SET status='done' WHERE id=?", (tid,)); log(c, t["case_id"], u["name"], "تم إنجاز: " + t["title"]); c.commit(); return {"ok": True}
-
-
-@app.post("/cases/{cid}/sessions")
-@rollback_tenant_transaction_on_error
-def new_session(cid: int, b: SessIn, u: dict = Depends(user)):
-    c = conn(); need(c, u, cid); add_session(c, u, cid, b.date, b.note); return {"ok": True}
-
-
-@app.post("/cases/{cid}/notes")
-@rollback_tenant_transaction_on_error
-def new_note(cid: int, b: NoteIn, u: dict = Depends(user)):
-    c = conn(); need(c, u, cid)
-    c.execute("INSERT INTO notes(case_id,created_by,text) VALUES(?,?,?)", (cid, u["id"], b.text.strip()))
-    log(c, cid, u["name"], "إضافة ملاحظة"); c.commit()
-    return {"ok": True}
 
 
 @app.get("/deadline-holidays")
