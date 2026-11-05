@@ -134,3 +134,11 @@ The evaluator supports optional `--min-recall-at-3` and `--min-mrr-at-3` thresho
 
 
 Per-practice-area top-three gates are available as `--min-recall-at-3-per-practice-area` and `--min-mrr-at-3-per-practice-area`. Use them with `--min-practice-areas` and `--min-cases-per-practice-area` so missing or undersized areas cannot be silently treated as passing.
+
+## 100+ Egyptian-Arabic benchmark template
+
+tests/legal_eval/arabic_retrieval_110.template.jsonl contains 110 realistic prompts in formal and colloquial Egyptian Arabic: the existing 38 general seeds, 61 labour-law draft questions and 11 additional curated prompts. The 11 additions are explicitly marked curated_candidate_not_user_observed; this is not a log of actual user queries. All 110 rows are unlabelled, with expected_article, lawyer_approved_answer, expected sources/pin-cites and answerability left blank. Do not fill these from model guesses.
+
+Use tools/score_arabic_retrieval.py for article-specific top-3 hit rate, top-3 hit rate on colloquial-or-synonym questions, wrong-article answer rate and abstention rate. Only lawyer_reviewed or approved_for_evaluation rows with reviewer/date/evidence metadata are scored; all other rows are counted as excluded. Runs use question_id, ranked retrieved_article_ids, cited_article_ids and boolean abstained. The tool writes before/after phases to one JSON report and binds both phases to the same benchmark hash.
+
+The existing tools/evaluate_retrieval_quality.py remains the broader source-ID/pin-cite evaluator. No metric is valid until a qualified Egyptian lawyer labels expected article IDs and answerability and a real retrieval run is collected. MIN_SCORE remains at 0.30 until the baseline is measured on the reviewed set.
