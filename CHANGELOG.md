@@ -1,5 +1,8 @@
 # Changelog — Legal Copilot
 
+
+- PR #1421: Add a concise production deployment guide and link it from README.
+
 - PR #1419: Reject invalid client names with clear 422 validation across case, profile, and CSV writes.
 
 - PR #1416: Isolate synthetic counsel allowlist configuration in retrieval and registry test fixtures.

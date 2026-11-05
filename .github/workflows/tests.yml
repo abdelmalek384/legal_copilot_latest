@@ -112,6 +112,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_tenant_catalog.py
       - name: Test tenancy provisioning and membership CLI
         run: PYTHONPATH=. python tests/test_manage_tenancy_commands.py
+      - name: Test human-attested deadline rule verification CLI
+        run: PYTHONPATH=. python tests/test_manage_deadline_verification.py
       - name: Test fictional demo firm seed and removal
         run: PYTHONPATH=. python tests/test_demo_firm_cli.py
       - name: Test firm-admin ZIP data export isolation and audit
