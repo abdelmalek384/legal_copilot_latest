@@ -46,7 +46,7 @@ python manage.py init-tenancy --firm-name "Firm name" --owner-name "Owner name" 
 
 It prompts for the owner's password. It creates a firm administrator, **not** a platform administrator. Do not use this command to replace existing identities. Install the real acceptance manifest at the configured path; never fabricate one to pass startup.
 
-Start the reviewed immutable image using the [container deployment template](container_deployment.md), then run `python tools/deployment_preflight.py --strict` and the aggregate release gate against the exact release commit/configuration. Keep the app quiesced during the backup snapshot window; create an encrypted bundle with `python manage.py backup-tenancy /protected/backup-dir --quiesced`, verify it with `python manage.py verify-tenancy-backup /path/to/bundle`, and perform a witnessed restore drill before production. Keep backups encrypted, versioned, off-host, access-restricted, and regularly restore-tested.
+Start the reviewed immutable image using the [container deployment template](container_deployment.md), then run `python tools/deployment_preflight.py --strict` and the aggregate release gate against the exact release commit/configuration. Keep the app quiesced during the backup snapshot window; create an encrypted bundle with `python manage.py backup-tenancy /protected/backup-dir --quiesced`, verify it with `python manage.py verify-backup-tenancy /path/to/bundle`, and perform a witnessed restore drill before production. Keep backups encrypted, versioned, off-host, access-restricted, and regularly restore-tested.
 
 ## 5. Is it healthy? (setup-health screen)
 
