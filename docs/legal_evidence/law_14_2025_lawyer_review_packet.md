@@ -10,11 +10,11 @@
 - Gazette reference PDF: 112 pages; recorded SHA-256 b0a47cefe18722d3f23e004ac7e78e6e309010e13124413e7e7018820c9581be.
 - Candidate structure: 13 promulgation provisions + 298 provisions in the attached Labour Law.
 - Machine comparison: 38 identical after normalization; 221 minor differences; 47 major differences; 5 numeric alerts; 0 missing/extra headings.
-- The 273 non-identical machine records and 120 quantitative cue records overlap. All 311 provisions now have a Gazette PDF page locator. 282 have prior page-image comparison records; the other 29 have a newly recorded locator-only visual check of the article heading. For those 29, the full wording was not compared in this locator pass. None of these checks is counsel sign-off.
+- The 273 non-identical machine records and 120 quantitative cue records overlap. All 311 provisions now have Gazette PDF page locators and page-image comparison notes. 282 were already recorded in the earlier review batches; the remaining 29 were visually compared against their complete Gazette page text on 2026-11-06 and matched the candidate transcription. These are machine/assistant evidence checks, not counsel sign-off.
 
-## Locator-only visual checks (29 provisions)
+## Additional full-article page-image comparisons (29 provisions)
 
-The 29 rows previously lacking page locators now have visually confirmed article-heading locations in the exact 112-page PDF identified by the SHA-256 above. The `locator_check_note` column records each locator and explicitly says that the full wording was not compared in this locator pass. `prior_page_image_review_recorded` remains `no` for these rows; it must not be changed to `yes` unless a complete article comparison is separately recorded.
+The 29 rows previously lacking page locators were visually inspected against the supplied 112-page Gazette PDF. The complete article text was compared with the corresponding candidate JSONL row; the wording matched on the inspected pages. The tick-sheet records the page and review date in `prior_page_review_note` and `page_image_review_note`. These notes explicitly identify the review as assistant visual comparison, not human lawyer sign-off. The reviewer must independently repeat/confirm the comparison.
 
 | Attached-law article | PDF/printed page |
 |---:|---:|
@@ -48,7 +48,7 @@ The 29 rows previously lacking page locators now have visually confirmed article
 | 276 | 106 |
 | 280 | 106 |
 
-These are page-navigation aids only. Do not treat the heading-location check as a full text comparison, currentness review, or lawyer approval.
+These page references identify where the full article was visually compared. They do not establish source authenticity, reuse rights, legal currentness, commencement, interpretation, or lawyer approval.
 
 ## Official corroborating sources and pagination caution
 
