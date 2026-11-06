@@ -943,6 +943,22 @@ class BrowserAcceptanceTests(unittest.TestCase):
         ):
             self.assertTrue(self.page.get_by_text(label, exact=True).is_visible(), label)
 
+        language_switch = self.page.locator('[data-lang-switch="1"]').first
+        self.assertEqual(language_switch.inner_text().strip(), "English")
+        language_switch.click()
+        self.page.get_by_role("heading", name="Get your firm started").wait_for()
+        self.page.wait_for_function(
+            "() => document.documentElement.scrollWidth <= window.innerWidth",
+            timeout=8000,
+        )
+        self.assertTrue(self.page.get_by_text("Firm details", exact=True).is_visible())
+        self.page.get_by_role("button", name="Open setup health").click()
+        self.page.get_by_role("heading", name="Firm setup health").wait_for()
+        self.page.wait_for_function(
+            "() => document.documentElement.scrollWidth <= window.innerWidth",
+            timeout=8000,
+        )
+
     def test_owner_can_login_create_case_deadline_and_issue_invoice_on_phone_and_desktop(self) -> None:
         for width, height in ((390, 844), (1440, 900)):
             self.page.set_viewport_size({"width": width, "height": height})
