@@ -152,3 +152,10 @@ A second GitHub Actions attempt was requested for all five workflows on security
 ### Repository cleanup inspection
 
 On the candidate branch, the README quick start already specifies the control-plane database, tenant database root, and shared corpus database separately. The repository root currently contains no `.patch`, `.diff`, or `.csv` fixture files; the existing CSV materials are under `docs/` and `tests/`. The corresponding deployment-preflight regression asserts the same hygiene invariant. No unnecessary file moves were made.
+
+### PR triage disposition
+
+- Router refactors #1438, #1439, #1441, #1443, #1444, #1446 and #1458 are already closed without merge. Their recorded close rationale is that exact-head checks had no executable test-step/log evidence. They remain closed; no replacement refactor PRs are being opened.
+- #1455 (client CSV constraint handling), #1456 (duplicate scale smoke test), #1437 (scale/performance), and #1457 (deployment-guide clarification) are also already closed without merge after the same validation gate. #1437's history records #1456 as a superseded duplicate.
+- Dependabot #1187 was closed, but its exact Buildx v4 head was preserved on #1467, whose successful checks were recorded and which was squash-merged to main at merge commit `97d09bcb52c92c8c83f87ae8fbaae246381c2c36`. Treat the dependency update as settled; do not reopen #1187.
+- Do not reopen any closed PR merely to clear the queue. Reopen only after the relevant work is rebased and exact-head required checks execute successfully.
