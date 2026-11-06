@@ -36,3 +36,11 @@ An independent pilot security-review handoff is available at `docs/security/INDE
 - #1470 — current-main combined deliverable; awaiting usable CI results and review.
 
 Historical tracker material is retained under `docs/archive/` where appropriate. This file is the short current status entry point.
+
+
+## Reusable lawyer-review files (2026-11-06)
+
+- Added `docs/legal_evidence/law_14_2025_gazette_comparison_template.csv` with 311 stable rows (13 promulgation provisions + 298 Labour Law articles), explicit blank candidate/Gazette text fields, pending comparison status, page-locator column, reviewer notes, and `verified=0`. The blank text is deliberate: do not manufacture source wording from locator metadata.
+- Added `docs/legal_evidence/deadline_rules_lawyer_review.csv` for the five existing draft deadline rules; all remain explicitly unapproved pending primary-source and counsel review.
+- Added `docs/legal_evidence/lawyer_review_cover_note.md` with review procedure and estimated effort. These files are reusable handoff templates; they do not certify legal text or currentness.
+- The downloadable XLSX workbook was generated for the user, but is not committed in this text-only GitHub contents workflow; the two CSV files provide the reusable repository-native data.
