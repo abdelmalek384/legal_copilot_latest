@@ -133,6 +133,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Submit payment evidence to restore editing", billing)
         self.assertIn("api('/billing/payment-submissions','POST'", billing)
         self.assertIn("api('/billing')", billing)
+        self.assertIn("if(r.status===423&&p!='/billing')billingPage().catch(()=>{})", HTML)
 
     def test_skip_link_and_main_landmark_are_present(self):
         self.assertIn("className:'skip-link'", HTML)
