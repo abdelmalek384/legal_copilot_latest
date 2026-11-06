@@ -64,9 +64,12 @@ def _valid_reviewed(row):
             not isinstance(expected_id, str) or expected_id != expected_id.strip()
             or "::law:" not in expected_id or "::article:" not in expected_id):
         raise ValueError(f"{row.get('id')}: expected_article_id must use source_id::law:<law-label>::article:<number>")
-    if row["answerable"] and not any(
-            isinstance(value, str) and value.strip() for value in (expected, expected_id)):
-        raise ValueError(f"{row.get('id')}: answerable reviewed question needs expected_article or expected_article_id")
+    if row["answerable"]:
+        if not isinstance(expected, str) or not expected.strip():
+            raise ValueError(f"{row.get('id')}: answerable reviewed question needs a human-readable expected_article")
+        if not isinstance(expected_id, str) or not expected_id.strip():
+            raise ValueError(f"{row.get('id')}: answerable reviewed question needs canonical expected_article_id")
+
     if not row["answerable"] and (expected not in (None, "") or expected_id not in (None, "")):
         raise ValueError(f"{row.get('id')}: unanswerable question must not have an expected article")
     if not row["answerable"] and row.get("must_abstain_if_unverified") is not True:
