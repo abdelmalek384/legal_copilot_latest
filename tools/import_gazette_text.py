@@ -146,7 +146,8 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
     title = metadata["official_title"].strip()
     source = (
         f"document_id {metadata['document_id']} | "
-        f"{metadata.get('source_url') or metadata.get('source_reference')} | "
+        f"source_url {metadata.get('source_url') or 'not_supplied'} | "
+        f"source_reference {metadata.get('source_reference') or 'not_supplied'} | "
         f"{metadata['gazette_issue']} | published {metadata['publication_date']} | "
         f"retrieved {metadata['retrieved_at']} | sha256 {metadata['actual_sha256']} | "
         f"supplied by {metadata['captured_by']} ({metadata['supplier_role']}) | "
