@@ -156,3 +156,34 @@ The runner may capture runs while questions are still unlabeled. The scorer acce
 
 
 The measurement fingerprint is based only on immutable prompt identity/text (question ID, practice area, Arabic question text and origin), sorted by question ID. Adding lawyer-approved expected articles, answers, reviewer evidence or approved style/synonym labels does not invalidate the before-run capture. Editing the question text or identity does require a new measurement report.
+
+### Capture and score the same benchmark
+
+The 110 prompts are curated, not observed production questions. A baseline run may be captured now and retained while every question remains unlabeled; the scorer will report zero reviewed questions and null quality metrics rather than inventing a score.
+
+Start the local API with the baseline threshold in one terminal:
+
+```bash
+MIN_SCORE=0.30 uvicorn app:app --host 127.0.0.1 --port 8000
+```
+
+In a second terminal, set credentials through environment variables (do not commit them or put passwords in a script):
+
+```bash
+export LEGAL_EVAL_EMAIL='review-account@example.invalid'
+export LEGAL_EVAL_PASSWORD='set-this-in-your-shell-session'
+python tools/run_legal_eval.py \
+  --questions tests/legal_eval/arabic_retrieval_110.template.jsonl \
+  --out /secure/evaluation/labour-arabic-before.jsonl \
+  --base-url http://127.0.0.1:8000
+python tools/score_arabic_retrieval.py \
+  --questions tests/legal_eval/arabic_retrieval_110.template.jsonl \
+  --runs /secure/evaluation/labour-arabic-before.jsonl \
+  --phase before --min-score 0.30 \
+  --output docs/arabic_retrieval_measurement.json
+```
+
+The runner creates a new output file and respects the API rate limit with a default delay. Keep the raw run file private if it contains confidential prompts or answers. The scorer's `--min-score` records the server threshold used; it does not change the running server's retrieval setting. Only the server environment variable changes `MIN_SCORE`.
+
+After counsel approves the expected articles, canonical IDs, answers, answerability, question-style labels and synonym tags, score the retained before-run again against those labels. Then, and only then, test a candidate `MIN_SCORE` on the same approved question set, restart the API with that value, capture a distinct after-run, and score it with `--phase after`. Preserve both raw run files and the report. Never compare different prompt fingerprints or tune against synthetic fixtures. If the approved benchmark is still too small, keep the result not-evaluable rather than relaxing the cohort gate.
+
