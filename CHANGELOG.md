@@ -59,3 +59,4 @@
 - PR #1151: Add fictional fixture-only tests for legal ingestion, article comparison, and effective-date extraction.
 - PR #1150: Propose a separately gated source-matched/unreviewed trust tier without relaxing lawyer approval.
 - PR #1148: Add a data-driven Arabic legal retrieval lexicon and synthetic top-three regressions.
+- PR #1483: Define the pilot-readiness evidence gates and add the witnessed Arabic/English phone-and-desktop acceptance script.

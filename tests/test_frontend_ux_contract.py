@@ -109,6 +109,18 @@ class FrontendUXContractTests(unittest.TestCase):
         missing = sorted(found - reviewed)
         self.assertEqual(missing, [], "Arabic UI literals missing from static/ar-ui-review.json")
 
+    def test_mobile_body_text_and_login_layout_remain_legible_at_phone_width(self):
+        self.assertIn("@media(max-width:420px){body{font-size:15px}", HTML)
+        self.assertIn(".auth-card{width:calc(100% - 20px);margin:4vh auto;padding:16px}", HTML)
+        self.assertIn(".auth-card .password-row{display:flex;width:100%;min-width:0;align-items:stretch}", HTML)
+        self.assertIn(".auth-card .password-row input{min-width:0;flex:1}", HTML)
+        self.assertIn(".auth-card .password-row button{min-height:44px;flex:0 0 auto}", HTML)
+
+    def test_primary_navigation_exposes_a_named_navigation_landmark(self):
+        self.assertIn("aria-label':navLabel('روابط التنقل','Navigation links')", HTML)
+        self.assertIn("className:'primary-nav'", HTML)
+        self.assertIn("'aria-current':PAGE===id?'page':null", HTML)
+
     def test_skip_link_and_main_landmark_are_present(self):
         self.assertIn("className:'skip-link'", HTML)
         self.assertIn("id:'main',tabIndex:-1", HTML)
@@ -416,6 +428,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Request an account", HTML)
 
 
+
+    def test_language_switch_preserves_first_run_and_setup_health_views(self):
+        self.assertIn("else if(PAGE==='setup')firstRunPage();else if(PAGE==='setup-health')setupHealthPage();", HTML)
+
+    def test_subscription_lock_response_routes_user_to_billing_recovery(self):
+        self.assertIn("if(r.status===423&&p!=='/billing')billingPage().catch(()=>{})", HTML)
 
     def test_subscription_billing_ui_has_trial_transfer_and_operator_review(self):
         self.assertIn("api('/billing')", HTML)
