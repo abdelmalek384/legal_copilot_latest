@@ -43,6 +43,15 @@ class InvoicePaymentRouteTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(paid.status_code, 200, paid.text)
         self.assertEqual(paid.json()["payment_state"], "paid")
         self.assertEqual(paid.json()["balance_piasters"], 0)
+        payment_events = [
+            event for event in paid.json()["events"]
+            if event["event_type"] == "payment_recorded"
+        ]
+        self.assertEqual(len(payment_events), 2)
+        final_details = json.loads(payment_events[-1]["details_json"])
+        self.assertEqual(final_details["payment_id"], paid.json()["payments"][-1]["id"])
+        self.assertEqual(final_details["amount_piasters"], 12500)
+        self.assertEqual(final_details["method"], "instapay")
 
     def test_void_requires_no_payments_and_is_audited(self):
         invoice = self.create_draft().json()
