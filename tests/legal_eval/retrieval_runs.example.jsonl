@@ -1,2 +1,1 @@
-# One JSON object per question: question_id, retrieved_article_ids (ranked), cited_article_ids, abstained.
-# Canonical article ID: <source_id>::law:<law-label>::article:<article-number>; known unlabeled rows may be captured and are excluded by the scorer.
+{"question_id":"Q-CONST-001","retrieved_article_ids":["SYNTHETIC-SOURCE::law:قانون افتراضي::article:12"],"cited_article_ids":["SYNTHETIC-SOURCE::law:قانون افتراضي::article:12"],"abstained":false,"used_unverified_source":true}
