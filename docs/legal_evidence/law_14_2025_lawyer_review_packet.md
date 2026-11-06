@@ -24,7 +24,9 @@ Do not infer page numbers from the 110-page ETA-hosted PDF or from adjacent arti
 
 ## Official corroborating sources and pagination caution
 
+- Presidency / State Information Service PDF: https://sis.gov.eg/media/760267/القانون-رقم-14-لسنة-2025-بإصدار-قانون-العمل.pdf — accessed 2026-11-06; its extracted cover identifies Official Gazette issue 18 (تابع), 3 May 2025, and Law 14/2025. This is an official government-hosted corroborating copy, but byte identity and pagination against the recorded 112-page comparison PDF have not been established. Do not transfer page locators between copies without checking.
 - Egyptian Tax Authority hosted PDF: https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf — accessed 2026-11-05; indexed as Official Gazette issue 18 (supplement), 3 May 2025; 110 pages. The repository comparison PDF is 112 pages. Byte identity between the two PDFs is unknown, so do not transfer page locators between them without checking.
+- Official Gazette / Amiri Press DSpace record: https://dspace.id.com.eg/items/75a95151-8a93-45c0-a607-9320863881df — catalogued as Official Gazette issue 18 (تابع), dated 2025-05-03, publisher المطابع الأميرية, with a 649.46 KB PDF attachment. The attachment bytes and page count have not been checked.
 - Official Printing Authority law text record: https://alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D — corroborates the instrument's identity; it is not the 112-page comparison PDF.
 - Ministry of Labour legislation listing: https://www.labour.gov.eg/ar/القوانين-والتشريعات/ — lists Law 14/2025 as a basic law; it does not prove the Gazette PDF's byte identity or currentness.
 
