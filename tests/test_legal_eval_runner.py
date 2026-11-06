@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from unittest.mock import patch
-from tools.run_legal_eval import MAX_API_RESPONSE_BYTES, RunnerError, _request_json, read_questions, result_from_response, validate_base_url
+from tools.run_legal_eval import MAX_API_RESPONSE_BYTES, RunnerError, _NoRedirectHandler, _request_json, read_questions, result_from_response, validate_base_url
 from tools.evaluate_retrieval_quality import score_evaluation
 
 
@@ -228,6 +228,14 @@ class LegalEvalRunnerTests(unittest.TestCase):
         for value in invalid_urls:
             with self.subTest(value=value), self.assertRaises(RunnerError):
                 validate_base_url(value, allow_remote=True)
+
+    def test_runner_redirect_handler_refuses_redirects(self):
+        handler = _NoRedirectHandler()
+        request = __import__("urllib.request", fromlist=["Request"]).Request("http://127.0.0.1/login")
+        self.assertIsNone(handler.redirect_request(
+            request, None, 307, "Temporary Redirect", {"Location": "https://attacker.example/collect"},
+            "https://attacker.example/collect",
+        ))
 
     def test_api_response_reader_is_bounded_and_closes_response(self):
         class FakeOpener:
