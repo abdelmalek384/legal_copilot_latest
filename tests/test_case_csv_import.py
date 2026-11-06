@@ -94,15 +94,20 @@ class CaseCSVImportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertNotIn("\r\n" + formula, exported.text)
 
     def test_imported_formula_prefixes_are_neutralized_in_invoice_export(self):
-        malicious_titles = (
+        malicious_values = (
             "=1+1", "+1+1", "-1+1", "@SUM(1,1)",
             "\t=1+1", " \r@SUM(1,1)", "\n+1+1",
         )
         buffer = io.StringIO(newline="")
         writer = csv.writer(buffer, delimiter=";", lineterminator="\n")
         writer.writerow(["title", "client", "stage", "case_number", "case_year", "court", "circuit", "opposing_party"])
-        for index, title in enumerate(malicious_titles, start=1):
-            writer.writerow([title, title, "Labour", str(900 + index) + "/2026",
+        expected_case_titles = {}
+        for index, value in enumerate(malicious_values, start=1):
+            # Matter titles are trimmed by import validation; preserve the
+            # attack strings in the client field, which is retained verbatim.
+            case_title = value if value[0] in "=+-@" else f"Synthetic Matter {index}"
+            expected_case_titles[case_title] = "'" + case_title if case_title[0] in "=+-@" else case_title
+            writer.writerow([case_title, value, "Labour", str(900 + index) + "/2026",
                              "2026", "Cairo Court", "Labour Circuit", "Synthetic Opponent"])
         imported = self.mutate(
             self.client_a, "post", "/cases/import.csv", json={"csv": buffer.getvalue()}
@@ -110,8 +115,9 @@ class CaseCSVImportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(imported.status_code, 200, imported.text)
         cases = {row["title"]: row for row in self.client_a.get("/cases").json()}
         expected = {}
-        for title in malicious_titles:
-            case = cases[title]
+        for index, value in enumerate(malicious_values, start=1):
+            case_title = value if value[0] in "=+-@" else f"Synthetic Matter {index}"
+            case = cases[case_title]
             draft = self.mutate(
                 self.client_a, "post", f"/cases/{case['id']}/invoices",
                 json={
@@ -123,15 +129,19 @@ class CaseCSVImportTests(InvoiceTestSupport, unittest.TestCase):
             self.assertEqual(draft.status_code, 200, draft.text)
             issued = self.mutate(self.client_a, "post", f"/invoices/{draft.json()['id']}/issue")
             self.assertEqual(issued.status_code, 200, issued.text)
-            expected[issued.json()["invoice_number"]] = "'" + title
+            expected[issued.json()["invoice_number"]] = (
+                expected_case_titles[case_title],
+                "'" + value,
+            )
 
         exported = self.client_a.get("/invoices/export.csv")
         self.assertEqual(exported.status_code, 200, exported.text)
         rows = list(csv.DictReader(io.StringIO(exported.content.decode("utf-8-sig"))))
         for row in rows:
             if row["invoice_number"] in expected:
-                self.assertEqual(row["case_title"], expected[row["invoice_number"]])
-                self.assertEqual(row["client_name"], expected[row["invoice_number"]])
+                expected_title, expected_client = expected[row["invoice_number"]]
+                self.assertEqual(row["case_title"], expected_title)
+                self.assertEqual(row["client_name"], expected_client)
 
     def test_non_admin_and_malformed_imports_are_rejected_without_partial_writes(self):
         denied = self.mutate(
