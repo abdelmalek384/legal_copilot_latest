@@ -185,7 +185,7 @@ def score(questions, runs):
     if (not top3_hits or colloquial_rate is None or synonym_rate is None or wrong_rate is None):
         target_status = "not_evaluable_missing_approved_labels_or_cited_runs"
     elif (colloquial_rate < 0.80 or synonym_rate < 0.80 or wrong_rate != 0.0
-          or unverified_source_answers != 0):
+          or uncited_non_abstained != 0 or unverified_source_answers != 0):
         target_status = "below_target"
     else:
         target_status = "targets_met"
@@ -204,6 +204,7 @@ def score(questions, runs):
         "target_top3_hit_rate_colloquial": 0.80,
         "target_top3_hit_rate_synonym": 0.80,
         "target_wrong_article_rate": 0.0,
+        "target_uncited_non_abstained_answers": 0,
         "colloquial_questions": len(colloquial_hits),
         "synonym_questions": len(synonym_hits),
         "colloquial_or_synonym_questions": len(colloquial_synonym_hits),
