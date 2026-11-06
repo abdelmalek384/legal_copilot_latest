@@ -164,10 +164,8 @@ def score(questions, runs):
             unanswerable_abstained += int(run["abstained"])
         if not run["abstained"]:
             non_abstained += 1
-            if run.get("used_unverified_source") is True:
+            if run["used_unverified_source"]:
                 unverified_source_answers += 1
-            elif run.get("used_unverified_source") not in (None, False):
-                raise ValueError(f"{q['id']}: used_unverified_source must be boolean")
             cited = run["cited_article_ids"]
             if not cited:
                 uncited_non_abstained += 1
