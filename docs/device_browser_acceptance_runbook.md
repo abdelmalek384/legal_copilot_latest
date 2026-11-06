@@ -138,3 +138,20 @@ Store completed evidence in the restricted release workspace, not in a public re
 ## Acceptance rule
 
 The device workstream is complete only when the minimum desktop/phone × Arabic/English matrix is present for one exact commit/environment, all mandatory tests pass, and no unresolved high/critical usability, privacy, or authorization defect remains. A runbook, static contract test, or CI pass is not a substitute for a manual run.
+
+
+## Short pilot smoke script — human execution required
+
+Run the same nine steps in each of four cells: **one physical phone + one desktop**, each in **Arabic (ar-EG) + English (en-US)**. Use only the fictional demo firm and synthetic data. Record PASS/FAIL/BLOCKED and sanitized evidence for every step; do not mark any cell complete until a human has run it on the actual device.
+
+1. **Login:** sign in as the demo-firm owner; verify language, firm identity and visible DEMO DATA ONLY banner.
+2. **MFA:** enroll/verify MFA according to the staging policy; sign out and sign back in; confirm an unenrolled account cannot bypass an enforced requirement.
+3. **Case:** create a synthetic case, edit its title/stage, open it again and confirm the data remains within the demo firm.
+4. **Deadline:** add a synthetic deadline distinct from a court session; verify its date and status in the calendar/list.
+5. **Invoice:** create and issue a clearly labelled test invoice; verify line items and exact displayed amount.
+6. **Payment:** submit synthetic payment evidence or use the approved manual-review flow; verify pending/approved state and audit trail. Never enter card details or call a live gateway.
+7. **Subscription:** inspect current plan/status; exercise the expired/read-only recovery screen only in a staging fixture configured for that state; verify billing recovery is reachable and no prohibited edits succeed.
+8. **Export:** export the demo firm's data; inspect the archive/CSV for expected synthetic records, formula-safe text and absence of another firm's sentinel.
+9. **Rate a legal answer:** when the approved lawyer-rating UI and AI 1 data contract are deployed, record correct/partial/wrong, cited-article right/wrong and notes; verify the trust badge is visible and “source-matched” is not styled or labelled “verified.” If the rating UI is not deployed, record BLOCKED rather than substituting product feedback/corrections.
+
+Evidence must identify the exact commit, environment, physical device/model, OS build, browser/version, locale, viewport/orientation, tester role and timestamp. No screenshots may contain secrets or client data. The four human-run cells remain NOT_TESTED until evidence is supplied.
