@@ -184,6 +184,22 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         self.assertEqual(result["top3_hit_rate_colloquial_or_synonym"], 1.0)
         self.assertEqual(result["colloquial_or_synonym_questions"], 1)
 
+    def test_preliminary_style_and_synonym_tags_do_not_enter_approved_cohorts(self):
+        q = reviewed("Q-PRELIMINARY", style="colloquial", tags=["synonym"])
+        q["question_style_review_status"] = "needs_lawyer_review"
+        q["retrieval_tags_review_status"] = "needs_lawyer_review"
+        run = {
+            "question_id": "Q-PRELIMINARY",
+            "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
+            "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+        result = score([q], [run])
+        self.assertEqual(result["colloquial_questions"], 0)
+        self.assertEqual(result["synonym_questions"], 0)
+        self.assertEqual(result["target_status"], "not_evaluable_missing_approved_labels_or_cited_runs")
+
     def test_answerable_reviewed_question_requires_canonical_article_id(self):
         q = reviewed("Q-NO-CANONICAL-ID")
         q["expected_article_id"] = None
