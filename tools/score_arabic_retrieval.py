@@ -109,7 +109,9 @@ def benchmark_fingerprint(questions):
             # Cohort-defining prompt metadata must stay fixed across before/after runs.
             "question_style": q.get("question_style"),
             "retrieval_tags": sorted(q.get("retrieval_tags", []))
-            if isinstance(q.get("retrieval_tags", []), list) else q.get("retrieval_tags"),
+            if isinstance(q.get("retrieval_tags", []), list)
+            and all(isinstance(tag, str) for tag in q.get("retrieval_tags", []))
+            else q.get("retrieval_tags"),
         }
         for q in questions
     ]
