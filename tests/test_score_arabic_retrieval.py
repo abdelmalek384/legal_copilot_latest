@@ -12,6 +12,11 @@ def reviewed(qid, *, answerable=True, article="المادة 1 من قانون ا
     return {
         "id": qid,
         "question_style": style,
+        "question_origin": "observed_anonymized_query",
+        "question_origin_reference": f"synthetic-test-fixture:{qid}",
+        "question_collection_date": "2026-11-04",
+        "privacy_review_status": "approved",
+        "consent_or_reuse_basis": "synthetic test fixture only",
         "question_style_review_status": "lawyer_approved",
         "retrieval_tags": tags or [],
         "retrieval_tags_review_status": "lawyer_approved",
@@ -34,6 +39,23 @@ def reviewed(qid, *, answerable=True, article="المادة 1 من قانون ا
 
 
 class ArabicRetrievalScorerTests(unittest.TestCase):
+    def test_curated_candidate_cannot_enter_real_question_scoring(self):
+        question = reviewed("Q-CURATED")
+        question["question_origin"] = "curated_candidate_not_user_observed"
+        with self.assertRaisesRegex(ValueError, "observed questions"):
+            score([question], [])
+
+    def test_scoring_requires_privacy_and_reuse_approval(self):
+        question = reviewed("Q-PRIVACY")
+        question["privacy_review_status"] = "not_reviewed"
+        with self.assertRaisesRegex(ValueError, "privacy_review_status"):
+            score([question], [])
+
+        question = reviewed("Q-REUSE")
+        question["consent_or_reuse_basis"] = ""
+        with self.assertRaisesRegex(ValueError, "consent_or_reuse_basis"):
+            score([question], [])
+
     def test_benchmark_fingerprint_survives_counsel_labeling_but_detects_prompt_edits(self):
         q = {
             "id": "Q1", "practice_area": "labour", "question_ar": "سؤال تجريبي",
