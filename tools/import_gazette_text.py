@@ -63,11 +63,11 @@ def _validate_metadata(meta: object, text_bytes: bytes) -> dict:
             raise ValueError(f"{field} is required and must be a non-empty string")
     if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", meta["document_id"]):
         raise ValueError("document_id contains unsupported characters")
-    if meta["language"].strip().lower() != "ar":
+    if not isinstance(meta["language"], str) or meta["language"].strip().lower() != "ar":
         raise ValueError("language must be ar for the Arabic-first Gazette text importer")
-    if meta.get("supplier_role") not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
+    if not isinstance(meta.get("supplier_role"), str) or meta["supplier_role"] not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
         raise ValueError("supplier_role must identify an Egyptian lawyer or qualified counsel")
-    if meta["capture_method"] not in {"lawyer_supplied_text", "manual_transcription"}:
+    if not isinstance(meta["capture_method"], str) or meta["capture_method"] not in {"lawyer_supplied_text", "manual_transcription"}:
         raise ValueError("capture_method must be lawyer_supplied_text or manual_transcription")
     try:
         publication = dt.date.fromisoformat(meta["publication_date"])
@@ -104,7 +104,7 @@ def _validate_metadata(meta: object, text_bytes: bytes) -> dict:
     elif not (isinstance(meta.get("source_reference"), str) and meta["source_reference"].strip()):
         raise ValueError("provide source_url or a non-empty source_reference")
     permission = meta.get("collection_permission", "unknown")
-    if permission not in {"unknown", "allowed", "not_allowed"}:
+    if not isinstance(permission, str) or permission not in {"unknown", "allowed", "not_allowed"}:
         raise ValueError("collection_permission must be unknown, allowed, or not_allowed")
     if permission == "not_allowed":
         raise ValueError("collection permission is marked not_allowed; refusing to create candidate rows")
