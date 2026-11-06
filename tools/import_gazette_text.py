@@ -53,7 +53,7 @@ _ORDINAL_ALTERNATION = "|".join(
     re.escape(value) for value in sorted(PROMULGATION_ORDINALS, key=len, reverse=True)
 )
 PROMULGATION_HEAD = re.compile(
-    rf"(?m)^[ \t]*\(?[ \t]*(?:المادة|مادة)[ \t]+"
+    rf"(?m)^[ \t]*\(?[ \t]*(?:المادة|مادة)[ \t]+\(?[ \t]*"
     rf"(?P<ordinal>{_ORDINAL_ALTERNATION})[ \t]*\)?[ \t]*\)?"
     rf"[ \t]*(?:[:-][ \t]*|$)"
 )
