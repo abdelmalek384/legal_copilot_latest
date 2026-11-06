@@ -60,3 +60,10 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Added a focused regression test in `tests/test_score_arabic_retrieval.py` and documented the fields in `docs/arabic_retrieval_measurement.md`.
 - Commits: `99979d94f73dc4e64a9aac8023957f33228fe065` (scorer), `8d89be791212c2061010368253c924e2a82f14f7` (test), `aae8e0c0d534a127bae9b0f1f8618ea02ec41620` (docs).
 - Validation limitation: these changes have been reviewed via commit diffs, but the test has not been executed locally or by CI. Existing CI pre-step failure remains; no pass is claimed.
+
+
+## Scorer input-validation hardening (2026-11-06)
+
+- Hardened `tools/score_arabic_retrieval.py` so a non-string `review_evidence_url` is rejected through the same fail-closed validation path as malformed URLs, rather than leaking a parser type exception.
+- Added a regression test for a numeric URL value. Commits: `dc80638e5f4c5d7cd871c11b8441abe3214e741d` (validator) and `15244fd42777aa237bd9a994b6d16061bc63c181` (test).
+- Static diff review only; test execution remains unverified pending a usable local checkout/runtime or functioning CI runner.
