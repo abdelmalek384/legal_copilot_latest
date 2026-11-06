@@ -11,6 +11,7 @@ from urllib.parse import urlsplit
 
 REVIEWED = {"lawyer_reviewed", "approved_for_evaluation"}
 MIN_TARGET_COHORT_SIZE = 20
+MIN_TOTAL_REVIEWED_QUESTIONS = 100
 
 
 def load_jsonl(path):
@@ -203,7 +204,8 @@ def score(questions, runs):
         if colloquial_synonym_hits else None
     )
     wrong_rate = round(wrong_answers / cited_non_abstained, 4) if cited_non_abstained else None
-    if (not top3_hits or len(colloquial_hits) < MIN_TARGET_COHORT_SIZE
+    if (len(reviewed) < MIN_TOTAL_REVIEWED_QUESTIONS or not top3_hits
+            or len(colloquial_hits) < MIN_TARGET_COHORT_SIZE
             or len(synonym_hits) < MIN_TARGET_COHORT_SIZE or not unanswerable
             or colloquial_rate is None or synonym_rate is None or wrong_rate is None):
         target_status = "not_evaluable_missing_approved_labels_or_cited_runs"
@@ -232,6 +234,7 @@ def score(questions, runs):
         "target_uncited_non_abstained_answers": 0,
         "target_abstention_compliance_unanswerable": 1.0,
         "target_minimum_unanswerable_questions": 1,
+        "target_minimum_reviewed_questions": MIN_TOTAL_REVIEWED_QUESTIONS,
         "colloquial_questions": len(colloquial_hits),
         "synonym_questions": len(synonym_hits),
         "colloquial_or_synonym_questions": len(colloquial_synonym_hits),
