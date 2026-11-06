@@ -82,21 +82,38 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         self.assertEqual(result["wrong_article_rate"], 0.0)
 
     def test_targets_require_both_colloquial_and_synonym_recall_and_zero_wrong_articles(self):
-        colloquial = reviewed("Q-C", style="colloquial")
-        synonym = reviewed("Q-S", style="formal", tags=["synonym"])
+        colloquial = [reviewed(f"Q-C-{i}", style="colloquial") for i in range(20)]
+        synonym = [reviewed(f"Q-S-{i}", style="formal", tags=["synonym"]) for i in range(20)]
+        questions = colloquial + synonym
         good = [
-            {"question_id": "Q-C", "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
-             "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"], "abstained": False, "used_unverified_source": False},
-            {"question_id": "Q-S", "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
-             "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"], "abstained": False, "used_unverified_source": False},
+            {"question_id": q["id"], "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
+             "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
+             "abstained": False, "used_unverified_source": False}
+            for q in questions
         ]
-        self.assertEqual(score([colloquial, synonym], good)["target_status"], "targets_met")
-        bad = [
-            {"question_id": "Q-C", "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1", "LABOUR-SOURCE::law:قانون العمل [block 1]::article:2"],
-             "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:2"], "abstained": False, "used_unverified_source": False},
-            good[1],
+        self.assertEqual(score(questions, good)["target_status"], "targets_met")
+        bad = [dict(run) for run in good]
+        bad[0]["retrieved_article_ids"] = [
+            "LABOUR-SOURCE::law:قانون العمل [block 1]::article:1",
+            "LABOUR-SOURCE::law:قانون العمل [block 1]::article:2",
         ]
-        self.assertEqual(score([colloquial, synonym], bad)["target_status"], "below_target")
+        bad[0]["cited_article_ids"] = ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:2"]
+        self.assertEqual(score(questions, bad)["target_status"], "below_target")
+
+    def test_target_status_is_not_evaluable_below_minimum_approved_cohort_size(self):
+        questions = [
+            reviewed("Q-C", style="colloquial"),
+            reviewed("Q-S", style="formal", tags=["synonym"]),
+        ]
+        runs = [
+            {"question_id": q["id"], "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
+             "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
+             "abstained": False, "used_unverified_source": False}
+            for q in questions
+        ]
+        result = score(questions, runs)
+        self.assertEqual(result["target_minimum_cohort_size"], 20)
+        self.assertEqual(result["target_status"], "not_evaluable_missing_approved_labels_or_cited_runs")
 
     def test_target_status_is_not_evaluable_without_approved_slice_or_citations(self):
         q = reviewed("Q1", style="formal")
