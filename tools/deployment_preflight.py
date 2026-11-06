@@ -5,6 +5,7 @@ import ipaddress
 import math
 import os
 import re
+import socket
 import stat
 import socket
 import sys
