@@ -84,3 +84,11 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Added regression cases for all four whitespace forms, including faithful negative wording and positive-claim-versus-negative-source conflicts.
 - Commits: `0dccdf51a9fdec443498cbafc3d5e1ce73af639b`, `25a43b3ac28a3b31f8e34986bbc73ccecceaaed8`, `02ebbd52c285d8e84b221286fc1d90bf6f4b5f1e`, `577a943b1790777ebe4f395ad3f018fe0e2b3a7c`, `d9611009903c9a720fa317a54c0583c294603d08`.
 - Static source review only. Regression tests have not executed; do not treat this as validated until the integrated suite runs.
+
+
+## Retrieval benchmark fingerprint integrity (2026-11-06)
+
+- The before/after benchmark fingerprint now includes the question-style and retrieval-tag fields that determine colloquial/synonym cohort membership. Changing those fields can no longer silently mix different cohort definitions in one comparison report.
+- Retrieval tags are canonicalized as an order-independent string list; malformed non-string tag data is preserved for later validation without causing fingerprint sorting to crash.
+- Added regression coverage showing counsel approval-status changes do not alter the fingerprint, while prompt/style/tag changes do. Test execution remains unverified; no pass is claimed.
+- Commits: `bd05a7c819ccb99110357fcdf354076af1dad97c`, `52aec28b669b0ed0b5cee6ea823e33eb1179f5e0`, `ffd9a5db5348d0287e4ce25c2818e83a1b90b8bb`, `1f14b198313ead16b7858c95269461a232cda7bd`.
