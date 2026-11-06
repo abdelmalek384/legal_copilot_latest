@@ -214,6 +214,20 @@ class SecureCookieTransportTests(unittest.TestCase):
                 self.assertIsNone(app.llm("CONFIDENTIAL-SENTINEL"))
                 open_url.assert_not_called()
 
+    def test_llm_dns_rebinding_to_private_ip_between_checks_fails_closed(self):
+        public_answer = [(2, 1, 6, "", ("93.184.216.34", 443))]
+        private_answer = [(2, 1, 6, "", ("10.0.0.8", 443))]
+        with patch.dict(os.environ, {
+            "LLM_URL": "https://provider.example.test/v1/chat/completions",
+            "LLM_DATA_PROCESSING_APPROVED": "1",
+        }):
+            with patch.object(app.socket, "getaddrinfo", side_effect=[public_answer, private_answer]) as resolve:
+                with patch.object(app.urllib.request, "build_opener") as build:
+                    with self.assertRaises(ValueError):
+                        app.llm("synthetic prompt")
+        self.assertEqual(resolve.call_count, 2)
+        build.assert_not_called()
+
     def test_llm_without_processing_approval_does_not_resolve_provider_hostname(self):
         with patch.dict(
             os.environ,
