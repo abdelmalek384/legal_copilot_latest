@@ -28,6 +28,16 @@ python -m uvicorn app:app --host 127.0.0.1 --port 8000
 
 Open http://127.0.0.1:8000 on the same machine. The launchers and commands initialize local development databases; they are not production deployment or migration instructions. See [Setup and security](#setup-and-security) before using real client data.
 
+### Local release checks
+
+When hosted CI is unavailable, run the consolidated local gate from the repository root after installing the project dependencies and the `actionlint`, `bandit`, and `pip-audit` tools:
+
+```bash
+bash scripts/local_release_check.sh
+```
+
+It runs Python test discovery, workflow lint, Bandit, the hash-locked dependency audit (when the lock file is present), and strict deployment preflight, then prints a result table. Missing tools are reported as BLOCKED; missing deployment credentials/configuration can make strict preflight fail. A local run does not replace required CI, browser acceptance, physical-device testing, or independent security review.
+
 The repository includes case-management workflows, profile-separated storage, Arabic lexical retrieval, citation checks, and fail-closed source-only behavior. These are software capabilities with automated tests; they do not establish the correctness of legal content.
 
 ## Known limits
