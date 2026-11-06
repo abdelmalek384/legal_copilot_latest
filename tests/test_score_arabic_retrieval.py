@@ -106,8 +106,9 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
     def test_targets_require_both_colloquial_and_synonym_recall_and_zero_wrong_articles(self):
         colloquial = [reviewed(f"Q-C-{i}", style="colloquial") for i in range(20)]
         synonym = [reviewed(f"Q-S-{i}", style="formal", tags=["synonym"]) for i in range(20)]
+        formal = [reviewed(f"Q-F-{i}") for i in range(60)]
         unanswerable = reviewed("Q-U", answerable=False)
-        questions = colloquial + synonym + [unanswerable]
+        questions = colloquial + synonym + formal + [unanswerable]
         article_id = "LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"
         good = [
             {"question_id": q["id"],
@@ -125,10 +126,30 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         bad[0]["cited_article_ids"] = ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:2"]
         self.assertEqual(score(questions, bad)["target_status"], "below_target")
 
+    def test_target_requires_100_reviewed_real_questions(self):
+        questions = (
+            [reviewed(f"Q-C-{i}", style="colloquial") for i in range(20)]
+            + [reviewed(f"Q-S-{i}", style="formal", tags=["synonym"]) for i in range(20)]
+            + [reviewed("Q-U", answerable=False)]
+        )
+        article_id = "LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"
+        runs = [
+            {"question_id": q["id"], "retrieved_article_ids": [article_id] if q["answerable"] else [],
+             "cited_article_ids": [article_id] if q["answerable"] else [],
+             "abstained": not q["answerable"], "used_unverified_source": False}
+            for q in questions
+        ]
+        result = score(questions, runs)
+        self.assertEqual(result["reviewed_questions"], 41)
+        self.assertEqual(result["target_minimum_reviewed_questions"], 100)
+        self.assertEqual(result["target_status"],
+                         "not_evaluable_missing_approved_labels_or_cited_runs")
+
     def test_target_requires_an_unanswerable_question_to_measure_abstention(self):
         questions = (
             [reviewed(f"Q-C-{i}", style="colloquial") for i in range(20)]
             + [reviewed(f"Q-S-{i}", style="formal", tags=["synonym"]) for i in range(20)]
+            + [reviewed(f"Q-F-{i}") for i in range(60)]
         )
         article_id = "LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"
         runs = [
@@ -147,6 +168,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         questions = (
             [reviewed(f"Q-C-{i}", style="colloquial") for i in range(20)]
             + [reviewed(f"Q-S-{i}", style="formal", tags=["synonym"]) for i in range(20)]
+            + [reviewed(f"Q-F-{i}") for i in range(60)]
             + [reviewed("Q-U", answerable=False)]
         )
         article_id = "LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"
