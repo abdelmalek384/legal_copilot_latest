@@ -46,5 +46,19 @@
     "All questions are currently unlabeled and excluded.",
     "No real retrieval-run output is committed.",
     "Do not tune MIN_SCORE until lawyer labels and a before-run exist."
-  ]
+  ],
+  "target_requirements": {
+    "minimum_colloquial_questions": 20,
+    "minimum_synonym_questions": 20,
+    "minimum_unanswerable_questions": 1,
+    "unanswerable_abstention_compliance": 1,
+    "allowed_question_origins": [
+      "observed_anonymized_query",
+      "permitted_public_q_and_a"
+    ],
+    "required_privacy_review_status": "approved",
+    "required_question_collection_date": true,
+    "required_question_origin_reference": true,
+    "required_consent_or_reuse_basis": true
+  }
 }
