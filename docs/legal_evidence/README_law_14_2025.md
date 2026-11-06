@@ -18,7 +18,7 @@ The five CSV files were fetched back from the PR branch and checked for headers 
 
 ## Other review artifacts
 
-- `law_14_2025_lawyer_review_packet.md` and `law_14_2025_lawyer_review_tick_sheet.csv`: 311-row counsel packet; every decision is blank and every verification flag is 0. All 311 rows now have page locators. 282 have prior page-image comparison records; 29 have locator-only heading checks, not full wording comparisons.
+- `law_14_2025_lawyer_review_packet.md` and `law_14_2025_lawyer_review_tick_sheet.csv`: 311-row counsel packet; every decision is blank and every verification flag is 0. All 311 rows now have page locators and page-image comparison notes. The earlier 282 comparisons plus 29 additional full-article visual comparisons on 2026-11-06 cover all 311 provisions; every lawyer decision remains blank and every `verified` value remains 0.
 - `law_14_2025_comparison_report.md`: method, counts, five numeric-alert triage notes, limitations, trust status.
 - `law_14_2025_numeric_alert_review.csv`: five individually inspected numeric alerts.
 - `law_14_2025_discrepancy_article_index.md`: grouped list of differing article identifiers.
