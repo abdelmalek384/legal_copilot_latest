@@ -279,6 +279,8 @@ def main():
             report = json.loads(report_path.read_text(encoding="utf-8"))
         else:
             report = {"schema_version": 1, "benchmark_sha256": digest, "phases": {"before": None, "after": None}}
+        if not isinstance(report, dict) or not isinstance(report.get("phases"), dict):
+            raise ValueError("measurement report must be a JSON object with a phases object")
         if report.get("benchmark_sha256") is None:
             report["benchmark_sha256"] = digest
         if report.get("benchmark_sha256") != digest:
