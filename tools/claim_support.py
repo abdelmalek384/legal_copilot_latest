@@ -85,9 +85,9 @@ _ENGLISH_MODAL_PATTERNS = {
     ),
 }
 _ARABIC_MODAL_PATTERNS = {
-    "permission": re.compile(r"(?<!لا )(?:يجوز|يحق|يسمح)"),
+    "permission": re.compile(r"(?:يجوز|يحق|يسمح)"),
     "obligation": re.compile(r"(?<!لا )(?:يجب|يلتزم|يتعين)"),
-    "prohibition": re.compile(r"(?:لا يجوز|لا يحق|لا يسمح|يحظر|يمتنع عن)"),
+    "prohibition": re.compile(r"(?:لا\\s+(?:يجوز|يحق|يسمح)|يحظر|يمتنع\\s+عن)"),
     "non_obligation": re.compile(r"(?:لا يجب|لا يلتزم|لا يتعين|ليس ملزما|غير ملزم)"),
 }
 
