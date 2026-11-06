@@ -25,6 +25,13 @@ class RunnerError(RuntimeError):
 MAX_API_RESPONSE_BYTES = 16 * 1024 * 1024
 
 
+class _NoRedirectHandler(urllib.request.HTTPRedirectHandler):
+    """Never forward login credentials or evaluation payloads across redirects."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
 def validate_base_url(base_url, allow_remote=False):
     if (
         not isinstance(base_url, str)
@@ -298,7 +305,9 @@ def run_questions(base_url, email, password, questions, out_path, sleep_seconds=
     if target.exists():
         raise RunnerError(f"output already exists: {target}; choose a new path to avoid overwriting results")
     jar = http.cookiejar.CookieJar()
-    opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar))
+    opener = urllib.request.build_opener(
+        urllib.request.HTTPCookieProcessor(jar), _NoRedirectHandler()
+    )
     base = base_url.rstrip("/")
     _request_json(opener, base + "/login", {"email": email, "password": password}, timeout=30)
     csrf = next((cookie.value for cookie in jar if cookie.name == "lc_csrf"), None)
