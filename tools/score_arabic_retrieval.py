@@ -31,6 +31,23 @@ def load_jsonl(path):
 def _valid_reviewed(row):
     if row.get("review_status") not in REVIEWED:
         return False
+    if row.get("question_origin") not in {"observed_anonymized_query", "permitted_public_q_and_a"}:
+        raise ValueError(f'{row.get("id")}: only provenance-cleared observed questions may be scored')
+    if row.get("privacy_review_status") != "approved":
+        raise ValueError(f'{row.get("id")}: privacy_review_status must be approved')
+    collection_date = row.get("question_collection_date")
+    if (not isinstance(collection_date, str)
+            or not re.fullmatch(r"\\d{4}-\\d{2}-\\d{2}", collection_date)):
+        raise ValueError(f'{row.get("id")}: question_collection_date must be YYYY-MM-DD')
+    try:
+        parsed_collection_date = date.fromisoformat(collection_date)
+    except ValueError:
+        parsed_collection_date = None
+    if parsed_collection_date is None or parsed_collection_date.isoformat() != collection_date or parsed_collection_date > date.today():
+        raise ValueError(f'{row.get("id")}: invalid or future question_collection_date')
+    for field in ("question_origin_reference", "consent_or_reuse_basis"):
+        if not isinstance(row.get(field), str) or not row[field].strip():
+            raise ValueError(f'{row.get("id")}: {field} is required')
     if row.get("label_status") not in {"lawyer_approved", "approved_for_evaluation"}:
         raise ValueError(f'{row.get("id")}: reviewed question must have an approved label_status')
     if not isinstance(row.get("answerable"), bool):
