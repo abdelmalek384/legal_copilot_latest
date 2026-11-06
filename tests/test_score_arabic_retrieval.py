@@ -8,7 +8,7 @@ sys.path.insert(0, str(ROOT))
 from tools.score_arabic_retrieval import benchmark_fingerprint, score
 
 
-def reviewed(qid, *, answerable=True, article="LABOUR-ART-1", style="formal", tags=None):
+def reviewed(qid, *, answerable=True, article="LABOUR-SOURCE::law:قانون العمل [block 1]::article:1", style="formal", tags=None):
     return {
         "id": qid,
         "question_style": style,
@@ -22,6 +22,11 @@ def reviewed(qid, *, answerable=True, article="LABOUR-ART-1", style="formal", ta
         "lawyer_approved_answer": "Approved test answer.",
         "answerable": answerable,
         "expected_article": article if answerable else None,
+        "expected_article_id": (
+            "LABOUR-SOURCE::law:قانون العمل [block 1]::article:"
+            + str(article).rsplit("-", 1)[-1]
+            if answerable else None
+        ),
         "must_abstain_if_unverified": True,
         "reviewer_name": "Test Reviewer",
         "review_date": "2026-11-05",
@@ -69,8 +74,8 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
 
     def test_correct_colloquial_article_is_a_top3_hit_with_zero_wrong_article_rate(self):
         q = reviewed("Q1", style="colloquial")
-        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1", "LABOUR-ART-2"],
-               "cited_article_ids": ["LABOUR-ART-1"], "abstained": False, "used_unverified_source": False}
+        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1", "LABOUR-SOURCE::law:قانون العمل [block 1]::article:2"],
+               "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"], "abstained": False, "used_unverified_source": False}
         result = score([q], [run])
         self.assertEqual(result["top3_hit_rate"], 1.0)
         self.assertEqual(result["top3_hit_rate_colloquial"], 1.0)
@@ -79,8 +84,8 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
 
     def test_unverified_source_citation_blocks_target_even_when_article_id_matches(self):
         q = reviewed("Q1", style="colloquial", tags=["synonym"])
-        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
-               "cited_article_ids": ["LABOUR-ART-1"], "abstained": False,
+        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
+               "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"], "abstained": False,
                "used_unverified_source": True}
         result = score([q], [run])
         self.assertEqual(result["wrong_article_rate"], 0.0)
@@ -92,22 +97,22 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         colloquial = reviewed("Q-C", style="colloquial")
         synonym = reviewed("Q-S", style="formal", tags=["synonym"])
         good = [
-            {"question_id": "Q-C", "retrieved_article_ids": ["LABOUR-ART-1"],
-             "cited_article_ids": ["LABOUR-ART-1"], "abstained": False, "used_unverified_source": False},
-            {"question_id": "Q-S", "retrieved_article_ids": ["LABOUR-ART-1"],
-             "cited_article_ids": ["LABOUR-ART-1"], "abstained": False, "used_unverified_source": False},
+            {"question_id": "Q-C", "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
+             "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"], "abstained": False, "used_unverified_source": False},
+            {"question_id": "Q-S", "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
+             "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"], "abstained": False, "used_unverified_source": False},
         ]
         self.assertEqual(score([colloquial, synonym], good)["target_status"], "targets_met")
         bad = [
-            {"question_id": "Q-C", "retrieved_article_ids": ["LABOUR-ART-1", "LABOUR-ART-2"],
-             "cited_article_ids": ["LABOUR-ART-2"], "abstained": False, "used_unverified_source": False},
+            {"question_id": "Q-C", "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1", "LABOUR-SOURCE::law:قانون العمل [block 1]::article:2"],
+             "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:2"], "abstained": False, "used_unverified_source": False},
             good[1],
         ]
         self.assertEqual(score([colloquial, synonym], bad)["target_status"], "below_target")
 
     def test_target_status_is_not_evaluable_without_approved_slice_or_citations(self):
         q = reviewed("Q1", style="formal")
-        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
+        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
                "cited_article_ids": [], "abstained": False, "used_unverified_source": False}
         self.assertEqual(score([q], [run])["target_status"],
                          "not_evaluable_missing_approved_labels_or_cited_runs")
@@ -128,8 +133,8 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         q = reviewed("Q-MISSING-FLAG")
         run = {
             "question_id": "Q-MISSING-FLAG",
-            "retrieved_article_ids": ["LABOUR-ART-1"],
-            "cited_article_ids": ["LABOUR-ART-1"],
+            "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
+            "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
             "abstained": False,
         }
         with self.assertRaisesRegex(ValueError, "used_unverified_source must be boolean"):
@@ -139,8 +144,8 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         q = reviewed("Q-UNVERIFIED", style="colloquial", tags=["synonym"])
         run = {
             "question_id": "Q-UNVERIFIED",
-            "retrieved_article_ids": ["LABOUR-ART-1"],
-            "cited_article_ids": ["LABOUR-ART-1"],
+            "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
+            "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
             "abstained": False,
             "used_unverified_source": True,
         }
@@ -152,33 +157,46 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
 
     def test_rejects_cited_article_not_present_in_retrieved_results(self):
         q = reviewed("Q1")
-        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
-               "cited_article_ids": ["LABOUR-ART-2"], "abstained": False, "used_unverified_source": False}
+        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
+               "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:2"], "abstained": False, "used_unverified_source": False}
         with self.assertRaisesRegex(ValueError, "must be present in retrieved_article_ids"):
             score([q], [run])
 
     def test_wrong_cited_article_is_counted(self):
         q = reviewed("Q1")
-        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1", "LABOUR-ART-2"],
-               "cited_article_ids": ["LABOUR-ART-2"], "abstained": False, "used_unverified_source": False}
+        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1", "LABOUR-SOURCE::law:قانون العمل [block 1]::article:2"],
+               "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:2"], "abstained": False, "used_unverified_source": False}
         result = score([q], [run])
         self.assertEqual(result["wrong_article_rate"], 1.0)
         self.assertEqual(result["wrong_article_answers"], 1)
 
     def test_synonym_tag_is_included_in_target_slice(self):
         q = reviewed("Q1", tags=["synonym"])
-        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
-               "cited_article_ids": ["LABOUR-ART-1"], "abstained": False, "used_unverified_source": False}
+        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
+               "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"], "abstained": False, "used_unverified_source": False}
         result = score([q], [run])
         self.assertEqual(result["top3_hit_rate_synonym"], 1.0)
         self.assertEqual(result["top3_hit_rate_colloquial_or_synonym"], 1.0)
         self.assertEqual(result["colloquial_or_synonym_questions"], 1)
 
+    def test_answerable_reviewed_question_requires_canonical_article_id(self):
+        q = reviewed("Q-NO-CANONICAL-ID")
+        q["expected_article_id"] = None
+        run = {
+            "question_id": "Q-NO-CANONICAL-ID",
+            "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
+            "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+        with self.assertRaisesRegex(ValueError, "needs canonical expected_article_id"):
+            score([q], [run])
+
     def test_review_status_without_approved_label_status_is_rejected(self):
         q = reviewed("Q1")
         q["label_status"] = "unlabeled"
-        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
-               "cited_article_ids": ["LABOUR-ART-1"], "abstained": False, "used_unverified_source": False}
+        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
+               "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"], "abstained": False, "used_unverified_source": False}
         with self.assertRaisesRegex(ValueError, "approved label_status"):
             score([q], [run])
 
@@ -194,10 +212,10 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         colloquial = reviewed("Q-C", style="colloquial")
         synonym = reviewed("Q-S", tags=["synonym"])
         runs = [
-            {"question_id": "Q-C", "retrieved_article_ids": ["LABOUR-ART-1"],
-             "cited_article_ids": ["LABOUR-ART-1"], "abstained": False,
+            {"question_id": "Q-C", "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
+             "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"], "abstained": False,
              "used_unverified_source": False},
-            {"question_id": "Q-S", "retrieved_article_ids": ["LABOUR-ART-1"],
+            {"question_id": "Q-S", "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
              "cited_article_ids": [], "abstained": False,
              "used_unverified_source": False},
         ]
@@ -210,7 +228,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
 
     def test_uncited_non_abstained_answer_is_reported_separately(self):
         q = reviewed("Q1")
-        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
+        run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
                "cited_article_ids": [], "abstained": False, "used_unverified_source": False}
         result = score([q], [run])
         self.assertEqual(result["uncited_non_abstained_answers"], 1)
