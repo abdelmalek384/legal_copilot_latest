@@ -9,24 +9,44 @@ import re
 
 _ENGLISH_NO_EXPIRY = re.compile(
     r"\b(?:never\s+(?:expires?|ends?|lapses?)|does\s+not\s+expire|"
-    r"doesn't\s+expire|no\s+limitation\s+period|not\s+subject\s+to\s+limitation)\b",
+    r"doesn't\s+expire|no\s+limitation\s+period|not\s+subject\s+to\s+limitation|"
+    r"immune\s+from\s+limitation|cannot\s+be\s+time[- ]barred)\b",
     re.IGNORECASE,
 )
 _ARABIC_NO_EXPIRY = re.compile(
-    r"(?:لا\s+(?:يسقط|يتقادم|ينقضي|تنقضي)|بلا\s+تقادم|دون\s+تقادم)"
+    r"(?:لا\s+(?:يسقط|يتقادم|ينقضي|تنقضي|يخضع|تخضع)|"
+    r"بلا\s+تقادم|دون\s+تقادم|غير\s+(?:خاضع|خاضعة|قابل|قابلة)\s+للتقادم)"
     r"(?:\s+(?:ابدا|مطلقا|نهائيا))?"
 )
 _ENGLISH_FINITE_PERIOD = re.compile(
-    r"\b(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|"
-    r"eleven|twelve|thirteen|fourteen|fifteen|twenty|thirty|forty|"
-    r"fifty|sixty|ninety|hundred)\s*[- ]?"
-    r"(?:year|years|month|months|week|weeks|day|days)\b",
+    r"\b(?:\d+(?:[.,]\d+)?|zero|one|two|three|four|five|six|seven|eight|"
+    r"nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|"
+    r"eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|"
+    r"ninety|hundred|thousand)(?:[- ](?:one|two|three|four|five|six|seven|"
+    r"eight|nine))?\s*(?:year|years|month|months|week|weeks|day|days)\b",
     re.IGNORECASE,
 )
 _ARABIC_FINITE_PERIOD = re.compile(
-    r"(?:\d+|واحد|واحدة|اثنين|اثنتين|ثلاث|ثلاثة|اربع|اربعة|خمس|خمسة|"
-    r"ست|ستة|سبع|سبعة|ثمان|ثمانية|تسع|تسعة|عشر|عشرة)"
-    r"\s*(?:سنه|سنوات|شهر|اشهر|اسبوع|اسابيع|يوم|ايام)"
+    # Dual-form units are complete duration expressions on their own (e.g. سنتين).
+    # Other quantities require an explicit unit. Arabic-letter boundaries prevent
+    # matching a number/unit fragment embedded inside a longer word.
+    r"(?<![\u0621-\u064A])(?:سنتين|سنتان|عامين|عامان|شهرين|اسبوعين|يومين|"
+    # Compound 21–99 forms: واحد وعشرون، خمسة وعشرون، ثلاث وعشرون، etc.
+    r"(?:واحد|واحدة|احد|احدى|اثنان|اثنين|اثنتان|اثنتين|ثلاث|ثلاثة|اربع|اربعة|"
+    r"خمس|خمسة|ست|ستة|سبع|سبعة|ثمان|ثمانية|تسع|تسعة)\s*و\s*"
+    r"(?:عشرون|عشرين|ثلاثون|ثلاثين|اربعون|اربعين|خمسون|خمسين|ستون|ستين|"
+    r"سبعون|سبعين|ثمانون|ثمانين|تسعون|تسعين)\s*"
+    r"(?:سنه|سنوات|سنين|عام|عاما|اعوام|اعواما|شهر|شهرا|شهور|اشهر|"
+    r"اسبوع|اسبوعا|اسابيع|يوم|يوما|ايام)|"
+    r"(?:\d+(?:[.,]\d+)?|واحد|واحدة|احد|احدى|اثنين|اثنتين|ثلاث|ثلاثة|"
+    r"اربع|اربعة|خمس|خمسة|ست|ستة|سبع|سبعة|ثمان|ثمانية|تسع|تسعة|عشر|"
+    r"عشرة|احد عشر|احدى عشرة|اثنا عشر|اثنتا عشرة|ثلاثة عشر|ثلاث عشر|"
+    r"اربعة عشر|اربع عشر|خمسة عشر|خمس عشر|ستة عشر|ست عشر|سبعة عشر|"
+    r"سبع عشر|ثمانية عشر|ثمان عشر|تسعة عشر|تسع عشر|عشرون|عشرين|"
+    r"ثلاثون|ثلاثين|اربعون|اربعين|خمسون|خمسين|ستون|ستين|سبعون|سبعين|"
+    r"ثمانون|ثمانين|تسعون|تسعين|مائه|مئة|ميه)"
+    r"\s*(?:سنه|سنوات|سنين|عام|عاما|اعوام|اعواما|شهر|شهرا|شهور|اشهر|"
+    r"اسبوع|اسبوعا|اسابيع|يوم|يوما|ايام))(?![\u0621-\u064A])"
 )
 _GENERIC_TERMS = {
     "a", "an", "the", "is", "are", "was", "were", "be", "been", "being",
