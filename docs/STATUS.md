@@ -92,3 +92,10 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Retrieval tags are canonicalized as an order-independent string list; malformed non-string tag data is preserved for later validation without causing fingerprint sorting to crash.
 - Added regression coverage showing counsel approval-status changes do not alter the fingerprint, while prompt/style/tag changes do. Test execution remains unverified; no pass is claimed.
 - Commits: `bd05a7c819ccb99110357fcdf354076af1dad97c`, `52aec28b669b0ed0b5cee6ea823e33eb1179f5e0`, `ffd9a5db5348d0287e4ce25c2818e83a1b90b8bb`, `1f14b198313ead16b7858c95269461a232cda7bd`.
+
+
+## Gazette importer URL credential delimiter hardening (2026-11-06)
+
+- The importer now rejects URL userinfo whenever the parsed URL contains a username or password component, including an empty credential delimiter such as `https://@example.gov/item`. Previously the truthiness check could accept an empty username component.
+- Added a regression test asserting the importer refuses this URL before creating output files. Test execution remains unverified.
+- Commits: `bbb900f2eac2a2ce30120c95ba44e891652041fc`, `1ee9f0b06a03c6f538b3420bd43d6270e01453bc`.
