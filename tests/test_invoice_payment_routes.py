@@ -1,4 +1,5 @@
 """Invoice payment, aging, and receipt route tests."""
+import json
 import sqlite3
 import unittest
 
@@ -17,9 +18,20 @@ class InvoicePaymentRouteTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(first.status_code, 200, first.text)
         self.assertEqual(first.json()["payment_state"], "partially_paid")
         self.assertEqual(first.json()["balance_piasters"], 12500)
+        payment_event = next(
+            event for event in first.json()["events"]
+            if event["event_type"] == "payment_recorded"
+        )
+        event_details = json.loads(payment_event["details_json"])
+        self.assertEqual(event_details["amount_piasters"], 5000)
+        self.assertEqual(event_details["payment_id"], first.json()["payments"][0]["id"])
         duplicate = self.mutate(self.client_a, "post", f"/invoices/{invoice['id']}/payments", json=payload)
         self.assertEqual(duplicate.status_code, 200, duplicate.text)
         self.assertEqual(len(duplicate.json()["payments"]), 1)
+        self.assertEqual(
+            sum(event["event_type"] == "payment_recorded" for event in duplicate.json()["events"]),
+            1,
+        )
         conflict = dict(payload, amount_piasters=5001)
         self.assertEqual(
             self.mutate(self.client_a, "post", f"/invoices/{invoice['id']}/payments", json=conflict).status_code,
@@ -35,6 +47,15 @@ class InvoicePaymentRouteTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(paid.status_code, 200, paid.text)
         self.assertEqual(paid.json()["payment_state"], "paid")
         self.assertEqual(paid.json()["balance_piasters"], 0)
+        payment_events = [
+            event for event in paid.json()["events"]
+            if event["event_type"] == "payment_recorded"
+        ]
+        self.assertEqual(len(payment_events), 2)
+        final_details = json.loads(payment_events[-1]["details_json"])
+        self.assertEqual(final_details["payment_id"], paid.json()["payments"][-1]["id"])
+        self.assertEqual(final_details["amount_piasters"], 12500)
+        self.assertEqual(final_details["method"], "instapay")
 
     def test_void_requires_no_payments_and_is_audited(self):
         invoice = self.create_draft().json()
@@ -86,6 +107,14 @@ class InvoicePaymentRouteTests(InvoiceTestSupport, unittest.TestCase):
         self.assertIn("ليس إيصالاً ضريبياً إلكترونياً", receipt.text)
         self.assertEqual(
             self.client_b.get(f"/invoices/{issued['id']}/payments/{payment_id}/receipt").status_code,
+            404,
+        )
+        self.assertEqual(
+            self.client_b.get(f"/invoices/{issued['id']}").status_code,
+            404,
+        )
+        self.assertEqual(
+            self.mutate(self.client_b, "post", f"/invoices/{issued['id']}/payments", json=payment).status_code,
             404,
         )
         self.assertEqual(
