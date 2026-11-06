@@ -102,6 +102,7 @@ def _modal_classes(text, patterns):
             # is required because Arabic source text may contain tabs or repeated spaces.
             verbs = r"(?:يجوز|يحق|يسمح)" if label == "permission" else r"(?:يجب|يلتزم|يتعين)"
             candidate = re.sub(r"لا\s*" + verbs, " ", candidate)
+        if pattern.search(candidate):
             classes.add(label)
     return classes
 
