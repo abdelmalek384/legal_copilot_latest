@@ -131,6 +131,12 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         self.assertEqual(before, benchmark_fingerprint([labeled]))
         edited = dict(labeled, question_ar="سؤال مختلف")
         self.assertNotEqual(before, benchmark_fingerprint([edited]))
+        edited_style = dict(labeled, question_style="formal")
+        self.assertNotEqual(before, benchmark_fingerprint([edited_style]))
+        edited_tags = dict(labeled, retrieval_tags=["synonym", "colloquial"])
+        self.assertNotEqual(before, benchmark_fingerprint([edited_tags]))
+        reordered_tags = dict(labeled, retrieval_tags=["synonym"])
+        self.assertEqual(before, benchmark_fingerprint([reordered_tags]))
 
     def test_unlabeled_rows_and_their_captured_runs_are_excluded_and_metrics_are_null(self):
         q = {"id": "Q1", "review_status": "needs_lawyer_review", "expected_article": None}
