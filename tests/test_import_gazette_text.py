@@ -163,8 +163,8 @@ class GazetteTextImportTests(unittest.TestCase):
         rows = [json.loads(line) for line in (self.output / "law_rows.jsonl").read_text(encoding="utf-8").splitlines()]
         self.assertGreater(result["candidate_chunks"], 0)
         for row in rows:
-            # manage.py importlaws consumes exactly these five fields into the
-            # quarantined legal_import_staging table.
+            # manage.py importlaws consumes these required fields into the
+            # quarantined legal_import_staging table; extra provenance fields are retained.
             for key in ("law", "article", "text", "source"):
                 self.assertIn(key, row)
                 self.assertIsInstance(row[key], str)
