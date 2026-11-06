@@ -91,6 +91,13 @@ The repository now includes a tenant-local durable outbox, atomic idempotency cl
 - [ ] Confirm SMTP acceptance is not reported as inbox delivery. Keep ambiguous rows quarantined until provider evidence is reconciled; do not blindly retry.
 - [ ] Complete a controlled operational rehearsal, including scheduler stop/start, alert delivery, provider outage, credential rotation, and safe disablement of sending.
 
+### Payment processing boundary
+
+The current billing workflow records manually reported invoice payments and bank-transfer/Instapay subscription submissions for platform review. It does not configure a card processor, hosted checkout, or payment-gateway webhook.
+
+- [ ] Do not advertise or enable live gateway processing in this release.
+- [ ] If a gateway is introduced later, require operator-owned staging and production credentials, webhook-signature secrets, idempotent event handling, reconciliation procedures, provider terms/security review, and a separate approved release gate. Never place credentials in source control or test fixtures.
+
 ## 6. Release validation
 
 Run the repository's documented checks in a clean environment:
