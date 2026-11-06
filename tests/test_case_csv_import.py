@@ -84,8 +84,6 @@ class CaseCSVImportTests(InvoiceTestSupport, unittest.TestCase):
         )
         self.assertEqual(issued.status_code, 200, issued.text)
 
-        import csv
-        import io
         exported = self.client_a.get("/invoices/export.csv")
         self.assertEqual(exported.status_code, 200, exported.text)
         rows = list(csv.DictReader(io.StringIO(exported.content.decode("utf-8-sig"))))
