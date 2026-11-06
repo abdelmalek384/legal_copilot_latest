@@ -28,6 +28,18 @@ python -m uvicorn app:app --host 127.0.0.1 --port 8000
 
 Open http://127.0.0.1:8000 on the same machine. The launchers and commands initialize local development databases; they are not production deployment or migration instructions. See [Setup and security](#setup-and-security) before using real client data.
 
+### Local release checks
+
+When hosted CI is unavailable, run the consolidated local gate from the repository root after installing the project dependencies and the `actionlint`, `bandit`, and `pip-audit` tools:
+
+```bash
+bash scripts/local_release_check.sh
+```
+
+It runs every one-line Python test module explicitly invoked by the repository GitHub Actions workflows (via `tools/run_local_test_suite.py`), workflow lint, Bandit, the hash-locked dependency audit (when the lock file is present), strict deployment preflight, and repository-root patch/diff/CSV hygiene, then prints a result table. Missing tools are reported as BLOCKED; missing deployment credentials/configuration can make strict preflight fail. A local run does not replace required CI, browser acceptance, physical-device testing, or independent security review.
+
+For the focused security modules listed in the independent-review handoff, run `bash scripts/security_regression_check.sh`. For a witnessed encrypted tenancy backup/restore rehearsal, follow `docs/test_firm_runbook.md` and `docs/security/INDEPENDENT_REVIEW_HANDOFF.md`, then run `bash scripts/backup_restore_drill.sh BACKUP_DIR RESTORE_PARENT NEW_RESTORE_NAME` (with `BACKUP_KEY` securely injected into the environment) on a protected maintenance host after confirming all writers are stopped. Never run a recovery rehearsal against production paths.
+
 The repository includes case-management workflows, profile-separated storage, Arabic lexical retrieval, citation checks, and fail-closed source-only behavior. These are software capabilities with automated tests; they do not establish the correctness of legal content.
 
 ## Known limits
