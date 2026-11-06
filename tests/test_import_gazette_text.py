@@ -79,7 +79,8 @@ class GazetteTextImportTests(unittest.TestCase):
         ]
         parts = ["عنوان القانون"]
         for number, ordinal in enumerate(ordinals, 1):
-            parts.extend([f"(المادة {ordinal})", f"نص إصدار {number}."])
+            heading = f"المادة ({ordinal})" if number == 13 else f"(المادة {ordinal})"
+            parts.extend([heading, f"نص إصدار {number}."])
         for number in range(1, 299):
             parts.extend([
                 f"مادة ({number})",
