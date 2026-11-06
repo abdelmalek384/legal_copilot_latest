@@ -10,5 +10,6 @@
   "capture_method": "lawyer_supplied_text",
   "source_reference": "lawyer-provided source description or archive reference",
   "collection_permission": "unknown",
+  "permission_evidence_reference": null,
   "content_sha256": "REPLACE_WITH_64_CHARACTER_SHA256"
 }
