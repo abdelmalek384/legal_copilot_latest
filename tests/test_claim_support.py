@@ -262,7 +262,7 @@ class ClaimSupportTests(unittest.TestCase):
         ))
 
     def test_arabic_prohibition_with_variable_whitespace_is_not_permission(self):
-        for prefix in ("لا يجوز", "لا   يجوز", "لا\\tيجوز", "لا\\nيجوز"):
+        for prefix in ("لا يجوز", "لا   يجوز", "لا\tيجوز", "لا\nيجوز"):
             with self.subTest(prefix=prefix):
                 self.assertTrue(_has_modal_mismatch("يجوز للعامل", prefix + " للعامل"))
                 self.assertFalse(_has_modal_mismatch(prefix + " للعامل", prefix + " للعامل"))
