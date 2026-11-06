@@ -120,3 +120,27 @@ Run the complete repository Tests workflow and Browser acceptance workflow again
 | Independent reproduction | NOT RUN | | |
 
 **Decision:** NO-GO until every category is evidenced, all critical/high findings are remediated or formally risk-accepted, and the independent reviewer signs the exact release SHA.
+
+## Current pilot-candidate delta — 2026-11-06
+
+The following additional regression cases are included in the current security candidate PR #1485. They are implementation/test additions, **not passing test evidence**:
+
+- **Invoice payments and audit:** `tests/test_invoice_payment_routes.py` asserts payment-event payment IDs, amounts and methods; duplicate idempotent submissions create one payment event; and a second firm cannot read or record payments against another firm's invoice. The existing route is `POST /invoices/{invoice_id}/payments`; it was already present on main, so the original missing-route report is not accurate for this checkout.
+- **CSRF and sessions:** `tests/test_app_separate_database_runtime.py` rejects a cross-origin write even with a matching CSRF token and verifies no case mutation; login rotates an attacker-supplied session cookie.
+- **MFA enforcement:** `tests/test_mfa_account_security.py` verifies `MFA_ENFORCEMENT=all_required` blocks an ordinary lawyer from accessing cases until enrollment.
+- **CSV injection:** `tests/test_case_csv_import.py` imports formula-like matter titles/client names and verifies invoice CSV export prefixes dangerous values so spreadsheet formulas are inert.
+- **Matter-file prompt injection:** `tests/test_research_prompt_injection_boundary.py` verifies case-scoped malicious passage text is serialized as JSON-encoded untrusted evidence and is not promoted into prompt instructions.
+- **PDF/DOCX/OCR limits:** `tests/test_document_extraction_budget.py` checks PDF page-count and DOCX archive-expansion limits before extraction/parsing; `tests/test_pdf_ocr_fallback.py` checks oversized page dimensions before rasterization and a bounded 30-second OCR call.
+- **LLM SSRF:** `tests/test_security_transport_config.py` covers non-global literal/DNS destinations, mixed public/private DNS answers, DNS deferral until processing approval, redirect refusal, proxy bypass and a pinned-IP TLS connection. Controlled DNS-rebinding integration and production egress verification remain independent-review requirements.
+- **Payment-review authorization:** `tests/test_subscription_billing_routes.py` verifies a firm owner cannot list or reject platform payment submissions, while a platform administrator can reject and the event is visible in the firm's subscription audit.
+- **Preflight and repository hygiene:** `tests/test_deployment_preflight.py` verifies DNS deferral, no root-level patch/diff/CSV fixture files, and the three-database README quick start. The README quick start on main already documents the control, tenant-root and corpus database paths.
+
+Related current-main draft PRs are #1483 (phone onboarding/subscription recovery and responsive bilingual browser coverage) and #1484 (explicit wildcard trusted-proxy rejection plus deployment wording). Keep all three draft until a healthy runner executes the exact heads successfully. The observed GitHub Actions attempts for these candidate branches terminated with empty job step lists and runner ID 0; classify those attempts as **NOT RUN / runner unavailable**, not as test failures and not as passes. Do not merge on the strength of descriptions or source inspection alone.
+
+### Outstanding operational acceptance
+
+- Run the focused commands and full Tests/Browser workflows from the matrix above on the exact candidate SHA using a healthy runner; retain exit codes and logs.
+- Perform physical-device acceptance on actual phone and desktop hardware in Arabic RTL and English LTR. Browser viewport automation is not physical-device evidence.
+- Stage identity SMTP with an operator-controlled mailbox, set the actual public HTTPS origin, provision a dedicated MFA key separately from the backup key, validate all three production database paths and accepted database-operations evidence, and complete the required S3/KMS and recovery checks. Run `python tools/deployment_preflight.py --strict` against that real staging configuration; do not invent credentials or acceptance manifests.
+- Keep live reminders and payment gateways disabled until their real provider credentials and controlled acceptance are available.
+- Independent reviewer must reproduce the required matrix against the exact release SHA, store evidence in the restricted evidence store, and complete the release decision table. Current status remains **NO-GO / NOT SIGNED OFF**.
