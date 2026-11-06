@@ -1,11 +1,11 @@
 """Invoice payment, aging, and receipt route tests."""
 import json
+import sqlite3
 import threading
+import unittest
 from concurrent.futures import ThreadPoolExecutor
 
 from fastapi.testclient import TestClient
-import sqlite3
-import unittest
 
 from tests.invoice_test_support import InvoiceTestSupport
 
