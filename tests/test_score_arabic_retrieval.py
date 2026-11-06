@@ -213,6 +213,19 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "needs canonical expected_article_id"):
             score([q], [run])
 
+    def test_answerable_reviewed_question_requires_human_readable_article_label(self):
+        q = reviewed("Q-NO-ARTICLE-TEXT")
+        q["expected_article"] = None
+        run = {
+            "question_id": "Q-NO-ARTICLE-TEXT",
+            "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
+            "cited_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+        with self.assertRaisesRegex(ValueError, "needs a human-readable expected_article"):
+            score([q], [run])
+
     def test_review_status_without_approved_label_status_is_rejected(self):
         q = reviewed("Q1")
         q["label_status"] = "unlabeled"
