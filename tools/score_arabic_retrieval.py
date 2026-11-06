@@ -269,26 +269,29 @@ def main():
     args = parser.parse_args()
     if not math.isfinite(args.min_score) or not 0 <= args.min_score <= 1:
         parser.error("--min-score must be a finite value from 0 to 1")
-    questions = load_jsonl(args.questions)
-    runs = load_jsonl(args.runs)
-    metrics = score(questions, runs)
-    digest = benchmark_fingerprint(questions)
-    report_path = Path(args.output)
-    if report_path.exists():
-        report = json.loads(report_path.read_text(encoding="utf-8"))
-    else:
-        report = {"schema_version": 1, "benchmark_sha256": digest, "phases": {"before": None, "after": None}}
-    if report.get("benchmark_sha256") is None:
-        report["benchmark_sha256"] = digest
-    if report.get("benchmark_sha256") != digest:
-        raise SystemExit("benchmark hash changed; start a new comparison report instead of mixing question sets")
-    report["phases"][args.phase] = {
-        "min_score": args.min_score,
-        "metrics": metrics,
-        "status": "scored" if metrics["reviewed_questions"] else "not_scored_no_lawyer_approved_labels",
-    }
-    report_path.parent.mkdir(parents=True, exist_ok=True)
-    report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    try:
+        questions = load_jsonl(args.questions)
+        runs = load_jsonl(args.runs)
+        metrics = score(questions, runs)
+        digest = benchmark_fingerprint(questions)
+        report_path = Path(args.output)
+        if report_path.exists():
+            report = json.loads(report_path.read_text(encoding="utf-8"))
+        else:
+            report = {"schema_version": 1, "benchmark_sha256": digest, "phases": {"before": None, "after": None}}
+        if report.get("benchmark_sha256") is None:
+            report["benchmark_sha256"] = digest
+        if report.get("benchmark_sha256") != digest:
+            raise SystemExit("benchmark hash changed; start a new comparison report instead of mixing question sets")
+        report["phases"][args.phase] = {
+            "min_score": args.min_score,
+            "metrics": metrics,
+            "status": "scored" if metrics["reviewed_questions"] else "not_scored_no_lawyer_approved_labels",
+        }
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    except (OSError, ValueError) as exc:
+        parser.error(str(exc))
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
 
