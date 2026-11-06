@@ -101,13 +101,8 @@ class CaseCSVImportTests(InvoiceTestSupport, unittest.TestCase):
         buffer = io.StringIO(newline="")
         writer = csv.writer(buffer, delimiter=";", lineterminator="\n")
         writer.writerow(["title", "client", "stage", "case_number", "case_year", "court", "circuit", "opposing_party"])
-        expected_case_titles = {}
         for index, value in enumerate(malicious_values, start=1):
-            # Matter titles are trimmed by import validation; preserve the
-            # attack strings in the client field, which is retained verbatim.
-            case_title = value if value[0] in "=+-@" else f"Synthetic Matter {index}"
-            expected_case_titles[case_title] = "'" + case_title if case_title[0] in "=+-@" else case_title
-            writer.writerow([case_title, value, "Labour", str(900 + index) + "/2026",
+            writer.writerow([value, value, "Labour", str(900 + index) + "/2026",
                              "2026", "Cairo Court", "Labour Circuit", "Synthetic Opponent"])
         imported = self.mutate(
             self.client_a, "post", "/cases/import.csv", json={"csv": buffer.getvalue()}
@@ -115,9 +110,9 @@ class CaseCSVImportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(imported.status_code, 200, imported.text)
         cases = {row["title"]: row for row in self.client_a.get("/cases").json()}
         expected = {}
-        for index, value in enumerate(malicious_values, start=1):
-            case_title = value if value[0] in "=+-@" else f"Synthetic Matter {index}"
-            case = cases[case_title]
+        for value in malicious_values:
+            normalized = value.strip()
+            case = cases[normalized]
             draft = self.mutate(
                 self.client_a, "post", f"/cases/{case['id']}/invoices",
                 json={
@@ -129,10 +124,7 @@ class CaseCSVImportTests(InvoiceTestSupport, unittest.TestCase):
             self.assertEqual(draft.status_code, 200, draft.text)
             issued = self.mutate(self.client_a, "post", f"/invoices/{draft.json()['id']}/issue")
             self.assertEqual(issued.status_code, 200, issued.text)
-            expected[issued.json()["invoice_number"]] = (
-                expected_case_titles[case_title],
-                "'" + value,
-            )
+            expected[issued.json()["invoice_number"]] = ("'" + normalized, "'" + normalized)
 
         exported = self.client_a.get("/invoices/export.csv")
         self.assertEqual(exported.status_code, 200, exported.text)
