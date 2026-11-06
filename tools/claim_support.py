@@ -81,9 +81,9 @@ def _modal_classes(text, patterns):
 
 
 _ENGLISH_NEGATED_OBLIGATION = re.compile(
-    r"\b(?:not\s+required\s+to|need\s+not|is\s+not\s+obliged\s+to|"
-    r"are\s+not\s+obliged\s+to|is\s+not\s+obligated\s+to|"
-    r"are\s+not\s+obligated\s+to)\b",
+    r"\b(?:must\s+not|shall\s+not|not\s+required\s+to|need\s+not|"
+    r"is\s+not\s+obliged\s+to|are\s+not\s+obliged\s+to|"
+    r"is\s+not\s+obligated\s+to|are\s+not\s+obligated\s+to)\b",
     re.IGNORECASE,
 )
 _ENGLISH_POSITIVE_OBLIGATION = re.compile(
