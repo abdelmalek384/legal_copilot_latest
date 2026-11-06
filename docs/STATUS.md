@@ -44,3 +44,11 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Added `docs/legal_evidence/deadline_rules_lawyer_review.csv` for the five existing draft deadline rules; all remain explicitly unapproved pending primary-source and counsel review.
 - Added `docs/legal_evidence/lawyer_review_cover_note.md` with review procedure and estimated effort. These files are reusable handoff templates; they do not certify legal text or currentness.
 - The downloadable XLSX workbook was generated for the user, but is not committed in this text-only GitHub contents workflow; the two CSV files provide the reusable repository-native data.
+
+
+## Latest PR #1470 head check (2026-11-06 08:48 UTC)
+
+- Current branch head at this check: `9c8436e5d6dee172e863f26bca21c70f7b416ee7`. The PR remains open and unmerged.
+- Exact-head workflow runs: Tests `42189462330`, CodeQL `42189462314`, dependency audit `42189462233`, non-database safety `42189462358`, and browser acceptance `42189462219` all concluded `failure`.
+- All seven jobs across those five runs returned an empty step list. The job-log endpoint returned HTTP 404 for the Tests job. No test, browser, Bandit, CodeQL, or dependency-audit command is evidenced as having executed. Treat this as an unresolved pre-step runner/service failure, not a code pass or code failure.
+- Do not rerun these workflows repeatedly without a change in runner availability. Do not merge until the required checks execute and pass.
