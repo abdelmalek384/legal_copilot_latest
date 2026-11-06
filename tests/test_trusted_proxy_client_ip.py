@@ -1,5 +1,7 @@
 import asyncio
 import os
+import subprocess
+import sys
 import sqlite3
 import tempfile
 import unittest
@@ -166,6 +168,53 @@ class TrustedProxyClientIpTests(unittest.TestCase):
             for db in opened_connections:
                 db.close()
 
+
+
+    def test_rate_limit_budget_survives_a_fresh_process(self):
+        with tempfile.TemporaryDirectory(prefix="trusted-proxy-process-restart-") as temp:
+            database = os.path.join(temp, "control.sqlite3")
+            connection = sqlite3.connect(database)
+            connection.execute(
+                "CREATE TABLE api_rate_limit_windows("
+                "bucket TEXT NOT NULL, client_key TEXT NOT NULL, "
+                "window_start INTEGER NOT NULL, hits INTEGER NOT NULL DEFAULT 0, "
+                "PRIMARY KEY(bucket,client_key,window_start))"
+            )
+            connection.commit()
+            connection.close()
+
+            script = """
+import sqlite3
+import sys
+from starlette.requests import Request
+import app
+
+def open_control():
+    connection = sqlite3.connect(sys.argv[1], timeout=5)
+    connection.row_factory = sqlite3.Row
+    return connection
+
+app.control_conn = open_control
+app._RATE_LIMITS = {"/ask": (1, 3600)}
+app._active_firm_context.set(type("Firm", (), {"firm_id": 707})())
+request = Request({
+    "type": "http", "http_version": "1.1", "method": "GET",
+    "scheme": "http", "path": "/ask", "raw_path": b"/ask",
+    "query_string": b"", "headers": [],
+    "client": ("203.0.113.44", 12345), "server": ("testserver", 80),
+})
+print(app._rate_limit(request))
+"""
+            first = subprocess.run(
+                [sys.executable, "-c", script, database],
+                check=True, capture_output=True, text=True,
+            )
+            second = subprocess.run(
+                [sys.executable, "-c", script, database],
+                check=True, capture_output=True, text=True,
+            )
+            self.assertEqual(first.stdout.strip(), "0")
+            self.assertGreater(int(second.stdout.strip()), 0)
 
     def test_middleware_sets_validated_firm_context_before_rate_limiting(self):
         async def exercise():

@@ -61,3 +61,4 @@
 - PR #1148: Add a data-driven Arabic legal retrieval lexicon and synthetic top-three regressions.
 - PR #1484: Namespace rate-limit budgets by validated firm identity and cover cross-firm isolation across control-database reconnects.
 - PR #1484: Assert the ASGI middleware establishes validated firm context before rate-limit accounting and clears it after the request.
+- PR #1484: Exercise the persistent rate-limit budget from two fresh Python processes to verify restart durability.
