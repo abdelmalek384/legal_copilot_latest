@@ -20,11 +20,49 @@ RUN_LINE = re.compile(r"(?m)^\s*run:\s*(?!\|)(.+)$")
 TEST_PATH = re.compile(r"^tests/(test_[A-Za-z0-9_]+\.py)$")
 
 
+def _yaml_scalar(value: str) -> str:
+    value = value.strip()
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in {"'", '"'}:
+        return value[1:-1]
+    return value
+
+
 def discover_test_invocations() -> list[tuple[str, tuple[tuple[str, str], ...]]]:
     invocations: set[tuple[str, tuple[tuple[str, str], ...]]] = set()
     for workflow in sorted(WORKFLOWS.glob("*.yml")):
-        source = workflow.read_text(encoding="utf-8")
-        for command in RUN_LINE.findall(source):
+        lines = workflow.read_text(encoding="utf-8").splitlines()
+        in_jobs = False
+        job_environment: dict[str, str] = {}
+        reading_job_env = False
+        for line in lines:
+            stripped = line.strip()
+            indent = len(line) - len(line.lstrip())
+            if indent == 0 and stripped == "jobs:":
+                in_jobs = True
+                continue
+            if not in_jobs:
+                continue
+            if indent == 2 and stripped.endswith(":") and not stripped.startswith("#"):
+                job_environment = {}
+                reading_job_env = False
+                continue
+            if indent == 4 and stripped == "env:":
+                reading_job_env = True
+                continue
+            if reading_job_env:
+                if not stripped or stripped.startswith("#"):
+                    continue
+                if indent > 4:
+                    if indent == 6 and ":" in stripped:
+                        key, value = stripped.split(":", 1)
+                        job_environment[key.strip()] = _yaml_scalar(value)
+                    continue
+                reading_job_env = False
+
+            match_line = RUN_LINE.fullmatch(line)
+            if match_line is None:
+                continue
+            command = match_line.group(1)
             try:
                 tokens = shlex.split(command)
             except ValueError as exc:
@@ -32,7 +70,7 @@ def discover_test_invocations() -> list[tuple[str, tuple[tuple[str, str], ...]]]
                     f"Cannot parse one-line run command in {workflow.name}: {command}"
                 ) from exc
             index = 0
-            overrides: dict[str, str] = {}
+            overrides = dict(job_environment)
             while index < len(tokens) and re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*=.*", tokens[index]):
                 key, value = tokens[index].split("=", 1)
                 overrides[key] = value
@@ -44,7 +82,6 @@ def discover_test_invocations() -> list[tuple[str, tuple[tuple[str, str], ...]]]
                 continue
             invocations.add((match.group(1), tuple(sorted(overrides.items()))))
     return sorted(invocations, key=lambda item: (item[0], item[1]))
-
 
 def main() -> int:
     invocations = discover_test_invocations()
