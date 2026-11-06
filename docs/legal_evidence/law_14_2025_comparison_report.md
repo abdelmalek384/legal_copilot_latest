@@ -62,7 +62,7 @@ All 221 minor-difference records were inspected against the supplied Gazette pag
 
 ## Required review and release gates
 
-- Page-image review is complete for the planned comparison checklist; no manual page-image queue remains.
+- Page-image review is complete for the planned non-identical and quantitative comparison checklist: 282 provisions have both a recorded page locator and prior page-image review record. The other 29 provisions are machine-identical after normalization but have no targeted page-image review record or Gazette page locator; they remain open for exact-source mapping and counsel review. This is not a complete 311-row visual review.
 - Quantitative page-image review is complete (120/120); the separate lawyer decision fields remain intentionally blank pending qualified Egyptian counsel.
 - Obtain the exact source URL and capture date for the user-supplied PDF; the ETA-hosted PDF URL above is an independent comparison locator, not proven upload provenance.
 - Complete a counsel-led check of amendments, corrigenda, currentness, legal effective-date interpretation, and source/reuse rights. See `law_14_2025_currentness_snapshot_2026-11-05.md` for the limited government-source sweep and related 2026 implementing-instrument watch list.
