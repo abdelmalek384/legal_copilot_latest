@@ -78,7 +78,7 @@ Use a new, empty output directory for each run. The output directory must be out
 | Error | Action |
 |---|---|
 | SHA-256 mismatch | Recompute from the exact final text bytes and update the sidecar; do not edit the text afterward |
-| No recognized headings | Preserve article headings in the text; check supported `المادة`, `مادة` or `Article` heading forms |
+| No recognized headings | Preserve article headings in the text; a heading may be on its own line or have its body after an explicit colon/dash separator; check supported `المادة`, `مادة` or `Article` heading forms |
 | Empty article bodies | Compare the relevant transcription section with the original page and correct only with a recorded reviewer decision |
 | Output already exists | Choose a new empty output directory; do not delete evidence from an earlier run |
 | Supplier role rejected | Confirm the supplier is an Egyptian lawyer/counsel and use one of the two accepted role values |
