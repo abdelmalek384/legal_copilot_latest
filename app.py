@@ -5400,6 +5400,8 @@ def approve_subscription_payment(submission_id: int, u: dict = Depends(user)):
         ).fetchone()
         if payment is None or payment["status"] != "pending":
             raise HTTPException(404, "pending payment submission not found")
+        if int(payment["submitted_by_user_id"]) == int(u["id"]):
+            raise HTTPException(403, "payment submitter cannot approve their own submission")
         control.execute(
             "UPDATE subscription_payment_submissions SET status='approved',reviewed_by_user_id=?,reviewed_at=?,decision_note='' WHERE id=? AND status='pending'",
             (u["id"], now, submission_id),

@@ -265,5 +265,38 @@ class SubscriptionBillingRouteTests(unittest.TestCase):
         self.assertEqual(denied_plan.status_code, 403)
 
 
+    def test_payment_submitter_cannot_approve_own_submission_even_if_platform_admin(self):
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,'platform_admin')",
+            (self.user_a_id,),
+        )
+        control.commit()
+        started = self._mutate(
+            self.client_a, "post", "/billing/subscribe", json={"plan_code": "solo"}
+        )
+        self.assertEqual(started.status_code, 200, started.text)
+        submission = self._mutate(
+            self.client_a, "post", "/billing/payment-submissions",
+            json={
+                "amount_piasters": 250000,
+                "method": "bank_transfer",
+                "transfer_reference": "BANK-SELF-APPROVE-2026-001",
+            },
+        )
+        self.assertEqual(submission.status_code, 200, submission.text)
+        submission_id = submission.json()["submission_id"]
+        self_approval = self._mutate(
+            self.client_a, "post",
+            f"/platform/billing/payment-submissions/{submission_id}/approve",
+        )
+        self.assertEqual(self_approval.status_code, 403)
+        independent_approval = self._mutate(
+            self.client_b, "post",
+            f"/platform/billing/payment-submissions/{submission_id}/approve",
+        )
+        self.assertEqual(independent_approval.status_code, 200, independent_approval.text)
+        self.assertEqual(self.client_a.get("/billing").json()["subscription"]["status"], "active")
+
 if __name__ == "__main__":
     unittest.main()
