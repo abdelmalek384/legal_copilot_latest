@@ -260,6 +260,7 @@ def result_from_response(question, response):
             {
                 "source_id": hit.get("source_id"),
                 "citation": hit.get("citation") or hit.get("ref"),
+                "law": hit.get("law"),
                 "article": hit.get("article"),
                 "page": hit.get("page"),
                 "source_status": hit.get("source_status"),
