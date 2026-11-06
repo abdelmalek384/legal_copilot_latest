@@ -1,3 +1,4 @@
+import asyncio
 import os
 import sqlite3
 import tempfile
@@ -5,6 +6,7 @@ import unittest
 from unittest.mock import patch
 
 from starlette.requests import Request
+from starlette.responses import Response
 
 import app
 from app import client_ip
@@ -163,6 +165,35 @@ class TrustedProxyClientIpTests(unittest.TestCase):
                         app._active_firm_context.reset(firm_b)
             for db in opened_connections:
                 db.close()
+
+
+    def test_middleware_sets_validated_firm_context_before_rate_limiting(self):
+        async def exercise():
+            context = type("Firm", (), {"firm_id": 303})()
+            observed = {}
+
+            def rate_limit(_request):
+                active = app._active_firm_context.get()
+                observed["rate_limit_firm_id"] = getattr(active, "firm_id", None)
+                return 0
+
+            async def call_next(_request):
+                active = app._active_firm_context.get()
+                observed["route_firm_id"] = getattr(active, "firm_id", None)
+                return Response("ok")
+
+            with patch.object(app, "_separate_runtime_enabled", return_value=True), \\
+                 patch.object(app, "_request_firm_context", return_value=context), \\
+                 patch.object(app, "_rate_limit", side_effect=rate_limit):
+                response = await app.security_headers(make_request("10.0.0.8"), call_next)
+
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(observed["rate_limit_firm_id"], 303)
+            self.assertEqual(observed["route_firm_id"], 303)
+            self.assertIsNone(app._active_firm_context.get())
+
+        asyncio.run(exercise())
+
 
 if __name__ == "__main__":
     unittest.main()
