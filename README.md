@@ -36,7 +36,7 @@ When hosted CI is unavailable, run the consolidated local gate from the reposito
 bash scripts/local_release_check.sh
 ```
 
-It runs Python test discovery, workflow lint, Bandit, the hash-locked dependency audit (when the lock file is present), and strict deployment preflight, then prints a result table. Missing tools are reported as BLOCKED; missing deployment credentials/configuration can make strict preflight fail. A local run does not replace required CI, browser acceptance, physical-device testing, or independent security review.
+It runs every one-line Python test module explicitly invoked by the repository GitHub Actions workflows (via `tools/run_local_test_suite.py`), workflow lint, Bandit, the hash-locked dependency audit (when the lock file is present), strict deployment preflight, and repository-root patch/diff/CSV hygiene, then prints a result table. Missing tools are reported as BLOCKED; missing deployment credentials/configuration can make strict preflight fail. A local run does not replace required CI, browser acceptance, physical-device testing, or independent security review.
 
 For the focused security modules listed in the independent-review handoff, run `bash scripts/security_regression_check.sh`. For a witnessed encrypted tenancy backup/restore rehearsal, follow `docs/test_firm_runbook.md` and `docs/security/INDEPENDENT_REVIEW_HANDOFF.md`, then run `bash scripts/backup_restore_drill.sh BACKUP_DIR RESTORE_PARENT NEW_RESTORE_NAME` (with `BACKUP_KEY` securely injected into the environment) on a protected maintenance host after confirming all writers are stopped. Never run a recovery rehearsal against production paths.
 
