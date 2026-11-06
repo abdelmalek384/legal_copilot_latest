@@ -187,3 +187,10 @@ After the handoff updates, the latest security candidate SHA is `b5dc30442376563
 - On #1485 SHA `6406896dacef2de6f206f2471a23f3a2d9131610`, the fresh Browser, non-database safety, dependency audit, Tests and CodeQL runs completed with `steps=null`; job IDs and run IDs are listed in `BLOCKERS.md`. No retry was made.
 - Local Python 3.12 tests were not run because this runtime has Python 3.13.5 only, no repository checkout and no outbound DNS/network. Counts are unavailable, not zero and not passing.
 - The exact check annotation could not be retrieved via the available connector. The accessible job record is `conclusion=failure; steps=null`; the owner must capture the exact annotation from GitHub.
+
+## Additional source-review gaps — 2026-11-06
+
+- Trusted-proxy rate-limit rows are stored in the control database and therefore survive application process restart when the same persistent DB is retained. However, the schema key is (bucket, client_key, window_start), with no firm identifier. Same-IP requests from different firms share the same budget; add a firm-scoped bucket/key and tests for same-IP cross-firm isolation plus process/database reconnection persistence.
+- The platform subscription-payment approval handler checks platform-admin status and pending state but does not compare the submitter ID with the reviewer ID. Add a same-actor denial and regression test; keep independent platform-admin approval as the positive control.
+- Invoice payment schema source inspection shows strict integer amount > 0; route checks issued state, firm-scoped invoice lookup, persisted idempotency key, overpayment and audit event. Runtime tests remain unexecuted.
+- Strict preflight was not run. Credential-only production checks visible in the script include ADMIN_TOKEN, identity SMTP host/from and paired auth values, BACKUP_KEY, MFA_ENCRYPTION_KEY, and S3/KMS primary/recovery bucket, region and key identifiers. Do not represent these as observed preflight failures until an actual placeholder-config run is available.
