@@ -90,6 +90,16 @@ fi
 
 run_check "Strict deployment preflight" python tools/deployment_preflight.py --strict
 
+root_artifacts=$(find . -maxdepth 1 -type f \\( -iname '*.patch' -o -iname '*.diff' -o -iname '*.csv' \\) -print)
+names+=("Repository-root patch/diff/CSV hygiene")
+if [[ -z "$root_artifacts" ]]; then
+  statuses+=("PASS")
+  details+=("no stray patch, diff or CSV files at repository root")
+else
+  statuses+=("FAIL")
+  details+=("remove or relocate: $(printf '%s' "$root_artifacts" | tr '\\n' ' ')")
+fi
+
 echo
 echo "================ LOCAL RELEASE CHECK ================"
 printf '%-43s %-10s %s\n' "CHECK" "RESULT" "DETAIL"
