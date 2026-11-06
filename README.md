@@ -171,12 +171,8 @@ Database staging with `python manage.py importlaws <law_rows.jsonl>` is a separa
 
 Every generated row defaults to `in_force: 0` and `verified: 0`. Keep imported records unavailable to current-law retrieval until a qualified reviewer verifies both the text and legal status. A source URL, retrieval date, and file hash help trace the material but do not prove authenticity, permission, or current force.
 
-## Arabic law text (labor law)
-`python tools/fetch_arabic_law.py out_dir` downloads the Arabic text of Labor Law No. 14 of 2025 (run it on a machine with internet), splits it into articles
-(issuing articles and the accompanying law as separate blocks), and writes `law_rows_ar.jsonl` plus `import_report_ar.md`. Check the report (missing numbers,
-the end of the last article) before loading with `python manage.py importlaws out_dir/law_rows_ar.jsonl`. The source page is an unofficial republication of the
-Official Gazette text: compare it with the Gazette (issue 18 bis, 3 May 2025) before treating it as verified. If the download is blocked, save the page in your
-browser and use `--file saved_page.html`.
+## Arabic law text (Labour Law 14/2025)
+Do not use `tools/fetch_arabic_law.py` as the source of an authoritative Law 14/2025 corpus: it relies on an unofficial republication and cannot establish Gazette identity, source rights or currentness. The current review path is the lawyer-supplied UTF-8 Gazette transcription described in [the one-sitting import runbook](docs/gazette_text_import_runbook.md). Keep any legacy downloader output quarantined as an unverified lead; do not stage it as authoritative text.
 
 
 ## Arabic law dataset (not bundled)
