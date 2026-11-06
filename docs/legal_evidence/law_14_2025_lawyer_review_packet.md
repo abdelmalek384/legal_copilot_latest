@@ -10,17 +10,45 @@
 - Gazette reference PDF: 112 pages; recorded SHA-256 b0a47cefe18722d3f23e004ac7e78e6e309010e13124413e7e7018820c9581be.
 - Candidate structure: 13 promulgation provisions + 298 provisions in the attached Labour Law.
 - Machine comparison: 38 identical after normalization; 221 minor differences; 47 major differences; 5 numeric alerts; 0 missing/extra headings.
-- The 273 non-identical machine records and 120 quantitative cue records overlap: 282 unique provisions have prior page-image review records and Gazette page locators; 29 provisions have neither a targeted page-image review record nor a Gazette page locator in the tick-sheet. Those checks are evidence aids, not counsel sign-off.
+- The 273 non-identical machine records and 120 quantitative cue records overlap. All 311 provisions now have a Gazette PDF page locator. 282 have prior page-image comparison records; the other 29 have a newly recorded locator-only visual check of the article heading. For those 29, the full wording was not compared in this locator pass. None of these checks is counsel sign-off.
 
-## Explicit Gazette page-mapping queue (29 provisions)
+## Locator-only visual checks (29 provisions)
 
-The following attached-law provisions have no page locator and no targeted page-image review record in the current tick-sheet. This is a navigation queue, not an assertion that their text differs. The reviewer must locate each in the exact 112-page PDF identified by the SHA-256 above and record the printed/PDF page locator in the approved review record:
+The 29 rows previously lacking page locators now have visually confirmed article-heading locations in the exact 112-page PDF identified by the SHA-256 above. The `locator_check_note` column records each locator and explicitly says that the full wording was not compared in this locator pass. `prior_page_image_review_recorded` remains `no` for these rows; it must not be changed to `yes` unless a complete article comparison is separately recorded.
 
-- Articles 11, 49, 59, 69, 76, 86, 104, 105, 112, 127
-- Articles 142, 144, 158, 159, 163, 178, 180, 195, 201, 205
-- Articles 206, 210, 223, 228, 235, 252, 268, 276, 280
+| Attached-law article | PDF/printed page |
+|---:|---:|
+| 11 | 14 |
+| 49 | 30 |
+| 59 | 33 |
+| 69 | 36 |
+| 76 | 38 |
+| 86 | 42 |
+| 104 | 49 |
+| 105 | 49 |
+| 112 | 50 |
+| 127 | 55 |
+| 142 | 62 |
+| 144 | 62 |
+| 158 | 67 |
+| 159 | 68 |
+| 163 | 68 |
+| 178 | 74 |
+| 180 | 74 |
+| 195 | 79 |
+| 201 | 80 |
+| 205 | 81 |
+| 206 | 82 |
+| 210 | 82 |
+| 223 | 86 |
+| 228 | 87 |
+| 235 | 89 |
+| 252 | 94 |
+| 268 | 102 |
+| 276 | 106 |
+| 280 | 106 |
 
-Do not infer page numbers from the 110-page ETA-hosted PDF or from adjacent article order. The page map must be checked against the hash-matching 112-page comparison PDF.
+These are page-navigation aids only. Do not treat the heading-location check as a full text comparison, currentness review, or lawyer approval.
 
 ## Official corroborating sources and pagination caution
 
@@ -30,7 +58,7 @@ Do not infer page numbers from the 110-page ETA-hosted PDF or from adjacent arti
 - Official Printing Authority law text record: https://alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D — corroborates the instrument's identity; it is not the 112-page comparison PDF.
 - Ministry of Labour legislation listing: https://www.labour.gov.eg/ar/القوانين-والتشريعات/ — lists Law 14/2025 as a basic law; it does not prove the Gazette PDF's byte identity or currentness.
 
-The page numbers in the tick-sheet refer to the recorded 112-page comparison PDF identified by its SHA-256 above. The original 112-page PDF and 311-row JSONL are not committed in the repository; the reviewer must obtain those exact hash-matching files before signing off. If the reviewer uses the 110-page ETA copy, page locators must be independently remapped.
+The page numbers in the tick-sheet refer to the 112-page comparison PDF identified by its SHA-256 above. The exact PDF and 311-row JSONL were recovered from the user-provided Library source bundle for this session; their computed SHA-256 values match the hashes recorded in the comparison report. The bundle is not committed to the repository. A reviewer should use those exact files or independently remap pages if using another official copy. The original candidate JSONL also records `in_force=1` and `as_of=2025-05-03` on all 311 rows in its structural audit; those fields are not a lawyer's currentness or commencement determination and must not be treated as such.
 
 ## Supporting article-by-article comparison records
 
