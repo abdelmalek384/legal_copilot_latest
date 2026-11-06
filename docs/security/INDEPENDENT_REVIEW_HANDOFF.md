@@ -144,3 +144,11 @@ Related current-main draft PRs are #1483 (phone onboarding/subscription recovery
 - Stage identity SMTP with an operator-controlled mailbox, set the actual public HTTPS origin, provision a dedicated MFA key separately from the backup key, validate all three production database paths and accepted database-operations evidence, and complete the required S3/KMS and recovery checks. Run `python tools/deployment_preflight.py --strict` against that real staging configuration; do not invent credentials or acceptance manifests.
 - Keep live reminders and payment gateways disabled until their real provider credentials and controlled acceptance are available.
 - Independent reviewer must reproduce the required matrix against the exact release SHA, store evidence in the restricted evidence store, and complete the release decision table. Current status remains **NO-GO / NOT SIGNED OFF**.
+
+### Verification update — second CI attempt
+
+A second GitHub Actions attempt was requested for all five workflows on security candidate SHA `7fb5a372bcc8cfed84599ad3e8122267aa0e7ef3` (Tests, dependency audit, CodeQL, non-database safety regression, Browser acceptance). Each attempt again completed in approximately 2–3 seconds with `runner_id=0`, an empty step list, and failure conclusion. No test command ran. This is a confirmed runner-allocation outage for both observed attempts; do not classify the code as test-failing or test-passing. Stop repeated retries until a healthy runner is available.
+
+### Repository cleanup inspection
+
+On the candidate branch, the README quick start already specifies the control-plane database, tenant database root, and shared corpus database separately. The repository root currently contains no `.patch`, `.diff`, or `.csv` fixture files; the existing CSV materials are under `docs/` and `tests/`. The corresponding deployment-preflight regression asserts the same hygiene invariant. No unnecessary file moves were made.
