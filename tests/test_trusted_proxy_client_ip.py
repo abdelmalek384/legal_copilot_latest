@@ -89,6 +89,13 @@ class TrustedProxyClientIpTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 client_ip(make_request("198.51.100.20", "203.0.113.99"))
 
+    def test_default_route_trusted_proxy_configuration_is_rejected(self):
+        for value in ("0.0.0.0/0", "::/0"):
+            with self.subTest(value=value):
+                with patch.dict(os.environ, {"COPILOT_TRUSTED_PROXIES": value}):
+                    with self.assertRaises(ValueError):
+                        client_ip(make_request("198.51.100.20", "203.0.113.99"))
+
     def test_malformed_trusted_proxy_configuration_is_rejected(self):
         with patch.dict(os.environ, {"COPILOT_TRUSTED_PROXIES": "10.0.0.0/8,not-a-network"}):
             with self.assertRaises(ValueError):

@@ -2156,11 +2156,14 @@ def client_ip(request: Request) -> str:
             if not value:
                 raise ValueError("COPILOT_TRUSTED_PROXIES contains an empty entry")
             try:
-                trusted_networks.append(ipaddress.ip_network(value, strict=False))
+                network = ipaddress.ip_network(value, strict=False)
             except ValueError as exc:
                 raise ValueError(
                     f"Invalid COPILOT_TRUSTED_PROXIES entry: {value!r}"
                 ) from exc
+            if network.prefixlen == 0:
+                raise ValueError("COPILOT_TRUSTED_PROXIES must not include wildcard default routes")
+            trusted_networks.append(network)
 
     def is_trusted(address):
         return any(address.version == network.version and address in network
