@@ -180,3 +180,10 @@ Then run `python tools/deployment_preflight.py --strict` on the actual staging h
 ### Latest candidate-head check
 
 After the handoff updates, the latest security candidate SHA is `b5dc3044237656386e5a498bdfa345c1b2a69675`. Its newly triggered Tests, Browser acceptance, dependency audit, CodeQL, and non-database safety workflows also terminated with `runner_id=0` and zero steps. This confirms the runner outage persists on a fresh commit, not only on a rerun. No more retries are justified until runner service is restored. The source-level review of the SSRF transport change confirmed that the configured HTTPS hostname is retained for TLS hostname verification while the TCP connection uses the validated pinned IP; this is code inspection only, not an executed network test.
+
+## 2026-11-06 execution evidence
+
+- Current candidate mapping and merge order: #1484 trusted proxy, #1485 invoice/security, then #1483 subscription/mobile UI. Keep all draft; merge only after exact-head green CI or explicit owner approval based on independent local results.
+- On #1485 SHA `6406896dacef2de6f206f2471a23f3a2d9131610`, the fresh Browser, non-database safety, dependency audit, Tests and CodeQL runs completed with `steps=null`; job IDs and run IDs are listed in `BLOCKERS.md`. No retry was made.
+- Local Python 3.12 tests were not run because this runtime has Python 3.13.5 only, no repository checkout and no outbound DNS/network. Counts are unavailable, not zero and not passing.
+- The exact check annotation could not be retrieved via the available connector. The accessible job record is `conclusion=failure; steps=null`; the owner must capture the exact annotation from GitHub.

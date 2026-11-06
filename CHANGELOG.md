@@ -59,3 +59,4 @@
 - PR #1151: Add fictional fixture-only tests for legal ingestion, article comparison, and effective-date extraction.
 - PR #1150: Propose a separately gated source-matched/unreviewed trust tier without relaxing lawyer approval.
 - PR #1148: Add a data-driven Arabic legal retrieval lexicon and synthetic top-three regressions.
+- PR #1485: Record exact-head runner non-execution and local Python 3.12 environment blockers for the pilot security review.
