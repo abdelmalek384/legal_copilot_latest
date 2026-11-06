@@ -1,0 +1,14 @@
+{
+  "document_id": "replace_with_stable_document_id",
+  "official_title": "replace_with_exact_official_title",
+  "language": "ar",
+  "gazette_issue": "replace_with_issue_and_supplement",
+  "publication_date": "YYYY-MM-DD",
+  "retrieved_at": "YYYY-MM-DDTHH:MM:SS+02:00",
+  "captured_by": "name_of_supplying_Egyptian_lawyer",
+  "supplier_role": "egyptian_lawyer",
+  "capture_method": "lawyer_supplied_text",
+  "source_reference": "lawyer-provided source description or archive reference",
+  "collection_permission": "unknown",
+  "content_sha256": "REPLACE_WITH_64_CHARACTER_SHA256"
+}
