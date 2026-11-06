@@ -56,6 +56,24 @@ class DeploymentPreflightTests(unittest.TestCase):
         _, _, errors = preflight.inspect_environment(configured)
         self.assertFalse(any("COPILOT_ALLOWED_HOSTS" in item for item in errors))
 
+
+    def test_trusted_proxy_preflight_accepts_explicit_addresses_and_networks(self):
+        for value in ("10.0.0.0/8", "10.0.0.8,2001:db8::/32", "192.0.2.10"):
+            with self.subTest(value=value):
+                passed, _, errors = preflight.inspect_environment(
+                    dict(self.env, COPILOT_TRUSTED_PROXIES=value)
+                )
+                self.assertFalse(any("COPILOT_TRUSTED_PROXIES" in item for item in errors), errors)
+                self.assertTrue(any("COPILOT_TRUSTED_PROXIES" in item for item in passed))
+
+    def test_trusted_proxy_preflight_rejects_wildcards_default_routes_and_malformed_entries(self):
+        for value in ("*", "0.0.0.0/0", "::/0", "10.0.0.0/8,", "10.0.0.0/8,not-a-network"):
+            with self.subTest(value=value):
+                _, _, errors = preflight.inspect_environment(
+                    dict(self.env, COPILOT_TRUSTED_PROXIES=value)
+                )
+                self.assertTrue(any("COPILOT_TRUSTED_PROXIES must be" in item for item in errors), errors)
+
     def test_public_origin_must_be_a_bare_https_origin(self):
         valid = dict(self.env, COPILOT_PUBLIC_ORIGIN="https://legal.example.com")
         _, _, errors = preflight.inspect_environment(valid)
@@ -65,15 +83,58 @@ class DeploymentPreflightTests(unittest.TestCase):
                 _, _, errors = preflight.inspect_environment(dict(self.env, COPILOT_PUBLIC_ORIGIN=origin))
                 self.assertTrue(any("COPILOT_PUBLIC_ORIGIN must be an HTTPS origin" in item for item in errors))
 
-    def test_llm_url_must_use_https_or_loopback_http(self):
-        for url in ("https://llm.example.com/v1/chat/completions", "http://127.0.0.1:11434/v1", "http://localhost:11434/v1"):
-            with self.subTest(url=url):
-                _, _, errors = preflight.inspect_environment(dict(self.env, LLM_URL=url))
-                self.assertFalse(any("LLM_URL must use HTTPS" in item for item in errors))
-        for url in ("http://llm.example.com/v1", "http://192.168.1.10/v1", "https://user:pass@llm.example.com/v1", "https://llm.example.com/v1?key=x"):
+    def test_llm_url_must_use_public_https_or_loopback_http(self):
+        public_dns = [(2, 1, 6, "", ("93.184.216.34", 443))]
+        with patch.object(preflight.socket, "getaddrinfo", return_value=public_dns):
+            for url in ("https://llm.example.com/v1/chat/completions", "http://127.0.0.1:11434/v1", "http://localhost:11434/v1"):
+                with self.subTest(url=url):
+                    _, _, errors = preflight.inspect_environment(dict(self.env, LLM_URL=url, LLM_DATA_PROCESSING_APPROVED="1"))
+                    self.assertFalse(any("LLM_URL must use HTTPS" in item for item in errors))
+        for url in (
+            "http://llm.example.com/v1",
+            "http://192.168.1.10/v1",
+            "https://10.0.0.8/v1",
+            "https://169.254.169.254/latest/meta-data",
+            "https://[::1]/v1",
+            "https://llm.example.com:0/v1",
+            "https://user:pass@llm.example.com/v1",
+            "https://llm.example.com/v1?key=x",
+        ):
             with self.subTest(url=url):
                 _, _, errors = preflight.inspect_environment(dict(self.env, LLM_URL=url))
                 self.assertTrue(any("LLM_URL must use HTTPS" in item for item in errors))
+
+    def test_llm_preflight_rejects_hostnames_with_private_dns_answers(self):
+        private_dns = [(2, 1, 6, "", ("10.0.0.8", 443))]
+        with patch.object(preflight.socket, "getaddrinfo", return_value=private_dns):
+            _, _, errors = preflight.inspect_environment(
+                dict(self.env, LLM_URL="https://model.example.test/v1/chat/completions", LLM_DATA_PROCESSING_APPROVED="1")
+            )
+        self.assertTrue(any("LLM_URL must use HTTPS" in item for item in errors))
+
+    def test_preflight_defers_llm_dns_until_processing_approval(self):
+        with patch.object(preflight.socket, "getaddrinfo") as resolve:
+            passed, _, errors = preflight.inspect_environment(
+                dict(self.env, LLM_URL="https://provider.example.test/v1/chat/completions")
+            )
+        self.assertFalse(errors)
+        self.assertTrue(any("DNS destination validation is deferred" in item for item in passed))
+        resolve.assert_not_called()
+
+    def test_repository_root_has_no_patch_or_csv_fixture_files(self):
+        root = Path(__file__).resolve().parents[1]
+        misplaced = sorted(
+            path.name for pattern in ("*.patch", "*.diff", "*.csv") for path in root.glob(pattern)
+        )
+        self.assertEqual(misplaced, [], "Move root-level patch/CSV fixtures under tests/fixtures")
+
+    def test_readme_quick_start_documents_three_database_profiles(self):
+        readme = (Path(__file__).resolve().parents[1] / "README.md").read_text(encoding="utf-8")
+        quick_start = readme.split("## Quick start (local development)", 1)[1].split("## Known limits", 1)[0]
+        for setting in ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB"):
+            with self.subTest(setting=setting):
+                self.assertIn(setting, quick_start)
+        self.assertIn("three separate database domains", quick_start)
 
     def test_rejects_unlinked_legacy_law_search_override(self):
         _, _, errors = preflight.inspect_environment(dict(self.env, ALLOW_UNLINKED_LEGACY_LAW_SEARCH="1"))

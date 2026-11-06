@@ -145,6 +145,43 @@ class SubscriptionBillingRouteTests(unittest.TestCase):
         self.assertEqual(small_firm.status_code, 200, small_firm.text)
         self.assertEqual(small_firm.json()["subscription"]["seat_limit"], 5)
 
+    def test_only_platform_admin_can_reject_payment_submissions(self):
+        started = self._mutate(
+            self.client_a, "post", "/billing/subscribe", json={"plan_code": "solo"}
+        )
+        self.assertEqual(started.status_code, 200, started.text)
+        submission = self._mutate(
+            self.client_a, "post", "/billing/payment-submissions",
+            json={
+                "amount_piasters": 250000,
+                "method": "bank_transfer",
+                "transfer_reference": "BANK-REJECT-2026-001",
+            },
+        )
+        self.assertEqual(submission.status_code, 200, submission.text)
+        submission_id = submission.json()["submission_id"]
+
+        self.assertEqual(
+            self.client_a.get("/platform/billing/payment-submissions").status_code,
+            403,
+        )
+        denied = self._mutate(
+            self.client_a, "post",
+            f"/platform/billing/payment-submissions/{submission_id}/reject",
+            json={"reason": "Unauthorized firm-owner rejection attempt"},
+        )
+        self.assertEqual(denied.status_code, 403)
+
+        rejected = self._mutate(
+            self.client_b, "post",
+            f"/platform/billing/payment-submissions/{submission_id}/reject",
+            json={"reason": "Synthetic reviewer rejection"},
+        )
+        self.assertEqual(rejected.status_code, 200, rejected.text)
+        self.assertEqual(rejected.json(), {"ok": True, "status": "rejected"})
+        events = self.client_a.get("/billing").json()["subscription_events"]
+        self.assertIn("payment_rejected", {event["event_type"] for event in events})
+
     def test_expired_trial_is_read_only_but_payment_and_reads_remain_available(self):
         started = self._mutate(
             self.client_a, "post", "/billing/subscribe", json={"plan_code": "solo"}
@@ -227,6 +264,39 @@ class SubscriptionBillingRouteTests(unittest.TestCase):
         denied_plan = self._mutate(self.client_lawyer, "post", "/billing/subscribe", json={"plan_code": "small_firm"})
         self.assertEqual(denied_plan.status_code, 403)
 
+
+    def test_payment_submitter_cannot_approve_own_submission_even_if_platform_admin(self):
+        control = self.runtime.control_connection()
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,'platform_admin')",
+            (self.user_a_id,),
+        )
+        control.commit()
+        started = self._mutate(
+            self.client_a, "post", "/billing/subscribe", json={"plan_code": "solo"}
+        )
+        self.assertEqual(started.status_code, 200, started.text)
+        submission = self._mutate(
+            self.client_a, "post", "/billing/payment-submissions",
+            json={
+                "amount_piasters": 250000,
+                "method": "bank_transfer",
+                "transfer_reference": "BANK-SELF-APPROVE-2026-001",
+            },
+        )
+        self.assertEqual(submission.status_code, 200, submission.text)
+        submission_id = submission.json()["submission_id"]
+        self_approval = self._mutate(
+            self.client_a, "post",
+            f"/platform/billing/payment-submissions/{submission_id}/approve",
+        )
+        self.assertEqual(self_approval.status_code, 403)
+        independent_approval = self._mutate(
+            self.client_b, "post",
+            f"/platform/billing/payment-submissions/{submission_id}/approve",
+        )
+        self.assertEqual(independent_approval.status_code, 200, independent_approval.text)
+        self.assertEqual(self.client_a.get("/billing").json()["subscription"]["status"], "active")
 
 if __name__ == "__main__":
     unittest.main()
