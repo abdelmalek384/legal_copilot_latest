@@ -159,3 +159,7 @@ On the candidate branch, the README quick start already specifies the control-pl
 - #1455 (client CSV constraint handling), #1456 (duplicate scale smoke test), #1437 (scale/performance), and #1457 (deployment-guide clarification) are also already closed without merge after the same validation gate. #1437's history records #1456 as a superseded duplicate.
 - Dependabot #1187 was closed, but its exact Buildx v4 head was preserved on #1467, whose successful checks were recorded and which was squash-merged to main at merge commit `97d09bcb52c92c8c83f87ae8fbaae246381c2c36`. Treat the dependency update as settled; do not reopen #1187.
 - Do not reopen any closed PR merely to clear the queue. Reopen only after the relevant work is rebased and exact-head required checks execute successfully.
+
+### CI retry outcome across all pilot candidates
+
+The one permitted retry of each previously failed workflow on #1483 and #1484 has now also completed without runner allocation. Across all three pilot candidate PRs (#1483, #1484, #1485), the second attempts for Tests, Browser acceptance, dependency audit, CodeQL and applicable non-database safety workflows all report `runner_id=0` and zero steps. No workflow reached checkout, dependency installation, test execution, browser launch, or analysis. The retry budget is exhausted for this incident; do not loop retries. Required action is restoration of GitHub Actions runner capacity, followed by a single exact-head verification pass.
