@@ -250,6 +250,14 @@ class GazetteTextImportTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "source_url"):
             import_text(self.text_path, self.meta_path, self.output)
 
+    def test_source_url_rejects_empty_userinfo_delimiter(self):
+        self.metadata["source_url"] = "https://@example.gov/item"
+        self.metadata.pop("source_reference")
+        self.write_metadata()
+        with self.assertRaisesRegex(ValueError, "source_url must be HTTPS without credentials"):
+            import_text(self.text_path, self.meta_path, self.output)
+        self.assertFalse(self.output.exists())
+
     def test_allowed_collection_permission_requires_evidence_reference(self):
         self.metadata["collection_permission"] = "allowed"
         self.write_metadata()
