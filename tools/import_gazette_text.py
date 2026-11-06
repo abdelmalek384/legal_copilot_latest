@@ -145,10 +145,13 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
     empty_articles = []
     title = metadata["official_title"].strip()
     source = (
+        f"document_id {metadata['document_id']} | "
         f"{metadata.get('source_url') or metadata.get('source_reference')} | "
         f"{metadata['gazette_issue']} | published {metadata['publication_date']} | "
         f"retrieved {metadata['retrieved_at']} | sha256 {metadata['actual_sha256']} | "
-        f"supplied by {metadata['captured_by']}"
+        f"supplied by {metadata['captured_by']} ({metadata['supplier_role']}) | "
+        f"capture_method {metadata['capture_method']} | "
+        f"collection_permission {metadata.get('collection_permission', 'unknown')}"
     )
     for article, block, body in article_parts:
         label = title + ("" if block <= 1 else f" [block {block}]")
@@ -185,6 +188,8 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
         "# Gazette text import report", "",
         "**Status:** candidate transcription only; not verified, authoritative, current, or retrieval-eligible.", "",
         f"- Document: {title}",
+        f"- Document ID: {metadata['document_id']}",
+        f"- Capture method: {metadata['capture_method']}",
         f"- Gazette issue: {metadata['gazette_issue']}",
         f"- Publication date: {metadata['publication_date']}",
         f"- Source reference: {metadata.get('source_url') or metadata.get('source_reference')}",
