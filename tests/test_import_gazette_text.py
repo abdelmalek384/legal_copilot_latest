@@ -65,7 +65,7 @@ class GazetteTextImportTests(unittest.TestCase):
         self.assertIn("Blocks with duplicate article numbers: 0", report)
 
     def test_inline_article_body_after_heading_separator_is_preserved(self):
-        inline_text = "المادة 1: يبدأ النص في السطر نفسه.\\nالمادة 2 - ويبدأ النص الثاني هنا."
+        inline_text = "المادة 1: يبدأ النص في السطر نفسه.\nالمادة 2 - ويبدأ النص الثاني هنا."
         self.text_path.write_text(inline_text, encoding="utf-8")
         self.metadata["content_sha256"] = hashlib.sha256(inline_text.encode("utf-8")).hexdigest()
         self.write_metadata()
