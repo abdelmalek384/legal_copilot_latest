@@ -1,0 +1,6 @@
+rule_id,rule_name_ar,draft_period,trigger_assumption,likely_source_not_confirmed,review_status,reviewer_notes
+civil_commercial_appeal_40d,الاستئناف في المواد المدنية والتجارية,40 days,Needs lawyer determination by judgment type,Law 13/1968 Civil and Commercial Procedure (exact article not supplied),"UNAPPROVED — confirm governing law, article, period and trigger",
+civil_cassation_60d,الطعن بالنقض,60 days,Needs lawyer determination by judgment type,Law 13/1968 Civil and Commercial Procedure (exact article not supplied),"UNAPPROVED — confirm governing law, article, period and trigger",
+misdemeanor_appeal_10d,استئناف الحكم في الجنح,10 days,Needs lawyer determination by judgment status,Law 150/1950 Criminal Procedure (exact article not supplied),"UNAPPROVED — confirm governing law, article, period and trigger",
+misdemeanor_opposition_3d,المعارضة في الحكم الغيابي في الجنح,3 days,"Needs lawyer determination, including service details",Law 150/1950 Criminal Procedure (exact article not supplied),"UNAPPROVED — confirm governing law, article, period and trigger",
+administrative_annulment_60d,دعوى إلغاء القرار الإداري,60 days,"Publication, notification or actual knowledge requires legal review",Law 47/1972 State Council and applicable procedural rules (exact article not supplied),"UNAPPROVED — confirm governing law, article, period and trigger",
