@@ -2373,7 +2373,8 @@
     "print": false,
     "change": false,
     "add_notes": false,
-    "inspection_method": "visual page-image rendering only; no text extraction or permission bypass",
-    "reuse_rights": "unverified; obtain source-owner/counsel confirmation before extraction, OCR, ingestion or redistribution"
+    "inspection_method": "visual page-image rendering only; no text extraction, decryption, or removal of restrictions",
+    "reuse_rights": "unverified; obtain source-owner/counsel confirmation before extraction, OCR, ingestion or redistribution",
+    "permission_to_render_or_reuse": "unverified; the PDF metadata prohibits copying and printing, so no further rendering, extraction, OCR, ingestion or redistribution without rights confirmation"
   }
 }
