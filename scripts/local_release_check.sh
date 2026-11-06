@@ -30,7 +30,7 @@ run_check() {
   fi
 }
 
-run_check "Python test suite (unittest discovery)" python -m unittest discover -s tests -p 'test_*.py' -v
+run_check "Full CI-invoked Python test suite" python tools/run_local_test_suite.py
 
 if command -v actionlint >/dev/null 2>&1; then
   run_check "GitHub Actions workflow lint" actionlint
