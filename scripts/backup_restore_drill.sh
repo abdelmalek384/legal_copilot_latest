@@ -58,7 +58,7 @@ fi
 backup_log=$(mktemp)
 trap 'rm -f "$backup_log"' EXIT
 
-echo "[1/3] Creating encrypted tenancy bundle..."
+echo "[1/4] Creating encrypted tenancy bundle..."
 python manage.py backup-tenancy "$backup_dir" --quiesced | tee "$backup_log"
 bundle=$(sed -n 's/^Encrypted database bundle created: //p' "$backup_log" | tail -n 1)
 if [[ -z "$bundle" || ! -f "$bundle" || -L "$bundle" ]]; then
@@ -66,11 +66,17 @@ if [[ -z "$bundle" || ! -f "$bundle" || -L "$bundle" ]]; then
   exit 1
 fi
 
-echo "[2/3] Verifying encrypted bundle before restore..."
+echo "[2/4] Verifying encrypted bundle before restore..."
 python manage.py verify-backup-tenancy "$bundle"
 
-echo "[3/3] Restoring to a new isolated directory..."
+echo "[3/4] Restoring to a new isolated directory..."
 python manage.py restore-tenancy "$bundle" --target-root "$restore_target"
+
+# The repository verifier performs a second isolated restore and checks SQLite
+# integrity, foreign keys, tenant routing and original-object reconciliation.
+export COPILOT_BACKUP_FERNET_KEY="$BACKUP_KEY"
+echo "[4/4] Running full isolated recovery verification..."
+python tools/run_database_recovery_drill.py --bundle "$bundle" --temp-parent "$restore_parent"
 
 echo
 echo "DRILL COMMANDS COMPLETED."
