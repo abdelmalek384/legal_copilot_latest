@@ -147,7 +147,7 @@ Use `tools/score_arabic_retrieval.py` with the same lawyer-approved question set
 
 ## Preliminary register and synonym tags
 
-The 110 curated prompts currently have 82 preliminary formal labels and 28 preliminary colloquial labels. Thirty-two rows also carry a preliminary `synonym` retrieval tag to help counsel identify likely dialect-to-legal-term mapping cases. Every style/synonym review status remains `needs_lawyer_review`; these labels are not lawyer-approved and are excluded from the target slice until reviewed.
+The 110 curated prompts currently have 82 preliminary formal labels and 28 preliminary colloquial labels. Thirty-two rows also carry a preliminary `synonym` retrieval tag: the 28 colloquial prompts plus four formal synonym candidates (`Q-LAB-041-S`, `Q-LAB-044-S`, `Q-LAB-048-S`, `Q-LAB-049-S`). This keeps the synonym cohort from being identical to the colloquial cohort. Every style/synonym review status remains `needs_lawyer_review`; these labels are not lawyer-approved and are excluded from the target slice until reviewed.
 
 
 ### Article ID and run capture contract
