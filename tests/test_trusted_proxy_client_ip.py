@@ -1,4 +1,6 @@
 import os
+import sqlite3
+import tempfile
 import unittest
 from unittest.mock import patch
 
@@ -109,6 +111,53 @@ class TrustedProxyClientIpTests(unittest.TestCase):
         self.assertEqual(connection.arguments[1][0], "/ask")
         self.assertEqual(connection.arguments[0][1], "101:203.0.113.44")
         self.assertEqual(connection.arguments[1][1], "202:203.0.113.44")
+
+    def test_firm_rate_budgets_are_isolated_and_persist_across_db_reconnects(self):
+        with tempfile.TemporaryDirectory(prefix="trusted-proxy-rate-limit-") as temp:
+            database = os.path.join(temp, "control.sqlite3")
+            connection = sqlite3.connect(database)
+            connection.execute(
+                "CREATE TABLE api_rate_limit_windows("
+                "bucket TEXT NOT NULL, client_key TEXT NOT NULL, "
+                "window_start INTEGER NOT NULL, hits INTEGER NOT NULL DEFAULT 0, "
+                "PRIMARY KEY(bucket,client_key,window_start))"
+            )
+            connection.commit()
+            connection.close()
+
+            def open_control():
+                db = sqlite3.connect(database)
+                db.row_factory = sqlite3.Row
+                return db
+
+            request = make_request("10.0.0.8", "203.0.113.44")
+            with patch.object(app, "_RATE_LIMITS", {"/ask": (1, 3600)}):
+                with patch.object(app, "control_conn", side_effect=open_control):
+                    firm_a = app._active_firm_context.set(type("Firm", (), {"firm_id": 101})())
+                    try:
+                        self.assertEqual(app._rate_limit(request), 0)
+                    finally:
+                        app._active_firm_context.reset(firm_a)
+
+                    firm_b = app._active_firm_context.set(type("Firm", (), {"firm_id": 202})())
+                    try:
+                        self.assertEqual(app._rate_limit(request), 0)
+                    finally:
+                        app._active_firm_context.reset(firm_b)
+
+                    # New SQLite connections are opened for each call, simulating
+                    # worker/database reconnection while retaining the control DB.
+                    firm_a = app._active_firm_context.set(type("Firm", (), {"firm_id": 101})())
+                    try:
+                        self.assertGreater(app._rate_limit(request), 0)
+                    finally:
+                        app._active_firm_context.reset(firm_a)
+
+                    firm_b = app._active_firm_context.set(type("Firm", (), {"firm_id": 202})())
+                    try:
+                        self.assertGreater(app._rate_limit(request), 0)
+                    finally:
+                        app._active_firm_context.reset(firm_b)
 
 if __name__ == "__main__":
     unittest.main()
