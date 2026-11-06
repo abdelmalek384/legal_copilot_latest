@@ -115,7 +115,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
             "lawyer_approved_answer": None, "review_status": "needs_lawyer_review",
             "label_status": "unlabeled", "question_style": "colloquial",
             "question_style_review_status": "needs_lawyer_review",
-            "retrieval_tags": ["synonym"], "retrieval_tags_review_status": "needs_lawyer_review",
+            "retrieval_tags": ["synonym", "colloquial"], "retrieval_tags_review_status": "needs_lawyer_review",
         }
         before = benchmark_fingerprint([q])
         labeled = dict(q)
@@ -133,9 +133,9 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         self.assertNotEqual(before, benchmark_fingerprint([edited]))
         edited_style = dict(labeled, question_style="formal")
         self.assertNotEqual(before, benchmark_fingerprint([edited_style]))
-        edited_tags = dict(labeled, retrieval_tags=["synonym", "colloquial"])
+        edited_tags = dict(labeled, retrieval_tags=["synonym", "colloquial", "new-tag"])
         self.assertNotEqual(before, benchmark_fingerprint([edited_tags]))
-        reordered_tags = dict(labeled, retrieval_tags=["synonym"])
+        reordered_tags = dict(labeled, retrieval_tags=["colloquial", "synonym"])
         self.assertEqual(before, benchmark_fingerprint([reordered_tags]))
 
     def test_unlabeled_rows_and_their_captured_runs_are_excluded_and_metrics_are_null(self):
