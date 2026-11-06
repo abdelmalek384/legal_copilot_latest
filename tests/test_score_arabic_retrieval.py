@@ -62,6 +62,28 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
             self.assertIn("invalid JSON", stderr.getvalue())
             self.assertNotIn("Traceback", stderr.getvalue())
 
+    def test_cli_rejects_measurement_report_with_wrong_json_shape(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            questions = Path(temp_dir) / "questions.jsonl"
+            runs = Path(temp_dir) / "runs.jsonl"
+            report = Path(temp_dir) / "report.json"
+            questions.write_text('{"id":"Q1","review_status":"needs_lawyer_review"}\\n', encoding="utf-8")
+            runs.write_text("", encoding="utf-8")
+            report.write_text("[]", encoding="utf-8")
+            stderr = io.StringIO()
+            with mock.patch("sys.argv", [
+                "score_arabic_retrieval.py",
+                "--questions", str(questions),
+                "--runs", str(runs),
+                "--phase", "before",
+                "--output", str(report),
+            ]), contextlib.redirect_stderr(stderr):
+                with self.assertRaises(SystemExit) as raised:
+                    main()
+            self.assertEqual(raised.exception.code, 2)
+            self.assertIn("phases object", stderr.getvalue())
+            self.assertNotIn("Traceback", stderr.getvalue())
+
     def test_curated_candidate_cannot_enter_real_question_scoring(self):
         question = reviewed("Q-CURATED")
         question["question_origin"] = "curated_candidate_not_user_observed"
