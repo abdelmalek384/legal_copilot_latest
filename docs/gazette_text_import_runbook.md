@@ -4,6 +4,8 @@
 
 **This is not OCR, source authentication, legal verification, a reuse-rights decision, or database staging.** The importer never changes `verified=0`, `in_force=0`, or `as_of=null`.
 
+**Current source-specific caution:** the supplied 112-page Gazette PDF reports AES permissions `copy=no`, `print=no`, `change=no`, and `addNotes=no`. Do not extract/OCR its text or bypass those restrictions. Use text independently supplied by an authorized Egyptian lawyer, and keep reuse permission `unknown` unless the lawyer provides evidence that collection/use is allowed.
+
 ## Inputs
 
 Create a private working directory outside the repository, for example:
