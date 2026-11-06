@@ -15,6 +15,21 @@ Provide a reproducible measurement harness for Arabic legal retrieval and citati
 - `tests/legal_eval/runs.example.jsonl` is intentionally empty apart from an explanatory comment. No real run results or lawyer-approved labels are claimed.
 - Add reviewed labels only after a qualified Egyptian-law reviewer records their name/date and identifies exact expected source IDs. Pin-cite labels are optional but should be exact and evidence-backed.
 
+## 110-question article-level benchmark template
+
+The current target template is `tests/legal_eval/arabic_retrieval_110.template.jsonl` (110 rows). All 110 are explicitly marked `question_origin=curated_candidate_not_user_observed`; they are candidate prompts, not real observed user/client questions. The prior conversation search found no authentic user-supplied legal questions or lawyer-approved answer key. Do not relabel these candidates as real queries.
+
+All 110 rows remain unreviewed/unlabeled. No expected article is treated as ground truth and no `lawyer_approved_answer` has been supplied. A question may enter the scored cohort only after a qualified Egyptian lawyer records the expected article ID, answerability, lawyer-approved answer, question style, synonym tags, review date and evidence reference.
+
+The new scorer is `tools/score_arabic_retrieval.py`; the API runner is `tools/run_legal_eval.py`. The combined measurement file is `docs/arabic_retrieval_measurement.json`. It currently records 110 excluded/unreviewed questions, zero reviewed questions, null top-3/wrong-article/abstention metrics, and no after-run. Null means not measured, not zero error. `MIN_SCORE` remains 0.30 and must not be tuned before a lawyer-labelled benchmark and a real before-run exist.
+
+Release targets on approved cohorts:
+- At least 20 lawyer-approved colloquial questions and 20 lawyer-approved synonym questions.
+- Top-3 expected-article hit rate of at least 80% for each cohort.
+- Wrong-article answer rate 0%.
+- No uncited non-abstained answers and no answers from unverified sources.
+- Unanswerable questions must abstain.
+
 ## Current measurement limitation
 
 No lawyer-reviewed Egyptian colloquial question set or measured model-run output is currently available. Phrase-expansion unit tests prove that selected colloquial expressions map to retrieval hints; they do not prove that the correct article is retrieved or that an answer is legally correct. Do not report retrieval recall, citation precision, or answer accuracy until a qualified Egyptian reviewer approves exact expected source IDs and pin-cites and a real run is scored.
