@@ -1,6 +1,6 @@
 # Project status
 
-**Updated:** 2026-11-04  
+**Updated:** 2026-11-06  
 **Scope:** engineering and knowledge quality; not a legal-readiness certification.
 
 ## Working
