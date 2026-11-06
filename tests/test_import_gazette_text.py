@@ -111,6 +111,13 @@ class GazetteTextImportTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "source_url"):
             import_text(self.text_path, self.meta_path, self.output)
 
+    def test_allowed_collection_permission_requires_evidence_reference(self):
+        self.metadata["collection_permission"] = "allowed"
+        self.write_metadata()
+        with self.assertRaisesRegex(ValueError, "permission_evidence_reference is required"):
+            import_text(self.text_path, self.meta_path, self.output)
+        self.assertFalse(self.output.exists())
+
     def test_not_allowed_collection_permission_is_rejected(self):
         self.metadata["collection_permission"] = "not_allowed"
         self.write_metadata()
