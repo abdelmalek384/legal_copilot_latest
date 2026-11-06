@@ -31,7 +31,7 @@ NAMES = {
 }
 ARABIC_DIGITS = "0-9٠-٩۰-۹"
 HEAD = re.compile(
-    rf"(?m)^[ \t]*(?:Article|المادة|مادة)[ \t]*:?[ \t]*(?:رقم[ \t]*)?\(?[ \t]*([{ARABIC_DIGITS}]+)(?:[ \t]*(bis(?:[ \t]*\(?[A-Za-z]\)?)?|مكرر))?[ \t]*\)?[ \t]*[:\-]?[ \t]*$",
+    rf"(?m)^[ \t]*(?:Article|المادة|مادة)[ \t]*:?[ \t]*(?:رقم[ \t]*)?\(?[ \t]*([{ARABIC_DIGITS}]+)(?:[ \t]*(bis(?:[ \t]*\(?[A-Za-z]\)?)?|مكرر))?[ \t]*\)?(?:[ \t]*[:\-][ \t]*|[ \t]*$)",
     re.IGNORECASE,
 )
 DOCUMENT_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
