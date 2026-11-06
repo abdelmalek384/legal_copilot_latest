@@ -77,3 +77,10 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 
 
 - Additional hardening: existing measurement report files must now be JSON objects with a `phases` object; malformed report structure is converted to a concise CLI validation error. Regression coverage asserts exit code 2 without traceback. Commits: `868fa9c98be192ee91b6745d92455a22a264d4b3` and `0e5bd29742975a627c810b20d21e5144534466b6`.
+
+## Arabic negation guard whitespace hardening (2026-11-06)
+
+- The claim-support screen now recognizes Arabic prohibitions written with repeated spaces, tabs, or newlines between `لا` and `يجوز` / `يحق` / `يسمح`. Positive permission matching strips these negated forms before classifying modality, preventing a prohibition from being misread as permission.
+- Added regression cases for all four whitespace forms, including faithful negative wording and positive-claim-versus-negative-source conflicts.
+- Commits: `0dccdf51a9fdec443498cbafc3d5e1ce73af639b`, `25a43b3ac28a3b31f8e34986bbc73ccecceaaed8`, `02ebbd52c285d8e84b221286fc1d90bf6f4b5f1e`, `577a943b1790777ebe4f395ad3f018fe0e2b3a7c`, `d9611009903c9a720fa317a54c0583c294603d08`.
+- Static source review only. Regression tests have not executed; do not treat this as validated until the integrated suite runs.
