@@ -7,7 +7,6 @@ import os
 import re
 import socket
 import stat
-import socket
 import sys
 from pathlib import Path
 from urllib.parse import urlsplit
