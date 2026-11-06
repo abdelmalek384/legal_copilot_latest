@@ -3,6 +3,7 @@ import hashlib
 import json
 from pathlib import Path
 import sys
+import subprocess
 import tempfile
 import unittest
 
@@ -69,6 +70,31 @@ class GazetteTextImportTests(unittest.TestCase):
         report = (self.output / "import_report.md").read_text(encoding="utf-8")
         self.assertIn("Block 1 missing: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12", report)
         self.assertIn("Blocks with duplicate article numbers: 0", report)
+
+    def test_command_line_import_completes_one_sitting_run(self):
+        completed = subprocess.run(
+            [
+                sys.executable,
+                str(ROOT / "tools" / "import_gazette_text.py"),
+                str(self.text_path),
+                str(self.meta_path),
+                str(self.output),
+            ],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            timeout=15,
+            check=False,
+        )
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+        result = json.loads(completed.stdout)
+        self.assertEqual(result["document_id"], "EG-LABOUR-14-2025")
+        self.assertEqual(result["article_headings"], 4)
+        self.assertGreater(result["candidate_chunks"], 0)
+        self.assertTrue((self.output / "law_rows.jsonl").is_file())
+        self.assertTrue((self.output / "import_report.md").is_file())
+        rows = [json.loads(line) for line in (self.output / "law_rows.jsonl").read_text(encoding="utf-8").splitlines()]
+        self.assertTrue(all(row["verified"] == 0 and row["in_force"] == 0 and row["as_of"] is None for row in rows))
 
     def test_candidate_rows_match_separate_importlaws_staging_contract(self):
         result = import_text(self.text_path, self.meta_path, self.output)
