@@ -14,7 +14,7 @@
 
 ## Source-file handling and reuse restrictions
 
-The recovered 112-page supplied PDF reports AES encryption with PDF permissions `copy=no`, `print=no`, `change=no`, and `addNotes=no`. The additional 29 checks were made by visually inspecting rendered page images; no PDF text extraction or permission bypass was used. This does not establish the uploader's authority to redistribute, extract, OCR, ingest, or reuse the document. Counsel/source owner must confirm permitted use before any text ingestion or publication. The UTF-8 importer is intended for text independently supplied by an authorized lawyer, not for circumventing PDF restrictions.
+The recovered 112-page supplied PDF reports AES encryption with PDF permissions `copy=no`, `print=no`, `change=no`, and `addNotes=no`. The additional 29 checks were made by visually inspecting rendered page images; no PDF text extraction, decryption, or removal of restrictions was performed. The PDF metadata prohibits copying and printing, so permission to make/use rendered copies for internal review has not been independently established. This does not establish the uploader's authority to redistribute, extract, OCR, ingest, or reuse the document. Counsel/source owner must confirm permitted use before any further processing or publication. The UTF-8 importer is intended for text independently supplied by an authorized lawyer, not for circumventing PDF restrictions.
 
 ## Additional full-article page-image comparisons (29 provisions)
 
