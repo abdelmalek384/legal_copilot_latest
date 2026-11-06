@@ -12,7 +12,7 @@
 
 1. **Login:** open the production-shaped HTTPS origin, sign in as the designated synthetic firm user, and verify the correct firm context and readable layout. Expected: no clipped controls, horizontal page overflow, or cross-firm data.
 2. **MFA:** complete the configured MFA challenge. Expected: enrolled user proceeds; an unenrolled user subject to policy is denied; recovery behavior follows the approved runbook.
-3. **Create case:** create a synthetic case with a synthetic client and unique sentinel. Expected: save succeeds once, the case appears in the correct firm, and switching language does not lose the current view or data.
+3. **Create case:** create a synthetic case with a synthetic client and unique sentinel. Expected: save succeeds once, the case appears only in the correct firm, the other synthetic firm's sentinel is not visible, and switching language does not lose the current view or data.
 4. **Deadline:** create a test deadline using an explicitly reviewed fixture date/rule. Expected: displayed date, timezone, status and audit trail match the approved fixture; do not treat this as legal validation of an unreviewed deadline rule.
 5. **Invoice:** create and issue a synthetic invoice for the case. Expected: currency and integer minor-unit amount are correct, invoice is bound to the intended firm/case, and print/export text is legible in the selected language.
 6. **Payment:** record a synthetic manual payment using the approved non-live test procedure and a unique idempotency key. Expected: balance/state and receipt are correct, duplicate submission does not create a second payment, and the audit event is visible. Do not connect a live payment gateway.

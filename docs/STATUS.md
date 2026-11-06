@@ -1,5 +1,13 @@
 # Project status
 
+## Pilot readiness
+
+**Pilot readiness: 35%.** This measures progress against **all gates for a 3-5 firm pilot with real client data**. It is the single release-readiness measure, not an engineering-output percentage. Keep the number unchanged unless a defined pilot gate changes; every change must cite dated evidence and identify the gate transition. Do not compare it with another team's engineering percentage.
+
+Required gates: (1) exact-candidate tests and required CI execute and pass, with local results distinguished from CI; (2) trusted-proxy identity, header overwrite, rate-limit isolation and restart behavior pass; (3) invoice amount, eligibility, separation-of-duties, idempotency and audit controls pass; (4) tenant isolation, MFA, CSRF/session, upload/OCR, CSV, prompt-injection, SSRF and privileged-route tests pass with independent security sign-off; (5) witnessed Arabic/English acceptance passes on a physical phone and desktop; (6) strict production preflight and controlled staging pass with operator-owned credentials/configuration; (7) legal content, deadlines, privacy, backup/restore and operational controls receive required qualified human approvals.
+
+No pilot gate changed in this update; 35% is intentionally unchanged. Evidence and blockers are in BLOCKERS.md, docs/acceptance/real_device_pilot_script.md, and docs/security/INDEPENDENT_REVIEW_HANDOFF.md.
+
 **Updated:** 2026-11-06  
 **Scope:** engineering and knowledge quality; not a legal-readiness certification.
 
