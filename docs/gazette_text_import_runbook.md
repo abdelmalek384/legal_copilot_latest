@@ -19,7 +19,7 @@ gazette-session/
 1. Obtain the Arabic text from an Egyptian lawyer who supplies or transcribes the relevant Gazette issue. Save it as UTF-8 plain text. Preserve headings, article numbers, schedules and numbering resets exactly; do not silently correct spelling or OCR.
 2. Copy `docs/templates/gazette_text_metadata.template.json` to `source/gazette.metadata.json`.
 3. Fill every required field. Use the exact title, Gazette issue/supplement and publication date. `captured_by` identifies the supplier; `supplier_role` must be `egyptian_lawyer` or `qualified_egyptian_counsel`. Set `capture_method` to `lawyer_supplied_text` or `manual_transcription`.
-4. Provide either a stable `source_url` (HTTPS, without credentials, fragments or signed query parameters) or a non-empty `source_reference`. If reuse permission is unknown, leave `collection_permission` as `unknown`; do not infer permission from public availability.
+4. Provide either a stable `source_url` (HTTPS, without credentials, fragments or signed query parameters) or a non-empty `source_reference`. If reuse permission is unknown, leave `collection_permission` as `unknown`; do not infer permission from public availability. If you set it to `allowed`, supply a non-empty `permission_evidence_reference` identifying the terms or written permission record.
 
 ## Hash the exact text bytes
 
