@@ -89,5 +89,26 @@ class TrustedProxyClientIpTests(unittest.TestCase):
                 client_ip(make_request("10.0.0.8", "203.0.113.44"))
 
 
+    def test_same_client_ip_has_separate_budgets_for_validated_firms(self):
+        with patch.dict(os.environ, {"COPILOT_TRUSTED_PROXIES": "10.0.0.0/8"}):
+            connection = FakeConnection()
+            request = make_request("10.0.0.8", "203.0.113.44")
+            first = app._active_firm_context.set(type("Firm", (), {"firm_id": 101})())
+            try:
+                with patch.object(app, "control_conn", return_value=connection):
+                    app._rate_limit(request)
+                second = app._active_firm_context.set(type("Firm", (), {"firm_id": 202})())
+                try:
+                    with patch.object(app, "control_conn", return_value=connection):
+                        app._rate_limit(request)
+                finally:
+                    app._active_firm_context.reset(second)
+            finally:
+                app._active_firm_context.reset(first)
+        self.assertEqual(connection.arguments[0][0], "/ask")
+        self.assertEqual(connection.arguments[1][0], "/ask")
+        self.assertEqual(connection.arguments[0][1], "101:203.0.113.44")
+        self.assertEqual(connection.arguments[1][1], "202:203.0.113.44")
+
 if __name__ == "__main__":
     unittest.main()

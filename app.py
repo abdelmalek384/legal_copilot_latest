@@ -2241,6 +2241,11 @@ def _rate_limit(request: Request):
         return 0
     max_requests, window_seconds = limit
     peer = client_ip(request)
+    active_context = _active_firm_context.get()
+    firm_id = getattr(active_context, "firm_id", None)
+    # Preserve a separate rate budget for each validated firm identity. Never
+    # derive this namespace from the untrusted lc_firm cookie itself.
+    client_key = f"{int(firm_id)}:{peer}" if firm_id is not None else peer
     now = time.time()
     window_start = int(now // window_seconds) * window_seconds
     db = control_conn()
@@ -2250,7 +2255,7 @@ def _rate_limit(request: Request):
            ON CONFLICT(bucket,client_key,window_start)
            DO UPDATE SET hits=api_rate_limit_windows.hits+1
            RETURNING hits""",
-        (bucket, peer, window_start),
+        (bucket, client_key, window_start),
     )
     row = cursor.fetchone()
     cursor.fetchall()  # Finish the RETURNING statement before committing.
@@ -2346,9 +2351,9 @@ async def security_headers(request: Request, call_next):
     context_token = _active_firm_context.set(None)
     try:
         try:
-            retry_after = _rate_limit(request)
-            if not retry_after and _separate_runtime_enabled():
+            if _separate_runtime_enabled():
                 _active_firm_context.set(_request_firm_context(request))
+            retry_after = _rate_limit(request)
             body_size_error = _declared_body_size_error(request)
             if body_size_error:
                 response = JSONResponse(status_code=body_size_error[0], content={"detail": body_size_error[1]})
