@@ -2365,5 +2365,15 @@
       "count": 311,
       "warning": "publication date only; not commencement"
     }
+  },
+  "pdf_permissions": {
+    "encrypted": true,
+    "algorithm": "AES",
+    "copy": false,
+    "print": false,
+    "change": false,
+    "add_notes": false,
+    "inspection_method": "visual page-image rendering only; no text extraction or permission bypass",
+    "reuse_rights": "unverified; obtain source-owner/counsel confirmation before extraction, OCR, ingestion or redistribution"
   }
 }
