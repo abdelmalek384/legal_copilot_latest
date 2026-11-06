@@ -1,4 +1,6 @@
 """Bounded, firm-scoped matter CSV import tests."""
+import csv
+import io
 import unittest
 
 import app
@@ -90,6 +92,45 @@ class CaseCSVImportTests(InvoiceTestSupport, unittest.TestCase):
         exported_case = next(row for row in rows if row["invoice_number"] == issued.json()["invoice_number"])
         self.assertEqual(exported_case["case_title"], "'" + formula)
         self.assertNotIn("\r\n" + formula, exported.text)
+
+    def test_imported_formula_prefixes_are_neutralized_in_invoice_export(self):
+        malicious_titles = (
+            "=1+1", "+1+1", "-1+1", "@SUM(1,1)",
+            "\t=1+1", " \r@SUM(1,1)", "\n+1+1",
+        )
+        buffer = io.StringIO(newline="")
+        writer = csv.writer(buffer, delimiter=";", lineterminator="\n")
+        writer.writerow(["title", "client", "stage", "case_number", "case_year", "court", "circuit", "opposing_party"])
+        for index, title in enumerate(malicious_titles, start=1):
+            writer.writerow([title, "Synthetic CSV Client", "Labour", str(900 + index) + "/2026",
+                             "2026", "Cairo Court", "Labour Circuit", "Synthetic Opponent"])
+        imported = self.mutate(
+            self.client_a, "post", "/cases/import.csv", json={"csv": buffer.getvalue()}
+        )
+        self.assertEqual(imported.status_code, 200, imported.text)
+        cases = {row["title"]: row for row in self.client_a.get("/cases").json()}
+        expected = {}
+        for title in malicious_titles:
+            case = cases[title]
+            draft = self.mutate(
+                self.client_a, "post", f"/cases/{case['id']}/invoices",
+                json={
+                    "description": "Synthetic formula neutralization test",
+                    "due_date": "2099-01-01",
+                    "lines": [{"description": "Synthetic service", "quantity_milli": 1000, "unit_price_piasters": 100}],
+                },
+            )
+            self.assertEqual(draft.status_code, 200, draft.text)
+            issued = self.mutate(self.client_a, "post", f"/invoices/{draft.json()['id']}/issue")
+            self.assertEqual(issued.status_code, 200, issued.text)
+            expected[issued.json()["invoice_number"]] = "'" + title
+
+        exported = self.client_a.get("/invoices/export.csv")
+        self.assertEqual(exported.status_code, 200, exported.text)
+        rows = list(csv.DictReader(io.StringIO(exported.content.decode("utf-8-sig"))))
+        for row in rows:
+            if row["invoice_number"] in expected:
+                self.assertEqual(row["case_title"], expected[row["invoice_number"]])
 
     def test_non_admin_and_malformed_imports_are_rejected_without_partial_writes(self):
         denied = self.mutate(
