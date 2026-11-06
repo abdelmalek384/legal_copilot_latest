@@ -74,3 +74,6 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - `tools/score_arabic_retrieval.py` now converts malformed question/run/report input and filesystem errors into concise argparse errors (exit code 2) rather than an unhandled traceback. Benchmark-fingerprint mismatch remains a deliberate hard stop.
 - Added a CLI regression test for malformed JSON, asserting exit code 2 and no traceback. Commits: `2c4bdb91c082008c7933a097fa7cdf89ea0554f2` (CLI) and `b2a61de74df70a17450e7d52e998aaff7c524626` (test).
 - Diff-reviewed only; no local or CI execution is claimed.
+
+
+- Additional hardening: existing measurement report files must now be JSON objects with a `phases` object; malformed report structure is converted to a concise CLI validation error. Regression coverage asserts exit code 2 without traceback. Commits: `868fa9c98be192ee91b6745d92455a22a264d4b3` and `0e5bd29742975a627c810b20d21e5144534466b6`.
