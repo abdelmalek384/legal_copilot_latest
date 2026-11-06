@@ -94,10 +94,16 @@ _ARABIC_MODAL_PATTERNS = {
 
 def _modal_classes(text, patterns):
     """Return explicit modality classes for one language; absence is unknown."""
-    return {
-        label for label, pattern in patterns.items()
-        if pattern.search(text)
-    }
+    classes = set()
+    for label, pattern in patterns.items():
+        candidate = text
+        if patterns is _ARABIC_MODAL_PATTERNS and label == "obligation":
+            # Strip Arabic negated-obligation phrases before testing the positive
+            # class; a fixed-width lookbehind misses variable whitespace.
+            candidate = re.sub(r"لا\\s*(?:يجب|يلتزم|يتعين)", " ", candidate)
+        if pattern.search(candidate):
+            classes.add(label)
+    return classes
 
 
 _ENGLISH_NEGATED_OBLIGATION = re.compile(
