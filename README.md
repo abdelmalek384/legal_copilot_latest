@@ -87,6 +87,8 @@ For a concise production operator guide, see [Deploy Legal Copilot](docs/DEPLOY.
 
 ## Setup and security
 
+For the pilot security review, use the [independent reviewer handoff](docs/security/INDEPENDENT_REVIEW_HANDOFF.md). It is a test/evidence plan, not a completed penetration test or release approval.
+
 For a fresh installation, use the separate-database architecture. Do not follow old single-file database instructions for a fresh install.
 
 ### Mac quick start
@@ -189,7 +191,7 @@ The metadata sidecar must include the exact text SHA-256, Gazette issue/publicat
 
 The older fetch_arabic_law.py workflow relies on an unofficial republication. Treat its output only as an unverified candidate lead; it is not a substitute for the Official Gazette. Compare the exact supplied text with the relevant Gazette pages and obtain source-rights/currentness and qualified Egyptian-lawyer review before relying on it.
 
-Database staging with python manage.py importlaws <law_rows.jsonl> is a separate shared-corpus write operation. Only run it after the report has been checked and the database/storage owner has approved the profile-separated target and timing. Staging does not mark rows verified or in force.
+Database staging with python manage.py importlaws [path-to-law_rows.jsonl] is a separate shared-corpus write operation. Only run it after the report has been checked and the database/storage owner has approved the profile-separated target and timing. Staging does not mark rows verified or in force.
 
 ## Legal Research chat behavior
 
