@@ -131,7 +131,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         runs = [
             {"question_id": q["id"], "retrieved_article_ids": [article_id] if q["answerable"] else [],
              "cited_article_ids": [article_id] if q["answerable"] else [],
-             "abstained": q["answerable"], "used_unverified_source": False}
+             "abstained": False, "used_unverified_source": False}
             for q in questions
         ]
         result = score(questions, runs)
