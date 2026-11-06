@@ -64,6 +64,17 @@ class GazetteTextImportTests(unittest.TestCase):
         self.assertIn("Block 1 missing: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12", report)
         self.assertIn("Blocks with duplicate article numbers: 0", report)
 
+    def test_inline_article_body_after_heading_separator_is_preserved(self):
+        inline_text = "المادة 1: يبدأ النص في السطر نفسه.\\nالمادة 2 - ويبدأ النص الثاني هنا."
+        self.text_path.write_text(inline_text, encoding="utf-8")
+        self.metadata["content_sha256"] = hashlib.sha256(inline_text.encode("utf-8")).hexdigest()
+        self.write_metadata()
+        import_text(self.text_path, self.meta_path, self.output)
+        rows = [json.loads(line) for line in (self.output / "law_rows.jsonl").read_text(encoding="utf-8").splitlines()]
+        self.assertEqual([row["article"] for row in rows], ["1", "2"])
+        self.assertIn("يبدأ النص في السطر نفسه", rows[0]["text"])
+        self.assertIn("ويبدأ النص الثاني هنا", rows[1]["text"])
+
     def test_duplicate_article_number_is_reported_without_auto_repair(self):
         duplicate_text = "المادة 1\nنص أول.\nالمادة 2\nنص ثان.\nالمادة 2\nنص مكرر."
         self.text_path.write_text(duplicate_text, encoding="utf-8")
