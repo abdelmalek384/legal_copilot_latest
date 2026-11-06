@@ -11,6 +11,7 @@ This checklist is a release gate, not a certification. Completing it does not re
 - [ ] Bind Uvicorn to loopback or a private interface only; do not expose port 8000 directly to the public internet.
 - [ ] Terminate TLS at a maintained reverse proxy and redirect HTTP to HTTPS.
 - [ ] Set `COPILOT_ENV=production` and configure `COPILOT_ALLOWED_HOSTS` as an explicit production host allowlist; verify runtime middleware rejects unlisted Host headers. Do not rely on reverse-proxy routing alone; strict deployment preflight must block a missing or invalid allowlist.
+- [ ] Set `COPILOT_PUBLIC_ORIGIN` to the exact canonical public HTTPS origin (scheme and host only, with at most an optional trailing slash; no other path, query, or fragment); verify it matches the TLS reverse-proxy hostname and the origin used for email links and browser security checks. Strict preflight rejects non-HTTPS or non-origin values.
 - [ ] Set `COPILOT_TRUSTED_PROXIES` to your proxy address (or its narrowly scoped CIDR); leave it empty when requests connect directly. The application trusts `X-Forwarded-For` only when the direct peer matches this allowlist, and uses the rightmost-untrusted address for rate limits and login lockouts. Invalid proxy entries are rejected; malformed forwarded chains fall back to the direct peer.
 - [ ] Configure the TLS proxy to replace, not blindly append to, the client header. For a single Nginx edge proxy, use `proxy_set_header X-Forwarded-For $remote_addr;` in the application `location` block. Do not enable Uvicorn's `--proxy-headers`; the application resolves the client address itself.
 - [ ] Set a request-body size limit and upload timeout at the proxy as well as the application's upload validation.
@@ -89,6 +90,13 @@ The repository now includes a tenant-local durable outbox, atomic idempotency cl
 - [ ] Record the health-probe cadence, alert destination, retention, escalation path, and reconciliation evidence. Never include case content, recipient addresses, or credentials in monitoring logs.
 - [ ] Confirm SMTP acceptance is not reported as inbox delivery. Keep ambiguous rows quarantined until provider evidence is reconciled; do not blindly retry.
 - [ ] Complete a controlled operational rehearsal, including scheduler stop/start, alert delivery, provider outage, credential rotation, and safe disablement of sending.
+
+### Payment processing boundary
+
+The current billing workflow records manually reported invoice payments and bank-transfer/Instapay subscription submissions for platform review. It does not configure a card processor, hosted checkout, or payment-gateway webhook.
+
+- [ ] Do not advertise or enable live gateway processing in this release.
+- [ ] If a gateway is introduced later, require operator-owned staging and production credentials, webhook-signature secrets, idempotent event handling, reconciliation procedures, provider terms/security review, and a separate approved release gate. Never place credentials in source control or test fixtures.
 
 ## 6. Release validation
 
