@@ -87,7 +87,7 @@ _ENGLISH_MODAL_PATTERNS = {
 _ARABIC_MODAL_PATTERNS = {
     "permission": re.compile(r"(?:يجوز|يحق|يسمح)"),
     "obligation": re.compile(r"(?<!لا )(?:يجب|يلتزم|يتعين)"),
-    "prohibition": re.compile(r"(?:لا\\s+(?:يجوز|يحق|يسمح)|يحظر|يمتنع\\s+عن)"),
+    "prohibition": re.compile(r"(?:لا\s+(?:يجوز|يحق|يسمح)|يحظر|يمتنع\s+عن)"),
     "non_obligation": re.compile(r"(?:لا يجب|لا يلتزم|لا يتعين|ليس ملزما|غير ملزم)"),
 }
 
@@ -97,11 +97,11 @@ def _modal_classes(text, patterns):
     classes = set()
     for label, pattern in patterns.items():
         candidate = text
-        if patterns is _ARABIC_MODAL_PATTERNS and label == "obligation":
-            # Strip Arabic negated-obligation phrases before testing the positive
-            # class; a fixed-width lookbehind misses variable whitespace.
-            candidate = re.sub(r"لا\s*(?:يجب|يلتزم|يتعين)", " ", candidate)
-        if pattern.search(candidate):
+        if patterns is _ARABIC_MODAL_PATTERNS and label in {"permission", "obligation"}:
+            # Strip negated forms before testing positive classes. Flexible whitespace
+            # is required because Arabic source text may contain tabs or repeated spaces.
+            verbs = r"(?:يجوز|يحق|يسمح)" if label == "permission" else r"(?:يجب|يلتزم|يتعين)"
+            candidate = re.sub(r"لا\s*" + verbs, " ", candidate)
             classes.add(label)
     return classes
 
