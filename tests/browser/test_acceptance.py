@@ -943,6 +943,8 @@ class BrowserAcceptanceTests(unittest.TestCase):
         ):
             self.assertTrue(self.page.get_by_text(label, exact=True).is_visible(), label)
 
+        self.page.get_by_role("button", name="العودة إلى قائمة الإعداد").click()
+        self.page.get_by_role("heading", name="بدء استخدام المكتب").wait_for()
         language_switch = self.page.locator('[data-lang-switch="1"]').first
         self.assertEqual(language_switch.inner_text().strip(), "English")
         language_switch.click()
