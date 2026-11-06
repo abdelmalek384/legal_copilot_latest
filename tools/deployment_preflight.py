@@ -5,7 +5,9 @@ import ipaddress
 import math
 import os
 import re
+import socket
 import stat
+import socket
 import sys
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -13,8 +15,8 @@ from urllib.parse import urlsplit
 from cryptography.fernet import Fernet
 
 
-def valid_llm_endpoint(value):
-    """Require HTTPS remotely; plain HTTP is allowed only for loopback model services."""
+def valid_llm_endpoint(value, resolve_dns=True):
+    """Require public-address HTTPS endpoints; plain HTTP is allowed only for loopback."""
     if not isinstance(value, str) or not value.strip():
         return False
     try:
@@ -23,15 +25,36 @@ def valid_llm_endpoint(value):
         if (parsed.scheme not in {"https", "http"} or not host or parsed.username or parsed.password
                 or parsed.query or parsed.fragment):
             return False
-        _ = parsed.port
-        if parsed.scheme == "https":
-            return True
-        if host.lower().rstrip(".") == "localhost":
-            return True
-        try:
-            return ipaddress.ip_address(host).is_loopback
-        except ValueError:
+        parsed_port = parsed.port
+        if parsed_port is not None and not 1 <= parsed_port <= 65535:
             return False
+        port = parsed_port or (443 if parsed.scheme == "https" else 80)
+        if parsed.scheme == "http":
+            if host.lower().rstrip(".") == "localhost":
+                return True
+            try:
+                return ipaddress.ip_address(host).is_loopback
+            except ValueError:
+                return False
+        try:
+            return ipaddress.ip_address(host).is_global
+        except ValueError:
+            if not resolve_dns:
+                return True
+            try:
+                answers = socket.getaddrinfo(host, port, type=socket.SOCK_STREAM)
+            except OSError:
+                return False
+            if not answers:
+                return False
+            for answer in answers:
+                try:
+                    address = ipaddress.ip_address(answer[4][0].split("%", 1)[0])
+                except (IndexError, ValueError, TypeError):
+                    return False
+                if not address.is_global:
+                    return False
+            return True
     except (TypeError, ValueError):
         return False
 
@@ -154,10 +177,14 @@ def inspect_environment(env=None, *, require_separate=False):
 
     llm_url = env.get("LLM_URL", "").strip()
     if llm_url:
-        if valid_llm_endpoint(llm_url):
-            passed.append("LLM_URL uses HTTPS or a loopback-only HTTP endpoint and contains no URL credentials/query/fragment.")
+        processing_approved = env.get("LLM_DATA_PROCESSING_APPROVED", "").strip() == "1"
+        if valid_llm_endpoint(llm_url, resolve_dns=processing_approved):
+            if processing_approved:
+                passed.append("LLM_URL uses HTTPS to a globally routable destination or loopback-only HTTP; DNS answers are checked for non-global addresses.")
+            else:
+                passed.append("LLM_URL syntax is valid; DNS destination validation is deferred until explicit model-processing approval.")
         else:
-            errors.append("LLM_URL must use HTTPS for remote endpoints or loopback HTTP for local model services; credentials, query strings, fragments, and other HTTP hosts are not allowed.")
+            errors.append("LLM_URL must use HTTPS to a globally routable destination or loopback HTTP for local model services; private DNS answers, credentials, query strings, fragments, and other HTTP hosts are not allowed.")
 
     raw_score = env.get("MIN_SCORE", "0.3")
     try:
