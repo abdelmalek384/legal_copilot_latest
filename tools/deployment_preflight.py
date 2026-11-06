@@ -91,6 +91,24 @@ def valid_trusted_hosts(value):
     return True
 
 
+
+def valid_trusted_proxies(value):
+    """Accept only explicit proxy IPs/CIDRs; reject wildcard-all and malformed entries."""
+    if not isinstance(value, str) or not value.strip():
+        return False
+    for raw in value.split(","):
+        entry = raw.strip()
+        if not entry or entry == "*":
+            return False
+        try:
+            network = ipaddress.ip_network(entry, strict=False)
+        except ValueError:
+            return False
+        if network.prefixlen == 0:
+            return False
+    return True
+
+
 def inspect_environment(env=None, *, require_separate=False):
     env = os.environ if env is None else env
     production = env.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}
@@ -155,6 +173,17 @@ def inspect_environment(env=None, *, require_separate=False):
             errors.append("COPILOT_EMAIL_SMTP_USERNAME and COPILOT_EMAIL_SMTP_PASSWORD must be configured together.")
         if smtp_host and smtp_from and 1 <= smtp_port <= 65535 and smtp_security in {"starttls", "ssl"} and bool(smtp_username) == bool(smtp_password):
             passed.append("Production identity email has complete encrypted SMTP configuration; live delivery remains unverified.")
+
+
+    trusted_proxies = env.get("COPILOT_TRUSTED_PROXIES", "").strip()
+    if trusted_proxies:
+        if valid_trusted_proxies(trusted_proxies):
+            passed.append("COPILOT_TRUSTED_PROXIES contains only explicit proxy IPs/CIDRs.")
+        else:
+            errors.append(
+                "COPILOT_TRUSTED_PROXIES must be a comma-separated list of explicit IP addresses/CIDRs; "
+                "empty entries, malformed values, wildcard-all, and /0 networks are not allowed."
+            )
 
     public_origin = env.get("COPILOT_PUBLIC_ORIGIN", "").strip()
     if public_origin:

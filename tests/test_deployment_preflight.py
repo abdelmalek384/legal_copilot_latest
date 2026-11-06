@@ -56,6 +56,24 @@ class DeploymentPreflightTests(unittest.TestCase):
         _, _, errors = preflight.inspect_environment(configured)
         self.assertFalse(any("COPILOT_ALLOWED_HOSTS" in item for item in errors))
 
+
+    def test_trusted_proxy_preflight_accepts_explicit_addresses_and_networks(self):
+        for value in ("10.0.0.0/8", "10.0.0.8,2001:db8::/32", "192.0.2.10"):
+            with self.subTest(value=value):
+                passed, _, errors = preflight.inspect_environment(
+                    dict(self.env, COPILOT_TRUSTED_PROXIES=value)
+                )
+                self.assertFalse(any("COPILOT_TRUSTED_PROXIES" in item for item in errors), errors)
+                self.assertTrue(any("COPILOT_TRUSTED_PROXIES" in item for item in passed))
+
+    def test_trusted_proxy_preflight_rejects_wildcards_default_routes_and_malformed_entries(self):
+        for value in ("*", "0.0.0.0/0", "::/0", "10.0.0.0/8,", "10.0.0.0/8,not-a-network"):
+            with self.subTest(value=value):
+                _, _, errors = preflight.inspect_environment(
+                    dict(self.env, COPILOT_TRUSTED_PROXIES=value)
+                )
+                self.assertTrue(any("COPILOT_TRUSTED_PROXIES must be" in item for item in errors), errors)
+
     def test_public_origin_must_be_a_bare_https_origin(self):
         valid = dict(self.env, COPILOT_PUBLIC_ORIGIN="https://legal.example.com")
         _, _, errors = preflight.inspect_environment(valid)

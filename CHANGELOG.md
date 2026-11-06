@@ -66,3 +66,4 @@
 - PR #1485: Record exact-head workflow lookup and Python 3.12 execution limitation for the added billing/upload regressions.
 - PR #1485: Bound concurrent OCR subprocesses per worker and test saturation/release behavior.
 - PR #1485: Verify OCR worker slots are released after Tesseract subprocess failure.
+- PR #1485: Validate trusted-proxy IP/CIDR configuration in strict deployment preflight, rejecting wildcard-all, default routes, empty entries and malformed networks.
