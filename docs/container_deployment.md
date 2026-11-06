@@ -43,6 +43,26 @@ Create the external proxy network and attach the TLS reverse proxy to it:
 
 Provision the three database profiles and first firm owner using the approved maintenance/bootstrap process **before** starting the service. Do not rely on container startup to initialize a database. Complete the database acceptance manifest and place it at secrets/database-acceptance.json; it must be current, protected, and accepted by the runtime gate. The app will fail closed if the required profile databases, S3/KMS configuration, MFA policy, or acceptance evidence are missing.
 
+## Placeholder-only Compose template validation
+
+On a clean checkout, validate Compose interpolation and schema without supplying credentials or starting containers:
+
+```bash
+(
+  set -eu
+  test ! -e .env.production || {
+    echo ".env.production already exists; refusing to overwrite it." >&2
+    exit 2
+  }
+  cp .env.production.example .env.production
+  trap 'rm -f .env.production' EXIT
+  LEGAL_COPILOT_IMAGE_TAG=compose-contract-check \
+    docker compose --env-file .env.production -f compose.production.yaml config --quiet
+)
+```
+
+This is a template/configuration check only. The example contains placeholders and empty optional values; it is **not** a deployable environment. Do not run `up` or start the application with this temporary file. The strict deployment preflight and production release gate will correctly reject missing secrets, database acceptance evidence, S3/KMS configuration and other production requirements. See [the preflight gap guide](staging_preflight_credential_gaps.md) for the distinction between secrets and operator configuration.
+
 ## Build and start
 
 Use an immutable image tag and keep the previous image available for rollback:
