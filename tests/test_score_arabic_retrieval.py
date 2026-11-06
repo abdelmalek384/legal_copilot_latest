@@ -8,7 +8,7 @@ sys.path.insert(0, str(ROOT))
 from tools.score_arabic_retrieval import benchmark_fingerprint, score
 
 
-def reviewed(qid, *, answerable=True, article="LABOUR-SOURCE::law:قانون العمل [block 1]::article:1", style="formal", tags=None):
+def reviewed(qid, *, answerable=True, article="المادة 1 من قانون العمل", style="formal", tags=None):
     return {
         "id": qid,
         "question_style": style,
@@ -23,8 +23,7 @@ def reviewed(qid, *, answerable=True, article="LABOUR-SOURCE::law:قانون ا�
         "answerable": answerable,
         "expected_article": article if answerable else None,
         "expected_article_id": (
-            "LABOUR-SOURCE::law:قانون العمل [block 1]::article:"
-            + str(article).rsplit("-", 1)[-1]
+            "LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"
             if answerable else None
         ),
         "must_abstain_if_unverified": True,
