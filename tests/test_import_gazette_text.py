@@ -90,6 +90,27 @@ class GazetteTextImportTests(unittest.TestCase):
         report = (self.output / "import_report.md").read_text(encoding="utf-8")
         self.assertIn("Block 1 duplicates: 2", report)
 
+    def test_malformed_metadata_types_fail_with_clear_validation_errors(self):
+        for field, value, message in (
+            ("language", [], "language must be ar"),
+            ("supplier_role", [], "supplier_role must identify"),
+            ("capture_method", [], "capture_method must be"),
+            ("collection_permission", [], "collection_permission must be"),
+        ):
+            with self.subTest(field=field):
+                self.metadata[field] = value
+                self.write_metadata()
+                with self.assertRaisesRegex(ValueError, message):
+                    import_text(self.text_path, self.meta_path, self.output)
+                self.assertFalse(self.output.exists())
+                self.metadata[field] = {
+                    "language": "ar",
+                    "supplier_role": "egyptian_lawyer",
+                    "capture_method": "lawyer_supplied_text",
+                    "collection_permission": "unknown",
+                }[field]
+                self.write_metadata()
+
     def test_non_lawyer_supplier_role_is_rejected(self):
         self.metadata["supplier_role"] = "unknown"
         self.write_metadata()
