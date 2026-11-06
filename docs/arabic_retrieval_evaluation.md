@@ -19,6 +19,18 @@ Provide a reproducible measurement harness for Arabic legal retrieval and citati
 
 The current target template is `tests/legal_eval/arabic_retrieval_110.template.jsonl` (110 rows). All 110 are explicitly marked `question_origin=curated_candidate_not_user_observed`; they are candidate prompts, not real observed user/client questions. The prior conversation search found no authentic user-supplied legal questions or lawyer-approved answer key. Do not relabel these candidates as real queries.
 
+### Intake procedure for real Egyptian-Arabic questions
+
+Replace or supplement the curated candidates only with questions that were actually asked by a lawyer/client or published by a source whose reuse terms permit inclusion. For each observed query:
+
+1. Preserve the original Arabic wording, but remove names, national IDs, phone numbers, addresses, case numbers, employer names, account details and other identifying facts. Generalize dates, amounts and locations only where that does not change the legal issue.
+2. Record the origin class (anonymized client query, lawyer query, or permitted public Q&A), the date collected, the consent/licence basis, and a source reference. Public accessibility alone is not permission to reuse.
+3. Have a qualified Egyptian lawyer approve answerability, the expected article ID, the canonical answer, formal/colloquial style, and synonym tags. Record reviewer role/date and a review-evidence reference.
+4. Keep any query without a privacy review, reuse basis, expected article or lawyer-approved answer marked `unlabeled`; it must not enter scored metrics.
+5. Build at least 20 approved colloquial questions, 20 approved synonym questions, and at least one approved unanswerable question before evaluating the release targets.
+
+Never use confidential client files or identifiable legal narratives as benchmark data without an appropriate lawful basis and explicit approval.
+
 All 110 rows remain unreviewed/unlabeled. No expected article is treated as ground truth and no `lawyer_approved_answer` has been supplied. A question may enter the scored cohort only after a qualified Egyptian lawyer records the expected article ID, answerability, lawyer-approved answer, question style, synonym tags, review date and evidence reference.
 
 The new scorer is `tools/score_arabic_retrieval.py`; the API runner is `tools/run_legal_eval.py`. The combined measurement file is `docs/arabic_retrieval_measurement.json`. It currently records 110 excluded/unreviewed questions, zero reviewed questions, null top-3/wrong-article/abstention metrics, and no after-run. Null means not measured, not zero error. `MIN_SCORE` remains 0.30 and must not be tuned before a lawyer-labelled benchmark and a real before-run exist.
