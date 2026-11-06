@@ -108,6 +108,8 @@ def score(questions, runs):
             raise ValueError(f"run contains unknown question_id {qid}")
         if not isinstance(r.get("abstained"), bool):
             raise ValueError(f"{qid}: abstained must be boolean")
+        if not isinstance(r.get("used_unverified_source"), bool):
+            raise ValueError(f"{qid}: used_unverified_source must be boolean")
         for field in ("retrieved_article_ids", "cited_article_ids"):
             value = r.get(field, [])
             if not isinstance(value, list) or any(not isinstance(x, str) or not x.strip() for x in value):
