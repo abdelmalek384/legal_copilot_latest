@@ -321,9 +321,9 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
     for block, labels in sorted(block_articles.items()):
         numeric = []
         for label in labels:
-            match = re.match(r"^issuance_(\\d+)$", str(label))
+            match = re.match(r"^issuance_(\d+)$", str(label))
             if not match:
-                match = re.match(r"^\\s*([0-9٠-٩۰-۹]+)", str(label))
+                match = re.match(r"^\s*([0-9٠-٩۰-۹]+)", str(label))
             if match:
                 try:
                     numeric.append(int(match.group(1).translate(str.maketrans(
@@ -360,6 +360,9 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
     (output_dir / "law_rows.jsonl").write_text(jsonl, encoding="utf-8")
     (output_dir / "import_report.md").write_text("\n".join(report) + "\n", encoding="utf-8")
     return {"document_id": metadata["document_id"], "article_headings": len(articles),
+            "promulgation_provisions": promulgation_count,
+            "attached_law_articles": attached_law_count,
+            "unparsed_preamble_characters": preamble_characters,
             "candidate_chunks": len(rows), "empty_articles": empty_articles,
             "sha256": metadata["actual_sha256"], "output_dir": str(output_dir)}
 
