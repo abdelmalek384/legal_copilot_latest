@@ -29,7 +29,7 @@ Run the regression suite with:
 PYTHONPATH=. python tests/test_backup_restore_safety.py
 ```
 
-The obsolete single-file backup/restore entry points are not part of the supported installation workflow. Actual backup/restore integrity coverage is provided by `tests/test_database_backup_bundle.py`. The backup key must be stored separately from backup files, and operators must complete a witnessed staging restore/rollback drill before production recovery.
+Backup/restore integrity coverage is provided by `tests/test_database_backup_bundle.py`. The backup key must be stored separately from backup files, and operators must complete a witnessed staging restore/rollback drill before production recovery.
 
 
 ## Disposable-copy migration rehearsal
