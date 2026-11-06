@@ -99,3 +99,10 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - The importer now rejects URL userinfo whenever the parsed URL contains a username or password component, including an empty credential delimiter such as `https://@example.gov/item`. Previously the truthiness check could accept an empty username component.
 - Added a regression test asserting the importer refuses this URL before creating output files. Test execution remains unverified.
 - Commits: `bbb900f2eac2a2ce30120c95ba44e891652041fc`, `1ee9f0b06a03c6f538b3420bd43d6270e01453bc`.
+
+
+## Evaluation runner redirect isolation (2026-11-06)
+
+- The authenticated evaluation runner now refuses HTTP redirects rather than allowing urllib to follow a 301/302/307/308 response. This prevents login credentials, CSRF-authenticated evaluation requests, or question payloads from being forwarded to a different host by a redirect response.
+- Added a regression test for refusal of a cross-origin 307 redirect. Test execution remains unverified.
+- Commits: `314806b8c8cd21dbf9480ff6a06166ad89d2d399`, `cf624a6532c4e2aa09e16ced803a8a7d255ffb21`.
