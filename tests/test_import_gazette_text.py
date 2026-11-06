@@ -98,6 +98,8 @@ class GazetteTextImportTests(unittest.TestCase):
         self.assertEqual(result["article_headings"], 311)
         self.assertEqual(result["promulgation_provisions"], 13)
         self.assertEqual(result["attached_law_articles"], 298)
+        self.assertEqual(result["candidate_chunks"], 311)
+        self.assertEqual(len(rows), 311)
         self.assertGreater(result["unparsed_preamble_characters"], 0)
         self.assertEqual(
             [row["article"] for row in rows],
