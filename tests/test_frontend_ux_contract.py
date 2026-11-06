@@ -429,6 +429,9 @@ class FrontendUXContractTests(unittest.TestCase):
 
 
 
+    def test_language_switch_preserves_first_run_and_setup_health_views(self):
+        self.assertIn("else if(PAGE==='setup')firstRunPage();else if(PAGE==='setup-health')setupHealthPage();", HTML)
+
     def test_subscription_lock_response_routes_user_to_billing_recovery(self):
         self.assertIn("if(r.status===423&&p!=='/billing')billingPage().catch(()=>{})", HTML)
 
