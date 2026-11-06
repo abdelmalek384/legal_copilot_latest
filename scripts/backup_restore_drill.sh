@@ -7,9 +7,9 @@ set -Eeuo pipefail
 usage() {
   cat <<'USAGE'
 Usage:
-  BACKUP_KEY=<protected-secret> scripts/backup_restore_drill.sh BACKUP_DIR RESTORE_PARENT RESTORE_NAME
+  scripts/backup_restore_drill.sh BACKUP_DIR RESTORE_PARENT RESTORE_NAME
 
-Example paths (replace them; do not use production paths for a rehearsal):
+BACKUP_KEY must already be securely injected from the protected secret manager.\n\nExample paths (replace them; do not use production paths for a rehearsal):
   ./backups/drill  ./recovery-drills  restored-2026-11-06
 
 The restore target must be a new, non-existent child of RESTORE_PARENT.
