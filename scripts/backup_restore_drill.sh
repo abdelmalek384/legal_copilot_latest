@@ -27,6 +27,13 @@ if [[ -z "${BACKUP_KEY:-}" ]]; then
   exit 2
 fi
 
+case "${COPILOT_ENV:-}" in
+  prod|production)
+    echo "ERROR: run this recovery verifier from a protected maintenance shell, not the production application environment." >&2
+    exit 2
+    ;;
+esac
+
 backup_dir=$1
 restore_parent=$2
 restore_name=$3
