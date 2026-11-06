@@ -16,7 +16,7 @@ import stat
 from pathlib import Path
 from urllib.parse import parse_qsl, urlsplit
 
-from tools.import_laws import pieces, split
+from tools.import_laws import HEAD as NUMERIC_HEAD, pieces, split
 
 MAX_TEXT_BYTES = 20 * 1024 * 1024
 MAX_METADATA_BYTES = 1024 * 1024
@@ -27,6 +27,87 @@ SENSITIVE_QUERY_KEYS = {
     "x-amz-signature", "x-amz-credential", "x-amz-security-token",
     "x-goog-signature", "x-goog-credential",
 }
+
+
+# Law 14/2025's issuance provisions use Arabic ordinal headings, while the
+# attached Labour Law restarts at numeric Article 1. Keep those sequences apart.
+PROMULGATION_ORDINALS = {
+    "الأولى": 1, "الاولى": 1,
+    "الثانية": 2, "الثانيه": 2,
+    "الثالثة": 3, "الثالثه": 3,
+    "الرابعة": 4, "الرابعه": 4,
+    "الخامسة": 5, "الخامسه": 5,
+    "السادسة": 6, "السادسه": 6,
+    "السابعة": 7,
+    "الثامنة": 8, "الثامنه": 8,
+    "التاسعة": 9, "التاسعه": 9,
+    "العاشرة": 10, "العاشره": 10,
+    "الحادية عشرة": 11, "الحاديه عشرة": 11, "الحاديه عشره": 11,
+    "الحادية عشر": 11, "الحاديه عشر": 11,
+    "الثانية عشرة": 12, "الثانيه عشرة": 12, "الثانيه عشره": 12,
+    "الثانية عشر": 12, "الثانيه عشر": 12,
+    "الثالثة عشرة": 13, "الثالثه عشرة": 13, "الثالثه عشره": 13,
+    "الثالثة عشر": 13, "الثالثه عشر": 13,
+}
+_ORDINAL_ALTERNATION = "|".join(
+    re.escape(value) for value in sorted(PROMULGATION_ORDINALS, key=len, reverse=True)
+)
+PROMULGATION_HEAD = re.compile(
+    rf"(?m)^[ \t]*\(?[ \t]*(?:المادة|مادة)[ \t]+"
+    rf"(?P<ordinal>{_ORDINAL_ALTERNATION})[ \t]*\)?[ \t]*\)?"
+    rf"[ \t]*(?:[:-][ \t]*|$)"
+)
+
+
+def split_gazette_text(text: str) -> list[tuple[str, int, str, str]]:
+    """Split ordinal issuance provisions and numeric law articles separately."""
+    ordinal_matches = list(PROMULGATION_HEAD.finditer(text))
+    if not ordinal_matches:
+        return [
+            (article, block, body, "preamble" if article == "preamble" else "article")
+            for article, block, body in split(text)
+        ]
+
+    matches = []
+    for match in ordinal_matches:
+        ordinal = " ".join(match.group("ordinal").split())
+        number = PROMULGATION_ORDINALS[ordinal]
+        matches.append((
+            match.start(), match.end(), f"issuance_{number}", "promulgation", number
+        ))
+    for match in NUMERIC_HEAD.finditer(text):
+        raw_number = match.group(1)
+        number = int(raw_number.translate(str.maketrans(
+            "٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹", "01234567890123456789"
+        )))
+        matches.append((
+            match.start(), match.end(), raw_number, "attached_law", number
+        ))
+    matches.sort(key=lambda item: item[0])
+
+    parts = []
+    preamble = text[:matches[0][0]]
+    if preamble.strip():
+        parts.append(("preamble", 0, preamble, "preamble"))
+
+    block = 0
+    current_kind = None
+    previous_number = None
+    for index, (start, end, article, kind, number) in enumerate(matches):
+        if current_kind is None:
+            block = 1
+            current_kind = kind
+            previous_number = None
+        elif kind != current_kind:
+            block += 1
+            current_kind = kind
+            previous_number = None
+        elif previous_number is not None and number < previous_number:
+            block += 1
+        previous_number = number
+        next_start = matches[index + 1][0] if index + 1 < len(matches) else len(text)
+        parts.append((article, block, text[end:next_start], kind))
+    return parts
 
 
 def _read_regular(path: Path, label: str, limit: int) -> bytes:
@@ -143,10 +224,15 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
     if "\x00" in text:
         raise ValueError("Gazette text contains NUL characters")
     metadata = _validate_metadata(meta, text_bytes)
-    article_parts = split(text)
+    article_parts = split_gazette_text(text)
+    preamble_parts = [part for part in article_parts if part[0] == "preamble"]
     articles = [part for part in article_parts if part[0] != "preamble"]
     if not articles:
-        raise ValueError("no recognized Arabic/English article headings were found")
+        raise ValueError("no recognized Arabic/English article or promulgation headings were found")
+    has_promulgation = any(part[3] == "promulgation" for part in articles)
+    promulgation_count = sum(part[3] == "promulgation" for part in articles)
+    attached_law_count = sum(part[3] in {"attached_law", "article"} for part in articles)
+    preamble_characters = sum(len(part[2]) for part in preamble_parts)
     rows = []
     block_articles = {}
     empty_articles = []
@@ -162,15 +248,25 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
         f"collection_permission {metadata.get('collection_permission', 'unknown')} | "
         f"permission_evidence_reference {metadata.get('permission_evidence_reference') or 'not_supplied'}"
     )
-    for article, block, body in article_parts:
-        label = title + ("" if block <= 1 else f" [block {block}]")
+    for article, block, body, provision_type in article_parts:
+        if provision_type == "preamble":
+            continue
+        if provision_type == "promulgation":
+            label = title + " [promulgation]"
+        elif has_promulgation and block == 2:
+            label = title + " [attached law]"
+        elif has_promulgation and block > 2:
+            label = title + f" [attached law block {block - 1}]"
+        else:
+            label = title + ("" if block <= 1 else f" [block {block}]")
         chunks = list(pieces(body))
-        if not chunks and article != "preamble":
+        if not chunks:
             empty_articles.append(article)
         for chunk in chunks:
             rows.append({
                 "law": label,
                 "article": article,
+                "provision_type": provision_type,
                 "text": chunk,
                 "as_of": None,
                 "in_force": 0,
@@ -207,7 +303,10 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
         f"- Source reference: {metadata.get('source_reference') or 'not supplied'}",
         f"- Supplied by: {metadata['captured_by']} ({metadata.get('supplier_role', 'role not recorded')})",
         f"- Exact text SHA-256: {metadata['actual_sha256']}",
-        f"- Article headings recognized: {len(articles)}",
+        f"- Article/provision headings recognized: {len(articles)}",
+        f"- Promulgation provisions recognized: {promulgation_count}",
+        f"- Attached-law article headings recognized: {attached_law_count}",
+        f"- Unparsed preamble characters excluded from candidate rows: {preamble_characters}",
         f"- Output candidate chunks: {len(rows)}",
         f"- Empty article bodies requiring review: {len(empty_articles)}",
         f"- Collection permission: {metadata.get('collection_permission', 'unknown')}",
@@ -222,10 +321,14 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
     for block, labels in sorted(block_articles.items()):
         numeric = []
         for label in labels:
-            match = re.match(r"^\s*([0-9٠-٩]+)", str(label))
+            match = re.match(r"^issuance_(\\d+)$", str(label))
+            if not match:
+                match = re.match(r"^\\s*([0-9٠-٩۰-۹]+)", str(label))
             if match:
                 try:
-                    numeric.append(int(match.group(1)))
+                    numeric.append(int(match.group(1).translate(str.maketrans(
+                        "٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹", "01234567890123456789"
+                    ))))
                 except ValueError:
                     pass
         missing = sorted(set(range(1, max(numeric, default=0) + 1)) - set(numeric))
@@ -242,6 +345,11 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
         report.append(f"- Block {block} missing: {', '.join(map(str, missing))}")
     for block, duplicates in duplicate_numbers.items():
         report.append(f"- Block {block} duplicates: {', '.join(map(str, duplicates))}")
+    if preamble_characters:
+        report += [
+            "", "## Unparsed preamble excluded from candidate rows", "",
+            f"{preamble_characters} characters before the first recognized heading were not imported. Review this text to ensure it contains only cover/title material and no missed legal provision.",
+        ]
     if empty_articles:
         report += ["", "## Empty article bodies", "", ", ".join(empty_articles)]
     report += ["", "## Human review", "",
