@@ -80,10 +80,11 @@ class GazetteTextImportTests(unittest.TestCase):
         parts = ["عنوان القانون"]
         for number, ordinal in enumerate(ordinals, 1):
             parts.extend([f"(المادة {ordinal})", f"نص إصدار {number}."])
-        parts.extend([
-            "مادة (1)", "نص المادة الأولى من القانون المرافق.",
-            "مادة (2)", "نص المادة الثانية من القانون المرافق.",
-        ])
+        for number in range(1, 299):
+            parts.extend([
+                f"مادة ({number})",
+                f"نص المادة {number} من القانون المرافق.",
+            ])
         source_text = "\n".join(parts)
         self.text_path.write_text(source_text, encoding="utf-8")
         self.metadata["content_sha256"] = hashlib.sha256(source_text.encode("utf-8")).hexdigest()
@@ -94,17 +95,17 @@ class GazetteTextImportTests(unittest.TestCase):
             json.loads(line)
             for line in (self.output / "law_rows.jsonl").read_text(encoding="utf-8").splitlines()
         ]
-        self.assertEqual(result["article_headings"], 15)
+        self.assertEqual(result["article_headings"], 311)
         self.assertEqual(result["promulgation_provisions"], 13)
-        self.assertEqual(result["attached_law_articles"], 2)
+        self.assertEqual(result["attached_law_articles"], 298)
         self.assertGreater(result["unparsed_preamble_characters"], 0)
         self.assertEqual(
             [row["article"] for row in rows],
-            [f"issuance_{n}" for n in range(1, 14)] + ["1", "2"],
+            [f"issuance_{n}" for n in range(1, 14)] + [str(n) for n in range(1, 299)],
         )
         self.assertEqual(
             [row["provision_type"] for row in rows],
-            ["promulgation"] * 13 + ["attached_law"] * 2,
+            ["promulgation"] * 13 + ["attached_law"] * 298,
         )
         self.assertIn("[promulgation]", rows[0]["law"])
         self.assertIn("[attached law]", rows[13]["law"])
@@ -114,7 +115,7 @@ class GazetteTextImportTests(unittest.TestCase):
         self.assertTrue(all(row["as_of"] is None for row in rows))
         report = (self.output / "import_report.md").read_text(encoding="utf-8")
         self.assertIn("Promulgation provisions recognized: 13", report)
-        self.assertIn("Attached-law article headings recognized: 2", report)
+        self.assertIn("Attached-law article headings recognized: 298", report)
         self.assertIn("Unparsed preamble excluded from candidate rows", report)
         self.assertNotIn('"article": "preamble"', (self.output / "law_rows.jsonl").read_text(encoding="utf-8"))
 
