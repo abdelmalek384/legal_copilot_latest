@@ -106,3 +106,11 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - The authenticated evaluation runner now refuses HTTP redirects rather than allowing urllib to follow a 301/302/307/308 response. This prevents login credentials, CSRF-authenticated evaluation requests, or question payloads from being forwarded to a different host by a redirect response.
 - Added a regression test for refusal of a cross-origin 307 redirect. Test execution remains unverified.
 - Commits: `314806b8c8cd21dbf9480ff6a06166ad89d2d399`, `cf624a6532c4e2aa09e16ced803a8a7d255ffb21`.
+
+## Lawyer answer-rating backend contract (2026-11-06)
+
+- Added firm-profile migration `0021_answer_ratings.sql` for one current rating per reviewer/assistant message, with constrained overall rating, cited-article accuracy, expected article IDs, answerability, bounded notes, and append-only rating events.
+- Added `docs/answer_rating_export_contract.md` defining the authenticated firm-scoped submit/update API, admin/reviewer CSV export, required columns, benchmark-ready rules, and acceptance tests for AI 2's UI integration.
+- This is a schema and API contract only. Runtime route handlers, role enforcement, CSV export implementation, and tests are still outstanding. The migration and contract have not been executed or validated locally; do not describe rating capture/export as live.
+- Ratings are not training consent, legal-source verification, or counsel approval. Keep firm data private and exclude curated candidate questions from scored benchmark results.
+
