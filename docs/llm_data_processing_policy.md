@@ -9,6 +9,7 @@ The research pipeline can send a prompt to the configured OpenAI-compatible chat
 The model integration is generic. It does not bundle a model or choose a vendor. Configuration is supplied through:
 
 - `LLM_URL`: full endpoint URL, including the chat-completions path.
+- Remote `LLM_URL` endpoints must use HTTPS and resolve only to globally routable IP addresses; literal private, loopback, link-local and reserved destinations are rejected. Plain HTTP is permitted only for loopback development endpoints. Redirects are refused. Endpoint DNS is not queried until `LLM_DATA_PROCESSING_APPROVED=1`.
 - `LLM_MODEL`: model name sent to that endpoint (defaults to `local`).
 - `LLM_KEY`: bearer credential, if the endpoint requires one.
 - `LLM_DATA_PROCESSING_APPROVED`: must equal `1` before any prompt is transmitted.
@@ -33,7 +34,7 @@ A self-hosted endpoint is not automatically safe: verify where inference runs, w
 
 `LLM_DATA_PROCESSING_APPROVED=1` is a deployment-level operator attestation. It does not verify a provider's identity, contract, location, retention behavior, consent, redaction, or network route. It is not per-firm consent and does not provide data-loss prevention. Anyone who can change deployment environment variables may change the policy. Keep the flag unset until the review above is complete.
 
-This gate is a minimum safeguard, not a production-readiness certification. Shared SQLite tenant isolation, legal-corpus verification, independent security/privacy review, and the remaining release checklist are separate blockers.
+This gate is a minimum safeguard, not a production-readiness certification. The runtime resolves the approved HTTPS hostname, rejects the request if any answer is non-global, and pins the selected public address for the TCP connection while retaining the configured hostname for TLS certificate/SNI validation. Redirects are refused and ambient proxy discovery is disabled for this request path. Keep outbound egress restricted as defense in depth; unit tests do not replace an isolated integration test against DNS rebinding, IPv4/IPv6 edge cases, and the actual production network path. Shared SQLite tenant isolation, legal-corpus verification, independent security/privacy review, and the remaining release checklist are separate blockers.
 
 
 ## Separate gate for matter-file content
