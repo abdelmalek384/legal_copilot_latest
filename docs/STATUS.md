@@ -67,3 +67,10 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Hardened `tools/score_arabic_retrieval.py` so a non-string `review_evidence_url` is rejected through the same fail-closed validation path as malformed URLs, rather than leaking a parser type exception.
 - Added a regression test for a numeric URL value. Commits: `dc80638e5f4c5d7cd871c11b8441abe3214e741d` (validator) and `15244fd42777aa237bd9a994b6d16061bc63c181` (test).
 - Static diff review only; test execution remains unverified pending a usable local checkout/runtime or functioning CI runner.
+
+
+## Scorer CLI error handling (2026-11-06)
+
+- `tools/score_arabic_retrieval.py` now converts malformed question/run/report input and filesystem errors into concise argparse errors (exit code 2) rather than an unhandled traceback. Benchmark-fingerprint mismatch remains a deliberate hard stop.
+- Added a CLI regression test for malformed JSON, asserting exit code 2 and no traceback. Commits: `2c4bdb91c082008c7933a097fa7cdf89ea0554f2` (CLI) and `b2a61de74df70a17450e7d52e998aaff7c524626` (test).
+- Diff-reviewed only; no local or CI execution is claimed.
