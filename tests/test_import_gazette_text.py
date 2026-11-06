@@ -70,6 +70,32 @@ class GazetteTextImportTests(unittest.TestCase):
         self.assertIn("Block 1 missing: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12", report)
         self.assertIn("Blocks with duplicate article numbers: 0", report)
 
+    def test_candidate_rows_match_separate_importlaws_staging_contract(self):
+        result = import_text(self.text_path, self.meta_path, self.output)
+        rows = [json.loads(line) for line in (self.output / "law_rows.jsonl").read_text(encoding="utf-8").splitlines()]
+        self.assertGreater(result["candidate_chunks"], 0)
+        for row in rows:
+            # manage.py importlaws consumes exactly these five fields into the
+            # quarantined legal_import_staging table.
+            for key in ("law", "article", "text", "source"):
+                self.assertIn(key, row)
+                self.assertIsInstance(row[key], str)
+                self.assertTrue(row[key].strip())
+            self.assertEqual(row["verified"], 0)
+            self.assertEqual(row["in_force"], 0)
+            self.assertIsNone(row["as_of"])
+            self.assertIn("content_sha256", row)
+            self.assertIn("permission_evidence_reference", row)
+
+    def test_allowed_permission_evidence_is_retained_in_staged_source(self):
+        self.metadata["collection_permission"] = "allowed"
+        self.metadata["permission_evidence_reference"] = "lawyer-provided written permission record #TEST-1"
+        self.write_metadata()
+        import_text(self.text_path, self.meta_path, self.output)
+        rows = [json.loads(line) for line in (self.output / "law_rows.jsonl").read_text(encoding="utf-8").splitlines()]
+        self.assertTrue(all(row["collection_permission"] == "allowed" for row in rows))
+        self.assertTrue(all("permission_evidence_reference lawyer-provided written permission record #TEST-1" in row["source"] for row in rows))
+
     def test_inline_article_body_after_heading_separator_is_preserved(self):
         inline_text = "المادة 1: يبدأ النص في السطر نفسه.\nالمادة 2 - ويبدأ النص الثاني هنا."
         self.text_path.write_text(inline_text, encoding="utf-8")
