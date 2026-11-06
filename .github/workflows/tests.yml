@@ -1,0 +1,396 @@
+name: Tests
+
+on:
+  push:
+    branches: [main, 'audit/**']
+  pull_request:
+    branches: [main, 'pilot/**']
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      COPILOT_ENV: development
+      # Synthetic corpus fixtures attest as the dedicated test-only reviewer ID.
+      LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS: "42"
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Test document extraction review workflow contract
+        run: PYTHONPATH=. python tests/test_document_review_workflow.py
+      - name: Test frontend UX and accessibility contract
+        run: python tests/test_frontend_ux_contract.py
+      - name: Test device/browser acceptance evidence gate
+        run: PYTHONPATH=. python tests/test_device_browser_acceptance.py
+      - name: Test legal PDF import bundle integrity
+        run: PYTHONPATH=. python tests/test_import_laws_bundle.py
+      - name: Test container deployment contract
+        run: PYTHONPATH=. python tests/test_container_deployment_contract.py
+      - name: Test hash-locked dependency workflow contract
+        run: PYTHONPATH=. python tests/test_dependency_lock_workflow_contract.py
+      - name: Test Windows first-run launcher contract
+        run: PYTHONPATH=. python tests/test_windows_launcher_contract.py
+      - name: Test installable PWA shell and offline privacy boundary
+        run: PYTHONPATH=. python tests/test_pwa_shell.py
+      - name: Test research inspector status, citation, and memo helpers
+        run: python tests/test_research_inspector.py
+      - name: Check frontend JavaScript syntax
+        run: |
+          python -c "from pathlib import Path; import re; html=Path('static/index.html').read_text(encoding='utf-8'); scripts=re.findall(r'<script[^>]*>(.*?)</script>', html, re.S); assert scripts, 'No inline JavaScript found'; Path('/tmp/legal-copilot.js').write_text(chr(10).join(scripts), encoding='utf-8')"
+          node --check /tmp/legal-copilot.js
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Measure retrieval and abstention on 200 fictional known-answer queries
+        run: PYTHONPATH=. python tests/test_synthetic_retrieval_benchmark.py
+      - name: Smoke-test public PWA HTTP routes and security headers
+        run: PYTHONPATH=. python tests/test_pwa_http_routes.py
+      - name: Test live deployment HTTP smoke probe
+        run: PYTHONPATH=. python tests/test_deployment_http_smoke.py
+      - name: Test research prompt injection boundary
+        run: PYTHONPATH=. python tests/test_research_prompt_injection_boundary.py
+      - name: Test security audit CSV export
+        run: PYTHONPATH=. python tests/test_security_audit_export.py
+      - name: Test versioned database migrations
+        run: PYTHONPATH=. python tests/test_db_migrations.py
+      - name: Test invoice schema migration and immutable ledger guards
+        run: PYTHONPATH=. python tests/test_invoice_schema_migration.py
+      - name: Test profile-aware migration binding
+        run: PYTHONPATH=. python tests/test_schema_profiles.py
+      - name: Test initial isolated database profile schemas
+        run: PYTHONPATH=. python tests/test_profile_initial_schemas.py
+      - name: Test profile-separated runtime and firm isolation
+        run: PYTHONPATH=. python tests/test_database_runtime.py
+      - name: Test tenant context transaction boundary
+        run: PYTHONPATH=. python tests/test_tenant_context_transaction_boundary.py
+      - name: Test application routing across firm and corpus databases
+        run: PYTHONPATH=. python tests/test_app_separate_database_runtime.py
+      - name: Test encrypted multi-database backup and restore
+        run: PYTHONPATH=. python tests/test_database_backup_bundle.py
+      - name: Test approved original-file purge and tombstone backup
+        run: PYTHONPATH=. python tests/test_purge_approved_original_files.py
+      - name: Test isolated database recovery drill
+        run: PYTHONPATH=. python tests/test_database_recovery_drill.py
+      - name: Test S3/KMS storage preflight
+        run: PYTHONPATH=. python tests/test_s3_storage_preflight.py
+      - name: Test separate versioned S3 recovery archive preflight
+        run: PYTHONPATH=. python tests/test_s3_recovery_archive_preflight.py
+      - name: Test encrypted S3 recovery archive transport
+        run: PYTHONPATH=. python tests/test_database_backup_archive.py
+      - name: Test sanitized live S3 acceptance evidence collector
+        run: PYTHONPATH=. python tests/test_s3_live_acceptance_evidence.py
+      - name: Test S3 original-file storage adapter
+        run: PYTHONPATH=. python tests/test_s3_original_file_storage.py
+      - name: Test restored original-file S3 import
+        run: PYTHONPATH=. python tests/test_import_restored_originals_to_s3.py
+      - name: Test migration history ordering guard
+        run: PYTHONPATH=. python tests/test_migration_history_ordering.py
+      - name: Test read-only startup DDL inventory
+        run: PYTHONPATH=. python tests/test_database_startup_ddl_inventory.py
+      - name: Test disposable-copy migration rehearsal
+        run: PYTHONPATH=. python tests/test_database_migration_rehearsal.py
+      - name: Test fresh database startup and restart
+        run: PYTHONPATH=. python tests/test_database_fresh_install_schema.py
+      - name: Test read-only FTS consistency preflight
+        run: PYTHONPATH=. python tests/test_chunks_fts_preflight.py
+      - name: Test staged-copy FTS rebuild safety
+        run: PYTHONPATH=. python tests/test_rebuild_chunks_fts_copy.py
+      - name: Test SEC-01 runtime route and schema inventory
+        run: PYTHONPATH=. python tests/test_security_surface_inventory.py
+      - name: Test tenant route inventory completeness
+        run: PYTHONPATH=. python tests/test_tenant_route_inventory_coverage.py
+      - name: Test route-to-SQL access audit
+        run: PYTHONPATH=. python tests/test_route_sql_access_audit.py
+      - name: Audit route-to-SQL access boundaries
+        run: PYTHONPATH=. python tools/audit_route_sql_access.py --strict
+      - name: Test encrypted restore safety
+        run: PYTHONPATH=. python tests/test_backup_restore_safety.py
+      - name: Test read-only tenant database preflight
+        run: PYTHONPATH=. python tests/test_tenant_database_preflight.py
+      - name: Test tenant catalog provisioning and path safety
+        run: PYTHONPATH=. python tests/test_tenant_catalog.py
+      - name: Test tenancy provisioning and membership CLI
+        run: PYTHONPATH=. python tests/test_manage_tenancy_commands.py
+      - name: Test human-attested deadline rule verification CLI
+        run: PYTHONPATH=. python tests/test_manage_deadline_verification.py
+      - name: Test fictional demo firm seed and removal
+        run: PYTHONPATH=. python tests/test_demo_firm_cli.py
+      - name: Test firm-admin ZIP data export isolation and audit
+        run: PYTHONPATH=. python tests/test_firm_data_export.py
+      - name: Test firm data export frontend contract
+        run: PYTHONPATH=. python tests/test_firm_data_export_frontend_contract.py
+      - name: Test first-run setup and health API
+        run: PYTHONPATH=. python tests/test_first_run_wizard_api.py
+      - name: Test tenant ownership and orphan preflight
+        run: PYTHONPATH=. python tests/test_tenant_ownership_preflight.py
+      - name: Test read-only legacy chunk evidence manifest
+        run: PYTHONPATH=. python tests/test_legacy_chunk_evidence_manifest.py
+      - name: Validate legal data registry and evaluation seeds
+        run: python tools/validate_legal_data_foundation.py
+      - name: Test fail-closed legal release readiness gate
+        run: PYTHONPATH=. python tests/test_legal_release_readiness.py
+      - name: Test aggregate production release gate
+        run: PYTHONPATH=. python tests/test_production_release_gate.py
+      - name: Test database operational release acceptance gate
+        run: PYTHONPATH=. python tests/test_database_release_acceptance.py
+      - name: Audit legal release candidate readiness without acquiring content
+        run: python tools/validate_legal_release_readiness.py --out /tmp/legal-release-readiness.json
+      - name: Test acquisition readiness production gate
+        run: PYTHONPATH=. python tests/test_acquisition_readiness_cli.py
+      - name: Test malformed legal data foundation inputs fail closed
+        run: PYTHONPATH=. python tests/test_legal_data_foundation_validator.py
+      - name: Test DOCX table and header extraction
+        run: PYTHONPATH=. python tests/test_docx_table_extraction.py
+      - name: Test incremental document extraction limits
+        run: PYTHONPATH=. python tests/test_document_extraction_budget.py
+      - name: Test PDF OCR fallback and mixed-page extraction
+        run: PYTHONPATH=. python tests/test_pdf_ocr_fallback.py
+      - name: Test page-aware PDF retrieval citations
+        run: PYTHONPATH=. python tests/test_pdf_page_references.py
+      - name: Test inline legal citation coverage
+        run: PYTHONPATH=. python tests/test_answer_citation_coverage.py
+      - name: Test sentence-level legal quantity citation binding
+        run: PYTHONPATH=. python tests/test_citation_quantity_binding.py
+      - name: Test retrieval and citation evaluation harness
+        run: python tests/test_retrieval_evaluation.py
+      - name: Test production retrieval against fictional evidence fixtures
+        run: PYTHONPATH=. python tests/test_synthetic_retrieval.py
+      - name: Smoke-test evaluation report on unreviewed seeds
+        run: python tools/evaluate_retrieval_quality.py --reviewer-registry tests/legal_eval/reviewer_registry.empty.example.json
+      - name: Validate Phase 2 metadata-only instrument inventory
+        run: python tools/validate_phase2_document_inventory.py
+      - name: Test Phase 2 instrument inventory safeguards
+        run: python tests/test_phase2_document_inventory.py
+      - name: Test permission outreach tracking guardrails
+        run: python tests/test_permission_outreach_tracker.py
+      - name: Validate source permission register
+        run: python tools/validate_source_permission_register.py
+      - name: Test source permission register
+        run: python tests/test_source_permission_register.py
+      - name: Run collection pipeline tests
+        run: python tests/test_collection_pipeline.py
+      - name: Test corpus-to-reference comparison tool
+        run: PYTHONPATH=. python tests/test_compare_corpus_to_reference.py
+      - name: Test manual capture recorder
+        run: PYTHONPATH=. python tests/test_record_manual_capture.py
+      - name: Test legal versioned registry
+        run: python tests/test_legal_versioned_registry.py
+      - name: Test read-only legal version comparison
+        run: python tests/test_compare_legal_versions.py
+      - name: Test legal corpus audit
+        run: PYTHONPATH=. python tests/test_legal_corpus_audit.py
+      - name: Test legal source review queue
+        run: python tests/test_legal_source_review_queue.py
+      - name: Test multi-area lawyer-review benchmark draft
+        run: PYTHONPATH=. python tests/test_multi_area_eval_draft.py
+      - name: Test Arabic OCR quality evaluator
+        run: PYTHONPATH=. python tests/test_ocr_quality_evaluation.py
+      - name: Test legal evaluation API runner
+        run: PYTHONPATH=. python tests/test_legal_eval_runner.py
+      - name: Test lawyer-reviewed legal answer evaluation
+        run: PYTHONPATH=. python tests/test_legal_answer_evaluation.py
+      - name: Test legal candidate catalog
+        run: python tests/test_legal_candidate_catalog.py
+      - name: Validate legal candidate catalog
+        run: python tools/seed_legal_candidates.py
+      - name: Test amendment relationship validator
+        run: python tests/test_amendment_relationship_validator.py
+      - name: Audit amendment relationship register
+        run: python tools/validate_amendment_relationships.py --out amendment-relationship-audit.json
+      - name: Test first official batch manifest
+        run: python tests/test_first_official_batch_manifest.py
+      - name: Test Decision 250 provenance and commencement quarantine
+        run: PYTHONPATH=. python tests/test_decision250_candidate_quarantine.py
+      - name: Test Labour Law supplemental evidence cards
+        run: python tests/test_labour_law_supplement_cards.py
+      - name: Test canonical Labour Law evidence cards
+        run: PYTHONPATH=. python tests/test_labour_law_evidence_cards.py
+      - name: Test Labour Law implementing-instrument register
+        run: python tests/test_labour_law_instrument_register.py
+      - name: Test reconciled Labour Law card manifest
+        run: python tests/test_labour_law_card_manifest.py
+      - name: Test manifest-aware Labour Law report loader
+        run: PYTHONPATH=. python tests/test_labour_law_evidence_manifest_loader.py
+      - name: Test Labour Law public-text crosswalk
+        run: python tests/test_labour_decision_public_text_crosswalk.py
+      - name: Test Labour Law coverage-gap supplement
+        run: python tests/test_labour_law_coverage_gap_supplement.py
+      - name: Test Labour Law source-rights register
+        run: python tests/test_labour_law_source_rights_register.py
+      - name: Validate collection manifest template
+        run: python -c "import json; d=json.load(open('docs/collection_manifest.example.json', encoding='utf-8')); assert isinstance(d.get('documents'), list); assert len(d['documents']) == 4"
+      - name: Test secure cookie transport configuration
+        run: PYTHONPATH=. python tests/test_security_transport_config.py
+      - name: Test deployment preflight
+        run: python tests/test_deployment_preflight.py
+      - name: Test production database-mode startup gate
+        run: PYTHONPATH=. python tests/test_production_database_mode.py
+      - name: Test non-database deadline reminder planner
+        run: PYTHONPATH=. python tests/test_reminder_schedule.py
+      - name: Test reminder scheduler dry-run CLI
+        run: PYTHONPATH=. python tests/test_reminder_schedule_cli.py
+      - name: Test privacy-safe reminder email adapter
+        run: PYTHONPATH=. python tests/test_reminder_email.py
+      - name: Test durable tenant-local reminder outbox
+        run: PYTHONPATH=. python tests/test_reminder_outbox.py
+      - name: Test tenant-scoped reminder scheduler and authorization
+        run: PYTHONPATH=. python tests/test_reminder_service.py
+      - name: Test per-user reminder preference routes
+        run: PYTHONPATH=. python tests/test_reminder_preferences_routes.py
+      - name: Test read-only reminder outbox health monitoring
+        run: PYTHONPATH=. python tests/test_reminder_healthcheck.py
+      - name: Test WhatsApp provider and wa.me links
+        run: PYTHONPATH=. python tests/test_whatsapp_provider.py
+      - name: Test database-independent MFA primitives
+        run: PYTHONPATH=. python tests/test_mfa_primitives.py
+      - name: Test MFA enrollment, login, recovery, and enforcement
+        run: PYTHONPATH=. python tests/test_mfa_account_security.py
+      - name: Test two-admin MFA break-glass recovery
+        run: PYTHONPATH=. python tests/test_mfa_break_glass_cli.py
+      - name: Test invitation and account recovery lifecycle
+        run: PYTHONPATH=. python tests/test_identity_lifecycle.py
+      - name: Test secure SMTP identity email adapter
+        run: PYTHONPATH=. python tests/test_identity_email.py
+      - name: Test controlled identity SMTP acceptance probe
+        run: PYTHONPATH=. python tests/test_verify_identity_email.py
+      - name: Test one-time platform-admin bootstrap CLI
+        run: PYTHONPATH=. python tests/test_platform_admin_bootstrap_cli.py
+      - name: Test profile-separated CLI write commands
+        run: python tests/test_manage_cli_profile_only.py
+      - name: Test exact article and page pin citation binding
+        run: PYTHONPATH=. python tests/test_answer_pincite_binding.py
+      - name: Test Arabic answer/source polarity guard
+        run: PYTHONPATH=. python tests/test_answer_source_polarity.py
+      - name: Test cited legal actor role binding
+        run: PYTHONPATH=. python tests/test_answer_actor_role_binding.py
+      - name: Test conditional legal claim scope binding
+        run: PYTHONPATH=. python tests/test_answer_conditional_scope_binding.py
+      - name: Run unit tests
+        run: python selftest.py
+      - name: Run Arabic multi-case scenario tests
+        run: python arabic_scenario_test.py
+      - name: Test experimental deadline calculator
+        run: PYTHONPATH=. python tests/test_deadline_calculator.py
+      - name: Test authenticated case deadline calculator integration
+        run: PYTHONPATH=. python tests/test_deadline_case_routes.py
+      - name: Test firm-isolated case communication history
+        run: PYTHONPATH=. python tests/test_case_communications.py
+      - name: Test firm-scoped invoice draft and issue routes
+        run: PYTHONPATH=. python tests/test_invoice_core_routes.py
+      - name: Test persistent client profiles and multi-matter linkage
+        run: PYTHONPATH=. python tests/test_client_profiles.py
+      - name: Test bounded firm-local matter CSV import
+        run: PYTHONPATH=. python tests/test_case_csv_import.py
+      - name: Test firm-scoped case search and pagination
+        run: PYTHONPATH=. python tests/test_case_search_pagination.py
+      - name: Test bounded firm-local CSV client import
+        run: PYTHONPATH=. python tests/test_client_csv_import.py
+      - name: Test invoice ledger CSV export
+        run: PYTHONPATH=. python tests/test_invoice_csv_export.py
+      - name: Test exact-piaster money primitives
+        run: PYTHONPATH=. python tests/test_money.py
+      - name: Test invoice payments, aging, and receipts
+        run: PYTHONPATH=. python tests/test_invoice_payment_routes.py
+      - name: Test platform security audit events
+        run: PYTHONPATH=. python tests/test_platform_security_audit.py
+      - name: Test platform security audit migrations
+        run: PYTHONPATH=. python tests/test_platform_security_audit_migrations.py
+      - name: Test arabic matching
+        run: PYTHONPATH=. python tests/test_arabic_matching.py
+      - name: Test auth rate limits separate runtime
+        run: PYTHONPATH=. python tests/test_auth_rate_limits_separate_runtime.py
+      - name: Test trusted reverse-proxy client IP attribution
+        run: COPILOT_ENV=development PYTHONPATH=. python tests/test_trusted_proxy_client_ip.py
+      - name: Test build legal draft
+        run: PYTHONPATH=. python tests/test_build_legal_draft.py
+      - name: Test evaluate arabic ocr
+        run: PYTHONPATH=. python tests/test_evaluate_arabic_ocr.py
+      - name: Test firm offboarding preflight
+        run: PYTHONPATH=. python tests/test_firm_offboarding_preflight.py
+      - name: Test identity
+        run: PYTHONPATH=. python tests/test_identity.py
+      - name: Test labour law candidate registry
+        run: PYTHONPATH=. python tests/test_labour_law_candidate_registry.py
+      - name: Test labour law draft set
+        run: PYTHONPATH=. python tests/test_labour_law_draft_set.py
+      - name: Test labour law provisional review questions
+        run: PYTHONPATH=. python tests/test_labour_law_provisional_review_questions.py
+      - name: Test legacy firm ownership migration
+        run: PYTHONPATH=. python tests/test_legacy_firm_ownership_migration.py
+      - name: Test manual capture validator
+        run: PYTHONPATH=. python tests/test_manual_capture_validator.py
+      - name: Test original file storage
+        run: PYTHONPATH=. python tests/test_original_file_storage.py
+      - name: Test original file reconciliation
+        run: PYTHONPATH=. python tests/test_original_file_reconciliation.py
+      - name: Test platform access
+        run: PYTHONPATH=. python tests/test_platform_access.py
+      - name: Test recover staged original files
+        run: PYTHONPATH=. python tests/test_recover_staged_original_files.py
+      - name: Test report legal corpus inventory
+        run: PYTHONPATH=. python tests/test_report_legal_corpus_inventory.py
+      - name: Test review evidence url validation
+        run: PYTHONPATH=. python tests/test_review_evidence_url_validation.py
+      - name: Test security audit read separate runtime
+        run: PYTHONPATH=. python tests/test_security_audit_read_separate_runtime.py
+      - name: Test storage provider
+        run: PYTHONPATH=. python tests/test_storage_provider.py
+      - name: Test tenant context
+        run: PYTHONPATH=. python tests/test_tenant_context.py
+      - name: Test tenant storage routing
+        run: PYTHONPATH=. python tests/test_tenant_storage.py
+      - name: Test tenant fleet migration
+        run: PYTHONPATH=. python tests/test_tenant_fleet_migration.py
+      - name: Test labour law evidence cards
+        run: PYTHONPATH=. python tests/test_labour_law_evidence_cards.py
+      - name: Test labour law primary evidence seed
+        run: PYTHONPATH=. python tests/test_labour_law_primary_evidence_seed.py
+      - name: Test legal answer review evaluation
+        run: PYTHONPATH=. python tests/test_legal_answer_review_evaluation.py
+      - name: Test acquisition readiness audit
+        run: PYTHONPATH=. python tests/test_acquisition_readiness_audit.py
+      - name: Test Decision 162 candidate quarantine
+        run: PYTHONPATH=. python tests/test_decision162_candidate_quarantine.py
+      - name: Test Decision 249 candidate quarantine
+        run: PYTHONPATH=. python tests/test_decision249_candidate_quarantine.py
+      - name: Test tenant write failure diagnostics
+        run: PYTHONPATH=. python tests/test_tenant_write_failure_diagnostics.py
+      - name: Test trusted-host middleware
+        run: PYTHONPATH=. python tests/test_trusted_host_middleware.py
+      - name: Test fixture-based law ingestion pipeline
+        run: PYTHONPATH=. python tests/test_law_ingestion_fixture_pipeline.py
+      - name: Test optional factual claim support validation
+        run: PYTHONPATH=. python tests/test_claim_support.py
+      - name: Test article-rows audit tool
+        run: PYTHONPATH=. python tests/test_audit_article_rows.py
+      - name: Test firm-private usage metering and audit ledger
+        run: PYTHONPATH=. python tests/test_firm_usage_metering.py
+      - name: Test platform-only weekly pilot metrics
+        run: PYTHONPATH=. python tests/test_pilot_metrics.py
+      - name: Test subscription audit timeline frontend contract
+        run: PYTHONPATH=. python tests/test_subscription_audit_frontend_contract.py
+      - name: Test subscription trial, transfer review and seat limits
+        run: PYTHONPATH=. python tests/test_subscription_billing_routes.py
+      - name: Test per-firm MFA enforcement policy
+        run: PYTHONPATH=. python tests/test_firm_security_policy.py
+      - name: Test Arabic drafting skeletons
+        run: PYTHONPATH=. python tests/test_arabic_drafting_skeletons.py
+      - name: Test provider-neutral billing fake
+        run: PYTHONPATH=. python tests/test_billing_provider.py
+      - name: Test product feedback frontend contract
+        run: PYTHONPATH=. python tests/test_product_feedback_frontend_contract.py
+      - name: Test firm-private product feedback lifecycle
+        run: PYTHONPATH=. python tests/test_product_feedback_routes.py
+      - name: Test private answer correction queue and firm isolation
+        run: PYTHONPATH=. python tests/test_answer_correction_routes.py
+      - name: Test platform pilot metrics dashboard contract
+        run: PYTHONPATH=. python tests/test_platform_pilot_metrics_frontend_contract.py
+      - name: Test safe request validation errors
+        run: PYTHONPATH=. python tests/test_validation_error_handler.py
+      - name: Test first-run wizard frontend contract
+        run: PYTHONPATH=. python tests/test_first_run_wizard_frontend_contract.py
+      - name: Guard that every test file runs in CI or is explicitly tracked
+        run: PYTHONPATH=. python tests/test_ci_runs_all_tests.py

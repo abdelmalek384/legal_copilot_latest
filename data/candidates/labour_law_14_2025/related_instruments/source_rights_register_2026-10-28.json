@@ -1,0 +1,110 @@
+{
+  "title": "Source rights and reuse register — Egyptian Labour Law knowledge workstream",
+  "updated_on": "2026-10-28",
+  "policy": "Public availability is not equivalent to permission to redistribute or use commercially. No permissions are claimed. Do not bypass access restrictions. Prefer source links, short factual summaries, article pinpoint references, hashes of files lawfully obtained, and provenance metadata over copying full protected compilations.",
+  "sources": [
+    {
+      "source_id": "SRC-AMIRIA-SEARCHABLE-LAW-TEXT",
+      "name": "Amiri Press searchable text for Law 14/2025",
+      "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+      "source_class": "official_publisher_text",
+      "public_access_observed": true,
+      "terms_or_license_checked": false,
+      "commercial_reuse_permission": "unknown_not_cleared",
+      "redistribution_permission": "unknown_not_cleared",
+      "permitted_internal_handling": "retain URL, article pinpoints, short factual summaries, retrieval/check date and integrity metadata; do not republish full text until terms are checked",
+      "next_action": "locate published terms or a clear public-sector reuse license; if unavailable, keep only short factual summaries and citations"
+    },
+    {
+      "source_id": "SRC-ETA-OFFICIAL-GAZETTE-PDF",
+      "name": "Government-hosted Official Gazette PDF for Law 14/2025",
+      "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+      "source_class": "government_hosted_official_gazette",
+      "public_access_observed": true,
+      "terms_or_license_checked": false,
+      "commercial_reuse_permission": "unknown_not_cleared",
+      "redistribution_permission": "unknown_not_cleared",
+      "binary_obtained_and_hashed": false,
+      "next_action": "obtain a public downloadable copy through ordinary public access; compute SHA-256 only after obtaining exact bytes; inspect any published reuse terms"
+    },
+    {
+      "source_id": "SRC-MOL-LEGISLATION-CATALOGUE",
+      "name": "Ministry of Labour laws and legislation catalogue",
+      "url": "https://www.labour.gov.eg/ar/القوانين-والتشريعات/",
+      "source_class": "official_ministry_webpage",
+      "public_access_observed": true,
+      "terms_or_license_checked": false,
+      "commercial_reuse_permission": "unknown_not_cleared",
+      "redistribution_permission": "unknown_not_cleared",
+      "next_action": "use as source-discovery evidence; do not assume announcements or linked files grant reuse rights"
+    },
+    {
+      "source_id": "SRC-MOL-ANNOUNCEMENTS",
+      "name": "Ministry of Labour announcements on implementing decisions",
+      "url": "https://www.labour.gov.eg/ar/الأخبار/",
+      "source_class": "official_ministry_announcements",
+      "public_access_observed": true,
+      "terms_or_license_checked": false,
+      "commercial_reuse_permission": "unknown_not_cleared",
+      "redistribution_permission": "unknown_not_cleared",
+      "next_action": "store short factual summaries and links; verify full instrument text independently"
+    },
+    {
+      "source_id": "SRC-WIKISOURCE-LABOUR-LAW",
+      "name": "Wikisource transcription of Law 14/2025",
+      "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+      "source_class": "community_transcription",
+      "public_access_observed": true,
+      "terms_or_license_checked": true,
+      "license_note": "Check the specific page revision and page-level license/attribution terms before copying; the underlying legal text and the contributed transcription may have different rights considerations.",
+      "commercial_reuse_permission": "not_assumed",
+      "redistribution_permission": "not_assumed",
+      "next_action": "record revision ID and license/attribution requirements if this source is used beyond short factual cross-checks"
+    },
+    {
+      "source_id": "SRC-FAHM-QANUN-LABOUR-LAW",
+      "name": "Fahm Qanun per-article pages",
+      "url": "https://fahmqanon.com/laws/14-2025",
+      "source_class": "commercial_legal_database_displaying_source_attribution",
+      "public_access_observed": true,
+      "terms_or_license_checked": false,
+      "commercial_reuse_permission": "unknown_not_cleared",
+      "redistribution_permission": "unknown_not_cleared",
+      "next_action": "use as an independent text cross-check only; do not scrape/redistribute the site's content or treat its 'official source' attribution as a license"
+    },
+    {
+      "source_id": "SRC-LAWHUB-LABOUR-LAW",
+      "name": "Law Hub transcription and implementing-decision pages",
+      "url": "https://lawhub.info/eg/?p=11848",
+      "source_class": "secondary_legal_transcription",
+      "public_access_observed": true,
+      "terms_or_license_checked": false,
+      "commercial_reuse_permission": "unknown_not_cleared",
+      "redistribution_permission": "unknown_not_cleared",
+      "next_action": "use only short factual summaries and citations pending review of site terms and underlying text provenance"
+    },
+    {
+      "source_id": "SRC-EASTLAWS-DECISION-260-2025",
+      "name": "EastLaws full-text page for Decision 260/2025",
+      "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-260?id=5008541&type=1",
+      "source_class": "secondary_legal_database",
+      "public_access_observed": true,
+      "terms_or_license_checked": false,
+      "commercial_reuse_permission": "unknown_not_cleared",
+      "redistribution_permission": "unknown_not_cleared",
+      "next_action": "retain as a discovery/cross-check link; seek official Ministry/Gazette text and avoid bulk copying"
+    },
+    {
+      "source_id": "SRC-IDSC-GAZETTE-METADATA",
+      "name": "IDSC/Gazette repository metadata for implementing decisions",
+      "url": "https://dspace.id.com.eg/",
+      "source_class": "official_gazette_metadata_repository",
+      "public_access_observed": true,
+      "terms_or_license_checked": false,
+      "full_text_access_status": "some records show copy-request restriction",
+      "commercial_reuse_permission": "unknown_not_cleared",
+      "redistribution_permission": "unknown_not_cleared",
+      "next_action": "use publicly visible bibliographic metadata; do not submit a copy request or bypass access restrictions; search for independent public full-text copies"
+    }
+  ]
+}

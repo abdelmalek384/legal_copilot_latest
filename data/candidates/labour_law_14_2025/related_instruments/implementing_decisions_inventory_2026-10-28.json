@@ -1,0 +1,195 @@
+{
+  "title": "Egyptian Labour Law No. 14/2025 — implementing instruments evidence register",
+  "updated_on": "2026-10-28",
+  "count": 7,
+  "policy": "This is a source-lead register, not proof of validity or an exhaustive list. Do not infer amendments from announcements or titles. No access controls bypassed; no permission requests submitted.",
+  "items": [
+    {
+      "instrument_id": "EG-MOL-DEC-260-2025",
+      "title_ar": "قرار وزير العمل رقم 260 لسنة 2025 بشأن تحديد الجهة الإدارية المختصة في تطبيق أحكام قانون العمل رقم 14 لسنة 2025",
+      "date": "2025-12-04",
+      "publication": "الوقائع المصرية، العدد 291 تابع، 2025-12-25؛ يعمل به من اليوم التالي بحسب مصدر ثانوي",
+      "official_publication_full_text_verified": false,
+      "source_leads": [
+        {
+          "url": "https://www.labour.gov.eg/ar/القوانين-والتشريعات/",
+          "type": "وزارة العمل — صفحة القوانين والتشريعات"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=17020",
+          "type": "نص ثانوي عام"
+        },
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-260?id=5008541&type=1",
+          "type": "نص قانوني ثانوي"
+        }
+      ],
+      "articles_mapped": [
+        256,
+        257,
+        260,
+        271
+      ],
+      "mapping_notes": "المصدر الثانوي يحدد الإدارة المركزية للسلامة والصحة المهنية بالنسبة للمادة 256، ومديرية العمل المختصة للمادة 257، ومكاتب السلامة والصحة المهنية التابعة للمديريات للمادة 260، والمكاتب ذاتها لاعتماد نظام الوجبات وفق المادة 271. يلزم مطابقة النص الكامل الرسمي وجدول الاختصاصات قبل الاعتماد.",
+      "evidence_state": "public_secondary_text_and_official_catalogue_lead",
+      "currentness_state": "not_fully_verified",
+      "reuse_state": "not_cleared",
+      "search_eligible": false
+    },
+    {
+      "instrument_id": "EG-MOL-DEC-162-2026",
+      "title_ar": "قرار وزير العمل رقم 162 لسنة 2026 بشأن القواعد العامة للائحة تنظيم العمل بالقطاع الخاص",
+      "date": "2026",
+      "official_publication_full_text_verified": false,
+      "source_leads": [
+        {
+          "url": "https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يعلن-نص-القواعد-العامة-للائحة-تنظيم-العمل-بالقطاع-الخاص/",
+          "type": "إعلان وزارة العمل"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+          "type": "فهرس بيانات الجريدة الرسمية — الملف الكامل يتطلب طلب نسخة"
+        }
+      ],
+      "articles_mapped": [
+        137,
+        138,
+        139,
+        140,
+        141
+      ],
+      "mapping_notes": "إشارة متابعة تتعلق بقواعد لائحة تنظيم العمل؛ لا يثبت الإعلان وحده تعديل مادة بعينها. لم يُطلب الوصول إلى نسخة مقيدة ولم يُدّع الاطلاع على النص الكامل.",
+      "evidence_state": "official_announcement_and_gazette_metadata_lead",
+      "currentness_state": "full_text_unavailable_publicly_in_checked_path",
+      "reuse_state": "not_cleared",
+      "search_eligible": false
+    },
+    {
+      "instrument_id": "EG-MOL-OSH-DECISIONS-248-252-2026",
+      "title_ar": "خمسة قرارات تنفيذية لوزير العمل بشأن السلامة والصحة المهنية وتأمين بيئة العمل",
+      "date": "2026",
+      "official_publication_full_text_verified": false,
+      "source_leads": [
+        {
+          "url": "https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يصدر-5-قرارات-تنفيذية-لتعزيز-منظومة-السلامة-والصحة-المهنية-وتأمين-بيئة-العمل/",
+          "type": "إعلان وزارة العمل"
+        }
+      ],
+      "articles_mapped": [
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262
+      ],
+      "mapping_notes": "مصدر رسمي يعلن صدور خمسة قرارات تنفيذية؛ يلزم استخراج أرقام كل قرار ونصه وتاريخ نشره ونطاق مواده قبل ربطه بواجب أو جزاء محدد.",
+      "evidence_state": "official_announcement_only",
+      "currentness_state": "full_text_and_article_mapping_pending",
+      "reuse_state": "not_cleared",
+      "search_eligible": false
+    },
+    {
+      "instrument_id": "EG-MOL-DEC-49-2026",
+      "title_ar": "قرار وزير العمل رقم 49 لسنة 2026 بشأن الأعمال الخطرة والمناطق النائية وزيادة الإجازة السنوية",
+      "date": "2026",
+      "official_publication_full_text_verified": false,
+      "source_leads": [
+        {
+          "url": "https://www.labour.gov.eg/ar/الأخبار/لتحقق-التوازن-بين-متطلبات-الإنتاج-وصون-حقوق-القوى-العاملة-وزير-العمل-يصدر-قرار-ا-وزاري-ا-بتحديد-الأعمال-الخطرة-والمناطق-النائية-التي-ت-زاد-فيها-الإجازات-السنوية-7-أيام-للعاملين/",
+          "type": "إعلان وزارة العمل"
+        }
+      ],
+      "articles_mapped": [
+        125,
+        126
+      ],
+      "mapping_notes": "إعلان الوزارة يربط القرار بالأعمال الخطرة والمناطق النائية وزيادة الإجازة السنوية سبعة أيام. النص الكامل والجداول/التعريفات ومدى النفاذ لم تُراجع.",
+      "evidence_state": "official_announcement_only",
+      "currentness_state": "full_text_and_article_mapping_pending",
+      "reuse_state": "not_cleared",
+      "search_eligible": false
+    },
+    {
+      "instrument_id": "EG-MOL-DEC-266-2025",
+      "title_ar": "قرار وزير العمل رقم 266 لسنة 2025 بشأن قواعد وإجراءات قياس مستوى المهارة وترخيص مزاولة المهن والحرف",
+      "date": "2025",
+      "official_publication_full_text_verified": false,
+      "source_leads": [
+        {
+          "url": "https://lawhub.info/eg/?p=17073",
+          "type": "نص ثانوي عام"
+        }
+      ],
+      "articles_mapped": [
+        26,
+        284
+      ],
+      "mapping_notes": "نص ثانوي منشور؛ يلزم تحديد مواد قانون العمل المتصلة بدقة ومراجعة النص الرسمي والقرارات اللاحقة قبل الاستخدام.",
+      "evidence_state": "public_secondary_full_text_lead",
+      "currentness_state": "not_fully_verified",
+      "reuse_state": "not_cleared",
+      "search_eligible": false
+    },
+    {
+      "instrument_id": "EG-MOL-DEC-272-2025",
+      "title_ar": "قرار وزير العمل رقم 272 لسنة 2025 بشأن تنظيم عمليات التشغيل بالداخل والخارج",
+      "date": "2025",
+      "official_publication_full_text_verified": false,
+      "source_leads": [
+        {
+          "url": "https://lawhub.info/eg/?p=17017",
+          "type": "نص ثانوي عام"
+        }
+      ],
+      "articles_mapped": [
+        39,
+        40,
+        41,
+        42,
+        289,
+        291,
+        292
+      ],
+      "mapping_notes": "قرار ذو صلة بترخيص التشغيل وإلحاق العمالة؛ الربط بالمادة العقابية يجب تأكيده من النص الرسمي للقرار والقانون، لا من عنوان القرار وحده.",
+      "evidence_state": "public_secondary_full_text_lead",
+      "currentness_state": "not_fully_verified",
+      "reuse_state": "not_cleared",
+      "search_eligible": false
+    },
+    {
+      "instrument_id": "EG-PUBLIC-CIRCULAR-22-2026",
+      "title_ar": "كتاب دوري رقم 22 لسنة 2026 بشأن توحيد مواعيد إجازة ذكرى نصر أكتوبر للقطاع الخاص",
+      "date": "2026-10",
+      "official_publication_full_text_verified": false,
+      "source_leads": [
+        {
+          "url": "https://www.labour.gov.eg/ar/الأخبار/لتوحيد-مواعيد-الإجازات-الرسمية-في-قطاعات-الدولة-المختلفة-وزير-العمل-الخميس-المقبل-إجازة-مدفوعة-الأجر-للعاملين-بالقطاع-الخاص-بمناسبة-ذكرى-نصر-أكتوبر-المجيد/",
+          "type": "إعلان وزارة العمل"
+        }
+      ],
+      "articles_mapped": [
+        129,
+        130,
+        131
+      ],
+      "mapping_notes": "توجيه متعلق بإجازة مناسبة محددة، وليس تعديلاً دائماً لحق الإجازات. يلزم إبقاء نطاقه التاريخي واضحاً وعدم تعميمه على تواريخ أخرى.",
+      "evidence_state": "official_announcement_only",
+      "currentness_state": "event_specific_not_general_rule",
+      "reuse_state": "not_cleared",
+      "search_eligible": false
+    }
+  ]
+}

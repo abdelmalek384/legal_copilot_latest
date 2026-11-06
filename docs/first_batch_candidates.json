@@ -1,0 +1,82 @@
+{
+  "assessment_date": "2026-10-23",
+  "note": "Candidate records only. This is not the executable collection manifest and does not authorize downloads.",
+  "documents": [
+    {
+      "document_id": "eg_constitution_2019_presidency_pdf",
+      "source_id": "EG-PRESIDENCY",
+      "title": "دستور جمهورية مصر العربية (نسخة منشورة على موقع رئاسة الجمهورية)",
+      "document_type": "constitution",
+      "candidate_url": "https://www.presidency.eg/media/46122/دستور-جمهورية-مصر-العربية-2019.pdf",
+      "official_source_page": "https://www.presidency.eg/ar/مصر/الدستور/",
+      "collection_permission": "unknown",
+      "reason_not_approved": "Official PDF located, but bulk retrieval, local indexing and commercial reuse permissions have not been established from the page.",
+      "legal_authenticity_verified": false,
+      "current_version_verified": false,
+      "effective_date": null,
+      "amendment_history_verified": false,
+      "next_action": "Review applicable terms and obtain written confirmation if required; compare text and amendment history against Official Gazette."
+    },
+    {
+      "document_id": "eg_labour_law_14_2025_amiri_press",
+      "source_id": "EG-AMIRI-PRESS",
+      "title": "قانون رقم 14 لسنة 2025 بإصدار قانون العمل",
+      "document_type": "legislation",
+      "candidate_url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+      "collection_permission": "unknown",
+      "reason_not_approved": "Official text page located; permission for automated retrieval, storage and commercial indexing not yet confirmed.",
+      "legal_authenticity_verified": false,
+      "current_legal_status_verified": false,
+      "effective_date": null,
+      "amendment_history_verified": false,
+      "next_action": "Review Amiri Press terms and confirm commencement, implementing regulations, transitional provisions and later amendments."
+    },
+    {
+      "document_id": "eg_law_3_2024_amiri_press",
+      "source_id": "EG-AMIRI-PRESS",
+      "title": "قانون رقم 3 لسنة 2024 بشأن تأمين وحماية المنشآت والمرافق العامة والحيوية في الدولة",
+      "document_type": "legislation",
+      "candidate_url": "https://www.alamiria.com/Sec/TashTxt?id=9V6xAKvRmuA%3D",
+      "collection_permission": "unknown",
+      "reason_not_approved": "Official text page located; permission for automated retrieval, storage and commercial indexing not yet confirmed.",
+      "legal_authenticity_verified": false,
+      "current_legal_status_verified": false,
+      "effective_date": null,
+      "amendment_history_verified": false,
+      "next_action": "Review Amiri Press terms; verify Gazette issue and all subsequent amendments."
+    },
+    {
+      "document_id": "eg_criminal_procedure_law_174_2025_moj_pdf",
+      "source_id": "EG-MINISTRY-OF-JUSTICE",
+      "title": "قانون رقم 174 لسنة 2025 بإصدار قانون الإجراءات الجنائية",
+      "document_type": "legislation",
+      "candidate_url": "https://moj.gov.eg/backend/api/documents/download/20F3150C-29F1-487E-A0F0-FCCE10CB207B",
+      "official_source_page": "https://www.presidency.eg/ar/قسم-الأخبار/أخبار-رئاسية/news12112025/",
+      "gazette_reference": "الجريدة الرسمية، العدد 45 مكرر (د)، 12 نوفمبر 2025",
+      "publication_date": "2025-11-12",
+      "effective_date": null,
+      "collection_permission": "unknown",
+      "reason_not_approved": "Official Ministry of Justice-hosted Gazette PDF located, but permission for automated retrieval, archival, extraction, and commercial indexing has not been established. Commencement is also unresolved: Law 160/2026's published replacement wording and official explanatory reporting are not self-evidently aligned; do not assign an effective date until the Gazette text and legal effect are reconciled.",
+      "legal_authenticity_verified": false,
+      "current_legal_status_verified": false,
+      "amendment_history_verified": false,
+      "next_action": "Review collection terms; compare the exact Gazette PDFs for Laws 174/2025 and 160/2026; resolve the Article 6 wording, publication reference date, commencement and transition consequences with qualified Egyptian counsel before assigning an effective date."
+    },
+    {
+      "document_id": "eg_criminal_procedure_law_160_2026_amiri_press",
+      "source_id": "EG-AMIRI-PRESS",
+      "title": "قانون رقم 160 لسنة 2026 بتعديل بعض أحكام القانون رقم 174 لسنة 2025 بإصدار قانون الإجراءات الجنائية",
+      "document_type": "amending_legislation",
+      "candidate_url": "https://alamiria.com/Sec/TashTxt?id=Aalg37zxdcU%3D",
+      "publication_date": "2026-09-30",
+      "effective_date": "2026-10-01",
+      "amends_document_id": "eg_criminal_procedure_law_174_2025_moj_pdf",
+      "collection_permission": "unknown",
+      "reason_not_approved": "Official Amiri Press text page located; permission for automated retrieval, local indexing and commercial use not yet established.",
+      "legal_authenticity_verified": false,
+      "current_legal_status_verified": false,
+      "amendment_history_verified": false,
+      "next_action": "Review collection terms; preserve the amending law as its own record; have counsel confirm the current procedure-law transition."
+    }
+  ]
+}

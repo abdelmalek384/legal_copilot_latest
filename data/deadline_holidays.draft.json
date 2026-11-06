@@ -1,0 +1,15 @@
+{
+  "status":"partial_draft_unverified",
+  "note":"This list is incomplete and must not be treated as an official holiday calendar. Add dated movable holidays and government decisions from reliable official notices; mark a year complete only after review.",
+  "fixed_holidays":[
+    {"month":1,"day":7,"name_ar":"عيد الميلاد المجيد"},
+    {"month":1,"day":25,"name_ar":"عيد الشرطة وثورة 25 يناير"},
+    {"month":4,"day":25,"name_ar":"عيد تحرير سيناء"},
+    {"month":5,"day":1,"name_ar":"عيد العمال"},
+    {"month":6,"day":30,"name_ar":"ثورة 30 يونيو"},
+    {"month":7,"day":23,"name_ar":"ثورة 23 يوليو"},
+    {"month":10,"day":6,"name_ar":"عيد القوات المسلحة"}
+  ],
+  "dated_holidays":[],
+  "complete_years":[]
+}

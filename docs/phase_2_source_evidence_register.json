@@ -1,0 +1,784 @@
+{
+  "schema_version": "1.0",
+  "register_id": "EG-PHASE2-OFFICIAL-SOURCE-EVIDENCE-BATCH-1",
+  "checked_on": "2026-10-28",
+  "scope": "Source discovery and publication metadata only. No files were downloaded or OCR-processed by this register.",
+  "interpretation_rules": {
+    "source_discovered_does_not_mean_collected": true,
+    "official_publisher_does_not_mean_reuse_permission_granted": true,
+    "gazette_metadata_does_not_replace_page_level_review_of_original_pdf": true,
+    "effective_date_must_be_based_on_promulgated_text_and_lawyer_review": true,
+    "unknown_values_must_remain_unknown": true
+  },
+  "sources": [
+    {
+      "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+      "publisher": "الهيئة العامة لشئون المطابع الأميرية",
+      "source_type": "official legislation text page",
+      "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+      "observed_title": "قانون رقم 14 لسنة 2025 بإصدار قانون العمل",
+      "source_state": "discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Search result exposes the law text and commencement clause. Save and review the exact official Gazette PDF and page range before marking the document acquired or status-verified."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2025-18-LABOUR",
+      "publisher": "المطابع الأميرية; metadata hosted by IDSC digital repository",
+      "source_type": "Official Gazette issue metadata and PDF listing",
+      "url": "https://dspace.id.com.eg/handle/123456789/8027",
+      "observed_title": "الجريدة الرسمية العدد 18 (تابع)",
+      "publication_date": "2025-05-03",
+      "document_ids": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
+      "source_state": "metadata_discovered_pdf_listed_not_downloaded",
+      "access_terms_state": "reviewed_restricted",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "notes": "The Amiri Press Official Gazette issue metadata is confirmed (2025-05-03; Law 14/2025). The item page lists a 649.46 KB Gazette PDF and a 55 B item-specific license.txt, but both files route to request-a-copy and are marked restricted access. The repository End User Agreement, already reviewed for this source, limits use to personal non-commercial purposes, bars commercial exploitation without express prior written permission, and prohibits systematic retrieval to compile a database without written permission. Do not request or bypass restricted files. No PDF or license bytes were obtained; commercial reuse remains unapproved. The separate ETA-hosted Gazette PDF remains the currently accessible primary-source viewer.",
+      "terms_url": "https://dspace.id.com.eg/info/end-user-agreement",
+      "terms_checked_on": "2026-10-31"
+    },
+    {
+      "source_id": "EG-MINISTRY-LABOUR-LAWS-INDEX",
+      "publisher": "Egyptian Ministry of Labour",
+      "source_type": "official ministry index",
+      "url": "https://www.labour.gov.eg/en/laws-and-legislations/",
+      "observed_title": "Laws and Legislations",
+      "document_ids": [
+        "EG-LABOUR-LAW-14-2025",
+        "EG-SOCIAL-INSURANCE-148-2019"
+      ],
+      "source_state": "index_discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Use for discovery and to identify implementing materials; pin each individual official Gazette instrument rather than treating the index as the primary text."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2025-291-SUPP-LABOUR-DECISIONS",
+      "publisher": "المطابع الأميرية; metadata hosted by IDSC digital repository",
+      "source_type": "Egyptian Proceedings supplement issue metadata and PDF listing",
+      "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
+      "observed_title": "الوقائع المصرية ملحق الجريدة الرسمية العدد 291 (تابع)",
+      "publication_date": "2025-12-25",
+      "document_ids": [
+        "EG-LABOUR-DECISION-259-2025",
+        "EG-LABOUR-DECISION-260-2025",
+        "EG-LABOUR-DECISION-264-2025",
+        "EG-LABOUR-DECISION-271-2025",
+        "EG-LABOUR-DECISION-292-2025",
+        "EG-LABOUR-DECISION-294-2025"
+      ],
+      "source_state": "metadata_discovered_pdf_listed_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Metadata identifies Ministry of Labour decisions 259/2025, 260/2025, 264/2025 and 271/2025. Capture each as a separate instrument record after reviewing the issue PDF and exact titles, dates, articles, and any later amendments. The full issue abstract also lists Decision 292/2025 (maximum actual/overtime hours for preparatory/complementary/guarding/cleaning work) and Decision 294/2025 (paid holidays); both are now separately crosswalked as discovery-only candidates. The issue's PDF and item-specific license file are request-a-copy restricted; no bytes were obtained."
+    },
+    {
+      "source_id": "EG-AMIRI-PRESS-CRIMPROC-160-2026",
+      "publisher": "الهيئة العامة لشئون المطابع الأميرية",
+      "source_type": "official legislation text page",
+      "url": "https://www.alamiria.com/Sec/TashTxt?id=Aalg37zxdcU%3D",
+      "observed_title": "قانون رقم 160 لسنة 2026 بتعديل بعض أحكام القانون رقم 174 لسنة 2025 بإصدار قانون الإجراءات الجنائية",
+      "document_ids": [
+        "EG-CRIMINAL-PROCEDURE-174-2025",
+        "EG-CRIMINAL-PROCEDURE-160-2026",
+        "EG-CRIMINAL-PROCEDURE-150-1950"
+      ],
+      "source_state": "discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "The text states that the commencement phrase in Law 174/2025 is replaced with 1 October 2027, and that Law 160/2026 itself takes effect the day after publication. Preserve the text as a source lead; legal effect and transition require review against the Gazette scan and specialist counsel."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2026-39B-CRIMPROC-160",
+      "publisher": "المطابع الأميرية; metadata hosted by IDSC digital repository",
+      "source_type": "Official Gazette issue metadata and PDF listing",
+      "url": "https://dspace.id.com.eg/handle/123456789/8851",
+      "observed_title": "الجريدة الرسمية العدد 39 مكرر (ب)",
+      "publication_date": "2026-09-30",
+      "document_ids": [
+        "EG-CRIMINAL-PROCEDURE-160-2026"
+      ],
+      "source_state": "metadata_discovered_pdf_listed_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Repository metadata identifies the issue and Law 160/2026. Exact page range, scan integrity and reuse terms remain to be reviewed."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2025-45D-CRIMPROC-174",
+      "publisher": "المطابع الأميرية; metadata hosted by IDSC digital repository",
+      "source_type": "Official Gazette issue metadata and PDF listing",
+      "url": "https://dspace.id.com.eg/handle/123456789/4666",
+      "observed_title": "الجريدة الرسمية العدد 45 مكرر (د)",
+      "publication_date": "2025-11-12",
+      "document_ids": [
+        "EG-CRIMINAL-PROCEDURE-174-2025"
+      ],
+      "source_state": "metadata_discovered_pdf_listed_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Repository metadata identifies the issue containing Law 174/2025. Read together with Law 160/2026; original commencement wording is not sufficient to describe current commencement."
+    },
+    {
+      "source_id": "EG-PARLIAMENT-CRIMPROC-160-2026",
+      "publisher": "Egyptian House of Representatives",
+      "source_type": "official parliamentary news / corroboration",
+      "url": "https://parliament.gov.eg/News_Show.aspx?frm=5874",
+      "observed_title": "مجلس النواب يوافق نهائياً على مشروع قانون بتعديل أحكام القانون رقم 174 لسنة 2025",
+      "publication_date": "2026-09-30",
+      "document_ids": [
+        "EG-CRIMINAL-PROCEDURE-160-2026"
+      ],
+      "source_state": "discovered",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Corroborative context only. The promulgated law and Gazette issue control the legal text."
+    },
+    {
+      "source_id": "EG-AMIRI-PRESS-COMPETITION-LAW-CITATION",
+      "publisher": "الهيئة العامة لشئون المطابع الأميرية",
+      "source_type": "official text page; supporting citation only, exact instrument title to be verified",
+      "url": "https://www.alamiria.com/Sec/TashTxt?id=Cf3yhw6LOt4%3D",
+      "observed_title": "Official text page citing Competition Law 3/2005; exact title and instrument metadata require verification",
+      "document_ids": [
+        "EG-COMPETITION-LAW-3-2005",
+        "EG-COMPETITION-LAW-COLLECTION"
+      ],
+      "source_state": "discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Supporting reference only, not the original promulgated text of Law 3/2005. Verify the page title and issuing instrument, locate the original Official Gazette publication and all amendments, and review access/reuse terms before any acquisition or current-law use."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2022-9A-REAL-ESTATE-9-2022",
+      "publisher": "المطابع الأميرية; metadata hosted by IDSC digital repository",
+      "source_type": "Official Gazette issue metadata and PDF listing",
+      "url": "https://dspace.id.com.eg/handle/123456789/6303",
+      "observed_title": "الجريدة الرسمية العدد 9 مكرر (أ) — قانون رقم 9 لسنة 2022 بتعديل بعض أحكام القانون رقم 114 لسنة 1946",
+      "publication_date": "2022-03-06",
+      "document_ids": [
+        "EG-REAL-ESTATE-REGISTRATION-AMENDMENT-9-2022",
+        "EG-REAL-ESTATE-REGISTRATION-114-1946"
+      ],
+      "source_state": "metadata_discovered_pdf_listed_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Metadata identifies the amending instrument and Gazette issue. Exact page range, scan integrity, commencement, and reuse terms remain to be reviewed."
+    },
+    {
+      "source_id": "EG-AMIRI-PRESS-STATE-PROPERTY-200-2026",
+      "publisher": "الهيئة العامة لشئون المطابع الأميرية",
+      "source_type": "official legislation text page",
+      "url": "https://www.alamiria.com/Sec/TashTxt?id=cEpwOo6BfmY%3D",
+      "observed_title": "قرار رئيس مجلس الوزراء رقم 200 لسنة 2026 بإصدار اللائحة التنفيذية للقانون رقم 168 لسنة 2025 بشأن أملاك الدولة الخاصة",
+      "document_ids": [
+        "EG-STATE-PRIVATE-PROPERTY-168-2025",
+        "EG-STATE-PRIVATE-PROPERTY-EXEC-REG-200-2026"
+      ],
+      "source_state": "discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Official implementing regulation text cites Law 168/2025. This is not a substitute for the original law text or Gazette page review."
+    },
+    {
+      "source_id": "EG-GAGS-PUBLIC-CONTRACTS-INDEX",
+      "publisher": "الهيئة العامة للخدمات الحكومية",
+      "source_type": "official regulator index",
+      "url": "https://www.gags.gov.eg/Home/PurchasesIndex",
+      "observed_title": "كل ما يخص قانون التعاقدات الحكومية رقم 182 لسنة 2018",
+      "document_ids": [
+        "EG-PUBLIC-CONTRACTS-182-2018",
+        "EG-PUBLIC-CONTRACTS-AMENDMENT-188-2020",
+        "EG-PUBLIC-CONTRACTS-EXEC-REG-692-2019",
+        "EG-PUBLIC-CONTRACTS-EXEC-REG-AMENDMENT-28-2020",
+        "EG-PUBLIC-CONTRACTS-EXEC-REG-AMENDMENT-614-2020"
+      ],
+      "source_state": "index_discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Official index is a discovery lead, not the primary legal text. Pin each instrument and its Gazette/Egyptian Proceedings publication separately."
+    },
+    {
+      "source_id": "EG-ILO-NATLEX-PUBLIC-CONTRACTS-182-2018",
+      "publisher": "International Labour Organization — NATLEX",
+      "source_type": "secondary legislation catalogue",
+      "url": "https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/details?p3_isn=112797",
+      "observed_title": "Law No. 182 of 2018 promulgating the Law Regulating Contracts Concluded by Public Entities",
+      "document_ids": [
+        "EG-PUBLIC-CONTRACTS-182-2018"
+      ],
+      "source_state": "secondary_discovery_only",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Use for discovery and cross-check only; verify the Arabic primary text against the official Gazette and review reuse terms."
+    },
+    {
+      "source_id": "EG-MANSHURAT-PERSONAL-STATUS-25-1920",
+      "publisher": "Manshurat Legal Database",
+      "source_type": "secondary legal text copy",
+      "url": "https://manshurat.org/node/879",
+      "observed_title": "القانون رقم 25 لسنة 1920 بشأن أحكام النفقة وبعض مسائل الأحوال الشخصية",
+      "document_ids": [
+        "EG-PERSONAL-STATUS-25-1920"
+      ],
+      "source_state": "secondary_discovery_only",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Discovery aid only. Metadata reports publication 15 July 1920 and amended status; verify against original Gazette and full later amendment/constitutional ruling chain."
+    },
+    {
+      "source_id": "EG-LAWEG-PERSONAL-STATUS-100-1985",
+      "publisher": "Laweg legal database",
+      "source_type": "secondary legal text copy",
+      "url": "https://www.laweg.net/framePlain.aspx?NID=35976&action=viewactivepages&itemid=30080&type=6",
+      "observed_title": "قانون رقم 100 لسنة 1985 بتعديل بعض أحكام قوانين الأحوال الشخصية",
+      "document_ids": [
+        "EG-PERSONAL-STATUS-AMENDMENT-100-1985",
+        "EG-PERSONAL-STATUS-25-1920",
+        "EG-PERSONAL-STATUS-25-1929"
+      ],
+      "source_state": "secondary_discovery_only",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Supports discovery of the amending instrument and affected family-law statutes; not primary authority. Confirm original Gazette issue and article mapping."
+    },
+    {
+      "source_id": "EG-LAWHUB-REAL-ESTATE-114-1946",
+      "publisher": "Law Hub legal database",
+      "source_type": "secondary legal text copy",
+      "url": "https://lawhub.info/eg/?p=11638",
+      "observed_title": "قانون تنظيم الشهر العقاري — القانون رقم 114 لسنة 1946",
+      "document_ids": [
+        "EG-REAL-ESTATE-REGISTRATION-114-1946"
+      ],
+      "source_state": "secondary_discovery_only",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Secondary discovery aid only; verify original Gazette and amendments including Law 9/2022 and any later instruments."
+    },
+    {
+      "source_id": "EG-LAWHUB-PUBLIC-CONTRACTS-692-2019",
+      "publisher": "Law Hub legal database",
+      "source_type": "secondary legal text copy",
+      "url": "https://lawhub.info/eg/?p=12694",
+      "observed_title": "قرار وزير المالية رقم 692 لسنة 2019 — اللائحة التنفيذية لقانون تنظيم التعاقدات",
+      "document_ids": [
+        "EG-PUBLIC-CONTRACTS-EXEC-REG-692-2019"
+      ],
+      "source_state": "secondary_discovery_only",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Secondary discovery aid only. Verify the original Egyptian Proceedings publication and later amending decisions."
+    },
+    {
+      "source_id": "EG-ETA-VAT-LAWS-INDEX",
+      "publisher": "Egyptian Tax Authority",
+      "source_type": "official tax authority legislation index",
+      "url": "https://portal.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+      "observed_title": "قوانين الضريبة على القيمة المضافة",
+      "document_ids": [
+        "EG-VAT-67-2016",
+        "EG-VAT-AMENDMENT-177-2023",
+        "EG-VAT-AMENDMENT-157-2025",
+        "EG-VAT-AMENDMENT-149-2026"
+      ],
+      "source_state": "official_index_discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "The index lists VAT Law 67/2016 and later amendment entries including Laws 157/2025 and 149/2026. Index presence is not primary-text page verification or reuse permission."
+    },
+    {
+      "source_id": "EG-ETA-INCOME-TAX-LAWS-INDEX",
+      "publisher": "Egyptian Tax Authority / Income Tax Authority portal",
+      "source_type": "official tax authority legislation index",
+      "url": "https://www.incometax.gov.eg/ar/content/qwanyn-aldrybt-ly-aldkhl",
+      "observed_title": "قوانين الضريبة على الدخل",
+      "document_ids": [
+        "EG-INCOME-TAX-91-2005",
+        "EG-INCOME-TAX-AMENDMENT-7-2024",
+        "EG-INCOME-TAX-AMENDMENT-151-2026",
+        "EG-UNIFIED-TAX-PROCEDURES-206-2020",
+        "EG-UNIFIED-TAX-PROCEDURES-AMENDMENT-7-2025",
+        "EG-UNIFIED-TAX-PROCEDURES-AMENDMENT-150-2026"
+      ],
+      "source_state": "official_index_discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Index is a discovery lead. Its displayed entry for Law 150/2026 may contain an inconsistent reference to the base law/year; verify the Official Gazette and exact law title before linking or relying on it."
+    },
+    {
+      "source_id": "EG-MOF-TAX-LEGISLATION-INDEX-2026",
+      "publisher": "Ministry of Finance, Arab Republic of Egypt",
+      "source_type": "official ministry legislation portal",
+      "url": "https://mof-web-prd.apps.fslabs.net/ar/legislation/legislation-6a731e1163496600085dd856",
+      "observed_title": "تشريعات وقوانين — tax and public finance legislation index",
+      "document_ids": [
+        "EG-STATE-RESOURCE-FEES-AMENDMENT-148-2026",
+        "EG-VAT-AMENDMENT-149-2026",
+        "EG-UNIFIED-TAX-PROCEDURES-AMENDMENT-150-2026",
+        "EG-INCOME-TAX-AMENDMENT-151-2026",
+        "EG-TAX-DISPUTES-RENEWAL-152-2026",
+        "EG-STAMP-TAX-AMENDMENT-153-2026",
+        "EG-STATE-ENTITY-PROFITS-154-2026"
+      ],
+      "source_state": "official_index_discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Ministry index labels some electronic texts as guidance and identifies the Official Gazette as the legal reference. Capture the original Gazette issue and pages for every instrument; this index does not establish current status or commercial reuse rights."
+    },
+    {
+      "source_id": "EG-ETA-TAX-CORRIGENDUM-2026",
+      "publisher": "Egyptian Tax Authority",
+      "source_type": "official tax legislation index entry",
+      "url": "https://portal.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+      "observed_title": "استدراك لتصحيح تعديل بعض أحكام قوانين أرقام 149 و150 و151 لسنة 2026",
+      "document_ids": [
+        "EG-TAX-CORRIGENDUM-149-151-2026",
+        "EG-VAT-AMENDMENT-149-2026",
+        "EG-UNIFIED-TAX-PROCEDURES-AMENDMENT-150-2026",
+        "EG-INCOME-TAX-AMENDMENT-151-2026"
+      ],
+      "source_state": "official_index_discovered_text_not_reviewed",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "The existence of a corrigendum is material to version control. Obtain the underlying official file and Gazette publication, compare each correction against the three laws, and do not rely on the uncorrected text until the effect is understood."
+    },
+    {
+      "source_id": "EG-ETA-VAT-DECISIONS-2025",
+      "publisher": "Egyptian Tax Authority",
+      "source_type": "official VAT legislation index",
+      "url": "https://portal.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+      "observed_title": "Ministerial decisions 417/2025, 418/2025 and 420/2025 listed with tax laws",
+      "document_ids": [
+        "EG-VAT-EXEC-REG-AMENDMENT-417-2025",
+        "EG-VAT-EXEC-REG-418-2025",
+        "EG-TAX-SIMPLIFIED-RECORDS-420-2025",
+        "EG-TAX-INCENTIVES-6-2025",
+        "EG-TAX-SETTLEMENT-5-2025"
+      ],
+      "source_state": "official_index_discovered_not_downloaded",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Index entries are discovery leads. Verify the actual issuing instrument, publication series, exact text, commencement and applicable scope before use."
+    },
+    {
+      "source_id": "EG-SIS-GAZETTE-2025-18-LABOUR-PDF",
+      "publisher": "State Information Service (government-hosted copy of Official Gazette publication; original publisher identified as Amiri Press)",
+      "source_type": "government-hosted Official Gazette PDF",
+      "url": "https://sis.gov.eg/media/760267/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-14-%D9%84%D8%B3%D9%86%D8%A9-2025-%D8%A8%D8%A5%D8%B5%D8%AF%D8%A7%D8%B1-%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%A7%D9%84%D8%B9%D9%85%D9%84.pdf",
+      "observed_title": "الجريدة الرسمية – العدد 18 (تابع) في 3 مايو سنة 2025؛ قانون رقم 14 لسنة 2025 بإصدار قانون العمل",
+      "publication_date": "2025-05-03",
+      "document_ids": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
+      "source_state": "pdf_url_and_indexed_text_discovered_not_downloaded_or_page_reviewed",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "notes": "Search-indexed PDF text and the official Amiri Press legislation page corroborate the title, issue/date and selected promulgation provisions. The original PDF has not been downloaded, hashed, or page-reviewed here. This discovery is not permission to collect, store, index, embed, display, redistribute or commercially use the file."
+    },
+    {
+      "source_id": "EG-WIPOLEX-EGYPT-IP-LAW-82-2002-ART141",
+      "publisher": "World Intellectual Property Organization (WIPO Lex)",
+      "source_type": "legal text / copyright exclusion evidence",
+      "url": "https://www.wipo.int/wipolex/en/legislation/details/22066",
+      "observed_title": "Law No. 82 of 2002 on the Protection of Intellectual Property Rights",
+      "document_ids": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
+      "source_state": "article_141_text_discovered",
+      "access_terms_state": "not_reviewed_for_automated_collection",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "notes": "Article 141 states official documents including laws are excluded from copyright protection, but collections can be protected for creative selection/arrangement. This is a preliminary statutory copyright basis, not permission to ignore a repository's access terms or systematic-retrieval restrictions. Counsel review is pending."
+    },
+    {
+      "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+      "publisher": "Egyptian Tax Authority (government-hosted copy of Official Gazette publication; original publisher identified as Amiri Press)",
+      "source_type": "government-hosted Official Gazette PDF",
+      "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+      "observed_title": "الجريدة الرسمية – العدد 18 (تابع) في 3 مايو سنة 2025؛ قانون رقم 14 لسنة 2025 بإصدار قانون العمل",
+      "publication_date": "2025-05-03",
+      "document_ids": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
+      "source_state": "pdf_text_opened_targeted_pages_reviewed_original_file_not_downloaded_or_hashed",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "reviewed_pdf_pages": [
+        {
+          "pdf_page_index_zero_based": 0,
+          "printed_page_label": "2",
+          "provisions": [
+            "مواد الإصدار، المادة الأولى"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 3,
+          "printed_page_label": "5",
+          "provisions": [
+            "مواد الإصدار، المادتان 12 و13"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 9,
+          "printed_page_label": "12",
+          "provisions": [
+            "القانون المرافق، المواد 4-6"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 50,
+          "printed_page_label": "52",
+          "provisions": [
+            "القانون المرافق، المادتان 117 و121",
+            "القانون المرافق، المادة 120",
+            "القانون المرافق، المواد 117-121"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 52,
+          "printed_page_label": "54",
+          "provisions": [
+            "القانون المرافق، المادة 124",
+            "القانون المرافق، المادة 122"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 53,
+          "printed_page_label": "55",
+          "provisions": [
+            "القانون المرافق، المادة 124",
+            "القانون المرافق، المادة 129"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 66,
+          "printed_page_label": "68",
+          "provisions": [
+            "القانون المرافق، المادة 165"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 67,
+          "printed_page_label": "69",
+          "provisions": [
+            "القانون المرافق، المادة 165",
+            "القانون المرافق، المادتان 164 و165"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 68,
+          "printed_page_label": "70",
+          "provisions": [
+            "القانون المرافق، المادة 165",
+            "القانون المرافق، المادتان 165 و166"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 71,
+          "printed_page_label": "73",
+          "provisions": [
+            "القانون المرافق، المادة 177"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 72,
+          "printed_page_label": "74",
+          "provisions": [
+            "القانون المرافق، المادة 177"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 59,
+          "printed_page_label": "61",
+          "provisions": [
+            "القانون المرافق، المادة 141"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 60,
+          "printed_page_label": "62",
+          "provisions": [
+            "القانون المرافق، المادة 141"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 61,
+          "printed_page_label": "63",
+          "provisions": [
+            "القانون المرافق، المادة 148"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 62,
+          "printed_page_label": "64",
+          "provisions": [
+            "القانون المرافق، المادة 148"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 51,
+          "printed_page_label": "53",
+          "provisions": [
+            "القانون المرافق، المادتان 120 و121",
+            "القانون المرافق، المواد 120 و122"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 69,
+          "printed_page_label": "71",
+          "provisions": [
+            "القانون المرافق، المادة 173"
+          ]
+        },
+        {
+          "pdf_page_index_zero_based": 70,
+          "printed_page_label": "72",
+          "provisions": [
+            "القانون المرافق، المادتان 171-173"
+          ]
+        }
+      ],
+      "notes": "Targeted PDF text extraction was reviewed for the listed pages. The original file was not downloaded, hashed, or visually inspected. This does not establish a complete article-by-article match, amendment history, current status, or permission for systematic retrieval/commercial use. Additional targeted pages reviewed: printed page 52 (Articles 117 and 121), and printed pages 54-55 (Article 124). Additional targeted pages reviewed: printed pages 68-70 (Article 165) and 73-74 (Article 177). Additional targeted pages reviewed: printed pages 61-62 (Article 141) and 63-64 (Article 148). Additional targeted review covers Article 120 on printed pages 52-53. Additional targeted review covers Articles 118-119 and 122 on printed pages 52-54. Printed page 55 also contains Article 129 on paid holidays; the relevant ministerial/cabinet designation decisions remain to be verified. Additional targeted pages reviewed: printed page 71 (Article 173) and page 72 (Article 171). Additional targeted review covers Article 164 on printed page 69 and Article 166 on printed page 70."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2025-295-SUPPLEMENT-D",
+      "publisher": "المطابع الأميرية; metadata hosted by Ibrachy & Dermarkar Repository",
+      "source_type": "Egyptian Proceedings supplement issue metadata, restricted PDF listing and restricted item-specific license listing",
+      "url": "https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1",
+      "observed_title": "الوقائع المصرية ملحق الجريدة الرسمية العدد 295 تابع (د)",
+      "publication_date": "2025-12-30",
+      "document_ids": [
+        "EG-LABOUR-DECISION-290-2025",
+        "EG-LABOUR-DECISION-291-2025",
+        "EG-LABOUR-DECISION-288-2025",
+        "EG-LABOUR-DECISION-289-2025"
+      ],
+      "source_state": "metadata_discovered_pdf_listed_not_downloaded",
+      "access_terms_state": "reviewed_restricted",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "terms_url": "https://dspace.id.com.eg/info/end-user-agreement",
+      "terms_checked_on": "2026-10-31",
+      "notes": "Public metadata identifies Gazette Supplement issue 295 (تابع د), dated 2025-12-30, with Ministry of Labour as author and Amiri Press as publisher. The full item page lists a 550.3 KB PDF and a 1.71 KB item-specific license.txt. Clicking the license file opens a request-a-copy page stating all files are in restricted access. The repository End User Agreement limits use to personal/non-commercial purposes, requires prior written permission for commercial exploitation, and prohibits systematic retrieval to compile a collection/database without written permission. No PDF or license bytes were obtained; no item-specific license is inferred."
+    },
+    {
+      "source_id": "EG-SIS-GAZETTE-2025-295-SUPPLEMENT-D",
+      "publisher": "مطابع الأميرية; SIS repository metadata",
+      "source_type": "Government-hosted Gazette issue metadata and public-viewing PDF listing",
+      "url": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/117733?locale-attribute=ar",
+      "observed_title": "الوقائع المصرية العدد 295 تابع د",
+      "publication_date": "2025-12-30",
+      "document_ids": [
+        "EG-LABOUR-DECISION-290-2025",
+        "EG-LABOUR-DECISION-291-2025"
+      ],
+      "source_state": "public_catalogue_metadata_found_pdf_link_not_opened",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "permission_pending",
+      "notes": "Search-indexed SIS digital-repository metadata identifies Gazette issue 295 supplement D, date 2025-12-30, issuing authority Amiri Press, public viewing (الإطلاع: عام), and a 550.3 KB PDF named WQ295_20251230_1100.pdf. Direct item-page opening failed in this session due host access restrictions/robots/timeout; the PDF was not opened or downloaded and no terms were reviewed. This is a promising public-viewing primary-source lead, not acquired text or permission for bulk/commercial use."
+    },
+    {
+      "source_id": "EG-EASTLAWS-LABOUR-DECISIONS-290-291-2025",
+      "publisher": "EastLaws",
+      "source_type": "Secondary legal database full-text transcriptions for Ministerial Decisions 290/2025 and 291/2025",
+      "url": "https://www.eastlaws.com/",
+      "observed_title": "Ministerial Decisions 290/2025 and 291/2025",
+      "publication_date": "2025-12-30 (Gazette date stated by EastLaws)",
+      "document_ids": [
+        "EG-LABOUR-DECISION-290-2025",
+        "EG-LABOUR-DECISION-291-2025"
+      ],
+      "source_state": "secondary_full_text_indexed; primary_Gazette_not_compared",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "notes": "EastLaws search-indexed pages expose article headings and operative summaries/full text for both decisions, and state publication in Egyptian Proceedings Gazette Supplement issue 295 (تابع د) on 2025-12-30 with commencement on 2025-12-31. EastLaws is treated as secondary text only. No official PDF bytes, EastLaws reuse terms, or item-specific reuse permission were obtained. Do not ingest/redistribute or treat as primary source."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR",
+      "publisher": "المطابع الأميرية; metadata hosted by Ibrachy & Dermarkar Repository",
+      "source_type": "Egyptian Proceedings Gazette supplement issue metadata, PDF and item-specific license listing",
+      "url": "https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc",
+      "observed_title": "الوقائع المصرية ملحق الجريدة الرسمية العدد 291 (تابع)",
+      "publication_date": "2025-12-25",
+      "document_ids": [
+        "EG-LABOUR-DECISION-292-2025",
+        "EG-LABOUR-DECISION-294-2025"
+      ],
+      "source_state": "metadata_and_PDF_and_license_listed_request_copy_restricted",
+      "access_terms_state": "reviewed_restricted",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "notes": "The full item page identifies issue 291 (تابع), date 2025-12-25, Ministry of Labour as author and Amiri Press as publisher; it lists an 834.25 KB PDF and a 1.71 KB item-specific license.txt. Clicking the license file opens a request-a-copy form stating all files are in restricted access. The repository End User Agreement restricts use to personal/non-commercial purposes and requires prior written permission for commercial exploitation and systematic database compilation. No PDF or license bytes were obtained; no item-specific license is inferred."
+    },
+    {
+      "source_id": "EG-LAWHUB-GAZETTE-295-DECISION-291-PDF",
+      "publisher": "Law Hub (third-party host)",
+      "source_type": "Two-page page-image reproduction of Gazette issue 295 pages 21–22 for Decision 291/2025",
+      "url": "https://lawhub.info/eg/wp-content/uploads/2026/01/lawhub.info-eg-dec-291-2025.pdf",
+      "observed_title": "الوقائع المصرية العدد 295 تابع (د) — قرار وزير العمل رقم 291 لسنة 2025",
+      "publication_date": "2025-12-30",
+      "document_ids": [
+        "EG-LABOUR-DECISION-291-2025"
+      ],
+      "source_state": "third_party_page_image_reproduction_visually_inspected",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "notes": "Browser visual inspection of both pages shows Gazette masthead, issue 295 supplement D, date 2025-12-30, page numbers 21–22, Decision 291/2025 and Articles 1–5. Article 1 visibly states 35% daytime and 70% nighttime premiums; Article 4 directs the Supreme Council for Social Consultation to set an annual maximum within three months; Article 5 provides next-day commencement. This is a third-party hosted reproduction, not the original DSpace PDF. No local bytes/hash, source chain, licence or reuse terms were obtained; no ingestion or reuse rights inferred."
+    },
+    {
+      "source_id": "EG-MOL-SIS-DECISION-289-2025-PDF",
+      "publisher": "Egyptian Ministry of Labour; hosted by Egyptian State Information Service",
+      "source_type": "Ministry-hosted PDF containing the text of Ministerial Decision 289/2025",
+      "url": "https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/117208/MOM20251227_0415.pdf?isAllowed=y&sequence=4",
+      "observed_title": "وزير العمل يصدر قراراً وزارياً رقم ٢٨٩ لسنة ٢٠٢٥ بشأن تحديد ساعات العمل في المنشآت الصناعية",
+      "publication_date": "2025-12-27",
+      "document_ids": [
+        "EG-LABOUR-DECISION-289-2025"
+      ],
+      "source_state": "government_hosted_decision_text_opened_and_text_layer_reviewed",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "notes": "PDF opened through SIS. It identifies the Ministry of Labour and contains the full text of Decision 289/2025 Articles 1–2 after a Ministry announcement. Article 1 states no more than eight hours actual work/day or 48/week excluding meal/rest periods, preserves better benefits in individual/collective contracts or workplace regulations, and permits exceptional work subject to Law 14/2025 Article 121. Article 2 states publication in Egyptian Proceedings and commencement the following day. This is a Ministry-hosted text copy, not the Official Gazette PDF; no local binary/hash or reuse terms were obtained."
+    },
+    {
+      "source_id": "EG-MELES-DSpace-DECISION-288-2025",
+      "publisher": "The Middle East Library For Economic Services (repository item author: Ministry Of Labor)",
+      "source_type": "Third-party DSpace metadata for Decision 288/2025 with restricted PDF/license listings",
+      "url": "https://dspace.id.com.eg/items/ca54d3fa-04be-4e59-b9f0-6b3752711a6f/full",
+      "observed_title": "Decree No. 288 of the Year 2025 Regarding the Determination of Cases or Works That Needs Continuous Work Without Standard Rest Periods and Arduous Works in Which Workers Are Granted Rest Periods Counted as Part of Actual Working Hours",
+      "publication_date": "2025-12-11",
+      "document_ids": [
+        "EG-LABOUR-DECISION-288-2025"
+      ],
+      "source_state": "third_party_repository_metadata_restricted_files",
+      "access_terms_state": "repository_end_user_agreement_reviewed",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "notes": "The item page identifies Ministry Of Labor as author, MELES as publisher and 2025-12-11 issue date metadata. It lists two PDF files (75.85 KB and 125.39 KB) and a 55-byte item-specific license.txt; both PDF and license links open request-a-copy forms stating all files are in restricted access. The repository agreement permits personal/non-commercial use only, requires express prior written permission for commercial exploitation and written permission for systematic database compilation. No files or license bytes were obtained."
+    },
+    {
+      "source_id": "EG-MOL-SIS-DECISION-294-2025-PDF",
+      "publisher": "Egyptian Ministry of Labour; hosted by Egyptian State Information Service",
+      "source_type": "Ministry-hosted PDF containing the text of Ministerial Decision 294/2025",
+      "url": "https://mediadr.sis.gov.eg/bitstream/handle/123456789/117216/MOM20251226_0805.pdf?isAllowed=y&sequence=4",
+      "observed_title": "وزير العمل يصدر قرارًا وزاريًا رقم 294 لسنة 2025 بشأن تحديد العطلات والأعياد والمناسبات التي تُعد إجازة بأجر كامل للعمال",
+      "publication_date": "2025-12-26",
+      "document_ids": [
+        "EG-LABOUR-DECISION-294-2025"
+      ],
+      "source_state": "government_hosted_decision_text_opened_and_text_layer_reviewed",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "notes": "PDF opened through SIS. It identifies the Ministry of Labour and contains Decision 294/2025 Articles 1–4. Article 1 lists twelve paid holiday categories and allows substitution of another day for national uniformity; Article 2 grants full-pay leave, prohibits deduction from annual leave, and provides double pay or a substitute day on written request if work is required; Article 3 adds religious holidays for non-Muslim workers under the relevant Prime Minister decision; Article 4 provides next-day commencement after Gazette publication. This is a Ministry-hosted text copy, not the Official Gazette PDF; no local binary/hash or reuse terms were obtained."
+    },
+    {
+      "source_id": "EG-MELES-DSpace-DECISION-290-2025",
+      "publisher": "The Middle East Library For Economic Services (repository item author: Ministry Of Labor)",
+      "source_type": "Third-party DSpace metadata for Decision 290/2025 with English and Arabic PDF listings",
+      "url": "https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829/full",
+      "observed_title": "Decree No. 290 of the Year 2025 Determining the Intermittent Work By Its Nature In Which The Worker May Be Present For Over Ten Hours But Not More Than Twelve Hours Per Day",
+      "publication_date": "2025-12-11",
+      "document_ids": [
+        "EG-LABOUR-DECISION-290-2025"
+      ],
+      "source_state": "third_party_repository_metadata_pdf_listed_not_downloaded",
+      "access_terms_state": "repository_end_user_agreement_reviewed; item_file_access_not_checked",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "notes": "Search-indexed item metadata identifies Ministry Of Labor as author, The Middle East Library For Economic Services as publisher and 2025-12-11 as the issue date. It lists an English PDF (103.23 KB) and an Arabic PDF (105.2 KB). This is third-party repository metadata, not an official Gazette copy. The repository End User Agreement limits use to personal/non-commercial purposes, requires prior written permission for commercial exploitation and written permission for systematic database compilation. The item page and file links were not opened in this pass; no PDF or license bytes were obtained, no hash is claimed, and no item-specific license or download status is inferred."
+    },
+    {
+      "source_id": "EG-MOL-DECISION-249-2026-CLARIFICATION",
+      "publisher": "Egyptian Ministry of Labour",
+      "source_type": "Official Ministry clarification announcement concerning Ministerial Decision 249/2026; not the complete decision text",
+      "url": "https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%A8%D9%8A%D8%A7%D9%86-%D8%AA%D9%88%D8%B6%D9%8A%D8%AD%D9%8A-%D9%87%D8%A7%D9%85-%D8%A8%D8%B4%D8%A3%D9%86-%D8%A7%D9%84%D9%82%D8%B1%D8%A7%D8%B1-%D8%A7%D9%84%D9%88%D8%B2%D8%A7%D8%B1%D9%8A-%D8%B1%D9%82%D9%85-249-%D9%84%D8%B3%D9%86%D8%A9-2026-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9-%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9-%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9-%D9%88%D8%B2%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%84%D9%86-%D9%8A%D9%8F%D8%B6%D8%A7%D8%B1-%D8%A3%D9%8A-%D8%B9%D8%A7%D9%85%D9%84-%D9%8A%D8%B9%D9%85%D9%84-%D8%A8%D9%85%D9%87%D9%86%D8%A9-%D8%A3%D8%AE%D8%B5%D8%A7%D8%A6%D9%8A-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9-%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9-%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9-%D9%88%D9%84%D8%A7-%D9%85%D8%B3%D8%A7%D8%B3-%D8%A8%D8%A7%D9%84%D9%85%D8%B1%D8%A7%D9%83%D8%B2-%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%D9%8A%D8%A9-%D8%A7%D9%84%D9%85%D9%83%D8%ت%D8%B3%D8%A8%D8%A9-%D9%88%D8%A3%D9%87%D9%85%D9%8A%D8%A9-%D8%A7%D9%84%D9%85%D9%87%D9%86%D8%A9-%D8%AA%D8%B3%D8%AA%D9%88%D8%AC%D8%A8-%D9%85%D9%86%D8%AA%D9%87%D9%89-%D8%A7%D9%84%D8%AF%D9%82%D8%A9-%D9%81%D9%8A-%D8%A7%D8%AE%D8%AA%D9%8A%D8%A7%D8%B1-%D8%B4%D8%A7%D8%BA%D9%84%D9%8A%D9%87/",
+      "observed_title": "بيان توضيحي هام بشأن القرار الوزاري رقم 249 لسنة 2026 الخاص بالسلامة والصحة المهنية",
+      "publication_date": "2026-10-27",
+      "document_ids": [
+        "EG-LABOUR-DECISION-249-2026"
+      ],
+      "source_state": "official_ministry_clarification_search_indexed_page_fetch_failed",
+      "access_terms_state": "not_reviewed",
+      "collection_permission": "unknown",
+      "notes": "The search-indexed Ministry result dated 2026-10-27 says the clarification responds to questions following Decision 249/2026. It states that implementation will not harm current workers or remove acquired legal positions, discusses recognition of prior qualifications and experience for occupational-safety specialists, and says the competent central administration will issue circulars to standardize application. Direct page retrieval returned HTTP 502 in this session; no PDF or local bytes/hash were obtained and no reuse terms were reviewed. This is a Ministry clarification lead, not the full decision, a Gazette page comparison, or proof of a formal amendment."
+    }
+  ],
+  "document_records_to_create_from_batch": [
+    {
+      "document_id": "EG-LABOUR-DECISION-259-2025",
+      "provisional_title_ar": "قرار وزارة العمل رقم 259 لسنة 2025",
+      "document_type": "ministerial_decision",
+      "related_to": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_action": "Confirm exact title, date, text, Gazette page range and legal basis from issue 291 supplement."
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-260-2025",
+      "provisional_title_ar": "قرار وزارة العمل رقم 260 لسنة 2025",
+      "document_type": "ministerial_decision",
+      "related_to": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_action": "Confirm exact title, date, text, Gazette page range and legal basis from issue 291 supplement."
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-264-2025",
+      "provisional_title_ar": "قرار وزارة العمل رقم 264 لسنة 2025",
+      "document_type": "ministerial_decision",
+      "related_to": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_action": "Confirm exact title, date, text, Gazette page range and legal basis from issue 291 supplement."
+    },
+    {
+      "document_id": "EG-LABOUR-DECISION-271-2025",
+      "provisional_title_ar": "قرار وزارة العمل رقم 271 لسنة 2025",
+      "document_type": "ministerial_decision",
+      "related_to": [
+        "EG-LABOUR-LAW-14-2025"
+      ],
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_action": "Confirm exact title, date, text, Gazette page range and legal basis from issue 291 supplement."
+    }
+  ],
+  "next_actions": [
+    {
+      "id": "B1",
+      "action": "Review source terms and permitted use for each Amiri Press / IDSC repository source before download or indexing.",
+      "status": "not_started",
+      "blocking": true
+    },
+    {
+      "id": "B2",
+      "action": "Acquire authorized copies of Official Gazette issue 18 (supplement), 3 May 2025; Official Gazette issue 45 bis (D), 12 November 2025; and Official Gazette issue 39 bis (B), 30 September 2026; record original file hashes and page ranges.",
+      "status": "not_started",
+      "blocking": true
+    },
+    {
+      "id": "B3",
+      "action": "Acquire authorized copy of Egyptian Proceedings issue 291 supplement, 25 December 2025, and create individual records for decisions 259/2025, 260/2025, 264/2025 and 271/2025.",
+      "status": "not_started",
+      "blocking": true
+    },
+    {
+      "id": "B4",
+      "action": "Have Egyptian labour-law counsel review Law 14/2025 commencement, exclusions, transitional clauses and each implementing decision.",
+      "status": "not_started",
+      "blocking": true
+    },
+    {
+      "id": "B5",
+      "action": "Have Egyptian criminal-procedure counsel review the interaction of Laws 150/1950, 174/2025 and 160/2026 before assigning an operative-status label.",
+      "status": "not_started",
+      "blocking": true
+    }
+  ]
+}

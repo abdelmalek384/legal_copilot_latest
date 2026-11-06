@@ -1,0 +1,873 @@
+{
+  "instrument": "Egyptian Labour Law No. 14 of 2025",
+  "supplement_id": "labour-law-arts-256-274",
+  "created_on": "2026-10-28",
+  "cards_count": 19,
+  "search_eligible": false,
+  "source_method_note": "Supplemental split file created because the primary card inventory exceeded the GitHub Contents API readable size. Public transcription used as fallback; no access controls bypassed. Primary source links retained. Pinpoints inferred, not visually verified. Some article text remains deliberately incomplete rather than fabricated. Updated Articles 258–265 and 270–274 using visible article text from the public Wikisource transcription. This resolves the earlier pinpoints-only status for these cards at the transcription level, but not official page verification or currentness.",
+  "cards": [
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-256-OSH-INSPECTION-UNIT",
+      "question": "ما واجب الجهة الإدارية في إنشاء جهاز تفتيش السلامة المهنية؟",
+      "provisional_answer_ar": "تلزم المادة 256 الجهة الإدارية بتشكيل جهاز متخصص لتفتيش السلامة والصحة المهنية، بأعضاء ذوي مؤهلات مناسبة، وإجراء التفتيش دورياً وتدريب المفتشين. يلزم التحقق من توزيع الاختصاصات في القرارات التنفيذية.",
+      "pinpoint": {
+        "article": "المادة 256",
+        "official_gazette_printed_page": 87,
+        "pdf_page_index_zero_based": 85,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مصدر أولي مرجعي للمادة 256؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مصدر أولي مرجعي للمادة 256؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة ثانوية؛ لا تحل محل النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
+        "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or final compliance decision until full official text and applicable decisions are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-257-OSH-DANGEROUS-ESTABLISHMENT-CLOSURE",
+      "question": "متى يجوز إغلاق منشأة أو جزء منها بسبب خطر داهم؟",
+      "provisional_answer_ar": "تنظم المادة 257 إجراءات الإغلاق الكلي أو الجزئي عند وجود خطر داهم يهدد الصحة أو السلامة. لا يمكن تقرير وجود الخطر أو صحة الإغلاق دون تقرير التفتيش والقرار المختص والنص الكامل.",
+      "pinpoint": {
+        "article": "المادة 257",
+        "official_gazette_printed_page": 87,
+        "pdf_page_index_zero_based": 85,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مصدر أولي مرجعي للمادة 257؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مصدر أولي مرجعي للمادة 257؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة ثانوية؛ لا تحل محل النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
+        "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or final compliance decision until full official text and applicable decisions are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-258-OSH-IMMINENT-DANGER-REMOVAL",
+      "question": "ما صلاحيات مفتشي السلامة والصحة المهنية؟",
+      "provisional_answer_ar": "تمنح المادة 258 مفتشي السلامة والصحة المهنية وتأمين بيئة العمل حق التفتيش على المنشآت للتحقق من توافر اشتراطات السلامة والصحة المهنية وفق القانون والقرارات المنفذة له.",
+      "pinpoint": {
+        "article": "المادة 258",
+        "official_gazette_printed_page": 87,
+        "pdf_page_index_zero_based": 85,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مصدر أولي مرجعي للمادة 258؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مصدر أولي مرجعي للمادة 258؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة ثانوية؛ لا تحل محل النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-259-OSH-ACCIDENT-AND-OCCUPATIONAL-DISEASE-REPORTING",
+      "question": "متى يجب إنشاء أجهزة ولجان السلامة المهنية والتدريب؟",
+      "provisional_answer_ar": "يحدد الوزير المختص المنشآت التي تلتزم بإنشاء أجهزة وظيفية ولجان للسلامة المهنية. وتبحث اللجان ظروف العمل وأسباب الحوادث والإصابات وتضع تدابير منعها، وتكون قراراتها ملزمة. ويشمل التدريب أعضاء الأجهزة واللجان والمسؤولين عن الإدارة والإنتاج بحسب المسؤولية وطبيعة العمل.",
+      "pinpoint": {
+        "article": "المادة 259",
+        "official_gazette_printed_page": 88,
+        "pdf_page_index_zero_based": 86,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مصدر أولي مرجعي للمادة 259؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مصدر أولي مرجعي للمادة 259؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة ثانوية؛ لا تحل محل النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-260-OSH-HEALTH-AND-ACCIDENT-STATISTICS",
+      "question": "ما مواعيد الإحصاءات والإبلاغ عن الحوادث والأمراض المهنية؟",
+      "provisional_answer_ar": "المنشأة التي يعمل بها 30 عاملاً فأكثر تقدم إحصائية نصف سنوية عن الأمراض والحوادث والإصابات خلال النصف الأول من شهري يوليو ويناير على الأكثر. وتُخطر المنشآت الخاضعة للكتاب الجهة الإدارية بكل حادث جسيم أو ظهور أعراض مرض مهني خلال 24 ساعة، وتقدم البيانات إلكترونياً وفق القرار الوزاري.",
+      "pinpoint": {
+        "article": "المادة 260",
+        "official_gazette_printed_page": 88,
+        "pdf_page_index_zero_based": 86,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مصدر أولي مرجعي للمادة 260؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مصدر أولي مرجعي للمادة 260؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة ثانوية؛ لا تحل محل النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-261-OSH-STATUTORY-REGISTERS",
+      "question": "من يجوز له تقديم التدريب المتخصص في السلامة والصحة المهنية؟",
+      "provisional_answer_ar": "تتولى الوزارة المختصة والمركز القومي لدراسات السلامة والصحة المهنية والجهات المرخص لها التدريب الأساسي والمتقدم والنوعي والتخصصي للأخصائيين والفنيين وأعضاء اللجان. ويحدد قرار الوزير الترخيص وشروطه ومدته ورسومه التي لا تتجاوز 50 ألف جنيه وحالات الإعفاء.",
+      "pinpoint": {
+        "article": "المادة 261",
+        "official_gazette_printed_page": 88,
+        "pdf_page_index_zero_based": 86,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مصدر أولي مرجعي للمادة 261؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مصدر أولي مرجعي للمادة 261؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة ثانوية؛ لا تحل محل النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-262-OSH-PROTECTIVE-MEASURES-IMPLEMENTATION",
+      "question": "هل يلزم ترخيص لممارسة الاستشارات في السلامة والصحة المهنية؟",
+      "provisional_answer_ar": "تشترط المادة 262 الحصول على ترخيص من الوزارة المختصة لمزاولة الخبرة والاستشارات في السلامة والصحة المهنية. ويحدد قرار الوزير شروط الترخيص وإجراءاته ومدته والقيد بالسجل والرسوم التي لا تتجاوز 50 ألف جنيه وحالات الإعفاء.",
+      "pinpoint": {
+        "article": "المادة 262",
+        "official_gazette_printed_page": 88,
+        "pdf_page_index_zero_based": 86,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مصدر أولي مرجعي للمادة 262؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مصدر أولي مرجعي للمادة 262؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة ثانوية؛ لا تحل محل النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-263-OSH-TRAINING-AND-AWARENESS",
+      "question": "ما اختصاص المركز القومي لدراسات السلامة والصحة المهنية؟",
+      "provisional_answer_ar": "يعد المركز القومي، بالاشتراك مع الوزارة المختصة، الخطط المركزية للبحوث والدراسات في السلامة والصحة المهنية بناءً على التحليل الإحصائي لإصابات العمل، ويتابع تنفيذها بالتنسيق مع الأجهزة المعنية وفق قواعد يحددها قرار الوزير.",
+      "pinpoint": {
+        "article": "المادة 263",
+        "official_gazette_printed_page": 88,
+        "pdf_page_index_zero_based": 86,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مصدر أولي مرجعي للمادة 263؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مصدر أولي مرجعي للمادة 263؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة ثانوية؛ لا تحل محل النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-264-OSH-WORKPLACE-SAFETY-OBLIGATIONS",
+      "question": "ما المجلس الأعلى للسلامة والصحة المهنية وما اختصاصه؟",
+      "provisional_answer_ar": "تنشئ المادة 264 المجلس الأعلى للسلامة والصحة المهنية برئاسة الوزير المختص، وعضوية ممثلين عن الجهات المعنية وممثلين متساوين لمنظمات أصحاب الأعمال والمنظمات النقابية الأكثر تمثيلاً وخبراء. ويتولى رسم السياسة العامة واقتراح تنفيذها؛ ويصدر رئيس مجلس الوزراء قرار تشكيله واختصاصاته ونظام عمله.",
+      "pinpoint": {
+        "article": "المادة 264",
+        "official_gazette_printed_page": 88,
+        "pdf_page_index_zero_based": 86,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مصدر أولي مرجعي للمادة 264؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مصدر أولي مرجعي للمادة 264؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة ثانوية؛ لا تحل محل النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-265-OSH-WORKER-HEALTH-PROTECTION",
+      "question": "كيف تُشكل اللجان الفرعية للمجلس الأعلى بالمحافظات؟",
+      "provisional_answer_ar": "توجب المادة 265 تشكيل لجنة فرعية في كل محافظة برئاسة المحافظ، تضم الجهات المعنية وممثلي النقابات وأصحاب الأعمال بالتساوي وخبراء. ويصدر الوزير المختص قرار تشكيلها واختصاصاتها ونظام عملها.",
+      "pinpoint": {
+        "article": "المادة 265",
+        "official_gazette_printed_page": 88,
+        "pdf_page_index_zero_based": 86,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مصدر أولي مرجعي للمادة 265؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مصدر أولي مرجعي للمادة 265؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة ثانوية؛ لا تحل محل النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-266-IMPLEMENTING-DECISION-IDENTIFICATION",
+      "question": "ما رقم القرار الوزاري الذي يحدد مستويات اللياقة الصحية المطلوبة وفق المادة 266؟",
+      "provisional_answer_ar": "لا يمكن تحديد رقم القرار الوزاري أو نصه من الأدلة الأولية المسجلة في هذا الملف. المادة 266 تحيل إلى قرار وزاري يحدد مستويات اللياقة، لكن لم يتم توثيق القرار المنفذ أو التحقق من سريانه هنا؛ يجب عدم تخمين رقمه أو متطلباته.",
+      "pinpoint": {
+        "article": "المادة 266",
+        "official_gazette_printed_page": 89,
+        "pdf_page_index_zero_based": 87,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مصدر أولي مرجعي للمادة 266 وإحالتها إلى قرار وزاري؛ لا يثبت هنا رقم القرار المنفذ أو نصه أو سريانه.",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مصدر أولي مرجعي للمادة 266 وإحالتها إلى قرار وزاري؛ لا يثبت هنا رقم القرار المنفذ أو نصه أو سريانه.",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة ثانوية فقط؛ لا تثبت رقم القرار الوزاري أو نصه أو سريانه."
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
+        "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "رقم القرار الوزاري المنفذ ونصه وسريانه لم تُحدد من مصدر أولي في هذا الملف."
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "abstention benchmark and manual verification of the implementing decision",
+      "not_usable_for": "authoritative answer identifying the current decision or medical-fitness thresholds"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-267-OSH-EMPLOYER-TRAINING-PPE-NO-COST",
+      "question": "هل يجوز تحميل العامل تكلفة معدات الوقاية؟",
+      "provisional_answer_ar": "توجب المادة 267 تدريب العامل وإحاطته بمخاطر المهنة قبل العمل، وتوفير معدات الوقاية المناسبة وتدريبه عليها، وتحظر تحميل العامل تكلفتها أو اقتطاعها من أجره.",
+      "pinpoint": {
+        "article": "المادة 267",
+        "official_gazette_printed_page": 89,
+        "pdf_page_index_zero_based": 87,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مصدر أولي مرجعي للمادة 267؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مصدر أولي مرجعي للمادة 267؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة ثانوية؛ لا تحل محل النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
+        "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or final compliance decision until full official text and applicable decisions are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-268-OSH-WORKER-USE-OF-PROTECTIVE-EQUIPMENT",
+      "question": "ما واجبات العامل تجاه معدات الوقاية؟",
+      "provisional_answer_ar": "تلزم المادة 268 العامل باستخدام وسائل الوقاية والعناية بها وتنفيذ التعليمات، وتحظر تعطيلها أو إساءة استعمالها أو إتلافها. تقييم مخالفة فردية يتطلب إثبات توفير المعدات والتدريب والتعليمات والوقائع.",
+      "pinpoint": {
+        "article": "المادة 268",
+        "official_gazette_printed_page": 89,
+        "pdf_page_index_zero_based": 87,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مصدر أولي مرجعي للمادة 268؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مصدر أولي مرجعي للمادة 268؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة ثانوية؛ لا تحل محل النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
+        "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or final compliance decision until full official text and applicable decisions are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-269-OSH-SHIFT-INSPECTIONS-AND-PERIODIC-EXAMS",
+      "question": "ما واجبات التفتيش اليومي والفحص الطبي الدوري؟",
+      "provisional_answer_ar": "توجب المادة 269 التفتيش اليومي في كل وردية وتسجيل نتائجه، وفحص شكوى العامل المرضية وعلاقتها بالعمل بواسطة طبيب المنشأة إن وجد، والتنسيق للفحوص الطبية الدورية وفحص نهاية الخدمة وفق أنظمة التأمين الصحي.",
+      "pinpoint": {
+        "article": "المادة 269",
+        "official_gazette_printed_page": 89,
+        "pdf_page_index_zero_based": 87,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مصدر أولي مرجعي للمادة 269؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مصدر أولي مرجعي للمادة 269؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة ثانوية؛ لا تحل محل النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "المواد 258–265 و270–274 بطاقات pinpoint فقط ولا تحتوي نصاً موضوعياً موثقاً بالكامل",
+        "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative advice or final compliance decision until full official text and applicable decisions are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-270-SOCIAL-HEALTH-CARE-OBLIGATIONS",
+      "question": "ما واجب المنشأة في الإسعاف والعلاج الأولي؟",
+      "provisional_answer_ar": "تلزم المادة 270 المنشأة بتوفير وسائل الإسعاف الأولية. وإذا تجاوز عدد العمال في المكان الواحد أو البلد الواحد أو ضمن دائرة نصف قطرها 15 كم خمسين عاملاً، وجب توفير ممرض مؤهل أو أكثر بكل وردية وطبيب لعيادتهم ومكان مناسب وأدوية العلاج مجاناً. وتتحمل المنشأة نفقات العلاج والإقامة والأدوية عند العلاج بالمستشفى الحكومي أو الخيري وفق القرار المختص.",
+      "pinpoint": {
+        "article": "المادة 270",
+        "official_gazette_printed_page": 90,
+        "pdf_page_index_zero_based": 88,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مصدر أولي مرجعي للمادة 270؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مصدر أولي مرجعي للمادة 270؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة ثانوية؛ لا تحل محل النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-271-WORKPLACE-MEALS-AND-NUTRITION",
+      "question": "ما التزامات النقل والسكن والتغذية للعمال في المناطق البعيدة؟",
+      "provisional_answer_ar": "تلزم المادة 271 من يستخدم عمالاً في أماكن لا تصل إليها وسائل المواصلات العادية بتوفير انتقال مناسب على نفقته، ومن يستخدمهم في مناطق بعيدة عن العمران بتوفير تغذية مناسبة ومساكن ملائمة مع تخصيص بعضها للمتزوجين. تحدد القرارات المناطق والمواصفات وأصناف الطعام والكميات والمقابل؛ ولا يجوز استبدال الوجبات المستحقة بمقابل نقدي.",
+      "pinpoint": {
+        "article": "المادة 271",
+        "official_gazette_printed_page": 90,
+        "pdf_page_index_zero_based": 88,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مصدر أولي مرجعي للمادة 271؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مصدر أولي مرجعي للمادة 271؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة ثانوية؛ لا تحل محل النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-272-WORKPLACE-SOCIAL-SERVICE-FACILITIES",
+      "question": "متى يجب على المنشأة تقديم خدمات اجتماعية وثقافية؟",
+      "provisional_answer_ar": "تلتزم المنشأة التي يبلغ عدد عمالها 50 فأكثر بتقديم الخدمات الاجتماعية والثقافية اللازمة بالاشتراك مع المنظمة النقابية، دون تحميل العامل التزامات. ويحدد الوزير بالتشاور مع منظمات أصحاب الأعمال والعمال الحد الأدنى لهذه الخدمات.",
+      "pinpoint": {
+        "article": "المادة 272",
+        "official_gazette_printed_page": 90,
+        "pdf_page_index_zero_based": 88,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مصدر أولي مرجعي للمادة 272؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مصدر أولي مرجعي للمادة 272؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة ثانوية؛ لا تحل محل النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-273-SOCIAL-HEALTH-IMPLEMENTING-DECISIONS",
+      "question": "ما غرض صندوق الخدمات الاجتماعية والصحية والثقافية؟",
+      "provisional_answer_ar": "يتمتع الصندوق بالشخصية الاعتبارية ويهدف إلى النهوض بالمستوى الاجتماعي والصحي والثقافي للعاملين في منشآت القطاع العام وقطاع الأعمال العام والقطاع الخاص. وينظم قرار رئيس مجلس الوزراء تشكيل مجلس إدارته واختصاصاته ونظامه الأساسي وموارده وموازنته ورقابته. وتشير المادة إلى اشتراكات سنوية للمنشآت التي يبلغ عدد عمالها 20 فأكثر؛ يجب التحقق من النص الكامل والقرارات الحالية قبل حساب المستحقات.",
+      "pinpoint": {
+        "article": "المادة 273",
+        "official_gazette_printed_page": 90,
+        "pdf_page_index_zero_based": 88,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مصدر أولي مرجعي للمادة 273؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مصدر أولي مرجعي للمادة 273؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة ثانوية؛ لا تحل محل النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
+    },
+    {
+      "card_id": "EG-LABOUR-14-2025-ART-274-SOCIAL-HEALTH-CHAPTER-BOUNDARY",
+      "question": "ما الميزة أو الإعفاء المتعلق بالخدمات التي تقدمها المنشأة؟",
+      "provisional_answer_ar": "تحتاج المادة 274 إلى مراجعة النص الكامل؛ المادة 273 تشير إلى إمكان خصم قيمة الخدمات المقدمة أو 70% من المبلغ السنوي المستحق للصندوق، أيهما أقل، عند تقديم خدمات المادة 274 أو ميزة أفضل. لا تحسب الخصم دون مطابقة نص المادة 274 والقرارات الحالية.",
+      "pinpoint": {
+        "article": "المادة 274",
+        "official_gazette_printed_page": 90,
+        "pdf_page_index_zero_based": 88,
+        "pinpoint_status": "inferred_not_visually_verified"
+      },
+      "primary_evidence": [
+        {
+          "source_id": "EG-AMIRI-PRESS-LABOUR-14-2025",
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D",
+          "source_type": "official_publisher_text_page",
+          "supports": "مصدر أولي مرجعي للمادة 274؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        },
+        {
+          "source_id": "EG-ETA-GAZETTE-2025-18-LABOUR-PDF",
+          "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
+          "source_type": "government_hosted_official_gazette_pdf",
+          "supports": "مصدر أولي مرجعي للمادة 274؛ النص والموضع بحاجة إلى مطابقة مباشرة",
+          "retrieved_or_checked_on": "2026-10-28"
+        }
+      ],
+      "cross_checks": [
+        {
+          "url": "https://ar.wikisource.org/wiki/قانون_العمل_14_لسنة_2025_-_مصر",
+          "source_type": "public secondary transcription",
+          "supports": "مقارنة ثانوية؛ لا تحل محل النص الرسمي"
+        }
+      ],
+      "limitations": [
+        "موضع الصفحة مستنتج ولم يُتحقق بصرياً صفحةً صفحةً",
+        "القرارات التنفيذية الحالية والتعديلات لم تُراجع مراجعة شاملة",
+        "لا توجد مراجعة محامٍ مصري مسجلة",
+        "حقوق إعادة الاستخدام التجاري غير محسومة",
+        "النص تمت مقارنته بمرجع ثانوي عام؛ لم تتم مطابقة مستقلة مع صورة الجريدة الرسمية"
+      ],
+      "review_state": "provisional_secondary_crosscheck",
+      "search_eligible": false,
+      "usable_for": "source-linked research lead and manual verification",
+      "not_usable_for": "authoritative answer until official Gazette text, implementing decisions, currentness and lawyer review are verified"
+    }
+  ],
+  "publication_date": "2025-05-03",
+  "general_commencement_date": "2025-09-01",
+  "specialized_labour_courts_commencement_date": "2025-10-01",
+  "authenticity_verified": false,
+  "currentness_verified": false,
+  "amendment_history_verified": false,
+  "commercial_reuse_permission": "unknown_not_cleared"
+}

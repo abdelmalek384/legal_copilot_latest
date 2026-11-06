@@ -1,0 +1,23 @@
+{
+  "instrument": "Egyptian Labour Law No. 14 of 2025",
+  "manifest_version": 1,
+  "updated_on": "2026-10-31",
+  "authoritative_search_eligible": false,
+  "inventory_files": [
+    {
+      "path": "data/candidates/labour_law_14_2025/provision_evidence_cards.json",
+      "expected_cards": 360,
+      "role": "reconciled canonical provisional inventory",
+      "note": "Merged current main and the earlier 294-card review snapshot; 360 unique card IDs retained. Archived split snapshots remain excluded until separately reconciled."
+    }
+  ],
+  "combined_expected_cards": 360,
+  "loader_requirement": "Load the reconciled canonical inventory only, validate all 360 card IDs are unique, and preserve each card's search_eligible=false, review_state and limitations. Split snapshots are archived and excluded from the manifest.",
+  "known_gaps": [
+    "The 360-card inventory is a reconciliation of two divergent snapshots, not 360 independently verified statutory provisions.",
+    "All cards remain non-authoritative and search_eligible=false.",
+    "The source PDF binary has not been downloaded or hashed; only explicitly recorded pages have been visually inspected.",
+    "Full article-by-article primary-source comparison, amendment/currentness review, reuse-rights clearance and qualified Egyptian-lawyer review remain incomplete.",
+    "Archived split files may contain overlap or unique additions; do not re-enable them without a separate ID-level reconciliation."
+  ]
+}

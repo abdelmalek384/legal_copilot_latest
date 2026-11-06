@@ -1,0 +1,217 @@
+#!/usr/bin/env python3
+"""Read-only reviewer queue for legal-source provenance and version checks."""
+from __future__ import annotations
+import argparse, json, os, re, sqlite3
+from datetime import datetime, timezone
+from pathlib import Path
+import sys
+from urllib.parse import urlparse
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from tools.research_inspector import has_current_review_evidence
+
+def tables(db):
+    return {r[0] for r in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+
+def cols(db, table):
+    return {r[1] for r in db.execute(f'PRAGMA table_info("{table}")')}
+
+def valid_evidence_url(value):
+    """Check URL shape only; a valid link does not establish evidence authenticity."""
+    if not isinstance(value, str) or not value or value != value.strip():
+        return False
+    if any(ch.isspace() or ord(ch) < 32 for ch in value):
+        return False
+    try:
+        parsed = urlparse(value)
+        port = parsed.port  # Forces urllib to reject malformed and out-of-range ports.
+        return (
+            parsed.scheme.lower() == "https"
+            and bool(parsed.hostname)
+            and parsed.username is None
+            and parsed.password is None
+            and not parsed.netloc.endswith(":")
+            and (port is None or 1 <= port <= 65535)
+        )
+    except (ValueError, TypeError):
+        return False
+
+def commercial_reuse_issue(value):
+    """Return a review reason unless commercial reuse is explicitly unrestricted."""
+    if value == "allowed":
+        return None
+    if value == "allowed_limited":
+        return "source_commercial_reuse_permission_scope_limited"
+    if value in ("prohibited", "not_allowed_without_explicit_exception_or_license"):
+        return "source_commercial_reuse_permission_not_allowed"
+    return "commercial_reuse_permission_unknown"
+
+def qualified_counsel_user_ids() -> set[int]:
+    """Parse the operator-managed counsel allowlist used by runtime retrieval."""
+    allowed = set()
+    for item in os.environ.get("LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS", "").split(","):
+        item = item.strip()
+        if not item or len(item) > 19 or not item.isascii() or not item.isdecimal():
+            continue
+        try:
+            user_id = int(item)
+        except ValueError:
+            continue
+        if 0 < user_id <= (2**63 - 1):
+            allowed.add(user_id)
+    return allowed
+
+
+def counsel_attestation_is_allowlisted(notes: object, allowed_ids: set[int]) -> bool:
+    """Require an exact, positive account ID present in the configured allowlist."""
+    if not isinstance(notes, str) or not allowed_ids:
+        return False
+    match = re.search(r"\[qualified_egyptian_counsel_attested:user_id=([1-9][0-9]*)\]", notes)
+    if not match:
+        return False
+    try:
+        user_id = int(match.group(1))
+    except ValueError:
+        return False
+    return user_id in allowed_ids
+
+
+def review_queue(db_path: Path) -> dict:
+    if not db_path.exists():
+        raise FileNotFoundError(f"Database not found: {db_path}")
+    db = sqlite3.connect(f"file:{db_path.resolve()}?mode=ro", uri=True)
+    db.row_factory = sqlite3.Row
+    try:
+        present = tables(db)
+        report = {"report_type":"legal_source_review_queue","schema_version":"1.0",
+            "generated_at":datetime.now(timezone.utc).isoformat(),"read_only":True,
+            "records":[],"source_permissions":[],"issues":[],
+            "limitations":["Prioritization aid only; not legal advice or certification of authenticity.",
+                "Missing data or review events do not prove a law is invalid.",
+                "The tool never modifies records or review statuses."]}
+        required_tables = {"legal_sources","legal_documents","legal_document_versions","legal_review_events"}
+        missing = sorted(required_tables-present)
+        if missing:
+            report["issues"].append({"severity":"high","code":"review_schema_tables_missing","detail":missing})
+            return report
+        if "database_profile" not in present:
+            raise ValueError("database is not bound to the legal_corpus profile")
+        profile_rows = db.execute(
+            "SELECT profile FROM database_profile WHERE singleton=1"
+        ).fetchall()
+        if len(profile_rows) != 1 or profile_rows[0]["profile"] != "legal_corpus":
+            raise ValueError("database is not bound to the legal_corpus profile")
+        required = {
+          "legal_sources":{"source_id","authority","source_page","collection_permission","commercial_reuse_permission","permission_evidence","terms_url"},
+          "legal_documents":{"document_id","source_id","official_title","document_type"},
+          "legal_document_versions":{"version_id","document_id","version_label","source_url","original_sha256","publication_date","effective_date","legal_status","review_status","authenticity_verified","status_verified","amendment_history_verified","permission_evidence"},
+          "legal_review_events":{"version_id","review_type","outcome","evidence_url","reviewer","reviewed_at","review_event_id"}}
+        actual = {t:cols(db,t) for t in required}
+        bad = {t:sorted(fields-actual[t]) for t,fields in required.items() if fields-actual[t]}
+        if bad:
+            report["issues"].append({"severity":"high","code":"review_schema_columns_missing","detail":bad})
+            return report
+        sources = db.execute("SELECT source_id,authority,source_page,collection_permission,commercial_reuse_permission,terms_url,permission_evidence FROM legal_sources ORDER BY source_id").fetchall()
+        for src in sources:
+            row=dict(src); reasons=[]
+            if row["collection_permission"] not in ("allowed","allowed_limited"): reasons.append("source_collection_permission_not_confirmed")
+            reuse_issue = commercial_reuse_issue(row["commercial_reuse_permission"])
+            if reuse_issue: reasons.append(reuse_issue)
+            if not row["terms_url"]: reasons.append("terms_url_missing")
+            if not row["permission_evidence"]: reasons.append("permission_evidence_missing")
+            if reasons: report["source_permissions"].append({**row,"review_reasons":reasons,
+                "next_action":"Review current terms and record scoped permission evidence; do not infer permission from public accessibility."})
+        versions=db.execute("SELECT v.version_id,v.document_id,v.version_label,v.source_url,v.original_sha256,v.publication_date,v.effective_date,v.repeal_date,v.legal_status,v.review_status,v.authenticity_verified,v.status_verified,v.amendment_history_verified,v.permission_evidence,d.official_title,d.document_type,d.source_id,s.source_id AS matched_source_id,s.authority,s.collection_permission,s.commercial_reuse_permission FROM legal_document_versions v LEFT JOIN legal_documents d ON d.document_id=v.document_id LEFT JOIN legal_sources s ON s.source_id=d.source_id ORDER BY v.version_id").fetchall()
+        review_types=("source_authenticity","extraction_quality","legal_status","amendment_history","licensing","lawyer_approval")
+        allowed_counsel_ids = qualified_counsel_user_ids()
+        event_columns = cols(db, "legal_review_events") if "legal_review_events" in present else set()
+        notes_select = "notes" if "notes" in event_columns else "NULL AS notes"
+        for version in versions:
+            row=dict(version)
+            events=[dict(e) for e in db.execute(f"SELECT review_event_id,review_type,outcome,evidence_url,reviewer,{notes_select},reviewed_at FROM legal_review_events WHERE version_id=? ORDER BY reviewed_at DESC,review_event_id DESC",(row["version_id"],)).fetchall()]
+            reasons=[]
+            if row["official_title"] is None:
+                reasons.append("document_missing_from_registry")
+            if row["matched_source_id"] is None:
+                reasons.append("source_missing_from_registry")
+            checks=[
+              (not row["original_sha256"],"original_content_hash_missing"),
+              (not row["publication_date"],"publication_date_unknown"),
+              (not row["effective_date"],"effective_date_unknown"),
+              (row["legal_status"] in (None,"","unknown","under_review"),"legal_status_unresolved"),
+              (row["review_status"]!="verified","version_not_marked_verified"),
+              (not row["authenticity_verified"],"source_authenticity_not_verified"),
+              (not row["status_verified"],"legal_status_not_verified"),
+              (not row["amendment_history_verified"],"amendment_history_not_verified"),
+              (not row["permission_evidence"],"version_permission_evidence_missing"),
+              (row["collection_permission"] not in ("allowed","allowed_limited"),"source_collection_permission_not_confirmed"),
+              (commercial_reuse_issue(row["commercial_reuse_permission"]) is not None,commercial_reuse_issue(row["commercial_reuse_permission"]))]
+            reasons.extend(label for missing,label in checks if missing)
+            # Match runtime eligibility: only the latest event for each review type
+            # controls whether that review currently passes. Historical passes remain
+            # visible in review_events but cannot override a later failure/correction.
+            latest_by_type = {}
+            for event in events:  # events are ordered by reviewed_at DESC, review_event_id DESC
+                latest_by_type.setdefault(event["review_type"], event)
+            for rt in review_types:
+                latest = latest_by_type.get(rt)
+                if (
+                    latest is None
+                    or latest["outcome"] != "pass"
+                    or not valid_evidence_url(latest["evidence_url"])
+                    or not isinstance(latest.get("reviewer"), str)
+                    or not latest["reviewer"].strip()
+                    or not isinstance(latest.get("notes"), str)
+                    or not latest["notes"].strip()
+                ):
+                    reasons.append("review_evidence_missing:"+rt)
+                    continue
+                if rt == "lawyer_approval":
+                    marker_present = isinstance(latest.get("notes"), str) and re.search(
+                        r"\[qualified_egyptian_counsel_attested:user_id=[1-9][0-9]*\]",
+                        latest["notes"],
+                    )
+                    if not marker_present:
+                        reasons.append("lawyer_approval_counsel_attestation_missing")
+                    elif not counsel_attestation_is_allowlisted(latest.get("notes"), allowed_counsel_ids):
+                        reasons.append("lawyer_approval_counsel_not_allowlisted")
+            if not has_current_review_evidence({"review_evidence": events}) and not any(
+                reason.startswith("review_evidence_missing:")
+                or reason in ("lawyer_approval_counsel_attestation_missing", "lawyer_approval_counsel_not_allowlisted")
+                for reason in reasons
+            ):
+                reasons.append("review_event_history_invalid_or_future")
+            if reasons:
+                report["records"].append({**row,"review_reasons":reasons,"review_events":events,
+                  "next_action":"Inspect the official instrument and evidence; record scoped review events and leave unresolved items unresolved."})
+        report["summary"]={"versions_in_queue":len(report["records"]),"sources_with_permission_follow_up":len(report["source_permissions"]),"versions_scanned":len(versions),"sources_scanned":len(sources)}
+        return report
+    finally:
+        db.close()
+
+def main():
+    p=argparse.ArgumentParser(description=__doc__)
+    p.add_argument(
+        "--db",
+        type=Path,
+        default=Path(os.environ["COPILOT_CORPUS_DB"]) if os.environ.get("COPILOT_CORPUS_DB", "").strip() else None,
+        help="legal-corpus database (defaults to COPILOT_CORPUS_DB)",
+    )
+    p.add_argument("--out",type=Path)
+    args=p.parse_args()
+    if os.environ.get("COPILOT_DB", "").strip():
+        p.error("COPILOT_DB compatibility mode is not supported; configure COPILOT_CORPUS_DB or pass --db")
+    if args.db is None:
+        p.error("a legal-corpus database is required; configure COPILOT_CORPUS_DB or pass --db")
+    try: report=review_queue(args.db)
+    except (FileNotFoundError,sqlite3.Error,ValueError) as exc: p.error(str(exc))
+    text=json.dumps(report,ensure_ascii=False,indent=2)+"\n"
+    if args.out:
+        args.out.parent.mkdir(parents=True,exist_ok=True); args.out.write_text(text,encoding="utf-8")
+    else: print(text,end="")
+    if any(i["severity"]=="high" for i in report["issues"]): raise SystemExit(2)
+
+if __name__=="__main__": main()

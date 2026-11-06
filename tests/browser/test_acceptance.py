@@ -1,0 +1,1473 @@
+"""Real Chromium acceptance tests using synthetic disposable firm/corpus data only."""
+from __future__ import annotations
+
+import io
+import json
+import os
+import secrets
+import socket
+import tempfile
+import threading
+import time
+import faulthandler
+import unittest
+import zipfile
+from xml.sax.saxutils import escape
+import urllib.error
+import urllib.request
+from pathlib import Path
+
+from playwright.sync_api import Browser, BrowserContext, Page, TimeoutError as PlaywrightTimeoutError, sync_playwright
+
+
+ROOT = Path(__file__).resolve().parents[2]
+ARTIFACT_DIR = ROOT / "artifacts" / "browser"
+
+
+def _free_port() -> int:
+    with socket.socket() as sock:
+        sock.bind(("127.0.0.1", 0))
+        return int(sock.getsockname()[1])
+
+
+def _synthetic_docx_bytes(text: str) -> bytes:
+    """Build a minimal valid DOCX containing only synthetic test text."""
+    buffer = io.BytesIO()
+    document_xml = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'
+        '<w:body><w:p><w:r><w:t xml:space="preserve">'
+        + escape(text)
+        + '</w:t></w:r></w:p><w:sectPr/></w:body></w:document>'
+    )
+    content_types = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
+        '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
+        '<Default Extension="xml" ContentType="application/xml"/>'
+        '<Override PartName="/word/document.xml" '
+        'ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>'
+        '</Types>'
+    )
+    relationships = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+        '<Relationship Id="rId1" '
+        'Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" '
+        'Target="word/document.xml"/>'
+        '</Relationships>'
+    )
+    with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr("[Content_Types].xml", content_types)
+        archive.writestr("_rels/.rels", relationships)
+        archive.writestr("word/document.xml", document_xml)
+    return buffer.getvalue()
+
+
+class BrowserAcceptanceTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        # Emit Python thread stacks during any long browser stall so CI timeouts are diagnosable.
+        faulthandler.dump_traceback_later(90, repeat=True)
+        cls.temp = tempfile.TemporaryDirectory(prefix="legal-copilot-browser-")
+        cls.temp_path = Path(cls.temp.name)
+        cls.port = _free_port()
+        cls.base_url = f"http://127.0.0.1:{cls.port}"
+        cls.original_env = os.environ.copy()
+        sensitive_prefixes = (
+            "COPILOT_", "LEGAL_", "LLM_", "MFA_", "SMTP_", "REMINDER_SMTP_", "EMAIL_",
+            "OPENAI_", "ANTHROPIC_", "GEMINI_", "OLLAMA_", "MISTRAL_", "AWS_",
+        )
+        sensitive_names = {"ADMIN_TOKEN", "BACKUP_KEY", "MFA_ENCRYPTION_KEY", "DATABASE_URL"}
+        for key in tuple(os.environ):
+            if key.startswith(sensitive_prefixes) or key in sensitive_names:
+                os.environ.pop(key, None)
+        # Never inherit the temporary unlinked-legacy retrieval escape hatch.
+        os.environ.pop("ALLOW_UNLINKED_LEGACY_LAW_SEARCH", None)
+        os.environ.update(
+            {
+                "COPILOT_ENV": "development",
+                "COPILOT_CONTROL_DB": str(cls.temp_path / "control.sqlite3"),
+                "COPILOT_TENANT_DB_ROOT": str(cls.temp_path / "tenants"),
+                "COPILOT_CORPUS_DB": str(cls.temp_path / "corpus.sqlite3"),
+                "COPILOT_OBJECT_STORAGE_ROOT": str(cls.temp_path / "objects"),
+                "COPILOT_OBJECT_STORAGE_BACKEND": "local",
+                "ADMIN_TOKEN": secrets.token_urlsafe(32),
+            }
+        )
+
+        import app as app_module
+        import uvicorn
+        from database_runtime import DatabaseRuntime
+
+        cls.app_module = app_module
+        cls.runtime = DatabaseRuntime.from_env()
+        cls.runtime.initialize()
+        firm_a, _ = cls.runtime.provision_firm("Synthetic Acceptance Firm A")
+        firm_b, _ = cls.runtime.provision_firm("Synthetic Acceptance Firm B")
+
+        password = secrets.token_urlsafe(32)
+        owner_a = cls.runtime.create_initial_firm_owner(
+            firm_a, "Synthetic Firm A Owner", "owner-a@example.test", app_module.hash_pw(password)
+        )
+        owner_b = cls.runtime.create_initial_firm_owner(
+            firm_b, "Synthetic Firm B Owner", "owner-b@example.test", app_module.hash_pw(password)
+        )
+        reviewer_id = cls.runtime.create_global_identity(
+            "Synthetic Platform Reviewer", "reviewer@example.test", app_module.hash_pw(password)
+        )
+        os.environ["LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS"] = str(reviewer_id)
+        cls.runtime.create_firm_membership(reviewer_id, firm_a, "lawyer")
+        control = cls.runtime.control_connection()
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,?)",
+            (reviewer_id, "platform_reviewer"),
+        )
+        control.execute(
+            "INSERT INTO user_platform_roles(user_id,role_name) VALUES(?,?)",
+            (reviewer_id, "platform_admin"),
+        )
+        control.commit()
+
+        firm_b_context = cls.runtime.resolve_context(owner_b, firm_b)
+        firm_b_db = cls.runtime.firm_connection(firm_b_context)
+        cursor = firm_b_db.execute(
+            "INSERT INTO cases(id,title,created_by,firm_id) VALUES(777,?,?,?)",
+            ("CROSS_FIRM_PRIVATE_SENTINEL_7D3A", owner_b, firm_b),
+        )
+        firm_b_db.commit()
+
+        corpus = cls.runtime.legal_corpus_connection()
+        corpus.execute(
+            """INSERT INTO legal_sources(
+                   source_id,authority,source_page,collection_permission,commercial_reuse_permission
+               ) VALUES(?,?,?,?,?)""",
+            (
+                "SYNTHETIC-BROWSER-SOURCE-2026",
+                "Synthetic Browser Authority",
+                "https://example.invalid/synthetic-source",
+                "unknown",
+                "unknown",
+            ),
+        )
+        corpus.execute(
+            """INSERT INTO legal_documents(
+                   document_id,source_id,official_title,document_type,practice_area,law_number,law_year
+               ) VALUES(?,?,?,?,?,?,?)""",
+            (
+                "SYNTHETIC-BROWSER-DOC-2026",
+                "SYNTHETIC-BROWSER-SOURCE-2026",
+                "SYNTHETIC METADATA ONLY INSTRUMENT 2026",
+                "law",
+                "synthetic_test_only",
+                "999",
+                2026,
+            ),
+        )
+        corpus.execute(
+            """INSERT INTO legal_sources(
+                   source_id,authority,source_page,collection_permission,
+                   commercial_reuse_permission,permission_evidence
+               ) VALUES(?,?,?,?,?,?)""",
+            (
+                "SYNTHETIC-BROWSER-VERIFIED-SOURCE",
+                "Synthetic Verified Fixture Authority",
+                "https://example.test/synthetic-verified-source",
+                "allowed",
+                "allowed",
+                "Synthetic-only fixture permission evidence; not a real legal source.",
+            ),
+        )
+        corpus.execute(
+            """INSERT INTO legal_documents(
+                   document_id,source_id,official_title,document_type,practice_area
+               ) VALUES(?,?,?,?,?)""",
+            (
+                "SYNTHETIC-BROWSER-VERIFIED-DOC",
+                "SYNTHETIC-BROWSER-VERIFIED-SOURCE",
+                "SYNTHETIC TEST FIXTURE - NOT LAW",
+                "statute",
+                "synthetic_test_only",
+            ),
+        )
+        version_id = corpus.execute(
+            """INSERT INTO legal_document_versions(
+                   document_id,version_label,source_url,publication_date,effective_date,
+                   legal_status,review_status,authenticity_verified,status_verified,
+                   amendment_history_verified,permission_evidence,original_sha256
+               ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)""",
+            (
+                "SYNTHETIC-BROWSER-VERIFIED-DOC",
+                "synthetic-fixture-current",
+                "https://example.test/synthetic-verified-source/version",
+                "2020-01-01",
+                "2020-01-01",
+                "in_force",
+                "verified",
+                1,
+                1,
+                1,
+                "Synthetic-only fixture permission evidence.",
+                "a" * 64,
+            ),
+        ).lastrowid
+        for review_type in (
+            "source_authenticity",
+            "extraction_quality",
+            "legal_status",
+            "amendment_history",
+            "licensing",
+            "lawyer_approval",
+        ):
+            notes = "Synthetic fixture only; not a legal review."
+            if review_type == "lawyer_approval":
+                notes = (
+                    f"[qualified_egyptian_counsel_attested:user_id={reviewer_id}] "
+                    "synthetic fixture marker only; no real legal review occurred."
+                )
+            corpus.execute(
+                """INSERT INTO legal_review_events(
+                       version_id,reviewer,review_type,outcome,notes,evidence_url
+                   ) VALUES(?,?,?,?,?,?)""",
+                (
+                    version_id,
+                    "Synthetic fixture reviewer",
+                    review_type,
+                    "pass",
+                    notes,
+                    "https://example.test/synthetic-review-evidence",
+                ),
+            )
+        verified_text = (
+            "CORPUS_ONLY_VERIFIED_SENTINEL_2C77 "
+            "Synthetic verified fixture deadline example for browser scope tests."
+        )
+        corpus.execute(
+            """INSERT INTO chunks(
+                   ref,article,page,text,norm,document_version_id,in_force,as_of,source,verified
+               ) VALUES(?,?,?,?,?,?,?,?,?,1)""",
+            (
+                "Synthetic fixture Article 12",
+                "12",
+                "17",
+                verified_text,
+                app_module.norm(verified_text),
+                version_id,
+                1,
+                "2020-01-01",
+                "SYNTHETIC-BROWSER-VERIFIED-SOURCE",
+            ),
+        )
+        corpus.commit()
+        app_module.LLM = lambda _prompt: None
+
+        cls.state = {
+            "owner_a_email": "owner-a@example.test",
+            "owner_b_email": "owner-b@example.test",
+            "reviewer_email": "reviewer@example.test",
+            "reviewer_id": reviewer_id,
+            "password": password,
+            "firm_a_id": firm_a,
+            "firm_b_id": firm_b,
+            "firm_b_case_id": int(cursor.lastrowid),
+        }
+        app_module._database_runtime = cls.runtime
+        cls.server = uvicorn.Server(
+            uvicorn.Config(app_module.app, host="127.0.0.1", port=cls.port, log_level="warning")
+        )
+        cls.server_thread = threading.Thread(target=cls.server.run, daemon=True)
+        cls.server_thread.start()
+        deadline = time.monotonic() + 45
+        while time.monotonic() < deadline and not cls.server.started:
+            if not cls.server_thread.is_alive():
+                raise RuntimeError("Synthetic in-process application server exited during startup.")
+            time.sleep(0.1)
+        if not cls.server.started:
+            raise RuntimeError("Synthetic in-process application server did not become ready.")
+
+        # Verify the HTTP listener and root route independently before Chromium starts.
+        # This separates server/startup failures from browser navigation failures.
+        try:
+            with urllib.request.urlopen(cls.base_url + "/", timeout=5) as response:
+                html = response.read(2 * 1024 * 1024 + 1)
+                if response.status != 200 or len(html) > 2 * 1024 * 1024 or b"Legal Copilot" not in html:
+                    raise RuntimeError(
+                        "Synthetic browser server root probe failed: "
+                        f"status={response.status}, bytes={len(html)}"
+                    )
+        except (OSError, urllib.error.URLError) as exc:
+            raise RuntimeError(
+                f"Synthetic browser server did not answer on {cls.base_url}: {exc}"
+            ) from exc
+
+        cls.playwright = sync_playwright().start()
+        cls.browser: Browser = cls.playwright.chromium.launch(headless=True)
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        faulthandler.cancel_dump_traceback_later()
+        if hasattr(cls, "browser"):
+            cls.browser.close()
+        if hasattr(cls, "playwright"):
+            cls.playwright.stop()
+        if hasattr(cls, "server"):
+            cls.server.should_exit = True
+        if hasattr(cls, "server_thread"):
+            cls.server_thread.join(timeout=10)
+        if hasattr(cls, "app_module"):
+            cls.app_module._database_runtime = None
+        if hasattr(cls, "runtime"):
+            cls.runtime.close_current_thread()
+        if hasattr(cls, "temp"):
+            cls.temp.cleanup()
+        if hasattr(cls, "original_env"):
+            os.environ.clear()
+            os.environ.update(cls.original_env)
+
+    def setUp(self) -> None:
+        self.context: BrowserContext = self.browser.new_context(
+            viewport={"width": 1440, "height": 900},
+            accept_downloads=True,
+        )
+        self.page: Page = self.context.new_page()
+        # Keep a broken local route or selector from consuming the entire CI budget.
+        self.page.set_default_timeout(8000)
+        self.page.set_default_navigation_timeout(8000)
+        self.browser_errors: list[str] = []
+        self.network_errors: list[str] = []
+        self.page.on("pageerror", lambda error: self.browser_errors.append(str(error)))
+        self.page.on(
+            "requestfailed",
+            lambda request: self.network_errors.append(
+                f"{request.method} {request.url}: {request.failure}"
+            ),
+        )
+
+    def tearDown(self) -> None:
+        result = getattr(getattr(self, "_outcome", None), "result", None)
+        failed = bool(result and any(test is self for test, _ in result.errors + result.failures))
+        if failed and not self.page.is_closed():
+            try:
+                ARTIFACT_DIR.mkdir(parents=True, exist_ok=True)
+                safe_name = self.id().rsplit(".", 1)[-1]
+                self.page.screenshot(
+                    path=str(ARTIFACT_DIR / f"{safe_name}.png"),
+                    full_page=True,
+                    timeout=5000,
+                )
+            except Exception:
+                # Preserve the original assertion/navigation error if screenshot capture fails.
+                pass
+        self.context.close()
+
+    def stage(self, label: str) -> None:
+        print(f"BROWSER_STAGE {self.id()} {label}", flush=True)
+
+    def login(self, email: str) -> None:
+        self.stage("login.goto.start")
+        self.page.goto(self.base_url, wait_until="domcontentloaded")
+        self.stage("login.goto.done")
+        email_input = self.page.locator('input[type="email"]')
+        try:
+            email_input.wait_for(state="visible", timeout=10000)
+            self.stage("login.email.visible")
+        except PlaywrightTimeoutError as exc:
+            try:
+                body = self.page.locator("body").inner_text(timeout=1500)[:2000]
+            except Exception as body_exc:
+                body = f"<body unavailable: {type(body_exc).__name__}: {body_exc}>"
+            raise AssertionError(
+                "Login UI did not render. URL=%s title=%s body=%s "
+                "browser_errors=%s network_errors=%s server_thread_alive=%s"
+                % (
+                    self.page.url,
+                    self.page.title(),
+                    body,
+                    self.browser_errors,
+                    self.network_errors,
+                    self.server_thread.is_alive(),
+                )
+            ) from exc
+        self.stage("login.fill.start")
+        email_input.fill(email)
+        self.page.locator('input[type="password"]').fill(self.state["password"])
+        self.stage("login.submit.start")
+        self.page.locator('button[type="submit"]').click()
+        self.stage("login.submit.done")
+        self.page.locator("#side").wait_for(state="visible", timeout=15000)
+        self.stage("login.complete")
+
+    def csrf_headers(self) -> dict[str, str]:
+        cookies = {item["name"]: item["value"] for item in self.context.cookies()}
+        return {"X-CSRF-Token": cookies.get("lc_csrf", "")}
+
+    def read_clipboard(self) -> str:
+        # Clipboard APIs return promises; explicitly bound them so browser CI
+        # cannot hang forever if a headless runner denies or stalls clipboard access.
+        return self.page.evaluate(
+            """async () => Promise.race([
+                navigator.clipboard.readText(),
+                new Promise((_, reject) => setTimeout(
+                    () => reject(new Error("clipboard read timed out")), 3000
+                ))
+            ])"""
+        )
+
+    def test_axe_wcag_accessibility_smoke_arabic_english_and_mobile(self) -> None:
+        """Run axe-core WCAG 2.1 A/AA and 2.2 AA checks on authenticated UI states."""
+        axe_path = ROOT / ".ci" / "axe" / "node_modules" / "axe-core" / "axe.min.js"
+        self.assertTrue(axe_path.is_file(), f"Pinned axe-core bundle is missing: {axe_path}")
+        self.login(self.state["reviewer_email"])
+        axe_source = axe_path.read_text(encoding="utf-8")
+        self.page.route(
+            "**/__axe__/axe.min.js",
+            lambda route: route.fulfill(status=200, content_type="application/javascript", body=axe_source),
+        )
+        # Load as a same-origin external resource so the app's strict CSP remains intact.
+        self.page.add_script_tag(url="/__axe__/axe.min.js")
+
+        def audit(label: str) -> None:
+            has_no_horizontal_overflow = self.page.evaluate(
+                "() => document.documentElement.scrollWidth <= window.innerWidth + 1"
+            )
+            self.assertTrue(has_no_horizontal_overflow, f"Horizontal page overflow at {label}")
+            result = self.page.evaluate("""async () => {
+                const report = await axe.run(document, {
+                    runOnly: {
+                        type: 'tag',
+                        values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']
+                    }
+                });
+                return {
+                    violations: report.violations.map((item) => ({
+                        id: item.id,
+                        impact: item.impact,
+                        description: item.help,
+                        nodes: item.nodes.slice(0, 8).map((node) => ({
+                            target: node.target,
+                            summary: node.failureSummary
+                        }))
+                    })),
+                    incomplete: report.incomplete.map((item) => item.id)
+                };
+            }""")
+            self.assertEqual(
+                result["violations"],
+                [],
+                f"axe-core WCAG 2.1 A/AA violations at {label}: "
+                + json.dumps(result["violations"], ensure_ascii=False, indent=2),
+            )
+
+        for width, height in ((1440, 900), (768, 900), (640, 900), (390, 844), (320, 720)):
+            self.page.set_viewport_size({"width": width, "height": height})
+            audit(f"Arabic dashboard {width}px")
+
+        self.page.set_viewport_size({"width": 390, "height": 844})
+        self.page.get_by_role("button", name="القضايا", exact=True).click()
+        new_case_opener = self.page.get_by_role("button", name="+ قضية جديدة")
+        new_case_opener.click()
+        dialog = self.page.get_by_role("dialog", name="قضية جديدة")
+        dialog.wait_for(state="visible", timeout=8000)
+        self.assertTrue(self.page.locator("#shell").evaluate("(el) => el.inert"))
+        audit("Arabic new-case dialog 390px")
+        dialog.get_by_role("button", name="حفظ القضية").click()
+        title_field = dialog.locator("input").first
+        self.assertEqual(title_field.get_attribute("aria-invalid"), "true")
+        self.assertEqual(title_field.get_attribute("aria-describedby"), "new-case-title-error")
+        self.assertTrue(dialog.get_by_role("alert").is_visible())
+        title_field.fill("Synthetic accessibility case")
+        self.assertIsNone(title_field.get_attribute("aria-invalid"))
+        self.assertFalse(dialog.get_by_role("alert").is_visible())
+        dialog.get_by_role("button", name="حفظ القضية").focus()
+        self.page.keyboard.press("Tab")
+        self.assertTrue(dialog.locator("input").first.evaluate("(el) => el === document.activeElement"))
+        self.page.keyboard.press("Escape")
+        dialog.wait_for(state="detached", timeout=8000)
+        self.assertFalse(self.page.locator("#shell").evaluate("(el) => el.inert"))
+        self.assertTrue(new_case_opener.evaluate("(el) => el === document.activeElement"))
+
+        self.page.get_by_role("button", name="تغطية المجموعة القانونية").click()
+        self.page.get_by_role("heading", name="تغطية المجموعة القانونية").wait_for(timeout=10000)
+        audit(f"Arabic corpus coverage {self.page.viewport_size['width']}px")
+
+        self.page.locator("[data-lang-switch='1']").click()
+        self.page.get_by_text("Corpus Coverage & Provenance").wait_for(timeout=10000)
+        self.page.get_by_role("heading", name="Candidate instrument inventory").wait_for(timeout=10000)
+        self.page.wait_for_function("() => document.documentElement.dir === 'ltr'", timeout=8000)
+        audit(f"English corpus coverage {self.page.viewport_size['width']}px")
+
+        self.page.locator("[data-lang-switch='1']").click()
+        self.page.wait_for_function("() => document.documentElement.dir === 'rtl'", timeout=8000)
+        self.page.get_by_role("button", name="الإعدادات والأمان").click()
+        self.page.get_by_role("heading", name="الإعدادات").wait_for(timeout=10000)
+        audit("Arabic settings and account forms")
+
+        for nav_name, heading_name in (
+            ("المهام", "المهام"),
+            ("الأجندة والمواعيد", "الأجندة والمواعيد"),
+            ("القضايا", "القضايا"),
+            ("ملاحظات المنتج", "ملاحظات المنتج"),
+            ("البحث القانوني", "البحث القانوني"),
+        ):
+            self.page.get_by_role("button", name=nav_name, exact=True).click()
+            self.page.get_by_role("heading", name=heading_name).wait_for(timeout=10000)
+            audit(f"Arabic {heading_name} workspace")
+
+    def test_login_form_exposes_and_clears_associated_validation_errors(self) -> None:
+        self.page.goto(self.base_url, wait_until="domcontentloaded")
+        email = self.page.locator('input[type="email"]')
+        password = self.page.locator('input[type="password"]')
+        email.wait_for(state="visible", timeout=10000)
+        self.page.locator('button[type="submit"]').click()
+        self.assertEqual(email.get_attribute("aria-invalid"), "true")
+        self.assertEqual(password.get_attribute("aria-invalid"), "true")
+        self.assertEqual(email.get_attribute("aria-describedby"), "login-form-error")
+        self.assertTrue(self.page.get_by_role("alert").is_visible())
+        email.fill("synthetic@example.test")
+        password.fill("synthetic-not-a-real-password")
+        self.assertIsNone(email.get_attribute("aria-invalid"))
+        self.assertIsNone(password.get_attribute("aria-invalid"))
+        self.assertFalse(self.page.get_by_role("alert").is_visible())
+
+    def test_primary_navigation_buttons_support_native_keyboard_activation(self) -> None:
+        self.login(self.state["reviewer_email"])
+        tasks = self.page.get_by_role("button", name="المهام", exact=True)
+        tasks.focus()
+        self.page.keyboard.press("Space")
+        self.page.get_by_role("heading", name="المهام").wait_for(timeout=10000)
+
+        cases = self.page.get_by_role("button", name="القضايا", exact=True)
+        cases.focus()
+        self.page.keyboard.press("Enter")
+        self.page.get_by_role("heading", name="القضايا").wait_for(timeout=10000)
+
+    def test_primary_case_management_lifecycle_workflow(self) -> None:
+        self.login(self.state["owner_a_email"])
+        headers = self.csrf_headers()
+        client_name = "SYNTHETIC CLIENT CASEFLOW 2026"
+        first = self.page.request.post(
+            self.base_url + "/cases",
+            data={
+                "title": "SYNTHETIC CASEFLOW PRIMARY MATTER",
+                "client": client_name,
+                "stage": "initial",
+                "case_number": "CF-001",
+                "case_year": "2026",
+                "court": "Synthetic Cairo Court",
+                "circuit": "Synthetic Circuit A",
+                "opposing_party": "Synthetic Opponent",
+            },
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(first.status, 200, first.text())
+        case_id = first.json()["id"]
+
+        second = self.page.request.post(
+            self.base_url + "/cases",
+            data={"title": "SYNTHETIC CASEFLOW SECOND MATTER", "client": client_name},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(second.status, 200, second.text())
+        second_case_id = second.json()["id"]
+        self.assertNotEqual(case_id, second_case_id)
+
+        updated = self.page.request.patch(
+            self.base_url + f"/cases/{case_id}",
+            data={
+                "stage": "hearing_preparation",
+                "status": "open",
+                "case_number": "CF-001-REV",
+                "case_year": "2026",
+                "court": "Synthetic Appeal Court",
+                "circuit": "Synthetic Circuit B",
+                "opposing_party": "Synthetic Updated Opponent",
+            },
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(updated.status, 200, updated.text())
+
+        member_id = self.state["reviewer_id"]
+        member = self.page.request.post(
+            self.base_url + f"/cases/{case_id}/members",
+            data={"user_id": member_id, "role": "associate"},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(member.status, 200, member.text())
+
+        task = self.page.request.post(
+            self.base_url + f"/cases/{case_id}/tasks",
+            data={"title": "SYNTHETIC CASEFLOW PREPARE BUNDLE", "assignee": member_id, "due": "2026-12-01"},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(task.status, 200, task.text())
+
+        session = self.page.request.post(
+            self.base_url + f"/cases/{case_id}/sessions",
+            data={"date": "2026-11-15", "note": "SYNTHETIC CASEFLOW HEARING NOTE"},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(session.status, 200, session.text())
+
+        note = self.page.request.post(
+            self.base_url + f"/cases/{case_id}/notes",
+            data={"text": "SYNTHETIC CASEFLOW CLIENT UPDATE"},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(note.status, 200, note.text())
+
+        deadline = self.page.request.post(
+            self.base_url + f"/cases/{case_id}/deadlines",
+            data={"title": "SYNTHETIC CASEFLOW FILING DEADLINE", "due": "2026-12-10", "note": "Draft only"},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(deadline.status, 200, deadline.text())
+
+        fee = self.page.request.post(
+            self.base_url + f"/cases/{case_id}/fees",
+            data={"title": "SYNTHETIC CASEFLOW LEGAL FEE", "amount": 12000, "paid": 5000,
+                  "due": "2026-12-20", "note": "Synthetic test amount only"},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(fee.status, 200, fee.text())
+
+        document = self.page.request.post(
+            self.base_url + f"/cases/{case_id}/docs",
+            data={"name": "synthetic-caseflow-note.txt",
+                  "text": "SYNTHETIC CASEFLOW DOCUMENT CONTENT ONLY"},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(document.status, 200, document.text())
+
+        detail = self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
+        self.assertEqual(detail.status, 200, detail.text())
+        record = detail.json()
+        self.assertEqual(record["client"], client_name)
+        self.assertEqual(record["case_number"], "CF-001-REV")
+        self.assertEqual(record["court"], "Synthetic Appeal Court")
+        self.assertTrue(any(row["user_id"] == member_id and row["role"] == "associate"
+                            for row in record["members"]))
+        task_row = next(row for row in record["tasks"] if row["title"] == "SYNTHETIC CASEFLOW PREPARE BUNDLE")
+        self.assertEqual(task_row["assignee"], member_id)
+        self.assertEqual(task_row["status"], "open")
+
+        completed = self.page.request.post(
+            self.base_url + f"/tasks/{task_row['id']}/done",
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(completed.status, 200, completed.text())
+
+        refreshed = self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
+        self.assertEqual(refreshed.status, 200, refreshed.text())
+        record = refreshed.json()
+        self.assertEqual(next(row for row in record["tasks"] if row["id"] == task_row["id"])["status"], "done")
+        self.assertTrue(any(row["note"] == "SYNTHETIC CASEFLOW HEARING NOTE" for row in record["sessions"]))
+        self.assertTrue(any(row["text"] == "SYNTHETIC CASEFLOW CLIENT UPDATE" for row in record["notes"]))
+        self.assertTrue(any(row["title"] == "SYNTHETIC CASEFLOW FILING DEADLINE" for row in record["deadlines"]))
+        self.assertTrue(any(row["title"] == "SYNTHETIC CASEFLOW LEGAL FEE" and row["amount"] == 12000
+                            and row["paid"] == 5000 for row in record["fees"]))
+        self.assertTrue(any(row["name"] == "synthetic-caseflow-note.txt" for row in record["docs"]))
+        self.assertTrue(any("SYNTHETIC CASEFLOW" in row["text"] for row in record["events"]))
+
+        removed = self.page.request.delete(
+            self.base_url + f"/cases/{case_id}/members/{member_id}",
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(removed.status, 200, removed.text())
+        after_removal = self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
+        self.assertEqual(after_removal.status, 200, after_removal.text())
+        self.assertFalse(any(row["user_id"] == member_id for row in after_removal.json()["members"]))
+
+        self.page.locator("#side").get_by_role("button", name="القضايا").click()
+        self.page.get_by_text("SYNTHETIC CASEFLOW PRIMARY MATTER", exact=True).wait_for(timeout=10000)
+        self.assertIn("SYNTHETIC CASEFLOW SECOND MATTER", self.page.locator("body").inner_text())
+
+        # The runbook requires synthetic-only deletion to preserve a firm-scoped audit snapshot.
+        deleted_primary = self.page.request.delete(
+            self.base_url + f"/cases/{case_id}", headers=headers, timeout=8000
+        )
+        self.assertEqual(deleted_primary.status, 200, deleted_primary.text())
+        deleted_second = self.page.request.delete(
+            self.base_url + f"/cases/{second_case_id}", headers=headers, timeout=8000
+        )
+        self.assertEqual(deleted_second.status, 200, deleted_second.text())
+        self.assertEqual(
+            self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000).status,
+            404,
+        )
+        audit = self.page.request.get(self.base_url + "/audit/case-deletions?limit=100", timeout=8000)
+        self.assertEqual(audit.status, 200, audit.text())
+        snapshots = {item["case_id"]: item for item in audit.json()["items"]}
+        snapshot = snapshots[case_id]
+        self.assertEqual(snapshot["case_snapshot"]["title"], "SYNTHETIC CASEFLOW PRIMARY MATTER")
+        self.assertGreaterEqual(snapshot["related_counts"]["tasks"], 1)
+        self.assertGreaterEqual(snapshot["related_counts"]["sessions"], 1)
+        self.assertGreaterEqual(snapshot["related_counts"]["notes"], 1)
+        self.assertGreaterEqual(snapshot["related_counts"]["fees"], 1)
+        self.assertTrue(any("SYNTHETIC CASEFLOW" in row["text"] for row in snapshot["events_snapshot"]))
+
+    def test_corpus_coverage_requires_platform_reviewer_and_drilldown_is_metadata_only(self) -> None:
+        self.login(self.state["owner_a_email"])
+        denied = self.page.request.get(self.base_url + "/legal-review/coverage", timeout=8000)
+        self.assertEqual(denied.status, 403)
+        self.assertNotIn("SYNTHETIC METADATA ONLY", denied.text())
+
+        self.context.clear_cookies()
+        self.login(self.state["reviewer_email"])
+        self.page.get_by_role("button", name="تغطية المجموعة القانونية").click()
+        self.page.get_by_role("heading", name="تغطية المجموعة القانونية").wait_for(timeout=10000)
+        self.page.get_by_role("heading", name="فهرس الأدوات المرشحة").wait_for(timeout=10000)
+        dashboard_text = self.page.locator("body").inner_text()
+        self.assertIn("عدد الأدوات في فهرس التخطيط", dashboard_text)
+        self.assertIn("سجلات بها مشكلات تحقق", dashboard_text)
+        self.assertIn("هذا المقام يصف سجل التخطيط فقط", dashboard_text)
+
+        self.page.get_by_text("الأدوات القانونية المسجلة", exact=True).click()
+        search = self.page.get_by_placeholder("ابحث بالعنوان أو المعرف أو الجهة")
+        search.fill("SYNTHETIC METADATA ONLY INSTRUMENT 2026")
+        self.page.get_by_role("button", name="بحث", exact=True).click()
+        self.page.get_by_text("SYNTHETIC METADATA ONLY INSTRUMENT 2026").wait_for(timeout=10000)
+        body = self.page.locator("body").inner_text()
+        self.assertIn("Shared legal-registry metadata only", body)
+        self.assertNotIn("CROSS_FIRM_PRIVATE_SENTINEL_7D3A", body)
+        search.fill("NO_MATCHING_SYNTHETIC_CATALOG_ENTRY_2026")
+        self.page.get_by_role("button", name="بحث", exact=True).click()
+        self.page.get_by_text("لا توجد سجلات مطابقة.").wait_for(timeout=10000)
+
+    def test_research_scopes_keep_metadata_and_firm_documents_separate(self) -> None:
+        self.login(self.state["owner_a_email"])
+        self.context.grant_permissions(["clipboard-read", "clipboard-write"], origin=self.base_url)
+        case_response = self.page.request.post(
+            self.base_url + "/cases",
+            data={"title": "SYNTHETIC MATTER ONLY FIXTURE"},
+            headers=self.csrf_headers(),
+            timeout=8000,
+        )
+        self.assertEqual(case_response.status, 200, case_response.text())
+        case_id = case_response.json()["id"]
+
+        sentinel = "FIRM_DOCUMENT_ONLY_SENTINEL_4B91"
+        synthetic_docx = _synthetic_docx_bytes(
+            sentinel + " Synthetic matter-only passage for browser scope testing."
+        )
+        upload = self.page.request.post(
+            self.base_url + f"/cases/{case_id}/upload",
+            multipart={
+                "file": {
+                    "name": "synthetic-matter-fixture.docx",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "buffer": synthetic_docx,
+                }
+            },
+            headers=self.csrf_headers(),
+            timeout=8000,
+        )
+        self.assertEqual(upload.status, 200, upload.text())
+
+        self.page.locator("#side").get_by_role("button", name="البحث القانوني").click()
+        scope = self.page.locator(".research-controls select").nth(0)
+        matter = self.page.locator(".research-controls select").nth(1)
+        composer = self.page.locator(".research-composer textarea")
+
+        scope.select_option("firm_documents")
+        self.page.locator(".research-composer button").click()
+        self.assertIn("اختر ملف قضية", self.page.locator("body").inner_text())
+
+        matter.select_option(str(case_id))
+        composer.fill(sentinel)
+        self.page.locator(".research-composer button").click()
+        self.page.get_by_text("مستند مكتب غير متحقق", exact=False).wait_for(timeout=20000)
+        body = self.page.locator("body").inner_text()
+        self.assertIn(sentinel, body)
+        self.assertIn("مستند مكتب غير متحقق", body)
+
+        self.page.get_by_role("button", name="نسخ الاستشهاد").click()
+        copied_citation = self.read_clipboard()
+        self.assertTrue(copied_citation.strip())
+
+        self.page.get_by_role("button", name="نسخ المقطع الحرفي").click()
+        copied_passage = self.read_clipboard()
+        self.assertIn(sentinel, copied_passage)
+
+        with self.page.expect_download() as download_info:
+            self.page.get_by_role("button", name="تصدير مذكرة بحث").click()
+        download_path = download_info.value.path()
+        self.assertIsNotNone(download_path)
+        memo_text = Path(download_path).read_text(encoding="utf-8")
+        self.assertIn(sentinel, memo_text)
+
+        self.page.get_by_role("button", name="حفظ إلى ملف قضية").click()
+        self.page.get_by_text("تم حفظ مذكرة البحث في ملاحظات القضية", exact=False).wait_for(timeout=10000)
+        saved_case = self.page.request.get(self.base_url + f"/cases/{case_id}", timeout=8000)
+        self.assertEqual(saved_case.status, 200, saved_case.text())
+        self.assertTrue(any(sentinel in note["text"] for note in saved_case.json()["notes"]))
+
+        scope.select_option("verified_corpus")
+        # Start a fresh conversation so prior firm-matter messages are not part of this UI assertion.
+        self.page.locator(".research-list-head").get_by_role("button", name="محادثة جديدة").click()
+        self.page.locator(".research-thread .research-empty").wait_for(timeout=10000)
+        composer.fill(sentinel)
+        self.page.locator(".research-composer button").click()
+        self.page.get_by_text("لم يُعثر على نص قانوني متحقق ذي صلة", exact=False).wait_for(timeout=20000)
+        latest_assistant = self.page.locator(".research-thread .research-message.assistant").last.inner_text()
+        self.assertNotIn(sentinel, latest_assistant)
+
+        scope.select_option("verified_corpus")
+        composer.fill("synthetic verified fixture deadline example")
+        self.page.locator(".research-composer button").click()
+        self.page.get_by_text("CORPUS_ONLY_VERIFIED_SENTINEL_2C77").wait_for(timeout=12000)
+        candidate_body = self.page.locator(".research-thread").inner_text()
+        # The fixture uses example.test and has no central permission-register
+        # record, so it must remain under review rather than become verified.
+        self.assertIn("قيد المراجعة", candidate_body)
+        self.assertIn("لا تعتبره نصاً سارياً متحققاً", candidate_body)
+        self.assertNotIn("نص ساري متحقق منه", candidate_body)
+        self.assertIn("المادة 12", candidate_body)
+        self.assertIn("الصفحة 17", candidate_body)
+        candidate_assistant = self.page.locator(".research-thread .research-message.assistant").last.inner_text()
+        self.assertNotIn("FIRM_DOCUMENT_ONLY_SENTINEL_4B91", candidate_assistant)
+        assistant_bubble = self.page.locator(".research-thread .research-message.assistant").last
+        copy_answer_id = assistant_bubble.get_by_role("button", name="نسخ معرّف الإجابة")
+        self.assertEqual(copy_answer_id.count(), 1)
+        copy_answer_id.click()
+        copied_answer_id = self.read_clipboard()
+        self.assertRegex(copied_answer_id, r"^ans_[A-Za-z0-9_-]{32}$")
+
+        scope.select_option("metadata_only")
+        composer.fill("SYNTHETIC METADATA ONLY INSTRUMENT 2026")
+        self.page.locator(".research-composer button").click()
+        self.page.get_by_text("SYNTHETIC METADATA ONLY INSTRUMENT 2026").wait_for(timeout=10000)
+        discovery = self.page.locator(".research-thread").inner_text()
+        self.assertIn("لم يُسترجع أي نص قانوني", discovery)
+        self.assertNotIn(sentinel, discovery)
+
+    def test_z_research_inspector_scope_and_empty_state_are_keyboard_operable(self) -> None:
+        self.login(self.state["owner_a_email"])
+        research_nav = self.page.locator("#side").get_by_role("button", name="البحث القانوني")
+        research_nav.focus()
+        research_nav.press("Enter")
+        self.page.locator(".research-controls select").nth(0).wait_for(state="visible", timeout=10000)
+
+        scope = self.page.locator(".research-controls select").nth(0)
+        matter = self.page.locator(".research-controls select").nth(1)
+        composer = self.page.locator(".research-composer textarea")
+        send = self.page.locator(".research-composer button")
+
+        # Verify the actual Tab sequence from the scope selector through
+        # matter selection, query entry, and submission; no pointer interaction.
+        scope.focus()
+        self.assertTrue(scope.evaluate("(el) => document.activeElement === el"))
+        focusable_count = self.page.locator(
+            "button:not([disabled]), a[href], select:not([disabled]), "
+            "textarea:not([disabled]), input:not([disabled]), "
+            "[tabindex]:not([tabindex='-1'])"
+        ).count()
+        matter_reached = False
+        for _ in range(focusable_count + 2):
+            self.page.keyboard.press("Tab")
+            if matter.evaluate("(el) => document.activeElement === el"):
+                matter_reached = True
+                break
+        self.assertTrue(matter_reached, "matter selector was not reachable by Tab after scope")
+        # The conversation sidebar contains additional legitimate tab stops
+        # between the scope controls and composer. Verify they do not trap or
+        # skip keyboard focus rather than assuming an artificially short path.
+        composer_reached = False
+        # The shared synthetic fixture accumulates research-conversation
+        # controls across earlier browser cases. Bound traversal by the actual
+        # number of focusable elements rather than assuming a fixed list size.
+        for _ in range(focusable_count + 2):
+            self.page.keyboard.press("Tab")
+            if composer.evaluate("(el) => document.activeElement === el"):
+                composer_reached = True
+                break
+        self.assertTrue(composer_reached, "query composer was not reachable by Tab")
+        self.page.keyboard.press("Tab")
+        self.assertTrue(send.evaluate("(el) => document.activeElement === el"))
+
+        scope.select_option("metadata_only")
+        composer.focus()
+        self.page.keyboard.type("keyboard-only-no-source-query-xyz-2026")
+        self.page.keyboard.press("Tab")
+        self.assertTrue(send.evaluate("(el) => document.activeElement === el"))
+        self.page.keyboard.press("Enter")
+        self.page.get_by_text("لم يُعثر على بيانات وصفية مطابقة", exact=False).wait_for(timeout=10000)
+        self.assertIn(
+            "بيانات وصفية فقط",
+            self.page.locator(".research-thread").inner_text(),
+        )
+
+    def test_cross_firm_case_identifier_does_not_reveal_other_firm_sentinel(self) -> None:
+        self.login(self.state["owner_a_email"])
+        response = self.page.request.get(
+            self.base_url + f"/cases/{self.state['firm_b_case_id']}", timeout=8000
+        )
+        self.assertIn(response.status, (403, 404))
+        self.assertNotIn("CROSS_FIRM_PRIVATE_SENTINEL_7D3A", response.text())
+
+    def test_first_run_wizard_and_setup_health_are_owner_visible(self) -> None:
+        self.login(self.state["owner_a_email"])
+        language_switch = self.page.locator('[data-lang-switch="1"]').first
+        if language_switch.inner_text().strip() == "العربية":
+            language_switch.click()
+        self.page.get_by_role("button", name="بدء الاستخدام").click()
+        self.page.get_by_role("heading", name="بدء استخدام المكتب").wait_for()
+        self.assertTrue(self.page.get_by_text("بيانات المكتب", exact=True).is_visible())
+        self.assertTrue(self.page.get_by_text("ادعُ زميلاً إلى المكتب", exact=True).is_visible())
+        self.page.get_by_role("button", name="فتح فحص صحة الإعداد").click()
+        self.page.get_by_role("heading", name="صحة إعداد المكتب").wait_for()
+        for label in (
+            "خادم تذكيرات البريد الإلكتروني",
+            "الرابط العام الآمن",
+            "مفتاح تشفير المصادقة الثنائية",
+        ):
+            self.assertTrue(self.page.get_by_text(label, exact=True).is_visible(), label)
+
+    def test_owner_can_login_create_case_deadline_and_issue_invoice_on_phone_and_desktop(self) -> None:
+        for width, height in ((390, 844), (1440, 900)):
+            self.page.set_viewport_size({"width": width, "height": height})
+            if self.page.url and self.page.url.startswith(self.base_url):
+                self.page.evaluate("() => { sessionStorage.clear(); localStorage.removeItem('lc_me'); }")
+                self.context.clear_cookies()
+            self.login(self.state["owner_a_email"])
+            navigation = self.page.get_by_role("navigation", name="روابط التنقل")
+            self.assertTrue(navigation.is_visible(), f"primary navigation missing at {width}px")
+            body_font_size = self.page.locator("body").evaluate("(el) => parseFloat(getComputedStyle(el).fontSize)")
+            self.assertGreaterEqual(body_font_size, 14, f"body text too small at {width}px: {body_font_size}")
+            self.page.wait_for_function(
+                "() => document.documentElement.scrollWidth <= window.innerWidth",
+                timeout=8000,
+            )
+
+            case_title = f"SYNTHETIC PILOT UI CASE {width}"
+            self.page.get_by_role("button", name="+ قضية جديدة").click()
+            dialog = self.page.get_by_role("dialog", name="قضية جديدة")
+            dialog.get_by_placeholder("عنوان القضية").fill(case_title)
+            dialog.get_by_placeholder("اسم العميل (اختياري)").fill(f"عميل تجريبي {width}")
+            dialog.get_by_role("button", name="حفظ القضية").click()
+            self.page.get_by_text(case_title, exact=True).wait_for(timeout=10000)
+
+            self.page.locator(".tabs a").filter(has_text="المواعيد القانونية").click()
+            deadline_title = self.page.get_by_placeholder("نوع الموعد (استئناف، طعن، تقديم مستند...)")
+            deadline_title.fill(f"موعد تجريبي {width}")
+            deadline_date = self.page.locator('input[type="date"]').nth(1)  # first date belongs to the draft calculator
+            deadline_date.fill("2026-12-10")
+            self.assertEqual(deadline_title.input_value(), f"موعد تجريبي {width}")
+            self.assertEqual(deadline_date.input_value(), "2026-12-10")
+            self.page.get_by_role("button", name="إضافة موعد").click()
+            try:
+                self.page.get_by_text(f"موعد تجريبي {width}", exact=True).wait_for(timeout=10000)
+            except PlaywrightTimeoutError as exc:
+                raise AssertionError(
+                    f"Deadline did not appear at {width}px; "
+                    f"title={deadline_title.input_value()!r}; date={deadline_date.input_value()!r}; "
+                    f"toast={self.page.locator('#toast').inner_text(timeout=1000)!r}; "
+                    f"body={self.page.locator('body').inner_text(timeout=1500)[:1800]!r}; "
+                    f"browser_errors={self.browser_errors}; network_errors={self.network_errors}"
+                ) from exc
+
+            # Exercise the actual rule-driven calculator, including its explanation
+            # and explicit unverified-draft status, at both phone and desktop widths.
+            catalog = self.page.request.get(self.base_url + "/deadline-rules", timeout=8000)
+            self.assertEqual(catalog.status, 200, catalog.text())
+            draft_rule = next(rule for rule in catalog.json()["rules"] if not rule["verified"])
+            rule_select = self.page.locator(".card select").first
+            rule_select.select_option(draft_rule["id"])
+            trigger_date = self.page.locator('.card input[type="date"]').first
+            trigger_date.fill("2026-10-26")
+            self.page.get_by_role("button", name="حساب موعد مبدئي").click()
+            self.page.get_by_text("مسودة — غير معتمدة من محامٍ", exact=False).wait_for(timeout=10000)
+            self.page.get_by_text("أساس الحساب والافتراضات — للمراجعة فقط", exact=False).wait_for(timeout=10000)
+            self.page.get_by_text("خطوات الحساب", exact=True).wait_for(timeout=10000)
+            self.page.wait_for_function(
+                "() => document.documentElement.scrollWidth <= window.innerWidth",
+                timeout=8000,
+            )
+            for selector in (
+                '.card input[type="date"]',
+                ".card select",
+            ):
+                bounds = self.page.locator(selector).first.bounding_box()
+                self.assertIsNotNone(bounds, f"{selector} is not laid out at {width}px")
+                self.assertGreaterEqual(bounds["x"], 0, f"{selector} clipped at {width}px: {bounds}")
+                self.assertLessEqual(
+                    bounds["x"] + bounds["width"], width,
+                    f"{selector} clipped at {width}px: {bounds}",
+                )
+            self.page.get_by_role("button", name="حفظ الموعد المحسوب في القضية").click()
+            self.page.get_by_text("تم حفظ الموعد مع خطوات الحساب والتحذيرات", exact=False).wait_for(timeout=10000)
+
+            self.assertEqual(self.browser_errors, [], f"browser errors before invoice at {width}px: {self.browser_errors}")
+            self.page.locator(".tabs a").filter(has_text="الفواتير").click()
+            self.page.get_by_placeholder("وصف الفاتورة أو نطاق العمل").fill(
+                f"فاتورة اختبار {width}"
+            )
+            self.page.get_by_placeholder("بيان الخدمة").fill("أتعاب استشارية تجريبية")
+            self.page.get_by_placeholder("سعر الوحدة بالجنيه").fill("125.00")
+            self.page.get_by_role("button", name="إنشاء مسودة فاتورة").click()
+            issue = self.page.get_by_role("button", name="إصدار الفاتورة")
+            issue.wait_for(timeout=10000)
+            self.page.once("dialog", lambda prompt: prompt.accept())
+            issue.click()
+            self.page.get_by_text("غير مدفوعة", exact=False).wait_for(timeout=10000)
+            issued_invoice_text = self.page.locator("body").inner_text()
+            self.assertIn("INV-2026-", issued_invoice_text)
+            self.assertIn("أتعاب استشارية تجريبية", issued_invoice_text)
+            self.page.wait_for_function(
+                "() => document.documentElement.scrollWidth <= window.innerWidth",
+                timeout=8000,
+            )
+
+            # Firm export is an end-user workflow, not merely an API contract.
+            self.page.get_by_role("button", name="الإعدادات والأمان").click()
+            export_button = self.page.get_by_role("button", name="تنزيل بيانات المكتب ZIP")
+            export_button.wait_for(state="visible", timeout=10000)
+            export_bounds = export_button.bounding_box()
+            self.assertIsNotNone(export_bounds, f"firm export action missing at {width}px")
+            self.assertGreaterEqual(export_bounds["x"], 0, f"firm export clipped at {width}px: {export_bounds}")
+            self.assertLessEqual(
+                export_bounds["x"] + export_bounds["width"], width,
+                f"firm export clipped at {width}px: {export_bounds}",
+            )
+            self.page.wait_for_function(
+                "() => document.documentElement.scrollWidth <= window.innerWidth",
+                timeout=8000,
+            )
+            # Earlier browser cases exercise the same per-IP export budget.
+            # Reset only the loopback browser-test client's synthetic bucket in
+            # this disposable control database; preserve every other client key.
+            control = self.runtime.control_connection()
+            control.execute(
+                "DELETE FROM api_rate_limit_windows WHERE bucket=? AND client_key=?",
+                ("/firm/data-export.zip", "127.0.0.1"),
+            )
+            control.commit()
+            with self.page.expect_download(timeout=15000) as export_download:
+                export_button.click()
+            exported = export_download.value
+            self.assertTrue(exported.suggested_filename.endswith(".zip"), exported.suggested_filename)
+            self.assertIsNone(exported.failure(), exported.failure())
+            self.assertEqual(self.browser_errors, [], f"browser errors at {width}px: {self.browser_errors}")
+
+    def test_invalid_utf8_matter_csv_is_rejected_before_network_submission(self) -> None:
+        self.login(self.state["owner_a_email"])
+        self.page.get_by_role("button", name="القضايا", exact=True).click()
+        submitted = []
+        self.page.on(
+            "request",
+            lambda request: submitted.append(request.url)
+            if request.url.endswith("/cases/import.csv") else None,
+        )
+        self.page.locator('input[type="file"][accept=".csv,text/csv"]').set_input_files(
+            {
+                "name": "invalid-utf8.csv",
+                "mimeType": "text/csv",
+                "buffer": b"title,client\nInvalid \xff name,Example Client\n",
+            }
+        )
+        self.page.get_by_text("يجب أن يكون الملف بترميز UTF-8 صالح", exact=True).wait_for(timeout=5000)
+        self.assertEqual(submitted, [], "invalid UTF-8 must be rejected before the import API is called")
+
+    def test_platform_pilot_metrics_navigation_is_operator_only(self) -> None:
+        self.login(self.state["owner_a_email"])
+        metrics_link = self.page.get_by_role("button", name="مؤشرات استخدام المكاتب")
+        self.assertEqual(metrics_link.count(), 0, "firm owners must not see platform pilot metrics")
+        self.context.clear_cookies()
+        self.login(self.state["reviewer_email"])
+        metrics_link = self.page.get_by_role("button", name="مؤشرات استخدام المكاتب")
+        self.assertEqual(metrics_link.count(), 1, "platform admins should have a metrics navigation entry")
+        metrics_link.click()
+        self.page.get_by_role("heading", name="مؤشرات استخدام المكاتب").wait_for()
+        self.assertTrue(self.page.get_by_role("button", name="تصدير CSV").is_visible())
+        self.assertTrue(self.page.get_by_text("تسجيلات الدخول الناجحة تظل أحداثاً وليست أشخاصاً فريدين", exact=False).is_visible())
+        self.assertTrue(self.page.get_by_text("المستخدمون النشطون أسبوعياً", exact=False).first.is_visible())
+        self.assertTrue(self.page.get_by_text("مدة إعداد المكاتب", exact=False).is_visible())
+
+    def test_expired_session_returns_to_login(self) -> None:
+        self.login(self.state["owner_a_email"])
+        self.context.clear_cookies()
+        self.page.reload(wait_until="domcontentloaded")
+        self.page.locator('input[type="email"]').wait_for(state="visible", timeout=15000)
+
+    def test_corpus_coverage_exposes_loading_and_error_states(self) -> None:
+        self.login(self.state["reviewer_email"])
+        self.page.evaluate(
+            """() => {
+                const originalFetch = window.fetch.bind(window);
+                window.fetch = (input, init) => {
+                    if (String(input) === '/legal-review/coverage') {
+                        return new Promise(resolve => {
+                            window.__resolveCoverage = () => resolve(new Response(
+                                JSON.stringify({detail: 'synthetic fixture failure'}),
+                                {status: 503, headers: {'content-type': 'application/json'}}
+                            ));
+                        });
+                    }
+                    return originalFetch(input, init);
+                };
+            }"""
+        )
+        self.page.get_by_role("button", name="تغطية المجموعة القانونية").click()
+        self.page.get_by_text("جارٍ تحميل المؤشرات…").wait_for(timeout=10000)
+        self.page.evaluate("() => window.__resolveCoverage()")
+        self.page.get_by_text("تعذر تحميل المؤشرات. أعد المحاولة.").wait_for(timeout=10000)
+
+    def test_arabic_rtl_and_english_ltr_have_no_mobile_horizontal_overflow(self) -> None:
+        self.stage("rtl.login.start")
+        self.login(self.state["reviewer_email"])
+        self.stage("rtl.login.done")
+        self.page.get_by_role("button", name="تغطية المجموعة القانونية").click()
+        self.stage("rtl.coverage.click.done")
+        self.page.get_by_role("heading", name="تغطية المجموعة القانونية").wait_for(timeout=10000)
+        self.stage("rtl.coverage.visible")
+
+        for width, height in ((1440, 900), (1024, 768), (768, 1024), (390, 844), (360, 800), (320, 740)):
+            self.stage(f"rtl.viewport.{width}.start")
+            self.page.set_viewport_size({"width": width, "height": height})
+            self.stage(f"rtl.viewport.{width}.done")
+            self.page.wait_for_function(
+                "() => document.documentElement.scrollWidth <= window.innerWidth",
+                timeout=8000,
+            )
+            self.stage(f"rtl.overflow-check.{width}.done")
+
+        self.page.locator("[data-lang-switch='1']").click()
+        self.stage("ltr.switch.click.done")
+        self.page.get_by_text("Corpus Coverage & Provenance").wait_for(timeout=10000)
+        self.page.get_by_role("heading", name="Candidate instrument inventory").wait_for(timeout=10000)
+        self.page.get_by_text("This denominator describes the planning inventory only", exact=False).wait_for(timeout=10000)
+        self.page.wait_for_function(
+            "() => document.documentElement.dir === 'ltr'",
+            timeout=8000,
+        )
+        self.stage("ltr.direction.done")
+        for width, height in ((1440, 900), (1024, 768), (768, 1024), (390, 844), (360, 800), (320, 740)):
+            self.stage(f"ltr.viewport.{width}.start")
+            self.page.set_viewport_size({"width": width, "height": height})
+            self.stage(f"ltr.viewport.{width}.done")
+            self.page.wait_for_function(
+                "() => document.documentElement.scrollWidth <= window.innerWidth",
+                timeout=8000,
+            )
+            self.stage(f"ltr.overflow-check.{width}.done")
+
+        self.page.keyboard.press("Tab")
+        self.page.wait_for_function(
+            "() => !!document.activeElement && document.activeElement !== document.body",
+            timeout=8000,
+        )
+        self.stage("keyboard.focus.done")
+
+
+    def test_phone_ui_readability_navigation_targets_and_contrast(self) -> None:
+        self.page.set_viewport_size({"width": 390, "height": 844})
+        self.login(self.state["owner_a_email"])
+
+        ui_contract = self.page.evaluate("""() => {
+            const visible = (el) => {
+                const style = getComputedStyle(el);
+                return !!el.getClientRects().length &&
+                    style.display !== 'none' && style.visibility !== 'hidden';
+            };
+            const rgb = (value) => {
+                const match = value.match(/[\\d.]+/g);
+                if (!match || match.length < 3) return null;
+                return match.slice(0, 3).map(Number);
+            };
+            const luminance = (value) => {
+                const channels = rgb(value);
+                if (!channels) return null;
+                const linear = channels.map((v) => {
+                    const c = v / 255;
+                    return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+                });
+                return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2];
+            };
+            const contrast = (foreground, background) => {
+                const a = luminance(foreground), b = luminance(background);
+                if (a === null || b === null) return null;
+                return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+            };
+            const nav = document.querySelector('#side nav');
+            const hint = nav && nav.querySelector('.nav-scroll-hint');
+            const targets = [...document.querySelectorAll(
+                'button, input, select, textarea, #side a[role="button"], .tabs a'
+            )].filter(visible).map((el) => ({
+                tag: el.tagName.toLowerCase(),
+                text: (el.innerText || el.getAttribute('aria-label') || el.placeholder || '').trim().slice(0, 60),
+                height: el.getBoundingClientRect().height
+            }));
+            const bodyStyle = getComputedStyle(document.body);
+            const bodyContrast = contrast(bodyStyle.color, bodyStyle.backgroundColor);
+            const primary = [...document.querySelectorAll('button')].find(
+                (el) => visible(el) && !el.disabled && !el.classList.contains('g') && !el.classList.contains('d')
+            );
+            const primaryContrast = primary
+                ? contrast(getComputedStyle(primary).color, getComputedStyle(primary).backgroundColor)
+                : null;
+            return {
+                bodyFontSize: parseFloat(bodyStyle.fontSize),
+                bodyContrast,
+                primaryContrast,
+                navigationCount: document.querySelectorAll('nav[aria-label]').length,
+                navigationLabel: nav && nav.getAttribute('aria-label'),
+                scrollHintCount: hint ? 1 : 0,
+                scrollHintVisible: !!hint && visible(hint),
+                navigationScrollable: !!nav && nav.scrollWidth > nav.clientWidth,
+                targets,
+                documentWidth: document.documentElement.scrollWidth,
+                viewportWidth: window.innerWidth
+            };
+        }""")
+
+        self.assertGreaterEqual(ui_contract["bodyFontSize"], 14, ui_contract)
+        self.assertEqual(ui_contract["navigationCount"], 1, ui_contract)
+        self.assertTrue(ui_contract["navigationLabel"], ui_contract)
+        self.assertEqual(ui_contract["scrollHintCount"], 1, ui_contract)
+        self.assertTrue(ui_contract["scrollHintVisible"], ui_contract)
+        self.assertTrue(ui_contract["navigationScrollable"], ui_contract)
+        self.assertLessEqual(ui_contract["documentWidth"], ui_contract["viewportWidth"], ui_contract)
+        undersized = [target for target in ui_contract["targets"] if target["height"] < 44]
+        self.assertEqual(undersized, [], f"Interactive targets below 44px: {undersized}")
+        self.assertIsNotNone(ui_contract["bodyContrast"], ui_contract)
+        self.assertGreaterEqual(ui_contract["bodyContrast"], 4.5, ui_contract)
+        self.assertIsNotNone(ui_contract["primaryContrast"], ui_contract)
+        self.assertGreaterEqual(ui_contract["primaryContrast"], 4.5, ui_contract)
+
+        # Re-open the unauthenticated login screen at phone width and verify
+        # that the card and fields remain inside the viewport.
+        self.context.clear_cookies()
+        self.page.reload(wait_until="domcontentloaded")
+        self.page.locator('input[type="email"]').wait_for(state="visible", timeout=10000)
+        login_layout = self.page.evaluate("""() => {
+            const card = document.querySelector('.auth-card');
+            const email = document.querySelector('input[type="email"]');
+            const password = document.querySelector('input[type="password"]');
+            const bounds = (el) => {
+                const r = el.getBoundingClientRect();
+                return {left: r.left, right: r.right, width: r.width, height: r.height};
+            };
+            return {
+                card: card ? bounds(card) : null,
+                email: email ? bounds(email) : null,
+                password: password ? bounds(password) : null,
+                viewportWidth: window.innerWidth,
+                documentWidth: document.documentElement.scrollWidth
+            };
+        }""")
+        self.assertIsNotNone(login_layout["card"], login_layout)
+        for name in ("card", "email", "password"):
+            bounds = login_layout[name]
+            self.assertGreaterEqual(bounds["left"], 0, login_layout)
+            self.assertLessEqual(bounds["right"], login_layout["viewportWidth"], login_layout)
+            self.assertGreaterEqual(bounds["height"], 44, login_layout)
+        self.assertLessEqual(login_layout["documentWidth"], login_layout["viewportWidth"], login_layout)
+        self.assertEqual(self.browser_errors, [], self.browser_errors)
+
+
+    def test_expired_trial_banner_keeps_payment_and_zip_export_available(self) -> None:
+        control = self.runtime.control_connection()
+        try:
+            self.login(self.state["owner_a_email"])
+            started = self.page.request.post(
+                self.base_url + "/billing/subscribe",
+                data={"plan_code": "solo"},
+                headers=self.csrf_headers(),
+            )
+            self.assertEqual(started.status, 200, started.text())
+
+            expired_at = int(time.time()) - 3600
+            control.execute(
+                "UPDATE firm_subscriptions SET trial_ends_at=? WHERE firm_id=?",
+                (expired_at, self.state["firm_a_id"]),
+            )
+            control.commit()
+
+            self.page.get_by_role("button", name="الإعدادات والأمان").click()
+            self.page.get_by_text("الاشتراك منتهي؛ الدعوات والتعديلات متوقفة في وضع القراءة فقط.", exact=True).wait_for(timeout=10000)
+            settings_body = self.page.locator("body").inner_text()
+            self.assertIn("تم الوصول إلى حد المقاعد. غيّر الخطة قبل دعوة مستخدم آخر.", settings_body)
+            self.assertTrue(self.page.get_by_role("button", name="إرسال دعوة").is_disabled())
+
+            with self.page.expect_download(timeout=15000) as download_info:
+                self.page.get_by_role("button", name="تنزيل بيانات المكتب ZIP").click()
+            download = download_info.value
+            self.assertTrue(download.suggested_filename.endswith(".zip"), download.suggested_filename)
+            self.assertIsNone(download.failure(), download.failure())
+
+            self.page.get_by_role("button", name="فتح الفوترة").click()
+            self.page.get_by_text("المكتب في وضع القراءة فقط", exact=True).wait_for(timeout=10000)
+            billing_body = self.page.locator("body").inner_text()
+            self.assertIn("الخطة:", billing_body)
+            self.assertIn("solo", billing_body)
+            self.assertIn("الأيام المتبقية: 0", billing_body)
+            self.assertIn("أيام فترة السماح للقراءة فقط:", billing_body)
+            self.assertIn("إرسال إثبات التحويل للمراجعة", billing_body)
+            self.assertEqual(self.browser_errors, [], self.browser_errors)
+        finally:
+            # This class shares one synthetic tenant across browser tests.
+            # Remove this test's temporary subscription so other workflows stay writable.
+            control.execute("DELETE FROM subscription_audit_events WHERE firm_id=?", (self.state["firm_a_id"],))
+            control.execute("DELETE FROM firm_subscriptions WHERE firm_id=?", (self.state["firm_a_id"],))
+            control.commit()
+            self.assertEqual(control.execute("SELECT COUNT(*) FROM firm_subscriptions WHERE firm_id=?", (self.state["firm_a_id"],)).fetchone()[0], 0)
+            self.assertEqual(control.execute("SELECT COUNT(*) FROM subscription_audit_events WHERE firm_id=?", (self.state["firm_a_id"],)).fetchone()[0], 0)
+
+    def test_skip_link_and_modal_focus_are_visible_and_keyboard_safe_at_320px(self) -> None:
+        self.page.set_viewport_size({"width": 320, "height": 740})
+        self.login(self.state["owner_a_email"])
+
+        # The skip link must be the first keyboard stop and must leave a
+        # visible focus indicator on the main landmark after activation.
+        self.page.evaluate("() => document.activeElement && document.activeElement.blur()")
+        self.page.keyboard.press("Tab")
+        skip_link = self.page.locator("a.skip-link")
+        self.assertTrue(skip_link.evaluate("(el) => document.activeElement === el"))
+        self.assertTrue(skip_link.is_visible())
+        self.page.keyboard.press("Enter")
+        main = self.page.locator("main#main")
+        self.assertTrue(main.evaluate("(el) => document.activeElement === el"))
+        main_outline = main.evaluate("(el) => getComputedStyle(el).outlineStyle")
+        self.assertNotEqual(main_outline, "none", "Skip-link destination must retain a visible focus indicator")
+
+        self.page.wait_for_function(
+            "() => document.documentElement.scrollWidth <= window.innerWidth",
+            timeout=8000,
+        )
+
+        # Verify the modal's real keyboard trap in both directions, Escape
+        # dismissal, and focus restoration to the invoking control.
+        opener = self.page.get_by_role("button", name="+ قضية جديدة")
+        opener.focus()
+        opener.click()
+        dialog = self.page.get_by_role("dialog", name="قضية جديدة")
+        dialog.wait_for(state="visible")
+        labelled_by = dialog.get_attribute("aria-labelledby")
+        self.assertTrue(labelled_by, "Dialog must reference its visible heading")
+        self.assertEqual(dialog.locator("#" + labelled_by).inner_text(), "قضية جديدة")
+        title = dialog.get_by_placeholder("عنوان القضية")
+        save = dialog.get_by_role("button", name="حفظ القضية")
+        self.assertTrue(title.evaluate("(el) => document.activeElement === el"))
+
+        title.focus()
+        self.page.keyboard.press("Shift+Tab")
+        self.assertTrue(save.evaluate("(el) => document.activeElement === el"),
+                        "Shift+Tab from first modal control must wrap to last")
+        self.page.keyboard.press("Tab")
+        self.assertTrue(title.evaluate("(el) => document.activeElement === el"),
+                        "Tab from last modal control must wrap to first")
+        self.page.keyboard.press("Escape")
+        self.assertEqual(dialog.count(), 0, "Escape should dismiss the modal")
+        self.assertTrue(opener.evaluate("(el) => document.activeElement === el"),
+                        "Closing the modal must restore focus to its opener")
+        self.page.wait_for_function(
+            "() => document.documentElement.scrollWidth <= window.innerWidth",
+            timeout=8000,
+        )
+        self.assertEqual(self.browser_errors, [], self.browser_errors)
+
+    def test_forced_colors_and_reduced_motion_preserve_keyboard_focus(self) -> None:
+        self.page.emulate_media(forced_colors="active", reduced_motion="reduce")
+        self.login(self.state["owner_a_email"])
+        self.page.evaluate("() => document.activeElement && document.activeElement.blur()")
+        self.page.keyboard.press("Tab")
+        skip_link = self.page.locator("a.skip-link")
+        self.assertTrue(skip_link.evaluate("(el) => document.activeElement === el"))
+
+        motion = self.page.evaluate("""() => {
+            const style = getComputedStyle(document.querySelector('a.skip-link'));
+            return {
+                transitionDuration: style.transitionDuration,
+                animationDuration: style.animationDuration
+            };
+        }""")
+        self.assertLessEqual(float(motion["transitionDuration"].removesuffix("s")), 0.00002, motion)
+        self.assertLessEqual(float(motion["animationDuration"].removesuffix("s")), 0.00002, motion)
+
+        self.page.keyboard.press("Enter")
+        main = self.page.locator("main#main")
+        self.assertTrue(main.evaluate("(el) => document.activeElement === el"))
+        self.assertNotEqual(
+            main.evaluate("(el) => getComputedStyle(el).outlineStyle"),
+            "none",
+            "Keyboard focus must remain visible in forced-colors mode",
+        )
+        self.assertEqual(self.browser_errors, [], self.browser_errors)
+
+    def test_visible_controls_have_accessible_names_in_dashboard_research_and_dialog(self) -> None:
+        self.page.set_viewport_size({"width": 320, "height": 740})
+        self.login(self.state["owner_a_email"])
+
+        def assert_named_controls(scope: str) -> None:
+            missing = self.page.evaluate("""(scope) => {
+                const root = document.querySelector(scope);
+                if (!root) return [{scope, reason: 'scope missing'}];
+                const visible = (el) => {
+                    const style = getComputedStyle(el);
+                    return !!el.getClientRects().length &&
+                        style.display !== 'none' && style.visibility !== 'hidden' &&
+                        el.getAttribute('aria-hidden') !== 'true';
+                };
+                const named = (el) => {
+                    if ((el.getAttribute('aria-label') || '').trim()) return true;
+                    const ids = (el.getAttribute('aria-labelledby') || '').split(/\\s+/).filter(Boolean);
+                    if (ids.some((id) => (document.getElementById(id)?.innerText || '').trim())) return true;
+                    if (el.labels && [...el.labels].some((label) => label.innerText.trim())) return true;
+                    if (['BUTTON', 'A'].includes(el.tagName) && (el.innerText || '').trim()) return true;
+                    if (el.tagName === 'INPUT' && ['submit', 'button', 'reset'].includes(el.type) && el.value.trim()) return true;
+                    return false;
+                };
+                // Regression guard: placeholder-only text must never count as a persistent label.
+                const placeholderOnly = document.createElement('input');
+                placeholderOnly.placeholder = 'Only placeholder; intentionally no label';
+                if (named(placeholderOnly)) {
+                    return [{tag: 'INPUT', reason: 'placeholder-only input was incorrectly accepted as named'}];
+                }
+                return [...root.querySelectorAll(
+                    'button, input:not([type="hidden"]), select, textarea, a[href], [role="button"], [role="tab"]'
+                )].filter(visible).filter((el) => !named(el)).map((el) => ({
+                    tag: el.tagName,
+                    type: el.type || '',
+                    role: el.getAttribute('role') || '',
+                    html: el.outerHTML.slice(0, 220)
+                }));
+            }""", scope)
+            self.assertEqual(missing, [], f"Visible controls without accessible names in {scope}: {missing}")
+
+        assert_named_controls("#shell")
+        self.page.get_by_role("button", name="البحث القانوني", exact=True).click()
+        self.page.locator(".research-controls select").first.wait_for(state="visible")
+        assert_named_controls("#main")
+        self.page.get_by_role("button", name="نظرة عامة").click()
+        opener = self.page.get_by_role("button", name="+ قضية جديدة")
+        opener.click()
+        self.page.get_by_role("dialog", name="قضية جديدة").wait_for(state="visible")
+        assert_named_controls(".modal-backdrop")
+        self.page.keyboard.press("Escape")
+
+        self.page.get_by_role("button", name="العملاء وتعارض المصالح", exact=True).click()
+        client_button = self.page.get_by_role("button", name="+ ملف عميل جديد")
+        client_button.wait_for(state="visible")
+        client_button.click()
+        client_dialog = self.page.get_by_role("dialog", name="ملف عميل جديد")
+        client_dialog.wait_for(state="visible")
+        client_labelled_by = client_dialog.get_attribute("aria-labelledby")
+        self.assertTrue(client_labelled_by, "Client dialog must reference its visible heading")
+        self.assertEqual(client_dialog.locator("#" + client_labelled_by).inner_text(), "ملف عميل جديد")
+        assert_named_controls(".modal-backdrop")
+        self.assertEqual(self.browser_errors, [], self.browser_errors)
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

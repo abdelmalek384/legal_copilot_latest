@@ -1,0 +1,16 @@
+
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+*.db
+*.sqlite
+*.sqlite3
+.DS_Store
+# Production runtime state, acceptance evidence and backup artifacts must never enter Git.
+runtime-data/
+secrets/
+backups/

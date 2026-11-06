@@ -1,0 +1,315 @@
+# Labour Law No. 14 of 2025 — implementing-instrument currentness register
+
+**As-of date:** 2026-10-31  
+**Purpose:** Track official-source leads that can affect interpretation or currentness of candidate cards. This is a research register, not a complete statement of current law.  
+**Activation status:** All candidate cards remain provisional; `search_eligible: false`.
+
+## A. Officially located instruments and announcements
+
+| Instrument / source | Official evidence located | Relevant card families | What is established | What remains unverified |
+|---|---|---|---|---|
+| Ministerial Decree 49/2026 — hazardous/difficult work and remote areas qualifying for +7 annual-leave days | Ministry of Labour announcement dated 2026-03-26: https://www.labour.gov.eg/ar/الأخبار/لتحقق-التوازن-بين-متطلبات-الإنتاج-وصون-حقوق-القوى-العاملة-وزير-العمل-يصدر-قرار-ا-وزاري-ا-بتحديد-الأعمال-الخطرة-والمناطق-النائية-التي-ت-زاد-فيها-الإجازات-السنوية-7-أيام-للعاملين/ | Article 124 annual leave | The Ministry announced Decree 49/2026 and describes categories of dangerous/difficult work and remote areas for the statutory seven-day annual-leave increase. | Full Arabic decision, Gazette issue/date, exact schedules and amendments have not been compared against the official text. Do not infer eligibility from the announcement summary alone. |
+| Ministry Circular 22/2026 — event-specific October 2026 holiday guidance | Ministry announcement dated 2026-10-01: https://www.labour.gov.eg/ar/الأخبار/لتوحيد-مواعيد-الإجازات-الرسمية-في-قطاعات-الدولة-المختلفة-وزير-العمل-الخميس-المقبل-إجازة-مدفوعة-الأجر-للعاملين-بالقطاع-الخاص-بمناسبة-ذكرى-نصر-أكتوبر-المجيد/ | Article 129; holiday card set | The Ministry identifies Circular 22/2026 for the 8 October 2026 holiday and confirms that Decree 294/2025 lists Armed Forces Day (6 October) among paid holidays. | Event-specific guidance only; it is not a full text of Decree 294/2025 and does not establish a permanent amendment or the complete current holiday list. |
+| Ministerial Decree 294/2025 — paid holidays and occasions | Ministry of Labour announcement dated 2026-01-05 identifies Decree 294/2025 and quotes the 7 January holiday: https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-الأربعاء-المقبل-إجازة-مدفوعة-الأجر-للعاملين-بالقطاع-الخاص-بمناسبة-عيد-الميلاد-المجيد-جبران-وحدة-المصريين-والعمل-المشترك-أساس-قوة-الوطن/ | Articles 129 and 128/129 leave-related scenarios | The Ministry links the holiday to Article 129 and Decree 294/2025, and describes double pay or an alternative day on written request when work is required. | Full decision and complete holiday list, Gazette publication/effective date, and later changes still need primary-text verification. |
+| Decrees 248–252/2026 — occupational safety and health | Ministry of Labour announcement dated 2026-10-20: https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يصدر-5-قرارات-تنفيذية-لتعزيز-منظومة-السلامة-والصحة-المهنية-وتأمين-بيئة-العمل/ | Separate occupational-safety corpus (to be mapped to the relevant safety chapter after article-level review) | The Ministry officially announces five instruments and describes coverage including workplace risks, accidents, occupational disease, safety units/committees, and technical safety standards. | Exact decree-to-topic mapping, full text, Gazette metadata and effective dates are not verified. Do not treat these as amendments to sick-leave Article 131; only add cross-links after provision-level evidence is obtained. |
+| Ministerial Decree 162/2026 — general rules for workplace regulations in private-sector establishments | Ministry of Labour announcement dated 2026-09-05: https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يعلن-نص-القواعد-العامة-للائحة-تنظيم-العمل-بالقطاع-الخاص/ ; Gazette-publisher repository metadata: https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full | Article 4 and Articles 137–141 (work regulations and disciplinary sanctions/procedure), subject to exact-text mapping | Ministry announcement identifies general workplace-regulation rules as an implementing instrument for private-sector establishments with 10 or more workers. Repository metadata identifies Decree 162/2026 and a Gazette supplement record. | The repository's PDF links require a copy request. No PDF was downloaded or reviewed; exact clauses, Gazette date/issue, effective date and article-level impact remain unresolved. Do not infer a direct effect on working-hour or leave articles without textual comparison. Do not request a copy from the holder under the current source-acquisition constraint. |
+| Ministerial Decrees 290/2025 and 291/2025 — intermittent work/presence time and overtime controls | Amiri Press publisher metadata for Egyptian Proceedings Supplement issue 295 (تابع د), dated 2025-12-30, hosted at https://dspace.id.com.eg/items/32fa3458-c4a5-4a6a-950c-23c6c74d41c1; secondary full texts at https://lawhub.info/eg/?p=17303 and https://lawhub.info/eg/?p=17302 | Articles 117–123 (working time, breaks, span, overtime) | Official issue metadata lists both decisions by number/title; Law Hub secondary transcriptions expose Articles 1–4 of Decision 290 and Articles 1–5 of Decision 291. | The 550.3 KB official issue PDF is request-a-copy restricted; no primary bytes obtained. Secondary texts are not Gazette-verified. Commencement, later changes, the Article 2 schedule, Decision 291 Article 4 annual cap, reuse and counsel review remain open. |
+| Ministerial Decree 346/2025 — religious holidays for Christian workers | Secondary instrument index only: https://www.careerians.com/egyptian-labor-law/اللائحة-التنفيذية-قانون-العمل-14-2025/ | Article 129 holiday entitlement; related card set | A secondary index identifies this decree and subject. | Official primary text, scope, publication/effective date and interaction with Decree 294/2025 are not verified. |
+| Decree 187/2025 — resignation approval procedures | Secondary instrument index only: https://www.careerians.com/egyptian-labor-law/اللائحة-التنفيذية-قانون-العمل-14-2025/ | Future termination/resignation card set; not a direct leave-card amendment identified | A secondary index identifies this decree and subject. | Official primary text and Gazette metadata not verified in this task. |
+
+
+## Decision 290/2025 — exact identity and secondary-text corroboration (2026-10-31)
+
+The previously uncertain “intermittent-work” subject is now identified by two public secondary full-text transcriptions:
+
+- Law Hub: https://lawhub.info/eg/?p=17303
+- EastLaws: https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-290?id=5008505&type=1
+
+Both identify the title as Decision 290/2025 on intermittent work by nature where a worker may be present for more than ten hours but no more than twelve hours per day. EastLaws states that the decision was issued on 2025-12-11, published in Egyptian Proceedings issue 295 Supplement D on 2025-12-30, and effective 2025-12-31. Those dates remain secondary-derived until checked against the promulgated Gazette text.
+
+The secondary texts expose Articles 1–4. In summary only: Article 1 sets a ten-hour daily span between start and finish, counts rest as presence time when the worker remains at the workplace, and creates an exception for the Article 2 intermittent-work categories up to twelve hours' presence. Article 2 defines intermittent work by intervening stoppage/waiting periods and lists seven categories: passenger/goods transport; crop warehouses; specified vessel mooring, lighting and ship-repair work; emergency healthcare; transport/logistics with waiting between trips; on-demand online technical support; and data-centre/cloud monitoring. Article 3 permits a special schedule up to twelve hours' presence, requires additional pay for actual work beyond the establishment's normal hours under Law 14/2025 Article 121, and requires records of normal/overtime hours, breaks and presence. Article 4 provides next-day commencement. This is an issue-spotting summary, not a Gazette-verified transcription.
+
+A third-party MELES DSpace record (https://dspace.id.com.eg/items/c2f1917d-0c72-4f51-b207-04d76e56a829/full) attributes the item to the Ministry of Labour, identifies MELES as publisher, gives an issue date of 2025-12-11, and lists separate English (103.23 KB) and Arabic (105.2 KB) PDFs. Neither file nor item-specific licence was opened or obtained; no local bytes/hash exist. The repository's published End User Agreement requires prior written permission for commercial exploitation and systematic database compilation. This metadata is a third-party discovery lead, not an official Gazette copy and not permission to collect or reuse.
+
+The official issue 295 DSpace PDF remains request-a-copy restricted. A separate SIS search-indexed Ministry record dated 2025-12-26 is titled “Decision (290) of 2025” and labels the item public text/image, but the item page and file were not accessed; this does not establish that the complete decision text is publicly available there.
+
+**Verification classification:** G3 secondary corroboration plus third-party metadata; not G4. The original Gazette PDF, page-image/text comparison, SHA-256, exact operative wording, source-specific reuse permission, later amendment/repeal search and qualified Egyptian-lawyer review remain outstanding. Keep all dependent cards `search_eligible=false`.
+
+
+## Decision 249/2026 — official Ministry clarification lead (2026-10-31)
+
+The Ministry of Labour search index surfaced an official clarification dated 2026-10-27 concerning Decision 249/2026 on establishments required to create occupational-safety functional units and committees:
+
+https://www.labour.gov.eg/ar/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%A8%D9%8A%D8%A7%D9%86-%D8%AA%D9%88%D8%B6%D9%8A%D8%AD%D9%8A-%D9%87%D8%A7%D9%85-%D8%A8%D8%B4%D8%A3%D9%86-%D8%A7%D9%84%D9%82%D8%B1%D8%A7%D8%B1-%D8%A7%D9%84%D9%88%D8%B2%D8%A7%D8%B1%D9%8A-%D8%B1%D9%82%D9%85-249-%D9%84%D8%B3%D9%86%D8%A9-2026-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5-%D8%A8%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9-%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9-%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9-%D9%88%D8%B2%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%B9%D9%85%D9%84-%D9%84%D9%86-%D9%8A%D9%8F%D8%B6%D8%A7%D8%B1-%D8%A3%D9%8A-%D8%B9%D8%A7%D9%85%D9%84-%D9%8A%D8%B9%D9%85%D9%84-%D8%A8%D9%85%D9%87%D9%86%D8%A9-%D8%A3%D8%AE%D8%B5%D8%A7%D8%A6%D9%8A-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9-%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9-%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9-%D9%88%D9%84%D8%A7-%D9%85%D8%B3%D8%A7%D8%B3-%D8%A8%D8%A7%D9%84%D9%85%D8%B1%D8%A7%D9%83%D8%B2-%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%D9%8A%D8%A9-%D8%A7%D9%84%D9%85%D9%83%D8%ت%D8%B3%D8%A8%D8%A9-%D9%88%D8%A3%D9%87%D9%85%D9%8A%D8%A9-%D8%A7%D9%84%D9%85%D9%87%D9%86%D8%A9-%D8%AA%D8%B3%D8%AA%D9%88%D8%AC%D8%A8-%D9%85%D9%86%D8%AA%D9%87%D9%89-%D8%A7%D9%84%D8%AF%D9%82%D8%A9-%D9%81%D9%8A-%D8%A7%D8%AE%D8%AA%D9%8A%D8%A7%D8%B1-%D8%B4%D8%A7%D8%BA%D9%84%D9%8A%D9%87/
+
+The search-indexed announcement says implementation will not harm current workers or remove acquired legal positions; it discusses recognition of prior qualifications and experience for occupational-safety specialists, including different professional levels, and says the competent central administration will issue circulars to standardize application. Direct page retrieval returned HTTP 502 in this session, so this is a search-indexed official clarification lead, not a reviewed page or acquired document.
+
+**Evidence boundary:** the clarification does not provide the complete Decision 249 text, Gazette page comparison, or proof of a formal amendment. It should be used only to flag transitional/acquired-rights issues for counsel and to guide retrieval of the later circulars. Reuse terms were not reviewed. Keep Decision 249 and dependent cards discovery-only and `search_eligible=false` pending the complete official decision, page/hash comparison, later circulars/currentness review, rights review and qualified Egyptian-lawyer sign-off.
+
+## B. Legal transition / currentness rule
+
+Article 11 of the issuing provisions of Law 14/2025 states, in the official-text transcription located during this research, that implementing decisions should be issued within 90 days and that existing decisions continue until replacement insofar as they do not conflict with the new Law. Source lead: https://drhisham.org/tax-law/قوانين-أخرى-ذات-صلة/قانون-14-لسنة-2025/مواد-الإصدار-المادة-الحادية-عشر/ . The official Gazette PDF remains the controlling reference; the complete prior-decision inventory and conflict analysis have not been completed.
+
+## C. Required evidence before a card can be marked current
+
+1. Obtain an accessible, public primary text or official Gazette entry for each instrument; do not treat an announcement or secondary index as a substitute.
+2. Record source URL, source publisher, publication date, Gazette issue/page, retrieval date, SHA-256 of the downloaded original, and extraction method.
+3. Compare Arabic article wording and schedules to the candidate proposition, including exceptions and commencement clauses.
+4. Record whether the instrument amends, implements, supplements, or is unrelated to the statutory article. A topical relationship is not proof of amendment.
+5. Search later official publications for amendment, repeal, replacement, suspension, or judicial interpretation.
+6. Keep all affected cards `search_eligible: false` until legal review, source-rights assessment, and provenance gates are complete.
+
+## D. Acquisition outcome in this task
+
+- Official Ministry announcements were found for Decree 49/2026, Decree 294/2025, Decrees 248–252/2026, and Decree 162/2026.
+- Official Law 14/2025 text is discoverable through the Amiri Press searchable-text page, the ETA-hosted Gazette PDF, and an additional direct PDF hosted on the Ministry of Labour site: https://www.labour.gov.eg/media/0iedik3q/القانون-رقم-14-لسنة-2025-بإصدار-قانون-العمل.pdf. The PDF is viewable in the web PDF viewer through the ETA link; the original binary was not obtained in the runtime.
+- Direct binary download attempts for the Law 14/2025 PDF from the State Information Service and ILO NATLEX endpoints failed in this environment. No hash is claimed.
+- The Gazette publisher's Decree 162/2026 repository item exposes copy-request links rather than direct public PDF access; no request was submitted.
+- Official Amiri Press publisher metadata for Gazette Supplement issue 295 (تابع د), dated 2025-12-30, was located and lists Decisions 290/2025 and 291/2025. The 550.3 KB issue PDF opens a request-a-copy form stating that all files are in restricted access; no official PDF bytes were obtained. Law Hub secondary full-text transcriptions for both decisions were found, but neither has been compared with the Gazette.
+- Visually checked page map: Arts. 117–120 p.52; 121–122 p.53; 123–124 p.54; 125–127 p.55; 128–130 p.56; 131–132 p.57. The prior provisional pinpoints for new cards on Arts. 125 and 131 were corrected accordingly.
+- These are evidence-discovery results, not proof that the source set is complete or that all cards are current.
+
+## Evidence-card expansion — termination and end-of-service provisions (2026-10-28)
+
+The provisional evidence-card inventory now extends through accompanying-law Article 175 (117 cards total). New cards cover unlawful termination compensation (Art. 165); absence treated as resignation (166); resignation formalities and withdrawal (167); worker termination for employer breach/assault (168); death and related family payments (169); total/partial disability (170); retirement age and fixed-term contracts (171); post-retirement gratuity (172); termination during illness (173); final criminal convictions (174); and employment certificates/return of documents (175).
+
+**Source-location note:** searchable text extracted from the government-hosted Official Gazette PDF places Art. 165 on printed page 69/PDF index 67; Arts. 166–169 begin on printed page 70/PDF index 68; Arts. 170–171 on printed page 71/PDF index 69; and Arts. 172–175 on printed page 72/PDF index 70. These are text-extraction pinpoints. Not every cited page in this new batch has been independently visually inspected, the PDF binary is not available locally for hashing, and no full-text article-by-article comparison has been completed.
+
+This expansion does not confirm that any implementing decision has amended these articles, nor does it verify the current legal effect of each provision. Related instruments and judicial interpretation remain separate review tasks. The new cards remain search_eligible=false and must not be presented as authoritative legal conclusions. Public accessibility alone does not establish rights to reproduce, index, or commercially reuse the source.
+
+## Evidence-card expansion — specialized labour-court procedure (2026-10-28)
+
+The provisional inventory now extends through accompanying-law Article 187 (129 cards total). New procedural cards cover establishment and jurisdiction of specialized labour courts (Arts. 176–177), court composition and urgent matters (178–180), criminal jurisdiction and cassation limits (181–182), enforcement disputes and court administration (183–184), legal-aid offices (185), Court of Cassation organization (186), and procedural-law cross-references for appeals (187).
+
+The location pinpoints come from searchable text extraction in the government-hosted Gazette PDF: Arts. 176–180, printed page 73/PDF index 71; Arts. 181–185, printed page 74/PDF index 72; Arts. 186–187, printed page 75/PDF index 73. These are not independent visual checks of every cited page. No SHA-256 is claimed, and the actual implementing judicial decisions, present court locations, procedural amendments, limitation periods, and case-specific applicability have not been verified. These cards are procedural research leads only, remain search_eligible=false, and must not be used to calculate filing deadlines or determine jurisdiction without checking the full current procedural rules and the actual order/judgment.
+
+## New public text lead for Ministerial Decision 162/2026 (2026-10-28)
+
+**Identity confirmed at Gazette-metadata level:** Decision No. 162/2026, titled "قرار رقم 162 لسنة 2026 بشأن القواعد العامة للائحة قواعد تنظيم العمل", is listed in the Official Gazette Supplement issue 176 (تابع), issued 2026-08-13. The Gazette repository's bilingual metadata record identifies the Ministry of Labour and lists Arabic and English PDF files, but the file-download actions route to a request-a-copy form. No request was submitted, consistent with the project instruction not to contact source holders.
+
+**Secondary full-text cross-check found:** a publicly accessible transcription is available at https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html. It identifies the same decision and Gazette issue/date and provides text for Articles 1–66. This is not the official Gazette file and has not been fully compared with the official PDF; it must not be promoted as primary evidence or used as the sole basis for authoritative retrieval. The Ministry of Labour also published an official summary on 2026-09-05 at https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يعلن-نص-القواعد-العامة-للائحة-تنظيم-العمل-بالقطاع-الخاص/.
+
+**High-value crosswalk candidates from the transcription (pending official-text comparison):**
+- Decision Arts. 2–10: requirement for employers with 10 or more workers to prepare workplace regulations; expected contents; submission to the competent Labour Directorate; union-comment period; review and approval process; central committee to unify principles.
+- Decision Arts. 11–19: scope across the establishment and branches; continuity on changes in ownership/management; better-benefit rule; prohibitions on forced labour, document retention, harassment, bullying, discrimination, and reduction of acquired benefits.
+- Decision Arts. 22–27: written employment contracts, worker service files, confidentiality, training, and training-cost provisions.
+- Decision Arts. 35–41: wage protection, equal pay, permitted payment methods, working hours, overtime, flexible/remote work, and leave rules.
+- Decision Arts. 46–59: worker duties, investigation safeguards, disciplinary penalties, dismissal only by the competent Labour Court, and separate recording/accounting of financial penalties.
+- Decision Arts. 60–65: distinct termination grounds, no resignation notice period in workplace regulations, union-activity protection, periodic review and amendment of workplace regulations.
+
+The above article mapping is a research crosswalk from the secondary transcription only. It may identify areas where cards on Labour Law Arts. 4–6, 117–148, 154–175, and 137 require cross-reference, but it does not establish that the decision amends those Law articles. No amendment or repeal is asserted. Effective-date wording in the transcription says the decision takes effect the day after publication; that date remains pending comparison with the official PDF. Keep legal_status unknown, reuse permission unknown, and authoritative retrieval disabled until the primary text can be lawfully obtained and checked.
+
+## New public text lead for Ministerial Decision 49/2026 (2026-10-28)
+
+**Official Gazette metadata lead:** the Gazette repository lists Decision 49/2026 in الوقائع المصرية Supplement issue 64 (تابع), dated 2026-03-18. The Ministry of Labour announcement dated 2026-03-26 confirms that the decision identifies hazardous/difficult work and remote areas that entitle covered workers to seven additional paid annual-leave days under Labour Law 14/2025. See https://www.labour.gov.eg/ar/الأخبار/لتحقق-التوازن-بين-متطلبات-الإنتاج-وصون-حقوق-القوى-العاملة-وزير-العمل-يصدر-قرار-ا-وزاري-ا-بتحديد-الأعمال-الخطرة-والمناطق-النائية-التي-ت-زاد-فيها-الإجازات-السنوية-7-أيام-للعاملين/.
+
+**Secondary full-text cross-check found:** https://ahmedazimelgamel.blogspot.com/2026/03/49-2026-7.html reproduces Articles 1–5 and the detailed schedules. Its text states: Article 1 sets the seven-day increase for specified hazardous, health-damaging or remote-area work; Article 2 lists eligible categories of technical work in multiple industrial sectors, agriculture/research, health and construction; Article 3 identifies remote areas; Article 4 requires periodic review and updating at least every three years; Article 5 provides publication and commencement wording. The transcription states the decision was signed 2026-03-03 and takes effect the day after publication. These details are cross-check leads only until compared with the Official Gazette PDF.
+
+**Primary-source limitation:** the official Gazette PDF is listed in the repository but was not independently downloaded or hashed in this work. No copy request was submitted. The secondary transcription is not primary evidence, does not establish reuse rights, and does not complete the legal currentness review. The decision is relevant to the Article 124 additional-leave card, but do not infer that every job in a broad sector qualifies: the exact list and the worker's actual duties/location must be checked. Keep legal status and reuse permission unknown, and authoritative retrieval disabled pending primary comparison and legal review.
+
+## Additional implementing-decision discovery — contracts, resignation and hours (2026-10-28)
+
+New records were added to the document inventory for the following decisions. All remain discovery-only; no full currentness or reuse approval is claimed.
+
+- **Decision 214/2025 — employment contracts.** The Amiri Press has a searchable official text page at https://alamiria.com/Sec/TashTxt?id=5EinXV37k4w%3D. Its extracted text includes the written Arabic contract in four copies and distribution among the employer, worker, social-insurance office and competent administrative authority. Gazette repository metadata records issue date 2025-10-05. The binary was not downloaded or hashed; full text, effective date, amendments and reuse terms still require review.
+- **Decision 187/2025 — resignation authentication.** Public reports and a secondary legal-database preview describe procedures for authentication of worker resignations by Labour Offices. This is relevant to Law Article 167, but it must not be conflated with the statutory substantive requirements. The complete official text and Gazette pinpoint remain unverified; the legal database's full text is restricted.
+- **Decision 290/2025 — intermittent work.** Official publisher metadata for Supplement issue 295 (تابع د), dated 2025-12-30, lists the decision. A public Law Hub secondary transcription exposes Articles 1–4, including the Article 2 list of intermittent-work categories. The official issue PDF is request-a-copy restricted; the secondary text has not been compared with the Gazette.
+- **Decision 291/2025 — overtime controls.** The same official issue metadata lists the decision. A public Law Hub secondary transcription exposes Articles 1–5, including the Article 4 task for the Social Consultation Council to set an annual overtime maximum. The official issue PDF is request-a-copy restricted; the secondary text and whether the annual maximum was subsequently issued remain unverified.
+- **Decision 292/2025 — maximum hours for preparatory/complementary, guarding and cleaning work.** Gazette Supplement issue 291 (تابع), dated 2025-12-25, lists the decision by title. Exact limits and exceptions are not yet verified; do not calculate hours from the metadata alone.
+
+These sources suggest high-priority crosswalks to Law Articles 86–89 (contract writing), 166–167 (absence/resignation), and 117–121 (hours/overtime). They do not prove amendment or replacement of the Law. Use official publisher text and Gazette metadata as source leads; preserve exact article/page references, commencement, amendment history and permission status before any card is activated.
+
+## Evidence-card expansion — collective labour relations (2026-10-28)
+
+The provisional inventory now contains **142 cards**, extending coverage through accompanying-law Article 200. Thirteen new cards cover the Supreme Council for Social Consultation and its functions, composition, term, branches, and financial oversight (Arts. 188–193), then collective bargaining purposes and levels, mandatory negotiation in collective disputes, conversion of an agreement into a collective agreement, restrictions on unilateral action during negotiation, duration of collective agreements, and conflicts between collective agreements and the Law/individual contracts (Arts. 194–200).
+
+**Alternative source route used:** the Amiri Press searchable text endpoint intermittently returned a gateway error when opened, so the article wording was cross-checked against the publicly accessible Law Hub transcription at https://lawhub.info/eg/?p=11848, while retaining the Amiri Press and government-hosted Gazette links as primary-source leads. This is an access fallback, not a bypass of access controls and not a claim that the secondary transcription is official. The Gazette page numbers for the new cards are inferred from text order (Arts. 188–193 printed p.76/PDF index 74; Arts. 194–198 p.77/index 75; Arts. 199–200 p.78/index 76); every page in this new batch has not been visually checked. No original PDF hash is claimed.
+
+Focused tests were added for the 13 cards, but have not been executed. Keep `search_eligible=false`. The article summaries remain provisional: verify exact official Gazette wording and pinpoints, later amendments, implementing rules, case law, reuse rights, and qualified Egyptian-lawyer review before authoritative use. Next coverage tranche should continue through Articles 201 onward on collective-agreement registration, enforcement, collective disputes, conciliation/mediation/arbitration, strikes/lockouts, and related rules, while separately deepening implementing-decision crosswalks from public full-text alternatives.
+
+## Evidence-card expansion — collective agreements and dispute resolution (2026-10-28)
+
+The provisional inventory now contains **172 cards**, extending through accompanying-law Article 230. Added coverage:
+
+- **Arts. 201–214:** Arabic-language controlling text; renewal timing and extension; filing and administrative objection; challenge to refusal to register; workplace display; joining; register updates; good-faith performance; unforeseen hardship; enforcement and compensation; union/employer-organization actions for members; dispute procedures; scope of collective disputes; and the one-month negotiation threshold for requesting conciliation.
+- **Arts. 215–230:** conciliation hearing deadlines and settlement documentation; referral to mediation/arbitration; mediation/arbitration centre structure; mediator/arbitrator lists and eligibility; selection and replacement deadlines; mediator tasks and recommendations; arbitration composition, submission, award deadlines and review.
+
+The text summaries were cross-checked against the publicly accessible Law Hub transcription at https://lawhub.info/eg/?p=11848, while retaining the Amiri Press searchable-text and government-hosted Official Gazette PDF as primary-source leads. The Amiri Press page intermittently failed to open during this task; the secondary text was used as an access fallback, not as a claimed official or licensed source. The inferred Gazette page map is Arts. 201–205 p.78/index 76; 206–212 p.79/index 77; 213–217 p.80/index 78; 218–222 p.81/index 79; 223–228 p.82/index 80; 229–230 p.83/index 81. These pinpoints have not been visually verified page by page. No PDF hash is claimed.
+
+Tests were added for Arts. 201–230 but have not been run. Keep authoritative retrieval disabled. Particularly for procedural deadlines and arbitration, the summaries are research leads only and must not be used to calculate or advise on a live matter until official text, applicable implementing decisions, current procedural rules, the actual case record and qualified Egyptian-lawyer review are checked.
+
+**Next tranche:** continue with Arts. 231 onward (arbitration review, strikes, lockouts and subsequent collective-labour rules), and continue looking for accessible full-text alternatives for implementing decisions rather than looping on restricted Gazette download buttons. No access controls have been bypassed.
+
+## Evidence-card expansion — strikes, economic restructuring and occupational safety (2026-10-28)
+
+The provisional inventory now contains **197 cards**, extending through accompanying-law Article 255.
+
+- **Arts. 231–241:** strike prerequisites and ten-day notice; restrictions during a collective agreement, in essential services and exceptional circumstances; effect of a strike; economic closure or downsizing; committee applications and 45-day decision window; notice and implementation; selection criteria for affected workers; closure requests during collective disputes or strikes; and temporary changes to contract terms for economic reasons.
+- **Arts. 242–255:** scope and definition of covered establishments; optional compliance offices; physical, engineering, biological, chemical and indirect hazards; fire and confined-space risks; emergency plans; worker withdrawal from imminent serious danger without disciplinary consequences for the withdrawal; prevention of harassment, bullying and violence; and ministerial technical safety standards.
+
+The article wording was cross-checked against the public Law Hub transcription at https://lawhub.info/eg/?p=11848. The official Amiri Press searchable text and government-hosted Gazette PDF remain attached as primary-source leads. Gazette page mapping for this batch is inferred from the text sequence: Arts. 231–236 printed p.83/PDF index 81; 237–241 p.84/index 82; 242–247 p.85/index 83; 248–253 p.86/index 84; 254–255 p.87/index 85. These are not visually verified page-by-page. No PDF hash is claimed.
+
+Focused tests now include Arts. 231–255, and previous fixed card-count assertions have been updated to 197. Tests have not been executed. Keep authoritative retrieval disabled. Economic closure, strike, and occupational safety summaries are research leads only; decisions, technical standards, currentness, reuse permissions, and qualified legal review remain outstanding.
+
+**Next tranche:** continue with the remaining occupational safety and health provisions from Article 256 onward, then labour inspection, penalties, and transitional provisions; continue searching for publicly accessible full-text implementing decisions rather than retrying restricted file links.
+
+## Evidence-card expansion — safety inspection, medical protection and worker welfare (2026-10-28)
+
+The provisional inventory now contains **216 cards**, extending through Article 274.
+
+- **Arts. 256–265:** occupational safety inspection-unit formation and powers, access to inspect, internal safety committees, accident/occupational disease reporting, licensed training and consultants, national research centre, national council and governorate committees.
+- **Arts. 266–274:** pre-employment medical and capability exams; employer training and no-charge PPE; worker PPE duties; daily inspection and periodic medical checks; first aid and nursing thresholds; transport, food and housing for remote worksites; social/cultural services for establishments with 50+ workers; the social/health/cultural services fund and its services/contributions.
+
+Text summaries were cross-checked against the public Law Hub transcription at https://lawhub.info/eg/?p=11848; official publisher and government Gazette links remain attached. Inferred Gazette page map: Arts. 256–259 p.87–88/PDF index 85–86; 260–265 p.88–89/index 86–87; 266–270 p.90/index 88; 271–274 p.91/index 89. These pinpoints are not visually verified page-by-page. No PDF hash is claimed.
+
+Focused tests were added for Arts. 256–274 and all earlier card-count assertions were updated to 216; tests have not been run. Keep authoritative retrieval disabled. Safety thresholds, licensing, medical fitness, reporting deadlines, remote-worksite entitlements and service-fund contributions depend on implementing decisions and specific facts; the cards are not ready for live legal advice.
+
+**Next tranche:** continue with labour inspection and penalties (starting Article 275), then remaining closing/transitional provisions, and maintain a public-text fallback for implementing decisions where repository downloads are gated. No access controls were bypassed.
+
+## Evidence-card expansion — labour inspection and penalties (2026-10-28)
+
+The provisional inventory now contains **240 cards**, extending through Article 298, the final article of the accompanying Law 14/2025 text in the public transcription.
+
+- **Arts. 275–279:** designation and oath of labour inspectors with judicial-police status; entry, inspection and records powers; employer duties to facilitate inspections and attend upon request; assistance from public authorities.
+- **Arts. 280–298:** general penalty framework and separate cards for the article-specific penalty bands, including worker-count multiplication, recidivism, possible closure, recruitment offences, occupational-safety penalties, obstruction of inspection, and actual-manager/corporate liability.
+
+The article wording was cross-checked against the public Law Hub transcription at https://lawhub.info/eg/?p=11848. Official publisher and government Gazette links remain attached as primary-source leads. Inferred page map: Arts. 275–279 printed p.92/PDF index 90; 280–288 p.93/index 91; 289–298 p.94/index 92. These pinpoints are not visually verified page by page. No source PDF hash is claimed.
+
+Focused tests were added for the new cards and previous fixed-count assertions were updated to 240; the suite has not been executed. Penalty summaries are particularly sensitive to exact paragraph references, amendments, concurrent offences, and any more severe penalty under another law. Do not calculate a live penalty or assert liability from these cards alone. Keep authoritative retrieval disabled pending exact official-text verification, currentness, reuse and Egyptian-lawyer review.
+
+**Next task:** identify and fill the remaining article-coverage gaps in Articles 1–116, using the same source-linked, provisional approach, and separately crosswalk the discovered ministerial decisions to the statutory cards. No access controls have been bypassed.
+
+## Coverage-gap closure for early statutory articles — supplemental file (2026-10-28)
+
+The main evidence-card JSON had 294 cards and an article-number audit identified 15 remaining gaps in the selected article sequence: Arts. 1–3, 14–15, 17–21, 24, 26, 35, and 38–39. These have now been drafted in a separate supplemental file because the GitHub connector stopped returning content for the oversized canonical JSON, so it was not safe to overwrite that file without its complete contents.
+
+- Supplemental cards: `data/candidates/labour_law_14_2025/provision_evidence_cards_coverage_gaps_1_39.json`
+- Supplemental review report: `data/candidates/labour_law_14_2025/provision_evidence_cards_coverage_gaps_1_39_review.md`
+- Focused test: `tests/test_labour_law_coverage_gap_supplement.py`
+
+The supplemental file contains 15 unique article numbers and keeps `search_eligible=false`. This brings the **combined drafted inventory to 309 cards across the main file and the supplement**, but the 15 cards are not yet merged into the canonical JSON/report. The main report remains at 294 until a safe merge can be made with complete file contents. This is a tooling limitation, not a legal-source access restriction. The new page numbers are inferred and not visually verified; currentness, amendment history, reuse rights and qualified Egyptian-lawyer review remain outstanding.
+
+## Alternative public-text route — working-time and holiday decisions (2026-10-28)
+
+Rather than repeatedly retrying blocked Gazette download actions, a separate crosswalk now records available public metadata and secondary text for Decisions 290, 291, 292 and 294/2025 at `data/candidates/labour_law_14_2025/related_instruments/public_text_crosswalk_2026-10-28.json`.
+
+- **Decision 290/2025:** public repository abstract exposes Article 1 in Arabic/English and lists PDF files; the key unresolved item is the complete Article 2 schedule of qualifying intermittent work.
+- **Decision 291/2025:** Gazette metadata identifies the decision, but no usable complete public text was found in this pass. No overtime limits or permitted reasons are inferred.
+- **Decision 292/2025:** an indexed secondary text surfaces issue/publication/effective-date details and article headings for preparatory, complementary, guarding and cleaning work; exact complete limits remain unverified against the official PDF.
+- **Decision 294/2025:** a public secondary transcription lists the paid holiday set and the Gazette repository abstract lists the same categories. The current-year holiday announcements must be checked separately for specific dates; they do not by themselves prove a permanent amendment.
+
+A focused test was added for the crosswalk's source, currentness and reuse gates. It has not been run. All four records keep reuse rights unknown, currentness unverified, and authoritative retrieval disabled. Public access is used as a research alternative, not as a bypass of access controls and not as evidence of permission for commercial reuse.
+
+## Article-number coverage audit — completed drafting pass (2026-10-28)
+
+The article-number gap audit has been addressed across two JSON files: **294 cards** in the main evidence file plus **15 supplemental cards** for Articles 1–3, 14–15, 17–21, 24, 26, 35, and 38–39. The supplemental test now asserts that the combined files contain at least one card for every accompanying-law article number from 1 through 298. This test has been authored but **not executed**. Thus, statutory article-number coverage is drafted across the two files; it is not the same as fully verified legal knowledge. Text/currentness, page accuracy, implementing decisions, reuse rights and qualified lawyer review remain incomplete. Both files retain `search_eligible=false`.
+
+## Consolidated implementing-decision crosswalk (2026-10-28)
+
+The public-text crosswalk now contains **eight** implementing-decision records: Decisions 49/2026, 162/2026, 187/2025, 214/2025, 290/2025, 291/2025, 292/2025 and 294/2025. For each, it separates the official primary-source lead from public secondary text or summaries, lists the relevant Law 14/2025 article crosswalk, and states what must not be inferred from incomplete evidence. A focused test was updated to require all eight records and preserve `reuse_rights=unknown`, `currentness=not verified`, and authoritative retrieval disabled. The test has not been run.
+
+## Public text fallback recovery (2026-10-28)
+
+Alternative per-article pages on Fahm Qanun were found for Labour Law Articles 288–294; they attribute the displayed text to the official SIS rights-studies source. This resolved the earlier transcription blocker for Articles 288, 290, 291 and 293 and corrected Articles 289 and 294. Keep the text provisional pending comparison against the official Gazette image. Article 295 is provisionally cross-checked against the public Wikisource transcription. This demonstrates the fallback rule: use independent public text pages when a public transcription is corrupted, but never infer missing offence wording from neighbouring provisions.
+
+Public text sources: https://fahmqanon.com/laws/14-2025/288 ; https://fahmqanon.com/laws/14-2025/289 ; https://fahmqanon.com/laws/14-2025/290 ; https://fahmqanon.com/laws/14-2025/291 ; https://fahmqanon.com/laws/14-2025/292 ; https://fahmqanon.com/laws/14-2025/293 ; https://fahmqanon.com/laws/14-2025/294 .
+
+## Implementing-instrument crosswalk added (2026-10-28)
+
+A structured inventory now records seven public source leads in `implementing_decisions_inventory_2026-10-28.json`: Decision 260/2025; Decision 162/2026; the five OSH executive decisions announced in 2026 (their exact identifiers/full texts remain to be extracted); Decision 49/2026; Decision 266/2025; Decision 272/2025; and Circular 22/2026. Each record identifies potentially affected articles but explicitly distinguishes official announcements/secondary text from verified operative text, currentness, and reuse permission. Circular 22/2026 is scoped to its specific October holiday and is not generalized as a permanent amendment. No restricted document was accessed and no request was sent to a rights holder.
+
+
+
+## Source update — Gazette Supplement issue 295 and working-time decisions (2026-10-31)
+
+The public DSpace item page for *الوقائع المصرية ملحق الجريدة الرسمية العدد 295 تابع (د)* identifies 2025-12-30 as the issue date, Ministry of Labour as author, and Amiri Press as publisher. Its abstract lists Decisions 267, 270, 288, 289, 290 and 291/2025. The issue PDF is 550.3 KB; clicking it opens a request-a-copy page that states all files are in restricted access. The item is hosted on the third-party Ibrachy & Dermarkar Repository, not on the Amiri Press domain. The repository End User Agreement (last updated 2023-05-04) limits use to personal/non-commercial purposes, requires express prior written permission for commercial exploitation, and prohibits systematic retrieval to compile a collection/database without written permission. No request was submitted and no PDF bytes or item-specific license were obtained.
+
+Public Law Hub secondary transcriptions are now available for both decisions: Decision 290/2025 (https://lawhub.info/eg/?p=17303) and Decision 291/2025 (https://lawhub.info/eg/?p=17302). The Decision 290 transcription exposes Articles 1–4 and an Article 2 list of intermittent-work categories. The Decision 291 transcription exposes Articles 1–5, including exceptional overtime conditions, notification/recordkeeping, worker rotation, premium-pay provisions, and an Article 4 task for the Social Consultation Council to set an annual maximum. These are secondary research leads only; no operative text is treated as verified against the Official Gazette. The secondary publication clauses point to 2025-12-31 as a candidate next-day effective date, but the date is not primary-verified. Whether the annual maximum under Decision 291 Article 4 was subsequently set is unresolved.
+
+**Currentness consequence:** these instruments are high-priority crosswalks for Law 14/2025 Articles 117–123, but their exact interaction with the Law, subsequent decisions, currentness, reuse rights and counsel review remain open. All related cards remain search_eligible=false. Do not classify work as intermittent or advise on overtime from secondary text alone.
+
+
+## Additional government-hosted public-viewing lead for issue 295 (2026-10-31)
+
+A search-indexed item on the Egyptian State Information Service (SIS) digital repository identifies *الوقائع المصرية العدد 295 تابع د*, dated 2025-12-30, names the Amiri Press as issuing authority, states public viewing (الإطلاع: عام), and lists a 550.3 KB PDF named `WQ295_20251230_1100.pdf`. The item page could not be opened in this session because the host returned access/robots/timeout errors; the PDF was not opened or downloaded and no terms were reviewed. This is a promising official-government access lead for Decisions 290/291, not acquired primary text and not permission for bulk collection or commercial reuse. Do not bypass the host restriction. If ordinary browser access is available to the source owner, review the applicable terms and PDF, then record the original bytes/hash and compare against the secondary text.
+
+
+## Secondary full-text corroboration and commencement — Decisions 290/291 (2026-10-31)
+
+EastLaws search-indexed records for Decision 290/2025 (https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-290?id=5008505&type=1) and Decision 291/2025 (https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-291?id=5064176&type=1) state that both were published in Gazette Supplement issue 295 (تابع د) on 2025-12-30 and took effect on 2025-12-31. This corroborates the dates stated in the Law Hub transcriptions, but both databases remain secondary to the Official Gazette PDF. EastLaws returned 403 to direct page opening in this research session; its search-indexed text was available. No EastLaws terms or reuse licence were reviewed.
+
+**Decision 290/2025 — secondary text summary:** Articles 1–4. The daily span from start to end is capped at ten hours, counting rest when the worker remains at the workplace, with an exception for intermittent work capped at twelve hours' presence. Article 2 defines intermittent work through intervening stoppage/waiting periods and lists seven categories: passenger/goods transport by inland waterways, rail, road or air; crop warehouses; specified ship mooring/beacon/repair work; emergency healthcare; logistics/transport waiting between trips; on-demand digital support; and intermittent monitoring in data centres/cloud-computing facilities. Article 3 requires a special schedule, additional pay for actual hours beyond normal hours, and a register of normal/actual hours, breaks and presence. The exact list and wording remain unverified against the Gazette scan.
+
+**Decision 291/2025 — secondary text summary:** Articles 1–5. Article 1 describes unusual/exceptional grounds, notification to the Labour Directorate within seven days, a specified work period, minimum premiums of 35% for daytime and 70% for nighttime overtime, compensatory rest when work occurs on the weekly rest day, and a twelve-hour maximum presence. Article 2 requires records of normal/overtime hours, reasons, timing, pay and proof of payment. Article 3 requires rotation and minimum use. Article 4 directs the Supreme Council for Social Consultation to set an annual overtime maximum by sector/activity within three months from commencement. Article 5 provides next-day commencement. Whether the Council subsequently issued the annual maximum was not established by this search; absence of a located result is not proof that no such decision exists.
+
+**Status:** these summaries are secondary research aids only. Official Gazette issue metadata confirms the issue date and decision numbers, but the issue PDF is request-a-copy restricted at DSpace. The SIS government repository's indexed record says public viewing and lists a 550.3 KB PDF, but its item page/PDF could not be opened in this session and no terms were reviewed. No official bytes/hash or exact primary comparison exists. Keep legal status unknown, collection permission unresolved/restricted as recorded, and all cards `search_eligible=false`.
+
+
+## Related working-time and paid-holiday instruments — Decisions 292/294 (2026-10-31)
+
+**Primary issue metadata:** DSpace item `https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc` identifies *الوقائع المصرية ملحق الجريدة الرسمية العدد 291 (تابع)*, dated 2025-12-25, Ministry of Labour author and Amiri Press publisher. Its full item page lists an 834.25 KB PDF and a 1.71 KB `license.txt` item-specific license file. Clicking the license file opens a request-a-copy page stating all files in the item are in restricted access. No PDF or license bytes were obtained. The repository End User Agreement requires prior written permission for commercial exploitation and systematic database compilation; do not infer that the listed license file is permissive without reading it.
+
+**Decision 292/2025 — working-hour caps for preparatory/complementary/guarding/cleaning work:** Law Hub's secondary transcription (https://lawhub.info/eg/?p=17022) exposes Articles 1–7; EastLaws (https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-292?id=5042304&type=1) states publication 2025-12-25 and commencement 2025-12-26. The secondary text defines the four work categories, caps actual work at 48 hours weekly, and caps overtime in these categories at 12 hours weekly and two hours daily, subject to Law 14/2025 Article 121. These limits are not verified against the official PDF and must not be used for an employee without primary-text and role-classification review.
+
+**Decision 294/2025 — paid holidays:** Law Hub's secondary transcription (https://lawhub.info/eg/?p=17019) exposes Articles 1–4; EastLaws (https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-294?id=5008509&type=1) states publication 2025-12-25 and commencement 2025-12-26. The secondary text lists 12 public holidays/occasions, allows the Minister to substitute another day for national uniformity, provides paid leave not deducted from annual leave, and double pay or a written-request alternative day when the worker is required to work; non-Muslim religious holidays are additionally governed by the relevant Prime Minister decision. The full list and clauses remain unverified against the Gazette PDF.
+
+**Currentness lead:** Official Ministry of Labour notices in 2026 cite Decision 294 and issue circulars that substitute dates for particular occasions (including October 2026 Armed Forces Day and July 2026 Revolution Day). These event-specific directions affect the date observed for that occasion; they are not treated as permanent amendments to Decision 294. Always check the current Ministry circular and any Prime Minister decision before answering a specific holiday-date question.
+
+Both decisions remain discovery-only, legal status unknown, source collection restricted pending explicit permission, commercial reuse not cleared, and `search_eligible=false`.
+
+
+## Rest-break and industrial-hours instruments — Decisions 288/289 (2026-10-31)
+
+The issue 295 Amiri Press metadata already registered for Decisions 290/291 also lists Decisions 288/289. The 550.3 KB issue PDF remains request-a-copy restricted; no primary bytes were obtained.
+
+**Decision 288/2025:** Law Hub (https://lawhub.info/eg/?p=17305) and EastLaws (https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-288?id=5064169&type=1) provide secondary text/indexes. The decision has two chapters: work that must continue without a standard rest break for technical/operational reasons, and arduous work for which rest periods count as actual working hours. The secondary text describes a baseline one-hour total rest and no more than five consecutive hours, with specified exceptions, compensatory rest/food-drink/safety safeguards and listed arduous work. EastLaws states publication 2025-12-30 and commencement 2025-12-31. Exact lists and full Gazette wording remain unverified.
+
+**Decision 289/2025:** Law Hub (https://lawhub.info/eg/?p=17304) and EastLaws (https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-289?id=5008502&type=1) provide secondary text/indexes. The secondary text sets eight hours of actual work per day or 48 hours per week in industrial establishments, excluding meal/rest periods, and subjects unusual/exceptional work to Law 14/2025 Article 121. Its Article 2 provides next-day commencement; EastLaws states Gazette publication 2025-12-30, making 2025-12-31 the candidate effective date. Applicability of Industrial Establishments Law 133/1961 and better individual/collective terms requires review.
+
+Neither decision has been compared with the official Gazette PDF. Both remain discovery-only, legal status unknown, source collection restricted pending explicit permission, commercial reuse not cleared and `search_eligible=false`.
+
+
+## Parent-law anchors for implementing-decision crosswalk (2026-10-31)
+
+The ETA-hosted Official Gazette PDF for Law 14/2025 was re-opened and its extracted text used to anchor the parent provisions separately from the implementing-decision secondary text. The text places Articles 117–120 on printed pp.52–53 (PDF indexes 50–51), Article 121 on printed p.53 (PDF index 51), Article 123 on printed p.54 (PDF index 52), Article 129 on printed p.56 (PDF index 54), and Article 188 on printed pp.76–77 (PDF indexes 74–75). These anchors support the statutory framework only; they do not authenticate the separate decisions 288–294 or substitute for page-image verification and complete decision comparison.
+
+- Decision 288/2025 maps to Law Articles 118–119 (rest periods and daily span).
+- Decision 289/2025 maps to Law Articles 117 and 121 (industrial actual-hours ceiling and exceptional overtime framework).
+- Decision 290/2025 maps to Law Articles 119 and 121 (intermittent-work daily span and overtime pay).
+- Decision 291/2025 maps to Law Articles 121 and 188 (exceptional overtime controls and the Social Consultation Council).
+- Decision 292/2025 maps to Law Articles 121 and 123 (ministerial maximums for excluded work categories and overtime pay).
+- Decision 294/2025 maps to Law Article 129 (paid holidays and alternative compensation).
+
+
+**Issue 295 item-specific license listing update (2026-10-31):** the DSpace full item page for issue 295 also lists a 1.71 KB `license.txt` described as an item-specific license agreed upon submission. Clicking that file opens a request-a-copy page that states all files in the item are in restricted access. The license bytes were not obtained or read. This does not change the rights state: do not infer a permissive licence from the filename; collection remains restricted pending explicit permission and commercial reuse remains unapproved.
+
+
+## Decision 291 page-image cross-check (2026-10-31)
+
+A two-page PDF hosted by Law Hub (https://lawhub.info/eg/wp-content/uploads/2026/01/lawhub.info-eg-dec-291-2025.pdf) was opened and both page images were visually inspected. The images show the Egyptian Proceedings Gazette masthead, issue 295 supplement D, date 2025-12-30, and printed pages 21–22. Page 21 contains Decision 291/2025 Articles 1 and its overtime conditions; page 22 contains Articles 2–5. The images visibly confirm the 35% daytime and 70% nighttime premiums, the seven-day notice, 12-hour presence ceiling, recordkeeping and rotation safeguards, the Article 4 three-month task for the Supreme Council for Social Consultation to set annual sector/activity maxima, and Article 5 next-day commencement.
+
+**Evidence classification:** this is a third-party hosted page-image reproduction, not the original DSpace/Amiri Press PDF. The official DSpace issue metadata independently lists Decision 291 in issue 295, but the original PDF and item-specific license remain request-a-copy restricted. No local bytes/hash, source acquisition chain, or Law Hub reuse terms were obtained. The visual cross-check improves confidence in the reproduced operative text but does not clear collection/reuse rights or replace lawyer review. Do not ingest or redistribute the reproduction or extracted text.
+
+
+**Decision 291 annual-cap deadline follow-up:** the reproduced Gazette page 21 preamble records a memorandum from the Supreme Council for Social Consultation and a period to study the annual overtime maximum; Article 4 on page 22 directs the Council to set an annual maximum by sector/activity within three months from the decision's commencement. With the secondary corroborated commencement date 2025-12-31, 2026-03-31 is the candidate three-calendar-month deadline. Targeted searches through 2026-10-31 did not locate a subsequent Council/Ministerial instrument setting the cap. This does not prove none exists or that the task was not completed. Obtain the official Council/Ministry register or Gazette reference before concluding the current annual cap.
+
+
+## Decision 289 Ministry-hosted text copy (2026-10-31)
+
+The Egyptian Ministry of Labour's 2025-12-27 announcement PDF hosted by the State Information Service was opened at https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/117208/MOM20251227_0415.pdf?isAllowed=y&sequence=4. After the Ministry announcement, the PDF includes the text of Decision 289/2025, Articles 1–2. Article 1 states that actual work in industrial establishments may not exceed eight hours/day or 48 hours/week, excluding meal/rest periods; preserves better benefits in individual/collective contracts and workplace regulations; and permits exceptional work subject to Law 14/2025 Article 121. Article 2 provides for publication in Egyptian Proceedings and commencement the following day. SIS repository metadata identifies the related item as public viewing.
+
+**Evidence boundary:** this is a Ministry-hosted text copy, not the Official Gazette issue PDF or page-image comparison. The PDF date (2025-12-27) is the Ministry announcement date, not the Gazette publication date. Gazette issue 295 metadata separately records 2025-12-30, and secondary sources state commencement 2025-12-31. SIS reuse terms, bulk collection permission and commercial reuse permission were not reviewed; no local bytes/hash were obtained. Keep Gazette comparison, rights and counsel gates open.
+
+
+## Decision 288 individual repository metadata and access restriction (2026-10-31)
+
+A MELES DSpace item (https://dspace.id.com.eg/items/ca54d3fa-04be-4e59-b9f0-6b3752711a6f/full) identifies Ministry of Labour as author, The Middle East Library for Economic Services as publisher, and 2025-12-11 as its item date. It lists two PDFs (75.85 KB and 125.39 KB) and a 55-byte item-specific `license.txt`. Clicking either PDF or the license file opens a request-a-copy page stating all files in the item are in restricted access. No file or license bytes were obtained.
+
+The repository End User Agreement (last updated 2023-05-04) permits personal, non-commercial use only; requires express prior written permission for commercial exploitation; prohibits systematic retrieval to compile a collection/database without written permission; and prohibits bypassing access/copy restrictions. Treat this as metadata-only and keep collection blocked absent explicit permission. This MELES item is not the Official Gazette issue scan and its publisher is not the Amiri Press.
+
+
+## Decision 294 Ministry-hosted text copy (2026-10-31)
+
+The Egyptian Ministry of Labour's 2025-12-26 announcement PDF hosted by the State Information Service was opened at https://mediadr.sis.gov.eg/bitstream/handle/123456789/117216/MOM20251226_0805.pdf?isAllowed=y&sequence=4. After the Ministry announcement, the PDF contains Decision 294/2025 Articles 1–4. Article 1 lists twelve paid-holiday categories and allows the Minister to substitute another day, particularly to unify national holidays. Article 2 grants full-pay leave, prohibits deduction from annual leave, and provides double pay or a substitute day on written request if work is required. Article 3 grants non-Muslim workers additional religious-holiday leave under the relevant Prime Minister decision. Article 4 provides for publication in Egyptian Proceedings and commencement the following day. The DSpace issue 291 metadata is dated 2025-12-25; EastLaws independently states commencement 2025-12-26, which is consistent with Article 4.
+
+**Evidence boundary:** this is a Ministry-hosted text copy, not the Official Gazette issue PDF or page-image comparison. SIS reuse terms, bulk collection permission and commercial reuse permission were not reviewed; no local bytes/hash were obtained. Keep Gazette comparison, rights and counsel gates open.

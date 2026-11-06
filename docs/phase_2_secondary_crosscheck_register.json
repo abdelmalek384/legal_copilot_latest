@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.0",
+  "register_id": "EG-PHASE2-SECONDARY-CROSSCHECKS-BATCH-3",
+  "checked_on": "2026-10-23",
+  "purpose": "Identify useful cross-check and acquisition leads for foundational statutes. These links are not permission grants and secondary text must not be promoted to primary-source status.",
+  "evidence": [
+    {
+      "evidence_id": "XREF-CIVIL-CODE-131-1948-MANSHURAT",
+      "document_id": "EG-CIVIL-CODE-131-1948",
+      "practice_areas": ["civil", "commercial", "property"],
+      "url": "https://manshurat.org/node/69432",
+      "publisher": "Manshurat — legal information platform",
+      "source_class": "secondary legal database / source-discovery lead",
+      "observed_title": "القانون المدني 131 لسنة 1948",
+      "metadata_observed": {
+        "instrument_number": 131,
+        "instrument_year": 1948,
+        "publication_date_reported": "1948-07-29",
+        "status_label_reported": "له تطبيقات قضائية"
+      },
+      "source_state": "discovered_not_acquired",
+      "collection_permission": "not_assessed",
+      "legal_status": "unknown",
+      "finding": "Useful for locating the base Civil Code and its bibliographic metadata. It does not establish a current consolidated version or complete amendment chain.",
+      "next_action": "Use metadata to locate the original Gazette publication; separately identify all amendments and transitional provisions."
+    },
+    {
+      "evidence_id": "XREF-PENAL-CODE-58-1937-MANSHURAT",
+      "document_id": "EG-PENAL-CODE-58-1937",
+      "practice_areas": ["criminal"],
+      "url": "https://manshurat.org/node/23881",
+      "publisher": "Manshurat — legal information platform",
+      "source_class": "secondary legal database / source-discovery lead",
+      "observed_title": "قانون العقوبات رقم 58 لسنة 1937",
+      "metadata_observed": {
+        "instrument_number": 58,
+        "instrument_year": 1937,
+        "publication_date_reported": "1937-08-05",
+        "effective_date_reported": "1937-10-15",
+        "status_label_reported": "معدل"
+      },
+      "source_state": "discovered_not_acquired",
+      "collection_permission": "not_assessed",
+      "legal_status": "unknown",
+      "finding": "Useful bibliographic cross-check for the base Penal Code. The platform marks it amended, so the original text alone cannot support current-law answers.",
+      "next_action": "Locate original Gazette text, identify amendments and special penal statutes, and record offence-date / more-favourable-law temporal rules for lawyer review."
+    },
+    {
+      "evidence_id": "XREF-IP-LAW-82-2002-WIPOLEX",
+      "document_id": "EG-IP-LAW-82-2002",
+      "practice_areas": ["intellectual_property", "commercial", "technology"],
+      "url": "https://www.wipo.int/wipolex/en/legislation/details/22066",
+      "publisher": "World Intellectual Property Organization — WIPO Lex",
+      "source_class": "international legal database / consolidated-text cross-check",
+      "observed_title": "Law No. 82 of 2002 on the Protection of Intellectual Property Rights, Egypt",
+      "metadata_observed": {
+        "issued": "2002-06-02",
+        "entry_into_force_reported": "2002-06-03",
+        "consolidated_through_amendment": "Law 178/2020",
+        "consolidation_as_of": "2020-09-05"
+      },
+      "source_state": "discovered_not_acquired",
+      "collection_permission": "unknown",
+      "legal_status": "not_currently_verified",
+      "finding": "WIPO Lex describes an Arabic consolidated text amended through Law 178/2020 and identifies other amendment instruments. Because the consolidation stops in 2020, it is a valuable amendment-history starting point but not proof of current 2026 status.",
+      "next_action": "Review WIPO terms before any reuse; obtain Gazette texts for Law 178/2020 and listed earlier amendments, then search for amendments after September 2020."
+    },
+    {
+      "evidence_id": "XREF-IP-LAW-82-2002-GAFI",
+      "document_id": "EG-IP-LAW-82-2002",
+      "practice_areas": ["intellectual_property"],
+      "url": "https://www.gafi.gov.eg/English/StartaBusiness/Laws-and-Regulations/Documents/IntellectualPropertyRightsLaw.pdf",
+      "publisher": "General Authority for Investment and Free Zones (GAFI)",
+      "source_class": "government-hosted reference PDF / version not established",
+      "observed_title": "Intellectual Property Rights Law",
+      "source_state": "discovered_not_acquired",
+      "collection_permission": "unknown",
+      "legal_status": "version_not_established",
+      "finding": "Government-hosted reference copy may help identify the law's structure, but its consolidated-through date and amendment completeness are not established from the discovery result.",
+      "next_action": "Check document cover/metadata and compare against WIPO Lex and the Official Gazette; do not treat it as current without version review."
+    },
+    {
+      "evidence_id": "XREF-REAL-ESTATE-REGISTRATION-114-1946-MANSHURAT",
+      "document_id": "EG-PROPERTY-LAND-REGISTRATION-COLLECTION",
+      "practice_areas": ["property", "civil"],
+      "url": "https://manshurat.org/node/69796",
+      "publisher": "Manshurat — legal information platform",
+      "source_class": "secondary legal database / source-discovery lead",
+      "observed_title": "قانون تنظيم الشهر العقاري رقم 114 لسنة 1946",
+      "metadata_observed": {
+        "instrument_number": 114,
+        "instrument_year": 1946,
+        "publication_date_reported": "1946-08-24",
+        "effective_date_reported": "1947-01-01",
+        "status_label_reported": "معدل"
+      },
+      "source_state": "discovered_not_acquired",
+      "collection_permission": "not_assessed",
+      "legal_status": "unknown",
+      "finding": "Useful bibliographic lead for Law 114/1946 and its implementing regulation. The source labels the law amended, so this is not a current consolidated text.",
+      "next_action": "Locate the original Gazette and implementing regulation, map each amendment, and separately cover Law 68/1947 on notarization."
+    },
+    {
+      "evidence_id": "XREF-FAMILY-COURTS-LAW-10-2004-MANSHURAT",
+      "document_id": "EG-FAMILY-COURTS-LAW-10-2004",
+      "practice_areas": ["family"],
+      "url": "https://manshurat.org/node/7336",
+      "publisher": "Manshurat — legal information platform",
+      "source_class": "secondary legal database / source-discovery lead",
+      "observed_title": "قانون إنشاء محاكم الأسرة رقم 10 لسنة 2004",
+      "metadata_observed": {
+        "instrument_number": 10,
+        "instrument_year": 2004,
+        "publication_date_reported": "2004-03-18",
+        "effective_date_reported": "2004-10-01",
+        "status_label_reported": "معدل"
+      },
+      "source_state": "discovered_not_acquired",
+      "collection_permission": "not_assessed",
+      "legal_status": "unknown",
+      "finding": "Useful metadata for locating the original family-courts law and related amendments. The platform marks the law amended.",
+      "next_action": "Locate the original Gazette, identify all amending instruments and related personal-status procedures, and obtain family-lawyer review."
+    },
+    {
+      "evidence_id": "XREF-CRIMPROC-LAW-174-2025-NATLEX",
+      "document_id": "EG-CRIMINAL-PROCEDURE-174-2025",
+      "practice_areas": ["criminal"],
+      "url": "https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/details?p3_isn=119035",
+      "publisher": "International Labour Organization — NATLEX",
+      "source_class": "international legal database / historical cross-check",
+      "observed_title": "Law No. 174 of 2025 on the Issuance of the Criminal Procedure Law",
+      "source_state": "discovered_not_acquired",
+      "collection_permission": "unknown",
+      "legal_status": "stale_for_current_commencement_without_2026_amendment",
+      "finding": "Useful to locate the 2025 enactment but predates Law 160/2026, which official source discovery indicates changed the commencement date. This record must not be used alone to describe current operative status.",
+      "next_action": "Review ILO terms, acquire authorized Gazette texts for both Laws 174/2025 and 160/2026, and obtain criminal-procedure counsel sign-off."
+    }
+  ],
+  "guardrails": [
+    "A secondary database page is a discovery/cross-check source, not the authoritative publication record.",
+    "A label such as 'amended' does not identify every amendment or prove the current consolidated wording.",
+    "A text consolidated only through 2020 must be treated as potentially stale for 2026.",
+    "Do not bulk download, scrape, or reuse any source without reviewing access terms and permission for the intended use.",
+    "Do not promote any entry to acquired, verified, or in-force based only on these leads."
+  ]
+}
