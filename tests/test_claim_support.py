@@ -6,7 +6,7 @@ from unittest import mock
 
 import app
 from app import norm, tokens, _mask_markdown_code
-from tools.claim_support import _has_modal_mismatch, claim_support_enabled, has_unsupported_claims
+from tools.claim_support import _has_modal_mismatch, _has_negated_obligation_mismatch, claim_support_enabled, has_unsupported_claims
 
 
 class ClaimSupportTests(unittest.TestCase):
@@ -53,6 +53,20 @@ class ClaimSupportTests(unittest.TestCase):
                     claim + " [1].", [{"text": evidence}],
                     tokens, norm, _mask_markdown_code
                 ))
+
+    def test_must_not_and_shall_not_are_explicit_negated_obligations(self):
+        self.assertTrue(_has_negated_obligation_mismatch(
+            "The employer must provide notice.",
+            "The employer must not provide notice.",
+        ))
+        self.assertTrue(_has_negated_obligation_mismatch(
+            "The employer shall provide notice.",
+            "The employer shall not provide notice.",
+        ))
+        self.assertFalse(_has_negated_obligation_mismatch(
+            "The employer must not provide notice.",
+            "The employer must not provide notice.",
+        ))
 
     def test_faithful_raw_negated_obligation_paraphrases_pass(self):
         cases = (
