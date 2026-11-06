@@ -125,9 +125,12 @@ class TrustedProxyClientIpTests(unittest.TestCase):
             connection.commit()
             connection.close()
 
+            opened_connections = []
+
             def open_control():
                 db = sqlite3.connect(database)
                 db.row_factory = sqlite3.Row
+                opened_connections.append(db)
                 return db
 
             request = make_request("10.0.0.8", "203.0.113.44")
@@ -158,6 +161,8 @@ class TrustedProxyClientIpTests(unittest.TestCase):
                         self.assertGreater(app._rate_limit(request), 0)
                     finally:
                         app._active_firm_context.reset(firm_b)
+            for db in opened_connections:
+                db.close()
 
 if __name__ == "__main__":
     unittest.main()
