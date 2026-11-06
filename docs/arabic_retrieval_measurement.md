@@ -38,7 +38,7 @@ Set the evaluation credentials in the environment (do not put passwords in shell
 
     python tools/run_legal_eval.py --questions tests/legal_eval/arabic_retrieval_110.template.jsonl --out tests/legal_eval/retrieval_runs.before.jsonl
 
-The runner writes ranked source/article IDs and cited article IDs. It does not calculate accuracy. You may run the scorer now; it will record all 110 questions/runs as unlabeled/excluded and keep all rate metrics null. After counsel labels the same questions, rerun the scorer against the same before-run file to obtain the actual baseline.
+The runner writes ranked source/article IDs and cited article IDs. It does not calculate accuracy. The article scorer reports answerable-question abstentions separately (`answerable_abstained_answers`, `answerable_non_abstained_answers`, and `answerable_abstention_rate`) so conservative refusal on answerable prompts is visible and cannot be confused with abstention compliance on unanswerable prompts. You may run the scorer now; it will record all 110 questions/runs as unlabeled/excluded and keep all rate metrics null. After counsel labels the same questions, rerun the scorer against the same before-run file to obtain the actual baseline.
 
 ## Run after counsel labels the set
 
