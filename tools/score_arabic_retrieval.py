@@ -37,7 +37,7 @@ def _valid_reviewed(row):
         raise ValueError(f'{row.get("id")}: privacy_review_status must be approved')
     collection_date = row.get("question_collection_date")
     if (not isinstance(collection_date, str)
-            or not re.fullmatch(r"\\d{4}-\\d{2}-\\d{2}", collection_date)):
+            or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", collection_date)):
         raise ValueError(f'{row.get("id")}: question_collection_date must be YYYY-MM-DD')
     try:
         parsed_collection_date = date.fromisoformat(collection_date)
