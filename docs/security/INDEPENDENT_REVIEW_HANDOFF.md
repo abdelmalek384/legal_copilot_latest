@@ -194,3 +194,22 @@ After the handoff updates, the latest security candidate SHA is `b5dc30442376563
 - The platform subscription-payment approval handler checks platform-admin status and pending state but does not compare the submitter ID with the reviewer ID. Add a same-actor denial and regression test; keep independent platform-admin approval as the positive control.
 - Invoice payment schema source inspection shows strict integer amount > 0; route checks issued state, firm-scoped invoice lookup, persisted idempotency key, overpayment and audit event. Runtime tests remain unexecuted.
 - Strict preflight was not run. Credential-only production checks visible in the script include ADMIN_TOKEN, identity SMTP host/from and paired auth values, BACKUP_KEY, MFA_ENCRYPTION_KEY, and S3/KMS primary/recovery bucket, region and key identifiers. Do not represent these as observed preflight failures until an actual placeholder-config run is available.
+
+## Follow-up changes — 2026-11-06
+
+- #1484 adds `firm_id` (from the already validated `FirmContext`, not a client cookie) as a namespace in the rate-limit client key, resolves context before applying rate limits, and adds a SQLite reconnect regression test checking separate budgets for two firms sharing one client IP. CI for the prior head did not execute steps; new-head validation is pending.
+- #1485 denies approval when `submitted_by_user_id == current platform-admin user_id`; regression test covers denial for self-approval and success for a different platform administrator. No CI run is currently available for the new head.
+
+## Latest workflow state — 2026-11-06
+
+- #1484 head `82a9ae39278d5549f6a1f2caaa0d4752ec609462`: five workflows completed as failures; sampled Tests job `127801603681` reports `steps=null`. Do not retry. Job log retrieval did not provide annotation text (earlier download returned 404 BlobNotFound); owner must retrieve the exact annotation in GitHub UI.
+- #1485 head `99c89687c2bd3e5fb482debfa9231f07136c28c9`: no PR-triggered workflow runs returned by the connector; CI remains unverified.
+
+- #1485 current head `816e3d4d54357e062ab6d7149b87e2d35b1cd24f` adds regression cases for strict integer amount validation and rejecting payments on draft/void invoices. No workflow runs were returned for this head; local tests remain unexecuted.
+- Invoice payment endpoint currently records directly to the append-only ledger and has no approval transition. Separation-of-duties enforcement currently covers subscription manual-payment review only. A two-person invoice-receipt approval workflow would require separate product/policy scope.
+
+- Current #1485 branch head `1ce256c0d8f7d9f07ae36da4b51f08165a11819b` includes additional invoice strict amount/status and upload abuse regression cases. No PR workflow run is available for this exact SHA.
+
+- OCR subprocess concurrency is now bounded to two simultaneous Tesseract calls per application worker. Saturation fails fast with HTTP 429; tests assert no OCR subprocess starts while full and the slot is released after success. This is per-process, so production worker count and edge rate limiting remain part of capacity planning.
+
+- OCR semaphore tests now cover saturated capacity, release after successful processing, and release after subprocess failure. Latest pre-follow-up head was `2c26cc3580f988cf2a0dfa91b3256b59686226bb`; no CI workflow was returned for it. The next test-only update remains unexecuted locally.

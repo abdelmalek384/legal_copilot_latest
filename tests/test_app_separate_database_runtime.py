@@ -5154,5 +5154,34 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(denied.status_code, 404, denied.text)
 
 
+    def test_upload_rejects_oversized_and_unsupported_files_before_persistence(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Upload abuse boundary"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        oversized = self._mutate(
+            "post", f"/cases/{case_id}/upload",
+            files={"file": ("oversized.pdf", b"x" * 15_000_001, "application/pdf")},
+        )
+        self.assertEqual(oversized.status_code, 413, oversized.text)
+
+        unsupported = self._mutate(
+            "post", f"/cases/{case_id}/upload",
+            files={"file": ("payload.txt", b"plain text is not an accepted upload", "text/plain")},
+        )
+        self.assertEqual(unsupported.status_code, 415, unsupported.text)
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        tenant = self.runtime.firm_connection(context)
+        self.assertEqual(
+            tenant.execute("SELECT COUNT(*) FROM docs").fetchone()[0],
+            0,
+            "rejected upload attempts must not create document metadata",
+        )
+
 if __name__ == "__main__":
     unittest.main()

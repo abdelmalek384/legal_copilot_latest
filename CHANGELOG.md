@@ -60,3 +60,9 @@
 - PR #1150: Propose a separately gated source-matched/unreviewed trust tier without relaxing lawyer approval.
 - PR #1148: Add a data-driven Arabic legal retrieval lexicon and synthetic top-three regressions.
 - PR #1485: Record exact-head runner non-execution, local Python 3.12 constraints, and source-reviewed payment-separation and firm-rate-limit gaps.
+- PR #1485: Prevent a payment submitter from approving their own subscription-payment submission and add a regression test.
+- PR #1485: Add regression coverage for strict positive integer invoice payments and draft/void invoice rejection.
+- PR #1485: Add route-level tests for oversized and unsupported document uploads without metadata persistence.
+- PR #1485: Record exact-head workflow lookup and Python 3.12 execution limitation for the added billing/upload regressions.
+- PR #1485: Bound concurrent OCR subprocesses per worker and test saturation/release behavior.
+- PR #1485: Verify OCR worker slots are released after Tesseract subprocess failure.

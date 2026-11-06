@@ -2310,6 +2310,8 @@ _UPLOAD_RATE_LIMIT = (10, 3600)
 # This is a per-process safeguard; production multi-worker deployments still need
 # edge/proxy rate limiting or a shared limiter.
 _LOGIN_HASH_SLOTS = threading.BoundedSemaphore(max(2, int(os.environ.get("LOGIN_HASH_CONCURRENCY", "4"))))
+# Bound concurrent OCR subprocesses per application worker; retain the edge rate limit too.
+_OCR_WORKER_SLOTS = threading.BoundedSemaphore(2)
 _rate_limit_state = {}
 _rate_limit_lock = threading.Lock()
 _rate_limit_checks = 0
@@ -3501,7 +3503,12 @@ def ocr_pdf_text(data, lang=None, max_pages=30, existing_pages=None):
                     raise HTTPException(413, "PDF page exceeds the 20-megapixel OCR limit")
                 pix = page.get_pixmap(dpi=160, alpha=False)
                 image = Image.open(io.BytesIO(pix.tobytes("png")))
-                page_text = pytesseract.image_to_string(image, lang=lang, timeout=30).strip()
+                if not _OCR_WORKER_SLOTS.acquire(blocking=False):
+                    raise HTTPException(429, "OCR capacity is busy; retry later")
+                try:
+                    page_text = pytesseract.image_to_string(image, lang=lang, timeout=30).strip()
+                finally:
+                    _OCR_WORKER_SLOTS.release()
             block = f"[[PDF_PAGE:{page_no}]]\n\n{page_text}"
             added = len(block) + (2 if pages else 0)
             if total_chars + added > max_chars:

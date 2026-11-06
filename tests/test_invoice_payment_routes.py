@@ -173,5 +173,44 @@ class InvoicePaymentRouteTests(InvoiceTestSupport, unittest.TestCase):
         self.assertIn("ليس فاتورة ضريبية إلكترونية", response.text)
         self.assertIn("Client Snapshot", response.text)
 
+    def test_payment_requires_positive_strict_integer_and_issued_invoice(self):
+        draft = self.create_draft().json()
+        payload = {
+            "amount_piasters": 1000,
+            "paid_on": "2026-11-02",
+            "method": "cash",
+            "reference": "STRICT-AMOUNT",
+            "note": "",
+            "idempotency_key": "strict-amount-001",
+        }
+        draft_payment = self.mutate(
+            self.client_a, "post", f"/invoices/{draft['id']}/payments", json=payload
+        )
+        self.assertEqual(draft_payment.status_code, 409)
+
+        issued = self.mutate(
+            self.client_a, "post", f"/invoices/{draft['id']}/issue"
+        ).json()
+        float_amount = dict(payload, amount_piasters=1000.5, idempotency_key="strict-float-001")
+        self.assertEqual(
+            self.mutate(self.client_a, "post", f"/invoices/{issued['id']}/payments", json=float_amount).status_code,
+            422,
+        )
+        negative_amount = dict(payload, amount_piasters=-1, idempotency_key="strict-negative-001")
+        self.assertEqual(
+            self.mutate(self.client_a, "post", f"/invoices/{issued['id']}/payments", json=negative_amount).status_code,
+            422,
+        )
+
+        voided = self.mutate(
+            self.client_a, "post", f"/invoices/{issued['id']}/void",
+            json={"reason": "Void before payment entry"},
+        )
+        self.assertEqual(voided.status_code, 200, voided.text)
+        void_payment = self.mutate(
+            self.client_a, "post", f"/invoices/{issued['id']}/payments", json=payload
+        )
+        self.assertEqual(void_payment.status_code, 409)
+
 if __name__ == "__main__":
     unittest.main()
