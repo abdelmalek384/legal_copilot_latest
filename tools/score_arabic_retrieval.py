@@ -66,11 +66,13 @@ def _valid_reviewed(row):
     if date.fromisoformat(row["review_date"]).isoformat() != row["review_date"] or date.fromisoformat(row["review_date"]) > date.today():
         raise ValueError(f"{row.get('id')}: invalid or future review_date")
     url = row.get("review_evidence_url")
-    try:
-        parsed = urlsplit(url or "")
-        _ = parsed.port
-    except ValueError:
-        parsed = None
+    parsed = None
+    if isinstance(url, str):
+        try:
+            parsed = urlsplit(url)
+            _ = parsed.port
+        except ValueError:
+            parsed = None
     if (parsed is None or parsed.scheme != "https" or not parsed.hostname
             or parsed.username is not None or parsed.password is not None
             or parsed.query or parsed.fragment):
