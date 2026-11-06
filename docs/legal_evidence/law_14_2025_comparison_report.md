@@ -10,7 +10,7 @@
 
 ## Counsel sign-off boundary
 
-A separate 311-row lawyer tick-sheet covers all 13 promulgation provisions and 298 attached-law articles. It records prior page-image comparison separately from lawyer review; every lawyer decision remains blank and every `verified` value remains 0. All 311 rows now have page locators. 282 have prior page-image comparison records; 29 have locator-only visual checks of the article heading, with full wording comparison still outstanding for those 29.
+A separate 311-row lawyer tick-sheet covers all 13 promulgation provisions and 298 attached-law articles. It records prior page-image comparison separately from lawyer review; every lawyer decision remains blank and every `verified` value remains 0. All 311 rows now have page locators and page-image comparison notes. The earlier 282 page-image comparisons plus 29 additional full-article visual comparisons on 2026-11-06 cover all 311 provisions. The additional 29 matched the candidate wording on the inspected pages; these are not counsel sign-off.
 
 The machine and visual checks below do not amount to complete legal proofread, amendment/currentness review, rights clearance or qualified counsel approval. See `law_14_2025_lawyer_review_packet.md` and `law_14_2025_lawyer_review_tick_sheet.csv`.
 
