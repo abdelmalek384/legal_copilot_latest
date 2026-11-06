@@ -33,7 +33,9 @@
         "synonym_questions": 0,
         "colloquial_or_synonym_questions": 0,
         "target_top3_hit_rate_colloquial": 0.8,
-        "target_top3_hit_rate_synonym": 0.8
+        "target_top3_hit_rate_synonym": 0.8,
+        "target_abstention_compliance_unanswerable": 1,
+        "target_minimum_unanswerable_questions": 1
       },
       "status": "not_scored_no_lawyer_approved_labels"
     },
