@@ -3496,7 +3496,7 @@ def ocr_pdf_text(data, lang=None, max_pages=30, existing_pages=None):
                 if (not math.isfinite(width_pt) or not math.isfinite(height_pt)
                         or width_pt <= 0 or height_pt <= 0):
                     raise HTTPException(422, "PDF page dimensions are invalid")
-                estimated_pixels = width_pt * height_pt * (160 / 72) ** 2
+                estimated_pixels = math.ceil(width_pt * 160 / 72) * math.ceil(height_pt * 160 / 72)
                 if estimated_pixels > 20_000_000:
                     raise HTTPException(413, "PDF page exceeds the 20-megapixel OCR limit")
                 pix = page.get_pixmap(dpi=160, alpha=False)
