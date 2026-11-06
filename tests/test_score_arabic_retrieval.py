@@ -140,7 +140,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
             "question_id": "Q-UNVERIFIED",
             "retrieved_article_ids": ["LABOUR-ART-1"],
             "cited_article_ids": ["LABOUR-ART-1"],
-            "abstained": False, "used_unverified_source": False,
+            "abstained": False,
             "used_unverified_source": True,
         }
         result = score([q], [run])
