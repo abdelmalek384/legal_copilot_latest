@@ -76,3 +76,8 @@ The Docker health check requests the public application shell and reports **live
 ## Configuration and secrets
 
 The .env.production.example file lists the required configuration shape, not valid credentials. Store the real .env.production with restrictive permissions and outside source control. Docker administrators can inspect container environment values; protect access to the Docker socket and host. Do not put AWS access keys, SMTP credentials, model keys, backup keys, MFA keys or client data into the image, Compose file, command line, tickets or logs.
+
+
+## Staging preflight credential gaps
+
+Before preparing a clean staging host, use [Staging preflight: credential gaps versus deployment configuration](staging_preflight_credential_gaps.md) to distinguish protected secrets from required host, origin, SMTP, S3/KMS, MFA and database settings. The guide does not provide credentials or claim that a placeholder deployment has passed strict preflight.
