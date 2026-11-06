@@ -261,6 +261,17 @@ class ClaimSupportTests(unittest.TestCase):
             hits, tokens, norm, _mask_markdown_code
         ))
 
+    def test_arabic_prohibition_with_variable_whitespace_is_not_permission(self):
+        for prefix in ("لا يجوز", "لا   يجوز", "لا\\tيجوز", "لا\\nيجوز"):
+            with self.subTest(prefix=prefix):
+                self.assertTrue(_has_modal_mismatch("يجوز للعامل", prefix + " للعامل"))
+                self.assertFalse(_has_modal_mismatch(prefix + " للعامل", prefix + " للعامل"))
+                self.assertTrue(has_unsupported_claims(
+                    "يجوز للعامل خصم الأجر [1].",
+                    [{"text": prefix + " لصاحب العمل خصم الأجر."}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
     def test_english_prohibition_change_is_blocked(self):
         hits = [{"text": "The employer may not deduct wages."}]
         self.assertTrue(has_unsupported_claims(
