@@ -14,20 +14,20 @@ details=()
 
 run_check() {
   local label="$1"; shift
-  local output rc
+  local log rc
+  log=$(mktemp)
   names+=("$label")
   echo
   echo "==> $label"
-  if output=$("$@" 2>&1); then
+  if "$@" 2>&1 | tee "$log"; then
     statuses+=("PASS")
     details+=("completed")
-    printf '%s\n' "$output"
   else
     rc=$?
     statuses+=("FAIL")
     details+=("exit $rc")
-    printf '%s\n' "$output"
   fi
+  rm -f "$log"
 }
 
 run_check "Full CI-invoked Python test suite" python tools/run_local_test_suite.py
