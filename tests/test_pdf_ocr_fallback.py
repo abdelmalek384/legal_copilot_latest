@@ -101,7 +101,7 @@ class PdfOcrFallbackTests(unittest.TestCase):
     def test_ocr_worker_timeout_is_bounded_and_fails_closed(self):
         fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: FakePdfDoc(1))
         fake_pytesseract = types.SimpleNamespace(
-            image_to_string=MagicMock(side_effect=TimeoutError("synthetic OCR timeout"))
+            image_to_string=MagicMock(side_effect=RuntimeError("synthetic OCR timeout"))
         )
         fake_image = types.SimpleNamespace(open=lambda value: object())
         fake_pil = types.ModuleType("PIL")
