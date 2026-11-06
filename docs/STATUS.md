@@ -26,7 +26,10 @@ An independent pilot security-review handoff is available at `docs/security/INDE
 ## PR triage
 
 - #1451 — merged; provisional evidence only.
-- #1449, #1212, #1208 and #840 — closed without merge.
+- #1449 — closed: classifier/UI contract only; real answer-path serving remains blocked by the verified-source-only policy.
+- #1212 — closed: limited seven-page/six-article spot-check retained as historical evidence; not a 311-row source verification.
+- #1208 — closed as standalone; its finite-period lexical coverage and regression tests are carried into #1470.
+- #840 — closed without merge after 71-comment review: Decisions 248–252/2026 secondary transcription remains quarantined; Table 24 has 0/781 official matches and reuse rights/original Gazette bytes remain unavailable.
 - #1460, #1461, #1464 and #1466 — closed without merge; superseded by PR #1470.
 - #1470 — current-main combined deliverable; awaiting usable CI results and review.
 
