@@ -183,7 +183,7 @@ The repository does not bundle the original Gazette PDF or the complete candidat
 python tools/import_gazette_text.py /secure/input/gazette.txt /secure/input/gazette.json /secure/output/law14-review
 ```
 
-The metadata sidecar must include the exact text SHA-256, Gazette issue/publication date, source URL/reference, supplier identity and role, capture method and permission status. The supplier role must identify an Egyptian lawyer or qualified Egyptian counsel. The importer segments articles and writes `law_rows.jsonl` plus `import_report.md`, including numbering-gap, duplicate-number and empty-body checks. Every row is forced to `verified=0`, `in_force=0`, and `as_of=null`. This does not authenticate the Gazette, grant reuse rights, establish current force, or activate retrieval.
+The metadata sidecar must include the exact text SHA-256, Gazette issue/publication date, source URL/reference, supplier identity and role, capture method and permission status; an `allowed` permission claim also requires a `permission_evidence_reference`. The supplier role must identify an Egyptian lawyer or qualified Egyptian counsel. The importer segments articles and writes `law_rows.jsonl` plus `import_report.md`, including numbering-gap, duplicate-number and empty-body checks. Every row is forced to `verified=0`, `in_force=0`, and `as_of=null`. This does not authenticate the Gazette, grant reuse rights, establish current force, or activate retrieval.
 
 The older `fetch_arabic_law.py` workflow uses an unofficial republication. Treat its output only as an unverified candidate lead. Compare the exact supplied text with the Gazette pages and complete source-rights, currentness and lawyer review before relying on it.
 
