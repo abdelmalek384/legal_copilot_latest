@@ -118,13 +118,95 @@ class SecureCookieTransportTests(unittest.TestCase):
             with self.subTest(code=code, target=target):
                 self.assertIsNone(handler.redirect_request(None, None, code, "redirect", {}, target))
 
-    def test_llm_endpoint_requires_https_remotely_and_allows_loopback_http(self):
-        for url in ("https://llm.example.com/v1/chat/completions", "http://127.0.0.1:11434/v1/chat/completions", "http://[::1]:11434/v1/chat/completions", "http://localhost:11434/v1/chat/completions"):
-            with self.subTest(url=url):
-                self.assertTrue(app._safe_llm_endpoint(url))
-        for url in ("http://llm.example.com/v1/chat/completions", "http://192.168.1.20:11434/v1", "https://user:pass@llm.example.com/v1", "https://llm.example.com/v1?api_key=secret", "https://llm.example.com/v1#fragment", "https://llm.example.com:99999/v1", "file:///tmp/model"):
+    def test_llm_endpoint_requires_public_https_or_loopback_http(self):
+        public_dns = [(2, 1, 6, "", ("93.184.216.34", 443))]
+        with patch.object(app.socket, "getaddrinfo", return_value=public_dns):
+            for url in ("https://llm.example.com/v1/chat/completions", "http://127.0.0.1:11434/v1/chat/completions", "http://[::1]:11434/v1/chat/completions", "http://localhost:11434/v1/chat/completions"):
+                with self.subTest(url=url):
+                    self.assertTrue(app._safe_llm_endpoint(url))
+        for url in (
+            "http://llm.example.com/v1/chat/completions",
+            "http://192.168.1.20:11434/v1",
+            "https://127.0.0.1/v1",
+            "https://10.0.0.8/v1",
+            "https://169.254.169.254/latest/meta-data",
+            "https://[::1]/v1",
+            "https://[fe80::1]/v1",
+            "https://[::ffff:10.0.0.1]/v1",
+            "https://user:pass@llm.example.com/v1",
+            "https://llm.example.com/v1?api_key=secret",
+            "https://llm.example.com/v1#fragment",
+            "https://llm.example.com:0/v1",
+            "https://llm.example.com:99999/v1",
+            "file:///tmp/model",
+        ):
             with self.subTest(url=url):
                 self.assertFalse(app._safe_llm_endpoint(url))
+
+    def test_llm_open_uses_pinned_handler_without_ambient_proxy(self):
+        class FakeOpener:
+            def __init__(self):
+                self.opened = None
+
+            def open(self, request, timeout):
+                self.opened = (request, timeout)
+                return "synthetic-response"
+
+        opener = FakeOpener()
+        request = app.urllib.request.Request(
+            "https://provider.example.test/v1/chat/completions",
+            data=b"{}",
+            headers={"Content-Type": "application/json"},
+        )
+        with patch.object(app, "_resolve_public_llm_address", return_value="93.184.216.34"):
+            with patch.object(app.urllib.request, "build_opener", return_value=opener) as build:
+                result = app._llm_open(request, timeout=9)
+
+        self.assertEqual(result, "synthetic-response")
+        self.assertEqual(opener.opened, (request, 9))
+        handlers = build.call_args.args
+        self.assertTrue(any(isinstance(handler, app.urllib.request.ProxyHandler) and handler.proxies == {} for handler in handlers))
+        self.assertTrue(any(isinstance(handler, app._RejectLLMRedirects) for handler in handlers))
+        pinned = next(handler for handler in handlers if isinstance(handler, app._PinnedHTTPSHandler))
+        self.assertEqual(pinned._resolved_ip, "93.184.216.34")
+
+    def test_llm_https_connection_pins_validated_ip_and_keeps_tls_hostname(self):
+        class FakeTLSContext:
+            verify_mode = 2
+            check_hostname = True
+
+            def __init__(self):
+                self.arguments = None
+
+            def wrap_socket(self, sock, server_hostname):
+                self.arguments = (sock, server_hostname)
+                return "wrapped-tls-socket"
+
+        raw_socket = object()
+        context = FakeTLSContext()
+        connection = app._PinnedHTTPSConnection(
+            "provider.example.test",
+            "93.184.216.34",
+            context=context,
+            timeout=7,
+        )
+        with patch.object(app.socket, "create_connection", return_value=raw_socket) as connect:
+            connection.connect()
+        connect.assert_called_once_with(("93.184.216.34", 443), 7, None)
+        self.assertEqual(context.arguments, (raw_socket, "provider.example.test"))
+        self.assertEqual(connection.sock, "wrapped-tls-socket")
+
+    def test_llm_https_hostname_is_rejected_if_any_dns_answer_is_non_global(self):
+        private_dns = [(2, 1, 6, "", ("10.0.0.8", 443))]
+        with patch.object(app.socket, "getaddrinfo", return_value=private_dns):
+            self.assertFalse(app._safe_llm_endpoint("https://model.example.test/v1"))
+
+        mixed_dns = [
+            (2, 1, 6, "", ("93.184.216.34", 443)),
+            (2, 1, 6, "", ("192.168.1.8", 443)),
+        ]
+        with patch.object(app.socket, "getaddrinfo", return_value=mixed_dns):
+            self.assertFalse(app._safe_llm_endpoint("https://model.example.test/v1"))
 
     def test_unsafe_llm_endpoint_never_calls_network_even_with_processing_approval(self):
         with patch.dict(os.environ, {"LLM_URL": "http://remote.example/v1", "LLM_DATA_PROCESSING_APPROVED": "1"}):
@@ -132,9 +214,37 @@ class SecureCookieTransportTests(unittest.TestCase):
                 self.assertIsNone(app.llm("CONFIDENTIAL-SENTINEL"))
                 open_url.assert_not_called()
 
+    def test_llm_dns_rebinding_to_private_ip_between_checks_fails_closed(self):
+        public_answer = [(2, 1, 6, "", ("93.184.216.34", 443))]
+        private_answer = [(2, 1, 6, "", ("10.0.0.8", 443))]
+        with patch.dict(os.environ, {
+            "LLM_URL": "https://provider.example.test/v1/chat/completions",
+            "LLM_DATA_PROCESSING_APPROVED": "1",
+        }):
+            with patch.object(app.socket, "getaddrinfo", side_effect=[public_answer, private_answer]) as resolve:
+                with patch.object(app.urllib.request, "build_opener") as build:
+                    with self.assertRaises(ValueError):
+                        app.llm("synthetic prompt")
+        self.assertEqual(resolve.call_count, 2)
+        build.assert_not_called()
+
+    def test_llm_without_processing_approval_does_not_resolve_provider_hostname(self):
+        with patch.dict(
+            os.environ,
+            {
+                "LLM_URL": "https://provider.example.test/v1/chat/completions",
+                "LLM_DATA_PROCESSING_APPROVED": "",
+            },
+        ):
+            with patch.object(app.socket, "getaddrinfo") as resolve:
+                with patch.object(app.urllib.request, "urlopen") as open_url:
+                    self.assertIsNone(app.llm("CONFIDENTIAL-SENTINEL"))
+                resolve.assert_not_called()
+                open_url.assert_not_called()
+
     def test_llm_provider_response_is_bounded_and_malformed_payloads_fail_closed(self):
         settings = {
-            "LLM_URL": "https://llm.example.test/v1/chat/completions",
+            "LLM_URL": "https://93.184.216.34/v1/chat/completions",
             "LLM_MODEL": "test-model",
             "LLM_KEY": "test-key",
             "LLM_DATA_PROCESSING_APPROVED": "1",
