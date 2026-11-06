@@ -28,7 +28,7 @@ Release targets on approved cohorts:
 - Top-3 expected-article hit rate of at least 80% for each cohort.
 - Wrong-article answer rate 0%.
 - No uncited non-abstained answers and no answers from unverified sources.
-- Unanswerable questions must abstain.
+- Include at least one lawyer-approved unanswerable question to make the abstention-safety target evaluable; every such question must abstain (100% compliance).
 
 ## Current measurement limitation
 
