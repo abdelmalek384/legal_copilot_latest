@@ -190,6 +190,24 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         self.assertEqual(result["abstention_rate"], 1.0)
         self.assertEqual(result["abstention_compliance_unanswerable"], 1.0)
 
+    def test_uncited_non_abstained_answer_blocks_targets(self):
+        colloquial = reviewed("Q-C", style="colloquial")
+        synonym = reviewed("Q-S", tags=["synonym"])
+        runs = [
+            {"question_id": "Q-C", "retrieved_article_ids": ["LABOUR-ART-1"],
+             "cited_article_ids": ["LABOUR-ART-1"], "abstained": False,
+             "used_unverified_source": False},
+            {"question_id": "Q-S", "retrieved_article_ids": ["LABOUR-ART-1"],
+             "cited_article_ids": [], "abstained": False,
+             "used_unverified_source": False},
+        ]
+        result = score([colloquial, synonym], runs)
+        self.assertEqual(result["top3_hit_rate_colloquial"], 1.0)
+        self.assertEqual(result["top3_hit_rate_synonym"], 1.0)
+        self.assertEqual(result["wrong_article_rate"], 0.0)
+        self.assertEqual(result["uncited_non_abstained_answers"], 1)
+        self.assertEqual(result["target_status"], "below_target")
+
     def test_uncited_non_abstained_answer_is_reported_separately(self):
         q = reviewed("Q1")
         run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
