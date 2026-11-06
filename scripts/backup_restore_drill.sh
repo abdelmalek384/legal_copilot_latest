@@ -14,6 +14,7 @@ BACKUP_KEY must already be securely injected from the protected secret manager.
 Example paths (replace them; do not use production paths for a rehearsal):
   ./backups/drill  ./recovery-drills  restored-2026-11-06
 
+Run from a protected maintenance shell, not from the production application environment; the script refuses COPILOT_ENV=prod/production.
 The restore target must be a new, non-existent child of RESTORE_PARENT.
 The operator must stop all application/background writers for the full backup
 snapshot window and keep the original application pointed at its original data.
