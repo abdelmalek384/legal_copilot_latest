@@ -1,3 +1,5 @@
+> Archived 2026-11-06: historical attack-surface inventory snapshot. Its shared-database references describe the pre-separation architecture; use the current independent-review handoff and tenant-isolation inventory for present-day review.
+
 # SEC-01 attack-surface inventory (historical static baseline)
 
 **Snapshot:** 2026-10-24  

@@ -1,6 +1,6 @@
 # Versioned database migrations
 
-**Status:** The versioned migration runner is used for the three approved separate-database profiles. The shared `COPILOT_DB` runtime was retired in PR #972 and is rejected in every environment. All supported installations use the three profile-separated paths and versioned profile migrations. No legacy database has been deployed or used, and no import/reconciliation is planned.
+**Status:** The versioned migration runner is used for the three approved separate-database profiles. The supported runtime uses only the three profile-separated paths and versioned profile migrations. All supported installations use the three profile-separated paths and versioned profile migrations. No legacy database has been deployed or used, and no import/reconciliation is planned.
 
 ## Workflow
 
@@ -29,7 +29,7 @@ Run the regression suite with:
 PYTHONPATH=. python tests/test_backup_restore_safety.py
 ```
 
-The legacy single-file `backup` and `restore` commands now fail closed; this test verifies they do not create output or replace a destination. Actual backup/restore integrity coverage is provided by `tests/test_database_backup_bundle.py`. The backup key must be stored separately from backup files, and operators must complete a witnessed staging restore/rollback drill before production recovery.
+Backup/restore integrity coverage is provided by `tests/test_database_backup_bundle.py`. The backup key must be stored separately from backup files, and operators must complete a witnessed staging restore/rollback drill before production recovery.
 
 
 ## Disposable-copy migration rehearsal
@@ -78,4 +78,4 @@ Before migrating remaining startup DDL, run:
 PYTHONPATH=. python scripts/database_startup_ddl_inventory.py
 ```
 
-The source-only report inventories the literal `SCHEMA` string, DDL statements outside that string (including conditional legacy `ALTER TABLE` operations), and each versioned migration. It does not open a database and is not proof of runtime behavior. Review dynamic SQL and test both fresh and legacy database copies before moving any table/FTS creation or conditional column changes into migrations.
+The source-only report inventories the literal `SCHEMA` string, DDL statements outside that string, and each versioned migration. It does not open a database and is not proof of runtime behavior. Review dynamic SQL and test fresh profile-specific database copies before moving any table/FTS creation or conditional column changes into migrations.

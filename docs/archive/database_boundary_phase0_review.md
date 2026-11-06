@@ -1,3 +1,5 @@
+Archived 2026-11-06: phase-zero single-store boundary review. Historical only; the current architecture is profile-separated. See docs/STATUS.md and docs/tenant_isolation_inventory.md.
+
 # SEC-01 — Phase 0 database and storage boundary review
 
 **Review date:** 2026-10-24  

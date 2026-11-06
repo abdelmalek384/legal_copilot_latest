@@ -1,3 +1,5 @@
+Archived 2026-11-06: historical database architecture decision tracker. Current approved topology is described in active deployment and tenant-isolation documentation.
+
 # Database architecture — working decisions
 
 **Status:** Product-owner working plan recorded 2026-10-26; production cutover and irreversible operations are not authorized by this document.

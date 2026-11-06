@@ -25,6 +25,13 @@ class RunnerError(RuntimeError):
 MAX_API_RESPONSE_BYTES = 16 * 1024 * 1024
 
 
+class _NoRedirectHandler(urllib.request.HTTPRedirectHandler):
+    """Never forward login credentials or evaluation payloads across redirects."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
 def validate_base_url(base_url, allow_remote=False):
     if (
         not isinstance(base_url, str)
@@ -157,6 +164,27 @@ def _answer_citation_indices(answer):
     return sorted({int(value) for value in re.findall(r"\[(\d+)\]", visible_answer)})
 
 
+_ARABIC_ARTICLE_DIGITS = str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789")
+
+
+def _article_identifier(hit):
+    """Return a stable source-scoped article ID; omit incomplete source locators."""
+    if not isinstance(hit, dict):
+        return None
+    source_id = hit.get("source_id")
+    article = str(hit.get("article") or "").strip()
+    if not isinstance(source_id, str) or not source_id.strip() or not article:
+        return None
+    article = article.translate(_ARABIC_ARTICLE_DIGITS)
+    article = re.sub(r"^\s*(?:(?:المادة|مادة)\s*|(?:article|art\.?)\s*)", "", article, flags=re.I).strip()
+    if not article:
+        return None
+    law = re.sub(r"\s+", " ", str(hit.get("law") or "").strip())
+    if not law:
+        return None
+    return f"{source_id.strip()}::law:{law}::article:{article}"
+
+
 def result_from_response(question, response):
     answer = response.get("answer")
     answer = answer if isinstance(answer, str) and answer.strip() else None
@@ -164,17 +192,21 @@ def result_from_response(question, response):
     indices = _answer_citation_indices(answer)
     invalid = {index for index in indices if index < 1 or index > len(sources)}
     retrieved_source_ids = []
+    retrieved_article_ids = []
     for hit in sources:
         if not isinstance(hit, dict):
             continue
         source_id = hit.get("source_id")
-        if not isinstance(source_id, str) or not source_id.strip():
-            continue
-        source_id = source_id.strip()
-        if source_id not in retrieved_source_ids:
-            retrieved_source_ids.append(source_id)
+        if isinstance(source_id, str) and source_id.strip():
+            source_id = source_id.strip()
+            if source_id not in retrieved_source_ids:
+                retrieved_source_ids.append(source_id)
+        article_id = _article_identifier(hit)
+        if article_id and article_id not in retrieved_article_ids:
+            retrieved_article_ids.append(article_id)
 
     cited_sources = []
+    cited_article_ids = []
     cited_pins = []
     citations = []
     used_unverified_source = False
@@ -192,6 +224,9 @@ def result_from_response(question, response):
         source_id = source_id.strip()
         if source_id not in cited_sources:
             cited_sources.append(source_id)
+        article_id = _article_identifier(hit)
+        if article_id and article_id not in cited_article_ids:
+            cited_article_ids.append(article_id)
         citation = {"source_id": source_id}
         pin = _pin_cite(hit)
         if pin:
@@ -217,6 +252,8 @@ def result_from_response(question, response):
         # Count only an explicit answer-path claim-support rejection; other abstentions are distinct.
         "claim_support_blocked": response.get("claim_support_blocked") is True,
         "retrieved_source_ids": retrieved_source_ids,
+        "retrieved_article_ids": retrieved_article_ids,
+        "cited_article_ids": cited_article_ids,
         "citations": citations,
         "used_unverified_source": used_unverified_source,
         "citation_marker_count": len(indices),
@@ -230,6 +267,7 @@ def result_from_response(question, response):
             {
                 "source_id": hit.get("source_id"),
                 "citation": hit.get("citation") or hit.get("ref"),
+                "law": hit.get("law"),
                 "article": hit.get("article"),
                 "page": hit.get("page"),
                 "source_status": hit.get("source_status"),
@@ -267,7 +305,9 @@ def run_questions(base_url, email, password, questions, out_path, sleep_seconds=
     if target.exists():
         raise RunnerError(f"output already exists: {target}; choose a new path to avoid overwriting results")
     jar = http.cookiejar.CookieJar()
-    opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar))
+    opener = urllib.request.build_opener(
+        urllib.request.HTTPCookieProcessor(jar), _NoRedirectHandler()
+    )
     base = base_url.rstrip("/")
     _request_json(opener, base + "/login", {"email": email, "password": password}, timeout=30)
     csrf = next((cookie.value for cookie in jar if cookie.name == "lc_csrf"), None)

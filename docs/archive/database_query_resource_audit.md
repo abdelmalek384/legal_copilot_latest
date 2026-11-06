@@ -1,3 +1,5 @@
+Archived 2026-11-06: pre-separation single-store query/resource audit. Its findings describe an obsolete topology and must not guide current database decisions. See docs/STATUS.md and docs/tenant_isolation_inventory.md.
+
 # SEC-01: database query and resource audit (initial static pass)
 
 **Status:** Initial repository-code audit; not an exhaustive runtime/deployment audit, security certification, or proof of tenant isolation.  

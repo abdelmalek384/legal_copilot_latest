@@ -6,6 +6,8 @@ All files in this directory are derived review artifacts. The Gazette PDF and ca
 
 | File | Data rows | Contents |
 |---|---:|---|
+| `law_14_2025_lawyer_review_tick_sheet.csv` | 311 | One lawyer decision row per promulgation provision / attached-law article; blank decisions and verified=0 |
+| `law_14_2025_lawyer_review_packet.md` | — | Counsel instructions, source identity, page-locator gaps, currentness leads and sign-off |
 | `law_14_2025_differing_articles_part1.csv` | 100 | Difference records 1–100 |
 | `law_14_2025_differing_articles_part2.csv` | 100 | Difference records 101–200 |
 | `law_14_2025_differing_articles_part3.csv` | 73 | Difference records 201–273 |
@@ -16,6 +18,7 @@ The five CSV files were fetched back from the PR branch and checked for headers 
 
 ## Other review artifacts
 
+- `law_14_2025_lawyer_review_packet.md` and `law_14_2025_lawyer_review_tick_sheet.csv`: 311-row counsel packet; every decision is blank and every verification flag is 0. All 311 rows now have page locators and page-image comparison notes. The earlier 282 comparisons plus 29 additional full-article visual comparisons on 2026-11-06 cover all 311 provisions; every lawyer decision remains blank and every `verified` value remains 0.
 - `law_14_2025_comparison_report.md`: method, counts, five numeric-alert triage notes, limitations, trust status.
 - `law_14_2025_numeric_alert_review.csv`: five individually inspected numeric alerts.
 - `law_14_2025_discrepancy_article_index.md`: grouped list of differing article identifiers.
@@ -25,6 +28,6 @@ The five CSV files were fetched back from the PR branch and checked for headers 
 
 ## Trust boundary
 
-Status is **source-matched, not lawyer-reviewed**. No row is represented as legally verified. The planned page-image review is complete. The instrument remains non-authoritative and retrieval-ineligible pending exact upload provenance, comprehensive currentness/amendment/corrigendum and reuse-rights checks, and qualified Egyptian lawyer review.
+Status is **source-matched, not lawyer-reviewed**. No row is represented as legally verified. The planned non-identical/quantitative page-image review is complete for 282 provisions; 29 machine-identical provisions still lack targeted page-image review records and page locators. The instrument remains non-authoritative and retrieval-ineligible pending exact upload provenance, comprehensive currentness/amendment/corrigendum and reuse-rights checks, and qualified Egyptian lawyer review.
 
 - `law_14_2025_currentness_snapshot_2026-11-05.md`: government-hosted corroborating copies and limited 2026 implementing-instrument watch list; not counsel-approved.

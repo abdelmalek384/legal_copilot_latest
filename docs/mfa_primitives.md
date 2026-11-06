@@ -12,7 +12,7 @@ MFA enrollment and verification are available at:
 - POST /account/mfa/re-enroll
 - POST /account/mfa/disable
 
-The login response and GET /session indicate whether the client must enroll or complete an MFA challenge. A session that has not completed a required challenge is restricted to the MFA flow, session status, and logout. The legacy single-database compatibility mode does not provide the MFA integration; production preflight requires separate-database mode.
+The login response and GET /session indicate whether the client must enroll or complete an MFA challenge. A session that has not completed a required challenge is restricted to the MFA flow, session status, and logout. MFA integration runs within the profile-separated runtime; production preflight requires all three database profiles.
 
 ## Configuration
 

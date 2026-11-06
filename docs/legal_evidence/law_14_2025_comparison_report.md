@@ -8,6 +8,12 @@
 - PDF extraction: `pdftotext -layout`
 - Candidate structural audit: 311 rows; 13 promulgation provisions + 298 law articles; no numbering gaps, duplicate labels or duplicate texts; 120 quantitative articles; six orthography outliers.
 
+## Counsel sign-off boundary
+
+A separate 311-row lawyer tick-sheet covers all 13 promulgation provisions and 298 attached-law articles. It records prior page-image comparison separately from lawyer review; every lawyer decision remains blank and every `verified` value remains 0. All 311 rows now have page locators and page-image comparison notes. The earlier 282 page-image comparisons plus 29 additional full-article visual comparisons on 2026-11-06 cover all 311 provisions. The additional 29 matched the candidate wording on the inspected pages; these are not counsel sign-off.
+
+The machine and visual checks below do not amount to complete legal proofread, amendment/currentness review, rights clearance or qualified counsel approval. See `law_14_2025_lawyer_review_packet.md` and `law_14_2025_lawyer_review_tick_sheet.csv`.
+
 ## Machine comparison results
 
 | Machine status | Rows |
@@ -29,6 +35,7 @@
 | Minor differences | 221/221 | 0 | All inspected passages match candidate |
 | Quantitative provision cues | 120/120 | 0 | All inspected cues match candidate |
 | Known orthography outliers | 6/6 | 0 | All checked passages match candidate; this overlaps the groups above |
+| Previously unreviewed identical articles | 29/29 | 0 | Full article wording visually compared against the supplied PDF; candidate matches on inspected pages |
 
 The minor-difference visual review contains 221 unique article records across 23 CSV batches. Duplicate entries were removed and metadata was reconciled against the review record. The reviewed passages are not a substitute for a complete legal proofread or counsel sign-off.
 
@@ -56,7 +63,7 @@ All 221 minor-difference records were inspected against the supplied Gazette pag
 
 ## Required review and release gates
 
-- Page-image review is complete for the planned comparison checklist; no manual page-image queue remains.
+- Page-image comparison now covers all 311 provisions: the 282 previously recorded comparisons plus 29 additional full-article visual comparisons on 2026-11-06. The 29 additional rows matched the candidate transcription on the inspected pages. All 311 remain subject to independent qualified-counsel review; this is not legal verification or approval.
 - Quantitative page-image review is complete (120/120); the separate lawyer decision fields remain intentionally blank pending qualified Egyptian counsel.
 - Obtain the exact source URL and capture date for the user-supplied PDF; the ETA-hosted PDF URL above is an independent comparison locator, not proven upload provenance.
 - Complete a counsel-led check of amendments, corrigenda, currentness, legal effective-date interpretation, and source/reuse rights. See `law_14_2025_currentness_snapshot_2026-11-05.md` for the limited government-source sweep and related 2026 implementing-instrument watch list.

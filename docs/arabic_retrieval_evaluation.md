@@ -15,6 +15,34 @@ Provide a reproducible measurement harness for Arabic legal retrieval and citati
 - `tests/legal_eval/runs.example.jsonl` is intentionally empty apart from an explanatory comment. No real run results or lawyer-approved labels are claimed.
 - Add reviewed labels only after a qualified Egyptian-law reviewer records their name/date and identifies exact expected source IDs. Pin-cite labels are optional but should be exact and evidence-backed.
 
+## 110-question article-level benchmark template
+
+The current target template is `tests/legal_eval/arabic_retrieval_110.template.jsonl` (110 rows). All 110 are explicitly marked `question_origin=curated_candidate_not_user_observed`; they are candidate prompts, not real observed user/client questions. The prior conversation search found no authentic user-supplied legal questions or lawyer-approved answer key. Do not relabel these candidates as real queries.
+
+### Intake procedure for real Egyptian-Arabic questions
+
+Replace or supplement the curated candidates only with questions that were actually asked by a lawyer/client or published by a source whose reuse terms permit inclusion. For each observed query:
+
+1. Preserve the original Arabic wording, but remove names, national IDs, phone numbers, addresses, case numbers, employer names, account details and other identifying facts. Generalize dates, amounts and locations only where that does not change the legal issue.
+2. Record the origin class (anonymized client query, lawyer query, or permitted public Q&A), the date collected, the consent/licence basis, and a source reference. Public accessibility alone is not permission to reuse.
+3. Have a qualified Egyptian lawyer approve answerability, the expected article ID, the canonical answer, formal/colloquial style, and synonym tags. Record reviewer role/date and a review-evidence reference.
+4. Keep any query without a privacy review, reuse basis, expected article or lawyer-approved answer marked `unlabeled`; it must not enter scored metrics.
+5. Build at least 100 total approved real questions, including at least 20 approved colloquial questions, 20 approved synonym questions, and at least one approved unanswerable question before evaluating the release targets.
+
+Never use confidential client files or identifiable legal narratives as benchmark data without an appropriate lawful basis and explicit approval.
+
+All 110 rows remain unreviewed/unlabeled. No expected article is treated as ground truth and no `lawyer_approved_answer` has been supplied. A question may enter the scored cohort only after a qualified Egyptian lawyer records the expected article ID, answerability, lawyer-approved answer, question style, synonym tags, review date and evidence reference.
+The scorer rejects `curated_candidate_not_user_observed` rows even if someone later adds labels. Only `observed_anonymized_query` or `permitted_public_q_and_a` rows with `privacy_review_status=approved`, a collection date, origin reference, and non-empty consent/reuse basis can enter the scored cohort.
+
+The new scorer is `tools/score_arabic_retrieval.py`; the API runner is `tools/run_legal_eval.py`. The combined measurement file is `docs/arabic_retrieval_measurement.json`. It currently records 110 excluded/unreviewed questions, zero reviewed questions, null top-3/wrong-article/abstention metrics, and no after-run. Null means not measured, not zero error. `MIN_SCORE` remains 0.30 and must not be tuned before a lawyer-labelled benchmark and a real before-run exist.
+
+Release targets on approved cohorts:
+- At least 100 total provenance-cleared, lawyer-approved real questions, including at least 20 colloquial questions and 20 synonym questions.
+- Top-3 expected-article hit rate of at least 80% for each cohort.
+- Wrong-article answer rate 0%.
+- No uncited non-abstained answers and no answers from unverified sources.
+- Include at least one lawyer-approved unanswerable question to make the abstention-safety target evaluable; every such question must abstain (100% compliance).
+
 ## Current measurement limitation
 
 No lawyer-reviewed Egyptian colloquial question set or measured model-run output is currently available. Phrase-expansion unit tests prove that selected colloquial expressions map to retrieval hints; they do not prove that the correct article is retrieved or that an answer is legally correct. Do not report retrieval recall, citation precision, or answer accuracy until a qualified Egyptian reviewer approves exact expected source IDs and pin-cites and a real run is scored.
@@ -134,3 +162,58 @@ The evaluator supports optional `--min-recall-at-3` and `--min-mrr-at-3` thresho
 
 
 Per-practice-area top-three gates are available as `--min-recall-at-3-per-practice-area` and `--min-mrr-at-3-per-practice-area`. Use them with `--min-practice-areas` and `--min-cases-per-practice-area` so missing or undersized areas cannot be silently treated as passing.
+
+
+## Article-specific Egyptian-Arabic benchmark
+
+`tests/legal_eval/arabic_retrieval_110.template.jsonl` contains 110 curated candidate questions, including formal and colloquial Egyptian Arabic. They are not production user-query logs and none is lawyer-approved ground truth. All 110 are explicitly marked `curated_candidate_not_user_observed`; they are not a substitute for real lawyer/client question wording.
+
+To turn this into the requested real-question set, add sanitized questions supplied by Egyptian lawyers from actual practice. Preserve the original Arabic phrasing (formal or colloquial) while removing names, national IDs, phone numbers, addresses, case numbers, employer/client identifiers and unique facts. Set `question_origin=observed_anonymized_query` (or `permitted_public_q_and_a` when reuse terms allow it), `privacy_review_status=approved`, and record `question_collection_date`, a non-sensitive `question_origin_reference` (for example, a private firm batch ID, not the underlying client file), and a non-empty `consent_or_reuse_basis`. Never invent a question and label it real. Keep all expected articles, canonical IDs and approved answers blank until a qualified lawyer reviews the exact question and source. Expected articles, canonical law-block-scoped article IDs and lawyer-approved answers remain blank until counsel labels them. Answerable reviewed rows require both the human-readable expected article and canonical ID. Per-row question-style and synonym tags are also preliminary and excluded from the colloquial/synonym target metric until approved.
+
+Use `tools/score_arabic_retrieval.py` with the same lawyer-approved question set and recorded ranked article IDs for before/after runs. It reports top-3 article hit rate, wrong-article citation rate, abstention rate, and the approved separate colloquial and synonym cohorts. It excludes unlabeled rows from metrics while allowing their run captures to be retained for later scoring. It reports colloquial and synonym cohorts separately; both must reach 80% top-3 hit rate with zero wrong-article answers, zero uncited non-abstained answers and zero answers citing unverified sources. Do not tune `MIN_SCORE` until the lawyer-approved baseline exists.
+
+
+## Preliminary register and synonym tags
+
+The 110 curated prompts currently have 82 preliminary formal labels and 28 preliminary colloquial labels. Thirty-two rows also carry a preliminary `synonym` retrieval tag: the 28 colloquial prompts plus four formal synonym candidates (`Q-LAB-041-S`, `Q-LAB-044-S`, `Q-LAB-048-S`, `Q-LAB-049-S`). This keeps the synonym cohort from being identical to the colloquial cohort. Every style/synonym review status remains `needs_lawyer_review`; these labels are not lawyer-approved and are excluded from the target slice until reviewed.
+
+
+### Article ID and run capture contract
+
+Run candidate questions through `tools/run_legal_eval.py`. It records ranked `retrieved_article_ids`, answer-cited `cited_article_ids`, and an explicit boolean `used_unverified_source` flag in addition to the existing source IDs. Article IDs are source-scoped and canonicalized as `<source_id>::law:<law-label>::article:<article-number>`; Arabic-Indic digits are converted to ASCII and a leading `المادة`/`Article` label is removed. For example, source `EG-LABOUR-14-2025`, law label `قانون العمل رقم 14 لسنة 2025 [block 1]`, article `١٢` becomes `EG-LABOUR-14-2025::law:قانون العمل رقم 14 لسنة 2025 [block 1]::article:12`. Counsel should put that exact ID in `expected_article_id` and a human-readable citation in `expected_article`.
+
+The runner may capture runs while questions are still unlabeled. The scorer accepts runs for known unlabeled questions, records their count as excluded, and excludes them from all metrics until counsel approves labels. Runs for unknown question IDs are rejected. This allows baseline retrieval artifacts to be captured before lawyer labeling without pretending they are scored.
+
+
+The measurement fingerprint is based only on immutable prompt identity/text (question ID, practice area, Arabic question text and origin), sorted by question ID. Adding lawyer-approved expected articles, answers, reviewer evidence or approved style/synonym labels does not invalidate the before-run capture. Editing the question text or identity does require a new measurement report.
+
+### Capture and score the same benchmark
+
+The 110 prompts are curated, not observed production questions. A baseline run may be captured now and retained while every question remains unlabeled; the scorer will report zero reviewed questions and null quality metrics rather than inventing a score.
+
+Start the local API with the baseline threshold in one terminal:
+
+```bash
+MIN_SCORE=0.30 uvicorn app:app --host 127.0.0.1 --port 8000
+```
+
+In a second terminal, set credentials through environment variables (do not commit them or put passwords in a script):
+
+```bash
+export LEGAL_EVAL_EMAIL='review-account@example.invalid'
+export LEGAL_EVAL_PASSWORD='set-this-in-your-shell-session'
+python tools/run_legal_eval.py \
+  --questions tests/legal_eval/arabic_retrieval_110.template.jsonl \
+  --out /secure/evaluation/labour-arabic-before.jsonl \
+  --base-url http://127.0.0.1:8000
+python tools/score_arabic_retrieval.py \
+  --questions tests/legal_eval/arabic_retrieval_110.template.jsonl \
+  --runs /secure/evaluation/labour-arabic-before.jsonl \
+  --phase before --min-score 0.30 \
+  --output docs/arabic_retrieval_measurement.json
+```
+
+The runner creates a new output file and respects the API rate limit with a default delay. Keep the raw run file private if it contains confidential prompts or answers. The scorer's `--min-score` records the server threshold used; it does not change the running server's retrieval setting. Only the server environment variable changes `MIN_SCORE`.
+
+After counsel approves the expected articles, canonical IDs, answers, answerability, question-style labels and synonym tags, score the retained before-run again against those labels. Then, and only then, test a candidate `MIN_SCORE` on the same approved question set, restart the API with that value, capture a distinct after-run, and score it with `--phase after`. Preserve both raw run files and the report. Never compare different prompt fingerprints or tune against synthetic fixtures. If the approved benchmark is still too small, keep the result not-evaluable rather than relaxing the cohort gate.
+

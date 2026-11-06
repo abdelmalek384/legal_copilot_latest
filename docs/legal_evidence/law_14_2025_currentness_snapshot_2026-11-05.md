@@ -1,15 +1,18 @@
 # Law 14/2025 — official-source and currentness snapshot
 
-**Checked:** 2026-11-05  
+**Initial currentness search:** 2026-11-05  
+**Source locator update:** 2026-11-06  
 **Scope:** source discovery and related-instrument watch list only. This is not a legal opinion or counsel sign-off.
 
 ## 1. Official publication corroboration
 
 - The Egyptian Tax Authority hosts a PDF titled **الجريدة الرسمية – العدد 18 (تابع) في 3 مايو سنة 2025**, whose opening page identifies **قانون رقم 14 لسنة 2025 بإصدار قانون العمل**: https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf
 - The Official Printing Authority has a law-text record for Law No. 14 of 2025: https://alamiria.com/Sec/TashTxt?id=vPdoWGGYwoE%3D
+- The Presidency / State Information Service also hosts a PDF whose extracted cover identifies Official Gazette issue 18 (تابع), 3 May 2025, and Law No. 14/2025: https://sis.gov.eg/media/760267/القانون-رقم-14-لسنة-2025-بإصدار-قانون-العمل.pdf. This is an additional official government-hosted locator; byte identity against the 112-page supplied PDF remains unknown.
+- The Official Gazette / Amiri Press DSpace catalogue has a public record for issue 18 (تابع), dated 2025-05-03, publisher المطابع الأميرية: https://dspace.id.com.eg/items/75a95151-8a93-45c0-a607-9320863881df. Its 649.46 KB PDF attachment is marked restricted access and requires a request-a-copy form; it is not a freely downloadable text source and was not accessed.
 - The Ministry of Labour's current laws-and-legislations page lists Law No. 14 of 2025 among its basic laws: https://www.labour.gov.eg/ar/القوانين-والتشريعات/
 
-These independent government-hosted records corroborate the identity and official publication of the instrument. They do **not** establish that the user-uploaded PDF is byte-identical to the ETA-hosted PDF. The uploaded PDF has 112 PDF pages; the ETA-hosted copy is indexed as 110 pages. The uploaded-file SHA-256 is recorded in `law_14_2025_source_match_record.json`; a matching hash for the ETA-hosted copy was not obtained. Do not merge the two files' page locators or claim byte identity.
+These independent government-hosted records corroborate the identity and official publication of the instrument. They do **not** establish that the user-uploaded PDF is byte-identical to the ETA-hosted PDF. The uploaded PDF has 112 PDF pages; the ETA-hosted copy is indexed as 110 pages. The supplied 112-page PDF and candidate JSONL were recovered from the user's Library source bundle on 2026-11-06; their computed SHA-256 values match the recorded hashes in `law_14_2025_source_match_record.json`. The original upload URL/capture chain is still unknown. A matching hash for the ETA-hosted or SIS-hosted copies was not obtained. Do not merge the two files' page locators or claim byte identity.
 
 ## 2. Related post-enactment instruments found
 

@@ -6,7 +6,7 @@ from unittest import mock
 
 import app
 from app import norm, tokens, _mask_markdown_code
-from tools.claim_support import _has_modal_mismatch, claim_support_enabled, has_unsupported_claims
+from tools.claim_support import (_ARABIC_FINITE_PERIOD, _ENGLISH_FINITE_PERIOD, _has_modal_mismatch, _has_negated_obligation_mismatch, claim_support_enabled, has_unsupported_claims)
 
 
 class ClaimSupportTests(unittest.TestCase):
@@ -37,6 +37,131 @@ class ClaimSupportTests(unittest.TestCase):
             "التقادم مدته خمس سنوات [1].",
             hits, tokens, norm, _mask_markdown_code
         ))
+
+    def test_raw_negated_obligation_cannot_be_rewritten_as_positive(self):
+        cases = (
+            ("The employer is not required to provide notice.", "The employer must provide notice."),
+            ("The employer must not deduct wages.", "The employer must deduct wages."),
+            ("لا يجب على صاحب العمل تقديم الإخطار.", "يجب على صاحب العمل تقديم الإخطار."),
+            ("لا يلتزم صاحب العمل بتقديم الإخطار.", "يلتزم صاحب العمل بتقديم الإخطار."),
+            ("The employer must provide notice.", "The employer is not required to provide notice."),
+            ("يجب على صاحب العمل تقديم الإخطار.", "لا يجب على صاحب العمل تقديم الإخطار."),
+        )
+        for evidence, claim in cases:
+            with self.subTest(evidence=evidence, claim=claim):
+                self.assertTrue(has_unsupported_claims(
+                    claim + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
+    def test_must_not_and_shall_not_are_explicit_negated_obligations(self):
+        self.assertTrue(_has_negated_obligation_mismatch(
+            "The employer must provide notice.",
+            "The employer must not provide notice.",
+        ))
+        self.assertTrue(_has_negated_obligation_mismatch(
+            "The employer shall provide notice.",
+            "The employer shall not provide notice.",
+        ))
+        self.assertFalse(_has_negated_obligation_mismatch(
+            "The employer must not provide notice.",
+            "The employer must not provide notice.",
+        ))
+
+    def test_arabic_negated_obligation_with_variable_whitespace_is_not_positive(self):
+        cases = (
+            "لا يجب على صاحب العمل تقديم الإخطار.",
+            "لا   يجب على صاحب العمل تقديم الإخطار.",
+            "لا\tيجب على صاحب العمل تقديم الإخطار.",
+        )
+        for evidence in cases:
+            with self.subTest(evidence=evidence):
+                self.assertFalse(_has_modal_mismatch(evidence, evidence))
+                self.assertFalse(has_unsupported_claims(
+                    evidence + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+                self.assertTrue(_has_negated_obligation_mismatch(
+                    "يجب على صاحب العمل تقديم الإخطار.", evidence
+                ))
+
+    def test_faithful_raw_negated_obligation_paraphrases_pass(self):
+        cases = (
+            ("The employer is not required to provide notice.", "The employer is not required to provide notice."),
+            ("The employer must not deduct wages.", "The employer must not deduct wages."),
+            ("لا يجب على صاحب العمل تقديم الإخطار.", "لا يجب على صاحب العمل تقديم الإخطار."),
+            ("لا يلتزم صاحب العمل بتقديم الإخطار.", "لا يلتزم صاحب العمل بتقديم الإخطار."),
+        )
+        for evidence, claim in cases:
+            with self.subTest(evidence=evidence):
+                self.assertFalse(has_unsupported_claims(
+                    claim + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
+    def test_prohibition_paraphrase_is_not_rejected(self):
+        hits = [{"text": "The employer must not deduct wages."}]
+        self.assertFalse(has_unsupported_claims(
+            "The employer is prohibited from deducting wages [1].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
+
+    def test_alternative_english_and_arabic_no_expiry_phrasings_are_detected(self):
+        cases = (
+            ("The claim is immune from limitation [1].", "The limitation period is sixteen years."),
+            ("الحق غير قابل للتقادم [1].", "مدة التقادم خمس سنوات."),
+            ("الحق لا يخضع للتقادم [1].", "مدة التقادم خمس سنوات."),
+        )
+        for claim, source in cases:
+            with self.subTest(claim=claim):
+                self.assertTrue(has_unsupported_claims(
+                    claim, [{"text": source}], tokens, norm, _mask_markdown_code
+                ))
+
+    def test_arabic_decades_and_compound_period_words_are_detected(self):
+        cases = (
+            ("الحق لا يتقادم أبدا [1].", "مدة التقادم عشرون عاما."),
+            ("الدعوى لا تسقط مطلقا [1].", "مدة التقادم خمسة عشر سنة."),
+            ("الحق لا ينقضي نهائيا [1].", "مدة التقادم ثلاثين يوما."),
+            ("الحق لا يتقادم أبدا [1].", "مدة التقادم عامين."),
+            ("الحق لا يتقادم أبدا [1].", "مدة التقادم سنتين."),
+        )
+        for claim, source in cases:
+            with self.subTest(source=source):
+                self.assertTrue(has_unsupported_claims(
+                    claim, [{"text": source}], tokens, norm, _mask_markdown_code
+                ))
+
+    def test_english_teens_and_compound_period_words_are_detected(self):
+        cases = (
+            ("The claim never expires [1].", "The limitation period is sixteen years."),
+            ("The claim never expires [1].", "The limitation period is nineteen months."),
+            ("The claim never expires [1].", "The limitation period is twenty-five years."),
+        )
+        for claim, source in cases:
+            with self.subTest(source=source):
+                self.assertTrue(has_unsupported_claims(
+                    claim, [{"text": source}], tokens, norm, _mask_markdown_code
+                ))
+
+    def test_finite_period_recognizers_match_duration_phrases_directly(self):
+        english = ("five years", "sixteen years", "nineteen months", "twenty-five years", "1.5 weeks")
+        arabic = (
+            "خمس سنوات", "عشرون عاما", "خمسة عشر سنة", "ثلاثين يوما", "عامين", "سنتين",
+            "شهرين", "يومين", "واحد وعشرون سنة", "خمسة وعشرون عاما", "ثلاث وعشرون يوما",
+            "تسعة وتسعون شهرا", "١٥ سنة", "مئة عام",
+        )
+        for phrase in english:
+            with self.subTest(language="en", phrase=phrase):
+                self.assertIsNotNone(_ENGLISH_FINITE_PERIOD.search(phrase))
+        for phrase in arabic:
+            with self.subTest(language="ar", phrase=phrase):
+                self.assertIsNotNone(_ARABIC_FINITE_PERIOD.search(phrase))
+
+    def test_finite_period_recognizers_do_not_match_embedded_fragments(self):
+        self.assertIsNone(_ARABIC_FINITE_PERIOD.search("كلمتين"))
+        self.assertIsNone(_ARABIC_FINITE_PERIOD.search("سنوات"))
+        self.assertIsNone(_ENGLISH_FINITE_PERIOD.search("yearly"))
 
     def test_invalid_citation_fails_closed(self):
         self.assertTrue(has_unsupported_claims(
@@ -135,6 +260,17 @@ class ClaimSupportTests(unittest.TestCase):
             "لا يجوز لصاحب العمل خصم الأجر [1].",
             hits, tokens, norm, _mask_markdown_code
         ))
+
+    def test_arabic_prohibition_with_variable_whitespace_is_not_permission(self):
+        for prefix in ("لا يجوز", "لا   يجوز", "لا\tيجوز", "لا\nيجوز"):
+            with self.subTest(prefix=prefix):
+                self.assertTrue(_has_modal_mismatch("يجوز للعامل", prefix + " للعامل"))
+                self.assertFalse(_has_modal_mismatch(prefix + " للعامل", prefix + " للعامل"))
+                self.assertTrue(has_unsupported_claims(
+                    "يجوز للعامل خصم الأجر [1].",
+                    [{"text": prefix + " لصاحب العمل خصم الأجر."}],
+                    tokens, norm, _mask_markdown_code
+                ))
 
     def test_english_prohibition_change_is_blocked(self):
         hits = [{"text": "The employer may not deduct wages."}]

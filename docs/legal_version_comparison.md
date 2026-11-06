@@ -13,7 +13,7 @@ export COPILOT_CORPUS_DB="/absolute/path/to/legal-corpus.sqlite3"
 python tools/compare_legal_versions.py --left-version-id 12 --right-version-id 18
 ```
 
-Alternatively, pass an explicit `--db` path to a database bound to the `legal_corpus` profile. The CLI refuses to run when `COPILOT_DB` compatibility mode is set, and the comparison refuses unbound databases or databases bound to the control-plane or firm profile. The left version is the baseline and the right version is compared against it. IDs must refer to two distinct versions of the same `legal_documents.document_id`. The tool opens SQLite in read-only mode and does not run migrations or update records.
+Alternatively, pass an explicit `--db` path to a database bound to the `legal_corpus` profile. The CLI requires the explicit legal-corpus profile binding, and the comparison refuses unbound databases or databases bound to the control-plane or firm profile. The left version is the baseline and the right version is compared against it. IDs must refer to two distinct versions of the same `legal_documents.document_id`. The tool opens SQLite in read-only mode and does not run migrations or update records.
 
 ## Output
 

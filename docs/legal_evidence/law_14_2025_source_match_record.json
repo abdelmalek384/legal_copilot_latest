@@ -2,7 +2,7 @@
   "document_id": "EG-LABOUR-14-2025",
   "instrument": "Egyptian Labour Law 14/2025",
   "trust_tier": "source_matched_not_lawyer_reviewed",
-  "comparison_status": "machine_comparison_completed;_all_planned_page_image_checks_complete;_0_manual_review_items_pending",
+  "comparison_status": "machine_comparison_completed;_all_311_article_page_image_comparisons_recorded;_lawyer_review_pending",
   "candidate_rows": 311,
   "gazette_pages": 112,
   "headings_detected": 311,
@@ -25,10 +25,10 @@
   "source_files_committed": false,
   "limitations": [
     "All 47 major-difference records and all 5 numeric alerts were visually checked; no confirmed textual discrepancy was found in the inspected passages",
-    "Six known orthography-outlier passages were visually inspected and matched on the checked passages; this is not a complete review of all 311 records",
-    "All planned manual Gazette page-image checks are complete: 221 minor-difference records, 47 major-difference records, 5 numeric alerts, 120 quantitative provision cues, and six orthography outliers. These checks are not an Egyptian lawyer's legal verification.",
     "Government-hosted official copies corroborate the law's identity and Gazette publication, but byte identity with the 112-page user-uploaded PDF is unverified; ETA-hosted indexed PDF has 110 pages",
-    "A limited currentness search found related 2026 implementing instruments; their full texts and interactions are not yet ingested or counsel-reviewed"
+    "A limited currentness search found related 2026 implementing instruments; their full texts and interactions are not yet ingested or counsel-reviewed",
+    "All 311 provisions now have recorded Gazette page locators and visual page-image comparison notes: 282 earlier comparison records plus 29 additional full-article visual comparisons on 2026-11-06. The 29 additional passages matched the candidate on inspected pages. These are not an Egyptian lawyer's legal verification.",
+    "The original candidate JSONL records in_force=1 and as_of=2025-05-03 on all 311 rows; these are source-candidate metadata and do not establish commencement, currentness, or lawyer approval."
   ],
   "numeric_alert_page_images_reviewed": true,
   "numeric_alert_reviewed_articles": [
@@ -2256,7 +2256,128 @@
       "accessed_on": "2026-11-05",
       "title": "Current laws and legislations listing Law 14/2025 as a basic law",
       "role": "official_ministry_listing"
+    },
+    {
+      "source": "Presidency / State Information Service",
+      "url": "https://sis.gov.eg/media/760267/القانون-رقم-14-لسنة-2025-بإصدار-قانون-العمل.pdf",
+      "accessed_on": "2026-11-06",
+      "title": "Official Gazette issue 18 (تابع), 3 May 2025; Law 14/2025",
+      "role": "official_government_hosted_pdf_copy",
+      "same_bytes_as_uploaded_pdf": "unknown"
+    },
+    {
+      "source": "Official Gazette / Amiri Press DSpace catalogue",
+      "url": "https://dspace.id.com.eg/items/75a95151-8a93-45c0-a607-9320863881df",
+      "accessed_on": "2026-11-06",
+      "title": "Official Gazette issue 18 (تابع), 3 May 2025; Amiri Press PDF record",
+      "role": "publication_catalogue_record",
+      "attachment_bytes_checked": false,
+      "attachment_access": "restricted_access_request_a_copy_required",
+      "is_free_public_text_source": false,
+      "attachment_used": false
     }
   ],
-  "currentness_snapshot": "Targeted official-source search through 2026-11-05 found PM Decision 982/2026 applying remote work on Sundays during April 2026 in specified sectors/admin functions, with extensions 1305/1572/2033/2377/2590 through September; no Oct/Nov extension surfaced in this search. Ministry announced Ministerial Decision 49/2026 (extra seven annual-leave days for specified hazardous/difficult work/remote areas) and general workplace-regulation rules for 10+ worker establishments, but full signed texts were not captured. Related implementing instruments, not identified amendments to Law 14/2025. Search is not exhaustive; exact current status/full texts require counsel review."
+  "currentness_snapshot": "Targeted official-source search through 2026-11-05 found PM Decision 982/2026 applying remote work on Sundays during April 2026 in specified sectors/admin functions, with extensions 1305/1572/2033/2377/2590 through September; no Oct/Nov extension surfaced in this search. Ministry announced Ministerial Decision 49/2026 (extra seven annual-leave days for specified hazardous/difficult work/remote areas) and general workplace-regulation rules for 10+ worker establishments, but full signed texts were not captured. Related implementing instruments, not identified amendments to Law 14/2025. Search is not exhaustive; exact current status/full texts require counsel review.",
+  "lawyer_review_pending": true,
+  "page_image_comparison_coverage": {
+    "total_provisions": 311,
+    "prior_comparison_records": 282,
+    "additional_full_article_visual_comparisons": 29,
+    "additional_review_date": "2026-11-06",
+    "all_page_locators_present": true,
+    "all_visual_comparison_notes_recorded": true,
+    "additional_articles": [
+      11,
+      49,
+      59,
+      69,
+      76,
+      86,
+      104,
+      105,
+      112,
+      127,
+      142,
+      144,
+      158,
+      159,
+      163,
+      178,
+      180,
+      195,
+      201,
+      205,
+      206,
+      210,
+      223,
+      228,
+      235,
+      252,
+      268,
+      276,
+      280
+    ],
+    "additional_pdf_pages": [
+      14,
+      30,
+      33,
+      36,
+      38,
+      42,
+      49,
+      49,
+      50,
+      55,
+      62,
+      62,
+      67,
+      68,
+      68,
+      74,
+      74,
+      79,
+      80,
+      81,
+      82,
+      82,
+      86,
+      87,
+      89,
+      94,
+      102,
+      106,
+      106
+    ],
+    "additional_result": "candidate wording matched on the inspected complete article pages",
+    "reviewer_type": "assistant_visual_comparison",
+    "not_counsel_signoff": true
+  },
+  "candidate_jsonl_metadata": {
+    "rows": 311,
+    "verified": {
+      "value": 0,
+      "count": 311
+    },
+    "in_force": {
+      "value": 1,
+      "count": 311,
+      "warning": "not a currentness or commencement determination"
+    },
+    "as_of": {
+      "value": "2025-05-03",
+      "count": 311,
+      "warning": "publication date only; not commencement"
+    }
+  },
+  "pdf_permissions": {
+    "encrypted": true,
+    "algorithm": "AES",
+    "copy": false,
+    "print": false,
+    "change": false,
+    "add_notes": false,
+    "inspection_method": "visual page-image rendering only; no text extraction, decryption, or removal of restrictions",
+    "reuse_rights": "unverified; obtain source-owner/counsel confirmation before extraction, OCR, ingestion or redistribution",
+    "permission_to_render_or_reuse": "unverified; the PDF metadata prohibits copying and printing, so no further rendering, extraction, OCR, ingestion or redistribution without rights confirmation"
+  }
 }

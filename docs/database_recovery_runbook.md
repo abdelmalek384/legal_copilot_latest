@@ -184,7 +184,7 @@ The command pins both S3 read operations to the locator's `VersionId`, checks th
 
        python tools/deployment_preflight.py --strict
 
-   The environment must contain all three separate database paths, must not contain the legacy shared COPILOT_DB path, and must point to the restored staging locations.
+   The environment must contain all three separate database paths and must point to the restored staging locations.
 10. Start only a staging instance. Verify that migration startup succeeds, the catalog resolves each expected firm, active memberships still work, disabled/revoked memberships remain denied, and a synthetic case created in one firm cannot be read from another.
 11. Verify corpus lookup and FTS behavior against known test records. Check that a firm's case/document/chunk sentinels are present only in that firm's database and absent from other firm databases.
 12. Record the tested bundle, application revision, restore duration, checks performed, discrepancies, and pass/fail result. Delete or quarantine the rehearsal copy according to the approved retention policy after the exercise.

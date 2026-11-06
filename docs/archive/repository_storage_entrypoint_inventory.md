@@ -1,3 +1,5 @@
+Archived 2026-11-06: historical repository storage entrypoint inventory. Retained for audit trail; current architecture and status are documented in docs/STATUS.md and docs/tenant_isolation_inventory.md.
+
 # SEC-01 — repository storage, file, backup, and job inventory (historical baseline)
 
 **Snapshot:** 2026-10-24  

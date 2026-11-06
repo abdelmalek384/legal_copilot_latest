@@ -89,7 +89,7 @@ For a concise production operator guide, see [Deploy Legal Copilot](docs/DEPLOY.
 
 For the pilot security review, use the [independent reviewer handoff](docs/security/INDEPENDENT_REVIEW_HANDOFF.md). It is a test/evidence plan, not a completed penetration test or release approval.
 
-For a fresh installation, use the separate-database architecture. Do not follow old single-file database instructions for a fresh install.
+For a fresh installation, use the separate-database architecture described in the deployment guide.
 
 ### Mac quick start
 
@@ -136,7 +136,7 @@ The repository's CodeQL workflow analyzes Python and frontend JavaScript, and Ba
 
 ### Backup and restore
 
-The single-file `backup` / `restore` commands are disabled. Use encrypted tenancy bundles so the control plane, per-firm databases, and legal corpus are captured and restored together.
+Use encrypted tenancy bundles so the control plane, per-firm databases, and legal corpus are captured and restored together.
 
 ```bash
 python manage.py genkey
@@ -171,27 +171,21 @@ Database staging with `python manage.py importlaws <law_rows.jsonl>` is a separa
 
 Every generated row defaults to `in_force: 0` and `verified: 0`. Keep imported records unavailable to current-law retrieval until a qualified reviewer verifies both the text and legal status. A source URL, retrieval date, and file hash help trace the material but do not prove authenticity, permission, or current force.
 
-## Arabic law text (labor law)
-`python tools/fetch_arabic_law.py out_dir` downloads the Arabic text of Labor Law No. 14 of 2025 (run it on a machine with internet), splits it into articles
-(issuing articles and the accompanying law as separate blocks), and writes `law_rows_ar.jsonl` plus `import_report_ar.md`. Check the report (missing numbers,
-the end of the last article) before loading with `python manage.py importlaws out_dir/law_rows_ar.jsonl`. The source page is an unofficial republication of the
-Official Gazette text: compare it with the Gazette (issue 18 bis, 3 May 2025) before treating it as verified. If the download is blocked, save the page in your
-browser and use `--file saved_page.html`.
+## Arabic law text (Labour Law 14/2025)
+Do not use `tools/fetch_arabic_law.py` as the source of an authoritative Law 14/2025 corpus: it relies on an unofficial republication and cannot establish Gazette identity, source rights or currentness. The current review path is the lawyer-supplied UTF-8 Gazette transcription described in [the one-sitting import runbook](docs/gazette_text_import_runbook.md). Keep any legacy downloader output quarantined as an unverified lead; do not stage it as authoritative text.
 
 
 ## Arabic law dataset (not bundled)
 
-The repository does not bundle the 311-row Labour Law candidate JSONL or the original Gazette PDF. For a lawyer-supplied UTF-8 Arabic Gazette transcription, use:
+The repository does not bundle the original Gazette PDF or the complete candidate JSONL. For a lawyer-supplied UTF-8 Arabic Gazette transcription, use:
 
 ```bash
 python tools/import_gazette_text.py /secure/input/gazette.txt /secure/input/gazette.json /secure/output/law14-review
 ```
 
-The metadata sidecar must include the exact text SHA-256, Gazette issue/publication date, source URL or source reference, supplier name/role, capture method and permission status. The importer segments articles and writes law_rows.jsonl plus import_report.md. It forces every row to verified=0, in_force=0 and as_of=null. It does not authenticate the source, grant reuse rights, determine current force, or activate legal retrieval.
+The metadata sidecar must include the exact text SHA-256, Gazette issue/publication date, source URL/reference, supplier identity and role, capture method and permission status; an `allowed` permission claim also requires a `permission_evidence_reference`. The supplier role must identify an Egyptian lawyer or qualified Egyptian counsel. The importer segments articles and writes `law_rows.jsonl` plus `import_report.md`, including numbering-gap, duplicate-number and empty-body checks. Every row is forced to `verified=0`, `in_force=0`, and `as_of=null`. This does not authenticate the Gazette, grant reuse rights, establish current force, or activate retrieval.
 
-The older fetch_arabic_law.py workflow relies on an unofficial republication. Treat its output only as an unverified candidate lead; it is not a substitute for the Official Gazette. Compare the exact supplied text with the relevant Gazette pages and obtain source-rights/currentness and qualified Egyptian-lawyer review before relying on it.
-
-Database staging with python manage.py importlaws [path-to-law_rows.jsonl] is a separate shared-corpus write operation. Only run it after the report has been checked and the database/storage owner has approved the profile-separated target and timing. Staging does not mark rows verified or in force.
+Controlled database staging is a separate operation: `python manage.py importlaws /secure/output/law14-review/law_rows.jsonl`. Run it only after checking the import report and obtaining approval from the database/storage owner for the profile-separated target and timing. Staging does not mark rows verified or in force.
 
 ## Legal Research chat behavior
 

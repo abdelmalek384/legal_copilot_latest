@@ -9,24 +9,44 @@ import re
 
 _ENGLISH_NO_EXPIRY = re.compile(
     r"\b(?:never\s+(?:expires?|ends?|lapses?)|does\s+not\s+expire|"
-    r"doesn't\s+expire|no\s+limitation\s+period|not\s+subject\s+to\s+limitation)\b",
+    r"doesn't\s+expire|no\s+limitation\s+period|not\s+subject\s+to\s+limitation|"
+    r"immune\s+from\s+limitation|cannot\s+be\s+time[- ]barred)\b",
     re.IGNORECASE,
 )
 _ARABIC_NO_EXPIRY = re.compile(
-    r"(?:لا\s+(?:يسقط|يتقادم|ينقضي|تنقضي)|بلا\s+تقادم|دون\s+تقادم)"
+    r"(?:لا\s+(?:يسقط|يتقادم|ينقضي|تنقضي|يخضع|تخضع)|"
+    r"بلا\s+تقادم|دون\s+تقادم|غير\s+(?:خاضع|خاضعة|قابل|قابلة)\s+للتقادم)"
     r"(?:\s+(?:ابدا|مطلقا|نهائيا))?"
 )
 _ENGLISH_FINITE_PERIOD = re.compile(
-    r"\b(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|"
-    r"eleven|twelve|thirteen|fourteen|fifteen|twenty|thirty|forty|"
-    r"fifty|sixty|ninety|hundred)\s*[- ]?"
-    r"(?:year|years|month|months|week|weeks|day|days)\b",
+    r"\b(?:\d+(?:[.,]\d+)?|zero|one|two|three|four|five|six|seven|eight|"
+    r"nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|"
+    r"eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|"
+    r"ninety|hundred|thousand)(?:[- ](?:one|two|three|four|five|six|seven|"
+    r"eight|nine))?\s*(?:year|years|month|months|week|weeks|day|days)\b",
     re.IGNORECASE,
 )
 _ARABIC_FINITE_PERIOD = re.compile(
-    r"(?:\d+|واحد|واحدة|اثنين|اثنتين|ثلاث|ثلاثة|اربع|اربعة|خمس|خمسة|"
-    r"ست|ستة|سبع|سبعة|ثمان|ثمانية|تسع|تسعة|عشر|عشرة)"
-    r"\s*(?:سنه|سنوات|شهر|اشهر|اسبوع|اسابيع|يوم|ايام)"
+    # Dual-form units are complete duration expressions on their own (e.g. سنتين).
+    # Other quantities require an explicit unit. Arabic-letter boundaries prevent
+    # matching a number/unit fragment embedded inside a longer word.
+    r"(?<![\u0621-\u064A])(?:سنتين|سنتان|عامين|عامان|شهرين|اسبوعين|يومين|"
+    # Compound 21–99 forms: واحد وعشرون، خمسة وعشرون، ثلاث وعشرون، etc.
+    r"(?:واحد|واحدة|احد|احدى|اثنان|اثنين|اثنتان|اثنتين|ثلاث|ثلاثة|اربع|اربعة|"
+    r"خمس|خمسة|ست|ستة|سبع|سبعة|ثمان|ثمانية|تسع|تسعة)\s*و\s*"
+    r"(?:عشرون|عشرين|ثلاثون|ثلاثين|اربعون|اربعين|خمسون|خمسين|ستون|ستين|"
+    r"سبعون|سبعين|ثمانون|ثمانين|تسعون|تسعين)\s*"
+    r"(?:سنه|سنة|سنوات|سنين|عام|عاما|اعوام|اعواما|شهر|شهرا|شهور|اشهر|"
+    r"اسبوع|اسبوعا|اسابيع|يوم|يوما|ايام)|"
+    r"(?:\d+(?:[.,]\d+)?|واحد|واحدة|احد|احدى|اثنين|اثنتين|ثلاث|ثلاثة|"
+    r"اربع|اربعة|خمس|خمسة|ست|ستة|سبع|سبعة|ثمان|ثمانية|تسع|تسعة|عشر|"
+    r"عشرة|احد عشر|احدى عشرة|اثنا عشر|اثنتا عشرة|ثلاثة عشر|ثلاث عشر|"
+    r"اربعة عشر|اربع عشر|خمسة عشر|خمس عشر|ستة عشر|ست عشر|سبعة عشر|"
+    r"سبع عشر|ثمانية عشر|ثمان عشر|تسعة عشر|تسع عشر|عشرون|عشرين|"
+    r"ثلاثون|ثلاثين|اربعون|اربعين|خمسون|خمسين|ستون|ستين|سبعون|سبعين|"
+    r"ثمانون|ثمانين|تسعون|تسعين|مائه|مئة|ميه)"
+    r"\s*(?:سنه|سنة|سنوات|سنين|عام|عاما|اعوام|اعواما|شهر|شهرا|شهور|اشهر|"
+    r"اسبوع|اسبوعا|اسابيع|يوم|يوما|ايام))(?![\u0621-\u064A])"
 )
 _GENERIC_TERMS = {
     "a", "an", "the", "is", "are", "was", "were", "be", "been", "being",
@@ -35,7 +55,7 @@ _GENERIC_TERMS = {
     "as", "under", "with", "without", "must", "may", "shall", "should",
     "يكون", "تكون", "كان", "كانت", "هو", "هي", "من", "على", "في", "الى",
     "عن", "مع", "هذا", "هذه", "ذلك", "وفقا", "بموجب", "حيث", "يجوز",
-    "يجب", "يحق", "يلتزم", "يستحق",
+    "يجب", "يحق", "يلتزم", "يستحق", "prohibited",
 }
 
 
@@ -65,19 +85,59 @@ _ENGLISH_MODAL_PATTERNS = {
     ),
 }
 _ARABIC_MODAL_PATTERNS = {
-    "permission": re.compile(r"(?<!لا )(?:يجوز|يحق|يسمح)"),
+    "permission": re.compile(r"(?:يجوز|يحق|يسمح)"),
     "obligation": re.compile(r"(?<!لا )(?:يجب|يلتزم|يتعين)"),
-    "prohibition": re.compile(r"(?:لا يجوز|لا يحق|لا يسمح|يحظر|يمتنع عن)"),
+    "prohibition": re.compile(r"(?:لا\s+(?:يجوز|يحق|يسمح)|يحظر|يمتنع\s+عن)"),
     "non_obligation": re.compile(r"(?:لا يجب|لا يلتزم|لا يتعين|ليس ملزما|غير ملزم)"),
 }
 
 
 def _modal_classes(text, patterns):
     """Return explicit modality classes for one language; absence is unknown."""
-    return {
-        label for label, pattern in patterns.items()
-        if pattern.search(text)
-    }
+    classes = set()
+    for label, pattern in patterns.items():
+        candidate = text
+        if patterns is _ARABIC_MODAL_PATTERNS and label in {"permission", "obligation"}:
+            # Strip negated forms before testing positive classes. Flexible whitespace
+            # is required because Arabic source text may contain tabs or repeated spaces.
+            verbs = r"(?:يجوز|يحق|يسمح)" if label == "permission" else r"(?:يجب|يلتزم|يتعين)"
+            candidate = re.sub(r"لا\s*" + verbs, " ", candidate)
+        if pattern.search(candidate):
+            classes.add(label)
+    return classes
+
+
+_ENGLISH_NEGATED_OBLIGATION = re.compile(
+    r"\b(?:must\s+not|shall\s+not|not\s+required\s+to|need\s+not|"
+    r"is\s+not\s+obliged\s+to|are\s+not\s+obliged\s+to|"
+    r"is\s+not\s+obligated\s+to|are\s+not\s+obligated\s+to)\b",
+    re.IGNORECASE,
+)
+_ENGLISH_POSITIVE_OBLIGATION = re.compile(
+    r"\b(?:must|shall|required\s+to|is\s+required\s+to|are\s+required\s+to)\b",
+    re.IGNORECASE,
+)
+_ARABIC_NEGATED_OBLIGATION = re.compile(
+    r"(?:لا\s*(?:يجب|يلتزم|يتعين)|ليس\s+ملزما|غير\s+ملزم)"
+)
+_ARABIC_POSITIVE_OBLIGATION = re.compile(r"(?:يجب|يلتزم|يتعين)")
+
+
+def _has_negated_obligation_mismatch(claim, evidence):
+    """Detect direct positive/negative obligation reversals before normalization."""
+    pairs = (
+        (_ENGLISH_NEGATED_OBLIGATION, _ENGLISH_POSITIVE_OBLIGATION),
+        (_ARABIC_NEGATED_OBLIGATION, _ARABIC_POSITIVE_OBLIGATION),
+    )
+    for negative, positive in pairs:
+        claim_negative = negative.search(claim)
+        evidence_negative = negative.search(evidence)
+        claim_positive = positive.search(negative.sub(" ", claim))
+        evidence_positive = positive.search(negative.sub(" ", evidence))
+        if ((claim_positive and evidence_negative)
+                or (claim_negative and evidence_positive)):
+            return True
+    return False
 
 
 def _has_modal_mismatch(claim, evidence):
@@ -98,6 +158,19 @@ def _has_modal_mismatch(claim, evidence):
         if any((claim_class, evidence_class) in conflicts
                for claim_class in claim_classes
                for evidence_class in evidence_classes):
+            return True
+
+    # Explicit positive-vs-negated obligation check, independent of broad classes.
+    for negative, positive in (
+        (_ENGLISH_NEGATED_OBLIGATION, _ENGLISH_POSITIVE_OBLIGATION),
+        (_ARABIC_NEGATED_OBLIGATION, _ARABIC_POSITIVE_OBLIGATION),
+    ):
+        claim_negative = bool(negative.search(claim))
+        evidence_negative = bool(negative.search(evidence))
+        claim_positive = bool(positive.search(negative.sub(" ", claim)))
+        evidence_positive = bool(positive.search(negative.sub(" ", evidence)))
+        if ((claim_positive and evidence_negative)
+                or (claim_negative and evidence_positive)):
             return True
     return False
 
@@ -285,6 +358,11 @@ def has_unsupported_claims(answer, hits, tokens_fn, norm_fn, mask_code=None):
             return True
 
         claim = re.sub(r"\[\d+\]", " ", sentence)
+        # Negation is legally material: compare raw text before Arabic normalization
+        # can remove particles such as "لا" and invert the obligation.
+        if (_has_negated_obligation_mismatch(claim, evidence)
+                or _has_modal_mismatch(claim, evidence)):
+            return True
         normalized_claim = norm_fn(claim)
         normalized_evidence = norm_fn(evidence)
         if _has_modal_mismatch(normalized_claim, normalized_evidence):

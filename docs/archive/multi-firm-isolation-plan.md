@@ -1,3 +1,5 @@
+Archived 2026-11-06: historical multi-firm isolation plan. The profile-separated runtime has since been implemented; this plan is retained as a historical work tracker. See docs/STATUS.md and docs/tenant_isolation_inventory.md.
+
 # Multi-firm isolation: implementation plan
 
 ## Current state (do not overstate)
