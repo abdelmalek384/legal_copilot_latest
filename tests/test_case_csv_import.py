@@ -102,7 +102,7 @@ class CaseCSVImportTests(InvoiceTestSupport, unittest.TestCase):
         writer = csv.writer(buffer, delimiter=";", lineterminator="\n")
         writer.writerow(["title", "client", "stage", "case_number", "case_year", "court", "circuit", "opposing_party"])
         for index, title in enumerate(malicious_titles, start=1):
-            writer.writerow([title, "Synthetic CSV Client", "Labour", str(900 + index) + "/2026",
+            writer.writerow([title, title, "Labour", str(900 + index) + "/2026",
                              "2026", "Cairo Court", "Labour Circuit", "Synthetic Opponent"])
         imported = self.mutate(
             self.client_a, "post", "/cases/import.csv", json={"csv": buffer.getvalue()}
@@ -131,6 +131,7 @@ class CaseCSVImportTests(InvoiceTestSupport, unittest.TestCase):
         for row in rows:
             if row["invoice_number"] in expected:
                 self.assertEqual(row["case_title"], expected[row["invoice_number"]])
+                self.assertEqual(row["client_name"], expected[row["invoice_number"]])
 
     def test_non_admin_and_malformed_imports_are_rejected_without_partial_writes(self):
         denied = self.mutate(
