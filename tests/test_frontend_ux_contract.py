@@ -429,6 +429,9 @@ class FrontendUXContractTests(unittest.TestCase):
 
 
 
+    def test_subscription_lock_response_routes_user_to_billing_recovery(self):
+        self.assertIn("if(r.status===423&&p!=='/billing')billingPage().catch(()=>{})", HTML)
+
     def test_subscription_billing_ui_has_trial_transfer_and_operator_review(self):
         self.assertIn("api('/billing')", HTML)
         self.assertIn("api('/billing/subscribe','POST'", HTML)
