@@ -56,6 +56,7 @@ class LegalEvalRunnerTests(unittest.TestCase):
         self.assertEqual(row["cited_article_ids"], [
             "EG-LABOUR-14-2025::law:قانون العمل [block 2]::article:1"
         ])
+        self.assertEqual(row["source_summary"][0]["law"], "قانون العمل [block 1]")
 
     def test_runner_row_can_be_scored_without_manual_schema_conversion(self):
         question = {
