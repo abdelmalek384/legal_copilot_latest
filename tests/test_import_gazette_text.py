@@ -71,6 +71,68 @@ class GazetteTextImportTests(unittest.TestCase):
         self.assertIn("Block 1 missing: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12", report)
         self.assertIn("Blocks with duplicate article numbers: 0", report)
 
+    def test_imports_ordinal_promulgation_and_attached_law_separately(self):
+        ordinals = [
+            "الأولى", "الثانية", "الثالثة", "الرابعة", "الخامسة",
+            "السادسة", "السابعة", "الثامنة", "التاسعة", "العاشرة",
+            "الحادية عشرة", "الثانية عشرة", "الثالثة عشرة",
+        ]
+        parts = ["عنوان القانون"]
+        for number, ordinal in enumerate(ordinals, 1):
+            parts.extend([f"(المادة {ordinal})", f"نص إصدار {number}."])
+        parts.extend([
+            "مادة (1)", "نص المادة الأولى من القانون المرافق.",
+            "مادة (2)", "نص المادة الثانية من القانون المرافق.",
+        ])
+        source_text = "\n".join(parts)
+        self.text_path.write_text(source_text, encoding="utf-8")
+        self.metadata["content_sha256"] = hashlib.sha256(source_text.encode("utf-8")).hexdigest()
+        self.write_metadata()
+
+        result = import_text(self.text_path, self.meta_path, self.output)
+        rows = [
+            json.loads(line)
+            for line in (self.output / "law_rows.jsonl").read_text(encoding="utf-8").splitlines()
+        ]
+        self.assertEqual(result["article_headings"], 15)
+        self.assertEqual(result["promulgation_provisions"], 13)
+        self.assertEqual(result["attached_law_articles"], 2)
+        self.assertGreater(result["unparsed_preamble_characters"], 0)
+        self.assertEqual(
+            [row["article"] for row in rows],
+            [f"issuance_{n}" for n in range(1, 14)] + ["1", "2"],
+        )
+        self.assertEqual(
+            [row["provision_type"] for row in rows],
+            ["promulgation"] * 13 + ["attached_law"] * 2,
+        )
+        self.assertIn("[promulgation]", rows[0]["law"])
+        self.assertIn("[attached law]", rows[13]["law"])
+        self.assertNotEqual(rows[0]["law"], rows[13]["law"])
+        self.assertTrue(all(row["verified"] == 0 for row in rows))
+        self.assertTrue(all(row["in_force"] == 0 for row in rows))
+        self.assertTrue(all(row["as_of"] is None for row in rows))
+        report = (self.output / "import_report.md").read_text(encoding="utf-8")
+        self.assertIn("Promulgation provisions recognized: 13", report)
+        self.assertIn("Attached-law article headings recognized: 2", report)
+        self.assertIn("Unparsed preamble excluded from candidate rows", report)
+        self.assertNotIn('"article": "preamble"', (self.output / "law_rows.jsonl").read_text(encoding="utf-8"))
+
+    def test_numeric_only_import_does_not_index_unparsed_preamble(self):
+        source_text = "Official Gazette issue title\nالمادة 1\nنص المادة الأولى.\n"
+        self.text_path.write_text(source_text, encoding="utf-8")
+        self.metadata["content_sha256"] = hashlib.sha256(source_text.encode("utf-8")).hexdigest()
+        self.write_metadata()
+        result = import_text(self.text_path, self.meta_path, self.output)
+        rows = [
+            json.loads(line)
+            for line in (self.output / "law_rows.jsonl").read_text(encoding="utf-8").splitlines()
+        ]
+        self.assertEqual([row["article"] for row in rows], ["1"])
+        self.assertGreater(result["unparsed_preamble_characters"], 0)
+        self.assertEqual(result["attached_law_articles"], 1)
+        self.assertEqual(result["promulgation_provisions"], 0)
+
     def test_command_line_import_completes_one_sitting_run(self):
         completed = subprocess.run(
             [
