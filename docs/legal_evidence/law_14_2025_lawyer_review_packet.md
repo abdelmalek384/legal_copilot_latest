@@ -12,6 +12,16 @@
 - Machine comparison: 38 identical after normalization; 221 minor differences; 47 major differences; 5 numeric alerts; 0 missing/extra headings.
 - The 273 non-identical machine records and 120 quantitative cue records overlap: 282 unique provisions have prior page-image review records and Gazette page locators; 29 provisions have neither a targeted page-image review record nor a Gazette page locator in the tick-sheet. Those checks are evidence aids, not counsel sign-off.
 
+## Explicit Gazette page-mapping queue (29 provisions)
+
+The following attached-law provisions have no page locator and no targeted page-image review record in the current tick-sheet. This is a navigation queue, not an assertion that their text differs. The reviewer must locate each in the exact 112-page PDF identified by the SHA-256 above and record the printed/PDF page locator in the approved review record:
+
+- Articles 11, 49, 59, 69, 76, 86, 104, 105, 112, 127
+- Articles 142, 144, 158, 159, 163, 178, 180, 195, 201, 205
+- Articles 206, 210, 223, 228, 235, 252, 268, 276, 280
+
+Do not infer page numbers from the 110-page ETA-hosted PDF or from adjacent article order. The page map must be checked against the hash-matching 112-page comparison PDF.
+
 ## Official corroborating sources and pagination caution
 
 - Egyptian Tax Authority hosted PDF: https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf — accessed 2026-11-05; indexed as Official Gazette issue 18 (supplement), 3 May 2025; 110 pages. The repository comparison PDF is 112 pages. Byte identity between the two PDFs is unknown, so do not transfer page locators between them without checking.
