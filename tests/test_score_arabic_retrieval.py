@@ -80,11 +80,12 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
     def test_unverified_source_citation_blocks_target_even_when_article_id_matches(self):
         q = reviewed("Q1", style="colloquial", tags=["synonym"])
         run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-ART-1"],
-               "cited_article_ids": ["LABOUR-ART-1"], "abstained": False, "used_unverified_source": False,
+               "cited_article_ids": ["LABOUR-ART-1"], "abstained": False,
                "used_unverified_source": True}
         result = score([q], [run])
         self.assertEqual(result["wrong_article_rate"], 0.0)
         self.assertEqual(result["unverified_source_answers"], 1)
+        self.assertEqual(result["unverified_source_rate"], 1.0)
         self.assertEqual(result["target_status"], "below_target")
 
     def test_targets_require_both_colloquial_and_synonym_recall_and_zero_wrong_articles(self):
