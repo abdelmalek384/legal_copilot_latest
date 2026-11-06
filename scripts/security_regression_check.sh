@@ -25,6 +25,7 @@ tests=(
   test_subscription_billing_routes.py
   test_firm_data_export.py
   test_first_run_wizard_api.py
+  test_demo_firm_cli.py
   test_platform_access.py
   test_deployment_preflight.py
   test_tenant_route_inventory_coverage.py
