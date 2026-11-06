@@ -161,6 +161,7 @@ def score(questions, runs):
     uncited_non_abstained = 0
     unverified_source_answers = 0
     unanswerable = unanswerable_abstained = 0
+    answerable_abstained = 0
     for q in reviewed:
         run = r_by_id[q["id"]]
         abstained += int(run["abstained"])
@@ -168,6 +169,7 @@ def score(questions, runs):
             expected = (q.get("expected_article_id") or q.get("expected_article") or "").strip()
             hit = int(expected in run["retrieved_article_ids"][:3])
             top3_hits.append(hit)
+            answerable_abstained += int(run["abstained"])
             tags = q.get("retrieval_tags", [])
             if not isinstance(tags, list) or any(not isinstance(tag, str) for tag in tags):
                 raise ValueError(f'{q["id"]}: retrieval_tags must be a list of strings')
@@ -219,6 +221,9 @@ def score(questions, runs):
     return {
         "reviewed_questions": len(reviewed),
         "answerable_questions": len(answerable),
+        "answerable_abstained_answers": answerable_abstained,
+        "answerable_non_abstained_answers": len(answerable) - answerable_abstained,
+        "answerable_abstention_rate": round(answerable_abstained / len(answerable), 4) if answerable else None,
         "unanswerable_questions": unanswerable,
         "unlabeled_or_unreviewed_excluded": excluded,
         "unlabeled_run_records_excluded": len(excluded_run_ids),
