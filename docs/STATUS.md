@@ -111,6 +111,6 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 
 - Added firm-profile migration `0021_answer_ratings.sql` for one current rating per reviewer/assistant message, with constrained overall rating, cited-article accuracy, expected article IDs, answerability, bounded notes, and append-only rating events.
 - Added `docs/answer_rating_export_contract.md` defining the authenticated firm-scoped submit/update API, admin/reviewer CSV export, required columns, benchmark-ready rules, and acceptance tests for AI 2's UI integration.
-- This is a schema and API contract only. Runtime route handlers, role enforcement, CSV export implementation, and tests are still outstanding. The migration and contract have not been executed or validated locally; do not describe rating capture/export as live.
+- This is a schema and API contract only. Runtime route handlers, role enforcement, CSV export implementation, and tests are still outstanding. The migration SQL was syntax/constraint-smoke-tested against an isolated in-memory SQLite database (insert, one-reviewer-per-answer uniqueness, and immutable-event trigger); the full firm migration runner and application integration have not been executed.
 - Ratings are not training consent, legal-source verification, or counsel approval. Keep firm data private and exclude curated candidate questions from scored benchmark results.
 
