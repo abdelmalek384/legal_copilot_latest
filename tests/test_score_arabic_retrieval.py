@@ -56,6 +56,12 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "consent_or_reuse_basis"):
             score([question], [])
 
+    def test_non_string_reviewer_evidence_url_is_rejected_as_invalid_metadata(self):
+        question = reviewed("Q-BAD-URL")
+        question["review_evidence_url"] = 123
+        with self.assertRaisesRegex(ValueError, "review_evidence_url must be clean HTTPS"):
+            score([question], [])
+
     def test_benchmark_fingerprint_survives_counsel_labeling_but_detects_prompt_edits(self):
         q = {
             "id": "Q1", "practice_area": "labour", "question_ar": "سؤال تجريبي",
