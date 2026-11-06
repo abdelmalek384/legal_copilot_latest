@@ -100,7 +100,7 @@ def _modal_classes(text, patterns):
         if patterns is _ARABIC_MODAL_PATTERNS and label == "obligation":
             # Strip Arabic negated-obligation phrases before testing the positive
             # class; a fixed-width lookbehind misses variable whitespace.
-            candidate = re.sub(r"لا\\s*(?:يجب|يلتزم|يتعين)", " ", candidate)
+            candidate = re.sub(r"لا\s*(?:يجب|يلتزم|يتعين)", " ", candidate)
         if pattern.search(candidate):
             classes.add(label)
     return classes
