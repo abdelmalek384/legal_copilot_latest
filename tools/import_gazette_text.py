@@ -108,6 +108,13 @@ def _validate_metadata(meta: object, text_bytes: bytes) -> dict:
         raise ValueError("collection_permission must be unknown, allowed, or not_allowed")
     if permission == "not_allowed":
         raise ValueError("collection permission is marked not_allowed; refusing to create candidate rows")
+    permission_evidence = meta.get("permission_evidence_reference")
+    if permission == "allowed" and (
+            not isinstance(permission_evidence, str) or not permission_evidence.strip()):
+        raise ValueError("permission_evidence_reference is required when collection_permission is allowed")
+    if permission_evidence is not None and (
+            not isinstance(permission_evidence, str) or not permission_evidence.strip()):
+        raise ValueError("permission_evidence_reference must be a non-empty string when supplied")
     return {**meta, "publication_date": publication.isoformat(), "actual_sha256": actual}
 
 
@@ -152,7 +159,8 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
         f"retrieved {metadata['retrieved_at']} | sha256 {metadata['actual_sha256']} | "
         f"supplied by {metadata['captured_by']} ({metadata['supplier_role']}) | "
         f"capture_method {metadata['capture_method']} | "
-        f"collection_permission {metadata.get('collection_permission', 'unknown')}"
+        f"collection_permission {metadata.get('collection_permission', 'unknown')} | "
+        f"permission_evidence_reference {metadata.get('permission_evidence_reference') or 'not_supplied'}"
     )
     for article, block, body in article_parts:
         label = title + ("" if block <= 1 else f" [block {block}]")
@@ -179,6 +187,7 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
                 "source_url": metadata.get("source_url"),
                 "source_reference": metadata.get("source_reference"),
                 "collection_permission": metadata.get("collection_permission", "unknown"),
+                "permission_evidence_reference": metadata.get("permission_evidence_reference"),
             })
         block_articles.setdefault(block, []).append(article)
     if not rows:
@@ -200,6 +209,7 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
         f"- Output candidate chunks: {len(rows)}",
         f"- Empty article bodies requiring review: {len(empty_articles)}",
         f"- Collection permission: {metadata.get('collection_permission', 'unknown')}",
+        f"- Permission evidence reference: {metadata.get('permission_evidence_reference') or 'not supplied'}",
         "- Every row is emitted with verified=0, in_force=0, and as_of=null.",
         "- No legal currentness, source authenticity, or reuse rights are inferred.", "",
         "| numbering block | first label | last label | headings |",
