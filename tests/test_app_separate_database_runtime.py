@@ -2371,6 +2371,41 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         expired = self.client.get("/cases")
         self.assertEqual(expired.status_code, 401, expired.text)
 
+    def test_cross_origin_write_is_rejected_even_with_matching_csrf_token(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        csrf = self.client.cookies.get("lc_csrf")
+        self.assertTrue(csrf)
+        before = self.client.get("/cases").json()
+        rejected = self.client.post(
+            "/cases",
+            json={"title": "Cross-origin write must not persist"},
+            headers={"Origin": "https://attacker.invalid", "X-CSRF-Token": csrf},
+        )
+        self.assertEqual(rejected.status_code, 403, rejected.text)
+        self.assertEqual(self.client.get("/cases").json(), before)
+
+    def test_login_rotates_an_attacker_supplied_session_cookie(self):
+        fixed_token = "attacker-controlled-session-token"
+        self.client.cookies.set("lc_session", fixed_token)
+        self.client.cookies.set("lc_csrf", "attacker-controlled-csrf")
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        issued_token = self.client.cookies.get("lc_session")
+        self.assertTrue(issued_token)
+        self.assertNotEqual(issued_token, fixed_token)
+        control = self.runtime.control_connection()
+        self.assertIsNotNone(control.execute(
+            "SELECT 1 FROM auth_sessions WHERE token_hash=?", (app.sha(issued_token),)
+        ).fetchone())
+        self.assertIsNone(control.execute(
+            "SELECT 1 FROM auth_sessions WHERE token_hash=?", (app.sha(fixed_token),)
+        ).fetchone())
+
     def test_deadline_action_cannot_mutate_another_firms_deadline(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
