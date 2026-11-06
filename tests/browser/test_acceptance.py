@@ -917,16 +917,25 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertNotIn("CROSS_FIRM_PRIVATE_SENTINEL_7D3A", response.text())
 
     def test_first_run_wizard_and_setup_health_are_owner_visible(self) -> None:
+        self.page.set_viewport_size({"width": 390, "height": 844})
         self.login(self.state["owner_a_email"])
         language_switch = self.page.locator('[data-lang-switch="1"]').first
         if language_switch.inner_text().strip() == "العربية":
             language_switch.click()
         self.page.get_by_role("button", name="بدء الاستخدام").click()
         self.page.get_by_role("heading", name="بدء استخدام المكتب").wait_for()
+        self.page.wait_for_function(
+            "() => document.documentElement.scrollWidth <= window.innerWidth",
+            timeout=8000,
+        )
         self.assertTrue(self.page.get_by_text("بيانات المكتب", exact=True).is_visible())
         self.assertTrue(self.page.get_by_text("ادعُ زميلاً إلى المكتب", exact=True).is_visible())
         self.page.get_by_role("button", name="فتح فحص صحة الإعداد").click()
         self.page.get_by_role("heading", name="صحة إعداد المكتب").wait_for()
+        self.page.wait_for_function(
+            "() => document.documentElement.scrollWidth <= window.innerWidth",
+            timeout=8000,
+        )
         for label in (
             "خادم تذكيرات البريد الإلكتروني",
             "الرابط العام الآمن",
