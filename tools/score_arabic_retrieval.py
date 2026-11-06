@@ -187,11 +187,12 @@ def score(questions, runs):
     )
     wrong_rate = round(wrong_answers / cited_non_abstained, 4) if cited_non_abstained else None
     if (not top3_hits or len(colloquial_hits) < MIN_TARGET_COHORT_SIZE
-            or len(synonym_hits) < MIN_TARGET_COHORT_SIZE
+            or len(synonym_hits) < MIN_TARGET_COHORT_SIZE or not unanswerable
             or colloquial_rate is None or synonym_rate is None or wrong_rate is None):
         target_status = "not_evaluable_missing_approved_labels_or_cited_runs"
     elif (colloquial_rate < 0.80 or synonym_rate < 0.80 or wrong_rate != 0.0
-          or uncited_non_abstained != 0 or unverified_source_answers != 0):
+          or uncited_non_abstained != 0 or unverified_source_answers != 0
+          or unanswerable_abstained != unanswerable):
         target_status = "below_target"
     else:
         target_status = "targets_met"
@@ -212,6 +213,8 @@ def score(questions, runs):
         "target_minimum_cohort_size": MIN_TARGET_COHORT_SIZE,
         "target_wrong_article_rate": 0.0,
         "target_uncited_non_abstained_answers": 0,
+        "target_abstention_compliance_unanswerable": 1.0,
+        "target_minimum_unanswerable_questions": 1,
         "colloquial_questions": len(colloquial_hits),
         "synonym_questions": len(synonym_hits),
         "colloquial_or_synonym_questions": len(colloquial_synonym_hits),
