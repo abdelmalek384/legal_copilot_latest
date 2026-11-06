@@ -1,11 +1,15 @@
 """Tests for the reviewed-label-only Arabic retrieval scorer."""
+import contextlib
+import io
 import sys
+import tempfile
 from pathlib import Path
 import unittest
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from tools.score_arabic_retrieval import benchmark_fingerprint, score
+from tools.score_arabic_retrieval import benchmark_fingerprint, main, score
 
 
 def reviewed(qid, *, answerable=True, article="المادة 1 من قانون العمل", style="formal", tags=None):
@@ -39,6 +43,25 @@ def reviewed(qid, *, answerable=True, article="المادة 1 من قانون ا
 
 
 class ArabicRetrievalScorerTests(unittest.TestCase):
+    def test_cli_reports_malformed_json_without_traceback(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            questions = Path(temp_dir) / "questions.jsonl"
+            runs = Path(temp_dir) / "runs.jsonl"
+            questions.write_text("{not-json}\\n", encoding="utf-8")
+            runs.write_text("", encoding="utf-8")
+            stderr = io.StringIO()
+            with mock.patch("sys.argv", [
+                "score_arabic_retrieval.py",
+                "--questions", str(questions),
+                "--runs", str(runs),
+                "--phase", "before",
+            ]), contextlib.redirect_stderr(stderr):
+                with self.assertRaises(SystemExit) as raised:
+                    main()
+            self.assertEqual(raised.exception.code, 2)
+            self.assertIn("invalid JSON", stderr.getvalue())
+            self.assertNotIn("Traceback", stderr.getvalue())
+
     def test_curated_candidate_cannot_enter_real_question_scoring(self):
         question = reviewed("Q-CURATED")
         question["question_origin"] = "curated_candidate_not_user_observed"
