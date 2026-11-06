@@ -28,6 +28,6 @@ The five CSV files were fetched back from the PR branch and checked for headers 
 
 ## Trust boundary
 
-Status is **source-matched, not lawyer-reviewed**. No row is represented as legally verified. The planned page-image review is complete. The instrument remains non-authoritative and retrieval-ineligible pending exact upload provenance, comprehensive currentness/amendment/corrigendum and reuse-rights checks, and qualified Egyptian lawyer review.
+Status is **source-matched, not lawyer-reviewed**. No row is represented as legally verified. The planned non-identical/quantitative page-image review is complete for 282 provisions; 29 machine-identical provisions still lack targeted page-image review records and page locators. The instrument remains non-authoritative and retrieval-ineligible pending exact upload provenance, comprehensive currentness/amendment/corrigendum and reuse-rights checks, and qualified Egyptian lawyer review.
 
 - `law_14_2025_currentness_snapshot_2026-11-05.md`: government-hosted corroborating copies and limited 2026 implementing-instrument watch list; not counsel-approved.
