@@ -168,7 +168,12 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
                 "gazette_issue": metadata["gazette_issue"],
                 "publication_date": metadata["publication_date"],
                 "content_sha256": metadata["actual_sha256"],
+                "retrieved_at": metadata["retrieved_at"],
                 "captured_by": metadata["captured_by"],
+                "supplier_role": metadata["supplier_role"],
+                "capture_method": metadata["capture_method"],
+                "source_url": metadata.get("source_url"),
+                "source_reference": metadata.get("source_reference"),
                 "collection_permission": metadata.get("collection_permission", "unknown"),
             })
         block_articles.setdefault(block, []).append(article)
