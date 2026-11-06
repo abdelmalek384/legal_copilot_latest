@@ -59,3 +59,7 @@
 - PR #1151: Add fictional fixture-only tests for legal ingestion, article comparison, and effective-date extraction.
 - PR #1150: Propose a separately gated source-matched/unreviewed trust tier without relaxing lawyer approval.
 - PR #1148: Add a data-driven Arabic legal retrieval lexicon and synthetic top-three regressions.
+- PR #1484: Namespace rate-limit budgets by validated firm identity and cover cross-firm isolation across control-database reconnects.
+- PR #1484: Assert the ASGI middleware establishes validated firm context before rate-limit accounting and clears it after the request.
+- PR #1484: Exercise the persistent rate-limit budget from two fresh Python processes to verify restart durability.
+- PR #1484: Reject IPv4 and IPv6 default-route CIDRs in the runtime trusted-proxy parser, matching deployment preflight.
