@@ -176,8 +176,9 @@ def _validate_metadata(meta: object, text_bytes: bytes) -> dict:
             _ = parsed.port
         except (TypeError, ValueError) as exc:
             raise ValueError("source_url must be a valid HTTPS URL") from exc
-        if (parsed.scheme.lower() != "https" or not parsed.hostname or parsed.username
-                or parsed.password or parsed.fragment):
+        if (parsed.scheme.lower() != "https" or not parsed.hostname
+                or parsed.username is not None or parsed.password is not None
+                or parsed.fragment):
             raise ValueError("source_url must be HTTPS without credentials or fragments")
         query_keys = {key.casefold() for key, _ in parse_qsl(parsed.query, keep_blank_values=True)}
         if query_keys & SENSITIVE_QUERY_KEYS:
