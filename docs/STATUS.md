@@ -52,3 +52,11 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Exact-head workflow runs: Tests `42189462330`, CodeQL `42189462314`, dependency audit `42189462233`, non-database safety `42189462358`, and browser acceptance `42189462219` all concluded `failure`.
 - All seven jobs across those five runs returned an empty step list. The job-log endpoint returned HTTP 404 for the Tests job. No test, browser, Bandit, CodeQL, or dependency-audit command is evidenced as having executed. Treat this as an unresolved pre-step runner/service failure, not a code pass or code failure.
 - Do not rerun these workflows repeatedly without a change in runner availability. Do not merge until the required checks execute and pass.
+
+
+## Arabic scorer transparency improvement (2026-11-06)
+
+- Added separate answerable-question abstention outputs to `tools/score_arabic_retrieval.py`: `answerable_abstained_answers`, `answerable_non_abstained_answers`, and `answerable_abstention_rate`. This makes over-refusal on questions labelled answerable visible separately from safety abstention on unanswerable questions.
+- Added a focused regression test in `tests/test_score_arabic_retrieval.py` and documented the fields in `docs/arabic_retrieval_measurement.md`.
+- Commits: `99979d94f73dc4e64a9aac8023957f33228fe065` (scorer), `8d89be791212c2061010368253c924e2a82f14f7` (test), `aae8e0c0d534a127bae9b0f1f8618ea02ec41620` (docs).
+- Validation limitation: these changes have been reviewed via commit diffs, but the test has not been executed locally or by CI. Existing CI pre-step failure remains; no pass is claimed.
