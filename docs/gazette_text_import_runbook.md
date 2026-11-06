@@ -52,7 +52,7 @@ python tools/import_gazette_text.py \
   /absolute/path/to/gazette-session/output
 ```
 
-The command is offline and needs no database credentials or network access. It validates the sidecar and exact-byte hash, reads regular non-symlink files within size limits, segments recognized Arabic/English article headings, splits article text into candidate chunks, and writes:
+The command is offline and needs no database credentials or network access. It validates the sidecar and exact-byte hash, reads regular non-symlink files within size limits, segments recognized Arabic/English numeric headings and Arabic ordinal issuance headings, splits article text into candidate chunks, and writes. The 13 ordinal issuance provisions use `article=issuance_N` and `provision_type=promulgation`; attached-law articles use numeric article labels and `provision_type=attached_law`. Text before the first recognized heading is excluded from candidate rows and its character count is reported as unparsed preamble; inspect any nonzero preamble to ensure no legal provision was missed. Output files are:
 
 - `output/law_rows.jsonl` — candidate chunks with source, document, issue, date, hash and supplier provenance.
 - `output/import_report.md` — article-heading count, chunk count, empty article bodies, numbering gaps/duplicates, provenance and human-review checklist.
