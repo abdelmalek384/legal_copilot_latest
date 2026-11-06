@@ -103,6 +103,22 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         self.assertEqual(result["top3_hit_rate_colloquial_or_synonym"], 1.0)
         self.assertEqual(result["wrong_article_rate"], 0.0)
 
+    def test_answerable_abstentions_are_reported_separately_from_unanswerable_safety(self):
+        question = reviewed("Q-ANSWERABLE")
+        run = {
+            "question_id": "Q-ANSWERABLE",
+            "retrieved_article_ids": [
+                "LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"
+            ],
+            "cited_article_ids": [],
+            "abstained": True,
+            "used_unverified_source": False,
+        }
+        result = score([question], [run])
+        self.assertEqual(result["answerable_abstained_answers"], 1)
+        self.assertEqual(result["answerable_non_abstained_answers"], 0)
+        self.assertEqual(result["answerable_abstention_rate"], 1.0)
+
     def test_targets_require_both_colloquial_and_synonym_recall_and_zero_wrong_articles(self):
         colloquial = [reviewed(f"Q-C-{i}", style="colloquial") for i in range(20)]
         synonym = [reviewed(f"Q-S-{i}", style="formal", tags=["synonym"]) for i in range(20)]
