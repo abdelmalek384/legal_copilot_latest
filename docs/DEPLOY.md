@@ -26,7 +26,7 @@ location / {
 }
 ```
 
-Set `COPILOT_TRUSTED_PROXIES` to that proxy's exact container IP or smallest controlled CIDR; leave it empty for direct connections. Never enable Uvicorn `--proxy-headers`. Enforce upload size/time limits at the proxy too.
+Set `COPILOT_TRUSTED_PROXIES` to that proxy's exact container IP or smallest controlled CIDR; leave it empty for direct connections. The application honors `X-Forwarded-For` only when the direct peer matches this allowlist; wildcard `*` is invalid and must never be used. Never enable Uvicorn `--proxy-headers`. Enforce upload size/time limits at the proxy too.
 
 ## 3. Secrets, email and public links
 
