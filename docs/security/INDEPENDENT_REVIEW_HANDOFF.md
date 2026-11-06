@@ -163,3 +163,16 @@ On the candidate branch, the README quick start already specifies the control-pl
 ### CI retry outcome across all pilot candidates
 
 The one permitted retry of each previously failed workflow on #1483 and #1484 has now also completed without runner allocation. Across all three pilot candidate PRs (#1483, #1484, #1485), the second attempts for Tests, Browser acceptance, dependency audit, CodeQL and applicable non-database safety workflows all report `runner_id=0` and zero steps. No workflow reached checkout, dependency installation, test execution, browser launch, or analysis. The retry budget is exhausted for this incident; do not loop retries. Required action is restoration of GitHub Actions runner capacity, followed by a single exact-head verification pass.
+
+### Staging operator configuration checklist
+
+Use the deployment secret manager; never place credential values in Git, PR comments, evidence filenames, or this handoff. Before strict preflight, the operator must provision:
+
+- `COPILOT_ENV=production`, explicit `COPILOT_ALLOWED_HOSTS`, `COPILOT_SECURE_COOKIES=1`, the public bare HTTPS `COPILOT_PUBLIC_ORIGIN`, and `COPILOT_TRUSTED_PROXIES` containing only the exact edge-proxy IP or smallest controlled CIDR (never `*`).
+- Identity SMTP: `COPILOT_EMAIL_SMTP_HOST`, `COPILOT_EMAIL_SMTP_PORT`, `COPILOT_EMAIL_SMTP_SECURITY=starttls` (or `ssl`), `COPILOT_EMAIL_FROM`, and a paired SMTP username/password if authentication is used. Then perform a controlled staging mailbox send/receive test; preflight configuration success is not delivery proof.
+- MFA: set `MFA_ENFORCEMENT=admins_required` at minimum (or `all_required` if pilot policy requires it); generate a dedicated `MFA_ENCRYPTION_KEY` using `python manage.py gen-mfa-key`, store it in the secret manager, and ensure it differs from `BACKUP_KEY`. Do not paste the key into this repository or this handoff.
+- All three absolute database paths: `COPILOT_CONTROL_DB`, `COPILOT_TENANT_DB_ROOT`, and `COPILOT_CORPUS_DB`, with distinct control/corpus files outside the tenant root and correct restrictive filesystem permissions.
+- Production original-file storage and recovery: `COPILOT_OBJECT_STORAGE_BACKEND=s3`, `COPILOT_S3_BUCKET`, `COPILOT_S3_REGION`, `COPILOT_S3_KMS_KEY_ID`, `COPILOT_S3_RECOVERY_BUCKET`, `COPILOT_S3_RECOVERY_REGION`, and `COPILOT_S3_RECOVERY_KMS_KEY_ID`. Original and recovery buckets/keys must be distinct. Configuration is not a substitute for live encrypted upload, exact-version restore, reconciliation, retention and recovery acceptance.
+- Review `LLM_URL` and processing approvals separately; keep matter-data processing disabled until the actual provider, data-processing terms, retention, and firm authorization have been reviewed. Keep live reminders and payment gateways disabled until their respective credentials and controlled tests exist.
+
+Then run `python tools/deployment_preflight.py --strict` on the actual staging host under the same environment and service identity used by the application. Preserve the complete stdout, stderr, exit code, timestamp, candidate commit SHA, and redacted configuration inventory in the restricted evidence store. Do not call the preflight passed based on mocked unit tests or a local workstation configuration.
