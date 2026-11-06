@@ -59,6 +59,7 @@
     "required_privacy_review_status": "approved",
     "required_question_collection_date": true,
     "required_question_origin_reference": true,
-    "required_consent_or_reuse_basis": true
+    "required_consent_or_reuse_basis": true,
+    "minimum_total_reviewed_questions": 100
   }
 }
