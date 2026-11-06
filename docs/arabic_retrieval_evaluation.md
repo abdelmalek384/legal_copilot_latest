@@ -32,6 +32,7 @@ Replace or supplement the curated candidates only with questions that were actua
 Never use confidential client files or identifiable legal narratives as benchmark data without an appropriate lawful basis and explicit approval.
 
 All 110 rows remain unreviewed/unlabeled. No expected article is treated as ground truth and no `lawyer_approved_answer` has been supplied. A question may enter the scored cohort only after a qualified Egyptian lawyer records the expected article ID, answerability, lawyer-approved answer, question style, synonym tags, review date and evidence reference.
+The scorer rejects `curated_candidate_not_user_observed` rows even if someone later adds labels. Only `observed_anonymized_query` or `permitted_public_q_and_a` rows with `privacy_review_status=approved`, a collection date, origin reference, and non-empty consent/reuse basis can enter the scored cohort.
 
 The new scorer is `tools/score_arabic_retrieval.py`; the API runner is `tools/run_legal_eval.py`. The combined measurement file is `docs/arabic_retrieval_measurement.json`. It currently records 110 excluded/unreviewed questions, zero reviewed questions, null top-3/wrong-article/abstention metrics, and no after-run. Null means not measured, not zero error. `MIN_SCORE` remains 0.30 and must not be tuned before a lawyer-labelled benchmark and a real before-run exist.
 
