@@ -35,6 +35,15 @@ class DocumentExtractionBudgetTests(unittest.TestCase):
         self.assertEqual(caught.exception.status_code, 413)
         self.assertEqual(calls, ["extracted"])
 
+    def test_pdf_page_limit_is_checked_before_extracting_any_page(self):
+        calls = []
+        FakeReader.pages = [FakePage("must not be extracted", calls) for _ in range(501)]
+        with patch("pypdf.PdfReader", FakeReader):
+            with self.assertRaises(app.HTTPException) as caught:
+                app.extract("too-many-pages.pdf", b"fake PDF")
+        self.assertEqual(caught.exception.status_code, 413)
+        self.assertEqual(calls, [])
+
     def test_pdf_text_at_budget_is_preserved_with_page_marker(self):
         FakeReader.pages = [FakePage("Readable legal text")]
         with patch("pypdf.PdfReader", FakeReader):
@@ -49,6 +58,26 @@ class DocumentExtractionBudgetTests(unittest.TestCase):
         document.save(stream)
         with self.assertRaises(app.HTTPException) as caught:
             app.extract("large.docx", stream.getvalue())
+        self.assertEqual(caught.exception.status_code, 413)
+
+    def test_docx_compressed_entry_expansion_is_rejected_before_parsing(self):
+        class Info:
+            file_size = 10_000_001
+            compress_size = 1
+
+        class Archive:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+            def infolist(self):
+                return [Info()]
+
+        with patch("app.zipfile.ZipFile", return_value=Archive()):
+            with self.assertRaises(app.HTTPException) as caught:
+                app.extract("suspicious.docx", b"not expanded in this test")
         self.assertEqual(caught.exception.status_code, 413)
 
     def test_unsupported_extension_still_rejected(self):

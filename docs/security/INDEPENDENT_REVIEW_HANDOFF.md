@@ -122,3 +122,29 @@ Run the complete repository Tests workflow and Browser acceptance workflow again
 | Independent reproduction | NOT RUN | | |
 
 **Decision:** NO-GO until every category is evidenced, all critical/high findings are remediated or formally risk-accepted, and the independent reviewer signs the exact release SHA.
+
+
+## Current candidate execution state — 2026-11-06
+
+The candidate PR branches are #1484 (trusted proxy), #1485 (security/billing), and #1483 (subscription UI/phone onboarding). They remain draft. The current exact heads are #1484 `82a9ae39278d5549f6a1f2caaa0d4752ec609462`, #1485 `3b475104133cb37ce33c9df9208ce38e55ba43bc`, and #1483 `861c497643ce6ada79bce4ae47eb728ca5857478`.
+
+- #1483 and #1484 each have five PR workflow runs completed with failure before test execution; the sampled job payloads had `steps=null`. These are runner/setup non-executions, not code test failures. No retries were made.
+- #1485 has zero PR-triggered workflow runs returned for its exact head. No retries were made.
+- Local Python 3.12 tests are NOT RUN. The available environment has Python 3.13.5, no repository checkout and no usable way to install the hash-locked dependencies. Local pass/fail/skip counts are N/A, not zero.
+- Invoice payment amounts use Pydantic strict positive integers in minor units; payment is allowed only for an issued invoice, keyed by a persisted idempotency key, with an append-only `payment_recorded` audit event. Draft/void invoice, float and negative amount regression cases have been added. Invoice payments currently have no separate approval transition; the self-approval denial is for subscription manual-payment review.
+- Subscription manual-payment review rejects approval by the submitting user, even when that user has platform-admin role; the regression covers independent approval by a different platform administrator.
+- Matter uploads reject payloads above 15 MB and unsupported file types before document metadata is written; route-level regression cases exist but are not executed.
+- OCR now has a per-worker two-slot semaphore around Tesseract execution, fails fast with HTTP 429 when saturated, and releases the slot in `finally`; tests cover saturation and release after both successful and failed subprocess execution. This is per-process capacity, so total worker count and edge rate limiting remain operational controls.
+- The test source includes cross-firm cases/files/invoice/payment/receipt access controls; missing-CSRF, cross-origin and expired-session checks; MFA enforcement, TOTP replay and recovery controls; PDF/DOCX extraction budgets; OCR page/pixel/output/time/concurrency limits; CSV formula neutralization; untrusted matter-passage prompt injection; LLM SSRF redirect, DNS-rebinding and pinned-IP/TLS behavior; and firm/platform authorization. These are source pointers only until executed on the exact candidate.
+- Trusted proxy behavior is in #1484: `X-Forwarded-For` is considered only when the direct peer is in the explicit configured proxy CIDR/IP allowlist; wildcard configuration is invalid. Deployment guidance instructs the proxy to overwrite, not append, the header. Rate-limit identity uses validated server-side firm context, not the firm cookie; persistence/isolation regression tests use separate SQLite connections but do not yet prove a fresh OS-process restart.
+- The strict deployment preflight has not been executed. Static source inspection shows required production configuration for admin token, allowed hosts, public HTTPS origin, encrypted SMTP sender/host and optional paired credentials, backup key, dedicated MFA key, S3/KMS primary and recovery identifiers, and three separate database paths. Do not report these as observed preflight failures until the command runs on a staging-shaped filesystem/config.
+- The physical-device script requires a human tester to run eight steps (login, MFA, case, deadline, invoice, payment, subscription page, export) on one phone and one desktop browser, in English and Arabic on each, then record and sign all 32 outcomes in restricted evidence. No physical-device result is claimed.
+- Independent reviewer sign-off remains outstanding. A source test matrix is not independent reproduction.
+
+## Scope note: invoice receipt approval
+
+Invoice payment recording is presently a direct append-only ledger operation. There is no invoice-payment approval state or approve route, so the same-person create/approve rule is not implementable against that flow without introducing a separate approval workflow. The current separation-of-duties guard protects subscription manual-payment review. Pilot policy must explicitly decide whether invoice receipts require two-person approval before enabling real-client billing.
+
+## Local command and evidence requirement
+
+Once a Python 3.12 checkout/runtime is available, install only from `requirements-py312.lock` with hash enforcement, run the complete suite, then the focused commands in this handoff. Report per PR: pass/fail/skip counts and failed test names. Label results LOCAL, record the exact SHA and environment, and keep them separate from GitHub Actions results.

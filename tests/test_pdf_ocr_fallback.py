@@ -10,6 +10,7 @@ import app
 class FakePdfPage:
     def __init__(self, number):
         self.number = number
+        self.rect = types.SimpleNamespace(width=595, height=842)
     def get_pixmap(self, dpi, alpha):
         return FakePixmap()
 
@@ -77,6 +78,45 @@ class PdfOcrFallbackTests(unittest.TestCase):
         self.assertEqual(caught.exception.status_code, 413)
 
 
+    def test_ocr_rejects_huge_page_dimensions_before_rasterizing(self):
+        document = FakePdfDoc(1)
+        document.pages[0].rect = types.SimpleNamespace(width=20000, height=20000)
+        fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: document)
+        fake_pytesseract = types.SimpleNamespace(image_to_string=MagicMock(return_value="never called"))
+        fake_image = types.SimpleNamespace(open=lambda value: object())
+        fake_pil = types.ModuleType("PIL")
+        fake_pil.Image = fake_image
+        with patch.dict(sys.modules, {
+            "pymupdf": fake_pymupdf,
+            "pytesseract": fake_pytesseract,
+            "PIL": fake_pil,
+        }):
+            with patch.object(document.pages[0], "get_pixmap") as render:
+                with self.assertRaises(app.HTTPException) as caught:
+                    app.ocr_pdf_text(b"pdf")
+        self.assertEqual(caught.exception.status_code, 413)
+        render.assert_not_called()
+        fake_pytesseract.image_to_string.assert_not_called()
+
+    def test_ocr_worker_timeout_is_bounded_and_fails_closed(self):
+        fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: FakePdfDoc(1))
+        fake_pytesseract = types.SimpleNamespace(
+            image_to_string=MagicMock(side_effect=RuntimeError("synthetic OCR timeout"))
+        )
+        fake_image = types.SimpleNamespace(open=lambda value: object())
+        fake_pil = types.ModuleType("PIL")
+        fake_pil.Image = fake_image
+        with patch.dict(sys.modules, {
+            "pymupdf": fake_pymupdf,
+            "pytesseract": fake_pytesseract,
+            "PIL": fake_pil,
+        }):
+            with self.assertRaises(app.HTTPException) as caught:
+                app.ocr_pdf_text(b"pdf")
+        self.assertEqual(caught.exception.status_code, 422)
+        fake_pytesseract.image_to_string.assert_called_once()
+        self.assertEqual(fake_pytesseract.image_to_string.call_args.kwargs["timeout"], 30)
+
     def test_ocr_output_obeys_one_megabyte_extraction_budget(self):
         fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: FakePdfDoc(1))
         fake_pytesseract = types.SimpleNamespace(
@@ -95,6 +135,63 @@ class PdfOcrFallbackTests(unittest.TestCase):
         self.assertEqual(caught.exception.status_code, 413)
         self.assertIn("1 MB", caught.exception.detail)
 
+
+    def test_ocr_rejects_work_when_all_worker_slots_are_busy(self):
+        fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: FakePdfDoc(1))
+        fake_pytesseract = types.SimpleNamespace(image_to_string=MagicMock(return_value="should not run"))
+        fake_image = types.SimpleNamespace(open=lambda value: object())
+        fake_pil = types.ModuleType("PIL")
+        fake_pil.Image = fake_image
+        busy_slots = MagicMock()
+        busy_slots.acquire.return_value = False
+        with patch.dict(sys.modules, {
+            "pymupdf": fake_pymupdf,
+            "pytesseract": fake_pytesseract,
+            "PIL": fake_pil,
+        }), patch.object(app, "_OCR_WORKER_SLOTS", busy_slots):
+            with self.assertRaises(app.HTTPException) as caught:
+                app.ocr_pdf_text(b"pdf")
+        self.assertEqual(caught.exception.status_code, 429)
+        busy_slots.release.assert_not_called()
+        fake_pytesseract.image_to_string.assert_not_called()
+
+    def test_ocr_worker_slot_is_released_after_successful_processing(self):
+        fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: FakePdfDoc(1))
+        fake_pytesseract = types.SimpleNamespace(image_to_string=MagicMock(return_value="OCR recovered page text."))
+        fake_image = types.SimpleNamespace(open=lambda value: object())
+        fake_pil = types.ModuleType("PIL")
+        fake_pil.Image = fake_image
+        slots = MagicMock()
+        slots.acquire.return_value = True
+        with patch.dict(sys.modules, {
+            "pymupdf": fake_pymupdf,
+            "pytesseract": fake_pytesseract,
+            "PIL": fake_pil,
+        }), patch.object(app, "_OCR_WORKER_SLOTS", slots):
+            result = app.ocr_pdf_text(b"pdf")
+        self.assertIn("OCR recovered page text.", result)
+        slots.acquire.assert_called_once_with(blocking=False)
+        slots.release.assert_called_once_with()
+
+    def test_ocr_worker_slot_is_released_after_subprocess_failure(self):
+        fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: FakePdfDoc(1))
+        fake_pytesseract = types.SimpleNamespace(
+            image_to_string=MagicMock(side_effect=RuntimeError("synthetic OCR failure"))
+        )
+        fake_image = types.SimpleNamespace(open=lambda value: object())
+        fake_pil = types.ModuleType("PIL")
+        fake_pil.Image = fake_image
+        slots = MagicMock()
+        slots.acquire.return_value = True
+        with patch.dict(sys.modules, {
+            "pymupdf": fake_pymupdf,
+            "pytesseract": fake_pytesseract,
+            "PIL": fake_pil,
+        }), patch.object(app, "_OCR_WORKER_SLOTS", slots):
+            with self.assertRaises(app.HTTPException):
+                app.ocr_pdf_text(b"pdf")
+        slots.acquire.assert_called_once_with(blocking=False)
+        slots.release.assert_called_once_with()
 
 if __name__ == "__main__":
     unittest.main()

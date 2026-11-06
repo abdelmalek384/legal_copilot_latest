@@ -1,6 +1,6 @@
 """Legal copilot MVP: case workspace + hybrid law search + citation-checked answers.
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
-import base64, sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging, tempfile
+import base64, sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging, tempfile, socket, http.client, math
 from pathlib import Path
 from cryptography.fernet import Fernet
 import deadline_calculator as deadline_calc
@@ -1235,7 +1235,7 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
 
 
 def _safe_llm_endpoint(value):
-    """Require HTTPS for remote model endpoints; allow plain HTTP only on loopback."""
+    """Require public-address HTTPS endpoints; allow plain HTTP only on loopback."""
     from urllib.parse import urlsplit
     if not isinstance(value, str) or not value.strip():
         return False
@@ -1246,17 +1246,102 @@ def _safe_llm_endpoint(value):
         if (parsed.scheme not in {"https", "http"} or not host or parsed.username or parsed.password
                 or parsed.query or parsed.fragment):
             return False
-        _ = parsed.port  # Force invalid/out-of-range ports to raise ValueError.
-        if parsed.scheme == "https":
-            return True
-        if host.lower().rstrip(".") == "localhost":
-            return True
-        try:
-            return ipaddress.ip_address(host).is_loopback
-        except ValueError:
+        parsed_port = parsed.port
+        if parsed_port is not None and not 1 <= parsed_port <= 65535:
             return False
+        port = parsed_port or (443 if parsed.scheme == "https" else 80)
+        if parsed.scheme == "http":
+            if host.lower().rstrip(".") == "localhost":
+                return True
+            try:
+                return ipaddress.ip_address(host).is_loopback
+            except ValueError:
+                return False
+
+        # HTTPS does not make a private destination safe. Reject literal private,
+        # loopback, link-local, reserved and metadata-service IPs as well as hostnames
+        # that currently resolve to any non-global address.
+        try:
+            return ipaddress.ip_address(host).is_global
+        except ValueError:
+            try:
+                answers = socket.getaddrinfo(host, port, type=socket.SOCK_STREAM)
+            except OSError:
+                return False
+            if not answers:
+                return False
+            for answer in answers:
+                try:
+                    address = ipaddress.ip_address(answer[4][0].split("%", 1)[0])
+                except (IndexError, ValueError, TypeError):
+                    return False
+                if not address.is_global:
+                    return False
+            return True
     except (TypeError, ValueError):
         return False
+
+
+def _resolve_public_llm_address(url):
+    """Resolve a remote HTTPS endpoint once and return a public address to pin."""
+    parsed = urlsplit(url)
+    host = parsed.hostname
+    port = parsed.port or 443
+    try:
+        literal = ipaddress.ip_address(host)
+    except ValueError:
+        try:
+            answers = socket.getaddrinfo(host, port, type=socket.SOCK_STREAM)
+        except OSError as exc:
+            raise ValueError("LLM endpoint hostname could not be resolved") from exc
+        addresses = []
+        for answer in answers:
+            try:
+                address = ipaddress.ip_address(answer[4][0].split("%", 1)[0])
+            except (IndexError, ValueError, TypeError) as exc:
+                raise ValueError("LLM endpoint returned an invalid address") from exc
+            if not address.is_global:
+                raise ValueError("LLM endpoint resolved to a non-public address")
+            addresses.append(address.compressed)
+        if not addresses:
+            raise ValueError("LLM endpoint returned no addresses")
+        return addresses[0]
+    if not literal.is_global:
+        raise ValueError("LLM endpoint is not a public address")
+    return literal.compressed
+
+
+class _PinnedHTTPSConnection(http.client.HTTPSConnection):
+    """Connect to a validated IP while retaining the configured hostname for TLS."""
+
+    def __init__(self, host, resolved_ip, **kwargs):
+        self._resolved_ip = resolved_ip
+        super().__init__(host, **kwargs)
+
+    def connect(self):
+        sock = socket.create_connection(
+            (self._resolved_ip, self.port), self.timeout, self.source_address
+        )
+        if self._tunnel_host:
+            self.sock = sock
+            self._tunnel()
+        self.sock = self._context.wrap_socket(sock, server_hostname=self.host)
+
+
+class _PinnedHTTPSHandler(urllib.request.HTTPSHandler):
+    def __init__(self, resolved_ip):
+        super().__init__()
+        self._resolved_ip = resolved_ip
+
+    def https_open(self, req):
+        return self.do_open(
+            lambda host, **kwargs: _PinnedHTTPSConnection(
+                host, self._resolved_ip, **kwargs
+            ),
+            req,
+            context=self._context,
+            check_hostname=self._check_hostname,
+        )
 
 
 class _RejectLLMRedirects(urllib.request.HTTPRedirectHandler):
@@ -1266,7 +1351,14 @@ class _RejectLLMRedirects(urllib.request.HTTPRedirectHandler):
 
 
 def _llm_open(request, timeout=120):
-    opener = urllib.request.build_opener(_RejectLLMRedirects)
+    # Disable ambient proxy discovery: the endpoint is resolved, checked and pinned
+    # here so a second DNS lookup cannot redirect the prompt to a private address.
+    parsed = urlsplit(request.full_url)
+    handlers = [urllib.request.ProxyHandler({}), _RejectLLMRedirects()]
+    if parsed.scheme == "https":
+        resolved_ip = _resolve_public_llm_address(request.full_url)
+        handlers.append(_PinnedHTTPSHandler(resolved_ip))
+    opener = urllib.request.build_opener(*handlers)
     return opener.open(request, timeout=timeout)
 
 
@@ -1306,8 +1398,11 @@ def llm(prompt):
     bounded to MAX_LLM_RESPONSE_BYTES and malformed responses fail closed to sources-only.
     """
     url = os.environ.get("LLM_URL")
-    if not url or not _safe_llm_endpoint(url): return None
-    if os.environ.get("LLM_DATA_PROCESSING_APPROVED", "").strip() != "1":
+    # Do not even resolve a configured provider hostname until the operator has
+    # explicitly approved model processing; DNS itself is an external disclosure.
+    if not url or os.environ.get("LLM_DATA_PROCESSING_APPROVED", "").strip() != "1":
+        return None
+    if not _safe_llm_endpoint(url):
         return None
     body = json.dumps({"model": os.environ.get("LLM_MODEL", "local"), "temperature": 0,
                        "messages": [{"role": "system", "content": SYS}, {"role": "user", "content": prompt}]}).encode()
@@ -2215,6 +2310,8 @@ _UPLOAD_RATE_LIMIT = (10, 3600)
 # This is a per-process safeguard; production multi-worker deployments still need
 # edge/proxy rate limiting or a shared limiter.
 _LOGIN_HASH_SLOTS = threading.BoundedSemaphore(max(2, int(os.environ.get("LOGIN_HASH_CONCURRENCY", "4"))))
+# Bound concurrent OCR subprocesses per application worker; retain the edge rate limit too.
+_OCR_WORKER_SLOTS = threading.BoundedSemaphore(2)
 _rate_limit_state = {}
 _rate_limit_lock = threading.Lock()
 _rate_limit_checks = 0
@@ -3392,9 +3489,26 @@ def ocr_pdf_text(data, lang=None, max_pages=30, existing_pages=None):
             if len(existing) >= 20:
                 page_text = existing
             else:
+                try:
+                    rect = page.rect
+                    width_pt = float(rect.width)
+                    height_pt = float(rect.height)
+                except (AttributeError, TypeError, ValueError):
+                    raise HTTPException(422, "PDF page dimensions are invalid")
+                if (not math.isfinite(width_pt) or not math.isfinite(height_pt)
+                        or width_pt <= 0 or height_pt <= 0):
+                    raise HTTPException(422, "PDF page dimensions are invalid")
+                estimated_pixels = math.ceil(width_pt * 160 / 72) * math.ceil(height_pt * 160 / 72)
+                if estimated_pixels > 20_000_000:
+                    raise HTTPException(413, "PDF page exceeds the 20-megapixel OCR limit")
                 pix = page.get_pixmap(dpi=160, alpha=False)
                 image = Image.open(io.BytesIO(pix.tobytes("png")))
-                page_text = pytesseract.image_to_string(image, lang=lang, timeout=30).strip()
+                if not _OCR_WORKER_SLOTS.acquire(blocking=False):
+                    raise HTTPException(429, "OCR capacity is busy; retry later")
+                try:
+                    page_text = pytesseract.image_to_string(image, lang=lang, timeout=30).strip()
+                finally:
+                    _OCR_WORKER_SLOTS.release()
             block = f"[[PDF_PAGE:{page_no}]]\n\n{page_text}"
             added = len(block) + (2 if pages else 0)
             if total_chars + added > max_chars:
@@ -5293,6 +5407,8 @@ def approve_subscription_payment(submission_id: int, u: dict = Depends(user)):
         ).fetchone()
         if payment is None or payment["status"] != "pending":
             raise HTTPException(404, "pending payment submission not found")
+        if int(payment["submitted_by_user_id"]) == int(u["id"]):
+            raise HTTPException(403, "payment submitter cannot approve their own submission")
         control.execute(
             "UPDATE subscription_payment_submissions SET status='approved',reviewed_by_user_id=?,reviewed_at=?,decision_note='' WHERE id=? AND status='pending'",
             (u["id"], now, submission_id),
