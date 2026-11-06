@@ -117,7 +117,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn(".auth-card .password-row button{min-height:44px;flex:0 0 auto}", HTML)
 
     def test_first_run_wizard_and_setup_health_have_a_phone_safe_path(self):
-        wizard = HTML[HTML.index("async function firstRunPage"):HTML.index("\\nasync function ", HTML.index("async function firstRunPage"))]
+        wizard = HTML[HTML.index("async function firstRunPage"):HTML.index("\nasync function ", HTML.index("async function firstRunPage"))]
         self.assertIn("api('/setup/first-run')", wizard)
         self.assertIn("role:'progressbar'", wizard)
         self.assertIn("profileCard", wizard)
@@ -127,7 +127,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("async function setupHealthPage", HTML)
 
     def test_expired_subscription_exposes_read_only_state_and_payment_recovery(self):
-        billing = HTML[HTML.index("async function billingPage"):HTML.index("\\nasync function ", HTML.index("async function billingPage"))]
+        billing = HTML[HTML.index("async function billingPage"):HTML.index("\nasync function ", HTML.index("async function billingPage"))]
         self.assertIn("data.read_only", billing)
         self.assertIn("Firm is in read-only mode", billing)
         self.assertIn("Submit payment evidence to restore editing", billing)
