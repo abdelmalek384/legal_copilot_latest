@@ -7602,9 +7602,11 @@ def invoice_finance_overview(u: dict = Depends(user)):
 @rollback_tenant_transaction_on_error
 def record_invoice_payment(invoice_id: int, b: InvoicePaymentIn, u: dict = Depends(user)):
     c = conn()
+    # Serialize payment writers before checking the persisted idempotency key and balance.
+    # A deferred transaction would let concurrent retries both pass the initial SELECT.
+    c.execute("BEGIN IMMEDIATE")
     row = _invoice_for_user(c, u, invoice_id)
     c.execute("SAVEPOINT invoice_write")
-    row = _invoice_for_user(c, u, invoice_id)
     if row["status"] != "issued":
         raise HTTPException(409, "payments can only be recorded against issued invoices")
     reference = b.reference.strip()
@@ -7624,6 +7626,7 @@ def record_invoice_payment(invoice_id: int, b: InvoicePaymentIn, u: dict = Depen
         if not same:
             raise HTTPException(409, "idempotency key was already used for a different payment")
         c.execute("RELEASE SAVEPOINT invoice_write")
+        c.commit()
         return _invoice_record(c, row)
     paid = int(c.execute(
         "SELECT COALESCE(SUM(amount_piasters),0) FROM invoice_payments WHERE invoice_id=?",

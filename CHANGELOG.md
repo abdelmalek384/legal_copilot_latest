@@ -67,3 +67,4 @@
 - PR #1485: Bound concurrent OCR subprocesses per worker and test saturation/release behavior.
 - PR #1485: Verify OCR worker slots are released after Tesseract subprocess failure.
 - PR #1485: Validate trusted-proxy IP/CIDR configuration in strict deployment preflight, rejecting wildcard-all, default routes, empty entries and malformed networks.
+- PR #1485: Serialize invoice payment writes before idempotency and balance checks, with a concurrent duplicate-request regression.

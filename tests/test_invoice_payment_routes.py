@@ -1,5 +1,7 @@
 """Invoice payment, aging, and receipt route tests."""
 import json
+import threading
+from concurrent.futures import ThreadPoolExecutor
 import sqlite3
 import unittest
 
@@ -56,6 +58,42 @@ class InvoicePaymentRouteTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(final_details["payment_id"], paid.json()["payments"][-1]["id"])
         self.assertEqual(final_details["amount_piasters"], 12500)
         self.assertEqual(final_details["method"], "instapay")
+
+
+    def test_concurrent_duplicate_idempotency_key_records_one_payment(self):
+        invoice = self.create_draft().json()
+        invoice = self.mutate(self.client_a, "post", f"/invoices/{invoice['id']}/issue").json()
+        payload = {
+            "amount_piasters": 2500, "paid_on": "2026-11-06", "method": "bank_transfer",
+            "reference": "CONCURRENT-REF", "note": "Concurrent retry",
+            "idempotency_key": "concurrent-payment-001",
+        }
+        second_client = TestClient(app.app)
+        self.addCleanup(second_client.close)
+        login = second_client.post(
+            "/login", json={"email": "invoice-owner-a@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        barrier = threading.Barrier(2)
+
+        def submit(client):
+            barrier.wait(timeout=10)
+            return self.mutate(
+                client, "post", f"/invoices/{invoice['id']}/payments", json=payload
+            )
+
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            first = pool.submit(submit, self.client_a)
+            second = pool.submit(submit, second_client)
+            responses = (first.result(timeout=20), second.result(timeout=20))
+
+        self.assertEqual([response.status_code for response in responses], [200, 200])
+        records = responses[-1].json()
+        self.assertEqual(len(records["payments"]), 1)
+        self.assertEqual(
+            sum(event["event_type"] == "payment_recorded" for event in records["events"]), 1
+        )
 
     def test_void_requires_no_payments_and_is_audited(self):
         invoice = self.create_draft().json()
