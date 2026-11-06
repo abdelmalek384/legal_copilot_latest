@@ -182,7 +182,7 @@ class TrustedProxyClientIpTests(unittest.TestCase):
                 observed["route_firm_id"] = getattr(active, "firm_id", None)
                 return Response("ok")
 
-            with patch.object(app, "_separate_runtime_enabled", return_value=True), \\
+            with patch.object(app, "_separate_runtime_enabled", return_value=True), \
                  patch.object(app, "_request_firm_context", return_value=context), \\
                  patch.object(app, "_rate_limit", side_effect=rate_limit):
                 response = await app.security_headers(make_request("10.0.0.8"), call_next)
