@@ -10,6 +10,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 REVIEWED = {"lawyer_reviewed", "approved_for_evaluation"}
+MIN_TARGET_COHORT_SIZE = 20
 
 
 def load_jsonl(path):
@@ -185,7 +186,9 @@ def score(questions, runs):
         if colloquial_synonym_hits else None
     )
     wrong_rate = round(wrong_answers / cited_non_abstained, 4) if cited_non_abstained else None
-    if (not top3_hits or colloquial_rate is None or synonym_rate is None or wrong_rate is None):
+    if (not top3_hits or len(colloquial_hits) < MIN_TARGET_COHORT_SIZE
+            or len(synonym_hits) < MIN_TARGET_COHORT_SIZE
+            or colloquial_rate is None or synonym_rate is None or wrong_rate is None):
         target_status = "not_evaluable_missing_approved_labels_or_cited_runs"
     elif (colloquial_rate < 0.80 or synonym_rate < 0.80 or wrong_rate != 0.0
           or uncited_non_abstained != 0 or unverified_source_answers != 0):
@@ -206,6 +209,7 @@ def score(questions, runs):
         "target_status": target_status,
         "target_top3_hit_rate_colloquial": 0.80,
         "target_top3_hit_rate_synonym": 0.80,
+        "target_minimum_cohort_size": MIN_TARGET_COHORT_SIZE,
         "target_wrong_article_rate": 0.0,
         "target_uncited_non_abstained_answers": 0,
         "colloquial_questions": len(colloquial_hits),
