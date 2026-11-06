@@ -176,3 +176,7 @@ Use the deployment secret manager; never place credential values in Git, PR comm
 - Review `LLM_URL` and processing approvals separately; keep matter-data processing disabled until the actual provider, data-processing terms, retention, and firm authorization have been reviewed. Keep live reminders and payment gateways disabled until their respective credentials and controlled tests exist.
 
 Then run `python tools/deployment_preflight.py --strict` on the actual staging host under the same environment and service identity used by the application. Preserve the complete stdout, stderr, exit code, timestamp, candidate commit SHA, and redacted configuration inventory in the restricted evidence store. Do not call the preflight passed based on mocked unit tests or a local workstation configuration.
+
+### Latest candidate-head check
+
+After the handoff updates, the latest security candidate SHA is `b5dc3044237656386e5a498bdfa345c1b2a69675`. Its newly triggered Tests, Browser acceptance, dependency audit, CodeQL, and non-database safety workflows also terminated with `runner_id=0` and zero steps. This confirms the runner outage persists on a fresh commit, not only on a rerun. No more retries are justified until runner service is restored. The source-level review of the SSRF transport change confirmed that the configured HTTPS hostname is retained for TLS hostname verification while the TCP connection uses the validated pinned IP; this is code inspection only, not an executed network test.
