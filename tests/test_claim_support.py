@@ -68,6 +68,23 @@ class ClaimSupportTests(unittest.TestCase):
             "The employer must not provide notice.",
         ))
 
+    def test_arabic_negated_obligation_with_variable_whitespace_is_not_positive(self):
+        cases = (
+            "لا يجب على صاحب العمل تقديم الإخطار.",
+            "لا   يجب على صاحب العمل تقديم الإخطار.",
+            "لا\tيجب على صاحب العمل تقديم الإخطار.",
+        )
+        for evidence in cases:
+            with self.subTest(evidence=evidence):
+                self.assertFalse(_has_modal_mismatch(evidence, evidence))
+                self.assertFalse(has_unsupported_claims(
+                    evidence + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+                self.assertTrue(_has_negated_obligation_mismatch(
+                    "يجب على صاحب العمل تقديم الإخطار.", evidence
+                ))
+
     def test_faithful_raw_negated_obligation_paraphrases_pass(self):
         cases = (
             ("The employer is not required to provide notice.", "The employer is not required to provide notice."),
