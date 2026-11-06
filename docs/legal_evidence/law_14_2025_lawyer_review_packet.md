@@ -12,6 +12,10 @@
 - Machine comparison: 38 identical after normalization; 221 minor differences; 47 major differences; 5 numeric alerts; 0 missing/extra headings.
 - The 273 non-identical machine records and 120 quantitative cue records overlap. All 311 provisions now have Gazette PDF page locators and page-image comparison notes. 282 were already recorded in the earlier review batches; the remaining 29 were visually compared against their complete Gazette page text on 2026-11-06 and matched the candidate transcription. These are machine/assistant evidence checks, not counsel sign-off.
 
+## Source-file handling and reuse restrictions
+
+The recovered 112-page supplied PDF reports AES encryption with PDF permissions `copy=no`, `print=no`, `change=no`, and `addNotes=no`. The additional 29 checks were made by visually inspecting rendered page images; no PDF text extraction or permission bypass was used. This does not establish the uploader's authority to redistribute, extract, OCR, ingest, or reuse the document. Counsel/source owner must confirm permitted use before any text ingestion or publication. The UTF-8 importer is intended for text independently supplied by an authorized lawyer, not for circumventing PDF restrictions.
+
 ## Additional full-article page-image comparisons (29 provisions)
 
 The 29 rows previously lacking page locators were visually inspected against the supplied 112-page Gazette PDF. The complete article text was compared with the corresponding candidate JSONL row; the wording matched on the inspected pages. The tick-sheet records the page and review date in `prior_page_review_note` and `page_image_review_note`. These notes explicitly identify the review as assistant visual comparison, not human lawyer sign-off. The reviewer must independently repeat/confirm the comparison.
