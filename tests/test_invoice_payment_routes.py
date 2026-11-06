@@ -28,6 +28,10 @@ class InvoicePaymentRouteTests(InvoiceTestSupport, unittest.TestCase):
         duplicate = self.mutate(self.client_a, "post", f"/invoices/{invoice['id']}/payments", json=payload)
         self.assertEqual(duplicate.status_code, 200, duplicate.text)
         self.assertEqual(len(duplicate.json()["payments"]), 1)
+        self.assertEqual(
+            sum(event["event_type"] == "payment_recorded" for event in duplicate.json()["events"]),
+            1,
+        )
         conflict = dict(payload, amount_piasters=5001)
         self.assertEqual(
             self.mutate(self.client_a, "post", f"/invoices/{invoice['id']}/payments", json=conflict).status_code,
