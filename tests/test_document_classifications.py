@@ -156,7 +156,7 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("latest.reviewed_text", html)
         self.assertIn("Latest recorded correction", html)
 
-    def test_extraction_review_can_focus_unreviewed_passages(self):
+    def test_extraction_review_attention_filter_keeps_recheck_required_passages(self):
         html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
         self.assertIn("let needsAttentionOnly=false", html)
         self.assertIn("if(needsAttentionOnly&&latest&&latest.outcome!=='needs_recheck')continue", html)
