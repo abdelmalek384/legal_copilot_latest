@@ -171,15 +171,19 @@ def _validate_metadata(meta: object, text_bytes: bytes) -> dict:
         raise ValueError("SHA-256 mismatch for supplied Gazette text")
     source_url = meta.get("source_url")
     if source_url:
+        if (not isinstance(source_url, str) or not source_url
+                or any(ch.isspace() or ord(ch) < 32 for ch in source_url)):
+            raise ValueError("source_url must be a valid HTTPS URL without whitespace or control characters")
         try:
             parsed = urlsplit(source_url)
-            _ = parsed.port
+            port = parsed.port
         except (TypeError, ValueError) as exc:
             raise ValueError("source_url must be a valid HTTPS URL") from exc
         if (parsed.scheme.lower() != "https" or not parsed.hostname
                 or parsed.username is not None or parsed.password is not None
-                or parsed.fragment):
-            raise ValueError("source_url must be HTTPS without credentials or fragments")
+                or parsed.fragment or parsed.netloc.endswith(":")
+                or (port is not None and not 1 <= port <= 65535)):
+            raise ValueError("source_url must be HTTPS without credentials or fragments and with a valid authority")
         query_keys = {key.casefold() for key, _ in parse_qsl(parsed.query, keep_blank_values=True)}
         if query_keys & SENSITIVE_QUERY_KEYS:
             raise ValueError("source_url must not contain signed or credential query parameters")
