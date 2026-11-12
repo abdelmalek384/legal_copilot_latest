@@ -5392,6 +5392,20 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             )
             self.assertEqual(uploaded.status_code, 200, uploaded.text)
 
+        alpha_document = self._mutate(
+            "get", f"/cases/{alpha_case}"
+        )
+        self.assertEqual(alpha_document.status_code, 200, alpha_document.text)
+        alpha_document_id = next(
+            item["document_id"] for item in alpha_document.json()["docs"]
+            if item["name"] == "alpha-accessible-contract.txt"
+        )
+        classified = self._mutate(
+            "put", f"/cases/{alpha_case}/docs/{alpha_document_id}/classification",
+            json={"category": "contract", "expected_version": 0, "note": "Reviewed source."},
+        )
+        self.assertEqual(classified.status_code, 200, classified.text)
+
         junior_id = self.runtime.create_global_identity(
             "Document Search Junior", "document-search-junior@example.test", app.hash_pw(self.password)
         )
@@ -5415,6 +5429,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertEqual(results.json()["items"][0]["case_title"], "Accessible Alpha Matter")
             self.assertIn("statuses", results.json())
             self.assertEqual(results.json()["items"][0]["name"], "alpha-accessible-contract.txt")
+            self.assertEqual(results.json()["items"][0]["saved_classification"], "contract")
+            self.assertEqual(results.json()["items"][0]["classification_reviewer_name"], "First Owner")
             arabic_hits = junior.get("/documents/search-text?q=قَانوني")
             self.assertEqual(arabic_hits.status_code, 200, arabic_hits.text)
             self.assertEqual(arabic_hits.json()["total"], 1)
