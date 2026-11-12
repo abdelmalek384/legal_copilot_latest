@@ -12,7 +12,7 @@
 - Arabic interface additions are registered in `static/ar-ui-review.json`; native Arabic review and full RTL browser acceptance remain outstanding.
 - Backend integration tests cover classification persistence/version conflicts, lead-only permissions, cross-matter and cross-firm isolation, audit immutability and retention cascades, metadata/full-text search, and extraction-review isolation. Frontend contract tests cover the new workspace and review behavior.
 - GitHub Actions currently reports failures before logs can be retrieved. The repository's documented runner/billing limitation remains unresolved; no test pass is claimed. Browser QA and clean Python 3.12 suite execution are still required.
-- PR #1564 remains a draft and unmerged. It is based on the earlier UI workspace branch point; the 14 commits added to `main` since then are documentation, evaluation inventory/scoring and Gazette importer updates. Review and reconcile the base before merging.
+- PR #1564 remains a draft and unmerged. It is based on the earlier UI workspace branch point; the 15 commits added to `main` since then are documentation, evaluation inventory/scoring and Gazette importer updates. Review and reconcile the base before merging.
 
 ## Current repository update — 2026-11-12
 
