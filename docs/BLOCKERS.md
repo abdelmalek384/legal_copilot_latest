@@ -59,7 +59,7 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 ## Current AI-1 pull requests
 
-- Open AI-1 PRs: #1576 (fixture corrections), #1577 (cloud signed-URL query filtering), and #1578 (provenance metadata validation; depends on #1577). All three remain unmerged and require Python 3.12 focused test execution before validation can be claimed.
+- Open AI-1 PRs: #1576 (fixture corrections), #1577 (cloud signed-URL query filtering), #1578 (provenance metadata validation; depends on #1577), and #1580 (fail-closed retrieval evaluator enum validation). All remain unmerged and require Python 3.12 focused test execution before validation can be claimed.
 - #1559 — merged Arabic negated-obligation regression coverage; tests unexecuted.
 - #1560 — merged retrieval scorer safety-status ordering fix; tests unexecuted.
 - #1562 — merged delivery blocker/closure register.
@@ -99,3 +99,10 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - These are runner/service execution failures, not code-test failures or passes. Local Python 3.12 hash-locked validation is the next usable path.
 - During static review of #1578, explicit `source_reference: null` was found to bypass the stated non-empty-string rule. The PR branch was corrected and a regression case added; the revised head has not been runtime-tested.
 - Merge order remains #1577 before #1578. #1576 is independent. Do not merge these as validated until the focused Python 3.12 tests execute successfully.
+
+
+## Retrieval evaluator malformed-enum follow-up — 2026-11-13
+
+- PR #1580 guards untrusted `review_status` and `reviewer_role` JSON values before set membership. Malformed list/object values now enter the evaluator's invalid-question report rather than raising `TypeError`.
+- Regression tests cover unhashable list values for both fields. Static source/diff review only; runtime tests remain unexecuted.
+- Exact-head Tests workflow run `43328171760` failed before exposing job steps (`steps: null`), consistent with the current runner-allocation blocker.
