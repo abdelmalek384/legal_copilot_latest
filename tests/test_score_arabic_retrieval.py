@@ -88,7 +88,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             questions = Path(temp_dir) / "questions.jsonl"
             runs = Path(temp_dir) / "runs.jsonl"
-            questions.write_text("{not-json}\\n", encoding="utf-8")
+            questions.write_text("{not-json}\n", encoding="utf-8")
             runs.write_text("", encoding="utf-8")
             registry = Path(temp_dir) / "reviewers.json"
             registry.write_text(__import__("json").dumps(TEST_REVIEWER_REGISTRY), encoding="utf-8")
@@ -111,7 +111,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
             questions = Path(temp_dir) / "questions.jsonl"
             runs = Path(temp_dir) / "runs.jsonl"
             report = Path(temp_dir) / "report.json"
-            questions.write_text('{"id":"Q1","review_status":"needs_lawyer_review"}\\n', encoding="utf-8")
+            questions.write_text('{"id":"Q1","review_status":"needs_lawyer_review"}\n', encoding="utf-8")
             runs.write_text("", encoding="utf-8")
             report.write_text("[]", encoding="utf-8")
             registry = Path(temp_dir) / "reviewers.json"
@@ -157,9 +157,9 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
     def test_reviewer_evidence_url_rejects_controls_delimiters_and_credentials(self):
         for url in (
             "https://example.gov/review path",
-            "https://example.gov/review\\nrecord",
-            "https://example.gov/review\\t",
-            "https://example.gov/review\\x7f",
+            "https://example.gov/review\nrecord",
+            "https://example.gov/review\t",
+            "https://example.gov/review\x7f",
             "https://example.gov/review?",
             "https://example.gov/review#",
             "https://example.gov/review?token=",
