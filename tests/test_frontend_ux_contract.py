@@ -985,5 +985,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("documentClassificationFilter.value==='saved'?!!doc.saved_classification:!doc.saved_classification", page)
         self.assertIn("documentClassificationFilter.onchange=()=>renderDocuments(currentDocuments)", page)
 
+    def test_workspace_global_search_uses_authorized_bounded_matter_search(self):
+        shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction mfaFirmSwitcher()")]
+        self.assertIn("Global search across accessible matters", shell)
+        self.assertIn("limit:'8',offset:'0'", shell)
+        self.assertIn("api('/cases/search?'+params.toString())", shell)
+        self.assertIn("globalSearchInput.onkeydown", shell)
+        self.assertIn("view(item.id)", shell)
+
 if __name__ == "__main__":
     unittest.main()
