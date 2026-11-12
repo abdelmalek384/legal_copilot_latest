@@ -6685,12 +6685,27 @@ def search_accessible_documents(
         params + (limit, offset),
     ).fetchall()
     # Record a coarse access event only; do not persist search terms or client content.
+    status_params = params[:14] + ("", "") + ("", "", "", "")
+    status_rows = c.execute(
+        "SELECT DISTINCT d.extraction_status FROM docs d JOIN cases c ON c.id=d.case_id "
+        "LEFT JOIN document_classifications dc ON dc.document_id=d.id "
+        "AND dc.case_id=d.case_id AND dc.firm_id=c.firm_id WHERE " + scope +
+        " AND d.extraction_status IS NOT NULL AND d.extraction_status<>'' "
+        "ORDER BY d.extraction_status",
+        status_params,
+    ).fetchall()
     c.execute(
         "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
         (u["firm_id"], u["id"], "document_metadata_search"),
     )
     c.commit()
-    return {"items": [dict(row) for row in rows], "total": total, "limit": limit, "offset": offset}
+    return {
+        "items": [dict(row) for row in rows],
+        "total": total,
+        "limit": limit,
+        "offset": offset,
+        "statuses": [str(row["extraction_status"]) for row in status_rows],
+    }
 
 
 @app.get("/cases")
