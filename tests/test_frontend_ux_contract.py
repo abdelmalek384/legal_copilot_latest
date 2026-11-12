@@ -1031,5 +1031,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("m.client", page)
         self.assertIn("m.opposing_party", page)
 
+    def test_original_download_handles_expired_session_and_purged_object(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("const downloadOriginal=async doc=>", page)
+        self.assertIn("response.status===404", page)
+        self.assertIn("Original file is unavailable or was purged under the retention policy.", page)
+        self.assertIn("URL.createObjectURL(blob)", page)
+
 if __name__ == "__main__":
     unittest.main()
