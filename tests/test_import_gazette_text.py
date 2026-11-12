@@ -232,9 +232,9 @@ class GazetteTextImportTests(unittest.TestCase):
     def test_provenance_metadata_rejects_control_characters(self):
         for field in (
             "official_title", "gazette_issue", "retrieved_at", "captured_by",
-            "source_reference",
+            "source_reference", "permission_evidence_reference",
         ):
-            for suffix in ("\\nforged provenance", "\\tforged", "\\x7fforged"):
+            for suffix in ("\nforged provenance", "\tforged", "\x7fforged"):
                 with self.subTest(field=field, suffix=repr(suffix)):
                     self.metadata[field] = "valid prefix" + suffix
                     self.write_metadata()
@@ -247,6 +247,7 @@ class GazetteTextImportTests(unittest.TestCase):
                 "retrieved_at": "2026-11-06T00:00:00+02:00",
                 "captured_by": "Qualified reviewer supplied text (test fixture)",
                 "source_reference": "Test fixture; not a legal source",
+                "permission_evidence_reference": None,
             }[field]
         self.write_metadata()
 
