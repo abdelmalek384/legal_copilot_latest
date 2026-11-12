@@ -952,5 +952,17 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Selected matter only", page)
         self.assertIn("Not a document-failure determination", page)
 
+    def test_documents_page_uploads_pdf_and_docx_to_selected_matter(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("multiple:true", page)
+        self.assertIn("accept:'.pdf,.docx,application/pdf", page)
+        self.assertIn("item.file.size<=15000000", page)
+        self.assertIn("'/cases/'+encodeURIComponent(matterId)+'/upload'", page)
+        self.assertIn("credentials:'same-origin'", page)
+        self.assertIn("'X-CSRF-Token':decodeURIComponent(csrf)", page)
+        self.assertIn("if(succeeded)await loadMatter()", page)
+        self.assertIn("role:'button',tabIndex:0", page)
+        self.assertIn("is-dragover", page)
+
 if __name__ == "__main__":
     unittest.main()
