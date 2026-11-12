@@ -261,8 +261,8 @@ class GazetteTextImportTests(unittest.TestCase):
     def test_source_url_rejects_whitespace_controls_and_empty_or_invalid_ports(self):
         for value in (
             "https://example.gov/path with spaces",
-            "https://example.gov/path\\nnext",
-            "https://example.gov/path\\tvalue",
+            "https://example.gov/path\nnext",
+            "https://example.gov/path\tvalue",
             "https://example.gov:/item",
             "https://example.gov:99999/item",
             [],
