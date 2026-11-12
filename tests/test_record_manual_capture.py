@@ -229,5 +229,21 @@ class RecordManualCaptureTests(unittest.TestCase):
             with self.subTest(raw=raw), self.assertRaisesRegex(ValueError, message):
                 load_catalog(path)
 
+
+    def test_existing_original_with_same_content_address_but_different_bytes_is_not_overwritten(self):
+        import hashlib
+
+        digest = hashlib.sha256(self.txt.read_bytes()).hexdigest()
+        original_dir = self.out / "originals" / "EG-LABOUR-14-2025"
+        original_dir.mkdir(parents=True)
+        target = original_dir / f"original-manual-{digest[:16]}.txt"
+        target.write_bytes(b"tampered prior file")
+
+        code, _, stderr = run(*self.base())
+        self.assertEqual(code, 2)
+        self.assertIn("refusing to overwrite different immutable artifact", stderr)
+        self.assertEqual(target.read_bytes(), b"tampered prior file")
+        self.assertFalse((self.out / "metadata" / "EG-LABOUR-14-2025.json").exists())
+
 if __name__ == "__main__":
     unittest.main()
