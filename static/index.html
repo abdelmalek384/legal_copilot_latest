@@ -2119,10 +2119,15 @@ async function documentsPage(){
   uploadSubmit.disabled=!matterSelect.value||!(uploadInput.files?.length);
  };
  uploadInput.onchange=()=>{const count=uploadInput.files?.length||0;uploadSubmit.disabled=!matterSelect.value||!count;uploadStatus.textContent=count?count+' '+uiText('ملفات محددة؛ اضغط رفع وفهرسة للمتابعة.','file(s) selected; choose Upload and index to continue.') :uiText('لم يتم اختيار ملفات.','No files selected.')};
- let matters=[],currentDocuments=[];
+ let matters=[],currentDocuments=[],matterOffset=0,matterTotal=0;
+ const matterLimit=50,matterPageLabel=h('span',{className:'mut',role:'status','aria-live':'polite'});
+ const previousMatter=btn(uiText('السابق','Previous'),async()=>{if(matterOffset>0){matterOffset=Math.max(0,matterOffset-matterLimit);await loadMatters()}},'g');
+ const nextMatter=btn(uiText('التالي','Next'),async()=>{if(matterOffset+matterLimit<matterTotal){matterOffset+=matterLimit;await loadMatters()}},'g');
+ const searchMatter=btn(uiText('بحث','Search'),async()=>{matterOffset=0;await loadMatters()},'g');
  const renderMatters=()=>{
-  const needle=String(query.value||'').trim().toLocaleLowerCase();
-  const filtered=matters.filter(m=>!needle||String(m.title||'').toLocaleLowerCase().includes(needle)||String(m.id).includes(needle));
+  const filtered=matters;
+  matterPageLabel.textContent=matterTotal?(matterOffset+1)+'-'+Math.min(matterOffset+matterLimit,matterTotal)+' / '+matterTotal:'0 / 0';
+  previousMatter.disabled=matterOffset===0;nextMatter.disabled=matterOffset+matterLimit>=matterTotal;
   matterSelect.replaceChildren(new Option(uiText('اختر ملف قضية لعرض مستنداتها','Choose a matter to view its documents'),''),...filtered.map(m=>new Option((m.title||uiText('قضية رقم ','Matter #')+m.id)+' (#'+m.id+')',String(m.id))));
   if(window.DOCUMENT_MATTER_ID&&filtered.some(m=>Number(m.id)===Number(window.DOCUMENT_MATTER_ID)))matterSelect.value=String(window.DOCUMENT_MATTER_ID);
   list.replaceChildren(...(filtered.length?filtered.map(m=>h('article',{className:'card document-library-matter'},h('div',{},h('b',{textContent:m.title||uiText('قضية رقم ','Matter #')+m.id}),h('p',{className:'mut',textContent:(m.stage||uiText('بدون مرحلة','No stage'))+' · #'+m.id})),btn(uiText('عرض المستندات','View documents'),()=>{matterSelect.value=String(m.id);loadMatter()},'g'))):[h('p',{className:'mut',textContent:uiText('لا توجد ملفات قضايا مطابقة.','No matching matters found.')})]));
@@ -2160,11 +2165,15 @@ async function documentsPage(){
    workspace.replaceChildren(stats,documentList,uploadPanel,documentIntelligencePanel(id,docs));
   }catch(error){summary.textContent=uiText('تعذر تحميل مستندات القضية. تحقق من صلاحية الوصول وحاول مجدداً.','Could not load matter documents. Check access and try again.')}
  };
- query.oninput=renderMatters;matterSelect.onchange=loadMatter;
- try{matters=await api('/cases');if(!Array.isArray(matters))matters=[];renderMatters();if(!matterSelect.value)summary.textContent=uiText('اختر ملف قضية لعرض المستندات المصرح بها.','Choose a matter to view its authorized documents.')}
- catch(_){summary.textContent=uiText('تعذر تحميل ملفات القضايا المتاحة.','Could not load accessible matters.')}
- shell(uiText('مكتبة المستندات','Document library'),h('p',{className:'workspace-subtitle',textContent:uiText('اعرض مستندات كل ملف قضية على حدة، وابحث في النصوص المستخرجة وراجعها مع الحفاظ على صلاحيات الملف وسجل التدقيق.','Browse documents one authorized matter at a time, search extracted text, and review it with matter permissions and audit history preserved.')}),h('div',{className:'filter-bar'},query,matterSelect),summary,list,workspace);
- if(matterSelect.value)await loadMatter();
+ const loadMatters=async()=>{
+  const params=new URLSearchParams({q:query.value.trim(),limit:String(matterLimit),offset:String(matterOffset)});
+  try{const result=await api('/cases/search?'+params.toString());matters=Array.isArray(result.items)?result.items:[];matterTotal=Number.isInteger(result.total)?result.total:0;renderMatters();if(matterSelect.value)await loadMatter();else if(!matterTotal)summary.textContent=uiText('لا توجد ملفات قضايا متاحة.','No accessible matters were found.')}
+  catch(_){summary.textContent=uiText('تعذر تحميل ملفات القضايا المتاحة.','Could not load accessible matters.')}
+ };
+ query.onkeydown=e=>{if(e.key==='Enter'){matterOffset=0;loadMatters()}};
+ matterSelect.onchange=loadMatter;
+ shell(uiText('مكتبة المستندات','Document library'),h('p',{className:'workspace-subtitle',textContent:uiText('اعرض مستندات كل ملف قضية على حدة، وابحث في النصوص المستخرجة وراجعها مع الحفاظ على صلاحيات الملف وسجل التدقيق.','Browse documents one authorized matter at a time, search extracted text, and review it with matter permissions and audit history preserved.')}),h('div',{className:'filter-bar'},query,searchMatter,matterSelect,previousMatter,matterPageLabel,nextMatter),summary,list,workspace);
+ await loadMatters();
 }
 async function law(){
  PAGE='law';
