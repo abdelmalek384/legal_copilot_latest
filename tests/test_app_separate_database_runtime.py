@@ -1714,7 +1714,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         for url in urls:
             with self.subTest(url=url):
                 denied = self.client.get(url)
-                self.assertEqual(denied.status_code, 403, denied.text)
+                self.assertEqual(denied.status_code, 404, denied.text)
 
         control = self.runtime.control_connection()
         control.execute(
