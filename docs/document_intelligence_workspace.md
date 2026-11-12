@@ -6,7 +6,7 @@ This is the first UI layer for reviewing documents already uploaded to a case. I
 
 ## Current capabilities
 
-- Dedicated Documents navigation page with authenticated matter selection, file metadata, filename/type search, extraction-status filtering and matter-scoped summary counts derived from returned document rows. Metrics are not firm-wide and do not imply legal review completion.
+- Dedicated Documents navigation page with authenticated matter selection, direct multi-file PDF/DOCX upload (15 MB per file), file metadata, filename/type search, extraction-status filtering and matter-scoped summary counts derived from returned document rows. Uploads use same-origin credentials and CSRF protection. Metrics are not firm-wide and do not imply legal review completion.
 
 - Search extracted text across the selected matter's uploaded documents in Arabic and English. Search applies Unicode NFKC normalization, removes common Arabic diacritics/tatweel, normalizes common alef/yeh forms, and normalizes Arabic-Indic digits.
 - Show conservative keyword-based document-type suggestions (judgment, contract, pleading, correspondence/notice, evidence/receipt, or unclassified) from the canonical Python helper, executed by the existing authenticated matter-scoped chunks endpoint.
