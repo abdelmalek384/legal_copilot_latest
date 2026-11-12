@@ -704,6 +704,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_legal_research_uses_three_pane_source_inspector_without_changing_evidence_contract(self):
         self.assertIn("className:'research-inspector card'", HTML)
+        self.assertIn("role:'region',tabIndex:0,'aria-label':LANG==='ar'?'فحص المصدر':'Source inspector'", HTML)
         self.assertIn("grid-template-columns:minmax(205px,235px) minmax(0,1fr) minmax(260px,310px)", HTML)
         self.assertIn("sourceActions.append(makeBtn(LANG==='ar'?'فحص المصدر':'Inspect source',()=>inspectSource(s,status,pin,p)))", HTML)
         self.assertIn("source.text|| (LANG==='ar'?'لم يُرجع نص لهذا السجل من المصدر.':'No passage text was returned for this source record.')", HTML)
