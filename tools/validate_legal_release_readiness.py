@@ -109,7 +109,8 @@ def add(blockers: list[dict], code: str, detail: str) -> None:
 
 def resolve_corpus_artifact(root: Path, value: object, expected_directory: str) -> tuple[Path | None, str | None]:
     """Resolve a corpus artifact only from its expected relative directory, without symlinks."""
-    if not isinstance(value, str) or not value or value.strip() != value or "\\" in value:
+    if (not isinstance(value, str) or not value or value.strip() != value or "\\" in value
+            or any(ord(char) < 32 or ord(char) == 127 for char in value)):
         return None, "invalid"
     relative = Path(value)
     if (
