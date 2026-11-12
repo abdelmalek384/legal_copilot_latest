@@ -2327,11 +2327,52 @@ function documentIntelligencePanel(caseId,documents){
   else duplicateItems.push(h('p',{className:'mut',textContent:uiText('لم تظهر مطابقات تكرار في المستندات المحملة.','No duplicate matches were found among loaded documents.')}));
   const duplicatePanel=h('section',{className:'card'},h('b',{textContent:uiText('إشارات التكرار داخل ملف القضية','Duplicate signals within this matter')}),...duplicateItems,h('p',{className:'mut',textContent:uiText('هذه إشارات مراجعة داخل القضية الحالية فقط؛ لا يحدث دمج أو حذف تلقائي، وتطابق النص لا يثبت تطابق الملف الأصلي.','Review signals within this matter only; nothing is merged or deleted automatically, and text equality does not prove original-file identity.')}));
   const classificationCards=[...cache.values()].map(item=>{
-   const current=draftOverrides.get(String(item.doc.document_id))||item.suggestion.category;
-   const select=h('select',{'aria-label':uiText('تصنيف مسودة للمستند ','Draft classification for ')+item.doc.name},...categories.map(([value,label])=>new Option(label,value)));
+   item.savedClassification=item.intelligence.saved_classification||null;
+   const current=item.savedClassification?.category||draftOverrides.get(String(item.doc.document_id))||item.suggestion.category;
+   const select=h('select',{'aria-label':uiText('تصنيف المستند ','Document classification for ')+item.doc.name},...categories.map(([value,label])=>new Option(label,value)));
    select.value=current;
-   select.onchange=()=>{draftOverrides.set(String(item.doc.document_id),select.value);status.textContent=uiText('تم تعديل تصنيف مسودة في هذه الشاشة فقط؛ لم يُحفظ على الخادم أو في سجل مراجعة.','A draft classification changed in this view only; it has not been saved to the server or review history.')};
-   return h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:item.doc.name}),pill(uiText('اقتراح يتطلب المراجعة','Suggestion — review required'),'soon')),h('p',{className:'mut',textContent:uiText('إشارات المطابقة: ','Matched signals: ')+(item.suggestion.matched.join('، ')||uiText('لا توجد كلمات مفتاحية','no keyword matches'))+' · '+item.suggestion.signal}),h('label',{},h('span',{className:'mut',textContent:uiText('تعديل تصنيف مسودة (غير محفوظ)','Edit draft classification (not saved)')}),select));
+   const note=h('input',{placeholder:uiText('ملاحظة المراجع (اختياري)','Reviewer note (optional)'),maxLength:1000,style:'width:100%'});
+   const save=btn(uiText('حفظ التصنيف وسجل المراجعة','Save classification and review history'),async()=>{
+    save.disabled=true;
+    try{
+     const result=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/classification','POST',{
+      category:select.value,
+      expected_version:item.savedClassification?.version??null,
+      note:note.value.trim()
+     });
+     item.savedClassification={category:result.category,updated_by_user_id:result.updated_by_user_id,version:result.version,updated_at:result.updated_at};
+     item.intelligence.saved_classification=item.savedClassification;
+     draftOverrides.delete(String(item.doc.document_id));
+     status.textContent=uiText('تم حفظ التصنيف مع تسجيل المراجع والإصدار.','Classification saved with reviewer attribution and revision history.');
+     renderAnalysis();
+    }catch(error){
+     status.textContent=uiText('تعذر حفظ التصنيف؛ قد يكون قد عُدّل بواسطة مراجع آخر. أعد تحميل التحليل.','Could not save classification; another reviewer may have changed it. Reload the analysis.');
+    }finally{save.disabled=false}
+   });
+   select.onchange=()=>{draftOverrides.set(String(item.doc.document_id),select.value);status.textContent=uiText('تغيير محلي لم يُحفظ بعد. اضغط حفظ التصنيف لتسجيله.','Local change not yet saved. Select Save classification to persist it.')};
+   const historyPanel=h('div',{className:'mut'});
+   const history=btn(uiText('عرض سجل المراجعة','View review history'),async()=>{
+    history.disabled=true;
+    try{
+     const result=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/classification-history');
+     historyPanel.replaceChildren(...(result.events||[]).map(event=>h('p',{textContent:
+      (event.event_type==='created'?uiText('إنشاء: ','Created: '):uiText('تحديث: ','Updated: '))+
+      (event.previous_category?event.previous_category+' → ':'')+event.new_category+
+      ' · '+uiText('المراجع رقم ','Reviewer #')+event.actor_user_id+' · '+event.created_at+
+      (event.note?' · '+event.note:'')
+     })));
+     if(!(result.events||[]).length)historyPanel.textContent=uiText('لا يوجد سجل بعد.','No review history yet.');
+    }catch(error){historyPanel.textContent=uiText('تعذر تحميل سجل المراجعة.','Could not load review history.')}
+    finally{history.disabled=false}
+   },'g');
+   const saved=item.savedClassification;
+   return h('article',{className:'card'},
+    h('div',{className:'row'},h('b',{textContent:item.doc.name}),pill(saved?uiText('تصنيف محفوظ','Saved classification'):uiText('اقتراح يتطلب المراجعة','Suggestion — review required'),saved?'done':'soon')),
+    h('p',{className:'mut',textContent:uiText('إشارات المطابقة: ','Matched signals: ')+(item.suggestion.matched.join('، ')||uiText('لا توجد كلمات مفتاحية','no keyword matches'))+' · '+item.suggestion.signal}),
+    h('label',{},h('span',{className:'mut',textContent:uiText('التصنيف الذي اختاره المراجع','Reviewer-selected classification')}),select),
+    note,h('div',{className:'row'},save,history),historyPanel,
+    saved?h('p',{className:'mut',textContent:uiText('آخر مراجعة: مستخدم #','Last reviewed by user #')+saved.updated_by_user_id+' · '+saved.updated_at+' · '+uiText('الإصدار ','Revision ')+saved.version}):h('p',{className:'mut',textContent:uiText('لم يُحفظ تصنيف لهذا المستند بعد.','No classification has been saved for this document yet.')} )
+   );
   });
   const typeLabels={date:uiText('تاريخ مذكور','Date mention'),case_reference:uiText('مرجع قضية','Case reference'),amount:uiText('مبلغ','Amount'),party_label:uiText('طرف مسمى','Labelled party'),legal_reference:uiText('مرجع قانوني','Legal reference'),event_mention:uiText('إشارة حدث','Event mention')};
   const candidateCards=allCandidates.slice(0,120).map((candidate,index)=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+(typeLabels[candidate.kind]||candidate.kind)}),pill(uiText('مرشح غير متحقق','Unverified candidate'),'soon')),h('p',{textContent:candidate.value}),h('p',{className:'mut',textContent:candidate.filename+' · '+(candidate.page?uiText('صفحة ','Page ')+candidate.page:uiText('رقم الصفحة غير مسجل','Page not recorded'))+' · '+candidate.chunk_ref}),h('p',{className:'mut',textContent:candidate.excerpt})));
@@ -2341,7 +2382,7 @@ function documentIntelligencePanel(caseId,documents){
   else timelineItems.push(h('p',{className:'mut',textContent:uiText('لا توجد إشارات تاريخية في النصوص المحملة.','No date mentions found in loaded text.')}));
   const timeline=h('section',{className:'card'},h('b',{textContent:uiText('الخط الزمني لذكر التواريخ','Date-mention timeline')}),...timelineItems,h('p',{className:'mut',textContent:uiText('ذكر التاريخ لا يثبت أنه جلسة أو ميعاد إجرائي أو ميعاد طعن. لا تُنشأ مواعيد تلقائياً.','A date mention is not proof of a hearing, procedural date, or appeal deadline. No deadlines are created automatically.')})); 
   if(!candidateCards.length)candidateCards.push(h('p',{className:'mut',textContent:uiText('لم تُستخرج مرشحات من النصوص المحملة.','No candidates were extracted from loaded text.')}));
-  analysisResults.append(duplicatePanel,h('section',{className:'card'},h('b',{textContent:uiText('التصنيفات المقترحة','Suggested document classifications')}),h('p',{className:'mut',textContent:uiText('تصنيف قائم على كلمات مفتاحية ظاهرة، وليس تصنيفاً قانونياً معتمداً. التعديلات هنا مسودات غير محفوظة.','Transparent keyword suggestions, not approved legal classifications. Changes here are unsaved drafts.')}),...classificationCards),h('section',{className:'card'},h('b',{textContent:uiText('المرشحات المستخرجة','Extracted review candidates')}),h('p',{className:'mut',textContent:uiText('كل نتيجة مرتبطة بالمستند والمقطع والصفحة عند توفرها. جميع النتائج غير متحققة وتحتاج مراجعة بشرية.','Each result retains document, chunk and page provenance when available. Every result is unverified and requires human review.')}),...candidateCards),timeline);
+  analysisResults.append(duplicatePanel,h('section',{className:'card'},h('b',{textContent:uiText('التصنيفات المقترحة','Suggested document classifications')}),h('p',{className:'mut',textContent:uiText('اقتراحات الكلمات المفتاحية ليست تصنيفاً معتمداً. لا يصبح التصنيف نهائياً إلا بعد حفظ اختيار المراجع، ويظل قابلاً للمراجعة مع سجل تغييرات.','Keyword suggestions are not approved classifications. A reviewer selection is persisted only after saving and remains auditable and reviewable.')}),...classificationCards),h('section',{className:'card'},h('b',{textContent:uiText('المرشحات المستخرجة','Extracted review candidates')}),h('p',{className:'mut',textContent:uiText('كل نتيجة مرتبطة بالمستند والمقطع والصفحة عند توفرها. جميع النتائج غير متحققة وتحتاج مراجعة بشرية.','Each result retains document, chunk and page provenance when available. Every result is unverified and requires human review.')}),...candidateCards),timeline);
   const selectOptions=[...cache.values()].map(item=>new Option(item.doc.name,String(item.doc.document_id)));
   beforeSelect.replaceChildren(new Option(uiText('الإصدار السابق','Earlier version'),''),...selectOptions);
   afterSelect.replaceChildren(new Option(uiText('الإصدار اللاحق','Later version'),''),...selectOptions);
