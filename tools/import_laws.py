@@ -429,8 +429,8 @@ def main(src, out):
         report += ["", f"- very short rows (<40 chars, check for splitting errors): {short_rows}", ""]
 
     _write_new_output_files(output_dir, {
-        "law_rows.jsonl": ("\\n".join(json.dumps(row, ensure_ascii=False) for row in all_rows) + "\\n").encode("utf-8"),
-        "import_report.md": "\\n".join(report).encode("utf-8"),
+        "law_rows.jsonl": ("\n".join(json.dumps(row, ensure_ascii=False) for row in all_rows) + "\n").encode("utf-8"),
+        "import_report.md": "\n".join(report).encode("utf-8"),
     })
     print("rows:", len(all_rows))
     print("\n".join(report))
