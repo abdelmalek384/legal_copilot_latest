@@ -1,6 +1,16 @@
 #!/bin/bash
 set -e
 cd "$(dirname "$0")"
+
+case "${COPILOT_ENV:-development}" in
+  production|prod)
+    echo "This local launcher is for development/fictional-data preview only; it refuses production mode."
+    read -r -p "Press Enter to close..."
+    exit 1
+    ;;
+esac
+export COPILOT_ENV="${COPILOT_ENV:-development}"
+
 echo "Legal Copilot — إعداد وتشغيل محلي على هذا الجهاز"
 # The dependency lock and supported release runtime target Python 3.12 exactly.
 # Reuse an existing 3.12 venv; never replace or delete an existing environment.
