@@ -5415,7 +5415,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertEqual(results.json()["items"][0]["case_title"], "Accessible Alpha Matter")
             self.assertIn("statuses", results.json())
             self.assertEqual(results.json()["items"][0]["name"], "alpha-accessible-contract.txt")
-            arabic_hits = junior.get("/documents/search-text?q=قانوني")
+            arabic_hits = junior.get("/documents/search-text?q=قَانوني")
             self.assertEqual(arabic_hits.status_code, 200, arabic_hits.text)
             self.assertEqual(arabic_hits.json()["total"], 1)
             self.assertEqual(arabic_hits.json()["items"][0]["case_id"], alpha_case)
