@@ -143,3 +143,10 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Added `tests/test_answer_rating_migration.py` and wired it into `.github/workflows/tests.yml`. The five migration contract cases passed in an isolated local Python 3.13/SQLite run (rating insert, enum/JSON/answerability/note constraints, reviewer uniqueness, parent-message retention, and immutable event ledger). The full firm migration runner and application integration have not been executed. Runtime route handlers, role enforcement, and CSV export implementation remain outstanding.
 - Ratings are not training consent, legal-source verification, or counsel approval. Keep firm data private and exclude curated candidate questions from scored benchmark results.
 
+
+
+## Delivery blockers and task-closure register (2026-11-12)
+
+- Added `docs/BLOCKERS.md` to distinguish bounded repository tasks from work requiring external test execution, AI-2 application integration, payment-provider access, tenant-isolation validation, qualified Egyptian-lawyer sign-off, or real pilot firms.
+- Recorded concrete closure evidence and owners for CI/Python 3.12, dependency locking, the live negated-obligation guard, billing, tenant isolation, Labour Law No. 14/2025 verification, and pilot readiness.
+- Current AI-1 PRs #1559 and #1560 are explicitly recorded as unexecuted; no test pass, legal verification, or retrieval-quality result is claimed.
