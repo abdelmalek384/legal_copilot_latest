@@ -6669,17 +6669,19 @@ def case(cid: int, u: dict = Depends(user)):
               (u["firm_id"], u["id"], "case_read:%s" % cid))
     c.commit()
     rows = lambda q: [dict(r) for r in c.execute(q, (cid,))]
-    documents = rows("SELECT d.id AS document_id,d.name,d.added,d.sha256,d.content_type,d.byte_size,d.extraction_status,d.ocr_used,d.uploader_user_id,dc.category AS saved_classification,dc.version AS classification_version FROM docs d JOIN cases c ON c.id=d.case_id LEFT JOIN document_classifications dc ON dc.document_id=d.id AND dc.case_id=d.case_id AND dc.firm_id=c.firm_id WHERE d.case_id=? ORDER BY d.id DESC")
-    for document in documents:
-        document["original_available"] = False
-    if _separate_runtime_enabled():
-        for document in documents:
-            original = c.execute(
-                "SELECT 1 FROM original_file_objects WHERE document_id=? AND firm_id=? "
-                "AND state='ready' AND purged_at IS NULL",
-                (document["document_id"], u["firm_id"]),
-            ).fetchone()
-            document["original_available"] = original is not None
+    original_available_expr = (
+        "EXISTS(SELECT 1 FROM original_file_objects o WHERE o.document_id=d.id "
+        "AND o.firm_id=c.firm_id AND o.state='ready' AND o.purged_at IS NULL)"
+        if _separate_runtime_enabled() else "0"
+    )
+    documents = rows(
+        "SELECT d.id AS document_id,d.name,d.added,d.sha256,d.content_type,d.byte_size,"
+        "d.extraction_status,d.ocr_used,d.uploader_user_id,dc.category AS saved_classification,"
+        "dc.version AS classification_version," + original_available_expr + " AS original_available "
+        "FROM docs d JOIN cases c ON c.id=d.case_id LEFT JOIN document_classifications dc "
+        "ON dc.document_id=d.id AND dc.case_id=d.case_id AND dc.firm_id=c.firm_id "
+        "WHERE d.case_id=? ORDER BY d.id DESC"
+    )
     return {**dict(c.execute("SELECT * FROM cases WHERE id=?", (cid,)).fetchone()),
             "members": rows("SELECT m.user_id, m.role, u.name FROM members m JOIN users u ON u.id=m.user_id WHERE m.case_id=?"),
             "tasks": rows("SELECT t.*, u.name AS assignee_name FROM tasks t LEFT JOIN users u ON u.id=t.assignee WHERE t.case_id=? ORDER BY t.status DESC, t.due"),
