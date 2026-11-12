@@ -998,5 +998,10 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("uploadResults.replaceChildren();uploadStatus.textContent='';uploadInput.value=''", page)
         self.assertIn("documentFilter.value='';documentStatusFilter.value='';documentClassificationFilter.value=''", page)
 
+    def test_sidebar_uses_lexora_brand_identity_from_figma(self):
+        self.assertIn("className:'brand-name',textContent:'Lexora'", HTML)
+        self.assertIn("className:'brand-subtitle'", HTML)
+        self.assertIn("#side .brand-name", HTML)
+
 if __name__ == "__main__":
     unittest.main()
