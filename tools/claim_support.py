@@ -390,7 +390,7 @@ def has_negated_obligation_conflicts(answer, hits, tokens_fn, norm_fn, mask_code
                     if not evidence_terms:
                         continue
                     shared = claim_terms & evidence_terms
-                    if len(shared) / min(len(claim_terms), len(evidence_terms)) >= 0.5:
+                    if len(shared) / min(len(claim_terms), len(evidence_terms)) >= 0.75:
                         return True
     return False
 
