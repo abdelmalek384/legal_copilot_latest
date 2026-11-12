@@ -5161,5 +5161,66 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(denied.status_code, 404, denied.text)
 
 
+
+    def test_document_classification_persists_with_optimistic_audit_history(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate(
+            "post", "/cases",
+            json={"title": "Classification workflow matter", "client": "Test Client", "stage": "Civil"},
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        document_id = firm_db.execute(
+            "INSERT INTO docs(case_id,name,added,firm_id,uploader_user_id,sha256,content_type,"
+            "byte_size,extraction_status,ocr_used) "
+            "VALUES(?,?,datetime('now'),?,?,?,?,?,'text_extracted',0)",
+            (case_id, "contract.pdf", self.firm_a, self.user_id, "a" * 64, "application/pdf", 10),
+        ).lastrowid
+        firm_db.commit()
+
+        path = f"/cases/{case_id}/docs/{document_id}/classification"
+        initial = self.client.get(path)
+        self.assertEqual(initial.status_code, 200, initial.text)
+        self.assertTrue(initial.json()["can_edit"])
+        self.assertIsNone(initial.json()["classification"])
+
+        first = self._mutate(
+            "put", path,
+            json={"category": "contract", "expected_version": 0, "note": "Signed agreement"},
+        )
+        self.assertEqual(first.status_code, 200, first.text)
+        self.assertEqual(first.json()["classification"]["version"], 1)
+
+        stale = self._mutate(
+            "put", path,
+            json={"category": "pleading", "expected_version": 0, "note": "Stale update"},
+        )
+        self.assertEqual(stale.status_code, 409, stale.text)
+
+        second = self._mutate(
+            "put", path,
+            json={"category": "pleading", "expected_version": 1, "note": "Reclassified after review"},
+        )
+        self.assertEqual(second.status_code, 200, second.text)
+        self.assertEqual(second.json()["classification"]["version"], 2)
+
+        history = self.client.get(path)
+        self.assertEqual(history.status_code, 200, history.text)
+        self.assertEqual([event["version"] for event in history.json()["events"]], [2, 1])
+        self.assertEqual(history.json()["events"][0]["previous_category"], "contract")
+        self.assertEqual(history.json()["events"][0]["new_category"], "pleading")
+        self.assertEqual(history.json()["events"][0]["actor_name"], "First Owner")
+
+        detail = self.client.get(f"/cases/{case_id}")
+        self.assertEqual(detail.status_code, 200, detail.text)
+        document = next(item for item in detail.json()["docs"] if item["document_id"] == document_id)
+        self.assertEqual(document["saved_classification"], "pleading")
+        self.assertFalse(document["original_available"])
+
 if __name__ == "__main__":
     unittest.main()
