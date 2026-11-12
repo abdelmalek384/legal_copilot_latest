@@ -351,6 +351,20 @@ class LegalSourceReviewQueueTests(unittest.TestCase):
                 MODULE.main()
             self.assertEqual(legacy.exception.code, 2)
 
+    def test_missing_repeal_date_column_reports_schema_issue_instead_of_query_error(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "missing-repeal-date.db"
+            make_db(path)
+            db = sqlite3.connect(path)
+            db.execute("ALTER TABLE legal_document_versions DROP COLUMN repeal_date")
+            db.commit()
+            db.close()
+
+            report = MODULE.review_queue(path)
+            self.assertEqual(report["issues"][0]["code"], "review_schema_columns_missing")
+            self.assertIn("repeal_date", report["issues"][0]["detail"]["legal_document_versions"])
+            self.assertEqual(report["records"], [])
+
     def test_missing_registry_tables_report_schema_issue(self):
         with tempfile.TemporaryDirectory() as td:
             path=Path(td)/"empty.db"
