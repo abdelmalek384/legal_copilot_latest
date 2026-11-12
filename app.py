@@ -15,6 +15,12 @@ from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_pe
 from tools.arabic_legal_matching import expand_lexicon_hints
 from tools.arabic_drafting_skeletons import build_arabic_skeleton
 from tools.claim_support import claim_support_enabled, has_unsupported_claims, has_negated_obligation_conflicts
+from tools.document_intelligence import (
+    MAX_ANALYSIS_CHARS, MAX_COMPARE_CHARS, build_date_mention_timeline,
+    classify_document, compare_extracted_text, extract_review_candidates,
+    group_same_matter_duplicates, normalized_text_digest,
+)
+from tools.document_intelligence_extensions import extract_legal_reference_and_event_mentions
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
     generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
@@ -8166,6 +8172,285 @@ def list_original_document_deletion_requests(
         ).fetchall()]
         result.append(item)
     return {"document_id": document_id, "requests": result}
+
+
+DOCUMENT_INTELLIGENCE_MAX_DOCUMENTS = 40
+DOCUMENT_INTELLIGENCE_MAX_TOTAL_CHARS = 1_000_000
+DOCUMENT_INTELLIGENCE_MAX_CANDIDATES = 1_000
+
+
+class DocumentClassificationIn(BaseModel):
+    category: str = Field(pattern=r"^(unclassified|court_judgment|contract|pleading|correspondence|evidence_or_receipt)$")
+    expected_latest_id: int | None = Field(default=None, ge=1)
+    note: str = Field(default="", max_length=2000)
+
+
+class DocumentCompareIn(BaseModel):
+    before_document_id: int = Field(gt=0)
+    after_document_id: int = Field(gt=0)
+    context_chars: int = Field(default=100, ge=0, le=1000)
+
+
+def _document_text_and_chunks(c, cid: int, firm_id: int, document_id: int):
+    doc = c.execute(
+        "SELECT id,name,added,sha256,extraction_status,ocr_used FROM docs "
+        "WHERE id=? AND case_id=? AND firm_id=?",
+        (document_id, cid, firm_id),
+    ).fetchone()
+    if not doc:
+        raise HTTPException(404, "document not found")
+    rows = c.execute(
+        "SELECT id,ref,page,text FROM chunks WHERE document_id=? AND case_id=? ORDER BY id",
+        (document_id, cid),
+    ).fetchall()
+    parts = []
+    chunk_ranges = []
+    offset = 0
+    for row in rows:
+        page = row["page"]
+        marker = ""
+        if page is not None and str(page).strip().isdigit() and int(str(page).strip()) > 0:
+            marker = f"[[PDF_PAGE:{int(str(page).strip())}]]\n"
+            parts.append(marker)
+            offset += len(marker)
+        chunk_text = str(row["text"] or "")
+        start = offset
+        parts.append(chunk_text)
+        offset += len(chunk_text)
+        end = offset
+        chunk_ranges.append({
+            "start": start, "end": end, "chunk_id": row["id"],
+            "chunk_ref": row["ref"] or str(row["id"]), "page": page,
+        })
+        parts.append("\n")
+        offset += 1
+    text = "".join(parts)
+    if len(text) > MAX_ANALYSIS_CHARS:
+        raise HTTPException(413, "document text exceeds the intelligence analysis limit")
+    return dict(doc), text, chunk_ranges
+
+
+def _document_intelligence_text(c, cid: int, firm_id: int, document_id: int):
+    doc, text, chunk_ranges = _document_text_and_chunks(c, cid, firm_id, document_id)
+    base = extract_review_candidates(text)
+    extra = extract_legal_reference_and_event_mentions(text)
+    candidates = base["candidates"] + extra["candidates"]
+    for candidate in candidates:
+        start = int(candidate.get("start", 0))
+        source_chunk = next(
+            (item for item in chunk_ranges if item["start"] <= start < item["end"]),
+            None,
+        )
+        if source_chunk:
+            candidate["chunk_id"] = source_chunk["chunk_id"]
+            candidate["chunk_ref"] = source_chunk["chunk_ref"]
+            if candidate.get("page") is None and source_chunk["page"] not in (None, ""):
+                candidate["page"] = source_chunk["page"]
+    candidates.sort(key=lambda item: (item["start"], item["end"], item["kind"]))
+    suggestion = classify_document(str(doc["name"] or ""), text)
+    return doc, text, candidates, suggestion, {
+        "base": base.get("limitations", []),
+        "additional": extra.get("limitations", []),
+    }
+
+def _document_classification_history(c, cid: int, firm_id: int, document_id: int, limit: int = 10):
+    rows = c.execute(
+        "SELECT id,category,suggested_category,matched_terms_json,note,reviewer_user_id,created_at "
+        "FROM document_classification_reviews WHERE firm_id=? AND case_id=? AND document_id=? "
+        "ORDER BY id DESC LIMIT ?",
+        (firm_id, cid, document_id, limit),
+    ).fetchall()
+    result = []
+    for row in rows:
+        item = dict(row)
+        try:
+            matched = json.loads(item.pop("matched_terms_json") or "[]")
+        except (TypeError, ValueError):
+            matched = []
+        item["matched_terms"] = matched if isinstance(matched, list) else []
+        result.append(item)
+    return result
+
+
+@app.get("/cases/{cid}/documents/intelligence")
+def case_document_intelligence(cid: int, u: dict = Depends(user)):
+    c = conn()
+    need(c, u, cid)
+    rows = c.execute(
+        "SELECT id,name,added,sha256,extraction_status,ocr_used FROM docs "
+        "WHERE case_id=? AND firm_id=? ORDER BY id DESC LIMIT ?",
+        (cid, u["firm_id"], DOCUMENT_INTELLIGENCE_MAX_DOCUMENTS + 1),
+    ).fetchall()
+    truncated = len(rows) > DOCUMENT_INTELLIGENCE_MAX_DOCUMENTS
+    result_documents = []
+    duplicate_inputs = []
+    timeline_inputs = []
+    total_chars = 0
+    total_candidates = 0
+    for row in rows[:DOCUMENT_INTELLIGENCE_MAX_DOCUMENTS]:
+        metadata = dict(row)
+        try:
+            doc, text, candidates, suggestion, limitations = _document_intelligence_text(
+                c, cid, u["firm_id"], int(row["id"])
+            )
+        except HTTPException as exc:
+            if exc.status_code != 413:
+                raise
+            metadata.update({
+                "analysis_status": "skipped_text_limit",
+                "suggestion": None,
+                "classification": None,
+                "classification_history": [],
+                "candidates": [],
+                "candidate_count": 0,
+            })
+            result_documents.append(metadata)
+            truncated = True
+            continue
+        if total_chars + len(text) > DOCUMENT_INTELLIGENCE_MAX_TOTAL_CHARS:
+            metadata.update({
+                "analysis_status": "skipped_case_budget",
+                "suggestion": None,
+                "classification": None,
+                "classification_history": [],
+                "candidates": [],
+                "candidate_count": 0,
+            })
+            result_documents.append(metadata)
+            truncated = True
+            continue
+        total_chars += len(text)
+        remaining = max(0, DOCUMENT_INTELLIGENCE_MAX_CANDIDATES - total_candidates)
+        selected_candidates = candidates[:remaining]
+        total_candidates += len(selected_candidates)
+        history = _document_classification_history(
+            c, cid, u["firm_id"], int(row["id"]), limit=10
+        )
+        metadata.update({
+            "analysis_status": "analyzed",
+            "suggestion": suggestion,
+            "classification": history[0] if history else None,
+            "classification_history": history,
+            "candidates": selected_candidates,
+            "candidate_count": len(candidates),
+            "candidates_truncated": len(selected_candidates) < len(candidates),
+        })
+        result_documents.append(metadata)
+        timeline_inputs.append({
+            "document_id": str(row["id"]),
+            "filename": str(row["name"] or ""),
+            "candidates": selected_candidates,
+        })
+        digest = normalized_text_digest(text)
+        duplicate_inputs.append({
+            "firm_id": str(u["firm_id"]),
+            "matter_id": str(cid),
+            "document_id": str(row["id"]),
+            "original_sha256": row["sha256"] if isinstance(row["sha256"], str) and re.fullmatch(r"[0-9a-fA-F]{64}", row["sha256"]) else None,
+            "extracted_text_sha256": digest,
+        })
+    duplicates = group_same_matter_duplicates(duplicate_inputs)
+    timeline = build_date_mention_timeline(timeline_inputs)
+    return {
+        "case_id": cid,
+        "documents": result_documents,
+        "duplicates": [
+            {
+                "match_basis": group["match_basis"],
+                "document_ids": group["document_ids"],
+                "review_status": group["review_status"],
+            }
+            for group in duplicates
+        ],
+        "timeline": timeline,
+        "limits": {
+            "max_documents": DOCUMENT_INTELLIGENCE_MAX_DOCUMENTS,
+            "max_total_characters": DOCUMENT_INTELLIGENCE_MAX_TOTAL_CHARS,
+            "max_candidates": DOCUMENT_INTELLIGENCE_MAX_CANDIDATES,
+        },
+        "truncated": truncated,
+        "warning": (
+            "All classifications and extracted mentions are review candidates. "
+            "They are not verified facts, legal advice, procedural deadlines, or proof of authenticity."
+        ),
+    }
+
+
+@app.post("/cases/{cid}/docs/{document_id}/classification", status_code=201)
+@rollback_tenant_transaction_on_error
+def save_document_classification(
+    cid: int, document_id: int, b: DocumentClassificationIn, u: dict = Depends(user)
+):
+    c = conn()
+    need(c, u, cid)
+    doc, text, _chunk_ranges = _document_text_and_chunks(c, cid, u["firm_id"], document_id)
+    suggestion = classify_document(str(doc["name"] or ""), text)
+    source_digest = normalized_text_digest(text)
+    # Serialize classification writes and recheck the extracted text snapshot so
+    # neither another reviewer nor a concurrent extraction correction can be lost.
+    c.execute("BEGIN IMMEDIATE")
+    _current_doc, current_text, _current_ranges = _document_text_and_chunks(
+        c, cid, u["firm_id"], document_id
+    )
+    if normalized_text_digest(current_text) != source_digest:
+        raise HTTPException(409, "document text changed; reload analysis before classifying")
+    latest = c.execute(
+        "SELECT id FROM document_classification_reviews "
+        "WHERE firm_id=? AND case_id=? AND document_id=? ORDER BY id DESC LIMIT 1",
+        (u["firm_id"], cid, document_id),
+    ).fetchone()
+    latest_id = int(latest["id"]) if latest else None
+    if b.expected_latest_id != latest_id:
+        raise HTTPException(409, "document classification changed; reload the latest review and retry")
+    matched_terms = suggestion.get("matched_terms", [])
+    cur = c.execute(
+        "INSERT INTO document_classification_reviews("
+        "document_id,case_id,firm_id,reviewer_user_id,category,suggested_category,matched_terms_json,note"
+        ") VALUES(?,?,?,?,?,?,?,?)",
+        (
+            document_id, cid, u["firm_id"], u["id"], b.category,
+            suggestion["category"], json.dumps(matched_terms, ensure_ascii=False),
+            b.note.strip(),
+        ),
+    )
+    log(c, cid, u["name"], "تعديل تصنيف المستند: " + str(doc["name"] or document_id))
+    c.commit()
+    row = c.execute(
+        "SELECT id,category,suggested_category,matched_terms_json,note,reviewer_user_id,created_at "
+        "FROM document_classification_reviews WHERE id=? AND firm_id=? AND case_id=?",
+        (cur.lastrowid, u["firm_id"], cid),
+    ).fetchone()
+    item = dict(row)
+    item["matched_terms"] = json.loads(item.pop("matched_terms_json") or "[]")
+    return {"document_id": document_id, "classification": item}
+
+
+@app.post("/cases/{cid}/documents/compare")
+def compare_case_document_versions(cid: int, b: DocumentCompareIn, u: dict = Depends(user)):
+    c = conn()
+    need(c, u, cid)
+    if b.before_document_id == b.after_document_id:
+        raise HTTPException(422, "choose two different documents")
+    before_doc, before_text, _before_ranges = _document_text_and_chunks(
+        c, cid, u["firm_id"], b.before_document_id
+    )
+    after_doc, after_text, _after_ranges = _document_text_and_chunks(
+        c, cid, u["firm_id"], b.after_document_id
+    )
+    try:
+        changes = compare_extracted_text(before_text, after_text, context_chars=b.context_chars)
+    except ValueError as exc:
+        raise HTTPException(413, str(exc)) from exc
+    return {
+        "before_document": {"document_id": b.before_document_id, "name": before_doc["name"]},
+        "after_document": {"document_id": b.after_document_id, "name": after_doc["name"]},
+        "changes": changes,
+        "review_status": "requires_lawyer_review",
+        "limitations": [
+            "Text differences do not establish legal significance, authenticity, or which version controls.",
+            "Comparison is limited to extracted text and must be checked against the original files.",
+        ],
+    }
 
 
 class ExtractionReviewIn(BaseModel):
