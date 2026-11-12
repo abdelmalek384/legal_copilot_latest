@@ -2380,7 +2380,12 @@ async function law(){
      bubble.append(h('div',{className:'research-content',textContent:m.content||m.answer||''}));
      const answerTier=m.trust_tier||(m.result&&m.result.trust_tier);if(answerTier)bubble.append(trustTierBadge(answerTier));
      if(m.role==='assistant'&&(m.sources||[]).length){
+       const sourceItems=m.sources||[];
+       const cautionCount=sourceItems.filter(source=>!source||source.source_status!=='verified_operative_text').length;
        bubble.append(h('div',{className:'research-sources-title',textContent:copy('مصادر الإجابة')}));
+       bubble.append(h('div',{className:'research-source-caution '+(cautionCount?'warning':'verified'),role:'note'},
+        h('strong',{textContent:cautionCount?(LANG==='ar'?'تنبيه التحقق من المصادر':'Source verification required'):(LANG==='ar'?'حالة التحقق المسجلة':'Recorded verification status')}),
+        h('p',{textContent:cautionCount?(LANG==='ar'?'يحتاج '+cautionCount+' من أصل '+sourceItems.length+' مصادر إلى تحقق قبل الاعتماد. راجع النص الرسمي والحالة القانونية الحالية.':cautionCount+' of '+sourceItems.length+' sources need verification before reliance. Check the official text and current legal status.'):(LANG==='ar'?'تحمل المصادر حالة نص ساري متحقق وفق البيانات المسجلة؛ تحقق من النشر الرسمي والتاريخ قبل الاعتماد.':'All sources carry the recorded verified-operative-text status; confirm official publication and dates before relying on them.')})));
        for(const [i,s] of m.sources.entries()){
          const src=h('div',{className:'src research-source'});
          src.append(h('b',{textContent:'['+(i+1)+'] '+(s.ref||'Source')+' '}));
