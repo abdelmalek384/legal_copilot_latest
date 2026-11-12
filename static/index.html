@@ -2647,7 +2647,7 @@ function documentIntelligencePanel(caseId,documents){
    }
    if(remaining<=0)break;
   }
-  if(!cards.length)cards.push(h('p',{className:'mut',textContent:uiText('لا توجد مقاطع نصية متاحة للمراجعة.','No extracted text chunks are available for review.')}));
+  if(!cards.length)cards.push(h('p',{className:'mut',textContent:needsAttentionOnly?uiText('لا توجد مقاطع تحتاج مراجعة حالياً.','No passages currently need attention.'):uiText('لا توجد مقاطع نصية متاحة للمراجعة.','No extracted text chunks are available for review.')}));
   const historyResults=h('div',{});
   const historyButton=btn(uiText('عرض سجل المراجعة','View review history'),async()=>{
    historyButton.disabled=true;historyResults.replaceChildren(h('p',{className:'mut',textContent:uiText('جارٍ تحميل سجل المراجعة...','Loading review history...')}));
