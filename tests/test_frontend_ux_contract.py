@@ -979,5 +979,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("response.status===423", page)
         self.assertIn("This firm is read-only; contact your firm administrator.", page)
 
+    def test_document_library_filters_saved_classification_state(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("documentClassificationFilter", page)
+        self.assertIn("documentClassificationFilter.value==='saved'?!!doc.saved_classification:!doc.saved_classification", page)
+        self.assertIn("documentClassificationFilter.onchange=()=>renderDocuments(currentDocuments)", page)
+
 if __name__ == "__main__":
     unittest.main()
