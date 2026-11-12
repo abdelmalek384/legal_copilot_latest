@@ -944,5 +944,13 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_firm_switch_clears_selected_document_matter_context(self):
         self.assertIn("window.DOCUMENT_MATTER_ID=null;sessionStorage.me=JSON.stringify(ME)", HTML)
 
+    def test_document_library_metrics_are_derived_from_selected_matter_records(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("docs.filter(doc=>doc.extraction_status==='text_extracted').length", page)
+        self.assertIn("docs.filter(doc=>Boolean(doc.ocr_used)).length", page)
+        self.assertIn("docs.filter(doc=>doc.ocr_used||doc.extraction_status!=='text_extracted').length", page)
+        self.assertIn("Selected matter only", page)
+        self.assertIn("Not a document-failure determination", page)
+
 if __name__ == "__main__":
     unittest.main()
