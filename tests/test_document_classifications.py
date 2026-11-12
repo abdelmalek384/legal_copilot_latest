@@ -31,7 +31,7 @@ class DocumentClassificationContractTests(unittest.TestCase):
 
     def test_ui_loads_saved_classification_and_disables_unauthorized_edits(self):
         html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
-        self.assertIn("classification=await api('/cases/'+caseId+'/docs/'+doc.document_id+'/classification')", html)
+        self.assertIn("const [data,classification]=await Promise.all([api('/cases/'+caseId+'/docs/'+doc.document_id+'/chunks'),api('/cases/'+caseId+'/docs/'+doc.document_id+'/classification').catch(()=>null)])", html)
         self.assertIn("item.classification.can_edit===true", html)
         self.assertIn("classification','PUT'", html)
         self.assertIn("expected_version:persisted?persisted.version:0", html)
