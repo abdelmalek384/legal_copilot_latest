@@ -804,6 +804,12 @@ class BrowserAcceptanceTests(unittest.TestCase):
         inspector = self.page.locator(".research-inspector")
         self.assertTrue(inspector.get_by_text(sentinel, exact=False).is_visible())
         self.assertIn("مستند مكتب غير متحقق", inspector.inner_text())
+        self.assertEqual(self.page.evaluate("document.activeElement.className"), "research-inspector card")
+        self.page.get_by_role("button", name="إغلاق").click()
+        self.assertTrue(inspector.get_by_text("اختر مصدراً", exact=False).is_visible())
+        self.assertEqual(self.page.evaluate("document.activeElement.textContent"), "فحص المصدر")
+        self.page.get_by_role("button", name="فحص المصدر").first.click()
+        self.assertTrue(inspector.get_by_text(sentinel, exact=False).is_visible())
         layout = self.page.locator(".research-layout")
         self.assertEqual(
             layout.evaluate("(el) => getComputedStyle(el).gridTemplateColumns.split(' ').length"),
