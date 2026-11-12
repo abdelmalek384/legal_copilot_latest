@@ -3,9 +3,9 @@
   "title": "Legal Copilot Arabic UI string review inventory",
   "purpose": "Reviewable inventory of Arabic-bearing string literals in static/index.html for a native Egyptian Arabic speaker. This is a review snapshot, not yet the runtime translation source; user-entered case and legal text is not included.",
   "source_file": "static/index.html",
-  "source_commit": "ae1761f184ee4e1d06cba7e3c45bc9ea2a934298",
+  "source_commit": "fd94008f0d477243b75a7d0587b7def2061de363",
   "generated_on": "2026-11-12",
-  "entry_count": 1064,
+  "entry_count": 1066,
   "entries": [
     {
       "id": "AR-0001",
@@ -398,6 +398,7 @@
         2050,
         2072,
         2074,
+        2090,
         2141,
         2151,
         2166,
@@ -2772,6 +2773,7 @@
         1364,
         1603,
         1633,
+        2111,
         2226
       ],
       "review_status": "pending_native_review"
@@ -3276,7 +3278,9 @@
         2068,
         2070,
         2072,
+        2090,
         2101,
+        2111,
         2112,
         2116,
         2121,
@@ -4659,6 +4663,7 @@
         1204,
         1992,
         2009,
+        2111,
         2151,
         2226,
         2893,
@@ -6828,6 +6833,7 @@
         2050,
         2070,
         2089,
+        2090,
         2099,
         2111,
         2121,
@@ -10400,6 +10406,22 @@
       "arabic": "لا توجد ملفات قضايا متاحة.",
       "source_lines": [
         2170
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1065",
+      "arabic": "يعتمد الاحتفاظ بالملف الأصلي على إعدادات التخزين؛ ونص OCR يحتاج إلى تحقق بشري.",
+      "source_lines": [
+        2090
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1066",
+      "arabic": "خدمة التخزين الخاص غير متاحة؛ لم يكتمل الرفع.",
+      "source_lines": [
+        2111
       ],
       "review_status": "pending_native_review"
     }
