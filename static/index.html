@@ -2630,12 +2630,12 @@ function documentIntelligencePanel(caseId,documents){
   try{
    for(const doc of docs.slice(0,40)){
     status.textContent=uiText('جارٍ تحميل النصوص: ','Loading extracted text: ')+loaded+'/'+Math.min(docs.length,40);
-    const data=await api('/cases/'+caseId+'/docs/'+doc.document_id+'/chunks');
+    const [data,classification]=await Promise.all([api('/cases/'+caseId+'/docs/'+doc.document_id+'/chunks'),api('/cases/'+caseId+'/docs/'+doc.document_id+'/classification').catch(()=>null)]);
     const chunks=Array.isArray(data.chunks)?data.chunks:[];
     if(!data.intelligence||!data.intelligence.classification||!Array.isArray(data.intelligence.candidates))throw new Error('server_document_intelligence_unavailable');
     const text=chunks.map(chunk=>String(chunk.text||'')).join('\n');
     if(totalChars+text.length>1000000){skipped++;break}
-    totalChars+=text.length;const classification=await api('/cases/'+caseId+'/docs/'+doc.document_id+'/classification').catch(()=>null);cache.set(String(doc.document_id),{doc,chunks,text,intelligence:data.intelligence,classification});loaded++;
+    totalChars+=text.length;cache.set(String(doc.document_id),{doc,chunks,text,intelligence:data.intelligence,classification});loaded++;
    }
    if(docs.length>40)skipped+=docs.length-40;
    renderAnalysis();
