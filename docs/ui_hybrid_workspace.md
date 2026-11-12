@@ -14,7 +14,7 @@ The dashboard includes a short list of active matters drawn from the same case r
 - **Research pane:** scope and matter selectors, conversation thread, answer/source cards, and persistent composer.
 - **Source inspector:** opens from an explicit “Inspect source” action on a returned source card. It presents the returned citation/reference, article/page locator, recorded source and legal-version metadata, search as-of date, source status/trust tier, latest review event per review type, amendment-history status, and exact passage text.
 
-The source inspector is a view of data already returned by the research API. It does not make a new source-verification decision and does not mutate the source, answer, legal status, review state, or trust tier. The inline source card remains available, as do copy, export, correction, save-to-matter, and safe source-link actions.
+The source inspector is a view of data already returned by the research API. It does not make a new source-verification decision and does not mutate the source, answer, legal status, review state, or trust tier. The inline source card remains available, as do copy, export, correction, save-to-matter, and safe source-link actions. Opening the inspector moves keyboard focus to its region; the Clear source control or Escape key closes it and returns focus to the invoking source action.
 
 If no passage text is returned, the inspector says so explicitly; it does not invent a quotation. Metadata-only discovery remains visibly metadata-only and does not display legal text.
 
