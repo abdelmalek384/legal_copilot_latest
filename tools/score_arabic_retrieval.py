@@ -88,7 +88,7 @@ def _valid_reviewed(row, approved_reviewers):
     parsed = None
     if (isinstance(url, str) and url and url == url.strip()
             and not any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in url)
-            and "?" not in url and "#" not in url):
+            and "?" not in url and "#" not in url and "\\" not in url):
         try:
             parsed = urlsplit(url)
             _ = parsed.port
