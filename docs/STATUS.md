@@ -1,6 +1,6 @@
 # Legal Copilot status
 
-**Updated:** 2026-11-12  
+**Updated:** 2026-11-13  
 **Scope:** engineering and evidence status only; not legal-readiness or production certification.
 
 ## Current repository update — 2026-11-12
@@ -186,3 +186,11 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Six new prompts remain `needs_lawyer_review`; expected answers, sources, pin citations and answerability remain empty. This closes only the draft-count shortfall. It does not make the benchmark scoreable or satisfy the lawyer-approved release gate.
 - Updated static inventory tests to expect 100 rows and 278 unreviewed rows across the four draft sets (not deduplicated across files) checked by the retrieval-abstention regression.
 - Test execution remains pending in the clean Python 3.12 locked environment; no test pass is claimed.
+
+
+## Release-gate benchmark inventory — 2026-11-13
+
+- PR #1573 expanded the separate default production release-gate benchmark `tests/legal_eval/multi_area_questions.draft.jsonl` from 94 to 100 unreviewed questions across ten practice areas and updated its matching lawyer worksheet.
+- The 100-row queue is distinct from the 120-question inventory formed by the 59-row general seed plus 61-row Labour Law draft, and from the separate 58-row provisional Labour Law review queue. These are overlapping draft file inventories, not a deduplicated count of unique questions.
+- The new release-gate prompts remain `needs_lawyer_review`; expected answers, sources, pinpoint citations and answerability remain empty. The gate's 100-question structural minimum is now reachable, but its lawyer-approved minimum remains unmet.
+- Static repository checks were performed on the JSONL/CSV structure and identifiers. No Python test execution is claimed; Codex must run the focused and full suites in the clean Python 3.12 locked environment.

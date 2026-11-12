@@ -69,3 +69,14 @@ The evaluation runner validates the API base URL before sending requests. It rej
 
 
 The article-specific retrieval scorer also requires the same private approved reviewer registry used by the legal-answer evaluator. Reviewer ID, display name, professional role and practice-area authorization must match an approved registry entry. Keep the registry outside the repository; the checked-in empty example is not a reviewer approval. This is an administrative identity-consistency check, not independent verification of a professional license.
+
+
+## Distinct draft inventories — 2026-11-13
+
+The repository contains more than one draft question inventory. They serve different workflows and must not be added together and described as unique questions:
+
+- `practice_questions.seed.jsonl` (59) and `labour_law_questions.draft.jsonl` (61) form the 120-question general/labour draft inventory described above.
+- `multi_area_questions.draft.jsonl` (100) is the separate default benchmark inventory used by `tools/production_release_gate.py`. Its matching lawyer worksheet is `multi_area_questions_for_lawyer.csv`. It covers ten practice areas and was expanded from 94 to 100 to meet the release gate's structural minimum.
+- `labour_law_14_2025_provisional_review_questions.draft.jsonl` (58) is a separate provisional Labour Law review queue. It contains provisional research notes and is not an approved answer key or a substitute for the 61-question labour draft.
+
+These counts are file-row counts, not a deduplicated count of distinct questions across files. Do not sum them to report a unique benchmark size. All four sets remain counsel-review material; the 100-row production release-gate queue still has zero approved rows until qualified reviewers complete and document the required answer keys, answerability labels, sources, pinpoint citations and reviewer evidence.
