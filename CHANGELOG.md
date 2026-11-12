@@ -2,6 +2,8 @@
 
 - PR #1495: Reject wildcard trusted proxies and isolate persistent rate-limit budgets by validated firm identity.
 
+- PR #1496: Add zero-spend local release checks, focused security regressions, and witnessed encrypted recovery tooling.
+
 - PR #1434: Add the human-attested deadline verification command and correct deployment backup instructions.
 
 - PR #1431: Extract public PWA asset endpoints into a platform router.
