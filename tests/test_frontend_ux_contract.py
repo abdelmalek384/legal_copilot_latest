@@ -714,6 +714,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("grid-template-columns:minmax(205px,235px) minmax(0,1fr) minmax(260px,310px)", HTML)
         self.assertIn("id:'research-source-inspector'", HTML)
         self.assertIn("'aria-controls':'research-source-inspector'", HTML)
+        self.assertIn("className:'g research-inspect-action'", HTML)
         self.assertIn("onclick:()=>inspectSource(s,status,pin,p)", HTML)
         self.assertIn("source.text|| (LANG==='ar'?'لم يُرجع نص لهذا السجل من المصدر.':'No passage text was returned for this source record.')", HTML)
         self.assertIn("review_evidence", HTML)
