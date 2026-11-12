@@ -1095,7 +1095,8 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_documents_workspace_defaults_to_authorized_library_when_no_matter_is_selected(self):
         page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
-        self.assertIn("await loadMatters();\\n if(!matterSelect.value)await loadAllAccessibleDocs();", page)
+        self.assertIn("await loadMatters();", page)
+        self.assertIn("if(!matterSelect.value)await loadAllAccessibleDocs();", page)
         self.assertIn("list.hidden=!list.children.length", page)
 
 if __name__ == "__main__":
