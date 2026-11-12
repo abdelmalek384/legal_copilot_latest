@@ -261,8 +261,9 @@ def result_from_response(question, response):
         "cited_pin_cites": cited_pins,
         "invalid_citation_indices": sorted(invalid),
         "found": bool(response.get("found")),
-        "scope": response.get("scope", "verified_corpus"),
-        "requested_as_of": response.get("requested_as_of") or requested_as_of,
+        # Preserve API-reported scope/date exactly; never infer them from runner intent.
+        "scope": response.get("scope"),
+        "requested_as_of": response.get("requested_as_of"),
         "source_summary": [
             {
                 "source_id": hit.get("source_id"),
