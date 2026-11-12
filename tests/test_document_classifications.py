@@ -192,7 +192,7 @@ class DocumentClassificationContractTests(unittest.TestCase):
 
     def test_review_refresh_joins_chunks_with_real_newlines(self):
         html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
-        self.assertIn("join('\\\\n')", html)
+        self.assertIn("join('\\n')", html)
 
 if __name__ == "__main__":
     unittest.main()
