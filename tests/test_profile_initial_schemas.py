@@ -588,5 +588,43 @@ class ProfileInitialSchemaTests(unittest.TestCase):
 
 
 
+    def test_document_classification_review_ledger_is_firm_scoped_and_append_only(self):
+        db = self.build("firm")
+        tables = {row[0] for row in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+        self.assertIn("document_classification_reviews", tables)
+        triggers = {row[0] for row in db.execute("SELECT name FROM sqlite_master WHERE type='trigger'")}
+        self.assertTrue({
+            "document_classification_reviews_scope_insert",
+            "document_classification_reviews_no_update",
+        } <= triggers)
+
+        db.execute("INSERT INTO cases(id,title,firm_id) VALUES(1,'Case A',7)")
+        db.execute("INSERT INTO cases(id,title,firm_id) VALUES(2,'Case B',7)")
+        db.execute(
+            "INSERT INTO docs(id,case_id,name,added,firm_id) VALUES(1,1,'document.docx','now',7)"
+        )
+        insert = (
+            "INSERT INTO document_classification_reviews("
+            "document_id,case_id,firm_id,reviewer_user_id,category,suggested_category,matched_terms_json,note"
+            ") VALUES(?,?,?,?,?,?,?,?)"
+        )
+        values = (1,1,7,11,"contract","pleading",'["مذكرة دفاع"]',"reviewed")
+        db.execute(insert, values)
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "append-only"):
+            db.execute(
+                "UPDATE document_classification_reviews SET category='contract' WHERE document_id=1"
+            )
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "scope mismatch"):
+            db.execute(insert, (1,2,7,11,"contract","pleading","[]","wrong case"))
+        with self.assertRaises(sqlite3.IntegrityError):
+            db.execute(insert, (1,1,8,11,"contract","pleading","[]","wrong firm"))
+        db.execute("DELETE FROM cases WHERE id=1")
+        self.assertEqual(
+            db.execute("SELECT COUNT(*) FROM document_classification_reviews").fetchone()[0], 0
+        )
+        self.assertEqual(db.execute("PRAGMA foreign_key_check").fetchall(), [])
+        db.close()
+
+
 if __name__ == "__main__":
     unittest.main()
