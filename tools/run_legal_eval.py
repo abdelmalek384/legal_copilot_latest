@@ -293,7 +293,10 @@ def _request_json(opener, url, payload, headers=None, timeout=180):
             raw = response.read(MAX_API_RESPONSE_BYTES + 1)
             if not isinstance(raw, bytes) or len(raw) > MAX_API_RESPONSE_BYTES:
                 raise RunnerError("API response exceeded the 16 MiB safety limit")
-            return json.loads(raw.decode("utf-8"))
+            payload = json.loads(raw.decode("utf-8"))
+            if not isinstance(payload, dict):
+                raise RunnerError("API returned a JSON value that was not an object")
+            return payload
     except urllib.error.HTTPError as exc:
         # Do not print response bodies: they can contain legal questions or user details.
         raise RunnerError(f"API request failed with HTTP {exc.code} at {url.rsplit('/', 1)[-1]}") from exc
