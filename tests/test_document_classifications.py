@@ -170,5 +170,10 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("latest&&latest.page_reference", html)
         self.assertIn("Reviewer reference:", html)
 
+    def test_extraction_review_attention_queue_has_accurate_empty_state(self):
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("No passages currently need attention.", html)
+        self.assertIn("needsAttentionOnly?uiText", html)
+
 if __name__ == "__main__":
     unittest.main()
