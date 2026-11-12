@@ -12,6 +12,7 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("REFERENCES cases(id) ON DELETE CASCADE", migration)
         self.assertIn("CHECK(category IN", migration)
         self.assertIn("document_classification_events", migration)
+        self.assertIn("UNIQUE(document_id,version)", migration)
         self.assertIn("idx_document_classification_events_document", migration)
 
     def test_api_is_matter_scoped_lead_only_and_optimistic(self):
