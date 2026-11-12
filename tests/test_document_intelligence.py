@@ -3,7 +3,7 @@ import unittest
 
 from tools.document_intelligence import (
     classify_document, compare_extracted_text, extract_review_candidates,
-    build_date_mention_timeline, normalized_text_digest, sha256_bytes,
+    build_date_mention_timeline, group_same_matter_duplicates, normalized_text_digest, sha256_bytes,
 )
 
 
@@ -95,6 +95,33 @@ class DocumentIntelligenceTests(unittest.TestCase):
     def test_timeline_requires_document_scope_identity(self):
         with self.assertRaises(ValueError):
             build_date_mention_timeline([{"filename": "x.pdf", "candidates": []}])
+
+
+    def test_duplicate_groups_are_scoped_to_same_firm_and_matter(self):
+        digest = "a" * 64
+        documents = [
+            {"firm_id": "firm-a", "matter_id": "matter-1", "document_id": "doc-1",
+             "original_sha256": digest},
+            {"firm_id": "firm-a", "matter_id": "matter-1", "document_id": "doc-2",
+             "original_sha256": digest},
+            {"firm_id": "firm-b", "matter_id": "matter-1", "document_id": "doc-3",
+             "original_sha256": digest},
+            {"firm_id": "firm-a", "matter_id": "matter-2", "document_id": "doc-4",
+             "original_sha256": digest},
+        ]
+        groups = group_same_matter_duplicates(documents)
+        self.assertEqual(len(groups), 1)
+        self.assertEqual(groups[0]["firm_id"], "firm-a")
+        self.assertEqual(groups[0]["matter_id"], "matter-1")
+        self.assertEqual(groups[0]["document_ids"], ["doc-1", "doc-2"])
+        self.assertEqual(groups[0]["review_status"], "possible_duplicate_requires_review")
+
+    def test_duplicate_group_rejects_invalid_hash(self):
+        with self.assertRaises(ValueError):
+            group_same_matter_duplicates([{
+                "firm_id": "firm", "matter_id": "matter", "document_id": "doc",
+                "original_sha256": "not-a-hash",
+            }])
 
 
 if __name__ == "__main__":
