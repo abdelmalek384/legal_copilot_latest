@@ -2700,7 +2700,20 @@ function documentIntelligencePanel(caseId,documents){
      draftOverrides.delete(String(item.doc.document_id));
      renderAnalysis();
      status.textContent=uiText('تم حفظ التصنيف وسجل التدقيق.','Classification and audit history saved.');
-    }catch(error){status.textContent=String(error.message||uiText('تعذر حفظ التصنيف؛ أعد تحميل المستند وحاول مجدداً.','Could not save classification; reload the document and retry.'))}
+    }catch(error){
+     try{
+      const latest=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/classification');
+      const latestVersion=latest.classification?Number(latest.classification.version):0;
+      const priorVersion=persisted?Number(persisted.version):0;
+      if(latestVersion!==priorVersion){
+       item.classification=latest;
+       renderAnalysis();
+       status.textContent=uiText('تم تحديث التصنيف من مراجع آخر. احتفظنا بمسودتك؛ راجع القيمة الحالية ثم احفظ مرة أخرى.','Another reviewer updated this classification. Your draft is retained; review the current value and save again.');
+       return;
+      }
+     }catch(_){}
+     status.textContent=String(error.message||uiText('تعذر حفظ التصنيف؛ أعد تحميل المستند وحاول مجدداً.','Could not save classification; reload the document and retry.'));
+    }
     finally{save.disabled=false}
    },'primary');
    save.disabled=!canEdit;
