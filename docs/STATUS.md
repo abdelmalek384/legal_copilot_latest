@@ -178,3 +178,11 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - This closes the repository-side draft inventory count target only. It is **not** a lawyer-reviewed benchmark, does not support accuracy claims, and must not be scored until qualified Egyptian counsel approves answers, answerability, primary sources, pin citations and reviewer evidence.
 - No tests/evaluator run is claimed; this validation parsed the committed JSONL data and checked schema/state invariants.
 
+
+
+## Release-gate benchmark draft count — 2026-11-13
+
+- Expanded `tests/legal_eval/multi_area_questions.draft.jsonl` and its lawyer worksheet from 94 to 100 unreviewed questions across the same ten practice areas, matching the production release gate's minimum inventory size.
+- Six new prompts remain `needs_lawyer_review`; expected answers, sources, pin citations and answerability remain empty. This closes only the draft-count shortfall. It does not make the benchmark scoreable or satisfy the lawyer-approved release gate.
+- Updated static inventory tests to expect 100 rows and 257 unreviewed questions across the four draft sets checked by the retrieval-abstention regression.
+- Test execution remains pending in the clean Python 3.12 locked environment; no test pass is claimed.
