@@ -950,9 +950,9 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_document_library_metrics_are_derived_from_selected_matter_records(self):
         page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
-        self.assertIn("docs.filter(doc=>doc.extraction_status==='text_extracted').length", page)
+        self.assertIn("docs.filter(doc=>['text_extracted','complete'].includes(doc.extraction_status)).length", page)
         self.assertIn("docs.filter(doc=>Boolean(doc.ocr_used)).length", page)
-        self.assertIn("docs.filter(doc=>doc.ocr_used||doc.extraction_status!=='text_extracted'||!doc.saved_classification).length", page)
+        self.assertIn("docs.filter(doc=>doc.ocr_used||!['text_extracted','complete'].includes(doc.extraction_status)||!doc.saved_classification).length", page)
         self.assertIn("Selected matter only", page)
         self.assertIn("Not a document-failure determination", page)
 
