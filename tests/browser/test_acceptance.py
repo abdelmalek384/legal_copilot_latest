@@ -759,7 +759,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
         sentinel = "FIRM_DOCUMENT_ONLY_SENTINEL_4B91"
         synthetic_docx = _synthetic_docx_bytes(
-            sentinel + " Synthetic matter-only passage for browser scope testing."
+            sentinel + " Synthetic matter-only passage. مذكرة دفاع. دعوى رقم ١٢٣/٢٠٢٥ بتاريخ ١٥/٠٣/٢٠٢٥. المبلغ ٥٠٠٠ جنيه. المدعي: طرف تجريبي. المادة ١٠١. جلسة ١٦/٠٣/٢٠٢٥."
         )
         upload = self.page.request.post(
             self.base_url + f"/cases/{case_id}/upload",
@@ -774,6 +774,24 @@ class BrowserAcceptanceTests(unittest.TestCase):
             timeout=8000,
         )
         self.assertEqual(upload.status, 200, upload.text())
+        document_v1_id = upload.json()["document_id"]
+        synthetic_docx_v2 = _synthetic_docx_bytes(
+            sentinel + " Synthetic matter-only passage. مذكرة دفاع. دعوى رقم ١٢٣/٢٠٢٥ بتاريخ ١٥/٠٣/٢٠٢٥. المبلغ ٦٠٠٠ جنيه. المدعي: طرف تجريبي. المادة ١٠١. جلسة ١٦/٠٣/٢٠٢٥."
+        )
+        upload_v2 = self.page.request.post(
+            self.base_url + f"/cases/{case_id}/upload",
+            multipart={
+                "file": {
+                    "name": "synthetic-matter-fixture-v2.docx",
+                    "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "buffer": synthetic_docx_v2,
+                }
+            },
+            headers=self.csrf_headers(),
+            timeout=8000,
+        )
+        self.assertEqual(upload_v2.status, 200, upload_v2.text())
+        document_v2_id = upload_v2.json()["document_id"]
 
         self.page.locator("#side").get_by_role("button", name="البحث القانوني").click()
         history_toggle = self.page.locator(".research-history-toggle")
@@ -795,6 +813,26 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertIn("اختر ملف قضية", self.page.locator("body").inner_text())
 
         matter.select_option(str(case_id))
+        self.page.get_by_role("button", name="فتح مساحة ذكاء المستندات").click()
+        self.page.get_by_role("button", name="تحليل المستندات").click()
+        self.page.get_by_text("التصنيفات المقترحة", exact=True).wait_for(timeout=15000)
+        self.assertIn("دعوى رقم ١٢٣/٢٠٢٥", self.page.locator("body").inner_text())
+        self.assertIn("٥٠٠٠ جنيه", self.page.locator("body").inner_text())
+        self.assertIn("المدعي: طرف تجريبي", self.page.locator("body").inner_text())
+        self.assertIn("المادة ١٠١", self.page.locator("body").inner_text())
+        self.assertIn("رقم الصفحة غير مسجل", self.page.locator("body").inner_text())
+        classification = self.page.get_by_label("تصنيف مسودة للمستند synthetic-matter-fixture-v2.docx")
+        classification.select_option("contract")
+        self.page.get_by_text("تم تعديل تصنيف مسودة في هذه الشاشة فقط", exact=False).wait_for(timeout=5000)
+        self.page.get_by_label("الإصدار السابق").select_option(str(document_v1_id))
+        self.page.get_by_label("الإصدار اللاحق").select_option(str(document_v2_id))
+        self.page.get_by_role("button", name="مقارنة النصوص").click()
+        comparison = self.page.locator("body").inner_text()
+        self.assertIn("٥٠٠٠ جنيه", comparison)
+        self.assertIn("٦٠٠٠ جنيه", comparison)
+        self.page.get_by_placeholder("ابحث في النصوص المستخرجة بالعربية أو الإنجليزية").fill(sentinel)
+        self.page.get_by_role("button", name="بحث", exact=True).click()
+        self.page.get_by_text(sentinel, exact=False).wait_for(timeout=8000)
         composer.fill(sentinel)
         self.page.locator(".research-composer button").click()
         self.page.get_by_text("مستند مكتب غير متحقق", exact=False).wait_for(timeout=20000)
