@@ -745,6 +745,12 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_subscription_lock_response_routes_user_to_billing_recovery(self):
         self.assertIn("if(r.status===423&&p!=='/billing'&&!p.startsWith('/account/mfa/')){billingPage().catch(()=>{});throw new Error('billing_locked')}", HTML)
 
+    def test_inspecting_a_second_source_closes_the_previous_expanded_control(self):
+        self.assertIn("const previousTrigger=sourceInspector.__focusReturn", HTML)
+        self.assertIn("previousTrigger!==trigger&&previousTrigger.isConnected", HTML)
+        self.assertIn("previousTrigger.setAttribute('aria-expanded','false')", HTML)
+
+
     def test_source_inspector_preserves_document_page_and_confidence_provenance(self):
         self.assertIn("p.original_document_name||p.document_name||source.original_document_name||source.document_name||source.file_name", HTML)
         self.assertIn("source.page_number??p.page_number", HTML)
