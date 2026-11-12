@@ -851,5 +851,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("--ui-border:#dbe3ee;--ui-muted:#5b6b80", HTML)
 
 
+    def test_legal_source_warning_is_prominent_without_promoting_verification(self):
+        self.assertIn("className:'research-source-caution '+(status==='verified_operative_text'?'verified':'warning')", HTML)
+        self.assertIn("statusDescriptions[status]||statusDescriptions.outdated_or_under_review", HTML)
+        self.assertIn(".research-source-caution.warning{", HTML)
+        self.assertIn(".research-source-caution.verified{", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
