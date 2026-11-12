@@ -12,7 +12,7 @@ The application already accepts bounded PDF and DOCX uploads, extracts PDF text 
 
 ## New foundation in \`tools/document_intelligence.py\`
 
-- Transparent keyword-based document-type candidates.
+- Transparent keyword-based document-type candidates with explicit matched terms and non-probabilistic signal labels.
 - Exact-byte SHA-256 and whitespace-normalized extracted-text digests (separate purposes).
 - Literal candidate extraction for dates, case references, amounts and explicitly labelled parties.
 - PDF page provenance where a page marker exists; no invented page number for DOCX.
