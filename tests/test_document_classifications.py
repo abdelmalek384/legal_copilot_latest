@@ -203,5 +203,10 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("latest.original_text", html)
         self.assertIn("latest.reviewed_text", html)
 
+    def test_reviewer_page_reference_is_explicitly_unverified_in_ui(self):
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("Reviewer-entered reference; not verified against the original file.", html)
+        self.assertIn("latest&&latest.page_reference", html)
+
 if __name__ == "__main__":
     unittest.main()
