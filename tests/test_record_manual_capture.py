@@ -89,6 +89,19 @@ class RecordManualCaptureTests(unittest.TestCase):
             code, _, _ = run(*self.base(**{"--source-url": url}))
             self.assertEqual(code, 2, url)
 
+    def test_rejects_ambiguous_and_signed_source_urls(self):
+        for url in (
+            "https://www.alamiria.com:",
+            "https://www.alamiria.com:99999/law",
+            "https://www.alamiria.com/law\\x7fpath",
+            "https://www.alamiria.com/law\\npath",
+            "https://www.alamiria.com/law?token=secret",
+            "https://www.alamiria.com/law#fragment",
+        ):
+            with self.subTest(url=url):
+                code, _, _ = run(*self.base(**{"--source-url": url}))
+                self.assertEqual(code, 2, url)
+
     def test_rejects_unsupported_and_fake_files(self):
         exe = self.dir / "a.exe"
         exe.write_bytes(b"MZ....")
