@@ -2615,8 +2615,23 @@ function documentIntelligencePanel(caseId,documents){
    renderAnalysis();
    status.textContent=uiText('تم حفظ قرار مراجعة الاستخراج في سجل التدقيق.','Extraction review decision saved to the audit history.');
   }catch(error){
-   status.textContent=String(error.message||uiText('تعذر حفظ المراجعة. أعد تحميل النص وحاول مجدداً.','Could not save the review. Reload the text and try again.'));
-   controls.forEach(control=>control.disabled=false);
+   let sourceChanged=false;
+   try{
+    const latest=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks');
+    const current=(Array.isArray(latest.chunks)?latest.chunks:[]).find(part=>Number(part.id)===Number(chunk.id));
+    if(current&&current.text_sha256!==chunk.text_sha256){
+     item.chunks=Array.isArray(latest.chunks)?latest.chunks:[];
+     item.text=item.chunks.map(part=>String(part.text||'')).join('\\n');
+     item.intelligence=latest.intelligence||item.intelligence;
+     renderAnalysis();
+     status.textContent=uiText('تغير النص المستخرج منذ فتح المراجعة. تم تحديث المقطع؛ راجعه قبل إعادة المحاولة.','The extracted text changed since this review was opened. The passage was refreshed; review it before retrying.');
+     sourceChanged=true;
+    }
+   }catch(_){}
+   if(!sourceChanged){
+    status.textContent=String(error.message||uiText('تعذر حفظ المراجعة. أعد تحميل النص وحاول مجدداً.','Could not save the review. Reload the text and try again.'));
+    controls.forEach(control=>control.disabled=false);
+   }
   }
  };
  const renderChunkReviewCards=()=>{
