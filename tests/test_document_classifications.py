@@ -16,12 +16,14 @@ class DocumentClassificationContractTests(unittest.TestCase):
 
     def test_api_is_matter_scoped_lead_only_and_optimistic(self):
         app = (ROOT / "app.py").read_text(encoding="utf-8")
-        self.assertIn('GET("/cases/{cid}/docs/{document_id}/classification")', app)
-        self.assertIn('PUT("/cases/{cid}/docs/{document_id}/classification")', app)
+        self.assertIn('@app.get("/cases/{cid}/docs/{document_id}/classification")', app)
+        self.assertIn('@app.put("/cases/{cid}/docs/{document_id}/classification")', app)
         self.assertIn("need(c, u, cid, lead=True)", app)
         self.assertIn("body.expected_version != current_version", app)
         self.assertIn("expected_version", app)
         self.assertIn("document_classification_events", app)
+        self.assertIn('"document_classifications.csv"', app)
+        self.assertIn('"document_classification_events.csv"', app)
         self.assertIn("ON CONFLICT(document_id) DO NOTHING", app)
 
     def test_ui_loads_saved_classification_and_disables_unauthorized_edits(self):
