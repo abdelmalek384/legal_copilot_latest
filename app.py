@@ -14,7 +14,7 @@ from functools import lru_cache, wraps
 from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_permission_register_ready, source_permission_evidence_ready, source_status, citation_text, research_memo, has_current_review_evidence)
 from tools.arabic_legal_matching import expand_lexicon_hints
 from tools.arabic_drafting_skeletons import build_arabic_skeleton
-from tools.claim_support import claim_support_enabled, has_unsupported_claims
+from tools.claim_support import claim_support_enabled, has_unsupported_claims, has_negated_obligation_conflicts
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
     generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
@@ -2069,6 +2069,8 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
             ans, msg = None, "لم يظهر ارتباط لفظي كافٍ بين إحدى العبارات ومصادرها المستشهد بها؛ تُعرض المصادر فقط."
         elif _answer_has_source_polarity_conflict(ans, hits):
             ans, msg = None, "توجد عبارة تعكس صياغة صريحة في أحد المصادر المستشهد بها؛ تُعرض المصادر فقط."
+        elif has_negated_obligation_conflicts(ans, hits, tokens, norm, _mask_markdown_code):
+            ans, msg = None, "توجد عبارة تعكس التزاماً أو حظراً صريحاً في المصدر المستشهد به؛ تُعرض المصادر فقط."
         elif _answer_has_mismatched_pincites(ans, hits):
             ans, msg = None, "رقم المادة أو الصفحة المذكور لا يطابق محدد الموقع المسجل للمصدر المستشهد به؛ تُعرض المصادر فقط."
         elif _answer_has_cited_actor_role_mismatch(ans, hits):
