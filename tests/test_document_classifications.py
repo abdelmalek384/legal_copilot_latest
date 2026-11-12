@@ -36,5 +36,13 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("Classification change history", html)
 
 
+    def test_case_document_listing_includes_saved_classification_without_cross_case_join(self):
+        app = (ROOT / "app.py").read_text(encoding="utf-8")
+        self.assertIn("dc.category AS saved_classification", app)
+        self.assertIn("dc.case_id=d.case_id AND dc.firm_id=c.firm_id", app)
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("doc.saved_classification", html)
+        self.assertIn("No saved classification", html)
+
 if __name__ == "__main__":
     unittest.main()
