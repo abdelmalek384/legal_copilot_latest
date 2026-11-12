@@ -6,10 +6,12 @@ This is the first UI layer for reviewing documents already uploaded to a case. I
 
 ## Current capabilities
 
+- Dedicated Documents navigation page with authenticated matter selection, file metadata, filename/type search, extraction-status filtering and matter-scoped summary counts derived from returned document rows. Metrics are not firm-wide and do not imply legal review completion.
+
 - Search extracted text across the selected matter's uploaded documents in Arabic and English. Search applies Unicode NFKC normalization, removes common Arabic diacritics/tatweel, normalizes common alef/yeh forms, and normalizes Arabic-Indic digits.
 - Show conservative keyword-based document-type suggestions (judgment, contract, pleading, correspondence/notice, evidence/receipt, or unclassified) from the canonical Python helper, executed by the existing authenticated matter-scoped chunks endpoint.
 - Show canonical keyword-based classification suggestions separately from the saved lawyer-approved classification.
-- Persist classification changes through the matter-scoped classification endpoint. Only firm administrators and matter leads can save; updates require the current version number and return HTTP 409 when a concurrent change has occurred.
+- Persist classification changes through the matter-scoped classification endpoint. Only firm administrators and matter leads can save; updates require the current version number and return HTTP 409 when a concurrent change has occurred. Each document version has at most one classification event, and parent-document deletion cascades through its classification metadata/history.
 - Append every classification change to a firm/matter/document-scoped audit history with actor, previous/new category, version, note and timestamp. Other matter members can view the saved classification and history but cannot edit it.
 - Extract literal candidate mentions for dates, case references, amounts, labelled parties, legal references and event-related terms on the server. Results retain document ID, chunk ID/reference and recorded page where available.
 - Preserve the document name, chunk reference and page number when the extraction endpoint supplies them. A missing page number is shown as not recorded; the UI does not infer one.
