@@ -1085,5 +1085,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("previousTextSearch", page)
         self.assertIn("nextTextSearch", page)
 
+    def test_document_file_icons_do_not_mislabel_non_docx_files_as_word(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("endsWith('.docx')?'DOCX':'FILE'", page)
+
 if __name__ == "__main__":
     unittest.main()
