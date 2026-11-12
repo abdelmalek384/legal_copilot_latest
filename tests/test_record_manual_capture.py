@@ -170,5 +170,36 @@ class RecordManualCaptureTests(unittest.TestCase):
         self.assertEqual(code, 0, err)
 
 
+
+    def test_catalog_loader_rejects_invalid_roots_and_collections(self):
+        from tools.record_manual_capture import load_catalog
+
+        cases = (
+            ("[]", "JSON object"),
+            ('{"documents": {}, "sources": []}', "documents must be a list"),
+            ('{"documents": [null], "sources": []}', "row 1 must be an object"),
+            ('{"documents": [{}], "sources": []}', "needs a non-empty document_id"),
+            ('{"documents": [], "sources": "bad"}', "sources must be a list"),
+            ('{"documents": [], "sources": [{}]}', "needs a non-empty source_id"),
+        )
+        for raw, message in cases:
+            path = self.dir / "catalog.json"
+            path.write_text(raw, encoding="utf-8")
+            with self.subTest(raw=raw), self.assertRaisesRegex(ValueError, message):
+                load_catalog(path)
+
+    def test_catalog_loader_rejects_duplicate_document_and_source_ids(self):
+        from tools.record_manual_capture import load_catalog
+
+        cases = (
+            ('{"documents": [{"document_id":"D"},{"document_id":"D"}],"sources":[]}', "duplicate document_id"),
+            ('{"documents": [],"sources":[{"source_id":"S"},{"source_id":"S"}]}', "duplicate source_id"),
+        )
+        for raw, message in cases:
+            path = self.dir / "catalog.json"
+            path.write_text(raw, encoding="utf-8")
+            with self.subTest(raw=raw), self.assertRaisesRegex(ValueError, message):
+                load_catalog(path)
+
 if __name__ == "__main__":
     unittest.main()
