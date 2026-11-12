@@ -154,6 +154,34 @@ button{min-height:44px}
  #side nav .nav-scroll-hint{display:flex;position:sticky;inset-inline-end:0;align-items:center;flex:0 0 auto;z-index:2;padding:8px 10px;color:var(--pri);background:linear-gradient(90deg,#ffffffd8,#fff);font-size:14px;white-space:nowrap;border-inline-start:1px solid var(--line);pointer-events:none}
 }
 @media(max-width:420px){body{font-size:15px}.auth-card{width:calc(100% - 20px);padding:16px}.auth-card form>label{font-size:14px}.research-source-actions button,.research-message-actions button{min-height:44px}}
+
+/* Legal Research visual system and matter-scoped document intake. */
+:root{--workspace-ink:#17243a;--workspace-muted:#5b6b80;--workspace-blue:#2457c5;--workspace-blue-soft:#edf3ff;--workspace-border:#dbe3ee;--workspace-surface:#fff;--workspace-success:#176b45;--workspace-success-bg:#eaf6ef;--workspace-warning:#8a4b08;--workspace-warning-bg:#fff5e8;--workspace-danger:#a52620;--workspace-danger-bg:#fff0ef}
+#main{color:var(--workspace-ink)}
+#main .research-controls{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;align-items:end;gap:12px;padding:16px;border-color:var(--workspace-border);box-shadow:0 5px 18px rgba(23,36,58,.045)}
+#main .research-controls label{display:grid;gap:6px;min-width:0;font-size:13px;font-weight:700;color:var(--workspace-muted)}
+#main .research-controls select{min-width:0}
+.research-upload-panel{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px 20px;align-items:center;border-color:var(--workspace-border);background:linear-gradient(135deg,#fff 0%,#f7f9ff 100%);box-shadow:0 8px 24px rgba(23,36,58,.045)}
+.research-upload-intro{display:flex;align-items:center;gap:14px;min-width:0}
+.research-upload-icon{display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border-radius:14px;background:var(--workspace-blue-soft);color:var(--workspace-blue);font-size:27px;font-weight:800}
+.research-upload-intro h3{margin:0 0 3px;font-size:16px;color:var(--workspace-ink)}
+.research-upload-intro p{margin:0;max-width:72ch;line-height:1.6}
+.research-upload-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.research-upload-actions button{min-height:44px}
+.research-upload-dropzone{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border:1px dashed #a9b9d0;border-radius:12px;background:rgba(237,243,255,.55);color:#334b70;font-size:13px}
+.research-upload-dropzone small{color:var(--workspace-muted);text-align:end}
+.research-upload-status{grid-column:1/-1;margin:0;color:var(--workspace-muted);font-size:13px}
+.research-upload-warnings,.research-upload-results{grid-column:1/-1;display:grid;gap:8px;min-width:0}
+.research-upload-item{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border:1px solid var(--workspace-border);border-radius:10px;background:#fff;min-width:0}
+.research-upload-item b{font-size:13px;overflow-wrap:anywhere}.research-upload-item p{margin:2px 0 0;font-size:12px;color:var(--workspace-muted);overflow-wrap:anywhere}
+.research-upload-item.done{border-inline-start:3px solid var(--workspace-success)}.research-upload-item.error{border-inline-start:3px solid var(--workspace-danger)}
+.research-upload-state{display:grid;place-items:center;flex:0 0 24px;width:24px;height:24px;border-radius:50%;background:var(--workspace-blue-soft);color:var(--workspace-blue);font-weight:800}
+.research-upload-item.done .research-upload-state{background:var(--workspace-success-bg);color:var(--workspace-success)}.research-upload-item.error .research-upload-state{background:var(--workspace-danger-bg);color:var(--workspace-danger)}
+.notice.warning{padding:12px 14px;border:1px solid #f0d5ad;border-inline-start:4px solid #c47a19;border-radius:10px;background:var(--workspace-warning-bg);color:#6f3e0b}.notice.warning p,.notice.danger p{margin:0;line-height:1.65}
+.notice.danger{padding:12px 14px;border:1px solid #f1c5c2;border-inline-start:4px solid var(--workspace-danger);border-radius:10px;background:var(--workspace-danger-bg);color:#7f211c}
+.research-layout{gap:18px}.research-list,.research-thread,.research-inspector{border:1px solid var(--workspace-border);box-shadow:0 5px 20px rgba(23,36,58,.04)}.research-thread{background:var(--workspace-surface)}.research-inspector-passage{background:#f5f8fd;border-color:#dce5f2}.research-source-link{color:var(--workspace-blue)}
+@media(max-width:800px){#main .research-controls{grid-template-columns:minmax(0,1fr)}.research-upload-panel{grid-template-columns:minmax(0,1fr)}.research-upload-actions{width:100%}.research-upload-actions button{flex:1}.research-upload-dropzone{align-items:flex-start;flex-direction:column}.research-upload-dropzone small{text-align:start}}
+@media(max-width:420px){.research-upload-intro{align-items:flex-start}.research-upload-icon{flex-basis:40px;width:40px;height:40px}.research-upload-actions{display:grid;grid-template-columns:1fr}.research-upload-actions button{width:100%}}
 </style>
 <style>
 /* Legal Copilot — premium workspace polish
@@ -1977,8 +2005,55 @@ async function law(){
   try{accessibleCases=await api('/cases');accessibleCases.forEach(c=>matterSelect.append(new Option((c.title||('Matter '+c.id))+' (#'+c.id+')',String(c.id))))}catch(_){}
   scopeSelect.onchange=()=>{if(scopeSelect.value==='firm_documents'&&!matterSelect.value)toast(LANG==='ar'?'اختر ملف قضية للبحث في مستندات المكتب':'Select a matter to search firm documents')};
   const documentWorkspace=h('div',{});
+  const uploadInput=h('input',{type:'file',multiple:true,accept:'.pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document',className:'visually-hidden',tabIndex:-1,'aria-label':LANG==='ar'?'اختر ملفات PDF أو DOCX':'Choose PDF or DOCX files'});
+  const uploadStatus=h('p',{className:'research-upload-status',role:'status','aria-live':'polite',textContent:LANG==='ar'?'اختر ملف قضية لإضافة مستندات إليها.':'Select a matter before adding documents.'});
+  const uploadResults=h('div',{className:'research-upload-results'}),uploadWarnings=h('div',{className:'research-upload-warnings','aria-live':'polite'});
+  const uploadButton=makeBtn(LANG==='ar'?'اختيار ملفات':'Choose files',()=>uploadInput.click(),'primary');
+  const uploadSubmit=makeBtn(LANG==='ar'?'رفع وفهرسة الملفات':'Upload and index files',()=>{if(uploadInput.files?.length)uploadFiles(Array.from(uploadInput.files))},'g');
+  uploadButton.disabled=true;uploadSubmit.disabled=true;
+  const uploadPanel=h('section',{className:'research-upload-panel card'},h('div',{className:'research-upload-intro'},h('div',{className:'research-upload-icon',textContent:'↑'}),h('div',{},h('h3',{textContent:LANG==='ar'?'أضف مستندات القضية':'Add matter documents'}),h('p',{className:'mut',textContent:LANG==='ar'?'ارفع PDF أو Word (DOCX) حتى 15 ميجابايت لكل ملف. تُفهرس النصوص داخل ملف القضية المحدد فقط.':'Upload PDF or Word (DOCX) files up to 15 MB each. Extracted text is indexed only within the selected matter.'}))),h('div',{className:'research-upload-actions'},uploadButton,uploadSubmit,uploadInput),h('div',{className:'research-upload-dropzone',role:'group','aria-label':LANG==='ar'?'منطقة اختيار الملفات':'File selection area',ondragover:e=>e.preventDefault(),ondrop:e=>{e.preventDefault();if(e.dataTransfer?.files)uploadFiles(Array.from(e.dataTransfer.files))}},h('span',{textContent:LANG==='ar'?'اسحب الملفات إلى هنا أو استخدم اختيار ملفات':'Drag files here or use Choose files'}),h('small',{textContent:LANG==='ar'?'PDF و DOCX فقط · 15 ميجابايت كحد أقصى لكل ملف':'PDF and DOCX only · 15 MB maximum per file'})),uploadStatus,uploadWarnings,uploadResults));
+  const uploadNotice=(kind,message)=>uploadWarnings.append(h('div',{className:'notice '+(kind==='error'?'danger':'warning'),role:kind==='error'?'alert':'status'},h('p',{textContent:message})));
+  const renderUploadResults=items=>uploadResults.replaceChildren(...items.map(item=>h('div',{className:'research-upload-item '+item.state},h('span',{className:'research-upload-state',textContent:item.state==='done'?'✓':item.state==='error'?'!':'…'}),h('div',{},h('b',{textContent:item.name}),h('p',{className:'mut',textContent:item.message})))));
+  const uploadFiles=async files=>{
+    if(!matterSelect.value){uploadStatus.textContent=LANG==='ar'?'اختر ملف قضية أولاً.':'Select a matter first.';matterSelect.focus();return}
+    if(uploadSubmit.dataset.busy==='1')return;
+    const queue=files.map(file=>({file,name:file.name,state:'queued',message:LANG==='ar'?'في قائمة الرفع':'Queued'}));
+    const valid=queue.filter(item=>/\.(pdf|docx)$/i.test(item.name)&&item.file.size<=15000000);
+    queue.forEach(item=>{if(!valid.includes(item)){item.state='error';item.message=!/\.(pdf|docx)$/i.test(item.name)?(LANG==='ar'?'نوع الملف غير مدعوم؛ استخدم PDF أو DOCX.':'Unsupported file type; use PDF or DOCX.'):(LANG==='ar'?'يتجاوز الملف حد 15 ميجابايت.':'File exceeds the 15 MB limit.')}});
+    uploadWarnings.replaceChildren();renderUploadResults(queue);
+    if(!valid.length){uploadStatus.textContent=LANG==='ar'?'لم يتم رفع أي ملف.':'No files were uploaded.';return}
+    uploadSubmit.dataset.busy='1';uploadSubmit.disabled=true;uploadButton.disabled=true;uploadInput.disabled=true;
+    let succeeded=0;
+    for(const item of valid){
+      item.state='working';item.message=LANG==='ar'?'جارٍ الرفع واستخراج النص…':'Uploading and extracting text…';uploadStatus.textContent=item.message+' · '+item.name;renderUploadResults(queue);
+      try{
+        const formData=new FormData();formData.append('file',item.file,item.name);
+        const csrf=csrfToken(),headers=csrf?{'X-CSRF-Token':decodeURIComponent(csrf)}:{};
+        const response=await fetch('/cases/'+encodeURIComponent(matterSelect.value)+'/upload',{method:'POST',credentials:'same-origin',headers,body:formData});
+        const result=await response.json().catch(()=>({}));
+        if(!response.ok){
+          let message=String(result.detail||result.message||('Upload failed ('+response.status+').'));
+          if(response.status===413)message=LANG==='ar'?'تجاوز الملف حد الرفع أو حد النص المستخرج أو عدد الصفحات.':'File exceeds upload, extracted-text, or page-count limits.';
+          else if(response.status===415)message=LANG==='ar'?'الصيغة غير مدعومة. ارفع PDF أو DOCX فقط.':'Unsupported format. Upload PDF or DOCX only.';
+          else if(response.status===422)message=LANG==='ar'?'تعذر استخراج نص قابل للقراءة. قد يحتاج PDF الممسوح ضوئياً إلى إعداد OCR بالعربية أو الإنجليزية.':'No readable text could be extracted. A scanned PDF may require Arabic or English OCR setup.';
+          else if(response.status===503)message=LANG==='ar'?'تخزين الملفات الأصلية غير متاح حالياً؛ لم يكتمل الرفع.':'Original-file storage is unavailable; upload did not complete.';
+          else if(response.status===423)message=LANG==='ar'?'المكتب في وضع القراءة فقط؛ تواصل مع مسؤول المكتب.':'The firm is read-only; contact your firm administrator.';
+          throw new Error(message);
+        }
+        succeeded++;item.state='done';item.message=LANG==='ar'?'تم استخراج '+String(result.chunks||0)+' مقطع نصي':'Indexed '+String(result.chunks||0)+' text chunks';
+        if(result.ocr_used){item.message+=' · '+(LANG==='ar'?'OCR غير متحقق':'OCR unverified');uploadNotice('warning',LANG==='ar'?'تم استخدام OCR. النص المستخرج غير متحقق؛ قارنه بكل صفحة في الملف الأصلي قبل الاعتماد عليه.':'OCR was used. Extracted text is unverified; compare it page by page with the original before relying on it.')}
+        if(result.ocr_warning)uploadNotice('warning',LANG==='ar'?'تم فهرسة الصفحات القابلة للقراءة فقط؛ بعض الصفحات لم تُفهرس لعدم توفر OCR.':'Only readable pages were indexed; some pages were skipped because OCR was unavailable.');
+        if(result.original_file_retained===false)uploadNotice('warning',LANG==='ar'?'تم فهرسة النص، لكن نسخة الملف الأصلية لم تُحفظ في التخزين الخاص. احتفظ بالأصل في نظام المكتب.':'Text was indexed, but the original was not retained in private storage. Keep the original in the firm document system.');
+      }catch(error){item.state='error';item.message=String(error.message||error);uploadNotice('error',item.name+': '+item.message)}
+      renderUploadResults(queue);
+    }
+    uploadStatus.textContent=LANG==='ar'?'اكتمل الرفع: '+succeeded+' من '+valid.length+' ملف':'Upload finished: '+succeeded+' of '+valid.length+' files';
+    uploadSubmit.dataset.busy='';uploadSubmit.disabled=false;uploadButton.disabled=false;uploadInput.disabled=false;uploadInput.value='';
+    if(succeeded){try{const matter=await api('/cases/'+matterSelect.value);documentWorkspace.replaceChildren(documentIntelligencePanel(Number(matterSelect.value),matter.docs||[]))}catch(_){uploadNotice('warning',LANG==='ar'?'تم الرفع، لكن تعذر تحديث قائمة المستندات. أعد فتح مساحة ذكاء المستندات.':'Upload succeeded, but the document list could not be refreshed. Reopen document intelligence.')}}
+  };
+  uploadInput.onchange=()=>{if(uploadInput.files?.length)uploadFiles(Array.from(uploadInput.files))};
   const openDocumentWorkspace=makeBtn(uiText('فتح مساحة ذكاء المستندات','Open document intelligence'),async()=>{if(!matterSelect.value){toast(uiText('اختر ملف قضية أولاً','Select a matter first'));matterSelect.focus();return}openDocumentWorkspace.disabled=true;try{const matter=await api('/cases/'+matterSelect.value);documentWorkspace.replaceChildren(documentIntelligencePanel(Number(matterSelect.value),matter.docs||[]))}catch(error){toast(String(error.message||error))}finally{openDocumentWorkspace.disabled=false}},'g');
-  matterSelect.onchange=()=>documentWorkspace.replaceChildren();
+  matterSelect.onchange=()=>{documentWorkspace.replaceChildren();uploadButton.disabled=!matterSelect.value;uploadSubmit.disabled=!matterSelect.value;uploadStatus.textContent=matterSelect.value?(LANG==='ar'?'يمكنك الآن رفع مستندات إلى ملف القضية المحدد.':'You can now upload documents to the selected matter.'):(LANG==='ar'?'اختر ملف قضية لإضافة مستندات إليها.':'Select a matter before adding documents.')};
   const copyText=async(text)=>{try{if(navigator.clipboard&&navigator.clipboard.writeText)await navigator.clipboard.writeText(String(text||''));else{const t=h('textarea',{value:String(text||''),style:'position:fixed;opacity:0'});document.body.append(t);t.select();let copied=false;try{copied=document.execCommand('copy')===true}finally{t.remove()}if(!copied)throw new Error('copy failed')}toast(LANG==='ar'?'تم النسخ':'Copied to clipboard')}catch(_){toast(LANG==='ar'?'تعذر النسخ؛ حدد النص يدوياً':'Copy failed; select the text manually')}};
   const highlightTerms=(text,question,matchedTerms)=>{const candidates=Array.isArray(matchedTerms)&&matchedTerms.length?matchedTerms:String(question||'').trim().split(/\s+/);const terms=[...new Set(candidates.filter(t=>typeof t==='string'&&t.length>1))].slice(0,12).sort((a,b)=>b.length-a.length);if(!terms.length)return [document.createTextNode(String(text||''))];const escaped=terms.map(t=>t.replace(/[.*+?^{}()|[\]\\$]/g,ch=>'\\'+ch));const re=new RegExp('('+escaped.join('|')+')','giu');return String(text||'').split(re).filter(x=>x!=='').map(part=>terms.some(t=>part.toLocaleLowerCase()===t.toLocaleLowerCase())?h('mark',{textContent:part}):document.createTextNode(part))};
   const memoText=(question,result)=>{const rawAsOf=result.requested_as_of,asOf=typeof rawAsOf==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(rawAsOf)&&(()=>{const parsed=new Date(rawAsOf+'T00:00:00Z');return !Number.isNaN(parsed.valueOf())&&parsed.toISOString().slice(0,10)===rawAsOf})()?rawAsOf:'unknown',memoScope=typeof result.scope==='string'&&result.scope.trim()?result.scope:'unknown',lines=['LEGAL RESEARCH MEMO','Question: '+(question||'(not recorded)'),'As of: '+asOf,'Search scope: '+memoScope,'','Answer',result.answer||result.message||'No generated answer.','','Sources and exact passages'];const sources=Array.isArray(result.sources)?result.sources:[];if(!sources.length){const emptyScopeMessages={verified_corpus:'No relevant verified passage was returned by this verified-corpus search.',firm_documents:'No relevant passage was returned from the selected matter documents.',metadata_only:'No matching source-catalog metadata was returned; this search did not retrieve legal text.',all_permitted:'No relevant passage was returned by the selected combined search.',unknown:'No source records were returned; the search scope was not recorded.'};lines.push(emptyScopeMessages[memoScope]||'No source records were returned for the recorded search scope.');}sources.forEach((x,i)=>{const source=x&&typeof x==='object'&&!Array.isArray(x)?x:{},passage=typeof source.text==='string'&&source.text.trim()?source.text:'(No passage text recorded; metadata-only result.)';lines.push('','['+(i+1)+'] '+(source.citation||source.ref||'Unresolved citation'),'Status: '+(source.source_status||'outdated_or_under_review'),'Exact passage (verbatim):',passage)});lines.push('','Limitations',asOf==='unknown'?'- The search as-of date was not recorded; do not infer current legal status.':'- This memo reflects only the selected search scope and records available as of the stated date.','- A URL, registry entry, or model-generated answer is not independent proof of authenticity or current legal status.','- Missing pin-cites, publication/effective dates, amendment history, or permission evidence remain missing; do not infer them.','- If no relevant verified passage was found, this is not evidence that no applicable law exists.');return lines.join('\n')};
@@ -2163,7 +2238,7 @@ async function law(){
  },'primary');
  composer.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send.click()}});
  const composerArea=h('div',{className:'research-composer'},composer,send,h('div',{className:'mut',textContent:LANG==='ar'?'Enter للإرسال · Shift+Enter لسطر جديد':'Enter to send · Shift+Enter for a new line'}));
- shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-controls'},h('label',{},h('span',{textContent:LANG==='ar'?'نطاق البحث':'Search scope'}),scopeSelect),h('label',{},h('span',{textContent:LANG==='ar'?'ملف القضية (للبحث والحفظ)':'Matter (for search and saving)'}),matterSelect),openDocumentWorkspace),documentWorkspace,h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},researchStatus,thread,composerArea),sourceInspector));
+ shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-controls'},h('label',{},h('span',{textContent:LANG==='ar'?'نطاق البحث':'Search scope'}),scopeSelect),h('label',{},h('span',{textContent:LANG==='ar'?'ملف القضية (للبحث والحفظ)':'Matter (for search and saving)'}),matterSelect),openDocumentWorkspace),uploadPanel,documentWorkspace,h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},researchStatus,thread,composerArea),sourceInspector));
  await drawList();
  if(activeId)await loadConversation(activeId);
  else {const list=await api('/research/conversations');if(list.length)await loadConversation(list[0].id);else await newChat(false)}
