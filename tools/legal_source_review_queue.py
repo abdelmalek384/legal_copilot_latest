@@ -107,7 +107,7 @@ def review_queue(db_path: Path) -> dict:
         required = {
           "legal_sources":{"source_id","authority","source_page","collection_permission","commercial_reuse_permission","permission_evidence","terms_url"},
           "legal_documents":{"document_id","source_id","official_title","document_type"},
-          "legal_document_versions":{"version_id","document_id","version_label","source_url","original_sha256","publication_date","effective_date","legal_status","review_status","authenticity_verified","status_verified","amendment_history_verified","permission_evidence"},
+          "legal_document_versions":{"version_id","document_id","version_label","source_url","original_sha256","publication_date","effective_date","repeal_date","legal_status","review_status","authenticity_verified","status_verified","amendment_history_verified","permission_evidence"},
           "legal_review_events":{"version_id","review_type","outcome","evidence_url","reviewer","reviewed_at","review_event_id"}}
         actual = {t:cols(db,t) for t in required}
         bad = {t:sorted(fields-actual[t]) for t,fields in required.items() if fields-actual[t]}
