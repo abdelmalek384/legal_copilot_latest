@@ -2351,13 +2351,14 @@ function documentIntelligencePanel(caseId,documents){
    });
    select.onchange=()=>{draftOverrides.set(String(item.doc.document_id),select.value);status.textContent=uiText('تغيير محلي لم يُحفظ بعد. اضغط حفظ التصنيف لتسجيله.','Local change not yet saved. Select Save classification to persist it.')};
    const historyPanel=h('div',{className:'mut'});
+   const categoryName=value=>categories.find(([key])=>key===value)?.[1]||value;
    const history=btn(uiText('عرض سجل المراجعة','View review history'),async()=>{
     history.disabled=true;
     try{
      const result=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/classification-history');
      historyPanel.replaceChildren(...(result.events||[]).map(event=>h('p',{textContent:
       (event.event_type==='created'?uiText('إنشاء: ','Created: '):uiText('تحديث: ','Updated: '))+
-      (event.previous_category?event.previous_category+' → ':'')+event.new_category+
+      (event.previous_category?categoryName(event.previous_category)+' → ':'')+categoryName(event.new_category)+
       ' · '+uiText('المراجع رقم ','Reviewer #')+event.actor_user_id+' · '+event.created_at+
       (event.note?' · '+event.note:'')
      })));
