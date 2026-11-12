@@ -2075,7 +2075,7 @@ async function documentsPage(){
  const query=h('input',{type:'search',placeholder:uiText('ابحث عن ملف قضية أو رقمها','Search matters by title or number'),'aria-label':uiText('البحث عن ملف قضية','Search matters')});
  const matterSelect=h('select',{'aria-label':uiText('اختر ملف القضية','Choose a matter')},new Option(uiText('اختر ملف قضية لعرض مستنداتها','Choose a matter to view its documents'),'')); 
  const summary=h('p',{className:'mut',role:'status','aria-live':'polite'});
- const list=h('div',{className:'document-library-list'});
+ const list=h('div',{className:'document-library-list'}),documentList=h('div',{className:'document-library-list'});
  const workspace=h('div',{});
  const actions=h('div',{className:'workspace-actions'});
  let matters=[];
@@ -2097,13 +2097,13 @@ async function documentsPage(){
     h('div',{className:'document-library-file'},h('span',{className:'document-library-file-icon',textContent:String(doc.name||'').toLowerCase().endsWith('.pdf')?'PDF':'DOC'}),h('div',{},h('b',{textContent:doc.name||uiText('مستند دون اسم','Unnamed document')}),h('p',{className:'mut',textContent:uiText('معرّف المستند: ','Document ID: ')+doc.document_id}))),
     h('div',{className:'document-library-meta'},pill(doc.extraction_status||uiText('حالة الاستخراج غير متاحة','Extraction status unavailable'),doc.extraction_status==='text_extracted'?'done':'soon'),doc.ocr_used?pill(uiText('استخدم OCR — يلزم التحقق','OCR used — verify text'),'soon'):null)
    ));
-   list.replaceChildren(...(rows.length?rows:[h('p',{className:'mut',textContent:uiText('لا توجد مستندات مرفقة بملف القضية بعد. استخدم زر الرفع لإضافة PDF أو DOCX.','No documents are attached to this matter yet. Use Upload documents to add PDF or DOCX files.')})]));
+   documentList.replaceChildren(...(rows.length?rows:[h('p',{className:'mut',textContent:uiText('لا توجد مستندات مرفقة بملف القضية بعد. استخدم زر الرفع لإضافة PDF أو DOCX.','No documents are attached to this matter yet. Use Upload documents to add PDF or DOCX files.')})]));
    const upload=btn(uiText('رفع مستندات','Upload documents'),()=>{window.DOCUMENT_MATTER_ID=id;law()},'primary');
-   workspace.replaceChildren(h('div',{className:'workspace-actions'},upload),documentIntelligencePanel(id,docs));
+   workspace.replaceChildren(documentList,h('div',{className:'workspace-actions'},upload),documentIntelligencePanel(id,docs));
   }catch(error){summary.textContent=uiText('تعذر تحميل مستندات القضية. تحقق من صلاحية الوصول وحاول مجدداً.','Could not load matter documents. Check access and try again.')}
  };
  query.oninput=renderMatters;matterSelect.onchange=loadMatter;
- try{matters=await api('/cases');if(!Array.isArray(matters))matters=[];renderMatters();if(matterSelect.value)await loadMatter();else summary.textContent=uiText('اختر ملف قضية لعرض المستندات المصرح بها.','Choose a matter to view its authorized documents.')}
+ try{matters=await api('/cases');if(!Array.isArray(matters))matters=[];renderMatters();if(!matterSelect.value)summary.textContent=uiText('اختر ملف قضية لعرض المستندات المصرح بها.','Choose a matter to view its authorized documents.')}
  catch(_){summary.textContent=uiText('تعذر تحميل ملفات القضايا المتاحة.','Could not load accessible matters.')}
  shell(uiText('مكتبة المستندات','Document library'),h('p',{className:'workspace-subtitle',textContent:uiText('اعرض مستندات كل ملف قضية على حدة، وابحث في النصوص المستخرجة وراجعها مع الحفاظ على صلاحيات الملف وسجل التدقيق.','Browse documents one authorized matter at a time, search extracted text, and review it with matter permissions and audit history preserved.')}),h('div',{className:'filter-bar'},query,matterSelect),summary,list,workspace);
  if(matterSelect.value)await loadMatter();
