@@ -1,5 +1,7 @@
 # Changelog — Legal Copilot
 
+- Legal answer guard: add an always-on, cited English/Arabic negated-obligation consistency check with same-clause context matching; the broader claim-support heuristic remains opt-in.
+
 - Mobile UX follow-up: increase phone-width body text to 15px and constrain the login/password controls to the viewport with a 44px toggle target.
 
 - Security follow-up: pin approved outbound LLM HTTPS requests to validated public IPs, defer DNS until explicit processing approval, and block payment submitter self-approval.
