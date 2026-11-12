@@ -2236,7 +2236,7 @@ async function documentsPage(){
    previousTextSearch.disabled=textSearchOffset<=0;
    nextTextSearch.disabled=textSearchOffset+items.length>=textSearchTotal;
    const cards=items.map((item,index)=>h('article',{className:'card document-text-hit'},
-    h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+(item.document_name||uiText('مستند دون اسم','Unnamed document'))}),pill((item.case_title||uiText('ملف القضية','Matter'))+' · #'+item.case_id,'open')),
+    h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+(item.document_name||uiText('مستند دون اسم','Unnamed document'))}),h('span',{className:'mut',textContent:(item.case_title||uiText('ملف القضية','Matter'))+' · #'+item.case_id})),
     h('p',{className:'mut',textContent:[item.ref||uiText('مقطع ','Chunk ')+item.chunk_id,item.page?uiText('صفحة ','Page ')+item.page:uiText('رقم الصفحة غير مسجل','Page not recorded')].join(' · ')}),
     h('p',{className:'document-text-hit-excerpt',textContent:String(item.excerpt||'')}),
     btn(uiText('فتح ملف القضية','Open matter'),async()=>{const value=String(item.case_id);if(!Array.from(matterSelect.options).some(option=>option.value===value))matterSelect.add(new Option((item.case_title||uiText('ملف القضية','Matter'))+' (#'+value+')',value));matterSelect.value=value;window.DOCUMENT_MATTER_ID=Number(item.case_id);await loadMatter()},'g')
