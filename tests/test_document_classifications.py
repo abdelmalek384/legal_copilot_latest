@@ -108,6 +108,9 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("document_metadata_search", endpoint)
         self.assertNotIn("chunks_fts", endpoint)
         self.assertIn("case_title", endpoint)
+        self.assertIn("status_params = params[:14]", endpoint)
+        self.assertIn('"statuses": [str(row["extraction_status"]) for row in status_rows]', endpoint)
+        self.assertIn("document_metadata_search", endpoint)
 
 if __name__ == "__main__":
     unittest.main()
