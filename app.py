@@ -6743,7 +6743,8 @@ def search_accessible_documents(
     rows = c.execute(
         "SELECT d.id AS document_id,d.case_id,d.name,d.added,d.content_type,d.byte_size,"
         "d.extraction_status,d.ocr_used,dc.category AS saved_classification,"
-        "dc.version AS classification_version," + original_available_expr + " AS original_available,"
+        "dc.version AS classification_version,dc.updated_by_user_id AS classification_reviewer_user_id,"
+        "dc.updated_at AS classification_updated_at," + original_available_expr + " AS original_available,"
         "c.title AS case_title,c.case_number,c.case_year,c.client,c.opposing_party "
         "FROM docs d JOIN cases c ON c.id=d.case_id "
         "LEFT JOIN document_classifications dc ON dc.document_id=d.id "
@@ -6761,13 +6762,30 @@ def search_accessible_documents(
         "ORDER BY d.extraction_status",
         status_params,
     ).fetchall()
+    items = [dict(row) for row in rows]
+    reviewer_ids = sorted({
+        int(item["classification_reviewer_user_id"])
+        for item in items if item.get("classification_reviewer_user_id") is not None
+    })
+    reviewer_names = {}
+    if reviewer_ids:
+        placeholders = ",".join("?" for _ in reviewer_ids)
+        reviewer_names = {
+            int(row["id"]): row["name"]
+            for row in control_conn().execute(
+                f"SELECT id,name FROM users WHERE id IN ({placeholders})", reviewer_ids
+            ).fetchall()
+        }
+    for item in items:
+        reviewer_id = item.get("classification_reviewer_user_id")
+        item["classification_reviewer_name"] = reviewer_names.get(int(reviewer_id), "") if reviewer_id is not None else ""
     c.execute(
         "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
         (u["firm_id"], u["id"], "document_metadata_search"),
     )
     c.commit()
     return {
-        "items": [dict(row) for row in rows],
+        "items": items,
         "total": total,
         "limit": limit,
         "offset": offset,
