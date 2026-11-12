@@ -2546,8 +2546,9 @@ function documentIntelligencePanel(caseId,documents){
    try{
     const records=[];
     for(const item of cache.values()){
+     if(records.length>=100)break;
      const result=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/reviews');
-     for(const review of (Array.isArray(result.reviews)?result.reviews:[]))records.push({...review,filename:item.doc.name});
+     for(const review of (Array.isArray(result.reviews)?result.reviews:[])){if(records.length>=100)break;records.push({...review,filename:item.doc.name})}
     }
     records.sort((a,b)=>String(b.created_at||'').localeCompare(String(a.created_at||'')));
     const rows=records.slice(0,100).map((review,index)=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+review.filename+' · '+uiText('المقطع ','Chunk ')+review.chunk_id}),pill(({accepted:uiText('مقبول','Accepted'),corrected:uiText('تم التصحيح','Corrected'),needs_recheck:uiText('إعادة فحص','Needs recheck')}[review.outcome]||review.outcome),'done')),h('p',{className:'mut',textContent:[review.created_at,review.page_reference?uiText('صفحة ','Page ')+review.page_reference:'',uiText('المراجع رقم ','Reviewer ID ')+review.reviewer_user_id].filter(Boolean).join(' · ')}),review.note?h('p',{textContent:uiText('ملاحظة: ','Note: ')+review.note}):null,review.outcome==='corrected'?h('div',{},h('p',{className:'mut',textContent:uiText('النص قبل التصحيح','Text before correction')}),h('p',{textContent:String(review.original_text||'').slice(0,800)}),h('p',{className:'mut',textContent:uiText('النص بعد التصحيح','Corrected text')}),h('p',{textContent:String(review.reviewed_text||'').slice(0,800)})):null));
