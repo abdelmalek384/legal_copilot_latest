@@ -825,6 +825,15 @@ class BrowserAcceptanceTests(unittest.TestCase):
             layout.evaluate("(el) => getComputedStyle(el).gridTemplateColumns.split(' ').length"),
             3,
         )
+        self.page.set_viewport_size({"width": 1024, "height": 900})
+        self.assertEqual(
+            layout.evaluate("(el) => getComputedStyle(el).gridTemplateColumns.split(' ').length"),
+            2,
+        )
+        self.assertEqual(
+            inspector.evaluate("(el) => getComputedStyle(el).gridRowStart"),
+            "2",
+        )
         self.page.set_viewport_size({"width": 390, "height": 844})
         self.page.wait_for_function(
             "() => document.documentElement.scrollWidth <= window.innerWidth",
