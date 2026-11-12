@@ -1104,5 +1104,10 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("stats.classList.add('global-document-stats')", HTML)
         self.assertIn("stats.classList.remove('global-document-stats')", HTML)
 
+    def test_legal_research_source_caution_has_explicit_verification_heading(self):
+        self.assertIn("Recorded source status: verified operative text", HTML)
+        self.assertIn("Source verification warning", HTML)
+        self.assertIn("#main .research-source-caution strong{display:block", HTML)
+
 if __name__ == "__main__":
     unittest.main()
