@@ -1054,5 +1054,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("repeat(3,minmax(130px,180px)) auto", HTML)
         self.assertIn("@media(max-width:700px){#main .document-library-filter>.row{grid-template-columns:minmax(0,1fr)}}", HTML)
 
+    def test_accessible_documents_global_view_uses_permission_filtered_api_and_paging(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("All documents I can access", page)
+        self.assertIn("api('/documents/search?'+params.toString())", page)
+        self.assertIn("globalOffset", page)
+        self.assertIn("doc.case_id", page)
+        self.assertIn("Open matter", page)
+        self.assertIn("Metadata results only", page)
+
 if __name__ == "__main__":
     unittest.main()
