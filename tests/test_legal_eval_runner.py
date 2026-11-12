@@ -273,5 +273,20 @@ class LegalEvalRunnerTests(unittest.TestCase):
                 read_questions(p)
 
 
+
+    def test_non_object_api_response_fails_with_runner_error(self):
+        for response in (None, [], "not-an-object", 7):
+            with self.subTest(response=response), self.assertRaisesRegex(
+                RunnerError, "API response must be a JSON object"
+            ):
+                result_from_response({"id": "Q-BAD-RESPONSE"}, response)
+
+    def test_invalid_question_metadata_fails_with_runner_error(self):
+        for question in (None, [], {}, {"id": 7}):
+            with self.subTest(question=question), self.assertRaisesRegex(
+                RunnerError, "question metadata must be an object with a string id"
+            ):
+                result_from_response(question, {})
+
 if __name__ == "__main__":
     unittest.main()
