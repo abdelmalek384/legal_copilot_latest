@@ -7,7 +7,7 @@ The firm-admin ZIP export is available only in the separate-database runtime. It
 - Firm record and profile; active memberships; invitation metadata and identity lifecycle events (never raw invitation tokens).
 - Subscription plan/state, payment-submission metadata, subscription audit events, firm usage aggregates/events and setup-test metadata.
 - Cases, clients as recorded on matters, case membership, tasks, notes, events, deadlines, hearings/sessions, fees, invoices, invoice lines/payments/events, and case-deletion audit snapshots.
-- Documents, extraction review history, matter chunks, research conversations/messages, answer-correction records, product feedback, security audit events, reminder deliveries/attempts/preferences, and original-file hold/deletion history.
+- Documents, extraction review history, saved document classifications and their append-only classification audit events, matter chunks, research conversations/messages, answer-correction records, product feedback, security audit events, reminder deliveries/attempts/preferences, and original-file hold/deletion history.
 - original_file_objects.csv records object metadata and lifecycle state. original_files_manifest.csv records whether each original binary was included.
 
 ## Original documents and attachments
