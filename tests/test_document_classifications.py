@@ -183,5 +183,12 @@ class DocumentClassificationContractTests(unittest.TestCase):
         html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
         self.assertIn("review.outcome==='needs_recheck'?'soon':'done'", html)
 
+    def test_stale_extraction_review_digest_refreshes_source_before_retry(self):
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("let sourceChanged=false", html)
+        self.assertIn("current.text_sha256!==chunk.text_sha256", html)
+        self.assertIn("item.chunks=Array.isArray(latest.chunks)?latest.chunks:[]", html)
+        self.assertIn("The extracted text changed since this review was opened.", html)
+
 if __name__ == "__main__":
     unittest.main()
