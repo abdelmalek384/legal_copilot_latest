@@ -1089,5 +1089,9 @@ class FrontendUXContractTests(unittest.TestCase):
         page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
         self.assertIn("endsWith('.docx')?'DOCX':'FILE'", page)
 
+    def test_figma_theme_keeps_destructive_actions_red_and_disabled_states_visible(self):
+        self.assertIn("#main button.d{background:var(--bad)", HTML)
+        self.assertIn("#main button:disabled{opacity:.55;cursor:not-allowed}", HTML)
+
 if __name__ == "__main__":
     unittest.main()
