@@ -6632,7 +6632,6 @@ def search_accessible_document_text(
         "AND (?='admin' OR EXISTS(SELECT 1 FROM members m "
         "WHERE m.case_id=cs.id AND m.user_id=?)))"
     )
-    params = (int(u["firm_id"]), u["role"], int(u["id"]), fts_query)
     c = conn()
     joins = (
         " FROM chunks_fts JOIN chunks ON chunks.id=chunks_fts.rowid "
@@ -6640,8 +6639,6 @@ def search_accessible_document_text(
         "AND d.firm_id=? JOIN cases cs ON cs.id=chunks.case_id AND cs.firm_id=d.firm_id "
     )
     where = " WHERE chunks_fts MATCH ? AND " + access
-    # FTS MATCH is the first placeholder; firm scoping follows in the access predicate.
-    query_params = (fts_query, int(u["firm_id"]), u["role"], int(u["id"]))
     total = int(c.execute(
         "SELECT COUNT(*)" + joins + where,
         (int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"])),
