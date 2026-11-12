@@ -203,3 +203,10 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Open PR #1578 adds control-character rejection to provenance fields and requires an explicitly supplied `source_reference` to be a non-empty string. Static review found that explicit JSON `null` initially bypassed this rule; the branch now rejects it and includes a regression case.
 - #1578 is based on #1577 and must follow it in merge order. All three PRs remain unmerged. Their exact-head Tests workflows failed before exposing job steps (`steps: null`): #1576 run `43325788669`, #1577 run `43326626506`, #1578 run `43327265469`. These results do not establish code-test failure or success.
 - The user has installed the Python 3.12.16 hash-locked environment locally. `pip check` and the focused importer/scorer/release-gate test commands are still pending; no runtime test pass is claimed.
+
+
+## Retrieval evaluator input-shape hardening — 2026-11-13
+
+- PR #1580 fixes two malformed-input crash paths in `tools/evaluate_retrieval_quality.py`: unhashable JSON values supplied for `review_status` or `reviewer_role` previously reached set-membership checks and could raise `TypeError`.
+- The evaluator now checks that both values are strings before enum membership. Regression tests assert malformed values are excluded through `invalid_question_records`.
+- Static source/diff review only. Exact-head Tests run `43328171760` failed before any job steps were exposed (`steps: null`); no runtime test pass is claimed.
