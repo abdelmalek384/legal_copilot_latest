@@ -52,5 +52,11 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("doc.original_available", html)
         self.assertIn("'/docs/'+doc.document_id+'/original'", html)
 
+    def test_classification_migration_follows_existing_firm_migration_sequence(self):
+        migrations = sorted(path.name for path in (ROOT / "migrations" / "firm").glob("*.sql"))
+        self.assertIn("0013_original_file_deletion_workflow.sql", migrations)
+        self.assertIn("0014_document_classifications.sql", migrations)
+        self.assertNotIn("0002_document_classifications.sql", migrations)
+
 if __name__ == "__main__":
     unittest.main()
