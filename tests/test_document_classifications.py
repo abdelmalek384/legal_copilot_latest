@@ -129,5 +129,15 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn('item["excerpt"] =', endpoint)
         self.assertIn("not verified facts or legal conclusions", endpoint)
 
+    def test_accessible_document_index_includes_classification_reviewer_metadata(self):
+        app = (ROOT / "app.py").read_text(encoding="utf-8")
+        endpoint = app[app.index("def search_accessible_documents"):app.index('@app.get("/cases")')]
+        self.assertIn("dc.updated_by_user_id AS classification_reviewer_user_id", endpoint)
+        self.assertIn("dc.updated_at AS classification_updated_at", endpoint)
+        self.assertIn("control_conn().execute", endpoint)
+        self.assertIn('item["classification_reviewer_name"]', endpoint)
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("doc.classification_reviewer_name", html)
+
 if __name__ == "__main__":
     unittest.main()
