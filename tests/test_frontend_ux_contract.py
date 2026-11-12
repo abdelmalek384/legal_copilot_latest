@@ -816,7 +816,7 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_research_document_upload_is_matter_scoped_and_explicit(self):
         self.assertIn("accept:'.pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document'", HTML)
         self.assertIn("multiple:true", HTML)
-        self.assertIn("matterSelect.value+'/upload'", HTML)
+        self.assertIn("encodeURIComponent(matterSelect.value)+'/upload'", HTML)
         self.assertIn("uploadSubmit=makeBtn", HTML)
         self.assertIn("uploadInput.onchange=()=>{const count=uploadInput.files?.length||0;uploadSubmit.disabled=!matterSelect.value||!count", HTML)
         self.assertIn("item.file.size<=15000000", HTML)
