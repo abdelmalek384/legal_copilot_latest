@@ -8566,7 +8566,7 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
         (document_id, cid),
     ).fetchall()
     review_rows = c.execute(
-        "SELECT chunk_id,outcome,reviewer_user_id,reviewed_text,page_reference,note,created_at "
+        "SELECT chunk_id,outcome,reviewer_user_id,original_text,reviewed_text,page_reference,note,created_at "
         "FROM document_extraction_reviews WHERE document_id=? AND case_id=? AND firm_id=? ORDER BY id DESC",
         (document_id, cid, u["firm_id"]),
     ).fetchall()
