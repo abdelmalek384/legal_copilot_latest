@@ -34,7 +34,7 @@ The Legal Research page now exposes a document-intake panel immediately below th
 
 ## Warning and visual semantics
 
-The research intake uses a restrained light palette: dark ink for primary text, slate for secondary text, blue for primary actions and links, green only for successful completion, amber for actionable caution, and red for failed operations. Warning and error messages remain visible in the upload panel rather than disappearing as transient toast notifications. Warnings do not imply legal verification, authenticity or currentness.
+The research intake uses a restrained light palette: dark ink for primary text, slate for secondary text, blue for primary actions and links, green only for successful completion, amber for actionable caution, and red for failed operations. Warning and error messages remain visible in the upload panel rather than disappearing as transient toast notifications. Non-verified legal-source states are rendered in a prominent amber caution panel with the existing status explanation; verified-operative labels retain a distinct neutral-blue explanation panel. Warnings do not imply legal verification, authenticity or currentness.
 
 ## Responsive behavior
 
