@@ -200,6 +200,48 @@ def _validate_metadata(meta: object, text_bytes: bytes) -> dict:
     return {**meta, "publication_date": publication.isoformat(), "actual_sha256": actual}
 
 
+def _write_new_output_files(output_dir: Path, files: dict[str, bytes]) -> None:
+    """Create output files exclusively; never follow or overwrite an existing file."""
+    directory_fd = None
+    created = []
+    nofollow = getattr(os, "O_NOFOLLOW", 0)
+    binary = getattr(os, "O_BINARY", 0)
+    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | nofollow | binary
+    try:
+        if os.open in getattr(os, "supports_dir_fd", set()) and hasattr(os, "O_DIRECTORY"):
+            directory_fd = os.open(
+                output_dir,
+                os.O_RDONLY | os.O_DIRECTORY | nofollow,
+            )
+        for name, payload in files.items():
+            if directory_fd is not None:
+                fd = os.open(name, flags, 0o600, dir_fd=directory_fd)
+            else:
+                fd = os.open(output_dir / name, flags, 0o600)
+            created.append(name)
+            with os.fdopen(fd, "wb") as handle:
+                handle.write(payload)
+                handle.flush()
+                os.fsync(handle.fileno())
+        if directory_fd is not None:
+            os.fsync(directory_fd)
+    except FileExistsError as exc:
+        raise ValueError("output files already exist; use a new empty output directory") from exc
+    except Exception:
+        for name in reversed(created):
+            try:
+                if directory_fd is not None:
+                    os.unlink(name, dir_fd=directory_fd)
+                else:
+                    os.unlink(output_dir / name)
+            except OSError:
+                pass
+        raise
+    finally:
+        if directory_fd is not None:
+            os.close(directory_fd)
+
+
 def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
     text_path, metadata_path, output_dir = Path(text_path), Path(metadata_path), Path(output_dir)
     if text_path.resolve() == metadata_path.resolve():
@@ -212,9 +254,8 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
         raise ValueError("output directory must be outside the source directory")
     if output_dir.exists() and not output_dir.is_dir():
         raise ValueError("output path must be a directory")
-    if output_dir.exists() and any((output_dir / name).exists() or (output_dir / name).is_symlink()
-                                   for name in ("law_rows.jsonl", "import_report.md")):
-        raise ValueError("output files already exist; use a new empty output directory")
+    if output_dir.exists() and any(output_dir.iterdir()):
+        raise ValueError("output directory must be empty; use a new empty output directory")
     text_bytes = _read_regular(text_path, "Gazette text", MAX_TEXT_BYTES)
     meta_bytes = _read_regular(metadata_path, "metadata sidecar", MAX_METADATA_BYTES)
     try:
@@ -290,6 +331,8 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
     if not rows:
         raise ValueError("recognized headings contained no importable text")
     output_dir.mkdir(parents=True, exist_ok=True)
+    if output_dir.is_symlink() or not output_dir.is_dir():
+        raise ValueError("output directory must be a real directory, not a symlink")
     jsonl = "\n".join(json.dumps(row, ensure_ascii=False) for row in rows) + "\n"
     report = [
         "# Gazette text import report", "",
@@ -358,8 +401,10 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
                "- Resolve missing pages, numbering resets, schedules, tables, and OCR/transcription ambiguities.",
                "- Obtain separate source-rights, currentness, amendment/corrigendum, and Egyptian-lawyer review.",
                "- Do not change verification flags in this importer."]
-    (output_dir / "law_rows.jsonl").write_text(jsonl, encoding="utf-8")
-    (output_dir / "import_report.md").write_text("\n".join(report) + "\n", encoding="utf-8")
+    _write_new_output_files(output_dir, {
+        "law_rows.jsonl": jsonl.encode("utf-8"),
+        "import_report.md": ("\n".join(report) + "\n").encode("utf-8"),
+    })
     return {"document_id": metadata["document_id"], "article_headings": len(articles),
             "promulgation_provisions": promulgation_count,
             "attached_law_articles": attached_law_count,
