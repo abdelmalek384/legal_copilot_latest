@@ -1123,5 +1123,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("of '+sourceItems.length+' sources need verification", HTML)
         self.assertIn("Recorded verification status", HTML)
 
+    def test_multi_file_upload_reports_per_file_progress(self):
+        self.assertIn("for(const [index,item] of valid.entries())", HTML)
+        self.assertIn("index+1)+' / '+valid.length", HTML)
+
 if __name__ == "__main__":
     unittest.main()
