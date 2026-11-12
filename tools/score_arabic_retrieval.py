@@ -97,7 +97,7 @@ def _valid_reviewed(row, approved_reviewers):
     if (parsed is None or parsed.scheme.lower() != "https" or not parsed.hostname
             or parsed.username is not None or parsed.password is not None
             or parsed.netloc.endswith(":") or parsed.query or parsed.fragment):
-        raise ValueError(f'{row.get("id")}: review_evidence_url must be clean HTTPS')
+        raise ValueError(f"{row.get('id')}: review_evidence_url must be clean HTTPS")
     expected = row.get("expected_article")
     expected_id = row.get("expected_article_id")
     if expected not in (None, "") and (not isinstance(expected, str) or expected != expected.strip()):
@@ -242,14 +242,23 @@ def score(questions, runs, reviewer_registry):
         if colloquial_synonym_hits else None
     )
     wrong_rate = round(wrong_answers / cited_non_abstained, 4) if cited_non_abstained else None
-    if (len(reviewed) < MIN_TOTAL_REVIEWED_QUESTIONS or not top3_hits
+    # A known safety failure must not be hidden behind an otherwise incomplete
+    # evaluation cohort (for example, an unanswerable question answered without
+    # a citation leaves wrong_rate=None but is still a definite abstention failure).
+    known_safety_failure = (
+        wrong_answers > 0
+        or uncited_non_abstained > 0
+        or unverified_source_answers > 0
+        or (unanswerable > 0 and unanswerable_abstained != unanswerable)
+    )
+    if known_safety_failure:
+        target_status = "below_target"
+    elif (len(reviewed) < MIN_TOTAL_REVIEWED_QUESTIONS or not top3_hits
             or len(colloquial_hits) < MIN_TARGET_COHORT_SIZE
             or len(synonym_hits) < MIN_TARGET_COHORT_SIZE or not unanswerable
             or colloquial_rate is None or synonym_rate is None or wrong_rate is None):
         target_status = "not_evaluable_missing_approved_labels_or_cited_runs"
-    elif (colloquial_rate < 0.80 or synonym_rate < 0.80 or wrong_rate != 0.0
-          or uncited_non_abstained != 0 or unverified_source_answers != 0
-          or unanswerable_abstained != unanswerable):
+    elif colloquial_rate < 0.80 or synonym_rate < 0.80 or wrong_rate != 0.0:
         target_status = "below_target"
     else:
         target_status = "targets_met"
