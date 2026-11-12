@@ -4,6 +4,10 @@
 
 The workspace uses a restrained light visual system for daily legal-office operations. The dashboard prioritizes active matters, assigned work, upcoming hearings and deadlines, fees, and direct access to common actions. Legal Research uses a dedicated evidence-inspection layout rather than presenting source provenance as an afterthought.
 
+## Dashboard
+
+The dashboard includes a short list of active matters drawn from the same case records returned to the signed-in user by the existing cases API. Each row opens the existing case-detail view. The panel does not perform a broader search, bypass case permissions, or introduce a new data endpoint; the full case list remains available through the existing navigation.
+
 ## Legal Research layout
 
 - **History pane:** saved conversations, filtering, rename, delete, and new conversation actions.
