@@ -80,24 +80,53 @@ def _candidate(kind: str, match: re.Match, text: str,
             "page": page, "start": start, "end": end,
             "review_status": "candidate_unverified"}
 
-def extract_review_candidates(text: str) -> dict[str, Any]:
-    """Extract literal dates, case references, amounts and labelled party names."""
+_LEGAL_REFERENCE_PATTERN = re.compile(
+    rf"(?:المادة|مادة|Article)\\s*(?:رقم|No\\.?)?\\s*[{_DIGITS}]+|"
+    rf"(?:قانون|القانون)\\s*(?:رقم|No\\.?)?\\s*[{_DIGITS}]+\\s*(?:لسنة|of|/)\\s*[{_DIGITS}]{{4}}",
+    re.IGNORECASE,
+)
+_EVENT_MENTION_PATTERN = re.compile(
+    r"(?:جلسة|حكم|إنذار|إخطار|استئناف|طعن|قرار|توقيع|إبرام|فسخ|سداد|استلام|hearing|judgment|notice|appeal|termination|payment)",
+    re.IGNORECASE,
+)
+
+
+def extract_review_candidates(text: str, max_candidates: int = 250) -> dict[str, Any]:
+    """Extract bounded literal candidates; every result remains unverified."""
     if not isinstance(text, str):
         raise TypeError("text must be str")
     if len(text) > MAX_ANALYSIS_CHARS:
         raise ValueError("document text exceeds analysis limit")
+    if isinstance(max_candidates, bool) or not isinstance(max_candidates, int) or not 1 <= max_candidates <= 1000:
+        raise ValueError("max_candidates must be an integer between 1 and 1000")
     candidates = []
     page_markers = [(match.start(), int(match.group(1))) for match in _PAGE_MARKER.finditer(text)]
-    for pattern in _DATE_PATTERNS:
-        candidates.extend(_candidate("date", match, text, page_markers) for match in pattern.finditer(text))
-    candidates.extend(_candidate("case_reference", match, text, page_markers) for match in _CASE_PATTERN.finditer(text))
-    candidates.extend(_candidate("amount", match, text, page_markers) for match in _MONEY_PATTERN.finditer(text))
-    candidates.extend(_candidate("party_label", match, text, page_markers) for match in _PARTY_LABEL_PATTERN.finditer(text))
+    patterns = [
+        ("date", pattern) for pattern in _DATE_PATTERNS
+    ] + [
+        ("case_reference", _CASE_PATTERN),
+        ("amount", _MONEY_PATTERN),
+        ("party_label", _PARTY_LABEL_PATTERN),
+        ("legal_reference", _LEGAL_REFERENCE_PATTERN),
+        ("event_mention", _EVENT_MENTION_PATTERN),
+    ]
+    truncated = False
+    # Bound intermediate work per pattern, then retain the earliest candidates
+    # across all types so a frequent date pattern cannot starve other signals.
+    for kind, pattern in patterns:
+        for index, match in enumerate(pattern.finditer(text)):
+            if index >= max_candidates:
+                truncated = True
+                break
+            candidates.append(_candidate(kind, match, text, page_markers))
     candidates.sort(key=lambda item: (item["start"], item["end"], item["kind"]))
-    return {"candidate_count": len(candidates), "candidates": candidates,
+    if len(candidates) > max_candidates:
+        candidates = candidates[:max_candidates]
+        truncated = True
+    return {"candidate_count": len(candidates), "candidates": candidates, "truncated": truncated,
             "limitations": [
                 "Candidates are literal text matches, not verified facts.",
-                "Dates, amounts, names and case references require human confirmation.",
+                "Dates, amounts, names, case references, legal references and event mentions require human confirmation.",
                 "A missing candidate does not prove that information is absent.",
                 "Scanned image content is not analysed by this text-only function.",
             ]}
