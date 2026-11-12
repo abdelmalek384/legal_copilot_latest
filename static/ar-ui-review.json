@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "22cafd85cf3b01c495fb21b96f69f0b4fb8c9849",
   "generated_on": "2026-11-12",
-  "entry_count": 1160,
+  "entry_count": 1161,
   "entries": [
     {
       "id": "AR-0001",
@@ -11218,6 +11218,14 @@
       "arabic": "النص المستخرج",
       "source_lines": [
         2083
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1161",
+      "arabic": "مرجع أدخله المراجع ولم يتم التحقق منه مقابل الملف الأصلي.",
+      "source_lines": [
+        2657
       ],
       "review_status": "pending_native_review"
     }
