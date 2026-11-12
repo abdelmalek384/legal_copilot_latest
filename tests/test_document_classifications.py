@@ -61,6 +61,7 @@ class DocumentClassificationContractTests(unittest.TestCase):
         migrations = sorted(path.name for path in (ROOT / "migrations" / "firm").glob("*.sql"))
         self.assertIn("0013_original_file_deletion_workflow.sql", migrations)
         self.assertIn("0014_document_classifications.sql", migrations)
+        self.assertIn("0015_document_classification_integrity.sql", migrations)
         self.assertNotIn("0002_document_classifications.sql", migrations)
 
     def test_integrity_migration_guards_scope_and_makes_audit_events_immutable(self):
@@ -82,6 +83,19 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("CREATE TRIGGER IF NOT EXISTS document_classifications_scope_insert", app)
         self.assertIn("CREATE TRIGGER IF NOT EXISTS document_classification_events_no_update", app)
         self.assertIn("CREATE TRIGGER IF NOT EXISTS document_classification_events_no_delete", app)
+
+    def test_reviewer_names_are_resolved_from_control_plane_not_firm_database(self):
+        app = (ROOT / "app.py").read_text(encoding="utf-8")
+        classification = app[app.index("def get_document_classification"):app.index("class ExtractionReviewIn")]
+        reviews = app[app.index("def list_document_reviews"):app.index("def list_document_chunks")]
+        self.assertIn("identity = control_conn()", classification)
+        self.assertIn("control_conn().execute", reviews)
+        self.assertNotIn("JOIN users", classification)
+        self.assertNotIn("JOIN users", reviews)
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("persisted.updated_by_name", html)
+        self.assertIn("event.actor_name", html)
+        self.assertIn("review.reviewer_name", html)
 
 if __name__ == "__main__":
     unittest.main()
