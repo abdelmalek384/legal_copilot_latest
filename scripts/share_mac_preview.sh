@@ -12,7 +12,8 @@ if ! command -v cloudflared >/dev/null 2>&1; then
   exit 2
 fi
 
-if ! cloudflared tunnel --help 2>&1 | grep -q -- "--allowed-mail"; then
+cloudflared_help="$(cloudflared tunnel --help 2>&1 || true)"
+if [[ "$cloudflared_help" != *"--allowed-mail"* ]]; then
   echo "This cloudflared build does not advertise --allowed-mail. Update cloudflared before sharing." >&2
   exit 2
 fi
