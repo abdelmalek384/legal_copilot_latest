@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "5650befc4366ed62e28135aaab6aa78bb85c3def",
   "generated_on": "2026-11-03",
-  "entry_count": 1027,
+  "entry_count": 1033,
   "entries": [
     {
       "id": "AR-0001",
@@ -8589,6 +8589,60 @@
       "source_lines": [
         2514,
         2537
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1028",
+      "arabic": "ابحث باسم المستند أو نوعه",
+      "source_lines": [
+        2074,
+        2123
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1029",
+      "arabic": "البحث في مستندات القضية",
+      "source_lines": [
+        2074,
+        2123
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1030",
+      "arabic": "تصفية المستندات حسب حالة الاستخراج",
+      "source_lines": [
+        2074,
+        2123
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1031",
+      "arabic": "كل حالات الاستخراج",
+      "source_lines": [
+        2074,
+        2123
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1032",
+      "arabic": "مستندات مطابقة",
+      "source_lines": [
+        2074,
+        2123
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1033",
+      "arabic": "لا توجد مستندات تطابق عوامل التصفية.",
+      "source_lines": [
+        2074,
+        2123
       ],
       "review_status": "pending_native_review"
     }
