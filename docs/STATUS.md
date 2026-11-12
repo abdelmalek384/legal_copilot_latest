@@ -184,5 +184,5 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 
 - Expanded `tests/legal_eval/multi_area_questions.draft.jsonl` and its lawyer worksheet from 94 to 100 unreviewed questions across the same ten practice areas, matching the production release gate's minimum inventory size.
 - Six new prompts remain `needs_lawyer_review`; expected answers, sources, pin citations and answerability remain empty. This closes only the draft-count shortfall. It does not make the benchmark scoreable or satisfy the lawyer-approved release gate.
-- Updated static inventory tests to expect 100 rows and 257 unreviewed questions across the four draft sets checked by the retrieval-abstention regression.
+- Updated static inventory tests to expect 100 rows and 278 unreviewed questions across the four draft sets checked by the retrieval-abstention regression.
 - Test execution remains pending in the clean Python 3.12 locked environment; no test pass is claimed.
