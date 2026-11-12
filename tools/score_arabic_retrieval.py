@@ -183,7 +183,7 @@ def score(questions, runs):
         if run.get("scope") != "verified_corpus":
             raise ValueError(f"{qid}: run scope must be verified_corpus")
         run_as_of = run.get("requested_as_of")
-        if not isinstance(run_as_of, str) or not re.fullmatch(r"\\d{4}-\\d{2}-\\d{2}", run_as_of):
+        if not isinstance(run_as_of, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", run_as_of):
             raise ValueError(f"{qid}: run requested_as_of must be YYYY-MM-DD")
         try:
             parsed_run_as_of = date.fromisoformat(run_as_of)
