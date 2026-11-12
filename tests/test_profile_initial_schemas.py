@@ -618,7 +618,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
             db.execute(insert, (1,2,7,11,"contract","pleading","[]","wrong case"))
         with self.assertRaises(sqlite3.IntegrityError):
             db.execute(insert, (1,1,8,11,"contract","pleading","[]","wrong firm"))
-        db.execute("DELETE FROM cases WHERE id=1")
+        db.execute("DELETE FROM docs WHERE id=1")
         self.assertEqual(
             db.execute("SELECT COUNT(*) FROM document_classification_reviews").fetchone()[0], 0
         )
