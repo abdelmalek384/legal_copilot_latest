@@ -154,6 +154,25 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "review_evidence_url must be clean HTTPS"):
             score([question], [], TEST_REVIEWER_REGISTRY)
 
+    def test_reviewer_evidence_url_rejects_controls_delimiters_and_credentials(self):
+        for url in (
+            "https://example.gov/review path",
+            "https://example.gov/review\\nrecord",
+            "https://example.gov/review\\t",
+            "https://example.gov/review\\x7f",
+            "https://example.gov/review?",
+            "https://example.gov/review#",
+            "https://example.gov/review?token=",
+            "https://example.gov/review#section",
+            "https://@example.gov/review",
+            "https://example.gov:/review",
+        ):
+            with self.subTest(url=url):
+                question = reviewed("Q-BAD-URL")
+                question["review_evidence_url"] = url
+                with self.assertRaisesRegex(ValueError, "review_evidence_url must be clean HTTPS"):
+                    score([question], [], TEST_REVIEWER_REGISTRY)
+
     def test_benchmark_fingerprint_survives_counsel_labeling_but_detects_prompt_edits(self):
         q = {
             "id": "Q1", "practice_area": "labour", "question_ar": "سؤال تجريبي",
