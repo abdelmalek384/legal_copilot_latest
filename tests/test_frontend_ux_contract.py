@@ -702,6 +702,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertNotIn("id:'new-case-title-error',className:'bad',role:'alert',hidden:true,style:'display:block'", HTML)
 
 
+    def test_dashboard_exposes_active_matter_shortlist_and_respects_accessible_case_list(self):
+        self.assertIn("className:'card workspace-active-cases'", HTML)
+        self.assertIn("active.slice(0,5).map(c=>listItem", HTML)
+        self.assertIn("()=>view(c.id)", HTML)
+        self.assertIn("active.length", HTML)
+
     def test_legal_research_uses_three_pane_source_inspector_without_changing_evidence_contract(self):
         self.assertIn("className:'research-inspector card'", HTML)
         self.assertIn("role:'region',tabIndex:0,'aria-label':LANG==='ar'?'فحص المصدر':'Source inspector'", HTML)
