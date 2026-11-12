@@ -20,6 +20,11 @@
 - The source-review findings were also documented on merged PRs #1535, #1540, #1542 and #1552. Their production validators contain the corresponding control-character checks; the original regression inputs did not exercise those branches.
 - PR #1554 validation was source/diff review only. The test suite remains unexecuted because GitHub Actions runner allocation is blocked. Do not treat this merge as a test pass.
 
+## Gazette-text URL validation follow-up — 2026-11-12
+
+- PR #1556 was merged after manual source review. The offline UTF-8 Gazette-text importer now rejects ASCII DEL (0x7f) in optional `source_url` metadata, matching the other source-validation paths. A regression input uses an actual DEL character. Candidate output trust fields remain unchanged (`verified=0`, `in_force=0`, `as_of=null`).
+- Tests remain unexecuted because GitHub Actions runner allocation is blocked. This is a source-reviewed integration, not a test pass or legal verification.
+
 ## Latest engineering changes — 2026-11-12
 
 - PR #1521 refreshes this status page to record the current merged work and the remaining Dependabot lockfile blocker.
