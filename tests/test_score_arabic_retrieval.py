@@ -135,24 +135,24 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         question = reviewed("Q-CURATED")
         question["question_origin"] = "curated_candidate_not_user_observed"
         with self.assertRaisesRegex(ValueError, "observed questions"):
-            score([question], [])
+            score([question], [], TEST_REVIEWER_REGISTRY)
 
     def test_scoring_requires_privacy_and_reuse_approval(self):
         question = reviewed("Q-PRIVACY")
         question["privacy_review_status"] = "not_reviewed"
         with self.assertRaisesRegex(ValueError, "privacy_review_status"):
-            score([question], [])
+            score([question], [], TEST_REVIEWER_REGISTRY)
 
         question = reviewed("Q-REUSE")
         question["consent_or_reuse_basis"] = ""
         with self.assertRaisesRegex(ValueError, "consent_or_reuse_basis"):
-            score([question], [])
+            score([question], [], TEST_REVIEWER_REGISTRY)
 
     def test_non_string_reviewer_evidence_url_is_rejected_as_invalid_metadata(self):
         question = reviewed("Q-BAD-URL")
         question["review_evidence_url"] = 123
         with self.assertRaisesRegex(ValueError, "review_evidence_url must be clean HTTPS"):
-            score([question], [])
+            score([question], [], TEST_REVIEWER_REGISTRY)
 
     def test_benchmark_fingerprint_survives_counsel_labeling_but_detects_prompt_edits(self):
         q = {
@@ -218,7 +218,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
             "abstained": True,
             "used_unverified_source": False,
         }
-        result = score([question], [run])
+        result = score([question], [run], TEST_REVIEWER_REGISTRY)
         self.assertEqual(result["answerable_abstained_answers"], 1)
         self.assertEqual(result["answerable_non_abstained_answers"], 0)
         self.assertEqual(result["answerable_abstention_rate"], 1.0)
@@ -237,14 +237,14 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
              "abstained": not q["answerable"], "used_unverified_source": False}
             for q in questions
         ]
-        self.assertEqual(score(questions, good)["target_status"], "targets_met")
+        self.assertEqual(score(questions, good, TEST_REVIEWER_REGISTRY)["target_status"], "targets_met")
         bad = [dict(run) for run in good]
         bad[0]["retrieved_article_ids"] = [
             "LABOUR-SOURCE::law:قانون العمل [block 1]::article:1",
             "LABOUR-SOURCE::law:قانون العمل [block 1]::article:2",
         ]
         bad[0]["cited_article_ids"] = ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:2"]
-        self.assertEqual(score(questions, bad)["target_status"], "below_target")
+        self.assertEqual(score(questions, bad, TEST_REVIEWER_REGISTRY)["target_status"], "below_target")
 
     def test_target_requires_100_reviewed_real_questions(self):
         questions = (
@@ -455,7 +455,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
              "cited_article_ids": [], "abstained": False,
              "used_unverified_source": False},
         ]
-        result = score([colloquial, synonym], runs)
+        result = score([colloquial, synonym], runs, TEST_REVIEWER_REGISTRY)
         self.assertEqual(result["top3_hit_rate_colloquial"], 1.0)
         self.assertEqual(result["top3_hit_rate_synonym"], 1.0)
         self.assertEqual(result["wrong_article_rate"], 0.0)
