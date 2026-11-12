@@ -244,6 +244,23 @@ body{background:#f3f6fa;color:var(--figma-ink);font-family:Inter,"Noto Sans Arab
 @media(max-width:800px){#side{background:var(--figma-navy);border-bottom:1px solid #20364f}#side>a{color:#d5e0ed}#side>a.on{background:#173b60;color:#fff}#main{padding:16px 10px}#main .research-controls{grid-template-columns:minmax(0,1fr);gap:10px}#main .research-layout{display:flex;flex-direction:column}#main .research-list,#main .research-main,#main #research-source-inspector{width:100%;max-height:none;position:static}#main .research-list{order:3}#main .research-main{order:1}#main #research-source-inspector{order:2}#main .research-thread{min-height:0}#main .research-composer{grid-template-columns:minmax(0,1fr)}#main .research-composer button{width:100%}}
 @media(prefers-reduced-motion:reduce){#main *{scroll-behavior:auto!important;transition:none!important}}
 
+
+/* Document Intelligence: style the real matter-scoped workflow without inventing global metrics. */
+#main .document-intelligence-panel{padding:20px;background:#fff;border:1px solid var(--figma-border);border-radius:12px}
+#main .document-intelligence-panel>.workspace-section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:1px solid #e8edf3}
+#main .document-intelligence-panel>.workspace-section-title h3{margin:0;color:#1d3553;font-size:19px}
+#main .document-intelligence-panel>.mut{line-height:1.7;color:#64748b}
+#main .document-intelligence-panel>.row{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #edf1f5}
+#main .document-intelligence-panel>.row input,#main .document-intelligence-panel>.row select{min-width:0;flex:1}
+#main .document-intelligence-panel .card{background:#fbfcfe;border:1px solid #e1e8f0;border-radius:10px;box-shadow:none;padding:15px}
+#main .document-intelligence-panel article.card{margin:10px 0}
+#main .document-intelligence-panel article.card>.row{align-items:center}
+#main .document-intelligence-panel label{display:grid;gap:6px}
+#main .document-intelligence-panel label select{width:100%}
+#main .document-intelligence-panel [role=status]{padding:10px 12px;border-radius:8px;background:#f3f7fc;color:#52647a}
+#main .document-intelligence-panel mark{background:#fff0bd;color:#59420b;border-radius:3px;padding:0 2px}
+@media(max-width:800px){#main .document-intelligence-panel{padding:14px}#main .document-intelligence-panel>.row{align-items:stretch;flex-wrap:wrap}#main .document-intelligence-panel>.row input,#main .document-intelligence-panel>.row select{width:100%;flex-basis:100%}}
+
 </style>
 <style>
 /* Legal Copilot — premium workspace polish
