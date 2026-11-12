@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "5650befc4366ed62e28135aaab6aa78bb85c3def",
   "generated_on": "2026-11-03",
-  "entry_count": 962,
+  "entry_count": 979,
   "entries": [
     {
       "id": "AR-0001",
@@ -8006,6 +8006,159 @@
       "source_lines": [
         932
       ]
+    },
+    {
+      "id": "AR-0963",
+      "arabic": "أدخل النص المصحح أولاً.",
+      "source_lines": [
+        2386,
+        2438
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0964",
+      "arabic": "النص المصحح يتجاوز 20,000 حرف.",
+      "source_lines": [
+        2386,
+        2438
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0965",
+      "arabic": "تم حفظ قرار مراجعة الاستخراج في سجل التدقيق.",
+      "source_lines": [
+        2386,
+        2438
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0966",
+      "arabic": "تعذر حفظ المراجعة. أعد تحميل النص وحاول مجدداً.",
+      "source_lines": [
+        2386,
+        2438
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0967",
+      "arabic": "يتطلب إعادة الفحص",
+      "source_lines": [
+        2386,
+        2438
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0968",
+      "arabic": "له سجل مراجعة",
+      "source_lines": [
+        2386,
+        2438
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0969",
+      "arabic": "ملاحظة المراجع (اختيارية)",
+      "source_lines": [
+        2386,
+        2438
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0970",
+      "arabic": "ملاحظة مراجعة المقطع ",
+      "source_lines": [
+        2386,
+        2438
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0971",
+      "arabic": "أدخل النص المصحح بعد الرجوع إلى المستند الأصلي.",
+      "source_lines": [
+        2386,
+        2438
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0972",
+      "arabic": "النص المصحح للمقطع ",
+      "source_lines": [
+        2386,
+        2438
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0973",
+      "arabic": "اعتماد النص",
+      "source_lines": [
+        2386,
+        2438
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0974",
+      "arabic": "تصحيح النص",
+      "source_lines": [
+        2386,
+        2438
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0975",
+      "arabic": "صفحة ",
+      "source_lines": [
+        2386,
+        2438
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0976",
+      "arabic": "آخر ملاحظة: ",
+      "source_lines": [
+        2386,
+        2438
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0977",
+      "arabic": "لا توجد مقاطع نصية متاحة للمراجعة.",
+      "source_lines": [
+        2386,
+        2438
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0978",
+      "arabic": "راجع كل مقطع مقابل المستند الأصلي. قرارات الاعتماد والتصحيح وإعادة الفحص تُحفظ مع هوية المراجع والتوقيت؛ لا تعتمد على النص المستخرج دون التحقق من الأصل.",
+      "source_lines": [
+        2386,
+        2438
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0979",
+      "arabic": "تُعرض أول 100 مقطع فقط في هذه الشاشة. استخدم صفحات المستند ومراجع المقاطع لتحديد مواضع المراجعة.",
+      "source_lines": [
+        2386,
+        2438
+      ],
+      "review_status": "pending_native_review"
     }
   ]
 }
