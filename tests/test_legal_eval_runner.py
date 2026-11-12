@@ -273,5 +273,14 @@ class LegalEvalRunnerTests(unittest.TestCase):
                 read_questions(p)
 
 
+
+    def test_api_response_reader_rejects_non_object_json_roots(self):
+        class FakeOpener:
+            def open(self, request, timeout=0):
+                return io.BytesIO(b"[]")
+
+        with self.assertRaisesRegex(RunnerError, "JSON value that was not an object"):
+            _request_json(FakeOpener(), "http://localhost/api", {})
+
 if __name__ == "__main__":
     unittest.main()
