@@ -8169,6 +8169,12 @@ def list_original_document_deletion_requests(
     return {"document_id": document_id, "requests": result}
 
 
+class DocumentClassificationIn(BaseModel):
+    category: str = Field(pattern=r"^(unclassified|court_judgment|contract|pleading|correspondence|evidence_or_receipt)$")
+    expected_updated_at: str | None = Field(default=None, max_length=40)
+    note: str = Field(default="", max_length=1000)
+
+
 class ExtractionReviewIn(BaseModel):
     outcome: str = Field(pattern=r"^(accepted|corrected|needs_recheck)$")
     corrected_text: str | None = Field(default=None, max_length=20000)
@@ -8253,8 +8259,15 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
             break
     analysis_text = "\n".join(analysis_parts)
     classification = classify_document(doc["name"], analysis_text)
+    saved_row = c.execute(
+        "SELECT category,updated_by_user_id,updated_at FROM document_classifications "
+        "WHERE document_id=? AND case_id=? AND firm_id=?",
+        (document_id, cid, u["firm_id"]),
+    ).fetchone()
+    saved_classification = dict(saved_row) if saved_row else None
     intelligence = {
         "classification": classification,
+        "saved_classification": saved_classification,
         "candidate_count": len(candidates),
         "candidates": candidates,
         "truncated": analysis_truncated,
@@ -8269,6 +8282,92 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
         "intelligence": intelligence,
         "warning": "Server-side keyword and regex results are review candidates only. They do not establish legal accuracy, facts, deadlines, or source authenticity.",
     }
+
+
+@app.post("/cases/{cid}/docs/{document_id}/classification", status_code=200)
+@rollback_tenant_transaction_on_error
+def save_document_classification(
+    cid: int, document_id: int, body: DocumentClassificationIn, u: dict = Depends(user)
+):
+    """Persist a lawyer-selected document label with firm-local immutable review history."""
+    c = conn()
+    need(c, u, cid)
+    doc = c.execute(
+        "SELECT id FROM docs WHERE id=? AND case_id=? AND firm_id=?",
+        (document_id, cid, u["firm_id"]),
+    ).fetchone()
+    if doc is None:
+        raise HTTPException(404, "document not found")
+
+    current = c.execute(
+        "SELECT category,updated_at FROM document_classifications "
+        "WHERE document_id=? AND case_id=? AND firm_id=?",
+        (document_id, cid, u["firm_id"]),
+    ).fetchone()
+    if current is None:
+        if body.expected_updated_at is not None:
+            raise HTTPException(409, "classification changed; reload before saving")
+        previous_category = None
+        c.execute(
+            "INSERT INTO document_classifications(document_id,case_id,firm_id,category,updated_by_user_id) "
+            "VALUES(?,?,?,?,?)",
+            (document_id, cid, u["firm_id"], body.category, u["id"]),
+        )
+        event_type = "created"
+    else:
+        if body.expected_updated_at is None or body.expected_updated_at != current["updated_at"]:
+            raise HTTPException(409, "classification changed; reload before saving")
+        previous_category = current["category"]
+        if previous_category == body.category:
+            return {
+                "document_id": document_id, "category": body.category,
+                "updated_at": current["updated_at"], "unchanged": True,
+            }
+        c.execute(
+            "UPDATE document_classifications SET category=?,updated_by_user_id=?,"
+            "updated_at=datetime('now') WHERE document_id=? AND case_id=? AND firm_id=? "
+            "AND updated_at=?",
+            (body.category, u["id"], document_id, cid, u["firm_id"], body.expected_updated_at),
+        )
+        if c.execute("SELECT changes()").fetchone()[0] != 1:
+            raise HTTPException(409, "classification changed; reload before saving")
+        event_type = "updated"
+
+    c.execute(
+        "INSERT INTO document_classification_events("
+        "document_id,case_id,firm_id,actor_user_id,event_type,previous_category,new_category,note"
+        ") VALUES(?,?,?,?,?,?,?,?)",
+        (document_id, cid, u["firm_id"], u["id"], event_type,
+         previous_category, body.category, body.note.strip()),
+    )
+    saved = c.execute(
+        "SELECT category,updated_by_user_id,updated_at FROM document_classifications "
+        "WHERE document_id=? AND case_id=? AND firm_id=?",
+        (document_id, cid, u["firm_id"]),
+    ).fetchone()
+    c.commit()
+    return {"document_id": document_id, **dict(saved), "unchanged": False}
+
+
+@app.get("/cases/{cid}/docs/{document_id}/classification-history")
+def document_classification_history(
+    cid: int, document_id: int, u: dict = Depends(user)
+):
+    c = conn()
+    need(c, u, cid)
+    doc = c.execute(
+        "SELECT id FROM docs WHERE id=? AND case_id=? AND firm_id=?",
+        (document_id, cid, u["firm_id"]),
+    ).fetchone()
+    if doc is None:
+        raise HTTPException(404, "document not found")
+    rows = c.execute(
+        "SELECT actor_user_id,event_type,previous_category,new_category,note,created_at "
+        "FROM document_classification_events WHERE document_id=? AND case_id=? AND firm_id=? "
+        "ORDER BY id DESC LIMIT 100",
+        (document_id, cid, u["firm_id"]),
+    ).fetchall()
+    return {"document_id": document_id, "events": [dict(row) for row in rows]}
 
 
 @app.post("/cases/{cid}/docs/{document_id}/chunks/{chunk_id}/review", status_code=201)
