@@ -1,6 +1,6 @@
 # Delivery blockers and closure register
 
-Last reviewed: 2026-11-12
+Last reviewed: 2026-11-13
 Scope: Legal Copilot release work. This register separates work that can be closed by repository changes from work that requires external execution, licensed/legal review, operational access, or real users.
 
 ## Closure policy
@@ -75,3 +75,10 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 3. Hand off any live answer-path, billing, database, tenant, UI or deployment change to AI-2.
 4. Reserve Codex for Python 3.12 execution, dependency lock verification, adversarial security tests and production acceptance.
 5. Do not tune `MIN_SCORE`, publish retrieval quality scores, or mark legal sources verified until approved labels/source evidence exist.
+
+
+## Release-gate benchmark inventory follow-up — 2026-11-13
+
+- The default `tools/production_release_gate.py` benchmark is `tests/legal_eval/multi_area_questions.draft.jsonl`. Its draft inventory previously contained 94 questions, below the gate's configured minimum of 100 even before counsel review.
+- The inventory and lawyer worksheet have been expanded to 100 questions across the same ten practice areas. This removes the structural count shortfall only; all 100 remain unreviewed and cannot satisfy the release gate until counsel supplies approved answers, dates, source/pin citations and reviewer evidence.
+- Codex must execute the focused inventory/retrieval tests and full suite in the clean Python 3.12 locked environment. This branch has not been runtime-tested.
