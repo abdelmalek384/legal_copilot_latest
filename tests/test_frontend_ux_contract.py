@@ -813,5 +813,35 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("text equality does not prove original-file identity", HTML)
 
 
+    def test_research_document_upload_is_matter_scoped_and_explicit(self):
+        self.assertIn("accept:'.pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document'", HTML)
+        self.assertIn("multiple:true", HTML)
+        self.assertIn("matterSelect.value+'/upload'", HTML)
+        self.assertIn("uploadSubmit=makeBtn", HTML)
+        self.assertIn("uploadInput.onchange=()=>{const count=uploadInput.files?.length||0;uploadSubmit.disabled=!matterSelect.value||!count", HTML)
+        self.assertIn("item.file.size<=15000000", HTML)
+        self.assertIn("credentials:'same-origin'", HTML)
+        self.assertIn("X-CSRF-Token", HTML)
+        self.assertIn("result.original_file_retained===false", HTML)
+
+    def test_research_upload_warnings_distinguish_ocr_partial_and_failure(self):
+        self.assertIn("if(result.ocr_used)", HTML)
+        self.assertIn("if(result.ocr_warning)", HTML)
+        self.assertIn("OCR was used. Extracted text is unverified", HTML)
+        self.assertIn("Only readable pages were indexed", HTML)
+        self.assertIn("No readable text could be extracted", HTML)
+        self.assertIn(".notice.warning{", HTML)
+        self.assertIn(".notice.danger{", HTML)
+
+    def test_research_workspace_uses_coherent_light_palette_and_responsive_upload_layout(self):
+        self.assertIn("--workspace-ink:#17243a", HTML)
+        self.assertIn("--workspace-blue:#2457c5", HTML)
+        self.assertIn("--workspace-success:#176b45", HTML)
+        self.assertIn("--workspace-warning:#8a4b08", HTML)
+        self.assertIn("--workspace-danger:#a52620", HTML)
+        self.assertIn("@media(max-width:800px){#main .research-controls{grid-template-columns:minmax(0,1fr)}", HTML)
+        self.assertIn(".research-upload-panel{grid-template-columns:minmax(0,1fr)}", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
