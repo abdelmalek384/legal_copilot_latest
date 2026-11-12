@@ -508,5 +508,24 @@ class ClaimSupportTests(unittest.TestCase):
         ))
 
 
+    def test_narrow_negated_obligation_guard_covers_arabic_legal_variants_and_spacing(self):
+        cases = (
+            ("لا يلتزم صاحب العمل بتقديم الإخطار.", "يلتزم صاحب العمل بتقديم الإخطار."),
+            ("يلتزم صاحب العمل بتقديم الإخطار.", "لا يلتزم صاحب العمل بتقديم الإخطار."),
+            ("لا يتعين على صاحب العمل تقديم الإخطار.", "يتعين على صاحب العمل تقديم الإخطار."),
+            ("يتعين على صاحب العمل تقديم الإخطار.", "لا يتعين على صاحب العمل تقديم الإخطار."),
+            ("صاحب العمل ليس ملزما بتقديم الإخطار.", "يلتزم صاحب العمل بتقديم الإخطار."),
+            ("يلتزم صاحب العمل بتقديم الإخطار.", "صاحب العمل ليس ملزما بتقديم الإخطار."),
+            ("لا\tيجب على صاحب العمل تقديم الإخطار.", "يجب على صاحب العمل تقديم الإخطار."),
+            ("يجب على صاحب العمل تقديم الإخطار.", "لا\tيجب على صاحب العمل تقديم الإخطار."),
+        )
+        for evidence, answer in cases:
+            with self.subTest(evidence=evidence, answer=answer):
+                self.assertTrue(has_negated_obligation_conflicts(
+                    answer + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
+
 if __name__ == "__main__":
     unittest.main()
