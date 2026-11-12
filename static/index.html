@@ -2126,7 +2126,7 @@ async function documentsPage(){
  const previousMatter=btn(uiText('السابق','Previous'),async()=>{if(matterOffset>0){matterOffset=Math.max(0,matterOffset-matterLimit);await loadMatters()}},'g');
  const nextMatter=btn(uiText('التالي','Next'),async()=>{if(matterOffset+matterLimit<matterTotal){matterOffset+=matterLimit;await loadMatters()}},'g');
  const searchMatter=btn(uiText('بحث','Search'),async()=>{matterOffset=0;await loadMatters()},'g');
- const allAccessibleDocsButton=btn(uiText('كل المستندات المتاحة لي','All documents I can access'),()=>loadAllAccessibleDocs(),'primary'),globalPageLabel=h('span',{className:'mut',role:'status','aria-live':'polite'}),previousGlobal=btn(uiText('السابق','Previous'),()=>{if(globalOffset>0){globalOffset=Math.max(0,globalOffset-50);loadAllAccessibleDocs()}},'g'),nextGlobal=btn(uiText('التالي','Next'),()=>{if(globalOffset+50<globalTotal){globalOffset+=50;loadAllAccessibleDocs()}},'g');
+ const allAccessibleDocsButton=btn(uiText('كل المستندات المتاحة لي','All documents I can access'),()=>{globalOffset=0;loadAllAccessibleDocs()},'primary'),globalPageLabel=h('span',{className:'mut',role:'status','aria-live':'polite'}),previousGlobal=btn(uiText('السابق','Previous'),()=>{if(globalOffset>0){globalOffset=Math.max(0,globalOffset-50);loadAllAccessibleDocs()}},'g'),nextGlobal=btn(uiText('التالي','Next'),()=>{if(globalOffset+50<globalTotal){globalOffset+=50;loadAllAccessibleDocs()}},'g');
  const renderMatters=()=>{
   list.hidden=false;
   const filtered=matters;
