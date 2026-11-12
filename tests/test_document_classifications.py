@@ -112,5 +112,17 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn('"statuses": [str(row["extraction_status"]) for row in status_rows]', endpoint)
         self.assertIn("document_metadata_search", endpoint)
 
+    def test_cross_matter_extracted_text_search_quotes_terms_and_filters_by_membership(self):
+        app = (ROOT / "app.py").read_text(encoding="utf-8")
+        endpoint = app[app.index("def search_accessible_document_text"):app.index('@app.get("/documents/search")')]
+        self.assertIn('@app.get("/documents/search-text")', app)
+        self.assertIn('re.findall(r"[\\\\w]+", needle, flags=re.UNICODE)', endpoint)
+        self.assertIn('chunks_fts MATCH ?', endpoint)
+        self.assertIn("chunks.case_id IN (SELECT cs.id FROM cases cs WHERE cs.firm_id=?", endpoint)
+        self.assertIn("EXISTS(SELECT 1 FROM members", endpoint)
+        self.assertIn("document_text_search", endpoint)
+        self.assertIn("substr(chunks.text,1,1200) AS excerpt", endpoint)
+        self.assertIn("not verified facts or legal conclusions", endpoint)
+
 if __name__ == "__main__":
     unittest.main()
