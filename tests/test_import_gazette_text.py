@@ -258,6 +258,26 @@ class GazetteTextImportTests(unittest.TestCase):
             import_text(self.text_path, self.meta_path, self.output)
         self.assertFalse(self.output.exists())
 
+    def test_source_url_rejects_whitespace_controls_and_empty_or_invalid_ports(self):
+        for value in (
+            "https://example.gov/path with spaces",
+            "https://example.gov/path\\nnext",
+            "https://example.gov/path\\tvalue",
+            "https://example.gov:/item",
+            "https://example.gov:99999/item",
+            [],
+        ):
+            with self.subTest(source_url=value):
+                self.metadata["source_url"] = value
+                self.metadata.pop("source_reference", None)
+                self.write_metadata()
+                with self.assertRaisesRegex(ValueError, "source_url"):
+                    import_text(self.text_path, self.meta_path, self.output)
+                self.assertFalse(self.output.exists())
+        self.metadata.pop("source_url", None)
+        self.metadata["source_reference"] = "Test fixture; not a legal source"
+        self.write_metadata()
+
     def test_allowed_collection_permission_requires_evidence_reference(self):
         self.metadata["collection_permission"] = "allowed"
         self.write_metadata()
