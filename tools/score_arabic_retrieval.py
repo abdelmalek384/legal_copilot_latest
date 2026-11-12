@@ -182,8 +182,17 @@ def score(questions, runs):
         run = r_by_id[qid]
         if run.get("scope") != "verified_corpus":
             raise ValueError(f"{qid}: run scope must be verified_corpus")
+        run_as_of = run.get("requested_as_of")
+        if not isinstance(run_as_of, str) or not re.fullmatch(r"\\d{4}-\\d{2}-\\d{2}", run_as_of):
+            raise ValueError(f"{qid}: run requested_as_of must be YYYY-MM-DD")
+        try:
+            parsed_run_as_of = date.fromisoformat(run_as_of)
+        except ValueError as exc:
+            raise ValueError(f"{qid}: run requested_as_of is invalid") from exc
+        if parsed_run_as_of.isoformat() != run_as_of:
+            raise ValueError(f"{qid}: run requested_as_of must be YYYY-MM-DD")
         expected_as_of = question.get("as_of_date")
-        if expected_as_of is not None and run.get("requested_as_of") != expected_as_of:
+        if expected_as_of is not None and run_as_of != expected_as_of:
             raise ValueError(f"{qid}: run requested_as_of does not match the reviewed question as_of_date")
         for field in ("retrieved_article_ids", "cited_article_ids"):
             if any(not _canonical_article_id(value) for value in run.get(field, [])):
