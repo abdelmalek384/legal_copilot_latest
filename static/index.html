@@ -260,6 +260,7 @@ body{background:#f3f6fa;color:var(--figma-ink);font-family:Inter,"Noto Sans Arab
 #main .document-intelligence-panel label select{width:100%}
 #main .document-intelligence-panel [role=status]{padding:10px 12px;border-radius:8px;background:#f3f7fc;color:#52647a}
 #main .document-intelligence-panel mark{background:#fff0bd;color:#59420b;border-radius:3px;padding:0 2px}
+#main .extraction-review-section{margin-top:14px;border-color:#d4deeb}#main .extraction-review-card{display:grid;gap:9px;margin-top:10px;padding:13px;background:#fbfcff}#main .extraction-review-text{margin:0;padding:12px;border:1px solid #e1e8f0;border-radius:8px;background:#fff;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.75;max-height:240px;overflow:auto}#main .extraction-review-card input,#main .extraction-review-card textarea{min-width:0;width:100%}#main .extraction-review-card .row{flex-wrap:wrap}
 @media(max-width:800px){#main .document-intelligence-panel{padding:14px}#main .document-intelligence-panel>.row{align-items:stretch;flex-wrap:wrap}#main .document-intelligence-panel>.row input,#main .document-intelligence-panel>.row select{width:100%;flex-basis:100%}}
 
 </style>
@@ -2382,6 +2383,58 @@ function documentIntelligencePanel(caseId,documents){
   const newPart=right.text.slice(Math.max(0,start-100),Math.min(right.text.length,right.text.length-tail+100));
   compareResults.append(pill(uiText('مقارنة نصية أولية — تتطلب مراجعة محامٍ','Preliminary text comparison — lawyer review required'),'soon'),h('p',{className:'mut',textContent:uiText('النسخة السابقة: ','Earlier version: ')+left.doc.name+' · '+uiText('النسخة اللاحقة: ','Later version: ')+right.doc.name}),h('div',{className:'card'},h('b',{textContent:uiText('النص السابق','Earlier text')}),h('p',{textContent:oldPart||uiText('لا يوجد نص مختلف','No differing text')})),h('div',{className:'card'},h('b',{textContent:uiText('النص اللاحق','Later text')}),h('p',{textContent:newPart||uiText('لا يوجد نص مختلف','No differing text')})),h('p',{className:'mut',textContent:uiText('يعرض هذا الفحص اختلافاً حرفياً تقريبياً فقط؛ لا يحدد الأثر القانوني أو صحة أي نسخة.','This shows a literal text difference only; it does not determine legal effect or authenticity of either version.')}));
  };
+ const submitChunkReview=async(item,chunk,outcome,correctedText,note,controls)=>{
+  controls.forEach(control=>control.disabled=true);
+  try{
+   const payload={outcome,page_reference:chunk.page==null?'':String(chunk.page),note:String(note||'').trim()};
+   if(outcome==='corrected'){
+    const corrected=String(correctedText||'').trim();
+    if(!corrected)throw new Error(uiText('أدخل النص المصحح أولاً.','Enter the corrected text first.'));
+    if(corrected.length>20000)throw new Error(uiText('النص المصحح يتجاوز 20,000 حرف.','Corrected text exceeds 20,000 characters.'));
+    payload.corrected_text=corrected;
+    payload.expected_text_sha256=chunk.text_sha256;
+   }
+   await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks/'+chunk.id+'/review','POST',payload);
+   const refreshed=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks');
+   item.chunks=Array.isArray(refreshed.chunks)?refreshed.chunks:[];
+   item.text=item.chunks.map(part=>String(part.text||'')).join('\\n');
+   item.intelligence=refreshed.intelligence||item.intelligence;
+   renderAnalysis();
+   status.textContent=uiText('تم حفظ قرار مراجعة الاستخراج في سجل التدقيق.','Extraction review decision saved to the audit history.');
+  }catch(error){
+   status.textContent=String(error.message||uiText('تعذر حفظ المراجعة. أعد تحميل النص وحاول مجدداً.','Could not save the review. Reload the text and try again.'));
+   controls.forEach(control=>control.disabled=false);
+  }
+ };
+ const renderChunkReviewCards=()=>{
+  const cards=[];let remaining=100;
+  for(const item of cache.values()){
+   for(const chunk of item.chunks){
+    if(remaining<=0)break;
+    remaining--;
+    const latest=chunk.latest_review;
+    const reviewLabel=latest?({accepted:uiText('تمت المراجعة','Reviewed — accepted'),corrected:uiText('تم تصحيح النص','Text corrected'),needs_recheck:uiText('يتطلب إعادة الفحص','Needs recheck')}[latest.outcome]||uiText('له سجل مراجعة','Review recorded')):uiText('لم تتم المراجعة','Not yet reviewed');
+    const note=h('input',{type:'text',maxLength:2000,placeholder:uiText('ملاحظة المراجع (اختيارية)','Reviewer note (optional)'),'aria-label':uiText('ملاحظة مراجعة المقطع ','Review note for chunk ')+chunk.id});
+    const correction=h('textarea',{rows:4,maxLength:20000,placeholder:uiText('أدخل النص المصحح بعد الرجوع إلى المستند الأصلي.','Enter corrected text after checking the original document.'),'aria-label':uiText('النص المصحح للمقطع ','Corrected text for chunk ')+chunk.id,style:'display:none;width:100%'});
+    const accepted=btn(uiText('اعتماد النص','Accept text'),()=>submitChunkReview(item,chunk,'accepted','',note.value,[accepted,recheck,edit]),'g');
+    const recheck=btn(uiText('يحتاج إعادة فحص','Needs recheck'),()=>submitChunkReview(item,chunk,'needs_recheck','',note.value,[accepted,recheck,edit]),'g');
+    const edit=btn(uiText('تصحيح النص','Correct text'),()=>{correction.style.display=correction.style.display==='none'?'block':'none';if(correction.style.display==='block')correction.focus()},'g');
+    const save=btn(uiText('حفظ التصحيح','Save correction'),()=>submitChunkReview(item,chunk,'corrected',correction.value,note.value,[accepted,recheck,edit,save]),'primary');
+    save.style.display='none';
+    edit.onclick=()=>{const show=correction.style.display==='none';correction.style.display=show?'block':'none';save.style.display=show?'inline-flex':'none';if(show)correction.focus()};
+    cards.push(h('article',{className:'card extraction-review-card'},
+     h('div',{className:'row'},h('b',{textContent:item.doc.name}),pill(reviewLabel,latest?'done':'soon')),
+     h('p',{className:'mut',textContent:[chunk.ref,chunk.page?uiText('صفحة ','Page ')+chunk.page:''].filter(Boolean).join(' · ')}),
+     h('p',{className:'extraction-review-text',textContent:String(chunk.text||'')}),
+     latest&&latest.note?h('p',{className:'mut',textContent:uiText('آخر ملاحظة: ','Latest note: ')+latest.note}):null,
+     note,correction,h('div',{className:'row'},accepted,recheck,edit,save)
+    ));
+   }
+   if(remaining<=0)break;
+  }
+  if(!cards.length)cards.push(h('p',{className:'mut',textContent:uiText('لا توجد مقاطع نصية متاحة للمراجعة.','No extracted text chunks are available for review.')}));
+  return h('section',{className:'card extraction-review-section'},h('b',{textContent:uiText('مراجعة النص المستخرج','Extracted text review')}),h('p',{className:'mut',textContent:uiText('راجع كل مقطع مقابل المستند الأصلي. قرارات الاعتماد والتصحيح وإعادة الفحص تُحفظ مع هوية المراجع والتوقيت؛ لا تعتمد على النص المستخرج دون التحقق من الأصل.','Check each chunk against the original document. Accept, correction and recheck decisions are audited with reviewer identity and timestamp; do not rely on extracted text without checking the original.')}),...cards,h('p',{className:'mut',textContent:uiText('تُعرض أول 100 مقطع فقط في هذه الشاشة. استخدم صفحات المستند ومراجع المقاطع لتحديد مواضع المراجعة.','The first 100 chunks are shown here. Use page and chunk references to locate the source passages.')}));
+ };
  const renderAnalysis=()=>{
   analysisResults.replaceChildren();
   const allCandidates=[];
@@ -2418,7 +2471,7 @@ function documentIntelligencePanel(caseId,documents){
   else timelineItems.push(h('p',{className:'mut',textContent:uiText('لا توجد إشارات تاريخية في النصوص المحملة.','No date mentions found in loaded text.')}));
   const timeline=h('section',{className:'card'},h('b',{textContent:uiText('الخط الزمني لذكر التواريخ','Date-mention timeline')}),...timelineItems,h('p',{className:'mut',textContent:uiText('ذكر التاريخ لا يثبت أنه جلسة أو ميعاد إجرائي أو ميعاد طعن. لا تُنشأ مواعيد تلقائياً.','A date mention is not proof of a hearing, procedural date, or appeal deadline. No deadlines are created automatically.')})); 
   if(!candidateCards.length)candidateCards.push(h('p',{className:'mut',textContent:uiText('لم تُستخرج مرشحات من النصوص المحملة.','No candidates were extracted from loaded text.')}));
-  analysisResults.append(duplicatePanel,h('section',{className:'card'},h('b',{textContent:uiText('التصنيفات المقترحة','Suggested document classifications')}),h('p',{className:'mut',textContent:uiText('تصنيف قائم على كلمات مفتاحية ظاهرة، وليس تصنيفاً قانونياً معتمداً. التعديلات هنا مسودات غير محفوظة.','Transparent keyword suggestions, not approved legal classifications. Changes here are unsaved drafts.')}),...classificationCards),h('section',{className:'card'},h('b',{textContent:uiText('المرشحات المستخرجة','Extracted review candidates')}),h('p',{className:'mut',textContent:uiText('كل نتيجة مرتبطة بالمستند والمقطع والصفحة عند توفرها. جميع النتائج غير متحققة وتحتاج مراجعة بشرية.','Each result retains document, chunk and page provenance when available. Every result is unverified and requires human review.')}),...candidateCards),timeline);
+  analysisResults.append(duplicatePanel,renderChunkReviewCards(),h('section',{className:'card'},h('b',{textContent:uiText('التصنيفات المقترحة','Suggested document classifications')}),h('p',{className:'mut',textContent:uiText('تصنيف قائم على كلمات مفتاحية ظاهرة، وليس تصنيفاً قانونياً معتمداً. التعديلات هنا مسودات غير محفوظة.','Transparent keyword suggestions, not approved legal classifications. Changes here are unsaved drafts.')}),...classificationCards),h('section',{className:'card'},h('b',{textContent:uiText('المرشحات المستخرجة','Extracted review candidates')}),h('p',{className:'mut',textContent:uiText('كل نتيجة مرتبطة بالمستند والمقطع والصفحة عند توفرها. جميع النتائج غير متحققة وتحتاج مراجعة بشرية.','Each result retains document, chunk and page provenance when available. Every result is unverified and requires human review.')}),...candidateCards),timeline);
   const selectOptions=[...cache.values()].map(item=>new Option(item.doc.name,String(item.doc.document_id)));
   beforeSelect.replaceChildren(new Option(uiText('الإصدار السابق','Earlier version'),''),...selectOptions);
   afterSelect.replaceChildren(new Option(uiText('الإصدار اللاحق','Later version'),''),...selectOptions);
