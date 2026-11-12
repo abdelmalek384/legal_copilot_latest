@@ -1976,6 +1976,9 @@ async function law(){
   let accessibleCases=[];
   try{accessibleCases=await api('/cases');accessibleCases.forEach(c=>matterSelect.append(new Option((c.title||('Matter '+c.id))+' (#'+c.id+')',String(c.id))))}catch(_){}
   scopeSelect.onchange=()=>{if(scopeSelect.value==='firm_documents'&&!matterSelect.value)toast(LANG==='ar'?'اختر ملف قضية للبحث في مستندات المكتب':'Select a matter to search firm documents')};
+  const documentWorkspace=h('div',{});
+  const openDocumentWorkspace=makeBtn(uiText('فتح مساحة ذكاء المستندات','Open document intelligence'),async()=>{if(!matterSelect.value){toast(uiText('اختر ملف قضية أولاً','Select a matter first'));matterSelect.focus();return}openDocumentWorkspace.disabled=true;try{const matter=await api('/cases/'+matterSelect.value);documentWorkspace.replaceChildren(documentIntelligencePanel(Number(matterSelect.value),matter.docs||[]))}catch(error){toast(String(error.message||error))}finally{openDocumentWorkspace.disabled=false}},'g');
+  matterSelect.onchange=()=>documentWorkspace.replaceChildren();
   const copyText=async(text)=>{try{if(navigator.clipboard&&navigator.clipboard.writeText)await navigator.clipboard.writeText(String(text||''));else{const t=h('textarea',{value:String(text||''),style:'position:fixed;opacity:0'});document.body.append(t);t.select();let copied=false;try{copied=document.execCommand('copy')===true}finally{t.remove()}if(!copied)throw new Error('copy failed')}toast(LANG==='ar'?'تم النسخ':'Copied to clipboard')}catch(_){toast(LANG==='ar'?'تعذر النسخ؛ حدد النص يدوياً':'Copy failed; select the text manually')}};
   const highlightTerms=(text,question,matchedTerms)=>{const candidates=Array.isArray(matchedTerms)&&matchedTerms.length?matchedTerms:String(question||'').trim().split(/\s+/);const terms=[...new Set(candidates.filter(t=>typeof t==='string'&&t.length>1))].slice(0,12).sort((a,b)=>b.length-a.length);if(!terms.length)return [document.createTextNode(String(text||''))];const escaped=terms.map(t=>t.replace(/[.*+?^{}()|[\]\\$]/g,ch=>'\\'+ch));const re=new RegExp('('+escaped.join('|')+')','giu');return String(text||'').split(re).filter(x=>x!=='').map(part=>terms.some(t=>part.toLocaleLowerCase()===t.toLocaleLowerCase())?h('mark',{textContent:part}):document.createTextNode(part))};
   const memoText=(question,result)=>{const rawAsOf=result.requested_as_of,asOf=typeof rawAsOf==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(rawAsOf)&&(()=>{const parsed=new Date(rawAsOf+'T00:00:00Z');return !Number.isNaN(parsed.valueOf())&&parsed.toISOString().slice(0,10)===rawAsOf})()?rawAsOf:'unknown',memoScope=typeof result.scope==='string'&&result.scope.trim()?result.scope:'unknown',lines=['LEGAL RESEARCH MEMO','Question: '+(question||'(not recorded)'),'As of: '+asOf,'Search scope: '+memoScope,'','Answer',result.answer||result.message||'No generated answer.','','Sources and exact passages'];const sources=Array.isArray(result.sources)?result.sources:[];if(!sources.length){const emptyScopeMessages={verified_corpus:'No relevant verified passage was returned by this verified-corpus search.',firm_documents:'No relevant passage was returned from the selected matter documents.',metadata_only:'No matching source-catalog metadata was returned; this search did not retrieve legal text.',all_permitted:'No relevant passage was returned by the selected combined search.',unknown:'No source records were returned; the search scope was not recorded.'};lines.push(emptyScopeMessages[memoScope]||'No source records were returned for the recorded search scope.');}sources.forEach((x,i)=>{const source=x&&typeof x==='object'&&!Array.isArray(x)?x:{},passage=typeof source.text==='string'&&source.text.trim()?source.text:'(No passage text recorded; metadata-only result.)';lines.push('','['+(i+1)+'] '+(source.citation||source.ref||'Unresolved citation'),'Status: '+(source.source_status||'outdated_or_under_review'),'Exact passage (verbatim):',passage)});lines.push('','Limitations',asOf==='unknown'?'- The search as-of date was not recorded; do not infer current legal status.':'- This memo reflects only the selected search scope and records available as of the stated date.','- A URL, registry entry, or model-generated answer is not independent proof of authenticity or current legal status.','- Missing pin-cites, publication/effective dates, amendment history, or permission evidence remain missing; do not infer them.','- If no relevant verified passage was found, this is not evidence that no applicable law exists.');return lines.join('\n')};
@@ -2160,13 +2163,175 @@ async function law(){
  },'primary');
  composer.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send.click()}});
  const composerArea=h('div',{className:'research-composer'},composer,send,h('div',{className:'mut',textContent:LANG==='ar'?'Enter للإرسال · Shift+Enter لسطر جديد':'Enter to send · Shift+Enter for a new line'}));
- shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-controls'},h('label',{},h('span',{textContent:LANG==='ar'?'نطاق البحث':'Search scope'}),scopeSelect),h('label',{},h('span',{textContent:LANG==='ar'?'ملف القضية (للبحث والحفظ)':'Matter (for search and saving)'}),matterSelect)),h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},researchStatus,thread,composerArea),sourceInspector));
+ shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-controls'},h('label',{},h('span',{textContent:LANG==='ar'?'نطاق البحث':'Search scope'}),scopeSelect),h('label',{},h('span',{textContent:LANG==='ar'?'ملف القضية (للبحث والحفظ)':'Matter (for search and saving)'}),matterSelect),openDocumentWorkspace),documentWorkspace,h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},researchStatus,thread,composerArea),sourceInspector));
  await drawList();
  if(activeId)await loadConversation(activeId);
  else {const list=await api('/research/conversations');if(list.length)await loadConversation(list[0].id);else await newChat(false)}
  // Place keyboard focus at the first research control only after async page setup is complete.
  scopeSelect.focus({preventScroll:true});
 }
+function documentIntelligencePanel(caseId,documents){
+ const docs=Array.isArray(documents)?documents.filter(d=>d&&d.document_id):[];
+ const cache=new Map(),draftOverrides=new Map();
+ const panel=h('section',{className:'card document-intelligence-panel'});
+ const status=h('p',{className:'mut',role:'status','aria-live':'polite','aria-atomic':'true',textContent:uiText('لم يبدأ تحليل المستندات بعد.','Document analysis has not started.')});
+ const analysisResults=h('div',{}),searchResults=h('div',{}),compareResults=h('div',{});
+ const query=h('input',{type:'search',placeholder:uiText('ابحث في النصوص المستخرجة بالعربية أو الإنجليزية','Search extracted text in Arabic or English'),'aria-label':uiText('البحث داخل مستندات القضية','Search within matter documents'),style:'width:100%'});
+ const beforeSelect=h('select',{'aria-label':uiText('الإصدار السابق','Earlier version')},new Option(uiText('الإصدار السابق','Earlier version'),'')); 
+ const afterSelect=h('select',{'aria-label':uiText('الإصدار اللاحق','Later version')},new Option(uiText('الإصدار اللاحق','Later version'),'')); 
+ const categories=[
+  ['unclassified',uiText('غير مصنف','Unclassified')],
+  ['court_judgment',uiText('حكم قضائي','Court judgment')],
+  ['contract',uiText('عقد','Contract')],
+  ['pleading',uiText('مذكرة أو صحيفة دعوى','Pleading')],
+  ['correspondence',uiText('مراسلات أو إخطار','Correspondence / notice')],
+  ['evidence_or_receipt',uiText('دليل أو إيصال','Evidence / receipt')]
+ ];
+ const normalize=value=>String(value||'').normalize('NFKC').replace(/[ًٌٍَُِّْٰـ]/g,'').replace(/[أإآٱ]/g,'ا').replace(/ى/g,'ي').replace(/[٠-٩]/g,d=>String('٠١٢٣٤٥٦٧٨٩'.indexOf(d))).toLocaleLowerCase();
+ const classify=(filename,text)=>{
+  const rules=[
+   ['court_judgment',['حكم','محكمة','منطوق الحكم','حيثيات','judgment','court ruling']],
+   ['contract',['عقد','اتفق الطرفان','بند','الطرف الأول','الطرف الثاني','agreement','contract']],
+   ['pleading',['صحيفة دعوى','مذكرة دفاع','طلبات المدعي','مذكرة','statement of claim','pleading','legal brief']],
+   ['correspondence',['إنذار','خطاب','مراسلة','إخطار','notice','correspondence','letter']],
+   ['evidence_or_receipt',['إيصال','فاتورة','محضر','كشف حساب','receipt','invoice','report']]
+  ];
+  const haystack=(String(filename||'')+'\n'+String(text||'').slice(0,1000000)).toLocaleLowerCase();
+  const scored=rules.map(([category,terms])=>({category,matched:terms.filter(term=>haystack.includes(term.toLocaleLowerCase()))})).filter(item=>item.matched.length);
+  scored.sort((a,b)=>b.matched.length-a.matched.length||a.category.localeCompare(b.category));
+  return scored.length?{category:scored[0].category,matched:scored[0].matched,signal:scored[0].matched.length>1?'multiple_keyword_matches':'single_keyword_match'}:{category:'unclassified',matched:[],signal:'no_keyword_match'};
+ };
+ const extractCandidates=(documentId,chunks)=>{
+  const patterns=[
+   {kind:'date',regex:/[0-9٠-٩]{1,2}[\/.-][0-9٠-٩]{1,2}[\/.-][0-9٠-٩]{2,4}|[0-9٠-٩]{4}[\/.-][0-9٠-٩]{1,2}[\/.-][0-9٠-٩]{1,2}/gu},
+   {kind:'case_reference',regex:/(?:دعوى|القضية|قضية|استئناف|طعن|جنحة|جناية)\s*(?:رقم|رقمها)?\s*[:：#]?\s*[0-9٠-٩]+(?:\s*[\/\\-]\s*[0-9٠-٩]+){0,2}/giu},
+   {kind:'amount',regex:/[0-9٠-٩]+(?:[,.٫٬][0-9٠-٩]+)?\s*(?:جنيه(?:اً|ا)?|جنيهات|ج\.م|EGP|LE|دولار|ريال)/giu},
+   {kind:'party_label',regex:/(?:المدعي|المدعى عليه|المتهم|المجني عليه|الطالب|المطلوب ضده|المؤجر|المستأجر|البائع|المشتري|Plaintiff|Defendant|Claimant|Respondent)\s*[:：-]\s*[^\n،؛;]{2,100}/giu},
+   {kind:'legal_reference',regex:/(?:المادة|مادة|Article)\s*(?:رقم|No\.?)?\s*[0-9٠-٩]+|(?:قانون|القانون)\s*(?:رقم|No\.?)?\s*[0-9٠-٩]+\s*(?:لسنة|of|\/)\s*[0-9٠-٩]{4}/giu},
+   {kind:'event_mention',regex:/(?:جلسة|حكم|إنذار|إخطار|استئناف|طعن|قرار|توقيع|إبرام|فسخ|سداد|استلام|hearing|judgment|notice|appeal|termination|payment)/giu}
+  ];
+  const found=[],seen=new Set();
+  for(const chunk of chunks){
+   const text=String(chunk.text||'');
+   for(const pattern of patterns){
+    const re=new RegExp(pattern.regex.source,pattern.regex.flags);
+    for(const match of text.matchAll(re)){
+     const value=String(match[0]||'').trim(),key=[pattern.kind,value,chunk.id,chunk.page].join('|');
+     if(!value||seen.has(key))continue;
+     seen.add(key);
+     const start=match.index||0;
+     found.push({kind:pattern.kind,value,excerpt:text.slice(Math.max(0,start-90),Math.min(text.length,start+value.length+90)).replace(/\s+/g,' ').trim(),page:chunk.page??null,chunk_ref:chunk.ref||String(chunk.id||''),chunk_id:chunk.id,document_id:documentId,review_status:'candidate_unverified'});
+     if(found.length>=250)return found;
+    }
+   }
+  }
+  return found;
+ };
+ const parseDate=value=>{
+  const raw=String(value||'').replace(/[٠-٩]/g,d=>String('٠١٢٣٤٥٦٧٨٩'.indexOf(d)));
+  const parts=raw.split(/[\/.-]/);
+  if(parts.length!==3||parts.some(x=>!/^\d+$/.test(x)))return null;
+  let year,month,day;
+  if(parts[0].length===4){year=Number(parts[0]);month=Number(parts[1]);day=Number(parts[2])}
+  else if(parts[2].length===4){day=Number(parts[0]);month=Number(parts[1]);year=Number(parts[2])}
+  else return null;
+  const d=new Date(Date.UTC(year,month-1,day));
+  return d.getUTCFullYear()===year&&d.getUTCMonth()===month-1&&d.getUTCDate()===day?d.toISOString().slice(0,10):null;
+ };
+ const loadedText=id=>{const item=cache.get(String(id));return item?item.text:''};
+ const renderSearch=()=>{
+  searchResults.replaceChildren();
+  const needle=normalize(query.value.trim());
+  if(!needle){status.textContent=uiText('اكتب كلمة أو عبارة للبحث.','Enter a word or phrase to search.');return}
+  if(!cache.size){status.textContent=uiText('حلّل المستندات أولاً لتحميل النصوص المصرح بها.','Analyze documents first to load authorized extracted text.');return}
+  const hits=[];
+  for(const item of cache.values()){
+   for(const chunk of item.chunks){if(normalize(chunk.text).includes(needle))hits.push({doc:item.doc,chunk});if(hits.length>=50)break}
+   if(hits.length>=50)break;
+  }
+  searchResults.replaceChildren(...hits.map((hit,index)=>h('article',{className:'card'},h('b',{textContent:(index+1)+'. '+hit.doc.name}),h('p',{className:'mut',textContent:[hit.chunk.ref,hit.chunk.page?uiText('صفحة ','Page ')+hit.chunk.page:uiText('رقم الصفحة غير مسجل','Page not recorded')].filter(Boolean).join(' · ')}),h('p',{textContent:String(hit.chunk.text||'').slice(0,420)}))));
+  status.textContent=hits.length?uiText('نتائج البحث: ','Search results: ')+hits.length:uiText('لا توجد مطابقات في النصوص المحملة.','No matches in the loaded extracted text.');
+ };
+ const renderComparison=()=>{
+  compareResults.replaceChildren();
+  const left=cache.get(String(beforeSelect.value)),right=cache.get(String(afterSelect.value));
+  if(!left||!right||left===right){compareResults.append(h('p',{className:'mut',textContent:uiText('اختر مستندين مختلفين بعد التحليل.','Choose two different documents after analysis.')}));return}
+  if(left.text===right.text){compareResults.append(pill(uiText('لا توجد اختلافات نصية بين النسختين.','No text differences were found between these versions.'),'done'));return}
+  if(left.text.length>100000||right.text.length>100000){compareResults.append(pill(uiText('تجاوزت إحدى النسختين حد المقارنة البالغ 100,000 حرف.','One version exceeds the 100,000-character comparison limit.'),'soon'));return}
+  let start=0;
+  while(start<left.text.length&&start<right.text.length&&left.text[start]===right.text[start])start++;
+  let tail=0;
+  while(tail<left.text.length-start&&tail<right.text.length-start&&left.text[left.text.length-1-tail]===right.text[right.text.length-1-tail])tail++;
+  const oldPart=left.text.slice(Math.max(0,start-100),Math.min(left.text.length,left.text.length-tail+100));
+  const newPart=right.text.slice(Math.max(0,start-100),Math.min(right.text.length,right.text.length-tail+100));
+  compareResults.append(pill(uiText('مقارنة نصية أولية — تتطلب مراجعة محامٍ','Preliminary text comparison — lawyer review required'),'soon'),h('p',{className:'mut',textContent:uiText('النسخة السابقة: ','Earlier version: ')+left.doc.name+' · '+uiText('النسخة اللاحقة: ','Later version: ')+right.doc.name}),h('div',{className:'card'},h('b',{textContent:uiText('النص السابق','Earlier text')}),h('p',{textContent:oldPart||uiText('لا يوجد نص مختلف','No differing text')})),h('div',{className:'card'},h('b',{textContent:uiText('النص اللاحق','Later text')}),h('p',{textContent:newPart||uiText('لا يوجد نص مختلف','No differing text')})),h('p',{className:'mut',textContent:uiText('يعرض هذا الفحص اختلافاً حرفياً تقريبياً فقط؛ لا يحدد الأثر القانوني أو صحة أي نسخة.','This shows a literal text difference only; it does not determine legal effect or authenticity of either version.')}));
+ };
+ const renderAnalysis=()=>{
+  analysisResults.replaceChildren();
+  const allCandidates=[];
+  const textGroups=new Map(),byteGroups=new Map();
+  for(const item of cache.values()){
+   const suggestion=classify(item.doc.name,item.text);item.suggestion=suggestion;
+   item.candidates=extractCandidates(item.doc.document_id,item.chunks);
+   allCandidates.push(...item.candidates.map(candidate=>({...candidate,filename:item.doc.name})));
+   const normalizedText=normalize(item.text).replace(/\s+/g,' ').trim();
+   if(normalizedText){if(!textGroups.has(normalizedText))textGroups.set(normalizedText,[]);textGroups.get(normalizedText).push(item.doc.name)}
+   const hash=String(item.doc.sha256||'').toLowerCase();
+   if(/^[0-9a-f]{64}$/.test(hash)){if(!byteGroups.has(hash))byteGroups.set(hash,[]);byteGroups.get(hash).push(item.doc.name)}
+  }
+  const duplicates=[];
+  for(const names of byteGroups.values())if(names.length>1)duplicates.push({kind:'byte_identical_candidate',names});
+  for(const names of textGroups.values())if(names.length>1)duplicates.push({kind:'text_identical_extraction_candidate',names});
+  const duplicateItems=[];
+  if(duplicates.length){for(const group of duplicates)duplicateItems.push(h('p',{className:'mut',textContent:(group.kind==='byte_identical_candidate'?uiText('تطابق SHA-256 للملف الأصلي: ','Original-file SHA-256 match: '):uiText('تطابق النص المستخرج بعد التطبيع: ','Normalized extracted-text match: '))+group.names.join(' · ')}))}
+  else duplicateItems.push(h('p',{className:'mut',textContent:uiText('لم تظهر مطابقات تكرار في المستندات المحملة.','No duplicate matches were found among loaded documents.')}));
+  const duplicatePanel=h('section',{className:'card'},h('b',{textContent:uiText('إشارات التكرار داخل ملف القضية','Duplicate signals within this matter')}),...duplicateItems,h('p',{className:'mut',textContent:uiText('هذه إشارات مراجعة داخل القضية الحالية فقط؛ لا يحدث دمج أو حذف تلقائي، وتطابق النص لا يثبت تطابق الملف الأصلي.','Review signals within this matter only; nothing is merged or deleted automatically, and text equality does not prove original-file identity.')}));
+  const classificationCards=[...cache.values()].map(item=>{
+   const current=draftOverrides.get(String(item.doc.document_id))||item.suggestion.category;
+   const select=h('select',{'aria-label':uiText('تصنيف مسودة للمستند ','Draft classification for ')+item.doc.name},...categories.map(([value,label])=>new Option(label,value)));
+   select.value=current;
+   select.onchange=()=>{draftOverrides.set(String(item.doc.document_id),select.value);status.textContent=uiText('تم تعديل تصنيف مسودة في هذه الشاشة فقط؛ لم يُحفظ على الخادم أو في سجل مراجعة.','A draft classification changed in this view only; it has not been saved to the server or review history.')};
+   return h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:item.doc.name}),pill(uiText('اقتراح يتطلب المراجعة','Suggestion — review required'),'soon')),h('p',{className:'mut',textContent:uiText('إشارات المطابقة: ','Matched signals: ')+(item.suggestion.matched.join('، ')||uiText('لا توجد كلمات مفتاحية','no keyword matches'))+' · '+item.suggestion.signal}),h('label',{},h('span',{className:'mut',textContent:uiText('تعديل تصنيف مسودة (غير محفوظ)','Edit draft classification (not saved)')}),select));
+  });
+  const typeLabels={date:uiText('تاريخ مذكور','Date mention'),case_reference:uiText('مرجع قضية','Case reference'),amount:uiText('مبلغ','Amount'),party_label:uiText('طرف مسمى','Labelled party'),legal_reference:uiText('مرجع قانوني','Legal reference'),event_mention:uiText('إشارة حدث','Event mention')};
+  const candidateCards=allCandidates.slice(0,120).map((candidate,index)=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+(typeLabels[candidate.kind]||candidate.kind)}),pill(uiText('مرشح غير متحقق','Unverified candidate'),'soon')),h('p',{textContent:candidate.value}),h('p',{className:'mut',textContent:candidate.filename+' · '+(candidate.page?uiText('صفحة ','Page ')+candidate.page:uiText('رقم الصفحة غير مسجل','Page not recorded'))+' · '+candidate.chunk_ref}),h('p',{className:'mut',textContent:candidate.excerpt})));
+  const dates=allCandidates.filter(candidate=>candidate.kind==='date').map(candidate=>({...candidate,normalized_date:parseDate(candidate.value)})).sort((a,b)=>String(a.normalized_date||'9999-99-99').localeCompare(String(b.normalized_date||'9999-99-99')));
+  const timelineItems=[];
+  if(dates.length){for(const item of dates.slice(0,80))timelineItems.push(h('p',{className:'mut',textContent:(item.normalized_date||uiText('تاريخ غير قابل للتطبيع','Unparsed date'))+' · '+item.filename+' · '+(item.page?uiText('صفحة ','Page ')+item.page:uiText('صفحة غير مسجلة','Page not recorded'))+' · '+item.value+' — '+uiText('يتطلب سياقاً قانونياً','requires legal context')}))}
+  else timelineItems.push(h('p',{className:'mut',textContent:uiText('لا توجد إشارات تاريخية في النصوص المحملة.','No date mentions found in loaded text.')}));
+  const timeline=h('section',{className:'card'},h('b',{textContent:uiText('الخط الزمني لذكر التواريخ','Date-mention timeline')}),...timelineItems,h('p',{className:'mut',textContent:uiText('ذكر التاريخ لا يثبت أنه جلسة أو ميعاد إجرائي أو ميعاد طعن. لا تُنشأ مواعيد تلقائياً.','A date mention is not proof of a hearing, procedural date, or appeal deadline. No deadlines are created automatically.')})); 
+  if(!candidateCards.length)candidateCards.push(h('p',{className:'mut',textContent:uiText('لم تُستخرج مرشحات من النصوص المحملة.','No candidates were extracted from loaded text.')}));
+  analysisResults.append(duplicatePanel,h('section',{className:'card'},h('b',{textContent:uiText('التصنيفات المقترحة','Suggested document classifications')}),h('p',{className:'mut',textContent:uiText('تصنيف قائم على كلمات مفتاحية ظاهرة، وليس تصنيفاً قانونياً معتمداً. التعديلات هنا مسودات غير محفوظة.','Transparent keyword suggestions, not approved legal classifications. Changes here are unsaved drafts.')}),...classificationCards),h('section',{className:'card'},h('b',{textContent:uiText('المرشحات المستخرجة','Extracted review candidates')}),h('p',{className:'mut',textContent:uiText('كل نتيجة مرتبطة بالمستند والمقطع والصفحة عند توفرها. جميع النتائج غير متحققة وتحتاج مراجعة بشرية.','Each result retains document, chunk and page provenance when available. Every result is unverified and requires human review.')}),...candidateCards),timeline);
+  const selectOptions=[...cache.values()].map(item=>new Option(item.doc.name,String(item.doc.document_id)));
+  beforeSelect.replaceChildren(new Option(uiText('الإصدار السابق','Earlier version'),''),...selectOptions);
+  afterSelect.replaceChildren(new Option(uiText('الإصدار اللاحق','Later version'),''),...selectOptions);
+  status.textContent=uiText('اكتمل التحليل الأولي لـ ','Initial analysis completed for ')+cache.size+uiText(' مستندات. جميع النتائج مرشحات غير متحققة.',' documents. All results are unverified candidates.');
+ };
+ const loadButton=btn(uiText('تحليل المستندات','Analyze documents'),async()=>{
+  if(!docs.length){status.textContent=uiText('لا توجد مستندات لتحليلها.','There are no documents to analyze.');return}
+  loadButton.disabled=true;cache.clear();analysisResults.replaceChildren();searchResults.replaceChildren();compareResults.replaceChildren();
+  let totalChars=0,loaded=0,skipped=0;
+  try{
+   for(const doc of docs.slice(0,40)){
+    status.textContent=uiText('جارٍ تحميل النصوص: ','Loading extracted text: ')+loaded+'/'+Math.min(docs.length,40);
+    const data=await api('/cases/'+caseId+'/docs/'+doc.document_id+'/chunks');
+    const chunks=Array.isArray(data.chunks)?data.chunks:[];
+    const text=chunks.map(chunk=>String(chunk.text||'')).join('\n');
+    if(totalChars+text.length>1000000){skipped++;break}
+    totalChars+=text.length;cache.set(String(doc.document_id),{doc,chunks,text});loaded++;
+   }
+   if(docs.length>40)skipped+=docs.length-40;
+   renderAnalysis();
+   if(skipped)status.textContent+=uiText(' تم تجاوز بعض المستندات/النصوص بسبب حدود التحليل.',' Some documents/text were skipped due to analysis limits.');
+  }catch(error){status.textContent=uiText('تعذر تحميل بعض المستندات؛ راجع صلاحية الوصول وحاول مجدداً.','Some documents could not be loaded; check access and try again.')}
+  finally{loadButton.disabled=false}
+ });
+ const searchButton=btn(uiText('بحث','Search'),renderSearch,'g');
+ const compareButton=btn(uiText('مقارنة النصوص','Compare text versions'),renderComparison,'g');
+ panel.append(h('div',{className:'workspace-section-title'},h('h3',{textContent:uiText('مساحة ذكاء المستندات','Document intelligence workspace')}),pill(String(docs.length)+' '+uiText('مستندات','documents'),'open')),h('p',{className:'mut',textContent:uiText('ابحث في النصوص المستخرجة، راجع التصنيفات المقترحة، واكتشف إشارات التكرار والاختلافات. لا تُثبت هذه النتائج الوقائع أو الأثر القانوني.','Search extracted text, review suggested classifications, and inspect duplicate/change signals. These results do not establish facts or legal effect.')}),loadButton,status,h('div',{className:'row'},query,searchButton),searchResults,h('div',{className:'row'},beforeSelect,afterSelect,compareButton),compareResults,analysisResults);
+ return panel;
+}
+
 async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=await api('/users'),again=()=>view(id);
  const lead=ME.role==='admin'||c.members.some(m=>m.role==='lead'&&m.user_id===ME.id),dn=c.tasks.filter(t=>t.status==='done').length,tot=c.tasks.length;
  const tabs=[['sum',uiText('الملخص','Overview')],['brief',uiText('ملخص ذكي','AI brief')],['tasks',uiText('المهام','Tasks')],['sess',uiText('الجلسات','Hearings')],['dead',uiText('المواعيد القانونية','Legal deadlines')],['notes',uiText('الملاحظات','Notes')],['fees',uiText('الأتعاب','Fees')],['invoices',uiText('الفواتير','Invoices')],['docs',uiText('المستندات','Documents')],['team',uiText('الفريق','Team')],['ask',uiText('اسأل','Ask')],['log',uiText('السجل','Activity log')]];let body;
@@ -2361,6 +2526,7 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
  if(TAB==='docs'){
   const f=h('input',{type:'file',accept:'.pdf,.docx','aria-label':uiText('اختر مستند القضية بصيغة PDF أو Word','Choose a case document in PDF or Word format')});
   const panel=h('div',{});
+  const intelligencePanel=documentIntelligencePanel(id,c.docs||[]);
   const statusText=(x)=>x==='accepted'?uiText('تمت مراجعة النص','Text reviewed'):x==='corrected'?uiText('تم تصحيح النص','Text corrected'):x==='needs_recheck'?uiText('يحتاج إعادة فحص','Needs recheck'):uiText('لم تتم المراجعة','Not reviewed');
   const renderChunkReview=(container,data)=>{
    container.replaceChildren();
@@ -2403,7 +2569,7 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
     container.append(card);
    });
   };
-  body=h('div',{className:'card'},c.docs.length?c.docs.map(d=>{
+  body=h('div',{className:'card'},intelligencePanel,c.docs.length?c.docs.map(d=>{
     const reviewPanel=h('div',{id:'doc-review-'+id+'-'+d.document_id});
     const toggle=btn(uiText('مراجعة النص المستخرج','Review extracted text'),async()=>{
       if(toggle.dataset.open==='1'){toggle.dataset.open='0';toggle.setAttribute('aria-expanded','false');reviewPanel.replaceChildren();return}
@@ -2414,11 +2580,12 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
     toggle.setAttribute('aria-controls',reviewPanel.id);
     toggle.setAttribute('aria-expanded','false');
     const status=d.extraction_status==='ocr_unverified'?uiText('نص OCR غير متحقق','OCR text not verified'):d.extraction_status==='partial_text_ocr_unavailable'?uiText('بعض الصفحات لم تُفهرس: OCR غير متاح','Some pages were not indexed: OCR unavailable'):(d.extraction_status||uiText('حالة الاستخراج غير مسجلة','Extraction status not recorded'));
-    return h('section',{className:'document-review-group'},h('div',{className:'row'},h('div',{},h('b',{textContent:d.name}),h('div',{className:'mut',textContent:fd(d.added)+' · '+status}),h('div',{className:'mut',textContent:d.sha256?'SHA-256: '+d.sha256:''})),toggle),reviewPanel)
+    const downloadOriginal=btn(uiText('تنزيل الأصل (إن كان محفوظاً)','Download original (if retained)'),async()=>{try{const response=await fetch('/cases/'+id+'/docs/'+d.document_id+'/original',{credentials:'same-origin'});if(!response.ok){const problem=await response.json().catch(()=>({}));toast(err(problem));return}const blob=await response.blob(),url=URL.createObjectURL(blob),link=h('a',{href:url,download:d.name||'original-document'});document.body.append(link);link.click();link.remove();window.setTimeout(()=>URL.revokeObjectURL(url),1000)}catch(_){toast(uiText('تعذر تنزيل المستند الأصلي','Could not download the original document'))}},'g');
+    return h('section',{className:'document-review-group'},h('div',{className:'row'},h('div',{},h('b',{textContent:d.name}),h('div',{className:'mut',textContent:fd(d.added)+' · '+status}),h('div',{className:'mut',textContent:d.sha256?'SHA-256: '+d.sha256:''})),h('div',{className:'row'},toggle,downloadOriginal)),reviewPanel)
   }):empty(uiText('لا توجد مستندات','No documents')),
    h('div',{className:'row'},f,btn(uiText('رفع وفهرسة','Upload and index'),async()=>{if(!f.files[0])return;const x=new FormData();x.append('file',f.files[0]);
     const csrf=csrfToken();const headers=csrf?{'X-CSRF-Token':decodeURIComponent(csrf)}:{};const r=await fetch('/cases/'+id+'/upload',{method:'POST',credentials:'same-origin',headers,body:x}),j=await r.json().catch(()=>({}));toast(r.ok?(j.ocr_warning?(LANG==='ar'?'تمت فهرسة الصفحات القابلة للقراءة فقط؛ OCR غير متاح لبعض الصفحات':'Only readable pages were indexed; OCR was unavailable for some pages'):(j.ocr_used?uiText('تمت الفهرسة عبر OCR؛ راجع النص مقابل الأصل قبل الاعتماد عليه','Indexed with OCR; compare against the original before relying on it'):uiText('تمت الفهرسة','Indexed'))):err(j));if(r.ok)again()})),
-   empty(uiText('PDF أو Word حتى 15 ميجابايت. النص المستخرج فقط هو المفهرس؛ لا تحفظ نسخة الملف الأصلي. راجع المقاطع قبل الاعتماد عليها، خصوصاً نص OCR.','PDF or Word up to 15 MB. Only extracted text is indexed; the original file is not retained. Review chunks before relying on them, especially OCR text.')))
+   empty(uiText('PDF أو Word حتى 15 ميجابايت. النص المستخرج فقط هو المفهرس؛ لا تحفظ نسخة الملف الأصلي. راجع المقاطع قبل الاعتماد عليها، خصوصاً نص OCR.','PDF or Word up to 15 MB. Extracted text is indexed. Original-file retention depends on the configured private storage backend; verify storage status before relying on an original copy. Review chunks before relying on them, especially OCR text.')))
 }if(TAB==='team'){
   const mu=h('select',{'aria-label':uiText('عضو الفريق','Team member')},...us.map(u=>new Option(u.name,u.id))),mr=h('select',{'aria-label':uiText('دور العضو في القضية','Case member role')},...Object.entries(RL).reverse().map(([k,v])=>new Option(v,k)));
   const workload=c.members.map(member=>{
