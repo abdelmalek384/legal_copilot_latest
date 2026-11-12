@@ -800,6 +800,11 @@ class BrowserAcceptanceTests(unittest.TestCase):
         copied_passage = self.read_clipboard()
         self.assertIn(sentinel, copied_passage)
 
+        self.page.get_by_role("button", name="فحص المصدر").first.click()
+        inspector = self.page.locator(".research-inspector")
+        self.assertTrue(inspector.get_by_text(sentinel, exact=False).is_visible())
+        self.assertIn("مستند مكتب غير متحقق", inspector.inner_text())
+
         with self.page.expect_download() as download_info:
             self.page.get_by_role("button", name="تصدير مذكرة بحث").click()
         download_path = download_info.value.path()
