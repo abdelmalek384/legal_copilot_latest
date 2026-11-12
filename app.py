@@ -120,6 +120,7 @@ BEFORE UPDATE ON document_classification_events
 BEGIN SELECT RAISE(ABORT, 'document classification audit events are immutable'); END;
 CREATE TRIGGER IF NOT EXISTS document_classification_events_no_delete
 BEFORE DELETE ON document_classification_events
+WHEN EXISTS (SELECT 1 FROM docs d JOIN cases c ON c.id=d.case_id WHERE d.id=OLD.document_id AND c.id=OLD.case_id)
 BEGIN SELECT RAISE(ABORT, 'document classification audit events are immutable'); END;
 -- Legal corpus provenance: one stable source record, multiple immutable legal versions.
 CREATE TABLE IF NOT EXISTS legal_documents(
