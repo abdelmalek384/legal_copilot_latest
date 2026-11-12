@@ -85,5 +85,38 @@ class AnswerSourcePolarityTests(unittest.TestCase):
         self.assertIn("تعكس صياغة صريحة", result["message"])
 
 
+
+    def test_ask_abstains_when_english_must_not_is_rewritten_as_must(self):
+        hit = {
+            "cos": 1.0, "score": 1, "ref": "SYNTHETIC-ENGLISH-OBLIGATION",
+            "text": "The employer must not deduct wages.",
+            "verified": True, "in_force": True, "applies_as_of": True,
+            "case_id": None, "source_status": app.STATUS_VERIFIED, "provenance": {},
+        }
+        with patch.dict("os.environ", {"LEGAL_CLAIM_SUPPORT_CHECK": ""}):
+            with patch.object(app, "search", return_value=[hit]), patch.object(
+                app, "LLM", return_value="The employer must deduct wages [1]."
+            ):
+                result = app.ask(None, "Must the employer deduct wages?", scope="verified_corpus")
+        self.assertIsNone(result["answer"])
+        self.assertTrue(result["abstained"])
+        self.assertIn("التزاماً أو حظراً صريحاً", result["message"])
+
+    def test_ask_preserves_faithful_english_must_not_answer(self):
+        hit = {
+            "cos": 1.0, "score": 1, "ref": "SYNTHETIC-ENGLISH-OBLIGATION",
+            "text": "The employer must not deduct wages.",
+            "verified": True, "in_force": True, "applies_as_of": True,
+            "case_id": None, "source_status": app.STATUS_VERIFIED, "provenance": {},
+        }
+        with patch.dict("os.environ", {"LEGAL_CLAIM_SUPPORT_CHECK": ""}):
+            with patch.object(app, "search", return_value=[hit]), patch.object(
+                app, "LLM", return_value="The employer must not deduct wages [1]."
+            ):
+                result = app.ask(None, "Must the employer deduct wages?", scope="verified_corpus")
+        self.assertEqual(result["answer"], "The employer must not deduct wages [1].")
+        self.assertFalse(result["abstained"])
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -6,7 +6,7 @@ from unittest import mock
 
 import app
 from app import norm, tokens, _mask_markdown_code
-from tools.claim_support import (_ARABIC_FINITE_PERIOD, _ENGLISH_FINITE_PERIOD, _has_modal_mismatch, _has_negated_obligation_mismatch, claim_support_enabled, has_unsupported_claims)
+from tools.claim_support import (_ARABIC_FINITE_PERIOD, _ENGLISH_FINITE_PERIOD, _has_modal_mismatch, _has_negated_obligation_mismatch, claim_support_enabled, has_unsupported_claims, has_negated_obligation_conflicts)
 
 
 class ClaimSupportTests(unittest.TestCase):
@@ -42,6 +42,7 @@ class ClaimSupportTests(unittest.TestCase):
         cases = (
             ("The employer is not required to provide notice.", "The employer must provide notice."),
             ("The employer must not deduct wages.", "The employer must deduct wages."),
+            ("The employer must\t  not deduct wages.", "The employer must deduct wages."),
             ("لا يجب على صاحب العمل تقديم الإخطار.", "يجب على صاحب العمل تقديم الإخطار."),
             ("لا يلتزم صاحب العمل بتقديم الإخطار.", "يلتزم صاحب العمل بتقديم الإخطار."),
             ("The employer must provide notice.", "The employer is not required to provide notice."),
@@ -466,6 +467,46 @@ class ClaimSupportTests(unittest.TestCase):
         }
         print("FICTIONAL_CLAIM_SUPPORT_BENCHMARK=" + json.dumps(report, ensure_ascii=False, sort_keys=True))
         self.assertEqual(false_pass_total, 0, "unsupported fictional claim passed the support check")
+
+
+    def test_narrow_negated_obligation_guard_catches_english_and_arabic_reversals(self):
+        cases = (
+            ("The employer must not deduct wages.", "The employer must deduct wages."),
+            ("The employer must deduct wages.", "The employer must not deduct wages."),
+            ("لا يجب على صاحب العمل تقديم الإخطار.", "يجب على صاحب العمل تقديم الإخطار."),
+            ("يجب على صاحب العمل تقديم الإخطار.", "لا يجب على صاحب العمل تقديم الإخطار."),
+        )
+        for evidence, answer in cases:
+            with self.subTest(evidence=evidence, answer=answer):
+                self.assertTrue(has_negated_obligation_conflicts(
+                    answer + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
+    def test_narrow_negated_obligation_guard_preserves_faithful_polarity(self):
+        cases = (
+            ("The employer must not deduct wages.", "The employer must not deduct wages."),
+            ("The employer must deduct wages.", "The employer must deduct wages."),
+            ("لا يجب على صاحب العمل تقديم الإخطار.", "لا يجب على صاحب العمل تقديم الإخطار."),
+            ("يجب على صاحب العمل تقديم الإخطار.", "يجب على صاحب العمل تقديم الإخطار."),
+        )
+        for evidence, answer in cases:
+            with self.subTest(evidence=evidence, answer=answer):
+                self.assertFalse(has_negated_obligation_conflicts(
+                    answer + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
+    def test_narrow_negated_obligation_guard_does_not_mix_unrelated_clauses(self):
+        evidence = (
+            "The employer must not deduct wages. "
+            "The employee must provide notice."
+        )
+        answer = "The employee must provide notice [1]."
+        self.assertFalse(has_negated_obligation_conflicts(
+            answer, [{"text": evidence}], tokens, norm, _mask_markdown_code
+        ))
+
 
 if __name__ == "__main__":
     unittest.main()
