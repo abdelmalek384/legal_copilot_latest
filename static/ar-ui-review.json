@@ -11147,8 +11147,8 @@
       "id": "AR-1151",
       "arabic": "عرض جميع المقاطع",
       "source_lines": [
-        1,
-        1
+        2668,
+        2668
       ],
       "review_status": "pending_native_review"
     },
@@ -11156,8 +11156,8 @@
       "id": "AR-1152",
       "arabic": "عرض غير المراجع فقط",
       "source_lines": [
-        1,
-        1
+        2668,
+        2668
       ],
       "review_status": "pending_native_review"
     },
@@ -11165,8 +11165,8 @@
       "id": "AR-1153",
       "arabic": "مقاطع لم تتم مراجعتها",
       "source_lines": [
-        1,
-        1
+        2669,
+        2669
       ],
       "review_status": "pending_native_review"
     },
@@ -11174,8 +11174,8 @@
       "id": "AR-1154",
       "arabic": "تُعرض حتى 100 مقطع في كل مرة. استخدم صفحات المستند ومراجع المقاطع لتحديد مواضع المراجعة.",
       "source_lines": [
-        1,
-        1
+        2669,
+        2669
       ],
       "review_status": "pending_native_review"
     }
