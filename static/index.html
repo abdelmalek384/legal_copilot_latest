@@ -2262,6 +2262,7 @@ async function documentsPage(){
   }catch(error){summary.textContent=uiText('تعذر تحميل مستندات القضية. تحقق من صلاحية الوصول وحاول مجدداً.','Could not load matter documents. Check access and try again.')}
  };
  const loadMatters=async()=>{
+  globalMode=false;list.hidden=false;documentRows.replaceChildren();stats.replaceChildren();
   const params=new URLSearchParams({q:query.value.trim(),limit:String(matterLimit),offset:String(matterOffset)});
   try{const result=await api('/cases/search?'+params.toString());matters=Array.isArray(result.items)?result.items:[];matterTotal=Number.isInteger(result.total)?result.total:0;renderMatters();if(matterSelect.value)await loadMatter();else if(!matterTotal)summary.textContent=uiText('لا توجد ملفات قضايا متاحة.','No accessible matters were found.')}
   catch(_){summary.textContent=uiText('تعذر تحميل ملفات القضايا المتاحة.','Could not load accessible matters.')}
