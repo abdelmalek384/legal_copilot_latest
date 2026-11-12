@@ -5383,7 +5383,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(second.status_code, 200, second.text)
         alpha_case, beta_case = first.json()["id"], second.json()["id"]
         for case_id, filename, body in (
-            (alpha_case, "alpha-accessible-contract.txt", "Alpha source. التزام قانوني."),
+            (alpha_case, "alpha-accessible-contract.txt", "Alpha source. التزام قانوني. رقم ١٢٣"),
             (beta_case, "beta-private-contract.txt", "Beta source. التزام سري."),
         ):
             uploaded = self._mutate(
@@ -5419,6 +5419,9 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertEqual(arabic_hits.status_code, 200, arabic_hits.text)
             self.assertEqual(arabic_hits.json()["total"], 1)
             self.assertEqual(arabic_hits.json()["items"][0]["case_id"], alpha_case)
+            digit_hits = junior.get("/documents/search-text?q=١٢٣")
+            self.assertEqual(digit_hits.status_code, 200, digit_hits.text)
+            self.assertEqual(digit_hits.json()["total"], 1)
             hidden_text = junior.get("/documents/search-text?q=سري")
             self.assertEqual(hidden_text.status_code, 200, hidden_text.text)
             self.assertEqual(hidden_text.json()["total"], 0)
