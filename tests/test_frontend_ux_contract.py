@@ -882,5 +882,24 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("e.currentTarget.classList.remove('is-dragover')", HTML)
         self.assertIn(".research-upload-dropzone:focus-visible", HTML)
 
+    def test_document_intelligence_exposes_audited_extraction_review_actions(self):
+        self.assertIn("const renderChunkReviewCards=()=>{", HTML)
+        self.assertIn("renderChunkReviewCards()", HTML)
+        self.assertIn("'/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks/'+chunk.id+'/review'", HTML)
+        self.assertIn("outcome:'accepted'", HTML) if "outcome:'accepted'" in HTML else self.assertIn("submitChunkReview(item,chunk,'accepted'", HTML)
+        self.assertIn("submitChunkReview(item,chunk,'needs_recheck'", HTML)
+        self.assertIn("submitChunkReview(item,chunk,'corrected'", HTML)
+        self.assertIn("payload.expected_text_sha256=chunk.text_sha256", HTML)
+        self.assertIn("item.chunks=Array.isArray(refreshed.chunks)?refreshed.chunks:[]", HTML)
+        self.assertIn("first 100 chunks", HTML)
+        self.assertIn("latest_review", HTML)
+
+    def test_extraction_review_arabic_copy_is_registered(self):
+        catalog = json.loads((ROOT / "static" / "ar-ui-review.json").read_text(encoding="utf-8"))
+        self.assertEqual(catalog["entry_count"], len(catalog["entries"]))
+        reviewed = {entry["arabic"] for entry in catalog["entries"]}
+        self.assertIn("اعتماد النص", reviewed)
+        self.assertIn("حفظ قرار مراجعة الاستخراج في سجل التدقيق.", reviewed)
+
 if __name__ == "__main__":
     unittest.main()
