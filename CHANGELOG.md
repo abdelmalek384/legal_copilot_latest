@@ -1,5 +1,7 @@
 # Changelog — Legal Copilot
 
+- Gazette importer: require an empty output directory and create candidate/report files exclusively without following symlinks or overwriting existing files.
+
 - Legal answer guard: add an always-on, cited English/Arabic negated-obligation consistency check with same-clause context matching; the broader claim-support heuristic remains opt-in.
 
 - Mobile UX follow-up: increase phone-width body text to 15px and constrain the login/password controls to the viewport with a 44px toggle target.
