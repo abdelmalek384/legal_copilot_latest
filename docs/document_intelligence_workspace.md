@@ -12,6 +12,7 @@ This is the first UI layer for reviewing documents already uploaded to a case. I
 - Extract literal candidate mentions for dates, case references, amounts, labelled parties, legal references and event-related terms.
 - Preserve the document name, chunk reference and page number when the extraction endpoint supplies them. A missing page number is shown as not recorded; the UI does not infer one.
 - Show possible duplicates based on exact original-file SHA-256 and normalized extracted-text equality, limited to documents returned for the selected matter.
+- Offer an original-file download through the existing audited, integrity-checking endpoint when a private retained original exists.
 - Compare two extracted text versions with a bounded first-difference context view.
 - Keep all candidate results visibly unverified and require lawyer review. Date mentions are not automatically converted into hearings, filing dates or deadlines.
 
@@ -40,6 +41,6 @@ This is the first UI layer for reviewing documents already uploaded to a case. I
 - Server-side execution of the existing Python document-intelligence helper functions. This UI currently performs bounded candidate scans in the browser using transparent keyword/regex rules; backend integration must avoid duplicating or diverging from the canonical helper.
 - Structured extraction of named entities and events beyond the literal candidate rules described above.
 - Multi-hunk semantic/version comparison. The current comparison is a bounded first-difference view only.
-- Direct original-file download controls and document retention/legal-hold workflow integration in this panel.
+- Document retention/legal-hold workflow controls in this panel.
 
 These gaps must remain explicit. Do not describe this UI layer as a complete document-management system, verified legal extraction, or persistent classification workflow.
