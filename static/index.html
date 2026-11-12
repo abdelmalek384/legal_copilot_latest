@@ -2654,7 +2654,7 @@ function documentIntelligencePanel(caseId,documents){
     cards.push(h('article',{className:'card extraction-review-card'},
      h('div',{className:'row'},h('b',{textContent:item.doc.name}),pill(reviewLabel,latest&&latest.outcome!=='needs_recheck'?'done':'soon')),
      h('p',{className:'mut',textContent:[chunk.ref,latest&&latest.page_reference?uiText('مرجع المراجع: ','Reviewer reference: ')+latest.page_reference:chunk.page?uiText('صفحة ','Page ')+chunk.page:''].filter(Boolean).join(' · ')}),
-     h('p',{className:'extraction-review-text',textContent:String(chunk.text||'')}),
+     h('div',{},h('b',{textContent:latest&&latest.outcome==='corrected'?uiText('النص المستخرج الأصلي','Original extracted passage'):uiText('النص المستخرج','Extracted passage')}),h('p',{className:'extraction-review-text',textContent:String(latest&&latest.outcome==='corrected'?latest.original_text:chunk.text||'')})),
      latest&&latest.outcome==='corrected'?h('div',{className:'reviewed-correction'},h('b',{textContent:uiText('آخر نص مصحح مسجل','Latest recorded correction')}),h('p',{className:'extraction-review-text',textContent:String(latest.reviewed_text||'')})):null,
      latest&&latest.note?h('p',{className:'mut',textContent:uiText('آخر ملاحظة: ','Latest note: ')+latest.note}):null,
      note,correction,h('div',{className:'row'},accepted,recheck,edit,save)
