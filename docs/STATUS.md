@@ -1,7 +1,18 @@
 # Legal Copilot status
 
-**Updated:** 2026-11-12  
+**Updated:** 2026-11-13  
 **Scope:** engineering and evidence status only; not legal-readiness or production certification.
+
+## Legal Research and Document Intelligence workspace update — 2026-11-13 (PR #1564)
+
+- The Figma-aligned Legal Research workspace now uses a responsive three-pane layout with conversation history, research thread, and a source inspector. Source verification/caution states remain explicit; the interface does not promote unverified sources to verified status.
+- The Documents workspace now exposes the permission-filtered all-accessible library, matter selection, paginated metadata search, Arabic/English extracted-text search, document type/status/classification filters, original-file availability checks, and PDF/DOCX upload entry points.
+- Document classification is persistent and versioned. Only firm administrators and matter leads can change it. Optimistic version conflicts are rejected, current values and reviewer identity are exposed, and append-only audit events are protected by database scope/immutability triggers. Legacy runtime schema includes equivalent guards.
+- Extracted-text review exposes accept, correction and recheck actions, SHA-256 concurrency checks, reviewer notes, bounded review history, and separate display of the original extraction and latest corrected passage. The attention filter includes both never-reviewed and recheck-required passages.
+- Arabic interface additions are registered in `static/ar-ui-review.json`; native Arabic review and full RTL browser acceptance remain outstanding.
+- Backend integration tests cover classification persistence/version conflicts, lead-only permissions, cross-matter and cross-firm isolation, audit immutability and retention cascades, metadata/full-text search, and extraction-review isolation. Frontend contract tests cover the new workspace and review behavior.
+- GitHub Actions currently reports failures before logs can be retrieved. The repository's documented runner/billing limitation remains unresolved; no test pass is claimed. Browser QA and clean Python 3.12 suite execution are still required.
+- PR #1564 remains a draft and unmerged. It is based on the earlier UI workspace branch point; the 14 commits added to `main` since then are documentation, evaluation inventory/scoring and Gazette importer updates. Review and reconcile the base before merging.
 
 ## Current repository update — 2026-11-12
 
