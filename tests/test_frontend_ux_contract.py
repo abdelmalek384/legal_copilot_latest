@@ -760,5 +760,10 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Recorded confidence: ", HTML)
 
 
+    def test_subscription_lock_routes_admins_to_billing_and_informs_members(self):
+        self.assertIn("if(ME.role==='admin')billingPage().catch(()=>{});else toast(LANG==='ar'?'المكتب في وضع القراءة فقط؛ تواصل مع مسؤول المكتب.':'This firm is in read-only mode; contact your firm administrator.')", HTML)
+        self.assertIn("!p.startsWith('/account/mfa/')", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
