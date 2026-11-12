@@ -172,6 +172,7 @@ def _validate_metadata(meta: object, text_bytes: bytes) -> dict:
     source_url = meta.get("source_url")
     if source_url:
         if (not isinstance(source_url, str) or not source_url
+                or "\\" in source_url
                 or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in source_url)):
             raise ValueError("source_url must be a valid HTTPS URL without whitespace or control characters")
         try:
