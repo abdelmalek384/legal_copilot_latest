@@ -150,3 +150,10 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Added `docs/BLOCKERS.md` to distinguish bounded repository tasks from work requiring external test execution, AI-2 application integration, payment-provider access, tenant-isolation validation, qualified Egyptian-lawyer sign-off, or real pilot firms.
 - Recorded concrete closure evidence and owners for CI/Python 3.12, dependency locking, the live negated-obligation guard, billing, tenant isolation, Labour Law No. 14/2025 verification, and pilot readiness.
 - Current AI-1 PRs #1559 and #1560 are explicitly recorded as unexecuted; no test pass, legal verification, or retrieval-quality result is claimed.
+
+
+## Gazette importer operator contract (2026-11-12)
+
+- Added `docs/gazette_text_importer.md` documenting the offline importer's exact input/metadata contract, URL restrictions, outputs, failure behavior, trust boundary, and human-review checklist.
+- The document explicitly distinguishes transcription staging from source authenticity, collection rights, currentness, lawyer review, and retrieval eligibility.
+- Focused tests exist in `tests/test_import_gazette_text.py`; execution remains unverified in the Python 3.12 hash-locked environment.
