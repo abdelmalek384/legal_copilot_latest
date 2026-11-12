@@ -59,7 +59,7 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 ## Current AI-1 pull requests
 
-- Open AI-1 PRs: #1576 (fixture corrections), #1577 (cloud signed-URL query filtering), #1578 (provenance metadata validation; depends on #1577), and #1580 (fail-closed retrieval evaluator enum validation). All remain unmerged and require Python 3.12 focused test execution before validation can be claimed.
+- Open AI-1 PRs: #1576 (fixture corrections), #1577 (cloud signed-URL query filtering), #1578 (provenance metadata validation; depends on #1577), and #1580 (retrieval evaluator reviewer-metadata and evidence-URL validation). All remain unmerged and require Python 3.12 focused test execution before validation can be claimed.
 - #1559 — merged Arabic negated-obligation regression coverage; tests unexecuted.
 - #1560 — merged retrieval scorer safety-status ordering fix; tests unexecuted.
 - #1562 — merged delivery blocker/closure register.
@@ -103,6 +103,6 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 ## Retrieval evaluator malformed-enum follow-up — 2026-11-13
 
-- PR #1580 guards untrusted `review_status` and `reviewer_role` JSON values before set membership. Malformed list/object values now enter the evaluator's invalid-question report rather than raising `TypeError`.
+- PR #1580 guards untrusted `review_status` and `reviewer_role` JSON values before set membership. Malformed list/object values now enter the evaluator's invalid-question report rather than raising `TypeError`. It also rejects raw backslashes and empty query/fragment delimiters in reviewer evidence URLs.
 - Regression tests cover unhashable list values for both fields. Static source/diff review only; runtime tests remain unexecuted.
-- Exact-head Tests workflow run `43328171760` failed before exposing job steps (`steps: null`), consistent with the current runner-allocation blocker.
+- Latest exact-head Tests workflow run `43328429442` (head `53eed6cfa7ab6601f6cdd13b4c362a25c6095f7f`) failed before exposing job steps (`steps: null`), consistent with the current runner-allocation blocker. An earlier head's run `43328171760` had the same result.
