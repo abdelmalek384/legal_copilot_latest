@@ -75,6 +75,7 @@ class DocumentClassificationContractTests(unittest.TestCase):
             self.assertIn(trigger, migration)
         self.assertIn("classification audit event does not match current state", migration)
         self.assertIn("document classification audit events are immutable", migration)
+        self.assertIn("WHERE d.id=OLD.document_id AND c.id=OLD.case_id", migration)
 
     def test_legacy_schema_has_equivalent_classification_integrity_guards(self):
         app = (ROOT / "app.py").read_text(encoding="utf-8")
