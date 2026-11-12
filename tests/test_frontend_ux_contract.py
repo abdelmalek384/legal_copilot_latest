@@ -1024,5 +1024,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("partial_text_ocr_unavailable", page)
         self.assertIn("new Option(statusName(value),value)", page)
 
+    def test_document_matter_picker_shows_case_and_client_context(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("m.case_number", page)
+        self.assertIn("m.case_year", page)
+        self.assertIn("m.client", page)
+        self.assertIn("m.opposing_party", page)
+
 if __name__ == "__main__":
     unittest.main()
