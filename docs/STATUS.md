@@ -3,6 +3,15 @@
 **Updated:** 2026-11-06  
 **Scope:** engineering and evidence status only; not legal-readiness or production certification.
 
+## Current repository update — 2026-11-12
+
+- Merged current-main PRs: #1499 (document-intelligence helper foundation), #1495 (trusted-proxy/per-firm rate-limit hardening), #1502 (local release/recovery tools), #1503 (temporary Mac preview), #1505 (LLM SSRF pinning and payment self-approval protection), and #1506 (phone-width login readability). Their merges are code integration only; hosted tests, physical-device acceptance, and witnessed backup/restore remain unproven because the repository's GitHub Actions billing/runner problem prevents test execution.
+- Superseded drafts #1494, #1496, #1485 and #1483 were closed after current-main replacements or selective ports. Do not use their old branch heads.
+- PR #1507 adds an always-on, cited English/Arabic negated-obligation guard to the generated-answer path. Its tests are added but not executed. The broader lexical claim-support heuristic remains opt-in; no claim of semantic entailment or legal correctness is made.
+- The document-intelligence helpers merged in #1499 are not yet connected to authenticated Legal Research API endpoints or UI. AI-2 integration and authorization remain outstanding.
+- Labour Law 14/2025 remains provisional and retrieval-ineligible pending qualified Egyptian counsel review, currentness/amendment/commencement checks, and source-rights review. No verified flags were changed.
+
+
 ## Current state
 
 - Runtime uses separate control-plane, per-firm database and shared legal-corpus profiles.
