@@ -82,6 +82,21 @@ class RetrievalEvaluationTests(unittest.TestCase):
         self.assertIsNone(result["citation_precision"])
         self.assertTrue(all("not marked" in " ".join(x["reasons"]) for x in result["excluded_cases"]))
 
+    def test_unhashable_review_status_and_role_are_excluded_without_type_errors(self):
+        malformed_status = reviewed_question(review_status=[])
+        status_result = score_evaluation([malformed_status], [])
+        self.assertEqual(status_result["reviewed_cases_scored"], 0)
+        self.assertEqual(len(status_result["invalid_question_records"]), 1)
+
+        malformed_role = reviewed_question(reviewer_role=[])
+        role_result = score_evaluation([malformed_role], [])
+        self.assertEqual(role_result["reviewed_cases_scored"], 0)
+        self.assertEqual(len(role_result["invalid_question_records"]), 1)
+        self.assertTrue(any(
+            "reviewer_role" in reason
+            for reason in role_result["invalid_question_records"][0]["reasons"]
+        ))
+
     def test_egyptian_colloquial_seed_questions_remain_excluded_until_lawyer_review(self):
         seeds = _load_jsonl(DEFAULT_QUESTIONS)
         dialect = [item for item in seeds if item.get("id", "").startswith("Q-EG-DIALECT-")]
