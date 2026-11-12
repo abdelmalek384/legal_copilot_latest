@@ -90,7 +90,7 @@ class ManualCaptureRecordTests(unittest.TestCase):
         self.assertTrue(any("retrieved_at" in error for error in result["errors"]))
 
     def test_source_urls_reject_del_control_character(self):
-        self.record["source_url"] = "https://example.gov/source\\x7fpath"
+        self.record["source_url"] = "https://example.gov/source\x7fpath"
         result = validate_capture_record(self.record, self.record_path)
         self.assertFalse(result["valid"])
         self.assertTrue(any("source_url" in error for error in result["errors"]))
