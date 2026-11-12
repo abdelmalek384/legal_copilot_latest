@@ -3470,6 +3470,48 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 )
 
 
+    def test_authorized_document_chunks_include_bounded_server_intelligence(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Server document intelligence case"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        text = (
+            "[[PDF_PAGE:9]]\\nحكم المحكمة في الدعوى رقم ١٢٣/٢٠٢٥ بتاريخ ١٥/٠٣/٢٠٢٥. "
+            "المدعي: طرف تجريبي. المبلغ ٥٠٠٠ جنيه. المادة ١٠١ من القانون رقم ١٢ لسنة ٢٠٢٠. "
+            "تحددت جلسة الدعوى."
+        )
+        uploaded = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={"name": "judgment-source.txt", "text": text},
+        )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+        document_id = uploaded.json()["document_id"]
+
+        response = self.client.get(f"/cases/{case_id}/docs/{document_id}/chunks")
+        self.assertEqual(response.status_code, 200, response.text)
+        intelligence = response.json()["intelligence"]
+        classification = intelligence["classification"]
+        self.assertEqual(classification["category"], "court_judgment")
+        self.assertTrue(classification["requires_review"])
+        kinds = {candidate["kind"] for candidate in intelligence["candidates"]}
+        self.assertTrue(
+            {"date", "case_reference", "amount", "party_label", "legal_reference", "event_mention"}
+            .issubset(kinds)
+        )
+        self.assertTrue(all(
+            candidate["document_id"] == document_id
+            and candidate["chunk_id"]
+            and candidate["chunk_ref"]
+            and candidate["review_status"] == "candidate_unverified"
+            for candidate in intelligence["candidates"]
+        ))
+        self.assertTrue(any(candidate["page"] == "9" for candidate in intelligence["candidates"]))
+        self.assertLessEqual(intelligence["candidate_count"], 250)
+        self.assertTrue(intelligence["requires_review"])
+
     def test_document_persistence_rolls_back_metadata_chunks_and_event_together(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
