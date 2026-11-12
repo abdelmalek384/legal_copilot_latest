@@ -720,6 +720,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("const resetInspector=(returnFocus=false)=>", HTML)
         self.assertIn("sourceInspector.__focusReturn=document.activeElement", HTML)
         self.assertIn("onclick:()=>resetInspector(true)", HTML)
+        self.assertIn("onkeydown:e=>{if(e.key==='Escape'&&sourceInspector.__focusReturn)", HTML)
         self.assertIn("sourceInspector.focus({preventScroll:true})", HTML)
         self.assertIn("@media(max-width:1120px)", HTML)
         self.assertIn("@media(max-width:800px)", HTML)
