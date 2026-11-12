@@ -2101,7 +2101,7 @@ async function documentsPage(){
   queue.forEach(item=>{if(!valid.includes(item)){item.state='error';item.message=!/\.(pdf|docx)$/i.test(item.name)?uiText('نوع الملف غير مدعوم؛ استخدم PDF أو DOCX.','Unsupported file type; use PDF or DOCX.'):uiText('يتجاوز الملف حد 15 ميجابايت.','File exceeds the 15 MB limit.')}});
   renderUploadQueue(queue);
   if(!valid.length){uploadStatus.textContent=uiText('لم يتم رفع أي ملف.','No files were uploaded.');uploadSubmit.disabled=true;return}
-  uploadBusy=true;uploadButton.disabled=true;uploadSubmit.disabled=true;uploadInput.disabled=true;matterSelect.disabled=true;
+  uploadBusy=true;uploadPanel.setAttribute('aria-busy','true');uploadButton.disabled=true;uploadSubmit.disabled=true;uploadInput.disabled=true;matterSelect.disabled=true;
   let succeeded=0;
   for(const [index,item] of valid.entries()){
    item.state='working';item.message=uiText('جارٍ الرفع واستخراج النص...','Uploading and extracting text...');uploadStatus.textContent=uiText('الملف ','File ')+(index+1)+' / '+valid.length+' · '+item.name+' · '+item.message;renderUploadQueue(queue);
@@ -2116,7 +2116,7 @@ async function documentsPage(){
    renderUploadQueue(queue);
   }
   uploadStatus.textContent=succeeded+' / '+valid.length+' '+uiText('ملفات تم رفعها بنجاح','files uploaded successfully');
-  uploadBusy=false;uploadButton.disabled=false;uploadInput.disabled=false;matterSelect.disabled=false;uploadInput.value='';
+  uploadBusy=false;uploadPanel.setAttribute('aria-busy','false');uploadButton.disabled=false;uploadInput.disabled=false;matterSelect.disabled=false;uploadInput.value='';
   if(succeeded)await loadMatter();
   uploadSubmit.disabled=!matterSelect.value||!(uploadInput.files?.length);
  };
