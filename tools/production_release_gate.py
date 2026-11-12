@@ -82,6 +82,8 @@ def _ready_candidate_source_index(candidate_paths, legal_report):
         legal_status = version.get("legal_status")
         if (
             effective is None
+            or not isinstance(legal_status, str)
+            or legal_status not in {"in_force", "partially_repealed", "repealed", "historical", "not_yet_in_force"}
             or (repeal_date is not None and repeal is None)
             or (legal_status in {"repealed", "historical"} and repeal is None)
             or (repeal is not None and repeal < effective)
