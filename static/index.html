@@ -2028,7 +2028,7 @@ async function law(){
          const sourceActions=h('div',{className:'research-source-actions'});
          sourceActions.append(makeBtn(LANG==='ar'?'نسخ الاستشهاد':'Copy citation',()=>copyText(s.citation||s.ref||'Unresolved citation')));
          sourceActions.append(makeBtn(LANG==='ar'?'نسخ المقطع الحرفي':'Copy exact passage',()=>copyText(s.text||'')));
-         sourceActions.append(h('button',{type:'button','aria-controls':'research-source-inspector',className:'research-inspect-action',textContent:LANG==='ar'?'فحص المصدر':'Inspect source',onclick:()=>inspectSource(s,status,pin,p)}));
+         sourceActions.append(h('button',{type:'button','aria-controls':'research-source-inspector',className:'g research-inspect-action',textContent:LANG==='ar'?'فحص المصدر':'Inspect source',onclick:()=>inspectSource(s,status,pin,p)}));
          const recordedSource=safeHttpsUrl((s.provenance||{}).source_url||s.source_url);
          if(recordedSource)sourceActions.append(h('a',{className:'research-source-link',href:recordedSource,target:'_blank',rel:'noopener noreferrer',textContent:LANG==='ar'?'فتح المصدر الأصلي ('+sourceHostLabel(recordedSource)+')':'Open original source ('+sourceHostLabel(recordedSource)+')'}));
          src.append(sourceActions);
