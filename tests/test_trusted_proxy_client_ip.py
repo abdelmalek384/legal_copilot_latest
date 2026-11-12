@@ -1,8 +1,14 @@
+import asyncio
 import os
+import sqlite3
+import subprocess
+import sys
+import tempfile
 import unittest
 from unittest.mock import patch
 
 from starlette.requests import Request
+from starlette.responses import Response
 
 import app
 from app import client_ip
@@ -82,6 +88,158 @@ class TrustedProxyClientIpTests(unittest.TestCase):
         with patch.dict(os.environ, {"COPILOT_TRUSTED_PROXIES": "10.0.0.0/8,not-a-network"}):
             with self.assertRaises(ValueError):
                 client_ip(make_request("10.0.0.8", "203.0.113.44"))
+
+
+    def test_wildcard_trusted_proxy_configuration_is_rejected(self):
+        with patch.dict(os.environ, {"COPILOT_TRUSTED_PROXIES": "*"}):
+            with self.assertRaises(ValueError):
+                client_ip(make_request("198.51.100.20", "203.0.113.99"))
+
+    def test_default_route_trusted_proxy_configuration_is_rejected(self):
+        for value in ("0.0.0.0/0", "::/0"):
+            with self.subTest(value=value):
+                with patch.dict(os.environ, {"COPILOT_TRUSTED_PROXIES": value}):
+                    with self.assertRaises(ValueError):
+                        client_ip(make_request("198.51.100.20", "203.0.113.99"))
+
+    def test_same_client_ip_has_separate_budgets_for_validated_firms(self):
+        with patch.dict(os.environ, {"COPILOT_TRUSTED_PROXIES": "10.0.0.0/8"}):
+            connection = FakeConnection()
+            request = make_request("10.0.0.8", "203.0.113.44")
+            first = app._active_firm_context.set(type("Firm", (), {"firm_id": 101})())
+            try:
+                with patch.object(app, "control_conn", return_value=connection):
+                    app._rate_limit(request)
+                second = app._active_firm_context.set(type("Firm", (), {"firm_id": 202})())
+                try:
+                    with patch.object(app, "control_conn", return_value=connection):
+                        app._rate_limit(request)
+                finally:
+                    app._active_firm_context.reset(second)
+            finally:
+                app._active_firm_context.reset(first)
+        self.assertEqual(connection.arguments[0][0], "/ask")
+        self.assertEqual(connection.arguments[1][0], "/ask")
+        self.assertEqual(connection.arguments[0][1], "101:203.0.113.44")
+        self.assertEqual(connection.arguments[1][1], "202:203.0.113.44")
+
+    def test_firm_rate_budgets_are_isolated_and_persist_across_db_reconnects(self):
+        with tempfile.TemporaryDirectory(prefix="trusted-proxy-rate-limit-") as temp:
+            database = os.path.join(temp, "control.sqlite3")
+            connection = sqlite3.connect(database)
+            connection.execute(
+                "CREATE TABLE api_rate_limit_windows("
+                "bucket TEXT NOT NULL, client_key TEXT NOT NULL, "
+                "window_start INTEGER NOT NULL, hits INTEGER NOT NULL DEFAULT 0, "
+                "PRIMARY KEY(bucket,client_key,window_start))"
+            )
+            connection.commit()
+            connection.close()
+            opened_connections = []
+
+            def open_control():
+                db = sqlite3.connect(database)
+                db.row_factory = sqlite3.Row
+                opened_connections.append(db)
+                return db
+
+            request = make_request("10.0.0.8", "203.0.113.44")
+            with patch.object(app, "_RATE_LIMITS", {"/ask": (1, 3600)}):
+                with patch.object(app, "control_conn", side_effect=open_control):
+                    firm_a = app._active_firm_context.set(type("Firm", (), {"firm_id": 101})())
+                    try:
+                        self.assertEqual(app._rate_limit(request), 0)
+                    finally:
+                        app._active_firm_context.reset(firm_a)
+                    firm_b = app._active_firm_context.set(type("Firm", (), {"firm_id": 202})())
+                    try:
+                        self.assertEqual(app._rate_limit(request), 0)
+                    finally:
+                        app._active_firm_context.reset(firm_b)
+                    firm_a = app._active_firm_context.set(type("Firm", (), {"firm_id": 101})())
+                    try:
+                        self.assertGreater(app._rate_limit(request), 0)
+                    finally:
+                        app._active_firm_context.reset(firm_a)
+                    firm_b = app._active_firm_context.set(type("Firm", (), {"firm_id": 202})())
+                    try:
+                        self.assertGreater(app._rate_limit(request), 0)
+                    finally:
+                        app._active_firm_context.reset(firm_b)
+            for db in opened_connections:
+                db.close()
+
+    def test_rate_limit_budget_survives_a_fresh_process(self):
+        with tempfile.TemporaryDirectory(prefix="trusted-proxy-process-restart-") as temp:
+            database = os.path.join(temp, "control.sqlite3")
+            connection = sqlite3.connect(database)
+            connection.execute(
+                "CREATE TABLE api_rate_limit_windows("
+                "bucket TEXT NOT NULL, client_key TEXT NOT NULL, "
+                "window_start INTEGER NOT NULL, hits INTEGER NOT NULL DEFAULT 0, "
+                "PRIMARY KEY(bucket,client_key,window_start))"
+            )
+            connection.commit()
+            connection.close()
+            script = """
+import sqlite3
+import sys
+from starlette.requests import Request
+import app
+
+def open_control():
+    connection = sqlite3.connect(sys.argv[1], timeout=5)
+    connection.row_factory = sqlite3.Row
+    return connection
+
+app.control_conn = open_control
+app._RATE_LIMITS = {"/ask": (1, 3600)}
+app._active_firm_context.set(type("Firm", (), {"firm_id": 707})())
+request = Request({
+    "type": "http", "http_version": "1.1", "method": "GET",
+    "scheme": "http", "path": "/ask", "raw_path": b"/ask",
+    "query_string": b"", "headers": [],
+    "client": ("203.0.113.44", 12345), "server": ("testserver", 80),
+})
+print(app._rate_limit(request))
+"""
+            first = subprocess.run(
+                [sys.executable, "-c", script, database],
+                check=True, capture_output=True, text=True,
+            )
+            second = subprocess.run(
+                [sys.executable, "-c", script, database],
+                check=True, capture_output=True, text=True,
+            )
+            self.assertEqual(first.stdout.strip(), "0")
+            self.assertGreater(int(second.stdout.strip()), 0)
+
+    def test_middleware_sets_validated_firm_context_before_rate_limiting(self):
+        async def exercise():
+            context = type("Firm", (), {"firm_id": 303})()
+            observed = {}
+
+            def rate_limit(_request):
+                active = app._active_firm_context.get()
+                observed["rate_limit_firm_id"] = getattr(active, "firm_id", None)
+                return 0
+
+            async def call_next(_request):
+                active = app._active_firm_context.get()
+                observed["route_firm_id"] = getattr(active, "firm_id", None)
+                return Response("ok")
+
+            with patch.object(app, "_separate_runtime_enabled", return_value=True), \
+                 patch.object(app, "_request_firm_context", return_value=context), \
+                 patch.object(app, "_rate_limit", side_effect=rate_limit):
+                response = await app.security_headers(make_request("10.0.0.8"), call_next)
+
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(observed["rate_limit_firm_id"], 303)
+            self.assertEqual(observed["route_firm_id"], 303)
+            self.assertIsNone(app._active_firm_context.get())
+
+        asyncio.run(exercise())
 
 
 if __name__ == "__main__":
