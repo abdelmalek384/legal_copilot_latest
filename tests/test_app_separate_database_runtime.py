@@ -4872,6 +4872,19 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(review_audit.json()["reviews"][0]["outcome"], "corrected")
         self.assertEqual(review_audit.json()["reviews"][0]["original_text"], original_text)
 
+        refreshed_chunks = self.client.get(
+            f"/cases/{case_id}/docs/{document_id}/chunks"
+        )
+        self.assertEqual(refreshed_chunks.status_code, 200, refreshed_chunks.text)
+        latest_chunk = next(
+            item for item in refreshed_chunks.json()["chunks"] if item["id"] == chunk_id
+        )
+        self.assertEqual(latest_chunk["latest_review"]["original_text"], original_text)
+        self.assertEqual(
+            latest_chunk["latest_review"]["reviewed_text"],
+            original_text + " [reviewed correction]",
+        )
+
         missing_digest = self._mutate(
             "post", review_url,
             json={"outcome": "corrected", "corrected_text": "correction without a digest"},
