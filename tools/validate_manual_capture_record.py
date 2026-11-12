@@ -35,7 +35,7 @@ TERMS_REVIEW_MAX_AGE_DAYS = 180
 def _https_url(value: object) -> bool:
     if not isinstance(value, str) or not value or value != value.strip():
         return False
-    if any(ch.isspace() or ord(ch) < 32 for ch in value):
+    if any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value):
         return False
     try:
         parsed = urlsplit(value)
