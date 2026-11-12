@@ -1109,5 +1109,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Source verification warning", HTML)
         self.assertIn("#main .research-source-caution strong{display:block", HTML)
 
+    def test_legal_research_summarizes_source_verification_before_citations(self):
+        self.assertIn("const cautionCount=sourceItems.filter", HTML)
+        self.assertIn("Source verification required", HTML)
+        self.assertIn("of '+sourceItems.length+' sources need verification", HTML)
+        self.assertIn("Recorded verification status", HTML)
+
 if __name__ == "__main__":
     unittest.main()
