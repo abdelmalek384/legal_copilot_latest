@@ -155,44 +155,7 @@ button{min-height:44px}
 }
 @media(max-width:420px){body{font-size:15px}.auth-card{width:calc(100% - 20px);padding:16px}.auth-card form>label{font-size:14px}.research-source-actions button,.research-message-actions button{min-height:44px}}
 
-/* Hybrid legal workspace: three-pane research, persistent provenance inspection. */
-.research-layout{grid-template-columns:minmax(205px,238px) minmax(360px,1fr) minmax(285px,330px);gap:16px;align-items:start}
-.research-list,.research-inspector{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto;overscroll-behavior:contain}
-.research-list{order:0}.research-main{order:1;min-width:0}
-.research-inspector{order:2;background:#fff;border-color:#DCE4F0;padding:14px}
-.research-inspector-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;padding-bottom:12px;margin-bottom:10px;border-bottom:1px solid var(--line)}
-.research-inspector-heading b{color:var(--navy)}.research-inspector-heading .mut{font-size:12px;text-align:end}
-.research-inspector-content{min-width:0}
-.research-inspector-content .research-source{margin:10px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:#FBFCFE}
-.research-inspector-content .research-exact-passage{max-height:34vh;overflow:auto}
-.research-inspector-empty{padding:22px 10px;color:var(--mut);text-align:center;font-size:13px}
-.research-inspector-content .research-source-actions{gap:6px}
-.research-inspector-content .research-source-actions button{min-height:38px}
-.research-main .research-thread{max-height:calc(100vh - 310px);min-height:48vh}
-.research-main .research-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-.research-main .research-composer{position:sticky;bottom:0;background:var(--bg);padding:10px 0 2px;z-index:3}
-@media(max-width:1180px){
- .research-layout{grid-template-columns:minmax(190px,220px) minmax(0,1fr)}
- .research-inspector{position:static;grid-column:1/-1;max-height:360px}
- .research-inspector-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
- .research-inspector-content>p{grid-column:1/-1}.research-inspector-content .research-source{margin:0}
-}
-@media(max-width:800px){
- .research-layout{grid-template-columns:minmax(0,1fr);gap:10px}
- .research-list,.research-inspector{position:static;max-height:none;grid-column:auto}
- .research-list{max-height:230px;order:0}.research-main{order:1}
- .research-inspector{order:2;max-height:320px}
- .research-inspector-content{display:block}
- .research-inspector-content .research-source{margin:8px 0}
- .research-main .research-thread{max-height:58vh;min-height:38vh}
- .research-main .research-composer{position:sticky;bottom:0}
-}
-@media(max-width:420px){
- .research-inspector{padding:12px}
- .research-inspector-content .research-exact-passage{max-height:24vh}
- .research-inspector-heading{display:block}
- .research-inspector-heading .mut{text-align:start;margin-top:4px}
-}
+
 
 </style>
 <style>
@@ -929,6 +892,44 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
 #side .primary-nav button:hover{background:#243b66;color:#fff}
 #side .primary-nav button.on{background:var(--ui-blue-soft);color:var(--ui-blue)}
 #side .primary-nav button:focus-visible{outline:3px solid #91b4ff;outline-offset:2px}
+/* Hybrid legal workspace: three-pane research, persistent provenance inspection. */
+.research-layout{grid-template-columns:minmax(205px,238px) minmax(360px,1fr) minmax(285px,330px);gap:16px;align-items:start}
+.research-list,.research-inspector{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto;overscroll-behavior:contain}
+.research-list{order:0}.research-main{order:1;min-width:0}
+.research-inspector{order:2;background:#fff;border-color:#DCE4F0;padding:14px}
+.research-inspector-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;padding-bottom:12px;margin-bottom:10px;border-bottom:1px solid var(--line)}
+.research-inspector-heading b{color:var(--navy)}.research-inspector-heading .mut{font-size:12px;text-align:end}
+.research-inspector-content{min-width:0}
+.research-inspector-content .research-source{margin:10px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:#FBFCFE}
+.research-inspector-content .research-exact-passage{max-height:34vh;overflow:auto}
+.research-inspector-empty{padding:22px 10px;color:var(--mut);text-align:center;font-size:13px}
+.research-inspector-content .research-source-actions{gap:6px}
+.research-inspector-content .research-source-actions button{min-height:38px}
+.research-main .research-thread{max-height:calc(100vh - 310px);min-height:48vh}
+.research-main .research-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.research-main .research-composer{position:sticky;bottom:0;background:var(--bg);padding:10px 0 2px;z-index:3}
+@media(max-width:1180px){
+ .research-layout{grid-template-columns:minmax(190px,220px) minmax(0,1fr)}
+ .research-inspector{position:static;grid-column:1/-1;max-height:360px}
+ .research-inspector-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+ .research-inspector-content>p{grid-column:1/-1}.research-inspector-content .research-source{margin:0}
+}
+@media(max-width:800px){
+ .research-layout{grid-template-columns:minmax(0,1fr);gap:10px}
+ .research-list,.research-inspector{position:static;max-height:none;grid-column:auto}
+ .research-list{max-height:230px;order:0}.research-main{order:1}
+ .research-inspector{order:2;max-height:320px}
+ .research-inspector-content{display:block}
+ .research-inspector-content .research-source{margin:8px 0}
+ .research-main .research-thread{max-height:58vh;min-height:38vh}
+ .research-main .research-composer{position:sticky;bottom:0}
+}
+@media(max-width:420px){
+ .research-inspector{padding:12px}
+ .research-inspector-content .research-exact-passage{max-height:24vh}
+ .research-inspector-heading{display:block}
+ .research-inspector-heading .mut{text-align:start;margin-top:4px}
+}
 </style>
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <script>
