@@ -5383,8 +5383,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(second.status_code, 200, second.text)
         alpha_case, beta_case = first.json()["id"], second.json()["id"]
         for case_id, filename, body in (
-            (alpha_case, "alpha-accessible-contract.txt", "Alpha source."),
-            (beta_case, "beta-private-contract.txt", "Beta source."),
+            (alpha_case, "alpha-accessible-contract.txt", "Alpha source. التزام قانوني."),
+            (beta_case, "beta-private-contract.txt", "Beta source. التزام سري."),
         ):
             uploaded = self._mutate(
                 "post", f"/cases/{case_id}/docs",
@@ -5415,6 +5415,14 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertEqual(results.json()["items"][0]["case_title"], "Accessible Alpha Matter")
             self.assertIn("statuses", results.json())
             self.assertEqual(results.json()["items"][0]["name"], "alpha-accessible-contract.txt")
+            arabic_hits = junior.get("/documents/search-text?q=قانوني")
+            self.assertEqual(arabic_hits.status_code, 200, arabic_hits.text)
+            self.assertEqual(arabic_hits.json()["total"], 1)
+            self.assertEqual(arabic_hits.json()["items"][0]["case_id"], alpha_case)
+            hidden_text = junior.get("/documents/search-text?q=سري")
+            self.assertEqual(hidden_text.status_code, 200, hidden_text.text)
+            self.assertEqual(hidden_text.json()["total"], 0)
+
             hidden = junior.get(f"/documents/search?case_id={beta_case}")
             self.assertEqual(hidden.status_code, 404, hidden.text)
             invalid = junior.get("/documents/search?classification=verified")
