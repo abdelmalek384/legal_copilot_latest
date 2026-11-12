@@ -166,6 +166,8 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
             "https://example.gov/review#section",
             "https://@example.gov/review",
             "https://example.gov:/review",
+            "https://example.gov\\review",
+            "https://example.gov\\@evil.gov/review",
         ):
             with self.subTest(url=url):
                 question = reviewed("Q-BAD-URL")
