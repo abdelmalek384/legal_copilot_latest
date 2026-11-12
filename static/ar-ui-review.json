@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "5650befc4366ed62e28135aaab6aa78bb85c3def",
   "generated_on": "2026-11-03",
-  "entry_count": 1010,
+  "entry_count": 1012,
   "entries": [
     {
       "id": "AR-0001",
@@ -8433,6 +8433,24 @@
     {
       "id": "AR-1010",
       "arabic": "اعرض مستندات كل ملف قضية على حدة، وابحث في النصوص المستخرجة وراجعها مع الحفاظ على صلاحيات الملف وسجل التدقيق.",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1011",
+      "arabic": "أضيف: ",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1012",
+      "arabic": "الحجم: ",
       "source_lines": [
         2073,
         2110
