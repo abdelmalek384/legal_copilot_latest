@@ -23,6 +23,8 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("body.expected_version != current_version", app)
         self.assertIn("expected_version", app)
         self.assertIn("document_classification_events", app)
+        self.assertIn("u.name AS actor_name", app)
+        self.assertIn("u.name AS reviewer_name", app)
         self.assertIn('"document_classifications.csv"', app)
         self.assertIn('"document_classification_events.csv"', app)
         self.assertIn("ON CONFLICT(document_id) DO NOTHING", app)
