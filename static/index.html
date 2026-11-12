@@ -2637,7 +2637,7 @@ function documentIntelligencePanel(caseId,documents){
     save.style.display='none';
     edit.onclick=()=>{const show=correction.style.display==='none';correction.style.display=show?'block':'none';save.style.display=show?'inline-flex':'none';if(show)correction.focus()};
     cards.push(h('article',{className:'card extraction-review-card'},
-     h('div',{className:'row'},h('b',{textContent:item.doc.name}),pill(reviewLabel,latest?'done':'soon')),
+     h('div',{className:'row'},h('b',{textContent:item.doc.name}),pill(reviewLabel,latest&&latest.outcome!=='needs_recheck'?'done':'soon')),
      h('p',{className:'mut',textContent:[chunk.ref,latest&&latest.page_reference?uiText('مرجع المراجع: ','Reviewer reference: ')+latest.page_reference:chunk.page?uiText('صفحة ','Page ')+chunk.page:''].filter(Boolean).join(' · ')}),
      h('p',{className:'extraction-review-text',textContent:String(chunk.text||'')}),
      latest&&latest.outcome==='corrected'?h('div',{className:'reviewed-correction'},h('b',{textContent:uiText('آخر نص مصحح مسجل','Latest recorded correction')}),h('p',{className:'extraction-review-text',textContent:String(latest.reviewed_text||'')})):null,
