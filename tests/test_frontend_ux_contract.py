@@ -1047,5 +1047,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Object.entries(categoryNames)", page)
         self.assertIn("doc.saved_classification===classificationValue", page)
 
+    def test_language_switch_preserves_documents_workspace(self):
+        self.assertIn("else if(PAGE==='documents')documentsPage()", HTML)
+
 if __name__ == "__main__":
     unittest.main()
