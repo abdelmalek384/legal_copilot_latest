@@ -162,6 +162,7 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("if(needsAttentionOnly&&latest&&latest.outcome!=='needs_recheck')continue", html)
         self.assertIn("chunk.latest_review.outcome==='needs_recheck'", html)
         self.assertIn("Show passages needing attention", html)
+        self.assertIn("filterButton.setAttribute('aria-pressed',String(needsAttentionOnly))", html)
         self.assertIn("pendingCount", html)
 
 if __name__ == "__main__":
