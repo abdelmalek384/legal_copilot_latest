@@ -32,12 +32,15 @@ git clone --branch feat/protected-mac-preview-tunnel --single-branch https://git
 cd legal-copilot-preview
 ```
 
-Install Cloudflare's connector with Homebrew:
+Install **Python 3.12 exactly** (the Mac launcher refuses newer unsupported runtimes) and Cloudflare's connector with Homebrew:
 
 ```bash
-brew install cloudflared
+brew install python@3.12 cloudflared
+python3.12 --version
 cloudflared --version
 ```
+
+The Mac launcher installs application dependencies from the checked-in Python 3.12 hash-locked file. It reuses an existing Python 3.12 virtual environment and will not delete or replace an existing incompatible `.venv`.
 
 The helper checks that the installed `cloudflared` command advertises the `--allowed-mail` option. If it does not, update it before proceeding. The email-restricted Quick Tunnel option was added in cloudflared 2026.9.3; see the official Quick Tunnel documentation.
 
