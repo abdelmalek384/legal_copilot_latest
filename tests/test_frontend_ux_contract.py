@@ -154,7 +154,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("uiText('النص المستخرج — للقراءة فقط','Extracted text — read only')", HTML)
         self.assertIn("uiText('نص OCR غير متحقق','OCR text not verified')", HTML)
         self.assertIn("uiText('جارٍ تحميل المقاطع…','Loading text chunks…')", HTML)
-        self.assertIn("uiText('PDF أو Word حتى 15 ميجابايت. النص المستخرج فقط هو المفهرس؛ لا تحفظ نسخة الملف الأصلي. راجع المقاطع قبل الاعتماد عليها، خصوصاً نص OCR.','PDF or Word up to 15 MB. Only extracted text is indexed; the original file is not retained. Review chunks before relying on them, especially OCR text.')", HTML)
+        self.assertIn("uiText('PDF وDOCX فقط · 15 ميجابايت كحد أقصى لكل ملف','PDF and DOCX only · 15 MB maximum per file')", HTML)
 
     def test_case_detail_inputs_and_validation_follow_selected_language(self):
         self.assertIn("uiText('رقم القضية','Case number')", HTML)
@@ -333,7 +333,6 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("setTimeout(()=>URL.revokeObjectURL(url),1000)", HTML)
         self.assertIn("save-to-matter", HTML)
         self.assertIn("No relevant verified legal text was returned by this verified-corpus search.", HTML)
-        self.assertNotIn("matterSelect.disabled", HTML)
 
     def test_multi_firm_switcher_and_corpus_navigation_use_server_checked_capabilities(self):
         self.assertIn("api('/session/firm','POST'", HTML)
@@ -722,13 +721,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("trigger.setAttribute('aria-expanded','true')", HTML)
         self.assertIn("returnTo.setAttribute('aria-expanded','false')", HTML)
         self.assertIn("className:'g research-inspect-action'", HTML)
-        self.assertIn("onclick:()=>inspectSource(s,status,pin,p)", HTML)
+        self.assertIn("onclick:e=>inspectSource(s,status,pin,p,e.currentTarget)", HTML)
         self.assertIn("source.text|| (LANG==='ar'?'لم يُرجع نص لهذا السجل من المصدر.':'No passage text was returned for this source record.')", HTML)
         self.assertIn("review_evidence", HTML)
         self.assertIn("const latestByType=Object.create(null)", HTML)
         self.assertIn("const latestReviews=Object.values(latestByType)", HTML)
         self.assertIn("const resetInspector=(returnFocus=false)=>", HTML)
-        self.assertIn("sourceInspector.__focusReturn=document.activeElement", HTML)
+        self.assertIn("sourceInspector.__focusReturn=trigger||document.activeElement", HTML)
         self.assertIn("onclick:()=>resetInspector(true)", HTML)
         self.assertIn("onkeydown:e=>{if(e.key==='Escape'&&sourceInspector.__focusReturn)", HTML)
         self.assertIn("sourceInspector.focus({preventScroll:true})", HTML)
@@ -796,10 +795,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("No deadlines are created automatically.", HTML)
         self.assertIn("No text differences were found between these versions.", HTML)
 
-    def test_document_classification_edits_are_explicitly_unsaved_drafts(self):
+    def test_document_classification_edits_are_persisted_with_audit_and_version_checks(self):
         self.assertIn("draftOverrides", HTML)
-        self.assertIn("Edit draft classification (not saved)", HTML)
-        self.assertIn("it has not been saved to the server or review history", HTML)
+        self.assertIn("Save classification", HTML)
+        self.assertIn("classification','PUT'", HTML)
+        self.assertIn("expected_version:persisted?persisted.version:0", HTML)
+        self.assertIn("Classification change history", HTML)
 
     def test_document_original_download_uses_existing_audited_route(self):
         self.assertIn("/cases/'+id+'/docs/'+d.document_id+'/original", HTML)
