@@ -103,6 +103,52 @@ def extract_review_candidates(text: str) -> dict[str, Any]:
             ]}
 
 
+
+def group_same_matter_duplicates(documents: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Group duplicate candidates only inside identical firm/matter scopes.
+
+    Each record requires firm_id, matter_id, document_id and may include
+    original_sha256 and extracted_text_sha256. Hashes must be lowercase or
+    uppercase 64-character SHA-256 hex strings. The caller must still enforce
+    authorization before supplying records. Groups are review candidates;
+    matching extracted text does not mean the original files are identical.
+    """
+    if not isinstance(documents, list):
+        raise TypeError("documents must be a list")
+    buckets: dict[tuple[str, str, str, str], list[dict[str, str]]] = {}
+    for item in documents:
+        if not isinstance(item, dict):
+            raise TypeError("each document must be a mapping")
+        firm_id, matter_id, document_id = (
+            item.get("firm_id"), item.get("matter_id"), item.get("document_id")
+        )
+        if not all(isinstance(value, str) and value.strip()
+                   for value in (firm_id, matter_id, document_id)):
+            raise ValueError("each document requires firm_id, matter_id and document_id")
+        for basis in ("original_sha256", "extracted_text_sha256"):
+            digest = item.get(basis)
+            if digest is None:
+                continue
+            if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-fA-F]{64}", digest):
+                raise ValueError(f"{basis} must be a 64-character SHA-256 hex digest")
+            key = (firm_id, matter_id, basis, digest.lower())
+            buckets.setdefault(key, []).append({
+                "firm_id": firm_id, "matter_id": matter_id, "document_id": document_id
+            })
+    results = []
+    for (firm_id, matter_id, basis, digest), members in buckets.items():
+        unique = {member["document_id"]: member for member in members}
+        if len(unique) > 1:
+            results.append({
+                "firm_id": firm_id, "matter_id": matter_id, "match_basis": basis,
+                "document_ids": sorted(unique),
+                "review_status": "possible_duplicate_requires_review",
+            })
+    results.sort(key=lambda group: (
+        group["firm_id"], group["matter_id"], group["match_basis"], group["document_ids"]
+    ))
+    return results
+
 def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, Any]:
     """Build a review queue of parseable date mentions from caller-scoped documents.
 
