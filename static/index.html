@@ -2137,7 +2137,7 @@ async function documentsPage(){
  const renderDocuments=docs=>{
   const extracted=docs.filter(doc=>doc.extraction_status==='text_extracted').length;
   const ocr=docs.filter(doc=>Boolean(doc.ocr_used)).length;
-  const reviewFlags=docs.filter(doc=>doc.ocr_used||doc.extraction_status!=='text_extracted').length;
+  const reviewFlags=docs.filter(doc=>doc.ocr_used||doc.extraction_status!=='text_extracted'||!doc.saved_classification).length;
   const stat=(label,value,detail)=>h('article',{className:'card document-library-stat'},h('span',{className:'mut',textContent:label}),h('b',{textContent:String(value)}),h('small',{className:'mut',textContent:detail}));
   stats.replaceChildren(stat(uiText('مستندات القضية','Matter documents'),docs.length,uiText('في ملف القضية المحدد فقط','Selected matter only')),stat(uiText('نصوص مستخرجة','Text extracted'),extracted,uiText('حالة الاستخراج النصي','Text extraction status')),stat(uiText('استخدم فيها OCR','OCR used'),ocr,uiText('يلزم التحقق من النص مقابل الأصل','Verify text against the original')),stat(uiText('إشارات مراجعة','Review flags'),reviewFlags,uiText('ليست حكماً بفشل المستند','Not a document-failure determination')));
   const categoryNames={unclassified:uiText('غير مصنف','Unclassified'),court_judgment:uiText('حكم قضائي','Court judgment'),contract:uiText('عقد','Contract'),pleading:uiText('مذكرة أو صحيفة دعوى','Pleading'),correspondence:uiText('مراسلات أو إخطار','Correspondence / notice'),evidence_or_receipt:uiText('دليل أو إيصال','Evidence / receipt')};
