@@ -779,16 +779,20 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("api('/cases/'+caseId+'/docs/'+doc.document_id+'/chunks')", HTML)
         self.assertIn("for(const doc of docs.slice(0,40))", HTML)
         self.assertIn("if(totalChars+text.length>1000000)", HTML)
+        self.assertIn("data.intelligence.classification", HTML)
+        self.assertIn("item.intelligence.candidates", HTML)
+        self.assertIn("server_document_intelligence_unavailable", HTML)
         self.assertIn("openDocumentWorkspace=makeBtn", HTML)
         self.assertIn("documentWorkspace.replaceChildren(documentIntelligencePanel", HTML)
         self.assertIn("const needle=normalize(query.value.trim())", HTML)
 
     def test_document_intelligence_candidates_keep_provenance_and_unverified_status(self):
-        for kind in ("date", "case_reference", "amount", "party_label", "legal_reference", "event_mention"):
-            self.assertIn("kind:'" + kind + "'", HTML)
-        self.assertIn("review_status:'candidate_unverified'", HTML)
-        self.assertIn("chunk_ref:chunk.ref", HTML)
-        self.assertIn("page:chunk.page??null", HTML)
+        self.assertIn("item.intelligence.candidates", HTML)
+        self.assertIn("candidate.chunk_ref", HTML)
+        self.assertIn("candidate.page", HTML)
+        self.assertIn("Candidate output was capped", HTML)
+        self.assertNotIn("const extractCandidates=", HTML)
+        self.assertNotIn("const classify=(filename,text)=>", HTML)
         self.assertIn("No deadlines are created automatically.", HTML)
         self.assertIn("No text differences were found between these versions.", HTML)
 
