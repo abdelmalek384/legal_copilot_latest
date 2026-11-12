@@ -72,6 +72,29 @@ CREATE TABLE IF NOT EXISTS api_rate_limit_windows(
   PRIMARY KEY(bucket, client_key, window_start)
 );
 CREATE TABLE IF NOT EXISTS docs(id INTEGER PRIMARY KEY, case_id INT, name TEXT, added TEXT, firm_id INT, uploader_user_id INT, sha256 TEXT, content_type TEXT, byte_size INT, extraction_status TEXT, ocr_used INT NOT NULL DEFAULT 0);
+CREATE TABLE IF NOT EXISTS document_classifications(
+  document_id INTEGER PRIMARY KEY REFERENCES docs(id) ON DELETE CASCADE,
+  case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE CASCADE,
+  firm_id INTEGER NOT NULL,
+  category TEXT NOT NULL CHECK(category IN ('unclassified','court_judgment','contract','pleading','correspondence','evidence_or_receipt')),
+  version INTEGER NOT NULL DEFAULT 1 CHECK(version > 0),
+  updated_by_user_id INTEGER NOT NULL,
+  updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE TABLE IF NOT EXISTS document_classification_events(
+  id INTEGER PRIMARY KEY,
+  document_id INTEGER NOT NULL REFERENCES docs(id) ON DELETE CASCADE,
+  case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE CASCADE,
+  firm_id INTEGER NOT NULL,
+  actor_user_id INTEGER NOT NULL,
+  previous_category TEXT,
+  new_category TEXT NOT NULL CHECK(new_category IN ('unclassified','court_judgment','contract','pleading','correspondence','evidence_or_receipt')),
+  version INTEGER NOT NULL,
+  note TEXT NOT NULL DEFAULT '',
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_document_classifications_case ON document_classifications(firm_id,case_id);
+CREATE INDEX IF NOT EXISTS idx_document_classification_events_document ON document_classification_events(firm_id,document_id,id DESC);
 -- Legal corpus provenance: one stable source record, multiple immutable legal versions.
 CREATE TABLE IF NOT EXISTS legal_documents(
   document_id TEXT PRIMARY KEY,
