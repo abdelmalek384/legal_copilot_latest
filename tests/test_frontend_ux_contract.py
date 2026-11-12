@@ -921,5 +921,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("records.slice(0,100)", HTML)
         self.assertIn("review.reviewed_text", HTML)
 
+    def test_document_library_displays_real_matter_document_metadata(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("doc.content_type", page)
+        self.assertIn("doc.added", page)
+        self.assertIn("doc.byte_size", page)
+        self.assertIn("doc.extraction_status", page)
+        self.assertIn("doc.ocr_used", page)
+
 if __name__ == "__main__":
     unittest.main()
