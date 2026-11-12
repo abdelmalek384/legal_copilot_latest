@@ -219,7 +219,8 @@ def record_capture(args) -> dict:
     metadata_path = meta_dir / f"{args.document_id}.json"
     if metadata_path.is_symlink():
         raise ValueError("metadata file must not be a symbolic link")
-    if metadata_path.exists():
+    metadata_exists = metadata_path.exists()
+    if metadata_exists:
         if not metadata_path.is_file():
             raise ValueError("existing metadata path must be a regular file")
         try:
@@ -233,16 +234,16 @@ def record_capture(args) -> dict:
             raise ValueError("existing metadata sidecar belongs to a different capture; refusing to overwrite it")
         # Preserve reviewer annotations and any other existing provenance fields on reruns.
         metadata = existing_metadata
-    else:
+
+    original_dir.mkdir(parents=True, exist_ok=True)
+    if not already:
+        shutil.copyfile(path, original_path)
+    if not metadata_exists:
         try:
             with metadata_path.open("x", encoding="utf-8", newline="\n") as handle:
                 handle.write(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n")
         except FileExistsError as exc:
             raise ValueError("metadata sidecar appeared during capture; refusing to overwrite it") from exc
-
-    original_dir.mkdir(parents=True, exist_ok=True)
-    if not already:
-        shutil.copyfile(path, original_path)
     audit = process_document(out, metadata)
     reasons = list(audit["audit"]["warnings"])
     if audit["extraction_error"]:
