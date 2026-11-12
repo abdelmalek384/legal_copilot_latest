@@ -2159,6 +2159,7 @@ async function documentsPage(){
  const loadMatter=async()=>{
   const id=Number(matterSelect.value);workspace.replaceChildren();
   if(!Number.isSafeInteger(id)||id<=0){summary.textContent=uiText('اختر ملف قضية لعرض المستندات المصرح بها.','Choose a matter to view its authorized documents.');return}
+  if(window.DOCUMENT_MATTER_ID&&Number(window.DOCUMENT_MATTER_ID)!==id){uploadResults.replaceChildren();uploadStatus.textContent='';uploadInput.value='';documentFilter.value='';documentStatusFilter.value='';documentClassificationFilter.value=''}
   window.DOCUMENT_MATTER_ID=id;summary.textContent=uiText('جارٍ تحميل المستندات...','Loading matter documents...');
   try{
    const matter=await api('/cases/'+id),docs=Array.isArray(matter.docs)?matter.docs:[];
