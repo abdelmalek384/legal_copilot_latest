@@ -932,6 +932,7 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
 .research-inspector-reviews p{margin:6px 0;overflow-wrap:anywhere}
 .research-inspector .research-source-actions{display:grid;grid-template-columns:1fr 1fr}
 .research-inspector .research-source-actions>*{min-width:0}
+.research-list-head-actions{display:flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:wrap;min-width:0}.research-history-toggle{min-height:36px;padding:6px 9px;font-size:12px;white-space:nowrap}.research-list.history-collapsed>:not(.research-list-head){display:none!important}
 @media(max-width:1120px){
  .research-layout{grid-template-columns:minmax(190px,225px) minmax(0,1fr)}
  .research-layout>.research-inspector{grid-column:1/-1;grid-row:2;position:static;max-height:340px}
@@ -1960,11 +1961,12 @@ async function reviewWorkbench(){
 }
 async function law(){
  PAGE='law';
- const sidebar=h('div',{className:'research-list card'});
+ const sidebar=h('div',{id:'research-history-pane',className:'research-list card'});
  const researchStatus=h('div',{className:'visually-hidden',role:'status','aria-live':'polite','aria-atomic':'true'});const thread=h('div',{className:'research-thread card'});
  const sourceInspector=h('aside',{id:'research-source-inspector',className:'research-inspector card',role:'region',tabIndex:0,'aria-label':LANG==='ar'?'فحص المصدر':'Source inspector','aria-live':'polite',onkeydown:e=>{if(e.key==='Escape'&&sourceInspector.__focusReturn){e.preventDefault();resetInspector(true)}}},h('div',{className:'research-inspector-empty'},h('div',{textContent:'⌕',style:'font-size:28px'}),h('b',{textContent:LANG==='ar'?'فحص المصدر':'Source inspector'}),h('p',{className:'mut',textContent:LANG==='ar'?'اختر مصدراً من الإجابة لعرض بياناته ومقطعه الحرفي هنا.':'Select a source from an answer to inspect its metadata and exact passage here.'})));
  let activeId=null, sending=false, conversationItems=[];
  const conversationFilter=h('input',{type:'search',placeholder:LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations','aria-label':LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations'});
+ const historyToggle=h('button',{type:'button',className:'g research-history-toggle','aria-controls':'research-history-pane','aria-expanded':'true',textContent:LANG==='ar'?'إخفاء السجل':'Hide history',onclick:()=>{const collapsed=sidebar.classList.toggle('history-collapsed');historyToggle.setAttribute('aria-expanded',String(!collapsed));historyToggle.textContent=collapsed?(LANG==='ar'?'إظهار السجل':'Show history'):(LANG==='ar'?'إخفاء السجل':'Hide history')}});
   const scopeSelect=h('select',{tabIndex:0,'aria-label':LANG==='ar'?'نطاق البحث':'Research scope'},
     h('option',{value:'verified_corpus',textContent:LANG==='ar'?'النصوص القانونية المتحقق منها':'Verified legal corpus'}),
     h('option',{value:'firm_documents',textContent:LANG==='ar'?'مستندات المكتب داخل ملف قضية':'Firm documents in a matter'}),
@@ -2104,7 +2106,7 @@ async function law(){
  };
  const loadConversation=async id=>{const data=await api('/research/conversations/'+id);activeId=id;renderMessages(data.messages||[]);drawList()};
  const renderList=()=>{
-   const head=h('div',{className:'research-list-head'},h('b',{textContent:LANG==='ar'?'المحادثات':'Conversations'}),makeBtn('محادثة جديدة',newChat,'primary'));
+   const head=h('div',{className:'research-list-head'},h('b',{textContent:LANG==='ar'?'المحادثات':'Conversations'}),h('div',{className:'research-list-head-actions'},historyToggle,makeBtn('محادثة جديدة',newChat,'primary')));
    sidebar.replaceChildren(head,conversationFilter);
    const needle=conversationFilter.value.trim().toLocaleLowerCase();
    const list=conversationItems.filter(c=>!needle||String(c.title||'').toLocaleLowerCase().includes(needle));
