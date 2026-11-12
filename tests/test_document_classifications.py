@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class DocumentClassificationContractTests(unittest.TestCase):
     def test_firm_migration_creates_versioned_current_state_and_append_only_events(self):
-        migration = (ROOT / "migrations" / "firm" / "0002_document_classifications.sql").read_text(encoding="utf-8")
+        migration = (ROOT / "migrations" / "firm" / "0014_document_classifications.sql").read_text(encoding="utf-8")
         self.assertIn("REFERENCES docs(id) ON DELETE CASCADE", migration)
         self.assertIn("REFERENCES cases(id) ON DELETE CASCADE", migration)
         self.assertIn("CHECK(category IN", migration)
