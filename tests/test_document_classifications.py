@@ -119,13 +119,15 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("needle = norm(q.strip())", endpoint)
         self.assertIn('re.findall(r"[\\w]+", needle, flags=re.UNICODE)', endpoint)
         self.assertIn('chunks_fts MATCH ?', endpoint)
+        self.assertIn('(int(u["firm_id"]), int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"]))', endpoint)
+        self.assertIn('(tokens[0], int(u["firm_id"]), int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"]), limit, offset)', endpoint)
         self.assertIn('fts_query = " AND ".join', endpoint)
         self.assertIn('token.replace', endpoint)
         self.assertIn("chunks.case_id IN (SELECT cs.id FROM cases cs WHERE cs.firm_id=?", endpoint)
         self.assertIn("EXISTS(SELECT 1 FROM members", endpoint)
         self.assertIn("document_text_search", endpoint)
         self.assertIn("substr(chunks.text,max(1,instr(chunks.norm,?)-450),1200) AS excerpt", endpoint)
-        self.assertIn('item["excerpt"] =', endpoint)
+        self.assertIn("items = [dict(row) for row in rows]", endpoint)
         self.assertIn("not verified facts or legal conclusions", endpoint)
 
     def test_accessible_document_index_includes_classification_reviewer_metadata(self):
