@@ -10,7 +10,7 @@ The dashboard includes a short list of active matters drawn from the same case r
 
 ## Legal Research layout
 
-- **History pane:** saved conversations, filtering, rename, delete, and new conversation actions.
+- **History pane:** saved conversations, filtering, rename, delete, and new conversation actions. The pane can be collapsed and expanded with a keyboard-operable disclosure control; its `aria-expanded` state tracks visibility.
 - **Research pane:** scope and matter selectors, conversation thread, answer/source cards, and persistent composer.
 - **Source inspector:** opens from an explicit “Inspect source” action on a returned source card. It presents the returned citation/reference, article/page locator, recorded source and legal-version metadata, search as-of date, source status/trust tier, latest review event per review type, amendment-history status, and exact passage text.
 
