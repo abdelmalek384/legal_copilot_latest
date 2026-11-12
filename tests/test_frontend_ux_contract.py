@@ -702,5 +702,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertNotIn("id:'new-case-title-error',className:'bad',role:'alert',hidden:true,style:'display:block'", HTML)
 
 
+    def test_subscription_lock_response_routes_user_to_billing_recovery(self):
+        self.assertIn("if(r.status===423&&p!=='/billing'&&!p.startsWith('/account/mfa/')){billingPage().catch(()=>{});throw new Error('billing_locked')}", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
