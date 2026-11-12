@@ -11,6 +11,8 @@ import re
 from typing import Any
 
 MAX_ANALYSIS_CHARS = 1_000_000
+MAX_COMPARE_CHARS = 100_000
+MAX_DIFF_SEGMENTS = 200
 _PAGE_MARKER = re.compile(r"\[\[PDF_PAGE:(\d+)\]\]")
 _DIGITS = r"0-9٠-٩"
 _DATE_PATTERNS = (
@@ -104,11 +106,11 @@ def compare_extracted_text(before: str, after: str, context_chars: int = 100) ->
     """Return reviewable text changes; never labels a change as legally significant."""
     if not isinstance(before, str) or not isinstance(after, str):
         raise TypeError("before and after must be strings")
-    if len(before) > MAX_ANALYSIS_CHARS or len(after) > MAX_ANALYSIS_CHARS:
-        raise ValueError("document text exceeds comparison limit")
+    if len(before) > MAX_COMPARE_CHARS or len(after) > MAX_COMPARE_CHARS:
+        raise ValueError("text comparison is limited to 100,000 characters per version")
     if isinstance(context_chars, bool) or not isinstance(context_chars, int) or not 0 <= context_chars <= 1000:
         raise ValueError("context_chars must be an integer between 0 and 1000")
-    matcher = difflib.SequenceMatcher(a=before, b=after, autojunk=False)
+    matcher = difflib.SequenceMatcher(a=before, b=after, autojunk=True)
     changes = []
     for tag, i1, i2, j1, j2 in matcher.get_opcodes():
         if tag == "equal":
@@ -117,4 +119,6 @@ def compare_extracted_text(before: str, after: str, context_chars: int = 100) ->
                         "before": before[max(0, i1-context_chars):min(len(before), i2+context_chars)],
                         "after": after[max(0, j1-context_chars):min(len(after), j2+context_chars)],
                         "review_status": "requires_lawyer_review"})
+        if len(changes) >= MAX_DIFF_SEGMENTS:
+            break
     return changes
