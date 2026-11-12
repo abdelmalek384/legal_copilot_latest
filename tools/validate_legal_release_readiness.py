@@ -98,6 +98,11 @@ def normalized_identifiers(value: object) -> list[str] | None:
     return [item.strip() for item in value]
 
 
+def _is_one_of(value: object, choices: set[str]) -> bool:
+    """Check JSON enum values without raising when malformed input is unhashable."""
+    return isinstance(value, str) and value in choices
+
+
 def add(blockers: list[dict], code: str, detail: str) -> None:
     blockers.append({"code": code, "detail": detail})
 
@@ -159,7 +164,7 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
     if not isinstance(document.get("document_type"), str) or not document["document_type"].strip():
         add(blockers, "document_type_missing", "Document needs a non-empty document_type.")
     release_priority = document.get("release_priority")
-    if release_priority not in {"P0", "P1", "P2", "P3"}:
+    if not _is_one_of(release_priority, {"P0", "P1", "P2", "P3"}):
         add(blockers, "release_priority_missing", "Document needs an explicit release_priority of P0, P1, P2, or P3.")
     source_id = document.get("source_id")
     source_matches = [s for s in sources if s.get("source_id") == source_id]
@@ -209,13 +214,13 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
                         "candidate_register_permission_state_mismatch",
                         f"Candidate {permission_field} does not exactly match the canonical source-permission register.",
                     )
-            if registered.get("collection_permission") not in ALLOWED:
+            if not _is_one_of(registered.get("collection_permission"), ALLOWED):
                 add(blockers, "central_collection_permission_not_allowed",
                     f"Central source {registered.get('source_id', '(unnamed)')} does not explicitly allow collection.")
             elif https_host(registered.get("permission_evidence_url")) is None:
                 add(blockers, "central_permission_evidence_url_invalid",
                     f"Central source {registered.get('source_id', '(unnamed)')} needs a direct HTTPS URL to inspectable collection-rights evidence.")
-            if registered.get("commercial_reuse_permission") not in ALLOWED:
+            if not _is_one_of(registered.get("commercial_reuse_permission"), ALLOWED):
                 add(blockers, "central_commercial_permission_not_allowed",
                     f"Central source {registered.get('source_id', '(unnamed)')} does not explicitly allow commercial reuse.")
             else:
@@ -236,7 +241,7 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
                     f"Central source {registered.get('source_id', '(unnamed)')} needs a valid, non-future terms_checked_on date.")
 
     for field in ("collection_permission", "commercial_reuse_permission"):
-        if source.get(field) not in ALLOWED:
+        if not _is_one_of(source.get(field), ALLOWED):
             add(blockers, f"candidate_{field}_not_allowed", f"Candidate source {field} is not explicitly allowed.")
     if not isinstance(source.get("authority"), str) or not source["authority"].strip():
         add(blockers, "candidate_source_authority_missing", "Candidate source needs a named issuing authority or repository owner.")
@@ -244,11 +249,11 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
         add(blockers, "candidate_source_class_missing", "Candidate source must be classified as primary, official copy, secondary, user-supplied, or another explicit provenance class.")
     if not isinstance(source.get("permission_evidence"), str) or not source["permission_evidence"].strip():
         add(blockers, "candidate_permission_evidence_missing", "Candidate source lacks collection permission evidence.")
-    if source.get("collection_permission") in ALLOWED and https_host(source.get("permission_evidence_url")) is None:
+    if _is_one_of(source.get("collection_permission"), ALLOWED) and https_host(source.get("permission_evidence_url")) is None:
         add(blockers, "candidate_permission_evidence_url_invalid", "Candidate source needs a direct HTTPS URL to inspectable collection-rights evidence.")
     if not valid_date(source.get("terms_checked_on")):
         add(blockers, "candidate_terms_date_invalid", "Candidate source needs a valid, non-future terms_checked_on date.")
-    if source.get("commercial_reuse_permission") in ALLOWED:
+    if _is_one_of(source.get("commercial_reuse_permission"), ALLOWED):
         if https_host(source.get("commercial_reuse_evidence_url")) is None:
             add(blockers, "candidate_commercial_permission_evidence_url_invalid", "Candidate source needs a separate HTTPS URL to inspectable commercial-rights evidence.")
         if not isinstance(source.get("commercial_reuse_evidence"), str) or not source["commercial_reuse_evidence"].strip():
@@ -275,9 +280,9 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
 
     if version.get("review_status") != "verified":
         add(blockers, "version_not_verified", "Version review_status must be verified.")
-    if version.get("legal_status") not in {
+    if not _is_one_of(version.get("legal_status"), {
         "in_force", "partially_repealed", "repealed", "historical", "not_yet_in_force"
-    }:
+    }):
         add(blockers, "legal_status_unverified",
             "Version needs a recognized, reviewed legal status; unknown/under_review cannot pass.")
     for field in ("authenticity_verified", "status_verified", "amendment_history_verified"):
@@ -298,7 +303,7 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
             add(blockers, "repeal_date_invalid", "A recorded repeal_date must be a real YYYY-MM-DD calendar date.")
         elif valid_date(version.get("effective_date")) and repeal_date < version["effective_date"]:
             add(blockers, "repeal_before_effective", "Repeal date precedes the version's effective date; review the legal timeline.")
-    if version.get("legal_status") in {"repealed", "historical"} and not valid_date(repeal_date):
+    if _is_one_of(version.get("legal_status"), {"repealed", "historical"}) and not valid_date(repeal_date):
         add(blockers, "repeal_date_required_for_historical_status",
             "A version marked repealed or historical needs a verified, valid repeal/end date; otherwise it could be treated as active indefinitely.")
     if (
@@ -318,7 +323,7 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
     if not isinstance(version.get("permission_evidence"), str) or not version["permission_evidence"].strip():
         add(blockers, "version_permission_evidence_missing", "Version record needs permission evidence.")
 
-    if version.get("text_review_status") not in {"text_checked", "lawyer_approved"}:
+    if not _is_one_of(version.get("text_review_status"), {"text_checked", "lawyer_approved"}):
         add(blockers, "text_review_status_unchecked",
             "Extracted text must have an explicit text_checked or lawyer_approved status.")
     if https_host(version.get("text_review_evidence_url")) is None:
@@ -456,7 +461,7 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
         "candidate_id": candidate_id,
         "title": document.get("official_title") if isinstance(document.get("official_title"), str) else None,
         "document_type": document.get("document_type") if isinstance(document.get("document_type"), str) else None,
-        "release_priority": release_priority if release_priority in {"P0", "P1", "P2", "P3"} else "unspecified",
+        "release_priority": release_priority if _is_one_of(release_priority, {"P0", "P1", "P2", "P3"}) else "unspecified",
         "source_id": source.get("source_id") if isinstance(source.get("source_id"), str) else None,
         "source_authority": source.get("authority") if isinstance(source.get("authority"), str) else "unknown",
         "source_class": source.get("source_class") if isinstance(source.get("source_class"), str) else "unknown",

@@ -566,5 +566,33 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.assertEqual(report["blocked_count"], 1)
         self.assertEqual(report["blocker_counts"], {"candidate_unreadable": 1})
 
+
+    def test_unhashable_enum_values_return_blockers_instead_of_type_errors(self):
+        cases = (
+            (("document", "release_priority"), "release_priority_missing"),
+            (("sources", 0, "collection_permission"), "candidate_collection_permission_not_allowed"),
+            (("sources", 0, "commercial_reuse_permission"), "candidate_commercial_reuse_permission_not_allowed"),
+            (("version", "legal_status"), "legal_status_unverified"),
+            (("version", "text_review_status"), "text_review_status_unchecked"),
+        )
+        for path, expected_code in cases:
+            candidate = json.loads(json.dumps(self.candidate))
+            target = candidate
+            for key in path[:-1]:
+                target = target[key]
+            target[path[-1]] = []
+            with self.subTest(path=path):
+                result = MODULE.audit_candidate(candidate, self.register, self.root)
+                self.assertFalse(result["ready"])
+                self.assertIn(expected_code, {item["code"] for item in result["blockers"]})
+
+        malformed_register = json.loads(json.dumps(self.register))
+        malformed_register["sources"][0]["collection_permission"] = []
+        malformed_register["sources"][0]["commercial_reuse_permission"] = []
+        result = MODULE.audit_candidate(self.candidate, malformed_register, self.root)
+        codes = {item["code"] for item in result["blockers"]}
+        self.assertIn("central_collection_permission_not_allowed", codes)
+        self.assertIn("central_commercial_permission_not_allowed", codes)
+
 if __name__ == "__main__":
     unittest.main()
