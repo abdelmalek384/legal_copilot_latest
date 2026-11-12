@@ -169,3 +169,12 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - PR #1562 adds `docs/BLOCKERS.md` with owners and closure evidence. The live negation guard integration (#1561), Python 3.12 execution, dependency lock, billing, tenant isolation, counsel validation and real pilot remain external or separately owned.
 - These changes were manually source-reviewed and merged. **No focused tests or full suite are claimed as passing** because runner allocation remains unavailable.
 
+
+## Arabic legal evaluation draft inventory — 2026-11-12
+
+- PR #1570 merged a 120-question draft inventory: 59 general-practice prompts and 61 Labour Law prompts.
+- The 21 added general-practice questions expand formal and Egyptian-colloquial phrasing across civil law/procedure, evidence, arbitration, criminal law/procedure, labour, social insurance, companies, commercial, tax, banking/finance, insolvency, personal status, administrative law, real estate, intellectual property, privacy/technology and abstention.
+- Both JSONL sets now share one field schema. Static validation confirmed 120 records, 120 unique IDs, no populated expected answers/source IDs/pin citations, no approved answerability labels, and every row remains `needs_lawyer_review` with abstention required when sources are unverified.
+- This closes the repository-side draft inventory count target only. It is **not** a lawyer-reviewed benchmark, does not support accuracy claims, and must not be scored until qualified Egyptian counsel approves answers, answerability, primary sources, pin citations and reviewer evidence.
+- No tests/evaluator run is claimed; this validation parsed the committed JSONL data and checked schema/state invariants.
+
