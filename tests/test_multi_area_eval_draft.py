@@ -16,19 +16,19 @@ class MultiAreaDraftBenchmarkTests(unittest.TestCase):
             cls.csv_rows = list(csv.DictReader(f))
 
     def test_benchmark_has_expected_size_and_area_coverage(self):
-        self.assertEqual(len(self.questions), 94)
-        self.assertEqual(len(self.csv_rows), 94)
-        self.assertEqual(len({q["id"] for q in self.questions}), 94)
+        self.assertEqual(len(self.questions), 100)
+        self.assertEqual(len(self.csv_rows), 100)
+        self.assertEqual(len({q["id"] for q in self.questions}), 100)
         counts = {}
         for q in self.questions:
             counts[q["practice_area"]] = counts.get(q["practice_area"], 0) + 1
         self.assertEqual(counts, {
-            "rent_and_tenancy": 14,
-            "personal_status": 14,
-            "civil_procedure": 12,
-            "civil_law": 12,
-            "criminal_procedure": 9,
-            "commercial_law": 8,
+            "rent_and_tenancy": 15,
+            "personal_status": 15,
+            "civil_procedure": 13,
+            "civil_law": 13,
+            "criminal_procedure": 10,
+            "commercial_law": 9,
             "tax_law": 8,
             "social_insurance": 6,
             "real_estate": 6,
