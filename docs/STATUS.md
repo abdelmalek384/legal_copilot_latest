@@ -157,3 +157,15 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Added `docs/gazette_text_importer.md` documenting the offline importer's exact input/metadata contract, URL restrictions, outputs, failure behavior, trust boundary, and human-review checklist.
 - The document explicitly distinguishes transcription staging from source authenticity, collection rights, currentness, lawyer review, and retrieval eligibility.
 - Focused tests exist in `tests/test_import_gazette_text.py`; execution remains unverified in the Python 3.12 hash-locked environment.
+
+
+## AI-1 bounded work merged — 2026-11-12
+
+- PR #1559 adds Arabic negated-obligation regression cases for `لا يلتزم`, `لا يتعين`, `ليس ملزما`, and tab-separated negation. Test execution remains unverified.
+- PR #1560 fixes retrieval scorer status ordering so known wrong-article, uncited, unverified-source, or unanswerable-answer failures are reported as `below_target` even when other cohort metrics are incomplete. Tests remain unexecuted.
+- PR #1563 rejects empty URL fragment delimiters and literal backslashes in offline Gazette `source_url` metadata. Regression tests are present but unexecuted.
+- PR #1566 hardens reviewer-evidence URL validation against whitespace/control characters, query/fragment delimiters, credentials, invalid ports, and backslashes. It also carries the #1560 scorer safety fix forward. Tests remain unexecuted.
+- PR #1567 adds the operator guide for the lawyer-supplied Gazette text importer and links it here. The importer remains an offline transcription tool; candidate rows retain `verified=0`, `in_force=0`, and `as_of=null`.
+- PR #1562 adds `docs/BLOCKERS.md` with owners and closure evidence. The live negation guard integration (#1561), Python 3.12 execution, dependency lock, billing, tenant isolation, counsel validation and real pilot remain external or separately owned.
+- These changes were manually source-reviewed and merged. **No focused tests or full suite are claimed as passing** because runner allocation remains unavailable.
+
