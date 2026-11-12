@@ -185,6 +185,19 @@ button{min-height:44px}
 .research-layout{gap:18px}.research-list,.research-thread,.research-inspector{border:1px solid var(--workspace-border);box-shadow:0 5px 20px rgba(23,36,58,.04)}.research-thread{background:var(--workspace-surface)}.research-inspector-passage{background:#f5f8fd;border-color:#dce5f2}.research-source-link{color:var(--workspace-blue)}
 @media(max-width:800px){#main .research-controls{grid-template-columns:minmax(0,1fr)}.research-upload-panel{grid-template-columns:minmax(0,1fr)}.research-upload-actions{width:100%}.research-upload-actions button{flex:1}.research-upload-dropzone{align-items:flex-start;flex-direction:column}.research-upload-dropzone small{text-align:start}}
 @media(max-width:420px){.research-upload-intro{align-items:flex-start}.research-upload-icon{flex-basis:40px;width:40px;height:40px}.research-upload-actions{display:grid;grid-template-columns:1fr}.research-upload-actions button{width:100%}}
+
+/* Document intelligence: scan-friendly metrics and bounded review filters. */
+#main .document-intelligence-panel{display:grid;gap:15px;padding:clamp(15px,2vw,22px);border:1px solid var(--workspace-border);border-radius:17px;background:linear-gradient(180deg,#fff 0%,#fbfcff 100%)}
+#main .document-intelligence-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+#main .document-intelligence-stat{display:flex;flex-direction:column;gap:5px;min-width:0;padding:13px 14px;border:1px solid var(--workspace-border);border-radius:12px;background:#fff}
+#main .document-intelligence-stat b{font-size:22px;line-height:1.2;color:#1d3761;font-variant-numeric:tabular-nums}
+#main .document-intelligence-stat span{font-size:12px;line-height:1.55;color:#5b6a80}
+#main .document-intelligence-filters{display:grid;grid-template-columns:minmax(160px,.8fr) minmax(220px,1.2fr);gap:10px;margin:10px 0}
+#main .document-intelligence-filters :where(input,select){width:100%;min-width:0;min-height:44px;border:1px solid #aebbd0;border-radius:10px;padding:9px 11px;background:#fff}
+#main .document-intelligence-panel .card{border:1px solid #e0e7f1;border-radius:12px;box-shadow:0 3px 12px rgba(20,40,75,.035)}
+@media(max-width:760px){#main .document-intelligence-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){#main .document-intelligence-filters{grid-template-columns:minmax(0,1fr)}}
+
 </style>
 <style>
 /* Legal Copilot — premium workspace polish
@@ -2340,7 +2353,7 @@ function documentIntelligencePanel(caseId,documents){
   candidateKindFilter.value=candidateFilterState.kind;
   candidateKindFilter.onchange=()=>{candidateFilterState.kind=candidateKindFilter.value;renderAnalysis()};
   const candidateTextFilter=h('input',{type:'search',value:candidateFilterState.query,placeholder:uiText('تصفية حسب النص أو المستند','Filter by text or document'),'aria-label':uiText('تصفية المرشحات حسب النص أو المستند','Filter candidates by text or document')});
-  candidateTextFilter.oninput=()=>{candidateFilterState.query=candidateTextFilter.value;renderAnalysis()};
+  candidateTextFilter.onchange=()=>{candidateFilterState.query=candidateTextFilter.value;renderAnalysis()};
   const candidateNeedle=normalize(candidateFilterState.query);
   const filteredCandidates=allCandidates.filter(candidate=>(candidateFilterState.kind==='all'||candidate.kind===candidateFilterState.kind)&&(!candidateNeedle||normalize([candidate.value,candidate.filename,candidate.excerpt,candidate.chunk_ref].join(' ')).includes(candidateNeedle)));
   const candidateCards=filteredCandidates.slice(0,120).map((candidate,index)=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+(typeLabels[candidate.kind]||candidate.kind)}),pill(uiText('مرشح غير متحقق','Unverified candidate'),'soon')),h('p',{textContent:candidate.value}),h('p',{className:'mut',textContent:candidate.filename+' · '+(candidate.page?uiText('صفحة ','Page ')+candidate.page:uiText('رقم الصفحة غير مسجل','Page not recorded'))+' · '+candidate.chunk_ref}),h('p',{className:'mut',textContent:candidate.excerpt})));
