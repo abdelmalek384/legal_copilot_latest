@@ -22,6 +22,9 @@ class DocumentReviewWorkflowTests(unittest.TestCase):
         self.assertIn("expected_text_sha256:chunk.text_sha256", html)
         self.assertIn("PDF أو Word حتى 15 ميجابايت", html)
         self.assertIn("لا تحفظه إلا بعد مقارنته بالملف الأصلي", html)
+        self.assertIn("Save classification and review history", html)
+        self.assertIn("classification-history", html)
+        self.assertIn("Reviewer-selected classification", html)
 
 
 if __name__ == "__main__":
