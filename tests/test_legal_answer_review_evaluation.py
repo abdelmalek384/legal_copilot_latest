@@ -524,5 +524,15 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
         self.assertTrue(any("legal_correctness must be 0, 1, 2" in e for e in validate_review(review(scores=scores))))
 
 
+
+    def test_malformed_reviewer_status_and_role_return_registry_errors(self):
+        for field, value in (("status", []), ("professional_role", {})):
+            registry = reviewer_registry()
+            registry["reviewers"][0][field] = value
+            with self.subTest(field=field):
+                approved, errors = validate_reviewer_registry(registry)
+                self.assertNotIn("reviewer-a", approved)
+                self.assertTrue(any(item["record"] == "reviewer-a" for item in errors))
+
 if __name__ == "__main__":
     unittest.main()
