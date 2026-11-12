@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "5650befc4366ed62e28135aaab6aa78bb85c3def",
   "generated_on": "2026-11-03",
-  "entry_count": 1012,
+  "entry_count": 1027,
   "entries": [
     {
       "id": "AR-0001",
@@ -8454,6 +8454,141 @@
       "source_lines": [
         2073,
         2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1013",
+      "arabic": "تصنيف المستند ",
+      "source_lines": [
+        2514,
+        2537
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1014",
+      "arabic": "ملاحظة سبب التصنيف (اختيارية)",
+      "source_lines": [
+        2514,
+        2537
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1015",
+      "arabic": "ملاحظة التصنيف ",
+      "source_lines": [
+        2514,
+        2537
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1016",
+      "arabic": "تغيير غير محفوظ؛ اضغط حفظ التصنيف لتسجيله في سجل التدقيق.",
+      "source_lines": [
+        2514,
+        2537
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1017",
+      "arabic": "حفظ التصنيف",
+      "source_lines": [
+        2514,
+        2537
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1018",
+      "arabic": "تم حفظ التصنيف وسجل التدقيق.",
+      "source_lines": [
+        2514,
+        2537
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1019",
+      "arabic": "تعذر حفظ التصنيف؛ أعد تحميل المستند وحاول مجدداً.",
+      "source_lines": [
+        2514,
+        2537
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1020",
+      "arabic": "تصنيف محفوظ",
+      "source_lines": [
+        2514,
+        2537
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1021",
+      "arabic": "اقتراح يتطلب المراجعة",
+      "source_lines": [
+        2514,
+        2537
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1022",
+      "arabic": "إشارات المطابقة: ",
+      "source_lines": [
+        2514,
+        2537
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1023",
+      "arabic": "، ",
+      "source_lines": [
+        2514,
+        2537
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1024",
+      "arabic": "لا توجد كلمات مفتاحية",
+      "source_lines": [
+        2514,
+        2537
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1025",
+      "arabic": "التصنيف",
+      "source_lines": [
+        2514,
+        2537
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1026",
+      "arabic": "الحفظ متاح لمسؤول المكتب أو قائد القضية فقط.",
+      "source_lines": [
+        2514,
+        2537
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1027",
+      "arabic": "سجل تغييرات التصنيف",
+      "source_lines": [
+        2514,
+        2537
       ],
       "review_status": "pending_native_review"
     }
