@@ -2433,7 +2433,22 @@ function documentIntelligencePanel(caseId,documents){
    if(remaining<=0)break;
   }
   if(!cards.length)cards.push(h('p',{className:'mut',textContent:uiText('لا توجد مقاطع نصية متاحة للمراجعة.','No extracted text chunks are available for review.')}));
-  return h('section',{className:'card extraction-review-section'},h('b',{textContent:uiText('مراجعة النص المستخرج','Extracted text review')}),h('p',{className:'mut',textContent:uiText('راجع كل مقطع مقابل المستند الأصلي. قرارات الاعتماد والتصحيح وإعادة الفحص تُحفظ مع هوية المراجع والتوقيت؛ لا تعتمد على النص المستخرج دون التحقق من الأصل.','Check each chunk against the original document. Accept, correction and recheck decisions are audited with reviewer identity and timestamp; do not rely on extracted text without checking the original.')}),...cards,h('p',{className:'mut',textContent:uiText('تُعرض أول 100 مقطع فقط في هذه الشاشة. استخدم صفحات المستند ومراجع المقاطع لتحديد مواضع المراجعة.','The first 100 chunks are shown here. Use page and chunk references to locate the source passages.')}));
+  const historyResults=h('div',{});
+  const historyButton=btn(uiText('عرض سجل المراجعة','View review history'),async()=>{
+   historyButton.disabled=true;historyResults.replaceChildren(h('p',{className:'mut',textContent:uiText('جارٍ تحميل سجل المراجعة...','Loading review history...')}));
+   try{
+    const records=[];
+    for(const item of cache.values()){
+     const result=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/reviews');
+     for(const review of (Array.isArray(result.reviews)?result.reviews:[]))records.push({...review,filename:item.doc.name});
+    }
+    records.sort((a,b)=>String(b.created_at||'').localeCompare(String(a.created_at||'')));
+    const rows=records.slice(0,100).map((review,index)=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+review.filename+' · '+uiText('المقطع ','Chunk ')+review.chunk_id}),pill(({accepted:uiText('مقبول','Accepted'),corrected:uiText('تم التصحيح','Corrected'),needs_recheck:uiText('إعادة فحص','Needs recheck')}[review.outcome]||review.outcome),'done')),h('p',{className:'mut',textContent:[review.created_at,review.page_reference?uiText('صفحة ','Page ')+review.page_reference:'',uiText('المراجع رقم ','Reviewer ID ')+review.reviewer_user_id].filter(Boolean).join(' · ')}),review.note?h('p',{textContent:uiText('ملاحظة: ','Note: ')+review.note}):null,review.outcome==='corrected'?h('div',{},h('p',{className:'mut',textContent:uiText('النص قبل التصحيح','Text before correction')}),h('p',{textContent:String(review.original_text||'').slice(0,800)}),h('p',{className:'mut',textContent:uiText('النص بعد التصحيح','Corrected text')}),h('p',{textContent:String(review.reviewed_text||'').slice(0,800)})):null));
+    historyResults.replaceChildren(...(rows.length?rows:[h('p',{className:'mut',textContent:uiText('لا يوجد سجل مراجعة لهذا المستند.','No review history exists for these documents.')})]));
+   }catch(_){historyResults.replaceChildren(h('p',{className:'mut',role:'status',textContent:uiText('تعذر تحميل سجل المراجعة. تحقق من صلاحية الوصول وحاول مجدداً.','Could not load review history. Check access and try again.')}))}
+   finally{historyButton.disabled=false}
+  },'g');
+  return h('section',{className:'card extraction-review-section'},h('b',{textContent:uiText('مراجعة النص المستخرج','Extracted text review')}),h('p',{className:'mut',textContent:uiText('راجع كل مقطع مقابل المستند الأصلي. قرارات الاعتماد والتصحيح وإعادة الفحص تُحفظ مع هوية المراجع والتوقيت؛ لا تعتمد على النص المستخرج دون التحقق من الأصل.','Check each chunk against the original document. Accept, correction and recheck decisions are audited with reviewer identity and timestamp; do not rely on extracted text without checking the original.')}),historyButton,historyResults,...cards,h('p',{className:'mut',textContent:uiText('تُعرض أول 100 مقطع فقط في هذه الشاشة. استخدم صفحات المستند ومراجع المقاطع لتحديد مواضع المراجعة.','The first 100 chunks are shown here. Use page and chunk references to locate the source passages.')}));
  };
  const renderAnalysis=()=>{
   analysisResults.replaceChildren();
