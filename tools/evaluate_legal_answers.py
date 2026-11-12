@@ -93,16 +93,23 @@ def _pin_cites(value, label, question_id):
 
 
 def _valid_review_evidence_url(value):
-    if not isinstance(value, str) or not value.strip() or value != value.strip() or any(ch.isspace() for ch in value):
+    if (not isinstance(value, str) or not value
+            or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value)):
         return False
     try:
         parsed = urlsplit(value)
-        if (parsed.scheme != "https" or not parsed.hostname or parsed.username is not None
-                or parsed.password is not None or parsed.query or parsed.fragment):
-            return False
-        _ = parsed.port
-        return True
-    except ValueError:
+        port = parsed.port
+        return (
+            parsed.scheme.lower() == "https"
+            and bool(parsed.hostname)
+            and parsed.username is None
+            and parsed.password is None
+            and not parsed.query
+            and not parsed.fragment
+            and not parsed.netloc.endswith(":")
+            and (port is None or 1 <= port <= 65535)
+        )
+    except (TypeError, ValueError):
         return False
 
 
