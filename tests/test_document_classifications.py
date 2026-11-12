@@ -50,7 +50,7 @@ class DocumentClassificationContractTests(unittest.TestCase):
         app = (ROOT / "app.py").read_text(encoding="utf-8")
         self.assertIn("original_available_expr", app)
         self.assertIn("if _separate_runtime_enabled() else \"0\"", app)
-        self.assertIn("state='ready' AND purged_at IS NULL", app)
+        self.assertIn("o.state='ready' AND o.purged_at IS NULL", app)
         html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
         self.assertIn("doc.original_available", html)
         self.assertIn("'/docs/'+doc.document_id+'/original'", html)
