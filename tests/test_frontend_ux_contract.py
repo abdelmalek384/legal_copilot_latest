@@ -941,5 +941,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("documentFilter.oninput=()=>renderDocuments(currentDocuments)", page)
         self.assertIn("documentStatusFilter.onchange=()=>renderDocuments(currentDocuments)", page)
 
+    def test_firm_switch_clears_selected_document_matter_context(self):
+        self.assertIn("window.DOCUMENT_MATTER_ID=null;sessionStorage.me=JSON.stringify(ME)", HTML)
+
 if __name__ == "__main__":
     unittest.main()
