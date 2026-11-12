@@ -193,5 +193,33 @@ class PdfOcrFallbackTests(unittest.TestCase):
         slots.acquire.assert_called_once_with(blocking=False)
         slots.release.assert_called_once_with()
 
+    def test_ocr_worker_slot_is_reserved_before_page_rasterization(self):
+        fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: FakePdfDoc(1))
+        fake_pytesseract = types.SimpleNamespace(
+            image_to_string=MagicMock(return_value="OCR recovered page text.")
+        )
+        fake_image = types.SimpleNamespace(open=lambda value: object())
+        fake_pil = types.ModuleType("PIL")
+        fake_pil.Image = fake_image
+        slots = MagicMock()
+        slots.acquire.return_value = True
+
+        def render_page(dpi, alpha):
+            self.assertTrue(slots.acquire.called, "OCR slot must be acquired before raster allocation")
+            return FakePixmap()
+
+        with patch.dict(sys.modules, {
+            "pymupdf": fake_pymupdf,
+            "pytesseract": fake_pytesseract,
+            "PIL": fake_pil,
+        }), patch.object(app, "_OCR_WORKER_SLOTS", slots), patch.object(
+            FakePdfPage, "get_pixmap", side_effect=render_page
+        ):
+            result = app.ocr_pdf_text(b"pdf")
+
+        self.assertIn("OCR recovered page text.", result)
+        slots.acquire.assert_called_once_with(blocking=False)
+        slots.release.assert_called_once_with()
+
 if __name__ == "__main__":
     unittest.main()
