@@ -1077,5 +1077,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("item.page", page)
         self.assertIn("item.excerpt", page)
 
+    def test_cross_matter_text_search_results_are_paginated(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("textSearchOffset", page)
+        self.assertIn("textSearchTotal", page)
+        self.assertIn("offset:String(textSearchOffset)", page)
+        self.assertIn("previousTextSearch", page)
+        self.assertIn("nextTextSearch", page)
+
 if __name__ == "__main__":
     unittest.main()
