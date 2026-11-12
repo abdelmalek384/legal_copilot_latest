@@ -750,6 +750,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("source.page_number??p.page_number", HTML)
         self.assertIn("source.text_location||p.text_location||source.location||p.location", HTML)
         self.assertIn("source.confidence??p.confidence", HTML)
+        self.assertIn("(typeof confidence==='number'||typeof confidence==='string')&&confidence!==''", HTML)
         self.assertIn("Original document: ", HTML)
         self.assertIn("Page: ", HTML)
         self.assertIn("Recorded confidence: ", HTML)
