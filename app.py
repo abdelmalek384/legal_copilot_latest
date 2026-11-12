@@ -8174,10 +8174,6 @@ def list_original_document_deletion_requests(
     return {"document_id": document_id, "requests": result}
 
 
-DOCUMENT_CLASSIFICATION_CATEGORIES = (
-    "unclassified", "court_judgment", "contract", "pleading",
-    "correspondence", "evidence_or_receipt",
-)
 DOCUMENT_INTELLIGENCE_MAX_DOCUMENTS = 40
 DOCUMENT_INTELLIGENCE_MAX_TOTAL_CHARS = 1_000_000
 DOCUMENT_INTELLIGENCE_MAX_CANDIDATES = 1_000
@@ -8195,7 +8191,7 @@ class DocumentCompareIn(BaseModel):
     context_chars: int = Field(default=100, ge=0, le=1000)
 
 
-def _document_intelligence_text(c, cid: int, firm_id: int, document_id: int):
+def _document_text_and_chunks(c, cid: int, firm_id: int, document_id: int):
     doc = c.execute(
         "SELECT id,name,added,sha256,extraction_status,ocr_used FROM docs "
         "WHERE id=? AND case_id=? AND firm_id=?",
@@ -8231,7 +8227,11 @@ def _document_intelligence_text(c, cid: int, firm_id: int, document_id: int):
     text = "".join(parts)
     if len(text) > MAX_ANALYSIS_CHARS:
         raise HTTPException(413, "document text exceeds the intelligence analysis limit")
+    return dict(doc), text, chunk_ranges
 
+
+def _document_intelligence_text(c, cid: int, firm_id: int, document_id: int):
+    doc, text, chunk_ranges = _document_text_and_chunks(c, cid, firm_id, document_id)
     base = extract_review_candidates(text)
     extra = extract_legal_reference_and_event_mentions(text)
     candidates = base["candidates"] + extra["candidates"]
@@ -8248,11 +8248,10 @@ def _document_intelligence_text(c, cid: int, firm_id: int, document_id: int):
                 candidate["page"] = source_chunk["page"]
     candidates.sort(key=lambda item: (item["start"], item["end"], item["kind"]))
     suggestion = classify_document(str(doc["name"] or ""), text)
-    return dict(doc), text, candidates, suggestion, {
+    return doc, text, candidates, suggestion, {
         "base": base.get("limitations", []),
         "additional": extra.get("limitations", []),
     }
-
 
 def _document_classification_history(c, cid: int, firm_id: int, document_id: int, limit: int = 10):
     rows = c.execute(
@@ -8347,7 +8346,7 @@ def case_document_intelligence(cid: int, u: dict = Depends(user)):
             "firm_id": str(u["firm_id"]),
             "matter_id": str(cid),
             "document_id": str(row["id"]),
-            "original_sha256": row["sha256"],
+            "original_sha256": row["sha256"] if isinstance(row["sha256"], str) and re.fullmatch(r"[0-9a-fA-F]{64}", row["sha256"]) else None,
             "extracted_text_sha256": digest,
         })
     duplicates = group_same_matter_duplicates(duplicate_inputs)
@@ -8384,9 +8383,8 @@ def save_document_classification(
 ):
     c = conn()
     need(c, u, cid)
-    doc, _text, _candidates, suggestion, _limitations = _document_intelligence_text(
-        c, cid, u["firm_id"], document_id
-    )
+    doc, text, _chunk_ranges = _document_text_and_chunks(c, cid, u["firm_id"], document_id)
+    suggestion = classify_document(str(doc["name"] or ""), text)
     latest = c.execute(
         "SELECT id FROM document_classification_reviews "
         "WHERE firm_id=? AND case_id=? AND document_id=? ORDER BY id DESC LIMIT 1",
@@ -8424,11 +8422,11 @@ def compare_case_document_versions(cid: int, b: DocumentCompareIn, u: dict = Dep
     need(c, u, cid)
     if b.before_document_id == b.after_document_id:
         raise HTTPException(422, "choose two different documents")
-    before_doc, before_text, _before_candidates, _before_suggestion, _before_limits = (
-        _document_intelligence_text(c, cid, u["firm_id"], b.before_document_id)
+    before_doc, before_text, _before_ranges = _document_text_and_chunks(
+        c, cid, u["firm_id"], b.before_document_id
     )
-    after_doc, after_text, _after_candidates, _after_suggestion, _after_limits = (
-        _document_intelligence_text(c, cid, u["firm_id"], b.after_document_id)
+    after_doc, after_text, _after_ranges = _document_text_and_chunks(
+        c, cid, u["firm_id"], b.after_document_id
     )
     try:
         changes = compare_extracted_text(before_text, after_text, context_chars=b.context_chars)
