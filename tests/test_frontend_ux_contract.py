@@ -994,6 +994,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("limit:'8',offset:'0'", shell)
         self.assertIn("api('/cases/search?'+params.toString())", shell)
         self.assertIn("globalSearchInput.onkeydown", shell)
+        self.assertIn("globalSearchInput.oninput=()=>globalSearchResults.replaceChildren()", shell)
         self.assertIn("view(item.id)", shell)
 
     def test_document_context_resets_upload_queue_and_filters_between_matters(self):
