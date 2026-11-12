@@ -702,5 +702,63 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertNotIn("id:'new-case-title-error',className:'bad',role:'alert',hidden:true,style:'display:block'", HTML)
 
 
+    def test_dashboard_exposes_active_matter_shortlist_and_respects_accessible_case_list(self):
+        self.assertIn("className:'card workspace-active-cases'", HTML)
+        self.assertIn("active.slice(0,5).map(c=>listItem", HTML)
+        self.assertIn("()=>view(c.id)", HTML)
+        self.assertIn("active.length", HTML)
+
+    def test_legal_research_uses_three_pane_source_inspector_without_changing_evidence_contract(self):
+        self.assertIn("className:'research-inspector card'", HTML)
+        self.assertIn("role:'region',tabIndex:0,'aria-label':LANG==='ar'?'فحص المصدر':'Source inspector'", HTML)
+        self.assertIn("grid-template-columns:minmax(205px,235px) minmax(0,1fr) minmax(260px,310px)", HTML)
+        self.assertIn("id:'research-source-inspector'", HTML)
+        self.assertIn("id:'research-history-pane'", HTML)
+        self.assertIn("'aria-controls':'research-history-pane'", HTML)
+        self.assertIn("sidebar.classList.toggle('history-collapsed')", HTML)
+        self.assertIn(".research-list.history-collapsed>:not(.research-list-head){display:none!important}", HTML)
+        self.assertIn("'aria-controls':'research-source-inspector'", HTML)
+        self.assertIn("'aria-expanded':'false'", HTML)
+        self.assertIn("trigger.setAttribute('aria-expanded','true')", HTML)
+        self.assertIn("returnTo.setAttribute('aria-expanded','false')", HTML)
+        self.assertIn("className:'g research-inspect-action'", HTML)
+        self.assertIn("onclick:()=>inspectSource(s,status,pin,p)", HTML)
+        self.assertIn("source.text|| (LANG==='ar'?'لم يُرجع نص لهذا السجل من المصدر.':'No passage text was returned for this source record.')", HTML)
+        self.assertIn("review_evidence", HTML)
+        self.assertIn("const latestByType=Object.create(null)", HTML)
+        self.assertIn("const latestReviews=Object.values(latestByType)", HTML)
+        self.assertIn("const resetInspector=(returnFocus=false)=>", HTML)
+        self.assertIn("sourceInspector.__focusReturn=document.activeElement", HTML)
+        self.assertIn("onclick:()=>resetInspector(true)", HTML)
+        self.assertIn("onkeydown:e=>{if(e.key==='Escape'&&sourceInspector.__focusReturn)", HTML)
+        self.assertIn("sourceInspector.focus({preventScroll:true})", HTML)
+        self.assertIn("@media(max-width:1120px)", HTML)
+        self.assertIn("@media(max-width:800px)", HTML)
+        self.assertIn(".research-layout>.research-list{max-height:210px;overflow:auto}", HTML)
+        self.assertIn(".research-layout>.research-inspector{max-height:380px;overflow:auto}", HTML)
+        self.assertIn("@media(prefers-reduced-motion:reduce){#main .quick-link{transition:none}#main .quick-link:hover{transform:none}}", HTML)
+
+
+    def test_language_switch_preserves_first_run_and_setup_health_views(self):
+        self.assertIn("else if(PAGE==='setup')firstRunPage();else if(PAGE==='setup-health')setupHealthPage();", HTML)
+
+
+    def test_inspecting_a_second_source_closes_the_previous_expanded_control(self):
+        self.assertIn("const previousTrigger=sourceInspector.__focusReturn", HTML)
+        self.assertIn("previousTrigger!==trigger&&previousTrigger.isConnected", HTML)
+        self.assertIn("previousTrigger.setAttribute('aria-expanded','false')", HTML)
+
+
+    def test_source_inspector_preserves_document_page_and_confidence_provenance(self):
+        self.assertIn("p.original_document_name||p.document_name||source.original_document_name||source.document_name||source.file_name", HTML)
+        self.assertIn("source.page_number??p.page_number", HTML)
+        self.assertIn("source.text_location||p.text_location||source.location||p.location", HTML)
+        self.assertIn("source.confidence??p.confidence", HTML)
+        self.assertIn("(typeof confidence==='number'||typeof confidence==='string')&&confidence!==''", HTML)
+        self.assertIn("Original document: ", HTML)
+        self.assertIn("Page: ", HTML)
+        self.assertIn("Recorded confidence: ", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
