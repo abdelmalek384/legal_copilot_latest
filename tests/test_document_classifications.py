@@ -118,6 +118,8 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn('@app.get("/documents/search-text")', app)
         self.assertIn('re.findall(r"[\\w]+", needle, flags=re.UNICODE)', endpoint)
         self.assertIn('chunks_fts MATCH ?', endpoint)
+        self.assertIn('fts_query = " AND ".join', endpoint)
+        self.assertIn('token.replace', endpoint)
         self.assertIn("chunks.case_id IN (SELECT cs.id FROM cases cs WHERE cs.firm_id=?", endpoint)
         self.assertIn("EXISTS(SELECT 1 FROM members", endpoint)
         self.assertIn("document_text_search", endpoint)
