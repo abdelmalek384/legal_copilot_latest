@@ -150,5 +150,11 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("renderAnalysis()", block)
         self.assertIn("Your draft is retained", block)
 
+    def test_extraction_review_card_shows_latest_corrected_text_separately(self):
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("latest.outcome==='corrected'", html)
+        self.assertIn("latest.reviewed_text", html)
+        self.assertIn("Latest recorded correction", html)
+
 if __name__ == "__main__":
     unittest.main()
