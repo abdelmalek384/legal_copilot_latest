@@ -874,5 +874,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("@media(prefers-reduced-motion:reduce){#main *", HTML)
         self.assertIn("role:'region',tabIndex:0", HTML)
 
+    def test_document_upload_dropzone_supports_keyboard_and_drag_feedback(self):
+        self.assertIn("role:'button',tabIndex:0", HTML)
+        self.assertIn("press Enter or Space to choose files", HTML)
+        self.assertIn("if(e.key==='Enter'||e.key===' ')", HTML)
+        self.assertIn("e.currentTarget.classList.add('is-dragover')", HTML)
+        self.assertIn("e.currentTarget.classList.remove('is-dragover')", HTML)
+        self.assertIn(".research-upload-dropzone:focus-visible", HTML)
+
 if __name__ == "__main__":
     unittest.main()
