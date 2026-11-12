@@ -322,7 +322,22 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
                "cited_article_ids": [], "abstained": False, "used_unverified_source": False}
         self.assertEqual(score([q], [run], TEST_REVIEWER_REGISTRY)["target_status"],
-                         "not_evaluable_missing_approved_labels_or_cited_runs")
+                         "below_target")
+
+    def test_unanswerable_non_abstained_uncited_run_is_a_known_safety_failure(self):
+        q = reviewed("Q-UNANSWERABLE", answerable=False)
+        run = {
+            "question_id": "Q-UNANSWERABLE",
+            "retrieved_article_ids": [],
+            "cited_article_ids": [],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+        result = score([q], [run], TEST_REVIEWER_REGISTRY)
+        self.assertEqual(result["wrong_article_rate"], None)
+        self.assertEqual(result["uncited_non_abstained_answers"], 1)
+        self.assertEqual(result["abstention_compliance_unanswerable"], 0.0)
+        self.assertEqual(result["target_status"], "below_target")
 
     def test_canonical_expected_article_id_is_used_for_hits_and_citations(self):
         q = reviewed("Q1")
