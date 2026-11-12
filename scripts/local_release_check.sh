@@ -48,25 +48,37 @@ if command -v bandit >/dev/null 2>&1; then
     details+=("no findings at configured severity/confidence")
   else
     bandit_rc=$?
-    if python - "$bandit_report" <<'PY'
+    if [[ -s "$bandit_report" ]]; then
+      echo "Bandit JSON report:"
+      cat "$bandit_report"
+    fi
+    if bandit_findings=$(python - "$bandit_report" <<'PY'
 import json
 import sys
-with open(sys.argv[1], encoding="utf-8") as handle:
-    report = json.load(handle)
-high = [item for item in report.get("results", []) if item.get("issue_severity") == "HIGH"]
-print("Bandit findings:", len(report.get("results", [])))
-for item in report.get("results", []):
-    print(item.get("issue_severity"), item.get("issue_confidence"), item.get("test_id"), item.get("filename"), item.get("line_number"))
-raise SystemExit(1 if high else 0)
+try:
+    with open(sys.argv[1], encoding="utf-8") as handle:
+        report = json.load(handle)
+    results = report.get("results")
+    if not isinstance(results, list):
+        raise ValueError("Bandit report has no results list")
+except (OSError, ValueError, json.JSONDecodeError):
+    raise SystemExit(2)
+print(len(results))
 PY
-    then
-      names+=("Bandit security scan")
-      statuses+=("PASS")
-      details+=("no HIGH severity findings (lower findings reported)")
+    ); then
+      if [[ "$bandit_findings" =~ ^[0-9]+$ ]] && (( bandit_findings > 0 )); then
+        names+=("Bandit security scan")
+        statuses+=("FAIL")
+        details+=("$bandit_findings finding(s) at configured severity/confidence; Bandit exit $bandit_rc")
+      else
+        names+=("Bandit security scan")
+        statuses+=("BLOCKED")
+        details+=("Bandit exited $bandit_rc without reported findings; inspect tool execution")
+      fi
     else
       names+=("Bandit security scan")
-      statuses+=("FAIL")
-      details+=("HIGH severity finding(s); Bandit exit $bandit_rc")
+      statuses+=("BLOCKED")
+      details+=("Bandit exited $bandit_rc and produced no valid JSON report")
     fi
   fi
   rm -f "$bandit_report"
