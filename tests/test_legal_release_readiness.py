@@ -594,5 +594,17 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.assertIn("central_collection_permission_not_allowed", codes)
         self.assertIn("central_commercial_permission_not_allowed", codes)
 
+
+    def test_corpus_paths_reject_control_characters_before_filesystem_access(self):
+        for field, value, expected_code in (
+            ("original_path", "originals/law.pdf\\x00", "original_path_invalid"),
+            ("extracted_text_path", "extracted/law.txt\\x1f", "extracted_text_path_invalid"),
+        ):
+            candidate = json.loads(json.dumps(self.candidate))
+            candidate["version"][field] = value
+            with self.subTest(field=field):
+                result = MODULE.audit_candidate(candidate, self.register, self.root)
+                self.assertIn(expected_code, {item["code"] for item in result["blockers"]})
+
 if __name__ == "__main__":
     unittest.main()
