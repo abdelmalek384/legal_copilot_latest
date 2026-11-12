@@ -109,12 +109,20 @@ class RetrievalEvaluationTests(unittest.TestCase):
             ROOT / "tests" / "legal_eval" / "labour_law_questions.draft.jsonl",
             ROOT / "tests" / "legal_eval" / "labour_law_14_2025_provisional_review_questions.draft.jsonl",
         )
+        expected_counts = {
+            "practice_questions.seed.jsonl": 59,
+            "multi_area_questions.draft.jsonl": 100,
+            "labour_law_questions.draft.jsonl": 61,
+            "labour_law_14_2025_provisional_review_questions.draft.jsonl": 58,
+        }
         total = 0
         for path in paths:
             questions = _load_jsonl(path)
             unreviewed = [q for q in questions if q.get("review_status") == "needs_lawyer_review"]
             total += len(unreviewed)
             with self.subTest(path=path.name):
+                self.assertEqual(len(questions), expected_counts[path.name])
+                self.assertEqual(len(unreviewed), len(questions))
                 self.assertTrue(all(q.get("must_abstain_if_unverified") is True for q in unreviewed))
         self.assertEqual(total, 278)
 
