@@ -258,6 +258,8 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
     output_resolved = output_dir.resolve()
     if output_resolved == source_parent or source_parent in output_resolved.parents:
         raise ValueError("output directory must be outside the source directory")
+    # Use the resolved absolute path so a symlinked parent is not re-resolved at write time.
+    output_dir = output_resolved
     if output_dir.exists() and not output_dir.is_dir():
         raise ValueError("output path must be a directory")
     if output_dir.exists() and any(output_dir.iterdir()):
