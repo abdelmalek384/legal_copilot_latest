@@ -46,7 +46,7 @@ Additional required control field:
 
 - `supplier_role`: must be `egyptian_lawyer` or `qualified_egyptian_counsel`. This is a supplied declaration, not identity or licence verification.
 
-Source locator: provide either a non-empty `source_url` or a non-empty `source_reference`. If a URL is supplied, it must be HTTPS and must not contain whitespace, C0/DEL control characters, credentials, a fragment delimiter (including an empty `#`), invalid authority/port syntax, or recognized signed/credential query parameters. A source reference is a human-supplied locator, not proof of authority.
+Source locator: provide either a non-empty `source_url` or a non-empty `source_reference`. If a URL is supplied, it must be HTTPS and must not contain whitespace, C0/DEL control characters, credentials, backslashes, a fragment delimiter (including an empty `#`), invalid authority/port syntax, or recognized signed/credential query parameters. A source reference is a human-supplied locator, not proof of authority.
 
 Optional collection-rights fields:
 
