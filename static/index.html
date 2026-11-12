@@ -2188,45 +2188,6 @@ function documentIntelligencePanel(caseId,documents){
   ['evidence_or_receipt',uiText('دليل أو إيصال','Evidence / receipt')]
  ];
  const normalize=value=>String(value||'').normalize('NFKC').replace(/[ًٌٍَُِّْٰـ]/g,'').replace(/[أإآٱ]/g,'ا').replace(/ى/g,'ي').replace(/[٠-٩]/g,d=>String('٠١٢٣٤٥٦٧٨٩'.indexOf(d))).toLocaleLowerCase();
- const classify=(filename,text)=>{
-  const rules=[
-   ['court_judgment',['حكم','محكمة','منطوق الحكم','حيثيات','judgment','court ruling']],
-   ['contract',['عقد','اتفق الطرفان','بند','الطرف الأول','الطرف الثاني','agreement','contract']],
-   ['pleading',['صحيفة دعوى','مذكرة دفاع','طلبات المدعي','مذكرة','statement of claim','pleading','legal brief']],
-   ['correspondence',['إنذار','خطاب','مراسلة','إخطار','notice','correspondence','letter']],
-   ['evidence_or_receipt',['إيصال','فاتورة','محضر','كشف حساب','receipt','invoice','report']]
-  ];
-  const haystack=(String(filename||'')+'\n'+String(text||'').slice(0,1000000)).toLocaleLowerCase();
-  const scored=rules.map(([category,terms])=>({category,matched:terms.filter(term=>haystack.includes(term.toLocaleLowerCase()))})).filter(item=>item.matched.length);
-  scored.sort((a,b)=>b.matched.length-a.matched.length||a.category.localeCompare(b.category));
-  return scored.length?{category:scored[0].category,matched:scored[0].matched,signal:scored[0].matched.length>1?'multiple_keyword_matches':'single_keyword_match'}:{category:'unclassified',matched:[],signal:'no_keyword_match'};
- };
- const extractCandidates=(documentId,chunks)=>{
-  const patterns=[
-   {kind:'date',regex:/[0-9٠-٩]{1,2}[\/.-][0-9٠-٩]{1,2}[\/.-][0-9٠-٩]{2,4}|[0-9٠-٩]{4}[\/.-][0-9٠-٩]{1,2}[\/.-][0-9٠-٩]{1,2}/gu},
-   {kind:'case_reference',regex:/(?:دعوى|القضية|قضية|استئناف|طعن|جنحة|جناية)\s*(?:رقم|رقمها)?\s*[:：#]?\s*[0-9٠-٩]+(?:\s*[\/\\-]\s*[0-9٠-٩]+){0,2}/giu},
-   {kind:'amount',regex:/[0-9٠-٩]+(?:[,.٫٬][0-9٠-٩]+)?\s*(?:جنيه(?:اً|ا)?|جنيهات|ج\.م|EGP|LE|دولار|ريال)/giu},
-   {kind:'party_label',regex:/(?:المدعي|المدعى عليه|المتهم|المجني عليه|الطالب|المطلوب ضده|المؤجر|المستأجر|البائع|المشتري|Plaintiff|Defendant|Claimant|Respondent)\s*[:：-]\s*[^\n،؛;]{2,100}/giu},
-   {kind:'legal_reference',regex:/(?:المادة|مادة|Article)\s*(?:رقم|No\.?)?\s*[0-9٠-٩]+|(?:قانون|القانون)\s*(?:رقم|No\.?)?\s*[0-9٠-٩]+\s*(?:لسنة|of|\/)\s*[0-9٠-٩]{4}/giu},
-   {kind:'event_mention',regex:/(?:جلسة|حكم|إنذار|إخطار|استئناف|طعن|قرار|توقيع|إبرام|فسخ|سداد|استلام|hearing|judgment|notice|appeal|termination|payment)/giu}
-  ];
-  const found=[],seen=new Set();
-  for(const chunk of chunks){
-   const text=String(chunk.text||'');
-   for(const pattern of patterns){
-    const re=new RegExp(pattern.regex.source,pattern.regex.flags);
-    for(const match of text.matchAll(re)){
-     const value=String(match[0]||'').trim(),key=[pattern.kind,value,chunk.id,chunk.page].join('|');
-     if(!value||seen.has(key))continue;
-     seen.add(key);
-     const start=match.index||0;
-     found.push({kind:pattern.kind,value,excerpt:text.slice(Math.max(0,start-90),Math.min(text.length,start+value.length+90)).replace(/\s+/g,' ').trim(),page:chunk.page??null,chunk_ref:chunk.ref||String(chunk.id||''),chunk_id:chunk.id,document_id:documentId,review_status:'candidate_unverified'});
-     if(found.length>=250)return found;
-    }
-   }
-  }
-  return found;
- };
  const parseDate=value=>{
   const raw=String(value||'').replace(/[٠-٩]/g,d=>String('٠١٢٣٤٥٦٧٨٩'.indexOf(d)));
   const parts=raw.split(/[\/.-]/);
@@ -2271,8 +2232,9 @@ function documentIntelligencePanel(caseId,documents){
   const allCandidates=[];
   const textGroups=new Map(),byteGroups=new Map();
   for(const item of cache.values()){
-   const suggestion=classify(item.doc.name,item.text);item.suggestion=suggestion;
-   item.candidates=extractCandidates(item.doc.document_id,item.chunks);
+   const classification=item.intelligence.classification||{};
+   item.suggestion={category:classification.category||'unclassified',matched:Array.isArray(classification.matched_terms)?classification.matched_terms:[],signal:classification.signal_strength||'no_keyword_match'};
+   item.candidates=Array.isArray(item.intelligence.candidates)?item.intelligence.candidates:[];
    allCandidates.push(...item.candidates.map(candidate=>({...candidate,filename:item.doc.name})));
    const normalizedText=normalize(item.text).replace(/\s+/g,' ').trim();
    if(normalizedText){if(!textGroups.has(normalizedText))textGroups.set(normalizedText,[]);textGroups.get(normalizedText).push(item.doc.name)}
@@ -2305,7 +2267,8 @@ function documentIntelligencePanel(caseId,documents){
   const selectOptions=[...cache.values()].map(item=>new Option(item.doc.name,String(item.doc.document_id)));
   beforeSelect.replaceChildren(new Option(uiText('الإصدار السابق','Earlier version'),''),...selectOptions);
   afterSelect.replaceChildren(new Option(uiText('الإصدار اللاحق','Later version'),''),...selectOptions);
-  status.textContent=uiText('اكتمل التحليل الأولي لـ ','Initial analysis completed for ')+cache.size+uiText(' مستندات. جميع النتائج مرشحات غير متحققة.',' documents. All results are unverified candidates.');
+  const candidateTruncated=[...cache.values()].some(item=>item.intelligence.truncated===true);
+  status.textContent=uiText('اكتمل التحليل الأولي لـ ','Initial analysis completed for ')+cache.size+uiText(' مستندات. جميع النتائج مرشحات غير متحققة.',' documents. All results are unverified candidates.')+(candidateTruncated?uiText(' تم تطبيق حد أقصى للمرشحات؛ قد توجد إشارات إضافية.',' Candidate output was capped; additional signals may exist.'):'');
  };
  const loadButton=btn(uiText('تحليل المستندات','Analyze documents'),async()=>{
   if(!docs.length){status.textContent=uiText('لا توجد مستندات لتحليلها.','There are no documents to analyze.');return}
@@ -2316,9 +2279,10 @@ function documentIntelligencePanel(caseId,documents){
     status.textContent=uiText('جارٍ تحميل النصوص: ','Loading extracted text: ')+loaded+'/'+Math.min(docs.length,40);
     const data=await api('/cases/'+caseId+'/docs/'+doc.document_id+'/chunks');
     const chunks=Array.isArray(data.chunks)?data.chunks:[];
+    if(!data.intelligence||!data.intelligence.classification||!Array.isArray(data.intelligence.candidates))throw new Error('server_document_intelligence_unavailable');
     const text=chunks.map(chunk=>String(chunk.text||'')).join('\n');
     if(totalChars+text.length>1000000){skipped++;break}
-    totalChars+=text.length;cache.set(String(doc.document_id),{doc,chunks,text});loaded++;
+    totalChars+=text.length;cache.set(String(doc.document_id),{doc,chunks,text,intelligence:data.intelligence});loaded++;
    }
    if(docs.length>40)skipped+=docs.length-40;
    renderAnalysis();
