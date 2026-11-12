@@ -100,6 +100,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
             "cases", "clients", "members", "tasks", "events", "notes", "deadlines", "fees",
             "sessions", "docs", "document_extraction_reviews", "research_conversations",
             "research_messages", "case_deletion_audit", "security_audit_events",
+            "document_classifications", "document_classification_events",
             "tenant_database_binding", "product_feedback", "product_feedback_events",
         }
         corpus_owned = {
@@ -134,6 +135,10 @@ class ProfileInitialSchemaTests(unittest.TestCase):
             "original_file_objects": {
                 "original_file_objects_tenant_insert",
                 "original_file_objects_tenant_update",
+            },
+            "document_classifications": {
+                "document_classifications_tenant_insert",
+                "document_classifications_tenant_update",
             },
         }
         installed = {
@@ -585,6 +590,37 @@ class ProfileInitialSchemaTests(unittest.TestCase):
                 2,
             )
             db.close()
+
+
+
+    def test_document_classifications_are_matter_scoped_and_audit_events_immutable(self):
+        db = self.build("firm")
+        db.execute("INSERT INTO cases(id,title,firm_id) VALUES(1,'Matter',7)")
+        db.execute("INSERT INTO docs(id,case_id,firm_id,name) VALUES(2,1,7,'judgment.pdf')")
+        db.execute(
+            "INSERT INTO document_classifications(document_id,case_id,firm_id,category,updated_by_user_id) "
+            "VALUES(2,1,7,'court_judgment',11)"
+        )
+        db.execute(
+            "INSERT INTO document_classification_events"
+            "(document_id,case_id,firm_id,actor_user_id,event_type,previous_category,new_category,note) "
+            "VALUES(2,1,7,11,'created',NULL,'court_judgment','reviewed')"
+        )
+        db.commit()
+        for table, values in (
+            ("document_classifications", "(document_id,case_id,firm_id,category,updated_by_user_id) VALUES(2,1,999,'contract',12)"),
+            ("document_classification_events", "(document_id,case_id,firm_id,actor_user_id,event_type,previous_category,new_category) VALUES(2,1,999,12,'created',NULL,'contract')"),
+        ):
+            with self.subTest(table=table), self.assertRaises(sqlite3.IntegrityError):
+                db.execute(f"INSERT INTO {table}{values}")
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "immutable"):
+            db.execute("UPDATE document_classification_events SET note='tampered' WHERE document_id=2")
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "immutable"):
+            db.execute("DELETE FROM document_classification_events WHERE document_id=2")
+        db.execute("DELETE FROM docs WHERE id=2")
+        self.assertEqual(db.execute("SELECT COUNT(*) FROM document_classifications").fetchone()[0], 0)
+        self.assertEqual(db.execute("SELECT COUNT(*) FROM document_classification_events").fetchone()[0], 1)
+        db.close()
 
 
 
