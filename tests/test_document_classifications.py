@@ -97,5 +97,17 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("event.actor_name", html)
         self.assertIn("review.reviewer_name", html)
 
+    def test_cross_matter_document_search_is_permission_filtered_and_metadata_only(self):
+        app = (ROOT / "app.py").read_text(encoding="utf-8")
+        endpoint = app[app.index('def search_accessible_documents'):app.index('@app.get("/cases")')]
+        self.assertIn('@app.get("/documents/search")', app)
+        self.assertIn("d.firm_id=? AND c.firm_id=?", endpoint)
+        self.assertIn("EXISTS(SELECT 1 FROM members", endpoint)
+        self.assertIn("need(conn(), u, case_id)", endpoint)
+        self.assertIn("original_available_expr", endpoint)
+        self.assertIn("document_metadata_search", endpoint)
+        self.assertNotIn("chunks_fts", endpoint)
+        self.assertIn("case_title", endpoint)
+
 if __name__ == "__main__":
     unittest.main()
