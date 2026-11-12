@@ -26,6 +26,18 @@ python manage.py init-tenancy --firm-name "Example Firm" --owner-name "First Own
 python -m uvicorn app:app --host 127.0.0.1 --port 8000
 ```
 
+### Local verification and pilot rehearsal
+
+When hosted CI is unavailable, run the same one-line Python test invocations locally with the workflow environment assignments preserved:
+
+```bash
+python tools/run_local_test_suite.py
+bash scripts/local_release_check.sh
+bash scripts/security_regression_check.sh
+```
+
+The release check reports missing optional local tools as **BLOCKED**. Strict deployment preflight reports incomplete or invalid production configuration as **FAIL** until the operator supplies and validates it; neither status is treated as a pass. For a witnessed encrypted backup/restore rehearsal, use [the test-firm runbook](docs/test_firm_runbook.md) and [the staging credential-gap checklist](docs/staging_preflight_credential_gaps.md). Do not run the recovery drill against live production data without an approved maintenance window and independent operator witness.
+
 Open http://127.0.0.1:8000 on the same machine. The launchers and commands initialize local development databases; they are not production deployment or migration instructions. See [Setup and security](#setup-and-security) before using real client data.
 
 The repository includes case-management workflows, profile-separated storage, Arabic lexical retrieval, citation checks, and fail-closed source-only behavior. These are software capabilities with automated tests; they do not establish the correctness of legal content.
