@@ -391,6 +391,22 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIn("or a Gazette amendment", source["permission_evidence"])
         self.assertEqual(MODULE.validate(data), [])
 
+
+    def test_unhashable_permission_states_return_validation_errors(self):
+        import json
+        original = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        cases = (
+            ("collection_permission", []),
+            ("commercial_reuse_permission", {}),
+        )
+        for field, value in cases:
+            data = json.loads(json.dumps(original))
+            data["sources"][0][field] = value
+            with self.subTest(field=field):
+                errors = MODULE.validate(data)
+                self.assertTrue(errors)
+                self.assertTrue(any("unsupported value" in error for error in errors))
+
 if __name__ == "__main__":
     unittest.main()
 

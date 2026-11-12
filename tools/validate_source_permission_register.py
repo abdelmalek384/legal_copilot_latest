@@ -66,6 +66,11 @@ def _valid_review_date(value: object) -> bool:
     return parsed.isoformat() == value and parsed <= dt.date.today() + dt.timedelta(days=1)
 
 
+def _is_one_of(value: object, choices: set[str]) -> bool:
+    """Validate JSON enum values without hashing malformed lists or objects."""
+    return isinstance(value, str) and value in choices
+
+
 def validate(data: object) -> list[str]:
     errors: list[str] = []
     if not isinstance(data, dict) or not isinstance(data.get("sources"), list):
@@ -104,7 +109,7 @@ def validate(data: object) -> list[str]:
         for field in ("permission_evidence_url", "commercial_reuse_evidence_url"):
             if source.get(field) is not None and not _https_url(source.get(field)):
                 errors.append(f"{label}.{field} must be an HTTPS URL without credentials or null")
-        if source.get("collection_permission") in {"allowed", "allowed_limited"}:
+        if _is_one_of(source.get("collection_permission"), {"allowed", "allowed_limited"}):
             if not _https_url(source.get("permission_evidence_url")):
                 errors.append(f"{label} allowed collection requires permission_evidence_url linking to inspectable rights evidence")
 
@@ -116,11 +121,11 @@ def validate(data: object) -> list[str]:
 
         collection = source.get("collection_permission")
         commercial = source.get("commercial_reuse_permission")
-        if collection not in COLLECTION_STATES:
+        if not _is_one_of(collection, COLLECTION_STATES):
             errors.append(f"{label}.collection_permission has unsupported value")
-        if commercial not in COMMERCIAL_STATES:
+        if not _is_one_of(commercial, COMMERCIAL_STATES):
             errors.append(f"{label}.commercial_reuse_permission has unsupported value")
-        if commercial in {"allowed", "allowed_limited"}:
+        if _is_one_of(commercial, {"allowed", "allowed_limited"}):
             commercial_evidence = source.get("commercial_reuse_evidence")
             if not isinstance(commercial_evidence, str) or not commercial_evidence.strip():
                 errors.append(f"{label} commercial reuse permission requires separate commercial_reuse_evidence")
@@ -131,7 +136,7 @@ def validate(data: object) -> list[str]:
 
         checked_on = source.get("terms_checked_on")
         evidence = source.get("permission_evidence")
-        explicit_claim = collection in EXPLICIT_PERMISSION_STATES or commercial in EXPLICIT_PERMISSION_STATES
+        explicit_claim = _is_one_of(collection, EXPLICIT_PERMISSION_STATES) or _is_one_of(commercial, EXPLICIT_PERMISSION_STATES)
         if explicit_claim:
             if not isinstance(evidence, str) or not evidence.strip():
                 errors.append(f"{label} records an explicit permission/restriction state without permission_evidence")
