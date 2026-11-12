@@ -266,6 +266,8 @@ class GazetteTextImportTests(unittest.TestCase):
             "https://example.gov/path\x7fvalue",
             "https://example.gov:/item",
             "https://example.gov:99999/item",
+            "https://example.gov\\item",
+            "https://example.gov\\@evil.gov/item",
             "https://example.gov/item#",
             "https://example.gov/item?version=1#",
             [],
