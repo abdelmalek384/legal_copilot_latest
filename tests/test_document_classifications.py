@@ -140,5 +140,15 @@ class DocumentClassificationContractTests(unittest.TestCase):
         html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
         self.assertIn("doc.classification_reviewer_name", html)
 
+    def test_classification_ui_refreshes_on_optimistic_conflict_without_dropping_draft(self):
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        start = html.index("const classificationCards=")
+        end = html.index("const typeLabels=", start)
+        block = html[start:end]
+        self.assertIn("latestVersion!==priorVersion", block)
+        self.assertIn("item.classification=latest", block)
+        self.assertIn("renderAnalysis()", block)
+        self.assertIn("Your draft is retained", block)
+
 if __name__ == "__main__":
     unittest.main()
