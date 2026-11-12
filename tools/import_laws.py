@@ -171,21 +171,26 @@ def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
             metadata["official_title"] = official_title.strip()
 
         source_url = metadata.get("source_url")
+        if (not isinstance(source_url, str) or not source_url
+                or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in source_url)):
+            _fail(f"source_url must be an HTTPS URL without whitespace or control characters: {sidecar.name}")
         try:
-            parsed_url = urlsplit(source_url) if isinstance(source_url, str) else None
-            if parsed_url is not None:
-                _ = parsed_url.port
-        except ValueError:
+            parsed_url = urlsplit(source_url)
+            port = parsed_url.port
+        except (TypeError, ValueError):
             parsed_url = None
+            port = None
         if (
             parsed_url is None
             or parsed_url.scheme.lower() != "https"
             or not parsed_url.hostname
-            or parsed_url.username
-            or parsed_url.password
+            or parsed_url.username is not None
+            or parsed_url.password is not None
             or parsed_url.fragment
+            or parsed_url.netloc.endswith(":")
+            or (port is not None and not 1 <= port <= 65535)
         ):
-            _fail(f"source_url must be an HTTPS URL without credentials or fragment: {sidecar.name}")
+            _fail(f"source_url must be an HTTPS URL without credentials or fragment and with a valid authority: {sidecar.name}")
         sensitive_query_keys = {
             "token", "access_token", "auth", "authorization", "password", "secret",
             "signature", "sig", "api_key", "apikey", "session", "sessionid",
