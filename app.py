@@ -15,6 +15,7 @@ from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_pe
 from tools.arabic_legal_matching import expand_lexicon_hints
 from tools.arabic_drafting_skeletons import build_arabic_skeleton
 from tools.claim_support import claim_support_enabled, has_unsupported_claims, has_negated_obligation_conflicts
+from tools.document_intelligence import MAX_ANALYSIS_CHARS, classify_document, extract_review_candidates
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
     generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
@@ -8217,13 +8218,56 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
         item["text_sha256"] = hashlib.sha256(item["text"].encode("utf-8")).hexdigest()
         item["latest_review"] = latest.get(item["id"])
         chunks.append(item)
+
+    # Run the canonical, bounded Python helper only after the existing matter
+    # authorization and firm-scoped document lookup have succeeded.
+    analysis_parts = []
+    candidates = []
+    remaining_chars = MAX_ANALYSIS_CHARS
+    analysis_truncated = False
+    for item in chunks:
+        chunk_text = str(item.get("text") or "")
+        if not chunk_text:
+            continue
+        if remaining_chars <= 0:
+            analysis_truncated = True
+            break
+        bounded_text = chunk_text[:remaining_chars]
+        analysis_parts.append(bounded_text)
+        remaining_chars -= len(bounded_text)
+        remaining_candidates = 250 - len(candidates)
+        if remaining_candidates > 0:
+            extracted = extract_review_candidates(
+                bounded_text, max_candidates=remaining_candidates
+            )
+            for candidate in extracted["candidates"]:
+                candidate["document_id"] = document_id
+                candidate["chunk_id"] = item["id"]
+                candidate["chunk_ref"] = item["ref"]
+                if item.get("page") not in (None, ""):
+                    candidate["page"] = item["page"]
+                candidates.append(candidate)
+            analysis_truncated = analysis_truncated or extracted["truncated"]
+        if len(bounded_text) < len(chunk_text) or len(candidates) >= 250:
+            analysis_truncated = True
+            break
+    analysis_text = "\\n".join(analysis_parts)
+    classification = classify_document(doc["name"], analysis_text)
+    intelligence = {
+        "classification": classification,
+        "candidate_count": len(candidates),
+        "candidates": candidates,
+        "truncated": analysis_truncated,
+        "requires_review": True,
+    }
     return {
         "document_id": document_id,
         "name": doc["name"],
         "extraction_status": doc["extraction_status"],
         "ocr_used": bool(doc["ocr_used"]),
         "chunks": chunks,
-        "warning": "Review compares extracted text only. It does not establish legal accuracy or source authenticity.",
+        "intelligence": intelligence,
+        "warning": "Server-side keyword and regex results are review candidates only. They do not establish legal accuracy, facts, deadlines, or source authenticity.",
     }
 
 
