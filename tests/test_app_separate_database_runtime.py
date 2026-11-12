@@ -3479,7 +3479,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(created.status_code, 200, created.text)
         case_id = created.json()["id"]
         text = (
-            "[[PDF_PAGE:9]]\\nحكم المحكمة في الدعوى رقم ١٢٣/٢٠٢٥ بتاريخ ١٥/٠٣/٢٠٢٥. "
+            "[[PDF_PAGE:9]]\nحكم المحكمة في الدعوى رقم ١٢٣/٢٠٢٥ بتاريخ ١٥/٠٣/٢٠٢٥. "
             "المدعي: طرف تجريبي. المبلغ ٥٠٠٠ جنيه. المادة ١٠١ من القانون رقم ١٢ لسنة ٢٠٢٠. "
             "تحددت جلسة الدعوى."
         )
@@ -3508,7 +3508,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             and candidate["review_status"] == "candidate_unverified"
             for candidate in intelligence["candidates"]
         ))
-        self.assertTrue(any(candidate["page"] == "9" for candidate in intelligence["candidates"]))
+        self.assertTrue(any(str(candidate["page"]) == "9" for candidate in intelligence["candidates"]))
         self.assertLessEqual(intelligence["candidate_count"], 250)
         self.assertTrue(intelligence["requires_review"])
 
