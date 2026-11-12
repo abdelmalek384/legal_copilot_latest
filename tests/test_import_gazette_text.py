@@ -253,7 +253,7 @@ class GazetteTextImportTests(unittest.TestCase):
 
     def test_source_reference_must_be_a_nonempty_string_when_supplied(self):
         self.metadata["source_url"] = "https://example.gov/item"
-        for value in ("", "   ", [], 0, False):
+        for value in ("", "   ", [], 0, False, None):
             with self.subTest(source_reference=value):
                 self.metadata["source_reference"] = value
                 self.write_metadata()
