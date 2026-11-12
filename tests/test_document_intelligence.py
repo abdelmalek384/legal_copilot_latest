@@ -61,6 +61,10 @@ class DocumentIntelligenceTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             compare_extracted_text("a", "b", context_chars=-1)
 
+    def test_comparison_has_a_separate_cpu_bound(self):
+        with self.assertRaises(ValueError):
+            compare_extracted_text("a" * 100_001, "b")
+
 
 if __name__ == "__main__":
     unittest.main()
