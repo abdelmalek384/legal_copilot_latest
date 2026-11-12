@@ -61,5 +61,24 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("0014_document_classifications.sql", migrations)
         self.assertNotIn("0002_document_classifications.sql", migrations)
 
+    def test_integrity_migration_guards_scope_and_makes_audit_events_immutable(self):
+        migration = (ROOT / "migrations" / "firm" / "0015_document_classification_integrity.sql").read_text(encoding="utf-8")
+        for trigger in (
+            "document_classifications_scope_insert",
+            "document_classifications_scope_update",
+            "document_classification_events_scope_insert",
+            "document_classification_events_no_update",
+            "document_classification_events_no_delete",
+        ):
+            self.assertIn(trigger, migration)
+        self.assertIn("classification audit event does not match current state", migration)
+        self.assertIn("document classification audit events are immutable", migration)
+
+    def test_legacy_schema_has_equivalent_classification_integrity_guards(self):
+        app = (ROOT / "app.py").read_text(encoding="utf-8")
+        self.assertIn("CREATE TRIGGER IF NOT EXISTS document_classifications_scope_insert", app)
+        self.assertIn("CREATE TRIGGER IF NOT EXISTS document_classification_events_no_update", app)
+        self.assertIn("CREATE TRIGGER IF NOT EXISTS document_classification_events_no_delete", app)
+
 if __name__ == "__main__":
     unittest.main()
