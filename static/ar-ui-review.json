@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "22cafd85cf3b01c495fb21b96f69f0b4fb8c9849",
   "generated_on": "2026-11-12",
-  "entry_count": 1126,
+  "entry_count": 1127,
   "entries": [
     {
       "id": "AR-0001",
@@ -10924,6 +10924,15 @@
       "source_lines": [
         2389,
         2399
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1127",
+      "arabic": "استعرض المستندات في القضايا المصرح لك بها، وابحث في بياناتها ونصوصها المستخرجة. اختر قضية لإضافة ملفات أو مراجعة التصنيفات والمقاطع.",
+      "source_lines": [
+        2078,
+        2277
       ],
       "review_status": "pending_native_review"
     }
