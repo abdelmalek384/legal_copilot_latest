@@ -124,5 +124,27 @@ class DocumentIntelligenceTests(unittest.TestCase):
             }])
 
 
+    def test_extracts_legal_references_and_event_mentions_as_unverified_candidates(self):
+        result = extract_review_candidates(
+            "المادة ١٠١ من القانون رقم ١٢ لسنة ٢٠٢٠. تحددت جلسة الدعوى."
+        )
+        kinds = {item["kind"] for item in result["candidates"]}
+        self.assertIn("legal_reference", kinds)
+        self.assertIn("event_mention", kinds)
+        self.assertTrue(all(item["review_status"] == "candidate_unverified" for item in result["candidates"]))
+
+    def test_candidate_extraction_enforces_a_hard_result_limit(self):
+        result = extract_review_candidates("01/01/2025 " * 300, max_candidates=10)
+        self.assertEqual(result["candidate_count"], 10)
+        self.assertEqual(len(result["candidates"]), 10)
+        self.assertTrue(result["truncated"])
+
+    def test_candidate_limit_rejects_invalid_values(self):
+        for value in (0, -1, 1001, True, 1.5):
+            with self.subTest(value=value):
+                with self.assertRaises(ValueError):
+                    extract_review_candidates("text", max_candidates=value)
+
+
 if __name__ == "__main__":
     unittest.main()
