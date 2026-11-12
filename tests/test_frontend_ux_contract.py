@@ -774,5 +774,40 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn(".auth-card .password-row button{min-height:44px;flex:0 0 auto}", HTML)
 
 
+    def test_document_intelligence_workspace_is_matter_scoped_and_bounded(self):
+        self.assertIn("function documentIntelligencePanel(caseId,documents)", HTML)
+        self.assertIn("api('/cases/'+caseId+'/docs/'+doc.document_id+'/chunks')", HTML)
+        self.assertIn("for(const doc of docs.slice(0,40))", HTML)
+        self.assertIn("if(totalChars+text.length>1000000)", HTML)
+        self.assertIn("openDocumentWorkspace=makeBtn", HTML)
+        self.assertIn("documentWorkspace.replaceChildren(documentIntelligencePanel", HTML)
+        self.assertIn("const needle=normalize(query.value.trim())", HTML)
+
+    def test_document_intelligence_candidates_keep_provenance_and_unverified_status(self):
+        for kind in ("date", "case_reference", "amount", "party_label", "legal_reference", "event_mention"):
+            self.assertIn("kind:'" + kind + "'", HTML)
+        self.assertIn("review_status:'candidate_unverified'", HTML)
+        self.assertIn("chunk_ref:chunk.ref", HTML)
+        self.assertIn("page:chunk.page??null", HTML)
+        self.assertIn("No deadlines are created automatically.", HTML)
+        self.assertIn("No text differences were found between these versions.", HTML)
+
+    def test_document_classification_edits_are_explicitly_unsaved_drafts(self):
+        self.assertIn("draftOverrides", HTML)
+        self.assertIn("Edit draft classification (not saved)", HTML)
+        self.assertIn("it has not been saved to the server or review history", HTML)
+
+    def test_document_original_download_uses_existing_audited_route(self):
+        self.assertIn("/cases/'+id+'/docs/'+d.document_id+'/original", HTML)
+        self.assertIn("credentials:'same-origin'", HTML)
+        self.assertIn("Download original (if retained)", HTML)
+
+    def test_document_duplicate_signals_are_limited_to_current_matter(self):
+        self.assertIn("byte_identical_candidate", HTML)
+        self.assertIn("text_identical_extraction_candidate", HTML)
+        self.assertIn("Review signals within this matter only", HTML)
+        self.assertIn("text equality does not prove original-file identity", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
