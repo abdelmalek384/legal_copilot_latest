@@ -19,7 +19,9 @@ This directory is a scaffold for a lawyer-reviewed benchmark. The seed questions
 - expected_sources (empty until verified; for evaluator compatibility, use a non-empty list of stable source-ID strings; keep URLs, article/paragraph, Gazette/case metadata and hashes in the source register or review notes)
 - must_abstain_if_unverified (true by default)
 - review_status (needs_lawyer_review in seed)
-- expected_pin_cites (empty until reviewed; each entry has source_id and pin_cite)\n- answerable (explicit true/false after legal review)\n- reviewer_name and review_date (blank until review)
+- expected_pin_cites (empty until reviewed; each entry has source_id and pin_cite)
+- answerable (explicit true/false after legal review)
+- reviewer_name and review_date (blank until review)
 
 ## Initial release gate
 Do not describe Legal Copilot as legally accurate or production-ready until an Egyptian lawyer reviews the answer key and results, corpus provenance is audited, and failures are documented.

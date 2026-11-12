@@ -243,6 +243,16 @@ class GazetteTextImportTests(unittest.TestCase):
             import_text(self.text_path, self.meta_path, self.output)
         self.assertFalse(self.output.exists())
 
+    def test_falsey_malformed_source_urls_are_rejected_even_with_source_reference(self):
+        for value in ("", [], 0, False):
+            with self.subTest(source_url=value):
+                self.metadata["source_url"] = value
+                self.metadata["source_reference"] = "fallback reference must not mask malformed URL"
+                self.write_metadata()
+                with self.assertRaisesRegex(ValueError, "source_url"):
+                    import_text(self.text_path, self.meta_path, self.output)
+                self.assertFalse(self.output.exists())
+
     def test_source_url_credentials_and_signed_query_are_rejected(self):
         self.metadata["source_url"] = "https://user:pass@example.gov/item"
         self.metadata.pop("source_reference")
