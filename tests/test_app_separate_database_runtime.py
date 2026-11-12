@@ -5236,6 +5236,11 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(switched.status_code, 200, switched.text)
         denied = self.client.get(f"/cases/{case_id}/documents/intelligence")
         self.assertEqual(denied.status_code, 404, denied.text)
+        denied_classification = self._mutate(
+            "post", f"/cases/{case_id}/docs/{first_id}/classification",
+            json={"category": "contract", "expected_latest_id": None},
+        )
+        self.assertEqual(denied_classification.status_code, 404, denied_classification.text)
         denied_compare = self._mutate(
             "post", f"/cases/{case_id}/documents/compare",
             json={"before_document_id": first_id, "after_document_id": second_id},
