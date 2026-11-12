@@ -92,6 +92,33 @@ class DeploymentPreflightTests(unittest.TestCase):
                 _, _, errors = preflight.inspect_environment(dict(self.env, LLM_URL=url))
                 self.assertTrue(any("LLM_URL must use HTTPS" in item for item in errors))
 
+    def test_llm_preflight_defers_dns_until_processing_is_approved(self):
+        url = "https://provider.example.test/v1/chat/completions"
+        with patch.object(preflight.socket, "getaddrinfo") as resolve:
+            passed, _, errors = preflight.inspect_environment(dict(self.env, LLM_URL=url))
+        resolve.assert_not_called()
+        self.assertFalse(any("LLM_URL must use HTTPS" in item for item in errors))
+        self.assertTrue(any("DNS destination validation is deferred" in item for item in passed))
+
+    def test_llm_preflight_rejects_private_dns_when_processing_is_approved(self):
+        url = "https://provider.example.test/v1/chat/completions"
+        private = [(2, 1, 6, "", ("10.0.0.8", 443))]
+        with patch.object(preflight.socket, "getaddrinfo", return_value=private):
+            _, _, errors = preflight.inspect_environment(dict(
+                self.env, LLM_URL=url, LLM_DATA_PROCESSING_APPROVED="1"
+            ))
+        self.assertTrue(any("LLM_URL must use HTTPS" in item for item in errors))
+
+    def test_llm_preflight_accepts_only_public_dns_answers_when_approved(self):
+        url = "https://provider.example.test/v1/chat/completions"
+        public = [(2, 1, 6, "", ("93.184.216.34", 443))]
+        with patch.object(preflight.socket, "getaddrinfo", return_value=public):
+            passed, _, errors = preflight.inspect_environment(dict(
+                self.env, LLM_URL=url, LLM_DATA_PROCESSING_APPROVED="1"
+            ))
+        self.assertFalse(any("LLM_URL must use HTTPS" in item for item in errors))
+        self.assertTrue(any("DNS answers are checked" in item for item in passed))
+
     def test_rejects_unlinked_legacy_law_search_override(self):
         _, _, errors = preflight.inspect_environment(dict(self.env, ALLOW_UNLINKED_LEGACY_LAW_SEARCH="1"))
         self.assertTrue(any("ALLOW_UNLINKED_LEGACY_LAW_SEARCH" in item for item in errors))
