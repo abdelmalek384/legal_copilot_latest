@@ -186,6 +186,10 @@ def _article_identifier(hit):
 
 
 def result_from_response(question, response):
+    if not isinstance(response, dict):
+        raise RunnerError("API response must be a JSON object")
+    if not isinstance(question, dict) or not isinstance(question.get("id"), str):
+        raise RunnerError("question metadata must be an object with a string id")
     answer = response.get("answer")
     answer = answer if isinstance(answer, str) and answer.strip() else None
     sources = response.get("sources") if isinstance(response.get("sources"), list) else []
