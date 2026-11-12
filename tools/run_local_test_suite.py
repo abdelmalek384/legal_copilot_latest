@@ -84,6 +84,14 @@ def discover_test_invocations() -> list[tuple[str, tuple[tuple[str, str], ...]]]
     return sorted(invocations, key=lambda item: (item[0], item[1]))
 
 def main() -> int:
+    if sys.version_info[:2] != (3, 12):
+        print(
+            f"BLOCKED: this repository's hash-locked local validation requires Python 3.12; "
+            f"current interpreter is {sys.version_info.major}.{sys.version_info.minor}.",
+            file=sys.stderr,
+        )
+        return 2
+
     invocations = discover_test_invocations()
     if not invocations:
         print("No one-line Python test invocations were discovered in .github/workflows/*.yml.", file=sys.stderr)
