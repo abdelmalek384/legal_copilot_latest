@@ -381,5 +381,31 @@ class LegalImportBundleTests(unittest.TestCase):
             validate_inputs(self.source, output_link)
 
 
+
+    def test_existing_regular_output_files_are_never_overwritten(self):
+        self.output.mkdir()
+        rows = self.output / "law_rows.jsonl"
+        report = self.output / "import_report.md"
+        rows.write_text("keep rows", encoding="utf-8")
+        report.write_text("keep report", encoding="utf-8")
+        with self.assertRaisesRegex(SystemExit, "already exists"):
+            validate_inputs(self.source, self.output)
+        self.assertEqual(rows.read_text(encoding="utf-8"), "keep rows")
+        self.assertEqual(report.read_text(encoding="utf-8"), "keep report")
+
+    def test_output_writer_uses_exclusive_creation_and_preserves_existing_file(self):
+        from tools.import_laws import _write_new_output_files
+
+        self.output.mkdir()
+        existing = self.output / "law_rows.jsonl"
+        existing.write_bytes(b"prior evidence")
+        with self.assertRaisesRegex(ValueError, "already exist"):
+            _write_new_output_files(self.output, {
+                "new-report.md": b"new report",
+                "law_rows.jsonl": b"replacement",
+            })
+        self.assertEqual(existing.read_bytes(), b"prior evidence")
+        self.assertFalse((self.output / "new-report.md").exists())
+
 if __name__ == "__main__":
     unittest.main()

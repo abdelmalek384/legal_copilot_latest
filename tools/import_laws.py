@@ -120,8 +120,8 @@ def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
                 _fail(f"output path must not be a symbolic link: {name}")
             if existing.exists() and name == ".ocr_cache" and not existing.is_dir():
                 _fail("OCR cache path must be a directory")
-            if existing.exists() and name != ".ocr_cache" and not existing.is_file():
-                _fail(f"output file path is not a regular file: {name}")
+            if existing.exists() and name != ".ocr_cache":
+                _fail(f"output file already exists; use a new empty output directory: {name}")
     source_resolved = source_dir.resolve()
     output_resolved = output_dir.resolve()
     if source_resolved == output_resolved or source_resolved in output_resolved.parents:
@@ -325,9 +325,55 @@ def pieces(text, size=8000):
         yield text
 
 
+
+def _write_new_output_files(output_dir: pathlib.Path, files: dict[str, bytes]) -> None:
+    """Create output files exclusively; never follow or overwrite an existing file."""
+    directory_fd = None
+    created = []
+    nofollow = getattr(os, "O_NOFOLLOW", 0)
+    binary = getattr(os, "O_BINARY", 0)
+    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | nofollow | binary
+    try:
+        if os.open in getattr(os, "supports_dir_fd", set()) and hasattr(os, "O_DIRECTORY"):
+            directory_fd = os.open(output_dir, os.O_RDONLY | os.O_DIRECTORY | nofollow)
+        for name, payload in files.items():
+            if directory_fd is not None:
+                fd = os.open(name, flags, 0o600, dir_fd=directory_fd)
+            else:
+                fd = os.open(output_dir / name, flags, 0o600)
+            created.append(name)
+            with os.fdopen(fd, "wb") as handle:
+                handle.write(payload)
+                handle.flush()
+                os.fsync(handle.fileno())
+    except FileExistsError as exc:
+        for name in reversed(created):
+            try:
+                if directory_fd is not None:
+                    os.unlink(name, dir_fd=directory_fd)
+                else:
+                    os.unlink(output_dir / name)
+            except OSError:
+                pass
+        raise ValueError("output files already exist; use a new empty output directory") from exc
+    except Exception:
+        for name in reversed(created):
+            try:
+                if directory_fd is not None:
+                    os.unlink(name, dir_fd=directory_fd)
+                else:
+                    os.unlink(output_dir / name)
+            except OSError:
+                pass
+        raise
+    finally:
+        if directory_fd is not None:
+            os.close(directory_fd)
+
+
 def main(src, out):
     inputs = validate_inputs(src, out)
-    output_dir = pathlib.Path(out)
+    output_dir = pathlib.Path(out).resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
     all_rows = []
     report = ["# Import report", ""]
@@ -382,11 +428,10 @@ def main(src, out):
         short_rows = sum(1 for row in all_rows if row["source"] == source and len(row["text"]) < 40)
         report += ["", f"- very short rows (<40 chars, check for splitting errors): {short_rows}", ""]
 
-    (output_dir / "law_rows.jsonl").write_text(
-        "\n".join(json.dumps(row, ensure_ascii=False) for row in all_rows) + "\n",
-        encoding="utf-8",
-    )
-    (output_dir / "import_report.md").write_text("\n".join(report), encoding="utf-8")
+    _write_new_output_files(output_dir, {
+        "law_rows.jsonl": ("\n".join(json.dumps(row, ensure_ascii=False) for row in all_rows) + "\n").encode("utf-8"),
+        "import_report.md": "\n".join(report).encode("utf-8"),
+    })
     print("rows:", len(all_rows))
     print("\n".join(report))
 
