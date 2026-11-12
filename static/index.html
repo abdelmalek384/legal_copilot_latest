@@ -185,6 +185,65 @@ button{min-height:44px}
 .research-layout{gap:18px}.research-list,.research-thread,.research-inspector{border:1px solid var(--workspace-border);box-shadow:0 5px 20px rgba(23,36,58,.04)}.research-thread{background:var(--workspace-surface)}.research-inspector-passage{background:#f5f8fd;border-color:#dce5f2}.research-source-link{color:var(--workspace-blue)}
 @media(max-width:800px){#main .research-controls{grid-template-columns:minmax(0,1fr)}.research-upload-panel{grid-template-columns:minmax(0,1fr)}.research-upload-actions{width:100%}.research-upload-actions button{flex:1}.research-upload-dropzone{align-items:flex-start;flex-direction:column}.research-upload-dropzone small{text-align:start}}
 @media(max-width:420px){.research-upload-intro{align-items:flex-start}.research-upload-icon{flex-basis:40px;width:40px;height:40px}.research-upload-actions{display:grid;grid-template-columns:1fr}.research-upload-actions button{width:100%}}
+
+/* Figma-aligned Legal Research workspace refresh (preserves existing workflows). */
+:root{--figma-ink:#17263d;--figma-navy:#071b31;--figma-blue:#1760ad;--figma-blue-soft:#eaf2fb;--figma-border:#dce4ee;--figma-muted:#718096;--figma-surface:#fff}
+body{background:#f3f6fa;color:var(--figma-ink);font-family:Inter,"Noto Sans Arabic","Segoe UI",Tahoma,sans-serif}
+#side{background:var(--figma-navy);color:#f7f9fc;border-inline-end:0;padding:20px 12px}
+#side h1{color:#fff;border-color:#20364f}
+#side a{color:#c4d1e1;border-radius:9px}
+#side a:before{background:#71869f}
+#side a.on,#side a:hover{background:#173b60;color:#fff}
+#side a.on:before{background:#60a5fa}
+#side .me{color:#dbe6f2;border-color:#20364f}
+#side .me a{color:#dbe6f2}
+#side .lang-switch button{background:#102b47;color:#e6eef8;border-color:#35506d}
+#main{background:#f3f6fa;padding:28px clamp(16px,2.5vw,36px)}
+#main>h2{color:#172b45;font-size:27px;font-weight:650;letter-spacing:-.35px;margin-bottom:6px}
+#main>h2+*{margin-top:0}
+#main .card{background:var(--figma-surface);border:1px solid var(--figma-border);border-radius:12px;box-shadow:0 2px 7px rgba(17,39,66,.045)}
+#main button{background:var(--figma-blue);border-radius:8px;font-weight:650}
+#main button.g{background:#fff;color:#34465d;border:1px solid #cbd6e3}
+#main input,#main select,#main textarea{border:1px solid #d5deea;background:#fff;border-radius:8px}
+#main input:focus-visible,#main select:focus-visible,#main textarea:focus-visible{border-color:#4a85c7;box-shadow:0 0 0 3px #1760ad1a}
+#main .pill{border-radius:6px}
+#main .research-controls{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;align-items:end;padding:14px 16px;background:#fff;border:1px solid var(--figma-border);border-radius:12px;margin:16px 0}
+#main .research-controls label{font-size:12px;color:#64748b}
+#main .research-controls select{height:42px}
+#main .research-upload-panel{border-style:dashed;background:#fbfdff}
+#main .research-layout{grid-template-columns:minmax(210px,245px) minmax(0,1fr) minmax(250px,300px);gap:14px;align-items:start;margin-top:16px}
+#main .research-list{position:sticky;top:16px;max-height:calc(100vh - 32px);background:#fff}
+#main .research-list-head{padding-bottom:10px;border-bottom:1px solid var(--figma-border)}
+#main .research-list-head b{color:#1d3553}
+#main .research-conversation{border-radius:8px;padding:9px 10px;white-space:normal;text-align:start}
+#main .research-conversation.active{background:#eaf2fb;border-color:#c5d9ef;color:#174f86}
+#main .research-main{display:flex;flex-direction:column;min-width:0;gap:12px}
+#main .research-thread{order:2;min-height:48vh;max-height:none;overflow:visible;background:transparent;border:0;padding:0;box-shadow:none}
+#main .research-composer{order:1;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:16px;background:#fff;border:1px solid #cbd9e9;border-top:3px solid #2470bd;border-radius:12px;box-shadow:0 2px 8px rgba(17,39,66,.05)}
+#main .research-composer textarea{min-height:92px;border:0;box-shadow:none;resize:vertical;padding:6px 4px}
+#main .research-composer button{align-self:end;min-width:116px;min-height:44px}
+#main .research-composer .mut{grid-column:1/-1}
+#main .research-message{max-width:100%;padding:20px 22px;border:1px solid var(--figma-border);border-radius:12px;box-shadow:0 2px 7px rgba(17,39,66,.035);line-height:1.8}
+#main .research-message.user{background:#edf4fc;border-color:#d5e4f5}
+#main .research-message:not(.user){background:#fff}
+#main .research-role{color:#58718d;font-weight:700;letter-spacing:.02em}
+#main .research-content{font-size:15px;line-height:1.9}
+#main .research-message-actions{border-top:1px solid #e9eef4;padding-top:10px;margin-top:14px}
+#main #research-source-inspector{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto;background:#fff;border-radius:12px}
+#main #research-source-inspector .research-inspector-empty{padding:22px 10px;text-align:center}
+#main .research-source-caution{border-radius:8px;padding:11px 12px;font-size:13px;line-height:1.6}
+#main .research-source-caution.verified{background:#edf8f2;border-color:#cce9d8;color:#236344}
+#main .research-source-caution.warning{background:#fff7e9;border-color:#f0d8ad;color:#89540d}
+#main .research-exact-passage{background:#f5f8fc;border-radius:7px;line-height:1.75}
+#main .research-source{border:1px solid #e1e8f0;border-radius:10px;padding:13px;margin:10px 0;background:#fff}
+#main .research-source-link{overflow-wrap:anywhere}
+#main .research-heading{background:#fff;border-radius:10px;padding:12px 14px}
+#main .research-empty{background:#fff;border:1px dashed var(--figma-border);border-radius:12px}
+#main .research-status{margin:0}
+@media(max-width:1100px){#main .research-layout{grid-template-columns:minmax(0,1fr) minmax(230px,290px)}#main .research-list{grid-column:1/-1;position:static;max-height:220px;order:3}#main .research-main{grid-column:1;grid-row:1}#main #research-source-inspector{grid-column:2;grid-row:1;position:static;max-height:none}}
+@media(max-width:800px){#side{background:var(--figma-navy);border-bottom:1px solid #20364f}#side>a{color:#d5e0ed}#side>a.on{background:#173b60;color:#fff}#main{padding:16px 10px}#main .research-controls{grid-template-columns:minmax(0,1fr);gap:10px}#main .research-layout{display:flex;flex-direction:column}#main .research-list,#main .research-main,#main #research-source-inspector{width:100%;max-height:none;position:static}#main .research-list{order:3}#main .research-main{order:1}#main #research-source-inspector{order:2}#main .research-thread{min-height:0}#main .research-composer{grid-template-columns:minmax(0,1fr)}#main .research-composer button{width:100%}}
+@media(prefers-reduced-motion:reduce){#main *{scroll-behavior:auto!important;transition:none!important}}
+
 </style>
 <style>
 /* Legal Copilot — premium workspace polish
