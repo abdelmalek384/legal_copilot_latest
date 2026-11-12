@@ -8192,6 +8192,98 @@ def list_original_document_deletion_requests(
     return {"document_id": document_id, "requests": result}
 
 
+class DocumentClassificationIn(BaseModel):
+    category: str = Field(pattern=r"^(unclassified|court_judgment|contract|pleading|correspondence|evidence_or_receipt)$")
+    expected_version: int = Field(ge=0)
+    note: str = Field(default="", max_length=2000)
+
+
+@app.get("/cases/{cid}/docs/{document_id}/classification")
+def get_document_classification(cid: int, document_id: int, u: dict = Depends(user)):
+    c = conn()
+    need(c, u, cid)
+    doc = c.execute(
+        "SELECT id FROM docs WHERE id=? AND case_id=? AND firm_id=?",
+        (document_id, cid, u["firm_id"]),
+    ).fetchone()
+    if doc is None:
+        raise HTTPException(404, "document not found")
+    current = c.execute(
+        "SELECT category,version,updated_by_user_id,updated_at FROM document_classifications "
+        "WHERE document_id=? AND case_id=? AND firm_id=?",
+        (document_id, cid, u["firm_id"]),
+    ).fetchone()
+    events = c.execute(
+        "SELECT actor_user_id,previous_category,new_category,version,note,created_at "
+        "FROM document_classification_events WHERE document_id=? AND case_id=? AND firm_id=? "
+        "ORDER BY id DESC LIMIT 100",
+        (document_id, cid, u["firm_id"]),
+    ).fetchall()
+    return {
+        "document_id": document_id,
+        "classification": dict(current) if current else None,
+        "events": [dict(row) for row in events],
+        "can_edit": is_lead(c, u, cid),
+    }
+
+
+@app.put("/cases/{cid}/docs/{document_id}/classification")
+@rollback_tenant_transaction_on_error
+def save_document_classification(
+    cid: int, document_id: int, body: DocumentClassificationIn, u: dict = Depends(user)
+):
+    c = conn()
+    need(c, u, cid, lead=True)
+    doc = c.execute(
+        "SELECT id FROM docs WHERE id=? AND case_id=? AND firm_id=?",
+        (document_id, cid, u["firm_id"]),
+    ).fetchone()
+    if doc is None:
+        raise HTTPException(404, "document not found")
+    current = c.execute(
+        "SELECT category,version FROM document_classifications "
+        "WHERE document_id=? AND case_id=? AND firm_id=?",
+        (document_id, cid, u["firm_id"]),
+    ).fetchone()
+    current_version = int(current["version"]) if current else 0
+    if body.expected_version != current_version:
+        raise HTTPException(409, "document classification changed; reload and retry")
+    previous_category = current["category"] if current else None
+    next_version = current_version + 1
+    if current:
+        updated = c.execute(
+            "UPDATE document_classifications SET category=?,version=?,updated_by_user_id=?,"
+            "updated_at=datetime('now') WHERE document_id=? AND case_id=? AND firm_id=? AND version=?",
+            (body.category, next_version, u["id"], document_id, cid, u["firm_id"], current_version),
+        )
+        if updated.rowcount != 1:
+            raise HTTPException(409, "document classification changed; reload and retry")
+    else:
+        inserted = c.execute(
+            "INSERT INTO document_classifications(document_id,case_id,firm_id,category,version,updated_by_user_id) "
+            "VALUES(?,?,?,?,?,?) ON CONFLICT(document_id) DO NOTHING",
+            (document_id, cid, u["firm_id"], body.category, next_version, u["id"]),
+        )
+        if inserted.rowcount != 1:
+            raise HTTPException(409, "document classification was created by another reviewer; reload and retry")
+    c.execute(
+        "INSERT INTO document_classification_events(document_id,case_id,firm_id,actor_user_id,"
+        "previous_category,new_category,version,note) VALUES(?,?,?,?,?,?,?,?)",
+        (document_id, cid, u["firm_id"], u["id"], previous_category, body.category,
+         next_version, body.note.strip()),
+    )
+    c.commit()
+    return {
+        "document_id": document_id,
+        "classification": {
+            "category": body.category,
+            "version": next_version,
+            "updated_by_user_id": u["id"],
+        },
+        "saved": True,
+    }
+
+
 class ExtractionReviewIn(BaseModel):
     outcome: str = Field(pattern=r"^(accepted|corrected|needs_recheck)$")
     corrected_text: str | None = Field(default=None, max_length=20000)
