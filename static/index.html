@@ -2085,6 +2085,7 @@ async function documentsPage(){
   matterSelect.replaceChildren(new Option(uiText('اختر ملف قضية لعرض مستنداتها','Choose a matter to view its documents'),''),...filtered.map(m=>new Option((m.title||uiText('قضية رقم ','Matter #')+m.id)+' (#'+m.id+')',String(m.id))));
   if(window.DOCUMENT_MATTER_ID&&filtered.some(m=>Number(m.id)===Number(window.DOCUMENT_MATTER_ID)))matterSelect.value=String(window.DOCUMENT_MATTER_ID);
   list.replaceChildren(...(filtered.length?filtered.map(m=>h('article',{className:'card document-library-matter'},h('div',{},h('b',{textContent:m.title||uiText('قضية رقم ','Matter #')+m.id}),h('p',{className:'mut',textContent:(m.stage||uiText('بدون مرحلة','No stage'))+' · #'+m.id})),btn(uiText('عرض المستندات','View documents'),()=>{matterSelect.value=String(m.id);loadMatter()},'g'))):[h('p',{className:'mut',textContent:uiText('لا توجد ملفات قضايا مطابقة.','No matching matters found.')})]));
+  if(!matterSelect.value){documentList.replaceChildren();workspace.replaceChildren();summary.textContent=uiText('اختر ملف قضية لعرض المستندات المصرح بها.','Choose a matter to view its authorized documents.')}
  };
  const loadMatter=async()=>{
   const id=Number(matterSelect.value);workspace.replaceChildren();
