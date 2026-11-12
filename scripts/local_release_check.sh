@@ -48,25 +48,12 @@ if command -v bandit >/dev/null 2>&1; then
     details+=("no findings at configured severity/confidence")
   else
     bandit_rc=$?
-    if python - "$bandit_report" <<'PY'
-import json
-import sys
-with open(sys.argv[1], encoding="utf-8") as handle:
-    report = json.load(handle)
-high = [item for item in report.get("results", []) if item.get("issue_severity") == "HIGH"]
-print("Bandit findings:", len(report.get("results", [])))
-for item in report.get("results", []):
-    print(item.get("issue_severity"), item.get("issue_confidence"), item.get("test_id"), item.get("filename"), item.get("line_number"))
-raise SystemExit(1 if high else 0)
-PY
-    then
-      names+=("Bandit security scan")
-      statuses+=("PASS")
-      details+=("no HIGH severity findings (lower findings reported)")
-    else
-      names+=("Bandit security scan")
-      statuses+=("FAIL")
-      details+=("HIGH severity finding(s); Bandit exit $bandit_rc")
+    names+=("Bandit security scan")
+    statuses+=("FAIL")
+    details+=("Bandit reported findings or could not complete (exit $bandit_rc); inspect the JSON report before rerunning")
+    if [[ -s "$bandit_report" ]]; then
+      echo "Bandit JSON report (nonzero exit is not downgraded to PASS):"
+      cat "$bandit_report"
     fi
   fi
   rm -f "$bandit_report"
