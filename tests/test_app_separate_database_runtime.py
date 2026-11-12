@@ -5413,6 +5413,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertEqual(results.json()["total"], 1)
             self.assertEqual(results.json()["items"][0]["case_id"], alpha_case)
             self.assertEqual(results.json()["items"][0]["case_title"], "Accessible Alpha Matter")
+            self.assertIn("statuses", results.json())
+            self.assertEqual(results.json()["items"][0]["name"], "alpha-accessible-contract.txt")
             hidden = junior.get(f"/documents/search?case_id={beta_case}")
             self.assertEqual(hidden.status_code, 404, hidden.text)
             invalid = junior.get("/documents/search?classification=verified")
