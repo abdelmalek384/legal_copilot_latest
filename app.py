@@ -8243,7 +8243,7 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
             for candidate in extracted["candidates"]:
                 candidate["document_id"] = document_id
                 candidate["chunk_id"] = item["id"]
-                candidate["chunk_ref"] = item["ref"]
+                candidate["chunk_ref"] = item.get("ref") or str(item["id"])
                 if item.get("page") not in (None, ""):
                     candidate["page"] = item["page"]
                 candidates.append(candidate)
