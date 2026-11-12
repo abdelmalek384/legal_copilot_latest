@@ -776,6 +776,16 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertEqual(upload.status, 200, upload.text())
 
         self.page.locator("#side").get_by_role("button", name="البحث القانوني").click()
+        history_toggle = self.page.locator(".research-history-toggle")
+        history_filter = self.page.locator("#research-history-pane input[type='search']")
+        self.assertEqual(history_toggle.get_attribute("aria-expanded"), "true")
+        history_toggle.click()
+        self.assertEqual(history_toggle.get_attribute("aria-expanded"), "false")
+        self.assertFalse(history_filter.is_visible())
+        history_toggle.click()
+        self.assertEqual(history_toggle.get_attribute("aria-expanded"), "true")
+        self.assertTrue(history_filter.is_visible())
+
         scope = self.page.locator(".research-controls select").nth(0)
         matter = self.page.locator(".research-controls select").nth(1)
         composer = self.page.locator(".research-composer textarea")
