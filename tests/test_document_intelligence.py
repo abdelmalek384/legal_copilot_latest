@@ -3,7 +3,7 @@ import unittest
 
 from tools.document_intelligence import (
     classify_document, compare_extracted_text, extract_review_candidates,
-    normalized_text_digest, sha256_bytes,
+    build_date_mention_timeline, normalized_text_digest, sha256_bytes,
 )
 
 
@@ -64,6 +64,37 @@ class DocumentIntelligenceTests(unittest.TestCase):
     def test_comparison_has_a_separate_cpu_bound(self):
         with self.assertRaises(ValueError):
             compare_extracted_text("a" * 100_001, "b")
+
+
+    def test_timeline_sorts_date_mentions_and_keeps_document_provenance(self):
+        documents = [
+            {"document_id": "doc-b", "filename": "second.pdf", "candidates": [
+                {"kind": "date", "value": "١٥/٠٣/٢٠٢٥", "page": 4, "excerpt": "تاريخ الجلسة"}
+            ]},
+            {"document_id": "doc-a", "filename": "first.docx", "candidates": [
+                {"kind": "date", "value": "2025-01-02", "page": None, "excerpt": "تاريخ العقد"}
+            ]},
+        ]
+        result = build_date_mention_timeline(documents)
+        self.assertEqual([x["normalized_date"] for x in result["dated_mentions"]],
+                         ["2025-01-02", "2025-03-15"])
+        self.assertEqual(result["dated_mentions"][1]["document_id"], "doc-b")
+        self.assertEqual(result["dated_mentions"][1]["page"], 4)
+        self.assertEqual(result["dated_mentions"][1]["review_status"],
+                         "date_mention_requires_human_context")
+
+    def test_timeline_does_not_guess_two_digit_years_or_invalid_dates(self):
+        documents = [{"document_id": "doc", "filename": "x.pdf", "candidates": [
+            {"kind": "date", "value": "01/02/25"},
+            {"kind": "date", "value": "31/02/2025"},
+        ]}]
+        result = build_date_mention_timeline(documents)
+        self.assertEqual(result["dated_mentions"], [])
+        self.assertEqual(len(result["unparsed_mentions"]), 2)
+
+    def test_timeline_requires_document_scope_identity(self):
+        with self.assertRaises(ValueError):
+            build_date_mention_timeline([{"filename": "x.pdf", "candidates": []}])
 
 
 if __name__ == "__main__":
