@@ -5290,6 +5290,16 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 "DELETE FROM document_classification_events WHERE id=?", (event_id,)
             )
         tenant.rollback()
+        deleted = self._mutate("delete", f"/cases/{case_id}")
+        self.assertEqual(deleted.status_code, 200, deleted.text)
+        self.assertEqual(
+            tenant.execute(
+                "SELECT COUNT(*) FROM document_classification_events WHERE document_id=?",
+                (document_id,),
+            ).fetchone()[0],
+            0,
+            "parent matter deletion must cascade classification audit data under retention policy",
+        )
 
     def test_document_classification_rejects_invalid_categories_and_cross_matter_access(self):
         login = self.client.post(
