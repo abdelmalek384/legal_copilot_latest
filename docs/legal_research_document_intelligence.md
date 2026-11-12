@@ -1,6 +1,6 @@
 # Legal Research document-intelligence foundation
 
-**Status:** Initial pure-Python analysis helpers added; not yet wired into the lawyer-facing UI or upload route.
+**Status:** Matter-scoped UI/API integration is implemented on the Figma refresh branch. Repository tests and live bilingual browser acceptance remain pending.
 
 ## Existing repository capabilities
 
@@ -27,19 +27,22 @@ The application already accepts bounded PDF and DOCX uploads, extracts PDF text 
 - No original file is modified.
 - No OCR is performed.
 - Signal extraction is bounded to the existing one-million-character extraction budget; pairwise text comparison is separately limited to 100,000 characters per version and 200 reported change segments.
-- These helpers do not bypass firm/case authorization and are not yet exposed as a user-facing feature.
+- The Documents page lists only matters returned by the authenticated `/cases` endpoint and loads documents through the existing authorized case-detail route.
+- Extraction review supports accept, correction and recheck decisions with a server-issued text digest, reviewer identity, note and timestamp in the audit trail.
+- Saved document categories are matter workflow metadata. Only firm administrators and matter leads can change them; optimistic version checks prevent stale overwrites and each change creates an audit event.
+- These workflows do not establish authenticity, legal validity or correctness. A saved category is not a legal conclusion.
 
 ## Next integration stages
 
-1. Add authenticated matter-scoped API endpoints that call the helpers only after existing authorization checks.
-2. Persist user-approved classifications and reviewer corrections with audit events.
-3. Add searchable UI filters and page-linked document previews.
-4. Add duplicate grouping within the same firm/matter only; never deduplicate across firms.
-5. Add robust version comparison and chronological event review.
+1. Complete repository tests and add end-to-end tests for classification concurrency, reviewer roles, export, and cross-matter denial.
+2. Perform manual RTL/LTR, keyboard, mobile and upload/review acceptance against a synthetic staging dataset.
+3. Add page-linked original-document previews only where original retention and authorization are verified.
+4. Implement firm-wide search only after a dedicated tenant-safe backend endpoint and query budgets exist.
+5. Extend first-difference comparison to bounded multi-hunk comparison with explicit version provenance.
 6. Evaluate with synthetic Arabic/English PDFs and DOCX fixtures before enabling for pilot users.
 
 ## Validation
 
 Run: \`python -m unittest tests.test_document_intelligence -v\`
 
-A passing unit suite validates helper behavior only; it does not validate upload integration, UI, tenant isolation, production storage, or legal accuracy.
+A passing unit suite validates helper behavior only; it does not validate the new API/UI, tenant isolation, production storage, or legal accuracy. The new contract tests have been added but were not run in this implementation session.
