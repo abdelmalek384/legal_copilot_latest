@@ -1063,5 +1063,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Open matter", page)
         self.assertIn("Metadata results only", page)
 
+    def test_global_document_open_matter_adds_paged_case_to_selector(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("Array.from(matterSelect.options).some(option=>option.value===value)", page)
+        self.assertIn("matterSelect.add(new Option", page)
+        self.assertIn("list.hidden=true", page)
+
 if __name__ == "__main__":
     unittest.main()
