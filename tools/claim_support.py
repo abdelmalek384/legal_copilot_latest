@@ -332,6 +332,69 @@ def _sentences(answer, mask_code):
                 yield sentence
 
 
+def _obligation_clauses(text):
+    """Split at sentence and contrast boundaries before comparing obligation polarity."""
+    return [
+        part.strip() for part in re.split(
+            r"(?<=[.!?؟؛;])\s*|\b(?:but|however|whereas|except|unless)\b|(?:لكن|ولكن|بينما|غير أن|إلا أن)",
+            text,
+            flags=re.IGNORECASE,
+        ) if part.strip()
+    ]
+
+
+def _obligation_context_terms(text, tokens_fn, norm_fn):
+    """Keep subject/action context while removing only explicit obligation markers."""
+    residual = _ENGLISH_NEGATED_OBLIGATION.sub(" ", text)
+    residual = _ENGLISH_POSITIVE_OBLIGATION.sub(" ", residual)
+    residual = _ARABIC_NEGATED_OBLIGATION.sub(" ", residual)
+    residual = _ARABIC_POSITIVE_OBLIGATION.sub(" ", residual)
+    return {
+        token for token in tokens_fn(norm_fn(residual))
+        if isinstance(token, str) and token and token not in _GENERIC_TERMS
+    }
+
+
+def has_negated_obligation_conflicts(answer, hits, tokens_fn, norm_fn, mask_code=None):
+    """Detect cited English/Arabic obligation reversals without enabling the broad claim screen.
+
+    A mismatch must share subject/action context in the same clause. This avoids
+    treating an unrelated negative rule elsewhere in a passage as a contradiction.
+    """
+    if not isinstance(answer, str) or not answer.strip() or not isinstance(hits, (list, tuple)):
+        return True
+    for sentence in _sentences(answer, mask_code):
+        cited = {int(value) for value in re.findall(r"\[(\d+)\]", sentence)}
+        if not cited:
+            continue
+        if any(index < 1 or index > len(hits) for index in cited):
+            return True
+        claim_text = re.sub(r"\[\d+\]", " ", sentence)
+        claim_clauses = _obligation_clauses(claim_text)
+        for index in cited:
+            hit = hits[index - 1]
+            if not isinstance(hit, dict):
+                return True
+            evidence_text = hit.get("text")
+            if not isinstance(evidence_text, str) or not evidence_text.strip():
+                return True
+            evidence_clauses = _obligation_clauses(evidence_text)
+            for claim_clause in claim_clauses:
+                claim_terms = _obligation_context_terms(claim_clause, tokens_fn, norm_fn)
+                if not claim_terms:
+                    continue
+                for evidence_clause in evidence_clauses:
+                    if not _has_negated_obligation_mismatch(claim_clause, evidence_clause):
+                        continue
+                    evidence_terms = _obligation_context_terms(evidence_clause, tokens_fn, norm_fn)
+                    if not evidence_terms:
+                        continue
+                    shared = claim_terms & evidence_terms
+                    if len(shared) / min(len(claim_terms), len(evidence_terms)) >= 0.5:
+                        return True
+    return False
+
+
 def has_unsupported_claims(answer, hits, tokens_fn, norm_fn, mask_code=None):
     """Return True if a cited factual sentence is contradicted or weakly supported.
 
