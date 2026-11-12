@@ -172,6 +172,7 @@ def _validate_metadata(meta: object, text_bytes: bytes) -> dict:
     source_url = meta.get("source_url")
     if source_url:
         if (not isinstance(source_url, str) or not source_url
+                or "\\" in source_url
                 or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in source_url)):
             raise ValueError("source_url must be a valid HTTPS URL without whitespace or control characters")
         try:
@@ -181,7 +182,7 @@ def _validate_metadata(meta: object, text_bytes: bytes) -> dict:
             raise ValueError("source_url must be a valid HTTPS URL") from exc
         if (parsed.scheme.lower() != "https" or not parsed.hostname
                 or parsed.username is not None or parsed.password is not None
-                or parsed.fragment or parsed.netloc.endswith(":")
+                or "#" in source_url or parsed.netloc.endswith(":")
                 or (port is not None and not 1 <= port <= 65535)):
             raise ValueError("source_url must be HTTPS without credentials or fragments and with a valid authority")
         query_keys = {key.casefold() for key, _ in parse_qsl(parsed.query, keep_blank_values=True)}
