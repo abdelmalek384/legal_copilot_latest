@@ -6621,7 +6621,7 @@ def search_accessible_document_text(
 ):
     """Search extracted chunks only in matters visible to the current firm user."""
     needle = q.strip()
-    tokens = re.findall(r"[\\w]+", needle, flags=re.UNICODE)
+    tokens = re.findall(r"[\w]+", needle, flags=re.UNICODE)
     tokens = [token for token in tokens if token][:20]
     if not tokens:
         raise HTTPException(422, "enter at least one searchable word")
