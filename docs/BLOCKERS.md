@@ -24,6 +24,7 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - Current limitation: GitHub Actions runner allocation/billing has previously failed before test steps start.
 - Owner: Codex / repository administrator.
 - Exit criteria: execute focused tests and full suite in a clean Python 3.12 hash-locked environment; preserve command, interpreter, dependency-lock hash, exit status and test counts.
+- Exact-head recheck for reviewer-URL/scorer change head `ef90b56ed489be214150f1b86dac0930d814e7b8` on 2026-11-12: Tests run `43252117918`, dependency audit `43252117654`, CodeQL `43252117717`, and browser acceptance `43252117642` all failed before any job step. The inspected jobs returned empty step lists (0 executed steps); this is runner/service allocation evidence, not a code-test failure or pass.
 - Until then: PR source review is not a test pass.
 
 ### Python 3.12 dependency lock
