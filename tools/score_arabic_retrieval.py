@@ -19,6 +19,11 @@ MIN_TARGET_COHORT_SIZE = 20
 MIN_TOTAL_REVIEWED_QUESTIONS = 100
 
 
+def _is_one_of(value, choices):
+    """Return false for malformed, unhashable JSON enum values."""
+    return isinstance(value, str) and value in choices
+
+
 def load_jsonl(path):
     rows = []
     for line_no, raw in enumerate(Path(path).read_text(encoding="utf-8-sig").splitlines(), 1):
@@ -35,9 +40,9 @@ def load_jsonl(path):
 
 
 def _valid_reviewed(row, approved_reviewers):
-    if row.get("review_status") not in REVIEWED:
+    if not _is_one_of(row.get("review_status"), REVIEWED):
         return False
-    if row.get("question_origin") not in {"observed_anonymized_query", "permitted_public_q_and_a"}:
+    if not _is_one_of(row.get("question_origin"), {"observed_anonymized_query", "permitted_public_q_and_a"}):
         raise ValueError(f'{row.get("id")}: only provenance-cleared observed questions may be scored')
     if row.get("privacy_review_status") != "approved":
         raise ValueError(f'{row.get("id")}: privacy_review_status must be approved')
@@ -54,7 +59,7 @@ def _valid_reviewed(row, approved_reviewers):
     for field in ("question_origin_reference", "consent_or_reuse_basis"):
         if not isinstance(row.get(field), str) or not row[field].strip():
             raise ValueError(f'{row.get("id")}: {field} is required')
-    if row.get("label_status") not in {"lawyer_approved", "approved_for_evaluation"}:
+    if not _is_one_of(row.get("label_status"), {"lawyer_approved", "approved_for_evaluation"}):
         raise ValueError(f'{row.get("id")}: reviewed question must have an approved label_status')
     if not isinstance(row.get("answerable"), bool):
         raise ValueError(f"{row.get('id')}: reviewed question needs answerable=true/false")
@@ -62,7 +67,7 @@ def _valid_reviewed(row, approved_reviewers):
         raise ValueError(f"{row.get('id')}: reviewer_id is required")
     if not isinstance(row.get("reviewer_name"), str) or not row["reviewer_name"].strip():
         raise ValueError(f"{row.get('id')}: reviewer_name is required")
-    if row.get("reviewer_role") not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
+    if not _is_one_of(row.get("reviewer_role"), {"egyptian_lawyer", "qualified_egyptian_counsel"}):
         raise ValueError(f"{row.get('id')}: reviewer_role must identify qualified Egyptian counsel")
     reviewer = approved_reviewers.get(row["reviewer_id"])
     if reviewer is None:
