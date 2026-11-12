@@ -58,7 +58,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertEqual(catalog["entry_count"], len(entries))
         self.assertGreaterEqual(len(entries), 800)
         self.assertEqual(len(reviewed), len(entries))
-        self.assertTrue(all(entry["source_lines"] for entry in entries))
+        ids = {entry["id"] for entry in entries}
+        self.assertEqual(len(ids), len(entries))
+        self.assertTrue(all(
+            isinstance(entry["source_lines"], list)
+            and len(entry["source_lines"]) == 2
+            and all(isinstance(line, int) and line >= 1 for line in entry["source_lines"])
+            and entry["source_lines"][0] <= entry["source_lines"][1]
+            for entry in entries
+        ))
         self.assertTrue(all(entry["review_status"] == "pending_native_review" for entry in entries))
 
         source = HTML
