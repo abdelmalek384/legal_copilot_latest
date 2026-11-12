@@ -79,7 +79,7 @@ Known limits: only a small curated set of Egyptian colloquial forms is expanded 
 
 ## Install on a phone or desktop
 
-The web app includes an installable PWA shell for compatible browsers. Serve it over HTTPS, then use the browser's **Install app** or **Add to Home Screen** action. The service worker caches only a static offline notice; case data, uploaded files, account/session data, and research responses are never cached. See [PWA installation and privacy limits](docs/pwa_installation.md) and the [manual device/browser acceptance runbook](docs/device_browser_acceptance_runbook.md).
+The web app includes an installable PWA shell for compatible browsers. Serve it over HTTPS, then use the browser's **Install app** or **Add to Home Screen** action. The service worker caches only a static offline notice; case data, uploaded files, account/session data, and research responses are never cached. See [PWA installation and privacy limits](docs/pwa_installation.md) and the [manual device/browser acceptance runbook](docs/device_browser_acceptance_runbook.md). For a temporary, email-restricted, fictional-data preview from a Mac without paid hosting, see [Temporary Mac preview](docs/temporary_mac_preview.md); it is not production hosting.
 
 ## Deployment
 
