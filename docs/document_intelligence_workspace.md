@@ -2,12 +2,12 @@
 
 ## Purpose
 
-This is the first UI layer for reviewing documents already uploaded to a case. It is reachable from Legal Research after selecting a matter, and from that matter's Documents tab. It reuses the existing permission-checked case and extracted-chunk endpoints; it does not introduce a new tenant or document-access path.
+This is the document-management and review workspace for uploaded matter files. It is reachable from the top-level Documents page and from Legal Research after selecting a matter. It reuses the existing permission-checked case, document, and extracted-chunk endpoints; it does not introduce a new tenant or document-access path.
 
 ## Current capabilities
 
-- Dedicated Documents navigation page with authenticated, paginated matter selection, direct multi-file PDF/DOCX upload (15 MB per file), file metadata, filename/type search, extraction-status and saved-classification filters, matter-scoped summary counts derived from returned document rows, and original-file download only when the separate-database storage record is ready and not purged. Uploads use same-origin credentials and CSRF protection. Metrics are not firm-wide and do not imply legal review completion.
-- Cross-matter metadata index for documents in matters the current user can access, with server-side firm and case-membership filters, pagination, case context, extraction/classification/type filters, and audited coarse search events. It returns metadata only; extracted-text search remains matter-scoped.
+- Dedicated Documents navigation page with an all-accessible-documents landing view, authenticated paginated matter selection, direct multi-file PDF/DOCX upload (15 MB per file), file metadata, filename/type search, extraction-status and saved-classification filters, accessible-document and selected-matter counts derived from authorized rows, and original-file download only when the separate-database storage record is ready and not purged. Uploads use same-origin credentials and CSRF protection. Metrics are not firm-wide and do not imply legal review completion.
+- Cross-matter metadata index for documents in matters the current user can access, with server-side firm and case-membership filters, pagination, case context, extraction/classification/type filters, and audited coarse search events. It returns metadata only; full-text search is provided by the separate FTS endpoint.
 - Cross-matter extracted-text search across authorized matters using the firm database's FTS index. Queries are token-quoted, Unicode NFKC-normalized, and normalize common Arabic diacritics, alef/yeh variants and Arabic-Indic digits. Results are membership-filtered server-side, paginated, and return bounded excerpts centered on the matched text with document, chunk and page provenance. Search terms are not written to the audit log; results remain unverified.
 
 - Search extracted text across the selected matter's uploaded documents in Arabic and English. Search applies Unicode NFKC normalization, removes common Arabic diacritics/tatweel, normalizes common alef/yeh forms, and normalizes Arabic-Indic digits.
