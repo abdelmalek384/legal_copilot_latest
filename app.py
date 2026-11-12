@@ -6641,7 +6641,7 @@ def search_accessible_document_text(
     where = " WHERE chunks_fts MATCH ? AND " + access
     total = int(c.execute(
         "SELECT COUNT(*)" + joins + where,
-        (int(u["firm_id"]), int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"])),
+        (int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"])),
     ).fetchone()[0])
     rows = c.execute(
         "SELECT chunks.id AS chunk_id,chunks.case_id,chunks.document_id,chunks.ref,"
@@ -6649,7 +6649,7 @@ def search_accessible_document_text(
         "d.name AS document_name,cs.title AS case_title,cs.case_number,cs.case_year,"
         "bm25(chunks_fts) AS rank"
         + joins + where + " ORDER BY rank LIMIT ? OFFSET ?",
-        (tokens[0], int(u["firm_id"]), int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"]), limit, offset),
+        (tokens[0], int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"]), limit, offset),
     ).fetchall()
     items = [dict(row) for row in rows]
     c.execute(
