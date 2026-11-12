@@ -57,7 +57,7 @@ The command is offline and needs no database credentials or network access. It v
 - `output/law_rows.jsonl` — candidate chunks with source, document, issue, date, hash and supplier provenance.
 - `output/import_report.md` — article-heading count, chunk count, empty article bodies, numbering gaps/duplicates, provenance and human-review checklist.
 
-Use a new, empty output directory for each run. The output directory must be outside the source directory. Existing output files are never overwritten.
+Use a new, empty output directory for each run. The output directory must be outside the source directory. The importer creates output files exclusively with restrictive permissions, refuses existing files and symlinks, and never overwrites them.
 
 ## Same-session review
 
