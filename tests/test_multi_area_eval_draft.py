@@ -36,13 +36,21 @@ class MultiAreaDraftBenchmarkTests(unittest.TestCase):
         })
 
     def test_all_questions_remain_unreviewed_and_unscoreable(self):
+        expected_fields = {
+            "id", "practice_area", "question_type", "question_ar", "as_of_date",
+            "expected_answer", "expected_sources", "expected_pin_cites", "answerable",
+            "must_abstain_if_unverified", "review_status", "reviewer_name",
+            "reviewer_role", "review_evidence_url", "review_date", "must_abstain",
+        }
         for q in self.questions:
             with self.subTest(question=q["id"]):
+                self.assertEqual(set(q), expected_fields)
                 self.assertEqual(q["review_status"], "needs_lawyer_review")
                 self.assertIsNone(q["answerable"])
                 self.assertIsNone(q["expected_answer"])
                 self.assertEqual(q["expected_sources"], [])
                 self.assertEqual(q["expected_pin_cites"], [])
+                self.assertTrue(q["must_abstain_if_unverified"])
                 self.assertIsNone(q["reviewer_name"])
                 self.assertIsNone(q["reviewer_role"])
                 self.assertIsNone(q["review_evidence_url"])
@@ -59,6 +67,11 @@ class MultiAreaDraftBenchmarkTests(unittest.TestCase):
             self.assertEqual(row["السؤال"], q["question_ar"])
             self.assertEqual(row["مجال القانون"], q["practice_area"])
             self.assertEqual(row["هل يجب الامتناع؟ (نعم/لا)"].strip() == "نعم", q["must_abstain"])
+            self.assertEqual(row["الإجابة الصحيحة (يملؤها المحامي)"], "")
+            self.assertEqual(row["المصدر: القانون/المادة/عدد الجريدة"], "")
+            self.assertEqual(row["ملاحظات"], "")
+            self.assertEqual(row["اسم المراجع"], "")
+            self.assertEqual(row["تاريخ المراجعة"], "")
             self.assertEqual(row["صفة المراجع"], "")
             self.assertEqual(row["رابط دليل المراجعة"], "")
 
