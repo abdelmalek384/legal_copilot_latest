@@ -2248,7 +2248,7 @@ async function documentsPage(){
  textSearchInput.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();textSearchOffset=0;runGlobalTextSearch()}};
  textSearchButton.disabled=true;
  const loadMatter=async()=>{
-  globalMode=false;list.hidden=false;
+  globalMode=false;list.hidden=!list.children.length;
   const id=Number(matterSelect.value);workspace.replaceChildren();
   if(!Number.isSafeInteger(id)||id<=0){summary.textContent=uiText('اختر ملف قضية لعرض المستندات المصرح بها.','Choose a matter to view its authorized documents.');return}
   if(window.DOCUMENT_MATTER_ID&&Number(window.DOCUMENT_MATTER_ID)!==id){uploadResults.replaceChildren();uploadStatus.textContent='';uploadInput.value='';documentFilter.value='';documentTypeFilter.value='';documentStatusFilter.value='';documentClassificationFilter.value=''}
@@ -2271,6 +2271,7 @@ async function documentsPage(){
  matterSelect.onchange=loadMatter;
  shell(uiText('مكتبة المستندات','Document library'),h('p',{className:'workspace-subtitle',textContent:uiText('اعرض مستندات كل ملف قضية على حدة، وابحث في النصوص المستخرجة وراجعها مع الحفاظ على صلاحيات الملف وسجل التدقيق.','Browse documents one authorized matter at a time, search extracted text, and review it with matter permissions and audit history preserved.')}),h('div',{className:'filter-bar'},query,searchMatter,matterSelect,previousMatter,matterPageLabel,nextMatter,allAccessibleDocsButton),summary,list,documentList,stats,workspace);
  await loadMatters();
+ if(!matterSelect.value)await loadAllAccessibleDocs();
 }
 async function law(){
  PAGE='law';
