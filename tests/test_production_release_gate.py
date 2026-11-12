@@ -223,6 +223,26 @@ class ProductionReleaseGateTests(unittest.TestCase):
         self.assertIn("unreviewed_questions_present", codes)
         self.assertIn("benchmark_below_minimum", codes)
 
+    def test_99_approved_questions_do_not_meet_the_100_question_release_minimum(self):
+        questions = self._approved_questions()[:-1]
+        with tempfile.TemporaryDirectory() as td:
+            candidate = self._candidate_file(Path(td))
+            with (
+                patch.object(gate, "inspect_environment", return_value=(["environment okay"], [], [])),
+                patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)),
+                patch.object(gate, "read_jsonl", return_value=questions),
+            ):
+                report = gate.evaluate_release(
+                    env=self.clean_env,
+                    candidate_paths=[candidate],
+                    benchmark_path=Path("approved-benchmark.jsonl"),
+                    reviewer_registry=self._reviewer_registry(),
+                )
+        self.assertFalse(report["ready"])
+        blocker = next(item for item in report["blockers"] if item["code"] == "benchmark_below_minimum")
+        self.assertEqual(blocker["required"], 100)
+        self.assertEqual(blocker["approved_count"], 99)
+
     def test_missing_candidates_blocks_release_even_with_other_gates_mocked_clean(self):
         with patch.object(gate, "inspect_environment", return_value=(["environment okay"], [], [])):
             report = gate.evaluate_release(

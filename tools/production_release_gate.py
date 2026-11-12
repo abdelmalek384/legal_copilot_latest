@@ -34,7 +34,7 @@ from tools.validate_device_browser_acceptance import (
 )
 
 DEFAULT_BENCHMARK = ROOT / "tests" / "legal_eval" / "multi_area_questions.draft.jsonl"
-MIN_APPROVED_QUESTIONS = 94
+MIN_APPROVED_QUESTIONS = 100
 MIN_PRACTICE_AREAS = 10
 
 
