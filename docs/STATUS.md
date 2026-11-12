@@ -194,3 +194,12 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - The 100-row queue is distinct from the 120-question inventory formed by the 59-row general seed plus 61-row Labour Law draft, and from the separate 58-row provisional Labour Law review queue. These are overlapping draft file inventories, not a deduplicated count of unique questions.
 - The new release-gate prompts remain `needs_lawyer_review`; expected answers, sources, pinpoint citations and answerability remain empty. The gate's 100-question structural minimum is now reachable, but its lawyer-approved minimum remains unmet.
 - Static repository checks were performed on the JSONL/CSV structure and identifiers. No Python test execution is claimed; Codex must run the focused and full suites in the clean Python 3.12 locked environment.
+
+
+## AI-1 importer validation follow-up — 2026-11-13
+
+- Open PR #1576 corrects Gazette importer test fixtures to keep generated output outside the source directory and fixes retrieval-scorer negative-test inputs. It is independent of the importer hardening PRs.
+- Open PR #1577 rejects AWS S3 and Google Cloud Storage signed-URL companion parameters in Gazette `source_url` metadata.
+- Open PR #1578 adds control-character rejection to provenance fields and requires an explicitly supplied `source_reference` to be a non-empty string. Static review found that explicit JSON `null` initially bypassed this rule; the branch now rejects it and includes a regression case.
+- #1578 is based on #1577 and must follow it in merge order. All three PRs remain unmerged. Their exact-head Tests workflows failed before exposing job steps (`steps: null`): #1576 run `43325788669`, #1577 run `43326626506`, #1578 run `43327265469`. These results do not establish code-test failure or success.
+- The user has installed the Python 3.12.16 hash-locked environment locally. `pip check` and the focused importer/scorer/release-gate test commands are still pending; no runtime test pass is claimed.
