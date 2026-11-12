@@ -8,6 +8,17 @@ if [[ ! -d tests || ! -f app.py ]]; then
   exit 2
 fi
 
+python - <<'PY'
+import sys
+if sys.version_info[:2] != (3, 12):
+    print(
+        f"BLOCKED: security regression validation requires Python 3.12; "
+        f"current interpreter is {sys.version_info.major}.{sys.version_info.minor}.",
+        file=sys.stderr,
+    )
+    raise SystemExit(2)
+PY
+
 tests=(
   test_app_separate_database_runtime.py
   test_auth_rate_limits_separate_runtime.py
