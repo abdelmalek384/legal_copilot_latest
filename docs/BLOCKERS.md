@@ -59,7 +59,7 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 ## Current AI-1 pull requests
 
-- No open AI-1 pull request is currently required to track the bounded changes listed below.
+- Open AI-1 PRs: #1576 (fixture corrections), #1577 (cloud signed-URL query filtering), and #1578 (provenance metadata validation; depends on #1577). All three remain unmerged and require Python 3.12 focused test execution before validation can be claimed.
 - #1559 — merged Arabic negated-obligation regression coverage; tests unexecuted.
 - #1560 — merged retrieval scorer safety-status ordering fix; tests unexecuted.
 - #1562 — merged delivery blocker/closure register.
@@ -89,3 +89,13 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - The production release gate consumes the separate 100-row `multi_area_questions.draft.jsonl` queue (PR #1573), not the 120-row general-plus-labour inventory.
 - The 120 rows are 59 general seed questions plus 61 Labour Law draft questions. The 58-row `labour_law_14_2025_provisional_review_questions.draft.jsonl` is another separate provisional review queue. File counts can overlap; they are not a deduplicated unique-question total.
 - The release-gate queue now meets its structural 100-row minimum, but still has zero lawyer-approved questions. The 100-approved-question release criterion, 10-practice-area coverage from reviewed rows, answer keys, source/pin-cite checks and approved reviewer evidence remain external counsel-dependent blockers.
+
+
+## Current AI-1 PR validation checkpoint — 2026-11-13
+
+- #1576 head `81f90fc13b9843df7f4af5e1ebb7b5441153927f`: Tests workflow run `43325788669` failed before exposing any job steps (`steps: null`).
+- #1577 head `a745b35913e155c3608c86ebab4e763dac285500`: Tests workflow run `43326626506` failed before exposing any job steps (`steps: null`).
+- #1578 head `89e5bdac8fa1f11571bf70b1087b7a6ae56b89ad`: Tests workflow run `43327265469` failed before exposing any job steps (`steps: null`).
+- These are runner/service execution failures, not code-test failures or passes. Local Python 3.12 hash-locked validation is the next usable path.
+- During static review of #1578, explicit `source_reference: null` was found to bypass the stated non-empty-string rule. The PR branch was corrected and a regression case added; the revised head has not been runtime-tested.
+- Merge order remains #1577 before #1578. #1576 is independent. Do not merge these as validated until the focused Python 3.12 tests execute successfully.
