@@ -156,5 +156,12 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("latest.reviewed_text", html)
         self.assertIn("Latest recorded correction", html)
 
+    def test_extraction_review_can_focus_unreviewed_passages(self):
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("let pendingReviewOnly=false", html)
+        self.assertIn("if(pendingReviewOnly&&latest)continue", html)
+        self.assertIn("Show unreviewed only", html)
+        self.assertIn("pendingCount", html)
+
 if __name__ == "__main__":
     unittest.main()
