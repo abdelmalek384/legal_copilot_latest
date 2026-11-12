@@ -8171,7 +8171,7 @@ def list_original_document_deletion_requests(
 
 class DocumentClassificationIn(BaseModel):
     category: str = Field(pattern=r"^(unclassified|court_judgment|contract|pleading|correspondence|evidence_or_receipt)$")
-    expected_updated_at: str | None = Field(default=None, max_length=40)
+    expected_version: int | None = Field(default=None, ge=1)
     note: str = Field(default="", max_length=1000)
 
 
@@ -8260,7 +8260,7 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
     analysis_text = "\n".join(analysis_parts)
     classification = classify_document(doc["name"], analysis_text)
     saved_row = c.execute(
-        "SELECT category,updated_by_user_id,updated_at FROM document_classifications "
+        "SELECT category,updated_by_user_id,version,updated_at FROM document_classifications "
         "WHERE document_id=? AND case_id=? AND firm_id=?",
         (document_id, cid, u["firm_id"]),
     ).fetchone()
@@ -8300,12 +8300,12 @@ def save_document_classification(
         raise HTTPException(404, "document not found")
 
     current = c.execute(
-        "SELECT category,updated_at FROM document_classifications "
+        "SELECT category,version,updated_at FROM document_classifications "
         "WHERE document_id=? AND case_id=? AND firm_id=?",
         (document_id, cid, u["firm_id"]),
     ).fetchone()
     if current is None:
-        if body.expected_updated_at is not None:
+        if body.expected_version is not None:
             raise HTTPException(409, "classification changed; reload before saving")
         previous_category = None
         c.execute(
@@ -8315,7 +8315,7 @@ def save_document_classification(
         )
         event_type = "created"
     else:
-        if body.expected_updated_at is None or body.expected_updated_at != current["updated_at"]:
+        if body.expected_version is None or body.expected_version != current["version"]:
             raise HTTPException(409, "classification changed; reload before saving")
         previous_category = current["category"]
         if previous_category == body.category:
@@ -8325,9 +8325,9 @@ def save_document_classification(
             }
         c.execute(
             "UPDATE document_classifications SET category=?,updated_by_user_id=?,"
-            "updated_at=datetime('now') WHERE document_id=? AND case_id=? AND firm_id=? "
-            "AND updated_at=?",
-            (body.category, u["id"], document_id, cid, u["firm_id"], body.expected_updated_at),
+            "version=version+1,updated_at=strftime('%Y-%m-%dT%H:%M:%fZ','now') "
+            "WHERE document_id=? AND case_id=? AND firm_id=? AND version=?",
+            (body.category, u["id"], document_id, cid, u["firm_id"], body.expected_version),
         )
         if c.execute("SELECT changes()").fetchone()[0] != 1:
             raise HTTPException(409, "classification changed; reload before saving")
