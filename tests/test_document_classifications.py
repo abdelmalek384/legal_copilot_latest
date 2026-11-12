@@ -124,8 +124,7 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("chunks.case_id IN (SELECT cs.id FROM cases cs WHERE cs.firm_id=?", endpoint)
         self.assertIn("EXISTS(SELECT 1 FROM members", endpoint)
         self.assertIn("document_text_search", endpoint)
-        self.assertIn("chunks.text AS full_text", endpoint)
-        self.assertIn("normalized_full = norm(full_text)", endpoint)
+        self.assertIn("substr(chunks.text,max(1,instr(chunks.norm,?)-450),1200) AS excerpt", endpoint)
         self.assertIn('item["excerpt"] =', endpoint)
         self.assertIn("not verified facts or legal conclusions", endpoint)
 
