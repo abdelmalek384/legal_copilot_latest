@@ -706,7 +706,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("className:'research-inspector card'", HTML)
         self.assertIn("grid-template-columns:minmax(205px,235px) minmax(0,1fr) minmax(260px,310px)", HTML)
         self.assertIn("sourceActions.append(makeBtn(LANG==='ar'?'فحص المصدر':'Inspect source',()=>inspectSource(s,status,pin,p)))", HTML)
-        self.assertIn("source.text|| (LANG==='ar'?'لا يوجد نص مسترجع؛ هذه نتيجة بيانات وصفية فقط.':'No passage was retrieved; this is metadata only.')", HTML)
+        self.assertIn("source.text|| (LANG==='ar'?'لم يُرجع نص لهذا السجل من المصدر.':'No passage text was returned for this source record.')", HTML)
         self.assertIn("review_evidence", HTML)
         self.assertIn("@media(max-width:1120px)", HTML)
         self.assertIn("@media(max-width:800px)", HTML)
