@@ -2666,6 +2666,7 @@ function documentIntelligencePanel(caseId,documents){
   },'g');
   const pendingCount=[...cache.values()].reduce((sum,item)=>sum+item.chunks.filter(chunk=>!chunk.latest_review||chunk.latest_review.outcome==='needs_recheck').length,0);
   const filterButton=btn(needsAttentionOnly?uiText('عرض جميع المقاطع','Show all passages'):uiText('عرض المقاطع التي تحتاج مراجعة','Show passages needing attention'),()=>{needsAttentionOnly=!needsAttentionOnly;renderAnalysis()},'g');
+  filterButton.setAttribute('aria-pressed',String(needsAttentionOnly));
   return h('section',{className:'card extraction-review-section'},h('b',{textContent:uiText('مراجعة النص المستخرج','Extracted text review')}),h('p',{className:'mut',textContent:uiText('راجع كل مقطع مقابل المستند الأصلي. قرارات الاعتماد والتصحيح وإعادة الفحص تُحفظ مع هوية المراجع والتوقيت؛ لا تعتمد على النص المستخرج دون التحقق من الأصل.','Check each chunk against the original document. Accept, correction and recheck decisions are audited with reviewer identity and timestamp; do not rely on extracted text without checking the original.')}),h('div',{className:'row'},filterButton,h('span',{className:'mut',textContent:pendingCount+' '+uiText('مقاطع تحتاج مراجعة','passages needing attention')})),historyButton,historyResults,...cards,h('p',{className:'mut',textContent:uiText('تُعرض حتى 100 مقطع في كل مرة. استخدم صفحات المستند ومراجع المقاطع لتحديد مواضع المراجعة.','Up to 100 passages are shown at a time. Use page and chunk references to locate the source passages.')}));
  };
  const renderAnalysis=()=>{
