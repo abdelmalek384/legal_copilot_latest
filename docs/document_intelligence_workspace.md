@@ -36,7 +36,6 @@ This is the first UI layer for reviewing documents already uploaded to a case. I
 
 ## Not yet implemented
 
-- Persistent, server-side editable classifications with role checks, optimistic concurrency and an audit history.
 - Firm-wide document search across multiple matters. The current workspace is deliberately limited to one selected, authorized matter.
 - Persistent, server-side editable classifications with role checks, optimistic concurrency and an audit history. The server now returns canonical classification suggestions and bounded literal candidates through the existing authorized chunks endpoint, but user overrides remain view-only drafts.
 - Structured extraction of named entities and events beyond the literal candidate rules described above.
