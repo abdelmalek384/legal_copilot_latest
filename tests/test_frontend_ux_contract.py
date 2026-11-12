@@ -712,6 +712,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("const latestReviews=Object.values(latestByType)", HTML)
         self.assertIn("@media(max-width:1120px)", HTML)
         self.assertIn("@media(max-width:800px)", HTML)
+        self.assertIn(".research-layout>.research-list{max-height:210px;overflow:auto}", HTML)
+        self.assertIn(".research-layout>.research-inspector{max-height:380px;overflow:auto}", HTML)
 
 
 if __name__ == "__main__":
