@@ -2127,6 +2127,7 @@ async function documentsPage(){
  const searchMatter=btn(uiText('بحث','Search'),async()=>{matterOffset=0;await loadMatters()},'g');
  const allAccessibleDocsButton=btn(uiText('كل المستندات المتاحة لي','All documents I can access'),()=>loadAllAccessibleDocs(),'primary'),globalPageLabel=h('span',{className:'mut',role:'status','aria-live':'polite'}),previousGlobal=btn(uiText('السابق','Previous'),()=>{if(globalOffset>0){globalOffset=Math.max(0,globalOffset-50);loadAllAccessibleDocs()}},'g'),nextGlobal=btn(uiText('التالي','Next'),()=>{if(globalOffset+50<globalTotal){globalOffset+=50;loadAllAccessibleDocs()}},'g');
  const renderMatters=()=>{
+  list.hidden=false;
   const filtered=matters;
   matterPageLabel.textContent=matterTotal?(matterOffset+1)+'-'+Math.min(matterOffset+matterLimit,matterTotal)+' / '+matterTotal:'0 / 0';
   previousMatter.disabled=matterOffset===0;nextMatter.disabled=matterOffset+matterLimit>=matterTotal;
