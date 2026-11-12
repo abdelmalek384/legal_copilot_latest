@@ -5270,6 +5270,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(history.json()["events"][0]["previous_category"], "contract")
         self.assertEqual(history.json()["events"][0]["new_category"], "pleading")
         self.assertEqual(history.json()["events"][0]["note"], "Corrected after review.")
+        self.assertEqual(history.json()["events"][0]["actor_name"], "First Owner")
+        self.assertEqual(history.json()["classification"]["updated_by_name"], "First Owner")
         tenant = self.runtime.firm_connection(
             self.runtime.resolve_context(self.user_id, self.firm_a)
         )
@@ -5316,6 +5318,49 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             f"/cases/{case_two}/docs/{document_id}/classification"
         )
         self.assertIn(cross_matter.status_code, (403, 404), cross_matter.text)
+
+    def test_only_case_leads_and_firm_admins_can_change_document_classification(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Classification permission matter"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        uploaded = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={"name": "classification-permissions.txt", "text": "Synthetic source."},
+        )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+        document_id = uploaded.json()["document_id"]
+
+        junior_id = self.runtime.create_global_identity(
+            "Classification Junior", "classification-junior@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(junior_id, self.firm_a, "lawyer")
+        added = self._mutate(
+            "post", f"/cases/{case_id}/members",
+            json={"user_id": junior_id, "role": "junior"},
+        )
+        self.assertEqual(added.status_code, 200, added.text)
+
+        junior = TestClient(app.app)
+        try:
+            logged_in = junior.post(
+                "/login", json={"email": "classification-junior@example.test", "password": self.password}
+            )
+            self.assertEqual(logged_in.status_code, 200, logged_in.text)
+            visible = junior.get(f"/cases/{case_id}/docs/{document_id}/classification")
+            self.assertEqual(visible.status_code, 200, visible.text)
+            self.assertFalse(visible.json()["can_edit"])
+            denied = junior.put(
+                f"/cases/{case_id}/docs/{document_id}/classification",
+                headers={"X-CSRF-Token": junior.cookies.get("lc_csrf") or ""},
+                json={"category": "contract", "expected_version": 0, "note": ""},
+            )
+            self.assertEqual(denied.status_code, 403, denied.text)
+        finally:
+            junior.close()
 
 if __name__ == "__main__":
     unittest.main()
