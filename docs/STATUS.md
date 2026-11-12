@@ -207,6 +207,6 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 
 ## Retrieval evaluator input-shape hardening — 2026-11-13
 
-- PR #1580 fixes two malformed-input crash paths in `tools/evaluate_retrieval_quality.py`: unhashable JSON values supplied for `review_status` or `reviewer_role` previously reached set-membership checks and could raise `TypeError`.
-- The evaluator now checks that both values are strings before enum membership. Regression tests assert malformed values are excluded through `invalid_question_records`.
-- Static source/diff review only. Exact-head Tests run `43328171760` failed before any job steps were exposed (`steps: null`); no runtime test pass is claimed.
+- PR #1580 hardens reviewer metadata in `tools/evaluate_retrieval_quality.py`: unhashable JSON values supplied for `review_status` or `reviewer_role` previously reached set-membership checks and could raise `TypeError`; raw backslashes and empty query/fragment delimiters were also accepted by the evidence-URL validator.
+- The evaluator now checks that both enum values are strings before membership and rejects ambiguous raw URL forms. Regression tests assert malformed values are excluded through `invalid_question_records` and invalid reviewer evidence URLs are rejected.
+- Static source/diff review only. Latest exact-head Tests run `43328429442` for head `53eed6cfa7ab6601f6cdd13b4c362a25c6095f7f` failed before any job steps were exposed (`steps: null`); no runtime test pass is claimed.
