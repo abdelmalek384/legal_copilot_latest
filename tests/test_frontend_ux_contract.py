@@ -843,5 +843,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn(".research-upload-panel{grid-template-columns:minmax(0,1fr)}", HTML)
 
 
+    def test_application_color_tokens_resolve_to_one_light_palette(self):
+        self.assertIn("--navy:#14284b;--bg:#f5f7fb;--line:#dbe3ee", HTML)
+        self.assertIn("--pri:#2457c5;--pri-l:#edf3ff;--ok:#176b45", HTML)
+        self.assertIn("--warn:#8a4b08;--warn-l:#fff5e8;--bad:#a52620", HTML)
+        self.assertIn("--ui-blue:#2457c5;--ui-blue-soft:#edf3ff", HTML)
+        self.assertIn("--ui-border:#dbe3ee;--ui-muted:#5b6b80", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
