@@ -11,12 +11,12 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 | Work item | Owner | Closure evidence | Current disposition |
 |---|---|---|---|
-| DEL/control-character rejection in Gazette source URLs | AI-1 | Validator rejects C0 and DEL; focused regression test exists | Code change merged in PR #1556; execution still unverified |
-| Gazette text importer input contract and deterministic output | AI-1 | Input/schema/provenance/duplicate/error-path tests; documented CLI | Partially complete; needs full source/test audit |
-| Retrieval scorer safety-status ordering | AI-1 | Known wrong/uncited/unverified/non-abstention failures always report below-target; focused tests executed | Fix proposed in PR #1560; tests not executed |
-| Arabic obligation-negation unit coverage | AI-1 | English and Arabic polarity variants tested, including unrelated clauses and whitespace | Additional cases proposed in PR #1559; tests not executed |
+| DEL/control-character rejection in Gazette source URLs | AI-1 | Validator rejects C0 and DEL; focused regression test exists | C0/DEL, fragment delimiters and backslashes rejected; importer changes merged in #1556/#1563; focused tests still unexecuted |
+| Gazette text importer input contract and deterministic output | AI-1 | Input/schema/provenance/duplicate/error-path tests; documented CLI | Importer and operator contract merged in #1563/#1567; source-reviewed, full focused tests still unexecuted |
+| Retrieval scorer safety-status ordering | AI-1 | Known wrong/uncited/unverified/non-abstention failures always report below-target; focused tests executed | Fix merged in #1560 and carried with URL hardening in #1566; focused tests still unexecuted |
+| Arabic obligation-negation unit coverage | AI-1 | English and Arabic polarity variants tested, including unrelated clauses and whitespace | Additional Arabic polarity/whitespace cases merged in #1559; tests still unexecuted; live answer-path integration remains open under #1561 |
 | Benchmark evaluator data-integrity contract | AI-1 | Unlabeled data excluded, reviewer registry required, stable fingerprint, malformed input rejected | Implemented in repository; execution and integration remain unverified |
-| Documentation and ownership handoff | AI-1 / AI-2 | Each known blocker has owner, acceptance evidence, and no false completion claim | This register created; update as work closes |
+| Documentation and ownership handoff | AI-1 / AI-2 | Each known blocker has owner, acceptance evidence, and no false completion claim | Register merged in #1562 and refreshed in this update; operational blockers remain open |
 
 ## External blockers: do not spend repeated effort looping
 
@@ -56,14 +56,16 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - This cannot be completed by repository edits alone.
 
 ## Current AI-1 pull requests
-- #1559: Arabic negated-obligation regression cases. Test-only; not executed.
-- #1560: retrieval scorer reports known safety failures as below-target even when other cohort metrics are incomplete. Tests not executed.
-- #1562: delivery blocker/closure register and status linkage. Documentation-only; not tests run.
-- #1563: reject empty URL fragment delimiters in Gazette source URLs. Tests not executed.
-- #1565: Gazette importer operator contract. Documentation-only; source-cross-checked, no tests run.
-- #1566: strict reviewer evidence URL validation. Tests not executed.
-- #1556: DEL rejection in Gazette source URL; merged previously, test execution unverified.
-- #1554: control-character fixture corrections; merged previously, test execution unverified.
+
+- No open AI-1 pull request is currently required to track the bounded changes listed below.
+- #1559 — merged Arabic negated-obligation regression coverage; tests unexecuted.
+- #1560 — merged retrieval scorer safety-status ordering fix; tests unexecuted.
+- #1562 — merged delivery blocker/closure register.
+- #1563 — merged Gazette source URL rejection for empty fragment delimiters and backslashes; tests unexecuted.
+- #1566 — merged strict reviewer-evidence URL validation, including backslash rejection; tests unexecuted.
+- #1567 — merged Gazette text importer operator contract and status linkage.
+- #1556 and #1554 — previously merged; test execution remains unverified.
+- #1561 remains an open AI-2 integration issue: the negation helper must be invoked at the live final-answer boundary.
 
 ## Next execution order
 1. Finish static audits and close deterministic importer/scorer defects that have bounded acceptance criteria.
