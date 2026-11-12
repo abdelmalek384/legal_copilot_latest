@@ -165,5 +165,10 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("filterButton.setAttribute('aria-pressed',String(needsAttentionOnly))", html)
         self.assertIn("pendingCount", html)
 
+    def test_extraction_review_displays_reviewer_page_reference_when_supplied(self):
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("latest&&latest.page_reference", html)
+        self.assertIn("Reviewer reference:", html)
+
 if __name__ == "__main__":
     unittest.main()
