@@ -42,6 +42,7 @@ TEST_REVIEWER_REGISTRY = {
 def reviewed(qid, *, answerable=True, article="المادة 1 من قانون العمل", style="formal", tags=None):
     return {
         "id": qid,
+        "practice_area": "labour",
         "question_style": style,
         "question_origin": "observed_anonymized_query",
         "question_origin_reference": f"synthetic-test-fixture:{qid}",
@@ -70,17 +71,33 @@ def reviewed(qid, *, answerable=True, article="المادة 1 من قانون ا
 
 
 class ArabicRetrievalScorerTests(unittest.TestCase):
+    def test_reviewer_must_be_in_approved_registry_and_practice_area(self):
+        q = reviewed("Q-REGISTRY")
+        run = {"question_id": "Q-REGISTRY",
+               "retrieved_article_ids": [q["expected_article_id"]],
+               "cited_article_ids": [q["expected_article_id"]],
+               "abstained": False, "used_unverified_source": False}
+        altered = dict(q, reviewer_name="Unregistered Reviewer")
+        with self.assertRaisesRegex(ValueError, "reviewer_name must match"):
+            score([altered], [run], TEST_REVIEWER_REGISTRY)
+        altered = dict(q, practice_area="criminal_law")
+        with self.assertRaisesRegex(ValueError, "not approved for this practice_area"):
+            score([altered], [run], TEST_REVIEWER_REGISTRY)
+
     def test_cli_reports_malformed_json_without_traceback(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             questions = Path(temp_dir) / "questions.jsonl"
             runs = Path(temp_dir) / "runs.jsonl"
             questions.write_text("{not-json}\\n", encoding="utf-8")
             runs.write_text("", encoding="utf-8")
+            registry = Path(temp_dir) / "reviewers.json"
+            registry.write_text(__import__("json").dumps(TEST_REVIEWER_REGISTRY), encoding="utf-8")
             stderr = io.StringIO()
             with mock.patch("sys.argv", [
                 "score_arabic_retrieval.py",
                 "--questions", str(questions),
                 "--runs", str(runs),
+                "--reviewer-registry", str(registry),
                 "--phase", "before",
             ]), contextlib.redirect_stderr(stderr):
                 with self.assertRaises(SystemExit) as raised:
@@ -97,11 +114,14 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
             questions.write_text('{"id":"Q1","review_status":"needs_lawyer_review"}\\n', encoding="utf-8")
             runs.write_text("", encoding="utf-8")
             report.write_text("[]", encoding="utf-8")
+            registry = Path(temp_dir) / "reviewers.json"
+            registry.write_text(__import__("json").dumps(TEST_REVIEWER_REGISTRY), encoding="utf-8")
             stderr = io.StringIO()
             with mock.patch("sys.argv", [
                 "score_arabic_retrieval.py",
                 "--questions", str(questions),
                 "--runs", str(runs),
+                "--reviewer-registry", str(registry),
                 "--phase", "before",
                 "--output", str(report),
             ]), contextlib.redirect_stderr(stderr):
