@@ -29,6 +29,17 @@ def load_jsonl(path):
     return rows
 
 
+def _canonical_article_id(value):
+    """Validate the source-scoped article ID emitted by the evaluation API runner."""
+    if not isinstance(value, str) or value != value.strip():
+        return False
+    match = re.fullmatch(
+        r"([A-Za-z0-9][A-Za-z0-9._-]{0,127})::law:(.+)::article:(.+)",
+        value,
+    )
+    return bool(match and all(part and part == part.strip() for part in match.groups()))
+
+
 def _valid_reviewed(row):
     if row.get("review_status") not in REVIEWED:
         return False
@@ -51,6 +62,16 @@ def _valid_reviewed(row):
             raise ValueError(f'{row.get("id")}: {field} is required')
     if row.get("label_status") not in {"lawyer_approved", "approved_for_evaluation"}:
         raise ValueError(f'{row.get("id")}: reviewed question must have an approved label_status')
+    as_of_date = row.get("as_of_date")
+    if as_of_date is not None:
+        if not isinstance(as_of_date, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", as_of_date):
+            raise ValueError(f"{row.get('id')}: as_of_date must be null or YYYY-MM-DD")
+        try:
+            parsed_as_of = date.fromisoformat(as_of_date)
+        except ValueError as exc:
+            raise ValueError(f"{row.get('id')}: invalid as_of_date") from exc
+        if parsed_as_of.isoformat() != as_of_date:
+            raise ValueError(f"{row.get('id')}: as_of_date must be YYYY-MM-DD")
     if not isinstance(row.get("answerable"), bool):
         raise ValueError(f"{row.get('id')}: reviewed question needs answerable=true/false")
     if not isinstance(row.get("reviewer_id"), str) or not row["reviewer_id"].strip():
@@ -81,10 +102,8 @@ def _valid_reviewed(row):
     expected_id = row.get("expected_article_id")
     if expected not in (None, "") and (not isinstance(expected, str) or expected != expected.strip()):
         raise ValueError(f"{row.get('id')}: expected_article must be a trimmed string")
-    if expected_id not in (None, "") and (
-            not isinstance(expected_id, str) or expected_id != expected_id.strip()
-            or "::law:" not in expected_id or "::article:" not in expected_id):
-        raise ValueError(f"{row.get('id')}: expected_article_id must use source_id::law:<law-label>::article:<number>")
+    if expected_id not in (None, "") and not _canonical_article_id(expected_id):
+        raise ValueError(f'{row.get("id")}: expected_article_id must use a complete source_id::law:<law-label>::article:<number>')
     if row["answerable"]:
         if not isinstance(expected, str) or not expected.strip():
             raise ValueError(f"{row.get('id')}: answerable reviewed question needs a human-readable expected_article")
@@ -105,6 +124,8 @@ def benchmark_fingerprint(questions):
             "id": q["id"],
             "practice_area": q.get("practice_area"),
             "question_ar": q.get("question_ar"),
+            "as_of_date": q.get("as_of_date"),
+            "must_abstain_if_unverified": q.get("must_abstain_if_unverified"),
             "question_origin": q.get("question_origin"),
             # Cohort-defining prompt metadata must stay fixed across before/after runs.
             "question_style": q.get("question_style"),
@@ -156,6 +177,17 @@ def score(questions, runs):
     if missing:
         raise ValueError("missing run records for reviewed questions: " + ", ".join(missing))
     reviewed_ids = {q["id"] for q in reviewed}
+    for qid in reviewed_ids:
+        question = q_by_id[qid]
+        run = r_by_id[qid]
+        if run.get("scope") != "verified_corpus":
+            raise ValueError(f"{qid}: run scope must be verified_corpus")
+        expected_as_of = question.get("as_of_date")
+        if expected_as_of is not None and run.get("requested_as_of") != expected_as_of:
+            raise ValueError(f"{qid}: run requested_as_of does not match the reviewed question as_of_date")
+        for field in ("retrieved_article_ids", "cited_article_ids"):
+            if any(not _canonical_article_id(value) for value in run.get(field, [])):
+                raise ValueError(f"{qid}: {field} must contain canonical source-scoped article IDs")
     # Keep baseline run artifacts for known unlabeled questions, but exclude them
     # from every metric until counsel approves their labels.
     excluded_run_ids = set(r_by_id) - reviewed_ids
