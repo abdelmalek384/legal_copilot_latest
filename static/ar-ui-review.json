@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "5650befc4366ed62e28135aaab6aa78bb85c3def",
   "generated_on": "2026-11-03",
-  "entry_count": 979,
+  "entry_count": 990,
   "entries": [
     {
       "id": "AR-0001",
@@ -8157,6 +8157,105 @@
       "source_lines": [
         2386,
         2438
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0980",
+      "arabic": "جارٍ تحميل سجل المراجعة...",
+      "source_lines": [
+        2386,
+        2453
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0981",
+      "arabic": "المقطع ",
+      "source_lines": [
+        2386,
+        2453
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0982",
+      "arabic": "مقبول",
+      "source_lines": [
+        2386,
+        2453
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0983",
+      "arabic": "تم التصحيح",
+      "source_lines": [
+        2386,
+        2453
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0984",
+      "arabic": "إعادة فحص",
+      "source_lines": [
+        2386,
+        2453
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0985",
+      "arabic": "المراجع رقم ",
+      "source_lines": [
+        2386,
+        2453
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0986",
+      "arabic": "ملاحظة: ",
+      "source_lines": [
+        2386,
+        2453
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0987",
+      "arabic": "النص قبل التصحيح",
+      "source_lines": [
+        2386,
+        2453
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0988",
+      "arabic": "النص بعد التصحيح",
+      "source_lines": [
+        2386,
+        2453
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0989",
+      "arabic": "لا يوجد سجل مراجعة لهذا المستند.",
+      "source_lines": [
+        2386,
+        2453
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0990",
+      "arabic": "تعذر تحميل سجل المراجعة. تحقق من صلاحية الوصول وحاول مجدداً.",
+      "source_lines": [
+        2386,
+        2453
       ],
       "review_status": "pending_native_review"
     }
