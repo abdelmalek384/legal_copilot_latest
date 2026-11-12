@@ -3,7 +3,7 @@
   "title": "Legal Copilot Arabic UI string review inventory",
   "purpose": "Reviewable inventory of Arabic-bearing string literals in static/index.html for a native Egyptian Arabic speaker. This is a review snapshot, not yet the runtime translation source; user-entered case and legal text is not included.",
   "source_file": "static/index.html",
-  "source_commit": "f9e85b9bf621f02d96d690ec74824fc227268096",
+  "source_commit": "ba22302c8ca1c44a5523bf1f852eb7b8d305ed93",
   "generated_on": "2026-11-12",
   "entry_count": 1091,
   "entries": [
