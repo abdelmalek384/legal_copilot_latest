@@ -5,6 +5,7 @@ It does not perform OCR, make legal conclusions, or mutate original files.
 Every extracted signal is a review candidate, not an established fact.
 """
 from __future__ import annotations
+import bisect
 import difflib
 import hashlib
 import re
@@ -62,23 +63,20 @@ def classify_document(filename: str, text: str) -> dict[str, Any]:
         if matched:
             scored.append((len(matched), category, matched))
     if not scored:
-        return {"category": "unclassified", "confidence": "low", "matched_terms": [], "requires_review": True}
+        return {"category": "unclassified", "signal_strength": "no_keyword_match", "matched_terms": [], "requires_review": True}
     scored.sort(key=lambda item: (-item[0], item[1]))
     count, category, matched = scored[0]
-    return {"category": category, "confidence": "medium" if count >= 2 else "low",
+    return {"category": category, "signal_strength": "multiple_keyword_matches" if count >= 2 else "single_keyword_match",
             "matched_terms": matched, "requires_review": True}
 
-def _page_at(text: str, position: int) -> int | None:
-    page = None
-    for match in _PAGE_MARKER.finditer(text, 0, position):
-        page = int(match.group(1))
-    return page
-
-def _candidate(kind: str, match: re.Match, text: str) -> dict[str, Any]:
+def _candidate(kind: str, match: re.Match, text: str,
+               page_markers: list[tuple[int, int]]) -> dict[str, Any]:
     start, end = match.span()
     excerpt = re.sub(r"\s+", " ", text[max(0, start-90):min(len(text), end+90)]).strip()
+    marker_index = bisect.bisect_right(page_markers, (start, 10**18)) - 1
+    page = page_markers[marker_index][1] if marker_index >= 0 else None
     return {"kind": kind, "value": match.group(0).strip(), "excerpt": excerpt,
-            "page": _page_at(text, start), "start": start, "end": end,
+            "page": page, "start": start, "end": end,
             "review_status": "candidate_unverified"}
 
 def extract_review_candidates(text: str) -> dict[str, Any]:
@@ -88,11 +86,12 @@ def extract_review_candidates(text: str) -> dict[str, Any]:
     if len(text) > MAX_ANALYSIS_CHARS:
         raise ValueError("document text exceeds analysis limit")
     candidates = []
+    page_markers = [(match.start(), int(match.group(1))) for match in _PAGE_MARKER.finditer(text)]
     for pattern in _DATE_PATTERNS:
-        candidates.extend(_candidate("date", match, text) for match in pattern.finditer(text))
-    candidates.extend(_candidate("case_reference", match, text) for match in _CASE_PATTERN.finditer(text))
-    candidates.extend(_candidate("amount", match, text) for match in _MONEY_PATTERN.finditer(text))
-    candidates.extend(_candidate("party_label", match, text) for match in _PARTY_LABEL_PATTERN.finditer(text))
+        candidates.extend(_candidate("date", match, text, page_markers) for match in pattern.finditer(text))
+    candidates.extend(_candidate("case_reference", match, text, page_markers) for match in _CASE_PATTERN.finditer(text))
+    candidates.extend(_candidate("amount", match, text, page_markers) for match in _MONEY_PATTERN.finditer(text))
+    candidates.extend(_candidate("party_label", match, text, page_markers) for match in _PARTY_LABEL_PATTERN.finditer(text))
     candidates.sort(key=lambda item: (item["start"], item["end"], item["kind"]))
     return {"candidate_count": len(candidates), "candidates": candidates,
             "limitations": [
