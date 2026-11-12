@@ -99,7 +99,9 @@ def main() -> int:
 
         env = os.environ.copy()
         env.update(dict(overrides))
-        print(f"\n==> {test_name} [{', '.join(f'{k}={v}' for k, v in overrides) or 'inherited environment'}]", flush=True)
+        # Report only variable names; never echo workflow environment values into logs.
+        env_label = ", ".join(key for key, _value in overrides) or "inherited environment"
+        print(f"\n==> {test_name} [{env_label}]", flush=True)
         completed = subprocess.run([sys.executable, str(test_path)], cwd=ROOT, env=env)
         status = "PASS" if completed.returncode == 0 else "FAIL"
         results.append((test_name, status, completed.returncode))
