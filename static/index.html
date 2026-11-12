@@ -2271,7 +2271,7 @@ async function documentsPage(){
  };
  query.onkeydown=e=>{if(e.key==='Enter'){matterOffset=0;loadMatters()}};
  matterSelect.onchange=loadMatter;
- shell(uiText('مكتبة المستندات','Document library'),h('p',{className:'workspace-subtitle',textContent:uiText('اعرض مستندات كل ملف قضية على حدة، وابحث في النصوص المستخرجة وراجعها مع الحفاظ على صلاحيات الملف وسجل التدقيق.','Browse documents one authorized matter at a time, search extracted text, and review it with matter permissions and audit history preserved.')}),h('div',{className:'filter-bar'},query,searchMatter,matterSelect,previousMatter,matterPageLabel,nextMatter,allAccessibleDocsButton),summary,list,documentList,stats,workspace);
+ shell(uiText('مكتبة المستندات','Document library'),h('p',{className:'workspace-subtitle',textContent:uiText('استعرض المستندات في القضايا المصرح لك بها، وابحث في بياناتها ونصوصها المستخرجة. اختر قضية لإضافة ملفات أو مراجعة التصنيفات والمقاطع.','Browse documents across matters you can access and search their metadata and extracted text. Select a matter to upload files or review classifications and passages.')}),h('div',{className:'filter-bar'},query,searchMatter,matterSelect,previousMatter,matterPageLabel,nextMatter,allAccessibleDocsButton),summary,list,documentList,stats,workspace);
  await loadMatters();
  if(!matterSelect.value)await loadAllAccessibleDocs();
 }
