@@ -179,5 +179,9 @@ class DocumentClassificationContractTests(unittest.TestCase):
         html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
         self.assertIn("latest&&latest.outcome!=='needs_recheck'?'done':'soon'", html)
 
+    def test_review_history_keeps_recheck_events_visually_flagged(self):
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("review.outcome==='needs_recheck'?'soon':'done'", html)
+
 if __name__ == "__main__":
     unittest.main()
