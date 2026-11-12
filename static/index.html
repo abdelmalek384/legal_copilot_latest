@@ -2103,8 +2103,8 @@ async function documentsPage(){
   if(!valid.length){uploadStatus.textContent=uiText('لم يتم رفع أي ملف.','No files were uploaded.');uploadSubmit.disabled=true;return}
   uploadBusy=true;uploadButton.disabled=true;uploadSubmit.disabled=true;uploadInput.disabled=true;matterSelect.disabled=true;
   let succeeded=0;
-  for(const item of valid){
-   item.state='working';item.message=uiText('جارٍ الرفع واستخراج النص...','Uploading and extracting text...');uploadStatus.textContent=item.message+' · '+item.name;renderUploadQueue(queue);
+  for(const [index,item] of valid.entries()){
+   item.state='working';item.message=uiText('جارٍ الرفع واستخراج النص...','Uploading and extracting text...');uploadStatus.textContent=uiText('الملف ','File ')+(index+1)+' / '+valid.length+' · '+item.name+' · '+item.message;renderUploadQueue(queue);
    try{
     const formData=new FormData();formData.append('file',item.file,item.name);
     const csrf=csrfToken(),headers=csrf?{'X-CSRF-Token':decodeURIComponent(csrf)}:{};
