@@ -8385,6 +8385,15 @@ def save_document_classification(
     need(c, u, cid)
     doc, text, _chunk_ranges = _document_text_and_chunks(c, cid, u["firm_id"], document_id)
     suggestion = classify_document(str(doc["name"] or ""), text)
+    source_digest = normalized_text_digest(text)
+    # Serialize classification writes and recheck the extracted text snapshot so
+    # neither another reviewer nor a concurrent extraction correction can be lost.
+    c.execute("BEGIN IMMEDIATE")
+    _current_doc, current_text, _current_ranges = _document_text_and_chunks(
+        c, cid, u["firm_id"], document_id
+    )
+    if normalized_text_digest(current_text) != source_digest:
+        raise HTTPException(409, "document text changed; reload analysis before classifying")
     latest = c.execute(
         "SELECT id FROM document_classification_reviews "
         "WHERE firm_id=? AND case_id=? AND document_id=? ORDER BY id DESC LIMIT 1",
