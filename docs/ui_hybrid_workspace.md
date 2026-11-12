@@ -37,6 +37,6 @@ The layout uses logical inline borders and text alignment so Arabic RTL and Engl
 
 ## Acceptance coverage
 
-The frontend contract test checks the three-pane layout, source-inspection action, latest-review selection, and responsive panel bounds. The browser acceptance test exercises source inspection using a synthetic matter-document sentinel and checks for horizontal overflow at 390px.
+The frontend contract test checks the three-pane layout, source-inspection action, latest-review selection, responsive panel bounds, first-run language navigation, and subscription-lock recovery routing. Browser acceptance exercises source inspection using a synthetic matter-document sentinel, verifies desktop/tablet/phone panel layouts and horizontal-overflow bounds, and checks the first-run/setup-health flow in Arabic and English at phone width.
 
 These tests must be run locally on the pinned Python 3.12 environment. Browser viewport assertions do not replace witnessed physical-device acceptance in Arabic and English on a phone and desktop. No test pass or physical-device acceptance is claimed by this document.
