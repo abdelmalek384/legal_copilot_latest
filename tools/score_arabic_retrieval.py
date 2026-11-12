@@ -9,6 +9,11 @@ from datetime import date
 from pathlib import Path
 from urllib.parse import urlsplit
 
+try:
+    from tools.evaluate_legal_answer_reviews import validate_reviewer_registry
+except ModuleNotFoundError:  # supports direct execution as python tools/score_arabic_retrieval.py
+    from evaluate_legal_answer_reviews import validate_reviewer_registry
+
 REVIEWED = {"lawyer_reviewed", "approved_for_evaluation"}
 MIN_TARGET_COHORT_SIZE = 20
 MIN_TOTAL_REVIEWED_QUESTIONS = 100
@@ -29,7 +34,7 @@ def load_jsonl(path):
     return rows
 
 
-def _valid_reviewed(row):
+def _valid_reviewed(row, approved_reviewers):
     if row.get("review_status") not in REVIEWED:
         return False
     if row.get("question_origin") not in {"observed_anonymized_query", "permitted_public_q_and_a"}:
@@ -55,6 +60,15 @@ def _valid_reviewed(row):
         raise ValueError(f"{row.get('id')}: reviewed question needs answerable=true/false")
     if not isinstance(row.get("reviewer_id"), str) or not row["reviewer_id"].strip():
         raise ValueError(f"{row.get('id')}: reviewer_id is required")
+    reviewer = approved_reviewers.get(row["reviewer_id"])
+    if reviewer is None:
+        raise ValueError(f"{row.get('id')}: reviewer_id must match a valid approved reviewer registry entry")
+    if row["reviewer_name"] != reviewer.get("display_name"):
+        raise ValueError(f"{row.get('id')}: reviewer_name must match the approved reviewer registry display_name")
+    if row.get("practice_area") not in reviewer.get("practice_areas", []):
+        raise ValueError(f"{row.get('id')}: reviewer is not approved for this practice_area")
+    if row.get("reviewer_role") != reviewer.get("professional_role"):
+        raise ValueError(f"{row.get('id')}: reviewer_role must match the approved reviewer registry professional_role")
     if not isinstance(row.get("reviewer_name"), str) or not row["reviewer_name"].strip():
         raise ValueError(f"{row.get('id')}: reviewer_name is required")
     if row.get("reviewer_role") not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
@@ -122,7 +136,7 @@ def benchmark_fingerprint(questions):
     return hashlib.sha256(payload).hexdigest()
 
 
-def score(questions, runs):
+def score(questions, runs, reviewer_registry):
     q_by_id = {}
     for q in questions:
         qid = q.get("id")
@@ -150,7 +164,14 @@ def score(questions, runs):
             raise ValueError(f"{qid}: cited_article_ids must be present in retrieved_article_ids")
         r_by_id[qid] = r
 
-    reviewed = [q for q in questions if _valid_reviewed(q)]
+    approved_reviewers, registry_errors = validate_reviewer_registry(reviewer_registry)
+    if registry_errors:
+        raise ValueError("reviewer registry contains invalid entries: " + "; ".join(
+            f"{item.get('record')}: {', '.join(item.get('errors', []))}" for item in registry_errors
+        ))
+    if not approved_reviewers:
+        raise ValueError("reviewer registry has no valid approved reviewers")
+    reviewed = [q for q in questions if _valid_reviewed(q, approved_reviewers)]
     excluded = len(questions) - len(reviewed)
     missing = sorted(q["id"] for q in reviewed if q["id"] not in r_by_id)
     if missing:
@@ -269,6 +290,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--questions", required=True)
     parser.add_argument("--runs", required=True)
+    parser.add_argument("--reviewer-registry", required=True, help="private approved Egyptian-counsel registry JSON")
     parser.add_argument("--phase", choices=("before", "after"), required=True)
     parser.add_argument("--min-score", type=float, default=0.3)
     parser.add_argument("--output", default="docs/arabic_retrieval_measurement.json")
@@ -278,7 +300,8 @@ def main():
     try:
         questions = load_jsonl(args.questions)
         runs = load_jsonl(args.runs)
-        metrics = score(questions, runs)
+        reviewer_registry = json.loads(Path(args.reviewer_registry).read_text(encoding="utf-8"))
+        metrics = score(questions, runs, reviewer_registry)
         digest = benchmark_fingerprint(questions)
         report_path = Path(args.output)
         if report_path.exists():
@@ -298,7 +321,7 @@ def main():
         }
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    except (OSError, ValueError) as exc:
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
         parser.error(str(exc))
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
