@@ -6645,18 +6645,33 @@ def search_accessible_document_text(
     ).fetchone()[0])
     rows = c.execute(
         "SELECT chunks.id AS chunk_id,chunks.case_id,chunks.document_id,chunks.ref,"
-        "chunks.page,substr(chunks.text,1,1200) AS excerpt,d.name AS document_name,"
+        "chunks.page,chunks.text AS full_text,d.name AS document_name,"
         "cs.title AS case_title,cs.case_number,cs.case_year,bm25(chunks_fts) AS rank"
         + joins + where + " ORDER BY rank LIMIT ? OFFSET ?",
         (int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"]), limit, offset),
     ).fetchall()
+    items = []
+    for row in rows:
+        item = dict(row)
+        full_text = str(item.pop("full_text") or "")
+        normalized_full = norm(full_text)
+        positions = [normalized_full.find(token) for token in tokens]
+        positions = [position for position in positions if position >= 0]
+        match_at = min(positions) if positions else 0
+        start = max(0, match_at - 450)
+        end = min(len(full_text), start + 1200)
+        if end - start < 1200:
+            start = max(0, end - 1200)
+        excerpt = full_text[start:end]
+        item["excerpt"] = ("… " if start else "") + excerpt + (" …" if end < len(full_text) else "")
+        items.append(item)
     c.execute(
         "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
         (u["firm_id"], u["id"], "document_text_search"),
     )
     c.commit()
     return {
-        "items": [dict(row) for row in rows],
+        "items": items,
         "total": total,
         "limit": limit,
         "offset": offset,
