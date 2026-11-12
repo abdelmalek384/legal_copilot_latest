@@ -901,5 +901,25 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("اعتماد النص", reviewed)
         self.assertIn("حفظ قرار مراجعة الاستخراج في سجل التدقيق.", reviewed)
 
+    def test_documents_page_is_a_matter_scoped_library_not_a_fabricated_firm_wide_index(self):
+        self.assertIn("['documents',navLabel('المستندات','Documents'),documentsPage]", HTML)
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("await api('/cases')", page)
+        self.assertIn("await api('/cases/'+id)", page)
+        self.assertIn("documentIntelligencePanel(id,docs)", page)
+        self.assertIn("window.DOCUMENT_MATTER_ID=id", page)
+        self.assertIn("Upload documents", page)
+        self.assertNotIn("firm-wide document count", page.lower())
+
+    def test_extraction_review_ui_uses_audited_api_and_bounded_history(self):
+        self.assertIn("const renderChunkReviewCards=()=>{", HTML)
+        self.assertIn("submitChunkReview(item,chunk,'accepted'", HTML)
+        self.assertIn("submitChunkReview(item,chunk,'needs_recheck'", HTML)
+        self.assertIn("submitChunkReview(item,chunk,'corrected'", HTML)
+        self.assertIn("payload.expected_text_sha256=chunk.text_sha256", HTML)
+        self.assertIn("'/cases/'+caseId+'/docs/'+item.doc.document_id+'/reviews'", HTML)
+        self.assertIn("records.slice(0,100)", HTML)
+        self.assertIn("review.reviewed_text", HTML)
+
 if __name__ == "__main__":
     unittest.main()
