@@ -51,9 +51,26 @@ DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 def load_catalog(path: Path = CATALOG) -> tuple[dict, dict]:
     data = json.loads(path.read_text(encoding="utf-8"))
-    documents = {d["document_id"]: d for d in data.get("documents", []) if isinstance(d, dict) and d.get("document_id")}
-    sources = {s["source_id"]: s for s in data.get("sources", []) if isinstance(s, dict) and s.get("source_id")}
-    return documents, sources
+    if not isinstance(data, dict):
+        raise ValueError("document catalog must be a JSON object")
+
+    def index_rows(field: str, id_field: str) -> dict:
+        rows = data.get(field, [])
+        if not isinstance(rows, list):
+            raise ValueError(f"document catalog {field} must be a list")
+        indexed = {}
+        for index, row in enumerate(rows, start=1):
+            if not isinstance(row, dict):
+                raise ValueError(f"document catalog {field} row {index} must be an object")
+            identifier = row.get(id_field)
+            if not isinstance(identifier, str) or not identifier.strip():
+                raise ValueError(f"document catalog {field} row {index} needs a non-empty {id_field}")
+            if identifier in indexed:
+                raise ValueError(f"document catalog contains duplicate {id_field}: {identifier}")
+            indexed[identifier] = row
+        return indexed
+
+    return index_rows("documents", "document_id"), index_rows("sources", "source_id")
 
 
 def validate_reference_url(url: str) -> str:
