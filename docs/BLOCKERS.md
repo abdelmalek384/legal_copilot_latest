@@ -58,6 +58,10 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 ## Current AI-1 pull requests
 - #1559: Arabic negated-obligation regression cases. Test-only; not executed.
 - #1560: retrieval scorer reports known safety failures as below-target even when other cohort metrics are incomplete. Tests not executed.
+- #1562: delivery blocker/closure register and status linkage. Documentation-only; not tests run.
+- #1563: reject empty URL fragment delimiters in Gazette source URLs. Tests not executed.
+- #1565: Gazette importer operator contract. Documentation-only; source-cross-checked, no tests run.
+- #1566: strict reviewer evidence URL validation. Tests not executed.
 - #1556: DEL rejection in Gazette source URL; merged previously, test execution unverified.
 - #1554: control-character fixture corrections; merged previously, test execution unverified.
 
