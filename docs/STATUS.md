@@ -143,3 +143,10 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Added `tests/test_answer_rating_migration.py` and wired it into `.github/workflows/tests.yml`. The five migration contract cases passed in an isolated local Python 3.13/SQLite run (rating insert, enum/JSON/answerability/note constraints, reviewer uniqueness, parent-message retention, and immutable event ledger). The full firm migration runner and application integration have not been executed. Runtime route handlers, role enforcement, and CSV export implementation remain outstanding.
 - Ratings are not training consent, legal-source verification, or counsel approval. Keep firm data private and exclude curated candidate questions from scored benchmark results.
 
+
+
+## Gazette importer operator contract (2026-11-12)
+
+- Added `docs/gazette_text_importer.md` documenting the offline importer's exact input/metadata contract, URL restrictions, outputs, failure behavior, trust boundary, and human-review checklist.
+- The document explicitly distinguishes transcription staging from source authenticity, collection rights, currentness, lawyer review, and retrieval eligibility.
+- Focused tests exist in `tests/test_import_gazette_text.py`; execution remains unverified in the Python 3.12 hash-locked environment.
