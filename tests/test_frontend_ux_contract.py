@@ -860,3 +860,15 @@ class FrontendUXContractTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+    def test_document_intelligence_has_bounded_filterable_candidate_review(self):
+        self.assertIn("const candidateFilterState={kind:'all',query:''}", HTML)
+        self.assertIn("candidateKindFilter.onchange=()=>{candidateFilterState.kind=candidateKindFilter.value;renderAnalysis()}", HTML)
+        self.assertIn("candidateTextFilter.onchange=()=>{candidateFilterState.query=candidateTextFilter.value;renderAnalysis()}", HTML)
+        self.assertIn("const filteredCandidates=allCandidates.filter", HTML)
+        self.assertIn("filteredCandidates.slice(0,120)", HTML)
+        self.assertIn("totalCharsSafe()", HTML)
+        self.assertIn("document-intelligence-summary", HTML)
+        self.assertIn("document-intelligence-filters", HTML)
+        self.assertIn("Every result is unverified and requires human review.", HTML)
+        self.assertIn("Changes here are unsaved drafts.", HTML)
