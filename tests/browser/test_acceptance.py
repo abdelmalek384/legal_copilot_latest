@@ -809,6 +809,10 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertTrue(inspector.get_by_text("اختر مصدراً", exact=False).is_visible())
         self.assertEqual(self.page.evaluate("document.activeElement.textContent"), "فحص المصدر")
         self.page.get_by_role("button", name="فحص المصدر").first.click()
+        self.page.keyboard.press("Escape")
+        self.assertTrue(inspector.get_by_text("اختر مصدراً", exact=False).is_visible())
+        self.assertEqual(self.page.evaluate("document.activeElement.textContent"), "فحص المصدر")
+        self.page.get_by_role("button", name="فحص المصدر").first.click()
         self.assertTrue(inspector.get_by_text(sentinel, exact=False).is_visible())
         layout = self.page.locator(".research-layout")
         self.assertEqual(
