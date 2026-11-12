@@ -597,8 +597,8 @@ class LegalReleaseReadinessTests(unittest.TestCase):
 
     def test_corpus_paths_reject_control_characters_before_filesystem_access(self):
         for field, value, expected_code in (
-            ("original_path", "originals/law.pdf\\x00", "original_path_invalid"),
-            ("extracted_text_path", "extracted/law.txt\\x1f", "extracted_text_path_invalid"),
+            ("original_path", "originals/law.pdf\x00", "original_path_invalid"),
+            ("extracted_text_path", "extracted/law.txt\x1f", "extracted_text_path_invalid"),
         ):
             candidate = json.loads(json.dumps(self.candidate))
             candidate["version"][field] = value
