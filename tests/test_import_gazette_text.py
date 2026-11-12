@@ -9,7 +9,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from tools.import_gazette_text import import_text
+from tools.import_gazette_text import import_text, _write_new_output_files
 
 
 class GazetteTextImportTests(unittest.TestCase):
@@ -304,6 +304,44 @@ class GazetteTextImportTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "already exist"):
             import_text(self.text_path, self.meta_path, self.output)
         self.assertEqual((self.output / "law_rows.jsonl").read_text(encoding="utf-8"), "keep")
+
+
+
+    def test_output_directory_must_be_empty(self):
+        self.output.mkdir()
+        unrelated = self.output / "keep.txt"
+        unrelated.write_text("do not touch", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "output directory must be empty"):
+            import_text(self.text_path, self.meta_path, self.output)
+        self.assertEqual(unrelated.read_text(encoding="utf-8"), "do not touch")
+
+    def test_exclusive_output_writer_refuses_symlink_without_following_it(self):
+        self.output.mkdir()
+        outside = self.root / "outside.txt"
+        outside.write_text("private sentinel", encoding="utf-8")
+        try:
+            (self.output / "law_rows.jsonl").symlink_to(outside)
+        except (OSError, NotImplementedError) as exc:
+            self.skipTest(f"symlink creation unavailable: {type(exc).__name__}")
+        with self.assertRaises(ValueError):
+            _write_new_output_files(self.output, {
+                "law_rows.jsonl": b"attacker overwrite",
+                "import_report.md": b"report",
+            })
+        self.assertEqual(outside.read_text(encoding="utf-8"), "private sentinel")
+        self.assertFalse((self.output / "import_report.md").exists())
+
+    def test_exclusive_output_writer_never_overwrites_existing_regular_file(self):
+        self.output.mkdir()
+        existing = self.output / "law_rows.jsonl"
+        existing.write_text("preserve", encoding="utf-8")
+        with self.assertRaises(ValueError):
+            _write_new_output_files(self.output, {
+                "law_rows.jsonl": b"replace",
+                "import_report.md": b"report",
+            })
+        self.assertEqual(existing.read_text(encoding="utf-8"), "preserve")
+        self.assertFalse((self.output / "import_report.md").exists())
 
 
 if __name__ == "__main__":
