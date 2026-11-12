@@ -804,12 +804,21 @@ class BrowserAcceptanceTests(unittest.TestCase):
         inspector = self.page.locator(".research-inspector")
         self.assertTrue(inspector.get_by_text(sentinel, exact=False).is_visible())
         self.assertIn("مستند مكتب غير متحقق", inspector.inner_text())
+        layout = self.page.locator(".research-layout")
+        self.assertEqual(
+            layout.evaluate("(el) => getComputedStyle(el).gridTemplateColumns.split(' ').length"),
+            3,
+        )
         self.page.set_viewport_size({"width": 390, "height": 844})
         self.page.wait_for_function(
             "() => document.documentElement.scrollWidth <= window.innerWidth",
             timeout=8000,
         )
         self.assertTrue(inspector.is_visible())
+        self.assertEqual(
+            layout.evaluate("(el) => getComputedStyle(el).gridTemplateColumns.split(' ').length"),
+            1,
+        )
         self.page.set_viewport_size({"width": 1440, "height": 900})
 
         with self.page.expect_download() as download_info:
