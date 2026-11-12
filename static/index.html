@@ -266,7 +266,7 @@ body{background:#f3f6fa;color:var(--figma-ink);font-family:Inter,"Noto Sans Arab
 #main .document-intelligence-panel label select{width:100%}
 #main .document-intelligence-panel [role=status]{padding:10px 12px;border-radius:8px;background:#f3f7fc;color:#52647a}
 #main .document-intelligence-panel mark{background:#fff0bd;color:#59420b;border-radius:3px;padding:0 2px}
-#main .extraction-review-section{margin-top:14px;border-color:#d4deeb}#main .extraction-review-card{display:grid;gap:9px;margin-top:10px;padding:13px;background:#fbfcff}#main .extraction-review-text{margin:0;padding:12px;border:1px solid #e1e8f0;border-radius:8px;background:#fff;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.75;max-height:240px;overflow:auto}#main .extraction-review-card input,#main .extraction-review-card textarea{min-width:0;width:100%}#main .extraction-review-card .row{flex-wrap:wrap}
+#main .extraction-review-section{margin-top:14px;border-color:#d4deeb}#main .extraction-review-card{display:grid;gap:9px;margin-top:10px;padding:13px;background:#fbfcff}#main .extraction-review-text{margin:0;padding:12px;border:1px solid #e1e8f0;border-radius:8px;background:#fff;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.75;max-height:240px;overflow:auto}#main .extraction-review-card input,#main .extraction-review-card textarea{min-width:0;width:100%}#main .extraction-review-card .row{flex-wrap:wrap}#main .reviewed-correction{display:grid;gap:6px;padding:10px;border:1px solid #b7d8c5;border-radius:9px;background:#f3fbf6}
 @media(max-width:800px){#main .document-intelligence-panel{padding:14px}#main .document-intelligence-panel>.row{align-items:stretch;flex-wrap:wrap}#main .document-intelligence-panel>.row input,#main .document-intelligence-panel>.row select{width:100%;flex-basis:100%}}
 
 </style>
@@ -2638,6 +2638,7 @@ function documentIntelligencePanel(caseId,documents){
      h('div',{className:'row'},h('b',{textContent:item.doc.name}),pill(reviewLabel,latest?'done':'soon')),
      h('p',{className:'mut',textContent:[chunk.ref,chunk.page?uiText('صفحة ','Page ')+chunk.page:''].filter(Boolean).join(' · ')}),
      h('p',{className:'extraction-review-text',textContent:String(chunk.text||'')}),
+     latest&&latest.outcome==='corrected'?h('div',{className:'reviewed-correction'},h('b',{textContent:uiText('آخر نص مصحح مسجل','Latest recorded correction')}),h('p',{className:'extraction-review-text',textContent:String(latest.reviewed_text||'')})):null,
      latest&&latest.note?h('p',{className:'mut',textContent:uiText('آخر ملاحظة: ','Latest note: ')+latest.note}):null,
      note,correction,h('div',{className:'row'},accepted,recheck,edit,save)
     ));
