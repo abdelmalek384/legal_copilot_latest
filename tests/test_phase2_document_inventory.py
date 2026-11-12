@@ -384,9 +384,9 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             (("documents", 0, "legal_status"), {}),
             (("documents", 0, "review_status"), []),
             (("next_actions", 0, "status"), []),
-            (("documents", 0, "document_id"), {}),
-            (("next_actions", 0, "id"), []),
-            (("documents", 0, "source_id"), []),
+            (("documents", 0, "document_id"), {"bad": 1}),
+            (("next_actions", 0, "id"), ["bad"]),
+            (("documents", 0, "source_id"), ["bad"]),
         )
         for path, value in cases:
             data = copy.deepcopy(self.inventory)
