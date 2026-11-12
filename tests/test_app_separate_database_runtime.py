@@ -5270,6 +5270,24 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(history.json()["events"][0]["previous_category"], "contract")
         self.assertEqual(history.json()["events"][0]["new_category"], "pleading")
         self.assertEqual(history.json()["events"][0]["note"], "Corrected after review.")
+        tenant = self.runtime.firm_connection(
+            self.runtime.resolve_context(self.user_id, self.firm_a)
+        )
+        event_id = tenant.execute(
+            "SELECT id FROM document_classification_events WHERE document_id=? AND version=2",
+            (document_id,),
+        ).fetchone()["id"]
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "immutable"):
+            tenant.execute(
+                "UPDATE document_classification_events SET note='tampered' WHERE id=?",
+                (event_id,),
+            )
+        tenant.rollback()
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "immutable"):
+            tenant.execute(
+                "DELETE FROM document_classification_events WHERE id=?", (event_id,)
+            )
+        tenant.rollback()
 
     def test_document_classification_rejects_invalid_categories_and_cross_matter_access(self):
         login = self.client.post(
