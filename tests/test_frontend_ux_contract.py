@@ -949,7 +949,7 @@ class FrontendUXContractTests(unittest.TestCase):
         page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
         self.assertIn("docs.filter(doc=>doc.extraction_status==='text_extracted').length", page)
         self.assertIn("docs.filter(doc=>Boolean(doc.ocr_used)).length", page)
-        self.assertIn("docs.filter(doc=>doc.ocr_used||doc.extraction_status!=='text_extracted').length", page)
+        self.assertIn("docs.filter(doc=>doc.ocr_used||doc.extraction_status!=='text_extracted'||!doc.saved_classification).length", page)
         self.assertIn("Selected matter only", page)
         self.assertIn("Not a document-failure determination", page)
 
