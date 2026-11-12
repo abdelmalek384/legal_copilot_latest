@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "22cafd85cf3b01c495fb21b96f69f0b4fb8c9849",
   "generated_on": "2026-11-12",
-  "entry_count": 1127,
+  "entry_count": 1148,
   "entries": [
     {
       "id": "AR-0001",
@@ -10933,6 +10933,195 @@
       "source_lines": [
         2078,
         2277
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1128",
+      "arabic": "تنبيه التحقق من المصادر",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1129",
+      "arabic": "حالة التحقق المسجلة",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1130",
+      "arabic": "يحتاج ",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1131",
+      "arabic": " من أصل ",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1132",
+      "arabic": " مصادر إلى تحقق قبل الاعتماد. راجع النص الرسمي والحالة القانونية الحالية.",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1133",
+      "arabic": "تحمل المصادر حالة نص ساري متحقق وفق البيانات المسجلة؛ تحقق من النشر الرسمي والتاريخ قبل الاعتماد.",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1134",
+      "arabic": "المادة ",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1135",
+      "arabic": "الصفحة ",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1136",
+      "arabic": "فحص المصدر",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1137",
+      "arabic": "القانون رقم ",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1138",
+      "arabic": "النشر: ",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1139",
+      "arabic": "السريان: ",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1140",
+      "arabic": "الإلغاء: ",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1141",
+      "arabic": "مجمع حتى: ",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1142",
+      "arabic": "الجريدة الرسمية: ",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1143",
+      "arabic": "تاريخ البحث: ",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1144",
+      "arabic": "آخر اعتماد محامٍ مسجل: ",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1145",
+      "arabic": "آخر مراجعة محامٍ مسجلة: ",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1146",
+      "arabic": "الحالة المسجلة: ساري في ",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1147",
+      "arabic": "أحدث أدلة المراجعة: ",
+      "source_lines": [
+        2372,
+        2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1148",
+      "arabic": "علاقات الإصدار: ",
+      "source_lines": [
+        2372,
+        2488
       ],
       "review_status": "pending_native_review"
     }
