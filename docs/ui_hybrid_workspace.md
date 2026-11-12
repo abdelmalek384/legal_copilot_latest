@@ -18,6 +18,24 @@ The source inspector is a view of data already returned by the research API. It 
 
 If no passage text is returned, the inspector says so explicitly; it does not invent a quotation. Metadata-only discovery remains visibly metadata-only and does not display legal text.
 
+
+## Matter document intake from Legal Research
+
+The Legal Research page now exposes a document-intake panel immediately below the research scope and matter selectors. Users must select a matter before the upload controls are enabled. The panel accepts multiple PDF and DOCX files and uploads them sequentially through the existing authenticated `POST /cases/{case_id}/upload` route, preserving the server's matter authorization, tenant scoping, CSRF protection and upload rate limits.
+
+- Client-side file size check: 15,000,000 bytes per file. The server remains authoritative.
+- Supported formats: PDF and DOCX only; DOC and other formats are not accepted by the extraction service.
+- Server limits still apply, including PDF page count and extracted-text limits.
+- Each file displays a queued, uploading, indexed or failed state. A failed file does not prevent later files in the same selection from being attempted.
+- After a successful upload, the existing matter-scoped document-intelligence panel refreshes using the existing case detail response and authorized chunk endpoint. No new API or cross-matter search path is introduced.
+- The interface distinguishes OCR-unverified text, partial extraction when OCR is unavailable, unsupported/unreadable files, size/page/text limits, and original-file storage failures.
+- If the server reports that the original was not retained, the UI says so explicitly. Original retention depends on the configured private storage backend; text indexing is not proof that the original file was retained.
+- Scanned PDF OCR text remains unverified and must be checked page by page against the original.
+
+## Warning and visual semantics
+
+The research intake uses a restrained light palette: dark ink for primary text, slate for secondary text, blue for primary actions and links, green only for successful completion, amber for actionable caution, and red for failed operations. Warning and error messages remain visible in the upload panel rather than disappearing as transient toast notifications. Non-verified legal-source states are rendered in a prominent amber caution panel with the existing status explanation; verified-operative labels retain a distinct neutral-blue explanation panel. Warnings do not imply legal verification, authenticity or currentness.
+
 ## Responsive behavior
 
 - **Desktop (>1120px):** history, research thread, and source inspector are visible in three columns.
