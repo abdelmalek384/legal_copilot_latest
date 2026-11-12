@@ -714,6 +714,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("@media(max-width:800px)", HTML)
         self.assertIn(".research-layout>.research-list{max-height:210px;overflow:auto}", HTML)
         self.assertIn(".research-layout>.research-inspector{max-height:380px;overflow:auto}", HTML)
+        self.assertIn("@media(prefers-reduced-motion:reduce){#main .quick-link{transition:none}#main .quick-link:hover{transform:none}}", HTML)
 
 
 if __name__ == "__main__":
