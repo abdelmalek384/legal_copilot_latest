@@ -37,6 +37,16 @@ These are pointers for reviewer orientation, **not proof of current passing test
 
 Inspect the current candidate tree before relying on any pointer; paths or test names may change.
 
+## Candidate self-run command
+
+Before an independent review, run the focused repository security regression matrix from the repository root:
+
+```bash
+bash scripts/security_regression_check.sh
+```
+
+The script invokes the existing case/file/billing, MFA, CSRF/session, upload/OCR, CSV, prompt-injection, SSRF, payment-review, first-run and trusted-proxy regression modules and prints a per-module result table. It is an operator convenience, not an independent review or release sign-off. Capture the exact commit SHA and complete stdout/stderr in the restricted evidence store. A PASS is valid only for the exact checked-out commit and installed dependency set; the matrix does not claim tests have run merely because the script exists. New PR-specific regressions must be included in the checkout before this command can exercise them.
+
 ## Required test matrix
 
 ### A. Cross-firm object authorization (cases, files, billing)
