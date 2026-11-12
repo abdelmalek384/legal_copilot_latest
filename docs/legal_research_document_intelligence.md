@@ -15,6 +15,7 @@ The application already accepts bounded PDF and DOCX uploads, extracts PDF text 
 - Transparent keyword-based document-type candidates with explicit matched terms and non-probabilistic signal labels.
 - Exact-byte SHA-256 and whitespace-normalized extracted-text digests (separate purposes).
 - Literal candidate extraction for dates, case references, amounts and explicitly labelled parties.
+- A date-mention review timeline that retains document/page provenance, parses valid four-digit-year dates using explicit day-first or ISO rules, and refuses to guess two-digit years or invalid dates.
 - PDF page provenance where a page marker exists; no invented page number for DOCX.
 - Text comparison that reports literal changed spans and requires lawyer review.
 
