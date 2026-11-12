@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "22cafd85cf3b01c495fb21b96f69f0b4fb8c9849",
   "generated_on": "2026-11-12",
-  "entry_count": 1116,
+  "entry_count": 1117,
   "entries": [
     {
       "id": "AR-0001",
@@ -10882,6 +10882,15 @@
       "source_lines": [
         2224,
         2246
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1117",
+      "arabic": "هذه النتائج لبيانات الملفات الوصفية فقط. استخدم قسم البحث النصي أدناه للبحث داخل المستندات في القضايا المتاحة لك.",
+      "source_lines": [
+        2183,
+        2224
       ],
       "review_status": "pending_native_review"
     }
