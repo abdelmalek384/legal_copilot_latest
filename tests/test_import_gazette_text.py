@@ -263,6 +263,7 @@ class GazetteTextImportTests(unittest.TestCase):
             "https://example.gov/path with spaces",
             "https://example.gov/path\nnext",
             "https://example.gov/path\tvalue",
+            "https://example.gov/path\x7fvalue",
             "https://example.gov:/item",
             "https://example.gov:99999/item",
             [],
