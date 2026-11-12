@@ -1,14 +1,14 @@
 # Legal Copilot status
 
-**Updated:** 2026-11-06  
+**Updated:** 2026-11-12  
 **Scope:** engineering and evidence status only; not legal-readiness or production certification.
 
 ## Current repository update — 2026-11-12
 
 - Merged current-main PRs: #1499 (document-intelligence helper foundation), #1495 (trusted-proxy/per-firm rate-limit hardening), #1502 (local release/recovery tools), #1503 (temporary Mac preview), #1505 (LLM SSRF pinning and payment self-approval protection), and #1506 (phone-width login readability). Their merges are code integration only; hosted tests, physical-device acceptance, and witnessed backup/restore remain unproven because the repository's GitHub Actions billing/runner problem prevents test execution.
 - Superseded drafts #1494, #1496, #1485 and #1483 were closed after current-main replacements or selective ports. Do not use their old branch heads.
-- PR #1507 adds an always-on, cited English/Arabic negated-obligation guard to the generated-answer path. Its tests are added but not executed. The broader lexical claim-support heuristic remains opt-in; no claim of semantic entailment or legal correctness is made.
-- The document-intelligence helpers merged in #1499 are not yet connected to authenticated Legal Research API endpoints or UI. AI-2 integration and authorization remain outstanding.
+- PR #1507 (negated-obligation guard), #1508 (matter-scoped document-intelligence workspace), and #1509 (exclusive/symlink-safe Gazette importer outputs) are now merged by manual review. Their exact-head tests have not been executed because the Actions billing/runner issue remains unresolved.
+- The Legal Research workspace is now available in the UI through the existing authenticated matter/document endpoints. Its candidate scans run in the browser with explicit document/character/candidate caps; draft classification overrides are not persisted. The Python helper library from #1499 is still not wired as the canonical server-side analysis path. Persistent classification/audit history, richer entity/event extraction and multi-hunk comparison remain future work.
 - Labour Law 14/2025 remains provisional and retrieval-ineligible pending qualified Egyptian counsel review, currentness/amendment/commencement checks, and source-rights review. No verified flags were changed.
 
 
