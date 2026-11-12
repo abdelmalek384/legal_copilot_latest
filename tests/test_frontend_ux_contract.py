@@ -933,5 +933,13 @@ class FrontendUXContractTests(unittest.TestCase):
         page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
         self.assertIn("if(!matterSelect.value){documentList.replaceChildren();workspace.replaceChildren();summary.textContent=", page)
 
+    def test_document_library_filters_are_driven_by_returned_document_metadata(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("const renderDocuments=docs=>{", page)
+        self.assertIn("new Set(docs.map(doc=>String(doc.extraction_status", page)
+        self.assertIn("doc.content_type", page)
+        self.assertIn("documentFilter.oninput=()=>renderDocuments(currentDocuments)", page)
+        self.assertIn("documentStatusFilter.onchange=()=>renderDocuments(currentDocuments)", page)
+
 if __name__ == "__main__":
     unittest.main()
