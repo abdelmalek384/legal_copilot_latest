@@ -8226,9 +8226,9 @@ def get_document_classification(cid: int, document_id: int, u: dict = Depends(us
         (document_id, cid, u["firm_id"]),
     ).fetchone()
     events = c.execute(
-        "SELECT actor_user_id,previous_category,new_category,version,note,created_at "
-        "FROM document_classification_events WHERE document_id=? AND case_id=? AND firm_id=? "
-        "ORDER BY id DESC LIMIT 100",
+        "SELECT e.actor_user_id,u.name AS actor_name,e.previous_category,e.new_category,e.version,e.note,e.created_at "
+        "FROM document_classification_events e LEFT JOIN users u ON u.id=e.actor_user_id "
+        "WHERE e.document_id=? AND e.case_id=? AND e.firm_id=? ORDER BY e.id DESC LIMIT 100",
         (document_id, cid, u["firm_id"]),
     ).fetchall()
     return {
@@ -8310,8 +8310,9 @@ def list_document_reviews(cid: int, document_id: int, u: dict = Depends(user)):
     doc = c.execute("SELECT id FROM docs WHERE id=? AND case_id=? AND firm_id=?", (document_id, cid, u["firm_id"])).fetchone()
     if not doc: raise HTTPException(404, "document not found")
     rows = c.execute(
-        "SELECT r.id,r.chunk_id,r.reviewer_user_id,r.outcome,r.original_text,r.reviewed_text,r.page_reference,r.note,r.created_at "
-        "FROM document_extraction_reviews r WHERE r.document_id=? AND r.case_id=? AND r.firm_id=? ORDER BY r.id DESC LIMIT 200",
+        "SELECT r.id,r.chunk_id,r.reviewer_user_id,u.name AS reviewer_name,r.outcome,r.original_text,r.reviewed_text,r.page_reference,r.note,r.created_at "
+        "FROM document_extraction_reviews r LEFT JOIN users u ON u.id=r.reviewer_user_id "
+        "WHERE r.document_id=? AND r.case_id=? AND r.firm_id=? ORDER BY r.id DESC LIMIT 200",
         (document_id, cid, u["firm_id"])).fetchall()
     return {"document_id": document_id, "reviews": [dict(r) for r in rows]}
 
