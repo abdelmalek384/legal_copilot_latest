@@ -929,5 +929,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("doc.extraction_status", page)
         self.assertIn("doc.ocr_used", page)
 
+    def test_document_library_clears_stale_matter_context_when_filter_changes(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("if(!matterSelect.value){documentList.replaceChildren();workspace.replaceChildren();summary.textContent=", page)
+
 if __name__ == "__main__":
     unittest.main()
