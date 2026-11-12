@@ -489,5 +489,36 @@ class CollectionPipelineTests(unittest.TestCase):
                 load_manifest(p)
 
 
+
+    def test_source_url_rejects_del_empty_port_fragments_and_signed_queries(self):
+        public_answer = (2, 1, 6, "", ("8.8.8.8", 443))
+        for url in (
+            "https://example.gov:",
+            "https://example.gov/law\\x7f.pdf",
+            "https://example.gov/law.pdf#fragment",
+            "https://example.gov/law.pdf?token=secret",
+        ):
+            with self.subTest(url=url), patch("tools.collect_legal_documents.socket.getaddrinfo", return_value=[public_answer]) as resolver:
+                with self.assertRaises(ValueError):
+                    validate_public_https_url(url, {"example.gov"})
+                resolver.assert_not_called()
+
+    def test_manifest_host_validation_rejects_del_empty_port_and_signed_queries(self):
+        for url in (
+            "https://example.gov:",
+            "https://example.gov/law\\x7f.pdf",
+            "https://example.gov/law.pdf#fragment",
+            "https://example.gov/law.pdf?X-Amz-Signature=secret",
+        ):
+            with self.subTest(url=url), self.assertRaises(ValueError):
+                collector.validate_manifest_hosts({"allowed_hosts": ["example.gov"], "direct_url": url})
+
+    def test_manifest_rejects_non_object_root(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "manifest.json"
+            path.write_text("[]", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "JSON object"):
+                load_manifest(path)
+
 if __name__ == "__main__":
     unittest.main()
