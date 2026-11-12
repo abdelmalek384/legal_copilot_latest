@@ -11129,7 +11129,6 @@
       "id": "AR-1149",
       "arabic": "تم تحديث التصنيف من مراجع آخر. احتفظنا بمسودتك؛ راجع القيمة الحالية ثم احفظ مرة أخرى.",
       "source_lines": [
-        2711,
         2711
       ],
       "review_status": "pending_native_review"
@@ -11146,7 +11145,6 @@
       "id": "AR-1151",
       "arabic": "عرض جميع المقاطع",
       "source_lines": [
-        2668,
         2668
       ],
       "review_status": "pending_native_review"
@@ -11155,7 +11153,6 @@
       "id": "AR-1152",
       "arabic": "عرض غير المراجع فقط",
       "source_lines": [
-        2668,
         2668
       ],
       "review_status": "pending_native_review"
@@ -11164,7 +11161,6 @@
       "id": "AR-1153",
       "arabic": "مقاطع لم تتم مراجعتها",
       "source_lines": [
-        2669,
         2669
       ],
       "review_status": "pending_native_review"
@@ -11173,7 +11169,6 @@
       "id": "AR-1154",
       "arabic": "تُعرض حتى 100 مقطع في كل مرة. استخدم صفحات المستند ومراجع المقاطع لتحديد مواضع المراجعة.",
       "source_lines": [
-        2669,
         2669
       ],
       "review_status": "pending_native_review"
@@ -11182,7 +11177,6 @@
       "id": "AR-1155",
       "arabic": "عرض المقاطع التي تحتاج مراجعة",
       "source_lines": [
-        2668,
         2668
       ],
       "review_status": "pending_native_review"
@@ -11191,7 +11185,6 @@
       "id": "AR-1156",
       "arabic": "مقاطع تحتاج مراجعة",
       "source_lines": [
-        2669,
         2669
       ],
       "review_status": "pending_native_review"
@@ -11200,7 +11193,6 @@
       "id": "AR-1157",
       "arabic": "مرجع المراجع: ",
       "source_lines": [
-        2641,
         2641
       ],
       "review_status": "pending_native_review"
@@ -11209,7 +11201,6 @@
       "id": "AR-1158",
       "arabic": "لا توجد مقاطع تحتاج مراجعة حالياً.",
       "source_lines": [
-        2650,
         2650
       ],
       "review_status": "pending_native_review"
@@ -11218,7 +11209,6 @@
       "id": "AR-1159",
       "arabic": "تغير النص المستخرج منذ فتح المراجعة. تم تحديث المقطع؛ راجعه قبل إعادة المحاولة.",
       "source_lines": [
-        2627,
         2627
       ],
       "review_status": "pending_native_review"
@@ -11227,7 +11217,6 @@
       "id": "AR-1160",
       "arabic": "النص المستخرج",
       "source_lines": [
-        2083,
         2083
       ],
       "review_status": "pending_native_review"
