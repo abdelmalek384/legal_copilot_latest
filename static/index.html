@@ -2079,14 +2079,14 @@ async function documentsPage(){
  const list=h('div',{className:'document-library-list'}),documentFilter=h('input',{type:'search',placeholder:uiText('ابحث باسم المستند أو نوعه','Search document name or type'),'aria-label':uiText('البحث في مستندات القضية','Search matter documents')}),documentStatusFilter=h('select',{'aria-label':uiText('تصفية المستندات حسب حالة الاستخراج','Filter documents by extraction status')},new Option(uiText('كل حالات الاستخراج','All extraction statuses'),'')),documentRows=h('div',{className:'document-library-list'}),documentList=h('section',{className:'document-library-filter card'},h('div',{className:'row'},documentFilter,documentStatusFilter),documentRows);
  const workspace=h('div',{});
  const actions=h('div',{className:'workspace-actions'});
- let matters=[];
+ let matters=[],currentDocuments=[];
  const renderMatters=()=>{
   const needle=String(query.value||'').trim().toLocaleLowerCase();
   const filtered=matters.filter(m=>!needle||String(m.title||'').toLocaleLowerCase().includes(needle)||String(m.id).includes(needle));
   matterSelect.replaceChildren(new Option(uiText('اختر ملف قضية لعرض مستنداتها','Choose a matter to view its documents'),''),...filtered.map(m=>new Option((m.title||uiText('قضية رقم ','Matter #')+m.id)+' (#'+m.id+')',String(m.id))));
   if(window.DOCUMENT_MATTER_ID&&filtered.some(m=>Number(m.id)===Number(window.DOCUMENT_MATTER_ID)))matterSelect.value=String(window.DOCUMENT_MATTER_ID);
   list.replaceChildren(...(filtered.length?filtered.map(m=>h('article',{className:'card document-library-matter'},h('div',{},h('b',{textContent:m.title||uiText('قضية رقم ','Matter #')+m.id}),h('p',{className:'mut',textContent:(m.stage||uiText('بدون مرحلة','No stage'))+' · #'+m.id})),btn(uiText('عرض المستندات','View documents'),()=>{matterSelect.value=String(m.id);loadMatter()},'g'))):[h('p',{className:'mut',textContent:uiText('لا توجد ملفات قضايا مطابقة.','No matching matters found.')})]));
-  if(!matterSelect.value){window.DOCUMENT_CURRENT_DOCS=[];documentRows.replaceChildren();workspace.replaceChildren();summary.textContent=uiText('اختر ملف قضية لعرض المستندات المصرح بها.','Choose a matter to view its authorized documents.')}
+  if(!matterSelect.value){currentDocuments=[];documentRows.replaceChildren();workspace.replaceChildren();summary.textContent=uiText('اختر ملف قضية لعرض المستندات المصرح بها.','Choose a matter to view its authorized documents.')}
  };
  const renderDocuments=docs=>{
   const statuses=[...new Set(docs.map(doc=>String(doc.extraction_status||'').trim()).filter(Boolean))].sort();
@@ -2101,8 +2101,8 @@ async function documentsPage(){
    h('div',{className:'document-library-meta'},pill(doc.extraction_status||uiText('حالة الاستخراج غير متاحة','Extraction status unavailable'),doc.extraction_status==='text_extracted'?'done':'soon'),doc.ocr_used?pill(uiText('استخدم OCR — يلزم التحقق','OCR used — verify text'),'soon'):null)
   )):[h('p',{className:'mut',textContent:uiText('لا توجد مستندات تطابق عوامل التصفية.','No documents match these filters.')})]));
  };
- documentFilter.oninput=()=>{if(Array.isArray(window.DOCUMENT_CURRENT_DOCS))renderDocuments(window.DOCUMENT_CURRENT_DOCS)};
- documentStatusFilter.onchange=()=>{if(Array.isArray(window.DOCUMENT_CURRENT_DOCS))renderDocuments(window.DOCUMENT_CURRENT_DOCS)};
+ documentFilter.oninput=()=>renderDocuments(currentDocuments);
+ documentStatusFilter.onchange=()=>renderDocuments(currentDocuments);
  const loadMatter=async()=>{
   const id=Number(matterSelect.value);workspace.replaceChildren();
   if(!Number.isSafeInteger(id)||id<=0){summary.textContent=uiText('اختر ملف قضية لعرض المستندات المصرح بها.','Choose a matter to view its authorized documents.');return}
@@ -2110,7 +2110,7 @@ async function documentsPage(){
   try{
    const matter=await api('/cases/'+id),docs=Array.isArray(matter.docs)?matter.docs:[];
    summary.textContent=docs.length+' '+uiText('مستندات في ملف القضية المحدد','documents in the selected matter');
-   window.DOCUMENT_CURRENT_DOCS=docs;renderDocuments(docs);
+   currentDocuments=docs;renderDocuments(docs);
    const upload=btn(uiText('رفع مستندات','Upload documents'),()=>{window.DOCUMENT_MATTER_ID=id;law()},'primary');
    workspace.replaceChildren(documentList,h('div',{className:'workspace-actions'},upload),documentIntelligencePanel(id,docs));
   }catch(error){summary.textContent=uiText('تعذر تحميل مستندات القضية. تحقق من صلاحية الوصول وحاول مجدداً.','Could not load matter documents. Check access and try again.')}
