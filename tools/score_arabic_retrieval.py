@@ -86,15 +86,17 @@ def _valid_reviewed(row, approved_reviewers):
         raise ValueError(f"{row.get('id')}: invalid or future review_date")
     url = row.get("review_evidence_url")
     parsed = None
-    if isinstance(url, str):
+    if (isinstance(url, str) and url and url == url.strip()
+            and not any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in url)
+            and "?" not in url and "#" not in url and "\\" not in url):
         try:
             parsed = urlsplit(url)
             _ = parsed.port
-        except ValueError:
+        except (TypeError, ValueError):
             parsed = None
-    if (parsed is None or parsed.scheme != "https" or not parsed.hostname
+    if (parsed is None or parsed.scheme.lower() != "https" or not parsed.hostname
             or parsed.username is not None or parsed.password is not None
-            or parsed.query or parsed.fragment):
+            or parsed.netloc.endswith(":") or parsed.query or parsed.fragment):
         raise ValueError(f"{row.get('id')}: review_evidence_url must be clean HTTPS")
     expected = row.get("expected_article")
     expected_id = row.get("expected_article_id")
