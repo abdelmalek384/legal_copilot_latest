@@ -996,7 +996,7 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_document_context_resets_upload_queue_and_filters_between_matters(self):
         page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
         self.assertIn("uploadResults.replaceChildren();uploadStatus.textContent='';uploadInput.value=''", page)
-        self.assertIn("documentFilter.value='';documentStatusFilter.value='';documentClassificationFilter.value=''", page)
+        self.assertIn("documentFilter.value='';documentTypeFilter.value='';documentStatusFilter.value='';documentClassificationFilter.value=''", page)
 
     def test_sidebar_uses_lexora_brand_identity_from_figma(self):
         self.assertIn("className:'brand-name',textContent:'Lexora'", HTML)
