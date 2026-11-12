@@ -8253,15 +8253,37 @@ def get_document_classification(cid: int, document_id: int, u: dict = Depends(us
         (document_id, cid, u["firm_id"]),
     ).fetchone()
     events = c.execute(
-        "SELECT e.actor_user_id,u.name AS actor_name,e.previous_category,e.new_category,e.version,e.note,e.created_at "
-        "FROM document_classification_events e LEFT JOIN users u ON u.id=e.actor_user_id "
-        "WHERE e.document_id=? AND e.case_id=? AND e.firm_id=? ORDER BY e.id DESC LIMIT 100",
+        "SELECT actor_user_id,previous_category,new_category,version,note,created_at "
+        "FROM document_classification_events WHERE document_id=? AND case_id=? AND firm_id=? "
+        "ORDER BY id DESC LIMIT 100",
         (document_id, cid, u["firm_id"]),
     ).fetchall()
+    identity = control_conn()
+    actor_ids = sorted({int(row["actor_user_id"]) for row in events})
+    if current:
+        actor_ids.append(int(current["updated_by_user_id"]))
+    actor_ids = sorted(set(actor_ids))
+    names = {}
+    if actor_ids:
+        placeholders = ",".join("?" for _ in actor_ids)
+        names = {
+            int(row["id"]): row["name"]
+            for row in identity.execute(
+                f"SELECT id,name FROM users WHERE id IN ({placeholders})", actor_ids
+            ).fetchall()
+        }
+    classification = dict(current) if current else None
+    if classification:
+        classification["updated_by_name"] = names.get(int(classification["updated_by_user_id"]), "")
+    event_items = []
+    for row in events:
+        item = dict(row)
+        item["actor_name"] = names.get(int(item["actor_user_id"]), "")
+        event_items.append(item)
     return {
         "document_id": document_id,
-        "classification": dict(current) if current else None,
-        "events": [dict(row) for row in events],
+        "classification": classification,
+        "events": event_items,
         "can_edit": is_lead(c, u, cid),
     }
 
@@ -8337,11 +8359,26 @@ def list_document_reviews(cid: int, document_id: int, u: dict = Depends(user)):
     doc = c.execute("SELECT id FROM docs WHERE id=? AND case_id=? AND firm_id=?", (document_id, cid, u["firm_id"])).fetchone()
     if not doc: raise HTTPException(404, "document not found")
     rows = c.execute(
-        "SELECT r.id,r.chunk_id,r.reviewer_user_id,u.name AS reviewer_name,r.outcome,r.original_text,r.reviewed_text,r.page_reference,r.note,r.created_at "
-        "FROM document_extraction_reviews r LEFT JOIN users u ON u.id=r.reviewer_user_id "
+        "SELECT r.id,r.chunk_id,r.reviewer_user_id,r.outcome,r.original_text,r.reviewed_text,"
+        "r.page_reference,r.note,r.created_at FROM document_extraction_reviews r "
         "WHERE r.document_id=? AND r.case_id=? AND r.firm_id=? ORDER BY r.id DESC LIMIT 200",
         (document_id, cid, u["firm_id"])).fetchall()
-    return {"document_id": document_id, "reviews": [dict(r) for r in rows]}
+    reviewer_ids = sorted({int(row["reviewer_user_id"]) for row in rows})
+    names = {}
+    if reviewer_ids:
+        placeholders = ",".join("?" for _ in reviewer_ids)
+        names = {
+            int(row["id"]): row["name"]
+            for row in control_conn().execute(
+                f"SELECT id,name FROM users WHERE id IN ({placeholders})", reviewer_ids
+            ).fetchall()
+        }
+    reviews = []
+    for row in rows:
+        item = dict(row)
+        item["reviewer_name"] = names.get(int(item["reviewer_user_id"]), "")
+        reviews.append(item)
+    return {"document_id": document_id, "reviews": reviews}
 
 
 @app.get("/cases/{cid}/docs/{document_id}/chunks")
