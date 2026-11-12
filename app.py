@@ -8341,7 +8341,7 @@ def save_document_classification(
          previous_category, body.category, body.note.strip()),
     )
     saved = c.execute(
-        "SELECT category,updated_by_user_id,updated_at FROM document_classifications "
+        "SELECT category,updated_by_user_id,version,updated_at FROM document_classifications "
         "WHERE document_id=? AND case_id=? AND firm_id=?",
         (document_id, cid, u["firm_id"]),
     ).fetchone()
