@@ -919,6 +919,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("payload.expected_text_sha256=chunk.text_sha256", HTML)
         self.assertIn("'/cases/'+caseId+'/docs/'+item.doc.document_id+'/reviews'", HTML)
         self.assertIn("records.slice(0,100)", HTML)
+        self.assertIn("if(records.length>=100)break", HTML)
         self.assertIn("review.reviewed_text", HTML)
 
     def test_document_library_displays_real_matter_document_metadata(self):
