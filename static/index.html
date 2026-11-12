@@ -1962,7 +1962,7 @@ async function law(){
  PAGE='law';
  const sidebar=h('div',{className:'research-list card'});
  const researchStatus=h('div',{className:'visually-hidden',role:'status','aria-live':'polite','aria-atomic':'true'});const thread=h('div',{className:'research-thread card'});
- const sourceInspector=h('aside',{className:'research-inspector card',role:'region',tabIndex:0,'aria-label':LANG==='ar'?'فحص المصدر':'Source inspector','aria-live':'polite',onkeydown:e=>{if(e.key==='Escape'&&sourceInspector.__focusReturn){e.preventDefault();resetInspector(true)}}},h('div',{className:'research-inspector-empty'},h('div',{textContent:'⌕',style:'font-size:28px'}),h('b',{textContent:LANG==='ar'?'فحص المصدر':'Source inspector'}),h('p',{className:'mut',textContent:LANG==='ar'?'اختر مصدراً من الإجابة لعرض بياناته ومقطعه الحرفي هنا.':'Select a source from an answer to inspect its metadata and exact passage here.'})));
+ const sourceInspector=h('aside',{id:'research-source-inspector',className:'research-inspector card',role:'region',tabIndex:0,'aria-label':LANG==='ar'?'فحص المصدر':'Source inspector','aria-live':'polite',onkeydown:e=>{if(e.key==='Escape'&&sourceInspector.__focusReturn){e.preventDefault();resetInspector(true)}}},h('div',{className:'research-inspector-empty'},h('div',{textContent:'⌕',style:'font-size:28px'}),h('b',{textContent:LANG==='ar'?'فحص المصدر':'Source inspector'}),h('p',{className:'mut',textContent:LANG==='ar'?'اختر مصدراً من الإجابة لعرض بياناته ومقطعه الحرفي هنا.':'Select a source from an answer to inspect its metadata and exact passage here.'})));
  let activeId=null, sending=false, conversationItems=[];
  const conversationFilter=h('input',{type:'search',placeholder:LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations','aria-label':LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations'});
   const scopeSelect=h('select',{tabIndex:0,'aria-label':LANG==='ar'?'نطاق البحث':'Research scope'},
@@ -2028,7 +2028,7 @@ async function law(){
          const sourceActions=h('div',{className:'research-source-actions'});
          sourceActions.append(makeBtn(LANG==='ar'?'نسخ الاستشهاد':'Copy citation',()=>copyText(s.citation||s.ref||'Unresolved citation')));
          sourceActions.append(makeBtn(LANG==='ar'?'نسخ المقطع الحرفي':'Copy exact passage',()=>copyText(s.text||'')));
-         sourceActions.append(makeBtn(LANG==='ar'?'فحص المصدر':'Inspect source',()=>inspectSource(s,status,pin,p)));
+         sourceActions.append(h('button',{type:'button','aria-controls':'research-source-inspector',className:'research-inspect-action',textContent:LANG==='ar'?'فحص المصدر':'Inspect source',onclick:()=>inspectSource(s,status,pin,p)}));
          const recordedSource=safeHttpsUrl((s.provenance||{}).source_url||s.source_url);
          if(recordedSource)sourceActions.append(h('a',{className:'research-source-link',href:recordedSource,target:'_blank',rel:'noopener noreferrer',textContent:LANG==='ar'?'فتح المصدر الأصلي ('+sourceHostLabel(recordedSource)+')':'Open original source ('+sourceHostLabel(recordedSource)+')'}));
          src.append(sourceActions);
