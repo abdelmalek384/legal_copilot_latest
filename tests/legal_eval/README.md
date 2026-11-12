@@ -24,6 +24,13 @@ This directory is a scaffold for a lawyer-reviewed benchmark. The seed questions
 ## Initial release gate
 Do not describe Legal Copilot as legally accurate or production-ready until an Egyptian lawyer reviews the answer key and results, corpus provenance is audited, and failures are documented.
 
+## General-practice draft question expansion (awaiting lawyer review)
+
+- `practice_questions.seed.jsonl` now contains 59 general-practice questions, including 21 additional prompts across civil law/procedure, evidence, arbitration, criminal law/procedure, labour, social insurance, companies, commercial, tax, banking/finance, insolvency, personal status, administrative law, real estate, intellectual property, privacy/technology and abstention.
+- The additions deliberately mix formal Arabic and Egyptian colloquial phrasing. They ask what law, facts, documents, dates and sources must be checked; they do not supply legal conclusions or guessed article references.
+- Together with the separate 61-question labour-law draft, the two draft sets contain 120 questions. All remain `needs_lawyer_review`; none is an approved answer key and none should be used to claim model accuracy.
+- Reviewers must fill and approve expected answers, answerability, source IDs and pin citations using the existing private reviewer registry before scoring. Keep the source sets separate unless a reviewer-approved combined benchmark is intentionally assembled.
+
 ## Labour-law draft question set (awaiting lawyer review)
 - `labour_law_questions.draft.jsonl`: 61 draft questions in the same format as the seed file (20 direct, 10 paraphrased, 10 colloquial Egyptian, 10 plain-terms, 6 date-sensitive, 5 that must be refused). Every `expected_answer` and `expected_sources` field is intentionally empty.
 - `labour_law_questions_for_lawyer.csv`: the same questions as an Excel-friendly sheet with Arabic headers and blank answer columns for the reviewing lawyer.
