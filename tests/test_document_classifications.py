@@ -158,9 +158,10 @@ class DocumentClassificationContractTests(unittest.TestCase):
 
     def test_extraction_review_can_focus_unreviewed_passages(self):
         html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
-        self.assertIn("let pendingReviewOnly=false", html)
-        self.assertIn("if(pendingReviewOnly&&latest)continue", html)
-        self.assertIn("Show unreviewed only", html)
+        self.assertIn("let needsAttentionOnly=false", html)
+        self.assertIn("if(needsAttentionOnly&&latest&&latest.outcome!=='needs_recheck')continue", html)
+        self.assertIn("chunk.latest_review.outcome==='needs_recheck'", html)
+        self.assertIn("Show passages needing attention", html)
         self.assertIn("pendingCount", html)
 
 if __name__ == "__main__":
