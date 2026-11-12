@@ -14,6 +14,8 @@ This is the first UI layer for reviewing documents already uploaded to a case. I
 - Show possible duplicates based on exact original-file SHA-256 and normalized extracted-text equality, limited to documents returned for the selected matter.
 - Offer an original-file download through the existing audited, integrity-checking endpoint when a private retained original exists.
 - Compare two extracted text versions with a bounded first-difference context view.
+- Display a compact analysis summary (documents loaded, candidate count, extracted character count, and documents marked with OCR extraction status).
+- Filter literal review candidates by candidate type and by text across the candidate value, document name, excerpt and chunk reference; the UI remains bounded to the existing 120-result display limit.
 - Keep all candidate results visibly unverified and require lawyer review. Date mentions are not automatically converted into hearings, filing dates or deadlines.
 
 ## Access and resource limits
