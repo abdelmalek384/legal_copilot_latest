@@ -190,5 +190,9 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("item.chunks=Array.isArray(latest.chunks)?latest.chunks:[]", html)
         self.assertIn("The extracted text changed since this review was opened.", html)
 
+    def test_review_refresh_joins_chunks_with_real_newlines(self):
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("join('\\\\n')", html)
+
 if __name__ == "__main__":
     unittest.main()
