@@ -99,6 +99,10 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             ("review_evidence_url", "https://user:pass@example.gov/review"),
             ("review_evidence_url", "https://example.gov/review?token=secret"),
             ("review_evidence_url", "https://example.gov/review#private"),
+            ("review_evidence_url", "https://example.gov:"),
+            ("review_evidence_url", "https://example.gov:99999/review"),
+            ("review_evidence_url", "https://example.gov/review\\x7fprivate"),
+            ("review_evidence_url", "https://example.gov/review\\nprivate"),
             ("review_evidence_url", ""),
             ("review_evidence_url", None),
         ):
