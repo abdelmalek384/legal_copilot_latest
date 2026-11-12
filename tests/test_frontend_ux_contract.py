@@ -745,6 +745,15 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_subscription_lock_response_routes_user_to_billing_recovery(self):
         self.assertIn("if(r.status===423&&p!=='/billing'&&!p.startsWith('/account/mfa/')){billingPage().catch(()=>{});throw new Error('billing_locked')}", HTML)
 
+    def test_source_inspector_preserves_document_page_and_confidence_provenance(self):
+        self.assertIn("p.original_document_name||p.document_name||source.original_document_name||source.document_name||source.file_name", HTML)
+        self.assertIn("source.page_number??p.page_number", HTML)
+        self.assertIn("source.text_location||p.text_location||source.location||p.location", HTML)
+        self.assertIn("source.confidence??p.confidence", HTML)
+        self.assertIn("Original document: ", HTML)
+        self.assertIn("Page: ", HTML)
+        self.assertIn("Recorded confidence: ", HTML)
+
 
 if __name__ == "__main__":
     unittest.main()
