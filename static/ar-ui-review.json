@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "22cafd85cf3b01c495fb21b96f69f0b4fb8c9849",
   "generated_on": "2026-11-12",
-  "entry_count": 1097,
+  "entry_count": 1101,
   "entries": [
     {
       "id": "AR-0001",
@@ -10711,6 +10711,42 @@
       "source_lines": [
         2077,
         2201
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1098",
+      "arabic": "آخر تحديث: ",
+      "source_lines": [
+        2606,
+        2630
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1099",
+      "arabic": "بواسطة ",
+      "source_lines": [
+        2606,
+        2630
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1100",
+      "arabic": "المراجع: ",
+      "source_lines": [
+        2606,
+        2630
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1101",
+      "arabic": "مستخدم رقم ",
+      "source_lines": [
+        2606,
+        2630
       ],
       "review_status": "pending_native_review"
     }
