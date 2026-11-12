@@ -904,7 +904,7 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_documents_page_is_a_matter_scoped_library_not_a_fabricated_firm_wide_index(self):
         self.assertIn("['documents',navLabel('المستندات','Documents'),documentsPage]", HTML)
         page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
-        self.assertIn("await api('/cases')", page)
+        self.assertIn("cases/search?", page)
         self.assertIn("await api('/cases/'+id)", page)
         self.assertIn("documentIntelligencePanel(id,docs)", page)
         self.assertIn("window.DOCUMENT_MATTER_ID=id", page)
@@ -963,6 +963,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("if(succeeded)await loadMatter()", page)
         self.assertIn("role:'button',tabIndex:0", page)
         self.assertIn("is-dragover", page)
+
+    def test_document_library_matter_picker_uses_bounded_server_pagination(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("const matterLimit=50", page)
+        self.assertIn("limit:String(matterLimit)", page)
+        self.assertIn("offset:String(matterOffset)", page)
+        self.assertIn("matterTotal", page)
+        self.assertIn("nextMatter.disabled=matterOffset+matterLimit>=matterTotal", page)
 
 if __name__ == "__main__":
     unittest.main()
