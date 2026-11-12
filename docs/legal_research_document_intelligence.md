@@ -24,7 +24,7 @@ The application already accepts bounded PDF and DOCX uploads, extracts PDF text 
 - No authenticity, legal validity, fraud, contradiction, deadline, or legal conclusion is inferred.
 - No original file is modified.
 - No OCR is performed.
-- Inputs are bounded to the existing one-million-character extraction budget.
+- Signal extraction is bounded to the existing one-million-character extraction budget; pairwise text comparison is separately limited to 100,000 characters per version and 200 reported change segments.
 - These helpers do not bypass firm/case authorization and are not yet exposed as a user-facing feature.
 
 ## Next integration stages
