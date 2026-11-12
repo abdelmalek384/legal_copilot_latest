@@ -708,6 +708,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("sourceActions.append(makeBtn(LANG==='ar'?'فحص المصدر':'Inspect source',()=>inspectSource(s,status,pin,p)))", HTML)
         self.assertIn("source.text|| (LANG==='ar'?'لم يُرجع نص لهذا السجل من المصدر.':'No passage text was returned for this source record.')", HTML)
         self.assertIn("review_evidence", HTML)
+        self.assertIn("const latestByType=Object.create(null)", HTML)
+        self.assertIn("const latestReviews=Object.values(latestByType)", HTML)
         self.assertIn("@media(max-width:1120px)", HTML)
         self.assertIn("@media(max-width:800px)", HTML)
 
