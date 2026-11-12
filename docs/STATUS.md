@@ -14,6 +14,12 @@
 
 
 
+## URL-validation regression fixture correction — 2026-11-12
+
+- PR #1554 was merged as a test-only correction after manual diff review. It fixes seven over-escaped Python string literals across `tests/test_collection_pipeline.py`, `tests/test_record_manual_capture.py`, `tests/test_manual_capture_validator.py`, and `tests/test_import_laws_bundle.py`. The corrected fixtures now contain actual DEL (0x7f), newline and tab characters rather than literal backslash sequences.
+- The source-review findings were also documented on merged PRs #1535, #1540, #1542 and #1552. Their production validators contain the corresponding control-character checks; the original regression inputs did not exercise those branches.
+- PR #1554 validation was source/diff review only. The test suite remains unexecuted because GitHub Actions runner allocation is blocked. Do not treat this merge as a test pass.
+
 ## Latest engineering changes — 2026-11-12
 
 - PR #1521 refreshes this status page to record the current merged work and the remaining Dependabot lockfile blocker.
