@@ -12,6 +12,11 @@ class DocumentReviewWorkflowTests(unittest.TestCase):
         self.assertIn("document_extraction_reviews", app)
         self.assertIn('item["text_sha256"] = hashlib.sha256', app)
         self.assertIn('need(c, u, cid)', app)
+        self.assertIn('@app.post("/cases/{cid}/docs/{document_id}/classification"', app)
+        self.assertIn('@app.get("/cases/{cid}/docs/{document_id}/classification-history")', app)
+        self.assertIn('expected_version', app)
+        self.assertIn('document_classification_events', app)
+        self.assertIn('document_classification_events.csv', app)
 
     def test_ui_can_accept_correct_and_flag_extraction(self):
         html = (ROOT / "static/index.html").read_text(encoding="utf-8")
