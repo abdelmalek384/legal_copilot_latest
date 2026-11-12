@@ -43,6 +43,26 @@ Create the external proxy network and attach the TLS reverse proxy to it:
 
 Provision the three database profiles and first firm owner using the approved maintenance/bootstrap process **before** starting the service. Do not rely on container startup to initialize a database. Complete the database acceptance manifest and place it at secrets/database-acceptance.json; it must be current, protected, and accepted by the runtime gate. The app will fail closed if the required profile databases, S3/KMS configuration, MFA policy, or acceptance evidence are missing.
 
+## Placeholder-only Compose template validation
+
+On a clean checkout, validate Compose interpolation and schema without supplying credentials or starting containers:
+
+```bash
+(
+  set -eu
+  test ! -e .env.production || {
+    echo ".env.production already exists; refusing to overwrite it." >&2
+    exit 2
+  }
+  cp .env.production.example .env.production
+  trap 'rm -f .env.production' EXIT
+  LEGAL_COPILOT_IMAGE_TAG=compose-contract-check \
+    docker compose --env-file .env.production -f compose.production.yaml config --quiet
+)
+```
+
+This is a template/configuration check only. The example contains placeholders and empty optional values; it is **not** a deployable environment. Do not run `up` or start the application with this temporary file. The strict deployment preflight and production release gate will correctly reject missing secrets, database acceptance evidence, S3/KMS configuration and other production requirements. See [the preflight gap guide](staging_preflight_credential_gaps.md) for the distinction between secrets and operator configuration.
+
 ## Build and start
 
 Use an immutable image tag and keep the previous image available for rollback:
@@ -76,3 +96,7 @@ The Docker health check requests the public application shell and reports **live
 ## Configuration and secrets
 
 The .env.production.example file lists the required configuration shape, not valid credentials. Store the real .env.production with restrictive permissions and outside source control. Docker administrators can inspect container environment values; protect access to the Docker socket and host. Do not put AWS access keys, SMTP credentials, model keys, backup keys, MFA keys or client data into the image, Compose file, command line, tickets or logs.
+
+## Staging preflight credential gaps
+
+Before preparing a clean staging host, use [Staging preflight: credential gaps versus deployment configuration](staging_preflight_credential_gaps.md) to distinguish protected secrets from required host, origin, SMTP, S3/KMS, MFA and database settings. The guide does not provide credentials or claim that a placeholder deployment has passed strict preflight.
