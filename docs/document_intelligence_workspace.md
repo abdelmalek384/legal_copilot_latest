@@ -8,7 +8,9 @@ This is the first UI layer for reviewing documents already uploaded to a case. I
 
 - Search extracted text across the selected matter's uploaded documents in Arabic and English. Search applies Unicode NFKC normalization, removes common Arabic diacritics/tatweel, normalizes common alef/yeh forms, and normalizes Arabic-Indic digits.
 - Show conservative keyword-based document-type suggestions (judgment, contract, pleading, correspondence/notice, evidence/receipt, or unclassified) from the canonical Python helper, executed by the existing authenticated matter-scoped chunks endpoint.
-- Permit an in-view draft classification override. The UI explicitly says this draft is **not saved** and is discarded when the panel is rebuilt. It is not a persistent classification or an audit record.
+- Show canonical keyword-based classification suggestions separately from the saved lawyer-approved classification.
+- Persist classification changes through the matter-scoped classification endpoint. Only firm administrators and matter leads can save; updates require the current version number and return HTTP 409 when a concurrent change has occurred.
+- Append every classification change to a firm/matter/document-scoped audit history with actor, previous/new category, version, note and timestamp. Other matter members can view the saved classification and history but cannot edit it.
 - Extract literal candidate mentions for dates, case references, amounts, labelled parties, legal references and event-related terms on the server. Results retain document ID, chunk ID/reference and recorded page where available.
 - Preserve the document name, chunk reference and page number when the extraction endpoint supplies them. A missing page number is shown as not recorded; the UI does not infer one.
 - Show possible duplicates based on exact original-file SHA-256 and normalized extracted-text equality, limited to documents returned for the selected matter.
@@ -20,6 +22,8 @@ This is the first UI layer for reviewing documents already uploaded to a case. I
 
 - The panel receives the selected case ID and the case's document metadata from the existing authenticated case-detail response.
 - Each document's extracted chunks are loaded through `GET /cases/{case_id}/docs/{document_id}/chunks`; the server performs the existing matter membership/authorization checks.
+- Saved classification state and its latest 100 audit events are read through `GET /cases/{case_id}/docs/{document_id}/classification`; changes use `PUT` on the same route and require firm-admin or matter-lead authorization.
+- Classification updates use an optimistic `expected_version` token. The first save uses version `0`; every successful save increments the version and appends an audit event in the same transaction.
 - Client analysis is limited to the first 40 documents and 1,000,000 total extracted characters per load.
 - Server analysis is limited to 1,000,000 extracted characters and 250 candidates per document; the UI displays at most 120 candidates and 50 search hits. Truncation is reported.
 - Text comparison is limited to 100,000 characters per version.
@@ -37,9 +41,9 @@ This is the first UI layer for reviewing documents already uploaded to a case. I
 ## Not yet implemented
 
 - Firm-wide document search across multiple matters. The current workspace is deliberately limited to one selected, authorized matter.
-- Persistent, server-side editable classifications with role checks, optimistic concurrency and an audit history. The server now returns canonical classification suggestions and bounded literal candidates through the existing authorized chunks endpoint, but user overrides remain view-only drafts.
+- Firm-wide document search across multiple matters. The current workspace is deliberately limited to one selected, authorized matter.
 - Structured extraction of named entities and events beyond the literal candidate rules described above.
 - Multi-hunk semantic/version comparison. The current comparison is a bounded first-difference view only.
 - Document retention/legal-hold workflow controls in this panel.
 
-These gaps must remain explicit. Do not describe this UI layer as a complete document-management system, verified legal extraction, or persistent classification workflow.
+These gaps must remain explicit. Do not describe this UI layer as a complete firm-wide document-management system or verified legal extraction. Saved categories are lawyer workflow metadata, not proof of authenticity, accuracy or legal effect.
