@@ -57,3 +57,6 @@ Do not turn this report into a claim of legal accuracy. A lawyer must separately
 
 
 The evaluation runner validates the API base URL before sending requests. It rejects whitespace, embedded credentials (including empty userinfo), malformed URL structures, and invalid ports. Remote targets still require explicit `--allow-remote` opt-in and HTTPS. These checks validate URL syntax and target policy; they do not establish that a remote service is trusted.
+
+
+The article-specific retrieval scorer also requires the same private approved reviewer registry used by the legal-answer evaluator. Reviewer ID, display name, professional role and practice-area authorization must match an approved registry entry. Keep the registry outside the repository; the checked-in empty example is not a reviewer approval. This is an administrative identity-consistency check, not independent verification of a professional license.
