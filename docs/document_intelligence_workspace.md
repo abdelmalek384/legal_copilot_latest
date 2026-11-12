@@ -7,6 +7,7 @@ This is the first UI layer for reviewing documents already uploaded to a case. I
 ## Current capabilities
 
 - Dedicated Documents navigation page with authenticated, paginated matter selection, direct multi-file PDF/DOCX upload (15 MB per file), file metadata, filename/type search, extraction-status and saved-classification filters, matter-scoped summary counts derived from returned document rows, and original-file download only when the separate-database storage record is ready and not purged. Uploads use same-origin credentials and CSRF protection. Metrics are not firm-wide and do not imply legal review completion.
+- Cross-matter metadata index for documents in matters the current user can access, with server-side firm and case-membership filters, pagination, case context, extraction/classification/type filters, and audited coarse search events. It returns metadata only; extracted-text search remains matter-scoped.
 
 - Search extracted text across the selected matter's uploaded documents in Arabic and English. Search applies Unicode NFKC normalization, removes common Arabic diacritics/tatweel, normalizes common alef/yeh forms, and normalizes Arabic-Indic digits.
 - Show conservative keyword-based document-type suggestions (judgment, contract, pleading, correspondence/notice, evidence/receipt, or unclassified) from the canonical Python helper, executed by the existing authenticated matter-scoped chunks endpoint.
@@ -43,7 +44,7 @@ This is the first UI layer for reviewing documents already uploaded to a case. I
 
 ## Not yet implemented
 
-- Firm-wide document search across multiple matters. The current workspace is deliberately limited to one selected, authorized matter.
+- Cross-matter extracted-text search. The all-accessible-documents index searches metadata only; full text search remains confined to one selected, authorized matter.
 - Structured extraction of named entities and events beyond the literal candidate rules described above.
 - Multi-hunk semantic/version comparison. The current comparison is a bounded first-difference view only.
 - Document retention/legal-hold workflow controls in this panel.
