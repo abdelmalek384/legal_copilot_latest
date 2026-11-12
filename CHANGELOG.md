@@ -1,5 +1,7 @@
 # Changelog — Legal Copilot
 
+- Mobile UX follow-up: increase phone-width body text to 15px and constrain the login/password controls to the viewport with a 44px toggle target.
+
 - Security follow-up: pin approved outbound LLM HTTPS requests to validated public IPs, defer DNS until explicit processing approval, and block payment submitter self-approval.
 
 - PR #1495: Reject wildcard trusted proxies and isolate persistent rate-limit budgets by validated firm identity.
