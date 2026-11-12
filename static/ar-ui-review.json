@@ -3,9 +3,9 @@
   "title": "Legal Copilot Arabic UI string review inventory",
   "purpose": "Reviewable inventory of Arabic-bearing string literals in static/index.html for a native Egyptian Arabic speaker. This is a review snapshot, not yet the runtime translation source; user-entered case and legal text is not included.",
   "source_file": "static/index.html",
-  "source_commit": "9d8ded817d939a7f35b19dbaf7849d3a2de2fbf7",
+  "source_commit": "b706ffc82899ad535bb2a6648f102768f3331a5c",
   "generated_on": "2026-11-12",
-  "entry_count": 1083,
+  "entry_count": 1089,
   "entries": [
     {
       "id": "AR-0001",
@@ -13,10 +13,10 @@
       "source_lines": [
         1077,
         1089,
-        2928,
-        2930,
-        2962,
-        2971
+        2929,
+        2931,
+        2963,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -25,7 +25,7 @@
       "arabic": "محامٍ مساعد",
       "source_lines": [
         1077,
-        2962
+        2963
       ],
       "review_status": "pending_native_review"
     },
@@ -35,7 +35,7 @@
       "source_lines": [
         1077,
         1471,
-        2962
+        2963
       ],
       "review_status": "pending_native_review"
     },
@@ -96,10 +96,10 @@
         1187,
         1416,
         1822,
-        2228,
-        2445,
-        2736,
-        2981
+        2229,
+        2446,
+        2737,
+        2982
       ],
       "review_status": "pending_native_review"
     },
@@ -158,12 +158,12 @@
         1792,
         1828,
         1870,
-        2174,
-        2928,
-        2930,
-        2950,
-        2970,
-        2971
+        2175,
+        2929,
+        2931,
+        2951,
+        2971,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -186,12 +186,12 @@
         1675,
         1682,
         1691,
-        2652,
-        2679,
-        2910,
-        2941,
-        2956,
-        2957
+        2653,
+        2680,
+        2911,
+        2942,
+        2957,
+        2958
       ],
       "review_status": "pending_native_review"
     },
@@ -221,10 +221,10 @@
         1091,
         1274,
         1671,
-        2432,
-        2928,
-        2930,
-        2964
+        2433,
+        2929,
+        2931,
+        2965
       ],
       "review_status": "pending_native_review"
     },
@@ -278,9 +278,9 @@
         1095,
         1135,
         1177,
-        2929,
         2930,
-        2971
+        2931,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -402,29 +402,29 @@
         2091,
         2142,
         2153,
-        2169,
-        2190,
-        2234,
-        2254,
-        2256,
-        2260,
-        2270,
-        2277,
-        2291,
+        2170,
+        2191,
+        2235,
+        2255,
+        2257,
+        2261,
+        2271,
+        2278,
         2292,
-        2337,
-        2366,
-        2559,
-        2562,
-        2610,
-        2617,
-        2622,
-        2729,
-        2855,
-        2897,
-        2944,
-        2950,
-        2952
+        2293,
+        2338,
+        2367,
+        2560,
+        2563,
+        2611,
+        2618,
+        2623,
+        2730,
+        2856,
+        2898,
+        2945,
+        2951,
+        2953
       ],
       "review_status": "pending_native_review"
     },
@@ -570,8 +570,8 @@
         1636,
         1667,
         2122,
-        2244,
-        2874
+        2245,
+        2875
       ],
       "review_status": "pending_native_review"
     },
@@ -588,13 +588,14 @@
       "arabic": "المساعد القانوني",
       "source_lines": [
         2,
+        1089,
         1183,
         1189,
         1558,
-        2282,
-        2928,
-        2971,
-        2977
+        2283,
+        2929,
+        2972,
+        2978
       ],
       "review_status": "pending_native_review"
     },
@@ -607,9 +608,9 @@
         1200,
         1206,
         1471,
-        2929,
         2930,
-        2971
+        2931,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -618,7 +619,7 @@
       "arabic": "طلب حساب",
       "source_lines": [
         1186,
-        2965
+        2966
       ],
       "review_status": "pending_native_review"
     },
@@ -654,8 +655,8 @@
         1794,
         1801,
         1822,
-        2930,
-        2959
+        2931,
+        2960
       ],
       "review_status": "pending_native_review"
     },
@@ -680,8 +681,8 @@
         1469,
         1470,
         1471,
-        2930,
-        2959
+        2931,
+        2960
       ],
       "review_status": "pending_native_review"
     },
@@ -690,10 +691,10 @@
       "arabic": "إظهار",
       "source_lines": [
         1196,
-        2188,
-        2930,
-        2948,
-        2971
+        2189,
+        2931,
+        2949,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -702,10 +703,10 @@
       "arabic": "إخفاء",
       "source_lines": [
         1196,
-        2188,
-        2679,
-        2930,
-        2971
+        2189,
+        2680,
+        2931,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -715,8 +716,8 @@
       "source_lines": [
         1195,
         1197,
-        2930,
-        2959
+        2931,
+        2960
       ],
       "review_status": "pending_native_review"
     },
@@ -741,7 +742,7 @@
       "arabic": "التسجيل العام غير متاح",
       "source_lines": [
         1205,
-        2968
+        2969
       ],
       "review_status": "pending_native_review"
     },
@@ -820,11 +821,11 @@
         1740,
         1770,
         2048,
-        2261,
-        2309,
-        2820,
-        2933,
-        2971
+        2262,
+        2310,
+        2821,
+        2934,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -1014,8 +1015,8 @@
         1471,
         1673,
         1676,
-        2947,
-        2954
+        2948,
+        2955
       ],
       "review_status": "pending_native_review"
     },
@@ -1038,10 +1039,10 @@
         1557,
         1673,
         1682,
-        2810,
-        2947,
-        2954,
-        2963
+        2811,
+        2948,
+        2955,
+        2964
       ],
       "review_status": "pending_native_review"
     },
@@ -1075,8 +1076,8 @@
       "arabic": "الحالة:",
       "source_lines": [
         1288,
-        2659,
-        2942
+        2660,
+        2943
       ],
       "review_status": "pending_native_review"
     },
@@ -1151,7 +1152,7 @@
       "source_lines": [
         1294,
         1305,
-        2823
+        2824
       ],
       "review_status": "pending_native_review"
     },
@@ -1286,7 +1287,7 @@
         1322,
         1333,
         1534,
-        2837
+        2838
       ],
       "review_status": "pending_native_review"
     },
@@ -1304,7 +1305,7 @@
       "source_lines": [
         1328,
         1694,
-        2679
+        2680
       ],
       "review_status": "pending_native_review"
     },
@@ -1354,7 +1355,7 @@
       "arabic": "المرجع:",
       "source_lines": [
         1341,
-        2261
+        2262
       ],
       "review_status": "pending_native_review"
     },
@@ -1489,7 +1490,7 @@
       "source_lines": [
         1344,
         1387,
-        2854
+        2855
       ],
       "review_status": "pending_native_review"
     },
@@ -1531,7 +1532,7 @@
       "source_lines": [
         1393,
         1472,
-        2557
+        2558
       ],
       "review_status": "pending_native_review"
     },
@@ -1580,8 +1581,8 @@
       "arabic": "ج.م",
       "source_lines": [
         1403,
-        2777,
-        2809
+        2778,
+        2810
       ],
       "review_status": "pending_native_review"
     },
@@ -1639,7 +1640,7 @@
       "source_lines": [
         1406,
         1408,
-        2953
+        2954
       ],
       "review_status": "pending_native_review"
     },
@@ -1657,14 +1658,14 @@
       "source_lines": [
         1372,
         1408,
-        2706,
-        2717,
-        2724,
-        2753,
-        2798,
-        2804,
-        2810,
-        2813
+        2707,
+        2718,
+        2725,
+        2754,
+        2799,
+        2805,
+        2811,
+        2814
       ],
       "review_status": "pending_native_review"
     },
@@ -1730,7 +1731,7 @@
       "arabic": "تفضيلات اللغة",
       "source_lines": [
         1416,
-        2966
+        2967
       ],
       "review_status": "pending_native_review"
     },
@@ -1739,7 +1740,7 @@
       "arabic": "اختر لغة الواجهة. سيتم حفظ اختيارك في هذا المتصفح.",
       "source_lines": [
         1416,
-        2966
+        2967
       ],
       "review_status": "pending_native_review"
     },
@@ -1748,7 +1749,7 @@
       "arabic": "اتجاه الصفحة يتغير تلقائيا مع اللغة.",
       "source_lines": [
         1416,
-        2967
+        2968
       ],
       "review_status": "pending_native_review"
     },
@@ -2020,12 +2021,12 @@
         1077,
         1471,
         1646,
-        2333,
-        2494,
-        2717,
-        2728,
-        2773,
-        2962
+        2334,
+        2495,
+        2718,
+        2729,
+        2774,
+        2963
       ],
       "review_status": "pending_native_review"
     },
@@ -2058,7 +2059,7 @@
       "arabic": "إدارة المستخدمين",
       "source_lines": [
         1471,
-        2930
+        2931
       ],
       "review_status": "pending_native_review"
     },
@@ -2075,7 +2076,7 @@
       "arabic": "الحسابات الحالية",
       "source_lines": [
         1471,
-        2968
+        2969
       ],
       "review_status": "pending_native_review"
     },
@@ -2093,7 +2094,7 @@
       "arabic": "تعطيل الحساب",
       "source_lines": [
         1471,
-        2968
+        2969
       ],
       "review_status": "pending_native_review"
     },
@@ -2262,7 +2263,7 @@
       "arabic": "الأمان والخصوصية",
       "source_lines": [
         1472,
-        2967
+        2968
       ],
       "review_status": "pending_native_review"
     },
@@ -2281,9 +2282,9 @@
         1091,
         1205,
         1472,
-        2930,
-        2965,
-        2971
+        2931,
+        2966,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -2319,7 +2320,7 @@
         1197,
         1214,
         1480,
-        2823
+        2824
       ],
       "review_status": "pending_native_review"
     },
@@ -2417,7 +2418,7 @@
       "arabic": "تمت المراجعة",
       "source_lines": [
         1508,
-        2526
+        2527
       ],
       "review_status": "pending_native_review"
     },
@@ -2450,9 +2451,9 @@
       "arabic": "لا توجد ملاحظات",
       "source_lines": [
         1513,
-        2768,
-        2938,
-        2969
+        2769,
+        2939,
+        2970
       ],
       "review_status": "pending_native_review"
     },
@@ -2490,12 +2491,12 @@
         1681,
         1688,
         1712,
-        2615,
-        2688,
+        2616,
         2689,
         2690,
-        2935,
-        2960
+        2691,
+        2936,
+        2961
       ],
       "review_status": "pending_native_review"
     },
@@ -2506,7 +2507,7 @@
         1523,
         1646,
         1712,
-        2710
+        2711
       ],
       "review_status": "pending_native_review"
     },
@@ -2564,8 +2565,8 @@
       "source_lines": [
         1290,
         1528,
-        2778,
-        2815
+        2779,
+        2816
       ],
       "review_status": "pending_native_review"
     },
@@ -2586,10 +2587,10 @@
         1679,
         1692,
         1694,
-        2947,
-        2954,
+        2948,
         2955,
-        2971
+        2956,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -2622,7 +2623,7 @@
       "arabic": "لديك",
       "source_lines": [
         1557,
-        2679
+        2680
       ],
       "review_status": "pending_native_review"
     },
@@ -2762,8 +2763,8 @@
         1361,
         1604,
         1634,
-        2292,
-        2963
+        2293,
+        2964
       ],
       "review_status": "pending_native_review"
     },
@@ -2775,7 +2776,7 @@
         1604,
         1634,
         2112,
-        2229
+        2230
       ],
       "review_status": "pending_native_review"
     },
@@ -2810,7 +2811,7 @@
         1827,
         1883,
         2030,
-        2390
+        2391
       ],
       "review_status": "pending_native_review"
     },
@@ -3022,7 +3023,7 @@
         1802,
         1821,
         1869,
-        2931
+        2932
       ],
       "review_status": "pending_native_review"
     },
@@ -3040,8 +3041,8 @@
       "source_lines": [
         1673,
         1676,
-        2947,
-        2954
+        2948,
+        2955
       ],
       "review_status": "pending_native_review"
     },
@@ -3070,9 +3071,9 @@
         1557,
         1673,
         1682,
-        2810,
-        2947,
-        2954
+        2811,
+        2948,
+        2955
       ],
       "review_status": "pending_native_review"
     },
@@ -3181,7 +3182,7 @@
         1205,
         1675,
         1676,
-        2174
+        2175
       ],
       "review_status": "pending_native_review"
     },
@@ -3286,64 +3287,64 @@
         2113,
         2117,
         2122,
-        2214,
-        2229,
-        2233,
+        2215,
+        2230,
         2234,
         2235,
         2236,
-        2240,
-        2242,
-        2244,
-        2248,
-        2252,
-        2274,
-        2292,
-        2333,
-        2357,
-        2426,
+        2237,
+        2241,
+        2243,
+        2245,
+        2249,
+        2253,
+        2275,
+        2293,
+        2334,
+        2358,
         2427,
-        2513,
-        2526,
-        2529,
-        2557,
-        2562,
-        2600,
-        2617,
-        2622,
-        2640,
-        2658,
-        2671,
-        2686,
-        2705,
-        2707,
-        2713,
-        2717,
-        2724,
-        2728,
-        2746,
-        2762,
-        2772,
-        2804,
-        2829,
-        2845,
-        2849,
-        2862,
-        2864,
-        2868,
-        2874,
-        2876,
-        2902,
+        2428,
+        2514,
+        2527,
+        2530,
+        2558,
+        2563,
+        2601,
+        2618,
+        2623,
+        2641,
+        2659,
+        2672,
+        2687,
+        2706,
+        2708,
+        2714,
+        2718,
+        2725,
+        2729,
+        2747,
+        2763,
+        2773,
+        2805,
+        2830,
+        2846,
+        2850,
+        2863,
+        2865,
+        2869,
+        2875,
+        2877,
         2903,
-        2933,
-        2943,
-        2948,
+        2904,
+        2934,
+        2944,
         2949,
-        2956,
-        2963,
-        2966,
-        2968,
-        2971
+        2950,
+        2957,
+        2964,
+        2967,
+        2969,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -3362,10 +3363,10 @@
         1462,
         1679,
         1691,
-        2652,
-        2941,
-        2955,
-        2957
+        2653,
+        2942,
+        2956,
+        2958
       ],
       "review_status": "pending_native_review"
     },
@@ -3414,7 +3415,7 @@
       "arabic": "الجلسات القادمة",
       "source_lines": [
         1681,
-        2946
+        2947
       ],
       "review_status": "pending_native_review"
     },
@@ -3457,10 +3458,10 @@
         1680,
         1682,
         1712,
-        2684,
-        2687,
-        2934,
-        2960
+        2685,
+        2688,
+        2935,
+        2961
       ],
       "review_status": "pending_native_review"
     },
@@ -3492,17 +3493,17 @@
         1722,
         1792,
         1828,
-        2659,
-        2686,
-        2910,
-        2922,
-        2934,
-        2946,
+        2660,
+        2687,
+        2911,
+        2923,
+        2935,
         2947,
-        2954,
-        2956,
-        2961,
-        2971
+        2948,
+        2955,
+        2957,
+        2962,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -3556,11 +3557,11 @@
         1691,
         1694,
         1718,
-        2652,
-        2679,
-        2941,
-        2946,
-        2957
+        2653,
+        2680,
+        2942,
+        2947,
+        2958
       ],
       "review_status": "pending_native_review"
     },
@@ -3611,7 +3612,7 @@
       "source_lines": [
         1721,
         2134,
-        2933
+        2934
       ],
       "review_status": "pending_native_review"
     },
@@ -3634,21 +3635,21 @@
         1694,
         1718,
         1722,
-        2652,
-        2656,
-        2679,
-        2686,
-        2910,
-        2916,
-        2934,
-        2941,
-        2946,
+        2653,
+        2657,
+        2680,
+        2687,
+        2911,
+        2917,
+        2935,
+        2942,
         2947,
-        2950,
-        2954,
-        2956,
+        2948,
+        2951,
+        2955,
         2957,
-        2961
+        2958,
+        2962
       ],
       "review_status": "pending_native_review"
     },
@@ -3659,10 +3660,10 @@
         1722,
         1792,
         1828,
-        2659,
-        2922,
-        2934,
-        2971
+        2660,
+        2923,
+        2935,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -3673,10 +3674,10 @@
         1733,
         1735,
         1742,
-        2931,
-        2933,
-        2945,
-        2959
+        2932,
+        2934,
+        2946,
+        2960
       ],
       "review_status": "pending_native_review"
     },
@@ -3685,7 +3686,7 @@
       "arabic": "اسم العميل (اختياري)",
       "source_lines": [
         1733,
-        2931
+        2932
       ],
       "review_status": "pending_native_review"
     },
@@ -3694,7 +3695,7 @@
       "arabic": "رقم القضية (اختياري)",
       "source_lines": [
         1733,
-        2931
+        2932
       ],
       "review_status": "pending_native_review"
     },
@@ -3703,7 +3704,7 @@
       "arabic": "سنة القضية (اختياري)",
       "source_lines": [
         1733,
-        2932
+        2933
       ],
       "review_status": "pending_native_review"
     },
@@ -3712,7 +3713,7 @@
       "arabic": "المحكمة (اختياري)",
       "source_lines": [
         1733,
-        2932
+        2933
       ],
       "review_status": "pending_native_review"
     },
@@ -3721,7 +3722,7 @@
       "arabic": "الدائرة (اختياري)",
       "source_lines": [
         1733,
-        2932
+        2933
       ],
       "review_status": "pending_native_review"
     },
@@ -3730,7 +3731,7 @@
       "arabic": "الخصم (اختياري)",
       "source_lines": [
         1733,
-        2932
+        2933
       ],
       "review_status": "pending_native_review"
     },
@@ -3739,8 +3740,8 @@
       "arabic": "حفظ القضية",
       "source_lines": [
         1741,
-        2933,
-        2971
+        2934,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -3749,8 +3750,8 @@
       "arabic": "أدخل عنوان القضية",
       "source_lines": [
         1742,
-        2933,
-        2959
+        2934,
+        2960
       ],
       "review_status": "pending_native_review"
     },
@@ -3763,8 +3764,8 @@
         1802,
         1821,
         1869,
-        2931,
-        2971
+        2932,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -3772,7 +3773,7 @@
       "id": "AR-0394",
       "arabic": "بدون عميل",
       "source_lines": [
-        2956
+        2957
       ],
       "review_status": "pending_native_review"
     },
@@ -3781,7 +3782,7 @@
       "arabic": "اسم عميل أو خصم لفحص التعارض المحتمل",
       "source_lines": [
         1789,
-        2949
+        2950
       ],
       "review_status": "pending_native_review"
     },
@@ -3798,7 +3799,7 @@
       "arabic": "أدخل حرفين على الأقل",
       "source_lines": [
         1790,
-        2949
+        2950
       ],
       "review_status": "pending_native_review"
     },
@@ -3807,8 +3808,8 @@
       "arabic": "نتائج الفحص الأولي:",
       "source_lines": [
         1791,
-        2948,
-        2970
+        2949,
+        2971
       ],
       "review_status": "pending_native_review"
     },
@@ -3817,9 +3818,9 @@
       "arabic": "العميل:",
       "source_lines": [
         1792,
-        2659,
-        2922,
-        2942
+        2660,
+        2923,
+        2943
       ],
       "review_status": "pending_native_review"
     },
@@ -3836,8 +3837,8 @@
       "arabic": "لم تظهر مطابقات في القضايا التي يمكنك الوصول إليها.",
       "source_lines": [
         1792,
-        2950,
-        2970
+        2951,
+        2971
       ],
       "review_status": "pending_native_review"
     },
@@ -3853,9 +3854,9 @@
         1675,
         1794,
         1822,
-        2928,
-        2930,
-        2971
+        2929,
+        2931,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -3864,8 +3865,8 @@
       "arabic": "فحص أولي لتعارض المصالح",
       "source_lines": [
         1822,
-        2948,
-        2970
+        2949,
+        2971
       ],
       "review_status": "pending_native_review"
     },
@@ -3883,22 +3884,22 @@
         1822,
         1940,
         2071,
-        2185,
-        2257,
-        2303,
-        2494,
-        2526,
-        2530,
-        2557,
-        2562,
-        2845,
-        2866,
-        2868,
-        2880,
-        2948,
+        2186,
+        2258,
+        2304,
+        2495,
+        2527,
+        2531,
+        2558,
+        2563,
+        2846,
+        2867,
+        2869,
+        2881,
         2949,
-        2970,
-        2971
+        2950,
+        2971,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -3926,17 +3927,17 @@
         1854,
         1870,
         2134,
-        2173,
         2174,
-        2928,
-        2930,
-        2945,
-        2947,
-        2950,
-        2954,
-        2961,
-        2970,
-        2971
+        2175,
+        2929,
+        2931,
+        2946,
+        2948,
+        2951,
+        2955,
+        2962,
+        2971,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -3944,8 +3945,8 @@
       "id": "AR-0406",
       "arabic": "لا توجد قضايا بعد. أنشئ أول قضية.",
       "source_lines": [
-        2945,
-        2961
+        2946,
+        2962
       ],
       "review_status": "pending_native_review"
     },
@@ -4002,63 +4003,63 @@
         2135,
         2142,
         2161,
-        2165,
-        2169,
-        2178,
-        2191,
-        2193,
-        2196,
-        2199,
-        2204,
-        2208,
-        2245,
+        2166,
+        2170,
+        2179,
+        2192,
+        2194,
+        2197,
+        2200,
+        2205,
+        2209,
         2246,
-        2357,
-        2364,
-        2421,
-        2432,
-        2445,
-        2584,
-        2607,
-        2609,
-        2654,
-        2658,
-        2660,
+        2247,
+        2358,
+        2365,
+        2422,
+        2433,
+        2446,
+        2585,
+        2608,
+        2610,
+        2655,
+        2659,
         2661,
-        2664,
+        2662,
         2665,
-        2667,
+        2666,
         2668,
-        2678,
+        2669,
         2679,
         2680,
         2681,
-        2709,
-        2730,
-        2767,
+        2682,
+        2710,
+        2731,
         2768,
-        2773,
-        2835,
-        2838,
-        2842,
-        2905,
-        2915,
-        2918,
-        2931,
+        2769,
+        2774,
+        2836,
+        2839,
+        2843,
+        2906,
+        2916,
+        2919,
         2932,
         2933,
-        2938,
-        2942,
+        2934,
+        2939,
         2943,
         2944,
         2945,
-        2953,
-        2956,
-        2958,
+        2946,
+        2954,
+        2957,
         2959,
-        2961,
-        2969,
-        2971
+        2960,
+        2962,
+        2970,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -4118,10 +4119,10 @@
       "source_lines": [
         1471,
         1882,
-        2266,
-        2660,
-        2942,
-        2956
+        2267,
+        2661,
+        2943,
+        2957
       ],
       "review_status": "pending_native_review"
     },
@@ -4164,42 +4165,42 @@
         2079,
         2082,
         2127,
-        2178,
-        2187,
-        2189,
-        2196,
-        2254,
-        2261,
-        2277,
-        2279,
-        2309,
-        2354,
-        2357,
-        2362,
-        2366,
+        2179,
+        2188,
+        2190,
+        2197,
+        2255,
+        2262,
+        2278,
+        2280,
+        2310,
+        2355,
+        2358,
+        2363,
         2367,
-        2416,
-        2418,
-        2421,
-        2423,
+        2368,
+        2417,
+        2419,
+        2422,
         2424,
-        2426,
+        2425,
         2427,
-        2432,
-        2445,
-        2472,
-        2480,
-        2644,
-        2646,
-        2928,
-        2930,
-        2940,
-        2943,
+        2428,
+        2433,
+        2446,
+        2473,
+        2481,
+        2645,
+        2647,
+        2929,
+        2931,
+        2941,
         2944,
         2945,
         2946,
-        2964,
-        2971
+        2947,
+        2965,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -4412,8 +4413,8 @@
       "source_lines": [
         1916,
         2032,
-        2270,
-        2337
+        2271,
+        2338
       ],
       "review_status": "pending_native_review"
     },
@@ -4631,7 +4632,7 @@
       "source_lines": [
         1988,
         2143,
-        2449
+        2450
       ],
       "review_status": "pending_native_review"
     },
@@ -4648,8 +4649,8 @@
       "arabic": "نص ساري متحقق",
       "source_lines": [
         1988,
-        2260,
-        2291
+        2261,
+        2292
       ],
       "review_status": "pending_native_review"
     },
@@ -4671,10 +4672,10 @@
         2010,
         2112,
         2153,
-        2229,
-        2897,
-        2902,
-        2968
+        2230,
+        2898,
+        2903,
+        2969
       ],
       "review_status": "pending_native_review"
     },
@@ -4741,9 +4742,9 @@
         1292,
         1510,
         2015,
-        2242,
-        2919,
-        2941
+        2243,
+        2920,
+        2942
       ],
       "review_status": "pending_native_review"
     },
@@ -4891,8 +4892,8 @@
         2032,
         2041,
         2069,
-        2261,
-        2292
+        2262,
+        2293
       ],
       "review_status": "pending_native_review"
     },
@@ -4904,8 +4905,8 @@
         1944,
         2032,
         2042,
-        2270,
-        2337
+        2271,
+        2338
       ],
       "review_status": "pending_native_review"
     },
@@ -4914,7 +4915,7 @@
       "arabic": "إذن الجمع",
       "source_lines": [
         2043,
-        2252
+        2253
       ],
       "review_status": "pending_native_review"
     },
@@ -4996,7 +4997,7 @@
       "arabic": "غير محدد",
       "source_lines": [
         2056,
-        2706
+        2707
       ],
       "review_status": "pending_native_review"
     },
@@ -5058,42 +5059,42 @@
         2073,
         2075,
         2142,
-        2260,
         2261,
-        2269,
-        2274,
-        2291,
+        2262,
+        2270,
+        2275,
         2292,
-        2333,
-        2339,
-        2494,
-        2513,
-        2515,
-        2526,
+        2293,
+        2334,
+        2340,
+        2495,
+        2514,
+        2516,
         2527,
-        2545,
-        2547,
+        2528,
+        2546,
         2548,
-        2558,
+        2549,
         2559,
-        2562,
-        2584,
-        2607,
-        2617,
-        2679,
-        2706,
-        2717,
-        2728,
-        2762,
-        2772,
-        2845,
-        2849,
-        2851,
-        2854,
-        2864,
-        2874,
-        2883,
-        2889
+        2560,
+        2563,
+        2585,
+        2608,
+        2618,
+        2680,
+        2707,
+        2718,
+        2729,
+        2763,
+        2773,
+        2846,
+        2850,
+        2852,
+        2855,
+        2865,
+        2875,
+        2884,
+        2890
       ],
       "review_status": "pending_native_review"
     },
@@ -5185,9 +5186,9 @@
       "arabic": "قيد المراجعة",
       "source_lines": [
         2070,
-        2260,
-        2291,
-        2292
+        2261,
+        2292,
+        2293
       ],
       "review_status": "pending_native_review"
     },
@@ -5210,8 +5211,8 @@
         2070,
         2114,
         2142,
-        2418,
-        2952
+        2419,
+        2953
       ],
       "review_status": "pending_native_review"
     },
@@ -5244,7 +5245,7 @@
       "arabic": "عرض سجل المراجعة",
       "source_lines": [
         2072,
-        2547
+        2548
       ],
       "review_status": "pending_native_review"
     },
@@ -5261,11 +5262,11 @@
       "arabic": "سجل المراجعة",
       "source_lines": [
         2072,
-        2547,
         2548,
-        2559,
-        2762,
-        2874
+        2549,
+        2560,
+        2763,
+        2875
       ],
       "review_status": "pending_native_review"
     },
@@ -5332,7 +5333,7 @@
       "arabic": "النتيجة",
       "source_lines": [
         2075,
-        2252
+        2253
       ],
       "review_status": "pending_native_review"
     },
@@ -5363,15 +5364,15 @@
         1822,
         2071,
         2075,
-        2357,
-        2652,
-        2679,
-        2693,
-        2768,
-        2938,
-        2941,
-        2957,
-        2969
+        2358,
+        2653,
+        2680,
+        2694,
+        2769,
+        2939,
+        2942,
+        2958,
+        2970
       ],
       "review_status": "pending_native_review"
     },
@@ -5387,7 +5388,7 @@
       "id": "AR-0543",
       "arabic": "ابحث في المحادثات المحفوظة",
       "source_lines": [
-        2187
+        2188
       ],
       "review_status": "pending_native_review"
     },
@@ -5395,8 +5396,8 @@
       "id": "AR-0544",
       "arabic": "نطاق البحث",
       "source_lines": [
-        2189,
-        2432
+        2190,
+        2433
       ],
       "review_status": "pending_native_review"
     },
@@ -5404,7 +5405,7 @@
       "id": "AR-0545",
       "arabic": "النصوص القانونية المتحقق منها",
       "source_lines": [
-        2190
+        2191
       ],
       "review_status": "pending_native_review"
     },
@@ -5412,7 +5413,7 @@
       "id": "AR-0546",
       "arabic": "مستندات المكتب داخل ملف قضية",
       "source_lines": [
-        2191
+        2192
       ],
       "review_status": "pending_native_review"
     },
@@ -5420,7 +5421,7 @@
       "id": "AR-0547",
       "arabic": "اكتشاف فهرس المصادر (بيانات وصفية فقط)",
       "source_lines": [
-        2192
+        2193
       ],
       "review_status": "pending_native_review"
     },
@@ -5433,13 +5434,13 @@
         2080,
         2091,
         2142,
-        2165,
-        2193,
-        2204,
-        2246,
-        2364,
-        2432,
-        2584
+        2166,
+        2194,
+        2205,
+        2247,
+        2365,
+        2433,
+        2585
       ],
       "review_status": "pending_native_review"
     },
@@ -5452,14 +5453,14 @@
         2132,
         2135,
         2161,
-        2193,
-        2196,
-        2199,
-        2208,
-        2245,
+        2194,
+        2197,
+        2200,
+        2209,
         2246,
-        2357,
-        2421
+        2247,
+        2358,
+        2422
       ],
       "review_status": "pending_native_review"
     },
@@ -5467,8 +5468,8 @@
       "id": "AR-0550",
       "arabic": "اختر ملف قضية للبحث في مستندات المكتب",
       "source_lines": [
-        2196,
-        2421
+        2197,
+        2422
       ],
       "review_status": "pending_native_review"
     },
@@ -5476,7 +5477,7 @@
       "id": "AR-0551",
       "arabic": "تم النسخ",
       "source_lines": [
-        2248
+        2249
       ],
       "review_status": "pending_native_review"
     },
@@ -5484,7 +5485,7 @@
       "id": "AR-0552",
       "arabic": "تعذر النسخ؛ حدد النص يدوياً",
       "source_lines": [
-        2248
+        2249
       ],
       "review_status": "pending_native_review"
     },
@@ -5492,7 +5493,7 @@
       "id": "AR-0553",
       "arabic": "تم العثور على",
       "source_lines": [
-        2252
+        2253
       ],
       "review_status": "pending_native_review"
     },
@@ -5500,7 +5501,7 @@
       "id": "AR-0554",
       "arabic": "سجل بيانات وصفية.",
       "source_lines": [
-        2252
+        2253
       ],
       "review_status": "pending_native_review"
     },
@@ -5508,7 +5509,7 @@
       "id": "AR-0555",
       "arabic": "لم يُعثر على بيانات وصفية مطابقة.",
       "source_lines": [
-        2252
+        2253
       ],
       "review_status": "pending_native_review"
     },
@@ -5516,7 +5517,7 @@
       "id": "AR-0556",
       "arabic": "اكتشاف المصادر — بيانات وصفية فقط",
       "source_lines": [
-        2252
+        2253
       ],
       "review_status": "pending_native_review"
     },
@@ -5526,10 +5527,10 @@
       "source_lines": [
         1881,
         1912,
-        2192,
-        2252,
-        2260,
-        2291
+        2193,
+        2253,
+        2261,
+        2292
       ],
       "review_status": "pending_native_review"
     },
@@ -5537,9 +5538,9 @@
       "id": "AR-0558",
       "arabic": "النشر:",
       "source_lines": [
-        2252,
-        2261,
-        2309
+        2253,
+        2262,
+        2310
       ],
       "review_status": "pending_native_review"
     },
@@ -5547,9 +5548,9 @@
       "id": "AR-0559",
       "arabic": "السريان:",
       "source_lines": [
-        2252,
-        2261,
-        2309
+        2253,
+        2262,
+        2310
       ],
       "review_status": "pending_native_review"
     },
@@ -5557,7 +5558,7 @@
       "id": "AR-0560",
       "arabic": "إذن الجمع / إعادة الاستخدام التجاري:",
       "source_lines": [
-        2252
+        2253
       ],
       "review_status": "pending_native_review"
     },
@@ -5565,7 +5566,7 @@
       "id": "AR-0561",
       "arabic": "فتح صفحة المصدر المسجلة (",
       "source_lines": [
-        2252
+        2253
       ],
       "review_status": "pending_native_review"
     },
@@ -5573,7 +5574,7 @@
       "id": "AR-0562",
       "arabic": "شروط المصدر (",
       "source_lines": [
-        2252
+        2253
       ],
       "review_status": "pending_native_review"
     },
@@ -5581,7 +5582,7 @@
       "id": "AR-0563",
       "arabic": "لم يُسترجع أي نص قانوني. هذه النتيجة لا تثبت السريان أو الإذن.",
       "source_lines": [
-        2252
+        2253
       ],
       "review_status": "pending_native_review"
     },
@@ -5589,8 +5590,8 @@
       "id": "AR-0564",
       "arabic": "محادثة جديدة",
       "source_lines": [
-        2254,
-        2379
+        2255,
+        2380
       ],
       "review_status": "pending_native_review"
     },
@@ -5598,8 +5599,8 @@
       "id": "AR-0565",
       "arabic": "ابدأ محادثة بحث قانوني",
       "source_lines": [
-        2254,
-        2279
+        2255,
+        2280
       ],
       "review_status": "pending_native_review"
     },
@@ -5607,8 +5608,8 @@
       "id": "AR-0566",
       "arabic": "اسأل عن القانون المصري",
       "source_lines": [
-        2254,
-        2279
+        2255,
+        2280
       ],
       "review_status": "pending_native_review"
     },
@@ -5616,8 +5617,8 @@
       "id": "AR-0567",
       "arabic": "اكتب سؤالك هنا…",
       "source_lines": [
-        2254,
-        2411
+        2255,
+        2412
       ],
       "review_status": "pending_native_review"
     },
@@ -5634,12 +5635,12 @@
         1492,
         1582,
         1630,
-        2254,
-        2274,
-        2412,
-        2431,
-        2667,
-        2680
+        2255,
+        2275,
+        2413,
+        2432,
+        2668,
+        2681
       ],
       "review_status": "pending_native_review"
     },
@@ -5647,8 +5648,8 @@
       "id": "AR-0569",
       "arabic": "مصادر الإجابة",
       "source_lines": [
-        2254,
-        2286
+        2255,
+        2287
       ],
       "review_status": "pending_native_review"
     },
@@ -5656,8 +5657,8 @@
       "id": "AR-0570",
       "arabic": "لا توجد محادثات بعد",
       "source_lines": [
-        2254,
-        2383
+        2255,
+        2384
       ],
       "review_status": "pending_native_review"
     },
@@ -5665,7 +5666,7 @@
       "id": "AR-0571",
       "arabic": "ابدأ محادثة جديدة",
       "source_lines": [
-        2254
+        2255
       ],
       "review_status": "pending_native_review"
     },
@@ -5673,8 +5674,8 @@
       "id": "AR-0572",
       "arabic": "بحث قانوني مدعوم بالمصادر",
       "source_lines": [
-        2254,
-        2277
+        2255,
+        2278
       ],
       "review_status": "pending_native_review"
     },
@@ -5682,7 +5683,7 @@
       "id": "AR-0573",
       "arabic": "لا توجد إجابة مولدة. راجع المصادر أدناه.",
       "source_lines": [
-        2254
+        2255
       ],
       "review_status": "pending_native_review"
     },
@@ -5690,9 +5691,9 @@
       "id": "AR-0574",
       "arabic": "نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.",
       "source_lines": [
-        2254,
-        2277,
-        2944
+        2255,
+        2278,
+        2945
       ],
       "review_status": "pending_native_review"
     },
@@ -5700,7 +5701,7 @@
       "id": "AR-0575",
       "arabic": "مصدر غير متحقق",
       "source_lines": [
-        2254
+        2255
       ],
       "review_status": "pending_native_review"
     },
@@ -5708,7 +5709,7 @@
       "id": "AR-0576",
       "arabic": "غير سارٍ",
       "source_lines": [
-        2254
+        2255
       ],
       "review_status": "pending_native_review"
     },
@@ -5716,8 +5717,8 @@
       "id": "AR-0577",
       "arabic": "لم يُتحقق من سريانه",
       "source_lines": [
-        2254,
-        2950
+        2255,
+        2951
       ],
       "review_status": "pending_native_review"
     },
@@ -5726,7 +5727,7 @@
       "arabic": "موثّق",
       "source_lines": [
         1433,
-        2256
+        2257
       ],
       "review_status": "pending_native_review"
     },
@@ -5734,7 +5735,7 @@
       "id": "AR-0579",
       "arabic": "مطابق للمصدر — غير متحقق منه",
       "source_lines": [
-        2256
+        2257
       ],
       "review_status": "pending_native_review"
     },
@@ -5742,7 +5743,7 @@
       "id": "AR-0580",
       "arabic": "غير مُراجع",
       "source_lines": [
-        2256
+        2257
       ],
       "review_status": "pending_native_review"
     },
@@ -5750,7 +5751,7 @@
       "id": "AR-0581",
       "arabic": "اكتب التصحيح المقترح. سيظل داخل المكتب ولن يُستخدم للتدريب افتراضياً.",
       "source_lines": [
-        2274
+        2275
       ],
       "review_status": "pending_native_review"
     },
@@ -5758,7 +5759,7 @@
       "id": "AR-0582",
       "arabic": "لا توجد إجابة لإرفاق التصحيح بها",
       "source_lines": [
-        2274
+        2275
       ],
       "review_status": "pending_native_review"
     },
@@ -5766,7 +5767,7 @@
       "id": "AR-0583",
       "arabic": "تم إرسال التصحيح إلى قائمة مراجعة المكتب",
       "source_lines": [
-        2274
+        2275
       ],
       "review_status": "pending_native_review"
     },
@@ -5774,7 +5775,7 @@
       "id": "AR-0584",
       "arabic": "أنت",
       "source_lines": [
-        2282
+        2283
       ],
       "review_status": "pending_native_review"
     },
@@ -5782,8 +5783,8 @@
       "id": "AR-0585",
       "arabic": "نص ساري متحقق منه",
       "source_lines": [
-        2260,
-        2291
+        2261,
+        2292
       ],
       "review_status": "pending_native_review"
     },
@@ -5791,9 +5792,9 @@
       "id": "AR-0586",
       "arabic": "نسخة ثانوية",
       "source_lines": [
-        2260,
-        2291,
-        2292
+        2261,
+        2292,
+        2293
       ],
       "review_status": "pending_native_review"
     },
@@ -5801,8 +5802,8 @@
       "id": "AR-0587",
       "arabic": "مستند مكتب غير متحقق",
       "source_lines": [
-        2260,
-        2291
+        2261,
+        2292
       ],
       "review_status": "pending_native_review"
     },
@@ -5810,8 +5811,8 @@
       "id": "AR-0588",
       "arabic": "قديم أو قيد المراجعة",
       "source_lines": [
-        2260,
-        2291
+        2261,
+        2292
       ],
       "review_status": "pending_native_review"
     },
@@ -5819,8 +5820,8 @@
       "id": "AR-0589",
       "arabic": "لا يوجد مصدر متحقق ذو صلة",
       "source_lines": [
-        2260,
-        2291
+        2261,
+        2292
       ],
       "review_status": "pending_native_review"
     },
@@ -5828,7 +5829,7 @@
       "id": "AR-0590",
       "arabic": "يعكس هذا التصنيف بيانات المصدر والمراجعة والتواريخ المسجلة؛ راجع النص الرسمي قبل الاعتماد.",
       "source_lines": [
-        2292
+        2293
       ],
       "review_status": "pending_native_review"
     },
@@ -5836,7 +5837,7 @@
       "id": "AR-0591",
       "arabic": "نسخة ثانوية وليست النص الرسمي الأصلي؛ تحقق من النشر الرسمي.",
       "source_lines": [
-        2292
+        2293
       ],
       "review_status": "pending_native_review"
     },
@@ -5844,7 +5845,7 @@
       "id": "AR-0592",
       "arabic": "مستند مقدم من المكتب أو المستخدم ولم يتم التحقق منه بصورة مستقلة كنص قانوني.",
       "source_lines": [
-        2292
+        2293
       ],
       "review_status": "pending_native_review"
     },
@@ -5852,7 +5853,7 @@
       "id": "AR-0593",
       "arabic": "بيانات فهرس فقط؛ لم يتم استرجاع نص قانوني.",
       "source_lines": [
-        2292
+        2293
       ],
       "review_status": "pending_native_review"
     },
@@ -5860,7 +5861,7 @@
       "id": "AR-0594",
       "arabic": "بعض بيانات المصدر أو الحالة القانونية غير مكتملة أو قيد المراجعة؛ لا تعتبره نصاً سارياً متحققاً.",
       "source_lines": [
-        2292
+        2293
       ],
       "review_status": "pending_native_review"
     },
@@ -5868,7 +5869,7 @@
       "id": "AR-0595",
       "arabic": "لم يُعثر على مقطع متحقق ذي صلة في هذا النطاق؛ هذا لا يثبت عدم وجود قانون منطبق.",
       "source_lines": [
-        2292
+        2293
       ],
       "review_status": "pending_native_review"
     },
@@ -5876,9 +5877,9 @@
       "id": "AR-0596",
       "arabic": "المادة",
       "source_lines": [
-        2296,
-        2943,
-        2964
+        2297,
+        2944,
+        2965
       ],
       "review_status": "pending_native_review"
     },
@@ -5889,15 +5890,15 @@
         1416,
         1464,
         2024,
-        2261,
-        2296,
-        2479,
-        2610,
-        2617,
-        2855,
-        2859,
-        2882,
-        2967
+        2262,
+        2297,
+        2480,
+        2611,
+        2618,
+        2856,
+        2860,
+        2883,
+        2968
       ],
       "review_status": "pending_native_review"
     },
@@ -5905,8 +5906,8 @@
       "id": "AR-0598",
       "arabic": "نسخ الاستشهاد",
       "source_lines": [
-        2271,
-        2301
+        2272,
+        2302
       ],
       "review_status": "pending_native_review"
     },
@@ -5914,8 +5915,8 @@
       "id": "AR-0599",
       "arabic": "نسخ المقطع الحرفي",
       "source_lines": [
-        2271,
-        2302
+        2272,
+        2303
       ],
       "review_status": "pending_native_review"
     },
@@ -5923,7 +5924,7 @@
       "id": "AR-0600",
       "arabic": "فتح المصدر الأصلي (",
       "source_lines": [
-        2305
+        2306
       ],
       "review_status": "pending_native_review"
     },
@@ -5931,8 +5932,8 @@
       "id": "AR-0601",
       "arabic": "القانون رقم",
       "source_lines": [
-        2261,
-        2309
+        2262,
+        2310
       ],
       "review_status": "pending_native_review"
     },
@@ -5940,8 +5941,8 @@
       "id": "AR-0602",
       "arabic": "الإلغاء:",
       "source_lines": [
-        2261,
-        2309
+        2262,
+        2310
       ],
       "review_status": "pending_native_review"
     },
@@ -5949,8 +5950,8 @@
       "id": "AR-0603",
       "arabic": "مجمع حتى:",
       "source_lines": [
-        2261,
-        2309
+        2262,
+        2310
       ],
       "review_status": "pending_native_review"
     },
@@ -5958,8 +5959,8 @@
       "id": "AR-0604",
       "arabic": "الجريدة الرسمية:",
       "source_lines": [
-        2261,
-        2309
+        2262,
+        2310
       ],
       "review_status": "pending_native_review"
     },
@@ -5967,8 +5968,8 @@
       "id": "AR-0605",
       "arabic": "تاريخ البحث:",
       "source_lines": [
-        2261,
-        2309
+        2262,
+        2310
       ],
       "review_status": "pending_native_review"
     },
@@ -5976,7 +5977,7 @@
       "id": "AR-0606",
       "arabic": "آخر اعتماد محامٍ مسجل:",
       "source_lines": [
-        2333
+        2334
       ],
       "review_status": "pending_native_review"
     },
@@ -5984,7 +5985,7 @@
       "id": "AR-0607",
       "arabic": "آخر مراجعة محامٍ مسجلة:",
       "source_lines": [
-        2333
+        2334
       ],
       "review_status": "pending_native_review"
     },
@@ -5992,7 +5993,7 @@
       "id": "AR-0608",
       "arabic": "الحالة المسجلة: ساري في",
       "source_lines": [
-        2335
+        2336
       ],
       "review_status": "pending_native_review"
     },
@@ -6000,7 +6001,7 @@
       "id": "AR-0609",
       "arabic": "فتح المصدر المسجل (",
       "source_lines": [
-        2336
+        2337
       ],
       "review_status": "pending_native_review"
     },
@@ -6008,7 +6009,7 @@
       "id": "AR-0610",
       "arabic": "أحدث أدلة المراجعة:",
       "source_lines": [
-        2339
+        2340
       ],
       "review_status": "pending_native_review"
     },
@@ -6016,7 +6017,7 @@
       "id": "AR-0611",
       "arabic": "علاقات الإصدار:",
       "source_lines": [
-        2341
+        2342
       ],
       "review_status": "pending_native_review"
     },
@@ -6024,7 +6025,7 @@
       "id": "AR-0612",
       "arabic": "لا يرتبط بإصدار قانوني مسجل",
       "source_lines": [
-        2343
+        2344
       ],
       "review_status": "pending_native_review"
     },
@@ -6032,7 +6033,7 @@
       "id": "AR-0613",
       "arabic": "سجل الإصدار غير موجود",
       "source_lines": [
-        2345
+        2346
       ],
       "review_status": "pending_native_review"
     },
@@ -6040,7 +6041,7 @@
       "id": "AR-0614",
       "arabic": "تصدير مذكرة بحث",
       "source_lines": [
-        2354
+        2355
       ],
       "review_status": "pending_native_review"
     },
@@ -6048,7 +6049,7 @@
       "id": "AR-0615",
       "arabic": "اقتراح تصحيح",
       "source_lines": [
-        2355
+        2356
       ],
       "review_status": "pending_native_review"
     },
@@ -6056,7 +6057,7 @@
       "id": "AR-0616",
       "arabic": "نسخ معرّف الإجابة",
       "source_lines": [
-        2356
+        2357
       ],
       "review_status": "pending_native_review"
     },
@@ -6064,7 +6065,7 @@
       "id": "AR-0617",
       "arabic": "حفظ إلى ملف قضية",
       "source_lines": [
-        2357
+        2358
       ],
       "review_status": "pending_native_review"
     },
@@ -6073,9 +6074,9 @@
       "arabic": "اختر ملف قضية أولاً",
       "source_lines": [
         2096,
-        2208,
-        2245,
-        2357
+        2209,
+        2246,
+        2358
       ],
       "review_status": "pending_native_review"
     },
@@ -6083,7 +6084,7 @@
       "id": "AR-0619",
       "arabic": "تم حفظ مذكرة البحث في ملاحظات القضية",
       "source_lines": [
-        2357
+        2358
       ],
       "review_status": "pending_native_review"
     },
@@ -6091,7 +6092,7 @@
       "id": "AR-0620",
       "arabic": "لم تُعثر على بيانات وصفية مطابقة؛ هذا البحث لا يسترجع النص القانوني.",
       "source_lines": [
-        2362
+        2363
       ],
       "review_status": "pending_native_review"
     },
@@ -6099,7 +6100,7 @@
       "id": "AR-0621",
       "arabic": "لم يُعثر على نص ذي صلة في مستندات ملف القضية المحدد.",
       "source_lines": [
-        2364
+        2365
       ],
       "review_status": "pending_native_review"
     },
@@ -6107,7 +6108,7 @@
       "id": "AR-0622",
       "arabic": "لم يُعثر على نص قانوني متحقق ذي صلة في بحث المجموعة القانونية.",
       "source_lines": [
-        2366
+        2367
       ],
       "review_status": "pending_native_review"
     },
@@ -6115,7 +6116,7 @@
       "id": "AR-0623",
       "arabic": "لم تُسجل مصادر لهذا البحث ولم يُسجل نطاقه.",
       "source_lines": [
-        2367
+        2368
       ],
       "review_status": "pending_native_review"
     },
@@ -6123,7 +6124,7 @@
       "id": "AR-0624",
       "arabic": "اكتشاف بيانات وصفية للمصادر",
       "source_lines": [
-        2370
+        2371
       ],
       "review_status": "pending_native_review"
     },
@@ -6131,8 +6132,8 @@
       "id": "AR-0625",
       "arabic": "المحادثات",
       "source_lines": [
-        2187,
-        2379
+        2188,
+        2380
       ],
       "review_status": "pending_native_review"
     },
@@ -6140,7 +6141,7 @@
       "id": "AR-0626",
       "arabic": "لا توجد محادثات مطابقة.",
       "source_lines": [
-        2384
+        2385
       ],
       "review_status": "pending_native_review"
     },
@@ -6148,7 +6149,7 @@
       "id": "AR-0627",
       "arabic": "إعادة تسمية المحادثة",
       "source_lines": [
-        2387
+        2388
       ],
       "review_status": "pending_native_review"
     },
@@ -6156,7 +6157,7 @@
       "id": "AR-0628",
       "arabic": "إعادة تسمية المحادثة:",
       "source_lines": [
-        2387
+        2388
       ],
       "review_status": "pending_native_review"
     },
@@ -6164,7 +6165,7 @@
       "id": "AR-0629",
       "arabic": "اكتب عنواناً جديداً للمحادثة",
       "source_lines": [
-        2388
+        2389
       ],
       "review_status": "pending_native_review"
     },
@@ -6172,7 +6173,7 @@
       "id": "AR-0630",
       "arabic": "لا يمكن أن يكون العنوان فارغاً",
       "source_lines": [
-        2390
+        2391
       ],
       "review_status": "pending_native_review"
     },
@@ -6180,7 +6181,7 @@
       "id": "AR-0631",
       "arabic": "حذف المحادثة",
       "source_lines": [
-        2393
+        2394
       ],
       "review_status": "pending_native_review"
     },
@@ -6188,7 +6189,7 @@
       "id": "AR-0632",
       "arabic": "حذف المحادثة:",
       "source_lines": [
-        2393
+        2394
       ],
       "review_status": "pending_native_review"
     },
@@ -6196,7 +6197,7 @@
       "id": "AR-0633",
       "arabic": "هل تريد حذف هذه المحادثة وكل رسائلها؟",
       "source_lines": [
-        2394
+        2395
       ],
       "review_status": "pending_native_review"
     },
@@ -6204,7 +6205,7 @@
       "id": "AR-0634",
       "arabic": "جارٍ البحث في فهرس المصادر…",
       "source_lines": [
-        2416
+        2417
       ],
       "review_status": "pending_native_review"
     },
@@ -6212,7 +6213,7 @@
       "id": "AR-0635",
       "arabic": "فشل البحث في فهرس المصادر.",
       "source_lines": [
-        2418
+        2419
       ],
       "review_status": "pending_native_review"
     },
@@ -6220,8 +6221,8 @@
       "id": "AR-0636",
       "arabic": "جارٍ البحث في المصادر…",
       "source_lines": [
-        2423,
-        2424
+        2424,
+        2425
       ],
       "review_status": "pending_native_review"
     },
@@ -6229,7 +6230,7 @@
       "id": "AR-0637",
       "arabic": "اكتمل البحث. راجع الإجابة والمصادر.",
       "source_lines": [
-        2426
+        2427
       ],
       "review_status": "pending_native_review"
     },
@@ -6237,7 +6238,7 @@
       "id": "AR-0638",
       "arabic": "تعذر إكمال البحث؛ تمت استعادة السؤال.",
       "source_lines": [
-        2427
+        2428
       ],
       "review_status": "pending_native_review"
     },
@@ -6245,7 +6246,7 @@
       "id": "AR-0639",
       "arabic": "Enter للإرسال · Shift+Enter لسطر جديد",
       "source_lines": [
-        2431
+        2432
       ],
       "review_status": "pending_native_review"
     },
@@ -6253,7 +6254,7 @@
       "id": "AR-0640",
       "arabic": "ملف القضية (للبحث والحفظ)",
       "source_lines": [
-        2432
+        2433
       ],
       "review_status": "pending_native_review"
     },
@@ -6261,12 +6262,12 @@
       "id": "AR-0641",
       "arabic": "الملخص",
       "source_lines": [
-        2652,
-        2668,
-        2671,
-        2679,
-        2941,
-        2957
+        2653,
+        2669,
+        2672,
+        2680,
+        2942,
+        2958
       ],
       "review_status": "pending_native_review"
     },
@@ -6274,9 +6275,9 @@
       "id": "AR-0642",
       "arabic": "ملخص ذكي",
       "source_lines": [
-        2652,
-        2666,
-        2678
+        2653,
+        2667,
+        2679
       ],
       "review_status": "pending_native_review"
     },
@@ -6287,10 +6288,10 @@
         1471,
         1493,
         1822,
-        2652,
-        2679,
-        2941,
-        2957
+        2653,
+        2680,
+        2942,
+        2958
       ],
       "review_status": "pending_native_review"
     },
@@ -6300,11 +6301,11 @@
       "source_lines": [
         1471,
         1673,
-        2652,
-        2776,
-        2939,
-        2941,
-        2957
+        2653,
+        2777,
+        2940,
+        2942,
+        2958
       ],
       "review_status": "pending_native_review"
     },
@@ -6320,8 +6321,8 @@
         1411,
         1414,
         1471,
-        2652,
-        2836
+        2653,
+        2837
       ],
       "review_status": "pending_native_review"
     },
@@ -6337,21 +6338,21 @@
         2134,
         2135,
         2161,
-        2162,
-        2178,
-        2242,
-        2245,
-        2443,
-        2473,
-        2583,
-        2624,
-        2640,
+        2163,
+        2179,
+        2243,
+        2246,
+        2444,
+        2474,
+        2584,
+        2625,
         2641,
-        2646,
-        2652,
-        2679,
-        2940,
-        2957
+        2642,
+        2647,
+        2653,
+        2680,
+        2941,
+        2958
       ],
       "review_status": "pending_native_review"
     },
@@ -6359,11 +6360,11 @@
       "id": "AR-0647",
       "arabic": "الفريق",
       "source_lines": [
-        2652,
-        2905,
-        2917,
-        2941,
-        2957
+        2653,
+        2906,
+        2918,
+        2942,
+        2958
       ],
       "review_status": "pending_native_review"
     },
@@ -6371,11 +6372,11 @@
       "id": "AR-0648",
       "arabic": "اسأل",
       "source_lines": [
-        2254,
-        2279,
-        2652,
-        2941,
-        2944
+        2255,
+        2280,
+        2653,
+        2942,
+        2945
       ],
       "review_status": "pending_native_review"
     },
@@ -6386,12 +6387,12 @@
         1885,
         1903,
         2075,
-        2188,
-        2267,
-        2652,
-        2673,
-        2941,
-        2957
+        2189,
+        2268,
+        2653,
+        2674,
+        2942,
+        2958
       ],
       "review_status": "pending_native_review"
     },
@@ -6401,9 +6402,9 @@
       "source_lines": [
         1733,
         1827,
-        2654,
-        2931,
-        2958
+        2655,
+        2932,
+        2959
       ],
       "review_status": "pending_native_review"
     },
@@ -6411,7 +6412,7 @@
       "id": "AR-0651",
       "arabic": "السنة",
       "source_lines": [
-        2654
+        2655
       ],
       "review_status": "pending_native_review"
     },
@@ -6421,14 +6422,14 @@
       "source_lines": [
         1447,
         1733,
-        2654,
-        2688,
-        2731,
-        2932,
-        2935,
-        2937,
-        2958,
-        2969
+        2655,
+        2689,
+        2732,
+        2933,
+        2936,
+        2938,
+        2959,
+        2970
       ],
       "review_status": "pending_native_review"
     },
@@ -6437,11 +6438,11 @@
       "arabic": "الدائرة",
       "source_lines": [
         1733,
-        2654,
-        2688,
-        2932,
-        2935,
-        2958
+        2655,
+        2689,
+        2933,
+        2936,
+        2959
       ],
       "review_status": "pending_native_review"
     },
@@ -6452,10 +6453,10 @@
         1733,
         1792,
         1827,
-        2654,
-        2679,
-        2932,
-        2958
+        2655,
+        2680,
+        2933,
+        2959
       ],
       "review_status": "pending_native_review"
     },
@@ -6464,7 +6465,7 @@
       "arabic": "المرحلة",
       "source_lines": [
         1281,
-        2654
+        2655
       ],
       "review_status": "pending_native_review"
     },
@@ -6472,8 +6473,8 @@
       "id": "AR-0656",
       "arabic": "التقدم",
       "source_lines": [
-        2656,
-        2942
+        2657,
+        2943
       ],
       "review_status": "pending_native_review"
     },
@@ -6481,10 +6482,10 @@
       "id": "AR-0657",
       "arabic": "حفظ بيانات القضية",
       "source_lines": [
-        2658,
-        2933,
-        2942,
-        2971
+        2659,
+        2934,
+        2943,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -6492,8 +6493,8 @@
       "id": "AR-0658",
       "arabic": "تم حفظ بيانات القضية",
       "source_lines": [
-        2658,
-        2933
+        2659,
+        2934
       ],
       "review_status": "pending_native_review"
     },
@@ -6501,9 +6502,9 @@
       "id": "AR-0659",
       "arabic": "إغلاق القضية",
       "source_lines": [
-        2660,
-        2942,
-        2956
+        2661,
+        2943,
+        2957
       ],
       "review_status": "pending_native_review"
     },
@@ -6511,9 +6512,9 @@
       "id": "AR-0660",
       "arabic": "إعادة فتح",
       "source_lines": [
-        2660,
-        2942,
-        2956
+        2661,
+        2943,
+        2957
       ],
       "review_status": "pending_native_review"
     },
@@ -6521,9 +6522,9 @@
       "id": "AR-0661",
       "arabic": "حذف القضية",
       "source_lines": [
-        2661,
-        2942,
-        2956
+        2662,
+        2943,
+        2957
       ],
       "review_status": "pending_native_review"
     },
@@ -6531,9 +6532,9 @@
       "id": "AR-0662",
       "arabic": "حذف نهائي لكل بيانات القضية؟",
       "source_lines": [
-        2661,
-        2943,
-        2971
+        2662,
+        2944,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -6541,7 +6542,7 @@
       "id": "AR-0663",
       "arabic": "إنشاء ملخص ذكي",
       "source_lines": [
-        2666
+        2667
       ],
       "review_status": "pending_native_review"
     },
@@ -6549,7 +6550,7 @@
       "id": "AR-0664",
       "arabic": "يلزم تأكيد تفويض المكتب والعميل لهذه القضية قبل الإرسال",
       "source_lines": [
-        2667
+        2668
       ],
       "review_status": "pending_native_review"
     },
@@ -6557,7 +6558,7 @@
       "id": "AR-0665",
       "arabic": "جارٍ إعداد الملخص من سجلات القضية...",
       "source_lines": [
-        2668
+        2669
       ],
       "review_status": "pending_native_review"
     },
@@ -6565,7 +6566,7 @@
       "id": "AR-0666",
       "arabic": "السجلات المستخدمة",
       "source_lines": [
-        2673
+        2674
       ],
       "review_status": "pending_native_review"
     },
@@ -6573,7 +6574,7 @@
       "id": "AR-0667",
       "arabic": "ملخص ذكي للقضية",
       "source_lines": [
-        2678
+        2679
       ],
       "review_status": "pending_native_review"
     },
@@ -6581,7 +6582,7 @@
       "id": "AR-0668",
       "arabic": "ينشئ ملخصاً واقعياً مؤقتاً من بيانات القضية والملاحظات والجلسات والمهام والمواعيد ومقاطع المستندات. تُحذف معرفات القضية والعميل والخصم المباشرة وتُحجب أنماط شائعة للبريد والهاتف والرقم القومي. هذا ليس إخفاءً كاملاً للهوية؛ قد تبقى أسماء أو معلومات حساسة داخل النصوص. موافقة إعدادات النشر ليست موافقة من المكتب أو العميل على هذه القضية. لا تتابع إلا إذا كان لديك تفويض موثق من المكتب والعميل؛ سيُسجل النظام إقرارك بهذا التفويض. الإقرار لا يغني عن الموافقة الصحيحة أو مراجعة سياسة المكتب. الملخص ليس رأياً قانونياً ولا يُحفظ.",
       "source_lines": [
-        2679
+        2680
       ],
       "review_status": "pending_native_review"
     },
@@ -6589,7 +6590,7 @@
       "id": "AR-0669",
       "arabic": "أؤكد وجود تفويض موثق من المكتب لإرسال بيانات هذه القضية إلى مزود النموذج المحدد.",
       "source_lines": [
-        2680
+        2681
       ],
       "review_status": "pending_native_review"
     },
@@ -6597,7 +6598,7 @@
       "id": "AR-0670",
       "arabic": "أؤكد وجود تفويض/أساس قانوني موثق من العميل لمعالجة بيانات هذه القضية بواسطة مزود النموذج.",
       "source_lines": [
-        2681
+        2682
       ],
       "review_status": "pending_native_review"
     },
@@ -6605,8 +6606,8 @@
       "id": "AR-0671",
       "arabic": "مهمة جديدة",
       "source_lines": [
-        2684,
-        2934
+        2685,
+        2935
       ],
       "review_status": "pending_native_review"
     },
@@ -6614,10 +6615,10 @@
       "id": "AR-0672",
       "arabic": "غير معيّن",
       "source_lines": [
-        2684,
         2685,
-        2916,
-        2934
+        2686,
+        2917,
+        2935
       ],
       "review_status": "pending_native_review"
     },
@@ -6625,10 +6626,10 @@
       "id": "AR-0673",
       "arabic": "منجزة",
       "source_lines": [
-        2686,
-        2910,
-        2934,
-        2971
+        2687,
+        2911,
+        2935,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -6639,10 +6640,10 @@
         1678,
         1680,
         1682,
-        2686,
-        2934,
-        2946,
-        2961
+        2687,
+        2935,
+        2947,
+        2962
       ],
       "review_status": "pending_native_review"
     },
@@ -6650,8 +6651,8 @@
       "id": "AR-0675",
       "arabic": "إضافة مهمة",
       "source_lines": [
-        2687,
-        2934
+        2688,
+        2935
       ],
       "review_status": "pending_native_review"
     },
@@ -6659,9 +6660,9 @@
       "id": "AR-0676",
       "arabic": "أدخل اسم المهمة",
       "source_lines": [
-        2687,
-        2934,
-        2960
+        2688,
+        2935,
+        2961
       ],
       "review_status": "pending_native_review"
     },
@@ -6669,8 +6670,8 @@
       "id": "AR-0677",
       "arabic": "ملاحظة (المحكمة، الدائرة، الغرض)",
       "source_lines": [
-        2688,
-        2935
+        2689,
+        2936
       ],
       "review_status": "pending_native_review"
     },
@@ -6679,11 +6680,11 @@
       "arabic": "لا توجد جلسات",
       "source_lines": [
         1681,
-        2689,
-        2935,
-        2946,
-        2961,
-        2971
+        2690,
+        2936,
+        2947,
+        2962,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -6691,8 +6692,8 @@
       "id": "AR-0679",
       "arabic": "إضافة جلسة",
       "source_lines": [
-        2690,
-        2935
+        2691,
+        2936
       ],
       "review_status": "pending_native_review"
     },
@@ -6700,9 +6701,9 @@
       "id": "AR-0680",
       "arabic": "أدخل تاريخ الجلسة",
       "source_lines": [
-        2690,
-        2935,
-        2960
+        2691,
+        2936,
+        2961
       ],
       "review_status": "pending_native_review"
     },
@@ -6710,8 +6711,8 @@
       "id": "AR-0681",
       "arabic": "نوع الموعد (استئناف، طعن، تقديم مستند...)",
       "source_lines": [
-        2692,
-        2936
+        2693,
+        2937
       ],
       "review_status": "pending_native_review"
     },
@@ -6719,8 +6720,8 @@
       "id": "AR-0682",
       "arabic": "ملاحظة (اختياري)",
       "source_lines": [
-        2693,
-        2936
+        2694,
+        2937
       ],
       "review_status": "pending_native_review"
     },
@@ -6728,8 +6729,8 @@
       "id": "AR-0683",
       "arabic": "حساب موعد مبدئي",
       "source_lines": [
-        2695,
-        2717
+        2696,
+        2718
       ],
       "review_status": "pending_native_review"
     },
@@ -6737,7 +6738,7 @@
       "id": "AR-0684",
       "arabic": "حدد القاعدة وتاريخ بداية الحساب الذي راجعه المحامي",
       "source_lines": [
-        2696
+        2697
       ],
       "review_status": "pending_native_review"
     },
@@ -6745,7 +6746,7 @@
       "id": "AR-0685",
       "arabic": "جارٍ الحساب...",
       "source_lines": [
-        2697
+        2698
       ],
       "review_status": "pending_native_review"
     },
@@ -6753,7 +6754,7 @@
       "id": "AR-0686",
       "arabic": "لم يطبق تمديد عطلة في هذا الحساب.",
       "source_lines": [
-        2705
+        2706
       ],
       "review_status": "pending_native_review"
     },
@@ -6761,7 +6762,7 @@
       "id": "AR-0687",
       "arabic": "أساس الحساب والافتراضات — للمراجعة فقط",
       "source_lines": [
-        2706
+        2707
       ],
       "review_status": "pending_native_review"
     },
@@ -6769,7 +6770,7 @@
       "id": "AR-0688",
       "arabic": "بداية الميعاد التي يجب أن يؤكدها المحامي:",
       "source_lines": [
-        2706
+        2707
       ],
       "review_status": "pending_native_review"
     },
@@ -6777,7 +6778,7 @@
       "id": "AR-0689",
       "arabic": "المصدر القانوني:",
       "source_lines": [
-        2706
+        2707
       ],
       "review_status": "pending_native_review"
     },
@@ -6785,7 +6786,7 @@
       "id": "AR-0690",
       "arabic": "غير محدد في المسودة",
       "source_lines": [
-        2706
+        2707
       ],
       "review_status": "pending_native_review"
     },
@@ -6793,9 +6794,9 @@
       "id": "AR-0691",
       "arabic": "خطوات الحساب",
       "source_lines": [
-        2706,
         2707,
-        2713
+        2708,
+        2714
       ],
       "review_status": "pending_native_review"
     },
@@ -6803,7 +6804,7 @@
       "id": "AR-0692",
       "arabic": "امتدادات العطلات",
       "source_lines": [
-        2706
+        2707
       ],
       "review_status": "pending_native_review"
     },
@@ -6811,7 +6812,7 @@
       "id": "AR-0693",
       "arabic": "حساب مبدئي غير معتمد — لا يمثل ميعاداً قانونياً مؤكداً.",
       "source_lines": [
-        2707
+        2708
       ],
       "review_status": "pending_native_review"
     },
@@ -6819,7 +6820,7 @@
       "id": "AR-0694",
       "arabic": "القاعدة:",
       "source_lines": [
-        2707
+        2708
       ],
       "review_status": "pending_native_review"
     },
@@ -6843,30 +6844,30 @@
         2100,
         2112,
         2122,
-        2204,
-        2212,
-        2229,
+        2205,
+        2213,
         2230,
-        2234,
+        2231,
         2235,
-        2248,
-        2292,
-        2362,
-        2427,
-        2494,
-        2562,
-        2584,
-        2592,
-        2601,
-        2622,
-        2641,
-        2679,
-        2707,
-        2728,
-        2753,
-        2880,
-        2902,
-        2903
+        2236,
+        2249,
+        2293,
+        2363,
+        2428,
+        2495,
+        2563,
+        2585,
+        2593,
+        2602,
+        2623,
+        2642,
+        2680,
+        2708,
+        2729,
+        2754,
+        2881,
+        2903,
+        2904
       ],
       "review_status": "pending_native_review"
     },
@@ -6874,7 +6875,7 @@
       "id": "AR-0696",
       "arabic": "بداية الحساب:",
       "source_lines": [
-        2707
+        2708
       ],
       "review_status": "pending_native_review"
     },
@@ -6882,7 +6883,7 @@
       "id": "AR-0697",
       "arabic": "النهاية الحسابية:",
       "source_lines": [
-        2707
+        2708
       ],
       "review_status": "pending_native_review"
     },
@@ -6890,7 +6891,7 @@
       "id": "AR-0698",
       "arabic": "التاريخ بعد الامتداد:",
       "source_lines": [
-        2707
+        2708
       ],
       "review_status": "pending_native_review"
     },
@@ -6898,7 +6899,7 @@
       "id": "AR-0699",
       "arabic": "خطوات الحساب:",
       "source_lines": [
-        2707
+        2708
       ],
       "review_status": "pending_native_review"
     },
@@ -6906,7 +6907,7 @@
       "id": "AR-0700",
       "arabic": "التحذيرات:",
       "source_lines": [
-        2707
+        2708
       ],
       "review_status": "pending_native_review"
     },
@@ -6914,7 +6915,7 @@
       "id": "AR-0701",
       "arabic": "استخدام التاريخ في نموذج الموعد",
       "source_lines": [
-        2708
+        2709
       ],
       "review_status": "pending_native_review"
     },
@@ -6922,7 +6923,7 @@
       "id": "AR-0702",
       "arabic": "حفظ الموعد المحسوب في القضية",
       "source_lines": [
-        2709
+        2710
       ],
       "review_status": "pending_native_review"
     },
@@ -6930,7 +6931,7 @@
       "id": "AR-0703",
       "arabic": "موعد قانوني محسوب",
       "source_lines": [
-        2710
+        2711
       ],
       "review_status": "pending_native_review"
     },
@@ -6938,7 +6939,7 @@
       "id": "AR-0704",
       "arabic": "تم حفظ الموعد مع خطوات الحساب والتحذيرات",
       "source_lines": [
-        2713
+        2714
       ],
       "review_status": "pending_native_review"
     },
@@ -6946,7 +6947,7 @@
       "id": "AR-0705",
       "arabic": "مسودة — غير معتمدة من محامٍ",
       "source_lines": [
-        2717
+        2718
       ],
       "review_status": "pending_native_review"
     },
@@ -6954,7 +6955,7 @@
       "id": "AR-0706",
       "arabic": "تمت مراجعة القاعدة",
       "source_lines": [
-        2717
+        2718
       ],
       "review_status": "pending_native_review"
     },
@@ -6962,7 +6963,7 @@
       "id": "AR-0707",
       "arabic": "التاريخ الحسابي المقترح:",
       "source_lines": [
-        2717
+        2718
       ],
       "review_status": "pending_native_review"
     },
@@ -6970,7 +6971,7 @@
       "id": "AR-0708",
       "arabic": "نهاية المدة قبل الامتدادات:",
       "source_lines": [
-        2717
+        2718
       ],
       "review_status": "pending_native_review"
     },
@@ -6978,7 +6979,7 @@
       "id": "AR-0709",
       "arabic": "اختر نوع الميعاد",
       "source_lines": [
-        2723
+        2724
       ],
       "review_status": "pending_native_review"
     },
@@ -6986,7 +6987,7 @@
       "id": "AR-0710",
       "arabic": "مسودة غير معتمدة",
       "source_lines": [
-        2724
+        2725
       ],
       "review_status": "pending_native_review"
     },
@@ -6994,7 +6995,7 @@
       "id": "AR-0711",
       "arabic": "تعذر تحميل القواعد",
       "source_lines": [
-        2726
+        2727
       ],
       "review_status": "pending_native_review"
     },
@@ -7002,7 +7003,7 @@
       "id": "AR-0712",
       "arabic": "حاسبة المواعيد (تجريبية)",
       "source_lines": [
-        2727
+        2728
       ],
       "review_status": "pending_native_review"
     },
@@ -7010,7 +7011,7 @@
       "id": "AR-0713",
       "arabic": "اختر القاعدة وتاريخ بداية الحساب بعد مراجعتهما. القواعد والعطلات الحالية مسودات غير معتمدة؛ لا تعتمد على الناتج قبل مراجعة محامٍ مصري.",
       "source_lines": [
-        2728
+        2729
       ],
       "review_status": "pending_native_review"
     },
@@ -7018,7 +7019,7 @@
       "id": "AR-0714",
       "arabic": "تاريخ بداية الحساب (بعد التحقق)",
       "source_lines": [
-        2729
+        2730
       ],
       "review_status": "pending_native_review"
     },
@@ -7026,7 +7027,7 @@
       "id": "AR-0715",
       "arabic": "أيام مسافة إضافية (اختياري)",
       "source_lines": [
-        2729
+        2730
       ],
       "review_status": "pending_native_review"
     },
@@ -7034,7 +7035,7 @@
       "id": "AR-0716",
       "arabic": "المواعيد المسجلة في القضية",
       "source_lines": [
-        2730
+        2731
       ],
       "review_status": "pending_native_review"
     },
@@ -7042,9 +7043,9 @@
       "id": "AR-0717",
       "arabic": "لا توجد مواعيد قانونية مسجلة. هذه المواعيد منفصلة عن جلسات المحكمة.",
       "source_lines": [
-        2731,
-        2937,
-        2969
+        2732,
+        2938,
+        2970
       ],
       "review_status": "pending_native_review"
     },
@@ -7052,8 +7053,8 @@
       "id": "AR-0718",
       "arabic": "إضافة موعد",
       "source_lines": [
-        2732,
-        2936
+        2733,
+        2937
       ],
       "review_status": "pending_native_review"
     },
@@ -7061,9 +7062,9 @@
       "id": "AR-0719",
       "arabic": "أدخل نوع الموعد وتاريخه",
       "source_lines": [
-        2732,
-        2937,
-        2960
+        2733,
+        2938,
+        2961
       ],
       "review_status": "pending_native_review"
     },
@@ -7071,7 +7072,7 @@
       "id": "AR-0720",
       "arabic": "تاريخ العطلة",
       "source_lines": [
-        2735
+        2736
       ],
       "review_status": "pending_native_review"
     },
@@ -7079,7 +7080,7 @@
       "id": "AR-0721",
       "arabic": "اسم العطلة بالعربية",
       "source_lines": [
-        2736
+        2737
       ],
       "review_status": "pending_native_review"
     },
@@ -7087,8 +7088,8 @@
       "id": "AR-0722",
       "arabic": "اسم العطلة",
       "source_lines": [
-        2736,
-        2756
+        2737,
+        2757
       ],
       "review_status": "pending_native_review"
     },
@@ -7096,18 +7097,18 @@
       "id": "AR-0723",
       "arabic": "حذف",
       "source_lines": [
-        2393,
         2394,
-        2584,
-        2661,
-        2679,
-        2742,
-        2762,
-        2785,
-        2942,
+        2395,
+        2585,
+        2662,
+        2680,
+        2743,
+        2763,
+        2786,
         2943,
-        2956,
-        2971
+        2944,
+        2957,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -7115,7 +7116,7 @@
       "id": "AR-0724",
       "arabic": "لا توجد عطلات إضافية للمكتب.",
       "source_lines": [
-        2743
+        2744
       ],
       "review_status": "pending_native_review"
     },
@@ -7123,7 +7124,7 @@
       "id": "AR-0725",
       "arabic": "حفظ تقويم المكتب",
       "source_lines": [
-        2745
+        2746
       ],
       "review_status": "pending_native_review"
     },
@@ -7131,7 +7132,7 @@
       "id": "AR-0726",
       "arabic": "تم حفظ تقويم العطلات مع تسجيل التغيير",
       "source_lines": [
-        2746
+        2747
       ],
       "review_status": "pending_native_review"
     },
@@ -7139,7 +7140,7 @@
       "id": "AR-0727",
       "arabic": "العطلات الثابتة والمشتركة تظل مسودة جزئية؛ هذه الإضافات خاصة بهذا المكتب فقط.",
       "source_lines": [
-        2753
+        2754
       ],
       "review_status": "pending_native_review"
     },
@@ -7151,11 +7152,11 @@
         1372,
         1433,
         1471,
-        2292,
-        2673,
-        2753,
-        2930,
-        2959
+        2293,
+        2674,
+        2754,
+        2931,
+        2960
       ],
       "review_status": "pending_native_review"
     },
@@ -7163,7 +7164,7 @@
       "id": "AR-0729",
       "arabic": "إضافة عطلة",
       "source_lines": [
-        2755
+        2756
       ],
       "review_status": "pending_native_review"
     },
@@ -7171,7 +7172,7 @@
       "id": "AR-0730",
       "arabic": "أدخل التاريخ واسم العطلة",
       "source_lines": [
-        2756
+        2757
       ],
       "review_status": "pending_native_review"
     },
@@ -7179,7 +7180,7 @@
       "id": "AR-0731",
       "arabic": "هذا التاريخ موجود بالفعل",
       "source_lines": [
-        2757
+        2758
       ],
       "review_status": "pending_native_review"
     },
@@ -7187,7 +7188,7 @@
       "id": "AR-0732",
       "arabic": "تقويم العطلات الخاص بالمكتب",
       "source_lines": [
-        2761
+        2762
       ],
       "review_status": "pending_native_review"
     },
@@ -7195,7 +7196,7 @@
       "id": "AR-0733",
       "arabic": "يمكن لمسؤول المكتب إضافة العطلات المؤرخة أو حذفها. كل حفظ يسجل نسخة قبل/بعد في سجل المراجعة. لا يجعل ذلك القواعد أو التقويم معتمدين قانونياً.",
       "source_lines": [
-        2762
+        2763
       ],
       "review_status": "pending_native_review"
     },
@@ -7203,8 +7204,8 @@
       "id": "AR-0734",
       "arabic": "اكتب ملاحظة داخلية للقضية...",
       "source_lines": [
-        2767,
-        2938
+        2768,
+        2939
       ],
       "review_status": "pending_native_review"
     },
@@ -7212,9 +7213,9 @@
       "id": "AR-0735",
       "arabic": "ملاحظات القضية",
       "source_lines": [
-        2357,
-        2768,
-        2938
+        2358,
+        2769,
+        2939
       ],
       "review_status": "pending_native_review"
     },
@@ -7222,9 +7223,9 @@
       "id": "AR-0736",
       "arabic": "لا توجد ملاحظات بعد.",
       "source_lines": [
-        2768,
-        2938,
-        2969
+        2769,
+        2939,
+        2970
       ],
       "review_status": "pending_native_review"
     },
@@ -7232,8 +7233,8 @@
       "id": "AR-0737",
       "arabic": "حفظ الملاحظة",
       "source_lines": [
-        2769,
-        2938
+        2770,
+        2939
       ],
       "review_status": "pending_native_review"
     },
@@ -7241,9 +7242,9 @@
       "id": "AR-0738",
       "arabic": "اكتب الملاحظة أولا",
       "source_lines": [
-        2769,
-        2938,
-        2960
+        2770,
+        2939,
+        2961
       ],
       "review_status": "pending_native_review"
     },
@@ -7251,7 +7252,7 @@
       "id": "AR-0739",
       "arabic": "سيظهر هنا هيكل المذكرة أو صحيفة الدعوى...",
       "source_lines": [
-        2771
+        2772
       ],
       "review_status": "pending_native_review"
     },
@@ -7259,7 +7260,7 @@
       "id": "AR-0740",
       "arabic": "تم إنشاء هيكل أولي للمراجعة",
       "source_lines": [
-        2772
+        2773
       ],
       "review_status": "pending_native_review"
     },
@@ -7267,7 +7268,7 @@
       "id": "AR-0741",
       "arabic": "تعذر إنشاء الهيكل",
       "source_lines": [
-        2772
+        2773
       ],
       "review_status": "pending_native_review"
     },
@@ -7275,7 +7276,7 @@
       "id": "AR-0742",
       "arabic": "هياكل المذكرات وصحف الدعاوى",
       "source_lines": [
-        2773
+        2774
       ],
       "review_status": "pending_native_review"
     },
@@ -7283,7 +7284,7 @@
       "id": "AR-0743",
       "arabic": "قوالب عناوين فقط تُملأ ببيانات القضية. يجب استكمال الوقائع والأسانيد والطلبات ومراجعتها بواسطة محامٍ قبل الاستخدام أو التقديم.",
       "source_lines": [
-        2773
+        2774
       ],
       "review_status": "pending_native_review"
     },
@@ -7291,7 +7292,7 @@
       "id": "AR-0744",
       "arabic": "إنشاء هيكل مذكرة",
       "source_lines": [
-        2773
+        2774
       ],
       "review_status": "pending_native_review"
     },
@@ -7299,7 +7300,7 @@
       "id": "AR-0745",
       "arabic": "إنشاء هيكل صحيفة دعوى",
       "source_lines": [
-        2773
+        2774
       ],
       "review_status": "pending_native_review"
     },
@@ -7307,7 +7308,7 @@
       "id": "AR-0746",
       "arabic": "نسخ النص",
       "source_lines": [
-        2773
+        2774
       ],
       "review_status": "pending_native_review"
     },
@@ -7315,8 +7316,8 @@
       "id": "AR-0747",
       "arabic": "وصف الأتعاب",
       "source_lines": [
-        2776,
-        2939
+        2777,
+        2940
       ],
       "review_status": "pending_native_review"
     },
@@ -7324,8 +7325,8 @@
       "id": "AR-0748",
       "arabic": "المبلغ الإجمالي",
       "source_lines": [
-        2776,
-        2939
+        2777,
+        2940
       ],
       "review_status": "pending_native_review"
     },
@@ -7333,11 +7334,11 @@
       "id": "AR-0749",
       "arabic": "المدفوع",
       "source_lines": [
-        2776,
-        2778,
+        2777,
         2779,
-        2815,
-        2939
+        2780,
+        2816,
+        2940
       ],
       "review_status": "pending_native_review"
     },
@@ -7353,22 +7354,22 @@
         1487,
         1492,
         1510,
-        2527,
-        2539,
-        2557,
-        2591,
-        2688,
-        2693,
-        2767,
-        2769,
-        2776,
-        2860,
-        2882,
-        2935,
+        2528,
+        2540,
+        2558,
+        2592,
+        2689,
+        2694,
+        2768,
+        2770,
+        2777,
+        2861,
+        2883,
         2936,
-        2938,
+        2937,
         2939,
-        2960
+        2940,
+        2961
       ],
       "review_status": "pending_native_review"
     },
@@ -7376,11 +7377,11 @@
       "id": "AR-0751",
       "arabic": "الإجمالي",
       "source_lines": [
-        2776,
-        2778,
+        2777,
         2779,
-        2815,
-        2939
+        2780,
+        2816,
+        2940
       ],
       "review_status": "pending_native_review"
     },
@@ -7389,8 +7390,8 @@
       "arabic": "المتبقي",
       "source_lines": [
         1290,
-        2778,
-        2815
+        2779,
+        2816
       ],
       "review_status": "pending_native_review"
     },
@@ -7398,9 +7399,9 @@
       "id": "AR-0753",
       "arabic": "لا توجد أتعاب مسجلة.",
       "source_lines": [
-        2778,
-        2939,
-        2969
+        2779,
+        2940,
+        2970
       ],
       "review_status": "pending_native_review"
     },
@@ -7408,8 +7409,8 @@
       "id": "AR-0754",
       "arabic": "إضافة أتعاب",
       "source_lines": [
-        2779,
-        2939
+        2780,
+        2940
       ],
       "review_status": "pending_native_review"
     },
@@ -7417,8 +7418,8 @@
       "id": "AR-0755",
       "arabic": "أدخل الوصف والإجمالي والمدفوع",
       "source_lines": [
-        2779,
-        2939
+        2780,
+        2940
       ],
       "review_status": "pending_native_review"
     },
@@ -7426,7 +7427,7 @@
       "id": "AR-0756",
       "arabic": "وصف الفاتورة أو نطاق العمل",
       "source_lines": [
-        2781
+        2782
       ],
       "review_status": "pending_native_review"
     },
@@ -7434,7 +7435,7 @@
       "id": "AR-0757",
       "arabic": "تاريخ الاستحقاق",
       "source_lines": [
-        2782
+        2783
       ],
       "review_status": "pending_native_review"
     },
@@ -7442,7 +7443,7 @@
       "id": "AR-0758",
       "arabic": "بيان الخدمة",
       "source_lines": [
-        2787
+        2788
       ],
       "review_status": "pending_native_review"
     },
@@ -7450,8 +7451,8 @@
       "id": "AR-0759",
       "arabic": "الكمية",
       "source_lines": [
-        2787,
-        2794
+        2788,
+        2795
       ],
       "review_status": "pending_native_review"
     },
@@ -7459,7 +7460,7 @@
       "id": "AR-0760",
       "arabic": "سعر الوحدة بالجنيه",
       "source_lines": [
-        2787
+        2788
       ],
       "review_status": "pending_native_review"
     },
@@ -7467,7 +7468,7 @@
       "id": "AR-0761",
       "arabic": "أدخل كمية صحيحة حتى ثلاث خانات عشرية",
       "source_lines": [
-        2792
+        2793
       ],
       "review_status": "pending_native_review"
     },
@@ -7475,7 +7476,7 @@
       "id": "AR-0762",
       "arabic": "الكمية خارج النطاق المسموح",
       "source_lines": [
-        2794
+        2795
       ],
       "review_status": "pending_native_review"
     },
@@ -7483,7 +7484,7 @@
       "id": "AR-0763",
       "arabic": "إنشاء مسودة فاتورة",
       "source_lines": [
-        2798
+        2799
       ],
       "review_status": "pending_native_review"
     },
@@ -7491,7 +7492,7 @@
       "id": "AR-0764",
       "arabic": "أدخل بياناً لكل بند",
       "source_lines": [
-        2801
+        2802
       ],
       "review_status": "pending_native_review"
     },
@@ -7499,7 +7500,7 @@
       "id": "AR-0765",
       "arabic": "تم إنشاء مسودة الفاتورة",
       "source_lines": [
-        2804
+        2805
       ],
       "review_status": "pending_native_review"
     },
@@ -7507,7 +7508,7 @@
       "id": "AR-0766",
       "arabic": "غير مدفوعة",
       "source_lines": [
-        2810
+        2811
       ],
       "review_status": "pending_native_review"
     },
@@ -7515,7 +7516,7 @@
       "id": "AR-0767",
       "arabic": "مدفوعة جزئياً",
       "source_lines": [
-        2810
+        2811
       ],
       "review_status": "pending_native_review"
     },
@@ -7523,7 +7524,7 @@
       "id": "AR-0768",
       "arabic": "مدفوعة",
       "source_lines": [
-        2810
+        2811
       ],
       "review_status": "pending_native_review"
     },
@@ -7531,7 +7532,7 @@
       "id": "AR-0769",
       "arabic": "ملغاة",
       "source_lines": [
-        2810
+        2811
       ],
       "review_status": "pending_native_review"
     },
@@ -7539,8 +7540,8 @@
       "id": "AR-0770",
       "arabic": "مسودة فاتورة",
       "source_lines": [
-        2798,
-        2813
+        2799,
+        2814
       ],
       "review_status": "pending_native_review"
     },
@@ -7548,7 +7549,7 @@
       "id": "AR-0771",
       "arabic": "الإجمالي:",
       "source_lines": [
-        2815
+        2816
       ],
       "review_status": "pending_native_review"
     },
@@ -7556,7 +7557,7 @@
       "id": "AR-0772",
       "arabic": "المدفوع:",
       "source_lines": [
-        2815
+        2816
       ],
       "review_status": "pending_native_review"
     },
@@ -7564,7 +7565,7 @@
       "id": "AR-0773",
       "arabic": "المتبقي:",
       "source_lines": [
-        2815
+        2816
       ],
       "review_status": "pending_native_review"
     },
@@ -7572,7 +7573,7 @@
       "id": "AR-0774",
       "arabic": "طباعة الفاتورة",
       "source_lines": [
-        2818
+        2819
       ],
       "review_status": "pending_native_review"
     },
@@ -7580,7 +7581,7 @@
       "id": "AR-0775",
       "arabic": "إصدار الفاتورة",
       "source_lines": [
-        2819
+        2820
       ],
       "review_status": "pending_native_review"
     },
@@ -7588,7 +7589,7 @@
       "id": "AR-0776",
       "arabic": "إصدار الفاتورة وتثبيت رقمها؟ لا يمكن تعديلها بعد الإصدار.",
       "source_lines": [
-        2819
+        2820
       ],
       "review_status": "pending_native_review"
     },
@@ -7596,7 +7597,7 @@
       "id": "AR-0777",
       "arabic": "إلغاء الفاتورة",
       "source_lines": [
-        2820
+        2821
       ],
       "review_status": "pending_native_review"
     },
@@ -7604,7 +7605,7 @@
       "id": "AR-0778",
       "arabic": "أدخل سبب إلغاء الفاتورة",
       "source_lines": [
-        2820
+        2821
       ],
       "review_status": "pending_native_review"
     },
@@ -7612,7 +7613,7 @@
       "id": "AR-0779",
       "arabic": "مبلغ الدفعة بالجنيه",
       "source_lines": [
-        2822
+        2823
       ],
       "review_status": "pending_native_review"
     },
@@ -7620,7 +7621,7 @@
       "id": "AR-0780",
       "arabic": "نقداً",
       "source_lines": [
-        2823
+        2824
       ],
       "review_status": "pending_native_review"
     },
@@ -7628,7 +7629,7 @@
       "id": "AR-0781",
       "arabic": "مرجع التحويل (اختياري)",
       "source_lines": [
-        2824
+        2825
       ],
       "review_status": "pending_native_review"
     },
@@ -7636,7 +7637,7 @@
       "id": "AR-0782",
       "arabic": "تسجيل دفعة",
       "source_lines": [
-        2825
+        2826
       ],
       "review_status": "pending_native_review"
     },
@@ -7644,7 +7645,7 @@
       "id": "AR-0783",
       "arabic": "تم تسجيل الدفعة",
       "source_lines": [
-        2829
+        2830
       ],
       "review_status": "pending_native_review"
     },
@@ -7652,7 +7653,7 @@
       "id": "AR-0784",
       "arabic": "إيصال الدفعة #",
       "source_lines": [
-        2833
+        2834
       ],
       "review_status": "pending_native_review"
     },
@@ -7660,7 +7661,7 @@
       "id": "AR-0785",
       "arabic": "لا توجد فواتير لهذه القضية بعد.",
       "source_lines": [
-        2835
+        2836
       ],
       "review_status": "pending_native_review"
     },
@@ -7668,7 +7669,7 @@
       "id": "AR-0786",
       "arabic": "تعذر تحميل الفواتير",
       "source_lines": [
-        2836
+        2837
       ],
       "review_status": "pending_native_review"
     },
@@ -7676,7 +7677,7 @@
       "id": "AR-0787",
       "arabic": "إنشاء فاتورة أتعاب",
       "source_lines": [
-        2837
+        2838
       ],
       "review_status": "pending_native_review"
     },
@@ -7684,7 +7685,7 @@
       "id": "AR-0788",
       "arabic": "تُحسب المبالغ بدقة بالقرش. الفاتورة المطبوعة مستند أتعاب عادي وليست فاتورة ضريبية إلكترونية.",
       "source_lines": [
-        2837
+        2838
       ],
       "review_status": "pending_native_review"
     },
@@ -7692,7 +7693,7 @@
       "id": "AR-0789",
       "arabic": "إضافة بند",
       "source_lines": [
-        2837
+        2838
       ],
       "review_status": "pending_native_review"
     },
@@ -7700,7 +7701,7 @@
       "id": "AR-0790",
       "arabic": "فواتير القضية وسجل التحصيل",
       "source_lines": [
-        2838
+        2839
       ],
       "review_status": "pending_native_review"
     },
@@ -7708,7 +7709,7 @@
       "id": "AR-0791",
       "arabic": "تمت مراجعة النص",
       "source_lines": [
-        2845
+        2846
       ],
       "review_status": "pending_native_review"
     },
@@ -7716,8 +7717,8 @@
       "id": "AR-0792",
       "arabic": "تم تصحيح النص",
       "source_lines": [
-        2526,
-        2845
+        2527,
+        2846
       ],
       "review_status": "pending_native_review"
     },
@@ -7725,9 +7726,9 @@
       "id": "AR-0793",
       "arabic": "يحتاج إعادة فحص",
       "source_lines": [
-        2530,
-        2845,
-        2866
+        2531,
+        2846,
+        2867
       ],
       "review_status": "pending_native_review"
     },
@@ -7735,8 +7736,8 @@
       "id": "AR-0794",
       "arabic": "لم تتم المراجعة",
       "source_lines": [
-        2526,
-        2845
+        2527,
+        2846
       ],
       "review_status": "pending_native_review"
     },
@@ -7744,8 +7745,8 @@
       "id": "AR-0795",
       "arabic": "لا توجد مقاطع نصية قابلة للمراجعة",
       "source_lines": [
-        2849,
-        2851
+        2850,
+        2852
       ],
       "review_status": "pending_native_review"
     },
@@ -7753,23 +7754,23 @@
       "id": "AR-0796",
       "arabic": "مقطع",
       "source_lines": [
-        2185,
-        2233,
-        2257,
-        2267,
-        2271,
-        2292,
-        2302,
-        2527,
+        2186,
+        2234,
+        2258,
+        2268,
+        2272,
+        2293,
+        2303,
         2528,
-        2557,
-        2562,
-        2617,
-        2849,
-        2854,
-        2868,
-        2876,
-        2880
+        2529,
+        2558,
+        2563,
+        2618,
+        2850,
+        2855,
+        2869,
+        2877,
+        2881
       ],
       "review_status": "pending_native_review"
     },
@@ -7777,7 +7778,7 @@
       "id": "AR-0797",
       "arabic": "رقم الصفحة المستخرج:",
       "source_lines": [
-        2855
+        2856
       ],
       "review_status": "pending_native_review"
     },
@@ -7785,7 +7786,7 @@
       "id": "AR-0798",
       "arabic": "ليس تحققاً مستقلاً من الأصل",
       "source_lines": [
-        2855
+        2856
       ],
       "review_status": "pending_native_review"
     },
@@ -7793,7 +7794,7 @@
       "id": "AR-0799",
       "arabic": "النص المستخرج الأصلي",
       "source_lines": [
-        2856
+        2857
       ],
       "review_status": "pending_native_review"
     },
@@ -7801,7 +7802,7 @@
       "id": "AR-0800",
       "arabic": "النص المستخرج — للقراءة فقط",
       "source_lines": [
-        2857
+        2858
       ],
       "review_status": "pending_native_review"
     },
@@ -7809,12 +7810,12 @@
       "id": "AR-0801",
       "arabic": "النص المصحح",
       "source_lines": [
-        2502,
         2503,
-        2528,
-        2858,
-        2872,
-        2878
+        2504,
+        2529,
+        2859,
+        2873,
+        2879
       ],
       "review_status": "pending_native_review"
     },
@@ -7822,7 +7823,7 @@
       "id": "AR-0802",
       "arabic": "مرجع الصفحة (اختياري)",
       "source_lines": [
-        2859
+        2860
       ],
       "review_status": "pending_native_review"
     },
@@ -7830,7 +7831,7 @@
       "id": "AR-0803",
       "arabic": "ملاحظة المراجع (اختياري)",
       "source_lines": [
-        2860
+        2861
       ],
       "review_status": "pending_native_review"
     },
@@ -7838,7 +7839,7 @@
       "id": "AR-0804",
       "arabic": "اعتماد النص المستخرج",
       "source_lines": [
-        2862
+        2863
       ],
       "review_status": "pending_native_review"
     },
@@ -7846,7 +7847,7 @@
       "id": "AR-0805",
       "arabic": "تم تسجيل مراجعة النص",
       "source_lines": [
-        2864
+        2865
       ],
       "review_status": "pending_native_review"
     },
@@ -7854,7 +7855,7 @@
       "id": "AR-0806",
       "arabic": "تم وضع المقطع لإعادة الفحص",
       "source_lines": [
-        2868
+        2869
       ],
       "review_status": "pending_native_review"
     },
@@ -7862,9 +7863,9 @@
       "id": "AR-0807",
       "arabic": "حفظ التصحيح",
       "source_lines": [
-        2532,
-        2871,
-        2876
+        2533,
+        2872,
+        2877
       ],
       "review_status": "pending_native_review"
     },
@@ -7872,9 +7873,9 @@
       "id": "AR-0808",
       "arabic": "أدخل النص المصحح",
       "source_lines": [
-        2502,
-        2528,
-        2872
+        2503,
+        2529,
+        2873
       ],
       "review_status": "pending_native_review"
     },
@@ -7882,7 +7883,7 @@
       "id": "AR-0809",
       "arabic": "لم يتغير النص",
       "source_lines": [
-        2873
+        2874
       ],
       "review_status": "pending_native_review"
     },
@@ -7890,7 +7891,7 @@
       "id": "AR-0810",
       "arabic": "سيتم استبدال النص المفهرس بنسخة التصحيح مع حفظ سجل المراجعة. هل تريد المتابعة؟",
       "source_lines": [
-        2874
+        2875
       ],
       "review_status": "pending_native_review"
     },
@@ -7898,7 +7899,7 @@
       "id": "AR-0811",
       "arabic": "تم حفظ التصحيح وإعادة فهرسة المقطع",
       "source_lines": [
-        2876
+        2877
       ],
       "review_status": "pending_native_review"
     },
@@ -7906,7 +7907,7 @@
       "id": "AR-0812",
       "arabic": "النص المصحح — لا تحفظه إلا بعد مقارنته بالملف الأصلي",
       "source_lines": [
-        2878
+        2879
       ],
       "review_status": "pending_native_review"
     },
@@ -7914,7 +7915,7 @@
       "id": "AR-0813",
       "arabic": "هذا المقطع أطول من حد التصحيح البالغ 20,000 حرف؛ أعد تقسيم المستند أو علّمه لإعادة الفحص.",
       "source_lines": [
-        2880
+        2881
       ],
       "review_status": "pending_native_review"
     },
@@ -7922,8 +7923,8 @@
       "id": "AR-0814",
       "arabic": "مرجع الصفحة",
       "source_lines": [
-        2859,
-        2882
+        2860,
+        2883
       ],
       "review_status": "pending_native_review"
     },
@@ -7932,9 +7933,9 @@
       "arabic": "ملاحظة المراجع",
       "source_lines": [
         1393,
-        2527,
-        2860,
-        2882
+        2528,
+        2861,
+        2883
       ],
       "review_status": "pending_native_review"
     },
@@ -7942,7 +7943,7 @@
       "id": "AR-0816",
       "arabic": "آخر مراجعة:",
       "source_lines": [
-        2883
+        2884
       ],
       "review_status": "pending_native_review"
     },
@@ -7950,8 +7951,8 @@
       "id": "AR-0817",
       "arabic": "مراجعة النص المستخرج",
       "source_lines": [
-        2562,
-        2889
+        2563,
+        2890
       ],
       "review_status": "pending_native_review"
     },
@@ -7959,7 +7960,7 @@
       "id": "AR-0818",
       "arabic": "جارٍ تحميل المقاطع…",
       "source_lines": [
-        2891
+        2892
       ],
       "review_status": "pending_native_review"
     },
@@ -7967,7 +7968,7 @@
       "id": "AR-0819",
       "arabic": "نص OCR غير متحقق",
       "source_lines": [
-        2897
+        2898
       ],
       "review_status": "pending_native_review"
     },
@@ -7975,7 +7976,7 @@
       "id": "AR-0820",
       "arabic": "بعض الصفحات لم تُفهرس: OCR غير متاح",
       "source_lines": [
-        2897
+        2898
       ],
       "review_status": "pending_native_review"
     },
@@ -7983,7 +7984,7 @@
       "id": "AR-0821",
       "arabic": "حالة الاستخراج غير مسجلة",
       "source_lines": [
-        2897
+        2898
       ],
       "review_status": "pending_native_review"
     },
@@ -7992,10 +7993,10 @@
       "arabic": "لا توجد مستندات",
       "source_lines": [
         2154,
-        2625,
-        2900,
-        2940,
-        2961
+        2626,
+        2901,
+        2941,
+        2962
       ],
       "review_status": "pending_native_review"
     },
@@ -8005,10 +8006,10 @@
       "source_lines": [
         2088,
         2122,
-        2202,
-        2244,
-        2901,
-        2940
+        2203,
+        2245,
+        2902,
+        2941
       ],
       "review_status": "pending_native_review"
     },
@@ -8016,7 +8017,7 @@
       "id": "AR-0824",
       "arabic": "تمت فهرسة الصفحات القابلة للقراءة فقط؛ OCR غير متاح لبعض الصفحات",
       "source_lines": [
-        2902
+        2903
       ],
       "review_status": "pending_native_review"
     },
@@ -8024,7 +8025,7 @@
       "id": "AR-0825",
       "arabic": "تمت الفهرسة عبر OCR؛ راجع النص مقابل الأصل قبل الاعتماد عليه",
       "source_lines": [
-        2902
+        2903
       ],
       "review_status": "pending_native_review"
     },
@@ -8032,9 +8033,9 @@
       "id": "AR-0826",
       "arabic": "تمت الفهرسة",
       "source_lines": [
-        2902,
-        2943,
-        2971
+        2903,
+        2944,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -8042,7 +8043,7 @@
       "id": "AR-0827",
       "arabic": "PDF أو Word حتى 15 ميجابايت. النص المستخرج فقط هو المفهرس؛ لا تحفظ نسخة الملف الأصلي. راجع المقاطع قبل الاعتماد عليها، خصوصاً نص OCR.",
       "source_lines": [
-        2903
+        2904
       ],
       "review_status": "pending_native_review"
     },
@@ -8050,8 +8051,8 @@
       "id": "AR-0828",
       "arabic": "إزالة",
       "source_lines": [
-        2918,
-        2962
+        2919,
+        2963
       ],
       "review_status": "pending_native_review"
     },
@@ -8059,7 +8060,7 @@
       "id": "AR-0829",
       "arabic": "إزالة هذا العضو من القضية؟",
       "source_lines": [
-        2918
+        2919
       ],
       "review_status": "pending_native_review"
     },
@@ -8067,8 +8068,8 @@
       "id": "AR-0830",
       "arabic": "إضافة / تحديث",
       "source_lines": [
-        2919,
-        2941
+        2920,
+        2942
       ],
       "review_status": "pending_native_review"
     },
@@ -8076,9 +8077,9 @@
       "id": "AR-0831",
       "arabic": "الرئيسية",
       "source_lines": [
-        2928,
-        2930,
-        2971
+        2929,
+        2931,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -8086,7 +8087,7 @@
       "id": "AR-0832",
       "arabic": "استخدم الحساب الذي أنشأته من سطر الأوامر.",
       "source_lines": [
-        2929
+        2930
       ],
       "review_status": "pending_native_review"
     },
@@ -8103,9 +8104,9 @@
         1372,
         1470,
         1471,
-        2929,
         2930,
-        2971
+        2931,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -8113,7 +8114,7 @@
       "id": "AR-0834",
       "arabic": "عنوان القضية *",
       "source_lines": [
-        2931
+        2932
       ],
       "review_status": "pending_native_review"
     },
@@ -8124,9 +8125,9 @@
         1281,
         1721,
         2134,
-        2654,
-        2933,
-        2958
+        2655,
+        2934,
+        2959
       ],
       "review_status": "pending_native_review"
     },
@@ -8134,7 +8135,7 @@
       "id": "AR-0836",
       "arabic": "PDF أو Word بنص قابل للنسخ (حتى 15 ميجابايت). يُحفظ النص المستخرج للبحث فقط ولا تُحفظ نسخة الملف الأصلي. الملفات الممسوحة ضوئيا غير مدعومة.",
       "source_lines": [
-        2940
+        2941
       ],
       "review_status": "pending_native_review"
     },
@@ -8148,26 +8149,26 @@
         1671,
         2079,
         2082,
-        2189,
-        2261,
-        2309,
-        2357,
-        2362,
-        2367,
-        2416,
-        2418,
-        2423,
+        2190,
+        2262,
+        2310,
+        2358,
+        2363,
+        2368,
+        2417,
+        2419,
         2424,
-        2426,
+        2425,
         2427,
-        2432,
-        2445,
-        2480,
-        2928,
-        2930,
-        2943,
-        2964,
-        2971
+        2428,
+        2433,
+        2446,
+        2481,
+        2929,
+        2931,
+        2944,
+        2965,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -8175,8 +8176,8 @@
       "id": "AR-0838",
       "arabic": "اكتب سؤالا أو رقم المادة",
       "source_lines": [
-        2943,
-        2964
+        2944,
+        2965
       ],
       "review_status": "pending_native_review"
     },
@@ -8184,7 +8185,7 @@
       "id": "AR-0839",
       "arabic": "اسأل عن هذه القضية والقوانين",
       "source_lines": [
-        2944
+        2945
       ],
       "review_status": "pending_native_review"
     },
@@ -8195,13 +8196,13 @@
         1356,
         1947,
         1977,
-        2185,
-        2254,
-        2257,
-        2286,
-        2356,
-        2426,
-        2945
+        2186,
+        2255,
+        2258,
+        2287,
+        2357,
+        2427,
+        2946
       ],
       "review_status": "pending_native_review"
     },
@@ -8209,7 +8210,7 @@
       "id": "AR-0841",
       "arabic": "ابحث بعنوان القضية أو العميل",
       "source_lines": [
-        2945
+        2946
       ],
       "review_status": "pending_native_review"
     },
@@ -8228,12 +8229,12 @@
         2030,
         2079,
         2082,
-        2178,
-        2187,
-        2445,
-        2646,
-        2945,
-        2946
+        2179,
+        2188,
+        2446,
+        2647,
+        2946,
+        2947
       ],
       "review_status": "pending_native_review"
     },
@@ -8242,7 +8243,7 @@
       "arabic": "الكل",
       "source_lines": [
         1678,
-        2946
+        2947
       ],
       "review_status": "pending_native_review"
     },
@@ -8250,7 +8251,7 @@
       "id": "AR-0844",
       "arabic": "مهامي المفتوحة",
       "source_lines": [
-        2946
+        2947
       ],
       "review_status": "pending_native_review"
     },
@@ -8259,8 +8260,8 @@
       "arabic": "لا توجد مهام مفتوحة",
       "source_lines": [
         1678,
-        2946,
-        2961
+        2947,
+        2962
       ],
       "review_status": "pending_native_review"
     },
@@ -8269,9 +8270,9 @@
       "arabic": "لا توجد جلسات قريبة",
       "source_lines": [
         1681,
-        2946,
-        2961,
-        2971
+        2947,
+        2962,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -8279,8 +8280,8 @@
       "id": "AR-0847",
       "arabic": "مهام مفتوحة في قضاياي",
       "source_lines": [
-        2947,
-        2954
+        2948,
+        2955
       ],
       "review_status": "pending_native_review"
     },
@@ -8288,8 +8289,8 @@
       "id": "AR-0848",
       "arabic": "جلسات خلال 14 يوما",
       "source_lines": [
-        2947,
-        2954
+        2948,
+        2955
       ],
       "review_status": "pending_native_review"
     },
@@ -8297,8 +8298,8 @@
       "id": "AR-0849",
       "arabic": "مهامي المتأخرة",
       "source_lines": [
-        2947,
-        2954
+        2948,
+        2955
       ],
       "review_status": "pending_native_review"
     },
@@ -8319,22 +8320,22 @@
         2059,
         2069,
         2075,
-        2185,
-        2252,
-        2254,
-        2257,
-        2261,
-        2267,
-        2272,
-        2277,
-        2292,
-        2303,
-        2305,
-        2336,
-        2706,
-        2944,
-        2950,
-        2964
+        2186,
+        2253,
+        2255,
+        2258,
+        2262,
+        2268,
+        2273,
+        2278,
+        2293,
+        2304,
+        2306,
+        2337,
+        2707,
+        2945,
+        2951,
+        2965
       ],
       "review_status": "pending_native_review"
     },
@@ -8342,7 +8343,7 @@
       "id": "AR-0851",
       "arabic": "ترجمة إنجليزية غير رسمية",
       "source_lines": [
-        2951
+        2952
       ],
       "review_status": "pending_native_review"
     },
@@ -8351,8 +8352,8 @@
       "arabic": "لا توجد نتائج",
       "source_lines": [
         2066,
-        2951,
-        2964
+        2952,
+        2965
       ],
       "review_status": "pending_native_review"
     },
@@ -8362,18 +8363,18 @@
       "source_lines": [
         1791,
         2066,
-        2254,
-        2277,
-        2480,
-        2617,
-        2622,
-        2646,
-        2944,
-        2948,
-        2951,
-        2964,
-        2970,
-        2971
+        2255,
+        2278,
+        2481,
+        2618,
+        2623,
+        2647,
+        2945,
+        2949,
+        2952,
+        2965,
+        2971,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -8381,7 +8382,7 @@
       "id": "AR-0854",
       "arabic": "لم أجد مصدرا ذا صلة، ولن أخمن.",
       "source_lines": [
-        2951
+        2952
       ],
       "review_status": "pending_native_review"
     },
@@ -8389,8 +8390,8 @@
       "id": "AR-0855",
       "arabic": "تعذر الاتصال بالنموذج.",
       "source_lines": [
-        2952,
-        2968
+        2953,
+        2969
       ],
       "review_status": "pending_native_review"
     },
@@ -8398,7 +8399,7 @@
       "id": "AR-0856",
       "arabic": "فشل التحقق من الاستشهادات، تُعرض المصادر فقط.",
       "source_lines": [
-        2952
+        2953
       ],
       "review_status": "pending_native_review"
     },
@@ -8406,7 +8407,7 @@
       "id": "AR-0857",
       "arabic": "تنبيه: مصادر غير سارية:",
       "source_lines": [
-        2953
+        2954
       ],
       "review_status": "pending_native_review"
     },
@@ -8414,9 +8415,9 @@
       "id": "AR-0858",
       "arabic": "مرحبا",
       "source_lines": [
-        2953,
-        2971,
-        2974
+        2954,
+        2972,
+        2975
       ],
       "review_status": "pending_native_review"
     },
@@ -8424,7 +8425,7 @@
       "id": "AR-0859",
       "arabic": "إضافة مستند:",
       "source_lines": [
-        2953
+        2954
       ],
       "review_status": "pending_native_review"
     },
@@ -8432,7 +8433,7 @@
       "id": "AR-0860",
       "arabic": "مواعيد قانونية متأخرة",
       "source_lines": [
-        2954
+        2955
       ],
       "review_status": "pending_native_review"
     },
@@ -8440,7 +8441,7 @@
       "id": "AR-0861",
       "arabic": "المواعيد القانونية القادمة",
       "source_lines": [
-        2955
+        2956
       ],
       "review_status": "pending_native_review"
     },
@@ -8448,8 +8449,8 @@
       "id": "AR-0862",
       "arabic": "لا توجد مواعيد قانونية خلال 30 يوما",
       "source_lines": [
-        2955,
-        2971
+        2956,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -8457,7 +8458,7 @@
       "id": "AR-0863",
       "arabic": "لا توجد مواعيد قانونية قريبة",
       "source_lines": [
-        2955
+        2956
       ],
       "review_status": "pending_native_review"
     },
@@ -8465,7 +8466,7 @@
       "id": "AR-0864",
       "arabic": "المواعيد القادمة",
       "source_lines": [
-        2955
+        2956
       ],
       "review_status": "pending_native_review"
     },
@@ -8473,7 +8474,7 @@
       "id": "AR-0865",
       "arabic": "لا يوجد عميل",
       "source_lines": [
-        2956
+        2957
       ],
       "review_status": "pending_native_review"
     },
@@ -8483,12 +8484,12 @@
       "source_lines": [
         1673,
         1678,
-        2910,
-        2946,
+        2911,
         2947,
-        2954,
-        2956,
-        2961
+        2948,
+        2955,
+        2957,
+        2962
       ],
       "review_status": "pending_native_review"
     },
@@ -8497,7 +8498,7 @@
       "arabic": "المهام المفتوحة",
       "source_lines": [
         1682,
-        2956
+        2957
       ],
       "review_status": "pending_native_review"
     },
@@ -8505,7 +8506,7 @@
       "id": "AR-0868",
       "arabic": "مهام مفتوحة في القضية",
       "source_lines": [
-        2956
+        2957
       ],
       "review_status": "pending_native_review"
     },
@@ -8523,11 +8524,11 @@
         2032,
         2042,
         2069,
-        2270,
-        2337,
-        2617,
-        2819,
-        2956
+        2271,
+        2338,
+        2618,
+        2820,
+        2957
       ],
       "review_status": "pending_native_review"
     },
@@ -8550,38 +8551,38 @@
         1741,
         1771,
         2073,
-        2236,
-        2357,
-        2432,
-        2513,
-        2515,
-        2532,
-        2562,
-        2592,
+        2237,
+        2358,
+        2433,
+        2514,
+        2516,
+        2533,
+        2563,
         2593,
-        2600,
+        2594,
         2601,
-        2607,
-        2658,
-        2679,
-        2709,
-        2713,
-        2745,
+        2602,
+        2608,
+        2659,
+        2680,
+        2710,
+        2714,
         2746,
-        2762,
-        2769,
-        2871,
-        2874,
-        2876,
-        2878,
-        2903,
-        2933,
-        2938,
-        2940,
-        2942,
-        2956,
-        2966,
-        2971
+        2747,
+        2763,
+        2770,
+        2872,
+        2875,
+        2877,
+        2879,
+        2904,
+        2934,
+        2939,
+        2941,
+        2943,
+        2957,
+        2967,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -8590,8 +8591,8 @@
       "arabic": "سنة القضية",
       "source_lines": [
         1733,
-        2932,
-        2958
+        2933,
+        2959
       ],
       "review_status": "pending_native_review"
     },
@@ -8609,16 +8610,16 @@
         1794,
         1803,
         1827,
-        2659,
-        2665,
-        2667,
-        2679,
-        2681,
-        2922,
-        2931,
-        2942,
-        2945,
-        2958
+        2660,
+        2666,
+        2668,
+        2680,
+        2682,
+        2923,
+        2932,
+        2943,
+        2946,
+        2959
       ],
       "review_status": "pending_native_review"
     },
@@ -8635,12 +8636,12 @@
         2032,
         2041,
         2069,
-        2261,
-        2292,
-        2335,
-        2659,
-        2942,
-        2958
+        2262,
+        2293,
+        2336,
+        2660,
+        2943,
+        2959
       ],
       "review_status": "pending_native_review"
     },
@@ -8648,7 +8649,7 @@
       "id": "AR-0874",
       "arabic": "مرحلة القضية",
       "source_lines": [
-        2958
+        2959
       ],
       "review_status": "pending_native_review"
     },
@@ -8656,7 +8657,7 @@
       "id": "AR-0875",
       "arabic": "اسم المستخدم",
       "source_lines": [
-        2959
+        2960
       ],
       "review_status": "pending_native_review"
     },
@@ -8664,7 +8665,7 @@
       "id": "AR-0876",
       "arabic": "إضافة عضو",
       "source_lines": [
-        2962
+        2963
       ],
       "review_status": "pending_native_review"
     },
@@ -8672,7 +8673,7 @@
       "id": "AR-0877",
       "arabic": "إزالة عضو",
       "source_lines": [
-        2962
+        2963
       ],
       "review_status": "pending_native_review"
     },
@@ -8681,7 +8682,7 @@
       "arabic": "الدور",
       "source_lines": [
         1612,
-        2962
+        2963
       ],
       "review_status": "pending_native_review"
     },
@@ -8698,18 +8699,18 @@
         1722,
         1792,
         1828,
-        2659,
-        2686,
-        2910,
-        2922,
-        2934,
-        2946,
+        2660,
+        2687,
+        2911,
+        2923,
+        2935,
         2947,
-        2954,
-        2956,
-        2961,
-        2963,
-        2971
+        2948,
+        2955,
+        2957,
+        2962,
+        2964,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -8717,7 +8718,7 @@
       "id": "AR-0880",
       "arabic": "قريب الاستحقاق",
       "source_lines": [
-        2963
+        2964
       ],
       "review_status": "pending_native_review"
     },
@@ -8725,7 +8726,7 @@
       "id": "AR-0881",
       "arabic": "مستند جديد",
       "source_lines": [
-        2963
+        2964
       ],
       "review_status": "pending_native_review"
     },
@@ -8734,8 +8735,8 @@
       "arabic": "اسم المستند",
       "source_lines": [
         2082,
-        2261,
-        2963
+        2262,
+        2964
       ],
       "review_status": "pending_native_review"
     },
@@ -8744,7 +8745,7 @@
       "arabic": "رفع المستند",
       "source_lines": [
         2090,
-        2963
+        2964
       ],
       "review_status": "pending_native_review"
     },
@@ -8759,55 +8760,55 @@
         2112,
         2113,
         2142,
-        2178,
-        2190,
-        2204,
-        2218,
-        2226,
-        2234,
-        2236,
-        2248,
-        2261,
-        2292,
-        2362,
-        2445,
-        2473,
-        2480,
-        2494,
-        2502,
+        2179,
+        2191,
+        2205,
+        2219,
+        2227,
+        2235,
+        2237,
+        2249,
+        2262,
+        2293,
+        2363,
+        2446,
+        2474,
+        2481,
+        2495,
         2503,
-        2515,
-        2526,
-        2528,
+        2504,
+        2516,
+        2527,
         2529,
-        2531,
-        2557,
-        2562,
-        2582,
-        2584,
-        2614,
-        2616,
-        2630,
-        2640,
-        2645,
+        2530,
+        2532,
+        2558,
+        2563,
+        2583,
+        2585,
+        2615,
+        2617,
+        2631,
+        2641,
         2646,
-        2679,
-        2773,
-        2845,
-        2856,
+        2647,
+        2680,
+        2774,
+        2846,
         2857,
         2858,
-        2862,
-        2864,
-        2872,
+        2859,
+        2863,
+        2865,
         2873,
         2874,
-        2878,
-        2889,
-        2902,
+        2875,
+        2879,
+        2890,
         2903,
-        2940,
-        2964
+        2904,
+        2941,
+        2965
       ],
       "review_status": "pending_native_review"
     },
@@ -8815,7 +8816,7 @@
       "id": "AR-0885",
       "arabic": "حساب جديد؟",
       "source_lines": [
-        2965
+        2966
       ],
       "review_status": "pending_native_review"
     },
@@ -8823,7 +8824,7 @@
       "id": "AR-0886",
       "arabic": "اطلب حسابا",
       "source_lines": [
-        2965
+        2966
       ],
       "review_status": "pending_native_review"
     },
@@ -8831,7 +8832,7 @@
       "id": "AR-0887",
       "arabic": "إنشاء الحسابات متاح لمسؤول المكتب فقط. اطلب من مسؤول المكتب إنشاء حسابك من الإعدادات.",
       "source_lines": [
-        2965
+        2966
       ],
       "review_status": "pending_native_review"
     },
@@ -8840,8 +8841,8 @@
       "arabic": "اللغة",
       "source_lines": [
         1416,
-        2966,
-        2967
+        2967,
+        2968
       ],
       "review_status": "pending_native_review"
     },
@@ -8849,7 +8850,7 @@
       "id": "AR-0889",
       "arabic": "هذا الإصدار مخصص لمكتب واحد. لا تفتح التسجيل العام قبل تفعيل واختبار عزل بيانات المكاتب.",
       "source_lines": [
-        2967
+        2968
       ],
       "review_status": "pending_native_review"
     },
@@ -8857,7 +8858,7 @@
       "id": "AR-0890",
       "arabic": "يمكن للمسؤول فقط إنشاء حسابات. التسجيل العام غير متاح.",
       "source_lines": [
-        2968
+        2969
       ],
       "review_status": "pending_native_review"
     },
@@ -8865,7 +8866,7 @@
       "id": "AR-0891",
       "arabic": "تم إنشاء الحساب",
       "source_lines": [
-        2968
+        2969
       ],
       "review_status": "pending_native_review"
     },
@@ -8873,7 +8874,7 @@
       "id": "AR-0892",
       "arabic": "ملخص القضية",
       "source_lines": [
-        2969
+        2970
       ],
       "review_status": "pending_native_review"
     },
@@ -8883,8 +8884,8 @@
       "source_lines": [
         1675,
         1789,
-        2949,
-        2971
+        2950,
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -8892,7 +8893,7 @@
       "id": "AR-0894",
       "arabic": "لا نتائج",
       "source_lines": [
-        2971
+        2972
       ],
       "review_status": "pending_native_review"
     },
@@ -8959,7 +8960,7 @@
         1086,
         1291,
         2112,
-        2230
+        2231
       ],
       "review_status": "pending_native_review"
     },
@@ -9053,7 +9054,7 @@
       "source_lines": [
         1361,
         1365,
-        2443
+        2444
       ],
       "review_status": "pending_native_review"
     },
@@ -9195,7 +9196,7 @@
         1757,
         1772,
         1794,
-        2931
+        2932
       ],
       "review_status": "pending_native_review"
     },
@@ -9209,7 +9210,7 @@
         1794,
         1801,
         1822,
-        2679
+        2680
       ],
       "review_status": "pending_native_review"
     },
@@ -9237,17 +9238,17 @@
         2015,
         2059,
         2072,
-        2242,
-        2245,
-        2252,
-        2272,
-        2305,
-        2336,
-        2660,
-        2942,
-        2953,
-        2956,
-        2967
+        2243,
+        2246,
+        2253,
+        2273,
+        2306,
+        2337,
+        2661,
+        2943,
+        2954,
+        2957,
+        2968
       ],
       "review_status": "pending_native_review"
     },
@@ -9364,7 +9365,7 @@
       "id": "AR-0944",
       "arabic": "مهام منجزة",
       "source_lines": [
-        2910
+        2911
       ],
       "review_status": "pending_native_review"
     },
@@ -9372,7 +9373,7 @@
       "id": "AR-0945",
       "arabic": "إجمالي المهام",
       "source_lines": [
-        2910
+        2911
       ],
       "review_status": "pending_native_review"
     },
@@ -9380,7 +9381,7 @@
       "id": "AR-0946",
       "arabic": "توزيع عبء العمل",
       "source_lines": [
-        2914
+        2915
       ],
       "review_status": "pending_native_review"
     },
@@ -9388,7 +9389,7 @@
       "id": "AR-0947",
       "arabic": "لا يوجد أعضاء في فريق القضية.",
       "source_lines": [
-        2915
+        2916
       ],
       "review_status": "pending_native_review"
     },
@@ -9396,7 +9397,7 @@
       "id": "AR-0948",
       "arabic": "مهام غير معيّنة",
       "source_lines": [
-        2916
+        2917
       ],
       "review_status": "pending_native_review"
     },
@@ -9404,7 +9405,7 @@
       "id": "AR-0949",
       "arabic": "أعضاء الفريق",
       "source_lines": [
-        2917
+        2918
       ],
       "review_status": "pending_native_review"
     },
@@ -9415,9 +9416,9 @@
         1494,
         1857,
         2125,
-        2446,
-        2494,
-        2619
+        2447,
+        2495,
+        2620
       ],
       "review_status": "pending_native_review"
     },
@@ -9510,7 +9511,7 @@
       "id": "AR-0963",
       "arabic": "أدخل النص المصحح أولاً.",
       "source_lines": [
-        2502
+        2503
       ],
       "review_status": "pending_native_review"
     },
@@ -9518,7 +9519,7 @@
       "id": "AR-0964",
       "arabic": "النص المصحح يتجاوز 20,000 حرف.",
       "source_lines": [
-        2503
+        2504
       ],
       "review_status": "pending_native_review"
     },
@@ -9526,7 +9527,7 @@
       "id": "AR-0965",
       "arabic": "تم حفظ قرار مراجعة الاستخراج في سجل التدقيق.",
       "source_lines": [
-        2513
+        2514
       ],
       "review_status": "pending_native_review"
     },
@@ -9534,7 +9535,7 @@
       "id": "AR-0966",
       "arabic": "تعذر حفظ المراجعة. أعد تحميل النص وحاول مجدداً.",
       "source_lines": [
-        2515
+        2516
       ],
       "review_status": "pending_native_review"
     },
@@ -9542,7 +9543,7 @@
       "id": "AR-0967",
       "arabic": "يتطلب إعادة الفحص",
       "source_lines": [
-        2526
+        2527
       ],
       "review_status": "pending_native_review"
     },
@@ -9550,7 +9551,7 @@
       "id": "AR-0968",
       "arabic": "له سجل مراجعة",
       "source_lines": [
-        2526
+        2527
       ],
       "review_status": "pending_native_review"
     },
@@ -9558,7 +9559,7 @@
       "id": "AR-0969",
       "arabic": "ملاحظة المراجع (اختيارية)",
       "source_lines": [
-        2527
+        2528
       ],
       "review_status": "pending_native_review"
     },
@@ -9566,7 +9567,7 @@
       "id": "AR-0970",
       "arabic": "ملاحظة مراجعة المقطع ",
       "source_lines": [
-        2527
+        2528
       ],
       "review_status": "pending_native_review"
     },
@@ -9574,7 +9575,7 @@
       "id": "AR-0971",
       "arabic": "أدخل النص المصحح بعد الرجوع إلى المستند الأصلي.",
       "source_lines": [
-        2528
+        2529
       ],
       "review_status": "pending_native_review"
     },
@@ -9582,7 +9583,7 @@
       "id": "AR-0972",
       "arabic": "النص المصحح للمقطع ",
       "source_lines": [
-        2528
+        2529
       ],
       "review_status": "pending_native_review"
     },
@@ -9590,8 +9591,8 @@
       "id": "AR-0973",
       "arabic": "اعتماد النص",
       "source_lines": [
-        2529,
-        2862
+        2530,
+        2863
       ],
       "review_status": "pending_native_review"
     },
@@ -9599,9 +9600,9 @@
       "id": "AR-0974",
       "arabic": "تصحيح النص",
       "source_lines": [
-        2526,
-        2531,
-        2845
+        2527,
+        2532,
+        2846
       ],
       "review_status": "pending_native_review"
     },
@@ -9612,18 +9613,18 @@
         1416,
         1464,
         2024,
-        2234,
-        2252,
-        2296,
-        2479,
-        2537,
-        2557,
-        2610,
-        2613,
-        2617,
-        2855,
-        2859,
-        2967
+        2235,
+        2253,
+        2297,
+        2480,
+        2538,
+        2558,
+        2611,
+        2614,
+        2618,
+        2856,
+        2860,
+        2968
       ],
       "review_status": "pending_native_review"
     },
@@ -9631,7 +9632,7 @@
       "id": "AR-0976",
       "arabic": "آخر ملاحظة: ",
       "source_lines": [
-        2539
+        2540
       ],
       "review_status": "pending_native_review"
     },
@@ -9639,7 +9640,7 @@
       "id": "AR-0977",
       "arabic": "لا توجد مقاطع نصية متاحة للمراجعة.",
       "source_lines": [
-        2545
+        2546
       ],
       "review_status": "pending_native_review"
     },
@@ -9647,7 +9648,7 @@
       "id": "AR-0978",
       "arabic": "راجع كل مقطع مقابل المستند الأصلي. قرارات الاعتماد والتصحيح وإعادة الفحص تُحفظ مع هوية المراجع والتوقيت؛ لا تعتمد على النص المستخرج دون التحقق من الأصل.",
       "source_lines": [
-        2562
+        2563
       ],
       "review_status": "pending_native_review"
     },
@@ -9655,7 +9656,7 @@
       "id": "AR-0979",
       "arabic": "تُعرض أول 100 مقطع فقط في هذه الشاشة. استخدم صفحات المستند ومراجع المقاطع لتحديد مواضع المراجعة.",
       "source_lines": [
-        2562
+        2563
       ],
       "review_status": "pending_native_review"
     },
@@ -9663,7 +9664,7 @@
       "id": "AR-0980",
       "arabic": "جارٍ تحميل سجل المراجعة...",
       "source_lines": [
-        2548
+        2549
       ],
       "review_status": "pending_native_review"
     },
@@ -9671,14 +9672,14 @@
       "id": "AR-0981",
       "arabic": "المقطع ",
       "source_lines": [
-        2267,
-        2271,
-        2302,
-        2527,
-        2557,
-        2617,
-        2868,
-        2880
+        2268,
+        2272,
+        2303,
+        2528,
+        2558,
+        2618,
+        2869,
+        2881
       ],
       "review_status": "pending_native_review"
     },
@@ -9686,7 +9687,7 @@
       "id": "AR-0982",
       "arabic": "مقبول",
       "source_lines": [
-        2557
+        2558
       ],
       "review_status": "pending_native_review"
     },
@@ -9694,7 +9695,7 @@
       "id": "AR-0983",
       "arabic": "تم التصحيح",
       "source_lines": [
-        2557
+        2558
       ],
       "review_status": "pending_native_review"
     },
@@ -9702,10 +9703,10 @@
       "id": "AR-0984",
       "arabic": "إعادة فحص",
       "source_lines": [
-        2530,
-        2557,
-        2845,
-        2866
+        2531,
+        2558,
+        2846,
+        2867
       ],
       "review_status": "pending_native_review"
     },
@@ -9713,8 +9714,8 @@
       "id": "AR-0985",
       "arabic": "المراجع رقم ",
       "source_lines": [
-        2557,
-        2607
+        2558,
+        2608
       ],
       "review_status": "pending_native_review"
     },
@@ -9722,8 +9723,8 @@
       "id": "AR-0986",
       "arabic": "ملاحظة: ",
       "source_lines": [
-        2539,
-        2557
+        2540,
+        2558
       ],
       "review_status": "pending_native_review"
     },
@@ -9731,7 +9732,7 @@
       "id": "AR-0987",
       "arabic": "النص قبل التصحيح",
       "source_lines": [
-        2557
+        2558
       ],
       "review_status": "pending_native_review"
     },
@@ -9739,7 +9740,7 @@
       "id": "AR-0988",
       "arabic": "النص بعد التصحيح",
       "source_lines": [
-        2557
+        2558
       ],
       "review_status": "pending_native_review"
     },
@@ -9747,7 +9748,7 @@
       "id": "AR-0989",
       "arabic": "لا يوجد سجل مراجعة لهذا المستند.",
       "source_lines": [
-        2558
+        2559
       ],
       "review_status": "pending_native_review"
     },
@@ -9755,7 +9756,7 @@
       "id": "AR-0990",
       "arabic": "تعذر تحميل سجل المراجعة. تحقق من صلاحية الوصول وحاول مجدداً.",
       "source_lines": [
-        2559
+        2560
       ],
       "review_status": "pending_native_review"
     },
@@ -9834,7 +9835,7 @@
       "id": "AR-0999",
       "arabic": "جارٍ تحميل المستندات...",
       "source_lines": [
-        2162
+        2163
       ],
       "review_status": "pending_native_review"
     },
@@ -9842,7 +9843,7 @@
       "id": "AR-1000",
       "arabic": "مستندات في ملف القضية المحدد",
       "source_lines": [
-        2165
+        2166
       ],
       "review_status": "pending_native_review"
     },
@@ -9891,7 +9892,7 @@
       "id": "AR-1006",
       "arabic": "رفع مستندات",
       "source_lines": [
-        2246
+        2247
       ],
       "review_status": "pending_native_review"
     },
@@ -9899,7 +9900,7 @@
       "id": "AR-1007",
       "arabic": "تعذر تحميل مستندات القضية. تحقق من صلاحية الوصول وحاول مجدداً.",
       "source_lines": [
-        2169
+        2170
       ],
       "review_status": "pending_native_review"
     },
@@ -9907,7 +9908,7 @@
       "id": "AR-1008",
       "arabic": "تعذر تحميل ملفات القضايا المتاحة.",
       "source_lines": [
-        2174
+        2175
       ],
       "review_status": "pending_native_review"
     },
@@ -9915,7 +9916,7 @@
       "id": "AR-1009",
       "arabic": "مكتبة المستندات",
       "source_lines": [
-        2178
+        2179
       ],
       "review_status": "pending_native_review"
     },
@@ -9923,7 +9924,7 @@
       "id": "AR-1010",
       "arabic": "اعرض مستندات كل ملف قضية على حدة، وابحث في النصوص المستخرجة وراجعها مع الحفاظ على صلاحيات الملف وسجل التدقيق.",
       "source_lines": [
-        2178
+        2179
       ],
       "review_status": "pending_native_review"
     },
@@ -9947,7 +9948,7 @@
       "id": "AR-1013",
       "arabic": "تصنيف المستند ",
       "source_lines": [
-        2589
+        2590
       ],
       "review_status": "pending_native_review"
     },
@@ -9955,7 +9956,7 @@
       "id": "AR-1014",
       "arabic": "ملاحظة سبب التصنيف (اختيارية)",
       "source_lines": [
-        2591
+        2592
       ],
       "review_status": "pending_native_review"
     },
@@ -9963,7 +9964,7 @@
       "id": "AR-1015",
       "arabic": "ملاحظة التصنيف ",
       "source_lines": [
-        2591
+        2592
       ],
       "review_status": "pending_native_review"
     },
@@ -9971,7 +9972,7 @@
       "id": "AR-1016",
       "arabic": "تغيير غير محفوظ؛ اضغط حفظ التصنيف لتسجيله في سجل التدقيق.",
       "source_lines": [
-        2592
+        2593
       ],
       "review_status": "pending_native_review"
     },
@@ -9979,10 +9980,10 @@
       "id": "AR-1017",
       "arabic": "حفظ التصنيف",
       "source_lines": [
-        2592,
         2593,
-        2600,
-        2601
+        2594,
+        2601,
+        2602
       ],
       "review_status": "pending_native_review"
     },
@@ -9990,7 +9991,7 @@
       "id": "AR-1018",
       "arabic": "تم حفظ التصنيف وسجل التدقيق.",
       "source_lines": [
-        2600
+        2601
       ],
       "review_status": "pending_native_review"
     },
@@ -9998,7 +9999,7 @@
       "id": "AR-1019",
       "arabic": "تعذر حفظ التصنيف؛ أعد تحميل المستند وحاول مجدداً.",
       "source_lines": [
-        2601
+        2602
       ],
       "review_status": "pending_native_review"
     },
@@ -10008,7 +10009,7 @@
       "source_lines": [
         2082,
         2153,
-        2607
+        2608
       ],
       "review_status": "pending_native_review"
     },
@@ -10016,7 +10017,7 @@
       "id": "AR-1021",
       "arabic": "اقتراح يتطلب المراجعة",
       "source_lines": [
-        2607
+        2608
       ],
       "review_status": "pending_native_review"
     },
@@ -10024,7 +10025,7 @@
       "id": "AR-1022",
       "arabic": "إشارات المطابقة: ",
       "source_lines": [
-        2607
+        2608
       ],
       "review_status": "pending_native_review"
     },
@@ -10049,20 +10050,20 @@
         1877,
         1933,
         2000,
-        2178,
-        2236,
-        2242,
-        2584,
-        2607,
-        2617,
-        2646,
-        2688,
-        2692,
-        2903,
-        2935,
+        2179,
+        2237,
+        2243,
+        2585,
+        2608,
+        2618,
+        2647,
+        2689,
+        2693,
+        2904,
         2936,
-        2951,
-        2952
+        2937,
+        2952,
+        2953
       ],
       "review_status": "pending_native_review"
     },
@@ -10070,7 +10071,7 @@
       "id": "AR-1024",
       "arabic": "لا توجد كلمات مفتاحية",
       "source_lines": [
-        2607
+        2608
       ],
       "review_status": "pending_native_review"
     },
@@ -10080,15 +10081,15 @@
       "source_lines": [
         1505,
         2082,
-        2292,
-        2591,
+        2293,
         2592,
         2593,
-        2600,
+        2594,
         2601,
-        2607,
-        2617,
-        2646
+        2602,
+        2608,
+        2618,
+        2647
       ],
       "review_status": "pending_native_review"
     },
@@ -10096,7 +10097,7 @@
       "id": "AR-1026",
       "arabic": "الحفظ متاح لمسؤول المكتب أو قائد القضية فقط.",
       "source_lines": [
-        2607
+        2608
       ],
       "review_status": "pending_native_review"
     },
@@ -10104,7 +10105,7 @@
       "id": "AR-1027",
       "arabic": "سجل تغييرات التصنيف",
       "source_lines": [
-        2607
+        2608
       ],
       "review_status": "pending_native_review"
     },
@@ -10163,9 +10164,9 @@
       "source_lines": [
         2082,
         2142,
-        2169,
-        2204,
-        2445
+        2170,
+        2205,
+        2446
       ],
       "review_status": "pending_native_review"
     },
@@ -10214,7 +10215,7 @@
       "arabic": "إشارات مراجعة",
       "source_lines": [
         2142,
-        2584
+        2585
       ],
       "review_status": "pending_native_review"
     },
@@ -10231,7 +10232,7 @@
       "arabic": "اختر ملفات PDF أو DOCX",
       "source_lines": [
         2084,
-        2198
+        2199
       ],
       "review_status": "pending_native_review"
     },
@@ -10242,9 +10243,9 @@
         2087,
         2090,
         2122,
-        2201,
-        2204,
-        2244
+        2202,
+        2205,
+        2245
       ],
       "review_status": "pending_native_review"
     },
@@ -10253,7 +10254,7 @@
       "arabic": "رفع وفهرسة الملفات",
       "source_lines": [
         2088,
-        2202
+        2203
       ],
       "review_status": "pending_native_review"
     },
@@ -10302,7 +10303,7 @@
       "arabic": "اختر ملف قضية أولاً.",
       "source_lines": [
         2096,
-        2208
+        2209
       ],
       "review_status": "pending_native_review"
     },
@@ -10311,7 +10312,7 @@
       "arabic": "في قائمة الرفع",
       "source_lines": [
         2098,
-        2210
+        2211
       ],
       "review_status": "pending_native_review"
     },
@@ -10320,7 +10321,7 @@
       "arabic": "نوع الملف غير مدعوم؛ استخدم PDF أو DOCX.",
       "source_lines": [
         2100,
-        2212
+        2213
       ],
       "review_status": "pending_native_review"
     },
@@ -10329,7 +10330,7 @@
       "arabic": "يتجاوز الملف حد 15 ميجابايت.",
       "source_lines": [
         2100,
-        2212
+        2213
       ],
       "review_status": "pending_native_review"
     },
@@ -10338,7 +10339,7 @@
       "arabic": "لم يتم رفع أي ملف.",
       "source_lines": [
         2102,
-        2214
+        2215
       ],
       "review_status": "pending_native_review"
     },
@@ -10363,7 +10364,7 @@
       "arabic": "الصيغة غير مدعومة. ارفع PDF أو DOCX فقط.",
       "source_lines": [
         2112,
-        2227
+        2228
       ],
       "review_status": "pending_native_review"
     },
@@ -10412,7 +10413,7 @@
       "arabic": "لم يتم اختيار ملفات.",
       "source_lines": [
         2122,
-        2244
+        2245
       ],
       "review_status": "pending_native_review"
     },
@@ -10420,7 +10421,7 @@
       "id": "AR-1064",
       "arabic": "لا توجد ملفات قضايا متاحة.",
       "source_lines": [
-        2173
+        2174
       ],
       "review_status": "pending_native_review"
     },
@@ -10446,7 +10447,7 @@
       "source_lines": [
         1086,
         2112,
-        2230
+        2231
       ],
       "review_status": "pending_native_review"
     },
@@ -10455,7 +10456,7 @@
       "arabic": "حكم قضائي",
       "source_lines": [
         2143,
-        2450
+        2451
       ],
       "review_status": "pending_native_review"
     },
@@ -10464,7 +10465,7 @@
       "arabic": "عقد",
       "source_lines": [
         2143,
-        2451
+        2452
       ],
       "review_status": "pending_native_review"
     },
@@ -10473,7 +10474,7 @@
       "arabic": "مذكرة أو صحيفة دعوى",
       "source_lines": [
         2143,
-        2452
+        2453
       ],
       "review_status": "pending_native_review"
     },
@@ -10482,7 +10483,7 @@
       "arabic": "مراسلات أو إخطار",
       "source_lines": [
         2143,
-        2453
+        2454
       ],
       "review_status": "pending_native_review"
     },
@@ -10491,7 +10492,7 @@
       "arabic": "دليل أو إيصال",
       "source_lines": [
         2143,
-        2454
+        2455
       ],
       "review_status": "pending_native_review"
     },
@@ -10581,7 +10582,56 @@
       "arabic": "تنزيل الأصل",
       "source_lines": [
         2153,
-        2898
+        2899
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1084",
+      "arabic": ").trim().replace(/[٠-٩۰-۹]/g,ch=>{const code=ch.charCodeAt(0);return String(code-(code>=0x06F0?0x06F0:0x0660))}).replace(/٫/g,",
+      "source_lines": [
+        1532
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1085",
+      "arabic": ").replace(/٬/g,",
+      "source_lines": [
+        1532
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1086",
+      "arabic": ").replace(/[ًٌٍَُِّْٰـ]/g,",
+      "source_lines": [
+        2457
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1087",
+      "arabic": ").replace(/[أإآٱ]/g,",
+      "source_lines": [
+        2457
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1088",
+      "arabic": ").replace(/ى/g,",
+      "source_lines": [
+        2457
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1089",
+      "arabic": ").replace(/[٠-٩]/g,d=>String(",
+      "source_lines": [
+        2457,
+        2459
       ],
       "review_status": "pending_native_review"
     }
