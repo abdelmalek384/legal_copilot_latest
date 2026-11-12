@@ -1,8 +1,8 @@
 -- Firm-local approved document labels with immutable reviewer attribution.
 CREATE TABLE document_classifications (
     id INTEGER PRIMARY KEY,
-    document_id INTEGER NOT NULL UNIQUE REFERENCES docs(id) ON DELETE RESTRICT,
-    case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE RESTRICT,
+    document_id INTEGER NOT NULL UNIQUE REFERENCES docs(id) ON DELETE CASCADE,
+    case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE CASCADE,
     firm_id INTEGER NOT NULL CHECK(firm_id > 0),
     category TEXT NOT NULL CHECK(category IN (
         'unclassified','court_judgment','contract','pleading',
