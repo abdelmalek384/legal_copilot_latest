@@ -117,6 +117,9 @@ class DocumentClassificationContractTests(unittest.TestCase):
         endpoint = app[app.index("def search_accessible_document_text"):app.index('@app.get("/documents/search")')]
         self.assertIn('@app.get("/documents/search-text")', app)
         self.assertIn('re.findall(r"[\\w]+", needle, flags=re.UNICODE)', endpoint)
+        self.assertIn('unicodedata.normalize("NFKC", q.strip())', endpoint)
+        self.assertIn('re.sub(r"[\\u064B-\\u065F\\u0670\\u0640]", "", needle)', endpoint)
+        self.assertIn('str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789")', endpoint)
         self.assertIn('chunks_fts MATCH ?', endpoint)
         self.assertIn('fts_query = " AND ".join', endpoint)
         self.assertIn('token.replace', endpoint)
