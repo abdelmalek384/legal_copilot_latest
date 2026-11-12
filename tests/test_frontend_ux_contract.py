@@ -872,6 +872,8 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_figma_legal_research_refresh_preserves_three_pane_and_upload_workflows(self):
         self.assertIn("--figma-navy:#071b31", HTML)
+        self.assertIn("#side{background:#071b31;color:#e7edf6", HTML)
+        self.assertIn("#side a.on,#side a:hover{background:#1b3554;color:#fff}", HTML)
         self.assertIn("#main .research-layout{grid-template-columns:minmax(210px,245px) minmax(0,1fr) minmax(250px,300px)", HTML)
         self.assertIn("#main .research-composer{order:1", HTML)
         self.assertIn("#main .research-thread{order:2", HTML)
