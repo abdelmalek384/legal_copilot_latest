@@ -972,5 +972,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("matterTotal", page)
         self.assertIn("nextMatter.disabled=matterOffset+matterLimit>=matterTotal", page)
 
+    def test_document_upload_handles_expired_sessions_and_read_only_firms(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("response.status===401", page)
+        self.assertIn("response.status===423", page)
+        self.assertIn("This firm is read-only; contact your firm administrator.", page)
+
 if __name__ == "__main__":
     unittest.main()
