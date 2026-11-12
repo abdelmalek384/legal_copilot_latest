@@ -858,5 +858,21 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn(".research-source-caution.verified{", HTML)
 
 
+
+    def test_figma_legal_research_refresh_preserves_three_pane_and_upload_workflows(self):
+        self.assertIn("--figma-navy:#071b31", HTML)
+        self.assertIn("#main .research-layout{grid-template-columns:minmax(210px,245px) minmax(0,1fr) minmax(250px,300px)", HTML)
+        self.assertIn("#main .research-composer{order:1", HTML)
+        self.assertIn("#main .research-thread{order:2", HTML)
+        self.assertIn("#main #research-source-inspector", HTML)
+        self.assertIn("uploadFiles=async files=>", HTML)
+        self.assertIn("const documentWorkspace=h('div',{})", HTML)
+
+    def test_figma_research_refresh_keeps_accessible_responsive_controls(self):
+        self.assertIn("@media(max-width:800px){#side{background:var(--figma-navy)", HTML)
+        self.assertIn("#main .research-composer button{width:100%}", HTML)
+        self.assertIn("@media(prefers-reduced-motion:reduce){#main *", HTML)
+        self.assertIn("role:'region',tabIndex:0", HTML)
+
 if __name__ == "__main__":
     unittest.main()
