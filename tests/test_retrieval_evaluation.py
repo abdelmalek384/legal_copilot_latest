@@ -116,7 +116,7 @@ class RetrievalEvaluationTests(unittest.TestCase):
             total += len(unreviewed)
             with self.subTest(path=path.name):
                 self.assertTrue(all(q.get("must_abstain_if_unverified") is True for q in unreviewed))
-        self.assertEqual(total, 257)
+        self.assertEqual(total, 278)
 
     def test_seed_schema_expected_sources_alias_is_supported_after_review(self):
         question = reviewed_question()
