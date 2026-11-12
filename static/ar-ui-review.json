@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "22cafd85cf3b01c495fb21b96f69f0b4fb8c9849",
   "generated_on": "2026-11-12",
-  "entry_count": 1149,
+  "entry_count": 1150,
   "entries": [
     {
       "id": "AR-0001",
@@ -11131,6 +11131,15 @@
       "source_lines": [
         2711,
         2711
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1150",
+      "arabic": "آخر نص مصحح مسجل",
+      "source_lines": [
+        1,
+        1
       ],
       "review_status": "pending_native_review"
     }
