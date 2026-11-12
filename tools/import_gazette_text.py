@@ -170,7 +170,7 @@ def _validate_metadata(meta: object, text_bytes: bytes) -> dict:
     if actual != expected:
         raise ValueError("SHA-256 mismatch for supplied Gazette text")
     source_url = meta.get("source_url")
-    if source_url:
+    if "source_url" in meta and source_url is not None:
         if (not isinstance(source_url, str) or not source_url
                 or "\\" in source_url
                 or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in source_url)):
