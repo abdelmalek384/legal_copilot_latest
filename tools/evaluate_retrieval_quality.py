@@ -84,7 +84,8 @@ def validate_reviewed_question(question, approved_reviewers=None):
     if not isinstance(question, dict):
         return ["question record must be a JSON object"]
     errors = []
-    if question.get("review_status") not in REVIEWED_STATES:
+    review_status = question.get("review_status")
+    if not isinstance(review_status, str) or review_status not in REVIEWED_STATES:
         return ["question is not marked lawyer_reviewed/approved_for_evaluation"]
     for field in ("id", "practice_area", "question_ar"):
         if not _nonempty_string(question.get(field)):
@@ -101,7 +102,8 @@ def validate_reviewed_question(question, approved_reviewers=None):
         if question.get("practice_area") not in reviewer.get("practice_areas", []):
             errors.append("reviewer is not approved for this practice_area")
         reviewer_role = question.get("reviewer_role")
-        if (reviewer_role not in {"egyptian_lawyer", "qualified_egyptian_counsel"}
+        if (not isinstance(reviewer_role, str)
+                or reviewer_role not in {"egyptian_lawyer", "qualified_egyptian_counsel"}
                 or reviewer_role != reviewer.get("professional_role")):
             errors.append("reviewer_role must match the approved Egyptian counsel registry role")
     if not _valid_review_evidence_url(question.get("review_evidence_url")):
