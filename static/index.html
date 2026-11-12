@@ -2242,8 +2242,8 @@ function documentIntelligencePanel(caseId,documents){
   if(!needle){status.textContent=uiText('اكتب كلمة أو عبارة للبحث.','Enter a word or phrase to search.');return}
   if(!cache.size){status.textContent=uiText('حلّل المستندات أولاً لتحميل النصوص المصرح بها.','Analyze documents first to load authorized extracted text.');return}
   const hits=[];
-  for(const item of cache.values())for(const chunk of item.chunks){
-   if(normalize(chunk.text).includes(needle))hits.push({doc:item.doc,chunk});
+  for(const item of cache.values()){
+   for(const chunk of item.chunks){if(normalize(chunk.text).includes(needle))hits.push({doc:item.doc,chunk});if(hits.length>=50)break}
    if(hits.length>=50)break;
   }
   searchResults.replaceChildren(...hits.map((hit,index)=>h('article',{className:'card'},h('b',{textContent:(index+1)+'. '+hit.doc.name}),h('p',{className:'mut',textContent:[hit.chunk.ref,hit.chunk.page?uiText('صفحة ','Page ')+hit.chunk.page:uiText('رقم الصفحة غير مسجل','Page not recorded')].filter(Boolean).join(' · ')}),h('p',{textContent:String(hit.chunk.text||'').slice(0,420)}))));
@@ -2253,6 +2253,7 @@ function documentIntelligencePanel(caseId,documents){
   compareResults.replaceChildren();
   const left=cache.get(String(beforeSelect.value)),right=cache.get(String(afterSelect.value));
   if(!left||!right||left===right){compareResults.append(h('p',{className:'mut',textContent:uiText('اختر مستندين مختلفين بعد التحليل.','Choose two different documents after analysis.')}));return}
+  if(left.text===right.text){compareResults.append(pill(uiText('لا توجد اختلافات نصية بين النسختين.','No text differences were found between these versions.'),'done'));return}
   if(left.text.length>100000||right.text.length>100000){compareResults.append(pill(uiText('تجاوزت إحدى النسختين حد المقارنة البالغ 100,000 حرف.','One version exceeds the 100,000-character comparison limit.'),'soon'));return}
   let start=0;
   while(start<left.text.length&&start<right.text.length&&left.text[start]===right.text[start])start++;
