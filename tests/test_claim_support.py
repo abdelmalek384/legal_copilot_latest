@@ -42,6 +42,7 @@ class ClaimSupportTests(unittest.TestCase):
         cases = (
             ("The employer is not required to provide notice.", "The employer must provide notice."),
             ("The employer must not deduct wages.", "The employer must deduct wages."),
+            ("The employer must\t  not deduct wages.", "The employer must deduct wages."),
             ("لا يجب على صاحب العمل تقديم الإخطار.", "يجب على صاحب العمل تقديم الإخطار."),
             ("لا يلتزم صاحب العمل بتقديم الإخطار.", "يلتزم صاحب العمل بتقديم الإخطار."),
             ("The employer must provide notice.", "The employer is not required to provide notice."),
