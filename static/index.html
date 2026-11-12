@@ -185,6 +185,185 @@ button{min-height:44px}
 .research-layout{gap:18px}.research-list,.research-thread,.research-inspector{border:1px solid var(--workspace-border);box-shadow:0 5px 20px rgba(23,36,58,.04)}.research-thread{background:var(--workspace-surface)}.research-inspector-passage{background:#f5f8fd;border-color:#dce5f2}.research-source-link{color:var(--workspace-blue)}
 @media(max-width:800px){#main .research-controls{grid-template-columns:minmax(0,1fr)}.research-upload-panel{grid-template-columns:minmax(0,1fr)}.research-upload-actions{width:100%}.research-upload-actions button{flex:1}.research-upload-dropzone{align-items:flex-start;flex-direction:column}.research-upload-dropzone small{text-align:start}}
 @media(max-width:420px){.research-upload-intro{align-items:flex-start}.research-upload-icon{flex-basis:40px;width:40px;height:40px}.research-upload-actions{display:grid;grid-template-columns:1fr}.research-upload-actions button{width:100%}}
+/* 2026-11 Legal Research workspace refinement.
+   Presentation-only overrides: upload authorization, matter scoping and warning logic remain unchanged. */
+:root{
+  --workspace-ink:#17243a;
+  --workspace-muted:#58677c;
+  --workspace-blue:#2858bd;
+  --workspace-blue-soft:#edf3ff;
+  --workspace-border:#dce4ef;
+  --workspace-surface:#fff;
+  --workspace-success:#176b45;
+  --workspace-success-bg:#eaf6ef;
+  --workspace-warning:#754006;
+  --workspace-warning-bg:#fff5e6;
+  --workspace-danger:#9f241e;
+  --workspace-danger-bg:#fff0ef;
+}
+#main .research-layout{gap:18px;align-items:start}
+#main .research-list,#main .research-thread,#main .research-inspector{
+  border:1px solid var(--workspace-border);
+  border-radius:16px;
+  box-shadow:0 8px 24px rgba(20,40,75,.055);
+}
+#main .research-list{background:#fff}
+#main .research-thread{background:#fff;padding:clamp(14px,2vw,22px)}
+#main .research-heading{background:rgba(255,255,255,.97);border-bottom-color:var(--workspace-border)}
+#main .research-message{border-color:var(--workspace-border);line-height:1.85}
+#main .research-message.user{background:#edf3ff;border-color:#d7e4ff}
+#main .research-content{color:var(--workspace-ink);line-height:1.9}
+#main .research-source,#main .research-discovery-result{
+  border:1px solid var(--workspace-border);
+  border-inline-start:3px solid var(--workspace-blue);
+  border-radius:12px;
+  background:#fff;
+}
+#main .research-exact-passage,#main .research-inspector-passage{
+  border:1px solid #dce5f2;
+  border-inline-start:3px solid var(--workspace-blue);
+  border-radius:10px;
+  background:#f6f8fc;
+  color:#253650;
+  line-height:1.9;
+}
+#main .research-source-caution{
+  padding:12px 14px;
+  border:1px solid #edcf9f;
+  border-inline-start:4px solid #a85b08;
+  border-radius:11px;
+  background:var(--workspace-warning-bg);
+  color:var(--workspace-warning);
+  font-size:13px;
+  line-height:1.75;
+}
+#main .research-source-caution.warning{background:var(--workspace-warning-bg);color:var(--workspace-warning)}
+#main .research-source-caution.verified{
+  border-color:#d5e1f2;
+  border-inline-start-color:var(--workspace-blue);
+  background:#f1f5fc;
+  color:#354c6c;
+}
+#main .research-upload-panel{
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:16px 22px;
+  padding:clamp(16px,2.2vw,24px);
+  border:1px solid #d9e3f1;
+  border-radius:17px;
+  background:linear-gradient(135deg,#fff 0%,#f7f9ff 100%);
+  box-shadow:0 10px 28px rgba(20,40,75,.06);
+}
+#main .research-upload-intro{align-items:flex-start;gap:15px}
+#main .research-upload-icon{
+  flex-basis:50px;width:50px;height:50px;
+  border:1px solid #d9e5fb;border-radius:15px;
+  background:#edf3ff;color:#2858bd;
+}
+#main .research-upload-intro h3{font-size:17px;line-height:1.45}
+#main .research-upload-intro p{color:#52627a;font-size:14px;line-height:1.75}
+#main .research-upload-actions{align-self:center;gap:9px}
+#main .research-upload-actions button{min-height:46px;padding-inline:17px}
+#main .research-upload-dropzone{
+  min-height:78px;
+  padding:15px 17px;
+  border:1.5px dashed #9db1d0;
+  border-radius:13px;
+  background:#f1f5fc;
+  color:#29466f;
+  transition:border-color .15s ease,background .15s ease,box-shadow .15s ease;
+}
+#main .research-upload-dropzone:hover{
+  border-color:#547ac5;
+  background:#eaf1ff;
+}
+#main .research-upload-dropzone span{font-weight:750}
+#main .research-upload-dropzone small{font-size:12px;line-height:1.6;color:#58677c}
+#main .research-upload-status{
+  padding:9px 12px;
+  border-radius:9px;
+  background:#f5f7fb;
+  color:#42536c;
+  font-size:13px;
+}
+#main .research-upload-warnings{gap:9px}
+#main .research-upload-results{gap:9px}
+#main .research-upload-item{
+  align-items:center;
+  padding:12px 14px;
+  border-color:#e1e7ef;
+  border-radius:11px;
+  box-shadow:0 2px 7px rgba(20,40,75,.025);
+}
+#main .research-upload-item b{font-size:14px;color:#233650}
+#main .research-upload-item p{font-size:13px;line-height:1.6}
+#main .research-upload-item.done{border-inline-start:4px solid #258052;background:#fbfefc}
+#main .research-upload-item.error{border-inline-start:4px solid #bd3932;background:#fffafa}
+#main .notice.warning{
+  padding:12px 14px;
+  border:1px solid #edcf9f;
+  border-inline-start:4px solid #a85b08;
+  border-radius:11px;
+  background:var(--workspace-warning-bg);
+  color:var(--workspace-warning);
+}
+#main .notice.danger{
+  padding:12px 14px;
+  border:1px solid #efc5c1;
+  border-inline-start:4px solid #b42318;
+  border-radius:11px;
+  background:var(--workspace-danger-bg);
+  color:var(--workspace-danger);
+}
+#main .notice :where(p,b){line-height:1.75}
+#main .research-controls{border-color:var(--workspace-border);border-radius:13px;background:#fff}
+#main .research-controls label{color:#52627a;font-size:13px}
+#main .research-controls select{border-color:#9aa9bc;background:#fff}
+#main .research-composer{
+  border-color:#d9e2ef;
+  border-radius:15px;
+  box-shadow:0 10px 28px rgba(20,40,75,.09);
+}
+#main .research-composer textarea{border-color:#9aa9bc;background:#fff}
+#main .research-source-link{color:#214fae;font-weight:650}
+#main .research-inspector{background:#fff}
+#main .research-inspector-kicker{color:#65748a}
+#main mark{padding:0 .12em;border-radius:3px;background:#fff0b8;color:#563b00}
+@media(max-width:1120px){
+  #main .research-layout{gap:14px}
+}
+@media(max-width:800px){
+  #main .research-upload-panel{grid-template-columns:minmax(0,1fr);gap:13px}
+  #main .research-upload-actions{display:flex;width:100%}
+  #main .research-upload-actions button{flex:1}
+  #main .research-upload-dropzone{align-items:flex-start;flex-direction:column}
+  #main .research-thread{padding:12px}
+}
+@media(max-width:480px){
+  #main .research-upload-panel{padding:14px}
+  #main .research-upload-intro{gap:11px}
+  #main .research-upload-icon{flex-basis:42px;width:42px;height:42px}
+  #main .research-upload-actions{display:grid;grid-template-columns:1fr}
+  #main .research-upload-actions button{width:100%}
+  #main .research-upload-item{align-items:flex-start;padding:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  #main .research-upload-dropzone{transition:none}
+}
+
+
+/* Document intelligence: scan-friendly metrics and bounded review filters. */
+#main .document-intelligence-panel{display:grid;gap:15px;padding:clamp(15px,2vw,22px);border:1px solid var(--workspace-border);border-radius:17px;background:linear-gradient(180deg,#fff 0%,#fbfcff 100%)}
+#main .document-intelligence-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+#main .document-intelligence-stat{display:flex;flex-direction:column;gap:5px;min-width:0;padding:13px 14px;border:1px solid var(--workspace-border);border-radius:12px;background:#fff}
+#main .document-intelligence-stat b{font-size:22px;line-height:1.2;color:#1d3761;font-variant-numeric:tabular-nums}
+#main .document-intelligence-stat span{font-size:12px;line-height:1.55;color:#5b6a80}
+#main .document-intelligence-filters{display:grid;grid-template-columns:minmax(160px,.8fr) minmax(220px,1.2fr);gap:10px;margin:10px 0}
+#main .document-intelligence-filters :where(input,select){width:100%;min-width:0;min-height:44px;border:1px solid #aebbd0;border-radius:10px;padding:9px 11px;background:#fff}
+#main .document-intelligence-panel .card{border:1px solid #e0e7f1;border-radius:12px;box-shadow:0 3px 12px rgba(20,40,75,.035)}
+@media(max-width:760px){#main .document-intelligence-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){#main .document-intelligence-filters{grid-template-columns:minmax(0,1fr)}}
+
+
 </style>
 <style>
 /* Legal Copilot — premium workspace polish
@@ -2255,7 +2434,8 @@ function documentIntelligencePanel(caseId,documents){
  const status=h('p',{className:'mut',role:'status','aria-live':'polite','aria-atomic':'true',textContent:uiText('لم يبدأ تحليل المستندات بعد.','Document analysis has not started.')});
  const analysisResults=h('div',{}),searchResults=h('div',{}),compareResults=h('div',{});
  const query=h('input',{type:'search',placeholder:uiText('ابحث في النصوص المستخرجة بالعربية أو الإنجليزية','Search extracted text in Arabic or English'),'aria-label':uiText('البحث داخل مستندات القضية','Search within matter documents'),style:'width:100%'});
- const beforeSelect=h('select',{'aria-label':uiText('الإصدار السابق','Earlier version')},new Option(uiText('الإصدار السابق','Earlier version'),'')); 
+ const beforeSelect=h('select',{'aria-label':uiText('الإصدار السابق','Earlier version')},new Option(uiText('الإصدار السابق','Earlier version'),''));
+ const candidateFilterState={kind:'all',query:''}; 
  const afterSelect=h('select',{'aria-label':uiText('الإصدار اللاحق','Later version')},new Option(uiText('الإصدار اللاحق','Later version'),'')); 
  const categories=[
   ['unclassified',uiText('غير مصنف','Unclassified')],
@@ -2305,6 +2485,7 @@ function documentIntelligencePanel(caseId,documents){
   const newPart=right.text.slice(Math.max(0,start-100),Math.min(right.text.length,right.text.length-tail+100));
   compareResults.append(pill(uiText('مقارنة نصية أولية — تتطلب مراجعة محامٍ','Preliminary text comparison — lawyer review required'),'soon'),h('p',{className:'mut',textContent:uiText('النسخة السابقة: ','Earlier version: ')+left.doc.name+' · '+uiText('النسخة اللاحقة: ','Later version: ')+right.doc.name}),h('div',{className:'card'},h('b',{textContent:uiText('النص السابق','Earlier text')}),h('p',{textContent:oldPart||uiText('لا يوجد نص مختلف','No differing text')})),h('div',{className:'card'},h('b',{textContent:uiText('النص اللاحق','Later text')}),h('p',{textContent:newPart||uiText('لا يوجد نص مختلف','No differing text')})),h('p',{className:'mut',textContent:uiText('يعرض هذا الفحص اختلافاً حرفياً تقريبياً فقط؛ لا يحدد الأثر القانوني أو صحة أي نسخة.','This shows a literal text difference only; it does not determine legal effect or authenticity of either version.')}));
  };
+ const totalCharsSafe=()=>[...cache.values()].reduce((sum,item)=>sum+item.text.length,0);
  const renderAnalysis=()=>{
   analysisResults.replaceChildren();
   const allCandidates=[];
@@ -2334,14 +2515,23 @@ function documentIntelligencePanel(caseId,documents){
    return h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:item.doc.name}),pill(uiText('اقتراح يتطلب المراجعة','Suggestion — review required'),'soon')),h('p',{className:'mut',textContent:uiText('إشارات المطابقة: ','Matched signals: ')+(item.suggestion.matched.join('، ')||uiText('لا توجد كلمات مفتاحية','no keyword matches'))+' · '+item.suggestion.signal}),h('label',{},h('span',{className:'mut',textContent:uiText('تعديل تصنيف مسودة (غير محفوظ)','Edit draft classification (not saved)')}),select));
   });
   const typeLabels={date:uiText('تاريخ مذكور','Date mention'),case_reference:uiText('مرجع قضية','Case reference'),amount:uiText('مبلغ','Amount'),party_label:uiText('طرف مسمى','Labelled party'),legal_reference:uiText('مرجع قانوني','Legal reference'),event_mention:uiText('إشارة حدث','Event mention')};
-  const candidateCards=allCandidates.slice(0,120).map((candidate,index)=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+(typeLabels[candidate.kind]||candidate.kind)}),pill(uiText('مرشح غير متحقق','Unverified candidate'),'soon')),h('p',{textContent:candidate.value}),h('p',{className:'mut',textContent:candidate.filename+' · '+(candidate.page?uiText('صفحة ','Page ')+candidate.page:uiText('رقم الصفحة غير مسجل','Page not recorded'))+' · '+candidate.chunk_ref}),h('p',{className:'mut',textContent:candidate.excerpt})));
+  const candidateKindFilter=h('select',{'aria-label':uiText('تصفية نوع المرشح','Filter candidate type')},new Option(uiText('كل أنواع المرشحات','All candidate types'),'all'),...Object.entries(typeLabels).map(([value,label])=>new Option(label,value)));
+  candidateKindFilter.value=candidateFilterState.kind;
+  candidateKindFilter.onchange=()=>{candidateFilterState.kind=candidateKindFilter.value;renderAnalysis()};
+  const candidateTextFilter=h('input',{type:'search',value:candidateFilterState.query,placeholder:uiText('تصفية حسب النص أو المستند','Filter by text or document'),'aria-label':uiText('تصفية المرشحات حسب النص أو المستند','Filter candidates by text or document')});
+  candidateTextFilter.onchange=()=>{candidateFilterState.query=candidateTextFilter.value;renderAnalysis()};
+  const candidateNeedle=normalize(candidateFilterState.query);
+  const filteredCandidates=allCandidates.filter(candidate=>(candidateFilterState.kind==='all'||candidate.kind===candidateFilterState.kind)&&(!candidateNeedle||normalize([candidate.value,candidate.filename,candidate.excerpt,candidate.chunk_ref].join(' ')).includes(candidateNeedle)));
+  const candidateCards=filteredCandidates.slice(0,120).map((candidate,index)=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+(typeLabels[candidate.kind]||candidate.kind)}),pill(uiText('مرشح غير متحقق','Unverified candidate'),'soon')),h('p',{textContent:candidate.value}),h('p',{className:'mut',textContent:candidate.filename+' · '+(candidate.page?uiText('صفحة ','Page ')+candidate.page:uiText('رقم الصفحة غير مسجل','Page not recorded'))+' · '+candidate.chunk_ref}),h('p',{className:'mut',textContent:candidate.excerpt})));
   const dates=allCandidates.filter(candidate=>candidate.kind==='date').map(candidate=>({...candidate,normalized_date:parseDate(candidate.value)})).sort((a,b)=>String(a.normalized_date||'9999-99-99').localeCompare(String(b.normalized_date||'9999-99-99')));
   const timelineItems=[];
   if(dates.length){for(const item of dates.slice(0,80))timelineItems.push(h('p',{className:'mut',textContent:(item.normalized_date||uiText('تاريخ غير قابل للتطبيع','Unparsed date'))+' · '+item.filename+' · '+(item.page?uiText('صفحة ','Page ')+item.page:uiText('صفحة غير مسجلة','Page not recorded'))+' · '+item.value+' — '+uiText('يتطلب سياقاً قانونياً','requires legal context')}))}
   else timelineItems.push(h('p',{className:'mut',textContent:uiText('لا توجد إشارات تاريخية في النصوص المحملة.','No date mentions found in loaded text.')}));
   const timeline=h('section',{className:'card'},h('b',{textContent:uiText('الخط الزمني لذكر التواريخ','Date-mention timeline')}),...timelineItems,h('p',{className:'mut',textContent:uiText('ذكر التاريخ لا يثبت أنه جلسة أو ميعاد إجرائي أو ميعاد طعن. لا تُنشأ مواعيد تلقائياً.','A date mention is not proof of a hearing, procedural date, or appeal deadline. No deadlines are created automatically.')})); 
   if(!candidateCards.length)candidateCards.push(h('p',{className:'mut',textContent:uiText('لم تُستخرج مرشحات من النصوص المحملة.','No candidates were extracted from loaded text.')}));
-  analysisResults.append(duplicatePanel,h('section',{className:'card'},h('b',{textContent:uiText('التصنيفات المقترحة','Suggested document classifications')}),h('p',{className:'mut',textContent:uiText('تصنيف قائم على كلمات مفتاحية ظاهرة، وليس تصنيفاً قانونياً معتمداً. التعديلات هنا مسودات غير محفوظة.','Transparent keyword suggestions, not approved legal classifications. Changes here are unsaved drafts.')}),...classificationCards),h('section',{className:'card'},h('b',{textContent:uiText('المرشحات المستخرجة','Extracted review candidates')}),h('p',{className:'mut',textContent:uiText('كل نتيجة مرتبطة بالمستند والمقطع والصفحة عند توفرها. جميع النتائج غير متحققة وتحتاج مراجعة بشرية.','Each result retains document, chunk and page provenance when available. Every result is unverified and requires human review.')}),...candidateCards),timeline);
+  const ocrCount=docs.filter(doc=>String(doc.extraction_status||'').includes('ocr')).length;
+  const summary=h('div',{className:'document-intelligence-summary'},h('div',{className:'document-intelligence-stat'},h('b',{textContent:String(cache.size)}),h('span',{textContent:uiText('مستندات محللة','Documents analyzed')})),h('div',{className:'document-intelligence-stat'},h('b',{textContent:String(allCandidates.length)}),h('span',{textContent:uiText('مرشحات للمراجعة','Review candidates')})),h('div',{className:'document-intelligence-stat'},h('b',{textContent:String(totalCharsSafe())}),h('span',{textContent:uiText('حروف مستخرجة محملة','Extracted characters loaded')})),h('div',{className:'document-intelligence-stat'},h('b',{textContent:String(ocrCount)}),h('span',{textContent:uiText('مستندات بحالة OCR','Documents marked OCR')})));
+  analysisResults.append(summary,duplicatePanel,h('section',{className:'card'},h('b',{textContent:uiText('التصنيفات المقترحة','Suggested document classifications')}),h('p',{className:'mut',textContent:uiText('تصنيف قائم على كلمات مفتاحية ظاهرة، وليس تصنيفاً قانونياً معتمداً. التعديلات هنا مسودات غير محفوظة.','Transparent keyword suggestions, not approved legal classifications. Changes here are unsaved drafts.')}),...classificationCards),h('section',{className:'card'},h('div',{className:'workspace-section-title'},h('b',{textContent:uiText('المرشحات المستخرجة','Extracted review candidates')}),pill(String(filteredCandidates.length)+' / '+allCandidates.length,'open')),h('p',{className:'mut',textContent:uiText('كل نتيجة مرتبطة بالمستند والمقطع والصفحة عند توفرها. جميع النتائج غير متحققة وتحتاج مراجعة بشرية.','Each result retains document, chunk and page provenance when available. Every result is unverified and requires human review.')}),h('div',{className:'document-intelligence-filters'},candidateKindFilter,candidateTextFilter),...candidateCards),timeline);
   const selectOptions=[...cache.values()].map(item=>new Option(item.doc.name,String(item.doc.document_id)));
   beforeSelect.replaceChildren(new Option(uiText('الإصدار السابق','Earlier version'),''),...selectOptions);
   afterSelect.replaceChildren(new Option(uiText('الإصدار اللاحق','Later version'),''),...selectOptions);
