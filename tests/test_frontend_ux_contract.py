@@ -1038,5 +1038,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Original file is unavailable or was purged under the retention policy.", page)
         self.assertIn("URL.createObjectURL(blob)", page)
 
+    def test_document_library_filters_saved_categories_and_normalizes_arabic_search(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("clearDocumentFilters=btn", page)
+        self.assertIn("normalizeLibrarySearch", page)
+        self.assertIn("replace(/[أإآٱ]/g,'ا')", page)
+        self.assertIn("replace(/[٠-٩]/g", page)
+        self.assertIn("Object.entries(categoryNames)", page)
+        self.assertIn("doc.saved_classification===classificationValue", page)
+
 if __name__ == "__main__":
     unittest.main()
