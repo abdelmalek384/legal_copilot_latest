@@ -18,7 +18,7 @@ import re
 import shutil
 import sys
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import parse_qsl, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -57,14 +57,33 @@ def load_catalog(path: Path = CATALOG) -> tuple[dict, dict]:
 
 
 def validate_reference_url(url: str) -> str:
-    """Light validation only: this URL is recorded, never fetched."""
-    parsed = urlparse(url)
-    if parsed.scheme != "https" or not parsed.hostname:
+    """Validate a public HTTPS reference URL; this tool records it but never fetches it."""
+    if not isinstance(url, str) or not url:
         raise ValueError("source URL must be an absolute https:// URL")
-    if parsed.username or parsed.password:
-        raise ValueError("source URL must not contain credentials")
     if len(url) > 2048:
         raise ValueError("source URL is too long")
+    if any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in url):
+        raise ValueError("source URL must not contain whitespace or control characters")
+    try:
+        parsed = urlsplit(url)
+        port = parsed.port
+    except (TypeError, ValueError) as exc:
+        raise ValueError("source URL must have a valid HTTPS authority and port") from exc
+    if (parsed.scheme.lower() != "https" or not parsed.hostname
+            or parsed.username is not None or parsed.password is not None
+            or parsed.fragment or parsed.netloc.endswith(":")
+            or (port is not None and not 1 <= port <= 65535)):
+        raise ValueError("source URL must be HTTPS without credentials or fragments and with a valid authority")
+    sensitive_query_keys = {
+        "token", "access_token", "auth", "authorization", "password", "secret",
+        "signature", "sig", "api_key", "apikey", "session", "sessionid",
+        "credential", "api-key", "auth_token", "session_token",
+        "x-amz-signature", "x-amz-credential", "x-amz-security-token",
+        "x-goog-signature", "x-goog-credential",
+    }
+    query_keys = {key.casefold() for key, _ in parse_qsl(parsed.query, keep_blank_values=True)}
+    if query_keys & sensitive_query_keys:
+        raise ValueError("source URL must not contain signed or credential query parameters")
     return parsed.hostname.lower().rstrip(".")
 
 
