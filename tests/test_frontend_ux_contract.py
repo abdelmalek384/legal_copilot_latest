@@ -1050,5 +1050,9 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_language_switch_preserves_documents_workspace(self):
         self.assertIn("if(PAGE==='documents')documentsPage();else if(window.CASE_ID)", HTML)
 
+    def test_document_filter_row_has_room_for_reset_action_and_stacks_on_mobile(self):
+        self.assertIn("repeat(3,minmax(130px,180px)) auto", HTML)
+        self.assertIn("@media(max-width:700px){#main .document-library-filter>.row{grid-template-columns:minmax(0,1fr)}}", HTML)
+
 if __name__ == "__main__":
     unittest.main()
