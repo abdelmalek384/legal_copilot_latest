@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "22cafd85cf3b01c495fb21b96f69f0b4fb8c9849",
   "generated_on": "2026-11-12",
-  "entry_count": 1100,
+  "entry_count": 1097,
   "entries": [
     {
       "id": "AR-0001",
@@ -9011,7 +9011,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0908",
+      "id": "AR-0907",
       "arabic": "هذا الأسبوع",
       "source_lines": [
         1692
@@ -9019,7 +9019,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0909",
+      "id": "AR-0908",
       "arabic": "كل الفترات",
       "source_lines": [
         1692
@@ -9027,7 +9027,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0910",
+      "id": "AR-0909",
       "arabic": "اليوم",
       "source_lines": [
         1528,
@@ -9038,7 +9038,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0911",
+      "id": "AR-0910",
       "arabic": "مدة إعداد المكاتب",
       "source_lines": [
         1374
@@ -9046,7 +9046,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0912",
+      "id": "AR-0911",
       "arabic": "تُقاس المدة من أول فتح لمعالج بدء الاستخدام حتى اكتمال خطواته الست. لا تُحسب المكاتب التجريبية.",
       "source_lines": [
         1375
@@ -9054,7 +9054,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0913",
+      "id": "AR-0912",
       "arabic": "قيد الإعداد",
       "source_lines": [
         1361
@@ -9062,7 +9062,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0914",
+      "id": "AR-0913",
       "arabic": "لم يبدأ",
       "source_lines": [
         1361,
@@ -9072,7 +9072,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0915",
+      "id": "AR-0914",
       "arabic": "مدة الإعداد:",
       "source_lines": [
         1365
@@ -9080,7 +9080,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0916",
+      "id": "AR-0915",
       "arabic": "بدأ الإعداد ولم يكتمل بعد.",
       "source_lines": [
         1365
@@ -9088,7 +9088,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0917",
+      "id": "AR-0916",
       "arabic": "لم يبدأ الإعداد بعد.",
       "source_lines": [
         1365
@@ -9096,7 +9096,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0918",
+      "id": "AR-0917",
       "arabic": "دقيقة",
       "source_lines": [
         1363,
@@ -9105,7 +9105,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0919",
+      "id": "AR-0918",
       "arabic": "ساعة",
       "source_lines": [
         1363
@@ -9113,7 +9113,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0920",
+      "id": "AR-0919",
       "arabic": "الاستخدام الأسبوعي",
       "source_lines": [
         1377
@@ -9121,7 +9121,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0921",
+      "id": "AR-0920",
       "arabic": "لا توجد مكاتب نشطة لقياس الإعداد.",
       "source_lines": [
         1376
@@ -9129,7 +9129,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0922",
+      "id": "AR-0921",
       "arabic": "حفظ الملف",
       "source_lines": [
         1771
@@ -9137,7 +9137,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0923",
+      "id": "AR-0922",
       "arabic": "ملف العميل",
       "source_lines": [
         1784
@@ -9145,7 +9145,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0924",
+      "id": "AR-0923",
       "arabic": "تعديل ملف العميل",
       "source_lines": [
         1784
@@ -9153,7 +9153,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0925",
+      "id": "AR-0924",
       "arabic": "ملف عميل جديد",
       "source_lines": [
         1784,
@@ -9162,7 +9162,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0926",
+      "id": "AR-0925",
       "arabic": "المسائل المرتبطة",
       "source_lines": [
         1803
@@ -9170,7 +9170,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0927",
+      "id": "AR-0926",
       "arabic": "لا توجد قضايا مرتبطة بهذا العميل بعد.",
       "source_lines": [
         1803
@@ -9178,7 +9178,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0928",
+      "id": "AR-0927",
       "arabic": "لا توجد ملفات عملاء بعد.",
       "source_lines": [
         1805
@@ -9186,7 +9186,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0929",
+      "id": "AR-0928",
       "arabic": "تعديل الملف",
       "source_lines": [
         1802
@@ -9194,7 +9194,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0930",
+      "id": "AR-0929",
       "arabic": "أدخل اسم العميل",
       "source_lines": [
         1772
@@ -9202,7 +9202,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0931",
+      "id": "AR-0930",
       "arabic": "اسم العميل",
       "source_lines": [
         1733,
@@ -9214,7 +9214,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0932",
+      "id": "AR-0931",
       "arabic": "الهاتف",
       "source_lines": [
         1519,
@@ -9228,7 +9228,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0933",
+      "id": "AR-0932",
       "arabic": "فتح",
       "source_lines": [
         1375,
@@ -9266,7 +9266,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0934",
+      "id": "AR-0933",
       "arabic": "+ ملف عميل جديد",
       "source_lines": [
         1820
@@ -9274,7 +9274,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0935",
+      "id": "AR-0934",
       "arabic": "ابحث باسم العميل أو الهاتف أو البريد الإلكتروني",
       "source_lines": [
         1794
@@ -9282,7 +9282,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0936",
+      "id": "AR-0935",
       "arabic": "بحث في ملفات العملاء",
       "source_lines": [
         1794
@@ -9290,7 +9290,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0937",
+      "id": "AR-0936",
       "arabic": "لا توجد ملفات عملاء مطابقة.",
       "source_lines": [
         1805
@@ -9298,7 +9298,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0938",
+      "id": "AR-0937",
       "arabic": "اختر ملف CSV",
       "source_lines": [
         1808,
@@ -9307,7 +9307,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0939",
+      "id": "AR-0938",
       "arabic": "الحد الأقصى لملف الاستيراد 1 ميغابايت",
       "source_lines": [
         1811,
@@ -9316,7 +9316,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0940",
+      "id": "AR-0939",
       "arabic": "استيراد CSV",
       "source_lines": [
         1820,
@@ -9325,7 +9325,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0941",
+      "id": "AR-0940",
       "arabic": "تم استيراد",
       "source_lines": [
         1814,
@@ -9334,7 +9334,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0942",
+      "id": "AR-0941",
       "arabic": "تم تخطي",
       "source_lines": [
         1814,
@@ -9343,7 +9343,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0943",
+      "id": "AR-0942",
       "arabic": "يدعم الاستيراد أعمدة الاسم والهاتف والبريد الإلكتروني والعنوان والملاحظات، بالعربية أو الإنجليزية.",
       "source_lines": [
         1822
@@ -9351,7 +9351,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0950",
+      "id": "AR-0943",
       "arabic": "المستخدمون النشطون أسبوعياً",
       "source_lines": [
         1352
@@ -9359,7 +9359,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0951",
+      "id": "AR-0944",
       "arabic": "يعرض هذا التقرير أعداداً مجمعة فقط ولا يكشف معرفات المستخدمين أو أسماء القضايا والعملاء أو نصوص الأسئلة والإجابات. يُحتسب المستخدم النشط أسبوعياً مرة واحدة إذا نفّذ بحثاً ناجحاً أو رفع مستنداً أو عالج OCR أو أنشأ مسودة خلال أسبوع UTC. تسجيلات الدخول الناجحة تظل أحداثاً وليست أشخاصاً فريدين.",
       "source_lines": [
         1157
@@ -9367,7 +9367,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0952",
+      "id": "AR-0945",
       "arabic": "لا يشمل القياس حالياً استخدام القضايا أو المهام أو التقويم وحدها.",
       "source_lines": [
         1372
@@ -9375,7 +9375,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0944",
+      "id": "AR-0946",
       "arabic": "مهام منجزة",
       "source_lines": [
         2927
@@ -9383,7 +9383,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0945",
+      "id": "AR-0947",
       "arabic": "إجمالي المهام",
       "source_lines": [
         2927
@@ -9391,7 +9391,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0946",
+      "id": "AR-0948",
       "arabic": "توزيع عبء العمل",
       "source_lines": [
         2931
@@ -9399,7 +9399,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0947",
+      "id": "AR-0949",
       "arabic": "لا يوجد أعضاء في فريق القضية.",
       "source_lines": [
         2932
@@ -9407,7 +9407,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0948",
+      "id": "AR-0950",
       "arabic": "مهام غير معيّنة",
       "source_lines": [
         2933
@@ -9415,7 +9415,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0949",
+      "id": "AR-0951",
       "arabic": "أعضاء الفريق",
       "source_lines": [
         2934
@@ -9423,7 +9423,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0953",
+      "id": "AR-0952",
       "arabic": "السابق",
       "source_lines": [
         1494,
@@ -9436,7 +9436,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0954",
+      "id": "AR-0953",
       "arabic": "التالي",
       "source_lines": [
         1433,
@@ -9446,7 +9446,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0955",
+      "id": "AR-0954",
       "arabic": "سياسة المصادقة متعددة العوامل للمكتب",
       "source_lines": [
         1432
@@ -9454,7 +9454,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0956",
+      "id": "AR-0955",
       "arabic": "تُفرض السياسة عند كل طلب موثّق داخل هذا المكتب. تفعيلها قد يطلب من المستخدمين إعداد تطبيق المصادقة عند طلبهم التالي.",
       "source_lines": [
         1433
@@ -9462,7 +9462,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0957",
+      "id": "AR-0956",
       "arabic": "إلزام مسؤولي المكتب بتفعيل المصادقة",
       "source_lines": [
         1419,
@@ -9471,7 +9471,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0958",
+      "id": "AR-0957",
       "arabic": "إلزام جميع أعضاء المكتب بتفعيل المصادقة",
       "source_lines": [
         1420,
@@ -9480,7 +9480,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0959",
+      "id": "AR-0958",
       "arabic": "حفظ سياسة المصادقة",
       "source_lines": [
         1421,
@@ -9489,7 +9489,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0960",
+      "id": "AR-0959",
       "arabic": "تم حفظ سياسة المصادقة",
       "source_lines": [
         1426
@@ -9497,7 +9497,7 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-0961",
+      "id": "AR-0960",
       "arabic": "اختر مكتباً آخر للمتابعة",
       "review_status": "pending_native_review",
       "source_lines": [
@@ -9505,7 +9505,7 @@
       ]
     },
     {
-      "id": "AR-0962",
+      "id": "AR-0961",
       "arabic": "تبديل المكتب",
       "review_status": "pending_native_review",
       "source_lines": [
@@ -9513,7 +9513,7 @@
       ]
     },
     {
-      "id": "AR-0963",
+      "id": "AR-0962",
       "arabic": "اختر مكتباً آخر؛ ستُراجع سياسة المصادقة الخاصة به قبل المتابعة.",
       "review_status": "pending_native_review",
       "source_lines": [
@@ -10708,33 +10708,6 @@
     {
       "id": "AR-1097",
       "arabic": "مسح عوامل التصفية",
-      "source_lines": [
-        2077,
-        2201
-      ],
-      "review_status": "pending_native_review"
-    },
-    {
-      "id": "AR-1098",
-      "arabic": "ا",
-      "source_lines": [
-        2077,
-        2201
-      ],
-      "review_status": "pending_native_review"
-    },
-    {
-      "id": "AR-1099",
-      "arabic": "ي",
-      "source_lines": [
-        2077,
-        2201
-      ],
-      "review_status": "pending_native_review"
-    },
-    {
-      "id": "AR-1100",
-      "arabic": "٠١٢٣٤٥٦٧٨٩",
       "source_lines": [
         2077,
         2201
