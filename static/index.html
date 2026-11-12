@@ -2180,6 +2180,7 @@ async function documentsPage(){
  documentClassificationFilter.onchange=()=>globalMode?loadAllAccessibleDocs():renderDocuments(currentDocuments);
  const loadAllAccessibleDocs=async()=>{
   globalMode=true;
+  list.replaceChildren();
   const params=new URLSearchParams({
    q:documentFilter.value.trim(),
    file_type:documentTypeFilter.value,
@@ -2193,6 +2194,12 @@ async function documentsPage(){
   try{
    const result=await api('/documents/search?'+params.toString());
    const items=Array.isArray(result.items)?result.items:[];
+   const statusValues=Array.isArray(result.statuses)?result.statuses:[];
+   documentStatusFilter.replaceChildren(new Option(uiText('كل حالات الاستخراج','All extraction statuses'),''),...statusValues.map(value=>new Option(String(value),String(value))));
+   const categoryOptions={unclassified:uiText('غير مصنف','Unclassified'),court_judgment:uiText('حكم قضائي','Court judgment'),contract:uiText('عقد','Contract'),pleading:uiText('مذكرة أو صحيفة دعوى','Pleading'),correspondence:uiText('مراسلات أو إخطار','Correspondence / notice'),evidence_or_receipt:uiText('دليل أو إيصال','Evidence / receipt')};
+   const oldClassification=documentClassificationFilter.value;
+   documentClassificationFilter.replaceChildren(new Option(uiText('كل حالات التصنيف','All classification states'),''),new Option(uiText('تصنيف محفوظ','Saved classification'),'saved'),new Option(uiText('لا يوجد تصنيف محفوظ','No saved classification'),'unsaved'),...Object.entries(categoryOptions).map(([value,label])=>new Option(label,value)));
+   if([...documentClassificationFilter.options].some(option=>option.value===oldClassification))documentClassificationFilter.value=oldClassification;
    globalTotal=Number(result.total)||0;
    globalPageLabel.textContent=globalTotal?(globalOffset+1)+'-'+Math.min(globalOffset+items.length,globalTotal)+' / '+globalTotal:'0 / 0';
    previousGlobal.disabled=globalOffset<=0;
@@ -2200,7 +2207,7 @@ async function documentsPage(){
    const categoryNames={unclassified:uiText('غير مصنف','Unclassified'),court_judgment:uiText('حكم قضائي','Court judgment'),contract:uiText('عقد','Contract'),pleading:uiText('مذكرة أو صحيفة دعوى','Pleading'),correspondence:uiText('مراسلات أو إخطار','Correspondence / notice'),evidence_or_receipt:uiText('دليل أو إيصال','Evidence / receipt')};
    documentRows.replaceChildren(...(items.length?items.map(doc=>h('article',{className:'card document-library-item'},
     h('div',{className:'document-library-file'},h('span',{className:'document-library-file-icon',textContent:String(doc.name||'').toLowerCase().endsWith('.pdf')?'PDF':'DOC'}),h('div',{},h('b',{textContent:doc.name||uiText('مستند دون اسم','Unnamed document')}),h('p',{className:'mut',textContent:(doc.case_title||uiText('ملف القضية','Matter'))+' · '+(doc.case_number||'#'+doc.case_id)+(doc.case_year?' / '+doc.case_year:'')}),h('p',{className:'mut',textContent:[doc.added?String(doc.added).slice(0,16).replace('T',' '):'',doc.content_type,doc.byte_size!=null?(Number(doc.byte_size)/1048576).toFixed(2)+' MB':''].filter(Boolean).join(' · ')}))),
-    h('div',{className:'document-library-meta'},pill(doc.extraction_status||uiText('حالة الاستخراج غير متاحة','Extraction status unavailable'),['text_extracted','complete'].includes(doc.extraction_status)?'done':'soon'),pill(doc.saved_classification?(categoryNames[doc.saved_classification]||doc.saved_classification):uiText('لا يوجد تصنيف محفوظ','No saved classification'),doc.saved_classification?'done':'soon'),doc.ocr_used?pill(uiText('استخدم OCR — يلزم التحقق','OCR used — verify'),'soon'):null,doc.original_available?btn(uiText('تنزيل الأصل','Download original'),()=>downloadOriginal(doc),'g'):null,btn(uiText('فتح ملف القضية','Open matter'),async()=>{matterSelect.value=String(doc.case_id);globalMode=false;await loadMatter()},'primary'))
+    h('div',{className:'document-library-meta'},pill(doc.extraction_status||uiText('حالة الاستخراج غير متاحة','Extraction status unavailable'),['text_extracted','complete'].includes(doc.extraction_status)?'done':'soon'),pill(doc.saved_classification?(categoryNames[doc.saved_classification]||doc.saved_classification):uiText('لا يوجد تصنيف محفوظ','No saved classification'),doc.saved_classification?'done':'soon'),doc.ocr_used?pill(uiText('استخدم OCR — يلزم التحقق','OCR used — verify'),'soon'):null,doc.original_available?btn(uiText('تنزيل الأصل','Download original'),()=>downloadOriginal(doc),'g'):null,btn(uiText('فتح ملف القضية','Open matter'),async()=>{matterSelect.value=String(doc.case_id);window.DOCUMENT_MATTER_ID=Number(doc.case_id);renderMatters();await loadMatter()},'primary'))
    )):[h('p',{className:'mut',textContent:uiText('لا توجد مستندات متاحة تطابق البحث وعوامل التصفية.','No accessible documents match this search and these filters.')})]));
    stats.replaceChildren(h('article',{className:'card document-library-stat'},h('span',{className:'mut',textContent:uiText('المستندات المتاحة لك','Documents you can access')}),h('b',{textContent:String(globalTotal)}),h('small',{className:'mut',textContent:uiText('عبر ملفات القضايا المصرح لك بها فقط','Across matters you are authorized to access only')})));
    summary.textContent=uiText('نتائج بيانات وصفية فقط؛ البحث في النص المستخرج متاح بعد فتح ملف القضية.','Metadata results only; extracted-text search is available after opening a matter.');
