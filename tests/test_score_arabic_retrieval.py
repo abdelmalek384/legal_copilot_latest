@@ -88,7 +88,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             questions = Path(temp_dir) / "questions.jsonl"
             runs = Path(temp_dir) / "runs.jsonl"
-            questions.write_text("{not-json}\n", encoding="utf-8")
+            questions.write_text("{not-json}\\n", encoding="utf-8")
             runs.write_text("", encoding="utf-8")
             registry = Path(temp_dir) / "reviewers.json"
             registry.write_text(__import__("json").dumps(TEST_REVIEWER_REGISTRY), encoding="utf-8")
@@ -111,7 +111,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
             questions = Path(temp_dir) / "questions.jsonl"
             runs = Path(temp_dir) / "runs.jsonl"
             report = Path(temp_dir) / "report.json"
-            questions.write_text('{"id":"Q1","review_status":"needs_lawyer_review"}\n', encoding="utf-8")
+            questions.write_text('{"id":"Q1","review_status":"needs_lawyer_review"}\\n', encoding="utf-8")
             runs.write_text("", encoding="utf-8")
             report.write_text("[]", encoding="utf-8")
             registry = Path(temp_dir) / "reviewers.json"
@@ -153,27 +153,6 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         question["review_evidence_url"] = 123
         with self.assertRaisesRegex(ValueError, "review_evidence_url must be clean HTTPS"):
             score([question], [], TEST_REVIEWER_REGISTRY)
-
-    def test_reviewer_evidence_url_rejects_controls_delimiters_and_credentials(self):
-        for url in (
-            "https://example.gov/review path",
-            "https://example.gov/review\nrecord",
-            "https://example.gov/review\t",
-            "https://example.gov/review\x7f",
-            "https://example.gov/review?",
-            "https://example.gov/review#",
-            "https://example.gov/review?token=",
-            "https://example.gov/review#section",
-            "https://@example.gov/review",
-            "https://example.gov:/review",
-            "https://example.gov\\review",
-            "https://example.gov\\@evil.gov/review",
-        ):
-            with self.subTest(url=url):
-                question = reviewed("Q-BAD-URL")
-                question["review_evidence_url"] = url
-                with self.assertRaisesRegex(ValueError, "review_evidence_url must be clean HTTPS"):
-                    score([question], [], TEST_REVIEWER_REGISTRY)
 
     def test_benchmark_fingerprint_survives_counsel_labeling_but_detects_prompt_edits(self):
         q = {
@@ -343,7 +322,22 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         run = {"question_id": "Q1", "retrieved_article_ids": ["LABOUR-SOURCE::law:قانون العمل [block 1]::article:1"],
                "cited_article_ids": [], "abstained": False, "used_unverified_source": False}
         self.assertEqual(score([q], [run], TEST_REVIEWER_REGISTRY)["target_status"],
-                         "not_evaluable_missing_approved_labels_or_cited_runs")
+                         "below_target")
+
+    def test_unanswerable_non_abstained_uncited_run_is_a_known_safety_failure(self):
+        q = reviewed("Q-UNANSWERABLE", answerable=False)
+        run = {
+            "question_id": "Q-UNANSWERABLE",
+            "retrieved_article_ids": [],
+            "cited_article_ids": [],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+        result = score([q], [run], TEST_REVIEWER_REGISTRY)
+        self.assertEqual(result["wrong_article_rate"], None)
+        self.assertEqual(result["uncited_non_abstained_answers"], 1)
+        self.assertEqual(result["abstention_compliance_unanswerable"], 0.0)
+        self.assertEqual(result["target_status"], "below_target")
 
     def test_canonical_expected_article_id_is_used_for_hits_and_citations(self):
         q = reviewed("Q1")
@@ -523,6 +517,28 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
             question[field] = []
             with self.subTest(field=field), self.assertRaisesRegex(ValueError, expected_message):
                 score([question], [run], TEST_REVIEWER_REGISTRY)
+
+
+    def test_reviewer_evidence_url_rejects_controls_delimiters_and_credentials(self):
+        for url in (
+            "https://example.gov/review path",
+            "https://example.gov/review\nrecord",
+            "https://example.gov/review\t",
+            "https://example.gov/review\x7f",
+            "https://example.gov/review?",
+            "https://example.gov/review#",
+            "https://example.gov/review?token=",
+            "https://example.gov/review#section",
+            "https://@example.gov/review",
+            "https://example.gov:/review",
+            "https://example.gov\\review",
+            "https://example.gov\\@evil.gov/review",
+        ):
+            with self.subTest(url=url):
+                question = reviewed("Q-BAD-URL")
+                question["review_evidence_url"] = url
+                with self.assertRaisesRegex(ValueError, "review_evidence_url must be clean HTTPS"):
+                    score([question], [], TEST_REVIEWER_REGISTRY)
 
 if __name__ == "__main__":
     unittest.main()
