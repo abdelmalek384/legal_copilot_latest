@@ -6612,6 +6612,61 @@ def import_cases_csv(b: CaseCSVImportIn, u: dict = Depends(user)):
     return {"created": created, "skipped": skipped, "rows": rows_seen}
 
 
+@app.get("/documents/search-text")
+def search_accessible_document_text(
+    q: str = Query(default="", min_length=1, max_length=200),
+    limit: int = Query(default=40, ge=1, le=100),
+    offset: int = Query(default=0, ge=0, le=100000),
+    u: dict = Depends(user),
+):
+    """Search extracted chunks only in matters visible to the current firm user."""
+    needle = q.strip()
+    tokens = re.findall(r"[\\w]+", needle, flags=re.UNICODE)
+    tokens = [token for token in tokens if token][:20]
+    if not tokens:
+        raise HTTPException(422, "enter at least one searchable word")
+    # Quote every token so user input cannot inject FTS operators or column filters.
+    fts_query = " AND ".join('"' + token.replace('"', '""') + '"' for token in tokens)
+    access = (
+        "chunks.case_id IN (SELECT cs.id FROM cases cs WHERE cs.firm_id=? "
+        "AND (?='admin' OR EXISTS(SELECT 1 FROM members m "
+        "WHERE m.case_id=cs.id AND m.user_id=?)))"
+    )
+    params = (int(u["firm_id"]), u["role"], int(u["id"]), fts_query)
+    c = conn()
+    joins = (
+        " FROM chunks_fts JOIN chunks ON chunks.id=chunks_fts.rowid "
+        "JOIN docs d ON d.id=chunks.document_id AND d.case_id=chunks.case_id "
+        "AND d.firm_id=? JOIN cases cs ON cs.id=chunks.case_id AND cs.firm_id=d.firm_id "
+    )
+    where = " WHERE chunks_fts MATCH ? AND " + access
+    # FTS MATCH is the first placeholder; firm scoping follows in the access predicate.
+    query_params = (fts_query, int(u["firm_id"]), u["role"], int(u["id"]))
+    total = int(c.execute(
+        "SELECT COUNT(*)" + joins + where,
+        (int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"])),
+    ).fetchone()[0])
+    rows = c.execute(
+        "SELECT chunks.id AS chunk_id,chunks.case_id,chunks.document_id,chunks.ref,"
+        "chunks.page,substr(chunks.text,1,1200) AS excerpt,d.name AS document_name,"
+        "cs.title AS case_title,cs.case_number,cs.case_year,bm25(chunks_fts) AS rank"
+        + joins + where + " ORDER BY rank LIMIT ? OFFSET ?",
+        (int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"]), limit, offset),
+    ).fetchall()
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (u["firm_id"], u["id"], "document_text_search"),
+    )
+    c.commit()
+    return {
+        "items": [dict(row) for row in rows],
+        "total": total,
+        "limit": limit,
+        "offset": offset,
+        "warning": "Search results are extracted-text matches, not verified facts or legal conclusions. Check each passage against its original document.",
+    }
+
+
 @app.get("/documents/search")
 def search_accessible_documents(
     q: str = Query(default="", max_length=200),
