@@ -217,8 +217,8 @@ class ProductionReleaseGateTests(unittest.TestCase):
                 benchmark_path=gate.DEFAULT_BENCHMARK, reviewer_registry=self._reviewer_registry(),
             )
         self.assertFalse(report["ready"])
-        self.assertEqual(report["benchmark"]["question_count"], 94)
-        self.assertEqual(report["benchmark"]["unreviewed_count"], 94)
+        self.assertEqual(report["benchmark"]["question_count"], 100)
+        self.assertEqual(report["benchmark"]["unreviewed_count"], 100)
         codes = {blocker["code"] for blocker in report["blockers"]}
         self.assertIn("unreviewed_questions_present", codes)
         self.assertIn("benchmark_below_minimum", codes)
