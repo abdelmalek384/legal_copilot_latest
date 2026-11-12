@@ -5119,5 +5119,129 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(denied.status_code, 404, denied.text)
 
 
+    def test_document_intelligence_api_is_scoped_audited_and_compare_safe(self):
+        import io
+        from docx import Document
+
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Document Intelligence API"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        def make_docx(text):
+            buffer = io.BytesIO()
+            document = Document()
+            document.add_paragraph(text)
+            document.save(buffer)
+            return buffer.getvalue()
+
+        v1_text = (
+            "مذكرة دفاع. دعوى رقم ١٢٣/٢٠٢٥ بتاريخ ١٥/٠٣/٢٠٢٥. "
+            "المبلغ ٥٠٠٠ جنيه. المدعي: طرف تجريبي. المادة ١٠١. جلسة ١٦/٠٣/٢٠٢٥."
+        )
+        v2_text = v1_text.replace("٥٠٠٠ جنيه", "٦٠٠٠ جنيه")
+        v1_bytes = make_docx(v1_text)
+        v2_bytes = make_docx(v2_text)
+        with patch.object(app, "_mfa_required_for_user", return_value=False):
+            first = self._mutate(
+                "post", f"/cases/{case_id}/upload",
+                files={"file": ("intelligence-v1.docx", v1_bytes,
+                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
+            )
+            duplicate = self._mutate(
+                "post", f"/cases/{case_id}/upload",
+                files={"file": ("intelligence-v1-copy.docx", v1_bytes,
+                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
+            )
+            second = self._mutate(
+                "post", f"/cases/{case_id}/upload",
+                files={"file": ("intelligence-v2.docx", v2_bytes,
+                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
+            )
+        for response in (first, duplicate, second):
+            self.assertEqual(response.status_code, 200, response.text)
+        first_id = first.json()["document_id"]
+        second_id = second.json()["document_id"]
+
+        analysis = self.client.get(f"/cases/{case_id}/documents/intelligence")
+        self.assertEqual(analysis.status_code, 200, analysis.text)
+        payload = analysis.json()
+        self.assertEqual(len(payload["documents"]), 3)
+        self.assertFalse(payload["truncated"])
+        first_doc = next(item for item in payload["documents"] if item["document_id"] == first_id)
+        self.assertEqual(first_doc["analysis_status"], "analyzed")
+        self.assertIsNone(first_doc["candidates"][0]["page"])
+        candidate_kinds = {item["kind"] for doc in payload["documents"] for item in doc["candidates"]}
+        self.assertTrue({"date", "case_reference", "amount", "party_label",
+                         "legal_reference", "event_mention"} <= candidate_kinds)
+        self.assertTrue(payload["timeline"]["dated_mentions"])
+        self.assertTrue(any(group["match_basis"] == "original_sha256" for group in payload["duplicates"]))
+        self.assertNotIn("text", first_doc, "analysis response must not return whole document text")
+
+        saved = self._mutate(
+            "post", f"/cases/{case_id}/docs/{first_id}/classification",
+            json={"category": "contract", "note": "Reviewed by case lawyer", "expected_latest_id": None},
+        )
+        self.assertEqual(saved.status_code, 201, saved.text)
+        first_review_id = saved.json()["classification"]["id"]
+        stale = self._mutate(
+            "post", f"/cases/{case_id}/docs/{first_id}/classification",
+            json={"category": "pleading", "expected_latest_id": None},
+        )
+        self.assertEqual(stale.status_code, 409, stale.text)
+        updated = self._mutate(
+            "post", f"/cases/{case_id}/docs/{first_id}/classification",
+            json={"category": "pleading", "expected_latest_id": first_review_id},
+        )
+        self.assertEqual(updated.status_code, 201, updated.text)
+
+        refreshed = self.client.get(f"/cases/{case_id}/documents/intelligence")
+        self.assertEqual(refreshed.status_code, 200, refreshed.text)
+        reviewed_doc = next(item for item in refreshed.json()["documents"] if item["document_id"] == first_id)
+        self.assertEqual(reviewed_doc["classification"]["category"], "pleading")
+        self.assertEqual(len(reviewed_doc["classification_history"]), 2)
+        self.assertEqual(reviewed_doc["classification_history"][0]["reviewer_user_id"], self.user_id)
+
+        compared = self._mutate(
+            "post", f"/cases/{case_id}/documents/compare",
+            json={"before_document_id": first_id, "after_document_id": second_id, "context_chars": 80},
+        )
+        self.assertEqual(compared.status_code, 200, compared.text)
+        self.assertTrue(compared.json()["changes"])
+        self.assertIn("٥٠٠٠ جنيه", compared.json()["changes"][0]["before"])
+        self.assertIn("٦٠٠٠ جنيه", compared.json()["changes"][0]["after"])
+        self.assertEqual(compared.json()["review_status"], "requires_lawyer_review")
+
+        context_a = self.runtime.resolve_context(self.user_id, self.firm_a)
+        context_b = self.runtime.resolve_context(self.user_id, self.firm_b)
+        db_a = self.runtime.firm_connection(context_a)
+        db_b = self.runtime.firm_connection(context_b)
+        with self.assertRaises(sqlite3.IntegrityError):
+            db_a.execute(
+                "UPDATE document_classification_reviews SET category='contract' WHERE id=?",
+                (first_review_id,),
+            )
+        db_a.commit()
+        self.assertEqual(
+            db_a.execute("SELECT COUNT(*) FROM document_classification_reviews").fetchone()[0], 2
+        )
+        self.assertEqual(
+            db_b.execute("SELECT COUNT(*) FROM document_classification_reviews").fetchone()[0], 0
+        )
+
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        denied = self.client.get(f"/cases/{case_id}/documents/intelligence")
+        self.assertEqual(denied.status_code, 404, denied.text)
+        denied_compare = self._mutate(
+            "post", f"/cases/{case_id}/documents/compare",
+            json={"before_document_id": first_id, "after_document_id": second_id},
+        )
+        self.assertEqual(denied_compare.status_code, 404, denied_compare.text)
+
+
 if __name__ == "__main__":
     unittest.main()
