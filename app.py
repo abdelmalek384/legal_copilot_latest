@@ -6673,7 +6673,7 @@ def case(cid: int, u: dict = Depends(user)):
             "members": rows("SELECT m.user_id, m.role, u.name FROM members m JOIN users u ON u.id=m.user_id WHERE m.case_id=?"),
             "tasks": rows("SELECT t.*, u.name AS assignee_name FROM tasks t LEFT JOIN users u ON u.id=t.assignee WHERE t.case_id=? ORDER BY t.status DESC, t.due"),
             "sessions": rows("SELECT * FROM sessions WHERE case_id=? ORDER BY date"),
-            "docs": rows("SELECT id AS document_id,name,added,sha256,content_type,byte_size,extraction_status,ocr_used,uploader_user_id FROM docs WHERE case_id=? ORDER BY id DESC"),
+            "docs": rows("SELECT d.id AS document_id,d.name,d.added,d.sha256,d.content_type,d.byte_size,d.extraction_status,d.ocr_used,d.uploader_user_id,dc.category AS saved_classification,dc.version AS classification_version FROM docs d JOIN cases c ON c.id=d.case_id LEFT JOIN document_classifications dc ON dc.document_id=d.id AND dc.case_id=d.case_id AND dc.firm_id=c.firm_id WHERE d.case_id=? ORDER BY d.id DESC"),
             "notes": rows("SELECT n.id,n.text,n.created_at,u.name AS author FROM notes n JOIN users u ON u.id=n.created_by WHERE n.case_id=? ORDER BY n.id DESC"),
             "deadlines": rows("SELECT * FROM deadlines WHERE case_id=? ORDER BY due"),
             "fees": rows("SELECT * FROM fees WHERE case_id=? ORDER BY due"),
