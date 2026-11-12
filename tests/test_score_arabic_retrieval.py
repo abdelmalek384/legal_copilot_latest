@@ -478,5 +478,30 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
 
 
 
+
+    def test_unhashable_review_enum_values_are_rejected_without_type_errors(self):
+        run = {
+            "question_id": "Q-ENUM",
+            "retrieved_article_ids": [reviewed("Q-ENUM")["expected_article_id"]],
+            "cited_article_ids": [reviewed("Q-ENUM")["expected_article_id"]],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+        # Unknown/malformed review status is excluded from scoring, never treated as approved.
+        malformed_status = reviewed("Q-ENUM")
+        malformed_status["review_status"] = []
+        report = score([malformed_status], [run], TEST_REVIEWER_REGISTRY)
+        self.assertEqual(report["reviewed_questions"], 0)
+
+        for field, expected_message in (
+            ("question_origin", "only provenance-cleared observed questions"),
+            ("label_status", "approved label_status"),
+            ("reviewer_role", "reviewer_role must identify qualified Egyptian counsel"),
+        ):
+            question = reviewed("Q-ENUM")
+            question[field] = []
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, expected_message):
+                score([question], [run], TEST_REVIEWER_REGISTRY)
+
 if __name__ == "__main__":
     unittest.main()
