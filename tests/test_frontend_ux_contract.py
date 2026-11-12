@@ -857,6 +857,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("statusDescriptions[status]||statusDescriptions.outdated_or_under_review", HTML)
         self.assertIn(".research-source-caution.warning{", HTML)
         self.assertIn(".research-source-caution.verified{", HTML)
+        self.assertIn(".research-source-caution.verified{background:var(--workspace-success-bg)", HTML)
+        self.assertIn("border-inline-start:3px solid var(--workspace-success)", HTML)
 
 
 
