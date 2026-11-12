@@ -11,14 +11,14 @@ class DocumentIntelligenceTests(unittest.TestCase):
     def test_classification_is_transparent_and_never_auto_approved(self):
         result = classify_document("judgment.pdf", "حكم المحكمة في الدعوى")
         self.assertEqual(result["category"], "court_judgment")
-        self.assertEqual(result["confidence"], "medium")
+        self.assertEqual(result["signal_strength"], "multiple_keyword_matches")
         self.assertTrue(result["requires_review"])
         self.assertIn("حكم", result["matched_terms"])
 
     def test_unknown_document_remains_unclassified(self):
         result = classify_document("scan.pdf", "نص غير واضح")
         self.assertEqual(result["category"], "unclassified")
-        self.assertEqual(result["confidence"], "low")
+        self.assertEqual(result["signal_strength"], "no_keyword_match")
         self.assertTrue(result["requires_review"])
 
     def test_extracts_literal_candidates_with_pdf_page_provenance(self):
