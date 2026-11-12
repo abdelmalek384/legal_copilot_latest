@@ -57,7 +57,10 @@ END;
 
 CREATE TRIGGER document_classifications_tenant_update
 BEFORE UPDATE ON document_classifications
-WHEN NOT EXISTS (
+WHEN OLD.document_id <> NEW.document_id
+  OR OLD.case_id <> NEW.case_id
+  OR OLD.firm_id <> NEW.firm_id
+  OR NOT EXISTS (
     SELECT 1 FROM tenant_database_binding b
     JOIN docs d ON d.id=NEW.document_id
     JOIN cases c ON c.id=NEW.case_id
