@@ -5222,5 +5222,82 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(document["saved_classification"], "pleading")
         self.assertFalse(document["original_available"])
 
+    def test_document_classification_is_persisted_versioned_and_audited(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Classification audit matter"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        uploaded = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={"name": "classification-review.txt", "text": "Synthetic classification text."},
+        )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+        document_id = uploaded.json()["document_id"]
+
+        initial = self.client.get(f"/cases/{case_id}/docs/{document_id}/classification")
+        self.assertEqual(initial.status_code, 200, initial.text)
+        self.assertIsNone(initial.json()["classification"])
+        self.assertTrue(initial.json()["can_edit"])
+
+        saved = self._mutate(
+            "put", f"/cases/{case_id}/docs/{document_id}/classification",
+            json={"category": "contract", "expected_version": 0, "note": "Reviewed against source."},
+        )
+        self.assertEqual(saved.status_code, 200, saved.text)
+        self.assertEqual(saved.json()["classification"]["version"], 1)
+
+        stale = self._mutate(
+            "put", f"/cases/{case_id}/docs/{document_id}/classification",
+            json={"category": "pleading", "expected_version": 0, "note": "Stale update."},
+        )
+        self.assertEqual(stale.status_code, 409, stale.text)
+
+        updated = self._mutate(
+            "put", f"/cases/{case_id}/docs/{document_id}/classification",
+            json={"category": "pleading", "expected_version": 1, "note": "Corrected after review."},
+        )
+        self.assertEqual(updated.status_code, 200, updated.text)
+        self.assertEqual(updated.json()["classification"]["version"], 2)
+
+        history = self.client.get(f"/cases/{case_id}/docs/{document_id}/classification")
+        self.assertEqual(history.status_code, 200, history.text)
+        self.assertEqual(history.json()["classification"]["category"], "pleading")
+        self.assertEqual(history.json()["classification"]["version"], 2)
+        self.assertEqual(len(history.json()["events"]), 2)
+        self.assertEqual(history.json()["events"][0]["previous_category"], "contract")
+        self.assertEqual(history.json()["events"][0]["new_category"], "pleading")
+        self.assertEqual(history.json()["events"][0]["note"], "Corrected after review.")
+
+    def test_document_classification_rejects_invalid_categories_and_cross_matter_access(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        first = self._mutate("post", "/cases", json={"title": "Classification matter one"})
+        second = self._mutate("post", "/cases", json={"title": "Classification matter two"})
+        self.assertEqual(first.status_code, 200, first.text)
+        self.assertEqual(second.status_code, 200, second.text)
+        case_one, case_two = first.json()["id"], second.json()["id"]
+        uploaded = self._mutate(
+            "post", f"/cases/{case_one}/docs",
+            json={"name": "matter-one-classification.txt", "text": "Matter one source text."},
+        )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+        document_id = uploaded.json()["document_id"]
+
+        invalid = self._mutate(
+            "put", f"/cases/{case_one}/docs/{document_id}/classification",
+            json={"category": "verified_legal_finding", "expected_version": 0, "note": ""},
+        )
+        self.assertEqual(invalid.status_code, 422, invalid.text)
+
+        cross_matter = self.client.get(
+            f"/cases/{case_two}/docs/{document_id}/classification"
+        )
+        self.assertIn(cross_matter.status_code, (403, 404), cross_matter.text)
+
 if __name__ == "__main__":
     unittest.main()
