@@ -932,7 +932,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_document_library_clears_stale_matter_context_when_filter_changes(self):
         page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
-        self.assertIn("if(!matterSelect.value){documentList.replaceChildren();workspace.replaceChildren();summary.textContent=", page)
+        self.assertIn("if(!matterSelect.value){currentDocuments=[];documentRows.replaceChildren();stats.replaceChildren();workspace.replaceChildren();uploadButton.disabled=true;uploadSubmit.disabled=true;summary.textContent=", page)
 
     def test_document_library_filters_are_driven_by_returned_document_metadata(self):
         page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
