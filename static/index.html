@@ -2512,11 +2512,27 @@ function documentIntelligencePanel(caseId,documents){
   else duplicateItems.push(h('p',{className:'mut',textContent:uiText('لم تظهر مطابقات تكرار في المستندات المحملة.','No duplicate matches were found among loaded documents.')}));
   const duplicatePanel=h('section',{className:'card'},h('b',{textContent:uiText('إشارات التكرار داخل ملف القضية','Duplicate signals within this matter')}),...duplicateItems,h('p',{className:'mut',textContent:uiText('هذه إشارات مراجعة داخل القضية الحالية فقط؛ لا يحدث دمج أو حذف تلقائي، وتطابق النص لا يثبت تطابق الملف الأصلي.','Review signals within this matter only; nothing is merged or deleted automatically, and text equality does not prove original-file identity.')}));
   const classificationCards=[...cache.values()].map(item=>{
-   const current=draftOverrides.get(String(item.doc.document_id))||item.suggestion.category;
-   const select=h('select',{'aria-label':uiText('تصنيف مسودة للمستند ','Draft classification for ')+item.doc.name},...categories.map(([value,label])=>new Option(label,value)));
+   const persisted=item.classification&&item.classification.classification;
+   const canEdit=!!(item.classification&&item.classification.can_edit===true);
+   const current=draftOverrides.get(String(item.doc.document_id))||(persisted&&persisted.category)||item.suggestion.category;
+   const select=h('select',{'aria-label':uiText('تصنيف المستند ','Document classification for '),disabled:!canEdit},...categories.map(([value,label])=>new Option(label,value)));
    select.value=current;
-   select.onchange=()=>{draftOverrides.set(String(item.doc.document_id),select.value);status.textContent=uiText('تم تعديل تصنيف مسودة في هذه الشاشة فقط؛ لم يُحفظ على الخادم أو في سجل مراجعة.','A draft classification changed in this view only; it has not been saved to the server or review history.')};
-   return h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:item.doc.name}),pill(uiText('اقتراح يتطلب المراجعة','Suggestion — review required'),'soon')),h('p',{className:'mut',textContent:uiText('إشارات المطابقة: ','Matched signals: ')+(item.suggestion.matched.join('، ')||uiText('لا توجد كلمات مفتاحية','no keyword matches'))+' · '+item.suggestion.signal}),h('label',{},h('span',{className:'mut',textContent:uiText('تعديل تصنيف مسودة (غير محفوظ)','Edit draft classification (not saved)')}),select));
+   const note=h('input',{type:'text',maxLength:2000,placeholder:uiText('ملاحظة سبب التصنيف (اختيارية)','Classification rationale (optional)'),disabled:!canEdit,'aria-label':uiText('ملاحظة التصنيف ','Classification note for ')+item.doc.name});
+   select.onchange=()=>{draftOverrides.set(String(item.doc.document_id),select.value);status.textContent=uiText('تغيير غير محفوظ؛ اضغط حفظ التصنيف لتسجيله في سجل التدقيق.','Unsaved change; choose Save classification to record it in the audit history.')};
+   const save=btn(uiText('حفظ التصنيف','Save classification'),async()=>{
+    save.disabled=true;
+    try{
+     await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/classification','PUT',{category:select.value,expected_version:persisted?persisted.version:0,note:note.value.trim()});
+     item.classification=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/classification');
+     draftOverrides.delete(String(item.doc.document_id));
+     renderAnalysis();
+     status.textContent=uiText('تم حفظ التصنيف وسجل التدقيق.','Classification and audit history saved.');
+    }catch(error){status.textContent=String(error.message||uiText('تعذر حفظ التصنيف؛ أعد تحميل المستند وحاول مجدداً.','Could not save classification; reload the document and retry.'))}
+    finally{save.disabled=false}
+   },'primary');
+   save.disabled=!canEdit;
+   const history=(item.classification&&Array.isArray(item.classification.events)?item.classification.events:[]).slice(0,5);
+   return h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:item.doc.name}),pill(persisted?uiText('تصنيف محفوظ','Saved classification'):uiText('اقتراح يتطلب المراجعة','Suggestion — review required'),persisted?'done':'soon')),h('p',{className:'mut',textContent:uiText('إشارات المطابقة: ','Matched signals: ')+(item.suggestion.matched.join('، ')||uiText('لا توجد كلمات مفتاحية','no keyword matches'))+' · '+item.suggestion.signal}),h('label',{},h('span',{className:'mut',textContent:uiText('التصنيف','Classification')}),select),note,h('div',{className:'row'},save),!canEdit?h('p',{className:'mut',textContent:uiText('الحفظ متاح لمسؤول المكتب أو قائد القضية فقط.','Saving is limited to firm administrators and matter leads.')}):null,history.length?h('div',{className:'classification-history'},h('b',{textContent:uiText('سجل تغييرات التصنيف','Classification change history')}),...history.map(event=>h('p',{className:'mut',textContent:event.previous_category+' → '+event.new_category+' · '+event.created_at+' · '+uiText('المراجع رقم ','Reviewer ID ')+event.actor_user_id+(event.note?' · '+event.note:'')}))):null);
   });
   const typeLabels={date:uiText('تاريخ مذكور','Date mention'),case_reference:uiText('مرجع قضية','Case reference'),amount:uiText('مبلغ','Amount'),party_label:uiText('طرف مسمى','Labelled party'),legal_reference:uiText('مرجع قانوني','Legal reference'),event_mention:uiText('إشارة حدث','Event mention')};
   const candidateCards=allCandidates.slice(0,120).map((candidate,index)=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+(typeLabels[candidate.kind]||candidate.kind)}),pill(uiText('مرشح غير متحقق','Unverified candidate'),'soon')),h('p',{textContent:candidate.value}),h('p',{className:'mut',textContent:candidate.filename+' · '+(candidate.page?uiText('صفحة ','Page ')+candidate.page:uiText('رقم الصفحة غير مسجل','Page not recorded'))+' · '+candidate.chunk_ref}),h('p',{className:'mut',textContent:candidate.excerpt})));
@@ -2545,7 +2561,7 @@ function documentIntelligencePanel(caseId,documents){
     if(!data.intelligence||!data.intelligence.classification||!Array.isArray(data.intelligence.candidates))throw new Error('server_document_intelligence_unavailable');
     const text=chunks.map(chunk=>String(chunk.text||'')).join('\n');
     if(totalChars+text.length>1000000){skipped++;break}
-    totalChars+=text.length;cache.set(String(doc.document_id),{doc,chunks,text,intelligence:data.intelligence});loaded++;
+    totalChars+=text.length;const classification=await api('/cases/'+caseId+'/docs/'+doc.document_id+'/classification').catch(()=>null);cache.set(String(doc.document_id),{doc,chunks,text,intelligence:data.intelligence,classification});loaded++;
    }
    if(docs.length>40)skipped+=docs.length-40;
    renderAnalysis();
