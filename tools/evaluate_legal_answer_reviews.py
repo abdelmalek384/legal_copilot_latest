@@ -160,6 +160,11 @@ def _valid_iso_date(value):
         return False
 
 
+def _is_one_of(value, choices):
+    """Check registry enum values without hashing malformed lists or objects."""
+    return isinstance(value, str) and value in choices
+
+
 def validate_reviewer_registry(registry):
     """Return approved reviewer identities and auditable registry errors.
 
@@ -183,12 +188,12 @@ def validate_reviewer_registry(registry):
         elif reviewer_id in entries:
             duplicates.add(reviewer_id)
         status = entry.get("status")
-        if status not in {"approved", "pending", "suspended", "rejected"}:
+        if not _is_one_of(status, {"approved", "pending", "suspended", "rejected"}):
             row_errors.append("status must be approved, pending, suspended, or rejected")
         for field in ("display_name", "qualification_basis", "evidence_reference", "verified_by"):
             if not isinstance(entry.get(field), str) or not entry[field].strip():
                 row_errors.append(f"missing or empty {field}")
-        if entry.get("professional_role") not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
+        if not _is_one_of(entry.get("professional_role"), {"egyptian_lawyer", "qualified_egyptian_counsel"}):
             row_errors.append("professional_role must identify Egyptian legal counsel")
         if entry.get("jurisdiction") != "Egypt":
             row_errors.append("jurisdiction must be Egypt")
@@ -213,7 +218,7 @@ def validate_reviewer_registry(registry):
         and isinstance(entry.get("qualification_basis"), str) and entry["qualification_basis"].strip()
         and isinstance(entry.get("evidence_reference"), str) and entry["evidence_reference"].strip()
         and isinstance(entry.get("verified_by"), str) and entry["verified_by"].strip()
-        and entry.get("professional_role") in {"egyptian_lawyer", "qualified_egyptian_counsel"}
+        and _is_one_of(entry.get("professional_role"), {"egyptian_lawyer", "qualified_egyptian_counsel"})
         and entry.get("jurisdiction") == "Egypt"
         and isinstance(entry.get("practice_areas"), list) and bool(entry["practice_areas"])
         and all(isinstance(area, str) and area.strip() for area in entry["practice_areas"])
