@@ -30,7 +30,7 @@ Request body:
 
 For a document with no prior classification, send `expected_latest_id: null`. Categories are limited to `unclassified`, `court_judgment`, `contract`, `pleading`, `correspondence`, and `evidence_or_receipt`.
 
-Each successful request appends a row to `document_classification_reviews`; it does not overwrite an earlier review. The row records reviewer user ID, selected category, server-computed suggested category, matched keyword evidence, note and timestamp. An immutable-update trigger prevents history rows from being edited.
+Each successful request appends a row to `document_classification_reviews`; it does not overwrite an earlier review. The row records reviewer user ID, selected category, server-computed suggested category, matched keyword evidence, note and timestamp. An immutable-update trigger prevents history rows from being edited. There is no classification-history delete endpoint; rows are removed only through the existing document/case deletion cascade.
 
 The handler serializes writes with `BEGIN IMMEDIATE`, rechecks the extracted-text digest, and compares the expected latest review ID. A stale review or changed extracted text returns HTTP 409; callers must reload and retry. Unauthorized or cross-matter document IDs return 404.
 
