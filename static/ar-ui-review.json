@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "22cafd85cf3b01c495fb21b96f69f0b4fb8c9849",
   "generated_on": "2026-11-12",
-  "entry_count": 1101,
+  "entry_count": 1109,
   "entries": [
     {
       "id": "AR-0001",
@@ -10747,6 +10747,78 @@
       "source_lines": [
         2606,
         2630
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1102",
+      "arabic": "جارٍ البحث في المستندات المتاحة لك...",
+      "source_lines": [
+        2181,
+        2221
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1103",
+      "arabic": "فتح ملف القضية",
+      "source_lines": [
+        2181,
+        2221
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1104",
+      "arabic": "لا توجد مستندات متاحة تطابق البحث وعوامل التصفية.",
+      "source_lines": [
+        2181,
+        2221
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1105",
+      "arabic": "المستندات المتاحة لك",
+      "source_lines": [
+        2181,
+        2221
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1106",
+      "arabic": "عبر ملفات القضايا المصرح لك بها فقط",
+      "source_lines": [
+        2181,
+        2221
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1107",
+      "arabic": "نتائج بيانات وصفية فقط؛ البحث في النص المستخرج متاح بعد فتح ملف القضية.",
+      "source_lines": [
+        2181,
+        2221
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1108",
+      "arabic": "يعرض هذا الفهرس المستندات في ملفات القضايا التي يمكنك الوصول إليها فقط. لا يشمل نصوص المستندات ولا يتجاوز صلاحيات كل قضية.",
+      "source_lines": [
+        2181,
+        2221
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1109",
+      "arabic": "تعذر البحث في المستندات المتاحة.",
+      "source_lines": [
+        2181,
+        2221
       ],
       "review_status": "pending_native_review"
     }
