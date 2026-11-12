@@ -6612,6 +6612,87 @@ def import_cases_csv(b: CaseCSVImportIn, u: dict = Depends(user)):
     return {"created": created, "skipped": skipped, "rows": rows_seen}
 
 
+@app.get("/documents/search")
+def search_accessible_documents(
+    q: str = Query(default="", max_length=200),
+    case_id: int | None = Query(default=None, ge=1),
+    file_type: str = Query(default="", max_length=10),
+    extraction_status: str = Query(default="", max_length=60),
+    classification: str = Query(default="", max_length=40),
+    limit: int = Query(default=50, ge=1, le=100),
+    offset: int = Query(default=0, ge=0, le=100000),
+    u: dict = Depends(user),
+):
+    """Search document metadata only across matters the current user may access."""
+    if file_type not in ("", "pdf", "docx"):
+        raise HTTPException(422, "file_type must be pdf or docx")
+    allowed_classifications = {
+        "", "saved", "unsaved", "unclassified", "court_judgment", "contract",
+        "pleading", "correspondence", "evidence_or_receipt",
+    }
+    if classification not in allowed_classifications:
+        raise HTTPException(422, "invalid document classification filter")
+    if case_id is not None:
+        need(conn(), u, case_id)
+    needle = q.strip()
+    escaped = needle.replace("!", "!!").replace("%", "!%").replace("_", "!_")
+    pattern = f"%{escaped}%" if needle else ""
+    scope = (
+        "d.firm_id=? AND c.firm_id=? "
+        "AND (?='admin' OR EXISTS(SELECT 1 FROM members m WHERE m.case_id=c.id AND m.user_id=?)) "
+        "AND (? IS NULL OR c.id=?) "
+        "AND (?='' OR ("
+        "COALESCE(d.name,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(c.title,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(c.case_number,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(c.client,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(c.opposing_party,'') COLLATE NOCASE LIKE ? ESCAPE '!')) "
+        "AND (?='' OR (CASE WHEN lower(COALESCE(d.content_type,'')) LIKE '%pdf%' "
+        "OR lower(COALESCE(d.name,'')) LIKE '%.pdf' THEN 'pdf' "
+        "WHEN lower(COALESCE(d.content_type,'')) LIKE '%wordprocessingml%' "
+        "OR lower(COALESCE(d.name,'')) LIKE '%.docx' THEN 'docx' ELSE '' END)=?) "
+        "AND (?='' OR d.extraction_status=?) "
+        "AND (?='' OR (?='saved' AND dc.category IS NOT NULL) "
+        "OR (?='unsaved' AND dc.category IS NULL) OR dc.category=?)"
+    )
+    params = (
+        int(u["firm_id"]), int(u["firm_id"]), u["role"], int(u["id"]),
+        case_id, case_id, needle, pattern, pattern, pattern, pattern, pattern,
+        file_type, file_type, extraction_status, extraction_status,
+        classification, classification, classification, classification,
+    )
+    c = conn()
+    total = int(c.execute(
+        "SELECT COUNT(*) FROM docs d JOIN cases c ON c.id=d.case_id "
+        "LEFT JOIN document_classifications dc ON dc.document_id=d.id "
+        "AND dc.case_id=d.case_id AND dc.firm_id=c.firm_id WHERE " + scope,
+        params,
+    ).fetchone()[0])
+    original_available_expr = (
+        "EXISTS(SELECT 1 FROM original_file_objects o WHERE o.document_id=d.id "
+        "AND o.firm_id=c.firm_id AND o.state='ready' AND o.purged_at IS NULL)"
+        if _separate_runtime_enabled() else "0"
+    )
+    rows = c.execute(
+        "SELECT d.id AS document_id,d.case_id,d.name,d.added,d.content_type,d.byte_size,"
+        "d.extraction_status,d.ocr_used,dc.category AS saved_classification,"
+        "dc.version AS classification_version," + original_available_expr + " AS original_available,"
+        "c.title AS case_title,c.case_number,c.case_year,c.client,c.opposing_party "
+        "FROM docs d JOIN cases c ON c.id=d.case_id "
+        "LEFT JOIN document_classifications dc ON dc.document_id=d.id "
+        "AND dc.case_id=d.case_id AND dc.firm_id=c.firm_id WHERE " + scope +
+        " ORDER BY d.id DESC LIMIT ? OFFSET ?",
+        params + (limit, offset),
+    ).fetchall()
+    # Record a coarse access event only; do not persist search terms or client content.
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (u["firm_id"], u["id"], "document_metadata_search"),
+    )
+    c.commit()
+    return {"items": [dict(row) for row in rows], "total": total, "limit": limit, "offset": offset}
+
+
 @app.get("/cases")
 def cases(u: dict = Depends(user)):
     q = ("SELECT cs.*, (SELECT COUNT(*) FROM tasks t WHERE t.case_id=cs.id AND t.status='open') AS open_tasks, "
