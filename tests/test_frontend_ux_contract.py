@@ -1069,5 +1069,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("matterSelect.add(new Option", page)
         self.assertIn("list.hidden=true", page)
 
+    def test_cross_matter_text_search_ui_is_bilingual_and_warns_about_unverified_excerpts(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("api('/documents/search-text?'", page)
+        self.assertIn("Search extracted text across accessible matters", page)
+        self.assertIn("results are extracted-text matches, not verified facts or legal conclusions", page)
+        self.assertIn("item.page", page)
+        self.assertIn("item.excerpt", page)
+
 if __name__ == "__main__":
     unittest.main()
