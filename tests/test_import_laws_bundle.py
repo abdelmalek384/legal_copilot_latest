@@ -151,9 +151,9 @@ class LegalImportBundleTests(unittest.TestCase):
             "https://example.gov.eg/item?auth_token=secret",
             "https://example.gov.eg/item?X-Goog-Signature=secret",
             "https://example.gov.eg/item with space",
-            "https://example.gov.eg/item\\npath",
-            "https://example.gov.eg/item\\tpath",
-            "https://example.gov.eg/item\\x7fpath",
+            "https://example.gov.eg/item\npath",
+            "https://example.gov.eg/item\tpath",
+            "https://example.gov.eg/item\x7fpath",
             "https://example.gov.eg:",
         ):
             with self.subTest(source_url=source_url):

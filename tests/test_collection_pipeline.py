@@ -494,7 +494,7 @@ class CollectionPipelineTests(unittest.TestCase):
         public_answer = (2, 1, 6, "", ("8.8.8.8", 443))
         for url in (
             "https://example.gov:",
-            "https://example.gov/law\\x7f.pdf",
+            "https://example.gov/law\x7f.pdf",
             "https://example.gov/law.pdf#fragment",
             "https://example.gov/law.pdf?token=secret",
         ):
@@ -506,7 +506,7 @@ class CollectionPipelineTests(unittest.TestCase):
     def test_manifest_host_validation_rejects_del_empty_port_and_signed_queries(self):
         for url in (
             "https://example.gov:",
-            "https://example.gov/law\\x7f.pdf",
+            "https://example.gov/law\x7f.pdf",
             "https://example.gov/law.pdf#fragment",
             "https://example.gov/law.pdf?X-Amz-Signature=secret",
         ):

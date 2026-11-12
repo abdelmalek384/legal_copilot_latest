@@ -121,8 +121,8 @@ class RecordManualCaptureTests(unittest.TestCase):
         for url in (
             "https://www.alamiria.com:",
             "https://www.alamiria.com:99999/law",
-            "https://www.alamiria.com/law\\x7fpath",
-            "https://www.alamiria.com/law\\npath",
+            "https://www.alamiria.com/law\x7fpath",
+            "https://www.alamiria.com/law\npath",
             "https://www.alamiria.com/law?token=secret",
             "https://www.alamiria.com/law#fragment",
         ):
