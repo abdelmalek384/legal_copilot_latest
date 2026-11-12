@@ -1010,5 +1010,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("wordprocessingml", page)
         self.assertIn("documentTypeFilter.onchange=()=>renderDocuments(currentDocuments)", page)
 
+    def test_document_analysis_loads_classification_alongside_extracted_chunks(self):
+        self.assertIn("const [data,classification]=await Promise.all([api('/cases/'+caseId+'/docs/'+doc.document_id+'/chunks'),api('/cases/'+caseId+'/docs/'+doc.document_id+'/classification').catch(()=>null)])", HTML)
+
 if __name__ == "__main__":
     unittest.main()
