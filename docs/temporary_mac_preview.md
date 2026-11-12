@@ -28,7 +28,7 @@ Cloudflare documents Quick Tunnels as testing/development only. The hostname is 
 Use a **separate clean clone** so this preview cannot reuse or modify an existing development checkout, local owner configuration, or private database files:
 
 ```bash
-git clone https://github.com/abdelmalek384/legal_copilot_latest.git legal-copilot-preview
+git clone --branch feat/protected-mac-preview-tunnel --single-branch https://github.com/abdelmalek384/legal_copilot_latest.git legal-copilot-preview
 cd legal-copilot-preview
 ```
 
