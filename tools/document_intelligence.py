@@ -7,6 +7,7 @@ Every extracted signal is a review candidate, not an established fact.
 from __future__ import annotations
 import bisect
 import difflib
+from datetime import date
 import hashlib
 import re
 from typing import Any
@@ -100,6 +101,77 @@ def extract_review_candidates(text: str) -> dict[str, Any]:
                 "A missing candidate does not prove that information is absent.",
                 "Scanned image content is not analysed by this text-only function.",
             ]}
+
+
+def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, Any]:
+    """Build a review queue of parseable date mentions from caller-scoped documents.
+
+    Each input item must contain document_id, filename and the candidates list
+    returned by extract_review_candidates. Dates are mentions, not events or
+    deadlines. Numeric day-first dates follow the Egyptian DD/MM/YYYY convention;
+    ISO year-first dates are parsed separately. Two-digit years are not guessed.
+    """
+    if not isinstance(documents, list):
+        raise TypeError("documents must be a list")
+    dated = []
+    unparsed = []
+    arabic_digits = str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789")
+    for document in documents:
+        if not isinstance(document, dict):
+            raise TypeError("each document must be a mapping")
+        document_id = document.get("document_id")
+        filename = document.get("filename")
+        candidates = document.get("candidates")
+        if not isinstance(document_id, str) or not document_id.strip():
+            raise ValueError("each document requires a non-empty document_id")
+        if not isinstance(filename, str) or not isinstance(candidates, list):
+            raise ValueError("each document requires filename and candidates")
+        for candidate in candidates:
+            if not isinstance(candidate, dict) or candidate.get("kind") != "date":
+                continue
+            raw = candidate.get("value")
+            parsed = None
+            interpretation = None
+            if isinstance(raw, str):
+                parts = re.split(r"[/.-]", raw.translate(arabic_digits))
+                try:
+                    if len(parts) == 3 and all(part.isdigit() for part in parts):
+                        if len(parts[0]) == 4:
+                            year, month, day = map(int, parts)
+                            interpretation = "year_first"
+                        elif len(parts[2]) == 4:
+                            day, month, year = map(int, parts)
+                            interpretation = "day_first"
+                        else:
+                            raise ValueError("two-digit year is ambiguous")
+                        parsed = date(year, month, day).isoformat()
+                except ValueError:
+                    parsed = None
+            item = {
+                "date_mention": raw,
+                "normalized_date": parsed,
+                "interpretation": interpretation,
+                "document_id": document_id,
+                "filename": filename,
+                "page": candidate.get("page"),
+                "excerpt": candidate.get("excerpt", ""),
+                "review_status": "date_mention_requires_human_context",
+            }
+            if parsed is None:
+                unparsed.append(item)
+            else:
+                dated.append(item)
+    dated.sort(key=lambda item: (item["normalized_date"], item["document_id"], item["date_mention"]))
+    return {
+        "dated_mentions": dated,
+        "unparsed_mentions": unparsed,
+        "limitations": [
+            "A date mention is not necessarily an event date, filing date, or legal deadline.",
+            "Context and legal effect must be confirmed by a lawyer.",
+            "Only documents supplied by the caller are considered; callers must enforce firm and matter scope.",
+            "Two-digit years and invalid calendar dates are not guessed.",
+        ],
+    }
 
 def compare_extracted_text(before: str, after: str, context_chars: int = 100) -> list[dict[str, str]]:
     """Return reviewable text changes; never labels a change as legally significant."""
