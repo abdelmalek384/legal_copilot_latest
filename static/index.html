@@ -248,7 +248,8 @@ body{background:#f3f6fa;color:var(--figma-ink);font-family:Inter,"Noto Sans Arab
 
 /* Document Intelligence: style the real matter-scoped workflow without inventing global metrics. */
 #main .document-intelligence-panel{padding:20px;background:#fff;border:1px solid var(--figma-border);border-radius:12px}
-#main .document-library-list{display:grid;gap:10px;margin:14px 0}#main .document-library-matter,#main .document-library-item{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0;padding:14px;border:1px solid var(--figma-border);border-radius:11px;background:#fff}#main .document-library-file{display:flex;align-items:center;gap:12px;min-width:0}#main .document-library-file>div{min-width:0}#main .document-library-file b{overflow-wrap:anywhere}#main .document-library-file-icon{display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border-radius:10px;background:#edf3ff;color:#2457c5;font-size:12px;font-weight:800}#main .document-library-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}#main .document-library-item .mut{margin:4px 0 0}@media(max-width:700px){#main .document-library-matter,#main .document-library-item{align-items:flex-start;flex-direction:column}#main .document-library-matter button{width:100%}}
+#main .document-library-list{display:grid;gap:10px;margin:14px 0}
+#main .document-library-filter{padding:14px;margin:12px 0}#main .document-library-filter>.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,260px);gap:10px}#main .document-library-filter .document-library-list{margin:12px 0 0}@media(max-width:700px){#main .document-library-filter>.row{grid-template-columns:minmax(0,1fr)}}#main .document-library-matter,#main .document-library-item{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0;padding:14px;border:1px solid var(--figma-border);border-radius:11px;background:#fff}#main .document-library-file{display:flex;align-items:center;gap:12px;min-width:0}#main .document-library-file>div{min-width:0}#main .document-library-file b{overflow-wrap:anywhere}#main .document-library-file-icon{display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border-radius:10px;background:#edf3ff;color:#2457c5;font-size:12px;font-weight:800}#main .document-library-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}#main .document-library-item .mut{margin:4px 0 0}@media(max-width:700px){#main .document-library-matter,#main .document-library-item{align-items:flex-start;flex-direction:column}#main .document-library-matter button{width:100%}}
 #main .document-intelligence-panel>.workspace-section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:1px solid #e8edf3}
 #main .document-intelligence-panel>.workspace-section-title h3{margin:0;color:#1d3553;font-size:19px}
 #main .document-intelligence-panel>.mut{line-height:1.7;color:#64748b}
@@ -2075,7 +2076,7 @@ async function documentsPage(){
  const query=h('input',{type:'search',placeholder:uiText('ابحث عن ملف قضية أو رقمها','Search matters by title or number'),'aria-label':uiText('البحث عن ملف قضية','Search matters')});
  const matterSelect=h('select',{'aria-label':uiText('اختر ملف القضية','Choose a matter')},new Option(uiText('اختر ملف قضية لعرض مستنداتها','Choose a matter to view its documents'),'')); 
  const summary=h('p',{className:'mut',role:'status','aria-live':'polite'});
- const list=h('div',{className:'document-library-list'}),documentList=h('div',{className:'document-library-list'});
+ const list=h('div',{className:'document-library-list'}),documentFilter=h('input',{type:'search',placeholder:uiText('ابحث باسم المستند أو نوعه','Search document name or type'),'aria-label':uiText('البحث في مستندات القضية','Search matter documents')}),documentStatusFilter=h('select',{'aria-label':uiText('تصفية المستندات حسب حالة الاستخراج','Filter documents by extraction status')},new Option(uiText('كل حالات الاستخراج','All extraction statuses'),'')),documentRows=h('div',{className:'document-library-list'}),documentList=h('section',{className:'document-library-filter card'},h('div',{className:'row'},documentFilter,documentStatusFilter),documentRows);
  const workspace=h('div',{});
  const actions=h('div',{className:'workspace-actions'});
  let matters=[];
@@ -2085,8 +2086,23 @@ async function documentsPage(){
   matterSelect.replaceChildren(new Option(uiText('اختر ملف قضية لعرض مستنداتها','Choose a matter to view its documents'),''),...filtered.map(m=>new Option((m.title||uiText('قضية رقم ','Matter #')+m.id)+' (#'+m.id+')',String(m.id))));
   if(window.DOCUMENT_MATTER_ID&&filtered.some(m=>Number(m.id)===Number(window.DOCUMENT_MATTER_ID)))matterSelect.value=String(window.DOCUMENT_MATTER_ID);
   list.replaceChildren(...(filtered.length?filtered.map(m=>h('article',{className:'card document-library-matter'},h('div',{},h('b',{textContent:m.title||uiText('قضية رقم ','Matter #')+m.id}),h('p',{className:'mut',textContent:(m.stage||uiText('بدون مرحلة','No stage'))+' · #'+m.id})),btn(uiText('عرض المستندات','View documents'),()=>{matterSelect.value=String(m.id);loadMatter()},'g'))):[h('p',{className:'mut',textContent:uiText('لا توجد ملفات قضايا مطابقة.','No matching matters found.')})]));
-  if(!matterSelect.value){documentList.replaceChildren();workspace.replaceChildren();summary.textContent=uiText('اختر ملف قضية لعرض المستندات المصرح بها.','Choose a matter to view its authorized documents.')}
+  if(!matterSelect.value){window.DOCUMENT_CURRENT_DOCS=[];documentRows.replaceChildren();workspace.replaceChildren();summary.textContent=uiText('اختر ملف قضية لعرض المستندات المصرح بها.','Choose a matter to view its authorized documents.')}
  };
+ const renderDocuments=docs=>{
+  const statuses=[...new Set(docs.map(doc=>String(doc.extraction_status||'').trim()).filter(Boolean))].sort();
+  const previous=documentStatusFilter.value;
+  documentStatusFilter.replaceChildren(new Option(uiText('كل حالات الاستخراج','All extraction statuses'),''),...statuses.map(value=>new Option(value,value)));
+  if(statuses.includes(previous))documentStatusFilter.value=previous;
+  const needle=String(documentFilter.value||'').trim().toLocaleLowerCase();
+  const filtered=docs.filter(doc=>(!needle||[doc.name,doc.content_type,doc.document_id].some(value=>String(value||'').toLocaleLowerCase().includes(needle)))&&(!documentStatusFilter.value||doc.extraction_status===documentStatusFilter.value));
+  summary.textContent=filtered.length+' / '+docs.length+' '+uiText('مستندات مطابقة','matching documents');
+  documentRows.replaceChildren(...(filtered.length?filtered.map(doc=>h('article',{className:'card document-library-item'},
+   h('div',{className:'document-library-file'},h('span',{className:'document-library-file-icon',textContent:String(doc.name||'').toLowerCase().endsWith('.pdf')?'PDF':'DOC'}),h('div',{},h('b',{textContent:doc.name||uiText('مستند دون اسم','Unnamed document')}),h('p',{className:'mut',textContent:uiText('معرّف المستند: ','Document ID: ')+doc.document_id}),h('p',{className:'mut',textContent:[doc.content_type,doc.added?uiText('أضيف: ','Added: ')+String(doc.added).slice(0,16).replace('T',' '):'',doc.byte_size!=null&&Number.isFinite(Number(doc.byte_size))?uiText('الحجم: ','Size: ')+(Number(doc.byte_size)/1048576).toFixed(2)+' MB':''].filter(Boolean).join(' · ')}))),
+   h('div',{className:'document-library-meta'},pill(doc.extraction_status||uiText('حالة الاستخراج غير متاحة','Extraction status unavailable'),doc.extraction_status==='text_extracted'?'done':'soon'),doc.ocr_used?pill(uiText('استخدم OCR — يلزم التحقق','OCR used — verify text'),'soon'):null)
+  )):[h('p',{className:'mut',textContent:uiText('لا توجد مستندات تطابق عوامل التصفية.','No documents match these filters.')})]));
+ };
+ documentFilter.oninput=()=>{if(Array.isArray(window.DOCUMENT_CURRENT_DOCS))renderDocuments(window.DOCUMENT_CURRENT_DOCS)};
+ documentStatusFilter.onchange=()=>{if(Array.isArray(window.DOCUMENT_CURRENT_DOCS))renderDocuments(window.DOCUMENT_CURRENT_DOCS)};
  const loadMatter=async()=>{
   const id=Number(matterSelect.value);workspace.replaceChildren();
   if(!Number.isSafeInteger(id)||id<=0){summary.textContent=uiText('اختر ملف قضية لعرض المستندات المصرح بها.','Choose a matter to view its authorized documents.');return}
@@ -2094,11 +2110,7 @@ async function documentsPage(){
   try{
    const matter=await api('/cases/'+id),docs=Array.isArray(matter.docs)?matter.docs:[];
    summary.textContent=docs.length+' '+uiText('مستندات في ملف القضية المحدد','documents in the selected matter');
-   const rows=docs.map(doc=>h('article',{className:'card document-library-item'},
-    h('div',{className:'document-library-file'},h('span',{className:'document-library-file-icon',textContent:String(doc.name||'').toLowerCase().endsWith('.pdf')?'PDF':'DOC'}),h('div',{},h('b',{textContent:doc.name||uiText('مستند دون اسم','Unnamed document')}),h('p',{className:'mut',textContent:uiText('معرّف المستند: ','Document ID: ')+doc.document_id}),h('p',{className:'mut',textContent:[doc.content_type,doc.added?uiText('أضيف: ','Added: ')+String(doc.added).slice(0,16).replace('T',' '):'',doc.byte_size!=null&&Number.isFinite(Number(doc.byte_size))?uiText('الحجم: ','Size: ')+(Number(doc.byte_size)/1048576).toFixed(2)+' MB':''].filter(Boolean).join(' · ')}))),
-    h('div',{className:'document-library-meta'},pill(doc.extraction_status||uiText('حالة الاستخراج غير متاحة','Extraction status unavailable'),doc.extraction_status==='text_extracted'?'done':'soon'),doc.ocr_used?pill(uiText('استخدم OCR — يلزم التحقق','OCR used — verify text'),'soon'):null)
-   ));
-   documentList.replaceChildren(...(rows.length?rows:[h('p',{className:'mut',textContent:uiText('لا توجد مستندات مرفقة بملف القضية بعد. استخدم زر الرفع لإضافة PDF أو DOCX.','No documents are attached to this matter yet. Use Upload documents to add PDF or DOCX files.')})]));
+   window.DOCUMENT_CURRENT_DOCS=docs;renderDocuments(docs);
    const upload=btn(uiText('رفع مستندات','Upload documents'),()=>{window.DOCUMENT_MATTER_ID=id;law()},'primary');
    workspace.replaceChildren(documentList,h('div',{className:'workspace-actions'},upload),documentIntelligencePanel(id,docs));
   }catch(error){summary.textContent=uiText('تعذر تحميل مستندات القضية. تحقق من صلاحية الوصول وحاول مجدداً.','Could not load matter documents. Check access and try again.')}
