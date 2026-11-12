@@ -8251,7 +8251,7 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
         if len(bounded_text) < len(chunk_text) or len(candidates) >= 250:
             analysis_truncated = True
             break
-    analysis_text = "\\n".join(analysis_parts)
+    analysis_text = "\n".join(analysis_parts)
     classification = classify_document(doc["name"], analysis_text)
     intelligence = {
         "classification": classification,
