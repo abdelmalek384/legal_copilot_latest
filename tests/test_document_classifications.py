@@ -175,5 +175,9 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("No passages currently need attention.", html)
         self.assertIn("needsAttentionOnly?uiText", html)
 
+    def test_recheck_required_passages_use_attention_not_success_status(self):
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("latest&&latest.outcome!=='needs_recheck'?'done':'soon'", html)
+
 if __name__ == "__main__":
     unittest.main()
