@@ -48,7 +48,8 @@ class DocumentClassificationContractTests(unittest.TestCase):
 
     def test_document_library_only_offers_download_for_retained_ready_originals(self):
         app = (ROOT / "app.py").read_text(encoding="utf-8")
-        self.assertIn("document[\"original_available\"] = original is not None", app)
+        self.assertIn("original_available_expr", app)
+        self.assertIn("if _separate_runtime_enabled() else \"0\"", app)
         self.assertIn("state='ready' AND purged_at IS NULL", app)
         html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
         self.assertIn("doc.original_available", html)
