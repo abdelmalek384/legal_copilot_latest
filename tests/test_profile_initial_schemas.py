@@ -607,6 +607,24 @@ class ProfileInitialSchemaTests(unittest.TestCase):
             "VALUES(2,1,7,11,'created',NULL,'court_judgment','reviewed')"
         )
         db.commit()
+        db.execute(
+            "UPDATE document_classifications SET category='contract',version=version+1 "
+            "WHERE document_id=2 AND version=1"
+        )
+        self.assertEqual(
+            db.execute("SELECT version FROM document_classifications WHERE document_id=2").fetchone()[0],
+            2,
+        )
+        db.execute(
+            "INSERT INTO document_classification_events"
+            "(document_id,case_id,firm_id,actor_user_id,event_type,previous_category,new_category) "
+            "VALUES(2,1,7,12,'updated','court_judgment','contract')"
+        )
+        with self.assertRaises(sqlite3.IntegrityError):
+            db.execute("UPDATE document_classifications SET firm_id=999 WHERE document_id=2")
+        with self.assertRaises(sqlite3.IntegrityError):
+            db.execute("UPDATE document_classifications SET document_id=999 WHERE document_id=2")
+        db.commit()
         for table, values in (
             ("document_classifications", "(document_id,case_id,firm_id,category,updated_by_user_id) VALUES(2,1,999,'contract',12)"),
             ("document_classification_events", "(document_id,case_id,firm_id,actor_user_id,event_type,previous_category,new_category) VALUES(2,1,999,12,'created',NULL,'contract')"),
