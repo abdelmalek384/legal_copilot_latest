@@ -22,8 +22,7 @@ if [ ! -x ".venv/bin/python" ] || ! ".venv/bin/python" -c 'import sys; raise Sys
   exit 1
 fi
 source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
+python -m pip install --require-hashes -r requirements-py312.lock
 
 # Fresh-install architecture: control plane, per-firm databases, and shared corpus
 # must have distinct paths. Do not set COPILOT_DB; the application rejects it in every environment.
