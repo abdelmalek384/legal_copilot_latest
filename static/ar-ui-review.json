@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "22cafd85cf3b01c495fb21b96f69f0b4fb8c9849",
   "generated_on": "2026-11-12",
-  "entry_count": 1096,
+  "entry_count": 1100,
   "entries": [
     {
       "id": "AR-0001",
@@ -10702,6 +10702,42 @@
       "arabic": "تعذر تنزيل المستند الأصلي.",
       "source_lines": [
         2148
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1097",
+      "arabic": "مسح عوامل التصفية",
+      "source_lines": [
+        2077,
+        2201
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1098",
+      "arabic": "ا",
+      "source_lines": [
+        2077,
+        2201
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1099",
+      "arabic": "ي",
+      "source_lines": [
+        2077,
+        2201
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1100",
+      "arabic": "٠١٢٣٤٥٦٧٨٩",
+      "source_lines": [
+        2077,
+        2201
       ],
       "review_status": "pending_native_review"
     }
