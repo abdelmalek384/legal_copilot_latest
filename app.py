@@ -3501,11 +3501,13 @@ def ocr_pdf_text(data, lang=None, max_pages=30, existing_pages=None):
                 estimated_pixels = math.ceil(width_pt * 160 / 72) * math.ceil(height_pt * 160 / 72)
                 if estimated_pixels > 20_000_000:
                     raise HTTPException(413, "PDF page exceeds the 20-megapixel OCR limit")
-                pix = page.get_pixmap(dpi=160, alpha=False)
-                image = Image.open(io.BytesIO(pix.tobytes("png")))
+                # Reserve worker capacity before allocating a raster image. Otherwise
+                # concurrent uploads can exhaust memory before the OCR limit rejects them.
                 if not _OCR_WORKER_SLOTS.acquire(blocking=False):
                     raise HTTPException(429, "OCR capacity is busy; retry later")
                 try:
+                    pix = page.get_pixmap(dpi=160, alpha=False)
+                    image = Image.open(io.BytesIO(pix.tobytes("png")))
                     page_text = pytesseract.image_to_string(image, lang=lang, timeout=30).strip()
                 finally:
                     _OCR_WORKER_SLOTS.release()
