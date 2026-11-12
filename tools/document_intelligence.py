@@ -81,8 +81,8 @@ def _candidate(kind: str, match: re.Match, text: str,
             "review_status": "candidate_unverified"}
 
 _LEGAL_REFERENCE_PATTERN = re.compile(
-    rf"(?:المادة|مادة|Article)\\s*(?:رقم|No\\.?)?\\s*[{_DIGITS}]+|"
-    rf"(?:قانون|القانون)\\s*(?:رقم|No\\.?)?\\s*[{_DIGITS}]+\\s*(?:لسنة|of|/)\\s*[{_DIGITS}]{{4}}",
+    rf"(?:المادة|مادة|Article)\s*(?:رقم|No\.?)?\s*[{_DIGITS}]+|"
+    rf"(?:قانون|القانون)\s*(?:رقم|No\.?)?\s*[{_DIGITS}]+\s*(?:لسنة|of|/)\s*[{_DIGITS}]{{4}}",
     re.IGNORECASE,
 )
 _EVENT_MENTION_PATTERN = re.compile(
