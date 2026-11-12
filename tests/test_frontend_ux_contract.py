@@ -908,7 +908,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("await api('/cases/'+id)", page)
         self.assertIn("documentIntelligencePanel(id,docs)", page)
         self.assertIn("window.DOCUMENT_MATTER_ID=id", page)
-        self.assertIn("Upload documents", page)
+        self.assertIn("Upload and index files", page)
         self.assertNotIn("firm-wide document count", page.lower())
 
     def test_extraction_review_ui_uses_audited_api_and_bounded_history(self):
