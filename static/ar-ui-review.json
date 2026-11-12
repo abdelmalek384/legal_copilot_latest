@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "5650befc4366ed62e28135aaab6aa78bb85c3def",
   "generated_on": "2026-11-03",
-  "entry_count": 990,
+  "entry_count": 1010,
   "entries": [
     {
       "id": "AR-0001",
@@ -8256,6 +8256,186 @@
       "source_lines": [
         2386,
         2453
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0991",
+      "arabic": "ابحث عن ملف قضية أو رقمها",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0992",
+      "arabic": "البحث عن ملف قضية",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0993",
+      "arabic": "اختر ملف القضية",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0994",
+      "arabic": "اختر ملف قضية لعرض مستنداتها",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0995",
+      "arabic": "قضية رقم ",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0996",
+      "arabic": "عرض المستندات",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0997",
+      "arabic": "لا توجد ملفات قضايا مطابقة.",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0998",
+      "arabic": "اختر ملف قضية لعرض المستندات المصرح بها.",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-0999",
+      "arabic": "جارٍ تحميل المستندات...",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1000",
+      "arabic": "مستندات في ملف القضية المحدد",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1001",
+      "arabic": "مستند دون اسم",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1002",
+      "arabic": "معرّف المستند: ",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1003",
+      "arabic": "حالة الاستخراج غير متاحة",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1004",
+      "arabic": "استخدم OCR — يلزم التحقق",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1005",
+      "arabic": "لا توجد مستندات مرفقة بملف القضية بعد. استخدم زر الرفع لإضافة PDF أو DOCX.",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1006",
+      "arabic": "رفع مستندات",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1007",
+      "arabic": "تعذر تحميل مستندات القضية. تحقق من صلاحية الوصول وحاول مجدداً.",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1008",
+      "arabic": "تعذر تحميل ملفات القضايا المتاحة.",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1009",
+      "arabic": "مكتبة المستندات",
+      "source_lines": [
+        2073,
+        2110
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1010",
+      "arabic": "اعرض مستندات كل ملف قضية على حدة، وابحث في النصوص المستخرجة وراجعها مع الحفاظ على صلاحيات الملف وسجل التدقيق.",
+      "source_lines": [
+        2073,
+        2110
       ],
       "review_status": "pending_native_review"
     }
