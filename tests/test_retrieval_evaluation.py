@@ -95,7 +95,7 @@ class RetrievalEvaluationTests(unittest.TestCase):
     def test_all_unreviewed_multi_area_questions_require_abstention_without_verified_sources(self):
         path = ROOT / "tests" / "legal_eval" / "multi_area_questions.draft.jsonl"
         questions = _load_jsonl(path)
-        self.assertEqual(len(questions), 94)
+        self.assertEqual(len(questions), 100)
         self.assertTrue(all(q["review_status"] == "needs_lawyer_review" for q in questions))
         self.assertTrue(all(q["must_abstain_if_unverified"] is True for q in questions))
         out_of_scope = [q for q in questions if q.get("question_type") == "يجب الامتناع/خارج النطاق"]
