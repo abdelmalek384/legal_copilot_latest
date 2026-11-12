@@ -8548,6 +8548,17 @@ def export_firm_data_zip(u: dict = Depends(user)):
                 "FROM document_extraction_reviews r JOIN cases c ON c.id=r.case_id "
                 "ORDER BY r.id"
             )))
+            archive.writestr("document_classifications.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT dc.document_id,dc.case_id,dc.firm_id,dc.category,dc.version,"
+                "dc.updated_by_user_id,dc.updated_at FROM document_classifications dc "
+                "JOIN cases c ON c.id=dc.case_id ORDER BY dc.document_id"
+            )))
+            archive.writestr("document_classification_events.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT e.id,e.document_id,e.case_id,e.firm_id,e.actor_user_id,"
+                "e.previous_category,e.new_category,e.version,e.note,e.created_at "
+                "FROM document_classification_events e JOIN cases c ON c.id=e.case_id "
+                "ORDER BY e.id"
+            )))
             archive.writestr("matter_chunks.csv", _firm_export_csv_bytes(tenant.execute(
                 "SELECT ch.id,ch.ref,ch.article,ch.page,ch.text,ch.norm,ch.case_id,"
                 "ch.document_id,ch.in_force,ch.as_of,ch.source,ch.verified "
