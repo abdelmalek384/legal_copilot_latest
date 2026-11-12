@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "22cafd85cf3b01c495fb21b96f69f0b4fb8c9849",
   "generated_on": "2026-11-12",
-  "entry_count": 1109,
+  "entry_count": 1116,
   "entries": [
     {
       "id": "AR-0001",
@@ -10819,6 +10819,69 @@
       "source_lines": [
         2181,
         2221
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1110",
+      "arabic": "جارٍ البحث في المقاطع المفهرسة...",
+      "source_lines": [
+        2224,
+        2246
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1111",
+      "arabic": "مقطع ",
+      "source_lines": [
+        2224,
+        2246
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1112",
+      "arabic": "رقم الصفحة غير مسجل",
+      "source_lines": [
+        2224,
+        2246
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1113",
+      "arabic": "مقطع مطابق في القضايا المتاحة.",
+      "source_lines": [
+        2224,
+        2246
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1114",
+      "arabic": "نتائج البحث مقتطفات من النص المستخرج وليست حقائق متحققة أو استنتاجات قانونية. راجع كل مقتطف مقابل المستند الأصلي.",
+      "source_lines": [
+        2224,
+        2246
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1115",
+      "arabic": "لم يُعثر على مقاطع مطابقة في المستندات التي يمكنك الوصول إليها.",
+      "source_lines": [
+        2224,
+        2246
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1116",
+      "arabic": "تعذر البحث في النصوص المستخرجة.",
+      "source_lines": [
+        2224,
+        2246
       ],
       "review_status": "pending_native_review"
     }
