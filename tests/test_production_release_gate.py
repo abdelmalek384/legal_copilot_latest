@@ -227,9 +227,11 @@ class ProductionReleaseGateTests(unittest.TestCase):
         questions = self._approved_questions()[:-1]
         with tempfile.TemporaryDirectory() as td:
             candidate = self._candidate_file(Path(td))
-            with patch.object(gate, "inspect_environment", return_value=(["environment okay"], [], [])), \\
-                 patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)), \\
-                 patch.object(gate, "read_jsonl", return_value=questions):
+            with (
+                patch.object(gate, "inspect_environment", return_value=(["environment okay"], [], [])),
+                patch.object(gate, "build_legal_report", return_value=self._ready_report(candidate)),
+                patch.object(gate, "read_jsonl", return_value=questions),
+            ):
                 report = gate.evaluate_release(
                     env=self.clean_env,
                     candidate_paths=[candidate],
