@@ -5372,5 +5372,53 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         finally:
             junior.close()
 
+    def test_document_metadata_search_is_limited_to_accessible_matters(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        first = self._mutate("post", "/cases", json={"title": "Accessible Alpha Matter"})
+        second = self._mutate("post", "/cases", json={"title": "Private Beta Matter"})
+        self.assertEqual(first.status_code, 200, first.text)
+        self.assertEqual(second.status_code, 200, second.text)
+        alpha_case, beta_case = first.json()["id"], second.json()["id"]
+        for case_id, filename, body in (
+            (alpha_case, "alpha-accessible-contract.txt", "Alpha source."),
+            (beta_case, "beta-private-contract.txt", "Beta source."),
+        ):
+            uploaded = self._mutate(
+                "post", f"/cases/{case_id}/docs",
+                json={"name": filename, "text": body},
+            )
+            self.assertEqual(uploaded.status_code, 200, uploaded.text)
+
+        junior_id = self.runtime.create_global_identity(
+            "Document Search Junior", "document-search-junior@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(junior_id, self.firm_a, "lawyer")
+        added = self._mutate(
+            "post", f"/cases/{alpha_case}/members",
+            json={"user_id": junior_id, "role": "junior"},
+        )
+        self.assertEqual(added.status_code, 200, added.text)
+
+        junior = TestClient(app.app)
+        try:
+            logged_in = junior.post(
+                "/login", json={"email": "document-search-junior@example.test", "password": self.password}
+            )
+            self.assertEqual(logged_in.status_code, 200, logged_in.text)
+            results = junior.get("/documents/search?q=alpha")
+            self.assertEqual(results.status_code, 200, results.text)
+            self.assertEqual(results.json()["total"], 1)
+            self.assertEqual(results.json()["items"][0]["case_id"], alpha_case)
+            self.assertEqual(results.json()["items"][0]["case_title"], "Accessible Alpha Matter")
+            hidden = junior.get(f"/documents/search?case_id={beta_case}")
+            self.assertEqual(hidden.status_code, 404, hidden.text)
+            invalid = junior.get("/documents/search?classification=verified")
+            self.assertEqual(invalid.status_code, 422, invalid.text)
+        finally:
+            junior.close()
+
 if __name__ == "__main__":
     unittest.main()
