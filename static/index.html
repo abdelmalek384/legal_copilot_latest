@@ -2085,7 +2085,7 @@ async function documentsPage(){
  const uploadButton=btn(uiText('اختيار ملفات','Choose files'),()=>uploadInput.click(),'g');
  const uploadSubmit=btn(uiText('رفع وفهرسة الملفات','Upload and index files'),()=>{if(uploadInput.files?.length)uploadFiles(Array.from(uploadInput.files))},'primary');
  uploadButton.disabled=true;uploadSubmit.disabled=true;
- const uploadDropzone=h('div',{className:'research-upload-dropzone',role:'button',tabIndex:0,'aria-label':uiText('منطقة رفع المستندات؛ اضغط Enter أو Space لاختيار ملفات','Document upload area; press Enter or Space to choose files'),onkeydown:e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();uploadInput.click()}},ondragenter:e=>{e.preventDefault();e.currentTarget.classList.add('is-dragover')},ondragover:e=>{e.preventDefault();e.currentTarget.classList.add('is-dragover')},ondragleave:e=>{if(!e.currentTarget.contains(e.relatedTarget))e.currentTarget.classList.remove('is-dragover')},ondrop:e=>{e.preventDefault();e.currentTarget.classList.remove('is-dragover');if(e.dataTransfer?.files)uploadFiles(Array.from(e.dataTransfer.files))}},h('span',{textContent:uiText('اسحب ملفات PDF أو DOCX إلى هنا','Drop PDF or DOCX files here')}),h('small',{textContent:uiText('PDF وDOCX فقط · 15 ميجابايت كحد أقصى لكل ملف','PDF and DOCX only · 15 MB maximum per file')}));
+ const uploadDropzone=h('div',{className:'research-upload-dropzone',role:'button',tabIndex:0,'aria-label':uiText('منطقة رفع المستندات؛ اضغط Enter أو Space لاختيار ملفات','Document upload area; press Enter or Space to choose files'),onclick:()=>uploadInput.click(),onkeydown:e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();uploadInput.click()}},ondragenter:e=>{e.preventDefault();e.currentTarget.classList.add('is-dragover')},ondragover:e=>{e.preventDefault();e.currentTarget.classList.add('is-dragover')},ondragleave:e=>{if(!e.currentTarget.contains(e.relatedTarget))e.currentTarget.classList.remove('is-dragover')},ondrop:e=>{e.preventDefault();e.currentTarget.classList.remove('is-dragover');if(e.dataTransfer?.files)uploadFiles(Array.from(e.dataTransfer.files))}},h('span',{textContent:uiText('اسحب ملفات PDF أو DOCX إلى هنا','Drop PDF or DOCX files here')}),h('small',{textContent:uiText('PDF وDOCX فقط · 15 ميجابايت كحد أقصى لكل ملف','PDF and DOCX only · 15 MB maximum per file')}));
  const uploadPanel=h('section',{className:'card document-library-upload'},h('div',{className:'document-library-upload-heading'},h('b',{textContent:uiText('إضافة مستندات إلى ملف القضية','Add documents to this matter')}),h('p',{className:'mut',textContent:uiText('تُرفع الملفات إلى ملف القضية المحدد فقط.','Files are uploaded only to the selected matter.')})),h('div',{className:'workspace-actions'},uploadButton,uploadSubmit,uploadInput),uploadDropzone,uploadStatus,uploadResults);
  let uploadBusy=false;
  const renderUploadQueue=items=>uploadResults.replaceChildren(...items.map(item=>h('div',{className:'research-upload-item '+item.state},h('span',{className:'research-upload-state',textContent:item.state==='done'?'✓':item.state==='error'?'!':'…'}),h('div',{},h('b',{textContent:item.name}),h('p',{className:'mut',textContent:item.message})))));
@@ -2094,11 +2094,11 @@ async function documentsPage(){
   if(!Number.isSafeInteger(matterId)||matterId<=0){uploadStatus.textContent=uiText('اختر ملف قضية أولاً.','Select a matter first.');matterSelect.focus();return}
   if(uploadBusy)return;
   const queue=files.map(file=>({file,name:file.name,state:'queued',message:uiText('في قائمة الرفع','Queued')}));
-  const valid=queue.filter(item=>/\\.(pdf|docx)$/i.test(item.name)&&item.file.size<=15000000);
-  queue.forEach(item=>{if(!valid.includes(item)){item.state='error';item.message=!/\\.(pdf|docx)$/i.test(item.name)?uiText('نوع الملف غير مدعوم؛ استخدم PDF أو DOCX.','Unsupported file type; use PDF or DOCX.'):uiText('يتجاوز الملف حد 15 ميجابايت.','File exceeds the 15 MB limit.')}});
+  const valid=queue.filter(item=>/\.(pdf|docx)$/i.test(item.name)&&item.file.size<=15000000);
+  queue.forEach(item=>{if(!valid.includes(item)){item.state='error';item.message=!/\.(pdf|docx)$/i.test(item.name)?uiText('نوع الملف غير مدعوم؛ استخدم PDF أو DOCX.','Unsupported file type; use PDF or DOCX.'):uiText('يتجاوز الملف حد 15 ميجابايت.','File exceeds the 15 MB limit.')}});
   renderUploadQueue(queue);
-  if(!valid.length){uploadStatus.textContent=uiText('لم يتم رفع أي ملف.','No files were uploaded.');return}
-  uploadBusy=true;uploadButton.disabled=true;uploadSubmit.disabled=true;uploadInput.disabled=true;
+  if(!valid.length){uploadStatus.textContent=uiText('لم يتم رفع أي ملف.','No files were uploaded.');uploadSubmit.disabled=true;return}
+  uploadBusy=true;uploadButton.disabled=true;uploadSubmit.disabled=true;uploadInput.disabled=true;matterSelect.disabled=true;
   let succeeded=0;
   for(const item of valid){
    item.state='working';item.message=uiText('جارٍ الرفع واستخراج النص...','Uploading and extracting text...');uploadStatus.textContent=item.message+' · '+item.name;renderUploadQueue(queue);
@@ -2113,7 +2113,7 @@ async function documentsPage(){
    renderUploadQueue(queue);
   }
   uploadStatus.textContent=succeeded+' / '+valid.length+' '+uiText('ملفات تم رفعها بنجاح','files uploaded successfully');
-  uploadBusy=false;uploadButton.disabled=false;uploadInput.disabled=false;uploadInput.value='';
+  uploadBusy=false;uploadButton.disabled=false;uploadInput.disabled=false;matterSelect.disabled=false;uploadInput.value='';
   if(succeeded)await loadMatter();
   uploadSubmit.disabled=!matterSelect.value||!(uploadInput.files?.length);
  };
