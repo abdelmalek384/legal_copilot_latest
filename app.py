@@ -8300,7 +8300,7 @@ def save_document_classification(
         raise HTTPException(404, "document not found")
 
     current = c.execute(
-        "SELECT category,version,updated_at FROM document_classifications "
+        "SELECT category,updated_by_user_id,version,updated_at FROM document_classifications "
         "WHERE document_id=? AND case_id=? AND firm_id=?",
         (document_id, cid, u["firm_id"]),
     ).fetchone()
@@ -8320,8 +8320,7 @@ def save_document_classification(
         previous_category = current["category"]
         if previous_category == body.category:
             return {
-                "document_id": document_id, "category": body.category,
-                "updated_at": current["updated_at"], "unchanged": True,
+                "document_id": document_id, **dict(current), "unchanged": True,
             }
         c.execute(
             "UPDATE document_classifications SET category=?,updated_by_user_id=?,"
