@@ -42,8 +42,13 @@ The runner writes ranked source/article IDs and cited article IDs. It does not c
 
 ## Run after counsel labels the set
 
-    python tools/score_arabic_retrieval.py --questions tests/legal_eval/arabic_retrieval_110.template.jsonl --runs tests/legal_eval/retrieval_runs.before.jsonl --phase before --min-score 0.30 --output docs/arabic_retrieval_measurement.json
+    python tools/score_arabic_retrieval.py --questions tests/legal_eval/arabic_retrieval_110.template.jsonl --runs tests/legal_eval/retrieval_runs.before.jsonl --reviewer-registry /secure/private/reviewer-registry.json --phase before --min-score 0.30 --output docs/arabic_retrieval_measurement.json
 
-    python tools/score_arabic_retrieval.py --questions tests/legal_eval/arabic_retrieval_110.template.jsonl --runs tests/legal_eval/retrieval_runs.after.jsonl --phase after --min-score VALUE --output docs/arabic_retrieval_measurement.json
+    python tools/score_arabic_retrieval.py --questions tests/legal_eval/arabic_retrieval_110.template.jsonl --runs tests/legal_eval/retrieval_runs.after.jsonl --reviewer-registry /secure/private/reviewer-registry.json --phase after --min-score VALUE --output docs/arabic_retrieval_measurement.json
 
 The `--min-score` argument records the threshold used by the running API; it does not change the server configuration. Set the server's `MIN_SCORE` before starting it, and pass the same value to the scorer. Do not change the threshold based on unlabeled prompts, unit-test phrase matches, or a single aggregate score. Investigate wrong-article cases individually and retain zero tolerance for wrong-article answers.
+
+
+## Reviewer identity gate
+
+The article-specific scorer now uses the same approved-reviewer registry validator as the independent legal-answer evaluator. Every scored question must match an approved registry record by reviewer ID and display name, and the registry must authorize the question's practice area and the exact professional role. The registry is supplied with `--reviewer-registry`; keep it in private controlled storage and never commit actual lawyer credential evidence. The checked-in `tests/legal_eval/reviewer_registry.empty.example.json` is an empty schema example, not a usable registry. This gate verifies consistency with an operator-maintained administrative record; it does not independently verify a lawyer's identity, license or legal conclusions.
