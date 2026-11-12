@@ -1099,5 +1099,10 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("if(!matterSelect.value)await loadAllAccessibleDocs();", page)
         self.assertIn("list.hidden=!list.children.length", page)
 
+    def test_global_document_metric_uses_compact_single_column_layout(self):
+        self.assertIn(".document-library-stats.global-document-stats{grid-template-columns:minmax(0,1fr)}", HTML)
+        self.assertIn("stats.classList.add('global-document-stats')", HTML)
+        self.assertIn("stats.classList.remove('global-document-stats')", HTML)
+
 if __name__ == "__main__":
     unittest.main()
