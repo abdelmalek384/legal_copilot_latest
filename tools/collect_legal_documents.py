@@ -22,7 +22,7 @@ import tempfile
 import time
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import urljoin, urlparse
+from urllib.parse import parse_qsl, urljoin, urlsplit
 
 import httpx
 
@@ -35,6 +35,13 @@ from tools.validate_source_permission_register import validate as validate_sourc
 
 DEFAULT_REGISTER = ROOT / "docs" / "source_permission_register.json"
 MAX_BYTES_DEFAULT = 40 * 1024 * 1024
+SENSITIVE_QUERY_KEYS = {
+    "token", "access_token", "auth", "authorization", "password", "secret",
+    "signature", "sig", "api_key", "apikey", "session", "sessionid",
+    "credential", "api-key", "auth_token", "session_token",
+    "x-amz-signature", "x-amz-credential", "x-amz-security-token",
+    "x-goog-signature", "x-goog-credential",
+}
 ALLOWED_TYPES = {
     "application/pdf": ".pdf",
     "text/html": ".html",
@@ -89,17 +96,25 @@ def parse_date(value: str, field: str) -> dt.date:
 
 
 def validate_public_https_url(url: str, allowed_hosts: set[str]) -> str:
-    if not isinstance(url, str) or not url or url != url.strip() or any(char.isspace() for char in url):
-        raise ValueError("HTTPS URL must not contain whitespace")
+    if (not isinstance(url, str) or not url
+            or any(char.isspace() or ord(char) < 32 or ord(char) == 127 for char in url)):
+        raise ValueError("HTTPS URL must not contain whitespace or control characters")
     try:
-        parsed = urlparse(url)
+        parsed = urlsplit(url)
         port = parsed.port
-    except ValueError as exc:
+    except (TypeError, ValueError) as exc:
         raise ValueError("Only valid absolute HTTPS URLs are allowed") from exc
-    if parsed.scheme != "https" or not parsed.hostname or (port is not None and not 1 <= port <= 65535):
-        raise ValueError("Only absolute HTTPS URLs with a valid port are allowed")
+    if (parsed.scheme.lower() != "https" or not parsed.hostname
+            or (port is not None and not 1 <= port <= 65535)
+            or parsed.netloc.endswith(":")):
+        raise ValueError("Only absolute HTTPS URLs with a valid authority and port are allowed")
     if parsed.username is not None or parsed.password is not None:
         raise ValueError("URLs containing credentials are not allowed")
+    if parsed.fragment:
+        raise ValueError("URL fragments are not allowed")
+    query_keys = {key.casefold() for key, _ in parse_qsl(parsed.query, keep_blank_values=True)}
+    if query_keys & SENSITIVE_QUERY_KEYS:
+        raise ValueError("signed or credential query parameters are not allowed")
     host = parsed.hostname.lower().rstrip(".")
     if not any(host == h or host.endswith("." + h) for h in allowed_hosts):
         raise ValueError(f"Host {host!r} is not in the source's allowed_hosts")
@@ -124,6 +139,8 @@ def validate_public_https_url(url: str, allowed_hosts: set[str]) -> str:
 
 def load_manifest(path: Path) -> list[dict]:
     data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise ValueError("Manifest must be a JSON object")
     docs = data.get("documents")
     if not isinstance(docs, list):
         raise ValueError("Manifest must contain a 'documents' list")
@@ -161,17 +178,25 @@ def validate_manifest_hosts(doc: dict) -> set[str]:
             raise ValueError("allowed_hosts contains an invalid hostname")
         normalized.add(host)
     direct_url = doc.get("direct_url", "")
-    if not isinstance(direct_url, str) or not direct_url or direct_url != direct_url.strip() or any(char.isspace() for char in direct_url):
-        raise ValueError("direct_url must not contain whitespace")
+    if (not isinstance(direct_url, str) or not direct_url
+            or any(char.isspace() or ord(char) < 32 or ord(char) == 127 for char in direct_url)):
+        raise ValueError("direct_url must not contain whitespace or control characters")
     try:
-        parsed = urlparse(direct_url)
+        parsed = urlsplit(direct_url)
         port = parsed.port
-    except ValueError as exc:
+    except (TypeError, ValueError) as exc:
         raise ValueError("direct_url must be a valid absolute HTTPS URL") from exc
-    if parsed.scheme != "https" or not parsed.hostname or (port is not None and not 1 <= port <= 65535):
-        raise ValueError("direct_url must be an absolute HTTPS URL with a valid port")
+    if (parsed.scheme.lower() != "https" or not parsed.hostname
+            or (port is not None and not 1 <= port <= 65535)
+            or parsed.netloc.endswith(":")):
+        raise ValueError("direct_url must be an absolute HTTPS URL with a valid authority and port")
     if parsed.username is not None or parsed.password is not None:
         raise ValueError("direct_url must not contain credentials")
+    if parsed.fragment:
+        raise ValueError("direct_url must not contain a fragment")
+    query_keys = {key.casefold() for key, _ in parse_qsl(parsed.query, keep_blank_values=True)}
+    if query_keys & SENSITIVE_QUERY_KEYS:
+        raise ValueError("direct_url must not contain signed or credential query parameters")
     url_host = parsed.hostname.lower().rstrip(".")
     if not any(url_host == h or url_host.endswith("." + h) for h in normalized):
         raise ValueError("direct_url host must match an explicitly allowed host")
