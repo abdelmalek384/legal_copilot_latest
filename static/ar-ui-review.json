@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "22cafd85cf3b01c495fb21b96f69f0b4fb8c9849",
   "generated_on": "2026-11-12",
-  "entry_count": 1148,
+  "entry_count": 1149,
   "entries": [
     {
       "id": "AR-0001",
@@ -11122,6 +11122,15 @@
       "source_lines": [
         2372,
         2488
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1149",
+      "arabic": "تم تحديث التصنيف من مراجع آخر. احتفظنا بمسودتك؛ راجع القيمة الحالية ثم احفظ مرة أخرى.",
+      "source_lines": [
+        2711,
+        2711
       ],
       "review_status": "pending_native_review"
     }
