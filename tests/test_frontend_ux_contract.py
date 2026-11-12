@@ -903,7 +903,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_documents_page_is_a_matter_scoped_library_not_a_fabricated_firm_wide_index(self):
         self.assertIn("['documents',navLabel('المستندات','Documents'),documentsPage]", HTML)
-        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
         self.assertIn("cases/search?", page)
         self.assertIn("await api('/cases/'+id)", page)
         self.assertIn("documentIntelligencePanel(id,docs)", page)
@@ -922,7 +922,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("review.reviewed_text", HTML)
 
     def test_document_library_displays_real_matter_document_metadata(self):
-        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
         self.assertIn("doc.content_type", page)
         self.assertIn("doc.added", page)
         self.assertIn("doc.byte_size", page)
@@ -930,11 +930,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("doc.ocr_used", page)
 
     def test_document_library_clears_stale_matter_context_when_filter_changes(self):
-        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
         self.assertIn("if(!matterSelect.value){documentList.replaceChildren();workspace.replaceChildren();summary.textContent=", page)
 
     def test_document_library_filters_are_driven_by_returned_document_metadata(self):
-        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
         self.assertIn("const renderDocuments=docs=>{", page)
         self.assertIn("new Set(docs.map(doc=>String(doc.extraction_status", page)
         self.assertIn("doc.content_type", page)
@@ -945,7 +945,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("window.DOCUMENT_MATTER_ID=null;sessionStorage.me=JSON.stringify(ME)", HTML)
 
     def test_document_library_metrics_are_derived_from_selected_matter_records(self):
-        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
         self.assertIn("docs.filter(doc=>doc.extraction_status==='text_extracted').length", page)
         self.assertIn("docs.filter(doc=>Boolean(doc.ocr_used)).length", page)
         self.assertIn("docs.filter(doc=>doc.ocr_used||doc.extraction_status!=='text_extracted').length", page)
@@ -953,7 +953,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Not a document-failure determination", page)
 
     def test_documents_page_uploads_pdf_and_docx_to_selected_matter(self):
-        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
         self.assertIn("multiple:true", page)
         self.assertIn("accept:'.pdf,.docx,application/pdf", page)
         self.assertIn("item.file.size<=15000000", page)
@@ -965,7 +965,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("is-dragover", page)
 
     def test_document_library_matter_picker_uses_bounded_server_pagination(self):
-        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
         self.assertIn("const matterLimit=50", page)
         self.assertIn("limit:String(matterLimit)", page)
         self.assertIn("offset:String(matterOffset)", page)
