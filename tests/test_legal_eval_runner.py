@@ -19,6 +19,7 @@ class LegalEvalRunnerTests(unittest.TestCase):
             "abstained": False,
             "claim_support_blocked": True,
             "scope": "verified_corpus",
+            "requested_as_of": "2026-10-26",
             "sources": [
                 {"source_id": "EG-LAW-10", "article": "12", "citation": "القانون 10 المادة 12", "source_status": "verified_operative_text"},
                 {"source_id": None, "article": "4", "citation": "Legacy source", "source_status": "outdated_or_under_review"},
@@ -28,6 +29,8 @@ class LegalEvalRunnerTests(unittest.TestCase):
         self.assertEqual(row["cited_sources"], ["EG-LAW-10"])
         self.assertEqual(row["cited_pin_cites"], [{"source_id": "EG-LAW-10", "pin_cite": "المادة 12"}])
         self.assertEqual(row["question_id"], "Q1")
+        self.assertEqual(row["scope"], "verified_corpus")
+        self.assertEqual(row["requested_as_of"], "2026-10-26")
         self.assertEqual(row["retrieved_source_ids"], ["EG-LAW-10"])
         self.assertEqual(row["citations"], [{"source_id": "EG-LAW-10", "pin_cite": "المادة 12"}])
         self.assertFalse(row["used_unverified_source"])
@@ -271,6 +274,17 @@ class LegalEvalRunnerTests(unittest.TestCase):
             p.write_text("\n", encoding="utf-8")
             with self.assertRaisesRegex(RunnerError, "no questions"):
                 read_questions(p)
+
+
+
+    def test_runner_does_not_infer_scope_or_as_of_when_api_omits_them(self):
+        question = {"id": "Q-MISSING-METADATA", "question_ar": "سؤال", "as_of_date": "2026-10-26"}
+        row = result_from_response(
+            question,
+            {"answer": None, "abstained": True, "sources": []},
+        )
+        self.assertIsNone(row["scope"])
+        self.assertIsNone(row["requested_as_of"])
 
 
 if __name__ == "__main__":
