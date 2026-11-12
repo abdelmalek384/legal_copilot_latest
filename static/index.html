@@ -2235,7 +2235,7 @@ async function documentsPage(){
     h('p',{className:'document-text-hit-excerpt',textContent:String(item.excerpt||'')}),
     btn(uiText('فتح ملف القضية','Open matter'),async()=>{const value=String(item.case_id);if(!Array.from(matterSelect.options).some(option=>option.value===value))matterSelect.add(new Option((item.case_title||uiText('ملف القضية','Matter'))+' (#'+value+')',value));matterSelect.value=value;window.DOCUMENT_MATTER_ID=Number(item.case_id);await loadMatter()},'g')
    ));
-   textSearchResults.replaceChildren(h('p',{className:'mut',textContent:(result.total||0)+' '+uiText('مقطع مطابق في القضايا المتاحة.','matching passages in accessible matters.')}),...cards,h('p',{className:'mut',textContent:result.warning||''}));
+   textSearchResults.replaceChildren(h('p',{className:'mut',textContent:(result.total||0)+' '+uiText('مقطع مطابق في القضايا المتاحة.','matching passages in accessible matters.')}),...cards,h('p',{className:'mut',textContent:uiText('نتائج البحث مقتطفات من النص المستخرج وليست حقائق متحققة أو استنتاجات قانونية. راجع كل مقتطف مقابل المستند الأصلي.','Search results are extracted-text matches, not verified facts or legal conclusions. Check each passage against its original document.')}));
    if(!items.length)textSearchResults.append(h('p',{className:'mut',textContent:uiText('لم يُعثر على مقاطع مطابقة في المستندات التي يمكنك الوصول إليها.','No matching passages were found in documents you can access.')}));
   }catch(error){textSearchResults.replaceChildren(h('p',{className:'notice danger',role:'alert',textContent:String(error.message||uiText('تعذر البحث في النصوص المستخرجة.','Could not search extracted text.'))}))}
   finally{textSearchButton.disabled=false}
