@@ -886,6 +886,10 @@ class FrontendUXContractTests(unittest.TestCase):
 
         self.assertGreaterEqual(contrast("#cbd6e5", "#071b31"), 7.0)
         self.assertGreaterEqual(contrast("#ffffff", "#1b3554"), 7.0)
+        self.assertGreaterEqual(contrast("#ffffff", "#2457c5"), 4.5)
+        self.assertGreaterEqual(contrast("#A95B08", "#FFF4E4"), 4.5)
+        self.assertGreaterEqual(contrast("#166534", "#E8F7EF"), 4.5)
+        self.assertGreaterEqual(contrast("#B42318", "#FDECEC"), 4.5)
         self.assertIn("#main .research-layout{grid-template-columns:minmax(210px,245px) minmax(0,1fr) minmax(250px,300px)", HTML)
         self.assertIn("#main .research-composer{order:1", HTML)
         self.assertIn("#main .research-thread{order:2", HTML)
