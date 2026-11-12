@@ -993,5 +993,10 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("globalSearchInput.onkeydown", shell)
         self.assertIn("view(item.id)", shell)
 
+    def test_document_context_resets_upload_queue_and_filters_between_matters(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("uploadResults.replaceChildren();uploadStatus.textContent='';uploadInput.value=''", page)
+        self.assertIn("documentFilter.value='';documentStatusFilter.value='';documentClassificationFilter.value=''", page)
+
 if __name__ == "__main__":
     unittest.main()
