@@ -260,6 +260,21 @@ class GazetteTextImportTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "source_url"):
             import_text(self.text_path, self.meta_path, self.output)
 
+    def test_source_url_rejects_cloud_signed_url_companion_parameters(self):
+        for key in (
+            "AWSAccessKeyId", "GoogleAccessId", "Key-Pair-Id",
+            "X-Amz-Algorithm", "X-Amz-Date", "X-Amz-Expires",
+            "X-Amz-SignedHeaders", "X-Goog-Algorithm", "X-Goog-Date",
+            "X-Goog-Expires", "X-Goog-SignedHeaders",
+        ):
+            with self.subTest(query_key=key):
+                self.metadata["source_url"] = f"https://example.gov/item?{key}=value"
+                self.metadata.pop("source_reference", None)
+                self.write_metadata()
+                with self.assertRaisesRegex(ValueError, "signed or credential query parameters"):
+                    import_text(self.text_path, self.meta_path, self.output)
+                self.assertFalse(self.output.exists())
+
     def test_source_url_rejects_empty_userinfo_delimiter(self):
         self.metadata["source_url"] = "https://@example.gov/item"
         self.metadata.pop("source_reference")
