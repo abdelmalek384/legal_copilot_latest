@@ -79,6 +79,34 @@ class RecordManualCaptureTests(unittest.TestCase):
         self.assertIn('"already_recorded_file": true', stdout)
         self.assertEqual(len(list((self.out / "originals" / "EG-LABOUR-14-2025").iterdir())), 1)
 
+    def test_rerun_preserves_existing_human_metadata_annotations(self):
+        run(*self.base())
+        metadata_path = self.out / "metadata" / "EG-LABOUR-14-2025.json"
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+        metadata["review_status"] = "lawyer_reviewed"
+        metadata["lawyer_review_note"] = "Preserve this reviewer annotation."
+        metadata_path.write_text(json.dumps(metadata, ensure_ascii=False), encoding="utf-8")
+
+        code, stdout, stderr = run(*self.base())
+        self.assertEqual(code, 0, stderr)
+        self.assertIn('"already_recorded_file": true', stdout)
+        preserved = json.loads(metadata_path.read_text(encoding="utf-8"))
+        self.assertEqual(preserved["review_status"], "lawyer_reviewed")
+        self.assertEqual(preserved["lawyer_review_note"], "Preserve this reviewer annotation.")
+
+    def test_rerun_refuses_to_replace_metadata_for_a_different_capture(self):
+        run(*self.base())
+        metadata_path = self.out / "metadata" / "EG-LABOUR-14-2025.json"
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+        metadata["source_url"] = "https://different.example/law"
+        metadata_path.write_text(json.dumps(metadata), encoding="utf-8")
+
+        code, _, stderr = run(*self.base())
+        self.assertEqual(code, 2)
+        self.assertIn("refusing to overwrite it", stderr)
+        preserved = json.loads(metadata_path.read_text(encoding="utf-8"))
+        self.assertEqual(preserved["source_url"], "https://different.example/law")
+
     def test_dry_run_writes_nothing(self):
         code, _, _ = run(*self.base(), "--dry-run")
         self.assertEqual(code, 0)

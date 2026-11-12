@@ -212,9 +212,6 @@ def record_capture(args) -> dict:
     if args.dry_run:
         return {"dry_run": True, "would_write": str(original_path), "metadata": metadata}
 
-    original_dir.mkdir(parents=True, exist_ok=True)
-    if not already:
-        shutil.copyfile(path, original_path)
     meta_dir = out / "metadata"
     if meta_dir.is_symlink():
         raise ValueError("metadata directory must not be a symbolic link")
@@ -222,7 +219,31 @@ def record_capture(args) -> dict:
     metadata_path = meta_dir / f"{args.document_id}.json"
     if metadata_path.is_symlink():
         raise ValueError("metadata file must not be a symbolic link")
-    metadata_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    metadata_exists = metadata_path.exists()
+    if metadata_exists:
+        if not metadata_path.is_file():
+            raise ValueError("existing metadata path must be a regular file")
+        try:
+            existing_metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+            raise ValueError("existing metadata sidecar is unreadable; refusing to overwrite it") from exc
+        if not isinstance(existing_metadata, dict):
+            raise ValueError("existing metadata sidecar must be a JSON object; refusing to overwrite it")
+        identity_fields = ("document_id", "source_id", "source_url", "original_path", "sha256", "http_content_type")
+        if any(existing_metadata.get(field) != metadata.get(field) for field in identity_fields):
+            raise ValueError("existing metadata sidecar belongs to a different capture; refusing to overwrite it")
+        # Preserve reviewer annotations and any other existing provenance fields on reruns.
+        metadata = existing_metadata
+
+    original_dir.mkdir(parents=True, exist_ok=True)
+    if not already:
+        shutil.copyfile(path, original_path)
+    if not metadata_exists:
+        try:
+            with metadata_path.open("x", encoding="utf-8", newline="\n") as handle:
+                handle.write(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n")
+        except FileExistsError as exc:
+            raise ValueError("metadata sidecar appeared during capture; refusing to overwrite it") from exc
     audit = process_document(out, metadata)
     reasons = list(audit["audit"]["warnings"])
     if audit["extraction_error"]:
