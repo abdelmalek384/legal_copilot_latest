@@ -223,9 +223,15 @@ def _write_new_output_files(output_dir: Path, files: dict[str, bytes]) -> None:
                 handle.write(payload)
                 handle.flush()
                 os.fsync(handle.fileno())
-        if directory_fd is not None:
-            os.fsync(directory_fd)
     except FileExistsError as exc:
+        for name in reversed(created):
+            try:
+                if directory_fd is not None:
+                    os.unlink(name, dir_fd=directory_fd)
+                else:
+                    os.unlink(output_dir / name)
+            except OSError:
+                pass
         raise ValueError("output files already exist; use a new empty output directory") from exc
     except Exception:
         for name in reversed(created):
