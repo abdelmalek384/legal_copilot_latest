@@ -776,6 +776,16 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertEqual(upload.status, 200, upload.text())
 
         self.page.locator("#side").get_by_role("button", name="البحث القانوني").click()
+        history_toggle = self.page.locator(".research-history-toggle")
+        history_filter = self.page.locator("#research-history-pane input[type='search']")
+        self.assertEqual(history_toggle.get_attribute("aria-expanded"), "true")
+        history_toggle.click()
+        self.assertEqual(history_toggle.get_attribute("aria-expanded"), "false")
+        self.assertFalse(history_filter.is_visible())
+        history_toggle.click()
+        self.assertEqual(history_toggle.get_attribute("aria-expanded"), "true")
+        self.assertTrue(history_filter.is_visible())
+
         scope = self.page.locator(".research-controls select").nth(0)
         matter = self.page.locator(".research-controls select").nth(1)
         composer = self.page.locator(".research-composer textarea")
@@ -799,6 +809,52 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.get_by_role("button", name="نسخ المقطع الحرفي").click()
         copied_passage = self.read_clipboard()
         self.assertIn(sentinel, copied_passage)
+
+        inspect_trigger = self.page.locator(".research-inspect-action").first
+        self.assertEqual(inspect_trigger.get_attribute("aria-expanded"), "false")
+        inspect_trigger.click()
+        self.assertEqual(inspect_trigger.get_attribute("aria-expanded"), "true")
+        inspector = self.page.locator(".research-inspector")
+        self.assertTrue(inspector.get_by_text(sentinel, exact=False).is_visible())
+        self.assertIn("مستند مكتب غير متحقق", inspector.inner_text())
+        self.assertEqual(self.page.evaluate("document.activeElement.className"), "research-inspector card")
+        self.page.get_by_role("button", name="إغلاق").click()
+        self.assertEqual(inspect_trigger.get_attribute("aria-expanded"), "false")
+        self.assertTrue(inspector.get_by_text("اختر مصدراً", exact=False).is_visible())
+        self.assertEqual(self.page.evaluate("document.activeElement.textContent"), "فحص المصدر")
+        inspect_trigger.click()
+        self.assertEqual(inspect_trigger.get_attribute("aria-expanded"), "true")
+        self.page.keyboard.press("Escape")
+        self.assertEqual(inspect_trigger.get_attribute("aria-expanded"), "false")
+        self.assertTrue(inspector.get_by_text("اختر مصدراً", exact=False).is_visible())
+        self.assertEqual(self.page.evaluate("document.activeElement.textContent"), "فحص المصدر")
+        self.page.get_by_role("button", name="فحص المصدر").first.click()
+        self.assertTrue(inspector.get_by_text(sentinel, exact=False).is_visible())
+        layout = self.page.locator(".research-layout")
+        self.assertEqual(
+            layout.evaluate("(el) => getComputedStyle(el).gridTemplateColumns.split(' ').length"),
+            3,
+        )
+        self.page.set_viewport_size({"width": 1024, "height": 900})
+        self.assertEqual(
+            layout.evaluate("(el) => getComputedStyle(el).gridTemplateColumns.split(' ').length"),
+            2,
+        )
+        self.assertEqual(
+            inspector.evaluate("(el) => getComputedStyle(el).gridRowStart"),
+            "2",
+        )
+        self.page.set_viewport_size({"width": 390, "height": 844})
+        self.page.wait_for_function(
+            "() => document.documentElement.scrollWidth <= window.innerWidth",
+            timeout=8000,
+        )
+        self.assertTrue(inspector.is_visible())
+        self.assertEqual(
+            layout.evaluate("(el) => getComputedStyle(el).gridTemplateColumns.split(' ').length"),
+            1,
+        )
+        self.page.set_viewport_size({"width": 1440, "height": 900})
 
         with self.page.expect_download() as download_info:
             self.page.get_by_role("button", name="تصدير مذكرة بحث").click()
@@ -917,22 +973,49 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertNotIn("CROSS_FIRM_PRIVATE_SENTINEL_7D3A", response.text())
 
     def test_first_run_wizard_and_setup_health_are_owner_visible(self) -> None:
+        self.page.set_viewport_size({"width": 390, "height": 844})
         self.login(self.state["owner_a_email"])
         language_switch = self.page.locator('[data-lang-switch="1"]').first
         if language_switch.inner_text().strip() == "العربية":
             language_switch.click()
         self.page.get_by_role("button", name="بدء الاستخدام").click()
         self.page.get_by_role("heading", name="بدء استخدام المكتب").wait_for()
+        self.page.wait_for_function(
+            "() => document.documentElement.scrollWidth <= window.innerWidth",
+            timeout=8000,
+        )
         self.assertTrue(self.page.get_by_text("بيانات المكتب", exact=True).is_visible())
         self.assertTrue(self.page.get_by_text("ادعُ زميلاً إلى المكتب", exact=True).is_visible())
         self.page.get_by_role("button", name="فتح فحص صحة الإعداد").click()
         self.page.get_by_role("heading", name="صحة إعداد المكتب").wait_for()
+        self.page.wait_for_function(
+            "() => document.documentElement.scrollWidth <= window.innerWidth",
+            timeout=8000,
+        )
         for label in (
             "خادم تذكيرات البريد الإلكتروني",
             "الرابط العام الآمن",
             "مفتاح تشفير المصادقة الثنائية",
         ):
             self.assertTrue(self.page.get_by_text(label, exact=True).is_visible(), label)
+
+        self.page.get_by_role("button", name="العودة إلى قائمة الإعداد").click()
+        self.page.get_by_role("heading", name="بدء استخدام المكتب").wait_for()
+        language_switch = self.page.locator('[data-lang-switch="1"]').first
+        self.assertEqual(language_switch.inner_text().strip(), "English")
+        language_switch.click()
+        self.page.get_by_role("heading", name="Get your firm started").wait_for()
+        self.page.wait_for_function(
+            "() => document.documentElement.scrollWidth <= window.innerWidth",
+            timeout=8000,
+        )
+        self.assertTrue(self.page.get_by_text("Firm details", exact=True).is_visible())
+        self.page.get_by_role("button", name="Open setup health").click()
+        self.page.get_by_role("heading", name="Firm setup health").wait_for()
+        self.page.wait_for_function(
+            "() => document.documentElement.scrollWidth <= window.innerWidth",
+            timeout=8000,
+        )
 
     def test_owner_can_login_create_case_deadline_and_issue_invoice_on_phone_and_desktop(self) -> None:
         for width, height in ((390, 844), (1440, 900)):
