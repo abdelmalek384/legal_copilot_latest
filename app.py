@@ -8355,12 +8355,8 @@ def document_classification_history(
 ):
     c = conn()
     need(c, u, cid)
-    doc = c.execute(
-        "SELECT id FROM docs WHERE id=? AND case_id=? AND firm_id=?",
-        (document_id, cid, u["firm_id"]),
-    ).fetchone()
-    if doc is None:
-        raise HTTPException(404, "document not found")
+    # The append-only ledger intentionally survives document metadata deletion.
+    # Matter authorization still gates access, and the query remains firm/matter scoped.
     rows = c.execute(
         "SELECT actor_user_id,event_type,previous_category,new_category,note,created_at "
         "FROM document_classification_events WHERE document_id=? AND case_id=? AND firm_id=? "
@@ -8531,6 +8527,15 @@ def export_firm_data_zip(u: dict = Depends(user)):
                 "r.outcome,r.original_text,r.reviewed_text,r.note,r.page_reference,r.created_at "
                 "FROM document_extraction_reviews r JOIN cases c ON c.id=r.case_id "
                 "ORDER BY r.id"
+            )))
+            archive.writestr("document_classifications.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT id,document_id,case_id,firm_id,category,updated_by_user_id,version,created_at,updated_at "
+                "FROM document_classifications ORDER BY id"
+            )))
+            archive.writestr("document_classification_events.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT id,document_id,case_id,firm_id,actor_user_id,event_type,previous_category,"
+                "new_category,note,created_at FROM document_classification_events "
+                "WHERE firm_id=? ORDER BY id", (firm_id,)
             )))
             archive.writestr("matter_chunks.csv", _firm_export_csv_bytes(tenant.execute(
                 "SELECT ch.id,ch.ref,ch.article,ch.page,ch.text,ch.norm,ch.case_id,"
