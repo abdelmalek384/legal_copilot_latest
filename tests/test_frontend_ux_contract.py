@@ -874,6 +874,18 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("--figma-navy:#071b31", HTML)
         self.assertIn("#side{background:#071b31;color:#e7edf6", HTML)
         self.assertIn("#side a.on,#side a:hover{background:#1b3554;color:#fff}", HTML)
+
+        def luminance(color):
+            channels = [int(color[index:index + 2], 16) / 255 for index in (1, 3, 5)]
+            linear = [value / 12.92 if value <= 0.04045 else ((value + 0.055) / 1.055) ** 2.4 for value in channels]
+            return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2]
+
+        def contrast(first, second):
+            values = sorted((luminance(first), luminance(second)), reverse=True)
+            return (values[0] + 0.05) / (values[1] + 0.05)
+
+        self.assertGreaterEqual(contrast("#cbd6e5", "#071b31"), 7.0)
+        self.assertGreaterEqual(contrast("#ffffff", "#1b3554"), 7.0)
         self.assertIn("#main .research-layout{grid-template-columns:minmax(210px,245px) minmax(0,1fr) minmax(250px,300px)", HTML)
         self.assertIn("#main .research-composer{order:1", HTML)
         self.assertIn("#main .research-thread{order:2", HTML)
