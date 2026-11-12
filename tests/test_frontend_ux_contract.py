@@ -1003,5 +1003,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("className:'brand-subtitle'", HTML)
         self.assertIn("#side .brand-name", HTML)
 
+    def test_document_library_supports_pdf_docx_file_type_filter(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("documentTypeFilter", page)
+        self.assertIn("documentTypeFilter.value==='pdf'", page)
+        self.assertIn("wordprocessingml", page)
+        self.assertIn("documentTypeFilter.onchange=()=>renderDocuments(currentDocuments)", page)
+
 if __name__ == "__main__":
     unittest.main()
