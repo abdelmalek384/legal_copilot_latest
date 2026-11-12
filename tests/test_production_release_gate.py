@@ -519,5 +519,17 @@ class ProductionReleaseGateTests(unittest.TestCase):
         self.assertIn("environment_warnings", {blocker["code"] for blocker in report["blockers"]})
 
 
+
+    def test_malformed_legal_status_in_candidate_is_excluded_without_crashing(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            candidate = self._candidate_file(root)
+            payload = json.loads(candidate.read_text(encoding="utf-8"))
+            payload["version"]["legal_status"] = []
+            candidate.write_text(json.dumps(payload), encoding="utf-8")
+            report = self._ready_report(candidate)
+            index = gate._ready_candidate_source_index([candidate], report)
+        self.assertEqual(index, {})
+
 if __name__ == "__main__":
     unittest.main()
