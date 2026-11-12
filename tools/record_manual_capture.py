@@ -15,7 +15,6 @@ import argparse
 import datetime as dt
 import json
 import re
-import shutil
 import sys
 from pathlib import Path
 from urllib.parse import parse_qsl, urlsplit
@@ -29,6 +28,7 @@ from tools.collect_legal_documents import (  # noqa: E402
     process_document,
     sha256_bytes,
     validate_output_layout,
+    _write_immutable,
 )
 
 CATALOG = ROOT / "docs" / "legal_document_candidates.json"
@@ -235,9 +235,7 @@ def record_capture(args) -> dict:
         # Preserve reviewer annotations and any other existing provenance fields on reruns.
         metadata = existing_metadata
 
-    original_dir.mkdir(parents=True, exist_ok=True)
-    if not already:
-        shutil.copyfile(path, original_path)
+    _write_immutable(original_path, data, out / "originals", args.document_id)
     if not metadata_exists:
         try:
             with metadata_path.open("x", encoding="utf-8", newline="\n") as handle:
