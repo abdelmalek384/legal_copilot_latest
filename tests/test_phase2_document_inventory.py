@@ -375,5 +375,28 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         self.assertIn("Ministerial Decision 249/2026 — occupational-safety functional units and committees", matrix)
         self.assertEqual(validate_inventory(self.inventory), [])
 
+
+    def test_unhashable_enum_and_identifier_values_return_validation_errors(self):
+        cases = (
+            (("source_ids", "EG-MINISTRY-LABOUR-LAWS", "permission"), []),
+            (("documents", 0, "source_status"), {}),
+            (("documents", 0, "collection_permission"), []),
+            (("documents", 0, "legal_status"), {}),
+            (("documents", 0, "review_status"), []),
+            (("next_actions", 0, "status"), []),
+            (("documents", 0, "document_id"), {"bad": 1}),
+            (("next_actions", 0, "id"), ["bad"]),
+            (("documents", 0, "source_id"), ["bad"]),
+        )
+        for path, value in cases:
+            data = copy.deepcopy(self.inventory)
+            target = data
+            for key in path[:-1]:
+                target = target[key]
+            target[path[-1]] = value
+            with self.subTest(path=path):
+                errors = validate_inventory(data)
+                self.assertTrue(errors)
+
 if __name__ == "__main__":
     unittest.main()

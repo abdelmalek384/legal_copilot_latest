@@ -42,6 +42,11 @@ FORBIDDEN_CONTENT_KEYS = {
 }
 
 
+def _is_one_of(value, choices: set[str]) -> bool:
+    """Check JSON enum values without hashing malformed lists or objects."""
+    return isinstance(value, str) and value in choices
+
+
 def _walk(value, path="$"):
     yield path, value
     if isinstance(value, dict):
@@ -101,7 +106,7 @@ def validate_inventory(data):
         for field in ("authority", "source_class", "permission", "next_action"):
             if not source.get(field):
                 errors.append(label + " missing " + field)
-        if source.get("permission") not in COLLECTION_STATES:
+        if not _is_one_of(source.get("permission"), COLLECTION_STATES):
             errors.append(label + " has unsupported permission state")
         errors.extend(_validate_metadata_urls(source, label))
 
@@ -116,17 +121,22 @@ def validate_inventory(data):
                 errors.append(label + " missing " + field)
         document_id = document.get("document_id")
         if document_id:
-            ids.append(document_id)
+            if isinstance(document_id, str):
+                ids.append(document_id)
+            else:
+                errors.append(label + " document_id must be a string")
         source_id = document.get("source_id")
-        if source_id and source_id not in sources:
-            errors.append(label + " references unknown source_id " + str(source_id))
-        if document.get("source_status") not in SOURCE_STATES:
+        if source_id and (
+            not isinstance(source_id, str) or source_id not in sources
+        ):
+            errors.append(label + " references unknown or invalid source_id " + str(source_id))
+        if not _is_one_of(document.get("source_status"), SOURCE_STATES):
             errors.append(label + " has unsupported source_status")
-        if document.get("collection_permission") not in COLLECTION_STATES:
+        if not _is_one_of(document.get("collection_permission"), COLLECTION_STATES):
             errors.append(label + " has unsupported collection_permission")
-        if document.get("legal_status") not in LEGAL_STATES:
+        if not _is_one_of(document.get("legal_status"), LEGAL_STATES):
             errors.append(label + " has unsupported legal_status")
-        if document.get("review_status") not in REVIEW_STATES:
+        if not _is_one_of(document.get("review_status"), REVIEW_STATES):
             errors.append(label + " has unsupported review_status")
         if document.get("review_status") == "verified":
             if document.get("collection_permission") != "allowed":
@@ -151,8 +161,11 @@ def validate_inventory(data):
             if not action.get(field):
                 errors.append("next_actions[%d] missing %s" % (index, field))
         if action.get("id"):
-            action_ids.append(action["id"])
-        if action.get("status") not in {"not_started", "in_progress", "blocked", "complete"}:
+            if isinstance(action["id"], str):
+                action_ids.append(action["id"])
+            else:
+                errors.append("next_actions[%d] id must be a string" % index)
+        if not _is_one_of(action.get("status"), {"not_started", "in_progress", "blocked", "complete"}):
             errors.append("next_actions[%d] has unsupported status" % index)
     if len(action_ids) != len(set(action_ids)):
         errors.append("duplicate next_action IDs")
