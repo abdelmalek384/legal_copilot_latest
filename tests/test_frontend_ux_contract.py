@@ -1016,5 +1016,12 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_document_analysis_loads_classification_alongside_extracted_chunks(self):
         self.assertIn("const [data,classification]=await Promise.all([api('/cases/'+caseId+'/docs/'+doc.document_id+'/chunks'),api('/cases/'+caseId+'/docs/'+doc.document_id+'/classification').catch(()=>null)])", HTML)
 
+    def test_document_library_localizes_extraction_statuses(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("const statusNames=", page)
+        self.assertIn("ocr_unverified", page)
+        self.assertIn("partial_text_ocr_unavailable", page)
+        self.assertIn("new Option(statusName(value),value)", page)
+
 if __name__ == "__main__":
     unittest.main()
