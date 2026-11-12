@@ -185,6 +185,29 @@ button{min-height:44px}
 .research-layout{gap:18px}.research-list,.research-thread,.research-inspector{border:1px solid var(--workspace-border);box-shadow:0 5px 20px rgba(23,36,58,.04)}.research-thread{background:var(--workspace-surface)}.research-inspector-passage{background:#f5f8fd;border-color:#dce5f2}.research-source-link{color:var(--workspace-blue)}
 @media(max-width:800px){#main .research-controls{grid-template-columns:minmax(0,1fr)}.research-upload-panel{grid-template-columns:minmax(0,1fr)}.research-upload-actions{width:100%}.research-upload-actions button{flex:1}.research-upload-dropzone{align-items:flex-start;flex-direction:column}.research-upload-dropzone small{text-align:start}}
 @media(max-width:420px){.research-upload-intro{align-items:flex-start}.research-upload-icon{flex-basis:40px;width:40px;height:40px}.research-upload-actions{display:grid;grid-template-columns:1fr}.research-upload-actions button{width:100%}}
+
+/* Document-intelligence workspace hierarchy and evidence-safe review surfaces. */
+.document-intelligence-panel{display:grid;gap:16px;padding:clamp(14px,2vw,22px);border:1px solid var(--workspace-border);border-radius:16px;background:var(--workspace-surface);box-shadow:0 8px 24px rgba(23,36,58,.045)}
+.document-intelligence-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:14px;border-bottom:1px solid var(--workspace-border)}
+.document-intelligence-heading h3{margin:3px 0 5px;color:var(--workspace-ink);font-size:18px}
+.document-intelligence-heading p{margin:0;max-width:76ch;line-height:1.65}
+.document-intelligence-eyebrow{font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--workspace-blue)}
+.document-intelligence-primary-action{display:flex;justify-content:flex-start}
+.document-intelligence-primary-action button{min-height:46px;padding-inline:20px}
+.document-intelligence-status{margin:0;padding:11px 13px;border:1px solid #d9e4f5;border-inline-start:3px solid var(--workspace-blue);border-radius:10px;background:#f3f7fd;color:#344c6d;font-size:13px;line-height:1.6}
+.document-intelligence-tool{display:grid;gap:10px;padding:14px;border:1px solid var(--workspace-border);border-radius:13px;background:#fbfcfe;min-width:0}
+.document-intelligence-tool-heading b{font-size:14px;color:var(--workspace-ink)}
+.document-intelligence-tool-heading p{margin:3px 0 0;font-size:12px;line-height:1.55}
+.document-intelligence-toolbar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;align-items:center;gap:8px;min-width:0}
+.document-intelligence-toolbar input,.document-intelligence-toolbar select{min-width:0}
+.document-intelligence-toolbar button{min-height:42px;white-space:nowrap}
+.document-intelligence-search-results,.document-intelligence-compare-results,.document-intelligence-results{display:grid;gap:10px;min-width:0}
+.document-intelligence-hit{margin:0;padding:13px;border-radius:11px;background:#fff;box-shadow:none}
+.document-intelligence-hit p{line-height:1.7;overflow-wrap:anywhere}
+.document-intelligence-results>.card{margin:0;border-radius:12px;box-shadow:none}
+.document-intelligence-results .row{align-items:center;flex-wrap:wrap}
+.document-intelligence-compare-results .card{margin:0;min-width:0;overflow-wrap:anywhere}
+@media(max-width:760px){.document-intelligence-heading{flex-direction:column}.document-intelligence-toolbar{grid-template-columns:minmax(0,1fr)}.document-intelligence-toolbar button{width:100%}.document-intelligence-tool{padding:11px}}
 </style>
 <style>
 /* Legal Copilot — premium workspace polish
@@ -2252,8 +2275,8 @@ function documentIntelligencePanel(caseId,documents){
  const docs=Array.isArray(documents)?documents.filter(d=>d&&d.document_id):[];
  const cache=new Map(),draftOverrides=new Map();
  const panel=h('section',{className:'card document-intelligence-panel'});
- const status=h('p',{className:'mut',role:'status','aria-live':'polite','aria-atomic':'true',textContent:uiText('لم يبدأ تحليل المستندات بعد.','Document analysis has not started.')});
- const analysisResults=h('div',{}),searchResults=h('div',{}),compareResults=h('div',{});
+ const status=h('p',{className:'document-intelligence-status',role:'status','aria-live':'polite','aria-atomic':'true',textContent:uiText('لم يبدأ تحليل المستندات بعد.','Document analysis has not started.')});
+ const analysisResults=h('div',{className:'document-intelligence-results'}),searchResults=h('div',{className:'document-intelligence-search-results'}),compareResults=h('div',{className:'document-intelligence-compare-results'});
  const query=h('input',{type:'search',placeholder:uiText('ابحث في النصوص المستخرجة بالعربية أو الإنجليزية','Search extracted text in Arabic or English'),'aria-label':uiText('البحث داخل مستندات القضية','Search within matter documents'),style:'width:100%'});
  const beforeSelect=h('select',{'aria-label':uiText('الإصدار السابق','Earlier version')},new Option(uiText('الإصدار السابق','Earlier version'),'')); 
  const afterSelect=h('select',{'aria-label':uiText('الإصدار اللاحق','Later version')},new Option(uiText('الإصدار اللاحق','Later version'),'')); 
@@ -2288,7 +2311,7 @@ function documentIntelligencePanel(caseId,documents){
    for(const chunk of item.chunks){if(normalize(chunk.text).includes(needle))hits.push({doc:item.doc,chunk});if(hits.length>=50)break}
    if(hits.length>=50)break;
   }
-  searchResults.replaceChildren(...hits.map((hit,index)=>h('article',{className:'card'},h('b',{textContent:(index+1)+'. '+hit.doc.name}),h('p',{className:'mut',textContent:[hit.chunk.ref,hit.chunk.page?uiText('صفحة ','Page ')+hit.chunk.page:uiText('رقم الصفحة غير مسجل','Page not recorded')].filter(Boolean).join(' · ')}),h('p',{textContent:String(hit.chunk.text||'').slice(0,420)}))));
+  searchResults.replaceChildren(...hits.map((hit,index)=>h('article',{className:'card document-intelligence-hit'},h('b',{textContent:(index+1)+'. '+hit.doc.name}),h('p',{className:'mut',textContent:[hit.chunk.ref,hit.chunk.page?uiText('صفحة ','Page ')+hit.chunk.page:uiText('رقم الصفحة غير مسجل','Page not recorded')].filter(Boolean).join(' · ')}),h('p',{textContent:String(hit.chunk.text||'').slice(0,420)}))));
   status.textContent=hits.length?uiText('نتائج البحث: ','Search results: ')+hits.length:uiText('لا توجد مطابقات في النصوص المحملة.','No matches in the loaded extracted text.');
  };
  const renderComparison=()=>{
@@ -2367,10 +2390,17 @@ function documentIntelligencePanel(caseId,documents){
    if(skipped)status.textContent+=uiText(' تم تجاوز بعض المستندات/النصوص بسبب حدود التحليل.',' Some documents/text were skipped due to analysis limits.');
   }catch(error){status.textContent=uiText('تعذر تحميل بعض المستندات؛ راجع صلاحية الوصول وحاول مجدداً.','Some documents could not be loaded; check access and try again.')}
   finally{loadButton.disabled=false}
- });
+ },'primary');
  const searchButton=btn(uiText('بحث','Search'),renderSearch,'g');
  const compareButton=btn(uiText('مقارنة النصوص','Compare text versions'),renderComparison,'g');
- panel.append(h('div',{className:'workspace-section-title'},h('h3',{textContent:uiText('مساحة ذكاء المستندات','Document intelligence workspace')}),pill(String(docs.length)+' '+uiText('مستندات','documents'),'open')),h('p',{className:'mut',textContent:uiText('ابحث في النصوص المستخرجة، راجع التصنيفات المقترحة، واكتشف إشارات التكرار والاختلافات. لا تُثبت هذه النتائج الوقائع أو الأثر القانوني.','Search extracted text, review suggested classifications, and inspect duplicate/change signals. These results do not establish facts or legal effect.')}),loadButton,status,h('div',{className:'row'},query,searchButton),searchResults,h('div',{className:'row'},beforeSelect,afterSelect,compareButton),compareResults,analysisResults);
+ panel.append(
+  h('div',{className:'document-intelligence-heading'},h('div',{},h('span',{className:'document-intelligence-eyebrow',textContent:uiText('مستندات القضية','MATTER DOCUMENTS')}),h('h3',{textContent:uiText('مساحة ذكاء المستندات','Document intelligence workspace')}),h('p',{className:'mut',textContent:uiText('ابحث في النصوص المستخرجة، راجع التصنيفات المقترحة، واكتشف إشارات التكرار والاختلافات. لا تُثبت هذه النتائج الوقائع أو الأثر القانوني.','Search extracted text, review suggested classifications, and inspect duplicate/change signals. These results do not establish facts or legal effect.')})),pill(String(docs.length)+' '+uiText('مستندات','documents'),'open')),
+  h('div',{className:'document-intelligence-primary-action'},loadButton),
+  status,
+  h('section',{className:'document-intelligence-tool'},h('div',{className:'document-intelligence-tool-heading'},h('b',{textContent:uiText('البحث داخل النصوص المستخرجة','Search extracted text')}),h('p',{className:'mut',textContent:uiText('البحث بالعربية أو الإنجليزية داخل المستندات التي تم تحميلها.','Search in Arabic or English across documents loaded for this matter.')})),h('div',{className:'document-intelligence-toolbar'},query,searchButton),searchResults),
+  h('section',{className:'document-intelligence-tool'},h('div',{className:'document-intelligence-tool-heading'},h('b',{textContent:uiText('مقارنة مستندين','Compare two documents')}),h('p',{className:'mut',textContent:uiText('مقارنة نصية أولية محدودة؛ لا تحدد الأثر القانوني.','A bounded preliminary text comparison; it does not determine legal effect.')})),h('div',{className:'document-intelligence-toolbar'},beforeSelect,afterSelect,compareButton),compareResults),
+  analysisResults
+ );
  return panel;
 }
 
