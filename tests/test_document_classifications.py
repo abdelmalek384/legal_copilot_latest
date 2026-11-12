@@ -195,5 +195,13 @@ class DocumentClassificationContractTests(unittest.TestCase):
         html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
         self.assertIn("join('\\n')", html)
 
+    def test_chunk_review_api_returns_original_and_corrected_text_for_ui(self):
+        app = (ROOT / "app.py").read_text(encoding="utf-8")
+        endpoint = app[app.index("def list_document_chunks"):app.index('@app.post("/cases/{cid}/docs/{document_id}/chunks/{chunk_id}/review"')]
+        self.assertIn("original_text,reviewed_text", endpoint)
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("latest.original_text", html)
+        self.assertIn("latest.reviewed_text", html)
+
 if __name__ == "__main__":
     unittest.main()
