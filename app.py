@@ -6621,7 +6621,7 @@ def search_accessible_document_text(
 ):
     """Search extracted chunks only in matters visible to the current firm user."""
     needle = unicodedata.normalize("NFKC", q.strip())
-    needle = re.sub(r"[\\u064B-\\u065F\\u0670\\u0640]", "", needle)
+    needle = re.sub(r"[\u064B-\u065F\u0670\u0640]", "", needle)
     needle = needle.translate(str.maketrans({"أ": "ا", "إ": "ا", "آ": "ا", "ٱ": "ا", "ى": "ي"}))
     needle = needle.translate(str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789"))
     tokens = re.findall(r"[\w]+", needle, flags=re.UNICODE)
