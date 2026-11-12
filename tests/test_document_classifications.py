@@ -116,7 +116,7 @@ class DocumentClassificationContractTests(unittest.TestCase):
         app = (ROOT / "app.py").read_text(encoding="utf-8")
         endpoint = app[app.index("def search_accessible_document_text"):app.index('@app.get("/documents/search")')]
         self.assertIn('@app.get("/documents/search-text")', app)
-        self.assertIn('re.findall(r"[\\\\w]+", needle, flags=re.UNICODE)', endpoint)
+        self.assertIn('re.findall(r"[\\w]+", needle, flags=re.UNICODE)', endpoint)
         self.assertIn('chunks_fts MATCH ?', endpoint)
         self.assertIn("chunks.case_id IN (SELECT cs.id FROM cases cs WHERE cs.firm_id=?", endpoint)
         self.assertIn("EXISTS(SELECT 1 FROM members", endpoint)
