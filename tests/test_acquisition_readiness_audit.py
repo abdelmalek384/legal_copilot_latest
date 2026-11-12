@@ -316,5 +316,39 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
         self.assertFalse(report["documents"][0]["collection_ready"])
 
 
+
+    def test_malformed_source_permission_states_return_blockers_and_warnings(self):
+        manifest = {"documents": [{
+            "document_id": "LAW-MALFORMED-PERMISSION",
+            "source_id": "SRC-MALFORMED-PERMISSION",
+            "direct_url": "https://laws.example.gov/law.pdf",
+            "allowed_hosts": ["example.gov"],
+            "collection_permission": "allowed",
+            "permission_evidence": "written authorization ref AUTH-1",
+            "terms_checked_on": "2026-10-23",
+            "terms_url": "https://laws.example.gov/terms",
+            "permission_scope_review": passed_scope_review(),
+        }]}
+        base_source = {
+            "source_id": "SRC-MALFORMED-PERMISSION",
+            "collection_permission": "allowed",
+            "commercial_reuse_permission": "unknown",
+            "permission_evidence": "written authorization ref AUTH-1",
+            "permission_evidence_url": "https://laws.example.gov/rights/collection",
+            "terms_checked_on": "2026-10-23",
+            "terms_url": "https://laws.example.gov/terms",
+        }
+        for field, value, expected in (
+            ("collection_permission", [], "source_register_does_not_allow_collection"),
+            ("commercial_reuse_permission", {}, "commercial_product_reuse_not_established"),
+        ):
+            source = dict(base_source)
+            source[field] = value
+            with self.subTest(field=field):
+                report = MODULE.audit(manifest, {"sources": [source]})
+                item = report["documents"][0]
+                combined = item["blockers"] + item["warnings"]
+                self.assertIn(expected, combined)
+
 if __name__ == "__main__":
     unittest.main()

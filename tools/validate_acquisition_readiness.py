@@ -114,6 +114,11 @@ def _scope_review_valid(document: dict) -> bool:
     return isinstance(scope, dict) and all(scope.get(flag) is True for flag in SCOPE_FLAGS)
 
 
+def _is_one_of(value: object, choices: set[str]) -> bool:
+    """Check JSON permission states without hashing malformed lists or objects."""
+    return isinstance(value, str) and value in choices
+
+
 def audit(manifest: dict, register: dict) -> dict:
     """Return per-document readiness findings without changing either input."""
     findings: list[dict] = []
@@ -166,7 +171,7 @@ def audit(manifest: dict, register: dict) -> dict:
             blockers.append("manifest_collection_permission_not_allowed")
 
         if source is not None:
-            if source.get("collection_permission") not in COLLECTION_ALLOWED:
+            if not _is_one_of(source.get("collection_permission"), COLLECTION_ALLOWED):
                 blockers.append("source_register_does_not_allow_collection")
             if not source.get("permission_evidence") or not _valid_date(source.get("terms_checked_on")):
                 blockers.append("source_permission_evidence_or_terms_date_missing")
@@ -176,7 +181,7 @@ def audit(manifest: dict, register: dict) -> dict:
                 blockers.append("source_terms_review_stale")
             if not _hostname(source.get("permission_evidence_url")):
                 blockers.append("source_permission_evidence_url_missing_or_invalid")
-            if source.get("commercial_reuse_permission") not in COMMERCIAL_ALLOWED:
+            if not _is_one_of(source.get("commercial_reuse_permission"), COMMERCIAL_ALLOWED):
                 warnings.append("commercial_product_reuse_not_established")
             elif not _hostname(source.get("commercial_reuse_evidence_url")):
                 warnings.append("source_commercial_reuse_evidence_url_missing_or_invalid")
@@ -216,13 +221,13 @@ def audit(manifest: dict, register: dict) -> dict:
         )
         commercial_source_ready = (
             source is not None
-            and source.get("commercial_reuse_permission") in COMMERCIAL_ALLOWED
+            and _is_one_of(source.get("commercial_reuse_permission"), COMMERCIAL_ALLOWED)
             and commercial_evidence_valid
         )
         product_use_ready = collection_ready and scope_review_valid and commercial_source_ready
         if source is not None and _valid_date(source.get("commercial_terms_checked_on")) and not _fresh_date(source.get("commercial_terms_checked_on")):
             warnings.append("commercial_terms_review_stale")
-        if source is not None and source.get("commercial_reuse_permission") not in COMMERCIAL_ALLOWED:
+        if source is not None and not _is_one_of(source.get("commercial_reuse_permission"), COMMERCIAL_ALLOWED):
             warnings.append("commercial_product_reuse_not_established")
         elif source is not None and not commercial_evidence_valid:
             warnings.append("commercial_permission_evidence_or_date_missing")
