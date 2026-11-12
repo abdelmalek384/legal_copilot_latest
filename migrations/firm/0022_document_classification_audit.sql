@@ -9,6 +9,7 @@ CREATE TABLE document_classifications (
         'correspondence','evidence_or_receipt'
     )),
     updated_by_user_id INTEGER NOT NULL CHECK(updated_by_user_id > 0),
+    version INTEGER NOT NULL DEFAULT 1 CHECK(version > 0),
     created_at TEXT NOT NULL DEFAULT (datetime('now')),
     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
@@ -18,8 +19,8 @@ CREATE INDEX document_classifications_matter_idx
 
 CREATE TABLE document_classification_events (
     id INTEGER PRIMARY KEY,
-    document_id INTEGER NOT NULL REFERENCES docs(id) ON DELETE RESTRICT,
-    case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE RESTRICT,
+    document_id INTEGER NOT NULL,
+    case_id INTEGER NOT NULL,
     firm_id INTEGER NOT NULL CHECK(firm_id > 0),
     actor_user_id INTEGER NOT NULL CHECK(actor_user_id > 0),
     event_type TEXT NOT NULL CHECK(event_type IN ('created','updated')),
@@ -66,12 +67,6 @@ WHEN NOT EXISTS (
 )
 BEGIN
     SELECT RAISE(ABORT, 'document classification belongs to a different firm or matter');
-END;
-
-CREATE TRIGGER document_classifications_no_delete
-BEFORE DELETE ON document_classifications
-BEGIN
-    SELECT RAISE(ABORT, 'document classifications must be retained with their audit history');
 END;
 
 CREATE TRIGGER document_classification_events_tenant_insert
