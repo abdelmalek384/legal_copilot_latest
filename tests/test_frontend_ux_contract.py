@@ -797,6 +797,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Edit draft classification (not saved)", HTML)
         self.assertIn("it has not been saved to the server or review history", HTML)
 
+    def test_document_original_download_uses_existing_audited_route(self):
+        self.assertIn("/cases/'+id+'/docs/'+d.document_id+'/original", HTML)
+        self.assertIn("credentials:'same-origin'", HTML)
+        self.assertIn("Download original (if retained)", HTML)
+
     def test_document_duplicate_signals_are_limited_to_current_matter(self):
         self.assertIn("byte_identical_candidate", HTML)
         self.assertIn("text_identical_extraction_candidate", HTML)
