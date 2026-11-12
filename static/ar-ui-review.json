@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "22cafd85cf3b01c495fb21b96f69f0b4fb8c9849",
   "generated_on": "2026-11-12",
-  "entry_count": 1154,
+  "entry_count": 1156,
   "entries": [
     {
       "id": "AR-0001",
@@ -11173,6 +11173,24 @@
     {
       "id": "AR-1154",
       "arabic": "تُعرض حتى 100 مقطع في كل مرة. استخدم صفحات المستند ومراجع المقاطع لتحديد مواضع المراجعة.",
+      "source_lines": [
+        2669,
+        2669
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1155",
+      "arabic": "عرض المقاطع التي تحتاج مراجعة",
+      "source_lines": [
+        2668,
+        2668
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1156",
+      "arabic": "مقاطع تحتاج مراجعة",
       "source_lines": [
         2669,
         2669
