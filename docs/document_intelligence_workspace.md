@@ -41,7 +41,6 @@ This is the first UI layer for reviewing documents already uploaded to a case. I
 ## Not yet implemented
 
 - Firm-wide document search across multiple matters. The current workspace is deliberately limited to one selected, authorized matter.
-- Firm-wide document search across multiple matters. The current workspace is deliberately limited to one selected, authorized matter.
 - Structured extraction of named entities and events beyond the literal candidate rules described above.
 - Multi-hunk semantic/version comparison. The current comparison is a bounded first-difference view only.
 - Document retention/legal-hold workflow controls in this panel.
