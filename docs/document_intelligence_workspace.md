@@ -8,7 +8,10 @@ This is the first UI layer for reviewing documents already uploaded to a case. I
 
 - Search extracted text across the selected matter's uploaded documents in Arabic and English. Search applies Unicode NFKC normalization, removes common Arabic diacritics/tatweel, normalizes common alef/yeh forms, and normalizes Arabic-Indic digits.
 - Show conservative keyword-based document-type suggestions (judgment, contract, pleading, correspondence/notice, evidence/receipt, or unclassified) from the canonical Python helper, executed by the existing authenticated matter-scoped chunks endpoint.
-- Permit an in-view draft classification override. The UI explicitly says this draft is **not saved** and is discarded when the panel is rebuilt. It is not a persistent classification or an audit record.
+- Show keyword-based classification suggestions separately from the reviewer's selected classification.
+- Persist a reviewer-selected classification in the firm database, with a monotonically increasing revision, reviewer user ID, update timestamp, and optional note.
+- Record every create/update in an append-only, immutable firm-local event ledger. Concurrent stale updates are rejected with HTTP 409; the UI asks the reviewer to reload.
+- Expose the latest classification and a bounded history through the same matter-authorized document endpoints. Classification history remains available after document metadata is deleted; the current classification row follows the document lifecycle.
 - Extract literal candidate mentions for dates, case references, amounts, labelled parties, legal references and event-related terms on the server. Results retain document ID, chunk ID/reference and recorded page where available.
 - Preserve the document name, chunk reference and page number when the extraction endpoint supplies them. A missing page number is shown as not recorded; the UI does not infer one.
 - Show possible duplicates based on exact original-file SHA-256 and normalized extracted-text equality, limited to documents returned for the selected matter.
@@ -37,7 +40,7 @@ This is the first UI layer for reviewing documents already uploaded to a case. I
 ## Not yet implemented
 
 - Firm-wide document search across multiple matters. The current workspace is deliberately limited to one selected, authorized matter.
-- Persistent, server-side editable classifications with role checks, optimistic concurrency and an audit history. The server now returns canonical classification suggestions and bounded literal candidates through the existing authorized chunks endpoint, but user overrides remain view-only drafts.
+- Fine-grained role policy for classification approval. At present, any user who already has permission to access the matter can save a classification; deployments requiring reviewer-only approval need a separate role policy before enabling that restriction.
 - Structured extraction of named entities and events beyond the literal candidate rules described above.
 - Multi-hunk semantic/version comparison. The current comparison is a bounded first-difference view only.
 - Document retention/legal-hold workflow controls in this panel.
