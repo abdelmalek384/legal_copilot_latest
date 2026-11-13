@@ -132,6 +132,9 @@ class CandidateCatalogTests(unittest.TestCase):
             ({"sources": [{"source_id": "SRC-1", "authority": "Authority", "source_page": "https://[malformed"}], "documents": []}, "source_page must be a clean HTTPS URL"),
             ({"sources": [{"source_id": "SRC-1", "authority": "Authority", "source_page": "https://example.gov\\x7fpath"}], "documents": []}, "source_page must be a clean HTTPS URL"),
             ({"sources": [{"source_id": "SRC-1", "authority": "Authority", "source_page": "https://example.gov:99999"}], "documents": []}, "source_page must be a clean HTTPS URL"),
+            ({"sources": [{"source_id": "SRC-1", "authority": "Authority", "source_page": "https://example.gov", "terms_url": "http://example.gov/terms"}], "documents": []}, "terms_url must be a clean HTTPS URL"),
+            ({"sources": [{"source_id": "SRC-1", "authority": "Authority", "source_page": "https://example.gov", "official_pdf_url": "https://user:pass@example.gov/law.pdf"}], "documents": []}, "official_pdf_url must be a clean HTTPS URL"),
+            ({"sources": [{"source_id": "SRC-1", "authority": "Authority", "source_page": "https://example.gov", "secondary_metadata_lead": {"url": "https://example.gov\\\\lead"}}], "documents": []}, "secondary_metadata_lead.url must be a clean HTTPS URL"),
             ({"sources": [{"source_id": "SRC-1", "authority": "Authority", "source_page": "https://example.gov"}], "documents": [None]}, "documents[0] must be an object"),
             ([], "catalog root must be an object"),
         ]
