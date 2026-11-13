@@ -71,18 +71,18 @@ A limited discovery review found subsequent instruments that refer to or impleme
 - ignores the incoming `verified` / `in_force` claims;
 - imports no article chunks and does not make the candidate searchable.
 
-The candidate's general and specialized-court commencement dates remain evidence-backed leads pending primary-source comparison and Egyptian counsel review. The source file's SHA-256 is recorded only as the hash of the supplied JSONL, not the original Gazette.
+The candidate's general and specialized-court commencement dates remain evidence-backed leads pending qualified Egyptian counsel's interpretation of Article 13 and transitional provisions. The supplied 112-page Gazette comparison PDF has a separately recorded SHA-256 in `docs/legal_evidence/law_14_2025_source_match_record.json`; the candidate JSONL hash is not the Gazette hash. The user-supplied PDF's upload URL/capture chain and permission to copy or reuse it remain unknown.
 
 This session cannot access or modify the user's local SQLite database. The registry script has therefore **not** been run against the user's application database. Do not represent the local database as updated until that operation is executed and its result confirmed.
 
 ## Required gates before activation
 
 1. Obtain written permission covering the intended storage, extraction, indexing, embeddings, display, and commercial use, or identify a separately confirmed lawful/licensed source.
-2. Complete the remaining article-by-article comparison of all 311 records, including exact wording and page-level evidence; the 120-item quantitative check is not a substitute.
+2. Have qualified Egyptian counsel independently review the 311-row lawyer tick-sheet against an authorized source copy. All 311 provisions already have assistant page-image comparison notes; those notes are evidence aids, not counsel sign-off. If the supplied restricted copy cannot lawfully be used, counsel must obtain an authorized copy and remap the page locators.
 3. Register and review relevant implementing instruments and their temporal effects; distinguish `implements` from `amends`.
 4. Have qualified Egyptian counsel verify commencement, transition, repeal/supersession, and the relevant as-of timeline.
 5. Only then record affirmative review events and consider enabling eligible version-linked chunks.
 
 ## Historical targeted review notes
 
-Further targeted extracted-text reviews on 2026-10-28 covered selected provisions on probation, working hours, overtime, annual leave, termination, specialized labour-court jurisdiction, disciplinary investigations, dismissal, weekly rest, breaks, work schedules, paid holidays, illness, retirement age, notice-period compensation, and absence. These remain provisional summaries and are not a substitute for the complete text comparison or counsel review.
+Further targeted extracted-text reviews on 2026-10-28 covered selected provisions on probation, working hours, overtime, annual leave, termination, specialized labour-court jurisdiction, disciplinary investigations, dismissal, weekly rest, breaks, work schedules, paid holidays, illness, retirement age, notice-period compensation, and absence. These historical notes predate the 2026-11-06 completion of assistant page-image comparisons for all 311 provisions. They remain provisional summaries and are not a substitute for counsel review.
