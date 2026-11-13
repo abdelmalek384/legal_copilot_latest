@@ -93,8 +93,8 @@ A passing unit suite validates helper behavior only; it does not validate the ne
 - The Legal Research UI displays these offsets alongside the event sentence, document/chunk reference and page.
 - Added helper tests asserting that each offset slice maps back to the exact source substring and a frontend contract assertion. PR #1600 merged at `d5dc01a4cfaa835942288e047f9dc4c4275afde8`; tests/browser acceptance remain unexecuted.
 
-## Named-month date extraction — 2026-11-13 (branch pending merge)
+## Named-month date extraction — 2026-11-13 (merged #1602)
 
 - Extended date candidate recognition to Arabic and English Gregorian month names in day-first and month-first forms, including Arabic-Indic digits.
 - The timeline parser normalizes valid four-digit-year dates and leaves two-digit years and invalid calendar dates in the unparsed review queue. Hijri calendar conversion is not performed.
-- Added a helper regression covering Arabic/English month names, page provenance, ambiguous two-digit years and invalid day values. Tests remain unexecuted; branch `feature/arabic-named-month-dates-20261113` is pending merge.
+- Added helper and frontend regressions covering Arabic/English month names, page provenance, ambiguous two-digit years and invalid day values. PR #1602 merged at `f7f9f2e083f700d81f8ad0c6cac584ff19f5035b`; tests remain unexecuted.
