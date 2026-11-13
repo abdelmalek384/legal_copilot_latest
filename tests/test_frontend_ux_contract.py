@@ -1243,9 +1243,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("needs_review:LANG==='ar'?'يحتاج مراجعة':'Needs review'", HTML)
         self.assertIn("unverified:LANG==='ar'?'غير متحقق':'Unverified'", HTML)
         self.assertIn("user_supplied_unverified:LANG==='ar'?'غير متحقق':'Unverified'", HTML)
-        self.assertIn("status==='verified_operative_text'?'done':'", HTML)
+        self.assertIn("sourceState==='verified'?'done':(sourceState==='unverified'?'late':'soon')", HTML)
         self.assertIn("do not rely on it as verified operative text", HTML)
         self.assertIn("One or more source/current-status checks are missing or unresolved", HTML)
+        self.assertIn("research-source-caution.unverified", HTML)
+        self.assertIn("research-source-caution.needs-review", HTML)
 
 if __name__ == "__main__":
     unittest.main()
