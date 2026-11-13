@@ -1221,6 +1221,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("uploadPanel.setAttribute('aria-busy','false')", HTML)
 
 
+    def test_matter_identity_and_progress_remain_visible_across_sections(self):
+        self.assertIn("matter-context-strip", HTML)
+        self.assertIn("matterMeta=[c.case_number&&", HTML)
+        self.assertIn("c.court&&[uiText('المحكمة','Court'),c.court]", HTML)
+        self.assertIn("c.circuit&&[uiText('الدائرة','Circuit'),c.circuit]", HTML)
+        self.assertIn("matter-progress-context", HTML)
+        self.assertIn("prog({done_tasks:dn,open_tasks:tot-dn})", HTML)
+
     def test_matter_detail_uses_five_task_oriented_sections(self):
         self.assertIn("matter-section-nav", HTML)
         self.assertIn("matter-subnav", HTML)
