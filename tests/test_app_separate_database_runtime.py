@@ -2778,6 +2778,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             json={"email": "nonmember-review@example.test", "password": other_password},
         )
         self.assertEqual(other_login.status_code, 200, other_login.text)
+        timeline_denied = self.client.get(f"/cases/{case_id}/documents/timeline")
+        self.assertEqual(timeline_denied.status_code, 404, timeline_denied.text)
         for method, path, kwargs in (
             ("get", f"/cases/{case_id}/docs/{document_id}/reviews", {}),
             ("get", f"/cases/{case_id}/docs/{document_id}/chunks", {}),
