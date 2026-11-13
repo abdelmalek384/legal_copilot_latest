@@ -222,3 +222,12 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Backend integration tests cover classification persistence/version conflicts, lead-only permissions, cross-matter and cross-firm isolation, audit immutability and retention cascades, metadata/full-text search, and extraction-review isolation. Frontend contract tests cover the new workspace and review behavior.
 - GitHub Actions currently reports failures before logs can be retrieved. The documented runner/billing limitation remains unresolved; no test pass is claimed. Browser QA and clean Python 3.12 suite execution are still required.
 - This integration is rebased onto the current main line; the newer legal-evaluation inventory and Gazette importer changes are retained.
+
+
+## AI-1 current PR and validation checkpoint — 2026-11-13
+
+- PRs #1576, #1577 and #1580 have since merged into main. Their code is integrated; this does not mean their Python tests passed. Their hosted workflows previously failed before exposing any job steps.
+- #1578 remains open for the explicit-null `source_reference` rejection and regression case. Because #1577 is already merged, the remaining change should be ported to a clean current-main branch instead of relying on its old stacked branch.
+- #1581 adds fail-closed string checks to device/browser acceptance enum fields and tests malformed list/object values. #1583 makes the retrieval scorer's direct in-memory API reject non-object question and run rows before calling `.get()`.
+- #1581 and #1583 are static-reviewed only. User installed Python 3.12.16 and `requirements-py312.lock` dependencies; `pip check` and focused tests remain outstanding. Do not mark these tests passed until output is provided.
+- Main checkpoint used for this work: `75bd6af0c2f1a1f16a95a4e613209af01c520d15`. No legal trust flags were modified.
