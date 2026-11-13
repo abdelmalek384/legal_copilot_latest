@@ -174,6 +174,7 @@ class DocumentIntelligenceTests(unittest.TestCase):
                 {"entity_type": "date_mention", "mention": "2025-01-01"},
                 {"entity_type": "amount", "mention": "5000 EGP"},
                 {"entity_type": "legal_reference", "mention": "Article 10"},
+                {"entity_type": "legal_reference", "mention": "Article 11"},
             ],
         }]
         result = group_candidate_entity_mentions(documents, max_candidates=1)
