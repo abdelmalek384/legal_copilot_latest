@@ -63,7 +63,7 @@ _CASE_PATTERN = re.compile(
     re.IGNORECASE,
 )
 _MONEY_PATTERN = re.compile(
-    rf"([{_DIGITS}]+(?:(?:[,٬][{_DIGITS}]{{3}})+)?(?:[.٫][{_DIGITS}]{{1,2}})?)\s*"
+    rf"(?<![\w,٬.٫])([{_DIGITS}]+(?:(?:[,٬][{_DIGITS}]{{3}})+)?(?:[.٫][{_DIGITS}]{{1,2}})?)\s*"
     rf"(جنيهات|جنيه(?:اً|ا)?|ج\.م|EGP|LE|دولار أمريكي|دولار|US\$|USD|"
     rf"ريال سعودي|SAR|ريال|درهم إماراتي|AED|درهم|دينار كويتي|KWD|دينار|QAR|OMR|BHD|JOD|MAD)",
     re.IGNORECASE,
