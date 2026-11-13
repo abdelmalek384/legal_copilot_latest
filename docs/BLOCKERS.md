@@ -227,3 +227,18 @@ Percentages distinguish repository implementation from validation and operationa
 ## Answer rating contract — 2026-11-13
 
 - **Closed for AI-1:** `docs/answer_rating_contract.md` is present on main (commit `8820ea617c5bb8fcbf72bb77e7470a9828fe4a44`). It defines answer ID, correct/partial/wrong, cited-article right/wrong, notes, rater, ISO-8601 timestamp, trust tier, and UTF-8 CSV export. AI-2 can integrate against this contract. This does not approve any legal source or rating data.
+
+
+## AI-1 owner checklist — 2026-11-13
+
+| Deliverable | Current status | Closure boundary |
+|---|---|---|
+| Answer rating contract | Complete on main; AI-2 handoff ready | Contract exists at `docs/answer_rating_contract.md`; AI-2 UI/export integration remains separate. |
+| Three negation regressions | Guard already integrated in `app.ask()`; focused reproduction/integration tests in draft PR #1618 | Still open until the exact Python 3.12 local command is executed and output is recorded. |
+| Firm-test source-matched mode | Draft implementation in PR #1619 | Synthetic test path only. The actual Law 14/2025 candidate remains ineligible because collection/reuse permission is unknown, source text is not committed, and the manifest says search_eligible=false. |
+| Reviewer CSVs | Complete as templates | Gazette 311-row CSV, five-rule deadline CSV, and one-page UTF-8 guide exist. Candidate/Gazette/primary-source wording and lawyer decisions remain blank pending authorized source text and review. |
+| Law 14/2025 evaluation drafts | 116 unique question drafts created (58 formal, 58 colloquial); article IDs machine-proposed and unapproved | Structural tests added. Do not treat article labels as ground truth or run the reviewed scorer on these rows. |
+| Retrieval baseline | Blocked | Existing scorer requires lawyer-approved labels, reviewer registry and actual retrieval results. No authenticated local indexed corpus/API is available here; no baseline number is claimed. |
+| Status documentation | Complete | Detailed history copied to `docs/archive/STATUS_history_through_2026-11-13.md`; `docs/STATUS.md` is now the concise release-candidate summary. |
+
+The owner has explicitly requested a non-production firm-test implementation. That instruction authorizes the isolated feature work only; it does not grant source reuse rights, lawyer approval, currentness certification, or permission to enable source-matched answers in production. All Law 14/2025 `verified` flags remain 0.
