@@ -33,6 +33,22 @@ class OutputPathSafetyTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "protected input"):
                 ensure_output_paths_safe([alias], [protected])
 
+    def test_fails_closed_on_symlink_resolution_loop(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            protected = root / "source.json"
+            protected.write_text("preserve", encoding="utf-8")
+            left = root / "left.json"
+            right = root / "right.json"
+            try:
+                left.symlink_to(right)
+                right.symlink_to(left)
+            except (NotImplementedError, OSError):
+                self.skipTest("symlinks are unavailable in this environment")
+
+            with self.assertRaisesRegex(ValueError, "cannot safely compare"):
+                ensure_output_paths_safe([left], [protected])
+
     def test_rejects_hardlink_alias_to_protected_input(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
