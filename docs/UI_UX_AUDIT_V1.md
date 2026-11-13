@@ -191,3 +191,6 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 
 
 - Extended the original-file runtime regression to verify the case-detail retention flag is true for a ready, non-purged object and false after its `purged_at` marker is set. This guards the frontend's retained-original affordance against purged objects; the test has not been executed.
+
+
+- The extracted-chunk reviewer page-reference input now pre-fills from either `page` or `page_number`, matching the displayed page fallback and reducing accidental blank references when one field is absent. Added a frontend regression contract.
