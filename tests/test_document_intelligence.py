@@ -105,6 +105,19 @@ class DocumentIntelligenceTests(unittest.TestCase):
         self.assertEqual(result["relationships"], [])
         self.assertTrue(all(not item["date_mentions"] for item in result["events"]))
 
+    def test_structured_entity_cap_does_not_let_dates_starve_other_signal_families(self):
+        text = (
+            "01/01/2025 " * 20
+            + "المدعي: أحمد محمد. دعوى رقم 123/2025. المادة 10 من القانون رقم 12 لسنة 2020. "
+            + "المبلغ 5000 جنيه."
+        )
+        result = extract_structured_candidates(text, max_items=10)
+        kinds = {item["entity_type"] for item in result["entities"]}
+        self.assertTrue({
+            "labelled_party", "case_reference", "legal_reference", "monetary_amount", "date_mention"
+        }.issubset(kinds))
+        self.assertTrue(result["truncated"])
+
     def test_structured_candidate_limit_is_enforced(self):
         result = extract_structured_candidates(
             "جلسة 01/01/2025. " * 30, max_items=3
