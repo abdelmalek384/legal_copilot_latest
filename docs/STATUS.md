@@ -263,4 +263,4 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Added a matter-authorized `GET /cases/{cid}/documents/timeline` endpoint to aggregate parseable and unparsed date mentions plus sentence-context event candidates across documents.
 - Each result preserves document ID/name, chunk ID/reference, page and source offsets. The endpoint is bounded to 200 documents, one million characters, 1,000 date mentions and 500 event candidates and writes an audit event.
 - Added a Legal Research UI control for loading the matter-wide timeline; it distinguishes parseable dates, unparsed dates and event mentions and displays the server warning. It does not create deadlines or assert a verified chronology.
-- Helper, separate-database API and frontend contract tests were added but not executed. Branch `feature/matter-document-timeline-20261113`; PR/merge pending.
+- Helper, separate-database API and frontend contract tests were added but not executed. PR #1596 merged at `27409eedaa042c3b54abdb4fe547ce396751c5b4`.
