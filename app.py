@@ -6612,6 +6612,92 @@ def import_cases_csv(b: CaseCSVImportIn, u: dict = Depends(user)):
     return {"created": created, "skipped": skipped, "rows": rows_seen}
 
 
+@app.get("/documents/compare")
+def compare_accessible_document_versions(
+    case_id: int = Query(..., ge=1),
+    before_document_id: int = Query(..., ge=1),
+    after_document_id: int = Query(..., ge=1),
+    context_chars: int = Query(default=100, ge=0, le=1000),
+    u: dict = Depends(user),
+):
+    """Compare two extracted document texts inside one authorized matter.
+
+    The response is a literal text diff with chunk/page provenance. It is not
+    a legal redline, authenticity check, or assessment of legal significance.
+    """
+    if before_document_id == after_document_id:
+        raise HTTPException(422, "choose two different documents")
+    c = conn()
+    need(c, u, case_id)
+    documents = c.execute(
+        "SELECT id,name,extraction_status FROM docs "
+        "WHERE case_id=? AND firm_id=? AND id IN (?,?)",
+        (case_id, int(u["firm_id"]), before_document_id, after_document_id),
+    ).fetchall()
+    by_id = {int(row["id"]): dict(row) for row in documents}
+    if len(by_id) != 2:
+        # Do not reveal whether a missing document belongs to another firm/matter.
+        raise HTTPException(404, "one or both documents were not found in this matter")
+
+    def load_version(document_id):
+        rows = c.execute(
+            "SELECT id,ref,page,text FROM chunks "
+            "WHERE case_id=? AND document_id=? ORDER BY id",
+            (case_id, document_id),
+        ).fetchall()
+        pieces = []
+        provenance = []
+        total_chars = 0
+        for row in rows:
+            value = row["text"] if isinstance(row["text"], str) else ""
+            if not value:
+                continue
+            separator = "\n" if pieces else ""
+            start = total_chars + len(separator)
+            total_chars = start + len(value)
+            if total_chars > 100000:
+                raise HTTPException(413, "each extracted document is limited to 100,000 characters for comparison")
+            pieces.append(value)
+            provenance.append({
+                "chunk_id": int(row["id"]),
+                "reference": row["ref"],
+                "page": row["page"],
+                "start": start,
+                "end": total_chars,
+            })
+        return "\n".join(pieces), provenance
+
+    try:
+        before_text, before_sources = load_version(before_document_id)
+        after_text, after_sources = load_version(after_document_id)
+        changes = compare_extracted_text(before_text, after_text, context_chars=context_chars)
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from exc
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (int(u["firm_id"]), int(u["id"]), "document_version_comparison"),
+    )
+    c.commit()
+    return {
+        "case_id": case_id,
+        "before": {**by_id[before_document_id], "character_count": len(before_text), "sources": before_sources},
+        "after": {**by_id[after_document_id], "character_count": len(after_text), "sources": after_sources},
+        "changes": changes,
+        "change_count": len(changes),
+        "review_status": "requires_lawyer_review",
+        "warning": (
+            "Literal extracted-text differences only. Extraction errors, page ordering, "
+            "formatting, omitted images and OCR limitations may affect the comparison. "
+            "No change is classified as legally significant; compare each passage with both originals."
+        ),
+        "limitations": [
+            "Only documents in the selected matter and current user's authorized firm scope are compared.",
+            "Text is assembled in stored chunk order; formatting and visual layout are not compared.",
+            "Each reported change requires lawyer review against the original documents.",
+        ],
+    }
+
+
 @app.get("/documents/search-text")
 def search_accessible_document_text(
     q: str = Query(default="", min_length=1, max_length=200),
