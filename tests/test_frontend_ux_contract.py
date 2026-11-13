@@ -1221,6 +1221,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("uploadPanel.setAttribute('aria-busy','false')", HTML)
 
 
+    def test_research_source_cards_have_distinct_accessible_names(self):
+        self.assertIn("className:'src research-source',role:'group','aria-label':(LANG==='ar'?'المصدر ':'Source ')+(s.ref||s.citation||String(i+1))", HTML)
+        self.assertIn("'aria-controls':'research-source-inspector'", HTML)
+        self.assertIn("'aria-expanded':'false'", HTML)
+
+
     def test_document_upload_queue_announces_per_file_status_accessibly(self):
         self.assertIn("className:'research-upload-results',role:'list','aria-live':'polite'", HTML)
         self.assertIn("className:'research-upload-item '+item.state,role:'listitem'", HTML)
