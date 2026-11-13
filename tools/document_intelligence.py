@@ -18,10 +18,34 @@ MAX_COMPARE_CHARS = 100_000
 MAX_DIFF_SEGMENTS = 200
 _PAGE_MARKER = re.compile(r"\[\[PDF_PAGE:(\d+)\]\]")
 _DIGITS = r"0-9٠-٩"
+_MONTH_TOKEN = (
+    "يناير|فبراير|مارس|أبريل|ابريل|مايو|يونيو|يونيه|يوليو|أغسطس|اغسطس|"
+    "سبتمبر|أكتوبر|اكتوبر|نوفمبر|ديسمبر|"
+    "January|Jan|February|Feb|March|Mar|April|Apr|May|June|Jun|"
+    "July|Jul|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec"
+)
+_NAMED_DATE_PATTERN = re.compile(
+    rf"(?<!\\w)(?:(?P<day>[{_DIGITS}]{{1,2}})\\s+(?P<month>{_MONTH_TOKEN})\\s+(?P<year>[{_DIGITS}]{{2,4}})|"
+    rf"(?P<month_first>{_MONTH_TOKEN})\\s+(?P<day_first>[{_DIGITS}]{{1,2}}),?\\s+(?P<year_first>[{_DIGITS}]{{2,4}}))(?!\\w)",
+    re.IGNORECASE,
+)
 _DATE_PATTERNS = (
     re.compile(rf"(?<![{_DIGITS}])([{_DIGITS}]{{1,2}})[/.-]([{_DIGITS}]{{1,2}})[/.-]([{_DIGITS}]{{2,4}})(?![{_DIGITS}])"),
     re.compile(rf"(?<![{_DIGITS}])([{_DIGITS}]{{4}})[/.-]([{_DIGITS}]{{1,2}})[/.-]([{_DIGITS}]{{1,2}})(?![{_DIGITS}])"),
+    _NAMED_DATE_PATTERN,
 )
+_NAMED_MONTHS = {
+    "يناير": 1, "فبراير": 2, "مارس": 3, "أبريل": 4, "ابريل": 4,
+    "مايو": 5, "يونيو": 6, "يونيه": 6, "يوليو": 7,
+    "أغسطس": 8, "اغسطس": 8, "سبتمبر": 9, "أكتوبر": 10,
+    "اكتوبر": 10, "نوفمبر": 11, "ديسمبر": 12,
+    "january": 1, "jan": 1, "february": 2, "feb": 2,
+    "march": 3, "mar": 3, "april": 4, "apr": 4, "may": 5,
+    "june": 6, "jun": 6, "july": 7, "jul": 7,
+    "august": 8, "aug": 8, "september": 9, "sept": 9, "sep": 9,
+    "october": 10, "oct": 10, "november": 11, "nov": 11,
+    "december": 12, "dec": 12,
+}
 _CASE_PATTERN = re.compile(
     rf"(?:دعوى|القضية|قضية|استئناف|طعن|جنحة|جناية|الدعوى)\s*(?:رقم|رقمها)?\s*[:：#]?\s*([{_DIGITS}]+(?:\s*[/\\-]\s*[{_DIGITS}]+){{0,2}})",
     re.IGNORECASE,
