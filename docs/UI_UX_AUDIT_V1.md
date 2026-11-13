@@ -107,3 +107,6 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 - This prevents a source from appearing as generically “outdated” in the inspector when its recorded state is more specific (for example, metadata-only or user-supplied/unverified).
 - Added a frontend regression contract covering every supported inspector status key and the Arabic/English labels for review-pending, unverified and metadata-only states.
 - This is a presentation-only consistency correction. It does not change source metadata, legal verification, provenance, ranking or retrieval behaviour.
+
+- The source inspector now places a concise explanation directly beneath the recorded status, distinguishing review-pending, metadata-only, user-supplied and unverified records. It explicitly states that an empty verified-passage result does not prove that no applicable law exists.
+- Added regression assertions for the status explanation and the non-inference warning. No new Arabic strings were introduced; existing reviewed-inventory entries are reused.
