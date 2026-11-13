@@ -61,6 +61,10 @@ class Law14DraftInventoryTests(unittest.TestCase):
         self.assertTrue(any("expected_article_status" in item for item in report["errors"]))
         self.assertTrue(any("release_eligible" in item for item in report["errors"]))
 
+    def test_rejects_unhashable_question_style_without_crashing(self):
+        report = validate_rows([question(question_style=["formal"])], minimum_questions=1)
+        self.assertTrue(any("question_style" in item for item in report["errors"]))
+
     def test_rejects_mismatched_article_pin(self):
         report = validate_rows([
             question(expected_article_id="EG-LABOUR-LAW-14-2025-ART-13")
