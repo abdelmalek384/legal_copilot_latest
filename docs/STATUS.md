@@ -294,3 +294,9 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - The local Legal Research timeline parser now supports Arabic and English named Gregorian months in day-first/month-first forms, alongside the server parser.
 - Four-digit years and calendar-valid dates are required for normalization; two-digit years and invalid dates remain unparsed. Hijri conversion is not attempted.
 - Added frontend contract coverage. Tests and browser acceptance remain unexecuted; merge pending.
+
+## Hijri date mention handling update — 2026-11-13
+
+- Hijri month-name dates are now detected and preserved as unparsed review items with an explicit Hijri/unconverted label. No calendar conversion is performed.
+- The UI labels these records so they are not confused with normalized Gregorian dates. Helper and frontend regression tests were added but not executed.
+- Branch `feature/hijri-date-mention-review-20261113`; merge pending.

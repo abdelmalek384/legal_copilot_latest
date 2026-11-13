@@ -29,10 +29,20 @@ _NAMED_DATE_PATTERN = re.compile(
     rf"(?P<month_first>{_MONTH_TOKEN})\s+(?P<day_first>[{_DIGITS}]{{1,2}}),?\s+(?P<year_first>[{_DIGITS}]{{2,4}}))(?!\w)",
     re.IGNORECASE,
 )
+_HIJRI_MONTH_TOKEN = (
+    r"ربيع\s+الأول|ربيع\s+الآخر|ربيع\s+الثاني|"
+    r"جمادى\s+الأولى|جمادى\s+الآخرة|جمادى\s+الثانية|"
+    r"ذو\s+القعدة|ذو\s+الحجة|محرم|صفر|رجب|شعبان|رمضان|شوال"
+)
+_HIJRI_DATE_PATTERN = re.compile(
+    rf"(?<!\w)(?P<day>[{_DIGITS}]{{1,2}})\s+(?P<month>{_HIJRI_MONTH_TOKEN})\s+(?P<year>[{_DIGITS}]{{2,4}})\s*(?:هـ|هجري|هجرية)?(?!\w)",
+    re.IGNORECASE,
+)
 _DATE_PATTERNS = (
     re.compile(rf"(?<![{_DIGITS}])([{_DIGITS}]{{1,2}})[/.-]([{_DIGITS}]{{1,2}})[/.-]([{_DIGITS}]{{2,4}})(?![{_DIGITS}])"),
     re.compile(rf"(?<![{_DIGITS}])([{_DIGITS}]{{4}})[/.-]([{_DIGITS}]{{1,2}})[/.-]([{_DIGITS}]{{1,2}})(?![{_DIGITS}])"),
     _NAMED_DATE_PATTERN,
+    _HIJRI_DATE_PATTERN,
 )
 _NAMED_MONTHS = {
     "يناير": 1, "فبراير": 2, "مارس": 3, "أبريل": 4, "ابريل": 4,
@@ -342,11 +352,17 @@ def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, An
             raw = candidate.get("value")
             parsed = None
             interpretation = None
+            calendar_system = "unknown"
             if isinstance(raw, str):
                 normalized_raw = raw.translate(arabic_digits).strip()
+                hijri_match = _HIJRI_DATE_PATTERN.fullmatch(normalized_raw)
                 named_match = _NAMED_DATE_PATTERN.fullmatch(normalized_raw)
+                calendar_system = "gregorian"
                 try:
-                    if named_match:
+                    if hijri_match:
+                        calendar_system = "hijri"
+                        interpretation = "hijri_unconverted"
+                    elif named_match:
                         if named_match.group("day"):
                             day_text = named_match.group("day")
                             month_name = named_match.group("month")
@@ -381,6 +397,7 @@ def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, An
                 "date_mention": raw,
                 "normalized_date": parsed,
                 "interpretation": interpretation,
+                "calendar_system": calendar_system,
                 "document_id": document_id,
                 "filename": filename,
                 "page": candidate.get("page"),
@@ -404,7 +421,7 @@ def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, An
             "Context and legal effect must be confirmed by a lawyer.",
             "Only documents supplied by the caller are considered; callers must enforce firm and matter scope.",
             "Two-digit years and invalid calendar dates are not guessed.",
-            "Named Arabic and English Gregorian months are supported; Hijri calendar conversion is not performed.",
+            "Named Arabic and English Gregorian months are supported; Hijri mentions are retained as unconverted and no Hijri-to-Gregorian conversion is performed.",
         ],
     }
 
