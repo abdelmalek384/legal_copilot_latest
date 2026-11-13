@@ -128,7 +128,7 @@ class CandidateCatalogTests(unittest.TestCase):
             ({"sources": [{"source_id": "SRC-1", "authority": "Authority", "source_page": "https://example.gov", "collection_permission": []}], "documents": []}, "invalid collection_permission"),
             ({"sources": [{"source_id": "SRC-1", "authority": "Authority", "source_page": "http://example.gov"}], "documents": []}, "source_page must be a clean HTTPS URL"),
             ({"sources": [{"source_id": "SRC-1", "authority": "Authority", "source_page": "https://user:pass@example.gov"}], "documents": []}, "source_page must be a clean HTTPS URL"),
-            ({"sources": [{"source_id": "SRC-1", "authority": "Authority", "source_page": "https://example.gov\\\\path"}], "documents": []}, "source_page must be a clean HTTPS URL"),
+            ({"sources": [{"source_id": "SRC-1", "authority": "Authority", "source_page": "https://example.gov\\path"}], "documents": []}, "source_page must be a clean HTTPS URL"),
             ({"sources": [{"source_id": "SRC-1", "authority": "Authority", "source_page": "https://[malformed"}], "documents": []}, "source_page must be a clean HTTPS URL"),
             ({"sources": [{"source_id": "SRC-1", "authority": "Authority", "source_page": "https://example.gov"}], "documents": [None]}, "documents[0] must be an object"),
             ([], "catalog root must be an object"),
