@@ -285,6 +285,8 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             " https://laws.example.gov/law.pdf",
             "https://laws.example.gov/law file.pdf",
             "https://laws.example.gov:99999/law.pdf",
+            "https://laws.example.gov/law\x7fpdf",
+            "https://laws.example.gov\\law.pdf",
         ):
             with self.subTest(url=url):
                 self.assertIsNone(MODULE._hostname(url))
