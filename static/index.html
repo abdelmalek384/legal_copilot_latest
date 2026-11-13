@@ -334,6 +334,10 @@ body{background:#f3f6fa;color:var(--figma-ink);font-family:Inter,"Noto Sans Arab
 #main .matter-progress-context{display:inline-flex;align-items:center;gap:7px;margin-inline-start:auto}
 @media(max-width:560px){#main .matter-context-strip{align-items:flex-start}#main .matter-progress-context{margin-inline-start:0;width:100%}}
 
+
+#main .research-corpus-availability{margin:0 0 12px;padding:12px 14px;border-inline-start:4px solid #c47a19}
+#main .research-corpus-availability p{margin:5px 0 0;line-height:1.65}
+
 </style>
 <style>
 /* Legal Copilot — premium workspace polish
@@ -2350,7 +2354,7 @@ async function law(){
  const conversationFilter=h('input',{type:'search',placeholder:LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations','aria-label':LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations'});
  const historyToggle=h('button',{type:'button',className:'g research-history-toggle','aria-controls':'research-history-pane','aria-expanded':'true',textContent:LANG==='ar'?'إخفاء السجل':'Hide history',onclick:()=>{const collapsed=sidebar.classList.toggle('history-collapsed');historyToggle.setAttribute('aria-expanded',String(!collapsed));historyToggle.textContent=collapsed?(LANG==='ar'?'إظهار السجل':'Show history'):(LANG==='ar'?'إخفاء السجل':'Hide history')}});
   const scopeSelect=h('select',{tabIndex:0,'aria-label':LANG==='ar'?'نطاق البحث':'Research scope'},
-    h('option',{value:'verified_corpus',textContent:LANG==='ar'?'النصوص القانونية المتحقق منها':'Verified legal corpus'}),
+    h('option',{value:'verified_corpus',textContent:LANG==='ar'?'المجموعة القانونية المتحقق منها — لا تتوفر حالياً مجموعة مصرية معتمدة':'Verified legal corpus — no lawyer-verified Egyptian corpus currently available'}),
     h('option',{value:'firm_documents',textContent:LANG==='ar'?'مستندات المكتب داخل ملف قضية':'Firm documents in a matter'}),
     h('option',{value:'metadata_only',textContent:LANG==='ar'?'اكتشاف فهرس المصادر (بيانات وصفية فقط)':'Source catalog discovery (metadata only)'}));
   const matterSelect=h('select',{tabIndex:0,'aria-label':LANG==='ar'?'ملف القضية':'Matter'},h('option',{value:'',textContent:LANG==='ar'?'اختر ملف قضية':'Select a matter'}));
@@ -2598,7 +2602,8 @@ async function law(){
  },'primary');
  composer.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send.click()}});
  const composerArea=h('div',{className:'research-composer'},composer,send,h('div',{className:'mut',textContent:LANG==='ar'?'Enter للإرسال · Shift+Enter لسطر جديد':'Enter to send · Shift+Enter for a new line'}));
- shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-controls'},h('label',{},h('span',{textContent:LANG==='ar'?'نطاق البحث':'Search scope'}),scopeSelect),h('label',{},h('span',{textContent:LANG==='ar'?'ملف القضية (للبحث والحفظ)':'Matter (for search and saving)'}),matterSelect),openDocumentWorkspace),uploadPanel,documentWorkspace,h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},researchStatus,thread,composerArea),sourceInspector));
+ const corpusAvailabilityNotice=h('section',{className:'notice warning research-corpus-availability',role:'note'},h('b',{textContent:LANG==='ar'?'تنبيه بشأن توافر المصادر القانونية':'Legal-source availability notice'}),h('p',{textContent:LANG==='ar'?'لا تتوفر حالياً مجموعة قوانين مصرية تم التحقق منها بواسطة محامين. قد تظهر بيانات مرشحة أو نتائج مصدرية فقط؛ لا تعتبرها قانوناً سارياً أو معتمداً.':'No lawyer-verified Egyptian legal corpus is currently available. Candidate metadata or source-only results may appear; do not treat them as verified operative law.'}));
+ shell(LANG==='ar'?'البحث القانوني':'Legal Research',corpusAvailabilityNotice,h('div',{className:'research-controls'},h('label',{},h('span',{textContent:LANG==='ar'?'نطاق البحث':'Search scope'}),scopeSelect),h('label',{},h('span',{textContent:LANG==='ar'?'ملف القضية (للبحث والحفظ)':'Matter (for search and saving)'}),matterSelect),openDocumentWorkspace),uploadPanel,documentWorkspace,h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},researchStatus,thread,composerArea),sourceInspector));
  await drawList();
  if(activeId)await loadConversation(activeId);
  else {const list=await api('/research/conversations');if(list.length)await loadConversation(list[0].id);else await newChat(false)}
