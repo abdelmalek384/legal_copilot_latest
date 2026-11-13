@@ -79,3 +79,6 @@ Cross-matter extracted-text search results already return case, document, and ch
 
 
 Original-document download filenames in the matter review UI are normalized to remove path separators and control characters and are length-bounded before being passed to the browser download attribute. This is a client-side filename hygiene measure; the stored object name and server-side access checks remain unchanged.
+
+
+The focused chunk card now receives a visible focus outline and scroll margin when opened from a research result, so keyboard and assistive-technology users can identify where navigation landed. The card remains a review target, not a verification status.
