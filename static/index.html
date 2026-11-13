@@ -2742,7 +2742,7 @@ function documentIntelligencePanel(caseId,documents){
  const renderAnalysis=()=>{
   analysisResults.replaceChildren();
   const allCandidates=[];
-  const allStructured={entities:[],events:[],relationships:[]};
+  const allStructured={entities:[],events:[],relationships:[],deadline_mentions:[]};
   const textGroups=new Map(),byteGroups=new Map();
   for(const item of cache.values()){
    const classification=item.intelligence.classification||{};
@@ -2808,6 +2808,7 @@ function documentIntelligencePanel(caseId,documents){
   const structuredMeta=record=>record.filename+' · '+(record.page?uiText('صفحة ','Page ')+record.page:uiText('صفحة غير مسجلة','Page not recorded'))+' · '+(record.chunk_ref||uiText('مقطع ','Chunk ')+record.chunk_id);
   const entityCards=allStructured.entities.slice(0,80).map((item,index)=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+uiText('كيان مرشح','Entity candidate')+' · '+String(item.entity_type||'')}),pill(uiText('غير متحقق','Unverified'),'soon')),h('p',{textContent:String(item.mention||'')}),item.role_label?h('p',{className:'mut',textContent:uiText('الدور المسمى: ','Labelled role: ')+item.role_label+' · '+String(item.name_mention||'')}):null,item.amount_numeric!==undefined&&item.amount_numeric!==null?h('p',{className:'mut',textContent:uiText('القيمة الرقمية المرشحة: ','Normalized numeric candidate: ')+String(item.amount_numeric)+' '+String(item.currency_code||item.currency_label||'')+(item.currency_resolution==='ambiguous_currency_label'?uiText(' · العملة غير محسومة',' · currency unresolved'):'')}):null,h('p',{className:'mut',textContent:structuredMeta(item)}),h('p',{className:'mut',textContent:String(item.excerpt||'')})));
   const eventCards=allStructured.events.slice(0,80).map((item,index)=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+uiText('حدث مذكور','Event mention')+' · '+String(item.trigger||'')}),pill(uiText('يتطلب سياقاً بشرياً','Human context required'),'soon')),h('p',{className:'extraction-review-text',textContent:String(item.sentence||'')}),h('p',{className:'mut',textContent:uiText('تواريخ في الجملة نفسها: ','Dates in same sentence: ')+(Array.isArray(item.date_mentions)?item.date_mentions.join(' · '):'—')}),h('p',{className:'mut',textContent:uiText('أطراف مسماة في الجملة: ','Labelled parties in sentence: ')+(Array.isArray(item.party_mentions)?item.party_mentions.join(' · '):'—')}),h('p',{className:'mut',textContent:uiText('مواضع التواريخ في النص: ','Date source offsets: ')+(Array.isArray(item.date_evidence)?item.date_evidence.map(e=>String(e.mention)+' ['+e.start+'–'+e.end+']').join(' · '):'—')}),h('p',{className:'mut',textContent:uiText('مواضع الأطراف في النص: ','Party source offsets: ')+(Array.isArray(item.party_evidence)?item.party_evidence.map(e=>String(e.mention)+' ['+e.start+'–'+e.end+']').join(' · '):'—')}),h('p',{className:'mut',textContent:structuredMeta(item)})));
+  const deadlineCards=allStructured.deadline_mentions.slice(0,80).map((item,index)=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+uiText('ذكر محتمل لميعاد أو مهلة','Possible deadline or time-limit mention')+' · '+String(item.trigger||'')}),pill(uiText('لا يحسب ميعاداً قانونياً','Not a calculated legal deadline'),'soon')),h('p',{className:'extraction-review-text',textContent:String(item.sentence||'')}),h('p',{className:'mut',textContent:uiText('مدد مذكورة حرفياً: ','Literal periods: ')+(Array.isArray(item.period_mentions)?item.period_mentions.join(' · '):'—')}),h('p',{className:'mut',textContent:uiText('تواريخ في الجملة: ','Dates in sentence: ')+(Array.isArray(item.date_mentions)?item.date_mentions.join(' · '):'—')}),h('p',{className:'mut',textContent:structuredMeta(item)})));
   const relationCards=allStructured.relationships.slice(0,80).map((item,index)=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+uiText('علاقة صريحة مرشحة','Explicit relationship candidate')}),pill(uiText('غير متحقق','Unverified'),'soon')),h('p',{textContent:String(item.subject_mention||'')+' → '+String(item.relation_mention||'')+' → '+String(item.object_mention||'')}),h('p',{className:'extraction-review-text',textContent:String(item.sentence||'')}),h('p',{className:'mut',textContent:structuredMeta(item)})));
   const entityMentionResults=h('div',{});
   const entityMentionButton=btn(uiText('البحث عن تكرار أسماء الأطراف والمراجع عبر المستندات','Find repeated party and reference mentions across documents'),async()=>{
@@ -2838,10 +2839,12 @@ function documentIntelligencePanel(caseId,documents){
    h('div',{className:'row'},
     pill(uiText('كيانات: ','Entities: ')+allStructured.entities.length,'open'),
     pill(uiText('أحداث: ','Events: ')+allStructured.events.length,'open'),
-    pill(uiText('علاقات: ','Relationships: ')+allStructured.relationships.length,'open')),
+    pill(uiText('علاقات: ','Relationships: ')+allStructured.relationships.length,'open'),
+    pill(uiText('إشارات مواعيد: ','Deadline mentions: ')+allStructured.deadline_mentions.length,'open')),
    entityMentionButton,entityMentionResults,
    ...(entityCards.length?entityCards:[h('p',{className:'mut',textContent:uiText('لا توجد كيانات مرشحة.','No entity candidates were found.')})]),
    ...(eventCards.length?eventCards:[h('p',{className:'mut',textContent:uiText('لا توجد أحداث مرشحة.','No event candidates were found.')})]),
+   ...(deadlineCards.length?deadlineCards:[h('p',{className:'mut',textContent:uiText('لا توجد إشارات صريحة لمواعيد أو مهَل.','No explicit deadline or time-limit mentions were found.')})]),
    ...(relationCards.length?relationCards:[h('p',{className:'mut',textContent:uiText('لا توجد علاقات صريحة مرشحة.','No explicit relationship candidates were found.')})])
   ];
   const structuredPanel=h('section',{className:'card'},...structuredPanelChildren);
