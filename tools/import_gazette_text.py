@@ -187,6 +187,10 @@ def _validate_metadata(meta: object, text_bytes: bytes) -> dict:
     actual = hashlib.sha256(text_bytes).hexdigest()
     if actual != expected:
         raise ValueError("SHA-256 mismatch for supplied Gazette text")
+    source_reference = meta.get("source_reference")
+    if "source_reference" in meta and not (
+            isinstance(source_reference, str) and source_reference.strip()):
+        raise ValueError("source_reference must be a non-empty string when supplied")
     source_url = meta.get("source_url")
     if "source_url" in meta and source_url is not None:
         if (not isinstance(source_url, str) or not source_url
