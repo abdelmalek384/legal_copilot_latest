@@ -1093,6 +1093,18 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             0,
         )
 
+        firm_db.execute(
+            "UPDATE original_file_objects SET purged_at=? WHERE document_id=? AND firm_id=?",
+            ("2026-11-13T00:00:00Z", document_id, self.firm_a),
+        )
+        firm_db.commit()
+        purged_detail = self.client.get(f"/cases/{case_one_id}")
+        self.assertEqual(purged_detail.status_code, 200, purged_detail.text)
+        purged_document = next(
+            item for item in purged_detail.json()["docs"] if item["document_id"] == document_id
+        )
+        self.assertFalse(purged_document["original_available"])
+
     def test_original_file_hold_and_deletion_routes_cannot_cross_firm_boundaries(self):
         import hashlib
         from original_file_storage import LocalPrivateObjectStore
