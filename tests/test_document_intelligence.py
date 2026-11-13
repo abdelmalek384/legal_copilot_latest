@@ -79,6 +79,24 @@ class DocumentIntelligenceTests(unittest.TestCase):
             for item in result[group]
         ))
 
+    def test_explicit_deadline_mentions_keep_period_and_date_context_without_calculation(self):
+        text = (
+            "[[PDF_PAGE:10]]\\n"
+            "آخر موعد للطعن خلال 30 يوماً من إعلان الحكم بتاريخ 15/03/2025."
+        )
+        result = extract_structured_candidates(text)
+        deadline = next(
+            item for item in result["deadline_mentions"]
+            if item["trigger"] == "آخر موعد"
+        )
+        self.assertIn("30 يوماً", deadline["period_mentions"])
+        self.assertIn("15/03/2025", deadline["date_mentions"])
+        self.assertEqual(deadline["page"], 10)
+        self.assertEqual(
+            deadline["review_status"], "deadline_mention_requires_lawyer_review"
+        )
+        self.assertNotIn("calculated_due_date", deadline)
+
     def test_event_candidates_preserve_exact_date_and_party_offsets(self):
         text = (
             "[[PDF_PAGE:4]]\\n"
