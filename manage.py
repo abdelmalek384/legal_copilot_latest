@@ -784,12 +784,18 @@ def verify_deadline_rule_file(
         raise ValueError("lawyer role must be egyptian_lawyer or qualified_egyptian_counsel")
     if not isinstance(review_evidence_url, str) or not review_evidence_url.strip():
         raise ValueError("review evidence URL is required")
+    raw_evidence_url = review_evidence_url.strip()
+    if ("\\" in raw_evidence_url or any(
+            ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in raw_evidence_url)):
+        raise ValueError("review evidence URL contains ambiguous characters")
     try:
-        parsed_url = urlsplit(review_evidence_url.strip())
-        if (parsed_url.scheme != "https" or not parsed_url.hostname
-                or parsed_url.username or parsed_url.password):
-            raise ValueError("review evidence URL must be HTTPS without embedded credentials")
-        _ = parsed_url.port
+        parsed_url = urlsplit(raw_evidence_url)
+        port = parsed_url.port
+        if (parsed_url.scheme.lower() != "https" or not parsed_url.hostname
+                or parsed_url.username is not None or parsed_url.password is not None
+                or parsed_url.query or parsed_url.fragment or parsed_url.netloc.endswith(":")
+                or (port is not None and not 1 <= port <= 65535)):
+            raise ValueError("review evidence URL must be clean HTTPS without credentials")
     except ValueError as exc:
         raise ValueError("review evidence URL must be a valid HTTPS URL without credentials") from exc
 
