@@ -70,7 +70,7 @@ The matter Documents review list receives an `original_available` field from the
 
 ### OCR and incomplete-page review cautions
 
-The matter-level extracted-text review now repeats an explicit OCR warning when the document metadata records OCR use (or the OCR-unverified extraction state). For partial extraction where OCR is unavailable on some pages, the panel warns that displayed passages may be incomplete and directs the reviewer to the original. Page labels and the reviewer page-reference field accept either `page` or `page_number` and remain explicitly provisional until checked against the source page. These warnings do not certify OCR accuracy or completeness.
+The matter-level extracted-text review now repeats an explicit OCR warning when the document metadata records OCR use (or the OCR-unverified extraction state). For partial extraction where OCR is unavailable on some pages, the panel warns that displayed passages may be incomplete and directs the reviewer to the original. Page labels and the reviewer page-reference field accept either `page` or `page_number`, falling back when the first field is blank, and remain explicitly provisional until checked against the source page. These warnings do not certify OCR accuracy or completeness.
 
 
 ### Cross-matter text-search hand-off
