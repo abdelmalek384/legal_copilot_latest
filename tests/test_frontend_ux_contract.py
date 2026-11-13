@@ -1219,6 +1219,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("index+1)+' / '+valid.length", HTML)
         self.assertIn("uploadPanel.setAttribute('aria-busy','true')", HTML)
         self.assertIn("uploadPanel.setAttribute('aria-busy','false')", HTML)
+        self.assertNotIn("let uploadPanel.setAttribute", HTML)
 
 
     def test_research_source_cards_have_distinct_accessible_names(self):
