@@ -221,6 +221,18 @@ class DocumentIntelligenceTests(unittest.TestCase):
             for item in comma_decimal["entities"]
         ))
 
+    def test_legal_reference_extraction_supports_english_sections_and_laws(self):
+        text = "Article 5. Section 3.2. Law No. 10/2020. المادة 101."
+        result = extract_review_candidates(text)
+        references = [
+            item["value"] for item in result["candidates"]
+            if item["kind"] == "legal_reference"
+        ]
+        self.assertEqual(
+            references,
+            ["Article 5", "Section 3.2", "Law No. 10/2020", "المادة 101"],
+        )
+
     def test_case_reference_extraction_supports_english_and_arabic_labels(self):
         text = (
             "Case No. 123/2025. Appeal Number A-17/2024. "

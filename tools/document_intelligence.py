@@ -132,6 +132,11 @@ _LEGAL_REFERENCE_PATTERN = re.compile(
     rf"(?:قانون|القانون)\s*(?:رقم|No\.?)?\s*[{_DIGITS}]+\s*(?:لسنة|of|/)\s*[{_DIGITS}]{{4}}",
     re.IGNORECASE,
 )
+_ENGLISH_LEGAL_REFERENCE_PATTERN = re.compile(
+    rf"(?:Section|Subsection|Paragraph|Clause|Chapter|Act|Law|Regulation|Decree|Code|Rule)\\s*"
+    rf"(?:No\\.?|Number)?\\s*[:：#]?\\s*([{_DIGITS}A-Za-z]+(?:\\s*[./-]\\s*[{_DIGITS}A-Za-z]+){{0,2}})",
+    re.IGNORECASE,
+)
 _EVENT_MENTION_PATTERN = re.compile(
     r"(?:جلسة|حكم|إنذار|إخطار|استئناف|طعن|قرار|توقيع|إبرام|فسخ|سداد|استلام|hearing|judgment|notice|appeal|termination|payment)",
     re.IGNORECASE,
@@ -155,6 +160,7 @@ def extract_review_candidates(text: str, max_candidates: int = 250) -> dict[str,
         ("amount", _MONEY_PATTERN),
         ("party_label", _PARTY_LABEL_PATTERN),
         ("legal_reference", _LEGAL_REFERENCE_PATTERN),
+        ("legal_reference", _ENGLISH_LEGAL_REFERENCE_PATTERN),
         ("event_mention", _EVENT_MENTION_PATTERN),
     ]
     truncated = False
@@ -489,7 +495,7 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
     entity_patterns = (
         ("party_label", (_PARTY_LABEL_PATTERN,)),
         ("case_reference", (_CASE_PATTERN,)),
-        ("legal_reference", (_LEGAL_REFERENCE_PATTERN,)),
+        ("legal_reference", (_LEGAL_REFERENCE_PATTERN, _ENGLISH_LEGAL_REFERENCE_PATTERN)),
         ("amount", (_MONEY_PATTERN,)),
         ("date", _DATE_PATTERNS),
     )
