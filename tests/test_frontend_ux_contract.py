@@ -1419,5 +1419,9 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_blank_page_field_falls_back_to_page_number_in_source_inspector(self):
         self.assertIn("const pageLocation=[source.page_number,source.page,p.page_number,p.page].find(value=>value!==undefined&&value!==null&&value!=='')", HTML)
 
+    def test_each_extraction_review_panel_is_a_named_accessible_region(self):
+        self.assertIn("role:'region','aria-label':uiText('مراجعة النص المستخرج','Review extracted text')+' '+d.name", HTML)
+        self.assertIn("toggle.setAttribute('aria-controls',reviewPanel.id)", HTML)
+
 if __name__ == "__main__":
     unittest.main()
