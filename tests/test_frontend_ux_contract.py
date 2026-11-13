@@ -1444,5 +1444,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("reviewRequest++;toggle.setAttribute('aria-expanded','false')", HTML)
         self.assertIn("if(request!==reviewRequest||toggle.dataset.open!=='1')return", HTML)
 
+    def test_closing_target_review_panel_cancels_pending_passage_target(self):
+        self.assertIn("if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT_REVIEW_TARGET.caseId)===Number(id)&&Number(window.DOCUMENT_REVIEW_TARGET.documentId)===Number(d.document_id))window.DOCUMENT_REVIEW_TARGET=null", HTML)
+
 if __name__ == "__main__":
     unittest.main()
