@@ -14,6 +14,17 @@
 | Evaluation | **116 unapproved drafts complete; metrics unavailable.** Dataset contains 58 formal + 58 colloquial questions with machine-proposed article IDs. [Unreviewed inventory](legal_evidence/law14_2025_retrieval_baseline_unreviewed.json) records 116 unique questions, zero approved answer keys and zero run records. Top-3 hit rate, wrong-article rate and abstention rate are null—not zero. The scorer requires lawyer-approved labels and real retrieval runs. |
 | Documentation | **Complete.** Detailed tracker archived; this is the concise release summary. |
 
+## AI-2 delivery
+
+| Workstream | Current state |
+|---|---|
+| Security mainline | Trusted-proxy hardening (#1495), LLM SSRF IP pinning and payment self-approval prevention (#1505), role-aware subscription recovery (#1504), and phone-login readability (#1506) are merged. Relevant security invariants still require exact-head local execution. |
+| Lawyer answer rating | **Implemented on main; tests unexecuted.** Firm-scoped submit/update/read API, reviewer identity from the authenticated principal, admin-only firm list/export, append-only event ledger, CSV BOM/quoting/formula neutralization, bilingual per-answer controls, and universal assistant trust-tier fallback badge are committed. See [rating contract](answer_rating_export_contract.md). |
+| Upload and prompt-injection tests | Encrypted-PDF rejection and 500-page parser limit have focused tests. Case-scoped retrieved-passage/provenance prompt-injection serialization has a regression. Full upload/OCR route abuse, malformed/encrypted route behavior, OCR timeout/concurrency, and actual uploaded-file-to-retrieval adversarial coverage remain incomplete. |
+| Test-firm package | Demo-firm procedure, test-mode banner and first-run wizard are documented; clean-clone-to-first-login procedure has been added. It has not been executed. |
+| Staging and recovery | Docker/Compose configuration validation and encrypted backup/restore drill remain unexecuted. Credential-only preflight failures must be recorded separately from missing infrastructure/configuration. |
+| Validation | GitHub Actions billing prevents hosted test execution. No newly added local tests have been executed in this work session. Direct-main commits are implementation evidence, not test passes or pilot acceptance. |
+
 ## Legal evidence boundary
 
 - Labour Law 14/2025 remains **source-matched, not lawyer-reviewed**; `verified=0` for all 311 candidate rows; `authoritative=false` and `retrieval_eligible=false`.
@@ -25,7 +36,7 @@
 ## Remaining gates
 
 1. GitHub billing/runtime access or a supported local Python 3.12 environment is needed to execute the focused tests; no CI or local test output is claimed.
-2. AI-2 must integrate the rating contract with its UI/export.
+2. AI-2 implementation is on main; execute rating-route/frontend tests and Arabic/English browser acceptance in a clean Python 3.12 checkout.
 3. Owner must supply an authorized plain-text Gazette transcription and evidence of permitted reuse before the importer can run.
 4. Counsel must approve the evaluation questions/article key and answerability; then an authenticated corpus/API and before/after run exports are needed for scoring.
 5. Billing/provider acceptance, tenant-isolation/recovery rehearsal, device/accessibility acceptance and pilot-firm workflow remain separate release gates.
