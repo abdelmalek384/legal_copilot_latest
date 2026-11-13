@@ -31,6 +31,12 @@ class AnswerRatingValidationTests(unittest.TestCase):
         self.assertEqual(result["invalid_rows"], 1)
         self.assertEqual(len(result["errors"][0]["errors"]), 2)
 
+    def test_rejects_non_string_notes_and_non_object_rows(self):
+        result = validate_rows([row(notes=None), None])
+        self.assertEqual(result["invalid_rows"], 2)
+        self.assertIn("notes must be a string (empty is allowed)", result["errors"][0]["errors"])
+        self.assertIn("row must be an object", result["errors"][1]["errors"])
+
     def test_rejects_timestamp_without_timezone(self):
         result = validate_rows([row(timestamp="2026-11-14T10:30:00")])
         self.assertIn("timestamp must include an explicit timezone", result["errors"][0]["errors"])
