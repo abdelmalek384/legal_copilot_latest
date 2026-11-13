@@ -833,7 +833,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("result.unparsed_mentions", panel)
         self.assertIn("result.event_candidates", panel)
         self.assertIn("item.chunk_ref", panel)
-        self.assertIn("not a verified chronology", panel)
+        self.assertIn("result.warning", panel)
         self.assertIn("No date or event mentions were found in accessible documents.", panel)
 
     def test_document_classification_edits_are_persisted_with_audit_and_version_checks(self):
