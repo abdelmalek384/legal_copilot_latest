@@ -83,6 +83,16 @@ def load_catalog(path=CATALOG):
     }
     for source in valid_sources:
         source_id = source.get("source_id", "<missing source_id>")
+        for field in ("terms_url", "official_pdf_url"):
+            optional_url = source.get(field)
+            if optional_url is not None and not _valid_source_page_url(optional_url):
+                errors.append(f"{source_id}: {field} must be a clean HTTPS URL when supplied")
+        secondary = source.get("secondary_metadata_lead")
+        if secondary is not None:
+            if not isinstance(secondary, dict):
+                errors.append(f"{source_id}: secondary_metadata_lead must be an object when supplied")
+            elif secondary.get("url") is not None and not _valid_source_page_url(secondary["url"]):
+                errors.append(f"{source_id}: secondary_metadata_lead.url must be a clean HTTPS URL")
         permission = source.get("collection_permission", "unknown")
         if not isinstance(permission, str) or permission not in allowed_collection_permissions:
             errors.append(f"{source_id}: invalid collection_permission")
