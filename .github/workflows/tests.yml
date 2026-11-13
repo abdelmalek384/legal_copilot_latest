@@ -184,6 +184,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_legal_corpus_audit.py
       - name: Test legal source review queue
         run: python tests/test_legal_source_review_queue.py
+      - name: Test legal report output path safety
+        run: PYTHONPATH=. python tests/test_output_path_safety.py
       - name: Test multi-area lawyer-review benchmark draft
         run: PYTHONPATH=. python tests/test_multi_area_eval_draft.py
       - name: Test Arabic OCR quality evaluator
