@@ -1366,7 +1366,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertEqual(catalog["entry_count"], len(catalog["entries"]))
         self.assertEqual(len({entry["arabic"] for entry in catalog["entries"]}), len(catalog["entries"]))
         entries = {entry["arabic"]: entry for entry in catalog["entries"]}
-        for literal in ("فتح المستند والمقطع", "تعذر العثور على المقطع المحدد ضمن النصوص المحملة. قد يكون قد تغير أو لم يعد متاحاً.", "المستند المرتبط بهذا المصدر غير موجود ضمن مستندات ملف القضية المتاحة."):
+        for literal in ("فتح المستند والمقطع", "تعذر العثور على المقطع المحدد ضمن النصوص المحملة. قد يكون قد تغير أو لم يعد متاحاً.", "المستند المرتبط بهذا المصدر غير موجود ضمن مستندات ملف القضية المتاحة.", "تم استخراج هذا المستند باستخدام OCR؛ قارن كل مقطع بالصفحة الأصلية قبل الاعتماد عليه.", "تعذر استخراج النص من بعض الصفحات؛ قد تكون المقاطع المعروضة غير مكتملة. راجع المستند الأصلي."):
             self.assertIn(literal, entries)
             self.assertEqual(entries[literal]["review_status"], "pending_native_review")
 
@@ -1374,6 +1374,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("d.original_available===true||d.original_available===1?btn", HTML)
         self.assertIn("No retained original is available in private storage for this document.", HTML)
         self.assertIn("downloadOriginal||originalStatus", HTML)
+
+    def test_matter_chunk_review_discloses_ocr_and_incomplete_extraction(self):
+        self.assertIn("reviewDoc.ocr_used===true||reviewDoc.ocr_used===1||reviewDoc.extraction_status==='ocr_unverified'", HTML)
+        self.assertIn("reviewDoc.extraction_status==='partial_text_ocr_unavailable'", HTML)
+        self.assertIn("const extractedPage=chunk.page??chunk.page_number", HTML)
+        self.assertIn("compare each passage with the original page before relying on it", HTML)
 
 if __name__ == "__main__":
     unittest.main()
