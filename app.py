@@ -8883,7 +8883,7 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
     # authorization and firm-scoped document lookup have succeeded.
     analysis_parts = []
     candidates = []
-    structured = {"entities": [], "events": [], "relationships": []}
+    structured = {"entities": [], "events": [], "relationships": [], "deadline_mentions": []}
     remaining_chars = MAX_ANALYSIS_CHARS
     analysis_truncated = False
     structured_truncated = False
@@ -8936,12 +8936,14 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
         "entity_count": len(structured["entities"]),
         "event_count": len(structured["events"]),
         "relationship_count": len(structured["relationships"]),
+        "deadline_mention_count": len(structured["deadline_mentions"]),
         "truncated": structured_truncated,
         "requires_review": True,
         "limitations": [
             "Entity, event and relationship records are unverified text candidates, not established facts.",
             "Events link dates and labelled parties only by sentence co-occurrence; this does not prove occurrence or legal effect.",
             "Relationships require an explicit relation phrase and human confirmation of direction and meaning.",
+            "Deadline phrases and periods are mentions only; no procedural deadline is calculated or created.",
             "Source chunk and page fields preserve extraction provenance but do not establish original-file accuracy.",
         ],
     }
