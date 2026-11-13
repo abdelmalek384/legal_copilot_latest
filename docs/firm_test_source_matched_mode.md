@@ -2,7 +2,7 @@
 
 **Purpose:** allow one explicitly configured test firm to exercise answer rendering for sources that have complete machine source-matching evidence but have not been reviewed by qualified Egyptian counsel.
 
-**Visible answer label:** `Source-matched — not lawyer-reviewed`. The API tier value is `source_matched`. It must never be translated into `verified` or `lawyer_approved`.
+**Visible answer label:** `source-matched, not lawyer-verified` (API field `trust_tier_label`). The machine-readable tier value is `source_matched`. It must never be translated into `verified` or `lawyer_approved`.
 
 ## Environment configuration
 
