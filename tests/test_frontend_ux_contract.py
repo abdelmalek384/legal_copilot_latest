@@ -1406,5 +1406,10 @@ class FrontendUXContractTests(unittest.TestCase):
         reset = "sessionStorage.removeItem('me');ME={};window.DOCUMENT_MATTER_ID=null;window.DOCUMENT_REVIEW_TARGET=null;login();"
         self.assertGreaterEqual(HTML.count(reset), 4)
 
+    def test_manual_navigation_clears_pending_exact_passage_target(self):
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET=null;TAB=group.items[0][0];again()", HTML)
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET=null;TAB=key;again()", HTML)
+        self.assertIn("PAGE=id;window.CASE_ID=null;window.DOCUMENT_REVIEW_TARGET=null;fn()", HTML)
+
 if __name__ == "__main__":
     unittest.main()
