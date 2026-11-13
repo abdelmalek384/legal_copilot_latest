@@ -37,7 +37,8 @@ def validate_base_url(base_url, allow_remote=False):
         not isinstance(base_url, str)
         or not base_url
         or base_url != base_url.strip()
-        or any(ch.isspace() or ord(ch) < 32 for ch in base_url)
+        or "\\" in base_url
+        or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in base_url)
     ):
         raise RunnerError("base URL must not contain whitespace and must be a valid HTTP(S) URL")
     try:
