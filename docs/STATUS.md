@@ -309,6 +309,8 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 
 ## Additional repository reconciliation — 2026-11-13
 
+- PR #1617 merged at `e7f3fcd781bc7370842f3ce6d55edd2f664da54e`: acquisition readiness, source review queue, corpus audit, amendment relationship and corpus inventory URL validators now consistently reject DEL (`0x7F`) and raw backslashes. Regression fixtures were added; tests remain unexecuted.
+
 - PR #1616 merged at `bcdfc516d167a6e8ef342964b124e222433eb572`: legal release-readiness and central source-permission validators now reject DEL (`0x7F`) and raw backslashes in HTTPS evidence URLs; focused regression fixtures were added. Tests remain unexecuted, so this is source-implementation completion only.
 
 - PR #1611 merged at `6ff7534238e286d266ab39f9c2f8459811619bd7`: legal CLI report-path safeguards are recorded as merged. This is source implementation status only; the associated regression tests have not been executed.
