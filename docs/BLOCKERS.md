@@ -106,6 +106,11 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - Static inspection of the current dataset found 116 rows (58 formal, 58 colloquial), 58 distinct article IDs, and zero mismatches against the validator's safety invariants. This is not an executed test or legal-content review.
 - The lawyer workflow is documented in `docs/legal_evidence/law14_2025_evaluation_review_guide.md`. Direct-main commits: `6445aa7`, `0e1be3b`, `332a390`, `07838b1`, `ea16242`, `4af16ba`, `40f8fd5`, `8fb6c2f`, `bb4b669`, `5c6d4b7`. Tests remain unexecuted.
 
+## AI-1 test discovery registration — 2026-11-14
+
+- Added explicit workflow steps for `test_validate_answer_ratings.py`, `test_adapt_answer_rating_export.py`, `test_validate_law14_eval_draft.py`, `test_negation_guard_repro.py`, and `test_firm_test_source_matched_mode.py`.
+- Static workflow inspection confirms all five filenames are invoked by `.github/workflows/tests.yml`; no tests were run. Direct-main commit: `da160ea`.
+
 ## Answer-rating contract integration boundary — 2026-11-14
 
 - Compared the canonical seven-column AI-1 contract with the richer AI-2 firm export contract. The firm export currently lacks `trust_tier`, uses `partially_correct` rather than `partial`, and permits `not_applicable` for cited-article accuracy.
