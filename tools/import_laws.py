@@ -171,7 +171,7 @@ def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
             metadata["official_title"] = official_title.strip()
 
         source_url = metadata.get("source_url")
-        if (not isinstance(source_url, str) or not source_url
+        if (not isinstance(source_url, str) or not source_url or "\\" in source_url
                 or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in source_url)):
             _fail(f"source_url must be an HTTPS URL without whitespace or control characters: {sidecar.name}")
         try:
