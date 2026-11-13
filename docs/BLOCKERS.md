@@ -59,7 +59,8 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 ## Current AI-1 pull requests
 
-- Open AI-1 PRs: #1576 (fixture corrections), #1577 (cloud signed-URL query filtering), #1578 (provenance metadata validation; depends on #1577), and #1580 (retrieval evaluator reviewer-metadata and evidence-URL validation). All remain unmerged and require Python 3.12 focused test execution before validation can be claimed.
+- Merged since the previous checkpoint: #1576 (fixture corrections), #1577 (cloud signed-URL query filtering), and #1580 (retrieval evaluator reviewer-metadata/evidence-URL validation). These merges are code integration only; focused runtime tests remain unverified.
+- Open AI-1 PRs: #1578 (explicit-null Gazette source-reference validation; based on the now-merged #1577 branch and needs current-main refresh), #1581 (device acceptance malformed-enum validation), and #1583 (retrieval scorer non-object row validation). All require Python 3.12 focused test execution before validation can be claimed.
 - #1559 — merged Arabic negated-obligation regression coverage; tests unexecuted.
 - #1560 — merged retrieval scorer safety-status ordering fix; tests unexecuted.
 - #1562 — merged delivery blocker/closure register.
@@ -106,3 +107,13 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - PR #1580 guards untrusted `review_status` and `reviewer_role` JSON values before set membership. Malformed list/object values now enter the evaluator's invalid-question report rather than raising `TypeError`. It also rejects raw backslashes and empty query/fragment delimiters in reviewer evidence URLs.
 - Regression tests cover unhashable list values for both fields. Static source/diff review only; runtime tests remain unexecuted.
 - Latest exact-head Tests workflow run `43328429442` (head `53eed6cfa7ab6601f6cdd13b4c362a25c6095f7f`) failed before exposing job steps (`steps: null`), consistent with the current runner-allocation blocker. An earlier head's run `43328171760` had the same result.
+
+
+## AI-1 current branch checkpoint — 2026-11-13 (main `75bd6af0c2f1a1f16a95a4e613209af01c520d15`)
+
+- #1576, #1577 and #1580 are now merged. Their earlier zero-step CI runs remain historical evidence only; no runtime test pass is inferred from merging.
+- #1578 remains open. It contains the explicit `source_reference: null` regression fix discovered during static review, but its branch is behind current main and includes already-merged #1577 changes. Port the isolated fix onto current main rather than merging the stale dependency branch.
+- #1581 hardens `tools/validate_device_browser_acceptance.py` against list/object enum values that previously could raise `TypeError`; regression tests are added.
+- #1583 makes the direct `score()` API reject non-object question/run rows with indexed `ValueError` messages; JSONL loading already had this check.
+- #1581 and #1583 have only static source/diff review. Required local focused test modules are listed in their PR descriptions. User has installed Python 3.12.16 and the hash-locked dependencies; `pip check` and focused test execution are still pending.
+- No legal source trust flags or approved-answer labels were changed. Counsel review, real device acceptance, billing, tenant isolation and pilot evidence remain external blockers.
