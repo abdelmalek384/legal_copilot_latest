@@ -6,6 +6,7 @@ replace research_inspector.source_status or the legal release gate.
 """
 from __future__ import annotations
 
+import os
 import re
 from collections.abc import Mapping, Sequence
 from datetime import date
@@ -14,6 +15,36 @@ from urllib.parse import urlsplit
 TIER_VERIFIED = "verified"
 TIER_SOURCE_MATCHED = "source_matched"
 TIER_UNREVIEWED = "unreviewed"
+
+
+def firm_test_source_matched_enabled(firm_id: object, env: object = None) -> bool:
+    """Allow source-matched answers only for one explicitly configured non-production test firm.
+
+    The flag is opt-in, the firm ID must match exactly, and production is an
+    unconditional deny even if the flag is accidentally set there.
+    """
+    values = os.environ if env is None else env
+    if not isinstance(values, Mapping):
+        return False
+    environment_value = values.get("COPILOT_ENV", "")
+    flag_value = values.get("LEGAL_FIRM_TEST_SOURCE_MATCHED", "")
+    configured_value = values.get("LEGAL_FIRM_TEST_SOURCE_MATCHED_FIRM_ID", "")
+    if not all(isinstance(value, str) for value in (environment_value, flag_value, configured_value)):
+        return False
+    environment = environment_value.strip().lower()
+    if environment not in {"development", "dev", "test", "testing", "staging"}:
+        return False
+    if flag_value.strip() != "1":
+        return False
+    configured_firm = configured_value.strip()
+    if not configured_firm.isascii() or not configured_firm.isdigit() or isinstance(firm_id, bool):
+        return False
+    try:
+        requested_firm = int(firm_id)
+        allowed_firm = int(configured_firm)
+    except (TypeError, ValueError, OverflowError):
+        return False
+    return requested_firm > 0 and allowed_firm > 0 and requested_firm == allowed_firm
 
 _SHA256_RE = re.compile(r"^[0-9a-fA-F]{64}$")
 
