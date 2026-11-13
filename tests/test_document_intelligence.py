@@ -221,6 +221,24 @@ class DocumentIntelligenceTests(unittest.TestCase):
         )
         self.assertTrue(all(item["page"] == 6 for item in timeline["dated_mentions"]))
 
+    def test_hijri_date_mentions_are_preserved_as_unconverted(self):
+        text = "[[PDF_PAGE:9]]\\nتاريخ المحضر ١٥ رمضان ١٤٤٦هـ."
+        extracted = extract_review_candidates(text)
+        date_candidates = [item for item in extracted["candidates"] if item["kind"] == "date"]
+        self.assertEqual(len(date_candidates), 1)
+        timeline = build_date_mention_timeline([{
+            "document_id": "hijri-doc",
+            "filename": "hijri-note.pdf",
+            "candidates": date_candidates,
+        }])
+        self.assertEqual(timeline["dated_mentions"], [])
+        self.assertEqual(len(timeline["unparsed_mentions"]), 1)
+        item = timeline["unparsed_mentions"][0]
+        self.assertEqual(item["calendar_system"], "hijri")
+        self.assertEqual(item["interpretation"], "hijri_unconverted")
+        self.assertIsNone(item["normalized_date"])
+        self.assertEqual(item["page"], 9)
+
     def test_timeline_sorts_date_mentions_and_keeps_document_provenance(self):
         documents = [
             {"document_id": "doc-b", "filename": "second.pdf", "candidates": [
