@@ -270,4 +270,4 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Added exact-match grouping for labelled parties and case/legal references across documents in one authorized matter. Matching uses NFKC, case-folding and whitespace collapse only.
 - The endpoint and UI retain member-level document/chunk/page provenance and record an audit event. Same-firm nonmembers are denied by the matter authorization gate.
 - Results are possible repeated mentions, not identity resolution or proof of legal relationships. Helper, API, authorization and frontend tests were added but not executed.
-- Branch `feature/matter-entity-mention-index-20261113`; PR/merge pending.
+- PR #1598 merged at `5d4b9516cfdebe13d5c99053a50145e968e39ea0`.
