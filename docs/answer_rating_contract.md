@@ -60,6 +60,15 @@ The firm-facing export described in `docs/answer_rating_export_contract.md` is a
 
 The firm export's `expected_article_ids`, `answerable`, `cited_article_ids`, `benchmark_ready`, question, and answer remain useful benchmark context, but they are not columns in this minimal rating interchange. Preserve them in the richer firm export; do not discard them from the source record.
 
+The repository adapter is `tools/adapt_answer_rating_export.py`:
+
+```bash
+python tools/adapt_answer_rating_export.py firm-answer-ratings.csv canonical-answer-ratings.csv
+```
+
+It requires the source export to include `trust_tier`, validates timezone-aware `updated_at`, writes UTF-8 with BOM using the canonical header, and refuses to overwrite an existing output or alias the input. Rows with `cited_article_accuracy=not_applicable` are explicitly excluded and listed in the JSON summary; they are never converted to `right` or `wrong`. Unknown/empty trust-tier values fail safe to `unverified`.
+
+
 **Integration gap to close in AI-2:** the current firm export column list does not include `trust_tier`. Until that field is exported from message-time metadata and the adapter above is implemented, the firm CSV is not yet a complete instance of this canonical contract. The contract itself is stable; do not silently omit the trust tier.
 
 ## Rating guidance
