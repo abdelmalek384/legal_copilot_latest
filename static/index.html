@@ -3229,7 +3229,7 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    });
    const target=window.DOCUMENT_REVIEW_TARGET;
    if(target&&Number(target.caseId)===Number(id)&&Number(target.documentId)===Number(data.document_id)){
-    const targetCard=container.querySelector('#doc-chunk-review-'+id+'-'+data.document_id+'-'+target.chunkId);
+    const targetCard=Array.from(container.children).find(card=>card.id==='doc-chunk-review-'+id+'-'+data.document_id+'-'+target.chunkId);
     if(targetCard){window.DOCUMENT_REVIEW_TARGET=null;targetCard.focus({preventScroll:true});targetCard.scrollIntoView({block:'center',behavior:'smooth'});}
    }
   };
