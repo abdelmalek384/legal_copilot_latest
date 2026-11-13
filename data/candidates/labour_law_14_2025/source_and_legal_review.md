@@ -26,15 +26,29 @@ No written permission was requested or obtained in this review. Keep collection,
 
 ## 2. Text comparison status
 
-**Outcome: quantitative comparison completed for 120 checklist entries; full 311-record source comparison remains incomplete.**
+**Outcome: all 311 candidate provisions have recorded Gazette page locators and page-image comparison notes; source-matched, not lawyer-reviewed.**
 
-On 2026-11-04, the user supplied the Official Gazette issue 18 (supplement), dated 3 May 2025, and instructed that it be treated as the authenticated reference for this comparison. A visual page-image comparison was completed for all 120 entries in the quantitative checklist. Result: 120/120 checked, zero pending, and no numerical mismatches recorded. The scope includes 5 issuance provisions and selected accompanying-law articles; it is not a sequential comparison of all 298 articles.
+On 2026-11-06, the exact 112-page user-supplied Official Gazette comparison PDF and the 311-row candidate JSONL were recovered from the user's Library source bundle. Their independently computed SHA-256 values match the hashes recorded in `docs/legal_evidence/law_14_2025_source_match_record.json`:
 
-The detailed result and checked provision identifiers are recorded in [quantitative_gazette_comparison_2026-11-04.md](quantitative_gazette_comparison_2026-11-04.md).
+- Candidate JSONL: `3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600` (393,861 bytes; 311 rows).
+- Supplied Gazette comparison PDF: `b0a47cefe18722d3f23e004ac7e78e6e309010e13124413e7e7018820c9581be` (112 pages).
 
-**This is not a full text match.** It does not establish verbatim identity, paragraph boundaries, punctuation, headings, omissions, insertions, cross-references, or completeness of all 311 JSONL records. The comparison also does not establish legal currentness, amendment history, corrigenda, rights, or lawyer approval. No original Gazette hash is claimed in this update.
+The comparison package records:
+- 311/311 provisions with page locators and page-image comparison notes.
+- 38 identical-after-normalization, 221 minor-difference, 47 major-difference, five numeric-alert, and zero missing/extra machine-comparison records.
+- All 221 minor-difference records and all 47 major-difference records visually checked; no confirmed textual mismatch was found in the inspected passages.
+- All five numeric alerts visually examined and explained by extraction, RTL ordering, or colophon artifacts; no confirmed statutory numeric difference was found.
+- All 120 quantitative provision cues visually checked (120/120).
+- All six known orthography outliers checked.
+- The 29 provisions that previously lacked targeted page-image review received full-article visual comparisons on 2026-11-06; the candidate wording matched on the inspected pages.
 
-The JSONL remains outside the public repository because redistribution and commercial-reuse permissions have not been established. Keep every row's `verified=0` unchanged; do not treat `in_force=1` as a trusted legal-status determination.
+These results complete the recorded assistant visual-comparison work. They do **not** constitute a complete legal proofread, independent source-authenticity certification, counsel sign-off, amendment/currentness review, rights clearance, or approval for authoritative retrieval. The 273 machine-difference records, 120 quantitative cues, six outliers, and other visual-check groups overlap; do not add their counts together.
+
+The supplied PDF reports copy/print restrictions. Its original upload URL and capture chain remain unknown. The matching SHA-256 values establish the identity of the recovered files against the repository's recorded hashes; they do not establish who published or uploaded the PDF, permission to copy/extract/index/redistribute it, or byte identity with separate ETA/SIS-hosted PDFs. Do not bypass the PDF restrictions or infer a reuse licence.
+
+The 311-row JSONL remains outside the public repository because redistribution and commercial-reuse permissions have not been established. Keep every row's `verified=0` unchanged; do not treat the embedded `in_force=1` or `as_of=2025-05-03` as trusted legal-status or commencement determinations. The law remains non-authoritative and retrieval-ineligible pending the remaining gates below.
+
+Supporting details are in [the comparison report](../../docs/legal_evidence/law_14_2025_comparison_report.md), [the lawyer review packet](../../docs/legal_evidence/law_14_2025_lawyer_review_packet.md), and [the source-match record](../../docs/legal_evidence/law_14_2025_source_match_record.json).
 
 ## 3. Commencement, repeals, and subsequent instruments
 
