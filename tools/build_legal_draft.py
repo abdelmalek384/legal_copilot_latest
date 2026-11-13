@@ -5,10 +5,15 @@ This tool formats supplied material; it does not research law or determine legal
 from __future__ import annotations
 import argparse
 import json
+import sys
 from datetime import date
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlsplit
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from tools.output_path_safety import ensure_output_paths_safe
 
