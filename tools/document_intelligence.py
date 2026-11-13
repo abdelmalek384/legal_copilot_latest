@@ -219,14 +219,14 @@ def group_candidate_entity_mentions(
         if not isinstance(entities, list):
             raise ValueError("entities must be a list")
         for entity in entities:
-            if candidate_count >= max_candidates:
-                truncated = True
-                break
             if not isinstance(entity, dict) or entity.get("entity_type") not in allowed_types:
                 continue
             literal = entity.get("name_mention") if entity.get("entity_type") == "labelled_party" else entity.get("mention")
             if not isinstance(literal, str) or not literal.strip():
                 continue
+            if candidate_count >= max_candidates:
+                truncated = True
+                break
             normalized = " ".join(unicodedata.normalize("NFKC", literal).casefold().split())
             if not normalized:
                 continue
