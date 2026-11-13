@@ -33,7 +33,7 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - The security regression script now includes rating-route and frontend contract modules and exits if Python is not 3.12. It has not been run.
 - The local release checker, Docker/Compose placeholder validation, and backup/restore drill remain unexecuted. No release-readiness or pilot acceptance claim is made.
 
-- **Owner input package prepared (AI-1):** `docs/legal_evidence/law14_2025_import_operator_handoff.md` and `law14_2025_import_metadata.template.json` document the exact text, provenance, SHA-256 and CLI requirements. Still blocked on the actual UTF-8 Gazette transcription and truthful supplier/source metadata; do not fabricate a supplier role or permission evidence.
+- **Owner input package prepared (AI-1):** `docs/legal_evidence/law14_2025_import_operator_handoff.md` and `law14_2025_import_metadata.template.json` document the exact text, provenance, SHA-256 and CLI requirements. Still blocked on the actual UTF-8 Gazette transcription and truthful supplier/source metadata; do not fabricate a supplier role or permission evidence. The importer also now supports expected heading counts and detects missing trailing article numbers (not just gaps below the last observed heading); regression coverage is committed but cannot be executed while the runner is unavailable.
 
 ## External blockers: do not spend repeated effort looping
 
