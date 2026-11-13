@@ -30,6 +30,12 @@ import sys
 import unicodedata
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools.output_path_safety import ensure_output_paths_safe
+
 AD = str.maketrans("٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹", "01234567890123456789")
 UNITS = r"(?:يوم\w*|أيام|ايام|شهر\w*|أشهر|اشهر|سنة|سنوات|سنه|جنيه\w*|ساعة|ساعات|في المائة|بالمائة|فى المائة|%|٪)"
 WORDS = (r"(?:واحد|اثنين|اثنان|ثلاث\w*|أربع\w*|اربع\w*|خمس\w*|ست\w*|سبع\w*|ثمان\w*|تسع\w*|عشر\w*|ثلاثين|أربعين|خمسين|"
@@ -199,6 +205,14 @@ def main(argv=None):
     ap.add_argument("--input", required=True)
     ap.add_argument("--out-dir", default="audit_report")
     args = ap.parse_args(argv)
+    out_dir = Path(args.out_dir)
+    try:
+        ensure_output_paths_safe(
+            [out_dir / "audit.json", out_dir / "quantity_checklist.csv", out_dir / "audit.md"],
+            [Path(args.input)],
+        )
+    except ValueError as exc:
+        ap.error(str(exc))
     rows, malformed = load_rows(args.input)
     if not rows:
         print("No usable rows found.", file=sys.stderr)
