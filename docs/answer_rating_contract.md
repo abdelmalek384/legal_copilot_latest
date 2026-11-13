@@ -34,6 +34,16 @@ answer_id,answer_rating,cited_article_rating,notes,rater,timestamp,trust_tier
 - Do not silently coerce unknown enum values. Reject the row and report the invalid field.
 - Do not merge multiple answers into one record. If an answer is re-rated, preserve the prior record and add a new rating event or use the product's explicit revision mechanism.
 
+## Validation helper
+
+The repository includes `tools/validate_answer_ratings.py` for validating an exported file before AI-2 imports or stores it:
+
+```bash
+python tools/validate_answer_ratings.py path/to/answer-ratings.csv
+```
+
+It accepts UTF-8 with or without BOM, requires the exact header/order, validates required fields and enum values, and rejects timestamps without an explicit timezone. It does not authenticate raters, authorize a trust-tier change, or verify legal correctness. Its regression tests are in `tests/test_validate_answer_ratings.py` (not yet executed).
+
 ## Rating guidance
 
 - **correct:** materially answers the question accurately, with the necessary qualifications and support.
