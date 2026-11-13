@@ -31,5 +31,18 @@
     "authenticated local legal corpus and retrieval API",
     "before/after run exports with retrieved and cited article IDs and abstention flags"
   ],
-  "trust_boundary": "No question is release-eligible; no Law 14/2025 row is marked verified by this inventory."
+  "trust_boundary": "No question is release-eligible; no Law 14/2025 row is marked verified by this inventory.",
+  "structural_inventory_audit": {
+    "status": "static_repository_inspection_only",
+    "validator": "tools/validate_law14_eval_draft.py",
+    "validator_tests": "committed_not_executed",
+    "question_styles": {
+      "formal": 58,
+      "colloquial_egyptian": 58
+    },
+    "distinct_machine_proposed_article_ids": 58,
+    "targeted_pdf_text_spot_checks_recorded": 48,
+    "article_pin_mismatches_observed": 0,
+    "legal_approval_inferred": false
+  }
 }
