@@ -156,6 +156,33 @@ class GazetteTextImportTests(unittest.TestCase):
         self.assertIn("Expected article headings recognized", report)
         self.assertIn("Block 2 missing: 3", report)
 
+    def test_expected_inventory_reports_entirely_missing_attached_law_block(self):
+        source_text = (
+            "المادة الأولى\\nنص حكم الإصدار الأول.\\n"
+            "المادة الثانية\\nنص حكم الإصدار الثاني.\\n"
+        )
+        self.text_path.write_text(source_text, encoding="utf-8")
+        self.metadata["content_sha256"] = hashlib.sha256(source_text.encode("utf-8")).hexdigest()
+        self.metadata["expected_promulgation_provisions"] = 2
+        self.metadata["expected_attached_law_articles"] = 3
+        self.write_metadata()
+
+        result = import_text(self.text_path, self.meta_path, self.output)
+        self.assertEqual(
+            result["missing_article_numbers"],
+            {"missing_attached_law_block": [1, 2, 3]},
+        )
+        rows = [
+            json.loads(line)
+            for line in (self.output / "law_rows.jsonl").read_text(encoding="utf-8").splitlines()
+        ]
+        self.assertEqual(len(rows), 2)
+        self.assertTrue(all(row["verified"] == 0 for row in rows))
+        self.assertTrue(all(row["in_force"] == 0 for row in rows))
+        self.assertTrue(all(row["as_of"] is None for row in rows))
+        report = (self.output / "import_report.md").read_text(encoding="utf-8")
+        self.assertIn("Block missing_attached_law_block missing: 1, 2, 3", report)
+
     def test_numeric_only_import_does_not_index_unparsed_preamble(self):
         source_text = "Official Gazette issue title\nالمادة 1\nنص المادة الأولى.\n"
         self.text_path.write_text(source_text, encoding="utf-8")
