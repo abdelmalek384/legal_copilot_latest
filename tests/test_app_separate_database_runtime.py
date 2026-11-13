@@ -2778,6 +2778,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             json={"email": "nonmember-review@example.test", "password": other_password},
         )
         self.assertEqual(other_login.status_code, 200, other_login.text)
+        timeline_denied = self.client.get(f"/cases/{case_id}/documents/timeline")
+        self.assertEqual(timeline_denied.status_code, 404, timeline_denied.text)
         for method, path, kwargs in (
             ("get", f"/cases/{case_id}/docs/{document_id}/reviews", {}),
             ("get", f"/cases/{case_id}/docs/{document_id}/chunks", {}),
@@ -3535,6 +3537,53 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             and str(relation["page"]) == "9"
             for relation in structured["relationships"]
         ))
+
+    def test_matter_document_timeline_aggregates_date_and_event_mentions_with_provenance(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Matter timeline case"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        first = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={"name": "hearing-note.txt", "text": "[[PDF_PAGE:5]]\\nتحددت جلسة الدعوى بتاريخ 15/03/2025."},
+        )
+        second = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={"name": "contract-note.txt", "text": "[[PDF_PAGE:2]]\\nتم توقيع العقد بتاريخ 2025-01-02."},
+        )
+        self.assertEqual(first.status_code, 200, first.text)
+        self.assertEqual(second.status_code, 200, second.text)
+
+        response = self.client.get(f"/cases/{case_id}/documents/timeline")
+        self.assertEqual(response.status_code, 200, response.text)
+        result = response.json()
+        self.assertTrue(result["requires_review"])
+        self.assertEqual(result["documents_processed"], 2)
+        normalized = [item["normalized_date"] for item in result["dated_mentions"]]
+        self.assertEqual(normalized, ["2025-01-02", "2025-03-15"])
+        hearing_date = next(item for item in result["dated_mentions"] if item["normalized_date"] == "2025-03-15")
+        self.assertEqual(hearing_date["document_id"], str(first.json()["document_id"]))
+        self.assertEqual(str(hearing_date["page"]), "5")
+        self.assertTrue(hearing_date["chunk_id"])
+        self.assertTrue(hearing_date["chunk_ref"])
+        self.assertTrue(any(
+            item["trigger"] == "جلسة"
+            and "15/03/2025" in item["date_mentions"]
+            and item["document_id"] == str(first.json()["document_id"])
+            and str(item["page"]) == "5"
+            and item["chunk_id"]
+            for item in result["event_candidates"]
+        ))
+        self.assertIn("not a verified chronology", result["warning"])
+        limited = self.client.get(
+            f"/cases/{case_id}/documents/timeline", params={"limit": 1}
+        )
+        self.assertEqual(limited.status_code, 200, limited.text)
+        self.assertEqual(limited.json()["documents_processed"], 1)
+        self.assertTrue(limited.json()["truncated"])
 
     def test_document_version_comparison_is_matter_scoped_and_keeps_chunk_provenance(self):
         login = self.client.post(

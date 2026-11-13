@@ -15,7 +15,7 @@ from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_pe
 from tools.arabic_legal_matching import expand_lexicon_hints
 from tools.arabic_drafting_skeletons import build_arabic_skeleton
 from tools.claim_support import claim_support_enabled, has_unsupported_claims, has_negated_obligation_conflicts
-from tools.document_intelligence import MAX_ANALYSIS_CHARS, classify_document, extract_review_candidates, extract_structured_candidates, compare_extracted_text
+from tools.document_intelligence import MAX_ANALYSIS_CHARS, classify_document, extract_review_candidates, extract_structured_candidates, build_date_mention_timeline, compare_extracted_text
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
     generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
@@ -8634,6 +8634,116 @@ def list_document_reviews(cid: int, document_id: int, u: dict = Depends(user)):
         item["reviewer_name"] = names.get(int(item["reviewer_user_id"]), "")
         reviews.append(item)
     return {"document_id": document_id, "reviews": reviews}
+
+
+@app.get("/cases/{cid}/documents/timeline")
+def matter_document_timeline(
+    cid: int,
+    limit: int = Query(default=100, ge=1, le=200),
+    u: dict = Depends(user),
+):
+    """Return a bounded, source-located queue of date and event mentions in one matter."""
+    c = conn()
+    need(c, u, cid)
+    document_rows = c.execute(
+        "SELECT id,name FROM docs WHERE case_id=? AND firm_id=? ORDER BY id DESC LIMIT ?",
+        (cid, int(u["firm_id"]), limit + 1),
+    ).fetchall()
+    documents = document_rows[:limit]
+    timeline_inputs = []
+    event_candidates = []
+    remaining_chars = MAX_ANALYSIS_CHARS
+    chunks_processed = 0
+    date_mentions_collected = 0
+    truncated = len(document_rows) > limit
+    for document in documents:
+        document_id = int(document["id"])
+        filename = str(document["name"] or "Unnamed document")
+        candidates = []
+        rows = c.execute(
+            "SELECT id,ref,page,text FROM chunks WHERE case_id=? AND document_id=? ORDER BY id",
+            (cid, document_id),
+        ).fetchall()
+        for row in rows:
+            chunk_text = row["text"] if isinstance(row["text"], str) else ""
+            if not chunk_text:
+                continue
+            if remaining_chars <= 0:
+                truncated = True
+                break
+            bounded_text = chunk_text[:remaining_chars]
+            remaining_chars -= len(bounded_text)
+            chunks_processed += 1
+            if len(bounded_text) < len(chunk_text):
+                truncated = True
+            structured = extract_structured_candidates(bounded_text, max_items=100)
+            truncated = truncated or structured["truncated"]
+            chunk_ref = row["ref"] or str(row["id"])
+            for entity in structured["entities"]:
+                if entity.get("entity_type") != "date_mention":
+                    continue
+                if date_mentions_collected >= 1000:
+                    truncated = True
+                    break
+                candidates.append({
+                    "kind": "date",
+                    "value": entity.get("mention"),
+                    "page": row["page"] if row["page"] not in (None, "") else entity.get("page"),
+                    "chunk_id": int(row["id"]),
+                    "chunk_ref": chunk_ref,
+                    "start": entity.get("start"),
+                    "end": entity.get("end"),
+                    "excerpt": entity.get("excerpt", ""),
+                })
+                date_mentions_collected += 1
+            for event in structured["events"]:
+                if len(event_candidates) >= 500:
+                    truncated = True
+                    break
+                event_candidates.append({
+                    **event,
+                    "document_id": str(document_id),
+                    "filename": filename,
+                    "chunk_id": int(row["id"]),
+                    "chunk_ref": chunk_ref,
+                    "page": row["page"] if row["page"] not in (None, "") else event.get("page"),
+                })
+            if remaining_chars <= 0:
+                truncated = True
+                break
+        timeline_inputs.append({
+            "document_id": str(document_id),
+            "filename": filename,
+            "candidates": candidates,
+        })
+        if remaining_chars <= 0:
+            break
+    timeline = build_date_mention_timeline(timeline_inputs)
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (int(u["firm_id"]), int(u["id"]), "matter_document_timeline_view"),
+    )
+    c.commit()
+    return {
+        "case_id": cid,
+        "documents_processed": len(timeline_inputs),
+        "chunks_processed": chunks_processed,
+        "dated_mentions": timeline["dated_mentions"],
+        "unparsed_mentions": timeline["unparsed_mentions"],
+        "event_candidates": event_candidates,
+        "event_candidate_count": len(event_candidates),
+        "truncated": truncated,
+        "requires_review": True,
+        "warning": (
+            "This is a cross-document index of extracted date and event mentions, not a verified chronology. "
+            "A date mention is not necessarily an event date, filing date or legal deadline. "
+            "Event triggers and same-sentence dates require lawyer review against the original documents."
+        ),
+        "limitations": timeline["limitations"] + [
+            "Only documents and chunks in the selected matter and current user's authorized firm scope are included.",
+            "The analysis is capped at one million extracted characters, 200 documents, 1,000 date mentions and 500 event candidates.",
+        ],
+    }
 
 
 @app.get("/cases/{cid}/docs/{document_id}/chunks")
