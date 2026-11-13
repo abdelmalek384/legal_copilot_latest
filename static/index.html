@@ -3254,7 +3254,12 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    h('div',{className:'row'},f,btn(uiText('رفع وفهرسة','Upload and index'),async()=>{if(!f.files[0])return;const x=new FormData();x.append('file',f.files[0]);
     const csrf=csrfToken();const headers=csrf?{'X-CSRF-Token':decodeURIComponent(csrf)}:{};const r=await fetch('/cases/'+id+'/upload',{method:'POST',credentials:'same-origin',headers,body:x}),j=await r.json().catch(()=>({}));toast(r.ok?(j.ocr_warning?(LANG==='ar'?'تمت فهرسة الصفحات القابلة للقراءة فقط؛ OCR غير متاح لبعض الصفحات':'Only readable pages were indexed; OCR was unavailable for some pages'):(j.ocr_used?uiText('تمت الفهرسة عبر OCR؛ راجع النص مقابل الأصل قبل الاعتماد عليه','Indexed with OCR; compare against the original before relying on it'):uiText('تمت الفهرسة','Indexed'))):err(j));if(r.ok)again()})),
    empty(uiText('PDF أو Word حتى 15 ميجابايت. النص المستخرج فقط هو المفهرس؛ لا تحفظ نسخة الملف الأصلي. راجع المقاطع قبل الاعتماد عليها، خصوصاً نص OCR.','PDF or Word up to 15 MB. Extracted text is indexed. Original-file retention depends on the configured private storage backend; verify storage status before relying on an original copy. Review chunks before relying on them, especially OCR text.')))
-}if(TAB==='team'){
+}
+ if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT_REVIEW_TARGET.caseId)===Number(id)&&!(c.docs||[]).some(doc=>Number(doc.document_id)===Number(window.DOCUMENT_REVIEW_TARGET.documentId))){
+  window.DOCUMENT_REVIEW_TARGET=null;
+  body.append(h('p',{className:'mut',role:'status','aria-live':'polite',textContent:uiText('المستند المرتبط بهذا المصدر غير موجود ضمن مستندات ملف القضية المتاحة.','The document linked to this source is not listed among the available matter documents.')}));
+ }
+ if(TAB==='team'){
   const mu=h('select',{'aria-label':uiText('عضو الفريق','Team member')},...us.map(u=>new Option(u.name,u.id))),mr=h('select',{'aria-label':uiText('دور العضو في القضية','Case member role')},...Object.entries(RL).reverse().map(([k,v])=>new Option(v,k)));
   const workload=c.members.map(member=>{
    const assigned=c.tasks.filter(task=>Number(task.assignee)===Number(member.user_id));
