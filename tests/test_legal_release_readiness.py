@@ -87,6 +87,8 @@ class LegalReleaseReadinessTests(unittest.TestCase):
             "https://user:secret@laws.example.gov/path",
             "https://laws.example.gov/path with spaces",
             "https://laws.example.gov/\x00unsafe",
+            "https://laws.example.gov/path\x7f",
+            "https://laws.example.gov\\path",
             " https://laws.example.gov/path",
         )
         for value in invalid_urls:
