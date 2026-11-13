@@ -836,6 +836,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("result.warning", panel)
         self.assertIn("No date or event mentions were found in accessible documents.", panel)
 
+    def test_matter_entity_mention_index_displays_exact_match_groups_and_warnings(self):
+        panel = HTML[HTML.index("function documentIntelligencePanel(caseId,documents)"):HTML.index("async function view(id)")]
+        self.assertIn("api('/cases/'+caseId+'/documents/entity-mentions')", panel)
+        self.assertIn("group.matched_values", panel)
+        self.assertIn("group.members", panel)
+        self.assertIn("Possible repeated mention", panel)
+        self.assertIn("result.warning", panel)
+        self.assertIn("No exact repeated party or reference mentions were found across multiple documents.", panel)
+
     def test_document_classification_edits_are_persisted_with_audit_and_version_checks(self):
         self.assertIn("draftOverrides", HTML)
         self.assertIn("Save classification", HTML)
