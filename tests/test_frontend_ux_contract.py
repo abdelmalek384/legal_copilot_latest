@@ -832,6 +832,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("result.dated_mentions", panel)
         self.assertIn("result.unparsed_mentions", panel)
         self.assertIn("result.event_candidates", panel)
+        self.assertIn("result.deadline_candidates", panel)
+        self.assertIn("Explicit deadline and time-limit mentions", panel)
         self.assertIn("item.chunk_ref", panel)
         self.assertIn("result.warning", panel)
         self.assertIn("No date or event mentions were found in accessible documents.", panel)
@@ -871,6 +873,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("item.currency_code", panel)
         self.assertIn("ambiguous_currency_label", panel)
         self.assertIn("currency unresolved", panel)
+
+    def test_deadline_mention_candidates_are_not_rendered_as_calculated_deadlines(self):
+        panel = HTML[HTML.index("function documentIntelligencePanel(caseId,documents)"):HTML.index("async function view(id)")]
+        self.assertIn("allStructured.deadline_mentions", panel)
+        self.assertIn("item.period_mentions", panel)
+        self.assertIn("Not a calculated legal deadline", panel)
+        self.assertIn("No explicit deadline or time-limit mentions were found.", panel)
 
     def test_document_classification_edits_are_persisted_with_audit_and_version_checks(self):
         self.assertIn("draftOverrides", HTML)
