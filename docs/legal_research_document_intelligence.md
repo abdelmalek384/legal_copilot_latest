@@ -1,6 +1,6 @@
 # Legal Research document-intelligence foundation
 
-**Status:** Matter-scoped UI/API integration is implemented on the Figma refresh branch. Repository tests and live bilingual browser acceptance remain pending.
+**Status:** Matter-scoped and permission-filtered cross-matter UI/API integration is merged into main via PR #1582. Repository tests and live bilingual browser acceptance remain pending.
 
 ## Existing repository capabilities
 
@@ -27,19 +27,31 @@ The application already accepts bounded PDF and DOCX uploads, extracts PDF text 
 - No original file is modified.
 - No OCR is performed.
 - Signal extraction is bounded to the existing one-million-character extraction budget; pairwise text comparison is separately limited to 100,000 characters per version and 200 reported change segments.
-- The Documents page lists only matters returned by the authenticated `/cases` endpoint and loads documents through the existing authorized case-detail route.
+- The Documents workspace uses authenticated, paginated matter selection and permission-filtered `/documents/search` and `/documents/search-text` endpoints. Metadata and extracted-text search are firm-scoped and restricted to administrator-visible matters or matters where the current user is a member. Results preserve document/chunk/page provenance.
 - Extraction review supports accept, correction and recheck decisions with a server-issued text digest, reviewer identity, note and timestamp in the audit trail.
 - Saved document categories are matter workflow metadata. Only firm administrators and matter leads can change them; optimistic version checks prevent stale overwrites and each change creates an audit event.
 - These workflows do not establish authenticity, legal validity or correctness. A saved category is not a legal conclusion.
 
-## Next integration stages
+## Current implementation and next stages
 
-1. Complete repository tests and add end-to-end tests for classification concurrency, reviewer roles, export, and cross-matter denial.
-2. Perform manual RTL/LTR, keyboard, mobile and upload/review acceptance against a synthetic staging dataset.
-3. Add page-linked original-document previews only where original retention and authorization are verified.
-4. Implement firm-wide search only after a dedicated tenant-safe backend endpoint and query budgets exist.
-5. Extend first-difference comparison to bounded multi-hunk comparison with explicit version provenance.
-6. Evaluate with synthetic Arabic/English PDFs and DOCX fixtures before enabling for pilot users.
+### Merged in PR #1582
+
+1. Figma-aligned responsive Legal Research shell, source inspector and explicit source-verification warnings.
+2. Documents workspace with permission-filtered accessible library, paginated metadata search, Arabic/English extracted-text search, file/status/classification filters, and matter context.
+3. Multi-file PDF/DOCX upload with per-file progress, CSRF protection, file-size/type checks, keyboard-accessible drop zone, and original-file availability/download handling.
+4. Persistent document classification with lead/admin-only writes, optimistic version checks, reviewer identity, immutable audit events, and tenant/matter scope triggers.
+5. Extracted-text review with accept, recheck and correction outcomes, SHA-256 compare-and-swap, reviewer notes, bounded history, and separate original/corrected text display.
+6. Original-file legal-hold and deletion-request APIs were already present in the application; the workspace exposes original availability without claiming a binary is retained when the private-storage record does not confirm it.
+
+### Remaining repository work
+
+1. Surface the existing bounded multi-hunk text-comparison helper in a provenance-aware API/UI workflow for comparing reviewed document versions. Keep each hunk literal and label every change as requiring lawyer review.
+2. Extend structured extraction beyond current literal keyword/regex candidates for entities, events and relationships; retain source chunk/page provenance and human-review state.
+3. Evaluate Arabic/English PDF and DOCX fixtures, including scanned PDFs, malformed documents, large files, duplicate documents and mixed-language content. OCR remains disabled in this helper foundation.
+4. Add end-to-end tests for upload, download, classification concurrency/role enforcement, extraction review, search pagination, firm switching and cross-firm denial.
+5. Perform manual Arabic RTL, English LTR, keyboard-only, screen-reader, mobile and desktop browser acceptance against a synthetic staging dataset.
+6. Consider richer page-linked original-document previews only where original retention, legal-hold state and authorization are verified. Do not infer original-file availability from extracted text.
+7. Evaluate multi-document synthesis only after evidence provenance, conflict handling, source verification and counsel review criteria are defined; summaries must not turn candidate facts into verified legal conclusions.
 
 ## Validation
 
