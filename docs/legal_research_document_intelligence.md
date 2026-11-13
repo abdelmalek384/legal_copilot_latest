@@ -60,10 +60,10 @@ Run: \`python -m unittest tests.test_document_intelligence -v\`
 
 A passing unit suite validates helper behavior only; it does not validate the new API/UI, tenant isolation, production storage, or legal accuracy. The new contract tests have been added but were not run in this implementation session.
 
-## Structured candidate extraction implementation — 2026-11-13 (branch pending merge)
+## Structured candidate extraction implementation — 2026-11-13 (merged #1594)
 
 - Added `extract_structured_candidates` to `tools/document_intelligence.py`. It emits labelled-party and literal identifier/amount/date entities, event-trigger records with same-sentence date/party mentions, and relationships only when an explicit Arabic or English relation phrase is present.
 - Integrated the structured records into the existing authorized `GET /cases/{cid}/docs/{document_id}/chunks` response. Each record receives document ID, chunk ID/reference and page where available; per-kind output is bounded to 250 records.
 - Added an Arabic/English structured-candidate section to the Legal Research workspace, displaying source metadata and unverified status.
-- Added helper tests, separate-database API provenance assertions, and frontend contract coverage. These tests are committed but not executed because the Actions runner/billing problem remains.
+- Added helper tests, separate-database API provenance assertions, and frontend contract coverage. PR #1594 merged at `600dea925d95f8bccdec79dad9157a4aec78a1e0`; tests remain unexecuted because the Actions runner/billing problem remains.
 - This is rule-based candidate structuring, not general NER, event verification, entity resolution or legal relationship analysis. OCR/extraction mistakes may propagate into every candidate.
