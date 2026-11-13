@@ -96,7 +96,7 @@ def parse_date(value: str, field: str) -> dt.date:
 
 
 def validate_public_https_url(url: str, allowed_hosts: set[str]) -> str:
-    if (not isinstance(url, str) or not url
+    if (not isinstance(url, str) or not url or "\\" in url
             or any(char.isspace() or ord(char) < 32 or ord(char) == 127 for char in url)):
         raise ValueError("HTTPS URL must not contain whitespace or control characters")
     try:
@@ -178,7 +178,7 @@ def validate_manifest_hosts(doc: dict) -> set[str]:
             raise ValueError("allowed_hosts contains an invalid hostname")
         normalized.add(host)
     direct_url = doc.get("direct_url", "")
-    if (not isinstance(direct_url, str) or not direct_url
+    if (not isinstance(direct_url, str) or not direct_url or "\\" in direct_url
             or any(char.isspace() or ord(char) < 32 or ord(char) == 127 for char in direct_url)):
         raise ValueError("direct_url must not contain whitespace or control characters")
     try:
