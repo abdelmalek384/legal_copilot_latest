@@ -1359,13 +1359,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("targetCard.focus({preventScroll:true});targetCard.scrollIntoView({block:'center',behavior:window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})", HTML)
         self.assertIn("window.DOCUMENT_REVIEW_TARGET=null", HTML)
         self.assertIn("The requested passage was not found in the loaded text.", HTML)
+        self.assertIn("The document linked to this source is not listed among the available matter documents.", HTML)
 
     def test_new_research_navigation_arabic_labels_are_in_native_review_catalog(self):
         catalog = json.loads((ROOT / "static" / "ar-ui-review.json").read_text(encoding="utf-8"))
         self.assertEqual(catalog["entry_count"], len(catalog["entries"]))
         self.assertEqual(len({entry["arabic"] for entry in catalog["entries"]}), len(catalog["entries"]))
         entries = {entry["arabic"]: entry for entry in catalog["entries"]}
-        for literal in ("فتح المستند والمقطع", "تعذر العثور على المقطع المحدد ضمن النصوص المحملة. قد يكون قد تغير أو لم يعد متاحاً."):
+        for literal in ("فتح المستند والمقطع", "تعذر العثور على المقطع المحدد ضمن النصوص المحملة. قد يكون قد تغير أو لم يعد متاحاً.", "المستند المرتبط بهذا المصدر غير موجود ضمن مستندات ملف القضية المتاحة."):
             self.assertIn(literal, entries)
             self.assertEqual(entries[literal]["review_status"], "pending_native_review")
 
