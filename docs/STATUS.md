@@ -300,3 +300,8 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Hijri month-name dates are now detected and preserved as unparsed review items with an explicit Hijri/unconverted label. No calendar conversion is performed.
 - The UI labels these records so they are not confused with normalized Gregorian dates. Helper and frontend regression tests were added but not executed.
 - PR #1603 merged at `9c8e15dc43f61cd473dc10f6d909ef156c597f5c`.
+
+## English case-reference extraction update — 2026-11-13
+
+- Case-reference candidates now recognize English Case/Claim/Appeal/Suit/Docket labels and alphanumeric docket identifiers in addition to Arabic labels.
+- Added helper regression coverage for English and Arabic examples. Tests remain unexecuted; branch `feature/english-case-reference-extraction-20261113`; merge pending.
