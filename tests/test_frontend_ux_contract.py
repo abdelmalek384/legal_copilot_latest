@@ -1435,7 +1435,7 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_recent_arabic_catalog_source_lines_match_frontend_literals(self):
         catalog = json.loads((ROOT / "static" / "ar-ui-review.json").read_text(encoding="utf-8"))
         lines = HTML.splitlines()
-        for entry in catalog["entries"][-6:]:
+        for entry in catalog["entries"][-7:]:
             for line_number in entry["source_lines"]:
                 self.assertIn(entry["arabic"], lines[line_number - 1], entry["id"])
 
