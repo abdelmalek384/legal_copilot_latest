@@ -8652,6 +8652,7 @@ def matter_document_timeline(
     documents = document_rows[:limit]
     timeline_inputs = []
     event_candidates = []
+    deadline_candidates = []
     remaining_chars = MAX_ANALYSIS_CHARS
     chunks_processed = 0
     date_mentions_collected = 0
@@ -8708,6 +8709,18 @@ def matter_document_timeline(
                     "chunk_ref": chunk_ref,
                     "page": row["page"] if row["page"] not in (None, "") else event.get("page"),
                 })
+            for deadline in structured["deadline_mentions"]:
+                if len(deadline_candidates) >= 500:
+                    truncated = True
+                    break
+                deadline_candidates.append({
+                    **deadline,
+                    "document_id": str(document_id),
+                    "filename": filename,
+                    "chunk_id": int(row["id"]),
+                    "chunk_ref": chunk_ref,
+                    "page": row["page"] if row["page"] not in (None, "") else deadline.get("page"),
+                })
             if remaining_chars <= 0:
                 truncated = True
                 break
@@ -8732,16 +8745,18 @@ def matter_document_timeline(
         "unparsed_mentions": timeline["unparsed_mentions"],
         "event_candidates": event_candidates,
         "event_candidate_count": len(event_candidates),
+        "deadline_candidates": deadline_candidates,
+        "deadline_candidate_count": len(deadline_candidates),
         "truncated": truncated,
         "requires_review": True,
         "warning": (
             "This is a cross-document index of extracted date and event mentions, not a verified chronology. "
             "A date mention is not necessarily an event date, filing date or legal deadline. "
-            "Event triggers and same-sentence dates require lawyer review against the original documents."
+            "Event triggers and same-sentence dates require lawyer review against the original documents. Deadline phrases and periods are not calculated or converted into due dates."
         ),
         "limitations": timeline["limitations"] + [
             "Only documents and chunks in the selected matter and current user's authorized firm scope are included.",
-            "The analysis is capped at one million extracted characters, 200 documents, 1,000 date mentions and 500 event candidates.",
+            "The analysis is capped at one million extracted characters, 200 documents, 1,000 date mentions, 500 event candidates and 500 deadline candidates.",
         ],
     }
 
