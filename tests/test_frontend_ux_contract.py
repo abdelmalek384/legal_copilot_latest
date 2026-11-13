@@ -765,6 +765,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("source.text_location||p.text_location||source.location||p.location", HTML)
         self.assertIn("source.confidence??p.confidence", HTML)
 
+        self.assertIn("(typeof confidence==='number'||typeof confidence==='string')&&confidence!==''", HTML)
+        self.assertIn("Original document: ", HTML)
+        self.assertIn("Page: ", HTML)
+        self.assertIn("Recorded confidence: ", HTML)
+
     def test_source_inspector_exposes_stable_matter_document_traceability_when_available(self):
         self.assertIn("source.document_id??source.documentId??source.original_document_id??p.document_id??p.documentId??p.original_document_id", HTML)
         self.assertIn("source.case_id??source.matter_id??p.case_id??p.matter_id", HTML)
