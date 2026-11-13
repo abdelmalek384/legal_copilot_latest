@@ -14,7 +14,7 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 | DEL/control-character rejection in Gazette source URLs | AI-1 | Validator rejects C0 and DEL; focused regression test exists | C0/DEL, fragment delimiters and backslashes rejected; importer changes merged in #1556/#1563; focused tests still unexecuted |
 | Gazette text importer input contract and deterministic output | AI-1 | Input/schema/provenance/duplicate/error-path tests; documented CLI | Importer and operator contract merged in #1563/#1567; source-reviewed, full focused tests still unexecuted |
 | Retrieval scorer safety-status ordering | AI-1 | Known wrong/uncited/unverified/non-abstention failures always report below-target; focused tests executed | Fix merged in #1560 and carried with URL hardening in #1566; focused tests still unexecuted |
-| Arabic obligation-negation unit coverage | AI-1 | English and Arabic polarity variants tested, including unrelated clauses and whitespace | Additional Arabic polarity/whitespace cases merged in #1559; tests still unexecuted; live answer-path integration remains open under #1561 |
+| Arabic obligation-negation guard | AI-1 | Final answer path invokes guard; English/Arabic reversals, faithful negatives, unrelated clauses and whitespace have regression coverage | Source integration is complete in `app.ask` (#1588); focused and full runtime tests remain unexecuted because runner allocation is blocked |
 | Benchmark evaluator data-integrity contract | AI-1 | Unlabeled data excluded, reviewer registry required, stable fingerprint, malformed input rejected | Implemented in repository; execution and integration remain unverified |
 | Arabic evaluation question inventory | AI-1 | At least 100 unique formal/colloquial Egyptian Arabic drafts, uniform schema, all unreviewed and answer fields empty | 120 drafts (59 general + 61 labour) merged in #1570; static JSONL/schema check complete; lawyer answer-key approval and scoring remain external |
 | Documentation and ownership handoff | AI-1 / AI-2 | Each known blocker has owner, acceptance evidence, and no false completion claim | Register merged in #1562 and refreshed in this update; operational blockers remain open |
@@ -37,11 +37,11 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - Owner: Codex.
 - Exit criteria: regenerate lock using pinned pip-tools, include authentic hashes, install successfully from lock in a clean environment, and run import/startup plus tests. Never invent hashes.
 
-### Live negated-obligation answer guard
-- Related issue: #1561.
-- Owner: AI-2 (answer-serving path); Codex for executable integration tests.
-- Finding: helper and unit tests exist, but no call site in the default-branch answer path was found during the 2026-11-12 source search.
-- Exit criteria: invoke narrow guard at final answer boundary; block/regenerate/abstain on polarity conflict; API-level tests cover English and Arabic negative/positive reversals, faithful negatives, and unrelated clauses.
+### Live negated-obligation answer guard — implementation complete, validation open
+- Related issue #1561 is closed. The current `app.ask` final-answer path invokes `has_negated_obligation_conflicts` before returning an answer; PR #1588 added service-path regressions.
+- The helper and service-path test inventory covers English and Arabic positive/negative reversals, faithful negative wording, unrelated clauses, and Arabic variable whitespace.
+- Do not reopen implementation or repeat speculative rewrites. Remaining closure evidence is execution of focused `tests/test_claim_support.py` and the full suite in a clean Python 3.12 environment, with exact commit, command and test counts.
+- Owner: Codex for local executable validation; AI-1 for any concrete regression discovered by an executed test.
 
 ### Billing / payment provider
 - Owner: AI-2 / account owner.
