@@ -84,4 +84,4 @@ Original-document download filenames in the matter review UI are normalized to r
 The focused chunk card now receives a visible focus outline and scroll margin when opened from a research result, so keyboard and assistive-technology users can identify where navigation landed. The card remains a review target, not a verification status.
 
 
-Pending matter/chunk navigation state is cleared when the active firm changes, including the MFA firm-switch path, and when the session expires or the user signs out. This prevents stale targets from surviving a change in identity or firm context.
+Pending matter/chunk navigation state is cleared when the active firm changes, including the MFA firm-switch path, and when the session expires or the user signs out. Manual navigation to another workspace or matter section also clears an unconsumed target. This prevents stale targets from surviving a change in identity, firm context, or the user's explicit navigation choice.
