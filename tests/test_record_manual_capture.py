@@ -66,6 +66,11 @@ class RecordManualCaptureTests(unittest.TestCase):
         self.assertEqual(audit_record["audit"]["article_headings_detected"], 2)
         self.assertTrue((self.out / audit_record["extracted_text_path"]).is_file())
 
+    def test_source_url_rejects_raw_backslashes(self):
+        code, _, stderr = run(*self.base(**{"--source-url": "https://www.alamiria.com\\\\law/14"}))
+        self.assertEqual(code, 2)
+        self.assertIn("source URL", stderr)
+
     def test_hash_matches_file(self):
         import hashlib
         run(*self.base())
