@@ -1260,6 +1260,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("c.court&&[uiText('المحكمة','Court'),c.court]", HTML)
         self.assertIn("c.circuit&&[uiText('الدائرة','Circuit'),c.circuit]", HTML)
         self.assertIn("matter-progress-context", HTML)
+        self.assertIn("uiText('مهام','tasks')}))),\\n  h('div',{className:'matter-navigation'},tabGroupNav,tabDetailNav),body)}", HTML)
+        self.assertNotIn("uiText('مهام','tasks')})))),\\n  h('div',{className:'matter-navigation'},tabGroupNav,tabDetailNav),body)}", HTML)
         self.assertIn("prog({done_tasks:dn,open_tasks:tot-dn})", HTML)
 
     def test_matter_detail_uses_five_task_oriented_sections(self):
