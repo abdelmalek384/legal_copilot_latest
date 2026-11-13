@@ -92,14 +92,17 @@ def validate_record(record, expected_commit=None, require_pass=False, evidence_r
         errors.append("application_commit must be a full 40-character Git commit SHA")
     elif expected_commit and commit.lower() != expected_commit.lower():
         errors.append("application_commit does not match expected commit")
-    if record.get("environment") not in VALID_ENVIRONMENTS:
+    environment = record.get("environment")
+    if not isinstance(environment, str) or environment not in VALID_ENVIRONMENTS:
         errors.append("environment must be local or staging")
     for field in ("os_and_build", "device", "browser_and_version", "viewport", "network", "tester_role"):
         if not _nonempty(record.get(field)):
             errors.append(field + " must be a non-empty string")
-    if record.get("device_class") not in VALID_DEVICE_CLASSES:
+    device_class = record.get("device_class")
+    if not isinstance(device_class, str) or device_class not in VALID_DEVICE_CLASSES:
         errors.append("device_class must be desktop, phone, or tablet")
-    if record.get("locale") not in VALID_LOCALES:
+    locale = record.get("locale")
+    if not isinstance(locale, str) or locale not in VALID_LOCALES:
         errors.append("locale must be ar-EG or en-US")
     results = record.get("results")
     if not isinstance(results, dict):
@@ -107,7 +110,7 @@ def validate_record(record, expected_commit=None, require_pass=False, evidence_r
         results = {}
     for key in REQUIRED_RESULTS:
         state = results.get(key)
-        if state not in VALID_STATES:
+        if not isinstance(state, str) or state not in VALID_STATES:
             errors.append("results." + key + " must be PASS, FAIL, BLOCKED, or NOT_TESTED")
         elif require_pass and state != "PASS":
             errors.append("release gate requires PASS for results." + key)
@@ -124,7 +127,7 @@ def validate_record(record, expected_commit=None, require_pass=False, evidence_r
         evidence = []
     if any(state == "PASS" for state in results.values()) and not evidence:
         errors.append("at least one evidence path is required when any check is PASS")
-    if any(state in {"FAIL", "BLOCKED"} for state in results.values()) and not defects:
+    if any(isinstance(state, str) and state in {"FAIL", "BLOCKED"} for state in results.values()) and not defects:
         errors.append("defect_ids must identify the issue for FAIL/BLOCKED results")
     if not _nonempty(record.get("notes")):
         errors.append("notes must be a non-empty string")
