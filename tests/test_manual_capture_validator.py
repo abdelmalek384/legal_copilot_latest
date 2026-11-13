@@ -50,11 +50,12 @@ class ManualCaptureRecordTests(unittest.TestCase):
         for field in ("source_url", "terms_url", "collection_permission_evidence_url",
                       "commercial_reuse_evidence_url"):
             with self.subTest(field=field):
+                original = self.record[field]
                 self.record[field] = "https://example.gov\\\\rights/source"
                 result = validate_capture_record(self.record, self.record_path)
                 self.assertFalse(result["valid"])
                 self.assertTrue(any(field in error for error in result["errors"]))
-                self.record[field] = None
+                self.record[field] = original
 
     def test_unsupported_legal_status_is_rejected(self):
         self.record["legal_status"] = "current_verified"
