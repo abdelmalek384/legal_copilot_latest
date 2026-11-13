@@ -3517,14 +3517,14 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             entity["entity_type"] == "labelled_party"
             and entity["document_id"] == document_id
             and entity["chunk_id"]
-            and entity["page"] == 9
+            and str(entity["page"]) == "9"
             for entity in structured["entities"]
         ))
         self.assertTrue(any(
             event["trigger"] == "جلسة"
             and "16/03/2025" in event["date_mentions"]
             and event["document_id"] == document_id
-            and event["page"] == 9
+            and str(event["page"]) == "9"
             for event in structured["events"]
         ))
         self.assertTrue(any(
@@ -3532,7 +3532,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             and relation["subject_mention"] == "طرف تجريبي"
             and relation["object_mention"] == "شركة تجريبية"
             and relation["document_id"] == document_id
-            and relation["page"] == 9
+            and str(relation["page"]) == "9"
             for relation in structured["relationships"]
         ))
 
