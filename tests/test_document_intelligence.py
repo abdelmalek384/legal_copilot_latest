@@ -79,6 +79,21 @@ class DocumentIntelligenceTests(unittest.TestCase):
             for item in result[group]
         ))
 
+    def test_event_candidates_preserve_exact_date_and_party_offsets(self):
+        text = (
+            "[[PDF_PAGE:4]]\\n"
+            "المدعي: أحمد محمد، وتحددت جلسة الدعوى بتاريخ 15/03/2025."
+        )
+        result = extract_structured_candidates(text)
+        event = next(item for item in result["events"] if item["trigger"] == "جلسة")
+        self.assertEqual(event["page"], 4)
+        date_evidence = event["date_evidence"][0]
+        party_evidence = event["party_evidence"][0]
+        self.assertEqual(text[date_evidence["start"]:date_evidence["end"]], "15/03/2025")
+        self.assertEqual(text[party_evidence["start"]:party_evidence["end"]], "المدعي: أحمد محمد")
+        self.assertEqual(event["date_mentions"], [date_evidence["mention"]])
+        self.assertEqual(event["party_mentions"], [party_evidence["mention"]])
+
     def test_structured_candidates_link_english_event_date_and_relation(self):
         text = (
             "[[PDF_PAGE:7]]\n"

@@ -18,6 +18,7 @@ The application already accepts bounded PDF and DOCX uploads, extracts PDF text 
 - Literal candidate extraction for dates, case references, amounts and explicitly labelled parties.
 - A date-mention review timeline that retains document/page provenance, parses valid four-digit-year dates using explicit day-first or ISO rules, and refuses to guess two-digit years or invalid dates.
 - Structured candidate records for labelled parties, case/legal references, amounts and date mentions; sentence-scoped event triggers linked only to dates/labelled parties in that same sentence; and explicit Arabic/English relationship phrases. Every record retains character offsets and available page/chunk provenance and remains unverified.
+- Event candidates now retain exact character offsets for each same-sentence date and labelled-party mention, in addition to the event trigger and sentence offsets; the UI displays these offsets beside the source chunk/page.
 - Matter-wide date/event mention index over authorized documents, sorted parseable dates and unparsed mentions, with chunk/page provenance and strict document/character/result caps.
 - Matter-scoped exact repeated-mention grouping for labelled parties and case/legal references, with Unicode NFKC/case-fold/whitespace normalization only, member-level document/chunk/page provenance and an explicit warning that recurrence is not identity.
 - PDF page provenance where a page marker exists; no invented page number for DOCX.
@@ -85,3 +86,9 @@ A passing unit suite validates helper behavior only; it does not validate the ne
 - Added `GET /cases/{cid}/documents/entity-mentions`, which authorizes the matter first, scans only firm-scoped documents, preserves document/chunk/page references, caps processing and records a security audit event.
 - The Documents workspace now offers a repeated-mention review action and displays the literal values and source locations. The warning explicitly states that repeated text does not establish identity, common ownership, party equivalence or legal relationship.
 - Added helper, separate-database runtime, same-firm nonmember denial and frontend contract tests. PR #1598 merged at `5d4b9516cfdebe13d5c99053a50145e968e39ea0`; tests and browser acceptance remain unexecuted.
+
+## Event argument provenance refinement — 2026-11-13 (branch pending merge)
+
+- Event candidates now include `date_evidence` and `party_evidence` arrays with literal mentions and exact start/end character offsets in the extracted chunk.
+- The Legal Research UI displays these offsets alongside the event sentence, document/chunk reference and page.
+- Added helper tests asserting that each offset slice maps back to the exact source substring and a frontend contract assertion. Tests/browser acceptance remain unexecuted; branch `feat/event-argument-provenance-20261113` is pending merge.

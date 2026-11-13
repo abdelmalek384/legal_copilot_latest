@@ -476,16 +476,27 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
             continue
         leading_trim = len(text[sentence_start:sentence_end]) - len(text[sentence_start:sentence_end].lstrip())
         absolute_start = sentence_start + leading_trim
-        local_dates = []
+        date_evidence = []
         for pattern in _DATE_PATTERNS:
             for match in pattern.finditer(sentence):
-                local_dates.append(match.group(0))
-                if len(local_dates) >= 10:
+                date_evidence.append({
+                    "mention": match.group(0),
+                    "start": absolute_start + match.start(),
+                    "end": absolute_start + match.end(),
+                })
+                if len(date_evidence) >= 10:
                     break
-        local_parties = [
-            match.group(0).strip()
-            for match in _PARTY_LABEL_PATTERN.finditer(sentence)
-        ][:10]
+        party_evidence = []
+        for match in _PARTY_LABEL_PATTERN.finditer(sentence):
+            party_evidence.append({
+                "mention": match.group(0).strip(),
+                "start": absolute_start + match.start(),
+                "end": absolute_start + match.end(),
+            })
+            if len(party_evidence) >= 10:
+                break
+        local_dates = [item["mention"] for item in date_evidence]
+        local_parties = [item["mention"] for item in party_evidence]
         for trigger in _EVENT_MENTION_PATTERN.finditer(sentence):
             if len(events) >= max_items:
                 truncated = True
@@ -496,7 +507,9 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
                 "trigger": trigger.group(0),
                 "sentence": sentence[:1000],
                 "date_mentions": local_dates,
+                "date_evidence": date_evidence,
                 "party_mentions": local_parties,
+                "party_evidence": party_evidence,
                 "page": _page_at(start, page_markers),
                 "start": start,
                 "end": end,
