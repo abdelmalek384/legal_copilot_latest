@@ -18,6 +18,7 @@ The application already accepts bounded PDF and DOCX uploads, extracts PDF text 
 - Literal candidate extraction for dates, case references, amounts and explicitly labelled parties.
 - A date-mention review timeline that retains document/page provenance, parses valid four-digit-year dates using explicit day-first, ISO or named Arabic/English Gregorian-month rules, and refuses to guess two-digit years or invalid dates.
 - Structured candidate records for labelled parties, case/legal references, amounts and date mentions; sentence-scoped event triggers linked only to dates/labelled parties in that same sentence; and explicit Arabic/English relationship phrases. Every record retains character offsets and available page/chunk provenance and remains unverified.
+- Case-reference extraction recognizes Arabic labels and English Case/Claim/Appeal/Suit/Docket labels, including alphanumeric docket identifiers with slash/hyphen segments.
 - Event candidates now retain exact character offsets for each same-sentence date and labelled-party mention, in addition to the event trigger and sentence offsets; the UI displays these offsets beside the source chunk/page.
 - Matter-wide date/event mention index over authorized documents, sorted parseable dates and unparsed mentions, with chunk/page provenance and strict document/character/result caps.
 - Matter-scoped exact repeated-mention grouping for labelled parties and case/legal references, with Unicode NFKC/case-fold/whitespace normalization only, member-level document/chunk/page provenance and an explicit warning that recurrence is not identity.
@@ -104,3 +105,9 @@ A passing unit suite validates helper behavior only; it does not validate the ne
 - Added conservative detection of Arabic Hijri month-name mentions, including common compound month names and optional `هـ`/هجري suffixes.
 - Hijri mentions remain in the unparsed timeline with `calendar_system: hijri` and `interpretation: hijri_unconverted`; no Hijri-to-Gregorian conversion or deadline calculation is attempted.
 - The timeline UI labels these mentions as unconverted. Added helper and frontend contract tests; PR #1603 merged at `9c8e15dc43f61cd473dc10f6d909ef156c597f5c`. Tests remain unexecuted.
+
+## English case-reference extraction — 2026-11-13 (branch pending merge)
+
+- Extended the case-reference candidate pattern to English Case, Claim, Appeal, Suit and Docket labels, including `No.`, `Number` and alphanumeric identifiers with slash/hyphen segments.
+- Arabic case-reference matching remains supported. Every result is a literal candidate with source offsets/page provenance, not a verified case identifier.
+- Added bilingual helper regression coverage; tests remain unexecuted. Branch `feature/english-case-reference-extraction-20261113` is pending merge.
