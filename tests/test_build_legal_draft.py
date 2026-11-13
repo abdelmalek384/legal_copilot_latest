@@ -47,6 +47,16 @@ class DraftBuilderTests(unittest.TestCase):
         self.assertNotIn("[S1]", result)
         self.assertIn("لم تُقدَّم مصادر تستوفي", result)
 
+    def test_source_urls_with_backslashes_or_query_data_are_not_cited(self):
+        for url in (
+            "https://example.org\\\\law",
+            "https://example.org/law?token=secret",
+            "https://example.org/law#fragment",
+        ):
+            with self.subTest(url=url):
+                result = render_draft(payload(sources=[good_source(url=url)]))
+                self.assertNotIn("[S1]", result)
+
     def test_date_boundaries_exclude_future_and_repealed_sources(self):
         result = render_draft(payload(sources=[
             good_source(effective_date="2026-01-01"),
