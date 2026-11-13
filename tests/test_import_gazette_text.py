@@ -92,6 +92,8 @@ class GazetteTextImportTests(unittest.TestCase):
         source_text = "\n".join(parts)
         self.text_path.write_text(source_text, encoding="utf-8")
         self.metadata["content_sha256"] = hashlib.sha256(source_text.encode("utf-8")).hexdigest()
+        self.metadata["expected_promulgation_provisions"] = 13
+        self.metadata["expected_attached_law_articles"] = 298
         self.write_metadata()
 
         result = import_text(self.text_path, self.meta_path, self.output)
@@ -99,6 +101,9 @@ class GazetteTextImportTests(unittest.TestCase):
             json.loads(line)
             for line in (self.output / "law_rows.jsonl").read_text(encoding="utf-8").splitlines()
         ]
+        self.assertEqual(result["missing_article_numbers"], {})
+        self.assertEqual(result["duplicate_article_numbers"], {})
+        self.assertEqual(result["out_of_range_article_numbers"], {})
         self.assertEqual(result["article_headings"], 311)
         self.assertEqual(result["promulgation_provisions"], 13)
         self.assertEqual(result["attached_law_articles"], 298)
