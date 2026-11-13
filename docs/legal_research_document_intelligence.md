@@ -98,3 +98,9 @@ A passing unit suite validates helper behavior only; it does not validate the ne
 - Extended date candidate recognition to Arabic and English Gregorian month names in day-first and month-first forms, including Arabic-Indic digits.
 - The timeline parser normalizes valid four-digit-year dates and leaves two-digit years and invalid calendar dates in the unparsed review queue. Hijri calendar conversion is not performed.
 - Added helper and frontend regressions covering Arabic/English month names, page provenance, ambiguous two-digit years and invalid day values. PR #1602 merged at `f7f9f2e083f700d81f8ad0c6cac584ff19f5035b`; tests remain unexecuted.
+
+## Hijri date mention handling — 2026-11-13 (branch pending merge)
+
+- Added conservative detection of Arabic Hijri month-name mentions, including common compound month names and optional `هـ`/هجري suffixes.
+- Hijri mentions remain in the unparsed timeline with `calendar_system: hijri` and `interpretation: hijri_unconverted`; no Hijri-to-Gregorian conversion or deadline calculation is attempted.
+- The timeline UI labels these mentions as unconverted. Added helper and frontend contract tests; tests remain unexecuted. Branch `feature/hijri-date-mention-review-20261113` is pending merge.
