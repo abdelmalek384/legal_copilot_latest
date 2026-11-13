@@ -13,6 +13,7 @@
 | Reviewer spreadsheets | **Templates complete.** [Gazette review CSV](legal_evidence/law_14_2025_gazette_comparison_template.csv) has 311 rows, machine comparison labels, similarity, page locators and prior page-review notes. Text and lawyer decision fields remain blank pending authorized source text. [Deadline CSV](legal_evidence/deadline_rules_lawyer_review.csv) has five draft rules. [Review guide](legal_evidence/lawyer_review_quick_guide.md) gives steps and time estimates. |
 | Evaluation | **116 unapproved drafts complete; a new structural validator checks Arabic question text, question IDs/text uniqueness, one formal/one colloquial variant per article pin, expected-article pin consistency and no premature lawyer approval/release flags. Static audit of the current inventory found 116 rows (58 formal/58 colloquial), 58 proposed article pins and zero invariant mismatches. [Lawyer review guide](legal_evidence/law14_2025_evaluation_review_guide.md) added. Metrics unavailable.** Structural-validator, negation reproducer, firm-test gate, rating-validator and adapter tests are now explicitly registered in `.github/workflows/tests.yml`; they remain unexecuted. Dataset contains 58 formal + 58 colloquial questions with machine-proposed article IDs. [Unreviewed inventory](legal_evidence/law14_2025_retrieval_baseline_unreviewed.json) records 116 unique questions, zero approved answer keys and zero run records. Top-3 hit rate, wrong-article rate and abstention rate are null—not zero. The scorer requires lawyer-approved labels and real retrieval runs. |
 | Documentation | **Complete.** Detailed tracker archived; this is the concise release summary. |
+| Gazette importer owner handoff | **Prepared.** Added [operator handoff](legal_evidence/law14_2025_import_operator_handoff.md) and [metadata template](legal_evidence/law14_2025_import_metadata.template.json), including exact input requirements, SHA-256 procedure, CLI command, expected inventory checks and trust safeguards. No real import run is claimed; authorized UTF-8 text and truthful supplier/source metadata are still required. |
 
 ## AI-2 delivery
 
@@ -38,7 +39,7 @@
 
 1. GitHub billing/runtime access or a supported local Python 3.12 environment is needed to execute the focused tests; no CI or local test output is claimed.
 2. AI-2 implementation is on main; execute rating-route/frontend tests and Arabic/English browser acceptance in a clean Python 3.12 checkout.
-3. Owner must supply an authorized plain-text Gazette transcription and evidence of permitted reuse before the importer can run.
+3. Owner must supply the UTF-8 Gazette transcription and completed truthful metadata described in [the importer handoff](legal_evidence/law14_2025_import_operator_handoff.md). The importer can create quarantined candidates while permission remains unknown, but no collection/reuse or production ingestion is permitted without evidence of permission.
 4. Counsel must approve the evaluation questions/article key and answerability; then an authenticated corpus/API and before/after run exports are needed for scoring.
 5. Billing/provider acceptance, tenant-isolation/recovery rehearsal, device/accessibility acceptance and pilot-firm workflow remain separate release gates.
 
