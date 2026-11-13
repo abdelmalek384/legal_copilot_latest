@@ -1,5 +1,6 @@
 """End-to-end tests for the offline lawyer-supplied Gazette text importer."""
 import hashlib
+import os
 import json
 from pathlib import Path
 import sys
@@ -153,6 +154,7 @@ class GazetteTextImportTests(unittest.TestCase):
             text=True,
             timeout=15,
             check=False,
+            env={key: value for key, value in os.environ.items() if key != "PYTHONPATH"},
         )
         self.assertEqual(completed.returncode, 0, completed.stderr)
         result = json.loads(completed.stdout)
