@@ -1222,6 +1222,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("index+1)+' / '+valid.length", HTML)
         self.assertIn("uploadPanel.setAttribute('aria-busy','true')", HTML)
         self.assertIn("uploadPanel.setAttribute('aria-busy','false')", HTML)
+        self.assertIn("uploadStatus,uploadWarnings,uploadResults);", HTML)
+        self.assertNotIn("uploadStatus,uploadWarnings,uploadResults));", HTML)
         self.assertNotIn("let uploadPanel.setAttribute", HTML)
 
 
