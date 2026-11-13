@@ -82,6 +82,7 @@ class FirmTestSourceMatchedModeTests(unittest.TestCase):
         self.assertEqual(result["answer"], "The fictional employer must give written notice [1].")
         self.assertEqual(result["trust_tier"], "source_matched")
         self.assertEqual(result["sources"][0]["trust_tier"], "source_matched")
+        self.assertEqual(result["trust_tier_label"], "source-matched, not lawyer-verified")
         self.assertFalse(hit["verified"])
         self.assertNotEqual(result["trust_tier"], "verified")
         self.assertNotEqual(result["sources"][0]["trust_tier"], "verified")
