@@ -78,10 +78,10 @@ A passing unit suite validates helper behavior only; it does not validate the ne
 - The Documents workspace adds a server-backed matter-wide timeline control, separating parseable dates, unparsed dates and event mentions. The warning states that this is not a verified chronology and does not create deadlines.
 - Added helper/API/frontend contract tests. Tests and browser acceptance are not executed; branch `feature/matter-document-timeline-20261113` is pending merge.
 
-## Cross-document repeated-mention index — 2026-11-13 (branch pending merge)
+## Cross-document repeated-mention index — 2026-11-13 (merged #1598)
 
 - Added `group_candidate_entity_mentions`, which groups only labelled-party, case-reference and legal-reference mentions within an identical firm/matter scope.
 - Matching uses exact Unicode NFKC + case-fold + whitespace normalization only. No fuzzy, phonetic, transliteration or semantic matching is performed.
 - Added `GET /cases/{cid}/documents/entity-mentions`, which authorizes the matter first, scans only firm-scoped documents, preserves document/chunk/page references, caps processing and records a security audit event.
 - The Documents workspace now offers a repeated-mention review action and displays the literal values and source locations. The warning explicitly states that repeated text does not establish identity, common ownership, party equivalence or legal relationship.
-- Added helper, separate-database runtime, same-firm nonmember denial and frontend contract tests. Tests and browser acceptance remain unexecuted; branch `feature/matter-entity-mention-index-20261113` is pending merge.
+- Added helper, separate-database runtime, same-firm nonmember denial and frontend contract tests. PR #1598 merged at `5d4b9516cfdebe13d5c99053a50145e968e39ea0`; tests and browser acceptance remain unexecuted.
