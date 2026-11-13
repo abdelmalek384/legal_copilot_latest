@@ -1,5 +1,8 @@
+import json
+import tempfile
 import unittest
-from tools.build_legal_draft import render_draft
+from pathlib import Path
+from tools.build_legal_draft import main, render_draft
 
 def good_source(**overrides):
     source = {
@@ -65,6 +68,31 @@ class DraftBuilderTests(unittest.TestCase):
             render_draft(payload(draft_type="anything"))
         with self.assertRaises(ValueError):
             render_draft(payload(as_of_date="not-a-date"))
+
+    def test_cli_refuses_to_overwrite_input_json(self):
+        with tempfile.TemporaryDirectory() as temp:
+            source = Path(temp) / "case.json"
+            source.write_text(json.dumps(payload(), ensure_ascii=False), encoding="utf-8")
+            original = source.read_bytes()
+            with self.assertRaises(SystemExit) as raised:
+                main([str(source), "--output", str(source)])
+            self.assertEqual(raised.exception.code, 2)
+            self.assertEqual(source.read_bytes(), original)
+
+    def test_cli_refuses_hardlink_alias_to_input_json(self):
+        with tempfile.TemporaryDirectory() as temp:
+            source = Path(temp) / "case.json"
+            output = Path(temp) / "draft.md"
+            source.write_text(json.dumps(payload(), ensure_ascii=False), encoding="utf-8")
+            original = source.read_bytes()
+            try:
+                output.hardlink_to(source)
+            except (NotImplementedError, OSError):
+                self.skipTest("hard links are unavailable in this environment")
+            with self.assertRaises(SystemExit) as raised:
+                main([str(source), "--output", str(output)])
+            self.assertEqual(raised.exception.code, 2)
+            self.assertEqual(source.read_bytes(), original)
 
     def test_claim_form_uses_requested_title(self):
         result = render_draft(payload(draft_type="statement_of_claim"))
