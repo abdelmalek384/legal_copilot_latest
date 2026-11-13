@@ -27,7 +27,7 @@ def valid_evidence_url(value):
     """Check URL shape only; an HTTPS URL is not proof that its content is authoritative."""
     if not isinstance(value, str) or not value or value != value.strip():
         return False
-    if any(ch.isspace() or ord(ch) < 32 for ch in value):
+    if "\\" in value or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value):
         return False
     try:
         parsed = urlparse(value)
