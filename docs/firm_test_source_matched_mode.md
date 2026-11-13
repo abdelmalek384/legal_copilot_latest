@@ -33,7 +33,7 @@ The firm-test path also runs the lexical claim-support check even if the general
 
 ## Law 14/2025 boundary
 
-The current Law 14/2025 candidate is **not eligible for this mode**. Its manifest records collection/reuse permissions as unknown, the candidate corpus file is not committed, the original scan reports copy/print restrictions, and the candidate is not search-eligible. This implementation does not import or retrieve that text, alter any `verified` flag, or bypass source-rights restrictions. It provides the isolated test-firm response gate for a future source record only after all technical and permission evidence is complete.
+The current Law 14/2025 candidate is **not eligible for this mode**. Its manifest records collection/reuse permissions as unknown, the candidate corpus file is not committed, the original scan reports copy/print restrictions, and the candidate is not search-eligible. This implementation does not import or retrieve that text, alter any `verified` flag, or bypass source-rights restrictions. The explicit `firm_test_source_matched` search scope currently returns no candidates; a separate permission-cleared candidate retrieval adapter is still required. The PR's synthetic tests inject a synthetic backend hit to verify the answer-label gate, not real Law 14 retrieval. It provides the isolated test-firm response gate for a future source record only after all technical and permission evidence is complete.
 
 Use synthetic fixtures for automated tests. Do not use confidential client matters or describe test-mode answers as legal advice, verified law, current consolidated law, or lawyer-approved content.
 
