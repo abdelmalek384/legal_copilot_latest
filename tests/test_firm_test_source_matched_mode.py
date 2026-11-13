@@ -1,6 +1,6 @@
-"""End-to-end contract for the explicitly gated, non-production firm-test tier.
+"""Response-path contract for the explicitly gated, non-production firm-test tier.
 
-All source text and permission evidence in this module are synthetic.
+All source text and permission evidence are synthetic; search is stubbed to inject a candidate hit.
 """
 import os
 import unittest
