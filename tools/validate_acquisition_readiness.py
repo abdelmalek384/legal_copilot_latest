@@ -14,6 +14,12 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
+import sys
+
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools.output_path_safety import ensure_output_paths_safe
 DEFAULT_MANIFEST = ROOT / "docs" / "collection_manifest.example.json"
 DEFAULT_REGISTER = ROOT / "docs" / "source_permission_register.json"
 COLLECTION_ALLOWED = {"allowed", "allowed_limited"}
@@ -278,6 +284,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     try:
+        ensure_output_paths_safe([args.out], [args.manifest, args.register])
         manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
         register = json.loads(args.register.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
