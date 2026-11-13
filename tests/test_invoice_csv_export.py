@@ -45,6 +45,34 @@ class InvoiceCsvExportTests(InvoiceTestSupport, unittest.TestCase):
             [],
         )
 
+    def test_csv_imported_formula_cells_are_neutralized_on_invoice_export(self):
+        malicious_title = '=HYPERLINK("https://attacker.example","open")'
+        malicious_client = '+CMD|/C calc!A0'
+        imported = self.mutate(
+            self.client_a,
+            "post",
+            "/cases/import.csv",
+            json={"csv": "title;client\\n" + malicious_title + ";" + malicious_client + "\\n"},
+        )
+        self.assertEqual(imported.status_code, 200, imported.text)
+        self.assertEqual(imported.json()["created"], 1)
+        imported_case = next(
+            case for case in self.client_a.get("/cases").json()
+            if case["title"] == malicious_title
+        )
+        original_case_id = self.case_id
+        try:
+            self.case_id = imported_case["id"]
+            draft = self.create_draft().json()
+            self.mutate(self.client_a, "post", f"/invoices/{draft['id']}/issue")
+            response = self.client_a.get("/invoices/export.csv")
+            self.assertEqual(response.status_code, 200, response.text)
+            rows = list(csv.DictReader(io.StringIO(response.content.decode("utf-8-sig"))))
+            imported_row = next(row for row in rows if row["case_title"] == "'" + malicious_title)
+            self.assertEqual(imported_row["client_name"], "'" + malicious_client)
+        finally:
+            self.case_id = original_case_id
+
     def test_export_filters_match_invoice_list_and_formula_prefixes_are_neutralized(self):
         draft = self.create_draft().json()
         issued = self.mutate(self.client_a, "post", f"/invoices/{draft['id']}/issue").json()
