@@ -69,7 +69,7 @@ A passing unit suite validates helper behavior only; it does not validate the ne
 - Added helper tests, separate-database API provenance assertions, and frontend contract coverage. PR #1594 merged at `600dea925d95f8bccdec79dad9157a4aec78a1e0`; tests remain unexecuted because the Actions runner/billing problem remains.
 - This is rule-based candidate structuring, not general NER, event verification, entity resolution or legal relationship analysis. OCR/extraction mistakes may propagate into every candidate.
 
-## Matter-wide date and event index — 2026-11-13 (branch pending merge)
+## Matter-wide date and event index — 2026-11-13 (merged #1596)
 
 - Added `GET /cases/{cid}/documents/timeline`, which first authorizes the matter and then reads only documents matching that case and active firm.
 - The endpoint processes at most 200 documents and one million extracted characters, returns at most 1,000 date mentions and 500 event candidates, and records a security audit event.
