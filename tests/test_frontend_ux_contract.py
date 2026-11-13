@@ -1439,5 +1439,10 @@ class FrontendUXContractTests(unittest.TestCase):
             for line_number in entry["source_lines"]:
                 self.assertIn(entry["arabic"], lines[line_number - 1], entry["id"])
 
+    def test_chunk_review_ignores_stale_responses_after_close_or_reopen(self):
+        self.assertIn("let reviewRequest=0", HTML)
+        self.assertIn("reviewRequest++;toggle.setAttribute('aria-expanded','false')", HTML)
+        self.assertIn("if(request!==reviewRequest||toggle.dataset.open!=='1')return", HTML)
+
 if __name__ == "__main__":
     unittest.main()
