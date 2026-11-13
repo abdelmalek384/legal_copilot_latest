@@ -42,6 +42,8 @@ class CorpusAuditTests(unittest.TestCase):
             "https://example.gov:99999/evidence",
             "https://example.gov:0/evidence",
             "https://example.gov:/evidence",
+            "https://example.gov/evidence\x7f",
+            "https://example.gov\\evidence",
         ):
             with self.subTest(value=value):
                 self.assertFalse(MODULE.valid_evidence_url(value), value)

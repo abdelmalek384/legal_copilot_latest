@@ -50,7 +50,7 @@ def _https_url(value: object) -> bool:
     """Validate URL syntax only; the audit does not verify evidence authenticity."""
     if not isinstance(value, str) or not value or value != value.strip():
         return False
-    if any(ch.isspace() or ord(ch) < 32 for ch in value):
+    if "\\" in value or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value):
         return False
     try:
         parsed = urlparse(value)

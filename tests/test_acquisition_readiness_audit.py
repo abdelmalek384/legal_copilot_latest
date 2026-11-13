@@ -285,9 +285,23 @@ class AcquisitionReadinessAuditTests(unittest.TestCase):
             " https://laws.example.gov/law.pdf",
             "https://laws.example.gov/law file.pdf",
             "https://laws.example.gov:99999/law.pdf",
+            "https://laws.example.gov/law\x7fpdf",
+            "https://laws.example.gov\\law.pdf",
         ):
             with self.subTest(url=url):
                 self.assertIsNone(MODULE._hostname(url))
+
+    def test_scope_review_evidence_url_rejects_del_and_backslashes(self):
+        for value in (
+            "https://laws.example.gov/rights\x7f",
+            "https://laws.example.gov\\rights/authorization",
+        ):
+            with self.subTest(value=value):
+                document = {
+                    "terms_checked_on": "2026-10-23",
+                    "permission_scope_review": passed_scope_review(evidence_url=value),
+                }
+                self.assertFalse(MODULE._scope_review_valid(document))
 
     def test_direct_url_host_must_match_allowlist(self):
         manifest = {"documents": [{

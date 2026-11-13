@@ -24,6 +24,8 @@ class LegalCorpusInventoryTests(unittest.TestCase):
             "https://example.gov:99999/law",
             "https://example.gov:0/law",
             "https://example.gov:/law",
+            "https://example.gov/law\x7f",
+            "https://example.gov\\law",
             "https://[malformed/law",
         ):
             with self.subTest(value=value):
