@@ -61,6 +61,12 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - Exit criteria: three firms complete unaided onboarding in under 15 minutes, use on mobile, and demonstrate owner-visible usage; later gate remains five firms using weekly and two willing to pre-pay.
 - This cannot be completed by repository edits alone.
 
+## Evidence URL validation parity — 2026-11-14
+
+- Hardened `tools/research_inspector.py::_valid_review_evidence_url` to reject DEL, raw backslashes, query strings and fragments, in addition to its existing HTTPS/authority checks; added direct regression cases.
+- Hardened `tools/evaluate_legal_answers.py::_valid_review_evidence_url` to reject raw backslashes; added a regression fixture alongside existing DEL/control-character coverage.
+- Source changes and tests were committed directly to main (`8b0dbc1`, `2396247`, `1d615fc`, `752d724`). Static source review only; tests unexecuted.
+
 ## Recent AI-1 and Legal Research integration
 
 - #1576 — merged fixture corrections for the Gazette importer and Arabic retrieval scorer.
