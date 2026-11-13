@@ -109,7 +109,7 @@ def _scope_review_valid(document: dict) -> bool:
         parsed = urlparse(evidence_url)
         port = parsed.port
         if (
-            evidence_url != evidence_url.strip() or any(char.isspace() for char in evidence_url)
+            evidence_url != evidence_url.strip() or "\\" in evidence_url or any(char.isspace() or ord(char) < 32 or ord(char) == 127 for char in evidence_url)
             or parsed.scheme != "https" or not parsed.hostname
             or parsed.username is not None or parsed.password is not None
             or (port is not None and not 1 <= port <= 65535)
