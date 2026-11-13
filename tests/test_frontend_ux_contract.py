@@ -1221,6 +1221,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("uploadPanel.setAttribute('aria-busy','false')", HTML)
 
 
+    def test_document_upload_queue_announces_per_file_status_accessibly(self):
+        self.assertIn("className:'research-upload-results',role:'list','aria-live':'polite'", HTML)
+        self.assertIn("className:'research-upload-item '+item.state,role:'listitem'", HTML)
+        self.assertIn("uploadStatus=h('p',{className:'research-upload-status',role:'status','aria-live':'polite'}", HTML)
+        self.assertIn("uploadPanel.setAttribute('aria-busy','true')", HTML)
+        self.assertIn("uploadPanel.setAttribute('aria-busy','false')", HTML)
+
+
     def test_document_library_discloses_advanced_filters_on_demand(self):
         self.assertIn("document-advanced-filters", HTML)
         self.assertIn("عوامل تصفية إضافية", HTML)
