@@ -826,6 +826,16 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("dates and parties only when they appear in the same sentence", panel)
         self.assertIn("No explicit relationship candidates were found.", panel)
 
+    def test_matter_wide_timeline_uses_server_provenance_and_review_warnings(self):
+        panel = HTML[HTML.index("function documentIntelligencePanel(caseId,documents)"):HTML.index("async function view(id)")]
+        self.assertIn("api('/cases/'+caseId+'/documents/timeline')", panel)
+        self.assertIn("result.dated_mentions", panel)
+        self.assertIn("result.unparsed_mentions", panel)
+        self.assertIn("result.event_candidates", panel)
+        self.assertIn("item.chunk_ref", panel)
+        self.assertIn("not a verified chronology", panel)
+        self.assertIn("No date or event mentions were found in accessible documents.", panel)
+
     def test_document_classification_edits_are_persisted_with_audit_and_version_checks(self):
         self.assertIn("draftOverrides", HTML)
         self.assertIn("Save classification", HTML)
