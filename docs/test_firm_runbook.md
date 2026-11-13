@@ -13,6 +13,21 @@
    Enter a unique test-only email and a strong test password at the interactive prompt. The command marks the firm as demo and seeds fictional cases, deadlines, fees and one clearly labelled demonstration invoice.
 4. Sign in as the demo owner, complete the first-run wizard in Arabic and English, and confirm the test-mode/demo identity is visible before entering any records.
 
+## 1A. Clean-clone first-login rehearsal
+
+Perform this rehearsal in a disposable directory, separate from any existing developer checkout:
+
+```bash
+git clone https://github.com/abdelmalek384/legal_copilot_latest.git
+cd legal_copilot_latest
+python3.12 --version
+python3.12 -m venv .venv
+. .venv/bin/activate
+python -m pip install --require-hashes -r requirements-py312.lock
+```
+
+Configure the three separate database paths using the repository's deployment template and keep all production credentials absent. Review the strict preflight output before starting the application. Create the fictional demo firm using the command in section 1, sign in with the test-only owner, and verify the demo banner, Arabic/English first-run wizard, setup-health state, and first dashboard load. Record the commit SHA and sanitized output. This is a documented acceptance procedure, not evidence that the rehearsal has already been executed.
+
 ## 2. Permitted data
 
 - Fictional records and synthetic files created solely for testing.
