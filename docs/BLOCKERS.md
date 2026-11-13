@@ -194,3 +194,11 @@ Percentages distinguish repository implementation from validation and operationa
 - Added named Gregorian month recognition for Arabic and English day-first/month-first date mentions, including Arabic-Indic digits, to the shared extraction and matter timeline helper.
 - Valid four-digit-year dates are normalized; ambiguous two-digit years and invalid calendar dates remain unparsed. Hijri conversion is explicitly unsupported.
 - Added helper regression coverage. Tests/browser acceptance remain unexecuted; branch `feature/arabic-named-month-dates-20261113` is pending merge.
+
+
+## Open pull requests reviewed — 2026-11-13
+
+- #1610 (AI-2 workspace UX) remains draft. It is not 100%: the PR reports no confirmed green Actions run, no full local suite, and outstanding responsive RTL/LTR, accessibility and lawyer usability acceptance. Keep validation with AI-2/Codex; do not merge based on the static catalog scan.
+- #1607 (Labour Decisions 248–252/2026) is correctly metadata-only. The source PDF is permission-restricted and operative text is unavailable; no repository-only action can close the legal-content/currentness gate. Leave quarantined and retrieval-ineligible.
+- #1490 (boto3 Dependabot) remains blocked on a matching Python 3.12 hash lock and clean installation. Do not merge the requirements-only change.
+- The user's uploaded patch bundle 0002–0009 maps to capabilities already present on current `main` (comparison, catalog, evaluation drafts, manual capture, deadline calculator, article-row audit, CI coverage guard and safe validation errors). Reapplication would duplicate existing work. Focus on the remaining validation/acceptance evidence instead.
