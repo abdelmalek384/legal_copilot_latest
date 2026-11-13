@@ -1,0 +1,16 @@
+{
+  "_template_note": "Replace every REPLACE_* value with truthful source metadata. Do not claim counsel supplied the text unless that is true. Calculate content_sha256 from the exact UTF-8 text file bytes. This template is not valid importer input until completed.",
+  "document_id": "EG-LABOUR-LAW-14-2025-GAZETTE-REPLACE_VERSION",
+  "official_title": "قانون العمل رقم 14 لسنة 2025",
+  "language": "ar",
+  "gazette_issue": "الجريدة الرسمية، العدد 18 مكرر (تابع)، 3 مايو 2025 — VERIFY AGAINST ORIGINAL",
+  "publication_date": "2025-05-03",
+  "retrieved_at": "REPLACE_WITH_ISO_8601_DATE_OR_DATETIME",
+  "captured_by": "REPLACE_WITH_SUPPLIER_IDENTIFIER",
+  "supplier_role": "REPLACE_WITH_egyptian_lawyer_or_qualified_egyptian_counsel",
+  "capture_method": "lawyer_supplied_text",
+  "source_reference": "REPLACE_WITH_STABLE_SOURCE_REFERENCE",
+  "collection_permission": "unknown",
+  "permission_evidence_reference": null,
+  "content_sha256": "REPLACE_WITH_64_CHARACTER_SHA256"
+}
