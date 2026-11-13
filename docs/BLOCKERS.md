@@ -19,7 +19,8 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 | Arabic evaluation question inventory | AI-1 | At least 100 unique formal/colloquial Egyptian Arabic drafts, uniform schema, all unreviewed and answer fields empty | 120 drafts (59 general + 61 labour) merged in #1570; static JSONL/schema check complete; lawyer answer-key approval and scoring remain external |
 | Documentation and ownership handoff | AI-1 / AI-2 | Each known blocker has owner, acceptance evidence, and no false completion claim | Register merged in #1562 and refreshed in this update; operational blockers remain open |
 | Legal evaluation report evidence-path integrity | AI-1 | Scorer, release-gate and legal-readiness report outputs cannot overwrite candidate/run/reviewer/acceptance inputs, including hard links | 100% merged (#1593); regression tests committed but not executed |
-| Legal report output-path integrity | AI-1 | JSON/Markdown report destinations cannot alias their database/register inputs or each other through direct paths, symlinks or hard links | 100% merged for legal-source review queue, corpus inventory, acquisition readiness, amendment relationships and legacy Arabic OCR (#1599); follow-up adds canonical OCR, article-row and corpus-database audit output protection; regression tests committed but unexecuted |
+| Legal report output-path integrity | AI-1 | JSON/Markdown report destinations cannot alias their database/register inputs or each other through direct paths, symlinks or hard links | 100% merged for legal-source review queue, corpus inventory, acquisition readiness, amendment relationships and Arabic OCR report paths (#1599); tests not run |
+| Remaining legal audit output-path integrity | AI-1 | Canonical OCR evaluator, article-row audit and corpus database audit cannot overwrite their inputs through direct paths, symlinks or hard links | Draft PR #1601 adds guards and CLI regressions; tests committed but not executed |
 
 ## External blockers: do not spend repeated effort looping
 
@@ -132,7 +133,7 @@ All of these merges are source-reviewed code integration only. Their tests remai
 | Gazette importer and provenance hardening | 100% merged (#1576/#1577/#1584) | Focused Python 3.12 tests not run | 80% |
 | Retrieval scorer/evaluator and device-evidence input hardening | 100% merged (#1580/#1581/#1583) | Focused Python 3.12 tests not run | 80% |
 | Live Arabic/English negated-obligation guard | Runtime call site confirmed; Arabic service-path tests merged (#1588) | Tests not run | 85% |
-| Structured candidate extraction (labelled entities, event mentions and explicit relationships) | 100% merged (#1594/#1600) | Helper/API tests and browser acceptance not run; limited deterministic rules, not general NER | 65% |
+| Structured candidate extraction (labelled entities, bilingual case references, event mentions, explicit relationships, date and amount candidates) | 100% merged (#1594/#1600/#1602/#1603/#1604/#1606) | Helper/API/browser tests not run; limited deterministic rules; ambiguous currency/decimal forms are not guessed | 85% |
 | Matter-wide date/event mention timeline | 100% merged (#1596) | API/browser acceptance and tenant-scope runtime checks not run | 80% |
 | Cross-document exact repeated-mention grouping | 100% merged (#1598) | Exact-match groups require human review; no identity resolution; tests/browser not run | 70% |
 | Advanced multi-document synthesis and cross-document entity resolution | Not implemented | Requires evidence conflict model, provenance policy and counsel evaluation | 20% |
@@ -186,3 +187,9 @@ Percentages distinguish repository implementation from validation and operationa
 - Added a matter-authorized API and UI action, with member-level document/chunk/page provenance, 200-document/one-million-character/1,000-candidate/500-group bounds and audit logging.
 - Same-firm nonmembers are denied by the matter authorization gate. Added helper, API, authorization and frontend contract tests; PR #1598 merged at `5d4b9516cfdebe13d5c99053a50145e968e39ea0`. None were executed because hosted runners remain unavailable.
 - All groups are possible repeated mentions only, not proof of identity, common ownership or legal relationship.
+
+## Arabic/English named-month date extraction — 2026-11-13 (branch pending merge)
+
+- Added named Gregorian month recognition for Arabic and English day-first/month-first date mentions, including Arabic-Indic digits, to the shared extraction and matter timeline helper.
+- Valid four-digit-year dates are normalized; ambiguous two-digit years and invalid calendar dates remain unparsed. Hijri conversion is explicitly unsupported.
+- Added helper regression coverage. Tests/browser acceptance remain unexecuted; branch `feature/arabic-named-month-dates-20261113` is pending merge.
