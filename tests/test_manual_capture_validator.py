@@ -46,6 +46,16 @@ class ManualCaptureRecordTests(unittest.TestCase):
         self.assertFalse(result["retrieval_eligible"])
         self.assertTrue(any("never verifies legal authenticity" in warning for warning in result["warnings"]))
 
+    def test_source_and_permission_urls_reject_raw_backslashes(self):
+        for field in ("source_url", "terms_url", "collection_permission_evidence_url",
+                      "commercial_reuse_evidence_url"):
+            with self.subTest(field=field):
+                self.record[field] = "https://example.gov\\\\rights/source"
+                result = validate_capture_record(self.record, self.record_path)
+                self.assertFalse(result["valid"])
+                self.assertTrue(any(field in error for error in result["errors"]))
+                self.record[field] = None
+
     def test_unsupported_legal_status_is_rejected(self):
         self.record["legal_status"] = "current_verified"
         result = validate_capture_record(self.record, self.record_path)
