@@ -1428,5 +1428,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("renderChunkReview(reviewPanel,data);reviewPanel.setAttribute('aria-busy','false')", HTML)
         self.assertIn("reviewPanel.setAttribute('aria-busy','false');reviewPanel.replaceChildren()", HTML)
 
+    def test_chunk_review_failure_has_inline_accessible_error(self):
+        self.assertIn("reviewPanel.replaceChildren(h('p',{className:'notice danger',role:'alert',textContent:uiText('تعذر تحميل المقاطع النصية. تحقق من صلاحية الوصول وحاول مرة أخرى.'", HTML)
+        self.assertIn("Could not load text chunks. Check access and try again.", HTML)
+
 if __name__ == "__main__":
     unittest.main()
