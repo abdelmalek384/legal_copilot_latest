@@ -73,6 +73,11 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - Added regression cases in corresponding tests. Direct-main source/test commits include `8b0dbc1`, `2396247`, `1d615fc`, `752d724`, `d40f188`, `0701780`, `498fde9`, `f8f890c`, `3b416b6`, and `24ee02e`.
 - Static source review only. Tests remain unexecuted; do not treat this as runtime validation.
 
+## Manual-capture URL parity — 2026-11-14
+
+- The manual-capture recorder and its read-only provenance validator now reject raw backslashes in source, terms and permission-evidence URLs; added regression cases for both ingestion and metadata validation.
+- Direct-main source/test commits: `6b3e86a`, `72f8430`, `5dc40b1`, `4568760`. Tests remain unexecuted.
+
 ## Recent AI-1 and Legal Research integration
 
 - #1576 — merged fixture corrections for the Gazette importer and Arabic retrieval scorer.
