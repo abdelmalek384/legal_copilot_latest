@@ -224,6 +224,8 @@ class LegalEvalRunnerTests(unittest.TestCase):
             "https://legal.example.com:0",
             "https://legal.example.com:",
             "https://[malformed",
+            "https://legal.example.com\\\\path",
+            "https://legal.example.com/path\\x7fhidden",
         )
         for value in invalid_urls:
             with self.subTest(value=value), self.assertRaises(RunnerError):
