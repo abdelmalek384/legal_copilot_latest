@@ -131,7 +131,7 @@ All of these merges are source-reviewed code integration only. Their tests remai
 | Retrieval scorer/evaluator and device-evidence input hardening | 100% merged (#1580/#1581/#1583) | Focused Python 3.12 tests not run | 80% |
 | Live Arabic/English negated-obligation guard | Runtime call site confirmed; Arabic service-path tests merged (#1588) | Tests not run | 85% |
 | Structured candidate extraction (labelled entities, event mentions and explicit relationships) | 100% merged (#1594) | Helper/API tests and browser acceptance not run; limited deterministic rules, not general NER | 60% |
-| Matter-wide date/event mention timeline | Implemented on current feature branch; merge pending | API/browser acceptance and tenant-scope runtime checks not run | 70% |
+| Matter-wide date/event mention timeline | 100% merged (#1596) | API/browser acceptance and tenant-scope runtime checks not run | 80% |
 | Advanced multi-document synthesis and cross-document entity resolution | Not implemented | Requires evidence conflict model, provenance policy and counsel evaluation | 20% |
 | Full Arabic RTL/LTR, keyboard, mobile/desktop acceptance | Not complete | Requires browser/device execution | 0% |
 | CI / clean Python 3.12 suite | Not complete | Runner/billing allocation prevents hosted jobs; local execution not available in this session | 0% |
@@ -170,9 +170,9 @@ Percentages distinguish repository implementation from validation and operationa
 - Added helper, separate-database API and frontend contract regressions. PR #1594 merged at `600dea925d95f8bccdec79dad9157a4aec78a1e0`. No tests or browser runs were executed because hosted runner/billing allocation remains blocked.
 - This is not general NER, entity resolution, event verification, or a legal relationship conclusion. All records remain unverified candidates; OCR/extraction errors may propagate.
 
-## Matter-wide date and event mention timeline — 2026-11-13 (branch pending merge)
+## Matter-wide date and event mention timeline — 2026-11-13 (merged #1596)
 
 - Added an authorized case-scoped endpoint that aggregates date and event mentions across documents in the selected matter only, preserving document/chunk/page provenance and source offsets.
 - Caps: 200 documents, one million extracted characters, 1,000 date mentions and 500 event candidates. Every view records a security audit event.
 - The Documents workspace can request the matter-wide index and displays parseable dates, unparsed dates and same-sentence event mentions. It explicitly warns that this is not a verified chronology and creates no deadlines.
-- Added helper, separate-database runtime and frontend contract tests. No tests or browser execution were run; branch `feature/matter-document-timeline-20261113` is pending merge.
+- Added helper, separate-database runtime and frontend contract tests. PR #1596 merged at `27409eedaa042c3b54abdb4fe547ce396751c5b4`. No tests or browser execution were run because hosted runner/billing allocation remains blocked.
