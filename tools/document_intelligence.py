@@ -609,10 +609,11 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
             if len(deadline_mentions) >= max_items:
                 truncated = True
                 break
-            period_mentions = [
-                match.group(0)
-                for match in list(_DEADLINE_PERIOD_PATTERN.finditer(sentence))[:10]
-            ]
+            period_mentions = []
+            for period_match in _DEADLINE_PERIOD_PATTERN.finditer(sentence):
+                period_mentions.append(period_match.group(0))
+                if len(period_mentions) >= 10:
+                    break
             deadline_mentions.append({
                 "trigger": trigger.group(0),
                 "sentence": sentence[:1000],
