@@ -175,3 +175,10 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 - When some pages could not be OCR-extracted, the panel warns that displayed passages may be incomplete and directs the reviewer to the original document.
 - Page-reference display now accepts either `page` or `page_number`; it continues to label the page as extracted/provisional, not independently verified.
 - Added frontend regression contracts and registered both Arabic warnings in the native-review catalog (1,445 unique entries; all new labels pending native review). No runtime test execution is claimed.
+
+
+### 2026-11-13 — cross-matter search passage hand-off
+
+- Cross-matter extracted-text search now transfers the returned case/document/chunk IDs into the same exact review navigation used by Legal Research sources.
+- When identifiers are incomplete, the action falls back to the matter Documents workspace and does not claim a chunk pinpoint.
+- Added a frontend regression contract and documented the shared hand-off. This does not change search scope, ranking, or verification status.
