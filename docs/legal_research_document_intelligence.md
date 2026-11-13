@@ -19,6 +19,7 @@ The application already accepts bounded PDF and DOCX uploads, extracts PDF text 
 - A date-mention review timeline that retains document/page provenance, parses valid four-digit-year dates using explicit day-first, ISO or named Arabic/English Gregorian-month rules, and refuses to guess two-digit years or invalid dates.
 - Structured candidate records for labelled parties, case/legal references, amounts and date mentions; sentence-scoped event triggers linked only to dates/labelled parties in that same sentence; and explicit Arabic/English relationship phrases. Every record retains character offsets and available page/chunk provenance and remains unverified.
 - Case-reference extraction recognizes Arabic labels and English Case/Claim/Appeal/Suit/Docket labels, including alphanumeric docket identifiers with slash/hyphen segments.
+- Monetary amount candidates preserve the literal mention and add a conservative decimal numeric string plus an explicit currency code only when the currency label identifies one unambiguously; ambiguous labels such as bare ريال/درهم remain unresolved.
 - Event candidates now retain exact character offsets for each same-sentence date and labelled-party mention, in addition to the event trigger and sentence offsets; the UI displays these offsets beside the source chunk/page.
 - Matter-wide date/event mention index over authorized documents, sorted parseable dates and unparsed mentions, with chunk/page provenance and strict document/character/result caps.
 - Matter-scoped exact repeated-mention grouping for labelled parties and case/legal references, with Unicode NFKC/case-fold/whitespace normalization only, member-level document/chunk/page provenance and an explicit warning that recurrence is not identity.
@@ -111,3 +112,10 @@ A passing unit suite validates helper behavior only; it does not validate the ne
 - Extended the case-reference candidate pattern to English Case, Claim, Appeal, Suit and Docket labels, including `No.`, `Number` and alphanumeric identifiers with slash/hyphen segments.
 - Arabic case-reference matching remains supported. Every result is a literal candidate with source offsets/page provenance, not a verified case identifier.
 - Added bilingual helper regression coverage; PR #1604 merged at `7dd0a188a4c23a0d0d9a231a72c629506b68df58`. Tests remain unexecuted.
+
+## Structured monetary amount candidates — 2026-11-13 (branch pending merge)
+
+- Extended amount matching to grouped thousands and decimal forms using Arabic-Indic or Western digits, including Arabic separators.
+- Structured amount records retain the literal mention and may expose a canonical decimal numeric string. Currency codes are assigned only for explicit labels/codes such as جنيه/EGP, دولار/USD, ريال سعودي/SAR, درهم إماراتي/AED and دينار كويتي/KWD.
+- Bare currency labels such as ريال, درهم or دينار remain currency-ambiguous; no exchange-rate conversion, currency inference or legal valuation is performed.
+- Added helper, separate-database API and frontend contract regressions. Tests remain unexecuted; branch `feature/structured-amount-candidates-20261113` is pending merge.
