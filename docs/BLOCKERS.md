@@ -19,7 +19,7 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 | Arabic evaluation question inventory | AI-1 | At least 100 unique formal/colloquial Egyptian Arabic drafts, uniform schema, all unreviewed and answer fields empty | 120 drafts (59 general + 61 labour) merged in #1570; static JSONL/schema check complete; lawyer answer-key approval and scoring remain external |
 | Documentation and ownership handoff | AI-1 / AI-2 | Each known blocker has owner, acceptance evidence, and no false completion claim | Register merged in #1562 and refreshed in this update; operational blockers remain open |
 | Legal evaluation report evidence-path integrity | AI-1 | Scorer, release-gate and legal-readiness report outputs cannot overwrite candidate/run/reviewer/acceptance inputs, including hard links | 100% merged (#1593); regression tests committed but not executed |
-| Legal report output-path integrity | AI-1 | JSON/Markdown report destinations cannot alias their database/register inputs or each other through direct paths, symlinks or hard links | 100% merged for legal-source review queue, corpus inventory, acquisition readiness, amendment relationships and Arabic OCR report paths (#1599); tests not run |
+| Legal report output-path integrity | AI-1 | JSON/Markdown report destinations cannot alias their database/register inputs or each other through direct paths, symlinks or hard links | 100% merged for legal-source review queue, corpus inventory, acquisition readiness, amendment relationships and legacy Arabic OCR (#1599); follow-up adds canonical OCR, article-row and corpus-database audit output protection; regression tests committed but unexecuted |
 
 ## External blockers: do not spend repeated effort looping
 
