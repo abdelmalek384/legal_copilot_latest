@@ -3598,6 +3598,12 @@ def _extracted_text_content(text):
     return re.sub(r"(?m)^\[\[PDF_PAGE:\d+\]\][ \t]*$", "", text or "").strip()
 
 
+# Bound concurrent OCR work across synchronous upload handlers. A single upload
+# still processes pages serially; excess requests fail closed instead of building
+# an unbounded queue of CPU- and memory-intensive OCR jobs.
+_OCR_SEMAPHORE = threading.BoundedSemaphore(2)
+
+
 def ocr_pdf_text(data, lang=None, max_pages=30, existing_pages=None):
     """OCR scanned pages only when extracted text is missing; OCR text remains unverified.
 
@@ -3630,7 +3636,12 @@ def ocr_pdf_text(data, lang=None, max_pages=30, existing_pages=None):
             else:
                 pix = page.get_pixmap(dpi=160, alpha=False)
                 image = Image.open(io.BytesIO(pix.tobytes("png")))
-                page_text = pytesseract.image_to_string(image, lang=lang, timeout=30).strip()
+                if not _OCR_SEMAPHORE.acquire(timeout=5):
+                    raise HTTPException(503, "OCR capacity is temporarily exhausted; retry the upload")
+                try:
+                    page_text = pytesseract.image_to_string(image, lang=lang, timeout=30).strip()
+                finally:
+                    _OCR_SEMAPHORE.release()
             block = f"[[PDF_PAGE:{page_no}]]\n\n{page_text}"
             added = len(block) + (2 if pages else 0)
             if total_chars + added > max_chars:
