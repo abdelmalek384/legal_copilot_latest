@@ -8653,6 +8653,7 @@ def matter_document_timeline(
     event_candidates = []
     remaining_chars = MAX_ANALYSIS_CHARS
     chunks_processed = 0
+    date_mentions_collected = 0
     truncated = False
     for document in documents:
         document_id = int(document["id"])
@@ -8679,6 +8680,9 @@ def matter_document_timeline(
             for entity in structured["entities"]:
                 if entity.get("entity_type") != "date_mention":
                     continue
+                if date_mentions_collected >= 1000:
+                    truncated = True
+                    break
                 candidates.append({
                     "kind": "date",
                     "value": entity.get("mention"),
@@ -8689,6 +8693,7 @@ def matter_document_timeline(
                     "end": entity.get("end"),
                     "excerpt": entity.get("excerpt", ""),
                 })
+                date_mentions_collected += 1
             for event in structured["events"]:
                 if len(event_candidates) >= 500:
                     truncated = True
@@ -8734,7 +8739,7 @@ def matter_document_timeline(
         ),
         "limitations": timeline["limitations"] + [
             "Only documents and chunks in the selected matter and current user's authorized firm scope are included.",
-            "The analysis is capped at one million extracted characters, 200 documents and 500 event candidates.",
+            "The analysis is capped at one million extracted characters, 200 documents, 1,000 date mentions and 500 event candidates.",
         ],
     }
 
