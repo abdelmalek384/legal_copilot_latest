@@ -440,6 +440,23 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
             out_of_range_numbers[str(block)] = out_of_range
         expected_label = str(expected) if expected is not None else "not supplied"
         report.append(f"| {block} | {labels[0]} | {labels[-1]} | {len(labels)} | {expected_label} |")
+
+    # An expected block that is wholly absent must not disappear from the audit.
+    # The per-block loop above can only report gaps inside blocks that were observed.
+    observed_kinds = set(block_provision_types.values())
+    expected_blocks = (
+        ("promulgation", metadata.get("expected_promulgation_provisions")),
+        ("attached_law", metadata.get("expected_attached_law_articles")),
+    )
+    for kind, expected_count in expected_blocks:
+        has_kind = (
+            kind in observed_kinds
+            or (kind == "attached_law" and "article" in observed_kinds)
+        )
+        if expected_count and not has_kind:
+            missing_key = f"missing_{kind}_block"
+            numbering_gaps[missing_key] = list(range(1, expected_count + 1))
+
     report += ["", "## Numbering audit", "",
                f"- Blocks with missing article numbers: {len(numbering_gaps)}",
                f"- Blocks with duplicate article numbers: {len(duplicate_numbers)}",
