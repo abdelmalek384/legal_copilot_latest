@@ -392,6 +392,7 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
         f"- Article/provision headings recognized: {len(articles)}",
         f"- Promulgation provisions recognized: {promulgation_count}",
         f"- Attached-law article headings recognized: {attached_law_count}",
+        f"- Expected article headings recognized: {metadata.get('expected_promulgation_provisions', 'not supplied')} promulgation; {metadata.get('expected_attached_law_articles', 'not supplied')} attached-law",
         f"- Unparsed preamble characters excluded from candidate rows: {preamble_characters}",
         f"- Output candidate chunks: {len(rows)}",
         f"- Empty article bodies requiring review: {len(empty_articles)}",
