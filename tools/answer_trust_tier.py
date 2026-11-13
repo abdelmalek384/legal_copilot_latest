@@ -37,7 +37,11 @@ def firm_test_source_matched_enabled(firm_id: object, env: object = None) -> boo
     if flag_value.strip() != "1":
         return False
     configured_firm = configured_value.strip()
-    if not configured_firm.isascii() or not configured_firm.isdigit() or isinstance(firm_id, bool):
+    if not configured_firm.isascii() or not configured_firm.isdigit():
+        return False
+    if isinstance(firm_id, bool) or not isinstance(firm_id, (int, str)):
+        return False
+    if isinstance(firm_id, str) and (not firm_id.isascii() or not firm_id.isdigit()):
         return False
     try:
         requested_firm = int(firm_id)
