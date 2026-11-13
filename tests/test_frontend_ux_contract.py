@@ -1303,5 +1303,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("research-source-caution.unverified", HTML)
         self.assertIn("research-source-caution.needs-review", HTML)
 
+    def test_source_inspector_uses_consistent_labels_for_all_recorded_statuses(self):
+        inspector = HTML[HTML.index("const inspectSource=(source,status,pin,provenance,trigger)=>"):HTML.index("const suggestCorrection=", HTML.index("const inspectSource=(source,status,pin,provenance,trigger)=>"))]
+        for status in ("verified_operative_text", "secondary_copy", "needs_review", "under_review", "outdated_or_under_review", "user_supplied_unverified", "unverified", "metadata_only", "no_relevant_verified_source"):
+            self.assertIn(status+":", inspector)
+        self.assertIn("needs_review:LANG==='ar'?'يحتاج مراجعة':'Needs review'", inspector)
+        self.assertIn("unverified:LANG==='ar'?'غير متحقق':'Unverified'", inspector)
+        self.assertIn("metadata_only:LANG==='ar'?'غير متحقق — بيانات وصفية فقط':'Unverified — metadata only'", inspector)
+
 if __name__ == "__main__":
     unittest.main()
