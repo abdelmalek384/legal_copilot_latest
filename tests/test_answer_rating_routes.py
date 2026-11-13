@@ -31,7 +31,7 @@ class AnswerRatingRouteTests(unittest.TestCase):
                 (10,7,1,'Firm A'),(20,8,2,'Firm B');
             INSERT INTO research_messages(id,conversation_id,role,content,message_json) VALUES
                 (1,10,'user','=SUM(1,1)','{}'),
-                (2,10,'assistant','Firm A answer','{"answer_id":"ans_AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"}'),
+                (2,10,'assistant','Firm A answer','{"answer_id":"ans_AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","sources":[{"article_id":"LABOUR::article:12"}]}'),
                 (3,20,'user','Private Firm B question','{}'),
                 (4,20,'assistant','Private Firm B answer','{"answer_id":"ans_BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"}');
         """)
@@ -75,6 +75,28 @@ class AnswerRatingRouteTests(unittest.TestCase):
         self.assertEqual([row["event_type"] for row in events], ["created", "updated"])
         self.assertTrue(second["benchmark_ready"])
 
+    def test_authenticated_reviewer_identity_is_server_derived(self):
+        lawyer = {"id": 19, "firm_id": 1, "role": "lawyer", "name": "Lawyer"}
+        forged = app.AnswerRatingIn(**{
+            "rating": "correct",
+            "cited_article_accuracy": "right",
+            "expected_article_ids": ["LABOUR::article:12"],
+            "answerable": True,
+            "notes": "",
+            "rated_by": 999,
+        })
+        saved = app.save_answer_rating(self.answer_id, forged, lawyer)
+        self.assertEqual(saved["rated_by"], 19)
+        self.assertEqual(
+            self.db.execute("SELECT rated_by FROM answer_ratings").fetchone()[0], 19
+        )
+
+    def test_rating_list_is_admin_only(self):
+        lawyer = {"id": 19, "firm_id": 1, "role": "lawyer", "name": "Lawyer"}
+        with self.assertRaises(app.HTTPException) as caught:
+            app.list_firm_answer_ratings(100, 0, lawyer)
+        self.assertEqual(caught.exception.status_code, 403)
+
     def test_cross_firm_answer_id_is_not_disclosed_or_rated(self):
         with self.assertRaises(app.HTTPException) as caught:
             app.save_answer_rating(
@@ -102,6 +124,7 @@ class AnswerRatingRouteTests(unittest.TestCase):
         self.assertEqual(rows[0]["question"], "'=SUM(1,1)")
         self.assertEqual(rows[0]["notes"], "'=HYPERLINK(\"x\")")
         self.assertEqual(rows[0]["benchmark_ready"], "true")
+        self.assertEqual(rows[0]["cited_article_ids"], '["LABOUR::article:12"]')
         self.assertNotIn("Firm B", text)
         audit = self.db.execute("SELECT event FROM security_audit_events").fetchone()[0]
         self.assertEqual(audit, "answer_rating_export:count=1")
