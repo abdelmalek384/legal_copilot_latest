@@ -29,7 +29,6 @@ REQUIRED_FALSE_FIELDS = (
     "source_text_page_reviewed",
     "amendment_history_verified",
     "release_eligible",
-    "targeted_pdf_text_reviewed",
     "original_pdf_downloaded",
     "full_visual_review",
 )
@@ -57,6 +56,7 @@ def validate_rows(rows: list[dict[str, Any]], minimum_questions: int = 100) -> d
     ids: set[str] = set()
     question_texts: set[str] = set()
     article_ids: set[str] = set()
+    targeted_text_review_count = 0
 
     if not isinstance(rows, list):
         return {"valid": False, "errors": ["dataset must be a list"], "questions": 0}
@@ -132,6 +132,10 @@ def validate_rows(rows: list[dict[str, Any]], minimum_questions: int = 100) -> d
         for field in REQUIRED_FALSE_FIELDS:
             if row.get(field) is not False:
                 errors.append(f"{label}: {field} must remain false until review evidence exists")
+        if not isinstance(row.get("targeted_pdf_text_reviewed"), bool):
+            errors.append(f"{label}: targeted_pdf_text_reviewed must be an explicit boolean")
+        elif row["targeted_pdf_text_reviewed"]:
+            targeted_text_review_count += 1
 
     if not styles.get("formal") or not styles.get("colloquial_egyptian"):
         errors.append("dataset must include both formal and colloquial_egyptian questions")
@@ -142,6 +146,7 @@ def validate_rows(rows: list[dict[str, Any]], minimum_questions: int = 100) -> d
         "unique_ids": len(ids),
         "unique_question_texts": len(question_texts),
         "unique_expected_article_ids": len(article_ids),
+        "targeted_pdf_text_reviewed_count": targeted_text_review_count,
         "styles": dict(sorted(styles.items())),
         "unapproved_label": UNAPPROVED_STATUS,
         "errors": errors,
