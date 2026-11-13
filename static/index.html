@@ -2795,6 +2795,29 @@ function documentIntelligencePanel(caseId,documents){
   const entityCards=allStructured.entities.slice(0,80).map((item,index)=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+uiText('كيان مرشح','Entity candidate')+' · '+String(item.entity_type||'')}),pill(uiText('غير متحقق','Unverified'),'soon')),h('p',{textContent:String(item.mention||'')}),item.role_label?h('p',{className:'mut',textContent:uiText('الدور المسمى: ','Labelled role: ')+item.role_label+' · '+String(item.name_mention||'')}):null,h('p',{className:'mut',textContent:structuredMeta(item)}),h('p',{className:'mut',textContent:String(item.excerpt||'')})));
   const eventCards=allStructured.events.slice(0,80).map((item,index)=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+uiText('حدث مذكور','Event mention')+' · '+String(item.trigger||'')}),pill(uiText('يتطلب سياقاً بشرياً','Human context required'),'soon')),h('p',{className:'extraction-review-text',textContent:String(item.sentence||'')}),h('p',{className:'mut',textContent:uiText('تواريخ في الجملة نفسها: ','Dates in same sentence: ')+(Array.isArray(item.date_mentions)?item.date_mentions.join(' · '):'—')}),h('p',{className:'mut',textContent:uiText('أطراف مسماة في الجملة: ','Labelled parties in sentence: ')+(Array.isArray(item.party_mentions)?item.party_mentions.join(' · '):'—')}),h('p',{className:'mut',textContent:structuredMeta(item)})));
   const relationCards=allStructured.relationships.slice(0,80).map((item,index)=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+uiText('علاقة صريحة مرشحة','Explicit relationship candidate')}),pill(uiText('غير متحقق','Unverified'),'soon')),h('p',{textContent:String(item.subject_mention||'')+' → '+String(item.relation_mention||'')+' → '+String(item.object_mention||'')}),h('p',{className:'extraction-review-text',textContent:String(item.sentence||'')}),h('p',{className:'mut',textContent:structuredMeta(item)})));
+  const entityMentionResults=h('div',{});
+  const entityMentionButton=btn(uiText('البحث عن تكرار أسماء الأطراف والمراجع عبر المستندات','Find repeated party and reference mentions across documents'),async()=>{
+   entityMentionButton.disabled=true;
+   entityMentionResults.replaceChildren(h('p',{className:'mut',role:'status','aria-live':'polite',textContent:uiText('جارٍ تجميع الإشارات المتطابقة حرفياً داخل القضية...','Grouping exact repeated mentions within this matter...')}));
+   try{
+    const result=await api('/cases/'+caseId+'/documents/entity-mentions');
+    const groups=Array.isArray(result.groups)?result.groups:[];
+    const cards=groups.slice(0,80).map((group,index)=>{
+     const members=Array.isArray(group.members)?group.members:[];
+     return h('article',{className:'card'},
+      h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+uiText('ذكر متكرر محتمل','Possible repeated mention')+' · '+String(group.entity_type||'')}),
+       pill(uiText('مراجعة بشرية مطلوبة','Human review required'),'soon')),
+      h('p',{textContent:(Array.isArray(group.matched_values)?group.matched_values:[]).join(' / ')}),
+      ...members.map(member=>h('p',{className:'mut',textContent:String(member.filename||'')+' · '+(member.page?uiText('صفحة ','Page ')+member.page:uiText('صفحة غير مسجلة','Page not recorded'))+' · '+String(member.chunk_ref||member.chunk_id||'')+(member.role_label?' · '+String(member.role_label):'')})));
+    });
+    if(!cards.length)entityMentionResults.replaceChildren(h('p',{className:'mut',textContent:uiText('لم تُعثر على أسماء أطراف أو مراجع متطابقة حرفياً عبر مستندات متعددة.','No exact repeated party or reference mentions were found across multiple documents.')}));
+    else entityMentionResults.replaceChildren(h('p',{className:'mut',role:'status',textContent:String(result.documents_processed||0)+' '+uiText('مستندات · ','documents · ')+String(result.candidate_count||0)+' '+uiText('مرشحات · ','candidates · ')+String(result.group_count||0)+' '+uiText('مجموعات','groups')}),...cards);
+    entityMentionResults.append(h('p',{className:'mut',textContent:String(result.warning||'')}));
+    if(result.truncated)entityMentionResults.append(h('p',{className:'notice',role:'note',textContent:uiText('تم بلوغ حد الفهرسة؛ قد توجد مطابقات إضافية.','The indexing cap was reached; additional matches may exist.')}));
+   }catch(error){
+    entityMentionResults.replaceChildren(h('p',{className:'notice danger',role:'alert',textContent:String(error.message||uiText('تعذر فهرسة الإشارات المتكررة. تحقق من الصلاحية وحاول مجدداً.','Could not index repeated mentions. Check access and retry.'))}));
+   }finally{entityMentionButton.disabled=false}
+  },'g');
   const structuredPanelChildren=[
    h('b',{textContent:uiText('الكيانات والأحداث والعلاقات المرشحة','Candidate entities, events and relationships')}),
    h('p',{className:'mut',textContent:uiText('تُربط إشارات الحدث بالتواريخ والأطراف عند ظهورها في الجملة نفسها فقط. لا يثبت ذلك وقوع الحدث أو الصفة أو العلاقة القانونية. راجع النص الأصلي قبل اعتماد أي نتيجة.','Event signals are linked to dates and parties only when they appear in the same sentence. This does not establish that an event occurred or that a legal status or relationship exists. Verify every result against the original.')}),
@@ -2802,6 +2825,7 @@ function documentIntelligencePanel(caseId,documents){
     pill(uiText('كيانات: ','Entities: ')+allStructured.entities.length,'open'),
     pill(uiText('أحداث: ','Events: ')+allStructured.events.length,'open'),
     pill(uiText('علاقات: ','Relationships: ')+allStructured.relationships.length,'open')),
+   entityMentionButton,entityMentionResults,
    ...(entityCards.length?entityCards:[h('p',{className:'mut',textContent:uiText('لا توجد كيانات مرشحة.','No entity candidates were found.')})]),
    ...(eventCards.length?eventCards:[h('p',{className:'mut',textContent:uiText('لا توجد أحداث مرشحة.','No event candidates were found.')})]),
    ...(relationCards.length?relationCards:[h('p',{className:'mut',textContent:uiText('لا توجد علاقات صريحة مرشحة.','No explicit relationship candidates were found.')})])

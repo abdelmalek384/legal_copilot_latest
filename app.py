@@ -15,7 +15,7 @@ from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_pe
 from tools.arabic_legal_matching import expand_lexicon_hints
 from tools.arabic_drafting_skeletons import build_arabic_skeleton
 from tools.claim_support import claim_support_enabled, has_unsupported_claims, has_negated_obligation_conflicts
-from tools.document_intelligence import MAX_ANALYSIS_CHARS, classify_document, extract_review_candidates, extract_structured_candidates, build_date_mention_timeline, compare_extracted_text
+from tools.document_intelligence import MAX_ANALYSIS_CHARS, classify_document, extract_review_candidates, extract_structured_candidates, build_date_mention_timeline, group_candidate_entity_mentions, compare_extracted_text
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
     generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
@@ -8742,6 +8742,98 @@ def matter_document_timeline(
         "limitations": timeline["limitations"] + [
             "Only documents and chunks in the selected matter and current user's authorized firm scope are included.",
             "The analysis is capped at one million extracted characters, 200 documents, 1,000 date mentions and 500 event candidates.",
+        ],
+    }
+
+
+@app.get("/cases/{cid}/documents/entity-mentions")
+def matter_document_entity_mentions(
+    cid: int,
+    limit: int = Query(default=100, ge=1, le=200),
+    u: dict = Depends(user),
+):
+    """Group exact repeated party/reference mentions within one authorized matter."""
+    c = conn()
+    need(c, u, cid)
+    document_rows = c.execute(
+        "SELECT id,name FROM docs WHERE case_id=? AND firm_id=? ORDER BY id DESC LIMIT ?",
+        (cid, int(u["firm_id"]), limit + 1),
+    ).fetchall()
+    documents = document_rows[:limit]
+    inputs = []
+    remaining_chars = MAX_ANALYSIS_CHARS
+    chunks_processed = 0
+    candidates_collected = 0
+    truncated = len(document_rows) > limit
+    for document in documents:
+        document_id = int(document["id"])
+        filename = str(document["name"] or "Unnamed document")
+        entities = []
+        rows = c.execute(
+            "SELECT id,ref,page,text FROM chunks WHERE case_id=? AND document_id=? ORDER BY id",
+            (cid, document_id),
+        ).fetchall()
+        for row in rows:
+            chunk_text = row["text"] if isinstance(row["text"], str) else ""
+            if not chunk_text:
+                continue
+            if remaining_chars <= 0:
+                truncated = True
+                break
+            bounded_text = chunk_text[:remaining_chars]
+            remaining_chars -= len(bounded_text)
+            chunks_processed += 1
+            if len(bounded_text) < len(chunk_text):
+                truncated = True
+            structured = extract_structured_candidates(bounded_text, max_items=100)
+            truncated = truncated or structured["truncated"]
+            for entity in structured["entities"]:
+                if entity.get("entity_type") not in {"labelled_party", "case_reference", "legal_reference"}:
+                    continue
+                if candidates_collected >= 1000:
+                    truncated = True
+                    break
+                entities.append({
+                    **entity,
+                    "document_id": str(document_id),
+                    "filename": filename,
+                    "chunk_id": int(row["id"]),
+                    "chunk_ref": row["ref"] or str(row["id"]),
+                    "page": row["page"] if row["page"] not in (None, "") else entity.get("page"),
+                })
+                candidates_collected += 1
+            if remaining_chars <= 0 or candidates_collected >= 1000:
+                truncated = True
+                break
+        inputs.append({
+            "firm_id": str(u["firm_id"]),
+            "matter_id": str(cid),
+            "document_id": str(document_id),
+            "filename": filename,
+            "entities": entities,
+        })
+        if remaining_chars <= 0 or candidates_collected >= 1000:
+            break
+    grouped = group_candidate_entity_mentions(inputs, max_candidates=1000, max_groups=500)
+    truncated = truncated or grouped["truncated"]
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (int(u["firm_id"]), int(u["id"]), "matter_document_entity_mentions_view"),
+    )
+    c.commit()
+    return {
+        "case_id": cid,
+        "documents_processed": len(inputs),
+        "chunks_processed": chunks_processed,
+        "candidate_count": grouped["candidate_count"],
+        "groups": grouped["groups"],
+        "group_count": grouped["group_count"],
+        "truncated": truncated,
+        "requires_review": True,
+        "warning": grouped["warning"],
+        "limitations": grouped["limitations"] + [
+            "Only documents in the selected matter and active firm scope are included.",
+            "The analysis is capped at one million extracted characters, 200 documents, 1,000 candidate mentions and 500 groups.",
         ],
     }
 

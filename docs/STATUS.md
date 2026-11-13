@@ -264,3 +264,10 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Each result preserves document ID/name, chunk ID/reference, page and source offsets. The endpoint is bounded to 200 documents, one million characters, 1,000 date mentions and 500 event candidates and writes an audit event.
 - Added a Legal Research UI control for loading the matter-wide timeline; it distinguishes parseable dates, unparsed dates and event mentions and displays the server warning. It does not create deadlines or assert a verified chronology.
 - Helper, separate-database API and frontend contract tests were added but not executed. PR #1596 merged at `27409eedaa042c3b54abdb4fe547ce396751c5b4`.
+
+## Cross-document repeated-mention index update — 2026-11-13
+
+- Added exact-match grouping for labelled parties and case/legal references across documents in one authorized matter. Matching uses NFKC, case-folding and whitespace collapse only.
+- The endpoint and UI retain member-level document/chunk/page provenance and record an audit event. Same-firm nonmembers are denied by the matter authorization gate.
+- Results are possible repeated mentions, not identity resolution or proof of legal relationships. Helper, API, authorization and frontend tests were added but not executed.
+- Branch `feature/matter-entity-mention-index-20261113`; PR/merge pending.

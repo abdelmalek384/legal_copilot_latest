@@ -3,7 +3,7 @@ import unittest
 
 from tools.document_intelligence import (
     classify_document, compare_extracted_text, extract_review_candidates, extract_structured_candidates,
-    build_date_mention_timeline, group_same_matter_duplicates, normalized_text_digest, sha256_bytes,
+    build_date_mention_timeline, group_candidate_entity_mentions, group_same_matter_duplicates, normalized_text_digest, sha256_bytes,
 )
 
 
@@ -142,6 +142,45 @@ class DocumentIntelligenceTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             compare_extracted_text("a" * 100_001, "b")
 
+
+    def test_candidate_entity_mentions_group_exact_names_only_within_same_matter(self):
+        documents = [
+            {"firm_id": "firm-a", "matter_id": "matter-1", "document_id": "doc-1", "filename": "one.pdf",
+             "entities": [{"entity_type": "labelled_party", "mention": "Plaintiff: Alice Smith",
+                           "name_mention": "Alice Smith", "role_label": "Plaintiff", "page": 2, "chunk_id": 11}]},
+            {"firm_id": "firm-a", "matter_id": "matter-1", "document_id": "doc-2", "filename": "two.docx",
+             "entities": [{"entity_type": "labelled_party", "mention": "Defendant: alice   smith",
+                           "name_mention": "alice   smith", "role_label": "Defendant", "page": None, "chunk_id": 22}]},
+            {"firm_id": "firm-a", "matter_id": "matter-2", "document_id": "doc-3", "filename": "three.pdf",
+             "entities": [{"entity_type": "labelled_party", "mention": "Plaintiff: Alice Smith",
+                           "name_mention": "Alice Smith"}]},
+            {"firm_id": "firm-b", "matter_id": "matter-1", "document_id": "doc-4", "filename": "four.pdf",
+             "entities": [{"entity_type": "labelled_party", "mention": "Plaintiff: Alice Smith",
+                           "name_mention": "Alice Smith"}]},
+        ]
+        result = group_candidate_entity_mentions(documents)
+        self.assertEqual(result["group_count"], 1)
+        group = result["groups"][0]
+        self.assertEqual(group["document_ids"], ["doc-1", "doc-2"])
+        self.assertEqual(group["match_basis"], "exact_nfkc_casefold_whitespace")
+        self.assertEqual(group["review_status"], "possible_repeat_mention_requires_human_review")
+        self.assertEqual({member["role_label"] for member in group["members"]}, {"Plaintiff", "Defendant"})
+        self.assertIn("do not establish identity", result["warning"])
+
+    def test_candidate_entity_grouping_ignores_other_entity_types_and_caps_work(self):
+        documents = [{
+            "firm_id": "firm-a", "matter_id": "matter-1", "document_id": "doc-1",
+            "entities": [
+                {"entity_type": "date_mention", "mention": "2025-01-01"},
+                {"entity_type": "amount", "mention": "5000 EGP"},
+                {"entity_type": "legal_reference", "mention": "Article 10"},
+                {"entity_type": "legal_reference", "mention": "Article 11"},
+            ],
+        }]
+        result = group_candidate_entity_mentions(documents, max_candidates=1)
+        self.assertEqual(result["groups"], [])
+        self.assertEqual(result["candidate_count"], 1)
+        self.assertTrue(result["truncated"])
 
     def test_timeline_sorts_date_mentions_and_keeps_document_provenance(self):
         documents = [
