@@ -135,3 +135,11 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 - The connected GitHub interface returned zero step summaries for every job and the job-log download was unavailable for every job. Therefore the failure stage and cause cannot be established from the available evidence; do not infer that these are application-test failures or that billing is definitely the cause.
 - The inline JavaScript was independently parsed successfully after correcting the two extra closing parentheses. This is a targeted static parse check, not evidence that the Python suite or browser acceptance passed.
 - PR #1610 remains draft, unmerged and undeployed. Release acceptance is still blocked on retrievable CI diagnostics and the outstanding manual/browser/legal review gates.
+
+### 2026-11-13 — matter-document identity in the research inspector
+
+- When retrieval supplies stable provenance fields, the Legal Research inspector now displays the matter-document record ID, matter ID, and original-file SHA-256 fingerprint alongside the existing original filename and page pinpoint.
+- Fields are conditional: missing identifiers are omitted rather than inferred. The interface does not construct a document URL or treat a checksum as proof that OCR text is accurate.
+- Added a focused frontend regression contract for the identifier and fingerprint fallbacks, and documented the provenance hand-off in the source-inspector contract.
+- This improves the ability to locate and independently compare a retrieved passage with its retained matter file without changing retrieval, authorization, source ranking, or legal verification.
+- CI remains non-green; job records are available but the GitHub Actions API returns no step summaries, and log downloads currently return a missing-blob response. Do not treat the new regression contract as executed validation.
