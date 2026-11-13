@@ -3551,7 +3551,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertTrue(result["after"]["sources"])
         self.assertEqual(result["before"]["sources"][0]["page"], 2)
         self.assertEqual(result["after"]["sources"][0]["page"], 2)
-        self.assertIn("original documents", result["warning"])
+        self.assertIn("both originals", result["warning"])
 
         other_case = self._mutate(
             "post", "/cases", json={"title": "Unrelated comparison matter"}
