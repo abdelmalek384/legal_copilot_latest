@@ -1402,5 +1402,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("window.DOCUMENT_MATTER_ID=null;window.DOCUMENT_REVIEW_TARGET=null;sessionStorage.me=JSON.stringify(ME)", HTML)
         self.assertIn("ME={...ME,...result,...session};window.DOCUMENT_MATTER_ID=null;window.DOCUMENT_REVIEW_TARGET=null;sessionStorage.me=JSON.stringify(ME)", HTML)
 
+    def test_session_expiry_and_signout_clear_pending_document_navigation(self):
+        reset = "sessionStorage.removeItem('me');ME={};window.DOCUMENT_MATTER_ID=null;window.DOCUMENT_REVIEW_TARGET=null;login();"
+        self.assertGreaterEqual(HTML.count(reset), 4)
+
 if __name__ == "__main__":
     unittest.main()
