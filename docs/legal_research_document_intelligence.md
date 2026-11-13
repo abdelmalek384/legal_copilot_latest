@@ -45,7 +45,7 @@ The application already accepts bounded PDF and DOCX uploads, extracts PDF text 
 
 ### Remaining repository work
 
-1. Merged in PR #1591: expose the existing bounded multi-hunk comparison in the authorized chunk API and extraction-review UI. Each literal before/after hunk is marked as requiring lawyer review; oversized comparisons return an explicit warning.
+1. PR #1591 exposes bounded multi-hunk comparisons between original and corrected extraction passages in the chunk-review workflow. The new cross-document comparison API/UI is implemented on branch `feature/document-version-comparison-api-20261113`: `GET /documents/compare` accepts two document IDs only within one authorized matter, assembles extracted text in stored chunk order, returns bounded literal hunks plus chunk/page provenance for both versions, and records a coarse security audit event. The Documents workspace now calls this API instead of generating a local first/last-difference approximation. API and frontend contract regressions were added; merge and runtime execution are pending.
 2. Extend structured extraction beyond current literal keyword/regex candidates for entities, events and relationships; retain source chunk/page provenance and human-review state.
 3. Evaluate Arabic/English PDF and DOCX fixtures, including scanned PDFs, malformed documents, large files, duplicate documents and mixed-language content. OCR remains disabled in this helper foundation.
 4. Add end-to-end tests for upload, download, classification concurrency/role enforcement, extraction review, search pagination, firm switching and cross-firm denial.
