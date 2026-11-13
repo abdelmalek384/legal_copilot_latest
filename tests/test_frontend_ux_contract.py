@@ -1220,5 +1220,30 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("uploadPanel.setAttribute('aria-busy','true')", HTML)
         self.assertIn("uploadPanel.setAttribute('aria-busy','false')", HTML)
 
+
+    def test_primary_navigation_groups_existing_destinations_without_dropping_them(self):
+        self.assertIn("className:'nav-group'", HTML)
+        self.assertIn("مساحة العمل", HTML)
+        self.assertIn("إدارة المكتب", HTML)
+        for route in ("'dash'", "'cases'", "'clients'", "'law'", "'documents'", "'tasks'", "'calendar'", "'finance'", "'settings'"):
+            self.assertIn(route, HTML)
+        self.assertIn("ME.can_review_legal?", HTML)
+        self.assertIn("@media(max-width:800px)", HTML)
+
+    def test_dashboard_prioritizes_actionable_attention_and_removes_duplicate_shortcuts(self):
+        self.assertIn("dashboard-attention", HTML)
+        self.assertIn("Needs your attention", HTML)
+        self.assertIn("overdueTasks+overdueDeadlines.length", HTML)
+        self.assertNotIn("Quick access", HTML)
+        self.assertNotIn("Recorded fees", HTML)
+
+    def test_legal_source_states_are_explicit_and_fail_cautiously(self):
+        self.assertIn("needs_review:LANG==='ar'?'يحتاج مراجعة':'Needs review'", HTML)
+        self.assertIn("unverified:LANG==='ar'?'غير متحقق':'Unverified'", HTML)
+        self.assertIn("user_supplied_unverified:LANG==='ar'?'غير متحقق':'Unverified'", HTML)
+        self.assertIn("status==='verified_operative_text'?'done':'", HTML)
+        self.assertIn("do not rely on it as verified operative text", HTML)
+        self.assertIn("One or more source/current-status checks are missing or unresolved", HTML)
+
 if __name__ == "__main__":
     unittest.main()
