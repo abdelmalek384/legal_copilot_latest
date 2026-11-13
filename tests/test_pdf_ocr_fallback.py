@@ -77,6 +77,34 @@ class PdfOcrFallbackTests(unittest.TestCase):
         self.assertEqual(caught.exception.status_code, 413)
 
 
+    def test_ocr_saturation_fails_closed_without_starting_another_ocr_job(self):
+        fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: FakePdfDoc(1))
+        fake_pytesseract = types.SimpleNamespace(image_to_string=MagicMock(return_value="should not run"))
+        fake_image = types.SimpleNamespace(open=lambda value: object())
+        fake_pil = types.ModuleType("PIL")
+        fake_pil.Image = fake_image
+
+        class SaturatedSemaphore:
+            def acquire(self, timeout=None):
+                self.timeout = timeout
+                return False
+
+            def release(self):
+                raise AssertionError("release must not run when acquire fails")
+
+        semaphore = SaturatedSemaphore()
+        with patch.dict(sys.modules, {
+            "pymupdf": fake_pymupdf,
+            "pytesseract": fake_pytesseract,
+            "PIL": fake_pil,
+        }), patch.object(app, "_OCR_SEMAPHORE", semaphore):
+            with self.assertRaises(app.HTTPException) as caught:
+                app.ocr_pdf_text(b"pdf")
+
+        self.assertEqual(caught.exception.status_code, 503)
+        self.assertEqual(semaphore.timeout, 5)
+        fake_pytesseract.image_to_string.assert_not_called()
+
     def test_ocr_output_obeys_one_megabyte_extraction_budget(self):
         fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: FakePdfDoc(1))
         fake_pytesseract = types.SimpleNamespace(
