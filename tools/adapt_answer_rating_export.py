@@ -53,19 +53,20 @@ def adapt_rows(rows: list[dict[str, str]]) -> tuple[list[dict[str, str]], list[s
         if not isinstance(answer_id, str) or not answer_id.strip():
             raise ValueError(f"row {line_number}: answer_id is required")
         rating = row.get("rating")
-        if rating not in RATING_MAP:
+        if not isinstance(rating, str) or rating not in RATING_MAP:
             raise ValueError(f"row {line_number}: rating must be correct, partially_correct, or wrong")
         cited = row.get("cited_article_accuracy")
-        if cited not in {"right", "wrong", "not_applicable"}:
+        if not isinstance(cited, str) or cited not in {"right", "wrong", "not_applicable"}:
             raise ValueError(f"row {line_number}: cited_article_accuracy must be right, wrong, or not_applicable")
         notes = row.get("notes")
-        if notes is None:
-            raise ValueError(f"row {line_number}: notes column is missing")
+        if not isinstance(notes, str):
+            raise ValueError(f"row {line_number}: notes must be a string (empty is allowed)")
         rater = row.get("rated_by")
         if not isinstance(rater, str) or not rater.strip():
             raise ValueError(f"row {line_number}: rated_by is required")
         timestamp = _timestamp(row.get("updated_at"), line_number)
-        trust_tier = row.get("trust_tier", "").strip().lower()
+        raw_tier = row.get("trust_tier")
+        trust_tier = raw_tier.strip().lower() if isinstance(raw_tier, str) else ""
         canonical_tier = trust_tier if trust_tier in {"verified", "source_matched"} else "unverified"
 
         if cited == "not_applicable":
@@ -97,7 +98,10 @@ def adapt_file(input_path: Path, output_path: Path) -> dict[str, Any]:
 
     with input_path.open("r", encoding="utf-8-sig", newline="") as handle:
         reader = csv.DictReader(handle, strict=True)
-        missing = SOURCE_REQUIRED - set(reader.fieldnames or [])
+        fieldnames = reader.fieldnames or []
+        if len(fieldnames) != len(set(fieldnames)):
+            raise ValueError("firm export contains duplicate column names")
+        missing = SOURCE_REQUIRED - set(fieldnames)
         if missing:
             raise ValueError("firm export is missing required columns: " + ", ".join(sorted(missing)))
         rows = list(reader)
