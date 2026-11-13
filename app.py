@@ -2998,9 +2998,9 @@ def validate_review_evidence_url(value):
         return None
     from urllib.parse import urlsplit
     try:
-        if not isinstance(value, str) or value != value.strip() or any(ch.isspace() for ch in value):
-            raise ValueError
-        if any(ord(ch) < 32 for ch in value):
+        if (not isinstance(value, str) or value != value.strip()
+                or "\\" in value
+                or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value)):
             raise ValueError
         parsed = urlsplit(value)
         port = parsed.port  # Accessing .port rejects non-numeric and out-of-range ports.
@@ -3009,6 +3009,8 @@ def validate_review_evidence_url(value):
             or not parsed.hostname
             or parsed.username is not None
             or parsed.password is not None
+            or parsed.query
+            or parsed.fragment
             or parsed.netloc.endswith(":")
             or (port is not None and not 1 <= port <= 65535)
         ):
