@@ -775,6 +775,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("source.case_id??source.matter_id??p.case_id??p.matter_id", HTML)
         self.assertIn("source.sha256||source.file_sha256||p.sha256||p.file_sha256", HTML)
         self.assertIn("Document record ID: ", HTML)
+        self.assertIn("const chunkRecordId=source.chunk_id??source.id??p.chunk_id", HTML)
+        self.assertIn("Chunk ID: ", HTML)
         self.assertIn("Matter ID: ", HTML)
         self.assertIn("Original file SHA-256: ", HTML)
         self.assertIn("معرّف سجل المستند: ", HTML)
