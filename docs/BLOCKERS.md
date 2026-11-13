@@ -20,6 +20,8 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 | Documentation and ownership handoff | AI-1 / AI-2 | Each known blocker has owner, acceptance evidence, and no false completion claim | Register merged in #1562 and refreshed in this update; operational blockers remain open |
 | Legal evaluation report evidence-path integrity | AI-1 | Scorer, release-gate and legal-readiness report outputs cannot overwrite candidate/run/reviewer/acceptance inputs, including hard links | 100% merged (#1593); regression tests committed but not executed |
 | Legal report output-path integrity | AI-1 | JSON/Markdown report destinations cannot alias their database/register inputs or each other through direct paths, symlinks or hard links | 100% merged for legal-source review queue, corpus inventory, acquisition readiness, amendment relationships and Arabic OCR report paths (#1599); tests not run |
+| Remaining legal audit output-path integrity | AI-1 | Canonical OCR evaluator, article-row audit and corpus database audit cannot overwrite their inputs through direct paths, symlinks or hard links | This branch adds guards and CLI regressions; tests committed but not executed |
+| Additional legal CLI report-path integrity | AI-1 | Corpus/reference comparison, Labour Law evidence-card report, and structured legal-draft output cannot overwrite source inputs or inventory manifests | This branch adds direct-path, symlink and hard-link guards plus CLI regressions; tests not run |
 
 ## External blockers: do not spend repeated effort looping
 
