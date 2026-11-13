@@ -1221,6 +1221,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("uploadPanel.setAttribute('aria-busy','false')", HTML)
 
 
+    def test_document_library_discloses_advanced_filters_on_demand(self):
+        self.assertIn("document-advanced-filters", HTML)
+        self.assertIn("عوامل تصفية إضافية", HTML)
+        self.assertIn("Additional filters", HTML)
+        self.assertIn("document-primary-filter", HTML)
+        self.assertIn("documentTypeFilter,documentStatusFilter,documentClassificationFilter,clearDocumentFilters", HTML)
+
     def test_matter_identity_and_progress_remain_visible_across_sections(self):
         self.assertIn("matter-context-strip", HTML)
         self.assertIn("matterMeta=[c.case_number&&", HTML)
