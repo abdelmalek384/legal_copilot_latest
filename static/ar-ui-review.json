@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "22cafd85cf3b01c495fb21b96f69f0b4fb8c9849",
   "generated_on": "2026-11-12",
-  "entry_count": 1169,
+  "entry_count": 1172,
   "entries": [
     {
       "id": "AR-0001",
@@ -11290,6 +11290,30 @@
       "arabic": "العميل: ",
       "source_lines": [
         1858
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1170",
+      "arabic": "المجموعة القانونية المتحقق منها — لا تتوفر حالياً مجموعة مصرية معتمدة",
+      "source_lines": [
+        2357
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1171",
+      "arabic": "تنبيه بشأن توافر المصادر القانونية",
+      "source_lines": [
+        2605
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1172",
+      "arabic": "لا تتوفر حالياً مجموعة قوانين مصرية تم التحقق منها بواسطة محامين. قد تظهر بيانات مرشحة أو نتائج مصدرية فقط؛ لا تعتبرها قانوناً سارياً أو معتمداً.",
+      "source_lines": [
+        2605
       ],
       "review_status": "pending_native_review"
     }
