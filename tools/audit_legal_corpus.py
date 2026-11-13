@@ -6,6 +6,13 @@ from collections import Counter
 from datetime import date, datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
+import sys
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from tools.output_path_safety import ensure_output_paths_safe
 
 REGISTRY_TABLES = {"legal_sources","legal_documents","legal_document_versions","legal_version_relations","legal_review_events"}
 
@@ -563,6 +570,10 @@ def main(argv=None):
     if a.db is None:
         p.error("a legal-corpus database is required; configure COPILOT_CORPUS_DB or pass --db")
     try:
+        ensure_output_paths_safe(
+            [a.out_dir / "legal_corpus_audit.json", a.out_dir / "legal_corpus_audit.md"],
+            [a.db],
+        )
         report=audit(a.db, check_fts_index=a.check_fts_index)
     except (FileNotFoundError, sqlite3.Error, ValueError) as exc:
         p.error(str(exc))
