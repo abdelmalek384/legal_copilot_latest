@@ -8748,7 +8748,7 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
         "candidate_count": len(candidates),
         "candidates": candidates,
         "structured": structured_intelligence,
-        "truncated": analysis_truncated,
+        "truncated": analysis_truncated or structured_truncated,
         "requires_review": True,
     }
     return {
@@ -8758,7 +8758,7 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
         "ocr_used": bool(doc["ocr_used"]),
         "chunks": chunks,
         "intelligence": intelligence,
-        "warning": "Server-side keyword and regex results are review candidates only. They do not establish legal accuracy, facts, deadlines, or source authenticity.",
+        "warning": "Server-side text-pattern and sentence-context results are review candidates only. They do not establish legal accuracy, facts, event occurrence, relationships, deadlines, or source authenticity.",
     }
 
 
