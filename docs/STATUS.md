@@ -237,3 +237,9 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - #1588 adds Arabic `app.ask` service-path regression coverage and closes issue #1561; the live narrow guard was confirmed in the final answer path.
 - #1589 adds explicit `source_reference` validation when the metadata field is present; #1590 removes a duplicate earlier check while retaining the final fail-closed validation. No importer trust flags changed.
 - Focused tests remain unexecuted. The current merge checkpoint is code integration, not runtime validation.
+
+
+## Document extraction comparison update — 2026-11-13
+
+- PR #1591 merged bounded multi-hunk literal comparison into the authorized document-chunk API and extraction-review UI. Corrected passages now show before/after hunks, each explicitly marked as requiring lawyer review; comparisons beyond the configured size limit return a warning.
+- The original uploaded file remains unchanged. No legal significance or correctness is inferred from textual differences. API/frontend regression tests were added but not executed.
