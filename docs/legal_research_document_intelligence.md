@@ -106,8 +106,8 @@ A passing unit suite validates helper behavior only; it does not validate the ne
 - Hijri mentions remain in the unparsed timeline with `calendar_system: hijri` and `interpretation: hijri_unconverted`; no Hijri-to-Gregorian conversion or deadline calculation is attempted.
 - The timeline UI labels these mentions as unconverted. Added helper and frontend contract tests; PR #1603 merged at `9c8e15dc43f61cd473dc10f6d909ef156c597f5c`. Tests remain unexecuted.
 
-## English case-reference extraction — 2026-11-13 (branch pending merge)
+## English case-reference extraction — 2026-11-13 (merged #1604)
 
 - Extended the case-reference candidate pattern to English Case, Claim, Appeal, Suit and Docket labels, including `No.`, `Number` and alphanumeric identifiers with slash/hyphen segments.
 - Arabic case-reference matching remains supported. Every result is a literal candidate with source offsets/page provenance, not a verified case identifier.
-- Added bilingual helper regression coverage; tests remain unexecuted. Branch `feature/english-case-reference-extraction-20261113` is pending merge.
+- Added bilingual helper regression coverage; PR #1604 merged at `7dd0a188a4c23a0d0d9a231a72c629506b68df58`. Tests remain unexecuted.
