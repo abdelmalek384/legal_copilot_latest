@@ -3231,7 +3231,7 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    if(target&&Number(target.caseId)===Number(id)&&Number(target.documentId)===Number(data.document_id)){
     const targetCard=Array.from(container.children).find(card=>card.id==='doc-chunk-review-'+id+'-'+data.document_id+'-'+target.chunkId);
     window.DOCUMENT_REVIEW_TARGET=null;
-    if(targetCard){targetCard.focus({preventScroll:true});targetCard.scrollIntoView({block:'center',behavior:'smooth'});}
+    if(targetCard){targetCard.focus({preventScroll:true});targetCard.scrollIntoView({block:'center',behavior:window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}
     else container.append(h('p',{className:'mut',role:'status','aria-live':'polite',textContent:uiText('تعذر العثور على المقطع المحدد ضمن النصوص المحملة. قد يكون قد تغير أو لم يعد متاحاً.','The requested passage was not found in the loaded text. It may have changed or may no longer be available.')})); 
    }
   };
