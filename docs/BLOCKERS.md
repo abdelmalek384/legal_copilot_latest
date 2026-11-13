@@ -224,18 +224,18 @@ Percentages distinguish repository implementation from validation and operationa
 - Source/diff review only; tests remain unexecuted under the current test-run pause. No runtime pass or legal verification is claimed.
 
 
-## Answer rating contract — 2026-11-13
+## Answer rating contract — 2026-11-14
 
-- **Closed for AI-1:** `docs/answer_rating_contract.md` is present on main (commit `8820ea617c5bb8fcbf72bb77e7470a9828fe4a44`). It defines answer ID, correct/partial/wrong, cited-article right/wrong, notes, rater, ISO-8601 timestamp, trust tier, and UTF-8 CSV export. AI-2 can integrate against this contract. This does not approve any legal source or rating data.
+- **Closed for AI-1:** `docs/answer_rating_contract.md` is present on main (commit `8820ea617c5bb8fcbf72bb77e7470a9828fe4a44`). It defines answer ID, correct/partial/wrong, cited-article right/wrong, notes, rater, ISO-8601 timestamp, trust tier, and UTF-8 CSV export. `tools/validate_answer_ratings.py` validates exported CSV headers, required fields, enum values and timezone-aware timestamps. AI-2 can integrate against this contract. This does not approve any legal source or rating data.
 
 
 ## AI-1 owner checklist — 2026-11-13
 
 | Deliverable | Current status | Closure boundary |
 |---|---|---|
-| Answer rating contract | Complete on main; AI-2 handoff ready | Contract exists at `docs/answer_rating_contract.md`; AI-2 UI/export integration remains separate. |
+| Answer rating contract | Complete on main; AI-2 handoff ready | Contract exists at `docs/answer_rating_contract.md`; `tools/validate_answer_ratings.py` and its regression tests provide a UTF-8 CSV import/export validator. AI-2 UI/export integration remains separate. |
 | Three negation regressions | Guard integrated in `app.ask()`; focused reproduction/integration tests committed directly to main (`92e5177`, `f988e76`) | Still open until the exact Python 3.12 local command is executed and output is recorded. |
-| Firm-test source-matched mode | Fail-closed response gate committed directly to main (`ce2ebc8`, `7c5e09d`, `5ec22a1`, `b377af0`, `311287d`); candidate retrieval remains intentionally disabled | Synthetic test path only. The actual Law 14/2025 candidate remains ineligible because collection/reuse permission is unknown, source text is not committed, and the manifest says search_eligible=false. |
+| Firm-test source-matched mode | Fail-closed response gate and explicit `source-matched, not lawyer-verified` answer label committed directly to main (`ce2ebc8`, `7c5e09d`, `5ec22a1`, `b377af0`, `311287d`, `2009b9f`, `29e4a13`); candidate retrieval remains intentionally disabled | Synthetic test path only. The actual Law 14/2025 candidate remains ineligible because collection/reuse permission is unknown, source text is not committed, and the manifest says search_eligible=false. |
 | Reviewer CSVs | Complete as templates | Gazette 311-row CSV includes all machine comparison classifications, similarity and page locators plus prior page-review notes; our-text/Gazette-text cells and lawyer decisions remain blank pending authorized text. Five-rule deadline CSV and one-page UTF-8 guide exist. |
 | Law 14/2025 evaluation drafts | 116 unique question drafts created (58 formal, 58 colloquial); article IDs machine-proposed and unapproved | Structural tests added. Do not treat article labels as ground truth or run the reviewed scorer on these rows. |
 | Retrieval baseline | Blocked | Existing scorer requires lawyer-approved labels, reviewer registry and actual retrieval results. No authenticated local indexed corpus/API is available here. `docs/legal_evidence/law14_2025_retrieval_baseline_unreviewed.json` records 116 questions, zero approved labels, zero run records and null metrics; null is not zero or a measured baseline. |
