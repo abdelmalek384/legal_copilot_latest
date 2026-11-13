@@ -12,6 +12,23 @@ from tools.evaluate_ocr_quality import OCREvaluationError, edit_distance, evalua
 
 
 class OCRQualityEvaluationTests(unittest.TestCase):
+    def test_output_hardlink_cannot_replace_input_jsonl(self):
+        with tempfile.TemporaryDirectory() as temp:
+            source = Path(temp) / "pages.jsonl"
+            output = Path(temp) / "report.json"
+            source.write_text(
+                '{"id":"x","reference_text":"abc","ocr_text":"abc"}\\n',
+                encoding="utf-8",
+            )
+            original = source.read_bytes()
+            try:
+                output.hardlink_to(source)
+            except (NotImplementedError, OSError):
+                self.skipTest("hard links are unavailable in this environment")
+            self.assertEqual(main(["--input", str(source), "--out", str(output)]), 2)
+            self.assertEqual(source.read_bytes(), original)
+
+
     def test_exact_and_substitution_character_error_rates(self):
         report = evaluate([{
             "id": "P1", "document_id": "DOC1", "page": 1,
