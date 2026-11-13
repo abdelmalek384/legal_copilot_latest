@@ -66,3 +66,8 @@ The source inspector uses those fields to show a matter/document/chunk identity,
 ### Matter-library original retention affordance
 
 The matter Documents review list receives an `original_available` field from the authorized case-detail response. The original-download action is now rendered only when this backend field is explicitly true (including the serialized integer form). If the object is absent, purged, or unavailable in legacy mode, the UI shows a plain retention-status note instead of presenting a download control that would predictably fail. The download endpoint remains the authority and still performs its own authorization and integrity checks; this frontend gate is a usability improvement, not a security boundary.
+
+
+### OCR and incomplete-page review cautions
+
+The matter-level extracted-text review now repeats an explicit OCR warning when the document metadata records OCR use (or the OCR-unverified extraction state). For partial extraction where OCR is unavailable on some pages, the panel warns that displayed passages may be incomplete and directs the reviewer to the original. Page labels accept either `page` or `page_number` and remain explicitly provisional until checked against the source page. These warnings do not certify OCR accuracy or completeness.
