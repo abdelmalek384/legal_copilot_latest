@@ -73,3 +73,17 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 - Replaced clickable anchors without link destinations with native buttons, `aria-pressed` section state and `aria-current="page"` for the selected sub-page.
 - Added responsive horizontal scrolling for the section selector on narrow screens and visible keyboard focus.
 - Added a regression contract ensuring all matter work areas remain reachable through the grouped navigation.
+
+
+### Research and document-intake clarity refinement
+
+- The Legal Research screen now explicitly states that no lawyer-verified Egyptian legal corpus is currently available. The verified-corpus selector is labelled accordingly; candidate metadata and source-only results must not be mistaken for verified operative law.
+- The Documents workspace keeps its common name search visible and moves file type, extraction status, classification status and filter reset into a collapsed native disclosure control. This reduces the initial visual density without removing filters.
+- New Arabic interface copy is registered in the native-review catalog. Existing catalog omissions were also brought into the catalog; all entries remain marked `pending_native_review` and are not represented as linguistically approved.
+- A static contract/catalog consistency scan found no unregistered Arabic literals in the current frontend. This is not a substitute for executing the Python test suite or native-speaker review.
+
+### Latest validation observations
+
+- The GitHub Actions run associated with an earlier branch commit reported failures in the Tests and Non-database safety regression workflows. The available connector did not return the job logs, so the failure cause is unresolved and must not be guessed.
+- New workflow runs were queued for the latest commits at the time of this update. Their completion and any failure diagnostics still need inspection.
+- No merge or production deployment has been performed.
