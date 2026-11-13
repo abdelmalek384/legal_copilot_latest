@@ -8,7 +8,7 @@ if [[ ! -d tests || ! -f app.py ]]; then
   exit 2
 fi
 
-python - <<'PY'
+if ! python - <<'PY'
 import sys
 if sys.version_info[:2] != (3, 12):
     print(
@@ -18,6 +18,9 @@ if sys.version_info[:2] != (3, 12):
     )
     raise SystemExit(2)
 PY
+then
+  exit 2
+fi
 
 tests=(
   test_app_separate_database_runtime.py
@@ -33,6 +36,8 @@ tests=(
   test_case_csv_import.py
   test_client_csv_import.py
   test_invoice_csv_export.py
+  test_answer_rating_routes.py
+  test_frontend_ux_contract.py
   test_invoice_payment_routes.py
   test_subscription_billing_routes.py
   test_firm_data_export.py
