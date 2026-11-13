@@ -1,6 +1,6 @@
 {
   "_template_note": "Replace every REPLACE_* value with truthful source metadata. Do not claim counsel supplied the text unless that is true. Calculate content_sha256 from the exact UTF-8 text file bytes. This template is not valid importer input until completed.",
-  "document_id": "EG-LABOUR-LAW-14-2025-GAZETTE-REPLACE_VERSION",
+  "document_id": "EG-LABOUR-LAW-14-2025",
   "official_title": "قانون العمل رقم 14 لسنة 2025",
   "language": "ar",
   "gazette_issue": "الجريدة الرسمية، العدد 18 مكرر (تابع)، 3 مايو 2025 — VERIFY AGAINST ORIGINAL",
