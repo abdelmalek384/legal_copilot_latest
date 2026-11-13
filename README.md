@@ -52,6 +52,21 @@ The repository includes case-management workflows, profile-separated storage, Ar
 - **MFA encryption requires a dedicated secret.** Generate `MFA_ENCRYPTION_KEY` with `python manage.py gen-mfa-key` and store it in the deployment secret manager. Losing it makes enrolled TOTP secrets unrecoverable.
 - WhatsApp/SMS delivery, embedding-based semantic search, and a complete end-to-end amendment/consolidation workflow are not included.
 
+## Matter document intelligence
+
+The **Documents** workspace is matter-scoped. Select a matter you are authorized to access, then upload PDF or DOCX files (15 MB maximum per file). The library shows actual file metadata, extraction state, saved classification, OCR flags, and original-file availability. Search and filters operate within the selected matter; the product does not claim firm-wide document search.
+
+Use **Upload and index files** to add documents. After upload, use the document-intelligence analysis controls to search extracted Arabic/English text, inspect page/chunk provenance, review date/case-reference/amount/party/legal-reference/event candidates, compare extracted text, and inspect possible duplicates. Original-file download is offered only when the private-storage record is ready and not purged.
+
+Important review boundaries:
+- Keyword-based document classifications are suggestions until an authorized firm administrator or matter lead saves a category. Saves use version checks and create an audit history.
+- Extracted entities, legal references, event mentions, dates, and duplicate signals are candidates, not verified facts or legal conclusions.
+- OCR text must be checked against the original. Some scanned files may not yield searchable text.
+- Original-file retention depends on the configured private storage backend. Uploading extracted text does not by itself prove that the original binary was retained.
+- The document workspace preserves matter authorization; do not treat its counts or filters as firm-wide statistics.
+
+See [the Document Intelligence workspace contract](docs/document_intelligence_workspace.md) and [the implementation/validation plan](docs/legal_research_document_intelligence.md).
+
 Model: set LLM_URL (OpenAI-compatible /chat/completions, e.g. vLLM, Ollama, or a hosted provider), LLM_MODEL, and LLM_KEY. The app does not choose or bundle a model. LLM_URL alone is not enough to send prompts: explicitly set LLM_DATA_PROCESSING_APPROVED=1 only after reviewing the endpoint, data-processing terms, retention, and whether matter data may be sent. Case-scoped research, follow-up conversation context, and matter-file passages additionally require `LLM_FIRM_DATA_PROCESSING_APPROVED=1`; otherwise those requests return sources only. These are deployment attestations, not consent or privacy guarantees. See [LLM data-processing policy](docs/llm_data_processing_policy.md).
 
 Container deployment template: see [the hardened Docker/Compose deployment guide](docs/container_deployment.md). It uses the checked-in Python 3.12 hash lock, a non-root read-only container, separate persistent database paths, S3/KMS configuration, and explicit database-acceptance evidence. It is a deployment template, not a completed production deployment; staging, recovery, security, and lawyer acceptance gates remain mandatory.

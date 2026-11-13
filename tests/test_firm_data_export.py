@@ -126,6 +126,16 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
             "hold_set_by=?,hold_set_at=datetime('now') WHERE object_id=?",
             ("Retain original pleading for the pilot test", owner_id, staged.object_id),
         )
+        tenant.execute(
+            "INSERT INTO document_classifications(document_id,case_id,firm_id,category,version,updated_by_user_id) "
+            "VALUES(?,?,?,'pleading',1,?)",
+            (doc.lastrowid, self.case_id, self.firm_a, owner_id),
+        )
+        tenant.execute(
+            "INSERT INTO document_classification_events(document_id,case_id,firm_id,actor_user_id,"
+            "previous_category,new_category,version,note) VALUES(?,?,?, ?,NULL,'pleading',1,?)",
+            (doc.lastrowid, self.case_id, self.firm_a, owner_id, "Reviewed pleading"),
+        )
         tenant.commit()
 
         draft = self.create_draft().json()
@@ -148,7 +158,7 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
             "case_activity.csv", "invoices.csv", "invoice_lines.csv",
             "invoice_payments.csv", "invoice_events.csv",
             "case_deletion_audit.csv", "security_audit_events.csv", "documents.csv",
-            "document_extraction_reviews.csv", "matter_chunks.csv", "research_conversations.csv",
+            "document_extraction_reviews.csv", "document_classifications.csv", "document_classification_events.csv", "matter_chunks.csv", "research_conversations.csv",
             "research_messages.csv", "original_file_hold_events.csv", "product_feedback.csv",
             "product_feedback_events.csv", "original_files_manifest.csv",
             "firm_memberships.csv", "firm_invitations.csv", "identity_lifecycle_events.csv",
@@ -191,6 +201,12 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertIn("Firm A session", str(self._zip_csv(response, "sessions.csv")))
         self.assertIn("Firm A fee", str(self._zip_csv(response, "fees.csv")))
         self.assertEqual(len(self._zip_csv(response, "invoices.csv")), 1)
+        classifications = self._zip_csv(response, "document_classifications.csv")
+        self.assertEqual(classifications[0]["category"], "pleading")
+        self.assertEqual(classifications[0]["version"], "1")
+        classification_events = self._zip_csv(response, "document_classification_events.csv")
+        self.assertEqual(classification_events[0]["new_category"], "pleading")
+        self.assertEqual(classification_events[0]["note"], "Reviewed pleading")
         documents = self._zip_csv(response, "documents.csv")
         self.assertEqual(documents[0]["name"], "pleading.pdf")
         manifest = self._zip_csv(response, "original_files_manifest.csv")

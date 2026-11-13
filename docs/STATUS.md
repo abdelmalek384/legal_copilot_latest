@@ -210,3 +210,15 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - PR #1580 hardens reviewer metadata in `tools/evaluate_retrieval_quality.py`: unhashable JSON values supplied for `review_status` or `reviewer_role` previously reached set-membership checks and could raise `TypeError`; raw backslashes and empty query/fragment delimiters were also accepted by the evidence-URL validator.
 - The evaluator now checks that both enum values are strings before membership and rejects ambiguous raw URL forms. Regression tests assert malformed values are excluded through `invalid_question_records` and invalid reviewer evidence URLs are rejected.
 - Static source/diff review only. Latest exact-head Tests run `43328429442` for head `53eed6cfa7ab6601f6cdd13b4c362a25c6095f7f` failed before any job steps were exposed (`steps: null`); no runtime test pass is claimed.
+
+
+## Legal Research and Document Intelligence workspace update — 2026-11-13
+
+- The Figma-aligned Legal Research workspace now uses a responsive three-pane layout with conversation history, research thread, and a source inspector. Source verification/caution states remain explicit; the interface does not promote unverified sources to verified status.
+- The Documents workspace exposes the permission-filtered all-accessible library, matter selection, paginated metadata search, Arabic/English extracted-text search, document type/status/classification filters, original-file availability checks, and PDF/DOCX upload with per-file progress and an accessible busy state.
+- Document classification is persistent and versioned. Only firm administrators and matter leads can change it. Optimistic version conflicts are rejected, current values and reviewer identity are exposed, and append-only audit events are protected by database scope/immutability triggers. Legacy runtime schema includes equivalent guards.
+- Extracted-text review exposes accept, correction and recheck actions, SHA-256 concurrency checks, reviewer notes, bounded review history, and separate display of the original extraction and latest corrected passage, with stale-digest refresh and an explicit warning for reviewer-entered, unverified page references. The attention filter includes both never-reviewed and recheck-required passages.
+- Arabic interface additions are registered in `static/ar-ui-review.json`; native Arabic review and full RTL browser acceptance remain outstanding.
+- Backend integration tests cover classification persistence/version conflicts, lead-only permissions, cross-matter and cross-firm isolation, audit immutability and retention cascades, metadata/full-text search, and extraction-review isolation. Frontend contract tests cover the new workspace and review behavior.
+- GitHub Actions currently reports failures before logs can be retrieved. The documented runner/billing limitation remains unresolved; no test pass is claimed. Browser QA and clean Python 3.12 suite execution are still required.
+- This integration is rebased onto the current main line; the newer legal-evaluation inventory and Gazette importer changes are retained.

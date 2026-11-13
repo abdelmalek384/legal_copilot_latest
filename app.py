@@ -72,6 +72,56 @@ CREATE TABLE IF NOT EXISTS api_rate_limit_windows(
   PRIMARY KEY(bucket, client_key, window_start)
 );
 CREATE TABLE IF NOT EXISTS docs(id INTEGER PRIMARY KEY, case_id INT, name TEXT, added TEXT, firm_id INT, uploader_user_id INT, sha256 TEXT, content_type TEXT, byte_size INT, extraction_status TEXT, ocr_used INT NOT NULL DEFAULT 0);
+CREATE TABLE IF NOT EXISTS document_classifications(
+  document_id INTEGER PRIMARY KEY REFERENCES docs(id) ON DELETE CASCADE,
+  case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE CASCADE,
+  firm_id INTEGER NOT NULL,
+  category TEXT NOT NULL CHECK(category IN ('unclassified','court_judgment','contract','pleading','correspondence','evidence_or_receipt')),
+  version INTEGER NOT NULL DEFAULT 1 CHECK(version > 0),
+  updated_by_user_id INTEGER NOT NULL,
+  updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE TABLE IF NOT EXISTS document_classification_events(
+  id INTEGER PRIMARY KEY,
+  document_id INTEGER NOT NULL REFERENCES docs(id) ON DELETE CASCADE,
+  case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE CASCADE,
+  firm_id INTEGER NOT NULL,
+  actor_user_id INTEGER NOT NULL,
+  previous_category TEXT,
+  new_category TEXT NOT NULL CHECK(new_category IN ('unclassified','court_judgment','contract','pleading','correspondence','evidence_or_receipt')),
+  version INTEGER NOT NULL,
+  note TEXT NOT NULL DEFAULT '',
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  UNIQUE(document_id,version)
+);
+CREATE INDEX IF NOT EXISTS idx_document_classifications_case ON document_classifications(firm_id,case_id);
+CREATE INDEX IF NOT EXISTS idx_document_classification_events_document ON document_classification_events(firm_id,document_id,id DESC);
+CREATE TRIGGER IF NOT EXISTS document_classifications_scope_insert
+BEFORE INSERT ON document_classifications
+WHEN NOT EXISTS (SELECT 1 FROM docs d JOIN cases c ON c.id=d.case_id
+ WHERE d.id=NEW.document_id AND d.case_id=NEW.case_id AND c.firm_id=NEW.firm_id)
+BEGIN SELECT RAISE(ABORT, 'document classification scope mismatch'); END;
+CREATE TRIGGER IF NOT EXISTS document_classifications_scope_update
+BEFORE UPDATE ON document_classifications
+WHEN NOT EXISTS (SELECT 1 FROM docs d JOIN cases c ON c.id=d.case_id
+ WHERE d.id=NEW.document_id AND d.case_id=NEW.case_id AND c.firm_id=NEW.firm_id)
+BEGIN SELECT RAISE(ABORT, 'document classification scope mismatch'); END;
+CREATE TRIGGER IF NOT EXISTS document_classification_events_scope_insert
+BEFORE INSERT ON document_classification_events
+WHEN NOT EXISTS (SELECT 1 FROM document_classifications dc
+ JOIN docs d ON d.id=dc.document_id AND d.case_id=dc.case_id
+ JOIN cases c ON c.id=d.case_id
+ WHERE dc.document_id=NEW.document_id AND dc.case_id=NEW.case_id
+ AND dc.firm_id=NEW.firm_id AND c.firm_id=NEW.firm_id
+ AND dc.category=NEW.new_category AND dc.version=NEW.version)
+BEGIN SELECT RAISE(ABORT, 'classification audit event does not match current state'); END;
+CREATE TRIGGER IF NOT EXISTS document_classification_events_no_update
+BEFORE UPDATE ON document_classification_events
+BEGIN SELECT RAISE(ABORT, 'document classification audit events are immutable'); END;
+CREATE TRIGGER IF NOT EXISTS document_classification_events_no_delete
+BEFORE DELETE ON document_classification_events
+WHEN EXISTS (SELECT 1 FROM docs d JOIN cases c ON c.id=d.case_id WHERE d.id=OLD.document_id AND c.id=OLD.case_id)
+BEGIN SELECT RAISE(ABORT, 'document classification audit events are immutable'); END;
 -- Legal corpus provenance: one stable source record, multiple immutable legal versions.
 CREATE TABLE IF NOT EXISTS legal_documents(
   document_id TEXT PRIMARY KEY,
@@ -6562,6 +6612,174 @@ def import_cases_csv(b: CaseCSVImportIn, u: dict = Depends(user)):
     return {"created": created, "skipped": skipped, "rows": rows_seen}
 
 
+@app.get("/documents/search-text")
+def search_accessible_document_text(
+    q: str = Query(default="", min_length=1, max_length=200),
+    limit: int = Query(default=40, ge=1, le=100),
+    offset: int = Query(default=0, ge=0, le=100000),
+    u: dict = Depends(user),
+):
+    """Search extracted chunks only in matters visible to the current firm user."""
+    needle = norm(q.strip())
+    tokens = re.findall(r"[\w]+", needle, flags=re.UNICODE)
+    tokens = [token for token in tokens if token][:20]
+    if not tokens:
+        raise HTTPException(422, "enter at least one searchable word")
+    # Quote every token so user input cannot inject FTS operators or column filters.
+    fts_query = " AND ".join('"' + token.replace('"', '""') + '"' for token in tokens)
+    access = (
+        "chunks.case_id IN (SELECT cs.id FROM cases cs WHERE cs.firm_id=? "
+        "AND (?='admin' OR EXISTS(SELECT 1 FROM members m "
+        "WHERE m.case_id=cs.id AND m.user_id=?)))"
+    )
+    c = conn()
+    joins = (
+        " FROM chunks_fts JOIN chunks ON chunks.id=chunks_fts.rowid "
+        "JOIN docs d ON d.id=chunks.document_id AND d.case_id=chunks.case_id "
+        "AND d.firm_id=? JOIN cases cs ON cs.id=chunks.case_id AND cs.firm_id=d.firm_id "
+    )
+    where = " WHERE chunks_fts MATCH ? AND " + access
+    total = int(c.execute(
+        "SELECT COUNT(*)" + joins + where,
+        (int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"])),
+    ).fetchone()[0])
+    rows = c.execute(
+        "SELECT chunks.id AS chunk_id,chunks.case_id,chunks.document_id,chunks.ref,"
+        "chunks.page,substr(chunks.text,max(1,instr(chunks.norm,?)-450),1200) AS excerpt,"
+        "d.name AS document_name,cs.title AS case_title,cs.case_number,cs.case_year,"
+        "bm25(chunks_fts) AS rank"
+        + joins + where + " ORDER BY rank LIMIT ? OFFSET ?",
+        (tokens[0], int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"]), limit, offset),
+    ).fetchall()
+    items = [dict(row) for row in rows]
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (u["firm_id"], u["id"], "document_text_search"),
+    )
+    c.commit()
+    return {
+        "items": items,
+        "total": total,
+        "limit": limit,
+        "offset": offset,
+        "warning": "Search results are extracted-text matches, not verified facts or legal conclusions. Check each passage against its original document.",
+    }
+
+
+@app.get("/documents/search")
+def search_accessible_documents(
+    q: str = Query(default="", max_length=200),
+    case_id: int | None = Query(default=None, ge=1),
+    file_type: str = Query(default="", max_length=10),
+    extraction_status: str = Query(default="", max_length=60),
+    classification: str = Query(default="", max_length=40),
+    limit: int = Query(default=50, ge=1, le=100),
+    offset: int = Query(default=0, ge=0, le=100000),
+    u: dict = Depends(user),
+):
+    """Search document metadata only across matters the current user may access."""
+    if file_type not in ("", "pdf", "docx"):
+        raise HTTPException(422, "file_type must be pdf or docx")
+    allowed_classifications = {
+        "", "saved", "unsaved", "unclassified", "court_judgment", "contract",
+        "pleading", "correspondence", "evidence_or_receipt",
+    }
+    if classification not in allowed_classifications:
+        raise HTTPException(422, "invalid document classification filter")
+    if case_id is not None:
+        need(conn(), u, case_id)
+    needle = q.strip()
+    escaped = needle.replace("!", "!!").replace("%", "!%").replace("_", "!_")
+    pattern = f"%{escaped}%" if needle else ""
+    scope = (
+        "d.firm_id=? AND c.firm_id=? "
+        "AND (?='admin' OR EXISTS(SELECT 1 FROM members m WHERE m.case_id=c.id AND m.user_id=?)) "
+        "AND (? IS NULL OR c.id=?) "
+        "AND (?='' OR ("
+        "COALESCE(d.name,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(c.title,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(c.case_number,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(c.client,'') COLLATE NOCASE LIKE ? ESCAPE '!' OR "
+        "COALESCE(c.opposing_party,'') COLLATE NOCASE LIKE ? ESCAPE '!')) "
+        "AND (?='' OR (CASE WHEN lower(COALESCE(d.content_type,'')) LIKE '%pdf%' "
+        "OR lower(COALESCE(d.name,'')) LIKE '%.pdf' THEN 'pdf' "
+        "WHEN lower(COALESCE(d.content_type,'')) LIKE '%wordprocessingml%' "
+        "OR lower(COALESCE(d.name,'')) LIKE '%.docx' THEN 'docx' ELSE '' END)=?) "
+        "AND (?='' OR d.extraction_status=?) "
+        "AND (?='' OR (?='saved' AND dc.category IS NOT NULL) "
+        "OR (?='unsaved' AND dc.category IS NULL) OR dc.category=?)"
+    )
+    params = (
+        int(u["firm_id"]), int(u["firm_id"]), u["role"], int(u["id"]),
+        case_id, case_id, needle, pattern, pattern, pattern, pattern, pattern,
+        file_type, file_type, extraction_status, extraction_status,
+        classification, classification, classification, classification,
+    )
+    c = conn()
+    total = int(c.execute(
+        "SELECT COUNT(*) FROM docs d JOIN cases c ON c.id=d.case_id "
+        "LEFT JOIN document_classifications dc ON dc.document_id=d.id "
+        "AND dc.case_id=d.case_id AND dc.firm_id=c.firm_id WHERE " + scope,
+        params,
+    ).fetchone()[0])
+    original_available_expr = (
+        "EXISTS(SELECT 1 FROM original_file_objects o WHERE o.document_id=d.id "
+        "AND o.firm_id=c.firm_id AND o.state='ready' AND o.purged_at IS NULL)"
+        if _separate_runtime_enabled() else "0"
+    )
+    rows = c.execute(
+        "SELECT d.id AS document_id,d.case_id,d.name,d.added,d.content_type,d.byte_size,"
+        "d.extraction_status,d.ocr_used,dc.category AS saved_classification,"
+        "dc.version AS classification_version,dc.updated_by_user_id AS classification_reviewer_user_id,"
+        "dc.updated_at AS classification_updated_at," + original_available_expr + " AS original_available,"
+        "c.title AS case_title,c.case_number,c.case_year,c.client,c.opposing_party "
+        "FROM docs d JOIN cases c ON c.id=d.case_id "
+        "LEFT JOIN document_classifications dc ON dc.document_id=d.id "
+        "AND dc.case_id=d.case_id AND dc.firm_id=c.firm_id WHERE " + scope +
+        " ORDER BY d.id DESC LIMIT ? OFFSET ?",
+        params + (limit, offset),
+    ).fetchall()
+    # Record a coarse access event only; do not persist search terms or client content.
+    status_params = params[:14] + ("", "") + ("", "", "", "")
+    status_rows = c.execute(
+        "SELECT DISTINCT d.extraction_status FROM docs d JOIN cases c ON c.id=d.case_id "
+        "LEFT JOIN document_classifications dc ON dc.document_id=d.id "
+        "AND dc.case_id=d.case_id AND dc.firm_id=c.firm_id WHERE " + scope +
+        " AND d.extraction_status IS NOT NULL AND d.extraction_status<>'' "
+        "ORDER BY d.extraction_status",
+        status_params,
+    ).fetchall()
+    items = [dict(row) for row in rows]
+    reviewer_ids = sorted({
+        int(item["classification_reviewer_user_id"])
+        for item in items if item.get("classification_reviewer_user_id") is not None
+    })
+    reviewer_names = {}
+    if reviewer_ids:
+        placeholders = ",".join("?" for _ in reviewer_ids)
+        reviewer_names = {
+            int(row["id"]): row["name"]
+            for row in control_conn().execute(
+                f"SELECT id,name FROM users WHERE id IN ({placeholders})", reviewer_ids
+            ).fetchall()
+        }
+    for item in items:
+        reviewer_id = item.get("classification_reviewer_user_id")
+        item["classification_reviewer_name"] = reviewer_names.get(int(reviewer_id), "") if reviewer_id is not None else ""
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (u["firm_id"], u["id"], "document_metadata_search"),
+    )
+    c.commit()
+    return {
+        "items": items,
+        "total": total,
+        "limit": limit,
+        "offset": offset,
+        "statuses": [str(row["extraction_status"]) for row in status_rows],
+    }
+
+
 @app.get("/cases")
 def cases(u: dict = Depends(user)):
     q = ("SELECT cs.*, (SELECT COUNT(*) FROM tasks t WHERE t.case_id=cs.id AND t.status='open') AS open_tasks, "
@@ -6645,11 +6863,24 @@ def case(cid: int, u: dict = Depends(user)):
               (u["firm_id"], u["id"], "case_read:%s" % cid))
     c.commit()
     rows = lambda q: [dict(r) for r in c.execute(q, (cid,))]
+    original_available_expr = (
+        "EXISTS(SELECT 1 FROM original_file_objects o WHERE o.document_id=d.id "
+        "AND o.firm_id=c.firm_id AND o.state='ready' AND o.purged_at IS NULL)"
+        if _separate_runtime_enabled() else "0"
+    )
+    documents = rows(
+        "SELECT d.id AS document_id,d.name,d.added,d.sha256,d.content_type,d.byte_size,"
+        "d.extraction_status,d.ocr_used,d.uploader_user_id,dc.category AS saved_classification,"
+        "dc.version AS classification_version," + original_available_expr + " AS original_available "
+        "FROM docs d JOIN cases c ON c.id=d.case_id LEFT JOIN document_classifications dc "
+        "ON dc.document_id=d.id AND dc.case_id=d.case_id AND dc.firm_id=c.firm_id "
+        "WHERE d.case_id=? ORDER BY d.id DESC"
+    )
     return {**dict(c.execute("SELECT * FROM cases WHERE id=?", (cid,)).fetchone()),
             "members": rows("SELECT m.user_id, m.role, u.name FROM members m JOIN users u ON u.id=m.user_id WHERE m.case_id=?"),
             "tasks": rows("SELECT t.*, u.name AS assignee_name FROM tasks t LEFT JOIN users u ON u.id=t.assignee WHERE t.case_id=? ORDER BY t.status DESC, t.due"),
             "sessions": rows("SELECT * FROM sessions WHERE case_id=? ORDER BY date"),
-            "docs": rows("SELECT id AS document_id,name,added,sha256,content_type,byte_size,extraction_status,ocr_used,uploader_user_id FROM docs WHERE case_id=? ORDER BY id DESC"),
+            "docs": documents,
             "notes": rows("SELECT n.id,n.text,n.created_at,u.name AS author FROM notes n JOIN users u ON u.id=n.created_by WHERE n.case_id=? ORDER BY n.id DESC"),
             "deadlines": rows("SELECT * FROM deadlines WHERE case_id=? ORDER BY due"),
             "fees": rows("SELECT * FROM fees WHERE case_id=? ORDER BY due"),
@@ -8169,6 +8400,120 @@ def list_original_document_deletion_requests(
     return {"document_id": document_id, "requests": result}
 
 
+class DocumentClassificationIn(BaseModel):
+    category: str = Field(pattern=r"^(unclassified|court_judgment|contract|pleading|correspondence|evidence_or_receipt)$")
+    expected_version: int = Field(ge=0)
+    note: str = Field(default="", max_length=2000)
+
+
+@app.get("/cases/{cid}/docs/{document_id}/classification")
+def get_document_classification(cid: int, document_id: int, u: dict = Depends(user)):
+    c = conn()
+    need(c, u, cid)
+    doc = c.execute(
+        "SELECT id FROM docs WHERE id=? AND case_id=? AND firm_id=?",
+        (document_id, cid, u["firm_id"]),
+    ).fetchone()
+    if doc is None:
+        raise HTTPException(404, "document not found")
+    current = c.execute(
+        "SELECT category,version,updated_by_user_id,updated_at FROM document_classifications "
+        "WHERE document_id=? AND case_id=? AND firm_id=?",
+        (document_id, cid, u["firm_id"]),
+    ).fetchone()
+    events = c.execute(
+        "SELECT actor_user_id,previous_category,new_category,version,note,created_at "
+        "FROM document_classification_events WHERE document_id=? AND case_id=? AND firm_id=? "
+        "ORDER BY id DESC LIMIT 100",
+        (document_id, cid, u["firm_id"]),
+    ).fetchall()
+    identity = control_conn()
+    actor_ids = sorted({int(row["actor_user_id"]) for row in events})
+    if current:
+        actor_ids.append(int(current["updated_by_user_id"]))
+    actor_ids = sorted(set(actor_ids))
+    names = {}
+    if actor_ids:
+        placeholders = ",".join("?" for _ in actor_ids)
+        names = {
+            int(row["id"]): row["name"]
+            for row in identity.execute(
+                f"SELECT id,name FROM users WHERE id IN ({placeholders})", actor_ids
+            ).fetchall()
+        }
+    classification = dict(current) if current else None
+    if classification:
+        classification["updated_by_name"] = names.get(int(classification["updated_by_user_id"]), "")
+    event_items = []
+    for row in events:
+        item = dict(row)
+        item["actor_name"] = names.get(int(item["actor_user_id"]), "")
+        event_items.append(item)
+    return {
+        "document_id": document_id,
+        "classification": classification,
+        "events": event_items,
+        "can_edit": is_lead(c, u, cid),
+    }
+
+
+@app.put("/cases/{cid}/docs/{document_id}/classification")
+@rollback_tenant_transaction_on_error
+def save_document_classification(
+    cid: int, document_id: int, body: DocumentClassificationIn, u: dict = Depends(user)
+):
+    c = conn()
+    need(c, u, cid, lead=True)
+    doc = c.execute(
+        "SELECT id FROM docs WHERE id=? AND case_id=? AND firm_id=?",
+        (document_id, cid, u["firm_id"]),
+    ).fetchone()
+    if doc is None:
+        raise HTTPException(404, "document not found")
+    current = c.execute(
+        "SELECT category,version FROM document_classifications "
+        "WHERE document_id=? AND case_id=? AND firm_id=?",
+        (document_id, cid, u["firm_id"]),
+    ).fetchone()
+    current_version = int(current["version"]) if current else 0
+    if body.expected_version != current_version:
+        raise HTTPException(409, "document classification changed; reload and retry")
+    previous_category = current["category"] if current else None
+    next_version = current_version + 1
+    if current:
+        updated = c.execute(
+            "UPDATE document_classifications SET category=?,version=?,updated_by_user_id=?,"
+            "updated_at=datetime('now') WHERE document_id=? AND case_id=? AND firm_id=? AND version=?",
+            (body.category, next_version, u["id"], document_id, cid, u["firm_id"], current_version),
+        )
+        if updated.rowcount != 1:
+            raise HTTPException(409, "document classification changed; reload and retry")
+    else:
+        inserted = c.execute(
+            "INSERT INTO document_classifications(document_id,case_id,firm_id,category,version,updated_by_user_id) "
+            "VALUES(?,?,?,?,?,?) ON CONFLICT(document_id) DO NOTHING",
+            (document_id, cid, u["firm_id"], body.category, next_version, u["id"]),
+        )
+        if inserted.rowcount != 1:
+            raise HTTPException(409, "document classification was created by another reviewer; reload and retry")
+    c.execute(
+        "INSERT INTO document_classification_events(document_id,case_id,firm_id,actor_user_id,"
+        "previous_category,new_category,version,note) VALUES(?,?,?,?,?,?,?,?)",
+        (document_id, cid, u["firm_id"], u["id"], previous_category, body.category,
+         next_version, body.note.strip()),
+    )
+    c.commit()
+    return {
+        "document_id": document_id,
+        "classification": {
+            "category": body.category,
+            "version": next_version,
+            "updated_by_user_id": u["id"],
+        },
+        "saved": True,
+    }
+
+
 class ExtractionReviewIn(BaseModel):
     outcome: str = Field(pattern=r"^(accepted|corrected|needs_recheck)$")
     corrected_text: str | None = Field(default=None, max_length=20000)
@@ -8183,10 +8528,26 @@ def list_document_reviews(cid: int, document_id: int, u: dict = Depends(user)):
     doc = c.execute("SELECT id FROM docs WHERE id=? AND case_id=? AND firm_id=?", (document_id, cid, u["firm_id"])).fetchone()
     if not doc: raise HTTPException(404, "document not found")
     rows = c.execute(
-        "SELECT r.id,r.chunk_id,r.reviewer_user_id,r.outcome,r.original_text,r.reviewed_text,r.page_reference,r.note,r.created_at "
-        "FROM document_extraction_reviews r WHERE r.document_id=? AND r.case_id=? AND r.firm_id=? ORDER BY r.id DESC LIMIT 200",
+        "SELECT r.id,r.chunk_id,r.reviewer_user_id,r.outcome,r.original_text,r.reviewed_text,"
+        "r.page_reference,r.note,r.created_at FROM document_extraction_reviews r "
+        "WHERE r.document_id=? AND r.case_id=? AND r.firm_id=? ORDER BY r.id DESC LIMIT 200",
         (document_id, cid, u["firm_id"])).fetchall()
-    return {"document_id": document_id, "reviews": [dict(r) for r in rows]}
+    reviewer_ids = sorted({int(row["reviewer_user_id"]) for row in rows})
+    names = {}
+    if reviewer_ids:
+        placeholders = ",".join("?" for _ in reviewer_ids)
+        names = {
+            int(row["id"]): row["name"]
+            for row in control_conn().execute(
+                f"SELECT id,name FROM users WHERE id IN ({placeholders})", reviewer_ids
+            ).fetchall()
+        }
+    reviews = []
+    for row in rows:
+        item = dict(row)
+        item["reviewer_name"] = names.get(int(item["reviewer_user_id"]), "")
+        reviews.append(item)
+    return {"document_id": document_id, "reviews": reviews}
 
 
 @app.get("/cases/{cid}/docs/{document_id}/chunks")
@@ -8205,7 +8566,7 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
         (document_id, cid),
     ).fetchall()
     review_rows = c.execute(
-        "SELECT chunk_id,outcome,reviewer_user_id,reviewed_text,page_reference,note,created_at "
+        "SELECT chunk_id,outcome,reviewer_user_id,original_text,reviewed_text,page_reference,note,created_at "
         "FROM document_extraction_reviews WHERE document_id=? AND case_id=? AND firm_id=? ORDER BY id DESC",
         (document_id, cid, u["firm_id"]),
     ).fetchall()
@@ -8432,6 +8793,17 @@ def export_firm_data_zip(u: dict = Depends(user)):
                 "r.outcome,r.original_text,r.reviewed_text,r.note,r.page_reference,r.created_at "
                 "FROM document_extraction_reviews r JOIN cases c ON c.id=r.case_id "
                 "ORDER BY r.id"
+            )))
+            archive.writestr("document_classifications.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT dc.document_id,dc.case_id,dc.firm_id,dc.category,dc.version,"
+                "dc.updated_by_user_id,dc.updated_at FROM document_classifications dc "
+                "JOIN cases c ON c.id=dc.case_id ORDER BY dc.document_id"
+            )))
+            archive.writestr("document_classification_events.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT e.id,e.document_id,e.case_id,e.firm_id,e.actor_user_id,"
+                "e.previous_category,e.new_category,e.version,e.note,e.created_at "
+                "FROM document_classification_events e JOIN cases c ON c.id=e.case_id "
+                "ORDER BY e.id"
             )))
             archive.writestr("matter_chunks.csv", _firm_export_csv_bytes(tenant.execute(
                 "SELECT ch.id,ch.ref,ch.article,ch.page,ch.text,ch.norm,ch.case_id,"
