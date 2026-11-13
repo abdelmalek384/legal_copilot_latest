@@ -212,6 +212,11 @@ def _validate_metadata(meta: object, text_bytes: bytes) -> dict:
             raise ValueError("source_url must not contain signed or credential query parameters")
     elif not (isinstance(meta.get("source_reference"), str) and meta["source_reference"].strip()):
         raise ValueError("provide source_url or a non-empty source_reference")
+    for field in ("expected_promulgation_provisions", "expected_attached_law_articles"):
+        if field in meta:
+            value = meta[field]
+            if isinstance(value, bool) or not isinstance(value, int) or not 0 <= value <= 10000:
+                raise ValueError(f"{field} must be an integer between 0 and 10000")
     permission = meta.get("collection_permission", "unknown")
     if not isinstance(permission, str) or permission not in {"unknown", "allowed", "not_allowed"}:
         raise ValueError("collection_permission must be unknown, allowed, or not_allowed")
@@ -312,6 +317,7 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
     preamble_characters = sum(len(part[2]) for part in preamble_parts)
     rows = []
     block_articles = {}
+    block_provision_types = {}
     empty_articles = []
     title = metadata["official_title"].strip()
     source = (
@@ -363,6 +369,7 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
                 "permission_evidence_reference": metadata.get("permission_evidence_reference"),
             })
         block_articles.setdefault(block, []).append(article)
+        block_provision_types.setdefault(block, provision_type)
     if not rows:
         raise ValueError("recognized headings contained no importable text")
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -392,17 +399,18 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
         f"- Permission evidence reference: {metadata.get('permission_evidence_reference') or 'not supplied'}",
         "- Every row is emitted with verified=0, in_force=0, and as_of=null.",
         "- No legal currentness, source authenticity, or reuse rights are inferred.", "",
-        "| numbering block | first label | last label | headings |",
-        "|---|---|---|---:|",
+        "| numbering block | first label | last label | headings | expected |",
+        "|---|---|---|---:|---:|",
     ]
     numbering_gaps = {}
     duplicate_numbers = {}
+    out_of_range_numbers = {}
     for block, labels in sorted(block_articles.items()):
         numeric = []
         for label in labels:
-            match = re.match(r"^issuance_(\d+)$", str(label))
+            match = re.match(r"^issuance_(\\d+)$", str(label))
             if not match:
-                match = re.match(r"^\s*([0-9٠-٩۰-۹]+)", str(label))
+                match = re.match(r"^\\s*([0-9٠-٩۰-۹]+)", str(label))
             if match:
                 try:
                     numeric.append(int(match.group(1).translate(str.maketrans(
@@ -410,20 +418,37 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
                     ))))
                 except ValueError:
                     pass
-        missing = sorted(set(range(1, max(numeric, default=0) + 1)) - set(numeric))
+        provision_type = block_provision_types.get(block)
+        expected = (
+            metadata.get("expected_promulgation_provisions")
+            if provision_type == "promulgation"
+            else metadata.get("expected_attached_law_articles")
+            if provision_type in {"attached_law", "article"}
+            else None
+        )
+        upper_bound = expected if expected is not None else max(numeric, default=0)
+        present = set(numeric)
+        missing = sorted(set(range(1, upper_bound + 1)) - present)
         duplicates = sorted({number for number in numeric if numeric.count(number) > 1})
+        out_of_range = sorted({number for number in numeric if expected is not None and number > expected})
         if missing:
             numbering_gaps[str(block)] = missing
         if duplicates:
             duplicate_numbers[str(block)] = duplicates
-        report.append(f"| {block} | {labels[0]} | {labels[-1]} | {len(labels)} |")
+        if out_of_range:
+            out_of_range_numbers[str(block)] = out_of_range
+        expected_label = str(expected) if expected is not None else "not supplied"
+        report.append(f"| {block} | {labels[0]} | {labels[-1]} | {len(labels)} | {expected_label} |")
     report += ["", "## Numbering audit", "",
                f"- Blocks with missing article numbers: {len(numbering_gaps)}",
-               f"- Blocks with duplicate article numbers: {len(duplicate_numbers)}"]
+               f"- Blocks with duplicate article numbers: {len(duplicate_numbers)}",
+               f"- Blocks with out-of-range article numbers: {len(out_of_range_numbers)}"]
     for block, missing in numbering_gaps.items():
         report.append(f"- Block {block} missing: {', '.join(map(str, missing))}")
     for block, duplicates in duplicate_numbers.items():
         report.append(f"- Block {block} duplicates: {', '.join(map(str, duplicates))}")
+    for block, out_of_range in out_of_range_numbers.items():
+        report.append(f"- Block {block} out of expected range: {', '.join(map(str, out_of_range))}")
     if preamble_characters:
         report += [
             "", "## Unparsed preamble excluded from candidate rows", "",
@@ -445,7 +470,11 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
             "attached_law_articles": attached_law_count,
             "unparsed_preamble_characters": preamble_characters,
             "candidate_chunks": len(rows), "empty_articles": empty_articles,
-            "sha256": metadata["actual_sha256"], "output_dir": str(output_dir)}
+            "sha256": metadata["actual_sha256"],
+            "missing_article_numbers": numbering_gaps,
+            "duplicate_article_numbers": duplicate_numbers,
+            "out_of_range_article_numbers": out_of_range_numbers,
+            "output_dir": str(output_dir)}
 
 
 def main() -> int:
