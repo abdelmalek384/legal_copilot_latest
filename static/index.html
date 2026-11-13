@@ -1087,6 +1087,7 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
 </style>
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 .answer-rating-panel{display:grid;gap:10px;margin-top:12px;padding:12px;border:1px solid var(--figma-border);background:#f9fbff}.answer-rating-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.answer-rating-fields select,.answer-rating-fields input,.answer-rating-fields textarea{width:100%;min-width:0}.answer-rating-fields textarea{grid-column:1/-1}@media(max-width:560px){.answer-rating-fields{grid-template-columns:minmax(0,1fr)}}
+.research-rating-tools{display:flex;gap:8px;flex-wrap:wrap;padding:10px 12px;margin:8px 0;border:1px solid var(--figma-border);border-radius:10px;background:#fff}.research-rating-list{display:grid;gap:8px;flex-basis:100%}.research-rating-row{padding:9px;border:1px solid var(--figma-border);border-radius:8px;overflow-wrap:anywhere}.research-rating-row p{margin:5px 0 0;white-space:pre-wrap}
 <script>
 const $=i=>document.getElementById(i),A=$('app');
 let ME=JSON.parse(sessionStorage.me||'{}'),TAB='sum',PAGE='dash';
@@ -2389,6 +2390,26 @@ async function law(){
    resetInspector();thread.replaceChildren();
    const header=h('div',{className:'research-heading'},h('div',{},h('b',{textContent:copy('بحث قانوني مدعوم بالمصادر')}),h('div',{className:'mut',textContent:copy('نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.')})));
    thread.append(header);
+   if(ME.role==='admin'){
+     const ratingList=h('div',{className:'research-rating-list','aria-live':'polite'});
+     const listButton=btn(LANG==='ar'?'عرض تقييمات المكتب':'View firm ratings',async()=>{
+       listButton.disabled=true;ratingList.textContent=LANG==='ar'?'جارٍ تحميل التقييمات...':'Loading ratings...';
+       try{
+         const result=await api('/research/answer-ratings?limit=100&offset=0');
+         ratingList.replaceChildren(h('b',{textContent:(LANG==='ar'?'التقييمات المحفوظة: ':'Saved ratings: ')+result.total}));
+         for(const item of result.items||[]){
+           ratingList.append(h('article',{className:'research-rating-row'},
+             h('b',{textContent:item.rating.replaceAll('_',' ')}),
+             h('span',{className:'mut',textContent:(LANG==='ar'?'المراجع ':'Reviewer ')+item.rated_by+' · '+(item.benchmark_ready?'Benchmark-ready':'Incomplete label')}),
+             h('p',{textContent:item.answer_preview||''})));
+         }
+         if(!(result.items||[]).length)ratingList.append(h('p',{className:'mut',textContent:LANG==='ar'?'لا توجد تقييمات محفوظة.':'No ratings have been saved.'}));
+       }catch(_){ratingList.textContent=LANG==='ar'?'تعذر تحميل التقييمات.':'Could not load ratings.'}
+       finally{listButton.disabled=false}
+     },'g');
+     const exportButton=btn(LANG==='ar'?'تصدير CSV':'Export CSV',()=>{window.location.href='/research/answer-ratings/export.csv'},'g');
+     thread.append(h('div',{className:'research-rating-tools'},listButton,exportButton,ratingList));
+   }
    if(!messages.length) thread.append(h('div',{className:'research-empty'},h('div',{textContent:'⚖️',style:'font-size:32px'}),h('h3',{textContent:copy('ابدأ محادثة بحث قانوني')}),h('p',{textContent:copy('اسأل عن القانون المصري')})));
    for(const [messageIndex,m] of messages.entries()){
      const bubble=h('div',{className:'research-message '+(m.role==='user'?'user':'assistant')});
