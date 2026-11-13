@@ -42,6 +42,10 @@ Open http://127.0.0.1:8000 on the same machine. The launchers and commands initi
 
 The repository includes case-management workflows, profile-separated storage, Arabic lexical retrieval, citation checks, and fail-closed source-only behavior. These are software capabilities with automated tests; they do not establish the correctness of legal content.
 
+## Lawyer answer ratings
+
+Every assistant answer displays a trust-tier badge. Firm users can save or update a private quality assessment (overall answer verdict, cited-article accuracy, expected article IDs, answerability and optional notes) directly beneath the answer in Legal Research. Firm administrators can list current firm ratings and export the structured CSV. Ratings are provisional quality feedback, not legal-source verification, counsel approval, model-training consent, or permission to reuse firm data outside that firm. See [the rating/export contract](docs/answer_rating_export_contract.md).
+
 ## Known limits
 
 - **No verified Egyptian law is currently available in the product.** The repository contains candidate/source metadata and fictional fixtures, not a lawyer-verified legal corpus. `tests/fixtures/legal/sample_law.jsonl` is fictional test data and must never be treated as law.
