@@ -758,7 +758,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_source_inspector_preserves_document_page_and_confidence_provenance(self):
         self.assertIn("p.original_document_name||p.document_name||source.original_document_name||source.document_name||source.file_name", HTML)
-        self.assertIn("source.page_number??p.page_number", HTML)
+        self.assertIn("source.page_number??source.page??p.page_number??p.page", HTML)
         self.assertIn("source.text_location||p.text_location||source.location||p.location", HTML)
         self.assertIn("source.confidence??p.confidence", HTML)
         self.assertIn("(typeof confidence==='number'||typeof confidence==='string')&&confidence!==''", HTML)
