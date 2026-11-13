@@ -9552,6 +9552,226 @@ def _owned_research_conversation(c, u, conversation_id):
 
 
 
+
+class AnswerRatingIn(BaseModel):
+    rating: str = Field(pattern=r"^(correct|partially_correct|wrong)$")
+    cited_article_accuracy: str = Field(pattern=r"^(right|wrong|not_applicable)$")
+    expected_article_ids: list[str] = Field(default_factory=list, max_length=100)
+    answerable: bool | None = None
+    notes: str = Field(default="", max_length=2000)
+
+    @field_validator("expected_article_ids")
+    @classmethod
+    def validate_expected_article_ids(cls, values):
+        cleaned = []
+        for value in values:
+            if not isinstance(value, str) or not value.strip() or len(value) > 256:
+                raise ValueError("expected article IDs must be non-empty strings of at most 256 characters")
+            cleaned.append(value.strip())
+        if len(set(cleaned)) != len(cleaned):
+            raise ValueError("expected article IDs must be unique")
+        return cleaned
+
+
+def _research_answer_for_rating(c, u, answer_id):
+    if not isinstance(answer_id, str) or not 8 <= len(answer_id) <= 128:
+        raise HTTPException(404, "research answer not found")
+    row = c.execute(
+        "SELECT m.id AS answer_message_id,m.conversation_id,m.content,m.message_json,"
+        "r.id AS conversation_owner_id FROM research_messages m "
+        "JOIN research_conversations r ON r.id=m.conversation_id "
+        "WHERE r.firm_id=? AND m.role='assistant' AND json_valid(m.message_json)=1 "
+        "AND json_extract(m.message_json,'$.answer_id')=? LIMIT 1",
+        (int(u["firm_id"]), answer_id),
+    ).fetchone()
+    if not row:
+        raise HTTPException(404, "research answer not found")
+    return row
+
+
+def _answer_rating_payload(row):
+    return {
+        "rating_id": int(row["id"]),
+        "answer_id": row["answer_id"],
+        "rating": row["rating"],
+        "cited_article_accuracy": row["cited_article_accuracy"],
+        "expected_article_ids": json.loads(row["expected_article_ids_json"] or "[]"),
+        "answerable": None if row["answerable"] is None else bool(row["answerable"]),
+        "notes": row["notes"],
+        "rated_by": int(row["rated_by"]),
+        "created_at": row["created_at"],
+        "updated_at": row["updated_at"],
+    }
+
+
+@app.get("/research/answers/{answer_id}/rating")
+def get_my_answer_rating(answer_id: str, u: dict = Depends(user)):
+    c = conn()
+    answer = _research_answer_for_rating(c, u, answer_id)
+    row = c.execute(
+        "SELECT * FROM answer_ratings WHERE answer_message_id=? AND rated_by=?",
+        (int(answer["answer_message_id"]), int(u["id"])),
+    ).fetchone()
+    return {"answer_id": answer_id, "rating": _answer_rating_payload(row) if row else None}
+
+
+@app.put("/research/answers/{answer_id}/rating")
+@rollback_tenant_transaction_on_error
+def save_answer_rating(answer_id: str, b: AnswerRatingIn, u: dict = Depends(user)):
+    c = conn()
+    answer = _research_answer_for_rating(c, u, answer_id)
+    expected_json = json.dumps(b.expected_article_ids, ensure_ascii=False, separators=(",", ":"))
+    detail_json = json.dumps({
+        "rating": b.rating,
+        "cited_article_accuracy": b.cited_article_accuracy,
+        "answerable": b.answerable,
+        "expected_article_count": len(b.expected_article_ids),
+    }, separators=(",", ":"))
+    c.execute("BEGIN IMMEDIATE")
+    existing = c.execute(
+        "SELECT id FROM answer_ratings WHERE answer_message_id=? AND rated_by=?",
+        (int(answer["answer_message_id"]), int(u["id"])),
+    ).fetchone()
+    if existing:
+        rating_id = int(existing["id"])
+        c.execute(
+            "UPDATE answer_ratings SET answer_id=?,rating=?,cited_article_accuracy=?,"
+            "expected_article_ids_json=?,answerable=?,notes=?,updated_at=CURRENT_TIMESTAMP "
+            "WHERE id=? AND rated_by=?",
+            (answer_id, b.rating, b.cited_article_accuracy, expected_json,
+             None if b.answerable is None else int(b.answerable), b.notes,
+             rating_id, int(u["id"])),
+        )
+        event_type = "updated"
+    else:
+        cur = c.execute(
+            "INSERT INTO answer_ratings(answer_message_id,answer_id,rating,cited_article_accuracy,"
+            "expected_article_ids_json,answerable,notes,rated_by) VALUES(?,?,?,?,?,?,?,?)",
+            (int(answer["answer_message_id"]), answer_id, b.rating,
+             b.cited_article_accuracy, expected_json,
+             None if b.answerable is None else int(b.answerable), b.notes, int(u["id"])),
+        )
+        rating_id = int(cur.lastrowid)
+        event_type = "created"
+    c.execute(
+        "INSERT INTO answer_rating_events(rating_id,actor_user_id,event_type,detail_json) "
+        "VALUES(?,?,?,?)",
+        (rating_id, int(u["id"]), event_type, detail_json),
+    )
+    c.commit()
+    saved = c.execute("SELECT * FROM answer_ratings WHERE id=?", (rating_id,)).fetchone()
+    payload = _answer_rating_payload(saved)
+    payload["benchmark_ready"] = bool(
+        b.answerable is False or (
+            b.answerable is True and bool(b.expected_article_ids)
+        )
+    )
+    return payload
+
+
+@app.get("/research/answer-ratings")
+def list_firm_answer_ratings(
+    limit: int = Query(default=100, ge=1, le=500),
+    offset: int = Query(default=0, ge=0),
+    u: dict = Depends(user),
+):
+    require_admin(u)
+    c = conn()
+    rows = c.execute(
+        "SELECT ar.*,m.content AS answer_text,m.message_json,r.id AS conversation_id "
+        "FROM answer_ratings ar JOIN research_messages m ON m.id=ar.answer_message_id "
+        "JOIN research_conversations r ON r.id=m.conversation_id "
+        "WHERE r.firm_id=? ORDER BY ar.updated_at DESC,ar.id DESC LIMIT ? OFFSET ?",
+        (int(u["firm_id"]), limit, offset),
+    ).fetchall()
+    items = []
+    for row in rows:
+        item = _answer_rating_payload(row)
+        item.update({
+            "conversation_id": int(row["conversation_id"]),
+            "answer_message_id": int(row["answer_message_id"]),
+            "answer_preview": str(row["answer_text"] or "")[:240],
+            "benchmark_ready": bool(
+                row["answerable"] == 0 or (
+                    row["answerable"] == 1 and bool(json.loads(row["expected_article_ids_json"] or "[]"))
+                )
+            ),
+        })
+        items.append(item)
+    total = c.execute(
+        "SELECT COUNT(*) FROM answer_ratings ar JOIN research_messages m ON m.id=ar.answer_message_id "
+        "JOIN research_conversations r ON r.id=m.conversation_id WHERE r.firm_id=?",
+        (int(u["firm_id"]),),
+    ).fetchone()[0]
+    return {"items": items, "total": int(total), "limit": limit, "offset": offset}
+
+
+@app.get("/research/answer-ratings/export.csv")
+def export_firm_answer_ratings_csv(u: dict = Depends(user)):
+    require_admin(u)
+    c = conn()
+    rows = c.execute(
+        "SELECT ar.*,m.id AS export_message_id,m.content AS answer_text,"
+        "m.message_json,r.id AS conversation_id "
+        "FROM answer_ratings ar JOIN research_messages m ON m.id=ar.answer_message_id "
+        "JOIN research_conversations r ON r.id=m.conversation_id "
+        "WHERE r.firm_id=? ORDER BY ar.created_at,ar.id",
+        (int(u["firm_id"]),),
+    ).fetchall()
+    output = io.StringIO(newline="")
+    writer = csv.writer(output, lineterminator="\\r\\n")
+    writer.writerow([
+        "rating_id","answer_id","conversation_id","answer_message_id","question","answer",
+        "rating","cited_article_accuracy","cited_article_ids","expected_article_ids",
+        "answerable","notes","rated_by","created_at","updated_at","benchmark_ready",
+    ])
+    for row in rows:
+        previous = c.execute(
+            "SELECT role,content FROM research_messages WHERE conversation_id=? AND id<? "
+            "ORDER BY id DESC LIMIT 1",
+            (int(row["conversation_id"]), int(row["export_message_id"])),
+        ).fetchone()
+        question = previous["content"] if previous and previous["role"] == "user" else ""
+        try:
+            metadata = json.loads(row["message_json"] or "{}")
+        except (TypeError, ValueError):
+            metadata = {}
+        sources = metadata.get("sources", []) if isinstance(metadata, dict) else []
+        cited_ids = []
+        if isinstance(sources, list):
+            for source in sources:
+                if isinstance(source, dict):
+                    source_id = source.get("article_id")
+                    if isinstance(source_id, str) and source_id and source_id not in cited_ids:
+                        cited_ids.append(source_id)
+        expected = json.loads(row["expected_article_ids_json"] or "[]")
+        answerable = None if row["answerable"] is None else bool(row["answerable"])
+        benchmark_ready = bool(
+            question and (answerable is False or (answerable is True and bool(expected)))
+        )
+        values = [
+            row["id"],row["answer_id"],row["conversation_id"],row["export_message_id"],
+            question,row["answer_text"],row["rating"],row["cited_article_accuracy"],
+            json.dumps(cited_ids,ensure_ascii=False),json.dumps(expected,ensure_ascii=False),
+            "" if answerable is None else str(answerable).lower(),row["notes"],row["rated_by"],
+            row["created_at"],row["updated_at"],str(benchmark_ready).lower(),
+        ]
+        writer.writerow([_csv_safe_cell(value) for value in values])
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (int(u["firm_id"]),int(u["id"]),f"answer_rating_export:count={len(rows)}"),
+    )
+    c.commit()
+    filename = "answer-ratings.csv"
+    return Response(
+        content=("\\ufeff" + output.getvalue()).encode("utf-8"),
+        media_type="text/csv; charset=utf-8",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"',
+                 "Cache-Control":"no-store","Pragma":"no-cache"},
+    )
+
+
+
 class ResearchDiscoveryIn(BaseModel):
     q: str = Field(min_length=2, max_length=200)
     as_of: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$")
