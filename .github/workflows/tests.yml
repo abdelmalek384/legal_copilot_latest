@@ -394,6 +394,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_answer_correction_routes.py
       - name: Test firm-local lawyer answer rating migration
         run: PYTHONPATH=. python tests/test_answer_rating_migration.py
+      - name: Test firm-scoped lawyer answer rating API and CSV export
+        run: PYTHONPATH=. python tests/test_answer_rating_routes.py
       - name: Test platform pilot metrics dashboard contract
         run: PYTHONPATH=. python tests/test_platform_pilot_metrics_frontend_contract.py
       - name: Test safe request validation errors
