@@ -48,6 +48,14 @@ class AnswerRatingExportAdapterTests(unittest.TestCase):
         rows, _ = adapt_rows([firm_row(trust_tier="unexpected")])
         self.assertEqual(rows[0]["trust_tier"], "unverified")
 
+    def test_malformed_enum_types_are_rejected_without_crashing(self):
+        with self.assertRaisesRegex(ValueError, "rating must be"):
+            adapt_rows([firm_row(rating=["correct"])])
+        with self.assertRaisesRegex(ValueError, "cited_article_accuracy must be"):
+            adapt_rows([firm_row(cited_article_accuracy=["right"])])
+        with self.assertRaisesRegex(ValueError, "notes must be a string"):
+            adapt_rows([firm_row(notes=None)])
+
     def test_naive_timestamp_is_rejected(self):
         with self.assertRaisesRegex(ValueError, "explicit timezone"):
             adapt_rows([firm_row(updated_at="2026-11-14T12:30:00")])
