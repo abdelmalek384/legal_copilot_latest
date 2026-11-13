@@ -761,7 +761,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("source.page_number??source.page??p.page_number??p.page", HTML)
         self.assertIn("The recorded page reference has not been independently checked against the original file.", HTML)
         self.assertIn("مرجع الصفحة المسجل لم تتم مطابقته بصورة مستقلة مع الملف الأصلي.", HTML)
-        self.assertIn("if(pageLocation!==undefined&&pageLocation!==null&&pageLocation!=='')statusNote.append", HTML)
+        self.assertIn("if(pageLocation!==undefined&&pageLocation!==null&&pageLocation!==''&&(source.scope==='firm_documents'||(source.case_id!==undefined&&source.case_id!==null)))statusNote.append", HTML)
         self.assertIn("source.text_location||p.text_location||source.location||p.location", HTML)
         self.assertIn("source.confidence??p.confidence", HTML)
         self.assertIn("(typeof confidence==='number'||typeof confidence==='string')&&confidence!==''", HTML)
