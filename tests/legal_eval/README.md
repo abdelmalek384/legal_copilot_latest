@@ -71,6 +71,13 @@ The evaluation runner validates the API base URL before sending requests. It rej
 The article-specific retrieval scorer also requires the same private approved reviewer registry used by the legal-answer evaluator. Reviewer ID, display name, professional role and practice-area authorization must match an approved registry entry. Keep the registry outside the repository; the checked-in empty example is not a reviewer approval. This is an administrative identity-consistency check, not independent verification of a professional license.
 
 
+## Law 14/2025 machine-proposed article retrieval drafts — 2026-11-13
+
+- `law_14_2025_machine_proposed_questions.draft.jsonl` contains 116 unique prompts: 58 formal and 58 Egyptian-colloquial variants derived from 58 provisional article/pin references.
+- Every `expected_article` and `expected_article_id` is explicitly marked `machine-proposed, unapproved`; every row remains `needs_lawyer_review`, with blank expected answers, approved sources and pinpoint citations. The candidate article mapping must be checked by qualified Egyptian counsel.
+- Structural contract: `tests/test_law14_machine_proposed_eval_set.py`. This is not a reviewed answer key and must not be used to claim retrieval accuracy.
+- The existing `tools/score_arabic_retrieval.py` reports top-3 hit rate, wrong-article rate and abstention metrics only for eligible lawyer-reviewed rows with an approved reviewer registry. Do not weaken that gate to score these drafts. No baseline is available until approved labels and actual retrieval-run records exist.
+
 ## Distinct draft inventories — 2026-11-13
 
 The repository contains more than one draft question inventory. They serve different workflows and must not be added together and described as unique questions:
