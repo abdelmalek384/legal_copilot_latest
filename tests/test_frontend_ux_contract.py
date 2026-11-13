@@ -804,7 +804,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("No text differences were reported between the two versions.", HTML)
 
     def test_cross_document_comparison_uses_authorized_provenance_api_and_literal_hunks(self):
-        panel = HTML[HTML.index("function documentIntelligencePanel(caseId,documents)"):HTML.index("\\nasync function view(id)")]
+        panel = HTML[HTML.index("function documentIntelligencePanel(caseId,documents)"):HTML.index("async function view(id)")]
         self.assertIn("api('/documents/compare?'+params.toString())", panel)
         self.assertIn("before_document_id", panel)
         self.assertIn("after_document_id", panel)
