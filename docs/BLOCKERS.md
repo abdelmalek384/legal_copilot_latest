@@ -126,7 +126,7 @@ All of these merges are source-reviewed code integration only. Their tests remai
 | Figma-aligned Legal Research UI and application shell | 100% merged (#1582) | Browser/RTL/LTR/accessibility QA not run | 80% |
 | PDF/DOCX upload, accessible document library, metadata and Arabic/English text search | 100% merged (#1582) | End-to-end upload/download and adversarial tenant checks not run | 80% |
 | Persistent classification, audit history, extraction review and literal multi-hunk correction comparison | 100% merged (#1582/#1591) | Python 3.12 integration tests and browser review flow not run | 85% |
-| Cross-document version comparison API and Documents workspace integration | Implemented on current feature branch; merge pending | Matter-scope, page provenance, oversized-input and browser acceptance tests not run | 70% |
+| Cross-document version comparison API and Documents workspace integration | 100% merged (#1592) | Matter-scope/page-provenance runtime tests and browser acceptance not run | 80% |
 | Gazette importer and provenance hardening | 100% merged (#1576/#1577/#1584) | Focused Python 3.12 tests not run | 80% |
 | Retrieval scorer/evaluator and device-evidence input hardening | 100% merged (#1580/#1581/#1583) | Focused Python 3.12 tests not run | 80% |
 | Live Arabic/English negated-obligation guard | Runtime call site confirmed; Arabic service-path tests merged (#1588) | Tests not run | 85% |
@@ -153,10 +153,10 @@ Percentages distinguish repository implementation from validation and operationa
 - The uploaded original remains unchanged. This is a transcription-difference view, not semantic legal analysis or a finding that the correction is accurate.
 - Runtime and frontend contract tests were added but not executed because hosted runner/billing allocation remains blocked.
 
-## Cross-document version comparison — 2026-11-13 (branch pending merge)
+## Cross-document version comparison — 2026-11-13 (merged #1592)
 
 - Added `GET /documents/compare` for two document IDs within one authorized matter. It verifies both document records against the selected case and active firm; cross-matter/missing IDs return the same 404 response.
 - Text is assembled in stored chunk order with source chunk IDs, references, page numbers and character offsets. Each version is bounded to 100,000 characters; the shared helper caps output at 200 literal change hunks.
 - The Documents workspace now uses the server comparison endpoint and renders each before/after hunk, both versions' source-chunk/page references, and an explicit lawyer-review warning. It no longer presents a local first/last-difference approximation as the comparison result.
 - Added separate-database runtime coverage for a real two-document comparison, page provenance, cross-matter denial and same-document rejection, plus frontend contract assertions.
-- Branch: `feature/document-version-comparison-api-20261113`. Static review only; no Python tests or browser execution has run. Do not report this workstream as merged until the PR is merged.
+- PR #1592 merged at `531315955078fb01febfc6f36c61a0fa09edd6e9`. Static source/diff review only; no Python tests or browser execution has run. Merge is code integration, not a passing test or production acceptance.
