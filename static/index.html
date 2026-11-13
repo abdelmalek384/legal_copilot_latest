@@ -283,6 +283,8 @@ body{background:#f3f6fa;color:var(--figma-ink);font-family:Inter,"Noto Sans Arab
 #side .firm-switch label{color:#cbd6e5}
 #side .firm-switch select{background:#102945;color:#fff;border-color:#38516f}
 @media(max-width:800px){#side{background:#071b31}#side nav:after{background:linear-gradient(90deg,transparent,#071b31)}}
+.answer-rating-panel{display:grid;gap:10px;margin-top:12px;padding:12px;border:1px solid var(--figma-border);background:#f9fbff}.answer-rating-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.answer-rating-fields select,.answer-rating-fields input,.answer-rating-fields textarea{width:100%;min-width:0}.answer-rating-fields textarea{grid-column:1/-1}@media(max-width:560px){.answer-rating-fields{grid-template-columns:minmax(0,1fr)}}
+.research-rating-tools{display:flex;gap:8px;flex-wrap:wrap;padding:10px 12px;margin:8px 0;border:1px solid var(--figma-border);border-radius:10px;background:#fff}.research-rating-list{display:grid;gap:8px;flex-basis:100%}.research-rating-row{padding:9px;border:1px solid var(--figma-border);border-radius:8px;overflow-wrap:anywhere}.research-rating-row p{margin:5px 0 0;white-space:pre-wrap}
 </style>
 <style>
 /* Legal Copilot — premium workspace polish
@@ -1086,8 +1088,6 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
 @media(prefers-reduced-motion:reduce){#main .quick-link{transition:none}#main .quick-link:hover{transform:none}}
 </style>
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
-.answer-rating-panel{display:grid;gap:10px;margin-top:12px;padding:12px;border:1px solid var(--figma-border);background:#f9fbff}.answer-rating-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.answer-rating-fields select,.answer-rating-fields input,.answer-rating-fields textarea{width:100%;min-width:0}.answer-rating-fields textarea{grid-column:1/-1}@media(max-width:560px){.answer-rating-fields{grid-template-columns:minmax(0,1fr)}}
-.research-rating-tools{display:flex;gap:8px;flex-wrap:wrap;padding:10px 12px;margin:8px 0;border:1px solid var(--figma-border);border-radius:10px;background:#fff}.research-rating-list{display:grid;gap:8px;flex-basis:100%}.research-rating-row{padding:9px;border:1px solid var(--figma-border);border-radius:8px;overflow-wrap:anywhere}.research-rating-row p{margin:5px 0 0;white-space:pre-wrap}
 <script>
 const $=i=>document.getElementById(i),A=$('app');
 let ME=JSON.parse(sessionStorage.me||'{}'),TAB='sum',PAGE='dash';
@@ -2367,7 +2367,7 @@ async function law(){
 
  const copy=(v)=>LANG==='ar'?v:({ 'محادثة جديدة':'New chat','ابدأ محادثة بحث قانوني':'Start a legal research chat','اسأل عن القانون المصري':'Ask about Egyptian law','اكتب سؤالك هنا…':'Type your question…','إرسال':'Send','مصادر الإجابة':'Answer sources','لا توجد محادثات بعد':'No conversations yet','ابدأ محادثة جديدة':'Start a new chat','بحث قانوني مدعوم بالمصادر':'Source-grounded legal research','لا توجد إجابة مولدة. راجع المصادر أدناه.':'No generated answer. Review the sources below.','نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.':'Research assistance, not legal advice. Always verify against the official source.','مصدر غير متحقق':'Unverified source','غير سارٍ':'Not in force','لم يُتحقق من سريانه':'Current status unverified'}[v]||v);
  const makeBtn=(label,fn,cl='g')=>btn(copy(label),fn,cl);
- const trustTierBadge=tier=>{const labels={verified:[LANG==='ar'?'موثّق':'Verified','done'],source_matched:[LANG==='ar'?'مطابق للمصدر — غير متحقق منه':'Source-matched — not verified','soon'],unreviewed:[LANG==='ar'?'غير مُراجع':'Unreviewed','late']};const item=labels[tier];return item?pill(item[0],item[1]):null};
+ const trustTierBadge=tier=>{const labels={verified:[LANG==='ar'?'موثّق':'Verified','done'],source_matched:[LANG==='ar'?'مطابق للمصدر — غير متحقق منه':'Source-matched — not verified','soon'],unreviewed:[LANG==='ar'?'غير مُراجع':'Unreviewed','late']};const item=labels[tier]||labels.unreviewed;return pill(item[0],item[1])};
  const resetInspector=(returnFocus=false)=>{const returnTo=sourceInspector.__focusReturn;sourceInspector.__focusReturn=null;if(returnTo&&returnTo.isConnected)returnTo.setAttribute('aria-expanded','false');sourceInspector.replaceChildren(h('div',{className:'research-inspector-empty'},h('div',{textContent:'⌕',style:'font-size:28px'}),h('b',{textContent:LANG==='ar'?'فحص المصدر':'Source inspector'}),h('p',{className:'mut',textContent:LANG==='ar'?'اختر مصدراً من الإجابة لعرض بياناته ومقطعه الحرفي هنا.':'Select a source from an answer to inspect its metadata and exact passage here.'})));if(returnFocus&&returnTo&&returnTo.isConnected)returnTo.focus();};
  const inspectSource=(source,status,pin,provenance,trigger)=>{
   const previousTrigger=sourceInspector.__focusReturn;if(previousTrigger&&previousTrigger!==trigger&&previousTrigger.isConnected)previousTrigger.setAttribute('aria-expanded','false');sourceInspector.__focusReturn=trigger||document.activeElement;if(trigger)trigger.setAttribute('aria-expanded','true');
@@ -2415,7 +2415,7 @@ async function law(){
      const bubble=h('div',{className:'research-message '+(m.role==='user'?'user':'assistant')});
      bubble.append(h('div',{className:'research-role',textContent:m.role==='user'?(LANG==='ar'?'أنت':'You'):(LANG==='ar'?'المساعد القانوني':'Legal assistant')}));
      bubble.append(h('div',{className:'research-content',textContent:m.content||m.answer||''}));
-     const answerTier=m.trust_tier||(m.result&&m.result.trust_tier);if(answerTier)bubble.append(trustTierBadge(answerTier));
+     const answerTier=m.trust_tier||(m.result&&m.result.trust_tier);if(m.role==='assistant')bubble.append(trustTierBadge(answerTier||'unreviewed'));
      if(m.role==='assistant'&&(m.sources||[]).length){
        const sourceItems=m.sources||[];
        const cautionCount=sourceItems.filter(source=>!source||source.source_status!=='verified_operative_text').length;
