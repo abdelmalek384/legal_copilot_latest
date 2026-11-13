@@ -97,7 +97,7 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 - `tools/run_legal_eval.py::validate_base_url` now rejects DEL and raw backslashes before URL parsing. Regression tests include single-backslash and DEL cases.
 - `tools/seed_legal_candidates.py` now validates candidate and canonical permission-register `source_page` URLs as clean HTTPS URLs, rejecting credentials, malformed ports, controls and raw backslashes before comparing hosts. Regression fixtures cover HTTP, embedded credentials, malformed authorities and backslashes.
-- Direct-main commits: `27976cf`, `9fc0f19`, `279b761`, `54d31f8`, `66b2e6b`, `d0dafda`. Tests remain unexecuted.
+- Direct-main commits: `27976cf`, `9fc0f19`, `279b761`, `54d31f8`, `66b2e6b`, `d0dafda`, `2b89b06`, `6913a76`, `a5874d7`, `b99d549`. Tests remain unexecuted.
 
 ## Law 14/2025 evaluation-draft structural guard — 2026-11-14
 
