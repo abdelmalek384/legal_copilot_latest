@@ -26,7 +26,7 @@
 
 - Focused tests for the current AI-1 changes have not been executed in the supported Python 3.12 environment in this session. GitHub Actions previously failed before runner allocation (empty steps / runner ID 0); do not call this a code test failure or a pass.
 - The rating contract is ready for AI-2, but billing/provider acceptance, real tenant isolation/recovery, browser/device accessibility, and pilot-firm workflow acceptance remain separate gates.
-- The importer can be run only on text that is lawfully supplied for extraction and use. Do not bypass the restricted PDF's copy/print controls.
+- The supplied ZIP's `law_rows_ar.jsonl` was structurally inventoried without committing its text: 311 rows, 13 promulgation provisions and 298 articles, no missing/duplicate article numbers, malformed rows 0, `verified=0` for all rows. See [inventory audit](legal_evidence/law14_2025_uploaded_candidate_inventory_audit.json). This is not an importer run or Gazette comparison. The importer still needs an authorized plain-text Gazette transcription; do not bypass the restricted PDF's copy/print controls.
 
 ## Next actions
 
