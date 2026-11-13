@@ -277,3 +277,8 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - PR #1593 merged at `6f3550183c79164c7ec72a5eaa0a40dad17b4ab1`: scorer, production release gate and legal readiness reports reject direct/symlink/hard-link aliases to protected evidence inputs.
 - PR #1599 merged at `0637d89359b2ecb611cd816ece42ea564d755e2b`: shared fail-closed path guard protects legal-source review, corpus inventory, acquisition readiness, amendment relationships and Arabic OCR report outputs. Symlink resolution loops fail closed.
 - Regression tests were added but not executed. No runtime pass is claimed.
+
+## Event argument provenance refinement — 2026-11-13
+
+- Event candidate records now include exact source offsets for same-sentence date and labelled-party mentions, not only string lists. The Legal Research review cards display those offsets.
+- Helper and frontend contract regression coverage was added; tests and browser acceptance remain unexecuted. Branch `feat/event-argument-provenance-20261113`; merge pending.
