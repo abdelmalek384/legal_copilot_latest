@@ -30,7 +30,7 @@ _MONEY_PATTERN = re.compile(
     re.IGNORECASE,
 )
 _PARTY_LABEL_PATTERN = re.compile(
-    r"(?:المدعي|المدعى عليه|المتهم|المجني عليه|الطالب|المطلوب ضده|المؤجر|المستأجر|البائع|المشتري|Plaintiff|Defendant|Claimant|Respondent)\s*[:：-]\s*([^\n،؛;]{2,100})",
+    r"(?:المدعي|المدعى عليه|المتهم|المجني عليه|الطالب|المطلوب ضده|المؤجر|المستأجر|البائع|المشتري|Plaintiff|Defendant|Claimant|Respondent)\s*[:：-]\s*([^\n،؛;.!?؟]{2,100})",
     re.IGNORECASE,
 )
 _CLASSIFIERS = (
