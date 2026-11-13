@@ -189,11 +189,11 @@ Percentages distinguish repository implementation from validation and operationa
 - Same-firm nonmembers are denied by the matter authorization gate. Added helper, API, authorization and frontend contract tests; PR #1598 merged at `5d4b9516cfdebe13d5c99053a50145e968e39ea0`. None were executed because hosted runners remain unavailable.
 - All groups are possible repeated mentions only, not proof of identity, common ownership or legal relationship.
 
-## Arabic/English named-month date extraction — 2026-11-13 (branch pending merge)
+## Arabic/English named-month date extraction — 2026-11-13 (merged #1602)
 
 - Added named Gregorian month recognition for Arabic and English day-first/month-first date mentions, including Arabic-Indic digits, to the shared extraction and matter timeline helper.
 - Valid four-digit-year dates are normalized; ambiguous two-digit years and invalid calendar dates remain unparsed. Hijri conversion is explicitly unsupported.
-- Added helper regression coverage. Tests/browser acceptance remain unexecuted; branch `feature/arabic-named-month-dates-20261113` is pending merge.
+- PR #1602 merged at `f7f9f2e083f700d81f8ad0c6cac584ff19f5035b`. Helper regression coverage is present; tests/browser acceptance remain unexecuted, so merge is not a test pass.
 
 
 ## Open pull requests reviewed — 2026-11-13
@@ -202,3 +202,11 @@ Percentages distinguish repository implementation from validation and operationa
 - #1607 (Labour Decisions 248–252/2026) is correctly metadata-only. The source PDF is permission-restricted and operative text is unavailable; no repository-only action can close the legal-content/currentness gate. Leave quarantined and retrieval-ineligible.
 - #1490 (boto3 Dependabot) remains blocked on a matching Python 3.12 hash lock and clean installation. Do not merge the requirements-only change.
 - The user's uploaded patch bundle 0002–0009 maps to capabilities already present on current `main` (comparison, catalog, evaluation drafts, manual capture, deadline calculator, article-row audit, CI coverage guard and safe validation errors). Reapplication would duplicate existing work. Focus on the remaining validation/acceptance evidence instead.
+
+
+## Exact-head runner evidence — 2026-11-13 (#1610)
+
+- Workspace PR head: `fc5e6e99716fb7fbcada8b2ac5b93a3d62ebca5f`.
+- Latest associated workflows: Browser acceptance `43502036586`, Tests `43502036507`, Non-database safety regression `43502036492`, CodeQL `43502036375`, and dependency audit `43502036312`; all concluded `failure`.
+- Inspected all six jobs across those runs through the GitHub Actions jobs API. Every job reported `runner_id=0`, an empty runner name, and an empty `steps` array; jobs completed within roughly two seconds. No test, browser, Bandit, CodeQL, or dependency-audit step is evidenced as having executed.
+- This is runner-allocation/service evidence, not a code-test failure or pass. Do not repeat the same workflow reruns until runner availability changes. PR #1610 remains draft and still requires product-owned responsive RTL/LTR, accessibility, and lawyer-workflow acceptance.
