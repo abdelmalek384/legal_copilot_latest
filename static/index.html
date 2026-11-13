@@ -3256,7 +3256,7 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
       if(toggle.dataset.open==='1'){toggle.dataset.open='0';toggle.setAttribute('aria-expanded','false');reviewPanel.setAttribute('aria-busy','false');reviewPanel.replaceChildren();return}
       toggle.dataset.open='1';toggle.setAttribute('aria-expanded','true');reviewPanel.setAttribute('aria-busy','true');reviewPanel.replaceChildren(h('p',{className:'mut',role:'status','aria-live':'polite',textContent:uiText('جارٍ تحميل المقاطع…','Loading text chunks…')}));
       try{const data=await api('/cases/'+id+'/docs/'+d.document_id+'/chunks');renderChunkReview(reviewPanel,data);reviewPanel.setAttribute('aria-busy','false')}
-      catch(_){toggle.dataset.open='0';toggle.setAttribute('aria-expanded','false');reviewPanel.setAttribute('aria-busy','false');reviewPanel.replaceChildren()}
+      catch(_){toggle.dataset.open='0';toggle.setAttribute('aria-expanded','false');reviewPanel.setAttribute('aria-busy','false');reviewPanel.replaceChildren(h('p',{className:'notice danger',role:'alert',textContent:uiText('تعذر تحميل المقاطع النصية. تحقق من صلاحية الوصول وحاول مرة أخرى.','Could not load text chunks. Check access and try again.')}))}
     });
     toggle.setAttribute('aria-controls',reviewPanel.id);
     toggle.setAttribute('aria-expanded','false');
