@@ -126,3 +126,5 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 - A direct JavaScript parse check found an extra closing parenthesis in the research upload-panel construction and another in the matter workspace shell. Both were corrected; the full inline script now parses successfully in the available JavaScript engine.
 - Added frontend regression assertions for both call boundaries so the malformed closing sequences cannot silently return.
 - The repository CI workflow already runs `node --check` against the extracted inline script. CI remains unverified because the workflow's job logs and step summaries are not available through the connected GitHub interface.
+
+- Extended the same firm-document page-reference caveat into the OCR/extraction review cards: extracted `chunk.page` values are now explicitly marked as not independently checked when no reviewer-entered page reference is present. Added a regression test in `tests/test_document_classifications.py`.
