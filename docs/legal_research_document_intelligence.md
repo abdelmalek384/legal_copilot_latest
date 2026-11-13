@@ -113,9 +113,9 @@ A passing unit suite validates helper behavior only; it does not validate the ne
 - Arabic case-reference matching remains supported. Every result is a literal candidate with source offsets/page provenance, not a verified case identifier.
 - Added bilingual helper regression coverage; PR #1604 merged at `7dd0a188a4c23a0d0d9a231a72c629506b68df58`. Tests remain unexecuted.
 
-## Structured monetary amount candidates — 2026-11-13 (branch pending merge)
+## Structured monetary amount candidates — 2026-11-13 (merged #1606)
 
 - Extended amount matching to grouped thousands and decimal forms using Arabic-Indic or Western digits, including Arabic separators and unambiguous Western grouping such as 1,000.50. Ambiguous comma-decimal forms are not partially matched.
 - Structured amount records retain the literal mention and may expose a canonical decimal numeric string. Currency codes are assigned only for explicit labels/codes such as جنيه/EGP, دولار/USD, ريال سعودي/SAR, درهم إماراتي/AED and دينار كويتي/KWD.
 - Bare currency labels such as ريال, درهم or دينار remain currency-ambiguous; no exchange-rate conversion, currency inference or legal valuation is performed.
-- Added helper, separate-database API and frontend contract regressions. Tests remain unexecuted; branch `feature/structured-amount-candidates-20261113` is pending merge.
+- Added helper, separate-database API and frontend contract regressions. PR #1606 merged at `29f3a688584a0573111fa6165130f7cc91f3b74e`. Tests remain unexecuted.
