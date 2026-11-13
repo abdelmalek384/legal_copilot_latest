@@ -3251,7 +3251,7 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    }
   };
   body=h('div',{className:'card'},intelligencePanel,c.docs.length?c.docs.map(d=>{
-    const reviewPanel=h('div',{id:'doc-review-'+id+'-'+d.document_id});
+    const reviewPanel=h('div',{id:'doc-review-'+id+'-'+d.document_id,role:'region','aria-label':uiText('مراجعة النص المستخرج','Review extracted text')+' '+d.name});
     const toggle=btn(uiText('مراجعة النص المستخرج','Review extracted text'),async()=>{
       if(toggle.dataset.open==='1'){toggle.dataset.open='0';toggle.setAttribute('aria-expanded','false');reviewPanel.replaceChildren();return}
       toggle.dataset.open='1';toggle.setAttribute('aria-expanded','true');reviewPanel.append(h('p',{className:'mut',role:'status','aria-live':'polite',textContent:uiText('جارٍ تحميل المقاطع…','Loading text chunks…')}));
