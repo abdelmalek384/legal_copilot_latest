@@ -188,3 +188,6 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 
 
 - Added a visible focus outline and scroll margin to the exact extracted-chunk review card after source navigation, plus a frontend regression contract. This improves keyboard orientation without changing the review state or implying verification.
+
+
+- Extended the original-file runtime regression to verify the case-detail retention flag is true for a ready, non-purged object and false after its `purged_at` marker is set. This guards the frontend's retained-original affordance against purged objects; the test has not been executed.
