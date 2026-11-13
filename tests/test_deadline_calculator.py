@@ -62,6 +62,12 @@ class DeadlineCalculatorTests(unittest.TestCase):
             ("verified_by_role", []),
             ("review_evidence_url", "http://example.gov/review-record"),
             ("review_evidence_url", "https://user:pass@example.gov/review-record"),
+            ("review_evidence_url", "https://example.gov/review\\\\path"),
+            ("review_evidence_url", "https://example.gov/review\\x7fpath"),
+            ("review_evidence_url", "https://example.gov/review?token=secret"),
+            ("review_evidence_url", "https://example.gov/review#private"),
+            ("review_evidence_url", "https://example.gov:"),
+            ("review_evidence_url", "https://example.gov:99999/review"),
             ("review_evidence_url", ""),
         ):
             bad = dict(rule, **{key: value})
