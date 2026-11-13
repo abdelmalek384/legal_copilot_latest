@@ -8,12 +8,15 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
-from tools.output_path_safety import ensure_output_paths_safe
-
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools.output_path_safety import ensure_output_paths_safe
 DEFAULT_INPUT = ROOT / "data" / "candidates" / "labour_law_14_2025" / "provision_evidence_cards.json"
 DEFAULT_OUTPUT = ROOT / "data" / "candidates" / "labour_law_14_2025" / "provision_evidence_cards_review.md"
 
