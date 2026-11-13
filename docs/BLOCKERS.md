@@ -130,7 +130,7 @@ All of these merges are source-reviewed code integration only. Their tests remai
 | Gazette importer and provenance hardening | 100% merged (#1576/#1577/#1584) | Focused Python 3.12 tests not run | 80% |
 | Retrieval scorer/evaluator and device-evidence input hardening | 100% merged (#1580/#1581/#1583) | Focused Python 3.12 tests not run | 80% |
 | Live Arabic/English negated-obligation guard | Runtime call site confirmed; Arabic service-path tests merged (#1588) | Tests not run | 85% |
-| Structured entity, event and explicit-relationship candidates | Implemented on current feature branch; merge pending | Bilingual helper/API/browser tests not executed; not general NER or legal verification | 50% |
+| Structured candidate extraction (labelled entities, event mentions and explicit relationships) | 100% merged (#1594) | Helper/API tests and browser acceptance not run; limited deterministic rules, not general NER | 60% |
 | Advanced multi-document synthesis and cross-document entity resolution | Not implemented | Requires evidence conflict model, provenance policy and counsel evaluation | 20% |
 | Full Arabic RTL/LTR, keyboard, mobile/desktop acceptance | Not complete | Requires browser/device execution | 0% |
 | CI / clean Python 3.12 suite | Not complete | Runner/billing allocation prevents hosted jobs; local execution not available in this session | 0% |
@@ -162,9 +162,9 @@ Percentages distinguish repository implementation from validation and operationa
 - Added separate-database runtime coverage for a real two-document comparison, page provenance, cross-matter denial and same-document rejection, plus frontend contract assertions.
 - PR #1592 merged at `531315955078fb01febfc6f36c61a0fa09edd6e9`. Static source/diff review only; no Python tests or browser execution has run. Merge is code integration, not a passing test or production acceptance.
 
-## Structured entity, event and relationship candidates — 2026-11-13 (branch pending merge)
+## Structured entity, event and relationship candidates — 2026-11-13 (merged #1594)
 
 - Added bounded bilingual rule-based structuring for labelled-party and literal identifier/amount/date entities, event triggers with same-sentence date/party mentions, and explicit Arabic/English relationship phrases.
 - Integrated results into the authorized document-chunk API with document/chunk/page provenance and per-kind caps; the Legal Research UI now renders separate candidate cards and warnings.
-- Added helper, separate-database API and frontend contract regressions. No tests or browser runs were executed because hosted runner/billing allocation remains blocked.
+- Added helper, separate-database API and frontend contract regressions. PR #1594 merged at `600dea925d95f8bccdec79dad9157a4aec78a1e0`. No tests or browser runs were executed because hosted runner/billing allocation remains blocked.
 - This is not general NER, entity resolution, event verification, or a legal relationship conclusion. All records remain unverified candidates; OCR/extraction errors may propagate.
