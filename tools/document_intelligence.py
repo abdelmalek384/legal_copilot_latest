@@ -8,6 +8,7 @@ from __future__ import annotations
 import bisect
 import difflib
 from datetime import date
+from decimal import Decimal, InvalidOperation
 import hashlib
 import re
 import unicodedata
@@ -62,9 +63,19 @@ _CASE_PATTERN = re.compile(
     re.IGNORECASE,
 )
 _MONEY_PATTERN = re.compile(
-    rf"([{_DIGITS}]+(?:[,.٫٬][{_DIGITS}]+)?)\s*(جنيه(?:اً|ا)?|جنيهات|ج\.م|EGP|LE|دولار|ريال)",
+    rf"(?<![\w,٬.٫])([{_DIGITS}]+(?:(?:[,٬][{_DIGITS}]{{3}})+)?(?:[.٫][{_DIGITS}]{{1,2}})?)\s*"
+    rf"(جنيهات|جنيه(?:اً|ا)?|ج\.م|EGP|LE|دولار أمريكي|دولار|US\$|USD|"
+    rf"ريال سعودي|SAR|ريال|درهم إماراتي|AED|درهم|دينار كويتي|KWD|دينار|QAR|OMR|BHD|JOD|MAD)",
     re.IGNORECASE,
 )
+_CURRENCY_CODES = {
+    "جنيه": "EGP", "جنيهات": "EGP", "ج.م": "EGP", "egp": "EGP", "le": "EGP",
+    "دولار": "USD", "دولار أمريكي": "USD", "us$": "USD", "usd": "USD",
+    "ريال سعودي": "SAR", "sar": "SAR",
+    "درهم إماراتي": "AED", "aed": "AED",
+    "دينار كويتي": "KWD", "kwd": "KWD", "qar": "QAR", "omr": "OMR",
+    "bhd": "BHD", "jod": "JOD", "mad": "MAD",
+}
 _PARTY_LABEL_PATTERN = re.compile(
     r"(?:المدعي|المدعى عليه|المتهم|المجني عليه|الطالب|المطلوب ضده|المؤجر|المستأجر|البائع|المشتري|Plaintiff|Defendant|Claimant|Respondent)\s*[:：-]\s*([^\n،؛;.!?؟]{2,100})",
     re.IGNORECASE,
@@ -525,6 +536,23 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
             "end": candidate["end"],
             "review_status": "entity_candidate_unverified",
         }
+        if kind == "amount":
+            amount_match = _MONEY_PATTERN.search(candidate["value"])
+            if amount_match:
+                raw_number = amount_match.group(1).translate(str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789"))
+                raw_number = raw_number.replace(",", "").replace("٬", "").replace("٫", ".")
+                try:
+                    amount_numeric = format(Decimal(raw_number).normalize(), "f")
+                except InvalidOperation:
+                    amount_numeric = None
+                currency_label = amount_match.group(2)
+                currency_code = _CURRENCY_CODES.get(currency_label.casefold())
+                entity["amount_numeric"] = amount_numeric
+                entity["currency_label"] = currency_label
+                entity["currency_code"] = currency_code
+                entity["currency_resolution"] = (
+                    "explicit_currency" if currency_code else "ambiguous_currency_label"
+                )
         if kind == "party_label":
             parts = re.split(r"[:：-]", candidate["value"], maxsplit=1)
             entity["role_label"] = parts[0].strip()

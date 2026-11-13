@@ -3524,6 +3524,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             and str(entity["page"]) == "9"
             for entity in structured["entities"]
         ))
+        amount = next(
+            entity for entity in structured["entities"]
+            if entity["entity_type"] == "monetary_amount"
+        )
+        self.assertEqual(amount["amount_numeric"], "5000")
+        self.assertEqual(amount["currency_code"], "EGP")
         self.assertTrue(any(
             event["trigger"] == "جلسة"
             and "16/03/2025" in event["date_mentions"]

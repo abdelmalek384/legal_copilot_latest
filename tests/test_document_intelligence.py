@@ -197,6 +197,30 @@ class DocumentIntelligenceTests(unittest.TestCase):
         self.assertEqual(result["candidate_count"], 1)
         self.assertTrue(result["truncated"])
 
+    def test_amount_candidates_normalize_explicit_currency_and_flag_ambiguous_labels(self):
+        result = extract_structured_candidates(
+            "قيمة المطالبة ١٬٥٠٠٫٢٥ جنيه. ومبلغ آخر 200 ريال. Another amount 1,000.50 USD."
+        )
+        amounts = [
+            item for item in result["entities"]
+            if item["entity_type"] == "monetary_amount"
+        ]
+        egp = next(item for item in amounts if item["currency_label"] == "جنيه")
+        ambiguous = next(item for item in amounts if item["currency_label"] == "ريال")
+        self.assertEqual(egp["amount_numeric"], "1500.25")
+        self.assertEqual(egp["currency_code"], "EGP")
+        self.assertEqual(egp["currency_resolution"], "explicit_currency")
+        self.assertEqual(ambiguous["amount_numeric"], "200")
+        self.assertIsNone(ambiguous["currency_code"])
+        self.assertEqual(ambiguous["currency_resolution"], "ambiguous_currency_label")
+        usd = next(item for item in amounts if item["currency_code"] == "USD")
+        self.assertEqual(usd["amount_numeric"], "1000.5")
+        comma_decimal = extract_structured_candidates("المبلغ 5000,50 EGP.")
+        self.assertFalse(any(
+            item["entity_type"] == "monetary_amount"
+            for item in comma_decimal["entities"]
+        ))
+
     def test_case_reference_extraction_supports_english_and_arabic_labels(self):
         text = (
             "Case No. 123/2025. Appeal Number A-17/2024. "

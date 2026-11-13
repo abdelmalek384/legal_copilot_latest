@@ -132,7 +132,7 @@ All of these merges are source-reviewed code integration only. Their tests remai
 | Gazette importer and provenance hardening | 100% merged (#1576/#1577/#1584) | Focused Python 3.12 tests not run | 80% |
 | Retrieval scorer/evaluator and device-evidence input hardening | 100% merged (#1580/#1581/#1583) | Focused Python 3.12 tests not run | 80% |
 | Live Arabic/English negated-obligation guard | Runtime call site confirmed; Arabic service-path tests merged (#1588) | Tests not run | 85% |
-| Structured candidate extraction (labelled entities, bilingual case references, event mentions, explicit relationships and date mentions) | 100% merged (#1594/#1600/#1602/#1603/#1604) | Helper/API/browser tests not run; limited deterministic rules, not general NER; no Hijri conversion | 80% |
+| Structured candidate extraction (labelled entities, bilingual case references, event mentions, explicit relationships, date and amount candidates) | Implemented on current feature branch; merge pending | Helper/API/browser tests not run; limited deterministic rules; ambiguous currency/decimal forms are not guessed | 85% |
 | Matter-wide date/event mention timeline | 100% merged (#1596) | API/browser acceptance and tenant-scope runtime checks not run | 80% |
 | Cross-document exact repeated-mention grouping | 100% merged (#1598) | Exact-match groups require human review; no identity resolution; tests/browser not run | 70% |
 | Advanced multi-document synthesis and cross-document entity resolution | Not implemented | Requires evidence conflict model, provenance policy and counsel evaluation | 20% |
