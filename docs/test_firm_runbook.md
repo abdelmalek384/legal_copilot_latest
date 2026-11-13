@@ -41,7 +41,7 @@ Configure the three separate database paths using the repository's deployment te
 - First-run wizard, firm profile, language switching and setup-health screen.
 - Case creation/editing, team roles, notes, deadlines, sessions and document upload/OCR limits.
 - Invoice issue, payment evidence/review, subscription read-only recovery, exports and audit records.
-- Legal-answer trust labels and lawyer rating workflow when the approved rating contract/UI is present. Distinguish **source-matched** from **verified**; source matching is not lawyer verification.
+- Confirm every assistant answer shows a trust-tier badge, then save and update lawyer ratings, list firm ratings as an administrator, and export the CSV. Distinguish **source-matched** from **verified**; source matching is not lawyer verification.
 - Cross-firm denial using a second synthetic firm and unique sentinel values. Do not rely on UI hiding; test direct IDs and API routes as well.
 - Repeat critical flows in Arabic (ar-EG) and English (en-US).
 
