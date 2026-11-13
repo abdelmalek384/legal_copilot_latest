@@ -67,6 +67,9 @@ class VerifyDeadlineRuleCommandTests(unittest.TestCase):
             {"verified_on": (date.today() + timedelta(days=1)).isoformat()},
             {"lawyer_role": "operator"},
             {"review_evidence_url": "http://gazette.example.test/article"},
+            {"review_evidence_url": "https://gazette.example.test\\\\article"},
+            {"review_evidence_url": "https://gazette.example.test/article?token=secret"},
+            {"review_evidence_url": "https://gazette.example.test/article#fragment"},
         )
         for change in invalid:
             with self.subTest(change=change):
