@@ -119,3 +119,10 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 - Updated the regression contract to cover the canonical `page` fallback. Page references remain recorded extraction metadata; they are not independently verified against the retained original PDF.
 
 - For firm-document results only, a recorded page pinpoint now carries an Arabic/English warning that it has not been independently checked against the original file. Verified-corpus results retain their separate provenance and review gates. The Arabic literal is registered as `AR-1439` and remains pending native review.
+
+
+### 2026-11-13 — JavaScript parse validation and syntax corrections
+
+- A direct JavaScript parse check found an extra closing parenthesis in the research upload-panel construction and another in the matter workspace shell. Both were corrected; the full inline script now parses successfully in the available JavaScript engine.
+- Added frontend regression assertions for both call boundaries so the malformed closing sequences cannot silently return.
+- The repository CI workflow already runs `node --check` against the extracted inline script. CI remains unverified because the workflow's job logs and step summaries are not available through the connected GitHub interface.
