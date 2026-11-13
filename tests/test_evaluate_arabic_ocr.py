@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from tools.evaluate_arabic_ocr import evaluate_records, normalize_arabic, score_page
+from tools.evaluate_arabic_ocr import evaluate_records, main, normalize_arabic, score_page
 
 
 class ArabicOcrEvaluationTests(unittest.TestCase):
@@ -15,7 +15,7 @@ class ArabicOcrEvaluationTests(unittest.TestCase):
             source = Path(temp) / "pages.jsonl"
             source.write_text('{"document_id":"x","page":1,"reference_text":"abc","ocr_text":"abc"}\\n', encoding="utf-8")
             original = source.read_bytes()
-            self.assertEqual(MODULE.main([str(source), "--output", str(source)]), 2)
+            self.assertEqual(main([str(source), "--output", str(source)]), 2)
             self.assertEqual(source.read_bytes(), original)
 
     def test_normalization_handles_arabic_variants_without_dropping_punctuation(self):
