@@ -1432,5 +1432,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("reviewPanel.replaceChildren(h('p',{className:'notice danger',role:'alert',textContent:uiText('تعذر تحميل المقاطع النصية. تحقق من صلاحية الوصول وحاول مرة أخرى.'", HTML)
         self.assertIn("Could not load text chunks. Check access and try again.", HTML)
 
+    def test_recent_arabic_catalog_source_lines_match_frontend_literals(self):
+        catalog = json.loads((ROOT / "static" / "ar-ui-review.json").read_text(encoding="utf-8"))
+        lines = HTML.splitlines()
+        for entry in catalog["entries"][-6:]:
+            for line_number in entry["source_lines"]:
+                self.assertIn(entry["arabic"], lines[line_number - 1], entry["id"])
+
 if __name__ == "__main__":
     unittest.main()
