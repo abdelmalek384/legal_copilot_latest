@@ -87,3 +87,11 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 - The GitHub Actions run associated with an earlier branch commit reported failures in the Tests and Non-database safety regression workflows. The available connector did not return the job logs, so the failure cause is unresolved and must not be guessed.
 - New workflow runs were queued for the latest commits at the time of this update. Their completion and any failure diagnostics still need inspection.
 - No merge or production deployment has been performed.
+
+
+### 2026-11-13 — accessible document upload feedback
+
+- The document upload result queue now exposes list/list-item semantics and announces per-file state changes to assistive technology.
+- The existing polite live progress message and upload-panel busy state are retained.
+- Added a frontend regression contract for the per-file announcement semantics.
+- This is a focused accessibility improvement; it does not change upload endpoints, file validation, matter authorization, extraction, or retention behaviour.
