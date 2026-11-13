@@ -281,4 +281,4 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 ## Event argument provenance refinement — 2026-11-13
 
 - Event candidate records now include exact source offsets for same-sentence date and labelled-party mentions, not only string lists. The Legal Research review cards display those offsets.
-- Helper and frontend contract regression coverage was added; tests and browser acceptance remain unexecuted. Branch `feat/event-argument-provenance-20261113`; merge pending.
+- Helper and frontend contract regression coverage was added; tests and browser acceptance remain unexecuted. PR #1600 merged at `d5dc01a4cfaa835942288e047f9dc4c4275afde8`.
