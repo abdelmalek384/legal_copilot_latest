@@ -137,6 +137,16 @@ _ENGLISH_LEGAL_REFERENCE_PATTERN = re.compile(
     rf"(?:No\\.?|Number)?\\s*[:：#]?\\s*([{_DIGITS}A-Za-z]+(?:\\s*[./-]\\s*[{_DIGITS}A-Za-z]+){{0,2}})",
     re.IGNORECASE,
 )
+_DEADLINE_MENTION_PATTERN = re.compile(
+    r"(?:آخر\s+موعد|الموعد\s+النهائي|ميعاد\s+(?:الطعن|الاستئناف|الاعتراض|الإيداع|السداد)|موعد\s+السداد|"
+    r"خلال|في\s+غضون|قبل\s+(?:انتهاء|انقضاء)|deadline|due\s+date|appeal\s+period|"
+    r"limitation\s+period|time\s+limit|within|no\s+later\s+than|before\s+expiry)",
+    re.IGNORECASE,
+)
+_DEADLINE_PERIOD_PATTERN = re.compile(
+    rf"(?<![{_DIGITS}])[{_DIGITS}]+\s*(?:يوم(?:اً|ا)?|أيام|اسبوع|أسبوع|أسابيع|شهر|أشهر|days?|weeks?|months?)(?!\w)",
+    re.IGNORECASE,
+)
 _EVENT_MENTION_PATTERN = re.compile(
     r"(?:جلسة|حكم|إنذار|إخطار|استئناف|طعن|قرار|توقيع|إبرام|فسخ|سداد|استلام|hearing|judgment|notice|appeal|termination|payment)",
     re.IGNORECASE,
@@ -567,6 +577,7 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
 
     events = []
     relationships = []
+    deadline_mentions = []
     for sentence_start, sentence_end in _sentence_spans(text):
         sentence = text[sentence_start:sentence_end].strip()
         if not sentence:
@@ -594,6 +605,29 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
                 break
         local_dates = [item["mention"] for item in date_evidence]
         local_parties = [item["mention"] for item in party_evidence]
+        for trigger in _DEADLINE_MENTION_PATTERN.finditer(sentence):
+            if len(deadline_mentions) >= max_items:
+                truncated = True
+                break
+            period_mentions = [
+                match.group(0)
+                for match in list(_DEADLINE_PERIOD_PATTERN.finditer(sentence))[:10]
+            ]
+            deadline_mentions.append({
+                "trigger": trigger.group(0),
+                "sentence": sentence[:1000],
+                "date_mentions": local_dates,
+                "date_evidence": date_evidence,
+                "party_mentions": local_parties,
+                "party_evidence": party_evidence,
+                "period_mentions": period_mentions,
+                "page": _page_at(absolute_start + trigger.start(), page_markers),
+                "start": absolute_start + trigger.start(),
+                "end": absolute_start + trigger.end(),
+                "sentence_start": absolute_start,
+                "sentence_end": absolute_start + len(sentence),
+                "review_status": "deadline_mention_requires_lawyer_review",
+            })
         for trigger in _EVENT_MENTION_PATTERN.finditer(sentence):
             if len(events) >= max_items:
                 truncated = True
@@ -629,7 +663,7 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
                     "end": absolute_start + match.end(),
                     "review_status": "explicit_relationship_candidate_unverified",
                 })
-        if len(events) >= max_items and len(relationships) >= max_items:
+        if len(events) >= max_items and len(relationships) >= max_items and len(deadline_mentions) >= max_items:
             truncated = True
             break
 
@@ -637,9 +671,11 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
         "entities": entities,
         "events": events,
         "relationships": relationships,
+        "deadline_mentions": deadline_mentions,
         "entity_count": len(entities),
         "event_count": len(events),
         "relationship_count": len(relationships),
+        "deadline_mention_count": len(deadline_mentions),
         "truncated": truncated,
         "requires_review": True,
         "limitations": [
