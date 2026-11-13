@@ -47,3 +47,20 @@ These are frontend implementation and automated contract-test improvements, not 
 - [ ] Test at 360px, 768px, 1024px, and 1440px widths.
 - [ ] Run the repository's automated tests and CI; review screenshots before merge.
 - [ ] Do not imply the legal corpus is verified merely because the UI displays a status badge.
+
+
+## 2026-11-13 — simplified Arabic-first workspace implementation
+
+The implementation branch `ux/simplified-arabic-first-workspace` applies the accepted information architecture without deleting existing workflows:
+
+- Primary navigation is grouped into **Workspace** and **Firm administration**. Matters, clients/conflicts, legal research, documents, tasks and calendar remain reachable; finance, setup, feedback, settings and authorized legal-source review remain available in the administration group. Reviewer/platform-only entries retain their existing permission gates.
+- Navigation groups collapse into a horizontally scrollable, touch-friendly row on narrow screens. Arabic RTL and English LTR continue to use the same logical layout.
+- The dashboard now leads with an actionable **Needs your attention** panel for overdue tasks and legal deadlines. Redundant quick-access tiles and the finance summary cards were removed from the dashboard; finance remains available in its existing workspace.
+- Legal-source labels now distinguish **Verified operative text**, **Needs review**, and **Unverified** states. Secondary copies and metadata-only records are not presented as verified. A verified label continues to depend on the source status returned by the legal-source workflow; the UI does not manufacture verification.
+- The implementation preserves the existing APIs, case authorization, tenant boundaries, matter-scoped document intake and legal-source review routes.
+
+### Validation status
+
+- Added frontend contract tests for navigation grouping, dashboard attention hierarchy and the three legal-source states.
+- Automated tests, browser screenshots, Arabic/English responsive checks, screen-reader checks and lawyer usability acceptance have **not yet been executed** on this branch. Do not treat this implementation as release acceptance.
+- The README's corpus limitation remains controlling: the product does not currently contain a lawyer-verified Egyptian legal corpus. No real Egyptian authority should be displayed as verified unless the legal-source acquisition and reviewer process has actually recorded that status.
