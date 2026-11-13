@@ -2597,20 +2597,43 @@ function documentIntelligencePanel(caseId,documents){
   searchResults.replaceChildren(...hits.map((hit,index)=>h('article',{className:'card'},h('b',{textContent:(index+1)+'. '+hit.doc.name}),h('p',{className:'mut',textContent:[hit.chunk.ref,hit.chunk.page?uiText('صفحة ','Page ')+hit.chunk.page:uiText('رقم الصفحة غير مسجل','Page not recorded')].filter(Boolean).join(' · ')}),h('p',{textContent:String(hit.chunk.text||'').slice(0,420)}))));
   status.textContent=hits.length?uiText('نتائج البحث: ','Search results: ')+hits.length:uiText('لا توجد مطابقات في النصوص المحملة.','No matches in the loaded extracted text.');
  };
- const renderComparison=()=>{
+ const renderComparison=async()=>{
   compareResults.replaceChildren();
-  const left=cache.get(String(beforeSelect.value)),right=cache.get(String(afterSelect.value));
-  if(!left||!right||left===right){compareResults.append(h('p',{className:'mut',textContent:uiText('اختر مستندين مختلفين بعد التحليل.','Choose two different documents after analysis.')}));return}
-  if(left.text===right.text){compareResults.append(pill(uiText('لا توجد اختلافات نصية بين النسختين.','No text differences were found between these versions.'),'done'));return}
-  if(left.text.length>100000||right.text.length>100000){compareResults.append(pill(uiText('تجاوزت إحدى النسختين حد المقارنة البالغ 100,000 حرف.','One version exceeds the 100,000-character comparison limit.'),'soon'));return}
-  let start=0;
-  while(start<left.text.length&&start<right.text.length&&left.text[start]===right.text[start])start++;
-  let tail=0;
-  while(tail<left.text.length-start&&tail<right.text.length-start&&left.text[left.text.length-1-tail]===right.text[right.text.length-1-tail])tail++;
-  const oldPart=left.text.slice(Math.max(0,start-100),Math.min(left.text.length,left.text.length-tail+100));
-  const newPart=right.text.slice(Math.max(0,start-100),Math.min(right.text.length,right.text.length-tail+100));
-  compareResults.append(pill(uiText('مقارنة نصية أولية — تتطلب مراجعة محامٍ','Preliminary text comparison — lawyer review required'),'soon'),h('p',{className:'mut',textContent:uiText('النسخة السابقة: ','Earlier version: ')+left.doc.name+' · '+uiText('النسخة اللاحقة: ','Later version: ')+right.doc.name}),h('div',{className:'card'},h('b',{textContent:uiText('النص السابق','Earlier text')}),h('p',{textContent:oldPart||uiText('لا يوجد نص مختلف','No differing text')})),h('div',{className:'card'},h('b',{textContent:uiText('النص اللاحق','Later text')}),h('p',{textContent:newPart||uiText('لا يوجد نص مختلف','No differing text')})),h('p',{className:'mut',textContent:uiText('يعرض هذا الفحص اختلافاً حرفياً تقريبياً فقط؛ لا يحدد الأثر القانوني أو صحة أي نسخة.','This shows a literal text difference only; it does not determine legal effect or authenticity of either version.')}));
+  const beforeId=Number(beforeSelect.value),afterId=Number(afterSelect.value);
+  if(!Number.isSafeInteger(beforeId)||beforeId<=0||!Number.isSafeInteger(afterId)||afterId<=0||beforeId===afterId){
+   compareResults.append(h('p',{className:'mut',textContent:uiText('اختر مستندين مختلفين بعد التحليل.','Choose two different documents after analysis.')}));
+   return;
+  }
+  compareButton.disabled=true;
+  compareResults.append(h('p',{className:'mut',role:'status','aria-live':'polite',textContent:uiText('جارٍ إجراء مقارنة نصية مرتبطة بمقاطع وصفحات المصدر...','Comparing extracted text with source-chunk and page provenance...')}));
+  try{
+   const params=new URLSearchParams({case_id:String(caseId),before_document_id:String(beforeId),after_document_id:String(afterId),context_chars:'100'});
+   const result=await api('/documents/compare?'+params.toString());
+   const beforeName=result.before?.name||uiText('الإصدار السابق','Earlier version');
+   const afterName=result.after?.name||uiText('الإصدار اللاحق','Later version');
+   const sourceSummary=(sources)=>Array.isArray(sources)?sources.map(source=>
+    [source.reference||uiText('مقطع ','Chunk ')+source.chunk_id,source.page?uiText('صفحة ','Page ')+source.page:uiText('رقم الصفحة غير مسجل','Page not recorded')].join(' · ')
+   ).join(' / '):'';
+   const header=h('div',{className:'row'},pill(uiText('تتطلب مراجعة محامٍ','Lawyer review required'),'soon'),h('span',{className:'mut',textContent:uiText('الاختلافات الحرفية: ','Literal changes: ')+String(result.change_count||0)}));
+   const metadata=h('p',{className:'mut',textContent:uiText('السابقة: ','Earlier: ')+beforeName+' ('+String(result.before?.character_count??0)+' '+uiText('حرفاً','characters')+') · '+uiText('اللاحقة: ','Later: ')+afterName+' ('+String(result.after?.character_count??0)+' '+uiText('حرفاً','characters')+')'});
+   const provenance=h('section',{className:'card'},h('b',{textContent:uiText('مصادر النصوص','Text provenance')}),
+    h('p',{className:'mut',textContent:uiText('مقاطع النسخة السابقة: ','Earlier-version chunks: ')+(sourceSummary(result.before?.sources)||'—')}),
+    h('p',{className:'mut',textContent:uiText('مقاطع النسخة اللاحقة: ','Later-version chunks: ')+(sourceSummary(result.after?.sources)||'—')}));
+   const changes=Array.isArray(result.changes)?result.changes:[];
+   const cards=changes.map((change,index)=>h('article',{className:'card'},h('b',{textContent:uiText('اختلاف ','Difference ')+(index+1)+' · '+String(change.change_type||'change')}),
+    h('p',{className:'mut',textContent:uiText('النص السابق','Earlier text')}),
+    h('pre',{className:'extraction-review-text',textContent:String(change.before||uiText('لا يوجد نص سابق','No earlier text'))}),
+    h('p',{className:'mut',textContent:uiText('النص اللاحق','Later text')}),
+    h('pre',{className:'extraction-review-text',textContent:String(change.after||uiText('لا يوجد نص لاحق','No later text'))}),
+    pill(uiText('يتطلب مراجعة قانونية','Requires lawyer review'),'soon')));
+   compareResults.replaceChildren(header,metadata,provenance,...(cards.length?cards:[h('p',{className:'mut',textContent:uiText('لم تُسجل اختلافات نصية بين النسختين.','No text differences were reported between the two versions.')} )]),
+    h('p',{className:'mut',role:'note',textContent:String(result.warning||uiText('هذه مقارنة نصية حرفية فقط.','This is a literal text comparison only.'))}));
+   status.textContent=uiText('اكتملت المقارنة مع الاحتفاظ بمراجع المقاطع والصفحات المتاحة.','Comparison completed with available chunk and page references retained.');
+  }catch(error){
+   compareResults.replaceChildren(h('p',{className:'notice danger',role:'alert',textContent:String(error.message||uiText('تعذرت مقارنة المستندين. تحقق من الصلاحية وحالة الاستخراج.','Could not compare the documents. Check access and extraction status.'))}));
+  }finally{compareButton.disabled=false}
  };
+
  const submitChunkReview=async(item,chunk,outcome,correctedText,note,controls)=>{
   controls.forEach(control=>control.disabled=true);
   try{

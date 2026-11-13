@@ -3512,6 +3512,72 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertLessEqual(intelligence["candidate_count"], 250)
         self.assertTrue(intelligence["requires_review"])
 
+    def test_document_version_comparison_is_matter_scoped_and_keeps_chunk_provenance(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        selected = self._mutate("post", "/session/firm", json={"firm_id": self.firm_a})
+        self.assertEqual(selected.status_code, 200, selected.text)
+        created = self._mutate("post", "/cases", json={"title": "Version comparison matter"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        before = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={"name": "contract-before.txt", "text": "[[PDF_PAGE:2]]\nقيمة العقد ١٠٠٠ جنيه."},
+        )
+        after = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={"name": "contract-after.txt", "text": "[[PDF_PAGE:2]]\nقيمة العقد ٢٠٠٠ جنيه."},
+        )
+        self.assertEqual(before.status_code, 200, before.text)
+        self.assertEqual(after.status_code, 200, after.text)
+
+        compared = self.client.get(
+            "/documents/compare",
+            params={
+                "case_id": case_id,
+                "before_document_id": before.json()["document_id"],
+                "after_document_id": after.json()["document_id"],
+            },
+        )
+        self.assertEqual(compared.status_code, 200, compared.text)
+        result = compared.json()
+        self.assertEqual(result["review_status"], "requires_lawyer_review")
+        self.assertEqual(result["change_count"], 1)
+        self.assertIn("١٠٠٠", result["changes"][0]["before"])
+        self.assertIn("٢٠٠٠", result["changes"][0]["after"])
+        self.assertTrue(result["before"]["sources"])
+        self.assertTrue(result["after"]["sources"])
+        self.assertEqual(result["before"]["sources"][0]["page"], 2)
+        self.assertEqual(result["after"]["sources"][0]["page"], 2)
+        self.assertIn("both originals", result["warning"])
+
+        other_case = self._mutate(
+            "post", "/cases", json={"title": "Unrelated comparison matter"}
+        )
+        self.assertEqual(other_case.status_code, 200, other_case.text)
+        cross_matter = self.client.get(
+            "/documents/compare",
+            params={
+                "case_id": other_case.json()["id"],
+                "before_document_id": before.json()["document_id"],
+                "after_document_id": after.json()["document_id"],
+            },
+        )
+        self.assertEqual(cross_matter.status_code, 404, cross_matter.text)
+
+        same_document = self.client.get(
+            "/documents/compare",
+            params={
+                "case_id": case_id,
+                "before_document_id": before.json()["document_id"],
+                "after_document_id": before.json()["document_id"],
+            },
+        )
+        self.assertEqual(same_document.status_code, 422, same_document.text)
+
+
     def test_document_persistence_rolls_back_metadata_chunks_and_event_together(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
