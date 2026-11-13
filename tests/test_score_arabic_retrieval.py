@@ -80,7 +80,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         altered = dict(q, reviewer_name="Unregistered Reviewer")
         with self.assertRaisesRegex(ValueError, "reviewer_name must match"):
             score([altered], [run], TEST_REVIEWER_REGISTRY)
-        altered = dict(q, practice_area="criminal_law")
+        altered = dict(q, practice_area="tax")
         with self.assertRaisesRegex(ValueError, "not approved for this practice_area"):
             score([altered], [run], TEST_REVIEWER_REGISTRY)
 
@@ -88,7 +88,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             questions = Path(temp_dir) / "questions.jsonl"
             runs = Path(temp_dir) / "runs.jsonl"
-            questions.write_text("{not-json}\\n", encoding="utf-8")
+            questions.write_text("{not-json}\n", encoding="utf-8")
             runs.write_text("", encoding="utf-8")
             registry = Path(temp_dir) / "reviewers.json"
             registry.write_text(__import__("json").dumps(TEST_REVIEWER_REGISTRY), encoding="utf-8")
@@ -111,7 +111,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
             questions = Path(temp_dir) / "questions.jsonl"
             runs = Path(temp_dir) / "runs.jsonl"
             report = Path(temp_dir) / "report.json"
-            questions.write_text('{"id":"Q1","review_status":"needs_lawyer_review"}\\n', encoding="utf-8")
+            questions.write_text('{"id":"Q1","review_status":"needs_lawyer_review"}\n', encoding="utf-8")
             runs.write_text("", encoding="utf-8")
             report.write_text("[]", encoding="utf-8")
             registry = Path(temp_dir) / "reviewers.json"

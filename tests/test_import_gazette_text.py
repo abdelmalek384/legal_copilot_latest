@@ -17,8 +17,10 @@ class GazetteTextImportTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
-        self.text_path = self.root / "gazette.txt"
-        self.meta_path = self.root / "gazette.json"
+        self.source_dir = self.root / "source"
+        self.source_dir.mkdir()
+        self.text_path = self.source_dir / "gazette.txt"
+        self.meta_path = self.source_dir / "gazette.json"
         self.output = self.root / "output"
         self.text = (
             "المادة 1\nيصدر القانون المرافق بالنص الآتي.\n"
