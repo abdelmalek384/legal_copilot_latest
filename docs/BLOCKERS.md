@@ -222,3 +222,8 @@ Percentages distinguish repository implementation from validation and operationa
 
 - PR #1617 merged at `e7f3fcd781bc7370842f3ce6d55edd2f664da54e`. Acquisition readiness (direct and scope-review evidence), legal source review queue, legal corpus audit, amendment relationship validation, and corpus inventory URL helpers now reject DEL (0x7F) and raw backslashes. Regression fixtures were added for each affected path.
 - Source/diff review only; tests remain unexecuted under the current test-run pause. No runtime pass or legal verification is claimed.
+
+
+## Answer rating contract — 2026-11-13
+
+- **Closed for AI-1:** `docs/answer_rating_contract.md` is present on main (commit `8820ea617c5bb8fcbf72bb77e7470a9828fe4a44`). It defines answer ID, correct/partial/wrong, cited-article right/wrong, notes, rater, ISO-8601 timestamp, trust tier, and UTF-8 CSV export. AI-2 can integrate against this contract. This does not approve any legal source or rating data.
