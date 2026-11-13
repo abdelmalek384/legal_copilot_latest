@@ -210,3 +210,9 @@ Percentages distinguish repository implementation from validation and operationa
 - Latest associated workflows: Browser acceptance `43502036586`, Tests `43502036507`, Non-database safety regression `43502036492`, CodeQL `43502036375`, and dependency audit `43502036312`; all concluded `failure`.
 - Inspected all six jobs across those runs through the GitHub Actions jobs API. Every job reported `runner_id=0`, an empty runner name, and an empty `steps` array; jobs completed within roughly two seconds. No test, browser, Bandit, CodeQL, or dependency-audit step is evidenced as having executed.
 - This is runner-allocation/service evidence, not a code-test failure or pass. Do not repeat the same workflow reruns until runner availability changes. PR #1610 remains draft and still requires product-owned responsive RTL/LTR, accessibility, and lawyer-workflow acceptance.
+
+
+## Legal evidence URL control-character parity — 2026-11-13
+
+- PR #1616 merged at `bcdfc516d167a6e8ef342964b124e222433eb572`. Both `tools/validate_legal_release_readiness.py` and `tools/validate_source_permission_register.py` now reject DEL (0x7F) and raw backslashes in HTTPS evidence URLs; focused regression fixtures cover both cases.
+- Static source and diff review only. Tests remain unexecuted under the current pause on test runs. Do not count this as runtime validation or legal-source verification.
