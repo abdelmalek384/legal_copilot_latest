@@ -104,18 +104,18 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - Added `tools/validate_law14_eval_draft.py` and `tests/test_validate_law14_eval_draft.py`. The validator checks JSONL shape, >=100 questions, formal/colloquial coverage, unique IDs and question text, expected article-number/ID consistency, and fail-closed unapproved/reviewer/release fields.
 - It deliberately permits the already recorded limited targeted-PDF text spot-check flag (48 rows) while requiring full visual review, Gazette page review, amendment-history verification and release eligibility to remain false. It does not approve legal pins or create answer keys.
 - Static inspection of the current dataset found 116 rows (58 formal, 58 colloquial), 58 distinct article IDs, and zero mismatches against the validator's safety invariants. This is not an executed test or legal-content review.
-- The lawyer workflow is documented in `docs/legal_evidence/law14_2025_evaluation_review_guide.md`. Direct-main commits: `6445aa7`, `0e1be3b`, `332a390`, `07838b1`, `ea16242`, `4af16ba`, `40f8fd5`, `8fb6c2f`, `bb4b669`, `5c6d4b7`. Tests remain unexecuted.
+- The lawyer workflow is documented in `docs/legal_evidence/law14_2025_evaluation_review_guide.md`. Direct-main commits: `6445aa7`, `0e1be3b`, `332a390`, `07838b1`, `ea16242`, `4af16ba`, `40f8fd5`, `8fb6c2f`, `bb4b669`, `5c6d4b7`, `9d2170f`. Tests remain unexecuted.
 
 ## AI-1 test discovery registration — 2026-11-14
 
 - Added explicit workflow steps for `test_validate_answer_ratings.py`, `test_adapt_answer_rating_export.py`, `test_validate_law14_eval_draft.py`, `test_negation_guard_repro.py`, and `test_firm_test_source_matched_mode.py`.
-- Static workflow inspection confirms all five filenames are invoked by `.github/workflows/tests.yml`; no tests were run. Direct-main commit: `da160ea`.
+- Static workflow inspection confirms all five filenames are invoked by `.github/workflows/tests.yml`; no tests were run. Direct-main commits: `da160ea`, `0cda7a9`, `e406bed`.
 
 ## Answer-rating contract integration boundary — 2026-11-14
 
 - Compared the canonical seven-column AI-1 contract with the richer AI-2 firm export contract. The firm export currently lacks `trust_tier`, uses `partially_correct` rather than `partial`, and permits `not_applicable` for cited-article accuracy.
 - Added an explicit mapping in `docs/answer_rating_contract.md` and implemented `tools/adapt_answer_rating_export.py` with regression tests: map `partially_correct` to `partial`; never coerce `not_applicable`; derive rater from opaque `rated_by`; serialize the current rating's `updated_at` with timezone; and add message-time trust tier from saved answer metadata. Rich benchmark columns remain in the firm export.
-- AI-1 contract is complete; AI-2 export adapter remains open until trust tier is exported and enum handling is implemented. Direct-main commits: `2b887ad`, `5a8e953`, `019ae2e`, `cd63439`, `8be387e`, `b8d3bad`, `6ced6d1`, `3af8468`, `69fb3dc`. Adapter tests remain unexecuted.
+- AI-1 contract is complete; AI-2 export adapter remains open until trust tier is exported and enum handling is implemented. Direct-main commits: `2b887ad`, `5a8e953`, `019ae2e`, `cd63439`, `8be387e`, `b8d3bad`, `6ced6d1`, `3af8468`, `69fb3dc`, `31f8be0`, `68ca68d`, `f4376e4`. Adapter tests remain unexecuted.
 
 ## Recent AI-1 and Legal Research integration
 
