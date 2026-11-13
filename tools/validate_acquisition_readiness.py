@@ -48,7 +48,8 @@ def _fresh_date(value: object) -> bool:
 def _hostname(value: object) -> str | None:
     if not isinstance(value, str):
         return None
-    if value != value.strip() or any(char.isspace() for char in value):
+    if (value != value.strip() or "\\" in value
+            or any(char.isspace() or ord(char) < 32 or ord(char) == 127 for char in value)):
         return None
     try:
         parsed = urlparse(value)
