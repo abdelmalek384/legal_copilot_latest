@@ -1412,5 +1412,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("window.DOCUMENT_REVIEW_TARGET=null;TAB=key;again()", HTML)
         self.assertIn("PAGE=id;window.CASE_ID=null;window.DOCUMENT_REVIEW_TARGET=null;fn()", HTML)
 
+    def test_extraction_review_page_reference_prefills_both_page_fields(self):
+        self.assertIn("const extractedPage=chunk.page??chunk.page_number", HTML)
+        self.assertIn("value:chunk.page??chunk.page_number??''", HTML)
+
 if __name__ == "__main__":
     unittest.main()
