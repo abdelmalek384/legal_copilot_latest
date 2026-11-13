@@ -144,11 +144,18 @@ def _is_verified(rule: dict) -> bool:
         return False
     if not isinstance(evidence_url, str) or not evidence_url.strip():
         return False
+    raw_url = evidence_url.strip()
+    if ("\\" in raw_url or any(
+            ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in raw_url)):
+        return False
     try:
-        parsed = urlsplit(evidence_url.strip())
-        if parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password:
+        parsed = urlsplit(raw_url)
+        port = parsed.port
+        if (parsed.scheme.lower() != "https" or not parsed.hostname
+                or parsed.username is not None or parsed.password is not None
+                or parsed.query or parsed.fragment or parsed.netloc.endswith(":")
+                or (port is not None and not 1 <= port <= 65535)):
             return False
-        _ = parsed.port
     except (TypeError, ValueError):
         return False
     try:
