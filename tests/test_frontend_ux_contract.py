@@ -782,6 +782,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("source.document_sha256||source.sha256||source.file_sha256||p.sha256||p.file_sha256", HTML)
         self.assertIn("source.document_ocr_used===true||source.document_ocr_used===1", HTML)
         self.assertIn("This passage was extracted with OCR; compare it with the original page before relying on it.", HTML)
+        self.assertIn("source.document_extraction_status&&((LANG==='ar'?'حالة استخراج النص: ':'Text extraction status: ')+String(source.document_extraction_status))", HTML)
         self.assertIn("const matterCaseId=Number(source.case_id??p.case_id),matterDocumentId=Number(source.document_id??source.documentId??p.document_id)", HTML)
         self.assertIn("Download original matter document", HTML)
         self.assertIn("response.status===503", HTML)
