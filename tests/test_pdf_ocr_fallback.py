@@ -105,6 +105,40 @@ class PdfOcrFallbackTests(unittest.TestCase):
         self.assertEqual(semaphore.timeout, 5)
         fake_pytesseract.image_to_string.assert_not_called()
 
+    def test_ocr_subprocess_timeout_is_reported_and_releases_capacity(self):
+        fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: FakePdfDoc(1))
+        image_to_string = MagicMock(side_effect=TimeoutError("synthetic OCR timeout"))
+        fake_pytesseract = types.SimpleNamespace(image_to_string=image_to_string)
+        fake_image = types.SimpleNamespace(open=lambda value: object())
+        fake_pil = types.ModuleType("PIL")
+        fake_pil.Image = fake_image
+
+        class TrackingSemaphore:
+            def __init__(self):
+                self.releases = 0
+
+            def acquire(self, timeout=None):
+                self.timeout = timeout
+                return True
+
+            def release(self):
+                self.releases += 1
+
+        semaphore = TrackingSemaphore()
+        with patch.dict(sys.modules, {
+            "pymupdf": fake_pymupdf,
+            "pytesseract": fake_pytesseract,
+            "PIL": fake_pil,
+        }), patch.object(app, "_OCR_SEMAPHORE", semaphore):
+            with self.assertRaises(app.HTTPException) as caught:
+                app.ocr_pdf_text(b"pdf")
+
+        self.assertEqual(caught.exception.status_code, 422)
+        self.assertEqual(semaphore.timeout, 5)
+        self.assertEqual(semaphore.releases, 1)
+        image_to_string.assert_called_once()
+        self.assertEqual(image_to_string.call_args.kwargs["timeout"], 30)
+
     def test_ocr_output_obeys_one_megabyte_extraction_budget(self):
         fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: FakePdfDoc(1))
         fake_pytesseract = types.SimpleNamespace(
