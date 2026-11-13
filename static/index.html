@@ -2200,7 +2200,7 @@ async function documentsPage(){
   if(succeeded)await loadMatter();
   uploadSubmit.disabled=!matterSelect.value||!(uploadInput.files?.length);
  };
- uploadInput.onchange=()=>{const count=uploadInput.files?.length||0;uploadSubmit.disabled=!matterSelect.value||!count;uploadStatus.textContent=count?count+' '+uiText('ملفات محددة؛ اضغط رفع وفهرسة للمتابعة.','file(s) selected; choose Upload and index to continue.') :uiText('لم يتم اختيار ملفات.','No files selected.')};
+ uploadInput.onchange=()=>{const selected=Array.from(uploadInput.files||[]),count=selected.length,valid=selected.filter(file=>/\\.(pdf|docx)$/i.test(file.name)&&file.size<=15000000).length,rejected=count-valid;uploadSubmit.disabled=!matterSelect.value||!valid;uploadStatus.textContent=count?(valid+' '+uiText('ملفات صالحة للرفع','valid file(s) ready to upload')+(rejected?' · '+rejected+' '+uiText('ملفات ستُستبعد بسبب النوع أو الحجم','file(s) will be skipped due to type or size'):'')+' · '+uiText('اضغط رفع وفهرسة للمتابعة.','choose Upload and index to continue.')):uiText('لم يتم اختيار ملفات.','No files selected.')};
  let matters=[],currentDocuments=[],matterOffset=0,matterTotal=0,globalMode=false,globalOffset=0,globalTotal=0;
  const matterLimit=50,matterPageLabel=h('span',{className:'mut',role:'status','aria-live':'polite'});
  const previousMatter=btn(uiText('السابق','Previous'),async()=>{if(matterOffset>0){matterOffset=Math.max(0,matterOffset-matterLimit);await loadMatters()}},'g');
