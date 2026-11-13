@@ -1370,5 +1370,10 @@ class FrontendUXContractTests(unittest.TestCase):
             self.assertIn(literal, entries)
             self.assertEqual(entries[literal]["review_status"], "pending_native_review")
 
+    def test_matter_original_download_is_hidden_without_retention_confirmation(self):
+        self.assertIn("d.original_available===true||d.original_available===1?btn", HTML)
+        self.assertIn("No retained original is available in private storage for this document.", HTML)
+        self.assertIn("downloadOriginal||originalStatus", HTML)
+
 if __name__ == "__main__":
     unittest.main()
