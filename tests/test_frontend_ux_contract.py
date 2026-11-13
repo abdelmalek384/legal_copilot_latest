@@ -1277,7 +1277,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("user_supplied_unverified:LANG==='ar'?'غير متحقق':'Unverified'", HTML)
         self.assertIn("sourceState==='verified'?'done':(sourceState==='unverified'?'late':'soon')", HTML)
         self.assertIn("do not rely on it as verified operative text", HTML)
-        self.assertIn("One or more source/current-status checks are missing or unresolved", HTML)
+        self.assertIn("A source was found, but its currency or legal status needs review", HTML)
         self.assertIn("research-source-caution.unverified", HTML)
         self.assertIn("research-source-caution.needs-review", HTML)
 
