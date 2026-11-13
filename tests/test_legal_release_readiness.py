@@ -289,6 +289,29 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.assertEqual(result, 2)
         self.assertEqual(candidate_path.read_text(encoding="utf-8"), original_candidate)
 
+    def test_report_output_cannot_overwrite_hardlink_alias_of_candidate_input(self):
+        candidate_path = self.root / "candidate.json"
+        register_path = self.root / "register.json"
+        coverage_path = self.root / "coverage.csv"
+        alias_path = self.root / "candidate-alias.json"
+        original_candidate = json.dumps(self.candidate, sort_keys=True)
+        candidate_path.write_text(original_candidate, encoding="utf-8")
+        register_path.write_text(json.dumps(self.register), encoding="utf-8")
+        try:
+            alias_path.hardlink_to(candidate_path)
+        except (OSError, NotImplementedError):
+            self.skipTest("hard links are not supported on this filesystem")
+        with patch("sys.stdout", new_callable=io.StringIO):
+            result = MODULE.main([
+                "--candidate", str(candidate_path),
+                "--register", str(register_path),
+                "--coverage-matrix", str(coverage_path),
+                "--root", str(self.root),
+                "--out", str(alias_path),
+            ])
+        self.assertEqual(result, 2)
+        self.assertEqual(candidate_path.read_text(encoding="utf-8"), original_candidate)
+
     def test_current_labour_candidate_is_blocked_not_silently_promoted(self):
         candidate = json.loads((ROOT / "data/candidates/labour_law_14_2025/registry_candidate.json").read_text(encoding="utf-8"))
         register = json.loads((ROOT / "docs/source_permission_register.json").read_text(encoding="utf-8"))
