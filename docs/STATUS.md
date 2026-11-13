@@ -317,3 +317,9 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Structured amount candidates now preserve literal text and provide canonical decimal values for supported numeric forms, including Arabic-Indic digits, Arabic separators and unambiguous Western thousands/decimal grouping.
 - Explicit currency labels/codes map to a currency code only when unambiguous. Bare ريال/درهم/دينار and ambiguous comma-decimal forms remain unresolved; no exchange-rate conversion or legal valuation is inferred.
 - Added helper, separate-database API and frontend regression coverage. Tests remain unexecuted; PR #1606 merged at `29f3a688584a0573111fa6165130f7cc91f3b74e`.
+
+## English legal-reference extraction update — 2026-11-13
+
+- Legal-reference candidates now recognize English Section/Subsection/Paragraph/Clause/Chapter/Act/Law/Regulation/Decree/Code/Rule labels in addition to Article and Arabic forms.
+- Matches remain unverified literals and are not checked against official statute databases. Added helper regression coverage; tests remain unexecuted.
+- Branch `feature/english-legal-reference-extraction-20261113`; merge pending.
