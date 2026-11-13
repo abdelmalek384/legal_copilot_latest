@@ -231,6 +231,41 @@ class GazetteTextImportTests(unittest.TestCase):
                 }[field]
                 self.write_metadata()
 
+    def test_provenance_metadata_rejects_control_characters(self):
+        for field in (
+            "official_title", "gazette_issue", "retrieved_at", "captured_by",
+            "source_reference", "permission_evidence_reference",
+        ):
+            for suffix in ("\\nforged provenance", "\\tforged", "\\x7fforged"):
+                with self.subTest(field=field, suffix=repr(suffix)):
+                    self.metadata[field] = "valid prefix" + suffix
+                    self.write_metadata()
+                    with self.assertRaisesRegex(ValueError, f"{field} must not contain control characters"):
+                        import_text(self.text_path, self.meta_path, self.output)
+                    self.assertFalse(self.output.exists())
+            self.metadata[field] = {
+                "official_title": "قانون العمل رقم 14 لسنة 2025",
+                "gazette_issue": "الجريدة الرسمية العدد 18 (تابع)",
+                "retrieved_at": "2026-11-06T00:00:00+02:00",
+                "captured_by": "Qualified reviewer supplied text (test fixture)",
+                "source_reference": "Test fixture; not a legal source",
+                "permission_evidence_reference": None,
+            }[field]
+        self.write_metadata()
+
+    def test_source_reference_must_be_a_nonempty_string_when_supplied(self):
+        self.metadata["source_url"] = "https://example.gov/item"
+        for value in ("", "   ", [], 0, False, None):
+            with self.subTest(source_reference=value):
+                self.metadata["source_reference"] = value
+                self.write_metadata()
+                with self.assertRaisesRegex(ValueError, "source_reference must be a non-empty string"):
+                    import_text(self.text_path, self.meta_path, self.output)
+                self.assertFalse(self.output.exists())
+        self.metadata.pop("source_url")
+        self.metadata["source_reference"] = "Test fixture; not a legal source"
+        self.write_metadata()
+
     def test_non_lawyer_supplier_role_is_rejected(self):
         self.metadata["supplier_role"] = "unknown"
         self.write_metadata()
