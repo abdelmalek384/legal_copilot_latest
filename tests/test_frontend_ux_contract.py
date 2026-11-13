@@ -785,6 +785,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("const matterCaseId=Number(source.case_id??p.case_id),matterDocumentId=Number(source.document_id??source.documentId??p.document_id)", HTML)
         self.assertIn("Download original matter document", HTML)
         self.assertIn("response.status===503", HTML)
+        self.assertIn("source.document_original_available===true||source.document_original_available===1", HTML)
+        self.assertIn("No retained original copy is currently available in private storage for this document.", HTML)
         self.assertIn("(typeof confidence==='number'||typeof confidence==='string')&&confidence!==''", HTML)
         self.assertIn("Original document: ", HTML)
         self.assertIn("Page: ", HTML)
