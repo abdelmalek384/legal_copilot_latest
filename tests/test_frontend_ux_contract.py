@@ -1351,5 +1351,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("className:'research-source-caution '+(status==='verified_operative_text'?'verified':'warning')", inspector)
         self.assertIn("Recorded source status explanation", inspector)
 
+    def test_research_source_opens_exact_document_and_chunk_review(self):
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET=rawChunkId!==undefined&&rawChunkId!==null&&rawChunkId!==''?{caseId:matterCaseId,documentId:matterDocumentId,chunkId:String(rawChunkId)}:null", HTML)
+        self.assertIn("Promise.resolve().then(()=>toggle.click())", HTML)
+        self.assertIn("id:'doc-chunk-review-'+id+'-'+data.document_id+'-'+chunk.id,tabIndex:-1", HTML)
+        self.assertIn("Array.from(container.children).find(card=>card.id==='doc-chunk-review-'+id+'-'+data.document_id+'-'+target.chunkId)", HTML)
+        self.assertIn("targetCard.focus({preventScroll:true});targetCard.scrollIntoView({block:'center',behavior:'smooth'})", HTML)
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET=null", HTML)
+
 if __name__ == "__main__":
     unittest.main()
