@@ -1051,6 +1051,13 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         firm_db.commit()
 
+        detail = self.client.get(f"/cases/{case_one_id}")
+        self.assertEqual(detail.status_code, 200, detail.text)
+        retained_document = next(
+            item for item in detail.json()["docs"] if item["document_id"] == document_id
+        )
+        self.assertTrue(retained_document["original_available"])
+
         # This user can access both cases, but the document belongs only to case one.
         base = f"/cases/{case_two_id}/docs/{document_id}/original"
         for method, path, kwargs in (
