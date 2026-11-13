@@ -236,7 +236,7 @@ class GazetteTextImportTests(unittest.TestCase):
             "official_title", "gazette_issue", "retrieved_at", "captured_by",
             "source_reference", "permission_evidence_reference",
         ):
-            for suffix in ("\\nforged provenance", "\\tforged", "\\x7fforged"):
+            for suffix in ("\nforged provenance", "\tforged", "\x7fforged"):
                 with self.subTest(field=field, suffix=repr(suffix)):
                     self.metadata[field] = "valid prefix" + suffix
                     self.write_metadata()
