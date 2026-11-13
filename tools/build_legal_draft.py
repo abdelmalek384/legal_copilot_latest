@@ -62,8 +62,20 @@ def _source_usable(source: dict[str, Any], as_of: date) -> bool:
         return False
     if not str(source.get("permission_evidence", "")).strip():
         return False
-    parsed_url = urlsplit(str(source.get("url", "")))
-    if parsed_url.scheme != "https" or not parsed_url.netloc or parsed_url.username or parsed_url.password:
+    source_url = source.get("url")
+    if (not isinstance(source_url, str) or not source_url or source_url != source_url.strip()
+            or "\\" in source_url
+            or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in source_url)):
+        return False
+    try:
+        parsed_url = urlsplit(source_url)
+        port = parsed_url.port
+    except (TypeError, ValueError):
+        return False
+    if (parsed_url.scheme.lower() != "https" or not parsed_url.hostname
+            or parsed_url.username is not None or parsed_url.password is not None
+            or parsed_url.query or parsed_url.fragment or parsed_url.netloc.endswith(":")
+            or (port is not None and not 1 <= port <= 65535)):
         return False
     return True
 
