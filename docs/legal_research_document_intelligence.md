@@ -121,8 +121,8 @@ A passing unit suite validates helper behavior only; it does not validate the ne
 - Bare currency labels such as ريال, درهم or دينار remain currency-ambiguous; no exchange-rate conversion, currency inference or legal valuation is performed.
 - Added helper, separate-database API and frontend contract regressions. PR #1606 merged at `29f3a688584a0573111fa6165130f7cc91f3b74e`. Tests remain unexecuted.
 
-## English legal-reference extraction — 2026-11-13 (branch pending merge)
+## English legal-reference extraction — 2026-11-13 (merged #1608)
 
 - Extended literal legal-reference candidates to English Section, Subsection, Paragraph, Clause, Chapter, Act, Law, Regulation, Decree, Code and Rule labels, retaining the existing Article and Arabic forms.
 - Numeric/alphanumeric identifiers and source offsets are preserved. Matches are candidates only and are not validated against an official statute database.
-- Added bilingual helper regression coverage; tests remain unexecuted. Branch `feature/english-legal-reference-extraction-20261113` is pending merge.
+- Added bilingual helper regression coverage; PR #1608 merged at `113fdf84f6085d2dcb96e203cdedd5100ccaf83f`. Tests remain unexecuted.
