@@ -10,6 +10,7 @@ import difflib
 from datetime import date
 import hashlib
 import re
+import unicodedata
 from typing import Any
 
 MAX_ANALYSIS_CHARS = 1_000_000
@@ -177,6 +178,116 @@ def group_same_matter_duplicates(documents: list[dict[str, Any]]) -> list[dict[s
         group["firm_id"], group["matter_id"], group["match_basis"], group["document_ids"]
     ))
     return results
+
+def group_candidate_entity_mentions(
+    documents: list[dict[str, Any]],
+    max_candidates: int = 5000,
+    max_groups: int = 500,
+) -> dict[str, Any]:
+    """Group exact normalized party/reference mentions within firm/matter scope.
+
+    A group means only that the same literal mention appears in multiple
+    documents. It is not an identity-resolution result or proof that two
+    references denote the same person, entity, case or instrument.
+    """
+    if not isinstance(documents, list):
+        raise TypeError("documents must be a list")
+    for name, value, maximum in (
+        ("max_candidates", max_candidates, 10000),
+        ("max_groups", max_groups, 2000),
+    ):
+        if isinstance(value, bool) or not isinstance(value, int) or not 1 <= value <= maximum:
+            raise ValueError(f"{name} must be an integer between 1 and {maximum}")
+
+    buckets: dict[tuple[str, str, str, str], list[dict[str, Any]]] = {}
+    candidate_count = 0
+    truncated = False
+    allowed_types = {"labelled_party", "case_reference", "legal_reference"}
+    for document in documents:
+        if not isinstance(document, dict):
+            raise TypeError("each document must be a mapping")
+        firm_id, matter_id, document_id = (
+            document.get("firm_id"), document.get("matter_id"), document.get("document_id")
+        )
+        if not all(isinstance(value, str) and value.strip()
+                   for value in (firm_id, matter_id, document_id)):
+            raise ValueError("each document requires firm_id, matter_id and document_id")
+        filename = document.get("filename", "")
+        if not isinstance(filename, str):
+            raise ValueError("filename must be a string")
+        entities = document.get("entities", [])
+        if not isinstance(entities, list):
+            raise ValueError("entities must be a list")
+        for entity in entities:
+            if candidate_count >= max_candidates:
+                truncated = True
+                break
+            if not isinstance(entity, dict) or entity.get("entity_type") not in allowed_types:
+                continue
+            literal = entity.get("name_mention") if entity.get("entity_type") == "labelled_party" else entity.get("mention")
+            if not isinstance(literal, str) or not literal.strip():
+                continue
+            normalized = " ".join(unicodedata.normalize("NFKC", literal).casefold().split())
+            if not normalized:
+                continue
+            candidate_count += 1
+            key = (firm_id, matter_id, str(entity["entity_type"]), normalized)
+            buckets.setdefault(key, []).append({
+                "document_id": document_id,
+                "filename": filename,
+                "mention": entity.get("mention", literal),
+                "matched_value": literal,
+                "role_label": entity.get("role_label"),
+                "page": entity.get("page"),
+                "chunk_id": entity.get("chunk_id"),
+                "chunk_ref": entity.get("chunk_ref"),
+                "start": entity.get("start"),
+                "end": entity.get("end"),
+            })
+        if truncated:
+            break
+
+    groups = []
+    for (firm_id, matter_id, entity_type, normalized), members in buckets.items():
+        unique_documents = {member["document_id"] for member in members}
+        if len(unique_documents) < 2:
+            continue
+        groups.append({
+            "firm_id": firm_id,
+            "matter_id": matter_id,
+            "entity_type": entity_type,
+            "normalized_match": normalized,
+            "matched_values": sorted({member["matched_value"] for member in members}),
+            "document_ids": sorted(unique_documents),
+            "members": members,
+            "match_basis": "exact_nfkc_casefold_whitespace",
+            "review_status": "possible_repeat_mention_requires_human_review",
+        })
+    groups.sort(key=lambda item: (
+        item["entity_type"], item["normalized_match"], item["document_ids"]
+    ))
+    if len(groups) > max_groups:
+        groups = groups[:max_groups]
+        truncated = True
+    return {
+        "groups": groups,
+        "group_count": len(groups),
+        "candidate_count": candidate_count,
+        "truncated": truncated,
+        "requires_review": True,
+        "warning": (
+            "Groups indicate exact normalized text recurrence only. They do not establish identity, "
+            "common ownership, party equivalence, case linkage or legal relationship."
+        ),
+        "limitations": [
+            "Only labelled-party, case-reference and legal-reference mentions are grouped.",
+            "Normalization applies Unicode NFKC, case-folding and whitespace collapse only; no fuzzy or transliteration matching is performed.",
+            "Common names and repeated reference strings may belong to different people, entities or matters.",
+            "A missing group does not prove that documents concern different parties.",
+            "Every group requires lawyer review against its source documents.",
+        ],
+    }
+
 
 def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, Any]:
     """Build a review queue of parseable date mentions from caller-scoped documents.
