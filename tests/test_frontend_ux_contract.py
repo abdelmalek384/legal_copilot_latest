@@ -1221,6 +1221,17 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("uploadPanel.setAttribute('aria-busy','false')", HTML)
 
 
+    def test_matter_detail_uses_five_task_oriented_sections(self):
+        self.assertIn("matter-section-nav", HTML)
+        self.assertIn("matter-subnav", HTML)
+        for label in ("Documents & research", "Team & activity", "Finance"):
+            self.assertIn(label, HTML)
+        self.assertIn("'aria-pressed':String(selectedTabGroup.id===group.id)", HTML)
+        self.assertIn("'aria-current':TAB===key?'page':null", HTML)
+        self.assertIn("tabGroups.find(group=>group.items.some(([key])=>key===TAB))", HTML)
+        self.assertIn("if(TAB==='ask')body=h('div',{className:'card'},askBox(id))", HTML)
+        self.assertIn("if(TAB==='docs')", HTML)
+
     def test_primary_navigation_groups_existing_destinations_without_dropping_them(self):
         self.assertIn("className:'nav-group'", HTML)
         self.assertIn("مساحة العمل", HTML)
