@@ -1391,5 +1391,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("hasExactChunk?(LANG==='ar'?'فتح المستند والمقطع':'Open document and passage'):(LANG==='ar'?'فتح مستندات ملف القضية':'Open matter documents')", HTML)
         self.assertIn("window.DOCUMENT_REVIEW_TARGET=hasExactChunk?{caseId:matterCaseId,documentId:matterDocumentId,chunkId:String(rawChunkId)}:null", HTML)
 
+    def test_original_document_download_filename_is_sanitized(self):
+        self.assertIn("download:String(d.name||'original-document').replace(/[\\\\/\\\\0-\\\\x1f]/g,'_').slice(0,180)", HTML)
+
 if __name__ == "__main__":
     unittest.main()
