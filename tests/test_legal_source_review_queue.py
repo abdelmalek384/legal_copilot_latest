@@ -277,6 +277,8 @@ class LegalSourceReviewQueueTests(unittest.TestCase):
             "https://example.gov:99999/evidence",
             "https://example.gov:0/evidence",
             "https://example.gov:/evidence",
+            "https://example.gov/evidence\x7f",
+            "https://example.gov\\evidence",
             "",
             None,
             "not a url",
