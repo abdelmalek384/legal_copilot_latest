@@ -352,6 +352,7 @@ def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, An
             raw = candidate.get("value")
             parsed = None
             interpretation = None
+            calendar_system = "unknown"
             if isinstance(raw, str):
                 normalized_raw = raw.translate(arabic_digits).strip()
                 hijri_match = _HIJRI_DATE_PATTERN.fullmatch(normalized_raw)
