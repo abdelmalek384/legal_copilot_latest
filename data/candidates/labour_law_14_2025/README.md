@@ -27,7 +27,7 @@ This directory tracks the supplied Arabic JSONL corpus and its source review. Th
 
 The accessible promulgation text states general commencement from 2025-09-01, specialized labour courts from 2025-10-01, and repeal of Labour Law No. 12/2003 and Law No. 125/2010 in Article 12. The supplied 112-page Gazette reference has now been visually compared against all 311 candidate provisions, including the promulgation provisions. Treat the dates and transitional effects as provisional version metadata until qualified Egyptian counsel independently confirms their legal interpretation and current effect.
 
-Later official-source leads include Prime Minister's Decree 2652/2026 and Labour Ministry Decisions 74/2026 and 75/2026. They are tracked separately as possible implementing/related instruments, not assumed to be formal amendments.
+Later official-source leads include Prime Minister's Decree 2652/2026 and Labour Ministry Decisions 74/2026 and 75/2026. The official Amiri Press/IDSC metadata for Official Gazette Supplement issue 225 (A), dated 2026-10-12, also lists Labour Ministry Decisions 248–252/2026; the Ministry's 2026-10-20 announcement describes them as occupational-safety and health executive decisions under Law 14/2025. These are tracked as related implementing instruments, not assumed to be formal amendments. The issue 225 PDF is restricted through a request-a-copy workflow; the full texts, page ranges and effective dates have not been obtained or reviewed.
 
 ## Permission and import safeguards
 
