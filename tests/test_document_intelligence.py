@@ -199,7 +199,7 @@ class DocumentIntelligenceTests(unittest.TestCase):
 
     def test_amount_candidates_normalize_explicit_currency_and_flag_ambiguous_labels(self):
         result = extract_structured_candidates(
-            "قيمة المطالبة ١٬٥٠٠٫٢٥ جنيه. ومبلغ آخر 200 ريال."
+            "قيمة المطالبة ١٬٥٠٠٫٢٥ جنيه. ومبلغ آخر 200 ريال. Another amount 1,000.50 USD."
         )
         amounts = [
             item for item in result["entities"]
@@ -213,6 +213,8 @@ class DocumentIntelligenceTests(unittest.TestCase):
         self.assertEqual(ambiguous["amount_numeric"], "200")
         self.assertIsNone(ambiguous["currency_code"])
         self.assertEqual(ambiguous["currency_resolution"], "ambiguous_currency_label")
+        usd = next(item for item in amounts if item["currency_code"] == "USD")
+        self.assertEqual(usd["amount_numeric"], "1000.5")
         comma_decimal = extract_structured_candidates("المبلغ 5000,50 EGP.")
         self.assertFalse(any(
             item["entity_type"] == "monetary_amount"
