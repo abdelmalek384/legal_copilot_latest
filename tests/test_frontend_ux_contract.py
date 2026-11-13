@@ -764,6 +764,16 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("if(pageLocation!==undefined&&pageLocation!==null&&pageLocation!==''&&(source.scope==='firm_documents'||(source.case_id!==undefined&&source.case_id!==null)))statusNote.append", HTML)
         self.assertIn("source.text_location||p.text_location||source.location||p.location", HTML)
         self.assertIn("source.confidence??p.confidence", HTML)
+
+    def test_source_inspector_exposes_stable_matter_document_traceability_when_available(self):
+        self.assertIn("source.document_id??source.documentId??source.original_document_id??p.document_id??p.documentId??p.original_document_id", HTML)
+        self.assertIn("source.case_id??source.matter_id??p.case_id??p.matter_id", HTML)
+        self.assertIn("source.sha256||source.file_sha256||p.sha256||p.file_sha256", HTML)
+        self.assertIn("Document record ID: ", HTML)
+        self.assertIn("Matter ID: ", HTML)
+        self.assertIn("Original file SHA-256: ", HTML)
+        self.assertIn("معرّف سجل المستند: ", HTML)
+        self.assertIn("بصمة الملف SHA-256: ", HTML)
         self.assertIn("(typeof confidence==='number'||typeof confidence==='string')&&confidence!==''", HTML)
         self.assertIn("Original document: ", HTML)
         self.assertIn("Page: ", HTML)
