@@ -1086,6 +1086,7 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
 @media(prefers-reduced-motion:reduce){#main .quick-link{transition:none}#main .quick-link:hover{transform:none}}
 </style>
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+.answer-rating-panel{display:grid;gap:10px;margin-top:12px;padding:12px;border:1px solid var(--figma-border);background:#f9fbff}.answer-rating-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.answer-rating-fields select,.answer-rating-fields input,.answer-rating-fields textarea{width:100%;min-width:0}.answer-rating-fields textarea{grid-column:1/-1}@media(max-width:560px){.answer-rating-fields{grid-template-columns:minmax(0,1fr)}}
 <script>
 const $=i=>document.getElementById(i),A=$('app');
 let ME=JSON.parse(sessionStorage.me||'{}'),TAB='sum',PAGE='dash';
@@ -2472,7 +2473,54 @@ async function law(){
        actions.append(makeBtn(LANG==='ar'?'اقتراح تصحيح':'Suggest a correction',()=>suggestCorrection(priorQuestion,m),'g'));
        if(typeof m.answer_id==='string'&&/^ans_[A-Za-z0-9_-]{32}$/.test(m.answer_id))actions.append(makeBtn(LANG==='ar'?'نسخ معرّف الإجابة':'Copy answer ID',()=>copyText(m.answer_id),'g'));
        if(m.id)actions.append(makeBtn(LANG==='ar'?'حفظ إلى ملف قضية':'Save to matter',async()=>{if(!matterSelect.value){toast(LANG==='ar'?'اختر ملف قضية أولاً':'Select a matter first');matterSelect.focus();return}try{await api('/research/conversations/'+activeId+'/save-to-matter','POST',{case_id:Number(matterSelect.value),message_id:m.id});toast(LANG==='ar'?'تم حفظ مذكرة البحث في ملاحظات القضية':'Research memo saved to matter notes')}catch(_){}},'g'));
+
        bubble.append(actions);
+       if(typeof m.answer_id==='string'&&/^ans_[A-Za-z0-9_-]{32}$/.test(m.answer_id)){
+         const ratingPanel=h('section',{className:'answer-rating-panel card','aria-label':LANG==='ar'?'تقييم الإجابة':'Answer quality rating'});
+         const ratingTitle=h('b',{textContent:LANG==='ar'?'تقييم المحامي لهذه الإجابة':'Lawyer assessment'});
+         const overall=h('select',{'aria-label':LANG==='ar'?'التقييم العام':'Overall rating'},
+           h('option',{value:'',textContent:LANG==='ar'?'اختر التقييم':'Choose rating'}),
+           h('option',{value:'correct',textContent:LANG==='ar'?'صحيحة':'Correct'}),
+           h('option',{value:'partially_correct',textContent:LANG==='ar'?'صحيحة جزئياً':'Partially correct'}),
+           h('option',{value:'wrong',textContent:LANG==='ar'?'خاطئة':'Wrong'}));
+         const citationAccuracy=h('select',{'aria-label':LANG==='ar'?'دقة المواد المستشهد بها':'Cited article accuracy'},
+           h('option',{value:'',textContent:LANG==='ar'?'دقة الاستشهاد':'Cited article accuracy'}),
+           h('option',{value:'right',textContent:LANG==='ar'?'صحيح':'Right'}),
+           h('option',{value:'wrong',textContent:LANG==='ar'?'خاطئ':'Wrong'}),
+           h('option',{value:'not_applicable',textContent:LANG==='ar'?'لا ينطبق':'Not applicable'}));
+         const expected=h('input',{type:'text',maxLength:2000,placeholder:LANG==='ar'?'معرّفات المواد الصحيحة، مفصولة بفواصل':'Expected article IDs, comma-separated','aria-label':LANG==='ar'?'معرّفات المواد المتوقعة':'Expected article IDs'});
+         const answerable=h('select',{'aria-label':LANG==='ar'?'هل السؤال قابل للإجابة؟':'Is the question answerable?'},
+           h('option',{value:'',textContent:LANG==='ar'?'قابلية الإجابة غير محددة':'Answerability not labelled'}),
+           h('option',{value:'true',textContent:LANG==='ar'?'نعم':'Yes'}),
+           h('option',{value:'false',textContent:LANG==='ar'?'لا':'No'}));
+         const notes=h('textarea',{maxLength:2000,rows:2,placeholder:LANG==='ar'?'ملاحظات المراجع (اختياري، 2000 حرف كحد أقصى)':'Reviewer notes (optional, max 2,000 characters)','aria-label':LANG==='ar'?'ملاحظات المراجع':'Reviewer notes'});
+         const ratingStatus=h('p',{className:'mut',role:'status','aria-live':'polite'});
+         const saveRating=btn(LANG==='ar'?'حفظ التقييم':'Save rating',async()=>{
+           if(!overall.value||!citationAccuracy.value){toast(LANG==='ar'?'اختر التقييم العام ودقة الاستشهاد':'Choose an overall rating and citation accuracy');return}
+           const expectedIds=expected.value.split(',').map(x=>x.trim()).filter(Boolean);
+           if(expectedIds.length>100||expectedIds.some(x=>x.length>256)){toast(LANG==='ar'?'تحقق من معرّفات المواد':'Check article IDs');return}
+           saveRating.disabled=true;
+           try{
+             const saved=await api('/research/answers/'+encodeURIComponent(m.answer_id)+'/rating','PUT',{
+               rating:overall.value,cited_article_accuracy:citationAccuracy.value,
+               expected_article_ids:expectedIds,
+               answerable:answerable.value===''?null:answerable.value==='true',notes:notes.value
+             });
+             ratingStatus.textContent=(LANG==='ar'?'تم حفظ التقييم':'Rating saved')+' · '+(saved.benchmark_ready?(LANG==='ar'?'مكتمل لقياس الأداء':'Benchmark-ready'):(LANG==='ar'?'غير مكتمل لقياس الأداء':'Not benchmark-ready'));
+             toast(LANG==='ar'?'تم حفظ تقييمك داخل المكتب':'Your rating was saved within this firm');
+           }catch(_){ }finally{saveRating.disabled=false}
+         },'g');
+         ratingPanel.append(ratingTitle,h('div',{className:'answer-rating-fields'},overall,citationAccuracy,expected,answerable,notes),saveRating,ratingStatus);
+         bubble.append(ratingPanel);
+         api('/research/answers/'+encodeURIComponent(m.answer_id)+'/rating').then(result=>{
+           const saved=result.rating;if(!saved)return;
+           overall.value=saved.rating||'';citationAccuracy.value=saved.cited_article_accuracy||'';
+           expected.value=(saved.expected_article_ids||[]).join(', ');
+           answerable.value=saved.answerable===null?'':String(saved.answerable);
+           notes.value=saved.notes||'';
+           ratingStatus.textContent=LANG==='ar'?'لديك تقييم محفوظ؛ يمكنك تحديثه.':'Your rating is saved; you can update it.';
+         }).catch(()=>{});
+       }
        if(!(m.sources||[]).length){
          const messageScope=(m.result&&m.result.scope)||m.scope||'unknown';
          const emptyScope=messageScope==='metadata_only'
