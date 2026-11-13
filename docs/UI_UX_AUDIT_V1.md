@@ -77,7 +77,7 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 
 ### Research and document-intake clarity refinement
 
-- The Legal Research screen now explicitly states that no lawyer-verified Egyptian legal corpus is currently available. The verified-corpus selector is labelled accordingly; candidate metadata and source-only results must not be mistaken for verified operative law.
+- The Legal Research screen and matter-level Ask panel now explicitly state that no lawyer-verified Egyptian legal corpus is currently available. The verified-corpus selector is labelled accordingly; candidate metadata and source-only results must not be mistaken for verified operative law.
 - The Documents workspace keeps its common name search visible and moves file type, extraction status, classification status and filter reset into a collapsed native disclosure control. This reduces the initial visual density without removing filters.
 - New Arabic interface copy is registered in the native-review catalog. Existing catalog omissions were also brought into the catalog; all entries remain marked `pending_native_review` and are not represented as linguistically approved.
 - A static contract/catalog consistency scan found no unregistered Arabic literals in the current frontend. This is not a substitute for executing the Python test suite or native-speaker review.
