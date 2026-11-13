@@ -23,6 +23,15 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 | Remaining legal audit output-path integrity | AI-1 | Canonical OCR evaluator, article-row audit and corpus database audit cannot overwrite their inputs through direct paths, symlinks or hard links | 100% source implementation merged in #1609; regression tests committed but not executed |
 | Additional legal CLI report-path integrity | AI-1 | Corpus/reference comparison, Labour Law evidence-card report, and structured legal-draft output cannot overwrite source inputs or inventory manifests | 100% source implementation merged in #1609; regression tests committed but not executed |
 
+## AI-2 current-main implementation — 2026-11-14
+
+- The answer-rating contract is now integrated: firm-local submit/update/read handlers, admin-only listing/export, append-only events, bilingual per-answer UI, trust-tier fallback badge, and focused backend/frontend tests are committed on `main`. Execution is pending.
+- Added encrypted-PDF rejection and parser-level tests for encrypted files and the 500-page ceiling. End-to-end multipart upload abuse, malformed file route behavior, OCR timeout/concurrency, and storage-stage failure tests remain open.
+- Added a case-scoped retrieved-passage/provenance prompt-injection regression. Actual uploaded/OCR-derived chunk and filename/metadata attack-path coverage remains open.
+- Clean-clone first-login and rating export steps are in the test-firm runbook. No clean-clone rehearsal has been executed.
+- The security regression script now includes rating-route and frontend contract modules and exits if Python is not 3.12. It has not been run.
+- The local release checker, Docker/Compose placeholder validation, and backup/restore drill remain unexecuted. No release-readiness or pilot acceptance claim is made.
+
 ## External blockers: do not spend repeated effort looping
 
 ### Test execution / CI runner availability
