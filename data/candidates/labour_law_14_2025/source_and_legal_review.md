@@ -48,7 +48,7 @@ The supplied PDF reports copy/print restrictions. Its original upload URL and ca
 
 The 311-row JSONL remains outside the public repository because redistribution and commercial-reuse permissions have not been established. Keep every row's `verified=0` unchanged; do not treat the embedded `in_force=1` or `as_of=2025-05-03` as trusted legal-status or commencement determinations. The law remains non-authoritative and retrieval-ineligible pending the remaining gates below.
 
-Supporting details are in [the comparison report](../../docs/legal_evidence/law_14_2025_comparison_report.md), [the lawyer review packet](../../docs/legal_evidence/law_14_2025_lawyer_review_packet.md), and [the source-match record](../../docs/legal_evidence/law_14_2025_source_match_record.json).
+Supporting details are in [the comparison report](../../../docs/legal_evidence/law_14_2025_comparison_report.md), [the lawyer review packet](../../../docs/legal_evidence/law_14_2025_lawyer_review_packet.md), and [the source-match record](../../../docs/legal_evidence/law_14_2025_source_match_record.json).
 
 ## 3. Commencement, repeals, and subsequent instruments
 
