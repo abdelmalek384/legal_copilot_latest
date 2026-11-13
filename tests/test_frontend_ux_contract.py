@@ -1270,6 +1270,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("No lawyer-verified Egyptian legal corpus is currently available", HTML)
         self.assertIn("لا تتوفر حالياً مجموعة قوانين مصرية تم التحقق منها بواسطة محامين", HTML)
         self.assertIn("Verified legal corpus — no lawyer-verified Egyptian corpus currently available", HTML)
+        self.assertIn("if(TAB==='ask')body=h('div',{},h('section',{className:'notice warning research-corpus-availability'", HTML)
 
     def test_legal_source_states_are_explicit_and_fail_cautiously(self):
         self.assertIn("needs_review:LANG==='ar'?'يحتاج مراجعة':'Needs review'", HTML)
