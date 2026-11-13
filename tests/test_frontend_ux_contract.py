@@ -1234,8 +1234,10 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("dashboard-attention", HTML)
         self.assertIn("Needs your attention", HTML)
         self.assertIn("overdueTasks+overdueDeadlines.length", HTML)
-        self.assertNotIn("Quick access", HTML)
-        self.assertNotIn("Recorded fees", HTML)
+        dashboard = HTML[HTML.index("function dash(){"):HTML.index("\\nasync function tasksPage()")]
+        self.assertNotIn("Quick access", dashboard)
+        self.assertNotIn("Recorded fees", dashboard)
+        self.assertIn("Active matters", dashboard)
 
     def test_legal_source_states_are_explicit_and_fail_cautiously(self):
         self.assertIn("needs_review:LANG==='ar'?'يحتاج مراجعة':'Needs review'", HTML)
