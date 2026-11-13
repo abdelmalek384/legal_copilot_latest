@@ -194,3 +194,6 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 
 
 - The extracted-chunk reviewer page-reference input now pre-fills from either `page` or `page_number`, matching the displayed page fallback and reducing accidental blank references when one field is absent. Added a frontend regression contract.
+
+
+- Per-document extracted-text review panels now expose named accessible regions, connected to their disclosure buttons through `aria-controls`; added a frontend regression contract. Browser and screen-reader verification remain outstanding.
