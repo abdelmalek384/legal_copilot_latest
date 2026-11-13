@@ -345,6 +345,7 @@ class CollectionPipelineTests(unittest.TestCase):
         for url in (
             " https://example.gov/law.pdf",
             "https://example.gov/law file.pdf",
+            "https://example.gov/law\\\\file.pdf",
             "https://example.gov:99999/law.pdf",
             "https://example.gov:0/law.pdf",
         ):
@@ -508,6 +509,7 @@ class CollectionPipelineTests(unittest.TestCase):
             "https://example.gov:",
             "https://example.gov/law\x7f.pdf",
             "https://example.gov/law.pdf#fragment",
+            "https://example.gov/law\\\\file.pdf",
             "https://example.gov/law.pdf?X-Amz-Signature=secret",
         ):
             with self.subTest(url=url), self.assertRaises(ValueError):
