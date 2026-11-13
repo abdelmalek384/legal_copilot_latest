@@ -383,6 +383,19 @@ class ResearchInspectorTests(unittest.TestCase):
             source["provenance"]["review_evidence"][0]["review_event_id"] = value
             self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW, repr(value))
 
+    def test_review_evidence_urls_reject_controls_backslashes_and_query_data(self):
+        self.assertTrue(_valid_review_evidence_url("https://example.gov/review-record"))
+        for value in (
+            "https://example.gov/review\\x7fprivate",
+            "https://example.gov/review\\\\private",
+            "https://example.gov/review?token=secret",
+            "https://example.gov/review#private",
+            "https://example.gov:",
+            "https://user:pass@example.gov/review",
+        ):
+            with self.subTest(url=value):
+                self.assertFalse(_valid_review_evidence_url(value))
+
     def test_boolean_verification_flags_do_not_accept_float_one(self):
         source = valid_source()
         source["provenance"]["status_verified"] = 1.0
