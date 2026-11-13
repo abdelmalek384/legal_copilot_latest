@@ -13480,7 +13480,7 @@
       "arabic": "المستند المرتبط بهذا المصدر غير موجود ضمن مستندات ملف القضية المتاحة.",
       "source_file": "static/index.html",
       "source_lines": [
-        3276
+        3277
       ],
       "review_status": "pending_native_review"
     },
@@ -13489,7 +13489,7 @@
       "arabic": "لا توجد نسخة أصلية محفوظة في التخزين الخاص لهذا المستند.",
       "source_file": "static/index.html",
       "source_lines": [
-        3267
+        3268
       ],
       "review_status": "pending_native_review"
     },
@@ -13516,7 +13516,7 @@
       "arabic": "تعذر تحميل المقاطع النصية. تحقق من صلاحية الوصول وحاول مرة أخرى.",
       "source_file": "static/index.html",
       "source_lines": [
-        3259
+        3260
       ],
       "review_status": "pending_native_review"
     }
