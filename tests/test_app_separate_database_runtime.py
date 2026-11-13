@@ -1714,7 +1714,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         for url in urls:
             with self.subTest(url=url):
                 denied = self.client.get(url)
-                self.assertEqual(denied.status_code, 403, denied.text)
+                self.assertEqual(denied.status_code, 404, denied.text)
 
         control = self.runtime.control_connection()
         control.execute(
@@ -4872,6 +4872,19 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(review_audit.json()["reviews"][0]["outcome"], "corrected")
         self.assertEqual(review_audit.json()["reviews"][0]["original_text"], original_text)
 
+        refreshed_chunks = self.client.get(
+            f"/cases/{case_id}/docs/{document_id}/chunks"
+        )
+        self.assertEqual(refreshed_chunks.status_code, 200, refreshed_chunks.text)
+        latest_chunk = next(
+            item for item in refreshed_chunks.json()["chunks"] if item["id"] == chunk_id
+        )
+        self.assertEqual(latest_chunk["latest_review"]["original_text"], original_text)
+        self.assertEqual(
+            latest_chunk["latest_review"]["reviewed_text"],
+            original_text + " [reviewed correction]",
+        )
+
         missing_digest = self._mutate(
             "post", review_url,
             json={"outcome": "corrected", "corrected_text": "correction without a digest"},
@@ -5160,6 +5173,295 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         denied = self.client.get(f"/cases/{case_id}/draft-skeleton")
         self.assertEqual(denied.status_code, 404, denied.text)
 
+
+
+    def test_document_classification_persists_with_optimistic_audit_history(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate(
+            "post", "/cases",
+            json={"title": "Classification workflow matter", "client": "Test Client", "stage": "Civil"},
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        document_id = firm_db.execute(
+            "INSERT INTO docs(case_id,name,added,firm_id,uploader_user_id,sha256,content_type,"
+            "byte_size,extraction_status,ocr_used) "
+            "VALUES(?,?,datetime('now'),?,?,?,?,?,'text_extracted',0)",
+            (case_id, "contract.pdf", self.firm_a, self.user_id, "a" * 64, "application/pdf", 10),
+        ).lastrowid
+        firm_db.commit()
+
+        path = f"/cases/{case_id}/docs/{document_id}/classification"
+        initial = self.client.get(path)
+        self.assertEqual(initial.status_code, 200, initial.text)
+        self.assertTrue(initial.json()["can_edit"])
+        self.assertIsNone(initial.json()["classification"])
+
+        first = self._mutate(
+            "put", path,
+            json={"category": "contract", "expected_version": 0, "note": "Signed agreement"},
+        )
+        self.assertEqual(first.status_code, 200, first.text)
+        self.assertEqual(first.json()["classification"]["version"], 1)
+
+        stale = self._mutate(
+            "put", path,
+            json={"category": "pleading", "expected_version": 0, "note": "Stale update"},
+        )
+        self.assertEqual(stale.status_code, 409, stale.text)
+
+        second = self._mutate(
+            "put", path,
+            json={"category": "pleading", "expected_version": 1, "note": "Reclassified after review"},
+        )
+        self.assertEqual(second.status_code, 200, second.text)
+        self.assertEqual(second.json()["classification"]["version"], 2)
+
+        history = self.client.get(path)
+        self.assertEqual(history.status_code, 200, history.text)
+        self.assertEqual([event["version"] for event in history.json()["events"]], [2, 1])
+        self.assertEqual(history.json()["events"][0]["previous_category"], "contract")
+        self.assertEqual(history.json()["events"][0]["new_category"], "pleading")
+        self.assertEqual(history.json()["events"][0]["actor_name"], "First Owner")
+
+        detail = self.client.get(f"/cases/{case_id}")
+        self.assertEqual(detail.status_code, 200, detail.text)
+        document = next(item for item in detail.json()["docs"] if item["document_id"] == document_id)
+        self.assertEqual(document["saved_classification"], "pleading")
+        self.assertFalse(document["original_available"])
+
+    def test_document_classification_is_persisted_versioned_and_audited(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Classification audit matter"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        uploaded = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={"name": "classification-review.txt", "text": "Synthetic classification text."},
+        )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+        document_id = uploaded.json()["document_id"]
+
+        initial = self.client.get(f"/cases/{case_id}/docs/{document_id}/classification")
+        self.assertEqual(initial.status_code, 200, initial.text)
+        self.assertIsNone(initial.json()["classification"])
+        self.assertTrue(initial.json()["can_edit"])
+
+        saved = self._mutate(
+            "put", f"/cases/{case_id}/docs/{document_id}/classification",
+            json={"category": "contract", "expected_version": 0, "note": "Reviewed against source."},
+        )
+        self.assertEqual(saved.status_code, 200, saved.text)
+        self.assertEqual(saved.json()["classification"]["version"], 1)
+
+        stale = self._mutate(
+            "put", f"/cases/{case_id}/docs/{document_id}/classification",
+            json={"category": "pleading", "expected_version": 0, "note": "Stale update."},
+        )
+        self.assertEqual(stale.status_code, 409, stale.text)
+
+        updated = self._mutate(
+            "put", f"/cases/{case_id}/docs/{document_id}/classification",
+            json={"category": "pleading", "expected_version": 1, "note": "Corrected after review."},
+        )
+        self.assertEqual(updated.status_code, 200, updated.text)
+        self.assertEqual(updated.json()["classification"]["version"], 2)
+
+        history = self.client.get(f"/cases/{case_id}/docs/{document_id}/classification")
+        self.assertEqual(history.status_code, 200, history.text)
+        self.assertEqual(history.json()["classification"]["category"], "pleading")
+        self.assertEqual(history.json()["classification"]["version"], 2)
+        self.assertEqual(len(history.json()["events"]), 2)
+        self.assertEqual(history.json()["events"][0]["previous_category"], "contract")
+        self.assertEqual(history.json()["events"][0]["new_category"], "pleading")
+        self.assertEqual(history.json()["events"][0]["note"], "Corrected after review.")
+        self.assertEqual(history.json()["events"][0]["actor_name"], "First Owner")
+        self.assertEqual(history.json()["classification"]["updated_by_name"], "First Owner")
+        tenant = self.runtime.firm_connection(
+            self.runtime.resolve_context(self.user_id, self.firm_a)
+        )
+        event_id = tenant.execute(
+            "SELECT id FROM document_classification_events WHERE document_id=? AND version=2",
+            (document_id,),
+        ).fetchone()["id"]
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "immutable"):
+            tenant.execute(
+                "UPDATE document_classification_events SET note='tampered' WHERE id=?",
+                (event_id,),
+            )
+        tenant.rollback()
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "immutable"):
+            tenant.execute(
+                "DELETE FROM document_classification_events WHERE id=?", (event_id,)
+            )
+        tenant.rollback()
+        deleted = self._mutate("delete", f"/cases/{case_id}")
+        self.assertEqual(deleted.status_code, 200, deleted.text)
+        self.assertEqual(
+            tenant.execute(
+                "SELECT COUNT(*) FROM document_classification_events WHERE document_id=?",
+                (document_id,),
+            ).fetchone()[0],
+            0,
+            "parent matter deletion must cascade classification audit data under retention policy",
+        )
+
+    def test_document_classification_rejects_invalid_categories_and_cross_matter_access(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        first = self._mutate("post", "/cases", json={"title": "Classification matter one"})
+        second = self._mutate("post", "/cases", json={"title": "Classification matter two"})
+        self.assertEqual(first.status_code, 200, first.text)
+        self.assertEqual(second.status_code, 200, second.text)
+        case_one, case_two = first.json()["id"], second.json()["id"]
+        uploaded = self._mutate(
+            "post", f"/cases/{case_one}/docs",
+            json={"name": "matter-one-classification.txt", "text": "Matter one source text."},
+        )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+        document_id = uploaded.json()["document_id"]
+
+        invalid = self._mutate(
+            "put", f"/cases/{case_one}/docs/{document_id}/classification",
+            json={"category": "verified_legal_finding", "expected_version": 0, "note": ""},
+        )
+        self.assertEqual(invalid.status_code, 422, invalid.text)
+
+        cross_matter = self.client.get(
+            f"/cases/{case_two}/docs/{document_id}/classification"
+        )
+        self.assertIn(cross_matter.status_code, (403, 404), cross_matter.text)
+
+    def test_only_case_leads_and_firm_admins_can_change_document_classification(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Classification permission matter"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        uploaded = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={"name": "classification-permissions.txt", "text": "Synthetic source."},
+        )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+        document_id = uploaded.json()["document_id"]
+
+        junior_id = self.runtime.create_global_identity(
+            "Classification Junior", "classification-junior@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(junior_id, self.firm_a, "lawyer")
+        added = self._mutate(
+            "post", f"/cases/{case_id}/members",
+            json={"user_id": junior_id, "role": "junior"},
+        )
+        self.assertEqual(added.status_code, 200, added.text)
+
+        junior = TestClient(app.app)
+        try:
+            logged_in = junior.post(
+                "/login", json={"email": "classification-junior@example.test", "password": self.password}
+            )
+            self.assertEqual(logged_in.status_code, 200, logged_in.text)
+            visible = junior.get(f"/cases/{case_id}/docs/{document_id}/classification")
+            self.assertEqual(visible.status_code, 200, visible.text)
+            self.assertFalse(visible.json()["can_edit"])
+            denied = junior.put(
+                f"/cases/{case_id}/docs/{document_id}/classification",
+                headers={"X-CSRF-Token": junior.cookies.get("lc_csrf") or ""},
+                json={"category": "contract", "expected_version": 0, "note": ""},
+            )
+            self.assertEqual(denied.status_code, 403, denied.text)
+        finally:
+            junior.close()
+
+    def test_document_metadata_search_is_limited_to_accessible_matters(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        first = self._mutate("post", "/cases", json={"title": "Accessible Alpha Matter"})
+        second = self._mutate("post", "/cases", json={"title": "Private Beta Matter"})
+        self.assertEqual(first.status_code, 200, first.text)
+        self.assertEqual(second.status_code, 200, second.text)
+        alpha_case, beta_case = first.json()["id"], second.json()["id"]
+        for case_id, filename, body in (
+            (alpha_case, "alpha-accessible-contract.txt", "Alpha source. التزام قانوني. رقم ١٢٣"),
+            (beta_case, "beta-private-contract.txt", "Beta source. التزام سري."),
+        ):
+            uploaded = self._mutate(
+                "post", f"/cases/{case_id}/docs",
+                json={"name": filename, "text": body},
+            )
+            self.assertEqual(uploaded.status_code, 200, uploaded.text)
+
+        alpha_document = self._mutate(
+            "get", f"/cases/{alpha_case}"
+        )
+        self.assertEqual(alpha_document.status_code, 200, alpha_document.text)
+        alpha_document_id = next(
+            item["document_id"] for item in alpha_document.json()["docs"]
+            if item["name"] == "alpha-accessible-contract.txt"
+        )
+        classified = self._mutate(
+            "put", f"/cases/{alpha_case}/docs/{alpha_document_id}/classification",
+            json={"category": "contract", "expected_version": 0, "note": "Reviewed source."},
+        )
+        self.assertEqual(classified.status_code, 200, classified.text)
+
+        junior_id = self.runtime.create_global_identity(
+            "Document Search Junior", "document-search-junior@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(junior_id, self.firm_a, "lawyer")
+        added = self._mutate(
+            "post", f"/cases/{alpha_case}/members",
+            json={"user_id": junior_id, "role": "junior"},
+        )
+        self.assertEqual(added.status_code, 200, added.text)
+
+        junior = TestClient(app.app)
+        try:
+            logged_in = junior.post(
+                "/login", json={"email": "document-search-junior@example.test", "password": self.password}
+            )
+            self.assertEqual(logged_in.status_code, 200, logged_in.text)
+            results = junior.get("/documents/search?q=alpha")
+            self.assertEqual(results.status_code, 200, results.text)
+            self.assertEqual(results.json()["total"], 1)
+            self.assertEqual(results.json()["items"][0]["case_id"], alpha_case)
+            self.assertEqual(results.json()["items"][0]["case_title"], "Accessible Alpha Matter")
+            self.assertIn("statuses", results.json())
+            self.assertEqual(results.json()["items"][0]["name"], "alpha-accessible-contract.txt")
+            self.assertEqual(results.json()["items"][0]["saved_classification"], "contract")
+            self.assertEqual(results.json()["items"][0]["classification_reviewer_name"], "First Owner")
+            arabic_hits = junior.get("/documents/search-text?q=قَانوني")
+            self.assertEqual(arabic_hits.status_code, 200, arabic_hits.text)
+            self.assertEqual(arabic_hits.json()["total"], 1)
+            self.assertIn("قانوني", arabic_hits.json()["items"][0]["excerpt"])
+            self.assertEqual(arabic_hits.json()["items"][0]["case_id"], alpha_case)
+            digit_hits = junior.get("/documents/search-text?q=١٢٣")
+            self.assertEqual(digit_hits.status_code, 200, digit_hits.text)
+            self.assertEqual(digit_hits.json()["total"], 1)
+            hidden_text = junior.get("/documents/search-text?q=سري")
+            self.assertEqual(hidden_text.status_code, 200, hidden_text.text)
+            self.assertEqual(hidden_text.json()["total"], 0)
+
+            hidden = junior.get(f"/documents/search?case_id={beta_case}")
+            self.assertEqual(hidden.status_code, 404, hidden.text)
+            invalid = junior.get("/documents/search?classification=verified")
+            self.assertEqual(invalid.status_code, 422, invalid.text)
+        finally:
+            junior.close()
 
 if __name__ == "__main__":
     unittest.main()
