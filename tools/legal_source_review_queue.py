@@ -12,6 +12,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from tools.research_inspector import has_current_review_evidence
+from tools.output_path_safety import ensure_output_paths_safe
 
 def tables(db):
     return {r[0] for r in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
@@ -206,6 +207,11 @@ def main():
         p.error("COPILOT_DB compatibility mode is not supported; configure COPILOT_CORPUS_DB or pass --db")
     if args.db is None:
         p.error("a legal-corpus database is required; configure COPILOT_CORPUS_DB or pass --db")
+    if args.out:
+        try:
+            ensure_output_paths_safe([args.out], [args.db])
+        except ValueError as exc:
+            p.error(str(exc))
     try: report=review_queue(args.db)
     except (FileNotFoundError,sqlite3.Error,ValueError) as exc: p.error(str(exc))
     text=json.dumps(report,ensure_ascii=False,indent=2)+"\n"

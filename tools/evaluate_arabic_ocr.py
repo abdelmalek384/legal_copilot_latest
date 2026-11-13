@@ -16,6 +16,12 @@ import sys
 import unicodedata
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools.output_path_safety import ensure_output_paths_safe
+
 
 _TRANSLATION = str.maketrans({
     "أ": "ا", "إ": "ا", "آ": "ا", "ٱ": "ا",
@@ -112,6 +118,8 @@ def main(argv=None):
     args = parser.parse_args(argv)
     records = []
     try:
+        if args.output:
+            ensure_output_paths_safe([Path(args.output)], [Path(args.jsonl)])
         with Path(args.jsonl).open("r", encoding="utf-8") as handle:
             for line_number, line in enumerate(handle, 1):
                 if not line.strip():

@@ -14,6 +14,12 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
+import sys
+
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools.output_path_safety import ensure_output_paths_safe
 DEFAULT_RELATIONSHIPS = ROOT / "docs" / "phase_2_amendment_relationships.json"
 DEFAULT_INVENTORY = ROOT / "docs" / "phase_2_document_inventory.json"
 BASE_TYPES = {"base_instrument"}
@@ -387,9 +393,10 @@ def main() -> int:
     parser.add_argument("--strict", action="store_true", help="Exit non-zero if structural errors are found")
     args = parser.parse_args()
     try:
+        ensure_output_paths_safe([args.out], [args.relationships, args.inventory])
         relationships_doc = json.loads(args.relationships.read_text(encoding="utf-8"))
         inventory_doc = json.loads(args.inventory.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
+    except (OSError, json.JSONDecodeError, ValueError) as exc:
         parser.error(str(exc))
     report = validate(relationships_doc, inventory_doc)
     rendered = json.dumps(report, ensure_ascii=False, indent=2)

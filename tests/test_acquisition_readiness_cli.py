@@ -82,6 +82,17 @@ class AcquisitionReadinessCliTests(unittest.TestCase):
             ])
         return code, json.loads(output.getvalue())
 
+    def test_report_cannot_overwrite_manifest_input(self):
+        original = self.manifest.read_bytes()
+        with self.assertRaises(SystemExit) as raised:
+            MODULE.main([
+                "--manifest", str(self.manifest),
+                "--register", str(self.register),
+                "--out", str(self.manifest),
+            ])
+        self.assertEqual(raised.exception.code, 2)
+        self.assertEqual(self.manifest.read_bytes(), original)
+
     def test_production_gate_fails_when_commercial_reuse_is_unknown(self):
         code, report = self.run_cli("--require-ready")
         self.assertEqual(report["collection_ready_count"], 1)

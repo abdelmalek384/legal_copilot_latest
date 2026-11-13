@@ -1,7 +1,9 @@
 import datetime as dt
 import importlib.util
 import json
+import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -13,6 +15,24 @@ SPEC.loader.exec_module(MODULE)
 
 
 class AmendmentRelationshipValidatorTests(unittest.TestCase):
+    def test_report_cannot_overwrite_relationship_input(self):
+        with tempfile.TemporaryDirectory() as temp:
+            relationships = Path(temp) / "relationships.json"
+            inventory = Path(temp) / "inventory.json"
+            relationships.write_text("{}", encoding="utf-8")
+            inventory.write_text("{}", encoding="utf-8")
+            original = relationships.read_bytes()
+            with patch("sys.argv", [
+                "validate_amendment_relationships.py",
+                "--relationships", str(relationships),
+                "--inventory", str(inventory),
+                "--out", str(relationships),
+            ]):
+                with self.assertRaises(SystemExit) as raised:
+                    MODULE.main()
+            self.assertEqual(raised.exception.code, 2)
+            self.assertEqual(relationships.read_bytes(), original)
+
     def test_committed_register_reports_unresolved_relationships(self):
         relationships = json.loads(
             (ROOT / "docs" / "phase_2_amendment_relationships.json").read_text(encoding="utf-8")
