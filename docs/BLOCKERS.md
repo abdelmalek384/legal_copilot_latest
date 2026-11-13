@@ -137,3 +137,10 @@ All of these merges are source-reviewed code integration only. Their tests remai
 | Egyptian-law source verification and counsel sign-off | Review inventories and tooling exist | Qualified counsel and authenticated Gazette evidence required | 0% |
 
 Percentages distinguish repository implementation from validation and operational acceptance. A merged PR is not a test pass or production-readiness certification.
+
+
+## Follow-up hardening — 2026-11-13
+
+- #1588 merged Arabic service-path tests for the live negated-obligation guard; issue #1561 is closed. The tests are committed but not executed.
+- #1589 merged an additional explicit-source-reference validation check; #1590 then removed a duplicate earlier check, retaining one fail-closed validation point. The importer still rejects explicitly supplied null/empty/non-string references even when a valid source URL exists.
+- Neither merge establishes a passing test result. Focused Python 3.12 execution remains blocked by unavailable hosted runners and was not run locally in this session.
