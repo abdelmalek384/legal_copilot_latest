@@ -1,5 +1,8 @@
 import csv
+import os
 import tempfile
+import subprocess
+import sys
 import unittest
 from pathlib import Path
 
@@ -76,6 +79,24 @@ class AnswerRatingExportAdapterTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "trust_tier"):
                 adapt_file(source, output)
             self.assertFalse(output.exists())
+
+    def test_cli_runs_without_repository_root_pythonpath(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory) / "firm.csv"
+            output = Path(directory) / "canonical.csv"
+            with source.open("w", encoding="utf-8", newline="") as handle:
+                writer = csv.DictWriter(handle, fieldnames=list(firm_row()))
+                writer.writeheader()
+                writer.writerow(firm_row())
+            root = Path(__file__).resolve().parents[1]
+            environment = {key: value for key, value in os.environ.items() if key != "PYTHONPATH"}
+            completed = subprocess.run(
+                [sys.executable, str(root / "tools" / "adapt_answer_rating_export.py"),
+                 str(source), str(output)],
+                cwd=root, env=environment, capture_output=True, text=True, timeout=15,
+            )
+            self.assertEqual(completed.returncode, 0, completed.stderr)
+            self.assertTrue(output.is_file())
 
     def test_writes_utf8_bom_canonical_header_and_refuses_overwrite(self):
         with tempfile.TemporaryDirectory() as directory:
