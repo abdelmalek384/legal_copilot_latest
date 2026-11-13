@@ -248,6 +248,158 @@ def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, An
         ],
     }
 
+_ARABIC_RELATION_PATTERN = re.compile(
+    r"(?P<subject>[\u0621-\u064A][\u0621-\u064A\s]{1,70}?)\s+"
+    r"(?P<relation>وكيل عن|محام عن|محامي عن|مفوّض عن|مفوض عن|يمثل|تمثل|مالك|مستأجر|مؤجر|بائع|مشتري|شريك مع|زوج|زوجة|ابن|ابنة)\s+"
+    r"(?P<object>[\u0621-\u064A][\u0621-\u064A\s]{1,70}?)(?=$|[،,؛;.!؟?\n])",
+    re.IGNORECASE,
+)
+_ENGLISH_RELATION_PATTERN = re.compile(
+    r"(?P<subject>[A-Z][A-Za-z.'-]*(?:\s+[A-Z][A-Za-z.'-]*){0,3})\s+"
+    r"(?P<relation>represents|represented by|agent for|attorney for|lessor of|lessee of|employer of|employee of|partner of)\s+"
+    r"(?P<object>[A-Z][A-Za-z.'-]*(?:\s+[A-Z][A-Za-z.'-]*){0,3})(?=$|[,.!?;\n])",
+    re.IGNORECASE,
+)
+
+
+def _sentence_spans(text: str):
+    """Yield conservative sentence-like spans without changing source offsets."""
+    start = 0
+    for match in re.finditer(r"[.!?؟؛;\n]+", text):
+        end = match.start()
+        if text[start:end].strip():
+            yield start, end
+        start = match.end()
+    if text[start:].strip():
+        yield start, len(text)
+
+
+def _page_at(position: int, page_markers: list[tuple[int, int]]):
+    marker_index = bisect.bisect_right(page_markers, (position, 10**18)) - 1
+    return page_markers[marker_index][1] if marker_index >= 0 else None
+
+
+def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, Any]:
+    """Build provenance-linked entity, event and explicit-relationship candidates.
+
+    This is a conservative rule-based structuring pass over extracted text. It
+    only links dates/party labels to an event when they occur in the same
+    sentence-like span, and only emits relationships when an explicit relation
+    phrase is present. Every result is unverified and requires human review.
+    """
+    if not isinstance(text, str):
+        raise TypeError("text must be str")
+    if len(text) > MAX_ANALYSIS_CHARS:
+        raise ValueError("document text exceeds analysis limit")
+    if isinstance(max_items, bool) or not isinstance(max_items, int) or not 1 <= max_items <= 500:
+        raise ValueError("max_items must be an integer between 1 and 500")
+
+    base = extract_review_candidates(text, max_candidates=max_items)
+    page_markers = [(match.start(), int(match.group(1))) for match in _PAGE_MARKER.finditer(text)]
+    entities = []
+    for candidate in base["candidates"]:
+        kind = candidate["kind"]
+        entity_type = {
+            "party_label": "labelled_party",
+            "case_reference": "case_reference",
+            "legal_reference": "legal_reference",
+            "amount": "monetary_amount",
+            "date": "date_mention",
+        }.get(kind)
+        if not entity_type:
+            continue
+        entity = {
+            "entity_type": entity_type,
+            "mention": candidate["value"],
+            "excerpt": candidate["excerpt"],
+            "page": candidate["page"],
+            "start": candidate["start"],
+            "end": candidate["end"],
+            "review_status": "entity_candidate_unverified",
+        }
+        if kind == "party_label":
+            parts = re.split(r"[:：-]", candidate["value"], maxsplit=1)
+            entity["role_label"] = parts[0].strip()
+            entity["name_mention"] = parts[1].strip() if len(parts) > 1 else ""
+        entities.append(entity)
+        if len(entities) >= max_items:
+            break
+
+    events = []
+    relationships = []
+    truncated = bool(base["truncated"])
+    for sentence_start, sentence_end in _sentence_spans(text):
+        sentence = text[sentence_start:sentence_end].strip()
+        if not sentence:
+            continue
+        leading_trim = len(text[sentence_start:sentence_end]) - len(text[sentence_start:sentence_end].lstrip())
+        absolute_start = sentence_start + leading_trim
+        local_dates = []
+        for pattern in _DATE_PATTERNS:
+            for match in pattern.finditer(sentence):
+                local_dates.append(match.group(0))
+                if len(local_dates) >= 10:
+                    break
+        local_parties = [
+            match.group(0).strip()
+            for match in _PARTY_LABEL_PATTERN.finditer(sentence)
+        ][:10]
+        for trigger in _EVENT_MENTION_PATTERN.finditer(sentence):
+            if len(events) >= max_items:
+                truncated = True
+                break
+            start = absolute_start + trigger.start()
+            end = absolute_start + trigger.end()
+            events.append({
+                "trigger": trigger.group(0),
+                "sentence": sentence[:1000],
+                "date_mentions": local_dates,
+                "party_mentions": local_parties,
+                "page": _page_at(start, page_markers),
+                "start": start,
+                "end": end,
+                "sentence_start": absolute_start,
+                "sentence_end": absolute_start + len(sentence),
+                "review_status": "event_candidate_requires_human_context",
+            })
+        for pattern in (_ARABIC_RELATION_PATTERN, _ENGLISH_RELATION_PATTERN):
+            for match in pattern.finditer(sentence):
+                if len(relationships) >= max_items:
+                    truncated = True
+                    break
+                relationships.append({
+                    "subject_mention": match.group("subject").strip(),
+                    "relation_mention": match.group("relation").strip(),
+                    "object_mention": match.group("object").strip(),
+                    "sentence": sentence[:1000],
+                    "page": _page_at(absolute_start + match.start(), page_markers),
+                    "start": absolute_start + match.start(),
+                    "end": absolute_start + match.end(),
+                    "review_status": "explicit_relationship_candidate_unverified",
+                })
+        if len(events) >= max_items and len(relationships) >= max_items:
+            truncated = True
+            break
+
+    return {
+        "entities": entities,
+        "events": events,
+        "relationships": relationships,
+        "entity_count": len(entities),
+        "event_count": len(events),
+        "relationship_count": len(relationships),
+        "truncated": truncated,
+        "requires_review": True,
+        "limitations": [
+            "Entity mentions are extracted from explicit labels and literal identifiers; this is not general named-entity recognition.",
+            "Event triggers are mentions, not proof that an event occurred; dates and parties are linked only by sentence co-occurrence.",
+            "Relationships are emitted only for explicit relation phrases; direction and legal effect require human confirmation.",
+            "All values retain source offsets and available PDF page markers but may reflect extraction or OCR errors.",
+            "A missing candidate does not prove that an entity, event or relationship is absent.",
+        ],
+    }
+
+
 def compare_extracted_text(before: str, after: str, context_chars: int = 100) -> list[dict[str, str]]:
     """Return reviewable text changes; never labels a change as legally significant."""
     if not isinstance(before, str) or not isinstance(after, str):
