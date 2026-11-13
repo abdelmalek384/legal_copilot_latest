@@ -12,7 +12,7 @@ def _same_file_or_path(left: Path, right: Path) -> bool:
             return True
         if left.exists() and right.exists():
             return left.samefile(right)
-    except OSError as exc:
+    except (OSError, RuntimeError) as exc:
         raise ValueError(
             f"cannot safely compare report path {left} with protected path {right}: {exc}"
         ) from exc
