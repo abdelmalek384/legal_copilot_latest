@@ -9583,7 +9583,7 @@ def _research_answer_for_rating(c, u, answer_id):
         "r.id AS conversation_owner_id FROM research_messages m "
         "JOIN research_conversations r ON r.id=m.conversation_id "
         "WHERE r.firm_id=? AND m.role='assistant' AND json_valid(m.message_json)=1 "
-        "AND json_extract(m.message_json,'$.answer_id')=? LIMIT 1",
+        "AND CASE WHEN json_valid(m.message_json)=1 THEN json_extract(m.message_json,'$.answer_id') ELSE NULL END=? LIMIT 1",
         (int(u["firm_id"]), answer_id),
     ).fetchone()
     if not row:
