@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "22cafd85cf3b01c495fb21b96f69f0b4fb8c9849",
   "generated_on": "2026-11-12",
-  "entry_count": 1172,
+  "entry_count": 1192,
   "entries": [
     {
       "id": "AR-0001",
@@ -11314,6 +11314,166 @@
       "arabic": "لا تتوفر حالياً مجموعة قوانين مصرية تم التحقق منها بواسطة محامين. قد تظهر بيانات مرشحة أو نتائج مصدرية فقط؛ لا تعتبرها قانوناً سارياً أو معتمداً.",
       "source_lines": [
         2605
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1173",
+      "arabic": "مساحة العمل",
+      "source_lines": [
+        1162
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1174",
+      "arabic": "إدارة المكتب",
+      "source_lines": [
+        1163
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1175",
+      "arabic": "الأتعاب والتحصيل",
+      "source_lines": [
+        1163
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1176",
+      "arabic": "تغطية المصادر القانونية",
+      "source_lines": [
+        1163
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1177",
+      "arabic": "مراجعة المصادر",
+      "source_lines": [
+        1163
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1178",
+      "arabic": "ما يحتاج انتباهك",
+      "source_lines": [
+        1741
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1179",
+      "arabic": "مهام متأخرة و",
+      "source_lines": [
+        1744
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1180",
+      "arabic": "مواعيد قانونية متأخرة. ابدأ بالعناصر المتأخرة أدناه.",
+      "source_lines": [
+        1744
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1181",
+      "arabic": "لا توجد مهام أو مواعيد قانونية متأخرة مسجلة حالياً.",
+      "source_lines": [
+        1744
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1182",
+      "arabic": "مراجعة المهام",
+      "source_lines": [
+        1744
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1183",
+      "arabic": "يحتاج مراجعة",
+      "source_lines": [
+        2463
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1184",
+      "arabic": "غير متحقق — بيانات وصفية فقط",
+      "source_lines": [
+        2463
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1185",
+      "arabic": "نسخة ثانوية؛ لم يكتمل التحقق من مطابقتها للنشر الرسمي.",
+      "source_lines": [
+        2464
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1186",
+      "arabic": "تم العثور على المصدر، لكن مراجعة المصدر أو الحالة القانونية لم تكتمل.",
+      "source_lines": [
+        2464
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1187",
+      "arabic": "تم العثور على المصدر، لكن مراجعته لم تكتمل.",
+      "source_lines": [
+        2464
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1188",
+      "arabic": "تم العثور على المصدر، لكن حداثته أو حالته القانونية تحتاج إلى مراجعة؛ لا تعتمد عليه كنص سارٍ متحقق.",
+      "source_lines": [
+        2464
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1189",
+      "arabic": "مستند مقدم من المكتب أو المستخدم ولم يتم التحقق منه بصورة مستقلة كمصدر قانوني.",
+      "source_lines": [
+        2464
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1190",
+      "arabic": "لم يثبت المصدر أو موثوقيته بالقدر الكافي للاعتماد عليه.",
+      "source_lines": [
+        2464
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1191",
+      "arabic": "بيانات فهرس فقط؛ لم يتم استرجاع نص قانوني ولم يثبت المصدر للاعتماد.",
+      "source_lines": [
+        2464
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1192",
+      "arabic": "المصدر يحتاج مراجعة",
+      "source_lines": [
+        2468
       ],
       "review_status": "pending_native_review"
     }
