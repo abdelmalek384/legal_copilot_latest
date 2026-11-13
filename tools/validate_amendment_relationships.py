@@ -396,7 +396,7 @@ def main() -> int:
         ensure_output_paths_safe([args.out], [args.relationships, args.inventory])
         relationships_doc = json.loads(args.relationships.read_text(encoding="utf-8"))
         inventory_doc = json.loads(args.inventory.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
+    except (OSError, json.JSONDecodeError, ValueError) as exc:
         parser.error(str(exc))
     report = validate(relationships_doc, inventory_doc)
     rendered = json.dumps(report, ensure_ascii=False, indent=2)
