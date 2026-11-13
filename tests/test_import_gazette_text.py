@@ -158,8 +158,8 @@ class GazetteTextImportTests(unittest.TestCase):
 
     def test_expected_inventory_reports_entirely_missing_attached_law_block(self):
         source_text = (
-            "المادة الأولى\\nنص حكم الإصدار الأول.\\n"
-            "المادة الثانية\\nنص حكم الإصدار الثاني.\\n"
+            "المادة الأولى\nنص حكم الإصدار الأول.\n"
+            "المادة الثانية\nنص حكم الإصدار الثاني.\n"
         )
         self.text_path.write_text(source_text, encoding="utf-8")
         self.metadata["content_sha256"] = hashlib.sha256(source_text.encode("utf-8")).hexdigest()
@@ -184,7 +184,7 @@ class GazetteTextImportTests(unittest.TestCase):
         self.assertIn("Block missing_attached_law_block missing: 1, 2, 3", report)
 
     def test_expected_inventory_reports_entirely_missing_promulgation_block(self):
-        source_text = "مادة 1\\nنص المادة الأولى من القانون المرافق.\\n"
+        source_text = "مادة 1\nنص المادة الأولى من القانون المرافق.\n"
         self.text_path.write_text(source_text, encoding="utf-8")
         self.metadata["content_sha256"] = hashlib.sha256(source_text.encode("utf-8")).hexdigest()
         self.metadata["expected_promulgation_provisions"] = 2
