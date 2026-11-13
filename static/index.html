@@ -325,6 +325,15 @@ body{background:#f3f6fa;color:var(--figma-ink);font-family:Inter,"Noto Sans Arab
 #main .matter-section-nav button:focus-visible,#main .matter-subnav button:focus-visible{outline:3px solid var(--workspace-blue);outline-offset:2px}
 @media(max-width:560px){#main .matter-section-nav{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-inline:contain}#main .matter-section-nav button{white-space:nowrap;flex:0 0 auto}#main .matter-subnav button{flex:1 1 auto}}
 
+
+/* Persistent matter context: identify the file without forcing a return to Overview. */
+#main .matter-context-strip{display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;padding:10px 12px;margin:8px 0 12px;background:var(--surface-soft,#f6f8fb);border:1px solid var(--line);border-radius:11px}
+#main .matter-client-context{font-weight:650}
+#main .matter-meta-chip{display:inline-flex;align-items:center;gap:5px;font-size:12px}
+#main .matter-meta-chip b{font-weight:650}
+#main .matter-progress-context{display:inline-flex;align-items:center;gap:7px;margin-inline-start:auto}
+@media(max-width:560px){#main .matter-context-strip{align-items:flex-start}#main .matter-progress-context{margin-inline-start:0;width:100%}}
+
 </style>
 <style>
 /* Legal Copilot — premium workspace polish
@@ -3230,7 +3239,8 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    lead&&h('div',{className:'row'},mu,mr,btn(uiText('إضافة / تحديث','Add / update'),async()=>{await api('/cases/'+id+'/members','POST',{user_id:+mu.value,role:mr.value});again()})))}
  if(TAB==='ask')body=h('div',{className:'card'},askBox(id));
  if(TAB==='log')body=h('div',{className:'card'},c.events.map(e=>h('div',{className:'row'},h('span',{textContent:e.text}),h('span',{className:'mut',textContent:e.who+' · '+new Date(e.at.replace(' ','T')+'Z').toLocaleString(LANG==='ar'?'ar-EG':'en-US',{dateStyle:'short',timeStyle:'short'})}))));
- shell(c.title,h('div',{},h('span',{className:'mut',textContent:uiText('العميل: ','Client: ')+(c.client||'—')+' '}),pill(c.status==='open'?'مفتوحة':'مغلقة',c.status==='open'?'open':'closed')),
+ const matterMeta=[c.case_number&&[uiText('رقم القضية','Case number'),c.case_number],c.case_year&&[uiText('السنة','Year'),c.case_year],c.court&&[uiText('المحكمة','Court'),c.court],c.circuit&&[uiText('الدائرة','Circuit'),c.circuit],c.stage&&[uiText('المرحلة','Stage'),c.stage]].filter(Boolean);
+ shell(c.title,h('div',{className:'matter-context-strip'},h('span',{className:'matter-client-context',textContent:uiText('العميل: ','Client: ')+(c.client||'—')}),pill(c.status==='open'?uiText('مفتوحة','Open'):uiText('مغلقة','Closed'),c.status==='open'?'open':'closed'),...matterMeta.map(([label,value])=>h('span',{className:'matter-meta-chip'},h('span',{className:'mut',textContent:label}),h('b',{textContent:String(value)}))),h('span',{className:'matter-progress-context'},prog({done_tasks:dn,open_tasks:tot-dn}),h('span',{className:'mut',textContent:dn+'/'+tot+' '+uiText('مهام','tasks')})))),
   h('div',{className:'matter-navigation'},tabGroupNav,tabDetailNav),body)}
 
 // Bilingual UI: interface labels are translated; user-entered case/legal text is never translated.
