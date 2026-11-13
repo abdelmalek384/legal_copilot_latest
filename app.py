@@ -1233,8 +1233,15 @@ def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
 
 
 def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"):
-    if scope not in {"all_permitted", "verified_corpus", "firm_documents"}:
-        raise ValueError("scope must be verified_corpus, firm_documents, or all_permitted")
+    if scope not in {"all_permitted", "verified_corpus", "firm_documents", "firm_test_source_matched"}:
+        raise ValueError("scope must be verified_corpus, firm_documents, all_permitted, or firm_test_source_matched")
+    if scope == "firm_test_source_matched":
+        if case_id is not None:
+            raise ValueError("firm_test_source_matched cannot search matter documents")
+        # No Law 14/2025 candidate is currently eligible for this path. Keep the
+        # scope separate from verified_corpus and fail closed until a permission-
+        # cleared candidate index is deliberately supplied.
+        return []
     if scope == "firm_documents" and case_id is None:
         raise ValueError("Select a matter before searching firm documents")
     # Linked legal versions require verified provenance, status, dates, and reuse permission.
@@ -2088,7 +2095,9 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
         for hit in hits
     )
     source_matched_test_mode = (
-        source_matched_only and firm_test_source_matched_enabled(firm_id)
+        scope == "firm_test_source_matched"
+        and source_matched_only
+        and firm_test_source_matched_enabled(firm_id)
     )
     source_matched_preflight = (
         classify_answer_trust_tier(
