@@ -52,7 +52,7 @@ def hostname(value: Any) -> str | None:
     """Return a normalized host only for well-formed HTTPS URLs without userinfo."""
     if not isinstance(value, str) or not value or value != value.strip():
         return None
-    if any(ch.isspace() or ord(ch) < 32 for ch in value):
+    if "\\" in value or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value):
         return None
     try:
         parsed = urlparse(value)
