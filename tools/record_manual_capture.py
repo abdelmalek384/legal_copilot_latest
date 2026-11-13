@@ -79,7 +79,7 @@ def validate_reference_url(url: str) -> str:
         raise ValueError("source URL must be an absolute https:// URL")
     if len(url) > 2048:
         raise ValueError("source URL is too long")
-    if any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in url):
+    if "\\" in url or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in url):
         raise ValueError("source URL must not contain whitespace or control characters")
     try:
         parsed = urlsplit(url)
