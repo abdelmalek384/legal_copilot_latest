@@ -203,3 +203,6 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 
 
 - Failed chunk-review loads now produce an inline `role=alert` message, reset `aria-busy`/expanded state, and permit retry. Added a regression contract and registered the Arabic error string (1,446 unique catalog entries; pending native review).
+
+
+- Added a regression contract that checks the source-line references for the latest six Arabic catalog entries against the current frontend file, in addition to unique IDs/string and count checks. This helps prevent the newest review inventory entries from silently drifting when UI lines change.
