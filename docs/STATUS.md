@@ -30,7 +30,7 @@
 ## Legal evidence boundary
 
 - Labour Law 14/2025 remains **source-matched, not lawyer-reviewed**; `verified=0` for all 311 candidate rows; `authoritative=false` and `retrieval_eligible=false`.
-- The supplied ZIP candidate was structurally inventoried: 13 promulgation provisions + 298 articles, no missing/duplicate article numbers, malformed rows 0. See [inventory audit](legal_evidence/law14_2025_uploaded_candidate_inventory_audit.json). This was not an importer run.
+- The supplied ZIP candidate JSONL was structurally inventoried (13 promulgation provisions + 298 articles; no missing/duplicate numbers; malformed rows 0). The separately supplied 112-page Gazette PDF text layer was also inspected locally: all 13 promulgation headings and all 298 attached-law article headings appear in sequence, with no gaps/duplicates. See [inventory audit](legal_evidence/law14_2025_uploaded_candidate_inventory_audit.json) and [PDF heading audit](legal_evidence/law14_2025_uploaded_pdf_heading_audit.md). This is numbering coverage only—not article-body matching, an importer run, or legal verification.
 - Collection/reuse permission remains unknown and the supplied scan reports copy/print restrictions. Do not commit or serve the candidate text, or bypass source restrictions.
 - Decisions 248–252/2026 are metadata-only related-instrument candidates; full text is restricted/unavailable, permission unknown and legal review pending.
 - No law becomes verified without qualified Egyptian counsel reviewing text, commencement, amendments/currentness and source rights.
