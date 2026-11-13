@@ -127,10 +127,10 @@ class GazetteTextImportTests(unittest.TestCase):
 
     def test_expected_inventory_detects_missing_trailing_article_number(self):
         source_text = (
-            "المادة الأولى\\nنص حكم الإصدار الأول.\\n"
-            "المادة الثانية\\nنص حكم الإصدار الثاني.\\n"
-            "مادة 1\\nنص المادة الأولى.\\n"
-            "مادة 2\\nنص المادة الثانية.\\n"
+            "المادة الأولى\nنص حكم الإصدار الأول.\n"
+            "المادة الثانية\nنص حكم الإصدار الثاني.\n"
+            "مادة 1\nنص المادة الأولى.\n"
+            "مادة 2\nنص المادة الثانية.\n"
         )
         self.text_path.write_text(source_text, encoding="utf-8")
         self.metadata["content_sha256"] = hashlib.sha256(source_text.encode("utf-8")).hexdigest()
