@@ -860,6 +860,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("march:3", panel)
         self.assertIn("yearText.length!==4", panel)
 
+    def test_hijri_timeline_mentions_are_labelled_unconverted(self):
+        panel = HTML[HTML.index("function documentIntelligencePanel(caseId,documents)"):HTML.index("async function view(id)")]
+        self.assertIn("item.calendar_system==='hijri'", panel)
+        self.assertIn("Hijri date not converted", panel)
+
     def test_document_classification_edits_are_persisted_with_audit_and_version_checks(self):
         self.assertIn("draftOverrides", HTML)
         self.assertIn("Save classification", HTML)
