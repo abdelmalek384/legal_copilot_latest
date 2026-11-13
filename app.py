@@ -15,7 +15,7 @@ from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_pe
 from tools.arabic_legal_matching import expand_lexicon_hints
 from tools.arabic_drafting_skeletons import build_arabic_skeleton
 from tools.claim_support import claim_support_enabled, has_unsupported_claims, has_negated_obligation_conflicts
-from tools.document_intelligence import MAX_ANALYSIS_CHARS, classify_document, extract_review_candidates, compare_extracted_text
+from tools.document_intelligence import MAX_ANALYSIS_CHARS, classify_document, extract_review_candidates, extract_structured_candidates, compare_extracted_text
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
     generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
@@ -8681,14 +8681,17 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
     # authorization and firm-scoped document lookup have succeeded.
     analysis_parts = []
     candidates = []
+    structured = {"entities": [], "events": [], "relationships": []}
     remaining_chars = MAX_ANALYSIS_CHARS
     analysis_truncated = False
+    structured_truncated = False
     for item in chunks:
         chunk_text = str(item.get("text") or "")
         if not chunk_text:
             continue
         if remaining_chars <= 0:
             analysis_truncated = True
+            structured_truncated = True
             break
         bounded_text = chunk_text[:remaining_chars]
         analysis_parts.append(bounded_text)
@@ -8706,16 +8709,46 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
                     candidate["page"] = item["page"]
                 candidates.append(candidate)
             analysis_truncated = analysis_truncated or extracted["truncated"]
+        if any(len(structured[kind]) < 250 for kind in structured):
+            structured_result = extract_structured_candidates(bounded_text, max_items=250)
+            for kind in structured:
+                remaining = 250 - len(structured[kind])
+                if len(structured_result[kind]) > remaining:
+                    structured_truncated = True
+                for candidate in structured_result[kind][:remaining]:
+                    candidate["document_id"] = document_id
+                    candidate["chunk_id"] = item["id"]
+                    candidate["chunk_ref"] = item.get("ref") or str(item["id"])
+                    if item.get("page") not in (None, ""):
+                        candidate["page"] = item["page"]
+                    structured[kind].append(candidate)
+            structured_truncated = structured_truncated or structured_result["truncated"]
         if len(bounded_text) < len(chunk_text) or len(candidates) >= 250:
             analysis_truncated = True
+            structured_truncated = True
             break
     analysis_text = "\n".join(analysis_parts)
     classification = classify_document(doc["name"], analysis_text)
+    structured_intelligence = {
+        **structured,
+        "entity_count": len(structured["entities"]),
+        "event_count": len(structured["events"]),
+        "relationship_count": len(structured["relationships"]),
+        "truncated": structured_truncated,
+        "requires_review": True,
+        "limitations": [
+            "Entity, event and relationship records are unverified text candidates, not established facts.",
+            "Events link dates and labelled parties only by sentence co-occurrence; this does not prove occurrence or legal effect.",
+            "Relationships require an explicit relation phrase and human confirmation of direction and meaning.",
+            "Source chunk and page fields preserve extraction provenance but do not establish original-file accuracy.",
+        ],
+    }
     intelligence = {
         "classification": classification,
         "candidate_count": len(candidates),
         "candidates": candidates,
-        "truncated": analysis_truncated,
+        "structured": structured_intelligence,
+        "truncated": analysis_truncated or structured_truncated,
         "requires_review": True,
     }
     return {
@@ -8725,7 +8758,7 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
         "ocr_used": bool(doc["ocr_used"]),
         "chunks": chunks,
         "intelligence": intelligence,
-        "warning": "Server-side keyword and regex results are review candidates only. They do not establish legal accuracy, facts, deadlines, or source authenticity.",
+        "warning": "Server-side text-pattern and sentence-context results are review candidates only. They do not establish legal accuracy, facts, event occurrence, relationships, deadlines, or source authenticity.",
     }
 
 

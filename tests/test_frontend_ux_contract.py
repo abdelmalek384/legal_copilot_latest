@@ -815,6 +815,17 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("String(change.before||", panel)
         self.assertIn("String(change.after||", panel)
 
+    def test_structured_entity_event_and_relationship_candidates_render_with_provenance(self):
+        panel = HTML[HTML.index("function documentIntelligencePanel(caseId,documents)"):HTML.index("async function view(id)")]
+        self.assertIn("item.intelligence.structured", panel)
+        self.assertIn("allStructured.entities", panel)
+        self.assertIn("allStructured.events", panel)
+        self.assertIn("allStructured.relationships", panel)
+        self.assertIn("record.page", panel)
+        self.assertIn("record.chunk_ref", panel)
+        self.assertIn("dates and parties only when they appear in the same sentence", panel)
+        self.assertIn("No explicit relationship candidates were found.", panel)
+
     def test_document_classification_edits_are_persisted_with_audit_and_version_checks(self):
         self.assertIn("draftOverrides", HTML)
         self.assertIn("Save classification", HTML)

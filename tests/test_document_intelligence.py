@@ -2,7 +2,7 @@
 import unittest
 
 from tools.document_intelligence import (
-    classify_document, compare_extracted_text, extract_review_candidates,
+    classify_document, compare_extracted_text, extract_review_candidates, extract_structured_candidates,
     build_date_mention_timeline, group_same_matter_duplicates, normalized_text_digest, sha256_bytes,
 )
 
@@ -48,6 +48,70 @@ class DocumentIntelligenceTests(unittest.TestCase):
     def test_exact_bytes_and_normalized_text_have_separate_hash_helpers(self):
         self.assertNotEqual(sha256_bytes(b"a\nb"), sha256_bytes(b"a b"))
         self.assertEqual(normalized_text_digest("a\nb"), normalized_text_digest("a  b"))
+
+    def test_structured_candidates_link_entities_events_and_explicit_arabic_relationships(self):
+        text = (
+            "[[PDF_PAGE:4]]\n"
+            "المدعي: أحمد محمد. أحمد محمد وكيل عن شركة النور، وتحددت جلسة الدعوى بتاريخ 15/03/2025."
+        )
+        result = extract_structured_candidates(text)
+        self.assertTrue(result["requires_review"])
+        self.assertTrue(any(
+            item["entity_type"] == "labelled_party" and item["name_mention"] == "أحمد محمد"
+            for item in result["entities"]
+        ))
+        self.assertTrue(any(
+            item["trigger"] == "جلسة"
+            and "15/03/2025" in item["date_mentions"]
+            and item["page"] == 4
+            for item in result["events"]
+        ))
+        self.assertTrue(any(
+            item["subject_mention"] == "أحمد محمد"
+            and item["relation_mention"] == "وكيل عن"
+            and item["object_mention"] == "شركة النور"
+            and item["page"] == 4
+            for item in result["relationships"]
+        ))
+        self.assertTrue(all(
+            item["review_status"].endswith("unverified") or "requires_human_context" in item["review_status"]
+            for group in ("entities", "events", "relationships")
+            for item in result[group]
+        ))
+
+    def test_structured_candidates_link_english_event_date_and_relation(self):
+        text = (
+            "[[PDF_PAGE:7]]\n"
+            "Alice Smith represents Northwind LLC. The hearing occurred on 2025-03-15."
+        )
+        result = extract_structured_candidates(text)
+        self.assertTrue(any(
+            item["subject_mention"] == "Alice Smith"
+            and item["relation_mention"] == "represents"
+            and item["object_mention"] == "Northwind LLC"
+            for item in result["relationships"]
+        ))
+        self.assertTrue(any(
+            item["trigger"].lower() == "hearing"
+            and "2025-03-15" in item["date_mentions"]
+            and item["page"] == 7
+            for item in result["events"]
+        ))
+
+    def test_structured_candidates_do_not_infer_relationships_or_events_from_unrelated_sentences(self):
+        result = extract_structured_candidates(
+            "Alice Smith signed a letter. The unrelated hearing occurred later."
+        )
+        self.assertEqual(result["relationships"], [])
+        self.assertTrue(all(not item["date_mentions"] for item in result["events"]))
+
+    def test_structured_candidate_limit_is_enforced(self):
+        result = extract_structured_candidates(
+            "جلسة 01/01/2025. " * 30, max_items=3
+        )
+        self.assertLessEqual(len(result["entities"]), 3)
+        self.assertLessEqual(len(result["events"]), 3)
+        self.assertLessEqual(len(result["relationships"]), 3)
 
     def test_comparison_reports_literal_changes_for_review(self):
         changes = compare_extracted_text("قيمة العقد ١٠٠٠ جنيه", "قيمة العقد ٢٠٠٠ جنيه")

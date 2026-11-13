@@ -17,6 +17,7 @@ The application already accepts bounded PDF and DOCX uploads, extracts PDF text 
 - Possible-duplicate grouping constrained to identical firm and matter IDs; byte-identical and text-identical matches are distinguished and still require human review.
 - Literal candidate extraction for dates, case references, amounts and explicitly labelled parties.
 - A date-mention review timeline that retains document/page provenance, parses valid four-digit-year dates using explicit day-first or ISO rules, and refuses to guess two-digit years or invalid dates.
+- Structured candidate records for labelled parties, case/legal references, amounts and date mentions; sentence-scoped event triggers linked only to dates/labelled parties in that same sentence; and explicit Arabic/English relationship phrases. Every record retains character offsets and available page/chunk provenance and remains unverified.
 - PDF page provenance where a page marker exists; no invented page number for DOCX.
 - Text comparison that reports literal changed spans and requires lawyer review.
 
@@ -46,7 +47,7 @@ The application already accepts bounded PDF and DOCX uploads, extracts PDF text 
 ### Remaining repository work
 
 1. PR #1591 exposes bounded multi-hunk comparisons between original and corrected extraction passages in the chunk-review workflow. PR #1592 adds cross-document version comparison: `GET /documents/compare` accepts two document IDs only within one authorized matter, assembles extracted text in stored chunk order, returns bounded literal hunks plus chunk/page provenance for both versions, and records a coarse security audit event. The Documents workspace now calls this API instead of generating a local first/last-difference approximation. API and frontend contract regressions are merged; runtime execution and browser acceptance remain pending.
-2. Extend structured extraction beyond current literal keyword/regex candidates for entities, events and relationships; retain source chunk/page provenance and human-review state.
+2. Expand structured extraction beyond the new conservative rule-based candidates with reviewed bilingual entity-resolution, aliases, cross-document identity linking, event argument roles and explicit relationship normalization. Do not infer a relation from co-occurrence; retain provenance and human-review state.
 3. Evaluate Arabic/English PDF and DOCX fixtures, including scanned PDFs, malformed documents, large files, duplicate documents and mixed-language content. OCR remains disabled in this helper foundation.
 4. Add end-to-end tests for upload, download, classification concurrency/role enforcement, extraction review, search pagination, firm switching and cross-firm denial.
 5. Perform manual Arabic RTL, English LTR, keyboard-only, screen-reader, mobile and desktop browser acceptance against a synthetic staging dataset.
@@ -58,3 +59,11 @@ The application already accepts bounded PDF and DOCX uploads, extracts PDF text 
 Run: \`python -m unittest tests.test_document_intelligence -v\`
 
 A passing unit suite validates helper behavior only; it does not validate the new API/UI, tenant isolation, production storage, or legal accuracy. The new contract tests have been added but were not run in this implementation session.
+
+## Structured candidate extraction implementation — 2026-11-13 (branch pending merge)
+
+- Added `extract_structured_candidates` to `tools/document_intelligence.py`. It emits labelled-party and literal identifier/amount/date entities, event-trigger records with same-sentence date/party mentions, and relationships only when an explicit Arabic or English relation phrase is present.
+- Integrated the structured records into the existing authorized `GET /cases/{cid}/docs/{document_id}/chunks` response. Each record receives document ID, chunk ID/reference and page where available; per-kind output is bounded to 250 records.
+- Added an Arabic/English structured-candidate section to the Legal Research workspace, displaying source metadata and unverified status.
+- Added helper tests, separate-database API provenance assertions, and frontend contract coverage. These tests are committed but not executed because the Actions runner/billing problem remains.
+- This is rule-based candidate structuring, not general NER, event verification, entity resolution or legal relationship analysis. OCR/extraction mistakes may propagate into every candidate.
