@@ -306,6 +306,21 @@ def score(questions, runs, reviewer_registry):
     }
 
 
+def ensure_output_does_not_overwrite_inputs(output_path, input_paths):
+    """Reject output paths that alias any source input, including symlinks/hardlinks."""
+    output = Path(output_path)
+    try:
+        output_resolved = output.resolve()
+        for input_path in input_paths:
+            source = Path(input_path)
+            if output_resolved == source.resolve():
+                raise ValueError("report output must not overwrite question, run, or reviewer-registry inputs")
+            if output.exists() and source.exists() and output.samefile(source):
+                raise ValueError("report output must not overwrite question, run, or reviewer-registry inputs")
+    except (OSError, RuntimeError) as exc:
+        raise ValueError("unable to safely resolve report output and input paths") from exc
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--questions", required=True)
@@ -318,6 +333,9 @@ def main():
     if not math.isfinite(args.min_score) or not 0 <= args.min_score <= 1:
         parser.error("--min-score must be a finite value from 0 to 1")
     try:
+        ensure_output_does_not_overwrite_inputs(
+            args.output, (args.questions, args.runs, args.reviewer_registry)
+        )
         questions = load_jsonl(args.questions)
         runs = load_jsonl(args.runs)
         reviewer_registry = json.loads(Path(args.reviewer_registry).read_text(encoding="utf-8"))
