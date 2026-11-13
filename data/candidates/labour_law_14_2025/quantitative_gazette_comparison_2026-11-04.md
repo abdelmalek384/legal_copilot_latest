@@ -1,6 +1,8 @@
 # Labour Law 14/2025 — quantitative Gazette comparison
 
-**Review date:** 2026-11-04  
+**Review date:** 2026-11-04
+
+> **Scope update (2026-11-06):** This document remains the historical 120-entry quantitative checklist result. A later comparison package records page-image comparison notes for all 311 candidate provisions; see `docs/legal_evidence/law_14_2025_comparison_report.md`. The quantitative result remains 120/120 and is not lawyer approval.  
 **Status:** Quantitative checklist comparison completed; not legal verification, not lawyer approval, and not a release gate.
 
 ## Scope and result
