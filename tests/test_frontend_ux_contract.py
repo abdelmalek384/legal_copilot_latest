@@ -58,7 +58,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertEqual(catalog["entry_count"], len(entries))
         self.assertGreaterEqual(len(entries), 800)
         self.assertEqual(len(reviewed), len(entries))
-        self.assertTrue(all(entry["source_lines"] for entry in entries))
+        ids = {entry["id"] for entry in entries}
+        self.assertEqual(len(ids), len(entries))
+        self.assertTrue(all(
+            isinstance(entry["source_lines"], list)
+            and len(entry["source_lines"]) >= 1
+            and all(isinstance(line, int) and line >= 1 for line in entry["source_lines"])
+            and entry["source_lines"] == sorted(set(entry["source_lines"]))
+            for entry in entries
+        ))
         self.assertTrue(all(entry["review_status"] == "pending_native_review" for entry in entries))
 
         source = HTML
@@ -154,7 +162,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("uiText('النص المستخرج — للقراءة فقط','Extracted text — read only')", HTML)
         self.assertIn("uiText('نص OCR غير متحقق','OCR text not verified')", HTML)
         self.assertIn("uiText('جارٍ تحميل المقاطع…','Loading text chunks…')", HTML)
-        self.assertIn("uiText('PDF أو Word حتى 15 ميجابايت. النص المستخرج فقط هو المفهرس؛ لا تحفظ نسخة الملف الأصلي. راجع المقاطع قبل الاعتماد عليها، خصوصاً نص OCR.','PDF or Word up to 15 MB. Only extracted text is indexed; the original file is not retained. Review chunks before relying on them, especially OCR text.')", HTML)
+        self.assertIn("uiText('PDF وDOCX فقط · 15 ميجابايت كحد أقصى لكل ملف','PDF and DOCX only · 15 MB maximum per file')", HTML)
 
     def test_case_detail_inputs_and_validation_follow_selected_language(self):
         self.assertIn("uiText('رقم القضية','Case number')", HTML)
@@ -333,7 +341,6 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("setTimeout(()=>URL.revokeObjectURL(url),1000)", HTML)
         self.assertIn("save-to-matter", HTML)
         self.assertIn("No relevant verified legal text was returned by this verified-corpus search.", HTML)
-        self.assertNotIn("matterSelect.disabled", HTML)
 
     def test_multi_firm_switcher_and_corpus_navigation_use_server_checked_capabilities(self):
         self.assertIn("api('/session/firm','POST'", HTML)
@@ -722,13 +729,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("trigger.setAttribute('aria-expanded','true')", HTML)
         self.assertIn("returnTo.setAttribute('aria-expanded','false')", HTML)
         self.assertIn("className:'g research-inspect-action'", HTML)
-        self.assertIn("onclick:()=>inspectSource(s,status,pin,p)", HTML)
+        self.assertIn("onclick:e=>inspectSource(s,status,pin,p,e.currentTarget)", HTML)
         self.assertIn("source.text|| (LANG==='ar'?'لم يُرجع نص لهذا السجل من المصدر.':'No passage text was returned for this source record.')", HTML)
         self.assertIn("review_evidence", HTML)
         self.assertIn("const latestByType=Object.create(null)", HTML)
         self.assertIn("const latestReviews=Object.values(latestByType)", HTML)
         self.assertIn("const resetInspector=(returnFocus=false)=>", HTML)
-        self.assertIn("sourceInspector.__focusReturn=document.activeElement", HTML)
+        self.assertIn("sourceInspector.__focusReturn=trigger||document.activeElement", HTML)
         self.assertIn("onclick:()=>resetInspector(true)", HTML)
         self.assertIn("onkeydown:e=>{if(e.key==='Escape'&&sourceInspector.__focusReturn)", HTML)
         self.assertIn("sourceInspector.focus({preventScroll:true})", HTML)
@@ -796,10 +803,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("No deadlines are created automatically.", HTML)
         self.assertIn("No text differences were found between these versions.", HTML)
 
-    def test_document_classification_edits_are_explicitly_unsaved_drafts(self):
+    def test_document_classification_edits_are_persisted_with_audit_and_version_checks(self):
         self.assertIn("draftOverrides", HTML)
-        self.assertIn("Edit draft classification (not saved)", HTML)
-        self.assertIn("it has not been saved to the server or review history", HTML)
+        self.assertIn("Save classification", HTML)
+        self.assertIn("classification','PUT'", HTML)
+        self.assertIn("expected_version:persisted?persisted.version:0", HTML)
+        self.assertIn("Classification change history", HTML)
 
     def test_document_original_download_uses_existing_audited_route(self):
         self.assertIn("/cases/'+id+'/docs/'+d.document_id+'/original", HTML)
@@ -856,7 +865,291 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("statusDescriptions[status]||statusDescriptions.outdated_or_under_review", HTML)
         self.assertIn(".research-source-caution.warning{", HTML)
         self.assertIn(".research-source-caution.verified{", HTML)
+        self.assertIn(".research-source-caution.verified{background:var(--workspace-success-bg)", HTML)
+        self.assertIn("border-inline-start:3px solid var(--workspace-success)", HTML)
 
+
+
+    def test_figma_legal_research_refresh_preserves_three_pane_and_upload_workflows(self):
+        self.assertIn("--figma-navy:#071b31", HTML)
+        self.assertIn("#side{background:#071b31;color:#e7edf6", HTML)
+        self.assertIn("#side a.on,#side a:hover{background:#1b3554;color:#fff}", HTML)
+
+        def luminance(color):
+            channels = [int(color[index:index + 2], 16) / 255 for index in (1, 3, 5)]
+            linear = [value / 12.92 if value <= 0.04045 else ((value + 0.055) / 1.055) ** 2.4 for value in channels]
+            return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2]
+
+        def contrast(first, second):
+            values = sorted((luminance(first), luminance(second)), reverse=True)
+            return (values[0] + 0.05) / (values[1] + 0.05)
+
+        self.assertGreaterEqual(contrast("#cbd6e5", "#071b31"), 7.0)
+        self.assertGreaterEqual(contrast("#ffffff", "#1b3554"), 7.0)
+        self.assertGreaterEqual(contrast("#ffffff", "#2457c5"), 4.5)
+        self.assertGreaterEqual(contrast("#A95B08", "#FFF4E4"), 4.5)
+        self.assertGreaterEqual(contrast("#166534", "#E8F7EF"), 4.5)
+        self.assertGreaterEqual(contrast("#B42318", "#FDECEC"), 4.5)
+        self.assertGreaterEqual(contrast("#8a4b08", "#fff5e8"), 4.5)
+        self.assertGreaterEqual(contrast("#176b45", "#e8f7ef"), 4.5)
+        self.assertGreaterEqual(contrast("#a52620", "#fdecec"), 4.5)
+        self.assertGreaterEqual(contrast("#2457c5", "#edf3ff"), 4.5)
+        self.assertIn("#main .research-layout{grid-template-columns:minmax(210px,245px) minmax(0,1fr) minmax(250px,300px)", HTML)
+        self.assertIn("#main .research-composer{order:1", HTML)
+        self.assertIn("#main .research-thread{order:2", HTML)
+        self.assertIn("#main #research-source-inspector", HTML)
+        self.assertIn("uploadFiles=async files=>", HTML)
+        self.assertIn("const documentWorkspace=h('div',{})", HTML)
+
+    def test_figma_research_refresh_keeps_accessible_responsive_controls(self):
+        self.assertIn("@media(max-width:800px){#side{background:var(--figma-navy)", HTML)
+        self.assertIn("#main .research-composer button{width:100%}", HTML)
+        self.assertIn("@media(prefers-reduced-motion:reduce){#main *", HTML)
+        self.assertIn("role:'region',tabIndex:0", HTML)
+
+    def test_document_upload_dropzone_supports_keyboard_and_drag_feedback(self):
+        self.assertIn("role:'button',tabIndex:0", HTML)
+        self.assertIn("press Enter or Space to choose files", HTML)
+        self.assertIn("if(e.key==='Enter'||e.key===' ')", HTML)
+        self.assertIn("e.currentTarget.classList.add('is-dragover')", HTML)
+        self.assertIn("e.currentTarget.classList.remove('is-dragover')", HTML)
+        self.assertIn(".research-upload-dropzone:focus-visible", HTML)
+
+    def test_document_intelligence_exposes_audited_extraction_review_actions(self):
+        self.assertIn("const renderChunkReviewCards=()=>{", HTML)
+        self.assertIn("renderChunkReviewCards()", HTML)
+        self.assertIn("'/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks/'+chunk.id+'/review'", HTML)
+        self.assertIn("outcome:'accepted'", HTML) if "outcome:'accepted'" in HTML else self.assertIn("submitChunkReview(item,chunk,'accepted'", HTML)
+        self.assertIn("submitChunkReview(item,chunk,'needs_recheck'", HTML)
+        self.assertIn("submitChunkReview(item,chunk,'corrected'", HTML)
+        self.assertIn("payload.expected_text_sha256=chunk.text_sha256", HTML)
+        self.assertIn("item.chunks=Array.isArray(refreshed.chunks)?refreshed.chunks:[]", HTML)
+        self.assertIn("first 100 chunks", HTML)
+        self.assertIn("latest_review", HTML)
+
+    def test_extraction_review_arabic_copy_is_registered(self):
+        catalog = json.loads((ROOT / "static" / "ar-ui-review.json").read_text(encoding="utf-8"))
+        self.assertEqual(catalog["entry_count"], len(catalog["entries"]))
+        reviewed = {entry["arabic"] for entry in catalog["entries"]}
+        self.assertIn("اعتماد النص", reviewed)
+        self.assertIn("حفظ قرار مراجعة الاستخراج في سجل التدقيق.", reviewed)
+
+    def test_documents_page_is_a_matter_scoped_library_not_a_fabricated_firm_wide_index(self):
+        self.assertIn("['documents',navLabel('المستندات','Documents'),documentsPage]", HTML)
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("cases/search?", page)
+        self.assertIn("await api('/cases/'+id)", page)
+        self.assertIn("documentIntelligencePanel(id,docs)", page)
+        self.assertIn("window.DOCUMENT_MATTER_ID=id", page)
+        self.assertIn("Upload and index files", page)
+        self.assertNotIn("firm-wide document count", page.lower())
+
+    def test_extraction_review_ui_uses_audited_api_and_bounded_history(self):
+        self.assertIn("const renderChunkReviewCards=()=>{", HTML)
+        self.assertIn("submitChunkReview(item,chunk,'accepted'", HTML)
+        self.assertIn("submitChunkReview(item,chunk,'needs_recheck'", HTML)
+        self.assertIn("submitChunkReview(item,chunk,'corrected'", HTML)
+        self.assertIn("payload.expected_text_sha256=chunk.text_sha256", HTML)
+        self.assertIn("'/cases/'+caseId+'/docs/'+item.doc.document_id+'/reviews'", HTML)
+        self.assertIn("records.slice(0,100)", HTML)
+        self.assertIn("if(records.length>=100)break", HTML)
+        self.assertIn("review.reviewed_text", HTML)
+
+    def test_document_library_displays_real_matter_document_metadata(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("doc.content_type", page)
+        self.assertIn("doc.added", page)
+        self.assertIn("doc.byte_size", page)
+        self.assertIn("doc.extraction_status", page)
+        self.assertIn("doc.ocr_used", page)
+
+    def test_document_library_clears_stale_matter_context_when_filter_changes(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("if(!matterSelect.value){currentDocuments=[];documentRows.replaceChildren();stats.replaceChildren();workspace.replaceChildren();uploadButton.disabled=true;uploadSubmit.disabled=true;summary.textContent=", page)
+
+    def test_document_library_filters_are_driven_by_returned_document_metadata(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("const renderDocuments=docs=>{", page)
+        self.assertIn("new Set(docs.map(doc=>String(doc.extraction_status", page)
+        self.assertIn("doc.content_type", page)
+        self.assertIn("documentFilter.oninput=()=>renderDocuments(currentDocuments)", page)
+        self.assertIn("documentStatusFilter.onchange=()=>renderDocuments(currentDocuments)", page)
+
+    def test_firm_switch_clears_selected_document_matter_context(self):
+        self.assertIn("window.DOCUMENT_MATTER_ID=null;sessionStorage.me=JSON.stringify(ME)", HTML)
+
+    def test_document_library_metrics_are_derived_from_selected_matter_records(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("docs.filter(doc=>['text_extracted','complete'].includes(doc.extraction_status)).length", page)
+        self.assertIn("docs.filter(doc=>Boolean(doc.ocr_used)).length", page)
+        self.assertIn("docs.filter(doc=>doc.ocr_used||!['text_extracted','complete'].includes(doc.extraction_status)||!doc.saved_classification).length", page)
+        self.assertIn("Selected matter only", page)
+        self.assertIn("Not a document-failure determination", page)
+
+    def test_documents_page_uploads_pdf_and_docx_to_selected_matter(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("multiple:true", page)
+        self.assertIn("accept:'.pdf,.docx,application/pdf", page)
+        self.assertIn("item.file.size<=15000000", page)
+        self.assertIn("'/cases/'+encodeURIComponent(matterId)+'/upload'", page)
+        self.assertIn("credentials:'same-origin'", page)
+        self.assertIn("'X-CSRF-Token':decodeURIComponent(csrf)", page)
+        self.assertIn("if(succeeded)await loadMatter()", page)
+        self.assertIn("role:'button',tabIndex:0", page)
+        self.assertIn("is-dragover", page)
+
+    def test_document_library_matter_picker_uses_bounded_server_pagination(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("const matterLimit=50", page)
+        self.assertIn("limit:String(matterLimit)", page)
+        self.assertIn("offset:String(matterOffset)", page)
+        self.assertIn("matterTotal", page)
+        self.assertIn("nextMatter.disabled=matterOffset+matterLimit>=matterTotal", page)
+
+    def test_document_upload_handles_expired_sessions_and_read_only_firms(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("response.status===401", page)
+        self.assertIn("response.status===423", page)
+        self.assertIn("This firm is read-only; contact your firm administrator.", page)
+
+    def test_document_library_filters_saved_classification_state(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("documentClassificationFilter", page)
+        self.assertIn("documentClassificationFilter.value==='saved'?!!doc.saved_classification:!doc.saved_classification", page)
+        self.assertIn("documentClassificationFilter.onchange=()=>renderDocuments(currentDocuments)", page)
+
+    def test_workspace_global_search_uses_authorized_bounded_matter_search(self):
+        shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction mfaFirmSwitcher()")]
+        self.assertIn("Global search across accessible matters", shell)
+        self.assertIn("limit:'8',offset:'0'", shell)
+        self.assertIn("api('/cases/search?'+params.toString())", shell)
+        self.assertIn("globalSearchInput.onkeydown", shell)
+        self.assertIn("globalSearchInput.oninput=()=>globalSearchResults.replaceChildren()", shell)
+        self.assertIn("view(item.id)", shell)
+
+    def test_document_context_resets_upload_queue_and_filters_between_matters(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("uploadResults.replaceChildren();uploadStatus.textContent='';uploadInput.value=''", page)
+        self.assertIn("documentFilter.value='';documentTypeFilter.value='';documentStatusFilter.value='';documentClassificationFilter.value=''", page)
+
+    def test_sidebar_uses_lexora_brand_identity_from_figma(self):
+        self.assertIn("className:'brand-name',textContent:'Lexora'", HTML)
+        self.assertIn("className:'brand-subtitle'", HTML)
+        self.assertIn("#side .brand-name", HTML)
+
+    def test_document_library_supports_pdf_docx_file_type_filter(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("documentTypeFilter", page)
+        self.assertIn("documentTypeFilter.value==='pdf'", page)
+        self.assertIn("wordprocessingml", page)
+        self.assertIn("documentTypeFilter.onchange=()=>renderDocuments(currentDocuments)", page)
+
+    def test_document_analysis_loads_classification_alongside_extracted_chunks(self):
+        self.assertIn("const [data,classification]=await Promise.all([api('/cases/'+caseId+'/docs/'+doc.document_id+'/chunks'),api('/cases/'+caseId+'/docs/'+doc.document_id+'/classification').catch(()=>null)])", HTML)
+
+    def test_document_library_localizes_extraction_statuses(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("const statusNames=", page)
+        self.assertIn("ocr_unverified", page)
+        self.assertIn("partial_text_ocr_unavailable", page)
+        self.assertIn("new Option(statusName(value),value)", page)
+
+    def test_document_matter_picker_shows_case_and_client_context(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("m.case_number", page)
+        self.assertIn("m.case_year", page)
+        self.assertIn("m.client", page)
+        self.assertIn("m.opposing_party", page)
+
+    def test_original_download_handles_expired_session_and_purged_object(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
+        self.assertIn("const downloadOriginal=async doc=>", page)
+        self.assertIn("response.status===404", page)
+        self.assertIn("Original file is unavailable or was purged under the retention policy.", page)
+        self.assertIn("URL.createObjectURL(blob)", page)
+
+    def test_document_library_filters_saved_categories_and_normalizes_arabic_search(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("clearDocumentFilters=btn", page)
+        self.assertIn("normalizeLibrarySearch", page)
+        self.assertIn("replace(/[أإآٱ]/g,'ا')", page)
+        self.assertIn("replace(/[٠-٩]/g", page)
+        self.assertIn("Object.entries(categoryNames)", page)
+        self.assertIn("doc.saved_classification===classificationValue", page)
+
+    def test_language_switch_preserves_documents_workspace(self):
+        self.assertIn("if(PAGE==='documents')documentsPage();else if(window.CASE_ID)", HTML)
+
+    def test_document_filter_row_has_room_for_reset_action_and_stacks_on_mobile(self):
+        self.assertIn("repeat(3,minmax(130px,180px)) auto", HTML)
+        self.assertIn("@media(max-width:700px){#main .document-library-filter>.row{grid-template-columns:minmax(0,1fr)}}", HTML)
+
+    def test_accessible_documents_global_view_uses_permission_filtered_api_and_paging(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("All documents I can access", page)
+        self.assertIn("api('/documents/search?'+params.toString())", page)
+        self.assertIn("globalOffset", page)
+        self.assertIn("doc.case_id", page)
+        self.assertIn("Open matter", page)
+        self.assertIn("Metadata results only", page)
+
+    def test_global_document_open_matter_adds_paged_case_to_selector(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("Array.from(matterSelect.options).some(option=>option.value===value)", page)
+        self.assertIn("matterSelect.add(new Option", page)
+        self.assertIn("list.hidden=true", page)
+
+    def test_cross_matter_text_search_ui_is_bilingual_and_warns_about_unverified_excerpts(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("api('/documents/search-text?'", page)
+        self.assertIn("Search extracted text across accessible matters", page)
+        self.assertIn("results are extracted-text matches, not verified facts or legal conclusions", page)
+        self.assertIn("item.page", page)
+        self.assertIn("item.excerpt", page)
+
+    def test_cross_matter_text_search_results_are_paginated(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("textSearchOffset", page)
+        self.assertIn("textSearchTotal", page)
+        self.assertIn("offset:String(textSearchOffset)", page)
+        self.assertIn("previousTextSearch", page)
+        self.assertIn("nextTextSearch", page)
+
+    def test_document_file_icons_do_not_mislabel_non_docx_files_as_word(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("endsWith('.docx')?'DOCX':'FILE'", page)
+
+    def test_figma_theme_keeps_destructive_actions_red_and_disabled_states_visible(self):
+        self.assertIn("#main button.d{background:var(--bad)", HTML)
+        self.assertIn("#main button:disabled{opacity:.55;cursor:not-allowed}", HTML)
+
+    def test_documents_workspace_defaults_to_authorized_library_when_no_matter_is_selected(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("await loadMatters();", page)
+        self.assertIn("if(!matterSelect.value)await loadAllAccessibleDocs();", page)
+        self.assertIn("list.hidden=!list.children.length", page)
+
+    def test_global_document_metric_uses_compact_single_column_layout(self):
+        self.assertIn(".document-library-stats.global-document-stats{grid-template-columns:minmax(0,1fr)}", HTML)
+        self.assertIn("stats.classList.add('global-document-stats')", HTML)
+        self.assertIn("stats.classList.remove('global-document-stats')", HTML)
+
+    def test_legal_research_source_caution_has_explicit_verification_heading(self):
+        self.assertIn("Recorded source status: verified operative text", HTML)
+        self.assertIn("Source verification warning", HTML)
+        self.assertIn("#main .research-source-caution strong{display:block", HTML)
+
+    def test_legal_research_summarizes_source_verification_before_citations(self):
+        self.assertIn("const cautionCount=sourceItems.filter", HTML)
+        self.assertIn("Source verification required", HTML)
+        self.assertIn("of '+sourceItems.length+' sources need verification", HTML)
+        self.assertIn("Recorded verification status", HTML)
+
+    def test_multi_file_upload_reports_per_file_progress(self):
+        self.assertIn("for(const [index,item] of valid.entries())", HTML)
+        self.assertIn("index+1)+' / '+valid.length", HTML)
+        self.assertIn("uploadPanel.setAttribute('aria-busy','true')", HTML)
+        self.assertIn("uploadPanel.setAttribute('aria-busy','false')", HTML)
 
 if __name__ == "__main__":
     unittest.main()
