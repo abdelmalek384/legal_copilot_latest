@@ -115,7 +115,7 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 - Compared the canonical seven-column AI-1 contract with the richer AI-2 firm export contract. The firm export currently lacks `trust_tier`, uses `partially_correct` rather than `partial`, and permits `not_applicable` for cited-article accuracy.
 - Added an explicit mapping in `docs/answer_rating_contract.md` and implemented `tools/adapt_answer_rating_export.py` with regression tests: map `partially_correct` to `partial`; never coerce `not_applicable`; derive rater from opaque `rated_by`; serialize the current rating's `updated_at` with timezone; and add message-time trust tier from saved answer metadata. Rich benchmark columns remain in the firm export.
-- AI-1 contract is complete; AI-2 export adapter remains open until trust tier is exported and enum handling is implemented. Direct-main commits: `2b887ad`, `5a8e953`, `019ae2e`, `cd63439`, `8be387e`, `b8d3bad`, `6ced6d1`, `3af8468`, `69fb3dc`, `31f8be0`, `68ca68d`, `f4376e4`. Adapter tests remain unexecuted.
+- AI-1 contract is complete; AI-2 export adapter remains open until trust tier is exported and enum handling is implemented. Direct-main commits: `2b887ad`, `5a8e953`, `019ae2e`, `cd63439`, `8be387e`, `b8d3bad`, `6ced6d1`, `3af8468`, `69fb3dc`, `31f8be0`, `68ca68d`, `f4376e4`, `974efcb`, `800fcbd`. Adapter/validator tests remain unexecuted.
 
 ## Recent AI-1 and Legal Research integration
 
