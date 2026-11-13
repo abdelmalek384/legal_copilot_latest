@@ -36,7 +36,7 @@
 
 - Runtime uses separate control-plane, per-firm database and shared legal-corpus profiles.
 - Labour Law 14/2025 PR #1451 is merged as a provisional source-comparison package. The exact 112-page user-supplied Gazette PDF and 311-row candidate JSONL were recovered from the Library source bundle; their SHA-256 values match the recorded comparison hashes. All 311 provisions now have page locators and recorded visual comparison notes (282 earlier checks plus 29 additional full-article page-image comparisons on 2026-11-06). Every lawyer decision remains blank and every `verified` value remains 0. The candidate JSONL's legacy metadata has `in_force=1` and `as_of=2025-05-03` on all rows; those fields are not a commencement/currentness determination and must not be treated as approval. The law remains non-authoritative and retrieval-ineligible pending qualified counsel review, source-rights review, currentness/amendment/corrigenda checks and commencement analysis.
-- A lawyer-supplied UTF-8 Gazette text importer and article-number audit are prepared in the current work branch. The one-sitting procedure and metadata sidecar are in `docs/gazette_text_import_runbook.md` and `docs/templates/gazette_text_metadata.template.json`. An `allowed` collection-permission claim requires an evidence reference. Output rows retain structured supplier/capture provenance and remain `verified=0`, `in_force=0`, and `as_of=null`; database staging is a separate approved operation.
+- A lawyer-supplied UTF-8 Gazette text importer and article-number audit are present on current `main`. The one-sitting procedure and metadata sidecar are in `docs/gazette_text_import_runbook.md` and `docs/templates/gazette_text_metadata.template.json`. An `allowed` collection-permission claim requires an evidence reference. Output rows retain structured supplier/capture provenance and remain `verified=0`, `in_force=0`, and `as_of=null`; database staging is a separate approved operation.
 - The importer now separates Arabic-ordinal issuance provisions (`المادة الأولى`–`المادة الثالثة عشرة`) from numeric attached-law articles, excludes unparsed preamble from candidate rows, and reports preamble/numbering gaps. The new ordinal-path tests are present but not executed because CI jobs fail before their first step.
 - The 110-question Arabic benchmark is a curated template, not production query data or observed user questions. All rows explicitly carry `question_origin=curated_candidate_not_user_observed`. It has 82 preliminary formal labels, 28 preliminary colloquial labels and 32 preliminary synonym tags; all remain unreviewed. The runner emits law-block-scoped article IDs and explicit source-trust status; the scorer rejects curated candidates and requires at least 100 observed-anonymized or reuse-permitted public questions with privacy approval, origin reference, collection date and consent/reuse basis, plus counsel-approved expected IDs/answers. It also requires at least 20 colloquial and 20 synonym questions, at least one reviewed unanswerable question with 100% abstention compliance, and blocks targets for wrong, uncited or unverified-source answers. No actual baseline run or before/after rates exist; `MIN_SCORE` remains 0.30 and must not be tuned yet.
 - Five deadline rules and the holiday calendar remain unverified drafts. The counsel packet records the assumed periods/triggers and missing primary citations; no rule values were changed.
@@ -282,18 +282,6 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 
 - Event candidate records now include exact source offsets for same-sentence date and labelled-party mentions, not only string lists. The Legal Research review cards display those offsets.
 - Helper and frontend contract regression coverage was added; tests and browser acceptance remain unexecuted. PR #1600 merged at `d5dc01a4cfaa835942288e047f9dc4c4275afde8`.
-
-## Named-month date extraction update — 2026-11-13
-
-- Date candidates now include Arabic and English Gregorian month-name forms, including Arabic-Indic digits. The timeline parser normalizes only valid four-digit-year dates and leaves ambiguous/invalid mentions unparsed.
-- Hijri date conversion remains unsupported; no date mention is automatically promoted to a deadline or verified event.
-- Added helper coverage; tests remain unexecuted. Branch `feature/arabic-named-month-dates-20261113`; merge pending.
-
-## Named-month date parser and UI update — 2026-11-13
-
-- The local Legal Research timeline parser now supports Arabic and English named Gregorian months in day-first/month-first forms, alongside the server parser.
-- Four-digit years and calendar-valid dates are required for normalization; two-digit years and invalid dates remain unparsed. Hijri conversion is not attempted.
-- Added frontend contract coverage. Tests and browser acceptance remain unexecuted; merge pending.
 
 ## Hijri date mention handling update — 2026-11-13
 
