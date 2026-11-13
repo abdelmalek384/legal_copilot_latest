@@ -57,17 +57,20 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - Exit criteria: three firms complete unaided onboarding in under 15 minutes, use on mobile, and demonstrate owner-visible usage; later gate remains five firms using weekly and two willing to pre-pay.
 - This cannot be completed by repository edits alone.
 
-## Current AI-1 pull requests
+## Recent AI-1 and Legal Research integration
 
-- Open AI-1 PRs: #1576 (fixture corrections), #1577 (cloud signed-URL query filtering), #1578 (provenance metadata validation; depends on #1577), and #1580 (retrieval evaluator reviewer-metadata and evidence-URL validation). All remain unmerged and require Python 3.12 focused test execution before validation can be claimed.
-- #1559 — merged Arabic negated-obligation regression coverage; tests unexecuted.
-- #1560 — merged retrieval scorer safety-status ordering fix; tests unexecuted.
-- #1562 — merged delivery blocker/closure register.
-- #1563 — merged Gazette source URL rejection for empty fragment delimiters and backslashes; tests unexecuted.
-- #1566 — merged strict reviewer-evidence URL validation, including backslash rejection; tests unexecuted.
-- #1567 — merged Gazette text importer operator contract and status linkage.
-- #1556 and #1554 — previously merged; test execution remains unverified.
+- #1576 — merged fixture corrections for the Gazette importer and Arabic retrieval scorer.
+- #1577 — merged AWS/GCP signed-URL companion-parameter rejection.
+- #1578 — superseded by current-main PR #1584 and closed; the replacement adds provenance control-character rejection and requires any explicitly supplied `source_reference` to be a non-empty string.
+- #1580 — merged retrieval-evaluator malformed-enum and ambiguous evidence-URL validation.
+- #1581 — merged fail-closed device-acceptance metadata validation.
+- #1582 — merged the Figma-aligned Legal Research/Document Intelligence workspace onto current `main`, preserving the 18 newer main commits by carrying only the 16 changed files. The older #1564 branch was closed as superseded.
+- #1583 — merged retrieval scorer rejection of non-object question/run rows.
+- #1584 — merged Gazette provenance metadata hardening on current `main`.
+- #1558 and #1543 — closed as superseded by #1582; their relevant classification/document-intelligence work is included in the integrated workspace.
 - #1561 remains an open AI-2 integration issue: the negation helper must be invoked at the live final-answer boundary.
+
+All of these merges are source-reviewed code integration only. Their tests remain unexecuted unless an explicit runtime result is recorded; do not infer passing tests from a successful merge.
 
 ## Next execution order
 1. Finish static audits and close deterministic importer/scorer defects that have bounded acceptance criteria.
@@ -106,3 +109,11 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - PR #1580 guards untrusted `review_status` and `reviewer_role` JSON values before set membership. Malformed list/object values now enter the evaluator's invalid-question report rather than raising `TypeError`. It also rejects raw backslashes and empty query/fragment delimiters in reviewer evidence URLs.
 - Regression tests cover unhashable list values for both fields. Static source/diff review only; runtime tests remain unexecuted.
 - Latest exact-head Tests workflow run `43328429442` (head `53eed6cfa7ab6601f6cdd13b4c362a25c6095f7f`) failed before exposing job steps (`steps: null`), consistent with the current runner-allocation blocker. An earlier head's run `43328171760` had the same result.
+
+
+## Merge checkpoint — 2026-11-13 (current main)
+
+- Merged #1577, #1576, #1580, #1582, #1584, #1583 and #1581. The large Legal Research redesign was rebased at file level onto current main: its old branch was 306 commits ahead and 18 behind; the replacement branch had 0 commits behind and retained newer main-side evaluation/importer work.
+- Closed superseded drafts #1578, #1564, #1558 and #1543. #1578's remaining provenance hardening was recreated as #1584 and merged.
+- No GitHub Actions test execution or browser acceptance is claimed. The Actions runner/billing issue still prevents jobs from exposing executable steps. Run focused importer, retrieval scorer/evaluator, device acceptance, document classification, app runtime, export and frontend contract tests in the clean Python 3.12 hash-locked environment when available.
+- Legal Research implementation is merged, but browser acceptance (Arabic RTL, English LTR, keyboard-only, mobile/desktop), end-to-end PDF/DOCX upload/download/review, and adversarial tenant-isolation checks remain open.
