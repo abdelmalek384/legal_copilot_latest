@@ -306,3 +306,15 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 
 - Case-reference candidates now recognize English Case/Claim/Appeal/Suit/Docket labels and alphanumeric docket identifiers in addition to Arabic labels.
 - Added helper regression coverage for English and Arabic examples. Tests remain unexecuted; PR #1604 merged at `7dd0a188a4c23a0d0d9a231a72c629506b68df58`.
+
+## Structured amount candidate update — 2026-11-13
+
+- Amount candidates now preserve the source literal and add a canonical decimal numeric string for supported grouped/decimal forms.
+- Explicit currencies map to codes only where unambiguous. Bare ريال/درهم/دينار remain unresolved; no FX conversion or legal valuation is inferred.
+- Added helper, separate-database API and frontend contract tests; tests remain unexecuted. Branch `feature/structured-amount-candidates-20261113`; merge pending.
+
+## Structured monetary amount update — 2026-11-13
+
+- Structured amount candidates now preserve literal text and provide canonical decimal values for supported numeric forms, including Arabic-Indic digits, Arabic separators and unambiguous Western thousands/decimal grouping.
+- Explicit currency labels/codes map to a currency code only when unambiguous. Bare ريال/درهم/دينار and ambiguous comma-decimal forms remain unresolved; no exchange-rate conversion or legal valuation is inferred.
+- Added helper, separate-database API and frontend regression coverage. Tests remain unexecuted; PR #1606 merged at `29f3a688584a0573111fa6165130f7cc91f3b74e`.
