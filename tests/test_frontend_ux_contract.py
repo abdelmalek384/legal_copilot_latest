@@ -1352,7 +1352,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Recorded source status explanation", inspector)
 
     def test_research_source_opens_exact_document_and_chunk_review(self):
-        self.assertIn("window.DOCUMENT_REVIEW_TARGET=rawChunkId!==undefined&&rawChunkId!==null&&rawChunkId!==''?{caseId:matterCaseId,documentId:matterDocumentId,chunkId:String(rawChunkId)}:null", HTML)
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET=hasExactChunk?{caseId:matterCaseId,documentId:matterDocumentId,chunkId:String(rawChunkId)}:null", HTML)
         self.assertIn("Promise.resolve().then(()=>toggle.click())", HTML)
         self.assertIn("id:'doc-chunk-review-'+id+'-'+data.document_id+'-'+chunk.id,tabIndex:-1", HTML)
         self.assertIn("Array.from(container.children).find(card=>card.id==='doc-chunk-review-'+id+'-'+data.document_id+'-'+target.chunkId)", HTML)
@@ -1366,7 +1366,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertEqual(catalog["entry_count"], len(catalog["entries"]))
         self.assertEqual(len({entry["arabic"] for entry in catalog["entries"]}), len(catalog["entries"]))
         entries = {entry["arabic"]: entry for entry in catalog["entries"]}
-        for literal in ("فتح المستند والمقطع", "تعذر العثور على المقطع المحدد ضمن النصوص المحملة. قد يكون قد تغير أو لم يعد متاحاً.", "المستند المرتبط بهذا المصدر غير موجود ضمن مستندات ملف القضية المتاحة.", "تم استخراج هذا المستند باستخدام OCR؛ قارن كل مقطع بالصفحة الأصلية قبل الاعتماد عليه.", "تعذر استخراج النص من بعض الصفحات؛ قد تكون المقاطع المعروضة غير مكتملة. راجع المستند الأصلي."):
+        for literal in ("فتح المستند والمقطع", "تعذر العثور على المقطع المحدد ضمن النصوص المحملة. قد يكون قد تغير أو لم يعد متاحاً.", "المستند المرتبط بهذا المصدر غير موجود ضمن مستندات ملف القضية المتاحة.", "تم استخراج هذا المستند باستخدام OCR؛ قارن كل مقطع بالصفحة الأصلية قبل الاعتماد عليه.", "تعذر استخراج النص من بعض الصفحات؛ قد تكون المقاطع المعروضة غير مكتملة. راجع المستند الأصلي.", "تعذر تحميل المقاطع النصية. تحقق من صلاحية الوصول وحاول مرة أخرى."):
             self.assertIn(literal, entries)
             self.assertEqual(entries[literal]["review_status"], "pending_native_review")
 
