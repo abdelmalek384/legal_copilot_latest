@@ -2206,6 +2206,8 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
     result = {"found": True, "answer": ans, "abstained": not bool(ans), "message": msg, "claim_support_blocked": claim_support_blocked, "sources": hits, "scope": scope, "case_id": case_id, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
     if answer_trust_tier:
         result["trust_tier"] = answer_trust_tier
+        if answer_trust_tier == "source_matched":
+            result["trust_tier_label"] = "source-matched, not lawyer-verified"
     elif source_matched_only:
         result["trust_tier"] = "unreviewed"
     return result
