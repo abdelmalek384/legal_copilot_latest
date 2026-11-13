@@ -1,7 +1,7 @@
 {
-  "audit_version": 1,
-  "audit_date": "2026-11-13",
-  "input_artifact": "user-supplied untitled folder(3).zip :: untitled folder/law_rows_ar.jsonl",
+  "audit_version": 2,
+  "audit_date": "2026-11-14",
+  "input_artifact": "user-supplied untitled folder(1).zip :: untitled folder/law_rows_ar.jsonl + العدد-18-تابع-مومن-1.pdf",
   "input_sha256": "3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600",
   "input_bytes": 393861,
   "rows": 311,
@@ -28,11 +28,38 @@
     "0": 311
   },
   "in_force_flag_note": "Input candidate metadata contains in_force=1; this is not trusted and must not be treated as a verified/currentness determination.",
-  "result": "candidate_inventory_structurally_complete_importer_not_run",
+  "result": "candidate_inventory_and_pdf_heading_inventory_complete_text_comparison_pending",
   "limitations": [
-    "This is a structural inventory of the supplied candidate JSONL, not a Gazette-text comparison or legal verification.",
-    "The JSONL cites a secondary transcription source; the separate Official Gazette PDF reports copy/print restrictions and reuse permission remains unresolved.",
-    "No Gazette text was extracted, no importer run was performed, and no candidate text was committed.",
-    "All 311 verified flags remain 0; currentness, amendments, commencement and counsel review remain outstanding."
-  ]
+    "The JSONL structural audit and PDF heading audit are separate checks. They establish numbering coverage only, not that the 311 candidate texts match the Gazette.",
+    "The PDF text layer was extracted locally only to audit heading sequence. The extracted text was not committed and was not imported as a legal corpus.",
+    "PDF extraction includes page furniture, watermark text and extraction artifacts; it requires human review before it can be used as a transcription.",
+    "The PDF reports copy/print restrictions and carries a watermark stating that the electronic copy is not valid for circulation. Authenticity and reuse permission remain unresolved.",
+    "No legal currentness, commencement, amendment/corrigendum status or counsel approval is established.",
+    "All 311 verified flags remain 0. The input's in_force=1 values are untrusted and must not be treated as a currentness determination."
+  ],
+  "gazette_pdf": {
+    "filename": "العدد-18-تابع-مومن-1.pdf",
+    "bytes": 665047,
+    "pages": 112,
+    "sha256": "b0a47cefe18722d3f23e004ac7e78e6e309010e13124413e7e7018820c9581be",
+    "pdf_metadata_producer": "doPDF Ver 7.2 Build 376",
+    "pdf_metadata_creation_date": "2025-05-05T03:02:28Z",
+    "pdf_metadata_modification_date": "2025-05-05T06:13:31Z",
+    "encryption_permissions": "Encrypted PDF; metadata reports print=no, copy=no, change=no.",
+    "visible_watermark": "Extracted text contains the repeated phrase indicating an electronic copy not valid for circulation (صورة إلكترونية لا يعتد بها عند التداول).",
+    "authenticity": "Not independently authenticated. Filename and contents identify Official Gazette issue 18 (تابع), dated 3 May 2025, but metadata/watermark do not establish an authenticated original."
+  },
+  "text_layer_heading_audit": {
+    "extraction_tool": "Poppler pdftotext 25.06.0",
+    "command": "pdftotext -layout <PDF> <local-text-output>",
+    "extracted_text_sha256": "53160b86fddea6cfdfd53541139cea7f6737f4a0f9559d756d076ef6eb30f5b2",
+    "extracted_text_bytes": 548172,
+    "extracted_text_lines": 5396,
+    "extracted_text_words": 34111,
+    "promulgation_headings_found": 13,
+    "promulgation_sequence": "1..13; no gaps or duplicates",
+    "attached_law_article_headings_found": 298,
+    "attached_law_article_sequence": "1..298; no gaps or duplicates",
+    "result": "heading inventory only; no article-body comparison or importer run"
+  }
 }
