@@ -51,7 +51,7 @@ class DocumentIntelligenceTests(unittest.TestCase):
 
     def test_structured_candidates_link_entities_events_and_explicit_arabic_relationships(self):
         text = (
-            "[[PDF_PAGE:4]]\\n"
+            "[[PDF_PAGE:4]]\n"
             "المدعي: أحمد محمد. أحمد محمد وكيل عن شركة النور، وتحددت جلسة الدعوى بتاريخ 15/03/2025."
         )
         result = extract_structured_candidates(text)
@@ -81,7 +81,7 @@ class DocumentIntelligenceTests(unittest.TestCase):
 
     def test_structured_candidates_link_english_event_date_and_relation(self):
         text = (
-            "[[PDF_PAGE:7]]\\n"
+            "[[PDF_PAGE:7]]\n"
             "Alice Smith represents Northwind LLC. The hearing occurred on 2025-03-15."
         )
         result = extract_structured_candidates(text)
