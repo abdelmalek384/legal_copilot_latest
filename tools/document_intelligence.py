@@ -73,7 +73,8 @@ _CURRENCY_CODES = {
     "دولار": "USD", "دولار أمريكي": "USD", "us$": "USD", "usd": "USD",
     "ريال سعودي": "SAR", "sar": "SAR",
     "درهم إماراتي": "AED", "aed": "AED",
-    "دينار كويتي": "KWD", "kwd": "KWD",
+    "دينار كويتي": "KWD", "kwd": "KWD", "qar": "QAR", "omr": "OMR",
+    "bhd": "BHD", "jod": "JOD", "mad": "MAD",
 }
 _PARTY_LABEL_PATTERN = re.compile(
     r"(?:المدعي|المدعى عليه|المتهم|المجني عليه|الطالب|المطلوب ضده|المؤجر|المستأجر|البائع|المشتري|Plaintiff|Defendant|Claimant|Respondent)\s*[:：-]\s*([^\n،؛;.!?؟]{2,100})",
