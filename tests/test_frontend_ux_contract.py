@@ -1358,6 +1358,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Array.from(container.children).find(card=>card.id==='doc-chunk-review-'+id+'-'+data.document_id+'-'+target.chunkId)", HTML)
         self.assertIn("targetCard.focus({preventScroll:true});targetCard.scrollIntoView({block:'center',behavior:'smooth'})", HTML)
         self.assertIn("window.DOCUMENT_REVIEW_TARGET=null", HTML)
+        self.assertIn("The requested passage was not found in the loaded text.", HTML)
 
 if __name__ == "__main__":
     unittest.main()
