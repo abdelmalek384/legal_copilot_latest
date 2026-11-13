@@ -18,10 +18,34 @@ MAX_COMPARE_CHARS = 100_000
 MAX_DIFF_SEGMENTS = 200
 _PAGE_MARKER = re.compile(r"\[\[PDF_PAGE:(\d+)\]\]")
 _DIGITS = r"0-9٠-٩"
+_MONTH_TOKEN = (
+    "يناير|فبراير|مارس|أبريل|ابريل|مايو|يونيو|يونيه|يوليو|أغسطس|اغسطس|"
+    "سبتمبر|أكتوبر|اكتوبر|نوفمبر|ديسمبر|"
+    "January|Jan|February|Feb|March|Mar|April|Apr|May|June|Jun|"
+    "July|Jul|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec"
+)
+_NAMED_DATE_PATTERN = re.compile(
+    rf"(?<!\w)(?:(?P<day>[{_DIGITS}]{{1,2}})\s+(?P<month>{_MONTH_TOKEN})\s+(?P<year>[{_DIGITS}]{{2,4}})|"
+    rf"(?P<month_first>{_MONTH_TOKEN})\s+(?P<day_first>[{_DIGITS}]{{1,2}}),?\s+(?P<year_first>[{_DIGITS}]{{2,4}}))(?!\w)",
+    re.IGNORECASE,
+)
 _DATE_PATTERNS = (
     re.compile(rf"(?<![{_DIGITS}])([{_DIGITS}]{{1,2}})[/.-]([{_DIGITS}]{{1,2}})[/.-]([{_DIGITS}]{{2,4}})(?![{_DIGITS}])"),
     re.compile(rf"(?<![{_DIGITS}])([{_DIGITS}]{{4}})[/.-]([{_DIGITS}]{{1,2}})[/.-]([{_DIGITS}]{{1,2}})(?![{_DIGITS}])"),
+    _NAMED_DATE_PATTERN,
 )
+_NAMED_MONTHS = {
+    "يناير": 1, "فبراير": 2, "مارس": 3, "أبريل": 4, "ابريل": 4,
+    "مايو": 5, "يونيو": 6, "يونيه": 6, "يوليو": 7,
+    "أغسطس": 8, "اغسطس": 8, "سبتمبر": 9, "أكتوبر": 10,
+    "اكتوبر": 10, "نوفمبر": 11, "ديسمبر": 12,
+    "january": 1, "jan": 1, "february": 2, "feb": 2,
+    "march": 3, "mar": 3, "april": 4, "apr": 4, "may": 5,
+    "june": 6, "jun": 6, "july": 7, "jul": 7,
+    "august": 8, "aug": 8, "september": 9, "sept": 9, "sep": 9,
+    "october": 10, "oct": 10, "november": 11, "nov": 11,
+    "december": 12, "dec": 12,
+}
 _CASE_PATTERN = re.compile(
     rf"(?:دعوى|القضية|قضية|استئناف|طعن|جنحة|جناية|الدعوى)\s*(?:رقم|رقمها)?\s*[:：#]?\s*([{_DIGITS}]+(?:\s*[/\\-]\s*[{_DIGITS}]+){{0,2}})",
     re.IGNORECASE,
@@ -319,18 +343,38 @@ def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, An
             parsed = None
             interpretation = None
             if isinstance(raw, str):
-                parts = re.split(r"[/.-]", raw.translate(arabic_digits))
+                normalized_raw = raw.translate(arabic_digits).strip()
+                named_match = _NAMED_DATE_PATTERN.fullmatch(normalized_raw)
                 try:
-                    if len(parts) == 3 and all(part.isdigit() for part in parts):
-                        if len(parts[0]) == 4:
-                            year, month, day = map(int, parts)
-                            interpretation = "year_first"
-                        elif len(parts[2]) == 4:
-                            day, month, year = map(int, parts)
-                            interpretation = "day_first"
+                    if named_match:
+                        if named_match.group("day"):
+                            day_text = named_match.group("day")
+                            month_name = named_match.group("month")
+                            year_text = named_match.group("year")
+                            interpretation = "named_month_day_first"
                         else:
+                            day_text = named_match.group("day_first")
+                            month_name = named_match.group("month_first")
+                            year_text = named_match.group("year_first")
+                            interpretation = "named_month_month_first"
+                        if len(year_text) != 4:
                             raise ValueError("two-digit year is ambiguous")
-                        parsed = date(year, month, day).isoformat()
+                        month_number = _NAMED_MONTHS.get(month_name.casefold())
+                        if month_number is None:
+                            raise ValueError("unrecognized month name")
+                        parsed = date(int(year_text), month_number, int(day_text)).isoformat()
+                    else:
+                        parts = re.split(r"[/.-]", normalized_raw)
+                        if len(parts) == 3 and all(part.isdigit() for part in parts):
+                            if len(parts[0]) == 4:
+                                year, month, day = map(int, parts)
+                                interpretation = "year_first"
+                            elif len(parts[2]) == 4:
+                                day, month, year = map(int, parts)
+                                interpretation = "day_first"
+                            else:
+                                raise ValueError("two-digit year is ambiguous")
+                            parsed = date(year, month, day).isoformat()
                 except ValueError:
                     parsed = None
             item = {
@@ -360,6 +404,7 @@ def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, An
             "Context and legal effect must be confirmed by a lawyer.",
             "Only documents supplied by the caller are considered; callers must enforce firm and matter scope.",
             "Two-digit years and invalid calendar dates are not guessed.",
+            "Named Arabic and English Gregorian months are supported; Hijri calendar conversion is not performed.",
         ],
     }
 

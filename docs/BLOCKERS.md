@@ -132,7 +132,7 @@ All of these merges are source-reviewed code integration only. Their tests remai
 | Gazette importer and provenance hardening | 100% merged (#1576/#1577/#1584) | Focused Python 3.12 tests not run | 80% |
 | Retrieval scorer/evaluator and device-evidence input hardening | 100% merged (#1580/#1581/#1583) | Focused Python 3.12 tests not run | 80% |
 | Live Arabic/English negated-obligation guard | Runtime call site confirmed; Arabic service-path tests merged (#1588) | Tests not run | 85% |
-| Structured candidate extraction (labelled entities, event mentions and explicit relationships) | 100% merged (#1594/#1600) | Helper/API tests and browser acceptance not run; limited deterministic rules, not general NER | 65% |
+| Structured candidate extraction (labelled entities, event mentions, explicit relationships and named-month dates) | Implemented on current feature branch; merge pending | Helper/API/browser tests not run; limited deterministic rules, not general NER; no Hijri conversion | 70% |
 | Matter-wide date/event mention timeline | 100% merged (#1596) | API/browser acceptance and tenant-scope runtime checks not run | 80% |
 | Cross-document exact repeated-mention grouping | 100% merged (#1598) | Exact-match groups require human review; no identity resolution; tests/browser not run | 70% |
 | Advanced multi-document synthesis and cross-document entity resolution | Not implemented | Requires evidence conflict model, provenance policy and counsel evaluation | 20% |
@@ -186,3 +186,9 @@ Percentages distinguish repository implementation from validation and operationa
 - Added a matter-authorized API and UI action, with member-level document/chunk/page provenance, 200-document/one-million-character/1,000-candidate/500-group bounds and audit logging.
 - Same-firm nonmembers are denied by the matter authorization gate. Added helper, API, authorization and frontend contract tests; PR #1598 merged at `5d4b9516cfdebe13d5c99053a50145e968e39ea0`. None were executed because hosted runners remain unavailable.
 - All groups are possible repeated mentions only, not proof of identity, common ownership or legal relationship.
+
+## Arabic/English named-month date extraction — 2026-11-13 (branch pending merge)
+
+- Added named Gregorian month recognition for Arabic and English day-first/month-first date mentions, including Arabic-Indic digits, to the shared extraction and matter timeline helper.
+- Valid four-digit-year dates are normalized; ambiguous two-digit years and invalid calendar dates remain unparsed. Hijri conversion is explicitly unsupported.
+- Added helper regression coverage. Tests/browser acceptance remain unexecuted; branch `feature/arabic-named-month-dates-20261113` is pending merge.

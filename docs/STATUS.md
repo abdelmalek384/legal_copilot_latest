@@ -282,3 +282,15 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 
 - Event candidate records now include exact source offsets for same-sentence date and labelled-party mentions, not only string lists. The Legal Research review cards display those offsets.
 - Helper and frontend contract regression coverage was added; tests and browser acceptance remain unexecuted. PR #1600 merged at `d5dc01a4cfaa835942288e047f9dc4c4275afde8`.
+
+## Named-month date extraction update — 2026-11-13
+
+- Date candidates now include Arabic and English Gregorian month-name forms, including Arabic-Indic digits. The timeline parser normalizes only valid four-digit-year dates and leaves ambiguous/invalid mentions unparsed.
+- Hijri date conversion remains unsupported; no date mention is automatically promoted to a deadline or verified event.
+- Added helper coverage; tests remain unexecuted. Branch `feature/arabic-named-month-dates-20261113`; merge pending.
+
+## Named-month date parser and UI update — 2026-11-13
+
+- The local Legal Research timeline parser now supports Arabic and English named Gregorian months in day-first/month-first forms, alongside the server parser.
+- Four-digit years and calendar-valid dates are required for normalization; two-digit years and invalid dates remain unparsed. Hijri conversion is not attempted.
+- Added frontend contract coverage. Tests and browser acceptance remain unexecuted; merge pending.

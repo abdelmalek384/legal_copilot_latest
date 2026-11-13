@@ -16,7 +16,7 @@ The application already accepts bounded PDF and DOCX uploads, extracts PDF text 
 - Exact-byte SHA-256 and whitespace-normalized extracted-text digests (separate purposes).
 - Possible-duplicate grouping constrained to identical firm and matter IDs; byte-identical and text-identical matches are distinguished and still require human review.
 - Literal candidate extraction for dates, case references, amounts and explicitly labelled parties.
-- A date-mention review timeline that retains document/page provenance, parses valid four-digit-year dates using explicit day-first or ISO rules, and refuses to guess two-digit years or invalid dates.
+- A date-mention review timeline that retains document/page provenance, parses valid four-digit-year dates using explicit day-first, ISO or named Arabic/English Gregorian-month rules, and refuses to guess two-digit years or invalid dates.
 - Structured candidate records for labelled parties, case/legal references, amounts and date mentions; sentence-scoped event triggers linked only to dates/labelled parties in that same sentence; and explicit Arabic/English relationship phrases. Every record retains character offsets and available page/chunk provenance and remains unverified.
 - Event candidates now retain exact character offsets for each same-sentence date and labelled-party mention, in addition to the event trigger and sentence offsets; the UI displays these offsets beside the source chunk/page.
 - Matter-wide date/event mention index over authorized documents, sorted parseable dates and unparsed mentions, with chunk/page provenance and strict document/character/result caps.
@@ -92,3 +92,9 @@ A passing unit suite validates helper behavior only; it does not validate the ne
 - Event candidates now include `date_evidence` and `party_evidence` arrays with literal mentions and exact start/end character offsets in the extracted chunk.
 - The Legal Research UI displays these offsets alongside the event sentence, document/chunk reference and page.
 - Added helper tests asserting that each offset slice maps back to the exact source substring and a frontend contract assertion. PR #1600 merged at `d5dc01a4cfaa835942288e047f9dc4c4275afde8`; tests/browser acceptance remain unexecuted.
+
+## Named-month date extraction — 2026-11-13 (branch pending merge)
+
+- Extended date candidate recognition to Arabic and English Gregorian month names in day-first and month-first forms, including Arabic-Indic digits.
+- The timeline parser normalizes valid four-digit-year dates and leaves two-digit years and invalid calendar dates in the unparsed review queue. Hijri calendar conversion is not performed.
+- Added a helper regression covering Arabic/English month names, page provenance, ambiguous two-digit years and invalid day values. Tests remain unexecuted; branch `feature/arabic-named-month-dates-20261113` is pending merge.
