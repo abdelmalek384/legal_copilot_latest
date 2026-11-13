@@ -758,9 +758,40 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_source_inspector_preserves_document_page_and_confidence_provenance(self):
         self.assertIn("p.original_document_name||p.document_name||source.original_document_name||source.document_name||source.file_name", HTML)
-        self.assertIn("source.page_number??p.page_number", HTML)
+        self.assertIn("source.page_number??source.page??p.page_number??p.page", HTML)
+        self.assertIn("The recorded page reference has not been independently checked against the original file.", HTML)
+        self.assertIn("مرجع الصفحة المسجل لم تتم مطابقته بصورة مستقلة مع الملف الأصلي.", HTML)
+        self.assertIn("if(pageLocation!==undefined&&pageLocation!==null&&pageLocation!==''&&(source.scope==='firm_documents'||(source.case_id!==undefined&&source.case_id!==null)))statusNote.append", HTML)
         self.assertIn("source.text_location||p.text_location||source.location||p.location", HTML)
         self.assertIn("source.confidence??p.confidence", HTML)
+
+        self.assertIn("(typeof confidence==='number'||typeof confidence==='string')&&confidence!==''", HTML)
+        self.assertIn("Original document: ", HTML)
+        self.assertIn("Page: ", HTML)
+        self.assertIn("Recorded confidence: ", HTML)
+
+    def test_source_inspector_exposes_stable_matter_document_traceability_when_available(self):
+        self.assertIn("source.document_id??source.documentId??source.original_document_id??p.document_id??p.documentId??p.original_document_id", HTML)
+        self.assertIn("source.case_id??source.matter_id??p.case_id??p.matter_id", HTML)
+        self.assertIn("source.sha256||source.file_sha256||p.sha256||p.file_sha256", HTML)
+        self.assertIn("Document record ID: ", HTML)
+        self.assertIn("const chunkRecordId=source.chunk_id??source.id??p.chunk_id", HTML)
+        self.assertIn("Chunk ID: ", HTML)
+        self.assertIn("Matter ID: ", HTML)
+        self.assertIn("Original file SHA-256: ", HTML)
+        self.assertIn("معرّف سجل المستند: ", HTML)
+        self.assertIn("بصمة الملف SHA-256: ", HTML)
+        self.assertIn("source.document_sha256||source.sha256||source.file_sha256||p.sha256||p.file_sha256", HTML)
+        self.assertIn("source.document_ocr_used===true||source.document_ocr_used===1", HTML)
+        self.assertIn("This passage was extracted with OCR; compare it with the original page before relying on it.", HTML)
+        self.assertIn("source.document_extraction_status&&((LANG==='ar'?'حالة استخراج النص: ':'Text extraction status: ')+String(source.document_extraction_status))", HTML)
+        self.assertIn("const matterCaseId=Number(source.case_id??p.case_id),matterDocumentId=Number(source.document_id??source.documentId??p.document_id)", HTML)
+        self.assertIn("Download original matter document", HTML)
+        self.assertIn("Open matter documents", HTML)
+        self.assertIn("PAGE='cases';TAB='docs';view(matterCaseId)", HTML)
+        self.assertIn("response.status===503", HTML)
+        self.assertIn("source.document_original_available===true||source.document_original_available===1", HTML)
+        self.assertIn("No retained original copy is currently available in private storage for this document.", HTML)
         self.assertIn("(typeof confidence==='number'||typeof confidence==='string')&&confidence!==''", HTML)
         self.assertIn("Original document: ", HTML)
         self.assertIn("Page: ", HTML)
@@ -1219,6 +1250,202 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("index+1)+' / '+valid.length", HTML)
         self.assertIn("uploadPanel.setAttribute('aria-busy','true')", HTML)
         self.assertIn("uploadPanel.setAttribute('aria-busy','false')", HTML)
+        self.assertIn("uploadStatus,uploadWarnings,uploadResults);", HTML)
+        self.assertNotIn("uploadStatus,uploadWarnings,uploadResults));", HTML)
+        self.assertNotIn("let uploadPanel.setAttribute", HTML)
+
+
+    def test_research_source_cards_have_distinct_accessible_names(self):
+        self.assertIn("className:'src research-source',role:'group','aria-label':(LANG==='ar'?'المصدر ':'Source ')+(s.ref||s.citation||String(i+1))", HTML)
+        self.assertIn("'aria-controls':'research-source-inspector'", HTML)
+        self.assertIn("'aria-expanded':'false'", HTML)
+
+
+    def test_document_file_picker_prevalidates_type_and_size(self):
+        self.assertIn("valid=selected.filter(file=>/\\\.(pdf|docx)$/i.test(file.name)&&file.size<=15000000).length", HTML)
+        self.assertIn("uploadSubmit.disabled=!matterSelect.value||!valid", HTML)
+        self.assertIn("ملفات ستُستبعد بسبب النوع أو الحجم", HTML)
+
+
+    def test_document_upload_queue_announces_per_file_status_accessibly(self):
+        self.assertIn("className:'research-upload-results',role:'list','aria-live':'polite'", HTML)
+        self.assertIn("className:'research-upload-item '+item.state,role:'listitem'", HTML)
+        self.assertIn("uploadStatus=h('p',{className:'research-upload-status',role:'status','aria-live':'polite'}", HTML)
+        self.assertIn("uploadPanel.setAttribute('aria-busy','true')", HTML)
+        self.assertIn("uploadPanel.setAttribute('aria-busy','false')", HTML)
+
+
+    def test_document_library_discloses_advanced_filters_on_demand(self):
+        self.assertIn("document-advanced-filters", HTML)
+        self.assertIn("عوامل تصفية إضافية", HTML)
+        self.assertIn("Additional filters", HTML)
+        self.assertIn("document-primary-filter", HTML)
+        self.assertIn("documentTypeFilter,documentStatusFilter,documentClassificationFilter,clearDocumentFilters", HTML)
+
+    def test_matter_identity_and_progress_remain_visible_across_sections(self):
+        self.assertIn("matter-context-strip", HTML)
+        self.assertIn("matterMeta=[c.case_number&&", HTML)
+        self.assertIn("c.court&&[uiText('المحكمة','Court'),c.court]", HTML)
+        self.assertIn("c.circuit&&[uiText('الدائرة','Circuit'),c.circuit]", HTML)
+        self.assertIn("matter-progress-context", HTML)
+        self.assertIn("uiText('مهام','tasks')}))),\n  h('div',{className:'matter-navigation'},tabGroupNav,tabDetailNav),body)}", HTML)
+        self.assertNotIn("uiText('مهام','tasks')})))),\n  h('div',{className:'matter-navigation'},tabGroupNav,tabDetailNav),body)}", HTML)
+        self.assertIn("prog({done_tasks:dn,open_tasks:tot-dn})", HTML)
+
+    def test_matter_detail_uses_five_task_oriented_sections(self):
+        self.assertIn("matter-section-nav", HTML)
+        self.assertIn("matter-subnav", HTML)
+        for label in ("Documents & research", "Team & activity", "Finance"):
+            self.assertIn(label, HTML)
+        self.assertIn("'aria-pressed':String(selectedTabGroup.id===group.id)", HTML)
+        self.assertIn("'aria-current':TAB===key?'page':null", HTML)
+        self.assertIn("tabGroups.find(group=>group.items.some(([key])=>key===TAB))", HTML)
+        self.assertIn("if(TAB==='ask')body=h('div',{className:'card'},askBox(id))", HTML)
+        self.assertIn("if(TAB==='docs')", HTML)
+
+    def test_primary_navigation_groups_existing_destinations_without_dropping_them(self):
+        self.assertIn("className:'nav-group'", HTML)
+        self.assertIn("مساحة العمل", HTML)
+        self.assertIn("إدارة المكتب", HTML)
+        for route in ("'dash'", "'cases'", "'clients'", "'law'", "'documents'", "'tasks'", "'calendar'", "'finance'", "'settings'"):
+            self.assertIn(route, HTML)
+        self.assertIn("ME.can_review_legal?", HTML)
+        self.assertIn("@media(max-width:800px)", HTML)
+
+    def test_dashboard_prioritizes_actionable_attention_and_removes_duplicate_shortcuts(self):
+        self.assertIn("dashboard-attention", HTML)
+        self.assertIn("Needs your attention", HTML)
+        self.assertIn("overdueTasks+overdueDeadlines.length", HTML)
+        dashboard = HTML[HTML.index("function dash(){"):HTML.index("async function tasksPage()", HTML.index("function dash(){"))]
+        self.assertNotIn("Quick access", dashboard)
+        self.assertNotIn("Recorded fees", dashboard)
+        self.assertIn("Active matters", dashboard)
+
+    def test_research_page_discloses_missing_lawyer_verified_egyptian_corpus(self):
+        self.assertIn("research-corpus-availability", HTML)
+        self.assertIn("No lawyer-verified Egyptian legal corpus is currently available", HTML)
+        self.assertIn("لا تتوفر حالياً مجموعة قوانين مصرية تم التحقق منها بواسطة محامين", HTML)
+        self.assertIn("Verified legal corpus — no lawyer-verified Egyptian corpus currently available", HTML)
+        self.assertIn("if(TAB==='ask')body=h('div',{},h('section',{className:'notice warning research-corpus-availability'", HTML)
+
+    def test_legal_source_states_are_explicit_and_fail_cautiously(self):
+        self.assertIn("needs_review:LANG==='ar'?'يحتاج مراجعة':'Needs review'", HTML)
+        self.assertIn("unverified:LANG==='ar'?'غير متحقق':'Unverified'", HTML)
+        self.assertIn("user_supplied_unverified:LANG==='ar'?'غير متحقق':'Unverified'", HTML)
+        self.assertIn("sourceState==='verified'?'done':(sourceState==='unverified'?'late':'soon')", HTML)
+        self.assertIn("do not rely on it as verified operative text", HTML)
+        self.assertIn("A source was found, but its currency or legal status needs review", HTML)
+        self.assertIn("research-source-caution.unverified", HTML)
+        self.assertIn("research-source-caution.needs-review", HTML)
+
+    def test_source_inspector_uses_consistent_labels_for_all_recorded_statuses(self):
+        inspector = HTML[HTML.index("const inspectSource=(source,status,pin,provenance,trigger)=>"):HTML.index("const suggestCorrection=", HTML.index("const inspectSource=(source,status,pin,provenance,trigger)=>"))]
+        for status in ("verified_operative_text", "secondary_copy", "needs_review", "under_review", "outdated_or_under_review", "user_supplied_unverified", "unverified", "metadata_only", "no_relevant_verified_source"):
+            self.assertIn(status+":", inspector)
+        self.assertIn("needs_review:LANG==='ar'?'يحتاج مراجعة':'Needs review'", inspector)
+        self.assertIn("unverified:LANG==='ar'?'غير متحقق':'Unverified'", inspector)
+        self.assertIn("metadata_only:LANG==='ar'?'غير متحقق — بيانات وصفية فقط':'Unverified — metadata only'", inspector)
+        self.assertIn("const explanations={", inspector)
+        self.assertIn("A source was found, but its currency or legal status needs review", inspector)
+        self.assertIn("No relevant verified passage was returned in this scope; this does not prove no applicable law exists.", inspector)
+        self.assertIn("className:'research-source-caution '+(status==='verified_operative_text'?'verified':'warning')", inspector)
+        self.assertIn("Recorded source status explanation", inspector)
+
+    def test_research_source_opens_exact_document_and_chunk_review(self):
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET=hasExactChunk?{caseId:matterCaseId,documentId:matterDocumentId,chunkId:String(rawChunkId)}:null", HTML)
+        self.assertIn("Promise.resolve().then(()=>toggle.click())", HTML)
+        self.assertIn("id:'doc-chunk-review-'+id+'-'+data.document_id+'-'+chunk.id,tabIndex:-1", HTML)
+        self.assertIn("Array.from(container.children).find(card=>card.id==='doc-chunk-review-'+id+'-'+data.document_id+'-'+target.chunkId)", HTML)
+        self.assertIn("targetCard.focus({preventScroll:true});targetCard.scrollIntoView({block:'center',behavior:window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})", HTML)
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET=null", HTML)
+        self.assertIn("The requested passage was not found in the loaded text.", HTML)
+        self.assertIn("The document linked to this source is not listed among the available matter documents.", HTML)
+
+    def test_new_research_navigation_arabic_labels_are_in_native_review_catalog(self):
+        catalog = json.loads((ROOT / "static" / "ar-ui-review.json").read_text(encoding="utf-8"))
+        self.assertEqual(catalog["entry_count"], len(catalog["entries"]))
+        self.assertEqual(len({entry["arabic"] for entry in catalog["entries"]}), len(catalog["entries"]))
+        entries = {entry["arabic"]: entry for entry in catalog["entries"]}
+        for literal in ("فتح المستند والمقطع", "تعذر العثور على المقطع المحدد ضمن النصوص المحملة. قد يكون قد تغير أو لم يعد متاحاً.", "المستند المرتبط بهذا المصدر غير موجود ضمن مستندات ملف القضية المتاحة.", "لا توجد نسخة أصلية محفوظة في التخزين الخاص لهذا المستند.", "تم استخراج هذا المستند باستخدام OCR؛ قارن كل مقطع بالصفحة الأصلية قبل الاعتماد عليه.", "تعذر استخراج النص من بعض الصفحات؛ قد تكون المقاطع المعروضة غير مكتملة. راجع المستند الأصلي.", "تعذر تحميل المقاطع النصية. تحقق من صلاحية الوصول وحاول مرة أخرى."):
+            self.assertIn(literal, entries)
+            self.assertEqual(entries[literal]["review_status"], "pending_native_review")
+
+    def test_matter_original_download_is_hidden_without_retention_confirmation(self):
+        self.assertIn("d.original_available===true||d.original_available===1?btn", HTML)
+        self.assertIn("No retained original is available in private storage for this document.", HTML)
+        self.assertIn("downloadOriginal||originalStatus", HTML)
+
+    def test_matter_chunk_review_discloses_ocr_and_incomplete_extraction(self):
+        self.assertIn("reviewDoc.ocr_used===true||reviewDoc.ocr_used===1||reviewDoc.extraction_status==='ocr_unverified'", HTML)
+        self.assertIn("reviewDoc.extraction_status==='partial_text_ocr_unavailable'", HTML)
+        self.assertIn("const extractedPage=chunk.page!==undefined&&chunk.page!==null&&chunk.page!==''?chunk.page:chunk.page_number", HTML)
+        self.assertIn("compare each passage with the original page before relying on it", HTML)
+
+    def test_cross_matter_text_search_opens_exact_chunk_review_when_identifiers_exist(self):
+        self.assertIn("btn(item.document_id&&item.chunk_id?uiText('فتح المستند والمقطع','Open document and passage')", HTML)
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET={caseId,documentId,chunkId:String(chunkId)};PAGE='cases';TAB='docs'", HTML)
+        self.assertIn("try{await view(caseId)}catch(_){window.DOCUMENT_REVIEW_TARGET=null", HTML)
+
+    def test_source_hand_off_does_not_claim_exact_passage_without_chunk_id(self):
+        self.assertIn("hasExactChunk=rawChunkId!==undefined&&rawChunkId!==null&&rawChunkId!==''", HTML)
+        self.assertIn("hasExactChunk?(LANG==='ar'?'فتح المستند والمقطع':'Open document and passage'):(LANG==='ar'?'فتح مستندات ملف القضية':'Open matter documents')", HTML)
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET=hasExactChunk?{caseId:matterCaseId,documentId:matterDocumentId,chunkId:String(rawChunkId)}:null", HTML)
+
+    def test_original_document_download_filename_is_sanitized(self):
+        self.assertIn("download:String(d.name||'original-document').replace(/[\\\\/\\\\0-\\\\x1f]/g,'_').slice(0,180)", HTML)
+        self.assertIn("download:String(doc.name||'original-document').replace(/[\\\\/\\\\0-\\\\x1f]/g,'_').slice(0,180)", HTML)
+
+    def test_exact_passage_target_has_visible_focus_and_scroll_margin(self):
+        self.assertIn("#main .extraction-review-card{scroll-margin-block:18px}", HTML)
+        self.assertIn("#main .extraction-review-card:focus{outline:3px solid var(--ui-focus);outline-offset:3px}", HTML)
+
+    def test_firm_switch_clears_pending_matter_chunk_navigation(self):
+        self.assertIn("window.DOCUMENT_MATTER_ID=null;window.DOCUMENT_REVIEW_TARGET=null;sessionStorage.me=JSON.stringify(ME)", HTML)
+        self.assertIn("ME={...ME,...result,...session};window.DOCUMENT_MATTER_ID=null;window.DOCUMENT_REVIEW_TARGET=null;sessionStorage.me=JSON.stringify(ME)", HTML)
+
+    def test_session_expiry_and_signout_clear_pending_document_navigation(self):
+        reset = "sessionStorage.removeItem('me');ME={};window.DOCUMENT_MATTER_ID=null;window.DOCUMENT_REVIEW_TARGET=null;login();"
+        self.assertGreaterEqual(HTML.count(reset), 4)
+
+    def test_manual_navigation_clears_pending_exact_passage_target(self):
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET=null;TAB=group.items[0][0];again()", HTML)
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET=null;TAB=key;again()", HTML)
+        self.assertIn("PAGE=id;window.CASE_ID=null;window.DOCUMENT_REVIEW_TARGET=null;fn()", HTML)
+
+    def test_extraction_review_page_reference_prefills_both_page_fields(self):
+        self.assertIn("const extractedPage=chunk.page!==undefined&&chunk.page!==null&&chunk.page!==''?chunk.page:chunk.page_number", HTML)
+        self.assertIn("value:chunk.page!==undefined&&chunk.page!==null&&chunk.page!==''?chunk.page:(chunk.page_number??'')", HTML)
+
+    def test_blank_page_field_falls_back_to_page_number_in_source_inspector(self):
+        self.assertIn("const pageLocation=[source.page_number,source.page,p.page_number,p.page].find(value=>value!==undefined&&value!==null&&value!=='')", HTML)
+
+    def test_each_extraction_review_panel_is_a_named_accessible_region(self):
+        self.assertIn("role:'region','aria-label':uiText('مراجعة النص المستخرج','Review extracted text')+' '+d.name", HTML)
+        self.assertIn("toggle.setAttribute('aria-controls',reviewPanel.id)", HTML)
+
+    def test_extraction_review_panel_announces_loading_state(self):
+        self.assertIn("reviewPanel.setAttribute('aria-busy','true')", HTML)
+        self.assertIn("renderChunkReview(reviewPanel,data);reviewPanel.setAttribute('aria-busy','false')", HTML)
+        self.assertIn("reviewPanel.setAttribute('aria-busy','false');reviewPanel.replaceChildren()", HTML)
+
+    def test_chunk_review_failure_has_inline_accessible_error(self):
+        self.assertIn("reviewPanel.replaceChildren(h('p',{className:'notice danger',role:'alert',textContent:uiText('تعذر تحميل المقاطع النصية. تحقق من صلاحية الوصول وحاول مرة أخرى.'", HTML)
+        self.assertIn("Could not load text chunks. Check access and try again.", HTML)
+
+    def test_recent_arabic_catalog_source_lines_match_frontend_literals(self):
+        catalog = json.loads((ROOT / "static" / "ar-ui-review.json").read_text(encoding="utf-8"))
+        lines = HTML.splitlines()
+        for entry in catalog["entries"][-7:]:
+            for line_number in entry["source_lines"]:
+                self.assertIn(entry["arabic"], lines[line_number - 1], entry["id"])
+
+    def test_chunk_review_ignores_stale_responses_after_close_or_reopen(self):
+        self.assertIn("let reviewRequest=0", HTML)
+        self.assertIn("reviewRequest++;toggle.setAttribute('aria-expanded','false')", HTML)
+        self.assertIn("if(request!==reviewRequest||toggle.dataset.open!=='1')return", HTML)
+
+    def test_closing_target_review_panel_cancels_pending_passage_target(self):
+        self.assertIn("if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT_REVIEW_TARGET.caseId)===Number(id)&&Number(window.DOCUMENT_REVIEW_TARGET.documentId)===Number(d.document_id))window.DOCUMENT_REVIEW_TARGET=null", HTML)
 
 if __name__ == "__main__":
     unittest.main()

@@ -1051,6 +1051,13 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         firm_db.commit()
 
+        detail = self.client.get(f"/cases/{case_one_id}")
+        self.assertEqual(detail.status_code, 200, detail.text)
+        retained_document = next(
+            item for item in detail.json()["docs"] if item["document_id"] == document_id
+        )
+        self.assertTrue(retained_document["original_available"])
+
         # This user can access both cases, but the document belongs only to case one.
         base = f"/cases/{case_two_id}/docs/{document_id}/original"
         for method, path, kwargs in (
@@ -1085,6 +1092,18 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             ).fetchone()[0],
             0,
         )
+
+        firm_db.execute(
+            "UPDATE original_file_objects SET purged_at=? WHERE document_id=? AND firm_id=?",
+            ("2026-11-13T00:00:00Z", document_id, self.firm_a),
+        )
+        firm_db.commit()
+        purged_detail = self.client.get(f"/cases/{case_one_id}")
+        self.assertEqual(purged_detail.status_code, 200, purged_detail.text)
+        purged_document = next(
+            item for item in purged_detail.json()["docs"] if item["document_id"] == document_id
+        )
+        self.assertFalse(purged_document["original_available"])
 
     def test_original_file_hold_and_deletion_routes_cannot_cross_firm_boundaries(self):
         import hashlib
@@ -2970,6 +2989,16 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(matter_search.status_code, 200, matter_search.text)
         self.assertTrue(any("firmonlysentinel" in hit["text"] for hit in matter_search.json()))
+        matter_hit = next(hit for hit in matter_search.json() if "firmonlysentinel" in hit["text"])
+        self.assertEqual(matter_hit["scope"], "firm_documents")
+        self.assertEqual(matter_hit["case_id"], case_id)
+        self.assertEqual(matter_hit["document_id"], uploaded.json()["document_id"])
+        self.assertEqual(matter_hit["chunk_id"], matter_hit["id"])
+        self.assertEqual(matter_hit["document_name"], "private.txt")
+        self.assertEqual(matter_hit["document_sha256"], uploaded.json()["sha256"])
+        self.assertFalse(matter_hit["document_ocr_used"])
+        self.assertIn("document_original_available", matter_hit)
+        self.assertFalse(matter_hit["document_original_available"])
 
         # The legal corpus is central and shared; matter content is not.
         corpus = self.runtime.legal_corpus_connection()
@@ -5644,6 +5673,9 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertEqual(arabic_hits.json()["total"], 1)
             self.assertIn("قانوني", arabic_hits.json()["items"][0]["excerpt"])
             self.assertEqual(arabic_hits.json()["items"][0]["case_id"], alpha_case)
+            self.assertEqual(arabic_hits.json()["items"][0]["document_id"], alpha_document_id)
+            self.assertGreater(arabic_hits.json()["items"][0]["chunk_id"], 0)
+            self.assertTrue(arabic_hits.json()["items"][0]["ref"])
             digit_hits = junior.get("/documents/search-text?q=١٢٣")
             self.assertEqual(digit_hits.status_code, 200, digit_hits.text)
             self.assertEqual(digit_hits.json()["total"], 1)
