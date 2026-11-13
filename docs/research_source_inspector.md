@@ -94,3 +94,6 @@ The extracted-text review disclosure now sets `aria-busy` while its chunks are l
 
 
 If chunk loading fails, the review panel now retains an inline accessible error message and resets its expanded/busy state, rather than leaving an empty panel. The user can retry the disclosure action.
+
+
+The review-panel loader uses a per-panel request generation counter. Closing or reopening a panel invalidates earlier in-flight responses, so a slow response cannot repopulate a panel the user has closed or overwrite a newer request.
