@@ -128,3 +128,10 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 - The repository CI workflow already runs `node --check` against the extracted inline script. CI remains unverified because the workflow's job logs and step summaries are not available through the connected GitHub interface.
 
 - Extended the same firm-document page-reference caveat into the OCR/extraction review cards: extracted `chunk.page` values are now explicitly marked as not independently checked when no reviewer-entered page reference is present. Added a regression test in `tests/test_document_classifications.py`.
+
+### Latest CI observation — 2026-11-13
+
+- At branch head `369e8fe62cc88588fcc1733ffb54c49ca84801f9`, all five PR workflow categories completed with `failure`: Tests, Non-database safety regression, Browser acceptance, Dependency security audit and CodeQL security analysis (including its Bandit job).
+- The connected GitHub interface returned zero step summaries for every job and the job-log download was unavailable for every job. Therefore the failure stage and cause cannot be established from the available evidence; do not infer that these are application-test failures or that billing is definitely the cause.
+- The inline JavaScript was independently parsed successfully after correcting the two extra closing parentheses. This is a targeted static parse check, not evidence that the Python suite or browser acceptance passed.
+- PR #1610 remains draft, unmerged and undeployed. Release acceptance is still blocked on retrievable CI diagnostics and the outstanding manual/browser/legal review gates.
