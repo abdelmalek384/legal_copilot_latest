@@ -1378,7 +1378,7 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_matter_chunk_review_discloses_ocr_and_incomplete_extraction(self):
         self.assertIn("reviewDoc.ocr_used===true||reviewDoc.ocr_used===1||reviewDoc.extraction_status==='ocr_unverified'", HTML)
         self.assertIn("reviewDoc.extraction_status==='partial_text_ocr_unavailable'", HTML)
-        self.assertIn("const extractedPage=chunk.page??chunk.page_number", HTML)
+        self.assertIn("const extractedPage=chunk.page!==undefined&&chunk.page!==null&&chunk.page!==''?chunk.page:chunk.page_number", HTML)
         self.assertIn("compare each passage with the original page before relying on it", HTML)
 
     def test_cross_matter_text_search_opens_exact_chunk_review_when_identifiers_exist(self):
@@ -1414,7 +1414,10 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_extraction_review_page_reference_prefills_both_page_fields(self):
         self.assertIn("const extractedPage=chunk.page??chunk.page_number", HTML)
-        self.assertIn("value:chunk.page??chunk.page_number??''", HTML)
+        self.assertIn("value:chunk.page!==undefined&&chunk.page!==null&&chunk.page!==''?chunk.page:(chunk.page_number??'')", HTML)
+
+    def test_blank_page_field_falls_back_to_page_number_in_source_inspector(self):
+        self.assertIn("const pageLocation=[source.page_number,source.page,p.page_number,p.page].find(value=>value!==undefined&&value!==null&&value!=='')", HTML)
 
 if __name__ == "__main__":
     unittest.main()
