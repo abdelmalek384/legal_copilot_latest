@@ -7,7 +7,7 @@ import unittest
 from unittest.mock import patch
 
 import app
-from tools.answer_trust_tier import firm_test_source_matched_enabled
+from tools.answer_trust_tier import classify_answer_trust_tier, firm_test_source_matched_enabled
 
 
 def synthetic_source_match_evidence():
@@ -114,6 +114,23 @@ class FirmTestSourceMatchedModeTests(unittest.TestCase):
             "LEGAL_FIRM_TEST_SOURCE_MATCHED": "1",
             "LEGAL_FIRM_TEST_SOURCE_MATCHED_FIRM_ID": "42",
         }))
+
+    def test_source_match_evidence_url_rejects_raw_backslash(self):
+        evidence = synthetic_source_match_evidence()
+        source = {
+            "source_id": "SYNTHETIC-SOURCE-1",
+            "source_status": "source_matched_unreviewed",
+            "source_match_evidence": evidence,
+        }
+        def classify():
+            return classify_answer_trust_tier(
+                [source], claims_supported=True, citations_complete=True,
+                contradictory_sources=False, source_matched_policy_approved=True,
+                source_matched_feature_enabled=True,
+            )
+        self.assertEqual(classify()["trust_tier"], "source_matched")
+        evidence["reuse_rights_evidence_url"] = "https://example.test\\\\rights"
+        self.assertEqual(classify()["trust_tier"], "unreviewed")
 
     def test_gate_rejects_float_boolean_and_malformed_firm_ids(self):
         environment = {
