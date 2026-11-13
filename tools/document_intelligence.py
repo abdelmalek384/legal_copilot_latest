@@ -343,18 +343,38 @@ def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, An
             parsed = None
             interpretation = None
             if isinstance(raw, str):
-                parts = re.split(r"[/.-]", raw.translate(arabic_digits))
+                normalized_raw = raw.translate(arabic_digits).strip()
+                named_match = _NAMED_DATE_PATTERN.fullmatch(normalized_raw)
                 try:
-                    if len(parts) == 3 and all(part.isdigit() for part in parts):
-                        if len(parts[0]) == 4:
-                            year, month, day = map(int, parts)
-                            interpretation = "year_first"
-                        elif len(parts[2]) == 4:
-                            day, month, year = map(int, parts)
-                            interpretation = "day_first"
+                    if named_match:
+                        if named_match.group("day"):
+                            day_text = named_match.group("day")
+                            month_name = named_match.group("month")
+                            year_text = named_match.group("year")
+                            interpretation = "named_month_day_first"
                         else:
+                            day_text = named_match.group("day_first")
+                            month_name = named_match.group("month_first")
+                            year_text = named_match.group("year_first")
+                            interpretation = "named_month_month_first"
+                        if len(year_text) != 4:
                             raise ValueError("two-digit year is ambiguous")
-                        parsed = date(year, month, day).isoformat()
+                        month_number = _NAMED_MONTHS.get(month_name.casefold())
+                        if month_number is None:
+                            raise ValueError("unrecognized month name")
+                        parsed = date(int(year_text), month_number, int(day_text)).isoformat()
+                    else:
+                        parts = re.split(r"[/.-]", normalized_raw)
+                        if len(parts) == 3 and all(part.isdigit() for part in parts):
+                            if len(parts[0]) == 4:
+                                year, month, day = map(int, parts)
+                                interpretation = "year_first"
+                            elif len(parts[2]) == 4:
+                                day, month, year = map(int, parts)
+                                interpretation = "day_first"
+                            else:
+                                raise ValueError("two-digit year is ambiguous")
+                            parsed = date(year, month, day).isoformat()
                 except ValueError:
                     parsed = None
             item = {
@@ -384,6 +404,7 @@ def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, An
             "Context and legal effect must be confirmed by a lawyer.",
             "Only documents supplied by the caller are considered; callers must enforce firm and matter scope.",
             "Two-digit years and invalid calendar dates are not guessed.",
+            "Named Arabic and English Gregorian months are supported; Hijri calendar conversion is not performed.",
         ],
     }
 
