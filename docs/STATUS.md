@@ -19,6 +19,7 @@
 - Labour Law No. 14/2025 remains **source-matched, not lawyer-reviewed**, `lawyer_reviewed=false`, `authoritative=false`, and `retrieval_eligible=false`.
 - All 311 candidate rows remain `verified=0`. No commit or test mode may change that.
 - The candidate manifest records collection/reuse permission as unknown; the supplied scan reports copy/print restrictions. The candidate text is not committed and must not be served through the new firm-test mode.
+- Related-instrument discovery now records Labour Ministry Decisions 248–252/2026 from Gazette Supplement issue 225 (A) metadata and the Ministry announcement. Their full signed text remains restricted/unavailable; all five are metadata-only, permission-unknown, pending counsel review and retrieval-ineligible.
 - Qualified Egyptian counsel must independently review the text, commencement, currentness, amendments/corrigenda, transitional effects and permission basis before any verified or authoritative status.
 
 ## Runtime and operational blockers
