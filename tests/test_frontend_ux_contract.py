@@ -1413,7 +1413,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("PAGE=id;window.CASE_ID=null;window.DOCUMENT_REVIEW_TARGET=null;fn()", HTML)
 
     def test_extraction_review_page_reference_prefills_both_page_fields(self):
-        self.assertIn("const extractedPage=chunk.page??chunk.page_number", HTML)
+        self.assertIn("const extractedPage=chunk.page!==undefined&&chunk.page!==null&&chunk.page!==''?chunk.page:chunk.page_number", HTML)
         self.assertIn("value:chunk.page!==undefined&&chunk.page!==null&&chunk.page!==''?chunk.page:(chunk.page_number??'')", HTML)
 
     def test_blank_page_field_falls_back_to_page_number_in_source_inspector(self):
