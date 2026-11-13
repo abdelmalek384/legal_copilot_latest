@@ -182,3 +182,6 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 - Cross-matter extracted-text search now transfers the returned case/document/chunk IDs into the same exact review navigation used by Legal Research sources.
 - When identifiers are incomplete, the action falls back to the matter Documents workspace and does not claim a chunk pinpoint.
 - Added a frontend regression contract and documented the shared hand-off. This does not change search scope, ranking, or verification status.
+
+
+- Extended the separate-runtime cross-matter search regression to assert that each matching result carries the authorized case ID, document ID, positive chunk ID, and passage reference required by exact-review navigation. This is test coverage only; it has not been executed.
