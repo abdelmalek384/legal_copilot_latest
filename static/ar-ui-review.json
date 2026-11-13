@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "22cafd85cf3b01c495fb21b96f69f0b4fb8c9849",
   "generated_on": "2026-11-12",
-  "entry_count": 1162,
+  "entry_count": 1169,
   "entries": [
     {
       "id": "AR-0001",
@@ -11234,6 +11234,62 @@
       "arabic": "الملف ",
       "source_lines": [
         1695
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1163",
+      "arabic": "العمل",
+      "source_lines": [
+        1158
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1164",
+      "arabic": "المستندات والبحث",
+      "source_lines": [
+        2965
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1165",
+      "arabic": "المالية",
+      "source_lines": [
+        2966
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1166",
+      "arabic": "الفريق والسجل",
+      "source_lines": [
+        2967
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1167",
+      "arabic": "أقسام ملف القضية",
+      "source_lines": [
+        2970
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1168",
+      "arabic": "صفحات القسم الحالي",
+      "source_lines": [
+        2971
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1169",
+      "arabic": "العميل: ",
+      "source_lines": [
+        1858
       ],
       "review_status": "pending_native_review"
     }
