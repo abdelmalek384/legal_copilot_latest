@@ -15,6 +15,7 @@ from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_pe
 from tools.arabic_legal_matching import expand_lexicon_hints
 from tools.arabic_drafting_skeletons import build_arabic_skeleton
 from tools.claim_support import claim_support_enabled, has_unsupported_claims, has_negated_obligation_conflicts
+from tools.answer_trust_tier import classify_answer_trust_tier, firm_test_source_matched_enabled
 from tools.document_intelligence import MAX_ANALYSIS_CHARS, classify_document, extract_review_candidates, extract_structured_candidates, build_date_mention_timeline, group_candidate_entity_mentions, compare_extracted_text
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
@@ -1232,8 +1233,15 @@ def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
 
 
 def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"):
-    if scope not in {"all_permitted", "verified_corpus", "firm_documents"}:
-        raise ValueError("scope must be verified_corpus, firm_documents, or all_permitted")
+    if scope not in {"all_permitted", "verified_corpus", "firm_documents", "firm_test_source_matched"}:
+        raise ValueError("scope must be verified_corpus, firm_documents, all_permitted, or firm_test_source_matched")
+    if scope == "firm_test_source_matched":
+        if case_id is not None:
+            raise ValueError("firm_test_source_matched cannot search matter documents")
+        # No Law 14/2025 candidate is currently eligible for this path. Keep the
+        # scope separate from verified_corpus and fail closed until a permission-
+        # cleared candidate index is deliberately supplied.
+        return []
     if scope == "firm_documents" and case_id is None:
         raise ValueError("Select a matter before searching firm documents")
     # Linked legal versions require verified provenance, status, dates, and reuse permission.
@@ -2071,9 +2079,48 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
         if hit.get("case_id") is None
         and (hit.get("verified") is not True or hit.get("source_status") != STATUS_VERIFIED)
     ]
-    if unverified_corpus_hits:
+    source_matched_records = [
+        {
+            "source_id": hit.get("source_id"),
+            "source_status": hit.get("source_status"),
+            "source_match_evidence": hit.get("source_match_evidence"),
+        }
+        for hit in hits
+    ]
+    source_matched_only = bool(hits) and all(
+        isinstance(hit, dict)
+        and hit.get("case_id") is None
+        and hit.get("verified") is False
+        and hit.get("source_status") == "source_matched_unreviewed"
+        for hit in hits
+    )
+    source_matched_test_mode = (
+        scope == "firm_test_source_matched"
+        and source_matched_only
+        and firm_test_source_matched_enabled(firm_id)
+    )
+    source_matched_preflight = (
+        classify_answer_trust_tier(
+            source_matched_records,
+            claims_supported=True,
+            citations_complete=True,
+            contradictory_sources=False,
+            source_matched_policy_approved=True,
+            source_matched_feature_enabled=True,
+        )
+        if source_matched_test_mode else {"trust_tier": "unreviewed"}
+    )
+    source_matched_test_active = (
+        source_matched_test_mode
+        and source_matched_preflight.get("trust_tier") == "source_matched"
+    )
+    if unverified_corpus_hits and not source_matched_test_active:
+        if source_matched_only:
+            for hit in hits:
+                hit["trust_tier"] = "unreviewed"
         return {
             "found": True, "answer": None, "abstained": True,
+            "trust_tier": "unreviewed" if source_matched_only else None,
             "message": "تم استرجاع نصوص قانونية لا تستوفي بوابات المصدر والإذن القابلة للفحص؛ تُعرض المصادر فقط.",
             "sources": hits, "scope": scope, "case_id": case_id,
             "not_in_force": [h.get("ref") for h in hits if h.get("verified") and not h.get("applies_as_of", h.get("in_force"))],
@@ -2131,7 +2178,37 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
         elif claim_support_enabled() and has_unsupported_claims(ans, hits, tokens, norm, _mask_markdown_code):
             ans, msg = None, "تعذر إثبات دعم كل عبارة واقعية من نصوص مصادرها؛ تُعرض المصادر فقط."
             claim_support_blocked = True
-    return {"found": True, "answer": ans, "abstained": not bool(ans), "message": msg, "claim_support_blocked": claim_support_blocked, "sources": hits, "scope": scope, "case_id": case_id, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
+    answer_trust_tier = None
+    if ans and source_matched_test_active:
+        # The broader lexical support screen is mandatory for this non-lawyer-reviewed
+        # test tier even when it is disabled for ordinary research answers.
+        if has_unsupported_claims(ans, hits, tokens, norm, _mask_markdown_code):
+            ans, msg = None, "تعذر إثبات الدعم اللفظي للإجابة التجريبية؛ تُعرض المصادر فقط."
+            claim_support_blocked = True
+        else:
+            classification = classify_answer_trust_tier(
+                source_matched_records,
+                claims_supported=True,
+                citations_complete=bool(_answer_citation_indices(ans)),
+                contradictory_sources=False,
+                source_matched_policy_approved=True,
+                source_matched_feature_enabled=True,
+            )
+            if classification.get("trust_tier") != "source_matched":
+                ans, msg = None, "لم تستوفِ الإجابة التجريبية شروط وسم المطابقة للمصدر؛ تُعرض المصادر فقط."
+            else:
+                answer_trust_tier = "source_matched"
+                for hit in hits:
+                    hit["trust_tier"] = answer_trust_tier
+    if source_matched_only and answer_trust_tier is None:
+        for hit in hits:
+            hit["trust_tier"] = "unreviewed"
+    result = {"found": True, "answer": ans, "abstained": not bool(ans), "message": msg, "claim_support_blocked": claim_support_blocked, "sources": hits, "scope": scope, "case_id": case_id, "not_in_force": [h["ref"] for h in hits if h["verified"] and not h.get("applies_as_of", h["in_force"])], "unverified_sources": [h["ref"] for h in hits if not h["verified"]], "requested_as_of": as_of or date.today().isoformat()}
+    if answer_trust_tier:
+        result["trust_tier"] = answer_trust_tier
+    elif source_matched_only:
+        result["trust_tier"] = "unreviewed"
+    return result
 
 
 # ---------------- API ----------------
