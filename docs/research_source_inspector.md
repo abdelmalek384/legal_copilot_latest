@@ -85,3 +85,6 @@ The focused chunk card now receives a visible focus outline and scroll margin wh
 
 
 Pending matter/chunk navigation state is cleared when the active firm changes, including the MFA firm-switch path, and when the session expires or the user signs out. Manual navigation to another workspace or matter section also clears an unconsumed target. This prevents stale targets from surviving a change in identity, firm context, or the user's explicit navigation choice.
+
+
+Each per-document extracted-text review panel is now a named accessible region and remains connected to its disclosure control with `aria-controls`. This improves navigation between document review areas for screen-reader users.
