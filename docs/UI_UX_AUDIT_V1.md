@@ -205,7 +205,7 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 - Failed chunk-review loads now produce an inline `role=alert` message, reset `aria-busy`/expanded state, and permit retry. Added a regression contract and registered the Arabic error string (1,446 unique catalog entries; pending native review).
 
 
-- Added a regression contract that checks the source-line references for the latest six Arabic catalog entries against the current frontend file, in addition to unique IDs/string and count checks. This helps prevent the newest review inventory entries from silently drifting when UI lines change.
+- Added a regression contract that checks the source-line references for all seven newly added Arabic catalog entries against the current frontend file, in addition to unique IDs/string and count checks. This helps prevent the newest review inventory entries from silently drifting when UI lines change.
 
 
 - Closing a target document's review panel now cancels the pending passage target as well as invalidating its in-flight chunk request. This prevents a later reopen from unexpectedly applying an old navigation target; added a frontend regression contract.
