@@ -71,6 +71,12 @@ def reviewed(qid, *, answerable=True, article="المادة 1 من قانون ا
 
 
 class ArabicRetrievalScorerTests(unittest.TestCase):
+    def test_non_object_question_and_run_rows_are_rejected_cleanly(self):
+        with self.assertRaisesRegex(ValueError, "question row 1 must be an object"):
+            score([[]], [], TEST_REVIEWER_REGISTRY)
+        with self.assertRaisesRegex(ValueError, "run row 1 must be an object"):
+            score([reviewed("Q-OBJECT")], [[]], TEST_REVIEWER_REGISTRY)
+
     def test_reviewer_must_be_in_approved_registry_and_practice_area(self):
         q = reviewed("Q-REGISTRY")
         run = {"question_id": "Q-REGISTRY",

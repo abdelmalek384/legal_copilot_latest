@@ -145,13 +145,17 @@ def benchmark_fingerprint(questions):
 
 def score(questions, runs, reviewer_registry):
     q_by_id = {}
-    for q in questions:
+    for index, q in enumerate(questions, start=1):
+        if not isinstance(q, dict):
+            raise ValueError(f"question row {index} must be an object")
         qid = q.get("id")
         if not isinstance(qid, str) or not qid.strip() or qid in q_by_id:
             raise ValueError("question IDs must be unique non-empty strings")
         q_by_id[qid] = q
     r_by_id = {}
-    for r in runs:
+    for index, r in enumerate(runs, start=1):
+        if not isinstance(r, dict):
+            raise ValueError(f"run row {index} must be an object")
         qid = r.get("question_id")
         if not isinstance(qid, str) or not qid.strip() or qid in r_by_id:
             raise ValueError("run question_id values must be unique non-empty strings")
