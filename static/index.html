@@ -2584,7 +2584,7 @@ function documentIntelligencePanel(caseId,documents){
   if(namedDay||namedFirst){
    const match=namedDay||namedFirst;
    const monthName=(namedDay?match[2]:match[1]).toLocaleLowerCase();
-   const yearText=namedDay?match[3]:match[3];
+   const yearText=match[3];
    if(yearText.length!==4||!months[monthName])return null;
    day=Number(namedDay?match[1]:match[2]);month=months[monthName];year=Number(yearText);
   }else{
