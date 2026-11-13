@@ -323,3 +323,11 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Legal-reference candidates now recognize English Section/Subsection/Paragraph/Clause/Chapter/Act/Law/Regulation/Decree/Code/Rule labels in addition to Article and Arabic forms.
 - Matches remain unverified literals and are not checked against official statute databases. Added helper regression coverage; tests remain unexecuted.
 - PR #1608 merged at `113fdf84f6085d2dcb96e203cdedd5100ccaf83f`.
+
+
+## Current open-PR triage — 2026-11-13
+
+- #1610 — Arabic-first workspace simplification. Draft, not ready to merge: static catalog consistency is reported, but the PR itself records failing/zero-step hosted workflows, no confirmed full local suite, and outstanding phone/tablet/desktop RTL/LTR, accessibility and lawyer usability acceptance. Keep with AI-2/product UI; do not merge or mark complete on source review alone.
+- #1607 — Labour Decisions 248–252/2026. Metadata-only candidate tracking. The original Gazette PDF remains restricted and no operative text was obtained. Keep the five records retrieval-ineligible; do not infer clauses, effective dates, amendments or legal effects.
+- #1490 — Dependabot boto3 update. Do not merge until `requirements-py312.lock` is regenerated with authentic hashes and a clean Python 3.12 locked install/import/test run is recorded.
+- The 2026-11-13 user-supplied patch bundle (patches 0002–0009) is not a new implementation queue: the corresponding corpus comparison tool, candidate catalog, multi-area evaluation inventory, manual-capture recorder, draft deadline calculator, article-row audit, CI test-coverage guard and safe 422 validation handler are already present on current `main`. Do not reapply those patches or create duplicate PRs. Their runtime tests remain subject to the Python 3.12/runner validation blocker.
