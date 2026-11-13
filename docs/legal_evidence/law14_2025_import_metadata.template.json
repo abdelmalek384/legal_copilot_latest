@@ -12,5 +12,7 @@
   "source_reference": "REPLACE_WITH_STABLE_SOURCE_REFERENCE",
   "collection_permission": "unknown",
   "permission_evidence_reference": null,
+  "expected_promulgation_provisions": 13,
+  "expected_attached_law_articles": 298,
   "content_sha256": "REPLACE_WITH_64_CHARACTER_SHA256"
 }
