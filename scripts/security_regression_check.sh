@@ -32,6 +32,7 @@ tests=(
   test_research_prompt_injection_boundary.py
   test_case_csv_import.py
   test_client_csv_import.py
+  test_invoice_csv_export.py
   test_invoice_payment_routes.py
   test_subscription_billing_routes.py
   test_firm_data_export.py
