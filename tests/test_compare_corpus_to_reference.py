@@ -115,4 +115,34 @@ class T(unittest.TestCase):
 
  def test_bad_json_warns(self):
   b=self.d/"bad.jsonl";b.write_text('bad json\n[1]\n{"article":"???","text":"x"}',encoding="utf-8");self.assertTrue(build_report(b,self.ref)["warnings"])
+ def test_report_outputs_cannot_overwrite_candidate_or_reference(self):
+  for output_name, input_name, payload in [
+   ("comparison_report.json","comparison_report.json",'{"article":"1","text":"candidate"}\\n'),
+   ("comparison_report.md","comparison_report.md","المادة الأولى\\nنص مرجعي\\n"),
+  ]:
+   with self.subTest(output=output_name), tempfile.TemporaryDirectory() as temp:
+    root=Path(temp);candidate=root/"candidate.jsonl";reference=root/"reference.txt"
+    candidate.write_text('{"article":"1","text":"نص"}\\n',encoding="utf-8")
+    reference.write_text("المادة الأولى\\nنص\\n",encoding="utf-8")
+    protected=root/input_name
+    protected.write_text(payload,encoding="utf-8")
+    original=protected.read_bytes()
+    if output_name.endswith(".json"):
+     candidate=protected
+    else:
+     reference=protected
+    with self.assertRaises(SystemExit) as raised:
+     main(["--candidate",str(candidate),"--reference",str(reference),"--out-dir",str(root)])
+    self.assertEqual(raised.exception.code,2)
+    self.assertEqual(protected.read_bytes(),original)
+ def test_report_outputs_cannot_alias_each_other(self):
+  with tempfile.TemporaryDirectory() as temp:
+   root=Path(temp);candidate=root/"candidate.jsonl";reference=root/"reference.txt"
+   candidate.write_text('{"article":"1","text":"نص"}\\n',encoding="utf-8")
+   reference.write_text("المادة الأولى\\nنص\\n",encoding="utf-8")
+   output_dir=root/"reports";output_dir.mkdir()
+   (output_dir/"comparison_report.md").symlink_to(output_dir/"comparison_report.json")
+   with self.assertRaises(SystemExit) as raised:
+    main(["--candidate",str(candidate),"--reference",str(reference),"--out-dir",str(output_dir)])
+   self.assertEqual(raised.exception.code,2)
 if __name__=="__main__":unittest.main()
