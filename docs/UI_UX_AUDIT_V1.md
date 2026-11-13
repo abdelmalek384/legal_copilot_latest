@@ -148,6 +148,7 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 
 - Matter-document retrieval hits now include chunk/document/matter identity, original filename and stored SHA-256, extraction status, OCR-used state, and confirmed original-retention availability.
 - The source inspector displays OCR caution and only offers the original-download action when the backend confirms a ready, non-purged private object. It uses the existing authorized download endpoint, which rechecks matter access and file integrity.
+- Matter-linked results also provide direct navigation to the selected matter's Documents section, where the existing extracted-text review controls remain available.
 - Legacy mode and purged/missing originals are not represented as downloadable. No document URL or retention status is inferred in the browser.
 - Added separate-runtime regression assertions for result provenance and frontend contracts for the guarded download and OCR notice.
 - This is traceability for user-supplied matter evidence, not independent legal-source verification.
