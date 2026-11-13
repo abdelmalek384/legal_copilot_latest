@@ -17,7 +17,7 @@ class OCRQualityEvaluationTests(unittest.TestCase):
             source = Path(temp) / "pages.jsonl"
             output = Path(temp) / "report.json"
             source.write_text(
-                '{"id":"x","reference_text":"abc","ocr_text":"abc"}\\n',
+                '{"id":"x","reference_text":"abc","ocr_text":"abc"}\n',
                 encoding="utf-8",
             )
             original = source.read_bytes()
