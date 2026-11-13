@@ -14,8 +14,12 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-from tools.output_path_safety import ensure_output_paths_safe
-from tools.validate_answer_ratings import EXPECTED_HEADER, validate_rows
+try:
+    from tools.output_path_safety import ensure_output_paths_safe
+    from tools.validate_answer_ratings import EXPECTED_HEADER, validate_rows
+except ModuleNotFoundError:  # direct execution from tools/
+    from output_path_safety import ensure_output_paths_safe
+    from validate_answer_ratings import EXPECTED_HEADER, validate_rows
 
 SOURCE_REQUIRED = {
     "answer_id",
