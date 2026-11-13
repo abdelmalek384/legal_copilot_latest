@@ -69,7 +69,7 @@ class Law14DraftInventoryTests(unittest.TestCase):
     def test_jsonl_reader_rejects_non_object_rows(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "questions.jsonl"
-            path.write_text(json.dumps([question()], ensure_ascii=False) + "\\n", encoding="utf-8")
+            path.write_text(json.dumps([question()], ensure_ascii=False) + "\n", encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "must be an object"):
                 read_jsonl(path)
 
