@@ -36,7 +36,7 @@ For each test, record the exact commit SHA, environment, date/time and timezone,
 
 ## 5. Export ratings and clean up
 
-Use the in-product lawyer-rating export only after AI 1's data contract and the rating UI are available; export the structured rating records (answer verdict, cited-article verdict, notes, answer/citation identifiers and reviewer metadata) to the restricted pilot evidence location. Do not improvise a schema or use the corrections queue as a substitute for ratings. Until that export exists, record the gate as BLOCKED and preserve the test evidence without inventing a CSV.
+Use the per-answer Lawyer assessment panel in Legal Research to save or update a rating. Firm administrators can use View firm ratings and Export CSV to list and export the active firm's ratings. The export includes answer/question pairing, verdicts, expected article IDs, reviewer and timestamps, and benchmark-ready status. Keep the export in the restricted pilot evidence location; ratings are quality feedback, not training consent or legal approval. Runtime verification remains pending until the focused route tests and clean-clone acceptance are executed.
 
 Remove the demo firm only after exporting permitted synthetic evidence and confirming its firm ID:
 ```bash
