@@ -4884,6 +4884,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             latest_chunk["latest_review"]["reviewed_text"],
             original_text + " [reviewed correction]",
         )
+        changes = latest_chunk["latest_review"]["changes"]
+        self.assertTrue(changes)
+        self.assertTrue(all(change["review_status"] == "requires_lawyer_review" for change in changes))
+        self.assertTrue(any("[reviewed correction]" in change["after"] for change in changes))
 
         missing_digest = self._mutate(
             "post", review_url,
