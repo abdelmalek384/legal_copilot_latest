@@ -16,7 +16,7 @@ Every rated answer is one CSV record with these columns, in this exact order:
 | `notes` | string; may be empty | Short explanation, correction, missing qualification, or reason for the rating. Do not put personal/sensitive client information here. |
 | `rater` | non-empty reviewer identifier | Stable reviewer ID or approved reviewer handle. Do not use a display name as an authentication mechanism. |
 | `timestamp` | ISO 8601 timestamp with timezone | Time the rating was submitted, e.g. `2026-11-13T20:00:00Z`. |
-| `trust_tier` | `verified`, `source_matched`, `unverified` | Trust tier attached to the answer's underlying legal source at rating time. This is a recorded snapshot, not a reviewer action that changes source status. |
+| `trust_tier` | `verified`, `source_matched`, `unverified` | Canonical trust tier attached to the answer's underlying legal source at rating time. This is a recorded snapshot, not a reviewer action that changes source status. The API's internal `unreviewed` value maps to `unverified` in this rating CSV; preserve `source_matched` as its own non-lawyer-reviewed tier. |
 
 ### CSV header
 
@@ -54,7 +54,7 @@ It accepts UTF-8 with or without BOM, requires the exact header/order, validates
 
 ## Trust and legal-review safeguards
 
-- The trust tier must be copied from the answer/source metadata; a rater must not upgrade it by selecting a value in the rating UI.
+- The trust tier must be copied from answer/source metadata; a rater must not upgrade it by selecting a value in the rating UI. Normalize the API's `unreviewed` response to the contract's `unverified` export value.
 - `source_matched` means machine/source matching only; it does **not** mean lawyer-reviewed or legally verified.
 - Do not label any Egyptian-law source `verified` without the project's required qualified Egyptian-lawyer sign-off and recorded evidence.
 - A rating is an evaluation record, not legal advice, a source verification, or permission to use restricted material.
