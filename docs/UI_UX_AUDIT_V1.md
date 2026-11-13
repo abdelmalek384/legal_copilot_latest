@@ -160,3 +160,10 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 - The matter workspace opens the matching document's existing extracted-text review panel and focuses/scrolls to the exact chunk card. Scrolling respects the operating system's reduced-motion preference. The one-shot target is cleared after lookup; if the chunk is absent from the loaded extraction, a visible status explains that it could not be located; if the document itself is no longer listed in the matter, a separate fallback is shown and the target is cleared.
 - When a chunk ID is unavailable, the action remains a matter Documents hand-off and does not claim an exact passage location.
 - Added a frontend regression contract for the target identity, automatic review-panel opening, focus/scroll behavior, and missing-passage fallback. Registered all three new Arabic navigation/fallback labels in the native-review catalog (1,442 unique entries; all remain pending native review) and added a catalog consistency contract. These contracts are written but not executed because GitHub Actions is blocked by the reported billing issue.
+
+
+### 2026-11-13 — matter-library original retention affordance
+
+- The case-detail API already returns a backend-derived `original_available` value for each document. The matter Documents workspace now shows the original-download action only when this value is explicitly true; otherwise it explains that no retained original is available.
+- This avoids a misleading download affordance for purged/missing originals and legacy-mode documents. The server-side authorized download endpoint remains the security and integrity authority.
+- Added a frontend regression contract and registered the Arabic fallback label in the native-review catalog (1,443 unique entries; new labels remain pending native review). The regression contract has not been executed due to the reported GitHub billing issue.
