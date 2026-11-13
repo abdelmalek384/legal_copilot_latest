@@ -48,6 +48,10 @@ class AnswerRatingExportAdapterTests(unittest.TestCase):
         rows, _ = adapt_rows([firm_row(trust_tier="unexpected")])
         self.assertEqual(rows[0]["trust_tier"], "unverified")
 
+    def test_non_object_row_is_rejected_cleanly(self):
+        with self.assertRaisesRegex(ValueError, "row must be an object"):
+            adapt_rows([None])
+
     def test_malformed_enum_types_are_rejected_without_crashing(self):
         with self.assertRaisesRegex(ValueError, "rating must be"):
             adapt_rows([firm_row(rating=["correct"])])
