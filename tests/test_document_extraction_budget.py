@@ -20,6 +20,7 @@ class FakePage:
 
 class FakeReader:
     pages = []
+    is_encrypted = False
 
     def __init__(self, stream, strict=True):
         self.pages = self.__class__.pages
@@ -34,6 +35,17 @@ class DocumentExtractionBudgetTests(unittest.TestCase):
                 app.extract("large.pdf", b"fake PDF")
         self.assertEqual(caught.exception.status_code, 413)
         self.assertEqual(calls, ["extracted"])
+
+    def test_encrypted_pdf_is_rejected_before_page_extraction(self):
+        class EncryptedReader(FakeReader):
+            is_encrypted = True
+
+        EncryptedReader.pages = [FakePage("must not be extracted")]
+        with patch("pypdf.PdfReader", EncryptedReader):
+            with self.assertRaises(app.HTTPException) as caught:
+                app.extract("encrypted.pdf", b"encrypted PDF bytes")
+        self.assertEqual(caught.exception.status_code, 422)
+        self.assertIn("encrypted PDFs are not accepted", caught.exception.detail)
 
     def test_pdf_text_at_budget_is_preserved_with_page_marker(self):
         FakeReader.pages = [FakePage("Readable legal text")]
