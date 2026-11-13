@@ -16,6 +16,14 @@ These are review aids, not legal opinions, verified legal texts, or production a
 - Record exact article/paragraph, authoritative source, scope, trigger event, counting method, exceptions and review date.
 - No rule is approved; do not enable automated deadline advice until signed approval is recorded.
 
+## How to use the CSV worksheets (one-page quick guide)
+
+1. Open the CSV in a spreadsheet application and import it as **UTF-8** (UTF-8 with BOM is recommended for Arabic text in Excel). Do not change the stable row IDs or article/rule references.
+2. In `our_text`, confirm the exact candidate/draft wording against the candidate record. In `gazette_text`, transcribe the exact corresponding primary Gazette wording; for deadline rules, use the governing primary instrument text and note that the column is serving as the primary-source text field.
+3. Set `match_mismatch` to `match`, `mismatch`, or `unresolved` only after comparing the wording. If the source text or applicable instrument is unavailable, leave the status pending/unresolved; do not infer a match from article/page metadata.
+4. Use `reviewer_notes` for the exact correction, article/paragraph, printed page, date/trigger, exception, amendment or unresolved issue. Record the reviewer identity and review date in the designated metadata fields where available.
+5. Save/export as **CSV UTF-8**. Preserve all columns, keep quoted commas/newlines valid, and return the reviewed file without changing the original. Never change `verified=0` or mark a deadline rule approved through the worksheet alone.
+
 ## Suggested review effort
 - Initial triage of 311 Gazette rows: approximately 4–6 hours if authorized candidate text and Gazette pages are immediately available.
 - Full legal/currentness review: plan separately; likely 1–2 working days depending on complexity and amendments.
