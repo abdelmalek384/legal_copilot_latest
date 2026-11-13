@@ -255,9 +255,9 @@ _ARABIC_RELATION_PATTERN = re.compile(
     re.IGNORECASE,
 )
 _ENGLISH_RELATION_PATTERN = re.compile(
-    r"(?P<subject>[A-Z][A-Za-z.'-]*(?:\s+[A-Z][A-Za-z.'-]*){0,3})\s+"
+    r"(?P<subject>[A-Z][A-Za-z'-]*(?:\s+[A-Z][A-Za-z'-]*){0,3})\s+"
     r"(?P<relation>represents|represented by|agent for|attorney for|lessor of|lessee of|employer of|employee of|partner of)\s+"
-    r"(?P<object>[A-Z][A-Za-z.'-]*(?:\s+[A-Z][A-Za-z.'-]*){0,3})(?=$|[,.!?;\n])",
+    r"(?P<object>[A-Z][A-Za-z'-]*(?:\s+[A-Z][A-Za-z'-]*){0,3})(?=$|[,.!?;\n])",
     re.IGNORECASE,
 )
 
