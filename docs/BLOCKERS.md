@@ -216,3 +216,9 @@ Percentages distinguish repository implementation from validation and operationa
 
 - PR #1616 merged at `bcdfc516d167a6e8ef342964b124e222433eb572`. Both `tools/validate_legal_release_readiness.py` and `tools/validate_source_permission_register.py` now reject DEL (0x7F) and raw backslashes in HTTPS evidence URLs; focused regression fixtures cover both cases.
 - Static source and diff review only. Tests remain unexecuted under the current pause on test runs. Do not count this as runtime validation or legal-source verification.
+
+
+## Remaining legal evidence URL validator parity — 2026-11-13
+
+- PR #1617 merged at `e7f3fcd781bc7370842f3ce6d55edd2f664da54e`. Acquisition readiness (direct and scope-review evidence), legal source review queue, legal corpus audit, amendment relationship validation, and corpus inventory URL helpers now reject DEL (0x7F) and raw backslashes. Regression fixtures were added for each affected path.
+- Source/diff review only; tests remain unexecuted under the current test-run pause. No runtime pass or legal verification is claimed.
