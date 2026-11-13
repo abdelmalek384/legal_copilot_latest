@@ -2229,7 +2229,7 @@ async function documentsPage(){
     toast(response.status===404?uiText('الملف الأصلي غير متاح أو تم حذفه وفق سياسة الاحتفاظ.','Original file is unavailable or was purged under the retention policy.'):err(problem));
     return;
    }
-   const blob=await response.blob(),url=URL.createObjectURL(blob),link=h('a',{href:url,download:doc.name||'original-document'});
+   const blob=await response.blob(),url=URL.createObjectURL(blob),link=h('a',{href:url,download:String(doc.name||'original-document').replace(/[\\/\\0-\\x1f]/g,'_').slice(0,180)});
    document.body.append(link);link.click();link.remove();window.setTimeout(()=>URL.revokeObjectURL(url),1000);
   }catch(_){toast(uiText('تعذر تنزيل المستند الأصلي.','Could not download the original document.'))}
  };
