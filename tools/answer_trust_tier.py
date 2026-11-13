@@ -92,6 +92,7 @@ def _source_matched_evidence_ready(source: Mapping) -> bool:
         return False
     rights_url = evidence.get("reuse_rights_evidence_url")
     if (not isinstance(rights_url, str) or not rights_url or rights_url != rights_url.strip()
+            or "\\" in rights_url
             or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in rights_url)):
         return False
     try:
