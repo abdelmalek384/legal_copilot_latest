@@ -44,3 +44,8 @@ Each source-status label is accompanied by a plain-language explanation in the U
 Automated tests cover conservative status gates, citation formatting, memo caveats, search-scope separation, metadata-only empty states, matter saving, frontend controls, and highlighting of the actual source-word forms matched by curated Arabic query expansion. CI is the source of truth for test status. Citation validation ignores Markdown fenced/inline code and hidden HTML comments when checking citation indices, per-sentence citations, and numeric claims; a citation shown only inside non-visible content cannot satisfy the prose citation requirement. Manual browser review, screen-reader checks, lawyer validation, and a production security review remain separate requirements.
 
 The corpus remains incomplete. Missing metadata, page numbers, legal text, or written permission are not inferred.
+
+
+### Inspector display contract
+
+The source inspector displays a recorded page pinpoint from either `page_number` or the extracted chunk `page` field, including values nested in provenance. A page pinpoint is display metadata only: reviewer-entered page references and extracted chunk pages are not independently verified against the retained original PDF. The inspector explains each source status at the point of review, including metadata-only and no-relevant-passage states; absence of a returned passage must not be interpreted as proof that no applicable law exists.
