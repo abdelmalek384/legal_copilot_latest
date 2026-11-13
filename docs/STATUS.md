@@ -222,3 +222,11 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - Backend integration tests cover classification persistence/version conflicts, lead-only permissions, cross-matter and cross-firm isolation, audit immutability and retention cascades, metadata/full-text search, and extraction-review isolation. Frontend contract tests cover the new workspace and review behavior.
 - GitHub Actions currently reports failures before logs can be retrieved. The documented runner/billing limitation remains unresolved; no test pass is claimed. Browser QA and clean Python 3.12 suite execution are still required.
 - This integration is rebased onto the current main line; the newer legal-evaluation inventory and Gazette importer changes are retained.
+
+
+## Current-main implementation checkpoint — 2026-11-13 (latest)
+
+- Merged #1576, #1577, #1580, #1581, #1582, #1583, #1584 and #1588. The Legal Research/Document Intelligence redesign is integrated on current main; stale drafts #1564, #1558, #1543 and superseded #1578/#1585/#1587 were closed.
+- #1588 adds service-path regression coverage proving the live ask workflow abstains on an Arabic positive obligation that reverses a cited `لا يلتزم` passage, preserves faithful negative wording, and does not confuse unrelated obligation clauses. The runtime guard was already invoked from `app.ask`; issue #1561 is closed based on code inspection and added coverage.
+- Refreshed `docs/legal_research_document_intelligence.md` to distinguish merged functionality from remaining work: UI/API end-to-end tests, browser RTL/LTR/accessibility acceptance, structured entity/event extraction, and exposing multi-hunk comparison through an API/UI flow.
+- Progress percentages and external acceptance gates are recorded in `docs/BLOCKERS.md`. No test execution is claimed. GitHub Actions billing/runner allocation remains blocked; local repository checkout was also unavailable in this session, so Python 3.12 tests and browser QA remain pending.
