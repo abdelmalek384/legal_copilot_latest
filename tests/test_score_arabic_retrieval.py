@@ -552,7 +552,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
             questions = root / "questions.jsonl"
             runs = root / "runs.jsonl"
             registry = root / "reviewers.json"
-            questions.write_text('{"id":"Q1","review_status":"needs_lawyer_review"}\\n', encoding="utf-8")
+            questions.write_text('{"id":"Q1","review_status":"needs_lawyer_review"}\n', encoding="utf-8")
             runs.write_text("", encoding="utf-8")
             registry.write_text(__import__("json").dumps(TEST_REVIEWER_REGISTRY), encoding="utf-8")
             original = {
@@ -583,7 +583,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
             runs = root / "runs.jsonl"
             registry = root / "reviewers.json"
             alias = root / "questions-alias.json"
-            questions.write_text('{"id":"Q1","review_status":"needs_lawyer_review"}\\n', encoding="utf-8")
+            questions.write_text('{"id":"Q1","review_status":"needs_lawyer_review"}\n', encoding="utf-8")
             runs.write_text("", encoding="utf-8")
             registry.write_text(__import__("json").dumps(TEST_REVIEWER_REGISTRY), encoding="utf-8")
             try:
