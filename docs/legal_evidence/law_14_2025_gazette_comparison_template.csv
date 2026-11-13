@@ -9,7 +9,7 @@ candidate_row_ordinal,law_part,article,our_text,gazette_text,match_mismatch,mach
 8,promulgation,8,,,pending_lawyer_review,major_difference,0.8489,4,yes,Page 4 checked: 30-day employer workforce-data submission period matches the candidate.,,,,,,,0
 9,promulgation,9,,,pending_lawyer_review,minor_difference,0.989,4-5,yes,,,,,,,,0
 10,promulgation,10,,,pending_lawyer_review,minor_difference,0.9979,5,yes,,,,,,,,0
-11,promulgation,11,,,pending_lawyer_review,minor_difference,0.9888,5,yes,Page 5 checked: 90-day period for implementing ministerial decisions matches the candidate. | Page 5 checked: 90-day period for implementing ministerial decisions matches the candidate.,,,,,,,0
+11,promulgation,11,,,pending_lawyer_review,minor_difference,0.9888,5,yes,Page 5 checked: 90-day period for implementing ministerial decisions matches the candidate.,,,,,,,0
 12,promulgation,12,,,pending_lawyer_review,minor_difference,0.9845,5,yes,,,,,,,,0
 13,promulgation,13,,,pending_lawyer_review,major_difference,0.9514,5-6,yes,Pages 5-6 checked: 90-day commencement rule and 1 October specialized-court start match the candidate wording.,,,,,,,0
 14,labour_law,1,,,pending_lawyer_review,minor_difference,0.9873,6-11,yes,Pages 6-11 reviewed for the quantitative cue: the definition of occasional work sets a six-month maximum; candidate cue matches.,,,,,,,0
