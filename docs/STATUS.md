@@ -255,5 +255,5 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 
 - Added bounded bilingual structured extraction for labelled entities, literal case/legal references, amounts and date mentions; sentence-scoped event triggers with same-sentence date/party mentions; and explicit Arabic/English relationship phrases.
 - Integrated the results into the matter-authorized document-chunk endpoint and Legal Research UI, preserving document ID, chunk ID/reference, page and character offsets where available. Each item remains an unverified candidate.
-- Helper, separate-database API and frontend contract tests were added but not executed. Branch `feature/structured-document-events-relationships-20261113`; PR/merge pending.
+- Helper, separate-database API and frontend contract tests were added but not executed. PR #1594 merged at `600dea925d95f8bccdec79dad9157a4aec78a1e0`.
 - This is not general named-entity recognition, cross-document entity resolution, proof of event occurrence, or legal analysis. Scanned-image OCR remains outside this feature.
