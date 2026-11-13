@@ -26,6 +26,10 @@ class ReviewEvidenceUrlValidationTests(unittest.TestCase):
             " https://example.gov/evidence",
             "https://example.gov/evidence ",
             "https://example.gov/path with spaces",
+            "https://example.gov/path\\x7fnext",
+            "https://example.gov/path\\\\next",
+            "https://example.gov/evidence?token=secret",
+            "https://example.gov/evidence#private",
             "https://example.gov/path\nnext",
         ):
             with self.subTest(value=value), self.assertRaises(HTTPException):
