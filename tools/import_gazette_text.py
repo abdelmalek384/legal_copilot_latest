@@ -161,9 +161,6 @@ def _validate_metadata(meta: object, text_bytes: bytes) -> dict:
         value = meta.get(field)
         if isinstance(value, str) and any(ord(char) < 32 or ord(char) == 127 for char in value):
             raise ValueError(f"{field} must not contain control characters")
-    if "source_reference" in meta and (
-            not isinstance(meta["source_reference"], str) or not meta["source_reference"].strip()):
-        raise ValueError("source_reference must be a non-empty string when supplied")
     if not isinstance(meta.get("supplier_role"), str) or meta["supplier_role"] not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
         raise ValueError("supplier_role must identify an Egyptian lawyer or qualified counsel")
     if not isinstance(meta["capture_method"], str) or meta["capture_method"] not in {"lawyer_supplied_text", "manual_transcription"}:
