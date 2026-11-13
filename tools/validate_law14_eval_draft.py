@@ -89,7 +89,7 @@ def validate_rows(rows: list[dict[str, Any]], minimum_questions: int = 100) -> d
             if normalized in question_texts:
                 errors.append(f"{label}: duplicate Arabic question text")
             question_texts.add(normalized)
-            if not re.search(r"[\\u0600-\\u06FF]", normalized):
+            if not re.search(r"[\u0600-\u06FF]", normalized):
                 errors.append(f"{label}: question_ar must contain Arabic text")
 
         style = row.get("question_style")
