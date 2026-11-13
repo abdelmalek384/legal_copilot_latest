@@ -27,6 +27,7 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 - The answer-rating contract is now integrated: firm-local submit/update/read handlers, admin-only listing/export, append-only events, bilingual per-answer UI, trust-tier fallback badge, and focused backend/frontend tests are committed on `main`. Execution is pending.
 - Added encrypted-PDF rejection and parser-level tests for encrypted files and the 500-page ceiling. End-to-end multipart upload abuse, malformed file route behavior, OCR timeout/concurrency, and storage-stage failure tests remain open.
+- Added an import-to-invoice-export CSV formula-injection regression covering formula-like case titles and client names. The import remains data-only; export neutralizes spreadsheet formula prefixes. Test execution remains pending.
 - Added a case-scoped retrieved-passage/provenance prompt-injection regression. Actual uploaded/OCR-derived chunk and filename/metadata attack-path coverage remains open.
 - Clean-clone first-login and rating export steps are in the test-firm runbook. No clean-clone rehearsal has been executed.
 - The security regression script now includes rating-route and frontend contract modules and exits if Python is not 3.12. It has not been run.
