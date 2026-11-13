@@ -271,3 +271,9 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - The endpoint and UI retain member-level document/chunk/page provenance and record an audit event. Same-firm nonmembers are denied by the matter authorization gate.
 - Results are possible repeated mentions, not identity resolution or proof of legal relationships. Helper, API, authorization and frontend tests were added but not executed.
 - PR #1598 merged at `5d4b9516cfdebe13d5c99053a50145e968e39ea0`.
+
+## Report-path evidence protection — 2026-11-13
+
+- PR #1593 merged at `6f3550183c79164c7ec72a5eaa0a40dad17b4ab1`: scorer, production release gate and legal readiness reports reject direct/symlink/hard-link aliases to protected evidence inputs.
+- PR #1599 merged at `0637d89359b2ecb611cd816ece42ea564d755e2b`: shared fail-closed path guard protects legal-source review, corpus inventory, acquisition readiness, amendment relationships and Arabic OCR report outputs. Symlink resolution loops fail closed.
+- Regression tests were added but not executed. No runtime pass is claimed.
