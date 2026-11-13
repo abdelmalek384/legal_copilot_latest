@@ -152,3 +152,11 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 - Legacy mode and purged/missing originals are not represented as downloadable. No document URL or retention status is inferred in the browser.
 - Added separate-runtime regression assertions for result provenance and frontend contracts for the guarded download and OCR notice.
 - This is traceability for user-supplied matter evidence, not independent legal-source verification.
+
+
+### 2026-11-13 — exact research passage hand-off
+
+- Refined the source-inspector action from matter-level navigation to document-and-chunk navigation when the retrieval result supplies those identifiers.
+- The matter workspace opens the matching document's existing extracted-text review panel and focuses/scrolls to the exact chunk card. The one-shot target is cleared after lookup; if the chunk is absent from the loaded extraction, a visible status explains that it could not be located.
+- When a chunk ID is unavailable, the action remains a matter Documents hand-off and does not claim an exact passage location.
+- Added a frontend regression contract for the target identity, automatic review-panel opening, focus/scroll behavior, and missing-passage fallback. This contract is written but not executed because GitHub Actions is blocked by the reported billing issue.
