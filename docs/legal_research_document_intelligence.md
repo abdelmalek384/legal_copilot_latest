@@ -45,7 +45,7 @@ The application already accepts bounded PDF and DOCX uploads, extracts PDF text 
 
 ### Remaining repository work
 
-1. Surface the existing bounded multi-hunk text-comparison helper in a provenance-aware API/UI workflow for comparing reviewed document versions. Keep each hunk literal and label every change as requiring lawyer review.
+1. Merged in PR #1591: expose the existing bounded multi-hunk comparison in the authorized chunk API and extraction-review UI. Each literal before/after hunk is marked as requiring lawyer review; oversized comparisons return an explicit warning.
 2. Extend structured extraction beyond current literal keyword/regex candidates for entities, events and relationships; retain source chunk/page provenance and human-review state.
 3. Evaluate Arabic/English PDF and DOCX fixtures, including scanned PDFs, malformed documents, large files, duplicate documents and mixed-language content. OCR remains disabled in this helper foundation.
 4. Add end-to-end tests for upload, download, classification concurrency/role enforcement, extraction review, search pagination, firm switching and cross-firm denial.
