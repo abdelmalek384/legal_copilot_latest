@@ -1360,5 +1360,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("window.DOCUMENT_REVIEW_TARGET=null", HTML)
         self.assertIn("The requested passage was not found in the loaded text.", HTML)
 
+    def test_new_research_navigation_arabic_labels_are_in_native_review_catalog(self):
+        catalog = json.loads((ROOT / "static" / "ar-ui-review.json").read_text(encoding="utf-8"))
+        self.assertEqual(catalog["entry_count"], len(catalog["entries"]))
+        self.assertEqual(len({entry["arabic"] for entry in catalog["entries"]}), len(catalog["entries"]))
+        entries = {entry["arabic"]: entry for entry in catalog["entries"]}
+        for literal in ("فتح المستند والمقطع", "تعذر العثور على المقطع المحدد ضمن النصوص المحملة. قد يكون قد تغير أو لم يعد متاحاً."):
+            self.assertIn(literal, entries)
+            self.assertEqual(entries[literal]["review_status"], "pending_native_review")
+
 if __name__ == "__main__":
     unittest.main()
