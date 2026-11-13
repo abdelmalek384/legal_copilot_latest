@@ -14,6 +14,12 @@ import unicodedata
 from collections import defaultdict
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools.output_path_safety import ensure_output_paths_safe
+
 MAX_EDIT_CELLS = 4_000_000
 DIGITS = str.maketrans("٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹", "01234567890123456789")
 DIACRITICS = re.compile(r"[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]")
@@ -229,8 +235,11 @@ def main(argv=None):
     input_path = Path(args.input).expanduser()
     output_path = Path(args.out).expanduser() if args.out else None
     try:
-        if output_path is not None and input_path.resolve() == output_path.resolve():
-            raise OCREvaluationError("--out must not overwrite the input JSONL file")
+        if output_path is not None:
+            try:
+                ensure_output_paths_safe([output_path], [input_path])
+            except ValueError as exc:
+                raise OCREvaluationError(str(exc)) from exc
         report = evaluate(read_jsonl(input_path))
         rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
         if output_path is not None:
