@@ -44,6 +44,24 @@ python tools/validate_answer_ratings.py path/to/answer-ratings.csv
 
 It accepts UTF-8 with or without BOM, requires the exact header/order, validates required fields and enum values, and rejects timestamps without an explicit timezone. It does not authenticate raters, authorize a trust-tier change, or verify legal correctness. Its regression tests are in `tests/test_validate_answer_ratings.py` (not yet executed).
 
+## Mapping from the firm answer-rating export
+
+The firm-facing export described in `docs/answer_rating_export_contract.md` is a richer, firm-local export. It is not byte-for-byte the seven-column interchange CSV above. An adapter must create the canonical rating CSV without inventing or collapsing reviewer judgments.
+
+| Canonical field | Firm export source / rule |
+|---|---|
+| `answer_id` | Copy `answer_id` unchanged. |
+| `answer_rating` | Map `rating=correct` to `correct`, `partially_correct` to `partial`, and `wrong` to `wrong`. |
+| `cited_article_rating` | Copy `cited_article_accuracy=right` or `wrong`. A value of `not_applicable` cannot be coerced to either value; exclude that row from this seven-column interchange until a reviewer supplies a right/wrong judgment, or use a separately versioned contract that explicitly permits not-applicable. |
+| `notes` | Copy the reviewer's notes subject to the existing privacy and export controls. |
+| `rater` | Use the stable opaque reviewer identifier represented by `rated_by`; do not substitute an email address or display name. |
+| `timestamp` | Use `updated_at` for the current saved rating, serialized as ISO 8601 with an explicit timezone (UTC recommended). |
+| `trust_tier` | Must be added to the firm export from the exact assistant message's saved trust metadata at answer time. Do not infer it from the source's current status. Map `source_matched` to `source_matched`, `verified` to `verified`, and `unreviewed`, missing, or unknown values to `unverified`. |
+
+The firm export's `expected_article_ids`, `answerable`, `cited_article_ids`, `benchmark_ready`, question, and answer remain useful benchmark context, but they are not columns in this minimal rating interchange. Preserve them in the richer firm export; do not discard them from the source record.
+
+**Integration gap to close in AI-2:** the current firm export column list does not include `trust_tier`. Until that field is exported from message-time metadata and the adapter above is implemented, the firm CSV is not yet a complete instance of this canonical contract. The contract itself is stable; do not silently omit the trust tier.
+
 ## Rating guidance
 
 - **correct:** materially answers the question accurately, with the necessary qualifications and support.
