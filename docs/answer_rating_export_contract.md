@@ -1,6 +1,6 @@
 # Lawyer answer-rating and benchmark export contract
 
-**Status:** backend schema contract committed; API handlers, authorization tests, and export implementation are not yet delivered. This document is the handoff contract for the UI and the remaining backend work.
+**Status (2026-11-14):** firm-local schema, submit/update/read handlers, admin listing, CSV export, and bilingual Legal Research rating controls are implemented on `main`. Focused route tests have been added. They have not been executed in this environment because GitHub Actions billing blocks hosted runners and no local checkout is available. Treat the feature as implemented but not runtime-verified.
 
 ## Purpose and boundaries
 
@@ -96,7 +96,7 @@ Suggested response:
 - Keep all labels provisional until the designated Egyptian lawyer/reviewer role approves them under the project's benchmark review policy. Export must preserve reviewer identity and timestamps for traceability.
 - The 110 curated candidate questions remain excluded from scoring. Ratings on real firm-test questions must have the required privacy/consent basis before any cross-firm aggregation or external reuse.
 
-## Acceptance tests still required
+## Implementation notes\n\n- `PUT /research/answers/{answer_id}/rating` derives the reviewer from the authenticated principal, resolves the opaque answer ID only inside the active firm's database, and updates the reviewer's existing rating for that exact assistant message.\n- `GET /research/answers/{answer_id}/rating` returns only the current reviewer's saved rating.\n- `GET /research/answer-ratings` and `GET /research/answer-ratings/export.csv` are firm-admin-only. The CSV is UTF-8 with BOM, uses spreadsheet-formula neutralization, records count-only audit metadata, and does not log row contents.\n- The Legal Research answer panel supports save/update in Arabic and English. Firm administrators can list saved ratings and download the CSV. Trust-tier badges remain displayed by the existing answer renderer.\n- `tests/test_answer_rating_routes.py` covers create/update uniqueness, append-only events, cross-firm denial, listing, CSV quoting/formula safety, and export isolation.\n\n## Acceptance tests still required
 
 1. Fresh firm migration and upgrade migration include tables, indexes, checks and immutable event triggers.
 2. Create/update rating; enforce one rating per reviewer per answer; verify event append-only behavior.
