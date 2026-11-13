@@ -9,7 +9,6 @@ from __future__ import annotations
 import argparse
 import csv
 import json
-import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -90,7 +89,7 @@ def adapt_rows(rows: list[dict[str, str]]) -> tuple[list[dict[str, str]], list[s
         })
 
     validation = validate_rows(adapted)
-    if not validation["valid_rows"] == len(adapted) or validation["invalid_rows"]:
+    if validation["valid_rows"] != len(adapted) or validation["invalid_rows"]:
         raise ValueError("adapted rows failed the canonical answer-rating contract: " +
                          json.dumps(validation["errors"], ensure_ascii=False))
     return adapted, skipped_not_applicable
