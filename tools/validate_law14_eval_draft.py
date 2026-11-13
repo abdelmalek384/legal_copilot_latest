@@ -90,7 +90,7 @@ def validate_rows(rows: list[dict[str, Any]], minimum_questions: int = 100) -> d
             question_texts.add(normalized)
 
         style = row.get("question_style")
-        if style not in {"formal", "colloquial_egyptian"}:
+        if not isinstance(style, str) or style not in {"formal", "colloquial_egyptian"}:
             errors.append(f"{label}: question_style must be formal or colloquial_egyptian")
         else:
             styles[style] += 1
