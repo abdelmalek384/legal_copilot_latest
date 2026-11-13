@@ -1701,11 +1701,10 @@ async function firstRunPage(){
   )
  );
 }
-async function dash(){PAGE='dash';const [d,cs,finance,setup]=await Promise.all([api('/dashboard'),api('/cases'),api('/finance/overview'),ME.role==='admin'&&Array.isArray(ME.firms)?api('/setup/first-run').catch(()=>null):Promise.resolve(null)]);sendLocalReminderSummary(d);startLocalReminderPolling();
+async function dash(){PAGE='dash';const [d,cs,setup]=await Promise.all([api('/dashboard'),api('/cases'),ME.role==='admin'&&Array.isArray(ME.firms)?api('/setup/first-run').catch(()=>null):Promise.resolve(null)]);sendLocalReminderSummary(d);startLocalReminderPolling();
  const active=cs.filter(c=>c.status==='open'),overdueTasks=d.tasks.filter(t=>t.due&&t.due<today).length;
  const overdueDeadlines=(d.deadlines||[]).filter(x=>x.due&&x.due<today);
  const st=(n,l,sub,kind='')=>h('div',{className:'card stat'},h('b',{textContent:n,style:kind==='bad'?'color:var(--bad)':kind==='good'?'color:var(--ok)':''}),h('span',{textContent:l}),sub?h('div',{className:'mut',textContent:sub}):null);
- const action=(title,desc,fn)=>h('button',{type:'button',className:'quick-link',onclick:fn},h('b',{textContent:title}),h('span',{textContent:desc}));
  const listItem=(title,meta,right)=>h('div',{className:'workspace-list-item'},h('div',{className:'item-main'},h('b',{textContent:title}),h('div',{className:'item-meta',textContent:meta||''})),right);
  const setupCard=setup&&setup.completed<setup.total?h('section',{className:'card setup-start-card'},
   h('div',{className:'row'},h('b',{textContent:uiText('أكمل إعداد المكتب','Complete firm setup')}),
