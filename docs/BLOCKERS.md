@@ -99,6 +99,11 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - `tools/seed_legal_candidates.py` now validates candidate and canonical permission-register `source_page` URLs plus optional terms, official-PDF and secondary-metadata URLs as clean HTTPS URLs, rejecting credentials, malformed ports, controls and raw backslashes before comparing hosts. Regression fixtures cover HTTP, embedded credentials, malformed authorities and backslashes.
 - Direct-main commits: `27976cf`, `9fc0f19`, `279b761`, `54d31f8`, `66b2e6b`, `d0dafda`, `2b89b06`, `6913a76`, `a5874d7`, `b99d549`. Tests remain unexecuted.
 
+## Gazette importer runbook execution reliability — 2026-11-14
+
+- The documented direct command `python tools/import_gazette_text.py ...` previously depended on repository-root `PYTHONPATH` for its shared numeric-heading parser import. Added a direct-execution fallback and changed the CLI regression to remove `PYTHONPATH` from the subprocess environment.
+- This closes a repository-side invocation defect only; it does not run the importer on the restricted Gazette scan or authorize any transcription. Direct-main commits: `7bc24e3`, `3750f4c`. Tests remain unexecuted.
+
 ## Law 14/2025 evaluation-draft structural guard — 2026-11-14
 
 - Added `tools/validate_law14_eval_draft.py` and `tests/test_validate_law14_eval_draft.py`. The validator checks JSONL shape, >=100 questions, formal/colloquial coverage, unique IDs and question text, expected article-number/ID consistency, and fail-closed unapproved/reviewer/release fields.
