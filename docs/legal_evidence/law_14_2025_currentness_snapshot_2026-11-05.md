@@ -36,3 +36,26 @@ The following are related implementing/operational instruments, **not amendments
 ## 4. Release restriction
 
 The Law 14/2025 comparison remains **source-matched, not lawyer-reviewed**. This snapshot does not change `lawyer_reviewed=false`, `authoritative=false`, or `retrieval_eligible=false`. Do not serve legal answers from this record as an authoritative or current consolidated text until source/currentness review and qualified Egyptian lawyer approval are complete.
+
+
+## 4. Update — 2026-11-13: Ministerial Decisions 248–252/2026
+
+A new official Gazette metadata record was located for **الوقائع المصرية - ملحق الجريدة الرسمية العدد 225 تابع (أ)**. The Amiri Press/IDSC record identifies the Ministry of Labour as contributor, the Amiri Press as publisher, and the issue date as **2026-10-12**. Its description lists five decisions:
+
+| Decision | Subject as described in the official catalogue |
+|---|---|
+| 248/2026 | Forms/statistics for ordinary, chronic and occupational diseases, serious accidents and work injuries |
+| 249/2026 | Establishments/branches required to establish occupational-safety and health units and committees |
+| 250/2026 | Workplace safety rules, standards, safety limits and risk-prevention precautions |
+| 251/2026 | Conditions/procedures for licensing occupational-safety and health expertise and consultancy |
+| 252/2026 | Licensing rules and training systems in occupational safety and health |
+
+The [Ministry of Labour announcement dated 2026-10-20](https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يصدر-5-قرارات-تنفيذية-لتعزيز-منظومة-السلامة-والصحة-المهنية-وتأمين-بيئة-العمل/) confirms that the Minister issued Decisions 248–252/2026 as executive decisions implementing Law 14/2025 in the occupational-safety and health area. This is official discovery evidence for their existence and broad subject matter, not the operative text of the decisions.
+
+**Access limitation:** the [official Gazette metadata record](https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full) lists an original 6.13 MB PDF, but its file download opens a request-a-copy page and identifies all files for the item as restricted access. The PDF and its item-specific license file were not obtained or reviewed. No request was submitted. Accordingly, exact operative wording, page ranges, effective dates, transitional clauses and source-use permissions remain unknown.
+
+The Ministry published a further [clarification on Decision 249 dated 2026-10-27](https://www.labour.gov.eg/ar/الأخبار/بيان-توضيحي-هام-بشأن-القرار-الوزاري-رقم-249-لسنة-2026-الخاص-بالسلامة-والصحة-المهنية-وزارة-العمل-لن-ي-ضار-أي-عامل-يعمل-بمهنة-أخصائي-السلامة-والصحة-المهنية-ولا-مساس-بالمراكز-القانونية-المكتسبة-وأهمية-المهنة-تستوجب-منتهى-الدقة-في-اختيار-شاغليها/). The notice says the Ministry intends to preserve current workers' acquired legal positions and qualifications/experience while clarifying professional classification and implementation. Treat this as an official explanatory notice, not a substitute for the signed decision or any later circulars.
+
+**Classification:** the Ministry describes Decisions 248–252 as executive decisions under Law 14/2025. They are tracked as related implementing instruments, not as amendments to the parent statute. Their precise legal relationship and operative effects are not confirmed until the full texts are reviewed. Metadata-only records were added to `data/candidates/labour_law_14_2025/related_instruments_candidates.json`; all five remain pending, permission-unknown and not retrieval-eligible.
+
+**Next dependency:** obtain the complete issue 225 supplement A PDF through a route the user is authorized to use, or provide a lawfully obtained copy for metadata/hash and page-level review. Until then, do not extract or infer operative rules from titles, summaries or third-party reproductions, and do not create searchable chunks or verified status.
