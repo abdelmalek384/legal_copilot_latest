@@ -3481,7 +3481,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         text = (
             "[[PDF_PAGE:9]]\nحكم المحكمة في الدعوى رقم ١٢٣/٢٠٢٥ بتاريخ ١٥/٠٣/٢٠٢٥. "
             "المدعي: طرف تجريبي. المبلغ ٥٠٠٠ جنيه. المادة ١٠١ من القانون رقم ١٢ لسنة ٢٠٢٠. "
-            "تحددت جلسة الدعوى."
+            "طرف تجريبي وكيل عن شركة تجريبية، وتحددت جلسة الدعوى بتاريخ 16/03/2025."
         )
         uploaded = self._mutate(
             "post", f"/cases/{case_id}/docs",
@@ -3511,6 +3511,30 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertTrue(any(str(candidate["page"]) == "9" for candidate in intelligence["candidates"]))
         self.assertLessEqual(intelligence["candidate_count"], 250)
         self.assertTrue(intelligence["requires_review"])
+        structured = intelligence["structured"]
+        self.assertTrue(structured["requires_review"])
+        self.assertTrue(any(
+            entity["entity_type"] == "labelled_party"
+            and entity["document_id"] == document_id
+            and entity["chunk_id"]
+            and entity["page"] == 9
+            for entity in structured["entities"]
+        ))
+        self.assertTrue(any(
+            event["trigger"] == "جلسة"
+            and "16/03/2025" in event["date_mentions"]
+            and event["document_id"] == document_id
+            and event["page"] == 9
+            for event in structured["events"]
+        ))
+        self.assertTrue(any(
+            relation["relation_mention"] == "وكيل عن"
+            and relation["subject_mention"] == "طرف تجريبي"
+            and relation["object_mention"] == "شركة تجريبية"
+            and relation["document_id"] == document_id
+            and relation["page"] == 9
+            for relation in structured["relationships"]
+        ))
 
     def test_document_version_comparison_is_matter_scoped_and_keeps_chunk_provenance(self):
         login = self.client.post(
