@@ -118,4 +118,4 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 - This closes a display gap: source cards already showed `s.page`, while the inspector previously looked only for `page_number`, so a page reference supplied by document-chunk retrieval could disappear when the user opened source details.
 - Updated the regression contract to cover the canonical `page` fallback. Page references remain recorded extraction metadata; they are not independently verified against the retained original PDF.
 
-- When a page pinpoint is shown, the inspector now warns in Arabic and English that the recorded page reference has not been independently checked against the original file. The new Arabic literal is registered as `AR-1439` and remains pending native review.
+- For firm-document results only, a recorded page pinpoint now carries an Arabic/English warning that it has not been independently checked against the original file. Verified-corpus results retain their separate provenance and review gates. The Arabic literal is registered as `AR-1439` and remains pending native review.
