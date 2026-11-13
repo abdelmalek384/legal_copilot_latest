@@ -3192,11 +3192,15 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
    const chunkCount=Array.isArray(data.chunks)?data.chunks.length:0;
    container.append(h('p',{className:'visually-hidden',role:'status','aria-live':'polite','aria-atomic':'true',textContent:chunkCount?uiText('تم تحميل '+chunkCount+' مقطعاً للمراجعة','Loaded '+chunkCount+' text chunks for review'):uiText('لا توجد مقاطع نصية قابلة للمراجعة','No text chunks are available for review')}));
    container.append(h('div',{className:'mut',textContent:data.warning||''}));
+   const reviewDoc=(c.docs||[]).find(doc=>Number(doc.document_id)===Number(data.document_id));
+   if(reviewDoc&&(reviewDoc.ocr_used===true||reviewDoc.ocr_used===1||reviewDoc.extraction_status==='ocr_unverified'))container.append(h('p',{className:'notice warning',role:'note',textContent:uiText('تم استخراج هذا المستند باستخدام OCR؛ قارن كل مقطع بالصفحة الأصلية قبل الاعتماد عليه.','OCR was used for this document; compare each passage with the original page before relying on it.')}));
+   if(reviewDoc&&reviewDoc.extraction_status==='partial_text_ocr_unavailable')container.append(h('p',{className:'notice warning',role:'note',textContent:uiText('تعذر استخراج النص من بعض الصفحات؛ قد تكون المقاطع المعروضة غير مكتملة. راجع المستند الأصلي.','Text extraction was unavailable for some pages; the displayed passages may be incomplete. Check the original document.')}));
    if(!chunkCount){container.append(empty(uiText('لا توجد مقاطع نصية قابلة للمراجعة','No text chunks are available for review')));return}
    data.chunks.forEach((chunk,index)=>{
     const card=h('article',{className:'card extraction-review-card',id:'doc-chunk-review-'+id+'-'+data.document_id+'-'+chunk.id,tabIndex:-1});
     card.append(h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+(chunk.ref||(uiText('مقطع ','Chunk ')+chunk.id))}),pill(chunk.latest_review?statusText(chunk.latest_review.outcome):uiText('بانتظار المراجعة','Pending review'),chunk.latest_review&&chunk.latest_review.outcome!=='needs_recheck'?'done':'soon')));
-    if(chunk.page)card.append(h('p',{className:'mut',textContent:uiText('رقم الصفحة المستخرج: ','Extracted page number: ')+chunk.page+' — '+uiText('ليس تحققاً مستقلاً من الأصل','not independently verified against the original')}));
+    const extractedPage=chunk.page??chunk.page_number;
+    if(extractedPage!==undefined&&extractedPage!==null&&extractedPage!=='')card.append(h('p',{className:'mut',textContent:uiText('رقم الصفحة المستخرج: ','Extracted page number: ')+extractedPage+' — '+uiText('ليس تحققاً مستقلاً من الأصل','not independently verified against the original')}));
     const original=h('textarea',{value:chunk.text||'',rows:5,style:'width:100%;direction:rtl',readOnly:true,'aria-label':uiText('النص المستخرج الأصلي','Original extracted text')});
     card.append(h('label',{},h('span',{className:'mut',textContent:uiText('النص المستخرج — للقراءة فقط','Extracted text — read only')}),original));
     const corrected=h('textarea',{value:chunk.text||'',rows:5,style:'width:100%;direction:rtl',maxLength:20000,'aria-label':uiText('النص المصحح','Corrected text')});
