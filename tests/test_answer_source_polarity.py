@@ -118,5 +118,52 @@ class AnswerSourcePolarityTests(unittest.TestCase):
         self.assertFalse(result["abstained"])
 
 
+    def test_ask_abstains_on_arabic_negated_obligation_reversal(self):
+        hit = {
+            "cos": 1.0, "score": 1, "ref": "SYNTHETIC-ARABIC-OBLIGATION",
+            "text": "لا يلتزم صاحب العمل بتقديم الإخطار.",
+            "verified": True, "in_force": True, "applies_as_of": True,
+            "case_id": None, "source_status": app.STATUS_VERIFIED, "provenance": {},
+        }
+        with patch.dict("os.environ", {"LEGAL_CLAIM_SUPPORT_CHECK": ""}):
+            with patch.object(app, "search", return_value=[hit]), patch.object(
+                app, "LLM", return_value="يلتزم صاحب العمل بتقديم الإخطار [1]."
+            ), patch.object(app, "_answer_has_source_polarity_conflict", return_value=False):
+                result = app.ask(None, "هل يلتزم صاحب العمل بتقديم الإخطار؟", scope="verified_corpus")
+        self.assertIsNone(result["answer"])
+        self.assertTrue(result["abstained"])
+        self.assertIn("التزاماً أو حظراً صريحاً", result["message"])
+
+    def test_ask_preserves_faithful_arabic_negated_obligation(self):
+        hit = {
+            "cos": 1.0, "score": 1, "ref": "SYNTHETIC-ARABIC-OBLIGATION",
+            "text": "لا يلتزم صاحب العمل بتقديم الإخطار.",
+            "verified": True, "in_force": True, "applies_as_of": True,
+            "case_id": None, "source_status": app.STATUS_VERIFIED, "provenance": {},
+        }
+        with patch.dict("os.environ", {"LEGAL_CLAIM_SUPPORT_CHECK": ""}):
+            with patch.object(app, "search", return_value=[hit]), patch.object(
+                app, "LLM", return_value="لا يلتزم صاحب العمل بتقديم الإخطار [1]."
+            ), patch.object(app, "_answer_has_source_polarity_conflict", return_value=False):
+                result = app.ask(None, "ما الالتزام بشأن الإخطار؟", scope="verified_corpus")
+        self.assertEqual(result["answer"], "لا يلتزم صاحب العمل بتقديم الإخطار [1].")
+        self.assertFalse(result["abstained"])
+
+    def test_ask_does_not_mix_unrelated_arabic_obligation_clauses(self):
+        hit = {
+            "cos": 1.0, "score": 1, "ref": "SYNTHETIC-UNRELATED-OBLIGATIONS",
+            "text": "لا يلتزم صاحب العمل بتقديم الإخطار. ويجب على العامل تقديم الطلب.",
+            "verified": True, "in_force": True, "applies_as_of": True,
+            "case_id": None, "source_status": app.STATUS_VERIFIED, "provenance": {},
+        }
+        with patch.dict("os.environ", {"LEGAL_CLAIM_SUPPORT_CHECK": ""}):
+            with patch.object(app, "search", return_value=[hit]), patch.object(
+                app, "LLM", return_value="يجب على العامل تقديم الطلب [1]."
+            ), patch.object(app, "_answer_has_source_polarity_conflict", return_value=False):
+                result = app.ask(None, "ما الذي يجب على العامل فعله؟", scope="verified_corpus")
+        self.assertEqual(result["answer"], "يجب على العامل تقديم الطلب [1].")
+        self.assertFalse(result["abstained"])
+
+
 if __name__ == "__main__":
     unittest.main()
