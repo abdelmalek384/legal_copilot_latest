@@ -88,3 +88,6 @@ Pending matter/chunk navigation state is cleared when the active firm changes, i
 
 
 Each per-document extracted-text review panel is now a named accessible region and remains connected to its disclosure control with `aria-controls`. This improves navigation between document review areas for screen-reader users.
+
+
+The extracted-text review disclosure now sets `aria-busy` while its chunks are loading and clears the state on success, failure, or close. This gives assistive technology a reliable loading-state signal without changing the review workflow.
