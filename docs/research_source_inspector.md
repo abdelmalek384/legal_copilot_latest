@@ -71,3 +71,8 @@ The matter Documents review list receives an `original_available` field from the
 ### OCR and incomplete-page review cautions
 
 The matter-level extracted-text review now repeats an explicit OCR warning when the document metadata records OCR use (or the OCR-unverified extraction state). For partial extraction where OCR is unavailable on some pages, the panel warns that displayed passages may be incomplete and directs the reviewer to the original. Page labels accept either `page` or `page_number` and remain explicitly provisional until checked against the source page. These warnings do not certify OCR accuracy or completeness.
+
+
+### Cross-matter text-search hand-off
+
+Cross-matter extracted-text search results already return case, document, and chunk IDs within the caller's authorized matter scope. When all three identifiers are valid, the result action now uses the same exact document/chunk review hand-off as the Legal Research source inspector. If the result lacks a chunk ID, it retains the prior matter-level Documents hand-off instead of inventing a passage location. Search results remain unverified extracted-text matches and are not legal conclusions.
