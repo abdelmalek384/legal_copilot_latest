@@ -2979,6 +2979,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(matter_hit["document_sha256"], uploaded.json()["sha256"])
         self.assertFalse(matter_hit["document_ocr_used"])
         self.assertIn("document_original_available", matter_hit)
+        self.assertFalse(matter_hit["document_original_available"])
 
         # The legal corpus is central and shared; matter content is not.
         corpus = self.runtime.legal_corpus_connection()
