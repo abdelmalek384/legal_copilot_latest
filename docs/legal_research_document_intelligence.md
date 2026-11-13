@@ -115,7 +115,7 @@ A passing unit suite validates helper behavior only; it does not validate the ne
 
 ## Structured monetary amount candidates — 2026-11-13 (branch pending merge)
 
-- Extended amount matching to grouped thousands and decimal forms using Arabic-Indic or Western digits, including Arabic separators.
+- Extended amount matching to grouped thousands and decimal forms using Arabic-Indic or Western digits, including Arabic separators and unambiguous Western grouping such as 1,000.50. Ambiguous comma-decimal forms are not partially matched.
 - Structured amount records retain the literal mention and may expose a canonical decimal numeric string. Currency codes are assigned only for explicit labels/codes such as جنيه/EGP, دولار/USD, ريال سعودي/SAR, درهم إماراتي/AED and دينار كويتي/KWD.
 - Bare currency labels such as ريال, درهم or دينار remain currency-ambiguous; no exchange-rate conversion, currency inference or legal valuation is performed.
 - Added helper, separate-database API and frontend contract regressions. Tests remain unexecuted; branch `feature/structured-amount-candidates-20261113` is pending merge.
