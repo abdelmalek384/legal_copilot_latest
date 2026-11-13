@@ -13470,7 +13470,7 @@
       "arabic": "تعذر العثور على المقطع المحدد ضمن النصوص المحملة. قد يكون قد تغير أو لم يعد متاحاً.",
       "source_file": "static/index.html",
       "source_lines": [
-        3235
+        3239
       ],
       "review_status": "pending_native_review"
     },
@@ -13479,7 +13479,7 @@
       "arabic": "المستند المرتبط بهذا المصدر غير موجود ضمن مستندات ملف القضية المتاحة.",
       "source_file": "static/index.html",
       "source_lines": [
-        3261
+        3265
       ],
       "review_status": "pending_native_review"
     },
@@ -13488,7 +13488,7 @@
       "arabic": "لا توجد نسخة أصلية محفوظة في التخزين الخاص لهذا المستند.",
       "source_file": "static/index.html",
       "source_lines": [
-        3252
+        3256
       ],
       "review_status": "pending_native_review"
     },
