@@ -322,4 +322,4 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 
 - Legal-reference candidates now recognize English Section/Subsection/Paragraph/Clause/Chapter/Act/Law/Regulation/Decree/Code/Rule labels in addition to Article and Arabic forms.
 - Matches remain unverified literals and are not checked against official statute databases. Added helper regression coverage; tests remain unexecuted.
-- Branch `feature/english-legal-reference-extraction-20261113`; merge pending.
+- PR #1608 merged at `113fdf84f6085d2dcb96e203cdedd5100ccaf83f`.
