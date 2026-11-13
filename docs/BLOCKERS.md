@@ -132,7 +132,7 @@ All of these merges are source-reviewed code integration only. Their tests remai
 | Live Arabic/English negated-obligation guard | Runtime call site confirmed; Arabic service-path tests merged (#1588) | Tests not run | 85% |
 | Structured candidate extraction (labelled entities, event mentions and explicit relationships) | 100% merged (#1594) | Helper/API tests and browser acceptance not run; limited deterministic rules, not general NER | 60% |
 | Matter-wide date/event mention timeline | 100% merged (#1596) | API/browser acceptance and tenant-scope runtime checks not run | 80% |
-| Cross-document exact repeated-mention grouping | Implemented on current feature branch; merge pending | Exact-match groups require human review; no identity resolution; tests/browser not run | 60% |
+| Cross-document exact repeated-mention grouping | 100% merged (#1598) | Exact-match groups require human review; no identity resolution; tests/browser not run | 70% |
 | Advanced multi-document synthesis and cross-document entity resolution | Not implemented | Requires evidence conflict model, provenance policy and counsel evaluation | 20% |
 | Full Arabic RTL/LTR, keyboard, mobile/desktop acceptance | Not complete | Requires browser/device execution | 0% |
 | CI / clean Python 3.12 suite | Not complete | Runner/billing allocation prevents hosted jobs; local execution not available in this session | 0% |
@@ -178,9 +178,9 @@ Percentages distinguish repository implementation from validation and operationa
 - The Documents workspace can request the matter-wide index and displays parseable dates, unparsed dates and same-sentence event mentions. It explicitly warns that this is not a verified chronology and creates no deadlines.
 - Added helper, separate-database runtime and frontend contract tests. PR #1596 merged at `27409eedaa042c3b54abdb4fe547ce396751c5b4`. No tests or browser execution were run because hosted runner/billing allocation remains blocked.
 
-## Cross-document repeated-mention index — 2026-11-13 (branch pending merge)
+## Cross-document repeated-mention index — 2026-11-13 (merged #1598)
 
 - Added exact normalized mention grouping for labelled parties and case/legal references within one authorized matter. Matching is limited to Unicode NFKC, case-folding and whitespace collapse; no fuzzy or semantic identity resolution is attempted.
 - Added a matter-authorized API and UI action, with member-level document/chunk/page provenance, 200-document/one-million-character/1,000-candidate/500-group bounds and audit logging.
-- Same-firm nonmembers are denied by the matter authorization gate. Added helper, API, authorization and frontend contract tests; none were executed because hosted runners remain unavailable.
-- All groups are possible repeated mentions only, not proof of identity, common ownership or legal relationship. Branch `feature/matter-entity-mention-index-20261113` is pending merge.
+- Same-firm nonmembers are denied by the matter authorization gate. Added helper, API, authorization and frontend contract tests; PR #1598 merged at `5d4b9516cfdebe13d5c99053a50145e968e39ea0`. None were executed because hosted runners remain unavailable.
+- All groups are possible repeated mentions only, not proof of identity, common ownership or legal relationship.
