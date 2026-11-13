@@ -287,7 +287,7 @@ def main(argv: list[str] | None = None) -> int:
         ensure_output_paths_safe([args.out], [args.manifest, args.register])
         manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
         register = json.loads(args.register.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
+    except (OSError, json.JSONDecodeError, ValueError) as exc:
         parser.error(str(exc))
 
     report = audit(manifest, register)
