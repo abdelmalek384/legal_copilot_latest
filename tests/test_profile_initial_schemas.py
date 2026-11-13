@@ -68,6 +68,9 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         self.assertNotIn("user_platform_roles", names(corpus))
         self.assertNotIn("chunks", names(control))
         self.assertIn("cases", names(firm)); self.assertIn("chunks_fts", names(firm))
+        self.assertIn("document_classifications", names(firm))
+        self.assertIn("document_classification_events", names(firm))
+        self.assertNotIn("document_classifications", names(control)); self.assertNotIn("document_classifications", names(corpus))
         self.assertIn("clients", names(firm)); self.assertNotIn("clients", names(control)); self.assertNotIn("clients", names(corpus))
         self.assertNotIn("legal_sources", names(firm))
         self.assertIn("legal_sources", names(corpus)); self.assertIn("chunks_fts", names(corpus))
@@ -587,6 +590,59 @@ class ProfileInitialSchemaTests(unittest.TestCase):
             db.close()
 
 
+
+    def test_document_classification_integrity_guards_allow_retention_cascade(self):
+        db = self.build("firm")
+        installed = {
+            row["name"] for row in db.execute(
+                "SELECT name FROM sqlite_master WHERE type='trigger'"
+            )
+        }
+        expected = {
+            "document_classifications_scope_insert",
+            "document_classifications_scope_update",
+            "document_classification_events_scope_insert",
+            "document_classification_events_no_update",
+            "document_classification_events_no_delete",
+        }
+        self.assertTrue(expected <= installed, sorted(expected - installed))
+        db.execute("INSERT INTO cases(id,title,firm_id) VALUES(1,'Matter',7)")
+        db.execute("INSERT INTO docs(id,case_id,firm_id,name) VALUES(2,1,7,'matter.docx')")
+        db.execute(
+            "INSERT INTO document_classifications"
+            "(document_id,case_id,firm_id,category,version,updated_by_user_id) "
+            "VALUES(2,1,7,'contract',1,10)"
+        )
+        db.execute(
+            "INSERT INTO document_classification_events"
+            "(document_id,case_id,firm_id,actor_user_id,previous_category,new_category,version,note) "
+            "VALUES(2,1,7,10,NULL,'contract',1,'approved')"
+        )
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "immutable"):
+            db.execute(
+                "UPDATE document_classification_events SET note='tampered' WHERE document_id=2"
+            )
+        db.rollback()
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "immutable"):
+            db.execute("DELETE FROM document_classification_events WHERE document_id=2")
+        db.rollback()
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "scope mismatch"):
+            db.execute(
+                "INSERT INTO document_classifications"
+                "(document_id,case_id,firm_id,category,version,updated_by_user_id) "
+                "VALUES(2,1,8,'contract',1,10)"
+            )
+        db.rollback()
+        db.execute("DELETE FROM cases WHERE id=1")
+        self.assertEqual(
+            db.execute("SELECT COUNT(*) FROM document_classification_events").fetchone()[0],
+            0,
+        )
+        self.assertEqual(
+            db.execute("SELECT COUNT(*) FROM document_classifications").fetchone()[0],
+            0,
+        )
+        db.close()
 
 if __name__ == "__main__":
     unittest.main()
