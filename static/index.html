@@ -313,6 +313,18 @@ body{background:#f3f6fa;color:var(--figma-ink);font-family:Inter,"Noto Sans Arab
 #main .research-source-caution.needs-review{background:var(--workspace-warning-bg);border-color:#f0d5ad;border-inline-start:3px solid #c47a19;color:#70430c}
 #main .research-source-caution.unverified{background:var(--workspace-danger-bg);border-color:#efc7c4;border-inline-start:3px solid var(--workspace-danger);color:#84231e}
 
+
+/* Matter workspace: reveal a small set of task-oriented sections before their sub-pages. */
+#main .matter-navigation{display:grid;gap:8px;margin:12px 0 16px}
+#main .matter-section-nav,#main .matter-subnav{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+#main .matter-section-nav{border-bottom:1px solid var(--line);padding-bottom:8px}
+#main .matter-section-nav button,#main .matter-subnav button{font:inherit;border:1px solid transparent;border-radius:9px;background:transparent;color:var(--muted);padding:8px 12px;min-height:40px;cursor:pointer}
+#main .matter-section-nav button.on{background:var(--ui-blue-soft);color:var(--ui-blue);font-weight:750}
+#main .matter-subnav button{border-color:var(--line);color:var(--ink);background:var(--surface)}
+#main .matter-subnav button.on{border-color:var(--ui-blue);color:var(--ui-blue);background:var(--ui-blue-soft);font-weight:700}
+#main .matter-section-nav button:focus-visible,#main .matter-subnav button:focus-visible{outline:3px solid var(--workspace-blue);outline-offset:2px}
+@media(max-width:560px){#main .matter-section-nav{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-inline:contain}#main .matter-section-nav button{white-space:nowrap;flex:0 0 auto}#main .matter-subnav button{flex:1 1 auto}}
+
 </style>
 <style>
 /* Legal Copilot — premium workspace polish
@@ -2938,7 +2950,17 @@ function documentIntelligencePanel(caseId,documents){
 
 async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=await api('/users'),again=()=>view(id);
  const lead=ME.role==='admin'||c.members.some(m=>m.role==='lead'&&m.user_id===ME.id),dn=c.tasks.filter(t=>t.status==='done').length,tot=c.tasks.length;
- const tabs=[['sum',uiText('الملخص','Overview')],['brief',uiText('ملخص ذكي','AI brief')],['tasks',uiText('المهام','Tasks')],['sess',uiText('الجلسات','Hearings')],['dead',uiText('المواعيد القانونية','Legal deadlines')],['notes',uiText('الملاحظات','Notes')],['fees',uiText('الأتعاب','Fees')],['invoices',uiText('الفواتير','Invoices')],['docs',uiText('المستندات','Documents')],['team',uiText('الفريق','Team')],['ask',uiText('اسأل','Ask')],['log',uiText('السجل','Activity log')]];let body;
+ const tabGroups=[
+  {id:'overview',label:uiText('نظرة عامة','Overview'),items:[['sum',uiText('الملخص','Summary')],['brief',uiText('ملخص ذكي','AI brief')]]},
+  {id:'work',label:uiText('العمل','Work'),items:[['tasks',uiText('المهام','Tasks')],['sess',uiText('الجلسات','Hearings')],['dead',uiText('المواعيد القانونية','Legal deadlines')]]},
+  {id:'records',label:uiText('المستندات والبحث','Documents & research'),items:[['docs',uiText('المستندات','Documents')],['ask',uiText('اسأل','Ask')],['notes',uiText('الملاحظات','Notes')]]},
+  {id:'finance',label:uiText('المالية','Finance'),items:[['fees',uiText('الأتعاب','Fees')],['invoices',uiText('الفواتير','Invoices')]]},
+  {id:'team',label:uiText('الفريق والسجل','Team & activity'),items:[['team',uiText('الفريق','Team')],['log',uiText('السجل','Activity log')]]}
+ ];
+ const selectedTabGroup=tabGroups.find(group=>group.items.some(([key])=>key===TAB))||tabGroups[0];
+ const tabGroupNav=h('div',{className:'matter-section-nav','aria-label':uiText('أقسام ملف القضية','Matter sections')},...tabGroups.map(group=>h('button',{type:'button',className:selectedTabGroup.id===group.id?'on':'','aria-pressed':String(selectedTabGroup.id===group.id),textContent:group.label,onclick:()=>{TAB=group.items[0][0];again()} })));
+ const tabDetailNav=h('div',{className:'matter-subnav','aria-label':uiText('صفحات القسم الحالي','Pages in current section')},...selectedTabGroup.items.map(([key,label])=>h('button',{type:'button',className:TAB===key?'on':'','aria-current':TAB===key?'page':null,textContent:label,onclick:()=>{TAB=key;again()} })));
+ let body;
  if(TAB==='sum'){
   const fields=[['case_number',uiText('رقم القضية','Case number')],['case_year',uiText('السنة','Year')],['court',uiText('المحكمة','Court')],['circuit',uiText('الدائرة','Circuit')],['opposing_party',uiText('الخصم','Opposing party')],['stage',uiText('المرحلة','Stage')]];
   const inputs={};fields.forEach(([k,label])=>inputs[k]=h('input',{value:c[k]||'',placeholder:label,style:'width:100%'}));
@@ -3209,7 +3231,7 @@ async function view(id){window.CASE_ID=id;const c=await api('/cases/'+id),us=awa
  if(TAB==='ask')body=h('div',{className:'card'},askBox(id));
  if(TAB==='log')body=h('div',{className:'card'},c.events.map(e=>h('div',{className:'row'},h('span',{textContent:e.text}),h('span',{className:'mut',textContent:e.who+' · '+new Date(e.at.replace(' ','T')+'Z').toLocaleString(LANG==='ar'?'ar-EG':'en-US',{dateStyle:'short',timeStyle:'short'})}))));
  shell(c.title,h('div',{},h('span',{className:'mut',textContent:uiText('العميل: ','Client: ')+(c.client||'—')+' '}),pill(c.status==='open'?'مفتوحة':'مغلقة',c.status==='open'?'open':'closed')),
-  h('div',{className:'tabs'},tabs.map(([k,t])=>h('a',{className:TAB===k?'on':'',textContent:t,onclick:()=>{TAB=k;again()}}))),body)}
+  h('div',{className:'matter-navigation'},tabGroupNav,tabDetailNav),body)}
 
 // Bilingual UI: interface labels are translated; user-entered case/legal text is never translated.
 let LANG=sessionStorage.lang||'ar';
