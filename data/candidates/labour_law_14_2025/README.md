@@ -25,7 +25,7 @@ This directory tracks the supplied Arabic JSONL corpus and its source review. Th
 
 ## Commencement and repeal leads
 
-The accessible promulgation text states general commencement from 2025-09-01, specialized labour courts from 2025-10-01, and repeal of Labour Law No. 12/2003 and Law No. 125/2010 in Article 12. Treat these as provisional version metadata until the exact Official Gazette issue is reviewed and qualified Egyptian counsel confirms the commencement, transitional rules, and current legal effect.
+The accessible promulgation text states general commencement from 2025-09-01, specialized labour courts from 2025-10-01, and repeal of Labour Law No. 12/2003 and Law No. 125/2010 in Article 12. The supplied 112-page Gazette reference has now been visually compared against all 311 candidate provisions, including the promulgation provisions. Treat the dates and transitional effects as provisional version metadata until qualified Egyptian counsel independently confirms their legal interpretation and current effect.
 
 Later official-source leads include Prime Minister's Decree 2652/2026 and Labour Ministry Decisions 74/2026 and 75/2026. They are tracked separately as possible implementing/related instruments, not assumed to be formal amendments.
 
@@ -62,5 +62,5 @@ The report is a review aid only; it does not change any source-permission, legal
 
 ## Evidence-card inventory (2026-10-28)
 
-The provisional evidence-card inventory currently represents 294 unique records in the canonical main file. Use [`provision_evidence_cards_manifest.json`](provision_evidence_cards_manifest.json) as the manifest; the report builder loads the canonical file, validates unique card IDs and preserves non-authoritative status. The split snapshots are intentionally excluded until duplicate IDs and divergent content have been reconciled. The original Official Gazette PDF binary is still not downloaded/hashed and Gazette page pinpoints for supplements have not been visually checked. All cards remain disabled for authoritative retrieval pending currentness, reuse and Egyptian-lawyer review.
+The provisional evidence-card inventory currently represents 294 unique records in the canonical main file. Use [`provision_evidence_cards_manifest.json`](provision_evidence_cards_manifest.json) as the manifest; the report builder loads the canonical file, validates unique card IDs and preserves non-authoritative status. The split snapshots are intentionally excluded until duplicate IDs and divergent content have been reconciled. The 112-page user-supplied Law 14/2025 Gazette comparison PDF has been recovered and hashed; all 311 Law 14/2025 provisions have page-image comparison notes. This does not cover page-level review of separate implementing-instrument supplements: the Decision 49/2026 and Decision 294/2025 source texts and page ranges remain outstanding. All cards remain disabled for authoritative retrieval pending currentness, reuse and Egyptian-lawyer review.
 
