@@ -91,3 +91,6 @@ Each per-document extracted-text review panel is now a named accessible region a
 
 
 The extracted-text review disclosure now sets `aria-busy` while its chunks are loading and clears the state on success, failure, or close. This gives assistive technology a reliable loading-state signal without changing the review workflow.
+
+
+If chunk loading fails, the review panel now retains an inline accessible error message and resets its expanded/busy state, rather than leaving an empty panel. The user can retry the disclosure action.
