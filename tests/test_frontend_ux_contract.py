@@ -1423,5 +1423,10 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("role:'region','aria-label':uiText('مراجعة النص المستخرج','Review extracted text')+' '+d.name", HTML)
         self.assertIn("toggle.setAttribute('aria-controls',reviewPanel.id)", HTML)
 
+    def test_extraction_review_panel_announces_loading_state(self):
+        self.assertIn("reviewPanel.setAttribute('aria-busy','true')", HTML)
+        self.assertIn("renderChunkReview(reviewPanel,data);reviewPanel.setAttribute('aria-busy','false')", HTML)
+        self.assertIn("reviewPanel.setAttribute('aria-busy','false');reviewPanel.replaceChildren()", HTML)
+
 if __name__ == "__main__":
     unittest.main()
