@@ -1356,7 +1356,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Promise.resolve().then(()=>toggle.click())", HTML)
         self.assertIn("id:'doc-chunk-review-'+id+'-'+data.document_id+'-'+chunk.id,tabIndex:-1", HTML)
         self.assertIn("Array.from(container.children).find(card=>card.id==='doc-chunk-review-'+id+'-'+data.document_id+'-'+target.chunkId)", HTML)
-        self.assertIn("targetCard.focus({preventScroll:true});targetCard.scrollIntoView({block:'center',behavior:'smooth'})", HTML)
+        self.assertIn("targetCard.focus({preventScroll:true});targetCard.scrollIntoView({block:'center',behavior:window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})", HTML)
         self.assertIn("window.DOCUMENT_REVIEW_TARGET=null", HTML)
         self.assertIn("The requested passage was not found in the loaded text.", HTML)
 
