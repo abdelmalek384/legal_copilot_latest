@@ -132,3 +132,11 @@ Run the complete repository Tests workflow and Browser acceptance workflow again
 | Independent reproduction | NOT RUN | | |
 
 **Decision:** NO-GO until every category is evidenced, all critical/high findings are remediated or formally risk-accepted, and the independent reviewer signs the exact release SHA.
+
+
+## AI 2 implementation update — 2026-11-14
+
+- Added `tests/test_answer_rating_routes.py` for firm-scoped rating create/update, server-derived reviewer identity, cross-firm answer denial, admin-only listing, immutable event history, CSV BOM/formula neutralization, and export isolation. The corresponding API and bilingual Legal Research controls are on current `main`; execution remains blocked/unverified.
+- Added an explicit encrypted-PDF rejection before page extraction and a regression in `tests/test_document_extraction_budget.py`; the 500-page limit also has a focused regression. These are parser-level checks, not full multipart upload-route abuse acceptance. Malformed-file, OCR timeout/concurrency, and storage-staging failure injection still need route-level tests.
+- Extended `tests/test_research_prompt_injection_boundary.py` with a simulated case-scoped retrieved passage and malicious provenance metadata. It verifies JSON data serialization and the untrusted-data instruction boundary. It does not yet prove the full upload/OCR-to-retrieval path, filename/metadata sanitization, or cross-firm retrieval authorization under an adversarial uploaded document.
+- Added the rating and frontend contract modules to `scripts/security_regression_check.sh`. None of these newly added tests has been executed locally or by hosted Actions in this environment; GitHub Actions billing remains unavailable.
