@@ -53,6 +53,8 @@ def adapt_rows(rows: list[dict[str, str]]) -> tuple[list[dict[str, str]], list[s
     adapted: list[dict[str, str]] = []
     skipped_not_applicable: list[str] = []
     for line_number, row in enumerate(rows, start=2):
+        if not isinstance(row, dict):
+            raise ValueError(f"row {line_number}: firm export row must be an object")
         answer_id = row.get("answer_id")
         if not isinstance(answer_id, str) or not answer_id.strip():
             raise ValueError(f"row {line_number}: answer_id is required")
