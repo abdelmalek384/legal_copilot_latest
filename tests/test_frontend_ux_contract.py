@@ -1398,5 +1398,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("#main .extraction-review-card{scroll-margin-block:18px}", HTML)
         self.assertIn("#main .extraction-review-card:focus{outline:3px solid var(--ui-focus);outline-offset:3px}", HTML)
 
+    def test_firm_switch_clears_pending_matter_chunk_navigation(self):
+        self.assertIn("window.DOCUMENT_MATTER_ID=null;window.DOCUMENT_REVIEW_TARGET=null;sessionStorage.me=JSON.stringify(ME)", HTML)
+        self.assertIn("ME={...ME,...result,...session};window.DOCUMENT_MATTER_ID=null;window.DOCUMENT_REVIEW_TARGET=null;sessionStorage.me=JSON.stringify(ME)", HTML)
+
 if __name__ == "__main__":
     unittest.main()
