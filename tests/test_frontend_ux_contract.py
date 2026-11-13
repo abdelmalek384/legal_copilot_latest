@@ -852,6 +852,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Date source offsets", panel)
         self.assertIn("Party source offsets", panel)
 
+    def test_local_date_parser_supports_arabic_and_english_named_months(self):
+        panel = HTML[HTML.index("const parseDate=value=>{"):HTML.index("const loadedText=id=>")]
+        self.assertIn("namedDay", panel)
+        self.assertIn("namedFirst", panel)
+        self.assertIn("'مارس':3", panel)
+        self.assertIn("march:3", panel)
+        self.assertIn("yearText.length!==4", panel)
+
     def test_document_classification_edits_are_persisted_with_audit_and_version_checks(self):
         self.assertIn("draftOverrides", HTML)
         self.assertIn("Save classification", HTML)
