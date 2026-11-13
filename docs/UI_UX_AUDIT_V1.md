@@ -95,3 +95,4 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 - The existing polite live progress message and upload-panel busy state are retained.
 - Added a frontend regression contract for the per-file announcement semantics.
 - This is a focused accessibility improvement; it does not change upload endpoints, file validation, matter authorization, extraction, or retention behaviour.
+- Legal research source cards now expose distinct accessible group names based on their recorded citation/reference, while the existing source-inspector control retains its expanded-state semantics. A regression contract covers the source-card naming.
