@@ -125,6 +125,32 @@ class GazetteTextImportTests(unittest.TestCase):
         self.assertIn("Unparsed preamble excluded from candidate rows", report)
         self.assertNotIn('"article": "preamble"', (self.output / "law_rows.jsonl").read_text(encoding="utf-8"))
 
+    def test_expected_inventory_detects_missing_trailing_article_number(self):
+        source_text = (
+            "المادة الأولى\\nنص حكم الإصدار الأول.\\n"
+            "المادة الثانية\\nنص حكم الإصدار الثاني.\\n"
+            "مادة 1\\nنص المادة الأولى.\\n"
+            "مادة 2\\nنص المادة الثانية.\\n"
+        )
+        self.text_path.write_text(source_text, encoding="utf-8")
+        self.metadata["content_sha256"] = hashlib.sha256(source_text.encode("utf-8")).hexdigest()
+        self.metadata["expected_promulgation_provisions"] = 2
+        self.metadata["expected_attached_law_articles"] = 3
+        self.write_metadata()
+
+        result = import_text(self.text_path, self.meta_path, self.output)
+        self.assertEqual(result["missing_article_numbers"], {"2": [3]})
+        self.assertEqual(result["duplicate_article_numbers"], {})
+        self.assertEqual(result["out_of_range_article_numbers"], {})
+        rows = [
+            json.loads(line)
+            for line in (self.output / "law_rows.jsonl").read_text(encoding="utf-8").splitlines()
+        ]
+        self.assertTrue(all(row["verified"] == 0 for row in rows))
+        report = (self.output / "import_report.md").read_text(encoding="utf-8")
+        self.assertIn("Expected article headings recognized", report)
+        self.assertIn("Block 2 missing: 3", report)
+
     def test_numeric_only_import_does_not_index_unparsed_preamble(self):
         source_text = "Official Gazette issue title\nالمادة 1\nنص المادة الأولى.\n"
         self.text_path.write_text(source_text, encoding="utf-8")
