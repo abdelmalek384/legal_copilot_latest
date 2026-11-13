@@ -67,6 +67,12 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - Hardened `tools/evaluate_legal_answers.py::_valid_review_evidence_url` to reject raw backslashes; added a regression fixture alongside existing DEL/control-character coverage.
 - Source changes and tests were committed directly to main (`8b0dbc1`, `2396247`, `1d615fc`, `752d724`). Static source review only; tests unexecuted.
 
+## Cross-tool evidence URL validation parity — 2026-11-14
+
+- Closed additional raw-backslash/DEL gaps in `research_inspector`, `evaluate_legal_answers`, the app review-evidence API validator, deadline-rule evidence validation, and `collect_legal_documents` source/manifest URL validation. The inspector, app and deadline validators also reject query strings/fragments where review evidence is required.
+- Added regression cases in corresponding tests. Direct-main source/test commits include `8b0dbc1`, `2396247`, `1d615fc`, `752d724`, `d40f188`, `0701780`, `498fde9`, `f8f890c`, `3b416b6`, and `24ee02e`.
+- Static source review only. Tests remain unexecuted; do not treat this as runtime validation.
+
 ## Recent AI-1 and Legal Research integration
 
 - #1576 — merged fixture corrections for the Gazette importer and Arabic retrieval scorer.
