@@ -200,3 +200,6 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 
 
 - The per-document extraction-review disclosure now reports its loading state with `aria-busy` and clears the flag on completion, failure, or close; added a frontend regression contract. Screen-reader behavior still requires browser verification.
+
+
+- Failed chunk-review loads now produce an inline `role=alert` message, reset `aria-busy`/expanded state, and permit retry. Added a regression contract and registered the Arabic error string (1,446 unique catalog entries; pending native review).
