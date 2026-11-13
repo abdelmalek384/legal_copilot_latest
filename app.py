@@ -9665,11 +9665,17 @@ def save_answer_rating(answer_id: str, b: AnswerRatingIn, u: dict = Depends(user
     c.commit()
     saved = c.execute("SELECT * FROM answer_ratings WHERE id=?", (rating_id,)).fetchone()
     payload = _answer_rating_payload(saved)
-    payload["benchmark_ready"] = bool(
+    previous = c.execute(
+        "SELECT role,content FROM research_messages WHERE conversation_id=? AND id<? "
+        "ORDER BY id DESC LIMIT 1",
+        (int(answer["conversation_id"]), int(answer["answer_message_id"])),
+    ).fetchone()
+    has_question = bool(previous and previous["role"] == "user" and str(previous["content"] or "").strip())
+    payload["benchmark_ready"] = bool(has_question and (
         b.answerable is False or (
             b.answerable is True and bool(b.expected_article_ids)
         )
-    )
+    ))
     return payload
 
 
@@ -9691,15 +9697,21 @@ def list_firm_answer_ratings(
     items = []
     for row in rows:
         item = _answer_rating_payload(row)
+        previous = c.execute(
+            "SELECT role,content FROM research_messages WHERE conversation_id=? AND id<? "
+            "ORDER BY id DESC LIMIT 1",
+            (int(row["conversation_id"]), int(row["answer_message_id"])),
+        ).fetchone()
+        has_question = bool(previous and previous["role"] == "user" and str(previous["content"] or "").strip())
         item.update({
             "conversation_id": int(row["conversation_id"]),
             "answer_message_id": int(row["answer_message_id"]),
             "answer_preview": str(row["answer_text"] or "")[:240],
-            "benchmark_ready": bool(
+            "benchmark_ready": bool(has_question and (
                 row["answerable"] == 0 or (
                     row["answerable"] == 1 and bool(json.loads(row["expected_article_ids_json"] or "[]"))
                 )
-            ),
+            )),
         })
         items.append(item)
     total = c.execute(
