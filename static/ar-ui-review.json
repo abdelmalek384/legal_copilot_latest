@@ -13461,8 +13461,8 @@
       "arabic": "فتح المستند والمقطع",
       "source_file": "static/index.html",
       "source_lines": [
-        2322,
-        2463
+        2325,
+        2466
       ],
       "review_status": "pending_native_review"
     },
@@ -13471,7 +13471,7 @@
       "arabic": "تعذر العثور على المقطع المحدد ضمن النصوص المحملة. قد يكون قد تغير أو لم يعد متاحاً.",
       "source_file": "static/index.html",
       "source_lines": [
-        3247
+        3250
       ],
       "review_status": "pending_native_review"
     },
@@ -13480,7 +13480,7 @@
       "arabic": "المستند المرتبط بهذا المصدر غير موجود ضمن مستندات ملف القضية المتاحة.",
       "source_file": "static/index.html",
       "source_lines": [
-        3273
+        3276
       ],
       "review_status": "pending_native_review"
     },
@@ -13489,7 +13489,7 @@
       "arabic": "لا توجد نسخة أصلية محفوظة في التخزين الخاص لهذا المستند.",
       "source_file": "static/index.html",
       "source_lines": [
-        3264
+        3267
       ],
       "review_status": "pending_native_review"
     },
@@ -13498,7 +13498,7 @@
       "arabic": "تم استخراج هذا المستند باستخدام OCR؛ قارن كل مقطع بالصفحة الأصلية قبل الاعتماد عليه.",
       "source_file": "static/index.html",
       "source_lines": [
-        3204
+        3207
       ],
       "review_status": "pending_native_review"
     },
@@ -13507,7 +13507,7 @@
       "arabic": "تعذر استخراج النص من بعض الصفحات؛ قد تكون المقاطع المعروضة غير مكتملة. راجع المستند الأصلي.",
       "source_file": "static/index.html",
       "source_lines": [
-        3205
+        3208
       ],
       "review_status": "pending_native_review"
     }
