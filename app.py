@@ -15,7 +15,7 @@ from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_pe
 from tools.arabic_legal_matching import expand_lexicon_hints
 from tools.arabic_drafting_skeletons import build_arabic_skeleton
 from tools.claim_support import claim_support_enabled, has_unsupported_claims, has_negated_obligation_conflicts
-from tools.document_intelligence import MAX_ANALYSIS_CHARS, classify_document, extract_review_candidates
+from tools.document_intelligence import MAX_ANALYSIS_CHARS, classify_document, extract_review_candidates, compare_extracted_text
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
     generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
@@ -8578,6 +8578,17 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
         item = dict(row)
         item["text_sha256"] = hashlib.sha256(item["text"].encode("utf-8")).hexdigest()
         item["latest_review"] = latest.get(item["id"])
+        if item["latest_review"] and item["latest_review"].get("outcome") == "corrected":
+            try:
+                item["latest_review"]["changes"] = compare_extracted_text(
+                    str(item["latest_review"].get("original_text") or ""),
+                    str(item["latest_review"].get("reviewed_text") or ""),
+                )
+            except (TypeError, ValueError):
+                item["latest_review"]["changes"] = []
+                item["latest_review"]["comparison_warning"] = (
+                    "Literal comparison is unavailable because one text version exceeds the comparison limit."
+                )
         chunks.append(item)
 
     # Run the canonical, bounded Python helper only after the existing matter
