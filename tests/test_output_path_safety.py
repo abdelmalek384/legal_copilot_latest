@@ -50,13 +50,9 @@ class OutputPathSafetyTests(unittest.TestCase):
     def test_rejects_two_report_outputs_that_alias(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
-            json_report = root / "report.json"
-            markdown_report = root / "report.md"
+            report = root / "report.json"
             with self.assertRaisesRegex(ValueError, "must be distinct"):
-                ensure_output_paths_safe(
-                    [json_report, markdown_report],
-                    [],
-                )
+                ensure_output_paths_safe([report, report], [])
 
     def test_allows_distinct_outputs_and_inputs(self):
         with tempfile.TemporaryDirectory() as temp:
