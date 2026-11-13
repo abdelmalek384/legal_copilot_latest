@@ -165,5 +165,42 @@ class AnswerSourcePolarityTests(unittest.TestCase):
         self.assertFalse(result["abstained"])
 
 
+
+    def test_ask_abstains_on_the_three_original_negated_obligation_regressions(self):
+        cases = (
+            (
+                "The employer is not required to provide notice.",
+                "The employer must provide notice [1].",
+                "Must the employer provide notice?",
+            ),
+            (
+                "لا يجب على صاحب العمل تقديم الإخطار.",
+                "يجب على صاحب العمل تقديم الإخطار [1].",
+                "هل يجب على صاحب العمل تقديم الإخطار؟",
+            ),
+            (
+                "لا يلتزم صاحب العمل بتقديم الإخطار.",
+                "يلتزم صاحب العمل بتقديم الإخطار [1].",
+                "هل يلتزم صاحب العمل بتقديم الإخطار؟",
+            ),
+        )
+        for evidence, generated_answer, question in cases:
+            with self.subTest(evidence=evidence):
+                hit = {
+                    "cos": 1.0, "score": 1, "ref": "SYNTHETIC-NEGATION-REGRESSION",
+                    "text": evidence, "verified": True, "in_force": True,
+                    "applies_as_of": True, "case_id": None,
+                    "source_status": app.STATUS_VERIFIED, "provenance": {},
+                }
+                with patch.dict("os.environ", {"LEGAL_CLAIM_SUPPORT_CHECK": ""}):
+                    with patch.object(app, "search", return_value=[hit]), patch.object(
+                        app, "LLM", return_value=generated_answer
+                    ), patch.object(app, "_answer_has_source_polarity_conflict", return_value=False):
+                        result = app.ask(None, question, scope="verified_corpus")
+                self.assertIsNone(result["answer"])
+                self.assertTrue(result["abstained"])
+                self.assertIn("التزاماً أو حظراً صريحاً", result["message"])
+
+
 if __name__ == "__main__":
     unittest.main()
