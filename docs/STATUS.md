@@ -230,3 +230,10 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - #1588 adds service-path regression coverage proving the live ask workflow abstains on an Arabic positive obligation that reverses a cited `لا يلتزم` passage, preserves faithful negative wording, and does not confuse unrelated obligation clauses. The runtime guard was already invoked from `app.ask`; issue #1561 is closed based on code inspection and added coverage.
 - Refreshed `docs/legal_research_document_intelligence.md` to distinguish merged functionality from remaining work: UI/API end-to-end tests, browser RTL/LTR/accessibility acceptance, structured entity/event extraction, and exposing multi-hunk comparison through an API/UI flow.
 - Progress percentages and external acceptance gates are recorded in `docs/BLOCKERS.md`. No test execution is claimed. GitHub Actions billing/runner allocation remains blocked; local repository checkout was also unavailable in this session, so Python 3.12 tests and browser QA remain pending.
+
+
+## Follow-up merges — 2026-11-13
+
+- #1588 adds Arabic `app.ask` service-path regression coverage and closes issue #1561; the live narrow guard was confirmed in the final answer path.
+- #1589 adds explicit `source_reference` validation when the metadata field is present; #1590 removes a duplicate earlier check while retaining the final fail-closed validation. No importer trust flags changed.
+- Focused tests remain unexecuted. The current merge checkpoint is code integration, not runtime validation.
