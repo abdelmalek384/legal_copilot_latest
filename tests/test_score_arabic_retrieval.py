@@ -546,5 +546,66 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "review_evidence_url must be clean HTTPS"):
                     score([question], [], TEST_REVIEWER_REGISTRY)
 
+    def test_cli_refuses_output_that_aliases_any_input(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            questions = root / "questions.jsonl"
+            runs = root / "runs.jsonl"
+            registry = root / "reviewers.json"
+            questions.write_text('{"id":"Q1","review_status":"needs_lawyer_review"}\n', encoding="utf-8")
+            runs.write_text("", encoding="utf-8")
+            registry.write_text(__import__("json").dumps(TEST_REVIEWER_REGISTRY), encoding="utf-8")
+            original = {
+                questions: questions.read_bytes(),
+                runs: runs.read_bytes(),
+                registry: registry.read_bytes(),
+            }
+            for input_path in (questions, runs, registry):
+                stderr = io.StringIO()
+                with self.subTest(output=input_path.name), mock.patch("sys.argv", [
+                    "score_arabic_retrieval.py",
+                    "--questions", str(questions),
+                    "--runs", str(runs),
+                    "--reviewer-registry", str(registry),
+                    "--phase", "before",
+                    "--output", str(input_path),
+                ]), contextlib.redirect_stderr(stderr):
+                    with self.assertRaises(SystemExit) as raised:
+                        main()
+                self.assertEqual(raised.exception.code, 2)
+                self.assertIn("must not overwrite", stderr.getvalue())
+                self.assertEqual(input_path.read_bytes(), original[input_path])
+
+    def test_cli_refuses_hardlink_alias_for_output(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            questions = root / "questions.jsonl"
+            runs = root / "runs.jsonl"
+            registry = root / "reviewers.json"
+            alias = root / "questions-alias.json"
+            questions.write_text('{"id":"Q1","review_status":"needs_lawyer_review"}\n', encoding="utf-8")
+            runs.write_text("", encoding="utf-8")
+            registry.write_text(__import__("json").dumps(TEST_REVIEWER_REGISTRY), encoding="utf-8")
+            try:
+                alias.hardlink_to(questions)
+            except (OSError, NotImplementedError):
+                self.skipTest("hard links are not supported on this filesystem")
+            original = questions.read_bytes()
+            stderr = io.StringIO()
+            with mock.patch("sys.argv", [
+                "score_arabic_retrieval.py",
+                "--questions", str(questions),
+                "--runs", str(runs),
+                "--reviewer-registry", str(registry),
+                "--phase", "before",
+                "--output", str(alias),
+            ]), contextlib.redirect_stderr(stderr):
+                with self.assertRaises(SystemExit) as raised:
+                    main()
+            self.assertEqual(raised.exception.code, 2)
+            self.assertIn("must not overwrite", stderr.getvalue())
+            self.assertEqual(questions.read_bytes(), original)
+
+
 if __name__ == "__main__":
     unittest.main()

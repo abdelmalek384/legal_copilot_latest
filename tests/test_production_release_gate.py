@@ -329,6 +329,27 @@ class ProductionReleaseGateTests(unittest.TestCase):
                 self.assertEqual(result, 2)
                 self.assertEqual(manifest_path.read_text(encoding="utf-8"), "{}")
 
+    def test_release_report_cannot_overwrite_hardlink_alias_of_acceptance_manifest(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            manifest_path = root / "database-acceptance.json"
+            manifest_path.write_text("{}", encoding="utf-8")
+            alias_path = root / "manifest-alias.json"
+            try:
+                alias_path.hardlink_to(manifest_path)
+            except (OSError, NotImplementedError):
+                self.skipTest("hard links are not supported on this filesystem")
+            reviewer_path = root / "reviewers.json"
+            reviewer_path.write_text(json.dumps(self._reviewer_registry()), encoding="utf-8")
+            with patch.dict(os.environ, {"COPILOT_DATABASE_ACCEPTANCE_FILE": str(manifest_path)}), \
+                 patch.object(gate, "evaluate_release", return_value={"ready": True}):
+                result = gate.main([
+                    "--reviewer-registry", str(reviewer_path),
+                    "--out", str(alias_path),
+                ])
+            self.assertEqual(result, 2)
+            self.assertEqual(manifest_path.read_text(encoding="utf-8"), "{}")
+
     def test_release_report_cannot_overwrite_device_acceptance_evidence(self):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

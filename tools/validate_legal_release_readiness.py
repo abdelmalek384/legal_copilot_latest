@@ -624,6 +624,24 @@ def build_report(candidate_paths: list[Path], permission_register_path: Path, ro
     }
 
 
+def _aliases_protected_file(destination: Path, protected_files: set[Path]) -> bool:
+    """Detect hard-link aliases that path resolution alone cannot identify."""
+    if destination in protected_files:
+        return True
+    if not destination.exists():
+        return False
+    for protected in protected_files:
+        if not protected.exists():
+            continue
+        try:
+            if destination.samefile(protected):
+                return True
+        except OSError:
+            # If file identity cannot be established, refuse a potentially destructive write.
+            return True
+    return False
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--candidate", action="append", help="Candidate JSON path; repeat for multiple candidates.")
@@ -650,7 +668,7 @@ def main(argv: list[str] | None = None) -> int:
             (args.root.resolve() / "originals"),
             (args.root.resolve() / "extracted"),
         }
-        if destination in protected_files or any(
+        if _aliases_protected_file(destination, protected_files) or any(
             destination == directory or directory in destination.parents
             for directory in protected_directories
         ):
