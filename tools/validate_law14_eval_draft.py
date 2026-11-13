@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -55,6 +56,7 @@ def validate_rows(rows: list[dict[str, Any]], minimum_questions: int = 100) -> d
     ids: set[str] = set()
     question_texts: set[str] = set()
     article_ids: set[str] = set()
+    article_styles: dict[str, list[str]] = {}
     targeted_text_review_count = 0
 
     if not isinstance(rows, list):
@@ -87,6 +89,8 @@ def validate_rows(rows: list[dict[str, Any]], minimum_questions: int = 100) -> d
             if normalized in question_texts:
                 errors.append(f"{label}: duplicate Arabic question text")
             question_texts.add(normalized)
+            if not re.search(r"[\\u0600-\\u06FF]", normalized):
+                errors.append(f"{label}: question_ar must contain Arabic text")
 
         style = row.get("question_style")
         if not isinstance(style, str) or style not in {"formal", "colloquial_egyptian"}:
@@ -113,6 +117,8 @@ def validate_rows(rows: list[dict[str, Any]], minimum_questions: int = 100) -> d
             if article_id != expected_suffix:
                 errors.append(f"{label}: expected_article_id does not match the proposed article number")
             article_ids.add(str(article_id))
+            if isinstance(article_id, str) and isinstance(style, str) and style in {"formal", "colloquial_egyptian"}:
+                article_styles.setdefault(article_id, []).append(style)
 
         if row.get("expected_article_status") != UNAPPROVED_STATUS:
             errors.append(f"{label}: expected_article_status must remain machine-proposed, unapproved")
@@ -138,6 +144,9 @@ def validate_rows(rows: list[dict[str, Any]], minimum_questions: int = 100) -> d
 
     if not styles.get("formal") or not styles.get("colloquial_egyptian"):
         errors.append("dataset must include both formal and colloquial_egyptian questions")
+    for article_id, pair_styles in article_styles.items():
+        if sorted(pair_styles) != ["colloquial_egyptian", "formal"]:
+            errors.append(f"article pin {article_id} must have exactly one formal and one colloquial question")
 
     return {
         "valid": not errors,
