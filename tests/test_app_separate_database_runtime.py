@@ -3585,6 +3585,50 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(limited.json()["documents_processed"], 1)
         self.assertTrue(limited.json()["truncated"])
 
+    def test_matter_entity_mentions_group_exact_party_and_case_references_with_provenance(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Entity mention index matter"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        first = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={"name": "claim.pdf.txt", "text": "[[PDF_PAGE:3]]\\nالمدعي: أحمد محمد. دعوى رقم 123/2025."},
+        )
+        second = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={"name": "response.pdf.txt", "text": "[[PDF_PAGE:8]]\\nالمدعى عليه: أحمد محمد. دعوى رقم 123/2025."},
+        )
+        self.assertEqual(first.status_code, 200, first.text)
+        self.assertEqual(second.status_code, 200, second.text)
+
+        response = self.client.get(f"/cases/{case_id}/documents/entity-mentions")
+        self.assertEqual(response.status_code, 200, response.text)
+        result = response.json()
+        self.assertTrue(result["requires_review"])
+        self.assertEqual(result["documents_processed"], 2)
+        self.assertEqual(result["group_count"], 2)
+        party_group = next(group for group in result["groups"] if group["entity_type"] == "labelled_party")
+        self.assertEqual(
+            set(party_group["document_ids"]),
+            {str(first.json()["document_id"]), str(second.json()["document_id"])},
+        )
+        self.assertEqual(
+            {str(member["page"]) for member in party_group["members"]},
+            {"3", "8"},
+        )
+        self.assertTrue(all(member["chunk_id"] and member["chunk_ref"] for member in party_group["members"]))
+        self.assertIn("do not establish identity", result["warning"])
+
+        limited = self.client.get(
+            f"/cases/{case_id}/documents/entity-mentions", params={"limit": 1}
+        )
+        self.assertEqual(limited.status_code, 200, limited.text)
+        self.assertEqual(limited.json()["documents_processed"], 1)
+        self.assertTrue(limited.json()["truncated"])
+
     def test_document_version_comparison_is_matter_scoped_and_keeps_chunk_provenance(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
