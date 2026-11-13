@@ -865,6 +865,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("item.calendar_system==='hijri'", panel)
         self.assertIn("Hijri date not converted", panel)
 
+    def test_amount_candidate_ui_displays_numeric_value_and_currency_uncertainty(self):
+        panel = HTML[HTML.index("function documentIntelligencePanel(caseId,documents)"):HTML.index("async function view(id)")]
+        self.assertIn("item.amount_numeric", panel)
+        self.assertIn("item.currency_code", panel)
+        self.assertIn("ambiguous_currency_label", panel)
+        self.assertIn("currency unresolved", panel)
+
     def test_document_classification_edits_are_persisted_with_audit_and_version_checks(self):
         self.assertIn("draftOverrides", HTML)
         self.assertIn("Save classification", HTML)
