@@ -1229,7 +1229,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
 
     def test_document_file_picker_prevalidates_type_and_size(self):
-        self.assertIn("valid=selected.filter(file=>/\\\\.(pdf|docx)$/i.test(file.name)&&file.size<=15000000).length", HTML)
+        self.assertIn("valid=selected.filter(file=>/\\\.(pdf|docx)$/i.test(file.name)&&file.size<=15000000).length", HTML)
         self.assertIn("uploadSubmit.disabled=!matterSelect.value||!valid", HTML)
         self.assertIn("ملفات ستُستبعد بسبب النوع أو الحجم", HTML)
 
