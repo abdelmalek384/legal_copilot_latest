@@ -35,7 +35,8 @@ EXPLICIT_PERMISSION_STATES = {"allowed", "allowed_limited", "prohibited",
 
 
 def _https_url(value: object) -> bool:
-    if not isinstance(value, str) or not value or value != value.strip() or any(char.isspace() for char in value):
+    if (not isinstance(value, str) or not value or value != value.strip()
+            or "\\" in value or any(char.isspace() or ord(char) < 32 or ord(char) == 127 for char in value)):
         return False
     try:
         parsed = urlparse(value)
