@@ -354,9 +354,14 @@ def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, An
             interpretation = None
             if isinstance(raw, str):
                 normalized_raw = raw.translate(arabic_digits).strip()
+                hijri_match = _HIJRI_DATE_PATTERN.fullmatch(normalized_raw)
                 named_match = _NAMED_DATE_PATTERN.fullmatch(normalized_raw)
+                calendar_system = "gregorian"
                 try:
-                    if named_match:
+                    if hijri_match:
+                        calendar_system = "hijri"
+                        interpretation = "hijri_unconverted"
+                    elif named_match:
                         if named_match.group("day"):
                             day_text = named_match.group("day")
                             month_name = named_match.group("month")
@@ -391,6 +396,7 @@ def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, An
                 "date_mention": raw,
                 "normalized_date": parsed,
                 "interpretation": interpretation,
+                "calendar_system": calendar_system,
                 "document_id": document_id,
                 "filename": filename,
                 "page": candidate.get("page"),
@@ -414,7 +420,7 @@ def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, An
             "Context and legal effect must be confirmed by a lawyer.",
             "Only documents supplied by the caller are considered; callers must enforce firm and matter scope.",
             "Two-digit years and invalid calendar dates are not guessed.",
-            "Named Arabic and English Gregorian months are supported; Hijri calendar conversion is not performed.",
+            "Named Arabic and English Gregorian months are supported; Hijri mentions are retained as unconverted and no Hijri-to-Gregorian conversion is performed.",
         ],
     }
 
