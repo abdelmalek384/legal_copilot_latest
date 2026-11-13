@@ -197,3 +197,6 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 
 
 - Per-document extracted-text review panels now expose named accessible regions, connected to their disclosure buttons through `aria-controls`; added a frontend regression contract. Browser and screen-reader verification remain outstanding.
+
+
+- The per-document extraction-review disclosure now reports its loading state with `aria-busy` and clears the flag on completion, failure, or close; added a frontend regression contract. Screen-reader behavior still requires browser verification.
