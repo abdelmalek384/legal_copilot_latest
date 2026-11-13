@@ -64,3 +64,12 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 - Added frontend contract tests for navigation grouping, dashboard attention hierarchy and the three legal-source states.
 - Automated tests, browser screenshots, Arabic/English responsive checks, screen-reader checks and lawyer usability acceptance have **not yet been executed** on this branch. Do not treat this implementation as release acceptance.
 - The README's corpus limitation remains controlling: the product does not currently contain a lawyer-verified Egyptian legal corpus. No real Egyptian authority should be displayed as verified unless the legal-source acquisition and reviewer process has actually recorded that status.
+
+
+### Matter-centred navigation refinement
+
+- Reorganized the 12 matter detail destinations into five task-oriented sections: Overview, Work, Documents & research, Finance, and Team & activity.
+- The selected section reveals only its relevant sub-pages. Existing tab identifiers, renderers, API routes, matter authorization and workflow logic are unchanged.
+- Replaced clickable anchors without link destinations with native buttons, `aria-pressed` section state and `aria-current="page"` for the selected sub-page.
+- Added responsive horizontal scrolling for the section selector on narrow screens and visible keyboard focus.
+- Added a regression contract ensuring all matter work areas remain reachable through the grouped navigation.
