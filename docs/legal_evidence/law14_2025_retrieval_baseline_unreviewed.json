@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "report_date": "2026-11-14",
+  "benchmark": "Law 14/2025 machine-proposed Arabic question inventory",
+  "status": "unreviewed_not_scored",
+  "label": "UNREVIEWED — machine-proposed, not lawyer-approved",
+  "dataset_path": "tests/legal_eval/law_14_2025_machine_proposed_questions.draft.jsonl",
+  "dataset_sha256": "not recomputed in this report",
+  "questions_total": 116,
+  "unique_ids": 116,
+  "unique_question_texts": 116,
+  "question_styles": {
+    "formal": 58,
+    "colloquial_egyptian": 58
+  },
+  "expected_article_ids_present": 116,
+  "all_machine_proposed_unapproved": true,
+  "answer_keys_approved": 0,
+  "expected_answers_approved": 0,
+  "run_records": 0,
+  "metrics": {
+    "top3_hit_rate": null,
+    "wrong_article_rate": null,
+    "abstention_rate": null
+  },
+  "target_status": "not_evaluable_missing_approved_labels_or_cited_runs",
+  "reason": "The scorer intentionally excludes curated machine-proposed questions until a qualified Egyptian lawyer approves labels and answers, and no authenticated before/after retrieval run was available. Null is not zero and is not a baseline score.",
+  "next_requirements": [
+    "qualified Egyptian lawyer approves question wording and expected article IDs",
+    "lawyer-approved answerability and answer/citation key",
+    "authenticated local legal corpus and retrieval API",
+    "before/after run exports with retrieved and cited article IDs and abstention flags"
+  ],
+  "trust_boundary": "No question is release-eligible; no Law 14/2025 row is marked verified by this inventory."
+}
