@@ -294,22 +294,52 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
     if isinstance(max_items, bool) or not isinstance(max_items, int) or not 1 <= max_items <= 500:
         raise ValueError("max_items must be an integer between 1 and 500")
 
-    base = extract_review_candidates(text, max_candidates=max_items)
     page_markers = [(match.start(), int(match.group(1))) for match in _PAGE_MARKER.finditer(text)]
+    # Collect each signal family independently, then interleave families before
+    # applying the shared cap. A dense date list must not starve party/legal IDs.
+    entity_patterns = (
+        ("party_label", (_PARTY_LABEL_PATTERN,)),
+        ("case_reference", (_CASE_PATTERN,)),
+        ("legal_reference", (_LEGAL_REFERENCE_PATTERN,)),
+        ("amount", (_MONEY_PATTERN,)),
+        ("date", _DATE_PATTERNS),
+    )
+    queues = {kind: [] for kind, _ in entity_patterns}
+    truncated = False
+    for kind, patterns in entity_patterns:
+        for pattern in patterns:
+            for index, match in enumerate(pattern.finditer(text)):
+                if index >= max_items:
+                    truncated = True
+                    break
+                queues[kind].append(_candidate(kind, match, text, page_markers))
+    selected = []
+    while len(selected) < max_items:
+        added = False
+        for kind, _ in entity_patterns:
+            if queues[kind]:
+                selected.append(queues[kind].pop(0))
+                added = True
+                if len(selected) >= max_items:
+                    break
+        if not added:
+            break
+    if any(queues.values()):
+        truncated = True
+    selected.sort(key=lambda item: (item["start"], item["end"], item["kind"]))
+
     entities = []
-    for candidate in base["candidates"]:
+    entity_types = {
+        "party_label": "labelled_party",
+        "case_reference": "case_reference",
+        "legal_reference": "legal_reference",
+        "amount": "monetary_amount",
+        "date": "date_mention",
+    }
+    for candidate in selected:
         kind = candidate["kind"]
-        entity_type = {
-            "party_label": "labelled_party",
-            "case_reference": "case_reference",
-            "legal_reference": "legal_reference",
-            "amount": "monetary_amount",
-            "date": "date_mention",
-        }.get(kind)
-        if not entity_type:
-            continue
         entity = {
-            "entity_type": entity_type,
+            "entity_type": entity_types[kind],
             "mention": candidate["value"],
             "excerpt": candidate["excerpt"],
             "page": candidate["page"],
@@ -322,12 +352,9 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
             entity["role_label"] = parts[0].strip()
             entity["name_mention"] = parts[1].strip() if len(parts) > 1 else ""
         entities.append(entity)
-        if len(entities) >= max_items:
-            break
 
     events = []
     relationships = []
-    truncated = bool(base["truncated"])
     for sentence_start, sentence_end in _sentence_spans(text):
         sentence = text[sentence_start:sentence_end].strip()
         if not sentence:
