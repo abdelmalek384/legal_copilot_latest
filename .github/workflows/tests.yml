@@ -322,6 +322,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_labour_law_candidate_registry.py
       - name: Test labour law draft set
         run: PYTHONPATH=. python tests/test_labour_law_draft_set.py
+      - name: Test Law 14 evaluation draft structural guard
+        run: PYTHONPATH=. python tests/test_validate_law14_eval_draft.py
       - name: Test labour law provisional review questions
         run: PYTHONPATH=. python tests/test_labour_law_provisional_review_questions.py
       - name: Test legacy firm ownership migration
@@ -352,6 +354,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_tenant_fleet_migration.py
       - name: Test labour law evidence cards
         run: PYTHONPATH=. python tests/test_labour_law_evidence_cards.py
+      - name: Test firm-test source-matched answer tier gate
+        run: PYTHONPATH=. python tests/test_firm_test_source_matched_mode.py
       - name: Test labour law primary evidence seed
         run: PYTHONPATH=. python tests/test_labour_law_primary_evidence_seed.py
       - name: Test legal answer review evaluation
@@ -370,6 +374,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_law_ingestion_fixture_pipeline.py
       - name: Test optional factual claim support validation
         run: PYTHONPATH=. python tests/test_claim_support.py
+      - name: Test English and Arabic negation guard reproductions
+        run: PYTHONPATH=. python tests/test_negation_guard_repro.py
       - name: Test article-rows audit tool
         run: PYTHONPATH=. python tests/test_audit_article_rows.py
       - name: Test firm-private usage metering and audit ledger
@@ -396,6 +402,10 @@ jobs:
         run: PYTHONPATH=. python tests/test_answer_rating_migration.py
       - name: Test firm-scoped lawyer answer rating API and CSV export
         run: PYTHONPATH=. python tests/test_answer_rating_routes.py
+      - name: Test canonical answer-rating CSV validation
+        run: PYTHONPATH=. python tests/test_validate_answer_ratings.py
+      - name: Test firm-to-canonical answer-rating CSV adapter
+        run: PYTHONPATH=. python tests/test_adapt_answer_rating_export.py
       - name: Test platform pilot metrics dashboard contract
         run: PYTHONPATH=. python tests/test_platform_pilot_metrics_frontend_contract.py
       - name: Test safe request validation errors
