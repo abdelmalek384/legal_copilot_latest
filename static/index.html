@@ -2573,13 +2573,27 @@ function documentIntelligencePanel(caseId,documents){
  ];
  const normalize=value=>String(value||'').normalize('NFKC').replace(/[ًٌٍَُِّْٰـ]/g,'').replace(/[أإآٱ]/g,'ا').replace(/ى/g,'ي').replace(/[٠-٩]/g,d=>String('٠١٢٣٤٥٦٧٨٩'.indexOf(d))).toLocaleLowerCase();
  const parseDate=value=>{
-  const raw=String(value||'').replace(/[٠-٩]/g,d=>String('٠١٢٣٤٥٦٧٨٩'.indexOf(d)));
-  const parts=raw.split(/[\/.-]/);
-  if(parts.length!==3||parts.some(x=>!/^\d+$/.test(x)))return null;
+  const raw=String(value||'').replace(/[٠-٩]/g,d=>String('٠١٢٣٤٥٦٧٨٩'.indexOf(d))).normalize('NFKC');
+  const months={
+   'يناير':1,'فبراير':2,'مارس':3,'أبريل':4,'ابريل':4,'مايو':5,'يونيو':6,'يونيه':6,'يوليو':7,'أغسطس':8,'اغسطس':8,'سبتمبر':9,'أكتوبر':10,'اكتوبر':10,'نوفمبر':11,'ديسمبر':12,
+   january:1,jan:1,february:2,feb:2,march:3,mar:3,april:4,apr:4,may:5,june:6,jun:6,july:7,jul:7,august:8,aug:8,september:9,sept:9,sep:9,october:10,oct:10,november:11,nov:11,december:12,dec:12
+  };
   let year,month,day;
-  if(parts[0].length===4){year=Number(parts[0]);month=Number(parts[1]);day=Number(parts[2])}
-  else if(parts[2].length===4){day=Number(parts[0]);month=Number(parts[1]);year=Number(parts[2])}
-  else return null;
+  const namedDay=raw.match(/^(\\d{1,2})\\s+([^\\d\\s,]+)\\s+(\\d{2,4})$/u);
+  const namedFirst=raw.match(/^([^\\d\\s,]+)\\s+(\\d{1,2}),?\\s+(\\d{2,4})$/u);
+  if(namedDay||namedFirst){
+   const match=namedDay||namedFirst;
+   const monthName=(namedDay?match[2]:match[1]).toLocaleLowerCase();
+   const yearText=namedDay?match[3]:match[3];
+   if(yearText.length!==4||!months[monthName])return null;
+   day=Number(namedDay?match[1]:match[2]);month=months[monthName];year=Number(yearText);
+  }else{
+   const parts=raw.split(/[\\/.-]/);
+   if(parts.length!==3||parts.some(x=>!/^[0-9]+$/.test(x)))return null;
+   if(parts[0].length===4){year=Number(parts[0]);month=Number(parts[1]);day=Number(parts[2])}
+   else if(parts[2].length===4){day=Number(parts[0]);month=Number(parts[1]);year=Number(parts[2])}
+   else return null;
+  }
   const d=new Date(Date.UTC(year,month-1,day));
   return d.getUTCFullYear()===year&&d.getUTCMonth()===month-1&&d.getUTCDate()===day?d.toISOString().slice(0,10):null;
  };
