@@ -46,6 +46,7 @@ class Law14DraftInventoryTests(unittest.TestCase):
         self.assertTrue(report["valid"], report["errors"])
         self.assertEqual(report["questions"], 116)
         self.assertEqual(report["styles"], {"colloquial_egyptian": 58, "formal": 58})
+        self.assertEqual(report["targeted_pdf_text_reviewed_count"], 48)
 
     def test_rejects_duplicate_ids_and_question_text(self):
         first = question()
