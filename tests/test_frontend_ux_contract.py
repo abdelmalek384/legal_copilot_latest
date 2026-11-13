@@ -1228,6 +1228,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("'aria-expanded':'false'", HTML)
 
 
+    def test_document_file_picker_prevalidates_type_and_size(self):
+        self.assertIn("valid=selected.filter(file=>/\\\\.(pdf|docx)$/i.test(file.name)&&file.size<=15000000).length", HTML)
+        self.assertIn("uploadSubmit.disabled=!matterSelect.value||!valid", HTML)
+        self.assertIn("ملفات ستُستبعد بسبب النوع أو الحجم", HTML)
+
+
     def test_document_upload_queue_announces_per_file_status_accessibly(self):
         self.assertIn("className:'research-upload-results',role:'list','aria-live':'polite'", HTML)
         self.assertIn("className:'research-upload-item '+item.state,role:'listitem'", HTML)
