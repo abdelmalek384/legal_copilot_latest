@@ -51,8 +51,10 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 ### Egyptian legal authority and counsel validation
 - Owner: qualified Egyptian lawyer / legal content owner.
-- Exit criteria: compare against authenticated Official Gazette source, record amendments/currentness/corrigenda, validate article text and citations, sign off each source/article scope.
-- Labour Law No. 14/2025 comparison remains provisional. Preserve `verified=0`; machine comparison is not legal verification.
+- Exit criteria: independently review the 311-row lawyer tick-sheet against an authorized Gazette copy, record amendments/currentness/corrigenda and commencement/transitional effects, validate article text and citations, and sign off each source/article scope.
+- Labour Law No. 14/2025 now has page locators and recorded assistant page-image comparison notes for all 311 provisions. The 273 machine-difference records, five numeric alerts, 120 quantitative cues, six known orthography outliers and 29 previously unreviewed identical provisions have recorded visual checks; these groups overlap. No confirmed textual mismatch was found in the inspected passages. This is source-matched, not lawyer-reviewed.
+- The exact 112-page user-supplied Gazette comparison PDF and 311-row candidate JSONL were recovered from the Library source bundle; their SHA-256 values match the comparison record. The PDF reports copy/print restrictions and the original upload URL/capture chain is unknown. Source/reuse permission remains unknown. Preserve `verified=0`; do not trust candidate `in_force=1` or `as_of=2025-05-03`, and keep the law non-authoritative and retrieval-ineligible.
+- Gazette Supplement issue 225 (A), dated 2026-10-12, lists Labour Ministry Decisions 248–252/2026. The Ministry confirms them as occupational-safety and health executive decisions under Law 14/2025, but the original issue PDF is restricted and the full texts remain unavailable. These are metadata-only related instruments, not confirmed amendments.
 
 ### Real lawyer pilot
 - Owner: product owner / AI-2.
@@ -132,7 +134,7 @@ All of these merges are source-reviewed code integration only. Their tests remai
 | Gazette importer and provenance hardening | 100% merged (#1576/#1577/#1584) | Focused Python 3.12 tests not run | 80% |
 | Retrieval scorer/evaluator and device-evidence input hardening | 100% merged (#1580/#1581/#1583) | Focused Python 3.12 tests not run | 80% |
 | Live Arabic/English negated-obligation guard | Runtime call site confirmed; Arabic service-path tests merged (#1588) | Tests not run | 85% |
-| Structured candidate extraction (labelled entities, bilingual case references, event mentions, explicit relationships and date mentions) | 100% merged (#1594/#1600/#1602/#1603/#1604) | Helper/API/browser tests not run; limited deterministic rules, not general NER; no Hijri conversion | 80% |
+| Structured candidate extraction (labelled entities, bilingual case/legal references, event mentions, explicit relationships, date and amount candidates) | 100% merged (#1594/#1600/#1602/#1603/#1604/#1606/#1608) | Helper/API/browser tests not run; limited deterministic rules; official-law verification remains external | 88% |
 | Matter-wide date/event mention timeline | 100% merged (#1596) | API/browser acceptance and tenant-scope runtime checks not run | 80% |
 | Cross-document exact repeated-mention grouping | 100% merged (#1598) | Exact-match groups require human review; no identity resolution; tests/browser not run | 70% |
 | Advanced multi-document synthesis and cross-document entity resolution | Not implemented | Requires evidence conflict model, provenance policy and counsel evaluation | 20% |
