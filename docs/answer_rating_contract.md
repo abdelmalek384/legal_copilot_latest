@@ -56,7 +56,7 @@ The firm-facing export described in `docs/answer_rating_export_contract.md` is a
 | `notes` | Copy the reviewer's notes subject to the existing privacy and export controls. |
 | `rater` | Use the stable opaque reviewer identifier represented by `rated_by`; do not substitute an email address or display name. |
 | `timestamp` | Use `updated_at` for the current saved rating, serialized as ISO 8601 with an explicit timezone (UTC recommended). |
-| `trust_tier` | Must be added to the firm export from the exact assistant message's saved `message_json.trust_tier` at answer time. The research route persists the complete `ask()` result in that message metadata, so the export can read it without a schema migration. Do not infer it from the source's current status. Map `source_matched` to `source_matched`, `verified` to `verified`, and `unreviewed`, missing, or unknown values to `unverified`. |
+| `trust_tier` | Must be added to the firm export from the exact assistant message's saved `message_json` at answer time. The research route persists the complete `ask()` result, including its source records, in that message metadata, so the export can compute this without a schema migration: preserve explicit `trust_tier=source_matched`; use `verified` only when every source record has `verified=true` and `source_status=verified_operative_text`; otherwise use `unverified`. Do not infer it from the source's current status. Map `source_matched` to `source_matched`, `verified` to `verified`, and `unreviewed`, missing, or unknown values to `unverified`. |
 
 The firm export's `expected_article_ids`, `answerable`, `cited_article_ids`, `benchmark_ready`, question, and answer remain useful benchmark context, but they are not columns in this minimal rating interchange. Preserve them in the richer firm export; do not discard them from the source record.
 
@@ -69,7 +69,7 @@ python tools/adapt_answer_rating_export.py firm-answer-ratings.csv canonical-ans
 It requires the source export to include `trust_tier`, validates timezone-aware `updated_at`, writes UTF-8 with BOM using the canonical header, and refuses to overwrite an existing output or alias the input. Rows with `cited_article_accuracy=not_applicable` are explicitly excluded and listed in the JSON summary; they are never converted to `right` or `wrong`. Unknown/empty trust-tier values fail safe to `unverified`.
 
 
-**Integration gap to close in AI-2:** the current firm export column list does not include `trust_tier`. The value is already retained in the assistant message's `message_json`; add `metadata.get("trust_tier", "unverified")` as the export column. Until that field is exported and the adapter above is run, the firm CSV is not yet a complete instance of this canonical contract. The contract itself is stable; do not silently omit the trust tier.
+**Integration gap to close in AI-2:** the current firm export column list does not include `trust_tier`. The necessary message-time evidence is already retained in the assistant message's `message_json`; add a `trust_tier` export column using the conservative mapping above. Until that field is exported and the adapter above is run, the firm CSV is not yet a complete instance of this canonical contract. The contract itself is stable; do not silently omit the trust tier.
 
 ## Rating guidance
 
