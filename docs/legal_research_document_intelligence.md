@@ -18,6 +18,7 @@ The application already accepts bounded PDF and DOCX uploads, extracts PDF text 
 - Literal candidate extraction for dates, case references, amounts and explicitly labelled parties.
 - A date-mention review timeline that retains document/page provenance, parses valid four-digit-year dates using explicit day-first, ISO or named Arabic/English Gregorian-month rules, and refuses to guess two-digit years or invalid dates.
 - Structured candidate records for labelled parties, case/legal references, amounts and date mentions; sentence-scoped event triggers linked only to dates/labelled parties in that same sentence; and explicit Arabic/English relationship phrases. Every record retains character offsets and available page/chunk provenance and remains unverified.
+- Explicit deadline/time-limit phrase candidates retain the literal period/date context and source offsets; they never calculate or create a procedural deadline.
 - Case-reference extraction recognizes Arabic labels and English Case/Claim/Appeal/Suit/Docket labels, including alphanumeric docket identifiers with slash/hyphen segments.
 - Legal-reference extraction recognizes Arabic Article/law labels and English Article, Section, Subsection, Paragraph, Clause, Chapter, Act, Law, Regulation, Decree, Code and Rule references.
 - Monetary amount candidates preserve the literal mention and add a conservative decimal numeric string plus an explicit currency code only when the currency label identifies one unambiguously; ambiguous labels such as bare ريال/درهم remain unresolved.
@@ -126,3 +127,10 @@ A passing unit suite validates helper behavior only; it does not validate the ne
 - Extended literal legal-reference candidates to English Section, Subsection, Paragraph, Clause, Chapter, Act, Law, Regulation, Decree, Code and Rule labels, retaining the existing Article and Arabic forms.
 - Numeric/alphanumeric identifiers and source offsets are preserved. Matches are candidates only and are not validated against an official statute database.
 - Added bilingual helper regression coverage; PR #1608 merged at `113fdf84f6085d2dcb96e203cdedd5100ccaf83f`. Tests remain unexecuted.
+
+## Explicit deadline mention candidates — 2026-11-13 (branch pending merge)
+
+- Added conservative Arabic/English deadline and time-limit phrase candidates, including explicit appeal/filing/due-date language and literal day/week/month periods.
+- Each candidate retains its sentence, co-occurring date/party evidence, page and source offsets. The matter timeline includes a separate deadline-mention section.
+- No procedural deadline is calculated, inferred or created. A phrase such as `within 30 days` is only a text mention and must be reviewed against the applicable law, service date, court calendar and original document.
+- Added helper, separate-database API and frontend contract tests; tests/browser acceptance remain unexecuted. Branch `feature/explicit-deadline-mention-candidates-20261113` is pending merge.
