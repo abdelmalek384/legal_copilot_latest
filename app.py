@@ -972,7 +972,12 @@ _REQUIRED_REVIEW_EVENTS_SQL = (
 
 )
 
-SQL = ("SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts JOIN chunks ON chunks.id=chunks_fts.rowid "
+SQL = ("SELECT chunks.*, bm25(chunks_fts) AS r, "
+       "firm_docs.name AS document_name, firm_docs.sha256 AS document_sha256, "
+       "firm_docs.extraction_status AS document_extraction_status, firm_docs.ocr_used AS document_ocr_used "
+       "FROM chunks_fts JOIN chunks ON chunks.id=chunks_fts.rowid "
+       "LEFT JOIN docs firm_docs ON firm_docs.id=chunks.document_id AND firm_docs.case_id=chunks.case_id "
+       "AND firm_docs.firm_id=(SELECT firm_id FROM cases WHERE id=chunks.case_id) "
        "WHERE chunks_fts MATCH ? AND (chunks.case_id IS NOT NULL OR (chunks.verified=1 AND (chunks.in_force=1 OR chunks.document_version_id IS NOT NULL))) AND (chunks.case_id IS NULL OR chunks.case_id IS ?) "
        "AND (chunks.case_id IS NULL OR chunks.case_id IN (SELECT id FROM cases WHERE firm_id=?)) "
        "AND (chunks.case_id IS NOT NULL OR chunks.document_version_id IS NOT NULL OR ?=1) "
@@ -1107,8 +1112,12 @@ def citation_provenance(c, version_id):
 
 
 _FIRM_SEARCH_SQL = (
-    "SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts "
-    "JOIN chunks ON chunks.id=chunks_fts.rowid "
+    "SELECT chunks.*, bm25(chunks_fts) AS r, d.name AS document_name, "
+    "d.sha256 AS document_sha256, d.extraction_status AS document_extraction_status, "
+    "d.ocr_used AS document_ocr_used "
+    "FROM chunks_fts JOIN chunks ON chunks.id=chunks_fts.rowid "
+    "JOIN docs d ON d.id=chunks.document_id AND d.case_id=chunks.case_id "
+    "AND d.firm_id=? "
     "WHERE chunks_fts MATCH ? AND chunks.case_id=? "
     "AND chunks.case_id IN (SELECT id FROM cases WHERE firm_id=?) "
     "ORDER BY r LIMIT 40"
@@ -1166,7 +1175,7 @@ def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
     rows_with_origin = []
 
     if scope in {"all_permitted", "firm_documents"} and case_id is not None:
-        rows = c.execute(_FIRM_SEARCH_SQL, (fts_query, case_id, firm_id)).fetchall()
+        rows = c.execute(_FIRM_SEARCH_SQL, (firm_id, fts_query, case_id, firm_id)).fetchall()
         for row in rows:
             rows_with_origin.append((dict(row), "firm", False))
 
@@ -1217,6 +1226,12 @@ def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
                 "requested_as_of": as_of, "document_version_id": version_id,
                 "article": row.get("article"), "page": row.get("page"),
                 "case_id": row.get("case_id") if origin == "firm" else None,
+                "document_id": row.get("document_id") if origin == "firm" else None,
+                "chunk_id": row.get("id") if origin == "firm" else None,
+                "document_name": row.get("document_name") if origin == "firm" else None,
+                "document_sha256": row.get("document_sha256") if origin == "firm" else None,
+                "document_extraction_status": row.get("document_extraction_status") if origin == "firm" else None,
+                "document_ocr_used": bool(row.get("document_ocr_used")) if origin == "firm" else False,
                 "scope": "firm_documents" if origin == "firm" else "verified_corpus",
                 "applies_as_of": bool(row.get("in_force")) if version_id is None else True,
                 "provenance": (
@@ -1276,6 +1291,12 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
         out.append({"id": i, "ref": r["ref"], "text": r["text"], "matched_terms": matched_surface_terms(r["text"], expanded_qt), "in_force": bool(r["in_force"]), "verified": bool(r["verified"]), "as_of": r["as_of"],
                     "source": r["source"], "cos": round(cs, 3), "literal_match": round(original_match, 3), "expanded_match": round(expanded_match, 3), "score": 0.5 * b / top + 0.5 * cs + (1 if i in exact else 0),
                     "requested_as_of": as_of, "document_version_id": r["document_version_id"], "article": r["article"], "page": r["page"], "case_id": r["case_id"], "scope": scope,
+                    "document_id": r["document_id"] if r["case_id"] is not None else None,
+                    "chunk_id": r["id"] if r["case_id"] is not None else None,
+                    "document_name": r["document_name"] if r["case_id"] is not None else None,
+                    "document_sha256": r["document_sha256"] if r["case_id"] is not None else None,
+                    "document_extraction_status": r["document_extraction_status"] if r["case_id"] is not None else None,
+                    "document_ocr_used": bool(r["document_ocr_used"]) if r["case_id"] is not None else False,
                     "applies_as_of": bool(r["in_force"]) if r["document_version_id"] is None else True,
                     "provenance": citation_provenance(c, r["document_version_id"])})
     for item in out:
