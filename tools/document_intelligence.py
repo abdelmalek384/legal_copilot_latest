@@ -25,8 +25,8 @@ _MONTH_TOKEN = (
     "July|Jul|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec"
 )
 _NAMED_DATE_PATTERN = re.compile(
-    rf"(?<!\\w)(?:(?P<day>[{_DIGITS}]{{1,2}})\\s+(?P<month>{_MONTH_TOKEN})\\s+(?P<year>[{_DIGITS}]{{2,4}})|"
-    rf"(?P<month_first>{_MONTH_TOKEN})\\s+(?P<day_first>[{_DIGITS}]{{1,2}}),?\\s+(?P<year_first>[{_DIGITS}]{{2,4}}))(?!\\w)",
+    rf"(?<!\w)(?:(?P<day>[{_DIGITS}]{{1,2}})\s+(?P<month>{_MONTH_TOKEN})\s+(?P<year>[{_DIGITS}]{{2,4}})|"
+    rf"(?P<month_first>{_MONTH_TOKEN})\s+(?P<day_first>[{_DIGITS}]{{1,2}}),?\s+(?P<year_first>[{_DIGITS}]{{2,4}}))(?!\w)",
     re.IGNORECASE,
 )
 _DATE_PATTERNS = (
