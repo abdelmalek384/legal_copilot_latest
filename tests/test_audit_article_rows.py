@@ -23,7 +23,7 @@ class AuditArticleRowsTests(unittest.TestCase):
             root = Path(temp)
             source = root / "audit.json"
             source.write_text(
-                json.dumps({"law": "Synthetic", "article": "1", "text": BASE.format(n=1)}) + "\\n",
+                json.dumps({"law": "Synthetic", "article": "1", "text": BASE.format(n=1)}) + "\n",
                 encoding="utf-8",
             )
             original = source.read_bytes()
