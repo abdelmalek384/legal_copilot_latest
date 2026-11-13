@@ -1,4 +1,5 @@
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -9,6 +10,14 @@ from tools.evaluate_arabic_ocr import evaluate_records, normalize_arabic, score_
 
 
 class ArabicOcrEvaluationTests(unittest.TestCase):
+    def test_report_cannot_overwrite_jsonl_input(self):
+        with tempfile.TemporaryDirectory() as temp:
+            source = Path(temp) / "pages.jsonl"
+            source.write_text('{"document_id":"x","page":1,"reference_text":"abc","ocr_text":"abc"}\\n', encoding="utf-8")
+            original = source.read_bytes()
+            self.assertEqual(MODULE.main([str(source), "--output", str(source)]), 2)
+            self.assertEqual(source.read_bytes(), original)
+
     def test_normalization_handles_arabic_variants_without_dropping_punctuation(self):
         self.assertEqual(normalize_arabic("إِنَّـهُ ١٢، ى"), "انه 12، ي")
 
