@@ -68,7 +68,7 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - #1583 — merged retrieval scorer rejection of non-object question/run rows.
 - #1584 — merged Gazette provenance metadata hardening on current `main`.
 - #1558 and #1543 — closed as superseded by #1582; their relevant classification/document-intelligence work is included in the integrated workspace.
-- #1561 remains an open AI-2 integration issue: the negation helper must be invoked at the live final-answer boundary.
+- #1561 is closed after confirming the narrow guard is called in `app.ask` and merging #1588 service-path regressions for Arabic polarity reversal, faithful negative wording, and unrelated obligation clauses. Runtime tests remain unexecuted.
 
 All of these merges are source-reviewed code integration only. Their tests remain unexecuted unless an explicit runtime result is recorded; do not infer passing tests from a successful merge.
 
@@ -117,3 +117,23 @@ All of these merges are source-reviewed code integration only. Their tests remai
 - Closed superseded drafts #1578, #1564, #1558 and #1543. #1578's remaining provenance hardening was recreated as #1584 and merged.
 - No GitHub Actions test execution or browser acceptance is claimed. The Actions runner/billing issue still prevents jobs from exposing executable steps. Run focused importer, retrieval scorer/evaluator, device acceptance, document classification, app runtime, export and frontend contract tests in the clean Python 3.12 hash-locked environment when available.
 - Legal Research implementation is merged, but browser acceptance (Arabic RTL, English LTR, keyboard-only, mobile/desktop), end-to-end PDF/DOCX upload/download/review, and adversarial tenant-isolation checks remain open.
+
+
+## Current-main implementation progress — 2026-11-13
+
+| Workstream | Repository implementation | Validation / acceptance | Overall status |
+|---|---:|---:|---:|
+| Figma-aligned Legal Research UI and application shell | 100% merged (#1582) | Browser/RTL/LTR/accessibility QA not run | 80% |
+| PDF/DOCX upload, accessible document library, metadata and Arabic/English text search | 100% merged (#1582) | End-to-end upload/download and adversarial tenant checks not run | 80% |
+| Persistent classification, audit history and extraction review | 100% merged (#1582) | Python 3.12 integration tests and browser review flow not run | 75% |
+| Gazette importer and provenance hardening | 100% merged (#1576/#1577/#1584) | Focused Python 3.12 tests not run | 80% |
+| Retrieval scorer/evaluator and device-evidence input hardening | 100% merged (#1580/#1581/#1583) | Focused Python 3.12 tests not run | 80% |
+| Live Arabic/English negated-obligation guard | Runtime call site confirmed; Arabic service-path tests merged (#1588) | Tests not run | 85% |
+| Advanced multi-document synthesis and structured entity/event extraction | Not complete; existing outputs remain bounded keyword/regex candidates | Design, implementation and counsel evaluation remain | 30% |
+| Full Arabic RTL/LTR, keyboard, mobile/desktop acceptance | Not complete | Requires browser/device execution | 0% |
+| CI / clean Python 3.12 suite | Not complete | Runner/billing allocation prevents hosted jobs; local execution not available in this session | 0% |
+| Adversarial tenant-isolation and backup/restore acceptance | Foundations and targeted tests exist | Full cross-firm route/job/export/search and witnessed restore remain | 40% |
+| Payment-provider and paid-pilot acceptance | Existing billing UI/API foundations | Provider sandbox, webhook, real-firm and revenue evidence remain | 30% |
+| Egyptian-law source verification and counsel sign-off | Review inventories and tooling exist | Qualified counsel and authenticated Gazette evidence required | 0% |
+
+Percentages distinguish repository implementation from validation and operational acceptance. A merged PR is not a test pass or production-readiness certification.
