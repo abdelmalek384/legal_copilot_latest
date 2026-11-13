@@ -304,4 +304,4 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 ## English case-reference extraction update — 2026-11-13
 
 - Case-reference candidates now recognize English Case/Claim/Appeal/Suit/Docket labels and alphanumeric docket identifiers in addition to Arabic labels.
-- Added helper regression coverage for English and Arabic examples. Tests remain unexecuted; branch `feature/english-case-reference-extraction-20261113`; merge pending.
+- Added helper regression coverage for English and Arabic examples. Tests remain unexecuted; PR #1604 merged at `7dd0a188a4c23a0d0d9a231a72c629506b68df58`.
