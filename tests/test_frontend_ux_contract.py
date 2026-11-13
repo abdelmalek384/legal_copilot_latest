@@ -1310,6 +1310,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("needs_review:LANG==='ar'?'يحتاج مراجعة':'Needs review'", inspector)
         self.assertIn("unverified:LANG==='ar'?'غير متحقق':'Unverified'", inspector)
         self.assertIn("metadata_only:LANG==='ar'?'غير متحقق — بيانات وصفية فقط':'Unverified — metadata only'", inspector)
+        self.assertIn("const explanations={", inspector)
+        self.assertIn("A source was found, but its currency or legal status needs review", inspector)
+        self.assertIn("No relevant verified passage was returned in this scope; this does not prove no applicable law exists.", inspector)
+        self.assertIn("className:'research-source-caution '+(status==='verified_operative_text'?'verified':'warning')", inspector)
+        self.assertIn("Recorded source status explanation", inspector)
 
 if __name__ == "__main__":
     unittest.main()
