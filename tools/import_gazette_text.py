@@ -408,9 +408,9 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
     for block, labels in sorted(block_articles.items()):
         numeric = []
         for label in labels:
-            match = re.match(r"^issuance_(\\d+)$", str(label))
+            match = re.match(r"^issuance_(\d+)$", str(label))
             if not match:
-                match = re.match(r"^\\s*([0-9٠-٩۰-۹]+)", str(label))
+                match = re.match(r"^\s*([0-9٠-٩۰-۹]+)", str(label))
             if match:
                 try:
                     numeric.append(int(match.group(1).translate(str.maketrans(
