@@ -307,7 +307,9 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - PR #1608 merged at `113fdf84f6085d2dcb96e203cdedd5100ccaf83f`.
 
 
-## Additional repository reconciliation — 2026-11-13
+## Additional repository reconciliation
+- `docs/answer_rating_contract.md` added on main (commit `8820ea617c5bb8fcbf72bb77e7470a9828fe4a44`) for AI-2 integration: stable CSV UTF-8 schema, seven required fields, rating enums, timestamp and trust-tier safeguards. AI-2 can consume this file directly.
+ — 2026-11-13
 
 - PR #1617 merged at `e7f3fcd781bc7370842f3ce6d55edd2f664da54e`: acquisition readiness, source review queue, corpus audit, amendment relationship and corpus inventory URL validators now consistently reject DEL (`0x7F`) and raw backslashes. Regression fixtures were added; tests remain unexecuted.
 
