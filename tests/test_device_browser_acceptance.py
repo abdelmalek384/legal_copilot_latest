@@ -64,6 +64,25 @@ class DeviceBrowserAcceptanceTests(unittest.TestCase):
         self.assertFalse(result["complete"])
         self.assertEqual(result["passed_checks"], 0)
 
+    def test_malformed_untrusted_enum_values_are_reported_not_crashed(self):
+        cases = (
+            {"environment": []},
+            {"device_class": {}},
+            {"locale": []},
+            {"results": {REQUIRED_RESULTS[0]: []}},
+        )
+        for overrides in cases:
+            with self.subTest(overrides=overrides):
+                value = record(**overrides)
+                with self.assertRaises(EvidenceError):
+                    validate_record(value)
+
+    def test_unhashable_result_values_do_not_crash_defect_detection(self):
+        value = record(results={key: "NOT_TESTED" for key in REQUIRED_RESULTS})
+        value["results"][REQUIRED_RESULTS[0]] = []
+        with self.assertRaisesRegex(EvidenceError, "results.installation must be PASS"):
+            validate_record(value)
+
     def test_release_gate_requires_every_check_to_pass(self):
         value = record(results={key: "PASS" for key in REQUIRED_RESULTS},
                        evidence_paths=["artifacts/run-001/summary.json"])
