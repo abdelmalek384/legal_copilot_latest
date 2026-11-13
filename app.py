@@ -3665,6 +3665,8 @@ def extract(name, data):
     if ext == "pdf":
         from pypdf import PdfReader
         reader = PdfReader(io.BytesIO(data), strict=True)
+        if getattr(reader, "is_encrypted", False):
+            raise HTTPException(422, "encrypted PDFs are not accepted for matter upload")
         if len(reader.pages) > 500: raise HTTPException(413, "maximum 500 PDF pages")
         # Preserve page boundaries so later retrieval can cite a real page.
         for page_no, page in enumerate(reader.pages, 1):
