@@ -1234,7 +1234,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("dashboard-attention", HTML)
         self.assertIn("Needs your attention", HTML)
         self.assertIn("overdueTasks+overdueDeadlines.length", HTML)
-        dashboard = HTML[HTML.index("function dash(){"):HTML.index("\\nasync function tasksPage()")]
+        dashboard = HTML[HTML.index("function dash(){"):HTML.index("async function tasksPage()", HTML.index("function dash(){"))]
         self.assertNotIn("Quick access", dashboard)
         self.assertNotIn("Recorded fees", dashboard)
         self.assertIn("Active matters", dashboard)
