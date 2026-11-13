@@ -78,6 +78,11 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - The manual-capture recorder and its read-only provenance validator now reject raw backslashes in source, terms and permission-evidence URLs; added regression cases for both ingestion and metadata validation.
 - Direct-main source/test commits: `6b3e86a`, `72f8430`, `5dc40b1`, `4568760`. Tests remain unexecuted.
 
+## Legal ingestion and source-rights URL parity — 2026-11-14
+
+- Hardened additional evidence/source URL consumers: `manage.py` deadline-rule attestation, `tools/answer_trust_tier.py` source-match rights evidence, `tools/build_legal_draft.py` citation eligibility, and `tools/import_laws.py` PDF bundle metadata. Raw backslashes are rejected; attestation/draft eligibility also rejects query/fragment ambiguity and malformed ports.
+- Added focused regression cases. Direct-main commits: `adb7ea8`, `8c47783`, `86eba26`, `a36f14a`, `46d7823`, `42b1a74`, `5d6d896`, `8df2fcf`. Tests remain unexecuted.
+
 ## Recent AI-1 and Legal Research integration
 
 - #1576 — merged fixture corrections for the Gazette importer and Arabic retrieval scorer.
