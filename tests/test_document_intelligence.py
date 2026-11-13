@@ -197,6 +197,30 @@ class DocumentIntelligenceTests(unittest.TestCase):
         self.assertEqual(result["candidate_count"], 1)
         self.assertTrue(result["truncated"])
 
+    def test_arabic_and_english_named_month_dates_are_parsed_without_guessing_years(self):
+        text = (
+            "[[PDF_PAGE:6]]\\n"
+            "تحددت جلسة الدعوى بتاريخ ١٥ مارس ٢٠٢٥. "
+            "The hearing was listed for March 16, 2025. "
+            "A prior note says 15 March 25 and another says 32 مارس 2025."
+        )
+        extracted = extract_review_candidates(text)
+        date_candidates = [item for item in extracted["candidates"] if item["kind"] == "date"]
+        timeline = build_date_mention_timeline([{
+            "document_id": "doc-6",
+            "filename": "named-dates.pdf",
+            "candidates": date_candidates,
+        }])
+        self.assertEqual(
+            [item["normalized_date"] for item in timeline["dated_mentions"]],
+            ["2025-03-15", "2025-03-16"],
+        )
+        self.assertEqual(
+            {item["date_mention"] for item in timeline["unparsed_mentions"]},
+            {"15 March 25", "32 مارس 2025"},
+        )
+        self.assertTrue(all(item["page"] == 6 for item in timeline["dated_mentions"]))
+
     def test_timeline_sorts_date_mentions_and_keeps_document_provenance(self):
         documents = [
             {"document_id": "doc-b", "filename": "second.pdf", "candidates": [
