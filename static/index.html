@@ -2319,7 +2319,15 @@ async function documentsPage(){
     h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+(item.document_name||uiText('مستند دون اسم','Unnamed document'))}),h('span',{className:'mut',textContent:(item.case_title||uiText('ملف القضية','Matter'))+' · #'+item.case_id})),
     h('p',{className:'mut',textContent:[item.ref||uiText('مقطع ','Chunk ')+item.chunk_id,item.page?uiText('صفحة ','Page ')+item.page:uiText('رقم الصفحة غير مسجل','Page not recorded')].join(' · ')}),
     h('p',{className:'document-text-hit-excerpt',textContent:String(item.excerpt||'')}),
-    btn(uiText('فتح ملف القضية','Open matter'),async()=>{const value=String(item.case_id);if(!Array.from(matterSelect.options).some(option=>option.value===value))matterSelect.add(new Option((item.case_title||uiText('ملف القضية','Matter'))+' (#'+value+')',value));matterSelect.value=value;window.DOCUMENT_MATTER_ID=Number(item.case_id);await loadMatter()},'g')
+    btn(item.document_id&&item.chunk_id?uiText('فتح المستند والمقطع','Open document and passage'):uiText('فتح ملف القضية','Open matter'),async()=>{
+     const caseId=Number(item.case_id),documentId=Number(item.document_id),chunkId=item.chunk_id;
+     if(Number.isSafeInteger(caseId)&&caseId>0&&Number.isSafeInteger(documentId)&&documentId>0&&chunkId!==undefined&&chunkId!==null&&chunkId!==''){
+      window.DOCUMENT_REVIEW_TARGET={caseId,documentId,chunkId:String(chunkId)};PAGE='cases';TAB='docs';
+      try{await view(caseId)}catch(_){window.DOCUMENT_REVIEW_TARGET=null;toast(uiText('تعذر فتح مستندات ملف القضية.','Could not open the matter documents.'))}
+      return;
+     }
+     const value=String(item.case_id);if(!Array.from(matterSelect.options).some(option=>option.value===value))matterSelect.add(new Option((item.case_title||uiText('ملف القضية','Matter'))+' (#'+value+')',value));matterSelect.value=value;window.DOCUMENT_MATTER_ID=Number(item.case_id);await loadMatter()
+    },'g')
    ));
    textSearchResults.replaceChildren(h('p',{className:'mut',textContent:(result.total||0)+' '+uiText('مقطع مطابق في القضايا المتاحة.','matching passages in accessible matters.')}),h('div',{className:'row document-text-search-pagination'},previousTextSearch,textSearchPageLabel,nextTextSearch),...cards,h('p',{className:'mut',textContent:uiText('نتائج البحث مقتطفات من النص المستخرج وليست حقائق متحققة أو استنتاجات قانونية. راجع كل مقتطف مقابل المستند الأصلي.','Search results are extracted-text matches, not verified facts or legal conclusions. Check each passage against its original document.')}));
    if(!items.length)textSearchResults.append(h('p',{className:'mut',textContent:uiText('لم يُعثر على مقاطع مطابقة في المستندات التي يمكنك الوصول إليها.','No matching passages were found in documents you can access.')}));
