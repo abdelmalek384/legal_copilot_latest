@@ -8645,18 +8645,20 @@ def matter_document_timeline(
     """Return a bounded, source-located queue of date and event mentions in one matter."""
     c = conn()
     need(c, u, cid)
-    documents = c.execute(
+    document_rows = c.execute(
         "SELECT id,name FROM docs WHERE case_id=? AND firm_id=? ORDER BY id DESC LIMIT ?",
-        (cid, int(u["firm_id"]), limit),
+        (cid, int(u["firm_id"]), limit + 1),
     ).fetchall()
+    documents = document_rows[:limit]
     timeline_inputs = []
     event_candidates = []
     remaining_chars = MAX_ANALYSIS_CHARS
     chunks_processed = 0
     date_mentions_collected = 0
-    truncated = False
+    truncated = len(document_rows) > limit
     for document in documents:
         document_id = int(document["id"])
+        filename = str(document["name"] or "Unnamed document")
         candidates = []
         rows = c.execute(
             "SELECT id,ref,page,text FROM chunks WHERE case_id=? AND document_id=? ORDER BY id",
@@ -8701,7 +8703,7 @@ def matter_document_timeline(
                 event_candidates.append({
                     **event,
                     "document_id": str(document_id),
-                    "filename": document["name"],
+                    "filename": filename,
                     "chunk_id": int(row["id"]),
                     "chunk_ref": chunk_ref,
                     "page": row["page"] if row["page"] not in (None, "") else event.get("page"),
@@ -8711,7 +8713,7 @@ def matter_document_timeline(
                 break
         timeline_inputs.append({
             "document_id": str(document_id),
-            "filename": document["name"],
+            "filename": filename,
             "candidates": candidates,
         })
         if remaining_chars <= 0:
