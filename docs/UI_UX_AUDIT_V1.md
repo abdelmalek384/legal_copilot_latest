@@ -99,3 +99,11 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 - Follow-up static inspection found and corrected a malformed JavaScript statement in the upload panel's initial `aria-busy` setup (`let uploadPanel.setAttribute(...)`). Added an explicit regression assertion against that invalid form. Static inspection now finds no similar malformed `let object.method(...)` statements in the reviewed page source; this is not a substitute for executing the browser test suite.
 - The file picker now pre-checks the selected PDF/DOCX extensions and 15 MB per-file limit before enabling upload. It reports the valid selection count and how many files will be skipped; server-side validation remains authoritative. Added a regression contract and registered the new Arabic labels for native review.
 - Final static review of the picker pre-validation corrected the extension matcher to use a literal dot before `pdf`/`docx`; a focused JavaScript regular-expression check confirms PDF and DOCX filenames match while a misleading `.pdf.exe` suffix does not. Browser execution remains pending because the available workflow runs are failing and their logs/steps are not retrievable through the current GitHub integration.
+
+
+### 2026-11-13 — consistent research inspector verification labels
+
+- The source inspector now uses the same plain-language status distinctions as the source cards for secondary copies, review-pending records, user-supplied material, unverified records and metadata-only records.
+- This prevents a source from appearing as generically “outdated” in the inspector when its recorded state is more specific (for example, metadata-only or user-supplied/unverified).
+- Added a frontend regression contract covering every supported inspector status key and the Arabic/English labels for review-pending, unverified and metadata-only states.
+- This is a presentation-only consistency correction. It does not change source metadata, legal verification, provenance, ranking or retrieval behaviour.
