@@ -79,6 +79,13 @@ class LegalImportBundleTests(unittest.TestCase):
         self.assertNotIn("download_egypt_laws.py", readme)
         self.assertIn("docs/legal_pdf_import_runbook.md", readme)
 
+    def test_source_url_rejects_raw_backslashes_before_output_creation(self):
+        self._write_pair("sample_law", "DOC-001", self.pdf_bytes,
+                         source_url="https://example.gov.eg\\\\gazette/item?id=123")
+        with self.assertRaises(SystemExit):
+            validate_inputs(self.source, self.output)
+        self.assertFalse(self.output.exists())
+
     def test_valid_pair_returns_actual_hash_and_metadata(self):
         prepared = validate_inputs(self.source, self.output)
         self.assertEqual(len(prepared), 1)
