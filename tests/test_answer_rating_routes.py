@@ -31,14 +31,14 @@ class AnswerRatingRouteTests(unittest.TestCase):
                 (10,7,1,'Firm A'),(20,8,2,'Firm B');
             INSERT INTO research_messages(id,conversation_id,role,content,message_json) VALUES
                 (1,10,'user','=SUM(1,1)','{}'),
-                (2,10,'assistant','Firm A answer','{"answer_id":"ans_firm_a_123456789012345678901234"}'),
+                (2,10,'assistant','Firm A answer','{"answer_id":"ans_AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"}'),
                 (3,20,'user','Private Firm B question','{}'),
-                (4,20,'assistant','Private Firm B answer','{"answer_id":"ans_firm_b_123456789012345678901234"}');
+                (4,20,'assistant','Private Firm B answer','{"answer_id":"ans_BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"}');
         """)
         migration = app.Path(__file__).resolve().parents[1] / "migrations" / "firm" / "0021_answer_ratings.sql"
         self.db.executescript(migration.read_text(encoding="utf-8"))
         self.user = {"id": 7, "firm_id": 1, "role": "admin", "name": "Reviewer"}
-        self.answer_id = "ans_firm_a_123456789012345678901234"
+        self.answer_id = "ans_AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         self.connection_patch = patch.object(app, "conn", return_value=self.db)
         self.connection_patch.start()
 
@@ -78,7 +78,7 @@ class AnswerRatingRouteTests(unittest.TestCase):
     def test_cross_firm_answer_id_is_not_disclosed_or_rated(self):
         with self.assertRaises(app.HTTPException) as caught:
             app.save_answer_rating(
-                "ans_firm_b_123456789012345678901234", self.rating(), self.user
+                "ans_BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", self.rating(), self.user
             )
         self.assertEqual(caught.exception.status_code, 404)
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM answer_ratings").fetchone()[0], 0)
