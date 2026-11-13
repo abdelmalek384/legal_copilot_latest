@@ -146,7 +146,7 @@ class DocumentIntelligenceTests(unittest.TestCase):
     def test_timeline_sorts_date_mentions_and_keeps_document_provenance(self):
         documents = [
             {"document_id": "doc-b", "filename": "second.pdf", "candidates": [
-                {"kind": "date", "value": "١٥/٠٣/٢٠٢٥", "page": 4, "excerpt": "تاريخ الجلسة"}
+                {"kind": "date", "value": "١٥/٠٣/٢٠٢٥", "page": 4, "chunk_id": 41, "chunk_ref": "chunk-41", "start": 10, "end": 20, "excerpt": "تاريخ الجلسة"}
             ]},
             {"document_id": "doc-a", "filename": "first.docx", "candidates": [
                 {"kind": "date", "value": "2025-01-02", "page": None, "excerpt": "تاريخ العقد"}
@@ -157,6 +157,10 @@ class DocumentIntelligenceTests(unittest.TestCase):
                          ["2025-01-02", "2025-03-15"])
         self.assertEqual(result["dated_mentions"][1]["document_id"], "doc-b")
         self.assertEqual(result["dated_mentions"][1]["page"], 4)
+        self.assertEqual(result["dated_mentions"][1]["chunk_id"], 41)
+        self.assertEqual(result["dated_mentions"][1]["chunk_ref"], "chunk-41")
+        self.assertEqual(result["dated_mentions"][1]["start"], 10)
+        self.assertEqual(result["dated_mentions"][1]["end"], 20)
         self.assertEqual(result["dated_mentions"][1]["review_status"],
                          "date_mention_requires_human_context")
 
