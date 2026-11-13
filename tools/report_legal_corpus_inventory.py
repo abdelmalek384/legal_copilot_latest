@@ -17,6 +17,12 @@ from typing import Any
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
+import sys
+
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools.output_path_safety import ensure_output_paths_safe
 DEFAULTS = {
     "manifest": ROOT / "docs/source_manifest.json",
     "permissions": ROOT / "docs/source_permission_register.json",
@@ -219,6 +225,10 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     paths = {name: getattr(args, name) for name in DEFAULTS}
     try:
+        ensure_output_paths_safe(
+            [args.out, args.markdown_out],
+            paths.values(),
+        )
         report = build_report(paths)
     except (OSError, UnicodeError, json.JSONDecodeError, csv.Error, ValueError) as exc:
         parser.error(str(exc))
