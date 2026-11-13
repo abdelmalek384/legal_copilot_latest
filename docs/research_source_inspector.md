@@ -78,7 +78,7 @@ The matter-level extracted-text review now repeats an explicit OCR warning when 
 Cross-matter extracted-text search results already return case, document, and chunk IDs within the caller's authorized matter scope. When all three identifiers are valid, the result action now uses the same exact document/chunk review hand-off as the Legal Research source inspector. If the result lacks a chunk ID, it retains the prior matter-level Documents hand-off instead of inventing a passage location. Search results remain unverified extracted-text matches and are not legal conclusions.
 
 
-Original-document download filenames in the matter review UI are normalized to remove path separators and control characters and are length-bounded before being passed to the browser download attribute. This is a client-side filename hygiene measure; the stored object name and server-side access checks remain unchanged.
+Original-document download filenames in both the matter review UI and the global document library are normalized to remove path separators and control characters and are length-bounded before being passed to the browser download attribute. This is a client-side filename hygiene measure; the stored object name and server-side access checks remain unchanged.
 
 
 The focused chunk card now receives a visible focus outline and scroll margin when opened from a research result, so keyboard and assistive-technology users can identify where navigation landed. The card remains a review target, not a verification status.
