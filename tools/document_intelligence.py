@@ -229,6 +229,10 @@ def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, An
                 "document_id": document_id,
                 "filename": filename,
                 "page": candidate.get("page"),
+                "chunk_id": candidate.get("chunk_id"),
+                "chunk_ref": candidate.get("chunk_ref"),
+                "start": candidate.get("start"),
+                "end": candidate.get("end"),
                 "excerpt": candidate.get("excerpt", ""),
                 "review_status": "date_mention_requires_human_context",
             }
