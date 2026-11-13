@@ -303,6 +303,14 @@ class AmendmentRelationshipValidatorTests(unittest.TestCase):
                     item["code"] == "unrecognized_or_missing_status" for item in report["warnings"]
                 ))
 
+    def test_source_url_rejects_del_and_backslashes(self):
+        for value in (
+            "https://gazette.example.gov/law\x7f.pdf",
+            "https://gazette.example.gov\\law.pdf",
+        ):
+            with self.subTest(value=value):
+                self.assertFalse(MODULE._https_url(value))
+
     def test_invalid_document_schema_is_reported_without_crashing(self):
         report = MODULE.validate({"relationships": []}, {"documents": {}})
         self.assertIn("schema_error", report)
