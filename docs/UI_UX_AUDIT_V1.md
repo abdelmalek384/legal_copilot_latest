@@ -185,3 +185,6 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 
 
 - Extended the separate-runtime cross-matter search regression to assert that each matching result carries the authorized case ID, document ID, positive chunk ID, and passage reference required by exact-review navigation. This is test coverage only; it has not been executed.
+
+
+- Added a visible focus outline and scroll margin to the exact extracted-chunk review card after source navigation, plus a frontend regression contract. This improves keyboard orientation without changing the review state or implying verification.
