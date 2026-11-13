@@ -27,7 +27,8 @@ def _valid_review_evidence_url(value):
     """Reject ambiguous HTTPS URLs before treating a review as current evidence."""
     if not isinstance(value, str) or not value or value != value.strip():
         return False
-    if any(ch.isspace() or ord(ch) < 32 for ch in value):
+    if ("\\" in value or any(
+            ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value)):
         return False
     try:
         parsed = urlsplit(value)
@@ -37,6 +38,8 @@ def _valid_review_evidence_url(value):
             and bool(parsed.hostname)
             and parsed.username is None
             and parsed.password is None
+            and not parsed.query
+            and not parsed.fragment
             and not parsed.netloc.endswith(":")
             and (port is None or 1 <= port <= 65535)
         )
