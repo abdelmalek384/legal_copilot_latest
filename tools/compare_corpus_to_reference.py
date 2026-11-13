@@ -3,6 +3,9 @@ import argparse,difflib,hashlib,json,re,shutil,subprocess,sys,unicodedata
 from pypdf import PdfReader
 from collections import Counter
 from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:sys.path.insert(0,str(ROOT))
+from tools.output_path_safety import ensure_output_paths_safe
 DIGITS=str.maketrans("٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹","01234567890123456789")
 DIAC=re.compile(r"[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED\u0640]")
 ORD={"الاولى":1,"الاول":1,"الثاني":2,"الثانيه":2,"الثانية":2,"الثالث":3,"الثالثه":3,"الثالثة":3,"الرابع":4,"الرابعه":4,"الرابعة":4,"الخامس":5,"الخامسه":5,"الخامسة":5,"السادس":6,"السادسه":6,"السادسة":6,"السابع":7,"السابعه":7,"السابعة":7,"الثامن":8,"الثامنه":8,"الثامنة":8,"التاسع":9,"التاسعه":9,"التاسعة":9,"العاشر":10,"العاشره":10,"العاشرة":10,"الحادي عشر":11,"الحادية عشرة":11,"الثاني عشر":12,"الثانية عشرة":12,"الثالث عشر":13,"الثالثة عشرة":13,"الرابع عشر":14,"الرابعة عشرة":14,"الخامس عشر":15,"الخامسة عشرة":15,"السادس عشر":16,"السادسة عشرة":16,"السابع عشر":17,"السابعة عشرة":17,"الثامن عشر":18,"الثامنة عشرة":18,"التاسع عشر":19,"التاسعة عشرة":19,"العشرون":20,"العشرين":20}
@@ -186,8 +189,14 @@ def render(r):
 def main(argv=None):
  p=argparse.ArgumentParser(description=__doc__);p.add_argument("--candidate",required=True);p.add_argument("--reference",required=True);p.add_argument("--out-dir",default="comparison_report");p.add_argument("--min-ratio",type=float,default=.97);p.add_argument("--fail-on-difference",action="store_true");a=p.parse_args(argv)
  if not 0<=a.min_ratio<=1:p.error("--min-ratio must be between 0 and 1")
- r=build_report(a.candidate,a.reference,a.min_ratio);o=Path(a.out_dir);o.mkdir(parents=True,exist_ok=True)
- (o/"comparison_report.json").write_text(json.dumps(r,ensure_ascii=False,indent=2),encoding="utf-8");(o/"comparison_report.md").write_text(render(r),encoding="utf-8")
+ o=Path(a.out_dir)
+ try:
+  ensure_output_paths_safe([o/"comparison_report.json",o/"comparison_report.md"],[Path(a.candidate),Path(a.reference)])
+  r=build_report(a.candidate,a.reference,a.min_ratio)
+  o.mkdir(parents=True,exist_ok=True)
+  (o/"comparison_report.json").write_text(json.dumps(r,ensure_ascii=False,indent=2),encoding="utf-8");(o/"comparison_report.md").write_text(render(r),encoding="utf-8")
+ except (OSError,ValueError) as exc:
+  p.error(str(exc))
  print(json.dumps({"summary":r["summary"],"all_identical":r["all_identical"],"warnings":r["warnings"]},ensure_ascii=False,indent=2))
  return int(a.fail_on_difference and not r["all_identical"])
 if __name__=="__main__":sys.exit(main())

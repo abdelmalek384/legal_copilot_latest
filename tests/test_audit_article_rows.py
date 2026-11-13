@@ -18,6 +18,21 @@ def make_rows(count=25, law="قانون تجريبي"):
 
 
 class AuditArticleRowsTests(unittest.TestCase):
+    def test_report_directory_cannot_overwrite_input_jsonl(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            source = root / "audit.json"
+            source.write_text(
+                json.dumps({"law": "Synthetic", "article": "1", "text": BASE.format(n=1)}) + "\n",
+                encoding="utf-8",
+            )
+            original = source.read_bytes()
+            with self.assertRaises(SystemExit) as raised:
+                main(["--input", str(source), "--out-dir", str(root)])
+            self.assertEqual(raised.exception.code, 2)
+            self.assertEqual(source.read_bytes(), original)
+
+
     def test_clean_rows_have_no_findings(self):
         report = audit(make_rows())
         info = report["numbering"]["قانون تجريبي"]

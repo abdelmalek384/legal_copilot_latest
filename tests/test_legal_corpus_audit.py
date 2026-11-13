@@ -16,6 +16,20 @@ def bind_profile(db, profile="legal_corpus"):
 
 
 class CorpusAuditTests(unittest.TestCase):
+    def test_report_directory_cannot_overwrite_database_input(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            db_path = root / "legal_corpus_audit.json"
+            db = sqlite3.connect(db_path)
+            bind_profile(db)
+            db.close()
+            original = db_path.read_bytes()
+            with self.assertRaises(SystemExit) as raised:
+                MODULE.main(["--db", str(db_path), "--out-dir", str(root)])
+            self.assertEqual(raised.exception.code, 2)
+            self.assertEqual(db_path.read_bytes(), original)
+
+
     def test_evidence_url_validator_rejects_malformed_https_urls(self):
         self.assertTrue(MODULE.valid_evidence_url("https://example.gov/evidence"))
         for value in (

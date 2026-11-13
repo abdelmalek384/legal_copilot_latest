@@ -345,6 +345,38 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
         self.assertFalse(self.data["instrument"]["search_eligible"])
 
 
+    def test_cli_refuses_to_overwrite_inventory_and_manifest_inputs(self):
+        script_path = ROOT / "tools" / "report_labour_law_evidence_cards.py"
+        spec = importlib.util.spec_from_file_location("report_labour_law_evidence_cards_guard_test", script_path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        manifest_path = CARDS_PATH.with_name("provision_evidence_cards_manifest.json")
+        for protected in (CARDS_PATH, manifest_path):
+            with self.subTest(protected=protected.name):
+                original = protected.read_bytes()
+                with self.assertRaises(SystemExit) as raised:
+                    module.main(["--input", str(CARDS_PATH), "--output", str(protected)])
+                self.assertEqual(raised.exception.code, 2)
+                self.assertEqual(protected.read_bytes(), original)
+
+    def test_cli_refuses_to_overwrite_supplemental_inventory_snapshot(self):
+        script_path = ROOT / "tools" / "report_labour_law_evidence_cards.py"
+        spec = importlib.util.spec_from_file_location("report_labour_law_evidence_cards_supplemental_guard_test", script_path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        manifest_path = CARDS_PATH.with_name("provision_evidence_cards_manifest.json")
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        supplemental = next(
+            ROOT / entry["path"]
+            for entry in manifest["inventory_files"]
+            if (ROOT / entry["path"]).resolve() != CARDS_PATH.resolve()
+        )
+        original = supplemental.read_bytes()
+        with self.assertRaises(SystemExit) as raised:
+            module.main(["--input", str(CARDS_PATH), "--output", str(supplemental)])
+        self.assertEqual(raised.exception.code, 2)
+        self.assertEqual(supplemental.read_bytes(), original)
+
 if __name__ == "__main__":
     unittest.main()
 

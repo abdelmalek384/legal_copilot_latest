@@ -8,10 +8,15 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools.output_path_safety import ensure_output_paths_safe
 DEFAULT_INPUT = ROOT / "data" / "candidates" / "labour_law_14_2025" / "provision_evidence_cards.json"
 DEFAULT_OUTPUT = ROOT / "data" / "candidates" / "labour_law_14_2025" / "provision_evidence_cards_review.md"
 
@@ -182,15 +187,32 @@ def render_report(data: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
+def _protected_inventory_paths(input_path: Path) -> list[Path]:
+    """Return every file read by the canonical inventory loader."""
+    protected = [input_path]
+    manifest_path = input_path.with_name("provision_evidence_cards_manifest.json")
+    if input_path.resolve() != DEFAULT_INPUT.resolve() or not manifest_path.exists():
+        return protected
+    protected.append(manifest_path)
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    for entry in manifest.get("inventory_files", []):
+        protected.append(ROOT / entry["path"])
+    return protected
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT, help="Evidence-card JSON file")
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT, help="Markdown report path")
     args = parser.parse_args(argv)
-    data = load_inventory(args.input)
-    report = render_report(data)
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(report, encoding="utf-8")
+    try:
+        ensure_output_paths_safe([args.output], _protected_inventory_paths(args.input))
+        data = load_inventory(args.input)
+        report = render_report(data)
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(report, encoding="utf-8")
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        parser.error(str(exc))
     print(f"Wrote {len(data['cards'])} provisional evidence cards to {args.output}")
     return 0
 
