@@ -83,7 +83,7 @@ class AnswerRatingExportAdapterTests(unittest.TestCase):
                 writer.writerow(firm_row())
             report = adapt_file(source, output)
             self.assertEqual(report["exported_rows"], 1)
-            self.assertTrue(output.read_bytes().startswith(b"\\xef\\xbb\\xbf"))
+            self.assertTrue(output.read_bytes().startswith(b"\xef\xbb\xbf"))
             with output.open("r", encoding="utf-8-sig", newline="") as handle:
                 reader = csv.DictReader(handle)
                 self.assertEqual(reader.fieldnames, EXPECTED_HEADER)
