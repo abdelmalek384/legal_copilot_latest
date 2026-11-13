@@ -1,0 +1,38 @@
+{
+  "audit_version": 1,
+  "audit_date": "2026-11-13",
+  "input_artifact": "user-supplied untitled folder(3).zip :: untitled folder/law_rows_ar.jsonl",
+  "input_sha256": "3e964de5c9cc994aefcc29c031712e85d664febd97c428e61c2eacdccaf1c600",
+  "input_bytes": 393861,
+  "rows": 311,
+  "groups": [
+    {
+      "law_part": "قانون العمل رقم 14 لسنة 2025 - مواد الإصدار",
+      "expected_first_article": 1,
+      "expected_last_article": 13,
+      "rows": 13,
+      "missing_article_numbers": [],
+      "duplicate_article_numbers": []
+    },
+    {
+      "law_part": "قانون العمل رقم 14 لسنة 2025 - القانون المرافق",
+      "expected_first_article": 1,
+      "expected_last_article": 298,
+      "rows": 298,
+      "missing_article_numbers": [],
+      "duplicate_article_numbers": []
+    }
+  ],
+  "malformed_rows": 0,
+  "verified_flag_counts": {
+    "0": 311
+  },
+  "in_force_flag_note": "Input candidate metadata contains in_force=1; this is not trusted and must not be treated as a verified/currentness determination.",
+  "result": "candidate_inventory_structurally_complete_importer_not_run",
+  "limitations": [
+    "This is a structural inventory of the supplied candidate JSONL, not a Gazette-text comparison or legal verification.",
+    "The JSONL cites a secondary transcription source; the separate Official Gazette PDF reports copy/print restrictions and reuse permission remains unresolved.",
+    "No Gazette text was extracted, no importer run was performed, and no candidate text was committed.",
+    "All 311 verified flags remain 0; currentness, amendments, commencement and counsel review remain outstanding."
+  ]
+}
