@@ -167,3 +167,11 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 - The case-detail API already returns a backend-derived `original_available` value for each document. The matter Documents workspace now shows the original-download action only when this value is explicitly true; otherwise it explains that no retained original is available.
 - This avoids a misleading download affordance for purged/missing originals and legacy-mode documents. The server-side authorized download endpoint remains the security and integrity authority.
 - Added a frontend regression contract and registered the Arabic fallback label in the native-review catalog (1,443 unique entries; new labels remain pending native review). The regression contract has not been executed due to the reported GitHub billing issue.
+
+
+### 2026-11-13 — OCR and partial-page review safeguards
+
+- Matter-level chunk review now repeats a clear OCR warning when document metadata records OCR use or an OCR-unverified extraction status.
+- When some pages could not be OCR-extracted, the panel warns that displayed passages may be incomplete and directs the reviewer to the original document.
+- Page-reference display now accepts either `page` or `page_number`; it continues to label the page as extracted/provisional, not independently verified.
+- Added frontend regression contracts and registered both Arabic warnings in the native-review catalog (1,445 unique entries; all new labels pending native review). No runtime test execution is claimed.
