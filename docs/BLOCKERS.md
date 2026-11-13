@@ -242,3 +242,5 @@ Percentages distinguish repository implementation from validation and operationa
 | Status documentation | Complete | Detailed history copied to `docs/archive/STATUS_history_through_2026-11-13.md`; `docs/STATUS.md` is now the concise release-candidate summary. |
 
 The owner has explicitly requested a non-production firm-test implementation. That instruction authorizes the isolated feature work only; it does not grant source reuse rights, lawyer approval, currentness certification, or permission to enable source-matched answers in production. All Law 14/2025 `verified` flags remain 0.
+
+- Negation follow-up: an isolated local harness using the current helper logic returned PASS for the three original English/Arabic reversal cases. This is not the repository unittest run or app.ask integration result; PR #1618 remains draft pending the supported Python 3.12 command.
