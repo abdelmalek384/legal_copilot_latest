@@ -1386,5 +1386,10 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("window.DOCUMENT_REVIEW_TARGET={caseId,documentId,chunkId:String(chunkId)};PAGE='cases';TAB='docs'", HTML)
         self.assertIn("try{await view(caseId)}catch(_){window.DOCUMENT_REVIEW_TARGET=null", HTML)
 
+    def test_source_hand_off_does_not_claim_exact_passage_without_chunk_id(self):
+        self.assertIn("hasExactChunk=rawChunkId!==undefined&&rawChunkId!==null&&rawChunkId!==''", HTML)
+        self.assertIn("hasExactChunk?(LANG==='ar'?'فتح المستند والمقطع':'Open document and passage'):(LANG==='ar'?'فتح مستندات ملف القضية':'Open matter documents')", HTML)
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET=hasExactChunk?{caseId:matterCaseId,documentId:matterDocumentId,chunkId:String(rawChunkId)}:null", HTML)
+
 if __name__ == "__main__":
     unittest.main()
