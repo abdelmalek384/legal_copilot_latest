@@ -99,6 +99,13 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - `tools/seed_legal_candidates.py` now validates candidate and canonical permission-register `source_page` URLs as clean HTTPS URLs, rejecting credentials, malformed ports, controls and raw backslashes before comparing hosts. Regression fixtures cover HTTP, embedded credentials, malformed authorities and backslashes.
 - Direct-main commits: `27976cf`, `9fc0f19`, `279b761`, `54d31f8`, `66b2e6b`, `d0dafda`. Tests remain unexecuted.
 
+## Law 14/2025 evaluation-draft structural guard — 2026-11-14
+
+- Added `tools/validate_law14_eval_draft.py` and `tests/test_validate_law14_eval_draft.py`. The validator checks JSONL shape, >=100 questions, formal/colloquial coverage, unique IDs and question text, expected article-number/ID consistency, and fail-closed unapproved/reviewer/release fields.
+- It deliberately permits the already recorded limited targeted-PDF text spot-check flag (48 rows) while requiring full visual review, Gazette page review, amendment-history verification and release eligibility to remain false. It does not approve legal pins or create answer keys.
+- Static inspection of the current dataset found 116 rows (58 formal, 58 colloquial), 58 distinct article IDs, and zero mismatches against the validator's safety invariants. This is not an executed test or legal-content review.
+- Direct-main commits: `6445aa7`, `0e1be3b`, `332a390`, `07838b1`, `ea16242`.
+
 ## Recent AI-1 and Legal Research integration
 
 - #1576 — merged fixture corrections for the Gazette importer and Arabic retrieval scorer.
