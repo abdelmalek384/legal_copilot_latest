@@ -16,7 +16,10 @@ import stat
 from pathlib import Path
 from urllib.parse import parse_qsl, urlsplit
 
-from tools.import_laws import HEAD as NUMERIC_HEAD, pieces, split
+try:
+    from tools.import_laws import HEAD as NUMERIC_HEAD, pieces, split
+except ModuleNotFoundError:  # direct execution from tools/
+    from import_laws import HEAD as NUMERIC_HEAD, pieces, split
 
 MAX_TEXT_BYTES = 20 * 1024 * 1024
 MAX_METADATA_BYTES = 1024 * 1024
