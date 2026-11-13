@@ -787,6 +787,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("source.document_extraction_status&&((LANG==='ar'?'حالة استخراج النص: ':'Text extraction status: ')+String(source.document_extraction_status))", HTML)
         self.assertIn("const matterCaseId=Number(source.case_id??p.case_id),matterDocumentId=Number(source.document_id??source.documentId??p.document_id)", HTML)
         self.assertIn("Download original matter document", HTML)
+        self.assertIn("Open matter documents", HTML)
+        self.assertIn("PAGE='cases';TAB='docs';view(matterCaseId)", HTML)
         self.assertIn("response.status===503", HTML)
         self.assertIn("source.document_original_available===true||source.document_original_available===1", HTML)
         self.assertIn("No retained original copy is currently available in private storage for this document.", HTML)
