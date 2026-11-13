@@ -1381,5 +1381,10 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("const extractedPage=chunk.page??chunk.page_number", HTML)
         self.assertIn("compare each passage with the original page before relying on it", HTML)
 
+    def test_cross_matter_text_search_opens_exact_chunk_review_when_identifiers_exist(self):
+        self.assertIn("btn(item.document_id&&item.chunk_id?uiText('فتح المستند والمقطع','Open document and passage')", HTML)
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET={caseId,documentId,chunkId:String(chunkId)};PAGE='cases';TAB='docs'", HTML)
+        self.assertIn("try{await view(caseId)}catch(_){window.DOCUMENT_REVIEW_TARGET=null", HTML)
+
 if __name__ == "__main__":
     unittest.main()
