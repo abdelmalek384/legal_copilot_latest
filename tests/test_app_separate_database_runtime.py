@@ -3578,6 +3578,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             for item in result["event_candidates"]
         ))
         self.assertIn("not a verified chronology", result["warning"])
+        limited = self.client.get(
+            f"/cases/{case_id}/documents/timeline", params={"limit": 1}
+        )
+        self.assertEqual(limited.status_code, 200, limited.text)
+        self.assertEqual(limited.json()["documents_processed"], 1)
+        self.assertTrue(limited.json()["truncated"])
 
     def test_document_version_comparison_is_matter_scoped_and_keeps_chunk_provenance(self):
         login = self.client.post(
