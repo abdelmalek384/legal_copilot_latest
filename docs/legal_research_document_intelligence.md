@@ -87,8 +87,8 @@ A passing unit suite validates helper behavior only; it does not validate the ne
 - The Documents workspace now offers a repeated-mention review action and displays the literal values and source locations. The warning explicitly states that repeated text does not establish identity, common ownership, party equivalence or legal relationship.
 - Added helper, separate-database runtime, same-firm nonmember denial and frontend contract tests. PR #1598 merged at `5d4b9516cfdebe13d5c99053a50145e968e39ea0`; tests and browser acceptance remain unexecuted.
 
-## Event argument provenance refinement — 2026-11-13 (branch pending merge)
+## Event argument provenance refinement — 2026-11-13 (merged #1600)
 
 - Event candidates now include `date_evidence` and `party_evidence` arrays with literal mentions and exact start/end character offsets in the extracted chunk.
 - The Legal Research UI displays these offsets alongside the event sentence, document/chunk reference and page.
-- Added helper tests asserting that each offset slice maps back to the exact source substring and a frontend contract assertion. Tests/browser acceptance remain unexecuted; branch `feat/event-argument-provenance-20261113` is pending merge.
+- Added helper tests asserting that each offset slice maps back to the exact source substring and a frontend contract assertion. PR #1600 merged at `d5dc01a4cfaa835942288e047f9dc4c4275afde8`; tests/browser acceptance remain unexecuted.
