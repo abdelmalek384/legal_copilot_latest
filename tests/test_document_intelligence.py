@@ -213,6 +213,11 @@ class DocumentIntelligenceTests(unittest.TestCase):
         self.assertEqual(ambiguous["amount_numeric"], "200")
         self.assertIsNone(ambiguous["currency_code"])
         self.assertEqual(ambiguous["currency_resolution"], "ambiguous_currency_label")
+        comma_decimal = extract_structured_candidates("المبلغ 5000,50 EGP.")
+        self.assertFalse(any(
+            item["entity_type"] == "monetary_amount"
+            for item in comma_decimal["entities"]
+        ))
 
     def test_case_reference_extraction_supports_english_and_arabic_labels(self):
         text = (
