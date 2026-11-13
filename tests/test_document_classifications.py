@@ -155,6 +155,9 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("latest.outcome==='corrected'", html)
         self.assertIn("latest.original_text", html)
         self.assertIn("latest.reviewed_text", html)
+        self.assertIn("compare_extracted_text(", endpoint)
+        self.assertIn("latest.changes", html)
+        self.assertIn("Literal text difference; requires lawyer review.", html)
         self.assertIn("Latest recorded correction", html)
 
     def test_extraction_review_attention_filter_keeps_recheck_required_passages(self):
