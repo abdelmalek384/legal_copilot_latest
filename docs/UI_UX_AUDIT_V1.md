@@ -143,3 +143,11 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 - Added a focused frontend regression contract for the identifier and fingerprint fallbacks, and documented the provenance hand-off in the source-inspector contract.
 - This improves the ability to locate and independently compare a retrieved passage with its retained matter file without changing retrieval, authorization, source ranking, or legal verification.
 - CI remains non-green; job records are available but the GitHub Actions API returns no step summaries, and log downloads currently return a missing-blob response. Do not treat the new regression contract as executed validation.
+
+### 2026-11-13 — research result to retained matter original
+
+- Matter-document retrieval hits now include chunk/document/matter identity, original filename and stored SHA-256, extraction status, OCR-used state, and confirmed original-retention availability.
+- The source inspector displays OCR caution and only offers the original-download action when the backend confirms a ready, non-purged private object. It uses the existing authorized download endpoint, which rechecks matter access and file integrity.
+- Legacy mode and purged/missing originals are not represented as downloadable. No document URL or retention status is inferred in the browser.
+- Added separate-runtime regression assertions for result provenance and frontend contracts for the guarded download and OCR notice.
+- This is traceability for user-supplied matter evidence, not independent legal-source verification.
