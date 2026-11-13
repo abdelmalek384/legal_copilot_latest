@@ -33,6 +33,9 @@ def validate_rows(rows):
     valid = 0
     for line_number, row in enumerate(rows, start=2):
         row_errors = []
+        if not isinstance(row, dict):
+            errors.append({"line": line_number, "answer_id": "", "errors": ["row must be an object"]})
+            continue
         for field in ("answer_id", "rater", "timestamp", "answer_rating",
                       "cited_article_rating", "trust_tier"):
             if not isinstance(row.get(field), str) or not row[field].strip():
@@ -43,6 +46,8 @@ def validate_rows(rows):
             row_errors.append("cited_article_rating must be right or wrong")
         if row.get("trust_tier") not in TRUST_TIERS:
             row_errors.append("trust_tier must be verified, source_matched, or unverified")
+        if not isinstance(row.get("notes"), str):
+            row_errors.append("notes must be a string (empty is allowed)")
         timestamp = row.get("timestamp")
         if isinstance(timestamp, str) and timestamp.strip():
             try:
