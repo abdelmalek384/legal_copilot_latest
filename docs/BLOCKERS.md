@@ -93,6 +93,12 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - Hardened additional evidence/source URL consumers: `manage.py` deadline-rule attestation, `tools/answer_trust_tier.py` source-match rights evidence, `tools/build_legal_draft.py` citation eligibility, and `tools/import_laws.py` PDF bundle metadata. Raw backslashes are rejected; attestation/draft eligibility also rejects query/fragment ambiguity and malformed ports.
 - Added focused regression cases. Direct-main commits: `adb7ea8`, `8c47783`, `86eba26`, `a36f14a`, `46d7823`, `42b1a74`, `5d6d896`, `8df2fcf`, `d0608be` (test-case isolation follow-up). Tests remain unexecuted.
 
+## Evaluation runner and candidate source URL validation — 2026-11-14
+
+- `tools/run_legal_eval.py::validate_base_url` now rejects DEL and raw backslashes before URL parsing. Regression tests include single-backslash and DEL cases.
+- `tools/seed_legal_candidates.py` now validates candidate and canonical permission-register `source_page` URLs as clean HTTPS URLs, rejecting credentials, malformed ports, controls and raw backslashes before comparing hosts. Regression fixtures cover HTTP, embedded credentials, malformed authorities and backslashes.
+- Direct-main commits: `27976cf`, `9fc0f19`, `279b761`, `54d31f8`, `66b2e6b`, `d0dafda`. Tests remain unexecuted.
+
 ## Recent AI-1 and Legal Research integration
 
 - #1576 — merged fixture corrections for the Gazette importer and Arabic retrieval scorer.
