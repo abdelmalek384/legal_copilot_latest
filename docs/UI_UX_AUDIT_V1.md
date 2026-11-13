@@ -110,3 +110,10 @@ The implementation branch `ux/simplified-arabic-first-workspace` applies the acc
 
 - The source inspector now places a concise explanation directly beneath the recorded status, distinguishing review-pending, metadata-only, user-supplied and unverified records. It explicitly states that an empty verified-passage result does not prove that no applicable law exists.
 - Added regression assertions for the status explanation and the non-inference warning. No new Arabic strings were introduced; existing reviewed-inventory entries are reused.
+
+
+### 2026-11-13 — extracted-page traceability in source inspector
+
+- The inspector now reads the extracted-text `page` field as well as the alternate `page_number` field, including either value nested in provenance metadata.
+- This closes a display gap: source cards already showed `s.page`, while the inspector previously looked only for `page_number`, so a page reference supplied by document-chunk retrieval could disappear when the user opened source details.
+- Updated the regression contract to cover the canonical `page` fallback. Page references remain recorded extraction metadata; they are not independently verified against the retained original PDF.
