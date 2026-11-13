@@ -106,6 +106,12 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - Static inspection of the current dataset found 116 rows (58 formal, 58 colloquial), 58 distinct article IDs, and zero mismatches against the validator's safety invariants. This is not an executed test or legal-content review.
 - The lawyer workflow is documented in `docs/legal_evidence/law14_2025_evaluation_review_guide.md`. Direct-main commits: `6445aa7`, `0e1be3b`, `332a390`, `07838b1`, `ea16242`, `4af16ba`, `40f8fd5`, `8fb6c2f`, `bb4b669`, `5c6d4b7`. Tests remain unexecuted.
 
+## Answer-rating contract integration boundary — 2026-11-14
+
+- Compared the canonical seven-column AI-1 contract with the richer AI-2 firm export contract. The firm export currently lacks `trust_tier`, uses `partially_correct` rather than `partial`, and permits `not_applicable` for cited-article accuracy.
+- Added an explicit mapping in `docs/answer_rating_contract.md`: map `partially_correct` to `partial`; never coerce `not_applicable`; derive rater from opaque `rated_by`; serialize the current rating's `updated_at` with timezone; and add message-time trust tier from saved answer metadata. Rich benchmark columns remain in the firm export.
+- AI-1 contract is complete; AI-2 export adapter remains open until trust tier is exported and enum handling is implemented. Direct-main commits: `2b887ad`, `5a8e953`.
+
 ## Recent AI-1 and Legal Research integration
 
 - #1576 — merged fixture corrections for the Gazette importer and Arabic retrieval scorer.
@@ -278,7 +284,7 @@ Percentages distinguish repository implementation from validation and operationa
 
 | Deliverable | Current status | Closure boundary |
 |---|---|---|
-| Answer rating contract | Complete on main; AI-2 handoff ready | Contract exists at `docs/answer_rating_contract.md`; `tools/validate_answer_ratings.py` and its regression tests provide a UTF-8 CSV import/export validator. AI-2 UI/export integration remains separate. |
+| Answer rating contract | Complete on main; AI-2 handoff ready | Contract exists at `docs/answer_rating_contract.md`; `tools/validate_answer_ratings.py` and its regression tests provide a UTF-8 CSV validator. The firm export is implemented but does not yet include the canonical `trust_tier` field; its `partially_correct` and `not_applicable` enums also require the documented adapter. AI-2 UI/export integration is therefore not fully closed. |
 | Three negation regressions | Guard integrated in `app.ask()`; focused reproduction/integration tests committed directly to main (`92e5177`, `f988e76`) | Still open until the exact Python 3.12 local command is executed and output is recorded. |
 | Firm-test source-matched mode | Fail-closed response gate and explicit `source-matched, not lawyer-verified` answer label committed directly to main (`ce2ebc8`, `7c5e09d`, `5ec22a1`, `b377af0`, `311287d`, `2009b9f`, `29e4a13`); candidate retrieval remains intentionally disabled | Synthetic test path only. The actual Law 14/2025 candidate remains ineligible because collection/reuse permission is unknown, source text is not committed, and the manifest says search_eligible=false. |
 | Reviewer CSVs | Complete as templates | Gazette 311-row CSV includes all machine comparison classifications, similarity and page locators plus prior page-review notes; our-text/Gazette-text cells and lawyer decisions remain blank pending authorized text. Five-rule deadline CSV and one-page UTF-8 guide exist. |
