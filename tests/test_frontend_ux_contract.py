@@ -1220,5 +1220,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("uploadPanel.setAttribute('aria-busy','true')", HTML)
         self.assertIn("uploadPanel.setAttribute('aria-busy','false')", HTML)
 
+    def test_answer_rating_controls_listing_export_and_trust_badges_are_present(self):
+        self.assertIn("answer-rating-panel", HTML)
+        self.assertIn("Save rating", HTML)
+        self.assertIn("/research/answers/'+encodeURIComponent(m.answer_id)+'/rating", HTML)
+        self.assertIn("/research/answer-ratings?limit=100&offset=0", HTML)
+        self.assertIn("/research/answer-ratings/export.csv", HTML)
+        self.assertIn("bubble.append(trustTierBadge(answerTier||'unreviewed'))", HTML)
+        self.assertLess(HTML.index(".answer-rating-panel{"), HTML.index("</style>"))
+        self.assertLess(HTML.index(".research-rating-tools{"), HTML.index("</style>"))
+
 if __name__ == "__main__":
     unittest.main()
