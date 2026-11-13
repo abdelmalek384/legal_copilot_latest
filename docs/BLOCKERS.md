@@ -125,7 +125,7 @@ All of these merges are source-reviewed code integration only. Their tests remai
 |---|---:|---:|---:|
 | Figma-aligned Legal Research UI and application shell | 100% merged (#1582) | Browser/RTL/LTR/accessibility QA not run | 80% |
 | PDF/DOCX upload, accessible document library, metadata and Arabic/English text search | 100% merged (#1582) | End-to-end upload/download and adversarial tenant checks not run | 80% |
-| Persistent classification, audit history and extraction review | 100% merged (#1582) | Python 3.12 integration tests and browser review flow not run | 75% |
+| Persistent classification, audit history, extraction review and literal multi-hunk correction comparison | 100% merged (#1582/#1591) | Python 3.12 integration tests and browser review flow not run | 85% |
 | Gazette importer and provenance hardening | 100% merged (#1576/#1577/#1584) | Focused Python 3.12 tests not run | 80% |
 | Retrieval scorer/evaluator and device-evidence input hardening | 100% merged (#1580/#1581/#1583) | Focused Python 3.12 tests not run | 80% |
 | Live Arabic/English negated-obligation guard | Runtime call site confirmed; Arabic service-path tests merged (#1588) | Tests not run | 85% |
@@ -144,3 +144,10 @@ Percentages distinguish repository implementation from validation and operationa
 - #1588 merged Arabic service-path tests for the live negated-obligation guard; issue #1561 is closed. The tests are committed but not executed.
 - #1589 merged an additional explicit-source-reference validation check; #1590 then removed a duplicate earlier check, retaining one fail-closed validation point. The importer still rejects explicitly supplied null/empty/non-string references even when a valid source URL exists.
 - Neither merge establishes a passing test result. Focused Python 3.12 execution remains blocked by unavailable hosted runners and was not run locally in this session.
+
+
+## Document review comparison integration — 2026-11-13
+
+- PR #1591 exposes bounded multi-hunk literal comparison for corrected extraction passages in the authorized chunk API and review UI. Each hunk shows before/after text and an explicit lawyer-review requirement; oversized comparisons fail closed with a warning.
+- The uploaded original remains unchanged. This is a transcription-difference view, not semantic legal analysis or a finding that the correction is accurate.
+- Runtime and frontend contract tests were added but not executed because hosted runner/billing allocation remains blocked.
