@@ -7,7 +7,7 @@
 Provide these two files together:
 
 1. A UTF-8 plain-text transcription of the exact source pages covering all 13 promulgation provisions and Articles 1–298, with headings retained. Prefer a lawyer-supplied transcription checked against the Gazette pages. Do not silently normalize, summarize, repair, or omit text.
-2. A completed metadata JSON based on `law14_2025_import_metadata.template.json`. The supplier role must truthfully identify an Egyptian lawyer or qualified Egyptian counsel. Include the official Gazette issue/date, capture method, source URL or stable source reference, and a SHA-256 calculated from the exact text bytes. Set collection permission to `allowed` only when documentary evidence actually supports that status; otherwise leave it `unknown`.
+2. A completed metadata JSON based on `law14_2025_import_metadata.template.json`. The supplier role must truthfully identify an Egyptian lawyer or qualified Egyptian counsel. Include the official Gazette issue/date, capture method, source URL or stable source reference, and a SHA-256 calculated from the exact text bytes. The template declares the expected inventory (13 promulgation provisions and 298 attached-law articles); the importer reports missing trailing numbers and out-of-range headings against those counts. Set collection permission to `allowed` only when documentary evidence actually supports that status; otherwise leave it `unknown`.
 
 Do not send passwords, signed download URLs, or private access tokens. The importer rejects credentials and signed-query URLs.
 
