@@ -69,7 +69,7 @@ class FirmTestSourceMatchedModeTests(unittest.TestCase):
             ):
                 result = app.ask(
                     None, "What notice must the fictional employer give?",
-                    firm_id=42, scope="verified_corpus",
+                    firm_id=42, scope="firm_test_source_matched",
                 )
         return result, hit
 
