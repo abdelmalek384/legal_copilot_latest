@@ -3485,7 +3485,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         text = (
             "[[PDF_PAGE:9]]\nحكم المحكمة في الدعوى رقم ١٢٣/٢٠٢٥ بتاريخ ١٥/٠٣/٢٠٢٥. "
             "المدعي: طرف تجريبي. المبلغ ٥٠٠٠ جنيه. المادة ١٠١ من القانون رقم ١٢ لسنة ٢٠٢٠. "
-            "طرف تجريبي وكيل عن شركة تجريبية، وتحددت جلسة الدعوى بتاريخ 16/03/2025."
+            "طرف تجريبي وكيل عن شركة تجريبية، وتحددت جلسة الدعوى بتاريخ 16/03/2025. آخر موعد للطعن خلال 30 يوماً."
         )
         uploaded = self._mutate(
             "post", f"/cases/{case_id}/docs",
@@ -3536,6 +3536,13 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             and event["document_id"] == document_id
             and str(event["page"]) == "9"
             for event in structured["events"]
+        ))
+        self.assertTrue(any(
+            deadline["trigger"] == "آخر موعد"
+            and "30 يوماً" in deadline["period_mentions"]
+            and deadline["document_id"] == document_id
+            and str(deadline["page"]) == "9"
+            for deadline in structured["deadline_mentions"]
         ))
         self.assertTrue(any(
             relation["relation_mention"] == "وكيل عن"
