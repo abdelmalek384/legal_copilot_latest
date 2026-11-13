@@ -113,6 +113,16 @@ class FirmTestSourceMatchedModeTests(unittest.TestCase):
             "LEGAL_FIRM_TEST_SOURCE_MATCHED_FIRM_ID": "42",
         }))
 
+    def test_gate_rejects_float_boolean_and_malformed_firm_ids(self):
+        environment = {
+            "COPILOT_ENV": "test",
+            "LEGAL_FIRM_TEST_SOURCE_MATCHED": "1",
+            "LEGAL_FIRM_TEST_SOURCE_MATCHED_FIRM_ID": "42",
+        }
+        self.assertFalse(firm_test_source_matched_enabled(42.5, environment))
+        self.assertFalse(firm_test_source_matched_enabled(True, environment))
+        self.assertFalse(firm_test_source_matched_enabled("42x", environment))
+
     def test_flag_is_scoped_to_exact_test_firm_id(self):
         self.assertTrue(firm_test_source_matched_enabled(42, {
             "COPILOT_ENV": "test",
