@@ -109,7 +109,7 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - Added `tools/validate_law14_eval_draft.py` and `tests/test_validate_law14_eval_draft.py`. The validator checks JSONL shape, >=100 Arabic questions, unique IDs and question text, one formal/one colloquial variant per proposed article pin, expected article-number/ID consistency, and fail-closed unapproved/reviewer/release fields.
 - It deliberately permits the already recorded limited targeted-PDF text spot-check flag (48 rows) while requiring full visual review, Gazette page review, amendment-history verification and release eligibility to remain false. It does not approve legal pins or create answer keys.
 - Static inspection of the current dataset found 116 rows (58 formal, 58 colloquial), 58 distinct article IDs, and zero mismatches against the validator's safety invariants. This is not an executed test or legal-content review.
-- The lawyer workflow is documented in `docs/legal_evidence/law14_2025_evaluation_review_guide.md`. Direct-main commits: `6445aa7`, `0e1be3b`, `332a390`, `07838b1`, `ea16242`, `4af16ba`, `40f8fd5`, `8fb6c2f`, `bb4b669`, `5c6d4b7`, `9d2170f`, `a90f246`, `f05145b`, `a964350`. Tests remain unexecuted.
+- The lawyer workflow is documented in `docs/legal_evidence/law14_2025_evaluation_review_guide.md`. Direct-main commits: `6445aa7`, `0e1be3b`, `332a390`, `07838b1`, `ea16242`, `4af16ba`, `40f8fd5`, `8fb6c2f`, `bb4b669`, `5c6d4b7`, `9d2170f`, `a90f246`, `f05145b`, `a964350`, `8ec24e2`, `26946aa`, `a224925`. Tests remain unexecuted.
 
 ## AI-1 test discovery registration — 2026-11-14
 
