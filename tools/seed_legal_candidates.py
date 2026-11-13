@@ -13,6 +13,24 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "docs" / "legal_document_candidates.json"
 
+
+def _valid_source_page_url(value):
+    if (not isinstance(value, str) or not value or value != value.strip()
+            or "\\\\" in value
+            or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value)):
+        return False
+    try:
+        parsed = urlparse(value)
+        port = parsed.port
+        return (
+            parsed.scheme.lower() == "https" and bool(parsed.hostname)
+            and parsed.username is None and parsed.password is None
+            and not parsed.netloc.endswith(":")
+            and (port is None or 1 <= port <= 65535)
+        )
+    except (TypeError, ValueError):
+        return False
+
 def load_catalog(path=CATALOG):
     data = json.loads(Path(path).read_text(encoding="utf-8"))
     if not isinstance(data, dict):
@@ -33,6 +51,8 @@ def load_catalog(path=CATALOG):
             for field in ("source_id", "authority", "source_page"):
                 if not isinstance(source.get(field), str) or not source[field].strip():
                     errors.append(f"sources[{index}]: {field} must be a non-empty string")
+            if source.get("source_page") and not _valid_source_page_url(source["source_page"]):
+                errors.append(f"sources[{index}]: source_page must be a clean HTTPS URL without credentials or ambiguous characters")
     for index, document in enumerate(docs):
         if not isinstance(document, dict):
             errors.append(f"documents[{index}] must be an object")
@@ -101,8 +121,14 @@ def validate_permission_parity(data, register_path=ROOT / "docs" / "source_permi
                     f"{source_id}: {field} differs from canonical permission register "
                     f"({candidate_state!r} != {registered_state!r})"
                 )
-        candidate_host = urlparse(candidate["source_page"]).hostname
-        register_host = urlparse(registered.get("source_page", "")).hostname
+        candidate_page = candidate["source_page"]
+        registered_page = registered.get("source_page", "")
+        if (not _valid_source_page_url(candidate_page)
+                or not _valid_source_page_url(registered_page)):
+            errors.append(f"{source_id}: source_page must be a clean HTTPS URL in both candidate and permission register")
+            continue
+        candidate_host = urlparse(candidate_page).hostname
+        register_host = urlparse(registered_page).hostname
         if not candidate_host or not register_host or candidate_host.lower() != register_host.lower():
             errors.append(f"{source_id}: source_page host differs from canonical permission register")
     if errors:
