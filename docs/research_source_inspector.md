@@ -97,3 +97,6 @@ If chunk loading fails, the review panel now retains an inline accessible error 
 
 
 The review-panel loader uses a per-panel request generation counter. Closing or reopening a panel invalidates earlier in-flight responses, so a slow response cannot repopulate a panel the user has closed or overwrite a newer request.
+
+
+Closing the review panel also cancels its pending one-shot passage target, in addition to invalidating the in-flight request. The target is therefore not retained after an explicit close action.
