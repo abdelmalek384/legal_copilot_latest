@@ -1393,6 +1393,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_original_document_download_filename_is_sanitized(self):
         self.assertIn("download:String(d.name||'original-document').replace(/[\\\\/\\\\0-\\\\x1f]/g,'_').slice(0,180)", HTML)
+        self.assertIn("download:String(doc.name||'original-document').replace(/[\\\\/\\\\0-\\\\x1f]/g,'_').slice(0,180)", HTML)
 
     def test_exact_passage_target_has_visible_focus_and_scroll_margin(self):
         self.assertIn("#main .extraction-review-card{scroll-margin-block:18px}", HTML)
