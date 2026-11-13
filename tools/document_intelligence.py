@@ -486,14 +486,15 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
                 })
                 if len(date_evidence) >= 10:
                     break
-        party_evidence = [
-            {
+        party_evidence = []
+        for match in _PARTY_LABEL_PATTERN.finditer(sentence):
+            party_evidence.append({
                 "mention": match.group(0).strip(),
                 "start": absolute_start + match.start(),
                 "end": absolute_start + match.end(),
-            }
-            for match in list(_PARTY_LABEL_PATTERN.finditer(sentence))[:10]
-        ]
+            })
+            if len(party_evidence) >= 10:
+                break
         local_dates = [item["mention"] for item in date_evidence]
         local_parties = [item["mention"] for item in party_evidence]
         for trigger in _EVENT_MENTION_PATTERN.finditer(sentence):
