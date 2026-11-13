@@ -43,6 +43,9 @@
     "distinct_machine_proposed_article_ids": 58,
     "targeted_pdf_text_spot_checks_recorded": 48,
     "article_pin_mismatches_observed": 0,
-    "legal_approval_inferred": false
+    "legal_approval_inferred": false,
+    "paired_article_pins": 58,
+    "arabic_text_mismatches": 0,
+    "formal_colloquial_pair_mismatches": 0
   }
 }
