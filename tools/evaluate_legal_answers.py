@@ -93,7 +93,7 @@ def _pin_cites(value, label, question_id):
 
 
 def _valid_review_evidence_url(value):
-    if (not isinstance(value, str) or not value
+    if (not isinstance(value, str) or not value or "\\" in value
             or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value)):
         return False
     try:
