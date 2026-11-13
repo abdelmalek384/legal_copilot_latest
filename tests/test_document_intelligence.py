@@ -197,6 +197,21 @@ class DocumentIntelligenceTests(unittest.TestCase):
         self.assertEqual(result["candidate_count"], 1)
         self.assertTrue(result["truncated"])
 
+    def test_case_reference_extraction_supports_english_and_arabic_labels(self):
+        text = (
+            "Case No. 123/2025. Appeal Number A-17/2024. "
+            "الدعوى رقم ٥٠/٢٠٢٤."
+        )
+        result = extract_review_candidates(text)
+        references = [
+            item["value"] for item in result["candidates"]
+            if item["kind"] == "case_reference"
+        ]
+        self.assertEqual(
+            references,
+            ["Case No. 123/2025", "Appeal Number A-17/2024", "الدعوى رقم ٥٠/٢٠٢٤"],
+        )
+
     def test_arabic_and_english_named_month_dates_are_parsed_without_guessing_years(self):
         text = (
             "[[PDF_PAGE:6]]\\n"

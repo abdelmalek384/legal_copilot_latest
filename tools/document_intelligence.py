@@ -57,7 +57,8 @@ _NAMED_MONTHS = {
     "december": 12, "dec": 12,
 }
 _CASE_PATTERN = re.compile(
-    rf"(?:دعوى|القضية|قضية|استئناف|طعن|جنحة|جناية|الدعوى)\s*(?:رقم|رقمها)?\s*[:：#]?\s*([{_DIGITS}]+(?:\s*[/\\-]\s*[{_DIGITS}]+){{0,2}})",
+    rf"(?:دعوى|القضية|قضية|استئناف|طعن|جنحة|جناية|الدعوى|Case|Claim|Appeal|Suit|Docket)\s*"
+    rf"(?:رقم|رقمها|No\.?|Number)?\s*[:：#]?\s*([{_DIGITS}A-Za-z]+(?:\s*[/\\-]\s*[{_DIGITS}A-Za-z]+){{0,2}})",
     re.IGNORECASE,
 )
 _MONEY_PATTERN = re.compile(
