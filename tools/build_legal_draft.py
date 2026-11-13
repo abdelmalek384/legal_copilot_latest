@@ -10,6 +10,8 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urlsplit
 
+from tools.output_path_safety import ensure_output_paths_safe
+
 DRAFT_TYPES = {
     "defense_memo": ("مذكرة دفاع", "مذكرة بدفاع"),
     "statement_of_claim": ("صحيفة دعوى", "صحيفة دعوى"),
@@ -125,19 +127,22 @@ def render_draft(payload: dict[str, Any]) -> str:
     ]
     return "\n".join(lines)
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("input", type=Path, help="Path to a structured JSON input file")
     parser.add_argument("-o", "--output", type=Path, help="Output Markdown path (default: stdout)")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     try:
+        if args.output:
+            ensure_output_paths_safe([args.output], [args.input])
         payload = json.loads(args.input.read_text(encoding="utf-8"))
         result = render_draft(payload)
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(result, encoding="utf-8")
     except (OSError, json.JSONDecodeError, ValueError) as exc:
         parser.error(str(exc))
-    if args.output:
-        args.output.write_text(result, encoding="utf-8")
-    else:
+    if not args.output:
         print(result)
     return 0
 
