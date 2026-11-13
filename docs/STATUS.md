@@ -307,6 +307,13 @@ Historical tracker material is retained under `docs/archive/` where appropriate.
 - PR #1608 merged at `113fdf84f6085d2dcb96e203cdedd5100ccaf83f`.
 
 
+## Additional repository reconciliation — 2026-11-13
+
+- PR #1611 merged at `6ff7534238e286d266ab39f9c2f8459811619bd7`: legal CLI report-path safeguards are recorded as merged. This is source implementation status only; the associated regression tests have not been executed.
+- PR #1612 merged at `924b2886b28e5f28bc7461783fc1da85817ede3d`: Labour Law No. 14/2025 README, manifest, candidate index and comparison records were reconciled with the completed provisional Gazette page-comparison evidence. This does not change `verified=0`, does not make the law retrieval-eligible, and does not replace qualified counsel's authenticity, commencement, currentness, amendment or legal-text review.
+- PRs #1613–#1615 and the follow-up documentation commits corrected stale PR/branch and blocker descriptions, including the already-merged named-month/structured-amount work and the implemented-but-runtime-unvalidated negation guard. These are documentation corrections, not additional feature completion.
+- Main was subsequently advanced by documentation commits `8cb1805a6678a92322c95fe7482c04cc157b02d6`, `8f60b18d1929445852c4af6ad6f54655a9fdc42d`, `51cf81e421511e66eba9e1ac292846abd97e4b1c` and `f0f4b3977f97dfd08753b830f284344e1e134eb1`. No test execution or CI recovery is implied by these commits.
+
 ## Current open-PR triage — 2026-11-13
 
 - #1610 — Arabic-first workspace simplification. Draft, not ready to merge: static catalog consistency is reported, but the PR itself records failing/zero-step hosted workflows, no confirmed full local suite, and outstanding phone/tablet/desktop RTL/LTR, accessibility and lawyer usability acceptance. Keep with AI-2/product UI; do not merge or mark complete on source review alone.
