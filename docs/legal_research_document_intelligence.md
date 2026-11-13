@@ -18,6 +18,7 @@ The application already accepts bounded PDF and DOCX uploads, extracts PDF text 
 - Literal candidate extraction for dates, case references, amounts and explicitly labelled parties.
 - A date-mention review timeline that retains document/page provenance, parses valid four-digit-year dates using explicit day-first or ISO rules, and refuses to guess two-digit years or invalid dates.
 - Structured candidate records for labelled parties, case/legal references, amounts and date mentions; sentence-scoped event triggers linked only to dates/labelled parties in that same sentence; and explicit Arabic/English relationship phrases. Every record retains character offsets and available page/chunk provenance and remains unverified.
+- Matter-wide date/event mention index over authorized documents, sorted parseable dates and unparsed mentions, with chunk/page provenance and strict document/character/result caps.
 - PDF page provenance where a page marker exists; no invented page number for DOCX.
 - Text comparison that reports literal changed spans and requires lawyer review.
 
@@ -67,3 +68,11 @@ A passing unit suite validates helper behavior only; it does not validate the ne
 - Added an Arabic/English structured-candidate section to the Legal Research workspace, displaying source metadata and unverified status.
 - Added helper tests, separate-database API provenance assertions, and frontend contract coverage. PR #1594 merged at `600dea925d95f8bccdec79dad9157a4aec78a1e0`; tests remain unexecuted because the Actions runner/billing problem remains.
 - This is rule-based candidate structuring, not general NER, event verification, entity resolution or legal relationship analysis. OCR/extraction mistakes may propagate into every candidate.
+
+## Matter-wide date and event index — 2026-11-13 (branch pending merge)
+
+- Added `GET /cases/{cid}/documents/timeline`, which first authorizes the matter and then reads only documents matching that case and active firm.
+- The endpoint processes at most 200 documents and one million extracted characters, returns at most 1,000 date mentions and 500 event candidates, and records a security audit event.
+- Date records preserve document, chunk, reference, page and character offsets; event candidates retain the trigger, same-sentence date/party mentions and source chunk/page.
+- The Documents workspace adds a server-backed matter-wide timeline control, separating parseable dates, unparsed dates and event mentions. The warning states that this is not a verified chronology and does not create deadlines.
+- Added helper/API/frontend contract tests. Tests and browser acceptance are not executed; branch `feature/matter-document-timeline-20261113` is pending merge.
