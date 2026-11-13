@@ -845,6 +845,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("result.warning", panel)
         self.assertIn("No exact repeated party or reference mentions were found across multiple documents.", panel)
 
+    def test_event_review_cards_display_exact_date_and_party_source_offsets(self):
+        panel = HTML[HTML.index("function documentIntelligencePanel(caseId,documents)"):HTML.index("async function view(id)")]
+        self.assertIn("item.date_evidence", panel)
+        self.assertIn("item.party_evidence", panel)
+        self.assertIn("Date source offsets", panel)
+        self.assertIn("Party source offsets", panel)
+
     def test_document_classification_edits_are_persisted_with_audit_and_version_checks(self):
         self.assertIn("draftOverrides", HTML)
         self.assertIn("Save classification", HTML)
