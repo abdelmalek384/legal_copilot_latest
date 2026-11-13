@@ -83,7 +83,7 @@
     "legal_status": "under_review",
     "lawyer_review_status": "pending",
     "search_eligible": false,
-    "notes": "Indexed content supports the promulgation metadata and selected provisions, but this is not a page-level comparison of the Gazette scan, does not establish reuse permission, and does not verify the complete amendment/repeal chain. Do not import article chunks or mark the instrument fully verified from this record.",
+    "notes": "This subrecord covers the separate ETA/SIS-hosted government PDF copies only: the listed pinpoints were checked through targeted text extraction, but those particular PDFs were not downloaded or visually inspected, so this subrecord's page_level_review and article_by_article_comparison remain false. Separately, the exact user-supplied 112-page comparison PDF was recovered from the Library bundle and has recorded assistant page-image comparisons for all 311 candidate provisions; see docs/legal_evidence/law_14_2025_source_match_record.json. Do not transfer page locators between the different PDF copies or treat the assistant comparison as lawyer sign-off.",
     "egyptian_official_document_copyright_basis": {
       "statute": "Egyptian Intellectual Property Rights Law No. 82 of 2002, Article 141",
       "evidence_url": "https://www.wipo.int/wipolex/en/legislation/details/22066",
