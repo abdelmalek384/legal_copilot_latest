@@ -18,7 +18,7 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 | Benchmark evaluator data-integrity contract | AI-1 | Unlabeled data excluded, reviewer registry required, stable fingerprint, malformed input rejected | Implemented in repository; execution and integration remain unverified |
 | Arabic evaluation question inventory | AI-1 | At least 100 unique formal/colloquial Egyptian Arabic drafts, uniform schema, all unreviewed and answer fields empty | 120 drafts (59 general + 61 labour) merged in #1570; static JSONL/schema check complete; lawyer answer-key approval and scoring remain external |
 | Documentation and ownership handoff | AI-1 / AI-2 | Each known blocker has owner, acceptance evidence, and no false completion claim | Register merged in #1562 and refreshed in this update; operational blockers remain open |
-| Legal report output-path integrity | AI-1 | JSON/Markdown report destinations cannot alias their database/register inputs or each other through direct paths, symlinks or hard links | Implemented for legal-source review queue and corpus inventory in the current draft; regression test added, execution not yet claimed |
+| Legal report output-path integrity | AI-1 | JSON/Markdown report destinations cannot alias their database/register inputs or each other through direct paths, symlinks or hard links | Implemented for legal-source review queue, corpus inventory, acquisition-readiness audit, amendment-relationship validator and legacy OCR evaluator in the current draft; regression tests added, execution not yet claimed |
 
 ## External blockers: do not spend repeated effort looping
 
