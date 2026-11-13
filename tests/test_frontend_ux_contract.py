@@ -801,7 +801,19 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertNotIn("const extractCandidates=", HTML)
         self.assertNotIn("const classify=(filename,text)=>", HTML)
         self.assertIn("No deadlines are created automatically.", HTML)
-        self.assertIn("No text differences were found between these versions.", HTML)
+        self.assertIn("No text differences were reported between the two versions.", HTML)
+
+    def test_cross_document_comparison_uses_authorized_provenance_api_and_literal_hunks(self):
+        panel = HTML[HTML.index("function documentIntelligencePanel(caseId,documents)"):HTML.index("\\nasync function view(id)")]
+        self.assertIn("api('/documents/compare?'+params.toString())", panel)
+        self.assertIn("before_document_id", panel)
+        self.assertIn("after_document_id", panel)
+        self.assertIn("result.before?.sources", panel)
+        self.assertIn("result.after?.sources", panel)
+        self.assertIn("Requires lawyer review", panel)
+        self.assertIn("Literal text comparison only", panel)
+        self.assertIn("String(change.before||", panel)
+        self.assertIn("String(change.after||", panel)
 
     def test_document_classification_edits_are_persisted_with_audit_and_version_checks(self):
         self.assertIn("draftOverrides", HTML)
