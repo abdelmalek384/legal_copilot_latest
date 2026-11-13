@@ -754,6 +754,52 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "rolled-back metadata must not advertise the failed upload as ready",
         )
 
+    def test_upload_route_rejects_oversized_malformed_and_encrypted_pdfs_without_retaining_objects(self):
+        import io
+        from pypdf import PdfWriter
+
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Upload Abuse Boundary"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        writer = PdfWriter()
+        writer.add_blank_page(width=612, height=792)
+        writer.encrypt("synthetic-test-password")
+        encrypted_stream = io.BytesIO()
+        writer.write(encrypted_stream)
+        encrypted_pdf = encrypted_stream.getvalue()
+
+        attempts = [
+            ("oversized.pdf", b"x" * 15_000_001, 413),
+            ("malformed.pdf", b"%PDF-this-is-not-a-valid-pdf", 422),
+            ("encrypted.pdf", encrypted_pdf, 422),
+        ]
+        with patch.object(app, "_mfa_required_for_user", return_value=False):
+            for filename, payload, expected_status in attempts:
+                with self.subTest(filename=filename):
+                    response = self._mutate(
+                        "post", f"/cases/{case_id}/upload",
+                        files={"file": (filename, payload, "application/pdf")},
+                    )
+                    self.assertEqual(response.status_code, expected_status, response.text)
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        self.assertEqual(
+            firm_db.execute("SELECT COUNT(*) FROM original_file_objects").fetchone()[0],
+            0,
+            "rejected uploads must not leave retained-object metadata",
+        )
+        object_root = self.root / "objects"
+        self.assertFalse(
+            any(object_root.glob("firm-*/*")),
+            "rejected uploads must not leave staged or finalized object bytes",
+        )
+
     def test_original_file_upload_download_integrity_and_cross_firm_denial(self):
         import hashlib
         import io
