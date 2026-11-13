@@ -1,6 +1,8 @@
 # Labour Law No. 14 of 2025 — source, commencement, and registry review
 
-**Review date:** 2026-10-24  
+**Review date:** 2026-10-24
+
+> **Historical snapshot notice (2026-11-06):** This report predates recovery of the exact 112-page user-supplied Gazette comparison PDF and the later 311-provision page-image comparison record. Its earlier statement that the complete Gazette comparison was unavailable is superseded by `docs/legal_evidence/law_14_2025_comparison_report.md`. The source/reuse, currentness and qualified-counsel blockers remain open.  
 **Result:** Metadata may be registered as a pending candidate. **Do not load the article text into searchable chunks or treat it as verified/current law.**
 
 ## 1. Permission and source findings
