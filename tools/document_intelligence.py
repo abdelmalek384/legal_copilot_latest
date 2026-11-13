@@ -29,10 +29,20 @@ _NAMED_DATE_PATTERN = re.compile(
     rf"(?P<month_first>{_MONTH_TOKEN})\s+(?P<day_first>[{_DIGITS}]{{1,2}}),?\s+(?P<year_first>[{_DIGITS}]{{2,4}}))(?!\w)",
     re.IGNORECASE,
 )
+_HIJRI_MONTH_TOKEN = (
+    "ربيع\s+الأول|ربيع\s+الآخر|ربيع\s+الثاني|"
+    "جمادى\s+الأولى|جمادى\s+الآخرة|جمادى\s+الثانية|"
+    "ذو\s+القعدة|ذو\s+الحجة|محرم|صفر|رجب|شعبان|رمضان|شوال"
+)
+_HIJRI_DATE_PATTERN = re.compile(
+    rf"(?<!\w)(?P<day>[{_DIGITS}]{{1,2}})\s+(?P<month>{_HIJRI_MONTH_TOKEN})\s+(?P<year>[{_DIGITS}]{{2,4}})\s*(?:هـ|هجري|هجرية)?(?!\w)",
+    re.IGNORECASE,
+)
 _DATE_PATTERNS = (
     re.compile(rf"(?<![{_DIGITS}])([{_DIGITS}]{{1,2}})[/.-]([{_DIGITS}]{{1,2}})[/.-]([{_DIGITS}]{{2,4}})(?![{_DIGITS}])"),
     re.compile(rf"(?<![{_DIGITS}])([{_DIGITS}]{{4}})[/.-]([{_DIGITS}]{{1,2}})[/.-]([{_DIGITS}]{{1,2}})(?![{_DIGITS}])"),
     _NAMED_DATE_PATTERN,
+    _HIJRI_DATE_PATTERN,
 )
 _NAMED_MONTHS = {
     "يناير": 1, "فبراير": 2, "مارس": 3, "أبريل": 4, "ابريل": 4,
