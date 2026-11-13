@@ -95,6 +95,7 @@ class FirmTestSourceMatchedModeTests(unittest.TestCase):
         self.assertIsNone(result["answer"])
         self.assertTrue(result["abstained"])
         self.assertEqual(result["trust_tier"], "unreviewed")
+        self.assertNotIn("trust_tier_label", result)
         self.assertEqual(result["sources"][0]["trust_tier"], "unreviewed")
         self.assertFalse(hit["verified"])
 
