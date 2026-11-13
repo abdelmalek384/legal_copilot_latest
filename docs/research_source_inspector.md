@@ -49,3 +49,5 @@ The corpus remains incomplete. Missing metadata, page numbers, legal text, or wr
 ### Inspector display contract
 
 The source inspector displays a recorded page pinpoint from either `page_number` or the extracted chunk `page` field, including values nested in provenance. A page pinpoint is display metadata only: reviewer-entered page references and extracted chunk pages are not independently verified against the retained original PDF. The inspector explains each source status at the point of review, including metadata-only and no-relevant-passage states; absence of a returned passage must not be interpreted as proof that no applicable law exists.
+
+When a page pinpoint is displayed, the inspector also states that the recorded page reference has not been independently checked against the original file. This is especially important for OCR-derived text and reviewer-entered page references; neither a page label nor an extracted passage proves that the original scan was transcribed accurately.
