@@ -47,6 +47,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("textContent:ar?'عنوان الملاحظة':'Feedback title'", feedback_form)
         self.assertIn("textContent:ar?'تفاصيل الملاحظة':'Feedback details'", feedback_form)
 
+    def test_account_password_and_invitation_controls_have_persistent_labels(self):
+        self.assertIn("currentPasswordField=h('label'", HTML)
+        self.assertIn("newPasswordField=h('label'", HTML)
+        self.assertIn("confirmPasswordField=h('label'", HTML)
+        self.assertIn("}},currentPasswordField,newPasswordField,confirmPasswordField,passwordSubmit)", HTML)
+        self.assertIn("emailField=h('label'", HTML)
+        self.assertIn("},emailField,role,submit)", HTML)
+
     def test_primary_navigation_and_main_content_have_landmarks_and_skip_link(self):
         self.assertIn("className:'skip-link'", HTML)
         self.assertIn("h('nav',{className:'primary-nav','aria-label':", HTML)
