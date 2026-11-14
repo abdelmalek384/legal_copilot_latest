@@ -92,14 +92,6 @@ else
   details+=("pip-compile is not installed")
 fi
 
-if command -v pip-audit >/dev/null 2>&1; then
-  run_check "Hash-locked dependency vulnerability audit" pip-audit --strict --progress-spinner off -r requirements-py312.lock
-else
-  names+=("Hash-locked dependency vulnerability audit")
-  statuses+=("BLOCKED")
-  details+=("pip-audit is not installed")
-fi
-
 if command -v actionlint >/dev/null 2>&1; then
   run_check "GitHub Actions workflow lint" actionlint
 else
@@ -158,9 +150,9 @@ fi
 
 if command -v pip-audit >/dev/null 2>&1; then
   if [[ -f requirements-py312.lock ]]; then
-    run_check "Dependency audit (hash-locked deployment set)" pip-audit --strict --progress-spinner off -r requirements-py312.lock
+    run_check "Hash-locked dependency vulnerability audit" pip-audit --strict --progress-spinner off -r requirements-py312.lock
   else
-    run_check "Dependency audit (requirements)" pip-audit --strict --progress-spinner off -r requirements.txt
+    run_check "Dependency vulnerability audit (requirements fallback)" pip-audit --strict --progress-spinner off -r requirements.txt
   fi
 else
   names+=("Dependency audit")
