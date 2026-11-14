@@ -123,6 +123,7 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 - The documented direct command `python tools/import_gazette_text.py ...` previously depended on repository-root `PYTHONPATH` for its shared numeric-heading parser import. Added a direct-execution fallback and changed the CLI regression to remove `PYTHONPATH` from the subprocess environment.
 - This closes a repository-side invocation defect only; it does not run the importer on the restricted Gazette scan or authorize any transcription. Direct-main commits: `7bc24e3`, `3750f4c`. Tests remain unexecuted.
+- Follow-up static review fixed the nested-output regression fixture (it now targets a directory actually inside the source folder) and closed the empty-user-info URL bypass in the importer and candidate seeder. The candidate-catalog assertions were aligned with the current evidence-note wording; no legal source metadata or trust status was changed. Direct-main commits include `f00db64`, `e5c3a35`, `e457aca`, `480fb93`, `137c9d8`, and `e724763`. Execution remains blocked.
 
 ## Law 14/2025 evaluation-draft structural guard — 2026-11-14
 
