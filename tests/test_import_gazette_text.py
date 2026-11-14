@@ -315,6 +315,22 @@ class GazetteTextImportTests(unittest.TestCase):
                 }[field]
                 self.write_metadata()
 
+    def test_duplicate_json_keys_are_rejected_at_every_object_depth(self):
+        valid = json.dumps(self.metadata, ensure_ascii=False)
+        duplicate_top_level = valid.replace(
+            '"supplier_role": "egyptian_lawyer"',
+            '"supplier_role": "egyptian_lawyer", "supplier_role": "unknown"',
+            1,
+        )
+        duplicate_nested = valid[:-1] + ', "extra": {"review": {"state": "candidate", "state": "verified"}}}'
+        for raw in (duplicate_top_level, duplicate_nested):
+            with self.subTest(raw=raw[-100:]):
+                self.meta_path.write_text(raw, encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "duplicate JSON key in metadata"):
+                    import_text(self.text_path, self.meta_path, self.output)
+                self.assertFalse(self.output.exists())
+        self.write_metadata()
+
     def test_provenance_metadata_rejects_control_characters(self):
         for field in (
             "official_title", "gazette_issue", "retrieved_at", "captured_by",
