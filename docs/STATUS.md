@@ -139,3 +139,12 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Added frontend contract coverage in the existing UX workflow. Static source assertions confirm labels and form wiring; no Python/browser test execution is claimed.
 - Direct-main commits: UI `f53e528bc422c296394142e80cad53a43e6787dd`; regression `5852ee0c471ae4f83d7920462d3a8c8518284df9`.
 - **Bounded implementation task: 100%.** Broader form semantics and manual screen-reader acceptance remain open.
+
+
+## AI-2 matter-search document provenance hand-off — 2026-11-14
+
+- Separate-runtime firm-document retrieval now joins each hit to its document under the same document/case/firm keys and returns document/chunk IDs, original filename, stored SHA-256, extraction status, OCR-used state and an original-availability flag. The flag is true only for a ready, non-purged original object in the same firm scope. Corpus and legacy hits do not receive matter-document download metadata.
+- Added separate-runtime regressions for the no-original case and the ready-original case, including filename and SHA-256 binding. The existing workflow runs `tests/test_app_separate_database_runtime.py`; no test execution is claimed.
+- Updated the source-inspector contract to document the provenance fields and the distinction between UI traceability and server-side download authorization.
+- Direct-main commits: backend `889857dffff78d1ec495a764c37178289854f52e`; false-path regression `04c301ed21418f4ca457a8ea90f8c2329e82c252`; ready-original regression `0c176283757306d0250f5826c0e50eea473f8f43`; contract doc `79f1e2eafa44f85228921ab12192855dd134764d`.
+- **Bounded implementation task: 100%.** Static review confirms tenant-scoped join predicates, ready/non-purged filtering, output mapping and regression assertions. Runtime query execution, browser hand-off and exact-original download acceptance remain unexecuted. This is a safe backend-only extraction from PR #1610; no PR UI changes were merged or copied.
