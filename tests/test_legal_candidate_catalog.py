@@ -108,9 +108,9 @@ class CandidateCatalogTests(unittest.TestCase):
         self.assertIn("Art. 21 p. 16", labour["notes"])
         self.assertIn("Art. 141 p. 59", labour["notes"])
         self.assertIn("Earlier discrepancy assertions", labour["notes"])
-        self.assertIn("full 311-row comparison", labour["notes"])
+        self.assertIn("All 311 provisions now have Gazette page locators", labour["notes"])
         self.assertIn("Text-extraction spot-check", labour["notes"])
-        self.assertIn("limited text-extraction spot-check only", labour["notes"])
+        self.assertIn("remains limited to that separate government-hosted PDF copy", labour["notes"])
 
     def test_labour_law_candidate_records_public_gazette_pdf_locators_without_upgrading_status(self):
         data = MODULE.load_catalog()
