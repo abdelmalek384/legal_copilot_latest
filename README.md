@@ -6,7 +6,7 @@ and answers that must cite numbered sources. If nothing relevant is found, or th
 
 Use Python **3.12**. The supported runtime has three separate database domains: a control-plane database, one database per firm under a tenant root, and a shared legal-corpus database. Keep all three paths distinct.
 
-> **Current release blocker:** the checked-in Python 3.12 lock still pins Boto3 1.43.122 while the direct requirement is at least 1.43.123. The lock must be regenerated and audited before relying on this checkpoint for a release image or production deployment. See [release status](docs/STATUS.md).
+> **Dependency-lock implementation:** the checked-in Python 3.12 hash lock now pins Boto3/Botocore 1.43.123 and satisfies the direct requirement. The direct-pin consistency regression is committed; full Python 3.12 lock regeneration, clean installation, vulnerability audit and release checks remain unexecuted. See [release status](docs/STATUS.md).
 
 **Mac:** run `./start_mac.command` (or double-click it in Finder).  
 **Windows 10/11:** install Python 3.12 with the Python Launcher, then run `start_windows.bat`.
