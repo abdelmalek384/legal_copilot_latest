@@ -98,6 +98,17 @@ class ContainerDeploymentContractTests(unittest.TestCase):
         self.assertIn("test_database_backup_bundle.py", matrix)
         self.assertIn("test_database_recovery_drill.py", matrix)
 
+    def test_focused_security_matrix_includes_release_acceptance_integrity(self):
+        matrix = (ROOT / "scripts" / "security_regression_check.sh").read_text(encoding="utf-8")
+        for module in (
+            "test_database_backup_archive.py",
+            "test_database_release_acceptance.py",
+            "test_device_browser_acceptance.py",
+            "test_device_acceptance_release_integration.py",
+            "test_production_release_gate.py",
+        ):
+            self.assertIn(module, matrix)
+
     def test_local_release_check_runs_isolated_encrypted_recovery_drill(self):
         checker = (ROOT / "scripts" / "local_release_check.sh").read_text(encoding="utf-8")
         self.assertIn(
