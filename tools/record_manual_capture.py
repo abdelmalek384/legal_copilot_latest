@@ -49,8 +49,18 @@ EXT_TO_TYPE = {
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 
+def _reject_duplicate_json_keys(pairs):
+    """Reject ambiguous source and provenance metadata at every JSON depth."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON key: {key}")
+        result[key] = value
+    return result
+
+
 def load_catalog(path: Path = CATALOG) -> tuple[dict, dict]:
-    data = json.loads(path.read_text(encoding="utf-8"))
+    data = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
     if not isinstance(data, dict):
         raise ValueError("document catalog must be a JSON object")
 
@@ -224,7 +234,10 @@ def record_capture(args) -> dict:
         if not metadata_path.is_file():
             raise ValueError("existing metadata path must be a regular file")
         try:
-            existing_metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+            existing_metadata = json.loads(
+                metadata_path.read_text(encoding="utf-8"),
+                object_pairs_hook=_reject_duplicate_json_keys,
+            )
         except (OSError, UnicodeError, json.JSONDecodeError) as exc:
             raise ValueError("existing metadata sidecar is unreadable; refusing to overwrite it") from exc
         if not isinstance(existing_metadata, dict):
