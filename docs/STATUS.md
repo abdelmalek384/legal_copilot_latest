@@ -131,3 +131,11 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Added frontend contract coverage in the existing UX test module/workflow. Static source assertions confirm labels, error IDs, descriptions, invalid-state transitions and form wiring; no test/browser execution is claimed.
 - Direct-main commits: UI `cf4d73c3222b23d2fa83e842c7107644d045ed9a`; regression `becf8009dcbaf10905fe643def90b60395e08433`.
 - **Bounded implementation task: 100%.** Remaining dynamic forms, complete bilingual form review and manual accessibility acceptance remain open.
+
+
+## AI-2 account and invitation form labels — 2026-11-14
+
+- Added persistent bilingual visible labels to the current/new/confirm password controls and the firm-invitation email control. This removes placeholder-only accessible names from these settings forms; the invitation-role selector already had an explicit accessible name.
+- Added frontend contract coverage in the existing UX workflow. Static source assertions confirm labels and form wiring; no Python/browser test execution is claimed.
+- Direct-main commits: UI `f53e528bc422c296394142e80cad53a43e6787dd`; regression `5852ee0c471ae4f83d7920462d3a8c8518284df9`.
+- **Bounded implementation task: 100%.** Broader form semantics and manual screen-reader acceptance remain open.
