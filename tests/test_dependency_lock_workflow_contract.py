@@ -26,6 +26,23 @@ class DependencyLockWorkflowContractTests(unittest.TestCase):
             workflow.index("Upload resolved deployment lock"),
         )
 
+    def test_local_developer_entrypoints_use_hash_locked_python_312_dependencies(self):
+        entrypoints = (
+            ROOT / "README.md",
+            ROOT / "docs" / "collection_pipeline.md",
+            ROOT / "start_mac.command",
+            ROOT / "start_windows.bat",
+        )
+        for path in entrypoints:
+            with self.subTest(path=path.name):
+                content = path.read_text(encoding="utf-8")
+                self.assertIn("--require-hashes -r requirements-py312.lock", content)
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertNotIn("python -m pip install -r requirements.txt", readme)
+        collection = (ROOT / "docs" / "collection_pipeline.md").read_text(encoding="utf-8")
+        self.assertIn("Python 3.12", collection)
+        self.assertNotIn("Python 3.11+", collection)
+
     def test_dependency_audit_prefers_lock_when_checked_in(self):
         workflow = (ROOT / ".github" / "workflows" / "dependency-audit.yml").read_text(encoding="utf-8")
         self.assertIn("if [ -f requirements-py312.lock ]", workflow)
