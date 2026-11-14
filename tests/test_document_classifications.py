@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class DocumentClassificationContractTests(unittest.TestCase):
     def test_firm_migration_creates_versioned_current_state_and_append_only_events(self):
-        migration = (ROOT / "migrations" / "firm" / "0014_document_classifications.sql").read_text(encoding="utf-8")
+        migration = (ROOT / "migrations" / "firm" / "0022_document_classifications.sql").read_text(encoding="utf-8")
         self.assertIn("REFERENCES docs(id) ON DELETE CASCADE", migration)
         self.assertIn("REFERENCES cases(id) ON DELETE CASCADE", migration)
         self.assertIn("CHECK(category IN", migration)
@@ -60,12 +60,14 @@ class DocumentClassificationContractTests(unittest.TestCase):
     def test_classification_migration_follows_existing_firm_migration_sequence(self):
         migrations = sorted(path.name for path in (ROOT / "migrations" / "firm").glob("*.sql"))
         self.assertIn("0013_original_file_deletion_workflow.sql", migrations)
-        self.assertIn("0014_document_classifications.sql", migrations)
-        self.assertIn("0015_document_classification_integrity.sql", migrations)
+        self.assertIn("0022_document_classifications.sql", migrations)
+        self.assertIn("0023_document_classification_integrity.sql", migrations)
         self.assertNotIn("0002_document_classifications.sql", migrations)
+        versions = [int(name.split("_", 1)[0]) for name in migrations]
+        self.assertEqual(len(versions), len(set(versions)))
 
     def test_integrity_migration_guards_scope_and_makes_audit_events_immutable(self):
-        migration = (ROOT / "migrations" / "firm" / "0015_document_classification_integrity.sql").read_text(encoding="utf-8")
+        migration = (ROOT / "migrations" / "firm" / "0023_document_classification_integrity.sql").read_text(encoding="utf-8")
         for trigger in (
             "document_classifications_scope_insert",
             "document_classifications_scope_update",

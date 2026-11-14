@@ -318,6 +318,13 @@ def claim_support_enabled():
 
 def _sentences(answer, mask_code):
     visible = mask_code(answer) if callable(mask_code) else answer
+    # Keep a citation written after a sentence-ending period attached to the
+    # sentence it cites ("claim. [1]."), so citation-aware guards inspect it.
+    visible = re.sub(
+        r"([.!?؟])(\s*(?:\[\d+\]\s*)+)(?=[.!?؟\s]|$)",
+        r"\2\1",
+        visible,
+    )
     for raw_line in visible.splitlines():
         line = raw_line.strip()
         if (not line or re.match(r"^#{1,6}\s+", line)
