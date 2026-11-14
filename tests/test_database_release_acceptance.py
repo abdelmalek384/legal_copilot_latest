@@ -491,6 +491,21 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
             {item["code"] for item in malformed["blockers"]},
         )
 
+    def test_loader_rejects_duplicate_json_keys(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "duplicate.json"
+            path.write_text(
+                '{"schema_version":1,"gates":{"original_file_storage":{"status":"blocked"},'
+                '"original_file_storage":{"status":"passed"}}}',
+                encoding="utf-8",
+            )
+            report = load_acceptance_manifest(path, now=self.now)
+        self.assertFalse(report["ready"])
+        self.assertIn(
+            ("manifest", "manifest_duplicate_json_key"),
+            {(item["gate"], item["code"]) for item in report["blockers"]},
+        )
+
     @unittest.skipUnless(hasattr(os, "mkfifo"), "FIFO creation is unavailable on this platform")
     def test_loader_rejects_fifo_manifest_without_blocking(self):
         with tempfile.TemporaryDirectory() as td:
