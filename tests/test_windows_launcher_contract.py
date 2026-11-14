@@ -17,8 +17,9 @@ class WindowsLauncherContractTests(unittest.TestCase):
 
     def test_windows_launcher_refuses_old_existing_venv_without_deleting_it(self):
         script = (ROOT / "start_windows.bat").read_text(encoding="utf-8")
-        self.assertIn("sys.version_info >= (3, 12)", script)
-        self.assertIn("existing .venv does not use python 3.12 or newer", script.lower())
+        self.assertIn("sys.version_info[:2] == (3, 12)", script)
+        self.assertIn("existing .venv does not use python 3.12 exactly", script.lower())
+        self.assertIn("python -m pip install --require-hashes -r requirements-py312.lock", script)
         self.assertIn("this launcher will not delete it", script.lower())
         self.assertNotIn("rmdir /s", script.lower())
         self.assertNotIn("del /s", script.lower())
@@ -41,8 +42,9 @@ class WindowsLauncherContractTests(unittest.TestCase):
 
     def test_mac_launcher_requires_supported_python_without_deleting_existing_venv(self):
         mac = (ROOT / "start_mac.command").read_text(encoding="utf-8")
-        self.assertIn("sys.version_info >= (3, 12)", mac)
-        self.assertIn("Existing .venv must use Python 3.12 or newer", mac)
+        self.assertIn("sys.version_info[:2] == (3, 12)", mac)
+        self.assertIn("Existing .venv must use Python 3.12 exactly", mac)
+        self.assertIn("python -m pip install --require-hashes -r requirements-py312.lock", mac)
         self.assertNotIn("rm -rf", mac)
         self.assertNotIn("rm -r ", mac)
 
