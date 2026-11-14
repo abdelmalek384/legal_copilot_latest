@@ -115,3 +115,11 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - The manual-capture provenance validator now rejects URL fragments (including a bare fragment delimiter), empty or non-empty user-info, malformed ports, raw backslashes, control/whitespace characters, and signed/credential query parameters across source, terms and permission-evidence URLs.
 - Added focused regressions for fragments, empty user-info, cloud-signed URL parameters and access-token parameters. Static source review only; tests remain unexecuted.
 - These checks validate URL shape only; they do not establish that a source grants collection or commercial-reuse rights.
+
+
+## AI-2 client-profile required-field accessibility — 2026-11-14
+
+- Added a bilingual inline required-name error to new/edit client-profile dialogs. The name input now exposes `aria-describedby` and `aria-invalid` on native/custom validation, focuses on invalid submission, and clears the error state as the user corrects the value. The alert is rendered outside the label so it does not pollute the control's accessible name.
+- Added a frontend contract test; the existing Tests workflow already runs `tests/test_frontend_ux_contract.py`. Static inspection confirms the source, test assertion and workflow registration. The test/browser suite was not executed.
+- Direct-main commits: UI `d816cfbd01f10f481e96f46a1c1fbb5edd934037`; regression `fceb630dece68e738e62eb5086de2d2bcfccb562`.
+- **Bounded implementation task: 100%.** Broader form-error consistency and manual screen-reader/browser acceptance remain open; do not mark the entire accessibility workstream complete.
