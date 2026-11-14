@@ -328,3 +328,9 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - Negation follow-up: an isolated local harness using the current helper logic returned PASS for the three original English/Arabic reversal cases. This is not the repository unittest run or app.ask integration result; The direct-main tests remain unexecuted pending a supported Python 3.12 runtime.
 
 - Firm-test scope clarification: The direct-main synthetic tests inject a source-matched hit into `app.ask()`; the `firm_test_source_matched` search scope currently returns no candidates. A separate permission-cleared candidate retrieval adapter is still required, and the current Law 14/2025 candidate is not eligible due unknown reuse permissions. This is not a completed Law 14/2025 serving path.
+
+
+## Database acceptance manifest bounded-read follow-up — 2026-11-14
+
+- The manifest loader now caps the bytes actually read at 1 MB, rather than relying only on the earlier file-size metadata check. This prevents a concurrent file-growth race from causing an unbounded read.
+- Invalid UTF-8 and malformed JSON fail closed; duplicate-key rejection remains enabled. Added an invalid-UTF-8 regression. Repository tests remain unexecuted.
