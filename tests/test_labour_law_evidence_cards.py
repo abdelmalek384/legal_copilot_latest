@@ -13,6 +13,7 @@ def _has_https_host(url, expected_host):
     expected_host = expected_host.lower()
     return (
         parsed.scheme == "https"
+        and "@" not in parsed.netloc
         and not parsed.username
         and not parsed.password
         and (hostname == expected_host or hostname.endswith("." + expected_host))
@@ -32,6 +33,7 @@ class LabourLawEvidenceCardsTests(unittest.TestCase):
         self.assertFalse(_has_https_host("https://alamiria.com.attacker.test/path", "alamiria.com"))
         self.assertFalse(_has_https_host("https://attacker.test/?next=alamiria.com", "alamiria.com"))
         self.assertFalse(_has_https_host("https://alamiria.com@attacker.test/path", "alamiria.com"))
+        self.assertFalse(_has_https_host("https://@alamiria.com/path", "alamiria.com"))
         self.assertFalse(_has_https_host("http://alamiria.com/path", "alamiria.com"))
 
     def test_cards_have_primary_pinpoints_and_secondary_cross_checks(self):
