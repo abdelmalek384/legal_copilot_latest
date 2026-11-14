@@ -119,7 +119,7 @@ class CandidateCatalogTests(unittest.TestCase):
         self.assertIn("portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf", labour["notes"])
         self.assertIn("sis.gov.eg/media/760267/", labour["notes"])
         self.assertIn("Public accessibility does not establish reuse permission", labour["notes"])
-        self.assertIn("not been fully compared article-by-article", labour["notes"])
+        self.assertIn("No confirmed textual mismatch was found in inspected passages", labour["notes"])
 
     def test_malformed_catalog_entries_fail_with_clear_validation_errors(self):
         cases = [
