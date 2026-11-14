@@ -15,6 +15,10 @@
 | Documentation | **Complete.** Detailed tracker archived; this is the concise release summary. |
 | Gazette importer owner handoff | **Prepared.** Added [operator handoff](legal_evidence/law14_2025_import_operator_handoff.md) and [metadata template](legal_evidence/law14_2025_import_metadata.template.json), including exact input requirements, SHA-256 procedure, CLI command and trust safeguards. The importer accepts explicit expected promulgation/attached-law counts and reports internal gaps, missing trailing numbers, out-of-range headings, and an entirely absent expected block; focused regression cases are committed but unexecuted. No real import run is claimed; authorized UTF-8 text and truthful supplier/source metadata are still required. |
 
+## Deployment dependency blocker
+
+The checked-in `requirements-py312.lock` currently pins `boto3==1.43.122`, while `requirements.txt` requires `boto3>=1.43.123,<2`. The lock therefore does not satisfy the current direct dependency constraint. Regenerate and audit the lock with `.github/workflows/resolve-deployment-lock.yml`, then commit the reviewed artifact before relying on the Docker image or hash-locked launchers for a release. This is a source/configuration blocker; no test or CI result is claimed.
+
 ## AI-2 delivery
 
 | Workstream | Current state |
