@@ -7,7 +7,9 @@ coverage in both supported locales.
 """
 import argparse
 import json
+import os
 import re
+import stat
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -189,8 +191,38 @@ def validate_release_matrix(records, summaries):
         raise EvidenceError("release device matrix is incomplete; missing: " + labels)
 
 
+def _read_evidence_input(path):
+    """Read bounded evidence input from one stable regular-file descriptor."""
+    source = Path(path)
+    try:
+        before_open = source.lstat()
+    except FileNotFoundError:
+        raise
+    if stat.S_ISLNK(before_open.st_mode):
+        raise EvidenceError("evidence input must not be a symlink")
+    if not stat.S_ISREG(before_open.st_mode):
+        raise EvidenceError("evidence input must be a regular file")
+    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_NONBLOCK", 0)
+    descriptor = os.open(source, flags)
+    with os.fdopen(descriptor, "rb") as stream:
+        metadata = os.fstat(stream.fileno())
+        if not stat.S_ISREG(metadata.st_mode):
+            raise EvidenceError("evidence input must be a regular file")
+        if (metadata.st_dev, metadata.st_ino) != (before_open.st_dev, before_open.st_ino):
+            raise EvidenceError("evidence input changed before it was opened")
+        if metadata.st_size > 5_000_000:
+            raise EvidenceError("evidence input exceeds the 5 MB limit")
+        payload = stream.read(5_000_001)
+        if len(payload) > 5_000_000:
+            raise EvidenceError("evidence input exceeds the 5 MB limit")
+    try:
+        return payload.decode("utf-8-sig")
+    except UnicodeDecodeError as exc:
+        raise EvidenceError("evidence input must be valid UTF-8") from exc
+
+
 def load_records(path):
-    raw = Path(path).read_text(encoding="utf-8-sig")
+    raw = _read_evidence_input(path)
     if not raw.strip():
         raise EvidenceError("input file is empty")
     try:
