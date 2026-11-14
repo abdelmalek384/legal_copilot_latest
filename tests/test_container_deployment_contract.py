@@ -65,6 +65,12 @@ class ContainerDeploymentContractTests(unittest.TestCase):
         self.assertIn("docker compose --env-file .env.production -f compose.production.yaml config --quiet", workflow)
         self.assertIn("contents: read", workflow)
 
+    def test_windows_launcher_uses_exact_python_minor_and_hash_locked_dependencies(self):
+        launcher = (ROOT / "start_windows.bat").read_text(encoding="utf-8")
+        self.assertIn("sys.version_info[:2] == (3, 12)", launcher)
+        self.assertIn("python -m pip install --require-hashes -r requirements-py312.lock", launcher)
+        self.assertNotIn("python -m pip install -r requirements.txt", launcher)
+
     def test_local_release_check_includes_security_and_safe_compose_validation(self):
         checker = (ROOT / "scripts" / "local_release_check.sh").read_text(encoding="utf-8")
         self.assertIn('run_check "Focused security regression matrix" bash scripts/security_regression_check.sh', checker)
