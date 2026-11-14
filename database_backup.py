@@ -604,6 +604,10 @@ def _safe_archive_members(archive: zipfile.ZipFile) -> set[str]:
         mode = (info.external_attr >> 16) & 0o170000
         if mode == 0o120000:
             raise DatabaseBundleError("Backup bundle may not contain symbolic links")
+        if info.compress_type not in {zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED}:
+            raise DatabaseBundleError("Backup bundle uses an unsupported compression method")
+        if info.flag_bits & 0x1:
+            raise DatabaseBundleError("Backup bundle may not contain encrypted ZIP members")
         if info.filename in names:
             raise DatabaseBundleError("Backup bundle contains duplicate paths")
         names.add(info.filename)
