@@ -348,3 +348,10 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - File-level comparison shows PR #1610 is divergent from main (48 ahead / 456 behind at review time) and changes four files. Its `static/index.html` diff deletes the answer-rating panel and save/load controls, a regression against the mainline answer-rating API/UI contract and frontend regression test. Do not merge or cherry-pick wholesale; revisit only isolated improvements after a current-main rebase and explicit preservation tests.
 - Fixed stale one-shot matter/document/chunk review targets surviving session expiry and both ordinary/MFA firm switches. Regression contract committed; static review only, with test execution and browser acceptance still open.
 - PR #1610 validation evidence does not show executed test or browser steps. The application remains NOT READY for pilot or production.
+
+
+## Evaluator JSON ambiguity hardening — 2026-11-14
+
+- The approved-question/result JSONL parser and reviewer-registry JSON loader now reject duplicate object keys at every nesting depth. Previously, Python's default JSON decoder silently retained the last duplicate value, allowing ambiguous evaluation labels or reviewer metadata.
+- Added regressions for top-level and nested JSONL duplicates, valid distinct nested keys, and duplicate reviewer-registry keys. The test module is registered in the Tests workflow.
+- Static source review only; these tests were not executed because hosted runner allocation remains unavailable. No evaluation metric or legal approval status changed.
