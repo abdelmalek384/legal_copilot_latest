@@ -63,7 +63,7 @@ class DependencyLockWorkflowContractTests(unittest.TestCase):
         locked = {
             normalize(match.group(1)): match.group(2)
             for match in re.finditer(
-                r"(?m)^([A-Za-z0-9_.-]+)==([0-9]+(?:\\.[0-9]+)+)", lock
+                r"(?m)^([A-Za-z0-9_.-]+)==([0-9]+(?:\.[0-9]+)+)", lock
             )
         }
         checked = 0
@@ -77,9 +77,9 @@ class DependencyLockWorkflowContractTests(unittest.TestCase):
             pinned = locked.get(name)
             self.assertIsNotNone(pinned, f"{name} is missing from the deployment lock")
 
-            exact = re.fullmatch(r"==([0-9]+(?:\\.[0-9]+)+)", specifier)
+            exact = re.fullmatch(r"==([0-9]+(?:\.[0-9]+)+)", specifier)
             bounded = re.fullmatch(
-                r">=([0-9]+(?:\\.[0-9]+)+),<([0-9]+(?:\\.[0-9]+)+)", specifier
+                r">=([0-9]+(?:\.[0-9]+)+),<([0-9]+(?:\.[0-9]+)*)", specifier
             )
             if exact:
                 self.assertEqual(pinned, exact.group(1), f"{name} pin drift")
