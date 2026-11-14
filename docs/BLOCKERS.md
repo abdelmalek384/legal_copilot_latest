@@ -55,7 +55,7 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - Until then: PR source review is not a test pass.
 
 ### Python 3.12 dependency lock
-- Related PR #1490 was inspected on 2026-11-13: it changes only `requirements.txt` (`boto3>=1.43.123` to `>=1.43.125`) and does not update `requirements-py312.lock`. Do not merge it as a completed dependency update until the lock is regenerated with authentic hashes and installed successfully in a clean Python 3.12 environment.
+- Related PR #1490 was inspected on 2026-11-13: it proposes raising the direct Boto3 floor from `>=1.43.123` to `>=1.43.125` without updating `requirements-py312.lock`. Current `main` is internally aligned at Boto3/Botocore 1.43.123 for the current direct requirement; PR #1490 is a separate dependency upgrade and must not be merged alone. If that upgrade is adopted, regenerate the lock with authentic hashes, install it in a clean Python 3.12 environment, and run import/startup plus tests.
 - Owner: Codex.
 - Exit criteria: regenerate lock using pinned pip-tools, include authentic hashes, install successfully from lock in a clean environment, and run import/startup plus tests. Never invent hashes.
 
