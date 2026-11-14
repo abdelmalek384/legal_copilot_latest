@@ -136,10 +136,13 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
             )
 
     def test_upload_rejects_source_truncated_after_open(self):
+        if os.name == "nt":
+            self.skipTest("open-file truncation semantics differ on Windows")
         digest_file = database_backup_archive._digest_file
 
         def truncate_then_hash(open_source):
-            open_source.truncate(0)
+            with self.bundle.open("wb") as replacement:
+                replacement.truncate(0)
             return digest_file(open_source)
 
         from unittest.mock import patch
