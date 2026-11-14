@@ -20,6 +20,30 @@ class CandidateCatalogTests(unittest.TestCase):
         candidate_ids = {item["source_id"] for item in catalog["sources"]}
         self.assertEqual(candidate_ids - registered_ids, set())
 
+    def test_candidate_catalog_and_permission_register_reject_duplicate_json_keys(self):
+        import tempfile
+
+        catalog_raw_cases = (
+            '{"sources": [], "sources": [], "documents": []}',
+            '{"sources": [{"source_id": "S", "source_id": "OTHER", "authority": "A", "source_page": "https://example.gov"}], "documents": []}',
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "catalog.json"
+            for raw in catalog_raw_cases:
+                with self.subTest(raw=raw):
+                    path.write_text(raw, encoding="utf-8")
+                    with self.assertRaisesRegex(ValueError, "duplicate JSON key"):
+                        MODULE.load_catalog(path)
+
+            data = MODULE.load_catalog()
+            register_path = Path(directory) / "register.json"
+            register_path.write_text(
+                '{"sources": [{"source_id": "S", "source_id": "OTHER"}]}',
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(ValueError, "duplicate JSON key"):
+                MODULE.validate_permission_parity(data, register_path)
+
     def test_candidate_permission_states_match_canonical_register(self):
         data = MODULE.load_catalog()
         self.assertTrue(MODULE.validate_permission_parity(data))
