@@ -85,3 +85,12 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 5. Billing/provider acceptance, tenant-isolation/recovery rehearsal, device/accessibility acceptance and pilot-firm workflow remain separate release gates.
 
 **Last formally recalculated whole-project score:** 50.10% (2026-11-01). No newer weighted score is asserted.
+
+
+## AI-2 auth-boundary navigation reset and PR #1610 review — 2026-11-14
+
+- Cleared one-shot matter/document/chunk review navigation state when the API session expires (401) and on both ordinary and MFA firm-switch flows. This prevents a pending review target from being reused after the active identity/firm context changes.
+- Added a frontend regression contract for the auth reset and both firm-switch paths. Static source assertions were reviewed after commit; the Python test was not executed.
+- Direct-main commits: `d45e94ca4749dd3a39131cecad460e9c20221e19` (implementation), `a7e9ca8e21a4551692bd7070aeb67edbda3698ee` (regression contract). This does not establish runtime/browser acceptance.
+- PR #1610 head `fc5e6e99716fb7fbcada8b2ac5b93a3d62ebca5f` is divergent from current main (48 ahead / 456 behind; four net changed files). Its frontend diff deletes the existing answer-rating panel and save/load controls, so do not merge or transplant it wholesale. Any desired navigation changes need a narrow current-main rebase preserving answer ratings and newer document/session safeguards.
+- PR #1610's validation record shows runner-allocation failures before steps; no test or browser execution is established.
