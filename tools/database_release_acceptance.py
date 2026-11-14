@@ -262,7 +262,20 @@ def _read_acceptance_manifest_file(path: Path) -> object:
             raise AcceptanceManifestFileError("manifest_too_large")
         if os.name == "posix" and stat.S_IMODE(metadata.st_mode) & 0o022:
             raise AcceptanceManifestFileError("manifest_group_or_other_writable")
-        return json.load(stream, object_pairs_hook=_reject_duplicate_json_keys)
+        # Do not trust the pre-read stat size as a hard bound: another writer
+        # could grow the file after fstat(). Read at most one byte beyond the
+        # limit so a concurrent growth cannot turn this into an unbounded read.
+        payload = stream.read(1_000_001)
+        if len(payload) > 1_000_000:
+            raise AcceptanceManifestFileError("manifest_too_large")
+        try:
+            decoded = payload.decode("utf-8")
+        except UnicodeDecodeError as exc:
+            raise AcceptanceManifestFileError("manifest_unreadable_or_invalid_json") from exc
+        try:
+            return json.loads(decoded, object_pairs_hook=_reject_duplicate_json_keys)
+        except json.JSONDecodeError as exc:
+            raise AcceptanceManifestFileError("manifest_unreadable_or_invalid_json") from exc
 
 
 def load_acceptance_manifest(path: str | Path | None, *, now: datetime | None = None, expected_storage_config_sha256: str | None = None) -> dict:
