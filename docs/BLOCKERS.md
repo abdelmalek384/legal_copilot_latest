@@ -399,3 +399,9 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - Integrated the backend-only part of the workspace PR's retrieval enhancement: firm hits now carry document/chunk identity, filename, SHA-256, extraction/OCR state and ready/non-purged original availability, using document/case/firm-scoped joins. Added false/true retention-path regressions and updated the source-inspector contract.
 - This does not merge PR #1610 or its UI diff. PR #1610 is still draft and now compares as 218 commits ahead / 483 behind; its branch `static/index.html` still lacks the answer-rating UI present on main. No wholesale merge or stale UI transplant is safe.
 - Static review only. The separate-runtime route tests and browser hand-off were not executed because runner allocation/billing remains blocked.
+
+
+## Source-inspector matter hand-off — 2026-11-14
+
+- The inspector now shows backend-supplied firm-document provenance and offers a matter-level Documents hand-off for valid matter/document identifiers. It explicitly does not claim exact-chunk navigation or treat original availability as download authorization.
+- Frontend regression contract is committed and workflow-registered. Static source review only; browser and test execution remain unavailable. Answer-rating controls remain on main and were not removed.
