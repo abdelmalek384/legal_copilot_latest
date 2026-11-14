@@ -77,7 +77,7 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - Exit criteria: sandbox success/failure, duplicate webhook idempotency, invalid signature rejection, cancellation, expired subscription, invoice creation, firm isolation, and audit evidence. Do not infer billing readiness from UI implementation.
 
 ### Tenant isolation / production data safety
-- Owner: AI-2 and Codex.
+- Owner: AI-2 and repository administrator/local Python 3.12 runner.
 - Exit criteria: adversarial cross-firm access tests across cases, documents, sessions, exports, search, background jobs and audit logs; backup/restore drill; deployment secrets and persistent storage review.
 
 ### Egyptian legal authority and counsel validation
@@ -160,7 +160,7 @@ All of these merges are source-reviewed code integration only. Their tests remai
 1. Finish static audits and close deterministic importer/scorer defects that have bounded acceptance criteria.
 2. Complete focused unit tests and docs for those changes; keep PRs small and isolated.
 3. Hand off any live answer-path, billing, database, tenant, UI or deployment change to AI-2.
-4. Reserve Codex for Python 3.12 execution, dependency lock verification, adversarial security tests and production acceptance.
+4. Use the repository administrator's supported local Python 3.12 runner for dependency-lock verification, adversarial security tests and production acceptance; AI-1 reviews concrete failures.
 5. Do not tune `MIN_SCORE`, publish retrieval quality scores, or mark legal sources verified until approved labels/source evidence exist.
 
 
@@ -168,7 +168,7 @@ All of these merges are source-reviewed code integration only. Their tests remai
 
 - The default `tools/production_release_gate.py` benchmark is `tests/legal_eval/multi_area_questions.draft.jsonl`. Its draft inventory previously contained 94 questions, below the gate's configured minimum of 100 even before counsel review.
 - The inventory and lawyer worksheet have been expanded to 100 questions across the same ten practice areas. This removes the structural count shortfall only; all 100 remain unreviewed and cannot satisfy the release gate until counsel supplies approved answers, dates, source/pin citations and reviewer evidence.
-- Codex must execute the focused inventory/retrieval tests and full suite in the clean Python 3.12 locked environment. This branch has not been runtime-tested.
+- Repository administrator/local Python 3.12 runner must execute the focused inventory/retrieval tests and full suite in the clean Python 3.12 locked environment. This branch has not been runtime-tested.
 
 
 ## Evaluation inventory distinction — 2026-11-13
@@ -278,7 +278,7 @@ Percentages distinguish repository implementation from validation and operationa
 
 ## Open pull requests reviewed — 2026-11-13
 
-- #1610 (AI-2 workspace UX) remains draft. It is not 100%: the PR reports no confirmed green Actions run, no full local suite, and outstanding responsive RTL/LTR, accessibility and lawyer usability acceptance. Keep validation with AI-2/Codex; do not merge based on the static catalog scan.
+- #1610 (AI-2 workspace UX) remains draft. It is not 100%: the PR reports no confirmed green Actions run, no full local suite, and outstanding responsive RTL/LTR, accessibility and lawyer usability acceptance. Keep validation with AI-2 and the repository administrator/local runner; do not merge based on the static catalog scan.
 - #1607 (Labour Decisions 248–252/2026) is correctly metadata-only. The source PDF is permission-restricted and operative text is unavailable; no repository-only action can close the legal-content/currentness gate. Leave quarantined and retrieval-ineligible.
 - #1490 (boto3 Dependabot) remains blocked on a matching Python 3.12 hash lock and clean installation. Do not merge the requirements-only change.
 - The user's uploaded patch bundle 0002–0009 maps to capabilities already present on current `main` (comparison, catalog, evaluation drafts, manual capture, deadline calculator, article-row audit, CI coverage guard and safe validation errors). Reapplication would duplicate existing work. Focus on the remaining validation/acceptance evidence instead.
