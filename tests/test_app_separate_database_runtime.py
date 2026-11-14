@@ -1241,6 +1241,16 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         firm_db.commit()
 
+        matter_search = self._mutate(
+            "post", "/search",
+            json={"q": "Synthetic extracted text", "case_id": case_one_id, "scope": "firm_documents"},
+        )
+        self.assertEqual(matter_search.status_code, 200, matter_search.text)
+        retained_hit = next(hit for hit in matter_search.json() if hit.get("document_id") == document_id)
+        self.assertTrue(retained_hit["document_original_available"])
+        self.assertEqual(retained_hit["document_sha256"], hashlib.sha256(original).hexdigest())
+        self.assertEqual(retained_hit["document_name"], "case-one-evidence.txt")
+
         # This user can access both cases, but the document belongs only to case one.
         base = f"/cases/{case_two_id}/docs/{document_id}/original"
         for method, path, kwargs in (
