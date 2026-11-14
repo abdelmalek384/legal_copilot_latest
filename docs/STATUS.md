@@ -43,7 +43,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 | Lawyer rating UI/export | 95% | Browser acceptance and adapter execution remain pending |
 | Test-firm package | 90% | Clean-clone first-login rehearsal remains unexecuted |
 | Repository cleanup/accessibility | 80% | Run hygiene scan and finish manual accessibility review |
-| Staging/recovery | 30% | Local release checker now wires isolated encrypted recovery drill and safe placeholder Compose config; both remain unexecuted, provider configuration and witnessed restore pending |
+| Staging/recovery | 35% | Recovery drill has positive real-object restore and negative tamper fixtures; ZIP traversal/symlink/duplicate-member defenses have regression coverage; Compose and recovery gates remain unexecuted, provider configuration and witnessed restore pending |
 
 **Unweighted implementation estimate: 64%.** The application remains **NOT READY** for lawyer pilot or production. No test pass is inferred from committed test code.
 
