@@ -40,6 +40,7 @@ class FakeBillingProvider:
         self._lock = RLock()
         self._next_id = 1
         self._requests: dict[str, PaymentRequest] = {}
+        self._merchant_references: dict[str, str] = {}
 
     def create_payment_request(
         self,
@@ -67,6 +68,16 @@ class FakeBillingProvider:
         if any(len(v) > 200 or any(ord(char) < 32 for char in v) for v in safe_metadata.values()):
             raise ValueError("Payment metadata values must be bounded plain text")
         with self._lock:
+            existing_reference = self._merchant_references.get(merchant_reference.strip())
+            if existing_reference is not None:
+                existing = self._requests[existing_reference]
+                if (
+                    existing.amount_minor != amount_minor
+                    or existing.currency != currency.upper()
+                    or dict(existing.metadata) != safe_metadata
+                ):
+                    raise ValueError("Merchant reference was already used for a different payment request")
+                return existing
             provider_reference = f"fake_{self._next_id:08d}"
             self._next_id += 1
             request = PaymentRequest(
@@ -78,6 +89,7 @@ class FakeBillingProvider:
                 metadata=safe_metadata,
             )
             self._requests[provider_reference] = request
+            self._merchant_references[request.merchant_reference] = provider_reference
             return request
 
     def get_payment_request(self, provider_reference: str) -> PaymentRequest | None:
