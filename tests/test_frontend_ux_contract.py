@@ -27,6 +27,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("function mfaFirmSwitcher()", HTML)
         self.assertEqual(HTML.count("const firmSwitcher=mfaFirmSwitcher();if(firmSwitcher)card.append(firmSwitcher)"), 2)
 
+    def test_primary_navigation_and_main_content_have_landmarks_and_skip_link(self):
+        self.assertIn("className:'skip-link'", HTML)
+        self.assertIn("h('nav',{className:'primary-nav','aria-label':", HTML)
+        self.assertIn("h('main',{id:'main',tabIndex:-1,'aria-label':title}", HTML)
+        self.assertIn("'aria-current':PAGE===id?'page':null", HTML)
+
     def test_mobile_language_switch_meets_44px_touch_target(self):
         self.assertIn("#side .lang-switch button { width: auto; min-width: 78px; min-height: 44px;", HTML)
 
