@@ -334,3 +334,10 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 
 - The loader caps the bytes actually read at 1 MB, preventing a concurrent file-growth race after the initial metadata check.
 - Invalid UTF-8, malformed JSON, duplicate keys and excessive JSON nesting now fail closed with a generic manifest blocker. Added regressions for invalid encoding and deeply nested input; repository tests remain unexecuted.
+
+
+## Acceptance evidence input hardening — 2026-11-14
+
+- Database operational manifests now use a bounded binary read tied to the pre-open file identity; they reject symlink/special-file inputs, concurrent path replacement, payloads over 1 MB, invalid UTF-8, duplicate object keys and excessive JSON nesting. Valid JSON remains decoded from bytes before parsing.
+- Device/browser evidence input now uses a stable regular-file descriptor, rejects symlink/special-file inputs, caps the read at 5 MB and rejects invalid UTF-8. Existing duplicate-key rejection remains active for JSON and JSONL.
+- Added focused regressions for valid and invalid manifest encoding, deep nesting, manifest path replacement, and device evidence symlink/FIFO/size/encoding cases. These tests are committed but unexecuted; no validation pass is claimed.
