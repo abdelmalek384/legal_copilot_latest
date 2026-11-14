@@ -551,6 +551,33 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
             {(item["gate"], item["code"]) for item in report["blockers"]},
         )
 
+    def test_loader_rejects_manifest_path_replacement_before_open(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            path = root / "acceptance.json"
+            moved = root / "original.json"
+            replacement = root / "replacement.json"
+            path.write_text(json.dumps(self.manifest), encoding="utf-8")
+            replacement.write_text("{}", encoding="utf-8")
+            real_open = os.open
+            replaced = False
+
+            def replace_before_open(target, flags, *args, **kwargs):
+                nonlocal replaced
+                if Path(target) == path and not replaced:
+                    path.rename(moved)
+                    replacement.rename(path)
+                    replaced = True
+                return real_open(target, flags, *args, **kwargs)
+
+            with patch("tools.database_release_acceptance.os.open", side_effect=replace_before_open):
+                report = load_acceptance_manifest(path, now=self.now)
+        self.assertFalse(report["ready"])
+        self.assertIn(
+            ("manifest", "manifest_source_changed"),
+            {(item["gate"], item["code"]) for item in report["blockers"]},
+        )
+
     def test_loader_rejects_symlinked_acceptance_manifest(self):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
