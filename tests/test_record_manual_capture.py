@@ -221,6 +221,31 @@ class RecordManualCaptureTests(unittest.TestCase):
             with self.subTest(raw=raw), self.assertRaisesRegex(ValueError, message):
                 load_catalog(path)
 
+    def test_catalog_loader_rejects_duplicate_json_keys_at_every_depth(self):
+        from tools.record_manual_capture import load_catalog
+
+        cases = (
+            '{"documents": [], "documents": [{"document_id": "D"}], "sources": []}',
+            '{"documents": [{"document_id": "D", "source_id": "S", "source_id": "OTHER"}], "sources": []}',
+        )
+        path = self.dir / "catalog.json"
+        for raw in cases:
+            with self.subTest(raw=raw):
+                path.write_text(raw, encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "duplicate JSON key"):
+                    load_catalog(path)
+
+    def test_rerun_rejects_duplicate_keys_in_existing_provenance_sidecar(self):
+        run(*self.base())
+        metadata_path = self.out / "metadata" / "EG-LABOUR-14-2025.json"
+        original = metadata_path.read_text(encoding="utf-8")
+        duplicate = original[:-1] + ', "source_url": "https://different.example/law"}'
+        metadata_path.write_text(duplicate, encoding="utf-8")
+        code, _, stderr = run(*self.base())
+        self.assertEqual(code, 2)
+        self.assertIn("duplicate JSON key", stderr)
+        self.assertEqual(metadata_path.read_text(encoding="utf-8"), duplicate)
+
     def test_catalog_loader_rejects_duplicate_document_and_source_ids(self):
         from tools.record_manual_capture import load_catalog
 
