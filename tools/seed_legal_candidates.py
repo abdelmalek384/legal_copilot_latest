@@ -48,8 +48,18 @@ def _valid_source_page_url(value):
     except (TypeError, ValueError):
         return False
 
+def _reject_duplicate_json_keys(pairs):
+    """Reject ambiguous catalog and permission values at every JSON depth."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON key: {key}")
+        result[key] = value
+    return result
+
+
 def load_catalog(path=CATALOG):
-    data = json.loads(Path(path).read_text(encoding="utf-8"))
+    data = json.loads(Path(path).read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
     if not isinstance(data, dict):
         raise ValueError("catalog root must be an object")
     sources = data.get("sources")
@@ -121,7 +131,10 @@ def load_catalog(path=CATALOG):
 
 def validate_permission_parity(data, register_path=ROOT / "docs" / "source_permission_register.json"):
     """Fail closed if candidate seed metadata diverges from the canonical rights register."""
-    register = json.loads(Path(register_path).read_text(encoding="utf-8"))
+    register = json.loads(
+        Path(register_path).read_text(encoding="utf-8"),
+        object_pairs_hook=_reject_duplicate_json_keys,
+    )
     if not isinstance(register, dict) or not isinstance(register.get("sources"), list):
         raise ValueError("permission register must contain a sources array")
     by_id = {}
