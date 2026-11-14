@@ -362,3 +362,10 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - The read-only manual-capture validator now rejects duplicate JSON object keys at every nesting depth instead of silently accepting Python's last-key-wins behavior. Conflicting permission/provenance fields therefore fail closed.
 - Added CLI regressions for duplicate top-level and nested keys; the test module is registered in the Tests workflow.
 - Static source review only; no test execution is claimed. No permission state or legal verification flag changed.
+
+
+## Fake billing-provider idempotency boundary — 2026-11-14
+
+- The in-memory `FakeBillingProvider` now returns the original request for an identical merchant-reference retry and rejects reuse of the reference with a changed amount, currency or metadata. Added regression contracts.
+- This closes only the fake-provider request-creation contract; it is not a live gateway, webhook, signature, refund, settlement or reconciliation implementation.
+- Tests are registered but unexecuted while GitHub Actions runner allocation/billing is unavailable. Live billing remains blocked on provider/merchant selection, operator-owned sandbox credentials and end-to-end provider acceptance evidence.
