@@ -50,22 +50,47 @@ class DependencyLockWorkflowContractTests(unittest.TestCase):
         self.assertIn("pip-audit --strict --progress-spinner off -r requirements-py312.lock", workflow)
         self.assertIn("pip-audit --strict --progress-spinner off -r requirements.txt", workflow)
 
-    def test_boto3_lock_satisfies_direct_requirement_and_matches_botocore(self):
+    def test_every_direct_requirement_is_satisfied_by_the_hash_locked_set(self):
         requirements = (ROOT / "requirements.txt").read_text(encoding="utf-8")
         lock = (ROOT / "requirements-py312.lock").read_text(encoding="utf-8")
 
-        minimum = re.search(r"(?m)^boto3>=([0-9]+(?:\.[0-9]+)+),<", requirements)
-        boto3 = re.search(r"(?m)^boto3==([0-9]+(?:\.[0-9]+)+)", lock)
-        botocore = re.search(r"(?m)^botocore==([0-9]+(?:\.[0-9]+)+)", lock)
-        self.assertIsNotNone(minimum, "Boto3 minimum must be explicit")
-        self.assertIsNotNone(boto3, "Boto3 must be pinned in the deployment lock")
-        self.assertIsNotNone(botocore, "Botocore must be pinned in the deployment lock")
+        def normalize(name):
+            return re.sub(r"[-_.]+", "-", name).lower()
 
         def version(value):
             return tuple(int(part) for part in value.split("."))
 
-        self.assertGreaterEqual(version(boto3.group(1)), version(minimum.group(1)))
-        self.assertEqual(boto3.group(1), botocore.group(1))
+        locked = {
+            normalize(match.group(1)): match.group(2)
+            for match in re.finditer(
+                r"(?m)^([A-Za-z0-9_.-]+)==([0-9]+(?:\\.[0-9]+)+)", lock
+            )
+        }
+        checked = 0
+        for raw in requirements.splitlines():
+            requirement = raw.strip()
+            if not requirement or requirement.startswith("#"):
+                continue
+            match = re.fullmatch(r"([A-Za-z0-9_.-]+)(.*)", requirement)
+            self.assertIsNotNone(match, f"Unsupported direct requirement: {requirement}")
+            name, specifier = normalize(match.group(1)), match.group(2)
+            pinned = locked.get(name)
+            self.assertIsNotNone(pinned, f"{name} is missing from the deployment lock")
+
+            exact = re.fullmatch(r"==([0-9]+(?:\\.[0-9]+)+)", specifier)
+            bounded = re.fullmatch(
+                r">=([0-9]+(?:\\.[0-9]+)+),<([0-9]+(?:\\.[0-9]+)+)", specifier
+            )
+            if exact:
+                self.assertEqual(pinned, exact.group(1), f"{name} pin drift")
+            else:
+                self.assertIsNotNone(bounded, f"Unsupported specifier for {name}: {specifier}")
+                self.assertGreaterEqual(version(pinned), version(bounded.group(1)), name)
+                self.assertLess(version(pinned), version(bounded.group(2)), name)
+            checked += 1
+
+        self.assertEqual(checked, 8)
+        self.assertEqual(locked["boto3"], locked["botocore"])
 
 
 if __name__ == "__main__":
