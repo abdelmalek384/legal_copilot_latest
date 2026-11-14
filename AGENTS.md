@@ -6,10 +6,10 @@ Legal Copilot is an Arabic-first legal case-management and research assistant fo
 ## Working agreement
 - Work only in the currently opened Legal Copilot checkout. Never treat the user's home directory as a project root.
 - Before editing, inspect `git status --short --branch`, the current branch, recent commits, relevant files, and existing tests.
-- Never work directly on `main`. Create one focused branch per task, named `codex/<short-task-name>` or `fix/<short-task-name>`.
+- Normally create one focused branch per task (for example `fix/<short-task-name>`). The repository owner has explicitly authorized narrow direct commits to `main` while GitHub billing prevents hosted CI/PR merges; this exception remains in effect until the owner revokes it. Do not force-push or rewrite shared history.
 - Do not overwrite, reset, clean, or discard pre-existing user changes. If the worktree is not clean, stop and report the exact files before proceeding.
 - Keep changes small and scoped. Do not refactor unrelated code or repeat completed work.
-- Do not run two agents on the same files at the same time. Coordinate ownership and hand off using a branch/PR.
+- Do not run two agents on the same files at the same time. Coordinate ownership before editing; if concurrent changes cause a conflict, refetch and reconcile rather than overwrite.
 - Before committing, inspect `git diff --check`, `git diff --stat`, and the full diff. Never commit secrets, credentials, local databases, customer data, generated artifacts, or virtual environments.
 - Do not force-push, rewrite shared history, merge a PR, or disable required/security checks without explicit authorization.
 - Report exact commands and actual results. Never claim tests, scans, CI, or deployment passed unless they were run and the result was observed. Separate not-run, blocked, and failed checks.
