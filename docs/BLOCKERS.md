@@ -49,21 +49,21 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 ### Test execution / CI runner availability
 - Current limitation: GitHub Actions runner allocation/billing has previously failed before test steps start.
-- Owner: Codex / repository administrator.
+- Owner: repository administrator / available local Python 3.12 runner; AI-1 owns source fixes for concrete failures.
 - Exit criteria: execute focused tests and full suite in a clean Python 3.12 hash-locked environment; preserve command, interpreter, dependency-lock hash, exit status and test counts.
 - Exact-head recheck for reviewer-URL/scorer change head `ef90b56ed489be214150f1b86dac0930d814e7b8` on 2026-11-12: Tests run `43252117918`, dependency audit `43252117654`, CodeQL `43252117717`, and browser acceptance `43252117642` all failed before any job step. The inspected jobs returned empty step lists (0 executed steps); this is runner/service allocation evidence, not a code-test failure or pass.
 - Until then: PR source review is not a test pass.
 
 ### Python 3.12 dependency lock
 - Related PR #1490 was inspected on 2026-11-13: it proposes raising the direct Boto3 floor from `>=1.43.123` to `>=1.43.125` without updating `requirements-py312.lock`. Current `main` is internally aligned at Boto3/Botocore 1.43.123 for the current direct requirement; PR #1490 is a separate dependency upgrade and must not be merged alone. If that upgrade is adopted, regenerate the lock with authentic hashes, install it in a clean Python 3.12 environment, and run import/startup plus tests.
-- Owner: Codex.
+- Owner: repository administrator / available local Python 3.12 environment; AI-1 can review resulting diffs and evidence.
 - Exit criteria: regenerate lock using pinned pip-tools, include authentic hashes, install successfully from lock in a clean environment, and run import/startup plus tests. Never invent hashes.
 
 ### Live negated-obligation answer guard — implementation complete, validation open
 - Related issue #1561 is closed. The current `app.ask` final-answer path invokes `has_negated_obligation_conflicts` before returning an answer; PR #1588 added service-path regressions.
 - The helper and service-path test inventory covers English and Arabic positive/negative reversals, faithful negative wording, unrelated clauses, and Arabic variable whitespace.
 - Do not reopen implementation or repeat speculative rewrites. Remaining closure evidence is execution of focused `tests/test_claim_support.py` and the full suite in a clean Python 3.12 environment, with exact commit, command and test counts.
-- Owner: Codex for local executable validation; AI-1 for any concrete regression discovered by an executed test.
+- Owner: repository administrator / available local Python 3.12 runner for execution; AI-1 for any concrete source regression discovered by an executed test.
 
 ### Billing / payment provider
 - Owner: AI-2 / account owner.
