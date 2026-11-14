@@ -32,6 +32,8 @@ jobs:
         run: python tests/test_frontend_ux_contract.py
       - name: Test device/browser acceptance evidence gate
         run: PYTHONPATH=. python tests/test_device_browser_acceptance.py
+      - name: Test device acceptance release-gate integration
+        run: PYTHONPATH=. python tests/test_device_acceptance_release_integration.py
       - name: Test legal PDF import bundle integrity
         run: PYTHONPATH=. python tests/test_import_laws_bundle.py
       - name: Test container deployment contract
