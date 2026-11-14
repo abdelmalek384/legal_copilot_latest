@@ -408,3 +408,9 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 
 
 - A static follow-up corrected the settings label element construction (`1714b2a109400807f598cf51aaeeb46fd4cee46f`). The JavaScript syntax workflow check remains unexecuted under the runner pause.
+
+
+## Exact research-passage navigation — 2026-11-14
+
+- The inspector now hands a matter/document/chunk identity into the matter Documents view, auto-expands the matching extraction panel, and focuses/scrolls to the exact chunk when present. One-shot state is cleared on missing document/chunk, failed load, panel close, manual section navigation, firm switch and session expiry. No passage-level claim is made when the chunk ID is absent.
+- Static source and regression-contract inspection only. Browser interaction, keyboard focus behavior and screen-reader acceptance remain blocked by unavailable runner/browser validation.
