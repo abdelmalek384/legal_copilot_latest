@@ -62,7 +62,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("source.document_ocr_used===true", inspector)
         self.assertIn("source.document_original_available===true", inspector)
         self.assertIn("source.scope==='firm_documents'", inspector)
-        self.assertIn("window.DOCUMENT_REVIEW_TARGET=hasExactChunk?{caseId:matterId,documentId,chunkId:String(rawChunkId)}:null", inspector)
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET=hasExactChunk?{caseId:matterId,documentId,chunkId:String(chunkId)}:null", inspector)
         self.assertIn("PAGE='cases';TAB='docs';view(matterId)", inspector)
         self.assertIn("Open document and passage", inspector)
         self.assertIn("Open matter Documents", inspector)
