@@ -270,7 +270,7 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
         verify.assert_called_once()
         clients.assert_called_once()
         upload.assert_called_once_with(
-            self.s3, self.kms, self.bundle, bucket=self.config["bucket"],
+            self.s3, self.kms, args.file, bucket=self.config["bucket"],
             kms_key_id=self.config["kms_key_id"],
             expected_sha256=hashlib.sha256(self.bundle.read_bytes()).hexdigest(),
         )

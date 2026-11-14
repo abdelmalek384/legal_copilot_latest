@@ -704,8 +704,14 @@ def restore_backup_bundle(
     target_root: str | Path,
 ) -> dict[str, Path]:
     """Restore a verified bundle into a new directory without overwriting live files."""
+    destination = Path(target_root).expanduser()
+    if destination.is_symlink() or destination.exists():
+        raise DatabaseBundleError("Restore target must not exist; choose a new destination path")
+    parent = destination.parent
+    if parent.is_symlink() or not parent.is_dir():
+        raise DatabaseBundleError("Restore target's parent directory must already exist")
     encrypted = _read_encrypted_backup(backup_file)
-    return _restore_backup_bundle_bytes(encrypted, cipher, target_root)
+    return _restore_backup_bundle_bytes(encrypted, cipher, destination)
 
 
 def _restore_backup_bundle_bytes(
