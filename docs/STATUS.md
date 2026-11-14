@@ -109,3 +109,9 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Added regression contracts for identical retries and conflicting reuse. The tests are registered in the existing workflow through `tests/test_billing_provider.py`; they were not executed because GitHub runner allocation/billing is blocked.
 - Direct-main commits: implementation `acdd4a1d89d423a89709ec428ff5563b69d31351`; tests `d8bd4a27638b314fb9e35619a10aa3345ea15590`.
 - **Bounded task: 100% implementation.** **Live billing integration: 0%**—no selected/credentialed merchant provider, hosted checkout, signed webhook verification, provider-event idempotency, refunds/chargebacks or settlement reconciliation is implemented. Do not treat the fake provider as payment acceptance evidence. Overall AI-2 and release readiness estimates are unchanged; application remains NOT READY.
+
+## Manual-capture evidence URL policy alignment — 2026-11-14
+
+- The manual-capture provenance validator now rejects URL fragments (including a bare fragment delimiter), empty or non-empty user-info, malformed ports, raw backslashes, control/whitespace characters, and signed/credential query parameters across source, terms and permission-evidence URLs.
+- Added focused regressions for fragments, empty user-info, cloud-signed URL parameters and access-token parameters. Static source review only; tests remain unexecuted.
+- These checks validate URL shape only; they do not establish that a source grants collection or commercial-reuse rights.
