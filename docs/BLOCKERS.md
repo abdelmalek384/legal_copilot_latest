@@ -392,3 +392,10 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 
 - Current/new/confirm password fields and firm-invitation email now have persistent bilingual labels rather than relying on placeholders. A frontend regression contract is committed in the existing UX test module.
 - Static review only; tests and screen-reader/browser acceptance remain unexecuted. The bounded labeling change is complete; the broader form audit remains open.
+
+
+## Matter-search document provenance hand-off — 2026-11-14
+
+- Integrated the backend-only part of the workspace PR's retrieval enhancement: firm hits now carry document/chunk identity, filename, SHA-256, extraction/OCR state and ready/non-purged original availability, using document/case/firm-scoped joins. Added false/true retention-path regressions and updated the source-inspector contract.
+- This does not merge PR #1610 or its UI diff. PR #1610 is still draft and now compares as 218 commits ahead / 483 behind; its branch `static/index.html` still lacks the answer-rating UI present on main. No wholesale merge or stale UI transplant is safe.
+- Static review only. The separate-runtime route tests and browser hand-off were not executed because runner allocation/billing remains blocked.
