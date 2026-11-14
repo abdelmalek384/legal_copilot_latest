@@ -27,6 +27,13 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 - **Python 3.12 lock release validation (implementation aligned):** the current lock pins `boto3==1.43.123` and `botocore==1.43.123`; all eight direct requirements statically satisfy their lock pins, and a regression test now enforces that contract. The local/hosted audit commands require hashes. Still open: regenerate with the pinned Python 3.12 resolver, clean Python 3.12 install, pip-audit, full suite and exact release-check output. Do not describe this as a completed release audit.
 
+## AI-2 release-evidence integrity hardening — 2026-11-14
+
+- Device/browser acceptance evidence now rejects duplicate JSON object keys, duplicate device/browser/locale identities, and evidence paths reused across records. The release-gate integration calls the same validator; unit and integration regressions cover these cases.
+- Database/staging operational acceptance manifests now reject duplicate JSON object keys at every object depth instead of silently accepting the last value.
+- Added the database acceptance, device acceptance, release-gate integration, production release-gate, and encrypted archive tests to the focused security regression script, with a workflow-contract regression.
+- These are source/test implementation changes only. The test modules are registered but have not been executed in this environment; no runtime pass is claimed.
+
 ## AI-2 recovery archive integrity hardening — 2026-11-14
 
 - Recovery source opening now rejects symlinks and special files, uses nonblocking/no-follow flags where available, validates the opened inode against the pre-open identity, and hashes/uploads through the same open descriptor. The uploader requires an expected SHA-256; the tenancy archive flow supplies the checksum returned by verification.
