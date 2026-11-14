@@ -380,3 +380,9 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 
 - New/edit client-profile dialogs now associate the required client-name control with a bilingual inline alert, set/clear `aria-invalid` during validation/correction, and keep the alert separate from the label. A frontend regression contract is committed and registered through the existing UX test workflow.
 - Static source/contract/workflow inspection only. No test or browser execution is claimed; remaining form-by-form error review and manual screen-reader acceptance are still open.
+
+
+## Product-feedback form accessibility — 2026-11-14
+
+- Feedback title/details now have persistent bilingual labels and inline validation descriptions linked through `aria-describedby`, with `aria-invalid` set on native invalid events and cleared after correction. A frontend contract test was added to the existing workflow.
+- Static review only; no test/browser execution. This closes the bounded feedback-form implementation, not the remaining form audit or manual accessibility acceptance.
