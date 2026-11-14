@@ -48,7 +48,7 @@ The following bounded repository tasks now meet their source-change acceptance c
 | Reject duplicate JSON keys, duplicate device/browser acceptance records, and reused evidence paths at release-gate integration boundary | **100%** | Strict parser, validator and unit/integration regressions committed and registered in Tests workflow; execution pending |
 | Reject duplicate JSON keys in database/staging release-evidence manifests | **100%** | Strict object-pairs parser and regression committed; existing database acceptance test module is registered in Tests workflow; execution pending |
 | Bound and harden release-evidence manifest parsing | **100%** | Binary bounded read (1 MB), UTF-8/JSON-depth/duplicate-key rejection, and pre-open inode binding against path replacement; valid/invalid encoding, nesting and replacement regressions committed, execution pending |
-| Bound and harden device/browser evidence input parsing | **100%** | Stable regular-file descriptor, symlink/special-file rejection, 5 MB bounded read and UTF-8 validation; regressions for symlink, FIFO, oversized and invalid-encoding inputs committed, execution pending |
+| Bound and harden device/browser evidence input parsing | **100%** | Stable regular-file descriptor, symlink/special-file rejection, 5 MB bounded read, UTF-8 validation and excessive JSON nesting rejection for JSON/JSONL; regressions committed, execution pending |
 | Register backup-archive and production/device/database release-acceptance tests in focused security matrix | **100%** | Security script and workflow-contract regression committed; execution pending |
 | Synchronize README, release status and blocker register with current lock/recovery implementation | **100%** | Current-main source inspection completed |
 
