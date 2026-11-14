@@ -13,6 +13,20 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
         self.assertEqual(MODULE.validate(data), [])
 
+    def test_register_loader_rejects_duplicate_json_keys_at_every_depth(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "register.json"
+            for raw in (
+                '{"schema_version": "1.0", "sources": [], "sources": [{"source_id": "S"}]}',
+                '{"schema_version": "1.0", "sources": [{"source_id": "S", "permission": {"state": "unknown", "state": "allowed"}}]}',
+            ):
+                with self.subTest(raw=raw):
+                    path.write_text(raw, encoding="utf-8")
+                    with self.assertRaisesRegex(ValueError, "duplicate JSON key in source permission register"):
+                        MODULE.load_register(path)
+
     def test_permission_claim_requires_evidence_and_date(self):
         item = {
             "source_id": "S1", "authority": "Example", "source_page": "https://example.gov/",
