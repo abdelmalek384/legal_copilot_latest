@@ -23,6 +23,10 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 | Remaining legal audit output-path integrity | AI-1 | Canonical OCR evaluator, article-row audit and corpus database audit cannot overwrite their inputs through direct paths, symlinks or hard links | 100% source implementation merged in #1609; regression tests committed but not executed |
 | Additional legal CLI report-path integrity | AI-1 | Corpus/reference comparison, Labour Law evidence-card report, and structured legal-draft output cannot overwrite source inputs or inventory manifests | 100% source implementation merged in #1609; regression tests committed but not executed |
 
+## Deployment dependency blocker
+
+- **Python 3.12 lock drift:** `requirements-py312.lock` pins `boto3==1.43.122`, but `requirements.txt` declares `boto3>=1.43.123,<2`. The lock must be regenerated and audited from the current direct requirements before building/releasing the container or treating the hash-locked local launchers as release-ready. The resolver workflow produces a reviewed lock artifact; billing prevents hosted execution here, so no replacement lock has been generated or audited.
+
 ## AI-2 current-main implementation — 2026-11-14
 
 - The answer-rating contract is now integrated: firm-local submit/update/read handlers, admin-only listing/export, append-only events, bilingual per-answer UI, trust-tier fallback badge, and focused backend/frontend tests are committed on `main`. The export now carries a conservative message-time trust_tier field compatible with the AI-1 adapter. Execution is pending.
