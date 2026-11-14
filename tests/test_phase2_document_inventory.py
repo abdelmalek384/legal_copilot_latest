@@ -167,7 +167,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         data["documents"][0]["source_urls"] = [{"url": "http://example.invalid/law"}]
         errors = validate_inventory(data)
         self.assertTrue(any("content field full_text" in e for e in errors))
-        self.assertTrue(any("must be HTTPS or null" in e for e in errors))
+        self.assertTrue(any("must be a clean HTTPS URL or null" in e for e in errors))
 
     def test_in_force_and_verified_states_require_evidence(self):
         data = copy.deepcopy(self.inventory)
