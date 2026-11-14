@@ -30,6 +30,8 @@ tests=(
   test_trusted_proxy_client_ip.py
   test_trusted_host_middleware.py
   test_original_file_storage.py
+  test_database_backup_bundle.py
+  test_database_recovery_drill.py
   test_document_extraction_budget.py
   test_pdf_ocr_fallback.py
   test_research_prompt_injection_boundary.py
