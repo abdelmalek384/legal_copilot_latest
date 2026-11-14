@@ -306,7 +306,7 @@ def load_acceptance_manifest(path: str | Path | None, *, now: datetime | None = 
             "required_count": len(REQUIRED_GATES),
             "blockers": [{"gate": "manifest", "code": "manifest_not_found"}],
         }
-    except (OSError, UnicodeError, json.JSONDecodeError):
+    except (OSError, UnicodeError, json.JSONDecodeError, RecursionError):
         return {
             "ready": False,
             "decision": "blocked",
@@ -347,7 +347,7 @@ def load_staging_purge_acceptance_manifest(
         return blocked(exc.code)
     except FileNotFoundError:
         return blocked("manifest_not_found")
-    except (OSError, UnicodeError, json.JSONDecodeError):
+    except (OSError, UnicodeError, json.JSONDecodeError, RecursionError):
         return blocked("manifest_unreadable_or_invalid_json")
 
     if (
