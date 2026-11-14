@@ -437,7 +437,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         reviewer_registry_bytes = Path(args.reviewer_registry).read_bytes()
-        reviewer_registry = json.loads(reviewer_registry_bytes.decode("utf-8"))
+        reviewer_registry = json.loads(reviewer_registry_bytes.decode("utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
     except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
         parser.error(f"invalid reviewer registry: {exc}")
     for name in ("min_questions", "min_answerable_questions", "min_unanswerable_questions",
