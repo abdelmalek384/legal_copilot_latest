@@ -369,3 +369,8 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - The in-memory `FakeBillingProvider` now returns the original request for an identical merchant-reference retry and rejects reuse of the reference with a changed amount, currency or metadata. Added regression contracts.
 - This closes only the fake-provider request-creation contract; it is not a live gateway, webhook, signature, refund, settlement or reconciliation implementation.
 - Tests are registered but unexecuted while GitHub Actions runner allocation/billing is unavailable. Live billing remains blocked on provider/merchant selection, operator-owned sandbox credentials and end-to-end provider acceptance evidence.
+
+## Manual-capture evidence URL policy alignment — 2026-11-14
+
+- The local provenance validator now applies the same fail-closed evidence URL shape rules as the legal candidate/source checks: fragments, empty user-info, signed/credential query parameters, malformed ports, raw backslashes, whitespace and controls are rejected.
+- Added URL-shape regressions for source, terms and both permission-evidence URL fields. Tests remain unexecuted; no permission decision is inferred from URL validity.
