@@ -25,7 +25,13 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 ## Deployment dependency blocker
 
-- **Python 3.12 lock drift:** `requirements-py312.lock` pins `boto3==1.43.122`, but `requirements.txt` declares `boto3>=1.43.123,<2`. The lock must be regenerated and audited from the current direct requirements before building/releasing the container or treating the hash-locked local launchers as release-ready. The resolver workflow produces a reviewed lock artifact; billing prevents hosted execution here, so no replacement lock has been generated or audited.
+- **Python 3.12 lock release validation (implementation aligned):** the current lock pins `boto3==1.43.123` and `botocore==1.43.123`; all eight direct requirements statically satisfy their lock pins, and a regression test now enforces that contract. The local/hosted audit commands require hashes. Still open: regenerate with the pinned Python 3.12 resolver, clean Python 3.12 install, pip-audit, full suite and exact release-check output. Do not describe this as a completed release audit.
+
+## AI-2 recovery archive integrity hardening — 2026-11-14
+
+- Recovery source opening now rejects symlinks and special files, uses nonblocking/no-follow flags where available, validates the opened inode against the pre-open identity, and hashes/uploads through the same open descriptor. The uploader requires an expected SHA-256; the tenancy archive flow supplies the checksum returned by verification.
+- Backup verification now hashes the exact encrypted bytes it verifies and reports that digest. The upload path compares the same opened bytes against the required digest before any object upload. Missing or mismatched checksums fail closed before AWS client creation/upload.
+- Added regressions for FIFO/symlink rejection, path replacement, truncation, missing verification checksum and checksum mismatch. Static/custom isolated harness checks passed for the critical descriptor/hash invariants; repository test modules remain unexecuted. This closes the bounded source implementation, not the witnessed staging recovery acceptance.
 
 ## AI-2 current-main implementation — 2026-11-14
 
