@@ -47,7 +47,7 @@ class DependencyLockWorkflowContractTests(unittest.TestCase):
     def test_dependency_audit_prefers_lock_when_checked_in(self):
         workflow = (ROOT / ".github" / "workflows" / "dependency-audit.yml").read_text(encoding="utf-8")
         self.assertIn("if [ -f requirements-py312.lock ]", workflow)
-        self.assertIn("pip-audit --strict --progress-spinner off -r requirements-py312.lock", workflow)
+        self.assertIn("python -m pip_audit --require-hashes --strict --progress-spinner off -r requirements-py312.lock", workflow)
         self.assertIn("python -m pip_audit --strict --progress-spinner off -r requirements.txt", workflow)
 
     def test_every_direct_requirement_is_satisfied_by_the_hash_locked_set(self):
