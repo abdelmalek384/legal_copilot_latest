@@ -27,6 +27,22 @@
 | Staging and recovery | Docker/Compose configuration validation and encrypted backup/restore drill remain unexecuted. Credential-only preflight failures must be recorded separately from missing infrastructure/configuration. |
 | Validation | GitHub Actions billing prevents hosted test execution. No newly added local tests have been executed in this work session. Direct-main commits are implementation evidence, not test passes or pilot acceptance. |
 
+## AI-2 implementation completion estimate
+
+These are unweighted engineering estimates for the seven AI-2 delivery workstreams, not test-pass rates or production-readiness scores.
+
+| Workstream | Estimated implementation completion | Remaining acceptance |
+|---|---:|---|
+| Local release baseline | 0% | Exact local checker output still unavailable |
+| Security integration | 75% | Exact-head security verification remains blocked |
+| Security regression coverage | 75% | Added route, OCR, rating and injection regressions remain unexecuted |
+| Lawyer rating UI/export | 95% | Browser acceptance and adapter execution remain pending |
+| Test-firm package | 90% | Clean-clone first-login rehearsal remains unexecuted |
+| Repository cleanup/accessibility | 80% | Run hygiene scan and finish manual accessibility review |
+| Staging/recovery | 25% | Compose validation, provider configuration and witnessed restore remain pending |
+
+**Unweighted implementation estimate: 63%.** The application remains **NOT READY** for lawyer pilot or production. No test pass is inferred from committed test code.
+
 ## Legal evidence boundary
 
 - Labour Law 14/2025 remains **source-matched, not lawyer-reviewed**; `verified=0` for all 311 candidate rows; `authoritative=false` and `retrieval_eligible=false`.
