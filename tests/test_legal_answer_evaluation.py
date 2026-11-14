@@ -80,6 +80,19 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
                 with self.assertRaisesRegex(EvaluationError, r"line 1: duplicate JSON object key"):
                     _parse_jsonl_text(payload, "questions.jsonl")
 
+    def test_cli_rejects_duplicate_reviewer_registry_keys(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions = Path(td) / "questions.jsonl"
+            results = Path(td) / "results.jsonl"
+            registry = Path(td) / "reviewers.json"
+            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            results.write_text(json.dumps(result(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            registry.write_text('{"reviewers":[],"reviewers":[]}', encoding="utf-8")
+            with self.assertRaises(SystemExit) as raised:
+                main(["--questions", str(questions), "--results", str(results),
+                      "--reviewer-registry", str(registry)])
+            self.assertEqual(raised.exception.code, 2)
+
     def test_jsonl_parser_accepts_distinct_nested_keys(self):
         rows = _parse_jsonl_text(
             '{"id":"Q1","metadata":{"source":"A","pin":"article-1"}}',
