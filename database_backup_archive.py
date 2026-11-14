@@ -13,7 +13,7 @@ import re
 import stat
 import uuid
 from pathlib import Path
-from typing import Any
+from typing import Any, BinaryIO
 
 from database_backup import DatabaseBundleError, _MAX_ENCRYPTED_BUNDLE_BYTES
 
@@ -28,7 +28,7 @@ def _fail(message: str) -> None:
     raise DatabaseBundleError(message)
 
 
-def _digest_file(source) -> tuple[str, int]:
+def _digest_file(source: BinaryIO) -> tuple[str, int]:
     """Hash an already-open file descriptor and rewind it for the upload."""
     digest = hashlib.sha256()
     size = 0
@@ -74,7 +74,7 @@ def _key_arn(kms_client: Any, key_id: str) -> str:
     return arn
 
 
-def _safe_source(path_value: str | Path):
+def _safe_source(path_value: str | Path) -> BinaryIO:
     """Open once without following symlinks; all later reads use this descriptor."""
     path = Path(path_value).expanduser()
     try:
@@ -160,19 +160,19 @@ def upload_encrypted_bundle(
                 part_number = 1
                 while True:
                     chunk = source.read(_PART_SIZE)
-                        if not chunk:
-                            break
-                        if part_number > _MAX_PARTS:
-                            _fail("Encrypted recovery bundle exceeds the S3 multipart part limit")
-                        uploaded = s3_client.upload_part(
-                            Bucket=bucket, Key=object_key, UploadId=upload_id,
-                            PartNumber=part_number, Body=chunk,
-                        )
-                        etag = uploaded.get("ETag")
-                        if not isinstance(etag, str) or not etag:
-                            _fail("S3 multipart upload returned a part without an ETag")
-                        parts.append({"PartNumber": part_number, "ETag": etag})
-                        part_number += 1
+                    if not chunk:
+                        break
+                    if part_number > _MAX_PARTS:
+                        _fail("Encrypted recovery bundle exceeds the S3 multipart part limit")
+                    uploaded = s3_client.upload_part(
+                        Bucket=bucket, Key=object_key, UploadId=upload_id,
+                        PartNumber=part_number, Body=chunk,
+                    )
+                    etag = uploaded.get("ETag")
+                    if not isinstance(etag, str) or not etag:
+                        _fail("S3 multipart upload returned a part without an ETag")
+                    parts.append({"PartNumber": part_number, "ETag": etag})
+                    part_number += 1
                 response = s3_client.complete_multipart_upload(
                     Bucket=bucket, Key=object_key, UploadId=upload_id,
                     MultipartUpload={"Parts": parts},
@@ -189,7 +189,7 @@ def upload_encrypted_bundle(
                 if isinstance(exc, DatabaseBundleError):
                     raise
                 raise DatabaseBundleError("Encrypted recovery bundle multipart upload failed") from exc
-    
+
         version_id = response.get("VersionId")
         if not isinstance(version_id, str) or not version_id or version_id == "null":
             _fail("S3 did not return an immutable archive version ID; upload is not accepted")
@@ -245,7 +245,7 @@ def upload_encrypted_bundle(
             "kms_key_arn": key_arn,
             "format": "encrypted-database-bundle-v2",
         }
-    
+
     finally:
         source.close()
 

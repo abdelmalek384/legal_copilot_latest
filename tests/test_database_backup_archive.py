@@ -150,7 +150,9 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
             return result
 
         from unittest.mock import patch
-        with patch.object(database_backup_archive, "_digest_file", side_effect=hash_then_replace):
+        with patch.object(
+            database_backup_archive, "_digest_file", side_effect=hash_then_replace
+        ):
             locator = self.upload()
         persisted = self.s3.objects[(locator["bucket"], locator["key"], locator["version_id"])]
         self.assertEqual(persisted["data"], original_bytes)
