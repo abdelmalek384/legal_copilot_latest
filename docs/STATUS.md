@@ -148,3 +148,11 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Updated the source-inspector contract to document the provenance fields and the distinction between UI traceability and server-side download authorization.
 - Direct-main commits: backend `889857dffff78d1ec495a764c37178289854f52e`; false-path regression `04c301ed21418f4ca457a8ea90f8c2329e82c252`; ready-original regression `0c176283757306d0250f5826c0e50eea473f8f43`; contract doc `79f1e2eafa44f85228921ab12192855dd134764d`.
 - **Bounded implementation task: 100%.** Static review confirms tenant-scoped join predicates, ready/non-purged filtering, output mapping and regression assertions. Runtime query execution, browser hand-off and exact-original download acceptance remain unexecuted. This is a safe backend-only extraction from PR #1610; no PR UI changes were merged or copied.
+
+
+## AI-2 source-inspector matter hand-off — 2026-11-14
+
+- The source inspector now displays firm-document matter/document/chunk IDs, SHA-256, extraction status, OCR-used state and the backend-reported retained-original state. It adds an explicit “Open matter Documents” action only when positive safe-integer matter/document IDs are present. It opens the matter's Documents section and does not claim to focus an exact chunk.
+- Added a frontend contract test in the existing UX test module/workflow. Static assertions confirm metadata rendering, OCR/retention labels, matter-scope gating, action wiring and preservation of the answer-rating panel. No browser or Python test execution is claimed.
+- Direct-main commits: UI `044a7f6f0da3f7592c5cbdfaee7f2cb06412bce7`; regression `ffdcd6ed8415baad345dea83f7f39df2411acf7b`; source-inspector contract `ac674467c0110c41114c411d94c4b8dc8e0b47af`.
+- **Bounded implementation task: 100%.** Browser hand-off, screen-reader reading order and exact-chunk positioning remain unaccepted. No legal verification status is changed.
