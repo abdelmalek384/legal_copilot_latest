@@ -30,9 +30,23 @@ run_check() {
   rm -f "$log"
 }
 
-run_check "Full CI-invoked Python test suite" python tools/run_local_test_suite.py
-run_check "Focused security regression matrix" bash scripts/security_regression_check.sh
-run_check "Encrypted multi-tenant backup/restore recovery drill" python tests/test_database_recovery_drill.py
+if python -c 'import sys; raise SystemExit(0 if sys.version_info[:2] == (3, 12) else 1)' 2>/dev/null; then
+  names+=("Supported Python interpreter")
+  statuses+=("PASS")
+  details+=("Python 3.12")
+  run_check "Full CI-invoked Python test suite" python tools/run_local_test_suite.py
+  run_check "Focused security regression matrix" bash scripts/security_regression_check.sh
+  run_check "Encrypted multi-tenant backup/restore recovery drill" python tests/test_database_recovery_drill.py
+else
+  names+=("Supported Python interpreter")
+  statuses+=("BLOCKED")
+  details+=("Python 3.12 is required; Python test gates were not started")
+  for label in "Full CI-invoked Python test suite" "Focused security regression matrix" "Encrypted multi-tenant backup/restore recovery drill"; do
+    names+=("$label")
+    statuses+=("BLOCKED")
+    details+=("requires Python 3.12")
+  done
+fi
 
 if command -v docker >/dev/null 2>&1 && docker compose version >/dev/null 2>&1; then
   run_check "Placeholder-only production Compose validation" bash -c '
