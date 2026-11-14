@@ -845,11 +845,34 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertTrue(retrieved, "uploaded matter text must be retrievable through the firm-scoped index")
         self.assertTrue(any("CONFIDENTIAL MATTER SENTINEL" in hit["text"] for hit in retrieved))
+
+        # The same case ID in another firm's tenant database must not reveal this file.
+        context_b = self.runtime.resolve_context(self.user_id, self.firm_b)
+        firm_b_db = self.runtime.firm_connection(context_b)
+        self.assertEqual(
+            app.search(
+                firm_b_db, "CONFIDENTIAL MATTER SENTINEL contract renewal",
+                case_id=case_id, firm_id=self.firm_b, scope="firm_documents",
+            ),
+            [],
+        )
+
         captured = {}
 
         def fake_llm(prompt):
             captured["prompt"] = prompt
             return "The retrieved matter passage states the renewal date is 17 September 2027 [1]."
+
+        with patch.dict("os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": ""}), patch.object(
+            app, "LLM", side_effect=fake_llm
+        ) as unapproved_llm:
+            blocked = app.ask(
+                firm_db, "What renewal date is stated in the uploaded matter?",
+                case_id=case_id, firm_id=self.firm_a, scope="firm_documents",
+            )
+        self.assertTrue(blocked["abstained"])
+        self.assertIsNone(blocked["answer"])
+        unapproved_llm.assert_not_called()
 
         with patch.dict("os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": "1"}), patch.object(
             app, "LLM", side_effect=fake_llm
