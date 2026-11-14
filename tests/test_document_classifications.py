@@ -213,5 +213,11 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("Reviewer-entered reference; not verified against the original file.", html)
         self.assertIn("latest&&latest.page_reference", html)
 
+    def test_extracted_page_pin_is_explicitly_unverified_against_original(self):
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("chunk.page!==undefined&&chunk.page!==null&&chunk.page!==''", html)
+        self.assertIn("The recorded page reference has not been independently checked against the original file.", html)
+        self.assertIn("مرجع الصفحة المسجل لم تتم مطابقته بصورة مستقلة مع الملف الأصلي.", html)
+
 if __name__ == "__main__":
     unittest.main()
