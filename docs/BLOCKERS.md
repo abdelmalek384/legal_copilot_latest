@@ -116,8 +116,8 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 ## Evaluation runner and candidate source URL validation — 2026-11-14
 
 - `tools/run_legal_eval.py::validate_base_url` now rejects DEL and raw backslashes before URL parsing. Regression tests include single-backslash and DEL cases.
-- `tools/seed_legal_candidates.py` now validates candidate and canonical permission-register `source_page` URLs plus optional terms, official-PDF and secondary-metadata URLs as clean HTTPS URLs, rejecting credentials, malformed ports, controls and raw backslashes before comparing hosts. Regression fixtures cover HTTP, embedded credentials, malformed authorities and backslashes.
-- Direct-main commits: `27976cf`, `9fc0f19`, `279b761`, `54d31f8`, `66b2e6b`, `d0dafda`, `2b89b06`, `6913a76`, `a5874d7`, `b99d549`. Tests remain unexecuted.
+- `tools/seed_legal_candidates.py` now validates candidate and canonical permission-register `source_page` URLs plus optional terms, official-PDF and secondary-metadata URLs as clean HTTPS URLs, rejecting credentials (including empty user-info), fragments, signed/credential query parameters, malformed ports, controls and raw backslashes before comparing hosts. Regression fixtures cover HTTP, embedded/empty credentials, malformed authorities, fragments, signed query strings and backslashes. The Phase 2 inventory validator applies the same fail-closed URL policy to nested source/document URL fields.
+- Direct-main commits: `27976cf`, `9fc0f19`, `279b761`, `54d31f8`, `66b2e6b`, `d0dafda`, `2b89b06`, `6913a76`, `a5874d7`, `b99d549`, `e457aca`, `480fb93`, `049bf30`, `2fb889a`, `9d09f0f`. Tests remain unexecuted.
 
 ## Gazette importer runbook execution reliability — 2026-11-14
 
