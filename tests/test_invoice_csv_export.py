@@ -48,11 +48,15 @@ class InvoiceCsvExportTests(InvoiceTestSupport, unittest.TestCase):
     def test_csv_imported_formula_cells_are_neutralized_on_invoice_export(self):
         malicious_title = '=HYPERLINK("https://attacker.example","open")'
         malicious_client = '+CMD|/C calc!A0'
+        csv_buffer = io.StringIO(newline="")
+        writer = csv.writer(csv_buffer, delimiter=";", lineterminator="\n")
+        writer.writerow(("title", "client"))
+        writer.writerow((malicious_title, malicious_client))
         imported = self.mutate(
             self.client_a,
             "post",
             "/cases/import.csv",
-            json={"csv": "title;client\\n" + malicious_title + ";" + malicious_client + "\\n"},
+            json={"csv": csv_buffer.getvalue()},
         )
         self.assertEqual(imported.status_code, 200, imported.text)
         self.assertEqual(imported.json()["created"], 1)
