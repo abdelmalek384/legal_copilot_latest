@@ -28,15 +28,27 @@ class EvaluationError(ValueError):
     pass
 
 
+def _reject_duplicate_json_keys(pairs):
+    """Reject ambiguous JSON objects instead of silently keeping the last value."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise EvaluationError(f"duplicate JSON object key: {key!r}")
+        result[key] = value
+    return result
+
+
 def _parse_jsonl_text(text, path):
     rows = []
     for line_no, raw in enumerate(text.splitlines(), 1):
         if not raw.strip():
             continue
         try:
-            row = json.loads(raw)
+            row = json.loads(raw, object_pairs_hook=_reject_duplicate_json_keys)
         except json.JSONDecodeError as exc:
             raise EvaluationError(f"{path}:{line_no}: invalid JSON: {exc.msg}") from exc
+        except EvaluationError as exc:
+            raise EvaluationError(f"{path}:{line_no}: {exc}") from exc
         if not isinstance(row, dict):
             raise EvaluationError(f"{path}:{line_no}: each JSONL row must be an object")
         rows.append(row)
