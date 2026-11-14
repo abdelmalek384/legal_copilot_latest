@@ -38,6 +38,29 @@ class ManualCaptureRecordTests(unittest.TestCase):
             "review_status": "pending_source_review",
         }
 
+    def test_cli_rejects_duplicate_top_level_and_nested_json_keys(self):
+        import subprocess
+
+        valid = json.dumps(self.record, ensure_ascii=False)
+        duplicate_records = (
+            valid[:-1] + ', "collection_permission": "allowed"}',
+            valid[:-1] + ', "extra": {"state": "unknown", "state": "allowed"}}',
+        )
+        for raw in duplicate_records:
+            with self.subTest(raw=raw):
+                self.record_path.write_text(raw, encoding="utf-8")
+                result = subprocess.run(
+                    [sys.executable, str(ROOT / "tools" / "validate_manual_capture_record.py"),
+                     "--record", str(self.record_path)],
+                    cwd=ROOT,
+                    capture_output=True,
+                    text=True,
+                    check=False,
+                )
+                self.assertEqual(result.returncode, 2)
+                self.assertIn("duplicate JSON object key", result.stderr)
+                self.assertNotIn('"valid": true', result.stdout)
+
     def test_claimed_verified_status_never_makes_capture_retrieval_eligible(self):
         self.record["legal_status"] = "in_force"
         self.record["review_status"] = "verified"
