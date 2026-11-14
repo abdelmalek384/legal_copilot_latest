@@ -185,6 +185,22 @@ class DeviceBrowserAcceptanceTests(unittest.TestCase):
         with self.assertRaisesRegex(EvidenceError, "duplicate evidence records"):
             validate_release_matrix(values, summaries)
 
+    def test_release_matrix_rejects_reused_evidence_files(self):
+        values = [
+            passing_record("desktop", "ar-EG", "130"),
+            passing_record("desktop", "en-US", "131"),
+            passing_record("phone", "ar-EG", "132"),
+            passing_record("phone", "en-US", "133"),
+        ]
+        values[1]["evidence_paths"] = list(values[0]["evidence_paths"])
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            write_evidence_files(root, values)
+            summaries = [validate_record(item, expected_commit=COMMIT, require_pass=True, evidence_root=root)
+                         for item in values]
+        with self.assertRaisesRegex(EvidenceError, "evidence files must not be reused"):
+            validate_release_matrix(values, summaries)
+
     def test_release_matrix_rejects_mixed_commits_and_environments(self):
         values = [
             passing_record("desktop", "ar-EG", "130"),
