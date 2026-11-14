@@ -403,7 +403,7 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 
 ## Source-inspector matter hand-off — 2026-11-14
 
-- The inspector now shows backend-supplied firm-document provenance and offers a matter-level Documents hand-off for valid matter/document identifiers. It explicitly does not claim exact-chunk navigation or treat original availability as download authorization.
+- The inspector now shows backend-supplied firm-document provenance and offers exact-chunk navigation when a valid chunk ID is returned, falling back to a matter-level Documents hand-off otherwise. It does not treat original availability as download authorization.
 - Frontend regression contract is committed and workflow-registered. Static source review only; browser and test execution remain unavailable. Answer-rating controls remain on main and were not removed.
 
 
