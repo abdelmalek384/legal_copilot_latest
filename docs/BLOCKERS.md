@@ -330,7 +330,7 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - Firm-test scope clarification: The direct-main synthetic tests inject a source-matched hit into `app.ask()`; the `firm_test_source_matched` search scope currently returns no candidates. A separate permission-cleared candidate retrieval adapter is still required, and the current Law 14/2025 candidate is not eligible due unknown reuse permissions. This is not a completed Law 14/2025 serving path.
 
 
-## Database acceptance manifest bounded-read follow-up — 2026-11-14
+## Database acceptance manifest parser hardening — 2026-11-14
 
-- The manifest loader now caps the bytes actually read at 1 MB, rather than relying only on the earlier file-size metadata check. This prevents a concurrent file-growth race from causing an unbounded read.
-- Invalid UTF-8 and malformed JSON fail closed; duplicate-key rejection remains enabled. Added an invalid-UTF-8 regression. Repository tests remain unexecuted.
+- The loader caps the bytes actually read at 1 MB, preventing a concurrent file-growth race after the initial metadata check.
+- Invalid UTF-8, malformed JSON, duplicate keys and excessive JSON nesting now fail closed with a generic manifest blocker. Added regressions for invalid encoding and deeply nested input; repository tests remain unexecuted.
