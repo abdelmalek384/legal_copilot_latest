@@ -14,7 +14,7 @@ Use Python **3.12**. The supported runtime has three separate database domains: 
 ```bash
 python3.12 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements.txt
+python -m pip install --require-hashes -r requirements-py312.lock
 
 mkdir -p data/tenants
 export COPILOT_CONTROL_DB="$PWD/data/control_plane.sqlite3"
