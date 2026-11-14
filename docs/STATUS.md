@@ -123,3 +123,11 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Added a frontend contract test; the existing Tests workflow already runs `tests/test_frontend_ux_contract.py`. Static inspection confirms the source, test assertion and workflow registration. The test/browser suite was not executed.
 - Direct-main commits: UI `d816cfbd01f10f481e96f46a1c1fbb5edd934037`; regression `fceb630dece68e738e62eb5086de2d2bcfccb562`.
 - **Bounded implementation task: 100%.** Broader form-error consistency and manual screen-reader/browser acceptance remain open; do not mark the entire accessibility workstream complete.
+
+
+## AI-2 product-feedback form accessibility — 2026-11-14
+
+- Added persistent bilingual labels for feedback title/details and field-associated inline validation errors for the existing minimum lengths. Invalid controls expose `aria-invalid` and `aria-describedby`; correction clears the state. The category selector retains its explicit accessible name.
+- Added frontend contract coverage in the existing UX test module/workflow. Static source assertions confirm labels, error IDs, descriptions, invalid-state transitions and form wiring; no test/browser execution is claimed.
+- Direct-main commits: UI `cf4d73c3222b23d2fa83e842c7107644d045ed9a`; regression `becf8009dcbaf10905fe643def90b60395e08433`.
+- **Bounded implementation task: 100%.** Remaining dynamic forms, complete bilingual form review and manual accessibility acceptance remain open.
