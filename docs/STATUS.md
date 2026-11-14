@@ -47,7 +47,7 @@ The following bounded repository tasks now meet their source-change acceptance c
 | Require and verify expected SHA-256 before any recovery object upload | **100%** | Focused source review/custom isolated harness; repository tests pending |
 | Reject duplicate JSON keys, duplicate device/browser acceptance records, and reused evidence paths at release-gate integration boundary | **100%** | Strict parser, validator and unit/integration regressions committed and registered in Tests workflow; execution pending |
 | Reject duplicate JSON keys in database/staging release-evidence manifests | **100%** | Strict object-pairs parser and regression committed; existing database acceptance test module is registered in Tests workflow; execution pending |
-| Bound release-evidence manifest reads even if the file grows after the initial `fstat` | **100%** | Reader caps the actual read at 1,000,001 bytes, rejects overflow, and maps invalid UTF-8 to a fail-closed blocker; regression committed, execution pending |
+| Bound and harden release-evidence manifest parsing | **100%** | Reader caps actual bytes read at 1 MB, rejects invalid UTF-8 and excessive JSON nesting, and retains duplicate-key rejection; regressions committed, execution pending |
 | Register backup-archive and production/device/database release-acceptance tests in focused security matrix | **100%** | Security script and workflow-contract regression committed; execution pending |
 | Synchronize README, release status and blocker register with current lock/recovery implementation | **100%** | Current-main source inspection completed |
 
