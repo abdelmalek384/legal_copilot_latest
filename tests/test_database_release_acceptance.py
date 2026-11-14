@@ -502,6 +502,17 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
             {(item["gate"], item["code"]) for item in report["blockers"]},
         )
 
+    def test_loader_rejects_excessively_nested_json(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "deeply-nested.json"
+            path.write_text("[" * 1100 + "0" + "]" * 1100, encoding="utf-8")
+            report = load_acceptance_manifest(path, now=self.now)
+        self.assertFalse(report["ready"])
+        self.assertIn(
+            ("manifest", "manifest_unreadable_or_invalid_json"),
+            {(item["gate"], item["code"]) for item in report["blockers"]},
+        )
+
     def test_loader_rejects_duplicate_json_keys(self):
         with tempfile.TemporaryDirectory() as td:
             path = Path(td) / "duplicate.json"
