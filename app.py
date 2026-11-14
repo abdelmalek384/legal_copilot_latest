@@ -9773,7 +9773,7 @@ def export_firm_answer_ratings_csv(u: dict = Depends(user)):
         (int(u["firm_id"]),),
     ).fetchall()
     output = io.StringIO(newline="")
-    writer = csv.writer(output, lineterminator="\\r\\n")
+    writer = csv.writer(output, lineterminator="\r\n")
     writer.writerow([
         "rating_id","answer_id","conversation_id","answer_message_id","question","answer",
         "rating","cited_article_accuracy","cited_article_ids","expected_article_ids",
@@ -9819,7 +9819,7 @@ def export_firm_answer_ratings_csv(u: dict = Depends(user)):
     c.commit()
     filename = "answer-ratings.csv"
     return Response(
-        content=("\\ufeff" + output.getvalue()).encode("utf-8"),
+        content=("\ufeff" + output.getvalue()).encode("utf-8"),
         media_type="text/csv; charset=utf-8",
         headers={"Content-Disposition": f'attachment; filename="{filename}"',
                  "Cache-Control":"no-store","Pragma":"no-cache"},
