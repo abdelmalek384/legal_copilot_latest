@@ -191,11 +191,26 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
         errors = validate_inventory(data)
         self.assertTrue(any("source_ids.EG-PRESIDENCY missing permission" in e for e in errors))
 
-    def test_source_url_must_be_https_or_null(self):
-        data = copy.deepcopy(self.inventory)
-        data["source_ids"]["EG-PRESIDENCY"]["source_url"] = "http://example.invalid"
-        errors = validate_inventory(data)
-        self.assertTrue(any("source_ids.EG-PRESIDENCY.source_url must be HTTPS or null" in e for e in errors))
+    def test_source_url_must_be_clean_https_or_null(self):
+        invalid_urls = (
+            "http://example.invalid",
+            "https://user:pass@example.invalid/law",
+            "https://@example.invalid/law",
+            "https://example.invalid/law\\\\path",
+            "https://example.invalid/law#",
+            "https://example.invalid:99999/law",
+            "https://example.invalid/law?X-Amz-Signature=secret",
+            "https://example.invalid/law with spaces",
+        )
+        for url in invalid_urls:
+            with self.subTest(url=url):
+                data = copy.deepcopy(self.inventory)
+                data["source_ids"]["EG-PRESIDENCY"]["source_url"] = url
+                errors = validate_inventory(data)
+                self.assertTrue(any(
+                    "source_ids.EG-PRESIDENCY.source_url must be a clean HTTPS URL or null" in e
+                    for e in errors
+                ))
 
     def test_source_permissions_do_not_promote_document_permissions(self):
         data = copy.deepcopy(self.inventory)
