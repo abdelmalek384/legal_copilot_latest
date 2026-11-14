@@ -32,6 +32,16 @@ REVIEW_STATUSES = {"pending_source_review", "pending_lawyer_review", "verified",
 TERMS_REVIEW_MAX_AGE_DAYS = 180
 
 
+def _reject_duplicate_json_keys(pairs):
+    """Reject ambiguous metadata objects instead of silently keeping the last value."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON object key: {key!r}")
+        result[key] = value
+    return result
+
+
 def _https_url(value: object) -> bool:
     if not isinstance(value, str) or not value or value != value.strip():
         return False
@@ -230,8 +240,11 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps({"valid": False, "errors": ["capture record must not be a symbolic link"]}, ensure_ascii=False, indent=2))
         return 2
     try:
-        record = json.loads(args.record.read_text(encoding="utf-8"))
-    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        record = json.loads(
+            args.record.read_text(encoding="utf-8"),
+            object_pairs_hook=_reject_duplicate_json_keys,
+        )
+    except (OSError, UnicodeError, ValueError) as exc:
         print(json.dumps({"valid": False, "errors": [f"cannot read capture record: {exc}"]}, ensure_ascii=False, indent=2))
         return 2
     result = validate_capture_record(record, args.record)
