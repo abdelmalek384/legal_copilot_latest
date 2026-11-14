@@ -97,7 +97,7 @@ class FakeKMS:
 class RecoveryArchiveTransportTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
-        self.root = Path(self.temp.name)
+        self.root = Path(self.temp.name).resolve()
         self.bundle = self.root / "backup.dbundle.enc"
         self.bundle.write_bytes(b"opaque-application-encrypted-backup-bytes")
         self.s3 = FakeS3()
