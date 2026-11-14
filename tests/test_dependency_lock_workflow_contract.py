@@ -95,7 +95,7 @@ class DependencyLockWorkflowContractTests(unittest.TestCase):
     def test_local_release_gate_runs_one_dependency_audit_with_safe_fallback(self):
         script = (ROOT / "scripts" / "local_release_check.sh").read_text(encoding="utf-8")
         self.assertEqual(
-            script.count("if [[ \"$python312_available\" -eq 1 ]] && python -c 'import pip_audit'"),
+            script.count('version("pip-audit") == "2.10.1"'),
             1,
         )
         self.assertIn('if [[ -f requirements-py312.lock ]]; then', script)
@@ -103,6 +103,8 @@ class DependencyLockWorkflowContractTests(unittest.TestCase):
         self.assertIn('run_check "Dependency vulnerability audit (requirements fallback)"', script)
         self.assertIn("python -m piptools compile", script)
         self.assertNotIn("pip-compile --resolver", script)
+        self.assertIn('version("pip-tools") == "7.6.2"', script)
+        self.assertIn('version("pip") == "26.2.2"', script)
         self.assertIn("python -m pip_audit --require-hashes", script)
         self.assertIn('if [[ "$python312_available" -eq 1 ]]; then\n  run_check "Strict deployment preflight"', script)
         self.assertIn("Python 3.12 is required for the supported deployment preflight", script)

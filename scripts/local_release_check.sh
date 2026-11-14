@@ -74,7 +74,7 @@ else
   details+=("Docker Compose plugin is not installed")
 fi
 
-if [[ "$python312_available" -eq 1 ]] && python -c 'import piptools' >/dev/null 2>&1; then
+if [[ "$python312_available" -eq 1 ]] && python -c 'from importlib.metadata import version; raise SystemExit(0 if version("pip") == "26.2.2" and version("pip-tools") == "7.6.2" else 1)' >/dev/null 2>&1; then
   run_check "Python 3.12 dependency lock drift check" bash -c '
     set -eu
     tmpdir=$(mktemp -d)
@@ -92,7 +92,7 @@ else
   names+=("Python 3.12 dependency lock drift check")
   statuses+=("BLOCKED")
   if [[ "$python312_available" -eq 1 ]]; then
-    details+=("pip-tools is not installed in the active Python 3.12 environment")
+    details+=("pip==26.2.2 and pip-tools==7.6.2 are required in the active Python 3.12 environment")
   else
     details+=("Python 3.12 is required for this lock target")
   fi
@@ -154,7 +154,7 @@ else
   details+=("install Bandit in the active environment")
 fi
 
-if [[ "$python312_available" -eq 1 ]] && python -c 'import pip_audit' >/dev/null 2>&1; then
+if [[ "$python312_available" -eq 1 ]] && python -c 'from importlib.metadata import version; raise SystemExit(0 if version("pip") == "26.2.2" and version("pip-audit") == "2.10.1" else 1)' >/dev/null 2>&1; then
   if [[ -f requirements-py312.lock ]]; then
     run_check "Hash-locked dependency vulnerability audit" python -m pip_audit --require-hashes --strict --progress-spinner off -r requirements-py312.lock
   else
@@ -164,7 +164,7 @@ else
   names+=("Dependency audit")
   statuses+=("BLOCKED")
   if [[ "$python312_available" -eq 1 ]]; then
-    details+=("pip-audit is not installed in the active Python 3.12 environment")
+    details+=("pip==26.2.2 and pip-audit==2.10.1 are required in the active Python 3.12 environment")
   else
     details+=("Python 3.12 is required for this lock target")
   fi
