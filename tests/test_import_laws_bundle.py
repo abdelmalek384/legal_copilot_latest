@@ -243,6 +243,23 @@ class LegalImportBundleTests(unittest.TestCase):
         with self.assertRaisesRegex(SystemExit, "duplicate document_id"):
             validate_inputs(self.source, self.output)
 
+    def test_duplicate_json_keys_are_rejected_at_every_object_depth(self):
+        sidecar = self.source / "sample_law.json"
+        original = sidecar.read_text(encoding="utf-8")
+        duplicate_top_level = original.replace(
+            '"language": "ar"',
+            '"language": "ar", "language": "en"',
+            1,
+        )
+        duplicate_nested = original[:-1] + ', "extra": {"review": {"status": "pending", "status": "verified"}}}'
+        for raw in (duplicate_top_level, duplicate_nested):
+            with self.subTest(raw=raw[-100:]):
+                sidecar.write_text(raw, encoding="utf-8")
+                with self.assertRaisesRegex(SystemExit, "duplicate JSON key in metadata sidecar"):
+                    validate_inputs(self.source, self.output)
+                self.assertFalse(self.output.exists())
+        sidecar.write_text(original, encoding="utf-8")
+
     def test_non_object_json_and_missing_sidecars_are_rejected(self):
         (self.source / "sample_law.json").write_text("[]", encoding="utf-8")
         with self.assertRaisesRegex(SystemExit, "JSON object"):
