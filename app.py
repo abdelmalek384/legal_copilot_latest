@@ -95,8 +95,6 @@ CREATE TABLE IF NOT EXISTS document_classification_events(
   created_at TEXT NOT NULL DEFAULT (datetime('now')),
   UNIQUE(document_id,version)
 );
-CREATE INDEX IF NOT EXISTS idx_document_classifications_case ON document_classifications(firm_id,case_id);
-CREATE INDEX IF NOT EXISTS idx_document_classification_events_document ON document_classification_events(firm_id,document_id,id DESC);
 CREATE TRIGGER IF NOT EXISTS document_classifications_scope_insert
 BEFORE INSERT ON document_classifications
 WHEN NOT EXISTS (SELECT 1 FROM docs d JOIN cases c ON c.id=d.case_id
