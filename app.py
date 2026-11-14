@@ -3634,11 +3634,13 @@ def ocr_pdf_text(data, lang=None, max_pages=30, existing_pages=None):
             if len(existing) >= 20:
                 page_text = existing
             else:
-                pix = page.get_pixmap(dpi=160, alpha=False)
-                image = Image.open(io.BytesIO(pix.tobytes("png")))
                 if not _OCR_SEMAPHORE.acquire(timeout=5):
                     raise HTTPException(503, "OCR capacity is temporarily exhausted; retry the upload")
                 try:
+                    # Gate rasterization as well as Tesseract: rendering a page is
+                    # itself CPU- and memory-intensive for hostile/scanned PDFs.
+                    pix = page.get_pixmap(dpi=160, alpha=False)
+                    image = Image.open(io.BytesIO(pix.tobytes("png")))
                     page_text = pytesseract.image_to_string(image, lang=lang, timeout=30).strip()
                 finally:
                     _OCR_SEMAPHORE.release()
