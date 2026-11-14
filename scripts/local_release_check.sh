@@ -82,7 +82,7 @@ if command -v pip-compile >/dev/null 2>&1; then
     # Ignore pip-compile's generated header because it embeds the differing output path.
     awk "found || /^[[:alnum:]][[:alnum:]_.-]*==/ {found=1; print}" \\
       requirements-py312.lock > "$tmpdir/current-lock.body"
-    awk 'found || /^[[:alnum:]][[:alnum:]_.-]*==/ {found=1; print}' \\
+    awk "found || /^[[:alnum:]][[:alnum:]_.-]*==/ {found=1; print}" \\
       "$tmpdir/requirements-py312.lock" > "$tmpdir/regenerated-lock.body"
     diff -u "$tmpdir/current-lock.body" "$tmpdir/regenerated-lock.body"
   '
