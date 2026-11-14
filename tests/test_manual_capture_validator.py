@@ -80,6 +80,24 @@ class ManualCaptureRecordTests(unittest.TestCase):
                 self.assertTrue(any(field in error for error in result["errors"]))
                 self.record[field] = original
 
+    def test_source_and_permission_urls_reject_fragments_empty_userinfo_and_signed_queries(self):
+        unsafe_urls = (
+            "https://example.gov/source#section",
+            "https://@example.gov/source",
+            "https://example.gov/source?X-Amz-Signature=temporary",
+            "https://example.gov/source?access_token=temporary",
+        )
+        for field in ("source_url", "terms_url", "collection_permission_evidence_url",
+                      "commercial_reuse_evidence_url"):
+            for unsafe_url in unsafe_urls:
+                with self.subTest(field=field, unsafe_url=unsafe_url):
+                    original = self.record[field]
+                    self.record[field] = unsafe_url
+                    result = validate_capture_record(self.record, self.record_path)
+                    self.assertFalse(result["valid"])
+                    self.assertTrue(any(field in error for error in result["errors"]))
+                    self.record[field] = original
+
     def test_unsupported_legal_status_is_rejected(self):
         self.record["legal_status"] = "current_verified"
         result = validate_capture_record(self.record, self.record_path)
