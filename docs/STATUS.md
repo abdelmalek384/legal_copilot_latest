@@ -94,3 +94,10 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Direct-main commits: `d45e94ca4749dd3a39131cecad460e9c20221e19` (implementation), `a7e9ca8e21a4551692bd7070aeb67edbda3698ee` (regression contract). This does not establish runtime/browser acceptance.
 - PR #1610 head `fc5e6e99716fb7fbcada8b2ac5b93a3d62ebca5f` is divergent from current main (48 ahead / 456 behind; four net changed files). Its frontend diff deletes the existing answer-rating panel and save/load controls, so do not merge or transplant it wholesale. Any desired navigation changes need a narrow current-main rebase preserving answer ratings and newer document/session safeguards.
 - PR #1610's validation record shows runner-allocation failures before steps; no test or browser execution is established.
+
+
+## Manual-capture provenance JSON ambiguity hardening — 2026-11-14
+
+- The read-only manual-capture record validator now rejects duplicate JSON object keys at every nesting depth. Previously, the default decoder silently kept the last value, which could make conflicting permission or provenance fields ambiguous.
+- Added a CLI regression covering duplicate top-level and nested keys. The test module is registered in `.github/workflows/tests.yml`.
+- Static review only; test execution remains unavailable. No permission, authenticity, currentness, lawyer-review or retrieval-eligibility state changed.
