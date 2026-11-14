@@ -999,7 +999,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("submitChunkReview(item,chunk,'corrected'", HTML)
         self.assertIn("payload.expected_text_sha256=chunk.text_sha256", HTML)
         self.assertIn("item.chunks=Array.isArray(refreshed.chunks)?refreshed.chunks:[]", HTML)
-        self.assertIn("first 100 chunks", HTML)
+        self.assertIn("let remaining=100;", HTML)
+        self.assertIn("if(remaining<=0)break;", HTML)
         self.assertIn("latest_review", HTML)
 
     def test_extraction_review_arabic_copy_is_registered(self):
