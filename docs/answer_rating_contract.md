@@ -1,6 +1,6 @@
 # Answer rating contract
 
-**Status:** ready for AI-2 integration  
+**Status:** canonical interchange contract integrated with AI-2 export; adapter tests unexecuted  
 **Version:** 1.0  
 **Purpose:** a stable, minimal interchange contract for human review of Legal Copilot answers. This contract records reviewer judgments; it does not itself approve legal content or promote a source's trust tier.
 
