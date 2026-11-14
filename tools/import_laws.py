@@ -42,6 +42,16 @@ def _fail(message: str) -> None:
     raise SystemExit("Import bundle rejected: " + message)
 
 
+def _reject_duplicate_json_keys(pairs):
+    """Reject ambiguous metadata objects at every nesting depth."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            _fail(f"duplicate JSON key in metadata sidecar: {key}")
+        result[key] = value
+    return result
+
+
 def _positive_int_env(name: str, default: int) -> int:
     """Read a positive resource limit from the environment, failing closed on invalid values."""
     raw = os.environ.get(name)
@@ -144,7 +154,10 @@ def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
         if sidecar.is_symlink() or not sidecar.is_file():
             _fail(f"metadata sidecar must be a regular file, not a symbolic link: {sidecar.name}")
         try:
-            metadata = json.loads(_read_regular_file(sidecar, "metadata sidecar", max_bytes=1_048_576).decode("utf-8"))
+            metadata = json.loads(
+                _read_regular_file(sidecar, "metadata sidecar", max_bytes=1_048_576).decode("utf-8"),
+                object_pairs_hook=_reject_duplicate_json_keys,
+            )
         except (OSError, UnicodeError, json.JSONDecodeError) as exc:
             _fail(f"invalid JSON sidecar {sidecar.name}: {type(exc).__name__}")
         if not isinstance(metadata, dict):
