@@ -136,10 +136,9 @@ The launchers do not reset or delete existing data. For an existing installation
 ### Manual local setup
 
 ```bash
-python3 -m venv .venv
+python3.12 -m venv .venv
 source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
+python -m pip install --require-hashes -r requirements-py312.lock
 
 mkdir -p data/tenants
 export COPILOT_CONTROL_DB="$PWD/data/control_plane.sqlite3"
