@@ -198,7 +198,7 @@ class DeviceBrowserAcceptanceTests(unittest.TestCase):
             write_evidence_files(root, values)
             summaries = [validate_record(item, expected_commit=COMMIT, require_pass=True, evidence_root=root)
                          for item in values]
-        with self.assertRaisesRegex(EvidenceError, "evidence files must not be reused"):
+        with self.assertRaisesRegex(EvidenceError, "evidence paths must be unique"):
             validate_release_matrix(values, summaries)
 
     def test_release_matrix_rejects_mixed_commits_and_environments(self):
