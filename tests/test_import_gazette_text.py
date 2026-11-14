@@ -444,7 +444,7 @@ class GazetteTextImportTests(unittest.TestCase):
         self.assertFalse(self.output.exists())
 
     def test_output_inside_source_directory_is_rejected(self):
-        nested = self.root / "nested-output"
+        nested = self.source_dir / "nested-output"
         with self.assertRaisesRegex(ValueError, "outside the source directory"):
             import_text(self.text_path, self.meta_path, nested)
         self.assertFalse(nested.exists())
