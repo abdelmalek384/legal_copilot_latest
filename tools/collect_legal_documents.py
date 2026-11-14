@@ -31,7 +31,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.validate_acquisition_readiness import audit as audit_acquisition_readiness
-from tools.validate_source_permission_register import validate as validate_source_permission_register
+from tools.validate_source_permission_register import load_register as load_source_permission_register, validate as validate_source_permission_register
 
 DEFAULT_REGISTER = ROOT / "docs" / "source_permission_register.json"
 MAX_BYTES_DEFAULT = 40 * 1024 * 1024
@@ -716,8 +716,8 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Manifest error: {exc}", file=sys.stderr)
         return 2
     try:
-        register = json.loads(args.register.read_text(encoding="utf-8"))
-    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        register = load_source_permission_register(args.register)
+    except (OSError, UnicodeError, ValueError) as exc:
         print(f"Permission register error: {exc}", file=sys.stderr)
         return 2
     register_errors = validate_source_permission_register(register)
