@@ -1,4 +1,5 @@
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -255,6 +256,41 @@ class DeviceBrowserAcceptanceTests(unittest.TestCase):
             )
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertIn('"release_gate": "PASS"', result.stdout)
+
+    def test_evidence_loader_rejects_symlink(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target = root / "target.json"
+            target.write_text(json.dumps(record()), encoding="utf-8")
+            link = root / "evidence.json"
+            try:
+                link.symlink_to(target)
+            except (OSError, NotImplementedError):
+                self.skipTest("symlink creation is unavailable")
+            with self.assertRaisesRegex(EvidenceError, "must not be a symlink"):
+                load_records(link)
+
+    @unittest.skipUnless(hasattr(os, "mkfifo"), "FIFO creation is unavailable")
+    def test_evidence_loader_rejects_fifo_without_blocking(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "evidence.fifo"
+            os.mkfifo(path)
+            with self.assertRaisesRegex(EvidenceError, "regular file"):
+                load_records(path)
+
+    def test_evidence_loader_rejects_oversized_input(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "oversized.json"
+            path.write_bytes(b" " * 5_000_001)
+            with self.assertRaisesRegex(EvidenceError, "5 MB limit"):
+                load_records(path)
+
+    def test_evidence_loader_rejects_invalid_utf8(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "invalid.json"
+            path.write_bytes(b'{"record_version":1,"label":"\\xff"}')
+            with self.assertRaisesRegex(EvidenceError, "valid UTF-8"):
+                load_records(path)
 
     def test_json_loader_rejects_duplicate_object_keys(self):
         with tempfile.TemporaryDirectory() as directory:
