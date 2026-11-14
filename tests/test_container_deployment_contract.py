@@ -91,6 +91,11 @@ class ContainerDeploymentContractTests(unittest.TestCase):
         self.assertIn('details+=("pip-compile is not installed")', checker)
         self.assertIn('details+=("pip-audit is not installed")', checker)
 
+    def test_focused_security_matrix_includes_backup_restore_and_recovery(self):
+        matrix = (ROOT / "scripts" / "security_regression_check.sh").read_text(encoding="utf-8")
+        self.assertIn("test_database_backup_bundle.py", matrix)
+        self.assertIn("test_database_recovery_drill.py", matrix)
+
     def test_local_release_check_runs_isolated_encrypted_recovery_drill(self):
         checker = (ROOT / "scripts" / "local_release_check.sh").read_text(encoding="utf-8")
         self.assertIn(
