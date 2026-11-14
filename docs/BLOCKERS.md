@@ -345,7 +345,7 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 
 ## AI-2 Arabic-first workspace PR #1610 and session-state reset — 2026-11-14
 
-- File-level comparison shows PR #1610 is divergent from main (218 ahead / 507 behind at review time) and changes four files. Its `static/index.html` diff deletes the answer-rating panel and save/load controls, a regression against the mainline answer-rating API/UI contract and frontend regression test. Do not merge or cherry-pick wholesale; revisit only isolated improvements after a current-main rebase and explicit preservation tests.
+- File-level comparison shows PR #1610 is divergent from main (218 ahead / 527 behind at review time) and changes four files. Its `static/index.html` diff deletes the answer-rating panel and save/load controls, a regression against the mainline answer-rating API/UI contract and frontend regression test. Do not merge or cherry-pick wholesale; revisit only isolated improvements after a current-main rebase and explicit preservation tests.
 - Fixed stale one-shot matter/document/chunk review targets surviving session expiry and both ordinary/MFA firm switches. Regression contract committed; static review only, with test execution and browser acceptance still open.
 - PR #1610 validation evidence does not show executed test or browser steps. The application remains NOT READY for pilot or production.
 
