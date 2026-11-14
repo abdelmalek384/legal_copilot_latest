@@ -174,6 +174,14 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
         persisted = self.s3.objects[(locator["bucket"], locator["key"], locator["version_id"])]
         self.assertEqual(persisted["data"], original_bytes)
 
+    def test_upload_rejects_bytes_that_differ_from_verified_bundle_digest(self):
+        with self.assertRaises(DatabaseBundleError):
+            upload_encrypted_bundle(
+                self.s3, self.kms, self.bundle, **self.config,
+                expected_sha256=hashlib.sha256(b"different verified bundle").hexdigest(),
+            )
+        self.assertEqual(self.s3.objects, {})
+
     def test_large_bundle_uses_multipart_upload(self):
         from unittest.mock import patch
 
@@ -250,7 +258,10 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
         args = SimpleNamespace(file=str(self.bundle))
         with (
             patch.object(manage, "_backup_fernet", return_value=object()),
-            patch.object(manage, "verify_backup_bundle", return_value={"verified": True}) as verify,
+            patch.object(
+                manage, "verify_backup_bundle",
+                return_value={"verified": True, "sha256": hashlib.sha256(self.bundle.read_bytes()).hexdigest()},
+            ) as verify,
             patch.object(manage, "_recovery_archive_clients", return_value=(self.s3, self.kms, self.config["bucket"], self.config["kms_key_id"])) as clients,
             patch.object(manage, "upload_encrypted_bundle", return_value={"version_id": "v1"}) as upload,
             patch("builtins.print"),
@@ -258,7 +269,11 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
             manage.archive_upload_tenancy(args)
         verify.assert_called_once()
         clients.assert_called_once()
-        upload.assert_called_once()
+        upload.assert_called_once_with(
+            self.s3, self.kms, self.bundle, bucket=self.config["bucket"],
+            kms_key_id=self.config["kms_key_id"],
+            expected_sha256=hashlib.sha256(self.bundle.read_bytes()).hexdigest(),
+        )
 
     def test_archive_upload_cli_refuses_unverified_bundle_before_aws_access(self):
         from types import SimpleNamespace

@@ -1,3 +1,4 @@
+import hashlib
 import io
 import json
 import sqlite3
@@ -358,6 +359,7 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         self.assertEqual(downloaded.read_bytes(), bundle.read_bytes())
         report = verify_backup_bundle(downloaded, self.cipher)
         self.assertTrue(report["verified"])
+        self.assertEqual(report["sha256"], hashlib.sha256(downloaded.read_bytes()).hexdigest())
         self.assertEqual(report["tenant_database_count"], 2)
 
         restored = restore_backup_bundle(

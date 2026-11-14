@@ -919,9 +919,13 @@ def archive_upload_tenancy(a):
         report = verify_backup_bundle(a.file, _backup_fernet())
         if not report.get("verified"):
             raise DatabaseBundleError("Backup bundle verification did not pass")
+        expected_sha256 = report.get("sha256")
+        if not isinstance(expected_sha256, str):
+            raise DatabaseBundleError("Backup verification did not return its source checksum")
         s3, kms, bucket, key_id = _recovery_archive_clients()
         locator = upload_encrypted_bundle(
-            s3, kms, a.file, bucket=bucket, kms_key_id=key_id
+            s3, kms, a.file, bucket=bucket, kms_key_id=key_id,
+            expected_sha256=expected_sha256,
         )
     except (DatabaseBundleError, OSError, ValueError) as exc:
         raise SystemExit("Recovery archive upload failed: " + str(exc)) from exc

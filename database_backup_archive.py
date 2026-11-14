@@ -124,13 +124,20 @@ def upload_encrypted_bundle(
     *,
     bucket: str,
     kms_key_id: str,
+    expected_sha256: str | None = None,
 ) -> dict[str, Any]:
     """Upload an opaque encrypted bundle and return its exact S3 version locator."""
+    if expected_sha256 is not None and (
+        not isinstance(expected_sha256, str) or not _SHA256.fullmatch(expected_sha256)
+    ):
+        _fail("Expected verified backup checksum is malformed")
     source = _safe_source(bundle_path)
     try:
         _require_versioning(s3_client, bucket)
         key_arn = _key_arn(kms_client, kms_key_id)
         digest, size = _digest_file(source)
+        if expected_sha256 is not None and digest != expected_sha256:
+            _fail("Recovery archive input differs from the bundle that passed verification")
         object_key = _PREFIX + uuid.uuid4().hex + ".dbbundle.enc"
         metadata = {"sha256": digest, "format": "encrypted-database-bundle-v2"}
         response: dict[str, Any]

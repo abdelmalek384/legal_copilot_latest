@@ -626,6 +626,8 @@ def verify_backup_bundle(bundle_path: str | Path, cipher: Fernet) -> dict[str, A
     """
     import tempfile
 
+    encrypted = _read_encrypted_backup(bundle_path)
+    source_sha256 = hashlib.sha256(encrypted).hexdigest()
     with tempfile.TemporaryDirectory(prefix="legal-copilot-bundle-verify-") as temp_dir:
         temp_root = Path(temp_dir)
         if os.name == "posix":
@@ -634,7 +636,7 @@ def verify_backup_bundle(bundle_path: str | Path, cipher: Fernet) -> dict[str, A
             except OSError as exc:
                 raise DatabaseBundleError("Could not restrict temporary verification directory permissions") from exc
         destination = temp_root / "verified"
-        restored = restore_backup_bundle(bundle_path, cipher, destination)
+        restored = _restore_backup_bundle_bytes(encrypted, cipher, destination)
         for label, path in (("control-plane", restored["control_plane"]),
                              ("legal-corpus", restored["legal_corpus"])):
             connection = _readonly(path)
@@ -651,6 +653,7 @@ def verify_backup_bundle(bundle_path: str | Path, cipher: Fernet) -> dict[str, A
                 connection.close()
         return {
             "verified": True,
+            "sha256": source_sha256,
             "format_version": _FORMAT_VERSION,
             "tenant_database_count": len(tenant_paths),
             "tenant_firm_ids": sorted(
@@ -701,6 +704,16 @@ def restore_backup_bundle(
     target_root: str | Path,
 ) -> dict[str, Path]:
     """Restore a verified bundle into a new directory without overwriting live files."""
+    encrypted = _read_encrypted_backup(backup_file)
+    return _restore_backup_bundle_bytes(encrypted, cipher, target_root)
+
+
+def _restore_backup_bundle_bytes(
+    encrypted: bytes,
+    cipher: Fernet,
+    target_root: str | Path,
+) -> dict[str, Path]:
+    """Restore already-read encrypted bytes without reopening their source path."""
     destination = Path(target_root).expanduser()
     if destination.is_symlink() or destination.exists():
         raise DatabaseBundleError("Restore target must not exist; choose a new destination path")
@@ -709,11 +722,8 @@ def restore_backup_bundle(
         raise DatabaseBundleError("Restore target's parent directory must already exist")
     destination = destination.resolve()
     try:
-        encrypted = _read_encrypted_backup(backup_file)
         plaintext = cipher.decrypt(encrypted)
-    except DatabaseBundleError:
-        raise
-    except (OSError, InvalidToken, ValueError) as exc:
+    except (InvalidToken, ValueError) as exc:
         raise DatabaseBundleError("Backup bundle could not be authenticated or decrypted") from exc
 
     with tempfile.TemporaryDirectory(prefix=".dbbundle-restore-", dir=parent) as tmp:
