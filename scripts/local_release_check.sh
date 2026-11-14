@@ -31,6 +31,26 @@ run_check() {
 }
 
 run_check "Full CI-invoked Python test suite" python tools/run_local_test_suite.py
+run_check "Focused security regression matrix" bash scripts/security_regression_check.sh
+
+if command -v docker >/dev/null 2>&1 && docker compose version >/dev/null 2>&1; then
+  run_check "Placeholder-only production Compose validation" bash -c '
+    set -eu
+    test ! -e .env.production || {
+      echo ".env.production exists; refusing to overwrite it." >&2
+      exit 2
+    }
+    tmpdir=$(mktemp -d)
+    trap "rm -rf \"$tmpdir\"" EXIT
+    cp .env.production.example "$tmpdir/.env.production"
+    LEGAL_COPILOT_IMAGE_TAG=compose-contract-check \
+      docker compose --env-file "$tmpdir/.env.production" -f compose.production.yaml config --quiet
+  '
+else
+  names+=("Placeholder-only production Compose validation")
+  statuses+=("BLOCKED")
+  details+=("Docker Compose plugin is not installed")
+fi
 
 if command -v actionlint >/dev/null 2>&1; then
   run_check "GitHub Actions workflow lint" actionlint
