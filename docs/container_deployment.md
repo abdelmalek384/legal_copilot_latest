@@ -86,6 +86,10 @@ The Compose service does not publish port 8000 to the host. Configure the extern
 
 The Docker health check requests the public application shell and reports **liveness only**. It does not prove that a firm database is healthy, S3/KMS is reachable, reminders are scheduled, backups are recoverable, or the application is legally approved. Use the separate deployment preflight, database acceptance manifest, monitoring probes and witnessed release gates for readiness.
 
+## Dependency lock acceptance
+
+Before building a release image, confirm `requirements-py312.lock` is regenerated from the current `requirements.txt` and passes the exact hash-locked installation plus `pip-audit` workflow. The lock must satisfy every direct requirement constraint; do not publish a container from a stale lock. The current repository checkpoint has a known Boto3 mismatch recorded in [release status](STATUS.md).
+
 ## Updates and rollback
 
 - Review Dependabot updates for Python packages, Docker base image and GitHub Actions. Rebuild from the lockfile and retain the build logs/SBOM according to the release policy.
