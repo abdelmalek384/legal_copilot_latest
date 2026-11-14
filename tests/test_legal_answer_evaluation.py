@@ -85,8 +85,8 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
             questions = Path(td) / "questions.jsonl"
             results = Path(td) / "results.jsonl"
             registry = Path(td) / "reviewers.json"
-            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\\n", encoding="utf-8")
-            results.write_text(json.dumps(result(), ensure_ascii=False) + "\\n", encoding="utf-8")
+            questions.write_text(json.dumps(approved(), ensure_ascii=False) + "\n", encoding="utf-8")
+            results.write_text(json.dumps(result(), ensure_ascii=False) + "\n", encoding="utf-8")
             registry.write_text('{"reviewers":[],"reviewers":[]}', encoding="utf-8")
             with self.assertRaises(SystemExit) as raised:
                 main(["--questions", str(questions), "--results", str(results),
