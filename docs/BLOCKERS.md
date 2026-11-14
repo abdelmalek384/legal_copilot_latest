@@ -158,7 +158,7 @@ All of these merges are source-reviewed code integration only. Their tests remai
 
 ## Next execution order
 1. Finish static audits and close deterministic importer/scorer defects that have bounded acceptance criteria.
-2. Complete focused unit tests and docs for those changes; keep PRs small and isolated.
+2. Complete focused unit tests and docs for those changes; keep each direct-main commit small and isolated while the owner-authorized GitHub billing workaround remains active.
 3. Hand off any live answer-path, billing, database, tenant, UI or deployment change to AI-2.
 4. Use the repository administrator's supported local Python 3.12 runner for dependency-lock verification, adversarial security tests and production acceptance; AI-1 reviews concrete failures.
 5. Do not tune `MIN_SCORE`, publish retrieval quality scores, or mark legal sources verified until approved labels/source evidence exist.
