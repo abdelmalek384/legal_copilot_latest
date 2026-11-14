@@ -11,6 +11,7 @@ fi
 names=()
 statuses=()
 details=()
+python312_available=0
 
 run_check() {
   local label="$1"; shift
@@ -31,6 +32,7 @@ run_check() {
 }
 
 if python -c 'import sys; raise SystemExit(0 if sys.version_info[:2] == (3, 12) else 1)' 2>/dev/null; then
+  python312_available=1
   names+=("Supported Python interpreter")
   statuses+=("PASS")
   details+=("Python 3.12")
@@ -72,24 +74,28 @@ else
   details+=("Docker Compose plugin is not installed")
 fi
 
-if command -v pip-compile >/dev/null 2>&1; then
+if [[ "$python312_available" -eq 1 ]] && python -c 'import piptools' >/dev/null 2>&1; then
   run_check "Python 3.12 dependency lock drift check" bash -c '
     set -eu
     tmpdir=$(mktemp -d)
     trap "rm -rf \"$tmpdir\"" EXIT
-    pip-compile --resolver=backtracking --generate-hashes --strip-extras --allow-unsafe \\
+    python -m piptools compile --resolver=backtracking --generate-hashes --strip-extras --allow-unsafe \
       --output-file="$tmpdir/requirements-py312.lock" requirements.txt
     # Ignore pip-compile's generated header because it embeds the differing output path.
-    awk "found || /^[[:alnum:]][[:alnum:]_.-]*==/ {found=1; print}" \\
+    awk "found || /^[[:alnum:]][[:alnum:]_.-]*==/ {found=1; print}" \
       requirements-py312.lock > "$tmpdir/current-lock.body"
-    awk "found || /^[[:alnum:]][[:alnum:]_.-]*==/ {found=1; print}" \\
+    awk "found || /^[[:alnum:]][[:alnum:]_.-]*==/ {found=1; print}" \
       "$tmpdir/requirements-py312.lock" > "$tmpdir/regenerated-lock.body"
     diff -u "$tmpdir/current-lock.body" "$tmpdir/regenerated-lock.body"
   '
 else
   names+=("Python 3.12 dependency lock drift check")
   statuses+=("BLOCKED")
-  details+=("pip-compile is not installed")
+  if [[ "$python312_available" -eq 1 ]]; then
+    details+=("pip-tools is not installed in the active Python 3.12 environment")
+  else
+    details+=("Python 3.12 is required for this lock target")
+  fi
 fi
 
 if command -v actionlint >/dev/null 2>&1; then
@@ -148,16 +154,20 @@ else
   details+=("install Bandit in the active environment")
 fi
 
-if command -v pip-audit >/dev/null 2>&1; then
+if [[ "$python312_available" -eq 1 ]] && python -c 'import pip_audit' >/dev/null 2>&1; then
   if [[ -f requirements-py312.lock ]]; then
-    run_check "Hash-locked dependency vulnerability audit" pip-audit --strict --progress-spinner off -r requirements-py312.lock
+    run_check "Hash-locked dependency vulnerability audit" python -m pip_audit --require-hashes --strict --progress-spinner off -r requirements-py312.lock
   else
-    run_check "Dependency vulnerability audit (requirements fallback)" pip-audit --strict --progress-spinner off -r requirements.txt
+    run_check "Dependency vulnerability audit (requirements fallback)" python -m pip_audit --strict --progress-spinner off -r requirements.txt
   fi
 else
   names+=("Dependency audit")
   statuses+=("BLOCKED")
-  details+=("install pip-audit in the active environment")
+  if [[ "$python312_available" -eq 1 ]]; then
+    details+=("pip-audit is not installed in the active Python 3.12 environment")
+  else
+    details+=("Python 3.12 is required for this lock target")
+  fi
 fi
 
 run_check "Strict deployment preflight" python tools/deployment_preflight.py --strict

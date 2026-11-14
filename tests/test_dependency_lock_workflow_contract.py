@@ -20,7 +20,7 @@ class DependencyLockWorkflowContractTests(unittest.TestCase):
         workflow = (ROOT / ".github" / "workflows" / "resolve-deployment-lock.yml").read_text(encoding="utf-8")
         self.assertIn("--generate-hashes", workflow)
         self.assertIn("--require-hashes", workflow)
-        self.assertIn("pip-audit --strict --progress-spinner off -r requirements-py312.lock", workflow)
+        self.assertIn("python -m pip_audit --require-hashes --strict --progress-spinner off -r requirements-py312.lock", workflow)
         self.assertIn("name: requirements-py312-lock", workflow)
         self.assertLess(
             workflow.index("Audit the exact hash-locked dependency set"),
@@ -48,7 +48,7 @@ class DependencyLockWorkflowContractTests(unittest.TestCase):
         workflow = (ROOT / ".github" / "workflows" / "dependency-audit.yml").read_text(encoding="utf-8")
         self.assertIn("if [ -f requirements-py312.lock ]", workflow)
         self.assertIn("pip-audit --strict --progress-spinner off -r requirements-py312.lock", workflow)
-        self.assertIn("pip-audit --strict --progress-spinner off -r requirements.txt", workflow)
+        self.assertIn("python -m pip_audit --strict --progress-spinner off -r requirements.txt", workflow)
 
     def test_every_direct_requirement_is_satisfied_by_the_hash_locked_set(self):
         requirements = (ROOT / "requirements.txt").read_text(encoding="utf-8")
@@ -98,6 +98,9 @@ class DependencyLockWorkflowContractTests(unittest.TestCase):
         self.assertIn('if [[ -f requirements-py312.lock ]]; then', script)
         self.assertIn('run_check "Hash-locked dependency vulnerability audit"', script)
         self.assertIn('run_check "Dependency vulnerability audit (requirements fallback)"', script)
+        self.assertIn("python -m piptools compile", script)
+        self.assertNotIn("pip-compile --resolver", script)
+        self.assertIn("python -m pip_audit --require-hashes", script)
 
 
 if __name__ == "__main__":

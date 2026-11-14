@@ -35,8 +35,8 @@ jobs:
         run: |
           if [ -f requirements-py312.lock ]; then
             echo "Auditing the hash-locked Python 3.12 deployment set."
-            pip-audit --strict --progress-spinner off -r requirements-py312.lock
+            python -m pip_audit --require-hashes --strict --progress-spinner off -r requirements-py312.lock
           else
             echo "Deployment lock not checked in yet; auditing the resolved requirements input."
-            pip-audit --strict --progress-spinner off -r requirements.txt
+            python -m pip_audit --strict --progress-spinner off -r requirements.txt
           fi
