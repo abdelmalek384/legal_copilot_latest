@@ -254,7 +254,7 @@ def _read_acceptance_manifest_file(path: Path) -> object:
         raise AcceptanceManifestFileError("manifest_symlink_forbidden")
     flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_NONBLOCK", 0)
     descriptor = os.open(path, flags)
-    with os.fdopen(descriptor, "r", encoding="utf-8") as stream:
+    with os.fdopen(descriptor, "rb") as stream:
         metadata = os.fstat(stream.fileno())
         if not stat.S_ISREG(metadata.st_mode):
             raise AcceptanceManifestFileError("manifest_not_regular_file")
