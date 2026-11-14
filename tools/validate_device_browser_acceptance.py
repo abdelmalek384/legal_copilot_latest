@@ -171,7 +171,7 @@ def validate_release_matrix(records, summaries):
         raise EvidenceError("duplicate evidence records for the same commit/environment/locale/device/browser/viewport")
     evidence_paths = [path for record in records for path in record.get("evidence_paths", [])]
     if len(evidence_paths) != len(set(evidence_paths)):
-        raise EvidenceError("device acceptance evidence files must not be reused across records")
+        raise EvidenceError("device acceptance evidence paths must be unique across the release matrix")
     observed = {(item["device_class"], item["locale"]) for item in summaries}
     missing = sorted(REQUIRED_RELEASE_MATRIX - observed)
     if missing:
