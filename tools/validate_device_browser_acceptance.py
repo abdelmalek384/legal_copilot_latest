@@ -227,6 +227,8 @@ def load_records(path):
         raise EvidenceError("input file is empty")
     try:
         parsed = json.loads(raw, object_pairs_hook=_reject_duplicate_json_keys)
+    except RecursionError as exc:
+        raise EvidenceError("evidence JSON nesting exceeds parser limits") from exc
     except json.JSONDecodeError:
         records = []
         for line_number, line in enumerate(raw.splitlines(), 1):
@@ -234,6 +236,8 @@ def load_records(path):
                 continue
             try:
                 records.append(json.loads(line, object_pairs_hook=_reject_duplicate_json_keys))
+            except RecursionError as exc:
+                raise EvidenceError(f"{path}:{line_number}: JSON nesting exceeds parser limits") from exc
             except json.JSONDecodeError as exc:
                 raise EvidenceError(f"{path}:{line_number}: invalid JSON: {exc.msg}") from exc
         return records
