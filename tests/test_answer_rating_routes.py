@@ -154,7 +154,14 @@ class AnswerRatingRouteTests(unittest.TestCase):
         self.assertEqual(rows[0]["notes"], "'=HYPERLINK(\"x\")")
         self.assertEqual(rows[0]["benchmark_ready"], "true")
         self.assertEqual(rows[0]["trust_tier"], "unverified")
+        self.assertTrue(rows[0]["created_at"].endswith("Z"))
+        self.assertTrue(rows[0]["updated_at"].endswith("Z"))
         self.assertEqual(rows[0]["cited_article_ids"], '["LABOUR::article:12"]')
+        from tools.adapt_answer_rating_export import adapt_rows
+        adapted, skipped = adapt_rows([rows[0]])
+        self.assertEqual(skipped, [])
+        self.assertEqual(adapted[0]["answer_rating"], "partial")
+        self.assertEqual(adapted[0]["trust_tier"], "unverified")
         self.assertNotIn("Firm B", text)
         audit = self.db.execute("SELECT event FROM security_audit_events").fetchone()[0]
         self.assertEqual(audit, "answer_rating_export:count=1")
