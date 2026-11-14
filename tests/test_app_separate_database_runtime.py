@@ -773,8 +773,15 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         writer.write(encrypted_stream)
         encrypted_pdf = encrypted_stream.getvalue()
 
+        too_many_pages = PdfWriter()
+        for _ in range(501):
+            too_many_pages.add_blank_page(width=612, height=792)
+        page_limit_stream = io.BytesIO()
+        too_many_pages.write(page_limit_stream)
+
         attempts = [
             ("oversized.pdf", b"x" * 15_000_001, 413),
+            ("too-many-pages.pdf", page_limit_stream.getvalue(), 413),
             ("malformed.pdf", b"%PDF-this-is-not-a-valid-pdf", 422),
             ("encrypted.pdf", encrypted_pdf, 422),
         ]
