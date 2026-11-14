@@ -137,8 +137,18 @@ def validate_public_https_url(url: str, allowed_hosts: set[str]) -> str:
     return host
 
 
+def _reject_duplicate_json_keys(pairs):
+    """Reject ambiguous permission and provenance values in manifest JSON."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON key in collection manifest: {key}")
+        result[key] = value
+    return result
+
+
 def load_manifest(path: Path) -> list[dict]:
-    data = json.loads(path.read_text(encoding="utf-8"))
+    data = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
     if not isinstance(data, dict):
         raise ValueError("Manifest must be a JSON object")
     docs = data.get("documents")
