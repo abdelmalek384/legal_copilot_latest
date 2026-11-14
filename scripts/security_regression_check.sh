@@ -31,6 +31,11 @@ tests=(
   test_trusted_host_middleware.py
   test_original_file_storage.py
   test_database_backup_bundle.py
+  test_database_backup_archive.py
+  test_database_release_acceptance.py
+  test_device_browser_acceptance.py
+  test_device_acceptance_release_integration.py
+  test_production_release_gate.py
   test_database_recovery_drill.py
   test_document_extraction_budget.py
   test_pdf_ocr_fallback.py
