@@ -114,7 +114,9 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
 
     def upload(self):
         return upload_encrypted_bundle(
-            self.s3, self.kms, self.bundle, **self.config
+            self.s3, self.kms, self.bundle,
+            expected_sha256=hashlib.sha256(self.bundle.read_bytes()).hexdigest(),
+            **self.config,
         )
 
     def test_upload_records_exact_version_checksum_size_and_kms(self):

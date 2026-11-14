@@ -349,7 +349,11 @@ class DatabaseBackupBundleTests(unittest.TestCase):
             "bucket": "isolated-recovery-archive",
             "kms_key_id": "alias/integration-archive-key",
         }
-        locator = upload_encrypted_bundle(s3, kms, bundle, **config)
+        locator = upload_encrypted_bundle(
+            s3, kms, bundle,
+            expected_sha256=hashlib.sha256(bundle.read_bytes()).hexdigest(),
+            **config,
+        )
         self.assertEqual(locator["version_id"], s3.version)
         self.assertEqual(locator["sha256"], hashlib.sha256(bundle.read_bytes()).hexdigest())
 
