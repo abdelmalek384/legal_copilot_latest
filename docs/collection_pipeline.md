@@ -16,9 +16,11 @@ This is a controlled document retriever and review-queue generator, not a comple
 - Every document stays `pending_human_review`; authenticity, current legal status, and commercial reuse are never set true automatically.
 
 ## Install
-From the repository root, use Python 3.11+ and install dependencies:
+From the repository root, use the supported Python 3.12 runtime and the reviewed hash-locked dependency set:
 ```bash
-python -m pip install -r requirements.txt
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install --require-hashes -r requirements-py312.lock
 ```
 
 ## Configure a permitted document
