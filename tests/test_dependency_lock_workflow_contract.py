@@ -94,7 +94,10 @@ class DependencyLockWorkflowContractTests(unittest.TestCase):
 
     def test_local_release_gate_runs_one_dependency_audit_with_safe_fallback(self):
         script = (ROOT / "scripts" / "local_release_check.sh").read_text(encoding="utf-8")
-        self.assertEqual(script.count("if command -v pip-audit >/dev/null 2>&1; then"), 1)
+        self.assertEqual(
+            script.count("if [[ \"$python312_available\" -eq 1 ]] && python -c 'import pip_audit'"),
+            1,
+        )
         self.assertIn('if [[ -f requirements-py312.lock ]]; then', script)
         self.assertIn('run_check "Hash-locked dependency vulnerability audit"', script)
         self.assertIn('run_check "Dependency vulnerability audit (requirements fallback)"', script)
