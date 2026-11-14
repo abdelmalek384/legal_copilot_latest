@@ -1106,8 +1106,14 @@ def citation_provenance(c, version_id):
 
 
 _FIRM_SEARCH_SQL = (
-    "SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts "
-    "JOIN chunks ON chunks.id=chunks_fts.rowid "
+    "SELECT chunks.*, bm25(chunks_fts) AS r, d.name AS document_name, "
+    "d.sha256 AS document_sha256, d.extraction_status AS document_extraction_status, "
+    "d.ocr_used AS document_ocr_used, CASE WHEN original.object_id IS NOT NULL THEN 1 ELSE 0 END "
+    "AS document_original_available "
+    "FROM chunks_fts JOIN chunks ON chunks.id=chunks_fts.rowid "
+    "JOIN docs d ON d.id=chunks.document_id AND d.case_id=chunks.case_id "
+    "AND d.firm_id=? LEFT JOIN original_file_objects original ON original.document_id=d.id "
+    "AND original.firm_id=d.firm_id AND original.state='ready' AND original.purged_at IS NULL "
     "WHERE chunks_fts MATCH ? AND chunks.case_id=? "
     "AND chunks.case_id IN (SELECT id FROM cases WHERE firm_id=?) "
     "ORDER BY r LIMIT 40"
@@ -1165,7 +1171,7 @@ def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
     rows_with_origin = []
 
     if scope in {"all_permitted", "firm_documents"} and case_id is not None:
-        rows = c.execute(_FIRM_SEARCH_SQL, (fts_query, case_id, firm_id)).fetchall()
+        rows = c.execute(_FIRM_SEARCH_SQL, (firm_id, fts_query, case_id, firm_id)).fetchall()
         for row in rows:
             rows_with_origin.append((dict(row), "firm", False))
 
@@ -1216,6 +1222,13 @@ def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
                 "requested_as_of": as_of, "document_version_id": version_id,
                 "article": row.get("article"), "page": row.get("page"),
                 "case_id": row.get("case_id") if origin == "firm" else None,
+                "document_id": row.get("document_id") if origin == "firm" else None,
+                "chunk_id": row.get("id") if origin == "firm" else None,
+                "document_name": row.get("document_name") if origin == "firm" else None,
+                "document_sha256": row.get("document_sha256") if origin == "firm" else None,
+                "document_extraction_status": row.get("document_extraction_status") if origin == "firm" else None,
+                "document_ocr_used": bool(row.get("document_ocr_used")) if origin == "firm" else False,
+                "document_original_available": bool(row.get("document_original_available")) if origin == "firm" else False,
                 "scope": "firm_documents" if origin == "firm" else "verified_corpus",
                 "applies_as_of": bool(row.get("in_force")) if version_id is None else True,
                 "provenance": (
