@@ -26,7 +26,19 @@ python3.12 -m venv .venv
 python -m pip install --require-hashes -r requirements-py312.lock
 ```
 
-Configure the three separate database paths using the repository's deployment template and keep all production credentials absent. Review the strict preflight output before starting the application. Create the fictional demo firm using the command in section 1, sign in with the test-only owner, and verify the demo banner, Arabic/English first-run wizard, setup-health state, and first dashboard load. Record the commit SHA and sanitized output. This is a documented acceptance procedure, not evidence that the rehearsal has already been executed.
+Configure an isolated local database layout (do not copy production secrets or use production paths):
+
+```bash
+mkdir -p data/tenants
+export COPILOT_ENV=development
+export COPILOT_CONTROL_DB="$PWD/data/control_plane.sqlite3"
+export COPILOT_TENANT_DB_ROOT="$PWD/data/tenants"
+export COPILOT_CORPUS_DB="$PWD/data/legal_corpus.sqlite3"
+unset ADMIN_TOKEN BACKUP_KEY MFA_ENCRYPTION_KEY
+unset LLM_URL LLM_KEY LLM_DATA_PROCESSING_APPROVED LLM_FIRM_DATA_PROCESSING_APPROVED
+```
+
+Run `python tools/deployment_preflight.py` and review the sanitized development-mode output; do not use the production strict gate as a substitute for local configuration. Create the fictional demo firm using the command in section 1, then start the app with `python -m uvicorn app:app --host 127.0.0.1 --port 8000`. Sign in with the test-only owner and verify the demo banner, Arabic/English first-run wizard, setup-health state, and first dashboard load. Record the commit SHA and sanitized output. This is a documented acceptance procedure, not evidence that the rehearsal has already been executed.
 
 ## 2. Permitted data
 
