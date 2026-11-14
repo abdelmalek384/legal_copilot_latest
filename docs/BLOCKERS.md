@@ -374,3 +374,9 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 
 - The local provenance validator now applies the same fail-closed evidence URL shape rules as the legal candidate/source checks: fragments, empty user-info, signed/credential query parameters, malformed ports, raw backslashes, whitespace and controls are rejected.
 - Added URL-shape regressions for source, terms and both permission-evidence URL fields. Tests remain unexecuted; no permission decision is inferred from URL validity.
+
+
+## Client-profile required-field accessibility — 2026-11-14
+
+- New/edit client-profile dialogs now associate the required client-name control with a bilingual inline alert, set/clear `aria-invalid` during validation/correction, and keep the alert separate from the label. A frontend regression contract is committed and registered through the existing UX test workflow.
+- Static source/contract/workflow inspection only. No test or browser execution is claimed; remaining form-by-form error review and manual screen-reader acceptance are still open.
