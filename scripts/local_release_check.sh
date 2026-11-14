@@ -32,6 +32,7 @@ run_check() {
 
 run_check "Full CI-invoked Python test suite" python tools/run_local_test_suite.py
 run_check "Focused security regression matrix" bash scripts/security_regression_check.sh
+run_check "Encrypted multi-tenant backup/restore recovery drill" python tests/test_database_recovery_drill.py
 
 if command -v docker >/dev/null 2>&1 && docker compose version >/dev/null 2>&1; then
   run_check "Placeholder-only production Compose validation" bash -c '
