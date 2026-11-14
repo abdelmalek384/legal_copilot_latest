@@ -1,10 +1,12 @@
 """Tests for exact-version encrypted S3 recovery archive transport."""
 import hashlib
 import io
+import os
 import tempfile
 import unittest
 from pathlib import Path
 
+import database_backup_archive
 from database_backup import DatabaseBundleError
 from database_backup_archive import (
     download_encrypted_bundle_version,
@@ -121,6 +123,37 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
         self.assertEqual(locator["sha256"], hashlib.sha256(self.bundle.read_bytes()).hexdigest())
         self.assertEqual(locator["size_bytes"], self.bundle.stat().st_size)
         self.assertEqual(locator["kms_key_arn"], self.kms.describe_key(KeyId="x")["KeyMetadata"]["Arn"])
+
+    def test_upload_rejects_symlink_input(self):
+        link = self.root / "backup-link.dbundle.enc"
+        try:
+            link.symlink_to(self.bundle)
+        except (NotImplementedError, OSError) as exc:
+            self.skipTest(f"symlinks unavailable: {exc}")
+        with self.assertRaises(DatabaseBundleError):
+            upload_encrypted_bundle(
+                self.s3, self.kms, link, **self.config
+            )
+
+    def test_upload_uses_the_opened_file_if_path_changes_after_hashing(self):
+        if os.name == "nt":
+            self.skipTest("open-file replacement semantics differ on Windows")
+        replacement = self.root / "replacement.bin"
+        replacement.write_bytes(b"not the approved encrypted backup")
+        original_bytes = self.bundle.read_bytes()
+        digest_file = database_backup_archive._digest_file
+
+        def hash_then_replace(open_source):
+            result = digest_file(open_source)
+            self.bundle.unlink()
+            self.bundle.symlink_to(replacement)
+            return result
+
+        from unittest.mock import patch
+        with patch.object(database_backup_archive, "_digest_file", side_effect=hash_then_replace):
+            locator = self.upload()
+        persisted = self.s3.objects[(locator["bucket"], locator["key"], locator["version_id"])]
+        self.assertEqual(persisted["data"], original_bytes)
 
     def test_large_bundle_uses_multipart_upload(self):
         from unittest.mock import patch

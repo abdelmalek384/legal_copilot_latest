@@ -28,15 +28,19 @@ def _fail(message: str) -> None:
     raise DatabaseBundleError(message)
 
 
-def _digest_file(path: Path) -> tuple[str, int]:
+def _digest_file(source) -> tuple[str, int]:
+    """Hash an already-open file descriptor and rewind it for the upload."""
     digest = hashlib.sha256()
     size = 0
-    with path.open("rb") as source:
+    source.seek(0)
+    try:
         for block in iter(lambda: source.read(1024 * 1024), b""):
             size += len(block)
             if size > _MAX_ENCRYPTED_BUNDLE_BYTES:
                 _fail("Encrypted backup exceeds the supported size limit")
             digest.update(block)
+    finally:
+        source.seek(0)
     return digest.hexdigest(), size
 
 
@@ -70,19 +74,42 @@ def _key_arn(kms_client: Any, key_id: str) -> str:
     return arn
 
 
-def _safe_source(path_value: str | Path) -> Path:
+def _safe_source(path_value: str | Path):
+    """Open once without following symlinks; all later reads use this descriptor."""
     path = Path(path_value).expanduser()
-    if path.is_symlink():
-        _fail("Backup input must not be a symlink")
     try:
-        info = path.stat(follow_symlinks=False)
+        initial = path.lstat()
     except OSError as exc:
         raise DatabaseBundleError("Backup input could not be inspected") from exc
-    if not stat.S_ISREG(info.st_mode):
-        _fail("Backup input must be a regular file")
-    if info.st_size <= 0 or info.st_size > _MAX_ENCRYPTED_BUNDLE_BYTES:
-        _fail("Encrypted backup size is outside the supported range")
-    return path
+    if not stat.S_ISREG(initial.st_mode):
+        _fail("Backup input must be a regular file, not a symlink or special file")
+
+    flags = os.O_RDONLY | getattr(os, "O_CLOEXEC", 0) | getattr(os, "O_NOFOLLOW", 0)
+    try:
+        descriptor = os.open(path, flags)
+    except OSError as exc:
+        raise DatabaseBundleError("Backup input could not be opened safely") from exc
+    try:
+        info = os.fstat(descriptor)
+        if not stat.S_ISREG(info.st_mode):
+            _fail("Backup input must be a regular file")
+        if (info.st_dev, info.st_ino) != (initial.st_dev, initial.st_ino):
+            _fail("Backup input changed while it was being opened")
+        if not getattr(os, "O_NOFOLLOW", 0):
+            current = path.lstat()
+            if (
+                not stat.S_ISREG(current.st_mode)
+                or (current.st_dev, current.st_ino) != (info.st_dev, info.st_ino)
+            ):
+                _fail("Backup input path changed or became a symlink")
+        if info.st_size <= 0 or info.st_size > _MAX_ENCRYPTED_BUNDLE_BYTES:
+            _fail("Encrypted backup size is outside the supported range")
+        stream = os.fdopen(descriptor, "rb")
+        descriptor = -1
+        return stream
+    finally:
+        if descriptor >= 0:
+            os.close(descriptor)
 
 
 def upload_encrypted_bundle(
@@ -95,129 +122,132 @@ def upload_encrypted_bundle(
 ) -> dict[str, Any]:
     """Upload an opaque encrypted bundle and return its exact S3 version locator."""
     source = _safe_source(bundle_path)
-    _require_versioning(s3_client, bucket)
-    key_arn = _key_arn(kms_client, kms_key_id)
-    digest, size = _digest_file(source)
-    object_key = _PREFIX + uuid.uuid4().hex + ".dbbundle.enc"
-    metadata = {"sha256": digest, "format": "encrypted-database-bundle-v2"}
-    response: dict[str, Any]
-    if size <= _SINGLE_PUT_MAX_BYTES:
-        try:
-            with source.open("rb") as body:
+    try:
+        _require_versioning(s3_client, bucket)
+        key_arn = _key_arn(kms_client, kms_key_id)
+        digest, size = _digest_file(source)
+        object_key = _PREFIX + uuid.uuid4().hex + ".dbbundle.enc"
+        metadata = {"sha256": digest, "format": "encrypted-database-bundle-v2"}
+        response: dict[str, Any]
+        if size <= _SINGLE_PUT_MAX_BYTES:
+            try:
+                source.seek(0)
                 response = s3_client.put_object(
-                    Bucket=bucket,
-                    Key=object_key,
-                    Body=body,
-                    ContentLength=size,
-                    ContentType="application/octet-stream",
-                    Metadata=metadata,
-                    ServerSideEncryption="aws:kms",
-                    SSEKMSKeyId=key_arn,
+                        Bucket=bucket,
+                        Key=object_key,
+                        Body=source,
+                        ContentLength=size,
+                        ContentType="application/octet-stream",
+                        Metadata=metadata,
+                        ServerSideEncryption="aws:kms",
+                        SSEKMSKeyId=key_arn,
+                    )
+            except Exception as exc:
+                raise DatabaseBundleError("Encrypted recovery bundle upload failed") from exc
+        else:
+            upload_id = None
+            parts = []
+            try:
+                created = s3_client.create_multipart_upload(
+                    Bucket=bucket, Key=object_key,
+                    ContentType="application/octet-stream", Metadata=metadata,
+                    ServerSideEncryption="aws:kms", SSEKMSKeyId=key_arn,
                 )
-        except Exception as exc:
-            raise DatabaseBundleError("Encrypted recovery bundle upload failed") from exc
-    else:
-        upload_id = None
-        parts = []
-        try:
-            created = s3_client.create_multipart_upload(
-                Bucket=bucket, Key=object_key,
-                ContentType="application/octet-stream", Metadata=metadata,
-                ServerSideEncryption="aws:kms", SSEKMSKeyId=key_arn,
-            )
-            upload_id = created.get("UploadId")
-            if not isinstance(upload_id, str) or not upload_id:
-                _fail("S3 did not return a multipart upload identifier")
-            with source.open("rb") as body:
+                upload_id = created.get("UploadId")
+                if not isinstance(upload_id, str) or not upload_id:
+                    _fail("S3 did not return a multipart upload identifier")
+                source.seek(0)
                 part_number = 1
                 while True:
-                    chunk = body.read(_PART_SIZE)
-                    if not chunk:
-                        break
-                    if part_number > _MAX_PARTS:
-                        _fail("Encrypted recovery bundle exceeds the S3 multipart part limit")
-                    uploaded = s3_client.upload_part(
-                        Bucket=bucket, Key=object_key, UploadId=upload_id,
-                        PartNumber=part_number, Body=chunk,
-                    )
-                    etag = uploaded.get("ETag")
-                    if not isinstance(etag, str) or not etag:
-                        _fail("S3 multipart upload returned a part without an ETag")
-                    parts.append({"PartNumber": part_number, "ETag": etag})
-                    part_number += 1
-            response = s3_client.complete_multipart_upload(
-                Bucket=bucket, Key=object_key, UploadId=upload_id,
-                MultipartUpload={"Parts": parts},
+                    chunk = source.read(_PART_SIZE)
+                        if not chunk:
+                            break
+                        if part_number > _MAX_PARTS:
+                            _fail("Encrypted recovery bundle exceeds the S3 multipart part limit")
+                        uploaded = s3_client.upload_part(
+                            Bucket=bucket, Key=object_key, UploadId=upload_id,
+                            PartNumber=part_number, Body=chunk,
+                        )
+                        etag = uploaded.get("ETag")
+                        if not isinstance(etag, str) or not etag:
+                            _fail("S3 multipart upload returned a part without an ETag")
+                        parts.append({"PartNumber": part_number, "ETag": etag})
+                        part_number += 1
+                response = s3_client.complete_multipart_upload(
+                    Bucket=bucket, Key=object_key, UploadId=upload_id,
+                    MultipartUpload={"Parts": parts},
+                )
+                upload_id = None
+            except Exception as exc:
+                if upload_id:
+                    try:
+                        s3_client.abort_multipart_upload(
+                            Bucket=bucket, Key=object_key, UploadId=upload_id
+                        )
+                    except Exception:
+                        pass
+                if isinstance(exc, DatabaseBundleError):
+                    raise
+                raise DatabaseBundleError("Encrypted recovery bundle multipart upload failed") from exc
+    
+        version_id = response.get("VersionId")
+        if not isinstance(version_id, str) or not version_id or version_id == "null":
+            _fail("S3 did not return an immutable archive version ID; upload is not accepted")
+        try:
+            accepted = s3_client.head_object(
+                Bucket=bucket, Key=object_key, VersionId=version_id
             )
-            upload_id = None
         except Exception as exc:
-            if upload_id:
-                try:
-                    s3_client.abort_multipart_upload(
-                        Bucket=bucket, Key=object_key, UploadId=upload_id
-                    )
-                except Exception:
-                    pass
-            if isinstance(exc, DatabaseBundleError):
-                raise
-            raise DatabaseBundleError("Encrypted recovery bundle multipart upload failed") from exc
-
-    version_id = response.get("VersionId")
-    if not isinstance(version_id, str) or not version_id or version_id == "null":
-        _fail("S3 did not return an immutable archive version ID; upload is not accepted")
-    try:
-        accepted = s3_client.head_object(
-            Bucket=bucket, Key=object_key, VersionId=version_id
-        )
-    except Exception as exc:
-        raise DatabaseBundleError("Uploaded recovery archive version could not be verified") from exc
-    if (
-        accepted.get("VersionId") != version_id
-        or accepted.get("ServerSideEncryption") != "aws:kms"
-        or accepted.get("SSEKMSKeyId") != key_arn
-        or accepted.get("ContentLength") != size
-        or accepted.get("Metadata", {}).get("sha256") != digest
-        or accepted.get("Metadata", {}).get("format") != "encrypted-database-bundle-v2"
-    ):
-        _fail("Uploaded recovery archive version failed exact-version KMS/metadata acceptance")
-    # Verify the bytes that S3 actually persisted, not only caller-supplied metadata.
-    probe = None
-    try:
-        probe = s3_client.get_object(
-            Bucket=bucket, Key=object_key, VersionId=version_id
-        )
-        if probe.get("VersionId") != version_id or probe.get("Body") is None:
-            _fail("S3 upload verification did not return the exact object version")
-        persisted_digest = hashlib.sha256()
-        persisted_size = 0
-        body = probe["Body"]
-        while True:
-            block = body.read(1024 * 1024)
-            if not block:
-                break
-            persisted_size += len(block)
-            if persisted_size > size:
-                _fail("Persisted archive version exceeds the uploaded size")
-            persisted_digest.update(block)
-        if persisted_size != size or persisted_digest.hexdigest() != digest:
-            _fail("Persisted archive bytes do not match the uploaded bundle checksum")
-    except DatabaseBundleError:
-        raise
-    except Exception as exc:
-        raise DatabaseBundleError("Persisted recovery archive bytes could not be verified") from exc
+            raise DatabaseBundleError("Uploaded recovery archive version could not be verified") from exc
+        if (
+            accepted.get("VersionId") != version_id
+            or accepted.get("ServerSideEncryption") != "aws:kms"
+            or accepted.get("SSEKMSKeyId") != key_arn
+            or accepted.get("ContentLength") != size
+            or accepted.get("Metadata", {}).get("sha256") != digest
+            or accepted.get("Metadata", {}).get("format") != "encrypted-database-bundle-v2"
+        ):
+            _fail("Uploaded recovery archive version failed exact-version KMS/metadata acceptance")
+        # Verify the bytes that S3 actually persisted, not only caller-supplied metadata.
+        probe = None
+        try:
+            probe = s3_client.get_object(
+                Bucket=bucket, Key=object_key, VersionId=version_id
+            )
+            if probe.get("VersionId") != version_id or probe.get("Body") is None:
+                _fail("S3 upload verification did not return the exact object version")
+            persisted_digest = hashlib.sha256()
+            persisted_size = 0
+            body = probe["Body"]
+            while True:
+                block = body.read(1024 * 1024)
+                if not block:
+                    break
+                persisted_size += len(block)
+                if persisted_size > size:
+                    _fail("Persisted archive version exceeds the uploaded size")
+                persisted_digest.update(block)
+            if persisted_size != size or persisted_digest.hexdigest() != digest:
+                _fail("Persisted archive bytes do not match the uploaded bundle checksum")
+        except DatabaseBundleError:
+            raise
+        except Exception as exc:
+            raise DatabaseBundleError("Persisted recovery archive bytes could not be verified") from exc
+        finally:
+            if probe is not None and probe.get("Body") is not None:
+                probe["Body"].close()
+        return {
+            "bucket": bucket,
+            "key": object_key,
+            "version_id": version_id,
+            "sha256": digest,
+            "size_bytes": size,
+            "kms_key_arn": key_arn,
+            "format": "encrypted-database-bundle-v2",
+        }
+    
     finally:
-        if probe is not None and probe.get("Body") is not None:
-            probe["Body"].close()
-    return {
-        "bucket": bucket,
-        "key": object_key,
-        "version_id": version_id,
-        "sha256": digest,
-        "size_bytes": size,
-        "kms_key_arn": key_arn,
-        "format": "encrypted-database-bundle-v2",
-    }
-
+        source.close()
 
 def download_encrypted_bundle_version(
     s3_client: Any,
