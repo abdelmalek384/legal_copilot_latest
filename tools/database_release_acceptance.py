@@ -238,6 +238,16 @@ class AcceptanceManifestFileError(ValueError):
         self.code = code
 
 
+def _reject_duplicate_json_keys(pairs: list[tuple[str, object]]) -> dict[str, object]:
+    """Reject ambiguous JSON objects instead of silently accepting the last duplicate key."""
+    result: dict[str, object] = {}
+    for key, value in pairs:
+        if key in result:
+            raise AcceptanceManifestFileError("manifest_duplicate_json_key")
+        result[key] = value
+    return result
+
+
 def _read_acceptance_manifest_file(path: Path) -> object:
     """Read a bounded regular file without following a manifest symlink."""
     if path.is_symlink():
@@ -252,7 +262,7 @@ def _read_acceptance_manifest_file(path: Path) -> object:
             raise AcceptanceManifestFileError("manifest_too_large")
         if os.name == "posix" and stat.S_IMODE(metadata.st_mode) & 0o022:
             raise AcceptanceManifestFileError("manifest_group_or_other_writable")
-        return json.load(stream)
+        return json.load(stream, object_pairs_hook=_reject_duplicate_json_keys)
 
 
 def load_acceptance_manifest(path: str | Path | None, *, now: datetime | None = None, expected_storage_config_sha256: str | None = None) -> dict:
