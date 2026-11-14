@@ -84,6 +84,16 @@ class DeviceAcceptanceReleaseIntegrationTests(unittest.TestCase):
         self.assertFalse(result["ready"])
         self.assertIn("matrix is incomplete", result["error"])
 
+    def test_duplicate_device_evidence_blocks_release_integration(self):
+        records = complete_matrix()
+        records.append(dict(records[0]))
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "evidence.json"
+            write_manifest(path, records)
+            result = _evaluate_device_acceptance(path, COMMIT)
+        self.assertFalse(result["ready"])
+        self.assertIn("duplicate evidence records", result["error"])
+
     def test_non_pass_result_blocks(self):
         records = complete_matrix()
         records[0]["results"]["keyboard_and_screen_reader"] = "BLOCKED"
