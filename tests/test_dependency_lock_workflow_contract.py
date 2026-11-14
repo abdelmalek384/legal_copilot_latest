@@ -1,4 +1,5 @@
 from pathlib import Path
+import re
 import unittest
 
 
@@ -48,6 +49,23 @@ class DependencyLockWorkflowContractTests(unittest.TestCase):
         self.assertIn("if [ -f requirements-py312.lock ]", workflow)
         self.assertIn("pip-audit --strict --progress-spinner off -r requirements-py312.lock", workflow)
         self.assertIn("pip-audit --strict --progress-spinner off -r requirements.txt", workflow)
+
+    def test_boto3_lock_satisfies_direct_requirement_and_matches_botocore(self):
+        requirements = (ROOT / "requirements.txt").read_text(encoding="utf-8")
+        lock = (ROOT / "requirements-py312.lock").read_text(encoding="utf-8")
+
+        minimum = re.search(r"(?m)^boto3>=([0-9]+(?:\.[0-9]+)+),<", requirements)
+        boto3 = re.search(r"(?m)^boto3==([0-9]+(?:\.[0-9]+)+)", lock)
+        botocore = re.search(r"(?m)^botocore==([0-9]+(?:\.[0-9]+)+)", lock)
+        self.assertIsNotNone(minimum, "Boto3 minimum must be explicit")
+        self.assertIsNotNone(boto3, "Boto3 must be pinned in the deployment lock")
+        self.assertIsNotNone(botocore, "Botocore must be pinned in the deployment lock")
+
+        def version(value):
+            return tuple(int(part) for part in value.split("."))
+
+        self.assertGreaterEqual(version(boto3.group(1)), version(minimum.group(1)))
+        self.assertEqual(boto3.group(1), botocore.group(1))
 
 
 if __name__ == "__main__":
