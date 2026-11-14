@@ -13,7 +13,7 @@ import re
 import sys
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import parse_qsl, urlsplit
 
 
 PERMISSION_STATES = {
@@ -30,6 +30,16 @@ REVIEW_STATUSES = {"pending_source_review", "pending_lawyer_review", "verified",
 
 # Internal freshness policy for source-site terms, not a legal rule.
 TERMS_REVIEW_MAX_AGE_DAYS = 180
+SENSITIVE_QUERY_KEYS = {
+    "token", "access_token", "auth", "authorization", "password", "secret",
+    "signature", "sig", "api_key", "apikey", "session", "sessionid",
+    "credential", "api-key", "auth_token", "session_token",
+    "awsaccesskeyid", "googleaccessid", "key-pair-id",
+    "x-amz-signature", "x-amz-credential", "x-amz-security-token",
+    "x-amz-algorithm", "x-amz-date", "x-amz-expires", "x-amz-signedheaders",
+    "x-goog-signature", "x-goog-credential", "x-goog-algorithm",
+    "x-goog-date", "x-goog-expires", "x-goog-signedheaders",
+}
 
 
 def _reject_duplicate_json_keys(pairs):
@@ -45,18 +55,25 @@ def _reject_duplicate_json_keys(pairs):
 def _https_url(value: object) -> bool:
     if not isinstance(value, str) or not value or value != value.strip():
         return False
-    if "\\" in value or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value):
+    if "\\\\" in value or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value):
         return False
     try:
         parsed = urlsplit(value)
         port = parsed.port
+        query_keys = {
+            key.casefold()
+            for key, _ in parse_qsl(parsed.query, keep_blank_values=True)
+        }
         return (
             parsed.scheme.lower() == "https"
             and bool(parsed.hostname)
+            and "@" not in parsed.netloc
             and parsed.username is None
             and parsed.password is None
+            and "#" not in value
             and not parsed.netloc.endswith(":")
             and (port is None or 1 <= port <= 65535)
+            and not (query_keys & SENSITIVE_QUERY_KEYS)
         )
     except (ValueError, TypeError):
         return False
