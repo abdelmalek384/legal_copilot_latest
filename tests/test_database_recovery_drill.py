@@ -69,6 +69,58 @@ class DatabaseRecoveryDrillTests(unittest.TestCase):
         self.assertEqual(report["findings"], [])
         self.assertEqual(list(self.temp_parent.iterdir()), [])
 
+    def test_recovery_drill_restores_and_reconciles_real_firm_original_object(self):
+        import hashlib
+
+        import app
+        from original_file_storage import LocalPrivateObjectStore
+
+        context = self.runtime.resolve_context(self.user_a, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        case_id = firm_db.execute(
+            "INSERT INTO cases(title,firm_id) VALUES('Recovery Object Matter',?)",
+            (self.firm_a,),
+        ).lastrowid
+        payload = b"recovery drill original evidence bytes"
+        _, document_id = app.save_doc(
+            firm_db,
+            {"id": self.user_a, "firm_id": self.firm_a, "name": "Recovery Owner"},
+            case_id,
+            "recovery-original.txt",
+            "Extracted text for recovery fixture",
+            content_hash=hashlib.sha256(payload).hexdigest(),
+            content_type="text/plain",
+            byte_size=len(payload),
+        )
+        store = LocalPrivateObjectStore(self.object_root)
+        staged = store.stage(self.firm_a, payload)
+        store.finalize(self.firm_a, staged.object_id)
+        firm_db.execute(
+            "INSERT INTO original_file_objects("
+            "object_id,document_id,firm_id,storage_backend,sha256,byte_size,content_type,state"
+            ") VALUES(?,?,?,'local',?,?,'text/plain','ready')",
+            (
+                staged.object_id, document_id, self.firm_a,
+                staged.sha256, staged.byte_size,
+            ),
+        )
+        firm_db.commit()
+
+        bundle = create_backup_bundle(
+            self.runtime,
+            self.cipher,
+            self.backup_dir,
+            quiesced=True,
+            object_storage_root=self.object_root,
+        )
+        report = run_recovery_drill(bundle, self.cipher, self.temp_parent)
+
+        self.assertTrue(report["verified"], report["findings"])
+        self.assertEqual(report["object_file_count"], 1)
+        self.assertEqual(report["database_count"], 4)
+        self.assertFalse(report["plaintext_retained"])
+        self.assertEqual(list(self.temp_parent.iterdir()), [])
+
     def test_recovery_drill_fails_closed_when_an_active_firm_has_no_active_membership(self):
         control = self.runtime.control_connection()
         control.execute(
