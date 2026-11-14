@@ -86,7 +86,9 @@ class ContainerDeploymentContractTests(unittest.TestCase):
     def test_local_release_check_audits_lock_drift_and_dependency_vulnerabilities(self):
         checker = (ROOT / "scripts" / "local_release_check.sh").read_text(encoding="utf-8")
         self.assertIn("pip-compile --resolver=backtracking --generate-hashes", checker)
-        self.assertIn('diff -u requirements-py312.lock "$tmpdir/requirements-py312.lock"', checker)
+        self.assertIn('requirements-py312.lock > "$tmpdir/current-lock.body"', checker)
+        self.assertIn('"$tmpdir/requirements-py312.lock" > "$tmpdir/regenerated-lock.body"', checker)
+        self.assertIn('diff -u "$tmpdir/current-lock.body" "$tmpdir/regenerated-lock.body"', checker)
         self.assertIn("pip-audit --strict --progress-spinner off -r requirements-py312.lock", checker)
         self.assertIn('details+=("pip-compile is not installed")', checker)
         self.assertIn('details+=("pip-audit is not installed")', checker)
