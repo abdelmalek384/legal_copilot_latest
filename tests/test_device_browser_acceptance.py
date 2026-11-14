@@ -256,6 +256,16 @@ class DeviceBrowserAcceptanceTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertIn('"release_gate": "PASS"', result.stdout)
 
+    def test_json_loader_rejects_duplicate_object_keys(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "duplicate.json"
+            path.write_text(
+                '{"record_version":1,"record_version":1}',
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(EvidenceError, "duplicate JSON object key"):
+                load_records(path)
+
     def test_jsonl_and_duplicate_identity_handling(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "records.jsonl"
