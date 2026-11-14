@@ -169,6 +169,22 @@ class DeviceBrowserAcceptanceTests(unittest.TestCase):
         with self.assertRaisesRegex(EvidenceError, "phone/en-US"):
             validate_release_matrix(values, summaries)
 
+    def test_release_matrix_rejects_duplicate_device_evidence(self):
+        values = [
+            passing_record("desktop", "ar-EG", "130"),
+            passing_record("desktop", "en-US", "131"),
+            passing_record("phone", "ar-EG", "132"),
+            passing_record("phone", "en-US", "133"),
+        ]
+        values.append(dict(values[0]))
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            write_evidence_files(root, values)
+            summaries = [validate_record(item, expected_commit=COMMIT, require_pass=True, evidence_root=root)
+                         for item in values]
+        with self.assertRaisesRegex(EvidenceError, "duplicate evidence records"):
+            validate_release_matrix(values, summaries)
+
     def test_release_matrix_rejects_mixed_commits_and_environments(self):
         values = [
             passing_record("desktop", "ar-EG", "130"),
