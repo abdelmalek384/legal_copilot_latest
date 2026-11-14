@@ -126,6 +126,18 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
         self.assertEqual(locator["size_bytes"], self.bundle.stat().st_size)
         self.assertEqual(locator["kms_key_arn"], self.kms.describe_key(KeyId="x")["KeyMetadata"]["Arn"])
 
+    def test_upload_rejects_fifo_input_without_blocking(self):
+        if not hasattr(os, "mkfifo"):
+            self.skipTest("FIFO creation is unavailable on this platform")
+        fifo = self.root / "backup.fifo"
+        os.mkfifo(fifo)
+        with self.assertRaises(DatabaseBundleError):
+            upload_encrypted_bundle(
+                self.s3, self.kms, fifo,
+                expected_sha256=hashlib.sha256(self.bundle.read_bytes()).hexdigest(),
+                **self.config,
+            )
+
     def test_upload_rejects_symlink_input(self):
         link = self.root / "backup-link.dbundle.enc"
         try:

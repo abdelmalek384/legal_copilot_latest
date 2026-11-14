@@ -89,7 +89,12 @@ def _safe_source(path_value: str | Path) -> BinaryIO:
     if not stat.S_ISREG(initial.st_mode):
         _fail("Backup input must be a regular file, not a symlink or special file")
 
-    flags = os.O_RDONLY | getattr(os, "O_CLOEXEC", 0) | getattr(os, "O_NOFOLLOW", 0)
+    flags = (
+        os.O_RDONLY
+        | getattr(os, "O_CLOEXEC", 0)
+        | getattr(os, "O_NOFOLLOW", 0)
+        | getattr(os, "O_NONBLOCK", 0)
+    )
     try:
         descriptor = os.open(path, flags)
     except OSError as exc:
