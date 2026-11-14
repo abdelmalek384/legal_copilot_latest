@@ -414,3 +414,9 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 
 - The inspector now hands a matter/document/chunk identity into the matter Documents view, auto-expands the matching extraction panel, and focuses/scrolls to the exact chunk when present. One-shot state is cleared on missing document/chunk, failed load, panel close, manual section navigation, firm switch and session expiry. No passage-level claim is made when the chunk ID is absent.
 - Static source and regression-contract inspection only. Browser interaction, keyboard focus behavior and screen-reader acceptance remain blocked by unavailable runner/browser validation.
+
+
+## Extracted page-reference caveat — 2026-11-14
+
+- The extraction review now explicitly states in Arabic and English that a recorded extracted page reference has not been independently checked against the original file. A workflow-registered frontend contract protects the warning.
+- Static inspection only. Actual browser/screen-reader review and lawyer verification of page locations remain outstanding.
