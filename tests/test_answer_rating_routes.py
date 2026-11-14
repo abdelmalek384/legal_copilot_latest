@@ -111,6 +111,33 @@ class AnswerRatingRouteTests(unittest.TestCase):
         with self.assertRaises(Exception):
             self.rating(notes="x" * 2001)
 
+    def test_export_trust_tier_is_conservative_and_uses_answer_time_metadata(self):
+        verified = json.dumps({
+            "sources": [{
+                "verified": True,
+                "source_status": "verified_operative_text",
+            }],
+        })
+        source_matched = json.dumps({
+            "trust_tier": "source_matched",
+            "sources": [{
+                "verified": True,
+                "source_status": "verified_operative_text",
+            }],
+        })
+        unverified = json.dumps({
+            "trust_tier": "verified",
+            "sources": [{
+                "verified": False,
+                "source_status": "source_matched_unreviewed",
+            }],
+        })
+        self.assertEqual(app._answer_rating_export_trust_tier(verified), "verified")
+        self.assertEqual(app._answer_rating_export_trust_tier(source_matched), "source_matched")
+        self.assertEqual(app._answer_rating_export_trust_tier(unverified), "unverified")
+        self.assertEqual(app._answer_rating_export_trust_tier("{malformed"), "unverified")
+        self.assertEqual(app._answer_rating_export_trust_tier("{}"), "unverified")
+
     def test_firm_rating_list_and_csv_export_are_scoped_and_formula_safe(self):
         app.save_answer_rating(self.answer_id, self.rating(notes="=HYPERLINK(\"x\")"), self.user)
         listed = app.list_firm_answer_ratings(100, 0, self.user)
@@ -124,6 +151,7 @@ class AnswerRatingRouteTests(unittest.TestCase):
         self.assertEqual(rows[0]["question"], "'=SUM(1,1)")
         self.assertEqual(rows[0]["notes"], "'=HYPERLINK(\"x\")")
         self.assertEqual(rows[0]["benchmark_ready"], "true")
+        self.assertEqual(rows[0]["trust_tier"], "unverified")
         self.assertEqual(rows[0]["cited_article_ids"], '["LABOUR::article:12"]')
         self.assertNotIn("Firm B", text)
         audit = self.db.execute("SELECT event FROM security_audit_events").fetchone()[0]
