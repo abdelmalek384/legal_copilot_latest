@@ -94,6 +94,16 @@ class DeviceAcceptanceReleaseIntegrationTests(unittest.TestCase):
         self.assertFalse(result["ready"])
         self.assertIn("duplicate evidence records", result["error"])
 
+    def test_reused_evidence_file_blocks_release_integration(self):
+        records = complete_matrix()
+        records[1]["evidence_paths"] = list(records[0]["evidence_paths"])
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "evidence.json"
+            write_manifest(path, records)
+            result = _evaluate_device_acceptance(path, COMMIT)
+        self.assertFalse(result["ready"])
+        self.assertIn("evidence files must not be reused", result["error"])
+
     def test_non_pass_result_blocks(self):
         records = complete_matrix()
         records[0]["results"]["keyboard_and_screen_reader"] = "BLOCKED"
