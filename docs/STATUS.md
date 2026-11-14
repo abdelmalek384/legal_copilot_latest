@@ -31,6 +31,22 @@ The current `requirements-py312.lock` pins `boto3==1.43.123` and `botocore==1.43
 | Staging and recovery | The local release checker now requires Python 3.12 before starting Python gates and explicitly runs the focused security matrix, isolated encrypted multi-tenant backup/restore drill with a real firm-owned original binary and tamper-rejection fixture, placeholder-only Compose configuration validation, lock regeneration/drift comparison, pip-audit, and optional workflow lint/Bandit scans when installed. All remain unexecuted. Credential-only preflight failures must be recorded separately from missing infrastructure/configuration. |
 | Validation | GitHub Actions billing prevents hosted test execution. No newly added local tests have been executed in this work session. Direct-main commits are implementation evidence, not test passes or pilot acceptance. |
 
+## Repository tasks closed at implementation level
+
+The following bounded repository tasks now meet their source-change acceptance criteria. Their percentages describe implementation only; the linked runtime/release gates remain separate.
+
+| Task | Implementation | Validation boundary |
+|---|---:|---|
+| Align all eight direct dependency pins with the checked-in Python 3.12 lock | **100%** | Static consistency check completed; clean resolver/install/audit still open |
+| Add generic direct-requirement versus lock regression | **100%** | Test committed; repository test execution pending |
+| Enforce hash-required dependency audits in local and hosted workflow commands | **100%** | Workflow/script source reviewed; pip-audit execution pending |
+| Remove duplicate local pip-audit execution and gate release checks on Python 3.12/toolchain | **100%** | Script implementation committed; full local release check pending |
+| Reject symlinks/special files and open recovery inputs without FIFO blocking | **100%** | Focused source review/custom isolated harness; repository tests pending |
+| Hash and upload the same already-open recovery source descriptor | **100%** | Focused source review/custom isolated harness; repository tests pending |
+| Bind archive upload to the exact encrypted bytes returned by verification | **100%** | Focused source review/custom isolated harness; repository tests pending |
+| Require and verify expected SHA-256 before any recovery object upload | **100%** | Focused source review/custom isolated harness; repository tests pending |
+| Synchronize README, release status and blocker register with current lock/recovery implementation | **100%** | Current-main source inspection completed |
+
 ## AI-2 implementation completion estimate
 
 These are unweighted engineering estimates for the seven AI-2 delivery workstreams, not test-pass rates or production-readiness scores.
