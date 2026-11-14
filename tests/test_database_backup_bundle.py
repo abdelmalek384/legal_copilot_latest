@@ -223,6 +223,23 @@ class DatabaseBackupBundleTests(unittest.TestCase):
                 restore_backup_bundle(bundle, self.cipher, self.root / "oversized-restore")
         self.assertFalse((self.root / "oversized-restore").exists())
 
+    def test_archive_member_preflight_rejects_unsupported_and_encrypted_members(self):
+        from database_backup import _safe_archive_members
+
+        payload = io.BytesIO()
+        with zipfile.ZipFile(payload, "w", compression=zipfile.ZIP_STORED) as archive:
+            archive.writestr("manifest.json", b"{}")
+
+        with zipfile.ZipFile(io.BytesIO(payload.getvalue()), "r") as archive:
+            archive.infolist()[0].compress_type = 99
+            with self.assertRaisesRegex(DatabaseBundleError, "unsupported compression"):
+                _safe_archive_members(archive)
+
+        with zipfile.ZipFile(io.BytesIO(payload.getvalue()), "r") as archive:
+            archive.infolist()[0].flag_bits |= 0x1
+            with self.assertRaisesRegex(DatabaseBundleError, "encrypted ZIP members"):
+                _safe_archive_members(archive)
+
     def test_restore_rejects_traversal_symlink_and_duplicate_zip_members(self):
         import warnings
 
