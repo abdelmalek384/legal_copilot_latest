@@ -1778,15 +1778,19 @@ async function clientProfileForm(profile=null){
   ['notes',uiText('ملاحظات','Notes'),false]
  ];
  const inputs={};
+ const nameError=h('span',{id:'client-profile-name-error',className:'bad',role:'alert',hidden:true,textContent:uiText('اسم العميل مطلوب.','A client name is required.')});
  fields.forEach(([key,label,required])=>inputs[key]=h(key==='notes'?'textarea':'input',{
   name:key,placeholder:label,required,rows:key==='notes'?3:undefined,
   value:profile?.[key]||'',style:'width:100%'
  }));
+ inputs.name.setAttribute('aria-describedby',nameError.id);
+ inputs.name.addEventListener('invalid',()=>{inputs.name.setAttribute('aria-invalid','true');nameError.hidden=false});
+ inputs.name.addEventListener('input',()=>{if(inputs.name.value.trim()){inputs.name.removeAttribute('aria-invalid');nameError.hidden=true}});
  const opener=document.activeElement;
  const overlay=h('div',{className:'modal-backdrop',onclick:e=>{if(e.target===overlay)closeModal(overlay)}});
  const cancel=btn(uiText('إلغاء','Cancel'),()=>closeModal(overlay),'g');
  const save=btn(uiText('حفظ الملف','Save profile'),async()=>{
-  if(!inputs.name.value.trim()){toast(uiText('أدخل اسم العميل','Enter a client name'));inputs.name.focus();return}
+  if(!inputs.name.value.trim()){inputs.name.setAttribute('aria-invalid','true');nameError.hidden=false;toast(uiText('أدخل اسم العميل','Enter a client name'));inputs.name.focus();return}
   save.disabled=true;
   try{
    const payload={};fields.forEach(([key])=>payload[key]=inputs[key].value.trim());
@@ -1795,7 +1799,7 @@ async function clientProfileForm(profile=null){
   }catch(_){save.disabled=false}
  });
  const form=h('form',{onsubmit:e=>{e.preventDefault();save.click()}},
-  h('div',{className:'grid'},fields.map(([key,label,required])=>h('label',{style:'display:block'},h('span',{className:'mut',textContent:label+(required?' *':'')}),inputs[key]))),
+  h('div',{className:'grid'},fields.map(([key,label,required])=>h('div',{},h('label',{style:'display:block'},h('span',{className:'mut',textContent:label+(required?' *':'')}),inputs[key]),key==='name'?nameError:null))),
   h('div',{className:'row'},cancel,save));
  overlay.append(h('section',{className:'modal card',role:'dialog','aria-modal':true,'aria-labelledby':'client-profile-title'},
   h('h2',{id:'client-profile-title',textContent:editing?uiText('تعديل ملف العميل','Edit client profile'):uiText('ملف عميل جديد','New client profile')}),form));
