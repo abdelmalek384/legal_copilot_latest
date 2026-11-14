@@ -292,6 +292,20 @@ class DeviceBrowserAcceptanceTests(unittest.TestCase):
             with self.assertRaisesRegex(EvidenceError, "valid UTF-8"):
                 load_records(path)
 
+    def test_json_loader_rejects_excessive_nesting(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "nested.json"
+            path.write_text("[" * 1100 + "0" + "]" * 1100, encoding="utf-8")
+            with self.assertRaisesRegex(EvidenceError, "nesting exceeds parser limits"):
+                load_records(path)
+
+    def test_jsonl_loader_rejects_excessive_nesting(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "nested.jsonl"
+            path.write_text("[" * 1100 + "0" + "]" * 1100 + "\\n", encoding="utf-8")
+            with self.assertRaisesRegex(EvidenceError, "nesting exceeds parser limits"):
+                load_records(path)
+
     def test_json_loader_rejects_duplicate_object_keys(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "duplicate.json"
