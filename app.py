@@ -9735,6 +9735,20 @@ def list_firm_answer_ratings(
     return {"items": items, "total": int(total), "limit": limit, "offset": offset}
 
 
+def _answer_rating_export_timestamp(value: object) -> str:
+    """Serialize SQLite UTC timestamps as explicit timezone-aware ISO-8601."""
+    if not isinstance(value, str) or not value.strip():
+        raise HTTPException(500, "stored answer-rating timestamp is invalid")
+    try:
+        parsed = datetime.fromisoformat(value.strip().replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise HTTPException(500, "stored answer-rating timestamp is invalid") from exc
+    if parsed.tzinfo is None or parsed.utcoffset() is None:
+        # SQLite datetime('now') is UTC but omits the timezone marker.
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
 def _answer_rating_export_trust_tier(message_json: object) -> str:
     """Snapshot the answer's trust tier from immutable-at-answer-time metadata."""
     try:
@@ -9810,7 +9824,9 @@ def export_firm_answer_ratings_csv(u: dict = Depends(user)):
             question,row["answer_text"],row["rating"],row["cited_article_accuracy"],
             json.dumps(cited_ids,ensure_ascii=False),json.dumps(expected,ensure_ascii=False),
             "" if answerable is None else str(answerable).lower(),row["notes"],row["rated_by"],
-            row["created_at"],row["updated_at"],_answer_rating_export_trust_tier(row["message_json"]),
+            _answer_rating_export_timestamp(row["created_at"]),
+            _answer_rating_export_timestamp(row["updated_at"]),
+            _answer_rating_export_trust_tier(row["message_json"]),
             str(benchmark_ready).lower(),
         ]
         writer.writerow([_csv_safe_cell(value) for value in values])
