@@ -39,13 +39,13 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 |---|---:|---|
 | Local release baseline | 0% | Exact local checker output still unavailable |
 | Security integration | 75% | Exact-head security verification remains blocked |
-| Security regression coverage | 80% | Uploaded DOCX and scanned-PDF OCR-fallback-to-retrieval injection, cross-firm and approval-gate regression added; all added regressions remain unexecuted, real OCR-engine/image-quality acceptance still pending |
+| Security regression coverage | 82% | Uploaded DOCX/scanned-PDF prompt injection, cross-firm and approval-gate coverage plus encrypted restore ZIP traversal/symlink/duplicate-member rejection; all added regressions remain unexecuted, real OCR-engine/image-quality acceptance still pending |
 | Lawyer rating UI/export | 95% | Browser acceptance and adapter execution remain pending |
 | Test-firm package | 90% | Clean-clone first-login rehearsal remains unexecuted |
 | Repository cleanup/accessibility | 80% | Run hygiene scan and finish manual accessibility review |
 | Staging/recovery | 35% | Recovery drill has positive real-object restore and negative tamper fixtures; ZIP traversal/symlink/duplicate-member defenses have regression coverage; Compose and recovery gates remain unexecuted, provider configuration and witnessed restore pending |
 
-**Unweighted implementation estimate: 64%.** The application remains **NOT READY** for lawyer pilot or production. No test pass is inferred from committed test code.
+**Unweighted implementation estimate: 65%.** The application remains **NOT READY** for lawyer pilot or production. No test pass is inferred from committed test code.
 
 ## Legal evidence boundary
 
