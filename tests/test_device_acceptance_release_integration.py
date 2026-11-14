@@ -104,6 +104,17 @@ class DeviceAcceptanceReleaseIntegrationTests(unittest.TestCase):
         self.assertFalse(result["ready"])
         self.assertIn("evidence paths must be unique", result["error"])
 
+    def test_duplicate_json_keys_block_release_integration(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "evidence.json"
+            path.write_text(
+                '{"record_version":1,"record_version":1}',
+                encoding="utf-8",
+            )
+            result = _evaluate_device_acceptance(path, COMMIT)
+        self.assertFalse(result["ready"])
+        self.assertIn("duplicate JSON object key", result["error"])
+
     def test_non_pass_result_blocks(self):
         records = complete_matrix()
         records[0]["results"]["keyboard_and_screen_reader"] = "BLOCKED"
