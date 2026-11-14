@@ -73,6 +73,8 @@ class ContainerDeploymentContractTests(unittest.TestCase):
 
     def test_local_release_check_includes_security_and_safe_compose_validation(self):
         checker = (ROOT / "scripts" / "local_release_check.sh").read_text(encoding="utf-8")
+        self.assertIn("sys.version_info[:2] == (3, 12)", checker)
+        self.assertIn('details+=("requires Python 3.12")', checker)
         self.assertIn('run_check "Focused security regression matrix" bash scripts/security_regression_check.sh', checker)
         self.assertIn('run_check "Placeholder-only production Compose validation"', checker)
         self.assertIn('test ! -e .env.production', checker)
