@@ -203,6 +203,7 @@ def _validate_metadata(meta: object, text_bytes: bytes) -> dict:
         except (TypeError, ValueError) as exc:
             raise ValueError("source_url must be a valid HTTPS URL") from exc
         if (parsed.scheme.lower() != "https" or not parsed.hostname
+                or "@" in parsed.netloc
                 or parsed.username is not None or parsed.password is not None
                 or "#" in source_url or parsed.netloc.endswith(":")
                 or (port is not None and not 1 <= port <= 65535)):
