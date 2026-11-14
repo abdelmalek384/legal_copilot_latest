@@ -386,3 +386,9 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 
 - Feedback title/details now have persistent bilingual labels and inline validation descriptions linked through `aria-describedby`, with `aria-invalid` set on native invalid events and cleared after correction. A frontend contract test was added to the existing workflow.
 - Static review only; no test/browser execution. This closes the bounded feedback-form implementation, not the remaining form audit or manual accessibility acceptance.
+
+
+## Account and invitation field labels — 2026-11-14
+
+- Current/new/confirm password fields and firm-invitation email now have persistent bilingual labels rather than relying on placeholders. A frontend regression contract is committed in the existing UX test module.
+- Static review only; tests and screen-reader/browser acceptance remain unexecuted. The bounded labeling change is complete; the broader form audit remains open.
