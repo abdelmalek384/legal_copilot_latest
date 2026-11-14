@@ -72,6 +72,24 @@ def _is_one_of(value: object, choices: set[str]) -> bool:
     return isinstance(value, str) and value in choices
 
 
+def _reject_duplicate_json_keys(pairs):
+    """Reject ambiguous permission claims at every nesting depth."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON key in source permission register: {key}")
+        result[key] = value
+    return result
+
+
+def load_register(path: Path = REGISTER) -> object:
+    """Load the canonical register without accepting ambiguous duplicate keys."""
+    return json.loads(
+        Path(path).read_text(encoding="utf-8"),
+        object_pairs_hook=_reject_duplicate_json_keys,
+    )
+
+
 def validate(data: object) -> list[str]:
     errors: list[str] = []
     if not isinstance(data, dict) or not isinstance(data.get("sources"), list):
@@ -160,8 +178,8 @@ def validate(data: object) -> list[str]:
 
 if __name__ == "__main__":
     try:
-        data = json.loads(REGISTER.read_text(encoding="utf-8"))
-    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        data = load_register()
+    except (OSError, UnicodeError, ValueError) as exc:
         raise SystemExit(f"Source permission register could not be read: {exc}") from exc
     errors = validate(data)
     if errors:
