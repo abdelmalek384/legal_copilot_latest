@@ -103,6 +103,11 @@ PYTHONPATH=. python tests/test_import_laws_bundle.py
 PYTHONPATH=. python tests/test_research_prompt_injection_boundary.py
 PYTHONPATH=. python tests/test_first_run_wizard_api.py
 PYTHONPATH=. python tests/test_frontend_ux_contract.py
+PYTHONPATH=. python tests/test_database_backup_archive.py
+PYTHONPATH=. python tests/test_database_release_acceptance.py
+PYTHONPATH=. python tests/test_device_browser_acceptance.py
+PYTHONPATH=. python tests/test_device_acceptance_release_integration.py
+PYTHONPATH=. python tests/test_production_release_gate.py
 ```
 
 Run the complete repository Tests workflow and Browser acceptance workflow against the exact candidate SHA after focused tests. Preserve exit codes and full logs; a workflow that never starts its test step is NOT RUN, not FAIL evidence for the code and not a pass.
