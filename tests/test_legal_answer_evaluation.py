@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from tools.evaluate_legal_answers import EvaluationError, evaluate, main
+from tools.evaluate_legal_answers import EvaluationError, _parse_jsonl_text, evaluate, main
 
 
 def approved(qid="Q1", answerable=True):
@@ -71,6 +71,22 @@ def result(qid="Q1", abstained=False, sources=None, pins=None, answer_id=None):
 
 
 class LegalAnswerEvaluationTests(unittest.TestCase):
+    def test_jsonl_parser_rejects_duplicate_keys_at_every_object_depth(self):
+        for payload in (
+            '{"id":"Q1","id":"Q2"}',
+            '{"id":"Q1","metadata":{"source":"A","source":"B"}}',
+        ):
+            with self.subTest(payload=payload):
+                with self.assertRaisesRegex(EvaluationError, r"line 1: duplicate JSON object key"):
+                    _parse_jsonl_text(payload, "questions.jsonl")
+
+    def test_jsonl_parser_accepts_distinct_nested_keys(self):
+        rows = _parse_jsonl_text(
+            '{"id":"Q1","metadata":{"source":"A","pin":"article-1"}}',
+            "questions.jsonl",
+        )
+        self.assertEqual(rows[0]["metadata"], {"source": "A", "pin": "article-1"})
+
     def test_benchmark_rejects_unregistered_reviewer(self):
         q = dict(approved())
         q["reviewer_id"] = "not-in-registry"
