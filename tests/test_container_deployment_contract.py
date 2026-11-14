@@ -79,6 +79,16 @@ class ContainerDeploymentContractTests(unittest.TestCase):
         self.assertIn('docker compose --env-file "$tmpdir/.env.production" -f compose.production.yaml config --quiet', checker)
         self.assertNotIn("docker compose up", checker)
 
+    def test_local_release_check_runs_isolated_encrypted_recovery_drill(self):
+        checker = (ROOT / "scripts" / "local_release_check.sh").read_text(encoding="utf-8")
+        self.assertIn(
+            'run_check "Encrypted multi-tenant backup/restore recovery drill" python tests/test_database_recovery_drill.py',
+            checker,
+        )
+        drill = (ROOT / "tests" / "test_database_recovery_drill.py").read_text(encoding="utf-8")
+        self.assertIn("run_recovery_drill", drill)
+        self.assertIn("plaintext_retained", drill)
+
     def test_image_python_version_matches_ci_and_dependabot_blocks_unverified_minor_major(self):
         dockerfile = (ROOT / "Dockerfile").read_text(encoding="utf-8")
         self.assertIn("FROM python:3.12-slim-bookworm", dockerfile)
