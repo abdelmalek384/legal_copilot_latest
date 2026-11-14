@@ -223,6 +223,34 @@ class DatabaseBackupBundleTests(unittest.TestCase):
                 restore_backup_bundle(bundle, self.cipher, self.root / "oversized-restore")
         self.assertFalse((self.root / "oversized-restore").exists())
 
+    def test_restore_rejects_traversal_symlink_and_duplicate_zip_members(self):
+        import warnings
+
+        cases = (
+            ("traversal", (("../escape.txt", b"outside"),)),
+            ("symlink", (("linked.txt", b"target"),)),
+            ("duplicate", (("duplicate.txt", b"first"), ("duplicate.txt", b"second"))),
+        )
+        for label, extra_members in cases:
+            with self.subTest(archive_case=label):
+                payload = io.BytesIO()
+                with warnings.catch_warnings():
+                    warnings.simplefilter("ignore", UserWarning)
+                    with zipfile.ZipFile(payload, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+                        archive.writestr("manifest.json", b"{}")
+                        for name, data in extra_members:
+                            info = zipfile.ZipInfo(name)
+                            if label == "symlink":
+                                info.external_attr = (0o120777 << 16)
+                            archive.writestr(info, data)
+                bundle = self.backup_dir / f"unsafe-{label}.enc"
+                bundle.write_bytes(self.cipher.encrypt(payload.getvalue()))
+                target = self.root / f"unsafe-restore-{label}"
+                with self.assertRaises(DatabaseBundleError):
+                    restore_backup_bundle(bundle, self.cipher, target)
+                self.assertFalse(target.exists())
+        self.assertFalse((self.root / "escape.txt").exists())
+
     def test_restore_rejects_checksum_tampering_even_with_valid_encryption(self):
         bundle = create_backup_bundle(
             self.runtime, self.cipher, self.backup_dir, quiesced=True
