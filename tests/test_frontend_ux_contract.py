@@ -62,8 +62,20 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("source.document_ocr_used===true", inspector)
         self.assertIn("source.document_original_available===true", inspector)
         self.assertIn("source.scope==='firm_documents'", inspector)
-        self.assertIn("window.DOCUMENT_MATTER_ID=matterId;TAB='docs';view(matterId)", inspector)
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET=hasExactChunk?{caseId:matterId,documentId,chunkId:String(rawChunkId)}:null", inspector)
+        self.assertIn("PAGE='cases';TAB='docs';view(matterId)", inspector)
+        self.assertIn("Open document and passage", inspector)
         self.assertIn("Open matter Documents", inspector)
+
+    def test_one_shot_document_passage_target_is_opened_and_cleared(self):
+        self.assertIn("card.dataset.chunkId=String(chunk.id)", HTML)
+        self.assertIn("reviewTarget&&Number(reviewTarget.caseId)===Number(id)", HTML)
+        self.assertIn("Promise.resolve().then(()=>toggle.click())", HTML)
+        self.assertIn("targetCard.focus({preventScroll:true})", HTML)
+        self.assertIn("targetCard.scrollIntoView", HTML)
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET=null;TAB=k;again()", HTML)
+        self.assertIn("reviewRequest++;if(window.DOCUMENT_REVIEW_TARGET", HTML)
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET=null;\n  body.append", HTML)
 
     def test_primary_navigation_and_main_content_have_landmarks_and_skip_link(self):
         self.assertIn("className:'skip-link'", HTML)
