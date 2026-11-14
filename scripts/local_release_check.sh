@@ -72,6 +72,29 @@ else
   details+=("Docker Compose plugin is not installed")
 fi
 
+if command -v pip-compile >/dev/null 2>&1; then
+  run_check "Python 3.12 dependency lock drift check" bash -c '
+    set -eu
+    tmpdir=$(mktemp -d)
+    trap "rm -rf \\"$tmpdir\\"" EXIT
+    pip-compile --resolver=backtracking --generate-hashes --strip-extras --allow-unsafe \\
+      --output-file="$tmpdir/requirements-py312.lock" requirements.txt
+    diff -u requirements-py312.lock "$tmpdir/requirements-py312.lock"
+  '
+else
+  names+=("Python 3.12 dependency lock drift check")
+  statuses+=("BLOCKED")
+  details+=("pip-compile is not installed")
+fi
+
+if command -v pip-audit >/dev/null 2>&1; then
+  run_check "Hash-locked dependency vulnerability audit" pip-audit --strict --progress-spinner off -r requirements-py312.lock
+else
+  names+=("Hash-locked dependency vulnerability audit")
+  statuses+=("BLOCKED")
+  details+=("pip-audit is not installed")
+fi
+
 if command -v actionlint >/dev/null 2>&1; then
   run_check "GitHub Actions workflow lint" actionlint
 else
