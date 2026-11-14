@@ -169,7 +169,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Follow-up source correction: `1714b2a109400807f598cf51aaeeb46fd4cee46f` corrected the generated settings-label element object syntax after static review. This is a source correction only; the inline JavaScript syntax workflow check has not been executed.
 
 
-- Exact-passage navigation commits: UI `fecfa00d0bf3c84eeb4317dcc82ed7dba3e115c3` and stale-target/failure cleanup `f29a6833d79316b182137ef45f3107a975399de6`; lifecycle regression contract `b60f8d5ea6d32bc68bbd306018619815ad9d6369`; updated inspector contract `71fef4ca4fedbe6e3afc99396adb4f2e415f611d`. Implementation is complete at source level; browser behavior remains unverified.
+- Exact-passage navigation commits: UI `fecfa00d0bf3c84eeb4317dcc82ed7dba3e115c3`, stale-target/failure cleanup `f29a6833d79316b182137ef45f3107a975399de6`, positive-safe-integer chunk-ID validation `d683ea9b57f9086f9dd1a4bd4bef9cd840fc5f4d`, and global-navigation target clearing `81202653f797f1511bc72caca0ba3ca7179f1423`; lifecycle regression contracts `b60f8d5ea6d32bc68bbd306018619815ad9d6369` and `49b6c05c58689c818334e56c91b732e8e2a7687d`; updated inspector contract `71fef4ca4fedbe6e3afc99396adb4f2e415f611d`. Implementation is complete at source level; browser behavior remains unverified.
 
 
 ## AI-2 extracted page-reference caveat — 2026-11-14
