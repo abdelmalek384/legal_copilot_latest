@@ -3210,7 +3210,7 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
    data.chunks.forEach((chunk,index)=>{
     const card=h('article',{id:'doc-chunk-review-'+id+'-'+data.document_id+'-'+String(chunk.id),tabIndex:-1,className:'card extraction-review-card'});card.dataset.chunkId=String(chunk.id);
     card.append(h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+(chunk.ref||(uiText('مقطع ','Chunk ')+chunk.id))}),pill(chunk.latest_review?statusText(chunk.latest_review.outcome):uiText('بانتظار المراجعة','Pending review'),chunk.latest_review&&chunk.latest_review.outcome!=='needs_recheck'?'done':'soon')));
-    if(chunk.page)card.append(h('p',{className:'mut',textContent:uiText('رقم الصفحة المستخرج: ','Extracted page number: ')+chunk.page+' — '+uiText('ليس تحققاً مستقلاً من الأصل','not independently verified against the original')}));
+    if(chunk.page!==undefined&&chunk.page!==null&&chunk.page!=='')card.append(h('p',{className:'mut',role:'note',textContent:uiText('رقم الصفحة المستخرج: ','Extracted page number: ')+chunk.page+' — '+uiText('مرجع الصفحة المسجل لم تتم مطابقته بصورة مستقلة مع الملف الأصلي.','The recorded page reference has not been independently checked against the original file.')}));
     const original=h('textarea',{value:chunk.text||'',rows:5,style:'width:100%;direction:rtl',readOnly:true,'aria-label':uiText('النص المستخرج الأصلي','Original extracted text')});
     card.append(h('label',{},h('span',{className:'mut',textContent:uiText('النص المستخرج — للقراءة فقط','Extracted text — read only')}),original));
     const corrected=h('textarea',{value:chunk.text||'',rows:5,style:'width:100%;direction:rtl',maxLength:20000,'aria-label':uiText('النص المصحح','Corrected text')});
