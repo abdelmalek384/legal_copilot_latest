@@ -36,6 +36,17 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("inputs.name.removeAttribute('aria-invalid')", profile_form)
         self.assertIn("key==='name'?nameError:null", profile_form)
 
+    def test_feedback_fields_have_labels_and_associated_validation_errors(self):
+        feedback_form = HTML[HTML.index("async function feedbackPage()"):HTML.index("\nconst whatsappReminder=")]
+        self.assertIn("id:'feedback-title-error'", feedback_form)
+        self.assertIn("id:'feedback-message-error'", feedback_form)
+        self.assertIn("title.setAttribute('aria-describedby',titleError.id)", feedback_form)
+        self.assertIn("message.setAttribute('aria-describedby',messageError.id)", feedback_form)
+        self.assertIn("field.setAttribute('aria-invalid','true')", feedback_form)
+        self.assertIn("field.removeAttribute('aria-invalid')", feedback_form)
+        self.assertIn("textContent:ar?'عنوان الملاحظة':'Feedback title'", feedback_form)
+        self.assertIn("textContent:ar?'تفاصيل الملاحظة':'Feedback details'", feedback_form)
+
     def test_primary_navigation_and_main_content_have_landmarks_and_skip_link(self):
         self.assertIn("className:'skip-link'", HTML)
         self.assertIn("h('nav',{className:'primary-nav','aria-label':", HTML)
