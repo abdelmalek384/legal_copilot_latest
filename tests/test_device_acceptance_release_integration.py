@@ -102,7 +102,7 @@ class DeviceAcceptanceReleaseIntegrationTests(unittest.TestCase):
             write_manifest(path, records)
             result = _evaluate_device_acceptance(path, COMMIT)
         self.assertFalse(result["ready"])
-        self.assertIn("evidence files must not be reused", result["error"])
+        self.assertIn("evidence paths must be unique", result["error"])
 
     def test_non_pass_result_blocks(self):
         records = complete_matrix()
