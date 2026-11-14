@@ -16,7 +16,7 @@ CATALOG = ROOT / "docs" / "legal_document_candidates.json"
 
 def _valid_source_page_url(value):
     if (not isinstance(value, str) or not value or value != value.strip()
-            or "\\\\" in value
+            or "\\" in value
             or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value)):
         return False
     try:

@@ -6,7 +6,7 @@ from unittest import mock
 
 import app
 from app import norm, tokens, _mask_markdown_code
-from tools.claim_support import (_ARABIC_FINITE_PERIOD, _ENGLISH_FINITE_PERIOD, _has_modal_mismatch, _has_negated_obligation_mismatch, claim_support_enabled, has_unsupported_claims, has_negated_obligation_conflicts)
+from tools.claim_support import (_ARABIC_FINITE_PERIOD, _ENGLISH_FINITE_PERIOD, _has_modal_mismatch, _has_negated_obligation_mismatch, _sentences, claim_support_enabled, has_unsupported_claims, has_negated_obligation_conflicts)
 
 
 class ClaimSupportTests(unittest.TestCase):
@@ -482,6 +482,36 @@ class ClaimSupportTests(unittest.TestCase):
                     answer + " [1].", [{"text": evidence}],
                     tokens, norm, _mask_markdown_code
                 ))
+
+    def test_post_sentence_citations_keep_correct_claim_and_sentence_text(self):
+        cases = (
+            ("The employer must deduct wages. [1].", "The employer must not deduct wages."),
+            ("The employer must deduct wages [1].", "The employer must not deduct wages."),
+            ("يجب على صاحب العمل خصم الأجر. [1].", "لا يجب على صاحب العمل خصم الأجر."),
+            ("يجب على صاحب العمل خصم الأجر [1].", "لا يجب على صاحب العمل خصم الأجر."),
+        )
+        for answer, evidence in cases:
+            with self.subTest(answer=answer):
+                self.assertTrue(has_negated_obligation_conflicts(
+                    answer, [{"text": evidence}], tokens, norm, _mask_markdown_code
+                ))
+
+        paired_answer = (
+            "The employer must deduct wages. [1]. "
+            "The employer must not deduct wages. [2]. Unrelated text stays intact."
+        )
+        self.assertEqual(list(_sentences(paired_answer, _mask_markdown_code)), [
+            "The employer must deduct wages [1].",
+            "The employer must not deduct wages [2].",
+            "Unrelated text stays intact.",
+        ])
+        paired_sources = [
+            {"text": "The employer must deduct wages."},
+            {"text": "The employer must not deduct wages."},
+        ]
+        self.assertFalse(has_negated_obligation_conflicts(
+            paired_answer, paired_sources, tokens, norm, _mask_markdown_code
+        ))
 
     def test_narrow_negated_obligation_guard_preserves_faithful_polarity(self):
         cases = (

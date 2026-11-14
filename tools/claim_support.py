@@ -321,7 +321,7 @@ def _sentences(answer, mask_code):
     # Keep a citation written after a sentence-ending period attached to the
     # sentence it cites ("claim. [1]."), so citation-aware guards inspect it.
     visible = re.sub(
-        r"([.!?؟])(\s*(?:\[\d+\]\s*)+)(?=[.!?؟\s]|$)",
+        r"([.!?؟])(\s*(?:\[\d+\]\s*)+)(?:\.(?=\s|$))?(?=[.!?؟\s]|$)",
         r"\2\1",
         visible,
     )
