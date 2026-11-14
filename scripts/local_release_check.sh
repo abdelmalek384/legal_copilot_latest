@@ -79,7 +79,12 @@ if command -v pip-compile >/dev/null 2>&1; then
     trap "rm -rf \"$tmpdir\"" EXIT
     pip-compile --resolver=backtracking --generate-hashes --strip-extras --allow-unsafe \\
       --output-file="$tmpdir/requirements-py312.lock" requirements.txt
-    diff -u requirements-py312.lock "$tmpdir/requirements-py312.lock"
+    # Ignore pip-compile's generated header because it embeds the differing output path.
+    awk 'found || /^[[:alnum:]][[:alnum:]_.-]*==/ {found=1; print}' \\
+      requirements-py312.lock > "$tmpdir/current-lock.body"
+    awk 'found || /^[[:alnum:]][[:alnum:]_.-]*==/ {found=1; print}' \\
+      "$tmpdir/requirements-py312.lock" > "$tmpdir/regenerated-lock.body"
+    diff -u "$tmpdir/current-lock.body" "$tmpdir/regenerated-lock.body"
   '
 else
   names+=("Python 3.12 dependency lock drift check")
