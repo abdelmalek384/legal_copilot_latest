@@ -515,6 +515,18 @@ class CollectionPipelineTests(unittest.TestCase):
             with self.subTest(url=url), self.assertRaises(ValueError):
                 collector.validate_manifest_hosts({"allowed_hosts": ["example.gov"], "direct_url": url})
 
+    def test_manifest_rejects_duplicate_json_keys_at_every_object_depth(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "manifest.json"
+            for raw in (
+                '{"documents": [], "documents": [{"document_id": "law-1", "source_id": "s1"}]}',
+                '{"documents": [{"document_id": "law-1", "source_id": "s1", "source_id": "s2"}]}',
+            ):
+                with self.subTest(raw=raw):
+                    path.write_text(raw, encoding="utf-8")
+                    with self.assertRaisesRegex(ValueError, "duplicate JSON key in collection manifest"):
+                        load_manifest(path)
+
     def test_manifest_rejects_non_object_root(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "manifest.json"
