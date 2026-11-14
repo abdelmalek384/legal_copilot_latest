@@ -405,3 +405,6 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 
 - The inspector now shows backend-supplied firm-document provenance and offers a matter-level Documents hand-off for valid matter/document identifiers. It explicitly does not claim exact-chunk navigation or treat original availability as download authorization.
 - Frontend regression contract is committed and workflow-registered. Static source review only; browser and test execution remain unavailable. Answer-rating controls remain on main and were not removed.
+
+
+- A static follow-up corrected the settings label element construction (`1714b2a109400807f598cf51aaeeb46fd4cee46f`). The JavaScript syntax workflow check remains unexecuted under the runner pause.
