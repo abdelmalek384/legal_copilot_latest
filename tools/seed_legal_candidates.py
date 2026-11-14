@@ -8,26 +8,42 @@ until a direct document URL and collection permission evidence are established.
 from __future__ import annotations
 import argparse, json, os, sys
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import parse_qsl, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "docs" / "legal_document_candidates.json"
 
 
+SENSITIVE_QUERY_KEYS = {
+    "token", "access_token", "auth", "authorization", "password", "secret",
+    "signature", "sig", "api_key", "apikey", "session", "sessionid",
+    "credential", "api-key", "auth_token", "session_token",
+    "awsaccesskeyid", "googleaccessid", "key-pair-id",
+    "x-amz-signature", "x-amz-credential", "x-amz-security-token",
+    "x-amz-algorithm", "x-amz-date", "x-amz-expires", "x-amz-signedheaders",
+    "x-goog-signature", "x-goog-credential", "x-goog-algorithm",
+    "x-goog-date", "x-goog-expires", "x-goog-signedheaders",
+}
+
+
 def _valid_source_page_url(value):
     if (not isinstance(value, str) or not value or value != value.strip()
-            or "\\" in value
+            or "\\" in value or "#" in value
             or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value)):
         return False
     try:
         parsed = urlparse(value)
         port = parsed.port
+        query_keys = {
+            key.casefold() for key, _ in parse_qsl(parsed.query, keep_blank_values=True)
+        }
         return (
             parsed.scheme.lower() == "https" and bool(parsed.hostname)
             and "@" not in parsed.netloc
             and parsed.username is None and parsed.password is None
             and not parsed.netloc.endswith(":")
             and (port is None or 1 <= port <= 65535)
+            and not (query_keys & SENSITIVE_QUERY_KEYS)
         )
     except (TypeError, ValueError):
         return False
