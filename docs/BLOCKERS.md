@@ -11,7 +11,7 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 | Work item | Owner | Closure evidence | Current disposition |
 |---|---|---|---|
-| DEL/control-character rejection in Gazette source URLs | AI-1 | Validator rejects C0 and DEL; focused regression test exists | C0/DEL, fragment delimiters and backslashes rejected; importer changes merged in #1556/#1563; focused tests still unexecuted |
+| DEL/control-character rejection in Gazette source URLs | AI-1 | Validator rejects C0 and DEL; focused regression test exists | C0/DEL, fragment delimiters, raw backslashes, signed/credential query parameters, and empty user-info delimiters rejected; importer changes merged in #1556/#1563 and follow-up direct-main hardening; focused tests still unexecuted |
 | Gazette text importer input contract and deterministic output | AI-1 | Input/schema/provenance/duplicate/error-path tests; documented CLI | Importer and operator contract merged in #1563/#1567; source-reviewed, full focused tests still unexecuted |
 | Retrieval scorer safety-status ordering | AI-1 | Known wrong/uncited/unverified/non-abstention failures always report below-target; focused tests executed | Fix merged in #1560 and carried with URL hardening in #1566; focused tests still unexecuted |
 | Arabic obligation-negation guard | AI-1 | Final answer path invokes guard; English/Arabic reversals, faithful negatives, unrelated clauses and whitespace have regression coverage | Source integration is complete in `app.ask` (#1588); focused reproducer and integrated app-path tests are committed directly to main (`92e5177`, `f988e76`); tests remain unexecuted due GitHub billing/runtime access |
