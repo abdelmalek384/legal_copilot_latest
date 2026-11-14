@@ -47,6 +47,7 @@ The following bounded repository tasks now meet their source-change acceptance c
 | Require and verify expected SHA-256 before any recovery object upload | **100%** | Focused source review/custom isolated harness; repository tests pending |
 | Reject duplicate JSON keys, duplicate device/browser acceptance records, and reused evidence paths at release-gate integration boundary | **100%** | Strict parser, validator and unit/integration regressions committed and registered in Tests workflow; execution pending |
 | Reject duplicate JSON keys in database/staging release-evidence manifests | **100%** | Strict object-pairs parser and regression committed; existing database acceptance test module is registered in Tests workflow; execution pending |
+| Register backup-archive and production/device/database release-acceptance tests in focused security matrix | **100%** | Security script and workflow-contract regression committed; execution pending |
 | Synchronize README, release status and blocker register with current lock/recovery implementation | **100%** | Current-main source inspection completed |
 
 ## AI-2 implementation completion estimate
@@ -57,7 +58,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 |---|---:|---|
 | Local release baseline | 20% | Release-check implementation exists; exact local checker output and all Python 3.12 gates remain unavailable |
 | Security integration | 75% | Exact-head security verification remains blocked |
-| Security regression coverage | 90% | Additional backup source no-follow, same-descriptor upload, mandatory checksum and verification-to-upload byte-binding regressions plus duplicate device-record, reused-evidence-path, and duplicate-key rejection for both device and database release manifests are committed; all repository tests remain unexecuted, real OCR-engine/image-quality acceptance still pending |
+| Security regression coverage | 91% | Additional backup source no-follow, same-descriptor upload, mandatory checksum and verification-to-upload byte-binding regressions plus duplicate device-record, reused-evidence-path, and duplicate-key rejection for both device and database release manifests are committed; all repository tests remain unexecuted, real OCR-engine/image-quality acceptance still pending |
 | Lawyer rating UI/export | 95% | Browser acceptance and adapter execution remain pending |
 | Test-firm package | 90% | Clean-clone first-login rehearsal remains unexecuted |
 | Repository cleanup/accessibility | 80% | Run hygiene scan and finish manual accessibility review |
