@@ -104,6 +104,8 @@ class DependencyLockWorkflowContractTests(unittest.TestCase):
         self.assertIn("python -m piptools compile", script)
         self.assertNotIn("pip-compile --resolver", script)
         self.assertIn("python -m pip_audit --require-hashes", script)
+        self.assertIn('if [[ "$python312_available" -eq 1 ]]; then\n  run_check "Strict deployment preflight"', script)
+        self.assertIn("Python 3.12 is required for the supported deployment preflight", script)
 
 
 if __name__ == "__main__":

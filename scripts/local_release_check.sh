@@ -170,7 +170,13 @@ else
   fi
 fi
 
-run_check "Strict deployment preflight" python tools/deployment_preflight.py --strict
+if [[ "$python312_available" -eq 1 ]]; then
+  run_check "Strict deployment preflight" python tools/deployment_preflight.py --strict
+else
+  names+=("Strict deployment preflight")
+  statuses+=("BLOCKED")
+  details+=("Python 3.12 is required for the supported deployment preflight")
+fi
 
 root_artifacts=$(find . -maxdepth 1 -type f \( -iname '*.patch' -o -iname '*.diff' -o -iname '*.csv' \) -print)
 names+=("Repository-root patch/diff/CSV hygiene")
