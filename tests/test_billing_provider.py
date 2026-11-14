@@ -54,6 +54,37 @@ class FakeBillingProviderTests(unittest.TestCase):
         with self.assertRaises(KeyError):
             self.provider.mark_paid_for_test("fake_missing")
 
+    def test_repeated_merchant_reference_is_idempotent(self):
+        payload = {
+            "merchant_reference": "RETRY-SUB-42",
+            "amount_minor": 9900,
+            "currency": "egp",
+            "metadata": {"firm_id": "42", "plan_code": "solo"},
+        }
+        first = self.provider.create_payment_request(**payload)
+        retry = self.provider.create_payment_request(**payload)
+        self.assertEqual(retry.provider_reference, first.provider_reference)
+        self.assertEqual(retry, first)
+
+    def test_merchant_reference_cannot_be_reused_for_different_payment(self):
+        first = self.provider.create_payment_request(
+            merchant_reference="UNIQUE-SUB-43",
+            amount_minor=9900,
+            currency="EGP",
+            metadata={"firm_id": "43", "plan_code": "solo"},
+        )
+        with self.assertRaisesRegex(ValueError, "already used"):
+            self.provider.create_payment_request(
+                merchant_reference="UNIQUE-SUB-43",
+                amount_minor=19900,
+                currency="EGP",
+                metadata={"firm_id": "43", "plan_code": "solo"},
+            )
+        self.assertEqual(
+            self.provider.get_payment_request(first.provider_reference),
+            first,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
