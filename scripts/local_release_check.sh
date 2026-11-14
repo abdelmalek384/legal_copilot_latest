@@ -45,7 +45,8 @@ if command -v docker >/dev/null 2>&1 && docker compose version >/dev/null 2>&1; 
     trap "rm -rf \"$tmpdir\"" EXIT
     cp .env.production.example "$tmpdir/.env.production"
     LEGAL_COPILOT_IMAGE_TAG=compose-contract-check \
-      docker compose --env-file "$tmpdir/.env.production" -f compose.production.yaml config --quiet
+      docker compose --project-directory "$tmpdir" --env-file "$tmpdir/.env.production" \
+        -f "$PWD/compose.production.yaml" config --quiet
   '
 else
   names+=("Placeholder-only production Compose validation")
