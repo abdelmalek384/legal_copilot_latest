@@ -76,7 +76,7 @@ if command -v pip-compile >/dev/null 2>&1; then
   run_check "Python 3.12 dependency lock drift check" bash -c '
     set -eu
     tmpdir=$(mktemp -d)
-    trap "rm -rf \\"$tmpdir\\"" EXIT
+    trap "rm -rf \"$tmpdir\"" EXIT
     pip-compile --resolver=backtracking --generate-hashes --strip-extras --allow-unsafe \\
       --output-file="$tmpdir/requirements-py312.lock" requirements.txt
     diff -u requirements-py312.lock "$tmpdir/requirements-py312.lock"
