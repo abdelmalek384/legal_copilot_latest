@@ -19,7 +19,7 @@ from database_runtime import DatabaseRuntime
 class DatabaseBackupBundleTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
-        self.root = Path(self.temp.name)
+        self.root = Path(self.temp.name).resolve()
         self.runtime = DatabaseRuntime(
             self.root / "source" / "control.sqlite3",
             self.root / "source" / "tenants",
