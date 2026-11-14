@@ -44,9 +44,13 @@ if command -v docker >/dev/null 2>&1 && docker compose version >/dev/null 2>&1; 
     tmpdir=$(mktemp -d)
     trap "rm -rf \"$tmpdir\"" EXIT
     cp .env.production.example "$tmpdir/.env.production"
+    # Keep project-relative build and bind-mount paths anchored at the repository,
+    # while redirecting the service env_file to the isolated placeholder copy.
+    sed "s|      - .env.production|      - $tmpdir/.env.production|" \
+      compose.production.yaml > "$tmpdir/compose.production.yaml"
     LEGAL_COPILOT_IMAGE_TAG=compose-contract-check \
-      docker compose --project-directory "$tmpdir" --env-file "$tmpdir/.env.production" \
-        -f "$PWD/compose.production.yaml" config --quiet
+      docker compose --project-directory "$PWD" --env-file "$tmpdir/.env.production" \
+        -f "$tmpdir/compose.production.yaml" config --quiet
   '
 else
   names+=("Placeholder-only production Compose validation")
