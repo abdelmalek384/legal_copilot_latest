@@ -491,6 +491,17 @@ class DatabaseReleaseAcceptanceTests(unittest.TestCase):
             {item["code"] for item in malformed["blockers"]},
         )
 
+    def test_loader_rejects_non_utf8_manifest(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "invalid-encoding.json"
+            path.write_bytes(b'{"schema_version":1,"label":"\\xff"}')
+            report = load_acceptance_manifest(path, now=self.now)
+        self.assertFalse(report["ready"])
+        self.assertIn(
+            ("manifest", "manifest_unreadable_or_invalid_json"),
+            {(item["gate"], item["code"]) for item in report["blockers"]},
+        )
+
     def test_loader_rejects_duplicate_json_keys(self):
         with tempfile.TemporaryDirectory() as td:
             path = Path(td) / "duplicate.json"
