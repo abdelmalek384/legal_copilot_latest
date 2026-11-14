@@ -3160,6 +3160,16 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(matter_search.status_code, 200, matter_search.text)
         self.assertTrue(any("firmonlysentinel" in hit["text"] for hit in matter_search.json()))
+        matter_hit = next(hit for hit in matter_search.json() if "firmonlysentinel" in hit["text"])
+        self.assertEqual(matter_hit["scope"], "firm_documents")
+        self.assertEqual(matter_hit["case_id"], case_id)
+        self.assertEqual(matter_hit["document_id"], uploaded.json()["document_id"])
+        self.assertEqual(matter_hit["chunk_id"], matter_hit["id"])
+        self.assertEqual(matter_hit["document_name"], "private.txt")
+        self.assertEqual(matter_hit["document_sha256"], uploaded.json()["sha256"])
+        self.assertFalse(matter_hit["document_ocr_used"])
+        self.assertIn("document_original_available", matter_hit)
+        self.assertFalse(matter_hit["document_original_available"])
 
         # The legal corpus is central and shared; matter content is not.
         corpus = self.runtime.legal_corpus_connection()
