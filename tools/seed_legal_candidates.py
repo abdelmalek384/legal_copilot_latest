@@ -24,6 +24,7 @@ def _valid_source_page_url(value):
         port = parsed.port
         return (
             parsed.scheme.lower() == "https" and bool(parsed.hostname)
+            and "@" not in parsed.netloc
             and parsed.username is None and parsed.password is None
             and not parsed.netloc.endswith(":")
             and (port is None or 1 <= port <= 65535)
