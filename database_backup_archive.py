@@ -39,6 +39,11 @@ def _digest_file(source: BinaryIO) -> tuple[str, int]:
             if size > _MAX_ENCRYPTED_BUNDLE_BYTES:
                 _fail("Encrypted backup exceeds the supported size limit")
             digest.update(block)
+        info = os.fstat(source.fileno())
+        if not stat.S_ISREG(info.st_mode) or info.st_size != size:
+            _fail("Backup input changed while it was being hashed")
+        if size <= 0:
+            _fail("Encrypted backup must not be empty")
     finally:
         source.seek(0)
     return digest.hexdigest(), size
@@ -133,15 +138,15 @@ def upload_encrypted_bundle(
             try:
                 source.seek(0)
                 response = s3_client.put_object(
-                        Bucket=bucket,
-                        Key=object_key,
-                        Body=source,
-                        ContentLength=size,
-                        ContentType="application/octet-stream",
-                        Metadata=metadata,
-                        ServerSideEncryption="aws:kms",
-                        SSEKMSKeyId=key_arn,
-                    )
+                    Bucket=bucket,
+                    Key=object_key,
+                    Body=source,
+                    ContentLength=size,
+                    ContentType="application/octet-stream",
+                    Metadata=metadata,
+                    ServerSideEncryption="aws:kms",
+                    SSEKMSKeyId=key_arn,
+                )
             except Exception as exc:
                 raise DatabaseBundleError("Encrypted recovery bundle upload failed") from exc
         else:

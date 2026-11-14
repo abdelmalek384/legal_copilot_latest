@@ -135,6 +135,20 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
                 self.s3, self.kms, link, **self.config
             )
 
+    def test_upload_rejects_source_truncated_after_open(self):
+        digest_file = database_backup_archive._digest_file
+
+        def truncate_then_hash(open_source):
+            open_source.truncate(0)
+            return digest_file(open_source)
+
+        from unittest.mock import patch
+        with patch.object(
+            database_backup_archive, "_digest_file", side_effect=truncate_then_hash
+        ):
+            with self.assertRaises(DatabaseBundleError):
+                self.upload()
+
     def test_upload_uses_the_opened_file_if_path_changes_after_hashing(self):
         if os.name == "nt":
             self.skipTest("open-file replacement semantics differ on Windows")
