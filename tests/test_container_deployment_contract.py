@@ -65,6 +65,14 @@ class ContainerDeploymentContractTests(unittest.TestCase):
         self.assertIn("docker compose --env-file .env.production -f compose.production.yaml config --quiet", workflow)
         self.assertIn("contents: read", workflow)
 
+    def test_local_release_check_includes_security_and_safe_compose_validation(self):
+        checker = (ROOT / "scripts" / "local_release_check.sh").read_text(encoding="utf-8")
+        self.assertIn('run_check "Focused security regression matrix" bash scripts/security_regression_check.sh', checker)
+        self.assertIn('run_check "Placeholder-only production Compose validation"', checker)
+        self.assertIn('test ! -e .env.production', checker)
+        self.assertIn('docker compose --env-file "$tmpdir/.env.production" -f compose.production.yaml config --quiet', checker)
+        self.assertNotIn("docker compose up", checker)
+
     def test_image_python_version_matches_ci_and_dependabot_blocks_unverified_minor_major(self):
         dockerfile = (ROOT / "Dockerfile").read_text(encoding="utf-8")
         self.assertIn("FROM python:3.12-slim-bookworm", dockerfile)
