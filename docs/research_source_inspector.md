@@ -44,3 +44,8 @@ Each source-status label is accompanied by a plain-language explanation in the U
 Automated tests cover conservative status gates, citation formatting, memo caveats, search-scope separation, metadata-only empty states, matter saving, frontend controls, and highlighting of the actual source-word forms matched by curated Arabic query expansion. CI is the source of truth for test status. Citation validation ignores Markdown fenced/inline code and hidden HTML comments when checking citation indices, per-sentence citations, and numeric claims; a citation shown only inside non-visible content cannot satisfy the prose citation requirement. Manual browser review, screen-reader checks, lawyer validation, and a production security review remain separate requirements.
 
 The corpus remains incomplete. Missing metadata, page numbers, legal text, or written permission are not inferred.
+
+
+### Matter search document-provenance payload
+
+For separate-runtime firm-document search hits, the API joins the chunk to its document using the document ID, case ID and firm ID, and returns the document ID, chunk ID, original filename, stored SHA-256, extraction status, OCR-used flag and `document_original_available`. The availability flag is true only when the same firm/document has a ready original object with no purge timestamp. Corpus hits and legacy paths do not receive matter-document download metadata. This payload supports traceability and the existing exact-review/download affordances; it does not verify OCR text or authorize a download. The original-file endpoint remains responsible for independent matter authorization, retention and integrity checks.
