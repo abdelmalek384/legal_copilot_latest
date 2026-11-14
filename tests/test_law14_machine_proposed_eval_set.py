@@ -30,3 +30,7 @@ def test_law14_machine_proposed_questions_are_unique_article_mapped_and_unapprov
     assert all(row["expected_sources"] == [] and row["expected_pin_cites"] == [] for row in rows)
     assert all(row["must_abstain_if_unverified"] is True for row in rows)
     assert all(row["release_eligible"] is False for row in rows)
+
+
+if __name__ == "__main__":
+    test_law14_machine_proposed_questions_are_unique_article_mapped_and_unapproved()
