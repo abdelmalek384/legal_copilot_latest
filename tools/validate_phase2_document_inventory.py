@@ -2,6 +2,7 @@
 """Validate the metadata-only Phase 2 Egyptian instrument inventory."""
 import json
 from pathlib import Path
+from urllib.parse import parse_qsl, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PATH = ROOT / "docs" / "phase_2_document_inventory.json"
@@ -41,6 +42,36 @@ FORBIDDEN_CONTENT_KEYS = {
     "extracted_text", "legal_text", "document_bytes",
 }
 
+SENSITIVE_URL_QUERY_KEYS = {
+    "token", "access_token", "auth", "authorization", "password", "secret",
+    "signature", "sig", "api_key", "apikey", "session", "sessionid",
+    "credential", "api-key", "auth_token", "session_token",
+    "awsaccesskeyid", "googleaccessid", "key-pair-id",
+    "x-amz-signature", "x-amz-credential", "x-amz-security-token",
+    "x-amz-algorithm", "x-amz-date", "x-amz-expires", "x-amz-signedheaders",
+    "x-goog-signature", "x-goog-credential", "x-goog-algorithm",
+    "x-goog-date", "x-goog-expires", "x-goog-signedheaders",
+}
+
+
+def _is_clean_https_url(value):
+    if (not isinstance(value, str) or not value or "\\\\" in value
+            or any(char.isspace() or ord(char) < 32 or ord(char) == 127 for char in value)):
+        return False
+    try:
+        parsed = urlsplit(value)
+        port = parsed.port
+    except (TypeError, ValueError):
+        return False
+    if (parsed.scheme.lower() != "https" or not parsed.hostname
+            or "@" in parsed.netloc
+            or parsed.username is not None or parsed.password is not None
+            or "#" in value or parsed.netloc.endswith(":")
+            or (port is not None and not 1 <= port <= 65535)):
+        return False
+    query_keys = {key.casefold() for key, _ in parse_qsl(parsed.query, keep_blank_values=True)}
+    return not bool(query_keys & SENSITIVE_URL_QUERY_KEYS)
+
 
 def _is_one_of(value, choices: set[str]) -> bool:
     """Check JSON enum values without hashing malformed lists or objects."""
@@ -65,8 +96,8 @@ def _validate_metadata_urls(record, label):
                 if key.lower() in FORBIDDEN_CONTENT_KEYS:
                     errors.append(path + " contains content field " + key)
                 if key in {"url", "source_url"} and value[key] is not None:
-                    if not isinstance(value[key], str) or not value[key].startswith("https://"):
-                        errors.append(path + "." + key + " must be HTTPS or null")
+                    if not _is_clean_https_url(value[key]):
+                        errors.append(path + "." + key + " must be a clean HTTPS URL or null")
         elif isinstance(value, str) and value.startswith(("http://", "https://")):
             # URLs are accepted only in explicitly named URL fields.
             final_key = path.rsplit(".", 1)[-1]
