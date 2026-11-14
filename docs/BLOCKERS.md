@@ -355,3 +355,10 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - The approved-question/result JSONL parser and reviewer-registry JSON loader now reject duplicate object keys at every nesting depth. Previously, Python's default JSON decoder silently retained the last duplicate value, allowing ambiguous evaluation labels or reviewer metadata.
 - Added regressions for top-level and nested JSONL duplicates, valid distinct nested keys, and duplicate reviewer-registry keys. The test module is registered in the Tests workflow.
 - Static source review only; these tests were not executed because hosted runner allocation remains unavailable. No evaluation metric or legal approval status changed.
+
+
+## Manual-capture provenance JSON ambiguity hardening — 2026-11-14
+
+- The read-only manual-capture validator now rejects duplicate JSON object keys at every nesting depth instead of silently accepting Python's last-key-wins behavior. Conflicting permission/provenance fields therefore fail closed.
+- Added CLI regressions for duplicate top-level and nested keys; the test module is registered in the Tests workflow.
+- Static source review only; no test execution is claimed. No permission state or legal verification flag changed.
