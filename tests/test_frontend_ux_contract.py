@@ -55,6 +55,16 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("emailField=h('label'", HTML)
         self.assertIn("},emailField,role,submit)", HTML)
 
+    def test_source_inspector_exposes_firm_document_provenance_and_matter_handoff(self):
+        inspector = HTML[HTML.index("const inspectSource="):HTML.index("const suggestCorrection=")]
+        self.assertIn("source.document_sha256", inspector)
+        self.assertIn("source.document_extraction_status", inspector)
+        self.assertIn("source.document_ocr_used===true", inspector)
+        self.assertIn("source.document_original_available===true", inspector)
+        self.assertIn("source.scope==='firm_documents'", inspector)
+        self.assertIn("window.DOCUMENT_MATTER_ID=matterId;TAB='docs';view(matterId)", inspector)
+        self.assertIn("Open matter Documents", inspector)
+
     def test_primary_navigation_and_main_content_have_landmarks_and_skip_link(self):
         self.assertIn("className:'skip-link'", HTML)
         self.assertIn("h('nav',{className:'primary-nav','aria-label':", HTML)
