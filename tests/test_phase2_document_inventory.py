@@ -196,7 +196,7 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             "http://example.invalid",
             "https://user:pass@example.invalid/law",
             "https://@example.invalid/law",
-            "https://example.invalid/law\\\\path",
+            "https://example.invalid/law\\path",
             "https://example.invalid/law#",
             "https://example.invalid:99999/law",
             "https://example.invalid/law?X-Amz-Signature=secret",
