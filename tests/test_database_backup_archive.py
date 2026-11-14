@@ -304,6 +304,21 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
                 manage.archive_upload_tenancy(args)
         clients.assert_not_called()
 
+    def test_archive_upload_cli_requires_verification_checksum_before_aws_access(self):
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        import manage
+
+        args = SimpleNamespace(file=str(self.bundle))
+        with (
+            patch.object(manage, "_backup_fernet", return_value=object()),
+            patch.object(manage, "verify_backup_bundle", return_value={"verified": True}),
+            patch.object(manage, "_recovery_archive_clients") as clients,
+        ):
+            with self.assertRaises(SystemExit):
+                manage.archive_upload_tenancy(args)
+        clients.assert_not_called()
+
     def test_existing_destination_is_never_overwritten(self):
         locator = self.upload()
         target = self.root / "existing.dbundle.enc"
