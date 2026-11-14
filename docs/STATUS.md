@@ -45,6 +45,7 @@ The following bounded repository tasks now meet their source-change acceptance c
 | Hash and upload the same already-open recovery source descriptor | **100%** | Focused source review/custom isolated harness; repository tests pending |
 | Bind archive upload to the exact encrypted bytes returned by verification | **100%** | Focused source review/custom isolated harness; repository tests pending |
 | Require and verify expected SHA-256 before any recovery object upload | **100%** | Focused source review/custom isolated harness; repository tests pending |
+| Reject duplicate device/browser acceptance evidence at release-gate integration boundary | **100%** | Validator and unit/integration regressions committed and registered in Tests workflow; execution pending |
 | Synchronize README, release status and blocker register with current lock/recovery implementation | **100%** | Current-main source inspection completed |
 
 ## AI-2 implementation completion estimate
@@ -55,7 +56,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 |---|---:|---|
 | Local release baseline | 20% | Release-check implementation exists; exact local checker output and all Python 3.12 gates remain unavailable |
 | Security integration | 75% | Exact-head security verification remains blocked |
-| Security regression coverage | 86% | Additional backup source no-follow, same-descriptor upload, mandatory checksum and verification-to-upload byte-binding regressions are committed; all repository tests remain unexecuted, real OCR-engine/image-quality acceptance still pending |
+| Security regression coverage | 87% | Additional backup source no-follow, same-descriptor upload, mandatory checksum and verification-to-upload byte-binding regressions plus duplicate device-evidence release-gate rejection are committed; all repository tests remain unexecuted, real OCR-engine/image-quality acceptance still pending |
 | Lawyer rating UI/export | 95% | Browser acceptance and adapter execution remain pending |
 | Test-firm package | 90% | Clean-clone first-login rehearsal remains unexecuted |
 | Repository cleanup/accessibility | 80% | Run hygiene scan and finish manual accessibility review |
