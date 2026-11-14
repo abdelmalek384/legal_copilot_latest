@@ -76,8 +76,9 @@ class ContainerDeploymentContractTests(unittest.TestCase):
         self.assertIn('run_check "Focused security regression matrix" bash scripts/security_regression_check.sh', checker)
         self.assertIn('run_check "Placeholder-only production Compose validation"', checker)
         self.assertIn('test ! -e .env.production', checker)
-        self.assertIn('docker compose --project-directory "$tmpdir" --env-file "$tmpdir/.env.production"', checker)
-        self.assertIn('-f "$PWD/compose.production.yaml" config --quiet', checker)
+        self.assertIn('sed "s|      - .env.production|      - $tmpdir/.env.production|"', checker)
+        self.assertIn('docker compose --project-directory "$PWD" --env-file "$tmpdir/.env.production"', checker)
+        self.assertIn('-f "$tmpdir/compose.production.yaml" config --quiet', checker)
         self.assertNotIn("docker compose up", checker)
 
     def test_local_release_check_runs_isolated_encrypted_recovery_drill(self):
