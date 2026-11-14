@@ -1237,5 +1237,17 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertLess(HTML.index(".answer-rating-panel{"), HTML.index("</style>"))
         self.assertLess(HTML.index(".research-rating-tools{"), HTML.index("</style>"))
 
+    def test_pending_document_review_target_is_cleared_at_auth_and_firm_boundaries(self):
+        self.assertIn(
+            "window.DOCUMENT_MATTER_ID=null;window.DOCUMENT_REVIEW_TARGET=null;login();throw new Error('auth')",
+            HTML,
+        )
+        self.assertGreaterEqual(
+            HTML.count(
+                "window.DOCUMENT_MATTER_ID=null;window.DOCUMENT_REVIEW_TARGET=null;sessionStorage.me=JSON.stringify(ME)"
+            ),
+            2,
+        )
+
 if __name__ == "__main__":
     unittest.main()
