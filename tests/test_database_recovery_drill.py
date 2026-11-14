@@ -121,6 +121,56 @@ class DatabaseRecoveryDrillTests(unittest.TestCase):
         self.assertFalse(report["plaintext_retained"])
         self.assertEqual(list(self.temp_parent.iterdir()), [])
 
+    def test_backup_refuses_corrupted_original_object_before_restore(self):
+        import hashlib
+
+        import app
+        from database_backup import DatabaseBundleError
+        from original_file_storage import LocalPrivateObjectStore
+
+        context = self.runtime.resolve_context(self.user_a, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        case_id = firm_db.execute(
+            "INSERT INTO cases(title,firm_id) VALUES('Corrupt Object Matter',?)",
+            (self.firm_a,),
+        ).lastrowid
+        payload = b"expected original evidence"
+        _, document_id = app.save_doc(
+            firm_db,
+            {"id": self.user_a, "firm_id": self.firm_a, "name": "Recovery Owner"},
+            case_id,
+            "corrupt-original.txt",
+            "Extracted text for corrupt-object fixture",
+            content_hash=hashlib.sha256(payload).hexdigest(),
+            content_type="text/plain",
+            byte_size=len(payload),
+        )
+        store = LocalPrivateObjectStore(self.object_root)
+        staged = store.stage(self.firm_a, payload)
+        store.finalize(self.firm_a, staged.object_id)
+        firm_db.execute(
+            "INSERT INTO original_file_objects("
+            "object_id,document_id,firm_id,storage_backend,sha256,byte_size,content_type,state"
+            ") VALUES(?,?,?,'local',?,?,'text/plain','ready')",
+            (
+                staged.object_id, document_id, self.firm_a,
+                staged.sha256, staged.byte_size,
+            ),
+        )
+        firm_db.commit()
+        (self.object_root / f"firm-{self.firm_a}" / f"{staged.object_id}.blob").write_bytes(
+            b"tampered evidence"
+        )
+
+        with self.assertRaisesRegex(DatabaseBundleError, "integrity check failed"):
+            create_backup_bundle(
+                self.runtime,
+                self.cipher,
+                self.backup_dir,
+                quiesced=True,
+                object_storage_root=self.object_root,
+            )
+
     def test_recovery_drill_fails_closed_when_an_active_firm_has_no_active_membership(self):
         control = self.runtime.control_connection()
         control.execute(
