@@ -249,15 +249,23 @@ def _reject_duplicate_json_keys(pairs: list[tuple[str, object]]) -> dict[str, ob
 
 
 def _read_acceptance_manifest_file(path: Path) -> object:
-    """Read a bounded regular file without following a manifest symlink."""
-    if path.is_symlink():
+    """Read a bounded regular file without following or racing a manifest symlink."""
+    try:
+        before_open = path.lstat()
+    except FileNotFoundError:
+        raise
+    if stat.S_ISLNK(before_open.st_mode):
         raise AcceptanceManifestFileError("manifest_symlink_forbidden")
+    if not stat.S_ISREG(before_open.st_mode):
+        raise AcceptanceManifestFileError("manifest_not_regular_file")
     flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_NONBLOCK", 0)
     descriptor = os.open(path, flags)
     with os.fdopen(descriptor, "rb") as stream:
         metadata = os.fstat(stream.fileno())
         if not stat.S_ISREG(metadata.st_mode):
             raise AcceptanceManifestFileError("manifest_not_regular_file")
+        if (metadata.st_dev, metadata.st_ino) != (before_open.st_dev, before_open.st_ino):
+            raise AcceptanceManifestFileError("manifest_source_changed")
         if metadata.st_size > 1_000_000:
             raise AcceptanceManifestFileError("manifest_too_large")
         if os.name == "posix" and stat.S_IMODE(metadata.st_mode) & 0o022:
