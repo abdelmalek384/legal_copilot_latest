@@ -130,7 +130,10 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
         if not hasattr(os, "mkfifo"):
             self.skipTest("FIFO creation is unavailable on this platform")
         fifo = self.root / "backup.fifo"
-        os.mkfifo(fifo)
+        try:
+            os.mkfifo(fifo)
+        except OSError as exc:
+            self.skipTest(f"FIFO creation unavailable: {exc}")
         with self.assertRaises(DatabaseBundleError):
             upload_encrypted_bundle(
                 self.s3, self.kms, fifo,
