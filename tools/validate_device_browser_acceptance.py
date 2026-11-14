@@ -159,6 +159,16 @@ def validate_release_matrix(records, summaries):
         raise EvidenceError("release device matrix must cover exactly one application commit")
     if len(environments) != 1:
         raise EvidenceError("release device matrix must use exactly one environment")
+    if len(records) != len(summaries):
+        raise EvidenceError("release device matrix record/summary count mismatch")
+    identities = [
+        (summary["application_commit"], summary["environment"], summary["locale"],
+         summary["device_class"], record.get("device"), record.get("browser_and_version"),
+         record.get("viewport"))
+        for record, summary in zip(records, summaries)
+    ]
+    if len(identities) != len(set(identities)):
+        raise EvidenceError("duplicate evidence records for the same commit/environment/locale/device/browser/viewport")
     observed = {(item["device_class"], item["locale"]) for item in summaries}
     missing = sorted(REQUIRED_RELEASE_MATRIX - observed)
     if missing:
