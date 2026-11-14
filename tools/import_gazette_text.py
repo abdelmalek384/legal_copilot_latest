@@ -143,6 +143,16 @@ def _read_regular(path: Path, label: str, limit: int) -> bytes:
         raise ValueError(f"cannot safely read {label}: {type(exc).__name__}") from exc
 
 
+def _reject_duplicate_json_keys(pairs):
+    """Build JSON objects without silently accepting duplicate keys at any depth."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON key in metadata: {key}")
+        result[key] = value
+    return result
+
+
 def _validate_metadata(meta: object, text_bytes: bytes) -> dict:
     if not isinstance(meta, dict):
         raise ValueError("metadata sidecar must be a JSON object")
@@ -301,7 +311,9 @@ def import_text(text_path: Path, metadata_path: Path, output_dir: Path) -> dict:
     meta_bytes = _read_regular(metadata_path, "metadata sidecar", MAX_METADATA_BYTES)
     try:
         text = text_bytes.decode("utf-8-sig")
-        meta = json.loads(meta_bytes.decode("utf-8-sig"))
+        meta = json.loads(
+            meta_bytes.decode("utf-8-sig"), object_pairs_hook=_reject_duplicate_json_keys
+        )
     except (UnicodeError, json.JSONDecodeError) as exc:
         raise ValueError("text must be UTF-8 and metadata must be valid UTF-8 JSON") from exc
     if "\x00" in text:
