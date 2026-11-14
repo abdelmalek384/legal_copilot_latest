@@ -1498,12 +1498,22 @@ async function feedbackPage(){
  ].map(([value,label])=>h('option',{value,textContent:label})));
  const title=h('input',{required:true,minLength:3,maxLength:160,placeholder:ar?'عنوان مختصر للملاحظة':'Short feedback title'});
  const message=h('textarea',{required:true,minLength:10,maxLength:4000,rows:5,placeholder:ar?'اشرح الملاحظة أو الفكرة دون إدراج بيانات عملاء سرية.':'Describe the issue or idea. Do not include confidential client information.'});
+ const titleError=h('span',{id:'feedback-title-error',className:'bad',role:'alert',hidden:true,textContent:ar?'أدخل عنواناً من 3 أحرف على الأقل.':'Enter a title with at least 3 characters.'});
+ const messageError=h('span',{id:'feedback-message-error',className:'bad',role:'alert',hidden:true,textContent:ar?'اكتب وصفاً من 10 أحرف على الأقل.':'Enter a description with at least 10 characters.'});
+ title.setAttribute('aria-describedby',titleError.id);
+ message.setAttribute('aria-describedby',messageError.id);
+ [[title,titleError],[message,messageError]].forEach(([field,error])=>{
+  field.addEventListener('invalid',()=>{field.setAttribute('aria-invalid','true');error.hidden=false});
+  field.addEventListener('input',()=>{if(field.checkValidity()){field.removeAttribute('aria-invalid');error.hidden=true}});
+ });
+ const titleField=h('label',{style:'display:block'},h('span',{className:'mut',textContent:ar?'عنوان الملاحظة':'Feedback title'}),title,titleError);
+ const messageField=h('label',{style:'display:block'},h('span',{className:'mut',textContent:ar?'تفاصيل الملاحظة':'Feedback details'}),message,messageError);
  const submit=h('button',{type:'submit',className:'primary',textContent:ar?'إرسال الملاحظة':'Submit feedback'});
  const form=h('form',{onsubmit:async ev=>{
   ev.preventDefault();submit.disabled=true;
   try{await api('/feedback','POST',{category:category.value,title:title.value,message:message.value,page_path:location.pathname});toast(ar?'تم إرسال الملاحظة لمسؤول المكتب':'Feedback submitted to your firm administrator');feedbackPage()}
   catch(_){submit.disabled=false}
- }},category,title,message,submit);
+ }},category,titleField,messageField,submit);
  const mine=await api('/feedback/mine').catch(()=>[]);
  const items=[
   h('section',{className:'card'},h('h3',{textContent:ar?'إرسال ملاحظة':'Send feedback'}),
