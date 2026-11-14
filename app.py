@@ -9733,6 +9733,33 @@ def list_firm_answer_ratings(
     return {"items": items, "total": int(total), "limit": limit, "offset": offset}
 
 
+def _answer_rating_export_trust_tier(message_json: object) -> str:
+    """Snapshot the answer's trust tier from immutable-at-answer-time metadata."""
+    try:
+        metadata = json.loads(message_json or "{}") if isinstance(message_json, (str, bytes)) else {}
+    except (TypeError, ValueError, UnicodeDecodeError):
+        metadata = {}
+    if not isinstance(metadata, dict):
+        return "unverified"
+    # Source-matched is an explicit answer-level classification and is never
+    # upgraded to lawyer-verified by the export.
+    if metadata.get("trust_tier") == "source_matched":
+        return "source_matched"
+    sources = metadata.get("sources")
+    if (
+        isinstance(sources, list)
+        and sources
+        and all(
+            isinstance(source, dict)
+            and source.get("verified") is True
+            and source.get("source_status") == "verified_operative_text"
+            for source in sources
+        )
+    ):
+        return "verified"
+    return "unverified"
+
+
 @app.get("/research/answer-ratings/export.csv")
 def export_firm_answer_ratings_csv(u: dict = Depends(user)):
     require_admin(u)
@@ -9750,7 +9777,7 @@ def export_firm_answer_ratings_csv(u: dict = Depends(user)):
     writer.writerow([
         "rating_id","answer_id","conversation_id","answer_message_id","question","answer",
         "rating","cited_article_accuracy","cited_article_ids","expected_article_ids",
-        "answerable","notes","rated_by","created_at","updated_at","benchmark_ready",
+        "answerable","notes","rated_by","created_at","updated_at","trust_tier","benchmark_ready",
     ])
     for row in rows:
         previous = c.execute(
@@ -9781,7 +9808,8 @@ def export_firm_answer_ratings_csv(u: dict = Depends(user)):
             question,row["answer_text"],row["rating"],row["cited_article_accuracy"],
             json.dumps(cited_ids,ensure_ascii=False),json.dumps(expected,ensure_ascii=False),
             "" if answerable is None else str(answerable).lower(),row["notes"],row["rated_by"],
-            row["created_at"],row["updated_at"],str(benchmark_ready).lower(),
+            row["created_at"],row["updated_at"],_answer_rating_export_trust_tier(row["message_json"]),
+            str(benchmark_ready).lower(),
         ]
         writer.writerow([_csv_safe_cell(value) for value in values])
     c.execute(
