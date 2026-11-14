@@ -36,6 +36,16 @@ def _nonempty(value):
     return isinstance(value, str) and bool(value.strip())
 
 
+def _reject_duplicate_json_keys(pairs):
+    """Reject ambiguous JSON objects instead of silently accepting the last duplicate key."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise EvidenceError("duplicate JSON object key: " + str(key))
+        result[key] = value
+    return result
+
+
 def _timestamp(value):
     if not _nonempty(value):
         return False
@@ -184,14 +194,14 @@ def load_records(path):
     if not raw.strip():
         raise EvidenceError("input file is empty")
     try:
-        parsed = json.loads(raw)
+        parsed = json.loads(raw, object_pairs_hook=_reject_duplicate_json_keys)
     except json.JSONDecodeError:
         records = []
         for line_number, line in enumerate(raw.splitlines(), 1):
             if not line.strip() or line.lstrip().startswith("#"):
                 continue
             try:
-                records.append(json.loads(line))
+                records.append(json.loads(line, object_pairs_hook=_reject_duplicate_json_keys))
             except json.JSONDecodeError as exc:
                 raise EvidenceError(f"{path}:{line_number}: invalid JSON: {exc.msg}") from exc
         return records
