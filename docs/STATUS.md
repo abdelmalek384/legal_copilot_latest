@@ -162,3 +162,11 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 
 
 - Exact-passage navigation commits: UI `fecfa00d0bf3c84eeb4317dcc82ed7dba3e115c3` and stale-target/failure cleanup `f29a6833d79316b182137ef45f3107a975399de6`; lifecycle regression contract `b60f8d5ea6d32bc68bbd306018619815ad9d6369`; updated inspector contract `71fef4ca4fedbe6e3afc99396adb4f2e415f611d`. Implementation is complete at source level; browser behavior remains unverified.
+
+
+## AI-2 extracted page-reference caveat — 2026-11-14
+
+- The matter extraction review now displays the recorded extracted page number with an explicit bilingual warning that the page reference has not been independently checked against the original file. The check accepts only a present page value and does not imply page-level verification.
+- Added a regression contract in `tests/test_document_classifications.py`, already registered in the existing workflow. Static inspection confirms the condition and both language strings; tests/browser review were not run.
+- Direct-main commits: UI `f8aa9a4d406ca92ef19bfe7c1c084f1a74e55c31`; regression `b6afb6de0b337b7db686340c7a8ef43db6e6ba89`.
+- **Bounded implementation task: 100%.** Independent page-by-page lawyer verification remains an operational/legal review requirement.
