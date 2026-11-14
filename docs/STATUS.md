@@ -152,10 +152,13 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 
 ## AI-2 source-inspector matter hand-off — 2026-11-14
 
-- The source inspector now displays firm-document matter/document/chunk IDs, SHA-256, extraction status, OCR-used state and the backend-reported retained-original state. It adds an explicit “Open matter Documents” action only when positive safe-integer matter/document IDs are present. It opens the matter's Documents section and does not claim to focus an exact chunk.
+- The source inspector now displays firm-document matter/document/chunk IDs, SHA-256, extraction status, OCR-used state and the backend-reported retained-original state. With valid matter/document IDs and a chunk ID it opens the matter's Documents section, expands the matching review panel and focuses/scrolls to the exact chunk. Without a chunk ID it offers only a matter-level Documents hand-off. Missing documents/chunks, request failures, close actions and manual section/firm/session changes clear the one-shot target.
 - Added a frontend contract test in the existing UX test module/workflow. Static assertions confirm metadata rendering, OCR/retention labels, matter-scope gating, action wiring and preservation of the answer-rating panel. No browser or Python test execution is claimed.
 - Direct-main commits: UI `044a7f6f0da3f7592c5cbdfaee7f2cb06412bce7`; regression `ffdcd6ed8415baad345dea83f7f39df2411acf7b`; source-inspector contract `ac674467c0110c41114c411d94c4b8dc8e0b47af`.
 - **Bounded implementation task: 100%.** Browser hand-off, screen-reader reading order and exact-chunk positioning remain unaccepted. No legal verification status is changed.
 
 
 - Follow-up source correction: `1714b2a109400807f598cf51aaeeb46fd4cee46f` corrected the generated settings-label element object syntax after static review. This is a source correction only; the inline JavaScript syntax workflow check has not been executed.
+
+
+- Exact-passage navigation commits: UI `fecfa00d0bf3c84eeb4317dcc82ed7dba3e115c3` and stale-target/failure cleanup `f29a6833d79316b182137ef45f3107a975399de6`; lifecycle regression contract `b60f8d5ea6d32bc68bbd306018619815ad9d6369`; updated inspector contract `71fef4ca4fedbe6e3afc99396adb4f2e415f611d`. Implementation is complete at source level; browser behavior remains unverified.
