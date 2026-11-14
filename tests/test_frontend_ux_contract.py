@@ -74,6 +74,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("targetCard.focus({preventScroll:true})", HTML)
         self.assertIn("targetCard.scrollIntoView", HTML)
         self.assertIn("window.DOCUMENT_REVIEW_TARGET=null;TAB=k;again()", HTML)
+        self.assertIn("PAGE='cases';window.DOCUMENT_REVIEW_TARGET=null;globalSearchResults.replaceChildren();view(item.id)", HTML)
         self.assertIn("reviewRequest++;if(window.DOCUMENT_REVIEW_TARGET", HTML)
         self.assertIn("window.DOCUMENT_REVIEW_TARGET=null;\n  body.append", HTML)
 
