@@ -145,6 +145,8 @@ class AnswerRatingRouteTests(unittest.TestCase):
         self.assertEqual(len(listed["items"]), 1)
         response = app.export_firm_answer_ratings_csv(self.user)
         self.assertTrue(response.body.startswith(b"\xef\xbb\xbf"))
+        self.assertIn(b"\r\n", response.body)
+        self.assertNotIn(b"\\r\\n", response.body)
         text = response.body.decode("utf-8-sig")
         rows = list(csv.DictReader(io.StringIO(text)))
         self.assertEqual(len(rows), 1)
