@@ -25,7 +25,7 @@ Until this policy is approved:
 - A deletion request requires a distinct second firm administrator to approve; execution requires a distinct active platform operator after firm/catalog disablement, membership/invitation revocation, integrity checks and storage reconciliation.
 - Any ambiguous object, missing byte, digest mismatch, staged copy, versioning ambiguity, failed conditional delete, or database commit failure blocks completion and enters manual review.
 - Never promise secure erasure of temporary plaintext or SSD/copy-on-write storage. Record cleanup as best-effort and use restricted encrypted staging.
-- Production S3 deletion remains blocked until the versioning architecture conflict and live AWS/IAM/KMS controls are resolved and independently accepted.
+- The former S3 versioning architecture conflict is resolved in repository code through separate never-versioned originals and versioned recovery-archive buckets. Production S3 deletion remains blocked until live AWS/IAM/KMS controls, enforced no-writer controls, approved retention semantics, and witnessed recovery/deletion acceptance are independently completed.
 
 These defaults are safeguards, not a retention schedule and not a substitute for a contract or legal review.
 
