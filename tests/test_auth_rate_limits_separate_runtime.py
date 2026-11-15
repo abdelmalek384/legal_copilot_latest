@@ -216,19 +216,21 @@ class SeparateRuntimeAuthenticationRateLimitTests(unittest.TestCase):
         self.assertEqual(row["failures"], 5)
         self.assertEqual(row["locked_until"], 0)
 
-    def test_production_login_fails_closed_without_dedicated_hmac_key(self):
+    def test_production_and_staging_login_fail_closed_without_dedicated_hmac_key(self):
         saved_key = os.environ.pop("COPILOT_IDENTITY_RATE_LIMIT_KEY", None)
         original_mode = app._environment_mode
         try:
-            app._environment_mode = "production"
-            response = self.client.post("/login", json={
-                "email": "rate-limit-owner@example.test", "password": "incorrect-password",
-            })
-            self.assertEqual(response.status_code, 503, response.text)
-            count = self.runtime.control_connection().execute(
-                "SELECT COUNT(*) FROM login_attempts"
-            ).fetchone()[0]
-            self.assertEqual(count, 0)
+            for mode in ("production", "staging"):
+                with self.subTest(mode=mode):
+                    app._environment_mode = mode
+                    response = self.client.post("/login", json={
+                        "email": "rate-limit-owner@example.test", "password": "incorrect-password",
+                    })
+                    self.assertEqual(response.status_code, 503, response.text)
+                    count = self.runtime.control_connection().execute(
+                        "SELECT COUNT(*) FROM login_attempts"
+                    ).fetchone()[0]
+                    self.assertEqual(count, 0)
         finally:
             app._environment_mode = original_mode
             if saved_key is not None:
