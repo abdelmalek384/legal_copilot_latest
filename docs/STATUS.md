@@ -201,3 +201,13 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Added duplicate-object-key rejection at every nesting depth to `tools/score_arabic_retrieval.py` and `tools/run_legal_eval.py`. Both JSONL loaders now fail closed instead of accepting Python JSON's last-key-wins behavior.
 - Added regression coverage for top-level and nested duplicates in `tests/test_score_arabic_retrieval.py` and `tests/test_legal_eval_runner.py`. Both modules are already registered in the Tests workflow.
 - Changes are on branch `ai1/reject-duplicate-jsonl-keys-mainline`; test execution remains unavailable. This is source/test implementation, not a test pass, legal review, or retrieval metric.
+
+
+## AI-2 account-recovery rate-limit privacy hardening — 2026-11-15
+
+- Replaced the unkeyed SHA-256 email/IP rate-limit identifiers with purpose-separated HMAC-SHA-256 digests. A database-only reader can no longer test likely email addresses against the stored recovery-throttle keys without the dedicated secret.
+- Added `COPILOT_IDENTITY_RATE_LIMIT_KEY`; runtime recovery throttling fails closed if it is missing, short, placeholder-like, untrimmed, or reused from ADMIN_TOKEN, BACKUP_KEY or MFA_ENCRYPTION_KEY. Production and separate-runtime preflight require an independent secret of at least 32 bytes.
+- Updated the production environment template, deployment checklist and tenant-isolation inventory. Added regressions for the keyed email digest, missing-key fail-closed behavior, and deployment preflight requirements.
+- Direct-main commits: app `79a9f3c`, preflight `d467b40` and `1a92a42`, identity tests `d5a9f76`, `44f902b`, `ec525f2`, preflight test `4f08dfa`, runtime key validation `6cfb3d9`, environment/docs `fefea03`, `215df99`, `eaf70d4`.
+- **Bounded implementation task: 100%.** Static source inspection only; no repository tests or live multi-host rate-limit exercise were run. Production deployment must provision the new independent secret before enabling account recovery.
+
