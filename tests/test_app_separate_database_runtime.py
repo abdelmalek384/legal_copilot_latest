@@ -5868,5 +5868,59 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         finally:
             junior.close()
 
+
+    def test_document_search_and_matter_indexes_do_not_cross_firm_boundaries(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        selected_a = self._mutate("post", "/session/firm", json={"firm_id": self.firm_a})
+        self.assertEqual(selected_a.status_code, 200, selected_a.text)
+
+        created = self._mutate(
+            "post", "/cases", json={"title": "FIRM_A_PRIVATE_SEARCH_SENTINEL"}
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        first = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={"name": "private-alpha.txt", "text": "FIRM_A_PRIVATE_TEXT_SENTINEL جلسة بتاريخ 15/03/2025."},
+        )
+        second = self._mutate(
+            "post", f"/cases/{case_id}/docs",
+            json={"name": "private-beta.txt", "text": "FIRM_A_SECOND_PRIVATE_TEXT_SENTINEL المدعي: طرف سري."},
+        )
+        self.assertEqual(first.status_code, 200, first.text)
+        self.assertEqual(second.status_code, 200, second.text)
+
+        # The same global identity is also a member of Firm B. Switching firms
+        # must make Firm A's matter and document-derived indexes unreachable.
+        selected_b = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(selected_b.status_code, 200, selected_b.text)
+        for url in (
+            f"/cases/{case_id}/documents/timeline",
+            f"/cases/{case_id}/documents/entity-mentions",
+        ):
+            denied = self.client.get(url)
+            self.assertEqual(denied.status_code, 404, f"{url}: {denied.text}")
+
+        metadata = self.client.get("/documents/search?q=FIRM_A_PRIVATE")
+        self.assertEqual(metadata.status_code, 200, metadata.text)
+        self.assertEqual(metadata.json()["total"], 0)
+        extracted = self.client.get("/documents/search-text?q=FIRM_A_PRIVATE_TEXT_SENTINEL")
+        self.assertEqual(extracted.status_code, 200, extracted.text)
+        self.assertEqual(extracted.json()["total"], 0)
+
+        comparison = self.client.get(
+            "/documents/compare",
+            params={
+                "case_id": case_id,
+                "before_document_id": first.json()["document_id"],
+                "after_document_id": second.json()["document_id"],
+            },
+        )
+        self.assertEqual(comparison.status_code, 404, comparison.text)
+
+
 if __name__ == "__main__":
     unittest.main()
