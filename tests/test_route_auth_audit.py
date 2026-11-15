@@ -25,7 +25,7 @@ def private():
 '''
         report = audit_source(source)
         self.assertEqual(report["missing_authentication"], [
-            "GET /private (private) has no Depends(user) authentication"
+            "GET /private (private) in app.py has no Depends(user) authentication"
         ])
 
     def test_accepts_dependency_in_multiline_signature(self):
@@ -52,8 +52,8 @@ def private():
 '''
         report = audit_source(source)
         self.assertEqual(report["missing_authentication"], [
-            "GET /private (private) has no Depends(user) authentication",
-            "POST /private (private) has no Depends(user) authentication",
+            "GET /private (private) in app.py has no Depends(user) authentication",
+            "POST /private (private) in app.py has no Depends(user) authentication",
         ])
 
     def test_public_allowlist_must_match_registered_routes(self):
