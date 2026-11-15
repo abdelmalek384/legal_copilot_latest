@@ -170,31 +170,36 @@ class SeparateRuntimeAuthenticationRateLimitTests(unittest.TestCase):
         self.assertFalse(any("testclient" in key or key.startswith("ip:") for key in keys))
         self.assertTrue(all(len(key) == 64 and all(ch in "0123456789abcdef" for ch in key) for key in keys))
 
-    def test_production_api_middleware_stores_hmac_ip_keys_and_fails_closed_without_key(self):
+    def test_production_and_staging_api_middleware_hmac_ip_keys_and_fail_closed_without_key(self):
         original_mode = app._environment_mode
-        peer = "198.51.100.40"
-        request = self._request("/search", client_ip=peer)
-        expected = app._identity_rate_limit_digest(peer, purpose="middleware_ip:/search")
+        peers = ("198.51.100.40", "198.51.100.42")
         try:
-            app._environment_mode = "production"
-            self.assertEqual(app._rate_limit(request), 0)
-            row = self.runtime.control_connection().execute(
-                "SELECT client_key FROM api_rate_limit_windows WHERE bucket='/search' "
-                "ORDER BY window_start DESC LIMIT 1"
-            ).fetchone()
-            self.assertIsNotNone(row)
-            self.assertEqual(row["client_key"], expected)
-            self.assertNotEqual(row["client_key"], peer)
+            for mode, peer in zip(("production", "staging"), peers):
+                with self.subTest(mode=mode):
+                    app._environment_mode = mode
+                    request = self._request("/search", client_ip=peer)
+                    expected = app._identity_rate_limit_digest(
+                        peer, purpose="middleware_ip:/search"
+                    )
+                    self.assertEqual(app._rate_limit(request), 0)
+                    row = self.runtime.control_connection().execute(
+                        "SELECT client_key FROM api_rate_limit_windows WHERE bucket='/search' "
+                        "AND client_key=?",
+                        (expected,),
+                    ).fetchone()
+                    self.assertIsNotNone(row)
+                    self.assertNotEqual(row["client_key"], peer)
 
             saved_key = os.environ.pop("COPILOT_IDENTITY_RATE_LIMIT_KEY", None)
             try:
+                app._environment_mode = "staging"
                 blocked = self._request("/search", client_ip="198.51.100.41")
                 retry_after = app._rate_limit(blocked)
                 self.assertGreater(retry_after, 0)
                 count = self.runtime.control_connection().execute(
                     "SELECT COUNT(*) FROM api_rate_limit_windows WHERE bucket='/search'"
                 ).fetchone()[0]
-                self.assertEqual(count, 1)
+                self.assertEqual(count, 2)
             finally:
                 if saved_key is not None:
                     os.environ["COPILOT_IDENTITY_RATE_LIMIT_KEY"] = saved_key
