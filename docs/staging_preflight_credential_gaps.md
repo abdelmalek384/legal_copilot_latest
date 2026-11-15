@@ -17,6 +17,7 @@ The preflight never prints secret values. It validates selected values and files
 | `ADMIN_TOKEN` | Non-placeholder secret of at least 32 characters | Generate/store it through the approved secret manager. Do not commit it or use an example value. |
 | `BACKUP_KEY` | Valid Fernet key | Protect separately; needed to encrypt/decrypt tenancy bundles. |
 | `MFA_ENCRYPTION_KEY` | Valid Fernet key, distinct from `BACKUP_KEY` | Required in production. Do not reuse the backup key. |
+| `COPILOT_IDENTITY_RATE_LIMIT_KEY` | Independent non-placeholder secret of at least 32 bytes | Required for production and separate-runtime preflight; HMAC-pseudonymizes account-recovery throttle keys. Must differ from `ADMIN_TOKEN`, `BACKUP_KEY`, and `MFA_ENCRYPTION_KEY`. |
 | `COPILOT_EMAIL_SMTP_USERNAME` / `COPILOT_EMAIL_SMTP_PASSWORD` | Optional authentication pair | Both may be empty if the SMTP relay does not require authentication; if one is set, both must be set. Store any values in the secret manager. |
 | `LLM_KEY` | Not required by preflight | Supply only if the selected endpoint requires it. Model processing remains disabled unless the separate approval flags are explicitly set to `1`. |
 
@@ -39,7 +40,7 @@ Static AWS access keys are not individually checked by this preflight. Prefer th
 
 ## Expected credential-related failures on an empty template
 
-With secrets intentionally absent, expect failures for `ADMIN_TOKEN`, `BACKUP_KEY`, and `MFA_ENCRYPTION_KEY`. SMTP username/password do **not** fail when both are blank; the SMTP host/sender/transport configuration still must be complete. Any model API key is optional unless the chosen provider requires it, and the model approval flags must remain unset until the data-processing review is complete.
+With secrets intentionally absent, expect failures for `ADMIN_TOKEN`, `BACKUP_KEY`, `MFA_ENCRYPTION_KEY`, and `COPILOT_IDENTITY_RATE_LIMIT_KEY`. SMTP username/password do **not** fail when both are blank; the SMTP host/sender/transport configuration still must be complete. Any model API key is optional unless the chosen provider requires it, and the model approval flags must remain unset until the data-processing review is complete.
 
 Other failures from an untouched template are configuration or host-readiness failures, not missing credentials. Do not classify missing S3 bucket names, regions, KMS key IDs, public origin, allowed hosts, database paths, secure-cookie policy, or MFA policy as credentials.
 
@@ -47,7 +48,7 @@ Other failures from an untouched template are configuration or host-readiness fa
 
 1. Create the three database parent paths and tenant root with owner-only permissions for the service identity.
 2. Populate non-secret host/origin/SMTP/S3/MFA configuration from the staging operator; do not fabricate values.
-3. Inject `ADMIN_TOKEN`, `BACKUP_KEY`, and a distinct `MFA_ENCRYPTION_KEY` from the protected secret manager.
+3. Inject `ADMIN_TOKEN`, `BACKUP_KEY`, a distinct `MFA_ENCRYPTION_KEY`, and an independent `COPILOT_IDENTITY_RATE_LIMIT_KEY` from the protected secret manager.
 4. Keep `LLM_URL`, `LLM_KEY`, `LLM_DATA_PROCESSING_APPROVED`, and `LLM_FIRM_DATA_PROCESSING_APPROVED` unset unless and until the provider and data-processing terms are approved.
 5. Run strict preflight and preserve its sanitized output. Resolve every FAIL and WARN; a preflight PASS validates configuration shape only.
 6. Separately verify Docker/Compose startup, reverse-proxy header overwrite, SMTP delivery, S3/KMS write/read/version recovery, MFA enrollment, backup restore, browser acceptance, and real-device acceptance.
