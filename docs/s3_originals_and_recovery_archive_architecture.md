@@ -1,19 +1,16 @@
 # Storage architecture decision — separate original objects from recovery archives
 
-**Status:** Proposed engineering decision; not approved for deployment.  
+**Status:** Two-bucket implementation merged; deployment-owner approval and live acceptance remain pending. Not approved for production use.  
 **Scope:** Greenfield first deployment. No legacy database or legacy-object migration is assumed.  
 **Decision owner:** Deployment/storage owner, with security review and qualified counsel approval for retention semantics.
 
-## Decision required
+## Decision status
 
-The current design has an impossible single-bucket requirement:
+The former single-bucket conflict is resolved in the repository implementation. The original-object preflight now requires a bucket that has never been versioned, matching the conditional physical-purge contract. A separate recovery-archive preflight requires versioning to be `Enabled`, and encrypted backup bundles are uploaded and retrieved by exact S3 `VersionId`. Both targets and both KMS keys are included in the non-secret storage-configuration fingerprint; deployment preflight rejects identical bucket names or KMS key identifiers.
 
-- `tools/validate_s3_original_file_storage.py` requires S3 bucket versioning to be `Enabled` for recovery/version-history protection.
-- `S3PrivateObjectStore.purge_unversioned()` requires the original-object bucket to be confirmed never-versioned and rejects both `Enabled` and `Suspended`.
+Do not weaken either bucket's versioning requirement. This resolves the code/configuration contradiction only; it does not establish deployed AWS configuration, effective IAM separation, approved retention semantics, or production readiness.
 
-One bucket cannot satisfy both. Neither check should be weakened to make the other pass.
-
-## Recommended target: two independent buckets
+## Implemented target: two independent buckets
 
 ### A. Original-object bucket
 
