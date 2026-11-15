@@ -5279,7 +5279,7 @@ def _identity_token_digest(token: str) -> str:
 
 
 def _identity_rate_limit_digest(value: str, *, purpose: str) -> str:
-    """Create a non-reversible, domain-separated identifier for recovery throttling."""
+    """Create a non-reversible, purpose-separated identifier for identity throttling."""
     key = os.environ.get("COPILOT_IDENTITY_RATE_LIMIT_KEY", "")
     weak_markers = ("change-me", "changeme", "example", "placeholder", "test-token", "your-secret")
     if (
@@ -5293,7 +5293,7 @@ def _identity_rate_limit_digest(value: str, *, purpose: str) -> str:
         }
     ):
         raise ValueError("identity rate-limit HMAC key is not configured as a dedicated secret")
-    message = ("legal-copilot:identity-recovery:" + purpose + ":" + value).encode("utf-8")
+    message = ("legal-copilot:identity-rate-limit:" + purpose + ":" + value).encode("utf-8")
     return hmac.new(key.encode("utf-8"), message, hashlib.sha256).hexdigest()
 
 
