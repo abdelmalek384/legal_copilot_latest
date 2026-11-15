@@ -243,3 +243,8 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Follow-up case-membership guard: `tests/test_tenant_route_inventory_coverage.py` now statically requires every `{cid}` route to call `need()` or the reviewed `delete_case()` wrapper. Commit `8ffdb15`; tenant inventory note committed with this status update.
 - Follow-up document binding guard: the same module now requires every `{document_id}` route to call `need()` and contain an explicit `firm_id` predicate/binding. Test commit `f34d661`; inventory note committed with this update.
 
+
+## AI-1 acquisition permission input integrity — 2026-11-15
+
+- Hardened `tools/validate_acquisition_readiness.py` to reject duplicate keys in collection manifests and source-permission register JSON. Added CLI regression tests for both input paths.
+- This preserves the source-rights fail-closed boundary; it does not grant collection or commercial reuse permission. Tests remain unexecuted.
