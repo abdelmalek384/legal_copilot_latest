@@ -353,12 +353,12 @@ def main():
         )
         questions = load_jsonl(args.questions)
         runs = load_jsonl(args.runs)
-        reviewer_registry = json.loads(Path(args.reviewer_registry).read_text(encoding="utf-8"))
+        reviewer_registry = json.loads(Path(args.reviewer_registry).read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
         metrics = score(questions, runs, reviewer_registry)
         digest = benchmark_fingerprint(questions)
         report_path = Path(args.output)
         if report_path.exists():
-            report = json.loads(report_path.read_text(encoding="utf-8"))
+            report = json.loads(report_path.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
         else:
             report = {"schema_version": 1, "benchmark_sha256": digest, "phases": {"before": None, "after": None}}
         if not isinstance(report, dict) or not isinstance(report.get("phases"), dict):
