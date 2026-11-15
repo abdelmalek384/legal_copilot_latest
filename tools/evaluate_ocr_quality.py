@@ -30,6 +30,19 @@ class OCREvaluationError(ValueError):
     pass
 
 
+class DuplicateJSONKeyError(ValueError):
+    """Raised when a JSON object repeats a key at any nesting depth."""
+
+
+def _reject_duplicate_json_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateJSONKeyError(f"duplicate JSON object key {key!r}")
+        result[key] = value
+    return result
+
+
 def normalize_arabic(text):
     text = unicodedata.normalize("NFKC", text).translate(DIGITS)
     text = DIACRITICS.sub("", text)
@@ -221,7 +234,9 @@ def read_jsonl(path):
         if not raw.strip():
             continue
         try:
-            rows.append(json.loads(raw))
+            rows.append(json.loads(raw, object_pairs_hook=_reject_duplicate_json_keys))
+        except DuplicateJSONKeyError as exc:
+            raise OCREvaluationError(f"{path}:{line_no}: {exc}") from exc
         except json.JSONDecodeError as exc:
             raise OCREvaluationError(f"{path}:{line_no}: invalid JSON: {exc.msg}") from exc
     return rows
