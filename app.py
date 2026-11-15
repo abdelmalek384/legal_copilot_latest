@@ -1,6 +1,6 @@
 """Legal copilot MVP: case workspace + hybrid law search + citation-checked answers.
 Run: pip install -r requirements.txt && uvicorn app:app --reload"""
-import base64, sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging, tempfile, socket, http.client
+import base64, sqlite3, re, json, os, io, csv, hmac, time, secrets, hashlib, threading, unicodedata, urllib.request, zipfile, ipaddress, logging, tempfile, socket, http.client, math
 from pathlib import Path
 from cryptography.fernet import Fernet
 import deadline_calculator as deadline_calc
@@ -3648,9 +3648,25 @@ def ocr_pdf_text(data, lang=None, max_pages=30, existing_pages=None):
                 if not _OCR_SEMAPHORE.acquire(timeout=5):
                     raise HTTPException(503, "OCR capacity is temporarily exhausted; retry the upload")
                 try:
-                    # Gate rasterization as well as Tesseract: rendering a page is
-                    # itself CPU- and memory-intensive for hostile/scanned PDFs.
-                    pix = page.get_pixmap(dpi=160, alpha=False)
+                    # Gate rasterization itself: a small PDF can declare an
+                    # enormous page box and force get_pixmap to allocate a huge bitmap.
+                    dpi = 160
+                    max_pixels = _positive_int_env("OCR_MAX_PIXELS", 40_000_000)
+                    max_dimension = _positive_int_env("OCR_MAX_DIMENSION", 20_000)
+                    width_points = float(page.rect.width)
+                    height_points = float(page.rect.height)
+                    if (not math.isfinite(width_points) or not math.isfinite(height_points)
+                            or width_points <= 0 or height_points <= 0):
+                        raise HTTPException(413, "PDF page has invalid dimensions for OCR")
+                    pixel_width = math.ceil(width_points * dpi / 72)
+                    pixel_height = math.ceil(height_points * dpi / 72)
+                    if (pixel_width > max_dimension or pixel_height > max_dimension
+                            or pixel_width * pixel_height > max_pixels):
+                        raise HTTPException(413, "PDF page exceeds the configured OCR raster limit")
+                    pix = page.get_pixmap(dpi=dpi, alpha=False)
+                    if (pix.width > max_dimension or pix.height > max_dimension
+                            or pix.width * pix.height > max_pixels):
+                        raise HTTPException(413, "PDF renderer exceeded the configured OCR raster limit")
                     image = Image.open(io.BytesIO(pix.tobytes("png")))
                     page_text = pytesseract.image_to_string(image, lang=lang, timeout=30).strip()
                 finally:
