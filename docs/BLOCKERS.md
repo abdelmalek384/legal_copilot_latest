@@ -77,6 +77,12 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - Added focused top-level/nested duplicate-key regressions to the existing registered test modules. Malformed article-audit/comparison rows are excluded and counted/warned rather than silently using a last duplicate value.
 - Changes are on branch `ai1/strict-jsonl-evidence-evaluators`; tests remain unexecuted because runner/billing access is unavailable. No legal corpus status or evaluation result is promoted.
 
+## Legal release-gate and drafting JSON ambiguity hardening — 2026-11-15
+
+- The production release gate now rejects duplicate keys in candidate legal-source JSON and the private reviewer registry. Ambiguous candidate records are excluded from the ready-source index; duplicate reviewer-registry keys fail the CLI before release evaluation.
+- The legal draft builder rejects duplicate keys in structured draft input rather than silently selecting the last value. Added focused regressions to the existing production-gate and draft-builder test modules.
+- Source/test changes are on `ai1/strict-release-json-inputs`; tests remain unexecuted due runner/billing unavailability. This does not approve any candidate source or draft.
+
 ## External blockers: do not spend repeated effort looping
 
 ### Test execution / CI runner availability

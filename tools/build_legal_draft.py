@@ -144,6 +144,19 @@ def render_draft(payload: dict[str, Any]) -> str:
     ]
     return "\n".join(lines)
 
+class DuplicateJSONKeyError(ValueError):
+    """Raised when a legal-draft input object repeats a key."""
+
+
+def _reject_duplicate_json_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateJSONKeyError(f"duplicate JSON object key {key!r}")
+        result[key] = value
+    return result
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("input", type=Path, help="Path to a structured JSON input file")
@@ -152,7 +165,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.output:
             ensure_output_paths_safe([args.output], [args.input])
-        payload = json.loads(args.input.read_text(encoding="utf-8"))
+        payload = json.loads(args.input.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
         result = render_draft(payload)
         if args.output:
             args.output.parent.mkdir(parents=True, exist_ok=True)
