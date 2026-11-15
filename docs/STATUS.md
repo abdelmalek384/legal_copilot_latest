@@ -242,6 +242,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - **Bounded implementation task: 100%.** This is a static dependency-presence guard only. It does not establish role-level authorization, case membership, tenant SQL scoping, or route behavior. The test and strict audit commands have not been run due the GitHub billing/runner constraint.
 - Follow-up case-membership guard: `tests/test_tenant_route_inventory_coverage.py` now statically requires every `{cid}` route to call `need()` or the reviewed `delete_case()` wrapper. Commit `8ffdb15`; tenant inventory note committed with this status update.
 - Follow-up document binding guard: the same module now requires every `{document_id}` route to call `need()` and contain an explicit `firm_id` predicate/binding. Test commit `f34d661`; inventory note committed with this update.
+- Query-based document boundary guard: source regression now pins firm/membership predicates for extracted-text search, metadata search, and document-version comparison. Test commit `e40088d`; inventory note committed with this update.
 
 
 ## AI-1 acquisition permission input integrity — 2026-11-15
