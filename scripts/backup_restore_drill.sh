@@ -47,6 +47,26 @@ if [[ ! -d "$restore_parent" || -L "$restore_parent" ]]; then
   echo "ERROR: RESTORE_PARENT must be an existing real directory." >&2
   exit 2
 fi
+
+# Resolve physical directory paths before constructing any output path. The
+# backup tree and restore tree must be disjoint: otherwise a restore can be
+# created inside the backup retention tree (or vice versa), contaminating
+# subsequent backup selection and cleanup.
+backup_dir_real=$(cd -- "$backup_dir" && pwd -P)
+restore_parent_real=$(cd -- "$restore_parent" && pwd -P)
+case "$backup_dir_real/" in
+  "$restore_parent_real/"*)
+    echo "ERROR: BACKUP_DIR and RESTORE_PARENT must not overlap." >&2
+    exit 2
+    ;;
+esac
+case "$restore_parent_real/" in
+  "$backup_dir_real/"*)
+    echo "ERROR: BACKUP_DIR and RESTORE_PARENT must not overlap." >&2
+    exit 2
+    ;;
+esac
+
 if [[ "$restore_name" == "" || "$restore_name" == "." || "$restore_name" == ".." || "$restore_name" == */* ]]; then
   echo "ERROR: RESTORE_NAME must be one plain directory name." >&2
   exit 2
