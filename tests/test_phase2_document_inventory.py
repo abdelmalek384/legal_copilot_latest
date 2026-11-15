@@ -1,4 +1,5 @@
 import copy
+import tempfile
 from urllib.parse import urlsplit
 import json
 import sys
