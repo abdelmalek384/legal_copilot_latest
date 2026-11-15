@@ -216,3 +216,8 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 
 - Follow-up hardening extends duplicate-key rejection to `tools/validate_law14_eval_draft.py` and `tools/evaluate_ocr_quality.py`, covering nested as well as top-level objects. The scorer and API runner guards were merged in PR #1621.
 - Added corresponding tests in the already workflow-registered Law 14 draft-validator and OCR evaluation test modules. This branch is source/test implementation only; execution remains blocked and no test pass is claimed.
+
+## AI-1 human-review input integrity — 2026-11-15
+
+- `tools/evaluate_legal_answer_reviews.py` now rejects duplicate keys at every nesting depth in review JSONL records and in the private reviewer-registry JSON file. Added regressions for conflicting assessment fields, nested score fields and duplicate registry keys.
+- The existing review-evaluation test module is already workflow-registered. Execution remains blocked; this is source implementation only and does not establish reviewer credentials or legal accuracy.
