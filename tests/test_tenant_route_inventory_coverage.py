@@ -1,4 +1,5 @@
 """Require every registered FastAPI route to appear in the tenant-isolation review inventory."""
+import ast
 import unittest
 from pathlib import Path
 
@@ -102,6 +103,43 @@ class TenantRouteInventoryCoverageTests(unittest.TestCase):
             unprotected,
             "New routes must authenticate through app.user or be explicitly reviewed as public:\\n"
             + "\\n".join(sorted(unprotected)),
+        )
+
+
+    def test_every_case_id_route_checks_case_membership_before_access(self):
+        source = (ROOT / "app.py").read_text(encoding="utf-8")
+        tree = ast.parse(source)
+        missing = []
+        for node in ast.walk(tree):
+            if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                continue
+            for decorator in node.decorator_list:
+                if not (
+                    isinstance(decorator, ast.Call)
+                    and isinstance(decorator.func, ast.Attribute)
+                    and isinstance(decorator.func.value, ast.Name)
+                    and decorator.func.value.id == "app"
+                    and decorator.func.attr.lower() in {"get", "post", "put", "patch", "delete", "api_route"}
+                    and decorator.args
+                    and isinstance(decorator.args[0], ast.Constant)
+                    and isinstance(decorator.args[0].value, str)
+                    and "{cid}" in decorator.args[0].value
+                ):
+                    continue
+                calls = {
+                    item.func.id if isinstance(item.func, ast.Name)
+                    else item.func.attr if isinstance(item.func, ast.Attribute)
+                    else None
+                    for item in ast.walk(node) if isinstance(item, ast.Call)
+                }
+                # delete_case is the one intentional wrapper: it calls need()
+                # before reading or mutating the matter and its child records.
+                if not ({"need", "delete_case"} & calls):
+                    missing.append(f"{decorator.args[0].value} ({node.name})")
+        self.assertFalse(
+            missing,
+            "Every case-ID route must enforce need() or use the reviewed delete_case() guard: "
+            + ", ".join(sorted(missing)),
         )
 
     def test_inventory_declares_its_scope_limitations(self):
