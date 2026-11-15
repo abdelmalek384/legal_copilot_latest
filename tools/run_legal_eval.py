@@ -309,7 +309,7 @@ def _request_json(opener, url, payload, headers=None, timeout=180):
             raw = response.read(MAX_API_RESPONSE_BYTES + 1)
             if not isinstance(raw, bytes) or len(raw) > MAX_API_RESPONSE_BYTES:
                 raise RunnerError("API response exceeded the 16 MiB safety limit")
-            payload = json.loads(raw.decode("utf-8"))
+            payload = json.loads(raw.decode("utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
             if not isinstance(payload, dict):
                 raise RunnerError("API returned a JSON value that was not an object")
             return payload
@@ -318,6 +318,8 @@ def _request_json(opener, url, payload, headers=None, timeout=180):
         raise RunnerError(f"API request failed with HTTP {exc.code} at {url.rsplit('/', 1)[-1]}") from exc
     except urllib.error.URLError as exc:
         raise RunnerError(f"API request could not reach {url.rsplit('/', 1)[-1]}") from exc
+    except DuplicateJSONKeyError as exc:
+        raise RunnerError("API returned ambiguous JSON with duplicate object keys") from exc
     except (UnicodeDecodeError, json.JSONDecodeError) as exc:
         raise RunnerError("API returned a non-JSON response") from exc
 
