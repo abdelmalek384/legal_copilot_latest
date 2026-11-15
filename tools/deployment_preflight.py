@@ -278,6 +278,25 @@ def inspect_environment(env=None, *, require_separate=False):
         else:
             passed.append("BACKUP_KEY is a valid Fernet key; its value is not printed.")
 
+        rate_limit_key = env.get("COPILOT_IDENTITY_RATE_LIMIT_KEY", "")
+        weak_rate_limit_markers = ("change-me", "changeme", "example", "placeholder", "test-token", "your-secret")
+        if len(rate_limit_key.encode("utf-8")) < 32 or any(
+            marker in rate_limit_key.lower() for marker in weak_rate_limit_markers
+        ):
+            errors.append(
+                "COPILOT_IDENTITY_RATE_LIMIT_KEY must be a non-placeholder secret of at least 32 bytes in production."
+            )
+        elif rate_limit_key in {
+            token, backup_key, env.get("MFA_ENCRYPTION_KEY", "").strip()
+        }:
+            errors.append(
+                "COPILOT_IDENTITY_RATE_LIMIT_KEY must be distinct from ADMIN_TOKEN, BACKUP_KEY, and MFA_ENCRYPTION_KEY."
+            )
+        else:
+            passed.append(
+                "COPILOT_IDENTITY_RATE_LIMIT_KEY is a dedicated secret; its value is never printed."
+            )
+
     # Original matter binaries are confidential tenant data. A local filesystem
     # adapter is useful for development but is not a production storage boundary.
     # Production is restricted to S3, but configuration alone is insufficient:
