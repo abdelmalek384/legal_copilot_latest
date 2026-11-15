@@ -241,3 +241,8 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Direct-main commits: audit `c1b6268`; tests `9edc6c1`; CI `c1a0591`; tenant-isolation documentation `5851648`.
 - **Bounded implementation task: 100%.** This is a static dependency-presence guard only. It does not establish role-level authorization, case membership, tenant SQL scoping, or route behavior. The test and strict audit commands have not been run due the GitHub billing/runner constraint.
 
+
+## AI-1 amendment and source-foundation input integrity — 2026-11-15
+
+- Hardened amendment relationship/inventory JSON and legal foundation source-manifest/question JSONL parsing to reject duplicate keys at every nesting level. Added controlled error reporting and regression coverage.
+- Changes are on `ai1/strict-amendment-and-foundation-json-mainline`; tests remain unexecuted due GitHub runner/billing access. No legal relationships are confirmed and no source/question is promoted.
