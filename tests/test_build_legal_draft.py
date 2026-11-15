@@ -79,6 +79,17 @@ class DraftBuilderTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             render_draft(payload(as_of_date="not-a-date"))
 
+    def test_cli_rejects_duplicate_json_keys(self):
+        with tempfile.TemporaryDirectory() as temp:
+            source = Path(temp) / "case.json"
+            source.write_text(
+                '{"draft_type":"defense_memo","draft_type":"statement_of_claim"}',
+                encoding="utf-8",
+            )
+            with self.assertRaises(SystemExit) as raised:
+                main([str(source)])
+            self.assertEqual(raised.exception.code, 2)
+
     def test_cli_refuses_to_overwrite_input_json(self):
         with tempfile.TemporaryDirectory() as temp:
             source = Path(temp) / "case.json"
