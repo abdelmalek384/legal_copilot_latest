@@ -19,6 +19,17 @@ try:
 except ModuleNotFoundError:  # direct script execution from tools/
     from evaluate_legal_answer_reviews import validate_reviewer_registry
 
+class DuplicateJSONKeyError(ValueError):
+    """Raised when an evaluation JSON object repeats a key."""
+
+def _reject_duplicate_json_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateJSONKeyError(f"duplicate JSON object key {key!r}")
+        result[key] = value
+    return result
+
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_QUESTIONS = ROOT / "tests" / "legal_eval" / "practice_questions.seed.jsonl"
 DEFAULT_RUNS = ROOT / "tests" / "legal_eval" / "runs.example.jsonl"
@@ -33,7 +44,9 @@ def _load_jsonl(path):
             if not line.strip() or line.lstrip().startswith("#"):
                 continue
             try:
-                rows.append(json.loads(line))
+                rows.append(json.loads(line, object_pairs_hook=_reject_duplicate_json_keys))
+            except DuplicateJSONKeyError as exc:
+                raise ValueError(f"{path}:{line_number}: {exc}") from exc
             except json.JSONDecodeError as exc:
                 raise ValueError(f"{path}:{line_number}: invalid JSON: {exc}") from exc
     return rows
@@ -756,8 +769,8 @@ def main(argv=None):
     parser.add_argument("--max-unsafe-unverified-source-uses-per-practice-area", type=int)
     args = parser.parse_args(argv)
     try:
-        reviewer_registry = json.loads(args.reviewer_registry.read_text(encoding="utf-8"))
-    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        reviewer_registry = json.loads(args.reviewer_registry.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError, DuplicateJSONKeyError) as exc:
         parser.error(f"invalid reviewer registry: {exc}")
     for name in ("min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
                  "min_answerable_cases", "min_unanswerable_cases", "min_expected_pin_cites",
