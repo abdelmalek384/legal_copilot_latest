@@ -283,6 +283,17 @@ class CollectionPipelineTests(unittest.TestCase):
             self.assertEqual(json.loads(current.read_text(encoding="utf-8")), same_time_different_metadata)
             self.assertEqual({json.loads(p.read_text(encoding="utf-8"))["etag"] for p in history}, {'"first"', '"second"', '"third"'})
 
+    def test_metadata_persistence_refuses_duplicate_keys_in_current_pointer(self):
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td)
+            meta_dir = out / "metadata"
+            meta_dir.mkdir()
+            current = meta_dir / "TEST-LAW.json"
+            current.write_text('{"document_id":"TEST-LAW","document_id":"OTHER"}', encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "unreadable or ambiguous"):
+                collector.persist_metadata(out, "TEST-LAW", {"document_id": "TEST-LAW"})
+            self.assertEqual(current.read_text(encoding="utf-8"), '{"document_id":"TEST-LAW","document_id":"OTHER"}')
+
     def test_metadata_persistence_refuses_symlinked_current_pointer(self):
         with tempfile.TemporaryDirectory() as td:
             out = Path(td)
