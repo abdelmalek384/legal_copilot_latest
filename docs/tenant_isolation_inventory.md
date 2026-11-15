@@ -151,3 +151,10 @@ The preflight also flags document metadata and matter-child rows whose `case_id`
 
 The read-only ownership preflight now fails closed when the database is empty or lacks any core ownership table/column (`firms.id`, `users.id`, `users.firm_id`, `cases.id`, `cases.firm_id`). It returns `review_required` instead of treating an uninspectable schema as a clean ownership result. This detects only core schema readiness; it does not prove that all optional tables exist or that tenant isolation is enforced at runtime.
 | `GET /firm/data-export.zip` | Complete active-tenant export; admin-only, demo firms excluded; includes tenant matters/documents, verified original bytes, file-hold/deletion history, reminder communications/preferences, correction history, firm profile, subscription/payment history, usage/setup events, memberships and audit data; legal holds preserved; audit-on-success; 2/hour limit and 250 MB binary cap | `tests/test_firm_data_export.py` covers two-firm isolation, non-admin denial, demo exclusion, rate limit, CSV content, original-file integrity, control-plane firm data and audit event; no caller-selected tenant IDs are trusted |
+
+
+## Authentication dependency inventory gate
+
+A separate AST-based route-authentication inventory now enumerates every direct `app` route and requires an explicit `Depends(user)` dependency for every route outside the exact public allowlist: `GET /`, `POST /login`, `POST /invitations/accept/new`, `POST /account/recovery/request`, and `POST /account/recovery/consume`. It also fails if an allowlisted public route disappears, preventing stale exceptions from silently accumulating. The audit is registered as a strict CI gate alongside the route-to-SQL audit.
+
+This gate detects accidental removal of the authentication dependency; it does **not** prove role-level authorization, case membership, firm scoping, or correctness of SQL predicates. Those remain separate requirements for route/query behavioral review and adversarial tests.
