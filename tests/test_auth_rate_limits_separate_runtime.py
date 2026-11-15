@@ -170,6 +170,21 @@ class SeparateRuntimeAuthenticationRateLimitTests(unittest.TestCase):
         self.assertFalse(any("testclient" in key or key.startswith("ip:") for key in keys))
         self.assertTrue(all(len(key) == 64 and all(ch in "0123456789abcdef" for ch in key) for key in keys))
 
+    def test_hmac_ip_budget_keeps_the_higher_twenty_attempt_threshold(self):
+        for index in range(5):
+            response = self.client.post("/login", json={
+                "email": f"unknown-{index}@example.test", "password": "incorrect-password",
+            })
+            self.assertEqual(response.status_code, 401, response.text)
+        ip_key = app._identity_rate_limit_digest("testclient", purpose="login_ip")
+        row = self.runtime.control_connection().execute(
+            "SELECT failures,locked_until FROM login_attempts WHERE email=?",
+            (ip_key,),
+        ).fetchone()
+        self.assertIsNotNone(row)
+        self.assertEqual(row["failures"], 5)
+        self.assertEqual(row["locked_until"], 0)
+
     def test_production_login_fails_closed_without_dedicated_hmac_key(self):
         saved_key = os.environ.pop("COPILOT_IDENTITY_RATE_LIMIT_KEY", None)
         original_mode = app._environment_mode
