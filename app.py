@@ -224,7 +224,7 @@ if os.environ.get("COPILOT_DB", "").strip():
 
 # The shared-database runtime is retired in every environment; production additionally
 # requires explicit control-plane, tenant-root, and legal-corpus paths.
-if _environment_mode in {"prod", "production"}:
+if _environment_mode in {"prod", "production", "stage", "staging"}:
     required_paths = ("COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB")
     missing_paths = [name for name in required_paths if not os.environ.get(name, "").strip()]
     shared_path_set = bool(os.environ.get("COPILOT_DB", "").strip())
@@ -2345,7 +2345,7 @@ async def initialize_database_runtime_before_serving():
     if not _separate_runtime_enabled():
         # Explicit development/test compatibility harness only.
         return
-    if _environment_mode in {"prod", "production"}:
+    if _environment_mode in {"prod", "production", "stage", "staging"}:
         control_path = Path(os.environ["COPILOT_CONTROL_DB"])
         corpus_path = Path(os.environ["COPILOT_CORPUS_DB"])
         tenant_root = Path(os.environ["COPILOT_TENANT_DB_ROOT"])
@@ -2493,7 +2493,7 @@ def _rate_limit(request: Request):
         except ValueError:
             # Recovery fails closed rather than falling back to a raw IP key.
             return max(1, int(window_seconds))
-    elif _environment_mode in {"prod", "production"}:
+    elif _environment_mode in {"prod", "production", "stage", "staging"}:
         # Production API throttle rows must never persist source IP addresses.
         try:
             client_key = _identity_rate_limit_digest(
@@ -4049,7 +4049,7 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
             _identity_rate_limit_digest(ip, purpose="login_ip"),
         )
     except ValueError as exc:
-        if _environment_mode in {"prod", "production"}:
+        if _environment_mode in {"prod", "production", "stage", "staging"}:
             logger.error("Login throttling is unavailable because its HMAC key is not configured")
             raise HTTPException(503, "login is temporarily unavailable") from exc
         # Development-only compatibility for local test databases without the
