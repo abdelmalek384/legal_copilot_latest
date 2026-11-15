@@ -24,6 +24,7 @@ class IdentityLifecycleTests(unittest.TestCase):
             "COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB",
             "COPILOT_PUBLIC_BASE_URL", "COPILOT_ENV", "COPILOT_DB",
             "COPILOT_EMAIL_SMTP_HOST", "COPILOT_EMAIL_FROM",
+            "COPILOT_IDENTITY_RATE_LIMIT_KEY",
         )
         self.old_env = {name: os.environ.get(name) for name in self.env_names}
         os.environ["COPILOT_CONTROL_DB"] = str(self.root / "control.sqlite3")
@@ -34,6 +35,7 @@ class IdentityLifecycleTests(unittest.TestCase):
         os.environ.pop("COPILOT_DB", None)
         os.environ["COPILOT_EMAIL_SMTP_HOST"] = "smtp.example.test"
         os.environ["COPILOT_EMAIL_FROM"] = "legal-copilot@example.test"
+        os.environ["COPILOT_IDENTITY_RATE_LIMIT_KEY"] = "test-only-independent-rate-limit-secret-2026"
         app._database_runtime = None
         self.runtime = DatabaseRuntime.from_env()
         self.runtime.initialize()
@@ -383,7 +385,7 @@ class IdentityLifecycleTests(unittest.TestCase):
         rate_limit = control.execute(
             "SELECT hits FROM api_rate_limit_windows WHERE bucket='identity_recovery_email' "
             "AND client_key=?",
-            (hashlib.sha256(b"distributed-recovery@example.test").hexdigest(),),
+            (app._identity_rate_limit_digest("distributed-recovery@example.test", purpose="email"),),
         ).fetchone()
         self.assertEqual(rate_limit["hits"], 6)
         event = control.execute(
