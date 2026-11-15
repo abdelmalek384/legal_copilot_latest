@@ -162,6 +162,16 @@ class DeploymentPreflightTests(unittest.TestCase):
         self.assertTrue(any("All three profile-separated database paths are required" in item for item in errors))
         self.assertTrue(any("COPILOT_DB is retired" in item for item in errors))
 
+    def test_separate_runtime_requires_identity_recovery_hmac_key_outside_production(self):
+        env = dict(self.env)
+        env.pop("COPILOT_IDENTITY_RATE_LIMIT_KEY")
+        _, _, errors = preflight.inspect_environment(env)
+        self.assertTrue(any("COPILOT_IDENTITY_RATE_LIMIT_KEY must be" in item for item in errors))
+
+        env["COPILOT_IDENTITY_RATE_LIMIT_KEY"] = "independent-rate-limit-secret-material-2026"
+        _, _, errors = preflight.inspect_environment(env)
+        self.assertFalse(any("COPILOT_IDENTITY_RATE_LIMIT_KEY" in item for item in errors), errors)
+
     def test_production_requires_a_dedicated_identity_recovery_rate_limit_hmac_key(self):
         base = dict(
             self.env,
