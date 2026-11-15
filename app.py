@@ -9476,6 +9476,17 @@ def export_firm_data_zip(u: dict = Depends(user)):
                 "FROM firm_setup_events WHERE firm_id=? ORDER BY id", (firm_id,),
             )))
 
+            invalid_object_row = tenant.execute(
+                "SELECT 1 FROM original_file_objects o "
+                "LEFT JOIN docs d ON d.id=o.document_id "
+                "LEFT JOIN cases c ON c.id=d.case_id "
+                "WHERE o.firm_id<>? OR d.id IS NULL OR d.firm_id<>? "
+                "OR c.id IS NULL OR c.firm_id<>? LIMIT 1",
+                (firm_id, firm_id, firm_id),
+            ).fetchone()
+            if invalid_object_row is not None:
+                raise HTTPException(503, "original firm-file metadata failed tenant integrity checks")
+
             object_rows = tenant.execute(
                 "SELECT o.object_id,o.sha256,o.byte_size,o.content_type,o.state,o.legal_hold,"
                 "d.id AS document_id,d.name FROM original_file_objects o "
