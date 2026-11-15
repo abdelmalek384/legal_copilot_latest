@@ -274,3 +274,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 ## AI-1 Arabic scorer registry integrity — 2026-11-15
 
 - Completed strict duplicate-key parsing for the Arabic retrieval scorer's reviewer registry and existing metrics report. Added a CLI regression for duplicate reviewer-registry keys; test remains unexecuted.
+
+## AI-1 existing collection sidecar integrity — 2026-11-16
+
+- Hardened `--process-existing` metadata reads with a 1 MiB bounded regular-file read, no-follow open, file identity/change checks, UTF-8 parsing, and duplicate-key rejection. Added duplicate-key and symlink regressions. Tests remain unexecuted.
