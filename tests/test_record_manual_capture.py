@@ -8,6 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from tools import record_manual_capture as capture  # noqa: E402
 from tools.record_manual_capture import main  # noqa: E402
 
 TEXT = "مادة (1)\nنص تجريبي للمادة الأولى.\n\nمادة (2)\nنص تجريبي للمادة الثانية.\n" + ("وصف إضافي لاستيفاء الحد الأدنى للطول. " * 12)
@@ -22,6 +23,30 @@ def run(*argv):
 
 
 class RecordManualCaptureTests(unittest.TestCase):
+    def test_existing_capture_metadata_rejects_duplicate_keys_at_all_depths(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "capture.json"
+            for raw in (
+                '{"document_id":"LAW-1","document_id":"LAW-2"}',
+                '{"document_id":"LAW-1","review":{"status":"pending","status":"approved"}}',
+            ):
+                path.write_text(raw, encoding="utf-8")
+                with self.subTest(raw=raw), self.assertRaisesRegex(ValueError, "unreadable, ambiguous, or unsafe"):
+                    capture.load_existing_capture_metadata(path)
+
+    def test_existing_capture_metadata_rejects_symlink(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            target = root / "target.json"
+            target.write_text('{"document_id":"LAW-1"}', encoding="utf-8")
+            link = root / "capture.json"
+            try:
+                link.symlink_to(target)
+            except (OSError, NotImplementedError) as exc:
+                self.skipTest(f"symlink creation unavailable: {type(exc).__name__}")
+            with self.assertRaisesRegex(ValueError, "unreadable, ambiguous, or unsafe"):
+                capture.load_existing_capture_metadata(link)
+
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.dir = Path(self.tmp.name)

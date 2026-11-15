@@ -129,6 +129,11 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - The collector's `--process-existing` path now uses a bounded regular-file reader with `O_NOFOLLOW`, inode identity checks, and strict duplicate-key JSON parsing for prior metadata sidecars. A symlink swap or ambiguous provenance record cannot silently redirect reprocessing.
 - Added regressions for top-level/nested duplicate keys and symlinked sidecars. Tests remain unexecuted because hosted runners are unavailable.
 
+## Manual capture sidecar integrity — 2026-11-16
+
+- The manual-capture rerun path now uses bounded regular-file reads, `O_NOFOLLOW` where available, inode/metadata-change checks, and strict duplicate-key JSON parsing for existing sidecars. It refuses ambiguous or symlinked provenance rather than overwriting it.
+- Added regressions for duplicate top-level/nested keys and symlinked sidecars. Tests remain unexecuted because hosted runners are unavailable.
+
 ## External blockers: do not spend repeated effort looping
 
 ### Test execution / CI runner availability

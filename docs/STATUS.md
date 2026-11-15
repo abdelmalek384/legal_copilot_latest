@@ -278,3 +278,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 ## AI-1 existing collection sidecar integrity — 2026-11-16
 
 - Hardened `--process-existing` metadata reads with a 1 MiB bounded regular-file read, no-follow open, file identity/change checks, UTF-8 parsing, and duplicate-key rejection. Added duplicate-key and symlink regressions. Tests remain unexecuted.
+
+## AI-1 manual capture sidecar integrity — 2026-11-16
+
+- Hardened `tools/record_manual_capture.py` when reusing existing metadata: bounded 1 MiB regular-file read, no-follow open, inode/change checks and duplicate-key rejection. Added duplicate-key and symlink regressions. Test execution remains blocked.
