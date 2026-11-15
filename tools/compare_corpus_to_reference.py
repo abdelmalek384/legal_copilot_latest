@@ -3,6 +3,15 @@ import argparse,difflib,hashlib,json,re,shutil,subprocess,sys,unicodedata
 from pypdf import PdfReader
 from collections import Counter
 from pathlib import Path
+class DuplicateJSONKeyError(ValueError):
+ def __init__(self,key):super().__init__(f"duplicate JSON object key {key!r}")
+def _reject_duplicate_json_keys(pairs):
+ result={}
+ for key,value in pairs:
+  if key in result:raise DuplicateJSONKeyError(key)
+  result[key]=value
+ return result
+
 ROOT=Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:sys.path.insert(0,str(ROOT))
 from tools.output_path_safety import ensure_output_paths_safe
@@ -140,8 +149,8 @@ def readcand(p):
  out=[];warn=[];seen=Counter()
  for i,line in enumerate(Path(p).read_text(encoding="utf-8").splitlines(),1):
   if not line.strip():continue
-  try:r=json.loads(line)
-  except json.JSONDecodeError:warn.append(f"Malformed JSON on line {i}; skipped.");continue
+  try:r=json.loads(line,object_pairs_hook=_reject_duplicate_json_keys)
+  except (json.JSONDecodeError,DuplicateJSONKeyError):warn.append(f"Malformed JSON on line {i}; skipped.");continue
   if not isinstance(r,dict):warn.append(f"Non-object JSON on line {i}; skipped.");continue
   k=label(r.get("article",r.get("label")));t=r.get("text",r.get("body"))
   if k is None or not isinstance(t,str):warn.append(f"Unlabelled row or missing text on line {i}; skipped.");continue
