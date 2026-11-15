@@ -281,8 +281,10 @@ def inspect_environment(env=None, *, require_separate=False):
     if production or require_separate:
         rate_limit_key = env.get("COPILOT_IDENTITY_RATE_LIMIT_KEY", "")
         weak_rate_limit_markers = ("change-me", "changeme", "example", "placeholder", "test-token", "your-secret")
-        if len(rate_limit_key.encode("utf-8")) < 32 or any(
-            marker in rate_limit_key.lower() for marker in weak_rate_limit_markers
+        if (
+            len(rate_limit_key.encode("utf-8")) < 32
+            or rate_limit_key != rate_limit_key.strip()
+            or any(marker in rate_limit_key.lower() for marker in weak_rate_limit_markers)
         ):
             errors.append(
                 "COPILOT_IDENTITY_RATE_LIMIT_KEY must be a non-placeholder secret of at least 32 bytes."
