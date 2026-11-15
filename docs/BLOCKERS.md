@@ -94,6 +94,11 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - The acquisition-readiness validator now rejects duplicate keys in both collection manifests and the canonical source-permission register. Ambiguous permission or scope fields cannot be silently resolved with last-key-wins behavior.
 - Added CLI regression coverage for duplicate manifest and register keys in the existing acquisition-readiness test module. Tests remain unexecuted because runner/billing access is unavailable.
 
+## Collection provenance metadata ambiguity hardening — 2026-11-15
+
+- The legal document collector now rejects duplicate keys when reading an existing current metadata pointer. It refuses to archive/overwrite ambiguous provenance rather than silently selecting one conflicting field value.
+- Added a regression asserting the ambiguous metadata remains byte-for-byte untouched. Test execution remains blocked by GitHub runner/billing availability.
+
 ## External blockers: do not spend repeated effort looping
 
 ### Test execution / CI runner availability
