@@ -389,9 +389,9 @@ def persist_metadata(out: Path, document_id: str, metadata: dict) -> Path:
         raise ValueError("current metadata file must not be a symbolic link")
     if current_path.exists():
         try:
-            previous = json.loads(current_path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError) as exc:
-            raise ValueError("existing metadata is unreadable; refusing to overwrite it") from exc
+            previous = json.loads(current_path.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+        except (OSError, json.JSONDecodeError, ValueError) as exc:
+            raise ValueError("existing metadata is unreadable or ambiguous; refusing to overwrite it") from exc
         if previous != metadata:
             _archive_metadata_version(meta_dir, document_id, previous)
     _archive_metadata_version(meta_dir, document_id, metadata)

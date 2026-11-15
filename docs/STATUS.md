@@ -248,3 +248,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 
 - Hardened `tools/validate_acquisition_readiness.py` to reject duplicate keys in collection manifests and source-permission register JSON. Added CLI regression tests for both input paths.
 - This preserves the source-rights fail-closed boundary; it does not grant collection or commercial reuse permission. Tests remain unexecuted.
+
+## AI-1 collection provenance integrity — 2026-11-15
+
+- `tools/collect_legal_documents.py` now parses existing current metadata pointers with the strict duplicate-key hook and refuses to overwrite ambiguous provenance. Added a preservation regression; test unexecuted.
