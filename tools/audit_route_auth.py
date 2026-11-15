@@ -71,7 +71,7 @@ def _route_methods(decorator: ast.AST) -> list[str]:
     if not isinstance(decorator.args[0], ast.Constant) or not isinstance(decorator.args[0].value, str):
         return []
     if method == "api_route":
-        methods = {"GET", "POST", "PUT", "PATCH", "DELETE"}
+        methods = {"GET"}
         for keyword in decorator.keywords:
             if keyword.arg == "methods" and isinstance(keyword.value, (ast.List, ast.Tuple, ast.Set)):
                 methods = {
