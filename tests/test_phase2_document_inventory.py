@@ -23,13 +23,21 @@ def _has_https_host(url, expected_host):
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from tools.validate_phase2_document_inventory import DEFAULT_PATH, validate_inventory
+from tools.validate_phase2_document_inventory import DEFAULT_PATH, load_inventory, validate_inventory
 
 
 class Phase2DocumentInventoryTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.inventory = json.loads(DEFAULT_PATH.read_text(encoding="utf-8"))
+
+    def test_inventory_loader_rejects_duplicate_keys_at_all_object_depths(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "inventory.json"
+            for raw in ('{"documents":[],"documents":[]}', '{"documents":[{"document_id":"LAW-1","metadata":{"review_status":"discovery_only","review_status":"verified"}}]}'):
+                path.write_text(raw, encoding="utf-8")
+                with self.subTest(raw=raw), self.assertRaisesRegex(ValueError, "duplicate JSON object key"):
+                    load_inventory(path)
 
     def test_current_inventory_is_metadata_only_and_structurally_valid(self):
         self.assertEqual(validate_inventory(self.inventory), [])
