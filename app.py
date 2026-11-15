@@ -3624,8 +3624,8 @@ def _positive_int_env(name, default):
         value = int(raw, 10)
     except (TypeError, ValueError) as exc:
         raise HTTPException(500, f"{name} must be a positive integer") from exc
-    if value < 1:
-        raise HTTPException(500, f"{name} must be a positive integer")
+    if value < 1 or value > default:
+        raise HTTPException(500, f"{name} must be between 1 and {default}; OCR limits may only be lowered")
     return value
 
 
