@@ -19,6 +19,19 @@ MIN_TARGET_COHORT_SIZE = 20
 MIN_TOTAL_REVIEWED_QUESTIONS = 100
 
 
+class DuplicateJSONKeyError(ValueError):
+    """Raised when a JSON object repeats a key at any nesting depth."""
+
+
+def _reject_duplicate_json_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateJSONKeyError(f"duplicate JSON object key {key!r}")
+        result[key] = value
+    return result
+
+
 def _is_one_of(value, choices):
     """Return false for malformed, unhashable JSON enum values."""
     return isinstance(value, str) and value in choices
@@ -30,7 +43,9 @@ def load_jsonl(path):
         if not raw.strip() or raw.lstrip().startswith("#"):
             continue
         try:
-            row = json.loads(raw)
+            row = json.loads(raw, object_pairs_hook=_reject_duplicate_json_keys)
+        except DuplicateJSONKeyError as exc:
+            raise ValueError(f"{path}:{line_no}: {exc}") from exc
         except json.JSONDecodeError as exc:
             raise ValueError(f"{path}:{line_no}: invalid JSON") from exc
         if not isinstance(row, dict):

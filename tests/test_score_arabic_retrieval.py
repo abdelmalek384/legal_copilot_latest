@@ -90,6 +90,21 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "not approved for this practice_area"):
             score([altered], [run], TEST_REVIEWER_REGISTRY)
 
+    def test_jsonl_loader_rejects_duplicate_keys_at_all_object_depths(self):
+        from tools.score_arabic_retrieval import load_jsonl
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "questions.jsonl"
+            for raw in (
+                '{"id":"Q1","id":"Q2"}',
+                '{"id":"Q1","metadata":{"review_status":"unreviewed","review_status":"lawyer_reviewed"}}',
+            ):
+                path.write_text(raw + "\n", encoding="utf-8")
+                with self.subTest(raw=raw), self.assertRaisesRegex(
+                    ValueError, r"1: duplicate JSON object key '"
+                ):
+                    load_jsonl(path)
+
     def test_cli_reports_malformed_json_without_traceback(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             questions = Path(temp_dir) / "questions.jsonl"

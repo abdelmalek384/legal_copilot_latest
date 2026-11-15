@@ -22,6 +22,19 @@ class RunnerError(RuntimeError):
     pass
 
 
+class DuplicateJSONKeyError(ValueError):
+    """Raised when a JSON object repeats a key at any nesting depth."""
+
+
+def _reject_duplicate_json_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateJSONKeyError(f"duplicate JSON object key {key!r}")
+        result[key] = value
+    return result
+
+
 MAX_API_RESPONSE_BYTES = 16 * 1024 * 1024
 
 
@@ -74,7 +87,9 @@ def read_questions(path, limit=None):
         if not raw.strip():
             continue
         try:
-            row = json.loads(raw)
+            row = json.loads(raw, object_pairs_hook=_reject_duplicate_json_keys)
+        except DuplicateJSONKeyError as exc:
+            raise RunnerError(f"{path}:{line_no}: {exc}") from exc
         except json.JSONDecodeError as exc:
             raise RunnerError(f"{path}:{line_no}: invalid JSON: {exc.msg}") from exc
         if not isinstance(row, dict) or not isinstance(row.get("id"), str) or not row["id"].strip():

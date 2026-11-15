@@ -1,6 +1,6 @@
 # Legal Copilot — release-candidate status
 
-**Updated:** 2026-11-14  
+**Updated:** 2026-11-15  
 **Decision:** **NOT READY** for lawyer pilot or production. This is an engineering checkpoint, not legal, security or operational certification. Historical tracker detail is archived at [STATUS history](archive/STATUS_history_through_2026-11-13.md).
 
 ## AI-1 delivery
@@ -195,3 +195,9 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Preserved the outstanding blockers: deployment-owner approval, live bucket/KMS/IAM evidence, enforced no-writer controls, counsel/security-approved retention semantics, witnessed restore/deletion drills and independent review.
 - Documentation commits: `9499e03`, `d4de53c`, `c3f09a5`, `e8452a1`.
 - **Bounded documentation correction: 100%.** No external acceptance is implied.
+
+## AI-1 evaluation JSONL integrity — 2026-11-15
+
+- Added duplicate-object-key rejection at every nesting depth to `tools/score_arabic_retrieval.py` and `tools/run_legal_eval.py`. Both JSONL loaders now fail closed instead of accepting Python JSON's last-key-wins behavior.
+- Added regression coverage for top-level and nested duplicates in `tests/test_score_arabic_retrieval.py` and `tests/test_legal_eval_runner.py`. Both modules are already registered in the Tests workflow.
+- Changes are on branch `ai1/reject-duplicate-jsonl-keys-mainline`; test execution remains unavailable. This is source/test implementation, not a test pass, legal review, or retrieval metric.

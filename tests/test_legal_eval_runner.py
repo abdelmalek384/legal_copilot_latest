@@ -291,6 +291,22 @@ class LegalEvalRunnerTests(unittest.TestCase):
                 result_from_response(question, {})
 
 
+    def test_question_loader_rejects_duplicate_json_keys_at_all_object_depths(self):
+        from tempfile import TemporaryDirectory
+        from pathlib import Path
+
+        with TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "questions.jsonl"
+            for raw in (
+                '{"id":"Q1","id":"Q2","question_ar":"سؤال"}',
+                '{"id":"Q1","question_ar":"سؤال","metadata":{"role":"reader","role":"admin"}}',
+            ):
+                path.write_text(raw + "\n", encoding="utf-8")
+                with self.subTest(raw=raw), self.assertRaisesRegex(
+                    RunnerError, r"1: duplicate JSON object key '"
+                ):
+                    read_questions(path)
+
     def test_api_response_reader_rejects_non_object_json_roots(self):
         class FakeOpener:
             def open(self, request, timeout=0):
