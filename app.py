@@ -3615,6 +3615,20 @@ def _extracted_text_content(text):
 _OCR_SEMAPHORE = threading.BoundedSemaphore(2)
 
 
+def _positive_int_env(name, default):
+    """Read a positive OCR resource limit; invalid operator configuration fails closed."""
+    raw = os.environ.get(name)
+    if raw is None:
+        return default
+    try:
+        value = int(raw, 10)
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(500, f"{name} must be a positive integer") from exc
+    if value < 1:
+        raise HTTPException(500, f"{name} must be a positive integer")
+    return value
+
+
 def ocr_pdf_text(data, lang=None, max_pages=30, existing_pages=None):
     """OCR scanned pages only when extracted text is missing; OCR text remains unverified.
 
