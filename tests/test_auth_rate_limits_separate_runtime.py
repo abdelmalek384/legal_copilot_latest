@@ -124,11 +124,14 @@ class SeparateRuntimeAuthenticationRateLimitTests(unittest.TestCase):
             # The same HMAC pseudonyms must enforce one shared control-plane
             # budget even when a different application worker receives login.
             app._database_runtime = worker_two
-            blocked = self.client.post("/login", json={
-                "email": "rate-limit-owner@example.test", "password": self.password,
-            })
-            self.assertEqual(blocked.status_code, 429, blocked.text)
-            self.assertGreater(int(blocked.headers.get("Retry-After", "0")), 0)
+            with self.assertRaises(app.HTTPException) as blocked:
+                app._login_separate(
+                    app.LoginIn(email="rate-limit-owner@example.test", password=self.password),
+                    self._request("/login"),
+                    app.Response(),
+                )
+            self.assertEqual(blocked.exception.status_code, 429)
+            self.assertGreater(int(blocked.exception.headers.get("Retry-After", "0")), 0)
         finally:
             app._database_runtime = original_runtime
             worker_two.close_current_thread()
