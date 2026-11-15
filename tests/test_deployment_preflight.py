@@ -161,6 +161,27 @@ class DeploymentPreflightTests(unittest.TestCase):
         self.assertTrue(any("All three profile-separated database paths are required" in item for item in errors))
         self.assertTrue(any("COPILOT_DB is retired" in item for item in errors))
 
+    def test_production_requires_a_dedicated_identity_recovery_rate_limit_hmac_key(self):
+        base = dict(
+            self.env,
+            COPILOT_ENV="production",
+            COPILOT_IDENTITY_RATE_LIMIT_KEY="independent-rate-limit-secret-material-2026",
+        )
+        passed, _, errors = preflight.inspect_environment(base)
+        self.assertFalse(any("COPILOT_IDENTITY_RATE_LIMIT_KEY" in item for item in errors), errors)
+        self.assertTrue(any("COPILOT_IDENTITY_RATE_LIMIT_KEY is a dedicated secret" in item for item in passed))
+
+        for invalid in ("", "short", "placeholder-rate-limit-secret-material"):
+            with self.subTest(invalid=invalid):
+                _, _, errors = preflight.inspect_environment(dict(
+                    base, COPILOT_IDENTITY_RATE_LIMIT_KEY=invalid
+                ))
+                self.assertTrue(any("COPILOT_IDENTITY_RATE_LIMIT_KEY must be" in item for item in errors))
+
+        reused = dict(base, COPILOT_IDENTITY_RATE_LIMIT_KEY=base["ADMIN_TOKEN"])
+        _, _, errors = preflight.inspect_environment(reused)
+        self.assertTrue(any("must be distinct from ADMIN_TOKEN" in item for item in errors))
+
     def test_production_requires_separate_paths_secure_origin_hosts_and_valid_backup_key(self):
         env = dict(self.env)
         env.pop("COPILOT_DB", None)
