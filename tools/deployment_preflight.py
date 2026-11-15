@@ -290,7 +290,7 @@ def inspect_environment(env=None, *, require_separate=False):
                 "COPILOT_IDENTITY_RATE_LIMIT_KEY must be a non-placeholder secret of at least 32 bytes."
             )
         elif rate_limit_key in {
-            token, env.get("BACKUP_KEY", "").strip(), env.get("MFA_ENCRYPTION_KEY", "").strip()
+            token.strip(), env.get("BACKUP_KEY", "").strip(), env.get("MFA_ENCRYPTION_KEY", "").strip()
         }:
             errors.append(
                 "COPILOT_IDENTITY_RATE_LIMIT_KEY must be distinct from ADMIN_TOKEN, BACKUP_KEY, and MFA_ENCRYPTION_KEY."
