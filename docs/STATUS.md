@@ -241,4 +241,5 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Direct-main commits: initial audit `c1b6268`; tests `9edc6c1`; CI `c1a0591`; tenant-isolation documentation `5851648`; mounted-router coverage `13e885c`; synthetic-test mode `c21571b`; current-app regression update `6bc0d99`.
 - **Bounded implementation task: 100%.** This is a static dependency-presence guard only. It does not establish role-level authorization, case membership, tenant SQL scoping, or route behavior. The test and strict audit commands have not been run due the GitHub billing/runner constraint.
 - Follow-up case-membership guard: `tests/test_tenant_route_inventory_coverage.py` now statically requires every `{cid}` route to call `need()` or the reviewed `delete_case()` wrapper. Commit `8ffdb15`; tenant inventory note committed with this status update.
+- Follow-up document binding guard: the same module now requires every `{document_id}` route to call `need()` and contain an explicit `firm_id` predicate/binding. Test commit `f34d661`; inventory note committed with this update.
 
