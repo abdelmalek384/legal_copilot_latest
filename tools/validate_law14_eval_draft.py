@@ -25,6 +25,19 @@ REQUIRED_NULL_FIELDS = (
     "reviewer_name",
     "review_date",
 )
+class DuplicateJSONKeyError(ValueError):
+    """Raised when a JSON object repeats a key at any nesting depth."""
+
+
+def _reject_duplicate_json_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateJSONKeyError(f"duplicate JSON object key {key!r}")
+        result[key] = value
+    return result
+
+
 REQUIRED_FALSE_FIELDS = (
     "source_text_page_reviewed",
     "amendment_history_verified",
@@ -41,7 +54,9 @@ def read_jsonl(path: Path) -> list[dict[str, Any]]:
             if not raw.strip() or raw.lstrip().startswith("#"):
                 continue
             try:
-                value = json.loads(raw)
+                value = json.loads(raw, object_pairs_hook=_reject_duplicate_json_keys)
+            except DuplicateJSONKeyError as exc:
+                raise ValueError(f"{path}:{line_number}: {exc}") from exc
             except json.JSONDecodeError as exc:
                 raise ValueError(f"{path}:{line_number}: invalid JSON: {exc.msg}") from exc
             if not isinstance(value, dict):
