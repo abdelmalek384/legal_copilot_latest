@@ -78,7 +78,9 @@ def _route_methods(decorator: ast.AST) -> list[str]:
     return [method.upper()]
 
 
-def audit_sources(sources: dict[str, str]) -> dict[str, Any]:
+def audit_sources(
+    sources: dict[str, str], *, require_public_routes: bool = True
+) -> dict[str, Any]:
     routes: list[dict[str, Any]] = []
     findings: list[str] = []
     seen_public: set[tuple[str, str]] = set()
@@ -117,7 +119,7 @@ def audit_sources(sources: dict[str, str]) -> dict[str, Any]:
     expected_public = {f"{method} {path}" for method, path in PUBLIC_ROUTES}
     observed_public = {f"{method} {path}" for method, path in seen_public}
     stale_public = sorted(expected_public - observed_public)
-    if stale_public:
+    if require_public_routes and stale_public:
         findings.extend(f"public allowlist entry is no longer a registered route: {item}" for item in stale_public)
 
     routes.sort(key=lambda item: (item["path"], item["method"], item["handler"]))
@@ -132,7 +134,7 @@ def audit_sources(sources: dict[str, str]) -> dict[str, Any]:
 
 def audit_source(source: str) -> dict[str, Any]:
     """Compatibility helper for focused, single-module synthetic tests."""
-    return audit_sources({"app.py": source})
+    return audit_sources({"app.py": source}, require_public_routes=False)
 
 
 def default_sources() -> dict[str, str]:
