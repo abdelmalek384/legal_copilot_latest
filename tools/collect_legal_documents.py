@@ -17,6 +17,7 @@ import mimetypes
 import os
 import re
 import socket
+import stat
 import sys
 import tempfile
 import time
