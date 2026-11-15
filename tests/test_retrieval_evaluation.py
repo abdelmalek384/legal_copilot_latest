@@ -73,6 +73,14 @@ class RetrievalEvaluationTests(unittest.TestCase):
                 _write_report(report, "replacement report\n")
             self.assertEqual(report.read_text(encoding="utf-8"), "first report\n")
 
+    def test_jsonl_loader_rejects_duplicate_keys_at_all_object_depths(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "questions.jsonl"
+            for raw in ('{"id":"Q1","id":"Q2"}', '{"id":"Q1","metadata":{"review_status":"draft","review_status":"lawyer_reviewed"}}'):
+                path.write_text(raw + "\n", encoding="utf-8")
+                with self.subTest(raw=raw), self.assertRaisesRegex(ValueError, "duplicate JSON object key"):
+                    _load_jsonl(path)
+
     def test_unreviewed_seed_questions_are_excluded_not_scored(self):
         seeds = _load_jsonl(DEFAULT_QUESTIONS)
         result = score_evaluation(seeds, [])
