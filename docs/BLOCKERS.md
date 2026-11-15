@@ -83,6 +83,12 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - The legal draft builder rejects duplicate keys in structured draft input rather than silently selecting the last value. Added focused regressions to the existing production-gate and draft-builder test modules.
 - Source/test changes are on `ai1/strict-release-json-inputs`; tests remain unexecuted due runner/billing unavailability. This does not approve any candidate source or draft.
 
+## Amendment and legal-foundation register ambiguity hardening — 2026-11-15
+
+- The amendment-relationship validator now rejects duplicate keys in both the amendment relationship register and document inventory JSON.
+- The legal-data foundation validator now rejects duplicate keys in the source manifest and Arabic evaluation question seeds, with controlled validation errors.
+- Added regressions for duplicate relationship-register keys and duplicate top-level/nested source/question keys. Existing test modules are already workflow-registered; execution remains unavailable.
+
 ## External blockers: do not spend repeated effort looping
 
 ### Test execution / CI runner availability
