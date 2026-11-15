@@ -16,9 +16,17 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 APP_FILE = ROOT / "app.py"
+ROUTER_FILES = (ROOT / "routers" / "platform.py", ROOT / "routers" / "identity.py")
 ROUTE_METHODS = {"get", "post", "put", "patch", "delete", "options", "head", "api_route"}
 PUBLIC_ROUTES = {
     ("GET", "/"),
+    ("GET", "/manifest.webmanifest"),
+    ("GET", "/service-worker.js"),
+    ("GET", "/offline.html"),
+    ("GET", "/app-icon.svg"),
+    ("GET", "/apple-touch-icon.png"),
+    ("GET", "/invite/accept"),
+    ("GET", "/account/recovery"),
     ("POST", "/login"),
     ("POST", "/invitations/accept/new"),
     ("POST", "/account/recovery/request"),
@@ -54,7 +62,7 @@ def _route_methods(decorator: ast.AST) -> list[str]:
     method = decorator.func.attr.lower()
     if method not in ROUTE_METHODS or not isinstance(decorator.func.value, ast.Name):
         return []
-    if decorator.func.value.id != "app" or not decorator.args:
+    if decorator.func.value.id not in {"app", "router"} or not decorator.args:
         return []
     if not isinstance(decorator.args[0], ast.Constant) or not isinstance(decorator.args[0].value, str):
         return []
@@ -70,37 +78,41 @@ def _route_methods(decorator: ast.AST) -> list[str]:
     return [method.upper()]
 
 
-def audit_source(source: str) -> dict[str, Any]:
-    tree = ast.parse(source)
+def audit_sources(sources: dict[str, str]) -> dict[str, Any]:
     routes: list[dict[str, Any]] = []
     findings: list[str] = []
     seen_public: set[tuple[str, str]] = set()
 
-    for node in ast.walk(tree):
-        if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
-            continue
-        for decorator in node.decorator_list:
-            methods = _route_methods(decorator)
-            if not methods:
+    for filename, source in sources.items():
+        tree = ast.parse(source, filename=filename)
+        for node in ast.walk(tree):
+            if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
                 continue
-            path = decorator.args[0].value
-            authenticated = (
-                _contains_user_dependency(node.args)
-                or _contains_user_dependency(decorator)
-            )
-            for method in methods:
-                key = (method, path)
-                is_public = key in PUBLIC_ROUTES
-                if is_public:
-                    seen_public.add(key)
-                elif not authenticated:
-                    findings.append(f"{method} {path} ({node.name}) has no Depends(user) authentication")
-                routes.append({
-                    "method": method,
-                    "path": path,
-                    "handler": node.name,
-                    "authentication": "public_allowlist" if is_public else ("Depends(user)" if authenticated else "missing"),
-                })
+            for decorator in node.decorator_list:
+                methods = _route_methods(decorator)
+                if not methods:
+                    continue
+                path = decorator.args[0].value
+                authenticated = (
+                    _contains_user_dependency(node.args)
+                    or _contains_user_dependency(decorator)
+                )
+                for method in methods:
+                    key = (method, path)
+                    is_public = key in PUBLIC_ROUTES
+                    if is_public:
+                        seen_public.add(key)
+                    elif not authenticated:
+                        findings.append(
+                            f"{method} {path} ({node.name}) in {filename} has no Depends(user) authentication"
+                        )
+                    routes.append({
+                        "method": method,
+                        "path": path,
+                        "handler": node.name,
+                        "source": filename,
+                        "authentication": "public_allowlist" if is_public else ("Depends(user)" if authenticated else "missing"),
+                    })
 
     expected_public = {f"{method} {path}" for method, path in PUBLIC_ROUTES}
     observed_public = {f"{method} {path}" for method, path in seen_public}
@@ -118,13 +130,27 @@ def audit_source(source: str) -> dict[str, Any]:
     }
 
 
+def audit_source(source: str) -> dict[str, Any]:
+    """Compatibility helper for focused, single-module synthetic tests."""
+    return audit_sources({"app.py": source})
+
+
+def default_sources() -> dict[str, str]:
+    paths = (APP_FILE, *ROUTER_FILES)
+    return {str(path.relative_to(ROOT)): path.read_text(encoding="utf-8") for path in paths}
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--app", type=Path, default=APP_FILE, help="FastAPI source file to audit")
+    parser.add_argument("--app", type=Path, default=None, help="Audit only this FastAPI source file (primarily for focused checks)")
     parser.add_argument("--strict", action="store_true", help="exit nonzero when authentication gaps exist")
     parser.add_argument("--json", action="store_true", help="emit the complete JSON inventory")
     args = parser.parse_args(argv)
-    report = audit_source(args.app.read_text(encoding="utf-8"))
+    sources = (
+        {args.app.name: args.app.read_text(encoding="utf-8")}
+        if args.app is not None else default_sources()
+    )
+    report = audit_sources(sources)
     if args.json:
         print(json.dumps(report, indent=2, ensure_ascii=False))
     else:
