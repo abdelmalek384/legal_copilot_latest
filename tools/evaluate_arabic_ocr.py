@@ -31,6 +31,17 @@ _TRANSLATION = str.maketrans({
 })
 
 
+class DuplicateJSONKeyError(ValueError):
+    """Raised when an OCR evaluation object repeats a key."""
+
+def _reject_duplicate_json_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateJSONKeyError(f"duplicate JSON object key {key!r}")
+        result[key] = value
+    return result
+
 def normalize_arabic(text):
     """Normalize common Arabic OCR variants while preserving punctuation and numbers."""
     text = unicodedata.normalize("NFKC", str(text or ""))
@@ -125,7 +136,9 @@ def main(argv=None):
                 if not line.strip():
                     continue
                 try:
-                    records.append(json.loads(line))
+                    records.append(json.loads(line, object_pairs_hook=_reject_duplicate_json_keys))
+                except DuplicateJSONKeyError as exc:
+                    raise ValueError(f"line {line_number}: {exc}") from exc
                 except json.JSONDecodeError as exc:
                     raise ValueError(f"line {line_number}: invalid JSON: {exc.msg}") from exc
         report = evaluate_records(records)

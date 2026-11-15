@@ -47,6 +47,17 @@ STYLE_PAIRS = [("فى", "في"), ("التى", "التي"), ("الذى", "الذ�
 ARABIC_LETTER = "ء-ي"
 
 
+class DuplicateJSONKeyError(ValueError):
+    """Raised when an article-row JSON object repeats a key."""
+
+def _reject_duplicate_json_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateJSONKeyError(f"duplicate JSON object key {key!r}")
+        result[key] = value
+    return result
+
 def norm(text):
     return unicodedata.normalize("NFKC", text).translate(AD)
 
@@ -58,8 +69,8 @@ def load_rows(path):
             if not line.strip():
                 continue
             try:
-                row = json.loads(line)
-            except json.JSONDecodeError:
+                row = json.loads(line, object_pairs_hook=_reject_duplicate_json_keys)
+            except (json.JSONDecodeError, DuplicateJSONKeyError):
                 malformed += 1
                 continue
             if isinstance(row, dict) and isinstance(row.get("text"), str):

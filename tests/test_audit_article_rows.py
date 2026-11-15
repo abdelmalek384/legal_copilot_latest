@@ -33,6 +33,14 @@ class AuditArticleRowsTests(unittest.TestCase):
             self.assertEqual(source.read_bytes(), original)
 
 
+    def test_duplicate_json_keys_are_counted_as_malformed(self):
+        with tempfile.TemporaryDirectory() as temp:
+            source = Path(temp) / "rows.jsonl"
+            source.write_text('{"law":"A","law":"B","article":"1","text":"text"}' + chr(10), encoding="utf-8")
+            rows, malformed = load_rows(source)
+            self.assertEqual(rows, [])
+            self.assertEqual(malformed, 1)
+
     def test_clean_rows_have_no_findings(self):
         report = audit(make_rows())
         info = report["numbering"]["قانون تجريبي"]

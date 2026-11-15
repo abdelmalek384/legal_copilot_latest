@@ -222,3 +222,8 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 
 - `tools/evaluate_legal_answer_reviews.py` now rejects duplicate keys at every nesting depth in review JSONL records and in the private reviewer-registry JSON file. Added regressions for conflicting assessment fields, nested score fields and duplicate registry keys.
 - The existing review-evaluation test module is already workflow-registered. Execution remains blocked; this is source implementation only and does not establish reviewer credentials or legal accuracy.
+
+## AI-1 extended JSONL integrity coverage — 2026-11-15
+
+- Extended strict duplicate-key handling to general retrieval-quality evaluation (including its reviewer registry), Arabic OCR evaluation, article-row auditing, and candidate/reference corpus comparison. Regression tests were added to the existing test modules.
+- Duplicate-key rows are rejected by evaluation/validation paths or counted as malformed/skipped by evidence-only audit/comparison tools. Test execution remains unavailable; no test pass or legal verification is claimed.
