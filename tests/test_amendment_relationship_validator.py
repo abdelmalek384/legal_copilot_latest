@@ -33,6 +33,20 @@ class AmendmentRelationshipValidatorTests(unittest.TestCase):
             self.assertEqual(raised.exception.code, 2)
             self.assertEqual(relationships.read_bytes(), original)
 
+    def test_duplicate_json_keys_in_relationship_register_are_rejected(self):
+        with tempfile.TemporaryDirectory() as temp:
+            relationships = Path(temp) / "relationships.json"
+            inventory = Path(temp) / "inventory.json"
+            relationships.write_text('{"relationships":[],"relationships":[]}', encoding="utf-8")
+            inventory.write_text('{"documents":[]}', encoding="utf-8")
+            with patch("sys.argv", [
+                "validate_amendment_relationships.py",
+                "--relationships", str(relationships), "--inventory", str(inventory),
+            ]):
+                with self.assertRaises(SystemExit) as raised:
+                    MODULE.main()
+            self.assertEqual(raised.exception.code, 2)
+
     def test_committed_register_reports_unresolved_relationships(self):
         relationships = json.loads(
             (ROOT / "docs" / "phase_2_amendment_relationships.json").read_text(encoding="utf-8")
