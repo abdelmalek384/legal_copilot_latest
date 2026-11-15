@@ -319,11 +319,14 @@ class LegalImportBundleTests(unittest.TestCase):
         from tools import import_laws
 
         class Pixmap:
+            width = 1700
+            height = 2200
             def tobytes(self, image_format):
                 self.image_format = image_format
                 return b"png-bytes"
 
         class Page:
+            rect = SimpleNamespace(width=612.0, height=792.0)
             def get_pixmap(self, *, dpi):
                 self.dpi = dpi
                 return Pixmap()
