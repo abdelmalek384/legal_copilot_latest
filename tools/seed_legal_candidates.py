@@ -6,7 +6,7 @@ SQLite registry. Existing records are never overwritten. No legal version is cre
 until a direct document URL and collection permission evidence are established.
 """
 from __future__ import annotations
-import argparse, json, os, sys
+import argparse, json, os, stat, sys
 from pathlib import Path
 from urllib.parse import parse_qsl, urlparse
 
@@ -59,7 +59,7 @@ def _reject_duplicate_json_keys(pairs):
 
 
 def load_catalog(path=CATALOG):
-    data = json.loads(Path(path).read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+    data = _read_json_input(path, "candidate catalog")
     if not isinstance(data, dict):
         raise ValueError("catalog root must be an object")
     sources = data.get("sources")
@@ -131,10 +131,7 @@ def load_catalog(path=CATALOG):
 
 def validate_permission_parity(data, register_path=ROOT / "docs" / "source_permission_register.json"):
     """Fail closed if candidate seed metadata diverges from the canonical rights register."""
-    register = json.loads(
-        Path(register_path).read_text(encoding="utf-8"),
-        object_pairs_hook=_reject_duplicate_json_keys,
-    )
+    register = _read_json_input(register_path, "source permission register")
     if not isinstance(register, dict) or not isinstance(register.get("sources"), list):
         raise ValueError("permission register must contain a sources array")
     by_id = {}
