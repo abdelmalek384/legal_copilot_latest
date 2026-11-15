@@ -109,6 +109,12 @@ class ContainerDeploymentContractTests(unittest.TestCase):
         ):
             self.assertIn(module, matrix)
 
+    def test_focused_security_matrix_includes_route_authentication_audit(self):
+        matrix = (ROOT / "scripts" / "security_regression_check.sh").read_text(encoding="utf-8")
+        self.assertIn("test_route_auth_audit.py", matrix)
+        self.assertIn('for audit in "tools/audit_route_sql_access.py" "tools/audit_route_auth.py"', matrix)
+        self.assertIn('python "$audit" --strict', matrix)
+
     def test_local_release_check_runs_isolated_encrypted_recovery_drill(self):
         checker = (ROOT / "scripts" / "local_release_check.sh").read_text(encoding="utf-8")
         self.assertIn(
