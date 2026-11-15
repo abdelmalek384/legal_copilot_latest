@@ -67,14 +67,14 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 | Workstream | Estimated implementation completion | Remaining acceptance |
 |---|---:|---|
 | Local release baseline | 20% | Release-check implementation exists; exact local checker output and all Python 3.12 gates remain unavailable |
-| Security integration | 75% | Exact-head security verification remains blocked |
-| Security regression coverage | 91% | Additional backup source no-follow, same-descriptor upload, mandatory checksum and verification-to-upload byte-binding regressions plus duplicate device-record, reused-evidence-path, and duplicate-key rejection for both device and database release manifests are committed; all repository tests remain unexecuted, real OCR-engine/image-quality acceptance still pending |
+| Security integration | 76% | Recovery-throttle identifiers are now HMAC-pseudonymized with a dedicated fail-closed secret; exact-head security verification remains blocked |
+| Security regression coverage | 92% | Backup source no-follow, same-descriptor upload, mandatory checksum and verification-to-upload byte-binding regressions, duplicate release-evidence validation, S3 cross-region KMS, and recovery HMAC/missing-key regressions are committed; all repository tests remain unexecuted, real OCR-engine/image-quality acceptance still pending |
 | Lawyer rating UI/export | 95% | Browser acceptance and adapter execution remain pending |
 | Test-firm package | 90% | Clean-clone first-login rehearsal remains unexecuted |
 | Repository cleanup/accessibility | 83% | Bilingual form labels/errors, source-inspector metadata and passage navigation are implemented; run hygiene scan and finish manual accessibility review |
-| Staging/recovery | 38% | Recovery upload now binds the exact verified bytes and fails closed without checksum; recovery drill, Compose gate, provider configuration and witnessed restore remain unexecuted |
+| Staging/recovery | 39% | Two-bucket S3 preflight now resolves original/recovery KMS keys in their own regions; recovery drill, Compose gate, provider configuration and witnessed restore remain unexecuted |
 
-**Unweighted implementation estimate: 65%.** The application remains **NOT READY** for lawyer pilot or production. No test pass is inferred from committed test code.
+**Unweighted implementation estimate: 70.7%** (arithmetic mean of the seven workstream values above). The application remains **NOT READY** for lawyer pilot or production. No test pass is inferred from committed test code.
 
 ## Legal evidence boundary
 
