@@ -20,6 +20,28 @@ class CandidateCatalogTests(unittest.TestCase):
         candidate_ids = {item["source_id"] for item in catalog["sources"]}
         self.assertEqual(candidate_ids - registered_ids, set())
 
+    def test_candidate_inputs_reject_symlinks_and_oversized_files(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target = root / "target.json"
+            target.write_text('{"sources": [], "documents": []}', encoding="utf-8")
+            link = root / "catalog.json"
+            try:
+                link.symlink_to(target)
+            except (OSError, NotImplementedError) as exc:
+                self.skipTest(f"symlink creation unavailable: {type(exc).__name__}")
+            with self.assertRaisesRegex(ValueError, "candidate catalog is unreadable or unsafe"):
+                MODULE.load_catalog(link)
+            oversized = root / "oversized.json"
+            oversized.write_bytes(b" " * (4 * 1024 * 1024 + 1))
+            with self.assertRaisesRegex(ValueError, "candidate catalog must be a regular file no larger than 4 MiB"):
+                MODULE.load_catalog(oversized)
+            register_link = root / "register.json"
+            register_link.symlink_to(target)
+            with self.assertRaisesRegex(ValueError, "source permission register is unreadable or unsafe"):
+                MODULE.validate_permission_parity({"sources": []}, register_link)
+
     def test_candidate_catalog_and_permission_register_reject_duplicate_json_keys(self):
         import tempfile
 
