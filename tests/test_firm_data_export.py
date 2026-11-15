@@ -339,9 +339,7 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(manifest, [])
         documents = self._zip_csv(response, "documents.csv")
         self.assertIn("corrupt-foreign-object-row.pdf", [row["name"] for row in documents])
-        self.assertNotIn("original_files/".encode(), b"".join(
-            archive.read(name) for name in archive.namelist() if name.startswith("original_files/")
-        ))
+        self.assertFalse(any(name.startswith("original_files/") for name in archive.namelist()))
 
     def test_export_is_rate_limited(self):
         url = f"/firm/data-export.zip?firm_id={self.firm_a}"
