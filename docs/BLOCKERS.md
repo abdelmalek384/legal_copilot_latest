@@ -144,6 +144,11 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - The authenticated legal-evaluation runner now rejects duplicate JSON keys in API responses, including nested objects, instead of accepting the Python JSON parser's last-key-wins behavior. Added a regression for top-level and nested ambiguity.
 - Tests remain unexecuted because hosted runner billing is unavailable.
 
+## Candidate seeder input-file integrity — 2026-11-16
+
+- Candidate catalog and canonical source-permission register reads now require stable regular files, reject symlinks, cap input at 4 MiB, and verify descriptor identity/size/timestamps. Duplicate-key rejection remains active. Added symlink/oversize regressions.
+- Runtime tests remain unexecuted because hosted runner billing is unavailable.
+
 ## External blockers: do not spend repeated effort looping
 
 ### Test execution / CI runner availability
