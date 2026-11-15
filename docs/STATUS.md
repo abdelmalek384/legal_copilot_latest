@@ -210,6 +210,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Updated the production environment template, deployment checklist and tenant-isolation inventory. Added regressions for the keyed email digest, missing-key fail-closed behavior, and deployment preflight requirements.
 - Direct-main commits: app `79a9f3c` and `22fb5bd`, preflight `d467b40`, `1a92a42`, `636dcff`, `69683c8`, and `ed21b80`, identity tests `d5a9f76`, `44f902b`, `ec525f2`, `a1e0460`, `a83f0e3`, preflight tests `4f08dfa`, `772fce5`, `2942416`, and `01d207c`, runtime key validation `6cfb3d9`, environment/docs `fefea03`, `215df99`, `eaf70d4`, `ca1e183`, `3827c96`.
 - **Bounded implementation task: 100%.** Static source inspection only; no repository tests or live multi-host rate-limit exercise were run. Production deployment must provision the new independent secret before enabling account recovery.
+- The deployment preflight now requires the HMAC secret whenever any separate-runtime database profile is configured, not only for production or an explicit strict-release invocation. The default separate-runtime test fixture supplies an independent test-only secret; focused configuration regressions cover missing, weak, padded and reused keys. Commits: preflight `ed21b80`; test fixture `2942416`; regression `01d207c`.
 
 
 ## AI-1 legal JSONL parser coverage — 2026-11-15
