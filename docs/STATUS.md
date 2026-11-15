@@ -240,4 +240,5 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - The audit fails closed for unprotected routes and for stale public allowlist entries. Added focused synthetic-source tests, current-application inventory coverage, and strict CI workflow registration alongside the route-to-SQL audit.
 - Direct-main commits: initial audit `c1b6268`; tests `9edc6c1`; CI `c1a0591`; tenant-isolation documentation `5851648`; mounted-router coverage `13e885c`; synthetic-test mode `c21571b`; current-app regression update `6bc0d99`.
 - **Bounded implementation task: 100%.** This is a static dependency-presence guard only. It does not establish role-level authorization, case membership, tenant SQL scoping, or route behavior. The test and strict audit commands have not been run due the GitHub billing/runner constraint.
+- Follow-up case-membership guard: `tests/test_tenant_route_inventory_coverage.py` now statically requires every `{cid}` route to call `need()` or the reviewed `delete_case()` wrapper. Commit `8ffdb15`; tenant inventory note committed with this status update.
 
