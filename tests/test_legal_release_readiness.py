@@ -75,6 +75,21 @@ class LegalReleaseReadinessTests(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
+    def test_build_report_rejects_duplicate_permission_register_and_candidate_keys(self):
+        register_path = self.root / "permission-register.json"
+        register_path.write_text('{"sources":[],"sources":[]}', encoding="utf-8")
+        report = MODULE.build_report([], register_path, self.root)
+        self.assertIn("duplicate JSON object key 'sources'", report["error"])
+        self.assertEqual(report["ready_count"], 0)
+
+        candidate_path = self.root / "candidate.json"
+        candidate_path.write_text('{"document":{"document_id":"LAW-1","document_id":"LAW-2"}}', encoding="utf-8")
+        valid_register = self.root / "valid-register.json"
+        valid_register.write_text(json.dumps(self.register), encoding="utf-8")
+        report = MODULE.build_report([candidate_path], valid_register, self.root)
+        self.assertFalse(report["candidates"][0]["ready"])
+        self.assertIn("candidate_unreadable", {item["code"] for item in report["candidates"][0]["blockers"]})
+
     def test_complete_synthetic_evidence_passes(self):
         result = MODULE.audit_candidate(self.candidate, self.register, self.root)
         self.assertTrue(result["ready"], result["blockers"])
