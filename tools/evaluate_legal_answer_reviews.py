@@ -39,6 +39,19 @@ CRITICAL_DEFECT_CATEGORIES = (
 )
 
 
+class DuplicateJSONKeyError(ValueError):
+    """Raised when a JSON object repeats a key at any nesting depth."""
+
+
+def _reject_duplicate_json_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateJSONKeyError(f"duplicate JSON object key {key!r}")
+        result[key] = value
+    return result
+
+
 def _parse_jsonl_text(text, path):
     """Parse JSONL while preserving line numbers in errors."""
     rows = []
@@ -46,7 +59,9 @@ def _parse_jsonl_text(text, path):
         if not line.strip() or line.lstrip().startswith("#"):
             continue
         try:
-            row = json.loads(line)
+            row = json.loads(line, object_pairs_hook=_reject_duplicate_json_keys)
+        except DuplicateJSONKeyError as exc:
+            raise ValueError(f"{path}:{line_number}: {exc}") from exc
         except json.JSONDecodeError as exc:
             raise ValueError(f"{path}:{line_number}: invalid JSON: {exc}") from exc
         if not isinstance(row, dict):
@@ -480,7 +495,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         registry_bytes = args.reviewer_registry.read_bytes()
-        registry = json.loads(registry_bytes.decode("utf-8"))
+        registry = json.loads(registry_bytes.decode("utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
         records, records_meta = _load_jsonl_with_provenance(args.reviews)
     except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
         parser.error(f"invalid review input: {exc}")
