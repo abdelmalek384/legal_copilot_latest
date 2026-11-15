@@ -5255,6 +5255,15 @@ def _identity_token_digest(token: str) -> str:
     return hashlib.sha256(token.encode("utf-8")).hexdigest()
 
 
+def _identity_rate_limit_digest(value: str, *, purpose: str) -> str:
+    """Create a non-reversible, domain-separated identifier for recovery throttling."""
+    key = os.environ.get("COPILOT_IDENTITY_RATE_LIMIT_KEY", "")
+    if len(key.encode("utf-8")) < 32:
+        raise ValueError("identity rate-limit HMAC key is not configured")
+    message = ("legal-copilot:identity-recovery:" + purpose + ":" + value).encode("utf-8")
+    return hmac.new(key.encode("utf-8"), message, hashlib.sha256).hexdigest()
+
+
 def _identity_recovery_generic_response():
     return {
         "message": "If the account is eligible, recovery instructions will be sent."
@@ -6013,11 +6022,15 @@ def request_account_recovery(b: RecoveryRequestIn, request: Request):
         return generic
     now = int(time.time())
     peer = client_ip(request)
-    client_key = hashlib.sha256((peer + "|" + email_normalized).encode("utf-8")).hexdigest()
-    # Keep the existing per-IP-and-address budget, but also enforce an address-
-    # scoped budget so an attacker cannot bypass recovery throttling by rotating
-    # source IPs. Store only keyed digests in the shared control-plane table.
-    email_key = hashlib.sha256(email_normalized.encode("utf-8")).hexdigest()
+    # Keep both the per-IP-and-address and address-wide budgets. HMAC prevents
+    # a database reader from testing a dictionary of likely email addresses
+    # against the stored throttle keys. Fail closed if the dedicated key is absent.
+    try:
+        client_key = _identity_rate_limit_digest(peer + "|" + email_normalized, purpose="peer_email")
+        email_key = _identity_rate_limit_digest(email_normalized, purpose="email")
+    except ValueError:
+        logger.error("Account recovery throttling is unavailable because its HMAC key is not configured")
+        return generic
     window_start = (now // 3600) * 3600
     control = control_conn()
     try:
