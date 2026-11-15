@@ -148,6 +148,24 @@ class SeparateRuntimeAuthenticationRateLimitTests(unittest.TestCase):
         self.assertFalse(any("testclient" in key or key.startswith("ip:") for key in keys))
         self.assertTrue(all(len(key) == 64 and all(ch in "0123456789abcdef" for ch in key) for key in keys))
 
+    def test_production_login_fails_closed_without_dedicated_hmac_key(self):
+        saved_key = os.environ.pop("COPILOT_IDENTITY_RATE_LIMIT_KEY", None)
+        original_mode = app._environment_mode
+        try:
+            app._environment_mode = "production"
+            response = self.client.post("/login", json={
+                "email": "rate-limit-owner@example.test", "password": "incorrect-password",
+            })
+            self.assertEqual(response.status_code, 503, response.text)
+            count = self.runtime.control_connection().execute(
+                "SELECT COUNT(*) FROM login_attempts"
+            ).fetchone()[0]
+            self.assertEqual(count, 0)
+        finally:
+            app._environment_mode = original_mode
+            if saved_key is not None:
+                os.environ["COPILOT_IDENTITY_RATE_LIMIT_KEY"] = saved_key
+
     def test_upload_throttle_runs_before_authentication_and_persists_in_control_plane(self):
         control = self.runtime.control_connection()
         now = int(app.time.time())
