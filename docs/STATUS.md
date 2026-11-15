@@ -232,3 +232,12 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 
 - Hardened `tools/production_release_gate.py` to reject duplicate keys in candidate source documents and reviewer registry JSON. Duplicate candidate records cannot enter the ready-source index; duplicate registry keys block evaluation.
 - Hardened `tools/build_legal_draft.py` to reject duplicate keys in structured legal-draft input. Regression tests are committed but unexecuted.
+
+
+## AI-2 route authentication dependency guard — 2026-11-15
+
+- Added `tools/audit_route_auth.py`, an AST-based inventory of registered FastAPI routes. Every route must declare `Depends(user)` unless it matches one of five exact public endpoints: the public shell, login, new-identity invitation acceptance, and the two account-recovery endpoints.
+- The audit fails closed for unprotected routes and for stale public allowlist entries. Added focused synthetic-source tests, current-application inventory coverage, and strict CI workflow registration alongside the route-to-SQL audit.
+- Direct-main commits: audit `c1b6268`; tests `9edc6c1`; CI `c1a0591`; tenant-isolation documentation `5851648`.
+- **Bounded implementation task: 100%.** This is a static dependency-presence guard only. It does not establish role-level authorization, case membership, tenant SQL scoping, or route behavior. The test and strict audit commands have not been run due the GitHub billing/runner constraint.
+
