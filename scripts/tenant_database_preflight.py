@@ -43,6 +43,31 @@ def _has_immutable_guard(sql: str | None, table: str, operation: str, message: s
     )
 
 
+def _has_migration_history_guards(connection: sqlite3.Connection) -> bool:
+    """Require effective update/delete guards on the migration checksum ledger."""
+    rows = {
+        str(row[0]): row[1]
+        for row in connection.execute(
+            "SELECT name,sql FROM sqlite_master WHERE type='trigger' "
+            "AND name IN ('schema_migrations_no_update','schema_migrations_no_delete')"
+        )
+    }
+    return (
+        _has_immutable_guard(
+            rows.get("schema_migrations_no_update"),
+            "schema_migrations",
+            "UPDATE",
+            "migration history is immutable",
+        )
+        and _has_immutable_guard(
+            rows.get("schema_migrations_no_delete"),
+            "schema_migrations",
+            "DELETE",
+            "migration history is immutable",
+        )
+    )
+
+
 def _expected_profile_migrations(profile: str) -> dict[int, tuple[str, str]]:
     """Read a trusted profile's migration manifest without opening a database."""
     if profile not in {"control_plane", "firm"}:
@@ -185,6 +210,12 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
             add("missing_catalog_migration_ledger", None, "control-plane catalog has no versioned migration ledger")
         else:
             try:
+                if not _has_migration_history_guards(catalog):
+                    add(
+                        "mutable_catalog_migration_history",
+                        None,
+                        "control-plane migration history lacks effective immutable update/delete guards",
+                    )
                 ledger_rows = catalog.execute(
                     "SELECT version, name, checksum_sha256 FROM schema_migrations"
                 ).fetchall()
@@ -439,6 +470,12 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                     add("missing_schema_migration_ledger", firm_id, "tenant database has no versioned migration ledger")
                 else:
                     try:
+                        if not _has_migration_history_guards(tenant):
+                            add(
+                                "mutable_schema_migration_history",
+                                firm_id,
+                                "tenant migration history lacks effective immutable update/delete guards",
+                            )
                         ledger_rows = tenant.execute(
                             "SELECT version, name, checksum_sha256 FROM schema_migrations"
                         ).fetchall()
