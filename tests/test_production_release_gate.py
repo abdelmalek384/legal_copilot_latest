@@ -572,5 +572,22 @@ class ProductionReleaseGateTests(unittest.TestCase):
             index = gate._ready_candidate_source_index([candidate], report)
         self.assertEqual(index, {})
 
+    def test_duplicate_keys_in_candidate_are_excluded_and_registry_cli_fails_closed(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            candidate = root / "candidate.json"
+            candidate.write_text(
+                '{"document":{"source_id":"SRC-1","source_id":"SRC-2"},"version":{"effective_date":"2020-01-01","legal_status":"in_force","article_identifiers":["Article 1"]}}',
+                encoding="utf-8",
+            )
+            report = self._ready_report(candidate)
+            self.assertEqual(gate._ready_candidate_source_index([candidate], report), {})
+
+            registry = root / "reviewers.json"
+            registry.write_text('{"reviewers":[],"reviewers":[]}', encoding="utf-8")
+            with self.assertRaises(SystemExit) as raised:
+                gate.main(["--reviewer-registry", str(registry)])
+            self.assertEqual(raised.exception.code, 2)
+
 if __name__ == "__main__":
     unittest.main()
