@@ -4,6 +4,19 @@ import csv
 import json
 from pathlib import Path
 
+class DuplicateJSONKeyError(ValueError):
+    """Raised when legal foundation JSON repeats an object key."""
+
+
+def _reject_duplicate_json_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateJSONKeyError(f"duplicate JSON object key {key!r}")
+        result[key] = value
+    return result
+
+
 ROOT = Path(__file__).resolve().parents[1]
 manifest_path = ROOT / "docs/source_manifest.json"
 coverage_path = ROOT / "docs/legal_coverage_matrix.csv"
@@ -15,7 +28,10 @@ def require(condition, message):
         raise SystemExit("VALIDATION FAILED: " + message)
 
 
-manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+try:
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+except DuplicateJSONKeyError as exc:
+    raise SystemExit("VALIDATION FAILED: source manifest: " + str(exc)) from exc
 require(isinstance(manifest, dict), "source manifest must be a JSON object")
 sources = manifest.get("sources")
 require(isinstance(sources, list) and sources, "manifest needs a non-empty sources list")
@@ -52,7 +68,9 @@ for line_number, line in enumerate(questions_path.read_text(encoding="utf-8").sp
     if not line.strip():
         continue
     try:
-        question = json.loads(line)
+        question = json.loads(line, object_pairs_hook=_reject_duplicate_json_keys)
+    except DuplicateJSONKeyError as exc:
+        raise SystemExit(f"VALIDATION FAILED: question seed line {line_number}: {exc}") from exc
     except json.JSONDecodeError as exc:
         raise SystemExit(f"VALIDATION FAILED: question seed line {line_number}: {exc}") from exc
     require(isinstance(question, dict), f"question seed line {line_number} must be a JSON object")
