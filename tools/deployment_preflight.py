@@ -278,7 +278,7 @@ def inspect_environment(env=None, *, require_separate=False):
         else:
             passed.append("BACKUP_KEY is a valid Fernet key; its value is not printed.")
 
-    if production or require_separate:
+    if production or require_separate or has_separate:
         rate_limit_key = env.get("COPILOT_IDENTITY_RATE_LIMIT_KEY", "")
         weak_rate_limit_markers = ("change-me", "changeme", "example", "placeholder", "test-token", "your-secret")
         if (
