@@ -30,7 +30,7 @@
 - [ ] A failed or interrupted purge cannot be reported as completed.
 
 ## 2. Bucket, object, and concurrency controls
-**Architecture decision required before live acceptance:** the current read-only S3 validator requires `GetBucketVersioning=Enabled` for recovery, while the current physical-purge code requires a confirmed never-versioned bucket. These conditions are mutually exclusive for one bucket. Record the approved architecture (separate versioned recovery bucket plus never-versioned purge bucket, or a reviewed version-aware purge implementation) and prove it with separate target fingerprints and drills. Until then, mark both live storage acceptance and physical deletion BLOCKED. Do not change versioning on a live bucket to make a test pass.
+**Architecture implementation status:** the former single-bucket conflict is resolved in code. The original-object bucket is required to remain never-versioned for ETag-conditional physical purge; the separate recovery-archive bucket must have versioning `Enabled` and uses a distinct customer-managed KMS key. Both targets are bound into the storage-configuration fingerprint. This does not approve deployment or deletion: live bucket/KMS/IAM policy review, enforced no-writer controls, retention/legal-hold approval, and witnessed recovery/deletion acceptance remain mandatory. Do not change versioning on a live bucket to make a test pass.
 
 
 - [ ] Live `GetBucketVersioning` confirms the target bucket has never had versioning enabled; `Enabled`, `Suspended`, unknown, or unexpected response states block deletion.
