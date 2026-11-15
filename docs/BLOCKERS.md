@@ -487,3 +487,11 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 
 - The extraction review now explicitly states in Arabic and English that a recorded extracted page reference has not been independently checked against the original file. A workflow-registered frontend contract protects the warning.
 - Static inspection only. Actual browser/screen-reader review and lawyer verification of page locations remain outstanding.
+
+
+## AI-2 identity throttle privacy and route authorization guards — 2026-11-15
+
+- Production login-attempt identifiers, account-recovery email/IP identifiers, and configured API middleware IP rate-limit keys now use purpose-separated HMAC-SHA-256 with the dedicated `COPILOT_IDENTITY_RATE_LIMIT_KEY`. Production login and API throttling fail closed if the key is absent or invalid; recovery throttling also fails closed. Firm scoping and the distinct 5-attempt email / 20-attempt IP lockout thresholds are preserved.
+- Added regressions for login/recovery pseudonymization, cross-worker lockout state, production missing-key behavior, API middleware HMAC storage, and the preserved IP threshold. Updated production environment/deployment/tenant-isolation guidance.
+- Added an AST-based authentication dependency inventory across `app.py` and mounted platform/identity routers, with an exact 12-route public allowlist and fail-closed discovery for new router modules. Added source-level case-ID and document-ID route guard regressions and registered the auth audit in CI and the focused security matrix.
+- Source/test/documentation changes are committed to `main`; **no tests or audits were executed** because GitHub runner billing remains unavailable. These guards do not prove role authorization, every SQL predicate, browser behavior, or live operational acceptance. Do not treat them as release approval.
