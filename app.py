@@ -4091,13 +4091,12 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
     memberships = _active_firms_for_user(account["id"]) if account and account["status"] == "active" and valid else []
     if not account or account["status"] != "active" or not valid or not memberships:
         locked = False
-        for identifier in identifiers:
+        for identifier, threshold in zip(identifiers, (5, 20)):
             row = attempts.get(identifier)
             if not row or now - row["window_start"] >= 300:
                 failures, window_start = 1, now
             else:
                 failures, window_start = row["failures"] + 1, row["window_start"]
-            threshold = 20 if identifier.startswith("ip:") else 5
             lock_seconds = min(300, 30 * (2 ** min(4, max(0, failures - threshold))))
             locked_until = now + lock_seconds if failures >= threshold else 0
             locked = locked or locked_until > now
