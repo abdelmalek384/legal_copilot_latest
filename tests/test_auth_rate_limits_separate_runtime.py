@@ -144,6 +144,15 @@ class SeparateRuntimeAuthenticationRateLimitTests(unittest.TestCase):
         ).fetchall()
         keys = [str(row["email"]) for row in rows]
         self.assertEqual(len(keys), 2)
+        expected = {
+            app._identity_rate_limit_digest("rate-limit-owner@example.test", purpose="login_email"),
+            app._identity_rate_limit_digest("testclient", purpose="login_ip"),
+        }
+        self.assertEqual(set(keys), expected)
+        self.assertNotEqual(
+            app._identity_rate_limit_digest("rate-limit-owner@example.test", purpose="login_email"),
+            app._identity_rate_limit_digest("rate-limit-owner@example.test", purpose="email"),
+        )
         self.assertNotIn("rate-limit-owner@example.test", keys)
         self.assertFalse(any("testclient" in key or key.startswith("ip:") for key in keys))
         self.assertTrue(all(len(key) == 64 and all(ch in "0123456789abcdef" for ch in key) for key in keys))
