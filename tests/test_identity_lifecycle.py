@@ -382,6 +382,13 @@ class IdentityLifecycleTests(unittest.TestCase):
         request = app.RecoveryRequestIn(email="missing-hmac@example.test")
         saved_key = os.environ.pop("COPILOT_IDENTITY_RATE_LIMIT_KEY", None)
         try:
+            middleware_request = SimpleNamespace(
+                url=SimpleNamespace(path="/account/recovery/request"),
+                client=SimpleNamespace(host="192.0.2.51"),
+                headers={},
+                method="POST",
+            )
+            self.assertEqual(app._rate_limit(middleware_request), 3600)
             with patch.object(app, "_send_identity_link") as send:
                 response = app.request_account_recovery(
                     request, SimpleNamespace(client=SimpleNamespace(host="192.0.2.50"))
