@@ -526,6 +526,30 @@ class CollectionPipelineTests(unittest.TestCase):
             with self.subTest(url=url), self.assertRaises(ValueError):
                 collector.validate_manifest_hosts({"allowed_hosts": ["example.gov"], "direct_url": url})
 
+    def test_existing_metadata_loader_rejects_duplicate_keys_at_every_depth(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "law-1.json"
+            for raw in (
+                '{"document_id":"law-1","document_id":"law-2"}',
+                '{"document_id":"law-1","permission":{"status":"unknown","status":"allowed"}}',
+            ):
+                path.write_text(raw, encoding="utf-8")
+                with self.subTest(raw=raw), self.assertRaisesRegex(ValueError, "unreadable, ambiguous, or unsafe"):
+                    collector.load_existing_metadata(path)
+
+    def test_existing_metadata_loader_rejects_symlinks(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            target = root / "target.json"
+            target.write_text('{"document_id":"law-1"}', encoding="utf-8")
+            link = root / "linked.json"
+            try:
+                link.symlink_to(target)
+            except (OSError, NotImplementedError) as exc:
+                self.skipTest(f"symlink creation unavailable: {type(exc).__name__}")
+            with self.assertRaisesRegex(ValueError, "unreadable, ambiguous, or unsafe"):
+                collector.load_existing_metadata(link)
+
     def test_manifest_rejects_duplicate_json_keys_at_every_object_depth(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "manifest.json"
