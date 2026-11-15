@@ -171,7 +171,7 @@ class DeploymentPreflightTests(unittest.TestCase):
         self.assertFalse(any("COPILOT_IDENTITY_RATE_LIMIT_KEY" in item for item in errors), errors)
         self.assertTrue(any("COPILOT_IDENTITY_RATE_LIMIT_KEY is a dedicated secret" in item for item in passed))
 
-        for invalid in ("", "short", "placeholder-rate-limit-secret-material"):
+        for invalid in ("", "short", "placeholder-rate-limit-secret-material", " " + "x" * 32):
             with self.subTest(invalid=invalid):
                 _, _, errors = preflight.inspect_environment(dict(
                     base, COPILOT_IDENTITY_RATE_LIMIT_KEY=invalid
