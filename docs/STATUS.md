@@ -178,3 +178,20 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Added a regression contract in `tests/test_document_classifications.py`, already registered in the existing workflow. Static inspection confirms the condition and both language strings; tests/browser review were not run.
 - Direct-main commits: UI `f8aa9a4d406ca92ef19bfe7c1c084f1a74e55c31`; regression `b6afb6de0b337b7db686340c7a8ef43db6e6ba89`.
 - **Bounded implementation task: 100%.** Independent page-by-page lawyer verification remains an operational/legal review requirement.
+
+
+## AI-2 S3 recovery preflight cross-region KMS fix — 2026-11-15
+
+- The separate recovery-archive preflight previously resolved the original-object KMS key using the recovery-archive region's KMS client. When the two configured buckets/keys were in different AWS regions, the original-key lookup could fail and the preflight would reject the configuration even when the keys were correctly distinct.
+- The preflight now accepts a separate original-region KMS client; its CLI constructs that client from `COPILOT_S3_REGION`, while archive-key and archive-default-encryption lookups continue through `COPILOT_S3_RECOVERY_REGION`.
+- The live synthetic round-trip command now passes its already-created original-region KMS client into the recovery-archive preflight.
+- Added a regression with distinct original/recovery regions and canonical key ARNs. Static source inspection only; no repository tests or cloud calls were executed.
+- Direct-main commits: preflight `05698a6`, regression `19db7ef`, round-trip caller `3547179`.
+- **Bounded implementation task: 100%.** Runtime validation and live AWS acceptance remain open; this change does not establish production readiness.
+
+## AI-2 S3 architecture status documentation alignment — 2026-11-15
+
+- Updated the architecture decision, physical-purge review checklist, tenant-isolation inventory and retention proposal to state accurately that the former single-bucket versioning conflict is resolved in repository code by separate never-versioned original storage and versioned encrypted recovery-archive storage.
+- Preserved the outstanding blockers: deployment-owner approval, live bucket/KMS/IAM evidence, enforced no-writer controls, counsel/security-approved retention semantics, witnessed restore/deletion drills and independent review.
+- Documentation commits: `9499e03`, `d4de53c`, `c3f09a5`, `e8452a1`.
+- **Bounded documentation correction: 100%.** No external acceptance is implied.
