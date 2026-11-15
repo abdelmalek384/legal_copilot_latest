@@ -89,6 +89,11 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - The legal-data foundation validator now rejects duplicate keys in the source manifest and Arabic evaluation question seeds, with controlled validation errors.
 - Added regressions for duplicate relationship-register keys and duplicate top-level/nested source/question keys. Existing test modules are workflow-registered; execution remains unavailable.
 
+## Acquisition permission-register ambiguity hardening — 2026-11-15
+
+- The acquisition-readiness validator now rejects duplicate keys in both collection manifests and the canonical source-permission register. Ambiguous permission or scope fields cannot be silently resolved with last-key-wins behavior.
+- Added CLI regression coverage for duplicate manifest and register keys in the existing acquisition-readiness test module. Tests remain unexecuted because runner/billing access is unavailable.
+
 ## External blockers: do not spend repeated effort looping
 
 ### Test execution / CI runner availability

@@ -22,6 +22,19 @@ if str(ROOT) not in sys.path:
 from tools.output_path_safety import ensure_output_paths_safe
 DEFAULT_MANIFEST = ROOT / "docs" / "collection_manifest.example.json"
 DEFAULT_REGISTER = ROOT / "docs" / "source_permission_register.json"
+class DuplicateJSONKeyError(ValueError):
+    """Raised when acquisition permission JSON repeats an object key."""
+
+
+def _reject_duplicate_json_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateJSONKeyError(f"duplicate JSON object key {key!r}")
+        result[key] = value
+    return result
+
+
 COLLECTION_ALLOWED = {"allowed", "allowed_limited"}
 COMMERCIAL_ALLOWED = {"allowed", "allowed_limited"}
 # Internal freshness policy for source terms and scope review, not a legal rule.
@@ -286,8 +299,8 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         ensure_output_paths_safe([args.out], [args.manifest, args.register])
-        manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
-        register = json.loads(args.register.read_text(encoding="utf-8"))
+        manifest = json.loads(args.manifest.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+        register = json.loads(args.register.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
     except (OSError, json.JSONDecodeError, ValueError) as exc:
         parser.error(str(exc))
 

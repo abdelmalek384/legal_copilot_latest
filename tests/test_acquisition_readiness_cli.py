@@ -93,6 +93,19 @@ class AcquisitionReadinessCliTests(unittest.TestCase):
         self.assertEqual(raised.exception.code, 2)
         self.assertEqual(self.manifest.read_bytes(), original)
 
+    def test_cli_rejects_duplicate_keys_in_manifest_and_permission_register(self):
+        original_manifest = self.manifest.read_text(encoding="utf-8")
+        self.manifest.write_text('{"documents":[],"documents":[]}', encoding="utf-8")
+        with self.assertRaises(SystemExit) as raised:
+            MODULE.main(["--manifest", str(self.manifest), "--register", str(self.register)])
+        self.assertEqual(raised.exception.code, 2)
+        self.manifest.write_text(original_manifest, encoding="utf-8")
+
+        self.register.write_text('{"sources":[],"sources":[]}', encoding="utf-8")
+        with self.assertRaises(SystemExit) as raised:
+            MODULE.main(["--manifest", str(self.manifest), "--register", str(self.register)])
+        self.assertEqual(raised.exception.code, 2)
+
     def test_production_gate_fails_when_commercial_reuse_is_unknown(self):
         code, report = self.run_cli("--require-ready")
         self.assertEqual(report["collection_ready_count"], 1)
