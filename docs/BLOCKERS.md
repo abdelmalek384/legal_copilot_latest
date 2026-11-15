@@ -65,6 +65,12 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - Added top-level and nested duplicate-key regression cases to `tests/test_validate_law14_eval_draft.py` and `tests/test_ocr_quality_evaluation.py`. Both test modules are already in `.github/workflows/tests.yml`.
 - Implementation is on branch `ai1/strict-jsonl-legal-validators-mainline`; tests remain unexecuted due runner/billing unavailability. This change does not alter the draft inventory or any legal verification state.
 
+## Human-review input ambiguity hardening — 2026-11-15
+
+- The qualified-human answer-review evaluator now rejects duplicate JSON object keys in both review JSONL records and the private reviewer registry, including nested score/rationale objects. Previously, the default decoder could silently select the last conflicting value in a review record or registry entry.
+- Added focused regressions for duplicate top-level/nested review keys and duplicate reviewer-registry keys. The test module is already registered in the Tests workflow.
+- Source/test implementation is on branch `ai1/strict-review-record-json`; tests remain unexecuted due runner/billing unavailability. No reviewer is approved by this change; registry identity checks remain administrative assertions, not independent credential verification.
+
 ## External blockers: do not spend repeated effort looping
 
 ### Test execution / CI runner availability

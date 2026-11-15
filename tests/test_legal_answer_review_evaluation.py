@@ -65,6 +65,31 @@ def reviewer_registry():
 
 
 class LegalAnswerReviewEvaluationTests(unittest.TestCase):
+    def test_review_jsonl_rejects_duplicate_keys_at_all_object_depths(self):
+        from tools.evaluate_legal_answer_reviews import _parse_jsonl_text
+
+        for raw in (
+            '{"assessment_id":"A1","assessment_id":"A2"}',
+            '{"assessment_id":"A1","scores":{"legal_correctness":1,"legal_correctness":2}}',
+        ):
+            with self.subTest(raw=raw), self.assertRaisesRegex(
+                ValueError, r"1: duplicate JSON object key '"
+            ):
+                _parse_jsonl_text(raw, "reviews.jsonl")
+
+    def test_cli_rejects_duplicate_keys_in_reviewer_registry(self):
+        with tempfile.TemporaryDirectory() as td:
+            reviews_path = Path(td) / "reviews.jsonl"
+            registry_path = Path(td) / "reviewers.json"
+            reviews_path.write_text(json.dumps(review(), ensure_ascii=False) + "\n", encoding="utf-8")
+            registry_path.write_text(
+                '{"reviewers":[],"reviewers":[]}', encoding="utf-8"
+            )
+            errors = io.StringIO()
+            with contextlib.redirect_stderr(errors), self.assertRaises(SystemExit):
+                main([str(reviews_path), "--reviewer-registry", str(registry_path)])
+            self.assertIn("duplicate JSON object key 'reviewers'", errors.getvalue())
+
     def test_cli_summary_records_hashes_of_exact_input_bytes_without_paths(self):
         with tempfile.TemporaryDirectory() as td:
             reviews_path = Path(td) / "reviews.jsonl"
