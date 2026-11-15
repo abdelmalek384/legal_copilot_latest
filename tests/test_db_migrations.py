@@ -177,6 +177,48 @@ class DatabaseMigrationTests(unittest.TestCase):
             [1, 2],
         )
 
+    def test_applied_migration_history_cannot_be_updated_or_deleted(self):
+        self.write("0001_immutable.sql", "CREATE TABLE sample (id INTEGER);")
+        self.assertEqual(apply_migrations(self.db, self.path), [1])
+
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "migration history is immutable"):
+            self.db.execute(
+                "UPDATE schema_migrations SET checksum_sha256=? WHERE version=1",
+                ("0" * 64,),
+            )
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "migration history is immutable"):
+            self.db.execute("DELETE FROM schema_migrations WHERE version=1")
+
+        self.assertEqual(
+            self.db.execute(
+                "SELECT version,name,checksum_sha256 FROM schema_migrations"
+            ).fetchone()["version"],
+            1,
+        )
+        self.assertEqual(apply_migrations(self.db, self.path), [])
+
+    def test_existing_migration_history_guard_name_cannot_be_spoofed(self):
+        self.db.execute("""
+            CREATE TABLE schema_migrations (
+                version INTEGER PRIMARY KEY,
+                name TEXT NOT NULL UNIQUE,
+                checksum_sha256 TEXT NOT NULL,
+                applied_at TEXT NOT NULL DEFAULT (datetime('now'))
+            )
+        """)
+        self.db.execute("""
+            CREATE TRIGGER schema_migrations_no_update
+            BEFORE UPDATE ON schema_migrations
+            BEGIN SELECT 1; END
+        """)
+        self.db.commit()
+        self.write("0001_create_sample.sql", "CREATE TABLE sample (id INTEGER);")
+        with self.assertRaisesRegex(MigrationError, "guard has been altered"):
+            apply_migrations(self.db, self.path)
+        self.assertIsNone(self.db.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name='sample'"
+        ).fetchone())
+
     def test_checksum_drift_is_rejected(self):
         self.write("0001_immutable.sql", "CREATE TABLE sample (id INTEGER);")
         apply_migrations(self.db, self.path)
