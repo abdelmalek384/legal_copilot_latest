@@ -1,6 +1,6 @@
 # Delivery blockers and closure register
 
-Last reviewed: 2026-11-14
+Last reviewed: 2026-11-15
 Scope: Legal Copilot release work. This register separates work that can be closed by repository changes from work that requires external execution, licensed/legal review, operational access, or real users.
 
 ## Closure policy
@@ -22,6 +22,13 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 | Legal report output-path integrity | AI-1 | JSON/Markdown report destinations cannot alias their database/register inputs or each other through direct paths, symlinks or hard links | 100% source implementation merged across source-review queue, corpus inventory, acquisition readiness, amendment relationships, OCR reports, legal audits, corpus comparison, evidence-card reports and draft builder (#1599/#1609); regression tests committed but not run |
 | Remaining legal audit output-path integrity | AI-1 | Canonical OCR evaluator, article-row audit and corpus database audit cannot overwrite their inputs through direct paths, symlinks or hard links | 100% source implementation merged in #1609; regression tests committed but not executed |
 | Additional legal CLI report-path integrity | AI-1 | Corpus/reference comparison, Labour Law evidence-card report, and structured legal-draft output cannot overwrite source inputs or inventory manifests | 100% source implementation merged in #1609; regression tests committed but not executed |
+
+## AI-1 evaluation JSONL duplicate-key rejection — 2026-11-15
+
+- The Arabic retrieval scorer and API evaluation runner now reject duplicate JSON object keys at every nesting depth while reading question/run JSONL rows. Previously, Python's default JSON decoder silently retained the last duplicate value, allowing ambiguous reviewer labels, article identifiers, or question metadata.
+- Added focused regressions for duplicate top-level and nested keys in both loaders. The existing test modules were already registered in `.github/workflows/tests.yml`; no workflow change is needed.
+- Source implementation and test additions are committed on branch `ai1/reject-duplicate-jsonl-keys`. Tests remain unexecuted because GitHub runner allocation/billing is unavailable; no pass is claimed.
+- This is input-integrity hardening only. It does not approve labels, change any source trust tier, or produce retrieval-accuracy metrics.
 
 ## Deployment dependency blocker
 
