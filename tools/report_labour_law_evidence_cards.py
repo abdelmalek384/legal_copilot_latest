@@ -17,6 +17,19 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.output_path_safety import ensure_output_paths_safe
+class DuplicateJSONKeyError(ValueError):
+    """Raised when evidence-card inventory JSON repeats an object key."""
+
+
+def _reject_duplicate_json_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateJSONKeyError(f"duplicate JSON object key {key!r}")
+        result[key] = value
+    return result
+
+
 DEFAULT_INPUT = ROOT / "data" / "candidates" / "labour_law_14_2025" / "provision_evidence_cards.json"
 DEFAULT_OUTPUT = ROOT / "data" / "candidates" / "labour_law_14_2025" / "provision_evidence_cards_review.md"
 
@@ -27,12 +40,12 @@ def _link(url: str, label: str | None = None) -> str:
 
 def load_inventory(input_path: Path) -> dict[str, Any]:
     """Load the canonical inventory and enforce manifest counts; archived split snapshots stay excluded."""
-    data = json.loads(input_path.read_text(encoding="utf-8"))
+    data = json.loads(input_path.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
     manifest_path = input_path.with_name("provision_evidence_cards_manifest.json")
     if not manifest_path.exists() or input_path.resolve() != DEFAULT_INPUT.resolve():
         return data
 
-    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
     cards = list(data["cards"])
     canonical_entry = next(
         (entry for entry in manifest["inventory_files"] if (ROOT / entry["path"]).resolve() == input_path.resolve()),
@@ -58,7 +71,7 @@ def load_inventory(input_path: Path) -> dict[str, Any]:
         candidate = (ROOT / entry["path"]).resolve()
         if candidate == input_path.resolve():
             continue
-        payload = json.loads(candidate.read_text(encoding="utf-8"))
+        payload = json.loads(candidate.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
         if len(payload.get("cards", [])) != entry["expected_cards"]:
             raise ValueError(f"Card count mismatch for {entry['path']}")
         for raw in payload["cards"]:

@@ -1,10 +1,28 @@
 import unittest
 from pathlib import Path
+from unittest.mock import patch
+
+import tools.report_labour_law_evidence_cards as evidence_cards
 
 from tools.report_labour_law_evidence_cards import DEFAULT_INPUT, load_inventory, render_report
 
 
 class LabourLawEvidenceManifestLoaderTests(unittest.TestCase):
+    def test_inventory_and_manifest_reject_duplicate_json_keys(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            inventory = root / "provision_evidence_cards.json"
+            manifest = root / "provision_evidence_cards_manifest.json"
+            inventory.write_text('{"instrument":{},"instrument":{},"cards":[]}', encoding="utf-8")
+            with patch.object(evidence_cards, "DEFAULT_INPUT", inventory), patch.object(evidence_cards, "ROOT", root):
+                with self.assertRaisesRegex(ValueError, "duplicate JSON object key 'instrument'"):
+                    load_inventory(inventory)
+            inventory.write_text('{"instrument":{},"cards":[]}', encoding="utf-8")
+            manifest.write_text('{"inventory_files":[],"inventory_files":[]}', encoding="utf-8")
+            with patch.object(evidence_cards, "DEFAULT_INPUT", inventory), patch.object(evidence_cards, "ROOT", root):
+                with self.assertRaisesRegex(ValueError, "duplicate JSON object key 'inventory_files'"):
+                    load_inventory(inventory)
+
     def test_report_loader_uses_reconciled_canonical_inventory(self):
         data = load_inventory(DEFAULT_INPUT)
         self.assertEqual(len(data["cards"]), 360)

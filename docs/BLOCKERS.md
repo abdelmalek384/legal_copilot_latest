@@ -99,6 +99,11 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - The legal document collector now rejects duplicate keys when reading an existing current metadata pointer. It refuses to archive/overwrite ambiguous provenance rather than silently selecting one conflicting field value.
 - Added a regression asserting the ambiguous metadata remains byte-for-byte untouched. Test execution remains blocked by GitHub runner/billing availability.
 
+## Labour Law evidence-card report input integrity — 2026-11-15
+
+- The provisional evidence-card report generator now rejects duplicate keys in the canonical inventory, inventory manifest, supplemental card files and protected-path manifest reads. Conflicting metadata cannot silently change report output.
+- Added regressions for duplicate keys in the canonical inventory and manifest. Test execution remains blocked; evidence cards remain provisional and non-search-eligible.
+
 ## External blockers: do not spend repeated effort looping
 
 ### Test execution / CI runner availability
