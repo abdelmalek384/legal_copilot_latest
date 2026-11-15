@@ -71,6 +71,20 @@ def private():
             "POST /private (private) in app.py has no Depends(user) authentication",
         ])
 
+    def test_api_route_without_methods_defaults_to_get_only(self):
+        source = '''
+def user():
+    pass
+
+@app.api_route("/private")
+def private(current: dict = Depends(user)):
+    return None
+'''
+        report = audit_source(source)
+        self.assertEqual(report["route_count"], 1)
+        self.assertEqual(report["routes"][0]["method"], "GET")
+        self.assertEqual(report["missing_authentication"], [])
+
     def test_public_allowlist_must_match_registered_routes(self):
         source = '''
 @app.get("/")
