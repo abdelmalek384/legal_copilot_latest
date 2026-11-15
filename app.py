@@ -2485,7 +2485,16 @@ def _rate_limit(request: Request):
     active_context = _active_firm_context.get()
     firm_id = getattr(active_context, "firm_id", None)
     # Keep rate budgets separate by validated firm identity; never trust the firm cookie.
-    client_key = f"{int(firm_id)}:{peer}" if firm_id is not None else peer
+    # Recovery endpoints must not persist raw client IP addresses in the control plane.
+    if path in {"/account/recovery/request", "/account/recovery/consume"}:
+        try:
+            client_key = _identity_rate_limit_digest(peer, purpose="middleware_ip:" + path)
+        except ValueError:
+            # The recovery handler also fails closed without this key. Block at
+            # the middleware boundary rather than falling back to a raw IP key.
+            return max(1, int(window_seconds))
+    else:
+        client_key = f"{int(firm_id)}:{peer}" if firm_id is not None else peer
     now = time.time()
     window_start = int(now // window_seconds) * window_seconds
     db = control_conn()
