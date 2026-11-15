@@ -23,6 +23,7 @@ then
 fi
 
 tests=(
+  test_backup_restore_drill_paths.py
   test_app_separate_database_runtime.py
   test_auth_rate_limits_separate_runtime.py
   test_mfa_account_security.py
