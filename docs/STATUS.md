@@ -201,3 +201,8 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Added duplicate-object-key rejection at every nesting depth to `tools/score_arabic_retrieval.py` and `tools/run_legal_eval.py`. Both JSONL loaders now fail closed instead of accepting Python JSON's last-key-wins behavior.
 - Added regression coverage for top-level and nested duplicates in `tests/test_score_arabic_retrieval.py` and `tests/test_legal_eval_runner.py`. Both modules are already registered in the Tests workflow.
 - Changes are on branch `ai1/reject-duplicate-jsonl-keys-mainline`; test execution remains unavailable. This is source/test implementation, not a test pass, legal review, or retrieval metric.
+
+## AI-1 legal JSONL parser coverage — 2026-11-15
+
+- Follow-up hardening extends duplicate-key rejection to `tools/validate_law14_eval_draft.py` and `tools/evaluate_ocr_quality.py`, covering nested as well as top-level objects. The earlier scorer and API runner guards were merged in PR #1621.
+- Added corresponding tests in the already workflow-registered Law 14 draft-validator and OCR evaluation test modules. This branch is source/test implementation only; execution remains blocked and no test pass is claimed.
