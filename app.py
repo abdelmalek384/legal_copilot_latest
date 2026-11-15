@@ -9480,7 +9480,9 @@ def export_firm_data_zip(u: dict = Depends(user)):
                 "SELECT o.object_id,o.sha256,o.byte_size,o.content_type,o.state,o.legal_hold,"
                 "d.id AS document_id,d.name FROM original_file_objects o "
                 "JOIN docs d ON d.id=o.document_id JOIN cases c ON c.id=d.case_id "
-                "ORDER BY d.id"
+                "WHERE o.firm_id=? AND d.firm_id=? AND c.firm_id=? "
+                "ORDER BY d.id",
+                (firm_id, firm_id, firm_id),
             ).fetchall()
             manifest = io.StringIO(newline="")
             manifest_writer = csv.writer(manifest, lineterminator="\r\n")
