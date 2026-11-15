@@ -176,6 +176,8 @@ class DeploymentPreflightTests(unittest.TestCase):
         base = dict(
             self.env,
             COPILOT_ENV="production",
+            BACKUP_KEY=Fernet.generate_key().decode("ascii"),
+            MFA_ENCRYPTION_KEY=Fernet.generate_key().decode("ascii"),
             COPILOT_IDENTITY_RATE_LIMIT_KEY="independent-rate-limit-secret-material-2026",
         )
         passed, _, errors = preflight.inspect_environment(base)
@@ -189,9 +191,14 @@ class DeploymentPreflightTests(unittest.TestCase):
                 ))
                 self.assertTrue(any("COPILOT_IDENTITY_RATE_LIMIT_KEY must be" in item for item in errors))
 
-        reused = dict(base, COPILOT_IDENTITY_RATE_LIMIT_KEY=base["ADMIN_TOKEN"])
-        _, _, errors = preflight.inspect_environment(reused)
-        self.assertTrue(any("must be distinct from ADMIN_TOKEN" in item for item in errors))
+        for reused_name in ("ADMIN_TOKEN", "BACKUP_KEY", "MFA_ENCRYPTION_KEY"):
+            with self.subTest(reused_name=reused_name):
+                reused = dict(base, COPILOT_IDENTITY_RATE_LIMIT_KEY=base[reused_name])
+                _, _, errors = preflight.inspect_environment(reused)
+                self.assertTrue(
+                    any("must be distinct from ADMIN_TOKEN" in item for item in errors),
+                    errors,
+                )
 
     def test_production_requires_separate_paths_secure_origin_hosts_and_valid_backup_key(self):
         env = dict(self.env)
