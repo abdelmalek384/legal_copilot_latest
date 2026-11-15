@@ -286,3 +286,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 ## AI-1 Labour Law candidate registration input — 2026-11-16
 
 - Candidate registry CLI now uses a bounded 1 MiB regular-file reader with no-follow open, file identity/change checks, UTF-8 validation and duplicate-key rejection before opening the shared legal-corpus connection. Added regression coverage; tests not executed.
+
+## AI-1 evaluation response parsing — 2026-11-16
+
+- `tools/run_legal_eval.py` rejects ambiguous API response JSON at every object depth and returns a safe `RunnerError`; regression coverage added. Tests not executed.
