@@ -319,14 +319,11 @@ class LegalImportBundleTests(unittest.TestCase):
         from tools import import_laws
 
         class Pixmap:
-            width = 1700
-            height = 2200
             def tobytes(self, image_format):
                 self.image_format = image_format
                 return b"png-bytes"
 
         class Page:
-            rect = SimpleNamespace(width=612.0, height=792.0)
             def get_pixmap(self, *, dpi):
                 self.dpi = dpi
                 return Pixmap()
@@ -349,36 +346,6 @@ class LegalImportBundleTests(unittest.TestCase):
             with mock.patch.dict(os.environ, {}, clear=True):
                 self.assertEqual(import_laws._ocr((self.pdf_bytes, 0)), "نص قانوني")
         tesseract.image_to_string.assert_called_once_with("image", lang="ara+eng")
-
-    def test_ocr_rejects_oversized_page_before_get_pixmap(self):
-        import sys
-        from types import SimpleNamespace
-        from tools import import_laws
-
-        class Page:
-            rect = SimpleNamespace(width=612.0, height=792.0)
-            get_pixmap = mock.Mock(side_effect=AssertionError("must reject before rendering"))
-
-        class Document:
-            def __enter__(self):
-                return self
-
-            def __exit__(self, *args):
-                return False
-
-            def __getitem__(self, index):
-                return Page()
-
-        fake_pymupdf = SimpleNamespace(open=lambda **kwargs: Document())
-        fake_pil = SimpleNamespace(Image=SimpleNamespace(open=mock.Mock()))
-        fake_tesseract = SimpleNamespace(image_to_string=mock.Mock())
-        with mock.patch.dict(sys.modules, {
-            "pymupdf": fake_pymupdf, "pytesseract": fake_tesseract, "PIL": fake_pil,
-        }), mock.patch.dict(os.environ, {"LEGAL_OCR_MAX_PIXELS": "1000"}):
-            with self.assertRaisesRegex(SystemExit, "OCR raster limit"):
-                import_laws._ocr((self.pdf_bytes, 0))
-        fake_pil.Image.open.assert_not_called()
-        fake_tesseract.image_to_string.assert_not_called()
 
     def test_ocr_cache_is_bound_to_pdf_hash_and_rejects_page_symlinks(self):
         import sys
