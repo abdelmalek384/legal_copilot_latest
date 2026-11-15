@@ -282,3 +282,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 ## AI-1 manual capture sidecar integrity — 2026-11-16
 
 - Hardened `tools/record_manual_capture.py` when reusing existing metadata: bounded 1 MiB regular-file read, no-follow open, inode/change checks and duplicate-key rejection. Added duplicate-key and symlink regressions. Test execution remains blocked.
+
+## AI-1 Labour Law candidate registration input — 2026-11-16
+
+- Candidate registry CLI now uses a bounded 1 MiB regular-file reader with no-follow open, file identity/change checks, UTF-8 validation and duplicate-key rejection before opening the shared legal-corpus connection. Added regression coverage; tests not executed.
