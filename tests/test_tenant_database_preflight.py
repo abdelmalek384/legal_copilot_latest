@@ -99,6 +99,10 @@ class TenantDatabasePreflightTests(unittest.TestCase):
             "SELECT database_file FROM tenant_database_catalog WHERE firm_id=10"
         ).fetchone()[0]
         with sqlite3.connect(self.root / filename) as db:
+            # Simulate offline ledger corruption by deliberately removing the
+            # immutable guards; normal application SQL cannot do this.
+            db.execute("DROP TRIGGER schema_migrations_no_update")
+            db.execute("DROP TRIGGER schema_migrations_no_delete")
             db.execute("DELETE FROM schema_migrations WHERE version=(SELECT MAX(version) FROM schema_migrations)")
             db.execute("UPDATE schema_migrations SET checksum_sha256='bad-checksum' WHERE version=(SELECT MIN(version) FROM schema_migrations)")
         report = audit(self.catalog_path, self.root)
@@ -135,12 +139,30 @@ class TenantDatabasePreflightTests(unittest.TestCase):
 
     def test_catalog_migration_checksum_drift_is_reported(self):
         with sqlite3.connect(self.catalog_path) as db:
+            db.execute("DROP TRIGGER schema_migrations_no_update")
             db.execute("UPDATE schema_migrations SET checksum_sha256='bad-checksum' WHERE version=(SELECT MIN(version) FROM schema_migrations)")
         report = audit(self.catalog_path, self.root)
         self.assertIn(
             "catalog_migration_checksum_mismatch",
             {item["code"] for item in report["findings"] if item["firm_id"] is None},
         )
+
+    def test_missing_migration_history_guards_are_reported_for_catalog_and_tenant(self):
+        self.add_tenant(31)
+        filename = self.catalog.execute(
+            "SELECT database_file FROM tenant_database_catalog WHERE firm_id=31"
+        ).fetchone()[0]
+        with sqlite3.connect(self.catalog_path) as db:
+            db.execute("DROP TRIGGER schema_migrations_no_update")
+            db.execute("DROP TRIGGER schema_migrations_no_delete")
+        with sqlite3.connect(self.root / filename) as db:
+            db.execute("DROP TRIGGER schema_migrations_no_update")
+            db.execute("DROP TRIGGER schema_migrations_no_delete")
+
+        report = audit(self.catalog_path, self.root)
+        codes = {item["code"] for item in report["findings"]}
+        self.assertIn("mutable_catalog_migration_history", codes)
+        self.assertIn("mutable_schema_migration_history", codes)
 
     def test_catalog_authority_failure_stops_before_opening_tenant_files(self):
         self.add_tenant(21)
