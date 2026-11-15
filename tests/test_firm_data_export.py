@@ -304,6 +304,45 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         ).fetchone()[0]
         self.assertEqual(audit_count, 0)
 
+    def test_export_ignores_corrupt_original_object_row_tagged_to_another_firm(self):
+        tenant, owner_id = self._tenant_a()
+        foreign_bytes = b"firm B object must never be considered by firm A export"
+        staged = app._original_file_store().stage(self.firm_b, foreign_bytes)
+        app._original_file_store().finalize(self.firm_b, staged.object_id)
+        doc = tenant.execute(
+            "INSERT INTO docs(case_id,name,added,firm_id,uploader_user_id,sha256,"
+            "content_type,byte_size,extraction_status,ocr_used) "
+            "VALUES(?,?,datetime('now'),?,?,?,?,?,'complete',0)",
+            (
+                self.case_id, "corrupt-foreign-object-row.pdf", self.firm_a, owner_id,
+                staged.sha256, "application/pdf", staged.byte_size,
+            ),
+        )
+        # Simulate a corrupted tenant database row that bypassed its normal
+        # firm-binding trigger. Export must still enforce the active firm in SQL.
+        tenant.execute("DROP TRIGGER original_file_objects_tenant_insert")
+        tenant.execute(
+            "INSERT INTO original_file_objects(object_id,document_id,firm_id,"
+            "storage_backend,sha256,byte_size,content_type,state) "
+            "VALUES(?,?,?,'local',?,?,?,'ready')",
+            (
+                staged.object_id, doc.lastrowid, self.firm_b, staged.sha256,
+                staged.byte_size, "application/pdf",
+            ),
+        )
+        tenant.commit()
+
+        response = self.client_a.get(f"/firm/data-export.zip?firm_id={self.firm_a}")
+        self.assertEqual(response.status_code, 200, response.text)
+        archive = zipfile.ZipFile(io.BytesIO(response.content))
+        manifest = self._zip_csv(response, "original_files_manifest.csv")
+        self.assertEqual(manifest, [])
+        documents = self._zip_csv(response, "documents.csv")
+        self.assertIn("corrupt-foreign-object-row.pdf", [row["name"] for row in documents])
+        self.assertNotIn("original_files/".encode(), b"".join(
+            archive.read(name) for name in archive.namelist() if name.startswith("original_files/")
+        ))
+
     def test_export_is_rate_limited(self):
         url = f"/firm/data-export.zip?firm_id={self.firm_a}"
         for _ in range(2):
