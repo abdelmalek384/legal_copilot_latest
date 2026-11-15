@@ -97,8 +97,8 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
             runs = root / "runs.jsonl"
             registry = root / "reviewers.json"
             output = root / "metrics.json"
-            questions.write_text('{"id":"Q1","question_ar":"سؤال","review_status":"needs_lawyer_review"}\\n', encoding="utf-8")
-            runs.write_text('{"id":"Q1","retrieved":[]}\\n', encoding="utf-8")
+            questions.write_text('{"id":"Q1","question_ar":"سؤال","review_status":"needs_lawyer_review"}' + chr(10), encoding="utf-8")
+            runs.write_text('{"id":"Q1","retrieved":[]}' + chr(10), encoding="utf-8")
             registry.write_text('{"reviewers":[],"reviewers":[]}', encoding="utf-8")
             errors = io.StringIO()
             argv = ["score_arabic_retrieval.py", "--questions", str(questions), "--runs", str(runs), "--reviewer-registry", str(registry), "--phase", "before", "--output", str(output)]
