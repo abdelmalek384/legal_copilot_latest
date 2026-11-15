@@ -8,6 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from tools import record_manual_capture as capture  # noqa: E402
 from tools.record_manual_capture import main  # noqa: E402
 
 TEXT = "مادة (1)\nنص تجريبي للمادة الأولى.\n\nمادة (2)\nنص تجريبي للمادة الثانية.\n" + ("وصف إضافي لاستيفاء الحد الأدنى للطول. " * 12)
