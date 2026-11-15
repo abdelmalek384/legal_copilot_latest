@@ -41,6 +41,11 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - Added the database acceptance, device acceptance, release-gate integration, production release-gate, and encrypted archive tests to the focused security regression script, with a workflow-contract regression.
 - These are source/test implementation changes only. The test modules are registered but have not been executed in this environment; no runtime pass is claimed.
 
+## AI-2 migration-ledger integrity hardening — 2026-11-16
+
+- The SQLite migration runner now rejects updates/deletes to applied `schema_migrations` rows and validates same-name trigger definitions to prevent a weakened guard from being accepted. New version rows remain insertable.
+- Regression coverage includes immutable update/delete behavior, idempotent re-entry and a spoofed same-name trigger. The module is already registered in the Tests workflow; execution remains blocked by runner billing. Implementation is complete at source level, not runtime-validated.
+
 ## AI-2 recovery archive integrity hardening — 2026-11-14
 
 - Recovery source opening now rejects symlinks and special files, uses nonblocking/no-follow flags where available, validates the opened inode against the pre-open identity, and hashes/uploads through the same open descriptor. The uploader requires an expected SHA-256; the tenancy archive flow supplies the checksum returned by verification.
