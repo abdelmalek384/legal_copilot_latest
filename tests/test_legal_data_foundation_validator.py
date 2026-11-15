@@ -18,7 +18,8 @@ class LegalDataFoundationMalformedInputTests(unittest.TestCase):
             (root / "docs").mkdir()
             shutil.copy2(SCRIPT, root / "tools" / SCRIPT.name)
             (root / "docs" / "source_manifest.json").write_text(
-                json.dumps(manifest, ensure_ascii=False), encoding="utf-8"
+                manifest if isinstance(manifest, str) else json.dumps(manifest, ensure_ascii=False),
+                encoding="utf-8",
             )
             (root / "docs" / "legal_coverage_matrix.csv").write_text(
                 "practice_area,priority,core_materials,judgment_sources,temporal_checks,evaluation_owner,status\n"
@@ -47,6 +48,16 @@ class LegalDataFoundationMalformedInputTests(unittest.TestCase):
             "review_status": "needs_lawyer_review", "expected_answer": None,
             "expected_sources": [], "must_abstain_if_unverified": True,
         }
+
+    def test_duplicate_json_keys_in_manifest_and_nested_question_are_rejected(self):
+        duplicate_manifest = '{"sources":[],"sources":[]}'
+        result = self._run_with_inputs(duplicate_manifest, json.dumps(self._valid_question(), ensure_ascii=False))
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("VALIDATION FAILED: source manifest: duplicate JSON object key 'sources'", result.stderr)
+        duplicate_question = '{"id":"Q1","practice_area":"civil","question_ar":"سؤال","review_status":"needs_lawyer_review","review_status":"lawyer_reviewed","expected_answer":null,"expected_sources":[],"must_abstain_if_unverified":true}'
+        result = self._run_with_inputs({"sources": [self._valid_source()]}, duplicate_question)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("duplicate JSON object key 'review_status'", result.stderr)
 
     def test_non_object_source_fails_with_controlled_validation_error(self):
         result = self._run_with_inputs({"sources": ["not-an-object"]}, json.dumps(self._valid_question(), ensure_ascii=False))
