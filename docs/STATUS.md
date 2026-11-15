@@ -38,6 +38,7 @@ The following bounded repository tasks now meet their source-change acceptance c
 | Task | Implementation | Validation boundary |
 |---|---:|---|
 | Align all eight direct dependency pins with the checked-in Python 3.12 lock | **100%** | Static consistency check completed; clean resolver/install/audit still open |
+| Protect applied migration-ledger rows from update/delete and reject same-name weakened guards | **100%** | SQLite immutability triggers and spoofed-trigger regression committed; test registered but unexecuted |
 | Add generic direct-requirement versus lock regression | **100%** | Test committed; repository test execution pending |
 | Enforce hash-required dependency audits in local and hosted workflow commands | **100%** | Workflow/script source reviewed; pip-audit execution pending |
 | Remove duplicate local pip-audit execution and gate release checks on Python 3.12/toolchain | **100%** | Script implementation committed; full local release check pending |
@@ -294,3 +295,9 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 ## AI-1 candidate seeder input integrity — 2026-11-16
 
 - `tools/seed_legal_candidates.py` now uses bounded stable-file reads for the candidate catalog and permission register, rejecting symlinks and oversized/changed inputs while retaining duplicate-key rejection. Added regressions; tests not executed.
+## AI-2 migration-ledger integrity hardening — 2026-11-16
+
+- The versioned SQLite migration runner now protects `schema_migrations` history with database-level `BEFORE UPDATE` and `BEFORE DELETE` abort triggers. New migration records remain insertable; existing version/name/checksum evidence cannot be silently rewritten or removed through ordinary SQL.
+- Existing same-name triggers are compared against the required definition; a weakened/spoofed trigger causes migration initialization to fail closed rather than being accepted through `IF NOT EXISTS`.
+- Added regressions for update/delete rejection, idempotent re-entry, and same-name weakened-trigger rejection. `tests/test_db_migrations.py` is already registered in the Tests workflow.
+- Direct-main commits: implementation `b57e39f`, regression `4056d7d`, migration documentation `1358fce`. Tests remain unexecuted because GitHub runner allocation/billing is unavailable; this is source implementation, not a test pass.
