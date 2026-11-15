@@ -45,7 +45,7 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 - Added versioned `schema_migrations` update/delete guards to control-plane migration `0024`, firm migration `0024`, and legal-corpus migration `0004`. New version rows remain insertable; previously applied name/checksum evidence cannot be changed through ordinary SQL.
 - The guards are installed through profile migrations so existing deployments can update through the normal control-plane/corpus and tenant-fleet maintenance procedures. A pre-existing same-name weakened trigger makes the migration fail atomically.
-- Regression coverage includes immutable update/delete behavior, idempotent re-entry and refusal of a pre-existing weakened guard. The module is registered in the Tests workflow; execution remains blocked by runner billing. Implementation is committed but not runtime-validated.
+- Regression coverage includes immutable update/delete behavior, idempotent re-entry, refusal of a pre-existing weakened guard, and installation across all three actual profile migration directories. Both `tests/test_db_migrations.py` and `tests/test_schema_profiles.py` are registered in the Tests workflow; execution remains blocked by runner billing. Implementation is committed but not runtime-validated.
 
 
 ## AI-2 recovery archive integrity hardening — 2026-11-14
