@@ -2485,16 +2485,25 @@ def _rate_limit(request: Request):
     active_context = _active_firm_context.get()
     firm_id = getattr(active_context, "firm_id", None)
     # Keep rate budgets separate by validated firm identity; never trust the firm cookie.
-    # Recovery endpoints must not persist raw client IP addresses in the control plane.
+    scoped_peer = f"{int(firm_id)}:{peer}" if firm_id is not None else peer
     if path in {"/account/recovery/request", "/account/recovery/consume"}:
+        # Public recovery endpoints always pseudonymize IPs, even in development.
         try:
             client_key = _identity_rate_limit_digest(peer, purpose="middleware_ip:" + path)
         except ValueError:
-            # The recovery handler also fails closed without this key. Block at
-            # the middleware boundary rather than falling back to a raw IP key.
+            # Recovery fails closed rather than falling back to a raw IP key.
+            return max(1, int(window_seconds))
+    elif _environment_mode in {"prod", "production"}:
+        # Production API throttle rows must never persist source IP addresses.
+        try:
+            client_key = _identity_rate_limit_digest(
+                scoped_peer, purpose="middleware_ip:" + bucket
+            )
+        except ValueError:
+            logger.error("API rate limiting is unavailable because its HMAC key is not configured")
             return max(1, int(window_seconds))
     else:
-        client_key = f"{int(firm_id)}:{peer}" if firm_id is not None else peer
+        client_key = scoped_peer
     now = time.time()
     window_start = int(now // window_seconds) * window_seconds
     db = control_conn()
