@@ -232,3 +232,8 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 
 - Hardened `tools/production_release_gate.py` to reject duplicate keys in candidate source documents and reviewer registry JSON. Duplicate candidate records cannot enter the ready-source index; duplicate registry keys block evaluation.
 - Hardened `tools/build_legal_draft.py` to reject duplicate keys in structured legal-draft input. Regression tests are committed but unexecuted.
+
+## AI-1 amendment and source-foundation input integrity — 2026-11-15
+
+- Hardened amendment relationship/inventory JSON and legal foundation source-manifest/question JSONL parsing to reject duplicate keys at every nesting level. Added controlled error reporting and regression coverage.
+- Changes are on `ai1/strict-amendment-and-foundation-json`; tests remain unexecuted due GitHub runner/billing access. No legal relationships are confirmed and no source/question is promoted.
