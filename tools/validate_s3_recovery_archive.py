@@ -10,7 +10,7 @@ import sys
 
 def validate_recovery_archive_configuration(
     s3_client, kms_client, *, bucket: str, configured_key: str, original_bucket: str,
-    original_key: str,
+    original_key: str, original_kms_client=None,
 ) -> dict:
     checks: list[dict[str, object]] = []
 
@@ -61,8 +61,13 @@ def validate_recovery_archive_configuration(
 
     key_arn = None
     original_key_arn = None
+    # The original-object and recovery-archive KMS keys may live in different
+    # AWS regions. Resolve each key through a client configured for that key's
+    # own region; a failed cross-region DescribeKey must not be mistaken for
+    # evidence that the keys are distinct.
+    original_kms_client = original_kms_client or kms_client
     try:
-        original_key_arn = kms_client.describe_key(KeyId=original_key).get("KeyMetadata", {}).get("Arn")
+        original_key_arn = original_kms_client.describe_key(KeyId=original_key).get("KeyMetadata", {}).get("Arn")
     except Exception:
         original_key_arn = None
     try:
@@ -134,19 +139,22 @@ def main(argv=None) -> int:
     key_id = os.environ.get("COPILOT_S3_RECOVERY_KMS_KEY_ID", "").strip()
     original_bucket = os.environ.get("COPILOT_S3_BUCKET", "").strip()
     original_key = os.environ.get("COPILOT_S3_KMS_KEY_ID", "").strip()
+    original_region = os.environ.get("COPILOT_S3_REGION", "").strip()
     endpoint = os.environ.get("COPILOT_S3_RECOVERY_ENDPOINT_URL", "").strip() or None
-    if not bucket or not region or not key_id or not original_bucket or not original_key:
+    if not bucket or not region or not key_id or not original_bucket or not original_key or not original_region:
         parser.error(
             "COPILOT_S3_RECOVERY_BUCKET, COPILOT_S3_RECOVERY_REGION, "
-            "COPILOT_S3_RECOVERY_KMS_KEY_ID, COPILOT_S3_BUCKET, and COPILOT_S3_KMS_KEY_ID are required"
+            "COPILOT_S3_RECOVERY_KMS_KEY_ID, COPILOT_S3_BUCKET, COPILOT_S3_REGION, and COPILOT_S3_KMS_KEY_ID are required"
         )
     try:
         import boto3
         s3 = boto3.client("s3", region_name=region, endpoint_url=endpoint)
         kms = boto3.client("kms", region_name=region)
+        original_kms = boto3.client("kms", region_name=original_region)
         result = validate_recovery_archive_configuration(
             s3, kms, bucket=bucket, configured_key=key_id,
-            original_bucket=original_bucket, original_key=original_key
+            original_bucket=original_bucket, original_key=original_key,
+            original_kms_client=original_kms,
         )
     except ImportError:
         print("S3/KMS recovery-archive preflight unavailable: AWS SDK is not installed", file=sys.stderr)
