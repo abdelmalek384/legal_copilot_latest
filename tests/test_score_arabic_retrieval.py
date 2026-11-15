@@ -90,6 +90,23 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "not approved for this practice_area"):
             score([altered], [run], TEST_REVIEWER_REGISTRY)
 
+    def test_cli_rejects_duplicate_reviewer_registry_keys(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            questions = root / "questions.jsonl"
+            runs = root / "runs.jsonl"
+            registry = root / "reviewers.json"
+            output = root / "metrics.json"
+            questions.write_text('{"id":"Q1","question_ar":"سؤال","review_status":"needs_lawyer_review"}\\n', encoding="utf-8")
+            runs.write_text('{"id":"Q1","retrieved":[]}\\n', encoding="utf-8")
+            registry.write_text('{"reviewers":[],"reviewers":[]}', encoding="utf-8")
+            errors = io.StringIO()
+            argv = ["score_arabic_retrieval.py", "--questions", str(questions), "--runs", str(runs), "--reviewer-registry", str(registry), "--phase", "before", "--output", str(output)]
+            with mock.patch("sys.argv", argv), contextlib.redirect_stderr(errors), self.assertRaises(SystemExit) as raised:
+                main()
+            self.assertEqual(raised.exception.code, 2)
+            self.assertIn("duplicate JSON object key 'reviewers'", errors.getvalue())
+
     def test_jsonl_loader_rejects_duplicate_keys_at_all_object_depths(self):
         from tools.score_arabic_retrieval import load_jsonl
 
