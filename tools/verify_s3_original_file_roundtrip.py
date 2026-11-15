@@ -252,6 +252,7 @@ def main() -> int:
             recovery_s3_client, recovery_kms_client,
             bucket=recovery_bucket, configured_key=recovery_key_id,
             original_bucket=bucket, original_key=key_id,
+            original_kms_client=kms_client,
         )
         report["recovery_archive_preflight"] = recovery_preflight
         blocking_checks = roundtrip_preflight_blockers(preflight)
