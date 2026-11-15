@@ -256,3 +256,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 ## AI-1 Labour Law evidence-card report integrity — 2026-11-15
 
 - Hardened `tools/report_labour_law_evidence_cards.py` to reject duplicate keys in canonical/supplemental card JSON and manifest JSON. Added regressions for inventory and manifest ambiguity. Tests remain unexecuted.
+
+## AI-1 legal corpus inventory input integrity — 2026-11-15
+
+- `tools/report_legal_corpus_inventory.py` now rejects duplicate keys at every nesting depth in every JSON register it reads. Added regression tests; no corpus status or legal verification is inferred.
