@@ -352,6 +352,27 @@ class IdentityLifecycleTests(unittest.TestCase):
         ).fetchone()
         self.assertIn('"sessions_revoked":true', event["detail_json"])
 
+    def test_recovery_middleware_rate_limits_store_hmac_ip_keys_not_raw_addresses(self):
+        control = self.runtime.control_connection()
+        for endpoint in ("/account/recovery/request", "/account/recovery/consume"):
+            peer = "192.0.2.61"
+            request = SimpleNamespace(
+                url=SimpleNamespace(path=endpoint),
+                client=SimpleNamespace(host=peer),
+                headers={},
+                method="POST",
+            )
+            self.assertEqual(app._rate_limit(request), 0)
+            purpose = "middleware_ip:" + endpoint
+            expected = app._identity_rate_limit_digest(peer, purpose=purpose)
+            row = control.execute(
+                "SELECT client_key FROM api_rate_limit_windows WHERE bucket=? ORDER BY window_start DESC LIMIT 1",
+                (endpoint,),
+            ).fetchone()
+            self.assertIsNotNone(row)
+            self.assertEqual(row["client_key"], expected)
+            self.assertNotEqual(row["client_key"], peer)
+
     def test_recovery_request_fails_closed_when_rate_limit_hmac_key_is_missing(self):
         user_id = self.runtime.create_global_identity(
             "Missing HMAC Key User", "missing-hmac@example.test",
