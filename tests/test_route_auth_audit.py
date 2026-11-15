@@ -93,7 +93,7 @@ def home():
 '''
         from tools.audit_route_auth import audit_sources
         report = audit_sources({"app.py": source}, require_public_routes=True)
-        self.assertTrue(any("public allowlist entry is no longer registered" in item
+        self.assertTrue(any("public allowlist entry is no longer a registered route" in item
                             for item in report["missing_authentication"]))
 
     def test_strict_cli_fails_for_an_authentication_gap(self):
