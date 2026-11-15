@@ -20,6 +20,19 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.output_path_safety import ensure_output_paths_safe
+class DuplicateJSONKeyError(ValueError):
+    """Raised when a legal-instrument register repeats a JSON object key."""
+
+
+def _reject_duplicate_json_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateJSONKeyError(f"duplicate JSON object key {key!r}")
+        result[key] = value
+    return result
+
+
 DEFAULT_RELATIONSHIPS = ROOT / "docs" / "phase_2_amendment_relationships.json"
 DEFAULT_INVENTORY = ROOT / "docs" / "phase_2_document_inventory.json"
 BASE_TYPES = {"base_instrument"}
@@ -394,8 +407,8 @@ def main() -> int:
     args = parser.parse_args()
     try:
         ensure_output_paths_safe([args.out], [args.relationships, args.inventory])
-        relationships_doc = json.loads(args.relationships.read_text(encoding="utf-8"))
-        inventory_doc = json.loads(args.inventory.read_text(encoding="utf-8"))
+        relationships_doc = json.loads(args.relationships.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+        inventory_doc = json.loads(args.inventory.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
     except (OSError, json.JSONDecodeError, ValueError) as exc:
         parser.error(str(exc))
     report = validate(relationships_doc, inventory_doc)
