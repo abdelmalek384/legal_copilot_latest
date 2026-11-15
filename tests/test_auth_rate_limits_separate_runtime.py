@@ -18,7 +18,7 @@ class SeparateRuntimeAuthenticationRateLimitTests(unittest.TestCase):
         self.env_names = (
             "COPILOT_CONTROL_DB", "COPILOT_TENANT_DB_ROOT", "COPILOT_CORPUS_DB",
             "COPILOT_DB", "COPILOT_OBJECT_STORAGE_ROOT", "COPILOT_OBJECT_STORAGE_BACKEND",
-            "COPILOT_ENV", "ADMIN_TOKEN",
+            "COPILOT_ENV", "ADMIN_TOKEN", "COPILOT_IDENTITY_RATE_LIMIT_KEY",
         )
         self.old_env = {name: os.environ.get(name) for name in self.env_names}
         os.environ.pop("COPILOT_DB", None)
@@ -29,6 +29,7 @@ class SeparateRuntimeAuthenticationRateLimitTests(unittest.TestCase):
         os.environ["COPILOT_OBJECT_STORAGE_BACKEND"] = "local"
         os.environ["COPILOT_ENV"] = "development"
         os.environ["ADMIN_TOKEN"] = "separate-runtime-rate-limit-test-token"
+        os.environ["COPILOT_IDENTITY_RATE_LIMIT_KEY"] = "separate-runtime-login-rate-limit-hmac-test-secret-2026"
         app._database_runtime = None
 
         self.runtime = DatabaseRuntime.from_env()
@@ -102,7 +103,11 @@ class SeparateRuntimeAuthenticationRateLimitTests(unittest.TestCase):
     def test_active_email_or_ip_lockout_rejects_correct_password_before_login(self):
         control = self.runtime.control_connection()
         now = int(app.time.time())
-        for identifier in ("rate-limit-owner@example.test", "ip:testclient"):
+        identifiers = (
+            app._identity_rate_limit_digest("rate-limit-owner@example.test", purpose="login_email"),
+            app._identity_rate_limit_digest("testclient", purpose="login_ip"),
+        )
+        for identifier in identifiers:
             control.execute(
                 "INSERT INTO login_attempts(email,failures,window_start,locked_until) "
                 "VALUES(?,?,?,?) ON CONFLICT(email) DO UPDATE SET "
@@ -120,7 +125,7 @@ class SeparateRuntimeAuthenticationRateLimitTests(unittest.TestCase):
 
         control.execute(
             "DELETE FROM login_attempts WHERE email IN (?,?)",
-            ("rate-limit-owner@example.test", "ip:testclient"),
+            identifiers,
         )
         control.commit()
         recovered = self.client.post("/login", json={
@@ -128,6 +133,20 @@ class SeparateRuntimeAuthenticationRateLimitTests(unittest.TestCase):
         })
         self.assertEqual(recovered.status_code, 200, recovered.text)
 
+
+    def test_failed_login_persists_only_hmac_pseudonyms_for_email_and_ip(self):
+        response = self.client.post("/login", json={
+            "email": "rate-limit-owner@example.test", "password": "incorrect-password",
+        })
+        self.assertEqual(response.status_code, 401, response.text)
+        rows = self.runtime.control_connection().execute(
+            "SELECT email FROM login_attempts ORDER BY email"
+        ).fetchall()
+        keys = [str(row["email"]) for row in rows]
+        self.assertEqual(len(keys), 2)
+        self.assertNotIn("rate-limit-owner@example.test", keys)
+        self.assertFalse(any("testclient" in key or key.startswith("ip:") for key in keys))
+        self.assertTrue(all(len(key) == 64 and all(ch in "0123456789abcdef" for ch in key) for key in keys))
 
     def test_upload_throttle_runs_before_authentication_and_persists_in_control_plane(self):
         control = self.runtime.control_connection()
