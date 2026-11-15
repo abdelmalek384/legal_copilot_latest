@@ -16,7 +16,11 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 APP_FILE = ROOT / "app.py"
-ROUTER_FILES = (ROOT / "routers" / "platform.py", ROOT / "routers" / "identity.py")
+ROUTER_MODULES = {
+    "routers.platform": ROOT / "routers" / "platform.py",
+    "routers.identity": ROOT / "routers" / "identity.py",
+}
+ROUTER_FILES = tuple(ROUTER_MODULES.values())
 ROUTE_METHODS = {"get", "post", "put", "patch", "delete", "options", "head", "api_route"}
 PUBLIC_ROUTES = {
     ("GET", "/"),
@@ -137,9 +141,34 @@ def audit_source(source: str) -> dict[str, Any]:
     return audit_sources({"app.py": source}, require_public_routes=False)
 
 
+def imported_router_modules(source: str) -> set[str]:
+    """Discover router modules imported by app.py so new routers cannot evade the audit."""
+    tree = ast.parse(source, filename=str(APP_FILE))
+    modules = set()
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.ImportFrom) or not node.module:
+            continue
+        if node.module.startswith("routers.") and any(alias.name == "router" for alias in node.names):
+            modules.add(node.module)
+    return modules
+
+
 def default_sources() -> dict[str, str]:
-    paths = (APP_FILE, *ROUTER_FILES)
-    return {str(path.relative_to(ROOT)): path.read_text(encoding="utf-8") for path in paths}
+    app_source = APP_FILE.read_text(encoding="utf-8")
+    imported = imported_router_modules(app_source)
+    unregistered = sorted(imported - set(ROUTER_MODULES))
+    if unregistered:
+        raise RuntimeError(
+            "route-authentication audit has no source mapping for imported routers: "
+            + ", ".join(unregistered)
+        )
+    paths = (APP_FILE, *(ROUTER_MODULES[module] for module in sorted(imported)))
+    return {
+        str(path.relative_to(ROOT)): (
+            app_source if path == APP_FILE else path.read_text(encoding="utf-8")
+        )
+        for path in paths
+    }
 
 
 def main(argv: list[str] | None = None) -> int:
