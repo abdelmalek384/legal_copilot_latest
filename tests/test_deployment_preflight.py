@@ -35,6 +35,7 @@ class DeploymentPreflightTests(unittest.TestCase):
             "COPILOT_CONTROL_DB": str(self.db_path),
             "COPILOT_TENANT_DB_ROOT": str(self.tenant_root),
             "COPILOT_CORPUS_DB": str(self.corpus_path),
+            "COPILOT_IDENTITY_RATE_LIMIT_KEY": "deployment-test-independent-rate-limit-secret-2026",
         }
 
     def test_allowed_hosts_preflight_requires_explicit_hostnames_not_urls_or_wildcard_all(self):
