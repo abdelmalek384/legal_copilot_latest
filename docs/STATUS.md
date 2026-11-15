@@ -67,7 +67,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 | Workstream | Estimated implementation completion | Remaining acceptance |
 |---|---:|---|
 | Local release baseline | 20% | Release-check implementation exists; exact local checker output and all Python 3.12 gates remain unavailable |
-| Security integration | 79% | Production login, configured API middleware, and recovery throttle identifiers are purpose-separated HMAC pseudonyms; exact public-route authentication inventory and case/document parent-scope guards are now committed; exact-head security verification remains blocked |
+| Security integration | 79% | Production/staging login, configured API middleware, and recovery throttle identifiers are purpose-separated HMAC pseudonyms; exact public-route authentication inventory and case/document parent-scope guards are now committed; exact-head security verification remains blocked |
 | Security regression coverage | 94% | Backup source no-follow, same-descriptor upload, mandatory checksum and verification-to-upload byte-binding regressions, duplicate release-evidence validation, S3 cross-region KMS, recovery/login/API HMAC, route-auth, case-ID and document-ID scope regressions are committed; all repository tests remain unexecuted, real OCR-engine/image-quality acceptance still pending |
 | Lawyer rating UI/export | 95% | Browser acceptance and adapter execution remain pending |
 | Test-firm package | 90% | Clean-clone first-login rehearsal remains unexecuted |
