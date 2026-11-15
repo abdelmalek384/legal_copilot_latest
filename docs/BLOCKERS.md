@@ -119,6 +119,11 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - The Phase 2 legal instrument inventory validator now rejects duplicate JSON keys at every nesting depth before evaluating source permissions, legal status or review labels.
 - Added top-level and nested duplicate-key regressions; test module is already registered. Tests remain unexecuted due runner/billing unavailability.
 
+## Arabic scorer reviewer-registry integrity — 2026-11-15
+
+- The Arabic retrieval scorer now parses its private reviewer registry and any existing comparison report with duplicate-key rejection, in addition to the question/run JSONL guard already merged in #1621.
+- Added a CLI regression proving duplicate reviewer-registry keys fail before scoring. Test remains unexecuted due runner/billing unavailability.
+
 ## External blockers: do not spend repeated effort looping
 
 ### Test execution / CI runner availability
