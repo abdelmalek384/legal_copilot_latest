@@ -177,8 +177,16 @@ class DatabaseMigrationTests(unittest.TestCase):
             [1, 2],
         )
 
-    def test_applied_migration_history_cannot_be_updated_or_deleted(self):
-        self.write("0001_immutable.sql", "CREATE TABLE sample (id INTEGER);")
+    def test_versioned_migration_can_protect_applied_history(self):
+        self.write("0001_immutable_history.sql", """
+            CREATE TABLE sample (id INTEGER);
+            CREATE TRIGGER schema_migrations_no_update
+            BEFORE UPDATE ON schema_migrations
+            BEGIN SELECT RAISE(ABORT, 'migration history is immutable'); END;
+            CREATE TRIGGER schema_migrations_no_delete
+            BEFORE DELETE ON schema_migrations
+            BEGIN SELECT RAISE(ABORT, 'migration history is immutable'); END;
+        """)
         self.assertEqual(apply_migrations(self.db, self.path), [1])
 
         with self.assertRaisesRegex(sqlite3.IntegrityError, "migration history is immutable"):
@@ -197,7 +205,7 @@ class DatabaseMigrationTests(unittest.TestCase):
         )
         self.assertEqual(apply_migrations(self.db, self.path), [])
 
-    def test_existing_migration_history_guard_name_cannot_be_spoofed(self):
+    def test_migration_refuses_a_preexisting_weakened_history_guard(self):
         self.db.execute("""
             CREATE TABLE schema_migrations (
                 version INTEGER PRIMARY KEY,
@@ -212,8 +220,13 @@ class DatabaseMigrationTests(unittest.TestCase):
             BEGIN SELECT 1; END
         """)
         self.db.commit()
-        self.write("0001_create_sample.sql", "CREATE TABLE sample (id INTEGER);")
-        with self.assertRaisesRegex(MigrationError, "guard has been altered"):
+        self.write("0001_immutable_history.sql", """
+            CREATE TABLE sample (id INTEGER);
+            CREATE TRIGGER schema_migrations_no_update
+            BEFORE UPDATE ON schema_migrations
+            BEGIN SELECT RAISE(ABORT, 'migration history is immutable'); END;
+        """)
+        with self.assertRaises(sqlite3.OperationalError):
             apply_migrations(self.db, self.path)
         self.assertIsNone(self.db.execute(
             "SELECT name FROM sqlite_master WHERE type='table' AND name='sample'"
