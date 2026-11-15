@@ -264,3 +264,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 ## AI-1 legal release-readiness input integrity — 2026-11-15
 
 - Hardened `tools/validate_legal_release_readiness.py` to reject duplicate keys in the canonical permission register and each candidate JSON. Ambiguous candidates cannot be treated as ready; added regression coverage. Tests remain unexecuted.
+
+## AI-1 Phase 2 inventory input integrity — 2026-11-15
+
+- Hardened `tools/validate_phase2_document_inventory.py` with a strict JSON loader. Conflicting duplicate fields cannot override instrument permission, legal status or review-state checks. Added regression tests; unexecuted.

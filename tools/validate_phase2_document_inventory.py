@@ -7,6 +7,19 @@ from urllib.parse import parse_qsl, urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PATH = ROOT / "docs" / "phase_2_document_inventory.json"
 
+class DuplicateJSONKeyError(ValueError):
+    """Raised when the Phase 2 legal inventory repeats a JSON object key."""
+
+
+def _reject_duplicate_json_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateJSONKeyError(f"duplicate JSON object key {key!r}")
+        result[key] = value
+    return result
+
+
 REQUIRED_DOCUMENT_FIELDS = (
     "document_id", "official_title_ar", "document_type", "source_id",
     "source_status", "collection_permission", "legal_status", "review_status",
@@ -203,8 +216,16 @@ def validate_inventory(data):
     return errors
 
 
+def load_inventory(path: Path = DEFAULT_PATH):
+    """Load the inventory without accepting ambiguous duplicate object keys."""
+    return json.loads(Path(path).read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+
+
 def main():
-    data = json.loads(DEFAULT_PATH.read_text(encoding="utf-8"))
+    try:
+        data = load_inventory()
+    except (OSError, json.JSONDecodeError, DuplicateJSONKeyError) as exc:
+        raise SystemExit("INVENTORY VALIDATION FAILED: " + str(exc)) from exc
     errors = validate_inventory(data)
     if errors:
         raise SystemExit("INVENTORY VALIDATION FAILED:\n- " + "\n- ".join(errors))

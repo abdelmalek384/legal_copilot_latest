@@ -114,6 +114,11 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - The legal release-readiness validator now rejects duplicate keys in both the canonical source-permission register and candidate legal-source JSON. Duplicate candidate inputs are explicitly blocked as unreadable; duplicate register input prevents any candidate from passing.
 - Added regressions for conflicting permission-register and candidate-document fields. Tests remain unexecuted due runner/billing unavailability.
 
+## Phase 2 instrument inventory parser integrity — 2026-11-15
+
+- The Phase 2 legal instrument inventory validator now rejects duplicate JSON keys at every nesting depth before evaluating source permissions, legal status or review labels.
+- Added top-level and nested duplicate-key regressions; test module is already registered. Tests remain unexecuted due runner/billing unavailability.
+
 ## External blockers: do not spend repeated effort looping
 
 ### Test execution / CI runner availability
