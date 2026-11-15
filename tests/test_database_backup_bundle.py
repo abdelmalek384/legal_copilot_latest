@@ -166,6 +166,47 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         self.assertEqual(metadata["byte_size"], len(original))
         restored_runtime.close_current_thread()
 
+    def test_backup_fails_closed_on_cross_firm_original_object_metadata(self):
+        import app
+        from original_file_storage import LocalPrivateObjectStore
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        case_id = firm_db.execute(
+            "SELECT id FROM cases WHERE title='Snapshot Matter'"
+        ).fetchone()[0]
+        original = b"object bytes must not be attributed to another firm"
+        _, document_id = app.save_doc(
+            firm_db,
+            {"id": self.user_id, "firm_id": self.firm_a, "name": "Backup Owner"},
+            case_id,
+            "cross-firm-metadata.txt",
+            "Synthetic extraction text.",
+            content_hash=hashlib.sha256(original).hexdigest(),
+            content_type="text/plain",
+            byte_size=len(original),
+        )
+        store = LocalPrivateObjectStore(self.root / "source" / "objects")
+        staged = store.stage(self.firm_a, original)
+        store.finalize(self.firm_a, staged.object_id)
+        # Simulate corrupted metadata after bypassing the database-level tenant guard.
+        firm_db.execute("DROP TRIGGER original_file_objects_tenant_insert")
+        firm_db.execute(
+            "INSERT INTO original_file_objects(object_id,document_id,firm_id,storage_backend,"
+            "sha256,byte_size,content_type,state) VALUES(?,?,?,'local',?,?,?,'ready')",
+            (
+                staged.object_id, document_id, self.firm_b, staged.sha256,
+                staged.byte_size, "text/plain",
+            ),
+        )
+        firm_db.commit()
+
+        with self.assertRaisesRegex(DatabaseBundleError, "metadata is invalid"):
+            create_backup_bundle(
+                self.runtime, self.cipher, self.backup_dir, quiesced=True
+            )
+        self.assertEqual(list(self.backup_dir.glob("*.enc")), [])
+
     def test_recovery_drill_restores_and_exercises_active_firm_routing(self):
         from tools.run_database_recovery_drill import run_recovery_drill
 
