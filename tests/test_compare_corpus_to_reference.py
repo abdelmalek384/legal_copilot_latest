@@ -113,6 +113,11 @@ class T(unittest.TestCase):
   self.assertTrue(any("no extractable text" in warning for warning in report["warnings"]))
   self.assertFalse(report["all_identical"])
 
+ def test_duplicate_json_keys_warn_and_are_skipped(self):
+  b=self.d/"duplicate.jsonl";b.write_text('{"article":"1","article":"2","text":"candidate"}\\n',encoding="utf-8")
+  report=build_report(b,self.ref)
+  self.assertTrue(any("Malformed JSON on line 1" in warning for warning in report["warnings"]))
+  self.assertEqual(report["candidate"]["articles_detected"],0)
  def test_bad_json_warns(self):
   b=self.d/"bad.jsonl";b.write_text('bad json\n[1]\n{"article":"???","text":"x"}',encoding="utf-8");self.assertTrue(build_report(b,self.ref)["warnings"])
  def test_report_outputs_cannot_overwrite_candidate_or_reference(self):
