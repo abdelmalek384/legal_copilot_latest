@@ -8,12 +8,52 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import stat
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_RECORD = ROOT / "data" / "candidates" / "labour_law_14_2025" / "registry_candidate.json"
 
+
+class DuplicateJSONKeyError(ValueError):
+    pass
+
+
+def _reject_duplicate_json_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateJSONKeyError(f"duplicate JSON key: {key}")
+        result[key] = value
+    return result
+
+
+def load_candidate_record(path: Path) -> dict:
+    """Read candidate input as a bounded regular file; reject links and ambiguous JSON."""
+    try:
+        before = Path(path).lstat()
+        if not stat.S_ISREG(before.st_mode) or before.st_size > 1024 * 1024:
+            raise ValueError("candidate record must be a regular file no larger than 1 MiB")
+        flags = os.O_RDONLY | getattr(os, "O_BINARY", 0) | getattr(os, "O_NOFOLLOW", 0)
+        descriptor = os.open(path, flags)
+        with os.fdopen(descriptor, "rb") as stream:
+            opened = os.fstat(stream.fileno())
+            if (not stat.S_ISREG(opened.st_mode)
+                    or (before.st_dev, before.st_ino) != (opened.st_dev, opened.st_ino)):
+                raise ValueError("candidate record changed identity while opening")
+            raw = stream.read(1024 * 1024 + 1)
+            after = os.fstat(stream.fileno())
+            if len(raw) > 1024 * 1024 or len(raw) != after.st_size:
+                raise ValueError("candidate record changed or exceeds 1 MiB")
+            if (opened.st_size, opened.st_mtime_ns, opened.st_ctime_ns) != (after.st_size, after.st_mtime_ns, after.st_ctime_ns):
+                raise ValueError("candidate record changed while being read")
+        value = json.loads(raw.decode("utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+    except (OSError, UnicodeError, json.JSONDecodeError, DuplicateJSONKeyError, ValueError) as exc:
+        raise ValueError("candidate record is unreadable, ambiguous, or unsafe") from exc
+    if not isinstance(value, dict):
+        raise ValueError("candidate record root must be a JSON object")
+    return value
 
 def register(db, record):
     """Idempotently insert candidate source/document/version metadata."""
@@ -131,7 +171,10 @@ def main():
             + (": missing " + ", ".join(missing) if missing else "")
         )
 
-    record = json.loads(Path(args.record).read_text(encoding="utf-8"))
+    try:
+        record = load_candidate_record(Path(args.record))
+    except ValueError as exc:
+        parser.error(str(exc))
     db = app.corpus_conn()
     try:
         result = register(db, record)

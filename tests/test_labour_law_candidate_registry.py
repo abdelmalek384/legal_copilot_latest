@@ -28,7 +28,7 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
         self.app = importlib.reload(app)
         self.runtime = self.app.DatabaseRuntime.from_env()
         self.runtime.initialize()
-        from tools.register_labour_law_candidate import register, DEFAULT_RECORD
+        from tools.register_labour_law_candidate import register, DEFAULT_RECORD, load_candidate_record
         self.register = register
         self.record = json.loads(DEFAULT_RECORD.read_text(encoding="utf-8"))
         self.db = self.runtime.legal_corpus_connection()
@@ -44,6 +44,34 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
                 else:
                     os.environ[name] = value
             self.tmp.cleanup()
+
+    def test_candidate_record_loader_rejects_duplicate_keys(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "candidate.json"
+            for raw in (
+                '{"document":{"document_id":"LAW-1"},"document":{"document_id":"LAW-2"}}',
+                '{"document":{"document_id":"LAW-1","nested":{"review":"pending","review":"approved"}}}',
+            ):
+                path.write_text(raw, encoding="utf-8")
+                with self.subTest(raw=raw), self.assertRaisesRegex(ValueError, "unreadable, ambiguous, or unsafe"):
+                    load_candidate_record(path)
+
+    def test_candidate_record_loader_rejects_non_object_and_symlink(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            path = root / "candidate.json"
+            path.write_text('[]', encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "root must be a JSON object"):
+                load_candidate_record(path)
+            target = root / "target.json"
+            target.write_text('{"document":{}}', encoding="utf-8")
+            path.unlink()
+            try:
+                path.symlink_to(target)
+            except (OSError, NotImplementedError) as exc:
+                self.skipTest(f"symlink creation unavailable: {type(exc).__name__}")
+            with self.assertRaisesRegex(ValueError, "unreadable, ambiguous, or unsafe"):
+                load_candidate_record(path)
 
     def test_registers_pending_metadata_without_chunks(self):
         result = self.register(self.db, self.record)
