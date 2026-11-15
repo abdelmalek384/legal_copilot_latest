@@ -34,6 +34,33 @@ class DatabaseProfileTests(unittest.TestCase):
         self.assertIn("firm_only", tables)
         self.assertNotIn("corpus_only", tables)
 
+    def test_all_repository_profiles_install_immutable_migration_history(self):
+        migrations_root = Path(__file__).resolve().parents[1] / "migrations"
+        for profile in ("control_plane", "firm", "legal_corpus"):
+            with self.subTest(profile=profile):
+                connection = sqlite3.connect(":memory:")
+                try:
+                    apply_profile_migrations(connection, profile, migrations_root)
+                    guards = {
+                        row[0] for row in connection.execute(
+                            "SELECT name FROM sqlite_master WHERE type='trigger' "
+                            "AND name IN ('schema_migrations_no_update','schema_migrations_no_delete')"
+                        )
+                    }
+                    self.assertEqual(
+                        guards,
+                        {"schema_migrations_no_update", "schema_migrations_no_delete"},
+                    )
+                    with self.assertRaisesRegex(sqlite3.IntegrityError, "migration history is immutable"):
+                        connection.execute(
+                            "UPDATE schema_migrations SET checksum_sha256=? WHERE version=1",
+                            ("0" * 64,),
+                        )
+                    with self.assertRaisesRegex(sqlite3.IntegrityError, "migration history is immutable"):
+                        connection.execute("DELETE FROM schema_migrations WHERE version=1")
+                finally:
+                    connection.close()
+
     def test_profile_binding_is_idempotent(self):
         self.assertEqual(apply_profile_migrations(self.db, "firm", self.root), [])
         self.assertEqual(apply_profile_migrations(self.db, "firm", self.root), [])
