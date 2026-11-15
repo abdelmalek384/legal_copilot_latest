@@ -158,3 +158,6 @@ The read-only ownership preflight now fails closed when the database is empty or
 A separate AST-based route-authentication inventory now enumerates every direct `app` route and requires an explicit `Depends(user)` dependency for every route outside the exact public allowlist: `GET /`, `POST /login`, `POST /invitations/accept/new`, `POST /account/recovery/request`, and `POST /account/recovery/consume`. It also fails if an allowlisted public route disappears, preventing stale exceptions from silently accumulating. The audit is registered as a strict CI gate alongside the route-to-SQL audit.
 
 This gate detects accidental removal of the authentication dependency; it does **not** prove role-level authorization, case membership, firm scoping, or correctness of SQL predicates. Those remain separate requirements for route/query behavioral review and adversarial tests.
+
+
+A focused source-level regression now also enumerates every direct `app` route whose path contains `{cid}` and requires the handler to call `need()` before case access, or to use the reviewed `delete_case()` wrapper. This guards against adding a new case-child route that authenticates the user but forgets case membership. It is intentionally narrower than full query analysis: routes using other case-ID parameter names and authorization hidden in arbitrary helpers still require manual review.
