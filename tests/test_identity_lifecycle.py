@@ -353,6 +353,29 @@ class IdentityLifecycleTests(unittest.TestCase):
         ).fetchone()
         self.assertIn('"sessions_revoked":true', event["detail_json"])
 
+    def test_recovery_request_fails_closed_when_rate_limit_hmac_key_is_missing(self):
+        user_id = self.runtime.create_global_identity(
+            "Missing HMAC Key User", "missing-hmac@example.test",
+            app.hash_pw("MissingHmacPassphrase-2026!"),
+        )
+        self.runtime.create_firm_membership(user_id, self.firm_a, "lawyer")
+        request = app.RecoveryRequestIn(email="missing-hmac@example.test")
+        saved_key = os.environ.pop("COPILOT_IDENTITY_RATE_LIMIT_KEY", None)
+        try:
+            with patch.object(app, "_send_identity_link") as send:
+                response = app.request_account_recovery(
+                    request, SimpleNamespace(client=SimpleNamespace(host="192.0.2.50"))
+                )
+            self.assertEqual(response, app._identity_recovery_generic_response())
+            send.assert_not_called()
+            control = self.runtime.control_connection()
+            self.assertEqual(control.execute(
+                "SELECT COUNT(*) FROM password_recovery_tokens WHERE user_id=?", (user_id,)
+            ).fetchone()[0], 0)
+        finally:
+            if saved_key is not None:
+                os.environ["COPILOT_IDENTITY_RATE_LIMIT_KEY"] = saved_key
+
     def test_recovery_email_budget_cannot_be_bypassed_by_rotating_source_ips(self):
         user_id = self.runtime.create_global_identity(
             "Distributed Recovery User", "distributed-recovery@example.test",
