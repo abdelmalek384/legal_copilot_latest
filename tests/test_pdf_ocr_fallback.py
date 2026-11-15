@@ -10,11 +10,14 @@ import app
 class FakePdfPage:
     def __init__(self, number):
         self.number = number
+        self.rect = types.SimpleNamespace(width=612.0, height=792.0)
     def get_pixmap(self, dpi, alpha):
         return FakePixmap()
 
 
 class FakePixmap:
+    width = 1360
+    height = 1760
     def tobytes(self, kind):
         return b"png-bytes"
 
@@ -60,6 +63,25 @@ class PdfOcrFallbackTests(unittest.TestCase):
         self.assertIn("[[PDF_PAGE:1]]\n\nReadable page one text is longer than twenty chars.", result)
         self.assertIn("[[PDF_PAGE:2]]\n\nOCR recovered page two text.", result)
         fake_pytesseract.image_to_string.assert_called_once()
+
+    def test_oversized_page_is_rejected_before_pdf_rasterization(self):
+        fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: FakePdfDoc(1))
+        fake_pytesseract = types.SimpleNamespace(image_to_string=MagicMock(return_value="must not run"))
+        fake_image = types.SimpleNamespace(open=lambda value: object())
+        fake_pil = types.ModuleType("PIL")
+        fake_pil.Image = fake_image
+        with patch.dict(sys.modules, {
+            "pymupdf": fake_pymupdf,
+            "pytesseract": fake_pytesseract,
+            "PIL": fake_pil,
+        }), patch.dict(os.environ, {"OCR_MAX_PIXELS": "1000"}), patch.object(
+            FakePdfPage, "get_pixmap", autospec=True
+        ) as render_page:
+            with self.assertRaises(app.HTTPException) as caught:
+                app.ocr_pdf_text(b"pdf")
+        self.assertEqual(caught.exception.status_code, 413)
+        render_page.assert_not_called()
+        fake_pytesseract.image_to_string.assert_not_called()
 
     def test_all_scanned_pdf_still_obeys_ocr_page_limit(self):
         fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: FakePdfDoc(31))
