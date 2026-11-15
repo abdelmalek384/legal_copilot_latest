@@ -2,12 +2,14 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.audit_route_auth import APP_FILE, PUBLIC_ROUTES, audit_source, main
+from tools.audit_route_auth import APP_FILE, ROUTER_FILES, PUBLIC_ROUTES, audit_source, audit_sources, main
 
 
 class RouteAuthenticationAuditTests(unittest.TestCase):
     def test_current_application_has_authentication_on_every_non_public_route(self):
-        report = audit_source(APP_FILE.read_text(encoding="utf-8"))
+        sources = {str(APP_FILE): APP_FILE.read_text(encoding="utf-8")}
+        sources.update({str(path): path.read_text(encoding="utf-8") for path in ROUTER_FILES})
+        report = audit_sources(sources)
         self.assertGreater(report["route_count"], 100)
         self.assertEqual(report["public_route_count"], len(PUBLIC_ROUTES))
         self.assertEqual(report["missing_authentication"], [])
@@ -60,7 +62,8 @@ def private():
 def home():
     return "ok"
 '''
-        report = audit_source(source)
+        from tools.audit_route_auth import audit_sources
+        report = audit_sources({"app.py": source}, require_public_routes=True)
         self.assertTrue(any("public allowlist entry is no longer registered" in item
                             for item in report["missing_authentication"]))
 
