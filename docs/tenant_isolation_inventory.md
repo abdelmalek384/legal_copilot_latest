@@ -161,3 +161,5 @@ This gate detects accidental removal of the authentication dependency; it does *
 
 
 A focused source-level regression now also enumerates every direct `app` route whose path contains `{cid}` and requires the handler to call `need()` before case access, or to use the reviewed `delete_case()` wrapper. This guards against adding a new case-child route that authenticates the user but forgets case membership. It is intentionally narrower than full query analysis: routes using other case-ID parameter names and authorization hidden in arbitrary helpers still require manual review.
+
+A second static regression covers all direct `app` routes containing `{document_id}`: each handler must invoke `need()` for its parent case and contain an explicit `firm_id` binding. This is a source-shape guard for accidental omission of the parent/tenant checks, not proof that the SQL statement is otherwise correct; behavioral same-firm cross-case and cross-firm tests remain required.
