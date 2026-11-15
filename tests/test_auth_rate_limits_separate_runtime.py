@@ -117,11 +117,21 @@ class SeparateRuntimeAuthenticationRateLimitTests(unittest.TestCase):
             )
         control.commit()
 
-        blocked = self.client.post("/login", json={
-            "email": "rate-limit-owner@example.test", "password": self.password,
-        })
-        self.assertEqual(blocked.status_code, 429, blocked.text)
-        self.assertGreater(int(blocked.headers.get("Retry-After", "0")), 0)
+        worker_two = DatabaseRuntime.from_env()
+        worker_two.initialize()
+        original_runtime = app._database_runtime
+        try:
+            # The same HMAC pseudonyms must enforce one shared control-plane
+            # budget even when a different application worker receives login.
+            app._database_runtime = worker_two
+            blocked = self.client.post("/login", json={
+                "email": "rate-limit-owner@example.test", "password": self.password,
+            })
+            self.assertEqual(blocked.status_code, 429, blocked.text)
+            self.assertGreater(int(blocked.headers.get("Retry-After", "0")), 0)
+        finally:
+            app._database_runtime = original_runtime
+            worker_two.close_current_thread()
 
         control.execute(
             "DELETE FROM login_attempts WHERE email IN (?,?)",
