@@ -14,7 +14,9 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import os
 import re
+import stat
 import sys
 from pathlib import Path
 from urllib.parse import parse_qsl, urlsplit
@@ -133,6 +135,32 @@ def detect_content_type(path: Path, data: bytes) -> str:
     return ctype
 
 
+def load_existing_capture_metadata(path: Path) -> dict:
+    """Load a prior capture sidecar as a bounded, regular, unambiguous file."""
+    try:
+        before = Path(path).lstat()
+        if not stat.S_ISREG(before.st_mode) or before.st_size > 1024 * 1024:
+            raise ValueError("metadata must be a regular file no larger than 1 MiB")
+        flags = os.O_RDONLY | getattr(os, "O_BINARY", 0) | getattr(os, "O_NOFOLLOW", 0)
+        descriptor = os.open(path, flags)
+        with os.fdopen(descriptor, "rb") as stream:
+            opened = os.fstat(stream.fileno())
+            if (not stat.S_ISREG(opened.st_mode)
+                    or (before.st_dev, before.st_ino) != (opened.st_dev, opened.st_ino)):
+                raise ValueError("metadata changed identity while opening")
+            raw = stream.read(1024 * 1024 + 1)
+            after = os.fstat(stream.fileno())
+            if len(raw) > 1024 * 1024 or len(raw) != after.st_size:
+                raise ValueError("metadata changed or exceeds 1 MiB")
+            if (opened.st_size, opened.st_mtime_ns, opened.st_ctime_ns) != (after.st_size, after.st_mtime_ns, after.st_ctime_ns):
+                raise ValueError("metadata changed while being read")
+        value = json.loads(raw.decode("utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+    except (OSError, UnicodeError, json.JSONDecodeError, ValueError) as exc:
+        raise ValueError("existing metadata sidecar is unreadable, ambiguous, or unsafe; refusing to overwrite it") from exc
+    if not isinstance(value, dict):
+        raise ValueError("existing metadata sidecar must be a JSON object; refusing to overwrite it")
+    return value
+
 def record_capture(args) -> dict:
     if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,127}", args.document_id):
         raise ValueError("--document-id must start with a letter/digit and contain only letters, digits, '_' or '-' (max 128 characters)")
@@ -231,17 +259,7 @@ def record_capture(args) -> dict:
         raise ValueError("metadata file must not be a symbolic link")
     metadata_exists = metadata_path.exists()
     if metadata_exists:
-        if not metadata_path.is_file():
-            raise ValueError("existing metadata path must be a regular file")
-        try:
-            existing_metadata = json.loads(
-                metadata_path.read_text(encoding="utf-8"),
-                object_pairs_hook=_reject_duplicate_json_keys,
-            )
-        except (OSError, UnicodeError, json.JSONDecodeError) as exc:
-            raise ValueError("existing metadata sidecar is unreadable; refusing to overwrite it") from exc
-        if not isinstance(existing_metadata, dict):
-            raise ValueError("existing metadata sidecar must be a JSON object; refusing to overwrite it")
+        existing_metadata = load_existing_capture_metadata(metadata_path)
         identity_fields = ("document_id", "source_id", "source_url", "original_path", "sha256", "http_content_type")
         if any(existing_metadata.get(field) != metadata.get(field) for field in identity_fields):
             raise ValueError("existing metadata sidecar belongs to a different capture; refusing to overwrite it")
