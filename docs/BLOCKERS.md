@@ -59,6 +59,12 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 - **Owner source package inspected (AI-1):** `docs/legal_evidence/law14_2025_import_operator_handoff.md` and `law14_2025_import_metadata.template.json` document the import contract. The newly supplied 112-page PDF's text layer exposes all 13 promulgation headings and all 298 attached-law article headings in sequence; see `docs/legal_evidence/law14_2025_uploaded_pdf_heading_audit.md`. This is a heading-only audit: the PDF reports copy/print restrictions and carries a watermark that the electronic copy is not valid for circulation. Do not treat it as authenticated or reuse-cleared, do not commit extracted text, and do not fabricate supplier role/permission evidence. Article-body comparison and the importer run remain open pending an authenticated/authorized transcription and truthful provenance metadata. The importer supports expected heading counts and detects internal gaps, missing trailing article numbers, out-of-range headings, and an entirely absent expected provision/article block. Regression coverage is committed but remains unexecuted while the runner is unavailable.
 
+## Remaining legal JSONL duplicate-key hardening — 2026-11-15
+
+- Extended strict JSON object parsing to the Law 14/2025 draft inventory validator and OCR-quality evaluator. Duplicate keys at any nesting depth now fail closed, matching the Arabic retrieval scorer and API evaluation runner.
+- Added top-level and nested duplicate-key regression cases to `tests/test_validate_law14_eval_draft.py` and `tests/test_ocr_quality_evaluation.py`. Both test modules are already in `.github/workflows/tests.yml`.
+- Implementation is on branch `ai1/strict-jsonl-legal-validators-mainline`; tests remain unexecuted due runner/billing unavailability. This change does not alter the draft inventory or any legal verification state.
+
 ## External blockers: do not spend repeated effort looping
 
 ### Test execution / CI runner availability
