@@ -114,7 +114,7 @@ class T(unittest.TestCase):
   self.assertFalse(report["all_identical"])
 
  def test_duplicate_json_keys_warn_and_are_skipped(self):
-  b=self.d/"duplicate.jsonl";b.write_text('{"article":"1","article":"2","text":"candidate"}\\n',encoding="utf-8")
+  b=self.d/"duplicate.jsonl";b.write_text('{"article":"1","article":"2","text":"candidate"}'+chr(10),encoding="utf-8")
   report=build_report(b,self.ref)
   self.assertTrue(any("Malformed JSON on line 1" in warning for warning in report["warnings"]))
   self.assertEqual(report["candidate"]["articles_detected"],0)
