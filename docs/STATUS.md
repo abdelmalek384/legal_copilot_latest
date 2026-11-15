@@ -290,3 +290,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 ## AI-1 evaluation response parsing — 2026-11-16
 
 - `tools/run_legal_eval.py` rejects ambiguous API response JSON at every object depth and returns a safe `RunnerError`; regression coverage added. Tests not executed.
+
+## AI-1 candidate seeder input integrity — 2026-11-16
+
+- `tools/seed_legal_candidates.py` now uses bounded stable-file reads for the candidate catalog and permission register, rejecting symlinks and oversized/changed inputs while retaining duplicate-key rejection. Added regressions; tests not executed.
