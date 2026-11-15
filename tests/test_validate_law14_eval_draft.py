@@ -82,6 +82,19 @@ class Law14DraftInventoryTests(unittest.TestCase):
         ], minimum_questions=1)
         self.assertTrue(any("does not match" in item for item in report["errors"]))
 
+    def test_jsonl_reader_rejects_duplicate_keys_at_all_object_depths(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "questions.jsonl"
+            for raw in (
+                '{"id":"Q1","id":"Q2"}',
+                '{"id":"Q1","metadata":{"review_status":"needs_lawyer_review","review_status":"verified"}}',
+            ):
+                path.write_text(raw + "\n", encoding="utf-8")
+                with self.subTest(raw=raw), self.assertRaisesRegex(
+                    ValueError, r"1: duplicate JSON object key '"
+                ):
+                    read_jsonl(path)
+
     def test_jsonl_reader_rejects_non_object_rows(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "questions.jsonl"
