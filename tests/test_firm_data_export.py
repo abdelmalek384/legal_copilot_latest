@@ -304,7 +304,7 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         ).fetchone()[0]
         self.assertEqual(audit_count, 0)
 
-    def test_export_ignores_corrupt_original_object_row_tagged_to_another_firm(self):
+    def test_export_fails_closed_on_corrupt_original_object_row_tagged_to_another_firm(self):
         tenant, owner_id = self._tenant_a()
         foreign_bytes = b"firm B object must never be considered by firm A export"
         staged = app._original_file_store().stage(self.firm_b, foreign_bytes)
@@ -333,13 +333,14 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         tenant.commit()
 
         response = self.client_a.get(f"/firm/data-export.zip?firm_id={self.firm_a}")
-        self.assertEqual(response.status_code, 200, response.text)
-        archive = zipfile.ZipFile(io.BytesIO(response.content))
-        manifest = self._zip_csv(response, "original_files_manifest.csv")
-        self.assertEqual(manifest, [])
-        documents = self._zip_csv(response, "documents.csv")
-        self.assertIn("corrupt-foreign-object-row.pdf", [row["name"] for row in documents])
-        self.assertFalse(any(name.startswith("original_files/") for name in archive.namelist()))
+        self.assertEqual(response.status_code, 503, response.text)
+        self.assertIn("tenant integrity", response.json()["detail"])
+        audit_count = tenant.execute(
+            "SELECT COUNT(*) FROM security_audit_events "
+            "WHERE firm_id=? AND event='firm_data_export'",
+            (self.firm_a,),
+        ).fetchone()[0]
+        self.assertEqual(audit_count, 0)
 
     def test_export_is_rate_limited(self):
         url = f"/firm/data-export.zip?firm_id={self.firm_a}"
