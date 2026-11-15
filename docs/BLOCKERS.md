@@ -134,6 +134,11 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - The manual-capture rerun path now uses bounded regular-file reads, `O_NOFOLLOW` where available, inode/metadata-change checks, and strict duplicate-key JSON parsing for existing sidecars. It refuses ambiguous or symlinked provenance rather than overwriting it.
 - Added regressions for duplicate top-level/nested keys and symlinked sidecars. Tests remain unexecuted because hosted runners are unavailable.
 
+## Labour Law candidate registration input integrity — 2026-11-16
+
+- `tools/register_labour_law_candidate.py` now validates its candidate JSON as a bounded regular file, rejects symlinks and duplicate keys at all object depths, and refuses non-object roots before opening the shared corpus connection.
+- Added duplicate-key, non-object-root and symlink regressions. Runtime tests remain unexecuted because hosted runners are unavailable.
+
 ## External blockers: do not spend repeated effort looping
 
 ### Test execution / CI runner availability
