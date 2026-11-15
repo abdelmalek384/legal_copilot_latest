@@ -142,6 +142,45 @@ class TenantRouteInventoryCoverageTests(unittest.TestCase):
             + ", ".join(sorted(missing)),
         )
 
+
+    def test_every_document_id_route_binds_document_to_case_and_firm(self):
+        source = (ROOT / "app.py").read_text(encoding="utf-8")
+        tree = ast.parse(source)
+        missing = []
+        for node in ast.walk(tree):
+            if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                continue
+            for decorator in node.decorator_list:
+                if not (
+                    isinstance(decorator, ast.Call)
+                    and isinstance(decorator.func, ast.Attribute)
+                    and isinstance(decorator.func.value, ast.Name)
+                    and decorator.func.value.id == "app"
+                    and decorator.func.attr.lower() in {"get", "post", "put", "patch", "delete", "api_route"}
+                    and decorator.args
+                    and isinstance(decorator.args[0], ast.Constant)
+                    and isinstance(decorator.args[0].value, str)
+                    and "{document_id}" in decorator.args[0].value
+                ):
+                    continue
+                calls = {
+                    item.func.id if isinstance(item.func, ast.Name)
+                    else item.func.attr if isinstance(item.func, ast.Attribute)
+                    else None
+                    for item in ast.walk(node) if isinstance(item, ast.Call)
+                }
+                firm_scope = any(
+                    isinstance(item, ast.Constant) and item.value == "firm_id"
+                    for item in ast.walk(node)
+                )
+                if "need" not in calls or not firm_scope:
+                    missing.append(f"{decorator.args[0].value} ({node.name})")
+        self.assertFalse(
+            missing,
+            "Every document-ID route must verify parent case membership and explicit firm scope: "
+            + ", ".join(sorted(missing)),
+        )
+
     def test_inventory_declares_its_scope_limitations(self):
         inventory = (ROOT / "docs" / "tenant_isolation_inventory.md").read_text(encoding="utf-8")
         self.assertIn("not proof that every authorization branch has been tested", inventory)
