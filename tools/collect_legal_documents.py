@@ -17,6 +17,7 @@ import mimetypes
 import os
 import re
 import socket
+import stat
 import sys
 import tempfile
 import time
@@ -375,6 +376,32 @@ def _archive_metadata_version(meta_dir: Path, document_id: str, metadata: dict) 
                 return candidate
             suffix += 1
 
+
+def load_existing_metadata(path: Path) -> dict:
+    """Read a prior collection sidecar safely and reject ambiguous JSON."""
+    try:
+        before = Path(path).lstat()
+        if not stat.S_ISREG(before.st_mode) or before.st_size > 1024 * 1024:
+            raise ValueError("existing metadata must be a regular file no larger than 1 MiB")
+        flags = os.O_RDONLY | getattr(os, "O_BINARY", 0) | getattr(os, "O_NOFOLLOW", 0)
+        descriptor = os.open(path, flags)
+        with os.fdopen(descriptor, "rb") as stream:
+            opened = os.fstat(stream.fileno())
+            if (not stat.S_ISREG(opened.st_mode)
+                    or (before.st_dev, before.st_ino) != (opened.st_dev, opened.st_ino)):
+                raise ValueError("existing metadata changed identity while opening")
+            raw = stream.read(1024 * 1024 + 1)
+            after = os.fstat(stream.fileno())
+            if len(raw) > 1024 * 1024 or len(raw) != after.st_size:
+                raise ValueError("existing metadata changed or exceeds 1 MiB")
+            if (opened.st_size, opened.st_mtime_ns, opened.st_ctime_ns) != (after.st_size, after.st_mtime_ns, after.st_ctime_ns):
+                raise ValueError("existing metadata changed while being read")
+        value = json.loads(raw.decode("utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+    except (OSError, UnicodeError, json.JSONDecodeError, ValueError) as exc:
+        raise ValueError("existing metadata is unreadable, ambiguous, or unsafe") from exc
+    if not isinstance(value, dict):
+        raise ValueError("existing metadata must be a JSON object")
+    return value
 
 def persist_metadata(out: Path, document_id: str, metadata: dict) -> Path:
     """Keep immutable retrieval records and atomically update the current metadata pointer."""
@@ -758,9 +785,7 @@ def main(argv: list[str] | None = None) -> int:
             metadata_path = args.out / "metadata" / f"{doc_id}.json"
             try:
                 if args.process_existing and metadata_path.exists():
-                    if metadata_path.is_symlink():
-                        raise ValueError("existing metadata sidecar must not be a symbolic link")
-                    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+                    metadata = load_existing_metadata(metadata_path)
                 else:
                     metadata = download_document(client, doc, args.out, args.max_mb * 1024 * 1024)
                 audit = process_document(args.out, metadata)

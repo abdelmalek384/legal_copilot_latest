@@ -124,6 +124,11 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - The Arabic retrieval scorer now parses its private reviewer registry and any existing comparison report with duplicate-key rejection, in addition to the question/run JSONL guard already merged in #1621.
 - Added a CLI regression proving duplicate reviewer-registry keys fail before scoring. Test remains unexecuted due runner/billing unavailability.
 
+## Existing collection sidecar read hardening — 2026-11-16
+
+- The collector's `--process-existing` path now uses a bounded regular-file reader with `O_NOFOLLOW`, inode identity checks, and strict duplicate-key JSON parsing for prior metadata sidecars. A symlink swap or ambiguous provenance record cannot silently redirect reprocessing.
+- Added regressions for top-level/nested duplicate keys and symlinked sidecars. Tests remain unexecuted because hosted runners are unavailable.
+
 ## External blockers: do not spend repeated effort looping
 
 ### Test execution / CI runner availability
