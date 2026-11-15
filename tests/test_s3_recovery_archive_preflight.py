@@ -108,6 +108,36 @@ class RecoveryArchivePreflightTests(unittest.TestCase):
         )
         self.assertIn("separate_recovery_kms_key", result["failed_checks"])
 
+    def test_resolves_original_and_recovery_kms_keys_in_their_own_regions(self):
+        class RegionKMS:
+            def __init__(self, region, key_arn):
+                self.region = region
+                self.key_arn = key_arn
+                self.lookups = []
+
+            def describe_key(self, **kwargs):
+                self.lookups.append(kwargs["KeyId"])
+                return {"KeyMetadata": {
+                    "Arn": self.key_arn, "KeyState": "Enabled",
+                    "KeyUsage": "ENCRYPT_DECRYPT", "KeySpec": "SYMMETRIC_DEFAULT",
+                    "KeyManager": "CUSTOMER",
+                }}
+
+        original_kms = RegionKMS(
+            "us-east-1", "arn:aws:kms:us-east-1:123456789012:key/originals"
+        )
+        recovery_kms = RegionKMS(
+            "eu-central-1", "arn:aws:kms:eu-central-1:123456789012:key/recovery"
+        )
+        result = validate_recovery_archive_configuration(
+            FakeS3(), recovery_kms, bucket="recovery-archive",
+            configured_key="alias/recovery-archive", original_bucket="original-objects",
+            original_key="alias/originals", original_kms_client=original_kms,
+        )
+        self.assertNotIn("separate_recovery_kms_key", result["failed_checks"])
+        self.assertEqual(original_kms.lookups, ["alias/originals"])
+        self.assertIn("alias/recovery-archive", recovery_kms.lookups)
+
 
 if __name__ == "__main__":
     unittest.main()
