@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import collections
 import hashlib
+import math
 import io
 import json
 import os
@@ -257,8 +258,34 @@ def _ocr(args):
     except ImportError as exc:
         raise SystemExit("OCR dependencies are missing; install requirements-ocr.txt and the Tesseract executable with Arabic and English traineddata.") from exc
     pdf_bytes, page_index = args
+    dpi = 200
+    max_pixels = _positive_int_env("LEGAL_OCR_MAX_PIXELS", 40_000_000)
+    max_dimension = _positive_int_env("LEGAL_OCR_MAX_DIMENSION", 20_000)
     with pymupdf.open(stream=pdf_bytes, filetype="pdf") as document:
-        image_bytes = document[page_index].get_pixmap(dpi=200).tobytes("png")
+        page = document[page_index]
+        # PyMuPDF renders page.rect at the requested DPI. Check the projected
+        # raster dimensions before get_pixmap: PDF page boxes can contain
+        # attacker-controlled, extremely large coordinates even in a small file.
+        width_points = float(page.rect.width)
+        height_points = float(page.rect.height)
+        if (not math.isfinite(width_points) or not math.isfinite(height_points)
+                or width_points <= 0 or height_points <= 0):
+            _fail("PDF page has invalid dimensions; refusing OCR rasterization")
+        pixel_width = math.ceil(width_points * dpi / 72)
+        pixel_height = math.ceil(height_points * dpi / 72)
+        if (pixel_width > max_dimension or pixel_height > max_dimension
+                or pixel_width * pixel_height > max_pixels):
+            _fail(
+                "PDF page exceeds the OCR raster limit "
+                f"({pixel_width}x{pixel_height}; maximum {max_pixels} pixels "
+                f"and {max_dimension} pixels per dimension)"
+            )
+        pixmap = page.get_pixmap(dpi=dpi)
+        # Defensive postcondition: reject unexpected renderer output too.
+        if (pixmap.width > max_dimension or pixmap.height > max_dimension
+                or pixmap.width * pixmap.height > max_pixels):
+            _fail("PDF renderer produced an OCR raster larger than the configured limit")
+        image_bytes = pixmap.tobytes("png")
     return pytesseract.image_to_string(Image.open(io.BytesIO(image_bytes)), lang=_ocr_language())
 
 
