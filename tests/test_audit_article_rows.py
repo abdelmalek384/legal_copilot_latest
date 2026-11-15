@@ -36,7 +36,7 @@ class AuditArticleRowsTests(unittest.TestCase):
     def test_duplicate_json_keys_are_counted_as_malformed(self):
         with tempfile.TemporaryDirectory() as temp:
             source = Path(temp) / "rows.jsonl"
-            source.write_text('{"law":"A","law":"B","article":"1","text":"text"}\\n', encoding="utf-8")
+            source.write_text('{"law":"A","law":"B","article":"1","text":"text"}' + chr(10), encoding="utf-8")
             rows, malformed = load_rows(source)
             self.assertEqual(rows, [])
             self.assertEqual(malformed, 1)
