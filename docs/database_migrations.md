@@ -2,6 +2,10 @@
 
 **Status:** The versioned migration runner is used for the three approved separate-database profiles. The supported runtime uses only the three profile-separated paths and versioned profile migrations. All supported installations use the three profile-separated paths and versioned profile migrations. No legacy database has been deployed or used, and no import/reconciliation is planned.
 
+## Migration-ledger integrity
+
+The migration runner installs SQLite guards that allow new version rows to be inserted but reject updates and deletes to previously recorded migration history. Existing guards with the expected names are checked against their required definitions; a same-name weakened trigger is a hard error. This prevents ordinary database SQL from silently rewriting the applied-version/checksum record and causing previously applied DDL to be replayed. Repairing a damaged migration ledger is an explicit offline recovery operation, not an application-time bypass.
+
 ## Workflow
 
 - Store forward-only SQL migrations in `migrations/NNNN_description.sql`.
