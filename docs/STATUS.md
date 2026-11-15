@@ -227,3 +227,8 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 
 - Extended strict duplicate-key handling to general retrieval-quality evaluation (including its reviewer registry), Arabic OCR evaluation, article-row auditing, and candidate/reference corpus comparison. Regression tests were added to the existing test modules.
 - Duplicate-key rows are rejected by evaluation/validation paths or counted as malformed/skipped by evidence-only audit/comparison tools. Test execution remains unavailable; no test pass or legal verification is claimed.
+
+## AI-1 release-gate and draft-input integrity — 2026-11-15
+
+- Hardened `tools/production_release_gate.py` to reject duplicate keys in candidate source documents and reviewer registry JSON. Duplicate candidate records cannot enter the ready-source index; duplicate registry keys block evaluation.
+- Hardened `tools/build_legal_draft.py` to reject duplicate keys in structured legal-draft input. Regression tests are committed but unexecuted.
