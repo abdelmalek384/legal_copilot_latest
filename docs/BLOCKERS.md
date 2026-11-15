@@ -71,6 +71,12 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - Added focused regressions for duplicate top-level/nested review keys and duplicate reviewer-registry keys. The test module is already registered in the Tests workflow.
 - Source/test implementation is on branch `ai1/strict-review-record-json`; tests remain unexecuted due runner/billing unavailability. No reviewer is approved by this change; registry identity checks remain administrative assertions, not independent credential verification.
 
+## Additional evidence-evaluator JSONL integrity — 2026-11-15
+
+- Extended duplicate-key rejection to the general retrieval-quality evaluator (question/run JSONL and reviewer registry), Arabic OCR evaluator, article-row audit, and candidate/reference corpus comparator.
+- Added focused top-level/nested duplicate-key regressions to the existing registered test modules. Malformed article-audit/comparison rows are excluded and counted/warned rather than silently using a last duplicate value.
+- Changes are on branch `ai1/strict-jsonl-evidence-evaluators`; tests remain unexecuted because runner/billing access is unavailable. No legal corpus status or evaluation result is promoted.
+
 ## External blockers: do not spend repeated effort looping
 
 ### Test execution / CI runner availability
