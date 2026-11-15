@@ -190,6 +190,31 @@ def apply_migrations(connection: sqlite3.Connection, directory: str | Path) -> l
             applied_at TEXT NOT NULL DEFAULT (datetime('now'))
         )
     """)
+    # Migration history is the authority for deciding which DDL may run.
+    # Permit INSERT of a newly committed version, but prevent ordinary SQL
+    # from rewriting or deleting prior evidence and causing a replay.
+    immutable_history_triggers = {
+        "schema_migrations_no_update": (
+            "CREATE TRIGGER schema_migrations_no_update "
+            "BEFORE UPDATE ON schema_migrations BEGIN "
+            "SELECT RAISE(ABORT, 'migration history is immutable'); END"
+        ),
+        "schema_migrations_no_delete": (
+            "CREATE TRIGGER schema_migrations_no_delete "
+            "BEFORE DELETE ON schema_migrations BEGIN "
+            "SELECT RAISE(ABORT, 'migration history is immutable'); END"
+        ),
+    }
+    for trigger_name, trigger_sql in immutable_history_triggers.items():
+        connection.execute(trigger_sql.replace("CREATE TRIGGER ", "CREATE TRIGGER IF NOT EXISTS ", 1))
+        row = connection.execute(
+            "SELECT sql FROM sqlite_master WHERE type='trigger' AND name=?",
+            (trigger_name,),
+        ).fetchone()
+        if row is None or not isinstance(row[0], str):
+            raise MigrationError("Migration history immutability guard is missing")
+        if " ".join(row[0].casefold().split()) != " ".join(trigger_sql.casefold().split()):
+            raise MigrationError("Migration history immutability guard has been altered")
     connection.commit()
 
     recorded = {
