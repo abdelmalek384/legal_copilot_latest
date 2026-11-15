@@ -13,6 +13,14 @@ SPEC.loader.exec_module(MODULE)
 
 
 class LegalCorpusInventoryTests(unittest.TestCase):
+    def test_read_json_rejects_duplicate_keys_at_all_object_depths(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "registry.json"
+            for raw in ('{"sources":[],"sources":[]}', '{"sources":[{"source_id":"A","metadata":{"status":"unknown","status":"allowed"}}]}'):
+                path.write_text(raw, encoding="utf-8")
+                with self.subTest(raw=raw), self.assertRaisesRegex(ValueError, "duplicate JSON object key"):
+                    MODULE.read_json(path)
+
     def test_hostname_ignores_malformed_https_urls(self):
         self.assertEqual(MODULE.hostname("https://www.example.gov/law"), "www.example.gov")
         for value in (
