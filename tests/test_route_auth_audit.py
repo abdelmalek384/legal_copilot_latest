@@ -24,7 +24,7 @@ class RouteAuthenticationAuditTests(unittest.TestCase):
         self.assertEqual(set(ROUTER_FILES), set(ROUTER_MODULES.values()))
 
     def test_new_unregistered_router_import_is_detected(self):
-        source = "from routers.new_feature import router as feature_router\\n"
+        source = "from routers.new_feature import router as feature_router\n"
         imported = imported_router_modules(source)
         self.assertEqual(imported, {"routers.new_feature"})
         self.assertFalse(imported.issubset(set(ROUTER_MODULES)))
