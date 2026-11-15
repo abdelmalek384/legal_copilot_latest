@@ -12,6 +12,21 @@ from tools.evaluate_ocr_quality import OCREvaluationError, edit_distance, evalua
 
 
 class OCRQualityEvaluationTests(unittest.TestCase):
+    def test_jsonl_reader_rejects_duplicate_keys_at_all_object_depths(self):
+        from tools.evaluate_ocr_quality import read_jsonl
+
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "ocr.jsonl"
+            for raw in (
+                '{"id":"P1","id":"P2","reference_text":"abc","ocr_text":"abc"}',
+                '{"id":"P1","reference_text":"abc","ocr_text":"abc","metadata":{"source":"scan","source":"other"}}',
+            ):
+                path.write_text(raw + "\n", encoding="utf-8")
+                with self.subTest(raw=raw), self.assertRaisesRegex(
+                    OCREvaluationError, r"1: duplicate JSON object key '"
+                ):
+                    read_jsonl(path)
+
     def test_output_hardlink_cannot_replace_input_jsonl(self):
         with tempfile.TemporaryDirectory() as temp:
             source = Path(temp) / "pages.jsonl"

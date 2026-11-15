@@ -211,3 +211,8 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Direct-main commits: app `79a9f3c`, preflight `d467b40` and `1a92a42`, identity tests `d5a9f76`, `44f902b`, `ec525f2`, preflight test `4f08dfa`, runtime key validation `6cfb3d9`, environment/docs `fefea03`, `215df99`, `eaf70d4`, `ca1e183`.
 - **Bounded implementation task: 100%.** Static source inspection only; no repository tests or live multi-host rate-limit exercise were run. Production deployment must provision the new independent secret before enabling account recovery.
 
+
+## AI-1 legal JSONL parser coverage — 2026-11-15
+
+- Follow-up hardening extends duplicate-key rejection to `tools/validate_law14_eval_draft.py` and `tools/evaluate_ocr_quality.py`, covering nested as well as top-level objects. The scorer and API runner guards were merged in PR #1621.
+- Added corresponding tests in the already workflow-registered Law 14 draft-validator and OCR evaluation test modules. This branch is source/test implementation only; execution remains blocked and no test pass is claimed.
