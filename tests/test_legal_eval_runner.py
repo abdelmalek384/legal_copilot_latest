@@ -307,6 +307,20 @@ class LegalEvalRunnerTests(unittest.TestCase):
                 ):
                     read_questions(path)
 
+    def test_api_response_reader_rejects_duplicate_keys_at_every_depth(self):
+        class FakeOpener:
+            def __init__(self, payload):
+                self.payload = payload
+            def open(self, request, timeout=0):
+                return io.BytesIO(self.payload)
+
+        for raw in (
+            b'{"ok":true,"ok":false}',
+            b'{"ok":true,"meta":{"status":"pending","status":"approved"}}',
+        ):
+            with self.subTest(raw=raw), self.assertRaisesRegex(RunnerError, "ambiguous JSON with duplicate object keys"):
+                _request_json(FakeOpener(raw), "http://localhost/api", {})
+
     def test_api_response_reader_rejects_non_object_json_roots(self):
         class FakeOpener:
             def open(self, request, timeout=0):
