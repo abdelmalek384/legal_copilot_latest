@@ -169,15 +169,20 @@ class TenantRouteInventoryCoverageTests(unittest.TestCase):
                     else None
                     for item in ast.walk(node) if isinstance(item, ast.Call)
                 }
-                firm_scope = any(
-                    isinstance(item, ast.Constant) and item.value == "firm_id"
-                    for item in ast.walk(node)
+                constants = [
+                    item.value for item in ast.walk(node)
+                    if isinstance(item, ast.Constant) and isinstance(item.value, str)
+                ]
+                firm_scoped_sql = any(
+                    "firm_id" in value.lower() and "where" in value.lower()
+                    for value in constants
                 )
-                if "need" not in calls or not firm_scope:
+                document_lookup_sql = any("docs" in value.lower() for value in constants)
+                if "need" not in calls or not firm_scoped_sql or not document_lookup_sql:
                     missing.append(f"{decorator.args[0].value} ({node.name})")
         self.assertFalse(
             missing,
-            "Every document-ID route must verify parent case membership and explicit firm scope: "
+            "Every document-ID route must verify parent membership and include a firm-scoped document lookup: "
             + ", ".join(sorted(missing)),
         )
 
