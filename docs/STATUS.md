@@ -68,14 +68,14 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 | Workstream | Estimated implementation completion | Remaining acceptance |
 |---|---:|---|
 | Local release baseline | 20% | Release-check implementation exists; exact local checker output and all Python 3.12 gates remain unavailable |
-| Security integration | 80% | Production/staging login, configured API middleware, and recovery throttle identifiers are purpose-separated HMAC pseudonyms; route-authentication, case/document parent-scope, and fail-closed original-file export boundaries are now guarded; exact-head security verification remains blocked |
-| Security regression coverage | 95% | Backup source no-follow, same-descriptor upload, mandatory checksum and verification-to-upload byte-binding regressions, duplicate release-evidence validation, S3 cross-region KMS, recovery/login/API HMAC, route-auth, case-ID/document-ID/query-scope, and corrupted original-file export regressions are committed; all repository tests remain unexecuted, real OCR-engine/image-quality acceptance still pending |
+| Security integration | 81% | Production/staging login, configured API middleware, and recovery throttle identifiers are purpose-separated HMAC pseudonyms; route-authentication, case/document parent-scope, and fail-closed original-file export boundaries are now guarded; exact-head security verification remains blocked |
+| Security regression coverage | 96% | Backup source no-follow, same-descriptor upload, mandatory checksum and verification-to-upload byte-binding regressions, duplicate release-evidence validation, S3 cross-region KMS, recovery/login/API HMAC, route-auth, case-ID/document-ID/query-scope, and corrupted original-file export regressions are committed; all repository tests remain unexecuted, real OCR-engine/image-quality acceptance still pending |
 | Lawyer rating UI/export | 95% | Browser acceptance and adapter execution remain pending |
 | Test-firm package | 90% | Clean-clone first-login rehearsal remains unexecuted |
 | Repository cleanup/accessibility | 83% | Bilingual form labels/errors, source-inspector metadata and passage navigation are implemented; run hygiene scan and finish manual accessibility review |
 | Staging/recovery | 39% | Two-bucket S3 preflight now resolves original/recovery KMS keys in their own regions; recovery drill, Compose gate, provider configuration and witnessed restore remain unexecuted |
 
-**Unweighted AI-2 implementation estimate: 71.7%** (arithmetic mean of the seven workstream values above). The provisional whole-project engineering estimate is approximately **72%**; this is not a test-pass rate or production-readiness score. The application remains **NOT READY** for lawyer pilot or production. No test pass is inferred from committed test code.
+**Unweighted AI-2 implementation estimate: 72.0%** (arithmetic mean of the seven workstream values above). The provisional whole-project engineering estimate is approximately **72%**; this is not a test-pass rate or production-readiness score. The application remains **NOT READY** for lawyer pilot or production. No test pass is inferred from committed test code.
 
 ## Legal evidence boundary
 
