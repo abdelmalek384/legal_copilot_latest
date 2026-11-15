@@ -2,7 +2,10 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.audit_route_auth import APP_FILE, ROUTER_FILES, PUBLIC_ROUTES, audit_source, audit_sources, main
+from tools.audit_route_auth import (
+    APP_FILE, ROUTER_FILES, ROUTER_MODULES, PUBLIC_ROUTES,
+    audit_source, audit_sources, imported_router_modules, main,
+)
 
 
 class RouteAuthenticationAuditTests(unittest.TestCase):
@@ -13,6 +16,18 @@ class RouteAuthenticationAuditTests(unittest.TestCase):
         self.assertGreater(report["route_count"], 100)
         self.assertEqual(report["public_route_count"], len(PUBLIC_ROUTES))
         self.assertEqual(report["missing_authentication"], [])
+
+    def test_current_app_router_imports_are_all_explicitly_audited(self):
+        source = APP_FILE.read_text(encoding="utf-8")
+        imported = imported_router_modules(source)
+        self.assertEqual(imported, set(ROUTER_MODULES))
+        self.assertEqual(set(ROUTER_FILES), set(ROUTER_MODULES.values()))
+
+    def test_new_unregistered_router_import_is_detected(self):
+        source = "from routers.new_feature import router as feature_router\\n"
+        imported = imported_router_modules(source)
+        self.assertEqual(imported, {"routers.new_feature"})
+        self.assertFalse(imported.issubset(set(ROUTER_MODULES)))
 
     def test_flags_route_without_user_dependency(self):
         source = '''
