@@ -43,8 +43,10 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 ## AI-2 migration-ledger integrity hardening — 2026-11-16
 
-- The SQLite migration runner now rejects updates/deletes to applied `schema_migrations` rows and validates same-name trigger definitions to prevent a weakened guard from being accepted. New version rows remain insertable.
-- Regression coverage includes immutable update/delete behavior, idempotent re-entry and a spoofed same-name trigger. The module is already registered in the Tests workflow; execution remains blocked by runner billing. Implementation is complete at source level, not runtime-validated.
+- Added versioned `schema_migrations` update/delete guards to control-plane migration `0024`, firm migration `0024`, and legal-corpus migration `0004`. New version rows remain insertable; previously applied name/checksum evidence cannot be changed through ordinary SQL.
+- The guards are installed through profile migrations so existing deployments can update through the normal control-plane/corpus and tenant-fleet maintenance procedures. A pre-existing same-name weakened trigger makes the migration fail atomically.
+- Regression coverage includes immutable update/delete behavior, idempotent re-entry and refusal of a pre-existing weakened guard. The module is registered in the Tests workflow; execution remains blocked by runner billing. Implementation is committed but not runtime-validated.
+
 
 ## AI-2 recovery archive integrity hardening — 2026-11-14
 
