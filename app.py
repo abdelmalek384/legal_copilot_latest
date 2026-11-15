@@ -4031,7 +4031,21 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
     k = normalize_email(b.email)
     now = int(time.time())
     ip = client_ip(request)
-    identifiers = (k, "ip:" + ip)
+    try:
+        # Production login throttling must not persist normalized email addresses
+        # or source IPs in the control-plane database. Reuse the dedicated,
+        # domain-separated HMAC key already required by production preflight.
+        identifiers = (
+            _identity_rate_limit_digest(k, purpose="login_email"),
+            _identity_rate_limit_digest(ip, purpose="login_ip"),
+        )
+    except ValueError as exc:
+        if _environment_mode in {"prod", "production"}:
+            logger.error("Login throttling is unavailable because its HMAC key is not configured")
+            raise HTTPException(503, "login is temporarily unavailable") from exc
+        # Development-only compatibility for local test databases without the
+        # production secret; production never falls back to raw identifiers.
+        identifiers = (k, "ip:" + ip)
     c = control_conn()
     attempts = {row["email"]: row for row in c.execute(
         "SELECT email,failures,window_start,locked_until FROM login_attempts WHERE email IN (?,?)",
