@@ -243,7 +243,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Follow-up case-membership guard: `tests/test_tenant_route_inventory_coverage.py` now statically requires every `{cid}` route to call `need()` or the reviewed `delete_case()` wrapper. Commit `8ffdb15`; tenant inventory note committed with this status update.
 - Follow-up document binding guard: the same module now requires every `{document_id}` route to call `need()` and contain an explicit `firm_id` predicate/binding. Test commit `f34d661`; inventory note committed with this update. Query-based document search/compare predicate regression `e40088d`.
 - Query-based document boundary guard: source regression now pins firm/membership predicates for extracted-text search, metadata search, and document-version comparison. Test commit `e40088d`; inventory note committed with this update.
-- Firm export defense-in-depth: original-file metadata is filtered by object, document, and case firm IDs before storage verification. A corruption-fixture regression removes the normal DB trigger and confirms the foreign-tagged object is excluded. Implementation `1840ea6`; test `06e550a` and assertion refinement `1a6c146`; inventory note `e89ba26`.
+- Firm export defense-in-depth: original-file metadata is filtered by object, document, and case firm IDs; any mis-tagged, orphaned, or cross-firm object row now fails the export with HTTP 503 before a success audit event. A corruption-fixture regression removes the normal DB trigger and verifies fail-closed behavior. Initial filter `1840ea6`; fail-closed validation `4d80fa6`; tests `06e550a`, `1a6c146`, and `276072c`; inventory note `e89ba26`.
 
 
 ## AI-1 acquisition permission input integrity — 2026-11-15
