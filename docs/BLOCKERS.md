@@ -104,6 +104,11 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - The provisional evidence-card report generator now rejects duplicate keys in the canonical inventory, inventory manifest, supplemental card files and protected-path manifest reads. Conflicting metadata cannot silently change report output.
 - Added regressions for duplicate keys in the canonical inventory and manifest. Test execution remains blocked; evidence cards remain provisional and non-search-eligible.
 
+## Legal corpus inventory report input integrity — 2026-11-15
+
+- The read-only legal corpus inventory report now rejects duplicate JSON keys in source/permission/candidate/evidence/queue registers instead of silently choosing conflicting values.
+- Added top-level and nested duplicate-key regression coverage. Existing test module is already registered; tests remain unexecuted due runner/billing unavailability.
+
 ## External blockers: do not spend repeated effort looping
 
 ### Test execution / CI runner availability
