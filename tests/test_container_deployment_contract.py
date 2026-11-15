@@ -42,6 +42,7 @@ class ContainerDeploymentContractTests(unittest.TestCase):
             "COPILOT_PUBLIC_ORIGIN=",
             "BACKUP_KEY=",
             "MFA_ENCRYPTION_KEY=",
+            "COPILOT_IDENTITY_RATE_LIMIT_KEY=",
             "COPILOT_S3_BUCKET=",
             "COPILOT_S3_REGION=",
             "COPILOT_S3_KMS_KEY_ID=",
