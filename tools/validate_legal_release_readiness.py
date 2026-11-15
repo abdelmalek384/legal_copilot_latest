@@ -20,6 +20,19 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_REGISTER = ROOT / "docs" / "source_permission_register.json"
 DEFAULT_CANDIDATES = ROOT / "data" / "candidates"
 DEFAULT_COVERAGE_MATRIX = ROOT / "docs" / "legal_coverage_matrix.csv"
+class DuplicateJSONKeyError(ValueError):
+    """Raised when a legal release-readiness JSON object repeats a key."""
+
+
+def _reject_duplicate_json_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateJSONKeyError(f"duplicate JSON object key {key!r}")
+        result[key] = value
+    return result
+
+
 ALLOWED = {"allowed", "allowed_limited"}
 REQUIRED_REVIEWS = {
     "source_authenticity",
@@ -529,14 +542,14 @@ def summarize_coverage_matrix(path: Path) -> dict:
 def build_report(candidate_paths: list[Path], permission_register_path: Path, root: Path = ROOT,
                  coverage_matrix_path: Path = DEFAULT_COVERAGE_MATRIX) -> dict:
     try:
-        register = json.loads(permission_register_path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
+        register = json.loads(permission_register_path.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+    except (OSError, json.JSONDecodeError, DuplicateJSONKeyError) as exc:
         return {"schema_version": 1, "error": f"Cannot read permission register: {exc}", "candidates": [], "ready_count": 0}
     reports = []
     for path in candidate_paths:
         try:
-            candidate = json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError) as exc:
+            candidate = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+        except (OSError, json.JSONDecodeError, DuplicateJSONKeyError) as exc:
             reports.append({"candidate_file": str(path), "candidate_id": None, "ready": False,
                             "blockers": [{"code": "candidate_unreadable", "detail": str(exc)}]})
             continue

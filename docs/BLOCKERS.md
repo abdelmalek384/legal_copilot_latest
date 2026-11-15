@@ -109,6 +109,11 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 - The read-only legal corpus inventory report now rejects duplicate JSON keys in source/permission/candidate/evidence/queue registers instead of silently choosing conflicting values.
 - Added top-level and nested duplicate-key regression coverage. Existing test module is already registered; tests remain unexecuted due runner/billing unavailability.
 
+## Legal release-readiness JSON ambiguity hardening — 2026-11-15
+
+- The legal release-readiness validator now rejects duplicate keys in both the canonical source-permission register and candidate legal-source JSON. Duplicate candidate inputs are explicitly blocked as unreadable; duplicate register input prevents any candidate from passing.
+- Added regressions for conflicting permission-register and candidate-document fields. Tests remain unexecuted due runner/billing unavailability.
+
 ## External blockers: do not spend repeated effort looping
 
 ### Test execution / CI runner availability

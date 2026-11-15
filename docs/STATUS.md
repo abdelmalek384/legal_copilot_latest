@@ -260,3 +260,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 ## AI-1 legal corpus inventory input integrity — 2026-11-15
 
 - `tools/report_legal_corpus_inventory.py` now rejects duplicate keys at every nesting depth in every JSON register it reads. Added regression tests; no corpus status or legal verification is inferred.
+
+## AI-1 legal release-readiness input integrity — 2026-11-15
+
+- Hardened `tools/validate_legal_release_readiness.py` to reject duplicate keys in the canonical permission register and each candidate JSON. Ambiguous candidates cannot be treated as ready; added regression coverage. Tests remain unexecuted.
