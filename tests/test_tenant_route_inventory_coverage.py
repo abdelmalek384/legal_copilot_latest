@@ -186,6 +186,54 @@ class TenantRouteInventoryCoverageTests(unittest.TestCase):
             + ", ".join(sorted(missing)),
         )
 
+
+    def test_document_search_and_compare_keep_firm_and_membership_predicates(self):
+        source = (ROOT / "app.py").read_text(encoding="utf-8")
+        tree = ast.parse(source)
+        functions = {
+            node.name: node for node in ast.walk(tree)
+            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+        }
+        requirements = {
+            "compare_accessible_document_versions": (
+                "FROM docs", "WHERE case_id=? AND firm_id=?", "need",
+            ),
+            "search_accessible_document_text": (
+                "JOIN docs d", "d.firm_id=?", "chunks.case_id IN (SELECT cs.id FROM cases cs WHERE cs.firm_id=?",
+                "EXISTS(SELECT 1 FROM members m",
+            ),
+            "search_accessible_documents": (
+                "d.firm_id=? AND c.firm_id=?", "EXISTS(SELECT 1 FROM members m",
+            ),
+        }
+        missing = []
+        for function_name, fragments in requirements.items():
+            node = functions.get(function_name)
+            if node is None:
+                missing.append(f"{function_name}: handler is missing")
+                continue
+            literals = " ".join(
+                item.value for item in ast.walk(node)
+                if isinstance(item, ast.Constant) and isinstance(item.value, str)
+            )
+            for fragment in fragments:
+                if fragment == "need":
+                    calls = {
+                        item.func.id if isinstance(item.func, ast.Name)
+                        else item.func.attr if isinstance(item.func, ast.Attribute)
+                        else None
+                        for item in ast.walk(node) if isinstance(item, ast.Call)
+                    }
+                    if "need" not in calls:
+                        missing.append(f"{function_name}: missing need() parent authorization")
+                elif fragment not in literals:
+                    missing.append(f"{function_name}: missing SQL scope fragment {fragment!r}")
+        self.assertFalse(
+            missing,
+            "Document search/compare must retain firm and case-membership scope: "
+            + "; ".join(missing),
+        )
+
     def test_inventory_declares_its_scope_limitations(self):
         inventory = (ROOT / "docs" / "tenant_isolation_inventory.md").read_text(encoding="utf-8")
         self.assertIn("not proof that every authorization branch has been tested", inventory)
