@@ -4,7 +4,7 @@
 
 ## Migration-ledger integrity
 
-The migration runner installs SQLite guards that allow new version rows to be inserted but reject updates and deletes to previously recorded migration history. Existing guards with the expected names are checked against their required definitions; a same-name weakened trigger is a hard error. This prevents ordinary database SQL from silently rewriting the applied-version/checksum record and causing previously applied DDL to be replayed. Repairing a damaged migration ledger is an explicit offline recovery operation, not an application-time bypass.
+The control-plane, firm and legal-corpus profiles each install versioned SQLite guards on `schema_migrations`. The guards permit new version rows to be inserted but reject updates and deletes to previously recorded history. The change is a numbered migration in each profile, not an unversioned startup side effect, so existing deployments can apply it through the normal control-plane/corpus and quiesced tenant-fleet migration procedures. A pre-existing weakened trigger with the same name causes the migration to fail rather than being accepted with `IF NOT EXISTS`. This prevents ordinary SQL from silently rewriting applied-version/checksum evidence and causing previously applied DDL to be replayed. Repairing a damaged migration ledger is an explicit offline recovery operation, not an application-time bypass.
 
 ## Workflow
 
