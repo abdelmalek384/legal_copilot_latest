@@ -34,6 +34,19 @@ from tools.validate_device_browser_acceptance import (
 )
 
 DEFAULT_BENCHMARK = ROOT / "tests" / "legal_eval" / "multi_area_questions.draft.jsonl"
+class DuplicateJSONKeyError(ValueError):
+    """Raised when a release-gate JSON object repeats a key."""
+
+
+def _reject_duplicate_json_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateJSONKeyError(f"duplicate JSON object key {key!r}")
+        result[key] = value
+    return result
+
+
 MIN_APPROVED_QUESTIONS = 100
 MIN_PRACTICE_AREAS = 10
 
@@ -61,8 +74,8 @@ def _ready_candidate_source_index(candidate_paths, legal_report):
         if Path(path).resolve() not in ready_paths:
             continue
         try:
-            candidate = json.loads(Path(path).read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
+            candidate = json.loads(Path(path).read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+        except (OSError, json.JSONDecodeError, DuplicateJSONKeyError):
             continue
         if not isinstance(candidate, dict):
             continue
@@ -448,8 +461,8 @@ def main(argv=None) -> int:
     reviewer_registry = None
     if args.reviewer_registry:
         try:
-            reviewer_registry = json.loads(args.reviewer_registry.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError) as exc:
+            reviewer_registry = json.loads(args.reviewer_registry.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+        except (OSError, json.JSONDecodeError, DuplicateJSONKeyError) as exc:
             parser.error(f"invalid reviewer registry: {exc}")
 
     report = evaluate_release(
