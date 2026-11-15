@@ -53,6 +53,7 @@ tests=(
   test_platform_access.py
   test_deployment_preflight.py
   test_tenant_route_inventory_coverage.py
+  test_route_auth_audit.py
 )
 
 labels=()
@@ -89,6 +90,27 @@ for test_file in "${tests[@]}"; do
     results+=("FAIL")
     details+=("exit $rc")
     failed=1
+  fi
+done
+
+for audit in "tools/audit_route_sql_access.py" "tools/audit_route_auth.py"; do
+  labels+=("$audit --strict")
+  if [[ ! -f "$audit" ]]; then
+    results+=("BLOCKED")
+    details+=("static audit tool is absent from this checkout")
+    failed=1
+  else
+    echo
+    echo "==> $audit --strict"
+    if PYTHONPATH=. python "$audit" --strict; then
+      results+=("PASS")
+      details+=("completed")
+    else
+      rc=$?
+      results+=("FAIL")
+      details+=("exit $rc")
+      failed=1
+    fi
   fi
 done
 
