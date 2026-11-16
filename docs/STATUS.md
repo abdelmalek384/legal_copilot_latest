@@ -1176,3 +1176,10 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Recovery archive path handling now converts upload-source and download-destination paths to absolute paths before lstat/open or parent validation, avoiding a concurrent working-directory change redirecting a relative path between checks and use. Source commit: `7604edd`.
+
+
+## AI-2 local-original backup copy hardening — 2026-11-16
+
+- Local backup object inventory now requires no-follow directory-descriptor operations on every platform; the weaker path-based fallback was removed. Inventory rejects hardlinked object entries and remains pinned to the checked root/firm descriptors.
+- Per-object backup copying now rejects hardlinks, enforces the 15,000,000-byte original-object ceiling before reading, revalidates the same no-follow descriptor, and reads at most the recorded size plus one sentinel byte. Local backup root and namespace descriptors are pinned and identity-checked before copying.
+- Added regressions for hardlinked inventory entries, hardlinked source-copy rejection, and oversize metadata. Source commits: `6f52127`, `9cda365`, `50ea8a9`; tests: `f6a96f4`, `f04b707`, `021a337`. Backup-bundle tests remain workflow/security-matrix registered. Static review only; repository runtime tests remain 0% executed. AI-2 estimate: **79.6%**; whole-project estimate remains **75.3% provisional**.
