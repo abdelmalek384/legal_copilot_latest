@@ -91,6 +91,7 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
             ("source_page", "https://user:secret@example.gov/law.pdf", "source_page"),
             ("source_page", "https://example.gov/law.pdf?access_token=secret", "source_page"),
             ("version_source_url", "https://example.gov/law.pdf#fragment", "source_url"),
+            ("version_source_url_host", "https://other.gov/law.pdf", "host must match"),
             ("review_evidence_url", "https://example.gov/review.pdf\x7f", "evidence_url"),
         )
         for field, value, expected in cases:
@@ -100,7 +101,7 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
             candidate["reviews"] = [dict(item) for item in self.record.get("reviews", [])]
             if field == "source_page":
                 candidate["sources"][0]["source_page"] = value
-            elif field == "version_source_url":
+            elif field in ("version_source_url", "version_source_url_host"):
                 candidate["version"]["source_url"] = value
             else:
                 candidate["reviews"][0]["evidence_url"] = value
