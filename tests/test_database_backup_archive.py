@@ -460,6 +460,26 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
         head.assert_not_called()
         self.assertEqual(existing.read_bytes(), b"preserve")
 
+    def test_download_fails_closed_without_no_follow_dirfd_support(self):
+        from unittest.mock import patch
+
+        locator = self.upload()
+        target = self.root / "unsupported-dirfd.enc"
+        with (
+            patch.object(database_backup_archive.os, "supports_dir_fd", set()),
+            patch.object(self.s3, "get_bucket_versioning", wraps=self.s3.get_bucket_versioning) as versioning,
+            patch.object(self.kms, "describe_key", wraps=self.kms.describe_key) as describe,
+        ):
+            with self.assertRaisesRegex(
+                DatabaseBundleError, "requires no-follow directory-descriptor"
+            ):
+                download_encrypted_bundle_version(
+                    self.s3, self.kms, locator, target, **self.config
+                )
+        versioning.assert_not_called()
+        describe.assert_not_called()
+        self.assertFalse(target.exists())
+
     def test_download_rejects_parent_replacement_during_stream(self):
         locator = self.upload()
         destination_dir = self.root / "download-dir"
