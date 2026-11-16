@@ -1657,5 +1657,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("input.focus();input.select()", shell)
         self.assertIn("PAGE==='law'", shell)
 
+    def test_active_firm_context_is_visible_even_for_single_firm_users(self):
+        shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction dash()")]
+        self.assertIn("const activeFirm=firmOptions.find(f=>Number(f.firm_id)===Number(ME.firm_id))||(firmOptions.length===1?firmOptions[0]:null)", shell)
+        self.assertIn("className:'tenant-context',role:'note'", shell)
+        self.assertIn("textContent:activeFirm.firm_name", shell)
+        self.assertIn(")),tenantContext,firmSwitch,", shell)
+
 if __name__ == "__main__":
     unittest.main()
