@@ -661,3 +661,10 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Existing repeated-token and inventory namespace tests remain in the same registered S3 storage module. Static review only; no repository test module or hosted job ran.
 - Updated estimates: tenant isolation/access control 84.7%; authentication/firm administration 85.2%; case management 90%; document processing/security 99.1%; backup/release readiness 42.4%; AI-2 overall 73.9%; whole project 72.7%. Source progress only; pilot/production acceptance remains incomplete.
 - Additional work in this slice: 1 S3 inventory implementation change; 2 regression methods; 0 repository tests executed; 0 Actions jobs executed; 0 PRs merged. No safe PR is currently mergeable; #1610 remains draft and #1644/#1645 remain dependency/runtime changes without lock/browser acceptance.
+
+
+## AI-2 backup destination side-effect prevention — 2026-11-16
+
+- Backup output paths are now physically resolved and checked against tenant/object storage roots before any output directory is created. Previously, a new output directory reached through a symlinked parent could be created inside protected tenant storage and only then rejected. The overlap check now runs first; directory creation follows only after the canonical destination is accepted.
+- Added a regression using a symlinked parent alias into tenant storage and asserting the rejected destination directory is never created. Source commit: 000998d; test commit: 2890bd2.
+- Static review only; the registered backup bundle test module remains unexecuted. Updated estimates: tenant isolation/access control 84.7%; authentication/firm administration 85.2%; case management 90%; document processing/security 99.1%; backup/release readiness 42.8%; AI-2 overall 74.1%; whole project 72.9%. These are implementation estimates, not test/acceptance rates.
