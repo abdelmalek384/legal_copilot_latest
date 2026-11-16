@@ -213,6 +213,24 @@ class RestoredOriginalS3ImporterTests(unittest.TestCase):
         self.assertEqual(self.store.final, {})
         self.assertEqual(self._restored_storage_backend(), "local")
 
+    def test_apply_revalidates_restore_bytes_after_initial_digest(self):
+        source = self.restore_root / "objects" / f"firm-{self.firm_id}" / f"{self.object_id}.blob"
+        original_digest = importer._digest
+
+        def digest_then_replace(path):
+            recorded = original_digest(path)
+            path.write_bytes(b"replacement bytes after digest")
+            return recorded
+
+        with patch.object(importer, "_digest", side_effect=digest_then_replace):
+            code, report = self._run_import(apply=True)
+
+        self.assertEqual(code, 2)
+        self.assertIn("changed after its initial integrity check", report["stderr"])
+        self.assertEqual(self.store.staged, {})
+        self.assertEqual(self.store.final, {})
+        self.assertEqual(self._restored_storage_backend(), "local")
+
     def test_conflicting_existing_s3_object_fails_closed(self):
         key = (self.firm_id, self.object_id)
         self.store.final[key] = b"unexpected target bytes"
