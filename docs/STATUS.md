@@ -64,6 +64,7 @@ The following bounded repository tasks now meet their source-change acceptance c
 | Enforce explicit quiescence inside the destructive original-file purge function | **100%** | Function-level fail-closed guard, CLI pass-through and negative direct-call regression committed and registered in the security matrix and Tests workflow; execution pending |
 | Fail closed when original-document download audit logging fails | **100%** | Route regression injects a SQLite audit-write failure and asserts HTTP 503 without releasing the binary; test is in the already registered separate-runtime module, execution pending |
 | Preserve committed original uploads when post-commit usage metering fails | **100%** | Upload cleanup now distinguishes pre-commit rollback from post-commit failures; regression asserts ready metadata, retained bytes and successful subsequent download; execution pending |
+| Block matter deletion when original-file audit records are still linked | **100%** | Deletion now returns HTTP 409 before destructive writes; regression confirms matter, document and original metadata remain intact; execution pending |
 | Verify document metadata/text search and matter indexes do not disclose another firm's records | **100%** | Separate-runtime regression committed; route execution pending |
 
 ## AI-2 implementation completion estimate
