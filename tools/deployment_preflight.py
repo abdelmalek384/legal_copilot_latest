@@ -108,6 +108,30 @@ def valid_trusted_proxies(value):
     return True
 
 
+def _has_symlinked_parent(path):
+    """Return True when any existing parent component is a symbolic link.
+
+    Check with lstat so dangling links are detected without following them.
+    Missing components end the walk because descendants cannot exist yet.
+    Inspection errors fail closed.
+    """
+    path = Path(path)
+    if not path.is_absolute():
+        return False
+    current = Path(path.anchor)
+    for component in path.parent.parts[1:]:
+        current = current / component
+        try:
+            mode = os.lstat(current).st_mode
+        except FileNotFoundError:
+            break
+        except OSError:
+            return True
+        if stat.S_ISLNK(mode):
+            return True
+    return False
+
+
 def inspect_environment(env=None, *, require_separate=False):
     env = os.environ if env is None else env
     production = env.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}
@@ -230,6 +254,9 @@ def inspect_environment(env=None, *, require_separate=False):
             errors.append(f"{label} must be an absolute path.")
         if path.is_symlink():
             errors.append(f"{label} must not be a symbolic link.")
+            return
+        if _has_symlinked_parent(path):
+            errors.append(f"{label} parent path must not contain symbolic-link components.")
             return
         parent = path.parent
         if not parent.exists() or not parent.is_dir():
