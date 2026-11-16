@@ -569,5 +569,39 @@ class CollectionPipelineTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "JSON object"):
                 load_manifest(path)
 
+    def test_preserved_original_hash_rejects_symlink_swap_between_check_and_open(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            target = root / "originals" / "DOC-1" / "original.pdf"
+            target.parent.mkdir(parents=True)
+            target.write_bytes(b"approved original")
+            outside = root / "outside.pdf"
+            outside.write_bytes(b"replacement")
+            real_open = collector.os.open
+            swapped = False
+
+            def replace_before_open(path, flags, *args, **kwargs):
+                nonlocal swapped
+                if Path(path) == target and not swapped:
+                    swapped = True
+                    target.unlink()
+                    target.symlink_to(outside)
+                return real_open(path, flags, *args, **kwargs)
+
+            with patch.object(collector.os, "open", side_effect=replace_before_open):
+                with self.assertRaises(OSError):
+                    collector.sha256_file(target)
+            self.assertTrue(swapped)
+
+    def test_preserved_original_hash_rejects_fifo_without_blocking(self):
+        import os
+        if not hasattr(os, "mkfifo"):
+            self.skipTest("FIFO files are unavailable on this platform")
+        with tempfile.TemporaryDirectory() as temp:
+            fifo = Path(temp) / "original.fifo"
+            os.mkfifo(fifo)
+            with self.assertRaises(OSError):
+                collector.sha256_file(fifo)
+
 if __name__ == "__main__":
     unittest.main()
