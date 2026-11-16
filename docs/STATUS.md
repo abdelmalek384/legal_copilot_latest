@@ -485,3 +485,6 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - `create_initial_firm_owner` now rejects invalid firm IDs and non-string/empty password hashes before querying or writing. This prevents Python booleans being accepted as integer firm identifiers and avoids storing a non-string bootstrap credential value.
 - Added runtime regressions for invalid ID shapes, creator IDs, role types, and password-hash types. Source commits: `0fe6c49`, `c50a12e`; regression commits: `3c55fae`, `96a22e4`.
 - Static review only; `tests/test_database_runtime.py` remains unexecuted. No identity or membership records were created in the repository.
+
+
+- An isolated Python ID-shape harness confirmed the same validation predicate rejects `0`, `-1`, `True`, a numeric string and `None`, while accepting a positive integer. This validates the predicate only; the repository runtime regression was not executed.
