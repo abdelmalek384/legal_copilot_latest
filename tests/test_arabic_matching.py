@@ -1,5 +1,8 @@
 """Regression tests for Arabic query expansion and preliminary conflict-name matching."""
+import tempfile
 import unittest
+from pathlib import Path
+from unittest.mock import patch
 
 from app import SYS, conflict_name_matches, expanded_tokens, matched_surface_terms, tokens
 import tools.arabic_legal_matching as MATCHING
