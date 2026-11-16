@@ -797,12 +797,26 @@ def create_backup_bundle(
                 output.write(encrypted)
                 output.flush()
                 os.fsync(output.fileno())
-            os.replace(temp_path, final_path)
+            # Publish without replacing an existing backup or following a raced path.
             try:
-                os.chmod(final_path, 0o600)
-            except OSError:
-                if os.name == "posix":
-                    raise DatabaseBundleError("Could not restrict permissions on encrypted backup")
+                os.link(temp_path, final_path, follow_symlinks=False)
+            except OSError as exc:
+                raise DatabaseBundleError("Could not publish encrypted backup without overwriting an existing file") from exc
+            os.unlink(temp_path)
+            directory_fd = None
+            try:
+                if hasattr(os, "O_DIRECTORY"):
+                    directory_fd = os.open(
+                        destination,
+                        os.O_RDONLY | os.O_DIRECTORY | getattr(os, "O_NOFOLLOW", 0),
+                    )
+                    os.fsync(directory_fd)
+            except OSError as exc:
+                final_path.unlink(missing_ok=True)
+                raise DatabaseBundleError("Could not sync encrypted backup publication") from exc
+            finally:
+                if directory_fd is not None:
+                    os.close(directory_fd)
         finally:
             if os.path.exists(temp_path):
                 os.unlink(temp_path)
