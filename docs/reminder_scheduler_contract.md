@@ -18,6 +18,11 @@ Each event has only:
 
 The pure planner accepts a firm/scope identifier, recipient identifier, aware current timestamp, IANA timezone, and optional previously sent keys. The integrated scheduler supplies the trusted firm/user scope and persists generated keys in the firm-local outbox. Date-only deadlines remain date-only; the helper does not calculate legal deadlines or infer due dates from judgments.
 
+## Preference and clock safety
+
+- A user without a `reminder_preferences` row receives the documented first-run defaults from the firm schema. If the preference table/query is unavailable, scheduling aborts before enqueue or delivery; a schema error is never interpreted as opt-in.
+- The scheduler's `--now` value controls event eligibility and planning only. Outbox claim leases and attempt completion timestamps use wall-clock UTC at each claim/completion so a long batch or historical planning override cannot create already-expired leases.
+
 ## Planning rules
 
 - Convert the current timestamp to the configured IANA timezone before comparing dates.
