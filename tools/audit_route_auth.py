@@ -73,11 +73,22 @@ def _route_methods(decorator: ast.AST) -> list[str]:
     if method == "api_route":
         methods = {"GET"}
         for keyword in decorator.keywords:
-            if keyword.arg == "methods" and isinstance(keyword.value, (ast.List, ast.Tuple, ast.Set)):
-                methods = {
-                    item.value.upper() for item in keyword.value.elts
-                    if isinstance(item, ast.Constant) and isinstance(item.value, str)
-                }
+            if keyword.arg != "methods":
+                continue
+            value = keyword.value
+            if not isinstance(value, (ast.List, ast.Tuple, ast.Set)):
+                raise ValueError("api_route methods must be a literal list, tuple, or set")
+            if not value.elts:
+                raise ValueError("api_route methods cannot be empty")
+            parsed = []
+            for item in value.elts:
+                if not isinstance(item, ast.Constant) or not isinstance(item.value, str):
+                    raise ValueError("api_route methods must contain only literal strings")
+                normalized = item.value.upper()
+                if normalized not in {"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD", "TRACE"}:
+                    raise ValueError(f"api_route contains unsupported HTTP method {item.value!r}")
+                parsed.append(normalized)
+            methods = set(parsed)
         return sorted(methods)
     return [method.upper()]
 
@@ -95,7 +106,14 @@ def audit_sources(
             if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
                 continue
             for decorator in node.decorator_list:
-                methods = _route_methods(decorator)
+                try:
+                    methods = _route_methods(decorator)
+                except ValueError as exc:
+                    path = decorator.args[0].value if decorator.args and isinstance(decorator.args[0], ast.Constant) else "<dynamic>"
+                    findings.append(
+                        f"cannot statically audit HTTP methods for {path} ({node.name}) in {filename}: {exc}"
+                    )
+                    continue
                 if not methods:
                     continue
                 path = decorator.args[0].value
