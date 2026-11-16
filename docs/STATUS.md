@@ -1299,3 +1299,10 @@ Validation and remaining gates:
 - Merged PR #1744 (`05b06a355258f031c45112cfddc3996c6671c7c5`): added Comfortable/Compact display density in Settings, persisted per firm/user. Compact spacing applies to cards, grids, rows, tabs and research content while retaining 44px minimum control height. Comfortable remains the fallback/default.
 - Updated the Arabic review catalog and UX gap audit; catalog now contains 1,559 unique entries. Added a frontend regression contract.
 - Independent validation: full inline JavaScript parsed with V8; density preference runtime harness verified compact restore and invalid/missing fallback; CSS checks confirmed the 44px control minimum. GitHub Actions Tests, Browser acceptance, CodeQL, dependency audit and safety regression all failed with **zero executed job steps**. No repository test or visual/browser pass is claimed; compact-mode visual review remains open.
+
+
+## Reduced-motion accessibility preference — 2026-11-17
+
+- Merged PR #1745 (`060cc5ee3b9460b496659ad9df51abd1bc3af99e`): Settings now offers System setting / Reduce motion, persisted per firm/user. The explicit override disables animations, transitions and smooth scrolling; the system preference remains respected by default. The existing OS media rule now disables animations as well as transitions.
+- Updated the Arabic review catalog and UX gap audit; catalog now contains 1,563 unique entries. Added a frontend regression contract.
+- Independent validation: full inline JavaScript parsed with V8; runtime harness covered explicit reduce, system and invalid-value fallback; CSS checks passed. GitHub Actions did not execute test steps; no browser motion/visual acceptance is claimed.
