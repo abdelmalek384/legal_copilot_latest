@@ -88,6 +88,11 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 | Repository cleanup/accessibility | 83% | Bilingual form labels/errors, source-inspector metadata and passage navigation are implemented; run hygiene scan and finish manual accessibility review |
 | Staging/recovery | 40% | Two-bucket S3 preflight resolves original/recovery KMS keys in their own regions; backup/restore overlap guard and direct purge-quiescence guard have registered regressions; recovery drill, Compose gate, provider configuration and witnessed restore remain unexecuted |
 
+## AI-2 S3 reconciliation CLI error handling — 2026-11-16
+
+- The standalone read-only S3 reconciliation CLI now catches TypeError and OverflowError from malformed inventory/metadata values and exits through its controlled diagnostic path instead of emitting an unhandled traceback. This complements the offboarding preflight's blocking-finding behavior; it does not convert malformed data into a clean reconciliation result.
+- **Bounded source task: 100% implemented; CLI regression execution remains pending.**
+
 ## AI-2 S3 pagination and fail-closed offboarding hardening — 2026-11-16
 
 - S3 inventory pagination now rejects empty, non-string, or repeated continuation tokens. A malformed provider response can no longer trap the reconciliation process in an unbounded loop.
