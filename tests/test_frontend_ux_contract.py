@@ -1632,5 +1632,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("scopeSelect.onchange=()=>{persistResearchScope();", research)
         self.assertNotIn("localStorage.setItem(researchScopePreferenceKey,matterSelect.value)", research)
 
+    def test_case_list_distinguishes_first_run_empty_state_from_filtered_no_matches(self):
+        cases = HTML[HTML.index("async function casesPage(){"):HTML.index("\nasync function corpusCoverage(){")]
+        self.assertIn("const noCasesYet=total===0&&!appliedQuery&&!appliedStatus", cases)
+        self.assertIn("empty(uiText('لا توجد قضايا بعد.','No matters yet.'),uiText('+ قضية جديدة','+ New case'),newCase)", cases)
+        self.assertIn("empty(uiText('لا توجد قضايا مطابقة.','No matching cases.'))", cases)
+        self.assertIn("box.replaceChildren(summary,...(rows.length?rows.map(caseRow):[emptyState]))", cases)
+
 if __name__ == "__main__":
     unittest.main()
