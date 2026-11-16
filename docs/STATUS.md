@@ -1017,3 +1017,10 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 - Added a separate-database upload/download regression that mutates retained original bytes without changing length, truncates the object, and replaces it with an object larger than the endpoint's 15,000,000-byte ceiling. Each request must fail integrity verification with HTTP 503 before any download audit event is written; this complements the existing successful-integrity, cross-firm, wrong-case, and audit-write-failure coverage.
 - Regression commits: `9f64be8`, `470c652`. Implementation change: none; this closes a focused verification gap in the original-evidence download path. Exact test, app route, status, blocker and security-matrix files were re-fetched from `main`; static checks confirmed all three tampering cases, three no-audit assertions, and registration of the containing test module in the security matrix. The added method also passed standalone Python syntax/bytecode compilation. Repository test execution remains **0%**. No runtime test pass is claimed.
+
+
+## AI-2 S3 original integrity-stream size ceiling — 2026-11-16
+
+- The S3 original-object adapter's streaming verifier now rejects an expected size above its configured `max_bytes` before calling S3, and reads no more than `max_bytes + 1` bytes when provider content exceeds its recorded metadata. The one-byte sentinel distinguishes an exact-limit object from an oversized response while keeping reconciliation/backup verification bounded; the body is closed on the early rejection path.
+- Added fake-S3 regressions for oversized expected metadata (no remote read) and a provider body five times the configured limit (only limit + 1 bytes read, then closed).
+- Source commit: `2668e8e`; regression commit: `a77a6f1`. Static source/test review and standalone syntax compilation pending; repository runtime test execution remains **0%**. AI-2 estimate: **78.2%**; whole-project estimate remains **75.3% provisional**. No runtime pass is claimed.
