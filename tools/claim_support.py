@@ -89,9 +89,12 @@ _ENGLISH_MODAL_PATTERNS = {
     ),
 }
 _ARABIC_MODAL_PATTERNS = {
-    "permission": re.compile(r"(?:يجوز|يحق|يسمح)"),
+    "permission": re.compile(r"(?:يجوز|يحق|يسمح|من\s+حق|له\s+الحق|لها\s+الحق|مسموح|جائز)"),
     "obligation": re.compile(r"(?<!لا )(?:يجب|يلتزم|يلزم|يتعين|يتوجب|تجب|تلتزم|تلزم|تتعين|تتوجب)"),
-    "prohibition": re.compile(r"(?:لا\s+(?:يجوز|يحق|يسمح)|يحظر|يمتنع\s+عن)"),
+    "prohibition": re.compile(
+        r"(?:لا\s+(?:يجوز|يحق|يسمح)|ليس\s+(?:من\s+حق|له\s+الحق|لها\s+الحق)|"
+        r"غير\s+(?:مسموح|جائز)|يحظر|ممنوع|محظور|يمتنع\s+عن)"
+    ),
     "non_obligation": re.compile(
         r"(?:لا\s*(?:يجب|يلتزم|يلزم|يتعين|يتوجب|تجب|تلتزم|تلزم|تتعين|تتوجب)"
         r"|ليس\s+ملزما|ليست\s+ملزمة|غير\s+ملزم|غير\s+ملزمة)"
@@ -114,8 +117,19 @@ def _modal_classes(text, patterns):
         if patterns is _ARABIC_MODAL_PATTERNS and label in {"permission", "obligation"}:
             # Strip negated forms before testing positive classes. Flexible whitespace
             # is required because Arabic source text may contain tabs or repeated spaces.
-            verbs = r"(?:يجوز|يحق|يسمح)" if label == "permission" else r"(?:يجب|يلتزم|يلزم|يتعين|يتوجب|تجب|تلتزم|تلزم|تتعين|تتوجب)"
-            candidate = re.sub(r"لا\s*" + verbs, " ", candidate)
+            if label == "permission":
+                candidate = re.sub(
+                    r"(?:لا\s*(?:يجوز|يحق|يسمح)|ليس\s+(?:من\s+حق|له\s+الحق|لها\s+الحق)|"
+                    r"غير\s+(?:مسموح|جائز))",
+                    " ",
+                    candidate,
+                )
+            else:
+                candidate = re.sub(
+                    r"لا\s*(?:يجب|يلتزم|يلزم|يتعين|يتوجب|تجب|تلتزم|تلزم|تتعين|تتوجب)",
+                    " ",
+                    candidate,
+                )
         if patterns is _ENGLISH_MODAL_PATTERNS and label == "obligation":
             # Remove all explicit negative obligation forms before positive matching.
             candidate = _ENGLISH_NEGATED_OBLIGATION.sub(" ", candidate)
