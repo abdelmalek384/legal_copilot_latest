@@ -74,7 +74,12 @@ def _read_regular_file(path: pathlib.Path, label: str, max_bytes: int | None = N
             _fail(f"{label} must be a regular file, not a symbolic link")
         if max_bytes is not None and before.st_size > max_bytes:
             _fail(f"{label} exceeds the configured {max_bytes}-byte size limit")
-        flags = os.O_RDONLY | getattr(os, "O_BINARY", 0) | getattr(os, "O_NOFOLLOW", 0)
+        flags = (
+            os.O_RDONLY
+            | getattr(os, "O_BINARY", 0)
+            | getattr(os, "O_NONBLOCK", 0)
+            | getattr(os, "O_NOFOLLOW", 0)
+        )
         descriptor = os.open(path, flags)
         with os.fdopen(descriptor, "rb") as source:
             opened = os.fstat(source.fileno())
@@ -85,12 +90,16 @@ def _read_regular_file(path: pathlib.Path, label: str, max_bytes: int | None = N
                 _fail(f"{label} changed identity while being opened")
             content = source.read(max_bytes + 1) if max_bytes is not None else source.read()
             after = os.fstat(source.fileno())
+            current_path = path.lstat()
             if max_bytes is not None and len(content) > max_bytes:
                 _fail(f"{label} exceeds the configured {max_bytes}-byte size limit")
             if (
                 len(content) != after.st_size
+                or (opened.st_dev, opened.st_ino) != (after.st_dev, after.st_ino)
                 or (opened.st_size, opened.st_mtime_ns, opened.st_ctime_ns)
                 != (after.st_size, after.st_mtime_ns, after.st_ctime_ns)
+                or (current_path.st_dev, current_path.st_ino)
+                != (opened.st_dev, opened.st_ino)
             ):
                 _fail(f"{label} changed while being read")
         return content
