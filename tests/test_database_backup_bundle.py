@@ -498,6 +498,30 @@ class DatabaseBackupBundleTests(unittest.TestCase):
                 tampered_bundle, self.cipher, self.root / "tampered-restore"
             )
 
+    def test_restore_rejects_malformed_tenant_manifest_records(self):
+        bundle = create_backup_bundle(
+            self.runtime, self.cipher, self.backup_dir, quiesced=True
+        )
+        plaintext = self.cipher.decrypt(bundle.read_bytes())
+        with zipfile.ZipFile(io.BytesIO(plaintext), "r") as archive:
+            members = {name: archive.read(name) for name in archive.namelist()}
+        manifest = json.loads(members["manifest.json"])
+        self.assertTrue(manifest["tenants"])
+        manifest["tenants"][0] = "not-a-tenant-record"
+        members["manifest.json"] = json.dumps(
+            manifest, ensure_ascii=False, sort_keys=True
+        ).encode("utf-8")
+        changed = io.BytesIO()
+        with zipfile.ZipFile(changed, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+            for name, data in members.items():
+                archive.writestr(name, data)
+        malformed_bundle = self.backup_dir / "malformed-tenant-record.dbbundle.enc"
+        malformed_bundle.write_bytes(self.cipher.encrypt(changed.getvalue()))
+        with self.assertRaises(DatabaseBundleError):
+            restore_backup_bundle(
+                malformed_bundle, self.cipher, self.root / "malformed-tenant-restore"
+            )
+
     def test_restore_rejects_duplicate_manifest_json_keys(self):
         bundle = create_backup_bundle(
             self.runtime, self.cipher, self.backup_dir, quiesced=True
