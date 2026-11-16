@@ -137,6 +137,38 @@ class LocalPrivateObjectStoreTests(unittest.TestCase):
             [existing.object_id + ".staged"],
         )
 
+    @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_finalize_rejects_staged_object_with_external_hardlink(self):
+        staged = self.store.stage(7, b"trusted original")
+        staged_path = self.root / "firm-7" / (staged.object_id + ".staged")
+        final_path = self.root / "firm-7" / (staged.object_id + ".blob")
+        outside = Path(self.temp.name) / "outside-hardlink"
+        os.link(staged_path, outside)
+
+        with self.assertRaisesRegex(ObjectStorageError, "regular file"):
+            self.store.finalize(7, staged.object_id)
+
+        self.assertFalse(final_path.exists())
+        self.assertEqual(outside.read_bytes(), b"trusted original")
+        self.assertEqual(staged_path.read_bytes(), b"trusted original")
+
+    @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_open_and_verify_reject_final_object_with_external_hardlink(self):
+        staged = self.store.stage(7, b"private original")
+        self.store.finalize(7, staged.object_id)
+        final_path = self.root / "firm-7" / (staged.object_id + ".blob")
+        outside = Path(self.temp.name) / "outside-final-hardlink"
+        os.link(final_path, outside)
+
+        with self.assertRaisesRegex(ObjectStorageError, "single-link"):
+            self.store.open(7, staged.object_id)
+        self.assertFalse(self.store.verify(
+            7, staged.object_id,
+            expected_sha256=staged.sha256,
+            expected_size=staged.byte_size,
+        ))
+        self.assertEqual(outside.read_bytes(), b"private original")
+
     def test_rejects_symlinked_firm_namespace(self):
         if not hasattr(os, "symlink"):
             self.skipTest("symlinks unavailable")
