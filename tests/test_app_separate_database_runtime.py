@@ -1727,6 +1727,75 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(denied_history.status_code, 404, denied_history.text)
 
+    def test_original_download_rejects_corrupt_bytes_before_audit(self):
+        import io
+        from docx import Document
+
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Corrupt Original Guard"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        buffer = io.BytesIO()
+        source = Document()
+        source.add_paragraph("Synthetic evidence for integrity regression.")
+        source.save(buffer)
+        original = buffer.getvalue()
+        with patch.object(app, "_mfa_required_for_user", return_value=False):
+            uploaded = self._mutate(
+                "post", f"/cases/{case_id}/upload",
+                files={"file": ("integrity-regression.docx", original,
+                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
+            )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+        document_id = uploaded.json()["document_id"]
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        metadata = firm_db.execute(
+            "SELECT object_id FROM original_file_objects "
+            "WHERE document_id=? AND firm_id=? AND state='ready'",
+            (document_id, self.firm_a),
+        ).fetchone()
+        self.assertIsNotNone(metadata)
+        object_path = (
+            self.root / "objects" / f"firm-{self.firm_a}" /
+            (metadata["object_id"] + ".blob")
+        )
+        self.assertTrue(object_path.is_file())
+
+        # Same-length corruption must fail the SHA-256 check before audit/release.
+        corrupted = bytearray(original)
+        corrupted[len(corrupted) // 2] ^= 1
+        object_path.write_bytes(corrupted)
+        response = self.client.get(f"/cases/{case_id}/docs/{document_id}/original")
+        self.assertEqual(response.status_code, 503, response.text)
+        self.assertIn("integrity verification", response.text)
+        self.assertEqual(
+            firm_db.execute(
+                "SELECT COUNT(*) FROM security_audit_events "
+                "WHERE firm_id=? AND user_id=? AND event=?",
+                (self.firm_a, self.user_id, f"original_document_download:{document_id}"),
+            ).fetchone()[0],
+            0,
+        )
+
+        # A truncated object must also fail its recorded byte-size check.
+        object_path.write_bytes(original[:-1])
+        truncated = self.client.get(f"/cases/{case_id}/docs/{document_id}/original")
+        self.assertEqual(truncated.status_code, 503, truncated.text)
+        self.assertIn("integrity verification", truncated.text)
+        self.assertEqual(
+            firm_db.execute(
+                "SELECT COUNT(*) FROM security_audit_events "
+                "WHERE firm_id=? AND user_id=? AND event=?",
+                (self.firm_a, self.user_id, f"original_document_download:{document_id}"),
+            ).fetchone()[0],
+            0,
+        )
+
     def test_original_file_routes_require_document_to_match_path_case(self):
         import hashlib
         from original_file_storage import LocalPrivateObjectStore
