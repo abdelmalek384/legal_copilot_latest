@@ -274,6 +274,37 @@ def validate_capture_record(record: object, record_path: Path) -> dict:
     }
 
 
+def read_regular_file(path: Path, *, max_bytes: int = 1_048_576) -> bytes:
+    """Read a bounded sidecar through a stable regular-file descriptor."""
+    before = path.lstat()
+    if not stat.S_ISREG(before.st_mode) or before.st_size > max_bytes:
+        raise ValueError("capture record must be a bounded regular file")
+    flags = (
+        os.O_RDONLY
+        | getattr(os, "O_BINARY", 0)
+        | getattr(os, "O_NONBLOCK", 0)
+        | getattr(os, "O_NOFOLLOW", 0)
+    )
+    descriptor = os.open(path, flags)
+    with os.fdopen(descriptor, "rb") as stream:
+        opened = os.fstat(stream.fileno())
+        if not stat.S_ISREG(opened.st_mode) or (before.st_dev, before.st_ino) != (opened.st_dev, opened.st_ino):
+            raise ValueError("capture record changed while opening")
+        data = stream.read(max_bytes + 1)
+        after = os.fstat(stream.fileno())
+        current = path.lstat()
+        if len(data) > max_bytes or len(data) != after.st_size:
+            raise ValueError("capture record changed size or exceeds limit")
+        if (
+            (opened.st_dev, opened.st_ino) != (after.st_dev, after.st_ino)
+            or (opened.st_size, opened.st_mtime_ns, opened.st_ctime_ns)
+            != (after.st_size, after.st_mtime_ns, after.st_ctime_ns)
+            or (current.st_dev, current.st_ino) != (opened.st_dev, opened.st_ino)
+        ):
+            raise ValueError("capture record changed while being read")
+    return data
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--record", type=Path, required=True, help="JSON sidecar record")
@@ -283,7 +314,7 @@ def main(argv: list[str] | None = None) -> int:
         return 2
     try:
         record = json.loads(
-            args.record.read_text(encoding="utf-8"),
+            read_regular_file(args.record),
             object_pairs_hook=_reject_duplicate_json_keys,
         )
     except (OSError, UnicodeError, ValueError) as exc:
