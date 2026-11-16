@@ -1368,6 +1368,10 @@ class DatabaseRuntimeTests(unittest.TestCase):
             )
         with self.assertRaises(ValueError):
             self.runtime.create_firm_membership(user_id, firm_id, [])
+        with self.assertRaises(ValueError):
+            self.runtime.create_initial_firm_owner(
+                firm_id, "Invalid Hash Owner", "invalid-hash-owner@example.test", 12345
+            )
         self.assertEqual(
             self.runtime.control_connection().execute(
                 "SELECT COUNT(*) FROM firm_memberships WHERE user_id=? AND firm_id=?",
