@@ -122,10 +122,13 @@ class LocalPrivateObjectStore:
     def _open_firm_directory(self, firm_id: int, *, create: bool) -> tuple[int, int]:
         firm_id = self._validate_firm_id(firm_id)
         root_fd = self._open_directory_chain(self.root)
-        root_metadata = os.fstat(root_fd)
-        if (root_metadata.st_dev, root_metadata.st_ino) != self._root_identity:
+        try:
+            root_metadata = os.fstat(root_fd)
+            if (root_metadata.st_dev, root_metadata.st_ino) != self._root_identity:
+                raise ObjectStorageError("object storage root directory changed after initialization")
+        except Exception:
             os.close(root_fd)
-            raise ObjectStorageError("object storage root directory changed after initialization")
+            raise
         namespace_fd = None
         name = "firm-" + str(firm_id)
         try:
