@@ -6076,5 +6076,39 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
 
 
+    def test_firm_data_export_excludes_authentication_secrets_and_sessions(self):
+        import csv
+        import io
+        import zipfile
+
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        response = self.client.get("/firm/data-export.zip")
+        self.assertEqual(response.status_code, 200, response.text)
+        self.assertEqual(response.headers.get("content-type"), "application/zip")
+        with zipfile.ZipFile(io.BytesIO(response.content)) as archive:
+            names = set(archive.namelist())
+            self.assertIn("firm_invitations.csv", names)
+            self.assertIn("firm_memberships.csv", names)
+            self.assertNotIn("auth_sessions.csv", names)
+            self.assertNotIn("mfa_credentials.csv", names)
+            self.assertNotIn("mfa_recovery_codes.csv", names)
+            for filename in ("firm_invitations.csv", "firm_memberships.csv"):
+                header = next(csv.reader(io.StringIO(
+                    archive.read(filename).decode("utf-8-sig")
+                )))
+                normalized = {column.strip().lower() for column in header}
+                self.assertFalse(
+                    normalized.intersection({
+                        "token_hash", "password_hash", "recovery_code_hash",
+                        "secret_ciphertext", "session_token_hash",
+                    }),
+                    f"authentication secret field leaked into {filename}",
+                )
+
+
 if __name__ == "__main__":
     unittest.main()
