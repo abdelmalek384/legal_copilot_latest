@@ -34,7 +34,10 @@ def _digest_file(source: BinaryIO) -> tuple[str, int]:
     size = 0
     source.seek(0)
     try:
-        for block in iter(lambda: source.read(1024 * 1024), b""):
+        while True:
+            block = source.read(min(1024 * 1024, _MAX_ENCRYPTED_BUNDLE_BYTES - size + 1))
+            if not block:
+                break
             size += len(block)
             if size > _MAX_ENCRYPTED_BUNDLE_BYTES:
                 _fail("Encrypted backup exceeds the supported size limit")
@@ -178,7 +181,7 @@ def upload_encrypted_bundle(
                 part_number = 1
                 uploaded_size = 0
                 while True:
-                    chunk = source.read(_PART_SIZE)
+                    chunk = source.read(min(_PART_SIZE, size - uploaded_size + 1))
                     if not chunk:
                         break
                     uploaded_size += len(chunk)
