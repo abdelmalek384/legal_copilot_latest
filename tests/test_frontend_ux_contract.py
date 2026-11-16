@@ -1566,5 +1566,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("@media(max-width:800px){#main .research-example-chip{width:auto;max-width:100%;flex:0 1 auto}}", HTML)
 
 
+    def test_research_composer_keeps_input_paperclip_and_send_on_one_mobile_row(self):
+        self.assertIn("@media(max-width:800px){#main .research-composer{grid-template-columns:minmax(0,1fr) auto auto}#main .research-composer button{width:auto}#main .research-composer>.mut{grid-column:1/-1}}", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
