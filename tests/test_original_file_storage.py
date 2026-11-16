@@ -169,6 +169,21 @@ class LocalPrivateObjectStoreTests(unittest.TestCase):
         ))
         self.assertEqual(outside.read_bytes(), b"private original")
 
+    def test_store_rejects_replaced_root_directory(self):
+        staged = self.store.stage(7, b"pinned-root data")
+        parked = self.root.with_name("private-objects-parked")
+        self.root.rename(parked)
+        self.root.mkdir(mode=0o700)
+
+        with self.assertRaisesRegex(ObjectStorageError, "root directory changed"):
+            self.store.stage(7, b"must not enter replacement root")
+
+        self.assertEqual(
+            (parked / "firm-7" / (staged.object_id + ".staged")).read_bytes(),
+            b"pinned-root data",
+        )
+        self.assertEqual(list(self.root.iterdir()), [])
+
     def test_rejects_symlinked_firm_namespace(self):
         if not hasattr(os, "symlink"):
             self.skipTest("symlinks unavailable")
