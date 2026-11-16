@@ -1341,6 +1341,41 @@ class DatabaseRuntimeTests(unittest.TestCase):
         self.assertEqual(refreshed.role, "admin")
         self.assertEqual(self.runtime.firm_connection(refreshed).execute("SELECT 1").fetchone()[0], 1)
 
+    def test_runtime_identity_and_membership_methods_reject_nonpositive_or_boolean_ids(self):
+        user_id = self.runtime.create_global_identity(
+            "Boundary User", "boundary-user@example.test", "test-password-hash"
+        )
+        firm_id, _ = self.runtime.provision_firm("Boundary Firm")
+        for invalid in (0, -1, True, "1", None):
+            with self.subTest(method="create_firm_membership", value=invalid):
+                with self.assertRaises(ValueError):
+                    self.runtime.create_firm_membership(invalid, firm_id, "lawyer")
+            with self.subTest(method="create_firm_membership_firm", value=invalid):
+                with self.assertRaises(ValueError):
+                    self.runtime.create_firm_membership(user_id, invalid, "lawyer")
+            with self.subTest(method="create_initial_firm_owner", value=invalid):
+                with self.assertRaises(ValueError):
+                    self.runtime.create_initial_firm_owner(
+                        invalid, "Invalid Owner", "invalid-owner@example.test", "test-hash"
+                    )
+        with self.assertRaises(ValueError):
+            self.runtime.create_firm_membership(
+                user_id, firm_id, "lawyer", created_by_user_id=True
+            )
+        with self.assertRaises(ValueError):
+            self.runtime.create_firm_membership(
+                user_id, firm_id, "lawyer", created_by_user_id=0
+            )
+        with self.assertRaises(ValueError):
+            self.runtime.create_firm_membership(user_id, firm_id, [])
+        self.assertEqual(
+            self.runtime.control_connection().execute(
+                "SELECT COUNT(*) FROM firm_memberships WHERE user_id=? AND firm_id=?",
+                (user_id, firm_id),
+            ).fetchone()[0],
+            0,
+        )
+
     def test_initial_owner_bootstrap_never_grants_platform_role(self):
         firm_id, _ = self.runtime.provision_firm("Owner Bootstrap")
         user_id = self.runtime.create_initial_firm_owner(
