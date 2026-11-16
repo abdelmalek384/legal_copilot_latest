@@ -196,6 +196,70 @@ class CandidateCatalogTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, expected.replace("[", r"\[").replace("]", r"\]")):
                     MODULE.load_catalog(path)
 
+    def test_seed_rolls_back_prior_inserts_on_late_source_conflict(self):
+        db = sqlite3.connect(":memory:")
+        db.executescript("""
+        CREATE TABLE legal_sources(source_id TEXT PRIMARY KEY, authority TEXT NOT NULL,
+          source_page TEXT NOT NULL, access_status TEXT NOT NULL DEFAULT 'unknown',
+          collection_permission TEXT NOT NULL DEFAULT 'unknown',
+          commercial_reuse_permission TEXT NOT NULL DEFAULT 'unknown',
+          terms_url TEXT, terms_checked_on TEXT, permission_evidence TEXT);
+        CREATE TABLE legal_documents(document_id TEXT PRIMARY KEY, source_id TEXT NOT NULL,
+          official_title TEXT NOT NULL, document_type TEXT NOT NULL, law_number TEXT,
+          law_year INTEGER, language TEXT NOT NULL DEFAULT 'ar');
+        """)
+        try:
+            db.execute(
+                "INSERT INTO legal_sources(source_id,authority,source_page) VALUES(?,?,?)",
+                ("SECOND", "Different authority", "https://different.example.gov/law"),
+            )
+            db.commit()
+            data = {"sources": [
+                {"source_id": "FIRST", "authority": "First authority",
+                 "source_page": "https://first.example.gov/law"},
+                {"source_id": "SECOND", "authority": "Second authority",
+                 "source_page": "https://second.example.gov/law"},
+            ], "documents": []}
+            with self.assertRaisesRegex(ValueError, "Existing source metadata conflicts"):
+                MODULE.seed(data, db)
+            self.assertIsNone(db.execute(
+                "SELECT 1 FROM legal_sources WHERE source_id='FIRST'"
+            ).fetchone())
+            self.assertEqual(db.execute(
+                "SELECT authority FROM legal_sources WHERE source_id='SECOND'"
+            ).fetchone()[0], "Different authority")
+        finally:
+            db.close()
+
+    def test_seed_preserves_restrictive_permission_updates(self):
+        data = MODULE.load_catalog()
+        db = sqlite3.connect(":memory:")
+        db.executescript("""
+        CREATE TABLE legal_sources(source_id TEXT PRIMARY KEY, authority TEXT NOT NULL,
+          source_page TEXT NOT NULL, access_status TEXT NOT NULL DEFAULT 'unknown',
+          collection_permission TEXT NOT NULL DEFAULT 'unknown',
+          commercial_reuse_permission TEXT NOT NULL DEFAULT 'unknown',
+          terms_url TEXT, terms_checked_on TEXT, permission_evidence TEXT);
+        CREATE TABLE legal_documents(document_id TEXT PRIMARY KEY, source_id TEXT NOT NULL,
+          official_title TEXT NOT NULL, document_type TEXT NOT NULL, law_number TEXT,
+          law_year INTEGER, language TEXT NOT NULL DEFAULT 'ar');
+        """)
+        try:
+            MODULE.seed(data, db)
+            source = data["sources"][0]
+            db.execute(
+                "UPDATE legal_sources SET collection_permission='prohibited' WHERE source_id=?",
+                (source["source_id"],),
+            )
+            db.commit()
+            MODULE.seed(data, db)
+            self.assertEqual(db.execute(
+                "SELECT collection_permission FROM legal_sources WHERE source_id=?",
+                (source["source_id"],),
+            ).fetchone()[0], "prohibited")
+        finally:
+            db.close()
+
     def test_seed_is_idempotent_and_does_not_create_versions(self):
         data=MODULE.load_catalog()
         db=sqlite3.connect(":memory:")
