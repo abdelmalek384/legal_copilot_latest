@@ -98,8 +98,8 @@ def https_host(value: object) -> str | None:
     except ValueError:
         return None
 
-def sha256_file(path: Path) -> str:
-    """Hash one stable regular-file descriptor; reject symlinks and path swaps."""
+def read_regular_file(path: Path) -> bytes:
+    """Read one stable regular-file descriptor; reject symlinks and path swaps."""
     before = path.lstat()
     if not stat.S_ISREG(before.st_mode):
         raise OSError("legal release artifact is not a regular file")
@@ -113,20 +113,23 @@ def sha256_file(path: Path) -> str:
             or (opened.st_dev, opened.st_ino) != (before.st_dev, before.st_ino)
         ):
             raise OSError("legal release artifact changed while it was being opened")
-        digest = hashlib.sha256()
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
+        content = handle.read()
         after = os.fstat(handle.fileno())
         current_path = path.lstat()
         if (
-            (after.st_dev, after.st_ino) != (opened.st_dev, opened.st_ino)
+            len(content) != after.st_size
+            or (after.st_dev, after.st_ino) != (opened.st_dev, opened.st_ino)
             or (after.st_size, after.st_mtime_ns, after.st_ctime_ns)
             != (opened.st_size, opened.st_mtime_ns, opened.st_ctime_ns)
             or (current_path.st_dev, current_path.st_ino)
             != (opened.st_dev, opened.st_ino)
         ):
-            raise OSError("legal release artifact changed while it was being hashed")
-    return digest.hexdigest()
+            raise OSError("legal release artifact changed while it was being read")
+    return content
+
+
+def sha256_file(path: Path) -> str:
+    return hashlib.sha256(read_regular_file(path)).hexdigest()
 
 
 def normalized_identifiers(value: object) -> list[str] | None:
@@ -388,15 +391,24 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
             if not extracted_path.is_file():
                 add(blockers, "extracted_text_file_not_found", "Recorded extracted text file does not exist.")
             else:
-                if isinstance(text_hash, str) and re.fullmatch(r"[0-9a-fA-F]{64}", text_hash) and sha256_file(extracted_path).lower() != text_hash.lower():
-                    add(blockers, "text_hash_mismatch", "Recorded text SHA-256 does not match extracted text bytes.")
                 try:
-                    extracted_text_content = extracted_path.read_text(encoding="utf-8")
-                except UnicodeDecodeError:
-                    add(blockers, "extracted_text_encoding_invalid", "Extracted text must be valid UTF-8.")
+                    extracted_bytes = read_regular_file(extracted_path)
+                except OSError:
+                    add(blockers, "extracted_text_file_unreadable", "Extracted text changed or could not be read safely.")
                 else:
-                    if not extracted_text_content.strip():
-                        add(blockers, "extracted_text_empty", "Extracted text file is empty.")
+                    if (
+                        isinstance(text_hash, str)
+                        and re.fullmatch(r"[0-9a-fA-F]{64}", text_hash)
+                        and hashlib.sha256(extracted_bytes).hexdigest().lower() != text_hash.lower()
+                    ):
+                        add(blockers, "text_hash_mismatch", "Recorded text SHA-256 does not match extracted text bytes.")
+                    try:
+                        extracted_text_content = extracted_bytes.decode("utf-8")
+                    except UnicodeDecodeError:
+                        add(blockers, "extracted_text_encoding_invalid", "Extracted text must be valid UTF-8.")
+                    else:
+                        if not extracted_text_content.strip():
+                            add(blockers, "extracted_text_empty", "Extracted text file is empty.")
 
     actual_articles = normalized_identifiers(version.get("article_identifiers"))
     expected_articles = normalized_identifiers(version.get("expected_article_identifiers"))
