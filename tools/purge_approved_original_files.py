@@ -176,6 +176,14 @@ def purge_approved_requests(
     The authority checks live here as well as in the CLI so an internal caller cannot
     bypass disabled-firm, active-platform-admin, or clean-preflight requirements.
     """
+    # Reject malformed authority identifiers before inspecting storage targets,
+    # acceptance manifests, or any remote object-store configuration.
+    if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
+        raise ValueError("firm_id must be a positive integer")
+    if (isinstance(operator_user_id, bool) or not isinstance(operator_user_id, int)
+            or operator_user_id <= 0):
+        raise ValueError("operator_user_id must be a positive integer")
+
     backend = os.environ.get("COPILOT_OBJECT_STORAGE_BACKEND", "local").strip().lower()
     if object_store is None and os.environ.get("COPILOT_ENV", "").strip().lower() in {"prod", "production"}:
         raise RuntimeError("local filesystem purge is disabled in production mode")
@@ -191,11 +199,6 @@ def purge_approved_requests(
         if staging_drill is not True and os.environ.get("COPILOT_ENV", "").strip().lower() == "staging":
             raise RuntimeError("staging S3 purge requires the synthetic staging-drill mode")
         _validate_s3_apply_authorization(firm_id, object_store, staging_drill=staging_drill)
-    if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
-        raise ValueError("firm_id must be a positive integer")
-    if (isinstance(operator_user_id, bool) or not isinstance(operator_user_id, int)
-            or operator_user_id <= 0):
-        raise ValueError("operator_user_id must be a positive integer")
     database_path = Path(database_path)
     control_path = Path(control_database_path)
     tenant_root_path = Path(tenant_root)
