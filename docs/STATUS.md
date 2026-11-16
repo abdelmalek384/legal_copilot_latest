@@ -993,5 +993,5 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 ## AI-2 recovery-download directory capability fail-closed — 2026-11-16
 
 - Removed the path-based fallback from encrypted S3 recovery downloads. Downloads now require no-follow directory opens and `dir_fd`-relative file creation/cleanup; unsupported platforms fail before versioning/KMS/S3 calls rather than attempting a weaker path-based write or cleanup.
-- Added a regression that removes `os.open` directory-descriptor capability and verifies the download fails before cloud access and creates no target file.
+- Added a regression that removes `os.open` directory-descriptor capability and verifies the download fails before cloud access and creates no target file. An isolated local dirfd harness also verified that cleanup after a parent-path replacement removes only the file under the originally opened directory, not a same-named outside path.
 - Source commit: `36ce704`; regression commit: `2f0fca7`; operator documentation: `df3cf60`. Bounded implementation: **100%**; repository test execution: **0%**. AI-2 estimate: **77.7%**; whole project remains **75.3% provisional**. Linux production container supports the required primitives; production remains **NOT READY** pending live AWS and witnessed recovery acceptance.
