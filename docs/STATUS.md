@@ -964,3 +964,12 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Merged PR #1694: the legal corpus inventory report now reads its JSON registers through the stable bounded reader; the report remains metadata-only and does not infer verification or reuse rights.
 - Merged PR #1687 recorded the lawyer-review evaluator and production release-gate input safeguards; PR #1688–#1694 now extend those controls through the Phase 2 inventory, acquisition readiness, Labour Law evidence cards, manual capture, amendment relationships and corpus inventory report.
 - AI-1 engineering implementation estimate: **87%**. Retrieval/Arabic matching remains **80%** pending approved benchmark-driven tuning; evaluation/scoring infrastructure **100% implemented** but awaits counsel-approved questions and real runs; ingestion/provenance tooling **98%**; evidence/release safeguards **97%**; Egyptian legal corpus readiness **10%**. Whole-project estimate remains **75.3% provisional**, not a release-readiness or test-pass score.
+
+
+## AI-2 legal-PDF importer resource ceilings and timeout — 2026-11-16
+
+- Legal-import OCR configuration can now lower, but cannot raise, the hard page-render ceilings (12,000 pixels per dimension and 40 million pixels per page). Tesseract OCR now receives a 30-second per-page subprocess timeout; runtime timeout/failure is converted to an explicit import rejection.
+- Corrected the README to distinguish matter-upload OCR settings from legal-import settings and to document the actual importer environment variable names and hard defaults.
+- Added regression contracts for attempts to raise either hard ceiling and for Tesseract timeout propagation. Static re-fetch confirms the source, tests and documentation changes are present; repository test execution remains **0** because hosted runners are blocked and outbound DNS prevents a local clone. No test pass is claimed.
+- Source commits: `26dd851`, `ea57362`; regression commits: `aae5462`, `dd08f0c`; documentation commit: `d8771d6`; blocker record: `98b7e14`.
+- Bounded importer-hardening implementation: **100%**. Exact-head test execution and runtime acceptance: **0%**. AI-2 estimate: **76.8%** (implementation-only, a small increase from 76.7%). Whole-project estimate remains **75.3% provisional** pending a fresh cross-workstream audit. Pilot/production remains **NOT READY**.
