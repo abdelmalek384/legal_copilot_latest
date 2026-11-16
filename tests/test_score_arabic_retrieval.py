@@ -724,6 +724,8 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         result = score([question], [run], TEST_REVIEWER_REGISTRY)
         self.assertEqual(result["wrong_article_rate"], 0.0)
         self.assertEqual(result["invalid_citation_markers"], 1)
+        self.assertEqual(result["target_invalid_citation_markers"], 0)
+        self.assertEqual(result["target_citation_validation_missing_runs"], 0)
         self.assertEqual(result["invalid_citation_answers"], 1)
         self.assertEqual(result["target_status"], "below_target")
 
