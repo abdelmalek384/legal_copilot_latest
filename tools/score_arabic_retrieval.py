@@ -326,6 +326,8 @@ def score(questions, runs, reviewer_registry):
         "target_minimum_cohort_size": MIN_TARGET_COHORT_SIZE,
         "target_wrong_article_rate": 0.0,
         "target_uncited_non_abstained_answers": 0,
+        "target_invalid_citation_markers": 0,
+        "target_citation_validation_missing_runs": 0,
         "target_abstention_compliance_unanswerable": 1.0,
         "target_minimum_unanswerable_questions": 1,
         "target_minimum_reviewed_questions": MIN_TOTAL_REVIEWED_QUESTIONS,
