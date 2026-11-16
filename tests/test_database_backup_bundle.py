@@ -470,7 +470,6 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         self.assertTrue((staged / "control_plane.sqlite3").is_file())
 
     def test_restore_publication_fails_closed_without_renameat2(self):
-        import ctypes
         import database_backup
         from unittest.mock import patch
 
