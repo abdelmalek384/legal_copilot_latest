@@ -1301,5 +1301,28 @@ class FrontendUXContractTests(unittest.TestCase):
             2,
         )
 
+
+    def test_calendar_uses_month_grid_with_selectable_days_and_agenda(self):
+        page = HTML[HTML.index("async function calendarPage(){"):HTML.index("\\nconst caseRow=")]
+        self.assertIn("calendar-month-grid", page)
+        self.assertIn("calendar-day selected", page)
+        self.assertIn("drawAgenda()", page)
+        self.assertIn("calendar-event-dot", page)
+        self.assertIn("/calendar.ics", page)
+
+    def test_sidebar_brand_uses_existing_app_icon_asset(self):
+        self.assertIn("src:'/static/app-icon.svg'", HTML)
+        self.assertIn("className:'brand-mark'", HTML)
+
+    def test_document_library_uses_responsive_file_card_layout(self):
+        self.assertIn("#main .document-library-list{display:grid", HTML)
+        self.assertIn("#main .document-library-file-icon{display:grid", HTML)
+        self.assertIn("#main .document-library-item:hover", HTML)
+
+    def test_research_scope_explains_verified_corpus_abstention(self):
+        self.assertIn("research-scope-guidance", HTML)
+        self.assertIn("assistant abstains rather than guessing", HTML)
+        self.assertIn("research-status-banner", HTML)
+
 if __name__ == "__main__":
     unittest.main()
