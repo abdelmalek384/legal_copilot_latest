@@ -1263,6 +1263,43 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
  #main .calendar-day-count{font-size:9px}
  #main .calendar-event-dot{display:none}
 }
+
+/* Final workspace layout overrides: use available desktop width and keep the brand asset visible. */
+#shell{display:flex!important;align-items:stretch!important;width:100%!important;min-height:100vh!important;max-width:none!important;overflow:clip}
+#side{width:248px!important;min-width:248px!important;flex:0 0 248px!important;box-sizing:border-box!important;padding:18px 14px!important}
+#side .brand-name{display:flex!important;align-items:center!important;gap:11px!important;min-height:48px!important;margin:2px 4px 8px!important;color:#fff!important}
+#side .brand-mark{display:block!important;width:42px!important;height:42px!important;min-width:42px!important;object-fit:contain!important;background:#14284b!important;border:1px solid #52729a!important;border-radius:11px!important;padding:3px!important;box-shadow:0 3px 12px rgba(0,0,0,.22)!important}
+#side .brand-subtitle{margin:0 4px 12px!important;color:#bfd0e6!important;letter-spacing:.12em;font-size:10px;font-weight:800}
+#main{flex:1 1 auto!important;width:calc(100% - 248px)!important;min-width:0!important;max-width:none!important;box-sizing:border-box!important;padding:clamp(18px,2.2vw,34px)!important}
+#main> .workspace-topbar,#main> .demo-banner,#main> .workspace-page-content{width:100%;max-width:1480px;margin-inline:auto}
+#main .workspace-global-search{width:min(100%,900px)}
+#main .research-scope-guidance,#main .research-controls,#main .research-upload-panel{width:100%;max-width:none}
+#main .research-layout{display:grid!important;grid-template-columns:minmax(220px,270px) minmax(360px,1fr) minmax(250px,310px)!important;gap:14px!important;align-items:start!important;width:100%!important}
+#main .research-list,#main .research-main,#main .research-inspector{min-width:0!important;max-width:none!important}
+#main .research-thread{min-height:340px}
+#main .research-composer{position:sticky;bottom:10px;z-index:2;background:#f3f6fb;padding:10px;border:1px solid #dce5f0;border-radius:14px;box-shadow:0 8px 24px rgba(18,39,70,.10)}
+#main .research-composer textarea{width:100%;min-height:110px;resize:vertical}
+#main .research-status-banner{overflow-wrap:anywhere}
+#main .page-load-error{max-width:900px;margin:20px auto}
+@media(max-width:1180px){
+ #main .research-layout{grid-template-columns:minmax(190px,230px) minmax(0,1fr)!important}
+ #main .research-inspector{grid-column:1/-1}
+}
+@media(max-width:760px){
+ #shell{display:flex!important;flex-direction:column!important}
+ #side{width:100%!important;min-width:0!important;flex:0 0 auto!important;padding:10px 12px!important}
+ #side .brand-name{min-height:40px!important}
+ #side .brand-mark{width:36px!important;height:36px!important;min-width:36px!important}
+ #side .primary-nav{display:flex!important;flex-direction:row!important;gap:6px!important;overflow-x:auto!important;padding:4px 0 8px!important}
+ #side .primary-nav .nav-group{display:contents!important}
+ #side .primary-nav .nav-group-label{display:none!important}
+ #side .primary-nav button{flex:0 0 auto!important;min-height:40px!important;white-space:nowrap!important}
+ #side .me{display:none!important}
+ #main{width:100%!important;padding:14px!important}
+ #main .research-layout{grid-template-columns:minmax(0,1fr)!important}
+ #main .research-inspector{grid-column:auto}
+ #main .research-composer{position:static}
+}
 </style>
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <script>
