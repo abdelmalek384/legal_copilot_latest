@@ -7941,6 +7941,7 @@
       "arabic": "لا توجد مستندات",
       "source_lines": [
         2169,
+        2547,
         2642,
         2917,
         2957,
@@ -10194,7 +10195,8 @@
       "arabic": "اختيار ملفات",
       "source_lines": [
         2078,
-        2273
+        2273,
+        2547
       ],
       "review_status": "pending_native_review"
     },
