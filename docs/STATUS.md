@@ -488,3 +488,22 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 
 
 - An isolated Python ID-shape harness confirmed the same validation predicate rejects `0`, `-1`, `True`, a numeric string and `None`, while accepting a positive integer. This validates the predicate only; the repository runtime regression was not executed.
+
+
+## Consolidated AI-2 execution checkpoint — 2026-11-16
+
+| Workstream | Current estimate |
+|---|---:|
+| Tenant isolation / access control | 84.5% |
+| Authentication / firm administration | 85% |
+| Case management | 90% |
+| Document processing / security | 99% |
+| Backup / release readiness | 40% |
+| AI-2 overall | 72.8% |
+| Whole project | 72% |
+
+These are engineering estimates, not acceptance rates. This slice committed tenant database post-open inode/permission/sidecar checks and symlink-race rejection, CLI and runtime validation for purge/firm authority identifiers, stricter initial-owner credential typing, and backup/restore filesystem-root and canonical-path protections. Regression contracts were added for each area. Four isolated predicate/filesystem/shell harnesses passed; **zero repository test modules were executed** and no GitHub Actions jobs ran.
+
+- Task accounting for this slice: 6 bounded source hardening edits across 4 workstreams; 5 regression-test additions/extensions; 4 isolated harnesses passed; 0 repository test modules run; 0 PRs merged by this execution.
+- PR #1651 was merged externally as `11c1d25`. Current open PRs: #1610 (draft), #1644 (pypdf 7.1.0), #1645 (Playwright 1.65.1). All three currently report non-mergeable. PRs #1642/#1643 remain closed and unmerged; their direct requirement edits were reverted because the Python 3.12 hash lock was not regenerated.
+- No hosted CI, dependency installation, browser acceptance, encrypted restore drill, live S3/KMS validation, or witnessed recovery rehearsal has been completed. GitHub billing/runner allocation and lack of local checkout remain blockers. The application is **NOT READY** for a law-firm pilot or production.
