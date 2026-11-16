@@ -116,11 +116,13 @@ def _path_has_symlink_component(path: str | Path) -> bool:
         current = current / component
         try:
             mode = os.lstat(current).st_mode
+            is_junction = getattr(current, "is_junction", None)
+            junction = bool(is_junction()) if callable(is_junction) else False
         except FileNotFoundError:
             break
         except OSError:
             return True
-        if stat.S_ISLNK(mode):
+        if stat.S_ISLNK(mode) or junction:
             return True
     return False
 
