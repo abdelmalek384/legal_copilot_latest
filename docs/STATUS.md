@@ -706,3 +706,8 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Portability refinement: the descriptor-relative recovery-download path is selected only when the runtime advertises `dir_fd` support for `os.open`. Other platforms retain exclusive/no-follow file creation where available and verify parent identity before reporting success. This avoids making the recovery download API unconditionally depend on POSIX directory-relative open support. Source commit: `2741b48`.
+
+
+- Final static checkpoint for this continuation: verified the recovery-download source contains the stat dependency, the runtime dir_fd capability guard, final parent identity verification and descriptor-relative cleanup; verified both backup test modules remain registered in scripts/security_regression_check.sh. This is source inspection only, not a test run.
+- Continuation totals since the previous status checkpoint: 4 implementation commits touching database_backup.py and database_backup_archive.py, 3 regression modules updated across the slice (backup bundle, archive transport, plus existing inventory tests), 6 regression cases added/extended, and 0 repository test modules / 0 Actions jobs executed. No PR was merged.
+- Backup/release readiness estimate revised to 44.8%; AI-2 overall 75.1%; whole project 73.8%. Other workstream estimates remain tenant isolation/access control 84.7%, authentication/firm administration 85.2%, case management 90%, and document processing/security 99.1%.
