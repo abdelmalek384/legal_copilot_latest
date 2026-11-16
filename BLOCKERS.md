@@ -76,3 +76,6 @@
 
 
 - 2026-11-16: Recovery archive persisted verification/download reject provider streams that over-return beyond the requested read size; regression confirms rejection and partial destination cleanup (commits b82e174, 2dd5590). Runtime tests remain unexecuted.
+
+
+- 2026-11-16: Corrected the Windows reserved-device filename regex after an isolated pattern probe exposed an escaping error; CON/PRN/AUX/NUL and COM1–9/LPT1–9 names with extensions now match correctly (commit 6da44db). Repository tests remain unexecuted.
