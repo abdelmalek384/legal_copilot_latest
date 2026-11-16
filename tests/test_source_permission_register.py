@@ -1,5 +1,8 @@
 import importlib.util
+import os
+import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -422,6 +425,42 @@ class SourcePermissionRegisterTests(unittest.TestCase):
                 errors = MODULE.validate(data)
                 self.assertTrue(errors)
                 self.assertTrue(any("unsupported value" in error for error in errors))
+
+    def test_register_loader_rejects_symlink_swap_between_check_and_open(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target = root / "register.json"
+            target.write_text('{"schema_version":"1.0","sources":[]}', encoding="utf-8")
+            outside = root / "outside.json"
+            outside.write_text('{"schema_version":"1.0","sources":[]}', encoding="utf-8")
+            real_open = MODULE.os.open
+            swapped = False
+
+            def replace_before_open(path, flags, *args, **kwargs):
+                nonlocal swapped
+                if Path(path) == target and not swapped:
+                    swapped = True
+                    target.unlink()
+                    target.symlink_to(outside)
+                return real_open(path, flags, *args, **kwargs)
+
+            with patch.object(MODULE.os, "open", side_effect=replace_before_open):
+                with self.assertRaises((OSError, ValueError)):
+                    MODULE.load_register(target)
+            self.assertTrue(swapped)
+
+    def test_register_loader_rejects_fifo_and_oversized_input(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            if hasattr(os, "mkfifo"):
+                fifo = root / "register.fifo"
+                os.mkfifo(fifo)
+                with self.assertRaises((OSError, ValueError)):
+                    MODULE.load_register(fifo)
+            oversized = root / "oversized.json"
+            oversized.write_bytes(b" " * (16 * 1024 * 1024 + 1))
+            with self.assertRaises((OSError, ValueError)):
+                MODULE.load_register(oversized)
 
 if __name__ == "__main__":
     unittest.main()
