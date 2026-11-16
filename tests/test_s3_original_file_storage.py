@@ -543,6 +543,29 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         with self.assertRaisesRegex(ObjectStorageError, "repeated continuation token"):
             self.store.list_object_keys()
 
+    def test_inventory_rejects_malformed_entries_and_truncation_state(self):
+        self.client.list_objects_v2 = lambda **kwargs: {
+            "Contents": [{"Key": None}],
+            "IsTruncated": False,
+        }
+        with self.assertRaisesRegex(ObjectStorageError, "invalid object key"):
+            self.store.list_object_keys()
+
+        self.client.list_objects_v2 = lambda **kwargs: {
+            "Contents": [],
+            "NextContinuationToken": None,
+        }
+        with self.assertRaisesRegex(ObjectStorageError, "truncation state"):
+            self.store.list_object_keys()
+
+    def test_inventory_rejects_non_object_entries(self):
+        self.client.list_objects_v2 = lambda **kwargs: {
+            "Contents": ["not-an-object-entry"],
+            "IsTruncated": False,
+        }
+        with self.assertRaisesRegex(ObjectStorageError, "malformed object entry"):
+            self.store.list_object_keys()
+
     def test_inventory_lists_only_keys_in_originals_namespace(self):
         one = self.store.stage(12, b"one")
         self.store.finalize(12, one.object_id)
