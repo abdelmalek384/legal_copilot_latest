@@ -3261,6 +3261,26 @@ SUBSCRIPTION_READ_ONLY_GRACE_DAYS = 7
 SUBSCRIPTION_WRITE_EXEMPT_PATHS = frozenset({"/billing/payment-submissions", "/session/firm"})
 
 
+def _firm_subscription_is_read_only(control, firm_id: int) -> bool:
+    subscription = control.execute(
+        "SELECT status,trial_ends_at,current_period_end FROM firm_subscriptions WHERE firm_id=?",
+        (int(firm_id),),
+    ).fetchone()
+    if subscription is None:
+        return False
+    status = str(subscription["status"])
+    if status in {"expired", "cancelled", "past_due"}:
+        return True
+    expiry = None
+    if status == "trial":
+        expiry = int(subscription["trial_ends_at"] or 0) or None
+    elif status in {"active", "pending_payment"}:
+        expiry = int(subscription["current_period_end"] or 0) or None
+        if not expiry:
+            expiry = int(subscription["trial_ends_at"] or 0) or None
+    return expiry is not None and expiry <= int(time.time())
+
+
 def _enforce_subscription_write_access(request: Request, authenticated: dict) -> None:
     """Put expired firms into read-only mode without blocking payment or platform recovery."""
     if request.method in {"GET", "HEAD", "OPTIONS"}:
@@ -6380,6 +6400,10 @@ def update_firm_member_role(uid: int, b: FirmRoleUpdateIn, u: dict = Depends(use
             raise HTTPException(404, "active firm membership not found")
         old_role = str(target["firm_role"])
         new_role = b.role
+        if new_role == "admin" and old_role != "admin" and _firm_subscription_is_read_only(
+            control, int(u["firm_id"])
+        ):
+            raise HTTPException(423, "read-only firm cannot grant administrator privileges")
         if old_role == new_role:
             control.rollback()
             return {"ok": True, "user_id": uid, "role": new_role, "changed": False}
