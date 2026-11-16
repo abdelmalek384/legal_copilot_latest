@@ -35,6 +35,18 @@ class BackupRestoreDrillPathTests(unittest.TestCase):
             self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
             self.assertIn("must not overlap", result.stderr)
 
+    def test_rejects_filesystem_root_as_either_backup_or_restore_parent(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            ordinary = Path(temporary)
+            for backup, restore_parent in (
+                (Path("/"), ordinary),
+                (ordinary, Path("/")),
+            ):
+                with self.subTest(backup=backup, restore_parent=restore_parent):
+                    result = self.run_drill(backup, restore_parent)
+                    self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+                    self.assertIn("must not be filesystem roots", result.stderr)
+
     def test_rejects_backup_directory_nested_inside_restore_tree(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
