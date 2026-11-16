@@ -213,6 +213,25 @@ class RestoredOriginalS3ImporterTests(unittest.TestCase):
         self.assertEqual(self.store.final, {})
         self.assertEqual(self._restored_storage_backend(), "local")
 
+    def test_import_rejects_symlinked_restore_original(self):
+        source = self.restore_root / "objects" / f"firm-{self.firm_id}" / f"{self.object_id}.blob"
+        outside = self.root / "outside-original.blob"
+        outside.write_bytes(self.payload)
+        source.unlink()
+        try:
+            source.symlink_to(outside)
+        except OSError as exc:
+            self.skipTest(f"symlinks are unavailable in this environment: {exc}")
+
+        code, report = self._run_import(apply=True)
+
+        self.assertEqual(code, 2)
+        self.assertIn("Restored original is missing or unsafe", report["stderr"])
+        self.assertEqual(self.store.staged, {})
+        self.assertEqual(self.store.final, {})
+        self.assertEqual(self._restored_storage_backend(), "local")
+        self.assertEqual(outside.read_bytes(), self.payload)
+
     def test_apply_revalidates_restore_bytes_after_initial_digest(self):
         source = self.restore_root / "objects" / f"firm-{self.firm_id}" / f"{self.object_id}.blob"
         original_digest = importer._digest
