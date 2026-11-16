@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import hashlib
+import io
 import ipaddress
 import json
 import mimetypes
@@ -560,11 +561,46 @@ def download_document(client: httpx.Client, doc: dict, out: Path, max_bytes: int
     return metadata
 
 
+def read_original_bytes(path: Path) -> bytes:
+    """Read a preserved original once through a stable, bounded descriptor."""
+    before = path.lstat()
+    if not stat.S_ISREG(before.st_mode) or before.st_size > MAX_BYTES_DEFAULT:
+        raise ValueError("preserved original must be a bounded regular file")
+    flags = (
+        os.O_RDONLY
+        | getattr(os, "O_BINARY", 0)
+        | getattr(os, "O_NONBLOCK", 0)
+        | getattr(os, "O_NOFOLLOW", 0)
+    )
+    descriptor = os.open(path, flags)
+    with os.fdopen(descriptor, "rb") as stream:
+        opened = os.fstat(stream.fileno())
+        if not stat.S_ISREG(opened.st_mode) or (before.st_dev, before.st_ino) != (opened.st_dev, opened.st_ino):
+            raise ValueError("preserved original changed while opening")
+        data = stream.read(MAX_BYTES_DEFAULT + 1)
+        after = os.fstat(stream.fileno())
+        current = path.lstat()
+        if len(data) > MAX_BYTES_DEFAULT or len(data) != after.st_size:
+            raise ValueError("preserved original changed size or exceeds limit")
+        if (
+            (opened.st_dev, opened.st_ino) != (after.st_dev, after.st_ino)
+            or (opened.st_size, opened.st_mtime_ns, opened.st_ctime_ns)
+            != (after.st_size, after.st_mtime_ns, after.st_ctime_ns)
+            or (current.st_dev, current.st_ino) != (opened.st_dev, opened.st_ino)
+        ):
+            raise ValueError("preserved original changed while being read")
+    return data
+
+
 def extract_text(original_path: Path, content_type: str) -> tuple[str, str | None]:
+    try:
+        original_bytes = read_original_bytes(original_path)
+    except (OSError, ValueError) as exc:
+        return "", f"Original file could not be read safely: {type(exc).__name__}"
     if content_type == "application/pdf":
         try:
             from pypdf import PdfReader
-            reader = PdfReader(str(original_path))
+            reader = PdfReader(io.BytesIO(original_bytes))
             pages = [(p.extract_text() or "") for p in reader.pages]
             text = "\n\n".join(f"[PAGE {i + 1}]\n{p}" for i, p in enumerate(pages))
             if not text.strip():
@@ -574,14 +610,14 @@ def extract_text(original_path: Path, content_type: str) -> tuple[str, str | Non
             return "", f"PDF extraction failed: {type(exc).__name__}: {exc}"
     if content_type in {"text/html", "application/xhtml+xml"}:
         parser = VisibleHTML()
-        parser.feed(original_path.read_text(encoding="utf-8", errors="replace"))
+        parser.feed(original_bytes.decode("utf-8", errors="replace"))
         return parser.text(), None
     if content_type == "text/plain":
-        return original_path.read_text(encoding="utf-8", errors="replace"), None
+        return original_bytes.decode("utf-8", errors="replace"), None
     if content_type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
         try:
             from docx import Document
-            d = Document(str(original_path))
+            d = Document(io.BytesIO(original_bytes))
             return "\n".join(p.text for p in d.paragraphs), None
         except Exception as exc:
             return "", f"DOCX extraction failed: {type(exc).__name__}: {exc}"
