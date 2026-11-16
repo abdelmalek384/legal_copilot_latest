@@ -663,5 +663,35 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
 
 
 
+
+    def test_cli_refuses_symlink_report_output_without_touching_target(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            questions = root / "questions.jsonl"
+            runs = root / "runs.jsonl"
+            registry = root / "reviewers.json"
+            target = root / "protected.json"
+            output = root / "report.json"
+            questions.write_text('{"id":"Q1","review_status":"needs_lawyer_review"}\\n', encoding="utf-8")
+            runs.write_text("", encoding="utf-8")
+            registry.write_text(__import__("json").dumps(TEST_REVIEWER_REGISTRY), encoding="utf-8")
+            original = '{"protected":true}\\n'
+            target.write_text(original, encoding="utf-8")
+            try:
+                output.symlink_to(target)
+            except (OSError, NotImplementedError):
+                self.skipTest("symlinks are not supported on this filesystem")
+            stderr = io.StringIO()
+            argv = ["score_arabic_retrieval.py", "--questions", str(questions),
+                    "--runs", str(runs), "--reviewer-registry", str(registry),
+                    "--phase", "before", "--output", str(output)]
+            with mock.patch("sys.argv", argv), contextlib.redirect_stderr(stderr), self.assertRaises(SystemExit) as raised:
+                main()
+            self.assertEqual(raised.exception.code, 2)
+            self.assertIn("must not be a symlink", stderr.getvalue())
+            self.assertEqual(target.read_text(encoding="utf-8"), original)
+            self.assertTrue(output.is_symlink())
+
+
 if __name__ == "__main__":
     unittest.main()
