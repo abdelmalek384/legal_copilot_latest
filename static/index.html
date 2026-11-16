@@ -2685,7 +2685,7 @@ async function law(){
    resetInspector();thread.replaceChildren();
    const header=h('div',{className:'research-heading'},h('div',{},h('b',{textContent:copy('بحث قانوني مدعوم بالمصادر')}),h('div',{className:'mut',textContent:copy('نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.')})));
    thread.append(header);
-   researchEmptyState.hidden=messages.length>0;
+   researchEmptyState.hidden=messages.length>0;researchExamples.hidden=messages.length>0;
    if(ME.role==='admin'){
      const ratingList=h('div',{className:'research-rating-list','aria-live':'polite'});
      const listButton=btn(LANG==='ar'?'عرض تقييمات المكتب':'View firm ratings',async()=>{
