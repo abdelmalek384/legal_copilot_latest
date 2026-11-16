@@ -327,13 +327,23 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             suspended = self._mutate("post", f"/users/{target_id}/disable")
             self.assertEqual(suspended.status_code, 200, suspended.text)
 
-            # Keep the same authenticated session and cached firm connection:
-            # the next request must re-check membership instead of trusting cache.
+            # Suspension revokes every existing session. A fresh login may use
+            # the remaining active firm, but cannot select the suspended firm.
             denied_a = target_client.get("/cases")
-            self.assertEqual(denied_a.status_code, 403, denied_a.text)
+            self.assertEqual(denied_a.status_code, 401, denied_a.text)
+            fresh_login = target_client.post(
+                "/login",
+                json={"email": "existing-session-target@example.test", "password": self.password},
+            )
+            self.assertEqual(fresh_login.status_code, 200, fresh_login.text)
+            selected_a_again = target_client.post(
+                "/session/firm", json={"firm_id": self.firm_a},
+                headers={"X-CSRF-Token": target_client.cookies.get("lc_csrf") or ""},
+            )
+            self.assertEqual(selected_a_again.status_code, 403, selected_a_again.text)
             selected_b = target_client.post(
                 "/session/firm", json={"firm_id": self.firm_b},
-                headers={"X-CSRF-Token": csrf},
+                headers={"X-CSRF-Token": target_client.cookies.get("lc_csrf") or ""},
             )
             self.assertEqual(selected_b.status_code, 200, selected_b.text)
             self.assertEqual(target_client.get("/cases").status_code, 200)
@@ -378,8 +388,14 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                     token = target.cookies.get("lc_session") or ""
                     self.assertTrue(token)
 
-                    suspended = self._mutate("post", f"/users/{target_id}/disable")
-                    self.assertEqual(suspended.status_code, 200, suspended.text)
+                    # Exercise the logout fallback for an out-of-band membership
+                    # revocation that did not already revoke the global session.
+                    control = self.runtime.control_connection()
+                    control.execute(
+                        "UPDATE firm_memberships SET status='suspended' WHERE user_id=? AND firm_id=?",
+                        (target_id, self.firm_a),
+                    )
+                    control.commit()
                     expected_denial = 403 if len(firm_ids) > 1 else 401
                     self.assertEqual(target.get("/cases").status_code, expected_denial)
 
@@ -417,8 +433,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 "/login", json={"email": "owner@example.test", "password": self.password}
             )
             self.assertEqual(owner_login.status_code, 200, owner_login.text)
-            suspended = self._mutate("post", f"/users/{target_id}/disable")
-            self.assertEqual(suspended.status_code, 200, suspended.text)
+            control = self.runtime.control_connection()
+            control.execute(
+                "UPDATE firm_memberships SET status='suspended' WHERE user_id=? AND firm_id=?",
+                (target_id, self.firm_a),
+            )
+            control.commit()
             self.assertEqual(target.get("/cases").status_code, 401)
 
             rejected = target.post("/logout")
@@ -480,13 +500,14 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(memberships[self.firm_a], "suspended")
         self.assertEqual(memberships[self.firm_b], "active")
         suspended_event = control.execute(
-            "SELECT actor_user_id,target_user_id,firm_id,event_type FROM platform_security_events "
+            "SELECT actor_user_id,target_user_id,firm_id,event_type,detail_json FROM platform_security_events "
             "WHERE event_type='membership_suspended' AND target_user_id=? ORDER BY id DESC LIMIT 1",
             (target_id,),
         ).fetchone()
         self.assertIsNotNone(suspended_event)
         self.assertEqual(suspended_event["actor_user_id"], self.user_id)
         self.assertEqual(suspended_event["firm_id"], self.firm_a)
+        self.assertIn('"sessions_revoked": true', suspended_event["detail_json"])
 
         from fastapi.testclient import TestClient
         target_client = TestClient(app.app)
@@ -589,6 +610,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             restored = self._mutate("post", f"/users/{target_id}/enable")
             self.assertEqual(restored.status_code, 200, restored.text)
             self.assertEqual(restored.json()["status"], "active")
+            self.assertEqual(target.get("/cases").status_code, 401)
+            fresh_login = target.post(
+                "/login",
+                json={"email": "reactivation-target@example.test", "password": self.password},
+            )
+            self.assertEqual(fresh_login.status_code, 200, fresh_login.text)
             self.assertEqual(target.get("/cases").status_code, 200)
             membership = self.runtime.control_connection().execute(
                 "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
