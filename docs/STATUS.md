@@ -477,3 +477,11 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Both local and S3 purge command-line entry points now reject non-positive firm and operator IDs immediately after argument parsing, before environment/acceptance checks, database access, offboarding inspection or AWS client creation. This complements the existing function-boundary validation.
 - Added one regression covering both CLI entry points and asserting argparse exits before environment validation. Source commits: local `6f13239`, S3 `3a602fd`; regression commit: `491168f`.
 - Static inspection only; the purge test module has not been executed. No purge was performed.
+
+
+## AI-2 database runtime authority input validation — 2026-11-16
+
+- `DatabaseRuntime.create_firm_membership` now rejects boolean, non-integer, zero and negative user/firm IDs, validates optional creator IDs the same way, and rejects non-string roles before opening a control-plane transaction.
+- `create_initial_firm_owner` now rejects invalid firm IDs and non-string/empty password hashes before querying or writing. This prevents Python booleans being accepted as integer firm identifiers and avoids storing a non-string bootstrap credential value.
+- Added runtime regressions for invalid ID shapes, creator IDs, role types, and password-hash types. Source commits: `0fe6c49`, `c50a12e`; regression commits: `3c55fae`, `96a22e4`.
+- Static review only; `tests/test_database_runtime.py` remains unexecuted. No identity or membership records were created in the repository.
