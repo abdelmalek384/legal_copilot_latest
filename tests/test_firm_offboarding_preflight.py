@@ -60,6 +60,21 @@ class FirmOffboardingPreflightTests(unittest.TestCase):
         self.assertEqual(report["active_invitations"], 0)
         self.assertEqual(report["mutations_performed"], 0)
 
+    def test_database_paths_nested_inside_object_root_are_rejected(self):
+        nested_control = self.objects / "control.sqlite3"
+        nested_corpus = self.objects / "corpus.sqlite3"
+        nested_control.write_bytes(b"not opened")
+        nested_corpus.write_bytes(b"not opened")
+
+        with self.assertRaisesRegex(ValueError, "object storage must be separate"):
+            inspect_firm_offboarding(
+                nested_control, self.tenants, self.corpus, self.objects, self.firm_id
+            )
+        with self.assertRaisesRegex(ValueError, "object storage must be separate"):
+            inspect_firm_offboarding(
+                self.control, self.tenants, nested_corpus, self.objects, self.firm_id
+            )
+
     def test_active_membership_blocks_purge_preflight(self):
         self.runtime.disable_firm(self.firm_id)
         self.runtime.close_current_thread()
