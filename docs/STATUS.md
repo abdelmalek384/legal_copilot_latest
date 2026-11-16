@@ -935,3 +935,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - PR #1674 adds a similar post-read path-identity check to the PDF bundle importer, but its merge was rejected because the base branch changed during the merge operation. It remains open pending a safe latest-main refresh; no claim of merge or test completion.
 - These are file-integrity and race-resistance controls only. They do not authenticate a Gazette, grant reuse rights, establish currentness, or substitute for qualified Egyptian-counsel review.
 - AI-1 implementation estimate: **79%**. Legal corpus readiness remains **10%** pending authorized original materials and counsel approval. Whole-project estimate remains **75.3% provisional** from the separately recorded project checkpoint; not a test-pass or release-readiness score.
+
+- Merged PR #1674: the PDF bundle importer now checks post-read path/device/inode identity and uses nonblocking/no-follow opens where available; FIFO and symlink-swap regressions were added.
+- Merged PR #1676: the collection manifest is read through a bounded 5 MiB stable descriptor; final-path symlink swaps, FIFOs, oversized files and read-time changes fail closed. Repository tests remain unexecuted due runner billing/allocation.
