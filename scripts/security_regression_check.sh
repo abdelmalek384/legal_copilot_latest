@@ -36,6 +36,7 @@ tests=(
   test_s3_original_file_storage.py
   test_firm_offboarding_preflight.py
   test_database_backup_bundle.py
+  test_manage_recovery_locator.py
   test_database_backup_archive.py
   test_database_release_acceptance.py
   test_device_browser_acceptance.py
