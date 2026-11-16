@@ -496,6 +496,20 @@ class TenantCatalogTests(unittest.TestCase):
         with self.assertRaisesRegex(TenantCatalogError, "storage root.*symlink"):
             resolve_tenant_database(self.catalog, 24, alias_parent / "tenants")
 
+    def test_catalog_rejects_junctioned_storage_root_ancestor(self):
+        junction = Path(self.temp.name) / "junction-parent"
+        junction.mkdir()
+
+        def is_junction(path):
+            return path == junction
+
+        with patch.object(Path, "is_junction", new=is_junction):
+            with self.assertRaisesRegex(TenantCatalogError, "storage root.*symlink"):
+                provision_tenant_database(
+                    self.catalog, 30, junction / "tenants", self.initialize_tenant
+                )
+        self.assertFalse((junction / "tenants").exists())
+
     def test_symlinked_storage_root_is_rejected_before_provisioning(self):
         real_root = Path(self.temp.name) / "real-tenants"
         real_root.mkdir()

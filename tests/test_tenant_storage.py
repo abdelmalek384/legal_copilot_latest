@@ -173,6 +173,20 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         self.assertTrue(outside_alias.is_file())
         self.assertTrue((parked_root / path.name).is_file())
 
+    def test_router_rejects_junctioned_tenant_database_parent(self):
+        junction = Path(self.temp.name) / "junction-parent"
+        junction.mkdir()
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+
+        def is_junction(candidate):
+            return candidate == junction
+
+        with patch.object(Path, "is_junction", new=is_junction), \
+             patch("tenant_storage.resolve_tenant_database", return_value=junction / path.name):
+            with self.assertRaisesRegex(TenantConnectionError, "symbolic-link component"):
+                self.router.connection_for_firm(101)
+
     @unittest.skipUnless(os.name == "posix", "POSIX file permission bits are required")
     def test_database_permissions_changed_during_open_are_rejected(self):
         with self._catalog() as catalog:
