@@ -112,3 +112,6 @@
 
 
 - 2026-11-16: Recovery archive upload/download now anchors caller paths to absolute paths before filesystem validation, preventing cwd changes from redirecting relative paths between checks and use (commit 7604edd). Runtime tests remain unexecuted.
+
+
+- 2026-11-16: Local backup inventory/copy now fail closed without no-follow dirfd primitives, pin root/namespace descriptors, reject hardlinks, enforce the 15 MB original-file ceiling and read at most expected-size+1 bytes. Added hardlink and oversize regressions (commits 6f52127, 9cda365, 50ea8a9, f6a96f4, f04b707, 021a337). Runtime tests remain unexecuted.
