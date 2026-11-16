@@ -6542,7 +6542,7 @@ def finance_overview(u: dict = Depends(user)):
         FROM fees f
         JOIN cases cs ON cs.id = f.case_id
         WHERE cs.firm_id = ?
-          AND (? = 'admin' OR cs.id IN (SELECT case_id FROM members WHERE user_id = ?))
+          AND (? = 'admin' OR cs.id IN (SELECT case_id FROM members WHERE user_id = ? AND role = 'lead'))
         """,
         (u["firm_id"], u["role"], u["id"]),
     ).fetchone()
@@ -7900,7 +7900,7 @@ def _invoice_record(c, row):
     return result
 
 
-def _invoice_for_user(c, u, invoice_id: int, *, lead: bool = False):
+def _invoice_for_user(c, u, invoice_id: int, *, lead: bool = True):
     row = c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone()
     if row is None:
         raise HTTPException(404, "invoice not found")
@@ -7973,7 +7973,7 @@ def list_invoices(
         rows = c.execute(
             "SELECT i.* FROM invoices i JOIN cases cs ON cs.id=i.case_id "
             "WHERE cs.firm_id=? AND EXISTS (SELECT 1 FROM members m "
-            "WHERE m.case_id=i.case_id AND m.user_id=?) "
+            "WHERE m.case_id=i.case_id AND m.user_id=? AND m.role='lead') "
             "ORDER BY i.created_at DESC,i.id DESC",
             (u["firm_id"], u["id"]),
         ).fetchall()
@@ -8114,7 +8114,7 @@ def invoice_finance_overview(u: dict = Depends(user)):
         rows = c.execute(
             "SELECT i.* FROM invoices i JOIN cases cs ON cs.id=i.case_id "
             "WHERE cs.firm_id=? AND EXISTS (SELECT 1 FROM members m "
-            "WHERE m.case_id=i.case_id AND m.user_id=?) ORDER BY i.id",
+            "WHERE m.case_id=i.case_id AND m.user_id=? AND m.role='lead') ORDER BY i.id",
             (u["firm_id"], u["id"]),
         ).fetchall()
     today_date = _invoice_today()
