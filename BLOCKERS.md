@@ -36,3 +36,6 @@
 
 
 - 2026-11-16: Encrypted backup ZIP preflight now rejects non-canonical member paths and special filesystem entry types before extraction. Added regressions for repeated separators, dot components, Windows drive-prefixed paths and FIFO metadata (commits d3d5841, 0775ba4). The module is already registered in the workflow and security matrix. Repository runtime tests remain unexecuted; no pass is claimed.
+
+
+- 2026-11-16: Restore importer now pins the restore root, objects directory and firm namespace in sequence, opening the blob relative to the pinned namespace descriptor with no-follow flags. Added a regression for an objects-directory symlink swap (commits 0a41996, 56ce2d7). Together with existing namespace and file symlink tests, object path redirection is covered below the canonical root. Runtime tests remain unexecuted; no pass is claimed.
