@@ -66,6 +66,7 @@ class SubscriptionBillingRouteTests(unittest.TestCase):
         lawyer_id = self.runtime.create_global_identity(
             "Subscription Lawyer", "subscription-lawyer@example.test", app.hash_pw(lawyer_password)
         )
+        self.lawyer_id = lawyer_id
         self.runtime.create_firm_membership(lawyer_id, self.firm_a, "lawyer")
         self.client_lawyer = TestClient(app.app)
         self._login(self.client_lawyer, "subscription-lawyer@example.test", lawyer_password)
@@ -201,6 +202,25 @@ class SubscriptionBillingRouteTests(unittest.TestCase):
             "email": "expired-seat@example.test", "role": "lawyer",
         })
         self.assertEqual(blocked.status_code, 423, blocked.text)
+
+        # Billing read-only mode must not prevent security demotion or access revocation.
+        promoted = self._mutate(
+            self.client_a, "put", f"/users/{self.lawyer_id}/role", json={"role": "admin"}
+        )
+        self.assertEqual(promoted.status_code, 200, promoted.text)
+        demoted = self._mutate(
+            self.client_a, "put", f"/users/{self.lawyer_id}/role", json={"role": "lawyer"}
+        )
+        self.assertEqual(demoted.status_code, 200, demoted.text)
+        suspended = self._mutate(
+            self.client_a, "post", f"/users/{self.lawyer_id}/disable"
+        )
+        self.assertEqual(suspended.status_code, 200, suspended.text)
+        self.assertEqual(self.client_lawyer.get("/cases").status_code, 401)
+        reactivation_blocked = self._mutate(
+            self.client_a, "post", f"/users/{self.lawyer_id}/enable"
+        )
+        self.assertEqual(reactivation_blocked.status_code, 423, reactivation_blocked.text)
 
         payment = self._mutate(self.client_a, "post", "/billing/payment-submissions", json={
             "amount_piasters": 250000, "method": "bank_transfer",
