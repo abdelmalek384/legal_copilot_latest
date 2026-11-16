@@ -217,6 +217,41 @@ class DatabaseBackupBundleTests(unittest.TestCase):
             with self.assertRaises(DatabaseBundleError):
                 database_backup._scan_original_object_root(object_root)
 
+    @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_backup_object_copy_rejects_external_hardlink(self):
+        from database_backup import _copy_verified_original_object
+
+        source = self.root / "hardlinked-source.blob"
+        target = self.root / "hardlinked-target.blob"
+        outside = self.root / "hardlinked-outside.blob"
+        payload = b"must not archive aliased object bytes"
+        source.write_bytes(payload)
+        os.link(source, outside)
+
+        with self.assertRaisesRegex(DatabaseBundleError, "single-link"):
+            _copy_verified_original_object(
+                source, target,
+                expected_size=len(payload),
+                expected_sha256=hashlib.sha256(payload).hexdigest(),
+            )
+
+        self.assertFalse(target.exists())
+        self.assertEqual(outside.read_bytes(), payload)
+
+    def test_backup_object_copy_rejects_size_above_original_object_ceiling(self):
+        from database_backup import _copy_verified_original_object
+
+        source = self.root / "oversized-metadata-source.blob"
+        target = self.root / "oversized-metadata-target.blob"
+        source.write_bytes(b"small")
+        with self.assertRaisesRegex(DatabaseBundleError, "integrity metadata"):
+            _copy_verified_original_object(
+                source, target,
+                expected_size=15_000_001,
+                expected_sha256=hashlib.sha256(b"small").hexdigest(),
+            )
+        self.assertFalse(target.exists())
+
     def test_backup_object_copy_hashes_the_same_no_follow_descriptor(self):
         from database_backup import _copy_verified_original_object
 
