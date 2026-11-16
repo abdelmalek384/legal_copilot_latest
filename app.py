@@ -3072,6 +3072,15 @@ class LawRow(BaseModel):
 def sha(t): return hashlib.sha256(t.encode()).hexdigest()
 
 
+def _clear_auth_cookies(response: Response, request: Request) -> None:
+    """Clear browser authentication/context cookies after an invalid or expired session."""
+    for cookie in ("lc_session", "lc_csrf", "lc_firm"):
+        response.delete_cookie(
+            cookie, path="/", httponly=(cookie != "lc_csrf"),
+            samesite="lax", secure=_secure_cookie_transport(request),
+        )
+
+
 def _user_separate(
     request: Request,
     response: Response,
@@ -3082,6 +3091,7 @@ def _user_separate(
 ):
     token = session_cookie or ""
     if not token:
+        _clear_auth_cookies(response, request)
         raise HTTPException(401, "unauthorized")
     c = control_conn()
     account = c.execute(
@@ -3093,6 +3103,7 @@ def _user_separate(
     if not account or account["status"] != "active":
         c.execute("DELETE FROM auth_sessions WHERE token_hash=?", (sha(token),))
         c.commit()
+        _clear_auth_cookies(response, request)
         raise HTTPException(401, "unauthorized")
     firms = _active_firms_for_user(account["id"])
     if not firms:
@@ -3187,6 +3198,7 @@ def user(request: Request, response: Response,
     r = c.execute("SELECT u.* FROM auth_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=? AND s.expires>?", (token_hash, int(time.time()))).fetchone()
     if not r or not r["active"] or r["firm_id"] is None:
         c.execute("DELETE FROM auth_sessions WHERE token_hash=?", (token_hash,)); c.commit()
+        _clear_auth_cookies(response, request)
         raise HTTPException(401, "unauthorized")
     if request.method not in ("GET", "HEAD", "OPTIONS"):
         if not csrf_cookie or not csrf_header or not hmac.compare_digest(csrf_cookie, csrf_header):
@@ -4448,9 +4460,7 @@ def logout(request: Request, response: Response, u: dict = Depends(user)):
     c = control_conn()
     c.execute("DELETE FROM auth_sessions WHERE token_hash=? AND user_id=?", (sha(tok), u["id"]))
     c.commit()
-    for cookie in ("lc_session", "lc_csrf", "lc_firm"):
-        response.delete_cookie(cookie, path="/", httponly=(cookie != "lc_csrf"),
-                               samesite="lax", secure=_secure_cookie_transport(request))
+    _clear_auth_cookies(response, request)
     return {"ok": True}
 
 
