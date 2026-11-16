@@ -1,4 +1,6 @@
 """Structural checks only for the unapproved Law 14/2025 retrieval-question drafts."""
+import hashlib
+import json
 from collections import Counter
 from pathlib import Path
 
@@ -7,9 +9,21 @@ DATASET = ROOT / "tests" / "legal_eval" / "law_14_2025_machine_proposed_question
 
 
 def test_law14_machine_proposed_questions_are_unique_article_mapped_and_unapproved():
-    from tools.validate_law14_eval_draft import read_jsonl, validate_rows
+    from tools.validate_law14_eval_draft import (
+        _reject_duplicate_json_keys, read_jsonl, read_regular_file, validate_rows,
+    )
 
     rows = read_jsonl(DATASET)
+    baseline_path = ROOT / "docs" / "legal_evidence" / "law14_2025_retrieval_baseline_unreviewed.json"
+    dataset_bytes = read_regular_file(DATASET)
+    baseline = json.loads(
+        read_regular_file(baseline_path).decode("utf-8"),
+        object_pairs_hook=_reject_duplicate_json_keys,
+    )
+    assert baseline["dataset_sha256"] == hashlib.sha256(dataset_bytes).hexdigest()
+    assert baseline["status"] == "unreviewed_not_scored"
+    assert baseline["answer_keys_approved"] == 0
+    assert all(value is None for value in baseline["metrics"].values())
     report = validate_rows(rows)
     assert report["valid"], report["errors"]
     assert report["trust_boundary"].startswith("Structural validation only")
