@@ -498,10 +498,10 @@ def create_backup_bundle(
     SQLite snapshots are consistent per file, not a cross-file atomic transaction,
     so a live multi-file backup is rejected by default.
     """
-    if not quiesced:
+    if quiesced is not True:
         raise DatabaseBundleError("Pause application writes and pass quiesced=True before bundling databases")
-    if keep < 1:
-        raise ValueError("keep must be at least 1")
+    if isinstance(keep, bool) or not isinstance(keep, int) or keep < 1:
+        raise ValueError("keep must be a positive integer")
     control_path = runtime.paths.control_plane
     corpus_path = runtime.paths.legal_corpus
     tenant_root = runtime.paths.tenant_root
