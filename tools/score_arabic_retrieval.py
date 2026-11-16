@@ -190,6 +190,17 @@ def score(questions, runs, reviewer_registry):
                 raise ValueError(f"{qid}: {field} contains duplicates")
         if not set(r.get("cited_article_ids", [])).issubset(set(r.get("retrieved_article_ids", []))):
             raise ValueError(f"{qid}: cited_article_ids must be present in retrieved_article_ids")
+        invalid_indices = r.get("invalid_citation_indices")
+        marker_count = r.get("citation_marker_count")
+        if invalid_indices is not None and (
+                not isinstance(invalid_indices, list)
+                or any(type(index) is not int or index < 1 for index in invalid_indices)
+                or len(invalid_indices) != len(set(invalid_indices))):
+            raise ValueError(f"{qid}: invalid_citation_indices must be a list of unique positive integers")
+        if marker_count is not None and (type(marker_count) is not int or marker_count < 0):
+            raise ValueError(f"{qid}: citation_marker_count must be a non-negative integer")
+        if invalid_indices is not None and marker_count is not None and len(invalid_indices) > marker_count:
+            raise ValueError(f"{qid}: invalid citation count cannot exceed citation_marker_count")
         r_by_id[qid] = r
 
     approved_reviewers, registry_errors = validate_reviewer_registry(reviewer_registry)
@@ -216,12 +227,22 @@ def score(questions, runs, reviewer_registry):
     colloquial_synonym_hits = []
     wrong_answers = cited_non_abstained = non_abstained = abstained = 0
     uncited_non_abstained = 0
+    invalid_citation_markers = 0
+    invalid_citation_answers = 0
+    citation_validation_missing = 0
     unverified_source_answers = 0
     unanswerable = unanswerable_abstained = 0
     answerable_abstained = 0
     for q in reviewed:
         run = r_by_id[q["id"]]
         abstained += int(run["abstained"])
+        invalid_indices = run.get("invalid_citation_indices")
+        marker_count = run.get("citation_marker_count")
+        if invalid_indices is None or marker_count is None:
+            citation_validation_missing += 1
+        elif invalid_indices:
+            invalid_citation_markers += len(invalid_indices)
+            invalid_citation_answers += 1
         if q["answerable"]:
             expected = (q.get("expected_article_id") or q.get("expected_article") or "").strip()
             hit = int(expected in run["retrieved_article_ids"][:3])
@@ -270,6 +291,7 @@ def score(questions, runs, reviewer_registry):
         wrong_answers > 0
         or uncited_non_abstained > 0
         or unverified_source_answers > 0
+        or invalid_citation_markers > 0
         or (unanswerable > 0 and unanswerable_abstained != unanswerable)
     )
     if known_safety_failure:
@@ -277,7 +299,8 @@ def score(questions, runs, reviewer_registry):
     elif (len(reviewed) < MIN_TOTAL_REVIEWED_QUESTIONS or not top3_hits
             or len(colloquial_hits) < MIN_TARGET_COHORT_SIZE
             or len(synonym_hits) < MIN_TARGET_COHORT_SIZE or not unanswerable
-            or colloquial_rate is None or synonym_rate is None or wrong_rate is None):
+            or colloquial_rate is None or synonym_rate is None or wrong_rate is None
+            or citation_validation_missing > 0):
         target_status = "not_evaluable_missing_approved_labels_or_cited_runs"
     elif colloquial_rate < 0.80 or synonym_rate < 0.80 or wrong_rate != 0.0:
         target_status = "below_target"
@@ -314,6 +337,9 @@ def score(questions, runs, reviewer_registry):
         "cited_non_abstained_answers": cited_non_abstained,
         "non_abstained_answers": non_abstained,
         "uncited_non_abstained_answers": uncited_non_abstained,
+        "invalid_citation_answers": invalid_citation_answers,
+        "invalid_citation_markers": invalid_citation_markers,
+        "citation_validation_missing_runs": citation_validation_missing,
         "abstention_rate": round(abstained / len(reviewed), 4) if reviewed else None,
         "unverified_source_answers": unverified_source_answers,
         "unverified_source_rate": round(unverified_source_answers / non_abstained, 4) if non_abstained else None,
