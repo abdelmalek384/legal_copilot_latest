@@ -66,9 +66,7 @@ def _route_methods(decorator: ast.AST) -> list[str]:
     method = decorator.func.attr.lower()
     if method not in ROUTE_METHODS or not isinstance(decorator.func.value, ast.Name):
         return []
-    if decorator.func.value.id not in {"app", "router"} or not decorator.args:
-        return []
-    if not isinstance(decorator.args[0], ast.Constant) or not isinstance(decorator.args[0].value, str):
+    if decorator.func.value.id not in {"app", "router"}:
         return []
     if method == "api_route":
         methods = {"GET"}
@@ -93,6 +91,18 @@ def _route_methods(decorator: ast.AST) -> list[str]:
     return [method.upper()]
 
 
+def _route_path(decorator: ast.AST) -> str:
+    if not isinstance(decorator, ast.Call):
+        raise ValueError("route decorator must be a call")
+    path_node = decorator.args[0] if decorator.args else next(
+        (keyword.value for keyword in decorator.keywords if keyword.arg == "path"),
+        None,
+    )
+    if not isinstance(path_node, ast.Constant) or not isinstance(path_node.value, str):
+        raise ValueError("route path must be a literal string")
+    return path_node.value
+
+
 def audit_sources(
     sources: dict[str, str], *, require_public_routes: bool = True
 ) -> dict[str, Any]:
@@ -106,17 +116,23 @@ def audit_sources(
             if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
                 continue
             for decorator in node.decorator_list:
+                methods = _route_methods(decorator)
+                if not methods:
+                    continue
+                try:
+                    path = _route_path(decorator)
+                except ValueError as exc:
+                    findings.append(
+                        f"cannot statically audit route path for {node.name} in {filename}: {exc}"
+                    )
+                    continue
                 try:
                     methods = _route_methods(decorator)
                 except ValueError as exc:
-                    path = decorator.args[0].value if decorator.args and isinstance(decorator.args[0], ast.Constant) else "<dynamic>"
                     findings.append(
                         f"cannot statically audit HTTP methods for {path} ({node.name}) in {filename}: {exc}"
                     )
                     continue
-                if not methods:
-                    continue
-                path = decorator.args[0].value
                 authenticated = (
                     _contains_user_dependency(node.args)
                     or _contains_user_dependency(decorator)
