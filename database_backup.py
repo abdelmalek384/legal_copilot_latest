@@ -380,7 +380,9 @@ def _copy_s3_original_objects(
                 )
                 fd = os.open(target, flags, 0o600)
                 try:
-                    with os.fdopen(fd, "wb", closefd=True) as output:
+                    output_stream = os.fdopen(fd, "wb", closefd=True)
+                    fd = None
+                    with output_stream as output:
                         while True:
                             block = source.read(1024 * 1024)
                             if not block:
@@ -395,10 +397,13 @@ def _copy_s3_original_objects(
                 except Exception:
                     target.unlink(missing_ok=True)
                     raise
+                finally:
+                    if fd is not None:
+                        os.close(fd)
                 if size_check != size or digest_check.hexdigest() != digest:
                     target.unlink(missing_ok=True)
                     raise DatabaseBundleError(f"S3 original-object changed during backup for firm {firm_id}")
-        except (ObjectStorageError, ValueError) as exc:
+        except (ObjectStorageError, ValueError, OSError, TypeError, OverflowError) as exc:
             raise DatabaseBundleError(f"S3 original-object could not be safely backed up for firm {firm_id}") from exc
         expected.add(f"firm-{firm_id}/{object_id}.blob")
     return expected
