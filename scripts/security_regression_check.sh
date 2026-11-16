@@ -50,6 +50,11 @@ tests=(
   test_research_prompt_injection_boundary.py
   test_score_arabic_retrieval.py
   test_import_gazette_text.py
+  test_legal_source_review_queue.py
+  test_legal_eval_runner.py
+  test_legal_answer_review_evaluation.py
+  test_review_evidence_url_validation.py
+  test_labour_law_provisional_review_questions.py
   test_case_csv_import.py
   test_client_csv_import.py
   test_invoice_csv_export.py
