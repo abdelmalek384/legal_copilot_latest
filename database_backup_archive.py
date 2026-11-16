@@ -361,6 +361,7 @@ def download_encrypted_bundle_version(
     parent_descriptor = None
     descriptor = None
     created = False
+    body_closed = False
     digest = hashlib.sha256()
     count = 0
     try:
@@ -403,6 +404,8 @@ def download_encrypted_bundle_version(
             != (parent_opened.st_dev, parent_opened.st_ino)
         ):
             _fail("Recovery download directory changed before publication")
+        body.close()
+        body_closed = True
         return target
     except Exception as exc:
         if created:
@@ -417,7 +420,11 @@ def download_encrypted_bundle_version(
             raise
         raise DatabaseBundleError("Recovery archive download could not be written safely") from exc
     finally:
-        body.close()
+        if not body_closed:
+            try:
+                body.close()
+            except Exception:
+                pass
         if descriptor is not None:
             os.close(descriptor)
         if parent_descriptor is not None:
