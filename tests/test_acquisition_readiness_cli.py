@@ -3,6 +3,8 @@ import importlib.util
 import io
 import json
 import tempfile
+import os
+from unittest.mock import patch
 import unittest
 from pathlib import Path
 
@@ -146,6 +148,38 @@ class AcquisitionReadinessCliTests(unittest.TestCase):
         self.assertEqual(report["commercial_product_use_ready_count"], 1)
         self.assertEqual(code, 0)
 
+
+    def test_cli_rejects_symlink_swap_in_manifest_and_fifo_register(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            manifest = root / "manifest.json"
+            manifest.write_text('{"documents":[]}', encoding="utf-8")
+            outside = root / "outside.json"
+            outside.write_text('{"documents":[]}', encoding="utf-8")
+            register = root / "register.json"
+            register.write_text('{"sources":[]}', encoding="utf-8")
+            real_open = MODULE.os.open
+            swapped = False
+
+            def replace_before_open(path, flags, *args, **kwargs):
+                nonlocal swapped
+                if Path(path) == manifest and not swapped:
+                    swapped = True
+                    manifest.unlink()
+                    manifest.symlink_to(outside)
+                return real_open(path, flags, *args, **kwargs)
+
+            with patch("tools.validate_source_permission_register.os.open", side_effect=replace_before_open):
+                with self.assertRaises(SystemExit) as raised:
+                    MODULE.main(["--manifest", str(manifest), "--register", str(register)])
+            self.assertEqual(raised.exception.code, 2)
+            self.assertTrue(swapped)
+            if hasattr(os, "mkfifo"):
+                fifo = root / "register.fifo"
+                os.mkfifo(fifo)
+                with self.assertRaises(SystemExit) as raised:
+                    MODULE.main(["--manifest", str(outside), "--register", str(fifo)])
+                self.assertEqual(raised.exception.code, 2)
 
 if __name__ == "__main__":
     unittest.main()
