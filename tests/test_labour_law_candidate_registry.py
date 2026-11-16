@@ -86,6 +86,28 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0], 0)
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM legal_review_events").fetchone()[0], 6)
 
+    def test_registration_rejects_unsafe_candidate_evidence_urls(self):
+        cases = (
+            ("source_page", "https://user:secret@example.gov/law.pdf", "source_page"),
+            ("source_page", "https://example.gov/law.pdf?access_token=secret", "source_page"),
+            ("version_source_url", "https://example.gov/law.pdf#fragment", "source_url"),
+            ("review_evidence_url", "https://example.gov/review.pdf\\x7f", "evidence_url"),
+        )
+        for field, value, expected in cases:
+            candidate = dict(self.record)
+            candidate["sources"] = [dict(item) for item in self.record["sources"]]
+            candidate["version"] = dict(self.record["version"])
+            candidate["reviews"] = [dict(item) for item in self.record.get("reviews", [])]
+            if field == "source_page":
+                candidate["sources"][0]["source_page"] = value
+            elif field == "version_source_url":
+                candidate["version"]["source_url"] = value
+            else:
+                candidate["reviews"][0]["evidence_url"] = value
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, expected):
+                self.register(self.db, candidate)
+            self.assertEqual(self.db.execute("SELECT COUNT(*) FROM legal_sources").fetchone()[0], 0)
+
     def test_registration_cannot_grant_source_collection_or_commercial_reuse(self):
         for field, value, message in (
             ("collection_permission", "allowed", "cannot grant collection permission"),
