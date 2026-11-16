@@ -34,11 +34,22 @@ def _readonly(path: Path) -> sqlite3.Connection:
 
 
 def _open_regular_original(path: Path):
-    """Open one restore object without following a final-component symlink."""
-    flags = os.O_RDONLY | getattr(os, "O_CLOEXEC", 0) | getattr(os, "O_NOFOLLOW", 0)
+    """Open a restore object relative to a pinned, non-symlink namespace directory."""
+    if not getattr(os, "O_DIRECTORY", 0) or not getattr(os, "O_NOFOLLOW", 0):
+        raise RuntimeError("Restore object access requires no-follow directory-descriptor operations")
+    directory_fd = None
     fd = None
     try:
-        fd = os.open(path, flags)
+        directory_flags = (
+            os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+            | getattr(os, "O_CLOEXEC", 0)
+        )
+        directory_fd = os.open(path.parent, directory_flags)
+        fd = os.open(
+            path.name,
+            os.O_RDONLY | os.O_NOFOLLOW | getattr(os, "O_CLOEXEC", 0),
+            dir_fd=directory_fd,
+        )
         if not stat.S_ISREG(os.fstat(fd).st_mode):
             raise RuntimeError("Restored original is not a regular file")
         handle = os.fdopen(fd, "rb", closefd=True)
@@ -49,6 +60,8 @@ def _open_regular_original(path: Path):
     finally:
         if fd is not None:
             os.close(fd)
+        if directory_fd is not None:
+            os.close(directory_fd)
 
 
 def _digest(path: Path) -> tuple[str, int]:
