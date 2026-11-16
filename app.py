@@ -3948,6 +3948,46 @@ def app_icon():
     )
 
 
+
+@app.get("/static/design-tokens.css")
+def design_tokens_css():
+    """Serve the fixed, public workspace stylesheet; never accept a filesystem path."""
+    asset = Path(__file__).resolve().parent / "static" / "design-tokens.css"
+    if not asset.is_file():
+        raise HTTPException(404, "design token stylesheet is unavailable")
+    return FileResponse(
+        asset,
+        media_type="text/css",
+        headers={"Cache-Control": "public, max-age=3600"},
+    )
+
+
+@app.get("/static/fonts/NotoNaskhArabic-VF.ttf")
+def arabic_workspace_font():
+    """Serve the bundled Noto Naskh Arabic font from a fixed path."""
+    asset = Path(__file__).resolve().parent / "static" / "fonts" / "NotoNaskhArabic-VF.ttf"
+    if not asset.is_file():
+        raise HTTPException(404, "Arabic workspace font is unavailable")
+    return FileResponse(
+        asset,
+        media_type="font/ttf",
+        headers={"Cache-Control": "public, max-age=86400"},
+    )
+
+
+@app.get("/static/fonts/OFL.txt")
+def arabic_workspace_font_license():
+    """Expose the font's required redistribution license alongside the asset."""
+    asset = Path(__file__).resolve().parent / "static" / "fonts" / "OFL.txt"
+    if not asset.is_file():
+        raise HTTPException(404, "font license is unavailable")
+    return FileResponse(
+        asset,
+        media_type="text/plain; charset=utf-8",
+        headers={"Cache-Control": "public, max-age=86400"},
+    )
+
+
 def _platform_roles_for_user(user_id: int):
     return [row["role_name"] for row in control_conn().execute(
         "SELECT role_name FROM user_platform_roles WHERE user_id=? ORDER BY role_name",
