@@ -40,6 +40,21 @@ def _is_one_of(value, choices):
     return isinstance(value, str) and value in choices
 
 
+def _is_canonical_article_id(value):
+    """Validate the non-empty source/law/article components of a canonical ID."""
+    if (not isinstance(value, str) or value != value.strip()
+            or any(ord(char) < 32 or ord(char) == 127 for char in value)
+            or value.count("::law:") != 1 or value.count("::article:") != 1):
+        return False
+    source_id, _, remainder = value.partition("::law:")
+    law_label, _, article_label = remainder.rpartition("::article:")
+    return bool(
+        source_id and source_id == source_id.strip()
+        and law_label and law_label == law_label.strip()
+        and article_label and article_label == article_label.strip()
+    )
+
+
 def read_regular_file(path, *, max_bytes=64 * 1024 * 1024):
     """Read a bounded scorer input from one stable regular-file descriptor."""
     path = Path(path)
@@ -154,10 +169,8 @@ def _valid_reviewed(row, approved_reviewers):
     expected_id = row.get("expected_article_id")
     if expected not in (None, "") and (not isinstance(expected, str) or expected != expected.strip()):
         raise ValueError(f"{row.get('id')}: expected_article must be a trimmed string")
-    if expected_id not in (None, "") and (
-            not isinstance(expected_id, str) or expected_id != expected_id.strip()
-            or "::law:" not in expected_id or "::article:" not in expected_id):
-        raise ValueError(f"{row.get('id')}: expected_article_id must use source_id::law:<law-label>::article:<number>")
+    if expected_id not in (None, "") and not _is_canonical_article_id(expected_id):
+        raise ValueError(f'{row.get("id")}: expected_article_id must use non-empty source_id::law:<law-label>::article:<article> components')
     if row["answerable"]:
         if not isinstance(expected, str) or not expected.strip():
             raise ValueError(f"{row.get('id')}: answerable reviewed question needs a human-readable expected_article")
