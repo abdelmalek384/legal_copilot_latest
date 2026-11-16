@@ -1366,6 +1366,31 @@ class DatabaseRuntimeTests(unittest.TestCase):
         with self.assertRaises(sqlite3.ProgrammingError):
             opened[0].execute("SELECT 1")
 
+    def test_request_time_catalog_symlink_replacement_during_open_is_rejected(self):
+        path = self.runtime.paths.control_plane
+        backup = self.root / "router-control-original.sqlite3"
+        original_connect = sqlite3.connect
+        opened = []
+        expected_uri = path.resolve().as_uri() + "?mode=ro"
+
+        def connect_then_replace_with_symlink(database, *args, **kwargs):
+            connection = original_connect(database, *args, **kwargs)
+            if str(database) == expected_uri:
+                opened.append(connection)
+                os.replace(path, backup)
+                path.symlink_to(backup)
+            return connection
+
+        with patch("database_runtime.sqlite3.connect", side_effect=connect_then_replace_with_symlink):
+            with self.assertRaisesRegex(
+                DatabaseRuntimeError, "database path must not be a symlink"
+            ):
+                self.runtime._new_router_catalog_connection()
+
+        self.assertEqual(len(opened), 1)
+        with self.assertRaises(sqlite3.ProgrammingError):
+            opened[0].execute("SELECT 1")
+
     def test_request_time_tenant_catalog_connection_is_read_only(self):
         catalog = self.runtime._new_router_catalog_connection()
         try:
