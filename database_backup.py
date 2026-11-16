@@ -878,7 +878,7 @@ def _safe_archive_members(archive: zipfile.ZipFile) -> set[str]:
                 part in {"", ".", ".."}
                 or ":" in part
                 or part.endswith((".", " "))
-                or re.match(r"^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\\..*)?$", part, re.IGNORECASE)
+                or re.match(r"^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\..*)?$", part, re.IGNORECASE)
                 for part in parts
             )
             or "\\" in raw_name
