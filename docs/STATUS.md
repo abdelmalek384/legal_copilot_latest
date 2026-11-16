@@ -1306,3 +1306,10 @@ Validation and remaining gates:
 - Merged PR #1745 (`060cc5ee3b9460b496659ad9df51abd1bc3af99e`): Settings now offers System setting / Reduce motion, persisted per firm/user. The explicit override disables animations, transitions and smooth scrolling; the system preference remains respected by default. The existing OS media rule now disables animations as well as transitions.
 - Updated the Arabic review catalog and UX gap audit; catalog now contains 1,563 unique entries. Added a frontend regression contract.
 - Independent validation: full inline JavaScript parsed with V8; runtime harness covered explicit reduce, system and invalid-value fallback; CSS checks passed. GitHub Actions did not execute test steps; no browser motion/visual acceptance is claimed.
+
+
+## Dashboard document-analysis quick action — 2026-11-17
+
+- Merged PR #1746 (`a3e75627ebfba67ad9b7394668d76f6d156ea17d`): added a direct Analyze a document action to the dashboard hero, routed to the existing authorized Documents workspace. No backend endpoint or permission path changed.
+- Updated the Arabic review catalog, UX gap audit and frontend regression contract. Catalog now contains 1,564 unique entries.
+- Independent validation: full inline JavaScript parsed with V8; source/catalog checks passed for action placement and route target. GitHub Actions did not execute test steps; browser/dashboard acceptance remains open.
