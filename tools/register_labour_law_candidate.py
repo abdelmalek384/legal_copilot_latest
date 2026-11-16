@@ -270,7 +270,7 @@ def register(db, record):
         for event in record.get("reviews", []):
             found = db.execute(
                 """SELECT 1 FROM legal_review_events
-                   WHERE version_id=? AND review_type=? AND outcome='pending' LIMIT 1""",
+                   WHERE version_id=? AND review_type=? LIMIT 1""",
                 (version_id, event["review_type"]),
             ).fetchone()
             if not found:
