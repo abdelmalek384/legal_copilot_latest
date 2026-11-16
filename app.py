@@ -3741,8 +3741,13 @@ def ocr_pdf_text(data, lang=None, max_pages=30, existing_pages=None):
                     # Gate rasterization itself: a small PDF can declare an
                     # enormous page box and force get_pixmap to allocate a huge bitmap.
                     dpi = 160
-                    max_pixels = _positive_int_env("OCR_MAX_PIXELS", 40_000_000)
-                    max_dimension = _positive_int_env("OCR_MAX_DIMENSION", 20_000)
+                    # Operators may lower these ceilings, never raise them.
+                    max_pixels = min(
+                        _positive_int_env("OCR_MAX_PIXELS", 40_000_000), 40_000_000
+                    )
+                    max_dimension = min(
+                        _positive_int_env("OCR_MAX_DIMENSION", 20_000), 20_000
+                    )
                     width_points = float(page.rect.width)
                     height_points = float(page.rect.height)
                     if (not math.isfinite(width_points) or not math.isfinite(height_points)
