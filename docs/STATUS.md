@@ -903,3 +903,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Added `test_send_fails_closed_when_reminder_preferences_schema_is_missing`, which drops the preference table, asserts scheduler failure, zero SMTP calls and zero queued reminders. `test_reminder_service.py` is registered in both the Tests workflow and focused security matrix.
 - Source commit: `3d29a0d`; regression commit: `91abca8`. Static review confirms the fallback is removed and the test is present. Repository tests and CI remain unexecuted.
 - Reminder scheduler code hardening in this continuation: **100%** (lease-clock separation and missing-preference-schema fail-closed behavior). Live SMTP/provider and external scheduler acceptance remain outstanding.
+
+
+- Conservative aggregate estimate after the reminder scheduler changes: AI-2 **76.6%**; whole project **75.2%**. The small increase reflects code-level hardening only. Live SMTP staging, scheduler service-manager installation/monitoring, operational recovery rehearsal, CI and independent review are still unaccepted.
