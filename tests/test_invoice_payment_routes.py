@@ -6,6 +6,81 @@ from tests.invoice_test_support import InvoiceTestSupport
 
 
 class InvoicePaymentRouteTests(InvoiceTestSupport, unittest.TestCase):
+    def test_non_lead_case_member_cannot_create_or_mutate_financial_records(self):
+        draft_response = self.create_draft()
+        self.assertEqual(draft_response.status_code, 200, draft_response.text)
+        draft = draft_response.json()
+        issued_response = self.mutate(
+            self.client_a, "post", f"/invoices/{draft['id']}/issue"
+        )
+        self.assertEqual(issued_response.status_code, 200, issued_response.text)
+        issued = issued_response.json()
+
+        lawyer_id = self.runtime.create_global_identity(
+            "Invoice Case Lawyer", "invoice-case-lawyer@example.test",
+            __import__("app").hash_pw(self.password),
+        )
+        self.runtime.create_firm_membership(lawyer_id, self.firm_a, "lawyer")
+        tenant = self.runtime._tenant_router.connection_for_firm(self.firm_a)
+        tenant.execute(
+            "INSERT INTO members(case_id,user_id,role) VALUES(?,?,'member')",
+            (self.case_id, lawyer_id),
+        )
+        tenant.commit()
+
+        lawyer = TestClient(app.app)
+        try:
+            login = lawyer.post(
+                "/login",
+                json={"email": "invoice-case-lawyer@example.test", "password": self.password},
+            )
+            self.assertEqual(login.status_code, 200, login.text)
+
+            create = self.mutate(
+                lawyer, "post", f"/cases/{self.case_id}/invoices",
+                json={
+                    "description": "Unauthorized draft",
+                    "due_date": "2099-01-01",
+                    "lines": [{"description": "Work", "quantity_milli": 1000, "unit_price_piasters": 1000}],
+                },
+            )
+            self.assertEqual(create.status_code, 404, create.text)
+
+            fee = self.mutate(
+                lawyer, "post", f"/cases/{self.case_id}/fees",
+                json={"title": "Unauthorized fee", "amount": 1000, "paid": 0, "due": None, "note": ""},
+            )
+            self.assertEqual(fee.status_code, 404, fee.text)
+
+            edit = self.mutate(
+                lawyer, "put", f"/invoices/{draft['id']}",
+                json={
+                    "description": "Unauthorized edit",
+                    "due_date": "2099-01-01",
+                    "lines": [{"description": "Work", "quantity_milli": 1000, "unit_price_piasters": 1000}],
+                },
+            )
+            self.assertEqual(edit.status_code, 404, edit.text)
+            issue = self.mutate(lawyer, "post", f"/invoices/{draft['id']}/issue")
+            self.assertEqual(issue.status_code, 404, issue.text)
+
+            payment = self.mutate(
+                lawyer, "post", f"/invoices/{issued['id']}/payments",
+                json={
+                    "amount_piasters": 1000, "paid_on": "2026-11-16",
+                    "method": "cash", "reference": "", "note": "",
+                    "idempotency_key": "nonlead-payment-key-01",
+                },
+            )
+            self.assertEqual(payment.status_code, 404, payment.text)
+            void = self.mutate(
+                lawyer, "post", f"/invoices/{issued['id']}/void",
+                json={"reason": "Unauthorized void attempt"},
+            )
+            self.assertEqual(void.status_code, 404, void.text)
+        finally:
+            lawyer.close()
+
     def test_partial_full_payment_idempotency_and_overpayment(self):
         invoice = self.create_draft().json()
         invoice = self.mutate(self.client_a, "post", f"/invoices/{invoice['id']}/issue").json()
