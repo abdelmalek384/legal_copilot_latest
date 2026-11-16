@@ -1807,8 +1807,8 @@ async function calendarPage(){
   }
   grid.replaceChildren(...cells);
  };
- const prev=btn(uiText('السابق','Previous month'),()=>{shownMonth=new Date(shownMonth.getFullYear(),shownMonth.getMonth()-1,1);drawMonth()},'g');
- const next=btn(uiText('التالي','Next month'),()=>{shownMonth=new Date(shownMonth.getFullYear(),shownMonth.getMonth()+1,1);drawMonth()},'g');
+ const prev=btn(uiText('السابق','Previous month'),()=>{shownMonth=new Date(shownMonth.getFullYear(),shownMonth.getMonth()-1,1);selectedDay=localKey(shownMonth);drawMonth();drawAgenda()},'g');
+ const next=btn(uiText('التالي','Next month'),()=>{shownMonth=new Date(shownMonth.getFullYear(),shownMonth.getMonth()+1,1);selectedDay=localKey(shownMonth);drawMonth();drawAgenda()},'g');
  const today=btn(uiText('اليوم','Today'),()=>{shownMonth=new Date(todayDate.getFullYear(),todayDate.getMonth(),1);selectedDay=todayKey;drawMonth();drawAgenda()},'g');
  const monthNav=h('div',{className:'calendar-month-toolbar'},prev,monthTitle,next,today);
  const filters=h('div',{className:'filter-bar calendar-filters'},q,kind);
