@@ -1725,5 +1725,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("!globalMode", renderer)
         self.assertIn("!uploadButton.disabled", renderer)
 
+    def test_global_search_includes_permission_scoped_client_results(self):
+        shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction dash()")]
+        clients = HTML[HTML.index("async function clients(initialQuery='')"):HTML.index("\nasync function casesPage()")]
+        self.assertIn("api('/cases/search?'+matterParams.toString())", shell)
+        self.assertIn("api('/clients/search?'+clientParams.toString())", shell)
+        self.assertIn("openPage('clients',()=>clients(item.name||q))", shell)
+        self.assertIn("if(initialQuery)search.value=String(initialQuery).slice(0,200)", clients)
+        self.assertIn("Global search across accessible matters and clients", shell)
+        self.assertIn("workspace-search-group", shell)
+
 if __name__ == "__main__":
     unittest.main()
