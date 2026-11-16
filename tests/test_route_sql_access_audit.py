@@ -179,6 +179,24 @@ def unsafe(table):
             self.assertIn("UNREVIEWED DYNAMIC SQL", output.getvalue())
             self.assertIn("STRICT AUDIT FAILED", output.getvalue())
 
+    def test_strict_cli_fails_for_uninventoried_dynamic_route(self):
+        source = '''
+PATH = "/private"
+@app.get(PATH)
+def private():
+    return None
+'''
+        with tempfile.TemporaryDirectory() as temp_dir:
+            app_path = Path(temp_dir) / "app.py"
+            app_path.write_text(source, encoding="utf-8")
+            output = io.StringIO()
+            with patch("sys.argv", [
+                "audit_route_sql_access.py", "--app", str(app_path), "--strict"
+            ]), redirect_stdout(output):
+                self.assertEqual(main(), 1)
+            self.assertIn("UNINVENTORIED ROUTE", output.getvalue())
+            self.assertIn("STRICT AUDIT FAILED", output.getvalue())
+
     def test_flags_direct_sqlite_open_in_route_call_graph(self):
         source = '''
 import sqlite3
