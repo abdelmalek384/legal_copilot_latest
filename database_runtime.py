@@ -1067,7 +1067,10 @@ class DatabaseRuntime:
         clean_name = name.strip() if isinstance(name, str) else ""
         display_email = email.strip() if isinstance(email, str) else ""
         normalized = normalize_email(display_email)
-        if not clean_name or not display_email or not normalized or not password_hash:
+        if (
+            not clean_name or not display_email or not normalized
+            or not isinstance(password_hash, str) or not password_hash
+        ):
             raise ValueError("name, email, and password hash are required")
         control = self.control_connection()
         control.execute("BEGIN IMMEDIATE")
