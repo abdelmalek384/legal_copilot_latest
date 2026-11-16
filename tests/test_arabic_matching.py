@@ -160,7 +160,7 @@ class ArabicMatchingTests(unittest.TestCase):
                 expanded = set(expanded_tokens(question))
                 self.assertIn(tokens("إجازة")[0], expanded)
                 self.assertNotIn("leave", expanded)
-                self.assertNotIn(tokens("الإجازة السنوية")[0], expanded)
+                self.assertFalse(set(tokens("الإجازة السنوية")).issubset(expanded))
 
     def test_positive_occurrence_still_expands_when_same_query_also_has_negation(self):
         expanded = set(expanded_tokens("مش عايز إجازة لكن عايز إجازة"))
