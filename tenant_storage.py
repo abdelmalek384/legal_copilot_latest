@@ -281,21 +281,46 @@ class TenantSQLiteConnectionRouter:
                 "Tenant database is unavailable; refusing fallback to shared storage"
             ) from exc
 
-        # Close the validation/open race: if the catalog path was replaced
-        # while SQLite opened it, never cache the handle.
+        # Close the validation/open race: re-check both the database inode
+        # and every sensitive SQLite sidecar after SQLite has opened the file.
+        # The pre-open checks alone leave a window in which an operator or
+        # concurrent process could replace the database or expose a WAL file.
         try:
             current = path.stat()
+            if (not stat.S_ISREG(current.st_mode)
+                    or (current.st_dev, current.st_ino) != file_identity):
+                raise TenantConnectionError(
+                    "Tenant database file changed while opening; refusing cached connection"
+                )
+            if os.name == "posix" and stat.S_IMODE(current.st_mode) & 0o077:
+                raise TenantConnectionError(
+                    "Tenant database file permissions changed while opening"
+                )
+            for suffix in ("-wal", "-shm", "-journal"):
+                sidecar = Path(str(path) + suffix)
+                if sidecar.is_symlink():
+                    raise TenantConnectionError(
+                        "Tenant SQLite sidecar changed to a symbolic link while opening"
+                    )
+                if not sidecar.exists():
+                    continue
+                sidecar_stat = sidecar.stat()
+                if not stat.S_ISREG(sidecar_stat.st_mode):
+                    raise TenantConnectionError(
+                        "Tenant SQLite sidecar changed to a non-regular file while opening"
+                    )
+                if os.name == "posix" and stat.S_IMODE(sidecar_stat.st_mode) & 0o077:
+                    raise TenantConnectionError(
+                        "Tenant SQLite sidecar permissions changed while opening"
+                    )
         except OSError as exc:
             connection.close()
             raise TenantConnectionError(
-                "Tenant database file identity cannot be verified after opening"
+                "Tenant database storage state cannot be verified after opening"
             ) from exc
-        if (not stat.S_ISREG(current.st_mode)
-                or (current.st_dev, current.st_ino) != file_identity):
+        except TenantConnectionError:
             connection.close()
-            raise TenantConnectionError(
-                "Tenant database file changed while opening; refusing cached connection"
-            )
+            raise
         connections[trusted_firm_id] = (path, file_identity, connection)
         return connection
 
