@@ -973,3 +973,10 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Added regression contracts for attempts to raise either hard ceiling and for Tesseract timeout propagation. Static re-fetch confirms the source, tests and documentation changes are present; repository test execution remains **0** because hosted runners are blocked and outbound DNS prevents a local clone. No test pass is claimed.
 - Source commits: `26dd851`, `ea57362`; regression commits: `aae5462`, `dd08f0c`; documentation commit: `d8771d6`; blocker record: `98b7e14`.
 - Bounded importer-hardening implementation: **100%**. Exact-head test execution and runtime acceptance: **0%**. AI-2 estimate: **76.8%** (implementation-only, a small increase from 76.7%). Whole-project estimate remains **75.3% provisional** pending a fresh cross-workstream audit. Pilot/production remains **NOT READY**.
+
+
+## AI-2 S3 recovery-archive verification stream closure — 2026-11-16
+
+- Upload-side exact-version verification now treats a failure to close the persisted-object response stream as a failed archive verification rather than leaking a raw provider exception. The focused archive test module already runs in the Tests workflow and is listed in the security-review handoff/matrix.
+- Added a regression whose S3 response body reads the persisted bytes successfully but raises on close; the upload must fail with the backup-domain exception. Static inspection confirms the new source and test are present. Repository tests and hosted Actions remain unexecuted.
+- Source commit: `26d2c96`; regression commit: `c163af2`. **Bounded implementation: 100%; runtime test execution: 0%.** AI-2 engineering estimate: **76.9%**; whole-project estimate remains **75.3% provisional**. This failure can leave an already-uploaded encrypted object version without a returned locator; reconcile the recovery-archive prefix before retrying. Production remains **NOT READY**.
