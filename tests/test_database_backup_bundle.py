@@ -438,6 +438,37 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         self.assertEqual(report["active_firm_routing_checks"], 2)
         self.assertFalse(report["plaintext_retained"])
 
+    def test_restore_publication_preserves_target_created_after_preflight(self):
+        import ctypes
+        import database_backup
+        from unittest.mock import patch
+
+        staged = self.root / "staged-restore"
+        staged.mkdir()
+        (staged / "control_plane.sqlite3").write_text("staged", encoding="utf-8")
+        destination = self.root / "raced-restore"
+        marker = destination / "operator-data.txt"
+
+        class FakeRenameAt2:
+            argtypes = None
+            restype = None
+
+            def __call__(self, old_dir_fd, old_path, new_dir_fd, new_path, flags):
+                destination.mkdir()
+                marker.write_text("preserve", encoding="utf-8")
+                ctypes.set_errno(17)  # EEXIST from RENAME_NOREPLACE
+                return -1
+
+        fake_libc = type("FakeLibC", (), {"renameat2": FakeRenameAt2()})()
+        with patch("database_backup.ctypes.CDLL", create=True, return_value=fake_libc):
+            with self.assertRaisesRegex(
+                DatabaseBundleError, "appeared during publication"
+            ):
+                database_backup._publish_restore_directory_no_replace(staged, destination)
+
+        self.assertEqual(marker.read_text(encoding="utf-8"), "preserve")
+        self.assertTrue((staged / "control_plane.sqlite3").is_file())
+
     def test_restore_refuses_existing_target_and_wrong_encryption_key(self):
         bundle = create_backup_bundle(
             self.runtime, self.cipher, self.backup_dir, quiesced=True
