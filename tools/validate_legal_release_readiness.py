@@ -579,14 +579,14 @@ def summarize_coverage_matrix(path: Path) -> dict:
 def build_report(candidate_paths: list[Path], permission_register_path: Path, root: Path = ROOT,
                  coverage_matrix_path: Path = DEFAULT_COVERAGE_MATRIX) -> dict:
     try:
-        register = json.loads(permission_register_path.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
-    except (OSError, json.JSONDecodeError, DuplicateJSONKeyError) as exc:
+        register = json.loads(read_regular_file(permission_register_path), object_pairs_hook=_reject_duplicate_json_keys)
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError, DuplicateJSONKeyError) as exc:
         return {"schema_version": 1, "error": f"Cannot read permission register: {exc}", "candidates": [], "ready_count": 0}
     reports = []
     for path in candidate_paths:
         try:
-            candidate = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
-        except (OSError, json.JSONDecodeError, DuplicateJSONKeyError) as exc:
+            candidate = json.loads(read_regular_file(path), object_pairs_hook=_reject_duplicate_json_keys)
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError, DuplicateJSONKeyError) as exc:
             reports.append({"candidate_file": str(path), "candidate_id": None, "ready": False,
                             "blockers": [{"code": "candidate_unreadable", "detail": str(exc)}]})
             continue
