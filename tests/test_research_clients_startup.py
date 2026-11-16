@@ -23,7 +23,7 @@ class ResearchAndClientsStartupTests(unittest.TestCase):
     def test_conflict_search_uses_backend_matches_contract(self):
         clients = HTML[HTML.index("async function clients()"):HTML.index("\nasync function casesPage()")]
         self.assertIn("api('/conflicts','POST',{q:cq.value.trim()})", clients)
-        self.assertIn("r.matches.length", clients)
+        self.assertIn("matches.length?matches.map", clients)
 
 
 if __name__ == "__main__":
