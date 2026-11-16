@@ -545,3 +545,11 @@ Updated estimates reflect source implementation only; regression execution and e
 
 
 - The fresh writable provisioning catalog connection and the read-only request-time router catalog connection now both revalidate the control-plane file/sidecars and compare device/inode after SQLite opens it. This closes the same open-window substitution gap at both catalog entry points. Source commit: `f78e299`; added read-only router-catalog symlink-race regression: `624e9b8`.
+
+
+## Latest checkpoint refresh — 2026-11-16
+
+- Additional shared-profile work: request-time router catalog reads are read-only; both writable provisioning and read-only routing catalog connections revalidate the control-plane storage boundary after SQLite open; cached control/corpus connections now repeat profile/sidecar checks after open. Regression coverage includes a same-inode symlink substitution on the shared control-plane path.
+- Current slice totals, corrected: 6 implementation files changed across tenant storage, shared database runtime, purge CLI, backup/restore, and security-matrix registration; 8 regression methods added/extended; 5 isolated harnesses passed; 0 repository test modules executed; 0 PRs merged by this execution.
+- Current estimates remain tenant isolation/access control 84.7%, authentication/firm administration 85.2%, case management 90%, document processing/security 99%, backup/release readiness 40.2%, AI-2 72.9%, whole project 72.1%. These are not test or acceptance percentages.
+- Current open PRs remain #1610, #1644 and #1645, all non-mergeable. #1651 merged externally. Dependency lock remains aligned to original requirements; no new dependency version was retained. GitHub billing/runner, local checkout, dependency installation/lock regeneration, repository tests, browser acceptance, S3/KMS and witnessed recovery remain blockers. Pilot/production: **NOT READY**.
