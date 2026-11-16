@@ -135,6 +135,8 @@ class ClaimSupportTests(unittest.TestCase):
             ("The employer has to provide notice.", "The employer doesn't have to provide notice."),
             ("The employer is obligated to provide notice.", "The employer is not obligated to provide notice."),
             ("The employer is obliged to provide notice.", "The employer is not obliged to provide notice."),
+            ("The employer can deduct wages.", "The employer can’t deduct wages."),
+            ("The employer has to provide notice.", "The employer doesn’t have to provide notice."),
         )
         for claim, evidence in cases:
             with self.subTest(claim=claim, evidence=evidence):
@@ -149,6 +151,8 @@ class ClaimSupportTests(unittest.TestCase):
             "The employer mustn't provide notice.",
             "The employer doesn't have to provide notice.",
             "The employer needn't provide notice.",
+            "The employer doesn’t have to provide notice.",
+            "The employer can’t deduct wages.",
         ):
             with self.subTest(evidence=evidence):
                 self.assertFalse(_has_modal_mismatch(evidence, evidence))
