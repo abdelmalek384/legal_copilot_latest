@@ -323,6 +323,78 @@ class CollectionPipelineTests(unittest.TestCase):
                 collector.store_original(out, "TEST-LAW", ".pdf", b"%PDF-safe")
             self.assertEqual(list(outside.iterdir()), [])
 
+    def test_existing_collection_artifact_reads_reject_symlink_swaps(self):
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td)
+            original = collector.store_original(out, "TEST-LAW", ".pdf", b"%PDF-safe")
+            outside = out / "outside-original.pdf"
+            outside.write_bytes(b"outside original")
+            real_open = collector.os.open
+            swapped = False
+
+            def swap_original(path, flags, *args, **kwargs):
+                nonlocal swapped
+                if Path(path) == original and not swapped:
+                    swapped = True
+                    original.unlink()
+                    original.symlink_to(outside)
+                return real_open(path, flags, *args, **kwargs)
+
+            with patch.object(collector.os, "open", side_effect=swap_original):
+                with self.assertRaisesRegex(ValueError, "stable regular file"):
+                    collector.store_original(out, "TEST-LAW", ".pdf", b"%PDF-safe")
+            self.assertTrue(swapped)
+            self.assertEqual(outside.read_bytes(), b"outside original")
+
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td)
+            metadata = {"document_id": "TEST-LAW", "retrieved_at": "2026-10-26T18:00:00+00:00"}
+            current = collector.persist_metadata(out, "TEST-LAW", metadata)
+            outside = out / "outside-metadata.json"
+            outside.write_text('{"sentinel":"untouched"}', encoding="utf-8")
+            real_open = collector.os.open
+            swapped = False
+
+            def swap_metadata(path, flags, *args, **kwargs):
+                nonlocal swapped
+                if Path(path) == current and not swapped:
+                    swapped = True
+                    current.unlink()
+                    current.symlink_to(outside)
+                return real_open(path, flags, *args, **kwargs)
+
+            with patch.object(collector.os, "open", side_effect=swap_metadata):
+                with self.assertRaisesRegex(ValueError, "existing metadata is unreadable"):
+                    collector.persist_metadata(out, "TEST-LAW", {**metadata, "title": "changed"})
+            self.assertTrue(swapped)
+            self.assertEqual(outside.read_text(encoding="utf-8"), '{"sentinel":"untouched"}')
+
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td)
+            root = out / "extracted"
+            document_dir = root / "TEST-LAW"
+            document_dir.mkdir(parents=True)
+            artifact = document_dir / "same.txt"
+            artifact.write_bytes(b"trusted artifact")
+            outside = out / "outside-artifact.txt"
+            outside.write_bytes(b"outside artifact")
+            real_open = collector.os.open
+            swapped = False
+
+            def swap_artifact(path, flags, *args, **kwargs):
+                nonlocal swapped
+                if Path(path) == artifact and not swapped:
+                    swapped = True
+                    artifact.unlink()
+                    artifact.symlink_to(outside)
+                return real_open(path, flags, *args, **kwargs)
+
+            with patch.object(collector.os, "open", side_effect=swap_artifact):
+                with self.assertRaisesRegex(ValueError, "stable regular file"):
+                    collector._write_immutable(artifact, b"trusted artifact", root, "TEST-LAW")
+            self.assertTrue(swapped)
+            self.assertEqual(outside.read_bytes(), b"outside artifact")
+
     def test_storage_helpers_reject_unsafe_document_ids(self):
         with tempfile.TemporaryDirectory() as td:
             out = Path(td)
