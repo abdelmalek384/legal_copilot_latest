@@ -181,7 +181,7 @@ python manage.py restore-tenancy /safe/backup/path/backup-file.enc --target-root
 unset BACKUP_KEY
 ```
 
-Keep application writes paused for the full backup snapshot window. Verify a bundle before recovery, restore only to a new target directory, and complete a witnessed restore/rollback drill before production. For non-interactive deployments, inject the key from the deployment's protected secret manager. Never place real keys in tickets, chat, or source control. The commands above are operator examples; replace paths and the key placeholder with values from your deployment's protected secret store.
+Keep application writes paused for the full backup snapshot window. Verify a bundle before recovery, restore only to a new target directory, and complete a witnessed restore/rollback drill before production. Restore publication requires Linux `renameat2(RENAME_NOREPLACE)` support (provided by the supported Debian Bookworm production container); other platforms fail closed rather than replacing a destination created during restore. For non-interactive deployments, inject the key from the deployment's protected secret manager. Never place real keys in tickets, chat, or source control. The commands above are operator examples; replace paths and the key placeholder with values from your deployment's protected secret store.
 
 ### Account and privilege operations
 
