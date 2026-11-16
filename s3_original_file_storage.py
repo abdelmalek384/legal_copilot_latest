@@ -17,6 +17,7 @@ from original_file_storage import ObjectStorageError, StagedObject
 
 _OBJECT_ID_RE = re.compile(r"^[0-9a-f]{32}$")
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
+_MAX_INVENTORY_PAGES = 10_000
 
 
 @dataclass(frozen=True)
@@ -258,8 +259,12 @@ class S3PrivateObjectStore:
         found: set[str] = set()
         token = None
         seen_tokens: set[str] = set()
+        pages = 0
         try:
             while True:
+                if pages >= _MAX_INVENTORY_PAGES:
+                    raise ObjectStorageError("object-storage inventory exceeded its page limit")
+                pages += 1
                 if token is not None:
                     if not isinstance(token, str) or not token or token in seen_tokens:
                         raise ObjectStorageError("object-storage listing returned an invalid or repeated continuation token")
