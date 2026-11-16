@@ -9,6 +9,7 @@ import json
 import os
 import re
 import sys
+import stat
 import tempfile
 import unicodedata
 from collections import defaultdict
@@ -228,9 +229,49 @@ def evaluate(rows):
     }
 
 
+def read_regular_file(path, *, max_bytes=16 * 1024 * 1024):
+    """Read bounded OCR evaluation input without following symlinks or special files."""
+    path = Path(path)
+    try:
+        before = path.lstat()
+        if not stat.S_ISREG(before.st_mode) or before.st_size > max_bytes:
+            raise OCREvaluationError("OCR evaluation input must be a bounded regular file")
+        flags = (
+            os.O_RDONLY | getattr(os, "O_BINARY", 0)
+            | getattr(os, "O_NONBLOCK", 0) | getattr(os, "O_NOFOLLOW", 0)
+        )
+        descriptor = os.open(path, flags)
+        with os.fdopen(descriptor, "rb") as stream:
+            opened = os.fstat(stream.fileno())
+            if (not stat.S_ISREG(opened.st_mode)
+                    or (before.st_dev, before.st_ino) != (opened.st_dev, opened.st_ino)):
+                raise OCREvaluationError("OCR evaluation input changed identity while opening")
+            raw = stream.read(max_bytes + 1)
+            after = os.fstat(stream.fileno())
+            current = path.lstat()
+            if len(raw) > max_bytes or len(raw) != after.st_size:
+                raise OCREvaluationError("OCR evaluation input changed size or exceeds its limit")
+            if ((opened.st_dev, opened.st_ino) != (after.st_dev, after.st_ino)
+                    or (opened.st_size, opened.st_mtime_ns, opened.st_ctime_ns)
+                    != (after.st_size, after.st_mtime_ns, after.st_ctime_ns)
+                    or (current.st_dev, current.st_ino) != (opened.st_dev, opened.st_ino)):
+                raise OCREvaluationError("OCR evaluation input changed while being read")
+            return raw
+    except OCREvaluationError:
+        raise
+    except OSError as exc:
+        raise OCREvaluationError(
+            f"{path}: cannot safely read OCR evaluation input: {type(exc).__name__}"
+        ) from exc
+
+
 def read_jsonl(path):
     rows = []
-    for line_no, raw in enumerate(Path(path).read_text(encoding="utf-8-sig").splitlines(), 1):
+    try:
+        text = read_regular_file(path).decode("utf-8-sig")
+    except UnicodeDecodeError as exc:
+        raise OCREvaluationError(f"{path}: OCR evaluation input must be valid UTF-8") from exc
+    for line_no, raw in enumerate(text.splitlines(), 1):
         if not raw.strip():
             continue
         try:
