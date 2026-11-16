@@ -153,7 +153,26 @@ class LocalPrivateObjectStore:
         try:
             # Hard-link creation fails if final already exists; both names stay
             # on the same filesystem, so the visible object is never partial.
+            # Re-check the source inode after linking: a concurrent path swap
+            # must never publish a symlink or a different staged file.
+            before = staged.lstat()
+            if not stat.S_ISREG(before.st_mode):
+                raise ObjectStorageError("staged object is not a regular file")
             os.link(staged, final, follow_symlinks=False)
+            linked = final.lstat()
+            if (
+                not stat.S_ISREG(linked.st_mode)
+                or (linked.st_dev, linked.st_ino) != (before.st_dev, before.st_ino)
+            ):
+                final.unlink(missing_ok=True)
+                raise ObjectStorageError("staged object changed while finalizing")
+            after = staged.lstat()
+            if (
+                not stat.S_ISREG(after.st_mode)
+                or (after.st_dev, after.st_ino) != (before.st_dev, before.st_ino)
+            ):
+                final.unlink(missing_ok=True)
+                raise ObjectStorageError("staged object changed while finalizing")
             staged.unlink()
             self._fsync_directory(final.parent)
         except FileExistsError as exc:
