@@ -564,6 +564,16 @@ def _scan_original_object_root(object_root: Path) -> set[str]:
             if item.is_symlink() or not item.is_file() or not _OBJECT_ID.fullmatch(item.name):
                 raise DatabaseBundleError("Original-object storage contains an unfinished or unexpected object")
             found.add(f"{namespace.name}/{item.name}")
+    try:
+        root_after = object_root.lstat()
+    except OSError as exc:
+        raise DatabaseBundleError("Original-object storage root changed during inventory") from exc
+    if (
+        not stat.S_ISDIR(root_after.st_mode)
+        or (root_after.st_dev, root_after.st_ino)
+        != (root_before.st_dev, root_before.st_ino)
+    ):
+        raise DatabaseBundleError("Original-object storage root changed during inventory")
     return found
 
 
