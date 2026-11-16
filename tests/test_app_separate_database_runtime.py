@@ -558,6 +558,47 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         finally:
             target.close()
 
+    def test_firm_role_change_rolls_back_when_audit_write_fails(self):
+        target_id = self.runtime.create_global_identity(
+            "Role Audit Target", "role-audit-target@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(target_id, self.firm_a, "lawyer")
+        login = self.client.post(
+            "/login", json={"email": "owner@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        control = self.runtime.control_connection()
+        control.execute("""
+            CREATE TRIGGER test_block_role_audit
+            BEFORE INSERT ON platform_security_events
+            WHEN NEW.event_type='membership_role_changed'
+            BEGIN
+                SELECT RAISE(ABORT, 'injected role audit failure');
+            END
+        """)
+        control.commit()
+        try:
+            failed = self._mutate(
+                "put", f"/users/{target_id}/role", json={"role": "admin"}
+            )
+            self.assertEqual(failed.status_code, 503, failed.text)
+            role = control.execute(
+                "SELECT firm_role FROM firm_memberships WHERE user_id=? AND firm_id=?",
+                (target_id, self.firm_a),
+            ).fetchone()["firm_role"]
+            self.assertEqual(role, "lawyer")
+            self.assertEqual(
+                control.execute(
+                    "SELECT COUNT(*) FROM platform_security_events "
+                    "WHERE event_type='membership_role_changed' AND target_user_id=?",
+                    (target_id,),
+                ).fetchone()[0],
+                0,
+            )
+        finally:
+            control.execute("DROP TRIGGER IF EXISTS test_block_role_audit")
+            control.commit()
+
     def test_firm_admin_cannot_suspend_an_administrator_membership(self):
         target_id = self.runtime.create_global_identity(
             "Only Firm Admin", "only-firm-admin@example.test", app.hash_pw(self.password)
