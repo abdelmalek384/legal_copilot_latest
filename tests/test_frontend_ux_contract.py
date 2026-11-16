@@ -1303,9 +1303,11 @@ class FrontendUXContractTests(unittest.TestCase):
 
 
     def test_calendar_uses_month_grid_with_selectable_days_and_agenda(self):
-        page = HTML[HTML.index("async function calendarPage(){"):HTML.index("\\nconst caseRow=")]
+        calendar_start = HTML.index("async function calendarPage(){")
+        calendar_end = HTML.index("const caseRow=", calendar_start)
+        page = HTML[calendar_start:calendar_end]
         self.assertIn("calendar-month-grid", page)
-        self.assertIn("calendar-day selected", page)
+        self.assertIn("key===selectedDay", page)
         self.assertIn("drawAgenda()", page)
         self.assertIn("calendar-event-dot", page)
         self.assertIn("/calendar.ics", page)
