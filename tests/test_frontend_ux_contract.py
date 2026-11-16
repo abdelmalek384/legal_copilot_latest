@@ -1461,5 +1461,22 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("askBox(id)", ask)
 
 
+    def test_research_new_chat_is_a_draft_and_history_starts_collapsed(self):
+        research = HTML[HTML.index("async function law(){"):HTML.index("\nfunction documentIntelligencePanel(")]
+        self.assertIn("className:'research-list card history-collapsed'", research)
+        self.assertIn("'aria-expanded':'false'", research)
+        self.assertIn("const newChat=async()=>{\n   // Keep a new conversation as a client-side draft until the first message is sent.\n   activeId=null;renderMessages([]);renderList();composer.focus();\n };", research)
+        self.assertNotIn("const c=await api('/research/conversations','POST',{});\n   activeId=c.id;renderMessages([])", research)
+        self.assertIn("if(!activeId){const c=await api('/research/conversations','POST',{});activeId=c.id}", research)
+
+
+    def test_research_source_inspector_is_hidden_until_a_citation_is_selected(self):
+        research = HTML[HTML.index("async function law(){"):HTML.index("\\nfunction documentIntelligencePanel(")]
+        self.assertIn("sourceInspector.hidden=true;", research)
+        self.assertIn("const resetInspector=(returnFocus=false)=>{sourceInspector.hidden=true;", research)
+        self.assertIn("const inspectSource=(source,status,pin,provenance,trigger)=>{\\n  sourceInspector.hidden=false;", research)
+        self.assertIn("#main .research-layout:has(.research-inspector:not([hidden]))", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
