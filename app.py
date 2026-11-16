@@ -6826,6 +6826,43 @@ def list_clients(u: dict = Depends(user)):
     return _client_payloads(conn(), u)
 
 
+@app.get("/clients/search")
+def search_clients(q: str = "", limit: int = 8, u: dict = Depends(user)):
+    raw_query = str(q or "").strip()
+    if len(raw_query) > 200:
+        raise HTTPException(status_code=422, detail="Search query is too long.")
+    translation = str.maketrans({
+        "أ": "ا", "إ": "ا", "آ": "ا", "ٱ": "ا", "ى": "ي",
+        "٠": "0", "١": "1", "٢": "2", "٣": "3", "٤": "4",
+        "٥": "5", "٦": "6", "٧": "7", "٨": "8", "٩": "9",
+        "۰": "0", "۱": "1", "۲": "2", "۳": "3", "۴": "4",
+        "۵": "5", "۶": "6", "۷": "7", "۸": "8", "۹": "9",
+    })
+
+    def normalize(value):
+        normalized = unicodedata.normalize("NFKC", str(value or "")).casefold()
+        normalized = "".join(ch for ch in normalized if not unicodedata.combining(ch))
+        return " ".join(normalized.translate(translation).split())
+
+    query = normalize(raw_query)
+    if not query:
+        return {"items": []}
+    safe_limit = max(1, min(int(limit), 20))
+    items = []
+    for profile in _client_payloads(conn(), u):
+        haystack = normalize(" ".join(
+            str(profile.get(field) or "") for field in ("name", "phone", "email")
+        ))
+        if query in haystack:
+            items.append({
+                "id": int(profile["id"]),
+                "name": str(profile.get("name") or ""),
+            })
+            if len(items) >= safe_limit:
+                break
+    return {"items": items}
+
+
 @app.get("/clients/{client_id}")
 def get_client(client_id: int, u: dict = Depends(user)):
     item = next((row for row in _client_payloads(conn(), u) if row["id"] == client_id), None)

@@ -209,5 +209,55 @@ class ClientProfileTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(tenant.execute("SELECT COUNT(*) FROM clients").fetchone()[0], before)
 
 
+    def test_client_search_is_membership_scoped_and_returns_minimal_results(self):
+        response = self.client_a.get("/clients/search", params={"q": "client snapshot"})
+        self.assertEqual(response.status_code, 200, response.text)
+        items = response.json()["items"]
+        self.assertTrue(any(item["name"] == "Client Snapshot" for item in items))
+        self.assertTrue(all(set(item) == {"id", "name"} for item in items))
+        self.assertEqual(
+            self.client_b.get("/clients/search", params={"q": "client snapshot"}).json(),
+            {"items": []},
+        )
+        self.assertEqual(
+            self.client_nonmember.get("/clients/search", params={"q": "client snapshot"}).json(),
+            {"items": []},
+        )
+        self.assertEqual(self.client_a.get("/clients/search", params={"q": "   "}).json(), {"items": []})
+        self.assertEqual(
+            self.client_a.get("/clients/search", params={"q": "x" * 201}).status_code,
+            422,
+        )
+
+    def test_client_search_matches_phone_and_email_without_returning_contact_values(self):
+        created = self.mutate(
+            self.client_a, "post", "/clients",
+            json={
+                "name": "Searchable Client",
+                "phone": "+20 100 111 2222",
+                "email": "searchable@example.test",
+            },
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        profile_id = created.json()["id"]
+        by_phone = self.client_a.get("/clients/search", params={"q": "100 111 2222"})
+        by_email = self.client_a.get("/clients/search", params={"q": "searchable@example.test"})
+        for response in (by_phone, by_email):
+            self.assertEqual(response.status_code, 200, response.text)
+            self.assertTrue(any(item == {"id": profile_id, "name": "Searchable Client"} for item in response.json()["items"]))
+
+    def test_client_search_normalizes_arabic_letters_and_phone_digits(self):
+        created = self.mutate(
+            self.client_a, "post", "/clients",
+            json={"name": "أحمد علي", "phone": "٠١٠١٢٣٤٥٦٧٨"},
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        profile_id = created.json()["id"]
+        by_name = self.client_a.get("/clients/search", params={"q": "احمد"})
+        by_phone = self.client_a.get("/clients/search", params={"q": "01012345678"})
+        for response in (by_name, by_phone):
+            self.assertEqual(response.status_code, 200, response.text)
+            self.assertTrue(any(item == {"id": profile_id, "name": "أحمد علي"} for item in response.json()["items"]))
+
 if __name__ == "__main__":
     unittest.main()
