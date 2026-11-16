@@ -58,6 +58,17 @@ def load_candidate_record(path: Path) -> dict:
 def register(db, record):
     """Idempotently insert candidate source/document/version metadata."""
     sources = record["sources"]
+    if not isinstance(sources, list) or not sources:
+        raise ValueError("candidate record must contain a non-empty source list")
+    # Candidate JSON is not a permission authority. Permission grants must be
+    # recorded through the canonical source-permission review workflow.
+    for source in sources:
+        if not isinstance(source, dict):
+            raise ValueError("candidate source entries must be objects")
+        if source.get("collection_permission") in {"allowed", "allowed_limited"}:
+            raise ValueError("candidate registration cannot grant collection permission; use the canonical source-permission register")
+        if source.get("commercial_reuse_permission") in {"allowed", "allowed_limited"}:
+            raise ValueError("candidate registration cannot grant commercial reuse permission; use the canonical source-permission register")
     for source in sources:
         existing = db.execute(
             "SELECT authority,source_page FROM legal_sources WHERE source_id=?",
