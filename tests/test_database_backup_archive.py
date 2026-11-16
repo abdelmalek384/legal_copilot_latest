@@ -126,6 +126,41 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
         self.assertEqual(locator["size_bytes"], self.bundle.stat().st_size)
         self.assertEqual(locator["kms_key_arn"], self.kms.describe_key(KeyId="x")["KeyMetadata"]["Arn"])
 
+    def test_digest_file_reads_only_one_sentinel_byte_past_bundle_limit(self):
+        from unittest.mock import patch
+
+        class TrackingFile:
+            def __init__(self, path):
+                self.handle = path.open("rb")
+                self.bytes_read = 0
+
+            def read(self, size=-1):
+                block = self.handle.read(size)
+                self.bytes_read += len(block)
+                return block
+
+            def seek(self, offset):
+                return self.handle.seek(offset)
+
+            def fileno(self):
+                return self.handle.fileno()
+
+            def close(self):
+                self.handle.close()
+
+        sample = self.root / "oversized.enc"
+        sample.write_bytes(b"x" * 20)
+        source = TrackingFile(sample)
+        try:
+            with patch(
+                "database_backup_archive._MAX_ENCRYPTED_BUNDLE_BYTES", 5
+            ):
+                with self.assertRaisesRegex(DatabaseBundleError, "size limit"):
+                    database_backup_archive._digest_file(source)
+            self.assertEqual(source.bytes_read, 6)
+        finally:
+            source.close()
+
     def test_upload_rejects_fifo_input_without_blocking(self):
         if not hasattr(os, "mkfifo"):
             self.skipTest("FIFO creation is unavailable on this platform")
