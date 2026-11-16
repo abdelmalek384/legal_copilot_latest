@@ -1250,3 +1250,10 @@ Validation and remaining gates:
 - Merged PR #1737 (`4e232fc3b19c815628afa13056b5419e55f05fd7`): the selected Legal Research scope now persists in browser storage under a key scoped to the active firm and user. Only the three allowlisted scopes are restored; invalid values fall back to the verified-corpus default. Matter IDs and matter content are not stored by this preference.
 - Added a frontend regression contract and updated the UX gap audit. Independent runtime harness executed the actual preference setup/persist code with synthetic local-storage state and verified restore, persistence, allowlist fallback behavior, and firm-key separation. Full inline JavaScript V8 parse and focused source assertions passed.
 - GitHub Actions Tests and Browser acceptance jobs again failed before executing any steps; no repository Python or browser pass is claimed.
+
+
+## First-run case list empty state — 2026-11-17
+
+- Merged PR #1738 (`9d41bc5ef622161cc1c9421c1a8442376b4ed0c9`): the case list now distinguishes an unfiltered firm with no accessible matters from a filtered search with no matches. The first-run state provides a direct New case action; filtered no-results retains its neutral message.
+- Updated the UX gap audit, Arabic native-review catalog and frontend regression contract. Catalog now contains 1,554 unique entries with unique IDs and Arabic strings.
+- Independent validation: full inline JavaScript parsed with V8; source/catalog assertions and the four-state empty-state condition harness passed. GitHub Actions failed before any test steps; no Python/browser pass is claimed.
