@@ -34,21 +34,28 @@ def _readonly(path: Path) -> sqlite3.Connection:
 
 
 def _open_regular_original(path: Path):
-    """Open a restore object relative to a pinned, non-symlink namespace directory."""
+    """Open a restore object through pinned, no-follow root/object/namespace descriptors."""
     if not getattr(os, "O_DIRECTORY", 0) or not getattr(os, "O_NOFOLLOW", 0):
         raise RuntimeError("Restore object access requires no-follow directory-descriptor operations")
-    directory_fd = None
+    if len(path.parents) < 3 or path.parent.parent.name != "objects":
+        raise RuntimeError("Restored original path is outside the expected object namespace")
+    directory_flags = (
+        os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+        | getattr(os, "O_CLOEXEC", 0)
+    )
+    directory_fds = []
     fd = None
     try:
-        directory_flags = (
-            os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
-            | getattr(os, "O_CLOEXEC", 0)
-        )
-        directory_fd = os.open(path.parent, directory_flags)
+        root_fd = os.open(path.parents[2], directory_flags)
+        directory_fds.append(root_fd)
+        objects_fd = os.open("objects", directory_flags, dir_fd=root_fd)
+        directory_fds.append(objects_fd)
+        namespace_fd = os.open(path.parent.name, directory_flags, dir_fd=objects_fd)
+        directory_fds.append(namespace_fd)
         fd = os.open(
             path.name,
             os.O_RDONLY | os.O_NOFOLLOW | getattr(os, "O_CLOEXEC", 0),
-            dir_fd=directory_fd,
+            dir_fd=namespace_fd,
         )
         if not stat.S_ISREG(os.fstat(fd).st_mode):
             raise RuntimeError("Restored original is not a regular file")
@@ -60,7 +67,7 @@ def _open_regular_original(path: Path):
     finally:
         if fd is not None:
             os.close(fd)
-        if directory_fd is not None:
+        for directory_fd in reversed(directory_fds):
             os.close(directory_fd)
 
 
