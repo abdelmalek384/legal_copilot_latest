@@ -112,15 +112,18 @@ def _valid_retrieval_date(value: object) -> bool:
     if not isinstance(value, str) or not value.strip():
         return False
     raw = value.strip()
+    # Date-only metadata is unambiguous as a calendar date. Datetimes must
+    # carry an explicit offset so retrieval provenance is not host-local guesswork.
     try:
-        datetime.fromisoformat(raw.replace("Z", "+00:00"))
-        return True
+        parsed_date = date.fromisoformat(raw)
+        return parsed_date.isoformat() == raw
     except ValueError:
-        try:
-            date.fromisoformat(raw)
-            return True
-        except ValueError:
-            return False
+        pass
+    try:
+        parsed_datetime = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+        return parsed_datetime.tzinfo is not None and parsed_datetime.utcoffset() is not None
+    except ValueError:
+        return False
 
 
 def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
