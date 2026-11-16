@@ -28,6 +28,7 @@ class _BoundedObjectBody:
         self._body = body
         self._max_bytes = max_bytes
         self._bytes_read = 0
+        self._closed = False
 
     def read(self, size: int = -1) -> bytes:
         if not isinstance(size, int):
@@ -52,6 +53,9 @@ class _BoundedObjectBody:
         return data
 
     def close(self) -> None:
+        if self._closed:
+            return
+        self._closed = True
         close = getattr(self._body, "close", None)
         if callable(close):
             close()
