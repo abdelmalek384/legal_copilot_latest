@@ -304,6 +304,27 @@ def _copy_original_objects(
     ]
     expected: set[str] = set()
     namespace_name = "firm-" + str(firm_id)
+    supports_dir_fd = os.open in getattr(os, "supports_dir_fd", set())
+    if active_rows and not supports_dir_fd:
+        namespace = object_root / namespace_name
+        if namespace.is_symlink() or not object_root.is_dir() or not namespace.is_dir():
+            raise DatabaseBundleError(f"Original-object storage is missing or unsafe for firm {firm_id}")
+        for row in active_rows:
+            object_id = row["object_id"]
+            if row["firm_id"] != firm_id or row["storage_backend"] != "local" or not isinstance(object_id, str) or not re.fullmatch(r"[0-9a-f]{32}", object_id):
+                raise DatabaseBundleError(f"Original-object metadata is invalid for local storage in firm {firm_id}")
+            if row["state"] not in {"ready", "quarantined"}:
+                raise DatabaseBundleError(f"Firm {firm_id} has unfinished original-object metadata; reconcile before backup")
+            source = namespace / (object_id + ".blob")
+            target = payload / f"objects/firm-{firm_id}/{object_id}.blob"
+            target.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+            _copy_verified_original_object(
+                source, target, expected_size=row["byte_size"],
+                expected_sha256=row["sha256"],
+            )
+            expected.add(f"firm-{firm_id}/{object_id}.blob")
+        return expected
+
     if active_rows:
         directory_flags = (
             os.O_RDONLY | getattr(os, "O_DIRECTORY", 0)
