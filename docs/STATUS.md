@@ -633,3 +633,11 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Follow-up static review of the S3 object-copy failure path found a descriptor-cleanup edge case if wrapping the newly created output descriptor failed. The copy now transfers descriptor ownership explicitly, closes any descriptor not transferred, removes partial output on failure, and normalizes filesystem/type/overflow errors to the backup-domain exception. Source commit: `9b9ecb7`. This is a defensive cleanup refinement; no additional test execution is claimed.
+
+
+## AI-2 backup invocation authority validation — 2026-11-16
+
+- `create_backup_bundle()` now requires `quiesced is True` rather than accepting any truthy value. A string such as `"false"` or integer `1` can no longer accidentally assert that application writes have been paused.
+- The backup retention `keep` argument now rejects booleans, floats, strings and non-positive values; only a positive integer is accepted before filesystem or database work.
+- Added regression coverage for false-like and truthy non-boolean quiescence values and malformed retention counts. Source commit: `f101d24`; test commit: `f4d4d7e`.
+- The regression is in the already registered `test_database_backup_bundle.py` module. Static review only; repository test execution remains blocked.
