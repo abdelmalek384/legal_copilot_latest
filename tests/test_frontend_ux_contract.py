@@ -1520,7 +1520,7 @@ class FrontendUXContractTests(unittest.TestCase):
         research = HTML[HTML.index("async function law(){"):HTML.index("\nfunction documentIntelligencePanel(")]
         self.assertIn("className:'answer-rating-choices',role:'group'", research)
         self.assertIn("['correct',LANG==='ar'?'صحيحة':'Correct']", research)
-        self.assertIn("['partially_correct',LANG==='ar'?'صحيحة':'Partial']", research)
+        self.assertIn("['partially_correct',LANG==='ar'?'جزئي':'Partial']", research)
         self.assertIn("['wrong',LANG==='ar'?'خاطئة':'Wrong']", research)
         self.assertIn("overall.value=value", research)
         self.assertIn("className:'research-rating-menu'", research)
