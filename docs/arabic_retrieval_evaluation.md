@@ -172,6 +172,11 @@ To turn this into the requested real-question set, add sanitized questions suppl
 
 Use `tools/score_arabic_retrieval.py` with the same lawyer-approved question set and recorded ranked article IDs for before/after runs. It reports top-3 article hit rate, wrong-article citation rate, abstention rate, and the approved separate colloquial and synonym cohorts. It excludes unlabeled rows from metrics while allowing their run captures to be retained for later scoring. It reports colloquial and synonym cohorts separately; both must reach 80% top-3 hit rate with zero wrong-article answers, zero uncited non-abstained answers and zero answers citing unverified sources. Do not tune `MIN_SCORE` until the lawyer-approved baseline exists.
 
+### Invalid-citation and run-integrity gate
+
+The API runner records `invalid_citation_indices` and `citation_marker_count` from visible answer prose (code spans, fenced code and HTML comments are excluded). The Arabic retrieval scorer validates these fields. Any invalid visible citation marker in a lawyer-reviewed run is a safety failure even if another citation correctly names the expected article. A run missing either field remains usable for diagnostic metrics but is not eligible to produce `targets_met`; the report counts such runs as `citation_validation_missing_runs`. Do not hand-edit these fields or treat an old run artifact without them as fully validated.
+
+
 
 ## Preliminary register and synonym tags
 
