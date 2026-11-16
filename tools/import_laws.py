@@ -12,6 +12,7 @@ from __future__ import annotations
 import collections
 import hashlib
 import io
+import math
 import json
 import os
 import pathlib
@@ -258,6 +259,29 @@ def _ocr_language() -> str:
     return language
 
 
+def _ocr_page_pixel_size(page, dpi: int = 200) -> tuple[int, int]:
+    """Reject pathological page geometry before allocating a rendered OCR bitmap."""
+    try:
+        width_points = float(page.rect.width)
+        height_points = float(page.rect.height)
+    except (AttributeError, TypeError, ValueError, OverflowError):
+        _fail("OCR page has invalid dimensions")
+    if not (math.isfinite(width_points) and math.isfinite(height_points)):
+        _fail("OCR page has non-finite dimensions")
+    if width_points <= 0 or height_points <= 0:
+        _fail("OCR page dimensions must be positive")
+
+    max_dimension = _positive_int_env("LEGAL_IMPORT_MAX_OCR_DIMENSION", 12000)
+    max_pixels = _positive_int_env("LEGAL_IMPORT_MAX_OCR_PIXELS", 40_000_000)
+    pixel_width = math.ceil(width_points * dpi / 72)
+    pixel_height = math.ceil(height_points * dpi / 72)
+    if pixel_width > max_dimension or pixel_height > max_dimension:
+        _fail(f"OCR page exceeds the configured {max_dimension}-pixel dimension limit")
+    if pixel_width * pixel_height > max_pixels:
+        _fail(f"OCR page exceeds the configured {max_pixels}-pixel render limit")
+    return pixel_width, pixel_height
+
+
 def _ocr(args):
     try:
         import pymupdf
@@ -267,7 +291,9 @@ def _ocr(args):
         raise SystemExit("OCR dependencies are missing; install requirements-ocr.txt and the Tesseract executable with Arabic and English traineddata.") from exc
     pdf_bytes, page_index = args
     with pymupdf.open(stream=pdf_bytes, filetype="pdf") as document:
-        image_bytes = document[page_index].get_pixmap(dpi=200).tobytes("png")
+        page = document[page_index]
+        _ocr_page_pixel_size(page, dpi=200)
+        image_bytes = page.get_pixmap(dpi=200).tobytes("png")
     return pytesseract.image_to_string(Image.open(io.BytesIO(image_bytes)), lang=_ocr_language())
 
 
