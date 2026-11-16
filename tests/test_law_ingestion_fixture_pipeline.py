@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from tools.compare_corpus_to_reference import build_report
-from tools.record_manual_capture import record_capture
+from tools.record_manual_capture import record_capture, validate_reference_url
 from tools.answer_trust_tier import classify_answer_trust_tier
 from tools.validate_manual_capture_record import validate_capture_record
 
@@ -36,6 +36,18 @@ def _fixture_commencement_dates(text):
 
 
 class LawIngestionFixturePipelineTests(unittest.TestCase):
+    def test_manual_capture_rejects_signed_cloud_storage_urls(self):
+        for url in (
+            "https://example.gov/law.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256",
+            "https://example.gov/law.pdf?X-Amz-Date=20261116T120000Z",
+            "https://example.gov/law.pdf?GoogleAccessId=account",
+            "https://example.gov/law.pdf?X-Goog-Algorithm=GOOG4-RSA-SHA256",
+            "https://example.gov/law.pdf?X-Goog-Date=20261116T120000Z",
+        ):
+            with self.subTest(url=url), self.assertRaisesRegex(ValueError, "signed or credential"):
+                validate_reference_url(url)
+        self.assertEqual(validate_reference_url("https://example.gov/law.pdf"), "example.gov")
+
     def test_manual_capture_integrity_and_article_comparison_fixture(self):
         reference = FIXTURES / "fictional_reference.txt"
         candidate = FIXTURES / "fictional_candidate.jsonl"
