@@ -38,6 +38,7 @@ tests=(
   test_trusted_host_middleware.py
   test_original_file_storage.py
   test_original_file_reconciliation.py
+  test_import_restored_originals_to_s3.py
   test_s3_original_file_storage.py
   test_firm_offboarding_preflight.py
   test_database_backup_bundle.py
