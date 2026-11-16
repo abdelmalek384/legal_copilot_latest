@@ -116,7 +116,13 @@ def audit_sources(
             if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
                 continue
             for decorator in node.decorator_list:
-                methods = _route_methods(decorator)
+                try:
+                    methods = _route_methods(decorator)
+                except ValueError as exc:
+                    findings.append(
+                        f"cannot statically audit HTTP methods for {node.name} in {filename}: {exc}"
+                    )
+                    continue
                 if not methods:
                     continue
                 try:
@@ -124,13 +130,6 @@ def audit_sources(
                 except ValueError as exc:
                     findings.append(
                         f"cannot statically audit route path for {node.name} in {filename}: {exc}"
-                    )
-                    continue
-                try:
-                    methods = _route_methods(decorator)
-                except ValueError as exc:
-                    findings.append(
-                        f"cannot statically audit HTTP methods for {path} ({node.name}) in {filename}: {exc}"
                     )
                     continue
                 authenticated = (
