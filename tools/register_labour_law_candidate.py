@@ -283,9 +283,14 @@ def register(db, record):
                 )
     
         db.execute("RELEASE SAVEPOINT candidate_registration")
+        db.commit()
     except Exception:
-        db.execute("ROLLBACK TO SAVEPOINT candidate_registration")
-        db.execute("RELEASE SAVEPOINT candidate_registration")
+        try:
+            db.execute("ROLLBACK TO SAVEPOINT candidate_registration")
+            db.execute("RELEASE SAVEPOINT candidate_registration")
+        except Exception:
+            # A commit failure occurs after the savepoint was released.
+            db.rollback()
         raise
     chunk_count = db.execute(
         "SELECT COUNT(*) FROM chunks WHERE document_version_id=?", (version_id,)
