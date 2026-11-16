@@ -101,6 +101,23 @@ class ClaimSupportTests(unittest.TestCase):
                     tokens, norm, _mask_markdown_code
                 ))
 
+    def test_arabic_malzum_adjective_polarity_is_distinguished(self):
+        claim = "الشركة ملزمة بتقديم الإخطار."
+        evidence = "الشركة ليست ملزمة بتقديم الإخطار."
+        self.assertTrue(_has_negated_obligation_mismatch(claim, evidence))
+        self.assertTrue(has_unsupported_claims(
+            claim + " [1].", [{"text": evidence}],
+            tokens, norm, _mask_markdown_code
+        ))
+
+    def test_faithful_arabic_malzum_adjective_is_not_flagged(self):
+        evidence = "الشركة ليست ملزمة بتقديم الإخطار."
+        self.assertFalse(_has_modal_mismatch(evidence, evidence))
+        self.assertFalse(has_unsupported_claims(
+            evidence + " [1].", [{"text": evidence}],
+            tokens, norm, _mask_markdown_code
+        ))
+
     def test_faithful_arabic_denial_of_entitlement_is_not_flagged(self):
         evidence = "ليست من حق العاملة الحصول على الإجازة السنوية."
         self.assertFalse(_has_modal_mismatch(evidence, evidence))
