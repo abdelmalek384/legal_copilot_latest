@@ -179,6 +179,15 @@ class ArabicMatchingTests(unittest.TestCase):
         expanded = set(expanded_tokens("لا أريد معرفة الحقوق، أريد إجازة"))
         self.assertIn("leave", expanded)
 
+    def test_arabic_discourse_phrases_are_not_treated_as_negation(self):
+        for question in (
+            "لا سيما الإجازة السنوية",
+            "ليس فقط الإجازة السنوية",
+            "لا شك في الإجازة السنوية",
+        ):
+            with self.subTest(question=question):
+                self.assertIn("leave", set(expanded_tokens(question)))
+
     def test_interrogative_ma_is_not_mistaken_for_negation(self):
         expanded = set(expanded_tokens("ما هي الإجازة السنوية؟"))
         self.assertIn("leave", expanded)
