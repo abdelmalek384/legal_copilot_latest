@@ -30,6 +30,18 @@ jobs:
         run: PYTHONPATH=. python tests/test_law14_machine_proposed_eval_set.py
       - name: Test frontend UX and accessibility contract
         run: python tests/test_frontend_ux_contract.py
+      - name: Test design token and self-hosted font contract
+        run: PYTHONPATH=. python tests/test_design_tokens_contract.py
+      - name: Test research asset and API diagnostics contract
+        run: PYTHONPATH=. python tests/test_research_asset_diagnostics.py
+      - name: Test Legal Research and Clients resilient startup contract
+        run: PYTHONPATH=. python tests/test_research_clients_startup.py
+      - name: Test Legal Research helper initialization contract
+        run: PYTHONPATH=. python tests/test_research_makebtn_initialization.py
+      - name: Test responsive workspace layout regression contract
+        run: PYTHONPATH=. python tests/test_workspace_layout_regression.py
+      - name: Test workspace navigation and visual regression contract
+        run: PYTHONPATH=. python tests/test_workspace_ui_fixes.py
       - name: Test device/browser acceptance evidence gate
         run: PYTHONPATH=. python tests/test_device_browser_acceptance.py
       - name: Test device acceptance release-gate integration
