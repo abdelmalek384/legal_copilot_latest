@@ -62,26 +62,29 @@ _GENERIC_TERMS = {
 
 _ENGLISH_MODAL_PATTERNS = {
     "permission": re.compile(
-        r"\b(?:may(?!\s+not)|is permitted to|are permitted to|"
-        r"is allowed to|are allowed to|can)\b",
+        r"\\b(?:may(?!\\s+not|n['’]t)|is permitted to|are permitted to|"
+        r"is allowed to|are allowed to|can)\\b",
         re.IGNORECASE,
     ),
-    # Exclude negated forms from the positive class so "must not" cannot
-    # simultaneously count as an obligation and a prohibition.
+    # Exclude negated forms from the positive class so contractions cannot
+    # simultaneously count as obligations and prohibitions.
     "obligation": re.compile(
-        r"\b(?:must(?!\s+not)|shall(?!\s+not)|"
-        r"(?<!not )required to|is required to|are required to)\b",
+        r"\\b(?:must(?!\\s+not|n['’]t)|shall(?!\\s+not|n['’]t)|"
+        r"(?<!not )required to|is required to|are required to|have to|has to)\\b",
         re.IGNORECASE,
     ),
     "prohibition": re.compile(
-        r"\b(?:may not|must not|shall not|is prohibited from|cannot|"
-        r"is not permitted to|are not permitted to|not permitted to|"
-        r"is not allowed to|are not allowed to|not allowed to)\b",
+        r"\\b(?:may not|must\\s+not|mustn['’]t|shall not|shan['’]t|"
+        r"is prohibited from|cannot|can not|can't|is not permitted to|"
+        r"are not permitted to|not permitted to|is not allowed to|"
+        r"are not allowed to|not allowed to)\\b",
         re.IGNORECASE,
     ),
-    "non_obligation": re.compile(r"(?:لا\s*(?:يجب|يلتزم|يلزم|يتعين|يتوجب)|ليس\s+ملزما|غير\s+ملزم)"),
-        r"\b(?:not required to|need not|is not obliged to|are not obliged to|"
-        r"is not obligated to|are not obligated to)\b",
+    "non_obligation": re.compile(
+        r"\\b(?:not required to|need not|needn['’]t|"
+        r"do not have to|don't have to|does not have to|doesn't have to|"
+        r"is not obliged to|are not obliged to|"
+        r"is not obligated to|are not obligated to)\\b",
         re.IGNORECASE,
     ),
 }
@@ -119,13 +122,17 @@ def _modal_classes(text, patterns):
 
 
 _ENGLISH_NEGATED_OBLIGATION = re.compile(
-    r"\b(?:must\s+not|shall\s+not|not\s+required\s+to|need\s+not|"
-    r"is\s+not\s+obliged\s+to|are\s+not\s+obliged\s+to|"
-    r"is\s+not\s+obligated\s+to|are\s+not\s+obligated\s+to)\b",
+    r"\\b(?:must\\s+not|mustn['’]t|shall\\s+not|shan['’]t|"
+    r"not\\s+required\\s+to|need\\s+not|needn['’]t|"
+    r"do\\s+not\\s+have\\s+to|don't\\s+have\\s+to|"
+    r"does\\s+not\\s+have\\s+to|doesn't\\s+have\\s+to|"
+    r"is\\s+not\\s+obliged\\s+to|are\\s+not\\s+obliged\\s+to|"
+    r"is\\s+not\\s+obligated\\s+to|are\\s+not\\s+obligated\\s+to)\\b",
     re.IGNORECASE,
 )
 _ENGLISH_POSITIVE_OBLIGATION = re.compile(
-    r"\b(?:must|shall|required\s+to|is\s+required\s+to|are\s+required\s+to)\b",
+    r"\\b(?:must|shall|required\\s+to|is\\s+required\\s+to|"
+    r"are\\s+required\\s+to|have\\s+to|has\\s+to)\\b",
     re.IGNORECASE,
 )
 _ARABIC_NEGATED_OBLIGATION = re.compile(
