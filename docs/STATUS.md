@@ -607,3 +607,16 @@ Execution evidence: 3 source files hardened in this continuation; 3 regression g
 PR review: #1644 changes only `requirements.txt` to pypdf 7.1.0, but the hash lock is not regenerated and the PR is non-mergeable; leave unmerged. #1645 changes only the browser Playwright pin and is non-mergeable; browser install/runtime acceptance is absent. #1610 remains draft and non-mergeable; its patch touches retrieval/application behaviour and frontend/tests and is not safe for wholesale merge. No PR was force-merged.
 
 Remaining blockers: GitHub billing/runner allocation, no local checkout, no actual repository test execution, no lock regeneration/install, no browser acceptance, no witnessed encrypted restore, and no live S3/KMS validation. Source implementation is continuing; acceptance remains blocked. Pilot/production: **NOT READY**.
+
+
+## AI-2 recovery-download and backup-object preflight hardening — 2026-11-16
+
+- Encrypted S3 recovery downloads now validate locator structure and the local destination (new file, existing non-symlink directory, canonical parent) before contacting S3 or KMS. The locator's configured KMS ARN is checked after the KMS key is resolved and before the exact-version object request. This avoids cloud reads for malformed manifests or unsafe local targets.
+- Added regressions proving malformed locator keys and pre-existing destinations are rejected before versioning, KMS, or object-head calls; existing destination bytes must remain unchanged. Source commits: `ef47ed7`, `843fd3d`; test commit: `df4ae60`.
+- Local original-object backup now opens each source once with no-follow/non-blocking flags, verifies the opened descriptor is the same regular inode inspected before open, streams bytes into an exclusive mode-0600 target while hashing, and rejects size/digest drift before accepting the backup copy. This removes the previous separate path-based stat/hash/copy sequence and its replacement window.
+- Added direct regressions for verified descriptor copying and symlink substitution at open time, including preservation of outside bytes. Source commit: `bd40c3a`; test commit: `083fb3c`.
+- An isolated descriptor harness passed for a regular-file read and rejected a symlink without changing the outside target. This is not execution of either repository test module.
+- The focused security matrix already includes `test_database_backup_bundle.py` and `test_database_backup_archive.py`; no matrix change was needed.
+- Validation accounting for this slice: 2 implementation files hardened; 2 regression modules extended with 4 new tests; 1 isolated descriptor harness passed; 0 repository test modules executed; 0 Actions jobs executed; 0 PRs merged.
+- Updated engineering estimates: tenant isolation/access control 84.7%; authentication/firm administration 85.2%; case management 90%; document processing/security 99.1%; backup/release readiness 41%; AI-2 overall 73.2%; whole project 72.3%. These are source-completion estimates, not test pass rates or operational acceptance.
+- Remaining blockers are unchanged: no local checkout or runnable repository test environment, GitHub billing/runner issue, no lockfile regeneration/dependency install, no browser acceptance, no live S3/KMS verification, and no witnessed encrypted restore. Pilot/production remains **NOT READY**.
