@@ -162,6 +162,8 @@ class ArabicMatchingTests(unittest.TestCase):
             "مفيش إجازة",
             "ما عنديش إجازة",
             "ماعنديش إجازة",
+            "دون إجازة",
+            "بغير إجازة",
         ):
             with self.subTest(question=question):
                 expanded = set(expanded_tokens(question))
