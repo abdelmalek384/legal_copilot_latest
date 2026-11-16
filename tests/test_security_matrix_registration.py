@@ -7,8 +7,8 @@ ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = (ROOT / ".github" / "workflows" / "tests.yml").read_text(encoding="utf-8")
 MATRIX = (ROOT / "scripts" / "security_regression_check.sh").read_text(encoding="utf-8")
 
-WORKFLOW_MODULES = set(re.findall(r"tests/(test_[A-Za-z0-9_]+\\.py)", WORKFLOW))
-MATRIX_MODULES = re.findall(r"^\\s+(test_[A-Za-z0-9_]+\\.py)\\s*$", MATRIX, re.MULTILINE)
+WORKFLOW_MODULES = set(re.findall(r"tests/(test_[A-Za-z0-9_]+\.py)", WORKFLOW))
+MATRIX_MODULES = re.findall(r"^\s+(test_[A-Za-z0-9_]+\.py)\s*$", MATRIX, re.MULTILINE)
 
 
 class SecurityMatrixRegistrationTests(unittest.TestCase):
