@@ -728,3 +728,10 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Added a regression that starts from a valid encrypted bundle, injects a duplicate format_version key into the manifest, re-encrypts it, and asserts restore fails closed. Source commit: 173ddb1; test commit: f78a441.
 - The backup bundle test module is already registered in the focused security matrix. Static review only; no repository test execution or Actions run.
 - Updated estimates: backup/release readiness 45.2%; AI-2 overall 75.3%; whole project 74%. Pilot/production remains NOT READY pending live and operational acceptance.
+
+
+## AI-2 restore tenant manifest schema validation — 2026-11-16
+
+- Restore now validates every tenant manifest record before comparing it with the control-plane catalog or opening tenant databases. Records must be objects with a unique positive integer firm ID, non-empty tenant/firm status strings, and a filename/archive path pair that matches the strict firm-specific tenant filename. Malformed records, duplicate firm IDs, mismatched filenames and orphan archive paths fail closed as DatabaseBundleError rather than leaking type/key exceptions deeper into restore.
+- Added an encrypted-bundle regression that replaces a tenant record with a non-object value and verifies restore rejection. Source commit: 429d59c; test commit: fed98e9.
+- Static review only; repository tests and Actions remain unavailable. Backup/release readiness estimate 45.5%; AI-2 overall 75.4%; whole project 74.1%. Pilot/production remains NOT READY.
