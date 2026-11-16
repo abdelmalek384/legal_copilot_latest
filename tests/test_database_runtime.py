@@ -1341,6 +1341,24 @@ class DatabaseRuntimeTests(unittest.TestCase):
         self.assertEqual(refreshed.role, "admin")
         self.assertEqual(self.runtime.firm_connection(refreshed).execute("SELECT 1").fetchone()[0], 1)
 
+    def test_request_time_tenant_catalog_connection_is_read_only(self):
+        catalog = self.runtime._new_router_catalog_connection()
+        try:
+            self.assertEqual(catalog.execute("PRAGMA foreign_keys").fetchone()[0], 1)
+            self.assertEqual(catalog.execute("PRAGMA query_only").fetchone()[0], 1)
+            with self.assertRaisesRegex(sqlite3.OperationalError, "readonly"):
+                catalog.execute(
+                    "INSERT INTO firms(name,status) VALUES('router-write-forbidden','active')"
+                )
+            self.assertEqual(
+                catalog.execute(
+                    "SELECT COUNT(*) FROM firms WHERE name='router-write-forbidden'"
+                ).fetchone()[0],
+                0,
+            )
+        finally:
+            catalog.close()
+
     def test_runtime_identity_and_membership_methods_reject_nonpositive_or_boolean_ids(self):
         user_id = self.runtime.create_global_identity(
             "Boundary User", "boundary-user@example.test", "test-password-hash"
