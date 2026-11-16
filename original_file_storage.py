@@ -56,6 +56,10 @@ class LocalPrivateObjectStore:
         except OSError as exc:
             raise ObjectStorageError("object storage root is unavailable") from exc
         self.root = raw_root
+        root_metadata = os.stat(raw_root, follow_symlinks=False)
+        if not stat.S_ISDIR(root_metadata.st_mode):
+            raise ObjectStorageError("object storage root must be a real directory")
+        self._root_identity = (root_metadata.st_dev, root_metadata.st_ino)
         self.max_bytes = max_bytes
 
     @staticmethod
@@ -118,6 +122,10 @@ class LocalPrivateObjectStore:
     def _open_firm_directory(self, firm_id: int, *, create: bool) -> tuple[int, int]:
         firm_id = self._validate_firm_id(firm_id)
         root_fd = self._open_directory_chain(self.root)
+        root_metadata = os.fstat(root_fd)
+        if (root_metadata.st_dev, root_metadata.st_ino) != self._root_identity:
+            os.close(root_fd)
+            raise ObjectStorageError("object storage root directory changed after initialization")
         namespace_fd = None
         name = "firm-" + str(firm_id)
         try:
