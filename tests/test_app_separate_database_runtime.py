@@ -6110,5 +6110,60 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 )
 
 
+    def test_firm_data_export_includes_verified_original_bytes_and_matching_manifest(self):
+        import hashlib
+        import io
+        import zipfile
+        from original_file_storage import LocalPrivateObjectStore
+
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate(
+            "post", "/cases", json={"title": "Original Export Integrity Matter"}
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        original = b"verified original evidence bytes for firm export"
+        tenant = self.runtime.firm_connection(
+            self.runtime.resolve_context(self.user_id, self.firm_a)
+        )
+        _, document_id = app.save_doc(
+            tenant,
+            {"id": self.user_id, "firm_id": self.firm_a, "name": "First Owner"},
+            case_id,
+            "export-original.txt",
+            "Extracted evidence text",
+            content_hash=hashlib.sha256(original).hexdigest(),
+            content_type="text/plain",
+            byte_size=len(original),
+        )
+        store = LocalPrivateObjectStore(self.root / "objects")
+        staged = store.stage(self.firm_a, original)
+        store.finalize(self.firm_a, staged.object_id)
+        tenant.execute(
+            "INSERT INTO original_file_objects("
+            "object_id,document_id,firm_id,storage_backend,sha256,byte_size,content_type,state"
+            ") VALUES(?,?,?,'local',?,?,?,'ready')",
+            (
+                staged.object_id, document_id, self.firm_a, staged.sha256,
+                staged.byte_size, "text/plain",
+            ),
+        )
+        tenant.commit()
+
+        response = self.client.get("/firm/data-export.zip")
+        self.assertEqual(response.status_code, 200, repr(response.content[:200]))
+        with zipfile.ZipFile(io.BytesIO(response.content)) as archive:
+            path = f"original_files/{document_id}-export-original.txt"
+            self.assertEqual(archive.read(path), original)
+            manifest = archive.read("original_files_manifest.csv").decode("utf-8-sig")
+            self.assertIn(path, manifest)
+            self.assertIn(hashlib.sha256(original).hexdigest(), manifest)
+            self.assertIn(",included\\r\\n", manifest)
+
+
 if __name__ == "__main__":
     unittest.main()
