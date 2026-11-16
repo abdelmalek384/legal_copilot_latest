@@ -62,6 +62,7 @@ The following bounded repository tasks now meet their source-change acceptance c
 | State that extracted page references are provisional until checked against the original | **100%** | Bilingual warning and workflow-registered regression committed; tests unexecuted |
 | Reject physically overlapping backup and restore directory trees | **100%** | Canonical-path guard and two-direction regression committed and registered; execution pending |
 | Enforce explicit quiescence inside the destructive original-file purge function | **100%** | Function-level fail-closed guard, CLI pass-through and negative direct-call regression committed and registered in the security matrix and Tests workflow; execution pending |
+| Fail closed when original-document download audit logging fails | **100%** | Route regression injects a SQLite audit-write failure and asserts HTTP 503 without releasing the binary; test is in the already registered separate-runtime module, execution pending |
 | Verify document metadata/text search and matter indexes do not disclose another firm's records | **100%** | Separate-runtime regression committed; route execution pending |
 
 ## AI-2 implementation completion estimate
