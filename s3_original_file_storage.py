@@ -257,8 +257,13 @@ class S3PrivateObjectStore:
         prefix = "firms/"
         found: set[str] = set()
         token = None
+        seen_tokens: set[str] = set()
         try:
             while True:
+                if token is not None:
+                    if not isinstance(token, str) or not token or token in seen_tokens:
+                        raise ObjectStorageError("object-storage listing returned an invalid or repeated continuation token")
+                    seen_tokens.add(token)
                 args = {"Bucket": self.bucket, "Prefix": prefix}
                 if token:
                     args["ContinuationToken"] = token
