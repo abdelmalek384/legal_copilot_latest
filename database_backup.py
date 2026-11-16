@@ -420,11 +420,71 @@ def _scan_s3_original_object_inventory(store: S3PrivateObjectStore) -> set[str]:
 
 
 def _scan_original_object_root(object_root: Path) -> set[str]:
+    # Check symlinks before exists(): a dangling symlink reports exists() == False.
+    if object_root.is_symlink():
+        raise DatabaseBundleError("Original-object storage root must be a real directory")
     if not object_root.exists():
         return set()
-    if object_root.is_symlink() or not object_root.is_dir():
+    if not object_root.is_dir():
         raise DatabaseBundleError("Original-object storage root must be a real directory")
+
     found: set[str] = set()
+    if os.name != "nt" and os.open in getattr(os, "supports_dir_fd", set()):
+        directory_flags = (
+            os.O_RDONLY | getattr(os, "O_DIRECTORY", 0)
+            | getattr(os, "O_CLOEXEC", 0) | getattr(os, "O_NOFOLLOW", 0)
+        )
+        root_fd = None
+        try:
+            root_fd = os.open(object_root, directory_flags)
+            if not stat.S_ISDIR(os.fstat(root_fd).st_mode):
+                raise DatabaseBundleError("Original-object storage root must be a real directory")
+            with os.scandir(root_fd) as namespaces:
+                for namespace in namespaces:
+                    namespace_info = os.stat(
+                        namespace.name, dir_fd=root_fd, follow_symlinks=False
+                    )
+                    if (
+                        not stat.S_ISDIR(namespace_info.st_mode)
+                        or not _FIRM_OBJECT_DIR.fullmatch(namespace.name)
+                    ):
+                        raise DatabaseBundleError("Original-object storage contains an unexpected entry")
+                    namespace_fd = os.open(
+                        namespace.name, directory_flags, dir_fd=root_fd
+                    )
+                    try:
+                        opened_namespace = os.fstat(namespace_fd)
+                        if (
+                            not stat.S_ISDIR(opened_namespace.st_mode)
+                            or (opened_namespace.st_dev, opened_namespace.st_ino)
+                            != (namespace_info.st_dev, namespace_info.st_ino)
+                        ):
+                            raise DatabaseBundleError("Original-object namespace changed during inventory")
+                        with os.scandir(namespace_fd) as objects:
+                            for item in objects:
+                                item_info = os.stat(
+                                    item.name, dir_fd=namespace_fd, follow_symlinks=False
+                                )
+                                if (
+                                    not stat.S_ISREG(item_info.st_mode)
+                                    or not _OBJECT_ID.fullmatch(item.name)
+                                ):
+                                    raise DatabaseBundleError(
+                                        "Original-object storage contains an unfinished or unexpected object"
+                                    )
+                                found.add(f"{namespace.name}/{item.name}")
+                    finally:
+                        os.close(namespace_fd)
+        except DatabaseBundleError:
+            raise
+        except OSError as exc:
+            raise DatabaseBundleError("Original-object storage inventory could not be read safely") from exc
+        finally:
+            if root_fd is not None:
+                os.close(root_fd)
+        return found
+
+    # Non-POSIX fallback: reject links at every visible path boundary.
     for namespace in object_root.iterdir():
         if namespace.is_symlink() or not namespace.is_dir() or not _FIRM_OBJECT_DIR.fullmatch(namespace.name):
             raise DatabaseBundleError("Original-object storage contains an unexpected entry")
