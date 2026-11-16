@@ -45,3 +45,6 @@
 
 
 - 2026-11-16: Restore importer now walks the complete absolute directory chain from filesystem root with no-follow directory descriptors before opening objects/, firm namespace and blob. Added restore-root symlink regression; isolated harness rejected root, objects and namespace symlink substitutions while accepting a regular object (commits 2e7a7e3, 4c33f88). Repository tests remain unexecuted; no suite pass is claimed.
+
+
+- 2026-11-16: S3 original-object open now enforces a bounded stream even when ContentLength is absent and rejects oversized ContentLength before reading. Added two adversarial regressions (commits 5e9f871, d4f5d26); module registration in workflow/security regression script verified. Runtime test suite remains unexecuted; no pass is claimed.
