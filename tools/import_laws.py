@@ -259,6 +259,14 @@ def _ocr_language() -> str:
     return language
 
 
+def _ocr_limit_env(name: str, default: int) -> int:
+    """Read an OCR limit that operators may lower but never raise above its hard ceiling."""
+    value = _positive_int_env(name, default)
+    if value > default:
+        _fail(f"{name} may only lower the hard OCR limit of {default}")
+    return value
+
+
 def _ocr_page_pixel_size(page, dpi: int = 200) -> tuple[int, int]:
     """Reject pathological page geometry before allocating a rendered OCR bitmap."""
     try:
@@ -271,8 +279,8 @@ def _ocr_page_pixel_size(page, dpi: int = 200) -> tuple[int, int]:
     if width_points <= 0 or height_points <= 0:
         _fail("OCR page dimensions must be positive")
 
-    max_dimension = _positive_int_env("LEGAL_IMPORT_MAX_OCR_DIMENSION", 12000)
-    max_pixels = _positive_int_env("LEGAL_IMPORT_MAX_OCR_PIXELS", 40_000_000)
+    max_dimension = _ocr_limit_env("LEGAL_IMPORT_MAX_OCR_DIMENSION", 12000)
+    max_pixels = _ocr_limit_env("LEGAL_IMPORT_MAX_OCR_PIXELS", 40_000_000)
     pixel_width = math.ceil(width_points * dpi / 72)
     pixel_height = math.ceil(height_points * dpi / 72)
     if pixel_width > max_dimension or pixel_height > max_dimension:
