@@ -1579,5 +1579,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("if(value!=='firm_documents'){documentWorkspace.replaceChildren();documentWorkspace.hidden=true}", research)
 
 
+    def test_research_upload_disclosure_exposes_and_resets_accessible_state(self):
+        research = HTML[HTML.index("async function law(){"):HTML.index("\nfunction documentIntelligencePanel(")]
+        self.assertIn("id:'research-upload-panel'", research)
+        self.assertIn("paperclipButton.setAttribute('aria-controls','research-upload-panel')", research)
+        self.assertIn("paperclipButton.setAttribute('aria-expanded','false')", research)
+        self.assertIn("paperclipButton.setAttribute('aria-expanded',String(expanded))", research)
+        self.assertIn("uploadPanel.hidden=!expanded", research)
+        self.assertIn("uploadPanel.hidden=true;paperclipButton.setAttribute('aria-expanded','false')", research)
+
 if __name__ == "__main__":
     unittest.main()
