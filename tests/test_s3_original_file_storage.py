@@ -373,6 +373,24 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         self.assertEqual(body.bytes_read, self.store.max_bytes + 1)
         self.assertTrue(body.closed, "oversized response body must be closed")
 
+    def test_open_rejects_body_without_close_method(self):
+        from unittest.mock import patch
+
+        class UnclosableBody:
+            def read(self, size=-1):
+                return b"payload"
+
+        with patch.object(
+            self.client, "get_object",
+            return_value={
+                "Body": UnclosableBody(),
+                "ServerSideEncryption": "aws:kms",
+                "SSEKMSKeyId": self.client.CANONICAL_KMS_ARN,
+            },
+        ):
+            with self.assertRaisesRegex(ObjectStorageError, "closable readable body"):
+                self.store.open(12, "e" * 32)
+
     def test_open_bounds_oversized_stream_when_content_length_is_missing(self):
         from unittest.mock import patch
 
