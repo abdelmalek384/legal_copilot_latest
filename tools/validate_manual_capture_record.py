@@ -8,6 +8,8 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import os
+import stat
 import json
 import re
 import sys
@@ -100,10 +102,33 @@ def _iso_datetime_with_timezone(value: object) -> bool:
 
 
 def _sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as stream:
+    """Hash a stable regular-file descriptor without following a final symlink."""
+    before = path.lstat()
+    if not stat.S_ISREG(before.st_mode):
+        raise OSError("manual-capture original is not a regular file")
+    flags = os.O_RDONLY | getattr(os, "O_BINARY", 0) | getattr(os, "O_NONBLOCK", 0)
+    flags |= getattr(os, "O_NOFOLLOW", 0)
+    descriptor = os.open(path, flags)
+    with os.fdopen(descriptor, "rb") as stream:
+        opened = os.fstat(stream.fileno())
+        if (
+            not stat.S_ISREG(opened.st_mode)
+            or (opened.st_dev, opened.st_ino) != (before.st_dev, before.st_ino)
+        ):
+            raise OSError("manual-capture original changed while it was being opened")
+        digest = hashlib.sha256()
         for block in iter(lambda: stream.read(1024 * 1024), b""):
             digest.update(block)
+        after = os.fstat(stream.fileno())
+        current_path = path.lstat()
+        if (
+            (after.st_dev, after.st_ino) != (opened.st_dev, opened.st_ino)
+            or (after.st_size, after.st_mtime_ns, after.st_ctime_ns)
+            != (opened.st_size, opened.st_mtime_ns, opened.st_ctime_ns)
+            or (current_path.st_dev, current_path.st_ino)
+            != (opened.st_dev, opened.st_ino)
+        ):
+            raise OSError("manual-capture original changed while it was being hashed")
     return digest.hexdigest()
 
 

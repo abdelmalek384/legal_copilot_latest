@@ -5,9 +5,11 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from tools import validate_manual_capture_record as MODULE
 from tools.validate_manual_capture_record import validate_capture_record
 
 
@@ -215,6 +217,40 @@ class ManualCaptureRecordTests(unittest.TestCase):
         self.assertFalse(result["commercial_product_use_ready"])
         self.assertFalse(result["retrieval_eligible"])
 
+
+    def test_manual_capture_hash_rejects_final_path_symlink_swap(self):
+        import os
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            target = root / "original.pdf"
+            target.write_bytes(b"captured source")
+            outside = root / "outside.pdf"
+            outside.write_bytes(b"replacement")
+            real_open = MODULE.os.open
+            swapped = False
+
+            def replace_before_open(path, flags, *args, **kwargs):
+                nonlocal swapped
+                if Path(path) == target and not swapped:
+                    swapped = True
+                    target.unlink()
+                    target.symlink_to(outside)
+                return real_open(path, flags, *args, **kwargs)
+
+            with patch.object(MODULE.os, "open", side_effect=replace_before_open):
+                with self.assertRaises(OSError):
+                    MODULE._sha256_file(target)
+            self.assertTrue(swapped)
+
+    def test_manual_capture_hash_rejects_fifo_without_blocking(self):
+        import os
+        if not hasattr(os, "mkfifo"):
+            self.skipTest("FIFO files are unavailable on this platform")
+        with tempfile.TemporaryDirectory() as temp:
+            fifo = Path(temp) / "original.fifo"
+            os.mkfifo(fifo)
+            with self.assertRaises(OSError):
+                MODULE._sha256_file(fifo)
 
 if __name__ == "__main__":
     unittest.main()
