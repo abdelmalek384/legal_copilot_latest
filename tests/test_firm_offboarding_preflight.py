@@ -237,6 +237,36 @@ class FirmOffboardingPreflightTests(unittest.TestCase):
         self.assertEqual(report["mutations_performed"], 0)
         self.assertFalse(report["production_purge_authorized"])
 
+    def test_s3_offboarding_preflight_blocks_unknown_versioning_state(self):
+        class FakeS3Client:
+            def get_bucket_versioning(self, *, Bucket):
+                return {"Status": "Unexpected"}
+
+        class FakeS3Store:
+            bucket = "private-matter-files"
+            client = FakeS3Client()
+
+            def list_object_keys(self):
+                return set()
+
+        self._disable_and_revoke_membership()
+        report = inspect_firm_offboarding(
+            self.control, self.tenants, self.corpus, None, self.firm_id,
+            s3_store=FakeS3Store(),
+        )
+
+        self.assertFalse(report["purge_preflight_clear"])
+        self.assertEqual(
+            report["s3_bucket_versioning_status"],
+            "Unexpected",
+        )
+        self.assertIn(
+            "s3_bucket_versioning_status_unavailable",
+            {item["code"] for item in report["findings"]},
+        )
+        self.assertEqual(report["mutations_performed"], 0)
+        self.assertFalse(report["production_purge_authorized"])
+
     def test_s3_offboarding_preflight_fails_closed_when_versioning_status_cannot_be_read(self):
         class FakeS3Client:
             def get_bucket_versioning(self, *, Bucket):
