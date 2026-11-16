@@ -106,6 +106,20 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertTrue(any("permission_evidence_url must be an HTTPS URL" in error for error in errors))
         self.assertTrue(any("commercial_reuse_evidence_url must be an HTTPS URL" in error for error in errors))
 
+    def test_signed_cloud_storage_urls_and_fragments_are_rejected(self):
+        from tools.validate_source_permission_register import _https_url
+        for url in (
+            "https://example.gov/law.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256",
+            "https://example.gov/law.pdf?X-Amz-Date=20261116T120000Z",
+            "https://example.gov/law.pdf?GoogleAccessId=account",
+            "https://example.gov/law.pdf?X-Goog-Algorithm=GOOG4-RSA-SHA256",
+            "https://example.gov/law.pdf?X-Goog-Date=20261116T120000Z",
+            "https://example.gov/law.pdf#page=4",
+        ):
+            with self.subTest(url=url):
+                self.assertFalse(_https_url(url))
+        self.assertTrue(_https_url("https://example.gov/law.pdf"))
+
     def test_credentials_in_source_urls_are_rejected(self):
         import json
         data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
