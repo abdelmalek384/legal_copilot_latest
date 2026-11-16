@@ -300,5 +300,42 @@ class RecordManualCaptureTests(unittest.TestCase):
         self.assertEqual(target.read_bytes(), b"tampered prior file")
         self.assertFalse((self.out / "metadata" / "EG-LABOUR-14-2025.json").exists())
 
+    def test_catalog_loader_rejects_symlink_swap_between_check_and_open(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target = root / "catalog.json"
+            target.write_text('{"documents":[],"sources":[]}', encoding="utf-8")
+            outside = root / "outside.json"
+            outside.write_text('{"documents":[],"sources":[]}', encoding="utf-8")
+            real_open = capture.os.open
+            swapped = False
+
+            def replace_before_open(path, flags, *args, **kwargs):
+                nonlocal swapped
+                if Path(path) == target and not swapped:
+                    swapped = True
+                    target.unlink()
+                    target.symlink_to(outside)
+                return real_open(path, flags, *args, **kwargs)
+
+            with patch("tools.validate_source_permission_register.os.open", side_effect=replace_before_open):
+                with self.assertRaises(OSError):
+                    capture.load_catalog(target)
+            self.assertTrue(swapped)
+
+    def test_manual_capture_reader_rejects_fifo_and_oversized_files(self):
+        import os
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            if hasattr(os, "mkfifo"):
+                fifo = root / "capture.fifo"
+                os.mkfifo(fifo)
+                with self.assertRaises(OSError):
+                    capture.read_regular_file(fifo, max_bytes=1024)
+            oversized = root / "large.txt"
+            oversized.write_bytes(b"x" * 1025)
+            with self.assertRaises(OSError):
+                capture.read_regular_file(oversized, max_bytes=1024)
+
 if __name__ == "__main__":
     unittest.main()
