@@ -360,6 +360,39 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
         head.assert_not_called()
         self.assertEqual(existing.read_bytes(), b"preserve")
 
+    def test_download_rejects_parent_replacement_during_stream(self):
+        locator = self.upload()
+        destination_dir = self.root / "download-dir"
+        destination_dir.mkdir()
+        moved_dir = self.root / "download-dir-original"
+        outside_dir = self.root / "outside-download-dir"
+        outside_dir.mkdir()
+        destination = destination_dir / "recovery.enc"
+        item = self.s3.objects[(locator["bucket"], locator["key"], locator["version_id"])]
+        original_body = item["data"]
+
+        class ReplacingBody(FakeBody):
+            replaced = False
+
+            def read(inner_self, size=-1):
+                if not inner_self.replaced:
+                    inner_self.replaced = True
+                    destination_dir.rename(moved_dir)
+                    destination_dir.symlink_to(outside_dir, target_is_directory=True)
+                return super().read(size)
+
+        def get_object(**kwargs):
+            return {"VersionId": locator["version_id"], "Body": ReplacingBody(original_body)}
+
+        self.s3.get_object = get_object
+        with self.assertRaises(DatabaseBundleError):
+            download_encrypted_bundle_version(
+                self.s3, self.kms, locator, destination, **self.config
+            )
+        self.assertTrue(destination_dir.is_symlink())
+        self.assertFalse((outside_dir / "recovery.enc").exists())
+        self.assertFalse((moved_dir / "recovery.enc").exists())
+
     def test_existing_destination_is_never_overwritten(self):
         locator = self.upload()
         target = self.root / "existing.dbundle.enc"
