@@ -1368,6 +1368,9 @@ const pill=(t,k)=>h('span',{className:'pill '+k,textContent:t}),btn=(t,f,c='')=>
 const fd=s=>s?s.slice(0,10).split('-').reverse().join('/'):'',err=j=>typeof j.detail==='string'?j.detail:'بيانات غير صحيحة';
 const safeHttpsUrl=v=>{try{const u=new URL(v);return u.protocol==='https:'&&!u.username&&!u.password?u.href:null}catch(_){return null}};const sourceHostLabel=v=>{try{return new URL(v).hostname}catch(_){return ''}};
 const toast=t=>{const e=$('toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',3500)};
+const markFieldInvalid=field=>{field.setAttribute('aria-invalid','true');field.setAttribute('aria-describedby','toast');field.focus()};
+const clearFieldInvalid=field=>{field.removeAttribute('aria-invalid');field.removeAttribute('aria-describedby')};
+const watchFieldValidity=field=>{const clear=()=>{if(field.checkValidity()&&String(field.value||'').trim())clearFieldInvalid(field)};field.addEventListener('input',clear);field.addEventListener('change',clear)};
 function csrfToken(){return document.cookie.split('; ').find(x=>x.startsWith('lc_csrf='))?.split('=').slice(1).join('=')||''}
 async function api(p,m='GET',b){const headers={};if(b!==undefined)headers['Content-Type']='application/json';const csrf=csrfToken();if(csrf)headers['X-CSRF-Token']=decodeURIComponent(csrf);const r=await fetch(p,{method:m,credentials:'same-origin',headers,body:b!==undefined?JSON.stringify(b):undefined});
  if(r.status===423&&p!=='/billing'&&!p.startsWith('/account/mfa/')){if(ME.role==='admin')billingPage().catch(()=>{});else toast(LANG==='ar'?'المكتب في وضع القراءة فقط؛ تواصل مع مسؤول المكتب.':'This firm is in read-only mode; contact your firm administrator.');throw new Error('billing_locked')}
@@ -3402,19 +3405,19 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
    h('label',{className:'row'},clientConsent,h('span',{textContent:uiText('أؤكد وجود تفويض/أساس قانوني موثق من العميل لمعالجة بيانات هذه القضية بواسطة مزود النموذج.','I confirm documented client authorization/lawful basis for this matter data to be processed by the model provider.')})),
    run,result)
  }
- if(TAB==='tasks'){const tt=h('input',{placeholder:uiText('مهمة جديدة','New task'),'aria-label':uiText('عنوان المهمة الجديدة','New task title')}),as=h('select',{'aria-label':uiText('المكلّف بالمهمة','Task assignee')},new Option(uiText('غير معيّن','Unassigned'),''),...c.members.map(m=>new Option(m.name,m.user_id))),due=h('input',{type:'date','aria-label':uiText('تاريخ استحقاق المهمة','Task due date')});
+ if(TAB==='tasks'){const tt=h('input',{placeholder:uiText('مهمة جديدة','New task'),'aria-label':uiText('عنوان المهمة الجديدة','New task title')}),as=h('select',{'aria-label':uiText('المكلّف بالمهمة','Task assignee')},new Option(uiText('غير معيّن','Unassigned'),''),...c.members.map(m=>new Option(m.name,m.user_id))),due=h('input',{type:'date','aria-label':uiText('تاريخ استحقاق المهمة','Task due date')});watchFieldValidity(tt);
   body=h('div',{className:'card'},c.tasks.length?c.tasks.map(t=>h('div',{className:'row'},h('div',{},h('b',{textContent:t.title}),h('div',{className:'mut',textContent:t.assignee_name||'غير معيّن'})),
    h('div',{},t.status==='done'?pill('منجزة','done'):[duePill(t)||pill('مفتوحة','open'),' ',btn('تم',async()=>{await api('/tasks/'+t.id+'/done','POST');again()},'g')]))):empty('لا توجد مهام'),
-   h('div',{className:'row'},tt,as,due,btn('إضافة مهمة',async()=>{if(!tt.value.trim()){toast(uiText('أدخل اسم المهمة','Enter a task title'));tt.focus();return}await api('/cases/'+id+'/tasks','POST',{title:tt.value.trim(),assignee:as.value?+as.value:null,due:due.value||null});again()})))}
- if(TAB==='sess'){const sd=h('input',{type:'date','aria-label':uiText('تاريخ الجلسة','Hearing date')}),sn=h('input',{placeholder:uiText('ملاحظة (المحكمة، الدائرة، الغرض)','Note (court, circuit, purpose)'),'aria-label':uiText('تفاصيل الجلسة','Hearing details')});
+   h('div',{className:'row'},tt,as,due,btn('إضافة مهمة',async()=>{if(!tt.value.trim()){markFieldInvalid(tt);toast(uiText('أدخل اسم المهمة','Enter a task title'));return}await api('/cases/'+id+'/tasks','POST',{title:tt.value.trim(),assignee:as.value?+as.value:null,due:due.value||null});again()})))}
+ if(TAB==='sess'){const sd=h('input',{type:'date','aria-label':uiText('تاريخ الجلسة','Hearing date')}),sn=h('input',{placeholder:uiText('ملاحظة (المحكمة، الدائرة، الغرض)','Note (court, circuit, purpose)'),'aria-label':uiText('تفاصيل الجلسة','Hearing details')});watchFieldValidity(sd);
   body=h('div',{className:'card'},c.sessions.length?c.sessions.map(s=>h('div',{className:'row'},h('span',{textContent:s.note||uiText('جلسة','Hearing')}),pill(fd(s.date),s.date<today?'closed':'open'),whatsappReminder(s.date,'session'))):empty('لا توجد جلسات'),
-   h('div',{className:'row'},sd,sn,btn('إضافة جلسة',async()=>{if(!sd.value){toast(uiText('أدخل تاريخ الجلسة','Enter a hearing date'));sd.focus();return}await api('/cases/'+id+'/sessions','POST',{date:sd.value,note:sn.value});again()})))}
+   h('div',{className:'row'},sd,sn,btn('إضافة جلسة',async()=>{if(!sd.value){markFieldInvalid(sd);toast(uiText('أدخل تاريخ الجلسة','Enter a hearing date'));return}await api('/cases/'+id+'/sessions','POST',{date:sd.value,note:sn.value});again()})))}
  if(TAB==='dead'){
   const title=h('input',{placeholder:uiText('نوع الموعد (استئناف، طعن، تقديم مستند...)','Deadline type (appeal, challenge, filing...)'),'aria-label':uiText('نوع الموعد','Deadline type')}),
    due=h('input',{type:'date','aria-label':uiText('تاريخ استحقاق الموعد','Deadline due date')}),note=h('textarea',{placeholder:uiText('ملاحظة (اختياري)','Note (optional)'),rows:2,style:'width:100%','aria-label':uiText('ملاحظات الموعد','Deadline notes')}),
    trigger=h('input',{type:'date','aria-label':uiText('تاريخ بدء حساب الموعد','Deadline trigger date')}),distance=h('input',{type:'number',min:'0',max:'365',step:'1',value:'0','aria-label':uiText('عدد الأيام الإضافية','Additional days')}),
    ruleSelect=h('select',{'aria-label':uiText('قاعدة حساب الموعد','Deadline calculation rule')}),preview=h('div',{}),estimateButton=btn('حساب موعد مبدئي',async()=>{
-    if(!trigger.value||!ruleSelect.value){toast(uiText('حدد القاعدة وتاريخ بداية الحساب الذي راجعه المحامي','Choose a rule and the trigger date confirmed by counsel'));return}
+    if(!trigger.value||!ruleSelect.value){const missingRule=!ruleSelect.value;if(missingRule)markFieldInvalid(ruleSelect);if(!trigger.value)markFieldInvalid(trigger);toast(uiText('حدد القاعدة وتاريخ بداية الحساب الذي راجعه المحامي','Choose a rule and the trigger date confirmed by counsel'));(missingRule?ruleSelect:trigger).focus();return}
     estimateButton.disabled=true;preview.replaceChildren(h('p',{className:'mut',role:'status','aria-live':'polite','aria-atomic':'true',textContent:uiText('جارٍ الحساب...','Calculating...')}));
     try{
      const result=await api('/cases/'+id+'/deadline-estimate?'+new URLSearchParams({rule_id:ruleSelect.value,trigger:trigger.value,distance_days:String(Number(distance.value||0))}).toString());
@@ -3439,6 +3442,7 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
     }catch(e){preview.replaceChildren(h('p',{className:'bad',role:'alert','aria-live':'assertive',textContent:String(e.message||e)}))}
     finally{estimateButton.disabled=false}
    });
+  [title,due,trigger,ruleSelect].forEach(watchFieldValidity);
   try{
    const catalog=await api('/deadline-rules');
    ruleSelect.append(new Option(uiText('اختر نوع الميعاد','Choose deadline type'),''));
@@ -3450,12 +3454,13 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
    h('div',{className:'grid'},ruleSelect,h('label',{},h('span',{textContent:uiText('تاريخ بداية الحساب (بعد التحقق)','Trigger date (after confirmation)')}),trigger),h('label',{},h('span',{textContent:uiText('أيام مسافة إضافية (اختياري)','Additional distance days (optional)')}),distance)),
    estimateButton,preview,h('hr',{}),h('h3',{textContent:uiText('المواعيد المسجلة في القضية','Saved case deadlines')}),
    c.deadlines.length?c.deadlines.map(d=>h('div',{className:'row'},h('div',{},h('b',{textContent:d.title}),h('div',{className:'mut',textContent:d.note||''})),duePill({due:d.due})||pill(fd(d.due),'open'),whatsappReminder(d.due,'deadline'))):empty('لا توجد مواعيد قانونية مسجلة. هذه المواعيد منفصلة عن جلسات المحكمة.'),
-   h('div',{className:'row'},title,due,btn('إضافة موعد',async()=>{if(!title.value.trim()||!due.value){toast(uiText('أدخل نوع الموعد وتاريخه','Enter the deadline type and date'));return}await api('/cases/'+id+'/deadlines','POST',{title:title.value,due:due.value,note:note.value});again()})),note)
+   h('div',{className:'row'},title,due,btn('إضافة موعد',async()=>{if(!title.value.trim()||!due.value){const missingTitle=!title.value.trim();if(missingTitle)markFieldInvalid(title);if(!due.value)markFieldInvalid(due);toast(uiText('أدخل نوع الموعد وتاريخه','Enter the deadline type and date'));(missingTitle?title:due).focus();return}await api('/cases/'+id+'/deadlines','POST',{title:title.value,due:due.value,note:note.value});again()})),note)
  }
  if(TAB==='dead'&&ME.role==='admin'){
   const holidayDate=h('input',{type:'date','aria-label':uiText('تاريخ العطلة','Holiday date')}),
    holidayName=h('input',{placeholder:uiText('اسم العطلة بالعربية','Holiday name in Arabic'),'aria-label':uiText('اسم العطلة','Holiday name')}),
    holidayList=h('div',{}),holidayAudit=h('div',{}),holidayPanel=h('section',{className:'card'});
+  watchFieldValidity(holidayDate);watchFieldValidity(holidayName);
   let firmHolidays=[];
   const renderFirmHolidays=()=>{
    holidayList.replaceChildren(...(firmHolidays.length?firmHolidays.map((item,index)=>h('div',{className:'row'},
@@ -3474,7 +3479,7 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
    holidayAudit.replaceChildren(h('p',{className:'mut',textContent:uiText('العطلات الثابتة والمشتركة تظل مسودة جزئية؛ هذه الإضافات خاصة بهذا المكتب فقط.','Shared fixed holidays remain a partial draft; these additions apply only to this firm.')}),...(data.audit||[]).slice(0,5).map(item=>h('p',{className:'mut',textContent:item.created_at+' · '+uiText('المستخدم','User')+' '+item.actor_user_id+' · '+item.action})));
   };
   const addHoliday=btn(uiText('إضافة عطلة','Add holiday'),()=>{
-   if(!holidayDate.value||!holidayName.value.trim()){toast(uiText('أدخل التاريخ واسم العطلة','Enter a date and holiday name'));return}
+   if(!holidayDate.value||!holidayName.value.trim()){const missingDate=!holidayDate.value;if(missingDate)markFieldInvalid(holidayDate);if(!holidayName.value.trim())markFieldInvalid(holidayName);toast(uiText('أدخل التاريخ واسم العطلة','Enter a date and holiday name'));(missingDate?holidayDate:holidayName).focus();return}
    if(firmHolidays.some(x=>x.date===holidayDate.value)){toast(uiText('هذا التاريخ موجود بالفعل','That date already exists'));return}
    firmHolidays.push({date:holidayDate.value,name_ar:holidayName.value.trim()});
    firmHolidays.sort((a,b)=>a.date.localeCompare(b.date));holidayDate.value='';holidayName.value='';renderFirmHolidays();
@@ -3485,19 +3490,19 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
   body.append(holidayPanel);
   loadHolidays().catch(e=>holidayList.replaceChildren(h('p',{className:'bad',textContent:String(e.message||e)})));
  }
- if(TAB==='notes'){const txt=h('textarea',{placeholder:uiText('اكتب ملاحظة داخلية للقضية...','Write an internal case note...'),rows:4,style:'width:100%;font:inherit;border:1px solid var(--line);border-radius:8px;padding:10px'});
+ if(TAB==='notes'){const txt=h('textarea',{placeholder:uiText('اكتب ملاحظة داخلية للقضية...','Write an internal case note...'),rows:4,style:'width:100%;font:inherit;border:1px solid var(--line);border-radius:8px;padding:10px'});watchFieldValidity(txt);
   body=h('div',{className:'card'},h('h3',{textContent:'ملاحظات القضية'}),c.notes.length?c.notes.map(n=>h('div',{className:'src'},h('div',{textContent:n.text,style:'white-space:pre-wrap'}),h('div',{className:'mut',textContent:(n.author||'')+' · '+(n.created_at||'')}))):empty('لا توجد ملاحظات بعد.'),
-   txt,h('div',{className:'row'},btn('حفظ الملاحظة',async()=>{if(!txt.value.trim()){toast(uiText('اكتب الملاحظة أولا','Write a note first'));return}await api('/cases/'+id+'/notes','POST',{text:txt.value});again()})))}
+   txt,h('div',{className:'row'},btn('حفظ الملاحظة',async()=>{if(!txt.value.trim()){markFieldInvalid(txt);toast(uiText('اكتب الملاحظة أولا','Write a note first'));return}await api('/cases/'+id+'/notes','POST',{text:txt.value});again()})))}
  if(TAB==='notes'){
   const skeletonOutput=h('textarea',{rows:16,readOnly:true,style:'width:100%;direction:rtl;white-space:pre-wrap',placeholder:uiText('سيظهر هنا هيكل المذكرة أو صحيفة الدعوى...','The memo or pleading skeleton will appear here...')});
   const makeSkeleton=async type=>{try{const result=await api('/cases/'+id+'/draft-skeleton?document_type='+type);skeletonOutput.value=result.content;toast(LANG==='ar'?'تم إنشاء هيكل أولي للمراجعة':'Draft skeleton generated for review')}catch(_){toast(LANG==='ar'?'تعذر إنشاء الهيكل':'Could not generate skeleton')}};
   const skeletonPanel=h('div',{className:'card'},h('h3',{textContent:uiText('هياكل المذكرات وصحف الدعاوى','Memo and pleading skeletons')}),h('p',{className:'mut',textContent:uiText('قوالب عناوين فقط تُملأ ببيانات القضية. يجب استكمال الوقائع والأسانيد والطلبات ومراجعتها بواسطة محامٍ قبل الاستخدام أو التقديم.','Heading-only templates populated from case metadata. Counsel must complete and review all facts, legal grounds and requests before use or filing.')}),h('div',{className:'row'},btn(uiText('إنشاء هيكل مذكرة','Generate memo skeleton'),()=>makeSkeleton('memorandum'),'g'),btn(uiText('إنشاء هيكل صحيفة دعوى','Generate pleading skeleton'),()=>makeSkeleton('pleading'),'g')),skeletonOutput,btn(uiText('نسخ النص','Copy text'),()=>{if(skeletonOutput.value)navigator.clipboard?.writeText(skeletonOutput.value)}));
   body=h('div',{},body,skeletonPanel);
  }
- if(TAB==='fees'){const title=h('input',{placeholder:uiText('وصف الأتعاب','Fee description')}),amount=h('input',{type:'number',min:'0',step:'0.01',placeholder:uiText('المبلغ الإجمالي','Total amount')}),paid=h('input',{type:'number',min:'0',step:'0.01',placeholder:uiText('المدفوع','Paid amount')}),due=h('input',{type:'date','aria-label':uiText('تاريخ استحقاق الأتعاب','Fee due date')}),note=h('input',{placeholder:uiText('ملاحظة','Note'),style:'width:100%'});
+ if(TAB==='fees'){const title=h('input',{placeholder:uiText('وصف الأتعاب','Fee description')}),amount=h('input',{type:'number',min:'0',step:'0.01',placeholder:uiText('المبلغ الإجمالي','Total amount')}),paid=h('input',{type:'number',min:'0',step:'0.01',placeholder:uiText('المدفوع','Paid amount')}),due=h('input',{type:'date','aria-label':uiText('تاريخ استحقاق الأتعاب','Fee due date')}),note=h('input',{placeholder:uiText('ملاحظة','Note'),style:'width:100%'});[title,amount,paid].forEach(watchFieldValidity);
   const money=n=>new Intl.NumberFormat(LANG==='ar'?'ar-EG':'en-US',{maximumFractionDigits:2}).format(Number(n||0))+(LANG==='ar'?' ج.م':' EGP');
   body=h('div',{className:'card'},c.fees.length?c.fees.map(f=>h('div',{className:'row'},h('div',{},h('b',{textContent:f.title}),h('div',{className:'mut',textContent:(f.note||'')+(f.due?' · '+fd(f.due):'')})),h('span',{textContent:uiText('الإجمالي ','Total ')+money(f.amount)+' · '+uiText('المدفوع ','Paid ')+money(f.paid)+' · '+uiText('المتبقي ','Remaining ')+money(Number(f.amount)-Number(f.paid))}))):empty('لا توجد أتعاب مسجلة.'),
-   h('div',{className:'grid'},title,amount,paid,due,note),h('div',{className:'row'},btn('إضافة أتعاب',async()=>{if(!title.value.trim()||amount.value===''||paid.value===''){toast(uiText('أدخل الوصف والإجمالي والمدفوع','Enter the description, total, and paid amount'));return}await api('/cases/'+id+'/fees','POST',{title:title.value,amount:Number(amount.value),paid:Number(paid.value),due:due.value||null,note:note.value});again()})))}
+   h('div',{className:'grid'},title,amount,paid,due,note),h('div',{className:'row'},btn('إضافة أتعاب',async()=>{const requiredFields=[title,amount,paid],invalidField=requiredFields.find(field=>!String(field.value||'').trim()||!field.checkValidity());if(invalidField){requiredFields.filter(field=>!String(field.value||'').trim()||!field.checkValidity()).forEach(markFieldInvalid);toast(uiText('أدخل الوصف والإجمالي والمدفوع','Enter the description, total, and paid amount'));invalidField.focus();return}await api('/cases/'+id+'/fees','POST',{title:title.value,amount:Number(amount.value),paid:Number(paid.value),due:due.value||null,note:note.value});again()})))}
  if(TAB==='invoices'){
   const invoiceDescription=h('input',{placeholder:uiText('وصف الفاتورة أو نطاق العمل','Invoice description or scope')});
   const invoiceDue=h('input',{type:'date','aria-label':uiText('تاريخ الاستحقاق','Due date')});
@@ -3506,7 +3511,7 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
   const renderLines=()=>lineContainer.replaceChildren(...lineRows.map((line,index)=>h('div',{className:'grid'},line.description,line.quantity,line.price,btn(uiText('حذف','Remove'),()=>{lineRows.splice(index,1);renderLines()},'g'))));
   const addLine=()=>{
    const line={description:h('input',{placeholder:uiText('بيان الخدمة','Service description')}),quantity:h('input',{type:'number',min:'0.001',step:'0.001',value:'1','aria-label':uiText('الكمية','Quantity')}),price:h('input',{type:'text',inputMode:'decimal',placeholder:uiText('سعر الوحدة بالجنيه','Unit price in EGP')})};
-   lineRows.push(line);renderLines();
+   watchFieldValidity(line.description);line.quantity.addEventListener('input',()=>{try{toMilli(line.quantity.value);clearFieldInvalid(line.quantity)}catch(_){}});line.price.addEventListener('input',()=>{try{toPiasters(line.price.value);clearFieldInvalid(line.price)}catch(_){}});lineRows.push(line);renderLines();
   };
   const toPiasters=value=>egpToPiasters(value);
   const toMilli=value=>{
@@ -3518,8 +3523,15 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
   addLine();
   const createButton=btn(uiText('إنشاء مسودة فاتورة','Create invoice draft'),async()=>{
    try{
-    const lines=lineRows.map(line=>({description:line.description.value.trim(),quantity_milli:toMilli(line.quantity.value),unit_price_piasters:toPiasters(line.price.value)}));
-    if(lines.some(line=>!line.description)){toast(uiText('أدخل بياناً لكل بند','Enter a description for every line'));return}
+    const lines=[];
+    for(const line of lineRows){
+     const description=line.description.value.trim();
+     if(!description){markFieldInvalid(line.description);toast(uiText('أدخل بياناً لكل بند','Enter a description for every line'));return}
+     let quantity_milli,unit_price_piasters;
+     try{quantity_milli=toMilli(line.quantity.value)}catch(e){markFieldInvalid(line.quantity);toast(String(e.message||e));return}
+     try{unit_price_piasters=toPiasters(line.price.value)}catch(e){markFieldInvalid(line.price);toast(String(e.message||e));return}
+     lines.push({description,quantity_milli,unit_price_piasters});
+    }
     createButton.disabled=true;
     await api('/cases/'+id+'/invoices','POST',{description:invoiceDescription.value.trim(),due_date:invoiceDue.value||null,lines});
     toast(uiText('تم إنشاء مسودة الفاتورة','Invoice draft created'));await loadInvoices();

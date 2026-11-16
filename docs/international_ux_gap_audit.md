@@ -55,7 +55,7 @@ These are implementation and automated-test claims only. They do not establish l
 - Audit trail for source verification, edits, exports, document access and permission changes.
 - **Partially implemented 2026-11-17:** the active firm name and localized membership role are now visible in the primary navigation even for single-firm users, making tenant context explicit. Full role/permission explanations and richer tenant-context guidance remain open.
 - Two-factor authentication, self-service account recovery, session/device management, and firm-level retention controls before production use.
-- Accessible tables, predictable keyboard focus, labeled forms, error summaries and screen-reader announcements for asynchronous search/upload actions.
+- **Partially implemented 2026-11-17:** task, hearing, deadline, deadline-calculator, firm-holiday, case-note, fee and invoice-line required-field errors now set `aria-invalid`, associate the existing live toast and focus the first invalid control; correction clears the state. Remaining forms and end-to-end keyboard/screen-reader acceptance still need review.
 - A consistent design system: typography scale, spacing, buttons, form states, drawers/modals, toasts, tables and RTL tokens.
 
 ### P2 — Advanced research

@@ -1671,5 +1671,26 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("textContent:RL[activeRole]||activeRole", shell)
         self.assertIn("textContent:activeFirm.firm_name", shell)
 
+    def test_casework_required_fields_use_shared_accessible_validation(self):
+        self.assertIn("const markFieldInvalid=field=>{field.setAttribute('aria-invalid','true');field.setAttribute('aria-describedby','toast');field.focus()}", HTML)
+        self.assertIn("const clearFieldInvalid=field=>{field.removeAttribute('aria-invalid');field.removeAttribute('aria-describedby')}", HTML)
+        self.assertIn("const watchFieldValidity=field=>{const clear=()=>{if(field.checkValidity()&&String(field.value||'').trim())clearFieldInvalid(field)}", HTML)
+        casework = HTML[HTML.index("if(TAB==='tasks')"):HTML.index("if(TAB==='docs')")]
+        self.assertIn("watchFieldValidity(tt)", casework)
+        for field in ("tt","sd","ruleSelect","trigger","title","due","holidayDate","holidayName","txt"):
+            self.assertIn("markFieldInvalid("+field+")", casework)
+        self.assertIn("watchFieldValidity(sd)", casework)
+        self.assertIn("[title,due,trigger,ruleSelect].forEach(watchFieldValidity)", casework)
+        self.assertIn("watchFieldValidity(holidayDate);watchFieldValidity(holidayName)", casework)
+        self.assertIn("watchFieldValidity(txt)", casework)
+        self.assertIn("[title,amount,paid].forEach(watchFieldValidity)", casework)
+        self.assertIn("watchFieldValidity(line.description)", casework)
+        self.assertIn("try{toMilli(line.quantity.value);clearFieldInvalid(line.quantity)}catch(_){}})", casework)
+        self.assertIn("try{toPiasters(line.price.value);clearFieldInvalid(line.price)}catch(_){}})", casework)
+        self.assertIn("markFieldInvalid(line.quantity)", casework)
+        self.assertIn("markFieldInvalid(line.price)", casework)
+        self.assertIn("markFieldInvalid(missingDescription.description)", HTML)
+        self.assertIn("requiredFields.filter(field=>!String(field.value||'').trim()||!field.checkValidity()).forEach(markFieldInvalid)", casework)
+
 if __name__ == "__main__":
     unittest.main()
