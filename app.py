@@ -6339,7 +6339,8 @@ def consume_account_recovery(b: RecoveryConsumeIn):
 def users(u: dict = Depends(user)):
     if _separate_runtime_enabled():
         return [dict(r) for r in conn().execute(
-            "SELECT id,name,role,active FROM users WHERE firm_id=? AND active=1 ORDER BY name",
+            "SELECT id,name,role,active,identity_status,membership_status "
+            "FROM users WHERE firm_id=? ORDER BY name",
             (u["firm_id"],)
         )]
     return [dict(r) for r in conn().execute("SELECT id,name,role,active FROM users WHERE firm_id=? ORDER BY name", (u["firm_id"],))]
@@ -6409,6 +6410,69 @@ def update_firm_member_role(uid: int, b: FirmRoleUpdateIn, u: dict = Depends(use
         if control.in_transaction:
             control.rollback()
         raise HTTPException(503, "firm role change was not committed") from exc
+
+
+@app.post("/users/{uid}/enable")
+def enable_user(uid: int, u: dict = Depends(user)):
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "membership reactivation is available only in separate-database mode")
+    require_admin(u)
+    if uid == int(u["id"]):
+        raise HTTPException(422, "the current administrator cannot reactivate their own membership")
+    control = control_conn()
+    try:
+        control.execute("BEGIN IMMEDIATE")
+        actor = control.execute(
+            "SELECT 1 FROM firm_memberships fm "
+            "JOIN users actor_user ON actor_user.id=fm.user_id "
+            "JOIN firms actor_firm ON actor_firm.id=fm.firm_id "
+            "WHERE fm.user_id=? AND fm.firm_id=? AND fm.firm_role='admin' "
+            "AND fm.status='active' AND actor_user.status='active' AND actor_firm.status='active'",
+            (int(u["id"]), int(u["firm_id"])),
+        ).fetchone()
+        if actor is None:
+            raise HTTPException(403, "active firm administrator membership required")
+        target = control.execute(
+            "SELECT fm.id,fm.firm_role,fm.status,u.status AS identity_status "
+            "FROM firm_memberships fm JOIN users u ON u.id=fm.user_id "
+            "WHERE fm.user_id=? AND fm.firm_id=?",
+            (uid, int(u["firm_id"])),
+        ).fetchone()
+        if target is None:
+            raise HTTPException(404, "firm membership not found")
+        if target["identity_status"] != "active":
+            raise HTTPException(409, "inactive global identity requires platform-level recovery")
+        if target["status"] != "suspended":
+            raise HTTPException(409, "firm membership is not suspended")
+        firm = control.execute(
+            "SELECT status FROM firms WHERE id=?", (int(u["firm_id"]),)
+        ).fetchone()
+        if firm is None or firm["status"] != "active":
+            raise HTTPException(409, "cannot reactivate membership in an inactive firm")
+        _require_firm_seat(control, int(u["firm_id"]))
+        updated = control.execute(
+            "UPDATE firm_memberships SET status='active',updated_at=datetime('now') "
+            "WHERE user_id=? AND firm_id=? AND status='suspended'",
+            (uid, int(u["firm_id"])),
+        )
+        if updated.rowcount != 1:
+            raise HTTPException(409, "membership state changed; refresh and retry")
+        control.execute(
+            "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+            "VALUES(?,?,?,'membership_reactivated',?)",
+            (int(u["id"]), uid, int(u["firm_id"]),
+             json.dumps({"firm_role": target["firm_role"], "method": "web"}, sort_keys=True)),
+        )
+        control.commit()
+        return {"ok": True, "user_id": uid, "status": "active"}
+    except HTTPException:
+        if control.in_transaction:
+            control.rollback()
+        raise
+    except sqlite3.Error as exc:
+        if control.in_transaction:
+            control.rollback()
+        raise HTTPException(503, "membership reactivation was not committed") from exc
 
 
 @app.post("/users/{uid}/disable")
