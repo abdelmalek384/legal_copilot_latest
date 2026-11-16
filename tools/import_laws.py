@@ -38,6 +38,7 @@ HEAD = re.compile(
 )
 DOCUMENT_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
 SHA256 = re.compile(r"^[0-9a-fA-F]{64}$")
+MAX_OCR_CACHE_PAGE_BYTES = 8 * 1024 * 1024
 
 
 def _fail(message: str) -> None:
@@ -351,11 +352,26 @@ def page_texts(pdf_bytes, cache_root, content_sha256, cache_key="document"):
             if not cached_page.exists():
                 if budget <= 0:
                     raise SystemExit("OCR in progress (%d/%d pages done): run again" % (index, len(pages)))
-                cached_page.write_text(_ocr((pdf_bytes, index)), encoding="utf-8")
+                page_bytes = _ocr((pdf_bytes, index)).encode("utf-8")
+                if len(page_bytes) > MAX_OCR_CACHE_PAGE_BYTES:
+                    _fail("OCR cache page exceeds the configured size limit: " + cached_page.name)
+                try:
+                    _write_new_output_files(cache, {cached_page.name: page_bytes})
+                except ValueError as exc:
+                    # A concurrent importer may have created this exact cache page.
+                    # Read it below through the stable, no-follow descriptor path.
+                    if "output files already exist" not in str(exc):
+                        raise
                 budget -= 1
-            if cached_page.stat().st_size == 0:
+            page_bytes = _read_regular_file(
+                cached_page, "OCR cache page", max_bytes=MAX_OCR_CACHE_PAGE_BYTES
+            )
+            if not page_bytes:
                 _fail("OCR cache page is empty: " + cached_page.name)
-            output.append(cached_page.read_text(encoding="utf-8"))
+            try:
+                output.append(page_bytes.decode("utf-8"))
+            except UnicodeDecodeError:
+                _fail("OCR cache page is not valid UTF-8: " + cached_page.name)
         return output, True
     return pages, False
 
