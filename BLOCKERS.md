@@ -33,3 +33,6 @@
 
 
 - 2026-11-16: Restore-to-S3 original reads now pin the firm namespace directory with no-follow directory-descriptor operations and open the blob relative to that descriptor, preventing a namespace-directory symlink swap from redirecting reads after the earlier path check. A regression verifies rejection and preservation of outside/parked content (commits 0b7f440, fef3d13). Runtime tests remain unexecuted; no pass is claimed.
+
+
+- 2026-11-16: Encrypted backup ZIP preflight now rejects non-canonical member paths and special filesystem entry types before extraction. Added regressions for repeated separators, dot components, Windows drive-prefixed paths and FIFO metadata (commits d3d5841, 0775ba4). The module is already registered in the workflow and security matrix. Repository runtime tests remain unexecuted; no pass is claimed.
