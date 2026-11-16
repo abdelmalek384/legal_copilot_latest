@@ -1190,6 +1190,23 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
 #main .document-advanced-filters[open] summary{margin-bottom:8px}
 #main .document-advanced-filters .row{display:flex;flex-wrap:wrap;gap:8px}
 #main .document-advanced-filters :is(input,select){min-width:140px;flex:1 1 150px}
+
+
+/* Matter-centred navigation: five task-oriented groups preserve every existing tab ID. */
+#main .matter-navigation{display:grid;gap:8px;margin:12px 0 16px}
+#main .matter-section-nav,#main .matter-subnav{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+#main .matter-section-nav{border-bottom:1px solid var(--line);padding-bottom:8px}
+#main .matter-section-nav button,#main .matter-subnav button{font:inherit;border:1px solid transparent;border-radius:9px;background:transparent;color:var(--mut);padding:8px 12px;min-height:40px;cursor:pointer}
+#main .matter-section-nav button.on{background:#e8efff;color:#173b78;font-weight:750}
+#main .matter-subnav button{border-color:var(--line);color:var(--tx);background:#fff}
+#main .matter-subnav button.on{border-color:#315fca;color:#173b78;background:#e8efff;font-weight:700}
+#main .matter-section-nav button:focus-visible,#main .matter-subnav button:focus-visible{outline:3px solid #315fca;outline-offset:2px}
+#main .matter-context-strip{display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;padding:10px 12px;margin:8px 0 12px;background:var(--surface-soft,#f6f8fb);border:1px solid var(--line);border-radius:11px}
+#main .matter-client-context{font-weight:650}
+#main .matter-meta-chip{display:inline-flex;align-items:center;gap:5px;font-size:12px}
+#main .matter-meta-chip b{font-weight:650}
+#main .matter-progress-context{display:inline-flex;align-items:center;gap:7px;margin-inline-start:auto}
+@media(max-width:560px){#main .matter-section-nav{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-inline:contain}#main .matter-section-nav button{white-space:nowrap;flex:0 0 auto}#main .matter-subnav button{flex:1 1 auto}#main .matter-context-strip{align-items:flex-start}#main .matter-progress-context{margin-inline-start:0;width:100%}}
 </style>
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <script>
@@ -3134,7 +3151,17 @@ function documentIntelligencePanel(caseId,documents){
 
 async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT_REVIEW_TARGET.caseId)!==Number(id))window.DOCUMENT_REVIEW_TARGET=null;window.CASE_ID=id;const c=await api('/cases/'+id),us=await api('/users'),again=()=>view(id);
  const lead=ME.role==='admin'||c.members.some(m=>m.role==='lead'&&m.user_id===ME.id),dn=c.tasks.filter(t=>t.status==='done').length,tot=c.tasks.length;
- const tabs=[['sum',uiText('الملخص','Overview')],['brief',uiText('ملخص ذكي','AI brief')],['tasks',uiText('المهام','Tasks')],['sess',uiText('الجلسات','Hearings')],['dead',uiText('المواعيد القانونية','Legal deadlines')],['notes',uiText('الملاحظات','Notes')],['fees',uiText('الأتعاب','Fees')],['invoices',uiText('الفواتير','Invoices')],['docs',uiText('المستندات','Documents')],['team',uiText('الفريق','Team')],['ask',uiText('اسأل','Ask')],['log',uiText('السجل','Activity log')]];let body;
+ const tabGroups=[
+  {id:'overview',label:uiText('نظرة عامة','Overview'),items:[['sum',uiText('الملخص','Summary')],['brief',uiText('ملخص ذكي','AI brief')]]},
+  {id:'work',label:uiText('العمل','Work'),items:[['tasks',uiText('المهام','Tasks')],['sess',uiText('الجلسات','Hearings')],['dead',uiText('المواعيد القانونية','Legal deadlines')]]},
+  {id:'records',label:uiText('المستندات والبحث','Documents & research'),items:[['docs',uiText('المستندات','Documents')],['ask',uiText('اسأل','Ask')],['notes',uiText('الملاحظات','Notes')]]},
+  {id:'finance',label:uiText('المالية','Finance'),items:[['fees',uiText('الأتعاب','Fees')],['invoices',uiText('الفواتير','Invoices')]]},
+  {id:'team',label:uiText('الفريق والسجل','Team & activity'),items:[['team',uiText('الفريق','Team')],['log',uiText('السجل','Activity log')]]}
+ ];
+ const selectedTabGroup=tabGroups.find(group=>group.items.some(([key])=>key===TAB))||tabGroups[0];
+ const tabGroupNav=h('div',{className:'matter-section-nav','aria-label':uiText('أقسام ملف القضية','Matter sections')},...tabGroups.map(group=>h('button',{type:'button',className:selectedTabGroup.id===group.id?'on':'','aria-pressed':String(selectedTabGroup.id===group.id),textContent:group.label,onclick:()=>{window.DOCUMENT_REVIEW_TARGET=null;TAB=group.items[0][0];again()}})));
+ const tabDetailNav=h('div',{className:'matter-subnav','aria-label':uiText('صفحات القسم الحالي','Pages in current section')},...selectedTabGroup.items.map(([key,label])=>h('button',{type:'button',className:TAB===key?'on':'','aria-current':TAB===key?'page':null,textContent:label,onclick:()=>{window.DOCUMENT_REVIEW_TARGET=null;TAB=key;again()}})));
+ let body;
  if(TAB==='sum'){
   const fields=[['case_number',uiText('رقم القضية','Case number')],['case_year',uiText('السنة','Year')],['court',uiText('المحكمة','Court')],['circuit',uiText('الدائرة','Circuit')],['opposing_party',uiText('الخصم','Opposing party')],['stage',uiText('المرحلة','Stage')]];
   const inputs={};fields.forEach(([k,label])=>inputs[k]=h('input',{value:c[k]||'',placeholder:label,style:'width:100%'}));
@@ -3419,8 +3446,9 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
    lead&&h('div',{className:'row'},mu,mr,btn(uiText('إضافة / تحديث','Add / update'),async()=>{await api('/cases/'+id+'/members','POST',{user_id:+mu.value,role:mr.value});again()})))}
  if(TAB==='ask')body=h('div',{className:'card'},askBox(id));
  if(TAB==='log')body=h('div',{className:'card'},c.events.map(e=>h('div',{className:'row'},h('span',{textContent:e.text}),h('span',{className:'mut',textContent:e.who+' · '+new Date(e.at.replace(' ','T')+'Z').toLocaleString(LANG==='ar'?'ar-EG':'en-US',{dateStyle:'short',timeStyle:'short'})}))));
- shell(c.title,h('div',{},h('span',{className:'mut',textContent:uiText('العميل: ','Client: ')+(c.client||'—')+' '}),pill(c.status==='open'?'مفتوحة':'مغلقة',c.status==='open'?'open':'closed')),
-  h('div',{className:'tabs'},tabs.map(([k,t])=>h('a',{className:TAB===k?'on':'',textContent:t,onclick:()=>{window.DOCUMENT_REVIEW_TARGET=null;TAB=k;again()}}))),body)}
+ const matterMeta=[c.case_number&&[uiText('رقم القضية','Case number'),c.case_number],c.case_year&&[uiText('السنة','Year'),c.case_year],c.court&&[uiText('المحكمة','Court'),c.court],c.circuit&&[uiText('الدائرة','Circuit'),c.circuit],c.stage&&[uiText('المرحلة','Stage'),c.stage]].filter(Boolean);
+ shell(c.title,h('div',{className:'matter-context-strip'},h('span',{className:'matter-client-context',textContent:uiText('العميل: ','Client: ')+(c.client||'—')}),pill(c.status==='open'?uiText('مفتوحة','Open'):uiText('مغلقة','Closed'),c.status==='open'?'open':'closed'),...matterMeta.map(([label,value])=>h('span',{className:'matter-meta-chip'},h('span',{className:'mut',textContent:label}),h('b',{textContent:String(value)}))),h('span',{className:'matter-progress-context'},prog({done_tasks:dn,open_tasks:tot-dn}),h('span',{className:'mut',textContent:dn+'/'+tot+' '+uiText('مهام','tasks')}))),
+  h('div',{className:'matter-navigation'},tabGroupNav,tabDetailNav),body)}
 
 // Bilingual UI: interface labels are translated; user-entered case/legal text is never translated.
 let LANG=sessionStorage.lang||'ar';
