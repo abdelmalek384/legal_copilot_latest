@@ -864,3 +864,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Added `test_firm_connection_revokes_tenant_handle_when_control_file_is_replaced` and `test_firm_connection_revokes_tenant_handle_when_attached_corpus_is_replaced` to `tests/test_database_runtime.py`. The module is already registered in the explicit Tests workflow and focused security matrix.
 - Source commits: `6032ecf`, `6937bd6`, `330e0b3`; regression commit: `0ae13c4`. Static source/registration review confirms both regressions are present and wired. An isolated SQLite harness confirmed a same-path corpus replacement changes the recorded identity and is detectable. This harness is not execution of the repository test module.
 - Implementation: **100%**. Repository test execution: **0**; GitHub Actions: **0**. Runtime acceptance remains blocked by the CI billing/runner issue. Pilot/production remains **NOT READY**.
+
+
+- Tenant-isolation estimate updated after the attached-profile identity fix: **84.9%** (previously 84.7%). AI-2 estimate: **76.3%**; whole-project estimate: **74.9%**. The increase is deliberately small because only one bounded storage-identity gap was closed; CI, multi-process/runtime, staging and independent acceptance remain outstanding.
