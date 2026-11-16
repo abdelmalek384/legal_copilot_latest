@@ -1701,5 +1701,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn(':root[data-density="compact"] button,:root[data-density="compact"] input,:root[data-density="compact"] select{padding:6px 10px;min-height:44px}', HTML)
         self.assertIn("uiText('تفضيلات العرض','Display preferences')", HTML)
 
+    def test_reduced_motion_preference_persists_per_firm_and_user_and_overrides_system(self):
+        self.assertIn("function applyMotionPreference()", HTML)
+        self.assertIn("lc_motion_'+String(ME.firm_id||'0')+'_'+String(ME.id||'0')", HTML)
+        self.assertIn("document.documentElement.dataset.motion=saved==='reduce'?'reduce':'system'", HTML)
+        self.assertIn("localStorage.setItem(motionPreferenceKey,value)", HTML)
+        self.assertIn(':root[data-motion="reduce"] *,:root[data-motion="reduce"] *::before,:root[data-motion="reduce"] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}', HTML)
+        self.assertIn("@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}", HTML)
+        self.assertIn("uiText('تفضيلات إمكانية الوصول','Accessibility preferences')", HTML)
+
 if __name__ == "__main__":
     unittest.main()
