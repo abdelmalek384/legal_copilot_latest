@@ -214,7 +214,7 @@ def score(questions, runs, reviewer_registry):
         if not isinstance(q, dict):
             raise ValueError(f"question row {index} must be an object")
         qid = q.get("id")
-        if not isinstance(qid, str) or not qid.strip() or qid in q_by_id:
+        if not isinstance(qid, str) or not qid.strip() or qid != qid.strip() or qid in q_by_id:
             raise ValueError("question IDs must be unique non-empty strings")
         q_by_id[qid] = q
     r_by_id = {}
@@ -222,7 +222,7 @@ def score(questions, runs, reviewer_registry):
         if not isinstance(r, dict):
             raise ValueError(f"run row {index} must be an object")
         qid = r.get("question_id")
-        if not isinstance(qid, str) or not qid.strip() or qid in r_by_id:
+        if not isinstance(qid, str) or not qid.strip() or qid != qid.strip() or qid in r_by_id:
             raise ValueError("run question_id values must be unique non-empty strings")
         if qid not in q_by_id:
             raise ValueError(f"run contains unknown question_id {qid}")
