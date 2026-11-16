@@ -143,6 +143,21 @@ class LegalImportBundleTests(unittest.TestCase):
                 with self.assertRaisesRegex(SystemExit, "may only lower the hard OCR limit"):
                     importer._ocr_page_pixel_size(page, dpi=200)
 
+    def test_ocr_page_dimensions_reject_huge_finite_values_without_overflow(self):
+        from types import SimpleNamespace
+
+        page = SimpleNamespace(rect=SimpleNamespace(width=1e308, height=792.0))
+        with self.assertRaisesRegex(SystemExit, "configured 12000-pixel dimension limit"):
+            importer._ocr_page_pixel_size(page, dpi=200)
+
+    def test_ocr_page_dimensions_reject_invalid_dpi(self):
+        from types import SimpleNamespace
+
+        page = SimpleNamespace(rect=SimpleNamespace(width=612.0, height=792.0))
+        for dpi in (0, -1, True, 200.5):
+            with self.subTest(dpi=dpi), self.assertRaisesRegex(SystemExit, "DPI"):
+                importer._ocr_page_pixel_size(page, dpi=dpi)
+
     def test_ocr_page_dimensions_reject_non_finite_values(self):
         from types import SimpleNamespace
 
