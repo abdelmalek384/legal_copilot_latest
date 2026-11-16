@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 from database_runtime import DatabaseRuntime
 from tools.reminder_email import SMTPConfig
-from tools.reminder_outbox import enqueue_plan, retry_failed
+from tools.reminder_outbox import claim_next, enqueue_plan, finish_attempt, retry_failed
 from tools.reminder_schedule import build_reminder_plan
 from tools.reminder_service import (
     _ReadOnlyReminderRuntime, main, outbox_status, run_scheduler,
@@ -175,6 +175,26 @@ class ReminderServiceTests(unittest.TestCase):
         row = self.tenant.execute("SELECT * FROM reminder_deliveries").fetchone()
         self.assertEqual(row["status"], "accepted_by_smtp")
         self.assertEqual(row["attempt_count"], 1)
+
+    def test_delivery_leases_use_wall_clock_not_planning_override(self):
+        with patch(
+            "tools.reminder_service.send_reminder_email",
+            return_value={"status": "accepted_by_smtp", "attempts": 1, "error_code": None},
+        ), patch("tools.reminder_service.claim_next", wraps=claim_next) as claim, patch(
+            "tools.reminder_service.finish_attempt", wraps=finish_attempt
+        ) as finish:
+            report = run_scheduler(
+                self.runtime, now=self.now, timezone_name="Africa/Cairo", send=True,
+                smtp_config=self.smtp, app_url="https://app.example.test", max_send=10,
+            )
+
+        self.assertEqual(report["smtp_accepted"], 1)
+        claim_time = claim.call_args.kwargs["now"]
+        finish_time = finish.call_args.kwargs["now"]
+        self.assertGreater(claim_time, self.now)
+        self.assertGreaterEqual(finish_time, claim_time)
+        self.assertNotEqual(claim_time, self.now)
+        self.assertNotEqual(finish_time, self.now)
 
     def test_post_submission_ambiguity_is_quarantined_and_not_retryable(self):
         with patch(
