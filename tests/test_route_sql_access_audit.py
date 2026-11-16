@@ -31,6 +31,41 @@ def case_detail(case_id):
         self.assertIn("cases", route["table_references"])
         self.assertEqual(report["unclassified_sql_routes"], [])
 
+    def test_dynamic_route_path_is_reported_as_uninventoried(self):
+        source = '''
+PATH = "/private"
+@app.get(PATH)
+def private():
+    return None
+'''
+        report = audit_source(source)
+        self.assertEqual(report["route_count"], 0)
+        self.assertEqual(len(report["route_declaration_errors"]), 1)
+        self.assertIn("route path must be a literal string", report["route_declaration_errors"][0])
+
+    def test_dynamic_api_route_methods_are_reported_as_uninventoried(self):
+        source = '''
+METHODS = ["GET", "POST"]
+@app.api_route("/private", methods=METHODS)
+def private():
+    return None
+'''
+        report = audit_source(source)
+        self.assertEqual(report["route_count"], 0)
+        self.assertEqual(len(report["route_declaration_errors"]), 1)
+        self.assertIn("methods must be a non-empty literal", report["route_declaration_errors"][0])
+
+    def test_keyword_literal_route_path_is_inventoried(self):
+        source = '''
+@app.get(path="/private")
+def private():
+    return None
+'''
+        report = audit_source(source)
+        self.assertEqual(report["route_count"], 1)
+        self.assertEqual(report["route_declaration_errors"], [])
+        self.assertEqual(report["routes"][0]["path"], "/private")
+
     def test_flags_sql_routes_without_a_recognized_connection_boundary(self):
         source = '''
 def execute_query(db):
