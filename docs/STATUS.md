@@ -1236,3 +1236,10 @@ Validation and remaining gates:
 - Independent source validation for these changes: V8 parsed the full inline frontend script; focused static assertions passed (8/8, 5/5 and 9/9 respectively). These are source checks, not repository test or browser acceptance results.
 - GitHub Actions attempts on the changed heads concluded failure with empty job-step lists. No Python repository test module or Chromium/browser acceptance was executed by those runs; they do not establish code failure or test success.
 - Legal Research Phase 5 remains **85% implementation estimate** pending exact-build responsive, Arabic RTL/English LTR, keyboard/screen-reader and lawyer-usability acceptance. Aggregate estimates remain **AI-2 79.6%** and **whole project 75.3% provisional**; these are not test-pass or release-readiness percentages. Pilot/production remains **NOT READY**.
+
+
+## Case overview timeline — 2026-11-17
+
+- Merged PR #1736 (`7e1203504b697006645926e3d99a911806148470`): added a chronological case-summary timeline for dated hearings, legal deadlines and tasks. Event types remain distinct; completed tasks retain their status. The view uses only case-detail records already returned by the authorized endpoint; filing/reminder events are omitted because the current payload does not provide them.
+- Added semantic list/list-item and `time` elements, a bilingual empty state, two Arabic-review catalog entries, and a frontend regression contract.
+- Independent validation: full inline JavaScript parsed with V8; the actual timeline helper executed against synthetic data and passed ordering, event-kind and invalid-date checks. GitHub Actions jobs failed before any test steps, so repository Python and browser acceptance remain unexecuted.
