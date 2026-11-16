@@ -1134,3 +1134,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - S3 stream contract follow-up: the bounded reader now also rejects a provider body that returns more bytes than requested, closes it, and raises rather than trusting a non-conforming stream. Added an over-returning fake-body regression. Commits: source `155eaa6`; test `f0e9283`. Runtime tests remain unexecuted.
+
+
+- Recovery archive provider contract follow-up: exact-version persisted-byte verification and download now reject S3 response bodies that return more bytes than requested, while retaining the existing guaranteed close/partial-file cleanup paths. Added an over-returning-body download regression. Commits: source `b82e174`; test `2dd5590`. Repository runtime tests remain 0% executed.
