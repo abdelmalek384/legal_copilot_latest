@@ -5,7 +5,7 @@ from contextlib import redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
 
-from tools.audit_route_sql_access import audit_source, main
+from tools.audit_route_sql_access import audit_source, default_source, main
 
 
 class RouteSQLAccessAuditTests(unittest.TestCase):
@@ -206,6 +206,30 @@ def unsafe():
 '''
         report = audit_source(source)
         self.assertEqual(report["routes_opening_sqlite_directly"], ["GET /unsafe (unsafe)"])
+
+    def test_inventories_router_declared_sql_routes(self):
+        source = '''
+def firm_connection():
+    return None
+
+@router.get("/router-private")
+def router_private():
+    db = firm_connection()
+    return db.execute("SELECT id FROM cases").fetchall()
+'''
+        report = audit_source(source)
+        self.assertEqual(report["route_count"], 1)
+        self.assertEqual(report["routes"][0]["path"], "/router-private")
+        self.assertEqual(report["routes"][0]["data_boundaries"], ["firm"])
+        self.assertIn("cases", report["routes"][0]["table_references"])
+        self.assertEqual(report["unclassified_sql_routes"], [])
+
+    def test_default_inventory_includes_all_mounted_router_sources(self):
+        source = default_source()
+        report = audit_source(source)
+        paths = {(route["method"], route["path"]) for route in report["routes"]}
+        self.assertIn(("GET", "/manifest.webmanifest"), paths)
+        self.assertIn(("GET", "/invite/accept"), paths)
 
 
 if __name__ == "__main__":
