@@ -108,6 +108,17 @@ def valid_trusted_proxies(value):
     return True
 
 
+def _is_symlink_or_junction(path):
+    """Return True for symlinks/junctions; fail closed on inspection errors."""
+    try:
+        if path.is_symlink():
+            return True
+        is_junction = getattr(path, "is_junction", None)
+        return bool(is_junction()) if callable(is_junction) else False
+    except OSError:
+        return True
+
+
 def _has_symlinked_parent(path):
     """Return True when any existing parent component is a symbolic link.
 
@@ -421,7 +432,7 @@ def inspect_environment(env=None, *, require_separate=False):
                 errors.append("Legal-corpus database must be outside tenant storage.")
             except ValueError:
                 pass
-            if tenant_root.is_symlink() or tenant_root.is_junction() or _has_symlinked_parent(tenant_root):
+            if _is_symlink_or_junction(tenant_root) or _has_symlinked_parent(tenant_root):
                 errors.append(
                     "COPILOT_TENANT_DB_ROOT must not be a symbolic link or contain symbolic-link parent components."
                 )
