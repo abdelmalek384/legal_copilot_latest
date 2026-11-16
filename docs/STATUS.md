@@ -90,6 +90,12 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - The focused path predicate was exercised independently with temporary filesystem paths and passed. The repository test module remains unexecuted; no application test pass is claimed.
 - **Bounded regression task: 100% implemented; runtime test execution: pending.**
 
+## AI-2 S3 offboarding outage handling — 2026-11-16
+
+- The read-only firm-offboarding preflight now converts S3 inventory-listing failures (ObjectStorageError) into a blocking object_reconciliation_failed finding instead of allowing the provider exception to escape the report path. The CLI therefore emits a controlled blocked result rather than an unhandled traceback.
+- Added a regression with a synthetic S3 inventory outage; it asserts the preflight remains blocked, performs no mutation, and never authorizes production purge.
+- **Bounded implementation task: 100% implemented; regression execution: pending.** No GitHub Actions run or full application test was possible.
+
 **Unweighted AI-2 implementation estimate: 72.5%** (arithmetic mean of the seven workstream values above). The provisional whole-project engineering estimate is approximately **72%**; this is not a test-pass rate or production-readiness score. The application remains **NOT READY** for lawyer pilot or production. No test pass is inferred from committed test code.
 
 ## Legal evidence boundary
