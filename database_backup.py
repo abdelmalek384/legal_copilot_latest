@@ -955,6 +955,41 @@ def restore_backup_bundle(
     return _restore_backup_bundle_bytes(encrypted, cipher, destination)
 
 
+def _validated_manifest_tenants(value: Any) -> list[dict[str, Any]]:
+    if not isinstance(value, list):
+        raise DatabaseBundleError("Backup bundle tenant inventory is invalid")
+    validated: list[dict[str, Any]] = []
+    seen_firms: set[int] = set()
+    for record in value:
+        if not isinstance(record, dict):
+            raise DatabaseBundleError("Backup bundle tenant record is malformed")
+        firm_id = record.get("firm_id")
+        filename = record.get("database_file")
+        status = record.get("status")
+        firm_status = record.get("firm_status")
+        archive_path = record.get("archive_path")
+        if (
+            isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0
+            or firm_id in seen_firms
+            or not isinstance(status, str) or not status
+            or not isinstance(firm_status, str) or not firm_status
+            or (filename is not None and not isinstance(filename, str))
+            or (archive_path is not None and not isinstance(archive_path, str))
+        ):
+            raise DatabaseBundleError("Backup bundle tenant record is malformed")
+        if filename is not None:
+            match = _TENANT_FILENAME.fullmatch(filename)
+            if not match or int(match.group("firm_id")) != firm_id:
+                raise DatabaseBundleError("Backup bundle tenant filename is invalid")
+            if archive_path != f"tenants/{filename}":
+                raise DatabaseBundleError("Backup bundle tenant archive path is invalid")
+        elif archive_path is not None:
+            raise DatabaseBundleError("Backup bundle tenant archive path has no database filename")
+        seen_firms.add(firm_id)
+        validated.append(record)
+    return validated
+
+
 def _unique_json_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
     """Reject ambiguous JSON objects containing duplicate keys."""
     result: dict[str, Any] = {}
@@ -1042,9 +1077,7 @@ def _restore_backup_bundle_bytes(
         _validate_profile(control_file, "control_plane")
         _validate_profile(corpus_file, "legal_corpus")
 
-        tenant_records = manifest.get("tenants")
-        if not isinstance(tenant_records, list):
-            raise DatabaseBundleError("Backup bundle tenant inventory is invalid")
+        tenant_records = _validated_manifest_tenants(manifest.get("tenants"))
         control = _readonly(control_file)
         try:
             catalog = {
