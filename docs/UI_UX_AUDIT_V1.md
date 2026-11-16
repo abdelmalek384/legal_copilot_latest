@@ -47,3 +47,11 @@ These are frontend implementation and automated contract-test improvements, not 
 - [ ] Test at 360px, 768px, 1024px, and 1440px widths.
 - [ ] Run the repository's automated tests and CI; review screenshots before merge.
 - [ ] Do not imply the legal corpus is verified merely because the UI displays a status badge.
+
+
+### 2026-11-16 — grouped primary navigation
+
+- Primary navigation is grouped into Workspace and Firm administration while retaining all existing destinations and their existing permission gates.
+- Desktop uses stacked labelled groups; narrow layouts switch to a horizontally scrollable, touch-friendly row and hide the group captions to conserve vertical space.
+- The navigation continues to clear any pending one-shot matter/document/chunk review target before switching workspace pages. The existing answer-rating panel and save/load/list/export controls remain on the current mainline.
+- A source-level regression contract checks the route inventory, admin/platform/legal-review gates, mobile grouping and rating-panel preservation. Runtime/browser validation remains outstanding.
