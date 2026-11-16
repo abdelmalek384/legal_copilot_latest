@@ -507,5 +507,38 @@ class CorpusAuditTests(unittest.TestCase):
         self.assertIn("## Chunk Version Consistency", markdown)
         self.assertIn("in force chunks conflicting with version", markdown)
 
+    def test_sha256_file_rejects_final_path_symlink_swap(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            target = root / "evidence.bin"
+            target.write_bytes(b"approved evidence")
+            outside = root / "outside.bin"
+            outside.write_bytes(b"replacement evidence")
+            real_open = MODULE.os.open
+            swapped = False
+
+            def replace_before_open(path, flags, *args, **kwargs):
+                nonlocal swapped
+                if Path(path) == target and not swapped:
+                    swapped = True
+                    target.unlink()
+                    target.symlink_to(outside)
+                return real_open(path, flags, *args, **kwargs)
+
+            with patch.object(MODULE.os, "open", side_effect=replace_before_open):
+                with self.assertRaises(OSError):
+                    MODULE.sha256_file(target)
+            self.assertTrue(swapped)
+
+    def test_sha256_file_rejects_fifo_without_blocking(self):
+        import os
+        if not hasattr(os, "mkfifo"):
+            self.skipTest("FIFO files are unavailable on this platform")
+        with tempfile.TemporaryDirectory() as temp:
+            fifo = Path(temp) / "evidence.fifo"
+            os.mkfifo(fifo)
+            with self.assertRaises(OSError):
+                MODULE.sha256_file(fifo)
+
 if __name__ == "__main__":
     unittest.main()
