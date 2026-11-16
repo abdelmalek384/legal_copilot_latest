@@ -51,3 +51,6 @@
 
 
 - Follow-up: bounded S3 open stream now closes the provider body on underlying read exceptions; regression added (commits 204d5a8, 28c5d90). Runtime tests remain unexecuted.
+
+
+- 2026-11-16: S3 original-object inventory now caps unique keys at one million, alongside its existing page and continuation-token bounds; regression added (commits 0af3ef1, 0122ec1). Repository tests remain unexecuted.
