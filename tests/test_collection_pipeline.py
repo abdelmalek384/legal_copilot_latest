@@ -283,6 +283,17 @@ class CollectionPipelineTests(unittest.TestCase):
             self.assertEqual(json.loads(current.read_text(encoding="utf-8")), same_time_different_metadata)
             self.assertEqual({json.loads(p.read_text(encoding="utf-8"))["etag"] for p in history}, {'"first"', '"second"', '"third"'})
 
+    def test_metadata_history_timestamp_is_normalized_to_utc(self):
+        with tempfile.TemporaryDirectory() as td:
+            meta_dir = Path(td) / "metadata"
+            metadata = {
+                "document_id": "TEST-LAW",
+                "retrieved_at": "2026-10-26T20:00:00+02:00",
+                "sha256": "b" * 64,
+            }
+            archived = collector._archive_metadata_version(meta_dir, "TEST-LAW", metadata)
+            self.assertTrue(archived.name.startswith("20261026T180000000000Z-"))
+
     def test_metadata_history_collision_refuses_symlink_target(self):
         metadata = {
             "document_id": "TEST-LAW",
