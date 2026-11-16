@@ -79,3 +79,6 @@
 
 
 - 2026-11-16: Corrected the Windows reserved-device filename regex after an isolated pattern probe exposed an escaping error; CON/PRN/AUX/NUL and COM1–9/LPT1–9 names with extensions now match correctly (commit 6da44db). Repository tests remain unexecuted.
+
+
+- 2026-11-16: S3 metadata lookup now rejects non-object provider responses and safely classifies malformed provider error payloads; two regressions added (commits e1e8032, 8f1752c). Repository runtime tests remain unexecuted.
