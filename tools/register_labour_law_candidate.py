@@ -104,13 +104,14 @@ def register(db, record):
             raise ValueError("candidate terms_url must be a clean HTTPS URL or null")
         source_by_id[source_id] = source
     document_input = record.get("document")
-    if not isinstance(document_input, dict) or document_input.get("source_id") not in source_by_id:
+    document_source_id = document_input.get("source_id") if isinstance(document_input, dict) else None
+    if not isinstance(document_source_id, str) or document_source_id not in source_by_id:
         raise ValueError("candidate document source_id must reference a listed source")
     version_input = record.get("version")
     if not isinstance(version_input, dict) or not _valid_https_url(version_input.get("source_url")):
         raise ValueError("candidate version source_url must be a clean HTTPS URL")
     version_host = urlsplit(version_input["source_url"]).hostname.casefold()
-    document_source_host = urlsplit(source_by_id[document_input["source_id"]]["source_page"]).hostname.casefold()
+    document_source_host = urlsplit(source_by_id[document_source_id]["source_page"]).hostname.casefold()
     if version_host != document_source_host:
         raise ValueError("candidate version source_url host must match the document source")
     reviews = record.get("reviews", [])
