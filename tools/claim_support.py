@@ -70,7 +70,7 @@ _ENGLISH_MODAL_PATTERNS = {
     # simultaneously count as obligations and prohibitions.
     "obligation": re.compile(
         r"\b(?:must(?!\s+not|n['’]t)|shall(?!\s+not|n['’]t)|"
-        r"(?<!not )required to|is required to|are required to|is obliged to|are obliged to|is obligated to|are obligated to|have to|has to)\b",
+        r"(?<!not )(?<!isn't )(?<!isn’t )(?<!aren't )(?<!aren’t )required to|is required to|are required to|is obliged to|are obliged to|is obligated to|are obligated to|have to|has to)\b",
         re.IGNORECASE,
     ),
     "prohibition": re.compile(
@@ -81,10 +81,10 @@ _ENGLISH_MODAL_PATTERNS = {
         re.IGNORECASE,
     ),
     "non_obligation": re.compile(
-        r"\b(?:not required to|isn't required to|aren't required to|need not|needn['’]t|"
+        r"\b(?:not required to|isn['’]t required to|aren['’]t required to|need not|needn['’]t|"
         r"do not have to|don['’]t have to|does not have to|doesn['’]t have to|"
-        r"is not obliged to|are not obliged to|isn't obliged to|aren't obliged to|"
-        r"is not obligated to|are not obligated to|isn't obligated to|aren't obligated to)\b",
+        r"is not obliged to|are not obliged to|isn['’]t obliged to|aren['’]t obliged to|"
+        r"is not obligated to|are not obligated to|isn['’]t obligated to|aren['’]t obligated to)\b",
         re.IGNORECASE,
     ),
 }
