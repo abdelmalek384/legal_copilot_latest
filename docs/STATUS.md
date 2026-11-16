@@ -90,7 +90,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 
 ## AI-2 S3 reconciliation CLI error handling — 2026-11-16
 
-- The standalone read-only S3 reconciliation CLI now catches TypeError and OverflowError from malformed inventory/metadata values and exits through its controlled diagnostic path instead of emitting an unhandled traceback. This complements the offboarding preflight's blocking-finding behavior; it does not convert malformed data into a clean reconciliation result.
+- The standalone read-only S3 reconciliation CLI now catches TypeError and OverflowError from malformed inventory/metadata values and exits through its controlled diagnostic path instead of emitting an unhandled traceback. Its diagnostic reports the exception type, not provider-supplied exception text, reducing the risk of leaking sensitive endpoint/request details. This complements the offboarding preflight's blocking-finding behavior; it does not convert malformed data into a clean reconciliation result.
 - **Bounded source task: 100% implemented; CLI regression execution remains pending.**
 
 ## AI-2 S3 pagination and fail-closed offboarding hardening — 2026-11-16
