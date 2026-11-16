@@ -641,3 +641,14 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - The backup retention `keep` argument now rejects booleans, floats, strings and non-positive values; only a positive integer is accepted before filesystem or database work.
 - Added regression coverage for false-like and truthy non-boolean quiescence values and malformed retention counts. Source commit: `f101d24`; test commit: `f4d4d7e`.
 - The regression is in the already registered `test_database_backup_bundle.py` module. Static review only; repository test execution remains blocked.
+
+
+## AI-2 original-object inventory and backup assertion hardening — 2026-11-16
+
+- Local original-object inventory now rejects dangling symlink roots before treating them as absent. On POSIX, it inventories through no-follow directory descriptors, checks each firm namespace is the same real directory opened after inspection, and uses no-follow stat calls for object entries. This closes root/namespace substitution windows in the inventory pass; the non-POSIX fallback retains explicit per-entry symlink checks.
+- Added regression coverage for dangling root symlinks and symlinked firm namespaces. Source commit: c23aa42; test commit: 63b1e79.
+- An isolated directory-descriptor harness passed for regular root/namespace/object traversal and rejected a dangling symlink root. It is not execution of the repository test module.
+- The same continuation also made backup quiescence an exact boolean assertion and validated retention count types before work begins (source f101d24, tests f4d4d7e).
+- Updated engineering estimates: tenant isolation/access control 84.7%; authentication/firm administration 85.2%; case management 90%; document processing/security 99.1%; backup/release readiness 42.1%; AI-2 overall 73.7%; whole project 72.6%. These estimates reflect code implementation only.
+- Cumulative continuation accounting: 4 source hardening commits across 2 implementation files; 7 regression cases added across 2 test modules; 2 isolated filesystem/descriptor harnesses passed; 0 repository test modules executed; 0 Actions jobs executed; 0 PRs merged. The relevant backup/recovery test modules are already registered in the security regression matrix.
+- Blockers remain: hosted CI billing/runner allocation, no local checkout, no repository test execution, no dependency lock regeneration/install, no browser acceptance, no live S3/KMS verification, and no witnessed restore. Pilot/production remains NOT READY.
