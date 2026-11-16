@@ -133,6 +133,8 @@ class S3PrivateObjectStore:
             return False
         error = response.get("Error", {})
         metadata = response.get("ResponseMetadata", {})
+        if not isinstance(error, dict) or not isinstance(metadata, dict):
+            return False
         return error.get("Code") in {"404", "NoSuchKey", "NotFound"} or metadata.get("HTTPStatusCode") == 404
 
     def _head(self, key: str):
@@ -142,6 +144,8 @@ class S3PrivateObjectStore:
             if self._missing(exc):
                 return None
             raise ObjectStorageError("object-storage metadata lookup failed") from exc
+        if not isinstance(result, dict):
+            raise ObjectStorageError("object-storage metadata response is malformed")
         # Do not treat an object as valid merely because its key exists. Require
         # S3's response to attest that server-side KMS encryption is active.
         if not self._is_expected_kms_key(result):
