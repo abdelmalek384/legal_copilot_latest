@@ -118,16 +118,17 @@ def _hash_file_at(directory_fd: int, name: str) -> tuple[str, int]:
         os.O_RDONLY | os.O_NOFOLLOW | getattr(os, "O_NONBLOCK", 0)
         | getattr(os, "O_CLOEXEC", 0)
     )
+    descriptor = None
     try:
-        fd = os.open(name, flags, dir_fd=directory_fd)
-        metadata = os.fstat(fd)
+        descriptor = os.open(name, flags, dir_fd=directory_fd)
+        metadata = os.fstat(descriptor)
         if not stat.S_ISREG(metadata.st_mode) or metadata.st_nlink != 1:
-            os.close(fd)
             raise ValueError("object is not a single-link regular file")
         if metadata.st_size > _MAX_RECONCILIATION_OBJECT_BYTES:
-            os.close(fd)
             raise _ObjectSizeLimitExceeded("object exceeds reconciliation size limit")
-        with os.fdopen(fd, "rb", closefd=True) as handle:
+        handle = os.fdopen(descriptor, "rb", closefd=True)
+        descriptor = None
+        with handle:
             while True:
                 read_size = min(1024 * 1024, _MAX_RECONCILIATION_OBJECT_BYTES - size + 1)
                 block = handle.read(read_size)
@@ -137,8 +138,15 @@ def _hash_file_at(directory_fd: int, name: str) -> tuple[str, int]:
                 if size > _MAX_RECONCILIATION_OBJECT_BYTES:
                     raise _ObjectSizeLimitExceeded("object exceeds reconciliation size limit")
                 digest.update(block)
+    except _ObjectSizeLimitExceeded:
+        raise
+    except ValueError:
+        raise
     except OSError as exc:
         raise ValueError("object cannot be safely read") from exc
+    finally:
+        if descriptor is not None:
+            os.close(descriptor)
     return digest.hexdigest(), size
 
 
