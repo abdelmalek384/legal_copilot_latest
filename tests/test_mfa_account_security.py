@@ -237,23 +237,67 @@ class MFAAccountSecurityTests(unittest.TestCase):
         self.assertEqual(current["status"], "enabled")
         self.assertNotEqual(current["secret_ciphertext"], old_secret)
 
-        # Correct password and recent MFA verification can start a new pending
-        # enrollment, but the replacement is not enabled until explicitly confirmed.
-        reenroll = self.mutate(
-            "post", "/account/mfa/re-enroll",
-            json={"current_password": self.password},
-        )
-        self.assertEqual(reenroll.status_code, 200, reenroll.text)
-        new_secret = reenroll.json()["secret"]
-        self.assertNotEqual(new_secret, old_secret)
-        current = control.execute(
-            "SELECT status,secret_ciphertext,enrollment_expires FROM mfa_credentials WHERE user_id=?",
-            (self.user_id,),
-        ).fetchone()
-        self.assertEqual(current["status"], "pending")
-        self.assertNotEqual(current["secret_ciphertext"], new_secret)
-        self.assertGreater(current["enrollment_expires"], int(time.time()))
-        self.assertIn("no-store", reenroll.headers.get("cache-control", "").lower())
+        second_client = TestClient(app.app)
+        try:
+            second_login = second_client.post(
+                "/login", json={"email": "MFA-OWNER@example.test", "password": self.password}
+            )
+            self.assertEqual(second_login.status_code, 200, second_login.text)
+            self.assertTrue(second_login.json()["mfa_verification_required"])
+            old_factor = second_client.post(
+                "/account/mfa/verify",
+                json={"code": totp_code(old_secret, (int(time.time()) // 30 + 1) * 30)},
+                headers={"X-CSRF-Token": second_client.cookies.get("lc_csrf") or ""},
+            )
+            self.assertEqual(old_factor.status_code, 200, old_factor.text)
+
+            # Correct password and recent MFA verification can start a new pending
+            # enrollment, but every existing session must re-verify after replacement.
+            reenroll = self.mutate(
+                "post", "/account/mfa/re-enroll",
+                json={"current_password": self.password},
+            )
+            self.assertEqual(reenroll.status_code, 200, reenroll.text)
+            new_secret = reenroll.json()["secret"]
+            self.assertNotEqual(new_secret, old_secret)
+            current = control.execute(
+                "SELECT status,secret_ciphertext,enrollment_expires FROM mfa_credentials WHERE user_id=?",
+                (self.user_id,),
+            ).fetchone()
+            self.assertEqual(current["status"], "pending")
+            self.assertNotEqual(current["secret_ciphertext"], new_secret)
+            self.assertGreater(current["enrollment_expires"], int(time.time()))
+            self.assertIn("no-store", reenroll.headers.get("cache-control", "").lower())
+            self.assertEqual(
+                control.execute(
+                    "SELECT COUNT(*) FROM auth_sessions WHERE user_id=? AND mfa_verified=1",
+                    (self.user_id,),
+                ).fetchone()[0],
+                0,
+            )
+
+            self.confirm(new_secret)
+            own_session = control.execute(
+                "SELECT mfa_verified FROM auth_sessions WHERE token_hash=?",
+                (app.sha(self.client.cookies.get("lc_session") or ""),),
+            ).fetchone()
+            other_session = control.execute(
+                "SELECT mfa_verified FROM auth_sessions WHERE token_hash=?",
+                (app.sha(second_client.cookies.get("lc_session") or ""),),
+            ).fetchone()
+            self.assertEqual(own_session["mfa_verified"], 1)
+            self.assertEqual(other_session["mfa_verified"], 0)
+            self.assertEqual(second_client.get("/cases").status_code, 403)
+
+            new_factor = second_client.post(
+                "/account/mfa/verify",
+                json={"code": totp_code(new_secret, (int(time.time()) // 30) * 30)},
+                headers={"X-CSRF-Token": second_client.cookies.get("lc_csrf") or ""},
+            )
+            self.assertEqual(new_factor.status_code, 200, new_factor.text)
+            self.assertEqual(second_client.get("/cases").status_code, 200)
+        finally:
+            second_client.close()
 
     def test_optional_mfa_policy_does_not_bypass_voluntary_mfa_during_reenrollment(self):
         password = "Voluntary-MFA-User-Password-2026!"
