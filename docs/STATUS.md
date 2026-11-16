@@ -748,3 +748,10 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Recovery download now treats a response-body close failure as a failed operation: the destination is removed through the pinned directory handle, and best-effort cleanup does not mask the primary failure. Added a regression with a body stream whose close raises and asserted no output remains. Source commit: a2926dc; test commit: fe11f19. Static review only; test module not executed.
+
+
+## AI-2 encrypted backup publication no-overwrite semantics — 2026-11-16
+
+- Encrypted local backup publication now uses exclusive hard-link creation instead of os.replace, so a timestamp/name collision cannot silently overwrite an existing backup. The temporary file is removed after successful publication; directory metadata is fsynced where directory descriptors are supported. A sync failure is reported without deleting a possibly published backup.
+- Added a regression that fixes the generated timestamp, pre-creates the exact destination name, and verifies backup creation fails while preserving the pre-existing bytes and cleaning the temporary file. Source commits: 56ef2ae, 63e3881; test commit: 929cd59.
+- Static review only; no repository test module or Actions job executed. Backup/release readiness estimate 45.9%; AI-2 overall 75.6%; whole project 74.3%. Pilot/production remains NOT READY.
