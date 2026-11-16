@@ -157,6 +157,10 @@ class SubscriptionBillingRouteTests(unittest.TestCase):
         )
         self.assertEqual(matter.status_code, 200, matter.text)
         matter_id = matter.json()["id"]
+        promoted_before_expiry = self._mutate(
+            self.client_a, "put", f"/users/{self.lawyer_id}/role", json={"role": "admin"}
+        )
+        self.assertEqual(promoted_before_expiry.status_code, 200, promoted_before_expiry.text)
         control = self.runtime.control_connection()
         expired_at = int(app.time.time()) - 3600
         control.execute(
@@ -204,14 +208,14 @@ class SubscriptionBillingRouteTests(unittest.TestCase):
         self.assertEqual(blocked.status_code, 423, blocked.text)
 
         # Billing read-only mode must not prevent security demotion or access revocation.
-        promoted = self._mutate(
-            self.client_a, "put", f"/users/{self.lawyer_id}/role", json={"role": "admin"}
-        )
-        self.assertEqual(promoted.status_code, 200, promoted.text)
         demoted = self._mutate(
             self.client_a, "put", f"/users/{self.lawyer_id}/role", json={"role": "lawyer"}
         )
         self.assertEqual(demoted.status_code, 200, demoted.text)
+        promotion_blocked = self._mutate(
+            self.client_a, "put", f"/users/{self.lawyer_id}/role", json={"role": "admin"}
+        )
+        self.assertEqual(promotion_blocked.status_code, 423, promotion_blocked.text)
         suspended = self._mutate(
             self.client_a, "post", f"/users/{self.lawyer_id}/disable"
         )
