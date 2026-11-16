@@ -450,6 +450,15 @@ class DatabaseBackupBundleTests(unittest.TestCase):
             verify_backup_bundle(bundle, Fernet(Fernet.generate_key()))
         self.assertEqual({p.name for p in self.root.iterdir()}, before)
 
+    def test_restore_rejects_filesystem_root_as_target_parent(self):
+        target = Path("/") / ("legal-copilot-restore-" + self.root.name)
+        self.assertFalse(target.exists())
+        with self.assertRaisesRegex(DatabaseBundleError, "directly under a filesystem root"):
+            restore_backup_bundle(
+                self.root / "does-not-need-to-exist.enc", self.cipher, target
+            )
+        self.assertFalse(target.exists())
+
     def test_backup_rejects_tenant_root_as_output_directory(self):
         with self.assertRaises(DatabaseBundleError):
             create_backup_bundle(
