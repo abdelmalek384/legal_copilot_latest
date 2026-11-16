@@ -464,7 +464,7 @@ class DatabaseBackupBundleTests(unittest.TestCase):
             with self.assertRaisesRegex(
                 DatabaseBundleError, "appeared during publication"
             ):
-                database_backup._publish_restore_directory_no_replace(staged, destination)
+                database_backup._publish_restore_directory_no_replace(staged, destination, self.root)
 
         self.assertEqual(marker.read_text(encoding="utf-8"), "preserve")
         self.assertTrue((staged / "control_plane.sqlite3").is_file())
