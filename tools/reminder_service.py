@@ -138,14 +138,15 @@ _DEFAULT_REMINDER_PREFERENCES = {
 
 
 def _reminder_preferences(tenant: sqlite3.Connection, user_id: int) -> dict[str, int]:
-    try:
-        row = tenant.execute(
-            "SELECT email_enabled,deadline_7_days,deadline_3_days,deadline_1_day,"
-            "deadline_day_of,deadline_overdue,session_day_of,task_reminders "
-            "FROM reminder_preferences WHERE user_id=?", (user_id,)
-        ).fetchone()
-    except sqlite3.Error:
-        return dict(_DEFAULT_REMINDER_PREFERENCES)
+    # A missing/unavailable preference table is a schema/runtime failure, not
+    # evidence of consent. Let it abort scheduling rather than silently using
+    # the enabled defaults. A missing row is different: the migration's column
+    # defaults define the documented first-run preference state.
+    row = tenant.execute(
+        "SELECT email_enabled,deadline_7_days,deadline_3_days,deadline_1_day,"
+        "deadline_day_of,deadline_overdue,session_day_of,task_reminders "
+        "FROM reminder_preferences WHERE user_id=?", (user_id,)
+    ).fetchone()
     if row is None:
         return dict(_DEFAULT_REMINDER_PREFERENCES)
     return {key: int(row[key]) for key in _DEFAULT_REMINDER_PREFERENCES}
