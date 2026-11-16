@@ -208,6 +208,28 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
         self.assertTrue(self.s3.multipart_completed)
         self.assertFalse(self.s3.multipart_aborted)
 
+    def test_multipart_upload_aborts_if_source_grows_after_digest(self):
+        from unittest.mock import patch
+        import database_backup_archive
+
+        real_digest = database_backup_archive._digest_file
+
+        def digest_then_grow(source):
+            result = real_digest(source)
+            with self.bundle.open("ab") as changed:
+                changed.write(b"unexpected appended bytes")
+            source.seek(0)
+            return result
+
+        with (
+            patch("database_backup_archive._SINGLE_PUT_MAX_BYTES", 1),
+            patch("database_backup_archive._digest_file", side_effect=digest_then_grow),
+        ):
+            with self.assertRaises(DatabaseBundleError):
+                self.upload()
+        self.assertTrue(self.s3.multipart_aborted)
+        self.assertEqual(self.s3.multipart_uploads, {})
+
     def test_multipart_failure_aborts_incomplete_upload(self):
         from unittest.mock import patch
 
