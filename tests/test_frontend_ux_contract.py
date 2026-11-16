@@ -1664,5 +1664,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("textContent:activeFirm.firm_name", shell)
         self.assertIn(")),tenantContext,firmSwitch,", shell)
 
+    def test_active_firm_context_displays_localized_membership_role(self):
+        shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction dash()")]
+        self.assertIn("admin:'مسؤول المكتب',lawyer:'محامٍ'", HTML)
+        self.assertIn("const activeRole=activeFirm&&(activeFirm.role||ME.role)", shell)
+        self.assertIn("textContent:RL[activeRole]||activeRole", shell)
+        self.assertIn("textContent:activeFirm.firm_name", shell)
+
 if __name__ == "__main__":
     unittest.main()

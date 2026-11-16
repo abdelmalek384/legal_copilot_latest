@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "659b6f5cfdeb718b36ba42acb4a6e01a453b8657",
   "generated_on": "2026-11-17",
-  "entry_count": 1554,
+  "entry_count": 1555,
   "entries": [
     {
       "id": "AR-0001",
@@ -2020,6 +2020,7 @@
       "arabic": "محامٍ",
       "source_lines": [
         1077,
+        1364,
         1471,
         1646,
         2350,
@@ -17290,6 +17291,15 @@
       "source_file": "static/index.html",
       "source_lines": [
         2190
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1555",
+      "arabic": "مسؤول المكتب",
+      "source_file": "static/index.html",
+      "source_lines": [
+        1364
       ],
       "review_status": "pending_native_review"
     }
