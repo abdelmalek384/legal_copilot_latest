@@ -787,3 +787,5 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - An isolated filesystem harness confirmed that replacing a regular locator file between lstat and open changes the opened descriptor inode and is detected by the new identity comparison. This is not execution of tests/test_manage_recovery_locator.py.
 
 - Recovery download and restore destination canonicalization now normalize both filesystem OSErrors and symlink-resolution RuntimeErrors into controlled domain failures. This avoids leaking raw path-resolution exceptions for malformed or cyclic parent paths. Source commits: 2a03e96, a64b3bc.
+
+- An isolated directory-inode harness confirmed that swapping a configured object-root for a different real directory produces a different opened device/inode and is detectable by the new backup inventory check. This is not execution of tests/test_database_backup_bundle.py.
