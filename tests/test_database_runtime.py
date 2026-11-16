@@ -1527,6 +1527,21 @@ class DatabaseRuntimeTests(unittest.TestCase):
                 with self.assertRaisesRegex(DatabaseRuntimeError, "symlink"):
                     DatabaseRuntime(control, tenant_root, corpus)
 
+    def test_runtime_rejects_junctioned_profile_path_components(self):
+        junction = self.root / "junction-parent"
+        junction.mkdir()
+
+        def is_junction(path):
+            return path == junction
+
+        with patch.object(Path, "is_junction", new=is_junction):
+            with self.assertRaisesRegex(DatabaseRuntimeError, "symlink"):
+                DatabaseRuntime(
+                    junction / "control.sqlite3",
+                    self.root / "tenant-junctions",
+                    self.root / "corpus-junction.sqlite3",
+                )
+
     def test_runtime_refuses_ambiguous_or_overlapping_paths(self):
         with self.assertRaises(DatabaseRuntimeError):
             DatabaseRuntime(
