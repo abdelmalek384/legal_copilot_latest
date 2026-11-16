@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "e7583d977346dcf889eb8358b5eb5ea6b5747c3f",
   "generated_on": "2026-11-16",
-  "entry_count": 1544,
+  "entry_count": 1549,
   "entries": [
     {
       "id": "AR-0001",
@@ -17194,6 +17194,51 @@
       "source_file": "static/index.html",
       "source_lines": [
         2732
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1545",
+      "arabic": "وضع الاختبار: مطابق للمصدر — غير مراجَع من محامٍ",
+      "source_file": "static/index.html",
+      "source_lines": [
+        2718
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1546",
+      "arabic": "عدد المستندات المتحقق منها متاح للمراجعين القانونيين فقط.",
+      "source_file": "static/index.html",
+      "source_lines": [
+        2952
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1547",
+      "arabic": "مستندات ذات نص قانوني متحقق: ",
+      "source_file": "static/index.html",
+      "source_lines": [
+        2957
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1548",
+      "arabic": "لا توجد مستندات قانونية متحققة متاحة؛ سيمتنع المساعد عن التخمين.",
+      "source_file": "static/index.html",
+      "source_lines": [
+        2958
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1549",
+      "arabic": "تعذر تحميل عدد المستندات المتحقق منها.",
+      "source_file": "static/index.html",
+      "source_lines": [
+        2959
       ],
       "review_status": "pending_native_review"
     }

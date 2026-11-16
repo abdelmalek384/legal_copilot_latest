@@ -1530,5 +1530,16 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn('"arabic": "أدوات التقييم"', (ROOT / "static" / "ar-ui-review.json").read_text(encoding="utf-8"))
 
 
+    def test_legal_research_corpus_count_uses_reviewer_endpoint_and_source_matched_status_is_explicit(self):
+        research = HTML[HTML.index("async function law(){"):HTML.index("\\nfunction documentIntelligencePanel(")]
+        self.assertIn("if(!ME.can_review_legal)", research)
+        self.assertIn("api('/legal-review/coverage')", research)
+        self.assertIn("row.documents_with_verified_operational_text", research)
+        self.assertIn("researchCorpusStatus", research)
+        self.assertIn("No verified legal documents are available; the assistant will abstain rather than guess.", research)
+        self.assertIn("message.trust_tier||(message.result&&message.result.trust_tier))==='source_matched'", research)
+        self.assertIn("Test mode: Source-matched — not lawyer-reviewed", research)
+
+
 if __name__ == "__main__":
     unittest.main()
