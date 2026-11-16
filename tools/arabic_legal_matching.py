@@ -76,12 +76,12 @@ def _is_negated_at(normalized_query, start):
     # Standalone ما is ambiguous: in "ما هي الإجازة؟" it is interrogative,
     # while in "ما عنديش إجازة" / "ما حصلش على إجازة" it is negative.
     return bool(re.search(
-        r"(?:^|\\s)ما\\s+(?:عند\\w*|فيش|حصل\\w*|استحق\\w*|قدر\\w*|طلب\\w*)"
-        r"\\s+(?:\\S+\\s+){0,2}$",
+        r"(?:^|\s)ما\s+(?:عند\w*|فيش|حصل\w*|استحق\w*|قدر\w*|طلب\w*)"
+        r"\s+(?:\S+\s+){0,2}$",
         prefix,
     ) or re.search(
         # Egyptian circumfix negation: ما + verb ending in ش (e.g. ما دفعش الأجر).
-        r"(?:^|\\s)ما\\s+\\S+ش\\s+(?:\\S+\\s+){0,2}$",
+        r"(?:^|\s)ما\s+\S+ش\s+(?:\S+\s+){0,2}$",
         prefix,
     ))
 

@@ -42,5 +42,15 @@ class NegationGuardReproTests(unittest.TestCase):
         )
 
 
+    def test_egyptian_circumfix_negated_obligation_cannot_be_rewritten_as_positive(self):
+        cases = (
+            ("ما يلزمش صاحب العمل تقديم الإخطار.", "يلزم صاحب العمل تقديم الإخطار"),
+            ("ما يجبش على صاحب العمل تقديم الإخطار.", "يجب على صاحب العمل تقديم الإخطار"),
+        )
+        for evidence, answer in cases:
+            with self.subTest(evidence=evidence):
+                self.assert_reversal_is_blocked(evidence, answer)
+
+
 if __name__ == "__main__":
     unittest.main()
