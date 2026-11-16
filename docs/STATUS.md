@@ -915,3 +915,12 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Aggregate estimate after MFA re-enrollment session invalidation and reminder delivery hardening: authentication/firm administration **85.9%**, AI-2 **76.7%**, whole project **75.3%**. The change is deliberately limited to the code-level controls completed here; repository tests, CI, live SMTP, live AWS, browser and independent acceptance are not credited as complete.
+
+## AI-1 retrieval measurement integrity hardening — 2026-11-16
+
+- Merged PRs #1658–#1662: scorer output symlink protection; focused regression registration for the Arabic retrieval scorer and Gazette importer; and expanded focused coverage for source review, lawyer-answer evaluation, evidence URLs, provisional Labour Law questions, source permissions/versioning, citation binding/polarity, synthetic retrieval, and evaluation-draft integrity.
+- Merged PR #1663: Arabic retrieval measurement reports are written to a same-directory temporary file, flushed and fsynced, then atomically replaced. A failed replacement preserves the previous report and cleans the temporary file. An isolated filesystem harness exercised successful replacement and simulated replacement failure; the repository test module remains unexecuted.
+- Merged PR #1664: the scorer now consumes the API runner's `invalid_citation_indices` and `citation_marker_count`. Any invalid visible citation marker is a safety failure even if another citation is correct. Legacy/manual reviewed runs missing either field cannot receive `targets_met`; the report exposes missing validation coverage. Added regression cases are committed but unexecuted.
+- The focused security regression matrix now contains **70 unique modules**, all statically confirmed present in the main Tests workflow. This is registration coverage only; repository test execution remains **0** in this session.
+- Isolated filesystem harness passed for atomic report replacement and failure preservation. GitHub Actions remains unavailable due runner billing/allocation; the repository cannot be cloned in this environment because outbound DNS/network access is unavailable. No repository test pass is claimed.
+- **AI-1 bounded implementation estimate: 74%.** Retrieval measurement integrity and focused test registration improved; legal corpus readiness remains low and external lawyer/source dependencies remain open. Whole-project estimate remains the latest separately recorded **75.3% provisional engineering estimate**, not a test-pass rate or readiness score.
