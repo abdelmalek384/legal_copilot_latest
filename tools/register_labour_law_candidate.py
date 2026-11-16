@@ -101,7 +101,10 @@ def register(db, record):
     for source in sources:
         if not isinstance(source, dict):
             raise ValueError("candidate source entries must be objects")
-        for field in ("source_id", "authority", "source_page", "access_status"):
+        for field in (
+            "source_id", "authority", "source_page", "access_status",
+            "collection_permission", "commercial_reuse_permission",
+        ):
             if not isinstance(source.get(field), str) or not source[field].strip():
                 raise ValueError(f"candidate source {field} must be a non-empty string")
         source_id = source["source_id"]
