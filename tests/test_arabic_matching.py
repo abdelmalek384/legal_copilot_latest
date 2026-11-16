@@ -148,6 +148,20 @@ class ArabicMatchingTests(unittest.TestCase):
         for alias in ("عطلة", "leave", "vacation", "holiday", "annual", "yearly"):
             self.assertNotIn(tokens(alias)[0], expanded)
 
+    def test_formal_arabic_negation_blocks_positive_lexicon_hints(self):
+        for question in (
+            "لا أريد إجازة",
+            "ليس لدي إجازة",
+            "لم أحصل على إجازة",
+            "لن أطلب إجازة",
+            "بدون إجازة",
+        ):
+            with self.subTest(question=question):
+                expanded = set(expanded_tokens(question))
+                self.assertIn(tokens("إجازة")[0], expanded)
+                self.assertNotIn("leave", expanded)
+                self.assertNotIn(tokens("الإجازة السنوية")[0], expanded)
+
     def test_positive_occurrence_still_expands_when_same_query_also_has_negation(self):
         expanded = set(expanded_tokens("مش عايز إجازة لكن عايز إجازة"))
         self.assertIn(tokens("الإجازة السنوية")[0], expanded)
