@@ -1621,5 +1621,16 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("sort((a,b)=>a.date.localeCompare(b.date))", helper)
         self.assertIn("No dated hearings, legal deadlines or tasks yet.", summary)
 
+    def test_legal_research_default_scope_persists_per_firm_and_user_without_persisting_matter_ids(self):
+        research = HTML[HTML.index("async function law(){"):HTML.index("\nfunction documentIntelligencePanel(")]
+        self.assertIn("lc_research_scope_default_", research)
+        self.assertIn("String(ME.firm_id||'0')+'_'+String(ME.id||'0')", research)
+        self.assertIn("localStorage.getItem(researchScopePreferenceKey)", research)
+        self.assertIn("['verified_corpus','firm_documents','metadata_only'].includes(savedScope)", research)
+        self.assertIn("localStorage.setItem(researchScopePreferenceKey,scopeSelect.value)", research)
+        self.assertIn("scopeSelect.value=value;persistResearchScope();syncScopeTabs()", research)
+        self.assertIn("scopeSelect.onchange=()=>{persistResearchScope();", research)
+        self.assertNotIn("localStorage.setItem(researchScopePreferenceKey,matterSelect.value)", research)
+
 if __name__ == "__main__":
     unittest.main()
