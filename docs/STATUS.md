@@ -470,3 +470,10 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - PR #1651 (`Serve the missing logo asset and diagnose Legal Research 404s`) was merged on GitHub as `11c1d252720ac2b5bcb0e2ed68eaf14f33afd93b` after the earlier inspection. The change adds both icon URL routes and bounded method/status/path diagnostics for Legal Research API failures. The PR's regression contract is committed but has not been executed here; no browser or route-runtime acceptance is claimed.
 - Current open PRs are #1610 (draft workspace simplification), #1644 (pypdf 7.1.0 major upgrade), and #1645 (Playwright 1.65.1). PRs #1642/#1643 remain closed and not merged; dependency pins remain aligned with the checked-in hash lock.
 - Current execution slice: tenant database open/symlink race hardening (1 source change series, 2 regression contracts), backup/restore root and canonical-path hardening (1 source change series, 1 regression), isolated filesystem/shell harnesses passed, 0 repository test modules executed. PR #1651 was merged externally; no PR was merged by this execution. Pilot/production remains **NOT READY**.
+
+
+## AI-2 purge CLI authority validation — 2026-11-16
+
+- Both local and S3 purge command-line entry points now reject non-positive firm and operator IDs immediately after argument parsing, before environment/acceptance checks, database access, offboarding inspection or AWS client creation. This complements the existing function-boundary validation.
+- Added one regression covering both CLI entry points and asserting argparse exits before environment validation. Source commits: local `6f13239`, S3 `3a602fd`; regression commit: `491168f`.
+- Static inspection only; the purge test module has not been executed. No purge was performed.
