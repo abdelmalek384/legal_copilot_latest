@@ -1344,5 +1344,21 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("answer-rating-panel", HTML)
 
 
+    def test_dashboard_prioritizes_overdue_work_and_keeps_finance_in_navigation(self):
+        start = HTML.index("async function dash(){")
+        end = HTML.index("\\nasync function ", start + 1)
+        dashboard = HTML[start:end]
+        self.assertIn("dashboard-attention", dashboard)
+        self.assertIn("Needs your attention", dashboard)
+        self.assertIn("overdueTasks+overdueDeadlines.length", dashboard)
+        self.assertIn("Review tasks", dashboard)
+        self.assertIn("Open calendar", dashboard)
+        self.assertNotIn("Recorded fees", dashboard)
+        self.assertNotIn("Outstanding fees", dashboard)
+        self.assertNotIn("Quick access", dashboard)
+        self.assertIn("['finance'", HTML)
+        self.assertIn("financePage", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
