@@ -879,3 +879,11 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - MFA regression strengthened in commit `a2b3d6d`: besides proving the existing session is blocked from matter routes while voluntary authenticator replacement is pending, it now creates a second session and asserts a fresh login is marked `mfa_required` and `mfa_enrollment_required`, with `mfa_verified=false`.
+
+
+## AI-2 MFA authenticator replacement session invalidation — 2026-11-16
+
+- Hardened `/account/mfa/re-enroll`: in the same transaction that moves the credential to pending, all existing sessions for that identity now have `mfa_verified=0` and `mfa_verified_at=0`. The session completing the new enrollment is re-verified by confirmation; other devices must verify with the replacement authenticator. The append-only event records that existing sessions require re-verification without including secrets or tokens.
+- Expanded `test_lost_authenticator_reenrollment_requires_recent_mfa_and_current_password` to create a second verified session, replace the authenticator, prove all prior MFA proofs were reset, confirm the replacement on the initiating session, and require the second session to verify using a fresh TOTP step before regaining matter access.
+- Source commit: `bd7d364`; regression commits: `1f568c4`, `fcd2112`. Static review confirms the test module remains registered in both the Tests workflow and security matrix. An isolated SQLite transaction harness confirmed session reset/confirmation semantics; repository tests and CI remain unexecuted.
+- Bounded implementation: **100%**. Authentication/firm-administration estimate: **85.7%**; AI-2: **76.5%**; whole project: **75.1%**. No test pass is claimed. Production readiness remains **NOT READY**.
