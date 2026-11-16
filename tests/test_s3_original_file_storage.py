@@ -383,6 +383,34 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         self.assertEqual(body.bytes_read, self.store.max_bytes + 1)
         self.assertTrue(body.closed, "oversized open stream must be closed")
 
+    def test_open_closes_provider_body_when_stream_read_raises(self):
+        from unittest.mock import patch
+
+        class FailingBody:
+            def __init__(self):
+                self.closed = False
+
+            def read(self, size=-1):
+                raise OSError("simulated provider stream failure")
+
+            def close(self):
+                self.closed = True
+
+        body = FailingBody()
+        with patch.object(
+            self.client, "get_object",
+            return_value={
+                "Body": body,
+                "ServerSideEncryption": "aws:kms",
+                "SSEKMSKeyId": self.client.CANONICAL_KMS_ARN,
+            },
+        ):
+            stream = self.store.open(12, "a" * 32)
+            with self.assertRaisesRegex(OSError, "simulated provider stream failure"):
+                stream.read(10)
+
+        self.assertTrue(body.closed, "failed provider stream must be closed")
+
     def test_open_rejects_oversized_content_length_before_reading(self):
         from unittest.mock import patch
 
