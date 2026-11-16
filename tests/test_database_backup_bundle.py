@@ -156,6 +156,8 @@ class DatabaseBackupBundleTests(unittest.TestCase):
 
     def test_backup_object_copy_stays_anchored_to_open_namespace(self):
         import os
+        if os.open not in getattr(os, "supports_dir_fd", set()):
+            self.skipTest("directory-descriptor relative opens are unavailable")
         from database_backup import _copy_verified_original_object
 
         namespace = self.root / "firm-namespace"
