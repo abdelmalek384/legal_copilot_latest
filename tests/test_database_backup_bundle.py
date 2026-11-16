@@ -267,6 +267,46 @@ class DatabaseBackupBundleTests(unittest.TestCase):
             )
         self.assertFalse(target.exists())
 
+    def test_backup_original_copy_rejects_root_directory_replacement(self):
+        from unittest.mock import patch
+        import database_backup
+
+        self._create_database(rows=[(self.object_id, self.payload, "ready")])
+        object_root = self.root / "copy-root-race"
+        namespace = object_root / f"firm-{self.firm_id}"
+        namespace.mkdir(parents=True)
+        (namespace / f"{self.object_id}.blob").write_bytes(self.payload)
+        replacement = self.root / "replacement-copy-root"
+        replacement_namespace = replacement / f"firm-{self.firm_id}"
+        replacement_namespace.mkdir(parents=True)
+        (replacement_namespace / f"{self.object_id}.blob").write_bytes(self.payload)
+        parked = self.root / "parked-copy-root"
+        real_open = os.open
+        swapped = False
+        payload = self.root / "backup-payload"
+        payload.mkdir()
+
+        def swap_root_before_open(path, flags, *args, **kwargs):
+            nonlocal swapped
+            if Path(path) == object_root and not swapped:
+                object_root.rename(parked)
+                replacement.rename(object_root)
+                swapped = True
+            return real_open(path, flags, *args, **kwargs)
+
+        with patch.object(database_backup.os, "open", side_effect=swap_root_before_open):
+            with self.assertRaisesRegex(DatabaseBundleError, "root changed during backup"):
+                database_backup._copy_original_objects(
+                    self.db, self.firm_id, object_root, payload
+                )
+
+        self.assertTrue(swapped)
+        self.assertFalse((payload / "objects").exists())
+        self.assertEqual(
+            (parked / f"firm-{self.firm_id}" / f"{self.object_id}.blob").read_bytes(),
+            self.payload,
+        )
+
     def test_backup_object_copy_hashes_the_same_no_follow_descriptor(self):
         from database_backup import _copy_verified_original_object
 
