@@ -93,6 +93,18 @@ class LegalImportBundleTests(unittest.TestCase):
             with self.assertRaisesRegex(SystemExit, "configured 10000-pixel dimension limit"):
                 importer._ocr_page_pixel_size(page, dpi=200)
 
+    def test_ocr_hard_limits_cannot_be_raised_by_environment(self):
+        from types import SimpleNamespace
+
+        page = SimpleNamespace(rect=SimpleNamespace(width=612.0, height=792.0))
+        for name, value in (
+            ("LEGAL_IMPORT_MAX_OCR_DIMENSION", "12001"),
+            ("LEGAL_IMPORT_MAX_OCR_PIXELS", "40000001"),
+        ):
+            with self.subTest(name=name), mock.patch.dict(os.environ, {name: value}):
+                with self.assertRaisesRegex(SystemExit, "may only lower the hard OCR limit"):
+                    importer._ocr_page_pixel_size(page, dpi=200)
+
     def test_ocr_page_dimensions_reject_non_finite_values(self):
         from types import SimpleNamespace
 
