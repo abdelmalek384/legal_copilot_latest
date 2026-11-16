@@ -797,3 +797,10 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Current engineering estimates: tenant isolation/access control 84.7%; authentication/firm administration 85.2%; case management 90%; document processing/security 99.1%; backup/release readiness 46.7%; AI-2 overall 76%; whole project 74.7%. These remain implementation estimates, not acceptance or test pass rates.
 - Validation: isolated Python harnesses passed for duplicate JSON keys, pinned-directory replacement, locator inode replacement and object-root inode replacement. Repository test modules executed: 0. GitHub Actions jobs executed: 0. Live S3/KMS and restore drill: not performed.
 - Open PR review unchanged: #1644 and #1645 remain unmergeable without lockfile/browser validation; #1610 remains draft and unsafe to merge wholesale. No force merge or bypass. Pilot/production remains NOT READY.
+
+
+## PR #1655 merged — Legal Research copy-helper initialization fix — 2026-11-16
+
+- PR #1655 was merged into main as merge commit 0181cca589c8257b1e64bd9c61923883b5f9ebe4. It converts the Legal Research copy translation helper from a const arrow binding to a hoisted function declaration, fixing the temporal-dead-zone failure where earlier-created controls invoked copy() before initialization.
+- Verified the merged main static/index.html contains the hoisted function and tests/test_research_copy_initialization.py exists on main. The regression contract is present but was not executed because Actions remain blocked.
+- This was a small, scoped frontend bug fix; no dependency, retrieval, verification-state or permission behavior was changed. PR #1655 is merged; #1644/#1645 remain blocked by dependency lock/browser validation; #1610 remains draft and unsafe for wholesale merge.
