@@ -1257,3 +1257,10 @@ Validation and remaining gates:
 - Merged PR #1738 (`9d41bc5ef622161cc1c9421c1a8442376b4ed0c9`): the case list now distinguishes an unfiltered firm with no accessible matters from a filtered search with no matches. The first-run state provides a direct New case action; filtered no-results retains its neutral message.
 - Updated the UX gap audit, Arabic native-review catalog and frontend regression contract. Catalog now contains 1,554 unique entries with unique IDs and Arabic strings.
 - Independent validation: full inline JavaScript parsed with V8; source/catalog assertions and the four-state empty-state condition harness passed. GitHub Actions failed before any test steps; no Python/browser pass is claimed.
+
+
+## First-run client list empty state — 2026-11-17
+
+- Merged PR #1739 (`659b6f5cfdeb718b36ba42acb4a6e01a453b8657`): the client list now distinguishes an unfiltered empty firm from filtered no-results. Firm administrators receive a contextual Create client action; non-admin users do not. API load failures suppress the empty-state claim.
+- Updated the UX gap audit, Arabic catalog source-line references and frontend regression contract. Catalog remains at 1,554 unique entries.
+- Independent validation: full inline JavaScript parsed with V8; focused source/catalog assertions passed. GitHub Actions did not execute test steps; no Python/browser pass is claimed.
