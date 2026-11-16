@@ -579,3 +579,6 @@ Updated estimates reflect source implementation only; regression execution and e
 
 
 - The focused security matrix now explicitly includes `test_original_file_storage.py` (including the staged-object symlink substitution regression) and `test_backup_restore_safety.py` in addition to the bundle and recovery-locator modules. Matrix registration commit: `c1d2ff6`. No matrix execution is claimed.
+
+
+- An isolated reproduction of the exact recovery-locator read contract passed the valid-object case and rejected oversized and symlink inputs. This remains a harness, not execution of the new test module.
