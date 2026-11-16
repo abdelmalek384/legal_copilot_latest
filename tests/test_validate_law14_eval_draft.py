@@ -1,4 +1,6 @@
+import contextlib
 import hashlib
+import io
 import json
 import os
 import tempfile
@@ -85,6 +87,26 @@ class Law14DraftInventoryTests(unittest.TestCase):
             question(expected_article_id="EG-LABOUR-LAW-14-2025-ART-13")
         ], minimum_questions=1)
         self.assertTrue(any("does not match" in item for item in report["errors"]))
+
+    def test_cli_report_includes_hash_of_exact_validated_dataset_bytes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "questions.jsonl"
+            rows = [
+                question(),
+                question(
+                    id="Q-002",
+                    question_ar="ما المقصود بهذا الحكم؟",
+                    question_style="colloquial_egyptian",
+                ),
+            ]
+            raw = "".join(json.dumps(row, ensure_ascii=False) + "\\n" for row in rows).encode("utf-8")
+            path.write_bytes(raw)
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                exit_code = validator.main([str(path), "--minimum-questions", "1"])
+            self.assertEqual(exit_code, 0)
+            report = json.loads(output.getvalue())
+            self.assertEqual(report["dataset_sha256"], hashlib.sha256(raw).hexdigest())
 
     def test_jsonl_reader_hashes_the_exact_bytes_it_parses(self):
         with tempfile.TemporaryDirectory() as directory:
