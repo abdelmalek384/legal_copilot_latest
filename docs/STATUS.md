@@ -810,3 +810,11 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Test-registration audit also found test_manage_recovery_locator.py was present in the focused security matrix but absent from the explicit Tests workflow. Added a dedicated workflow step adjacent to recovery archive transport. Source commit: 1fcacea. Registration is complete; execution remains blocked.
 
 - Static registration audit after the additions: all 40 modules listed in scripts/security_regression_check.sh are also explicitly referenced in .github/workflows/tests.yml; no security-matrix module is missing from the workflow. This is a source-text consistency check only, not execution of those modules.
+
+
+## AI-2 test registration completeness — 2026-11-16
+
+- Merged PR #1655's copy-helper regression and the previously added recovery-locator regression are now both registered in the explicit Tests workflow; the copy-helper test is also in the focused security matrix. A static comparison of the workflow's 190 distinct referenced test modules against the 40 focused security-matrix entries found zero matrix modules missing from the workflow.
+- This closes the test-registration implementation task for the current focused security matrix: **100% registered**. It does not mean the tests passed; GitHub Actions remains unavailable due the billing/runner issue.
+- Current estimates: tenant isolation/access control 84.7%; authentication/firm administration 85.2%; case management 90%; document processing/security 99.1%; backup/release readiness 46.7%; AI-2 overall 76.2%; whole project 74.8%.
+- PR #1655 is merged. No other open PR is safe to merge without the missing lockfile/browser or draft-PR validation. Pilot/production remains **NOT READY**.
