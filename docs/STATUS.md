@@ -416,3 +416,11 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Added a shared auth-cookie cleanup helper and invoke it when separate-runtime or legacy authentication rejects a missing, expired, or inactive session. The cleanup clears the session, CSRF, and selected-firm cookies; explicit logout uses the same helper.
 - Extended the separate-database expired-session regression to assert all three browser cookies are cleared and the expired token hash is removed from the control-plane session table.
 - Direct-main commits: application `c82cbb2`, regression `3ff45f5`. Regression is committed but unexecuted because GitHub Actions billing/runner availability remains blocked; no browser test is claimed.
+
+
+## AI-2 execution checkpoint — 2026-11-16 15:37 +02:00
+
+- Additional bounded implementation: purge firm/operator identifiers are validated before S3 target/acceptance inspection (`b10645f`); expired/inactive session rejection clears session, CSRF and firm-selection cookies in both runtime modes, with a committed separate-runtime regression (`c82cbb2`, `3ff45f5`).
+- Current workstream estimates: tenant isolation/access control 84%; authentication/administration 85%; case management 90%; document processing/security 99%; backup/release readiness 40%. AI-2 overall remains approximately 72.7%; whole-project estimate remains approximately 72%. These are engineering estimates only and do not represent executed tests or security acceptance.
+- Two bounded implementation tasks completed in this execution slice; zero repository test modules executed; zero PRs merged in this slice. Five PRs remain open at this checkpoint: four dependency updates and draft UI PR #1610. Dependency PR diffs/lock regeneration were not independently reviewed in this slice; #1610 remains unsuitable for wholesale merge. No safe merge was established.
+- GitHub Actions billing/runner allocation remains an external blocker. Local repository checkout and full test execution remain unavailable. Pilot/production decision remains **NOT READY**.
