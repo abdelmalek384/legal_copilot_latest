@@ -60,6 +60,9 @@ The following bounded repository tasks now meet their source-change acceptance c
 | Display matter provenance in research source inspector and open the exact matching document/chunk | **100%** | Frontend implementation and navigation lifecycle contract committed; browser/tests unexecuted |
 | Clear stale one-shot passage navigation on close, failed load, missing target, manual navigation and identity boundary changes | **100%** | Source and frontend contract committed; browser behavior unverified |
 | State that extracted page references are provisional until checked against the original | **100%** | Bilingual warning and workflow-registered regression committed; tests unexecuted |
+| Reject physically overlapping backup and restore directory trees | **100%** | Canonical-path guard and two-direction regression committed and registered; execution pending |
+| Enforce explicit quiescence inside the destructive original-file purge function | **100%** | Function-level fail-closed guard, CLI pass-through and negative direct-call regression committed and registered in the security matrix and Tests workflow; execution pending |
+| Verify document metadata/text search and matter indexes do not disclose another firm's records | **100%** | Separate-runtime regression committed; route execution pending |
 
 ## AI-2 implementation completion estimate
 
