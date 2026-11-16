@@ -73,3 +73,6 @@
 
 
 - 2026-11-16: Bounded S3 original-object reader now detects and rejects provider bodies that over-return beyond the requested read size, closes the body and has a regression (commits 155eaa6, f0e9283). Runtime tests remain unexecuted.
+
+
+- 2026-11-16: Recovery archive persisted verification/download reject provider streams that over-return beyond the requested read size; regression confirms rejection and partial destination cleanup (commits b82e174, 2dd5590). Runtime tests remain unexecuted.
