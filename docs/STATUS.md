@@ -450,3 +450,6 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Extended post-open tenant storage revalidation to reject the database path itself becoming a symlink during SQLite open, even when the symlink resolves to the same inode captured before open. Source commit: `510451f`.
 - Added a POSIX regression that replaces the database path with a symlink during the mocked open and asserts the newly opened handle is closed and never cached. Test commit: `ccdb445`.
 - Static review only; neither new tenant-router regression nor any repository test module has been executed. Tenant isolation estimate remains 84.5% pending runtime evidence; other workstream and overall estimates remain unchanged. Open PRs: #1610, #1644, #1645; 0 PRs merged.
+
+
+- Additional isolated Python filesystem reproductions passed for both new race conditions: (1) replacing the open database pathname with a symlink to the same inode is detectable via `Path.is_symlink()` even though device/inode identity is unchanged; (2) changing database permissions to `0644` during the open window is visible to the post-open mode check. These were small harnesses of the filesystem conditions, **not executions of `tests/test_tenant_storage.py` or the repository test suite**.
