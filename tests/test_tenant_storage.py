@@ -116,6 +116,30 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
             connection.execute("SELECT 1")
 
     @unittest.skipUnless(os.name == "posix", "POSIX file permission bits are required")
+    def test_database_permissions_changed_during_open_are_rejected(self):
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        original_connect = sqlite3.connect
+        opened = []
+
+        def connect_then_expose(database, *args, **kwargs):
+            connection = original_connect(database, *args, **kwargs)
+            if str(database) == str(path):
+                opened.append(connection)
+                os.chmod(path, 0o644)
+            return connection
+
+        with patch("tenant_storage.sqlite3.connect", side_effect=connect_then_expose):
+            with self.assertRaisesRegex(
+                TenantConnectionError, "permissions changed while opening"
+            ):
+                self.router.connection_for_firm(101)
+
+        self.assertEqual(len(opened), 1)
+        with self.assertRaises(sqlite3.ProgrammingError):
+            opened[0].execute("SELECT 1")
+
+    @unittest.skipUnless(os.name == "posix", "POSIX file permission bits are required")
     def test_permissive_sqlite_sidecar_revokes_cached_tenant_connection(self):
         connection = self.router.connection_for_firm(101)
         with self._catalog() as catalog:
