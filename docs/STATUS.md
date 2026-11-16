@@ -876,3 +876,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Added `test_optional_mfa_policy_does_not_bypass_voluntary_mfa_during_reenrollment` to `tests/test_mfa_account_security.py`. The test module is already registered in the explicit Tests workflow and focused security matrix.
 - Source commit: `9a3c420`; regression commit: `43bbb0e`; import correction: `1f06e22`. Static source/registration inspection confirms the helper and regression are present. Repository test module and GitHub Actions execution remain unavailable due the billing/runner issue; no pass is claimed.
 - Bounded implementation: **100%**. Authentication/firm-administration estimate: **85.4%** (from 85.2%); AI-2: **76.4%**; whole project: **75.0%**. Runtime staging and independent security review remain outstanding.
+
+
+- MFA regression strengthened in commit `a2b3d6d`: besides proving the existing session is blocked from matter routes while voluntary authenticator replacement is pending, it now creates a second session and asserts a fresh login is marked `mfa_required` and `mfa_enrollment_required`, with `mfa_verified=false`.
