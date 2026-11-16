@@ -94,7 +94,7 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
         ):
             candidate = dict(self.record)
             candidate["sources"] = [dict(item) for item in self.record["sources"]]
-            candidate["sources"][0][field] = value
+            candidate["sources"][-1][field] = value
             with self.subTest(field=field), self.assertRaisesRegex(ValueError, message):
                 self.register(self.db, candidate)
             self.assertEqual(self.db.execute("SELECT COUNT(*) FROM legal_sources").fetchone()[0], 0)
