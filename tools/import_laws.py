@@ -282,12 +282,17 @@ def _ocr_page_pixel_size(page, dpi: int = 200) -> tuple[int, int]:
     if width_points <= 0 or height_points <= 0:
         _fail("OCR page dimensions must be positive")
 
+    if isinstance(dpi, bool) or not isinstance(dpi, int) or dpi <= 0:
+        _fail("OCR DPI must be a positive integer")
     max_dimension = _ocr_limit_env("LEGAL_IMPORT_MAX_OCR_DIMENSION", 12000)
     max_pixels = _ocr_limit_env("LEGAL_IMPORT_MAX_OCR_PIXELS", 40_000_000)
-    pixel_width = math.ceil(width_points * dpi / 72)
-    pixel_height = math.ceil(height_points * dpi / 72)
-    if pixel_width > max_dimension or pixel_height > max_dimension:
+    scale = dpi / 72
+    # Compare in point-space before multiplication so an enormous but finite
+    # page box cannot overflow math.ceil() before the render limit is applied.
+    if width_points > max_dimension / scale or height_points > max_dimension / scale:
         _fail(f"OCR page exceeds the configured {max_dimension}-pixel dimension limit")
+    pixel_width = math.ceil(width_points * scale)
+    pixel_height = math.ceil(height_points * scale)
     if pixel_width * pixel_height > max_pixels:
         _fail(f"OCR page exceeds the configured {max_pixels}-pixel render limit")
     return pixel_width, pixel_height
