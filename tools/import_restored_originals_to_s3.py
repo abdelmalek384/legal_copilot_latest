@@ -11,6 +11,7 @@ import hashlib
 import json
 import os
 import sqlite3
+import stat
 import sys
 from pathlib import Path
 
@@ -35,15 +36,19 @@ def _readonly(path: Path) -> sqlite3.Connection:
 def _open_regular_original(path: Path):
     """Open one restore object without following a final-component symlink."""
     flags = os.O_RDONLY | getattr(os, "O_CLOEXEC", 0) | getattr(os, "O_NOFOLLOW", 0)
+    fd = None
     try:
         fd = os.open(path, flags)
-        metadata = os.fstat(fd)
-        if not __import__("stat").S_ISREG(metadata.st_mode):
-            os.close(fd)
+        if not stat.S_ISREG(os.fstat(fd).st_mode):
             raise RuntimeError("Restored original is not a regular file")
-        return os.fdopen(fd, "rb", closefd=True)
+        handle = os.fdopen(fd, "rb", closefd=True)
+        fd = None
+        return handle
     except OSError as exc:
         raise RuntimeError("Restored original is missing or unsafe") from exc
+    finally:
+        if fd is not None:
+            os.close(fd)
 
 
 def _digest(path: Path) -> tuple[str, int]:
@@ -78,11 +83,11 @@ def _read_verified_bytes(path: Path, *, expected_sha256: str, expected_size: int
     chunks = []
     with _open_regular_original(path) as handle:
         while True:
-            block = handle.read(min(1024 * 1024, MAX_ORIGINAL_BYTES - size + 1))
+            block = handle.read(min(1024 * 1024, expected_size - size + 1))
             if not block:
                 break
             size += len(block)
-            if size > MAX_ORIGINAL_BYTES or size > expected_size:
+            if size > expected_size:
                 raise RuntimeError("Restored original changed or exceeds the configured size limit")
             digest.update(block)
             chunks.append(block)
