@@ -744,5 +744,39 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         self.assertEqual(result["target_status"], "not_evaluable_missing_approved_labels_or_cited_runs")
 
 
+
+    def test_jsonl_reader_rejects_final_path_symlink_swap(self):
+        target = self.root / "questions-race.jsonl"
+        target.write_text('{"id":"Q1"}\n', encoding="utf-8")
+        outside = self.root / "outside-questions.jsonl"
+        outside.write_text('{"id":"Q2"}\n', encoding="utf-8")
+        real_open = MODULE.os.open
+        swapped = False
+
+        def replace_before_open(path, flags, *args, **kwargs):
+            nonlocal swapped
+            if Path(path) == target and not swapped:
+                swapped = True
+                target.unlink()
+                target.symlink_to(outside)
+            return real_open(path, flags, *args, **kwargs)
+
+        with patch.object(MODULE.os, "open", side_effect=replace_before_open):
+            with self.assertRaises((OSError, ValueError)):
+                MODULE.load_jsonl(target)
+        self.assertTrue(swapped)
+
+    def test_jsonl_reader_rejects_fifo_and_oversized_input(self):
+        import os
+        if hasattr(os, "mkfifo"):
+            fifo = self.root / "questions.fifo"
+            os.mkfifo(fifo)
+            with self.assertRaises((OSError, ValueError)):
+                MODULE.load_jsonl(fifo)
+        oversized = self.root / "oversized-questions.jsonl"
+        oversized.write_bytes(b" " * (64 * 1024 * 1024 + 1))
+        with self.assertRaises(ValueError):
+            MODULE.load_jsonl(oversized)
+
 if __name__ == "__main__":
     unittest.main()
