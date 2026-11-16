@@ -833,3 +833,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Added focused regressions for dynamic method expressions, empty method collections and non-literal entries in `tests/test_route_auth_audit.py`. The module was already registered in both the Tests workflow and focused security matrix; no registration change was required.
 - Source commit: 728f1e9; regression commit: 69d72b9. An isolated AST parser harness rejected the three malformed forms and accepted a literal GET/POST declaration. This was not execution of the repository test module.
 - Static implementation: **100%**. Runtime validation: pending; GitHub Actions remains unavailable due billing/runner issue. No test pass is claimed. Pilot/production remains **NOT READY**.
+
+
+- Follow-up route-audit hardening: computed/non-literal route paths now produce an explicit finding instead of being omitted. Literal keyword `path="/..."` declarations remain auditable. Added regressions for both forms. Source commits: 0082827, 4101a8e; test commit: e71fc2e. An isolated AST harness rejected dynamic paths and malformed methods and accepted literal positional/keyword paths and GET/POST methods; repository tests remain unexecuted.
