@@ -533,6 +533,16 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         self.assertEqual(payload["reason"], "database_release_acceptance_incomplete")
         self.assertEqual(payload["mutations_performed"], 0)
 
+    def test_inventory_rejects_repeated_continuation_token(self):
+        self.client.list_objects_v2 = lambda **kwargs: {
+            "Contents": [],
+            "IsTruncated": True,
+            "NextContinuationToken": "same-page-token",
+        }
+
+        with self.assertRaisesRegex(ObjectStorageError, "repeated continuation token"):
+            self.store.list_object_keys()
+
     def test_inventory_lists_only_keys_in_originals_namespace(self):
         one = self.store.stage(12, b"one")
         self.store.finalize(12, one.object_id)
