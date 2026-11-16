@@ -547,7 +547,14 @@ def _scan_original_object_root(object_root: Path) -> set[str]:
         raise DatabaseBundleError("Original-object storage root must be a real directory")
 
     found: set[str] = set()
-    if os.name != "nt" and os.open in getattr(os, "supports_dir_fd", set()):
+    if (
+        os.name != "nt"
+        and getattr(os, "O_DIRECTORY", 0)
+        and getattr(os, "O_NOFOLLOW", 0)
+        and os.open in getattr(os, "supports_dir_fd", set())
+        and os.stat in getattr(os, "supports_dir_fd", set())
+        and os.stat in getattr(os, "supports_follow_symlinks", set())
+    ):
         directory_flags = (
             os.O_RDONLY | getattr(os, "O_DIRECTORY", 0)
             | getattr(os, "O_CLOEXEC", 0) | getattr(os, "O_NOFOLLOW", 0)
@@ -590,6 +597,7 @@ def _scan_original_object_root(object_root: Path) -> set[str]:
                                 )
                                 if (
                                     not stat.S_ISREG(item_info.st_mode)
+                                    or item_info.st_nlink != 1
                                     or not _OBJECT_ID.fullmatch(item.name)
                                 ):
                                     raise DatabaseBundleError(
@@ -607,25 +615,9 @@ def _scan_original_object_root(object_root: Path) -> set[str]:
                 os.close(root_fd)
         return found
 
-    # Non-POSIX fallback: reject links at every visible path boundary.
-    for namespace in object_root.iterdir():
-        if namespace.is_symlink() or not namespace.is_dir() or not _FIRM_OBJECT_DIR.fullmatch(namespace.name):
-            raise DatabaseBundleError("Original-object storage contains an unexpected entry")
-        for item in namespace.iterdir():
-            if item.is_symlink() or not item.is_file() or not _OBJECT_ID.fullmatch(item.name):
-                raise DatabaseBundleError("Original-object storage contains an unfinished or unexpected object")
-            found.add(f"{namespace.name}/{item.name}")
-    try:
-        root_after = object_root.lstat()
-    except OSError as exc:
-        raise DatabaseBundleError("Original-object storage root changed during inventory") from exc
-    if (
-        not stat.S_ISDIR(root_after.st_mode)
-        or (root_after.st_dev, root_after.st_ino)
-        != (root_before.st_dev, root_before.st_ino)
-    ):
-        raise DatabaseBundleError("Original-object storage root changed during inventory")
-    return found
+    raise DatabaseBundleError(
+        "Local original-object inventory requires no-follow directory-descriptor operations"
+    )
 
 
 def _validate_original_object_inventory(
