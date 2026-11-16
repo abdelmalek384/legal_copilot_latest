@@ -610,7 +610,15 @@ class DatabaseBackupBundleTests(unittest.TestCase):
     def test_archive_member_preflight_rejects_noncanonical_and_special_paths(self):
         from database_backup import _safe_archive_members
 
-        for unsafe_name in ("objects//item.blob", "objects/./item.blob", "C:/outside.txt"):
+        for unsafe_name in (
+            "objects//item.blob",
+            "objects/./item.blob",
+            "C:/outside.txt",
+            "objects/item.blob:alternate",
+            "objects/CON.txt",
+            "objects/item.blob.",
+            "objects/item.blob ",
+        ):
             with self.subTest(name=unsafe_name):
                 payload = io.BytesIO()
                 with zipfile.ZipFile(payload, "w") as archive:
