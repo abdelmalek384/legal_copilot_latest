@@ -86,6 +86,37 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0], 0)
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM legal_review_events").fetchone()[0], 6)
 
+    def test_registration_rolls_back_earlier_sources_on_later_source_conflict(self):
+        candidate = dict(self.record)
+        candidate["sources"] = [dict(item) for item in self.record["sources"]]
+        first = dict(candidate["sources"][0])
+        second = dict(first)
+        second.update({
+            "source_id": "EG-SECOND-SOURCE",
+            "authority": "Second source",
+            "source_page": "https://second.example.gov/law",
+        })
+        candidate["sources"].append(second)
+        self.db.execute(
+            """INSERT INTO legal_sources
+               (source_id,authority,source_page,access_status,collection_permission,
+                commercial_reuse_permission,terms_url,terms_checked_on,permission_evidence)
+               VALUES(?,?,?,?,?,?,?,?,?)""",
+            ("EG-SECOND-SOURCE", "Conflicting authority", second["source_page"],
+             "unknown", "unknown", "unknown", None, None, "pre-existing record"),
+        )
+        self.db.commit()
+        with self.assertRaisesRegex(ValueError, "Existing source metadata conflicts"):
+            self.register(self.db, candidate)
+        self.assertIsNone(self.db.execute(
+            "SELECT 1 FROM legal_sources WHERE source_id=?",
+            (first["source_id"],),
+        ).fetchone())
+        self.assertIsNone(self.db.execute(
+            "SELECT 1 FROM legal_documents WHERE document_id=?",
+            (candidate["document"]["document_id"],),
+        ).fetchone())
+
     def test_registration_preflights_all_candidate_shapes_before_writing(self):
         malformed = []
         non_object_source = dict(self.record)
