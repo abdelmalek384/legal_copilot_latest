@@ -52,6 +52,54 @@ class LegalImportBundleTests(unittest.TestCase):
             with self.assertRaisesRegex(SystemExit, "LEGAL_IMPORT_MAX_PDF_BYTES"):
                 validate_inputs(self.source, self.output)
 
+    def test_ocr_pixel_limit_is_checked_before_get_pixmap(self):
+        import sys
+        from types import SimpleNamespace
+
+        class Page:
+            rect = SimpleNamespace(width=612.0, height=792.0)
+
+            def get_pixmap(self, **kwargs):
+                raise AssertionError("oversized OCR page must be rejected before rendering")
+
+        class Document:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+            def __getitem__(self, index):
+                self.requested_page = index
+                return Page()
+
+        fake_pymupdf = SimpleNamespace(open=lambda **kwargs: Document())
+        fake_tesseract = SimpleNamespace(image_to_string=lambda *args, **kwargs: "unexpected")
+        fake_pil = SimpleNamespace(Image=SimpleNamespace(open=lambda *args, **kwargs: None))
+        with mock.patch.dict(sys.modules, {
+            "pymupdf": fake_pymupdf,
+            "pytesseract": fake_tesseract,
+            "PIL": fake_pil,
+        }):
+            with mock.patch.dict(os.environ, {"LEGAL_IMPORT_MAX_OCR_PIXELS": "1000"}):
+                with self.assertRaisesRegex(SystemExit, "configured 1000-pixel render limit"):
+                    importer._ocr((self.pdf_bytes, 0))
+
+    def test_ocr_dimension_limit_is_checked_before_rendering(self):
+        from types import SimpleNamespace
+
+        page = SimpleNamespace(rect=SimpleNamespace(width=5000.0, height=792.0))
+        with mock.patch.dict(os.environ, {"LEGAL_IMPORT_MAX_OCR_DIMENSION": "10000"}):
+            with self.assertRaisesRegex(SystemExit, "configured 10000-pixel dimension limit"):
+                importer._ocr_page_pixel_size(page, dpi=200)
+
+    def test_ocr_page_dimensions_reject_non_finite_values(self):
+        from types import SimpleNamespace
+
+        page = SimpleNamespace(rect=SimpleNamespace(width=float("inf"), height=792.0))
+        with self.assertRaisesRegex(SystemExit, "non-finite dimensions"):
+            importer._ocr_page_pixel_size(page, dpi=200)
+
     def test_page_limit_is_checked_before_extracting_page_text(self):
         import sys
         from types import SimpleNamespace
