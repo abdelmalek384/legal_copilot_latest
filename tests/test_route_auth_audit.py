@@ -96,6 +96,42 @@ def home():
         self.assertTrue(any("public allowlist entry is no longer a registered route" in item
                             for item in report["missing_authentication"]))
 
+    def test_dynamic_api_route_methods_fail_closed(self):
+        source = '''
+def user():
+    pass
+
+METHODS = ["GET", "POST"]
+@app.api_route("/private", methods=METHODS)
+def private(current: dict = Depends(user)):
+    return None
+'''
+        report = audit_source(source)
+        self.assertEqual(report["route_count"], 0)
+        self.assertEqual(len(report["missing_authentication"]), 1)
+        self.assertIn("cannot statically audit HTTP methods", report["missing_authentication"][0])
+
+    def test_empty_api_route_methods_fail_closed(self):
+        source = '''
+@app.api_route("/private", methods=[])
+def private():
+    return None
+'''
+        report = audit_source(source)
+        self.assertEqual(report["route_count"], 0)
+        self.assertIn("api_route methods cannot be empty", report["missing_authentication"][0])
+
+    def test_nonliteral_api_route_method_entry_fails_closed(self):
+        source = '''
+METHOD = "POST"
+@app.api_route("/private", methods=["GET", METHOD])
+def private():
+    return None
+'''
+        report = audit_source(source)
+        self.assertEqual(report["route_count"], 0)
+        self.assertIn("only literal strings", report["missing_authentication"][0])
+
     def test_strict_cli_fails_for_an_authentication_gap(self):
         with tempfile.TemporaryDirectory() as directory:
             source = Path(directory) / "app.py"
