@@ -783,3 +783,5 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Recovery locator reads now lstat the path before opening and compare the opened descriptor's device/inode to the inspected file. On platforms without O_NOFOLLOW, a post-open lstat comparison also detects a path that became a symlink or changed identity. This closes the regular-file replacement window in addition to the existing symlink and bounded-read checks.
 - Added a regression that swaps one regular JSON file for another between lstat and os.open; the replacement must not be accepted. Source commit: 22b0c36; test commit: adde810.
 - The recovery-locator test module is already registered in the focused security matrix. Static review only; repository tests and Actions remain unexecuted.
+
+- An isolated filesystem harness confirmed that replacing a regular locator file between lstat and open changes the opened descriptor inode and is detected by the new identity comparison. This is not execution of tests/test_manage_recovery_locator.py.
