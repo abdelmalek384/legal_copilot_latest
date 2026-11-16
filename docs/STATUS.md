@@ -789,3 +789,11 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Recovery download and restore destination canonicalization now normalize both filesystem OSErrors and symlink-resolution RuntimeErrors into controlled domain failures. This avoids leaking raw path-resolution exceptions for malformed or cyclic parent paths. Source commits: 2a03e96, a64b3bc.
 
 - An isolated directory-inode harness confirmed that swapping a configured object-root for a different real directory produces a different opened device/inode and is detectable by the new backup inventory check. This is not execution of tests/test_database_backup_bundle.py.
+
+
+## AI-2 continuation checkpoint — 2026-11-16
+
+- Additional completed items since the prior checkpoint: backup object-root lstat/inode binding and replacement regression; recovery locator pre-open inode binding and replacement regression; manifest/control-plane firm-state consistency checks; symlink-ancestor destination preflight coverage; controlled path-resolution errors; and isolated primitive harnesses for locator and object-root inode substitution.
+- Current engineering estimates: tenant isolation/access control 84.7%; authentication/firm administration 85.2%; case management 90%; document processing/security 99.1%; backup/release readiness 46.7%; AI-2 overall 76%; whole project 74.7%. These remain implementation estimates, not acceptance or test pass rates.
+- Validation: isolated Python harnesses passed for duplicate JSON keys, pinned-directory replacement, locator inode replacement and object-root inode replacement. Repository test modules executed: 0. GitHub Actions jobs executed: 0. Live S3/KMS and restore drill: not performed.
+- Open PR review unchanged: #1644 and #1645 remain unmergeable without lockfile/browser validation; #1610 remains draft and unsafe to merge wholesale. No force merge or bypass. Pilot/production remains NOT READY.
