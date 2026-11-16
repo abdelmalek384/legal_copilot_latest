@@ -1173,3 +1173,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Root-identity descriptor cleanup follow-up: both local store and reconciler now close the opened root FD if `fstat`/identity validation fails, avoiding descriptor leaks on rejected root swaps. Commits: local `c1fb85f`; reconciler `d2a2eca`.
+
+
+- Recovery archive path handling now converts upload-source and download-destination paths to absolute paths before lstat/open or parent validation, avoiding a concurrent working-directory change redirecting a relative path between checks and use. Source commit: `7604edd`.
