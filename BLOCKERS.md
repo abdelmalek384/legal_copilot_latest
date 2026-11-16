@@ -63,3 +63,6 @@
 
 
 - 2026-11-16: Recovery archive hash and multipart upload loops now use exact remaining-size-plus-one sentinel reads; added a tracking-file regression asserting only max+1 bytes are read during hash rejection (commits 774670a, 70b13a2). Repository runtime tests remain unexecuted.
+
+
+- 2026-11-16: Recovery archive persisted-byte verification and downloads now use exact declared-size-plus-one sentinel reads; oversized download regression verifies the read bound and partial-file cleanup (commits fb89aaf, 4b80528). Runtime tests remain unexecuted.
