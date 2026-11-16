@@ -1,6 +1,6 @@
 # Legal Copilot — release-candidate status
 
-**Updated:** 2026-11-15  
+**Updated:** 2026-11-16  
 **Decision:** **NOT READY** for lawyer pilot or production. This is an engineering checkpoint, not legal, security or operational certification. Historical tracker detail is archived at [STATUS history](archive/STATUS_history_through_2026-11-13.md).
 
 ## AI-1 delivery
@@ -73,7 +73,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 | Lawyer rating UI/export | 95% | Browser acceptance and adapter execution remain pending |
 | Test-firm package | 90% | Clean-clone first-login rehearsal remains unexecuted |
 | Repository cleanup/accessibility | 83% | Bilingual form labels/errors, source-inspector metadata and passage navigation are implemented; run hygiene scan and finish manual accessibility review |
-| Staging/recovery | 39% | Two-bucket S3 preflight now resolves original/recovery KMS keys in their own regions; recovery drill, Compose gate, provider configuration and witnessed restore remain unexecuted |
+| Staging/recovery | 40% | Two-bucket S3 preflight resolves original/recovery KMS keys in their own regions; backup/restore overlap guard and direct purge-quiescence guard have registered regressions; recovery drill, Compose gate, provider configuration and witnessed restore remain unexecuted |
 
 **Unweighted AI-2 implementation estimate: 72.1%** (arithmetic mean of the seven workstream values above). The provisional whole-project engineering estimate is approximately **72%**; this is not a test-pass rate or production-readiness score. The application remains **NOT READY** for lawyer pilot or production. No test pass is inferred from committed test code.
 
