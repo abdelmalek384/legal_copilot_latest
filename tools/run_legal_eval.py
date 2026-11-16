@@ -9,6 +9,7 @@ import argparse
 import http.cookiejar
 import json
 import os
+import stat
 import re
 import sys
 import time
@@ -80,10 +81,33 @@ def validate_base_url(base_url, allow_remote=False):
     return base_url.rstrip("/")
 
 
+def read_regular_file(path, *, max_bytes=16 * 1024 * 1024):
+    """Read bounded question input through a stable regular-file descriptor."""
+    path = Path(path)
+    before = path.lstat()
+    if not stat.S_ISREG(before.st_mode):
+        raise RunnerError(f"{path}: question input must be a regular file")
+    if before.st_size > max_bytes:
+        raise RunnerError(f"{path}: question input exceeds the size limit")
+    flags = os.O_RDONLY | getattr(os, "O_BINARY", 0) | getattr(os, "O_NONBLOCK", 0) | getattr(os, "O_NOFOLLOW", 0)
+    descriptor = os.open(path, flags)
+    with os.fdopen(descriptor, "rb") as stream:
+        opened = os.fstat(stream.fileno())
+        if not stat.S_ISREG(opened.st_mode) or (before.st_dev, before.st_ino) != (opened.st_dev, opened.st_ino):
+            raise RunnerError(f"{path}: question input changed while opening")
+        data = stream.read(max_bytes + 1)
+        after = os.fstat(stream.fileno())
+        current = path.lstat()
+        if len(data) > max_bytes or len(data) != after.st_size:
+            raise RunnerError(f"{path}: question input changed size or exceeds limit")
+        if (opened.st_dev, opened.st_ino) != (after.st_dev, after.st_ino) or (opened.st_size, opened.st_mtime_ns, opened.st_ctime_ns) != (after.st_size, after.st_mtime_ns, after.st_ctime_ns) or (current.st_dev, current.st_ino) != (opened.st_dev, opened.st_ino):
+            raise RunnerError(f"{path}: question input changed while being read")
+    return data
+
 def read_questions(path, limit=None):
     rows = []
     seen = set()
-    for line_no, raw in enumerate(Path(path).read_text(encoding="utf-8-sig").splitlines(), 1):
+    for line_no, raw in enumerate(read_regular_file(path).decode("utf-8-sig").splitlines(), 1):
         if not raw.strip():
             continue
         try:
