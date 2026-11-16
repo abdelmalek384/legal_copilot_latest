@@ -116,7 +116,7 @@ def register(db, record):
                 version.get("original_path"), version.get("original_sha256"), version.get("retrieved_at"),
                 version.get("publication_date"), version.get("effective_date"), version.get("repeal_date"),
                 version.get("consolidated_as_of"), version.get("gazette_issue"), version.get("gazette_pages"),
-                version["legal_status"], version["review_status"], 0, 0, 0,
+                "under_review", "pending_source_review", 0, 0, 0,
                 version.get("permission_evidence"), version.get("notes"),
             ),
         )
