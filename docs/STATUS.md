@@ -1285,3 +1285,10 @@ Validation and remaining gates:
 - Merged PR #1742 (`507b4d62e5d5bb91f2105310dee81d34ddfb3fc9`): the active firm context now displays both firm name and localized membership role. Administrator and lawyer labels were added to the role map; existing lead/associate/junior labels remain intact. Unknown future roles retain a raw fallback.
 - Updated Arabic catalog source-line references, UX audit and frontend regression contract. Catalog now contains 1,555 unique entries.
 - Independent validation: full inline JavaScript parsed with V8; focused source/catalog checks and a runtime role-resolution harness passed for administrator and lawyer memberships. GitHub Actions did not execute test steps; no Python/browser acceptance is claimed.
+
+
+## Casework form validation accessibility — 2026-11-17
+
+- Merged PR #1743 (`84146a915787581b17167bf2cf225e97f33c8e24`): added shared field-error helpers that set `aria-invalid`, associate the existing live toast with `aria-describedby`, focus the invalid control, and clear state after correction.
+- Applied the pattern to task titles, hearing dates, deadline rule/trigger and manual deadline title/date, firm holiday date/name, case notes, fee description/amount/paid, and invoice line descriptions/quantities/unit prices. Numeric fee and invoice line values are checked before submission.
+- Updated the UX gap audit and added a frontend regression contract. Independent validation included V8 syntax parsing, a runtime harness for mark/clear behavior, and quantity parser checks. GitHub Actions did not execute test steps; no Python/browser pass is claimed.
