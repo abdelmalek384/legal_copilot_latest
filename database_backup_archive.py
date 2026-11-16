@@ -364,6 +364,13 @@ def download_encrypted_bundle_version(
             os.fsync(output.fileno())
         if count != expected_size or digest.hexdigest() != expected_digest:
             _fail("Downloaded recovery archive checksum or size does not match the pinned manifest")
+        parent_after = os.stat(parent, follow_symlinks=False)
+        if (
+            not stat.S_ISDIR(parent_after.st_mode)
+            or (parent_after.st_dev, parent_after.st_ino)
+            != (parent_opened.st_dev, parent_opened.st_ino)
+        ):
+            _fail("Recovery download directory changed before publication")
         return target
     except Exception as exc:
         if created and parent_descriptor is not None:
