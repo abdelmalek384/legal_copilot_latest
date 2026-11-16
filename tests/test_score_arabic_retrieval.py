@@ -672,10 +672,10 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
             registry = root / "reviewers.json"
             target = root / "protected.json"
             output = root / "report.json"
-            questions.write_text('{"id":"Q1","review_status":"needs_lawyer_review"}\\n', encoding="utf-8")
+            questions.write_text('{"id":"Q1","review_status":"needs_lawyer_review"}\n', encoding="utf-8")
             runs.write_text("", encoding="utf-8")
             registry.write_text(__import__("json").dumps(TEST_REVIEWER_REGISTRY), encoding="utf-8")
-            original = '{"protected":true}\\n'
+            original = '{"protected":true}\n'
             target.write_text(original, encoding="utf-8")
             try:
                 output.symlink_to(target)
