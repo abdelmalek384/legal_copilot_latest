@@ -82,3 +82,6 @@
 
 
 - 2026-11-16: S3 metadata lookup now rejects non-object provider responses and safely classifies malformed provider error payloads; two regressions added (commits e1e8032, 8f1752c). Repository runtime tests remain unexecuted.
+
+
+- 2026-11-16: S3 original-object open now fails closed unless the provider body supports both read and close; malformed bodies are closed when possible and a regression covers missing close (commits c26d213, 3d1f4fa). Runtime tests remain unexecuted.
