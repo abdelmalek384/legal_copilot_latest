@@ -955,6 +955,16 @@ def restore_backup_bundle(
     return _restore_backup_bundle_bytes(encrypted, cipher, destination)
 
 
+def _unique_json_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    """Reject ambiguous JSON objects containing duplicate keys."""
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("Duplicate JSON object key")
+        result[key] = value
+    return result
+
+
 def _restore_backup_bundle_bytes(
     encrypted: bytes,
     cipher: Fernet,
@@ -986,8 +996,11 @@ def _restore_backup_bundle_bytes(
             raise DatabaseBundleError("Backup bundle is not a valid archive") from exc
 
         try:
-            manifest = json.loads((extracted / "manifest.json").read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError) as exc:
+            manifest = json.loads(
+                (extracted / "manifest.json").read_text(encoding="utf-8"),
+                object_pairs_hook=_unique_json_object,
+            )
+        except (OSError, ValueError, json.JSONDecodeError) as exc:
             raise DatabaseBundleError("Backup bundle manifest is invalid") from exc
         if not isinstance(manifest, dict) or manifest.get("format_version") != _FORMAT_VERSION:
             raise DatabaseBundleError("Unsupported or malformed backup bundle format")
