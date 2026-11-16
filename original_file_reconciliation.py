@@ -16,6 +16,11 @@ from typing import Iterable, Mapping
 
 _OBJECT_ID = re.compile(r"^[0-9a-f]{32}$")
 _FIRM_DIR = re.compile(r"^firm-([1-9][0-9]*)$")
+_MAX_RECONCILIATION_OBJECT_BYTES = 15_000_000
+
+
+class _ObjectSizeLimitExceeded(ValueError):
+    """An object exceeded the hard reconciliation read ceiling."""
 
 
 @dataclass(frozen=True)
@@ -57,6 +62,7 @@ def _read_only_connection(path: Path) -> sqlite3.Connection:
 
 
 def _hash_file(path: Path) -> tuple[str, int]:
+    """Hash one regular object without reading beyond the hard object ceiling."""
     digest = hashlib.sha256()
     size = 0
     try:
@@ -68,10 +74,15 @@ def _hash_file(path: Path) -> tuple[str, int]:
             raise ValueError("object is not a regular file")
         with os.fdopen(fd, "rb", closefd=True) as handle:
             while True:
-                block = handle.read(1024 * 1024)
+                # One sentinel byte distinguishes an exact-limit object from an
+                # oversized file without hashing or reading its unbounded tail.
+                read_size = min(1024 * 1024, _MAX_RECONCILIATION_OBJECT_BYTES - size + 1)
+                block = handle.read(read_size)
                 if not block:
                     break
                 size += len(block)
+                if size > _MAX_RECONCILIATION_OBJECT_BYTES:
+                    raise _ObjectSizeLimitExceeded("object exceeds reconciliation size limit")
                 digest.update(block)
     except OSError as exc:
         raise ValueError("object cannot be safely read") from exc
@@ -223,6 +234,12 @@ def reconcile_original_file_storage(
             digest, size, state = metadata
             try:
                 actual_digest, actual_size = _hash_file(path)
+            except _ObjectSizeLimitExceeded:
+                findings.append(ReconciliationFinding(
+                    "object_size_limit_exceeded", firm_id, object_id,
+                    "stored object exceeds the hard reconciliation read ceiling",
+                ))
+                continue
             except ValueError:
                 findings.append(ReconciliationFinding(
                     "unreadable_object", firm_id, object_id,
