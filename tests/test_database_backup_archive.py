@@ -240,6 +240,19 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
         self.assertTrue(self.s3.multipart_aborted)
         self.assertEqual(self.s3.multipart_uploads, {})
 
+    def test_upload_fails_closed_when_verification_body_close_fails(self):
+        class CloseFailureBody(FakeBody):
+            def close(self):
+                super().close()
+                raise OSError("simulated verification stream close failure")
+
+        self.s3.get_object = lambda **kwargs: {
+            "VersionId": self.s3.version_id,
+            "Body": CloseFailureBody(self.bundle.read_bytes()),
+        }
+        with self.assertRaisesRegex(DatabaseBundleError, "verification stream could not be closed"):
+            self.upload()
+
     def test_download_removes_output_if_response_body_close_fails(self):
         locator = self.upload()
         target = self.root / "close-failure.enc"
