@@ -443,3 +443,10 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - PRs #1642 and #1643 remain closed; GitHub rejected reopening them because their Dependabot branches had been deleted. They were not merged and no dependency upgrade is currently applied. A new dependency update must regenerate the hash lock with the pinned Python 3.12 pip-tools resolver before it is eligible for review.
 - Corrected execution totals: tenant router source hardening 1; regression added 1; dependency upgrades retained 0; PRs merged 0; PRs closed as superseded 2; repository test modules executed 0. Open PRs remain #1610, #1644 and #1645.
 - Estimates remain tenant isolation/access control 84.5%, authentication/administration 85%, case management 90%, document processing/security 99%, backup/release readiness 40%, AI-2 approximately 72.8%, whole project approximately 72%. No test pass, dependency lock validation, or pilot readiness is claimed.
+
+
+## AI-2 tenant path substitution race closure — 2026-11-16
+
+- Extended post-open tenant storage revalidation to reject the database path itself becoming a symlink during SQLite open, even when the symlink resolves to the same inode captured before open. Source commit: `510451f`.
+- Added a POSIX regression that replaces the database path with a symlink during the mocked open and asserts the newly opened handle is closed and never cached. Test commit: `ccdb445`.
+- Static review only; neither new tenant-router regression nor any repository test module has been executed. Tenant isolation estimate remains 84.5% pending runtime evidence; other workstream and overall estimates remain unchanged. Open PRs: #1610, #1644, #1645; 0 PRs merged.
