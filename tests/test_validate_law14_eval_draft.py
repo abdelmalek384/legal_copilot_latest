@@ -1,3 +1,4 @@
+import hashlib
 import json
 import os
 import tempfile
@@ -84,6 +85,15 @@ class Law14DraftInventoryTests(unittest.TestCase):
             question(expected_article_id="EG-LABOUR-LAW-14-2025-ART-13")
         ], minimum_questions=1)
         self.assertTrue(any("does not match" in item for item in report["errors"]))
+
+    def test_jsonl_reader_hashes_the_exact_bytes_it_parses(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "questions.jsonl"
+            raw = b"\\xef\\xbb\\xbf" + '{"id":"Q1"}\\n'.encode("utf-8")
+            path.write_bytes(raw)
+            rows, digest = validator.read_jsonl_with_digest(path)
+            self.assertEqual(rows, [{"id": "Q1"}])
+            self.assertEqual(digest, hashlib.sha256(raw).hexdigest())
 
     def test_jsonl_reader_rejects_duplicate_keys_at_all_object_depths(self):
         with tempfile.TemporaryDirectory() as directory:
