@@ -343,6 +343,16 @@ class CollectionPipelineTests(unittest.TestCase):
                 collector.store_original(out, "TEST-LAW", ".pdf", b"%PDF-safe")
             self.assertEqual(list(outside.iterdir()), [])
 
+    def test_preserved_original_reuse_accepts_same_bounded_payload(self):
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td)
+            payload = b"small-bounded-payload"
+            with patch.object(collector, "MAX_BYTES_DEFAULT", 4):
+                original = collector.store_original(out, "TEST-LAW", ".pdf", payload)
+                reused = collector.store_original(out, "TEST-LAW", ".pdf", payload)
+            self.assertEqual(reused, original)
+            self.assertEqual(original.read_bytes(), payload)
+
     def test_existing_collection_artifact_reads_reject_symlink_swaps(self):
         with tempfile.TemporaryDirectory() as td:
             out = Path(td)
