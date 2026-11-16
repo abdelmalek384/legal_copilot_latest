@@ -75,14 +75,14 @@ _ENGLISH_MODAL_PATTERNS = {
     ),
     "prohibition": re.compile(
         r"\b(?:may not|must\s+not|mustn['’]t|shall not|shan['’]t|"
-        r"is prohibited from|cannot|can not|can't|is not permitted to|"
+        r"is prohibited from|cannot|can not|can['’]t|is not permitted to|"
         r"are not permitted to|not permitted to|is not allowed to|"
         r"are not allowed to|not allowed to)\b",
         re.IGNORECASE,
     ),
     "non_obligation": re.compile(
         r"\b(?:not required to|need not|needn['’]t|"
-        r"do not have to|don't have to|does not have to|doesn't have to|"
+        r"do not have to|don['’]t have to|does not have to|doesn['’]t have to|"
         r"is not obliged to|are not obliged to|"
         r"is not obligated to|are not obligated to)\b",
         re.IGNORECASE,
