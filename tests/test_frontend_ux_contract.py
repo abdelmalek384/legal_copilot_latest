@@ -1647,5 +1647,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("const emptyState=profilesError?null:noProfilesYet", clients)
         self.assertIn("emptyState?[h('div',{className:'card'},emptyState)]:[]", clients)
 
+    def test_global_search_has_a_single_registered_keyboard_shortcut(self):
+        shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction dash()")]
+        self.assertIn("'aria-keyshortcuts':'Control+K Meta+K'", shell)
+        self.assertIn("window.__lcGlobalSearchShortcutInstalled", shell)
+        self.assertIn("(event.ctrlKey||event.metaKey)", shell)
+        self.assertIn("event.key.toLowerCase()!=='k'", shell)
+        self.assertIn("target?.isContentEditable||['INPUT','TEXTAREA','SELECT'].includes(target?.tagName)", shell)
+        self.assertIn("input.focus();input.select()", shell)
+        self.assertIn("PAGE==='law'", shell)
+
 if __name__ == "__main__":
     unittest.main()
