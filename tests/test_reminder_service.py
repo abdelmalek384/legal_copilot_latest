@@ -189,8 +189,8 @@ class ReminderServiceTests(unittest.TestCase):
             )
 
         self.assertEqual(report["smtp_accepted"], 1)
-        claim_time = claim.call_args.kwargs["now"]
-        finish_time = finish.call_args.kwargs["now"]
+        claim_time = claim.call_args_list[0].kwargs["now"]
+        finish_time = finish.call_args_list[0].kwargs["now"]
         self.assertGreater(claim_time, self.now)
         self.assertGreaterEqual(finish_time, claim_time)
         self.assertNotEqual(claim_time, self.now)
