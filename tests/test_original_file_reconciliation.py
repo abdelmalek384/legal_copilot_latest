@@ -205,6 +205,31 @@ class OriginalFileReconciliationTests(unittest.TestCase):
         )
         self.assertTrue(oversized.exists(), "reconciliation must remain read-only")
 
+    @unittest.skipUnless(os.name == "posix", "POSIX directory descriptors are required")
+    def test_reconciliation_rejects_replaced_object_root(self):
+        from unittest.mock import patch
+
+        self._create_database()
+        parked = self.root / "objects-parked"
+        real_open = os.open
+        swapped = False
+
+        def replace_root_before_open(path, flags, *args, **kwargs):
+            nonlocal swapped
+            if path == self.objects.name and kwargs.get("dir_fd") is not None and not swapped:
+                self.objects.rename(parked)
+                self.objects.mkdir()
+                swapped = True
+            return real_open(path, flags, *args, **kwargs)
+
+        with patch("original_file_reconciliation.os.open", side_effect=replace_root_before_open):
+            with self.assertRaisesRegex(ValueError, "root changed during reconciliation"):
+                self._reconcile()
+
+        self.assertTrue(swapped)
+        self.assertEqual(list(self.objects.iterdir()), [])
+        self.assertTrue(parked.is_dir())
+
     @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
     def test_reconciliation_flags_hardlinked_object_without_following_alias(self):
         self._create_database(rows=[(self.object_id, self.payload, "ready")])
