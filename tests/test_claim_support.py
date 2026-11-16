@@ -128,6 +128,33 @@ class ClaimSupportTests(unittest.TestCase):
                     "يجب على صاحب العمل تقديم الإخطار.", evidence
                 ))
 
+    def test_english_contracted_negation_is_not_misclassified_as_positive(self):
+        cases = (
+            ("The employer must provide notice.", "The employer mustn't provide notice."),
+            ("The employer shall provide notice.", "The employer shan't provide notice."),
+            ("The employer has to provide notice.", "The employer doesn't have to provide notice."),
+        )
+        for claim, evidence in cases:
+            with self.subTest(claim=claim, evidence=evidence):
+                self.assertTrue(_has_negated_obligation_mismatch(claim, evidence))
+                self.assertTrue(has_unsupported_claims(
+                    claim + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
+    def test_faithful_english_contracted_non_obligation_is_not_flagged(self):
+        for evidence in (
+            "The employer mustn't provide notice.",
+            "The employer doesn't have to provide notice.",
+            "The employer needn't provide notice.",
+        ):
+            with self.subTest(evidence=evidence):
+                self.assertFalse(_has_modal_mismatch(evidence, evidence))
+                self.assertFalse(has_unsupported_claims(
+                    evidence + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
     def test_faithful_raw_negated_obligation_paraphrases_pass(self):
         cases = (
             ("The employer is not required to provide notice.", "The employer is not required to provide notice."),
