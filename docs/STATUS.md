@@ -1152,3 +1152,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Backup ZIP compatibility follow-up: creation now rejects payload inventories that exceed the restore-side `_MAX_ENTRIES` limit (including the manifest) before hashing or ZIP creation. This prevents generating a backup bundle that the same application would later refuse to restore. Added a no-hash/no-ZIP regression. Commits: source `f3aac85`; test `80f1a14`. Runtime tests remain unexecuted.
+
+
+- Latest observed main commit `e896db2` has six completed-failure check runs (`test`, `chromium`, Python/JavaScript CodeQL, Bandit and dependency audit). The workflow-job log endpoint returned GitHub `404 BlobNotFound` for the sampled jobs, so the failure cause cannot be diagnosed from logs. These failures are not counted as test passes; exact-head runtime validation remains outstanding.
