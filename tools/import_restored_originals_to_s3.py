@@ -50,9 +50,13 @@ def _open_regular_original(path: Path):
     directory_fds = []
     fd = None
     try:
-        root_fd = os.open(path.parents[2], directory_flags)
+        root_fd = os.open(path.anchor, directory_flags)
         directory_fds.append(root_fd)
-        objects_fd = os.open("objects", directory_flags, dir_fd=root_fd)
+        current_fd = root_fd
+        for component in path.parents[2].parts[1:]:
+            current_fd = os.open(component, directory_flags, dir_fd=current_fd)
+            directory_fds.append(current_fd)
+        objects_fd = os.open("objects", directory_flags, dir_fd=current_fd)
         directory_fds.append(objects_fd)
         namespace_fd = os.open(path.parent.name, directory_flags, dir_fd=objects_fd)
         directory_fds.append(namespace_fd)
