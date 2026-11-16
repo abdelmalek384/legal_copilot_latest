@@ -3106,14 +3106,13 @@ def _user_separate(
         _clear_auth_cookies(response, request)
         raise HTTPException(401, "unauthorized")
     firms = _active_firms_for_user(account["id"])
-    if not firms:
-        raise HTTPException(401, "no active firm membership")
 
-    def firm_switch_identity_without_current_context():
-        # A suspended/revoked selected membership must block firm data routes, but
-        # must not trap a multi-firm user in a dead context when another membership
-        # remains active. Only the explicit switch endpoint may use this fallback.
-        if request.method != "POST" or request.url.path != "/session/firm":
+    def identity_without_firm_context():
+        # Firm switching must remain possible after the selected membership is
+        # revoked. Logout must also remain possible when the selected firm or all
+        # firm memberships have been disabled; it only invalidates this session
+        # and never opens tenant storage. Both paths still require CSRF/origin checks.
+        if request.method != "POST" or request.url.path not in {"/session/firm", "/logout"}:
             return None
         if not csrf_cookie or not csrf_header or not hmac.compare_digest(csrf_cookie, csrf_header):
             raise HTTPException(403, "csrf check failed")
@@ -3126,6 +3125,12 @@ def _user_separate(
             "active": 1, "firms": firms, "platform_roles": _platform_roles_for_user(account["id"]),
         }
 
+    if not firms:
+        fallback_user = identity_without_firm_context()
+        if fallback_user is not None:
+            return fallback_user
+        raise HTTPException(401, "no active firm membership")
+
     if firm_cookie is None:
         firm_id = firms[0]["firm_id"]
         secure = _secure_cookie_transport(request)
@@ -3135,14 +3140,14 @@ def _user_separate(
         try:
             firm_id = int(firm_cookie)
         except (TypeError, ValueError):
-            fallback_user = firm_switch_identity_without_current_context()
+            fallback_user = identity_without_firm_context()
             if fallback_user is not None:
                 return fallback_user
             raise HTTPException(403, "invalid firm context")
     try:
         context = get_database_runtime().resolve_context(account["id"], firm_id)
     except FirmContextError as exc:
-        fallback_user = firm_switch_identity_without_current_context()
+        fallback_user = identity_without_firm_context()
         if fallback_user is not None:
             return fallback_user
         raise HTTPException(403, "active firm membership required") from exc
