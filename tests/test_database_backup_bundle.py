@@ -469,6 +469,28 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         self.assertEqual(marker.read_text(encoding="utf-8"), "preserve")
         self.assertTrue((staged / "control_plane.sqlite3").is_file())
 
+    def test_restore_publication_fails_closed_without_renameat2(self):
+        import ctypes
+        import database_backup
+        from unittest.mock import patch
+
+        staged = self.root / "staged-no-renameat2"
+        staged.mkdir()
+        (staged / "control_plane.sqlite3").write_text("staged", encoding="utf-8")
+        destination = self.root / "restore-no-renameat2"
+        fake_libc = type("FakeLibCWithoutRenameAt2", (), {})()
+
+        with patch("ctypes.CDLL", return_value=fake_libc):
+            with self.assertRaisesRegex(DatabaseBundleError, "requires renameat2 support"):
+                database_backup._publish_restore_directory_no_replace(
+                    staged, destination, self.root
+                )
+
+        self.assertFalse(destination.exists())
+        self.assertEqual(
+            (staged / "control_plane.sqlite3").read_text(encoding="utf-8"), "staged"
+        )
+
     def test_restore_publication_rejects_parent_directory_symlink_swap(self):
         import os
         import database_backup
