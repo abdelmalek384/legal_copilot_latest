@@ -64,9 +64,12 @@ def _key_arn(kms_client: Any, key_id: str) -> str:
     if not isinstance(key_id, str) or not key_id.strip():
         _fail("Recovery archive KMS key ID is required")
     try:
-        metadata = kms_client.describe_key(KeyId=key_id).get("KeyMetadata", {})
+        response = kms_client.describe_key(KeyId=key_id)
     except Exception as exc:
         raise DatabaseBundleError("Recovery archive KMS key could not be inspected") from exc
+    if not isinstance(response, dict) or not isinstance(response.get("KeyMetadata"), dict):
+        _fail("Recovery archive KMS key metadata is malformed")
+    metadata = response["KeyMetadata"]
     arn = metadata.get("Arn")
     if (
         not isinstance(arn, str)
