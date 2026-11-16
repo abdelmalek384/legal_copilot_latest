@@ -91,3 +91,6 @@
 
 
 - 2026-11-16: Backup creation now preflights ZIP entry count against the restore-side limit, counting the manifest, and refuses before hashing/writing when exceeded; regression asserts no hash/ZIP work (commits f3aac85, 80f1a14). Runtime tests remain unexecuted.
+
+
+- Latest observed main check runs (commit e896db2) report six failures: test, chromium, Python/JavaScript CodeQL, Bandit and dependency audit. The sampled workflow-job log endpoint returned `404 BlobNotFound`, preventing diagnosis. Treat as failed/unverified, not as a test pass; no rerun or merge should rely on them until healthy runner logs are available.
