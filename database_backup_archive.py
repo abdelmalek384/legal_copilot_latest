@@ -274,8 +274,6 @@ def download_encrypted_bundle_version(
     kms_key_id: str,
 ) -> Path:
     """Fetch one exact version, validate encryption/metadata/bytes, and write exclusively."""
-    _require_versioning(s3_client, bucket)
-    key_arn = _key_arn(kms_client, kms_key_id)
     if not isinstance(locator, dict):
         _fail("Recovery archive locator is malformed")
     key = locator.get("key")
@@ -293,6 +291,17 @@ def download_encrypted_bundle_version(
         or locator.get("format") != "encrypted-database-bundle-v2"
     ):
         _fail("Recovery archive locator does not match the configured target")
+    target = Path(destination).expanduser()
+    if target.exists() or target.is_symlink() or target.parent.is_symlink() or not target.parent.is_dir():
+        body.close()
+        _fail("Recovery download target must be a new file in an existing real directory")
+    parent = target.parent.resolve()
+    if parent != target.parent.absolute():
+        body.close()
+        _fail("Recovery download parent path must not traverse symbolic links")
+    target = parent / target.name
+    _require_versioning(s3_client, bucket)
+    key_arn = _key_arn(kms_client, kms_key_id)
     try:
         head = s3_client.head_object(Bucket=bucket, Key=key, VersionId=version_id)
         if (
@@ -316,15 +325,6 @@ def download_encrypted_bundle_version(
                 body.close()
         finally:
             _fail("S3 returned a different or unpinned archive version")
-    target = Path(destination).expanduser()
-    if target.exists() or target.is_symlink() or target.parent.is_symlink() or not target.parent.is_dir():
-        body.close()
-        _fail("Recovery download target must be a new file in an existing real directory")
-    parent = target.parent.resolve()
-    if parent != target.parent.absolute():
-        body.close()
-        _fail("Recovery download parent path must not traverse symbolic links")
-    target = parent / target.name
     flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0)
     descriptor = None
     digest = hashlib.sha256()
