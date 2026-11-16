@@ -605,9 +605,8 @@ def create_backup_bundle(
     destination = Path(output_dir).expanduser()
     if destination.is_symlink():
         raise DatabaseBundleError("Backup destination must not be a symlink")
-    destination.mkdir(parents=True, exist_ok=True)
     destination = destination.resolve()
-    if not destination.is_dir():
+    if destination.exists() and not destination.is_dir():
         raise DatabaseBundleError("Backup destination must be a directory")
     resolved_tenant_root = tenant_root.resolve()
     protected_roots = [(resolved_tenant_root, "tenant storage")]
@@ -624,6 +623,12 @@ def create_backup_bundle(
             raise DatabaseBundleError(f"Backup output must not contain {label}")
         except ValueError:
             pass
+
+    # Do not create directories inside protected storage even transiently before
+    # the physical-path overlap check has completed.
+    destination.mkdir(parents=True, exist_ok=True)
+    if not destination.is_dir():
+        raise DatabaseBundleError("Backup destination must be a directory")
 
     with tempfile.TemporaryDirectory(prefix=".dbbundle-stage-", dir=destination) as tmp:
         stage = Path(tmp)
