@@ -901,6 +901,19 @@ def delete_case(c, u, cid):
         if not case_row:
             c.rollback()
             return False
+        if _separate_runtime_enabled():
+            retained_originals = int(c.execute(
+                "SELECT COUNT(*) FROM original_file_objects o "
+                "JOIN docs d ON d.id=o.document_id AND d.firm_id=o.firm_id "
+                "WHERE d.case_id=? AND o.firm_id=?",
+                (cid, int(u["firm_id"])),
+            ).fetchone()[0])
+            if retained_originals:
+                c.rollback()
+                raise HTTPException(
+                    409,
+                    "matter has original-file retention records; resolve the original-file lifecycle before deleting the matter",
+                )
         # Preserve an immutable audit snapshot before deleting the case and its event history.
         prior_events = [dict(r) for r in c.execute(
             "SELECT who,at,text FROM events WHERE case_id=? ORDER BY id", (cid,)
