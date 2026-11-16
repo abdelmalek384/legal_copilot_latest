@@ -906,3 +906,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Conservative aggregate estimate after the reminder scheduler changes: AI-2 **76.6%**; whole project **75.2%**. The small increase reflects code-level hardening only. Live SMTP staging, scheduler service-manager installation/monitoring, operational recovery rehearsal, CI and independent review are still unaccepted.
+
+
+- Operator contract updated in `docs/reminder_scheduler_contract.md` (commit `7e5433f`) to distinguish planning-time `--now` from wall-clock delivery leases and to document fail-closed behavior for unavailable preference schema versus first-run defaults.
