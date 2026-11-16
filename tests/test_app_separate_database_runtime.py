@@ -605,6 +605,33 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         finally:
             target.close()
 
+    def test_membership_reactivation_respects_firm_seat_limit(self):
+        target_id = self.runtime.create_global_identity(
+            "Seat Reactivation Target", "seat-reactivation-target@example.test",
+            app.hash_pw(self.password),
+        )
+        self.runtime.create_firm_membership(target_id, self.firm_a, "lawyer")
+        for index in range(4):
+            user_id = self.runtime.create_global_identity(
+                f"Seat Holder {index}", f"seat-holder-{index}@example.test",
+                app.hash_pw(self.password),
+            )
+            self.runtime.create_firm_membership(user_id, self.firm_a, "lawyer")
+        login = self.client.post(
+            "/login", json={"email": "owner@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        suspended = self._mutate("post", f"/users/{target_id}/disable")
+        self.assertEqual(suspended.status_code, 200, suspended.text)
+
+        restored = self._mutate("post", f"/users/{target_id}/enable")
+        self.assertEqual(restored.status_code, 409, restored.text)
+        status = self.runtime.control_connection().execute(
+            "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
+            (target_id, self.firm_a),
+        ).fetchone()["status"]
+        self.assertEqual(status, "suspended")
+
     def test_firm_role_change_rolls_back_when_audit_write_fails(self):
         target_id = self.runtime.create_global_identity(
             "Role Audit Target", "role-audit-target@example.test", app.hash_pw(self.password)
