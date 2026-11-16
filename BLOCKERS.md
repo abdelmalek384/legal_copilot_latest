@@ -26,3 +26,5 @@
 - 2026-11-16: Added unexecuted retained-original download regressions for same-length byte corruption, truncation, and an object exceeding the 15,000,000-byte response ceiling; all must fail before a download audit event is written (commits `9f64be8`, `470c652`). The repository test suite remains unexecuted; these are not passing test results.
 
 - 2026-11-16: S3 original-object streaming integrity verification is now bounded by the adapter's configured `max_bytes`: impossible oversized metadata is rejected before S3 access and actual oversized bodies are read only through a one-byte-over-limit sentinel, then closed. Fake-S3 regressions are committed (`2668e8e`, `a77a6f1`); repository test execution remains unperformed and no pass is claimed.
+
+- 2026-11-16: Local original-file reconciliation hashing now stops at 15,000,000 bytes plus one sentinel and reports `object_size_limit_exceeded`; a regression verifies the oversized file is retained. Commits: `1aa0a40`, `23aa5af`. Runtime tests remain unexecuted; no pass is claimed.
