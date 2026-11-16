@@ -116,12 +116,16 @@ def _valid_retrieval_date(value: object) -> bool:
     # carry an explicit offset so retrieval provenance is not host-local guesswork.
     try:
         parsed_date = date.fromisoformat(raw)
-        return parsed_date.isoformat() == raw
+        return parsed_date.isoformat() == raw and parsed_date <= date.today()
     except ValueError:
         pass
     try:
         parsed_datetime = datetime.fromisoformat(raw.replace("Z", "+00:00"))
-        return parsed_datetime.tzinfo is not None and parsed_datetime.utcoffset() is not None
+        return (
+            parsed_datetime.tzinfo is not None
+            and parsed_datetime.utcoffset() is not None
+            and parsed_datetime <= datetime.now(parsed_datetime.tzinfo)
+        )
     except ValueError:
         return False
 
