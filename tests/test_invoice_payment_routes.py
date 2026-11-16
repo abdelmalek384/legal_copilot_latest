@@ -78,6 +78,15 @@ class InvoicePaymentRouteTests(InvoiceTestSupport, unittest.TestCase):
                 json={"reason": "Unauthorized void attempt"},
             )
             self.assertEqual(void.status_code, 404, void.text)
+
+            self.assertEqual(
+                lawyer.get(f"/invoices/{issued['id']}").status_code, 404
+            )
+            self.assertEqual(lawyer.get("/invoices").json()["invoices"], [])
+            self.assertEqual(
+                lawyer.get("/finance/invoices/overview").json()["outstanding_piasters"], 0
+            )
+            self.assertEqual(lawyer.get("/finance/overview").json()["fee_count"], 0)
         finally:
             lawyer.close()
 
