@@ -64,6 +64,7 @@ tests=(
   test_deployment_preflight.py
   test_tenant_route_inventory_coverage.py
   test_route_auth_audit.py
+  test_route_sql_access_audit.py
 )
 
 labels=()
