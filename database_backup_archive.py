@@ -287,21 +287,20 @@ def download_encrypted_bundle_version(
         or not isinstance(expected_digest, str) or not _SHA256.fullmatch(expected_digest)
         or isinstance(expected_size, bool) or not isinstance(expected_size, int) or expected_size <= 0
         or expected_size > _MAX_ENCRYPTED_BUNDLE_BYTES
-        or locator.get("kms_key_arn") != key_arn
         or locator.get("format") != "encrypted-database-bundle-v2"
     ):
         _fail("Recovery archive locator does not match the configured target")
     target = Path(destination).expanduser()
     if target.exists() or target.is_symlink() or target.parent.is_symlink() or not target.parent.is_dir():
-        body.close()
         _fail("Recovery download target must be a new file in an existing real directory")
     parent = target.parent.resolve()
     if parent != target.parent.absolute():
-        body.close()
         _fail("Recovery download parent path must not traverse symbolic links")
     target = parent / target.name
     _require_versioning(s3_client, bucket)
     key_arn = _key_arn(kms_client, kms_key_id)
+    if locator.get("kms_key_arn") != key_arn:
+        _fail("Recovery archive locator does not match the configured target")
     try:
         head = s3_client.head_object(Bucket=bucket, Key=key, VersionId=version_id)
         if (
