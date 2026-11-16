@@ -703,3 +703,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Both test modules are already included in the focused security matrix. Static source/test review only: 0 repository test modules executed, 0 Actions jobs executed. No CI result is implied.
 - Current estimates (implementation, not acceptance): tenant isolation/access control 84.7%; authentication/firm administration 85.2%; case management 90%; document processing/security 99.1%; backup/release readiness 44.5%; AI-2 overall 75%; whole project 73.7%.
 - Remaining blockers: GitHub billing/runner issue; no local checkout or dependency environment; no repository test execution; no live S3/KMS verification; no witnessed restore or browser acceptance. I am not blocked from further source-level work, but pilot/production remains **NOT READY**.
+
+
+- Portability refinement: the descriptor-relative recovery-download path is selected only when the runtime advertises `dir_fd` support for `os.open`. Other platforms retain exclusive/no-follow file creation where available and verify parent identity before reporting success. This avoids making the recovery download API unconditionally depend on POSIX directory-relative open support. Source commit: `2741b48`.
