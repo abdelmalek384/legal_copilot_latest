@@ -542,3 +542,6 @@ Updated estimates reflect source implementation only; regression execution and e
 
 
 - Registered both `test_database_runtime.py` and `test_tenant_storage.py` in the focused security regression matrix, so the new profile/catalog and tenant-router regressions are part of the operator-run security gate. Script commit: `dfb2661`. The matrix itself has not been executed.
+
+
+- The fresh writable provisioning catalog connection and the read-only request-time router catalog connection now both revalidate the control-plane file/sidecars and compare device/inode after SQLite opens it. This closes the same open-window substitution gap at both catalog entry points. Source commit: `f78e299`; added read-only router-catalog symlink-race regression: `624e9b8`.
