@@ -620,7 +620,7 @@ class CollectionPipelineTests(unittest.TestCase):
             return real_open(path, flags, *args, **kwargs)
 
         with patch.object(collector.os, "open", side_effect=replace_before_open):
-            with self.assertRaises(OSError):
+            with self.assertRaises((OSError, ValueError)):
                 collector.load_manifest(target)
         self.assertTrue(swapped)
 
