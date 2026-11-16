@@ -32,6 +32,22 @@ tests=(
   test_tenant_storage.py
   test_auth_rate_limits_separate_runtime.py
   test_mfa_account_security.py
+  test_mfa_primitives.py
+  test_mfa_break_glass_cli.py
+  test_platform_admin_bootstrap_cli.py
+  test_tenant_context.py
+  test_tenant_context_transaction_boundary.py
+  test_tenant_database_preflight.py
+  test_tenant_fleet_migration.py
+  test_tenant_ownership_preflight.py
+  test_tenant_write_failure_diagnostics.py
+  test_s3_storage_preflight.py
+  test_s3_recovery_archive_preflight.py
+  test_document_classifications.py
+  test_document_intelligence.py
+  test_document_review_workflow.py
+  test_invoice_schema_migration.py
+  test_security_audit_export.py
   test_reminder_email.py
   test_reminder_outbox.py
   test_reminder_service.py
