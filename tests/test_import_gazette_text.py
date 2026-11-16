@@ -222,6 +222,18 @@ class GazetteTextImportTests(unittest.TestCase):
         self.assertEqual(result["attached_law_articles"], 1)
         self.assertEqual(result["promulgation_provisions"], 0)
 
+    def test_retrieved_at_datetime_requires_explicit_timezone(self):
+        self.metadata["retrieved_at"] = "2026-11-06T00:00:00"
+        self.write_metadata()
+        with self.assertRaisesRegex(ValueError, "explicit UTC offset"):
+            import_text(self.text_path, self.meta_path, self.output)
+
+    def test_retrieved_at_date_only_remains_supported(self):
+        self.metadata["retrieved_at"] = "2026-11-06"
+        self.write_metadata()
+        result = import_text(self.text_path, self.meta_path, self.output)
+        self.assertEqual(result["document_id"], "EG-LABOUR-14-2025")
+
     def test_command_line_import_completes_one_sitting_run(self):
         completed = subprocess.run(
             [
