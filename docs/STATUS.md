@@ -403,3 +403,9 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Added the same verified-source scope and abstention explanation to matter-level Ask that is already shown in Legal Research. It explains that the default scope searches verified legal text only, abstains when provenance/review requirements are unmet, and distinguishes source-catalog metadata from matter-document search.
 - The guidance is informational only; no retrieval scope, answer gate, legal-source trust tier or authorization behavior was changed.
 - Added a frontend regression contract. Direct-main UI/test commits: `6bd9e91`, `9a1da54`. Static inspection only; tests and browser acceptance remain unexecuted.
+
+
+## AI-2 purge authorization validation ordering — 2026-11-16
+
+- Moved positive-integer validation for firm and operator IDs to the start of `purge_approved_requests`, before S3 target authorization and acceptance-manifest inspection. Malformed identifiers now fail before storage-target checks are performed.
+- Direct-main implementation commit: `b10645f`. No repository test module or GitHub Actions job was executed; this is a bounded source hardening change, not independent acceptance.
