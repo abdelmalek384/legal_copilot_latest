@@ -785,8 +785,12 @@ def create_backup_bundle(
         if actual_objects != expected_objects:
             raise DatabaseBundleError("Original-object storage contains missing or unreferenced objects; reconcile before backup")
 
+        payload_files = sorted(p for p in payload.rglob("*") if p.is_file())
+        expanded_size = sum(path.stat().st_size for path in payload_files)
+        if expanded_size > _MAX_ARCHIVE_BYTES:
+            raise DatabaseBundleError("Backup bundle exceeds the supported expanded size")
         file_hashes = {}
-        for path in sorted(p for p in payload.rglob("*") if p.is_file()):
+        for path in payload_files:
             file_hashes[path.relative_to(payload).as_posix()] = _sha256(path)
         manifest = {
             "format_version": _FORMAT_VERSION,
@@ -801,8 +805,13 @@ def create_backup_bundle(
             "files": file_hashes,
         }
         archive_path = stage / "bundle.zip"
+        manifest_bytes = json.dumps(
+            manifest, ensure_ascii=False, sort_keys=True
+        ).encode("utf-8")
+        if expanded_size + len(manifest_bytes) > _MAX_ARCHIVE_BYTES:
+            raise DatabaseBundleError("Backup bundle exceeds the supported expanded size")
         with zipfile.ZipFile(archive_path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
-            archive.writestr("manifest.json", json.dumps(manifest, ensure_ascii=False, sort_keys=True).encode("utf-8"))
+            archive.writestr("manifest.json", manifest_bytes)
             for relative in sorted(file_hashes):
                 archive.write(payload / relative, arcname=relative)
 
