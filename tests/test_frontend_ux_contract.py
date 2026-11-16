@@ -1377,5 +1377,23 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("aria-live:'polite'", HTML)
 
 
+    def test_matter_workspace_groups_all_tabs_and_keeps_matter_context_visible(self):
+        start = HTML.index("async function view(id){")
+        end = HTML.index("\\n// Bilingual UI:", start)
+        page = HTML[start:end]
+        for group in ("overview", "work", "records", "finance", "team"):
+            self.assertIn("id:'" + group + "'", page)
+        for tab in ("sum", "brief", "tasks", "sess", "dead", "docs", "ask", "notes", "fees", "invoices", "team", "log"):
+            self.assertIn("['" + tab + "'", page)
+        self.assertIn("matter-section-nav", page)
+        self.assertIn("matter-subnav", page)
+        self.assertIn("aria-pressed", page)
+        self.assertIn("aria-current", page)
+        self.assertIn("matter-context-strip", page)
+        self.assertIn("matter-progress-context", page)
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET=null", page)
+        self.assertIn("#main .matter-section-nav{flex-wrap:nowrap", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
