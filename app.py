@@ -7900,11 +7900,11 @@ def _invoice_record(c, row):
     return result
 
 
-def _invoice_for_user(c, u, invoice_id: int):
+def _invoice_for_user(c, u, invoice_id: int, *, lead: bool = False):
     row = c.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,)).fetchone()
     if row is None:
         raise HTTPException(404, "invoice not found")
-    need(c, u, int(row["case_id"]))
+    need(c, u, int(row["case_id"]), lead=lead)
     return row
 
 
@@ -7931,7 +7931,7 @@ def _invoice_write_lines(c, invoice_id: int, lines: list[InvoiceLineIn]) -> int:
 @rollback_tenant_transaction_on_error
 def create_invoice(cid: int, b: InvoiceDraftIn, u: dict = Depends(user)):
     c = conn()
-    need(c, u, cid)
+    need(c, u, cid, lead=True)
     case = c.execute("SELECT title,client FROM cases WHERE id=?", (cid,)).fetchone()
     if case is None:
         raise HTTPException(404, "case not found")
@@ -8055,7 +8055,7 @@ def get_invoice(invoice_id: int, u: dict = Depends(user)):
 @rollback_tenant_transaction_on_error
 def update_invoice(invoice_id: int, b: InvoiceDraftIn, u: dict = Depends(user)):
     c = conn()
-    row = _invoice_for_user(c, u, invoice_id)
+    row = _invoice_for_user(c, u, invoice_id, lead=True)
     if row["status"] != "draft":
         raise HTTPException(409, "only draft invoices can be edited")
     c.execute("DELETE FROM invoice_lines WHERE invoice_id=?", (invoice_id,))
@@ -8074,9 +8074,9 @@ def update_invoice(invoice_id: int, b: InvoiceDraftIn, u: dict = Depends(user)):
 @rollback_tenant_transaction_on_error
 def issue_invoice(invoice_id: int, u: dict = Depends(user)):
     c = conn()
-    row = _invoice_for_user(c, u, invoice_id)
+    row = _invoice_for_user(c, u, invoice_id, lead=True)
     c.execute("SAVEPOINT invoice_write")
-    row = _invoice_for_user(c, u, invoice_id)
+    row = _invoice_for_user(c, u, invoice_id, lead=True)
     if row["status"] != "draft":
         raise HTTPException(409, "only draft invoices can be issued")
     if int(row["total_piasters"]) <= 0:
@@ -8320,7 +8320,7 @@ table{{width:100%;border-collapse:collapse;margin:18px 0}}th,td{{border:1px soli
 @app.post("/cases/{cid}/fees")
 @rollback_tenant_transaction_on_error
 def new_fee(cid: int, b: FeeIn, u: dict = Depends(user)):
-    c = conn(); need(c, u, cid)
+    c = conn(); need(c, u, cid, lead=True)
     if b.paid > b.amount: raise HTTPException(422, "paid amount cannot exceed total")
     c.execute("INSERT INTO fees(case_id,title,amount,paid,due,note,created_by) VALUES(?,?,?,?,?,?,?)",
               (cid, b.title, b.amount, b.paid, b.due, b.note, u["id"]))
