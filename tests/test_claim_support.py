@@ -91,6 +91,7 @@ class ClaimSupportTests(unittest.TestCase):
             ("يحق للعامل الحصول على الإجازة السنوية.", "ليس من حق العامل الحصول على الإجازة السنوية."),
             ("من حق العامل الحصول على الإجازة السنوية.", "ليس من حق العامل الحصول على الإجازة السنوية."),
             ("يحق للعامل الحصول على الإجازة السنوية.", "غير مسموح للعامل بالحصول على الإجازة السنوية."),
+            ("يحق للعاملة الحصول على الإجازة السنوية.", "ليست من حق العاملة الحصول على الإجازة السنوية."),
         )
         for claim, evidence in cases:
             with self.subTest(claim=claim, evidence=evidence):
@@ -101,7 +102,7 @@ class ClaimSupportTests(unittest.TestCase):
                 ))
 
     def test_faithful_arabic_denial_of_entitlement_is_not_flagged(self):
-        evidence = "ليس من حق العامل الحصول على الإجازة السنوية."
+        evidence = "ليست من حق العاملة الحصول على الإجازة السنوية."
         self.assertFalse(_has_modal_mismatch(evidence, evidence))
         self.assertFalse(has_unsupported_claims(
             evidence + " [1].", [{"text": evidence}],
