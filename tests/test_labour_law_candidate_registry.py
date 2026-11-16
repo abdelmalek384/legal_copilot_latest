@@ -102,6 +102,10 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
         missing_version_date["version"] = dict(self.record["version"])
         missing_version_date["version"]["publication_date"] = "2025-13-40"
         malformed.append((missing_version_date, "publication_date must be an ISO"))
+        unhashable_review_type = dict(self.record)
+        unhashable_review_type["reviews"] = [dict(item) for item in self.record["reviews"]]
+        unhashable_review_type["reviews"][0]["review_type"] = ["lawyer_approval"]
+        malformed.append((unhashable_review_type, "review_type values must be unique"))
         duplicate_review = dict(self.record)
         duplicate_review["reviews"] = [dict(item) for item in self.record["reviews"]]
         duplicate_review["reviews"].append(dict(duplicate_review["reviews"][0]))
