@@ -488,7 +488,11 @@ def _scan_original_object_root(object_root: Path) -> set[str]:
         raise DatabaseBundleError("Original-object storage root must be a real directory")
     if not object_root.exists():
         return set()
-    if not object_root.is_dir():
+    try:
+        root_before = object_root.lstat()
+    except OSError as exc:
+        raise DatabaseBundleError("Original-object storage root could not be inspected") from exc
+    if not stat.S_ISDIR(root_before.st_mode):
         raise DatabaseBundleError("Original-object storage root must be a real directory")
 
     found: set[str] = set()
@@ -500,8 +504,13 @@ def _scan_original_object_root(object_root: Path) -> set[str]:
         root_fd = None
         try:
             root_fd = os.open(object_root, directory_flags)
-            if not stat.S_ISDIR(os.fstat(root_fd).st_mode):
-                raise DatabaseBundleError("Original-object storage root must be a real directory")
+            root_opened = os.fstat(root_fd)
+            if (
+                not stat.S_ISDIR(root_opened.st_mode)
+                or (root_opened.st_dev, root_opened.st_ino)
+                != (root_before.st_dev, root_before.st_ino)
+            ):
+                raise DatabaseBundleError("Original-object storage root changed during inventory")
             with os.scandir(root_fd) as namespaces:
                 for namespace in namespaces:
                     namespace_info = os.stat(
