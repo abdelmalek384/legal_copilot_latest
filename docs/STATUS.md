@@ -409,3 +409,10 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 
 - Moved positive-integer validation for firm and operator IDs to the start of `purge_approved_requests`, before S3 target authorization and acceptance-manifest inspection. Malformed identifiers now fail before storage-target checks are performed.
 - Direct-main implementation commit: `b10645f`. No repository test module or GitHub Actions job was executed; this is a bounded source hardening change, not independent acceptance.
+
+
+## AI-2 expired-session browser cleanup — 2026-11-16
+
+- Added a shared auth-cookie cleanup helper and invoke it when separate-runtime or legacy authentication rejects a missing, expired, or inactive session. The cleanup clears the session, CSRF, and selected-firm cookies; explicit logout uses the same helper.
+- Extended the separate-database expired-session regression to assert all three browser cookies are cleared and the expired token hash is removed from the control-plane session table.
+- Direct-main commits: application `c82cbb2`, regression `3ff45f5`. Regression is committed but unexecuted because GitHub Actions billing/runner availability remains blocked; no browser test is claimed.
