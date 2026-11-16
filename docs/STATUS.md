@@ -553,3 +553,11 @@ Updated estimates reflect source implementation only; regression execution and e
 - Current slice totals, corrected: 6 implementation files changed across tenant storage, shared database runtime, purge CLI, backup/restore, and security-matrix registration; 8 regression methods added/extended; 5 isolated harnesses passed; 0 repository test modules executed; 0 PRs merged by this execution.
 - Current estimates remain tenant isolation/access control 84.7%, authentication/firm administration 85.2%, case management 90%, document processing/security 99%, backup/release readiness 40.2%, AI-2 72.9%, whole project 72.1%. These are not test or acceptance percentages.
 - Current open PRs remain #1610, #1644 and #1645, all non-mergeable. #1651 merged externally. Dependency lock remains aligned to original requirements; no new dependency version was retained. GitHub billing/runner, local checkout, dependency installation/lock regeneration, repository tests, browser acceptance, S3/KMS and witnessed recovery remain blockers. Pilot/production: **NOT READY**.
+
+
+## AI-2 original-document object finalization race — 2026-11-16
+
+- Local private object finalization now checks the staged file's device/inode and regular-file type before linking, then verifies both the published destination and remaining staged path still reference that exact regular inode. If a staged path is swapped for a symlink or another file during linking, the published destination is removed and finalization fails closed.
+- Added a POSIX regression that replaces the staged path with a symlink immediately before the hard-link operation and asserts no final object is published and the outside target bytes remain unchanged.
+- Isolated filesystem reproduction passed: substituted symlink was not published; final path remained absent; outside bytes were unchanged. This is not execution of `tests/test_original_file_storage.py`.
+- Source commit: `a2b126c`; regression commit: `1a93620`. Repository test modules executed in this slice: 0.
