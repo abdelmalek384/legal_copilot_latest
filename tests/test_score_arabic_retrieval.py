@@ -272,7 +272,8 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
             {"question_id": q["id"],
              "retrieved_article_ids": [article_id] if q["answerable"] else [],
              "cited_article_ids": [article_id] if q["answerable"] else [],
-             "abstained": not q["answerable"], "used_unverified_source": False}
+             "abstained": not q["answerable"], "used_unverified_source": False,
+             "invalid_citation_indices": [], "citation_marker_count": 1 if q["answerable"] else 0}
             for q in questions
         ]
         self.assertEqual(score(questions, good, TEST_REVIEWER_REGISTRY)["target_status"], "targets_met")
@@ -712,6 +713,34 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
                     write_report_atomically(report, "replacement\n")
             self.assertEqual(report.read_text(encoding="utf-8"), "original evidence\n")
             self.assertEqual(sorted(p.name for p in report.parent.iterdir()), ["measurement.json"])
+
+    def test_invalid_extra_citation_is_a_safety_failure_even_with_correct_article_cited(self):
+        question = reviewed("Q-INVALID-EXTRA")
+        article_id = question["expected_article_id"]
+        run = {"question_id": question["id"], "retrieved_article_ids": [article_id],
+               "cited_article_ids": [article_id], "abstained": False,
+               "used_unverified_source": False, "invalid_citation_indices": [99],
+               "citation_marker_count": 2}
+        result = score([question], [run], TEST_REVIEWER_REGISTRY)
+        self.assertEqual(result["wrong_article_rate"], 0.0)
+        self.assertEqual(result["invalid_citation_markers"], 1)
+        self.assertEqual(result["invalid_citation_answers"], 1)
+        self.assertEqual(result["target_status"], "below_target")
+
+    def test_missing_citation_validation_metadata_prevents_targets_met(self):
+        questions = ([reviewed(f"Q-C-{i}", style="colloquial") for i in range(20)]
+                     + [reviewed(f"Q-S-{i}", style="formal", tags=["synonym"]) for i in range(20)]
+                     + [reviewed(f"Q-F-{i}") for i in range(60)]
+                     + [reviewed("Q-U", answerable=False)])
+        article_id = questions[0]["expected_article_id"]
+        runs = [{"question_id": q["id"], "retrieved_article_ids": [article_id] if q["answerable"] else [],
+                 "cited_article_ids": [article_id] if q["answerable"] else [],
+                 "abstained": not q["answerable"], "used_unverified_source": False}
+                for q in questions]
+        result = score(questions, runs, TEST_REVIEWER_REGISTRY)
+        self.assertEqual(result["citation_validation_missing_runs"], len(questions))
+        self.assertEqual(result["target_status"], "not_evaluable_missing_approved_labels_or_cited_runs")
+
 
 if __name__ == "__main__":
     unittest.main()
