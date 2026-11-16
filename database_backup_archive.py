@@ -214,6 +214,8 @@ def upload_encrypted_bundle(
                     raise
                 raise DatabaseBundleError("Encrypted recovery bundle multipart upload failed") from exc
 
+        if not isinstance(response, dict):
+            _fail("S3 upload returned malformed version metadata")
         version_id = response.get("VersionId")
         if not isinstance(version_id, str) or not version_id or version_id == "null":
             _fail("S3 did not return an immutable archive version ID; upload is not accepted")
@@ -223,6 +225,8 @@ def upload_encrypted_bundle(
             )
         except Exception as exc:
             raise DatabaseBundleError("Uploaded recovery archive version could not be verified") from exc
+        if not isinstance(accepted, dict) or not isinstance(accepted.get("Metadata"), dict):
+            _fail("Uploaded recovery archive version metadata is malformed")
         if (
             accepted.get("VersionId") != version_id
             or accepted.get("ServerSideEncryption") != "aws:kms"
@@ -238,6 +242,8 @@ def upload_encrypted_bundle(
             probe = s3_client.get_object(
                 Bucket=bucket, Key=object_key, VersionId=version_id
             )
+            if not isinstance(probe, dict):
+                _fail("S3 upload verification returned malformed object metadata")
             if probe.get("VersionId") != version_id or probe.get("Body") is None:
                 _fail("S3 upload verification did not return the exact object version")
             persisted_digest = hashlib.sha256()
@@ -258,8 +264,10 @@ def upload_encrypted_bundle(
         except Exception as exc:
             raise DatabaseBundleError("Persisted recovery archive bytes could not be verified") from exc
         finally:
-            if probe is not None and probe.get("Body") is not None:
-                probe["Body"].close()
+            if isinstance(probe, dict) and probe.get("Body") is not None:
+                close_body = getattr(probe["Body"], "close", None)
+                if callable(close_body):
+                    close_body()
         return {
             "bucket": bucket,
             "key": object_key,
@@ -312,6 +320,8 @@ def download_encrypted_bundle_version(
         _fail("Recovery archive locator does not match the configured target")
     try:
         head = s3_client.head_object(Bucket=bucket, Key=key, VersionId=version_id)
+        if not isinstance(head, dict) or not isinstance(head.get("Metadata"), dict):
+            _fail("Pinned recovery archive metadata is malformed")
         if (
             head.get("VersionId") != version_id
             or head.get("ServerSideEncryption") != "aws:kms"
@@ -326,8 +336,15 @@ def download_encrypted_bundle_version(
         raise
     except Exception as exc:
         raise DatabaseBundleError("Exact recovery archive version could not be retrieved") from exc
+    if not isinstance(response, dict):
+        _fail("S3 returned malformed recovery archive response metadata")
     body = response.get("Body")
-    if response.get("VersionId") != version_id or body is None:
+    if (
+        response.get("VersionId") != version_id
+        or body is None
+        or not callable(getattr(body, "read", None))
+        or not callable(getattr(body, "close", None))
+    ):
         try:
             if body is not None:
                 body.close()
