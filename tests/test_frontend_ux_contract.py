@@ -1395,5 +1395,23 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("#main .matter-section-nav{flex-wrap:nowrap", HTML)
 
 
+    def test_matter_document_download_requires_retention_confirmation(self):
+        start = HTML.index("async function view(id){")
+        end = HTML.index("\\n// Bilingual UI:", start)
+        page = HTML[start:end]
+        self.assertIn("d.original_available===true||d.original_available===1?btn", page)
+        self.assertIn("downloadOriginal||originalStatus", page)
+        self.assertIn("Original file is unavailable or was purged under the retention policy.", page)
+
+    def test_matter_extraction_review_discloses_ocr_and_partial_page_status(self):
+        start = HTML.index("const renderChunkReview=")
+        end = HTML.index("const suggestCorrection=", start)
+        page = HTML[start:end]
+        self.assertIn("reviewDoc.ocr_used===true||reviewDoc.ocr_used===1", page)
+        self.assertIn("reviewDoc.extraction_status==='partial_text_ocr_unavailable'", page)
+        self.assertIn("const extractedPage=chunk.page!==undefined&&chunk.page!==null&&chunk.page!==''?chunk.page:chunk.page_number", page)
+        self.assertIn("value:chunk.page!==undefined&&chunk.page!==null&&chunk.page!==''?chunk.page:(chunk.page_number??'')", page)
+
+
 if __name__ == "__main__":
     unittest.main()
