@@ -496,6 +496,25 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         finally:
             target_client.close()
 
+    def test_firm_admin_cannot_suspend_the_last_active_firm_admin(self):
+        target_id = self.runtime.create_global_identity(
+            "Only Firm Admin", "only-firm-admin@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(target_id, self.firm_a, "admin")
+        login = self.client.post(
+            "/login", json={"email": "owner@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+
+        denied = self._mutate("post", f"/users/{target_id}/disable")
+        self.assertEqual(denied.status_code, 409, denied.text)
+        self.assertIn("last active administrator", denied.text)
+        membership = self.runtime.control_connection().execute(
+            "SELECT firm_role,status FROM firm_memberships WHERE user_id=? AND firm_id=?",
+            (target_id, self.firm_a),
+        ).fetchone()
+        self.assertEqual((membership["firm_role"], membership["status"]), ("admin", "active"))
+
     def test_firm_admin_cannot_suspend_another_firms_membership(self):
         firm_b_only_user = self.runtime.create_global_identity(
             "Firm B Only User", "firm-b-admin-isolation@example.test", app.hash_pw(self.password)
