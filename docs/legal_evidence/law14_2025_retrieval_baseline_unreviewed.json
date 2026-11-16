@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "report_date": "2026-11-14",
+  "report_date": "2026-11-16",
   "benchmark": "Law 14/2025 machine-proposed Arabic question inventory",
   "status": "unreviewed_not_scored",
   "label": "UNREVIEWED — machine-proposed, not lawyer-approved",
   "dataset_path": "tests/legal_eval/law_14_2025_machine_proposed_questions.draft.jsonl",
-  "dataset_sha256": "not recomputed in this report",
+  "dataset_sha256": "c8d51d9a85a29d3d8500041ffab6a646c0df134d8b24e9d7ea70d3d6afc5c4a0",
   "questions_total": 116,
   "unique_ids": 116,
   "unique_question_texts": 116,
