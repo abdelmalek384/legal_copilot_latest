@@ -11,6 +11,7 @@ from pathlib import Path
 
 from original_file_reconciliation import TenantDatabase, reconcile_original_file_storage
 from original_file_s3_reconciliation import reconcile_s3_original_file_storage
+from original_file_storage import ObjectStorageError
 from tenant_catalog import (
     TenantCatalogError,
     initialize_catalog,
@@ -206,7 +207,7 @@ def inspect_firm_offboarding(
                 "object_id": finding.object_id,
                 "detail": finding.detail,
             })
-    except (ValueError, OSError, sqlite3.Error) as exc:
+    except (ObjectStorageError, ValueError, OSError, sqlite3.Error) as exc:
         findings.append({"code": "object_reconciliation_failed", "detail": type(exc).__name__})
 
     findings.sort(key=lambda item: (item["code"], str(item.get("object_id", ""))))
