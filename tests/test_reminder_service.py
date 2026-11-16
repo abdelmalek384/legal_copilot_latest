@@ -86,6 +86,21 @@ class ReminderServiceTests(unittest.TestCase):
         )
         self.assertEqual(report["reminders_planned"], 0)
 
+    def test_send_fails_closed_when_reminder_preferences_schema_is_missing(self):
+        self.tenant.execute("DROP TABLE reminder_preferences")
+        self.tenant.commit()
+        with patch("tools.reminder_service.send_reminder_email") as sender:
+            with self.assertRaises(sqlite3.OperationalError):
+                run_scheduler(
+                    self.runtime, now=self.now, timezone_name="Africa/Cairo", send=True,
+                    smtp_config=self.smtp, app_url="https://app.example.test", max_send=10,
+                )
+        self.assertEqual(sender.call_count, 0)
+        self.assertEqual(
+            self.tenant.execute("SELECT COUNT(*) FROM reminder_deliveries").fetchone()[0],
+            0,
+        )
+
     def test_scheduler_plans_court_sessions_on_the_day_only(self):
         self.tenant.execute(
             "INSERT INTO sessions(case_id,date,note,done) VALUES(?,?,?,0)",
