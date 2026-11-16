@@ -844,3 +844,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Added regressions for dynamic route paths, dynamic API methods, keyword path support, and strict CLI rejection. Existing route-SQL tests remain registered in the Tests workflow and focused security matrix.
 - Source commits: d0ad7e3, 7a62bbf; regression commits: 2ed7593, 6d5c66d. An isolated AST harness rejected dynamic declarations and accepted literal path/method declarations; repository test modules and GitHub Actions remain unexecuted.
 - Static implementation: **100%**. Runtime validation remains pending; pilot/production remains **NOT READY**.
+
+
+- Registration follow-up: the new route-to-SQL inventory regressions were already in the Tests workflow but were absent from the focused security matrix. Added `test_route_sql_access_audit.py` to the matrix adjacent to the route-authentication audit. Matrix static check: 42 entries, 0 duplicates, 0 entries missing from the explicit Tests workflow. This is registration-only verification, not test execution. Matrix update commit: d4b27b6.
