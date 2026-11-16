@@ -1170,3 +1170,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Root-directory identity pinning follow-up: the local store records the initialized object-root `(device,inode)` and refuses operations if the configured root path is replaced by another real directory; reconciliation compares the root identity observed before descriptor traversal with the opened descriptor. Added root-replacement regressions for both paths. Commits: local store `a943983`, test `0beace0`; reconciler `d9baf0f`, test `ffe1e4b`.
+
+
+- Root-identity descriptor cleanup follow-up: both local store and reconciler now close the opened root FD if `fstat`/identity validation fails, avoiding descriptor leaks on rejected root swaps. Commits: local `c1fb85f`; reconciler `d2a2eca`.
