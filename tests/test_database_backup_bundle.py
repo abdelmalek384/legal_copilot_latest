@@ -156,6 +156,33 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         with self.assertRaises(DatabaseBundleError):
             _scan_original_object_root(object_root)
 
+    def test_original_object_inventory_rejects_root_directory_replacement(self):
+        import os
+        from unittest.mock import patch
+        import database_backup
+
+        object_root = self.root / "object-root-race"
+        object_root.mkdir()
+        (object_root / f"firm-{self.firm_a}").mkdir()
+        replacement = self.root / "replacement-object-root"
+        replacement.mkdir()
+        (replacement / f"firm-{self.firm_b}").mkdir()
+        moved = self.root / "original-object-root"
+        real_open = os.open
+        replaced = False
+
+        def replace_root_before_open(path, flags, *args, **kwargs):
+            nonlocal replaced
+            if Path(path) == object_root and not replaced:
+                replaced = True
+                object_root.rename(moved)
+                replacement.rename(object_root)
+            return real_open(path, flags, *args, **kwargs)
+
+        with patch.object(database_backup.os, "open", side_effect=replace_root_before_open):
+            with self.assertRaises(DatabaseBundleError):
+                database_backup._scan_original_object_root(object_root)
+
     def test_backup_object_copy_hashes_the_same_no_follow_descriptor(self):
         from database_backup import _copy_verified_original_object
 
