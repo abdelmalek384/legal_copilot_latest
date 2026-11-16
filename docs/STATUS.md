@@ -1212,6 +1212,9 @@ The following focused frontend changes were merged to `main`:
 - PR #1720: localized the single New conversation action and made the disabled paperclip tooltip state the missing scope/matter prerequisite.
 - PR #1721: corrected malformed rating overflow-menu CSS selectors found during static review and added a selector regression contract.
 - PR #1722: made the compact paperclip upload panel span the full composer width.
+- PR #1724: corrected source-range delimiters in the new frontend regression methods and aligned the Partial-rating test with the Arabic button label.
+- PR #1725: preserved compact wrapping example-question chips at mobile widths.
+- PR #1726: kept the textarea, paperclip and Send control on one row at mobile widths, with helper text and upload panel spanning the composer.
 - Follow-up Arabic-catalog scan found and corrected two missing normalized literals (`جزئي` and the trimmed verified-document status label); the current static scan reports zero missing Arabic literals, with unique catalog IDs and entries.
 
 Validation and remaining gates:
