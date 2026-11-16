@@ -51,6 +51,22 @@ class DatabaseBackupBundleTests(unittest.TestCase):
             pass
         self.temp.cleanup()
 
+    def test_backup_requires_literal_quiescence_and_positive_integer_retention(self):
+        for false_like in (False, None, 0, "true", "yes", 1):
+            with self.subTest(quiesced=false_like):
+                with self.assertRaises(DatabaseBundleError):
+                    create_backup_bundle(
+                        self.runtime, self.cipher, self.backup_dir,
+                        quiesced=false_like,
+                    )
+        for invalid_keep in (True, False, 0, -1, 1.5, "2", None):
+            with self.subTest(keep=invalid_keep):
+                with self.assertRaises(ValueError):
+                    create_backup_bundle(
+                        self.runtime, self.cipher, self.backup_dir,
+                        quiesced=True, keep=invalid_keep,
+                    )
+
     def test_encrypted_bundle_restores_control_corpus_and_each_firm(self):
         with self.assertRaises(DatabaseBundleError):
             create_backup_bundle(self.runtime, self.cipher, self.backup_dir)
