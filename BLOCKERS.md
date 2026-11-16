@@ -94,3 +94,6 @@
 
 
 - Latest observed main check runs (commit e896db2) report six failures: test, chromium, Python/JavaScript CodeQL, Bandit and dependency audit. The sampled workflow-job log endpoint returned `404 BlobNotFound`, preventing diagnosis. Treat as failed/unverified, not as a test pass; no rerun or merge should rely on them until healthy runner logs are available.
+
+
+- 2026-11-16: Local original storage now pins every path component from filesystem root and performs all object operations relative to no-follow directory descriptors; symlink namespace swaps are rejected. Hardlinked staged/final objects are rejected via link-count checks. Added namespace-race and hardlink regressions (commits 04b463b, 1bd681d, 86a2e07, 434ad96). A focused syscall harness passed, but repository tests remain unexecuted.
