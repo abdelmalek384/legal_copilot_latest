@@ -4763,8 +4763,19 @@ def mfa_reenroll(b: MFAEnrollIn, response: Response, u: dict = Depends(user)):
             "WHERE user_id=? AND status='enabled'",
             (ciphertext, now + 600, u["id"]),
         )
+        # A factor replacement invalidates every session's prior MFA proof.
+        # The session completing this enrollment is re-verified by mfa_confirm;
+        # other devices must verify against the newly enrolled authenticator.
+        control.execute(
+            "UPDATE auth_sessions SET mfa_verified=0,mfa_verified_at=0 WHERE user_id=?",
+            (u["id"],),
+        )
         _record_mfa_event(control, int(u["id"]), "enrollment_started",
-                          {"method": "recent_mfa_recovery", "expires_in_seconds": 600})
+                          {
+                              "method": "recent_mfa_recovery",
+                              "expires_in_seconds": 600,
+                              "existing_sessions_require_reverification": True,
+                          })
         control.commit()
     except Exception:
         control.rollback()
