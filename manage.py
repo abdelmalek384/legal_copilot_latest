@@ -936,13 +936,29 @@ def archive_upload_tenancy(a):
 def _read_recovery_locator(path_value: str | Path) -> dict:
     """Read a small locator JSON file through a no-follow regular-file descriptor."""
     path = Path(path_value).expanduser()
+    try:
+        initial = path.lstat()
+    except OSError as exc:
+        raise SystemExit("Recovery locator could not be read safely.") from exc
+    if not stat.S_ISREG(initial.st_mode):
+        raise SystemExit("Recovery locator could not be read safely.")
     flags = os.O_RDONLY | getattr(os, "O_NONBLOCK", 0) | getattr(os, "O_NOFOLLOW", 0)
     descriptor = None
     try:
         descriptor = os.open(path, flags)
         metadata = os.fstat(descriptor)
-        if not stat.S_ISREG(metadata.st_mode):
-            raise ValueError("locator must be a regular file")
+        if (
+            not stat.S_ISREG(metadata.st_mode)
+            or (metadata.st_dev, metadata.st_ino) != (initial.st_dev, initial.st_ino)
+        ):
+            raise ValueError("locator changed while it was being opened")
+        if not getattr(os, "O_NOFOLLOW", 0):
+            current = path.lstat()
+            if (
+                not stat.S_ISREG(current.st_mode)
+                or (current.st_dev, current.st_ino) != (metadata.st_dev, metadata.st_ino)
+            ):
+                raise ValueError("locator path changed or became a symlink")
         if metadata.st_size > 16384:
             raise ValueError("locator file is too large")
         with os.fdopen(descriptor, "rb") as handle:
