@@ -1017,7 +1017,16 @@ class DatabaseRuntime:
         created_by_user_id: int | None = None,
     ) -> None:
         """Create an explicit membership; firm role never grants platform privileges."""
-        if role not in {"admin", "lawyer", "junior"}:
+        for label, value in (("user_id", user_id), ("firm_id", firm_id)):
+            if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
+                raise ValueError(f"{label} must be a positive integer")
+        if created_by_user_id is not None and (
+            isinstance(created_by_user_id, bool)
+            or not isinstance(created_by_user_id, int)
+            or created_by_user_id <= 0
+        ):
+            raise ValueError("created_by_user_id must be a positive integer when supplied")
+        if not isinstance(role, str) or role not in {"admin", "lawyer", "junior"}:
             raise ValueError("unsupported firm role")
         control = self.control_connection()
         control.execute("BEGIN IMMEDIATE")
@@ -1051,6 +1060,8 @@ class DatabaseRuntime:
         self, firm_id: int, name: str, email: str, password_hash: str
     ) -> int:
         """Bootstrap the first firm admin without granting platform-wide privileges."""
+        if isinstance(firm_id, bool) or not isinstance(firm_id, int) or firm_id <= 0:
+            raise ValueError("firm_id must be a positive integer")
         from identity import normalize_email
 
         clean_name = name.strip() if isinstance(name, str) else ""
