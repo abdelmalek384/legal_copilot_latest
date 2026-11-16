@@ -429,6 +429,18 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 ).fetchone()
             )
 
+            rejected_origin = target.post(
+                "/logout",
+                headers={"X-CSRF-Token": csrf, "Origin": "https://attacker.example.test"},
+            )
+            self.assertEqual(rejected_origin.status_code, 403, rejected_origin.text)
+            self.assertIsNotNone(
+                self.runtime.control_connection().execute(
+                    "SELECT 1 FROM auth_sessions WHERE token_hash=?",
+                    (app.sha(token),),
+                ).fetchone()
+            )
+
             accepted = target.post("/logout", headers={"X-CSRF-Token": csrf})
             self.assertEqual(accepted.status_code, 200, accepted.text)
             self.assertIsNone(
