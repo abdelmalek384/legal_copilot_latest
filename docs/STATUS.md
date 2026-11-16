@@ -773,3 +773,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Static review only; no repository test module or Actions job ran. Backup/release readiness estimate 46.3%; AI-2 overall 75.8%; whole project 74.5%. Pilot/production remains NOT READY.
 
 - Refinement: firm-state equality is scoped to firms represented in the tenant catalog, matching the backup manifest's documented catalog inventory. This preserves legitimate non-active control-plane firm records that have no tenant catalog entry while still rejecting missing, extra or contradictory cataloged firm states. Source commit: 3147eba.
+
+
+- Added a recovery-download preflight regression for a destination whose parent path traverses a symlinked ancestor (not merely a symlink at the final parent component). It asserts the canonical-path mismatch is rejected before bucket-versioning, KMS, HEAD or GET calls. Test commit: b3dc94a. Static review only; repository tests remain unexecuted.
