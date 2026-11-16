@@ -66,3 +66,7 @@
 
 
 - 2026-11-16: Recovery archive persisted-byte verification and downloads now use exact declared-size-plus-one sentinel reads; oversized download regression verifies the read bound and partial-file cleanup (commits fb89aaf, 4b80528). Runtime tests remain unexecuted.
+
+
+- PR #1644: do not merge yet. It updates requirements.txt to pypdf 7.1.0 but leaves requirements-py312.lock at 6.21.4; its head also reports a failed CodeQL check and no commit statuses. PR #1610 remains draft and non-mergeable. Resolve lock parity and review checks before merging; no unsafe merge attempted.
+- Current validation blocker: GitHub Actions billing/runner availability prevents repository test execution. Static source review and isolated harnesses do not substitute for the registered repository suites.
