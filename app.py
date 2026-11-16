@@ -6512,11 +6512,21 @@ def disable_user(uid: int, u: dict = Depends(user)):
             )
             if updated.rowcount != 1:
                 raise HTTPException(409, "membership state changed; refresh and retry")
+            # Session tokens are global identities, not firm-scoped credentials.
+            # Revoke all existing sessions so a suspended member must authenticate
+            # again before using any remaining firm memberships.
+            revoked_sessions = c.execute(
+                "DELETE FROM auth_sessions WHERE user_id=?",
+                (uid,),
+            ).rowcount
             try:
                 c.execute(
                     "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
                     "VALUES(?,?,?,'membership_suspended',?)",
-                    (u["id"], uid, u["firm_id"], json.dumps({"method": "web", "new_status": "suspended"}, sort_keys=True)),
+                    (u["id"], uid, u["firm_id"], json.dumps({
+                        "method": "web", "new_status": "suspended",
+                        "sessions_revoked": True, "revoked_session_count": revoked_sessions,
+                    }, sort_keys=True)),
                 )
             except sqlite3.Error as exc:
                 raise HTTPException(503, "membership suspension was not committed because audit logging failed") from exc
