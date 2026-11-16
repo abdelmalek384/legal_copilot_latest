@@ -70,3 +70,9 @@ These are frontend implementation and automated contract-test improvements, not 
 - Matter extraction review warns when OCR was used or some pages could not be extracted. Recorded page references remain provisional and both supported page fields are recognized.
 - Original-file download is offered only when the API explicitly confirms a retained original; the backend endpoint continues to enforce authorization and integrity.
 - Automated source contracts were added; responsive browser and assistive-technology review remain outstanding.
+
+
+### 2026-11-16 — matter Ask legal-source guidance
+
+- The matter-level Ask view now displays the same source-scope and abstention explanation as Legal Research, reducing the risk that a user interprets an empty verified-corpus result as proof that no law exists.
+- This is explanatory UI only; retrieval and trust gates are unchanged. A frontend source contract was added; browser acceptance remains outstanding.
