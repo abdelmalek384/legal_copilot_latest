@@ -561,3 +561,11 @@ Updated estimates reflect source implementation only; regression execution and e
 - Added a POSIX regression that replaces the staged path with a symlink immediately before the hard-link operation and asserts no final object is published and the outside target bytes remain unchanged.
 - Isolated filesystem reproduction passed: substituted symlink was not published; final path remained absent; outside bytes were unchanged. This is not execution of `tests/test_original_file_storage.py`.
 - Source commit: `a2b126c`; regression commit: `1a93620`. Repository test modules executed in this slice: 0.
+
+
+## AI-2 restore destination boundary hardening — 2026-11-16
+
+- Both the public restore entry point and the internal verified-byte restore path now share one destination validator. It rejects filesystem-root parents, resolves the parent directory before use, and rechecks that the canonical destination does not already exist. This prevents the restore API from accepting a root-level target merely because the shell drill wrapper rejects it.
+- Added a regression proving root-parent rejection occurs before attempting to read the supplied backup file and creates no destination.
+- Isolated path-validation harness passed for a normal temporary parent and a filesystem-root parent. This is not execution of `tests/test_database_backup_bundle.py`.
+- Source commit: `664008b`; regression commit: `c28e4db`. Repository test modules executed: 0.
