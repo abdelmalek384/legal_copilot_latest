@@ -1692,5 +1692,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("markFieldInvalid(missingDescription.description)", HTML)
         self.assertIn("requiredFields.filter(field=>!String(field.value||'').trim()||!field.checkValidity()).forEach(markFieldInvalid)", casework)
 
+    def test_display_density_preference_persists_per_firm_and_user_and_preserves_targets(self):
+        self.assertIn("function applyDensityPreference()", HTML)
+        self.assertIn("lc_density_'+String(ME.firm_id||'0')+'_'+String(ME.id||'0')", HTML)
+        self.assertIn("localStorage.setItem(densityPreferenceKey,value)", HTML)
+        self.assertIn("['compact','comfortable'].includes(savedDensity)", HTML)
+        self.assertIn(':root[data-density="compact"] .card{padding:10px;margin-bottom:10px}', HTML)
+        self.assertIn(':root[data-density="compact"] button,:root[data-density="compact"] input,:root[data-density="compact"] select{padding:6px 10px;min-height:44px}', HTML)
+        self.assertIn("uiText('تفضيلات العرض','Display preferences')", HTML)
+
 if __name__ == "__main__":
     unittest.main()

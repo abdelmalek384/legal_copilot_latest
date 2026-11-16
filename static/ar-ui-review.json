@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "507b4d62e5d5bb91f2105310dee81d34ddfb3fc9",
   "generated_on": "2026-11-17",
-  "entry_count": 1555,
+  "entry_count": 1559,
   "entries": [
     {
       "id": "AR-0001",
@@ -17300,6 +17300,42 @@
       "source_file": "static/index.html",
       "source_lines": [
         1364
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1556",
+      "arabic": "كثافة العرض",
+      "source_file": "static/index.html",
+      "source_lines": [
+        1717
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1557",
+      "arabic": "مريحة",
+      "source_file": "static/index.html",
+      "source_lines": [
+        1717
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1558",
+      "arabic": "مضغوطة",
+      "source_file": "static/index.html",
+      "source_lines": [
+        1717
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1559",
+      "arabic": "تفضيلات العرض",
+      "source_file": "static/index.html",
+      "source_lines": [
+        1717
       ],
       "review_status": "pending_native_review"
     }
