@@ -60,3 +60,6 @@
 
 
 - 2026-11-16: ZIP member path validation additionally rejects Windows ADS syntax, reserved device names and trailing-dot/space aliases, with regressions (commits 45d5391, 1119a10). Runtime tests remain unexecuted.
+
+
+- 2026-11-16: Recovery archive hash and multipart upload loops now use exact remaining-size-plus-one sentinel reads; added a tracking-file regression asserting only max+1 bytes are read during hash rejection (commits 774670a, 70b13a2). Repository runtime tests remain unexecuted.
