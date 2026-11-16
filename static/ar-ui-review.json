@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "9b500def2b458e3b6940cc5306a73931fa4cd4b9",
   "generated_on": "2026-11-17",
-  "entry_count": 1564,
+  "entry_count": 1567,
   "entries": [
     {
       "id": "AR-0001",
@@ -150,6 +150,7 @@
         1281,
         1354,
         1372,
+        1400,
         1471,
         1493,
         1675,
@@ -3850,6 +3851,7 @@
       "source_lines": [
         1091,
         1372,
+        1400,
         1471,
         1472,
         1493,
@@ -17383,6 +17385,33 @@
       "source_file": "static/index.html",
       "source_lines": [
         2004
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1565",
+      "arabic": "البحث العام في ملفات القضايا والعملاء المصرح بها",
+      "source_file": "static/index.html",
+      "source_lines": [
+        1400
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1566",
+      "arabic": "جارٍ البحث في القضايا والعملاء المصرح بهم...",
+      "source_file": "static/index.html",
+      "source_lines": [
+        1404
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1567",
+      "arabic": "لا توجد نتائج مطابقة ضمن صلاحياتك.",
+      "source_file": "static/index.html",
+      "source_lines": [
+        1417
       ],
       "review_status": "pending_native_review"
     }
