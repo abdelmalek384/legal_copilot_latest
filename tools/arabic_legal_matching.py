@@ -52,7 +52,7 @@ def orthographic_variants(token):
 def _is_negated_at(normalized_query, start):
     """Recognize nearby Arabic negators governing this occurrence."""
     prefix = normalized_query[:start]
-    return bool(re.search(r"(?:^|\s)(?:مش|ما)\s+(?:\S+\s+){0,2}$", prefix))
+    return bool(re.search(r"(?:^|\s)(?:مش|ما|لا|ليس|ليست|لست|لم|لن|غير|بدون|بلا)\s+(?:\S+\s+){0,2}$", prefix))
 
 
 def _phrase_occurrences(normalized_query, normalized_phrase):
