@@ -7234,7 +7234,10 @@ def case(cid: int, u: dict = Depends(user)):
             "docs": documents,
             "notes": rows("SELECT n.id,n.text,n.created_at,u.name AS author FROM notes n JOIN users u ON u.id=n.created_by WHERE n.case_id=? ORDER BY n.id DESC"),
             "deadlines": rows("SELECT * FROM deadlines WHERE case_id=? ORDER BY due"),
-            "fees": rows("SELECT * FROM fees WHERE case_id=? ORDER BY due"),
+            "fees": (
+                rows("SELECT * FROM fees WHERE case_id=? ORDER BY due")
+                if u["role"] == "admin" or is_lead(c, u, cid) else []
+            ),
             "events": rows("SELECT who, at, text FROM events WHERE case_id=? ORDER BY id DESC LIMIT 100")}
 
 
