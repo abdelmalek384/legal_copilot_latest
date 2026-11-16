@@ -98,6 +98,13 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Added a regression with a synthetic S3 inventory outage; it asserts the preflight remains blocked, performs no mutation, and never authorizes production purge.
 - **Bounded implementation task: 100% implemented; regression execution: pending.** No GitHub Actions run or full application test was possible.
 
+## AI-1 Gazette provenance timestamp correction — 2026-11-16
+
+- PR #1647 merged the explicit-timezone requirement for datetime provenance while retaining date-only metadata; duplicate PR #1646 was closed without merge.
+- A manual Python check exposed a compatibility defect in the merged implementation: Python's datetime parser accepts a date-only string as a naive midnight datetime, so the new timezone check accidentally rejected the promised date-only format. Corrected the mainline validator to distinguish canonical YYYY-MM-DD dates before parsing datetimes.
+- Manual isolated validation passed for date-only, UTC-offset datetime, non-UTC-offset datetime, and rejection of a naive datetime. The full Gazette importer test module remains unexecuted due unavailable GitHub runners.
+- Mainline correction: 80009598e5c3601cd0b4fbc436d66fe1a171abc0.
+
 **Unweighted AI-2 implementation estimate: 72.7%** (arithmetic mean of the seven workstream values above). The provisional whole-project engineering estimate is approximately **72%**; this is not a test-pass rate or production-readiness score. The application remains **NOT READY** for lawyer pilot or production. No test pass is inferred from committed test code.
 
 ## Legal evidence boundary
