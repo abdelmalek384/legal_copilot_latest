@@ -68,6 +68,7 @@ The following bounded repository tasks now meet their source-change acceptance c
 | Verify document metadata/text search and matter indexes do not disclose another firm's records | **100%** | Separate-runtime regression committed; route execution pending |
 | Pin firm-data-export success-audit fail-closed behavior and exclude authentication/session/MFA secrets from exports | **100%** | Positive- and negative-path route regressions committed and registered in the existing workflow/security matrix; execution pending |
 | Verify firm export includes original evidence byte-for-byte and records matching SHA-256/manifest metadata | **100%** | Route regression committed and registered through the existing workflow suite; AST syntax check passed; route execution pending |
+| Verify suspending a user's membership revokes access to only that firm, including recovery from a stale firm cookie, while preserving access to another active firm | **100%** | Route regression committed; stale-context fallback and cross-firm denial are asserted; execution pending |
 
 ## AI-2 implementation completion estimate
 
@@ -77,7 +78,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 |---|---:|---|
 | Local release baseline | 20% | Release-check implementation exists; exact local checker output and all Python 3.12 gates remain unavailable |
 | Security integration | 82% | Production/staging login, configured API middleware, and recovery throttle identifiers are purpose-separated HMAC pseudonyms; route-authentication, case/document parent-scope, fail-closed original-file export and download-audit boundaries, post-commit original retention, and explicit matter-deletion retention conflicts are now guarded; exact-head security verification remains blocked |
-| Security regression coverage | 97.4% | Backup source no-follow, same-descriptor upload, mandatory checksum and verification-to-upload byte-binding regressions, duplicate release-evidence validation, S3 cross-region KMS, recovery/login/API HMAC, route-auth, case-ID/document-ID/query-scope, corrupted original-file export, mandatory original-download audit failure, post-commit upload-metering failure, matter-deletion retention, firm-export audit-failure, authentication-secret-exclusion, and byte-for-byte original-export integrity regressions are committed; all repository tests remain unexecuted, real OCR-engine/image-quality acceptance still pending |
+| Security regression coverage | 97.6% | Backup source no-follow, same-descriptor upload, mandatory checksum and verification-to-upload byte-binding regressions, duplicate release-evidence validation, S3 cross-region KMS, recovery/login/API HMAC, route-auth, case-ID/document-ID/query-scope, corrupted original-file export, mandatory original-download audit failure, post-commit upload-metering failure, matter-deletion retention, firm-export audit-failure, authentication-secret-exclusion, byte-for-byte original-export integrity, and cross-firm membership-suspension regressions are committed; all repository tests remain unexecuted, real OCR-engine/image-quality acceptance still pending |
 | Lawyer rating UI/export | 95% | Browser acceptance and adapter execution remain pending |
 | Test-firm package | 90% | Clean-clone first-login rehearsal remains unexecuted |
 | Repository cleanup/accessibility | 83% | Bilingual form labels/errors, source-inspector metadata and passage navigation are implemented; run hygiene scan and finish manual accessibility review |
@@ -341,3 +342,6 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Upload queue results now expose list/list-item semantics and polite live announcements for per-file state updates.
 - Added frontend regression contracts for dashboard hierarchy, finance navigation preservation, progressive document filters and upload queue announcements. Direct-main commits: dashboard `2cb3a06`, tests `b0cf5f1`; document/upload UI `3114eff`, tests `e4a59f2`.
 - Static inspection only. Tests, browser interaction, Arabic RTL/English LTR, mobile reflow, keyboard and screen-reader acceptance remain unexecuted because GitHub Actions runner/billing is unavailable.
+
+
+- Added a multi-firm membership-suspension regression. It logs a member into Firm A, suspends only that membership from the Firm A administrator session, then verifies the member can recover from the stale Firm A cookie by switching to still-active Firm B, while Firm A remains inaccessible and the Firm B membership remains active. The test is committed but unexecuted.
