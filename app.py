@@ -6357,12 +6357,10 @@ def disable_user(uid: int, u: dict = Depends(user)):
             if not target:
                 raise HTTPException(404, "user not found")
             if target["firm_role"] == "admin":
-                active_admins = int(c.execute(
-                    "SELECT COUNT(*) FROM firm_memberships WHERE firm_id=? AND firm_role='admin' AND status='active'",
-                    (u["firm_id"],),
-                ).fetchone()[0])
-                if active_admins <= 1:
-                    raise HTTPException(409, "cannot suspend the firm's last active administrator")
+                raise HTTPException(
+                    409,
+                    "administrator memberships cannot be suspended through this route; transfer or demote the administrator role first",
+                )
             updated = c.execute(
                 "UPDATE firm_memberships SET status='suspended',updated_at=datetime('now') "
                 "WHERE user_id=? AND firm_id=? AND status='active'",
