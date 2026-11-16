@@ -60,5 +60,12 @@ class DesignTokensContractTests(unittest.TestCase):
         self.assertIn('font-family:var(--font-title)', CSS)
         self.assertIn("button,.tabs a,#side a{min-height:var(--tap-target)}", CSS)
 
+    def test_phase_one_wrapping_and_checkbox_alignment_regressions(self):
+        self.assertIn("#main .research-list-head>b{flex:0 0 auto;white-space:nowrap;word-break:normal;overflow-wrap:normal", CSS)
+        self.assertIn("#main .document-library-matter button{white-space:nowrap;word-break:normal;overflow-wrap:normal;hyphens:none", CSS)
+        self.assertIn("#main label.settings-checkbox-row{display:flex;flex-direction:row;align-items:center;justify-content:flex-start;flex-wrap:nowrap", CSS)
+        self.assertIn('#main label.settings-checkbox-row>input[type="checkbox"]', CSS)
+
+
 if __name__ == "__main__":
     unittest.main()
