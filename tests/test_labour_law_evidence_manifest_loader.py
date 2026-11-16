@@ -24,6 +24,45 @@ class LabourLawEvidenceManifestLoaderTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "duplicate JSON object key 'inventory_files'"):
                     load_inventory(inventory)
 
+    def test_protected_manifest_loader_rejects_symlink_swap(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            inventory = root / "provision_evidence_cards.json"
+            manifest = root / "provision_evidence_cards_manifest.json"
+            inventory.write_text('{"cards":[]}', encoding="utf-8")
+            manifest.write_text('{"inventory_files":[]}', encoding="utf-8")
+            outside = root / "outside-manifest.json"
+            outside.write_text('{"sentinel":"untouched"}', encoding="utf-8")
+            real_open = evidence_cards.read_regular_file.__globals__["os"].open
+            swapped = False
+
+            def replace_before_open(path, flags, *args, **kwargs):
+                nonlocal swapped
+                if Path(path) == manifest and not swapped:
+                    swapped = True
+                    manifest.unlink()
+                    manifest.symlink_to(outside)
+                return real_open(path, flags, *args, **kwargs)
+
+            with patch("tools.validate_source_permission_register.os.open", side_effect=replace_before_open):
+                with patch.object(evidence_cards, "DEFAULT_INPUT", inventory), patch.object(evidence_cards, "ROOT", root):
+                    with self.assertRaises(OSError):
+                        evidence_cards._protected_inventory_paths(inventory)
+            self.assertTrue(swapped)
+            self.assertEqual(outside.read_text(encoding="utf-8"), '{"sentinel":"untouched"}')
+
+    def test_report_writer_replaces_symlink_without_modifying_target(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            outside = root / "outside.md"
+            outside.write_text("untouched", encoding="utf-8")
+            output = root / "review.md"
+            output.symlink_to(outside)
+            evidence_cards.write_report_atomically(output, "# Safe report\n")
+            self.assertFalse(output.is_symlink())
+            self.assertEqual(output.read_text(encoding="utf-8"), "# Safe report\n")
+            self.assertEqual(outside.read_text(encoding="utf-8"), "untouched")
+
     def test_report_loader_uses_reconciled_canonical_inventory(self):
         data = load_inventory(DEFAULT_INPUT)
         self.assertEqual(len(data["cards"]), 360)
