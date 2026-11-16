@@ -237,6 +237,37 @@ class SubscriptionBillingRouteTests(unittest.TestCase):
         self.assertTrue(after_payment.json()["read_only"])
         self.assertEqual(after_payment.json()["subscription"]["status"], "pending_payment")
 
+    def test_invitation_revocation_remains_available_in_read_only_mode(self):
+        started = self._mutate(
+            self.client_a, "post", "/billing/subscribe", json={"plan_code": "small_firm"}
+        )
+        self.assertEqual(started.status_code, 200, started.text)
+        invitation = self._mutate(
+            self.client_a, "post", "/invitations",
+            json={"email": "revoke-after-expiry@example.test", "role": "lawyer"},
+        )
+        self.assertEqual(invitation.status_code, 200, invitation.text)
+        invitation_id = invitation.json()["invitation_id"]
+
+        control = self.runtime.control_connection()
+        control.execute(
+            "UPDATE firm_subscriptions SET trial_ends_at=? WHERE firm_id=?",
+            (int(app.time.time()) - 60, self.firm_a),
+        )
+        control.commit()
+
+        revoked = self._mutate(
+            self.client_a, "post", f"/invitations/{invitation_id}/revoke",
+            json={"reason": "Access no longer required"},
+        )
+        self.assertEqual(revoked.status_code, 200, revoked.text)
+        self.assertEqual(revoked.json()["status"], "revoked")
+        status = control.execute(
+            "SELECT status FROM identity_invitations WHERE id=? AND firm_id=?",
+            (invitation_id, self.firm_a),
+        ).fetchone()["status"]
+        self.assertEqual(status, "revoked")
+
     def test_seat_limit_blocks_invites_and_non_admin_cannot_manage_billing(self):
         started = self._mutate(self.client_a, "post", "/billing/subscribe", json={"plan_code": "solo"})
         self.assertEqual(started.status_code, 200, started.text)
