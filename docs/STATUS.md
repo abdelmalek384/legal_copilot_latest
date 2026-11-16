@@ -1096,3 +1096,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 - S3 original-object open now rejects invalid/oversized ContentLength metadata before body reads and wraps accepted provider bodies in a bounded reader. Even read() without a size argument requests at most max_bytes + 1; the extra byte detects overflow and closes the provider body. The wrapper also exposes close and context-manager semantics so existing `with store.open(...)` callers retain deterministic cleanup.
 - Added regressions for oversized streams with absent ContentLength and oversized ContentLength preflight. Source commit: 5e9f871; regression commit: d4f5d26. Both tests are in tests/test_s3_original_file_storage.py; the module is already registered in the workflow and security regression script. Static source/test review only; repository runtime tests remain 0% executed. AI-2 estimate: 78.9%; whole-project estimate remains 75.3% provisional.
+
+
+- Follow-up: bounded S3 stream reads now also close the provider body if the underlying read raises, with a dedicated regression. Commits: implementation `204d5a8`; test `28c5d90`. This is source-level and regression review only; no repository runtime test has run.
