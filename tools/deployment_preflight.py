@@ -421,7 +421,7 @@ def inspect_environment(env=None, *, require_separate=False):
                 errors.append("Legal-corpus database must be outside tenant storage.")
             except ValueError:
                 pass
-            if tenant_root.is_symlink() or _has_symlinked_parent(tenant_root):
+            if tenant_root.is_symlink() or tenant_root.is_junction() or _has_symlinked_parent(tenant_root):
                 errors.append(
                     "COPILOT_TENANT_DB_ROOT must not be a symbolic link or contain symbolic-link parent components."
                 )
