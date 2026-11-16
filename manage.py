@@ -5,6 +5,7 @@ import json
 import os
 import re
 import sqlite3
+import stat
 import time
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -932,19 +933,37 @@ def archive_upload_tenancy(a):
     print(json.dumps(locator, sort_keys=True))
 
 
-def archive_download_tenancy(a):
-    """Download the exact version described by a protected locator JSON file."""
-    locator_path = Path(a.locator).expanduser()
-    if locator_path.is_symlink() or not locator_path.is_file():
-        raise SystemExit("Recovery locator must be a regular non-symlink JSON file.")
+def _read_recovery_locator(path_value: str | Path) -> dict:
+    """Read a small locator JSON file through a no-follow regular-file descriptor."""
+    path = Path(path_value).expanduser()
+    flags = os.O_RDONLY | getattr(os, "O_NONBLOCK", 0) | getattr(os, "O_NOFOLLOW", 0)
+    descriptor = None
     try:
-        if locator_path.stat().st_size > 16384:
+        descriptor = os.open(path, flags)
+        metadata = os.fstat(descriptor)
+        if not stat.S_ISREG(metadata.st_mode):
+            raise ValueError("locator must be a regular file")
+        if metadata.st_size > 16384:
             raise ValueError("locator file is too large")
-        locator = json.loads(locator_path.read_text(encoding="utf-8"))
+        with os.fdopen(descriptor, "rb") as handle:
+            descriptor = None
+            raw = handle.read(16385)
+        if len(raw) > 16384:
+            raise ValueError("locator file is too large")
+        locator = json.loads(raw)
         if not isinstance(locator, dict):
             raise ValueError("locator must be a JSON object")
+        return locator
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         raise SystemExit("Recovery locator could not be read safely.") from exc
+    finally:
+        if descriptor is not None:
+            os.close(descriptor)
+
+
+def archive_download_tenancy(a):
+    """Download the exact version described by a protected locator JSON file."""
+    locator = _read_recovery_locator(a.locator)
     s3, kms, bucket, key_id = _recovery_archive_clients()
     try:
         downloaded = download_encrypted_bundle_version(
