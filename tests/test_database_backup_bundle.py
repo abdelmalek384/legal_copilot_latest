@@ -179,7 +179,12 @@ class DatabaseBackupBundleTests(unittest.TestCase):
                 replacement.rename(object_root)
             return real_open(path, flags, *args, **kwargs)
 
-        with patch.object(database_backup.os, "open", side_effect=replace_root_before_open):
+        supported = set(os.supports_dir_fd)
+        supported.add(replace_root_before_open)
+        with (
+            patch.object(database_backup.os, "open", new=replace_root_before_open),
+            patch.object(database_backup.os, "supports_dir_fd", supported),
+        ):
             with self.assertRaises(DatabaseBundleError):
                 database_backup._scan_original_object_root(object_root)
 
