@@ -818,3 +818,10 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - This closes the test-registration implementation task for the current focused security matrix: **100% registered**. It does not mean the tests passed; GitHub Actions remains unavailable due the billing/runner issue.
 - Current estimates: tenant isolation/access control 84.7%; authentication/firm administration 85.2%; case management 90%; document processing/security 99.1%; backup/release readiness 46.7%; AI-2 overall 76.2%; whole project 74.8%.
 - PR #1655 is merged. No other open PR is safe to merge without the missing lockfile/browser or draft-PR validation. Pilot/production remains **NOT READY**.
+
+
+## AI-2 security test registration regression — 2026-11-16
+
+- Added tests/test_security_matrix_registration.py with three checks: every focused security-matrix module has an explicit Tests workflow reference, the matrix has no duplicate module entries, and every listed module exists on disk. Registered this self-check in both the Tests workflow and focused security matrix.
+- The preceding static comparison found all 40 original matrix entries already present in the workflow. The new self-check makes that invariant durable and will prevent future matrix/workflow drift. Source commits: 54ab031, b6f06a5, feed9b9, 2e8bfb4.
+- Implementation and registration: **100%**. Execution: blocked by GitHub billing/runner issue; no test pass claimed.
