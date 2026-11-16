@@ -6162,7 +6162,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             manifest = archive.read("original_files_manifest.csv").decode("utf-8-sig")
             self.assertIn(path, manifest)
             self.assertIn(hashlib.sha256(original).hexdigest(), manifest)
-            self.assertIn(",included\\r\\n", manifest)
+            self.assertIn(",included\r\n", manifest)
 
 
 if __name__ == "__main__":
