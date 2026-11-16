@@ -41,6 +41,8 @@ The official Amiri Press text page for **Ministerial Decision 75/2026** (https:/
 
 For Decision 74, the combination of the official text's day-after-publication clause and the Gazette metadata yields a **candidate effective date of 2026-05-18**. This is a date calculation from the located records, not a lawyer's interpretation or sign-off. For Decision 75, the issue/date are recorded, but its full operative text and commencement clause were not independently captured in this review; no effective date is inferred.
 
+The official Amiri Press text page for **Prime Minister Decision 2652/2026** (https://alamiria.com/Sec/TashTxt?id=MWc8qnk3Yg8%3D) is dated **2026-09-07** and extends by six months the period for specified private employment agencies under the final paragraph of Article 6 of Law 14/2025 to regularize their status. Article 2 directs publication in the Official Gazette, but the retrieved text contains no separate commencement clause. Its Gazette issue/page and the date from which the six-month extension runs remain unconfirmed; no effective date is inferred from the issuance date.
+
 Both instruments remain implementing/related candidates, not confirmed amendments to Law 14/2025. Exact page ranges, source reuse permissions, and qualified Egyptian-lawyer review remain outstanding. The metadata-only records remain permission-unknown, lawyer-review-pending, and search-ineligible.
 
 ## 4. Release restriction
