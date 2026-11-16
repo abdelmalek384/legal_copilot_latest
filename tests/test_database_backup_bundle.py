@@ -498,6 +498,31 @@ class DatabaseBackupBundleTests(unittest.TestCase):
                 tampered_bundle, self.cipher, self.root / "tampered-restore"
             )
 
+    def test_restore_rejects_duplicate_manifest_json_keys(self):
+        bundle = create_backup_bundle(
+            self.runtime, self.cipher, self.backup_dir, quiesced=True
+        )
+        plaintext = self.cipher.decrypt(bundle.read_bytes())
+        with zipfile.ZipFile(io.BytesIO(plaintext), "r") as archive:
+            members = {name: archive.read(name) for name in archive.namelist()}
+        manifest = members["manifest.json"]
+        self.assertIn(b'"format_version": 2', manifest)
+        members["manifest.json"] = manifest.replace(
+            b'"format_version": 2',
+            b'"format_version": 2, "format_version": 2',
+            1,
+        )
+        changed = io.BytesIO()
+        with zipfile.ZipFile(changed, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+            for name, data in members.items():
+                archive.writestr(name, data)
+        ambiguous_bundle = self.backup_dir / "duplicate-manifest-key.dbbundle.enc"
+        ambiguous_bundle.write_bytes(self.cipher.encrypt(changed.getvalue()))
+        with self.assertRaises(DatabaseBundleError):
+            restore_backup_bundle(
+                ambiguous_bundle, self.cipher, self.root / "duplicate-manifest-restore"
+            )
+
     def test_real_bundle_roundtrips_through_versioned_s3_archive_before_isolated_restore(self):
         import hashlib
         from database_backup import verify_backup_bundle
