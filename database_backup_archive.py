@@ -274,7 +274,7 @@ def upload_encrypted_bundle(
                         probe_close_error = exc
         if probe_close_error is not None:
             raise DatabaseBundleError(
-                "Persisted recovery archive verification stream could not be closed"
+                "Persisted recovery archive verification stream could not be closed; the uploaded version may remain and must be reconciled"
             ) from probe_close_error
         return {
             "bucket": bucket,
