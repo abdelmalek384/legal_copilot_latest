@@ -3896,6 +3896,20 @@ def home(request: Request):
     return HTMLResponse(page)
 
 
+@app.get("/static/app-icon.svg")
+@app.get("/app-icon.svg")
+def app_icon():
+    """Serve the app mark at the URLs used by the workspace and PWA shell."""
+    icon_path = Path(__file__).resolve().parent / "static" / "app-icon.svg"
+    if not icon_path.is_file():
+        raise HTTPException(404, "app icon asset is unavailable")
+    return Response(
+        content=icon_path.read_text(encoding="utf-8"),
+        media_type="image/svg+xml",
+        headers={"Cache-Control": "public, max-age=3600"},
+    )
+
+
 def _platform_roles_for_user(user_id: int):
     return [row["role_name"] for row in control_conn().execute(
         "SELECT role_name FROM user_platform_roles WHERE user_id=? ORDER BY role_name",
