@@ -1837,6 +1837,14 @@ const egpToPiasters=raw=>{
 };
 const empty=(t,actionLabel,action)=>h('div',{className:'empty-state'},h('p',{textContent:t}),action?btn(actionLabel,action,'g'):null);
 function uiText(ar,en){return LANG==='ar'?ar:en}
+function caseTimelineEvents(c){
+ const rows=[
+  ...(Array.isArray(c.sessions)?c.sessions:[]).filter(item=>item&&item.date).map(item=>({date:String(item.date).slice(0,10),kind:'hearing',title:item.note||uiText('جلسة','Hearing'),detail:''})),
+  ...(Array.isArray(c.deadlines)?c.deadlines:[]).filter(item=>item&&item.due).map(item=>({date:String(item.due).slice(0,10),kind:'deadline',title:item.title||uiText('المواعيد القانونية','Legal deadlines'),detail:item.note||''})),
+  ...(Array.isArray(c.tasks)?c.tasks:[]).filter(item=>item&&item.due).map(item=>({date:String(item.due).slice(0,10),kind:'task',title:item.title||uiText('المهام','Tasks'),detail:item.assignee_name||'',done:item.status==='done'}))
+ ];
+ return rows.filter(item=>/^\d{4}-\d{2}-\d{2}$/.test(item.date)).sort((a,b)=>a.date.localeCompare(b.date));
+}
 function openPage(id,fn){PAGE=id;window.CASE_ID=null;window.DOCUMENT_REVIEW_TARGET=null;fn()}
 function localReminderSettingKey(){return 'lc_local_reminders_enabled_'+String(ME.firm_id||'0')+'_'+String(ME.id||'0')}
 function localReminderSentKey(day){return 'lc_local_reminder_sent_'+String(ME.firm_id||'0')+'_'+String(ME.id||'0')+'_'+day}
@@ -3353,6 +3361,13 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
    h('div',{className:'row'},h('span',{textContent:uiText('العميل: ','Client: ')+(c.client||'—')}),h('span',{textContent:uiText('الحالة: ','Status: ')+(c.status==='open'?uiText('مفتوحة','Open'):uiText('مغلقة','Closed'))})),
    lead&&h('div',{className:'row'},btn(c.status==='open'?'إغلاق القضية':'إعادة فتح',async()=>{await api('/cases/'+id,'PATCH',{status:c.status==='open'?'closed':'open'});again()},'g'),
     btn('حذف القضية',async()=>{if(confirm(uiText('حذف نهائي لكل بيانات القضية؟','Permanently delete all case data?'))){await api('/cases/'+id,'DELETE');PAGE='clients';clients()}},'d')))}
+
+  const timelineEvents=caseTimelineEvents(c);
+  const timelineRows=timelineEvents.length
+   ?h('div',{className:'case-timeline-list',role:'list'},...timelineEvents.map(event=>h('div',{className:'case-timeline-row',role:'listitem',style:'display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap;padding:9px 0;border-bottom:1px solid var(--line)'},h('time',{dateTime:event.date,className:'mut',textContent:fd(event.date)}),h('div',{style:'display:flex;flex-direction:column;gap:4px;min-width:0;flex:1'},h('div',{className:'row',style:'gap:6px'},pill(event.kind==='hearing'?uiText('جلسات','Hearings'):event.kind==='deadline'?uiText('المواعيد القانونية','Legal deadlines'):uiText('المهام','Tasks'),event.kind==='deadline'?'soon':'open'),event.kind==='task'?pill(event.done?uiText('منجزة','Completed'):uiText('مفتوحة','Open'),event.done?'done':'open'):null),h('b',{textContent:event.title}),event.detail?h('p',{className:'mut',textContent:event.detail}):null))))
+   :h('p',{className:'mut',textContent:uiText('لا توجد أحداث مؤرخة في هذه القضية بعد.','No dated hearings, legal deadlines or tasks yet.')});
+  body.append(h('section',{className:'case-timeline-section',style:'border-top:1px solid var(--line);margin-top:16px;padding-top:14px'},h('h3',{textContent:uiText('الخط الزمني','Case timeline')}),timelineRows));
+
  if(TAB==='brief'){
   const result=h('div',{});
   const firmConsent=h('input',{type:'checkbox','aria-label':uiText('أؤكد تفويض المكتب لمعالجة بيانات القضية','Confirm firm authorization to process matter data')});
