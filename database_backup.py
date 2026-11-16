@@ -965,7 +965,7 @@ def _validated_restore_destination(target_root: str | Path) -> tuple[Path, Path]
         raise DatabaseBundleError("Restore target's parent directory must already exist")
     try:
         parent = parent.resolve(strict=True)
-    except OSError as exc:
+    except (OSError, RuntimeError) as exc:
         raise DatabaseBundleError("Restore target's parent directory cannot be verified") from exc
     if parent == Path(parent.anchor):
         raise DatabaseBundleError("Restore target must not be created directly under a filesystem root")
