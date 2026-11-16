@@ -94,6 +94,7 @@ class LegalImportBundleTests(unittest.TestCase):
                 importer._ocr_page_pixel_size(page, dpi=200)
 
     def test_ocr_timeout_is_converted_to_a_bounded_import_failure(self):
+        import subprocess
         import sys
         from types import SimpleNamespace
 
@@ -117,19 +118,26 @@ class LegalImportBundleTests(unittest.TestCase):
             def __getitem__(self, index):
                 return Page()
 
-        tesseract = SimpleNamespace(
-            image_to_string=mock.Mock(side_effect=RuntimeError("synthetic timeout"))
-        )
         fake_pymupdf = SimpleNamespace(open=lambda **kwargs: Document())
         fake_pil = SimpleNamespace(Image=SimpleNamespace(open=lambda *args, **kwargs: "image"))
-        with mock.patch.dict(sys.modules, {
-            "pymupdf": fake_pymupdf,
-            "pytesseract": tesseract,
-            "PIL": fake_pil,
-        }):
-            with self.assertRaisesRegex(SystemExit, "OCR timed out or failed"):
-                importer._ocr((self.pdf_bytes, 0))
-        tesseract.image_to_string.assert_called_once_with("image", lang="ara+eng", timeout=30)
+        failures = (
+            RuntimeError("synthetic OCR runtime failure"),
+            subprocess.TimeoutExpired("tesseract", 30),
+        )
+        for failure in failures:
+            tesseract = SimpleNamespace(
+                image_to_string=mock.Mock(side_effect=failure)
+            )
+            with self.subTest(exception=type(failure).__name__), mock.patch.dict(sys.modules, {
+                "pymupdf": fake_pymupdf,
+                "pytesseract": tesseract,
+                "PIL": fake_pil,
+            }):
+                with self.assertRaisesRegex(SystemExit, "OCR timed out or failed"):
+                    importer._ocr((self.pdf_bytes, 0))
+            tesseract.image_to_string.assert_called_once_with(
+                "image", lang="ara+eng", timeout=30
+            )
 
     def test_ocr_hard_limits_cannot_be_raised_by_environment(self):
         from types import SimpleNamespace
