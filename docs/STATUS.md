@@ -652,3 +652,12 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Updated engineering estimates: tenant isolation/access control 84.7%; authentication/firm administration 85.2%; case management 90%; document processing/security 99.1%; backup/release readiness 42.1%; AI-2 overall 73.7%; whole project 72.6%. These estimates reflect code implementation only.
 - Cumulative continuation accounting: 4 source hardening commits across 2 implementation files; 7 regression cases added across 2 test modules; 2 isolated filesystem/descriptor harnesses passed; 0 repository test modules executed; 0 Actions jobs executed; 0 PRs merged. The relevant backup/recovery test modules are already registered in the security regression matrix.
 - Blockers remain: hosted CI billing/runner allocation, no local checkout, no repository test execution, no dependency lock regeneration/install, no browser acceptance, no live S3/KMS verification, and no witnessed restore. Pilot/production remains NOT READY.
+
+
+## AI-2 S3 backup inventory response validation — 2026-11-16
+
+- S3 object inventory now fails closed on malformed provider responses: response and Contents must have the expected mapping/list shapes, every entry must be a mapping with a string key under the originals prefix, and IsTruncated must be an explicit boolean. Missing, malformed, or repeated continuation tokens are rejected rather than silently treating an incomplete inventory as complete.
+- Added regressions for non-string keys, non-object entries, and omitted truncation state. Source commit: e89ac58; test commit: cd2142a.
+- Existing repeated-token and inventory namespace tests remain in the same registered S3 storage module. Static review only; no repository test module or hosted job ran.
+- Updated estimates: tenant isolation/access control 84.7%; authentication/firm administration 85.2%; case management 90%; document processing/security 99.1%; backup/release readiness 42.4%; AI-2 overall 73.9%; whole project 72.7%. Source progress only; pilot/production acceptance remains incomplete.
+- Additional work in this slice: 1 S3 inventory implementation change; 2 regression methods; 0 repository tests executed; 0 Actions jobs executed; 0 PRs merged. No safe PR is currently mergeable; #1610 remains draft and #1644/#1645 remain dependency/runtime changes without lock/browser acceptance.
