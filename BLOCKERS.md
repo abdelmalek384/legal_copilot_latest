@@ -115,3 +115,6 @@
 
 
 - 2026-11-16: Local backup inventory/copy now fail closed without no-follow dirfd primitives, pin root/namespace descriptors, reject hardlinks, enforce the 15 MB original-file ceiling and read at most expected-size+1 bytes. Added hardlink and oversize regressions (commits 6f52127, 9cda365, 50ea8a9, f6a96f4, f04b707, 021a337). Runtime tests remain unexecuted.
+
+
+- 2026-11-16: Added local backup regression for replacement of the object-root directory with a different real directory between stat and open; backup must fail before copying bytes (test 66f78c7). Removed the now-unreachable path-based fallback branch (commit 5d9a132). Runtime tests remain unexecuted.
