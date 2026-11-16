@@ -33,7 +33,11 @@ class _BoundedObjectBody:
             raise TypeError("read size must be an integer")
         remaining = self._max_bytes - self._bytes_read
         requested = remaining + 1 if size < 0 else min(size, remaining + 1)
-        data = self._body.read(requested)
+        try:
+            data = self._body.read(requested)
+        except Exception:
+            self.close()
+            raise
         if not isinstance(data, bytes):
             self.close()
             raise ObjectStorageError("object-storage stream returned invalid bytes")
