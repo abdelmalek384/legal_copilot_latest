@@ -302,7 +302,12 @@ def _ocr(args):
         page = document[page_index]
         _ocr_page_pixel_size(page, dpi=200)
         image_bytes = page.get_pixmap(dpi=200).tobytes("png")
-    return pytesseract.image_to_string(Image.open(io.BytesIO(image_bytes)), lang=_ocr_language())
+    try:
+        return pytesseract.image_to_string(
+            Image.open(io.BytesIO(image_bytes)), lang=_ocr_language(), timeout=30
+        )
+    except RuntimeError as exc:
+        _fail("OCR timed out or failed; check Tesseract installation and language data")
 
 
 def page_texts(pdf_bytes, cache_root, content_sha256, cache_key="document"):
