@@ -1580,7 +1580,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
 
     def test_research_upload_disclosure_exposes_and_resets_accessible_state(self):
-        research = HTML[HTML.index("async function law(){"):HTML.index("\\nfunction documentIntelligencePanel(")]
+        research = HTML[HTML.index("async function law(){"):HTML.index("\nfunction documentIntelligencePanel(")]
         self.assertIn("id:'research-upload-panel'", research)
         self.assertIn("paperclipButton.setAttribute('aria-controls','research-upload-panel')", research)
         self.assertIn("paperclipButton.setAttribute('aria-expanded','false')", research)
