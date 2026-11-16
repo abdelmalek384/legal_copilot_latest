@@ -470,6 +470,29 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "needs canonical expected_article_id"):
             score([q], [run], TEST_REVIEWER_REGISTRY)
 
+    def test_rejects_whitespace_padded_question_run_and_article_ids(self):
+        q = reviewed("Q-TRIMMED")
+        article_id = q["expected_article_id"]
+        base_run = {
+            "question_id": q["id"],
+            "retrieved_article_ids": [article_id],
+            "cited_article_ids": [article_id],
+            "abstained": False,
+            "used_unverified_source": False,
+        }
+        padded_question = dict(q, id=" Q-TRIMMED")
+        with self.assertRaisesRegex(ValueError, "question IDs"):
+            score([padded_question], [], TEST_REVIEWER_REGISTRY)
+        padded_run = dict(base_run, question_id=" Q-TRIMMED")
+        with self.assertRaisesRegex(ValueError, "run question_id"):
+            score([q], [padded_run], TEST_REVIEWER_REGISTRY)
+        for field in ("retrieved_article_ids", "cited_article_ids"):
+            bad_run = dict(base_run)
+            bad_run[field] = [" " + article_id]
+            with self.subTest(field=field):
+                with self.assertRaisesRegex(ValueError, "trimmed, non-empty article IDs"):
+                    score([q], [bad_run], TEST_REVIEWER_REGISTRY)
+
     def test_rejects_incomplete_or_ambiguous_canonical_article_ids(self):
         invalid_ids = (
             "::law:قانون العمل::article:1",
