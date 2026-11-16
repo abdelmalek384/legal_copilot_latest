@@ -507,3 +507,10 @@ These are engineering estimates, not acceptance rates. This slice committed tena
 - Task accounting for this slice: 6 bounded source hardening edits across 4 workstreams; 5 regression-test additions/extensions; 4 isolated harnesses passed; 0 repository test modules run; 0 PRs merged by this execution.
 - PR #1651 was merged externally as `11c1d25`. Current open PRs: #1610 (draft), #1644 (pypdf 7.1.0), #1645 (Playwright 1.65.1). All three currently report non-mergeable. PRs #1642/#1643 remain closed and unmerged; their direct requirement edits were reverted because the Python 3.12 hash lock was not regenerated.
 - No hosted CI, dependency installation, browser acceptance, encrypted restore drill, live S3/KMS validation, or witnessed recovery rehearsal has been completed. GitHub billing/runner allocation and lack of local checkout remain blockers. The application is **NOT READY** for a law-firm pilot or production.
+
+
+## AI-2 request-time catalog write isolation — 2026-11-16
+
+- Tenant routing now receives a dedicated read-only control-plane catalog connection (`mode=ro`, `PRAGMA query_only=ON`, foreign keys verified) instead of the writable catalog connection used by firm provisioning. The router only resolves trusted firm-to-database mappings; it has no need to mutate the control plane.
+- Added a runtime regression that verifies both pragmas and proves an INSERT is rejected without creating a row. Source commit: `36579f5`; regression commit: `97b7b24`.
+- An isolated SQLite harness confirmed that read-only URI plus query-only rejects writes while foreign-key enforcement remains enabled. This is not execution of `tests/test_database_runtime.py`.
