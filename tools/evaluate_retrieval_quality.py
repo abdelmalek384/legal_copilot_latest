@@ -552,6 +552,10 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None
                 if abstention_cases_area else None,
             "pin_cite_accuracy": round(pin_cite_correct_area / pin_cite_total_area, 4)
                 if pin_cite_total_area else None,
+            "wrong_article_rate": round((pin_cite_total_area - pin_cite_correct_area) / pin_cite_total_area, 4)
+                if pin_cite_total_area else None,
+            "wrong_article_count": pin_cite_total_area - pin_cite_correct_area,
+            "wrong_article_denominator": pin_cite_total_area,
             "pin_cite_count": pin_cite_total_area,
             "expected_pin_cite_recall": round(expected_pin_cite_correct_area / expected_pin_cite_total_area, 4)
                 if expected_pin_cite_total_area else None,
@@ -588,6 +592,10 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None
         "answerable_cases_with_expected_citation": answerable_with_expected_citation,
         "answerable_reviewed_cases": answerable_cases,
         "pin_cite_accuracy": round(pin_cite_correct / pin_cite_total, 4) if pin_cite_total else None,
+        "wrong_article_rate": round((pin_cite_total - pin_cite_correct) / pin_cite_total, 4)
+            if pin_cite_total else None,
+        "wrong_article_count": pin_cite_total - pin_cite_correct,
+        "wrong_article_denominator": pin_cite_total,
         "pin_cite_correct": pin_cite_correct,
         "pin_cite_count": pin_cite_total,
         "expected_pin_cite_recall": round(expected_pin_cite_correct / expected_pin_cite_total, 4) if expected_pin_cite_total else None,
@@ -603,7 +611,7 @@ def score_evaluation(questions, runs, k_values=(1, 3, 5), reviewer_registry=None
             "Malformed records and duplicate question/run IDs are excluded and listed; resolve them before relying on a score.",
             "Metrics do not establish legal correctness, completeness, or current-law status.",
             "Review labels must be assigned by a qualified reviewer; this tool never generates ground truth.",
-            "Pin-cite precision (pin_cite_accuracy) is scored only where reviewed expected_pin_cites are provided; expected_pin_cite_recall measures how many reviewed expected citation pairs were returned.",
+            "Pin-cite precision (pin_cite_accuracy) and wrong_article_rate are calculated only for emitted citations on questions with reviewed expected_pin_cites; wrong_article_rate is the complement of pin_cite_accuracy over that explicit denominator, while expected_pin_cite_recall measures missing as well as returned reviewed citation pairs.",
             "Citation coverage measures the share of answerable reviewed cases that cite at least one expected source; it complements citation precision so answers with no citations are not silently omitted from the coverage view.",
             "Citations whose source IDs were not present in the retrieved source set count as incorrect and are listed; they do not contribute to citation coverage or expected pin-cite recall.",
             "Invalid visible citation indices are counted as incorrect citation markers and reported separately; they cannot improve citation precision.",
