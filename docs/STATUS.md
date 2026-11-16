@@ -1047,3 +1047,10 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Law 14 evaluation draft SHA-256 is recorded and checked against the exact bounded bytes parsed by the validator; its CLI reports the same digest. Metrics remain null until lawyer-approved labels and actual retrieval runs exist.
 - Relevant source/test/status commits include `ba4a569`, `7c7e090`, `5a8a109`, `ceb0b84`, `f1fd96e`, `40ceacd`, `566a657`, `5161eae`, `77b845f`, `5c11092`, and `06343ae`. Tests are registered; none of these repository test suites has been executed in this environment.
 - Updated AI-1 implementation estimate: **90%**; retrieval/Arabic matching safeguards: **83%**; ingestion/provenance tooling: **98%**; evidence/release safeguards: **98%**; evaluation infrastructure: **100% implemented**; Egyptian legal corpus readiness: **10%**. Whole-project engineering estimate remains **75.3% provisional**. Release remains **NOT READY**.
+
+
+## AI-2 restore namespace directory-descriptor hardening — 2026-11-16
+
+- Closed the remaining final-directory race in restore-to-S3 original reads: the importer now opens the firm namespace with O_DIRECTORY | O_NOFOLLOW, then opens the object filename relative to that pinned directory descriptor with O_NOFOLLOW. Replacing the namespace path with a symlink after the earlier inventory check can no longer redirect the object read; platforms lacking the required primitives fail closed.
+- Added a regression that swaps the firm namespace for a symlink to an outside directory and asserts the object opener rejects it while preserving both directories' contents. The existing restore-importer module is already registered in scripts/security_regression_check.sh and the CI workflow.
+- Source commit: 0b7f440; regression commit: fef3d13. Static review confirms directory-descriptor-relative open, no-follow flags, regular-file validation, cleanup of both descriptors, and regression coverage. Repository runtime tests remain 0% executed; no runtime pass is claimed. AI-2 estimate: 78.5%; whole-project estimate remains 75.3% provisional.
