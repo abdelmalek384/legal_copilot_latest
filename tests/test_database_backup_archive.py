@@ -322,6 +322,44 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
                 manage.archive_upload_tenancy(args)
         clients.assert_not_called()
 
+    def test_malformed_locator_is_rejected_before_cloud_access(self):
+        from unittest.mock import patch
+
+        locator = self.upload()
+        locator["key"] = "../outside.dbundle.enc"
+        with (
+            patch.object(self.s3, "get_bucket_versioning", wraps=self.s3.get_bucket_versioning) as versioning,
+            patch.object(self.kms, "describe_key", wraps=self.kms.describe_key) as describe,
+            patch.object(self.s3, "head_object", wraps=self.s3.head_object) as head,
+        ):
+            with self.assertRaises(DatabaseBundleError):
+                download_encrypted_bundle_version(
+                    self.s3, self.kms, locator, self.root / "never-created.enc", **self.config
+                )
+        versioning.assert_not_called()
+        describe.assert_not_called()
+        head.assert_not_called()
+
+    def test_unsafe_destination_is_rejected_before_cloud_access(self):
+        from unittest.mock import patch
+
+        locator = self.upload()
+        existing = self.root / "already-exists.enc"
+        existing.write_bytes(b"preserve")
+        with (
+            patch.object(self.s3, "get_bucket_versioning", wraps=self.s3.get_bucket_versioning) as versioning,
+            patch.object(self.kms, "describe_key", wraps=self.kms.describe_key) as describe,
+            patch.object(self.s3, "head_object", wraps=self.s3.head_object) as head,
+        ):
+            with self.assertRaises(DatabaseBundleError):
+                download_encrypted_bundle_version(
+                    self.s3, self.kms, locator, existing, **self.config
+                )
+        versioning.assert_not_called()
+        describe.assert_not_called()
+        head.assert_not_called()
+        self.assertEqual(existing.read_bytes(), b"preserve")
+
     def test_existing_destination_is_never_overwritten(self):
         locator = self.upload()
         target = self.root / "existing.dbundle.enc"
