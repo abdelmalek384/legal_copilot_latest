@@ -887,3 +887,11 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Expanded `test_lost_authenticator_reenrollment_requires_recent_mfa_and_current_password` to create a second verified session, replace the authenticator, prove all prior MFA proofs were reset, confirm the replacement on the initiating session, and require the second session to verify using a fresh TOTP step before regaining matter access.
 - Source commit: `bd7d364`; regression commits: `1f568c4`, `fcd2112`. Static review confirms the test module remains registered in both the Tests workflow and security matrix. An isolated SQLite transaction harness confirmed session reset/confirmation semantics; repository tests and CI remain unexecuted.
 - Bounded implementation: **100%**. Authentication/firm-administration estimate: **85.7%**; AI-2: **76.5%**; whole project: **75.1%**. No test pass is claimed. Production readiness remains **NOT READY**.
+
+
+## AI-2 reminder scheduler lease clock — 2026-11-16
+
+- Fixed `tools/reminder_service.py` to separate the reminder planning/evaluation timestamp from operational delivery timestamps. Each outbox claim now receives wall-clock UTC at claim time; completion/denial outcomes record wall-clock UTC when finished. A historical or fixed `--now` planning override can no longer create immediately expired leases for later messages in a long send batch.
+- Added `test_delivery_leases_use_wall_clock_not_planning_override` to `tests/test_reminder_service.py`, asserting claim and finish timestamps are later than the fixed planning timestamp. Existing tests in the reminder email/outbox/service modules were all present in the Tests workflow; added all three modules to the focused security matrix.
+- Source commit: `964cb84`; regression commits: `9844261`, `d04e12e`; matrix commit: `72f343f`. Static registration audit: **70 matrix modules, zero duplicates, zero modules missing from the Tests workflow**. This does not mean any module executed.
+- Bounded implementation: **100%**. Isolated database-runtime and session-state harnesses were successful in this continuation, but repository tests executed: **0**; GitHub Actions: **0**. SMTP staging and operational acceptance remain outstanding.
