@@ -17,6 +17,25 @@ from typing import Callable
 from tenant_catalog import TenantCatalogError, resolve_tenant_database
 
 
+def _path_has_symlink_component(path: str | Path) -> bool:
+    """Detect symlinks in existing path components without following them."""
+    candidate = Path(path).expanduser()
+    if not candidate.is_absolute():
+        candidate = Path.cwd() / candidate
+    current = Path(candidate.anchor)
+    for component in candidate.parts[1:]:
+        current = current / component
+        try:
+            mode = os.lstat(current).st_mode
+        except FileNotFoundError:
+            break
+        except OSError:
+            return True
+        if stat.S_ISLNK(mode):
+            return True
+    return False
+
+
 class TenantConnectionError(RuntimeError):
     """Raised when a tenant database connection cannot be safely selected."""
 
@@ -105,6 +124,11 @@ class TenantSQLiteConnectionRouter:
         # Capture the identity of the catalog-resolved file. A same-path file
         # replacement must revoke a cached handle rather than leave this process
         # reading/writing an unlinked database belonging to a previous inode.
+        if _path_has_symlink_component(path):
+            self._revoke_cached_connection(trusted_firm_id)
+            raise TenantConnectionError(
+                "Tenant database path contains a symbolic-link component"
+            )
         try:
             metadata = path.stat()
             if not stat.S_ISREG(metadata.st_mode):
@@ -286,9 +310,9 @@ class TenantSQLiteConnectionRouter:
         # The pre-open checks alone leave a window in which an operator or
         # concurrent process could replace the database or expose a WAL file.
         try:
-            if path.is_symlink():
+            if _path_has_symlink_component(path):
                 raise TenantConnectionError(
-                    "Tenant database path changed to a symbolic link while opening"
+                    "Tenant database path changed to a symbolic link while opening or traverses a symlinked parent"
                 )
             current = path.stat()
             if (not stat.S_ISREG(current.st_mode)
