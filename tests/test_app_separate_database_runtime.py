@@ -970,7 +970,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
 
         deletion = self._mutate("delete", f"/cases/{case_id}")
         self.assertEqual(deletion.status_code, 409, deletion.text)
-        self.assertIn("original-file retention records", deletion.text)
+        self.assertIn("original-file audit records", deletion.text)
 
         context = self.runtime.resolve_context(self.user_id, self.firm_a)
         firm_db = self.runtime.firm_connection(context)
