@@ -1140,3 +1140,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Validation follow-up: a static regex probe caught an escaping error in the Windows reserved-device extension matcher; corrected it so `CON.txt`, `PRN.log`, `COM1.foo` and `LPT9.txt` are rejected while `COM0.txt` and ordinary names remain allowed. Source correction commit: `6da44db`. The existing ZIP preflight regression includes `CON.txt`; isolated regex harness confirmed the cases above. Repository test modules remain unexecuted.
+
+
+- S3 metadata hardening: HEAD responses are now type-checked before KMS-field access, and the missing-object classifier safely handles malformed `Error`/`ResponseMetadata` payloads. Added malformed-success and malformed-exception regressions. Commits: source `e1e8032`; tests `8f1752c`. Runtime tests remain unexecuted.
