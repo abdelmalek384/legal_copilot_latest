@@ -7981,7 +7981,7 @@ def list_invoices(
         rows = c.execute(
             "SELECT i.* FROM invoices i JOIN cases cs ON cs.id=i.case_id "
             "WHERE cs.firm_id=? AND i.case_id=? AND EXISTS (SELECT 1 FROM members m "
-            "WHERE m.case_id=i.case_id AND m.user_id=?) "
+            "WHERE m.case_id=i.case_id AND m.user_id=? AND m.role='lead') "
             "ORDER BY i.created_at DESC,i.id DESC",
             (u["firm_id"], case_id, u["id"]),
         ).fetchall()
