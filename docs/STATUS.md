@@ -576,3 +576,6 @@ Updated estimates reflect source implementation only; regression execution and e
 - S3 recovery archive download now reads its locator JSON using a bounded (16 KiB), non-blocking, no-follow file descriptor; it verifies the opened descriptor is a regular file and parses only the bytes read from that descriptor. This removes the previous symlink-check/stat/read_text path race and rejects FIFOs/devices before parsing.
 - Added valid-object, oversized-file, non-object JSON, and symlink regression cases in `tests/test_manage_recovery_locator.py`; registered the module in the security regression matrix.
 - Source commit: `85f51e1`; test commit: `8e135cff`; matrix commit: `778555d`. No repository test module executed.
+
+
+- The focused security matrix now explicitly includes `test_original_file_storage.py` (including the staged-object symlink substitution regression) and `test_backup_restore_safety.py` in addition to the bundle and recovery-locator modules. Matrix registration commit: `c1d2ff6`. No matrix execution is claimed.
