@@ -72,7 +72,7 @@ The following bounded repository tasks now meet their source-change acceptance c
 | Reject control-plane or legal-corpus database files nested inside the local original-file object root during offboarding preflight | **100%** | Focused filesystem containment regression committed and registered in Tests workflow; execution pending |
 | Convert S3 inventory-listing outages into blocking offboarding findings without authorizing purge | **100%** | ObjectStorageError handling and synthetic provider-outage regression committed; execution pending |
 | Block offboarding when the S3 provider returns an unknown bucket-versioning state | **100%** | Unknown-status finding and regression committed; execution pending |
-| Prevent S3 reconciliation from looping indefinitely when the provider repeats a continuation token | **100%** | Repeated-token detection and fake-provider regression committed; execution pending |
+| Prevent S3 reconciliation from looping indefinitely when the provider repeats a continuation token | **100%** | Repeated-token detection and fake-provider regression committed; test registered in Tests workflow and security matrix; execution pending |
 
 ## AI-2 implementation completion estimate
 
