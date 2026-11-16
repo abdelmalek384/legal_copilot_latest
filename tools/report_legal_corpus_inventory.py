@@ -15,6 +15,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
+from tools.validate_source_permission_register import read_regular_file
 
 ROOT = Path(__file__).resolve().parents[1]
 import sys
@@ -43,7 +44,7 @@ def _reject_duplicate_json_keys(pairs):
 
 
 def read_json(path: Path) -> dict[str, Any]:
-    value = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+    value = json.loads(read_regular_file(path), object_pairs_hook=_reject_duplicate_json_keys)
     if not isinstance(value, dict):
         raise ValueError(f"{path}: expected a JSON object")
     return value

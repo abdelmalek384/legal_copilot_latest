@@ -1,6 +1,8 @@
 import importlib.util
 import json
 import tempfile
+import os
+from unittest.mock import patch
 import unittest
 from pathlib import Path
 
@@ -74,6 +76,34 @@ class LegalCorpusInventoryTests(unittest.TestCase):
         self.assertIn("not a verified legal corpus", output.lower())
         self.assertIn("no database or legal-text files were scanned", output.lower())
 
+
+    def test_read_json_rejects_symlink_swap_and_fifo(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target = root / "register.json"
+            target.write_text('{"sources":[]}', encoding="utf-8")
+            outside = root / "outside.json"
+            outside.write_text('{"sources":[]}', encoding="utf-8")
+            real_open = MODULE.os.open
+            swapped = False
+
+            def replace_before_open(path, flags, *args, **kwargs):
+                nonlocal swapped
+                if Path(path) == target and not swapped:
+                    swapped = True
+                    target.unlink()
+                    target.symlink_to(outside)
+                return real_open(path, flags, *args, **kwargs)
+
+            with patch("tools.validate_source_permission_register.os.open", side_effect=replace_before_open):
+                with self.assertRaises(OSError):
+                    MODULE.read_json(target)
+            self.assertTrue(swapped)
+            if hasattr(os, "mkfifo"):
+                fifo = root / "register.fifo"
+                os.mkfifo(fifo)
+                with self.assertRaises(OSError):
+                    MODULE.read_json(fifo)
 
 if __name__ == "__main__":
     unittest.main()
