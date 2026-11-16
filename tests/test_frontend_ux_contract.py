@@ -1503,5 +1503,18 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertNotIn("btn(uiText('محادثة جديدة','New conversation'),()=>newChat(),'g')", message_renderer)
 
 
+    def test_legal_research_help_is_progressive_and_upload_uses_compact_matter_gated_paperclip(self):
+        research = HTML[HTML.index("async function law(){"):HTML.index("\\nfunction documentIntelligencePanel(")]
+        self.assertIn("className:'research-help-details'", research)
+        self.assertIn("textContent:LANG==='ar'?'اعرف المزيد':'Learn more'", research)
+        self.assertIn("uploadPanel.hidden=true", research)
+        self.assertIn("const paperclipButton=makeBtn('📎'", research)
+        self.assertIn("paperclipButton.disabled=value!=='firm_documents'||!matterSelect.value", research)
+        self.assertIn("paperclipButton.disabled=scopeSelect.value!=='firm_documents'||!matterSelect.value", research)
+        self.assertIn("composer,paperclipButton,send,uploadPanel", research)
+        self.assertIn(".research-upload-panel .research-upload-dropzone{display:none!important}", HTML)
+        self.assertIn('"arabic": "اعرف المزيد"', (ROOT / "static" / "ar-ui-review.json").read_text(encoding="utf-8"))
+
+
 if __name__ == "__main__":
     unittest.main()
