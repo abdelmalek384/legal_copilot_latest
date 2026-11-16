@@ -44,6 +44,10 @@ button{cursor:pointer;background:var(--pri);color:#fff;border:0}button.g{backgro
 .research-example-chip:hover{border-color:var(--workspace-blue);background:var(--workspace-blue-soft)}
 .research-empty-state{grid-column:1/-1;margin:0;color:var(--mut);font-size:13px}
 .research-empty-state[hidden]{display:none}
+.research-corpus-status,.research-trust-status{grid-column:1/-1;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px}
+.research-trust-status[hidden]{display:none}
+.research-corpus-status .mut{font-size:11px}
+
 .research-composer textarea{width:100%;resize:vertical;min-height:76px}.research-composer .mut{grid-column:1/-1}.research-composer button{min-height:44px}@media(max-width:800px){.research-layout{grid-template-columns:minmax(0,1fr)}.research-list{position:static;max-height:180px}.research-thread{min-height:38vh;max-height:55vh}.research-message{max-width:100%}.research-composer{grid-template-columns:minmax(0,1fr)}.research-composer button{width:100%}}@media(max-width:800px){#shell{flex-direction:column}#side{width:auto;flex-direction:row;overflow-x:auto;position:sticky;top:0;z-index:10}#side nav{flex-direction:row;overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:thin;position:relative;padding-inline-end:24px}#side nav:after{content:'';position:sticky;inset-inline-end:0;flex:0 0 14px;pointer-events:none;background:linear-gradient(90deg,transparent,var(--navy))}#side .me,#side h1{display:none}#main{padding:12px;min-width:0}.cols{grid-template-columns:minmax(0,1fr)}.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}.row{align-items:stretch}.row>input,.row>select{max-width:100%;min-width:0;flex:1}.tabs{max-width:100%}.modal-backdrop{align-items:flex-start;padding:10px}.modal{max-height:calc(100vh - 20px)}}
 @media(max-width:420px){body{font-size:15px}#main{padding:8px}.card{padding:10px}.grid{grid-template-columns:minmax(0,1fr)}button{max-width:100%}.auth-card{width:calc(100% - 20px);margin:4vh auto;padding:16px}.auth-card .password-row{display:flex;width:100%;min-width:0;align-items:stretch}.auth-card .password-row input{min-width:0;flex:1}.auth-card .password-row button{min-height:44px;flex:0 0 auto}}
 /* Workspace refresh: clearer hierarchy, calm surfaces, stronger focus and mobile behavior. */
@@ -2596,7 +2600,7 @@ async function documentsPage(){
 async function law(){
  PAGE='law';
  const sidebar=h('div',{id:'research-history-pane',className:'research-list card history-collapsed'});
- const researchStatus=h('div',{className:'research-status-banner',role:'status','aria-live':'polite','aria-atomic':'true'});const thread=h('div',{className:'research-thread card'});
+ const researchStatus=h('div',{className:'research-status-banner',role:'status','aria-live':'polite','aria-atomic':'true'});const researchCorpusStatus=h('div',{className:'research-corpus-status',role:'status','aria-live':'polite'});const researchTrustStatus=h('div',{className:'research-trust-status',role:'status','aria-live':'polite',hidden:true});const thread=h('div',{className:'research-thread card'});
  const sourceInspector=h('aside',{id:'research-source-inspector',className:'research-inspector card',role:'region',tabIndex:0,'aria-label':LANG==='ar'?'فحص المصدر':'Source inspector','aria-live':'polite',onkeydown:e=>{if(e.key==='Escape'&&sourceInspector.__focusReturn){e.preventDefault();resetInspector(true)}}},h('div',{className:'research-inspector-empty'},h('div',{textContent:'⌕',style:'font-size:28px'}),h('b',{textContent:LANG==='ar'?'فحص المصدر':'Source inspector'}),h('p',{className:'mut',textContent:LANG==='ar'?'اختر مصدراً من الإجابة لعرض بياناته ومقطعه الحرفي هنا.':'Select a source from an answer to inspect its metadata and exact passage here.'})));
  sourceInspector.hidden=true;
  let activeId=null, sending=false, conversationItems=[];
@@ -2711,6 +2715,7 @@ async function law(){
    const header=h('div',{className:'research-heading'},h('div',{},h('b',{textContent:copy('بحث قانوني مدعوم بالمصادر')}),h('div',{className:'mut',textContent:copy('نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.')})));
    thread.append(header);
    researchEmptyState.hidden=messages.length>0;researchExamples.hidden=messages.length>0;
+   const hasSourceMatchedAnswer=messages.some(message=>message.role==='assistant'&&(message.trust_tier||(message.result&&message.result.trust_tier))==='source_matched');researchTrustStatus.hidden=!hasSourceMatchedAnswer;researchTrustStatus.replaceChildren();if(hasSourceMatchedAnswer)researchTrustStatus.append(pill(LANG==='ar'?'وضع الاختبار: مطابق للمصدر — غير مراجَع من محامٍ':'Test mode: Source-matched — not lawyer-reviewed','soon'));
    if(ME.role==='admin'){
      const ratingList=h('div',{className:'research-rating-list','aria-live':'polite'});
      const listButton=btn(LANG==='ar'?'عرض تقييمات المكتب':'View firm ratings',async()=>{
@@ -2942,10 +2947,21 @@ async function law(){
    finally{sending=false;send.disabled=false;composer.disabled=false;composer.focus()}
  },'primary');
  composer.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send.click()}});
- const composerArea=h('section',{className:'research-composer card'},h('div',{className:'research-composer-heading'},h('h2',{textContent:LANG==='ar'?'ما الذي تريد البحث عنه؟':'What would you like to research?'}),h('span',{className:'research-assistance-label',textContent:LANG==='ar'?'مساعدة بحثية وليست استشارة قانونية':'Research assistance, not legal advice'})),researchExamples,researchEmptyState,composer,paperclipButton,send,uploadPanel,h('div',{className:'mut',textContent:LANG==='ar'?'Enter للإرسال · Shift+Enter لسطر جديد':'Enter to send · Shift+Enter for a new line'}));
+ const composerArea=h('section',{className:'research-composer card'},h('div',{className:'research-composer-heading'},h('h2',{textContent:LANG==='ar'?'ما الذي تريد البحث عنه؟':'What would you like to research?'}),h('span',{className:'research-assistance-label',textContent:LANG==='ar'?'مساعدة بحثية وليست استشارة قانونية':'Research assistance, not legal advice'})),researchCorpusStatus,researchTrustStatus,researchExamples,researchEmptyState,composer,paperclipButton,send,uploadPanel,h('div',{className:'mut',textContent:LANG==='ar'?'Enter للإرسال · Shift+Enter لسطر جديد':'Enter to send · Shift+Enter for a new line'}));
+ const loadResearchCorpusStatus=async()=>{
+  if(!ME.can_review_legal){researchCorpusStatus.textContent=LANG==='ar'?'عدد المستندات المتحقق منها متاح للمراجعين القانونيين فقط.':'Verified-document count is available to legal reviewers only.';return}
+  try{
+   const coverage=await api('/legal-review/coverage');
+   const rows=Array.isArray(coverage.coverage_by_practice_area)?coverage.coverage_by_practice_area:[];
+   const count=rows.reduce((total,row)=>total+Math.max(0,Number(row.documents_with_verified_operational_text)||0),0);
+   researchCorpusStatus.replaceChildren(pill((LANG==='ar'?'مستندات ذات نص قانوني متحقق: ':'Verified legal documents: ')+count,count?'done':'soon'));
+   if(count===0)researchCorpusStatus.append(h('span',{className:'mut',textContent:LANG==='ar'?'لا توجد مستندات قانونية متحققة متاحة؛ سيمتنع المساعد عن التخمين.':'No verified legal documents are available; the assistant will abstain rather than guess.'}));
+  }catch(_){researchCorpusStatus.textContent=LANG==='ar'?'تعذر تحميل عدد المستندات المتحقق منها.':'Verified-document count is unavailable.'}
+ };
  shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-scope-guidance',role:'note'},h('b',{textContent:LANG==='ar'?'كيف يعمل البحث القانوني':'How legal research works'}),h('details',{className:'research-help-details'},h('summary',{textContent:LANG==='ar'?'اعرف المزيد':'Learn more'}),h('p',{textContent:LANG==='ar'?'يبحث النطاق الافتراضي في النصوص القانونية المتحقق منها فقط. إذا لم يوجد نص مستوفٍ لشروط المصدر والمراجعة، سيمتنع النظام عن الإجابة بدلاً من التخمين. استخدم اكتشاف فهرس المصادر للعثور على بيانات وصفية فقط، أو اختر مستندات المكتب وحدد ملف قضية.':'The default scope searches verified legal text only. If no source meets provenance and review requirements, the assistant abstains rather than guessing. Use source-catalog discovery for metadata only, or choose firm documents and select a matter.'}))),h('div',{className:'research-controls'},scopeTabs,scopeSelect,matterLabel,openDocumentWorkspace),documentWorkspace,h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},researchStatus,composerArea,thread),sourceInspector));
  try{
   await drawList();
+  await loadResearchCorpusStatus();
   if(activeId)await loadConversation(activeId);
   else {const list=await api('/research/conversations');if(list.length)await loadConversation(list[0].id);else await newChat(false)}
   researchStatus.textContent=LANG==='ar'?'البحث القانوني جاهز.':'Legal research is ready.';
