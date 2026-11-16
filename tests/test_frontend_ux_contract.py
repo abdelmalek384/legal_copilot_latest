@@ -1471,7 +1471,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
 
     def test_research_source_inspector_is_hidden_until_a_citation_is_selected(self):
-        research = HTML[HTML.index("async function law(){"):HTML.index("\\nfunction documentIntelligencePanel(")]
+        research = HTML[HTML.index("async function law(){"):HTML.index("\nfunction documentIntelligencePanel(")]
         self.assertIn("sourceInspector.hidden=true;", research)
         self.assertIn("const resetInspector=(returnFocus=false)=>{sourceInspector.hidden=true;", research)
         self.assertIn("const inspectSource=(source,status,pin,provenance,trigger)=>{\\n  sourceInspector.hidden=false;", research)
@@ -1479,7 +1479,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
 
     def test_legal_research_scope_uses_accessible_segmented_controls_and_conditional_matter_picker(self):
-        research = HTML[HTML.index("async function law(){"):HTML.index("\\nfunction documentIntelligencePanel(")]
+        research = HTML[HTML.index("async function law(){"):HTML.index("\nfunction documentIntelligencePanel(")]
         self.assertIn("className:'research-scope-tabs',role:'group'", research)
         self.assertIn("['verified_corpus',LANG==='ar'?'القانون المتحقق':'Verified law']", research)
         self.assertIn("['firm_documents',LANG==='ar'?'مستندات المكتب':'Firm documents']", research)
@@ -1504,7 +1504,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
 
     def test_legal_research_help_is_progressive_and_upload_uses_compact_matter_gated_paperclip(self):
-        research = HTML[HTML.index("async function law(){"):HTML.index("\\nfunction documentIntelligencePanel(")]
+        research = HTML[HTML.index("async function law(){"):HTML.index("\nfunction documentIntelligencePanel(")]
         self.assertIn("className:'research-help-details'", research)
         self.assertIn("textContent:LANG==='ar'?'اعرف المزيد':'Learn more'", research)
         self.assertIn("uploadPanel.hidden=true", research)
@@ -1517,7 +1517,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
 
     def test_legal_research_rating_choices_overflow_menu_and_page_search_visibility(self):
-        research = HTML[HTML.index("async function law(){"):HTML.index("\\nfunction documentIntelligencePanel(")]
+        research = HTML[HTML.index("async function law(){"):HTML.index("\nfunction documentIntelligencePanel(")]
         self.assertIn("className:'answer-rating-choices',role:'group'", research)
         self.assertIn("['correct',LANG==='ar'?'صحيحة':'Correct']", research)
         self.assertIn("['partially_correct',LANG==='ar'?'صحيحة':'Partial']", research)
@@ -1531,7 +1531,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
 
     def test_legal_research_corpus_count_uses_reviewer_endpoint_and_source_matched_status_is_explicit(self):
-        research = HTML[HTML.index("async function law(){"):HTML.index("\\nfunction documentIntelligencePanel(")]
+        research = HTML[HTML.index("async function law(){"):HTML.index("\nfunction documentIntelligencePanel(")]
         self.assertIn("if(!ME.can_review_legal)", research)
         self.assertIn("api('/legal-review/coverage')", research)
         self.assertIn("row.documents_with_verified_operational_text", research)
@@ -1542,7 +1542,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
 
     def test_legal_research_new_conversation_is_bilingual_and_upload_tooltip_matches_disabled_reason(self):
-        research = HTML[HTML.index("async function law(){"):HTML.index("\\nfunction documentIntelligencePanel(")]
+        research = HTML[HTML.index("async function law(){"):HTML.index("\nfunction documentIntelligencePanel(")]
         self.assertIn("makeBtn(LANG==='ar'?'محادثة جديدة':'New conversation',newChat,'primary')", research)
         self.assertIn("Choose Firm documents first", research)
         self.assertIn("paperclipButton.title=value!=='firm_documents'", research)
