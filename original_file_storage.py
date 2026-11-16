@@ -91,6 +91,8 @@ class LocalPrivateObjectStore:
             not getattr(os, "O_DIRECTORY", 0)
             or not getattr(os, "O_NOFOLLOW", 0)
             or any(function not in getattr(os, "supports_dir_fd", set()) for function in required)
+            or os.stat not in getattr(os, "supports_follow_symlinks", set())
+            or os.link not in getattr(os, "supports_follow_symlinks", set())
         ):
             raise ObjectStorageError("local object storage requires no-follow directory-descriptor operations")
 
