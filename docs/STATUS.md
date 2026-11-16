@@ -1137,3 +1137,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Recovery archive provider contract follow-up: exact-version persisted-byte verification and download now reject S3 response bodies that return more bytes than requested, while retaining the existing guaranteed close/partial-file cleanup paths. Added an over-returning-body download regression. Commits: source `b82e174`; test `2dd5590`. Repository runtime tests remain 0% executed.
+
+
+- Validation follow-up: a static regex probe caught an escaping error in the Windows reserved-device extension matcher; corrected it so `CON.txt`, `PRN.log`, `COM1.foo` and `LPT9.txt` are rejected while `COM0.txt` and ordinary names remain allowed. Source correction commit: `6da44db`. The existing ZIP preflight regression includes `CON.txt`; isolated regex harness confirmed the cases above. Repository test modules remain unexecuted.
