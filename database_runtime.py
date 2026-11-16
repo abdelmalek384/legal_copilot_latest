@@ -568,19 +568,36 @@ class DatabaseRuntime:
         return self._cached_profile_connection("corpus", self.paths.legal_corpus, "legal-corpus")
 
     def _new_catalog_connection(self) -> sqlite3.Connection:
-        """Return a fresh connection because the tenant router owns and closes it."""
+        """Return a fresh writable catalog connection for controlled provisioning."""
         self._require_initialized()
-        self._validate_profile_storage(self.paths.control_plane, "control-plane")
-        connection = sqlite3.connect(str(self.paths.control_plane), timeout=self.timeout)
-        connection.row_factory = sqlite3.Row
-        connection.execute("PRAGMA foreign_keys=ON")
-        return connection
+        path = self.paths.control_plane
+        self._validate_profile_storage(path, "control-plane")
+        identity = self._file_identity(path)
+        connection = None
+        try:
+            connection = sqlite3.connect(str(path), timeout=self.timeout)
+            connection.row_factory = sqlite3.Row
+            connection.execute("PRAGMA foreign_keys=ON")
+            if connection.execute("PRAGMA foreign_keys").fetchone()[0] != 1:
+                raise DatabaseRuntimeError("Control-plane foreign-key enforcement failed")
+            self._validate_profile_storage(path, "control-plane")
+            if self._file_identity(path) != identity:
+                raise DatabaseRuntimeError(
+                    "Control-plane database file changed while opening"
+                )
+            return connection
+        except Exception:
+            if connection is not None:
+                connection.close()
+            raise
 
     def _new_router_catalog_connection(self) -> sqlite3.Connection:
         """Give request-time tenant routing a read-only catalog connection."""
         self._require_initialized()
-        self._validate_profile_storage(self.paths.control_plane, "control-plane")
-        uri = self.paths.control_plane.resolve().as_uri() + "?mode=ro"
+        path = self.paths.control_plane
+        self._validate_profile_storage(path, "control-plane")
+        identity = self._file_identity(path)
+        uri = path.resolve().as_uri() + "?mode=ro"
         connection = sqlite3.connect(uri, uri=True, timeout=self.timeout)
         connection.row_factory = sqlite3.Row
         try:
@@ -592,6 +609,11 @@ class DatabaseRuntime:
             ):
                 raise DatabaseRuntimeError(
                     "Read-only tenant catalog routing mode could not be enforced"
+                )
+            self._validate_profile_storage(path, "control-plane")
+            if self._file_identity(path) != identity:
+                raise DatabaseRuntimeError(
+                    "Control-plane database file changed while opening"
                 )
             return connection
         except Exception:
