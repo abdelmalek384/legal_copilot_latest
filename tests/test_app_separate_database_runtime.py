@@ -6087,7 +6087,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(login.status_code, 200, login.text)
 
         response = self.client.get("/firm/data-export.zip")
-        self.assertEqual(response.status_code, 200, response.text)
+        self.assertEqual(response.status_code, 200, repr(response.content[:200]))
         self.assertEqual(response.headers.get("content-type"), "application/zip")
         with zipfile.ZipFile(io.BytesIO(response.content)) as archive:
             names = set(archive.namelist())
