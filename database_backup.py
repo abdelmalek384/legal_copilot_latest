@@ -5,6 +5,7 @@ Restore always targets a new directory; it never overwrites configured live path
 """
 from __future__ import annotations
 
+import errno
 import hashlib
 import json
 import os
@@ -1001,7 +1002,7 @@ def _publish_restore_directory_no_replace(staged_root: Path, destination: Path) 
         )
         if result != 0:
             error_number = ctypes.get_errno()
-            if error_number == 17:  # EEXIST
+            if error_number == errno.EEXIST:
                 raise DatabaseBundleError(
                     "Restore target appeared during publication; existing path was preserved"
                 )
