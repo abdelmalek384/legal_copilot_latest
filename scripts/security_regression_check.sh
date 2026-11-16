@@ -31,6 +31,7 @@ tests=(
   test_trusted_proxy_client_ip.py
   test_trusted_host_middleware.py
   test_original_file_storage.py
+  test_firm_offboarding_preflight.py
   test_database_backup_bundle.py
   test_database_backup_archive.py
   test_database_release_acceptance.py
