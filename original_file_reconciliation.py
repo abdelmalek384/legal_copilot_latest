@@ -228,10 +228,13 @@ def reconcile_original_file_storage(
     if not stat.S_ISDIR(root_metadata.st_mode):
         raise ValueError("object storage root must be a real directory")
     root_fd = _open_directory_chain(root)
-    opened_root = os.fstat(root_fd)
-    if (opened_root.st_dev, opened_root.st_ino) != (root_metadata.st_dev, root_metadata.st_ino):
+    try:
+        opened_root = os.fstat(root_fd)
+        if (opened_root.st_dev, opened_root.st_ino) != (root_metadata.st_dev, root_metadata.st_ino):
+            raise ValueError("object storage root changed during reconciliation")
+    except Exception:
         os.close(root_fd)
-        raise ValueError("object storage root changed during reconciliation")
+        raise
     try:
         with os.scandir(root_fd) as root_entries:
             for root_entry in root_entries:
