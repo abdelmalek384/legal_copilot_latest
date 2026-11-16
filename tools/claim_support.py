@@ -89,7 +89,7 @@ _ARABIC_MODAL_PATTERNS = {
     "permission": re.compile(r"(?:يجوز|يحق|يسمح)"),
     "obligation": re.compile(r"(?<!لا )(?:يجب|يلتزم|يلزم|يتعين)"),
     "prohibition": re.compile(r"(?:لا\s+(?:يجوز|يحق|يسمح)|يحظر|يمتنع\s+عن)"),
-    "non_obligation": re.compile(r"(?:لا\\s*(?:يجب|يلتزم|يلزم|يتعين)|ليس\\s+ملزما|غير\\s+ملزم)"),
+    "non_obligation": re.compile(r"(?:لا\s*(?:يجب|يلتزم|يلزم|يتعين)|ليس\s+ملزما|غير\s+ملزم)"),
 }
 
 
@@ -126,7 +126,7 @@ _ENGLISH_POSITIVE_OBLIGATION = re.compile(
     re.IGNORECASE,
 )
 _ARABIC_NEGATED_OBLIGATION = re.compile(
-    r"(?:لا\s*(?:يجب|يلتزم|يتعين)|ليس\s+ملزما|غير\s+ملزم)"
+    r"(?:لا\s*(?:يجب|يلتزم|يلزم|يتعين)|ليس\s+ملزما|غير\s+ملزم)"
 )
 _ARABIC_POSITIVE_OBLIGATION = re.compile(r"(?:يجب|يلتزم|يلزم|يتعين)")
 
