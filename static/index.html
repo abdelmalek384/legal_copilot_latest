@@ -3253,11 +3253,12 @@ function documentIntelligencePanel(caseId,documents){
 
 async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT_REVIEW_TARGET.caseId)!==Number(id))window.DOCUMENT_REVIEW_TARGET=null;window.CASE_ID=id;const c=await api('/cases/'+id),us=await api('/users'),again=()=>view(id);
  const lead=ME.role==='admin'||c.members.some(m=>m.role==='lead'&&m.user_id===ME.id),dn=c.tasks.filter(t=>t.status==='done').length,tot=c.tasks.length;
+ if(!lead&&['fees','invoices'].includes(TAB))TAB='sum';
  const tabGroups=[
   {id:'overview',label:uiText('نظرة عامة','Overview'),items:[['sum',uiText('الملخص','Summary')],['brief',uiText('ملخص ذكي','AI brief')]]},
   {id:'work',label:uiText('العمل','Work'),items:[['tasks',uiText('المهام','Tasks')],['sess',uiText('الجلسات','Hearings')],['dead',uiText('المواعيد القانونية','Legal deadlines')]]},
   {id:'records',label:uiText('المستندات والبحث','Documents & research'),items:[['docs',uiText('المستندات','Documents')],['ask',uiText('اسأل','Ask')],['notes',uiText('الملاحظات','Notes')]]},
-  {id:'finance',label:uiText('المالية','Finance'),items:[['fees',uiText('الأتعاب','Fees')],['invoices',uiText('الفواتير','Invoices')]]},
+  ...(lead?[{id:'finance',label:uiText('المالية','Finance'),items:[['fees',uiText('الأتعاب','Fees')],['invoices',uiText('الفواتير','Invoices')]]}]:[]),
   {id:'team',label:uiText('الفريق والسجل','Team & activity'),items:[['team',uiText('الفريق','Team')],['log',uiText('السجل','Activity log')]]}
  ];
  const selectedTabGroup=tabGroups.find(group=>group.items.some(([key])=>key===TAB))||tabGroups[0];
