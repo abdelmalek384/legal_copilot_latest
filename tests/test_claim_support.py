@@ -231,6 +231,7 @@ class ClaimSupportTests(unittest.TestCase):
             ("The employer is obligated to provide notice.", "The employer is not obligated to provide notice."),
             ("The employer is obliged to provide notice.", "The employer is not obliged to provide notice."),
             ("The employer is required to provide notice.", "The employer isn't required to provide notice."),
+            ("The employer is required to provide notice.", "The employer isn’t required to provide notice."),
             ("The employers are obliged to provide notice.", "The employers aren't obliged to provide notice."),
             ("The employer has to provide notice.", "The employer doesn’t have to provide notice."),
         )
@@ -259,6 +260,8 @@ class ClaimSupportTests(unittest.TestCase):
             "The employer needn't provide notice.",
             "The employer doesn’t have to provide notice.",
             "The employer isn't required to provide notice.",
+            "The employer isn’t required to provide notice.",
+            "The employers aren’t obliged to provide notice.",
             "The employers aren't obliged to provide notice.",
             "The employer can’t deduct wages.",
         ):
