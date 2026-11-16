@@ -6165,5 +6165,61 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertIn(",included\r\n", manifest)
 
 
+    def test_firm_membership_suspension_revokes_only_the_target_firm_access(self):
+        target_id = self.runtime.create_global_identity(
+            "Multi Firm Suspension Target",
+            "multi-firm-suspension@example.test",
+            app.hash_pw(self.password),
+        )
+        self.runtime.create_firm_membership(target_id, self.firm_a, "lawyer")
+        self.runtime.create_firm_membership(target_id, self.firm_b, "lawyer")
+
+        admin_login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(admin_login.status_code, 200, admin_login.text)
+        suspended = self._mutate("post", f"/users/{target_id}/disable")
+        self.assertEqual(suspended.status_code, 200, suspended.text)
+        self.assertTrue(suspended.json()["membership_suspended"])
+
+        target = TestClient(app.app)
+        try:
+            logged_in = target.post(
+                "/login",
+                json={"email": "multi-firm-suspension@example.test", "password": self.password},
+            )
+            self.assertEqual(logged_in.status_code, 200, logged_in.text)
+            csrf = target.cookies.get("lc_csrf") or ""
+            switched_b = target.post(
+                "/session/firm",
+                headers={"X-CSRF-Token": csrf},
+                json={"firm_id": self.firm_b},
+            )
+            self.assertEqual(switched_b.status_code, 200, switched_b.text)
+            self.assertEqual(switched_b.json()["firm_id"], self.firm_b)
+            self.assertEqual(target.get("/cases").status_code, 200)
+
+            denied_a = target.post(
+                "/session/firm",
+                headers={"X-CSRF-Token": csrf},
+                json={"firm_id": self.firm_a},
+            )
+            self.assertEqual(denied_a.status_code, 403, denied_a.text)
+            self.assertEqual(target.get("/cases").status_code, 200)
+        finally:
+            target.close()
+
+        control = self.runtime.control_connection()
+        statuses = {
+            row["firm_id"]: row["status"]
+            for row in control.execute(
+                "SELECT firm_id,status FROM firm_memberships WHERE user_id=?",
+                (target_id,),
+            )
+        }
+        self.assertEqual(statuses[self.firm_a], "suspended")
+        self.assertEqual(statuses[self.firm_b], "active")
+
+
 if __name__ == "__main__":
     unittest.main()
