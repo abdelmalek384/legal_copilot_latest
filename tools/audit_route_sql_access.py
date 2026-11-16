@@ -17,6 +17,10 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 APP_FILE = ROOT / "app.py"
+ROUTER_MODULES = {
+    "routers.platform": ROOT / "routers" / "platform.py",
+    "routers.identity": ROOT / "routers" / "identity.py",
+}
 ROUTE_METHODS = {"get", "post", "put", "patch", "delete", "options", "head", "api_route"}
 BOUNDARY_CALLS = {
     "conn": "firm",
@@ -57,7 +61,7 @@ def _route_decorators(
             continue
         owner = decorator.func.value
         method = decorator.func.attr.lower()
-        if not isinstance(owner, ast.Name) or owner.id != "app" or method not in ROUTE_METHODS:
+        if not isinstance(owner, ast.Name) or owner.id not in {"app", "router"} or method not in ROUTE_METHODS:
             continue
         path_node = decorator.args[0] if decorator.args else next(
             (keyword.value for keyword in decorator.keywords if keyword.arg == "path"),
@@ -442,13 +446,38 @@ def audit_source(source: str) -> dict[str, Any]:
     }
 
 
+def default_source() -> str:
+    """Include every router module explicitly mounted by the application."""
+    app_source = APP_FILE.read_text(encoding="utf-8")
+    tree = ast.parse(app_source, filename=str(APP_FILE))
+    imported = {
+        node.module for node in ast.walk(tree)
+        if isinstance(node, ast.ImportFrom)
+        and node.module
+        and node.module.startswith("routers.")
+        and any(alias.name == "router" for alias in node.names)
+    }
+    unregistered = sorted(imported - set(ROUTER_MODULES))
+    if unregistered:
+        raise RuntimeError(
+            "route-SQL audit has no source mapping for imported routers: "
+            + ", ".join(unregistered)
+        )
+    router_sources = [
+        ROUTER_MODULES[module].read_text(encoding="utf-8")
+        for module in sorted(imported)
+    ]
+    return "\n".join([app_source, *router_sources])
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--json", action="store_true", help="Emit the complete machine-readable map.")
     parser.add_argument("--strict", action="store_true", help="Fail on incomplete route declarations, unresolved/unreviewed SQL, unclassified SQL routes, or direct SQLite opens.")
-    parser.add_argument("--app", type=Path, default=APP_FILE, help="Application source file to inspect.")
+    parser.add_argument("--app", type=Path, default=None, help="Inspect only this source file (primarily for focused checks).")
     args = parser.parse_args()
-    report = audit_source(args.app.read_text(encoding="utf-8"))
+    source = args.app.read_text(encoding="utf-8") if args.app is not None else default_source()
+    report = audit_source(source)
     if args.json:
         print(json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2))
     else:
