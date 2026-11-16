@@ -96,7 +96,7 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
         self.assertIsNotNone(event)
         review_type = event["review_type"]
         self.db.execute(
-            """UPDATE legal_review_events SET outcome='approved', reviewer='egyptian-counsel',
+            """UPDATE legal_review_events SET outcome='pass', reviewer='egyptian-counsel',
                notes='Human review decision' WHERE version_id=? AND review_type=?""",
             (first["version_id"], review_type),
         )
@@ -108,7 +108,7 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
             (first["version_id"], review_type),
         ).fetchall()
         self.assertEqual(len(rows), 1)
-        self.assertEqual(tuple(rows[0]), ("approved", "egyptian-counsel", "Human review decision"))
+        self.assertEqual(tuple(rows[0]), ("pass", "egyptian-counsel", "Human review decision"))
 
     def test_registration_commits_candidate_for_independent_connection(self):
         self.register(self.db, self.record)
