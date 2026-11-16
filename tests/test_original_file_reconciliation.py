@@ -204,6 +204,59 @@ class OriginalFileReconciliationTests(unittest.TestCase):
         )
         self.assertTrue(oversized.exists(), "reconciliation must remain read-only")
 
+    @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_reconciliation_flags_hardlinked_object_without_following_alias(self):
+        self._create_database(rows=[(self.object_id, self.payload, "ready")])
+        directory = self.objects / "firm-7"
+        directory.mkdir()
+        object_path = directory / f"{self.object_id}.blob"
+        object_path.write_bytes(self.payload)
+        outside = self.root / "outside-hardlink"
+        os.link(object_path, outside)
+
+        report = self._reconcile()
+
+        self.assertIn("unsafe_object_entry", {finding.code for finding in report.findings})
+        self.assertEqual(outside.read_bytes(), self.payload)
+
+    @unittest.skipUnless(os.name == "posix", "POSIX directory symlinks are required")
+    def test_reconciliation_rejects_firm_namespace_symlink_swap(self):
+        self._create_database(rows=[(self.object_id, self.payload, "ready")])
+        directory = self.objects / "firm-7"
+        directory.mkdir()
+        (directory / f"{self.object_id}.blob").write_bytes(self.payload)
+        parked = self.objects / "firm-7-parked"
+        outside = self.root / "outside-namespace"
+        outside.mkdir()
+        sentinel = outside / f"{self.object_id}.blob"
+        sentinel.write_bytes(self.payload)
+        real_open = os.open
+        swapped = False
+
+        def swap_before_namespace_open(path, flags, *args, **kwargs):
+            nonlocal swapped
+            if path == "firm-7" and kwargs.get("dir_fd") is not None and not swapped:
+                directory.rename(parked)
+                directory.symlink_to(outside, target_is_directory=True)
+                swapped = True
+            return real_open(path, flags, *args, **kwargs)
+
+        try:
+            with patch("original_file_reconciliation.os.open", side_effect=swap_before_namespace_open):
+                report = self._reconcile()
+        finally:
+            if directory.is_symlink():
+                directory.unlink()
+            if parked.exists():
+                parked.rename(directory)
+
+        self.assertTrue(swapped)
+        self.assertIn("unsafe_firm_directory", {finding.code for finding in report.findings})
+        self.assertEqual(sentinel.read_bytes(), self.payload)
+        self.assertEqual(
+            (directory / f"{self.object_id}.blob").read_bytes(), self.payload
+        )
+
     def test_does_not_follow_symlinked_object(self):
         self._create_database(rows=[(self.object_id, self.payload, "ready")])
         directory = self.objects / "firm-7"
