@@ -44,6 +44,15 @@ class DependencyLockWorkflowContractTests(unittest.TestCase):
         self.assertIn("Python 3.12", collection)
         self.assertNotIn("Python 3.11+", collection)
 
+    def test_tests_workflow_installs_only_the_hash_locked_python_312_set(self):
+        workflow = (ROOT / ".github" / "workflows" / "tests.yml").read_text(encoding="utf-8")
+        self.assertIn(
+            "python -m pip install --require-hashes -r requirements-py312.lock",
+            workflow,
+        )
+        self.assertNotIn("python -m pip install -r requirements.txt", workflow)
+        self.assertIn("python-version: '3.12'", workflow)
+
     def test_dependency_audit_prefers_lock_when_checked_in(self):
         workflow = (ROOT / ".github" / "workflows" / "dependency-audit.yml").read_text(encoding="utf-8")
         self.assertIn("if [ -f requirements-py312.lock ]", workflow)
