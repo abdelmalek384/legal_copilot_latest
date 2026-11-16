@@ -148,8 +148,28 @@ def _reject_duplicate_json_keys(pairs):
     return result
 
 
+def read_regular_file(path: Path, *, max_bytes: int = 5 * 1024 * 1024) -> bytes:
+    """Read bounded input through a stable regular-file descriptor."""
+    before = path.lstat()
+    if not stat.S_ISREG(before.st_mode) or before.st_size > max_bytes:
+        raise ValueError("collection manifest must be a bounded regular file")
+    flags = os.O_RDONLY | getattr(os, "O_BINARY", 0) | getattr(os, "O_NONBLOCK", 0) | getattr(os, "O_NOFOLLOW", 0)
+    descriptor = os.open(path, flags)
+    with os.fdopen(descriptor, "rb") as stream:
+        opened = os.fstat(stream.fileno())
+        if not stat.S_ISREG(opened.st_mode) or (before.st_dev, before.st_ino) != (opened.st_dev, opened.st_ino):
+            raise ValueError("collection manifest changed while opening")
+        content = stream.read(max_bytes + 1)
+        after = os.fstat(stream.fileno())
+        current = path.lstat()
+        if len(content) > max_bytes or len(content) != after.st_size:
+            raise ValueError("collection manifest changed size or exceeds the size limit")
+        if (opened.st_dev, opened.st_ino) != (after.st_dev, after.st_ino) or (opened.st_size, opened.st_mtime_ns, opened.st_ctime_ns) != (after.st_size, after.st_mtime_ns, after.st_ctime_ns) or (current.st_dev, current.st_ino) != (opened.st_dev, opened.st_ino):
+            raise ValueError("collection manifest changed while being read")
+    return content
+
 def load_manifest(path: Path) -> list[dict]:
-    data = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+    data = json.loads(read_regular_file(path), object_pairs_hook=_reject_duplicate_json_keys)
     if not isinstance(data, dict):
         raise ValueError("Manifest must be a JSON object")
     docs = data.get("documents")
