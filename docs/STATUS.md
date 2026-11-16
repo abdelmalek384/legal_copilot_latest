@@ -1056,3 +1056,10 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Source commit: 0b7f440; regression commit: fef3d13. Static review confirms directory-descriptor-relative open, no-follow flags, regular-file validation, cleanup of both descriptors, and regression coverage. Repository runtime tests remain 0% executed; no runtime pass is claimed. AI-2 estimate: 78.5%; whole-project estimate remains 75.3% provisional.
 
 - Follow-up transaction review caught and fixed two registrar lifecycle issues: successful registrations now commit (verified by a new independent-connection regression), while a failed late conflict rolls back the earlier source inserts through a savepoint. Re-registration now checks for any existing review event, not only pending events, so it cannot append a new pending event after a human pass/fail decision. The preservation fixture uses the schema's valid `pass` outcome. Candidate registry regression module now has 11 distinct tests, registered in the workflow; runtime execution remains unavailable.
+
+
+## AI-2 encrypted backup ZIP member preflight hardening — 2026-11-16
+
+- Tightened encrypted backup ZIP validation to reject non-canonical member paths (empty, dot, parent, repeated-separator, NUL, backslash, absolute and Windows drive-prefixed forms) and special filesystem entry types such as FIFOs/devices. This closes ambiguity between ZIP member names and paths created by extraction, before extractall is reached.
+- Added regressions for repeated separators, dot components, Windows drive paths and FIFO metadata. The backup-bundle test module is already present in both the focused security matrix and GitHub workflow.
+- Source commit: d3d5841; regression commit: 0775ba4. Static review confirms path canonicalization and file/directory mode allowlists. Repository runtime test execution remains 0%; no runtime pass is claimed. AI-2 estimate: 78.6%; whole-project estimate remains 75.3% provisional.
