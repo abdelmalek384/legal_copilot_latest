@@ -686,3 +686,10 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Static review only; no repository test module or Actions job ran. Updated estimates: tenant isolation/access control 84.7%; authentication/firm administration 85.2%; case management 90%; document processing/security 99.1%; backup/release readiness 43.6%; AI-2 overall 74.6%; whole project 73.3%. Implementation estimates only; recovery acceptance remains outstanding.
 
 - A separate isolated Python parser harness accepted a valid object and rejected a nested duplicate key under the same object-pairs-hook contract. This does not count as execution of tests/test_manage_recovery_locator.py.
+
+
+## AI-2 bounded S3 inventory pagination — 2026-11-16
+
+- Added a hard page ceiling to S3 originals inventory pagination. Repeated-token detection already rejected a stuck cursor; the new bound also stops a provider that returns a fresh token forever, preventing unbounded inventory loops and memory growth. The limit is 10,000 pages and fails closed when exceeded.
+- Added a regression with unique continuation tokens proving the inventory stops exactly at the configured page ceiling. Source commit: 0f5fe1f; test commit: 6ae6445.
+- The S3 storage module is already registered in the focused security regression matrix. Static review only; no repository test or CI job ran. Updated estimates: tenant isolation/access control 84.7%; authentication/firm administration 85.2%; case management 90%; document processing/security 99.1%; backup/release readiness 43.8%; AI-2 overall 74.8%; whole project 73.5%.
