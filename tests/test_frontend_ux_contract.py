@@ -1461,5 +1461,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("askBox(id)", ask)
 
 
+    def test_research_new_chat_is_a_draft_and_history_starts_collapsed(self):
+        research = HTML[HTML.index("async function law(){"):HTML.index("\\nfunction documentIntelligencePanel(")]
+        self.assertIn("className:'research-list card history-collapsed'", research)
+        self.assertIn("'aria-expanded':'false'", research)
+        self.assertIn("const newChat=async()=>{\\n   // Keep a new conversation as a client-side draft until the first message is sent.\\n   activeId=null;renderMessages([]);renderList();composer.focus();\\n };", research)
+        self.assertNotIn("const c=await api('/research/conversations','POST',{});\\n   activeId=c.id;renderMessages([])", research)
+        self.assertIn("if(!activeId){const c=await api('/research/conversations','POST',{});activeId=c.id}", research)
+
+
 if __name__ == "__main__":
     unittest.main()
