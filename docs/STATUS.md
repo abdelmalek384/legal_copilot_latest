@@ -1125,3 +1125,9 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Recovery archive follow-up: persisted-upload verification and exact-version downloads now also read at most the declared size plus one sentinel byte, rather than overshooting by a full 1 MiB chunk. Added an oversized-download regression asserting exactly `declared_size + 1` bytes are consumed and the partial destination is removed. Commits: source `fb89aaf`; test `4b80528`. Repository runtime tests remain unexecuted.
+
+
+## AI-2 recovery hardening checkpoint — 2026-11-16
+
+- Current AI-2 implementation estimate: **79.2%**; whole-project engineering estimate: **75.3% provisional**. Recent restore, S3 original-object and encrypted backup archive hardening is implemented and statically checked; repository runtime tests remain **0% executed**.
+- PR #1644 is now mergeable at the GitHub mergeability layer, but it changes only requirements.txt to pypdf 7.1.0 while requirements-py312.lock still pins 6.21.4. Its head has no commit statuses and the reported CodeQL check failed. It is therefore not safe to merge as-is; lock regeneration/compatibility review is still required. PR #1610 remains draft and dirty/non-mergeable.
