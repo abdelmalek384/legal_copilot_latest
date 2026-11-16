@@ -735,3 +735,11 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Restore now validates every tenant manifest record before comparing it with the control-plane catalog or opening tenant databases. Records must be objects with a unique positive integer firm ID, non-empty tenant/firm status strings, and a filename/archive path pair that matches the strict firm-specific tenant filename. Malformed records, duplicate firm IDs, mismatched filenames and orphan archive paths fail closed as DatabaseBundleError rather than leaking type/key exceptions deeper into restore.
 - Added an encrypted-bundle regression that replaces a tenant record with a non-object value and verifies restore rejection. Source commit: 429d59c; test commit: fed98e9.
 - Static review only; repository tests and Actions remain unavailable. Backup/release readiness estimate 45.5%; AI-2 overall 75.4%; whole project 74.1%. Pilot/production remains NOT READY.
+
+
+## AI-2 S3/KMS recovery response schema validation — 2026-11-16
+
+- Recovery archive KMS inspection now requires a dictionary response with a dictionary KeyMetadata before reading ARN/state fields. S3 upload/download paths now validate response and Metadata object shapes before consuming version IDs, checksums or encryption metadata; malformed body interfaces are rejected, and response bodies are closed when possible.
+- Added regressions for malformed KMS metadata and malformed exact-version S3 HEAD metadata. Source commits: 698751b, 93e4fb9; test commits: 12b976d, 993d91a.
+- Existing upload/download response verification and exact-version pinning remain intact. Static review only; no repository test module or Actions job ran.
+- Updated estimates: backup/release readiness 45.6%; AI-2 overall 75.5%; whole project 74.2%. No safe open PR is mergeable; dependency lock/browser validation blockers remain. Pilot/production remains NOT READY.
