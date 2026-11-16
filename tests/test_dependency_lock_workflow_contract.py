@@ -101,6 +101,29 @@ class DependencyLockWorkflowContractTests(unittest.TestCase):
         self.assertGreater(checked, 0)
         self.assertEqual(locked["boto3"], locked["botocore"])
 
+    def test_every_locked_distribution_has_valid_sha256_hashes(self):
+        lock = (ROOT / "requirements-py312.lock").read_text(encoding="utf-8")
+        entries = list(re.finditer(
+            r"(?m)^([A-Za-z0-9_.-]+)==([^\s]+)(?:\s+\\)?$",
+            lock,
+        ))
+        self.assertGreater(len(entries), 0, "deployment lock has no pinned distributions")
+        total_hashes = 0
+        for index, entry in enumerate(entries):
+            end = entries[index + 1].start() if index + 1 < len(entries) else len(lock)
+            block = lock[entry.end():end]
+            hashes = re.findall(r"--hash=sha256:([0-9a-f]+)", block)
+            with self.subTest(package=entry.group(1), version=entry.group(2)):
+                self.assertGreater(len(hashes), 0, "locked distribution has no SHA-256 hash")
+                self.assertEqual(len(hashes), len(set(hashes)), "duplicate artifact hash")
+                for digest in hashes:
+                    self.assertRegex(digest, r"^[0-9a-f]{64}$")
+            total_hashes += len(hashes)
+
+        directives = re.findall(r"--hash=sha256:([^\s\\]+)", lock)
+        self.assertEqual(len(directives), total_hashes)
+        self.assertTrue(all(re.fullmatch(r"[0-9a-f]{64}", digest) for digest in directives))
+
     def test_local_release_gate_runs_one_dependency_audit_with_safe_fallback(self):
         script = (ROOT / "scripts" / "local_release_check.sh").read_text(encoding="utf-8")
         self.assertEqual(

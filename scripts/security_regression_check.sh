@@ -27,6 +27,7 @@ tests=(
   test_backup_restore_safety.py
   test_app_separate_database_runtime.py
   test_database_runtime.py
+  test_dependency_lock_workflow_contract.py
   test_tenant_catalog.py
   test_tenant_storage.py
   test_auth_rate_limits_separate_runtime.py
