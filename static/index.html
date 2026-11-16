@@ -1470,6 +1470,12 @@ button.g{border-color:var(--line)}
  #main .research-thread{min-height:36vh;max-height:52vh}
 }
 @media(max-width:560px){.empty-state{padding:14px}.settings-tabs button{min-width:84px}}
+/* Preserve the established horizontally-scrollable phone navigation contract. */
+@media(max-width:800px){
+ #side .primary-nav{overflow-x:auto;overflow-y:hidden;overscroll-behavior-inline:contain;scrollbar-width:thin}
+ #side .nav-more[open] .nav-more-items{position:fixed;top:68px;inset-inline-end:12px;min-width:230px;max-height:min(70vh,520px);overflow:auto;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow-raised);z-index:60}
+}
+
 </style>
 <script>
 const $=i=>document.getElementById(i),A=$('app');
