@@ -235,7 +235,7 @@ def router_private():
         with tempfile.TemporaryDirectory() as directory:
             app_path = Path(directory) / "app.py"
             app_path.write_text(
-                "from routers.future_feature import router\\n",
+                "from routers.future_feature import router\n",
                 encoding="utf-8",
             )
             with patch("tools.audit_route_sql_access.APP_FILE", app_path):
