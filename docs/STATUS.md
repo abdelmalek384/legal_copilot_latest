@@ -323,3 +323,12 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 
 
 - Added a positive-path firm-export integrity regression. It creates a ready original object, exports the firm ZIP, and asserts that the archive contains the exact original bytes at the expected document-scoped path and that the manifest includes the matching path, SHA-256 digest and included status. The test is committed but unexecuted; its method passed standalone AST syntax validation.
+
+
+## AI-2 grouped primary navigation — 2026-11-16
+
+- Ported the safe information-architecture improvement from draft PR #1610 onto current main without merging its divergent branch. Primary navigation is grouped into Workspace and Firm administration; mobile navigation keeps the groups horizontally scrollable and hides desktop-only group captions.
+- All existing destinations remain present. Firm setup remains admin-gated, platform metrics remain platform-admin-gated, and legal corpus/source review remains behind `ME.can_review_legal`. Navigation still clears one-shot document/chunk review targets before switching pages.
+- Preserved the current-main answer-rating panel and its save/list/export controls; no answer-rating code was replaced or removed.
+- Added a frontend regression contract for route retention, role gates, mobile grouping and answer-rating preservation. Source and test contract are committed directly to main (`5cdf0cb`, `9c14448`).
+- Static inspection confirms the expected route entries, role checks and rating panel are present. **The test was not executed** because GitHub Actions runner/billing remains unavailable; no browser, RTL/LTR, responsive or screen-reader acceptance is claimed.
