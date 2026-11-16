@@ -5,9 +5,11 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from tools import validate_manual_capture_record as MODULE
 from tools.validate_manual_capture_record import validate_capture_record
 
 
@@ -220,7 +222,6 @@ class ManualCaptureRecordTests(unittest.TestCase):
         import os
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
-            record = self._valid_record(root) if hasattr(self, "_valid_record") else None
             target = root / "original.pdf"
             target.write_bytes(b"captured source")
             outside = root / "outside.pdf"
