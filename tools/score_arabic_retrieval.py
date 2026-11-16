@@ -344,6 +344,7 @@ def main():
     parser.add_argument("--phase", choices=("before", "after"), required=True)
     parser.add_argument("--min-score", type=float, default=0.3)
     parser.add_argument("--output", default="docs/arabic_retrieval_measurement.json")
+    parser.add_argument("--replace-phase", action="store_true", help="explicitly replace an existing before/after phase in the report")
     args = parser.parse_args()
     if not math.isfinite(args.min_score) or not 0 <= args.min_score <= 1:
         parser.error("--min-score must be a finite value from 0 to 1")
@@ -367,6 +368,10 @@ def main():
             report["benchmark_sha256"] = digest
         if report.get("benchmark_sha256") != digest:
             raise SystemExit("benchmark hash changed; start a new comparison report instead of mixing question sets")
+        if args.phase in report["phases"] and report["phases"][args.phase] is not None and not args.replace_phase:
+            raise ValueError(
+                f"{args.phase} phase already exists; use --replace-phase only if intentionally replacing this measurement"
+            )
         report["phases"][args.phase] = {
             "min_score": args.min_score,
             "metrics": metrics,

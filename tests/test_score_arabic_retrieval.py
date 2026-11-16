@@ -639,5 +639,29 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
             self.assertEqual(questions.read_bytes(), original)
 
 
+    def test_cli_refuses_existing_phase_overwrite_without_explicit_flag(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            questions = root / "questions.jsonl"
+            runs = root / "runs.jsonl"
+            registry = root / "reviewers.json"
+            report = root / "report.json"
+            questions.write_text('{"id":"Q1","review_status":"needs_lawyer_review"}\\n', encoding="utf-8")
+            runs.write_text("", encoding="utf-8")
+            registry.write_text(__import__("json").dumps(TEST_REVIEWER_REGISTRY), encoding="utf-8")
+            from tools.score_arabic_retrieval import benchmark_fingerprint
+            fingerprint = benchmark_fingerprint([{"id":"Q1","practice_area":None,"question_ar":None,"question_origin":None,"question_style":None,"retrieval_tags":[]}])
+            original = {"schema_version":1,"benchmark_sha256":fingerprint,"phases":{"before":{"status":"scored","metrics":{"sentinel":1}},"after":None}}
+            report.write_text(__import__("json").dumps(original), encoding="utf-8")
+            stderr = io.StringIO()
+            argv = ["score_arabic_retrieval.py","--questions",str(questions),"--runs",str(runs),"--reviewer-registry",str(registry),"--phase","before","--output",str(report)]
+            with mock.patch("sys.argv", argv), contextlib.redirect_stderr(stderr), self.assertRaises(SystemExit) as raised:
+                main()
+            self.assertEqual(raised.exception.code, 2)
+            self.assertIn("phase already exists", stderr.getvalue())
+            self.assertEqual(__import__("json").loads(report.read_text(encoding="utf-8")), original)
+
+
+
 if __name__ == "__main__":
     unittest.main()
