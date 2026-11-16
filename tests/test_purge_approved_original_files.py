@@ -1,7 +1,10 @@
 import hashlib
+import io
+import sys
 import sqlite3
 import tempfile
 import unittest
+from contextlib import redirect_stderr
 from unittest.mock import patch
 from pathlib import Path
 
@@ -13,7 +16,8 @@ from database_runtime import DatabaseRuntime
 from original_file_reconciliation import TenantDatabase, reconcile_original_file_storage
 from tools.firm_offboarding_preflight import inspect_firm_offboarding
 from original_file_storage import LocalPrivateObjectStore
-from tools.purge_approved_original_files import purge_approved_requests
+from tools.purge_approved_original_files import main as local_purge_main, purge_approved_requests
+from tools.purge_approved_s3_original_files import main as s3_purge_main
 
 
 
@@ -109,6 +113,18 @@ class PurgeApprovedOriginalFilesTests(unittest.TestCase):
         except Exception:
             pass
         self.temp.cleanup()
+
+    def test_local_and_s3_purge_clis_reject_nonpositive_authority_ids_first(self):
+        for command in (local_purge_main, s3_purge_main):
+            stderr = io.StringIO()
+            with self.subTest(command=command.__module__):
+                with patch.object(
+                    sys, "argv",
+                    ["purge", "--firm-id", "0", "--operator-user-id", "-1"],
+                ), redirect_stderr(stderr), self.assertRaises(SystemExit) as raised:
+                    command()
+                self.assertEqual(raised.exception.code, 2)
+                self.assertIn("must be positive integers", stderr.getvalue())
 
     def _create_approved_request(self):
         import app
