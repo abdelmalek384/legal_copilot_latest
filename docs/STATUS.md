@@ -1167,3 +1167,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Follow-up on local storage/reconciliation: both adapters now explicitly verify `os.stat` no-follow and the local writer verifies `os.link` no-follow support before any descriptor-relative operation; unsupported platforms fail closed. Descriptor cleanup paths were tightened to close both root and namespace FDs even when one close fails. Commits: local capability guard `36b972a`, reconciliation capability guard `cf179ca`, local descriptor cleanup `d4e0342`, failed-open cleanup `0e06fd0`. AI-2 estimate: **79.5%**; whole-project estimate remains **75.3% provisional**. Repository runtime tests remain **0% executed**.
+
+
+- Root-directory identity pinning follow-up: the local store records the initialized object-root `(device,inode)` and refuses operations if the configured root path is replaced by another real directory; reconciliation compares the root identity observed before descriptor traversal with the opened descriptor. Added root-replacement regressions for both paths. Commits: local store `a943983`, test `0beace0`; reconciler `d9baf0f`, test `ffe1e4b`.
