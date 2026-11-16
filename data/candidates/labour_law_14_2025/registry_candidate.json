@@ -206,7 +206,7 @@
     {
       "review_type": "extraction_quality",
       "outcome": "pending",
-      "evidence_url": "https://manshurat.org/file/89254/download?token=aN3Nv2Ig",
+      "evidence_url": "https://manshurat.org/node/76602",
       "notes": "The supplied 311-row JSONL parsed and its hash was independently recomputed. The exact 112-page user-supplied comparison PDF and JSONL were recovered from the Library source bundle on 2026-11-06; their hashes match the recorded source-match record. All 311 provisions have assistant page-image comparison notes and page locators; all 273 machine-difference records, five numeric alerts, 120 quantitative cues, six orthography outliers and 29 previously unreviewed identical provisions have recorded visual checks. No confirmed textual mismatch was found in inspected passages. This is not counsel sign-off. The ETA/SIS-hosted PDF text-extraction pinpoints are a separate copy and were not downloaded or visually inspected."
     },
     {
