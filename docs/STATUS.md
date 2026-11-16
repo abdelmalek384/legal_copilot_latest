@@ -1146,3 +1146,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - S3 stream lifecycle follow-up: original-object `open()` now requires both readable and closable response bodies and closes malformed bodies when possible, preventing a provider response without a cleanup method from entering the application path. Added an unclosable-body regression. Commits: source `c26d213`; test `3d1f4fa`. Runtime tests remain unexecuted.
+
+
+- S3 stream cleanup is now idempotent: after an overflow/error closes the provider body, later caller/context-manager cleanup does not close it twice. Extended the oversized-stream regression to assert one close call. Commits: source `26bec92`; test `d11ad41`. Runtime tests remain unexecuted.
