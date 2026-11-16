@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "060cc5ee3b9460b496659ad9df51abd1bc3af99e",
   "generated_on": "2026-11-17",
-  "entry_count": 1563,
+  "entry_count": 1564,
   "entries": [
     {
       "id": "AR-0001",
@@ -17372,6 +17372,15 @@
       "source_file": "static/index.html",
       "source_lines": [
         1723
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1564",
+      "arabic": "تحليل مستند",
+      "source_file": "static/index.html",
+      "source_lines": [
+        2004
       ],
       "review_status": "pending_native_review"
     }

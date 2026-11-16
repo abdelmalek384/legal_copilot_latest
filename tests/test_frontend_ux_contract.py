@@ -1710,5 +1710,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}", HTML)
         self.assertIn("uiText('تفضيلات إمكانية الوصول','Accessibility preferences')", HTML)
 
+    def test_dashboard_exposes_a_direct_document_analysis_action(self):
+        dashboard = HTML[HTML.index("function dash()"):HTML.index("\nasync function tasksPage(")]
+        self.assertIn("btn(uiText('تحليل مستند','Analyze a document'),()=>openPage('documents',documentsPage),'g')", dashboard)
+        self.assertIn("workspace-actions", dashboard)
+        self.assertIn("openPage('law',law)", dashboard)
+
 if __name__ == "__main__":
     unittest.main()
