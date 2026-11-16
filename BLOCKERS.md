@@ -109,3 +109,6 @@
 
 
 - 2026-11-16: Root-identity validation failure paths now close their root directory descriptors before raising (commits c1fb85f, d2a2eca). Runtime tests remain unexecuted.
+
+
+- 2026-11-16: Recovery archive upload/download now anchors caller paths to absolute paths before filesystem validation, preventing cwd changes from redirecting relative paths between checks and use (commit 7604edd). Runtime tests remain unexecuted.
