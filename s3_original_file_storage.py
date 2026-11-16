@@ -20,6 +20,42 @@ _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 _MAX_INVENTORY_PAGES = 10_000
 
 
+class _BoundedObjectBody:
+    """Bound a provider response stream even when callers request read-all."""
+
+    def __init__(self, body: BinaryIO, max_bytes: int):
+        self._body = body
+        self._max_bytes = max_bytes
+        self._bytes_read = 0
+
+    def read(self, size: int = -1) -> bytes:
+        if not isinstance(size, int):
+            raise TypeError("read size must be an integer")
+        remaining = self._max_bytes - self._bytes_read
+        requested = remaining + 1 if size < 0 else min(size, remaining + 1)
+        data = self._body.read(requested)
+        if not isinstance(data, bytes):
+            self.close()
+            raise ObjectStorageError("object-storage stream returned invalid bytes")
+        self._bytes_read += len(data)
+        if self._bytes_read > self._max_bytes:
+            self.close()
+            raise ObjectStorageError("original object exceeds configured size limit")
+        return data
+
+    def close(self) -> None:
+        close = getattr(self._body, "close", None)
+        if callable(close):
+            close()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.close()
+        return False
+
+
 @dataclass(frozen=True)
 class S3PrivateObjectStore:
     """S3 API adapter; the client is injected to keep tests offline and deterministic."""
@@ -190,15 +226,28 @@ class S3PrivateObjectStore:
         key = self._key(firm_id, object_id, "blob")
         try:
             response = self.client.get_object(Bucket=self.bucket, Key=key)
+            if not isinstance(response, dict):
+                raise ObjectStorageError("object-storage response metadata is malformed")
             body = response.get("Body")
             if not self._is_expected_kms_key(response):
                 close = getattr(body, "close", None)
                 if callable(close):
                     close()
                 raise ObjectStorageError("stored object is not protected by KMS encryption")
-            if body is None:
-                raise ObjectStorageError("object-storage response has no body")
-            return body
+            if body is None or not callable(getattr(body, "read", None)):
+                raise ObjectStorageError("object-storage response has no readable body")
+            content_length = response.get("ContentLength")
+            if content_length is not None and (
+                isinstance(content_length, bool)
+                or not isinstance(content_length, int)
+                or content_length < 0
+                or content_length > self.max_bytes
+            ):
+                close = getattr(body, "close", None)
+                if callable(close):
+                    close()
+                raise ObjectStorageError("original object exceeds configured size limit")
+            return _BoundedObjectBody(body, self.max_bytes)
         except ObjectStorageError:
             raise
         except Exception as exc:
