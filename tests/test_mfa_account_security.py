@@ -7,6 +7,7 @@ import struct
 import tempfile
 import time
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 from cryptography.fernet import Fernet
