@@ -191,7 +191,7 @@ class LocalPrivateObjectStore:
                 handle.flush()
                 os.fsync(handle.fileno())
             staged_info = self._stat_at(namespace_fd, staged_name)
-            if staged_info is None or not stat.S_ISREG(staged_info.st_mode):
+            if staged_info is None or not stat.S_ISREG(staged_info.st_mode) or staged_info.st_nlink != 1:
                 raise ObjectStorageError("staged object changed while being written")
             if self._stat_at(namespace_fd, final_name) is not None:
                 raise ObjectStorageError("object ID collision")
@@ -219,7 +219,7 @@ class LocalPrivateObjectStore:
         root_fd, namespace_fd = self._open_firm_directory(firm_id, create=False)
         try:
             before = self._stat_at(namespace_fd, staged_name)
-            if before is None or not stat.S_ISREG(before.st_mode):
+            if before is None or not stat.S_ISREG(before.st_mode) or before.st_nlink != 1:
                 raise ObjectStorageError("staged object does not exist or is not a regular file")
             if self._stat_at(namespace_fd, final_name) is not None:
                 raise ObjectStorageError("final object already exists")
@@ -231,9 +231,9 @@ class LocalPrivateObjectStore:
             linked = self._stat_at(namespace_fd, final_name)
             after = self._stat_at(namespace_fd, staged_name)
             if (
-                linked is None or not stat.S_ISREG(linked.st_mode)
+                linked is None or not stat.S_ISREG(linked.st_mode) or linked.st_nlink != 2
                 or (linked.st_dev, linked.st_ino) != (before.st_dev, before.st_ino)
-                or after is None or not stat.S_ISREG(after.st_mode)
+                or after is None or not stat.S_ISREG(after.st_mode) or after.st_nlink != 2
                 or (after.st_dev, after.st_ino) != (before.st_dev, before.st_ino)
             ):
                 try:
@@ -242,6 +242,13 @@ class LocalPrivateObjectStore:
                     pass
                 raise ObjectStorageError("staged object changed while finalizing")
             os.unlink(staged_name, dir_fd=namespace_fd)
+            published = self._stat_at(namespace_fd, final_name)
+            if published is None or not stat.S_ISREG(published.st_mode) or published.st_nlink != 1:
+                try:
+                    os.unlink(final_name, dir_fd=namespace_fd)
+                except OSError:
+                    pass
+                raise ObjectStorageError("final object has an unexpected hard-link count")
             self._fsync_directory_fd(namespace_fd)
         except FileExistsError as exc:
             raise ObjectStorageError("final object already exists") from exc
@@ -262,8 +269,8 @@ class LocalPrivateObjectStore:
             )
             descriptor = os.open(object_id + ".blob", flags, dir_fd=namespace_fd)
             metadata = os.fstat(descriptor)
-            if not stat.S_ISREG(metadata.st_mode):
-                raise ObjectStorageError("stored object is not a regular file")
+            if not stat.S_ISREG(metadata.st_mode) or metadata.st_nlink != 1:
+                raise ObjectStorageError("stored object is not a single-link regular file")
             handle = os.fdopen(descriptor, "rb", closefd=True)
             descriptor = None
             return handle
@@ -282,8 +289,8 @@ class LocalPrivateObjectStore:
             presence = []
             for name in (object_id + ".staged", object_id + ".blob"):
                 metadata = self._stat_at(namespace_fd, name)
-                if metadata is not None and not stat.S_ISREG(metadata.st_mode):
-                    raise ObjectStorageError("stored object is not a regular file")
+                if metadata is not None and (not stat.S_ISREG(metadata.st_mode) or metadata.st_nlink != 1):
+                    raise ObjectStorageError("stored object is not a single-link regular file")
                 presence.append(metadata is not None)
             return presence[0], presence[1]
         finally:
@@ -311,7 +318,7 @@ class LocalPrivateObjectStore:
             )
             descriptor = os.open(object_id + "." + state, flags, dir_fd=namespace_fd)
             metadata = os.fstat(descriptor)
-            if not stat.S_ISREG(metadata.st_mode) or metadata.st_size > self.max_bytes:
+            if not stat.S_ISREG(metadata.st_mode) or metadata.st_nlink != 1 or metadata.st_size > self.max_bytes:
                 return False
             digest = hashlib.sha256()
             size = 0
@@ -359,8 +366,8 @@ class LocalPrivateObjectStore:
                 metadata = self._stat_at(namespace_fd, name)
                 if metadata is None:
                     continue
-                if not stat.S_ISREG(metadata.st_mode):
-                    raise ObjectStorageError("stored object is not a regular file")
+                if not stat.S_ISREG(metadata.st_mode) or metadata.st_nlink != 1:
+                    raise ObjectStorageError("stored object is not a single-link regular file")
                 os.unlink(name, dir_fd=namespace_fd)
                 removed = True
             if removed:
