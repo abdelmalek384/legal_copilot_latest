@@ -90,6 +90,7 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
         for field, value, message in (
             ("collection_permission", "allowed", "cannot grant collection permission"),
             ("commercial_reuse_permission", "allowed_limited", "cannot grant commercial reuse permission"),
+            ("collection_permission", ["allowed"], "must be a non-empty string"),
         ):
             candidate = dict(self.record)
             candidate["sources"] = [dict(item) for item in self.record["sources"]]
