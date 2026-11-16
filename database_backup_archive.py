@@ -87,7 +87,7 @@ def _key_arn(kms_client: Any, key_id: str) -> str:
 
 def _safe_source(path_value: str | Path) -> BinaryIO:
     """Open once without following symlinks; all later reads use this descriptor."""
-    path = Path(path_value).expanduser()
+    path = Path(path_value).expanduser().absolute()
     try:
         initial = path.lstat()
     except OSError as exc:
@@ -321,7 +321,7 @@ def download_encrypted_bundle_version(
         or locator.get("format") != "encrypted-database-bundle-v2"
     ):
         _fail("Recovery archive locator does not match the configured target")
-    target = Path(destination).expanduser()
+    target = Path(destination).expanduser().absolute()
     if target.exists() or target.is_symlink() or target.parent.is_symlink() or not target.parent.is_dir():
         _fail("Recovery download target must be a new file in an existing real directory")
     try:
