@@ -15,6 +15,11 @@ class InvoicePaymentRouteTests(InvoiceTestSupport, unittest.TestCase):
         )
         self.assertEqual(issued_response.status_code, 200, issued_response.text)
         issued = issued_response.json()
+        recorded_fee = self.mutate(
+            self.client_a, "post", f"/cases/{self.case_id}/fees",
+            json={"title": "Confidential fee", "amount": 5000, "paid": 0, "due": "2099-01-01", "note": ""},
+        )
+        self.assertEqual(recorded_fee.status_code, 200, recorded_fee.text)
 
         lawyer_id = self.runtime.create_global_identity(
             "Invoice Case Lawyer", "invoice-case-lawyer@example.test",
@@ -83,6 +88,9 @@ class InvoicePaymentRouteTests(InvoiceTestSupport, unittest.TestCase):
                 lawyer.get(f"/invoices/{issued['id']}").status_code, 404
             )
             self.assertEqual(lawyer.get("/invoices").json()["invoices"], [])
+            case_detail = lawyer.get(f"/cases/{self.case_id}")
+            self.assertEqual(case_detail.status_code, 200, case_detail.text)
+            self.assertEqual(case_detail.json()["fees"], [])
             self.assertEqual(
                 lawyer.get("/finance/invoices/overview").json()["outstanding_piasters"], 0
             )
