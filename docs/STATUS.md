@@ -1278,3 +1278,10 @@ Validation and remaining gates:
 - Merged PR #1741 (`d96b506664a25cbe80ddedf2445a82e3add88252`): the primary navigation now visibly identifies the active firm's name even for single-firm users. The label is resolved against the active firm ID; if a multi-firm user's active firm cannot be resolved, no potentially misleading tenant label is shown. The existing multi-firm switcher is unchanged.
 - Updated the UX gap audit and added a frontend regression contract. Independent V8 parse/source checks and a runtime harness covered active firm match, single-firm fallback, unresolved multi-firm state and semantic note rendering.
 - Role/permission explanations remain an open UI gap. GitHub Actions did not execute test steps; no Python/browser acceptance is claimed.
+
+
+## Localized active firm role context — 2026-11-17
+
+- Merged PR #1742 (`507b4d62e5d5bb91f2105310dee81d34ddfb3fc9`): the active firm context now displays both firm name and localized membership role. Administrator and lawyer labels were added to the role map; existing lead/associate/junior labels remain intact. Unknown future roles retain a raw fallback.
+- Updated Arabic catalog source-line references, UX audit and frontend regression contract. Catalog now contains 1,555 unique entries.
+- Independent validation: full inline JavaScript parsed with V8; focused source/catalog checks and a runtime role-resolution harness passed for administrator and lawyer memberships. GitHub Actions did not execute test steps; no Python/browser acceptance is claimed.
