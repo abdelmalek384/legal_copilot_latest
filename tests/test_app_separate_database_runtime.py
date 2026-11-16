@@ -6530,6 +6530,14 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertEqual(suspended.status_code, 200, suspended.text)
             self.assertTrue(suspended.json()["membership_suspended"])
 
+            self.assertEqual(target.get("/cases").status_code, 401)
+            # Existing sessions are revoked across all firms. Re-authentication
+            # restores access only to memberships that remain active.
+            fresh_login = target.post(
+                "/login",
+                json={"email": "multi-firm-suspension@example.test", "password": self.password},
+            )
+            self.assertEqual(fresh_login.status_code, 200, fresh_login.text)
             csrf = target.cookies.get("lc_csrf") or ""
             switched_b = target.post(
                 "/session/firm",
