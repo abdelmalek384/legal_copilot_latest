@@ -400,6 +400,33 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
         describe.assert_not_called()
         head.assert_not_called()
 
+    def test_symlinked_destination_ancestor_is_rejected_before_cloud_access(self):
+        from unittest.mock import patch
+
+        locator = self.upload()
+        self.s3.read_versions.clear()
+        outside = self.root / "real-parent"
+        (outside / "nested").mkdir(parents=True)
+        alias = self.root / "parent-alias"
+        try:
+            alias.symlink_to(outside, target_is_directory=True)
+        except (NotImplementedError, OSError) as exc:
+            self.skipTest(f"symlinks unavailable: {exc}")
+        with (
+            patch.object(self.s3, "get_bucket_versioning", wraps=self.s3.get_bucket_versioning) as versioning,
+            patch.object(self.kms, "describe_key", wraps=self.kms.describe_key) as describe,
+            patch.object(self.s3, "head_object", wraps=self.s3.head_object) as head,
+        ):
+            with self.assertRaises(DatabaseBundleError):
+                download_encrypted_bundle_version(
+                    self.s3, self.kms, locator,
+                    alias / "nested" / "recovery.enc", **self.config
+                )
+        versioning.assert_not_called()
+        describe.assert_not_called()
+        head.assert_not_called()
+        self.assertEqual(self.s3.read_versions, [])
+
     def test_unsafe_destination_is_rejected_before_cloud_access(self):
         from unittest.mock import patch
 
