@@ -4,6 +4,8 @@ from urllib.parse import urlsplit
 import json
 import sys
 import unittest
+import os
+from unittest.mock import patch
 from pathlib import Path
 
 def _has_https_host(url, expected_host):
@@ -24,6 +26,7 @@ def _has_https_host(url, expected_host):
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+import tools.validate_phase2_document_inventory as MODULE
 from tools.validate_phase2_document_inventory import DEFAULT_PATH, load_inventory, validate_inventory
 
 
@@ -421,6 +424,41 @@ class Phase2DocumentInventoryTests(unittest.TestCase):
             with self.subTest(path=path):
                 errors = validate_inventory(data)
                 self.assertTrue(errors)
+
+    def test_inventory_loader_rejects_symlink_swap_and_fifo(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target = root / "inventory.json"
+            target.write_text('{"instruments":[]}', encoding="utf-8")
+            outside = root / "outside.json"
+            outside.write_text('{"instruments":[]}', encoding="utf-8")
+            real_open = MODULE.os.open
+            swapped = False
+
+            def replace_before_open(path, flags, *args, **kwargs):
+                nonlocal swapped
+                if Path(path) == target and not swapped:
+                    swapped = True
+                    target.unlink()
+                    target.symlink_to(outside)
+                return real_open(path, flags, *args, **kwargs)
+
+            with patch.object(MODULE.os, "open", side_effect=replace_before_open):
+                with self.assertRaises(OSError):
+                    load_inventory(target)
+            self.assertTrue(swapped)
+            if hasattr(os, "mkfifo"):
+                fifo = root / "inventory.fifo"
+                os.mkfifo(fifo)
+                with self.assertRaises(OSError):
+                    load_inventory(fifo)
+
+    def test_inventory_loader_rejects_oversized_metadata(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "large-inventory.json"
+            path.write_bytes(b" " * (16 * 1024 * 1024 + 1))
+            with self.assertRaisesRegex(OSError, "size limit"):
+                load_inventory(path)
 
 if __name__ == "__main__":
     unittest.main()
