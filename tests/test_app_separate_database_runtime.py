@@ -652,6 +652,49 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             target.close()
             viewer.close()
 
+    def test_membership_reactivation_rolls_back_when_audit_write_fails(self):
+        target_id = self.runtime.create_global_identity(
+            "Reactivation Audit Target", "reactivation-audit-target@example.test",
+            app.hash_pw(self.password),
+        )
+        self.runtime.create_firm_membership(target_id, self.firm_a, "lawyer")
+        login = self.client.post(
+            "/login", json={"email": "owner@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        suspended = self._mutate("post", f"/users/{target_id}/disable")
+        self.assertEqual(suspended.status_code, 200, suspended.text)
+
+        control = self.runtime.control_connection()
+        control.execute("""
+            CREATE TRIGGER test_block_reactivation_audit
+            BEFORE INSERT ON platform_security_events
+            WHEN NEW.event_type='membership_reactivated'
+            BEGIN
+                SELECT RAISE(ABORT, 'injected reactivation audit failure');
+            END
+        """)
+        control.commit()
+        try:
+            failed = self._mutate("post", f"/users/{target_id}/enable")
+            self.assertEqual(failed.status_code, 503, failed.text)
+            status = control.execute(
+                "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
+                (target_id, self.firm_a),
+            ).fetchone()["status"]
+            self.assertEqual(status, "suspended")
+            self.assertEqual(
+                control.execute(
+                    "SELECT COUNT(*) FROM platform_security_events "
+                    "WHERE event_type='membership_reactivated' AND target_user_id=?",
+                    (target_id,),
+                ).fetchone()[0],
+                0,
+            )
+        finally:
+            control.execute("DROP TRIGGER IF EXISTS test_block_reactivation_audit")
+            control.commit()
+
     def test_membership_reactivation_respects_firm_seat_limit(self):
         target_id = self.runtime.create_global_identity(
             "Seat Reactivation Target", "seat-reactivation-target@example.test",
