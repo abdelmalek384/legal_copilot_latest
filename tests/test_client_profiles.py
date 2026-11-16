@@ -246,5 +246,18 @@ class ClientProfileTests(InvoiceTestSupport, unittest.TestCase):
             self.assertEqual(response.status_code, 200, response.text)
             self.assertTrue(any(item == {"id": profile_id, "name": "Searchable Client"} for item in response.json()["items"]))
 
+    def test_client_search_normalizes_arabic_letters_and_phone_digits(self):
+        created = self.mutate(
+            self.client_a, "post", "/clients",
+            json={"name": "أحمد علي", "phone": "٠١٠١٢٣٤٥٦٧٨"},
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        profile_id = created.json()["id"]
+        by_name = self.client_a.get("/clients/search", params={"q": "احمد"})
+        by_phone = self.client_a.get("/clients/search", params={"q": "01012345678"})
+        for response in (by_name, by_phone):
+            self.assertEqual(response.status_code, 200, response.text)
+            self.assertTrue(any(item == {"id": profile_id, "name": "أحمد علي"} for item in response.json()["items"]))
+
 if __name__ == "__main__":
     unittest.main()
