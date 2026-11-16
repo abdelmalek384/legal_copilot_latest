@@ -1016,4 +1016,4 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 ## AI-2 retained-original corruption rejection regression — 2026-11-16
 
 - Added a separate-database upload/download regression that mutates retained original bytes without changing length and separately truncates the object. Both requests must fail integrity verification with HTTP 503 before any download audit event is written; this complements the existing successful-integrity, cross-firm, wrong-case, and audit-write-failure coverage.
-- Regression commit: `9f64be8`. Implementation change: none; this closes a focused verification gap in the original-evidence download path. Source/test re-fetch and static review pending; repository test execution remains **0%**. No test pass is claimed.
+- Regression commit: `9f64be8`. Implementation change: none; this closes a focused verification gap in the original-evidence download path. Exact test, app route, status and blocker files were re-fetched from `main`; static presence checks confirmed both corruption cases and both no-audit assertions. Repository test execution remains **0%**. No test pass is claimed.
