@@ -476,7 +476,7 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
             "LABOUR-SOURCE::law:::article:1",
             "LABOUR-SOURCE::law:قانون العمل::article:",
             "LABOUR-SOURCE::law:قانون العمل::article:1 ",
-            "LABOUR-SOURCE::law:قانون العمل::article:1\\n",
+            "LABOUR-SOURCE::law:قانون العمل::article:1\n",
             "LABOUR-SOURCE::law:قانون العمل::article:1::article:2",
         )
         for article_id in invalid_ids:
