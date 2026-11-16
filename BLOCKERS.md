@@ -85,3 +85,6 @@
 
 
 - 2026-11-16: S3 original-object open now fails closed unless the provider body supports both read and close; malformed bodies are closed when possible and a regression covers missing close (commits c26d213, 3d1f4fa). Runtime tests remain unexecuted.
+
+
+- 2026-11-16: Bounded S3 response wrapper now makes close idempotent, with an assertion that overflow followed by caller close invokes provider close exactly once (commits 26bec92, d11ad41). Runtime tests remain unexecuted.
