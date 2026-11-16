@@ -253,6 +253,20 @@ class ClaimSupportTests(unittest.TestCase):
             "The employer can’t deduct wages."
         ))
 
+    def test_curly_apostrophe_non_obligation_is_not_positive_obligation(self):
+        self.assertTrue(_has_modal_mismatch(
+            "The employer is required to provide notice.",
+            "The employer isn’t required to provide notice."
+        ))
+        self.assertFalse(_has_modal_mismatch(
+            "The employer isn’t required to provide notice.",
+            "The employer isn’t required to provide notice."
+        ))
+        self.assertFalse(_has_modal_mismatch(
+            "The employers aren’t obliged to provide notice.",
+            "The employers aren’t obliged to provide notice."
+        ))
+
     def test_faithful_english_contracted_non_obligation_is_not_flagged(self):
         for evidence in (
             "The employer mustn't provide notice.",
