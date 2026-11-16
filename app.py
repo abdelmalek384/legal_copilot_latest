@@ -6351,11 +6351,18 @@ def disable_user(uid: int, u: dict = Depends(user)):
         c.execute("BEGIN IMMEDIATE")
         try:
             target = c.execute(
-                "SELECT id FROM firm_memberships WHERE user_id=? AND firm_id=? AND status='active'",
+                "SELECT id,firm_role FROM firm_memberships WHERE user_id=? AND firm_id=? AND status='active'",
                 (uid, u["firm_id"]),
             ).fetchone()
             if not target:
                 raise HTTPException(404, "user not found")
+            if target["firm_role"] == "admin":
+                active_admins = int(c.execute(
+                    "SELECT COUNT(*) FROM firm_memberships WHERE firm_id=? AND firm_role='admin' AND status='active'",
+                    (u["firm_id"],),
+                ).fetchone()[0])
+                if active_admins <= 1:
+                    raise HTTPException(409, "cannot suspend the firm's last active administrator")
             updated = c.execute(
                 "UPDATE firm_memberships SET status='suspended',updated_at=datetime('now') "
                 "WHERE user_id=? AND firm_id=? AND status='active'",
