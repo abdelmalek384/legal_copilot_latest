@@ -24,3 +24,5 @@
 - 2026-11-06: Security handoff coverage pointers and production public-origin/manual-payment boundary guidance were merged in PRs #1481 and #1482. Security regression suite, mobile UX acceptance and trusted-proxy wildcard regression are consolidated on current-main draft PRs #1485, #1483 and #1484 respectively; their workflows still fail before test steps/logs, so none is merge-ready.
 
 - 2026-11-16: Added unexecuted retained-original download regressions for same-length byte corruption, truncation, and an object exceeding the 15,000,000-byte response ceiling; all must fail before a download audit event is written (commits `9f64be8`, `470c652`). The repository test suite remains unexecuted; these are not passing test results.
+
+- 2026-11-16: S3 original-object streaming integrity verification is now bounded by the adapter's configured `max_bytes`: impossible oversized metadata is rejected before S3 access and actual oversized bodies are read only through a one-byte-over-limit sentinel, then closed. Fake-S3 regressions are committed (`2668e8e`, `a77a6f1`); repository test execution remains unperformed and no pass is claimed.
