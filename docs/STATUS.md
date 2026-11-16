@@ -1164,3 +1164,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Reconciliation follow-up: the local original-file reconciler now scans root and firm namespaces through pinned no-follow directory descriptors and opens each object relative to its pinned firm directory. It rejects hardlinked object entries and namespace symlink swaps; the previous path-based hash helper was removed. Added hardlink and namespace-swap regressions. Source commits: `26288c8`, `4e5eb61`, `41f30f6`; tests: `13c27a6`, `ab94c94`. Both reconciler tests are registered in workflow and security matrix. Focused dirfd syscall harness passed; repository tests remain 0% executed.
+
+
+- Follow-up on local storage/reconciliation: both adapters now explicitly verify `os.stat` no-follow and the local writer verifies `os.link` no-follow support before any descriptor-relative operation; unsupported platforms fail closed. Descriptor cleanup paths were tightened to close both root and namespace FDs even when one close fails. Commits: local capability guard `36b972a`, reconciliation capability guard `cf179ca`, local descriptor cleanup `d4e0342`, failed-open cleanup `0e06fd0`. AI-2 estimate: **79.5%**; whole-project estimate remains **75.3% provisional**. Repository runtime tests remain **0% executed**.
