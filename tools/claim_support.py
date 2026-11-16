@@ -81,10 +81,10 @@ _ENGLISH_MODAL_PATTERNS = {
         re.IGNORECASE,
     ),
     "non_obligation": re.compile(
-        r"\b(?:not required to|need not|needn['’]t|"
+        r"\b(?:not required to|isn't required to|aren't required to|need not|needn['’]t|"
         r"do not have to|don['’]t have to|does not have to|doesn['’]t have to|"
-        r"is not obliged to|are not obliged to|"
-        r"is not obligated to|are not obligated to)\b",
+        r"is not obliged to|are not obliged to|isn't obliged to|aren't obliged to|"
+        r"is not obligated to|are not obligated to|isn't obligated to|aren't obligated to)\b",
         re.IGNORECASE,
     ),
 }
