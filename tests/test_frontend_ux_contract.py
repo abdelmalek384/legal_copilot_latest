@@ -1721,6 +1721,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("const noDocumentsYet=docs.length===0&&!globalMode&&Number(matterSelect.value)>0&&!uploadButton.disabled", renderer)
         self.assertIn("empty(uiText('لا توجد مستندات','No documents'),uiText('اختيار ملفات','Choose files'),()=>uploadButton.click())", renderer)
         self.assertIn("No documents match these filters.", renderer)
+        self.assertIn("docs.length===0?empty(uiText('لا توجد مستندات','No documents'))", renderer)
         self.assertIn("!globalMode", renderer)
         self.assertIn("!uploadButton.disabled", renderer)
 
