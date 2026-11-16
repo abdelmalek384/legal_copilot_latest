@@ -5,7 +5,7 @@ from pathlib import Path
 
 import app
 from database_runtime import DatabaseRuntime
-from original_file_storage import LocalPrivateObjectStore
+from original_file_storage import LocalPrivateObjectStore, ObjectStorageError
 from tools.firm_offboarding_preflight import inspect_firm_offboarding
 
 
@@ -210,6 +210,32 @@ class FirmOffboardingPreflightTests(unittest.TestCase):
         self.assertEqual(report["s3_bucket_versioning_status"], "Disabled")
         self.assertFalse(report["production_purge_authorized"])
         self.assertEqual(report["mutations_performed"], 0)
+
+    def test_s3_inventory_provider_failure_becomes_blocking_finding(self):
+        class FakeS3Client:
+            def get_bucket_versioning(self, *, Bucket):
+                return {}
+
+        class FakeS3Store:
+            bucket = "private-matter-files"
+            client = FakeS3Client()
+
+            def list_object_keys(self):
+                raise ObjectStorageError("synthetic inventory outage")
+
+        self._disable_and_revoke_membership()
+        report = inspect_firm_offboarding(
+            self.control, self.tenants, self.corpus, None, self.firm_id,
+            s3_store=FakeS3Store(),
+        )
+
+        self.assertFalse(report["purge_preflight_clear"])
+        self.assertIn(
+            "object_reconciliation_failed",
+            {item["code"] for item in report["findings"]},
+        )
+        self.assertEqual(report["mutations_performed"], 0)
+        self.assertFalse(report["production_purge_authorized"])
 
     def test_s3_offboarding_preflight_fails_closed_when_versioning_status_cannot_be_read(self):
         class FakeS3Client:
