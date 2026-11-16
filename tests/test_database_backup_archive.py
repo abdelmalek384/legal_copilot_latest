@@ -334,6 +334,26 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
         self.assertEqual(body.bytes_read, locator["size_bytes"] + 1)
         self.assertFalse(target.exists())
 
+    def test_download_rejects_provider_body_that_overreturns_read_size(self):
+        locator = self.upload()
+        item = self.s3.objects[(locator["bucket"], locator["key"], locator["version_id"])]
+
+        class OverreturningBody(FakeBody):
+            def read(self, size=-1):
+                return super().read(size + 7 if size >= 0 else size)
+
+        body = OverreturningBody(item["data"] + b"unexpected")
+        self.s3.get_object = lambda **kwargs: {
+            "VersionId": locator["version_id"], "Body": body,
+        }
+        target = self.root / "overreturn-download.enc"
+        with self.assertRaisesRegex(DatabaseBundleError, "exceeded the requested read size"):
+            download_encrypted_bundle_version(
+                self.s3, self.kms, locator, target, **self.config
+            )
+        self.assertFalse(target.exists())
+        self.assertTrue(body.closed)
+
     def test_download_reads_exact_version_and_verifies_bytes(self):
         locator = self.upload()
         target = self.root / "downloaded.dbundle.enc"
