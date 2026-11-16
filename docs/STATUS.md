@@ -764,3 +764,10 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Static review only; repository test module and CI remain unexecuted. Backup/release readiness estimate 46.1%; AI-2 overall 75.7%; whole project 74.4%. Pilot/production remains NOT READY.
 
 - Follow-up race review moved the local object-root existence check fully onto lstat: only FileNotFoundError is treated as an absent store, while dangling symlinks and other non-directory entries fail closed. This closes the narrow is_symlink()/exists() gap before root identity capture. Source commit: 7819ea7.
+
+
+## AI-2 restore manifest/control-plane firm-state binding — 2026-11-16
+
+- Restore now compares every manifest firm_status value with the status recorded in the restored control-plane firms table. This prevents an internally well-formed but contradictory manifest from presenting stale/altered firm lifecycle state alongside the database snapshot.
+- Added an encrypted-bundle regression that alters a tenant record's firm_status while preserving the database and verifies restore rejects the mismatch. Source commit: b91e243; test commit: 903a400.
+- Static review only; no repository test module or Actions job ran. Backup/release readiness estimate 46.3%; AI-2 overall 75.8%; whole project 74.5%. Pilot/production remains NOT READY.
