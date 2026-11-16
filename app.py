@@ -3988,9 +3988,25 @@ def _mfa_policy_requires_user(user_id: int, control=None, firm_id: int | None = 
     return bool(policy["require_mfa_for_admins"]) and _mfa_user_is_privileged(user_id, db, firm_id)
 
 
+def _mfa_is_pending(user_id: int, control=None) -> bool:
+    db = control or control_conn()
+    row = db.execute(
+        "SELECT 1 FROM mfa_credentials WHERE user_id=? AND status='pending'",
+        (user_id,),
+    ).fetchone()
+    return row is not None
+
+
 def _mfa_required_for_user(user_id: int, control=None, firm_id: int | None = None) -> bool:
     db = control or control_conn()
-    return _mfa_is_enabled(user_id, db) or _mfa_policy_requires_user(user_id, db, firm_id)
+    # A user who voluntarily enabled MFA must not bypass it by starting
+    # authenticator replacement: pending re-enrollment remains an MFA gate
+    # until the new factor is confirmed, even under the optional global policy.
+    return (
+        _mfa_is_enabled(user_id, db)
+        or _mfa_is_pending(user_id, db)
+        or _mfa_policy_requires_user(user_id, db, firm_id)
+    )
 
 
 def _record_mfa_event(control, actor_user_id: int, event_type: str, detail: dict | None = None) -> None:
