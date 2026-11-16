@@ -1,6 +1,7 @@
 import os
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 from original_file_storage import LocalPrivateObjectStore, ObjectStorageError
@@ -71,6 +72,29 @@ class LocalPrivateObjectStoreTests(unittest.TestCase):
             self.store.finalize(7, first.object_id)
         with self.store.open(7, first.object_id) as handle:
             self.assertEqual(handle.read(), b"first")
+
+    @unittest.skipUnless(os.name == "posix", "POSIX symlinks are required")
+    def test_finalize_rejects_staged_path_replaced_by_symlink(self):
+        staged = self.store.stage(7, b"trusted original")
+        namespace = self.root / "firm-7"
+        staged_path = namespace / (staged.object_id + ".staged")
+        final_path = namespace / (staged.object_id + ".blob")
+        outside = Path(self.temp.name) / "outside-secret"
+        outside.write_bytes(b"outside data")
+        real_link = os.link
+
+        def replace_before_link(source, destination, **kwargs):
+            staged_path.unlink()
+            staged_path.symlink_to(outside)
+            return real_link(source, destination, **kwargs)
+
+        with patch("original_file_storage.os.link", side_effect=replace_before_link):
+            with self.assertRaisesRegex(ObjectStorageError, "not a regular file|changed while finalizing"):
+                self.store.finalize(7, staged.object_id)
+
+        self.assertFalse(final_path.exists())
+        self.assertFalse(final_path.is_symlink())
+        self.assertEqual(outside.read_bytes(), b"outside data")
 
     def test_rejects_symlinked_firm_namespace(self):
         if not hasattr(os, "symlink"):
