@@ -745,3 +745,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Updated estimates: backup/release readiness 45.6%; AI-2 overall 75.5%; whole project 74.2%. No safe open PR is mergeable; dependency lock/browser validation blockers remain. Pilot/production remains NOT READY.
 
 - An isolated Python harness accepted unique JSON objects, rejected a nested duplicate key, and demonstrated that a destination-directory rename/symlink swap could not redirect a descriptor-relative write; the pinned file was removed without touching the symlink target. This is a focused primitive reproduction, not execution of the repository test modules.
+
+
+- Recovery download now treats a response-body close failure as a failed operation: the destination is removed through the pinned directory handle, and best-effort cleanup does not mask the primary failure. Added a regression with a body stream whose close raises and asserted no output remains. Source commit: a2926dc; test commit: fe11f19. Static review only; test module not executed.
