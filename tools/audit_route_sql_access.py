@@ -47,8 +47,11 @@ def _call_name(node: ast.AST) -> str | None:
     return None
 
 
-def _route_decorators(function: ast.FunctionDef | ast.AsyncFunctionDef) -> list[dict[str, str]]:
+def _route_decorators(
+    function: ast.FunctionDef | ast.AsyncFunctionDef,
+) -> tuple[list[dict[str, str]], list[str]]:
     result = []
+    errors = []
     for decorator in function.decorator_list:
         if not isinstance(decorator, ast.Call) or not isinstance(decorator.func, ast.Attribute):
             continue
@@ -56,24 +59,51 @@ def _route_decorators(function: ast.FunctionDef | ast.AsyncFunctionDef) -> list[
         method = decorator.func.attr.lower()
         if not isinstance(owner, ast.Name) or owner.id != "app" or method not in ROUTE_METHODS:
             continue
-        if not decorator.args or not isinstance(decorator.args[0], ast.Constant):
+        path_node = decorator.args[0] if decorator.args else next(
+            (keyword.value for keyword in decorator.keywords if keyword.arg == "path"),
+            None,
+        )
+        if not isinstance(path_node, ast.Constant) or not isinstance(path_node.value, str):
+            errors.append(
+                f"{function.name}: route path must be a literal string for static SQL inventory"
+            )
             continue
-        path = decorator.args[0].value
-        if not isinstance(path, str):
-            continue
+        path = path_node.value
         if method == "api_route":
-            methods = {"GET", "POST", "PUT", "PATCH", "DELETE"}
+            methods = {"GET"}
             for keyword in decorator.keywords:
-                if keyword.arg == "methods" and isinstance(keyword.value, (ast.List, ast.Tuple)):
-                    methods = {
-                        item.value.upper() for item in keyword.value.elts
-                        if isinstance(item, ast.Constant) and isinstance(item.value, str)
-                    }
+                if keyword.arg != "methods":
+                    continue
+                value = keyword.value
+                if not isinstance(value, (ast.List, ast.Tuple, ast.Set)) or not value.elts:
+                    errors.append(
+                        f"{function.name}: api_route methods must be a non-empty literal list, tuple, or set"
+                    )
+                    methods = set()
+                    break
+                parsed = []
+                invalid = False
+                for item in value.elts:
+                    if not isinstance(item, ast.Constant) or not isinstance(item.value, str):
+                        errors.append(
+                            f"{function.name}: api_route methods must contain only literal strings"
+                        )
+                        invalid = True
+                        break
+                    normalized = item.value.upper()
+                    if normalized not in {"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD", "TRACE"}:
+                        errors.append(
+                            f"{function.name}: unsupported api_route HTTP method {item.value!r}"
+                        )
+                        invalid = True
+                        break
+                    parsed.append(normalized)
+                methods = set() if invalid else set(parsed)
+                break
             result.extend({"method": item, "path": path} for item in sorted(methods))
         else:
             result.append({"method": method.upper(), "path": path})
-    return result
-
+    return result, errors
 
 def _sql_text(
     node: ast.AST | None,
@@ -295,9 +325,12 @@ def audit_source(source: str) -> dict[str, Any]:
         elif isinstance(item, ast.AnnAssign) and isinstance(item.target, ast.Name) and item.value is not None:
             global_assignments[item.target.id] = item.value
     routes: list[tuple[dict[str, str], str]] = []
+    route_declaration_errors: list[str] = []
     for node in tree.body:
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
-            for route in _route_decorators(node):
+            discovered, errors = _route_decorators(node)
+            route_declaration_errors.extend(errors)
+            for route in discovered:
                 routes.append((route, node.name))
 
     records = []
@@ -404,6 +437,7 @@ def audit_source(source: str) -> dict[str, Any]:
         "unreviewed_dynamic_sql_sites": unreviewed_dynamic_sql,
         "unclassified_sql_routes": unclassified_sql,
         "routes_opening_sqlite_directly": direct_open,
+        "route_declaration_errors": sorted(route_declaration_errors),
         "routes": records,
     }
 
@@ -441,7 +475,13 @@ def main() -> int:
             print(f"UNCLASSIFIED SQL: {item}")
         for item in report["routes_opening_sqlite_directly"]:
             print(f"DIRECT SQLITE OPEN: {item}")
-    failed = bool(report["unclassified_sql_routes"] or report["routes_opening_sqlite_directly"])
+        for item in report["route_declaration_errors"]:
+            print(f"UNINVENTORIED ROUTE: {item}")
+    failed = bool(
+        report["unclassified_sql_routes"]
+        or report["routes_opening_sqlite_directly"]
+        or report["route_declaration_errors"]
+    )
     if args.strict:
         failed = failed or bool(report["unresolved_sql_call_count"] or report["unreviewed_dynamic_sql_sites"])
         if report["unresolved_sql_call_count"]:
