@@ -698,18 +698,33 @@ def _read_encrypted_backup(path_value: str | Path) -> bytes:
             os.close(descriptor)
 
 
-def restore_backup_bundle(
-    backup_file: str | Path,
-    cipher: Fernet,
-    target_root: str | Path,
-) -> dict[str, Path]:
-    """Restore a verified bundle into a new directory without overwriting live files."""
+def _validated_restore_destination(target_root: str | Path) -> tuple[Path, Path]:
+    """Canonicalize a new restore target and reject unsafe/root-level parents."""
     destination = Path(target_root).expanduser()
     if destination.is_symlink() or destination.exists():
         raise DatabaseBundleError("Restore target must not exist; choose a new destination path")
     parent = destination.parent
     if parent.is_symlink() or not parent.is_dir():
         raise DatabaseBundleError("Restore target's parent directory must already exist")
+    try:
+        parent = parent.resolve(strict=True)
+    except OSError as exc:
+        raise DatabaseBundleError("Restore target's parent directory cannot be verified") from exc
+    if parent == Path(parent.anchor):
+        raise DatabaseBundleError("Restore target must not be created directly under a filesystem root")
+    destination = parent / destination.name
+    if destination.is_symlink() or destination.exists():
+        raise DatabaseBundleError("Restore target must not exist; choose a new destination path")
+    return destination, parent
+
+
+def restore_backup_bundle(
+    backup_file: str | Path,
+    cipher: Fernet,
+    target_root: str | Path,
+) -> dict[str, Path]:
+    """Restore a verified bundle into a new directory without overwriting live files."""
+    destination, _parent = _validated_restore_destination(target_root)
     encrypted = _read_encrypted_backup(backup_file)
     return _restore_backup_bundle_bytes(encrypted, cipher, destination)
 
@@ -720,13 +735,7 @@ def _restore_backup_bundle_bytes(
     target_root: str | Path,
 ) -> dict[str, Path]:
     """Restore already-read encrypted bytes without reopening their source path."""
-    destination = Path(target_root).expanduser()
-    if destination.is_symlink() or destination.exists():
-        raise DatabaseBundleError("Restore target must not exist; choose a new destination path")
-    parent = destination.parent
-    if parent.is_symlink() or not parent.is_dir():
-        raise DatabaseBundleError("Restore target's parent directory must already exist")
-    destination = destination.resolve()
+    destination, parent = _validated_restore_destination(target_root)
     try:
         plaintext = cipher.decrypt(encrypted)
     except (InvalidToken, ValueError) as exc:
