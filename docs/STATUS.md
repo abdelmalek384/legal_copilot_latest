@@ -808,3 +808,5 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Follow-up on merged PR #1655: its new test_research_copy_initialization.py regression was not yet registered in either the explicit Tests workflow or focused security matrix. Added the workflow step and matrix entry. Source commits: 07676a1, 4caf0d6. Registration is complete; neither workflow nor test has executed.
 
 - Test-registration audit also found test_manage_recovery_locator.py was present in the focused security matrix but absent from the explicit Tests workflow. Added a dedicated workflow step adjacent to recovery archive transport. Source commit: 1fcacea. Registration is complete; execution remains blocked.
+
+- Static registration audit after the additions: all 40 modules listed in scripts/security_regression_check.sh are also explicitly referenced in .github/workflows/tests.yml; no security-matrix module is missing from the workflow. This is a source-text consistency check only, not execution of those modules.
