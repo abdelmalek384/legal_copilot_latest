@@ -743,3 +743,5 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Added regressions for malformed KMS metadata and malformed exact-version S3 HEAD metadata. Source commits: 698751b, 93e4fb9; test commits: 12b976d, 993d91a.
 - Existing upload/download response verification and exact-version pinning remain intact. Static review only; no repository test module or Actions job ran.
 - Updated estimates: backup/release readiness 45.6%; AI-2 overall 75.5%; whole project 74.2%. No safe open PR is mergeable; dependency lock/browser validation blockers remain. Pilot/production remains NOT READY.
+
+- An isolated Python harness accepted unique JSON objects, rejected a nested duplicate key, and demonstrated that a destination-directory rename/symlink swap could not redirect a descriptor-relative write; the pinned file was removed without touching the symlink target. This is a focused primitive reproduction, not execution of the repository test modules.
