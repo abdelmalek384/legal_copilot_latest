@@ -307,26 +307,75 @@ def _copy_original_objects(
     ]
     expected: set[str] = set()
     namespace_name = "firm-" + str(firm_id)
-    supports_dir_fd = os.open in getattr(os, "supports_dir_fd", set())
-    if active_rows and not supports_dir_fd:
-        namespace = object_root / namespace_name
-        if namespace.is_symlink() or not object_root.is_dir() or not namespace.is_dir():
-            raise DatabaseBundleError(f"Original-object storage is missing or unsafe for firm {firm_id}")
-        for row in active_rows:
-            object_id = row["object_id"]
-            if row["firm_id"] != firm_id or row["storage_backend"] != "local" or not isinstance(object_id, str) or not re.fullmatch(r"[0-9a-f]{32}", object_id):
-                raise DatabaseBundleError(f"Original-object metadata is invalid for local storage in firm {firm_id}")
-            if row["state"] not in {"ready", "quarantined"}:
-                raise DatabaseBundleError(f"Firm {firm_id} has unfinished original-object metadata; reconcile before backup")
-            source = namespace / (object_id + ".blob")
-            target = payload / f"objects/firm-{firm_id}/{object_id}.blob"
-            target.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
-            _copy_verified_original_object(
-                source, target, expected_size=row["byte_size"],
-                expected_sha256=row["sha256"],
+    if active_rows:
+        if (
+            not getattr(os, "O_DIRECTORY", 0)
+            or not getattr(os, "O_NOFOLLOW", 0)
+            or os.open not in getattr(os, "supports_dir_fd", set())
+            or os.stat not in getattr(os, "supports_dir_fd", set())
+            or os.stat not in getattr(os, "supports_follow_symlinks", set())
+        ):
+            raise DatabaseBundleError("Local original backup requires no-follow directory-descriptor operations")
+        directory_flags = (
+            os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+            | getattr(os, "O_CLOEXEC", 0)
+        )
+        root_fd = None
+        namespace_fd = None
+        try:
+            root_before = os.stat(object_root, follow_symlinks=False)
+            if not stat.S_ISDIR(root_before.st_mode):
+                raise DatabaseBundleError(f"Original-object storage is missing or unsafe for firm {firm_id}")
+            root_fd = os.open(object_root, directory_flags)
+            root_opened = os.fstat(root_fd)
+            if (
+                not stat.S_ISDIR(root_opened.st_mode)
+                or (root_opened.st_dev, root_opened.st_ino)
+                != (root_before.st_dev, root_before.st_ino)
+            ):
+                raise DatabaseBundleError(f"Original-object storage root changed during backup for firm {firm_id}")
+            namespace_info = os.stat(
+                namespace_name, dir_fd=root_fd, follow_symlinks=False
             )
-            expected.add(f"firm-{firm_id}/{object_id}.blob")
-        return expected
+            if not stat.S_ISDIR(namespace_info.st_mode):
+                raise DatabaseBundleError(f"Original-object namespace is invalid for firm {firm_id}")
+            namespace_fd = os.open(
+                namespace_name, directory_flags, dir_fd=root_fd
+            )
+            opened_namespace = os.fstat(namespace_fd)
+            if (
+                not stat.S_ISDIR(opened_namespace.st_mode)
+                or (opened_namespace.st_dev, opened_namespace.st_ino)
+                != (namespace_info.st_dev, namespace_info.st_ino)
+            ):
+                raise DatabaseBundleError(f"Original-object namespace changed during backup for firm {firm_id}")
+
+            for row in active_rows:
+                object_id = row["object_id"]
+                if row["firm_id"] != firm_id or row["storage_backend"] != "local" or not isinstance(object_id, str) or not re.fullmatch(r"[0-9a-f]{32}", object_id):
+                    raise DatabaseBundleError(f"Original-object metadata is invalid for local storage in firm {firm_id}")
+                if row["state"] not in {"ready", "quarantined"}:
+                    raise DatabaseBundleError(f"Firm {firm_id} has unfinished original-object metadata; reconcile before backup")
+                source = object_root / namespace_name / (object_id + ".blob")
+                target = payload / f"objects/firm-{firm_id}/{object_id}.blob"
+                target.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+                _copy_verified_original_object(
+                    source, target,
+                    expected_size=row["byte_size"],
+                    expected_sha256=row["sha256"],
+                    source_dir_fd=namespace_fd,
+                )
+                expected.add(f"firm-{firm_id}/{object_id}.blob")
+        except DatabaseBundleError:
+            raise
+        except OSError as exc:
+            raise DatabaseBundleError(f"Original-object storage could not be opened safely for firm {firm_id}") from exc
+        finally:
+            if namespace_fd is not None:
+                os.close(namespace_fd)
+            if root_fd is not None:
+                os.close(root_fd)
+    return expected
 
     if active_rows:
         directory_flags = (
