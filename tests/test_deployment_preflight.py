@@ -527,6 +527,17 @@ class DeploymentPreflightTests(unittest.TestCase):
         )
         self.assertFalse(any("Tenant storage root exists and has required access" in item for item in passed))
 
+    def test_rejects_junctioned_database_parent_components(self):
+        root = Path(self.tempdir.name)
+        junction = root / "junction-parent"
+        junction.mkdir()
+
+        def is_junction(path):
+            return path == junction
+
+        with patch.object(Path, "is_junction", new=is_junction):
+            self.assertTrue(preflight._has_symlinked_parent(junction / "control.sqlite3"))
+
     def test_rejects_symlinked_database_path_without_following_target(self):
         target = Path(self.tempdir.name) / "real-production.db"
         target.write_text("test", encoding="utf-8")
