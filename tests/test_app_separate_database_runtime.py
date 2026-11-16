@@ -1796,6 +1796,21 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             0,
         )
 
+        # Objects above the endpoint's hard read ceiling are also rejected.
+        # The route reads only a bounded sentinel length and never audits/releases.
+        object_path.write_bytes(b"x" * 15_000_001)
+        oversized = self.client.get(f"/cases/{case_id}/docs/{document_id}/original")
+        self.assertEqual(oversized.status_code, 503, oversized.text)
+        self.assertIn("integrity verification", oversized.text)
+        self.assertEqual(
+            firm_db.execute(
+                "SELECT COUNT(*) FROM security_audit_events "
+                "WHERE firm_id=? AND user_id=? AND event=?",
+                (self.firm_a, self.user_id, f"original_document_download:{document_id}"),
+            ).fetchone()[0],
+            0,
+        )
+
     def test_original_file_routes_require_document_to_match_path_case(self):
         import hashlib
         from original_file_storage import LocalPrivateObjectStore
