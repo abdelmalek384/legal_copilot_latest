@@ -340,6 +340,60 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         finally:
             target_client.close()
 
+
+    def test_logout_remains_available_after_selected_or_all_firm_memberships_are_revoked(self):
+        owner_login = self.client.post(
+            "/login", json={"email": "owner@example.test", "password": self.password}
+        )
+        self.assertEqual(owner_login.status_code, 200, owner_login.text)
+
+        scenarios = (
+            ("revoked-selected-firm", (self.firm_a, self.firm_b)),
+            ("revoked-only-firm", (self.firm_a,)),
+        )
+        for label, firm_ids in scenarios:
+            with self.subTest(scenario=label):
+                target_id = self.runtime.create_global_identity(
+                    f"Logout Target {label}",
+                    f"logout-{label}@example.test",
+                    app.hash_pw(self.password),
+                )
+                for firm_id in firm_ids:
+                    self.runtime.create_firm_membership(target_id, firm_id, "lawyer")
+
+                target = TestClient(app.app)
+                try:
+                    login = target.post(
+                        "/login",
+                        json={"email": f"logout-{label}@example.test", "password": self.password},
+                    )
+                    self.assertEqual(login.status_code, 200, login.text)
+                    csrf = target.cookies.get("lc_csrf") or ""
+                    selected = target.post(
+                        "/session/firm",
+                        json={"firm_id": self.firm_a},
+                        headers={"X-CSRF-Token": csrf},
+                    )
+                    self.assertEqual(selected.status_code, 200, selected.text)
+                    token = target.cookies.get("lc_session") or ""
+                    self.assertTrue(token)
+
+                    suspended = self._mutate("post", f"/users/{target_id}/disable")
+                    self.assertEqual(suspended.status_code, 200, suspended.text)
+                    self.assertEqual(target.get("/cases").status_code, 403)
+
+                    logout = target.post("/logout", headers={"X-CSRF-Token": csrf})
+                    self.assertEqual(logout.status_code, 200, logout.text)
+                    self.assertEqual(logout.json(), {"ok": True})
+                    self.assertIsNone(
+                        self.runtime.control_connection().execute(
+                            "SELECT 1 FROM auth_sessions WHERE token_hash=?",
+                            (app.sha(token),),
+                        ).fetchone()
+                    )
+                finally:
+                    target.close()
+
     def test_suspending_one_membership_preserves_other_firm_access(self):
         target_id = self.runtime.create_global_identity(
             "Multi-firm Target", "multi-firm-target@example.test", app.hash_pw(self.password)
