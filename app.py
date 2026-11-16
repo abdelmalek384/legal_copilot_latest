@@ -6355,9 +6355,20 @@ def update_firm_member_role(uid: int, b: FirmRoleUpdateIn, u: dict = Depends(use
     control = control_conn()
     try:
         control.execute("BEGIN IMMEDIATE")
+        actor = control.execute(
+            "SELECT 1 FROM firm_memberships fm "
+            "JOIN users actor_user ON actor_user.id=fm.user_id "
+            "JOIN firms actor_firm ON actor_firm.id=fm.firm_id "
+            "WHERE fm.user_id=? AND fm.firm_id=? AND fm.firm_role='admin' "
+            "AND fm.status='active' AND actor_user.status='active' AND actor_firm.status='active'",
+            (int(u["id"]), int(u["firm_id"])),
+        ).fetchone()
+        if actor is None:
+            raise HTTPException(403, "active firm administrator membership required")
         target = control.execute(
-            "SELECT id,firm_role,status FROM firm_memberships "
-            "WHERE user_id=? AND firm_id=? AND status='active'",
+            "SELECT fm.id,fm.firm_role FROM firm_memberships fm "
+            "JOIN users target_user ON target_user.id=fm.user_id AND target_user.status='active' "
+            "WHERE fm.user_id=? AND fm.firm_id=? AND fm.status='active'",
             (uid, int(u["firm_id"])),
         ).fetchone()
         if target is None:
