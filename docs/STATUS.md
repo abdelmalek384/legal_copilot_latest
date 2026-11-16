@@ -1215,6 +1215,9 @@ The following focused frontend changes were merged to `main`:
 - PR #1724: corrected source-range delimiters in the new frontend regression methods and aligned the Partial-rating test with the Arabic button label.
 - PR #1725: preserved compact wrapping example-question chips at mobile widths.
 - PR #1726: kept the textarea, paperclip and Send control on one row at mobile widths, with helper text and upload panel spanning the composer.
+- PR #1728: hid the Open document intelligence action and matter workspace outside Firm documents scope; switching scopes clears stale workspace content.
+- PR #1729: added the four-case 1440px/390px English LTR/Arabic RTL visual-acceptance checklist. All screenshot, keyboard/focus, and lawyer-usability runs remain explicitly **NOT RUN**.
+- Latest static review: complete inline frontend JavaScript parses with V8; the Arabic-literal scan found 1,466 literals and zero missing catalog entries. These are source-level checks, not browser or Python test execution.
 - Follow-up Arabic-catalog scan found and corrected two missing normalized literals (`جزئي` and the trimmed verified-document status label); the current static scan reports zero missing Arabic literals, with unique catalog IDs and entries.
 
 Validation and remaining gates:
