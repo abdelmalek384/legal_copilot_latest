@@ -1260,6 +1260,7 @@ class DatabaseRuntime:
             CREATE TEMP VIEW IF NOT EXISTS users AS
             SELECT u.id, u.name, u.email_display AS email, u.email_normalized,
                    u.password_hash AS pw, fm.firm_role AS role, fm.firm_id,
+                   u.status AS identity_status, fm.status AS membership_status,
                    CASE WHEN u.status='active' AND fm.status='active' THEN 1 ELSE 0 END AS active
             FROM control.users u
             JOIN control.firm_memberships fm ON fm.user_id=u.id
