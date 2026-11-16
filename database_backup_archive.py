@@ -324,12 +324,31 @@ def download_encrypted_bundle_version(
                 body.close()
         finally:
             _fail("S3 returned a different or unpinned archive version")
-    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0)
+    flags = (
+        os.O_WRONLY | os.O_CREAT | os.O_EXCL
+        | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_CLOEXEC", 0)
+    )
+    directory_flags = (
+        os.O_RDONLY | getattr(os, "O_DIRECTORY", 0)
+        | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_CLOEXEC", 0)
+    )
+    parent_descriptor = None
     descriptor = None
+    created = False
     digest = hashlib.sha256()
     count = 0
     try:
-        descriptor = os.open(target, flags, 0o600)
+        parent_before = parent.stat()
+        parent_descriptor = os.open(parent, directory_flags)
+        parent_opened = os.fstat(parent_descriptor)
+        if (
+            not stat.S_ISDIR(parent_opened.st_mode)
+            or (parent_opened.st_dev, parent_opened.st_ino)
+            != (parent_before.st_dev, parent_before.st_ino)
+        ):
+            _fail("Recovery download directory changed during validation")
+        descriptor = os.open(target.name, flags, 0o600, dir_fd=parent_descriptor)
+        created = True
         with os.fdopen(descriptor, "wb") as output:
             descriptor = None
             while True:
@@ -347,7 +366,11 @@ def download_encrypted_bundle_version(
             _fail("Downloaded recovery archive checksum or size does not match the pinned manifest")
         return target
     except Exception as exc:
-        target.unlink(missing_ok=True)
+        if created and parent_descriptor is not None:
+            try:
+                os.unlink(target.name, dir_fd=parent_descriptor)
+            except OSError:
+                pass
         if isinstance(exc, DatabaseBundleError):
             raise
         raise DatabaseBundleError("Recovery archive download could not be written safely") from exc
@@ -355,3 +378,5 @@ def download_encrypted_bundle_version(
         body.close()
         if descriptor is not None:
             os.close(descriptor)
+        if parent_descriptor is not None:
+            os.close(parent_descriptor)
