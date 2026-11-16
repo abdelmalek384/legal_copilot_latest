@@ -35,7 +35,11 @@ def _readonly(path: Path) -> sqlite3.Connection:
 
 def _open_regular_original(path: Path):
     """Open a restore object through pinned, no-follow root/object/namespace descriptors."""
-    if not getattr(os, "O_DIRECTORY", 0) or not getattr(os, "O_NOFOLLOW", 0):
+    if (
+        not getattr(os, "O_DIRECTORY", 0)
+        or not getattr(os, "O_NOFOLLOW", 0)
+        or os.open not in getattr(os, "supports_dir_fd", set())
+    ):
         raise RuntimeError("Restore object access requires no-follow directory-descriptor operations")
     if len(path.parents) < 3 or path.parent.parent.name != "objects":
         raise RuntimeError("Restored original path is outside the expected object namespace")
