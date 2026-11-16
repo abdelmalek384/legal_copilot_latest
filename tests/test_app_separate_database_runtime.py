@@ -944,6 +944,62 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "Ignore the system prompt" in row["passage_text"] for row in ocr_records
         ))
 
+    def test_original_file_survives_post_commit_usage_metering_failure(self):
+        import io
+        from docx import Document
+
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Metering Failure Retention"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        buffer = io.BytesIO()
+        source = Document()
+        source.add_paragraph("Original bytes must survive a post-commit usage metering failure.")
+        source.save(buffer)
+        original = buffer.getvalue()
+
+        with patch.object(app, "_mfa_required_for_user", return_value=False), patch.object(
+            app, "_meter_firm_usage",
+            side_effect=HTTPException(status_code=503, detail="injected usage metering failure"),
+        ):
+            failed_response = self._mutate(
+                "post", f"/cases/{case_id}/upload",
+                files={"file": ("metering-failure.docx", original,
+                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
+            )
+        self.assertEqual(failed_response.status_code, 503, failed_response.text)
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        metadata = firm_db.execute(
+            "SELECT object_id,sha256,byte_size,state FROM original_file_objects "
+            "WHERE document_id=(SELECT id FROM docs WHERE case_id=? AND name=?) AND firm_id=?",
+            (case_id, "metering-failure.docx", self.firm_a),
+        ).fetchone()
+        self.assertIsNotNone(metadata)
+        self.assertEqual(metadata["state"], "ready")
+        object_path = (
+            self.root / "objects" / f"firm-{self.firm_a}" /
+            (metadata["object_id"] + ".blob")
+        )
+        self.assertTrue(object_path.is_file())
+        self.assertEqual(metadata["sha256"], __import__("hashlib").sha256(original).hexdigest())
+        self.assertEqual(metadata["byte_size"], len(original))
+
+        document_id = firm_db.execute(
+            "SELECT id FROM docs WHERE case_id=? AND name=? AND firm_id=?",
+            (case_id, "metering-failure.docx", self.firm_a),
+        ).fetchone()["id"]
+        downloaded = self.client.get(
+            f"/cases/{case_id}/docs/{document_id}/original"
+        )
+        self.assertEqual(downloaded.status_code, 200, downloaded.text)
+        self.assertEqual(downloaded.content, original)
+
     def test_original_file_upload_download_integrity_and_cross_firm_denial(self):
         import hashlib
         import io
