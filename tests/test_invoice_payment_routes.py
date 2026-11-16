@@ -90,6 +90,9 @@ class InvoicePaymentRouteTests(InvoiceTestSupport, unittest.TestCase):
                 lawyer.get(f"/invoices/{issued['id']}").status_code, 404
             )
             self.assertEqual(lawyer.get("/invoices").json()["invoices"], [])
+            self.assertEqual(
+                lawyer.get(f"/invoices?case_id={self.case_id}").json()["invoices"], []
+            )
             ledger_export = lawyer.get("/invoices/export.csv")
             self.assertEqual(ledger_export.status_code, 200, ledger_export.text)
             self.assertNotIn(issued["invoice_number"], ledger_export.text)
