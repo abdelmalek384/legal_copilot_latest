@@ -108,8 +108,11 @@ def validate_reference_url(url: str) -> str:
         "token", "access_token", "auth", "authorization", "password", "secret",
         "signature", "sig", "api_key", "apikey", "session", "sessionid",
         "credential", "api-key", "auth_token", "session_token",
+        "awsaccesskeyid", "googleaccessid", "key-pair-id",
         "x-amz-signature", "x-amz-credential", "x-amz-security-token",
-        "x-goog-signature", "x-goog-credential",
+        "x-amz-algorithm", "x-amz-date", "x-amz-expires", "x-amz-signedheaders",
+        "x-goog-signature", "x-goog-credential", "x-goog-algorithm",
+        "x-goog-date", "x-goog-expires", "x-goog-signedheaders",
     }
     query_keys = {key.casefold() for key, _ in parse_qsl(parsed.query, keep_blank_values=True)}
     if query_keys & sensitive_query_keys:
