@@ -61,34 +61,6 @@ def _read_only_connection(path: Path) -> sqlite3.Connection:
     return connection
 
 
-def _hash_file(path: Path) -> tuple[str, int]:
-    """Hash one regular object without reading beyond the hard object ceiling."""
-    digest = hashlib.sha256()
-    size = 0
-    try:
-        flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0)
-        fd = os.open(path, flags)
-        metadata = os.fstat(fd)
-        if not stat.S_ISREG(metadata.st_mode):
-            os.close(fd)
-            raise ValueError("object is not a regular file")
-        with os.fdopen(fd, "rb", closefd=True) as handle:
-            while True:
-                # One sentinel byte distinguishes an exact-limit object from an
-                # oversized file without hashing or reading its unbounded tail.
-                read_size = min(1024 * 1024, _MAX_RECONCILIATION_OBJECT_BYTES - size + 1)
-                block = handle.read(read_size)
-                if not block:
-                    break
-                size += len(block)
-                if size > _MAX_RECONCILIATION_OBJECT_BYTES:
-                    raise _ObjectSizeLimitExceeded("object exceeds reconciliation size limit")
-                digest.update(block)
-    except OSError as exc:
-        raise ValueError("object cannot be safely read") from exc
-    return digest.hexdigest(), size
-
-
 def _open_directory_chain(path: Path) -> int:
     """Open every directory component from the filesystem root without following links."""
     if (
