@@ -1,4 +1,5 @@
 """Structural checks only for the unapproved Law 14/2025 retrieval-question drafts."""
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -9,7 +10,7 @@ def test_structural_validator_rejects_symlinked_dataset(tmp_path):
     from tools.validate_law14_eval_draft import read_jsonl
 
     outside = tmp_path / "outside.jsonl"
-    outside.write_text('{"id":"outside"}\\n', encoding="utf-8")
+    outside.write_text('{"id":"outside"}\n', encoding="utf-8")
     link = tmp_path / "draft.jsonl"
     link.symlink_to(outside)
     try:
