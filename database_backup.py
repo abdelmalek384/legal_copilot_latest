@@ -975,6 +975,45 @@ def _validated_restore_destination(target_root: str | Path) -> tuple[Path, Path]
     return destination, parent
 
 
+def _publish_restore_directory_no_replace(staged_root: Path, destination: Path) -> None:
+    """Atomically publish a complete restore tree without replacing any target."""
+    if os.name != "posix":
+        raise DatabaseBundleError(
+            "Atomic no-overwrite restore publication is unsupported on this platform"
+        )
+    try:
+        import ctypes
+
+        libc = ctypes.CDLL(None, use_errno=True)
+        renameat2 = getattr(libc, "renameat2", None)
+        if renameat2 is None:
+            raise DatabaseBundleError(
+                "Atomic no-overwrite restore publication requires renameat2 support"
+            )
+        renameat2.argtypes = [
+            ctypes.c_int, ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p, ctypes.c_uint
+        ]
+        renameat2.restype = ctypes.c_int
+        result = renameat2(
+            -100, os.fsencode(staged_root),
+            -100, os.fsencode(destination),
+            1,  # RENAME_NOREPLACE: never replace a raced-in file or directory.
+        )
+        if result != 0:
+            error_number = ctypes.get_errno()
+            if error_number == 17:  # EEXIST
+                raise DatabaseBundleError(
+                    "Restore target appeared during publication; existing path was preserved"
+                )
+            raise OSError(error_number, os.strerror(error_number), str(destination))
+    except DatabaseBundleError:
+        raise
+    except (AttributeError, OSError, TypeError, ValueError) as exc:
+        raise DatabaseBundleError(
+            "Could not atomically publish restored databases without overwriting a target"
+        ) from exc
+
+
 def restore_backup_bundle(
     backup_file: str | Path,
     cipher: Fernet,
@@ -1211,7 +1250,7 @@ def _restore_backup_bundle_bytes(
             except OSError:
                 if os.name == "posix":
                     raise DatabaseBundleError("Could not restrict permissions on restored object directory")
-        os.replace(staged_root, destination)
+        _publish_restore_directory_no_replace(staged_root, destination)
 
     return {
         "root": destination,
