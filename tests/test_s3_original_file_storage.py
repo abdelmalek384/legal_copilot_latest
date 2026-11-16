@@ -351,11 +351,16 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
             def __init__(self, value):
                 super().__init__(value)
                 self.bytes_read = 0
+                self.close_calls = 0
 
             def read(self, size=-1):
                 block = super().read(size)
                 self.bytes_read += len(block)
                 return block
+
+            def close(self):
+                self.close_calls += 1
+                super().close()
 
         body = TrackingBody(b"x" * (self.store.max_bytes * 5))
         with patch.object(
@@ -419,6 +424,8 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
 
         self.assertEqual(body.bytes_read, self.store.max_bytes + 1)
         self.assertTrue(body.closed, "oversized open stream must be closed")
+        stream.close()
+        self.assertEqual(body.close_calls, 1, "bounded stream close must be idempotent")
 
     def test_open_rejects_provider_body_that_overreturns_requested_bytes(self):
         from unittest.mock import patch
