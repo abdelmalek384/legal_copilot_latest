@@ -49,7 +49,7 @@ These are implementation and automated-test claims only. They do not establish l
 - Practice-area landing pages and contextual empty states with actionable next steps.
 - **Implemented 2026-11-17:** the case overview now shows a chronological timeline of dated hearings, legal deadlines and tasks, with distinct event labels and task completion state. The current case-detail API does not expose filing/reminder event records, so those are not fabricated or shown. Responsive RTL/LTR and manual accessibility acceptance remain separate.
 - Responsive layouts for laptop/tablet/mobile, with stable RTL alignment and no horizontal overflow.
-- User preference persistence for language, density, default search scope and accessibility settings.
+- User preference persistence for language, density, default search scope and accessibility settings. **Default Legal Research scope implemented 2026-11-17:** the selected scope persists per firm/user in browser storage; matter IDs and matter content are never persisted as part of this preference. Density and broader accessibility-preference persistence remain open.
 
 ### P1 — Trust, collaboration and enterprise controls
 - Audit trail for source verification, edits, exports, document access and permission changes.
