@@ -895,3 +895,11 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Added `test_delivery_leases_use_wall_clock_not_planning_override` to `tests/test_reminder_service.py`, asserting claim and finish timestamps are later than the fixed planning timestamp. Existing tests in the reminder email/outbox/service modules were all present in the Tests workflow; added all three modules to the focused security matrix.
 - Source commit: `964cb84`; regression commits: `9844261`, `d04e12e`; matrix commit: `72f343f`. Static registration audit: **70 matrix modules, zero duplicates, zero modules missing from the Tests workflow**. This does not mean any module executed.
 - Bounded implementation: **100%**. Isolated database-runtime and session-state harnesses were successful in this continuation, but repository tests executed: **0**; GitHub Actions: **0**. SMTP staging and operational acceptance remain outstanding.
+
+
+## AI-2 reminder preference schema fail-closed behavior — 2026-11-16
+
+- Removed the broad SQLite-error fallback in `_reminder_preferences`. A missing/unavailable preference table now aborts scheduling before outbox enqueue or SMTP submission; a user with no preference row still receives the documented migration defaults. Database/schema failure is no longer interpreted as consent.
+- Added `test_send_fails_closed_when_reminder_preferences_schema_is_missing`, which drops the preference table, asserts scheduler failure, zero SMTP calls and zero queued reminders. `test_reminder_service.py` is registered in both the Tests workflow and focused security matrix.
+- Source commit: `3d29a0d`; regression commit: `91abca8`. Static review confirms the fallback is removed and the test is present. Repository tests and CI remain unexecuted.
+- Reminder scheduler code hardening in this continuation: **100%** (lease-clock separation and missing-preference-schema fail-closed behavior). Live SMTP/provider and external scheduler acceptance remain outstanding.
