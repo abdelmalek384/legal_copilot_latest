@@ -1143,3 +1143,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - S3 metadata hardening: HEAD responses are now type-checked before KMS-field access, and the missing-object classifier safely handles malformed `Error`/`ResponseMetadata` payloads. Added malformed-success and malformed-exception regressions. Commits: source `e1e8032`; tests `8f1752c`. Runtime tests remain unexecuted.
+
+
+- S3 stream lifecycle follow-up: original-object `open()` now requires both readable and closable response bodies and closes malformed bodies when possible, preventing a provider response without a cleanup method from entering the application path. Added an unclosable-body regression. Commits: source `c26d213`; test `3d1f4fa`. Runtime tests remain unexecuted.
