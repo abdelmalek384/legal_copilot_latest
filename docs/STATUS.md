@@ -847,3 +847,11 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Registration follow-up: the new route-to-SQL inventory regressions were already in the Tests workflow but were absent from the focused security matrix. Added `test_route_sql_access_audit.py` to the matrix adjacent to the route-authentication audit. Matrix static check: 42 entries, 0 duplicates, 0 entries missing from the explicit Tests workflow. This is registration-only verification, not test execution. Matrix update commit: d4b27b6.
+
+
+## AI-2 static route-boundary audit checkpoint — 2026-11-16
+
+- Completed implementation hardening for both authentication-route discovery and route-to-SQL inventory: dynamic method/path declarations can no longer silently disappear from either static review. Added regression coverage for invalid and valid declarations, and registered both test modules in the explicit Tests workflow and focused security matrix.
+- Source-level implementation for these two bounded audit tasks: **100%**. Static checks confirm both regression modules are workflow/matrix registered; the matrix contains 42 unique entries and all are referenced by the workflow.
+- Isolated AST harnesses exercised the accepted/rejected declaration forms. Repository test modules executed in this continuation: **0**; GitHub Actions jobs executed: **0**. CI/runner billing remains the validation blocker. No repository test pass is claimed.
+- AI-2 overall estimate remains **76.2%** and whole-project estimate **74.8%** pending runtime validation and broader workstream completion; these are engineering estimates, not certification. No safe open PR was identified for merge. Pilot/production remains **NOT READY**.
