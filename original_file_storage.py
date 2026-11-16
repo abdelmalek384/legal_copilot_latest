@@ -150,8 +150,10 @@ class LocalPrivateObjectStore:
 
     @staticmethod
     def _close_directory_descriptors(root_fd: int, namespace_fd: int) -> None:
-        os.close(namespace_fd)
-        os.close(root_fd)
+        try:
+            os.close(namespace_fd)
+        finally:
+            os.close(root_fd)
 
     @staticmethod
     def _stat_at(directory_fd: int, name: str):
