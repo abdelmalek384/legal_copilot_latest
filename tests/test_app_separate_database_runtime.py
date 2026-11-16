@@ -633,6 +633,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             ).fetchone()
             self.assertIsNotNone(event)
             self.assertIn('"firm_role": "lawyer"', event["detail_json"])
+            self.assertIn('"sessions_revoked": true', event["detail_json"])
         finally:
             target.close()
 
