@@ -786,6 +786,8 @@ def create_backup_bundle(
             raise DatabaseBundleError("Original-object storage contains missing or unreferenced objects; reconcile before backup")
 
         payload_files = sorted(p for p in payload.rglob("*") if p.is_file())
+        if len(payload_files) + 1 > _MAX_ENTRIES:
+            raise DatabaseBundleError("Backup bundle contains too many entries")
         expanded_size = sum(path.stat().st_size for path in payload_files)
         if expanded_size > _MAX_ARCHIVE_BYTES:
             raise DatabaseBundleError("Backup bundle exceeds the supported expanded size")
