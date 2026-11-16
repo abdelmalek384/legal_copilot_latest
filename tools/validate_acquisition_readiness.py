@@ -20,6 +20,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.output_path_safety import ensure_output_paths_safe
+from tools.validate_source_permission_register import read_regular_file
 DEFAULT_MANIFEST = ROOT / "docs" / "collection_manifest.example.json"
 DEFAULT_REGISTER = ROOT / "docs" / "source_permission_register.json"
 class DuplicateJSONKeyError(ValueError):
@@ -299,8 +300,8 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         ensure_output_paths_safe([args.out], [args.manifest, args.register])
-        manifest = json.loads(args.manifest.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
-        register = json.loads(args.register.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+        manifest = json.loads(read_regular_file(args.manifest), object_pairs_hook=_reject_duplicate_json_keys)
+        register = json.loads(read_regular_file(args.register), object_pairs_hook=_reject_duplicate_json_keys)
     except (OSError, json.JSONDecodeError, ValueError) as exc:
         parser.error(str(exc))
 
