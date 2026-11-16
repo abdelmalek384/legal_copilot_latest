@@ -507,6 +507,26 @@ class DeploymentPreflightTests(unittest.TestCase):
         self.assertFalse(any("COPILOT_CONTROL_DB exists and is readable/writable" in item for item in passed))
         self.assertFalse(any("COPILOT_CONTROL_DB does not exist yet" in item for item in warnings))
 
+    @unittest.skipUnless(os.name == "posix", "POSIX symbolic links are required")
+    def test_rejects_symlinked_tenant_storage_root_parent(self):
+        root = Path(self.tempdir.name)
+        real_parent = root / "real-tenant-parent"
+        real_parent.mkdir()
+        real_root = real_parent / "tenants"
+        real_root.mkdir(mode=0o700)
+        if os.name == "posix":
+            os.chmod(real_root, 0o700)
+        alias_parent = root / "tenant-parent-alias"
+        alias_parent.symlink_to(real_parent, target_is_directory=True)
+        env = dict(self.env, COPILOT_TENANT_DB_ROOT=str(alias_parent / "tenants"))
+        passed, warnings, errors = preflight.inspect_environment(env)
+        self.assertTrue(
+            any("COPILOT_TENANT_DB_ROOT must not be a symbolic link or contain symbolic-link parent components"
+                in item for item in errors),
+            errors,
+        )
+        self.assertFalse(any("Tenant storage root exists and has required access" in item for item in passed))
+
     def test_rejects_symlinked_database_path_without_following_target(self):
         target = Path(self.tempdir.name) / "real-production.db"
         target.write_text("test", encoding="utf-8")
