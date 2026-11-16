@@ -32,18 +32,63 @@ def _readonly(path: Path) -> sqlite3.Connection:
     return connection
 
 
+def _open_regular_original(path: Path):
+    """Open one restore object without following a final-component symlink."""
+    flags = os.O_RDONLY | getattr(os, "O_CLOEXEC", 0) | getattr(os, "O_NOFOLLOW", 0)
+    try:
+        fd = os.open(path, flags)
+        metadata = os.fstat(fd)
+        if not __import__("stat").S_ISREG(metadata.st_mode):
+            os.close(fd)
+            raise RuntimeError("Restored original is not a regular file")
+        return os.fdopen(fd, "rb", closefd=True)
+    except OSError as exc:
+        raise RuntimeError("Restored original is missing or unsafe") from exc
+
+
 def _digest(path: Path) -> tuple[str, int]:
-    if path.is_symlink() or not path.is_file():
-        raise RuntimeError("Restored original is missing or unsafe")
     digest = hashlib.sha256()
     size = 0
-    with path.open("rb") as handle:
-        for block in iter(lambda: handle.read(1024 * 1024), b""):
+    with _open_regular_original(path) as handle:
+        while True:
+            block = handle.read(min(1024 * 1024, MAX_ORIGINAL_BYTES - size + 1))
+            if not block:
+                break
             size += len(block)
             if size > MAX_ORIGINAL_BYTES:
                 raise RuntimeError("Restored original exceeds the configured size limit")
             digest.update(block)
     return digest.hexdigest(), size
+
+
+def _read_verified_bytes(path: Path, *, expected_sha256: str, expected_size: int) -> bytes:
+    """Read a bounded restore object and revalidate it immediately before upload."""
+    if (
+        not isinstance(expected_sha256, str)
+        or len(expected_sha256) != 64
+        or any(char not in "0123456789abcdef" for char in expected_sha256)
+        or isinstance(expected_size, bool)
+        or not isinstance(expected_size, int)
+        or expected_size < 0
+        or expected_size > MAX_ORIGINAL_BYTES
+    ):
+        raise RuntimeError("Restored original has invalid expected integrity metadata")
+    digest = hashlib.sha256()
+    size = 0
+    chunks = []
+    with _open_regular_original(path) as handle:
+        while True:
+            block = handle.read(min(1024 * 1024, MAX_ORIGINAL_BYTES - size + 1))
+            if not block:
+                break
+            size += len(block)
+            if size > MAX_ORIGINAL_BYTES or size > expected_size:
+                raise RuntimeError("Restored original changed or exceeds the configured size limit")
+            digest.update(block)
+            chunks.append(block)
+    if size != expected_size or digest.hexdigest() != expected_sha256:
+        raise RuntimeError("Restored original changed after its initial integrity check")
+    return b"".join(chunks)
 
 
 def main() -> int:
@@ -170,7 +215,12 @@ def main() -> int:
                     else:
                         action = "would_import"
                         if args.apply:
-                            store.stage_with_id(firm_id, object_id, source.read_bytes())
+                            store.stage_with_id(
+                                firm_id, object_id,
+                                _read_verified_bytes(
+                                    source, expected_sha256=digest, expected_size=size
+                                ),
+                            )
                             if not store.verify_staged(
                                 firm_id, object_id, expected_sha256=digest, expected_size=size
                             ):
