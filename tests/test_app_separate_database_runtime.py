@@ -6174,14 +6174,6 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.runtime.create_firm_membership(target_id, self.firm_a, "lawyer")
         self.runtime.create_firm_membership(target_id, self.firm_b, "lawyer")
 
-        admin_login = self.client.post(
-            "/login", json={"email": "OWNER@example.test", "password": self.password}
-        )
-        self.assertEqual(admin_login.status_code, 200, admin_login.text)
-        suspended = self._mutate("post", f"/users/{target_id}/disable")
-        self.assertEqual(suspended.status_code, 200, suspended.text)
-        self.assertTrue(suspended.json()["membership_suspended"])
-
         target = TestClient(app.app)
         try:
             logged_in = target.post(
@@ -6189,6 +6181,17 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 json={"email": "multi-firm-suspension@example.test", "password": self.password},
             )
             self.assertEqual(logged_in.status_code, 200, logged_in.text)
+            # The target starts in Firm A; retain that stale firm cookie across suspension.
+            self.assertEqual(target.get("/cases").status_code, 200)
+
+            admin_login = self.client.post(
+                "/login", json={"email": "OWNER@example.test", "password": self.password}
+            )
+            self.assertEqual(admin_login.status_code, 200, admin_login.text)
+            suspended = self._mutate("post", f"/users/{target_id}/disable")
+            self.assertEqual(suspended.status_code, 200, suspended.text)
+            self.assertTrue(suspended.json()["membership_suspended"])
+
             csrf = target.cookies.get("lc_csrf") or ""
             switched_b = target.post(
                 "/session/firm",
@@ -6219,7 +6222,6 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         }
         self.assertEqual(statuses[self.firm_a], "suspended")
         self.assertEqual(statuses[self.firm_b], "active")
-
 
 if __name__ == "__main__":
     unittest.main()
