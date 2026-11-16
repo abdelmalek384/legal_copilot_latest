@@ -582,3 +582,28 @@ Updated estimates reflect source implementation only; regression execution and e
 
 
 - An isolated reproduction of the exact recovery-locator read contract passed the valid-object case and rejected oversized and symlink inputs. This remains a harness, not execution of the new test module.
+
+
+## Consolidated execution checkpoint — 2026-11-16 (continued)
+
+| Workstream | Completion estimate |
+|---|---:|
+| Tenant isolation / access control | 84.7% |
+| Authentication / firm administration | 85.2% |
+| Case management | 90% |
+| Document processing / security | 99.1% |
+| Backup / release readiness | 40.5% |
+| AI-2 overall | 73.0% |
+| Whole project | 72.2% |
+
+Additional completed source work in this continuation:
+- Local original-file finalization verifies the exact staged inode before and after no-follow hard-link publication; staged-path substitution cannot leave a finalized symlink.
+- Both public and internal encrypted-bundle restore paths reject filesystem-root parents and canonicalize/recheck the destination parent.
+- S3 recovery locator JSON is read from a bounded 16 KiB no-follow descriptor and must be a regular file and JSON object.
+- Registered local original-object storage, backup/restore safety, and recovery-locator regressions in the focused security matrix.
+
+Execution evidence: 3 source files hardened in this continuation; 3 regression groups added; 3 isolated filesystem/path/locator harnesses passed; 0 repository test modules executed; 0 CI jobs executed; 0 PRs merged by this execution. Latest source commits include `a2b126c`, `664008b`, and `85f51e1`; test commits include `1a93620`, `c28e4db`, and `8e135cff`; matrix updates `778555d` and `c1d2ff6`.
+
+PR review: #1644 changes only `requirements.txt` to pypdf 7.1.0, but the hash lock is not regenerated and the PR is non-mergeable; leave unmerged. #1645 changes only the browser Playwright pin and is non-mergeable; browser install/runtime acceptance is absent. #1610 remains draft and non-mergeable; its patch touches retrieval/application behaviour and frontend/tests and is not safe for wholesale merge. No PR was force-merged.
+
+Remaining blockers: GitHub billing/runner allocation, no local checkout, no actual repository test execution, no lock regeneration/install, no browser acceptance, no witnessed encrypted restore, and no live S3/KMS validation. Source implementation is continuing; acceptance remains blocked. Pilot/production: **NOT READY**.
