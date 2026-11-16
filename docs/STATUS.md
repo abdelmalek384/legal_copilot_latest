@@ -569,3 +569,10 @@ Updated estimates reflect source implementation only; regression execution and e
 - Added a regression proving root-parent rejection occurs before attempting to read the supplied backup file and creates no destination.
 - Isolated path-validation harness passed for a normal temporary parent and a filesystem-root parent. This is not execution of `tests/test_database_backup_bundle.py`.
 - Source commit: `664008b`; regression commit: `c28e4db`. Repository test modules executed: 0.
+
+
+## AI-2 recovery locator input hardening — 2026-11-16
+
+- S3 recovery archive download now reads its locator JSON using a bounded (16 KiB), non-blocking, no-follow file descriptor; it verifies the opened descriptor is a regular file and parses only the bytes read from that descriptor. This removes the previous symlink-check/stat/read_text path race and rejects FIFOs/devices before parsing.
+- Added valid-object, oversized-file, non-object JSON, and symlink regression cases in `tests/test_manage_recovery_locator.py`; registered the module in the security regression matrix.
+- Source commit: `85f51e1`; test commit: `8e135cff`; matrix commit: `778555d`. No repository test module executed.
