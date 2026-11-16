@@ -67,6 +67,7 @@ The following bounded repository tasks now meet their source-change acceptance c
 | Block matter deletion when original-file audit records are still linked | **100%** | Deletion now returns HTTP 409 before destructive writes; regression confirms matter, document and original metadata remain intact; execution pending |
 | Verify document metadata/text search and matter indexes do not disclose another firm's records | **100%** | Separate-runtime regression committed; route execution pending |
 | Pin firm-data-export success-audit fail-closed behavior and exclude authentication/session/MFA secrets from exports | **100%** | Positive- and negative-path route regressions committed and registered in the existing workflow/security matrix; execution pending |
+| Verify firm export includes original evidence byte-for-byte and records matching SHA-256/manifest metadata | **100%** | Route regression committed and registered through the existing workflow suite; AST syntax check passed; route execution pending |
 
 ## AI-2 implementation completion estimate
 
@@ -76,7 +77,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 |---|---:|---|
 | Local release baseline | 20% | Release-check implementation exists; exact local checker output and all Python 3.12 gates remain unavailable |
 | Security integration | 82% | Production/staging login, configured API middleware, and recovery throttle identifiers are purpose-separated HMAC pseudonyms; route-authentication, case/document parent-scope, fail-closed original-file export and download-audit boundaries, post-commit original retention, and explicit matter-deletion retention conflicts are now guarded; exact-head security verification remains blocked |
-| Security regression coverage | 97.2% | Backup source no-follow, same-descriptor upload, mandatory checksum and verification-to-upload byte-binding regressions, duplicate release-evidence validation, S3 cross-region KMS, recovery/login/API HMAC, route-auth, case-ID/document-ID/query-scope, corrupted original-file export, mandatory original-download audit failure, post-commit upload-metering failure, matter-deletion retention, firm-export audit-failure and authentication-secret-exclusion regressions are committed; all repository tests remain unexecuted, real OCR-engine/image-quality acceptance still pending |
+| Security regression coverage | 97.4% | Backup source no-follow, same-descriptor upload, mandatory checksum and verification-to-upload byte-binding regressions, duplicate release-evidence validation, S3 cross-region KMS, recovery/login/API HMAC, route-auth, case-ID/document-ID/query-scope, corrupted original-file export, mandatory original-download audit failure, post-commit upload-metering failure, matter-deletion retention, firm-export audit-failure, authentication-secret-exclusion, and byte-for-byte original-export integrity regressions are committed; all repository tests remain unexecuted, real OCR-engine/image-quality acceptance still pending |
 | Lawyer rating UI/export | 95% | Browser acceptance and adapter execution remain pending |
 | Test-firm package | 90% | Clean-clone first-login rehearsal remains unexecuted |
 | Repository cleanup/accessibility | 83% | Bilingual form labels/errors, source-inspector metadata and passage navigation are implemented; run hygiene scan and finish manual accessibility review |
@@ -319,3 +320,6 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 
 
 - Added a positive-path firm-export regression as well: the ZIP must contain the firm invitation/membership business records while excluding auth-session, MFA credential and MFA recovery-code files; invitation and membership headers are checked for credential/hash fields. Both export regressions are committed but unexecuted.
+
+
+- Added a positive-path firm-export integrity regression. It creates a ready original object, exports the firm ZIP, and asserts that the archive contains the exact original bytes at the expected document-scoped path and that the manifest includes the matching path, SHA-256 digest and included status. The test is committed but unexecuted; its method passed standalone AST syntax validation.
