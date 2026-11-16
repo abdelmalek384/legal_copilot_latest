@@ -1149,3 +1149,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - S3 stream cleanup is now idempotent: after an overflow/error closes the provider body, later caller/context-manager cleanup does not close it twice. Extended the oversized-stream regression to assert one close call. Commits: source `26bec92`; test `d11ad41`. Runtime tests remain unexecuted.
+
+
+- Backup ZIP compatibility follow-up: creation now rejects payload inventories that exceed the restore-side `_MAX_ENTRIES` limit (including the manifest) before hashing or ZIP creation. This prevents generating a backup bundle that the same application would later refuse to restore. Added a no-hash/no-ZIP regression. Commits: source `f3aac85`; test `80f1a14`. Runtime tests remain unexecuted.
