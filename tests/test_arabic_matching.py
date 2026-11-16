@@ -183,9 +183,14 @@ class ArabicMatchingTests(unittest.TestCase):
         self.assertIn(tokens("الإجازة السنوية")[0], expanded)
 
     def test_positive_occurrence_still_expands_when_same_query_also_has_negation(self):
-        expanded = set(expanded_tokens("مش عايز إجازة لكن عايز إجازة"))
-        self.assertIn(tokens("الإجازة السنوية")[0], expanded)
-        self.assertIn("leave", expanded)
+        for question in (
+            "مش عايز إجازة لكن عايز إجازة",
+            "لا أريد إجازة لكن أريد إجازة",
+        ):
+            with self.subTest(question=question):
+                expanded = set(expanded_tokens(question))
+                self.assertIn(tokens("الإجازة السنوية")[0], expanded)
+                self.assertIn("leave", expanded)
 
     def test_measured_legal_phrase_variants_expand_to_canonical_terms(self):
         cases = (
