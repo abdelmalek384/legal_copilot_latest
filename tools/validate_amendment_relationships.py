@@ -12,6 +12,7 @@ import re
 from datetime import date
 from pathlib import Path
 from urllib.parse import urlparse
+from tools.validate_source_permission_register import read_regular_file
 
 ROOT = Path(__file__).resolve().parents[1]
 import sys
@@ -407,8 +408,8 @@ def main() -> int:
     args = parser.parse_args()
     try:
         ensure_output_paths_safe([args.out], [args.relationships, args.inventory])
-        relationships_doc = json.loads(args.relationships.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
-        inventory_doc = json.loads(args.inventory.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+        relationships_doc = json.loads(read_regular_file(args.relationships), object_pairs_hook=_reject_duplicate_json_keys)
+        inventory_doc = json.loads(read_regular_file(args.inventory), object_pairs_hook=_reject_duplicate_json_keys)
     except (OSError, json.JSONDecodeError, ValueError) as exc:
         parser.error(str(exc))
     report = validate(relationships_doc, inventory_doc)
