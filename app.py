@@ -6340,8 +6340,8 @@ def users(u: dict = Depends(user)):
     if _separate_runtime_enabled():
         return [dict(r) for r in conn().execute(
             "SELECT id,name,role,active,identity_status,membership_status "
-            "FROM users WHERE firm_id=? ORDER BY name",
-            (u["firm_id"],)
+            "FROM users WHERE firm_id=? AND (?='admin' OR active=1) ORDER BY name",
+            (u["firm_id"], u["role"])
         )]
     return [dict(r) for r in conn().execute("SELECT id,name,role,active FROM users WHERE firm_id=? ORDER BY name", (u["firm_id"],))]
 
