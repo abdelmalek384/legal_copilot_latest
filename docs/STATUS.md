@@ -785,3 +785,5 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - The recovery-locator test module is already registered in the focused security matrix. Static review only; repository tests and Actions remain unexecuted.
 
 - An isolated filesystem harness confirmed that replacing a regular locator file between lstat and open changes the opened descriptor inode and is detected by the new identity comparison. This is not execution of tests/test_manage_recovery_locator.py.
+
+- Recovery download and restore destination canonicalization now normalize both filesystem OSErrors and symlink-resolution RuntimeErrors into controlled domain failures. This avoids leaking raw path-resolution exceptions for malformed or cyclic parent paths. Source commits: 2a03e96, a64b3bc.
