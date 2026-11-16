@@ -127,8 +127,8 @@ def _modal_classes(text, patterns):
 _ENGLISH_NEGATED_OBLIGATION = re.compile(
     r"\b(?:must\s+not|mustn['’]t|shall\s+not|shan['’]t|"
     r"not\s+required\s+to|need\s+not|needn['’]t|"
-    r"do\s+not\s+have\s+to|don't\s+have\s+to|"
-    r"does\s+not\s+have\s+to|doesn't\s+have\s+to|"
+    r"do\s+not\s+have\s+to|don['’]t\s+have\s+to|"
+    r"does\s+not\s+have\s+to|doesn['’]t\s+have\s+to|"
     r"is\s+not\s+obliged\s+to|are\s+not\s+obliged\s+to|"
     r"is\s+not\s+obligated\s+to|are\s+not\s+obligated\s+to)\b",
     re.IGNORECASE,
