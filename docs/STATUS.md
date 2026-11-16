@@ -453,3 +453,10 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 
 
 - Additional isolated Python filesystem reproductions passed for both new race conditions: (1) replacing the open database pathname with a symlink to the same inode is detectable via `Path.is_symlink()` even though device/inode identity is unchanged; (2) changing database permissions to `0644` during the open window is visible to the post-open mode check. These were small harnesses of the filesystem conditions, **not executions of `tests/test_tenant_storage.py` or the repository test suite**.
+
+
+## AI-2 backup/restore root-path safety — 2026-11-16
+
+- The witnessed backup/restore drill now rejects filesystem root as either BACKUP_DIR or RESTORE_PARENT before creating a bundle or restore target. This closes a path-overlap edge case where the string-prefix check could miss `/` because the normalized root plus slash becomes `//`. Source commit: `a19ff62`.
+- Added a regression covering both root positions in `tests/test_backup_restore_drill_paths.py`. Test commit: `5f4ddc8`.
+- An isolated shell harness exercised both root cases and an ordinary non-root pair: both root cases were rejected and the ordinary pair remained eligible. This is not execution of the repository test module. Backup/release estimate remains 40% because full encrypted backup/restore, recovery and witness acceptance remain outstanding.
