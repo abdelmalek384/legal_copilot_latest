@@ -6048,5 +6048,33 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(comparison.status_code, 404, comparison.text)
 
 
+    def test_firm_data_export_fails_closed_when_success_audit_cannot_be_written(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        tenant = self.runtime.firm_connection(context)
+        tenant.execute("""
+            CREATE TRIGGER reject_firm_export_audit
+            BEFORE INSERT ON security_audit_events
+            WHEN NEW.event='firm_data_export'
+            BEGIN SELECT RAISE(ABORT, 'injected export audit failure'); END
+        """)
+        tenant.commit()
+
+        response = self.client.get("/firm/data-export.zip")
+        self.assertEqual(response.status_code, 503, response.text)
+        self.assertNotIn("application/zip", response.headers.get("content-type", ""))
+        self.assertEqual(
+            tenant.execute(
+                "SELECT COUNT(*) FROM security_audit_events "
+                "WHERE firm_id=? AND user_id=? AND event='firm_data_export'",
+                (self.firm_a, self.user_id),
+            ).fetchone()[0],
+            0,
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
