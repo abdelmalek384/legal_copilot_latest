@@ -86,6 +86,27 @@ class ClaimSupportTests(unittest.TestCase):
                     tokens, norm, _mask_markdown_code
                 ))
 
+    def test_egyptian_colloquial_denial_of_permission_is_detected(self):
+        cases = (
+            ("من حق العامل الحصول على الإجازة السنوية.", "مش من حق العامل الحصول على الإجازة السنوية."),
+            ("مسموح للعامل بالحصول على الإجازة السنوية.", "مش مسموح للعامل بالحصول على الإجازة السنوية."),
+        )
+        for claim, evidence in cases:
+            with self.subTest(claim=claim, evidence=evidence):
+                self.assertTrue(_has_modal_mismatch(claim, evidence))
+                self.assertTrue(has_unsupported_claims(
+                    claim + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
+    def test_faithful_egyptian_colloquial_denial_of_permission_is_not_flagged(self):
+        evidence = "مش من حق العامل الحصول على الإجازة السنوية."
+        self.assertFalse(_has_modal_mismatch(evidence, evidence))
+        self.assertFalse(has_unsupported_claims(
+            evidence + " [1].", [{"text": evidence}],
+            tokens, norm, _mask_markdown_code
+        ))
+
     def test_arabic_denial_of_entitlement_conflicts_with_permission(self):
         cases = (
             ("يحق للعامل الحصول على الإجازة السنوية.", "ليس من حق العامل الحصول على الإجازة السنوية."),
