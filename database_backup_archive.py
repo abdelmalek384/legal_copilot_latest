@@ -310,7 +310,10 @@ def download_encrypted_bundle_version(
     target = Path(destination).expanduser()
     if target.exists() or target.is_symlink() or target.parent.is_symlink() or not target.parent.is_dir():
         _fail("Recovery download target must be a new file in an existing real directory")
-    parent = target.parent.resolve()
+    try:
+        parent = target.parent.resolve()
+    except (OSError, RuntimeError) as exc:
+        raise DatabaseBundleError("Recovery download parent path cannot be resolved safely") from exc
     if parent != target.parent.absolute():
         _fail("Recovery download parent path must not traverse symbolic links")
     target = parent / target.name
