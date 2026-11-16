@@ -65,9 +65,15 @@ def register(db, record):
     for source in sources:
         if not isinstance(source, dict):
             raise ValueError("candidate source entries must be objects")
-        if source.get("collection_permission") in {"allowed", "allowed_limited"}:
+        collection_permission = source.get("collection_permission", "unknown")
+        commercial_permission = source.get("commercial_reuse_permission", "unknown")
+        if not isinstance(collection_permission, str) or not collection_permission.strip():
+            raise ValueError("candidate collection_permission must be a non-empty string")
+        if not isinstance(commercial_permission, str) or not commercial_permission.strip():
+            raise ValueError("candidate commercial_reuse_permission must be a non-empty string")
+        if collection_permission in ("allowed", "allowed_limited"):
             raise ValueError("candidate registration cannot grant collection permission; use the canonical source-permission register")
-        if source.get("commercial_reuse_permission") in {"allowed", "allowed_limited"}:
+        if commercial_permission in ("allowed", "allowed_limited"):
             raise ValueError("candidate registration cannot grant commercial reuse permission; use the canonical source-permission register")
     for source in sources:
         existing = db.execute(
