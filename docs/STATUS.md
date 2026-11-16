@@ -1116,3 +1116,9 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - ZIP portability follow-up: member preflight now also rejects Windows alternate-data-stream colons, reserved device components (CON/PRN/AUX/NUL/COM1–9/LPT1–9), and trailing dot/space aliases. Added seven unsafe-path variants to the preflight regression. Commits: source `45d5391`; tests `1119a10`. Runtime execution remains 0%.
+
+
+## AI-2 recovery archive upload exact growth bounds — 2026-11-16
+
+- Recovery archive hashing and multipart upload now request no more than the remaining verified size plus one sentinel byte. A file that grows after its initial stat/hash cannot cause a full extra 1 MiB/64 MiB read before the mismatch is detected; multipart upload aborts on the first extra byte.
+- Added a tracking-file regression proving hash preflight reads exactly `max_bytes + 1` bytes before rejecting an oversized source. Source commit: 774670a; regression commit: 70b13a2. Runtime repository tests remain 0% executed.
