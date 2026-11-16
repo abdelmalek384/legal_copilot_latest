@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Read-only audit of Legal Copilot's SQLite legal corpus."""
 from __future__ import annotations
-import argparse, hashlib, json, os, re, sqlite3
+import argparse, hashlib, json, os, re, sqlite3, stat
 from collections import Counter
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -103,10 +103,33 @@ def latest_review_has_passing_evidence(db, event_columns, version_id, review_typ
 
 
 def sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as stream:
+    """Hash a stable regular-file descriptor rather than reopening a mutable path."""
+    before = path.lstat()
+    if not stat.S_ISREG(before.st_mode):
+        raise OSError("legal corpus audit input is not a regular file")
+    flags = os.O_RDONLY | getattr(os, "O_BINARY", 0) | getattr(os, "O_NONBLOCK", 0)
+    flags |= getattr(os, "O_NOFOLLOW", 0)
+    descriptor = os.open(path, flags)
+    with os.fdopen(descriptor, "rb") as stream:
+        opened = os.fstat(stream.fileno())
+        if (
+            not stat.S_ISREG(opened.st_mode)
+            or (opened.st_dev, opened.st_ino) != (before.st_dev, before.st_ino)
+        ):
+            raise OSError("legal corpus audit input changed while it was being opened")
+        digest = hashlib.sha256()
         for chunk in iter(lambda: stream.read(1024 * 1024), b""):
             digest.update(chunk)
+        after = os.fstat(stream.fileno())
+        current_path = path.lstat()
+        if (
+            (after.st_dev, after.st_ino) != (opened.st_dev, opened.st_ino)
+            or (after.st_size, after.st_mtime_ns, after.st_ctime_ns)
+            != (opened.st_size, opened.st_mtime_ns, opened.st_ctime_ns)
+            or (current_path.st_dev, current_path.st_ino)
+            != (opened.st_dev, opened.st_ino)
+        ):
+            raise OSError("legal corpus audit input changed while it was being hashed")
     return digest.hexdigest()
 
 def existing_sqlite_sidecars(db_path: Path):
