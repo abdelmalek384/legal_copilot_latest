@@ -1588,5 +1588,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("uploadPanel.hidden=!expanded", research)
         self.assertIn("uploadPanel.hidden=true;paperclipButton.setAttribute('aria-expanded','false')", research)
 
+    def test_research_upload_results_use_list_semantics_and_preserve_assertive_errors(self):
+        research = HTML[HTML.index("async function law(){"):HTML.index("\nfunction documentIntelligencePanel(")]
+        self.assertIn("className:'research-upload-results',role:'list','aria-live':'polite','aria-relevant':'additions text','aria-atomic':'false'", research)
+        self.assertIn("className:'research-upload-item '+item.state,role:'listitem'", research)
+        self.assertIn("uploadWarnings=h('div',{className:'research-upload-warnings'})", research)
+        self.assertIn("role:kind==='error'?'alert':'status'", research)
 if __name__ == "__main__":
     unittest.main()
