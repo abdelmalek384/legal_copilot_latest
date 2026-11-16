@@ -836,3 +836,11 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Follow-up route-audit hardening: computed/non-literal route paths now produce an explicit finding instead of being omitted. Literal keyword `path="/..."` declarations remain auditable. Added regressions for both forms. Source commits: 0082827, 4101a8e; test commit: e71fc2e. An isolated AST harness rejected dynamic paths and malformed methods and accepted literal positional/keyword paths and GET/POST methods; repository tests remain unexecuted.
+
+
+## AI-2 route-to-SQL inventory declaration hardening — 2026-11-16
+
+- Hardened `tools/audit_route_sql_access.py` so route declarations with computed/non-literal paths or dynamic, empty, non-string, or unsupported `api_route(methods=...)` values are explicitly reported as uninventoried. The strict audit now fails on these declaration gaps instead of silently omitting the route or applying an inaccurate default method set. Literal keyword `path="/..."` routes remain inventoried.
+- Added regressions for dynamic route paths, dynamic API methods, keyword path support, and strict CLI rejection. Existing route-SQL tests remain registered in the Tests workflow and focused security matrix.
+- Source commits: d0ad7e3, 7a62bbf; regression commits: 2ed7593, 6d5c66d. An isolated AST harness rejected dynamic declarations and accepted literal path/method declarations; repository test modules and GitHub Actions remain unexecuted.
+- Static implementation: **100%**. Runtime validation remains pending; pilot/production remains **NOT READY**.
