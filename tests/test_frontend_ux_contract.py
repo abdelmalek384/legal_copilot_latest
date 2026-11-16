@@ -1491,16 +1491,16 @@ class FrontendUXContractTests(unittest.TestCase):
 
 
     def test_legal_research_starts_with_question_composer_examples_and_text_only_empty_state(self):
-        research = HTML[HTML.index("async function law(){"):HTML.index("\\nfunction documentIntelligencePanel(")]
+        research = HTML[HTML.index("async function law(){"):HTML.index("\nfunction documentIntelligencePanel(")]
+        message_renderer = research[research.index("const renderMessages="):research.index("const loadConversation=")]
         self.assertIn("className:'research-example-chips'", research)
-        self.assertIn("researchEmptyState.hidden=messages.length>0;researchExamples.hidden=messages.length>0", research)
+        self.assertIn("researchEmptyState.hidden=messages.length>0;researchExamples.hidden=messages.length>0", message_renderer)
         self.assertIn("className:'research-empty-state'", research)
         self.assertIn("className:'research-composer-heading'", research)
         self.assertIn("className:'research-assistance-label'", research)
         self.assertIn("className:'research-main'},researchStatus,composerArea,thread", research)
-        self.assertNotIn("className:'research-empty'", research)
-        self.assertNotIn("btn(uiText('محادثة جديدة','New conversation'),()=>newChat(),'g')", research)
-        self.assertIn("researchExamples.hidden=messages.length>0", research)
+        self.assertNotIn("className:'research-empty'", message_renderer)
+        self.assertNotIn("btn(uiText('محادثة جديدة','New conversation'),()=>newChat(),'g')", message_renderer)
 
 
 if __name__ == "__main__":
