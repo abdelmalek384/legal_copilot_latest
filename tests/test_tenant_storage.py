@@ -141,6 +141,38 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         with self.assertRaises(sqlite3.ProgrammingError):
             opened[0].execute("SELECT 1")
 
+    @unittest.skipUnless(os.name == "posix", "POSIX symbolic links and hard links are required")
+    def test_symlinked_parent_replacement_during_open_is_rejected(self):
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        outside_root = Path(self.temp.name) / "outside-tenant-root"
+        outside_root.mkdir()
+        outside_alias = outside_root / path.name
+        os.link(path, outside_alias)
+        parked_root = Path(self.temp.name) / "parked-tenant-root"
+        original_connect = sqlite3.connect
+        opened = []
+
+        def connect_then_replace_parent_with_symlink(database, *args, **kwargs):
+            connection = original_connect(database, *args, **kwargs)
+            if str(database) == str(path):
+                opened.append(connection)
+                os.rename(self.root, parked_root)
+                self.root.symlink_to(outside_root, target_is_directory=True)
+            return connection
+
+        with patch("tenant_storage.sqlite3.connect", side_effect=connect_then_replace_parent_with_symlink):
+            with self.assertRaisesRegex(
+                TenantConnectionError, "changed to a symbolic link while opening"
+            ):
+                self.router.connection_for_firm(101)
+
+        self.assertEqual(len(opened), 1)
+        with self.assertRaises(sqlite3.ProgrammingError):
+            opened[0].execute("SELECT 1")
+        self.assertTrue(outside_alias.is_file())
+        self.assertTrue((parked_root / path.name).is_file())
+
     @unittest.skipUnless(os.name == "posix", "POSIX file permission bits are required")
     def test_database_permissions_changed_during_open_are_rejected(self):
         with self._catalog() as catalog:
