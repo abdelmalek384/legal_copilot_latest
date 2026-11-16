@@ -109,7 +109,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 ## AI-2 S3 offboarding versioning-state validation — 2026-11-16
 
 - Tightened the read-only offboarding gate so only an absent bucket-versioning Status is treated as the unversioned/Disabled case. Enabled and Suspended remain blocked pending retention policy; any unexpected non-empty status now produces a blocking s3_bucket_versioning_status_unavailable finding.
-- Added a synthetic unknown-provider-state regression. It asserts blocked preflight, no mutation and no production-purge authorization. The test module is already registered in the Tests workflow; execution remains pending.
+- Added a synthetic unknown-provider-state regression. It asserts blocked preflight, no mutation and no production-purge authorization. The offboarding test module is registered in both the Tests workflow and focused security regression matrix; execution remains pending.
 - **Bounded implementation task: 100% implemented; runtime test execution: pending.**
 
 **Unweighted AI-2 implementation estimate: 72.7%** (arithmetic mean of the seven workstream values above). The provisional whole-project engineering estimate is approximately **72%**; this is not a test-pass rate or production-readiness score. The application remains **NOT READY** for lawyer pilot or production. No test pass is inferred from committed test code.
