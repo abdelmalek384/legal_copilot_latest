@@ -1155,3 +1155,9 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Latest observed main commit `e896db2` has six completed-failure check runs (`test`, `chromium`, Python/JavaScript CodeQL, Bandit and dependency audit). The workflow-job log endpoint returned GitHub `404 BlobNotFound` for the sampled jobs, so the failure cause cannot be diagnosed from logs. These failures are not counted as test passes; exact-head runtime validation remains outstanding.
+
+
+## AI-2 local original-storage dirfd and hardlink hardening — 2026-11-16
+
+- Replaced path-based local object operations with descriptor-relative operations: every component from filesystem root is opened with O_DIRECTORY | O_NOFOLLOW, then the firm namespace and staged/final object names are accessed relative to pinned descriptors. Stage/finalize/open/presence/verify/delete now use dirfd operations; FIFO opens are non-blocking and platforms without the required primitives fail closed.
+- Added a race regression that swaps the firm namespace for an outside-directory symlink immediately before the namespace open; staging must fail without writing outside or losing the parked namespace. Added hardlink regressions: finalization refuses a staged object with an external hardlink, and open/verify refuse a finalized object with more than one link. Source commit: 04b463b; dirfd race test: 1bd681d; hardlink source follow-up: 86a2e07; hardlink tests: 434ad96. Static review and a focused local dirfd syscall harness passed; repository tests remain 0% executed. AI-2 estimate: 79.4%; whole-project estimate remains 75.3% provisional.
