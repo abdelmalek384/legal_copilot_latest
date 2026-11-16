@@ -297,6 +297,19 @@ class MFAAccountSecurityTests(unittest.TestCase):
                 self.assertTrue(session.json()["mfa_enrollment_required"])
                 self.assertFalse(session.json()["mfa_enabled"])
                 self.assertEqual(client.get("/cases").status_code, 403)
+
+                second_client = TestClient(app.app)
+                try:
+                    second_login = second_client.post(
+                        "/login",
+                        json={"email": "voluntary-mfa@example.test", "password": password},
+                    )
+                    self.assertEqual(second_login.status_code, 200, second_login.text)
+                    self.assertTrue(second_login.json()["mfa_required"])
+                    self.assertTrue(second_login.json()["mfa_enrollment_required"])
+                    self.assertFalse(second_login.json()["mfa_verified"])
+                finally:
+                    second_client.close()
         finally:
             client.close()
 
