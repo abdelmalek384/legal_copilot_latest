@@ -86,6 +86,30 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0], 0)
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM legal_review_events").fetchone()[0], 6)
 
+    def test_registration_does_not_recreate_pending_event_after_review_decision(self):
+        first = self.register(self.db, self.record)
+        event = self.db.execute(
+            """SELECT review_type FROM legal_review_events
+               WHERE version_id=? LIMIT 1""",
+            (first["version_id"],),
+        ).fetchone()
+        self.assertIsNotNone(event)
+        review_type = event["review_type"]
+        self.db.execute(
+            """UPDATE legal_review_events SET outcome='approved', reviewer='egyptian-counsel',
+               notes='Human review decision' WHERE version_id=? AND review_type=?""",
+            (first["version_id"], review_type),
+        )
+        self.db.commit()
+        self.register(self.db, self.record)
+        rows = self.db.execute(
+            """SELECT outcome,reviewer,notes FROM legal_review_events
+               WHERE version_id=? AND review_type=?""",
+            (first["version_id"], review_type),
+        ).fetchall()
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(tuple(rows[0]), ("approved", "egyptian-counsel", "Human review decision"))
+
     def test_registration_commits_candidate_for_independent_connection(self):
         self.register(self.db, self.record)
         observer = sqlite3.connect(os.environ["COPILOT_CORPUS_DB"])
