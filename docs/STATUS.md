@@ -69,6 +69,8 @@ The following bounded repository tasks now meet their source-change acceptance c
 | Pin firm-data-export success-audit fail-closed behavior and exclude authentication/session/MFA secrets from exports | **100%** | Positive- and negative-path route regressions committed and registered in the existing workflow/security matrix; execution pending |
 | Verify firm export includes original evidence byte-for-byte and records matching SHA-256/manifest metadata | **100%** | Route regression committed and registered through the existing workflow suite; AST syntax check passed; route execution pending |
 | Verify suspending a user's membership revokes access to only that firm, including recovery from a stale firm cookie, while preserving access to another active firm | **100%** | Route regression committed; stale-context fallback and cross-firm denial are asserted; execution pending |
+| Reject control-plane or legal-corpus database files nested inside the local original-file object root during offboarding preflight | **100%** | Focused filesystem containment regression committed and registered in Tests workflow; execution pending |
+| Convert S3 inventory-listing outages into blocking offboarding findings without authorizing purge | **100%** | ObjectStorageError handling and synthetic provider-outage regression committed; execution pending |
 
 ## AI-2 implementation completion estimate
 
@@ -77,8 +79,8 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 | Workstream | Estimated implementation completion | Remaining acceptance |
 |---|---:|---|
 | Local release baseline | 20% | Release-check implementation exists; exact local checker output and all Python 3.12 gates remain unavailable |
-| Security integration | 82% | Production/staging login, configured API middleware, and recovery throttle identifiers are purpose-separated HMAC pseudonyms; route-authentication, case/document parent-scope, fail-closed original-file export and download-audit boundaries, post-commit original retention, and explicit matter-deletion retention conflicts are now guarded; exact-head security verification remains blocked |
-| Security regression coverage | 97.6% | Backup source no-follow, same-descriptor upload, mandatory checksum and verification-to-upload byte-binding regressions, duplicate release-evidence validation, S3 cross-region KMS, recovery/login/API HMAC, route-auth, case-ID/document-ID/query-scope, corrupted original-file export, mandatory original-download audit failure, post-commit upload-metering failure, matter-deletion retention, firm-export audit-failure, authentication-secret-exclusion, byte-for-byte original-export integrity, and cross-firm membership-suspension regressions are committed; all repository tests remain unexecuted, real OCR-engine/image-quality acceptance still pending |
+| Security integration | 83% | Production/staging login, configured API middleware, and recovery throttle identifiers are purpose-separated HMAC pseudonyms; route-authentication, case/document parent-scope, fail-closed original-file export and download-audit boundaries, post-commit original retention, and explicit matter-deletion retention conflicts are now guarded; exact-head security verification remains blocked |
+| Security regression coverage | 97.8% | Backup source no-follow, same-descriptor upload, mandatory checksum and verification-to-upload byte-binding regressions, duplicate release-evidence validation, S3 cross-region KMS, recovery/login/API HMAC, route-auth, case-ID/document-ID/query-scope, corrupted original-file export, mandatory original-download audit failure, post-commit upload-metering failure, matter-deletion retention, firm-export audit-failure, authentication-secret-exclusion, byte-for-byte original-export integrity, and cross-firm membership-suspension regressions are committed; all repository tests remain unexecuted, real OCR-engine/image-quality acceptance still pending |
 | Lawyer rating UI/export | 95% | Browser acceptance and adapter execution remain pending |
 | Test-firm package | 90% | Clean-clone first-login rehearsal remains unexecuted |
 | Repository cleanup/accessibility | 83% | Bilingual form labels/errors, source-inspector metadata and passage navigation are implemented; run hygiene scan and finish manual accessibility review |
@@ -96,7 +98,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Added a regression with a synthetic S3 inventory outage; it asserts the preflight remains blocked, performs no mutation, and never authorizes production purge.
 - **Bounded implementation task: 100% implemented; regression execution: pending.** No GitHub Actions run or full application test was possible.
 
-**Unweighted AI-2 implementation estimate: 72.5%** (arithmetic mean of the seven workstream values above). The provisional whole-project engineering estimate is approximately **72%**; this is not a test-pass rate or production-readiness score. The application remains **NOT READY** for lawyer pilot or production. No test pass is inferred from committed test code.
+**Unweighted AI-2 implementation estimate: 72.7%** (arithmetic mean of the seven workstream values above). The provisional whole-project engineering estimate is approximately **72%**; this is not a test-pass rate or production-readiness score. The application remains **NOT READY** for lawyer pilot or production. No test pass is inferred from committed test code.
 
 ## Legal evidence boundary
 
