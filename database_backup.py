@@ -483,13 +483,12 @@ def _scan_s3_original_object_inventory(store: S3PrivateObjectStore) -> set[str]:
 
 
 def _scan_original_object_root(object_root: Path) -> set[str]:
-    # Check symlinks before exists(): a dangling symlink reports exists() == False.
-    if object_root.is_symlink():
-        raise DatabaseBundleError("Original-object storage root must be a real directory")
-    if not object_root.exists():
-        return set()
+    # lstat distinguishes a missing root from a dangling symlink without
+    # following the final path component.
     try:
         root_before = object_root.lstat()
+    except FileNotFoundError:
+        return set()
     except OSError as exc:
         raise DatabaseBundleError("Original-object storage root could not be inspected") from exc
     if not stat.S_ISDIR(root_before.st_mode):
