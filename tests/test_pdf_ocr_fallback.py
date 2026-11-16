@@ -132,8 +132,10 @@ class PdfOcrFallbackTests(unittest.TestCase):
         fake_pytesseract.image_to_string.assert_not_called()
 
     def test_ocr_subprocess_timeout_is_reported_and_releases_capacity(self):
+        import subprocess
+
         fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: FakePdfDoc(1))
-        image_to_string = MagicMock(side_effect=TimeoutError("synthetic OCR timeout"))
+        image_to_string = MagicMock(side_effect=subprocess.TimeoutExpired("tesseract", 30))
         fake_pytesseract = types.SimpleNamespace(image_to_string=image_to_string)
         fake_image = types.SimpleNamespace(open=lambda value: object())
         fake_pil = types.ModuleType("PIL")
