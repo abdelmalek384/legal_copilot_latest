@@ -572,6 +572,29 @@ class DatabaseBackupBundleTests(unittest.TestCase):
                 malformed_bundle, self.cipher, self.root / "malformed-tenant-restore"
             )
 
+    def test_restore_rejects_manifest_firm_status_drift(self):
+        bundle = create_backup_bundle(
+            self.runtime, self.cipher, self.backup_dir, quiesced=True
+        )
+        plaintext = self.cipher.decrypt(bundle.read_bytes())
+        with zipfile.ZipFile(io.BytesIO(plaintext), "r") as archive:
+            members = {name: archive.read(name) for name in archive.namelist()}
+        manifest = json.loads(members["manifest.json"])
+        manifest["tenants"][0]["firm_status"] = "suspended"
+        members["manifest.json"] = json.dumps(
+            manifest, ensure_ascii=False, sort_keys=True
+        ).encode("utf-8")
+        changed = io.BytesIO()
+        with zipfile.ZipFile(changed, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+            for name, data in members.items():
+                archive.writestr(name, data)
+        drifted_bundle = self.backup_dir / "firm-status-drift.dbbundle.enc"
+        drifted_bundle.write_bytes(self.cipher.encrypt(changed.getvalue()))
+        with self.assertRaises(DatabaseBundleError):
+            restore_backup_bundle(
+                drifted_bundle, self.cipher, self.root / "firm-status-drift-restore"
+            )
+
     def test_restore_rejects_duplicate_manifest_json_keys(self):
         bundle = create_backup_bundle(
             self.runtime, self.cipher, self.backup_dir, quiesced=True
