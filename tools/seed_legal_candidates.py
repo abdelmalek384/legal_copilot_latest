@@ -173,27 +173,59 @@ def validate_permission_parity(data, register_path=ROOT / "docs" / "source_permi
     return True
 
 def seed(data, db):
-    source_count=document_count=0
-    for s in data["sources"]:
-        cur=db.execute(
-          """INSERT OR IGNORE INTO legal_sources
-          (source_id,authority,source_page,access_status,collection_permission,
-           commercial_reuse_permission,terms_url,terms_checked_on,permission_evidence)
-          VALUES(?,?,?,?,?,?,?,?,?)""",
-          (s["source_id"],s["authority"],s["source_page"],s.get("access_status","unknown"),
-           s.get("collection_permission","unknown"),s.get("commercial_reuse_permission","unknown"),
-           s.get("terms_url"),s.get("terms_checked_on"),s.get("permission_evidence")))
-        source_count += cur.rowcount
-    for d in data["documents"]:
-        cur=db.execute(
-          """INSERT OR IGNORE INTO legal_documents
-          (document_id,source_id,official_title,document_type,law_number,law_year,language)
-          VALUES(?,?,?,?,?,?,?)""",
-          (d["document_id"],d["source_id"],d["official_title"],d["document_type"],
-           d.get("law_number"),d.get("law_year"),d.get("language","ar")))
-        document_count += cur.rowcount
-    db.commit()
-    return source_count,document_count
+    """Insert candidate metadata atomically without overwriting source rights or versions."""
+    db.execute("SAVEPOINT seed_legal_candidates")
+    source_count = document_count = 0
+    try:
+        for source in data["sources"]:
+            existing = db.execute(
+                "SELECT authority,source_page FROM legal_sources WHERE source_id=?",
+                (source["source_id"],),
+            ).fetchone()
+            expected = (source["authority"], source["source_page"])
+            if existing is None:
+                cur = db.execute(
+                    """INSERT INTO legal_sources
+                    (source_id,authority,source_page,access_status,collection_permission,
+                     commercial_reuse_permission,terms_url,terms_checked_on,permission_evidence)
+                    VALUES(?,?,?,?,?,?,?,?,?)""",
+                    (source["source_id"], source["authority"], source["source_page"],
+                     source.get("access_status", "unknown"), source.get("collection_permission", "unknown"),
+                     source.get("commercial_reuse_permission", "unknown"), source.get("terms_url"),
+                     source.get("terms_checked_on"), source.get("permission_evidence")),
+                )
+                source_count += cur.rowcount
+            elif tuple(existing) != expected:
+                raise ValueError("Existing source metadata conflicts with candidate: " + source["source_id"])
+        for document in data["documents"]:
+            existing = db.execute(
+                """SELECT source_id,official_title,document_type FROM legal_documents
+                   WHERE document_id=?""",
+                (document["document_id"],),
+            ).fetchone()
+            expected = (document["source_id"], document["official_title"], document["document_type"])
+            if existing is None:
+                cur = db.execute(
+                    """INSERT INTO legal_documents
+                    (document_id,source_id,official_title,document_type,law_number,law_year,language)
+                    VALUES(?,?,?,?,?,?,?)""",
+                    (document["document_id"], document["source_id"], document["official_title"],
+                     document["document_type"], document.get("law_number"), document.get("law_year"),
+                     document.get("language", "ar")),
+                )
+                document_count += cur.rowcount
+            elif tuple(existing) != expected:
+                raise ValueError("Existing document metadata conflicts with candidate: " + document["document_id"])
+        db.execute("RELEASE SAVEPOINT seed_legal_candidates")
+        db.commit()
+    except Exception:
+        try:
+            db.execute("ROLLBACK TO SAVEPOINT seed_legal_candidates")
+            db.execute("RELEASE SAVEPOINT seed_legal_candidates")
+        except Exception:
+            db.rollback()
+        raise
+    return source_count, document_count
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
