@@ -6457,11 +6457,19 @@ def enable_user(uid: int, u: dict = Depends(user)):
         )
         if updated.rowcount != 1:
             raise HTTPException(409, "membership state changed; refresh and retry")
+        # A membership may have been suspended out-of-band without invalidating
+        # sessions. Force fresh authentication after every reactivation path.
+        revoked_sessions = control.execute(
+            "DELETE FROM auth_sessions WHERE user_id=?",
+            (uid,),
+        ).rowcount
         control.execute(
             "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
             "VALUES(?,?,?,'membership_reactivated',?)",
-            (int(u["id"]), uid, int(u["firm_id"]),
-             json.dumps({"firm_role": target["firm_role"], "method": "web"}, sort_keys=True)),
+            (int(u["id"]), uid, int(u["firm_id"]), json.dumps({
+                "firm_role": target["firm_role"], "method": "web",
+                "sessions_revoked": True, "revoked_session_count": revoked_sessions,
+            }, sort_keys=True)),
         )
         control.commit()
         return {"ok": True, "user_id": uid, "status": "active"}
