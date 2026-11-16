@@ -381,7 +381,10 @@ def _archive_metadata_version(meta_dir: Path, document_id: str, metadata: dict) 
     rendered = json.dumps(metadata, ensure_ascii=False, indent=2) + "\n"
     retrieved_at = metadata.get("retrieved_at", "")
     try:
-        stamp = dt.datetime.fromisoformat(retrieved_at.replace("Z", "+00:00")).strftime("%Y%m%dT%H%M%S%fZ")
+        parsed_retrieval_time = dt.datetime.fromisoformat(retrieved_at.replace("Z", "+00:00"))
+        if parsed_retrieval_time.tzinfo is None or parsed_retrieval_time.utcoffset() is None:
+            raise ValueError("retrieved_at must include an explicit UTC offset")
+        stamp = parsed_retrieval_time.astimezone(dt.timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     except (TypeError, ValueError):
         stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     digest = metadata.get("sha256")
