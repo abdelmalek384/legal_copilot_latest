@@ -2,6 +2,7 @@
 import unittest
 
 from app import SYS, conflict_name_matches, expanded_tokens, matched_surface_terms, tokens
+import tools.arabic_legal_matching as MATCHING
 from tools.arabic_legal_matching import orthographic_variants
 
 
@@ -203,6 +204,22 @@ class ArabicMatchingTests(unittest.TestCase):
                     set(tokens(canonical)).issubset(set(expanded_tokens(query))),
                     f"{query!r} did not expand to {canonical!r}",
                 )
+
+    def test_lexicon_loader_rejects_duplicate_json_keys(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "lexicon.json"
+            path.write_text(
+                '{"phrase_aliases":{"إجازة":["إجازة سنوية"],"إجازة":["عطلة"]},'
+                '"token_aliases":{}}',
+                encoding="utf-8",
+            )
+            with patch.object(MATCHING, "_LEXICON_PATH", path):
+                MATCHING._load_lexicon.cache_clear()
+                try:
+                    with self.assertRaisesRegex(ValueError, "duplicate JSON key"):
+                        MATCHING._load_lexicon()
+                finally:
+                    MATCHING._load_lexicon.cache_clear()
 
     def test_orthographic_variants_are_narrow_and_symmetric(self):
         self.assertEqual(orthographic_variants("اجازة"), ("اجازة", "اجازه"))
