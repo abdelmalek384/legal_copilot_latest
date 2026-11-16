@@ -230,7 +230,7 @@ def validate_inputs(src: str | pathlib.Path, out: str | pathlib.Path):
             _fail(f"source_url must not contain signed or credential query parameters: {sidecar.name}")
 
         if not _valid_retrieval_date(metadata.get("retrieved_at")):
-            _fail(f"retrieved_at must be an ISO date or datetime: {sidecar.name}")
+            _fail(f"retrieved_at must be an ISO date or timezone-aware datetime: {sidecar.name}")
 
         expected_hash = metadata.get("content_sha256")
         if not isinstance(expected_hash, str) or not SHA256.fullmatch(expected_hash):
