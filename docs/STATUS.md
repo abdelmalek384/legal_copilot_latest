@@ -762,3 +762,5 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Local original-object inventory now captures the root directory's lstat identity before opening it and compares the pinned descriptor's device/inode against that identity. A replacement directory at the same configured path is rejected, even if it is itself a valid directory. The portable path fallback also checks root identity again after enumeration.
 - Added a race regression that swaps the configured object-root directory for a different valid directory immediately before open and asserts inventory fails closed. Source commits: f05c297, fa65ac7; test commits: 6e18137, bb0b06b.
 - Static review only; repository test module and CI remain unexecuted. Backup/release readiness estimate 46.1%; AI-2 overall 75.7%; whole project 74.4%. Pilot/production remains NOT READY.
+
+- Follow-up race review moved the local object-root existence check fully onto lstat: only FileNotFoundError is treated as an absent store, while dangling symlinks and other non-directory entries fail closed. This closes the narrow is_symlink()/exists() gap before root identity capture. Source commit: 7819ea7.
