@@ -1079,3 +1079,9 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - The restore importer now explicitly checks that os.open supports dir_fd before attempting the pinned hierarchy; otherwise it fails closed. Capability-guard commit: a092388. The importer module remains workflow/security-matrix registered. Repository test modules executed: 0%; Actions jobs executed: 0%.
 
 - The shared legal-document collector's JSONL append primitive now opens non-blocking with no-follow semantics, verifies the opened descriptor is a regular file with exactly one hard link, and confirms the requested path still names that descriptor before writing. This closes a hardlink-alias write path and avoids blocking on a FIFO replacement. Added a hardlink regression and registered it in the existing collection-pipeline suite; the suite is not executed due to unavailable GitHub runners.
+
+
+## AI-2 restore path full-chain descriptor anchoring — 2026-11-16
+
+- Strengthened restore-original reads to walk every directory component from the filesystem root using dirfd-relative O_DIRECTORY | O_NOFOLLOW opens, then open objects/, firm namespace and blob relative to the pinned descriptors. This also rejects a restore-root symlink substitution and intermediate parent swaps, not only objects/ or namespace symlinks. Added a regression for a symlinked restore root.
+- Source commit: 2e7a7e3; regression commit: 4c33f88. The isolated descriptor harness was rerun and accepted a regular object while rejecting symlink substitutions at restore root, objects/ and firm namespace. This remains an isolated harness, not repository test execution. The importer module is workflow/security-matrix registered. AI-2 estimate: 78.8%; whole-project estimate: 75.3% provisional; repository runtime tests: 0%.
