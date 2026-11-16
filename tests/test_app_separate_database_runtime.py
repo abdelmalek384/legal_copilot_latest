@@ -394,6 +394,52 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 finally:
                     target.close()
 
+
+    def test_logout_without_firm_context_still_requires_csrf(self):
+        target_id = self.runtime.create_global_identity(
+            "Logout CSRF Target", "logout-csrf-target@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(target_id, self.firm_a, "lawyer")
+        target = TestClient(app.app)
+        try:
+            login = target.post(
+                "/login",
+                json={"email": "logout-csrf-target@example.test", "password": self.password},
+            )
+            self.assertEqual(login.status_code, 200, login.text)
+            token = target.cookies.get("lc_session") or ""
+            csrf = target.cookies.get("lc_csrf") or ""
+            self.assertTrue(token)
+            self.assertTrue(csrf)
+
+            owner_login = self.client.post(
+                "/login", json={"email": "owner@example.test", "password": self.password}
+            )
+            self.assertEqual(owner_login.status_code, 200, owner_login.text)
+            suspended = self._mutate("post", f"/users/{target_id}/disable")
+            self.assertEqual(suspended.status_code, 200, suspended.text)
+            self.assertEqual(target.get("/cases").status_code, 403)
+
+            rejected = target.post("/logout")
+            self.assertEqual(rejected.status_code, 403, rejected.text)
+            self.assertIsNotNone(
+                self.runtime.control_connection().execute(
+                    "SELECT 1 FROM auth_sessions WHERE token_hash=?",
+                    (app.sha(token),),
+                ).fetchone()
+            )
+
+            accepted = target.post("/logout", headers={"X-CSRF-Token": csrf})
+            self.assertEqual(accepted.status_code, 200, accepted.text)
+            self.assertIsNone(
+                self.runtime.control_connection().execute(
+                    "SELECT 1 FROM auth_sessions WHERE token_hash=?",
+                    (app.sha(token),),
+                ).fetchone()
+            )
+        finally:
+            target.close()
+
     def test_suspending_one_membership_preserves_other_firm_access(self):
         target_id = self.runtime.create_global_identity(
             "Multi-firm Target", "multi-firm-target@example.test", app.hash_pw(self.password)
