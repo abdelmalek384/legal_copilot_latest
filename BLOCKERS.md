@@ -30,3 +30,6 @@
 - 2026-11-16: Local original-file reconciliation hashing now stops at 15,000,000 bytes plus one sentinel and reports `object_size_limit_exceeded`; a regression verifies the oversized file is retained. Commits: `1aa0a40`, `23aa5af`. Runtime tests remain unexecuted; no pass is claimed.
 
 - 2026-11-16: Restore-to-S3 importer no longer trusts a prior path digest before later calling unbounded `read_bytes()`; it now opens a regular no-follow descriptor, performs a bounded read and revalidates digest/size immediately before upload. Regressions simulate replacement between initial digest and upload and a symlinked restore object; neither may stage an S3 object. Commits: `8b021f2`, `f89370f`, `4199fc8`, `d456768`, `b75cbdf`. Runtime tests remain unexecuted; no pass is claimed.
+
+
+- 2026-11-16: Restore-to-S3 original reads now pin the firm namespace directory with no-follow directory-descriptor operations and open the blob relative to that descriptor, preventing a namespace-directory symlink swap from redirecting reads after the earlier path check. A regression verifies rejection and preservation of outside/parked content (commits 0b7f440, fef3d13). Runtime tests remain unexecuted; no pass is claimed.
