@@ -1127,6 +1127,11 @@ def _restore_backup_bundle_bytes(
                 int(row["id"]): row["status"]
                 for row in control.execute("SELECT id,status FROM firms").fetchall()
             }
+            manifest_firm_statuses = {
+                record["firm_id"]: record["firm_status"] for record in tenant_records
+            }
+            if manifest_firm_statuses != firm_statuses:
+                raise DatabaseBundleError("Manifest firm statuses do not match the control-plane database")
             for firm_id, status in firm_statuses.items():
                 if status == "active":
                     catalog_row = next((item for item in tenant_records if int(item["firm_id"]) == firm_id), None)
