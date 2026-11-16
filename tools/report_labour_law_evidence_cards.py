@@ -8,7 +8,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -17,6 +19,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.output_path_safety import ensure_output_paths_safe
+from tools.validate_source_permission_register import read_regular_file
 class DuplicateJSONKeyError(ValueError):
     """Raised when evidence-card inventory JSON repeats an object key."""
 
@@ -207,10 +210,32 @@ def _protected_inventory_paths(input_path: Path) -> list[Path]:
     if input_path.resolve() != DEFAULT_INPUT.resolve() or not manifest_path.exists():
         return protected
     protected.append(manifest_path)
-    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest = json.loads(read_regular_file(manifest_path), object_pairs_hook=_reject_duplicate_json_keys)
     for entry in manifest.get("inventory_files", []):
         protected.append(ROOT / entry["path"])
     return protected
+
+
+def write_report_atomically(output_path: Path, report: str) -> None:
+    """Replace a reviewer report atomically without following a final-component symlink."""
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{output_path.name}.", suffix=".tmp", dir=output_path.parent
+    )
+    temporary_path = Path(temporary_name)
+    try:
+        with os.fdopen(descriptor, "w", encoding="utf-8", newline="\n") as handle:
+            handle.write(report)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary_path, output_path)
+    except Exception:
+        try:
+            temporary_path.unlink()
+        except OSError:
+            pass
+        raise
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -222,8 +247,7 @@ def main(argv: list[str] | None = None) -> int:
         ensure_output_paths_safe([args.output], _protected_inventory_paths(args.input))
         data = load_inventory(args.input)
         report = render_report(data)
-        args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(report, encoding="utf-8")
+        write_report_atomically(args.output, report)
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         parser.error(str(exc))
     print(f"Wrote {len(data['cards'])} provisional evidence cards to {args.output}")
