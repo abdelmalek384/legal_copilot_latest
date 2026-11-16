@@ -527,6 +527,23 @@ class DeploymentPreflightTests(unittest.TestCase):
         )
         self.assertFalse(any("Tenant storage root exists and has required access" in item for item in passed))
 
+    def test_rejects_junctioned_tenant_storage_root(self):
+        tenant_root = Path(self.tempdir.name) / "tenant-junction"
+        tenant_root.mkdir()
+
+        def is_junction(path):
+            return path == tenant_root
+
+        env = dict(self.env, COPILOT_TENANT_DB_ROOT=str(tenant_root))
+        with patch.object(Path, "is_junction", new=is_junction):
+            passed, warnings, errors = preflight.inspect_environment(env)
+        self.assertTrue(
+            any("COPILOT_TENANT_DB_ROOT must not be a symbolic link or contain symbolic-link parent components"
+                in item for item in errors),
+            errors,
+        )
+        self.assertFalse(any("Tenant storage root exists and has required access" in item for item in passed))
+
     def test_rejects_junctioned_database_parent_components(self):
         root = Path(self.tempdir.name)
         junction = root / "junction-parent"
