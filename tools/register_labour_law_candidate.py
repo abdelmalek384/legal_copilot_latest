@@ -105,8 +105,10 @@ def register(db, record):
             if not isinstance(source.get(field), str) or not source[field].strip():
                 raise ValueError(f"candidate source {field} must be a non-empty string")
         source_id = source["source_id"]
-        if source_id != source_id.strip() or source_id in source_by_id:
-            raise ValueError("candidate source IDs must be unique non-empty strings")
+        if (source_id != source_id.strip()
+                or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", source_id)
+                or source_id in source_by_id):
+            raise ValueError("candidate source IDs must be unique valid non-empty identifiers")
         if not _valid_https_url(source.get("source_page")):
             raise ValueError("candidate source_page must be a clean HTTPS URL")
         terms_url = source.get("terms_url")
@@ -119,14 +121,20 @@ def register(db, record):
     for field in ("document_id", "official_title", "document_type", "source_id"):
         if not isinstance(document_input.get(field), str) or not document_input[field].strip():
             raise ValueError(f"candidate document {field} must be a non-empty string")
+        if any(ord(char) < 32 or ord(char) == 127 for char in document_input[field]):
+            raise ValueError(f"candidate document {field} must not contain control characters")
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", document_input["document_id"]):
+        raise ValueError("candidate document_id must be a valid identifier")
     document_source_id = document_input.get("source_id")
     if not isinstance(document_source_id, str) or document_source_id not in source_by_id:
         raise ValueError("candidate document source_id must reference a listed source")
     version_input = record.get("version")
     if not isinstance(version_input, dict):
         raise ValueError("candidate version must be an object")
-    if not isinstance(version_input.get("version_label"), str) or not version_input["version_label"].strip():
-        raise ValueError("candidate version_label must be a non-empty string")
+    if (not isinstance(version_input.get("version_label"), str)
+            or not version_input["version_label"].strip()
+            or version_input["version_label"] != version_input["version_label"].strip()):
+        raise ValueError("candidate version_label must be a trimmed non-empty string")
     if not _valid_https_url(version_input.get("source_url")):
         raise ValueError("candidate version source_url must be a clean HTTPS URL")
     for field in ("publication_date", "effective_date", "repeal_date", "consolidated_as_of"):
@@ -158,7 +166,9 @@ def register(db, record):
         if not isinstance(event, dict):
             raise ValueError("candidate review events must be objects")
         review_type = event.get("review_type")
-        if review_type not in allowed_review_types or review_type in seen_review_types:
+        if (not isinstance(review_type, str)
+                or review_type not in allowed_review_types
+                or review_type in seen_review_types):
             raise ValueError("candidate review_type values must be unique supported review types")
         seen_review_types.add(review_type)
         if not isinstance(event.get("notes"), str) or not event["notes"].strip():
