@@ -126,6 +126,10 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
             "UPDATE legal_document_versions SET review_status='pending_lawyer_review' WHERE version_id=?",
             (first["version_id"],),
         )
+        self.db.execute(
+            "UPDATE legal_sources SET collection_permission='not_allowed_without_explicit_exception_or_license' WHERE source_id=?",
+            (self.record["sources"][0]["source_id"],),
+        )
         self.db.commit()
         self.register(self.db, self.record)
         row = self.db.execute(
@@ -134,6 +138,11 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
         ).fetchone()
         self.assertEqual(row[0], "pending_lawyer_review")
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM legal_document_versions").fetchone()[0], 1)
+        permission = self.db.execute(
+            "SELECT collection_permission FROM legal_sources WHERE source_id=?",
+            (self.record["sources"][0]["source_id"],),
+        ).fetchone()[0]
+        self.assertEqual(permission, "not_allowed_without_explicit_exception_or_license")
 
 
 if __name__ == "__main__":
