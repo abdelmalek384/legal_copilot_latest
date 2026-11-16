@@ -228,6 +228,12 @@ class GazetteTextImportTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "explicit UTC offset"):
             import_text(self.text_path, self.meta_path, self.output)
 
+    def test_future_retrieval_timestamp_is_rejected(self):
+        self.metadata["retrieved_at"] = "2999-01-01T00:00:00+00:00"
+        self.write_metadata()
+        with self.assertRaisesRegex(ValueError, "must not be in the future"):
+            import_text(self.text_path, self.meta_path, self.output)
+
     def test_retrieved_at_date_only_remains_supported(self):
         self.metadata["retrieved_at"] = "2026-11-06"
         self.write_metadata()
