@@ -55,17 +55,52 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("emailField=h('label'", HTML)
         self.assertIn("},emailField,role,submit)", HTML)
 
+
     def test_source_inspector_exposes_firm_document_provenance_and_matter_handoff(self):
         inspector = HTML[HTML.index("const inspectSource="):HTML.index("const suggestCorrection=")]
         self.assertIn("source.document_sha256", inspector)
         self.assertIn("source.document_extraction_status", inspector)
-        self.assertIn("source.document_ocr_used===true", inspector)
-        self.assertIn("source.document_original_available===true", inspector)
+        self.assertIn("source.document_ocr_used===true||source.document_ocr_used===1", inspector)
+        self.assertIn("source.document_original_available===true||source.document_original_available===1", inspector)
         self.assertIn("source.scope==='firm_documents'", inspector)
-        self.assertIn("window.DOCUMENT_REVIEW_TARGET=hasExactChunk?{caseId:matterId,documentId,chunkId:String(chunkId)}:null", inspector)
-        self.assertIn("PAGE='cases';TAB='docs';view(matterId)", inspector)
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET=hasExactChunk?{caseId:matterCaseId,documentId:matterDocumentId,chunkId:String(rawChunkId)}:null", inspector)
+        self.assertIn("PAGE='cases';TAB='docs';view(matterCaseId)", inspector)
         self.assertIn("Open document and passage", inspector)
-        self.assertIn("Open matter Documents", inspector)
+        self.assertIn("Open matter documents", inspector)
+
+    def test_source_inspector_preserves_document_page_and_confidence_provenance(self):
+        inspector = HTML[HTML.index("const inspectSource="):HTML.index("const suggestCorrection=")]
+        self.assertIn("const pageLocation=[source.page_number,source.page,p.page_number,p.page]", inspector)
+        self.assertIn("The recorded page reference has not been independently checked against the original file.", inspector)
+        self.assertIn("مرجع الصفحة المسجل لم تتم مطابقته بصورة مستقلة مع الملف الأصلي.", inspector)
+        self.assertIn("source.text_location||p.text_location||source.location||p.location", inspector)
+        self.assertIn("source.confidence??p.confidence", inspector)
+        self.assertIn("Recorded confidence: ", inspector)
+
+    def test_source_inspector_exposes_stable_matter_document_traceability_when_available(self):
+        inspector = HTML[HTML.index("const inspectSource="):HTML.index("const suggestCorrection=")]
+        self.assertIn("source.document_id??source.documentId??source.original_document_id??p.document_id??p.documentId??p.original_document_id", inspector)
+        self.assertIn("source.case_id??source.matter_id??p.case_id??p.matter_id", inspector)
+        self.assertIn("source.sha256||source.file_sha256||p.sha256||p.file_sha256", inspector)
+        self.assertIn("const chunkRecordId=source.chunk_id??source.id??p.chunk_id", inspector)
+        self.assertIn("Document record ID: ", inspector)
+        self.assertIn("Chunk ID: ", inspector)
+        self.assertIn("Matter ID: ", inspector)
+        self.assertIn("Original file SHA-256: ", inspector)
+        self.assertIn("source.document_ocr_used===true||source.document_ocr_used===1", inspector)
+        self.assertIn("This passage was extracted with OCR; compare it with the original page before relying on it.", inspector)
+        self.assertIn("No retained original copy is currently available in private storage for this document.", inspector)
+
+    def test_matter_original_download_requires_retention_and_same_matter_authorization(self):
+        inspector = HTML[HTML.index("const inspectSource="):HTML.index("const suggestCorrection=")]
+        self.assertIn("const canDownloadMatterOriginal=hasMatterDocumentIdentity&&(source.document_original_available===true||source.document_original_available===1)", inspector)
+        self.assertIn("if(canDownloadMatterOriginal)", inspector)
+        self.assertIn("fetch('/cases/'+matterCaseId+'/docs/'+matterDocumentId+'/original',{credentials:'same-origin'})", inspector)
+        self.assertIn("response.status===401", inspector)
+        self.assertIn("response.status===404", inspector)
+        self.assertIn("response.status===423", inspector)
+        self.assertIn("response.status===503", inspector)
+        self.assertIn("download:String(documentName||'original-document')", inspector)
 
     def test_one_shot_document_passage_target_is_opened_and_cleared(self):
         self.assertIn("card.dataset.chunkId=String(chunk.id)", HTML)
