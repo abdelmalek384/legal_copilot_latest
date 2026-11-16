@@ -57,3 +57,6 @@
 
 
 - 2026-11-16: Backup creation now preflights total expanded snapshot size and manifest overhead against the restore ceiling before ZIP creation; a regression asserts no hashing or ZIP writer is invoked when the file payload alone exceeds the ceiling (commits 155e284, b41fb19). Runtime tests remain unexecuted.
+
+
+- 2026-11-16: ZIP member path validation additionally rejects Windows ADS syntax, reserved device names and trailing-dot/space aliases, with regressions (commits 45d5391, 1119a10). Runtime tests remain unexecuted.
