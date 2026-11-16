@@ -1063,3 +1063,9 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Tightened encrypted backup ZIP validation to reject non-canonical member paths (empty, dot, parent, repeated-separator, NUL, backslash, absolute and Windows drive-prefixed forms) and special filesystem entry types such as FIFOs/devices. This closes ambiguity between ZIP member names and paths created by extraction, before extractall is reached.
 - Added regressions for repeated separators, dot components, Windows drive paths and FIFO metadata. The backup-bundle test module is already present in both the focused security matrix and GitHub workflow.
 - Source commit: d3d5841; regression commit: 0775ba4. Static review confirms path canonicalization and file/directory mode allowlists. Repository runtime test execution remains 0%; no runtime pass is claimed. AI-2 estimate: 78.6%; whole-project estimate remains 75.3% provisional.
+
+
+## AI-2 restore root/object directory-chain pinning — 2026-11-16
+
+- Extended the restore-to-S3 importer beyond namespace pinning: it now opens the canonical restore root, objects directory, firm namespace and blob in sequence using directory-descriptor-relative opens and O_NOFOLLOW. A symlink substitution at either the objects directory or firm namespace cannot redirect digest or upload reads; unsupported platforms fail closed.
+- Added an adversarial regression for replacing the objects directory with a symlink to an outside tree. Together with the namespace-symlink and final-file-symlink tests, each object-path component below the canonical restore root is covered. Source commit: 0a41996; regression commit: 56ce2d7. The importer test module remains registered in workflow and security matrix. Static source/test review only; runtime test execution remains 0%. AI-2 estimate: 78.7%; whole-project estimate remains 75.3% provisional.
