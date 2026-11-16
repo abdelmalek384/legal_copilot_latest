@@ -69,6 +69,21 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         self.assertEqual(existing.read_bytes(), existing_bytes)
         self.assertFalse(any(self.backup_dir.glob(".dbbundle-*.tmp")))
 
+    def test_backup_rejects_expanded_payload_before_hashing_or_zip_creation(self):
+        import database_backup
+        from unittest.mock import patch
+
+        with patch("database_backup._MAX_ARCHIVE_BYTES", 1), patch(
+            "database_backup._sha256"
+        ) as hash_file, patch("database_backup.zipfile.ZipFile") as zip_file:
+            with self.assertRaisesRegex(DatabaseBundleError, "expanded size"):
+                create_backup_bundle(
+                    self.runtime, self.cipher, self.backup_dir, quiesced=True
+                )
+
+        hash_file.assert_not_called()
+        zip_file.assert_not_called()
+
     def test_backup_requires_literal_quiescence_and_positive_integer_retention(self):
         for false_like in (False, None, 0, "true", "yes", 1):
             with self.subTest(quiesced=false_like):
