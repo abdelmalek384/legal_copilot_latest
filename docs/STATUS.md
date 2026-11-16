@@ -755,3 +755,10 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Encrypted local backup publication now uses exclusive hard-link creation instead of os.replace, so a timestamp/name collision cannot silently overwrite an existing backup. The temporary file is removed after successful publication; directory metadata is fsynced where directory descriptors are supported. A sync failure is reported without deleting a possibly published backup.
 - Added a regression that fixes the generated timestamp, pre-creates the exact destination name, and verifies backup creation fails while preserving the pre-existing bytes and cleaning the temporary file. Source commits: 56ef2ae, 63e3881; test commit: 929cd59.
 - Static review only; no repository test module or Actions job executed. Backup/release readiness estimate 45.9%; AI-2 overall 75.6%; whole project 74.3%. Pilot/production remains NOT READY.
+
+
+## AI-2 backup object-root inode binding — 2026-11-16
+
+- Local original-object inventory now captures the root directory's lstat identity before opening it and compares the pinned descriptor's device/inode against that identity. A replacement directory at the same configured path is rejected, even if it is itself a valid directory. The portable path fallback also checks root identity again after enumeration.
+- Added a race regression that swaps the configured object-root directory for a different valid directory immediately before open and asserts inventory fails closed. Source commits: f05c297, fa65ac7; test commits: 6e18137, bb0b06b.
+- Static review only; repository test module and CI remain unexecuted. Backup/release readiness estimate 46.1%; AI-2 overall 75.7%; whole project 74.4%. Pilot/production remains NOT READY.
