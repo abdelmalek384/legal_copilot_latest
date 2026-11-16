@@ -1735,5 +1735,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Global search across accessible matters and clients", shell)
         self.assertIn("workspace-search-group", shell)
 
+    def test_global_search_includes_permission_scoped_document_results(self):
+        shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction dash()")]
+        self.assertIn("api('/documents/search?'+documentParams.toString())", shell)
+        self.assertIn("documentsFound=Array.isArray(documentResult.items)?documentResult.items:[]", shell)
+        self.assertIn("window.DOCUMENT_MATTER_ID=Number(item.case_id)", shell)
+        self.assertIn("openPage('documents',documentsPage)", shell)
+        self.assertIn("Global search across accessible matters, clients and documents", shell)
+        self.assertIn("workspace-search-group", shell)
+
 if __name__ == "__main__":
     unittest.main()

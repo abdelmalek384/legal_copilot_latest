@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "86f1704e6ea2edab2d429b9516fdd284aba90b22",
   "generated_on": "2026-11-17",
-  "entry_count": 1567,
+  "entry_count": 1570,
   "entries": [
     {
       "id": "AR-0001",
@@ -6277,6 +6277,7 @@
       "source_lines": [
         1091,
         1275,
+        1419,
         1911,
         2082,
         2090,
@@ -17412,6 +17413,33 @@
       "source_file": "static/index.html",
       "source_lines": [
         1417
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1568",
+      "arabic": "ابحث عن قضية أو عميل أو مستند",
+      "source_file": "static/index.html",
+      "source_lines": [
+        1400
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1569",
+      "arabic": "البحث العام في ملفات القضايا والعملاء والمستندات المصرح بها",
+      "source_file": "static/index.html",
+      "source_lines": [
+        1400
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1570",
+      "arabic": "جارٍ البحث في القضايا والعملاء والمستندات المصرح بها...",
+      "source_file": "static/index.html",
+      "source_lines": [
+        1404
       ],
       "review_status": "pending_native_review"
     }
