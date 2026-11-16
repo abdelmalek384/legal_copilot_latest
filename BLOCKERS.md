@@ -100,3 +100,6 @@
 
 
 - 2026-11-16: Local original-file reconciliation now walks the object-root directory chain with no-follow descriptors, scans firm namespaces via dirfd, opens object bytes relative to the pinned namespace, and rejects hardlinked entries. Added namespace-swap and hardlink regressions (commits 26288c8, 4e5eb61, 41f30f6, 13c27a6, ab94c94). Runtime repository tests remain unexecuted.
+
+
+- 2026-11-16: Local storage and reconciliation capability gates now verify no-follow `stat` support; local writes additionally require no-follow hard-link support. Directory descriptor cleanup was hardened on both success and failed-open paths (commits 36b972a, cf179ca, d4e0342, 0e06fd0). Unsupported platforms fail closed. Repository runtime tests remain unexecuted.
