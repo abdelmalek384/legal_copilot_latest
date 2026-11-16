@@ -8,7 +8,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
+import stat
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -47,21 +49,56 @@ REQUIRED_FALSE_FIELDS = (
 )
 
 
+def read_regular_file(path: Path, *, max_bytes: int = 16 * 1024 * 1024) -> bytes:
+    """Read one bounded, stable regular file without following symlinks or special files."""
+    path = Path(path)
+    try:
+        before = path.lstat()
+        if not stat.S_ISREG(before.st_mode) or before.st_size > max_bytes:
+            raise ValueError("evaluation draft must be a bounded regular file")
+        flags = (
+            os.O_RDONLY | getattr(os, "O_BINARY", 0)
+            | getattr(os, "O_NONBLOCK", 0) | getattr(os, "O_NOFOLLOW", 0)
+        )
+        descriptor = os.open(path, flags)
+        with os.fdopen(descriptor, "rb") as stream:
+            opened = os.fstat(stream.fileno())
+            if (not stat.S_ISREG(opened.st_mode)
+                    or (before.st_dev, before.st_ino) != (opened.st_dev, opened.st_ino)):
+                raise ValueError("evaluation draft changed identity while opening")
+            raw = stream.read(max_bytes + 1)
+            after = os.fstat(stream.fileno())
+            current = path.lstat()
+            if len(raw) > max_bytes or len(raw) != after.st_size:
+                raise ValueError("evaluation draft changed size or exceeds its limit")
+            if ((opened.st_dev, opened.st_ino) != (after.st_dev, after.st_ino)
+                    or (opened.st_size, opened.st_mtime_ns, opened.st_ctime_ns)
+                    != (after.st_size, after.st_mtime_ns, after.st_ctime_ns)
+                    or (current.st_dev, current.st_ino) != (opened.st_dev, opened.st_ino)):
+                raise ValueError("evaluation draft changed while being read")
+            return raw
+    except OSError as exc:
+        raise ValueError(f"{path}: cannot safely read evaluation draft: {type(exc).__name__}") from exc
+
+
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
-    with Path(path).open("r", encoding="utf-8-sig") as handle:
-        for line_number, raw in enumerate(handle, start=1):
-            if not raw.strip() or raw.lstrip().startswith("#"):
-                continue
-            try:
-                value = json.loads(raw, object_pairs_hook=_reject_duplicate_json_keys)
-            except DuplicateJSONKeyError as exc:
-                raise ValueError(f"{path}:{line_number}: {exc}") from exc
-            except json.JSONDecodeError as exc:
-                raise ValueError(f"{path}:{line_number}: invalid JSON: {exc.msg}") from exc
-            if not isinstance(value, dict):
-                raise ValueError(f"{path}:{line_number}: question row must be an object")
-            rows.append(value)
+    try:
+        text = read_regular_file(path).decode("utf-8-sig")
+    except UnicodeDecodeError as exc:
+        raise ValueError(f"{path}: evaluation draft must be valid UTF-8") from exc
+    for line_number, raw in enumerate(text.splitlines(), start=1):
+        if not raw.strip() or raw.lstrip().startswith("#"):
+            continue
+        try:
+            value = json.loads(raw, object_pairs_hook=_reject_duplicate_json_keys)
+        except DuplicateJSONKeyError as exc:
+            raise ValueError(f"{path}:{line_number}: {exc}") from exc
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"{path}:{line_number}: invalid JSON: {exc.msg}") from exc
+        if not isinstance(value, dict):
+            raise ValueError(f"{path}:{line_number}: question row must be an object")
+        rows.append(value)
     return rows
 
 
