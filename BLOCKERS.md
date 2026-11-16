@@ -97,3 +97,6 @@
 
 
 - 2026-11-16: Local original storage now pins every path component from filesystem root and performs all object operations relative to no-follow directory descriptors; symlink namespace swaps are rejected. Hardlinked staged/final objects are rejected via link-count checks. Added namespace-race and hardlink regressions (commits 04b463b, 1bd681d, 86a2e07, 434ad96). A focused syscall harness passed, but repository tests remain unexecuted.
+
+
+- 2026-11-16: Local original-file reconciliation now walks the object-root directory chain with no-follow descriptors, scans firm namespaces via dirfd, opens object bytes relative to the pinned namespace, and rejects hardlinked entries. Added namespace-swap and hardlink regressions (commits 26288c8, 4e5eb61, 41f30f6, 13c27a6, ab94c94). Runtime repository tests remain unexecuted.
