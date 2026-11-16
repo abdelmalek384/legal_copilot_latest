@@ -1107,3 +1107,9 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Added a regression with a patched two-key ceiling and a three-key page. Source commit: 0af3ef1; regression commit: 0122ec1. Test module is already registered in the workflow and security regression script. Static review only; repository runtime tests remain 0% executed. AI-2 estimate: 79.0%; whole-project estimate remains 75.3% provisional.
 
 - The general lawyer-reviewed retrieval evaluator now exposes `wrong_article_rate`, `wrong_article_count`, and the exact emitted-pin-citation denominator globally and per practice area. It is explicitly the complement of pin-cite accuracy for emitted citations on questions that have reviewed expected pin-cites; missing citations remain separately visible through expected-pin-cite recall and citation coverage. The existing regression with one correct and one incorrect article citation now asserts a 50% wrong-article rate, and per-practice-area regressions assert 0%/100% for correct/incorrect locators. Commits: `399ca2a`, `9f46b20`, `aafb866`. The dedicated article-level evaluator `tools/score_arabic_retrieval.py` already reports the release-target wrong-article rate; no duplicate change was needed there.
+
+
+## AI-2 backup creation expanded-size preflight — 2026-11-16
+
+- Backup creation now totals snapshot file sizes before hashing them and rejects payloads above the restore-side expanded archive ceiling. It also includes serialized manifest bytes in the pre-ZIP size check, preventing oversized snapshots from consuming hash/ZIP work before eventual restore rejection.
+- Added a regression that lowers the ceiling and asserts rejection occurs before file hashing or ZIP creation. Source commit: 155e284; regression commit: b41fb19. Static review only; repository runtime tests remain 0% executed. AI-2 estimate: 79.1%; whole-project estimate remains 75.3% provisional.
