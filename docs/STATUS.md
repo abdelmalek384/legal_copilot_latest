@@ -955,3 +955,9 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Merged PR #1686: the production release gate now reads candidate evidence and reviewer registry through bounded stable descriptors; unreadable candidate evidence stays excluded and registry failures remain blockers.
 - The stable-read harness also passed isolated regular-file, FIFO, symlink-swap and size-limit checks. Repository tests remain unexecuted; CI billing is still blocking hosted test runs.
 - AI-1 engineering estimate after these additional evaluator/release-gate safeguards: **84%**. Legal corpus readiness remains **10%**; the whole-project estimate remains **75.3% provisional** pending cross-workstream re-audit.
+- Merged PR #1688: Phase 2 legal-instrument inventory reads are now bounded and stable; symlink swaps, FIFOs and oversized files fail closed.
+- Merged PR #1689: acquisition-readiness manifest and permission-register inputs reuse the hardened stable reader.
+- Merged PR #1690: canonical and supplemental Labour Law evidence-card inventory/manifest reads now use the stable reader; provisional `search_eligible=false` safeguards remain intact.
+- Merged PR #1691: manual-capture catalog and original-document reads now use stable bounded reads, eliminating the separate stat-then-read race for captured originals.
+- Merged PR #1692: amendment-relationship and Phase 2 inventory inputs reuse the stable reader; structural validation does not claim legal effect or currentness.
+- AI-1 engineering estimate: **86%** after these source/acquisition/evidence workflow safeguards. Legal corpus readiness remains **10%** because authorized Gazette evidence and qualified counsel approval are still missing. Whole-project estimate remains **75.3% provisional** pending cross-workstream reassessment.
