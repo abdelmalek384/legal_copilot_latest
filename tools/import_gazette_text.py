@@ -185,7 +185,7 @@ def _validate_metadata(meta: object, text_bytes: bytes) -> dict:
     except ValueError as exc:
         raise ValueError("publication_date must be YYYY-MM-DD") from exc
     retrieved_at = meta["retrieved_at"]
-    if re.fullmatch(r"\\d{4}-\\d{2}-\\d{2}", retrieved_at):
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}", retrieved_at):
         try:
             retrieved_date = dt.date.fromisoformat(retrieved_at)
             if retrieved_date.isoformat() != retrieved_at:
