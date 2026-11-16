@@ -254,9 +254,12 @@ def upload_encrypted_bundle(
             persisted_size = 0
             body = probe["Body"]
             while True:
-                block = body.read(min(1024 * 1024, size - persisted_size + 1))
+                read_size = min(1024 * 1024, size - persisted_size + 1)
+                block = body.read(read_size)
                 if not block:
                     break
+                if len(block) > read_size:
+                    _fail("Persisted archive stream exceeded the requested read size")
                 persisted_size += len(block)
                 if persisted_size > size:
                     _fail("Persisted archive version exceeds the uploaded size")
@@ -399,9 +402,12 @@ def download_encrypted_bundle_version(
         with os.fdopen(descriptor, "wb") as output:
             descriptor = None
             while True:
-                block = body.read(min(1024 * 1024, expected_size - count + 1))
+                read_size = min(1024 * 1024, expected_size - count + 1)
+                block = body.read(read_size)
                 if not block:
                     break
+                if len(block) > read_size:
+                    _fail("Downloaded archive stream exceeded the requested read size")
                 count += len(block)
                 if count > expected_size or count > _MAX_ENCRYPTED_BUNDLE_BYTES:
                     _fail("Downloaded recovery archive exceeds its declared size")
