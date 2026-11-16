@@ -539,3 +539,6 @@ Updated estimates reflect source implementation only; regression execution and e
 - Cached control-plane and legal-corpus connections now rerun the complete profile storage validation after SQLite opens the file, before retaining the handle. This catches symlink substitution and permission/sidecar changes in the open window, in addition to the existing device/inode comparison.
 - Added a POSIX control-plane regression that replaces the database path with a symlink to the same inode during the mocked open and asserts the new connection is closed rather than cached. Source commit: `4953fa5`; regression commit: `2c25160`.
 - Static review only; the database runtime regression module remains unexecuted.
+
+
+- Registered both `test_database_runtime.py` and `test_tenant_storage.py` in the focused security regression matrix, so the new profile/catalog and tenant-router regressions are part of the operator-run security gate. Script commit: `dfb2661`. The matrix itself has not been executed.
