@@ -70,7 +70,7 @@ _ENGLISH_MODAL_PATTERNS = {
     # simultaneously count as obligations and prohibitions.
     "obligation": re.compile(
         r"\b(?:must(?!\s+not|n['’]t)|shall(?!\s+not|n['’]t)|"
-        r"(?<!not )(?<!isn't )(?<!isn’t )(?<!aren't )(?<!aren’t )required to|is required to|are required to|is obliged to|are obliged to|is obligated to|are obligated to|have to|has to)\b",
+        r"(?<!not )(?<!isn't )(?<!isn’t )(?<!aren't )(?<!aren’t )required to|is required to|are required to|is obliged to|are obliged to|is obligated to|are obligated to|(?<!do not )(?<!don't )(?<!don’t )(?<!does not )(?<!doesn't )(?<!doesn’t )have to|has to)\b",
         re.IGNORECASE,
     ),
     "prohibition": re.compile(
@@ -155,7 +155,7 @@ _ENGLISH_NEGATED_OBLIGATION = re.compile(
 _ENGLISH_POSITIVE_OBLIGATION = re.compile(
     r"\b(?:must|shall|required\s+to|is\s+required\s+to|"
     r"are\s+required\s+to|is\s+obliged\s+to|are\s+obliged\s+to|"
-    r"is\s+obligated\s+to|are\s+obligated\s+to|have\s+to|has\s+to)\b",
+    r"is\s+obligated\s+to|are\s+obligated\s+to|(?<!do not )(?<!don't )(?<!don’t )(?<!does not )(?<!doesn't )(?<!doesn’t )have\s+to|has\s+to)\b",
     re.IGNORECASE,
 )
 _ARABIC_NEGATED_OBLIGATION = re.compile(
