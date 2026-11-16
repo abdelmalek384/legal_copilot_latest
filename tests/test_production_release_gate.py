@@ -589,5 +589,40 @@ class ProductionReleaseGateTests(unittest.TestCase):
                 gate.main(["--reviewer-registry", str(registry)])
             self.assertEqual(raised.exception.code, 2)
 
+    def test_release_gate_candidate_reader_rejects_symlink_swap_and_fifo(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            candidate = self._candidate_file(root)
+            outside = root / "outside-candidate.json"
+            outside.write_text(candidate.read_text(encoding="utf-8"), encoding="utf-8")
+            report = self._ready_report(candidate)
+            real_open = gate.os.open
+            swapped = False
+
+            def replace_before_open(path, flags, *args, **kwargs):
+                nonlocal swapped
+                if Path(path) == candidate and not swapped:
+                    swapped = True
+                    candidate.unlink()
+                    candidate.symlink_to(outside)
+                return real_open(path, flags, *args, **kwargs)
+
+            with patch.object(gate.os, "open", side_effect=replace_before_open):
+                index = gate._ready_candidate_source_index([candidate], report)
+            self.assertTrue(swapped)
+            self.assertEqual(index, {})
+            if hasattr(os, "mkfifo"):
+                fifo = root / "candidate.fifo"
+                os.mkfifo(fifo)
+                with self.assertRaises(OSError):
+                    gate.read_regular_file(fifo)
+
+    def test_release_gate_reader_rejects_oversized_candidate(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "large-candidate.json"
+            path.write_bytes(b" " * (16 * 1024 * 1024 + 1))
+            with self.assertRaisesRegex(OSError, "size limit"):
+                gate.read_regular_file(path)
+
 if __name__ == "__main__":
     unittest.main()
