@@ -1086,6 +1086,51 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
  .research-inspector .research-source-actions{grid-template-columns:minmax(0,1fr)}
 }
 @media(prefers-reduced-motion:reduce){#main .quick-link{transition:none}#main .quick-link:hover{transform:none}}
+
+/* Product identity and accessible workspace palette */
+#side .brand-name{display:flex;align-items:center;gap:11px;letter-spacing:.01em}
+#side .brand-mark{display:block;flex:0 0 38px;width:38px;height:38px;border-radius:11px;box-shadow:0 3px 12px rgba(0,0,0,.16)}
+#side .brand-subtitle{letter-spacing:.11em;font-weight:650}
+#side .primary-nav button{border-radius:10px;transition:background-color .16s ease,color .16s ease,border-color .16s ease}
+#side .primary-nav button.on{background:#e8efff;color:#173b78;border-inline-start:3px solid #315fca}
+#side .primary-nav button:focus-visible,#side button:focus-visible,#main button:focus-visible{outline:3px solid #315fca;outline-offset:2px}
+#main button.primary{background:#234b91;border-color:#234b91;color:#fff}
+#main button.primary:hover{background:#183b79;border-color:#183b79}
+#main button.g{border-color:#9aa9bd;color:#203b62;background:#fff}
+#main button.g:hover{background:#edf3fc;border-color:#315fca;color:#173b78}
+#main .calendar-workspace{padding:18px;margin:14px 0}
+#main .calendar-month-toolbar{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;align-items:center;gap:10px;margin-bottom:16px}
+#main .calendar-month-title{text-align:center;font-size:18px;color:#172f55}
+#main .calendar-month-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+#main .calendar-weekday{text-align:center;padding:8px 2px;color:#52627a;font-weight:700;font-size:12px}
+#main .calendar-day{min-width:0;min-height:94px;padding:8px;display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:start;border:1px solid #dce4ef;border-radius:10px;background:#fff;color:#23344f;overflow:hidden}
+#main .calendar-day:hover{background:#f2f6fd;border-color:#8299bb}
+#main .calendar-day.selected{border:2px solid #315fca;background:#edf3ff;padding:7px}
+#main .calendar-day.today .calendar-day-number{color:#1d55ad;font-weight:800}
+#main .calendar-day-number{font-weight:700}
+#main .calendar-day-count{font-size:10px;color:#60718b}
+#main .calendar-event-dot{display:block;width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;border-radius:4px;padding:2px 4px;font-size:10px;background:#e8eef8;color:#263d60}
+#main .calendar-event-dot.session{background:#e7efff;color:#244e94}
+#main .calendar-event-dot.deadline{background:#fff0e5;color:#8b451d}
+#main .calendar-event-dot.task{background:#e8f4ee;color:#286044}
+#main .calendar-empty-day{min-height:94px}
+#main .calendar-day-agenda{padding:16px;margin-top:14px}
+#main .calendar-agenda-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+#main .calendar-agenda-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#main .document-library-list .workspace-list-item{border:1px solid #e0e7f0;border-radius:10px;background:#fff;padding:12px}
+#main .document-library-filter{background:#f8faff;border-color:#dce4ef}
+#main .document-library-upload{border-radius:14px;border-color:#d7e1ef;box-shadow:0 5px 18px rgba(20,40,75,.045)}
+@media(max-width:650px){
+ #main .calendar-month-toolbar{grid-template-columns:auto minmax(0,1fr) auto}
+ #main .calendar-month-toolbar button:last-child{grid-column:1/-1}
+ #main .calendar-month-grid{gap:3px}
+ #main .calendar-day{min-height:66px;padding:5px;border-radius:7px}
+ #main .calendar-empty-day{min-height:66px}
+ #main .calendar-event-dot{font-size:9px}
+ #main .calendar-day-count{font-size:9px}
+ #main .calendar-workspace{padding:9px}
+}
+@media(prefers-reduced-motion:reduce){#side .primary-nav button{transition:none}}
 </style>
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <script>
@@ -1102,8 +1147,8 @@ function csrfToken(){return document.cookie.split('; ').find(x=>x.startsWith('lc
 async function api(p,m='GET',b){const headers={};if(b!==undefined)headers['Content-Type']='application/json';const csrf=csrfToken();if(csrf)headers['X-CSRF-Token']=decodeURIComponent(csrf);const r=await fetch(p,{method:m,credentials:'same-origin',headers,body:b!==undefined?JSON.stringify(b):undefined});
  if(r.status===423&&p!=='/billing'&&!p.startsWith('/account/mfa/')){if(ME.role==='admin')billingPage().catch(()=>{});else toast(LANG==='ar'?'المكتب في وضع القراءة فقط؛ تواصل مع مسؤول المكتب.':'This firm is in read-only mode; contact your firm administrator.');throw new Error('billing_locked')}
  if(r.status===401&&p!=='/login'&&!p.startsWith('/account/mfa/')){sessionStorage.removeItem('me');ME={};window.DOCUMENT_MATTER_ID=null;window.DOCUMENT_REVIEW_TARGET=null;login();throw new Error('auth')}
- const j=await r.json().catch(()=>({}));if(!r.ok){toast(err(j));throw new Error('api')}return j}
-function shell(title,...k){const navLabel=(ar,en)=>LANG==='ar'?ar:en;const globalSearchInput=h('input',{type:'search',maxLength:200,placeholder:uiText('ابحث عن ملف قضية أو رقمها أو العميل','Search matters by title, number or client'),'aria-label':uiText('البحث العام في ملفات القضايا المصرح بها','Global search across accessible matters')});const globalSearchResults=h('div',{className:'workspace-global-results',role:'region','aria-label':uiText('البحث العام في ملفات القضايا المصرح بها','Global search across accessible matters'),'aria-live':'polite'});const globalSearchButton=btn(uiText('بحث','Search'),runGlobalSearch,'g');async function runGlobalSearch(){const q=globalSearchInput.value.trim();if(!q){globalSearchResults.textContent=uiText('أدخل كلمة أو رقم قضية للبحث.','Enter a term or case number to search.');globalSearchInput.focus();return}globalSearchButton.disabled=true;globalSearchResults.textContent=uiText('جارٍ البحث في ملفات القضايا المصرح بها...','Searching accessible matters...');try{const params=new URLSearchParams({q,limit:'8',offset:'0'}),result=await api('/cases/search?'+params.toString()),items=Array.isArray(result.items)?result.items:[];globalSearchResults.replaceChildren(...(items.length?items.map(item=>btn((item.title||uiText('قضية رقم ','Matter #')+item.id)+' · #'+item.id+(item.client?' · '+item.client:''),()=>{PAGE='cases';window.DOCUMENT_REVIEW_TARGET=null;globalSearchResults.replaceChildren();view(item.id)},'g')):[h('p',{className:'mut',textContent:uiText('لا توجد ملفات قضايا مطابقة ضمن صلاحياتك.','No matching matters were found within your access scope.')})]));}catch(_){globalSearchResults.textContent=uiText('تعذر تنفيذ البحث. حاول مجدداً.','Search failed. Please try again.')}finally{globalSearchButton.disabled=false}}globalSearchInput.oninput=()=>globalSearchResults.replaceChildren();globalSearchInput.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();runGlobalSearch()}};const globalSearchBar=h('div',{className:'workspace-topbar'},h('div',{className:'workspace-global-search'},globalSearchInput,globalSearchButton),globalSearchResults);const firmOptions=Array.isArray(ME.firms)?ME.firms:[];const firmSwitch=firmOptions.length>1?h('div',{className:'firm-switch'},h('label',{textContent:navLabel('المكتب النشط','Active firm')}),h('select',{'aria-label':navLabel('اختيار المكتب النشط','Select active firm'),value:String(ME.firm_id||firmOptions[0].firm_id),onchange:async e=>{try{const result=await api('/session/firm','POST',{firm_id:Number(e.target.value)});const session=await api('/session');ME={...ME,...result,...session};window.DOCUMENT_MATTER_ID=null;window.DOCUMENT_REVIEW_TARGET=null;sessionStorage.me=JSON.stringify(ME);if(ME.mfa_enrollment_required){mfaEnrollmentPage();return}if(ME.mfa_verification_required){mfaChallengePage();return}dash()}catch(_){e.target.value=String(ME.firm_id||'')}}},...firmOptions.map(f=>h('option',{value:String(f.firm_id),textContent:f.firm_name+(f.role?' — '+f.role:'')})))):null;A.replaceChildren(h('div',{id:'shell'},h('a',{className:'skip-link',href:'#main',textContent:navLabel('تخطي إلى المحتوى الرئيسي','Skip to main content'),onclick:e=>{e.preventDefault();const main=$('main');if(main)main.focus()} }),h('aside',{id:'side','aria-label':navLabel('التنقل الرئيسي','Primary navigation')},h('h1',{className:'brand-name',textContent:'Lexora'}),h('p',{className:'brand-subtitle',textContent:navLabel('المساعد القانوني','LEGAL COPILOT')}),h('div',{className:'lang-switch'},h('button',{type:'button','data-lang-switch':'1',textContent:LANG==='ar'?'English':'العربية',onclick:switchLanguage})),firmSwitch,
+ const j=await r.json().catch(()=>({}));if(!r.ok){const message=err(j);toast(message);throw new Error(message||('HTTP '+r.status))}return j}
+function shell(title,...k){const navLabel=(ar,en)=>LANG==='ar'?ar:en;const globalSearchInput=h('input',{type:'search',maxLength:200,placeholder:uiText('ابحث عن ملف قضية أو رقمها أو العميل','Search matters by title, number or client'),'aria-label':uiText('البحث العام في ملفات القضايا المصرح بها','Global search across accessible matters')});const globalSearchResults=h('div',{className:'workspace-global-results',role:'region','aria-label':uiText('البحث العام في ملفات القضايا المصرح بها','Global search across accessible matters'),'aria-live':'polite'});const globalSearchButton=btn(uiText('بحث','Search'),runGlobalSearch,'g');async function runGlobalSearch(){const q=globalSearchInput.value.trim();if(!q){globalSearchResults.textContent=uiText('أدخل كلمة أو رقم قضية للبحث.','Enter a term or case number to search.');globalSearchInput.focus();return}globalSearchButton.disabled=true;globalSearchResults.textContent=uiText('جارٍ البحث في ملفات القضايا المصرح بها...','Searching accessible matters...');try{const params=new URLSearchParams({q,limit:'8',offset:'0'}),result=await api('/cases/search?'+params.toString()),items=Array.isArray(result.items)?result.items:[];globalSearchResults.replaceChildren(...(items.length?items.map(item=>btn((item.title||uiText('قضية رقم ','Matter #')+item.id)+' · #'+item.id+(item.client?' · '+item.client:''),()=>{PAGE='cases';window.DOCUMENT_REVIEW_TARGET=null;globalSearchResults.replaceChildren();view(item.id)},'g')):[h('p',{className:'mut',textContent:uiText('لا توجد ملفات قضايا مطابقة ضمن صلاحياتك.','No matching matters were found within your access scope.')})]));}catch(_){globalSearchResults.textContent=uiText('تعذر تنفيذ البحث. حاول مجدداً.','Search failed. Please try again.')}finally{globalSearchButton.disabled=false}}globalSearchInput.oninput=()=>globalSearchResults.replaceChildren();globalSearchInput.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();runGlobalSearch()}};const globalSearchBar=h('div',{className:'workspace-topbar'},h('div',{className:'workspace-global-search'},globalSearchInput,globalSearchButton),globalSearchResults);const firmOptions=Array.isArray(ME.firms)?ME.firms:[];const firmSwitch=firmOptions.length>1?h('div',{className:'firm-switch'},h('label',{textContent:navLabel('المكتب النشط','Active firm')}),h('select',{'aria-label':navLabel('اختيار المكتب النشط','Select active firm'),value:String(ME.firm_id||firmOptions[0].firm_id),onchange:async e=>{try{const result=await api('/session/firm','POST',{firm_id:Number(e.target.value)});const session=await api('/session');ME={...ME,...result,...session};window.DOCUMENT_MATTER_ID=null;window.DOCUMENT_REVIEW_TARGET=null;sessionStorage.me=JSON.stringify(ME);if(ME.mfa_enrollment_required){mfaEnrollmentPage();return}if(ME.mfa_verification_required){mfaChallengePage();return}dash()}catch(_){e.target.value=String(ME.firm_id||'')}}},...firmOptions.map(f=>h('option',{value:String(f.firm_id),textContent:f.firm_name+(f.role?' — '+f.role:'')})))):null;A.replaceChildren(h('div',{id:'shell'},h('a',{className:'skip-link',href:'#main',textContent:navLabel('تخطي إلى المحتوى الرئيسي','Skip to main content'),onclick:e=>{e.preventDefault();const main=$('main');if(main)main.focus()} }),h('aside',{id:'side','aria-label':navLabel('التنقل الرئيسي','Primary navigation')},h('h1',{className:'brand-name'},h('img',{src:'/static/app-icon.svg',alt:'',className:'brand-mark',width:38,height:38}),h('span',{textContent:'Lexora'})),h('p',{className:'brand-subtitle',textContent:navLabel('المساعد القانوني','LEGAL COPILOT')}),h('div',{className:'lang-switch'},h('button',{type:'button','data-lang-switch':'1',textContent:LANG==='ar'?'English':'العربية',onclick:switchLanguage})),firmSwitch,
  h('nav',{className:'primary-nav','aria-label':navLabel('روابط التنقل','Navigation links')},
   [['dash',navLabel('نظرة عامة','Overview'),dash],['documents',navLabel('المستندات','Documents'),documentsPage],...(ME.role==='admin'&&Array.isArray(ME.firms)?[['setup',navLabel('بدء الاستخدام','Getting started'),firstRunPage]]:[]),...(Array.isArray(ME.platform_roles)&&ME.platform_roles.includes('platform_admin')?[['platform-pilot-metrics',navLabel('مؤشرات استخدام المكاتب','Firm pilot metrics'),platformPilotMetricsPage]]:[]),['cases',navLabel('القضايا','Cases'),casesPage],['clients',navLabel('العملاء وتعارض المصالح','Clients & Conflicts'),clients],['tasks',navLabel('المهام','Tasks'),tasksPage],['calendar',navLabel('الأجندة والمواعيد','Calendar'),calendarPage],['finance',navLabel('الفواتير والتحصيل','Invoices & Finance'),financePage],['law',navLabel('البحث القانوني','Legal Research'),law],['feedback',navLabel('ملاحظات المنتج','Product feedback'),feedbackPage],...(ME.can_review_legal?[['coverage',navLabel('تغطية المجموعة القانونية','Corpus Coverage'),corpusCoverage],['review',navLabel('مراجعة المصادر القانونية','Legal Source Review'),reviewWorkbench]]:[]),['settings',navLabel('الإعدادات والأمان','Settings & Security'),settingsPage]]
    .map(([id,t,f])=>h('button',{type:'button',className:PAGE===id?'on':'','aria-current':PAGE===id?'page':null,textContent:t,onclick:()=>{PAGE=id;window.CASE_ID=null;window.DOCUMENT_REVIEW_TARGET=null;f()}})),
@@ -1720,34 +1765,56 @@ async function calendarPage(){
  items.sort((a,b)=>(a.date||'').localeCompare(b.date||''));
  const q=h('input',{placeholder:uiText('ابحث بالعنوان أو اسم القضية','Search title or case name')});
  const kind=h('select',{'aria-label':uiText('تصفية الأجندة حسب النوع','Filter calendar by type')},new Option(uiText('كل العناصر','All items'),''),new Option(uiText('الجلسات','Hearings'),'session'),new Option(uiText('المواعيد القانونية','Legal deadlines'),'deadline'),new Option(uiText('المهام','Tasks'),'task'));
- const range=h('select',{'aria-label':uiText('تصفية الأجندة حسب التاريخ','Filter calendar by date')},new Option(uiText('كل الفترات','All dates'),'all'),new Option(uiText('اليوم','Today'),'today'),new Option(uiText('هذا الأسبوع','This week'),'week'));
- const list=h('div',{className:'card'});
- const info=h('p',{className:'mut',textContent:uiText('تعرض هذه الأجندة الجلسات التي يعيدها النظام، والمواعيد المفتوحة خلال 30 يوماً، ومهامك المسندة ذات تاريخ استحقاق. تحقق من الملف والمصدر القانوني قبل الاعتماد على أي ميعاد طعن.','This agenda combines hearings returned by the system, open deadlines within 30 days, and assigned tasks with due dates. Verify the case file and legal source before relying on any appeal deadline.')});
+ const list=h('div',{className:'calendar-day-agenda card'});
+ const info=h('p',{className:'mut',textContent:uiText('تعرض هذه الأجندة الجلسات المسجلة والمواعيد والمهام ذات تواريخ الاستحقاق. تحقق من الملف والمصدر القانوني قبل الاعتماد على أي ميعاد طعن.','This calendar combines recorded hearings, deadlines and tasks with due dates. Verify the case file and legal source before relying on any appeal deadline.')});
  const localKey=value=>value.getFullYear()+'-'+String(value.getMonth()+1).padStart(2,'0')+'-'+String(value.getDate()).padStart(2,'0');
  const itemDay=item=>String(item.date||'').slice(0,10);
  const todayDate=new Date();todayDate.setHours(0,0,0,0);
  const todayKey=localKey(todayDate);
- const weekStart=new Date(todayDate);weekStart.setDate(weekStart.getDate()-((weekStart.getDay()+6)%7));
- const weekEnd=new Date(weekStart);weekEnd.setDate(weekEnd.getDate()+6);
- const weekStartKey=localKey(weekStart),weekEndKey=localKey(weekEnd);
- const draw=()=>{
-  const needle=q.value.trim().toLocaleLowerCase();
-  const rows=items.filter(x=>{
-   if(kind.value&&x.kind!==kind.value)return false;
-   if(!(x.title+' '+x.meta).toLocaleLowerCase().includes(needle))return false;
-   if(range.value==='today'&&itemDay(x)!==todayKey)return false;
-   if(range.value==='week'&&(!itemDay(x)||itemDay(x)<weekStartKey||itemDay(x)>weekEndKey))return false;
-   return true;
-  });
-  list.replaceChildren(info,...(rows.length?rows.map(x=>{
+ let shownMonth=new Date(todayDate.getFullYear(),todayDate.getMonth(),1),selectedDay=todayKey;
+ const monthLabel=()=>shownMonth.toLocaleDateString(LANG==='ar'?'ar-EG':'en-US',{month:'long',year:'numeric'});
+ const monthTitle=h('b',{className:'calendar-month-title',textContent:monthLabel()});
+ const grid=h('div',{className:'calendar-month-grid','aria-label':uiText('التقويم الشهري','Monthly calendar')});
+ const weekdays=(LANG==='ar'?['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت']:['Sun','Mon','Tue','Wed','Thu','Fri','Sat']);
+ const filtered=()=>{const needle=q.value.trim().toLocaleLowerCase();return items.filter(x=>(!kind.value||x.kind===kind.value)&&(x.title+' '+x.meta).toLocaleLowerCase().includes(needle))};
+ const drawAgenda=()=>{
+  const rows=filtered().filter(x=>itemDay(x)===selectedDay);
+  const dateText=new Date(selectedDay+'T12:00:00').toLocaleDateString(LANG==='ar'?'ar-EG':'en-US',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  list.replaceChildren(h('div',{className:'calendar-agenda-heading'},h('b',{textContent:dateText}),h('span',{className:'mut',textContent:rows.length+' '+uiText('عنصر','items')})),info,...(rows.length?rows.map(x=>{
    const label=x.kind==='session'?uiText('جلسة','Hearing'):x.kind==='deadline'?uiText('موعد قانوني','Legal deadline'):uiText('مهمة','Task');
    const action=x.kind==='task'?btn(uiText('إنجاز','Complete'),async()=>{await api('/tasks/'+x.id+'/done','POST');calendarPage()},'g'):x.kind==='deadline'?btn(uiText('إنجاز','Complete'),async()=>{await api('/deadlines/'+x.id+'/done','POST');calendarPage()},'g'):null;
-   return h('div',{className:'workspace-list-item'},h('div',{className:'item-main'},h('b',{textContent:x.title}),h('div',{className:'item-meta',textContent:label+' · '+(x.meta||'')}),pill(fd(x.date),itemDay(x)<todayKey?'late':itemDay(x)===todayKey?'soon':'open')),h('div',{style:'display:flex;align-items:center;gap:8px;flex-wrap:wrap'},h('b',{textContent:fd(x.date)}),action));
-  }):[empty(uiText('لا توجد عناصر مطابقة في نطاق العرض الحالي.','No matching items in the current view.'))]));
+   return h('div',{className:'workspace-list-item calendar-agenda-item'},h('div',{className:'item-main'},h('b',{textContent:x.title}),h('div',{className:'item-meta',textContent:label+' · '+(x.meta||'')})),h('div',{className:'calendar-agenda-actions'},h('b',{textContent:fd(x.date)}),action));
+  }):[empty(uiText('لا توجد عناصر لهذا اليوم. اختر يوماً آخر أو غيّر عوامل التصفية.','No items on this day. Choose another date or adjust the filters.'))]));
  };
- q.oninput=kind.onchange=range.onchange=draw;
- shell(uiText('الأجندة والمواعيد','Calendar & deadlines'),h('p',{className:'workspace-subtitle',textContent:uiText('عرض موحد للمهام والجلسات والمواعيد المسجلة.','A unified view of assigned tasks, hearings and recorded deadlines.')}),h('div',{className:'workspace-actions'},btn(uiText('تصدير إلى التقويم','Export to calendar'),()=>{window.location.href='/calendar.ics'},'g')),h('div',{className:'filter-bar'},q,kind,range),list);
- draw();
+ const drawMonth=()=>{
+  monthTitle.textContent=monthLabel();
+  const first=new Date(shownMonth.getFullYear(),shownMonth.getMonth(),1);
+  const offset=first.getDay();
+  const daysInMonth=new Date(shownMonth.getFullYear(),shownMonth.getMonth()+1,0).getDate();
+  const cells=[];
+  weekdays.forEach(day=>cells.push(h('div',{className:'calendar-weekday',textContent:day})));
+  for(let i=0;i<offset;i++)cells.push(h('div',{className:'calendar-empty-day','aria-hidden':'true'}));
+  const visible=filtered();
+  for(let day=1;day<=daysInMonth;day++){
+   const date=new Date(shownMonth.getFullYear(),shownMonth.getMonth(),day),key=localKey(date);
+   const dayItems=visible.filter(x=>itemDay(x)===key);
+   const dayButton=h('button',{type:'button',className:'calendar-day'+(key===selectedDay?' selected':'')+(key===todayKey?' today':''),'aria-pressed':String(key===selectedDay),'aria-label':key+' · '+dayItems.length+' '+uiText('عنصر','items'),onclick:()=>{selectedDay=key;drawMonth();drawAgenda()}},
+    h('span',{className:'calendar-day-number',textContent:String(day)}),
+    h('span',{className:'calendar-day-count',textContent:dayItems.length?String(dayItems.length)+' '+uiText('عناصر','items'):''}),
+    ...dayItems.slice(0,2).map(x=>h('span',{className:'calendar-event-dot '+x.kind,textContent:x.title}))
+   );
+   cells.push(dayButton);
+  }
+  grid.replaceChildren(...cells);
+ };
+ const prev=btn(uiText('السابق','Previous month'),()=>{shownMonth=new Date(shownMonth.getFullYear(),shownMonth.getMonth()-1,1);drawMonth()},'g');
+ const next=btn(uiText('التالي','Next month'),()=>{shownMonth=new Date(shownMonth.getFullYear(),shownMonth.getMonth()+1,1);drawMonth()},'g');
+ const today=btn(uiText('اليوم','Today'),()=>{shownMonth=new Date(todayDate.getFullYear(),todayDate.getMonth(),1);selectedDay=todayKey;drawMonth();drawAgenda()},'g');
+ const monthNav=h('div',{className:'calendar-month-toolbar'},prev,monthTitle,next,today);
+ const filters=h('div',{className:'filter-bar calendar-filters'},q,kind);
+ q.oninput=()=>{drawMonth();drawAgenda()};kind.onchange=()=>{drawMonth();drawAgenda()};
+ shell(uiText('الأجندة والمواعيد','Calendar & deadlines'),h('p',{className:'workspace-subtitle',textContent:uiText('تقويم شهري للجلسات والمواعيد القانونية والمهام المسندة.','Monthly calendar for hearings, legal deadlines and assigned tasks.')}),h('div',{className:'workspace-actions'},btn(uiText('تصدير إلى التقويم','Export to calendar'),()=>{window.location.href='/calendar.ics'},'g')),filters,h('section',{className:'calendar-workspace card'},monthNav,grid),list);
+ drawMonth();drawAgenda();
 }
 const caseRow=c=>h('div',{className:'row',style:'cursor:pointer',onclick:()=>{TAB='sum';view(c.id)}},h('div',{},h('b',{textContent:c.title}),h('div',{className:'mut',textContent:c.stage||uiText('بدون مرحلة','No stage')})),
  h('div',{style:'display:flex;gap:10px;align-items:center'},prog(c),h('span',{className:'mut',textContent:c.done_tasks+'/'+(c.done_tasks+c.open_tasks)+' '+uiText('مهام','tasks')}),pill(c.status==='open'?uiText('مفتوحة','Open'):uiText('مغلقة','Closed'),c.status==='open'?'open':'closed')));
@@ -2641,7 +2708,7 @@ async function law(){
    const optimistic=[...((await api('/research/conversations/'+activeId)).messages||[]),{role:'user',content:current},{role:'assistant',content:LANG==='ar'?'جارٍ البحث في المصادر…':'Searching sources…',sources:[]}];
    renderMessages(optimistic);
    try{await api('/research/conversations/'+activeId+'/messages','POST',{message:current,scope:scopeSelect.value,case_id:scopeSelect.value==='firm_documents'?Number(matterSelect.value):null});await loadConversation(activeId);researchStatus.textContent=LANG==='ar'?'اكتمل البحث. راجع الإجابة والمصادر.':'Research complete. Review the answer and sources.'}
-   catch(_){composer.value=current;researchStatus.textContent=LANG==='ar'?'تعذر إكمال البحث؛ تمت استعادة السؤال.':'Research failed; your question was restored.'}
+   catch(error){composer.value=current;const detail=String(error?.message||'').trim();researchStatus.textContent=(LANG==='ar'?'تعذر إكمال البحث؛ تمت استعادة السؤال. ':'Research failed; your question was restored. ')+(detail&&detail!=='api'?detail:'')}
    finally{sending=false;send.disabled=false;composer.disabled=false;composer.focus()}
  },'primary');
  composer.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send.click()}});
