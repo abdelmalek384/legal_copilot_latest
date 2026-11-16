@@ -84,6 +84,42 @@ class PdfOcrFallbackTests(unittest.TestCase):
         render_page.assert_not_called()
         fake_pytesseract.image_to_string.assert_not_called()
 
+    def test_ocr_environment_cannot_raise_hard_raster_ceilings(self):
+        fake_pytesseract = types.SimpleNamespace(
+            image_to_string=MagicMock(return_value="must not run")
+        )
+        fake_image = types.SimpleNamespace(open=lambda value: object())
+        fake_pil = types.ModuleType("PIL")
+        fake_pil.Image = fake_image
+
+        for width_points, height_points in (
+            (10_000.0, 1_000.0),
+            (5_000.0, 5_000.0),
+        ):
+            with self.subTest(width=width_points, height=height_points):
+                document = FakePdfDoc(1)
+                document.pages[0].rect = types.SimpleNamespace(
+                    width=width_points, height=height_points
+                )
+                fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: document)
+                with patch.dict(sys.modules, {
+                    "pymupdf": fake_pymupdf,
+                    "pytesseract": fake_pytesseract,
+                    "PIL": fake_pil,
+                }), patch.dict(os.environ, {
+                    "OCR_MAX_PIXELS": "999999999999",
+                    "OCR_MAX_DIMENSION": "999999999999",
+                }), patch.object(
+                    FakePdfPage, "get_pixmap", autospec=True
+                ) as render_page:
+                    with self.assertRaises(app.HTTPException) as caught:
+                        app.ocr_pdf_text(b"pdf")
+                self.assertEqual(caught.exception.status_code, 413)
+                self.assertIn("configured OCR raster limit", caught.exception.detail)
+                render_page.assert_not_called()
+
+        fake_pytesseract.image_to_string.assert_not_called()
+
     def test_all_scanned_pdf_still_obeys_ocr_page_limit(self):
         fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: FakePdfDoc(31))
         fake_pytesseract = types.SimpleNamespace(image_to_string=MagicMock(return_value="ocr text"))
