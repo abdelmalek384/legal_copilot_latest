@@ -86,6 +86,19 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0], 0)
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM legal_review_events").fetchone()[0], 6)
 
+    def test_registration_cannot_grant_source_collection_or_commercial_reuse(self):
+        for field, value, message in (
+            ("collection_permission", "allowed", "cannot grant collection permission"),
+            ("commercial_reuse_permission", "allowed_limited", "cannot grant commercial reuse permission"),
+        ):
+            candidate = dict(self.record)
+            candidate["sources"] = [dict(item) for item in self.record["sources"]]
+            candidate["sources"][0][field] = value
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, message):
+                self.register(self.db, candidate)
+            self.assertEqual(self.db.execute("SELECT COUNT(*) FROM legal_sources").fetchone()[0], 0)
+            self.assertEqual(self.db.execute("SELECT COUNT(*) FROM legal_documents").fetchone()[0], 0)
+
     def test_registration_ignores_candidate_supplied_verification_and_status_claims(self):
         candidate = dict(self.record)
         candidate["version"] = dict(self.record["version"])
