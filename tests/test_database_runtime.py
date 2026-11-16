@@ -1524,7 +1524,7 @@ class DatabaseRuntimeTests(unittest.TestCase):
         )
         for label, control, tenant_root, corpus in configurations:
             with self.subTest(profile=label):
-                with self.assertRaisesRegex(DatabaseRuntimeError, "symbolic-link path components"):
+                with self.assertRaisesRegex(DatabaseRuntimeError, "symlink"):
                     DatabaseRuntime(control, tenant_root, corpus)
 
     def test_runtime_refuses_ambiguous_or_overlapping_paths(self):
