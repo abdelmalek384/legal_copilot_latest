@@ -455,6 +455,44 @@ class DatabaseRuntimeTests(unittest.TestCase):
         finally:
             os.chmod(self.runtime.paths.legal_corpus, 0o600)
 
+    def test_firm_connection_revokes_tenant_handle_when_control_file_is_replaced(self):
+        user_id = self._identity("control-attachment-replacement@example.test")
+        firm_id, _ = self.runtime.provision_firm("Control Attachment Replacement")
+        self.runtime.create_firm_membership(user_id, firm_id, "admin")
+        context = self.runtime.resolve_context(user_id, firm_id)
+        tenant = self.runtime.firm_connection(context)
+
+        replacement = self.root / "replacement-control.sqlite3"
+        sqlite3.connect(replacement).close()
+        if os.name == "posix":
+            os.chmod(replacement, 0o600)
+        os.replace(replacement, self.runtime.paths.control_plane)
+
+        with self.assertRaisesRegex(DatabaseRuntimeError, "database file was replaced"):
+            self.runtime.firm_connection(context)
+        with self.assertRaises(sqlite3.ProgrammingError):
+            tenant.execute("SELECT 1")
+
+    def test_firm_connection_revokes_tenant_handle_when_attached_corpus_is_replaced(self):
+        user_id = self._identity("corpus-attachment-replacement@example.test")
+        firm_id, _ = self.runtime.provision_firm("Corpus Attachment Replacement")
+        self.runtime.create_firm_membership(user_id, firm_id, "admin")
+        context = self.runtime.resolve_context(user_id, firm_id)
+        tenant = self.runtime.firm_connection(context)
+
+        replacement = self.root / "replacement-corpus.sqlite3"
+        sqlite3.connect(replacement).close()
+        if os.name == "posix":
+            os.chmod(replacement, 0o600)
+        os.replace(replacement, self.runtime.paths.legal_corpus)
+
+        with self.assertRaisesRegex(
+            DatabaseRuntimeError, "attached control-plane or legal-corpus database was replaced"
+        ):
+            self.runtime.firm_connection(context)
+        with self.assertRaises(sqlite3.ProgrammingError):
+            tenant.execute("SELECT 1")
+
     def test_separate_profile_fresh_install_and_restart_preserve_data(self):
         firm_id, _ = self.runtime.provision_firm("Restart Firm")
         user_id = self.runtime.create_initial_firm_owner(
