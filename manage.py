@@ -950,7 +950,15 @@ def _read_recovery_locator(path_value: str | Path) -> dict:
             raw = handle.read(16385)
         if len(raw) > 16384:
             raise ValueError("locator file is too large")
-        locator = json.loads(raw)
+        def reject_duplicate_keys(pairs):
+            result = {}
+            for key, value in pairs:
+                if key in result:
+                    raise ValueError("locator JSON contains a duplicate object key")
+                result[key] = value
+            return result
+
+        locator = json.loads(raw, object_pairs_hook=reject_duplicate_keys)
         if not isinstance(locator, dict):
             raise ValueError("locator must be a JSON object")
         return locator
