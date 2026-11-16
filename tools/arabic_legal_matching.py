@@ -5,6 +5,7 @@ equivalence, or count as legal evidence. Original query tokens always remain fir
 """
 import json
 import re
+import unicodedata
 from functools import lru_cache
 from pathlib import Path
 
