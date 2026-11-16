@@ -231,6 +231,17 @@ def router_private():
         self.assertIn(("GET", "/manifest.webmanifest"), paths)
         self.assertIn(("GET", "/invite/accept"), paths)
 
+    def test_default_inventory_fails_closed_for_unregistered_router_import(self):
+        with tempfile.TemporaryDirectory() as directory:
+            app_path = Path(directory) / "app.py"
+            app_path.write_text(
+                "from routers.future_feature import router\\n",
+                encoding="utf-8",
+            )
+            with patch("tools.audit_route_sql_access.APP_FILE", app_path):
+                with self.assertRaisesRegex(RuntimeError, "no source mapping"):
+                    default_source()
+
 
 if __name__ == "__main__":
     unittest.main()
