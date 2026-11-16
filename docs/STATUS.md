@@ -1330,3 +1330,10 @@ Validation and remaining gates:
 - **Acceptance status:** no repository Python suite, Chromium/browser suite, CodeQL, dependency audit or safety regression has been demonstrated as passing in this batch. Inspected Actions jobs repeatedly had zero executed steps. Responsive RTL/LTR, keyboard, screen-reader, zoom, contrast, lawyer-usability and compact/motion visual review remain open.
 - **Latest repository-recorded engineering estimates (not independently revalidated):** whole project 75.3%; AI-2 79.6%; Legal Research Phase 5 85%. These are project estimates, not test-pass or release-readiness percentages.
 - **Release position:** continue implementation, but do not onboard real client data until the separately tracked security, tenant-isolation, backup/restore and operational acceptance gates have passed.
+
+
+## Permission-scoped global client search — 2026-11-17
+
+- Merged PR #1748 (`86f1704e6ea2edab2d429b9516fdd284aba90b22`): global search now searches matters and client profiles together. Added `GET /clients/search` before the dynamic client-ID route; it uses the existing tenant/membership-filtered `_client_payloads`, searches name/phone/email with Arabic letter and digit normalization, caps results, and returns only client ID/name.
+- Client results navigate to the client workspace with the matched name prefilled. Added backend tests for membership/cross-firm isolation, minimal response fields, phone/email search, Arabic normalization and query length; added frontend navigation contract. Updated UX audit and Arabic catalog; catalog now contains 1,567 unique entries.
+- Independent validation: full inline frontend JavaScript parsed with V8; backend route passed Python AST syntax validation; a Python logic harness passed name, phone, email, Arabic-letter, Arabic-digit, empty-query, limit and maximum-length cases. GitHub Actions Tests, Browser, dependency, safety and CodeQL jobs had zero executed steps; no full backend/browser pass is claimed.
