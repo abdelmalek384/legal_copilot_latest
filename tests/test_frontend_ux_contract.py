@@ -1360,5 +1360,22 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("financePage", HTML)
 
 
+    def test_document_filters_use_progressive_disclosure(self):
+        start = HTML.index("async function documentsPage(){")
+        end = HTML.index("\\nasync function ", start + 1)
+        page = HTML[start:end]
+        self.assertIn("className:'document-primary-filter'", page)
+        self.assertIn("className:'document-advanced-filters'", page)
+        self.assertIn("h('details'", page)
+        self.assertIn("h('summary'", page)
+        self.assertIn("documentTypeFilter,documentStatusFilter,documentClassificationFilter,clearDocumentFilters", page)
+        self.assertIn("#main .document-advanced-filters[open] summary", HTML)
+
+    def test_upload_queue_announces_each_file_as_a_list_item(self):
+        self.assertIn("className:'research-upload-results',role:'list'", HTML)
+        self.assertIn("className:'research-upload-item '+item.state,role:'listitem'", HTML)
+        self.assertIn("aria-live:'polite'", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
