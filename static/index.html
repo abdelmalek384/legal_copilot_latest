@@ -3511,7 +3511,7 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
   const renderLines=()=>lineContainer.replaceChildren(...lineRows.map((line,index)=>h('div',{className:'grid'},line.description,line.quantity,line.price,btn(uiText('حذف','Remove'),()=>{lineRows.splice(index,1);renderLines()},'g'))));
   const addLine=()=>{
    const line={description:h('input',{placeholder:uiText('بيان الخدمة','Service description')}),quantity:h('input',{type:'number',min:'0.001',step:'0.001',value:'1','aria-label':uiText('الكمية','Quantity')}),price:h('input',{type:'text',inputMode:'decimal',placeholder:uiText('سعر الوحدة بالجنيه','Unit price in EGP')})};
-   [line.description,line.quantity,line.price].forEach(watchFieldValidity);lineRows.push(line);renderLines();
+   watchFieldValidity(line.description);line.quantity.addEventListener('input',()=>{try{toMilli(line.quantity.value);clearFieldInvalid(line.quantity)}catch(_){}});line.price.addEventListener('input',()=>{try{toPiasters(line.price.value);clearFieldInvalid(line.price)}catch(_){}});lineRows.push(line);renderLines();
   };
   const toPiasters=value=>egpToPiasters(value);
   const toMilli=value=>{
@@ -3523,8 +3523,15 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
   addLine();
   const createButton=btn(uiText('إنشاء مسودة فاتورة','Create invoice draft'),async()=>{
    try{
-    const missingDescription=lineRows.find(line=>!line.description.value.trim());if(missingDescription){markFieldInvalid(missingDescription.description);toast(uiText('أدخل بياناً لكل بند','Enter a description for every line'));return}
-    const lines=lineRows.map(line=>({description:line.description.value.trim(),quantity_milli:toMilli(line.quantity.value),unit_price_piasters:toPiasters(line.price.value)}));
+    const lines=[];
+    for(const line of lineRows){
+     const description=line.description.value.trim();
+     if(!description){markFieldInvalid(line.description);toast(uiText('أدخل بياناً لكل بند','Enter a description for every line'));return}
+     let quantity_milli,unit_price_piasters;
+     try{quantity_milli=toMilli(line.quantity.value)}catch(e){markFieldInvalid(line.quantity);toast(String(e.message||e));return}
+     try{unit_price_piasters=toPiasters(line.price.value)}catch(e){markFieldInvalid(line.price);toast(String(e.message||e));return}
+     lines.push({description,quantity_milli,unit_price_piasters});
+    }
     createButton.disabled=true;
     await api('/cases/'+id+'/invoices','POST',{description:invoiceDescription.value.trim(),due_date:invoiceDue.value||null,lines});
     toast(uiText('تم إنشاء مسودة الفاتورة','Invoice draft created'));await loadInvoices();
