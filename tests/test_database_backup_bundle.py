@@ -102,6 +102,55 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         )
         restored_runtime.close_current_thread()
 
+    def test_backup_object_copy_hashes_the_same_no_follow_descriptor(self):
+        from database_backup import _copy_verified_original_object
+
+        source = self.root / "source-object.blob"
+        target = self.root / "payload-object.blob"
+        content = b"verified original evidence bytes"
+        source.write_bytes(content)
+        _copy_verified_original_object(
+            source,
+            target,
+            expected_size=len(content),
+            expected_sha256=hashlib.sha256(content).hexdigest(),
+        )
+        self.assertEqual(target.read_bytes(), content)
+        self.assertEqual(target.stat().st_mode & 0o777, 0o600)
+
+    def test_backup_object_copy_rejects_symlink_substitution_before_open(self):
+        import os
+        from unittest.mock import patch
+        import database_backup
+
+        source = self.root / "source-object.blob"
+        outside = self.root / "outside-object.blob"
+        target = self.root / "payload-object.blob"
+        outside_bytes = b"outside file must never be copied"
+        source.write_bytes(b"approved object")
+        outside.write_bytes(outside_bytes)
+        real_open = os.open
+        replaced = False
+
+        def replace_before_open(path, flags, *args, **kwargs):
+            nonlocal replaced
+            if Path(path) == source and not replaced:
+                replaced = True
+                source.unlink()
+                source.symlink_to(outside)
+            return real_open(path, flags, *args, **kwargs)
+
+        with patch.object(database_backup.os, "open", side_effect=replace_before_open):
+            with self.assertRaises(DatabaseBundleError):
+                database_backup._copy_verified_original_object(
+                    source,
+                    target,
+                    expected_size=len(b"approved object"),
+                    expected_sha256=hashlib.sha256(b"approved object").hexdigest(),
+                )
+        self.assertFalse(target.exists())
+        self.assertEqual(outside.read_bytes(), outside_bytes)
+
     def test_original_objects_restore_with_tenant_metadata_and_verified_bytes(self):
         import hashlib
         import app
