@@ -33,24 +33,12 @@ The following are related implementing/operational instruments, **not amendments
 - Effective-date handling remains separate: promulgation Article 13 provides commencement from the first day of the month following 90 days after publication, and specialized labour courts from the following 1 October. The Gazette publication date is 3 May 2025; do not treat the metadata `as_of=2025-05-03` as a commencement date.
 - Source reuse rights and the user-uploaded PDF's original download URL/capture chain remain unverified.
 
-## 5. Update — 2026-11-16: Gazette issue 108 / Ministerial Decisions 74–75/2026
-
-The official Amiri Press text page for **Ministerial Decision 74/2026** (https://alamiria.com/Sec/TashTxt?id=7RH1OgZLsC8%3D) identifies its subject as the regulation of labour-market observatories, cites Labour Law 14/2025 in its preamble, is dated **2026-04-15**, and states in Article 17 that it takes effect the day after publication in the Egyptian Gazette.
-
-The official Amiri Press text page for **Ministerial Decision 75/2026** (https://alamiria.com/Sec/TashTxt?id=82Iv%2FEE2jDk%3D) identifies its subject as restrictions on certain work by women for maternity protection and occupational-safety risks. The official DSpace catalogue record for **Egyptian Gazette Supplement issue 108**, dated **2026-05-17**, lists the Ministry of Labour and expressly identifies Decisions 74 and 75/2026 (https://dspace.id.com.eg/items/26264957-bfd5-4f7a-ba09-46268c28c87f).
-
-For Decision 74, the combination of the official text's day-after-publication clause and the Gazette metadata yields a **candidate effective date of 2026-05-18**. This is a date calculation from the located records, not a lawyer's interpretation or sign-off. For Decision 75, the issue/date are recorded, but its full operative text and commencement clause were not independently captured in this review; no effective date is inferred.
-
-The official Amiri Press text page for **Prime Minister Decision 2652/2026** (https://alamiria.com/Sec/TashTxt?id=MWc8qnk3Yg8%3D) is dated **2026-09-07** and extends by six months the period for specified private employment agencies under the final paragraph of Article 6 of Law 14/2025 to regularize their status. Article 2 directs publication in the Official Gazette, but the retrieved text contains no separate commencement clause. Its Gazette issue/page and the date from which the six-month extension runs remain unconfirmed; no effective date is inferred from the issuance date.
-
-Both instruments remain implementing/related candidates, not confirmed amendments to Law 14/2025. Exact page ranges, source reuse permissions, and qualified Egyptian-lawyer review remain outstanding. The metadata-only records remain permission-unknown, lawyer-review-pending, and search-ineligible.
-
 ## 4. Release restriction
 
 The Law 14/2025 comparison remains **source-matched, not lawyer-reviewed**. This snapshot does not change `lawyer_reviewed=false`, `authoritative=false`, or `retrieval_eligible=false`. Do not serve legal answers from this record as an authoritative or current consolidated text until source/currentness review and qualified Egyptian lawyer approval are complete.
 
 
-## 4. Update — 2026-11-13: Ministerial Decisions 248–252/2026
+## 5. Update — 2026-11-13: Ministerial Decisions 248–252/2026
 
 A new official Gazette metadata record was located for **الوقائع المصرية - ملحق الجريدة الرسمية العدد 225 تابع (أ)**. The Amiri Press/IDSC record identifies the Ministry of Labour as contributor, the Amiri Press as publisher, and the issue date as **2026-10-12**. Its description lists five decisions:
 
@@ -71,3 +59,15 @@ The Ministry published a further [clarification on Decision 249 dated 2026-10-27
 **Classification:** the Ministry describes Decisions 248–252 as executive decisions under Law 14/2025. They are tracked as related implementing instruments, not as amendments to the parent statute. Their precise legal relationship and operative effects are not confirmed until the full texts are reviewed. Metadata-only records were added to `data/candidates/labour_law_14_2025/related_instruments_candidates.json`; all five remain pending, permission-unknown and not retrieval-eligible.
 
 **Next dependency:** obtain the complete issue 225 supplement A PDF through a route the user is authorized to use, or provide a lawfully obtained copy for metadata/hash and page-level review. Until then, do not extract or infer operative rules from titles, summaries or third-party reproductions, and do not create searchable chunks or verified status.
+
+## 6. Update — 2026-11-16: Gazette issue 108 / Ministerial Decisions 74–75/2026
+
+The official Amiri Press text page for **Ministerial Decision 74/2026** (https://alamiria.com/Sec/TashTxt?id=7RH1OgZLsC8%3D) identifies its subject as the regulation of labour-market observatories, cites Labour Law 14/2025 in its preamble, is dated **2026-04-15**, and states in Article 17 that it takes effect the day after publication in the Egyptian Gazette.
+
+The official Amiri Press text page for **Ministerial Decision 75/2026** (https://alamiria.com/Sec/TashTxt?id=82Iv%2FEE2jDk%3D) identifies its subject as restrictions on certain work by women for maternity protection and occupational-safety risks. The official DSpace catalogue record for **Egyptian Gazette Supplement issue 108**, dated **2026-05-17**, lists the Ministry of Labour and expressly identifies Decisions 74 and 75/2026 (https://dspace.id.com.eg/items/26264957-bfd5-4f7a-ba09-46268c28c87f).
+
+For Decision 74, the combination of the official text's day-after-publication clause and the Gazette metadata yields a **candidate effective date of 2026-05-18**. This is a date calculation from the located records, not a lawyer's interpretation or sign-off. For Decision 75, the issue/date are recorded, but its full operative text and commencement clause were not independently captured in this review; no effective date is inferred.
+
+The official Amiri Press text page for **Prime Minister Decision 2652/2026** (https://alamiria.com/Sec/TashTxt?id=MWc8qnk3Yg8%3D) is dated **2026-09-07** and extends by six months the period for specified private employment agencies under the final paragraph of Article 6 of Law 14/2025 to regularize their status. Article 2 directs publication in the Official Gazette, but the retrieved text contains no separate commencement clause. Its Gazette issue/page and the date from which the six-month extension runs remain unconfirmed; no effective date is inferred from the issuance date.
+
+Both instruments remain implementing/related candidates, not confirmed amendments to Law 14/2025. Exact page ranges, source reuse permissions, and qualified Egyptian-lawyer review remain outstanding. The metadata-only records remain permission-unknown, lawyer-review-pending, and search-ineligible.
