@@ -240,6 +240,26 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
         self.assertTrue(self.s3.multipart_aborted)
         self.assertEqual(self.s3.multipart_uploads, {})
 
+    def test_download_removes_output_if_response_body_close_fails(self):
+        locator = self.upload()
+        target = self.root / "close-failure.enc"
+        item = self.s3.objects[(locator["bucket"], locator["key"], locator["version_id"])]
+
+        class CloseFailureBody(FakeBody):
+            def close(self):
+                super().close()
+                raise OSError("simulated response close failure")
+
+        self.s3.get_object = lambda **kwargs: {
+            "VersionId": locator["version_id"],
+            "Body": CloseFailureBody(item["data"]),
+        }
+        with self.assertRaises(DatabaseBundleError):
+            download_encrypted_bundle_version(
+                self.s3, self.kms, locator, target, **self.config
+            )
+        self.assertFalse(target.exists())
+
     def test_download_reads_exact_version_and_verifies_bytes(self):
         locator = self.upload()
         target = self.root / "downloaded.dbundle.enc"
