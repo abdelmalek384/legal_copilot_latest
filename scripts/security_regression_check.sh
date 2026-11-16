@@ -38,6 +38,7 @@ tests=(
   test_device_acceptance_release_integration.py
   test_production_release_gate.py
   test_database_recovery_drill.py
+  test_purge_approved_original_files.py
   test_document_extraction_budget.py
   test_pdf_ocr_fallback.py
   test_research_prompt_injection_boundary.py
