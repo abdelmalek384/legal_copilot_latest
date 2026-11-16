@@ -950,3 +950,8 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - GitHub Actions/repository test execution remains unavailable because of runner billing/allocation. No full-suite pass is claimed.
 - These controls protect local evidence/measurement inputs; they do not establish source authenticity, collection/commercial reuse permission, legal currentness, lawyer approval or product release readiness.
 - Updated AI-1 implementation estimate: **82%**. Legal corpus readiness remains **10%** pending authorized original Gazette materials and qualified Egyptian-counsel review. Whole-project engineering estimate remains **75.3% provisional** pending a fresh cross-workstream audit; it is not a release-readiness score.
+- Merged PR #1684: lawyer-review JSONL and private reviewer-registry inputs now use bounded stable descriptors; exact-byte provenance hashes are computed from the same bytes that are parsed.
+- Merged PR #1685: the approved-answer evaluator now reads question/result JSONL and reviewer-registry inputs through bounded stable descriptors, preserving exact-byte provenance.
+- Merged PR #1686: the production release gate now reads candidate evidence and reviewer registry through bounded stable descriptors; unreadable candidate evidence stays excluded and registry failures remain blockers.
+- The stable-read harness also passed isolated regular-file, FIFO, symlink-swap and size-limit checks. Repository tests remain unexecuted; CI billing is still blocking hosted test runs.
+- AI-1 engineering estimate after these additional evaluator/release-gate safeguards: **84%**. Legal corpus readiness remains **10%**; the whole-project estimate remains **75.3% provisional** pending cross-workstream re-audit.
