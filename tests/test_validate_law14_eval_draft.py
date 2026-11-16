@@ -1,8 +1,11 @@
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
+import tools.validate_law14_eval_draft as validator
 from tools.validate_law14_eval_draft import DEFAULT_DATASET, read_jsonl, validate_rows
 
 
@@ -94,6 +97,49 @@ class Law14DraftInventoryTests(unittest.TestCase):
                     ValueError, r"1: duplicate JSON object key '"
                 ):
                     read_jsonl(path)
+
+    def test_jsonl_reader_rejects_symlinks_special_files_and_invalid_utf8(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target = root / "target.jsonl"
+            target.write_text('{"id":"Q1"}\\n', encoding="utf-8")
+            link = root / "linked.jsonl"
+            link.symlink_to(target)
+            with self.assertRaisesRegex(ValueError, "bounded regular file|cannot safely read"):
+                read_jsonl(link)
+            if hasattr(os, "mkfifo"):
+                fifo = root / "questions.fifo"
+                os.mkfifo(fifo)
+                with self.assertRaisesRegex(ValueError, "bounded regular file"):
+                    read_jsonl(fifo)
+            invalid = root / "invalid.jsonl"
+            invalid.write_bytes(b"\\xff")
+            with self.assertRaisesRegex(ValueError, "valid UTF-8"):
+                read_jsonl(invalid)
+
+    def test_jsonl_reader_rejects_symlink_replacement_between_check_and_open(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = root / "questions.jsonl"
+            path.write_text('{"id":"Q1"}\\n', encoding="utf-8")
+            external = root / "external.jsonl"
+            external.write_text('{"id":"OUTSIDE"}\\n', encoding="utf-8")
+            real_open = validator.os.open
+            swapped = False
+
+            def replace_before_open(target, flags, *args, **kwargs):
+                nonlocal swapped
+                if Path(target) == path and not swapped:
+                    swapped = True
+                    path.unlink()
+                    path.symlink_to(external)
+                return real_open(target, flags, *args, **kwargs)
+
+            with patch.object(validator.os, "open", side_effect=replace_before_open):
+                with self.assertRaisesRegex(ValueError, "cannot safely read evaluation draft"):
+                    read_jsonl(path)
+            self.assertTrue(swapped)
+            self.assertEqual(external.read_text(encoding="utf-8"), '{"id":"OUTSIDE"}\\n')
 
     def test_jsonl_reader_rejects_non_object_rows(self):
         with tempfile.TemporaryDirectory() as directory:
