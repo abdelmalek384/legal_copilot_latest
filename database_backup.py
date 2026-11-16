@@ -812,7 +812,6 @@ def create_backup_bundle(
                     )
                     os.fsync(directory_fd)
             except OSError as exc:
-                final_path.unlink(missing_ok=True)
                 raise DatabaseBundleError("Could not sync encrypted backup publication") from exc
             finally:
                 if directory_fd is not None:
