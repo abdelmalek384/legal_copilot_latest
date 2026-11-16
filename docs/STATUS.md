@@ -1024,3 +1024,9 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - The S3 original-object adapter's streaming verifier now rejects an expected size above its configured `max_bytes` before calling S3, and reads no more than `max_bytes + 1` bytes when provider content exceeds its recorded metadata. The one-byte sentinel distinguishes an exact-limit object from an oversized response while keeping reconciliation/backup verification bounded; the body is closed on the early rejection path.
 - Added fake-S3 regressions for oversized expected metadata (no remote read) and a provider body five times the configured limit (only limit + 1 bytes read, then closed).
 - Source commit: `2668e8e`; regression commit: `a77a6f1`. Exact source, regression, status, blocker and security-matrix files were re-fetched from `main`; static checks confirmed the preflight rejection, max+1 read bound, remote-read avoidance, body-close assertion and matrix registration. The added test method passed standalone Python syntax/bytecode compilation. Repository runtime test execution remains **0%**. AI-2 estimate: **78.2%**; whole-project estimate remains **75.3% provisional**. No runtime pass is claimed.
+
+
+## AI-2 local original reconciliation read ceiling — 2026-11-16
+
+- The local original-file reconciler previously streamed an arbitrary-size regular file to EOF while hashing it. It now reads at most the hard 15,000,000-byte object ceiling plus one sentinel byte, closes the file on rejection, and emits a distinct `object_size_limit_exceeded` finding without modifying the object.
+- Added a regression with a patched small ceiling to verify oversized objects are reported and preserved. Source commit: `1aa0a40`; regression commit: `23aa5af`. Static source/test review pending; runtime suite remains unexecuted (0%). AI-2 estimate: **78.3%**; whole-project estimate remains **75.3% provisional**. No runtime pass is claimed.
