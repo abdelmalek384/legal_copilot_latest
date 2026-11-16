@@ -324,6 +324,8 @@ def score(questions, runs, reviewer_registry):
 def ensure_output_does_not_overwrite_inputs(output_path, input_paths):
     """Reject output paths that alias any source input, including symlinks/hardlinks."""
     output = Path(output_path)
+    if output.is_symlink():
+        raise ValueError("report output must not be a symlink")
     try:
         output_resolved = output.resolve()
         for input_path in input_paths:
