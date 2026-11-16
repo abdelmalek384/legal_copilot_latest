@@ -1510,6 +1510,23 @@ class DatabaseRuntimeTests(unittest.TestCase):
                 firm_id, "Second Owner", "second@example.test", "test-hash"
             )
 
+    @unittest.skipUnless(os.name == "posix", "POSIX symbolic links are required")
+    def test_runtime_rejects_symlinked_parent_components_for_all_database_profiles(self):
+        physical = self.root / "physical"
+        physical.mkdir()
+        alias = self.root / "physical-alias"
+        alias.symlink_to(physical, target_is_directory=True)
+
+        configurations = (
+            ("control-plane", alias / "control.sqlite3", self.root / "tenant-a", self.root / "corpus-a.sqlite3"),
+            ("tenant-root", self.root / "control-b.sqlite3", alias / "tenants", self.root / "corpus-b.sqlite3"),
+            ("legal-corpus", self.root / "control-c.sqlite3", self.root / "tenant-c", alias / "corpus-c.sqlite3"),
+        )
+        for label, control, tenant_root, corpus in configurations:
+            with self.subTest(profile=label):
+                with self.assertRaisesRegex(DatabaseRuntimeError, "symbolic-link path components"):
+                    DatabaseRuntime(control, tenant_root, corpus)
+
     def test_runtime_refuses_ambiguous_or_overlapping_paths(self):
         with self.assertRaises(DatabaseRuntimeError):
             DatabaseRuntime(
