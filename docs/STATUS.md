@@ -435,3 +435,11 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Validation: source and regression were reviewed statically only. No repository test module, dependency install, browser test, or GitHub Actions job was executed. The GitHub billing/runner issue remains a blocker for hosted checks; local checkout is still unavailable.
 - Current engineering estimates: tenant isolation/access control 84.5%; authentication/administration 85%; case management 90%; document processing/security 99%; backup/release readiness 40%; AI-2 overall approximately 72.8%; whole project approximately 72%. These are estimates, not test pass rates or acceptance evidence.
 - Execution-slice totals: 1 bounded tenant-router source hardening change, 1 regression added, 2 dependency pins updated, 2 superseded PRs closed, 0 PRs merged, 0 repository test modules executed. Remaining open PRs: #1610, #1644, #1645. Pilot/production remains **NOT READY**.
+
+
+## Dependency lock consistency correction — 2026-11-16
+
+- Reverted the direct FastAPI 0.162.5 and boto3 >=1.44.2 requirement edits in commit `ea88d36`: the checked-in `requirements-py312.lock` still pins FastAPI 0.162.0 and boto3/botocore 1.43.123, so the direct changes would make the lock-drift gate fail and boto3's lock pin would not satisfy the new lower bound.
+- PRs #1642 and #1643 remain closed; GitHub rejected reopening them because their Dependabot branches had been deleted. They were not merged and no dependency upgrade is currently applied. A new dependency update must regenerate the hash lock with the pinned Python 3.12 pip-tools resolver before it is eligible for review.
+- Corrected execution totals: tenant router source hardening 1; regression added 1; dependency upgrades retained 0; PRs merged 0; PRs closed as superseded 2; repository test modules executed 0. Open PRs remain #1610, #1644 and #1645.
+- Estimates remain tenant isolation/access control 84.5%, authentication/administration 85%, case management 90%, document processing/security 99%, backup/release readiness 40%, AI-2 approximately 72.8%, whole project approximately 72%. No test pass, dependency lock validation, or pilot readiness is claimed.
