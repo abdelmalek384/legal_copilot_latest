@@ -70,3 +70,6 @@
 
 - PR #1644: do not merge yet. It updates requirements.txt to pypdf 7.1.0 but leaves requirements-py312.lock at 6.21.4; its head also reports a failed CodeQL check and no commit statuses. PR #1610 remains draft and non-mergeable. Resolve lock parity and review checks before merging; no unsafe merge attempted.
 - Current validation blocker: GitHub Actions billing/runner availability prevents repository test execution. Static source review and isolated harnesses do not substitute for the registered repository suites.
+
+
+- 2026-11-16: Bounded S3 original-object reader now detects and rejects provider bodies that over-return beyond the requested read size, closes the body and has a regression (commits 155eaa6, f0e9283). Runtime tests remain unexecuted.
