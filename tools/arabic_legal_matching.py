@@ -62,7 +62,9 @@ def orthographic_variants(token):
 
 def _is_negated_at(normalized_query, start):
     """Recognize nearby Arabic negators without treating interrogative ما as negation."""
-    prefix = re.split(r"[.!?؟؛,،;]|\b(?:لكن|ولكن|بل|إنما|بس)\b", normalized_query[:start])[-1]
+    prefix = unicodedata.normalize("NFKC", normalized_query[:start])
+    prefix = re.sub(r"[\u0640\u064b-\u065f\u0670]", "", prefix)
+    prefix = re.split(r"[.!?؟؛,،;]|\b(?:لكن|ولكن|بل|إنما|بس)\b", prefix)[-1]
     if re.search(
         r"(?:^|\s)(?:مش|مفيش|مافيش|معنديش|ماعنديش|لا|ليس|ليست|لست|لم|لن|"
         r"غير|بدون|بلا|دون|بغير)\s+(?:\S+\s+){0,5}$",
