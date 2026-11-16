@@ -33,6 +33,16 @@ The following are related implementing/operational instruments, **not amendments
 - Effective-date handling remains separate: promulgation Article 13 provides commencement from the first day of the month following 90 days after publication, and specialized labour courts from the following 1 October. The Gazette publication date is 3 May 2025; do not treat the metadata `as_of=2025-05-03` as a commencement date.
 - Source reuse rights and the user-uploaded PDF's original download URL/capture chain remain unverified.
 
+## 5. Update — 2026-11-16: Gazette issue 108 / Ministerial Decisions 74–75/2026
+
+The official Amiri Press text page for **Ministerial Decision 74/2026** (https://alamiria.com/Sec/TashTxt?id=7RH1OgZLsC8%3D) identifies its subject as the regulation of labour-market observatories, cites Labour Law 14/2025 in its preamble, is dated **2026-04-15**, and states in Article 17 that it takes effect the day after publication in the Egyptian Gazette.
+
+The official Amiri Press text page for **Ministerial Decision 75/2026** (https://alamiria.com/Sec/TashTxt?id=82Iv%2FEE2jDk%3D) identifies its subject as restrictions on certain work by women for maternity protection and occupational-safety risks. The official DSpace catalogue record for **Egyptian Gazette Supplement issue 108**, dated **2026-05-17**, lists the Ministry of Labour and expressly identifies Decisions 74 and 75/2026 (https://dspace.id.com.eg/items/26264957-bfd5-4f7a-ba09-46268c28c87f).
+
+For Decision 74, the combination of the official text's day-after-publication clause and the Gazette metadata yields a **candidate effective date of 2026-05-18**. This is a date calculation from the located records, not a lawyer's interpretation or sign-off. For Decision 75, the issue/date are recorded, but its full operative text and commencement clause were not independently captured in this review; no effective date is inferred.
+
+Both instruments remain implementing/related candidates, not confirmed amendments to Law 14/2025. Exact page ranges, source reuse permissions, and qualified Egyptian-lawyer review remain outstanding. The metadata-only records remain permission-unknown, lawyer-review-pending, and search-ineligible.
+
 ## 4. Release restriction
 
 The Law 14/2025 comparison remains **source-matched, not lawyer-reviewed**. This snapshot does not change `lawyer_reviewed=false`, `authoritative=false`, or `retrieval_eligible=false`. Do not serve legal answers from this record as an authoritative or current consolidated text until source/currentness review and qualified Egyptian lawyer approval are complete.
