@@ -283,6 +283,26 @@ class CollectionPipelineTests(unittest.TestCase):
             self.assertEqual(json.loads(current.read_text(encoding="utf-8")), same_time_different_metadata)
             self.assertEqual({json.loads(p.read_text(encoding="utf-8"))["etag"] for p in history}, {'"first"', '"second"', '"third"'})
 
+    def test_metadata_history_collision_refuses_symlink_target(self):
+        metadata = {
+            "document_id": "TEST-LAW",
+            "retrieved_at": "2026-10-26T18:00:00.123456+00:00",
+            "sha256": "a" * 64,
+        }
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td)
+            meta_dir = out / "metadata"
+            history_dir = meta_dir / "history" / "TEST-LAW"
+            history_dir.mkdir(parents=True)
+            stamp = dt.datetime.fromisoformat(metadata["retrieved_at"]).strftime("%Y%m%dT%H%M%S%fZ")
+            candidate = history_dir / f"{stamp}-{metadata['sha256'][:12]}.json"
+            external = out / "outside-history.json"
+            external.write_text('{"sentinel":"untouched"}', encoding="utf-8")
+            candidate.symlink_to(external)
+            with self.assertRaisesRegex(ValueError, "history collision target"):
+                collector._archive_metadata_version(meta_dir, "TEST-LAW", metadata)
+            self.assertEqual(external.read_text(encoding="utf-8"), '{"sentinel":"untouched"}')
+
     def test_metadata_persistence_refuses_duplicate_keys_in_current_pointer(self):
         with tempfile.TemporaryDirectory() as td:
             out = Path(td)
