@@ -499,6 +499,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         }
         self.assertEqual(memberships[self.firm_a], "suspended")
         self.assertEqual(memberships[self.firm_b], "active")
+        self.assertEqual(
+            control.execute("SELECT COUNT(*) FROM auth_sessions WHERE user_id=?", (target_id,)).fetchone()[0],
+            0,
+        )
         suspended_event = control.execute(
             "SELECT actor_user_id,target_user_id,firm_id,event_type,detail_json FROM platform_security_events "
             "WHERE event_type='membership_suspended' AND target_user_id=? ORDER BY id DESC LIMIT 1",
