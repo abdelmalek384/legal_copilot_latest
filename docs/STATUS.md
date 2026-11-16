@@ -1243,3 +1243,10 @@ Validation and remaining gates:
 - Merged PR #1736 (`7e1203504b697006645926e3d99a911806148470`): added a chronological case-summary timeline for dated hearings, legal deadlines and tasks. Event types remain distinct; completed tasks retain their status. The view uses only case-detail records already returned by the authorized endpoint; filing/reminder events are omitted because the current payload does not provide them.
 - Added semantic list/list-item and `time` elements, a bilingual empty state, two Arabic-review catalog entries, and a frontend regression contract.
 - Independent validation: full inline JavaScript parsed with V8; the actual timeline helper executed against synthetic data and passed ordering, event-kind and invalid-date checks. GitHub Actions jobs failed before any test steps, so repository Python and browser acceptance remain unexecuted.
+
+
+## Legal Research default-scope preference — 2026-11-17
+
+- Merged PR #1737 (`4e232fc3b19c815628afa13056b5419e55f05fd7`): the selected Legal Research scope now persists in browser storage under a key scoped to the active firm and user. Only the three allowlisted scopes are restored; invalid values fall back to the verified-corpus default. Matter IDs and matter content are not stored by this preference.
+- Added a frontend regression contract and updated the UX gap audit. Independent runtime harness executed the actual preference setup/persist code with synthetic local-storage state and verified restore, persistence, allowlist fallback behavior, and firm-key separation. Full inline JavaScript V8 parse and focused source assertions passed.
+- GitHub Actions Tests and Browser acceptance jobs again failed before executing any steps; no repository Python or browser pass is claimed.
