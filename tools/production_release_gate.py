@@ -6,6 +6,7 @@ import argparse
 import json
 import os
 import re
+import stat
 import sqlite3
 import sys
 from datetime import date
@@ -47,6 +48,29 @@ def _reject_duplicate_json_keys(pairs):
     return result
 
 
+def read_regular_file(path, *, max_bytes=16 * 1024 * 1024):
+    """Read release-gate evidence through a bounded stable descriptor."""
+    path = Path(path)
+    before = path.lstat()
+    if not stat.S_ISREG(before.st_mode):
+        raise OSError("release-gate input must be a regular file")
+    if before.st_size > max_bytes:
+        raise OSError("release-gate input exceeds the size limit")
+    flags = os.O_RDONLY | getattr(os, "O_BINARY", 0) | getattr(os, "O_NONBLOCK", 0) | getattr(os, "O_NOFOLLOW", 0)
+    descriptor = os.open(path, flags)
+    with os.fdopen(descriptor, "rb") as stream:
+        opened = os.fstat(stream.fileno())
+        if not stat.S_ISREG(opened.st_mode) or (before.st_dev, before.st_ino) != (opened.st_dev, opened.st_ino):
+            raise OSError("release-gate input changed while opening")
+        data = stream.read(max_bytes + 1)
+        after = os.fstat(stream.fileno())
+        current = path.lstat()
+        if len(data) > max_bytes or len(data) != after.st_size:
+            raise OSError("release-gate input changed size or exceeds limit")
+        if (opened.st_dev, opened.st_ino) != (after.st_dev, after.st_ino) or (opened.st_size, opened.st_mtime_ns, opened.st_ctime_ns) != (after.st_size, after.st_mtime_ns, after.st_ctime_ns) or (current.st_dev, current.st_ino) != (opened.st_dev, opened.st_ino):
+            raise OSError("release-gate input changed while being read")
+    return data
+
 MIN_APPROVED_QUESTIONS = 100
 MIN_PRACTICE_AREAS = 10
 
@@ -74,7 +98,7 @@ def _ready_candidate_source_index(candidate_paths, legal_report):
         if Path(path).resolve() not in ready_paths:
             continue
         try:
-            candidate = json.loads(Path(path).read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+            candidate = json.loads(read_regular_file(path), object_pairs_hook=_reject_duplicate_json_keys)
         except (OSError, json.JSONDecodeError, DuplicateJSONKeyError):
             continue
         if not isinstance(candidate, dict):
@@ -461,7 +485,7 @@ def main(argv=None) -> int:
     reviewer_registry = None
     if args.reviewer_registry:
         try:
-            reviewer_registry = json.loads(args.reviewer_registry.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+            reviewer_registry = json.loads(read_regular_file(args.reviewer_registry), object_pairs_hook=_reject_duplicate_json_keys)
         except (OSError, json.JSONDecodeError, DuplicateJSONKeyError) as exc:
             parser.error(f"invalid reviewer registry: {exc}")
 
