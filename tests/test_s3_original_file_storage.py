@@ -354,6 +354,64 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         self.assertEqual(body.bytes_read, self.store.max_bytes + 1)
         self.assertTrue(body.closed, "oversized response body must be closed")
 
+    def test_open_bounds_oversized_stream_when_content_length_is_missing(self):
+        from unittest.mock import patch
+
+        class TrackingBody(io.BytesIO):
+            def __init__(self, value):
+                super().__init__(value)
+                self.bytes_read = 0
+
+            def read(self, size=-1):
+                block = super().read(size)
+                self.bytes_read += len(block)
+                return block
+
+        body = TrackingBody(b"x" * (self.store.max_bytes * 5))
+        with patch.object(
+            self.client, "get_object",
+            return_value={
+                "Body": body,
+                "ServerSideEncryption": "aws:kms",
+                "SSEKMSKeyId": self.client.CANONICAL_KMS_ARN,
+            },
+        ):
+            stream = self.store.open(12, "e" * 32)
+            with self.assertRaisesRegex(ObjectStorageError, "exceeds configured size limit"):
+                stream.read()
+
+        self.assertEqual(body.bytes_read, self.store.max_bytes + 1)
+        self.assertTrue(body.closed, "oversized open stream must be closed")
+
+    def test_open_rejects_oversized_content_length_before_reading(self):
+        from unittest.mock import patch
+
+        class TrackingBody(io.BytesIO):
+            def __init__(self):
+                super().__init__(b"x" * 100)
+                self.bytes_read = 0
+
+            def read(self, size=-1):
+                block = super().read(size)
+                self.bytes_read += len(block)
+                return block
+
+        body = TrackingBody()
+        with patch.object(
+            self.client, "get_object",
+            return_value={
+                "Body": body,
+                "ContentLength": self.store.max_bytes + 1,
+                "ServerSideEncryption": "aws:kms",
+                "SSEKMSKeyId": self.client.CANONICAL_KMS_ARN,
+            },
+        ):
+            with self.assertRaisesRegex(ObjectStorageError, "exceeds configured size limit"):
+                self.store.open(12, "f" * 32)
+
+        self.assertEqual(body.bytes_read, 0)
+        self.assertTrue(body.closed, "oversized metadata rejection must close the body")
+
     def test_finalize_preserves_staged_object_when_destination_kms_key_is_wrong(self):
         staged = self.store.stage(12, b"recoverable original bytes")
         self.client.copy_kms_key_id = "arn:aws:kms:us-east-1:123456789012:key/wrong-key"
