@@ -1594,5 +1594,17 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("className:'research-upload-item '+item.state,role:'listitem'", research)
         self.assertIn("uploadWarnings=h('div',{className:'research-upload-warnings'})", research)
         self.assertIn("role:kind==='error'?'alert':'status'", research)
+    def test_password_change_custom_validation_marks_and_clears_invalid_fields(self):
+        settings = HTML[HTML.index("async function settingsPage"):HTML.index("\nasync function feedbackPage")]
+        self.assertIn("confirmPassword.setAttribute('aria-invalid','true')", settings)
+        self.assertIn("confirmPassword.setAttribute('aria-describedby','toast')", settings)
+        self.assertIn("confirmPassword.focus()", settings)
+        self.assertIn("newPassword.setAttribute('aria-invalid','true')", settings)
+        self.assertIn("newPassword.setAttribute('aria-describedby','toast')", settings)
+        self.assertIn("newPassword.focus()", settings)
+        self.assertIn("const clearPasswordError=field=>{field.removeAttribute('aria-invalid');field.removeAttribute('aria-describedby')}", settings)
+        self.assertIn("if(newPassword.value===confirmPassword.value)clearPasswordError(confirmPassword)", settings)
+        self.assertIn("currentPassword.addEventListener('input',()=>{if(newPassword.value!==currentPassword.value)clearPasswordError(newPassword)})", settings)
+
 if __name__ == "__main__":
     unittest.main()
