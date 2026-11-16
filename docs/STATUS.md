@@ -1337,3 +1337,10 @@ Validation and remaining gates:
 - Merged PR #1748 (`86f1704e6ea2edab2d429b9516fdd284aba90b22`): global search now searches matters and client profiles together. Added `GET /clients/search` before the dynamic client-ID route; it uses the existing tenant/membership-filtered `_client_payloads`, searches name/phone/email with Arabic letter and digit normalization, caps results, and returns only client ID/name.
 - Client results navigate to the client workspace with the matched name prefilled. Added backend tests for membership/cross-firm isolation, minimal response fields, phone/email search, Arabic normalization and query length; added frontend navigation contract. Updated UX audit and Arabic catalog; catalog now contains 1,567 unique entries.
 - Independent validation: full inline frontend JavaScript parsed with V8; backend route passed Python AST syntax validation; a Python logic harness passed name, phone, email, Arabic-letter, Arabic-digit, empty-query, limit and maximum-length cases. GitHub Actions Tests, Browser, dependency, safety and CodeQL jobs had zero executed steps; no full backend/browser pass is claimed.
+
+
+## Global document search — 2026-11-17
+
+- Merged PR #1749 (`d609fdf4e9f608ab7c3b1c6a9cba2426a7311112`): global search now queries the existing permission-scoped `/documents/search` endpoint alongside matters and clients. Results are grouped by type; selecting a document opens the Documents workspace with its matter preselected.
+- Updated search placeholder/accessible labels, Arabic catalog, UX audit and frontend regression contract. Catalog now contains 1570 unique entries.
+- Independent validation: full inline frontend JavaScript parsed with V8; runtime harness returned all three result groups and verified document navigation/matter preselection; existing document endpoint source was checked for firm and membership scope. GitHub Actions jobs all had zero executed steps; no browser/backend suite pass is claimed.
