@@ -28,3 +28,5 @@
 - 2026-11-16: S3 original-object streaming integrity verification is now bounded by the adapter's configured `max_bytes`: impossible oversized metadata is rejected before S3 access and actual oversized bodies are read only through a one-byte-over-limit sentinel, then closed. Fake-S3 regressions are committed (`2668e8e`, `a77a6f1`); repository test execution remains unperformed and no pass is claimed.
 
 - 2026-11-16: Local original-file reconciliation hashing now stops at 15,000,000 bytes plus one sentinel and reports `object_size_limit_exceeded`; a regression verifies the oversized file is retained. Commits: `1aa0a40`, `23aa5af`. Runtime tests remain unexecuted; no pass is claimed.
+
+- 2026-11-16: Restore-to-S3 importer no longer trusts a prior path digest before later calling unbounded `read_bytes()`; it now opens a regular no-follow descriptor, performs a bounded read and revalidates digest/size immediately before upload. A regression simulates replacement between initial digest and upload. Commits: `8b021f2`, `f89370f`, `4199fc8`, `b75cbdf`. Runtime tests remain unexecuted; no pass is claimed.
