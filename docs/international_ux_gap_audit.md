@@ -39,7 +39,7 @@ These are implementation and automated-test claims only. They do not establish l
 ### P1 — Document analysis
 - Drag-and-drop upload with file limits, supported types, progress, cancellation and clear failure recovery.
 - Extracted text next to original page preview; page-level references, OCR confidence and editable corrections.
-- Document compare / redline, clause and obligation extraction, deadlines and party names with explicit user confirmation.
+- **Partially implemented:** matter-scoped cross-document extracted-text comparison is implemented through `/documents/compare`, with bounded literal hunks, chunk/page provenance and an explicit lawyer-review warning. It is not a legal redline or semantic assessment. Structured clause/obligation extraction, deadlines and party names with explicit user confirmation remain open.
 - Exportable research memo with citations, sources, as-of date and verification warnings.
 - Explicitly label user-supplied material and prevent it from being mistaken for official law.
 
