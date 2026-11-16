@@ -135,6 +135,8 @@ class ClaimSupportTests(unittest.TestCase):
             ("The employer has to provide notice.", "The employer doesn't have to provide notice."),
             ("The employer is obligated to provide notice.", "The employer is not obligated to provide notice."),
             ("The employer is obliged to provide notice.", "The employer is not obliged to provide notice."),
+            ("The employer is required to provide notice.", "The employer isn't required to provide notice."),
+            ("The employer is obliged to provide notice.", "The employer aren't obliged to provide notice."),
             ("The employer has to provide notice.", "The employer doesn’t have to provide notice."),
         )
         for claim, evidence in cases:
@@ -161,6 +163,8 @@ class ClaimSupportTests(unittest.TestCase):
             "The employer doesn't have to provide notice.",
             "The employer needn't provide notice.",
             "The employer doesn’t have to provide notice.",
+            "The employer isn't required to provide notice.",
+            "The employer aren't obliged to provide notice.",
             "The employer can’t deduct wages.",
         ):
             with self.subTest(evidence=evidence):
