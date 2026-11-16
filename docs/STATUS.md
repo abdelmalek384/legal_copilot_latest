@@ -355,3 +355,10 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - The original-download control is displayed only when the case-detail API explicitly reports `original_available=true` (or serialized `1`); otherwise the UI states that the original is unavailable. The existing server endpoint remains the authorization/integrity boundary. Download filenames are sanitized in the UI.
 - Added frontend regression contracts for all 12 tab destinations, grouped navigation/context, retention-aware downloads and OCR/page-reference warnings. Direct-main commits: matter UI `9c97603`, tests `020ec75`; review safeguards UI `720b2a8`, tests `1a655f8`.
 - Static inspection only. Tests and browser/RTL/LTR/keyboard/screen-reader acceptance remain unexecuted under the GitHub runner/billing restriction.
+
+
+## AI-2 matter Ask legal-source guidance — 2026-11-16
+
+- Added the same verified-source scope and abstention explanation to matter-level Ask that is already shown in Legal Research. It explains that the default scope searches verified legal text only, abstains when provenance/review requirements are unmet, and distinguishes source-catalog metadata from matter-document search.
+- The guidance is informational only; no retrieval scope, answer gate, legal-source trust tier or authorization behavior was changed.
+- Added a frontend regression contract. Direct-main UI/test commits: `6bd9e91`, `9a1da54`. Static inspection only; tests and browser acceptance remain unexecuted.
