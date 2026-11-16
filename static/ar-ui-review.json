@@ -4,8 +4,8 @@
   "purpose": "Reviewable inventory of Arabic-bearing string literals in static/index.html for a native Egyptian Arabic speaker. This is a review snapshot, not yet the runtime translation source; user-entered case and legal text is not included.",
   "source_file": "static/index.html",
   "source_commit": "e7583d977346dcf889eb8358b5eb5ea6b5747c3f",
-  "generated_on": "2026-11-16",
-  "entry_count": 1551,
+  "generated_on": "2026-11-17",
+  "entry_count": 1553,
   "entries": [
     {
       "id": "AR-0001",
@@ -17260,6 +17260,24 @@
       "source_file": "static/index.html",
       "source_lines": [
         2836
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1552",
+      "arabic": "الخط الزمني",
+      "source_file": "static/index.html",
+      "source_lines": [
+        3303
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1553",
+      "arabic": "لا توجد أحداث مؤرخة في هذه القضية بعد.",
+      "source_file": "static/index.html",
+      "source_lines": [
+        3368
       ],
       "review_status": "pending_native_review"
     }
