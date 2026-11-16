@@ -1558,5 +1558,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertNotIn(". .research-rating-menu", HTML)
 
 
+    def test_research_upload_panel_spans_the_composer_grid(self):
+        self.assertIn(".research-upload-panel{grid-column:1/-1;grid-template-columns:minmax(0,1fr);", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
