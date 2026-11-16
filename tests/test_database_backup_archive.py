@@ -308,6 +308,32 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
             )
         self.assertFalse(target.exists())
 
+    def test_download_stops_after_one_byte_past_declared_archive_size(self):
+        locator = self.upload()
+        item = self.s3.objects[(locator["bucket"], locator["key"], locator["version_id"])]
+
+        class TrackingBody(FakeBody):
+            def __init__(self, data):
+                super().__init__(data)
+                self.bytes_read = 0
+
+            def read(self, size=-1):
+                block = super().read(size)
+                self.bytes_read += len(block)
+                return block
+
+        body = TrackingBody(item["data"] + b"unbounded-trailing-data")
+        self.s3.get_object = lambda **kwargs: {
+            "VersionId": locator["version_id"], "Body": body,
+        }
+        target = self.root / "oversized-download.enc"
+        with self.assertRaisesRegex(DatabaseBundleError, "declared size"):
+            download_encrypted_bundle_version(
+                self.s3, self.kms, locator, target, **self.config
+            )
+        self.assertEqual(body.bytes_read, locator["size_bytes"] + 1)
+        self.assertFalse(target.exists())
+
     def test_download_reads_exact_version_and_verifies_bytes(self):
         locator = self.upload()
         target = self.root / "downloaded.dbundle.enc"
