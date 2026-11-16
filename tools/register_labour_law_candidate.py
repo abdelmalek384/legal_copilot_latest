@@ -94,7 +94,9 @@ def _valid_https_url(value: object) -> bool:
 
 def register(db, record):
     """Idempotently insert candidate source/document/version metadata."""
-    sources = record["sources"]
+    if not isinstance(record, dict):
+        raise ValueError("candidate record must be an object")
+    sources = record.get("sources")
     if not isinstance(sources, list) or not sources:
         raise ValueError("candidate record must contain a non-empty source list")
     source_by_id = {}
@@ -186,13 +188,17 @@ def register(db, record):
             raise ValueError("candidate source entries must be objects")
         collection_permission = source.get("collection_permission", "unknown")
         commercial_permission = source.get("commercial_reuse_permission", "unknown")
-        if not isinstance(collection_permission, str) or not collection_permission.strip():
-            raise ValueError("candidate collection_permission must be a non-empty string")
-        if not isinstance(commercial_permission, str) or not commercial_permission.strip():
-            raise ValueError("candidate commercial_reuse_permission must be a non-empty string")
-        if collection_permission in ("allowed", "allowed_limited"):
+        for field, permission in (
+            ("collection_permission", collection_permission),
+            ("commercial_reuse_permission", commercial_permission),
+        ):
+            if (not isinstance(permission, str) or not permission.strip()
+                    or permission != permission.strip()
+                    or any(ord(char) < 32 or ord(char) == 127 for char in permission)):
+                raise ValueError(f"candidate {field} must be a trimmed non-empty string without controls")
+        if collection_permission.casefold() in ("allowed", "allowed_limited"):
             raise ValueError("candidate registration cannot grant collection permission; use the canonical source-permission register")
-        if commercial_permission in ("allowed", "allowed_limited"):
+        if commercial_permission.casefold() in ("allowed", "allowed_limited"):
             raise ValueError("candidate registration cannot grant commercial reuse permission; use the canonical source-permission register")
     db.execute("SAVEPOINT candidate_registration")
     try:
