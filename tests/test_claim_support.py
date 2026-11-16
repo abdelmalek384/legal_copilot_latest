@@ -107,6 +107,25 @@ class ClaimSupportTests(unittest.TestCase):
             tokens, norm, _mask_markdown_code
         ))
 
+    def test_egyptian_ma_verb_sh_denial_of_permission_conflicts_with_permission(self):
+        negatives = (
+            "ما ينفعش للعامل الحصول على الإجازة السنوية.",
+            "ماينفعش للعامل الحصول على الإجازة السنوية.",
+            "ما يصحش للعامل الحصول على الإجازة السنوية.",
+            "ما يجوزش للعامل الحصول على الإجازة السنوية.",
+            "ما يحقش للعامل الحصول على الإجازة السنوية.",
+            "ما يسمحش للعامل بالحصول على الإجازة السنوية.",
+        )
+        positive = "يجوز للعامل الحصول على الإجازة السنوية."
+        for evidence in negatives:
+            with self.subTest(evidence=evidence):
+                self.assertTrue(_has_modal_mismatch(positive, evidence))
+                self.assertFalse(_has_modal_mismatch(evidence, evidence))
+                self.assertTrue(has_unsupported_claims(
+                    positive + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
     def test_arabic_denial_of_entitlement_conflicts_with_permission(self):
         cases = (
             ("يحق للعامل الحصول على الإجازة السنوية.", "ليس من حق العامل الحصول على الإجازة السنوية."),
