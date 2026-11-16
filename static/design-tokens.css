@@ -170,6 +170,14 @@ button.g{border-color:var(--line)}
  #side .nav-more[open] .nav-more-items{position:fixed;top:68px;inset-inline-end:12px;min-width:230px;max-height:min(70vh,520px);overflow:auto;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow-raised);z-index:60}
 }
 
+/* Phase 1 hardening: keep Research heading intact and prevent narrow-word splitting. */
+#main .research-list-head{flex-wrap:wrap;align-items:center}
+#main .research-list-head>b{flex:0 0 auto;white-space:nowrap;word-break:normal;overflow-wrap:normal;hyphens:none}
+#main .document-library-matter button{white-space:nowrap;word-break:normal;overflow-wrap:normal;hyphens:none;flex-shrink:0}
+#main label.settings-checkbox-row{display:flex;flex-direction:row;align-items:center;justify-content:flex-start;flex-wrap:nowrap;gap:10px;min-width:0}
+#main label.settings-checkbox-row>input[type="checkbox"]{display:block;flex:0 0 18px;width:18px;height:18px;min-height:18px;margin:0}
+#main label.settings-checkbox-row>span{display:block;flex:1 1 auto;min-width:0;line-height:1.5}
+
 /* Self-hosted Noto Naskh Arabic variable font (SIL Open Font License 1.1). */
 @font-face{
  font-family:"LegalCopilot Naskh";

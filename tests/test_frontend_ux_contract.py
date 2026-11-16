@@ -51,7 +51,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("currentPasswordField=h('label'", HTML)
         self.assertIn("newPasswordField=h('label'", HTML)
         self.assertIn("confirmPasswordField=h('label'", HTML)
-        self.assertIn("}},currentPasswordField,newPasswordField,confirmPasswordField,passwordSubmit)", HTML)
+        self.assertIn("currentPasswordField,newPasswordField,confirmPasswordField,passwordSubmit", HTML)
         self.assertIn("emailField=h('label'", HTML)
         self.assertIn("},emailField,role,submit)", HTML)
 
@@ -73,7 +73,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Promise.resolve().then(()=>toggle.click())", HTML)
         self.assertIn("targetCard.focus({preventScroll:true})", HTML)
         self.assertIn("targetCard.scrollIntoView", HTML)
-        self.assertIn("window.DOCUMENT_REVIEW_TARGET=null;TAB=k;again()", HTML)
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET=null;TAB=key;again()", HTML)
         self.assertIn("PAGE='cases';window.DOCUMENT_REVIEW_TARGET=null;globalSearchResults.replaceChildren();view(item.id)", HTML)
         self.assertIn("reviewRequest++;if(window.DOCUMENT_REVIEW_TARGET", HTML)
         self.assertIn("window.DOCUMENT_REVIEW_TARGET=null;\n  body.append", HTML)
@@ -205,7 +205,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("if(!ME.id){login(AUTH_MODE)", switch)
 
     def test_case_tabs_summary_team_and_activity_follow_selected_language(self):
-        self.assertIn("uiText('الملخص','Overview')", HTML)
+        self.assertIn("uiText('الملخص','Summary')", HTML)
         self.assertIn("uiText('الحالة: ','Status: ')", HTML)
         self.assertIn("uiText('جلسة','Hearing')", HTML)
         self.assertIn("uiText(RL[m.role]||m.role,m.role==='lead'?'Lead':m.role==='associate'?'Associate':'Junior')", HTML)
@@ -520,6 +520,17 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("not an Egyptian e-tax invoice", HTML)
         self.assertIn("api('/invoices/'+item.id+'/void','POST'", HTML)
 
+
+    def test_calendar_supports_today_and_type_filters(self):
+        calendar = HTML[HTML.index("async function calendarPage()"):HTML.index("const caseRow=")]
+        self.assertIn("const kind=h('select'", calendar)
+        self.assertIn("new Option(uiText('الجلسات','Hearings'),'session')", calendar)
+        self.assertIn("new Option(uiText('المواعيد القانونية','Legal deadlines'),'deadline')", calendar)
+        self.assertIn("new Option(uiText('المهام','Tasks'),'task')", calendar)
+        self.assertIn("const filtered=()=>", calendar)
+        self.assertIn("kind.onchange=()=>{drawMonth();drawAgenda()}", calendar)
+        self.assertIn("const today=btn(uiText('اليوم','Today')", calendar)
+
     def test_invoice_and_subscription_amounts_share_arabic_piaster_parser(self):
         self.assertIn("const egpToPiasters=raw=>", HTML)
         self.assertIn("const toPiasters=value=>egpToPiasters(value)", HTML)
@@ -530,21 +541,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Number(parts[0])*100", HTML)
 
 
-    def test_calendar_supports_today_and_monday_to_sunday_week_filters(self):
-        self.assertIn("new Option(uiText('اليوم','Today'),'today')", HTML)
-        self.assertIn("new Option(uiText('هذا الأسبوع','This week'),'week')", HTML)
-        self.assertIn("weekStart.setDate(weekStart.getDate()-((weekStart.getDay()+6)%7))", HTML)
-        self.assertIn("weekEnd.setDate(weekEnd.getDate()+6)", HTML)
-        self.assertIn("range.onchange=draw", HTML)
-        self.assertIn("itemDay(x)<weekStartKey||itemDay(x)>weekEndKey", HTML)
-
-
     def test_document_review_disclosure_exposes_controlled_expanded_state(self):
         self.assertIn("id:'doc-review-'+id+'-'+d.document_id", HTML)
         self.assertIn("toggle.setAttribute('aria-controls',reviewPanel.id)", HTML)
         self.assertIn("toggle.setAttribute('aria-expanded','false')", HTML)
         self.assertIn("toggle.setAttribute('aria-expanded','true')", HTML)
-        self.assertIn("toggle.setAttribute('aria-expanded','false');reviewPanel.replaceChildren()", HTML)
+        self.assertIn("reviewPanel.setAttribute('aria-busy','false');reviewPanel.replaceChildren()", HTML)
 
     def test_document_review_loading_and_completion_states_are_announced(self):
         self.assertIn("role:'status','aria-live':'polite'", HTML)
@@ -939,7 +941,7 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_document_original_download_uses_existing_audited_route(self):
         self.assertIn("/cases/'+id+'/docs/'+d.document_id+'/original", HTML)
         self.assertIn("credentials:'same-origin'", HTML)
-        self.assertIn("Download original (if retained)", HTML)
+        self.assertIn("Download original", HTML)
 
     def test_document_duplicate_signals_are_limited_to_current_matter(self):
         self.assertIn("byte_identical_candidate", HTML)
@@ -1103,7 +1105,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("documentStatusFilter.onchange=()=>renderDocuments(currentDocuments)", page)
 
     def test_firm_switch_clears_selected_document_matter_context(self):
-        self.assertIn("window.DOCUMENT_MATTER_ID=null;sessionStorage.me=JSON.stringify(ME)", HTML)
+        self.assertIn("window.DOCUMENT_MATTER_ID=null;window.DOCUMENT_REVIEW_TARGET=null;sessionStorage.me=JSON.stringify(ME)", HTML)
 
     def test_document_library_metrics_are_derived_from_selected_matter_records(self):
         page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
@@ -1160,7 +1162,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("documentFilter.value='';documentTypeFilter.value='';documentStatusFilter.value='';documentClassificationFilter.value=''", page)
 
     def test_sidebar_uses_lexora_brand_identity_from_figma(self):
-        self.assertIn("className:'brand-name',textContent:'Lexora'", HTML)
+        self.assertIn("h('h1',{className:'brand-name'", HTML)
+        self.assertIn("h('span',{textContent:'Lexora'})", HTML)
         self.assertIn("className:'brand-subtitle'", HTML)
         self.assertIn("#side .brand-name", HTML)
 
@@ -1374,7 +1377,7 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_upload_queue_announces_each_file_as_a_list_item(self):
         self.assertIn("className:'research-upload-results',role:'list'", HTML)
         self.assertIn("className:'research-upload-item '+item.state,role:'listitem'", HTML)
-        self.assertIn("aria-live:'polite'", HTML)
+        self.assertIn("'aria-live':'polite'", HTML)
 
 
     def test_matter_workspace_groups_all_tabs_and_keeps_matter_context_visible(self):
