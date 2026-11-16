@@ -31,6 +31,29 @@ from tenant_context import (
 from tenant_storage import TenantConnectionError, TenantSQLiteConnectionRouter
 
 
+def _path_has_symlink_component(path: str | Path) -> bool:
+    """Detect symlinks in every existing component without following them.
+
+    Missing path suffixes are allowed for first-run provisioning. Any other
+    inspection error fails closed because the component cannot be trusted.
+    """
+    candidate = Path(path).expanduser()
+    if not candidate.is_absolute():
+        candidate = Path.cwd() / candidate
+    current = Path(candidate.anchor)
+    for component in candidate.parts[1:]:
+        current = current / component
+        try:
+            mode = os.lstat(current).st_mode
+        except FileNotFoundError:
+            break
+        except OSError:
+            return True
+        if stat.S_ISLNK(mode):
+            return True
+    return False
+
+
 class DatabaseRuntimeError(RuntimeError):
     """Raised when database runtime configuration or initialization is invalid."""
 
@@ -62,13 +85,13 @@ class DatabaseRuntime:
         if timeout <= 0:
             raise ValueError("timeout must be positive")
         root = Path(tenant_storage_root).expanduser()
-        if root.is_symlink():
-            raise DatabaseRuntimeError("Tenant storage root must not be a symlink")
+        if _path_has_symlink_component(root):
+            raise DatabaseRuntimeError("Tenant storage root must not be a symlink or contain symlinked parent components")
         control = Path(control_plane_path).expanduser()
         corpus = Path(legal_corpus_path).expanduser()
         for label, path in (("control-plane", control), ("legal-corpus", corpus)):
-            if path.exists() and path.is_symlink():
-                raise DatabaseRuntimeError(f"{label} database path must not be a symlink")
+            if _path_has_symlink_component(path):
+                raise DatabaseRuntimeError(f"{label} database path must not be a symlink or traverse a symlinked parent")
 
         control_resolved = control.resolve()
         corpus_resolved = corpus.resolve()
@@ -105,8 +128,8 @@ class DatabaseRuntime:
     @staticmethod
     def _validate_profile_storage(path: Path, profile: str) -> None:
         """Revalidate control/corpus file and sidecars before every connection use."""
-        if path.is_symlink():
-            raise DatabaseRuntimeError(f"{profile} database path must not be a symlink")
+        if _path_has_symlink_component(path):
+            raise DatabaseRuntimeError(f"{profile} database path must not be a symlink or traverse a symlinked parent")
         if not path.is_file():
             raise DatabaseRuntimeError(f"{profile} database file is missing or not a regular file")
         if os.name == "posix":
@@ -365,7 +388,7 @@ class DatabaseRuntime:
                 # Production startup is not a provisioning command. Validate all
                 # persistent storage before touching either database so a missing
                 # corpus/control file cannot cause partial startup or silent recreation.
-                if self.paths.tenant_root.is_symlink() or not self.paths.tenant_root.is_dir():
+                if _path_has_symlink_component(self.paths.tenant_root) or not self.paths.tenant_root.is_dir():
                     raise DatabaseRuntimeError(
                         "Production tenant storage root must already exist and must not be a symlink"
                     )
@@ -440,8 +463,8 @@ class DatabaseRuntime:
                     self._validate_preprovisioned_profile(tenant_path, "firm")
             else:
                 self.paths.tenant_root.mkdir(parents=True, exist_ok=True)
-                if self.paths.tenant_root.is_symlink():
-                    raise DatabaseRuntimeError("Tenant storage root must not be a symlink")
+                if _path_has_symlink_component(self.paths.tenant_root):
+                    raise DatabaseRuntimeError("Tenant storage root must not be a symlink or contain symlinked parent components")
 
             control = self._open_profile_database(self.paths.control_plane, "control_plane")
             try:
@@ -456,8 +479,8 @@ class DatabaseRuntime:
             self._initialized = True
 
     def _open_profile_database(self, path: Path, profile: str) -> sqlite3.Connection:
-        if path.exists() and path.is_symlink():
-            raise DatabaseRuntimeError(f"{profile} database path must not be a symlink")
+        if _path_has_symlink_component(path):
+            raise DatabaseRuntimeError(f"{profile} database path must not be a symlink or traverse a symlinked parent")
         path.parent.mkdir(parents=True, exist_ok=True)
         created = False
         connection = None
@@ -815,7 +838,7 @@ class DatabaseRuntime:
             raise ValueError("reason, operator_reference, and change_reference are required")
         self._require_initialized()
         root = self.paths.tenant_root
-        if root.is_symlink() or not root.is_dir():
+        if _path_has_symlink_component(root) or not root.is_dir():
             raise DatabaseRuntimeError("Tenant storage root is unsafe; refusing reconciliation")
         control = self.control_connection()
         control.execute("BEGIN IMMEDIATE")
