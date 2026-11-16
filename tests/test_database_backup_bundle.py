@@ -601,6 +601,20 @@ class DatabaseBackupBundleTests(unittest.TestCase):
             )
 
 
+    def test_backup_rejects_symlink_aliased_protected_output_before_creation(self):
+        alias = self.root / "tenant-root-alias"
+        target = self.runtime.paths.tenant_root / "new-backup-output"
+        try:
+            alias.symlink_to(self.runtime.paths.tenant_root, target_is_directory=True)
+        except (NotImplementedError, OSError) as exc:
+            self.skipTest(f"symlinks unavailable: {exc}")
+        requested = alias / "new-backup-output"
+        with self.assertRaises(DatabaseBundleError):
+            create_backup_bundle(
+                self.runtime, self.cipher, requested, quiesced=True
+            )
+        self.assertFalse(target.exists())
+
     def test_backup_rejects_unreferenced_tenant_database_files(self):
         rogue = self.runtime.paths.tenant_root / "tenant-999-0123456789abcdef0123456789abcdef.sqlite3"
         rogue.write_bytes(b"unreferenced tenant data")
