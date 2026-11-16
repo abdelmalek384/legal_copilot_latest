@@ -291,7 +291,7 @@ class MFAAccountSecurityTests(unittest.TestCase):
 
             new_factor = second_client.post(
                 "/account/mfa/verify",
-                json={"code": totp_code(new_secret, (int(time.time()) // 30) * 30)},
+                json={"code": totp_code(new_secret, (int(time.time()) // 30 + 1) * 30)},
                 headers={"X-CSRF-Token": second_client.cookies.get("lc_csrf") or ""},
             )
             self.assertEqual(new_factor.status_code, 200, new_factor.text)
