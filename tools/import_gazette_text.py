@@ -184,14 +184,21 @@ def _validate_metadata(meta: object, text_bytes: bytes) -> dict:
             raise ValueError
     except ValueError as exc:
         raise ValueError("publication_date must be YYYY-MM-DD") from exc
-    try:
-        retrieved_datetime = dt.datetime.fromisoformat(meta["retrieved_at"].replace("Z", "+00:00"))
-    except ValueError as exc:
+    retrieved_at = meta["retrieved_at"]
+    if re.fullmatch(r"\\d{4}-\\d{2}-\\d{2}", retrieved_at):
         try:
-            dt.date.fromisoformat(meta["retrieved_at"])
-        except ValueError:
-            raise ValueError("retrieved_at must be an ISO date or timezone-aware datetime") from exc
+            retrieved_date = dt.date.fromisoformat(retrieved_at)
+            if retrieved_date.isoformat() != retrieved_at:
+                raise ValueError
+        except ValueError as exc:
+            raise ValueError("retrieved_at date must be YYYY-MM-DD") from exc
     else:
+        try:
+            retrieved_datetime = dt.datetime.fromisoformat(retrieved_at.replace("Z", "+00:00"))
+        except ValueError as exc:
+            raise ValueError(
+                "retrieved_at must be an ISO date or timezone-aware datetime"
+            ) from exc
         if retrieved_datetime.tzinfo is None or retrieved_datetime.utcoffset() is None:
             raise ValueError("retrieved_at datetime must include an explicit UTC offset")
     expected = meta["content_sha256"].lower()
