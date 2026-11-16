@@ -252,5 +252,39 @@ class ManualCaptureRecordTests(unittest.TestCase):
             with self.assertRaises(OSError):
                 MODULE._sha256_file(fifo)
 
+
+    def test_capture_record_reader_rejects_symlink_swap(self):
+        target = self.root / "capture-race.json"
+        target.write_text(json.dumps(self.record), encoding="utf-8")
+        outside = self.root / "outside-capture.json"
+        outside.write_text(json.dumps(self.record), encoding="utf-8")
+        real_open = MODULE.os.open
+        swapped = False
+
+        def replace_before_open(path, flags, *args, **kwargs):
+            nonlocal swapped
+            if Path(path) == target and not swapped:
+                swapped = True
+                target.unlink()
+                target.symlink_to(outside)
+            return real_open(path, flags, *args, **kwargs)
+
+        with patch.object(MODULE.os, "open", side_effect=replace_before_open):
+            with self.assertRaises((OSError, ValueError)):
+                MODULE.read_regular_file(target)
+        self.assertTrue(swapped)
+
+    def test_capture_record_reader_rejects_fifo_and_oversized_sidecars(self):
+        import os
+        if hasattr(os, "mkfifo"):
+            fifo = self.root / "capture.fifo"
+            os.mkfifo(fifo)
+            with self.assertRaises((OSError, ValueError)):
+                MODULE.read_regular_file(fifo)
+        oversized = self.root / "oversized-capture.json"
+        oversized.write_bytes(b" " * (1_048_576 + 1))
+        with self.assertRaises(ValueError):
+            MODULE.read_regular_file(oversized)
+
 if __name__ == "__main__":
     unittest.main()
