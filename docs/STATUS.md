@@ -1113,3 +1113,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 - Backup creation now totals snapshot file sizes before hashing them and rejects payloads above the restore-side expanded archive ceiling. It also includes serialized manifest bytes in the pre-ZIP size check, preventing oversized snapshots from consuming hash/ZIP work before eventual restore rejection.
 - Added a regression that lowers the ceiling and asserts rejection occurs before file hashing or ZIP creation. Source commit: 155e284; regression commit: b41fb19. Static review only; repository runtime tests remain 0% executed. AI-2 estimate: 79.1%; whole-project estimate remains 75.3% provisional.
+
+
+- ZIP portability follow-up: member preflight now also rejects Windows alternate-data-stream colons, reserved device components (CON/PRN/AUX/NUL/COM1–9/LPT1–9), and trailing dot/space aliases. Added seven unsafe-path variants to the preflight regression. Commits: source `45d5391`; tests `1119a10`. Runtime execution remains 0%.
