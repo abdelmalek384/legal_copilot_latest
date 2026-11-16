@@ -60,10 +60,8 @@ def inspect_firm_offboarding(
             or tenant_resolved in object_resolved.parents
             or object_resolved == control_resolved
             or object_resolved in control_resolved.parents
-            or control_resolved in object_resolved.parents
             or object_resolved == corpus_resolved
             or object_resolved in corpus_resolved.parents
-            or corpus_resolved in object_resolved.parents
         ):
             raise ValueError("object storage must be separate from database paths")
     elif object_root is not None:
