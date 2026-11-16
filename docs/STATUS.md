@@ -308,3 +308,10 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Added regression coverage for update/delete rejection, idempotent re-entry, refusal of a pre-existing weakened guard, and application of the guards across all three repository profiles. `tests/test_db_migrations.py` and `tests/test_schema_profiles.py` are already registered in the Tests workflow.
 - Tenant database preflight now independently reports missing/weakened ledger guards for both the control-plane catalog and each provisioned tenant. Corruption fixtures explicitly remove guards before simulating offline ledger tampering; the normal guarded path remains immutable. `tests/test_tenant_database_preflight.py` is workflow-registered.
 - Direct-main commits: migration-runner rollback `e30b576`, regression `8f19050`, profile migrations `89db25f`, `927ac1f`, `d7db063`, documentation `0a181b8`, cross-profile regression `4f10056`, status `f5e8ae4`, blocker register `48a0831`, preflight audit `4e73805`, preflight regressions `7902df9`, preflight docs `87e0d99`. Tests remain unexecuted because GitHub runner allocation/billing is unavailable; this is source implementation, not a test pass.
+
+
+## AI-2 firm data export audit fail-closed regression — 2026-11-16
+
+- Added a route-level regression that injects a SQLite failure when the firm-data-export success audit event is written. The export must return HTTP 503, must not return an application/zip response, and must not leave a success audit row.
+- The existing export implementation builds the archive before writing the success audit, then closes the temporary archive and returns an error if audit persistence fails. The new test pins that security contract.
+- Test is in the already workflow-registered separate-database application suite. It is committed but unexecuted; no runtime pass is claimed.
