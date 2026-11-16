@@ -980,3 +980,11 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Upload-side exact-version verification now treats a failure to close the persisted-object response stream as a failed archive verification rather than leaking a raw provider exception. The focused archive test module already runs in the Tests workflow and is listed in the security-review handoff/matrix.
 - Added a regression whose S3 response body reads the persisted bytes successfully but raises on close; the upload must fail with the backup-domain exception. Static inspection confirms the new source and test are present. Repository tests and hosted Actions remain unexecuted.
 - Source commits: `26d2c96`, `7737b68`; regression commit: `c163af2`. **Bounded implementation: 100%; runtime test execution: 0%.** AI-2 engineering estimate: **76.9%**; whole-project estimate remains **75.3% provisional**. This failure can leave an already-uploaded encrypted object version without a returned locator; reconcile the recovery-archive prefix before retrying. Production remains **NOT READY**.
+
+
+## AI-2 restore publication race hardening — 2026-11-16
+
+- Replaced restore's check-then-`os.replace` publication with Linux `renameat2(RENAME_NOREPLACE)`. If a target appears after preflight, publication fails without replacing that path; platforms lacking the required primitive fail closed.
+- Added a regression that simulates a destination appearing between preflight and publication and checks the existing marker plus staged tree are preserved.
+- Independently exercised the operating-system primitive in this environment: new-directory publication succeeded and a raced-in destination returned EEXIST without changing its marker. This validates the OS primitive only; the repository test module and full restore drill remain unexecuted.
+- Source commit: `8443834`; regression commits: `53d918f`, `5c179e7`. Restore publication implementation: **100%**; repository regression execution: **0%**. AI-2 estimate: **77.2%**; whole-project estimate remains **75.3% provisional**. Production remains **NOT READY**.
