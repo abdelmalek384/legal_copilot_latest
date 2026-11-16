@@ -122,6 +122,10 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
         non_object_source = dict(self.record)
         non_object_source["sources"] = ["not-an-object"]
         malformed.append((non_object_source, "source entries must be objects"))
+        missing_permission = dict(self.record)
+        missing_permission["sources"] = [dict(item) for item in self.record["sources"]]
+        missing_permission["sources"][0].pop("collection_permission")
+        malformed.append((missing_permission, "source collection_permission must be a non-empty string"))
         missing_source_authority = dict(self.record)
         missing_source_authority["sources"] = [dict(item) for item in self.record["sources"]]
         missing_source_authority["sources"][0].pop("authority")
