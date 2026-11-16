@@ -231,7 +231,9 @@ def main(argv: list[str] | None = None) -> int:
     if args.minimum_questions < 1:
         parser.error("--minimum-questions must be positive")
     try:
-        report = validate_rows(read_jsonl(args.dataset), args.minimum_questions)
+        rows, dataset_sha256 = read_jsonl_with_digest(args.dataset)
+        report = validate_rows(rows, args.minimum_questions)
+        report["dataset_sha256"] = dataset_sha256
     except (OSError, UnicodeError, ValueError) as exc:
         print(json.dumps({"valid": False, "error": str(exc)}, ensure_ascii=False, indent=2))
         return 1
