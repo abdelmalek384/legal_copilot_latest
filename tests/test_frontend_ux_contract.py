@@ -1677,6 +1677,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("const watchFieldValidity=field=>{const clear=()=>{if(field.checkValidity()&&String(field.value||'').trim())clearFieldInvalid(field)}", HTML)
         casework = HTML[HTML.index("if(TAB==='tasks')"):HTML.index("if(TAB==='docs')")]
         self.assertIn("watchFieldValidity(tt)", casework)
+        for field in ("tt","sd","ruleSelect","trigger","title","due","holidayDate","holidayName","txt"):
+            self.assertIn("markFieldInvalid("+field+")", casework)
         self.assertIn("watchFieldValidity(sd)", casework)
         self.assertIn("[title,due,trigger,ruleSelect].forEach(watchFieldValidity)", casework)
         self.assertIn("watchFieldValidity(holidayDate);watchFieldValidity(holidayName)", casework)
