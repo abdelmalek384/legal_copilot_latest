@@ -88,3 +88,6 @@
 
 
 - 2026-11-16: Bounded S3 response wrapper now makes close idempotent, with an assertion that overflow followed by caller close invokes provider close exactly once (commits 26bec92, d11ad41). Runtime tests remain unexecuted.
+
+
+- 2026-11-16: Backup creation now preflights ZIP entry count against the restore-side limit, counting the manifest, and refuses before hashing/writing when exceeded; regression asserts no hash/ZIP work (commits f3aac85, 80f1a14). Runtime tests remain unexecuted.
