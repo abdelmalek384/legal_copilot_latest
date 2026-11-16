@@ -193,6 +193,7 @@ def _copy_verified_original_object(
         isinstance(expected_size, bool)
         or not isinstance(expected_size, int)
         or expected_size <= 0
+        or expected_size > 15_000_000
         or not isinstance(expected_sha256, str)
         or not re.fullmatch(r"[0-9a-f]{64}", expected_sha256)
     ):
@@ -206,8 +207,8 @@ def _copy_verified_original_object(
         )
     except OSError as exc:
         raise DatabaseBundleError("Original object could not be inspected safely") from exc
-    if not stat.S_ISREG(before.st_mode):
-        raise DatabaseBundleError("Original object must be a regular non-symlink file")
+    if not stat.S_ISREG(before.st_mode) or before.st_nlink != 1:
+        raise DatabaseBundleError("Original object must be a single-link regular non-symlink file")
 
     source_flags = (
         os.O_RDONLY
@@ -229,6 +230,7 @@ def _copy_verified_original_object(
         opened = os.fstat(source_fd)
         if (
             not stat.S_ISREG(opened.st_mode)
+            or opened.st_nlink != 1
             or (opened.st_dev, opened.st_ino) != (before.st_dev, before.st_ino)
             or opened.st_size != expected_size
         ):
@@ -246,7 +248,7 @@ def _copy_verified_original_object(
             with os.fdopen(source_fd, "rb") as input_file:
                 source_fd = None
                 while True:
-                    block = input_file.read(1024 * 1024)
+                    block = input_file.read(min(1024 * 1024, expected_size - copied + 1))
                     if not block:
                         break
                     copied += len(block)
