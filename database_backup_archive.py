@@ -339,15 +339,21 @@ def download_encrypted_bundle_version(
     count = 0
     try:
         parent_before = parent.stat()
-        parent_descriptor = os.open(parent, directory_flags)
-        parent_opened = os.fstat(parent_descriptor)
-        if (
-            not stat.S_ISDIR(parent_opened.st_mode)
-            or (parent_opened.st_dev, parent_opened.st_ino)
-            != (parent_before.st_dev, parent_before.st_ino)
-        ):
-            _fail("Recovery download directory changed during validation")
-        descriptor = os.open(target.name, flags, 0o600, dir_fd=parent_descriptor)
+        if os.open in getattr(os, "supports_dir_fd", set()):
+            parent_descriptor = os.open(parent, directory_flags)
+            parent_opened = os.fstat(parent_descriptor)
+            if (
+                not stat.S_ISDIR(parent_opened.st_mode)
+                or (parent_opened.st_dev, parent_opened.st_ino)
+                != (parent_before.st_dev, parent_before.st_ino)
+            ):
+                _fail("Recovery download directory changed during validation")
+            descriptor = os.open(target.name, flags, 0o600, dir_fd=parent_descriptor)
+        else:
+            # Portable fallback: retain exclusive/no-follow target creation and
+            # verify the parent identity again before returning success.
+            descriptor = os.open(target, flags, 0o600)
+            parent_opened = parent_before
         created = True
         with os.fdopen(descriptor, "wb") as output:
             descriptor = None
@@ -373,9 +379,12 @@ def download_encrypted_bundle_version(
             _fail("Recovery download directory changed before publication")
         return target
     except Exception as exc:
-        if created and parent_descriptor is not None:
+        if created:
             try:
-                os.unlink(target.name, dir_fd=parent_descriptor)
+                if parent_descriptor is not None:
+                    os.unlink(target.name, dir_fd=parent_descriptor)
+                else:
+                    target.unlink(missing_ok=True)
             except OSError:
                 pass
         if isinstance(exc, DatabaseBundleError):
