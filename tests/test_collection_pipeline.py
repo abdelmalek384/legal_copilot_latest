@@ -181,6 +181,20 @@ class CollectionPipelineTests(unittest.TestCase):
                 collector.append_jsonl(link, {"private": "should not be written"})
             self.assertEqual(target.read_text(encoding="utf-8"), "sentinel\\n")
 
+    def test_jsonl_append_refuses_hardlink_targets(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            target = root / "private.jsonl"
+            alias = root / "review_queue.jsonl"
+            target.write_text("sentinel\\n", encoding="utf-8")
+            try:
+                os.link(target, alias)
+            except OSError as exc:
+                self.skipTest(f"hardlink creation unavailable: {type(exc).__name__}")
+            with self.assertRaisesRegex(ValueError, "single-link regular file"):
+                collector.append_jsonl(alias, {"private": "must not be appended"})
+            self.assertEqual(target.read_text(encoding="utf-8"), "sentinel\\n")
+
     def test_output_layout_rejects_symlinked_roots_directories_and_report_files(self):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
