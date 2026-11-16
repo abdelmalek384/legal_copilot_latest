@@ -6484,6 +6484,16 @@ def disable_user(uid: int, u: dict = Depends(user)):
         c = control_conn()
         c.execute("BEGIN IMMEDIATE")
         try:
+            actor = c.execute(
+                "SELECT 1 FROM firm_memberships fm "
+                "JOIN users actor_user ON actor_user.id=fm.user_id "
+                "JOIN firms actor_firm ON actor_firm.id=fm.firm_id "
+                "WHERE fm.user_id=? AND fm.firm_id=? AND fm.firm_role='admin' "
+                "AND fm.status='active' AND actor_user.status='active' AND actor_firm.status='active'",
+                (int(u["id"]), int(u["firm_id"])),
+            ).fetchone()
+            if actor is None:
+                raise HTTPException(403, "active firm administrator membership required")
             target = c.execute(
                 "SELECT id,firm_role FROM firm_memberships WHERE user_id=? AND firm_id=? AND status='active'",
                 (uid, u["firm_id"]),
