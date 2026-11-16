@@ -976,37 +976,66 @@ def _validated_restore_destination(target_root: str | Path) -> tuple[Path, Path]
     return destination, parent
 
 
-def _publish_restore_directory_no_replace(staged_root: Path, destination: Path) -> None:
+def _publish_restore_directory_no_replace(
+    staged_root: Path, destination: Path, parent: Path
+) -> None:
     """Atomically publish a complete restore tree without replacing any target."""
     if os.name != "posix":
         raise DatabaseBundleError(
             "Atomic no-overwrite restore publication is unsupported on this platform"
         )
+    parent = Path(parent)
     try:
-        import ctypes
-
-        libc = ctypes.CDLL(None, use_errno=True)
-        renameat2 = getattr(libc, "renameat2", None)
-        if renameat2 is None:
-            raise DatabaseBundleError(
-                "Atomic no-overwrite restore publication requires renameat2 support"
-            )
-        renameat2.argtypes = [
-            ctypes.c_int, ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p, ctypes.c_uint
-        ]
-        renameat2.restype = ctypes.c_int
-        result = renameat2(
-            -100, os.fsencode(staged_root),
-            -100, os.fsencode(destination),
-            1,  # RENAME_NOREPLACE: never replace a raced-in file or directory.
+        relative_source = staged_root.relative_to(parent)
+        if (
+            destination.parent != parent
+            or not relative_source.parts
+            or ".." in relative_source.parts
+            or not destination.name
+        ):
+            raise DatabaseBundleError("Restore publication paths are not anchored to the validated parent")
+        # Anchor both names to one opened parent directory. This prevents a
+        # path-level parent swap from redirecting the final rename.
+        before = os.stat(parent, follow_symlinks=False)
+        if not stat.S_ISDIR(before.st_mode):
+            raise DatabaseBundleError("Restore publication parent is not a real directory")
+        parent_fd = os.open(
+            parent,
+            os.O_RDONLY | getattr(os, "O_DIRECTORY", 0) | getattr(os, "O_NOFOLLOW", 0),
         )
-        if result != 0:
-            error_number = ctypes.get_errno()
-            if error_number == errno.EEXIST:
+        try:
+            opened = os.fstat(parent_fd)
+            if (
+                not stat.S_ISDIR(opened.st_mode)
+                or (opened.st_dev, opened.st_ino) != (before.st_dev, before.st_ino)
+            ):
+                raise DatabaseBundleError("Restore publication parent changed during open")
+            import ctypes
+
+            libc = ctypes.CDLL(None, use_errno=True)
+            renameat2 = getattr(libc, "renameat2", None)
+            if renameat2 is None:
                 raise DatabaseBundleError(
-                    "Restore target appeared during publication; existing path was preserved"
+                    "Atomic no-overwrite restore publication requires renameat2 support"
                 )
-            raise OSError(error_number, os.strerror(error_number), str(destination))
+            renameat2.argtypes = [
+                ctypes.c_int, ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p, ctypes.c_uint
+            ]
+            renameat2.restype = ctypes.c_int
+            result = renameat2(
+                parent_fd, os.fsencode(relative_source.as_posix()),
+                parent_fd, os.fsencode(destination.name),
+                1,  # RENAME_NOREPLACE: never replace a raced-in file or directory.
+            )
+            if result != 0:
+                error_number = ctypes.get_errno()
+                if error_number == errno.EEXIST:
+                    raise DatabaseBundleError(
+                        "Restore target appeared during publication; existing path was preserved"
+                    )
+                raise OSError(error_number, os.strerror(error_number), str(destination))
+        finally:
+            os.close(parent_fd)
     except DatabaseBundleError:
         raise
     except (AttributeError, OSError, TypeError, ValueError) as exc:
@@ -1251,7 +1280,7 @@ def _restore_backup_bundle_bytes(
             except OSError:
                 if os.name == "posix":
                     raise DatabaseBundleError("Could not restrict permissions on restored object directory")
-        _publish_restore_directory_no_replace(staged_root, destination)
+        _publish_restore_directory_no_replace(staged_root, destination, parent)
 
     return {
         "root": destination,
