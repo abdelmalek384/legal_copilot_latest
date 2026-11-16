@@ -89,7 +89,7 @@ class Law14DraftInventoryTests(unittest.TestCase):
     def test_jsonl_reader_hashes_the_exact_bytes_it_parses(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "questions.jsonl"
-            raw = b"\\xef\\xbb\\xbf" + '{"id":"Q1"}\\n'.encode("utf-8")
+            raw = b"\xef\xbb\xbf" + '{"id":"Q1"}\n'.encode("utf-8")
             path.write_bytes(raw)
             rows, digest = validator.read_jsonl_with_digest(path)
             self.assertEqual(rows, [{"id": "Q1"}])
