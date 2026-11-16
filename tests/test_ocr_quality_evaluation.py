@@ -20,7 +20,7 @@ class OCRQualityEvaluationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             target = root / "target.jsonl"
-            target.write_text('{"id":"P1"}\\n', encoding="utf-8")
+            target.write_text('{"id":"P1"}\n', encoding="utf-8")
             link = root / "linked.jsonl"
             link.symlink_to(target)
             with self.assertRaisesRegex(OCREvaluationError, "bounded regular file|cannot safely read"):
@@ -31,7 +31,7 @@ class OCRQualityEvaluationTests(unittest.TestCase):
                 with self.assertRaisesRegex(OCREvaluationError, "bounded regular file"):
                     read_jsonl(fifo)
             invalid = root / "invalid.jsonl"
-            invalid.write_bytes(b"\\xff")
+            invalid.write_bytes(b"\xff")
             with self.assertRaisesRegex(OCREvaluationError, "valid UTF-8"):
                 read_jsonl(invalid)
 
@@ -42,9 +42,9 @@ class OCRQualityEvaluationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             path = root / "ocr.jsonl"
-            path.write_text('{"id":"P1"}\\n', encoding="utf-8")
+            path.write_text('{"id":"P1"}\n', encoding="utf-8")
             external = root / "external.jsonl"
-            external.write_text('{"id":"OUTSIDE"}\\n', encoding="utf-8")
+            external.write_text('{"id":"OUTSIDE"}\n', encoding="utf-8")
             real_open = evaluator.os.open
             swapped = False
 
@@ -60,7 +60,7 @@ class OCRQualityEvaluationTests(unittest.TestCase):
                 with self.assertRaisesRegex(OCREvaluationError, "cannot safely read OCR evaluation input"):
                     read_jsonl(path)
             self.assertTrue(swapped)
-            self.assertEqual(external.read_text(encoding="utf-8"), '{"id":"OUTSIDE"}\\n')
+            self.assertEqual(external.read_text(encoding="utf-8"), '{"id":"OUTSIDE"}\n')
 
     def test_jsonl_reader_rejects_duplicate_keys_at_all_object_depths(self):
         from tools.evaluate_ocr_quality import read_jsonl
