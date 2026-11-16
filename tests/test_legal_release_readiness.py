@@ -704,5 +704,49 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         with self.assertRaises(OSError):
             MODULE.read_regular_file(fifo)
 
+    def test_build_report_rejects_permission_register_symlink_swap(self):
+        register_path = self.root / "permission-register.json"
+        register_path.write_text(json.dumps(self.register), encoding="utf-8")
+        outside = self.root / "outside-register.json"
+        outside.write_text(json.dumps({"sources": []}), encoding="utf-8")
+        real_open = MODULE.os.open
+        swapped = False
+
+        def replace_before_open(path, flags, *args, **kwargs):
+            nonlocal swapped
+            if Path(path) == register_path and not swapped:
+                swapped = True
+                register_path.unlink()
+                register_path.symlink_to(outside)
+            return real_open(path, flags, *args, **kwargs)
+
+        with patch.object(MODULE.os, "open", side_effect=replace_before_open):
+            report = MODULE.build_report([], register_path, self.root)
+        self.assertTrue(swapped)
+        self.assertIn("Cannot read permission register", report["error"])
+
+    def test_build_report_marks_candidate_symlink_swap_unreadable(self):
+        register_path = self.root / "permission-register.json"
+        register_path.write_text(json.dumps(self.register), encoding="utf-8")
+        candidate_path = self.root / "candidate.json"
+        candidate_path.write_text(json.dumps(self.candidate), encoding="utf-8")
+        outside = self.root / "outside-candidate.json"
+        outside.write_text(json.dumps(self.candidate), encoding="utf-8")
+        real_open = MODULE.os.open
+        swapped = False
+
+        def replace_before_open(path, flags, *args, **kwargs):
+            nonlocal swapped
+            if Path(path) == candidate_path and not swapped:
+                swapped = True
+                candidate_path.unlink()
+                candidate_path.symlink_to(outside)
+            return real_open(path, flags, *args, **kwargs)
+
+        with patch.object(MODULE.os, "open", side_effect=replace_before_open):
+            report = MODULE.build_report([candidate_path], register_path, self.root)
+        self.assertTrue(swapped)
+        self.assertIn("candidate_unreadable", {item["code"] for item in report["candidates"][0]["blockers"]})
+
 if __name__ == "__main__":
     unittest.main()
