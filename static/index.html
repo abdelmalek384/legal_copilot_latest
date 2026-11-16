@@ -1131,6 +1131,34 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
  #main .calendar-workspace{padding:9px}
 }
 @media(prefers-reduced-motion:reduce){#side .primary-nav button{transition:none}}
+
+/* Document library: desktop file-shelf layout with readable matter context */
+#main .document-library-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,310px),1fr));gap:14px;align-items:stretch}
+#main .document-library-item{display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-width:0;padding:16px;border:1px solid #dbe3ef;border-radius:13px;background:linear-gradient(180deg,#fff 0%,#fbfcff 100%);box-shadow:0 3px 12px rgba(24,45,78,.045);transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+#main .document-library-item:hover{transform:translateY(-2px);border-color:#9db2d1;box-shadow:0 9px 22px rgba(24,45,78,.09)}
+#main .document-library-file{display:flex;align-items:flex-start;gap:13px;min-width:0}
+#main .document-library-file>div{min-width:0;overflow-wrap:anywhere}
+#main .document-library-file-icon{display:grid;place-items:center;flex:0 0 54px;width:54px;height:66px;border:1px solid #d5dfed;border-radius:8px;background:linear-gradient(145deg,#f5f8fe,#e7eef9);color:#244d8c;font-size:11px;font-weight:850;letter-spacing:.02em;box-shadow:0 2px 5px rgba(20,40,70,.06)}
+#main .document-library-item:has(.document-library-file-icon:first-child) .document-library-file-icon{position:relative}
+#main .document-library-item .document-library-file b{display:block;font-size:14px;line-height:1.5;color:#1e304d}
+#main .document-library-item .document-library-file p{margin:5px 0 0;font-size:11px;line-height:1.5;overflow-wrap:anywhere}
+#main .document-library-meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding-top:12px;border-top:1px solid #e7ecf3}
+#main .document-library-filter{padding:14px;border-radius:14px;background:#f8faff;border-color:#dbe4f0}
+#main .document-library-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+#main .document-library-stat{padding:13px;border:1px solid #e0e7f0;border-radius:12px}
+#main .document-library-stat b{font-size:22px;color:#1e3e70}
+#main .document-library-upload{border:1px solid #d8e2ef;background:linear-gradient(180deg,#fff,#f8faff)}
+#main .research-status-banner{margin:0 0 12px;padding:9px 12px;border:1px solid #b8c9df;border-radius:9px;background:#f2f6fc;color:#233c61;font-size:13px}
+#main .research-status-banner:empty{display:none}
+#main .research-scope-guidance{margin:0 0 14px;padding:14px 16px;border:1px solid #d9e3f0;border-inline-start:4px solid #315fca;border-radius:11px;background:#f7f9fd;color:#253954}
+#main .research-scope-guidance p{margin:5px 0 0;color:#52627a;font-size:13px;line-height:1.65}
+@media(max-width:650px){
+ #main .document-library-list{grid-template-columns:minmax(0,1fr);gap:10px}
+ #main .document-library-item{padding:12px}
+ #main .document-library-file-icon{flex-basis:48px;width:48px;height:60px}
+ #main .document-library-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(prefers-reduced-motion:reduce){#main .document-library-item{transition:none}#main .document-library-item:hover{transform:none}}
 </style>
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <script>
@@ -2380,7 +2408,7 @@ async function documentsPage(){
 async function law(){
  PAGE='law';
  const sidebar=h('div',{id:'research-history-pane',className:'research-list card'});
- const researchStatus=h('div',{className:'visually-hidden',role:'status','aria-live':'polite','aria-atomic':'true'});const thread=h('div',{className:'research-thread card'});
+ const researchStatus=h('div',{className:'research-status-banner',role:'status','aria-live':'polite','aria-atomic':'true'});const thread=h('div',{className:'research-thread card'});
  const sourceInspector=h('aside',{id:'research-source-inspector',className:'research-inspector card',role:'region',tabIndex:0,'aria-label':LANG==='ar'?'فحص المصدر':'Source inspector','aria-live':'polite',onkeydown:e=>{if(e.key==='Escape'&&sourceInspector.__focusReturn){e.preventDefault();resetInspector(true)}}},h('div',{className:'research-inspector-empty'},h('div',{textContent:'⌕',style:'font-size:28px'}),h('b',{textContent:LANG==='ar'?'فحص المصدر':'Source inspector'}),h('p',{className:'mut',textContent:LANG==='ar'?'اختر مصدراً من الإجابة لعرض بياناته ومقطعه الحرفي هنا.':'Select a source from an answer to inspect its metadata and exact passage here.'})));
  let activeId=null, sending=false, conversationItems=[];
  const conversationFilter=h('input',{type:'search',placeholder:LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations','aria-label':LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations'});
@@ -2713,7 +2741,7 @@ async function law(){
  },'primary');
  composer.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send.click()}});
  const composerArea=h('div',{className:'research-composer'},composer,send,h('div',{className:'mut',textContent:LANG==='ar'?'Enter للإرسال · Shift+Enter لسطر جديد':'Enter to send · Shift+Enter for a new line'}));
- shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-controls'},h('label',{},h('span',{textContent:LANG==='ar'?'نطاق البحث':'Search scope'}),scopeSelect),h('label',{},h('span',{textContent:LANG==='ar'?'ملف القضية (للبحث والحفظ)':'Matter (for search and saving)'}),matterSelect),openDocumentWorkspace),uploadPanel,documentWorkspace,h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},researchStatus,thread,composerArea),sourceInspector));
+ shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-scope-guidance',role:'note'},h('b',{textContent:LANG==='ar'?'كيف يعمل البحث القانوني':'How legal research works'}),h('p',{textContent:LANG==='ar'?'يبحث النطاق الافتراضي في النصوص القانونية المتحقق منها فقط. إذا لم يوجد نص مستوفٍ لشروط المصدر والمراجعة، سيمتنع النظام عن الإجابة بدلاً من التخمين. استخدم اكتشاف فهرس المصادر للعثور على بيانات وصفية فقط، أو اختر مستندات المكتب وحدد ملف قضية.':'The default scope searches verified legal text only. If no source meets provenance and review requirements, the assistant abstains rather than guessing. Use source-catalog discovery for metadata only, or choose firm documents and select a matter.'})),h('div',{className:'research-controls'},h('label',{},h('span',{textContent:LANG==='ar'?'نطاق البحث':'Search scope'}),scopeSelect),h('label',{},h('span',{textContent:LANG==='ar'?'ملف القضية (للبحث والحفظ)':'Matter (for search and saving)'}),matterSelect),openDocumentWorkspace),uploadPanel,documentWorkspace,h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},researchStatus,thread,composerArea),sourceInspector));
  await drawList();
  if(activeId)await loadConversation(activeId);
  else {const list=await api('/research/conversations');if(list.length)await loadConversation(list[0].id);else await newChat(false)}
