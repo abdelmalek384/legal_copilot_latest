@@ -54,3 +54,6 @@
 
 
 - 2026-11-16: S3 original-object inventory now caps unique keys at one million, alongside its existing page and continuation-token bounds; regression added (commits 0af3ef1, 0122ec1). Repository tests remain unexecuted.
+
+
+- 2026-11-16: Backup creation now preflights total expanded snapshot size and manifest overhead against the restore ceiling before ZIP creation; a regression asserts no hashing or ZIP writer is invoked when the file payload alone exceeds the ceiling (commits 155e284, b41fb19). Runtime tests remain unexecuted.
