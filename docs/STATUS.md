@@ -460,3 +460,6 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - The witnessed backup/restore drill now rejects filesystem root as either BACKUP_DIR or RESTORE_PARENT before creating a bundle or restore target. This closes a path-overlap edge case where the string-prefix check could miss `/` because the normalized root plus slash becomes `//`. Source commit: `a19ff62`.
 - Added a regression covering both root positions in `tests/test_backup_restore_drill_paths.py`. Test commit: `5f4ddc8`.
 - An isolated shell harness exercised both root cases and an ordinary non-root pair: both root cases were rejected and the ordinary pair remained eligible. This is not execution of the repository test module. Backup/release estimate remains 40% because full encrypted backup/restore, recovery and witness acceptance remain outstanding.
+
+
+- Follow-up: after physical overlap validation, the drill now replaces the caller-supplied backup and restore directory variables with their canonical physical paths before invoking backup/restore commands. This prevents the write phase from switching back to a symlink-containing alias. Source commit: `97f398a`. No repository test module was executed.
