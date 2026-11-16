@@ -6,6 +6,8 @@ chunks, trusts supplied verified/in_force flags, or marks the law as current/ver
 from __future__ import annotations
 
 import argparse
+import datetime as dt
+import re
 import json
 import os
 import stat
@@ -97,8 +99,13 @@ def register(db, record):
         raise ValueError("candidate record must contain a non-empty source list")
     source_by_id = {}
     for source in sources:
-        source_id = source.get("source_id")
-        if not isinstance(source_id, str) or not source_id.strip() or source_id in source_by_id:
+        if not isinstance(source, dict):
+            raise ValueError("candidate source entries must be objects")
+        for field in ("source_id", "authority", "source_page", "access_status"):
+            if not isinstance(source.get(field), str) or not source[field].strip():
+                raise ValueError(f"candidate source {field} must be a non-empty string")
+        source_id = source["source_id"]
+        if source_id != source_id.strip() or source_id in source_by_id:
             raise ValueError("candidate source IDs must be unique non-empty strings")
         if not _valid_https_url(source.get("source_page")):
             raise ValueError("candidate source_page must be a clean HTTPS URL")
@@ -107,12 +114,34 @@ def register(db, record):
             raise ValueError("candidate terms_url must be a clean HTTPS URL or null")
         source_by_id[source_id] = source
     document_input = record.get("document")
-    document_source_id = document_input.get("source_id") if isinstance(document_input, dict) else None
+    if not isinstance(document_input, dict):
+        raise ValueError("candidate document must be an object")
+    for field in ("document_id", "official_title", "document_type", "source_id"):
+        if not isinstance(document_input.get(field), str) or not document_input[field].strip():
+            raise ValueError(f"candidate document {field} must be a non-empty string")
+    document_source_id = document_input.get("source_id")
     if not isinstance(document_source_id, str) or document_source_id not in source_by_id:
         raise ValueError("candidate document source_id must reference a listed source")
     version_input = record.get("version")
-    if not isinstance(version_input, dict) or not _valid_https_url(version_input.get("source_url")):
+    if not isinstance(version_input, dict):
+        raise ValueError("candidate version must be an object")
+    if not isinstance(version_input.get("version_label"), str) or not version_input["version_label"].strip():
+        raise ValueError("candidate version_label must be a non-empty string")
+    if not _valid_https_url(version_input.get("source_url")):
         raise ValueError("candidate version source_url must be a clean HTTPS URL")
+    for field in ("publication_date", "effective_date", "repeal_date", "consolidated_as_of"):
+        value = version_input.get(field)
+        if value is not None:
+            try:
+                if not isinstance(value, str) or dt.date.fromisoformat(value).isoformat() != value:
+                    raise ValueError
+            except ValueError as exc:
+                raise ValueError(f"candidate version {field} must be an ISO YYYY-MM-DD date or null") from exc
+    original_sha256 = version_input.get("original_sha256")
+    if original_sha256 is not None and (
+        not isinstance(original_sha256, str) or not re.fullmatch(r"[0-9a-fA-F]{64}", original_sha256)
+    ):
+        raise ValueError("candidate original_sha256 must be a 64-character SHA-256 or null")
     version_host = urlsplit(version_input["source_url"]).hostname.casefold()
     document_source_host = urlsplit(source_by_id[document_source_id]["source_page"]).hostname.casefold()
     if version_host != document_source_host:
@@ -120,9 +149,20 @@ def register(db, record):
     reviews = record.get("reviews", [])
     if not isinstance(reviews, list):
         raise ValueError("candidate reviews must be a list")
+    allowed_review_types = {
+        "source_authenticity", "extraction_quality", "legal_status",
+        "amendment_history", "licensing", "lawyer_approval",
+    }
+    seen_review_types = set()
     for event in reviews:
         if not isinstance(event, dict):
             raise ValueError("candidate review events must be objects")
+        review_type = event.get("review_type")
+        if review_type not in allowed_review_types or review_type in seen_review_types:
+            raise ValueError("candidate review_type values must be unique supported review types")
+        seen_review_types.add(review_type)
+        if not isinstance(event.get("notes"), str) or not event["notes"].strip():
+            raise ValueError("candidate review notes must be a non-empty string")
         evidence_url = event.get("evidence_url")
         if evidence_url is not None and not _valid_https_url(evidence_url):
             raise ValueError("candidate review evidence_url must be a clean HTTPS URL or null")
