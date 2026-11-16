@@ -171,6 +171,11 @@ class ArabicMatchingTests(unittest.TestCase):
                 self.assertNotIn("leave", expanded)
                 self.assertFalse(set(tokens("الإجازة السنوية")).issubset(expanded))
 
+    def test_interrogative_ma_is_not_mistaken_for_negation(self):
+        expanded = set(expanded_tokens("ما هي الإجازة السنوية؟"))
+        self.assertIn("leave", expanded)
+        self.assertIn(tokens("الإجازة السنوية")[0], expanded)
+
     def test_positive_occurrence_still_expands_when_same_query_also_has_negation(self):
         expanded = set(expanded_tokens("مش عايز إجازة لكن عايز إجازة"))
         self.assertIn(tokens("الإجازة السنوية")[0], expanded)
