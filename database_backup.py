@@ -874,7 +874,13 @@ def _safe_archive_members(archive: zipfile.ZipFile) -> set[str]:
             not canonical_name
             or "\\x00" in canonical_name
             or name.is_absolute()
-            or any(part in {"", ".", ".."} for part in parts)
+            or any(
+                part in {"", ".", ".."}
+                or ":" in part
+                or part.endswith((".", " "))
+                or re.match(r"^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\\..*)?$", part, re.IGNORECASE)
+                for part in parts
+            )
             or "\\" in raw_name
             or (parts and re.match(r"^[A-Za-z]:", parts[0]))
             or name.as_posix() != canonical_name
