@@ -55,6 +55,24 @@ tests=(
   test_legal_answer_review_evaluation.py
   test_review_evidence_url_validation.py
   test_labour_law_provisional_review_questions.py
+  test_legal_data_foundation_validator.py
+  test_legal_release_readiness.py
+  test_legal_candidate_catalog.py
+  test_legal_corpus_audit.py
+  test_source_permission_register.py
+  test_legal_versioned_registry.py
+  test_amendment_relationship_validator.py
+  test_first_official_batch_manifest.py
+  test_decision250_candidate_quarantine.py
+  test_answer_citation_coverage.py
+  test_citation_quantity_binding.py
+  test_answer_source_polarity.py
+  test_answer_actor_role_binding.py
+  test_answer_conditional_scope_binding.py
+  test_synthetic_retrieval.py
+  test_retrieval_evaluation.py
+  test_multi_area_eval_draft.py
+  test_output_path_safety.py
   test_case_csv_import.py
   test_client_csv_import.py
   test_invoice_csv_export.py
