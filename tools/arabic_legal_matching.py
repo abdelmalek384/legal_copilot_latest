@@ -61,7 +61,7 @@ def orthographic_variants(token):
 
 def _is_negated_at(normalized_query, start):
     """Recognize nearby Arabic negators without treating interrogative ما as negation."""
-    prefix = normalized_query[:start]
+    prefix = re.split(r"[.!?؟؛,،;]", normalized_query[:start])[-1]
     if re.search(
         r"(?:^|\s)(?:مش|مفيش|مافيش|معنديش|ماعنديش|لا|ليس|ليست|لست|لم|لن|"
         r"غير|بدون|بلا|دون|بغير)\s+(?:\S+\s+){0,2}$",
