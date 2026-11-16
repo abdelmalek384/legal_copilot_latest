@@ -232,8 +232,10 @@ def score(questions, runs, reviewer_registry):
             raise ValueError(f"{qid}: used_unverified_source must be boolean")
         for field in ("retrieved_article_ids", "cited_article_ids"):
             value = r.get(field, [])
-            if not isinstance(value, list) or any(not isinstance(x, str) or not x.strip() for x in value):
-                raise ValueError(f"{qid}: {field} must be a list of non-empty article IDs")
+            if not isinstance(value, list) or any(
+                    not isinstance(x, str) or not x.strip() or x != x.strip()
+                    for x in value):
+                raise ValueError(f"{qid}: {field} must be a list of trimmed, non-empty article IDs")
             if len(value) != len(set(value)):
                 raise ValueError(f"{qid}: {field} contains duplicates")
         if not set(r.get("cited_article_ids", [])).issubset(set(r.get("retrieved_article_ids", []))):
