@@ -909,3 +909,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Operator contract updated in `docs/reminder_scheduler_contract.md` (commit `7e5433f`) to distinguish planning-time `--now` from wall-clock delivery leases and to document fail-closed behavior for unavailable preference schema versus first-run defaults.
+
+
+- MFA transaction regression expanded in commit `7a8c953`: an injected append-only audit failure during authenticator replacement must roll back the pending credential transition and all-session MFA-proof invalidation, leaving the original enabled credential and current verified session intact.
