@@ -1226,3 +1226,13 @@ Validation and remaining gates:
 - Browser interaction, screenshot review at 1440px and 390px, English LTR and Arabic RTL, keyboard/focus checks, and lawyer usability review remain **NOT RUN**. Do not treat the UI as visually accepted until those checks are performed.
 - Phase 5 implementation is estimated at **85%**; remaining work is primarily responsive visual QA and any defects found there, plus final confirmation of the status indicator against a populated authorized test corpus.
 - Aggregate engineering estimates remain **AI-2 79.6%** and **whole project 75.3% provisional** pending a formal cross-workstream recalculation. These are implementation estimates, not test-pass rates or pilot-readiness scores. Pilot/production remains **NOT READY**.
+
+
+## UI accessibility follow-ups — 2026-11-17
+
+- Merged PR #1731: Legal Research upload disclosure now exposes a stable panel ID, `aria-controls`, and synchronized `aria-expanded` state; switching away from Firm documents closes the panel and resets its disclosure state.
+- Merged PR #1734: Research upload outcomes now use polite live-list/list-item semantics. The mixed warning container no longer forces assertive `role=alert` errors inside a polite live region; per-message `status` and `alert` roles retain their intended urgency.
+- Merged PR #1735: password-change mismatch and password-reuse validation now mark and focus the relevant field, associate it with the existing live status message, and clear invalid state when corrected.
+- Independent source validation for these changes: V8 parsed the full inline frontend script; focused static assertions passed (8/8, 5/5 and 9/9 respectively). These are source checks, not repository test or browser acceptance results.
+- GitHub Actions attempts on the changed heads concluded failure with empty job-step lists. No Python repository test module or Chromium/browser acceptance was executed by those runs; they do not establish code failure or test success.
+- Legal Research Phase 5 remains **85% implementation estimate** pending exact-build responsive, Arabic RTL/English LTR, keyboard/screen-reader and lawyer-usability acceptance. Aggregate estimates remain **AI-2 79.6%** and **whole project 75.3% provisional**; these are not test-pass or release-readiness percentages. Pilot/production remains **NOT READY**.
