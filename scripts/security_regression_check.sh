@@ -54,6 +54,7 @@ tests=(
   test_answer_rating_routes.py
   test_frontend_ux_contract.py
   test_research_copy_initialization.py
+  test_security_matrix_registration.py
   test_invoice_payment_routes.py
   test_subscription_billing_routes.py
   test_firm_data_export.py
