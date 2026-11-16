@@ -508,7 +508,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
 
         denied = self._mutate("post", f"/users/{target_id}/disable")
         self.assertEqual(denied.status_code, 409, denied.text)
-        self.assertIn("last active administrator", denied.text)
+        self.assertIn("administrator memberships cannot be suspended", denied.text)
         membership = self.runtime.control_connection().execute(
             "SELECT firm_role,status FROM firm_memberships WHERE user_id=? AND firm_id=?",
             (target_id, self.firm_a),
