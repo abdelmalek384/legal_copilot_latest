@@ -363,6 +363,8 @@ def main() -> int:
     parser.add_argument("--quiesced", action="store_true", help="Assert firm writes are paused.")
     parser.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
     args = parser.parse_args()
+    if args.firm_id <= 0 or args.operator_user_id <= 0:
+        parser.error("--firm-id and --operator-user-id must be positive integers")
     if args.apply and not args.quiesced:
         parser.error("--apply requires --quiesced")
     if args.quiesced and not args.apply:
