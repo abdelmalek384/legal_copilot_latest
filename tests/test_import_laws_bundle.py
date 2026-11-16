@@ -522,6 +522,47 @@ class LegalImportBundleTests(unittest.TestCase):
             with self.assertRaisesRegex(SystemExit, "OCR cache page"):
                 import_laws.page_texts(self.pdf_bytes, cache_root, "c" * 64, "sample_law")
 
+    def test_ocr_cache_page_symlink_swap_is_rejected_during_open(self):
+        import sys
+        from types import SimpleNamespace
+        from tools import import_laws
+
+        class Page:
+            def get_text(self):
+                return "\\ue000" * 10
+
+        class Document:
+            page_count = 1
+            def __enter__(self): return self
+            def __exit__(self, *args): return False
+            def __iter__(self): return iter([Page()])
+
+        fake_pymupdf = SimpleNamespace(open=lambda **kwargs: Document())
+        cache_root = self.output / ".ocr_cache"
+        cache_dir = cache_root / ("race-" + "d" * 16)
+        cache_dir.mkdir(parents=True)
+        cached_page = cache_dir / "0.txt"
+        cached_page.write_text("trusted cache", encoding="utf-8")
+        external = self.root / "external-race-cache.txt"
+        external.write_text("untrusted replacement", encoding="utf-8")
+        real_open = import_laws.os.open
+        swapped = False
+
+        def replace_before_open(path, flags, *args, **kwargs):
+            nonlocal swapped
+            if Path(path) == cached_page and not swapped:
+                swapped = True
+                cached_page.unlink()
+                cached_page.symlink_to(external)
+            return real_open(path, flags, *args, **kwargs)
+
+        with mock.patch.dict(sys.modules, {"pymupdf": fake_pymupdf}):
+            with mock.patch.object(import_laws.os, "open", side_effect=replace_before_open):
+                with self.assertRaisesRegex(SystemExit, "cannot safely read OCR cache page"):
+                    import_laws.page_texts(self.pdf_bytes, cache_root, "d" * 64, "race")
+        self.assertTrue(swapped)
+        self.assertEqual(external.read_text(encoding="utf-8"), "untrusted replacement")
+
     def test_source_and_output_paths_must_be_separate_regular_directories(self):
         with self.assertRaisesRegex(SystemExit, "separate"):
             validate_inputs(self.source, self.source / "out")
