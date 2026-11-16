@@ -254,6 +254,51 @@ class MFAAccountSecurityTests(unittest.TestCase):
         self.assertGreater(current["enrollment_expires"], int(time.time()))
         self.assertIn("no-store", reenroll.headers.get("cache-control", "").lower())
 
+    def test_optional_mfa_policy_does_not_bypass_voluntary_mfa_during_reenrollment(self):
+        password = "Voluntary-MFA-User-Password-2026!"
+        user_id = self.runtime.create_global_identity(
+            "Voluntary MFA User", "voluntary-mfa@example.test", app.hash_pw(password)
+        )
+        self.runtime.create_firm_membership(user_id, self.firm_id, "lawyer")
+        client = TestClient(app.app)
+        try:
+            with patch.dict(os.environ, {"MFA_ENFORCEMENT": "optional"}):
+                login = client.post(
+                    "/login", json={"email": "voluntary-mfa@example.test", "password": password}
+                )
+                self.assertEqual(login.status_code, 200, login.text)
+                self.assertFalse(login.json()["mfa_required"])
+                headers = {"X-CSRF-Token": client.cookies.get("lc_csrf") or ""}
+                started = client.post(
+                    "/account/mfa/enroll", json={"current_password": password}, headers=headers
+                )
+                self.assertEqual(started.status_code, 200, started.text)
+                secret = started.json()["secret"]
+                confirmed = client.post(
+                    "/account/mfa/confirm",
+                    json={
+                        "current_password": password,
+                        "code": totp_code(secret, (int(time.time()) // 30) * 30),
+                    },
+                    headers=headers,
+                )
+                self.assertEqual(confirmed.status_code, 200, confirmed.text)
+
+                replacement = client.post(
+                    "/account/mfa/re-enroll",
+                    json={"current_password": password},
+                    headers=headers,
+                )
+                self.assertEqual(replacement.status_code, 200, replacement.text)
+                session = client.get("/session")
+                self.assertEqual(session.status_code, 200, session.text)
+                self.assertTrue(session.json()["mfa_required"])
+                self.assertTrue(session.json()["mfa_enrollment_required"])
+                self.assertFalse(session.json()["mfa_enabled"])
+                self.assertEqual(client.get("/cases").status_code, 403)
+        finally:
+            client.close()
+
     def test_lost_authenticator_reenrollment_rejects_stale_mfa_verification(self):
         secret = self.enroll()
         self.confirm(secret)
