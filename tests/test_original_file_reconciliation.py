@@ -185,6 +185,25 @@ class OriginalFileReconciliationTests(unittest.TestCase):
                 ],
             )
 
+    def test_reconciliation_stops_reading_oversized_object_at_hard_limit(self):
+        from unittest.mock import patch
+        import original_file_reconciliation as reconciliation
+
+        self._create_database(rows=[(self.object_id, self.payload, "ready")])
+        directory = self.objects / "firm-7"
+        directory.mkdir()
+        oversized = directory / f"{self.object_id}.blob"
+        oversized.write_bytes(b"x" * 128)
+
+        with patch.object(reconciliation, "_MAX_RECONCILIATION_OBJECT_BYTES", 16):
+            report = self._reconcile()
+
+        self.assertIn(
+            "object_size_limit_exceeded",
+            {finding.code for finding in report.findings},
+        )
+        self.assertTrue(oversized.exists(), "reconciliation must remain read-only")
+
     def test_does_not_follow_symlinked_object(self):
         self._create_database(rows=[(self.object_id, self.payload, "ready")])
         directory = self.objects / "firm-7"
