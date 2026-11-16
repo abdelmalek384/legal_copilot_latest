@@ -324,7 +324,7 @@ def store_original(out: Path, document_id: str, extension: str, raw: bytes) -> P
 
     def same_content(path: Path) -> bool:
         try:
-            existing = read_regular_file(path, max_bytes=MAX_BYTES_DEFAULT)
+            existing = read_regular_file(path, max_bytes=max(MAX_BYTES_DEFAULT, len(raw)))
         except (OSError, ValueError) as exc:
             raise ValueError("existing original is not a stable regular file") from exc
         return sha256_bytes(existing) == digest
