@@ -39,3 +39,6 @@
 
 
 - 2026-11-16: Restore importer now pins the restore root, objects directory and firm namespace in sequence, opening the blob relative to the pinned namespace descriptor with no-follow flags. Added a regression for an objects-directory symlink swap (commits 0a41996, 56ce2d7). Together with existing namespace and file symlink tests, object path redirection is covered below the canonical root. Runtime tests remain unexecuted; no pass is claimed.
+
+
+- 2026-11-16: Focused isolated harnesses passed for restore descriptor traversal (regular file accepted; objects/ and firm namespace symlink swaps rejected) and ZIP preflight (non-canonical paths, traversal, absolute paths and FIFO metadata rejected; normal archive accepted). These are not repository test-suite results. Restore dirfd capability is explicitly checked and unsupported platforms fail closed (commit a092388). Repository tests and Actions jobs remain unexecuted.
