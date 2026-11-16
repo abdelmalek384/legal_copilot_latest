@@ -28,6 +28,15 @@ class RecoveryLocatorReadTests(unittest.TestCase):
         with self.assertRaisesRegex(SystemExit, "could not be read safely"):
             _read_recovery_locator(path)
 
+    def test_rejects_duplicate_keys_at_every_json_depth(self):
+        path = self.root / "duplicate.json"
+        path.write_text(
+            '{"bucket":"recovery","nested":{"version":"v1","version":"v2"}}',
+            encoding="utf-8",
+        )
+        with self.assertRaisesRegex(SystemExit, "could not be read safely"):
+            _read_recovery_locator(path)
+
     def test_rejects_non_object_locator(self):
         path = self.root / "array.json"
         path.write_text("[]", encoding="utf-8")
