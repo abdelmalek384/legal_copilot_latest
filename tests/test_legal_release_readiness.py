@@ -646,5 +646,34 @@ class LegalReleaseReadinessTests(unittest.TestCase):
                 result = MODULE.audit_candidate(candidate, self.register, self.root)
                 self.assertIn(expected_code, {item["code"] for item in result["blockers"]})
 
+    def test_sha256_file_rejects_final_path_replacement_between_lstat_and_open(self):
+        target = self.root / "originals" / "law.pdf"
+        outside = self.root / "outside.pdf"
+        outside.write_bytes(b"attacker replacement bytes")
+        real_open = MODULE.os.open
+        swapped = False
+
+        def replace_before_open(path, flags, *args, **kwargs):
+            nonlocal swapped
+            if Path(path) == target and not swapped:
+                swapped = True
+                target.unlink()
+                target.symlink_to(outside)
+            return real_open(path, flags, *args, **kwargs)
+
+        with patch.object(MODULE.os, "open", side_effect=replace_before_open):
+            with self.assertRaises(OSError):
+                MODULE.sha256_file(target)
+        self.assertTrue(swapped)
+
+    def test_sha256_file_rejects_non_regular_fifo_without_blocking(self):
+        import os
+        if not hasattr(os, "mkfifo"):
+            self.skipTest("FIFO files are unavailable on this platform")
+        fifo = self.root / "originals" / "law.fifo"
+        os.mkfifo(fifo)
+        with self.assertRaises(OSError):
+            MODULE.sha256_file(fifo)
+
 if __name__ == "__main__":
     unittest.main()
