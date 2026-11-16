@@ -1550,5 +1550,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn('"arabic": "اختر مستندات المكتب أولاً"', (ROOT / "static" / "ar-ui-review.json").read_text(encoding="utf-8"))
 
 
+    def test_research_rating_overflow_menu_uses_valid_class_selectors(self):
+        self.assertIn(".research-rating-menu summary{", HTML)
+        self.assertIn(".research-rating-menu summary::-webkit-details-marker{", HTML)
+        self.assertIn(".research-rating-menu-items{", HTML)
+        self.assertNotIn("..research-rating-menu", HTML)
+        self.assertNotIn(". .research-rating-menu", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
