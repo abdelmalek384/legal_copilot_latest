@@ -315,3 +315,6 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Added a route-level regression that injects a SQLite failure when the firm-data-export success audit event is written. The export must return HTTP 503, must not return an application/zip response, and must not leave a success audit row.
 - The existing export implementation builds the archive before writing the success audit, then closes the temporary archive and returns an error if audit persistence fails. The new test pins that security contract.
 - Test is in the already workflow-registered separate-database application suite. It is committed but unexecuted; no runtime pass is claimed.
+
+
+- Added a positive-path firm-export regression as well: the ZIP must contain the firm invitation/membership business records while excluding auth-session, MFA credential and MFA recovery-code files; invitation and membership headers are checked for credential/hash fields. Both export regressions are committed but unexecuted.
