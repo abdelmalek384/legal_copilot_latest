@@ -1192,6 +1192,10 @@ class DatabaseRuntime:
                 raise DatabaseRuntimeError(f"Unexpected database attached as {alias}")
             if existing is None:
                 connection.execute(f"ATTACH DATABASE ? AS {alias}", (path.as_uri() + "?mode=ro",))
+            original_path = self.paths.control_plane if alias == "control" else self.paths.legal_corpus
+            self._validate_profile_storage(
+                original_path, "control-plane" if alias == "control" else "legal-corpus"
+            )
             if self._file_identity(path) != expected_identities[alias]:
                 raise DatabaseRuntimeError(
                     f"{alias} database file changed while attaching; restart the application"
