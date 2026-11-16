@@ -559,6 +559,52 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         finally:
             target.close()
 
+    def test_firm_admin_can_reactivate_suspended_membership_with_seat_and_audit_checks(self):
+        target_id = self.runtime.create_global_identity(
+            "Reactivation Target", "reactivation-target@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(target_id, self.firm_a, "lawyer")
+        target = TestClient(app.app)
+        try:
+            target_login = target.post(
+                "/login",
+                json={"email": "reactivation-target@example.test", "password": self.password},
+            )
+            self.assertEqual(target_login.status_code, 200, target_login.text)
+            owner_login = self.client.post(
+                "/login", json={"email": "owner@example.test", "password": self.password}
+            )
+            self.assertEqual(owner_login.status_code, 200, owner_login.text)
+
+            suspended = self._mutate("post", f"/users/{target_id}/disable")
+            self.assertEqual(suspended.status_code, 200, suspended.text)
+            self.assertEqual(target.get("/cases").status_code, 401)
+            listed = self.client.get("/users")
+            self.assertEqual(listed.status_code, 200, listed.text)
+            suspended_row = next(row for row in listed.json() if row["id"] == target_id)
+            self.assertFalse(suspended_row["active"])
+            self.assertEqual(suspended_row["membership_status"], "suspended")
+            self.assertEqual(suspended_row["identity_status"], "active")
+
+            restored = self._mutate("post", f"/users/{target_id}/enable")
+            self.assertEqual(restored.status_code, 200, restored.text)
+            self.assertEqual(restored.json()["status"], "active")
+            self.assertEqual(target.get("/cases").status_code, 200)
+            membership = self.runtime.control_connection().execute(
+                "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
+                (target_id, self.firm_a),
+            ).fetchone()
+            self.assertEqual(membership["status"], "active")
+            event = self.runtime.control_connection().execute(
+                "SELECT event_type,detail_json FROM platform_security_events "
+                "WHERE event_type='membership_reactivated' AND target_user_id=?",
+                (target_id,),
+            ).fetchone()
+            self.assertIsNotNone(event)
+            self.assertIn('"firm_role": "lawyer"', event["detail_json"])
+        finally:
+            target.close()
+
     def test_firm_role_change_rolls_back_when_audit_write_fails(self):
         target_id = self.runtime.create_global_identity(
             "Role Audit Target", "role-audit-target@example.test", app.hash_pw(self.password)
