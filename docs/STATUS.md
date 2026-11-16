@@ -1030,3 +1030,10 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 - The local original-file reconciler previously streamed an arbitrary-size regular file to EOF while hashing it. It now reads at most the hard 15,000,000-byte object ceiling plus one sentinel byte, closes the file on rejection, and emits a distinct `object_size_limit_exceeded` finding without modifying the object.
 - Added a regression with a patched small ceiling to verify oversized objects are reported and preserved. Source commit: `1aa0a40`; regression commit: `23aa5af`; security-matrix registration commit: `c15d5b3`. Exact source, test, workflow, security-matrix, status and blocker files were re-fetched from `main`; static checks confirmed the max+1 read bound, distinct oversized-object finding, read-only regression assertion, and both workflow and security-matrix registration. Runtime suite remains unexecuted (0%). AI-2 estimate: **78.3%**; whole-project estimate remains **75.3% provisional**. No runtime pass is claimed.
+
+
+## AI-2 restored-original upload TOCTOU hardening — 2026-11-16
+
+- The restore-to-S3 importer previously hashed a path, then later called `Path.read_bytes()` for upload. A replacement between those operations could bypass the earlier digest check and trigger an unbounded read. It now opens the final file component with `O_NOFOLLOW` where supported, verifies the descriptor refers to a regular file, caps reads at the recorded size plus one sentinel byte, and rechecks SHA-256/size immediately before staging the upload.
+- Added a race regression that replaces the restore object after its initial digest and asserts the import aborts without staging/finalizing an S3 object or changing restored metadata.
+- Source commits: `8b021f2`, `f89370f`; regression commit: `4199fc8`; security-matrix registration: `b75cbdf`. Static source/test/workflow/matrix review pending; runtime test execution remains **0%**. AI-2 estimate: **78.4%**; whole-project estimate remains **75.3% provisional**. No runtime pass is claimed.
