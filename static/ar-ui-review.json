@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "e7583d977346dcf889eb8358b5eb5ea6b5747c3f",
   "generated_on": "2026-11-16",
-  "entry_count": 1541,
+  "entry_count": 1543,
   "entries": [
     {
       "id": "AR-0001",
@@ -17167,6 +17167,24 @@
       "source_file": "static/index.html",
       "source_lines": [
         2916
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1542",
+      "arabic": "اعرف المزيد",
+      "source_file": "static/index.html",
+      "source_lines": [
+        2931
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1543",
+      "arabic": "إرفاق مستندات ملف القضية",
+      "source_file": "static/index.html",
+      "source_lines": [
+        2617
       ],
       "review_status": "pending_native_review"
     }
