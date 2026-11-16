@@ -87,9 +87,9 @@ _ENGLISH_MODAL_PATTERNS = {
 }
 _ARABIC_MODAL_PATTERNS = {
     "permission": re.compile(r"(?:يجوز|يحق|يسمح)"),
-    "obligation": re.compile(r"(?<!لا )(?:يجب|يلتزم|يتعين)"),
+    "obligation": re.compile(r"(?<!لا )(?:يجب|يلتزم|يلزم|يتعين)"),
     "prohibition": re.compile(r"(?:لا\s+(?:يجوز|يحق|يسمح)|يحظر|يمتنع\s+عن)"),
-    "non_obligation": re.compile(r"(?:لا يجب|لا يلتزم|لا يتعين|ليس ملزما|غير ملزم)"),
+    "non_obligation": re.compile(r"(?:لا\\s*(?:يجب|يلتزم|يلزم|يتعين)|ليس\\s+ملزما|غير\\s+ملزم)"),
 }
 
 
@@ -108,7 +108,7 @@ def _modal_classes(text, patterns):
         if patterns is _ARABIC_MODAL_PATTERNS and label in {"permission", "obligation"}:
             # Strip negated forms before testing positive classes. Flexible whitespace
             # is required because Arabic source text may contain tabs or repeated spaces.
-            verbs = r"(?:يجوز|يحق|يسمح)" if label == "permission" else r"(?:يجب|يلتزم|يتعين)"
+            verbs = r"(?:يجوز|يحق|يسمح)" if label == "permission" else r"(?:يجب|يلتزم|يلزم|يتعين)"
             candidate = re.sub(r"لا\s*" + verbs, " ", candidate)
         if pattern.search(candidate):
             classes.add(label)
@@ -128,7 +128,7 @@ _ENGLISH_POSITIVE_OBLIGATION = re.compile(
 _ARABIC_NEGATED_OBLIGATION = re.compile(
     r"(?:لا\s*(?:يجب|يلتزم|يتعين)|ليس\s+ملزما|غير\s+ملزم)"
 )
-_ARABIC_POSITIVE_OBLIGATION = re.compile(r"(?:يجب|يلتزم|يتعين)")
+_ARABIC_POSITIVE_OBLIGATION = re.compile(r"(?:يجب|يلتزم|يلزم|يتعين)")
 
 
 def _has_negated_obligation_mismatch(claim, evidence):
