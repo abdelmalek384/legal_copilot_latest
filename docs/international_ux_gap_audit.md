@@ -45,7 +45,7 @@ These are implementation and automated-test claims only. They do not establish l
 
 ### P1 — Navigation and workspace
 - Task-oriented home page: Continue a case, Research law, Review a source, Analyze a document, Track a deadline.
-- Consistent global search and command/navigation pattern.
+- **Partially implemented 2026-11-17:** the global matter search is available in the workspace top bar and now supports a one-time registered Ctrl/Cmd+K focus shortcut, with `aria-keyshortcuts` metadata and guards against stealing keystrokes from form fields. A broader command palette and global client/document search remain open.
 - **Partially implemented 2026-11-17:** the case list distinguishes a first-run no-matters state from filtered no-results and offers a direct Create matter action; the client list now offers an admin-only Create client action on first run and suppresses the false empty state on API errors. Broader practice-area landing pages and contextual empty states in other workspaces remain open.
 - **Implemented 2026-11-17:** the case overview now shows a chronological timeline of dated hearings, legal deadlines and tasks, with distinct event labels and task completion state. The current case-detail API does not expose filing/reminder event records, so those are not fabricated or shown. Responsive RTL/LTR and manual accessibility acceptance remain separate.
 - Responsive layouts for laptop/tablet/mobile, with stable RTL alignment and no horizontal overflow.
