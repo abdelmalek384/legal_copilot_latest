@@ -40,12 +40,12 @@ def _link(url: str, label: str | None = None) -> str:
 
 def load_inventory(input_path: Path) -> dict[str, Any]:
     """Load the canonical inventory and enforce manifest counts; archived split snapshots stay excluded."""
-    data = json.loads(input_path.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+    data = json.loads(read_regular_file(input_path), object_pairs_hook=_reject_duplicate_json_keys)
     manifest_path = input_path.with_name("provision_evidence_cards_manifest.json")
     if not manifest_path.exists() or input_path.resolve() != DEFAULT_INPUT.resolve():
         return data
 
-    manifest = json.loads(manifest_path.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+    manifest = json.loads(read_regular_file(manifest_path), object_pairs_hook=_reject_duplicate_json_keys)
     cards = list(data["cards"])
     canonical_entry = next(
         (entry for entry in manifest["inventory_files"] if (ROOT / entry["path"]).resolve() == input_path.resolve()),
@@ -71,7 +71,7 @@ def load_inventory(input_path: Path) -> dict[str, Any]:
         candidate = (ROOT / entry["path"]).resolve()
         if candidate == input_path.resolve():
             continue
-        payload = json.loads(candidate.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+        payload = json.loads(read_regular_file(candidate), object_pairs_hook=_reject_duplicate_json_keys)
         if len(payload.get("cards", [])) != entry["expected_cards"]:
             raise ValueError(f"Card count mismatch for {entry['path']}")
         for raw in payload["cards"]:

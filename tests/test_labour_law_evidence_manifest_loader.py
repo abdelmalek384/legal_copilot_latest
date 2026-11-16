@@ -42,5 +42,34 @@ class LabourLawEvidenceManifestLoaderTests(unittest.TestCase):
         self.assertEqual(sum(1 for line in report.splitlines() if line.startswith("### ") and line[4:5].isdigit()), 360)
 
 
+    def test_inventory_loader_rejects_symlink_swap_and_fifo(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            inventory = root / "cards.json"
+            inventory.write_text('{"cards":[]}', encoding="utf-8")
+            outside = root / "outside.json"
+            outside.write_text('{"cards":[]}', encoding="utf-8")
+            real_open = evidence_cards.os.open if hasattr(evidence_cards, "os") else __import__("os").open
+            import os
+            swapped = False
+
+            def replace_before_open(path, flags, *args, **kwargs):
+                nonlocal swapped
+                if Path(path) == inventory and not swapped:
+                    swapped = True
+                    inventory.unlink()
+                    inventory.symlink_to(outside)
+                return real_open(path, flags, *args, **kwargs)
+
+            with patch("tools.validate_source_permission_register.os.open", side_effect=replace_before_open):
+                with self.assertRaises(OSError):
+                    load_inventory(inventory)
+            self.assertTrue(swapped)
+            if hasattr(os, "mkfifo"):
+                fifo = root / "cards.fifo"
+                os.mkfifo(fifo)
+                with self.assertRaises(OSError):
+                    load_inventory(fifo)
+
 if __name__ == "__main__":
     unittest.main()
