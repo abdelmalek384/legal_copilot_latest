@@ -1,6 +1,8 @@
 import contextlib
 import io
 import json
+import os
+from unittest.mock import patch
 import sys
 import tempfile
 import unittest
@@ -9,6 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+import tools.evaluate_retrieval_quality as MODULE
 from tools.evaluate_retrieval_quality import DEFAULT_QUESTIONS, _load_jsonl, _write_report, main, score_evaluation as _score_evaluation, validate_reviewed_question
 from tools.answer_trust_tier import (
     TIER_SOURCE_MATCHED, TIER_UNREVIEWED, TIER_VERIFIED, classify_answer_trust_tier,
@@ -1167,6 +1170,34 @@ def source_matched_source():
             ],
         },
     }
+
+    def test_retrieval_evaluator_registry_reader_rejects_symlink_swap_and_fifo(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target = root / "reviewers.json"
+            target.write_text('{"reviewers":[]}', encoding="utf-8")
+            outside = root / "outside.json"
+            outside.write_text('{"reviewers":[]}', encoding="utf-8")
+            real_open = MODULE.os.open
+            swapped = False
+
+            def replace_before_open(path, flags, *args, **kwargs):
+                nonlocal swapped
+                if Path(path) == target and not swapped:
+                    swapped = True
+                    target.unlink()
+                    target.symlink_to(outside)
+                return real_open(path, flags, *args, **kwargs)
+
+            with patch("tools.evaluate_legal_answer_reviews.os.open", side_effect=replace_before_open):
+                with self.assertRaises(OSError):
+                    MODULE.read_regular_file(target)
+            self.assertTrue(swapped)
+            if hasattr(os, "mkfifo"):
+                fifo = root / "reviewers.fifo"
+                os.mkfifo(fifo)
+                with self.assertRaises(OSError):
+                    MODULE.read_regular_file(fifo)
 
 if __name__ == "__main__":
     unittest.main()
