@@ -988,3 +988,10 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Added regressions for a destination appearing between preflight and publication, parent-directory replacement by a symlink during open, and missing `renameat2` support; they check that existing/outside data and the staged tree are preserved and that unsupported platforms fail closed.
 - An isolated local harness exercised the exact helper logic: successful directory publication, EEXIST preservation of an existing target, and rejection of a parent-directory symlink swap without redirecting the restore. The lower-level OS dirfd/`RENAME_NOREPLACE` primitive also passed independently. These are local harnesses, not execution of the repository test module; the full restore drill remains unexecuted.
 - Source commits: `8443834`, `71eab78`, `fd6a30d`; regression commits: `53d918f`, `5c179e7`, `b44bd08`, `e2a0b52`, `1945dd0`, `27182c4`; operator documentation: `46dcefca`, `d44040d`, `7c789b2`; status/harness record: `ab14694`. Restore publication implementation: **100%**; repository regression execution: **0%**. AI-2 estimate: **77.5%**; whole-project estimate remains **75.3% provisional**. Production remains **NOT READY**.
+
+
+## AI-2 recovery-download directory capability fail-closed — 2026-11-16
+
+- Removed the path-based fallback from encrypted S3 recovery downloads. Downloads now require no-follow directory opens and `dir_fd`-relative file creation/cleanup; unsupported platforms fail before versioning/KMS/S3 calls rather than attempting a weaker path-based write or cleanup.
+- Added a regression that removes `os.open` directory-descriptor capability and verifies the download fails before cloud access and creates no target file.
+- Source commit: `36ce704`; regression commit: `2f0fca7`. Bounded implementation: **100%**; repository test execution: **0%**. AI-2 estimate: **77.7%**; whole project remains **75.3% provisional**. Linux production container supports the required primitives; production remains **NOT READY** pending live AWS and witnessed recovery acceptance.
