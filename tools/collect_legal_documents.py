@@ -795,12 +795,27 @@ def append_jsonl(path: Path, record: dict):
     path.parent.mkdir(parents=True, exist_ok=True)
     if path.parent.is_symlink() or path.is_symlink():
         raise ValueError("JSONL output path must not traverse symbolic links")
-    flags = os.O_WRONLY | os.O_CREAT | os.O_APPEND | getattr(os, "O_NOFOLLOW", 0)
+    flags = (
+        os.O_WRONLY | os.O_CREAT | os.O_APPEND
+        | getattr(os, "O_NOFOLLOW", 0)
+        | getattr(os, "O_NONBLOCK", 0)
+    )
     try:
         descriptor = os.open(path, flags, 0o600)
     except OSError as exc:
         raise ValueError(f"cannot safely open JSONL output: {exc}") from exc
     with os.fdopen(descriptor, "a", encoding="utf-8") as handle:
+        opened = os.fstat(handle.fileno())
+        try:
+            current = path.lstat()
+        except OSError as exc:
+            raise ValueError("JSONL output path changed while opening") from exc
+        if (
+            not stat.S_ISREG(opened.st_mode)
+            or opened.st_nlink != 1
+            or (opened.st_dev, opened.st_ino) != (current.st_dev, current.st_ino)
+        ):
+            raise ValueError("JSONL output must be a single-link regular file at the requested path")
         handle.write(json.dumps(record, ensure_ascii=False) + "\n")
 
 
