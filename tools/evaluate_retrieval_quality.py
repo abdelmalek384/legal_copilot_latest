@@ -38,17 +38,24 @@ _DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 
 def _load_jsonl(path):
+    """Parse a bounded, stable regular-file snapshot; reject links and special files."""
+    raw = read_regular_file(path)
+    try:
+        text = raw.decode("utf-8")
+    except UnicodeDecodeError as exc:
+        raise ValueError(f"{path}: input must be valid UTF-8") from exc
     rows = []
-    with Path(path).open(encoding="utf-8") as handle:
-        for line_number, line in enumerate(handle, start=1):
-            if not line.strip() or line.lstrip().startswith("#"):
-                continue
-            try:
-                rows.append(json.loads(line, object_pairs_hook=_reject_duplicate_json_keys))
-            except DuplicateJSONKeyError as exc:
-                raise ValueError(f"{path}:{line_number}: {exc}") from exc
-            except json.JSONDecodeError as exc:
-                raise ValueError(f"{path}:{line_number}: invalid JSON: {exc}") from exc
+    for line_number, line in enumerate(text.splitlines(), start=1):
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        try:
+            rows.append(json.loads(line, object_pairs_hook=_reject_duplicate_json_keys))
+        except DuplicateJSONKeyError as exc:
+            raise ValueError(f"{path}:{line_number}: {exc}") from exc
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"{path}:{line_number}: invalid JSON: {exc}") from exc
+        if not isinstance(rows[-1], dict):
+            raise ValueError(f"{path}:{line_number}: each JSONL row must be an object")
     return rows
 
 
