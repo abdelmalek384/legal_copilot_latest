@@ -42,6 +42,9 @@ class _BoundedObjectBody:
         if not isinstance(data, bytes):
             self.close()
             raise ObjectStorageError("object-storage stream returned invalid bytes")
+        if len(data) > requested:
+            self.close()
+            raise ObjectStorageError("object-storage stream exceeded the requested read size")
         self._bytes_read += len(data)
         if self._bytes_read > self._max_bytes:
             self.close()
