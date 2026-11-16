@@ -86,6 +86,18 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0], 0)
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM legal_review_events").fetchone()[0], 6)
 
+    def test_registration_commits_candidate_for_independent_connection(self):
+        self.register(self.db, self.record)
+        observer = sqlite3.connect(os.environ["COPILOT_CORPUS_DB"])
+        try:
+            row = observer.execute(
+                "SELECT document_id FROM legal_documents WHERE document_id=?",
+                (self.record["document"]["document_id"],),
+            ).fetchone()
+            self.assertEqual(row[0], self.record["document"]["document_id"])
+        finally:
+            observer.close()
+
     def test_registration_rolls_back_earlier_sources_on_later_source_conflict(self):
         candidate = dict(self.record)
         candidate["sources"] = [dict(item) for item in self.record["sources"]]
