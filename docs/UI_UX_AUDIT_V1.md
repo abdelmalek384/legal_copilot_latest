@@ -62,3 +62,11 @@ These are frontend implementation and automated contract-test improvements, not 
 - The dashboard prioritizes overdue tasks and legal deadlines with a concise attention panel and direct links to the task/calendar workspaces. Duplicate quick links and fee-summary cards are removed from the dashboard; the Finance workspace remains available.
 - The global document library keeps name search visible and groups type, extraction-status, classification and reset controls under a native collapsed disclosure. Upload results are announced as a list with per-file list items and polite live updates.
 - Regression contracts cover the hierarchy and accessibility semantics. Browser, responsive, RTL/LTR and assistive-technology acceptance remain outstanding.
+
+
+### 2026-11-16 — matter navigation and document review safeguards
+
+- Matter details now use five task-oriented navigation groups while preserving every existing page destination and renderer. A persistent context strip retains matter identity and task progress across sections.
+- Matter extraction review warns when OCR was used or some pages could not be extracted. Recorded page references remain provisional and both supported page fields are recognized.
+- Original-file download is offered only when the API explicitly confirms a retained original; the backend endpoint continues to enforce authorization and integrity.
+- Automated source contracts were added; responsive browser and assistive-technology review remain outstanding.
