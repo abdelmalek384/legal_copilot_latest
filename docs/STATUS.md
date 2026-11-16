@@ -855,3 +855,12 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Source-level implementation for these two bounded audit tasks: **100%**. Static checks confirm both regression modules are workflow/matrix registered; the matrix contains 42 unique entries and all are referenced by the workflow.
 - Isolated AST harnesses exercised the accepted/rejected declaration forms. Repository test modules executed in this continuation: **0**; GitHub Actions jobs executed: **0**. CI/runner billing remains the validation blocker. No repository test pass is claimed.
 - AI-2 overall estimate remains **76.2%** and whole-project estimate **74.8%** pending runtime validation and broader workstream completion; these are engineering estimates, not certification. No safe open PR was identified for merge. Pilot/production remains **NOT READY**.
+
+
+## AI-2 attached database identity binding — 2026-11-16
+
+- Hardened `DatabaseRuntime._configure_firm_connection`: each read-only SQLite control-plane/legal-corpus attachment is now bound to its observed device/inode in a private TEMP identity table. Every reuse checks the current paths against those captured identities; same-path replacement is rejected, and path permissions/symlink state are revalidated after attachment.
+- Any failed control-plane context revalidation or tenant connection configuration now revokes the thread's cached tenant handle, preventing a failed authorization/storage check from leaving a previously attached tenant connection reusable.
+- Added `test_firm_connection_revokes_tenant_handle_when_control_file_is_replaced` and `test_firm_connection_revokes_tenant_handle_when_attached_corpus_is_replaced` to `tests/test_database_runtime.py`. The module is already registered in the explicit Tests workflow and focused security matrix.
+- Source commits: `6032ecf`, `6937bd6`, `330e0b3`; regression commit: `0ae13c4`. Static source/registration review confirms both regressions are present and wired. An isolated SQLite harness confirmed a same-path corpus replacement changes the recorded identity and is detectable. This harness is not execution of the repository test module.
+- Implementation: **100%**. Repository test execution: **0**; GitHub Actions: **0**. Runtime acceptance remains blocked by the CI billing/runner issue. Pilot/production remains **NOT READY**.
