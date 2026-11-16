@@ -154,6 +154,37 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         self.assertEqual(target.read_bytes(), content)
         self.assertEqual(target.stat().st_mode & 0o777, 0o600)
 
+    def test_backup_object_copy_stays_anchored_to_open_namespace(self):
+        import os
+        from database_backup import _copy_verified_original_object
+
+        namespace = self.root / "firm-namespace"
+        outside = self.root / "outside-namespace"
+        namespace.mkdir()
+        outside.mkdir()
+        filename = "b" * 32 + ".blob"
+        approved = b"approved namespace object"
+        (namespace / filename).write_bytes(approved)
+        (outside / filename).write_bytes(b"outside replacement")
+        flags = os.O_RDONLY | getattr(os, "O_DIRECTORY", 0) | getattr(os, "O_NOFOLLOW", 0)
+        namespace_fd = os.open(namespace, flags)
+        target = self.root / "anchored-copy.blob"
+        moved = self.root / "original-namespace"
+        try:
+            namespace.rename(moved)
+            namespace.symlink_to(outside, target_is_directory=True)
+            _copy_verified_original_object(
+                namespace / filename,
+                target,
+                expected_size=len(approved),
+                expected_sha256=hashlib.sha256(approved).hexdigest(),
+                source_dir_fd=namespace_fd,
+            )
+        finally:
+            os.close(namespace_fd)
+        self.assertEqual(target.read_bytes(), approved)
+        self.assertEqual((outside / filename).read_bytes(), b"outside replacement")
+
     def test_backup_object_copy_rejects_symlink_substitution_before_open(self):
         import os
         from unittest.mock import patch
