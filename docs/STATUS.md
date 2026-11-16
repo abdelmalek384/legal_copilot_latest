@@ -1271,3 +1271,10 @@ Validation and remaining gates:
 - Merged PR #1740 (`e98f28ef9e31a33616c2d21797488bfa9261aa30`): Ctrl/Cmd+K focuses and selects the global matter-search input, with `aria-keyshortcuts` metadata. The shortcut registers once, does not steal keystrokes from form/editable fields, and remains inactive on Legal Research where the global bar is hidden.
 - Updated the UX gap audit and added a frontend regression contract. Independent validation included a V8 parse and a runtime harness that verified one-time registration, focus/select behavior, input-field guard and Legal Research guard.
 - The broader command palette and global client/document search remain unimplemented. GitHub Actions did not provide an executed test step; no Python/browser acceptance is claimed.
+
+
+## Active firm context in navigation — 2026-11-17
+
+- Merged PR #1741 (`d96b506664a25cbe80ddedf2445a82e3add88252`): the primary navigation now visibly identifies the active firm's name even for single-firm users. The label is resolved against the active firm ID; if a multi-firm user's active firm cannot be resolved, no potentially misleading tenant label is shown. The existing multi-firm switcher is unchanged.
+- Updated the UX gap audit and added a frontend regression contract. Independent V8 parse/source checks and a runtime harness covered active firm match, single-firm fallback, unresolved multi-firm state and semantic note rendering.
+- Role/permission explanations remain an open UI gap. GitHub Actions did not execute test steps; no Python/browser acceptance is claimed.
