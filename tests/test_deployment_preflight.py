@@ -492,6 +492,21 @@ class DeploymentPreflightTests(unittest.TestCase):
         self.assertTrue(any("COPILOT_DB is retired" in item for item in errors))
         self.assertFalse(any("relative" in item for item in warnings))
 
+    @unittest.skipUnless(os.name == "posix", "POSIX symbolic links are required")
+    def test_rejects_symlinked_database_parent_directory(self):
+        root = Path(self.tempdir.name)
+        alias = root / "control-alias"
+        alias.symlink_to(self.db_path.parent, target_is_directory=True)
+        env = dict(self.env, COPILOT_CONTROL_DB=str(alias / self.db_path.name))
+        passed, warnings, errors = preflight.inspect_environment(env)
+        self.assertTrue(
+            any("COPILOT_CONTROL_DB parent path must not contain symbolic-link components" in item
+                for item in errors),
+            errors,
+        )
+        self.assertFalse(any("COPILOT_CONTROL_DB exists and is readable/writable" in item for item in passed))
+        self.assertFalse(any("COPILOT_CONTROL_DB does not exist yet" in item for item in warnings))
+
     def test_rejects_symlinked_database_path_without_following_target(self):
         target = Path(self.tempdir.name) / "real-production.db"
         target.write_text("test", encoding="utf-8")
