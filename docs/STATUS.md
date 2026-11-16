@@ -938,3 +938,15 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 - Merged PR #1674: the PDF bundle importer now checks post-read path/device/inode identity and uses nonblocking/no-follow opens where available; FIFO and symlink-swap regressions were added.
 - Merged PR #1676: the collection manifest is read through a bounded 5 MiB stable descriptor; final-path symlink swaps, FIFOs, oversized files and read-time changes fail closed. Repository tests remain unexecuted due runner billing/allocation.
+
+## AI-1 bounded evidence and evaluation input reads — 2026-11-16
+
+- Merged PR #1678: manual-capture provenance sidecars now use bounded stable-descriptor reads, rejecting symlink replacement, non-regular/FIFO inputs and oversized records.
+- Merged PR #1679: Arabic retrieval scoring now reads question/run JSONL, the approved reviewer registry and existing measurement reports from bounded stable file descriptors.
+- Merged PR #1680: collection extraction now reads the preserved original once and feeds those exact bytes to PDF/DOCX parsers or HTML/plain-text decoding. Extraction no longer reopens a path after hashing/validation.
+- Merged PR #1681: the canonical source-permission register loader now rejects symlink/path swaps, FIFOs, oversized input and changes during reading while preserving duplicate-key validation.
+- Merged PR #1682: the API legal-evaluation runner now reads question JSONL through a bounded stable descriptor, preserving BOM handling and row validation.
+- An isolated stable-read harness exercised regular-file reading and rejection of FIFO, symlink-swap and oversized inputs. It is not a substitute for the repository test modules.
+- GitHub Actions/repository test execution remains unavailable because of runner billing/allocation. No full-suite pass is claimed.
+- These controls protect local evidence/measurement inputs; they do not establish source authenticity, collection/commercial reuse permission, legal currentness, lawyer approval or product release readiness.
+- Updated AI-1 implementation estimate: **82%**. Legal corpus readiness remains **10%** pending authorized original Gazette materials and qualified Egyptian-counsel review. Whole-project engineering estimate remains **75.3% provisional** pending a fresh cross-workstream audit; it is not a release-readiness score.
