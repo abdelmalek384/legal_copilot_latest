@@ -2185,8 +2185,12 @@ async function casesPage(){
    const rows=result.items;
    summary.textContent=total+' '+uiText('قضية','cases');
    pageLabel.textContent=total?((offset+1)+'-'+Math.min(offset+limit,total)+' / '+total):'0 / 0';
+   const noCasesYet=total===0&&!appliedQuery&&!appliedStatus;
+   const emptyState=noCasesYet
+    ?empty(uiText('لا توجد قضايا بعد.','No matters yet.'),uiText('+ قضية جديدة','+ New case'),newCase)
+    :empty(uiText('لا توجد قضايا مطابقة.','No matching cases.'));
    previous.disabled=offset===0;next.disabled=offset+limit>=total;
-   box.replaceChildren(summary,...(rows.length?rows.map(caseRow):[empty(uiText('لا توجد قضايا مطابقة.','No matching cases.'))]));
+   box.replaceChildren(summary,...(rows.length?rows.map(caseRow):[emptyState]));
   }catch(error){toast(err(error))}
  }
  const previous=btn(uiText('السابق','Previous'),async()=>{
