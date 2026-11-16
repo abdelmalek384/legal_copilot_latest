@@ -1324,9 +1324,9 @@ Validation and remaining gates:
 
 ## UI implementation batch summary — 2026-11-17
 
-- **15 focused UI PRs merged:** #1731, #1734, #1735, #1736, #1737, #1738, #1739, #1740, #1741, #1742, #1743, #1744, #1745, #1746 and #1747. Stale draft #1610 was closed as superseded; its branch was not merged. No open PRs remain at this checkpoint.
-- **Implementation completion:** each of the 15 scoped changes is 100% merged to `main`. Fifteen corresponding frontend regression contracts are present. The full inline frontend script parses with V8; focused runtime harnesses covered timeline ordering, scope/density/motion preferences, keyboard search shortcut, active firm/role resolution, field-error behavior and permission-aware empty states.
-- **Arabic UI catalog:** 1,564 entries; IDs and Arabic strings are unique. Catalog source commit tracks the latest UI source/catalog change.
+- **17 focused UI PRs merged:** #1731, #1734, #1735, #1736, #1737, #1738, #1739, #1740, #1741, #1742, #1743, #1744, #1745, #1746, #1747, #1748 and #1749. Stale draft #1610 was closed as superseded; its branch was not merged. No open PRs remain at this checkpoint.
+- **Implementation completion:** each of the 17 scoped changes is 100% merged to `main`. Seventeen corresponding frontend regression contracts are present, plus three backend client-search contracts. The full inline frontend script parses with V8; focused runtime harnesses covered timeline ordering, scope/density/motion preferences, keyboard search shortcut, active firm/role resolution, field-error behavior, permission-aware empty states and grouped matter/client/document search navigation.
+- **Arabic UI catalog:** 1,570 entries; IDs and Arabic strings are unique. Catalog source commit tracks the latest UI source/catalog change.
 - **Acceptance status:** no repository Python suite, Chromium/browser suite, CodeQL, dependency audit or safety regression has been demonstrated as passing in this batch. Inspected Actions jobs repeatedly had zero executed steps. Responsive RTL/LTR, keyboard, screen-reader, zoom, contrast, lawyer-usability and compact/motion visual review remain open.
 - **Latest repository-recorded engineering estimates (not independently revalidated):** whole project 75.3%; AI-2 79.6%; Legal Research Phase 5 85%. These are project estimates, not test-pass or release-readiness percentages.
 - **Release position:** continue implementation, but do not onboard real client data until the separately tracked security, tenant-isolation, backup/restore and operational acceptance gates have passed.
