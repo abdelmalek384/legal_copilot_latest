@@ -273,6 +273,25 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
                 verify_synthetic_firm(runtime, firm_id)
             runtime.close_current_thread()
 
+    def test_head_rejects_malformed_provider_metadata_response(self):
+        from unittest.mock import patch
+
+        with patch.object(self.client, "head_object", return_value=None):
+            with self.assertRaisesRegex(ObjectStorageError, "metadata response is malformed"):
+                self.store.object_presence(12, "c" * 32)
+
+    def test_missing_object_classifier_handles_malformed_provider_error_payload(self):
+        class MalformedProviderError(Exception):
+            response = {"Error": None, "ResponseMetadata": []}
+
+        def fail_head(**kwargs):
+            raise MalformedProviderError("malformed provider error")
+
+        from unittest.mock import patch
+        with patch.object(self.client, "head_object", side_effect=fail_head):
+            with self.assertRaisesRegex(ObjectStorageError, "metadata lookup failed"):
+                self.store.object_presence(12, "d" * 32)
+
     def test_stage_uses_firm_namespace_and_kms_encryption(self):
         payload = b"confidential original\x00bytes"
         staged = self.store.stage(12, payload)
