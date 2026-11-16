@@ -67,6 +67,7 @@ def _open_directory_chain(path: Path) -> int:
         not getattr(os, "O_DIRECTORY", 0)
         or not getattr(os, "O_NOFOLLOW", 0)
         or os.open not in getattr(os, "supports_dir_fd", set())
+        or os.stat not in getattr(os, "supports_follow_symlinks", set())
     ):
         raise ValueError("reconciliation requires no-follow directory-descriptor operations")
     flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | getattr(os, "O_CLOEXEC", 0)
