@@ -77,7 +77,7 @@ def main() -> int:
     except ImportError:
         print("S3 reconciliation unavailable: AWS SDK is not installed", file=sys.stderr)
         return 2
-    except (RuntimeError, ValueError, sqlite3.Error, TenantCatalogError) as exc:
+    except (RuntimeError, ValueError, TypeError, OverflowError, sqlite3.Error, TenantCatalogError) as exc:
         print(f"S3 reconciliation could not safely complete: {exc}", file=sys.stderr)
         return 2
 
