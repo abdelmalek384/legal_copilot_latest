@@ -20,6 +20,7 @@ import stat
 import sys
 from pathlib import Path
 from urllib.parse import parse_qsl, urlsplit
+from tools.validate_source_permission_register import read_regular_file
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -62,7 +63,7 @@ def _reject_duplicate_json_keys(pairs):
 
 
 def load_catalog(path: Path = CATALOG) -> tuple[dict, dict]:
-    data = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+    data = json.loads(read_regular_file(path, max_bytes=4 * 1024 * 1024), object_pairs_hook=_reject_duplicate_json_keys)
     if not isinstance(data, dict):
         raise ValueError("document catalog must be a JSON object")
 
@@ -167,12 +168,12 @@ def record_capture(args) -> dict:
     path = Path(args.file).expanduser()
     if not path.is_file():
         raise ValueError(f"file not found: {path}")
-    size = path.stat().st_size
-    if size == 0:
+    try:
+        data = read_regular_file(path, max_bytes=args.max_mb * 1024 * 1024)
+    except (OSError, ValueError) as exc:
+        raise ValueError(f"capture file is unavailable or unsafe: {exc}") from exc
+    if not data:
         raise ValueError("file is empty")
-    if size > args.max_mb * 1024 * 1024:
-        raise ValueError(f"file exceeds {args.max_mb} MB")
-    data = path.read_bytes()
     content_type = detect_content_type(path, data)
     host = validate_reference_url(args.source_url)
     if not args.captured_by.strip():
