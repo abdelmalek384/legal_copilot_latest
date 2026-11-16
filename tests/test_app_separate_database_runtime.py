@@ -542,6 +542,9 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             )
             self.assertEqual(demoted.status_code, 200, demoted.text)
             self.assertEqual(target.get("/firm/profile").status_code, 403)
+            suspended = self._mutate("post", f"/users/{target_id}/disable")
+            self.assertEqual(suspended.status_code, 200, suspended.text)
+            self.assertEqual(target.get("/cases").status_code, 403)
 
             events = self.runtime.control_connection().execute(
                 "SELECT detail_json FROM platform_security_events "
