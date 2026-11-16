@@ -1264,3 +1264,10 @@ Validation and remaining gates:
 - Merged PR #1739 (`659b6f5cfdeb718b36ba42acb4a6e01a453b8657`): the client list now distinguishes an unfiltered empty firm from filtered no-results. Firm administrators receive a contextual Create client action; non-admin users do not. API load failures suppress the empty-state claim.
 - Updated the UX gap audit, Arabic catalog source-line references and frontend regression contract. Catalog remains at 1,554 unique entries.
 - Independent validation: full inline JavaScript parsed with V8; focused source/catalog assertions passed. GitHub Actions did not execute test steps; no Python/browser pass is claimed.
+
+
+## Global matter-search keyboard shortcut — 2026-11-17
+
+- Merged PR #1740 (`e98f28ef9e31a33616c2d21797488bfa9261aa30`): Ctrl/Cmd+K focuses and selects the global matter-search input, with `aria-keyshortcuts` metadata. The shortcut registers once, does not steal keystrokes from form/editable fields, and remains inactive on Legal Research where the global bar is hidden.
+- Updated the UX gap audit and added a frontend regression contract. Independent validation included a V8 parse and a runtime harness that verified one-time registration, focus/select behavior, input-field guard and Legal Research guard.
+- The broader command palette and global client/document search remain unimplemented. GitHub Actions did not provide an executed test step; no Python/browser acceptance is claimed.
