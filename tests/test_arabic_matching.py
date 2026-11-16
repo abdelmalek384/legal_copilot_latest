@@ -155,6 +155,8 @@ class ArabicMatchingTests(unittest.TestCase):
     def test_formal_arabic_negation_blocks_positive_lexicon_hints(self):
         for question in (
             "لا أريد إجازة",
+            "لا يحق للعامل الحصول على إجازة",
+            "ليس من حق العامل الحصول على إجازة",
             "ليس لدي إجازة",
             "لم أحصل على إجازة",
             "لن أطلب إجازة",
@@ -170,6 +172,10 @@ class ArabicMatchingTests(unittest.TestCase):
                 self.assertIn(tokens("إجازة")[0], expanded)
                 self.assertNotIn("leave", expanded)
                 self.assertFalse(set(tokens("الإجازة السنوية")).issubset(expanded))
+
+    def test_positive_intent_after_clause_punctuation_still_expands(self):
+        expanded = set(expanded_tokens("لا أريد معرفة الحقوق، أريد إجازة"))
+        self.assertIn("leave", expanded)
 
     def test_interrogative_ma_is_not_mistaken_for_negation(self):
         expanded = set(expanded_tokens("ما هي الإجازة السنوية؟"))
