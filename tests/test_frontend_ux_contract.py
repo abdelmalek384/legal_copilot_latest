@@ -1716,5 +1716,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("workspace-actions", dashboard)
         self.assertIn("openPage('law',law)", dashboard)
 
+    def test_document_library_empty_matter_state_offers_upload_only_when_allowed(self):
+        renderer = HTML[HTML.index("const renderDocuments=docs=>"):HTML.index("\n documentFilter.oninput")]
+        self.assertIn("const noDocumentsYet=docs.length===0&&!globalMode&&Number(matterSelect.value)>0&&!uploadButton.disabled", renderer)
+        self.assertIn("empty(uiText('لا توجد مستندات','No documents'),uiText('اختيار ملفات','Choose files'),()=>uploadButton.click())", renderer)
+        self.assertIn("No documents match these filters.", renderer)
+        self.assertIn("!globalMode", renderer)
+        self.assertIn("!uploadButton.disabled", renderer)
+
 if __name__ == "__main__":
     unittest.main()
