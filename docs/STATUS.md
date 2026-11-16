@@ -924,3 +924,14 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - The focused security regression matrix now contains **70 unique modules**, all statically confirmed present in the main Tests workflow. This is registration coverage only; repository test execution remains **0** in this session.
 - Isolated filesystem harness passed for atomic report replacement and failure preservation. GitHub Actions remains unavailable due runner billing/allocation; the repository cannot be cloned in this environment because outbound DNS/network access is unavailable. No repository test pass is claimed.
 - **AI-1 bounded implementation estimate: 74%.** Retrieval measurement integrity and focused test registration improved; legal corpus readiness remains low and external lawyer/source dependencies remain open. Whole-project estimate remains the latest separately recorded **75.3% provisional engineering estimate**, not a test-pass rate or readiness score.
+
+## AI-1 stable legal-evidence reads — 2026-11-16
+
+- Merged PR #1670: manual-capture original-file hashing now uses a stable regular-file descriptor and rejects final-path symlink replacement and non-regular files.
+- Merged PR #1671: the legal document collector applies the same stable-descriptor checks to preserved originals.
+- Merged PR #1672: the release validator now reads extracted-text bytes once, hashes those bytes, and performs UTF-8 decoding/article-anchor checks on the same in-memory content. This closes a hash-then-reopen path race.
+- Merged PR #1673: permission-register and candidate JSON metadata are read through the stable-descriptor reader; symlink swaps/non-regular inputs fail closed.
+- Isolated local harnesses exercised stable reads, regular-file hashing, FIFO rejection and final-path symlink-swap rejection. The corresponding repository test modules remain unexecuted.
+- PR #1674 adds a similar post-read path-identity check to the PDF bundle importer, but its merge was rejected because the base branch changed during the merge operation. It remains open pending a safe latest-main refresh; no claim of merge or test completion.
+- These are file-integrity and race-resistance controls only. They do not authenticate a Gazette, grant reuse rights, establish currentness, or substitute for qualified Egyptian-counsel review.
+- AI-1 implementation estimate: **79%**. Legal corpus readiness remains **10%** pending authorized original materials and counsel approval. Whole-project estimate remains **75.3% provisional** from the separately recorded project checkpoint; not a test-pass or release-readiness score.
