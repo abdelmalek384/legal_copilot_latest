@@ -190,11 +190,16 @@ def inspect_firm_offboarding(
             reconciliation = reconcile_s3_original_file_storage(s3_store, [tenant_database])
             try:
                 versioning = s3_store.client.get_bucket_versioning(Bucket=s3_store.bucket)
-                s3_versioning_status = versioning.get("Status") or "Disabled"
-                if s3_versioning_status in {"Enabled", "Suspended"}:
+                raw_versioning_status = versioning.get("Status")
+                s3_versioning_status = raw_versioning_status or "Disabled"
+                if raw_versioning_status in {"Enabled", "Suspended"}:
                     findings.append({
                         "code": "s3_bucket_versioning_requires_retention_policy",
                         "versioning_status": s3_versioning_status,
+                    })
+                elif raw_versioning_status is not None:
+                    findings.append({
+                        "code": "s3_bucket_versioning_status_unavailable",
                     })
             except Exception:
                 findings.append({"code": "s3_bucket_versioning_status_unavailable"})
