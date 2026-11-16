@@ -7,6 +7,7 @@ import unittest
 from unittest import mock
 from pathlib import Path
 
+import tools.import_laws as importer
 from tools.import_laws import validate_inputs
 
 
@@ -430,6 +431,35 @@ class LegalImportBundleTests(unittest.TestCase):
             })
         self.assertEqual(existing.read_bytes(), b"prior evidence")
         self.assertFalse((self.output / "new-report.md").exists())
+
+    def test_regular_file_reader_rejects_final_path_symlink_swap(self):
+        target = self.source / "race.pdf"
+        target.write_bytes(self.pdf_bytes)
+        outside = self.root / "outside.pdf"
+        outside.write_bytes(b"%PDF-1.7 replacement")
+        real_open = importer.os.open
+        swapped = False
+
+        def replace_before_open(path, flags, *args, **kwargs):
+            nonlocal swapped
+            if Path(path) == target and not swapped:
+                swapped = True
+                target.unlink()
+                target.symlink_to(outside)
+            return real_open(path, flags, *args, **kwargs)
+
+        with mock.patch.object(importer.os, "open", side_effect=replace_before_open):
+            with self.assertRaises(SystemExit):
+                importer._read_regular_file(target, "PDF")
+        self.assertTrue(swapped)
+
+    def test_regular_file_reader_rejects_fifo_without_blocking(self):
+        if not hasattr(os, "mkfifo"):
+            self.skipTest("FIFO files are unavailable")
+        fifo = self.source / "input.fifo"
+        os.mkfifo(fifo)
+        with self.assertRaises(SystemExit):
+            importer._read_regular_file(fifo, "PDF")
 
 if __name__ == "__main__":
     unittest.main()
