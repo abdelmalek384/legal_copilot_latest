@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "05b06a355258f031c45112cfddc3996c6671c7c5",
   "generated_on": "2026-11-17",
-  "entry_count": 1559,
+  "entry_count": 1563,
   "entries": [
     {
       "id": "AR-0001",
@@ -17336,6 +17336,42 @@
       "source_file": "static/index.html",
       "source_lines": [
         1717
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1560",
+      "arabic": "تفضيلات الحركة",
+      "source_file": "static/index.html",
+      "source_lines": [
+        1723
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1561",
+      "arabic": "إعداد النظام",
+      "source_file": "static/index.html",
+      "source_lines": [
+        1723
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1562",
+      "arabic": "تقليل الحركة",
+      "source_file": "static/index.html",
+      "source_lines": [
+        1723
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1563",
+      "arabic": "تفضيلات إمكانية الوصول",
+      "source_file": "static/index.html",
+      "source_lines": [
+        1723
       ],
       "review_status": "pending_native_review"
     }
