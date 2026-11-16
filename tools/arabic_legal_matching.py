@@ -12,10 +12,20 @@ from pathlib import Path
 _LEXICON_PATH = Path(__file__).resolve().parents[1] / "data" / "arabic_legal_lexicon.json"
 
 
+def _reject_duplicate_json_keys(pairs):
+    """Reject ambiguous alias definitions instead of silently keeping the last one."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"Arabic legal lexicon contains duplicate JSON key: {key}")
+        result[key] = value
+    return result
+
+
 @lru_cache(maxsize=1)
 def _load_lexicon():
     with _LEXICON_PATH.open(encoding="utf-8") as handle:
-        payload = json.load(handle)
+        payload = json.load(handle, object_pairs_hook=_reject_duplicate_json_keys)
     if not isinstance(payload, dict):
         raise ValueError("Arabic legal lexicon must be a JSON object")
     for section in ("phrase_aliases", "token_aliases"):
