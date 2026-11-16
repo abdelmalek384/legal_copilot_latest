@@ -9,6 +9,7 @@ from __future__ import annotations
 import os
 import re
 import sqlite3
+import stat
 import uuid
 from pathlib import Path
 from typing import Callable
@@ -105,6 +106,25 @@ def initialize_catalog(connection: sqlite3.Connection) -> None:
     connection.commit()
 
 
+def _path_has_symlink_component(path: str | Path) -> bool:
+    """Detect symlinks in existing path components without following them."""
+    candidate = Path(path).expanduser()
+    if not candidate.is_absolute():
+        candidate = Path.cwd() / candidate
+    current = Path(candidate.anchor)
+    for component in candidate.parts[1:]:
+        current = current / component
+        try:
+            mode = os.lstat(current).st_mode
+        except FileNotFoundError:
+            break
+        except OSError:
+            return True
+        if stat.S_ISLNK(mode):
+            return True
+    return False
+
+
 def _storage_root_path(storage_root: str | Path, *, create: bool = False) -> Path:
     """Validate the configured storage root before resolving it.
 
@@ -112,12 +132,12 @@ def _storage_root_path(storage_root: str | Path, *, create: bool = False) -> Pat
     is a symlink. Reject that mapping for both provisioning and resolution.
     """
     raw_root = Path(storage_root).expanduser()
-    if raw_root.is_symlink():
-        raise TenantCatalogError("Tenant storage root must not be a symlink")
+    if _path_has_symlink_component(raw_root):
+        raise TenantCatalogError("Tenant storage root must not contain symlink path components")
     if create:
         raw_root.mkdir(parents=True, exist_ok=True)
-    if raw_root.is_symlink() or not raw_root.is_dir():
-        raise TenantCatalogError("Tenant storage root must be a real directory")
+    if _path_has_symlink_component(raw_root) or not raw_root.is_dir():
+        raise TenantCatalogError("Tenant storage root must be a real directory without symlink path components")
     return raw_root.resolve()
 
 
@@ -125,8 +145,8 @@ def _safe_database_path(root: Path, firm_id: int, filename: str) -> Path:
     match = _FILENAME.fullmatch(filename)
     if not match or int(match.group("firm_id")) != firm_id:
         raise TenantCatalogError("Tenant catalog contains an invalid database reference")
-    if root.is_symlink():
-        raise TenantCatalogError("Tenant storage root must not be a symlink")
+    if _path_has_symlink_component(root):
+        raise TenantCatalogError("Tenant storage root must not contain symlink path components")
     resolved_root = root.resolve()
     if not resolved_root.is_dir():
         raise TenantCatalogError("Tenant storage root must be a real directory")
