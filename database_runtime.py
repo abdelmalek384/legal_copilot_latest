@@ -1179,12 +1179,51 @@ class DatabaseRuntime:
             for row in connection.execute("PRAGMA database_list")
             if row["name"] not in {"main", "temp"} and row["file"]
         }
+        # Bind each SQLite attachment to the exact file identity observed when
+        # it is opened. A path-only PRAGMA database_list comparison is not enough:
+        # replacing a database at the same path leaves an existing SQLite
+        # attachment pointing at the old inode.
+        expected_identities = {
+            alias: self._file_identity(path) for alias, path in expected.items()
+        }
         for alias, path in expected.items():
             existing = attached.get(alias)
             if existing is not None and existing != path:
                 raise DatabaseRuntimeError(f"Unexpected database attached as {alias}")
             if existing is None:
                 connection.execute(f"ATTACH DATABASE ? AS {alias}", (path.as_uri() + "?mode=ro",))
+            if self._file_identity(path) != expected_identities[alias]:
+                raise DatabaseRuntimeError(
+                    f"{alias} database file changed while attaching; restart the application"
+                )
+
+        identity_table_exists = connection.execute(
+            "SELECT 1 FROM sqlite_temp_master WHERE type='table' "
+            "AND name='_attached_profile_identity'"
+        ).fetchone()
+        if identity_table_exists:
+            recorded = {
+                row["alias"]: (int(row["device"]), int(row["inode"]))
+                for row in connection.execute(
+                    "SELECT alias,device,inode FROM _attached_profile_identity"
+                )
+            }
+            if recorded != expected_identities:
+                raise DatabaseRuntimeError(
+                    "An attached control-plane or legal-corpus database was replaced; restart the application"
+                )
+        else:
+            connection.execute(
+                "CREATE TEMP TABLE _attached_profile_identity("
+                "alias TEXT PRIMARY KEY, device INTEGER NOT NULL, inode INTEGER NOT NULL)"
+            )
+            connection.executemany(
+                "INSERT INTO _attached_profile_identity(alias,device,inode) VALUES(?,?,?)",
+                [
+                    (alias, identity[0], identity[1])
+                    for alias, identity in sorted(expected_identities.items())
+                ],
+            )
 
         # Existing matter handlers expect a firm-scoped users table. A temp
         # context table prevents a user with multiple memberships from appearing
@@ -1246,14 +1285,22 @@ class DatabaseRuntime:
         if current.role != context.role:
             self._tenant_router.revoke_firm_connection(context.firm_id)
             raise FirmContextError("firm role changed; resolve the current context before continuing")
+        connection = None
         try:
             connection = self._tenant_router.connection_for_firm(current.firm_id)
             self._configure_firm_connection(connection, current.firm_id)
             return connection
-        except (TenantConnectionError, ValueError, sqlite3.Error) as exc:
-            raise DatabaseRuntimeError(
-                "Firm database is unavailable; no shared fallback is permitted"
-            ) from exc
+        except Exception as exc:
+            # Configuration failures must not leave a tenant handle cached with
+            # stale or partially initialized shared-profile attachments.
+            self._tenant_router.revoke_firm_connection(current.firm_id)
+            if isinstance(exc, DatabaseRuntimeError):
+                raise
+            if isinstance(exc, (TenantConnectionError, ValueError, sqlite3.Error)):
+                raise DatabaseRuntimeError(
+                    "Firm database is unavailable; no shared fallback is permitted"
+                ) from exc
+            raise
 
     def close_current_thread(self) -> None:
         """Close all connections owned by the calling thread."""
