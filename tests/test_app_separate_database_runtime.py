@@ -508,6 +508,53 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         finally:
             target_client.close()
 
+    def test_firm_admin_can_promote_and_demote_members_with_audit_and_live_authorization(self):
+        target_id = self.runtime.create_global_identity(
+            "Role Change Target", "role-change-target@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(target_id, self.firm_a, "lawyer")
+        target = TestClient(app.app)
+        try:
+            target_login = target.post(
+                "/login",
+                json={"email": "role-change-target@example.test", "password": self.password},
+            )
+            self.assertEqual(target_login.status_code, 200, target_login.text)
+            self.assertEqual(target.get("/firm/profile").status_code, 403)
+
+            owner_login = self.client.post(
+                "/login", json={"email": "owner@example.test", "password": self.password}
+            )
+            self.assertEqual(owner_login.status_code, 200, owner_login.text)
+            self_change = self._mutate(
+                "put", f"/users/{self.user_id}/role", json={"role": "lawyer"}
+            )
+            self.assertEqual(self_change.status_code, 422, self_change.text)
+
+            promoted = self._mutate(
+                "put", f"/users/{target_id}/role", json={"role": "admin"}
+            )
+            self.assertEqual(promoted.status_code, 200, promoted.text)
+            self.assertEqual(target.get("/firm/profile").status_code, 200)
+
+            demoted = self._mutate(
+                "put", f"/users/{target_id}/role", json={"role": "lawyer"}
+            )
+            self.assertEqual(demoted.status_code, 200, demoted.text)
+            self.assertEqual(target.get("/firm/profile").status_code, 403)
+
+            events = self.runtime.control_connection().execute(
+                "SELECT detail_json FROM platform_security_events "
+                "WHERE event_type='membership_role_changed' AND target_user_id=? "
+                "ORDER BY id",
+                (target_id,),
+            ).fetchall()
+            self.assertEqual(len(events), 2)
+            self.assertIn('"new_role": "admin"', events[0]["detail_json"])
+            self.assertIn('"new_role": "lawyer"', events[1]["detail_json"])
+        finally:
+            target.close()
+
     def test_firm_admin_cannot_suspend_an_administrator_membership(self):
         target_id = self.runtime.create_global_identity(
             "Only Firm Admin", "only-firm-admin@example.test", app.hash_pw(self.password)
