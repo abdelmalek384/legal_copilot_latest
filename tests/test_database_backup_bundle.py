@@ -592,6 +592,27 @@ class DatabaseBackupBundleTests(unittest.TestCase):
             with self.assertRaisesRegex(DatabaseBundleError, "encrypted ZIP members"):
                 _safe_archive_members(archive)
 
+    def test_archive_member_preflight_rejects_noncanonical_and_special_paths(self):
+        from database_backup import _safe_archive_members
+
+        for unsafe_name in ("objects//item.blob", "objects/./item.blob", "C:/outside.txt"):
+            with self.subTest(name=unsafe_name):
+                payload = io.BytesIO()
+                with zipfile.ZipFile(payload, "w") as archive:
+                    archive.writestr(unsafe_name, b"untrusted")
+                with zipfile.ZipFile(io.BytesIO(payload.getvalue()), "r") as archive:
+                    with self.assertRaisesRegex(DatabaseBundleError, "unsafe or non-canonical"):
+                        _safe_archive_members(archive)
+
+        payload = io.BytesIO()
+        with zipfile.ZipFile(payload, "w") as archive:
+            special = zipfile.ZipInfo("fifo-entry")
+            special.external_attr = (0o010600 << 16)
+            archive.writestr(special, b"not a regular file")
+        with zipfile.ZipFile(io.BytesIO(payload.getvalue()), "r") as archive:
+            with self.assertRaisesRegex(DatabaseBundleError, "special filesystem entries"):
+                _safe_archive_members(archive)
+
     def test_restore_rejects_traversal_symlink_and_duplicate_zip_members(self):
         import warnings
 
