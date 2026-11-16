@@ -299,6 +299,33 @@ class MFAAccountSecurityTests(unittest.TestCase):
         finally:
             second_client.close()
 
+    def test_reenrollment_audit_failure_rolls_back_session_verification_reset(self):
+        secret = self.enroll()
+        self.confirm(secret)
+        control = self.runtime.control_connection()
+        control.execute("""
+            CREATE TRIGGER reject_mfa_reenrollment_audit
+            BEFORE INSERT ON mfa_security_events
+            WHEN NEW.event_type='enrollment_started'
+            BEGIN SELECT RAISE(ABORT, 'injected MFA re-enrollment audit failure'); END
+        """)
+        control.commit()
+
+        response = self.mutate(
+            "post", "/account/mfa/re-enroll",
+            json={"current_password": self.password},
+        )
+        self.assertEqual(response.status_code, 500, response.text)
+        credential = control.execute(
+            "SELECT status FROM mfa_credentials WHERE user_id=?", (self.user_id,)
+        ).fetchone()
+        self.assertEqual(credential["status"], "enabled")
+        session = control.execute(
+            "SELECT mfa_verified FROM auth_sessions WHERE token_hash=?",
+            (app.sha(self.client.cookies.get("lc_session") or ""),),
+        ).fetchone()
+        self.assertEqual(session["mfa_verified"], 1)
+
     def test_optional_mfa_policy_does_not_bypass_voluntary_mfa_during_reenrollment(self):
         password = "Voluntary-MFA-User-Password-2026!"
         user_id = self.runtime.create_global_identity(
