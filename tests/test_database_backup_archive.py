@@ -350,6 +350,18 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
                 manage.archive_upload_tenancy(args)
         clients.assert_not_called()
 
+    def test_download_rejects_malformed_s3_head_metadata_before_get(self):
+        locator = self.upload()
+        self.s3.head_object = lambda **kwargs: {
+            "VersionId": locator["version_id"],
+            "Metadata": "not-an-object",
+        }
+        with self.assertRaises(DatabaseBundleError):
+            download_encrypted_bundle_version(
+                self.s3, self.kms, locator, self.root / "malformed-head.enc", **self.config
+            )
+        self.assertEqual(self.s3.read_versions, [locator["version_id"]])
+
     def test_malformed_locator_is_rejected_before_cloud_access(self):
         from unittest.mock import patch
 
