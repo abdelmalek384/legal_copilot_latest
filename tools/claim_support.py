@@ -63,7 +63,7 @@ _GENERIC_TERMS = {
 _ENGLISH_MODAL_PATTERNS = {
     "permission": re.compile(
         r"\b(?:may(?!\s+not|n['’]t)|is permitted to|are permitted to|"
-        r"is allowed to|are allowed to|can)\b",
+        r"is allowed to|are allowed to|can(?!\s+not|['’]t))\b",
         re.IGNORECASE,
     ),
     # Exclude negated forms from the positive class so contractions cannot
