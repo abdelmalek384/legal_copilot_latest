@@ -1320,3 +1320,13 @@ Validation and remaining gates:
 - Merged PR #1747 (`9b500def2b458e3b6940cc5306a73931fa4cd4b9`): a selected matter with no documents now offers a Choose files action only when the existing upload control is enabled. Global-library empty state, filtered no-results and permission-disabled states do not show a misleading upload CTA.
 - Updated Arabic catalog source references, UX gap audit and frontend regression contract. Catalog remains at 1,564 unique entries.
 - Independent validation: full inline JavaScript parsed with V8; source/catalog checks and a four-state upload-eligibility harness passed. GitHub Actions Tests, Browser, CodeQL, dependency and safety jobs all had zero executed steps; no repository/browser pass is claimed.
+
+
+## UI implementation batch summary — 2026-11-17
+
+- **15 focused UI PRs merged:** #1731, #1734, #1735, #1736, #1737, #1738, #1739, #1740, #1741, #1742, #1743, #1744, #1745, #1746 and #1747. Stale draft #1610 was closed as superseded; its branch was not merged. No open PRs remain at this checkpoint.
+- **Implementation completion:** each of the 15 scoped changes is 100% merged to `main`. Fifteen corresponding frontend regression contracts are present. The full inline frontend script parses with V8; focused runtime harnesses covered timeline ordering, scope/density/motion preferences, keyboard search shortcut, active firm/role resolution, field-error behavior and permission-aware empty states.
+- **Arabic UI catalog:** 1,564 entries; IDs and Arabic strings are unique. Catalog source commit tracks the latest UI source/catalog change.
+- **Acceptance status:** no repository Python suite, Chromium/browser suite, CodeQL, dependency audit or safety regression has been demonstrated as passing in this batch. Inspected Actions jobs repeatedly had zero executed steps. Responsive RTL/LTR, keyboard, screen-reader, zoom, contrast, lawyer-usability and compact/motion visual review remain open.
+- **Latest repository-recorded engineering estimates (not independently revalidated):** whole project 75.3%; AI-2 79.6%; Legal Research Phase 5 85%. These are project estimates, not test-pass or release-readiness percentages.
+- **Release position:** continue implementation, but do not onboard real client data until the separately tracked security, tenant-isolation, backup/restore and operational acceptance gates have passed.
