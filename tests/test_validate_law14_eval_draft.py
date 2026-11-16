@@ -99,7 +99,7 @@ class Law14DraftInventoryTests(unittest.TestCase):
                     question_style="colloquial_egyptian",
                 ),
             ]
-            raw = "".join(json.dumps(row, ensure_ascii=False) + "\\n" for row in rows).encode("utf-8")
+            raw = "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in rows).encode("utf-8")
             path.write_bytes(raw)
             output = io.StringIO()
             with contextlib.redirect_stdout(output):
