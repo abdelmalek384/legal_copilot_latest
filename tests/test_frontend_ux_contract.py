@@ -1682,7 +1682,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("watchFieldValidity(holidayDate);watchFieldValidity(holidayName)", casework)
         self.assertIn("watchFieldValidity(txt)", casework)
         self.assertIn("[title,amount,paid].forEach(watchFieldValidity)", casework)
-        self.assertIn("[line.description,line.quantity,line.price].forEach(watchFieldValidity)", casework)
+        self.assertIn("watchFieldValidity(line.description)", casework)
+        self.assertIn("try{toMilli(line.quantity.value);clearFieldInvalid(line.quantity)}catch(_){}})", casework)
+        self.assertIn("try{toPiasters(line.price.value);clearFieldInvalid(line.price)}catch(_){}})", casework)
+        self.assertIn("markFieldInvalid(line.quantity)", casework)
+        self.assertIn("markFieldInvalid(line.price)", casework)
         self.assertIn("markFieldInvalid(missingDescription.description)", HTML)
         self.assertIn("requiredFields.filter(field=>!String(field.value||'').trim()||!field.checkValidity()).forEach(markFieldInvalid)", casework)
 
