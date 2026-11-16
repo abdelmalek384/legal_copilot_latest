@@ -162,6 +162,20 @@ class PurgeApprovedOriginalFilesTests(unittest.TestCase):
         firm_db.commit()
         return staged, request_id
 
+    def test_local_purge_requires_quiescence_at_function_boundary(self):
+        self._create_approved_request()
+        with self.assertRaisesRegex(RuntimeError, "explicit quiescence assertion"):
+            purge_approved_requests(
+                self.tenant_path,
+                self.object_root,
+                self.firm_id,
+                self.operator_id,
+                apply=True,
+                control_database_path=self.control_path,
+                tenant_root=self.tenant_root,
+                corpus_database_path=self.corpus_path,
+            )
+
     def test_interrupted_purge_after_unlink_is_manual_review_and_never_claims_success(self):
         staged, request_id = self._create_approved_request()
         self.runtime.disable_firm(self.firm_id)
@@ -188,6 +202,7 @@ class PurgeApprovedOriginalFilesTests(unittest.TestCase):
                 self.firm_id,
                 self.operator_id,
                 apply=True,
+                quiesced=True,
                 control_database_path=self.control_path,
                 tenant_root=self.tenant_root,
                 corpus_database_path=self.corpus_path,
@@ -231,6 +246,7 @@ class PurgeApprovedOriginalFilesTests(unittest.TestCase):
                     self.firm_id,
                     self.operator_id,
                     apply=True,
+                    quiesced=True,
                     control_database_path=self.control_path,
                     tenant_root=self.tenant_root,
                     corpus_database_path=self.corpus_path,
@@ -245,6 +261,7 @@ class PurgeApprovedOriginalFilesTests(unittest.TestCase):
                 self.firm_id,
                 self.operator_id,
                 apply=True,
+                quiesced=True,
                 control_database_path=self.control_path,
                 tenant_root=self.tenant_root,
                 corpus_database_path=self.corpus_path,
@@ -272,6 +289,7 @@ class PurgeApprovedOriginalFilesTests(unittest.TestCase):
                 self.firm_id,
                 self.requester_id,
                 apply=True,
+                quiesced=True,
                 control_database_path=self.control_path,
                 tenant_root=self.tenant_root,
                 corpus_database_path=self.corpus_path,
@@ -299,6 +317,7 @@ class PurgeApprovedOriginalFilesTests(unittest.TestCase):
             self.firm_id,
             self.operator_id,
             apply=True,
+            quiesced=True,
             control_database_path=self.control_path,
             tenant_root=self.tenant_root,
             corpus_database_path=self.corpus_path,
