@@ -91,7 +91,7 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
             ("source_page", "https://user:secret@example.gov/law.pdf", "source_page"),
             ("source_page", "https://example.gov/law.pdf?access_token=secret", "source_page"),
             ("version_source_url", "https://example.gov/law.pdf#fragment", "source_url"),
-            ("review_evidence_url", "https://example.gov/review.pdf\\x7f", "evidence_url"),
+            ("review_evidence_url", "https://example.gov/review.pdf\x7f", "evidence_url"),
         )
         for field, value, expected in cases:
             candidate = dict(self.record)
