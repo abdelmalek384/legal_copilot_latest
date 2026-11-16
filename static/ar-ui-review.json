@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "e7583d977346dcf889eb8358b5eb5ea6b5747c3f",
   "generated_on": "2026-11-16",
-  "entry_count": 1549,
+  "entry_count": 1550,
   "entries": [
     {
       "id": "AR-0001",
@@ -5531,7 +5531,8 @@
       "arabic": "محادثة جديدة",
       "source_lines": [
         2271,
-        2396
+        2396,
+        2895
       ],
       "review_status": "pending_native_review"
     },
@@ -17239,6 +17240,17 @@
       "source_file": "static/index.html",
       "source_lines": [
         2959
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1550",
+      "arabic": "اختر مستندات المكتب أولاً",
+      "source_file": "static/index.html",
+      "source_lines": [
+        2618,
+        2632,
+        2674
       ],
       "review_status": "pending_native_review"
     }

@@ -1541,5 +1541,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Test mode: Source-matched — not lawyer-reviewed", research)
 
 
+    def test_legal_research_new_conversation_is_bilingual_and_upload_tooltip_matches_disabled_reason(self):
+        research = HTML[HTML.index("async function law(){"):HTML.index("\\nfunction documentIntelligencePanel(")]
+        self.assertIn("makeBtn(LANG==='ar'?'محادثة جديدة':'New conversation',newChat,'primary')", research)
+        self.assertIn("Choose Firm documents first", research)
+        self.assertIn("paperclipButton.title=value!=='firm_documents'", research)
+        self.assertIn("paperclipButton.title=scopeSelect.value!=='firm_documents'", research)
+        self.assertIn('"arabic": "اختر مستندات المكتب أولاً"', (ROOT / "static" / "ar-ui-review.json").read_text(encoding="utf-8"))
+
+
 if __name__ == "__main__":
     unittest.main()
