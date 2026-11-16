@@ -246,8 +246,15 @@ class S3PrivateObjectStore:
                 if callable(close):
                     close()
                 raise ObjectStorageError("stored object is not protected by KMS encryption")
-            if body is None or not callable(getattr(body, "read", None)):
-                raise ObjectStorageError("object-storage response has no readable body")
+            if (
+                body is None
+                or not callable(getattr(body, "read", None))
+                or not callable(getattr(body, "close", None))
+            ):
+                close = getattr(body, "close", None)
+                if callable(close):
+                    close()
+                raise ObjectStorageError("object-storage response has no closable readable body")
             content_length = response.get("ContentLength")
             if content_length is not None and (
                 isinstance(content_length, bool)
