@@ -54,6 +54,10 @@ fi
 # subsequent backup selection and cleanup.
 backup_dir_real=$(cd -- "$backup_dir" && pwd -P)
 restore_parent_real=$(cd -- "$restore_parent" && pwd -P)
+if [[ "$backup_dir_real" == "/" || "$restore_parent_real" == "/" ]]; then
+  echo "ERROR: BACKUP_DIR and RESTORE_PARENT must not be filesystem roots." >&2
+  exit 2
+fi
 case "$backup_dir_real/" in
   "$restore_parent_real/"*)
     echo "ERROR: BACKUP_DIR and RESTORE_PARENT must not overlap." >&2
