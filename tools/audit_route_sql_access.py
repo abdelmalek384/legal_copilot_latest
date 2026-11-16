@@ -445,7 +445,7 @@ def audit_source(source: str) -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--json", action="store_true", help="Emit the complete machine-readable map.")
-    parser.add_argument("--strict", action="store_true", help="Fail on unresolved/unreviewed SQL or unclassified SQL routes and direct SQLite opens.")
+    parser.add_argument("--strict", action="store_true", help="Fail on incomplete route declarations, unresolved/unreviewed SQL, unclassified SQL routes, or direct SQLite opens.")
     parser.add_argument("--app", type=Path, default=APP_FILE, help="Application source file to inspect.")
     args = parser.parse_args()
     report = audit_source(args.app.read_text(encoding="utf-8"))
@@ -484,6 +484,8 @@ def main() -> int:
     )
     if args.strict:
         failed = failed or bool(report["unresolved_sql_call_count"] or report["unreviewed_dynamic_sql_sites"])
+        if report["route_declaration_errors"]:
+            print("STRICT AUDIT FAILED: route declarations require a complete static inventory.")
         if report["unresolved_sql_call_count"]:
             print("STRICT AUDIT FAILED: unresolved SQL expressions require explicit review.")
         if report["unreviewed_dynamic_sql_sites"]:
