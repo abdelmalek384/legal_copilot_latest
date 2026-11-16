@@ -24,6 +24,7 @@ fi
 
 tests=(
   test_backup_restore_drill_paths.py
+  test_backup_restore_safety.py
   test_app_separate_database_runtime.py
   test_database_runtime.py
   test_tenant_storage.py
