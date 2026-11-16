@@ -1604,6 +1604,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("newPassword.focus()", settings)
         self.assertIn("const clearPasswordError=field=>{field.removeAttribute('aria-invalid');field.removeAttribute('aria-describedby')}", settings)
         self.assertIn("if(newPassword.value===confirmPassword.value)clearPasswordError(confirmPassword)", settings)
+        self.assertIn("currentPassword.addEventListener('input',()=>{if(newPassword.value!==currentPassword.value)clearPasswordError(newPassword)})", settings)
 
 if __name__ == "__main__":
     unittest.main()
