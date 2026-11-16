@@ -558,6 +558,25 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         with self.assertRaisesRegex(ObjectStorageError, "truncation state"):
             self.store.list_object_keys()
 
+    def test_inventory_enforces_a_page_limit_for_unique_tokens(self):
+        from unittest.mock import patch
+
+        calls = []
+
+        def endless_pages(**kwargs):
+            calls.append(kwargs)
+            return {
+                "Contents": [],
+                "IsTruncated": True,
+                "NextContinuationToken": f"page-{len(calls)}",
+            }
+
+        self.client.list_objects_v2 = endless_pages
+        with patch("s3_original_file_storage._MAX_INVENTORY_PAGES", 2):
+            with self.assertRaisesRegex(ObjectStorageError, "page limit"):
+                self.store.list_object_keys()
+        self.assertEqual(len(calls), 2)
+
     def test_inventory_rejects_non_object_entries(self):
         self.client.list_objects_v2 = lambda **kwargs: {
             "Contents": ["not-an-object-entry"],
