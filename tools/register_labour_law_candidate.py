@@ -92,15 +92,27 @@ def register(db, record):
     sources = record["sources"]
     if not isinstance(sources, list) or not sources:
         raise ValueError("candidate record must contain a non-empty source list")
+    source_by_id = {}
     for source in sources:
+        source_id = source.get("source_id")
+        if not isinstance(source_id, str) or not source_id.strip() or source_id in source_by_id:
+            raise ValueError("candidate source IDs must be unique non-empty strings")
         if not _valid_https_url(source.get("source_page")):
             raise ValueError("candidate source_page must be a clean HTTPS URL")
         terms_url = source.get("terms_url")
         if terms_url is not None and not _valid_https_url(terms_url):
             raise ValueError("candidate terms_url must be a clean HTTPS URL or null")
+        source_by_id[source_id] = source
+    document_input = record.get("document")
+    if not isinstance(document_input, dict) or document_input.get("source_id") not in source_by_id:
+        raise ValueError("candidate document source_id must reference a listed source")
     version_input = record.get("version")
     if not isinstance(version_input, dict) or not _valid_https_url(version_input.get("source_url")):
         raise ValueError("candidate version source_url must be a clean HTTPS URL")
+    version_host = urlsplit(version_input["source_url"]).hostname.casefold()
+    document_source_host = urlsplit(source_by_id[document_input["source_id"]]["source_page"]).hostname.casefold()
+    if version_host != document_source_host:
+        raise ValueError("candidate version source_url host must match the document source")
     reviews = record.get("reviews", [])
     if not isinstance(reviews, list):
         raise ValueError("candidate reviews must be a list")
