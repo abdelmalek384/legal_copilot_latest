@@ -1292,3 +1292,10 @@ Validation and remaining gates:
 - Merged PR #1743 (`84146a915787581b17167bf2cf225e97f33c8e24`): added shared field-error helpers that set `aria-invalid`, associate the existing live toast with `aria-describedby`, focus the invalid control, and clear state after correction.
 - Applied the pattern to task titles, hearing dates, deadline rule/trigger and manual deadline title/date, firm holiday date/name, case notes, fee description/amount/paid, and invoice line descriptions/quantities/unit prices. Numeric fee and invoice line values are checked before submission.
 - Updated the UX gap audit and added a frontend regression contract. Independent validation included V8 syntax parsing, a runtime harness for mark/clear behavior, and quantity parser checks. GitHub Actions did not execute test steps; no Python/browser pass is claimed.
+
+
+## Display density preference — 2026-11-17
+
+- Merged PR #1744 (`05b06a355258f031c45112cfddc3996c6671c7c5`): added Comfortable/Compact display density in Settings, persisted per firm/user. Compact spacing applies to cards, grids, rows, tabs and research content while retaining 44px minimum control height. Comfortable remains the fallback/default.
+- Updated the Arabic review catalog and UX gap audit; catalog now contains 1,559 unique entries. Added a frontend regression contract.
+- Independent validation: full inline JavaScript parsed with V8; density preference runtime harness verified compact restore and invalid/missing fallback; CSS checks confirmed the 44px control minimum. GitHub Actions Tests, Browser acceptance, CodeQL, dependency audit and safety regression all failed with **zero executed job steps**. No repository test or visual/browser pass is claimed; compact-mode visual review remains open.
