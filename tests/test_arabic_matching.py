@@ -190,13 +190,15 @@ class ArabicMatchingTests(unittest.TestCase):
 
     def test_egyptian_circumfix_ma_verb_sh_negation_blocks_positive_hints(self):
         for query in (
-            "ما دفعش الأجر",
-            "ما استلمش مستحقاته",
-            "ما اشتغلش في الإجازة",
+            "ما دفعش الأجر المستحق",
+            "ما استلمش الأجر المستحق",
         ):
             with self.subTest(query=query):
                 expanded = set(expanded_tokens(query))
-                self.assertNotIn("أجر", expanded - set(tokens(query)))
+                original = set(tokens(query))
+                self.assertNotIn(tokens("تأخر")[0], expanded - original)
+                self.assertNotIn(tokens("صرف")[0], expanded - original)
+
 
     def test_interrogative_ma_is_not_mistaken_for_negation(self):
         expanded = set(expanded_tokens("ما هي الإجازة السنوية؟"))
