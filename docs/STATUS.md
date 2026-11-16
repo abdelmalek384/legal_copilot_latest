@@ -825,3 +825,11 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Added tests/test_security_matrix_registration.py with three checks: every focused security-matrix module has an explicit Tests workflow reference, the matrix has no duplicate module entries, and every listed module exists on disk. Registered this self-check in both the Tests workflow and focused security matrix.
 - The preceding static comparison found all 40 original matrix entries already present in the workflow. The new self-check makes that invariant durable and will prevent future matrix/workflow drift. Source commits: 54ab031, b6f06a5, feed9b9, 2e8bfb4.
 - Implementation and registration: **100%**. Execution: blocked by GitHub billing/runner issue; no test pass claimed.
+
+
+## AI-2 route-authentication audit method parsing — 2026-11-16
+
+- Hardened `tools/audit_route_auth.py`: `api_route(methods=...)` is now accepted only when its methods are a non-empty literal list/tuple/set of literal, supported HTTP method strings. Dynamic expressions, empty collections, non-string entries and unsupported methods produce explicit audit findings rather than silently removing the route from the audit.
+- Added focused regressions for dynamic method expressions, empty method collections and non-literal entries in `tests/test_route_auth_audit.py`. The module was already registered in both the Tests workflow and focused security matrix; no registration change was required.
+- Source commit: 728f1e9; regression commit: 69d72b9. An isolated AST parser harness rejected the three malformed forms and accepted a literal GET/POST declaration. This was not execution of the repository test module.
+- Static implementation: **100%**. Runtime validation: pending; GitHub Actions remains unavailable due billing/runner issue. No test pass is claimed. Pilot/production remains **NOT READY**.
