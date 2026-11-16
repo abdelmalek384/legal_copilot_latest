@@ -1197,3 +1197,22 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Merged PR #1706: pypdf is pinned to 7.1.0 in both direct requirements and the Python 3.12 hash lock. The source-distribution and wheel hashes match PyPI's published SHA-256 values; the release page records verified provenance and Python >=3.10 support. This was not a pip-tools regeneration, clean install, or compatibility test. The stale Dependabot PR #1644 was closed as superseded because its branch was 820 commits behind current main; its update was re-applied on a fresh current-main branch.
 - PR #1610 remains draft and is not merged. Its browser, responsive RTL/LTR, accessibility and lawyer-usability gates remain outstanding.
 - Aggregate engineering estimates remain **AI-2 79.6%** and **whole project 75.3% provisional** pending a formal cross-workstream recalculation. These are implementation estimates, not test-pass rates or pilot-readiness scores. Live S3/KMS configuration, witnessed restore, clean Python 3.12 install/audit, repository tests, browser acceptance and independent security review remain open. Pilot/production remains **NOT READY**.
+
+
+## Legal Research Phase 5 UI implementation — 2026-11-16
+
+The following focused frontend changes were merged to `main`:
+
+- PR #1711: new conversations remain client-side drafts until the first message is sent; conversation history starts collapsed; source inspector is hidden until a citation is selected.
+- PR #1712: accessible segmented scope controls for Verified law, Firm documents, and Source catalog; the matter picker is visible only for Firm documents.
+- PR #1714: question composer moved ahead of the thread; four bilingual example prompts; text-only empty state shown only when there are no messages; research-assistance/not-legal-advice label beside the input.
+- PR #1715: one-line research explanation with a Learn more disclosure; compact paperclip upload panel gated on Firm documents scope plus selected matter; existing PDF/DOCX validation and upload endpoint retained.
+- PR #1716: Correct / Partial / Wrong answer-rating buttons wired to the existing rating payload; admin View firm ratings and Export CSV actions moved into a closed overflow menu; global Search matters hidden on Legal Research; Conversations heading protected from wrapping.
+- PR #1718: verified operational document count is read from the existing `/legal-review/coverage` endpoint only for users with `can_review_legal`; ordinary firm users are told that the count is reviewer-restricted. A zero count is stated plainly with the abstention behavior. A separate test-mode label appears only when an answer actually carries backend `trust_tier=source_matched`, and explicitly says it is not lawyer-reviewed.
+
+Validation and remaining gates:
+- Connector-side static assertions passed for the changed source contracts, reviewer permission guard, Arabic catalog uniqueness/count/source-line references, and regression-test presence.
+- The added Python regression methods have **not** been executed as repository tests. GitHub Actions was not relied upon because of the reported billing issue.
+- Browser interaction, screenshot review at 1440px and 390px, English LTR and Arabic RTL, keyboard/focus checks, and lawyer usability review remain **NOT RUN**. Do not treat the UI as visually accepted until those checks are performed.
+- Phase 5 implementation is estimated at **85%**; remaining work is primarily responsive visual QA and any defects found there, plus final confirmation of the status indicator against a populated authorized test corpus.
+- Aggregate engineering estimates remain **AI-2 79.6%** and **whole project 75.3% provisional** pending a formal cross-workstream recalculation. These are implementation estimates, not test-pass rates or pilot-readiness scores. Pilot/production remains **NOT READY**.
