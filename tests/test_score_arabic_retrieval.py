@@ -470,6 +470,29 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "needs canonical expected_article_id"):
             score([q], [run], TEST_REVIEWER_REGISTRY)
 
+    def test_rejects_incomplete_or_ambiguous_canonical_article_ids(self):
+        invalid_ids = (
+            "::law:قانون العمل::article:1",
+            "LABOUR-SOURCE::law:::article:1",
+            "LABOUR-SOURCE::law:قانون العمل::article:",
+            "LABOUR-SOURCE::law:قانون العمل::article:1 ",
+            "LABOUR-SOURCE::law:قانون العمل::article:1\\n",
+            "LABOUR-SOURCE::law:قانون العمل::article:1::article:2",
+        )
+        for article_id in invalid_ids:
+            with self.subTest(article_id=article_id):
+                q = reviewed("Q-MALFORMED-CANONICAL-ID")
+                q["expected_article_id"] = article_id
+                run = {
+                    "question_id": q["id"],
+                    "retrieved_article_ids": [article_id],
+                    "cited_article_ids": [article_id],
+                    "abstained": False,
+                    "used_unverified_source": False,
+                }
+                with self.assertRaisesRegex(ValueError, "non-empty source_id"):
+                    score([q], [run], TEST_REVIEWER_REGISTRY)
+
     def test_answerable_reviewed_question_requires_human_readable_article_label(self):
         q = reviewed("Q-NO-ARTICLE-TEXT")
         q["expected_article"] = None
