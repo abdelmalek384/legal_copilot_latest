@@ -93,7 +93,7 @@ class PdfOcrFallbackTests(unittest.TestCase):
         fake_pil.Image = fake_image
 
         for width_points, height_points in (
-            (10_000.0, 1_000.0),
+            (10_000.0, 10.0),
             (5_000.0, 5_000.0),
         ):
             with self.subTest(width=width_points, height=height_points):
