@@ -1309,6 +1309,84 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
 }
 </style>
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<style id="design-tokens">
+/* Legal Copilot design tokens — the single source of truth for the visual system. */
+:root{
+ --navy:#14284b;
+ --ivory:#f8f6f0;
+ --bg:var(--ivory);
+ --surface:#fffefa;
+ --line:#ded9cc;
+ --tx:#202b3a;
+ --mut:#596575;
+ --gold:#775b25;
+ --gold-soft:#f1eadb;
+ --pri:var(--navy);
+ --pri-l:var(--gold-soft);
+ --ok:#176b45;
+ --ok-l:#eaf6ef;
+ --warn:#80500b;
+ --warn-l:#f7efdc;
+ --bad:#a52620;
+ --bad-l:#fff0ef;
+ --shadow-soft:0 2px 12px rgba(20,40,75,.07);
+ --shadow-raised:0 8px 24px rgba(20,40,75,.10);
+ --space-1:8px;
+ --space-2:16px;
+ --space-3:24px;
+ --space-4:32px;
+ --space-5:40px;
+ --space-6:48px;
+ --font-body:16px;
+ --font-arabic:17px;
+ --font-caption:13px;
+ --font-title:Georgia,"Times New Roman",serif;
+ --radius-card:14px;
+ --radius-control:9px;
+ --tap-target:44px;
+ --ui-ink:var(--tx);
+ --ui-navy:var(--navy);
+ --ui-blue:var(--navy);
+ --ui-blue-soft:var(--gold-soft);
+ --ui-canvas:var(--ivory);
+ --ui-surface:var(--surface);
+ --ui-border:var(--line);
+ --ui-muted:var(--mut);
+ --ui-focus:#2457c5;
+ --ui-focus-ring:#2457c5;
+ --ui-control-border:#7a8491;
+ --ui-control-hover:#596575;
+ --workspace-ink:var(--tx);
+ --workspace-muted:var(--mut);
+ --workspace-blue:var(--navy);
+ --workspace-blue-soft:var(--gold-soft);
+ --workspace-border:var(--line);
+ --workspace-surface:var(--surface);
+ --workspace-success:var(--ok);
+ --workspace-success-bg:var(--ok-l);
+ --workspace-warning:#80500b;
+ --workspace-warning-bg:var(--warn-l);
+ --workspace-danger:var(--bad);
+ --workspace-danger-bg:var(--bad-l);
+}
+html,body{background:var(--ivory);color:var(--tx)}
+body{font-size:var(--font-body);font-family:Tahoma,Arial,sans-serif}
+html[lang="ar"] body{font-size:var(--font-arabic)}
+#main>h2,.page-title{font-family:var(--font-title);font-weight:700;letter-spacing:0}
+h1,h2,h3,h4{color:var(--navy);line-height:1.35}
+h1{font-size:1.75rem}h2{font-size:1.5rem}h3{font-size:1.2rem}
+.mut,.caption,.item-meta{font-size:var(--font-caption)}
+.card{background:var(--surface);border-color:var(--line);border-radius:var(--radius-card);box-shadow:var(--shadow-soft)}
+button,input,select,textarea{font-size:inherit;border-radius:var(--radius-control)}
+button,.tabs a,#side a{min-height:var(--tap-target)}
+#side a.on:before{background:var(--gold)}
+button:not(.g):not(.d){background:var(--navy)}
+button.g{border-color:var(--line)}
+:where(button,input,select,textarea,a,[tabindex]):focus-visible{outline:3px solid #2457c5;outline-offset:2px}
+@media(max-width:800px){#main{padding:var(--space-2)}}
+@media(max-width:420px){#main{padding:var(--space-1)}}
+</style>
 <script>
 const $=i=>document.getElementById(i),A=$('app');
 let ME=JSON.parse(sessionStorage.me||'{}'),TAB='sum',PAGE='dash';
