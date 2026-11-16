@@ -1516,5 +1516,19 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn('"arabic": "اعرف المزيد"', (ROOT / "static" / "ar-ui-review.json").read_text(encoding="utf-8"))
 
 
+    def test_legal_research_rating_choices_overflow_menu_and_page_search_visibility(self):
+        research = HTML[HTML.index("async function law(){"):HTML.index("\\nfunction documentIntelligencePanel(")]
+        self.assertIn("className:'answer-rating-choices',role:'group'", research)
+        self.assertIn("['correct',LANG==='ar'?'صحيحة':'Correct']", research)
+        self.assertIn("['partially_correct',LANG==='ar'?'صحيحة':'Partial']", research)
+        self.assertIn("['wrong',LANG==='ar'?'خاطئة':'Wrong']", research)
+        self.assertIn("overall.value=value", research)
+        self.assertIn("className:'research-rating-menu'", research)
+        self.assertIn("className:'research-rating-menu-items'", research)
+        self.assertIn("if(PAGE==='law')globalSearchBar.hidden=true", HTML)
+        self.assertIn(".research-list-head>b{white-space:nowrap", HTML)
+        self.assertIn('"arabic": "أدوات التقييم"', (ROOT / "static" / "ar-ui-review.json").read_text(encoding="utf-8"))
+
+
 if __name__ == "__main__":
     unittest.main()
