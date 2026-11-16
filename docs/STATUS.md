@@ -776,3 +776,10 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Added a recovery-download preflight regression for a destination whose parent path traverses a symlinked ancestor (not merely a symlink at the final parent component). It asserts the canonical-path mismatch is rejected before bucket-versioning, KMS, HEAD or GET calls. Test commit: b3dc94a. Static review only; repository tests remain unexecuted.
+
+
+## AI-2 recovery locator pre-open inode binding — 2026-11-16
+
+- Recovery locator reads now lstat the path before opening and compare the opened descriptor's device/inode to the inspected file. On platforms without O_NOFOLLOW, a post-open lstat comparison also detects a path that became a symlink or changed identity. This closes the regular-file replacement window in addition to the existing symlink and bounded-read checks.
+- Added a regression that swaps one regular JSON file for another between lstat and os.open; the replacement must not be accepted. Source commit: 22b0c36; test commit: adde810.
+- The recovery-locator test module is already registered in the focused security matrix. Static review only; repository tests and Actions remain unexecuted.
