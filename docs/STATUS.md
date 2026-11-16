@@ -78,7 +78,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 | Repository cleanup/accessibility | 83% | Bilingual form labels/errors, source-inspector metadata and passage navigation are implemented; run hygiene scan and finish manual accessibility review |
 | Staging/recovery | 40% | Two-bucket S3 preflight resolves original/recovery KMS keys in their own regions; backup/restore overlap guard and direct purge-quiescence guard have registered regressions; recovery drill, Compose gate, provider configuration and witnessed restore remain unexecuted |
 
-**Unweighted AI-2 implementation estimate: 72.1%** (arithmetic mean of the seven workstream values above). The provisional whole-project engineering estimate is approximately **72%**; this is not a test-pass rate or production-readiness score. The application remains **NOT READY** for lawyer pilot or production. No test pass is inferred from committed test code.
+**Unweighted AI-2 implementation estimate: 72.2%** (arithmetic mean of the seven workstream values above). The provisional whole-project engineering estimate is approximately **72%**; this is not a test-pass rate or production-readiness score. The application remains **NOT READY** for lawyer pilot or production. No test pass is inferred from committed test code.
 
 ## Legal evidence boundary
 
