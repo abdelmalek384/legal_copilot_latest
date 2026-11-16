@@ -84,6 +84,12 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 | Repository cleanup/accessibility | 83% | Bilingual form labels/errors, source-inspector metadata and passage navigation are implemented; run hygiene scan and finish manual accessibility review |
 | Staging/recovery | 40% | Two-bucket S3 preflight resolves original/recovery KMS keys in their own regions; backup/restore overlap guard and direct purge-quiescence guard have registered regressions; recovery drill, Compose gate, provider configuration and witnessed restore remain unexecuted |
 
+## AI-2 offboarding storage-boundary regression — 2026-11-16
+
+- Added a regression proving that the read-only firm-offboarding preflight rejects both the control-plane database and the legal-corpus database when either is physically nested inside the local original-file object root. This prevents database files from being treated as object inventory and pins the existing symmetric containment boundary.
+- The focused path predicate was exercised independently with temporary filesystem paths and passed. The repository test module remains unexecuted; no application test pass is claimed.
+- **Bounded regression task: 100% implemented; runtime test execution: pending.**
+
 **Unweighted AI-2 implementation estimate: 72.5%** (arithmetic mean of the seven workstream values above). The provisional whole-project engineering estimate is approximately **72%**; this is not a test-pass rate or production-readiness score. The application remains **NOT READY** for lawyer pilot or production. No test pass is inferred from committed test code.
 
 ## Legal evidence boundary
