@@ -90,6 +90,8 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
         cases = (
             ("source_page", "https://user:secret@example.gov/law.pdf", "source_page"),
             ("source_page", "https://example.gov/law.pdf?access_token=secret", "source_page"),
+            ("source_page", "https://example.gov/law.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256", "source_page"),
+            ("source_page", "https://example.gov/law.pdf?GoogleAccessId=account", "source_page"),
             ("version_source_url", "https://example.gov/law.pdf#fragment", "source_url"),
             ("version_source_url_host", "https://other.gov/law.pdf", "host must match"),
             ("review_evidence_url", "https://example.gov/review.pdf\x7f", "evidence_url"),
