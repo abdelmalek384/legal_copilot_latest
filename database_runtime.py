@@ -540,8 +540,10 @@ class DatabaseRuntime:
             connection.execute("PRAGMA foreign_keys=ON")
             if connection.execute("PRAGMA foreign_keys").fetchone()[0] != 1:
                 raise DatabaseRuntimeError(f"Foreign-key enforcement failed for {profile}")
-            # Check again to close the validation/open race. Never retain a handle
-            # if the path changed while SQLite was opening the file.
+            # Revalidate the complete filesystem boundary after SQLite opens:
+            # the path may have become a symlink, or its permissions/sidecars
+            # may have changed during the open window.
+            self._validate_profile_storage(path, profile)
             if self._file_identity(path) != current_identity:
                 raise DatabaseRuntimeError(
                     f"{profile} database file changed while opening; restart the application"
