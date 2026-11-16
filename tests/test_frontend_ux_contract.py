@@ -1326,5 +1326,23 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("assistant abstains rather than guessing", HTML)
         self.assertIn("research-status-banner", HTML)
 
+    def test_primary_navigation_groups_existing_routes_without_weakening_role_gates(self):
+        nav_start = HTML.index("h('nav',{className:'primary-nav'")
+        nav_end = HTML.index("h('span',{className:'nav-scroll-hint'", nav_start)
+        nav = HTML[nav_start:nav_end]
+        self.assertIn("navLabel('مساحة العمل','Workspace')", nav)
+        self.assertIn("navLabel('إدارة المكتب','Firm administration')", nav)
+        for route in ("dash", "cases", "clients", "law", "documents", "tasks", "calendar", "finance", "feedback", "settings"):
+            self.assertIn("['" + route + "'", nav)
+        self.assertIn("ME.role==='admin'", nav)
+        self.assertIn("ME.platform_roles", nav)
+        self.assertIn("ME.can_review_legal", nav)
+        self.assertIn("className:'nav-group'", nav)
+        self.assertIn("window.DOCUMENT_REVIEW_TARGET=null", nav)
+        self.assertIn("#side .nav-group-label{display:none}", HTML)
+        self.assertIn("#side .nav-group button{width:auto;min-width:max-content", HTML)
+        self.assertIn("answer-rating-panel", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
