@@ -7,7 +7,7 @@ import json
 import os
 import stat
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import parse_qsl, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTER = ROOT / "docs" / "source_permission_register.json"
@@ -43,6 +43,17 @@ def _https_url(value: object) -> bool:
     try:
         parsed = urlparse(value)
         port = parsed.port
+        sensitive_query_keys = {
+            "token", "access_token", "auth", "authorization", "password", "secret",
+            "signature", "sig", "api_key", "apikey", "session", "sessionid",
+            "credential", "api-key", "auth_token", "session_token",
+            "awsaccesskeyid", "googleaccessid", "key-pair-id",
+            "x-amz-signature", "x-amz-credential", "x-amz-security-token",
+            "x-amz-algorithm", "x-amz-date", "x-amz-expires", "x-amz-signedheaders",
+            "x-goog-signature", "x-goog-credential", "x-goog-algorithm",
+            "x-goog-date", "x-goog-expires", "x-goog-signedheaders",
+        }
+        query_keys = {key.casefold() for key, _ in parse_qsl(parsed.query, keep_blank_values=True)}
         return (
             parsed.scheme.lower() == "https"
             and bool(parsed.hostname)
@@ -50,6 +61,8 @@ def _https_url(value: object) -> bool:
             and parsed.username is None
             and parsed.password is None
             and not parsed.netloc.endswith(":")
+            and not parsed.fragment
+            and not (query_keys & sensitive_query_keys)
             and not any(ord(char) < 32 for char in value)
         )
     except ValueError:
