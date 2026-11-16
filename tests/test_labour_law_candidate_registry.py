@@ -154,7 +154,7 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
         ).fetchone())
 
     def test_registration_preflights_all_candidate_shapes_before_writing(self):
-        malformed = []
+        malformed = [([], "candidate record must be an object")]
         non_object_source = dict(self.record)
         non_object_source["sources"] = ["not-an-object"]
         malformed.append((non_object_source, "source entries must be objects"))
@@ -217,7 +217,9 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
         for field, value, message in (
             ("collection_permission", "allowed", "cannot grant collection permission"),
             ("commercial_reuse_permission", "allowed_limited", "cannot grant commercial reuse permission"),
-            ("collection_permission", ["allowed"], "must be a non-empty string"),
+            ("collection_permission", ["allowed"], "trimmed non-empty string"),
+            ("commercial_reuse_permission", " allowed ", "trimmed non-empty string"),
+            ("commercial_reuse_permission", "ALLOWED", "cannot grant commercial reuse permission"),
         ):
             candidate = dict(self.record)
             candidate["sources"] = [dict(item) for item in self.record["sources"]]
