@@ -138,14 +138,18 @@ class LocalPrivateObjectStore:
                 os.fchmod(namespace_fd, 0o700)
             return root_fd, namespace_fd
         except OSError as exc:
-            if namespace_fd is not None:
-                os.close(namespace_fd)
-            os.close(root_fd)
+            try:
+                if namespace_fd is not None:
+                    os.close(namespace_fd)
+            finally:
+                os.close(root_fd)
             raise ObjectStorageError("firm storage namespace is unavailable or unsafe") from exc
         except Exception:
-            if namespace_fd is not None:
-                os.close(namespace_fd)
-            os.close(root_fd)
+            try:
+                if namespace_fd is not None:
+                    os.close(namespace_fd)
+            finally:
+                os.close(root_fd)
             raise
 
     @staticmethod
