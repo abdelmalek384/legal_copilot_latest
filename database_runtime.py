@@ -1277,9 +1277,10 @@ class DatabaseRuntime:
             raise TypeError("a verified FirmContext is required")
         try:
             current = self.resolve_context(context.user_id, context.firm_id)
-        except FirmContextError:
-            # A stale context must not leave a cached connection usable after
-            # membership or firm lifecycle state has been revoked.
+        except Exception:
+            # Any failed control-plane revalidation (including file replacement
+            # or catalog corruption, not only a revoked membership) must revoke
+            # the cached tenant handle and its attached shared-profile views.
             self._tenant_router.revoke_firm_connection(context.firm_id)
             raise
         if current.role != context.role:
