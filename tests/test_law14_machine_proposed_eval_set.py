@@ -1,18 +1,32 @@
 """Structural checks only for the unapproved Law 14/2025 retrieval-question drafts."""
-import json
-from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DATASET = ROOT / "tests" / "legal_eval" / "law_14_2025_machine_proposed_questions.draft.jsonl"
 
 
+def test_structural_validator_rejects_symlinked_dataset(tmp_path):
+    from tools.validate_law14_eval_draft import read_jsonl
+
+    outside = tmp_path / "outside.jsonl"
+    outside.write_text('{"id":"outside"}\\n', encoding="utf-8")
+    link = tmp_path / "draft.jsonl"
+    link.symlink_to(outside)
+    try:
+        read_jsonl(link)
+    except ValueError as exc:
+        assert "cannot safely read evaluation draft" in str(exc)
+    else:
+        raise AssertionError("symlinked evaluation dataset must be rejected")
+
+
 def test_law14_machine_proposed_questions_are_unique_article_mapped_and_unapproved():
-    rows = [
-        json.loads(line)
-        for line in DATASET.read_text(encoding="utf-8").splitlines()
-        if line.strip()
-    ]
+    from tools.validate_law14_eval_draft import read_jsonl, validate_rows
+
+    rows = read_jsonl(DATASET)
+    report = validate_rows(rows)
+    assert report["valid"], report["errors"]
+    assert report["trust_boundary"].startswith("Structural validation only")
     assert len(rows) == 116
     assert len({row["id"] for row in rows}) == len(rows)
     assert len({row["question_ar"] for row in rows}) == len(rows)
