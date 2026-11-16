@@ -51,6 +51,24 @@ class DatabaseBackupBundleTests(unittest.TestCase):
             pass
         self.temp.cleanup()
 
+    def test_backup_publication_never_overwrites_existing_timestamp_path(self):
+        import database_backup
+        from unittest.mock import patch
+
+        fixed_ns = 987654321
+        existing = self.backup_dir / (
+            f"tenancy-{database_backup.time.strftime('%Y%m%d-%H%M%S')}-{fixed_ns}.dbbundle.enc"
+        )
+        existing_bytes = b"pre-existing backup must be preserved"
+        existing.write_bytes(existing_bytes)
+        with patch("database_backup.time.time_ns", return_value=fixed_ns):
+            with self.assertRaises(DatabaseBundleError):
+                create_backup_bundle(
+                    self.runtime, self.cipher, self.backup_dir, quiesced=True
+                )
+        self.assertEqual(existing.read_bytes(), existing_bytes)
+        self.assertFalse(any(self.backup_dir.glob(".dbbundle-*.tmp")))
+
     def test_backup_requires_literal_quiescence_and_positive_integer_retention(self):
         for false_like in (False, None, 0, "true", "yes", 1):
             with self.subTest(quiesced=false_like):
