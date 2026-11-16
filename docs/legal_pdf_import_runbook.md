@@ -35,7 +35,7 @@ Each JSON sidecar must be an object with these fields:
 }
 ```
 
-The example URL is illustrative only. Replace it with the actual source URL. Use the SHA-256 of the exact local PDF, not a hash copied from a webpage or a different edition. The importer accepts an ISO date or datetime for `retrieved_at`, requires an HTTPS URL without embedded credentials, fragments, or signed/credential query parameters, and rejects symbolic links, mismatched file pairs, invalid PDF signatures, duplicate document IDs, and hash mismatches before extraction begins.
+The example URL is illustrative only. Replace it with the actual source URL. Use the SHA-256 of the exact local PDF, not a hash copied from a webpage or a different edition. The importer accepts an ISO date or a timezone-aware ISO datetime for `retrieved_at`, requires an HTTPS URL without embedded credentials, fragments, or signed/credential query parameters, and rejects symbolic links, mismatched file pairs, invalid PDF signatures, duplicate document IDs, and hash mismatches before extraction begins.
  The language field is required and must be `ar` (Arabic), `en` (English text/translation), or `ar-en` (bilingual). An optional official_title preserves the instrument's Arabic title in candidate rows. Arabic article headings such as المادة (١) and مادة رقم ٢ مكرر, as well as English Article 3 headings, are segmented; do not treat segmentation or OCR as legal verification.
 
 ## 3. Install optional extraction dependencies
