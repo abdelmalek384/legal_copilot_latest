@@ -636,5 +636,38 @@ class CollectionPipelineTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             collector.load_manifest(oversized)
 
+
+    def test_extract_text_reads_plain_text_from_stable_original_bytes(self):
+        with tempfile.TemporaryDirectory() as td:
+            original = Path(td) / "original.txt"
+            original.write_text("Article 1\nOriginal body", encoding="utf-8")
+            text, error = collector.extract_text(original, "text/plain")
+            self.assertIsNone(error)
+            self.assertEqual(text, "Article 1\nOriginal body")
+
+    def test_extract_text_rejects_original_symlink_swap_before_open(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            original = root / "original.txt"
+            original.write_text("Article 1\nOriginal body", encoding="utf-8")
+            outside = root / "outside.txt"
+            outside.write_text("Article 9\nReplacement", encoding="utf-8")
+            real_open = collector.os.open
+            swapped = False
+
+            def replace_before_open(path, flags, *args, **kwargs):
+                nonlocal swapped
+                if Path(path) == original and not swapped:
+                    swapped = True
+                    original.unlink()
+                    original.symlink_to(outside)
+                return real_open(path, flags, *args, **kwargs)
+
+            with patch.object(collector.os, "open", side_effect=replace_before_open):
+                text, error = collector.extract_text(original, "text/plain")
+            self.assertTrue(swapped)
+            self.assertEqual(text, "")
+            self.assertIn("could not be read safely", error)
+
 if __name__ == "__main__":
     unittest.main()
