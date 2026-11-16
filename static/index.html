@@ -2020,7 +2020,9 @@ async function clientProfileForm(profile=null){
  overlay.__focusReturn=opener;const shell=$('shell');if(shell)shell.inert=true;A.append(overlay);inputs.name.focus();
 }
 async function clients(){
- const profiles=await api('/clients');
+ let profiles=[],profilesError=null;
+ try{const result=await api('/clients');profiles=Array.isArray(result)?result:[];if(!Array.isArray(result))profilesError=new Error('The clients endpoint returned an unexpected response.')}catch(error){profilesError=error}
+
  const cq=h('input',{placeholder:uiText('اسم عميل أو خصم لفحص التعارض المحتمل','Search client or opposing party for potential conflicts'),'aria-label':uiText('بحث عن عميل أو خصم','Search client or opposing party'),style:'width:min(100%,420px)'}),cb=h('div');
  const run=async()=>{if(cq.value.trim().length<2){toast(uiText('أدخل حرفين على الأقل','Enter at least two characters'));return}const r=await api('/conflicts','POST',{q:cq.value.trim()});
  cb.replaceChildren(h('div',{className:'card'},h('b',{textContent:uiText('نتائج الفحص الأولي: ','Preliminary conflict matches: ')+r.matches.length}),h('p',{className:'mut',textContent:r.warning}),
@@ -2054,7 +2056,7 @@ async function clients(){
  const toolbar=h('div',{className:'row'},
   ...(ME.role==='admin'?[btn(uiText('+ ملف عميل جديد','+ New client profile'),()=>clientProfileForm(),'g'),btn(uiText('استيراد CSV','Import CSV'),()=>importInput.click(),'g'),importInput]:[]),
   btn(uiText('+ قضية جديدة','+ New case'),newCase));
- shell(uiText('العملاء','Clients'),toolbar,...(ME.role==='admin'?[h('p',{className:'mut',textContent:uiText('يدعم الاستيراد أعمدة الاسم والهاتف والبريد الإلكتروني والعنوان والملاحظات، بالعربية أو الإنجليزية.','CSV import supports name, phone, email, address and notes columns in Arabic or English.')} )]:[]),search,h('div',{className:'card'},h('h3',{textContent:uiText('فحص أولي لتعارض المصالح','Preliminary conflict check')}),h('div',{className:'row'},cq,btn(uiText('فحص','Check'),run)),cb),cardContainer);
+ shell(uiText('العملاء','Clients'),toolbar,...(ME.role==='admin'?[h('p',{className:'mut',textContent:uiText('يدعم الاستيراد أعمدة الاسم والهاتف والبريد الإلكتروني والعنوان والملاحظات، بالعربية أو الإنجليزية.','CSV import supports name, phone, email, address and notes columns in Arabic or English.')} )]:[]),...(profilesError?[h('div',{className:'notice danger',role:'alert'},h('b',{textContent:uiText('تعذر تحميل ملفات العملاء','Could not load client profiles')}),h('p',{textContent:String(profilesError.message||profilesError)}),btn(uiText('إعادة المحاولة','Retry'),clients,'g'))]:[]),search,h('div',{className:'card'},h('h3',{textContent:uiText('فحص أولي لتعارض المصالح','Preliminary conflict check')}),h('div',{className:'row'},cq,btn(uiText('فحص','Check'),run)),cb),cardContainer);
  drawProfiles();
 }
 async function casesPage(){
@@ -2847,10 +2849,16 @@ async function law(){
  composer.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send.click()}});
  const composerArea=h('div',{className:'research-composer'},composer,send,h('div',{className:'mut',textContent:LANG==='ar'?'Enter للإرسال · Shift+Enter لسطر جديد':'Enter to send · Shift+Enter for a new line'}));
  shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-scope-guidance',role:'note'},h('b',{textContent:LANG==='ar'?'كيف يعمل البحث القانوني':'How legal research works'}),h('p',{textContent:LANG==='ar'?'يبحث النطاق الافتراضي في النصوص القانونية المتحقق منها فقط. إذا لم يوجد نص مستوفٍ لشروط المصدر والمراجعة، سيمتنع النظام عن الإجابة بدلاً من التخمين. استخدم اكتشاف فهرس المصادر للعثور على بيانات وصفية فقط، أو اختر مستندات المكتب وحدد ملف قضية.':'The default scope searches verified legal text only. If no source meets provenance and review requirements, the assistant abstains rather than guessing. Use source-catalog discovery for metadata only, or choose firm documents and select a matter.'})),h('div',{className:'research-controls'},h('label',{},h('span',{textContent:LANG==='ar'?'نطاق البحث':'Search scope'}),scopeSelect),h('label',{},h('span',{textContent:LANG==='ar'?'ملف القضية (للبحث والحفظ)':'Matter (for search and saving)'}),matterSelect),openDocumentWorkspace),uploadPanel,documentWorkspace,h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},researchStatus,thread,composerArea),sourceInspector));
- await drawList();
- if(activeId)await loadConversation(activeId);
- else {const list=await api('/research/conversations');if(list.length)await loadConversation(list[0].id);else await newChat(false)}
- // Place keyboard focus at the first research control only after async page setup is complete.
+ try{
+  await drawList();
+  if(activeId)await loadConversation(activeId);
+  else {const list=await api('/research/conversations');if(list.length)await loadConversation(list[0].id);else await newChat(false)}
+  researchStatus.textContent=LANG==='ar'?'البحث القانوني جاهز.':'Legal research is ready.';
+ }catch(error){
+  const detail=String(error?.message||'').trim();
+  researchStatus.replaceChildren(h('span',{textContent:uiText('تعذر تحميل سجل المحادثات. يمكنك بدء محاولة جديدة أو إعادة تحميل الصفحة.','Could not load conversation history. You can retry or reload the page.')}),h('p',{className:'mut',textContent:detail&&detail!=='api'?detail:''}),makeBtn(uiText('إعادة المحاولة','Retry'),async()=>{researchStatus.textContent=uiText('جارٍ إعادة الاتصال…','Retrying…');try{await drawList();const list=await api('/research/conversations');if(list.length)await loadConversation(list[0].id);else await newChat(false);researchStatus.textContent=uiText('البحث القانوني جاهز.','Legal research is ready.')}catch(retryError){researchStatus.textContent=String(retryError.message||retryError)}},'g'));
+ }
+ // Focus remains in the research composer after the interface is mounted.
  scopeSelect.focus({preventScroll:true});
 }
 function documentIntelligencePanel(caseId,documents){
