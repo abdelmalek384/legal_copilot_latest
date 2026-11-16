@@ -120,6 +120,42 @@ class PdfOcrFallbackTests(unittest.TestCase):
 
         fake_pytesseract.image_to_string.assert_not_called()
 
+    def test_ocr_rejects_non_finite_and_non_positive_page_geometry(self):
+        fake_pytesseract = types.SimpleNamespace(
+            image_to_string=MagicMock(return_value="must not run")
+        )
+        fake_image = types.SimpleNamespace(open=lambda value: object())
+        fake_pil = types.ModuleType("PIL")
+        fake_pil.Image = fake_image
+
+        for width_points, height_points in (
+            (float("nan"), 792.0),
+            (float("inf"), 792.0),
+            (-float("inf"), 792.0),
+            (0.0, 792.0),
+            (-1.0, 792.0),
+            (612.0, 0.0),
+        ):
+            with self.subTest(width=width_points, height=height_points):
+                document = FakePdfDoc(1)
+                document.pages[0].rect = types.SimpleNamespace(
+                    width=width_points, height=height_points
+                )
+                fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: document)
+                with patch.dict(sys.modules, {
+                    "pymupdf": fake_pymupdf,
+                    "pytesseract": fake_pytesseract,
+                    "PIL": fake_pil,
+                }), patch.object(
+                    FakePdfPage, "get_pixmap", autospec=True
+                ) as render_page:
+                    with self.assertRaises(app.HTTPException) as caught:
+                        app.ocr_pdf_text(b"pdf")
+                self.assertEqual(caught.exception.status_code, 413)
+                render_page.assert_not_called()
+
+        fake_pytesseract.image_to_string.assert_not_called()
+
     def test_all_scanned_pdf_still_obeys_ocr_page_limit(self):
         fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: FakePdfDoc(31))
         fake_pytesseract = types.SimpleNamespace(image_to_string=MagicMock(return_value="ocr text"))
