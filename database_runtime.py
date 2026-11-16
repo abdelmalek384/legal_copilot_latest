@@ -89,7 +89,7 @@ class DatabaseRuntime:
         self._initialize_lock = threading.RLock()
         self._initialized = False
         self._tenant_router = TenantSQLiteConnectionRouter(
-            self._new_catalog_connection,
+            self._new_router_catalog_connection,
             self.paths.tenant_root,
             timeout=self.timeout,
         )
@@ -573,6 +573,28 @@ class DatabaseRuntime:
         connection.row_factory = sqlite3.Row
         connection.execute("PRAGMA foreign_keys=ON")
         return connection
+
+    def _new_router_catalog_connection(self) -> sqlite3.Connection:
+        """Give request-time tenant routing a read-only catalog connection."""
+        self._require_initialized()
+        self._validate_profile_storage(self.paths.control_plane, "control-plane")
+        uri = self.paths.control_plane.resolve().as_uri() + "?mode=ro"
+        connection = sqlite3.connect(uri, uri=True, timeout=self.timeout)
+        connection.row_factory = sqlite3.Row
+        try:
+            connection.execute("PRAGMA foreign_keys=ON")
+            connection.execute("PRAGMA query_only=ON")
+            if (
+                connection.execute("PRAGMA foreign_keys").fetchone()[0] != 1
+                or connection.execute("PRAGMA query_only").fetchone()[0] != 1
+            ):
+                raise DatabaseRuntimeError(
+                    "Read-only tenant catalog routing mode could not be enforced"
+                )
+            return connection
+        except Exception:
+            connection.close()
+            raise
 
     def provision_firm(self, name: str) -> tuple[int, Path]:
         """Provision an empty firm database; does not import or assign legacy data."""
