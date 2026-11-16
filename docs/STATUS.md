@@ -1313,3 +1313,10 @@ Validation and remaining gates:
 - Merged PR #1746 (`a3e75627ebfba67ad9b7394668d76f6d156ea17d`): added a direct Analyze a document action to the dashboard hero, routed to the existing authorized Documents workspace. No backend endpoint or permission path changed.
 - Updated the Arabic review catalog, UX gap audit and frontend regression contract. Catalog now contains 1,564 unique entries.
 - Independent validation: full inline JavaScript parsed with V8; source/catalog checks passed for action placement and route target. GitHub Actions did not execute test steps; browser/dashboard acceptance remains open.
+
+
+## Document-library first-run empty state — 2026-11-17
+
+- Merged PR #1747 (`9b500def2b458e3b6940cc5306a73931fa4cd4b9`): a selected matter with no documents now offers a Choose files action only when the existing upload control is enabled. Global-library empty state, filtered no-results and permission-disabled states do not show a misleading upload CTA.
+- Updated Arabic catalog source references, UX gap audit and frontend regression contract. Catalog remains at 1,564 unique entries.
+- Independent validation: full inline JavaScript parsed with V8; source/catalog checks and a four-state upload-eligibility harness passed. GitHub Actions Tests, Browser, CodeQL, dependency and safety jobs all had zero executed steps; no repository/browser pass is claimed.
