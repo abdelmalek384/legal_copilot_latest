@@ -1413,5 +1413,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("value:chunk.page!==undefined&&chunk.page!==null&&chunk.page!==''?chunk.page:(chunk.page_number??'')", page)
 
 
+    def test_matter_ask_explains_verified_corpus_abstention(self):
+        start = HTML.index("if(TAB==='ask')")
+        end = HTML.index("if(TAB==='log')", start)
+        ask = HTML[start:end]
+        self.assertIn("research-scope-guidance", ask)
+        self.assertIn("assistant abstains rather than guessing", ask)
+        self.assertIn("provenance and review requirements", ask)
+        self.assertIn("askBox(id)", ask)
+
+
 if __name__ == "__main__":
     unittest.main()
