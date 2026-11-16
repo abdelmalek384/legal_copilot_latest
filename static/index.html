@@ -285,6 +285,13 @@ body{background:#f3f6fa;color:var(--figma-ink);font-family:Inter,"Noto Sans Arab
 @media(max-width:800px){#side{background:#071b31}#side nav:after{background:linear-gradient(90deg,transparent,#071b31)}}
 .answer-rating-panel{display:grid;gap:10px;margin-top:12px;padding:12px;border:1px solid var(--figma-border);background:#f9fbff}.answer-rating-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.answer-rating-fields select,.answer-rating-fields input,.answer-rating-fields textarea{width:100%;min-width:0}.answer-rating-fields textarea{grid-column:1/-1}@media(max-width:560px){.answer-rating-fields{grid-template-columns:minmax(0,1fr)}}
 .research-rating-tools{display:flex;gap:8px;flex-wrap:wrap;padding:10px 12px;margin:8px 0;border:1px solid var(--figma-border);border-radius:10px;background:#fff}.research-rating-list{display:grid;gap:8px;flex-basis:100%}.research-rating-row{padding:9px;border:1px solid var(--figma-border);border-radius:8px;overflow-wrap:anywhere}.research-rating-row p{margin:5px 0 0;white-space:pre-wrap}
+
+/* Phase 1: prevent destructive wrapping in navigation, document actions and settings. */
+#research-history-pane .research-history-toggle{white-space:nowrap;word-break:normal;overflow-wrap:normal;flex:0 0 auto;min-width:max-content}
+.document-library-matter button{white-space:nowrap;word-break:normal;overflow-wrap:normal;flex:0 0 auto;max-width:100%}
+.settings-checkbox-row{display:flex;align-items:center;justify-content:flex-start;flex-wrap:nowrap;gap:10px;min-width:0}
+.settings-checkbox-row>input[type="checkbox"]{flex:0 0 18px;width:18px;height:18px;min-height:18px;margin:0}
+.settings-checkbox-row>span{display:block;flex:1;min-width:0}
 </style>
 <style>
 /* Legal Copilot — premium workspace polish
@@ -1664,8 +1671,8 @@ if(isAdmin){
  items.push(h('section',{className:'card'},
   h('h3',{textContent:uiText('سياسة المصادقة متعددة العوامل للمكتب','Firm MFA policy')}),
   h('p',{className:'mut',textContent:uiText('تُفرض السياسة عند كل طلب موثّق داخل هذا المكتب. تفعيلها قد يطلب من المستخدمين إعداد تطبيق المصادقة عند طلبهم التالي.','The policy is enforced on authenticated requests within this firm. Enabling it may require users to enroll an authenticator on their next request.')}),
-  h('label',{className:'row'},adminMfa,h('span',{textContent:uiText('إلزام مسؤولي المكتب بتفعيل المصادقة','Require MFA for firm administrators')})),
-  h('label',{className:'row'},everyoneMfa,h('span',{textContent:uiText('إلزام جميع أعضاء المكتب بتفعيل المصادقة','Require MFA for everyone in the firm')})),
+  h('label',{className:'row settings-checkbox-row'},adminMfa,h('span',{textContent:uiText('إلزام مسؤولي المكتب بتفعيل المصادقة','Require MFA for firm administrators')})),
+  h('label',{className:'row settings-checkbox-row'},everyoneMfa,h('span',{textContent:uiText('إلزام جميع أعضاء المكتب بتفعيل المصادقة','Require MFA for everyone in the firm')})),
   savePolicy
  ));
 }if(ME.role==='admin')items.push(h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'الاشتراك والفوترة':'Subscription & billing'}),h('p',{className:'mut',textContent:LANG==='ar'?'اختر خطة المكتب، راجع المقاعد، وأرسل مرجع التحويل البنكي أو InstaPay.':'Choose a firm plan, review seats, and submit a bank transfer or InstaPay reference.'}),btn(LANG==='ar'?'فتح الفوترة':'Open billing',billingPage,'g')));if(Array.isArray(ME.platform_roles)&&ME.platform_roles.includes('platform_admin')){items.push(h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'مراجعة مدفوعات المنصة':'Platform payment review'}),btn(LANG==='ar'?'مراجعة التحويلات المعلقة':'Review pending transfers',platformBillingPage,'g')));items.push(h('div',{className:'card'},h('h3',{textContent:LANG==='ar'?'مؤشرات استخدام المكاتب التجريبية':'Pilot firm usage metrics'}),btn(LANG==='ar'?'عرض مؤشرات الاستخدام':'View pilot metrics',platformPilotMetricsPage,'g')));}
@@ -1683,7 +1690,7 @@ if(reminderPrefs){
  const preferenceControls=reminderFields.map(([key,ar,en])=>{
   const input=h('input',{type:'checkbox',checked:!!reminderPrefs[key],'aria-label':LANG==='ar'?ar:en});
   input.dataset.preferenceKey=key;
-  return {key,input,label:h('label',{className:'row'},input,h('span',{textContent:LANG==='ar'?ar:en}))};
+  return {key,input,label:h('label',{className:'row settings-checkbox-row'},input,h('span',{textContent:LANG==='ar'?ar:en}))};
  });
  const savePreferences=btn(LANG==='ar'?'حفظ تفضيلات التذكير':'Save reminder preferences',async()=>{
   const payload={};preferenceControls.forEach(item=>payload[item.key]=item.input.checked);
