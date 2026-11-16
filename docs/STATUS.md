@@ -912,3 +912,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - MFA transaction regression expanded in commit `7a8c953`: an injected append-only audit failure during authenticator replacement must roll back the pending credential transition and all-session MFA-proof invalidation, leaving the original enabled credential and current verified session intact.
+
+
+- Aggregate estimate after MFA re-enrollment session invalidation and reminder delivery hardening: authentication/firm administration **85.9%**, AI-2 **76.7%**, whole project **75.3%**. The change is deliberately limited to the code-level controls completed here; repository tests, CI, live SMTP, live AWS, browser and independent acceptance are not credited as complete.
