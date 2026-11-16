@@ -214,6 +214,8 @@ class S3PrivateObjectStore:
             raise ValueError("expected_sha256 must be a lowercase SHA-256 digest")
         if isinstance(expected_size, bool) or not isinstance(expected_size, int) or expected_size < 0:
             raise ValueError("expected_size must be a non-negative integer")
+        if expected_size > self.max_bytes:
+            raise ValueError("expected_size exceeds the configured object size limit")
         key = self._key(firm_id, object_id, state)
         digest = hashlib.sha256()
         size = 0
@@ -232,10 +234,16 @@ class S3PrivateObjectStore:
                 return False
             try:
                 while True:
-                    block = body.read(1024 * 1024)
+                    # Read at most max_bytes plus one sentinel byte. This keeps
+                    # reconciliation/backup verification bounded even if S3
+                    # returns an object larger than its recorded metadata.
+                    read_size = min(1024 * 1024, self.max_bytes - size + 1)
+                    block = body.read(read_size)
                     if not block:
                         break
                     size += len(block)
+                    if size > self.max_bytes:
+                        return False
                     digest.update(block)
             finally:
                 close = getattr(body, "close", None)
