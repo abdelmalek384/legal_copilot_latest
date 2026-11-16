@@ -380,7 +380,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
 
                     suspended = self._mutate("post", f"/users/{target_id}/disable")
                     self.assertEqual(suspended.status_code, 200, suspended.text)
-                    self.assertEqual(target.get("/cases").status_code, 403)
+                    expected_denial = 403 if len(firm_ids) > 1 else 401
+                    self.assertEqual(target.get("/cases").status_code, expected_denial)
 
                     logout = target.post("/logout", headers={"X-CSRF-Token": csrf})
                     self.assertEqual(logout.status_code, 200, logout.text)
@@ -544,7 +545,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertEqual(target.get("/firm/profile").status_code, 403)
             suspended = self._mutate("post", f"/users/{target_id}/disable")
             self.assertEqual(suspended.status_code, 200, suspended.text)
-            self.assertEqual(target.get("/cases").status_code, 403)
+            self.assertEqual(target.get("/cases").status_code, 401)
 
             events = self.runtime.control_connection().execute(
                 "SELECT detail_json FROM platform_security_events "
