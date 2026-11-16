@@ -5,6 +5,7 @@ disabled unless LEGAL_CLAIM_SUPPORT_CHECK=1 is explicitly configured.
 """
 import os
 import re
+import unicodedata
 
 
 _ENGLISH_NO_EXPIRY = re.compile(
@@ -92,8 +93,15 @@ _ARABIC_MODAL_PATTERNS = {
 }
 
 
+def _normalize_modal_text(text):
+    """Remove Arabic presentation marks that must not hide legal negation."""
+    value = unicodedata.normalize("NFKC", str(text or ""))
+    return re.sub(r"[\u0640\u064b-\u065f\u0670]", "", value)
+
+
 def _modal_classes(text, patterns):
     """Return explicit modality classes for one language; absence is unknown."""
+    text = _normalize_modal_text(text)
     classes = set()
     for label, pattern in patterns.items():
         candidate = text
@@ -125,6 +133,8 @@ _ARABIC_POSITIVE_OBLIGATION = re.compile(r"(?:يجب|يلتزم|يتعين)")
 
 def _has_negated_obligation_mismatch(claim, evidence):
     """Detect direct positive/negative obligation reversals before normalization."""
+    claim = _normalize_modal_text(claim)
+    evidence = _normalize_modal_text(evidence)
     pairs = (
         (_ENGLISH_NEGATED_OBLIGATION, _ENGLISH_POSITIVE_OBLIGATION),
         (_ARABIC_NEGATED_OBLIGATION, _ARABIC_POSITIVE_OBLIGATION),
@@ -142,6 +152,8 @@ def _has_negated_obligation_mismatch(claim, evidence):
 
 def _has_modal_mismatch(claim, evidence):
     """Compare explicit, conflicting modality classes only within one language."""
+    claim = _normalize_modal_text(claim)
+    evidence = _normalize_modal_text(evidence)
     conflicts = {
         ("permission", "prohibition"),
         ("prohibition", "permission"),
