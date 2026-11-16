@@ -128,7 +128,7 @@ _ENGLISH_POSITIVE_OBLIGATION = re.compile(
 _ARABIC_NEGATED_OBLIGATION = re.compile(
     r"(?:لا\s*(?:يجب|يلتزم|يلزم|يتعين)|ليس\s+ملزما|غير\s+ملزم)"
 )
-_ARABIC_POSITIVE_OBLIGATION = re.compile(r"(?:يجب|يلتزم|يلزم|يتعين)")
+_ARABIC_POSITIVE_OBLIGATION = re.compile(r"(?:يجب|يلتزم|يلزم|يتعين|يتوجب)")
 
 
 def _has_negated_obligation_mismatch(claim, evidence):
