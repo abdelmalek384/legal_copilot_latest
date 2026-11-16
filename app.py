@@ -2773,6 +2773,10 @@ class InvitationCreateIn(BaseModel):
     role: str = Field(pattern=r"^(lawyer|junior)$")
 
 
+class FirmRoleUpdateIn(BaseModel):
+    role: str = Field(pattern=r"^(admin|lawyer|junior)$")
+
+
 class InvitationAcceptNewIn(BaseModel):
     token: str = Field(min_length=32, max_length=200)
     name: str = Field(min_length=1, max_length=120)
@@ -6339,6 +6343,61 @@ def users(u: dict = Depends(user)):
             (u["firm_id"],)
         )]
     return [dict(r) for r in conn().execute("SELECT id,name,role,active FROM users WHERE firm_id=? ORDER BY name", (u["firm_id"],))]
+
+
+@app.put("/users/{uid}/role")
+def update_firm_member_role(uid: int, b: FirmRoleUpdateIn, u: dict = Depends(user)):
+    if not _separate_runtime_enabled():
+        raise HTTPException(404, "firm role management is available only in separate-database mode")
+    require_admin(u)
+    if uid == int(u["id"]):
+        raise HTTPException(422, "use another firm administrator to change your own role")
+    control = control_conn()
+    try:
+        control.execute("BEGIN IMMEDIATE")
+        target = control.execute(
+            "SELECT id,firm_role,status FROM firm_memberships "
+            "WHERE user_id=? AND firm_id=? AND status='active'",
+            (uid, int(u["firm_id"])),
+        ).fetchone()
+        if target is None:
+            raise HTTPException(404, "active firm membership not found")
+        old_role = str(target["firm_role"])
+        new_role = b.role
+        if old_role == new_role:
+            control.rollback()
+            return {"ok": True, "user_id": uid, "role": new_role, "changed": False}
+        if old_role == "admin" and new_role != "admin":
+            active_admins = int(control.execute(
+                "SELECT COUNT(*) FROM firm_memberships "
+                "WHERE firm_id=? AND firm_role='admin' AND status='active'",
+                (int(u["firm_id"]),),
+            ).fetchone()[0])
+            if active_admins <= 1:
+                raise HTTPException(409, "cannot demote the firm's last active administrator")
+        updated = control.execute(
+            "UPDATE firm_memberships SET firm_role=?,updated_at=datetime('now') "
+            "WHERE user_id=? AND firm_id=? AND status='active' AND firm_role=?",
+            (new_role, uid, int(u["firm_id"]), old_role),
+        )
+        if updated.rowcount != 1:
+            raise HTTPException(409, "membership role changed; refresh and retry")
+        control.execute(
+            "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+            "VALUES(?,?,?,'membership_role_changed',?)",
+            (int(u["id"]), uid, int(u["firm_id"]),
+             json.dumps({"old_role": old_role, "new_role": new_role, "method": "web"}, sort_keys=True)),
+        )
+        control.commit()
+        return {"ok": True, "user_id": uid, "role": new_role, "changed": True}
+    except HTTPException:
+        if control.in_transaction:
+            control.rollback()
+        raise
+    except sqlite3.Error as exc:
+        if control.in_transaction:
+            control.rollback()
+        raise HTTPException(503, "firm role change was not committed") from exc
 
 
 @app.post("/users/{uid}/disable")
