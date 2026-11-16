@@ -53,7 +53,7 @@ These are implementation and automated-test claims only. They do not establish l
 
 ### P1 — Trust, collaboration and enterprise controls
 - Audit trail for source verification, edits, exports, document access and permission changes.
-- Clear role/permission explanations and tenant context.
+- **Partially implemented 2026-11-17:** the active firm name is now visible in the primary navigation even for single-firm users, making tenant context explicit. Role/permission explanations and richer tenant-context guidance remain open.
 - Two-factor authentication, self-service account recovery, session/device management, and firm-level retention controls before production use.
 - Accessible tables, predictable keyboard focus, labeled forms, error summaries and screen-reader announcements for asynchronous search/upload actions.
 - A consistent design system: typography scale, spacing, buttons, form states, drawers/modals, toasts, tables and RTL tokens.
