@@ -7,6 +7,7 @@ question answerability, or expected answers, and it never creates reviewed label
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -81,12 +82,14 @@ def read_regular_file(path: Path, *, max_bytes: int = 16 * 1024 * 1024) -> bytes
         raise ValueError(f"{path}: cannot safely read evaluation draft: {type(exc).__name__}") from exc
 
 
-def read_jsonl(path: Path) -> list[dict[str, Any]]:
-    rows: list[dict[str, Any]] = []
+def read_jsonl_with_digest(path: Path) -> tuple[list[dict[str, Any]], str]:
+    """Parse and hash the exact same bounded bytes for reproducible draft provenance."""
+    raw_bytes = read_regular_file(path)
     try:
-        text = read_regular_file(path).decode("utf-8-sig")
+        text = raw_bytes.decode("utf-8-sig")
     except UnicodeDecodeError as exc:
         raise ValueError(f"{path}: evaluation draft must be valid UTF-8") from exc
+    rows: list[dict[str, Any]] = []
     for line_number, raw in enumerate(text.splitlines(), start=1):
         if not raw.strip() or raw.lstrip().startswith("#"):
             continue
@@ -99,6 +102,12 @@ def read_jsonl(path: Path) -> list[dict[str, Any]]:
         if not isinstance(value, dict):
             raise ValueError(f"{path}:{line_number}: question row must be an object")
         rows.append(value)
+    return rows, hashlib.sha256(raw_bytes).hexdigest()
+
+
+def read_jsonl(path: Path) -> list[dict[str, Any]]:
+    """Read a JSONL file through the bounded parser, preserving the legacy rows-only API."""
+    rows, _digest = read_jsonl_with_digest(path)
     return rows
 
 
