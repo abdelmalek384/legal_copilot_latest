@@ -1002,6 +1002,34 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             (self.firm_a, self.user_id, f"original_document_download:{document_id}"),
         ).fetchone())
 
+        # The binary must not be released if the mandatory access-audit write fails.
+        class AuditFailingConnection:
+            def __init__(self, connection):
+                self.connection = connection
+
+            def execute(self, sql, parameters=()):
+                if "INSERT INTO security_audit_events" in sql:
+                    raise sqlite3.OperationalError("injected audit failure")
+                return self.connection.execute(sql, parameters)
+
+            def __getattr__(self, name):
+                return getattr(self.connection, name)
+
+        with patch.object(app, "conn", return_value=AuditFailingConnection(firm_db)):
+            audit_failure = self.client.get(
+                f"/cases/{case_id}/docs/{document_id}/original"
+            )
+        self.assertEqual(audit_failure.status_code, 503, audit_failure.text)
+        self.assertIn("download was not released", audit_failure.text)
+        self.assertEqual(
+            firm_db.execute(
+                "SELECT COUNT(*) FROM security_audit_events "
+                "WHERE firm_id=? AND user_id=? AND event=?",
+                (self.firm_a, self.user_id, f"original_document_download:{document_id}"),
+            ).fetchone()[0],
+            1,
+        )
+
         # A same-firm user without case membership must not read the original
         # binary or inspect/change its hold/deletion lifecycle.
         nonmember_id = self.runtime.create_global_identity(
