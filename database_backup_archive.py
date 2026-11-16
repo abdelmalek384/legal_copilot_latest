@@ -238,6 +238,7 @@ def upload_encrypted_bundle(
             _fail("Uploaded recovery archive version failed exact-version KMS/metadata acceptance")
         # Verify the bytes that S3 actually persisted, not only caller-supplied metadata.
         probe = None
+        probe_close_error = None
         try:
             probe = s3_client.get_object(
                 Bucket=bucket, Key=object_key, VersionId=version_id
@@ -267,7 +268,14 @@ def upload_encrypted_bundle(
             if isinstance(probe, dict) and probe.get("Body") is not None:
                 close_body = getattr(probe["Body"], "close", None)
                 if callable(close_body):
-                    close_body()
+                    try:
+                        close_body()
+                    except Exception as exc:
+                        probe_close_error = exc
+        if probe_close_error is not None:
+            raise DatabaseBundleError(
+                "Persisted recovery archive verification stream could not be closed"
+            ) from probe_close_error
         return {
             "bucket": bucket,
             "key": object_key,
