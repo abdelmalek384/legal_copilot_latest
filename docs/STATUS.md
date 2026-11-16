@@ -867,3 +867,12 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Tenant-isolation estimate updated after the attached-profile identity fix: **84.9%** (previously 84.7%). AI-2 estimate: **76.3%**; whole-project estimate: **74.9%**. The increase is deliberately small because only one bounded storage-identity gap was closed; CI, multi-process/runtime, staging and independent acceptance remain outstanding.
+
+
+## AI-2 voluntary MFA re-enrollment enforcement — 2026-11-16
+
+- Fixed a policy gap where a user who voluntarily enabled MFA under `MFA_ENFORCEMENT=optional` could start authenticator replacement, move the credential to `pending`, and then have the MFA gate disappear because only `status='enabled'` counted as MFA-required.
+- Added `_mfa_is_pending` and included pending enrollment in `_mfa_required_for_user`. During replacement, the session is now restricted to enrollment/verification/recovery paths until the new authenticator is confirmed; new logins are also required to complete enrollment.
+- Added `test_optional_mfa_policy_does_not_bypass_voluntary_mfa_during_reenrollment` to `tests/test_mfa_account_security.py`. The test module is already registered in the explicit Tests workflow and focused security matrix.
+- Source commit: `9a3c420`; regression commit: `43bbb0e`; import correction: `1f06e22`. Static source/registration inspection confirms the helper and regression are present. Repository test module and GitHub Actions execution remain unavailable due the billing/runner issue; no pass is claimed.
+- Bounded implementation: **100%**. Authentication/firm-administration estimate: **85.4%** (from 85.2%); AI-2: **76.4%**; whole project: **75.0%**. Runtime staging and independent security review remain outstanding.
