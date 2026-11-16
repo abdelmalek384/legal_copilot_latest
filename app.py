@@ -6400,10 +6400,11 @@ def update_firm_member_role(uid: int, b: FirmRoleUpdateIn, u: dict = Depends(use
             raise HTTPException(404, "active firm membership not found")
         old_role = str(target["firm_role"])
         new_role = b.role
-        if new_role == "admin" and old_role != "admin" and _firm_subscription_is_read_only(
+        role_rank = {"junior": 0, "lawyer": 1, "admin": 2}
+        if role_rank.get(new_role, -1) > role_rank.get(old_role, -1) and _firm_subscription_is_read_only(
             control, int(u["firm_id"])
         ):
-            raise HTTPException(423, "read-only firm cannot grant administrator privileges")
+            raise HTTPException(423, "read-only firm cannot grant a higher membership role")
         if old_role == new_role:
             control.rollback()
             return {"ok": True, "user_id": uid, "role": new_role, "changed": False}
