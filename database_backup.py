@@ -350,7 +350,16 @@ def _copy_s3_original_objects(
             continue
         if row["state"] not in {"ready", "quarantined"}:
             raise DatabaseBundleError(f"Firm {firm_id} has unfinished original-object metadata; reconcile before backup")
-        digest, size = row["sha256"], int(row["byte_size"])
+        digest, size = row["sha256"], row["byte_size"]
+        if (
+            not isinstance(digest, str)
+            or not re.fullmatch(r"[0-9a-f]{64}", digest)
+            or isinstance(size, bool)
+            or not isinstance(size, int)
+            or size <= 0
+            or size > _MAX_ARCHIVE_BYTES
+        ):
+            raise DatabaseBundleError(f"S3 original-object integrity metadata is invalid for firm {firm_id}")
         try:
             staged, finalized = store.object_presence(firm_id, object_id)
             valid = not staged and finalized and store.verify(
@@ -364,7 +373,11 @@ def _copy_s3_original_objects(
                 target.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
                 digest_check = hashlib.sha256()
                 size_check = 0
-                flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL
+                flags = (
+                    os.O_WRONLY | os.O_CREAT | os.O_EXCL
+                    | getattr(os, "O_CLOEXEC", 0)
+                    | getattr(os, "O_NOFOLLOW", 0)
+                )
                 fd = os.open(target, flags, 0o600)
                 try:
                     with os.fdopen(fd, "wb", closefd=True) as output:
@@ -372,9 +385,13 @@ def _copy_s3_original_objects(
                             block = source.read(1024 * 1024)
                             if not block:
                                 break
+                            size_check += len(block)
+                            if size_check > size or size_check > _MAX_ARCHIVE_BYTES:
+                                raise DatabaseBundleError("S3 original-object exceeded its recorded backup size")
                             output.write(block)
                             digest_check.update(block)
-                            size_check += len(block)
+                        output.flush()
+                        os.fsync(output.fileno())
                 except Exception:
                     target.unlink(missing_ok=True)
                     raise
