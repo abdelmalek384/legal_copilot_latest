@@ -332,3 +332,12 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - Preserved the current-main answer-rating panel and its save/list/export controls; no answer-rating code was replaced or removed.
 - Added a frontend regression contract for route retention, role gates, mobile grouping and answer-rating preservation. Source and test contract are committed directly to main (`5cdf0cb`, `9c14448`).
 - Static inspection confirms the expected route entries, role checks and rating panel are present. **The test was not executed** because GitHub Actions runner/billing remains unavailable; no browser, RTL/LTR, responsive or screen-reader acceptance is claimed.
+
+
+## AI-2 dashboard and document-library hierarchy — 2026-11-16
+
+- The dashboard now places an explicit overdue-work attention panel before its compact activity metrics. It counts overdue tasks and legal deadlines from the existing dashboard payload and links directly to Tasks and Calendar. Duplicate quick-access tiles and dashboard fee/outstanding-fee summary cards were removed; the Finance workspace and navigation entry remain available.
+- The global document library keeps its common document-name search visible and moves file type, extraction status, classification and reset controls into a collapsed native `details` disclosure. Existing filter controls and their reset behavior are retained.
+- Upload queue results now expose list/list-item semantics and polite live announcements for per-file state updates.
+- Added frontend regression contracts for dashboard hierarchy, finance navigation preservation, progressive document filters and upload queue announcements. Direct-main commits: dashboard `2cb3a06`, tests `b0cf5f1`; document/upload UI `3114eff`, tests `e4a59f2`.
+- Static inspection only. Tests, browser interaction, Arabic RTL/English LTR, mobile reflow, keyboard and screen-reader acceptance remain unexecuted because GitHub Actions runner/billing is unavailable.
