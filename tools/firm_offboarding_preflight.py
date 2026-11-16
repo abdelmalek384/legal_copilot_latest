@@ -212,7 +212,7 @@ def inspect_firm_offboarding(
                 "object_id": finding.object_id,
                 "detail": finding.detail,
             })
-    except (ObjectStorageError, ValueError, OSError, sqlite3.Error) as exc:
+    except (ObjectStorageError, ValueError, TypeError, OSError, sqlite3.Error) as exc:
         findings.append({"code": "object_reconciliation_failed", "detail": type(exc).__name__})
 
     findings.sort(key=lambda item: (item["code"], str(item.get("object_id", ""))))
