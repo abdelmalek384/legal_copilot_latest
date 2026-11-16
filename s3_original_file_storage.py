@@ -268,14 +268,25 @@ class S3PrivateObjectStore:
                 if token:
                     args["ContinuationToken"] = token
                 response = self.client.list_objects_v2(**args)
-                for item in response.get("Contents", []):
+                if not isinstance(response, dict):
+                    raise ObjectStorageError("object-storage listing returned a malformed response")
+                contents = response.get("Contents", [])
+                if not isinstance(contents, list):
+                    raise ObjectStorageError("object-storage listing returned malformed contents")
+                for item in contents:
+                    if not isinstance(item, dict):
+                        raise ObjectStorageError("object-storage listing returned a malformed object entry")
                     key = item.get("Key")
-                    if isinstance(key, str):
-                        found.add(key)
-                if not response.get("IsTruncated"):
+                    if not isinstance(key, str) or not key.startswith(prefix):
+                        raise ObjectStorageError("object-storage listing returned an invalid object key")
+                    found.add(key)
+                truncated = response.get("IsTruncated")
+                if not isinstance(truncated, bool):
+                    raise ObjectStorageError("object-storage listing omitted its truncation state")
+                if not truncated:
                     return found
                 token = response.get("NextContinuationToken")
-                if not token:
+                if not isinstance(token, str) or not token:
                     raise ObjectStorageError("object-storage listing omitted its continuation token")
         except ObjectStorageError:
             raise
