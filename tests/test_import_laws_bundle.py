@@ -298,6 +298,10 @@ class LegalImportBundleTests(unittest.TestCase):
         sidecar.write_text(json.dumps(metadata), encoding="utf-8")
         with self.assertRaisesRegex(SystemExit, "retrieved_at"):
             validate_inputs(self.source, self.output)
+        metadata["retrieved_at"] = "2999-01-01T10:30:00Z"
+        sidecar.write_text(json.dumps(metadata), encoding="utf-8")
+        with self.assertRaisesRegex(SystemExit, "retrieved_at"):
+            validate_inputs(self.source, self.output)
         metadata["retrieved_at"] = "2026-10-30"
         metadata["content_sha256"] = "abc123"
         sidecar.write_text(json.dumps(metadata), encoding="utf-8")
