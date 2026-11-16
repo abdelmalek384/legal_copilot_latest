@@ -42,3 +42,6 @@
 
 
 - 2026-11-16: Focused isolated harnesses passed for restore descriptor traversal (regular file accepted; objects/ and firm namespace symlink swaps rejected) and ZIP preflight (non-canonical paths, traversal, absolute paths and FIFO metadata rejected; normal archive accepted). These are not repository test-suite results. Restore dirfd capability is explicitly checked and unsupported platforms fail closed (commit a092388). Repository tests and Actions jobs remain unexecuted.
+
+
+- 2026-11-16: Restore importer now walks the complete absolute directory chain from filesystem root with no-follow directory descriptors before opening objects/, firm namespace and blob. Added restore-root symlink regression; isolated harness rejected root, objects and namespace symlink substitutions while accepting a regular object (commits 2e7a7e3, 4c33f88). Repository tests remain unexecuted; no suite pass is claimed.
