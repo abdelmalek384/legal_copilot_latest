@@ -1,4 +1,6 @@
 import contextlib
+import os
+from unittest.mock import patch
 from datetime import date
 import hashlib
 import io
@@ -12,6 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+import tools.evaluate_legal_answer_reviews as MODULE
 from tools.evaluate_legal_answer_reviews import DIMENSIONS, main, summarize_reviews, validate_review, validate_reviewer_registry
 
 
@@ -558,6 +561,41 @@ class LegalAnswerReviewEvaluationTests(unittest.TestCase):
                 approved, errors = validate_reviewer_registry(registry)
                 self.assertNotIn("reviewer-a", approved)
                 self.assertTrue(any(item["record"] == "reviewer-a" for item in errors))
+
+    def test_review_inputs_reject_symlink_swap_and_fifo(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target = root / "reviews.jsonl"
+            target.write_text('{"review_schema_version":2}\n', encoding="utf-8")
+            outside = root / "outside.jsonl"
+            outside.write_text('{"review_schema_version":2}\n', encoding="utf-8")
+            real_open = MODULE.os.open
+            swapped = False
+
+            def replace_before_open(path, flags, *args, **kwargs):
+                nonlocal swapped
+                if Path(path) == target and not swapped:
+                    swapped = True
+                    target.unlink()
+                    target.symlink_to(outside)
+                return real_open(path, flags, *args, **kwargs)
+
+            with patch.object(MODULE.os, "open", side_effect=replace_before_open):
+                with self.assertRaises(OSError):
+                    MODULE._load_jsonl_with_provenance(target)
+            self.assertTrue(swapped)
+            if hasattr(os, "mkfifo"):
+                fifo = root / "reviews.fifo"
+                os.mkfifo(fifo)
+                with self.assertRaises(OSError):
+                    MODULE.load_jsonl(fifo)
+
+    def test_review_input_reader_rejects_oversized_files(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "oversized.jsonl"
+            path.write_bytes(b" " * (32 * 1024 * 1024 + 1))
+            with self.assertRaisesRegex(OSError, "size limit"):
+                MODULE.read_regular_file(path)
 
 if __name__ == "__main__":
     unittest.main()
