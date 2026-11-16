@@ -675,5 +675,34 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         with self.assertRaises(OSError):
             MODULE.sha256_file(fifo)
 
+    def test_read_regular_file_rejects_final_path_symlink_swap(self):
+        target = self.root / "extracted" / "law.txt"
+        outside = self.root / "outside.txt"
+        outside.write_text("replacement text", encoding="utf-8")
+        real_open = MODULE.os.open
+        swapped = False
+
+        def replace_before_open(path, flags, *args, **kwargs):
+            nonlocal swapped
+            if Path(path) == target and not swapped:
+                swapped = True
+                target.unlink()
+                target.symlink_to(outside)
+            return real_open(path, flags, *args, **kwargs)
+
+        with patch.object(MODULE.os, "open", side_effect=replace_before_open):
+            with self.assertRaises(OSError):
+                MODULE.read_regular_file(target)
+        self.assertTrue(swapped)
+
+    def test_read_regular_file_rejects_fifo_without_blocking(self):
+        import os
+        if not hasattr(os, "mkfifo"):
+            self.skipTest("FIFO files are unavailable on this platform")
+        fifo = self.root / "extracted" / "law.fifo"
+        os.mkfifo(fifo)
+        with self.assertRaises(OSError):
+            MODULE.read_regular_file(fifo)
+
 if __name__ == "__main__":
     unittest.main()
