@@ -15,7 +15,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 try:
-    from tools.evaluate_legal_answer_reviews import validate_reviewer_registry
+    from tools.evaluate_legal_answer_reviews import read_regular_file, validate_reviewer_registry
 except ModuleNotFoundError:  # direct script execution from tools/
     from evaluate_legal_answer_reviews import validate_reviewer_registry
 
@@ -769,7 +769,7 @@ def main(argv=None):
     parser.add_argument("--max-unsafe-unverified-source-uses-per-practice-area", type=int)
     args = parser.parse_args(argv)
     try:
-        reviewer_registry = json.loads(args.reviewer_registry.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+        reviewer_registry = json.loads(read_regular_file(args.reviewer_registry), object_pairs_hook=_reject_duplicate_json_keys)
     except (OSError, UnicodeDecodeError, json.JSONDecodeError, DuplicateJSONKeyError) as exc:
         parser.error(f"invalid reviewer registry: {exc}")
     for name in ("min_reviewed_cases", "min_practice_areas", "min_cases_per_practice_area",
