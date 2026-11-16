@@ -37,6 +37,30 @@ class RecoveryLocatorReadTests(unittest.TestCase):
         with self.assertRaisesRegex(SystemExit, "could not be read safely"):
             _read_recovery_locator(path)
 
+    def test_rejects_regular_file_replacement_between_lstat_and_open(self):
+        import os
+        from unittest.mock import patch
+
+        path = self.root / "locator.json"
+        replacement = self.root / "replacement.json"
+        moved = self.root / "original-locator.json"
+        path.write_text('{"bucket":"original"}', encoding="utf-8")
+        replacement.write_text('{"bucket":"replacement"}', encoding="utf-8")
+        real_open = os.open
+        replaced = False
+
+        def replace_before_open(open_path, flags, *args, **kwargs):
+            nonlocal replaced
+            if Path(open_path) == path and not replaced:
+                replaced = True
+                path.rename(moved)
+                replacement.rename(path)
+            return real_open(open_path, flags, *args, **kwargs)
+
+        with patch("manage.os.open", new=replace_before_open):
+            with self.assertRaisesRegex(SystemExit, "could not be read safely"):
+                _read_recovery_locator(path)
+
     def test_rejects_non_object_locator(self):
         path = self.root / "array.json"
         path.write_text("[]", encoding="utf-8")
