@@ -60,9 +60,21 @@ def orthographic_variants(token):
 
 
 def _is_negated_at(normalized_query, start):
-    """Recognize nearby Arabic negators governing this occurrence."""
+    """Recognize nearby Arabic negators without treating interrogative ما as negation."""
     prefix = normalized_query[:start]
-    return bool(re.search(r"(?:^|\s)(?:مش|مفيش|مافيش|معنديش|ماعنديش|ما|لا|ليس|ليست|لست|لم|لن|غير|بدون|بلا|دون|بغير)\s+(?:\S+\s+){0,2}$", prefix))
+    if re.search(
+        r"(?:^|\s)(?:مش|مفيش|مافيش|معنديش|ماعنديش|لا|ليس|ليست|لست|لم|لن|"
+        r"غير|بدون|بلا|دون|بغير)\s+(?:\S+\s+){0,2}$",
+        prefix,
+    ):
+        return True
+    # Standalone ما is ambiguous: in "ما هي الإجازة؟" it is interrogative,
+    # while in "ما عنديش إجازة" / "ما حصلش على إجازة" it is negative.
+    return bool(re.search(
+        r"(?:^|\s)ما\s+(?:عند\w*|فيش|حصل\w*|استحق\w*|قدر\w*|طلب\w*)"
+        r"\s+(?:\S+\s+){0,2}$",
+        prefix,
+    ))
 
 
 def _phrase_occurrences(normalized_query, normalized_phrase):
