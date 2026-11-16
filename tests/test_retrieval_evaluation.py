@@ -922,7 +922,9 @@ class RetrievalEvaluationTests(unittest.TestCase):
             self.assertEqual(report["pin_cite_accuracy"], 0.5)
             self.assertEqual(report["expected_pin_cite_recall"], 0.5)
             self.assertEqual(report["practice_area_metrics"]["civil_law"]["pin_cite_accuracy"], 1.0)
+            self.assertEqual(report["practice_area_metrics"]["civil_law"]["wrong_article_rate"], 0.0)
             self.assertEqual(report["practice_area_metrics"]["labor_law"]["pin_cite_accuracy"], 0.0)
+            self.assertEqual(report["practice_area_metrics"]["labor_law"]["wrong_article_rate"], 1.0)
             self.assertEqual(report["practice_area_metrics"]["labor_law"]["expected_pin_cite_recall"], 0.0)
             checks = {item["metric"]: item for item in report["release_gate"]["checks"]}
             self.assertTrue(checks["pin_cite_accuracy"]["passed"])
