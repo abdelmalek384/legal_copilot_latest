@@ -1090,3 +1090,9 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Manual capture URL validation now rejects the full AWS/GCP signed-link parameter family (algorithm, date, expiry, signed headers, credential/access-key identifiers and signatures), matching the candidate registrar, source review queue and capture-record validator. Added five cloud-signed URL regression cases plus a stable HTTPS control case; the fixture integration suite is registered. Runtime execution remains unavailable.
 
 - The canonical source-permission register now applies the same signed-link rejection policy as the candidate registrar and manual capture: it rejects AWS/GCP signature, algorithm, date, expiry, signed-header and credential/access-key query keys, as well as URL fragments. Added six rejection cases and a clean HTTPS control. This closes a policy inconsistency where the canonical rights ledger accepted signed URLs that downstream capture paths rejected.
+
+
+## AI-2 S3 original-object open stream ceiling — 2026-11-16
+
+- S3 original-object open now rejects invalid/oversized ContentLength metadata before body reads and wraps accepted provider bodies in a bounded reader. Even read() without a size argument requests at most max_bytes + 1; the extra byte detects overflow and closes the provider body. The wrapper also exposes close and context-manager semantics so existing `with store.open(...)` callers retain deterministic cleanup.
+- Added regressions for oversized streams with absent ContentLength and oversized ContentLength preflight. Source commit: 5e9f871; regression commit: d4f5d26. Both tests are in tests/test_s3_original_file_storage.py; the module is already registered in the workflow and security regression script. Static source/test review only; repository runtime tests remain 0% executed. AI-2 estimate: 78.9%; whole-project estimate remains 75.3% provisional.
