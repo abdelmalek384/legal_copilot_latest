@@ -383,6 +383,37 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         self.assertEqual(body.bytes_read, self.store.max_bytes + 1)
         self.assertTrue(body.closed, "oversized open stream must be closed")
 
+    def test_open_rejects_provider_body_that_overreturns_requested_bytes(self):
+        from unittest.mock import patch
+
+        class OverreturningBody:
+            def __init__(self):
+                self.closed = False
+                self.requests = []
+
+            def read(self, size=-1):
+                self.requests.append(size)
+                return b"x" * (size + 5)
+
+            def close(self):
+                self.closed = True
+
+        body = OverreturningBody()
+        with patch.object(
+            self.client, "get_object",
+            return_value={
+                "Body": body,
+                "ServerSideEncryption": "aws:kms",
+                "SSEKMSKeyId": self.client.CANONICAL_KMS_ARN,
+            },
+        ):
+            stream = self.store.open(12, "b" * 32)
+            with self.assertRaisesRegex(ObjectStorageError, "exceeded the requested read size"):
+                stream.read(7)
+
+        self.assertEqual(body.requests, [7])
+        self.assertTrue(body.closed)
+
     def test_open_closes_provider_body_when_stream_read_raises(self):
         from unittest.mock import patch
 
