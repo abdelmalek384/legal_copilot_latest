@@ -460,7 +460,7 @@ class DatabaseBackupBundleTests(unittest.TestCase):
                 return -1
 
         fake_libc = type("FakeLibC", (), {"renameat2": FakeRenameAt2()})()
-        with patch("database_backup.ctypes.CDLL", create=True, return_value=fake_libc):
+        with patch("ctypes.CDLL", return_value=fake_libc):
             with self.assertRaisesRegex(
                 DatabaseBundleError, "appeared during publication"
             ):
