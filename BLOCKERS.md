@@ -103,3 +103,6 @@
 
 
 - 2026-11-16: Local storage and reconciliation capability gates now verify no-follow `stat` support; local writes additionally require no-follow hard-link support. Directory descriptor cleanup was hardened on both success and failed-open paths (commits 36b972a, cf179ca, d4e0342, 0e06fd0). Unsupported platforms fail closed. Repository runtime tests remain unexecuted.
+
+
+- 2026-11-16: Local object storage and reconciliation now pin the root directory's device/inode and reject replacement by another real directory between validation and use; root-swap regressions added (commits a943983, 0beace0, d9baf0f, ffe1e4b). Runtime tests remain unexecuted.
