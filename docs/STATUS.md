@@ -668,3 +668,12 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Backup output paths are now physically resolved and checked against tenant/object storage roots before any output directory is created. Previously, a new output directory reached through a symlinked parent could be created inside protected tenant storage and only then rejected. The overlap check now runs first; directory creation follows only after the canonical destination is accepted.
 - Added a regression using a symlinked parent alias into tenant storage and asserting the rejected destination directory is never created. Source commit: 000998d; test commit: 2890bd2.
 - Static review only; the registered backup bundle test module remains unexecuted. Updated estimates: tenant isolation/access control 84.7%; authentication/firm administration 85.2%; case management 90%; document processing/security 99.1%; backup/release readiness 42.8%; AI-2 overall 74.1%; whole project 72.9%. These are implementation estimates, not test/acceptance rates.
+
+
+## AI-2 local backup namespace descriptor anchoring — 2026-11-16
+
+- Local original-object backup now opens the configured object root and firm namespace as no-follow directory descriptors, verifies the opened namespace device/inode against its no-follow directory entry, and opens each object relative to that pinned namespace descriptor. Replacing the namespace path with a symlink after it is opened cannot redirect the backup read to an outside directory.
+- Retained a guarded path-based fallback for platforms without directory-relative open support; the focused POSIX regression skips only when that primitive is unavailable.
+- Added a regression that renames the opened namespace and replaces its old pathname with a symlink to an outside directory, then verifies the copied bytes still come from the already-opened namespace. Source commits: 5d1ab80, c8f0541; test commits: f9d4e15, 05c7a77.
+- An isolated namespace-dirfd harness passed: the path swap did not redirect the open and outside bytes remained unchanged. This is not execution of the repository test module.
+- Updated estimates: tenant isolation/access control 84.7%; authentication/firm administration 85.2%; case management 90%; document processing/security 99.1%; backup/release readiness 43.3%; AI-2 overall 74.4%; whole project 73.1%. Implementation estimates only.
