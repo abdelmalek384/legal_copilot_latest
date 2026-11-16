@@ -1169,7 +1169,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("documentTypeFilter", page)
         self.assertIn("documentTypeFilter.value==='pdf'", page)
         self.assertIn("wordprocessingml", page)
-                self.assertIn("documentTypeFilter.onchange=()=>{if(globalMode){globalOffset=0;loadAllAccessibleDocs()}else renderDocuments(currentDocuments)}", page)
+        self.assertIn("documentTypeFilter.onchange=()=>{if(globalMode){globalOffset=0;loadAllAccessibleDocs()}else renderDocuments(currentDocuments)}", page)
         self.assertIn("file_type:documentTypeFilter.value", page)
 
     def test_document_analysis_loads_classification_alongside_extracted_chunks(self):
