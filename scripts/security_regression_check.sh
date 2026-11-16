@@ -30,6 +30,9 @@ tests=(
   test_tenant_storage.py
   test_auth_rate_limits_separate_runtime.py
   test_mfa_account_security.py
+  test_reminder_email.py
+  test_reminder_outbox.py
+  test_reminder_service.py
   test_security_transport_config.py
   test_trusted_proxy_client_ip.py
   test_trusted_host_middleware.py
