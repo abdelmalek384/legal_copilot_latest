@@ -684,3 +684,5 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Recovery locator parsing now rejects duplicate JSON object keys at every nesting depth using an object-pairs hook. Previously, the JSON parser silently retained the last duplicate value, allowing a locator file to contain conflicting bucket/version/KMS fields without an explicit parse failure.
 - Added a regression for duplicate nested keys. Source commit: 8c150c8; test commit: 11e7f86. The recovery-locator module is already registered in the focused security matrix.
 - Static review only; no repository test module or Actions job ran. Updated estimates: tenant isolation/access control 84.7%; authentication/firm administration 85.2%; case management 90%; document processing/security 99.1%; backup/release readiness 43.6%; AI-2 overall 74.6%; whole project 73.3%. Implementation estimates only; recovery acceptance remains outstanding.
+
+- A separate isolated Python parser harness accepted a valid object and rejected a nested duplicate key under the same object-pairs-hook contract. This does not count as execution of tests/test_manage_recovery_locator.py.
