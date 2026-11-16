@@ -496,7 +496,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         finally:
             target_client.close()
 
-    def test_firm_admin_cannot_suspend_the_last_active_firm_admin(self):
+    def test_firm_admin_cannot_suspend_an_administrator_membership(self):
         target_id = self.runtime.create_global_identity(
             "Only Firm Admin", "only-firm-admin@example.test", app.hash_pw(self.password)
         )
