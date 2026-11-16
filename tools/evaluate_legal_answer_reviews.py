@@ -9,6 +9,8 @@ import argparse
 import hashlib
 import json
 import sys
+import os
+import stat
 from datetime import date, datetime, timezone
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -70,12 +72,35 @@ def _parse_jsonl_text(text, path):
     return rows
 
 
+def read_regular_file(path, *, max_bytes=32 * 1024 * 1024):
+    """Read private review input once from a bounded stable descriptor."""
+    path = Path(path)
+    before = path.lstat()
+    if not stat.S_ISREG(before.st_mode):
+        raise OSError("review input must be a regular file")
+    if before.st_size > max_bytes:
+        raise OSError("review input exceeds the size limit")
+    flags = os.O_RDONLY | getattr(os, "O_BINARY", 0) | getattr(os, "O_NONBLOCK", 0) | getattr(os, "O_NOFOLLOW", 0)
+    descriptor = os.open(path, flags)
+    with os.fdopen(descriptor, "rb") as stream:
+        opened = os.fstat(stream.fileno())
+        if not stat.S_ISREG(opened.st_mode) or (before.st_dev, before.st_ino) != (opened.st_dev, opened.st_ino):
+            raise OSError("review input changed while opening")
+        data = stream.read(max_bytes + 1)
+        after = os.fstat(stream.fileno())
+        current = path.lstat()
+        if len(data) > max_bytes or len(data) != after.st_size:
+            raise OSError("review input changed size or exceeds limit")
+        if (opened.st_dev, opened.st_ino) != (after.st_dev, after.st_ino) or (opened.st_size, opened.st_mtime_ns, opened.st_ctime_ns) != (after.st_size, after.st_mtime_ns, after.st_ctime_ns) or (current.st_dev, current.st_ino) != (opened.st_dev, opened.st_ino):
+            raise OSError("review input changed while being read")
+    return data
+
 def load_jsonl(path):
-    return _parse_jsonl_text(Path(path).read_text(encoding="utf-8"), path)
+    return _parse_jsonl_text(read_regular_file(path).decode("utf-8"), path)
 
 
 def _load_jsonl_with_provenance(path):
-    raw = Path(path).read_bytes()
+    raw = read_regular_file(path)
     rows = _parse_jsonl_text(raw.decode("utf-8"), path)
     return rows, {"sha256": hashlib.sha256(raw).hexdigest(), "size_bytes": len(raw)}
 
@@ -494,7 +519,7 @@ def main(argv=None):
     parser.add_argument("--aggregate-only", action="store_true", help="Redact assessment, case, reviewer, and defect-description details from the output")
     args = parser.parse_args(argv)
     try:
-        registry_bytes = args.reviewer_registry.read_bytes()
+        registry_bytes = read_regular_file(args.reviewer_registry)
         registry = json.loads(registry_bytes.decode("utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
         records, records_meta = _load_jsonl_with_provenance(args.reviews)
     except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
