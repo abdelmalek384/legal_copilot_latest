@@ -118,6 +118,26 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         )
         restored_runtime.close_current_thread()
 
+    def test_original_object_inventory_rejects_dangling_and_nested_symlinks(self):
+        from database_backup import _scan_original_object_root
+
+        missing_target = self.root / "missing-object-root"
+        dangling_root = self.root / "dangling-object-root"
+        try:
+            dangling_root.symlink_to(missing_target, target_is_directory=True)
+        except (NotImplementedError, OSError) as exc:
+            self.skipTest(f"symlinks unavailable: {exc}")
+        with self.assertRaises(DatabaseBundleError):
+            _scan_original_object_root(dangling_root)
+
+        object_root = self.root / "object-inventory"
+        object_root.mkdir()
+        outside = self.root / "outside-firm-objects"
+        outside.mkdir()
+        (object_root / "firm-1").symlink_to(outside, target_is_directory=True)
+        with self.assertRaises(DatabaseBundleError):
+            _scan_original_object_root(object_root)
+
     def test_backup_object_copy_hashes_the_same_no_follow_descriptor(self):
         from database_backup import _copy_verified_original_object
 
