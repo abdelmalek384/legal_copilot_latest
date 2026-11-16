@@ -76,6 +76,35 @@ class RetrievalEvaluationTests(unittest.TestCase):
                 _write_report(report, "replacement report\n")
             self.assertEqual(report.read_text(encoding="utf-8"), "first report\n")
 
+    def test_jsonl_loader_rejects_symlinks_and_special_files(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            target = root / "actual.jsonl"
+            target.write_text('{"id":"Q1"}\\n', encoding="utf-8")
+            link = root / "linked.jsonl"
+            try:
+                link.symlink_to(target)
+            except (OSError, NotImplementedError):
+                link = None
+            if link is not None:
+                with self.assertRaises(OSError):
+                    _load_jsonl(link)
+            if hasattr(os, "mkfifo"):
+                fifo = root / "questions.fifo"
+                os.mkfifo(fifo)
+                with self.assertRaises(OSError):
+                    _load_jsonl(fifo)
+
+    def test_jsonl_loader_rejects_non_object_rows_and_invalid_utf8(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "questions.jsonl"
+            path.write_text('[]\\n', encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "each JSONL row must be an object"):
+                _load_jsonl(path)
+            path.write_bytes(b"\\xff\\xfe")
+            with self.assertRaisesRegex(ValueError, "valid UTF-8"):
+                _load_jsonl(path)
+
     def test_jsonl_loader_rejects_duplicate_keys_at_all_object_depths(self):
         with tempfile.TemporaryDirectory() as td:
             path = Path(td) / "questions.jsonl"
