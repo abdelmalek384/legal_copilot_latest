@@ -912,7 +912,7 @@ def delete_case(c, u, cid):
                 c.rollback()
                 raise HTTPException(
                     409,
-                    "matter has original-file retention records; resolve the original-file lifecycle before deleting the matter",
+                    "matter has original-file audit records; deletion is blocked to preserve retention and legal-hold history",
                 )
         # Preserve an immutable audit snapshot before deleting the case and its event history.
         prior_events = [dict(r) for r in c.execute(
