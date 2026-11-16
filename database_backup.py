@@ -183,6 +183,86 @@ def _object_root_path(value: str | Path, tenant_root: Path, control_path: Path, 
     return resolved
 
 
+def _copy_verified_original_object(
+    source: Path, target: Path, *, expected_size: int, expected_sha256: str
+) -> None:
+    """Copy one original object from a single no-follow descriptor while hashing it."""
+    if (
+        isinstance(expected_size, bool)
+        or not isinstance(expected_size, int)
+        or expected_size <= 0
+        or not isinstance(expected_sha256, str)
+        or not re.fullmatch(r"[0-9a-f]{64}", expected_sha256)
+    ):
+        raise DatabaseBundleError("Original-object integrity metadata is invalid")
+
+    try:
+        before = source.lstat()
+    except OSError as exc:
+        raise DatabaseBundleError("Original object could not be inspected safely") from exc
+    if not stat.S_ISREG(before.st_mode):
+        raise DatabaseBundleError("Original object must be a regular non-symlink file")
+
+    source_flags = (
+        os.O_RDONLY
+        | getattr(os, "O_CLOEXEC", 0)
+        | getattr(os, "O_NOFOLLOW", 0)
+        | getattr(os, "O_NONBLOCK", 0)
+    )
+    source_fd = None
+    target_fd = None
+    created_target = False
+    digest = hashlib.sha256()
+    copied = 0
+    try:
+        source_fd = os.open(source, source_flags)
+        opened = os.fstat(source_fd)
+        if (
+            not stat.S_ISREG(opened.st_mode)
+            or (opened.st_dev, opened.st_ino) != (before.st_dev, before.st_ino)
+            or opened.st_size != expected_size
+        ):
+            raise DatabaseBundleError("Original object changed while it was being opened")
+
+        target_flags = (
+            os.O_WRONLY | os.O_CREAT | os.O_EXCL
+            | getattr(os, "O_CLOEXEC", 0)
+            | getattr(os, "O_NOFOLLOW", 0)
+        )
+        target_fd = os.open(target, target_flags, 0o600)
+        created_target = True
+        with os.fdopen(target_fd, "wb") as output:
+            target_fd = None
+            with os.fdopen(source_fd, "rb") as input_file:
+                source_fd = None
+                while True:
+                    block = input_file.read(1024 * 1024)
+                    if not block:
+                        break
+                    copied += len(block)
+                    if copied > expected_size:
+                        raise DatabaseBundleError("Original object grew while it was being copied")
+                    output.write(block)
+                    digest.update(block)
+            if copied != expected_size or digest.hexdigest() != expected_sha256:
+                raise DatabaseBundleError("Original-object bytes do not match tenant metadata")
+            output.flush()
+            os.fsync(output.fileno())
+    except DatabaseBundleError:
+        if created_target:
+            target.unlink(missing_ok=True)
+        raise
+    except OSError as exc:
+        if created_target:
+            target.unlink(missing_ok=True)
+        raise DatabaseBundleError("Original object could not be copied safely into the backup") from exc
+    finally:
+        if source_fd is not None:
+            os.close(source_fd)
+        if target_fd is not None:
+            os.close(target_fd)
+
+
 def _copy_original_objects(
     tenant_snapshot: Path, firm_id: int, object_root: Path, payload: Path
 ) -> set[str]:
@@ -226,19 +306,15 @@ def _copy_original_objects(
         if row["state"] not in {"ready", "quarantined"}:
             raise DatabaseBundleError(f"Firm {firm_id} has unfinished original-object metadata; reconcile before backup")
         source = namespace / (object_id + ".blob")
-        if source.is_symlink() or not source.is_file():
-            raise DatabaseBundleError(f"Original object is missing for firm {firm_id}")
-        if source.stat().st_size != int(row["byte_size"]) or _sha256(source) != row["sha256"]:
-            raise DatabaseBundleError(f"Original-object integrity check failed for firm {firm_id}")
         relative = f"objects/firm-{firm_id}/{object_id}.blob"
         target = payload / relative
         target.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
-        shutil.copyfile(source, target)
-        try:
-            os.chmod(target, 0o600)
-        except OSError:
-            if os.name == "posix":
-                raise DatabaseBundleError("Could not restrict permissions on backed-up original object")
+        _copy_verified_original_object(
+            source,
+            target,
+            expected_size=row["byte_size"],
+            expected_sha256=row["sha256"],
+        )
         expected.add(f"firm-{firm_id}/{object_id}.blob")
     return expected
 
