@@ -185,6 +185,20 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         with self.assertRaises(DatabaseBundleError):
             _scan_original_object_root(object_root)
 
+    @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_original_object_inventory_rejects_hardlinked_files(self):
+        from database_backup import _scan_original_object_root
+
+        object_root = self.root / "hardlink-object-root"
+        namespace = object_root / "firm-1"
+        namespace.mkdir(parents=True)
+        source = namespace / ("c" * 32 + ".blob")
+        source.write_bytes(b"hardlinked original")
+        os.link(source, self.root / "hardlink-outside")
+
+        with self.assertRaisesRegex(DatabaseBundleError, "unexpected object"):
+            _scan_original_object_root(object_root)
+
     def test_original_object_inventory_rejects_root_directory_replacement(self):
         import os
         from unittest.mock import patch
