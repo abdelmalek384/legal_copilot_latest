@@ -469,6 +469,46 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         self.assertEqual(marker.read_text(encoding="utf-8"), "preserve")
         self.assertTrue((staged / "control_plane.sqlite3").is_file())
 
+    def test_restore_publication_rejects_parent_directory_symlink_swap(self):
+        import os
+        import database_backup
+        from unittest.mock import patch
+
+        parent = self.root / "restore-parent"
+        parent.mkdir()
+        outside = self.root / "outside-parent"
+        outside.mkdir()
+        (outside / "keep.txt").write_text("outside-preserved", encoding="utf-8")
+        staged = parent / ".dbbundle-restore-stage" / "restored"
+        staged.mkdir(parents=True)
+        (staged / "control_plane.sqlite3").write_text("staged", encoding="utf-8")
+        destination = parent / "new-restore"
+        moved_parent = self.root / "moved-restore-parent"
+        real_open = os.open
+        replaced = False
+
+        def swap_parent_before_open(path, flags, *args, **kwargs):
+            nonlocal replaced
+            if Path(path) == parent and not replaced:
+                replaced = True
+                parent.rename(moved_parent)
+                parent.symlink_to(outside, target_is_directory=True)
+            return real_open(path, flags, *args, **kwargs)
+
+        with patch.object(database_backup.os, "open", side_effect=swap_parent_before_open):
+            with self.assertRaisesRegex(
+                DatabaseBundleError, "Could not atomically publish restored databases"
+            ):
+                database_backup._publish_restore_directory_no_replace(
+                    staged, destination, parent
+                )
+
+        self.assertTrue(replaced)
+        self.assertTrue(parent.is_symlink())
+        self.assertEqual((outside / "keep.txt").read_text(encoding="utf-8"), "outside-preserved")
+        self.assertTrue((moved_parent / ".dbbundle-restore-stage" / "restored" / "control_plane.sqlite3").is_file())
+        self.assertFalse((outside / "new-restore").exists())
+
     def test_restore_refuses_existing_target_and_wrong_encryption_key(self):
         bundle = create_backup_bundle(
             self.runtime, self.cipher, self.backup_dir, quiesced=True
