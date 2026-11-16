@@ -213,6 +213,35 @@ class RestoredOriginalS3ImporterTests(unittest.TestCase):
         self.assertEqual(self.store.final, {})
         self.assertEqual(self._restored_storage_backend(), "local")
 
+    def test_restore_object_open_rejects_symlinked_restore_root(self):
+        outside = self.root / "outside-restore-root"
+        outside_objects = outside / "objects" / f"firm-{self.firm_id}"
+        outside_objects.mkdir(parents=True)
+        (outside_objects / f"{self.object_id}.blob").write_bytes(self.payload)
+        parked = self.root / "parked-restore-root"
+        self.restore_root.rename(parked)
+        try:
+            self.restore_root.symlink_to(outside, target_is_directory=True)
+        except OSError as exc:
+            parked.rename(self.restore_root)
+            self.skipTest(f"directory symlinks are unavailable in this environment: {exc}")
+
+        source = self.restore_root / "objects" / f"firm-{self.firm_id}" / f"{self.object_id}.blob"
+        try:
+            with self.assertRaisesRegex(RuntimeError, "missing or unsafe"):
+                importer._digest(source)
+        finally:
+            self.restore_root.unlink()
+            parked.rename(self.restore_root)
+
+        self.assertEqual(
+            (self.restore_root / "objects" / f"firm-{self.firm_id}" / f"{self.object_id}.blob").read_bytes(),
+            self.payload,
+        )
+        self.assertEqual(
+            (outside_objects / f"{self.object_id}.blob").read_bytes(), self.payload
+        )
+
     def test_restore_object_open_rejects_symlinked_objects_directory(self):
         objects = self.restore_root / "objects"
         outside = self.root / "outside-objects"
