@@ -1606,5 +1606,20 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("if(newPassword.value===confirmPassword.value)clearPasswordError(confirmPassword)", settings)
         self.assertIn("currentPassword.addEventListener('input',()=>{if(newPassword.value!==currentPassword.value)clearPasswordError(newPassword)})", settings)
 
+    def test_case_summary_includes_chronological_timeline_for_supported_records(self):
+        summary = HTML[HTML.index("if(TAB==='sum'){"):HTML.index("if(TAB==='brief'){")]
+        helper = HTML[HTML.index("function caseTimelineEvents(c){"):HTML.index("\nfunction openPage(")]
+        self.assertIn("caseTimelineEvents(c)", summary)
+        self.assertIn("className:'case-timeline-list',role:'list'", summary)
+        self.assertIn("role:'listitem'", summary)
+        self.assertIn("event.kind==='hearing'", summary)
+        self.assertIn("event.kind==='deadline'", summary)
+        self.assertIn("event.kind==='task'", summary)
+        self.assertIn("c.sessions", helper)
+        self.assertIn("c.deadlines", helper)
+        self.assertIn("c.tasks", helper)
+        self.assertIn("sort((a,b)=>a.date.localeCompare(b.date))", helper)
+        self.assertIn("No dated hearings, legal deadlines or tasks yet.", summary)
+
 if __name__ == "__main__":
     unittest.main()
