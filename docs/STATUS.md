@@ -995,3 +995,10 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Removed the path-based fallback from encrypted S3 recovery downloads. Downloads now require no-follow directory opens and `dir_fd`-relative file creation/cleanup; unsupported platforms fail before versioning/KMS/S3 calls rather than attempting a weaker path-based write or cleanup.
 - Added a regression that removes `os.open` directory-descriptor capability and verifies the download fails before cloud access and creates no target file. An isolated local dirfd harness also verified that cleanup after a parent-path replacement removes only the file under the originally opened directory, not a same-named outside path.
 - Source commit: `36ce704`; regression commit: `2f0fca7`; operator documentation: `df3cf60`. Bounded implementation: **100%**; repository test execution: **0%**. AI-2 estimate: **77.8%**; whole project remains **75.3% provisional**. Linux production container supports the required primitives; production remains **NOT READY** pending live AWS and witnessed recovery acceptance.
+
+
+## AI-2 matter-upload OCR hard-ceiling enforcement — 2026-11-16
+
+- Matter-upload OCR now treats `OCR_MAX_PIXELS` and `OCR_MAX_DIMENSION` as operator-adjustable lower limits only; hard ceilings remain 40,000,000 pixels and 20,000 pixels per dimension even if environment values attempt to raise them.
+- Added adversarial regression cases for both independent ceilings using environment values far above the hard maximum; each must reject before `get_pixmap` and Tesseract are called.
+- Source commit: `6d72c60`; regression commit: `4b613ba`. Bounded implementation: **100%**; static source/test re-fetch: **100%**; repository test execution: **0%**. Matter-upload OCR resource hardening estimate: **100% implementation**. AI-2 overall estimate: **78.0%**; whole-project estimate remains **75.3% provisional**. Production/pilot remains **NOT READY**.
