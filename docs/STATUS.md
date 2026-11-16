@@ -71,6 +71,7 @@ The following bounded repository tasks now meet their source-change acceptance c
 | Verify suspending a user's membership revokes access to only that firm, including recovery from a stale firm cookie, while preserving access to another active firm | **100%** | Route regression committed; stale-context fallback and cross-firm denial are asserted; execution pending |
 | Reject control-plane or legal-corpus database files nested inside the local original-file object root during offboarding preflight | **100%** | Focused filesystem containment regression committed and registered in Tests workflow; execution pending |
 | Convert S3 inventory-listing outages into blocking offboarding findings without authorizing purge | **100%** | ObjectStorageError handling and synthetic provider-outage regression committed; execution pending |
+| Block offboarding when the S3 provider returns an unknown bucket-versioning state | **100%** | Unknown-status finding and regression committed; execution pending |
 
 ## AI-2 implementation completion estimate
 
@@ -80,7 +81,7 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 |---|---:|---|
 | Local release baseline | 20% | Release-check implementation exists; exact local checker output and all Python 3.12 gates remain unavailable |
 | Security integration | 83% | Production/staging login, configured API middleware, and recovery throttle identifiers are purpose-separated HMAC pseudonyms; route-authentication, case/document parent-scope, fail-closed original-file export and download-audit boundaries, post-commit original retention, and explicit matter-deletion retention conflicts are now guarded; exact-head security verification remains blocked |
-| Security regression coverage | 97.8% | Backup source no-follow, same-descriptor upload, mandatory checksum and verification-to-upload byte-binding regressions, duplicate release-evidence validation, S3 cross-region KMS, recovery/login/API HMAC, route-auth, case-ID/document-ID/query-scope, corrupted original-file export, mandatory original-download audit failure, post-commit upload-metering failure, matter-deletion retention, firm-export audit-failure, authentication-secret-exclusion, byte-for-byte original-export integrity, and cross-firm membership-suspension regressions are committed; all repository tests remain unexecuted, real OCR-engine/image-quality acceptance still pending |
+| Security regression coverage | 98.0% | Backup source no-follow, same-descriptor upload, mandatory checksum and verification-to-upload byte-binding regressions, duplicate release-evidence validation, S3 cross-region KMS, recovery/login/API HMAC, route-auth, case-ID/document-ID/query-scope, corrupted original-file export, mandatory original-download audit failure, post-commit upload-metering failure, matter-deletion retention, firm-export audit-failure, authentication-secret-exclusion, byte-for-byte original-export integrity, and cross-firm membership-suspension regressions are committed; all repository tests remain unexecuted, real OCR-engine/image-quality acceptance still pending |
 | Lawyer rating UI/export | 95% | Browser acceptance and adapter execution remain pending |
 | Test-firm package | 90% | Clean-clone first-login rehearsal remains unexecuted |
 | Repository cleanup/accessibility | 83% | Bilingual form labels/errors, source-inspector metadata and passage navigation are implemented; run hygiene scan and finish manual accessibility review |
@@ -104,6 +105,12 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 - A manual Python check exposed a compatibility defect in the merged implementation: Python's datetime parser accepts a date-only string as a naive midnight datetime, so the new timezone check accidentally rejected the promised date-only format. Corrected the mainline validator to distinguish canonical YYYY-MM-DD dates before parsing datetimes.
 - Manual isolated validation passed for date-only, UTC-offset datetime, non-UTC-offset datetime, and rejection of a naive datetime. The full Gazette importer test module remains unexecuted due unavailable GitHub runners.
 - Mainline correction: 80009598e5c3601cd0b4fbc436d66fe1a171abc0.
+
+## AI-2 S3 offboarding versioning-state validation — 2026-11-16
+
+- Tightened the read-only offboarding gate so only an absent bucket-versioning Status is treated as the unversioned/Disabled case. Enabled and Suspended remain blocked pending retention policy; any unexpected non-empty status now produces a blocking s3_bucket_versioning_status_unavailable finding.
+- Added a synthetic unknown-provider-state regression. It asserts blocked preflight, no mutation and no production-purge authorization. The test module is already registered in the Tests workflow; execution remains pending.
+- **Bounded implementation task: 100% implemented; runtime test execution: pending.**
 
 **Unweighted AI-2 implementation estimate: 72.7%** (arithmetic mean of the seven workstream values above). The provisional whole-project engineering estimate is approximately **72%**; this is not a test-pass rate or production-readiness score. The application remains **NOT READY** for lawyer pilot or production. No test pass is inferred from committed test code.
 
