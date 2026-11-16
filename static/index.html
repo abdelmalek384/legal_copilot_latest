@@ -77,6 +77,11 @@ button.g{color:#344256}
 .research-thread{background:#FBFCFE}
 .research-controls{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin:0 0 12px}
 .research-controls label{display:grid;gap:5px;min-width:0;font-size:12px;color:var(--mut);font-weight:700}
+.research-scope-tabs{display:flex;grid-column:1/-1;gap:4px;padding:4px;background:var(--workspace-blue-soft);border-radius:12px;min-width:0}
+.research-scope-tab{flex:1;min-width:0;min-height:40px;padding:8px 10px;border:1px solid transparent;border-radius:9px;background:transparent;color:var(--workspace-ink);font-weight:700;font-size:13px;white-space:normal}
+.research-scope-tab.active,.research-scope-tab[aria-pressed="true"]{background:#fff;border-color:var(--workspace-border);box-shadow:0 2px 8px rgba(23,36,58,.07);color:var(--workspace-blue)}
+.research-scope-tab:focus-visible{outline:3px solid var(--ui-focus);outline-offset:2px}
+
 .research-controls select{width:100%;min-width:0;min-height:40px}
 .research-source-actions,.research-message-actions{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
 .research-source-actions button,.research-message-actions button{min-height:34px;font-size:12px}
@@ -2569,9 +2574,15 @@ async function law(){
     h('option',{value:'firm_documents',textContent:LANG==='ar'?'مستندات المكتب داخل ملف قضية':'Firm documents in a matter'}),
     h('option',{value:'metadata_only',textContent:LANG==='ar'?'اكتشاف فهرس المصادر (بيانات وصفية فقط)':'Source catalog discovery (metadata only)'}));
   const matterSelect=h('select',{tabIndex:0,'aria-label':LANG==='ar'?'ملف القضية':'Matter'},h('option',{value:'',textContent:LANG==='ar'?'اختر ملف قضية':'Select a matter'}));
+  const matterLabel=h('label',{},h('span',{textContent:LANG==='ar'?'ملف القضية':'Matter'}),matterSelect);matterLabel.hidden=true;
+  const scopeTabs=h('div',{className:'research-scope-tabs',role:'group','aria-label':LANG==='ar'?'نطاق البحث':'Research scope'});
+  const scopeTabButtons=[];
+  const syncScopeTabs=()=>scopeTabButtons.forEach(tab=>{const selected=tab.dataset.scope===scopeSelect.value;tab.setAttribute('aria-pressed',String(selected));tab.classList.toggle('active',selected)});
+  [['verified_corpus',LANG==='ar'?'القانون المتحقق':'Verified law'],['firm_documents',LANG==='ar'?'مستندات المكتب':'Firm documents'],['metadata_only',LANG==='ar'?'فهرس المصادر':'Source catalog']].forEach(([value,label])=>{const tab=h('button',{type:'button',className:'research-scope-tab',textContent:label,'aria-pressed':String(value===scopeSelect.value),onclick:()=>{scopeSelect.value=value;syncScopeTabs();matterLabel.hidden=value!=='firm_documents';if(value==='firm_documents'&&!matterSelect.value)toast(LANG==='ar'?'اختر ملف قضية للبحث في مستندات المكتب':'Select a matter to search firm documents')}});tab.dataset.scope=value;scopeTabButtons.push(tab);scopeTabs.append(tab)});
+  scopeSelect.hidden=true;
   let accessibleCases=[];
   try{accessibleCases=await api('/cases');accessibleCases.forEach(c=>matterSelect.append(new Option((c.title||('Matter '+c.id))+' (#'+c.id+')',String(c.id))))}catch(_){}
-  scopeSelect.onchange=()=>{if(scopeSelect.value==='firm_documents'&&!matterSelect.value)toast(LANG==='ar'?'اختر ملف قضية للبحث في مستندات المكتب':'Select a matter to search firm documents')};
+  scopeSelect.onchange=()=>{matterLabel.hidden=scopeSelect.value!=='firm_documents';syncScopeTabs();if(scopeSelect.value==='firm_documents'&&!matterSelect.value)toast(LANG==='ar'?'اختر ملف قضية للبحث في مستندات المكتب':'Select a matter to search firm documents')};
   const documentWorkspace=h('div',{});
   const uploadInput=h('input',{type:'file',multiple:true,accept:'.pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document',className:'visually-hidden',tabIndex:-1,'aria-label':LANG==='ar'?'اختر ملفات PDF أو DOCX':'Choose PDF or DOCX files'});
   const uploadStatus=h('p',{className:'research-upload-status',role:'status','aria-live':'polite',textContent:LANG==='ar'?'اختر ملف قضية لإضافة مستندات إليها.':'Select a matter before adding documents.'});
@@ -2888,7 +2899,7 @@ async function law(){
  },'primary');
  composer.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send.click()}});
  const composerArea=h('div',{className:'research-composer'},composer,send,h('div',{className:'mut',textContent:LANG==='ar'?'Enter للإرسال · Shift+Enter لسطر جديد':'Enter to send · Shift+Enter for a new line'}));
- shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-scope-guidance',role:'note'},h('b',{textContent:LANG==='ar'?'كيف يعمل البحث القانوني':'How legal research works'}),h('p',{textContent:LANG==='ar'?'يبحث النطاق الافتراضي في النصوص القانونية المتحقق منها فقط. إذا لم يوجد نص مستوفٍ لشروط المصدر والمراجعة، سيمتنع النظام عن الإجابة بدلاً من التخمين. استخدم اكتشاف فهرس المصادر للعثور على بيانات وصفية فقط، أو اختر مستندات المكتب وحدد ملف قضية.':'The default scope searches verified legal text only. If no source meets provenance and review requirements, the assistant abstains rather than guessing. Use source-catalog discovery for metadata only, or choose firm documents and select a matter.'})),h('div',{className:'research-controls'},h('label',{},h('span',{textContent:LANG==='ar'?'نطاق البحث':'Search scope'}),scopeSelect),h('label',{},h('span',{textContent:LANG==='ar'?'ملف القضية (للبحث والحفظ)':'Matter (for search and saving)'}),matterSelect),openDocumentWorkspace),uploadPanel,documentWorkspace,h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},researchStatus,thread,composerArea),sourceInspector));
+ shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-scope-guidance',role:'note'},h('b',{textContent:LANG==='ar'?'كيف يعمل البحث القانوني':'How legal research works'}),h('p',{textContent:LANG==='ar'?'يبحث النطاق الافتراضي في النصوص القانونية المتحقق منها فقط. إذا لم يوجد نص مستوفٍ لشروط المصدر والمراجعة، سيمتنع النظام عن الإجابة بدلاً من التخمين. استخدم اكتشاف فهرس المصادر للعثور على بيانات وصفية فقط، أو اختر مستندات المكتب وحدد ملف قضية.':'The default scope searches verified legal text only. If no source meets provenance and review requirements, the assistant abstains rather than guessing. Use source-catalog discovery for metadata only, or choose firm documents and select a matter.'})),h('div',{className:'research-controls'},scopeTabs,scopeSelect,matterLabel,openDocumentWorkspace),uploadPanel,documentWorkspace,h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},researchStatus,thread,composerArea),sourceInspector));
  try{
   await drawList();
   if(activeId)await loadConversation(activeId);

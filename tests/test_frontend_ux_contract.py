@@ -1478,5 +1478,17 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("#main .research-layout:has(.research-inspector:not([hidden]))", HTML)
 
 
+    def test_legal_research_scope_uses_accessible_segmented_controls_and_conditional_matter_picker(self):
+        research = HTML[HTML.index("async function law(){"):HTML.index("\\nfunction documentIntelligencePanel(")]
+        self.assertIn("className:'research-scope-tabs',role:'group'", research)
+        self.assertIn("['verified_corpus',LANG==='ar'?'القانون المتحقق':'Verified law']", research)
+        self.assertIn("['firm_documents',LANG==='ar'?'مستندات المكتب':'Firm documents']", research)
+        self.assertIn("['metadata_only',LANG==='ar'?'فهرس المصادر':'Source catalog']", research)
+        self.assertIn("'aria-pressed':String(value===scopeSelect.value)", research)
+        self.assertIn("matterLabel.hidden=value!=='firm_documents'", research)
+        self.assertIn("scopeSelect.hidden=true", research)
+        self.assertIn('"arabic": "القانون المتحقق"', (ROOT / "static" / "ar-ui-review.json").read_text(encoding="utf-8"))
+
+
 if __name__ == "__main__":
     unittest.main()
