@@ -55,3 +55,10 @@ These are frontend implementation and automated contract-test improvements, not 
 - Desktop uses stacked labelled groups; narrow layouts switch to a horizontally scrollable, touch-friendly row and hide the group captions to conserve vertical space.
 - The navigation continues to clear any pending one-shot matter/document/chunk review target before switching workspace pages. The existing answer-rating panel and save/load/list/export controls remain on the current mainline.
 - A source-level regression contract checks the route inventory, admin/platform/legal-review gates, mobile grouping and rating-panel preservation. Runtime/browser validation remains outstanding.
+
+
+### 2026-11-16 — dashboard and document-library hierarchy
+
+- The dashboard prioritizes overdue tasks and legal deadlines with a concise attention panel and direct links to the task/calendar workspaces. Duplicate quick links and fee-summary cards are removed from the dashboard; the Finance workspace remains available.
+- The global document library keeps name search visible and groups type, extraction-status, classification and reset controls under a native collapsed disclosure. Upload results are announced as a list with per-file list items and polite live updates.
+- Regression contracts cover the hierarchy and accessibility semantics. Browser, responsive, RTL/LTR and assistive-technology acceptance remain outstanding.
