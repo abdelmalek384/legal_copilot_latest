@@ -589,13 +589,23 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "Reactivation Target", "reactivation-target@example.test", app.hash_pw(self.password)
         )
         self.runtime.create_firm_membership(target_id, self.firm_a, "lawyer")
+        viewer_id = self.runtime.create_global_identity(
+            "Active Firm Viewer", "active-firm-viewer@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(viewer_id, self.firm_a, "lawyer")
         target = TestClient(app.app)
+        viewer = TestClient(app.app)
         try:
             target_login = target.post(
                 "/login",
                 json={"email": "reactivation-target@example.test", "password": self.password},
             )
             self.assertEqual(target_login.status_code, 200, target_login.text)
+            viewer_login = viewer.post(
+                "/login",
+                json={"email": "active-firm-viewer@example.test", "password": self.password},
+            )
+            self.assertEqual(viewer_login.status_code, 200, viewer_login.text)
             owner_login = self.client.post(
                 "/login", json={"email": "owner@example.test", "password": self.password}
             )
@@ -610,6 +620,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertFalse(suspended_row["active"])
             self.assertEqual(suspended_row["membership_status"], "suspended")
             self.assertEqual(suspended_row["identity_status"], "active")
+            viewer_rows = viewer.get("/users").json()
+            self.assertFalse(any(row["id"] == target_id for row in viewer_rows))
 
             restored = self._mutate("post", f"/users/{target_id}/enable")
             self.assertEqual(restored.status_code, 200, restored.text)
@@ -621,6 +633,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             )
             self.assertEqual(fresh_login.status_code, 200, fresh_login.text)
             self.assertEqual(target.get("/cases").status_code, 200)
+            viewer_rows_after = viewer.get("/users").json()
+            self.assertTrue(any(row["id"] == target_id for row in viewer_rows_after))
             membership = self.runtime.control_connection().execute(
                 "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
                 (target_id, self.firm_a),
@@ -636,6 +650,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertIn('"sessions_revoked": true', event["detail_json"])
         finally:
             target.close()
+            viewer.close()
 
     def test_membership_reactivation_respects_firm_seat_limit(self):
         target_id = self.runtime.create_global_identity(
