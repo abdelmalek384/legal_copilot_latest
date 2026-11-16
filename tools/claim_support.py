@@ -70,7 +70,7 @@ _ENGLISH_MODAL_PATTERNS = {
     # simultaneously count as obligations and prohibitions.
     "obligation": re.compile(
         r"\b(?:must(?!\s+not|n['’]t)|shall(?!\s+not|n['’]t)|"
-        r"(?<!not )required to|is required to|are required to|have to|has to)\b",
+        r"(?<!not )required to|is required to|are required to|is obliged to|are obliged to|is obligated to|are obligated to|have to|has to)\b",
         re.IGNORECASE,
     ),
     "prohibition": re.compile(
