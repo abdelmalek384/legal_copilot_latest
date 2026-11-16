@@ -96,6 +96,47 @@ class LocalPrivateObjectStoreTests(unittest.TestCase):
         self.assertFalse(final_path.is_symlink())
         self.assertEqual(outside.read_bytes(), b"outside data")
 
+    @unittest.skipUnless(os.name == "posix", "POSIX directory symlinks are required")
+    def test_stage_is_not_redirected_by_firm_directory_symlink_swap(self):
+        existing = self.store.stage(7, b"preserve staged object")
+        namespace = self.root / "firm-7"
+        parked = self.root / "firm-7-parked"
+        outside = Path(self.temp.name) / "outside-namespace"
+        outside.mkdir()
+        sentinel = outside / "sentinel"
+        sentinel.write_bytes(b"outside data")
+        real_open = os.open
+        swapped = False
+
+        def swap_before_namespace_open(path, flags, *args, **kwargs):
+            nonlocal swapped
+            if path == "firm-7" and kwargs.get("dir_fd") is not None and not swapped:
+                namespace.rename(parked)
+                namespace.symlink_to(outside, target_is_directory=True)
+                swapped = True
+            return real_open(path, flags, *args, **kwargs)
+
+        try:
+            with patch("original_file_storage.os.open", side_effect=swap_before_namespace_open):
+                with self.assertRaises(ObjectStorageError):
+                    self.store.stage(7, b"must not escape")
+        finally:
+            if namespace.is_symlink():
+                namespace.unlink()
+            if parked.exists():
+                parked.rename(namespace)
+
+        self.assertTrue(swapped)
+        self.assertEqual(sentinel.read_bytes(), b"outside data")
+        self.assertEqual(
+            (namespace / (existing.object_id + ".staged")).read_bytes(),
+            b"preserve staged object",
+        )
+        self.assertEqual(
+            sorted(path.name for path in namespace.iterdir()),
+            [existing.object_id + ".staged"],
+        )
+
     def test_rejects_symlinked_firm_namespace(self):
         if not hasattr(os, "symlink"):
             self.skipTest("symlinks unavailable")
