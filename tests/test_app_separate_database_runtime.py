@@ -418,7 +418,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertEqual(owner_login.status_code, 200, owner_login.text)
             suspended = self._mutate("post", f"/users/{target_id}/disable")
             self.assertEqual(suspended.status_code, 200, suspended.text)
-            self.assertEqual(target.get("/cases").status_code, 403)
+            self.assertEqual(target.get("/cases").status_code, 401)
 
             rejected = target.post("/logout")
             self.assertEqual(rejected.status_code, 403, rejected.text)
