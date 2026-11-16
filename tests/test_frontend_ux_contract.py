@@ -1562,5 +1562,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn(".research-upload-panel{grid-column:1/-1;grid-template-columns:minmax(0,1fr);", HTML)
 
 
+    def test_research_example_questions_remain_compact_at_mobile_width(self):
+        self.assertIn("@media(max-width:800px){#main .research-example-chip{width:auto;max-width:100%;flex:0 1 auto}}", HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
