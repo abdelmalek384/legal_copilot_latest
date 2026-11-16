@@ -173,10 +173,14 @@ def upload_encrypted_bundle(
                     _fail("S3 did not return a multipart upload identifier")
                 source.seek(0)
                 part_number = 1
+                uploaded_size = 0
                 while True:
                     chunk = source.read(_PART_SIZE)
                     if not chunk:
                         break
+                    uploaded_size += len(chunk)
+                    if uploaded_size > size or uploaded_size > _MAX_ENCRYPTED_BUNDLE_BYTES:
+                        _fail("Recovery archive input grew beyond its verified size during multipart upload")
                     if part_number > _MAX_PARTS:
                         _fail("Encrypted recovery bundle exceeds the S3 multipart part limit")
                     uploaded = s3_client.upload_part(
@@ -188,6 +192,8 @@ def upload_encrypted_bundle(
                         _fail("S3 multipart upload returned a part without an ETag")
                     parts.append({"PartNumber": part_number, "ETag": etag})
                     part_number += 1
+                if uploaded_size != size:
+                    _fail("Recovery archive input changed size during multipart upload")
                 response = s3_client.complete_multipart_upload(
                     Bucket=bucket, Key=object_key, UploadId=upload_id,
                     MultipartUpload={"Parts": parts},
