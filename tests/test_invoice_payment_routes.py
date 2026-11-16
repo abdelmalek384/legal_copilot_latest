@@ -2,6 +2,8 @@
 import sqlite3
 import unittest
 
+import app
+
 from tests.invoice_test_support import InvoiceTestSupport
 
 
@@ -23,7 +25,7 @@ class InvoicePaymentRouteTests(InvoiceTestSupport, unittest.TestCase):
 
         lawyer_id = self.runtime.create_global_identity(
             "Invoice Case Lawyer", "invoice-case-lawyer@example.test",
-            __import__("app").hash_pw(self.password),
+            app.hash_pw(self.password),
         )
         self.runtime.create_firm_membership(lawyer_id, self.firm_a, "lawyer")
         tenant = self.runtime._tenant_router.connection_for_firm(self.firm_a)
