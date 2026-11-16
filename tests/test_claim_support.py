@@ -86,6 +86,28 @@ class ClaimSupportTests(unittest.TestCase):
                     tokens, norm, _mask_markdown_code
                 ))
 
+    def test_arabic_yulzim_negation_is_distinguished_from_positive_obligation(self):
+        cases = (
+            ("يلزم صاحب العمل بتقديم الإخطار.", "لا يلزم صاحب العمل بتقديم الإخطار."),
+            ("لا يلزم صاحب العمل بتقديم الإخطار.", "يلزم صاحب العمل بتقديم الإخطار."),
+            ("يلزم صاحب العمل بتقديم الإخطار.", "لا\\tيلزم صاحب العمل بتقديم الإخطار."),
+        )
+        for claim, evidence in cases:
+            with self.subTest(claim=claim, evidence=evidence):
+                self.assertTrue(_has_negated_obligation_mismatch(claim, evidence))
+                self.assertTrue(has_unsupported_claims(
+                    claim + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
+    def test_faithful_arabic_yulzim_negation_is_not_flagged(self):
+        evidence = "لا يلزم صاحب العمل بتقديم الإخطار."
+        self.assertFalse(_has_modal_mismatch(evidence, evidence))
+        self.assertFalse(has_unsupported_claims(
+            evidence + " [1].", [{"text": evidence}],
+            tokens, norm, _mask_markdown_code
+        ))
+
     def test_arabic_negated_obligation_with_variable_whitespace_is_not_positive(self):
         cases = (
             "لا يجب على صاحب العمل تقديم الإخطار.",
