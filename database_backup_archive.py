@@ -254,7 +254,7 @@ def upload_encrypted_bundle(
             persisted_size = 0
             body = probe["Body"]
             while True:
-                block = body.read(1024 * 1024)
+                block = body.read(min(1024 * 1024, size - persisted_size + 1))
                 if not block:
                     break
                 persisted_size += len(block)
@@ -399,7 +399,7 @@ def download_encrypted_bundle_version(
         with os.fdopen(descriptor, "wb") as output:
             descriptor = None
             while True:
-                block = body.read(1024 * 1024)
+                block = body.read(min(1024 * 1024, expected_size - count + 1))
                 if not block:
                     break
                 count += len(block)
