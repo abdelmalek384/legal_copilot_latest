@@ -151,6 +151,56 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         self.assertFalse(target.exists())
         self.assertEqual(outside.read_bytes(), outside_bytes)
 
+    def test_s3_backup_copy_bounds_stream_and_rejects_invalid_metadata(self):
+        import io
+        import sqlite3
+        from database_backup import _copy_s3_original_objects
+
+        object_id = "a" * 32
+        snapshot = self.root / "s3-object-metadata.sqlite3"
+        connection = sqlite3.connect(snapshot)
+        connection.execute(
+            "CREATE TABLE original_file_objects (object_id TEXT, firm_id INTEGER, "
+            "storage_backend TEXT, sha256 TEXT, byte_size, state TEXT, purged_at TEXT)"
+        )
+        connection.execute(
+            "INSERT INTO original_file_objects VALUES(?,?, 's3', ?, ?, 'ready', NULL)",
+            (object_id, self.firm_a, hashlib.sha256(b"small").hexdigest(), 5),
+        )
+        connection.commit()
+        connection.close()
+
+        class FakeStore:
+            def __init__(self, payload):
+                self.payload = payload
+                self.presence_calls = 0
+
+            def object_presence(self, firm_id, object_id):
+                self.presence_calls += 1
+                return False, True
+
+            def verify(self, *args, **kwargs):
+                return True
+
+            def open(self, *args, **kwargs):
+                return io.BytesIO(self.payload)
+
+        store = FakeStore(b"this stream is larger than five bytes")
+        payload = self.root / "s3-backup-payload"
+        payload.mkdir()
+        with self.assertRaises(DatabaseBundleError):
+            _copy_s3_original_objects(snapshot, self.firm_a, store, payload)
+        self.assertFalse((payload / f"objects/firm-{self.firm_a}/{object_id}.blob").exists())
+
+        connection = sqlite3.connect(snapshot)
+        connection.execute("UPDATE original_file_objects SET byte_size='invalid'")
+        connection.commit()
+        connection.close()
+        store = FakeStore(b"small")
+        with self.assertRaises(DatabaseBundleError):
+            _copy_s3_original_objects(snapshot, self.firm_a, store, payload)
+        self.assertEqual(store.presence_calls, 0)
+
     def test_original_objects_restore_with_tenant_metadata_and_verified_bytes(self):
         import hashlib
         import app
