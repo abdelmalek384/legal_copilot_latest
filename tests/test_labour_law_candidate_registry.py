@@ -86,6 +86,25 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0], 0)
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM legal_review_events").fetchone()[0], 6)
 
+    def test_registration_ignores_candidate_supplied_verification_and_status_claims(self):
+        candidate = dict(self.record)
+        candidate["version"] = dict(self.record["version"])
+        candidate["version"].update({
+            "legal_status": "in_force",
+            "review_status": "verified",
+            "authenticity_verified": 1,
+            "status_verified": 1,
+            "amendment_history_verified": 1,
+        })
+        result = self.register(self.db, candidate)
+        state = result["version_state"]
+        self.assertEqual(state["legal_status"], "under_review")
+        self.assertEqual(state["review_status"], "pending_source_review")
+        self.assertEqual(state["authenticity_verified"], 0)
+        self.assertEqual(state["status_verified"], 0)
+        self.assertEqual(state["amendment_history_verified"], 0)
+        self.assertEqual(result["linked_chunk_count"], 0)
+
     def test_registration_is_idempotent_and_preserves_review_decisions(self):
         first = self.register(self.db, self.record)
         self.register(self.db, self.record)
