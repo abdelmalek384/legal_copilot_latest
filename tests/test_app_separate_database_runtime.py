@@ -178,6 +178,11 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "Suspension Audit Target", "suspension-audit-target@example.test", app.hash_pw(self.password)
         )
         self.runtime.create_firm_membership(target_id, self.firm_a, "lawyer")
+        target = TestClient(app.app)
+        target_login = target.post(
+            "/login", json={"email": "suspension-audit-target@example.test", "password": self.password}
+        )
+        self.assertEqual(target_login.status_code, 200, target_login.text)
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
         )
@@ -189,16 +194,26 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             BEGIN SELECT RAISE(ABORT, 'membership suspension audit unavailable'); END
         """)
         control.commit()
-        response = self._mutate("post", f"/users/{target_id}/disable")
-        self.assertEqual(response.status_code, 503, response.text)
-        self.assertEqual(control.execute(
+        try:
+            response = self._mutate("post", f"/users/{target_id}/disable")
+            self.assertEqual(response.status_code, 503, response.text)
+            self.assertEqual(control.execute(
             "SELECT status FROM firm_memberships WHERE user_id=? AND firm_id=?",
             (target_id, self.firm_a),
-        ).fetchone()["status"], "active")
-        self.assertEqual(control.execute(
-            "SELECT COUNT(*) FROM platform_security_events WHERE event_type='membership_suspended' AND target_user_id=?",
-            (target_id,),
-        ).fetchone()[0], 0)
+            ).fetchone()["status"], "active")
+            self.assertEqual(control.execute(
+                "SELECT COUNT(*) FROM platform_security_events WHERE event_type='membership_suspended' AND target_user_id=?",
+                (target_id,),
+            ).fetchone()[0], 0)
+            self.assertEqual(
+                control.execute("SELECT COUNT(*) FROM auth_sessions WHERE user_id=?", (target_id,)).fetchone()[0],
+                1,
+            )
+            self.assertEqual(target.get("/cases").status_code, 200)
+        finally:
+            control.execute("DROP TRIGGER IF EXISTS reject_membership_suspension_audit")
+            control.commit()
+            target.close()
 
     def test_direct_user_creation_cannot_bypass_invitation_even_if_audit_ledger_is_unavailable(self):
         login = self.client.post(
