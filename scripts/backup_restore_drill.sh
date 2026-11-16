@@ -58,6 +58,10 @@ if [[ "$backup_dir_real" == "/" || "$restore_parent_real" == "/" ]]; then
   echo "ERROR: BACKUP_DIR and RESTORE_PARENT must not be filesystem roots." >&2
   exit 2
 fi
+# Use the same canonical directories for subsequent writes; do not
+# reintroduce caller-supplied path aliases after the overlap check.
+backup_dir=$backup_dir_real
+restore_parent=$restore_parent_real
 case "$backup_dir_real/" in
   "$restore_parent_real/"*)
     echo "ERROR: BACKUP_DIR and RESTORE_PARENT must not overlap." >&2
