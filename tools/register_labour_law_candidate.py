@@ -11,6 +11,7 @@ import os
 import stat
 import sys
 from pathlib import Path
+from urllib.parse import parse_qsl, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_RECORD = ROOT / "data" / "candidates" / "labour_law_14_2025" / "registry_candidate.json"
@@ -55,11 +56,60 @@ def load_candidate_record(path: Path) -> dict:
         raise ValueError("candidate record root must be a JSON object")
     return value
 
+SENSITIVE_QUERY_KEYS = {
+    "token", "access_token", "auth", "authorization", "password", "secret",
+    "signature", "sig", "api_key", "apikey", "session", "sessionid",
+    "credential", "api-key", "auth_token", "session_token",
+    "x-amz-signature", "x-amz-credential", "x-amz-security-token",
+    "x-goog-signature", "x-goog-credential",
+}
+
+
+def _valid_https_url(value: object) -> bool:
+    if (not isinstance(value, str) or not value or value != value.strip()
+            or "\\" in value or "#" in value
+            or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value)):
+        return False
+    try:
+        parsed = urlsplit(value)
+        port = parsed.port
+        query_keys = {
+            key.casefold() for key, _ in parse_qsl(parsed.query, keep_blank_values=True)
+        }
+        return (
+            parsed.scheme.lower() == "https" and bool(parsed.hostname)
+            and parsed.username is None and parsed.password is None
+            and not parsed.netloc.endswith(":")
+            and (port is None or 1 <= port <= 65535)
+            and not (query_keys & SENSITIVE_QUERY_KEYS)
+        )
+    except (TypeError, ValueError):
+        return False
+
+
 def register(db, record):
     """Idempotently insert candidate source/document/version metadata."""
     sources = record["sources"]
     if not isinstance(sources, list) or not sources:
         raise ValueError("candidate record must contain a non-empty source list")
+    for source in sources:
+        if not _valid_https_url(source.get("source_page")):
+            raise ValueError("candidate source_page must be a clean HTTPS URL")
+        terms_url = source.get("terms_url")
+        if terms_url is not None and not _valid_https_url(terms_url):
+            raise ValueError("candidate terms_url must be a clean HTTPS URL or null")
+    version_input = record.get("version")
+    if not isinstance(version_input, dict) or not _valid_https_url(version_input.get("source_url")):
+        raise ValueError("candidate version source_url must be a clean HTTPS URL")
+    reviews = record.get("reviews", [])
+    if not isinstance(reviews, list):
+        raise ValueError("candidate reviews must be a list")
+    for event in reviews:
+        if not isinstance(event, dict):
+            raise ValueError("candidate review events must be objects")
+        evidence_url = event.get("evidence_url")
+        if evidence_url is not None and not _valid_https_url(evidence_url):
+            raise ValueError("candidate review evidence_url must be a clean HTTPS URL or null")
     # Candidate JSON is not a permission authority. Permission grants must be
     # recorded through the canonical source-permission review workflow.
     for source in sources:
