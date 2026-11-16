@@ -313,6 +313,47 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
         self.assertEqual(copy_call["SSEKMSKeyId"], "alias/legal-files")
         self.assertEqual(copy_call["IfNoneMatch"], "*")
 
+    def test_integrity_verification_enforces_expected_and_actual_size_ceiling(self):
+        from unittest.mock import patch
+
+        staged = self.store.stage(12, b"bounded payload")
+        self.store.finalize(12, staged.object_id)
+
+        # Impossible metadata is rejected before the S3 object is fetched.
+        with patch.object(self.client, "get_object", wraps=self.client.get_object) as get_object:
+            with self.assertRaisesRegex(ValueError, "configured object size limit"):
+                self.store.verify(
+                    12, staged.object_id, expected_sha256=staged.sha256,
+                    expected_size=self.store.max_bytes + 1,
+                )
+            get_object.assert_not_called()
+
+        class TrackingBody(io.BytesIO):
+            def __init__(self, value):
+                super().__init__(value)
+                self.bytes_read = 0
+
+            def read(self, size=-1):
+                block = super().read(size)
+                self.bytes_read += len(block)
+                return block
+
+        body = TrackingBody(b"x" * (self.store.max_bytes * 5))
+        with patch.object(
+            self.client, "get_object",
+            return_value={
+                "Body": body,
+                "ServerSideEncryption": "aws:kms",
+                "SSEKMSKeyId": self.client.CANONICAL_KMS_ARN,
+            },
+        ):
+            self.assertFalse(self.store.verify(
+                12, staged.object_id, expected_sha256=staged.sha256,
+                expected_size=staged.byte_size,
+            ))
+        self.assertEqual(body.bytes_read, self.store.max_bytes + 1)
+        self.assertTrue(body.closed, "oversized response body must be closed")
+
     def test_finalize_preserves_staged_object_when_destination_kms_key_is_wrong(self):
         staged = self.store.stage(12, b"recoverable original bytes")
         self.client.copy_kms_key_id = "arn:aws:kms:us-east-1:123456789012:key/wrong-key"
