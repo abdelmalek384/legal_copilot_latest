@@ -325,6 +325,12 @@ def download_encrypted_bundle_version(
     if parent != target.parent.absolute():
         _fail("Recovery download parent path must not traverse symbolic links")
     target = parent / target.name
+    if (
+        os.open not in getattr(os, "supports_dir_fd", set())
+        or not getattr(os, "O_DIRECTORY", 0)
+        or not getattr(os, "O_NOFOLLOW", 0)
+    ):
+        _fail("Recovery download requires no-follow directory-descriptor file operations")
     _require_versioning(s3_client, bucket)
     key_arn = _key_arn(kms_client, kms_key_id)
     if locator.get("kms_key_arn") != key_arn:
@@ -377,21 +383,15 @@ def download_encrypted_bundle_version(
     count = 0
     try:
         parent_before = parent.stat()
-        if os.open in getattr(os, "supports_dir_fd", set()):
-            parent_descriptor = os.open(parent, directory_flags)
-            parent_opened = os.fstat(parent_descriptor)
-            if (
-                not stat.S_ISDIR(parent_opened.st_mode)
-                or (parent_opened.st_dev, parent_opened.st_ino)
-                != (parent_before.st_dev, parent_before.st_ino)
-            ):
-                _fail("Recovery download directory changed during validation")
-            descriptor = os.open(target.name, flags, 0o600, dir_fd=parent_descriptor)
-        else:
-            # Portable fallback: retain exclusive/no-follow target creation and
-            # verify the parent identity again before returning success.
-            descriptor = os.open(target, flags, 0o600)
-            parent_opened = parent_before
+        parent_descriptor = os.open(parent, directory_flags)
+        parent_opened = os.fstat(parent_descriptor)
+        if (
+            not stat.S_ISDIR(parent_opened.st_mode)
+            or (parent_opened.st_dev, parent_opened.st_ino)
+            != (parent_before.st_dev, parent_before.st_ino)
+        ):
+            _fail("Recovery download directory changed during validation")
+        descriptor = os.open(target.name, flags, 0o600, dir_fd=parent_descriptor)
         created = True
         with os.fdopen(descriptor, "wb") as output:
             descriptor = None
@@ -421,10 +421,7 @@ def download_encrypted_bundle_version(
     except Exception as exc:
         if created:
             try:
-                if parent_descriptor is not None:
-                    os.unlink(target.name, dir_fd=parent_descriptor)
-                else:
-                    target.unlink(missing_ok=True)
+                os.unlink(target.name, dir_fd=parent_descriptor)
             except OSError:
                 pass
         if isinstance(exc, DatabaseBundleError):
