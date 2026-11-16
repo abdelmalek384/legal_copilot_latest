@@ -404,7 +404,12 @@ def run_scheduler(
 
         sent_this_firm = 0
         while sent_this_firm < max_send:
-            delivery = claim_next(tenant, now=now)
+            # `now` is the scheduler's evaluation timestamp and may be
+            # explicitly overridden for deterministic planning. Delivery leases
+            # must use wall-clock UTC at the moment of each claim, otherwise a
+            # long batch can create already-expired leases for later messages.
+            delivery_now = datetime.now(timezone.utc)
+            delivery = claim_next(tenant, now=delivery_now)
             if delivery is None:
                 break
             sent_this_firm += 1
@@ -412,7 +417,8 @@ def run_scheduler(
             if denial:
                 finish_attempt(
                     tenant, int(delivery["id"]), result_status="failed",
-                    error_code=denial, smtp_attempts=0, now=now,
+                    error_code=denial, smtp_attempts=0,
+                    now=datetime.now(timezone.utc),
                 )
                 summary["skipped_unauthorized_or_stale"] += 1
                 summary["failed"] += 1
@@ -429,7 +435,8 @@ def run_scheduler(
             if outcome["status"] == "accepted_by_smtp":
                 finish_attempt(
                     tenant, int(delivery["id"]), result_status="accepted_by_smtp",
-                    smtp_attempts=int(outcome.get("attempts", 1)), now=now,
+                    smtp_attempts=int(outcome.get("attempts", 1)),
+                    now=datetime.now(timezone.utc),
                 )
                 summary["smtp_accepted"] += 1
             else:
@@ -441,7 +448,8 @@ def run_scheduler(
                 finish_attempt(
                     tenant, int(delivery["id"]), result_status=status,
                     error_code=outcome.get("error_code") or "smtp_delivery_failure",
-                    smtp_attempts=int(outcome.get("attempts", 1)), now=now,
+                    smtp_attempts=int(outcome.get("attempts", 1)),
+                    now=datetime.now(timezone.utc),
                 )
                 if status == "ambiguous":
                     summary["ambiguous"] += 1
