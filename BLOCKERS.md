@@ -106,3 +106,6 @@
 
 
 - 2026-11-16: Local object storage and reconciliation now pin the root directory's device/inode and reject replacement by another real directory between validation and use; root-swap regressions added (commits a943983, 0beace0, d9baf0f, ffe1e4b). Runtime tests remain unexecuted.
+
+
+- 2026-11-16: Root-identity validation failure paths now close their root directory descriptors before raising (commits c1fb85f, d2a2eca). Runtime tests remain unexecuted.
