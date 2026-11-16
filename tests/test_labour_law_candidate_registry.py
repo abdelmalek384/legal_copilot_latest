@@ -86,6 +86,33 @@ class LabourLawCandidateRegistryTests(unittest.TestCase):
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0], 0)
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM legal_review_events").fetchone()[0], 6)
 
+    def test_registration_preflights_all_candidate_shapes_before_writing(self):
+        malformed = []
+        non_object_source = dict(self.record)
+        non_object_source["sources"] = ["not-an-object"]
+        malformed.append((non_object_source, "source entries must be objects"))
+        missing_source_authority = dict(self.record)
+        missing_source_authority["sources"] = [dict(item) for item in self.record["sources"]]
+        missing_source_authority["sources"][0].pop("authority")
+        malformed.append((missing_source_authority, "source authority must be a non-empty string"))
+        missing_document = dict(self.record)
+        missing_document["document"] = None
+        malformed.append((missing_document, "document must be an object"))
+        missing_version_date = dict(self.record)
+        missing_version_date["version"] = dict(self.record["version"])
+        missing_version_date["version"]["publication_date"] = "2025-13-40"
+        malformed.append((missing_version_date, "publication_date must be an ISO"))
+        duplicate_review = dict(self.record)
+        duplicate_review["reviews"] = [dict(item) for item in self.record["reviews"]]
+        duplicate_review["reviews"].append(dict(duplicate_review["reviews"][0]))
+        malformed.append((duplicate_review, "review_type values must be unique"))
+        for candidate, expected in malformed:
+            with self.subTest(expected=expected), self.assertRaisesRegex(ValueError, expected):
+                self.register(self.db, candidate)
+            self.assertEqual(self.db.execute("SELECT COUNT(*) FROM legal_sources").fetchone()[0], 0)
+            self.assertEqual(self.db.execute("SELECT COUNT(*) FROM legal_documents").fetchone()[0], 0)
+            self.assertEqual(self.db.execute("SELECT COUNT(*) FROM legal_document_versions").fetchone()[0], 0)
+
     def test_registration_rejects_unsafe_candidate_evidence_urls(self):
         cases = (
             ("source_page", "https://user:secret@example.gov/law.pdf", "source_page"),
