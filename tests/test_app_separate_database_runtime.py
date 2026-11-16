@@ -2696,6 +2696,16 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         control.commit()
         expired = self.client.get("/cases")
         self.assertEqual(expired.status_code, 401, expired.text)
+        # Expiry must also clear stale browser credentials/context so the client
+        # does not keep replaying a dead session or a firm selection.
+        for cookie in ("lc_session", "lc_csrf", "lc_firm"):
+            self.assertIsNone(self.client.cookies.get(cookie), cookie)
+        self.assertEqual(
+            control.execute(
+                "SELECT COUNT(*) FROM auth_sessions WHERE token_hash=?", (app.sha(token),)
+            ).fetchone()[0],
+            0,
+        )
 
     def test_deadline_action_cannot_mutate_another_firms_deadline(self):
         login = self.client.post(
