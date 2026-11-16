@@ -1,4 +1,5 @@
 """Regression tests for OCR fallback with structural PDF page markers."""
+import os
 import sys
 import types
 import unittest
@@ -181,6 +182,62 @@ class PdfOcrFallbackTests(unittest.TestCase):
                 app.ocr_pdf_text(b"pdf")
         self.assertEqual(caught.exception.status_code, 413)
         self.assertIn("1 MB", caught.exception.detail)
+
+
+    def test_oversized_page_dimension_is_rejected_before_pdf_rasterization(self):
+        class WidePdfPage(FakePdfPage):
+            def __init__(self, number):
+                super().__init__(number)
+                self.rect = types.SimpleNamespace(width=100_000.0, height=792.0)
+
+        class WidePdfDoc:
+            def __len__(self):
+                return 1
+
+            def __iter__(self):
+                return iter([WidePdfPage(0)])
+
+        fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: WidePdfDoc())
+        fake_pytesseract = types.SimpleNamespace(image_to_string=MagicMock(return_value="must not run"))
+        fake_image = types.SimpleNamespace(open=lambda value: object())
+        fake_pil = types.ModuleType("PIL")
+        fake_pil.Image = fake_image
+        with patch.dict(sys.modules, {
+            "pymupdf": fake_pymupdf,
+            "pytesseract": fake_pytesseract,
+            "PIL": fake_pil,
+        }), patch.dict(os.environ, {"OCR_MAX_DIMENSION": "1000"}), patch.object(
+            WidePdfPage, "get_pixmap", autospec=True
+        ) as render_page:
+            with self.assertRaises(app.HTTPException) as caught:
+                app.ocr_pdf_text(b"pdf")
+        self.assertEqual(caught.exception.status_code, 413)
+        render_page.assert_not_called()
+        fake_pytesseract.image_to_string.assert_not_called()
+
+    def test_renderer_output_dimension_is_checked_after_rasterization(self):
+        class OversizedPixmap:
+            width = 20_001
+            height = 1
+
+            def tobytes(self, kind):
+                raise AssertionError("oversized bitmap must not be encoded")
+
+        fake_pymupdf = types.SimpleNamespace(open=lambda **kwargs: FakePdfDoc(1))
+        fake_pytesseract = types.SimpleNamespace(image_to_string=MagicMock(return_value="must not run"))
+        fake_image = types.SimpleNamespace(open=lambda value: object())
+        fake_pil = types.ModuleType("PIL")
+        fake_pil.Image = fake_image
+        with patch.dict(sys.modules, {
+            "pymupdf": fake_pymupdf,
+            "pytesseract": fake_pytesseract,
+            "PIL": fake_pil,
+        }), patch.object(FakePdfPage, "get_pixmap", return_value=OversizedPixmap()):
+            with self.assertRaises(app.HTTPException) as caught:
+                app.ocr_pdf_text(b"pdf")
+        self.assertEqual(caught.exception.status_code, 413)
+        fake_pytesseract.image_to_string.assert_not_called()
+
 
 
 if __name__ == "__main__":
