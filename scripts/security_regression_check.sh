@@ -50,6 +50,7 @@ tests=(
   test_purge_approved_original_files.py
   test_document_extraction_budget.py
   test_pdf_ocr_fallback.py
+  test_import_laws_bundle.py
   test_research_prompt_injection_boundary.py
   test_score_arabic_retrieval.py
   test_import_gazette_text.py
