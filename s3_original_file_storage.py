@@ -18,6 +18,7 @@ from original_file_storage import ObjectStorageError, StagedObject
 _OBJECT_ID_RE = re.compile(r"^[0-9a-f]{32}$")
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 _MAX_INVENTORY_PAGES = 10_000
+_MAX_INVENTORY_OBJECTS = 1_000_000
 
 
 class _BoundedObjectBody:
@@ -345,6 +346,8 @@ class S3PrivateObjectStore:
                     key = item.get("Key")
                     if not isinstance(key, str) or not key.startswith(prefix):
                         raise ObjectStorageError("object-storage listing returned an invalid object key")
+                    if key not in found and len(found) >= _MAX_INVENTORY_OBJECTS:
+                        raise ObjectStorageError("object-storage inventory exceeded its object limit")
                     found.add(key)
                 truncated = response.get("IsTruncated")
                 if not isinstance(truncated, bool):
