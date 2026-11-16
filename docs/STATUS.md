@@ -1099,3 +1099,9 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 
 - Follow-up: bounded S3 stream reads now also close the provider body if the underlying read raises, with a dedicated regression. Commits: implementation `204d5a8`; test `28c5d90`. This is source-level and regression review only; no repository runtime test has run.
+
+
+## AI-2 S3 inventory cardinality ceiling — 2026-11-16
+
+- Added a one-million-unique-key ceiling to the S3 original-object inventory, in addition to the existing 10,000-page and repeated-token guards. The importer now fails closed before retaining additional unique keys once the bound is reached.
+- Added a regression with a patched two-key ceiling and a three-key page. Source commit: 0af3ef1; regression commit: 0122ec1. Test module is already registered in the workflow and security regression script. Static review only; repository runtime tests remain 0% executed. AI-2 estimate: 79.0%; whole-project estimate remains 75.3% provisional.
