@@ -532,3 +532,10 @@ Updated estimates reflect source implementation only; regression execution and e
 
 - Remaining open PRs: #1610 (draft; divergent UI work), #1644 (pypdf 7.1.0 major version; lock regeneration/compatibility not validated), #1645 (Playwright 1.65.1; browser runtime not validated). All report non-mergeable. #1651 merged externally; no PR merged by this execution. #1642/#1643 are closed, unmerged, and their requirement changes were reverted.
 - Blockers: GitHub billing/runner allocation; no local checkout; Python 3.12 hash-lock regeneration and clean dependency install; complete test suite; browser/RTL/LTR/accessibility acceptance; witnessed encrypted backup/restore and operational sign-off; live S3/KMS and independent security review. Pilot/production remains **NOT READY**.
+
+
+## AI-2 shared database profile open-race hardening — 2026-11-16
+
+- Cached control-plane and legal-corpus connections now rerun the complete profile storage validation after SQLite opens the file, before retaining the handle. This catches symlink substitution and permission/sidecar changes in the open window, in addition to the existing device/inode comparison.
+- Added a POSIX control-plane regression that replaces the database path with a symlink to the same inode during the mocked open and asserts the new connection is closed rather than cached. Source commit: `4953fa5`; regression commit: `2c25160`.
+- Static review only; the database runtime regression module remains unexecuted.
