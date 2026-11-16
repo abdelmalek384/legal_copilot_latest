@@ -806,3 +806,5 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - This was a small, scoped frontend bug fix; no dependency, retrieval, verification-state or permission behavior was changed. PR #1655 is merged; #1644/#1645 remain blocked by dependency lock/browser validation; #1610 remains draft and unsafe for wholesale merge.
 
 - Follow-up on merged PR #1655: its new test_research_copy_initialization.py regression was not yet registered in either the explicit Tests workflow or focused security matrix. Added the workflow step and matrix entry. Source commits: 07676a1, 4caf0d6. Registration is complete; neither workflow nor test has executed.
+
+- Test-registration audit also found test_manage_recovery_locator.py was present in the focused security matrix but absent from the explicit Tests workflow. Added a dedicated workflow step adjacent to recovery archive transport. Source commit: 1fcacea. Registration is complete; execution remains blocked.
