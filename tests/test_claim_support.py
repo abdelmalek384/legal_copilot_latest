@@ -69,6 +69,23 @@ class ClaimSupportTests(unittest.TestCase):
             "The employer must not provide notice.",
         ))
 
+    def test_arabic_diacritics_and_tatweel_do_not_hide_negated_obligation(self):
+        cases = (
+            ("لا يَجِبّ على صاحب العمل تقديم الإخطار.", "يجب على صاحب العمل تقديم الإخطار."),
+            ("لَا يَلْتَزِم صاحب العمل بتقديم الإخطار.", "يلتزم صاحب العمل بتقديم الإخطار."),
+            ("لا يـتـعـيـن على صاحب العمل تقديم الإخطار.", "يتعين على صاحب العمل تقديم الإخطار."),
+        )
+        for evidence, positive_claim in cases:
+            with self.subTest(evidence=evidence):
+                self.assertFalse(_has_modal_mismatch(evidence, evidence))
+                self.assertTrue(_has_negated_obligation_mismatch(
+                    positive_claim, evidence
+                ))
+                self.assertTrue(has_unsupported_claims(
+                    positive_claim + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
     def test_arabic_negated_obligation_with_variable_whitespace_is_not_positive(self):
         cases = (
             "لا يجب على صاحب العمل تقديم الإخطار.",
