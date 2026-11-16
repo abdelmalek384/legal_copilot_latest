@@ -89,6 +89,59 @@ def _hash_file(path: Path) -> tuple[str, int]:
     return digest.hexdigest(), size
 
 
+def _open_directory_chain(path: Path) -> int:
+    """Open every directory component from the filesystem root without following links."""
+    if (
+        not getattr(os, "O_DIRECTORY", 0)
+        or not getattr(os, "O_NOFOLLOW", 0)
+        or os.open not in getattr(os, "supports_dir_fd", set())
+    ):
+        raise ValueError("reconciliation requires no-follow directory-descriptor operations")
+    flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | getattr(os, "O_CLOEXEC", 0)
+    current_fd = os.open(path.anchor, flags)
+    try:
+        for component in path.parts[1:]:
+            next_fd = os.open(component, flags, dir_fd=current_fd)
+            os.close(current_fd)
+            current_fd = next_fd
+        return current_fd
+    except Exception:
+        os.close(current_fd)
+        raise
+
+
+def _hash_file_at(directory_fd: int, name: str) -> tuple[str, int]:
+    """Hash one regular, single-link object opened relative to its pinned namespace."""
+    digest = hashlib.sha256()
+    size = 0
+    flags = (
+        os.O_RDONLY | os.O_NOFOLLOW | getattr(os, "O_NONBLOCK", 0)
+        | getattr(os, "O_CLOEXEC", 0)
+    )
+    try:
+        fd = os.open(name, flags, dir_fd=directory_fd)
+        metadata = os.fstat(fd)
+        if not stat.S_ISREG(metadata.st_mode) or metadata.st_nlink != 1:
+            os.close(fd)
+            raise ValueError("object is not a single-link regular file")
+        if metadata.st_size > _MAX_RECONCILIATION_OBJECT_BYTES:
+            os.close(fd)
+            raise _ObjectSizeLimitExceeded("object exceeds reconciliation size limit")
+        with os.fdopen(fd, "rb", closefd=True) as handle:
+            while True:
+                read_size = min(1024 * 1024, _MAX_RECONCILIATION_OBJECT_BYTES - size + 1)
+                block = handle.read(read_size)
+                if not block:
+                    break
+                size += len(block)
+                if size > _MAX_RECONCILIATION_OBJECT_BYTES:
+                    raise _ObjectSizeLimitExceeded("object exceeds reconciliation size limit")
+                digest.update(block)
+    except OSError as exc:
+        raise ValueError("object cannot be safely read") from exc
+    return digest.hexdigest(), size
+
+
 def reconcile_original_file_storage(
     object_root: str | Path,
     tenant_databases: Iterable[TenantDatabase],
@@ -186,86 +239,119 @@ def reconcile_original_file_storage(
             connection.close()
 
     observed: set[tuple[int, str, str]] = set()
-    for directory in root.iterdir():
-        match = _FIRM_DIR.fullmatch(directory.name)
-        if not match:
-            findings.append(ReconciliationFinding(
-                "unexpected_root_entry", None, None,
-                f"unexpected entry in object root: {directory.name}",
-            ))
-            continue
-        firm_id = int(match.group(1))
-        if directory.is_symlink() or not directory.is_dir():
-            findings.append(ReconciliationFinding(
-                "unsafe_firm_directory", firm_id, None,
-                "firm object namespace is not a regular directory",
-            ))
-            continue
-        if firm_id not in seen_firms:
-            findings.append(ReconciliationFinding(
-                "unknown_firm_namespace", firm_id, None,
-                "object namespace has no supplied trusted tenant database",
-            ))
-        for path in directory.iterdir():
-            if path.is_symlink() or not path.is_file():
-                findings.append(ReconciliationFinding(
-                    "unsafe_object_entry", firm_id, path.name,
-                    "object entry is a symlink or is not a regular file",
-                ))
-                continue
-            suffix = ".blob" if path.name.endswith(".blob") else ".staged" if path.name.endswith(".staged") else None
-            object_id = path.name[:-len(suffix)] if suffix else path.name
-            if suffix is None or not _OBJECT_ID.fullmatch(object_id):
-                findings.append(ReconciliationFinding(
-                    "unexpected_object_file", firm_id, path.name,
-                    "object filename does not match the opaque storage format",
-                ))
-                continue
-            key = (firm_id, object_id, suffix[1:])
-            observed.add(key)
-            checked_objects += 1
-            metadata = expected.get(key)
-            if metadata is None:
-                findings.append(ReconciliationFinding(
-                    "orphaned_object", firm_id, object_id,
-                    "object file has no matching metadata in the firm's database",
-                ))
-                continue
-            digest, size, state = metadata
-            try:
-                actual_digest, actual_size = _hash_file(path)
-            except _ObjectSizeLimitExceeded:
-                findings.append(ReconciliationFinding(
-                    "object_size_limit_exceeded", firm_id, object_id,
-                    "stored object exceeds the hard reconciliation read ceiling",
-                ))
-                continue
-            except ValueError:
-                findings.append(ReconciliationFinding(
-                    "unreadable_object", firm_id, object_id,
-                    "object could not be read safely for integrity verification",
-                ))
-                continue
-            if actual_digest != digest or actual_size != size:
-                findings.append(ReconciliationFinding(
-                    "object_integrity_mismatch", firm_id, object_id,
-                    "stored bytes do not match metadata SHA-256 and byte size",
-                ))
-            if suffix == ".staged" and state != "staged":
-                findings.append(ReconciliationFinding(
-                    "unexpected_staged_copy", firm_id, object_id,
-                    "staged bytes remain although metadata is not in staged state",
-                ))
-            if suffix == ".staged" and state == "staged":
-                findings.append(ReconciliationFinding(
-                    "staged_upload_requires_review", firm_id, object_id,
-                    "staged bytes and staged metadata remain; verify whether upload finalization was interrupted",
-                ))
-            if suffix == ".blob" and state == "staged":
-                findings.append(ReconciliationFinding(
-                    "finalized_object_state_not_committed", firm_id, object_id,
-                    "final blob exists but metadata still says staged; inspect upload crash window",
-                ))
+    directory_flags = (
+        os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+        | getattr(os, "O_CLOEXEC", 0)
+    )
+    root_fd = _open_directory_chain(root)
+    try:
+        with os.scandir(root_fd) as root_entries:
+            for root_entry in root_entries:
+                root_name = root_entry.name
+                match = _FIRM_DIR.fullmatch(root_name)
+                if not match:
+                    findings.append(ReconciliationFinding(
+                        "unexpected_root_entry", None, None,
+                        f"unexpected entry in object root: {root_name}",
+                    ))
+                    continue
+                firm_id = int(match.group(1))
+                try:
+                    firm_fd = os.open(root_name, directory_flags, dir_fd=root_fd)
+                except OSError:
+                    findings.append(ReconciliationFinding(
+                        "unsafe_firm_directory", firm_id, None,
+                        "firm object namespace is not a real no-follow directory",
+                    ))
+                    continue
+                try:
+                    if not stat.S_ISDIR(os.fstat(firm_fd).st_mode):
+                        findings.append(ReconciliationFinding(
+                            "unsafe_firm_directory", firm_id, None,
+                            "firm object namespace is not a regular directory",
+                        ))
+                        continue
+                    if firm_id not in seen_firms:
+                        findings.append(ReconciliationFinding(
+                            "unknown_firm_namespace", firm_id, None,
+                            "object namespace has no supplied trusted tenant database",
+                        ))
+                    with os.scandir(firm_fd) as object_entries:
+                        for object_entry in object_entries:
+                            object_name = object_entry.name
+                            try:
+                                metadata_stat = os.stat(
+                                    object_name, dir_fd=firm_fd, follow_symlinks=False
+                                )
+                            except OSError:
+                                findings.append(ReconciliationFinding(
+                                    "unsafe_object_entry", firm_id, object_name,
+                                    "object entry changed or could not be inspected safely",
+                                ))
+                                continue
+                            if not stat.S_ISREG(metadata_stat.st_mode) or metadata_stat.st_nlink != 1:
+                                findings.append(ReconciliationFinding(
+                                    "unsafe_object_entry", firm_id, object_name,
+                                    "object entry is a symlink, hardlink, or non-regular file",
+                                ))
+                                continue
+                            suffix = ".blob" if object_name.endswith(".blob") else ".staged" if object_name.endswith(".staged") else None
+                            object_id = object_name[:-len(suffix)] if suffix else object_name
+                            if suffix is None or not _OBJECT_ID.fullmatch(object_id):
+                                findings.append(ReconciliationFinding(
+                                    "unexpected_object_file", firm_id, object_name,
+                                    "object filename does not match the opaque storage format",
+                                ))
+                                continue
+                            key = (firm_id, object_id, suffix[1:])
+                            observed.add(key)
+                            checked_objects += 1
+                            metadata = expected.get(key)
+                            if metadata is None:
+                                findings.append(ReconciliationFinding(
+                                    "orphaned_object", firm_id, object_id,
+                                    "object file has no matching metadata in the firm's database",
+                                ))
+                                continue
+                            digest, size, state = metadata
+                            try:
+                                actual_digest, actual_size = _hash_file_at(firm_fd, object_name)
+                            except _ObjectSizeLimitExceeded:
+                                findings.append(ReconciliationFinding(
+                                    "object_size_limit_exceeded", firm_id, object_id,
+                                    "stored object exceeds the hard reconciliation read ceiling",
+                                ))
+                                continue
+                            except ValueError:
+                                findings.append(ReconciliationFinding(
+                                    "unreadable_object", firm_id, object_id,
+                                    "object could not be read safely for integrity verification",
+                                ))
+                                continue
+                            if actual_digest != digest or actual_size != size:
+                                findings.append(ReconciliationFinding(
+                                    "object_integrity_mismatch", firm_id, object_id,
+                                    "stored bytes do not match metadata SHA-256 and byte size",
+                                ))
+                            if suffix == ".staged" and state != "staged":
+                                findings.append(ReconciliationFinding(
+                                    "unexpected_staged_copy", firm_id, object_id,
+                                    "staged bytes remain although metadata is not in staged state",
+                                ))
+                            if suffix == ".staged" and state == "staged":
+                                findings.append(ReconciliationFinding(
+                                    "staged_upload_requires_review", firm_id, object_id,
+                                    "staged bytes and staged metadata remain; verify whether upload finalization was interrupted",
+                                ))
+                            if suffix == ".blob" and state == "staged":
+                                findings.append(ReconciliationFinding(
+                                    "finalized_object_state_not_committed", firm_id, object_id,
+                                    "final blob exists but metadata still says staged; inspect upload crash window",
+                                ))
+                finally:
+                    os.close(firm_fd)
+    finally:
+        os.close(root_fd)
 
     for (firm_id, object_id, suffix), (_, _, state) in expected.items():
         if (firm_id, object_id, suffix) in observed:
