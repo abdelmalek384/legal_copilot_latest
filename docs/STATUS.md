@@ -514,3 +514,21 @@ These are engineering estimates, not acceptance rates. This slice committed tena
 - Tenant routing now receives a dedicated read-only control-plane catalog connection (`mode=ro`, `PRAGMA query_only=ON`, foreign keys verified) instead of the writable catalog connection used by firm provisioning. The router only resolves trusted firm-to-database mappings; it has no need to mutate the control plane.
 - Added a runtime regression that verifies both pragmas and proves an INSERT is rejected without creating a row. Source commit: `36579f5`; regression commit: `97b7b24`.
 - An isolated SQLite harness confirmed that read-only URI plus query-only rejects writes while foreign-key enforcement remains enabled. This is not execution of `tests/test_database_runtime.py`.
+
+
+## Latest AI-2 checkpoint — 2026-11-16
+
+| Workstream | Completion estimate |
+|---|---:|
+| Tenant isolation / access control | 84.7% |
+| Authentication / firm administration | 85.2% |
+| Case management | 90% |
+| Document processing / security | 99% |
+| Backup / release readiness | 40.2% |
+| AI-2 overall | 72.9% |
+| Whole project | 72.1% |
+
+Updated estimates reflect source implementation only; regression execution and external acceptance remain open. In this execution, five implementation files were hardened across tenant routing, runtime authority inputs, purge CLI boundaries, and backup/restore paths; six regression methods were added or extended; five isolated Python/filesystem/shell harnesses passed. No repository test module or GitHub Actions job ran. No production purge, live AWS action, or restore drill was performed.
+
+- Remaining open PRs: #1610 (draft; divergent UI work), #1644 (pypdf 7.1.0 major version; lock regeneration/compatibility not validated), #1645 (Playwright 1.65.1; browser runtime not validated). All report non-mergeable. #1651 merged externally; no PR merged by this execution. #1642/#1643 are closed, unmerged, and their requirement changes were reverted.
+- Blockers: GitHub billing/runner allocation; no local checkout; Python 3.12 hash-lock regeneration and clean dependency install; complete test suite; browser/RTL/LTR/accessibility acceptance; witnessed encrypted backup/restore and operational sign-off; live S3/KMS and independent security review. Pilot/production remains **NOT READY**.
