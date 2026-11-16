@@ -1122,3 +1122,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 - Recovery archive hashing and multipart upload now request no more than the remaining verified size plus one sentinel byte. A file that grows after its initial stat/hash cannot cause a full extra 1 MiB/64 MiB read before the mismatch is detected; multipart upload aborts on the first extra byte.
 - Added a tracking-file regression proving hash preflight reads exactly `max_bytes + 1` bytes before rejecting an oversized source. Source commit: 774670a; regression commit: 70b13a2. Runtime repository tests remain 0% executed.
+
+
+- Recovery archive follow-up: persisted-upload verification and exact-version downloads now also read at most the declared size plus one sentinel byte, rather than overshooting by a full 1 MiB chunk. Added an oversized-download regression asserting exactly `declared_size + 1` bytes are consumed and the partial destination is removed. Commits: source `fb89aaf`; test `4b80528`. Repository runtime tests remain unexecuted.
