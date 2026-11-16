@@ -856,12 +856,27 @@ def _safe_archive_members(archive: zipfile.ZipFile) -> set[str]:
     total = 0
     names = set()
     for info in infos:
-        name = PurePosixPath(info.filename)
-        if name.is_absolute() or ".." in name.parts or not info.filename or "\\" in info.filename:
-            raise DatabaseBundleError("Backup bundle contains an unsafe path")
+        raw_name = info.filename
+        is_directory = info.is_dir()
+        canonical_name = raw_name[:-1] if is_directory else raw_name
+        name = PurePosixPath(canonical_name)
+        parts = canonical_name.split("/")
+        if (
+            not canonical_name
+            or "\\x00" in canonical_name
+            or name.is_absolute()
+            or any(part in {"", ".", ".."} for part in parts)
+            or "\\" in raw_name
+            or (parts and re.match(r"^[A-Za-z]:", parts[0]))
+            or name.as_posix() != canonical_name
+        ):
+            raise DatabaseBundleError("Backup bundle contains an unsafe or non-canonical path")
         mode = (info.external_attr >> 16) & 0o170000
+        allowed_modes = {0, 0o040000} if is_directory else {0, 0o100000}
         if mode == 0o120000:
             raise DatabaseBundleError("Backup bundle may not contain symbolic links")
+        if mode not in allowed_modes:
+            raise DatabaseBundleError("Backup bundle may not contain special filesystem entries")
         if info.compress_type not in {zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED}:
             raise DatabaseBundleError("Backup bundle uses an unsupported compression method")
         if info.flag_bits & 0x1:
