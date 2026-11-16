@@ -720,3 +720,11 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - This closes a size-binding gap for multipart transfer. The single-put path still performs exact-version persisted-byte verification after upload, so a concurrent source mutation cannot be accepted as a valid locator.
 - Static review only: 0 repository test modules executed and 0 Actions jobs executed. Recovery archive test module remains registered in the security matrix.
 - Updated estimates: backup/release readiness 45%; AI-2 overall 75.2%; whole project 73.9%. Remaining external acceptance blockers are unchanged; pilot/production remains NOT READY.
+
+
+## AI-2 encrypted backup manifest ambiguity rejection — 2026-11-16
+
+- Restore manifest parsing now rejects duplicate JSON object keys at every nesting level instead of silently accepting the last value. This makes encrypted backup metadata unambiguous before profile, file inventory, tenant catalog and checksum acceptance.
+- Added a regression that starts from a valid encrypted bundle, injects a duplicate format_version key into the manifest, re-encrypts it, and asserts restore fails closed. Source commit: 173ddb1; test commit: f78a441.
+- The backup bundle test module is already registered in the focused security matrix. Static review only; no repository test execution or Actions run.
+- Updated estimates: backup/release readiness 45.2%; AI-2 overall 75.3%; whole project 74%. Pilot/production remains NOT READY pending live and operational acceptance.
