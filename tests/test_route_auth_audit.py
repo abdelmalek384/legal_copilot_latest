@@ -132,6 +132,29 @@ def private():
         self.assertEqual(report["route_count"], 0)
         self.assertIn("only literal strings", report["missing_authentication"][0])
 
+    def test_dynamic_route_path_fails_closed(self):
+        source = '''
+PATH = "/private"
+@app.get(PATH)
+def private():
+    return None
+'''
+        report = audit_source(source)
+        self.assertEqual(report["route_count"], 0)
+        self.assertIn("route path must be a literal string", report["missing_authentication"][0])
+
+    def test_keyword_literal_route_path_is_audited(self):
+        source = '''
+@app.get(path="/private")
+def private():
+    return None
+'''
+        report = audit_source(source)
+        self.assertEqual(report["route_count"], 1)
+        self.assertEqual(report["missing_authentication"], [
+            "GET /private (private) in app.py has no Depends(user) authentication"
+        ])
+
     def test_strict_cli_fails_for_an_authentication_gap(self):
         with tempfile.TemporaryDirectory() as directory:
             source = Path(directory) / "app.py"
