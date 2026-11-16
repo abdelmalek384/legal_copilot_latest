@@ -704,6 +704,21 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
                 self.store.list_object_keys()
         self.assertEqual(len(calls), 2)
 
+    def test_inventory_enforces_a_unique_object_count_limit(self):
+        from unittest.mock import patch
+
+        self.client.list_objects_v2 = lambda **kwargs: {
+            "Contents": [
+                {"Key": "firms/12/originals/a.blob"},
+                {"Key": "firms/12/originals/b.blob"},
+                {"Key": "firms/12/originals/c.blob"},
+            ],
+            "IsTruncated": False,
+        }
+        with patch("s3_original_file_storage._MAX_INVENTORY_OBJECTS", 2):
+            with self.assertRaisesRegex(ObjectStorageError, "object limit"):
+                self.store.list_object_keys()
+
     def test_inventory_rejects_non_object_entries(self):
         self.client.list_objects_v2 = lambda **kwargs: {
             "Contents": ["not-an-object-entry"],
