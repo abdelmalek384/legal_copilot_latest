@@ -5,6 +5,8 @@ import hashlib
 import json
 import math
 import re
+import os
+import tempfile
 from datetime import date
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -338,6 +340,27 @@ def ensure_output_does_not_overwrite_inputs(output_path, input_paths):
         raise ValueError("unable to safely resolve report output and input paths") from exc
 
 
+def write_report_atomically(report_path, content):
+    """Replace a measurement report without exposing a partially written file."""
+    destination = Path(report_path)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    fd, temporary_name = tempfile.mkstemp(
+        prefix=f".{destination.name}.", suffix=".tmp", dir=str(destination.parent)
+    )
+    temporary = Path(temporary_name)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as stream:
+            stream.write(content)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, destination)
+    except BaseException:
+        try:
+            temporary.unlink()
+        except FileNotFoundError:
+            pass
+        raise
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--questions", required=True)
@@ -379,8 +402,9 @@ def main():
             "metrics": metrics,
             "status": "scored" if metrics["reviewed_questions"] else "not_scored_no_lawyer_approved_labels",
         }
-        report_path.parent.mkdir(parents=True, exist_ok=True)
-        report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        write_report_atomically(
+            report_path, json.dumps(report, ensure_ascii=False, indent=2) + "\n"
+        )
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         parser.error(str(exc))
     print(json.dumps(report, ensure_ascii=False, indent=2))

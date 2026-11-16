@@ -693,5 +693,25 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
             self.assertTrue(output.is_symlink())
 
 
+    def test_report_write_is_atomic_and_replaces_existing_content(self):
+        from tools.score_arabic_retrieval import write_report_atomically
+        with tempfile.TemporaryDirectory() as temp_dir:
+            report = Path(temp_dir) / "measurement.json"
+            report.write_text("old report\n", encoding="utf-8")
+            write_report_atomically(report, "new report\n")
+            self.assertEqual(report.read_text(encoding="utf-8"), "new report\n")
+            self.assertEqual(sorted(p.name for p in report.parent.iterdir()), ["measurement.json"])
+
+    def test_report_write_failure_preserves_existing_report_and_cleans_temp(self):
+        from tools.score_arabic_retrieval import write_report_atomically
+        with tempfile.TemporaryDirectory() as temp_dir:
+            report = Path(temp_dir) / "measurement.json"
+            report.write_text("original evidence\n", encoding="utf-8")
+            with mock.patch("tools.score_arabic_retrieval.os.replace", side_effect=OSError("simulated replace failure")):
+                with self.assertRaisesRegex(OSError, "simulated replace failure"):
+                    write_report_atomically(report, "replacement\n")
+            self.assertEqual(report.read_text(encoding="utf-8"), "original evidence\n")
+            self.assertEqual(sorted(p.name for p in report.parent.iterdir()), ["measurement.json"])
+
 if __name__ == "__main__":
     unittest.main()
