@@ -6,6 +6,7 @@ import json
 import math
 import re
 import os
+import stat
 import tempfile
 from datetime import date
 from pathlib import Path
@@ -39,9 +40,43 @@ def _is_one_of(value, choices):
     return isinstance(value, str) and value in choices
 
 
+def read_regular_file(path, *, max_bytes=64 * 1024 * 1024):
+    """Read a bounded scorer input from one stable regular-file descriptor."""
+    path = Path(path)
+    before = path.lstat()
+    if not stat.S_ISREG(before.st_mode):
+        raise ValueError(f"{path}: input must be a regular file")
+    if before.st_size > max_bytes:
+        raise ValueError(f"{path}: input exceeds the {max_bytes}-byte size limit")
+    flags = (
+        os.O_RDONLY
+        | getattr(os, "O_BINARY", 0)
+        | getattr(os, "O_NONBLOCK", 0)
+        | getattr(os, "O_NOFOLLOW", 0)
+    )
+    descriptor = os.open(path, flags)
+    with os.fdopen(descriptor, "rb") as stream:
+        opened = os.fstat(stream.fileno())
+        if not stat.S_ISREG(opened.st_mode) or (before.st_dev, before.st_ino) != (opened.st_dev, opened.st_ino):
+            raise ValueError(f"{path}: input changed while opening")
+        data = stream.read(max_bytes + 1)
+        after = os.fstat(stream.fileno())
+        current = path.lstat()
+        if len(data) > max_bytes or len(data) != after.st_size:
+            raise ValueError(f"{path}: input changed size or exceeds limit")
+        if (
+            (opened.st_dev, opened.st_ino) != (after.st_dev, after.st_ino)
+            or (opened.st_size, opened.st_mtime_ns, opened.st_ctime_ns)
+            != (after.st_size, after.st_mtime_ns, after.st_ctime_ns)
+            or (current.st_dev, current.st_ino) != (opened.st_dev, opened.st_ino)
+        ):
+            raise ValueError(f"{path}: input changed while being read")
+    return data
+
+
 def load_jsonl(path):
     rows = []
-    for line_no, raw in enumerate(Path(path).read_text(encoding="utf-8-sig").splitlines(), 1):
+    for line_no, raw in enumerate(read_regular_file(path).decode("utf-8-sig").splitlines(), 1):
         if not raw.strip() or raw.lstrip().startswith("#"):
             continue
         try:
@@ -407,12 +442,12 @@ def main():
         )
         questions = load_jsonl(args.questions)
         runs = load_jsonl(args.runs)
-        reviewer_registry = json.loads(Path(args.reviewer_registry).read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+        reviewer_registry = json.loads(read_regular_file(args.reviewer_registry, max_bytes=2 * 1024 * 1024), object_pairs_hook=_reject_duplicate_json_keys)
         metrics = score(questions, runs, reviewer_registry)
         digest = benchmark_fingerprint(questions)
         report_path = Path(args.output)
         if report_path.exists():
-            report = json.loads(report_path.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+            report = json.loads(read_regular_file(report_path, max_bytes=10 * 1024 * 1024), object_pairs_hook=_reject_duplicate_json_keys)
         else:
             report = {"schema_version": 1, "benchmark_sha256": digest, "phases": {"before": None, "after": None}}
         if not isinstance(report, dict) or not isinstance(report.get("phases"), dict):
