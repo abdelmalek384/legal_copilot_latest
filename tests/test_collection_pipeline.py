@@ -603,5 +603,38 @@ class CollectionPipelineTests(unittest.TestCase):
             with self.assertRaises(OSError):
                 collector.sha256_file(fifo)
 
+    def test_manifest_reader_rejects_symlink_swap_between_check_and_open(self):
+        target = self.root / "manifest-race.json"
+        target.write_text(json.dumps({"documents": []}), encoding="utf-8")
+        outside = self.root / "outside-manifest.json"
+        outside.write_text(json.dumps({"documents": []}), encoding="utf-8")
+        real_open = collector.os.open
+        swapped = False
+
+        def replace_before_open(path, flags, *args, **kwargs):
+            nonlocal swapped
+            if Path(path) == target and not swapped:
+                swapped = True
+                target.unlink()
+                target.symlink_to(outside)
+            return real_open(path, flags, *args, **kwargs)
+
+        with patch.object(collector.os, "open", side_effect=replace_before_open):
+            with self.assertRaises((OSError, ValueError)):
+                collector.load_manifest(target)
+        self.assertTrue(swapped)
+
+    def test_manifest_reader_rejects_fifo_and_oversized_inputs(self):
+        import os
+        if hasattr(os, "mkfifo"):
+            fifo = self.root / "manifest.fifo"
+            os.mkfifo(fifo)
+            with self.assertRaises((OSError, ValueError)):
+                collector.load_manifest(fifo)
+        oversized = self.root / "oversized-manifest.json"
+        oversized.write_bytes(b" " * (5 * 1024 * 1024 + 1))
+        with self.assertRaises(ValueError):
+            collector.load_manifest(oversized)
+
 if __name__ == "__main__":
     unittest.main()
