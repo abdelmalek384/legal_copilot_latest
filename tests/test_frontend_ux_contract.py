@@ -1570,5 +1570,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("@media(max-width:800px){#main .research-composer{grid-template-columns:minmax(0,1fr) auto auto}#main .research-composer button{width:auto}#main .research-composer>.mut{grid-column:1/-1}}", HTML)
 
 
+    def test_firm_document_workspace_and_open_action_are_hidden_outside_firm_documents_scope(self):
+        research = HTML[HTML.index("async function law(){"):HTML.index("\nfunction documentIntelligencePanel(")]
+        self.assertIn("openDocumentWorkspace.hidden=value!=='firm_documents'", research)
+        self.assertIn("openDocumentWorkspace.hidden=scopeSelect.value!=='firm_documents'", research)
+        self.assertIn("documentWorkspace.hidden=true", research)
+        self.assertIn("documentWorkspace.hidden=false", research)
+        self.assertIn("if(value!=='firm_documents'){documentWorkspace.replaceChildren();documentWorkspace.hidden=true}", research)
+
+
 if __name__ == "__main__":
     unittest.main()
