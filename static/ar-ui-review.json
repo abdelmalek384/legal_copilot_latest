@@ -9116,7 +9116,8 @@
       "id": "AR-0927",
       "arabic": "لا توجد ملفات عملاء بعد.",
       "source_lines": [
-        1805
+        1805,
+        2142
       ],
       "review_status": "pending_native_review"
     },
@@ -9204,7 +9205,8 @@
       "id": "AR-0933",
       "arabic": "+ ملف عميل جديد",
       "source_lines": [
-        1820
+        1820,
+        2142
       ],
       "review_status": "pending_native_review"
     },

@@ -1639,5 +1639,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("empty(uiText('لا توجد قضايا مطابقة.','No matching cases.'))", cases)
         self.assertIn("box.replaceChildren(summary,...(rows.length?rows.map(caseRow):[emptyState]))", cases)
 
+    def test_client_list_first_run_empty_state_respects_permissions_and_load_errors(self):
+        clients = HTML[HTML.index("async function clients(){"):HTML.index("\nasync function casesPage(){")]
+        self.assertIn("const noProfilesYet=!needle&&!profilesError&&!profiles.length", clients)
+        self.assertIn("ME.role==='admin'?uiText('+ ملف عميل جديد','+ New client profile'):null", clients)
+        self.assertIn("ME.role==='admin'?()=>clientProfileForm():null", clients)
+        self.assertIn("const emptyState=profilesError?null:noProfilesYet", clients)
+        self.assertIn("emptyState?[h('div',{className:'card'},emptyState)]:[]", clients)
+
 if __name__ == "__main__":
     unittest.main()
