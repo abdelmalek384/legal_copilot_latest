@@ -240,7 +240,7 @@ def score(questions, runs, reviewer_registry):
         marker_count = run.get("citation_marker_count")
         if invalid_indices is None or marker_count is None:
             citation_validation_missing += 1
-        elif invalid_indices:
+        if invalid_indices:
             invalid_citation_markers += len(invalid_indices)
             invalid_citation_answers += 1
         if q["answerable"]:
