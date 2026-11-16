@@ -1209,6 +1209,10 @@ The following focused frontend changes were merged to `main`:
 - PR #1715: one-line research explanation with a Learn more disclosure; compact paperclip upload panel gated on Firm documents scope plus selected matter; existing PDF/DOCX validation and upload endpoint retained.
 - PR #1716: Correct / Partial / Wrong answer-rating buttons wired to the existing rating payload; admin View firm ratings and Export CSV actions moved into a closed overflow menu; global Search matters hidden on Legal Research; Conversations heading protected from wrapping.
 - PR #1718: verified operational document count is read from the existing `/legal-review/coverage` endpoint only for users with `can_review_legal`; ordinary firm users are told that the count is reviewer-restricted. A zero count is stated plainly with the abstention behavior. A separate test-mode label appears only when an answer actually carries backend `trust_tier=source_matched`, and explicitly says it is not lawyer-reviewed.
+- PR #1720: localized the single New conversation action and made the disabled paperclip tooltip state the missing scope/matter prerequisite.
+- PR #1721: corrected malformed rating overflow-menu CSS selectors found during static review and added a selector regression contract.
+- PR #1722: made the compact paperclip upload panel span the full composer width.
+- Follow-up Arabic-catalog scan found and corrected two missing normalized literals (`جزئي` and the trimmed verified-document status label); the current static scan reports zero missing Arabic literals, with unique catalog IDs and entries.
 
 Validation and remaining gates:
 - Connector-side static assertions passed for the changed source contracts, reviewer permission guard, Arabic catalog uniqueness/count/source-line references, and regression-test presence.
