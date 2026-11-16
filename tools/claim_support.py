@@ -142,14 +142,14 @@ def _modal_classes(text, patterns):
 
 
 _ENGLISH_NEGATED_OBLIGATION = re.compile(
-    r"\\b(?:must\\s+not|mustn['’]t|shall\\s+not|shan['’]t|"
-    r"not\\s+required\\s+to|isn['’]t\\s+required\\s+to|aren['’]t\\s+required\\s+to|"
-    r"need\\s+not|needn['’]t|do\\s+not\\s+have\\s+to|don['’]t\\s+have\\s+to|"
-    r"does\\s+not\\s+have\\s+to|doesn['’]t\\s+have\\s+to|"
-    r"is\\s+not\\s+obliged\\s+to|are\\s+not\\s+obliged\\s+to|"
-    r"isn['’]t\\s+obliged\\s+to|aren['’]t\\s+obliged\\s+to|"
-    r"is\\s+not\\s+obligated\\s+to|are\\s+not\\s+obligated\\s+to|"
-    r"isn['’]t\\s+obligated\\s+to|aren['’]t\\s+obligated\\s+to)\\b",
+    r"\b(?:must\s+not|mustn['’]t|shall\s+not|shan['’]t|"
+    r"not\s+required\s+to|isn['’]t\s+required\s+to|aren['’]t\s+required\s+to|"
+    r"need\s+not|needn['’]t|do\s+not\s+have\s+to|don['’]t\s+have\s+to|"
+    r"does\s+not\s+have\s+to|doesn['’]t\s+have\s+to|"
+    r"is\s+not\s+obliged\s+to|are\s+not\s+obliged\s+to|"
+    r"isn['’]t\s+obliged\s+to|aren['’]t\s+obliged\s+to|"
+    r"is\s+not\s+obligated\s+to|are\s+not\s+obligated\s+to|"
+    r"isn['’]t\s+obligated\s+to|aren['’]t\s+obligated\s+to)\b",
     re.IGNORECASE,
 )
 _ENGLISH_POSITIVE_OBLIGATION = re.compile(
