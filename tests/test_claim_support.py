@@ -135,7 +135,6 @@ class ClaimSupportTests(unittest.TestCase):
             ("The employer has to provide notice.", "The employer doesn't have to provide notice."),
             ("The employer is obligated to provide notice.", "The employer is not obligated to provide notice."),
             ("The employer is obliged to provide notice.", "The employer is not obliged to provide notice."),
-            ("The employer can deduct wages.", "The employer can’t deduct wages."),
             ("The employer has to provide notice.", "The employer doesn’t have to provide notice."),
         )
         for claim, evidence in cases:
@@ -145,6 +144,16 @@ class ClaimSupportTests(unittest.TestCase):
                     claim + " [1].", [{"text": evidence}],
                     tokens, norm, _mask_markdown_code
                 ))
+
+    def test_english_cannot_contraction_is_not_positive_permission(self):
+        self.assertTrue(_has_modal_mismatch(
+            "The employer can deduct wages.",
+            "The employer can’t deduct wages."
+        ))
+        self.assertFalse(_has_modal_mismatch(
+            "The employer can’t deduct wages.",
+            "The employer can’t deduct wages."
+        ))
 
     def test_faithful_english_contracted_non_obligation_is_not_flagged(self):
         for evidence in (
