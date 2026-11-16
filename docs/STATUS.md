@@ -345,3 +345,13 @@ These are unweighted engineering estimates for the seven AI-2 delivery workstrea
 
 
 - Added a multi-firm membership-suspension regression. It logs a member into Firm A, suspends only that membership from the Firm A administrator session, then verifies the member can recover from the stale Firm A cookie by switching to still-active Firm B, while Firm A remains inaccessible and the Firm B membership remains active. The test is committed but unexecuted.
+
+
+## AI-2 matter workspace navigation and document review safeguards — 2026-11-16
+
+- Matter detail navigation now groups all 12 existing tabs into Overview, Work, Documents & research, Finance, and Team & activity. Existing tab IDs and renderers remain intact; the selected group exposes its relevant sub-pages. Section controls use native buttons with `aria-pressed`/`aria-current`, visible focus and narrow-screen horizontal scrolling.
+- The matter context strip keeps client, status, case number/year, court, circuit, stage and task progress visible while switching sections.
+- Matter-document review now shows OCR and partial-page extraction cautions using the existing extraction metadata. Page display and reviewer prefill accept both `page` and `page_number`.
+- The original-download control is displayed only when the case-detail API explicitly reports `original_available=true` (or serialized `1`); otherwise the UI states that the original is unavailable. The existing server endpoint remains the authorization/integrity boundary. Download filenames are sanitized in the UI.
+- Added frontend regression contracts for all 12 tab destinations, grouped navigation/context, retention-aware downloads and OCR/page-reference warnings. Direct-main commits: matter UI `9c97603`, tests `020ec75`; review safeguards UI `720b2a8`, tests `1a655f8`.
+- Static inspection only. Tests and browser/RTL/LTR/keyboard/screen-reader acceptance remain unexecuted under the GitHub runner/billing restriction.
