@@ -133,6 +133,8 @@ class ClaimSupportTests(unittest.TestCase):
             ("The employer must provide notice.", "The employer mustn't provide notice."),
             ("The employer shall provide notice.", "The employer shan't provide notice."),
             ("The employer has to provide notice.", "The employer doesn't have to provide notice."),
+            ("The employer is obligated to provide notice.", "The employer is not obligated to provide notice."),
+            ("The employer is obliged to provide notice.", "The employer is not obliged to provide notice."),
         )
         for claim, evidence in cases:
             with self.subTest(claim=claim, evidence=evidence):
