@@ -47,7 +47,7 @@ These are implementation and automated-test claims only. They do not establish l
 - Task-oriented home page: Continue a case, Research law, Review a source, Analyze a document, Track a deadline.
 - Consistent global search and command/navigation pattern.
 - Practice-area landing pages and contextual empty states with actionable next steps.
-- A compact but clear case timeline combining sessions, deadlines, filings, tasks and reminders; deadlines must remain visually distinct from court sessions.
+- **Implemented 2026-11-17:** the case overview now shows a chronological timeline of dated hearings, legal deadlines and tasks, with distinct event labels and task completion state. The current case-detail API does not expose filing/reminder event records, so those are not fabricated or shown. Responsive RTL/LTR and manual accessibility acceptance remain separate.
 - Responsive layouts for laptop/tablet/mobile, with stable RTL alignment and no horizontal overflow.
 - User preference persistence for language, density, default search scope and accessibility settings.
 
