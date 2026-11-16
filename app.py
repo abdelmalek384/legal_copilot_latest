@@ -3273,8 +3273,8 @@ def _enforce_subscription_write_access(request: Request, authenticated: dict) ->
         or path in {"/logout", "/session"}
         # Security revocation and role-demotion controls must remain usable in
         # read-only billing mode; seat-consuming reactivation stays blocked.
-        or re.fullmatch(r"/users/\\d+/(?:disable|role)", path) is not None
-        or re.fullmatch(r"/invitations/\\d+/revoke", path) is not None
+        or re.fullmatch(r"/users/\d+/(?:disable|role)", path) is not None
+        or re.fullmatch(r"/invitations/\d+/revoke", path) is not None
     ):
         return
     firm_id = authenticated.get("firm_id")
