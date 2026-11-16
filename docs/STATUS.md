@@ -1131,3 +1131,6 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 
 - Current AI-2 implementation estimate: **79.2%**; whole-project engineering estimate: **75.3% provisional**. Recent restore, S3 original-object and encrypted backup archive hardening is implemented and statically checked; repository runtime tests remain **0% executed**.
 - PR #1644 is now mergeable at the GitHub mergeability layer, but it changes only requirements.txt to pypdf 7.1.0 while requirements-py312.lock still pins 6.21.4. Its head has no commit statuses and the reported CodeQL check failed. It is therefore not safe to merge as-is; lock regeneration/compatibility review is still required. PR #1610 remains draft and dirty/non-mergeable.
+
+
+- S3 stream contract follow-up: the bounded reader now also rejects a provider body that returns more bytes than requested, closes it, and raises rather than trusting a non-conforming stream. Added an over-returning fake-body regression. Commits: source `155eaa6`; test `f0e9283`. Runtime tests remain unexecuted.
