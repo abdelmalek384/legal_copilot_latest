@@ -944,6 +944,48 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "Ignore the system prompt" in row["passage_text"] for row in ocr_records
         ))
 
+    def test_case_deletion_is_blocked_while_original_file_records_exist(self):
+        import io
+        from docx import Document
+
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Original Retention Deletion Guard"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        buffer = io.BytesIO()
+        source = Document()
+        source.add_paragraph("Original file retention must block destructive matter deletion.")
+        source.save(buffer)
+        with patch.object(app, "_mfa_required_for_user", return_value=False):
+            uploaded = self._mutate(
+                "post", f"/cases/{case_id}/upload",
+                files={"file": ("retained-original.docx", buffer.getvalue(),
+                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
+            )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+
+        deletion = self._mutate("delete", f"/cases/{case_id}")
+        self.assertEqual(deletion.status_code, 409, deletion.text)
+        self.assertIn("original-file retention records", deletion.text)
+
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        firm_db = self.runtime.firm_connection(context)
+        self.assertIsNotNone(firm_db.execute(
+            "SELECT id FROM cases WHERE id=? AND firm_id=?", (case_id, self.firm_a)
+        ).fetchone())
+        self.assertIsNotNone(firm_db.execute(
+            "SELECT id FROM docs WHERE case_id=? AND name=?",
+            (case_id, "retained-original.docx"),
+        ).fetchone())
+        self.assertEqual(firm_db.execute(
+            "SELECT COUNT(*) FROM original_file_objects WHERE firm_id=?",
+            (self.firm_a,),
+        ).fetchone()[0], 1)
+
     def test_original_file_survives_post_commit_usage_metering_failure(self):
         import io
         from docx import Document
