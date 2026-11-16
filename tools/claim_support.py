@@ -135,7 +135,8 @@ _ENGLISH_NEGATED_OBLIGATION = re.compile(
 )
 _ENGLISH_POSITIVE_OBLIGATION = re.compile(
     r"\b(?:must|shall|required\s+to|is\s+required\s+to|"
-    r"are\s+required\s+to|have\s+to|has\s+to)\b",
+    r"are\s+required\s+to|is\s+obliged\s+to|are\s+obliged\s+to|"
+    r"is\s+obligated\s+to|are\s+obligated\s+to|have\s+to|has\s+to)\b",
     re.IGNORECASE,
 )
 _ARABIC_NEGATED_OBLIGATION = re.compile(
