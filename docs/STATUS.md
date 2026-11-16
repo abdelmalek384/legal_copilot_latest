@@ -771,3 +771,5 @@ Remaining blockers: GitHub billing/runner allocation, no local checkout, no actu
 - Restore now compares every manifest firm_status value with the status recorded in the restored control-plane firms table. This prevents an internally well-formed but contradictory manifest from presenting stale/altered firm lifecycle state alongside the database snapshot.
 - Added an encrypted-bundle regression that alters a tenant record's firm_status while preserving the database and verifies restore rejects the mismatch. Source commit: b91e243; test commit: 903a400.
 - Static review only; no repository test module or Actions job ran. Backup/release readiness estimate 46.3%; AI-2 overall 75.8%; whole project 74.5%. Pilot/production remains NOT READY.
+
+- Refinement: firm-state equality is scoped to firms represented in the tenant catalog, matching the backup manifest's documented catalog inventory. This preserves legitimate non-active control-plane firm records that have no tenant catalog entry while still rejecting missing, extra or contradictory cataloged firm states. Source commit: 3147eba.
