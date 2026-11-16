@@ -93,6 +93,44 @@ class LegalImportBundleTests(unittest.TestCase):
             with self.assertRaisesRegex(SystemExit, "configured 10000-pixel dimension limit"):
                 importer._ocr_page_pixel_size(page, dpi=200)
 
+    def test_ocr_timeout_is_converted_to_a_bounded_import_failure(self):
+        import sys
+        from types import SimpleNamespace
+
+        class Pixmap:
+            def tobytes(self, image_format):
+                return b"png-bytes"
+
+        class Page:
+            rect = SimpleNamespace(width=612.0, height=792.0)
+
+            def get_pixmap(self, *, dpi):
+                return Pixmap()
+
+        class Document:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+            def __getitem__(self, index):
+                return Page()
+
+        tesseract = SimpleNamespace(
+            image_to_string=mock.Mock(side_effect=RuntimeError("synthetic timeout"))
+        )
+        fake_pymupdf = SimpleNamespace(open=lambda **kwargs: Document())
+        fake_pil = SimpleNamespace(Image=SimpleNamespace(open=lambda *args, **kwargs: "image"))
+        with mock.patch.dict(sys.modules, {
+            "pymupdf": fake_pymupdf,
+            "pytesseract": tesseract,
+            "PIL": fake_pil,
+        }):
+            with self.assertRaisesRegex(SystemExit, "OCR timed out or failed"):
+                importer._ocr((self.pdf_bytes, 0))
+        tesseract.image_to_string.assert_called_once_with("image", lang="ara+eng", timeout=30)
+
     def test_ocr_hard_limits_cannot_be_raised_by_environment(self):
         from types import SimpleNamespace
 
@@ -406,7 +444,7 @@ class LegalImportBundleTests(unittest.TestCase):
         with mock.patch.dict(sys.modules, {"pymupdf": fake_pymupdf, "pytesseract": tesseract, "PIL": fake_pil}):
             with mock.patch.dict(os.environ, {}, clear=True):
                 self.assertEqual(import_laws._ocr((self.pdf_bytes, 0)), "نص قانوني")
-        tesseract.image_to_string.assert_called_once_with("image", lang="ara+eng")
+        tesseract.image_to_string.assert_called_once_with("image", lang="ara+eng", timeout=30)
 
     def test_ocr_cache_is_bound_to_pdf_hash_and_rejects_page_symlinks(self):
         import sys
