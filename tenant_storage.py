@@ -286,6 +286,10 @@ class TenantSQLiteConnectionRouter:
         # The pre-open checks alone leave a window in which an operator or
         # concurrent process could replace the database or expose a WAL file.
         try:
+            if path.is_symlink():
+                raise TenantConnectionError(
+                    "Tenant database path changed to a symbolic link while opening"
+                )
             current = path.stat()
             if (not stat.S_ISREG(current.st_mode)
                     or (current.st_dev, current.st_ino) != file_identity):
