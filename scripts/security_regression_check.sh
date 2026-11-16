@@ -48,6 +48,7 @@ tests=(
   test_document_extraction_budget.py
   test_pdf_ocr_fallback.py
   test_research_prompt_injection_boundary.py
+  test_score_arabic_retrieval.py
   test_case_csv_import.py
   test_client_csv_import.py
   test_invoice_csv_export.py
