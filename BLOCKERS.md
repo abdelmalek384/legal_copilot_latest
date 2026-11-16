@@ -48,3 +48,6 @@
 
 
 - 2026-11-16: S3 original-object open now enforces a bounded stream even when ContentLength is absent and rejects oversized ContentLength before reading. Added two adversarial regressions (commits 5e9f871, d4f5d26); module registration in workflow/security regression script verified. Runtime test suite remains unexecuted; no pass is claimed.
+
+
+- Follow-up: bounded S3 open stream now closes the provider body on underlying read exceptions; regression added (commits 204d5a8, 28c5d90). Runtime tests remain unexecuted.
