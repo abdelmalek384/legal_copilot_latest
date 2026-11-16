@@ -153,9 +153,10 @@ _ENGLISH_NEGATED_OBLIGATION = re.compile(
     re.IGNORECASE,
 )
 _ENGLISH_POSITIVE_OBLIGATION = re.compile(
-    r"\b(?:must|shall|required\s+to|is\s+required\s+to|"
-    r"are\s+required\s+to|is\s+obliged\s+to|are\s+obliged\s+to|"
-    r"is\s+obligated\s+to|are\s+obligated\s+to|(?<!do not )(?<!don't )(?<!don’t )(?<!does not )(?<!doesn't )(?<!doesn’t )have\s+to|has\s+to)\b",
+    r"\b(?:must|shall|(?<!not )(?<!isn't )(?<!isn’t )(?<!aren't )(?<!aren’t )required\s+to|"
+    r"is\s+required\s+to|are\s+required\s+to|is\s+obliged\s+to|are\s+obliged\s+to|"
+    r"is\s+obligated\s+to|are\s+obligated\s+to|"
+    r"(?<!do not )(?<!don't )(?<!don’t )(?<!does not )(?<!doesn't )(?<!doesn’t )have\s+to|has\s+to)\b",
     re.IGNORECASE,
 )
 _ARABIC_NEGATED_OBLIGATION = re.compile(
