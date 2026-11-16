@@ -17,6 +17,7 @@ import json
 import os
 import pathlib
 import re
+import subprocess
 import stat
 import sys
 from datetime import date, datetime
@@ -318,7 +319,7 @@ def _ocr(args):
         return pytesseract.image_to_string(
             Image.open(io.BytesIO(image_bytes)), lang=_ocr_language(), timeout=30
         )
-    except RuntimeError as exc:
+    except (RuntimeError, subprocess.TimeoutExpired) as exc:
         _fail("OCR timed out or failed; check Tesseract installation and language data")
 
 
