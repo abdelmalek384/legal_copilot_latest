@@ -323,7 +323,11 @@ def store_original(out: Path, document_id: str, extension: str, raw: bytes) -> P
     original_path = original_dir / ("original" + extension)
 
     def same_content(path: Path) -> bool:
-        return path.is_file() and sha256_bytes(path.read_bytes()) == digest
+        try:
+            existing = read_regular_file(path, max_bytes=MAX_BYTES_DEFAULT)
+        except (OSError, ValueError) as exc:
+            raise ValueError("existing original is not a stable regular file") from exc
+        return sha256_bytes(existing) == digest
 
     def create_exclusive(path: Path) -> bool:
         try:
@@ -393,7 +397,11 @@ def _archive_metadata_version(meta_dir: Path, document_id: str, metadata: dict) 
                 stream.write(rendered)
             return candidate
         except FileExistsError:
-            if candidate.is_file() and candidate.read_text(encoding="utf-8") == rendered:
+            try:
+                existing = read_regular_file(candidate, max_bytes=1024 * 1024).decode("utf-8")
+            except (OSError, ValueError, UnicodeError) as exc:
+                raise ValueError("metadata history collision target is not a safe regular file") from exc
+            if existing == rendered:
                 return candidate
             suffix += 1
 
@@ -436,10 +444,7 @@ def persist_metadata(out: Path, document_id: str, metadata: dict) -> Path:
     if current_path.is_symlink():
         raise ValueError("current metadata file must not be a symbolic link")
     if current_path.exists():
-        try:
-            previous = json.loads(current_path.read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
-        except (OSError, json.JSONDecodeError, ValueError) as exc:
-            raise ValueError("existing metadata is unreadable or ambiguous; refusing to overwrite it") from exc
+        previous = load_existing_metadata(current_path)
         if previous != metadata:
             _archive_metadata_version(meta_dir, document_id, previous)
     _archive_metadata_version(meta_dir, document_id, metadata)
@@ -744,7 +749,11 @@ def _write_immutable(path: Path, payload: bytes, root: Path, document_id: str) -
             stream.write(payload)
         return path
     except FileExistsError:
-        if path.is_file() and path.read_bytes() == payload:
+        try:
+            existing = read_regular_file(path, max_bytes=max(MAX_BYTES_DEFAULT, len(payload)))
+        except (OSError, ValueError) as exc:
+            raise ValueError("existing immutable artifact is not a stable regular file") from exc
+        if existing == payload:
             return path
         raise ValueError(f"refusing to overwrite different immutable artifact: {path.name}")
 
