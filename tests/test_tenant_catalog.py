@@ -473,6 +473,29 @@ class TenantCatalogTests(unittest.TestCase):
         with self.assertRaises(TenantCatalogError):
             resolve_tenant_database_for_maintenance(self.catalog, 9, self.root)
 
+    @unittest.skipUnless(os.name == "posix", "POSIX symbolic links are required")
+    def test_symlinked_storage_root_parent_is_rejected_before_provisioning(self):
+        real_parent = Path(self.temp.name) / "real-parent"
+        real_parent.mkdir()
+        alias_parent = Path(self.temp.name) / "parent-alias"
+        alias_parent.symlink_to(real_parent, target_is_directory=True)
+        real_root = real_parent / "tenants"
+        alias_root = alias_parent / "tenants"
+        with self.assertRaisesRegex(TenantCatalogError, "storage root.*symlink"):
+            provision_tenant_database(self.catalog, 23, alias_root, self.initialize_tenant)
+        self.assertFalse(real_root.exists())
+
+    @unittest.skipUnless(os.name == "posix", "POSIX symbolic links are required")
+    def test_symlinked_storage_root_parent_is_rejected_during_resolution(self):
+        real_parent = Path(self.temp.name) / "real-parent"
+        real_parent.mkdir()
+        real_root = real_parent / "tenants"
+        provision_tenant_database(self.catalog, 24, real_root, self.initialize_tenant)
+        alias_parent = Path(self.temp.name) / "parent-alias"
+        alias_parent.symlink_to(real_parent, target_is_directory=True)
+        with self.assertRaisesRegex(TenantCatalogError, "storage root.*symlink"):
+            resolve_tenant_database(self.catalog, 24, alias_parent / "tenants")
+
     def test_symlinked_storage_root_is_rejected_before_provisioning(self):
         real_root = Path(self.temp.name) / "real-tenants"
         real_root.mkdir()
