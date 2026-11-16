@@ -8274,6 +8274,7 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
     store = _original_file_store() if _separate_runtime_enabled() else None
     staged = None
     finalization_failed = False
+    metadata_committed = False
     if store is not None:
         try:
             staged = store.stage(u["firm_id"], data)
@@ -8337,6 +8338,7 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
             if updated.rowcount != 1:
                 raise RuntimeError("original file metadata state changed during upload")
             c.commit()
+            metadata_committed = True
         _meter_firm_usage(u, "document_upload")
         if ocr_used:
             _meter_firm_usage(u, "ocr_processing")
@@ -8346,13 +8348,13 @@ def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
     except ObjectStorageError as exc:
         if c.in_transaction:
             c.rollback()
-        if staged is not None and not finalization_failed:
+        if staged is not None and not finalization_failed and not metadata_committed:
             _cleanup_original_file(store, u["firm_id"], staged.object_id)
         raise HTTPException(503, "original-file storage is unavailable") from exc
     except Exception:
         if c.in_transaction:
             c.rollback()
-        if staged is not None and not finalization_failed:
+        if staged is not None and not finalization_failed and not metadata_committed:
             _cleanup_original_file(store, u["firm_id"], staged.object_id)
         raise
 
