@@ -181,6 +181,8 @@ def purge_approved_requests(
         raise RuntimeError("local filesystem purge is disabled in production mode")
     if object_store is None and backend != "local":
         raise RuntimeError("local purge requires the local development storage backend")
+    if apply and quiesced is not True:
+        raise RuntimeError("original-file purge requires an explicit quiescence assertion")
     if object_store is not None and (backend != "s3" or not isinstance(object_store, S3PrivateObjectStore)):
         raise RuntimeError("injected production purge store must be the configured S3 adapter")
     if object_store is not None and apply:
@@ -425,6 +427,7 @@ def main() -> int:
             args.firm_id,
             args.operator_user_id,
             apply=args.apply,
+            quiesced=args.quiesced,
             control_database_path=required["COPILOT_CONTROL_DB"],
             tenant_root=required["COPILOT_TENANT_DB_ROOT"],
             corpus_database_path=required["COPILOT_CORPUS_DB"],
