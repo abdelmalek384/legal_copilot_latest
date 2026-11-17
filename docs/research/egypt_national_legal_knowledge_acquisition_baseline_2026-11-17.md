@@ -456,3 +456,8 @@ The exact list above is a status snapshot; it is not a claim that every listed t
 2. Harvest the NTRA 16 November 2026 rules and the CBE circular archive as dated individual instruments.
 3. Expand SCC public full judgments and Cassation public headnotes with case numbers, challenged provisions, holding and Gazette publication.
 4. Start article-level consolidation of the highest-priority core codes; no domain is counted complete until amendment and currentness checks pass.
+
+
+## 20. NTRA wireless-device and radio-spectrum rules — effective-operation notice
+
+A focused update is added to the asylum/telecom/data-protection register as AMT-013. The official NTRA digital portal notice states that new rules governing wireless communication devices and radio spectrum began operating on **16 November 2026**, pursuant to an NTRA Board decision. Existing licensees are instructed to regularize their position within three months, with the stated deadline **15 February 2027**, before the rules' sanctions and penalties begin to apply. The public notice does not expose the Board Decision number in the indexed text, and the linked full Arabic rules have not yet been acquired. This is a time-sensitive regulatory lead: the exact instrument, scope, transitional protection, penalties and Gazette status must be retrieved before the rules are used in legal answers.
