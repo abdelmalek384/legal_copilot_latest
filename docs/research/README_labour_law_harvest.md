@@ -33,6 +33,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 27. [Statutory delegation gap analysis](labour_law_14_2025_statutory_delegation_gap_analysis.md) and [delegation matrix](../../data/research/labour_law_14_2025_delegation_matrix_2026-11-17.csv).
 28. [Decision 320/2025 — night and out-of-hours labour inspection](decision_320_2025_night_and_out_of_hours_labour_inspection.md).
 29. [Official Ministry legacy legislation index addendum](official_ministry_legacy_legislation_index_2026-11-17.md) — new discovery queue of older instruments and amendment lineages from the Ministry's own legislation index; index-only until each official text is acquired.
+30. [OSH predecessor decisions 134/2003, 232/2010 and 216/2016](osh_legacy_decisions_134_232_216_2026-11-17.md) — Gazette transcription of Decision 216/2016 and publication metadata/partial article clues for Decision 232/2010; clarifies the Article 18 training amendment chain.
 
 - The separate Article 11 legacy transition register now has 105 data rows after adding 60 index-only leads from the Ministry's legislation page. These rows remain currentness-unverified and are not confirmed operative law.
 
