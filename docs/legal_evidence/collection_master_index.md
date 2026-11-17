@@ -28,6 +28,7 @@
 | [collection_checkpoint_9_digital_consumer_law_2026-11-17.md](collection_checkpoint_9_digital_consumer_law_2026-11-17.md) | Data protection 151/2020, cybercrime 175/2018, e-signature 15/2004 and consumer protection 181/2018 source/dependency map |
 | [collection_checkpoint_10_digital_consumer_finance_2026-11-17.md](collection_checkpoint_10_digital_consumer_finance_2026-11-17.md) | Official ITIDA e-signature texts, MCIT cybercrime index, CPA consumer-law index, FRA consumer-finance Law 18/2020 and 2026 guide |
 | [collection_checkpoint_11_personal_data_protection_2026-11-17.md](collection_checkpoint_11_personal_data_protection_2026-11-17.md) | Official-hosted Law 151/2020 Gazette PDF; Executive Regulation Decision 816/2025; official 2026 confirmation and Gazette-matching tasks |
+| [collection_checkpoint_12_digital_regulatory_updates_2026-11-17.md](collection_checkpoint_12_digital_regulatory_updates_2026-11-17.md) | PDPL regulation currentness; e-signature Decision 361/2020; cybercrime official index; 2026 FRA fintech and consumer-finance regulatory updates |
 
 ## High-value primary-source portals
 
