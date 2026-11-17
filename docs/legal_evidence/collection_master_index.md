@@ -325,6 +325,8 @@
 
 | [collection_checkpoint_68_ppp_law_67_2010.md](collection_checkpoint_68_ppp_law_67_2010.md) | PPP Law 67/2010, Executive Regulation 238/2011, amendment Law 153/2021 and PM Decision 3217/2022 |
 
+| [collection_checkpoint_77_development_fee_law_148_2026.md](collection_checkpoint_77_development_fee_law_148_2026.md) | Law 148/2026 amends Law 147/1984: EGP 100 departure fee and EGP 35 per tonne cement-production fee; Decision 76/1986 collection rules |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
