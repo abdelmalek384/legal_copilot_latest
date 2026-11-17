@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -123,6 +123,9 @@
 | [collection_checkpoint_36_trade_union_law_2026.md](collection_checkpoint_36_trade_union_law_2026.md) | Trade Union Law 213/2017; amendment 142/2019; Executive Regulation 35/2018; model bylaws and 2017–2023 implementation decisions; 2026 proposed amendment status |
 
 | [collection_checkpoint_37_education_universities_2026.md](collection_checkpoint_37_education_universities_2026.md) | Education Law 139/1981 official PDF; teacher chapter and amendments; University Law 49/1972 and private/national university framework; Al-Azhar cross-links |
+
+
+| [collection_checkpoint_28_vat_law_149_2026_full_text.md](collection_checkpoint_28_vat_law_149_2026_full_text.md) | Full searchable official text extraction of VAT Law 149/2026, medical-equipment suspension, transit, refund and exemption schedule changes |
 
 ## High-value primary-source portals
 
