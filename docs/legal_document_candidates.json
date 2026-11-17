@@ -448,6 +448,17 @@
       "terms_url": null,
       "terms_checked_on": null,
       "permission_evidence": "Official public index and official-hosted Gazette copies are discovery sources; no affirmative bulk extraction, indexing or commercial reuse licence established."
+    },
+    {
+      "source_id": "INT-WIPO-LEX-EGYPT",
+      "authority": "World Intellectual Property Organization (WIPO), WIPO Lex legal database",
+      "source_page": "https://www.wipo.int/wipolex/en/legislation/details/8334",
+      "access_status": "Egypt Arbitration Law 27/1994 Arabic and English texts indexed; consolidated version covers amendments through Law 8/2000",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://www.wipo.int/about-wipo/en/",
+      "terms_checked_on": null,
+      "permission_evidence": "Intergovernmental legal-information database; public access does not itself establish permission for bulk copying or commercial redistribution."
     }
   ],
   "documents": [
@@ -6722,6 +6733,101 @@
         {
           "url": "https://eta.gov.eg/ar/content/qwanyn-aldrybt-ly-aldkhl",
           "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EVIDENCE-LAW-25-1968",
+      "official_title": "قانون الإثبات في المواد المدنية والتجارية رقم 25 لسنة 1968",
+      "document_type": "law_or_amendment",
+      "law_number": "25",
+      "law_year": 1968,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_or_authoritative_locator_found",
+      "text_verification_note": "MoF official index lists law as in force; secondary full-text repository identifies amendments by Laws 23/1992 and 18/1999. Gazette original is controlling. Complete text extraction, official Gazette hash, currentness, amendment mapping and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-5fe86ae87bfc600007cc0271",
+          "source_role": "official Ministry of Finance or Official Gazette host",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FAMILY-COURTS-LAW-10-2004",
+      "official_title": "قانون إنشاء محاكم الأسرة رقم 10 لسنة 2004",
+      "document_type": "law_or_amendment",
+      "law_number": "10",
+      "law_year": 2004,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_or_authoritative_locator_found",
+      "text_verification_note": "Official Gazette issue 12 تابع (أ), 18 March 2004, Ministry of Finance-hosted PDF; text includes transfer of pending cases and family court establishment. Complete text extraction, official Gazette hash, currentness, amendment mapping and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/1100_a5e6ce8477.pdf",
+          "source_role": "official Ministry of Finance or Official Gazette host",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-ARBITRATION-LAW-27-1994",
+      "official_title": "قانون التحكيم في المواد المدنية والتجارية رقم 27 لسنة 1994",
+      "document_type": "law_or_amendment",
+      "law_number": "27",
+      "law_year": 1994,
+      "source_id": "INT-WIPO-LEX-EGYPT",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_or_authoritative_locator_found",
+      "text_verification_note": "WIPO Lex Arabic legal text; consolidated record says amendments through Law 8/2000, Gazette publication 4 April 2000; use Gazette originals for authoritative proof. Complete text extraction, official Gazette hash, currentness, amendment mapping and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://www.wipo.int/wipolex/ar/legislation/details/8334",
+          "source_role": "authoritative legal database / secondary Gazette locator",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-ARBITRATION-AMEND-8-2000",
+      "official_title": "القانون رقم 8 لسنة 2000 بتعديل بعض أحكام قانون التحكيم رقم 27 لسنة 1994",
+      "document_type": "law_or_amendment",
+      "law_number": "8",
+      "law_year": 2000,
+      "source_id": "INT-WIPO-LEX-EGYPT",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_or_authoritative_locator_found",
+      "text_verification_note": "WIPO Lex consolidated record identifies Law 8/2000 as amendment; retrieve its own Gazette issue and article-level changes. Complete text extraction, official Gazette hash, currentness, amendment mapping and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://www.wipo.int/wipolex/ar/legislation/details/8334",
+          "source_role": "authoritative legal database / secondary Gazette locator",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CIVIL-PROCEDURE-AMEND-76-2007",
+      "official_title": "القانون رقم 76 لسنة 2007 بتعديل بعض أحكام قانون المرافعات المدنية والتجارية رقم 13 لسنة 1968",
+      "document_type": "law_or_amendment",
+      "law_number": "76",
+      "law_year": 2007,
+      "source_id": "EG-MINISTRY-OF-JUSTICE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_or_authoritative_locator_found",
+      "text_verification_note": "Known amendment candidate; confirm exact Gazette issue, articles amended and any subsequent amendments before linking. Complete text extraction, official Gazette hash, currentness, amendment mapping and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://www.laweg.net/framePlain.aspx?ItemID=33093&NID=40269&Type=6&action=ViewActivePages&cmd=s",
+          "source_role": "authoritative legal database / secondary Gazette locator",
           "status": "located_2026-11-17"
         }
       ]
