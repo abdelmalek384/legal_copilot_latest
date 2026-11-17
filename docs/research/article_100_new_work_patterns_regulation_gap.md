@@ -14,7 +14,7 @@ Article 96 defines new work patterns to include:
 
 Articles 98–99 allow workers under these patterns to work for multiple employers or for themselves alongside employment, subject to confidentiality, and require a clear written paper/electronic employment contract (with the relationship provable by all means).
 
-**Article 100** requires the Minister responsible for labour, after consultation with labour organizations and employer organizations, to issue the decisions necessary to regulate new work patterns, identify their forms, provide model employment contracts and workplace regulations, set methods of proving the employment relationship, and mechanisms for each party to obtain their rights. The statutory text sets a deadline of no more than six months from issuance of Law 14/2025.
+**Article 100** requires the Minister responsible for labour, after consultation with labour organizations and employer organizations, to issue the decisions necessary to regulate new work patterns, identify their forms, provide model employment contracts and workplace regulations, set methods of proving the employment relationship, and mechanisms for each party to obtain their rights. The statutory text sets a deadline of no more than six months from issuance of Law 14/2025. The Law was issued on 3 May 2025, so the six-month date is **3 November 2025** on a straightforward calendar calculation; counsel should confirm the legal computation and whether any transitional rule affects it.
 
 ## Evidence that the general decision remained outstanding
 
@@ -29,7 +29,7 @@ Articles 98–99 allow workers under these patterns to work for multiple employe
   - remote work; and
   - flexible work.
 - The Minister said the next phase aimed to move from monitoring labour-market changes to putting clear regulatory frameworks in place.
-- The Ministry's description is evidence of policy development, not an issued legal decision.
+- The Ministry's description is evidence of policy development, not an issued legal decision. It came nearly eleven months after the straightforward 3 November 2025 Article 100 deadline calculation.
 
 ### 2. Ministry of Labour and Communications MOU — 7 October 2026
 
