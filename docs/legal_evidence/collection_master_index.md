@@ -95,6 +95,8 @@
 
 | [collection_checkpoint_30_environment_tourism_electricity_2026.md](collection_checkpoint_30_environment_tourism_electricity_2026.md) | Official Nature Reserves Law 102/1983; Nile protection Law 48/1982; Tourism Law 8/2022 and Executive Regulation 705/2023; Electricity Law 87/2015 enforcement leads |
 
+| [collection_checkpoint_31_public_shops_food_safety_2026.md](collection_checkpoint_31_public_shops_food_safety_2026.md) | Public Shops Law 154/2019; Executive Regulation 590/2020 and Decision 10/2025; licensing classification decisions; NFSA Law 1/2017; historical opening-hours decision |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
