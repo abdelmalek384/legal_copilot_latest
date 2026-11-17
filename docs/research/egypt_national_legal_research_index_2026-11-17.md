@@ -42,3 +42,5 @@ This is the cross-domain research entry point for the Legal Copilot national Egy
 - Ministry of Finance index reports 936 general-law catalogue records and 522 financial-law records; these are pagination targets, not national completeness counts.
 - No nationwide domain is yet complete end-to-end.
 - No national-corpus lawyer validation is recorded.
+
+- [Asylum, migration, telecom and data-protection harvest](../../data/research/egypt_asylum_migration_telecom_data_protection_harvest_2026-11-17.csv) — PM Decision 1568/2026 (Executive Regulation of Law 164/2024), NTRA 16 Nov 2026 wireless/spectrum rule notice, Telecommunications Law 10/2003 rights caveat, Data Protection Law 151/2020 and Cybercrime Law 175/2018 acquisition leads.
