@@ -111,3 +111,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 
 54. [Construction, industrial, health and constitutional law harvest](../../data/research/egypt_sectoral_law_harvest_2026-11-17.csv) — IDA official texts/links for Building Law 119/2008, Industrial Licensing Law 15/2017, Reconciliation Law 187/2023, Environment Executive Regulation 338/1995 and Industrial Licensing Executive Regulation 1082/2017; MOHP 2025 Health Investment Guide and health-law leads; SCC public judgment/case portal leads.
+
+
+55. [Ministry of Finance 936-law catalogue harvest](../../data/research/egypt_mof_general_law_catalogue_harvest_2026-11-17.csv) — 19 cross-domain catalogue records, including Law 157/2024 (Civil Procedure), Evidence Law 25/1968, Companies Law 159/1981, the 2026 laws 47/148/149/154 and Customs Decision 262/2026; the Ministry index reports 936 general-law records and 522 financial-law records, which are catalogue counts, not proof of national completeness.
