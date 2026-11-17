@@ -272,6 +272,8 @@
 
 | [collection_checkpoint_57_aml_law_and_regulation.md](collection_checkpoint_57_aml_law_and_regulation.md) | AML Law 80/2002, Executive Regulation 951/2003 amendments through Decision 3331/2023 and FRA AML/CFT controls |
 
+| [collection_checkpoint_67_unified_public_finance_law.md](collection_checkpoint_67_unified_public_finance_law.md) | Unified Public Finance Law 6/2022 and amendment 18/2024; General Government/59 authorities; Executive Regulation number conflict 13/2024 vs 73/2024; programme budgeting and 2026 spending controls |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
