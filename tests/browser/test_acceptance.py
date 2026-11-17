@@ -903,6 +903,11 @@ class BrowserAcceptanceTests(unittest.TestCase):
             "() => document.documentElement.scrollWidth <= window.innerWidth",
             timeout=8000,
         )
+        self.assertFalse(self.page.locator(".workspace-topbar").is_visible())
+        mobile_columns = self.page.locator(".research-layout").evaluate(
+            "(el) => getComputedStyle(el).gridTemplateColumns.split(' ').length"
+        )
+        self.assertEqual(mobile_columns, 1, "mobile research view must use a single content column")
         self.assertTrue(inspector.is_visible())
         self.assertEqual(
             layout.evaluate("(el) => getComputedStyle(el).gridTemplateColumns.split(' ').length"),
