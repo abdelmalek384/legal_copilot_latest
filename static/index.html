@@ -3041,6 +3041,7 @@ async function law(){
       answerNotesPanel=h('section',{className:'research-answer-tab-panel research-answer-notes',id:tabPrefix+'-notes',role:'tabpanel',tabIndex:0,'aria-label':LANG==='ar'?'ملاحظات البحث':'Research notes',hidden:true});
       const tabs=[];
       const selectAnswerTab=selected=>{
+       if(selected!=='authorities'&&sourceInspector.__focusReturn?.closest('.research-answer-authorities'))resetInspector();
        for(const [name,button,panel] of tabs){const active=name===selected;button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;button.classList.toggle('active',active);panel.hidden=!active}
       };
       const makeAnswerTab=(name,label,panel)=>{
