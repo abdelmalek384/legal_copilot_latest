@@ -7794,7 +7794,8 @@
           "source_role": "official Ministry of Finance legislation catalogue",
           "status": "listed_2026-11-17"
         }
-      ]
+      ],
+      "notes": " Duplicate alias consolidated from EG-FINAL-ACCOUNT-INSTITUTE-20-2025."
     },
     {
       "document_id": "EG-ELDERLY-CARE-LAW-19-2024",
@@ -7935,25 +7936,6 @@
       "document_type": "economic_law_amendment",
       "law_number": "158",
       "law_year": 2024,
-      "source_id": "EG-MOF-LEGISLATION",
-      "language": "ar",
-      "candidate_status": "discovery_only",
-      "text_acquisition_status": "official_mof_catalogue_entry_seen",
-      "text_verification_note": "Listed on page 5 of official Ministry of Finance legislation catalogue. Full text/Gazette PDF, SHA-256, amendment/currentness and legal effect checks remain outstanding. Not lawyer-reviewed.",
-      "source_urls": [
-        {
-          "url": "https://mof.gov.eg/ar/legislation/laws?page=5",
-          "source_role": "official Ministry of Finance legislation catalogue",
-          "status": "listed_2026-11-17"
-        }
-      ]
-    },
-    {
-      "document_id": "EG-FINAL-ACCOUNT-INSTITUTE-20-2025",
-      "official_title": "القانون رقم 20 لسنة 2025 بربط الحساب الختامي لموازنة الهيئة العامة لمشروعات التعمير والتنمية الزراعية للسنة المالية 2023/2024",
-      "document_type": "annual_final_account_law",
-      "law_number": "20",
-      "law_year": 2025,
       "source_id": "EG-MOF-LEGISLATION",
       "language": "ar",
       "candidate_status": "discovery_only",
