@@ -427,7 +427,7 @@ A 19-row public docket/disposition register has been added at `data/research/egy
 | FRA/CBE register | 19 records | Regulatory decisions and collection leads; CBE 405 circulars are index records, not full-text acquisitions |
 | IDA/MOHP/SCC sector register | 19 records | Construction, industrial, health and constitutional source/instrument leads |
 | MoF catalogue register | 19 records | Cross-domain law and decision leads; MoF portal reports 936 general and 522 financial catalogue records |
-| Asylum/telecom/data protection register | 12 records | Includes PM Decision 1568/2026 and NTRA/data-protection/cybercrime leads |
+| Asylum/telecom/data protection register | 13 records | Includes PM Decision 1568/2026 and NTRA/data-protection/cybercrime leads |
 | SCC public docket register | 19 records | Public docket/date/disposition records; not full judgments |
 | Full national domains complete | 0/30 | No domain yet has all base laws, amendments, regulations, decisions, case law and currentness checks complete |
 | Full SCC/Cassation/State Council judgment corpus | 0 | Public summaries and docket indexes only; no nationwide full judgment corpus |
