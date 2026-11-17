@@ -3873,7 +3873,7 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
         const response=await fetch('/cases/'+id+'/docs/'+d.document_id+'/original',{credentials:'same-origin'});
         if(!response.ok){const problem=await response.json().catch(()=>({}));throw new Error(err(problem))}
         const blob=await response.blob();
-        if(!/^application\\/pdf$/i.test(blob.type)){throw new Error(uiText('المعاينة داخل الصفحة متاحة لملفات PDF فقط. استخدم تنزيل الأصل لهذا الملف.','Inline preview is available for PDF files only. Use Download original for this file.'))}
+        if(!/^application\/pdf$/i.test(blob.type)){throw new Error(uiText('المعاينة داخل الصفحة متاحة لملفات PDF فقط. استخدم تنزيل الأصل لهذا الملف.','Inline preview is available for PDF files only. Use Download original for this file.'))}
         if(originalPreviewUrl)URL.revokeObjectURL(originalPreviewUrl);
         originalPreviewUrl=URL.createObjectURL(blob);
         const close=btn(uiText('إغلاق المعاينة','Close preview'),()=>{originalPreview.hidden=true;originalPreview.replaceChildren();if(originalPreviewUrl){URL.revokeObjectURL(originalPreviewUrl);originalPreviewUrl=null}},'g');
