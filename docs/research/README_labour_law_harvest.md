@@ -105,3 +105,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 51. [National judicial collection register](../../data/research/egypt_national_judicial_collection_register_2026-11-17.csv) — selected Constitutional Court summary/bulletin leads and State Council Supreme Administrative Court principle series.
 
 52. [Expanded initial statute register](../../data/research/egypt_initial_statute_acquisition_register_2026-11-17.csv) — 40 anchor laws and amendments with official PDF, official listing, and secondary-only status distinguished.
+
+
+53. [FRA/CBE regulatory and judicial source harvest](../../data/research/egypt_regulatory_instrument_harvest_2026-11-17.csv) — 19 regulator/court records including FRA consolidated PDFs for AML Law 80/2002, Board Decision 145/2021 (amended 8 July 2026), microfinance Decision 173/2014 (updated 8 Oct 2025), Unified Insurance Law 155/2024 and the CBE 405-record circular index; full-text acquisition and Gazette matching remain item-specific.
