@@ -1,0 +1,44 @@
+# National Egyptian legal knowledge collection index
+
+Snapshot: 17 November 2026
+
+This is the cross-domain research entry point for the Legal Copilot national Egyptian legal knowledge project. It tracks discovery, acquisition and evidence status. It is not a claim of complete or lawyer-verified law.
+
+## Main dashboard and scope
+
+- [National acquisition baseline and roadmap](egypt_national_legal_knowledge_acquisition_baseline_2026-11-17.md)
+- [30-domain legal inventory](../../data/research/egypt_national_legal_domain_inventory_2026-11-17.csv)
+- [National source register](../../data/research/egypt_national_legal_sources_register_2026-11-17.csv)
+- [Initial statute acquisition register](../../data/research/egypt_initial_statute_acquisition_register_2026-11-17.csv)
+- [Ministry of Finance 936-law catalogue harvest](../../data/research/egypt_mof_general_law_catalogue_harvest_2026-11-17.csv)
+- [FRA/CBE regulatory instrument harvest](../../data/research/egypt_regulatory_instrument_harvest_2026-11-17.csv)
+- [Construction, industry, health and constitutional law harvest](../../data/research/egypt_sectoral_law_harvest_2026-11-17.csv)
+
+## Courts and judgments
+
+- [National judicial collection register](../../data/research/egypt_national_judicial_collection_register_2026-11-17.csv)
+- [Constitutional Court and State Council collection leads](egypt_constitutional_and_state_council_collection_leads_2026-11-17.md)
+- [Criminal Procedure Law 174/2025 status after Law 160/2026](egypt_criminal_procedure_law_174_2025_status_after_law_160_2026.md)
+
+## Collection and trust rules
+
+1. Official Gazette / signed issuing-authority text is the primary authority.
+2. Official ministry, regulator and court publications are source-grade but must be compared with Gazette publication where relevant.
+3. Official catalogues and indexes are discovery leads, not acquired legal texts.
+4. Secondary databases and commentary are cross-checks only; preserve their rights and access conditions.
+5. Record base law, amendments, executive regulation, decisions/circulars, publication date, commencement, repeal, transitional rules and currentness.
+6. Every record starts with `lawyer_reviewed=false` and `rights_cleared=false` unless evidence supports a change.
+7. Do not bypass subscription, login, request-copy, or other access controls.
+8. Distinguish a public summary/headnote from a full reasoned judgment.
+
+## Current snapshot
+
+- 30 legal domains mapped.
+- 17 initial source records registered, with additional sector-specific source/instrument registers.
+- 40 anchor statute records in the initial acquisition register.
+- 19 FRA/CBE regulatory/judicial records.
+- 19 construction/industry/health/constitutional records.
+- 19 Ministry of Finance catalogue/instrument records.
+- Ministry of Finance index reports 936 general-law catalogue records and 522 financial-law records; these are pagination targets, not national completeness counts.
+- No nationwide domain is yet complete end-to-end.
+- No national-corpus lawyer validation is recorded.
