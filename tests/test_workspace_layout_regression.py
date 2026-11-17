@@ -48,6 +48,10 @@ class WorkspaceLayoutRegressionTests(unittest.TestCase):
         self.assertIn('}\n@media(max-width:800px){#main:has(.research-layout){width:100%!important;flex:1 1 auto!important}}', HTML)
         self.assertNotIn('}\\\\n@media(max-width:800px){#main:has(.research-layout)', HTML)
 
+    def test_research_shell_navigation_rail_matches_reference_width(self):
+        self.assertIn('#side{width:206px!important;min-width:206px!important;flex:0 0 206px!important', HTML)
+        self.assertIn('@media(max-width:800px){#side{width:100%!important;min-width:0!important;flex:0 0 auto!important}}', HTML)
+
 
 if __name__ == "__main__":
     unittest.main()
