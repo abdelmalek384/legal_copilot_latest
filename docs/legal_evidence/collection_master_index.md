@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -179,6 +179,9 @@
 | [collection_checkpoint_37_environment_law_and_regulation_2024.md](collection_checkpoint_37_environment_law_and_regulation_2024.md) | Official Environment Law 4/1994 source index, Executive Regulation 338/1995 and full Gazette text of 2024 Decision 2466 with annex updates |
 
 | [collection_checkpoint_50_november_2026_current_decisions.md](collection_checkpoint_50_november_2026_current_decisions.md) | PM Decisions 3530/2026 public-spending restrictions; 3531/2026 maritime company share transfer; 2807/2026 residence regularization extension; 89/2026 alternative-housing deadline to 12 Jan 2027 |
+
+
+| [collection_checkpoint_38_waste_management_law_2020.md](collection_checkpoint_38_waste_management_law_2020.md) | Waste Management Law 202/2020 (86 articles), Executive Regulation 722/2022 and Decision 1113/2024 amendment source chain |
 
 ## High-value primary-source portals
 
