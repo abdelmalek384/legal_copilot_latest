@@ -120,6 +120,8 @@
 
 | [collection_checkpoint_27_income_tax_151_2026_and_corrigendum.md](collection_checkpoint_27_income_tax_151_2026_and_corrigendum.md) | Full official PDF extraction of Income Tax Law 151/2026 and visual inspection of the joint corrigendum for Laws 149–151/2026 |
 
+| [collection_checkpoint_36_trade_union_law_2026.md](collection_checkpoint_36_trade_union_law_2026.md) | Trade Union Law 213/2017; amendment 142/2019; Executive Regulation 35/2018; model bylaws and 2017–2023 implementation decisions; 2026 proposed amendment status |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
