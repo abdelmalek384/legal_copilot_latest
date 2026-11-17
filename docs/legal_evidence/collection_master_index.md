@@ -312,6 +312,8 @@
 
 | [collection_checkpoint_65_investment_law_72_2017.md](collection_checkpoint_65_investment_law_72_2017.md) | Investment Law 72/2017, 140-article Executive Regulation 2310/2017, amendments and 2026 incentive-decision leads |
 
+| [collection_checkpoint_75_law_150_2026_tax_procedures.md](collection_checkpoint_75_law_150_2026_tax_procedures.md) | Official 2-page Law 150/2026 PDF: replaces Tax Procedures Article 38(1), adds Article 27 bis temporary 8-month tax card and restrictions |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
