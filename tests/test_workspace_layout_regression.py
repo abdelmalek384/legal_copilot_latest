@@ -85,6 +85,17 @@ class WorkspaceLayoutRegressionTests(unittest.TestCase):
         self.assertIn('@media(max-width:1180px){\n #main .research-layout:dir(ltr){grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;grid-template-areas:"main main" "history inspector"!important}', HTML)
         self.assertIn('@media(max-width:800px){\n #main .research-layout:dir(ltr){grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"main" "history" "inspector"!important}', HTML)
 
+    def test_side_rails_have_more_balanced_widths_and_consistent_spacing(self):
+        self.assertIn('grid-template-columns:minmax(240px,260px) minmax(0,1fr) minmax(180px,200px)!important;', HTML)
+        self.assertIn('grid-template-columns:minmax(180px,200px) minmax(0,1fr) minmax(240px,260px)!important;', HTML)
+        self.assertIn('gap:14px!important;', HTML)
+        self.assertIn('#main .research-layout>.research-list{\n display:flex!important;flex-direction:column!important;gap:12px!important;', HTML)
+        self.assertIn('#main .research-layout>.research-evidence-panel{\n padding:15px!important;gap:11px!important;', HTML)
+
+    def test_side_rail_widths_and_spacing_collapse_cleanly_on_smaller_screens(self):
+        self.assertIn('@media(max-width:1180px){\n #main .research-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:12px!important}', HTML)
+        self.assertIn('@media(max-width:800px){\n #main .research-layout{grid-template-columns:minmax(0,1fr)!important;gap:10px!important}', HTML)
+
 
 if __name__ == "__main__":
     unittest.main()
