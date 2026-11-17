@@ -351,6 +351,8 @@
 
 | [collection_checkpoint_83_law_154_2026_full_text.md](collection_checkpoint_83_law_154_2026_full_text.md) | Official Law 154/2026 full text: 5% contribution for wholly State-owned companies; 4% for companies with >50% State/public ownership, capped by State profit share; Cabinet temporary exemption |
 
+| [collection_checkpoint_84_tax_dispute_law_152_2026.md](collection_checkpoint_84_tax_dispute_law_152_2026.md) | Official one-page Law 152/2026 PDF; renews Law 79/2016 tax-dispute settlement procedures and committees through 31 Dec 2026 |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
