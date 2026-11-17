@@ -170,3 +170,37 @@ Additional statutes indexed include Laws 46/1972, 47/1972, 54/1964 as amended by
 | Lawyer-reviewed national instruments | 0 | Human legal review remains mandatory |
 
 **Overall nationwide legal knowledge collection estimate: 3%.** This is a cautious project-management estimate, not a count of all Egyptian laws or judicial decisions. It reflects that the domain map and source discovery are ahead of actual full-text acquisition, consolidation, judicial corpus collection and lawyer review. It should rise only when primary text and amendment chains are actually acquired—not when a source URL is merely found.
+
+
+## 12. Regulatory and judicial collection expansion — 17 November 2026
+
+A new record-level register is added at `data/research/egypt_regulatory_instrument_harvest_2026-11-17.csv`. It contains 19 regulator/court records with explicit source states and remaining work. It is an acquisition register, not 19 fully consolidated instruments.
+
+### Financial Regulatory Authority (FRA)
+
+The official FRA legislative portal has 61 pages in its general English legislative index and a separate Arabic index. Its filters expose categories for capital markets, insurance, non-bank finance, accounting/auditors, AML/CFT, fintech, carbon/sustainability, movable collateral, ministerial rules, board decisions and circulars. Page 2 contains further sector records; page 61 exposes older related legislation. This makes FRA a high-yield source for regulator decisions, not merely a source for parent statutes.
+
+Official records opened in this pass:
+- Board Decision 145/2021 on public/private bond offerings: 9-page official PDF; the consolidated text states it was last amended by Board Decision 136 dated 8 July 2026.
+- Board Decision 173/2014 on microfinance-company rules: 57-page official PDF; consolidated to 8 October 2025 and lists a multi-year amendment chain, including Decision 243/2025.
+- AML Law 80/2002: 15-page official FRA consolidated PDF. Its text identifies amendments including Law 17/2020 and Law 154/2022. This is regulator consolidation, not a Gazette-matched version.
+- Law 155/2024 Unified Insurance Law: official FRA page identifies the law and lists earlier insurance statutes as prior legislation; full current text and transitional/repeal analysis remain outstanding.
+- Law 10/2009 on non-bank financial markets: official FRA page labels a consolidated copy updated in 2019; later amendments must be checked.
+- Additional official index leads include Executive Regulation Decision 135/1993 for Capital Market Law 95/1992 (version label 2025), AML Executive Regulation PM 951/2003 (version label 2023), Law 141/2014, Companies Law 159/1981 and its Executive Regulation Decision 96/1982, Competition Law 3/2005, Central Depository Law 93/2000, Public Business Sector Companies Law 203/1991 and Law 146/1988 on companies receiving funds for investment.
+- The FRA portal also lists 2026 and 2025 decisions, including a 2026 appointment decision and multiple instruments whose consolidated versions are labelled updated in 2025 or 2026. Do not equate a current portal listing with proof of current legal effect.
+
+### Central Bank of Egypt (CBE)
+
+The official CBE circular search index exposes 405 records. The visible latest examples include circulars dated 27 October 2026, 12 October 2026, 28 September 2026 and 24 September 2026. Subject labels include banking practices, credit granting, AML/CFT and licensing. The CBE Regulations Book page was last updated 30 September 2026 and points to an Arabic Banking Supervision Regulations Guide. Direct page retrieval was rejected during this pass, so no circular full text is claimed as acquired. This becomes a separate high-priority acquisition stream: capture date, category, title, addressee, legal basis, effective date and supersession/repeal relations for each public circular.
+
+### Court of Cassation
+
+The official Court of Cassation homepage exposes public civil and criminal principles and subject categories including labour, commercial, economic, rent and personal status, plus Technical Office annual civil/criminal editions, new principles, legislative/legal bulletins and thematic publications. The portal separately states that full judgment texts, advanced search and official PDF downloads require a paid subscription (EGP 1,080/year for Egyptian subscribers). The collection policy remains to acquire only genuinely public principles and records; subscriber-only materials must remain gaps unless lawfully licensed.
+
+### Status correction and caution
+
+- The 61-page FRA index is not 61 pages of complete legal texts; it is a paginated discovery index with some downloadable instruments.
+- The CBE count of 405 is a count of circular-index records exposed in search results, not 405 downloaded or reviewed circulars.
+- The Court of Cassation's public principle interface is not equivalent to the full judgment corpus.
+- All newly added rows retain `lawyer_reviewed=false` and `rights_cleared=false`.
+- This pass improves discovery and the number of identified instruments; it does not yet justify a large increase in the overall national legal-knowledge completion percentage.
