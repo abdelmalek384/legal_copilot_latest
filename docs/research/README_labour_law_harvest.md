@@ -103,3 +103,5 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 50. [Constitutional Court and State Council collection leads](egypt_constitutional_and_state_council_collection_leads_2026-11-17.md) — official SCC public decision-summary lead and 23 State Council principle-series bibliographic targets.
 51. [National judicial collection register](../../data/research/egypt_national_judicial_collection_register_2026-11-17.csv) — selected Constitutional Court summary/bulletin leads and State Council Supreme Administrative Court principle series.
+
+52. [Expanded initial statute register](../../data/research/egypt_initial_statute_acquisition_register_2026-11-17.csv) — 40 anchor laws and amendments with official PDF, official listing, and secondary-only status distinguished.
