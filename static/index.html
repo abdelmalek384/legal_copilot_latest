@@ -3031,6 +3031,11 @@ async function law(){
    for(const [messageIndex,m] of messages.entries()){
      const bubble=h('div',{className:'research-message '+(m.role==='user'?'user':'assistant')});
      bubble.append(h('div',{className:'research-role',textContent:m.role==='user'?(LANG==='ar'?'أنت':'You'):(LANG==='ar'?'المساعد القانوني':'Legal assistant')}));
+     if(m.role==='assistant'){
+      const answerTime=typeof m.created_at==='string'?new Date(m.created_at):null;
+      const timeLabel=answerTime&&Number.isFinite(answerTime.getTime())?answerTime.toLocaleString(LANG==='ar'?'ar':'en-GB',{dateStyle:'medium',timeStyle:'short'}):'';
+      bubble.append(h('div',{className:'research-answer-meta'},pill(LANG==='ar'?'تحليل بمساعدة الذكاء الاصطناعي':'AI-assisted analysis','soon'),timeLabel?h('span',{className:'research-answer-time',textContent:(LANG==='ar'?'تم التحديث ':'Updated ')+timeLabel}):null));
+     }
      const answerContent=h('div',{className:'research-content'});renderResearchAnswer(answerContent,m.content||m.answer||'');bubble.append(answerContent);
      const answerTier=m.trust_tier||(m.result&&m.result.trust_tier);if(m.role==='assistant')bubble.append(trustTierBadge(answerTier||'unreviewed'));
      if(m.role==='assistant'&&(m.sources||[]).length){
@@ -4227,4 +4232,8 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 #main .research-answer-coverage-meter{display:flex;gap:3px;flex:0 0 auto}
 #main .research-answer-coverage-meter i{width:11px;height:4px;border-radius:4px;background:#dce5e2}
 #main .research-answer-coverage-meter i.filled{background:#3b9a77}
+</style><style>
+#main .research-answer-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px}
+#main .research-answer-meta .pill{font-size:9px;padding:3px 8px;line-height:1.3}
+#main .research-answer-time{font-size:9px;color:#8997a8}
 </style></html>
