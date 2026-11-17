@@ -300,3 +300,55 @@ The official Court of Cassation homepage lists five recent SCC invalidity notice
 These are public invalidity notices only; full judgments, exact Gazette issue/pages and effective dates remain outstanding. Case49/42 is the highest priority because it concerns current Law148/2019. The statutory register now flags Article78 for non-application pending the full operative judgment.
 
 See [2026 SCC invalidity watchlist](egypt_scc_2026_recent_unconstitutionality_watchlist.md).
+
+
+## 15. Additional nationwide acquisition tranche — FRA, CBE, IDA, MOHP, SCC and Ministry of Finance
+
+**Added 17 November 2026.** Companion registers:
+- `data/research/egypt_regulatory_instrument_harvest_2026-11-17.csv` — 19 regulatory/judicial records.
+- `data/research/egypt_sectoral_law_harvest_2026-11-17.csv` — 19 construction, industry, health and constitutional records.
+- `data/research/egypt_mof_general_law_catalogue_harvest_2026-11-17.csv` — 19 cross-domain catalogue/instrument records.
+
+### FRA and CBE
+
+The FRA portal is a large discovery index with 61 pages in its English general-legislation section and separate Arabic/sector pages. It includes laws, executive regulations, board decisions, chairman decisions and circulars across capital markets, insurance, non-bank finance, AML/CFT, fintech, accounting, carbon/sustainability and movable collateral. Public consolidated PDFs opened in this pass:
+- AML Law 80/2002 (15 pages), with the text identifying amendments including Laws 17/2020 and 154/2022.
+- FRA Board Decision 145/2021 on bond offerings (9 pages), whose consolidation states its latest amendment was Decision 136 dated 8 July 2026.
+- FRA Board Decision 173/2014 on microfinance-company rules (57 pages), consolidated through 8 October 2025, with an amendment history listed in its footnote.
+- Law 155/2024 Unified Insurance Law page and prior-insurance-law list.
+- Law 10/2009 non-bank financial market regulation page and consolidated-copy link (version label 2019).
+- Further leads include Decision 135/1993 (Capital Market Law executive regulation, version label 2025), PM Decision 951/2003 (AML executive regulation, version label 2023), Laws 141/2014, 159/1981, 3/2005, 93/2000, 203/1991 and 146/1988.
+
+The CBE circular index exposes 405 records. Visible examples include circulars dated 27 October, 12 October, 28 September and 24 September 2026. The CBE Regulations Book page was last updated 30 September 2026 and points to an Arabic Banking Supervision Regulations Guide. Direct page retrieval was rejected in this pass, so the 405 are catalogue entries, not acquired circular texts.
+
+### IDA and MOHP
+
+The IDA legislation page lists Building Law 119/2008; Industrial Licensing Law 15/2017 and Executive Regulation 1082/2017; Reconciliation Law 187/2023 and Executive Regulation 1121/2024; Environment Executive Regulation 338/1995; Industry Law 21/1958; Industrial Register Law 24/1977; and multiple hazardous-material, waste and heavy-industry decisions. Official PDF links for Laws 119/2008 and 15/2017 and Decisions 338/1995 and 1082/2017 were opened and page-count checked, but their text was not exposed by the web parser. Law 187/2023's Official Gazette facsimile (issue 50 bis A, 17 December 2023) was opened with readable text; it repeals Law 17/2019 and contains transition rules for pending applications. Decision 1121/2024 was listed but timed out when fetched.
+
+The MOHP 2025 Health Investment Guide was opened with 1,155 extracted lines. It reproduces substantial text from Law 87/2024 on public-utility concessions for health facilities and identifies PM Decision 2856/2024 as the executive regulation. It also indexes Law 51/1981 (amended by 153/2004), medical practice Law 415/1954, physical therapy Law 3/1985 and Decision 150/1986, dentistry Law 537/1954, pharmacy Law 127/1955, blood/plasma Law 8/2021, mental health Law 71/2009 amended by 210/2020, and medical laboratory professions Law 367/1954. The guide is a discovery/administrative source, not a substitute for Gazette acquisition.
+
+### Supreme Constitutional Court
+
+The official SCC portal exposes separate searches for legislation, case status, legal principles, substantive/formal constitutional judgments, jurisdiction conflicts, execution disputes and legislative interpretation decisions. The portal's indexed dashboard shows counters including 7,848 judgments and 1,080 substantive judgments; these are portal counters, not acquired files. A public summary for 3 January 2026 records rejection of a challenge to specified Penal Code terrorism provisions and Anti-Terrorism Law 94/2015. Full judgment and exact docket locator remain to be acquired. The official portal also displays featured judgment sessions in 2026; each docket must be harvested individually.
+
+### Ministry of Finance cross-domain index
+
+The Ministry of Finance search index reports 936 general-law catalogue records and 522 financial-law catalogue records. These are enumeration queues only, not the universe of Egyptian law. The Ministry expressly warns that its online texts are guidance and the sole legal reference is the Official Gazette.
+
+New catalogue leads recorded include:
+- Law 157/2024 amending Civil and Commercial Procedure Law 13/1968 (Gazette issue 27 bis D, 10 July 2024).
+- Evidence Law 25/1968; Civil Code Law 131/1948 and related amendment Law 55/1970; Companies Law 159/1981 and Executive Regulation Decision 96/1982 (including amendment Decision 1212/2004).
+- Unified Public Finance Law 6/2022, amendment Law 18/2024 and related decisions.
+- 2026 catalogue entries: Laws 148/2026, 154/2026, 47/2026, 149/2026, 152/2026 and 153/2026; Customs Decision 262/2026.
+- Economic Courts Law amendment 156/2024; judicial organization Law 15/2025; VAT amendment Law 157/2025; Constitution 2014 as amended in 2019.
+
+**Important identifier warning:** the Ministry catalogue's Law 47/2026 title concerning the Future of Egypt authority conflicts with a separate primary-source acquisition identifying Law 147/2026 for the same title. The main research baseline records the primary-source reconciliation; do not duplicate or rely on the catalogue number without checking the Gazette.
+
+### Counting rules
+
+- An index entry is not a downloaded instrument.
+- A PDF link opened by page count is not a text extraction.
+- A ministry guide reproducing statutory text is not an Official Gazette match.
+- A public case summary is not a full reasoned judgment.
+- All new records retain `lawyer_reviewed=false` and `rights_cleared=false`.
+- No domain is yet complete end-to-end with all base laws, amendments, executive instruments, currentness and judicial interpretation.
