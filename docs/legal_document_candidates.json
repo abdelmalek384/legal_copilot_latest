@@ -6831,6 +6831,101 @@
           "status": "located_2026-11-17"
         }
       ]
+    },
+    {
+      "document_id": "EG-PERSONAL-STATUS-PROCEDURE-LAW-1-2000",
+      "official_title": "القانون رقم 1 لسنة 2000 بتنظيم بعض أوضاع وإجراءات التقاضي في مسائل الأحوال الشخصية",
+      "document_type": "law",
+      "law_number": "1",
+      "law_year": 2000,
+      "source_id": "EG-MINISTRY-OF-JUSTICE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_or_secondary_full_text_locator",
+      "text_verification_note": "Full text locator reproduces Official Gazette issue 4 مكرر, 29 Jan 2000; cross-referenced by Family Courts Law 10/2004. Verify amendments and transition. Complete text acquisition, Gazette copy/hash, currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://www.laweg.net/framePlain.aspx?ItemID=34731&NID=43122&Type=6&action=ViewActivePages",
+          "source_role": "official government/court source or secondary text locator",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CIVIL-STATUS-LAW-143-1994",
+      "official_title": "قانون الأحوال المدنية رقم 143 لسنة 1994",
+      "document_type": "law",
+      "law_number": "143",
+      "law_year": 1994,
+      "source_id": "EG-MINISTRY-OF-INTERIOR",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_or_secondary_full_text_locator",
+      "text_verification_note": "Full Arabic text locator; Gazette issue 23 تابع, 9 June 1994; amendments/current executive decisions need mapping. Complete text acquisition, Gazette copy/hash, currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://www.mksegypt.org/ar/laws/23813",
+          "source_role": "official government/court source or secondary text locator",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-NATIONALITY-LAW-26-1975",
+      "official_title": "قانون الجنسية المصرية رقم 26 لسنة 1975",
+      "document_type": "law",
+      "law_number": "26",
+      "law_year": 1975,
+      "source_id": "EG-COURT-CASSATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_or_secondary_full_text_locator",
+      "text_verification_note": "Court of Cassation legislation page identifies Official Gazette issue 22, 29 May 1975. Subsequent amendments include 154/2004, 22/2012, 173/2018, 140/2019 and 28/2023; obtain each Gazette text. Complete text acquisition, Gazette copy/hash, currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://cc.gov.eg/legislation/860127042/قانون-رقم-26-لسنة-1975-بشأن-الجنسية-المصرية",
+          "source_role": "official government/court source or secondary text locator",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-JUDICIAL-AUTHORITY-LAW-46-1972",
+      "official_title": "قانون السلطة القضائية رقم 46 لسنة 1972",
+      "document_type": "law",
+      "law_number": "46",
+      "law_year": 1972,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_or_secondary_full_text_locator",
+      "text_verification_note": "Gazette text locator identifies Official Gazette issue 40, 5 October 1972; amended by multiple subsequent laws including Law 17/2007. Consolidation needed. Complete text acquisition, Gazette copy/hash, currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://www.laweg.net/framePlain.aspx?ItemID=36189&NID=45774&Type=6&action=ViewActivePages",
+          "source_role": "official government/court source or secondary text locator",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-STATE-COUNCIL-LAW-47-1972",
+      "official_title": "قانون مجلس الدولة رقم 47 لسنة 1972",
+      "document_type": "law",
+      "law_number": "47",
+      "law_year": 1972,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_or_secondary_full_text_locator",
+      "text_verification_note": "MoF official legislation page marks law as in force and lists amendment Law 136/1984; retrieve full Gazette text and amendments. Complete text acquisition, Gazette copy/hash, currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-5fe86ada7bfc600007cc03c7",
+          "source_role": "official government/court source or secondary text locator",
+          "status": "located_2026-11-17"
+        }
+      ]
     }
   ]
 }
