@@ -235,7 +235,7 @@
       "source_id": "EG-MOF-LEGISLATION",
       "authority": "Ministry of Finance, Arab Republic of Egypt",
       "source_page": "https://mof.gov.eg/ar/legislation/legislation-1",
-      "access_status": "official tax and financial legislation index observed 2026-11-17; includes laws, decisions, constitutional opinions, General Assembly opinions and international agreements; individual entries provide text/preview/download links",
+      "access_status": "Official Ministry of Finance legislation portal lists 936 laws and 2,037 decisions; categories include taxes, customs, budgets, finance, economic laws, judicial/constitutional opinions and international agreements. Updated through 2026. Portal warns electronic texts are guidance and Official Gazette is controlling.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
@@ -8516,6 +8516,120 @@
           "url": "https://mof.gov.eg/ar/legislation/laws?page=9",
           "source_role": "official Ministry of Finance legislation catalogue",
           "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-RESOURCE-DEVELOPMENT-FEE-AMEND-148-2026",
+      "official_title": "القانون رقم 148 لسنة 2026 بتعديل بعض أحكام القانون رقم 147 لسنة 1984 بفرض رسم تنمية الموارد المالية للدولة",
+      "document_type": "tax_and_fees_amendment",
+      "law_number": "148",
+      "law_year": 2026,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_index_or_gazette_pdf_located",
+      "text_verification_note": "Official Ministry of Finance catalogue identifies this instrument. Gazette issue, commencement, full article text, amendment map and currentness must be independently recorded; the Ministry warns its electronic copies are guidance and Official Gazette is controlling. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws",
+          "source_role": "official Ministry of Finance legislation index or Gazette PDF",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-UNIFIED-TAX-PROCEDURES-AMEND-150-2026",
+      "official_title": "القانون رقم 150 لسنة 2026 بتعديل بعض أحكام قانون الإجراءات الضريبية الموحد رقم 206 لسنة 2020",
+      "document_type": "tax_procedure_amendment",
+      "law_number": "150",
+      "law_year": 2026,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_index_or_gazette_pdf_located",
+      "text_verification_note": "Official Ministry of Finance catalogue identifies this instrument. Gazette issue, commencement, full article text, amendment map and currentness must be independently recorded; the Ministry warns its electronic copies are guidance and Official Gazette is controlling. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-63cd142f79394f000815481a",
+          "source_role": "official Ministry of Finance legislation index or Gazette PDF",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-INCOME-TAX-AMEND-151-2026",
+      "official_title": "القانون رقم 151 لسنة 2026 بتعديل بعض أحكام قانون الضريبة على الدخل رقم 91 لسنة 2005",
+      "document_type": "income_tax_amendment",
+      "law_number": "151",
+      "law_year": 2026,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_index_or_gazette_pdf_located",
+      "text_verification_note": "Official Ministry of Finance catalogue identifies this instrument. Gazette issue, commencement, full article text, amendment map and currentness must be independently recorded; the Ministry warns its electronic copies are guidance and Official Gazette is controlling. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/qanwn_rqm_151_lsnt_2026_tedyl_bed_ahkam_aldrybt_ela_aldkhl_alsadr_balqanwn_rqm_91_ls_2005_4caa326413.pdf",
+          "source_role": "official Ministry of Finance legislation index or Gazette PDF",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-STAMP-DUTY-AMEND-153-2026",
+      "official_title": "القانون رقم 153 لسنة 2026 بتعديل بعض أحكام قانون ضريبة الدمغة رقم 111 لسنة 1980 بشأن تداول الأوراق المالية المقيدة بالبورصة المصرية",
+      "document_type": "stamp_duty_amendment",
+      "law_number": "153",
+      "law_year": 2026,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_index_or_gazette_pdf_located",
+      "text_verification_note": "Official Ministry of Finance catalogue identifies this instrument. Gazette issue, commencement, full article text, amendment map and currentness must be independently recorded; the Ministry warns its electronic copies are guidance and Official Gazette is controlling. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws",
+          "source_role": "official Ministry of Finance legislation index or Gazette PDF",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-EXEC-REGS-AMEND-262-2026",
+      "official_title": "قرار وزير المالية رقم 262 لسنة 2026 بتعديل بعض أحكام اللائحة التنفيذية لقانون الجمارك الصادرة بالقرار 430 لسنة 2021",
+      "document_type": "customs_executive_regulation_amendment",
+      "law_number": "262",
+      "law_year": 2026,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_index_or_gazette_pdf_located",
+      "text_verification_note": "Official Ministry of Finance catalogue identifies this instrument. Gazette issue, commencement, full article text, amendment map and currentness must be independently recorded; the Ministry warns its electronic copies are guidance and Official Gazette is controlling. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-7",
+          "source_role": "official Ministry of Finance legislation index or Gazette PDF",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-COTTON-ARBITRATION-STATUS-DECISION-2034-2026",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 2034 لسنة 2026 باعتبار الهيئة العامة للتحكيم واختبارات القطن من الهيئات العامة الخدمية اعتبارًا من موازنة 2027/2028",
+      "document_type": "cabinet_decision",
+      "law_number": "2034",
+      "law_year": 2026,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_index_or_gazette_pdf_located",
+      "text_verification_note": "Official Ministry of Finance catalogue identifies this instrument. Gazette issue, commencement, full article text, amendment map and currentness must be independently recorded; the Ministry warns its electronic copies are guidance and Official Gazette is controlling. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/decisions",
+          "source_role": "official Ministry of Finance legislation index or Gazette PDF",
+          "status": "located_2026-11-17"
         }
       ]
     }
