@@ -6349,11 +6349,11 @@
         {
           "url": "https://www.eta.gov.eg/sites/default/files/2024-10/law-131-1948.pdf",
           "source_role": "official government-hosted full-text PDF",
-          "status": "located_2026-11-17"
+          "status": "opened_text_layer_parsed_2026-11-17"
         }
       ],
-      "text_acquisition_status": "official_pdf_text_available",
-      "text_verification_note": "ETA-hosted PDF. Search-indexed text includes promulgation and Civil Code articles. The Ministry of Finance separately lists the Civil Code as in force but warns its online text is guidance and Gazette is controlling."
+      "text_acquisition_status": "official_pdf_opened_text_layer_parsed",
+      "text_verification_note": "ETA-hosted Arabic PDF opened; 2,660 text lines surfaced, including promulgation, preliminary provisions, persons, property, obligations and contracts. Ministry of Finance separately lists it as in force but warns Gazette is controlling. Web document reader exposes 2660 lines. Complete local text artifact and SHA-256 still not deposited; currentness and Gazette verification remain outstanding; not lawyer-reviewed."
     },
     {
       "document_id": "EG-CIVIL-PROCEDURE-LAW-13-1968",
@@ -6431,13 +6431,13 @@
       "source_id": "EG-ETA-TAX-LAWS",
       "language": "ar",
       "candidate_status": "discovery_only",
-      "text_acquisition_status": "official_full_text_pdf_url_located",
-      "text_verification_note": "ETA-hosted full Arabic PDF; contents cover commercial acts, merchants, books, commercial register, contracts, banking operations, negotiable instruments and bankruptcy. Promulgation page identifies Gazette issue 19 مكرر, 17 May 1999 and amendments to commencement dates by Law 168/2000. Do not rely on this entry as consolidated current law until Gazette original, amendments, commencement, repeal/transition and SHA-256 are checked. Not lawyer-reviewed.",
+      "text_acquisition_status": "official_pdf_opened_text_layer_parsed",
+      "text_verification_note": "ETA-hosted Arabic PDF opened; 3,759 text lines surfaced. Includes promulgation, commercial acts, merchants, books, commercial contracts, banking operations, negotiable instruments and bankruptcy; edition notes Law 168/2000 adjusted commencement dates. Web document reader exposes 3759 lines. Complete local text artifact and SHA-256 still not deposited; currentness and Gazette verification remain outstanding; not lawyer-reviewed.",
       "source_urls": [
         {
           "url": "https://www.eta.gov.eg/sites/default/files/2024-10/law-17-1999.pdf",
           "source_role": "official government-hosted full-text PDF",
-          "status": "located_2026-11-17"
+          "status": "opened_text_layer_parsed_2026-11-17"
         }
       ]
     },
@@ -6450,13 +6450,13 @@
       "source_id": "EG-ETA-TAX-LAWS",
       "language": "ar",
       "candidate_status": "discovery_only",
-      "text_acquisition_status": "official_full_text_pdf_url_located",
-      "text_verification_note": "ETA-hosted official Arabic PDF. Currentness and amendments need separate article-by-article chain; related Law 17/2015 appears in ETA index. Do not rely on this entry as consolidated current law until Gazette original, amendments, commencement, repeal/transition and SHA-256 are checked. Not lawyer-reviewed.",
+      "text_acquisition_status": "official_pdf_opened_text_layer_parsed",
+      "text_verification_note": "ETA-hosted Arabic PDF opened; 993 text lines surfaced. The copy labels amendment by Law 3/1998 and references Law 94/2005 and a Constitutional Court ruling; this is not a complete current consolidation. Web document reader exposes 993 lines. Complete local text artifact and SHA-256 still not deposited; currentness and Gazette verification remain outstanding; not lawyer-reviewed.",
       "source_urls": [
         {
           "url": "https://www.eta.gov.eg/sites/default/files/2024-10/law-159-1981.pdf",
           "source_role": "official government-hosted full-text PDF",
-          "status": "located_2026-11-17"
+          "status": "opened_text_layer_parsed_2026-11-17"
         }
       ]
     },
