@@ -282,6 +282,8 @@
 
 | [collection_checkpoint_59_narcotics_weapons_trafficking.md](collection_checkpoint_59_narcotics_weapons_trafficking.md) | Narcotics Law 182/1960 and 2026 schedule replacement, Weapons Law 394/1954 and Human Trafficking Law 64/2010 with Executive Regulation |
 
+| [collection_checkpoint_69_vat_law_2026.md](collection_checkpoint_69_vat_law_2026.md) | VAT Law 67/2016 and Regulation 66/2017; Laws 157/2025 and 149/2026; 2026 correction notice; digital-services guidance and consumer-finance interest instruction |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
