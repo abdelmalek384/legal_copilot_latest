@@ -50,6 +50,7 @@ A title-based harvest cannot establish completeness. The law itself delegates do
 
 - **Arts.9, 13, 20, 27, 28, 38, 40–44, 48, 51–52, 71–72, 101–102, 129, 137, 215, 239, 255, 259–262:** corresponding decisions are identified in the register, but each must be checked against its exact delegation, all annexes, commencement clauses and amendments.
 - **Arts.23–26:** Decision 264/2025 and OSH-specific Decision 252/2026 address different training regimes; do not treat them as interchangeable.
+- **Art.254:** Decision 162/2026 contains workplace-bylaw requirements on conduct and complaint/investigation processes, but it does not yet establish that the separate Article 254 Ministry model code and standard procedure have been issued.
 - **Arts.33–37:** Decisions 270 and 271/2025 are only partially cross-mapped to registration/disability data and require exact article-level mapping.
 - **Arts.117–120:** Decisions 288–292/2025 are a working-time/rest/overtime package, but the precise provision-to-decision mapping remains to be completed.
 - **Art.150:** Decision 299/2025 appears related to individual labour-dispute settlement; confirm the exact delegation and procedure. Decision 300/2025 is the collective-dispute conciliation instrument under Article 215.
