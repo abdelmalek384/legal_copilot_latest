@@ -84,3 +84,45 @@ Decision 162/2026 is a high-value operational source for Legal Copilot's firm-ma
 3. Confirm whether later decisions amend or supplement Decision 162/2026; search Ministry announcements and subsequent Gazette issues.
 4. Review the IDSC general End User Agreement and item-specific licence before copying text into a commercial corpus.
 5. Qualified Egyptian counsel must approve any operational checklist, deadlines, or legal interpretation. Do not mark this source `verified` merely because the secondary transcription is extensive.
+
+
+## Cross-source acquisition update — 17 November 2026
+
+### Official Ministry communications
+
+1. Ministry announcement dated **29 August 2026**: https://www.labour.gov.eg/ar/الأخبار/تنفيذ-ا-لتوجيهات-الرئيس-السيسي-بتوفير-بيئة-عمل-لائقة-ومنتجة-وزير-العمل-يعقد-مؤتمر-ا-صحفي-ا-وي-طلق-القواعد-العامة-للائحة-تنظيم-العمل-بشركات-القطاع-الخاص/  
+   It identifies Decision162/2026 as a major implementing decision under Law14/2025, describes the framework as applying to private-sector establishments with 10 or more workers, and lists ten broad themes including dignity/anti-forced labour, equal opportunity, wage protection, modern/flexible work and digital records, training, hours/leaves, discipline, and acquired rights. This confirms Ministry policy framing and intended scope; it is not the operative article text.
+2. Ministry announcement dated **5 September 2026**: https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يعلن-نص-القواعد-العامة-للائحة-تنظيم-العمل-بالقطاع-الخاص/  
+   It repeats that the general rules are an implementing instrument and provides an additional public locator. It does not substitute for the Gazette copy.
+
+### Separate DSpace records — do not conflate copies
+
+- **Official Gazette bundle:** https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full — Egyptian Gazette issue176 supplement, dated 13 August 2026, Amiri Press publisher, 2.26 MB PDF bundle and an item-specific licence file.
+- **Separate MELES bilingual publication:** https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full — publisher Middle East Library for Economic Services; catalogue lists an English PDF (369.2 KB) and Arabic PDF (321.3 KB), with the full six-part/66-article outline. This is not the Gazette binary and must not be used as proof of byte identity. Its item-specific licence and publisher terms need review before extraction/reuse.
+- The official Gazette record and the MELES translation record are two distinct objects. Do not transfer page numbers, text identity or rights assumptions between them.
+
+### Independent secondary cross-checks
+
+- Riwaq full Arabic transcription: https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html
+- Sada al-Qanun article-by-article explanation: https://sadaalqanun.com/مدونة-العمل/
+- Laeha-Misr 66-article / six-chapter explainer: https://laeha-misr.vercel.app/decree-162/
+- Cairo24 publication report: https://www.cairo24.com/2485622
+
+The sources independently corroborate the 10-worker threshold, six-part/66-article structure, and broad content. They remain secondary explanations/transcriptions; their summaries must not be substituted for exact article text.
+
+### Priority reconciliation preserved
+
+The existing Article46 / Labour Law Article141 issue remains unresolved:
+- Decision162's secondary Article46 text is reported to require starting an investigation within seven days of discovery, ordinarily concluding within three months unless new evidence appears, and imposing a sanction no later than 30 days after conclusion.
+- Labour Law Article141 separately contains a statutory additional three-month period where new facts/documents appear.
+- This is a statutory/decree reconciliation question. Do not treat the decree transcription as narrowing the statute or implement an automatic three-month cap without counsel review. Article47 must also be reconciled with statutory union-representative attendance safeguards.
+
+### Source status
+
+- Official Gazette metadata: located.
+- Full Arabic secondary transcription: inspected.
+- Separate MELES Arabic/English catalogue copy: located; bytes not obtained in this workstream.
+- Official Gazette PDF bytes/hash/visual page review: not obtained.
+- Counsel review: pending.
+- Collection/commercial reuse rights: unknown pending review of both DSpace item licences and source terms.
+- Retrieval eligibility: false.
