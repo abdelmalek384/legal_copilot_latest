@@ -2992,7 +2992,8 @@ async function law(){
    if(heading||ordered||bullet||quote){
     flush();
     if(heading)container.append(h(heading[1].length===1?'h2':'h3',{textContent:heading[2]}));
-    else if(ordered||bullet)container.append(h('div',{className:'research-answer-list-item'},h('span',{className:'research-answer-list-marker',textContent:ordered?trimmed.match(/^\d+/)[0]+'.':'•'}),h('span',{textContent:(ordered||bullet)[1]})));
+    else if(ordered)container.append(h('h3',{className:'research-answer-section-heading'},h('span',{className:'research-answer-section-number',textContent:trimmed.match(/^\d+/)[0]+'.'}),h('span',{textContent:ordered[1]})));
+    else if(bullet)container.append(h('div',{className:'research-answer-list-item'},h('span',{className:'research-answer-list-marker',textContent:'•'}),h('span',{textContent:bullet[1]})));
     else container.append(h('blockquote',{className:'research-answer-quote',textContent:quote[1]}));
    }else paragraph.push(trimmed);
   }
@@ -3039,6 +3040,18 @@ async function law(){
        bubble.append(h('div',{className:'research-source-caution '+(cautionCount?'warning':'verified'),role:'note'},
         h('strong',{textContent:cautionCount?(LANG==='ar'?'تنبيه التحقق من المصادر':'Source verification required'):(LANG==='ar'?'حالة التحقق المسجلة':'Recorded verification status')}),
         h('p',{textContent:cautionCount?(LANG==='ar'?'يحتاج '+cautionCount+' من أصل '+sourceItems.length+' مصادر إلى تحقق قبل الاعتماد. راجع النص الرسمي والحالة القانونية الحالية.':cautionCount+' of '+sourceItems.length+' sources need verification before reliance. Check the official text and current legal status.'):(LANG==='ar'?'تحمل المصادر حالة نص ساري متحقق وفق البيانات المسجلة؛ تحقق من النشر الرسمي والتاريخ قبل الاعتماد.':'All sources carry the recorded verified-operative-text status; confirm official publication and dates before relying on them.')})));
+       const verifiedSourceCount=sourceItems.filter(source=>source&&source.source_status==='verified_operative_text').length;
+       const primaryAuthorityCount=sourceItems.filter(source=>String(source?.source_type||source?.provenance?.source_type||'').toLowerCase()==='primary').length;
+       const coverageStrong=verifiedSourceCount===sourceItems.length&&sourceItems.length>0;
+       const coverageDetail=primaryAuthorityCount
+        ? (LANG==='ar'?primaryAuthorityCount+' من المصادر مصنفة صراحةً كمراجع أولية':primaryAuthorityCount+' explicitly classified primary authorities support this answer')
+        : (LANG==='ar'?verifiedSourceCount+' من أصل '+sourceItems.length+' مصادر تحمل حالة النص الساري المتحقق':verifiedSourceCount+' of '+sourceItems.length+' sources carry verified-operative-text status');
+       bubble.append(h('section',{className:'research-answer-coverage '+(coverageStrong?'strong':'review'),role:'status'},
+        h('span',{className:'research-answer-coverage-icon','aria-hidden':'true',textContent:coverageStrong?'✓':'!'}),
+        h('div',{className:'research-answer-coverage-copy'},
+         h('b',{textContent:coverageStrong?(LANG==='ar'?'تغطية مصادر قوية':'Strong source coverage'):(LANG==='ar'?'تغطية المصادر تحتاج إلى مراجعة':'Source coverage needs review')}),
+         h('p',{textContent:coverageDetail})),
+        h('span',{className:'research-answer-coverage-meter','aria-hidden':'true'},...Array.from({length:4},(_,index)=>h('i',{className:index<Math.round(verifiedSourceCount/Math.max(1,sourceItems.length)*4)?'filled':''})))));
        for(const [i,s] of m.sources.entries()){
          const src=h('div',{className:'src research-source'});
          src.append(h('b',{textContent:'['+(i+1)+'] '+(s.ref||'Source')+' '}));
@@ -4200,4 +4213,18 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
  #main:has(.research-layout)>.demo-banner{grid-column:1;grid-row:auto}
  #main:has(.research-layout)>.research-page-actions{justify-content:flex-start;margin:0 0 12px}
 }
+</style><style>
+#main .research-answer-section-heading{display:flex;gap:7px;align-items:baseline;margin:18px 0 7px;font-family:Inter,"Segoe UI",sans-serif;font-size:13px;font-weight:700;line-height:1.5;color:#2a405c}
+#main .research-answer-section-number{flex:0 0 auto;color:#2e6cac}
+#main .research-answer-coverage{display:flex;align-items:center;gap:10px;margin:13px 0;padding:10px 12px;border:1px solid #e0e9e6;border-radius:7px;background:#f6faf8}
+#main .research-answer-coverage.review{border-color:#eee5d7;background:#fcfaf6}
+#main .research-answer-coverage-icon{display:grid;place-items:center;flex:0 0 22px;width:22px;height:22px;border-radius:50%;background:#e3f2ea;color:#23835e;font-size:12px;font-weight:800}
+#main .research-answer-coverage.review .research-answer-coverage-icon{background:#f5ead8;color:#9b6b27}
+#main .research-answer-coverage-copy{flex:1;min-width:0}
+#main .research-answer-coverage-copy b{display:block;font-family:Inter,"Segoe UI",sans-serif;font-size:10px;color:#2e6c54}
+#main .research-answer-coverage.review .research-answer-coverage-copy b{color:#86622f}
+#main .research-answer-coverage-copy p{margin:2px 0 0;font-family:Inter,"Segoe UI",sans-serif;font-size:9px;line-height:1.45;color:#75899a}
+#main .research-answer-coverage-meter{display:flex;gap:3px;flex:0 0 auto}
+#main .research-answer-coverage-meter i{width:11px;height:4px;border-radius:4px;background:#dce5e2}
+#main .research-answer-coverage-meter i.filled{background:#3b9a77}
 </style></html>
