@@ -117,3 +117,5 @@ This folder contains free/public source discovery, metadata registers and extrac
 57. [Companies, Insolvency and Economic Courts acquisition](egypt_companies_insolvency_economic_courts_acquisition_2026-11-17.md) — Companies Law159/1981 official government reprint; Law11/2021 official amendment to Bankruptcy Law11/2018; secondary base-law text; official GPO Decision3715/2026 modifying Economic Courts bankruptcy expert fees.
 
 58. [Investment, Commercial Registry and Public Finance acquisition](egypt_investment_commercial_registry_public_finance_acquisition_2026-11-17.md) — Investment Law72/2017 and PM2310/2017 regulation; historical Law8/1997; mortgage finance and finance leasing PDFs; Commercial Registry Law34/1976; 2026 Laws148 and154.
+
+59. [Investment, Commercial Registry and Public Finance acquisition](egypt_investment_commercial_registry_public_finance_acquisition_2026-11-17.md) — Investment Law72/2017, PM2310/2017 regulation, mortgage finance and finance leasing PDFs, Commercial Registry Law34/1976, and 2026 Laws148/154 public-finance updates.
