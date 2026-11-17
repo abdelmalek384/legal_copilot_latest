@@ -17,6 +17,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 11. [Gas Egypt appeal 5280/87](cassation_appeal_5280_87_gas_egypt_2026-08-25.md) — a detailed secondary summary of a prior-law absenteeism/termination dispute.
 12. [Additional ministerial decision harvest](ministerial_decisions_214_259_266_279_299_300_301_75_346_harvest_2026-11-17.md) — Gazette text/page maps for Decisions 214, 259, 260, 264, 266, 271, 272, 279, 292, 294, 299, 300, 301, 319 and 320; official indexed text for Decisions 74 and 75/2026; government-newsletter text for 346.
 13. [Further Decisions 187, 267, 270, 288–292](decisions_187_267_270_288_289_290_291_2025_harvest_2026-11-17.md) — resignation, apprenticeship, workforce reporting, rest-break exceptions, industrial hours, intermittent work, overtime.
+14. [Labour circulars 2025–2026](labour_circulars_2026_harvest_2026-11-17.md) — Circulars 3, 16 and 19/2025 and Circular 9/2026, including one-time holiday instructions and historical minimum-wage implementation.
 
 ## Structured inventory
 
@@ -24,19 +25,18 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 ## Current harvest snapshot
 
-- 33 distinct ministerial decision numbers identified across the 2025–2026 discovery inventory (including five OSH decisions 248–252/2026).
-- Full/partial text or extracted notes now include Decisions 48, 49, 50, 75, 162, 187, 214, 248, 250, 259, 260, 264, 266, 279, 299, 300, 301 and 346, with important source-quality differences: some are secondary transcriptions, and Gazette 290(B) searchable facsimile is hosted on a third-party CDN.
-- Court of Cassation labour-related appeal identifiers and headnote leads recorded, mostly under predecessor legislation.
-- No full corpus of Court of Cassation judgments acquired.
-- Newly located 290(B) Gazette bundle metadata names Decisions 266, 279, 300 and 301; third-party-hosted searchable facsimile has article text and page locators, but an authorized original and SHA-256 comparison are still needed.
-- SIS hosts a public Gazette 291 supplement facsimile containing Decisions 259, 260, 264, 271, 272, 292, 294, 299, 319 and 320. The PDF repeatedly states that the electronic image is not valid for dealings; use as a research locator, not a certified trading copy.
-- Decision 74/2026 is indexed in the official Amiri Press text service and catalogued in the official DSpace issue 108 bundle; it establishes the Labour Market Observatory framework.
-- Gazette 295(D) official SIS catalogue identifies Decisions 267, 270, 288, 289, 290 and 291. Article-level secondary text has been extracted for these; primary Gazette PDF comparison remains pending. Decision 289 also has a Ministry-hosted PDF.
-- Decision 214 Gazette text contains a possible preamble discrepancy reading Law 4/2025 rather than Law 14/2025; preserve unresolved pending inspection of the printed page and counsel review.
-- Decision 259 and 299 remain secondary full-text transcriptions pending primary Gazette comparison.
-- No original-Gazette hash captured for the existing Labour Law 14/2025 candidate in this harvest.
-- No source rights clearance or Egyptian lawyer sign-off obtained.
-- No production database import performed.
+- 34 distinct ministerial decision numbers identified in the current 2025–2026 register, plus four Ministry circulars (Circulars 3, 16 and 19/2025 and 9/2026).
+- **Substantial article-level text or structured extracts:** 24/34 decisions (about 71%). This counts substantial text/transcriptions and article maps, not metadata-only discoveries or a single isolated snippet. The other 10 remain partial, summary-only, or page-locator leads.
+- **Primary-source comparison:** article-level comparison has begun for three decisions against the public SIS Gazette facsimile for issue 291 (259, 264 and 299). This is not a certified legal copy: the SIS PDF expressly says the electronic image is not valid for dealings.
+- **Official Gazette scan locators:** issue 291 facsimile covers Decisions 259, 260, 264, 271, 272, 292, 294, 299, 319 and 320; issue 290(B) metadata and third-party-hosted facsimile cover 266, 279, 300 and 301; issue 295(D) metadata identifies 267, 270, 288, 289, 290 and 291.
+- **Court of Cassation:** labour-related appeal identifiers and headnote leads recorded, mostly under predecessor legislation; no full corpus of judgments acquired in this pass.
+- Decision 74/2026 is indexed in the official Amiri Press service and catalogued in DSpace; the attached DSpace PDFs are restricted and require a copy request.
+- Gazette 291 and 295(D) DSpace originals are restricted; SIS provides a public issue 291 facsimile, but that file is marked not valid for dealings. DSpace item-specific licenses and End User Agreement must be checked before reuse.
+- Decision 214 contains an unresolved preamble discrepancy: the searchable Gazette text reads Law 4/2025 instead of Law 14/2025. Do not silently correct it.
+- Decision 259 and 299 are now cross-checkable against the SIS-hosted issue 291 facsimile, but the facsimile disclaimer and rights/counsel gates remain.
+- All 34 decisions and four circulars remain lawyer_reviewed=false and rights_cleared=false. No production database import performed.
+- No original-Gazette SHA-256 hash captured for the Labour Law 14/2025 candidate; no legal data has been promoted to verified.
+- CSV structural validation passed: 38 data rows, 11 columns each, no duplicate document keys.
 
 ## Non-negotiable status rules
 
