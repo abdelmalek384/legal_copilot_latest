@@ -27,6 +27,7 @@
 | [collection_checkpoint_8_customs_tax_fra_2026-11-17.md](collection_checkpoint_8_customs_tax_fra_2026-11-17.md) | Customs 207/2020 and regulation amendment leads; Tax Procedures 206/2020 text; Economic Courts 120/2008 amendment; Financial Leasing/Factoring 176/2018 text; FinTech 5/2022 and FRA decisions |
 | [collection_checkpoint_9_digital_consumer_law_2026-11-17.md](collection_checkpoint_9_digital_consumer_law_2026-11-17.md) | Data protection 151/2020, cybercrime 175/2018, e-signature 15/2004 and consumer protection 181/2018 source/dependency map |
 | [collection_checkpoint_10_digital_consumer_finance_2026-11-17.md](collection_checkpoint_10_digital_consumer_finance_2026-11-17.md) | Official ITIDA e-signature texts, MCIT cybercrime index, CPA consumer-law index, FRA consumer-finance Law 18/2020 and 2026 guide |
+| [collection_checkpoint_11_personal_data_protection_2026-11-17.md](collection_checkpoint_11_personal_data_protection_2026-11-17.md) | Official-hosted Law 151/2020 Gazette PDF; Executive Regulation Decision 816/2025; official 2026 confirmation and Gazette-matching tasks |
 
 ## High-value primary-source portals
 
