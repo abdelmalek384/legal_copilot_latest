@@ -6335,6 +6335,92 @@
           "status": "listed_2026-11-17"
         }
       ]
+    },
+    {
+      "document_id": "EG-CIVIL-CODE-LAW-131-1948",
+      "official_title": "القانون المدني — القانون رقم 131 لسنة 1948",
+      "document_type": "law",
+      "law_number": "131",
+      "law_year": 1948,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "source_urls": [
+        {
+          "url": "https://www.eta.gov.eg/sites/default/files/2024-10/law-131-1948.pdf",
+          "source_role": "official government-hosted full-text PDF",
+          "status": "located_2026-11-17"
+        }
+      ],
+      "text_acquisition_status": "official_pdf_text_available",
+      "text_verification_note": "ETA-hosted PDF. Search-indexed text includes promulgation and Civil Code articles. The Ministry of Finance separately lists the Civil Code as in force but warns its online text is guidance and Gazette is controlling."
+    },
+    {
+      "document_id": "EG-CIVIL-PROCEDURE-LAW-13-1968",
+      "official_title": "قانون المرافعات المدنية والتجارية — القانون رقم 13 لسنة 1968",
+      "document_type": "law",
+      "law_number": "13",
+      "law_year": 1968,
+      "source_id": "EG-MINISTRY-OF-JUSTICE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "source_urls": [
+        {
+          "url": "https://www.notariesofegypt.org/article.php?id=471",
+          "source_role": "professional legal text; secondary locator",
+          "status": "located_2026-11-17"
+        },
+        {
+          "url": "https://www.laweg.net/framePlain.aspx?ItemID=33093&NID=40269&Type=6&action=ViewActivePages&cmd=s",
+          "source_role": "reproduced Gazette text; secondary host",
+          "status": "located_2026-11-17"
+        }
+      ],
+      "text_acquisition_status": "full_text_secondary_hosts_located",
+      "text_verification_note": "Complete text surfaced from non-government legal repositories; requires matching to Official Gazette and amendments before machine reliance."
+    },
+    {
+      "document_id": "EG-PENAL-CODE-LAW-58-1937",
+      "official_title": "قانون العقوبات — القانون رقم 58 لسنة 1937",
+      "document_type": "law",
+      "law_number": "58",
+      "law_year": 1937,
+      "source_id": "EG-MINISTRY-OF-JUSTICE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "source_urls": [
+        {
+          "url": "https://cyrilla.org/en/entity/fiz7wz2p1h53kdumbchh3erk9/metadata?file=1737219350056bd0od69vwgo.pdf",
+          "source_role": "Arabic consolidated text, third-party repository; source identifies official copy",
+          "status": "located_2026-11-17"
+        }
+      ],
+      "text_acquisition_status": "arabic_consolidated_copy_located",
+      "text_verification_note": "Cyrilla/Manshurat record says Arabic copy includes amendments through 14 August 2021; verify every amendment against Gazette and retrieve official Gazette copies."
+    },
+    {
+      "document_id": "EG-CONSTITUTION-2014-AMENDED-2019",
+      "official_title": "دستور جمهورية مصر العربية الصادر عام 2014 والمعدل عام 2019",
+      "document_type": "constitution",
+      "law_number": "1",
+      "law_year": 2019,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation",
+          "source_role": "official Ministry of Finance index",
+          "status": "located_2026-11-17"
+        },
+        {
+          "url": "https://cyrilla.org/ar/entity/53fbc7ns02od6r7xhfwff4unmi/relationships?file=1729884567288ltwls9979q8.pdf",
+          "source_role": "official Arabic Gazette copy locator",
+          "status": "located_2026-11-17"
+        }
+      ],
+      "text_acquisition_status": "official_arabic_copy_located",
+      "text_verification_note": "MoF index identifies 2014 Constitution amended in 2019 and warns its online copies are guidance only; Gazette remains controlling."
     }
   ]
 }
