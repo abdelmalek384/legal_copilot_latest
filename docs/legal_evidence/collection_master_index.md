@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 43) (expanded through checkpoint 42) (expanded through checkpoint 41) (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 44) (expanded through checkpoint 43) (expanded through checkpoint 42) (expanded through checkpoint 41) (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -209,6 +209,9 @@
 | [collection_checkpoint_43_universal_health_insurance_2018.md](collection_checkpoint_43_universal_health_insurance_2018.md) | Universal Health Insurance Law 2/2018, Executive Regulation 909/2018, institutions, financing and phased rollout |
 
 | [collection_checkpoint_56_scc_judgments_2026.md](collection_checkpoint_56_scc_judgments_2026.md) | Official SCC judgments: case 98/43 on pretrial detention salary; case 35/45 jurisdiction conflict; 3 Jan 2026 terrorism-law constitutional ruling |
+
+
+| [collection_checkpoint_44_labour_law_14_2025_implementation.md](collection_checkpoint_44_labour_law_14_2025_implementation.md) | Labour Law 14/2025 official texts, commencement, ministerial-decision implementation model and 2025–2026 decision/circular leads |
 
 ## High-value primary-source portals
 
