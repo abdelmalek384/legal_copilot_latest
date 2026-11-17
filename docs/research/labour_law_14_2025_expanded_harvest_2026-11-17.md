@@ -30,12 +30,12 @@ The following list combines (i) a secondary editorial index updated 2026-09-28, 
 | 259/2025 | Rules, procedures and deadlines for payment of workers' entitlements | IDSC catalogue record; Gazette 291 bundle | Metadata and file listing located; full text/rights review required |
 | 260/2025 | Competent administrative authority under Law 14/2025 | IDSC catalogue record and independent full-text secondary copy; Gazette 291 | Metadata and secondary text located; Gazette page and rights review required |
 | 264/2025 | Conduct and regulation of training operations | Gazette 291 bundle and IDSC record | Metadata/file listing located |
-| 266/2025 | Skill-level assessment and licensing of professions/crafts | Independent full-text secondary copy located | Secondary text only in this pass; trace to Gazette |
+| 266/2025 | Skill-level assessment and licensing of professions/crafts | Gazette 290(B) DSpace metadata plus third-party-hosted searchable Gazette facsimile | Text/page map pp.3–30; occupation schedule through serial 435; authorized original/hash and table QA pending |
 | 267/2025 | Apprenticeship / vocational progression rules | Gazette 295 bundle; secondary full-text copy | Gazette bundle metadata + secondary text |
 | 270/2025 | New establishments' workforce data reporting to labour directorate | Gazette 295 bundle; secondary full-text copy | Gazette bundle metadata + secondary text |
 | 271/2025 | Registering and reporting employees with disabilities / dwarfism | Gazette 291 bundle; secondary full-text copy | Gazette bundle metadata + secondary text |
 | 272/2025 | Domestic and overseas recruitment operations / recruitment agencies | Gazette 291 bundle; independent full-text secondary copy | Gazette bundle metadata + secondary text |
-| 279/2025 | Work permits for foreign nationals | Independent full-text secondary copy | Secondary text only in this pass; trace to Gazette |
+| 279/2025 | Work permits for foreign nationals | Gazette 290(B) DSpace metadata plus third-party-hosted searchable Gazette facsimile | 40-article text located pp.31–44; authorized original/hash and counsel review pending |
 | 288/2025 | Exceptions to standard breaks and arduous work with counted rest periods | Gazette 295 bundle; secondary full-text copy | Gazette bundle metadata + secondary text |
 | 289/2025 | Working hours in industrial establishments | SIS-hosted PDF excerpt and independent full-text secondary copy | Text lead located; Gazette page/date to confirm |
 | 290/2025 | Intermittent work allowing presence above 10 hours, capped at 12 | Gazette 295 bundle; IDSC record and secondary text | Metadata and partial content located |
@@ -43,8 +43,8 @@ The following list combines (i) a secondary editorial index updated 2026-09-28, 
 | 292/2025 | Maximum actual/overtime hours in preparatory, complementary, guard and cleaning work | Gazette 291 bundle; secondary full-text copy | Metadata and partial content located |
 | 294/2025 | Holidays and occasions treated as fully paid leave | Gazette 291 bundle; secondary full-text copy | Metadata and partial content located |
 | 299/2025 | Formation and operation of an amicable settlement committee | Gazette 291 bundle | Catalogue metadata only in this pass |
-| 300/2025 | Rules and procedures for conciliation in collective labour disputes | IDSC record/file listing | Metadata/file listing located; inspect Gazette text (catalogue abstract mismatch noted) |
-| 301/2025 | Objective criteria for selecting workers for redundancy on partial closure/reduction | IDSC record/file listing | Metadata/file listing located; inspect Gazette text (catalogue abstract mismatch noted) |
+| 300/2025 | Rules and procedures for conciliation in collective labour disputes | Gazette 290(B) DSpace metadata plus third-party-hosted searchable facsimile | 16-article text located pp.45–49; title confirmed in scan; authorized original/hash pending |
+| 301/2025 | Objective criteria for selecting workers for redundancy on partial closure/reduction | Individual DSpace record + Gazette 290(B) metadata and third-party-hosted searchable facsimile | Six-article text located pp.50–52; title confirmed; authorized original/hash pending |
 | 319/2025 | Labour inspection controls and monthly surprise-inspection plans | Gazette 291 bundle; secondary full-text copy | Metadata and partial text located |
 | 320/2025 | Assignment and procedures for night / out-of-hours workplace inspections | Gazette 291 bundle; secondary full-text copy | Metadata and partial text located |
 | 346/2025 | Religious holidays for Christian workers | IDSC/IDSC newsletter search result states the Minister announced Decision 346/2025 | Official announcement lead located; full text and Gazette citation needed |
@@ -131,3 +131,21 @@ Most located Court of Cassation labour principles concern Law 12/2003 or earlier
 4. Retrieve and classify the 248–252/2026 OSH decisions; do not infer their full scope from an announcement.
 5. Capture 20–30 Court of Cassation labour principles with full appeal identifiers and statute-version tags.
 6. Keep all collected text outside production search until rights, provenance, currentness, and lawyer-review gates are met. Metadata/link-out can be used as a discovery layer where text reuse is not cleared.
+
+
+## E. Additional Gazette/text harvest — 17 November 2026
+
+A new research note, [Additional Labour Decisions Harvest](ministerial_decisions_214_259_266_279_299_300_301_75_346_harvest_2026-11-17.md), records the newly retrieved material and caveats.
+
+- Gazette 290 supplement (B), 24 Dec 2025: official DSpace metadata names Decisions 266, 279, 300 and 301. A searchable Gazette facsimile hosted on a third-party CDN yielded their texts and page locators. Do not call this primary-source verified until an authorized original is obtained and compared.
+- Decision 266: occupation-skill schedule extends through serial entry 435; annex OCR needs row-by-row QA.
+- Decision 279: 40 articles on foreign-worker work permits.
+- Decision 300: 16 articles on collective-dispute conciliation.
+- Decision 301: six articles on objective redundancy-selection criteria.
+- Decision 214: nine-article text/page map from Gazette issue 249 (6 Nov 2025), with an unresolved preamble anomaly reading Law No. 4/2025 where the intended/current Labour Law is No. 14/2025. Preserve rather than silently correct.
+- Decision 259: eight-article secondary transcription plus official issue 291 bundle metadata; primary text comparison pending.
+- Decision 299: seven-article secondary transcription plus issue 291 metadata; primary text comparison pending.
+- Decision 75/2026: official Amiri Press indexed text and official Gazette issue 108 DSpace bundle; full page retrieval failed, so detailed prohibited-work list remains secondary pending.
+- Decision 346/2025: official government newsletter reproduces two provisions; Gazette locator remains pending.
+
+These updates do not change lawyer_reviewed or rights_cleared status. No production import was performed.
