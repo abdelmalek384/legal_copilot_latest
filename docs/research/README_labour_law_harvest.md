@@ -36,7 +36,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 30. [OSH predecessor decisions 134/2003, 232/2010 and 216/2016](osh_legacy_decisions_134_232_216_2026-11-17.md) — earlier three-instrument source lead note.
 31. [Expanded OSH legacy framework and training amendments](osh_legacy_framework_134_232_263_74_11_216_2026-11-17.md) — 134/2003 text and tables, 232/2010 amendments/repeal lead, 263/2010 scan, 74/2013 amendment, 11/2014 22-article training regulation, and 216/2016 Article 18 amendment.
 
-- The separate Article 11 legacy transition register now has 110 data rows after reconciling 65 Ministry-index leads (including entries that remain index-only) from the Ministry's legislation page. These rows remain currentness-unverified and are not confirmed operative law.
+- The separate Article 11 legacy transition register now has 110 data rows in total, including the 63 Ministry-index leads added in the earlier expansion (including entries that remain index-only) from the Ministry's legislation page. These rows remain currentness-unverified and are not confirmed operative law.
 
 ## Structured inventory
 
