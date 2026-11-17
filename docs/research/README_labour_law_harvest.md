@@ -128,3 +128,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 63. [Environmental instruments register](../../data/research/egypt_environmental_instruments_register_2026-11-17.csv) — 51 instrument entries covering environmental amendments, executive regulations and EEAA decisions.
 
 64. [2026 Future Egypt Authority and budget acquisition](egypt_2026_future_egypt_authority_and_budget_law_acquisition.md) — GPO full texts for Law147/2026 and Budget Law77/2026; Ministry leads for PM2034/2026 and Cabinet Decision80/2026; Law47/147 identifier discrepancy flagged.
+
+65. [Supreme Constitutional Court first case-law harvest](egypt_supreme_constitutional_court_first_case_law_harvest_2026-11-17.md) — full official judgments 2/44 (2026) and115/25 (2026), plus operative holdings quoted for 99/43 (2025) and16/24 (2025).
+66. [Constitutional case-law register](../../data/research/egypt_constitutional_case_law_register_2026-11-17.csv) — docket, dates, statutes, holdings, publication effects and source status for four SCC decisions.

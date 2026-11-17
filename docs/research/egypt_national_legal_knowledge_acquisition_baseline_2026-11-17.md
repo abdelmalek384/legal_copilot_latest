@@ -166,7 +166,7 @@ Additional statutes indexed include Laws 46/1972, 47/1972, 54/1964 as amended by
 | Seed anchor instruments inventoried | 139 | Starter set, not the total universe of Egyptian laws and decisions |
 | Source PDFs opened | 35/139 (25.2% of seed list) | Includes government reprints, official agency copies and files with unreadable/garbled text layers; not all are bare Gazette originals |
 | Nationwide consolidated statute domains | 0/36 | No domain yet has all base laws, amendments, executive regulations and currentness fully consolidated |
-| Full judicial judgments acquired in this national tranche | 0 | One Constitutional Court press-summary lead and a bulletin; 23 State Council series targets are bibliographic leads |
+| Full judicial judgments acquired in this national tranche | 2 | Full official SCC judgments 2/44 (2026) and115/25 (2026); earlier cases99/43 and16/24 are quoted holdings pending original pages |
 | Lawyer-reviewed national instruments | 0 | Human legal review remains mandatory |
 
 **Overall nationwide legal knowledge collection estimate: 5%.** This is a cautious project-management estimate, not a count of all Egyptian laws or judicial decisions. It reflects the still-small share of actual full-text acquisition, amendment consolidation, currentness verification, judicial corpus collection and lawyer review. It must rise only when the underlying documents and legal relationships are acquired and checked—not when source URLs are merely discovered.
