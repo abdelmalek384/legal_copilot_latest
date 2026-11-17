@@ -19,6 +19,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 13. [Further Decisions 187, 267, 270, 288–292, 319–320](decisions_187_267_270_288_289_290_291_2025_harvest_2026-11-17.md) — resignation, apprenticeship, workforce reporting, rest-break exceptions, industrial hours, intermittent work, overtime.
 14. [Labour circulars 2025–2026](labour_circulars_2026_harvest_2026-11-17.md) — Circulars 3, 15, 16 and 19/2025; Circulars 9 and 22/2026; and an unnumbered April 2026 remote-work monitoring circular.
 15. [Additional Cassation case leads](cassation_additional_labour_cases_2024_2025_2026-11-17.md) and [structured case register](../../data/research/cassation_labour_case_register_2026-11-17.csv) — 2023–2025 labour, dismissal, wage, electronic-evidence and injury-pension leads with predecessor-law warnings.
+16. [National Council for Wages and minimum-wage updates](labour_wage_council_and_minimum_wage_updates_2026-11-17.md) — Prime Minister Decision 3165/2026 and the 15 Nov 2026 approval of a future EGP 8,500 wage floor (formal implementing decision pending).
 
 ## Structured inventory
 
@@ -26,18 +27,19 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 ## Current harvest snapshot
 
-- 34 distinct ministerial decision numbers identified in the current 2025–2026 register, plus seven circular/implementation instruments (Circulars 3, 15, 16 and 19/2025; Circulars 9 and 22/2026; and one unnumbered April 2026 remote-work monitoring circular).
-- **Substantial article-level text or structured extracts:** 34/34 decisions (100% of the currently identified register). This does not mean all 34 have complete official texts or primary-source verification; several remain secondary-only or partial. This counts substantial text/transcriptions and article maps, not metadata-only discoveries or a single isolated snippet. The other 10 remain partial, summary-only, or page-locator leads.
+- 34 distinct ministerial decision numbers plus Prime Minister Decision 3165/2026 (35 formal instruments) identified in the current 2025–2026 register, plus seven circular/implementation instruments (Circulars 3, 15, 16 and 19/2025; Circulars 9 and 22/2026; and one unnumbered April 2026 remote-work monitoring circular).
+- **Substantial article-level text or structured extracts:** 35/35 formal instruments (100% of the currently identified register). This does not mean all 34 have complete official texts or primary-source verification; several remain secondary-only or partial. This counts substantial text/transcriptions and article maps, not metadata-only discoveries or a single isolated snippet. The other 10 remain partial, summary-only, or page-locator leads.
 - **Primary-source comparison:** article-level comparison has begun for three decisions against the public SIS Gazette facsimile for issue 291 (259, 264 and 299). This is not a certified legal copy: the SIS PDF expressly says the electronic image is not valid for dealings.
 - **Official Gazette scan locators:** issue 291 facsimile covers Decisions 259, 260, 264, 271, 272, 292, 294, 299, 319 and 320; issue 290(B) metadata and third-party-hosted facsimile cover 266, 279, 300 and 301; issue 295(D) metadata identifies 267, 270, 288, 289, 290 and 291.
 - **Court of Cassation:** nine additional case records structured (Appeals 12226/92, 12946/92, 6130/87, 16587/86, 16664/93, 25116/93, 4085/93, 15513/94 and 11438/86), in addition to the earlier case leads. Most apply predecessor legislation; no full corpus of judgments acquired.
 - Decision 74/2026 is indexed in the official Amiri Press service and catalogued in DSpace; the attached DSpace PDFs are restricted and require a copy request. Decision 75/2026 now has a full 15-article Amiri Press indexed text map; the attached DSpace Gazette PDF remains restricted. Decision 251/2026 has a substantive secondary extract. Decision 252/2026 now has a 36-article structured extract from third-party watermarked Gazette page images; its official DSpace PDF remains restricted. Decision 260/2025's three-article text and 36 administrative-authority mappings have now been extracted; blank cells in the secondary table remain unresolved.
 - Gazette 291 and 295(D) DSpace originals are restricted; SIS provides a public issue 291 facsimile, but that file is marked not valid for dealings. DSpace item-specific licenses and End User Agreement must be checked before reuse.
 - Decision 214 contains an unresolved preamble discrepancy: the searchable Gazette text reads Law 4/2025 instead of Law 14/2025. Do not silently correct it.
+- On 15 November 2026 the National Wages Council approved an EGP 8,500 monthly minimum wage from 1 January 2027 and an EGP 350 minimum periodic increment. The formal implementing wage decision had not yet been located as of 17 November 2026; do not apply the future rate early.
 - Decisions 259, 264 and 299 have article-level text cross-checked against the SIS-hosted issue 291 facsimile; Decision 294 has a complete Ministry-hosted four-article text. The SIS facsimile disclaimer and rights/counsel gates remain.
 - All 34 decisions and four circulars remain lawyer_reviewed=false and rights_cleared=false. No production database import performed.
 - No original-Gazette SHA-256 hash captured for the Labour Law 14/2025 candidate; no legal data has been promoted to verified.
-- CSV structural validation passed: 41 data rows, 11 columns each, no duplicate document keys.
+- CSV structural validation passed: 42 data rows, 11 columns each, no duplicate document keys.
 
 ## Non-negotiable status rules
 
