@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 20) (expanded through 25 additional research checkpoints in this session) (expanded through checkpoint 19) (expanded through checkpoint 18) (expanded through checkpoint 17) (expanded through checkpoint 16) (expanded through checkpoint 15) (expanded through checkpoint 14) (expanded through checkpoint 13) (expanded through checkpoint 11) (expanded through new FRA checkpoint) (expanded through checkpoint 9)  
+**Last updated:** 2026-11-17 (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
