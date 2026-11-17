@@ -320,6 +320,8 @@
 
 | [collection_checkpoint_67_public_contracts_law_182_2018.md](collection_checkpoint_67_public_contracts_law_182_2018.md) | Public Contracts Law 182/2018, full 2,857-line Executive Regulation 692/2019, amendment Law 188/2020 and ministerial decision leads |
 
+| [collection_checkpoint_76_social_insurance_law_11_2026.md](collection_checkpoint_76_social_insurance_law_11_2026.md) | Law 11/2026 replaces Article 111 of Social Insurance Law 148/2019; EGP 238.55bn first instalment, 50-year schedule and Authority Decision 2/2026 bonds |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
