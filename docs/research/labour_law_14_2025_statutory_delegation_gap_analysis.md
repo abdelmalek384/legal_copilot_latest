@@ -38,6 +38,7 @@ A title-based harvest cannot establish completeness. The law itself delegates do
 7. **Article 272:** minimum social and cultural services for establishments with 50 or more workers.
 8. **Article 276:** Ministerial Decision 320/2025 now supplies night/out-of-hours inspection triggers, reporting and statistics; Article 6 still defers the actual allowance amounts/controls to a separate authority decision not located.
 9. **Article 121:** Decisions 291/2025 and 292/2025 supply overtime grounds/rates and category-specific caps, but Decision 291 delegates annual sectoral overtime maxima to the Supreme Council for Social Dialogue; that follow-up decision was not located.
+10. **Article 100:** no general new-work-pattern decision located. The Ministry was still discussing remote, flexible, freelance and platform-work frameworks on 26 September 2026; PM Decision 982 is only a temporary Sunday scheme and Decision 162 only requires internal bylaw clauses.
 9. **Article 3 of PM Decision 3356/2026:** separate Ministerial decision for full exemption from the Training Fund contribution where an establishment trains its workers according to its needs/approved bylaws.
 10. **Article 3 of Ministerial Decision 269/2025:** the labour-market information/occupational-classification procedural manual due within three months; the manual was not located.
 
@@ -76,4 +77,4 @@ A title-based harvest cannot establish completeness. The law itself delegates do
 
 ## 6. Progress measure
 
-The companion CSV contains **43 explicit statutory delegation rows**. This is a mapping of the delegations surfaced from the accessible Law 14/2025 text, not proof that all possible delegations have been captured. The formal-instrument register contains 51 identified instruments; 35 Ministry of Labour decision numbers are identified against the 68 Ministry decisions cited in official 2025 announcements. Corpus completeness remains open.
+The companion CSV contains **44 explicit statutory delegation rows**. This is a mapping of the delegations surfaced from the accessible Law 14/2025 text, not proof that all possible delegations have been captured. The formal-instrument register contains 51 identified instruments; 35 Ministry of Labour decision numbers are identified against the 68 Ministry decisions cited in official 2025 announcements. Corpus completeness remains open.
