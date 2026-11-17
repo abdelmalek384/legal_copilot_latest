@@ -26,7 +26,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 ## Current harvest snapshot
 
 - 34 distinct ministerial decision numbers identified in the current 2025–2026 register, plus seven circular/implementation instruments (Circulars 3, 15, 16 and 19/2025; Circulars 9 and 22/2026; and one unnumbered April 2026 remote-work monitoring circular).
-- **Substantial article-level text or structured extracts:** 31/34 decisions (about 91%). This counts substantial text/transcriptions and article maps, not metadata-only discoveries or a single isolated snippet. The other 10 remain partial, summary-only, or page-locator leads.
+- **Substantial article-level text or structured extracts:** 32/34 decisions (about 94%). This counts substantial text/transcriptions and article maps, not metadata-only discoveries or a single isolated snippet. The other 10 remain partial, summary-only, or page-locator leads.
 - **Primary-source comparison:** article-level comparison has begun for three decisions against the public SIS Gazette facsimile for issue 291 (259, 264 and 299). This is not a certified legal copy: the SIS PDF expressly says the electronic image is not valid for dealings.
 - **Official Gazette scan locators:** issue 291 facsimile covers Decisions 259, 260, 264, 271, 272, 292, 294, 299, 319 and 320; issue 290(B) metadata and third-party-hosted facsimile cover 266, 279, 300 and 301; issue 295(D) metadata identifies 267, 270, 288, 289, 290 and 291.
 - **Court of Cassation:** labour-related appeal identifiers and headnote leads recorded, mostly under predecessor legislation; no full corpus of judgments acquired in this pass.
