@@ -115,6 +115,8 @@
 
 | [collection_checkpoint_26_tax_laws_5_7_2025.md](collection_checkpoint_26_tax_laws_5_7_2025.md) | Full official ETA text extraction of Laws 5/2025 (tax regularization) and 7/2025 (delay-charge cap and settlement provisions) |
 
+| [collection_checkpoint_35_labour_19_decisions_2026.md](collection_checkpoint_35_labour_19_decisions_2026.md) | Labour Law 14/2025 implementation architecture; 19 dated ministerial decision inventory; PM Decision 3165/2026 National Wages Council; temporary remote-work status |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
