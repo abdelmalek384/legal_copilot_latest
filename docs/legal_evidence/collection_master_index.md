@@ -131,6 +131,8 @@
 
 | [collection_checkpoint_39_sports_media_tourism_2026.md](collection_checkpoint_39_sports_media_tourism_2026.md) | Sports Law 71/2017; Youth Bodies 218/2017; Media Law 180/2018; Tourism Companies 38/1977; Umrah 72/2021; Hajj 84/2022; tourism governance |
 
+| [collection_checkpoint_40_elections_political_rights_2026.md](collection_checkpoint_40_elections_political_rights_2026.md) | Election Laws 45/2014, 46/2014, 198/2017, 174/2020, 141/2020, Presidential Law 22/2014; NEA 2025 decisions; political parties Law 40/1977 |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
