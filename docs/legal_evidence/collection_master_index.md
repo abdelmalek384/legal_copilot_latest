@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 42) (expanded through checkpoint 41) (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 43) (expanded through checkpoint 42) (expanded through checkpoint 41) (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -204,6 +204,9 @@
 | [collection_checkpoint_42_social_insurance_law_2019.md](collection_checkpoint_42_social_insurance_law_2019.md) | Social Insurance and Pensions Law 148/2019, Executive Regulation 2437/2021, initial contribution rates and related PM decisions |
 
 | [collection_checkpoint_55_military_universities_2026.md](collection_checkpoint_55_military_universities_2026.md) | Law 156/2026 amends Military Technical College Law 93/1975; Law 161/2026 establishes Kayan University for Applied Sciences; parliamentary deletion of proposed Article 25 recorded |
+
+
+| [collection_checkpoint_43_universal_health_insurance_2018.md](collection_checkpoint_43_universal_health_insurance_2018.md) | Universal Health Insurance Law 2/2018, Executive Regulation 909/2018, institutions, financing and phased rollout |
 
 ## High-value primary-source portals
 
