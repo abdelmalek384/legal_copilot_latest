@@ -2854,7 +2854,7 @@ async function law(){
  const evidenceFilterEmpty=h('p',{className:'research-evidence-filter-empty',hidden:true,textContent:LANG==='ar'?'لا توجد مصادر مصنفة صراحةً كمصادر أولية في هذه الإجابة.':'No sources are explicitly classified as primary for this answer.'});
  const updateEvidenceCoverage=()=>{
   const cards=Array.from(evidenceCards.children),total=cards.length,verified=cards.filter(card=>card.dataset.verified==='true').length;
-  evidenceCount.textContent=!total?(LANG==='ar'?'0 مصدر':'0 sources'):(verified===total?(LANG==='ar'?verified+' متحقق':' '+verified+' verified'):(LANG==='ar'?verified+' / '+total+' متحقق':' '+verified+'/'+total+' verified'));
+  evidenceCount.textContent=!total?(LANG==='ar'?'0 مصدر':'0 sources'):(verified===total?(LANG==='ar'?verified+' متحقق':verified+' verified'):(LANG==='ar'?verified+' / '+total+' متحقق':verified+'/'+total+' verified'));
   evidenceCoverageCount.textContent=verified+' / '+total;
   evidenceCoverageLabel.textContent=!total?(LANG==='ar'?'لا توجد مصادر':'No sources'):verified===total?(LANG==='ar'?'تغطية المصادر قوية':'Strong source coverage'):(LANG==='ar'?'تحتاج المصادر إلى مراجعة':'Source review needed');
   evidenceCoverageFill.style.width=(total?Math.round(verified/total*100):0)+'%';
