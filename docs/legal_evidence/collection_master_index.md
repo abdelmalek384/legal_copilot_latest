@@ -127,6 +127,8 @@
 
 | [collection_checkpoint_28_vat_law_149_2026_full_text.md](collection_checkpoint_28_vat_law_149_2026_full_text.md) | Full searchable official text extraction of VAT Law 149/2026, medical-equipment suspension, transit, refund and exemption schedule changes |
 
+| [collection_checkpoint_38_tourism_transport_aviation_2026.md](collection_checkpoint_38_tourism_transport_aviation_2026.md) | Tourism Law 8/2022 and Regulation 705/2023; River Transport 167/2022; Civil Aviation 28/1981; maritime commerce/ports and transport authority instruments |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
