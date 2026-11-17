@@ -1344,3 +1344,22 @@ Validation and remaining gates:
 - Merged PR #1749 (`d609fdf4e9f608ab7c3b1c6a9cba2426a7311112`): global search now queries the existing permission-scoped `/documents/search` endpoint alongside matters and clients. Results are grouped by type; selecting a document opens the Documents workspace with its matter preselected.
 - Updated search placeholder/accessible labels, Arabic catalog, UX audit and frontend regression contract. Catalog now contains 1570 unique entries.
 - Independent validation: full inline frontend JavaScript parsed with V8; runtime harness returned all three result groups and verified document navigation/matter preselection; existing document endpoint source was checked for firm and membership scope. GitHub Actions jobs all had zero executed steps; no browser/backend suite pass is claimed.
+
+
+## UI implementation continuation — 2026-11-17
+
+The following focused UI changes were merged to `main` during this continuation:
+
+- PR #1731: Legal Research upload disclosure now exposes and synchronizes `aria-controls` / `aria-expanded`, and resets its state when leaving Firm documents.
+- PR #1734: Research upload outcomes use polite list announcements while urgent per-item errors retain assertive alert semantics.
+- PR #1750: Conflict-check short-query validation now presents an inline alert associated with the query field, focuses the field and clears the error after correction.
+- PR #1751: Legal-review Pass outcomes with no evidence URL now show an associated inline alert and focus the evidence field; entering evidence or changing away from Pass clears the error.
+- PR #1752: AI brief generation now identifies each missing firm/client authorization checkbox, focuses the first unchecked attestation and clears the error only after both are checked. The underlying consent requirements and API payload are unchanged.
+- PR #1753: Legal-review history and event submission share accessible version-selection validation.
+- PR #1754 and #1755: Legal Research document-workspace opening and save-to-matter actions share one accessible matter-selection error and recovery behavior.
+- PR #1756: Research answer ratings now associate missing ratings and out-of-bound expected article IDs with inline validation, focus the first invalid control and clear errors after correction.
+- PR #1757: Global search now supports a `>` command mode for filtering and opening the existing permission-gated navigation destinations. Normal matter/client/document search remains unchanged.
+
+Validation performed independently in this batch: the complete inline frontend JavaScript parsed with V8 after the final merged UI changes; focused source assertions were added to `tests/test_frontend_ux_contract.py`. GitHub Actions runner allocation continued to fail before test steps, so the Python suite and browser acceptance are not claimed as passing. No live screen-reader, zoom/reflow, device or lawyer-usability acceptance was performed.
+
+The previously recorded estimates remain unchanged pending exact-head automated and manual evidence: whole project 75.3%; Legal Research Phase 5 85%; UI/accessibility scorecard 45.3%. These are engineering estimates, not runtime-test or production-readiness percentages.
