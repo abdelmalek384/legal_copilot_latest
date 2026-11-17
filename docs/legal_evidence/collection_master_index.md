@@ -203,6 +203,8 @@
 
 | [collection_checkpoint_42_social_insurance_law_2019.md](collection_checkpoint_42_social_insurance_law_2019.md) | Social Insurance and Pensions Law 148/2019, Executive Regulation 2437/2021, initial contribution rates and related PM decisions |
 
+| [collection_checkpoint_55_military_universities_2026.md](collection_checkpoint_55_military_universities_2026.md) | Law 156/2026 amends Military Technical College Law 93/1975; Law 161/2026 establishes Kayan University for Applied Sciences; parliamentary deletion of proposed Article 25 recorded |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
