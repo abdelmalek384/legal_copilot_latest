@@ -6765,13 +6765,13 @@
       "source_id": "EG-MOF-LEGISLATION",
       "language": "ar",
       "candidate_status": "discovery_only",
-      "text_acquisition_status": "official_or_authoritative_locator_found",
-      "text_verification_note": "Official Gazette issue 12 تابع (أ), 18 March 2004, Ministry of Finance-hosted PDF; text includes transfer of pending cases and family court establishment. Complete text extraction, official Gazette hash, currentness, amendment mapping and lawyer review outstanding.",
+      "text_acquisition_status": "official_gazette_pdf_opened_text_layer_parsed",
+      "text_verification_note": "Ministry of Finance-hosted Official Gazette issue 12 تابع (أ), 18 March 2004, opened; 129 text lines surfaced. Promulgation provision sets commencement at 1 October 2004; text covers family courts, specialist appeals, family dispute settlement offices, jurisdiction and case procedure. Later amendments/currentness still need checking; not lawyer-reviewed.",
       "source_urls": [
         {
           "url": "https://media.mof.gov.eg/mof-prd/1100_a5e6ce8477.pdf",
-          "source_role": "official Ministry of Finance or Official Gazette host",
-          "status": "located_2026-11-17"
+          "source_role": "Official Gazette PDF hosted by Ministry of Finance",
+          "status": "opened_text_layer_parsed_2026-11-17"
         }
       ]
     },
