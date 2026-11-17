@@ -1590,5 +1590,47 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertEqual(self.browser_errors, [], self.browser_errors)
 
 
+    def test_legal_research_matches_reference_layout_and_evidence_controls(self) -> None:
+        self.page.set_viewport_size({"width": 1440, "height": 960})
+        self.login(self.state["owner_a_email"])
+
+        language_switch = self.page.locator('[data-lang-switch="1"]').first
+        if language_switch.inner_text().strip() == "English":
+            language_switch.click()
+
+        research_nav = self.page.locator("#side").get_by_role("button", name="البحث القانوني")
+        research_nav.click()
+        self.page.locator(".research-layout").wait_for(state="visible", timeout=10000)
+
+        self.assertTrue(self.page.locator(".workspace-topbar").is_visible())
+        self.assertTrue(self.page.get_by_text("ابحث في القانون مع مساعدة ذكية مدعومة بالمصادر", exact=True).is_visible())
+        self.assertTrue(self.page.get_by_role("heading", name="ما الذي تحتاج إلى إثباته؟").is_visible())
+
+        grid_columns = self.page.locator(".research-layout").evaluate(
+            "(el) => getComputedStyle(el).gridTemplateColumns.split(' ').length"
+        )
+        self.assertEqual(grid_columns, 3, "desktop research view must retain three distinct columns")
+
+        all_sources = self.page.get_by_role("button", name="كل المصادر", exact=True)
+        primary_only = self.page.get_by_role("button", name="المصادر الأولية", exact=True)
+        self.assertTrue(all_sources.is_visible())
+        self.assertTrue(primary_only.is_visible())
+        primary_only.click()
+        self.assertEqual(primary_only.get_attribute("aria-pressed"), "true")
+        self.assertEqual(all_sources.get_attribute("aria-pressed"), "false")
+        all_sources.click()
+        self.assertEqual(all_sources.get_attribute("aria-pressed"), "true")
+
+        self.page.wait_for_function(
+            "() => document.documentElement.scrollWidth <= window.innerWidth",
+            timeout=8000,
+        )
+        self.page.set_viewport_size({"width": 390, "height": 844})
+        self.page.wait_for_function(
+            "() => document.documentElement.scrollWidth <= window.innerWidth",
+            timeout=8000,
+        )
+        self.assertEqual(self.browser_errors, [], self.browser_errors)
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
