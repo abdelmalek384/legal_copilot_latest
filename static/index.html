@@ -4561,4 +4561,52 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
  #main .research-composer-controls .research-scope-tab{font-size:11px!important;padding:7px 5px!important}
 }
 </style>
+
+<style>
+/* Refine the two side rails: give evidence cards and session titles enough
+   room, and use one consistent spacing rhythm across all three panes. */
+#main .research-layout{
+ grid-template-columns:minmax(240px,260px) minmax(0,1fr) minmax(180px,200px)!important;
+ gap:14px!important;
+}
+#main .research-layout:dir(ltr){
+ grid-template-columns:minmax(180px,200px) minmax(0,1fr) minmax(240px,260px)!important;
+}
+#main .research-layout>.research-list,
+#main .research-layout>.research-evidence-panel{
+ box-sizing:border-box!important;min-width:0!important;
+}
+#main .research-layout>.research-list{
+ display:flex!important;flex-direction:column!important;gap:12px!important;
+ padding:13px!important;border:1px solid #e3e8f0!important;border-radius:10px!important;
+ background:#fff!important;
+}
+#main .research-list-head{flex-wrap:wrap!important;row-gap:8px!important}
+#main .research-list-head-actions{min-width:0!important;max-width:100%!important}
+#main .research-conversation-row{min-width:0!important;align-items:center!important}
+#main .research-conversation-row .research-conversation{overflow:hidden!important;text-overflow:ellipsis!important}
+#main .research-saved-searches{margin-top:8px!important;padding-top:12px!important}
+#main .research-layout>.research-evidence-panel{
+ padding:15px!important;gap:11px!important;
+}
+#main .research-evidence-heading{flex-wrap:wrap!important;row-gap:6px!important}
+#main .research-evidence-filters{align-items:stretch!important;row-gap:7px!important}
+#main .research-evidence-cards{gap:10px!important;min-width:0!important}
+#main .research-evidence-cards>*{min-width:0!important;max-width:100%!important;overflow-wrap:anywhere!important}
+#main .research-layout>.research-main{gap:14px!important}
+#main .research-layout>.research-main>.research-composer{gap:12px!important;padding:18px!important}
+#main .research-layout>.research-main>.research-thread{padding:20px!important}
+@media(max-width:1180px){
+ #main .research-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:12px!important}
+ #main .research-layout:dir(ltr){grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+}
+@media(max-width:800px){
+ #main .research-layout{grid-template-columns:minmax(0,1fr)!important;gap:10px!important}
+ #main .research-layout:dir(ltr){grid-template-columns:minmax(0,1fr)!important}
+ #main .research-layout>.research-list,
+ #main .research-layout>.research-evidence-panel{padding:12px!important}
+ #main .research-layout>.research-main>.research-thread{padding:12px!important}
+ #main .research-layout>.research-main>.research-composer{padding:12px!important}
+}
+</style>
 </html>
