@@ -3005,7 +3005,7 @@ async function law(){
  };
  const renderMessages=(messages)=>{
    lastResearchMessages=Array.isArray(messages)?messages:[];
-   resetInspector();evidenceCards.replaceChildren();evidenceFilter='all';evidenceFilterAll.classList.add('active');evidenceFilterAll.setAttribute('aria-pressed','true');evidenceFilterPrimary.classList.remove('active');evidenceFilterPrimary.setAttribute('aria-pressed','false');updateEvidenceCoverage();thread.replaceChildren();
+   resetInspector();evidenceCards.replaceChildren();evidenceFilter='all';evidenceFilterAll.classList.add('active');evidenceFilterAll.setAttribute('aria-pressed','true');evidenceFilterPrimary.classList.remove('active');evidenceFilterPrimary.setAttribute('aria-pressed','false');evidenceFilterEmpty.hidden=true;updateEvidenceCoverage();thread.replaceChildren();
    const header=h('div',{className:'research-heading'},h('div',{},h('b',{textContent:copy('بحث قانوني مدعوم بالمصادر')}),h('div',{className:'mut',textContent:copy('نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.')})));
    thread.append(header);
    researchEmptyState.hidden=messages.length>0;researchExamples.hidden=messages.length>0;
