@@ -173,6 +173,8 @@
 
 | [collection_checkpoint_36_customs_law_and_regulations_2026.md](collection_checkpoint_36_customs_law_and_regulations_2026.md) | Full 734-line Customs Law 207/2020, official 5,778-line 2024 Executive Regulation compilation and 2026 Decisions 262/328/531 with source conflict |
 
+| [collection_checkpoint_49_asylum_refugee_law_2026.md](collection_checkpoint_49_asylum_refugee_law_2026.md) | Asylum Law 164/2024 official Gazette record; Executive Regulation Decision 1568/2026; registration, status determination, appeals, transitional UNHCR cards and travel-document fee update |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
