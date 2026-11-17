@@ -8,13 +8,14 @@ Status: four-article secondary text extract plus official IDSC newsletter/Minist
 
 ## Sources
 
+- **Official State Information Service-hosted PDF containing the Ministry's announcement and full four-article text (24 December 2025):** https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/116928/MOM20251224_0735.pdf?isAllowed=y&sequence=4
 - **Official IDSC government newsletter (24 December 2025):** https://idsc.gov.eg/upload/NewsLetter/AttachmentA/13454/الخميس25ديسمبر2025-عددرقم1204-السنةالخامسة.html
 - **EastLaws record and article snippets:** https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/11-12-2025/no-269?id=5008536&type=1
 - **Secondary four-article text:** https://mwq3masr.com/قرار-وزاري-لتطوير-منظومة-معلومات-سوق-العمل/
 - **Additional publication coverage:** https://www.almasryalyoum.com/news/details/4159251
 - **Official Ministry publications page:** https://www.labour.gov.eg/ar/الإصدارات/
 
-The official IDSC newsletter confirms the decision number, subject, issuer and purpose. EastLaws gives 11 December 2025 as issue/signature date and exposes article snippets. A complete official Amiri Press/Official Gazette text and the attached data form were not retrieved.
+The SIS-hosted PDF reproduces the Ministry announcement and all four operative articles, and the official IDSC newsletter confirms the announcement. EastLaws gives 11 December 2025 as the date in its record; the Ministry announced the decision on 24 December 2025. The signed Gazette issue/date and the attached data form were not retrieved.
 
 ## Four-article map
 
@@ -26,13 +27,13 @@ Creates central labour-market databases, supports necessary field studies/resear
 
 Adopts the attached data form for creating/updating employment databases and the labour-market information system. Establishments selected by the General Department for Labour-Market Information, Wage and Productivity Studies must complete the form and submit it to that department within **30 days from the request date**.
 
-The actual form is an attachment to the decision and has not been acquired in this pass. Do not guess its fields or treat the general employer-information list in the Law itself as an exact transcription of the form.
+The Ministry/SIS four-article PDF does not include the attached form; the form is referenced as an annex but has not been acquired in this pass. Do not guess its fields or treat the general employer-information list in the Law itself as an exact transcription of the form.
 
 ### Article 3 — procedural manual
 
 The General Department for Labour-Market Information, Wage and Productivity Studies must prepare a procedural manual for labour-market information and occupational classification for use by all field work units. The manual is to be issued within **three months from the decision's effective date**.
 
-The manual's title, version, publication link and contents have not yet been located. This is an open acquisition task.
+The manual's title, version, publication link and contents have not yet been located. On 12 March 2026 the Ministry said it was updating the Egyptian Occupational Classification Guide (whose then-current version dated to 2017) with a target completion before 2027: https://www.labour.gov.eg/ar/الأخبار/وزارة-العمل-تتحرك-لسرعة-تحديث-دليل-التصنيف-المهني-وربطه-بالمعايير-الأوروبية-الوزير-حسن-رداد-يعقد-اجتماع-ا-مع-شركاء-محليين-ودوليين-ويوجه-بتحديد-توقيتات-زمنية-للانتهاء-من-الدليل-لمواكبة-المهن-المستحدثة/. This is related evidence of ongoing occupational-classification work, but it is not proof that the specific Article 269 procedural manual was never issued; verify whether the two documents are identical or separate.
 
 ### Article 4 — publication and commencement
 
@@ -55,7 +56,7 @@ Published in Al-Waqa'i al-Misriyya and effective the day after publication.
 
 ## Outstanding acquisition
 
-- Obtain the official Gazette issue and complete signed decision.
+- Obtain the official Gazette issue and complete signed decision; the SIS-hosted four-article text is a government reproduction but not a page-by-page Gazette comparison.
 - Obtain and preserve the attached data form; extract its exact field names, instructions, signature/authorization fields and submission format.
 - Locate the Article 3 procedural manual for labour-market information and occupational classification.
 - Confirm whether the manual was issued within the three-month period and whether later versions amend it.
