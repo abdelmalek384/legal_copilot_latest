@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -111,6 +111,9 @@
 | [collection_checkpoint_25_law_6_2025_full_text.md](collection_checkpoint_25_law_6_2025_full_text.md) | Full article-structured extraction of official ETA PDF for Law 6/2025, simplified turnover-based tax regime and cross-law links |
 
 | [collection_checkpoint_34_labour_implementation_2026.md](collection_checkpoint_34_labour_implementation_2026.md) | Labour Law 14/2025 official text; Decision 162/2026 workplace regulations; PM Decision 3165/2026 wages council; labour courts/legal aid; temporary remote-work extensions |
+
+
+| [collection_checkpoint_26_tax_laws_5_7_2025.md](collection_checkpoint_26_tax_laws_5_7_2025.md) | Full official ETA text extraction of Laws 5/2025 (tax regularization) and 7/2025 (delay-charge cap and settlement provisions) |
 
 ## High-value primary-source portals
 
