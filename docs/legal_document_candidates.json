@@ -6073,15 +6073,16 @@
       "source_id": "EG-ETA-TAX-LAWS",
       "language": "ar",
       "candidate_status": "discovery_only",
-      "text_acquisition_status": "official_pdf_text_layer_parsed_partial",
-      "text_verification_note": "Official Gazette issue 30 مكرر (أ), 28 July 2026; official MoF-hosted PDF, 4 pages and 91 extracted text lines. Partial text inspected: Article 3 VAT rate and exceptions; Article 5 transitional input-tax suspension for certain medical equipment; Article 30 bad-credit balance rule; amendments to exempt goods/services list. Full 4-page transcription and exact schedule mapping not yet completed. Not lawyer-reviewed.",
+      "text_acquisition_status": "full_text_transcribed_to_repository",
+      "text_verification_note": "Official Gazette issue 30 مكرر (أ), 28 July 2026, pp. 4–7; official MoF-hosted 4-page PDF with 91 extracted lines. Full transcription committed. PDF text layer has ordering/recognition defects; visual comparison and numeric/exception QA required. Requires PDF binary archive/SHA-256, consolidation with VAT Law 67/2016 and regulations, and lawyer review.",
       "source_urls": [
         {
           "url": "https://media.mof.gov.eg/mof-prd/qanwn_rqm_149_lsnt_2026_tedyl_bed_ahkam_aldrybt_ela_alqymt_almdaft_alsadr_balqanwn_67_ls_2016_3bb8c6e5bb.pdf",
           "source_role": "official Ministry of Finance Gazette PDF",
           "status": "pdf_opened_text_layer_parsed_2026-11-17"
         }
-      ]
+      ],
+      "text_file_path": "data/legal_texts/2026/law_149_2026_vat_amendment_ar.md"
     },
     {
       "document_id": "EG-VAT-AMEND-157-2025",
@@ -8766,6 +8767,25 @@
           "url": "https://mof.gov.eg/ar/legislation/laws?page=12",
           "source_role": "official Ministry of Finance legislation catalogue",
           "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-METRO-AUTHORITY-AMEND-83-2025",
+      "official_title": "القانون رقم 83 لسنة 2025 بتعديل بعض أحكام القانون رقم 113 لسنة 1983 بإنشاء الهيئة القومية للأنفاق",
+      "document_type": "transport_authority_law_amendment",
+      "law_number": "83",
+      "law_year": 2025,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_record_located",
+      "text_verification_note": "Official MoF record identifies the law and labels it in force. Full text, Gazette issue, amended provisions, effective date and subsequent status not yet extracted. Portal warns Gazette is controlling. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws",
+          "source_role": "official Ministry of Finance legislation portal",
+          "status": "located_2026-11-17"
         }
       ]
     }
