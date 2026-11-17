@@ -91,3 +91,12 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 
 44. [Law 14/2025 supplied-corpus / Gazette issue 18 alignment audit](law14_2025_user_archive_gazette_alignment_audit_2026-11-17.md) — 311-row structural coverage and Arabic fuzzy alignment against the user's supplied 112-page Gazette copy; numeric values, authenticity certification, rights and lawyer sign-off remain outstanding.
+
+
+## National Egyptian legal knowledge acquisition
+
+45. [National legal acquisition baseline and roadmap](egypt_national_legal_knowledge_acquisition_baseline_2026-11-17.md) — first nationwide 30-domain inventory, source-access policy, public/restricted court data boundary, initial statute tranche and new 2026 tax-law text extraction.
+46. [National legal domain inventory](../../data/research/egypt_national_legal_domain_inventory_2026-11-17.csv) — 30 domains with priority, anchor laws, existing coverage and gaps.
+47. [National legal source register](../../data/research/egypt_national_legal_sources_register_2026-11-17.csv) — 16 government, court, regulator and discovery sources with access tiers and collection restrictions.
+48. [Initial statute acquisition register](../../data/research/egypt_initial_statute_acquisition_register_2026-11-17.csv) — 25 instruments; separates opened official PDFs from official catalogue leads and secondary-only candidates.
+49. [Criminal Procedure Law 174/2025 status after Law 160/2026](egypt_criminal_procedure_law_174_2025_status_after_law_160_2026.md) — official commencement amendment establishes 1 October 2027; new Code remains enacted but not yet in force at this snapshot.
