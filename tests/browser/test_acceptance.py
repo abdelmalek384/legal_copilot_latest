@@ -1618,6 +1618,9 @@ class BrowserAcceptanceTests(unittest.TestCase):
         primary_only.click()
         self.assertEqual(primary_only.get_attribute("aria-pressed"), "true")
         self.assertEqual(all_sources.get_attribute("aria-pressed"), "false")
+        self.assertTrue(self.page.get_by_text(
+            "لا توجد مصادر مصنفة صراحةً كمصادر أولية في هذه الإجابة.", exact=True
+        ).is_visible())
         all_sources.click()
         self.assertEqual(all_sources.get_attribute("aria-pressed"), "true")
 
