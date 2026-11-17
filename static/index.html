@@ -1390,6 +1390,15 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
 @media(max-width:420px){.research-layout,.research-main,.research-evidence-panel,.research-composer,.research-thread{min-width:0;max-width:100%;}.research-list-head{gap:6px;}.research-list-head>b{font-size:13px;white-space:nowrap;word-break:keep-all;overflow-wrap:normal;}.research-list-head-actions{gap:4px;}.research-list-head-actions button{padding-inline:7px;font-size:11px;}.research-evidence-cards .research-source-actions{display:grid;grid-template-columns:minmax(0,1fr);}.research-composer-controls select{width:100%;max-width:100%;}}
 
 .research-empty-corpus{margin:0;padding:8px 0;color:var(--mut);font-size:13px;font-weight:500;}
+
+/* Higher-specificity overrides for the existing workspace skin. */
+#main .research-layout{display:grid!important;grid-template-columns:minmax(220px,270px) minmax(360px,1fr) minmax(250px,310px)!important;gap:14px!important;align-items:start!important;width:100%!important;min-width:0!important;}
+#main .research-layout>.research-list,#main .research-layout>.research-main,#main .research-layout>.research-evidence-panel{grid-column:auto!important;grid-row:auto!important;min-width:0!important;max-width:none!important;}
+#main .research-layout>.research-evidence-panel{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto;}
+#main .research-layout>.research-main{min-width:0!important;}
+#main .research-evidence-panel .research-inspector{grid-column:auto!important;max-width:none!important;}
+@media(max-width:1180px){#main .research-layout{grid-template-columns:minmax(190px,230px) minmax(0,1fr)!important;}#main .research-layout>.research-evidence-panel{grid-column:1/-1!important;position:static;max-height:none;}}
+@media(max-width:760px){#main .research-layout{grid-template-columns:minmax(0,1fr)!important;}#main .research-layout>.research-list,#main .research-layout>.research-main,#main .research-layout>.research-evidence-panel{grid-column:1!important;grid-row:auto!important;position:static;max-height:none;}}
 </style>
 <link rel="stylesheet" href="/static/design-tokens.css">
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
