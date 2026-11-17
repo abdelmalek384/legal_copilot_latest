@@ -537,7 +537,16 @@
       "source_id": "EG-AMIRI-PRESS",
       "language": "ar",
       "candidate_status": "discovery_only",
-      "notes": "Verify subsequent amendments and current text."
+      "notes": "Verify subsequent amendments and current text.",
+      "source_urls": [
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/1299_705e8a7b67.pdf",
+          "source_role": "official Ministry of Finance Gazette-linked PDF",
+          "status": "official_pdf_opened_2026-11-17"
+        }
+      ],
+      "text_acquisition_status": "official_pdf_opened_page_count_known",
+      "text_verification_note": "Ministry of Finance official record identifies Evidence Law 25/1968 as in force and links a 12-page PDF. The PDF reader exposed page count but no text layer. Ministry warns electronic text is guidance and Official Gazette is controlling. Full extraction, amendments (including 23/1992 and 18/1999), currentness and lawyer review outstanding."
     },
     {
       "document_id": "EG-PENAL-CODE-58-1937",
