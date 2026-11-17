@@ -2852,8 +2852,10 @@ async function law(){
  const evidenceFilterPrimary=h('button',{type:'button','aria-pressed':'false',textContent:LANG==='ar'?'المصادر الأولية':'Primary only',onclick:()=>setEvidenceFilter('primary')});
  const evidenceFilters=h('div',{className:'research-evidence-filters',role:'group','aria-label':LANG==='ar'?'تصفية المصادر':'Filter sources'},evidenceFilterAll,evidenceFilterPrimary);
  const evidenceFilterEmpty=h('p',{className:'research-evidence-filter-empty',hidden:true,textContent:LANG==='ar'?'لا توجد مصادر مصنفة صراحةً كمصادر أولية في هذه الإجابة.':'No sources are explicitly classified as primary for this answer.'});
+ const evidenceEmptyState=h('div',{className:'research-evidence-empty-state',role:'status',textContent:LANG==='ar'?'ستظهر المصادر هنا بعد اكتمال البحث. لا توجد مصادر مرتبطة بهذه المحادثة حتى الآن.':'Sources will appear here when research returns supporting material. No sources are linked to this conversation yet.'});
  const updateEvidenceCoverage=()=>{
   const cards=Array.from(evidenceCards.children),total=cards.length,verified=cards.filter(card=>card.dataset.verified==='true').length;
+  evidenceEmptyState.hidden=total>0;
   evidenceCount.textContent=!total?(LANG==='ar'?'0 مصدر':'0 sources'):(verified===total?(LANG==='ar'?verified+' متحقق':verified+' verified'):(LANG==='ar'?verified+' / '+total+' متحقق':verified+'/'+total+' verified'));
   evidenceCoverageCount.textContent=verified+' / '+total;
   evidenceCoverageLabel.textContent=!total?(LANG==='ar'?'لا توجد مصادر':'No sources'):verified===total?(LANG==='ar'?'تغطية المصادر قوية':'Strong source coverage'):(LANG==='ar'?'تحتاج المصادر إلى مراجعة':'Source review needed');
@@ -2867,7 +2869,7 @@ async function law(){
   cards.forEach(card=>{card.hidden=filter==='primary'&&card.dataset.primary!=='true'});
   evidenceFilterEmpty.hidden=filter!=='primary'||cards.some(card=>card.dataset.primary==='true');
  };
- const evidencePanel=h('aside',{className:'research-evidence-panel card','aria-label':LANG==='ar'?'الأدلة والمصادر':'Evidence and sources'},h('div',{className:'research-evidence-heading'},h('b',{textContent:LANG==='ar'?'الأدلة':'Evidence'}),evidenceCount),h('p',{className:'mut',textContent:LANG==='ar'?'المصادر الداعمة لهذه الإجابة':'Sources supporting this answer'}),evidenceCoverage,evidenceFilters,evidenceFilterEmpty,evidenceCards,sourceInspector);
+ const evidencePanel=h('aside',{className:'research-evidence-panel card','aria-label':LANG==='ar'?'الأدلة والمصادر':'Evidence and sources'},h('div',{className:'research-evidence-heading'},h('b',{textContent:LANG==='ar'?'الأدلة':'Evidence'}),evidenceCount),h('p',{className:'mut',textContent:LANG==='ar'?'المصادر الداعمة لهذه الإجابة':'Sources supporting this answer'}),evidenceCoverage,evidenceFilters,evidenceFilterEmpty,evidenceEmptyState,evidenceCards,sourceInspector);
  let activeId=null, sending=false, conversationItems=[],lastResearchMessages=[];
  const conversationFilter=h('input',{type:'search',placeholder:LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations','aria-label':LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations'});
  const historyToggle=h('button',{type:'button',className:'g research-history-toggle','aria-controls':'research-history-pane','aria-expanded':'true',textContent:LANG==='ar'?'إخفاء السجل':'Hide history',onclick:()=>{const collapsed=sidebar.classList.toggle('history-collapsed');historyToggle.setAttribute('aria-expanded',String(!collapsed));historyToggle.textContent=collapsed?(LANG==='ar'?'إظهار السجل':'Show history'):(LANG==='ar'?'إخفاء السجل':'Hide history')}});
@@ -4539,5 +4541,24 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 #main .research-saved-searches-heading{flex-wrap:wrap!important}
 #main .research-saved-searches-heading>button{white-space:nowrap!important;flex:0 0 auto!important}
 #main .research-saved-search-empty{line-height:1.45!important;margin:6px 0!important}
+</style>
+<style>
+/* Make the evidence rail useful in the empty state rather than leaving a blank
+   panel beneath the source filters. */
+#main .research-evidence-empty-state{
+ margin:4px 0 8px!important;padding:12px!important;border:1px dashed #d5deea!important;
+ border-radius:9px!important;background:#f8fafd!important;color:#637187!important;
+ font-size:12px!important;line-height:1.55!important;
+}
+#main .research-evidence-empty-state[hidden]{display:none!important}
+#main .research-evidence-panel{display:flex!important;flex-direction:column!important;gap:8px!important;min-width:0!important}
+#main .research-evidence-panel>p{margin:0!important;line-height:1.45!important}
+#main .research-evidence-filters{display:flex!important;flex-wrap:wrap!important;gap:6px!important}
+#main .research-evidence-filters>button{min-height:34px!important;padding:7px 10px!important;white-space:nowrap!important}
+#main .research-composer-controls .research-scope-tabs{gap:6px!important;padding:5px!important}
+#main .research-composer-controls .research-scope-tab{min-height:38px!important;padding:7px 8px!important;line-height:1.3!important;overflow-wrap:anywhere!important}
+@media(max-width:420px){
+ #main .research-composer-controls .research-scope-tab{font-size:11px!important;padding:7px 5px!important}
+}
 </style>
 </html>
