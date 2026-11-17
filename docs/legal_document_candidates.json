@@ -7948,6 +7948,82 @@
           "status": "listed_2026-11-17"
         }
       ]
+    },
+    {
+      "document_id": "EG-ECONOMIC-COURTS-AMEND-156-2024",
+      "official_title": "القانون رقم 156 لسنة 2024 بتعديل بعض أحكام قانون إنشاء المحاكم الاقتصادية رقم 120 لسنة 2008",
+      "document_type": "economic_courts_amendment",
+      "law_number": "156",
+      "law_year": 2024,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_catalogue_entry_seen",
+      "text_verification_note": "Listed on page 6 of the official Ministry of Finance laws catalogue. Gazette PDF, full text, SHA-256 and legal effect/currentness not yet extracted. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws?page=6",
+          "source_role": "official Ministry of Finance legislation catalogue",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-ECONOMIC-SOCIAL-PLAN-LAW-92-2023",
+      "official_title": "القانون رقم 92 لسنة 2023 باعتماد خطة التنمية الاقتصادية والاجتماعية للعام المالي 2023/2024",
+      "document_type": "economic_plan_law",
+      "law_number": "92",
+      "law_year": 2023,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_catalogue_entry_seen",
+      "text_verification_note": "Listed on page 6 of the official Ministry of Finance laws catalogue. Gazette PDF, full text, SHA-256 and legal effect/currentness not yet extracted. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws?page=6",
+          "source_role": "official Ministry of Finance legislation catalogue",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-BUDGET-LAW-91-2023",
+      "official_title": "القانون رقم 91 لسنة 2023 بربط الموازنة العامة للدولة للسنة المالية 2023/2024",
+      "document_type": "annual_budget_law",
+      "law_number": "91",
+      "law_year": 2023,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_catalogue_entry_seen",
+      "text_verification_note": "Listed on page 6 of the official Ministry of Finance laws catalogue. Gazette PDF, full text, SHA-256 and legal effect/currentness not yet extracted. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws?page=6",
+          "source_role": "official Ministry of Finance legislation catalogue",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-WAR-PRODUCTION-AUTHORITY-BUDGET-152-2023",
+      "official_title": "القانون رقم 152 لسنة 2023 بربط موازنة الهيئة القومية للإنتاج الحربي للسنة المالية 2023/2024",
+      "document_type": "annual_budget_law",
+      "law_number": "152",
+      "law_year": 2023,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_catalogue_entry_seen",
+      "text_verification_note": "Listed on page 6 of the official Ministry of Finance laws catalogue. Gazette PDF, full text, SHA-256 and legal effect/currentness not yet extracted. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws?page=6",
+          "source_role": "official Ministry of Finance legislation catalogue",
+          "status": "listed_2026-11-17"
+        }
+      ]
     }
   ]
 }
