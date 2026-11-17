@@ -58,6 +58,9 @@ class WorkspaceLayoutRegressionTests(unittest.TestCase):
         self.assertIn('font-size:10px!important;', HTML)
         self.assertNotIn('#main:has(.research-layout)>.demo-banner{display:none', HTML)
 
+    def test_ltr_research_reverses_rail_track_widths_with_semantic_panes(self):
+        self.assertIn('#main .research-layout:dir(ltr){grid-template-columns:minmax(160px,180px) minmax(0,1fr) minmax(225px,245px)!important}', HTML)
+
 
 if __name__ == "__main__":
     unittest.main()
