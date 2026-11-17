@@ -327,6 +327,39 @@
       "terms_url": null,
       "terms_checked_on": null,
       "permission_evidence": "EEAA page identifies Arabic original as official version and lists Law 4/1994 as amended by Law 9/2009 and Law 105/2015. The page is useful for discovery and version relations; full Gazette page verification and reuse terms remain outstanding."
+    },
+    {
+      "source_id": "EG-EDA-REGULATORY-REFERENCE",
+      "authority": "Egyptian Drug Authority, Arab Republic of Egypt",
+      "source_page": "https://www.edaegypt.gov.eg/en/the-regulatory-reference-of-the-egyptian-drug-authority-eda/laws-and-executive-regulations/",
+      "access_status": "official regulatory-reference index observed 2026-11-17; lists establishing law, related health/pharmaceutical laws and executive/ministerial decrees; individual primary texts and full currentness not independently checked",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Public official index is a discovery source only. No affirmative bulk collection, indexing, or commercial reuse licence established."
+    },
+    {
+      "source_id": "EG-GOEIC-LAWS-DECISIONS",
+      "authority": "General Organization for Export and Import Control, Arab Republic of Egypt",
+      "source_page": "https://www.goeic.gov.eg/ar/laws-and-decisions/list",
+      "access_status": "official laws-and-decisions index observed 2026-11-17; lists laws, ministerial decisions and operational circulars including multiple 2026 instruments",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Public index metadata is a discovery lead. No affirmative bulk collection, indexing, or commercial reuse licence established. Distinguish statutes and published decisions from administrative circulars and forms."
+    },
+    {
+      "source_id": "EG-UHIA-LEGISLATION",
+      "authority": "Universal Health Insurance Authority, Arab Republic of Egypt",
+      "source_page": "https://uhia.gov.eg/",
+      "access_status": "official authority site and official-hosted Law 2/2018 Gazette PDF locator observed; FAQ identifies law and executive regulations; amendment Law 155/2026 separately reported by SIS",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Official-hosted PDF locator and authority FAQ are discovery evidence only. Confirm all instruments against Official Gazette and review reuse rights; no bulk or commercial reuse permission established."
     }
   ],
   "documents": [
@@ -3007,6 +3040,654 @@
         {
           "url": "https://customs.gov.eg/Legislations/Documents",
           "source_role": "official Customs circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EDA-LAW-151-2019",
+      "official_title": "القانون رقم 151 لسنة 2019 بإصدار قانون إنشاء الهيئة المصرية للشراء الموحد والإمداد والتموين الطبي وإدارة التكنولوجيا الطبية وهيئة الدواء المصرية",
+      "document_type": "law",
+      "law_number": "151",
+      "law_year": 2019,
+      "source_id": "EG-EDA-REGULATORY-REFERENCE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Foundational statute for EDA and AUPP; capture Official Gazette original, separate entity mandates and amendments. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.edaegypt.gov.eg/en/the-regulatory-reference-of-the-egyptian-drug-authority-eda/laws-and-executive-regulations/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EDA-PRIME-MINISTER-DECREE-777-2020",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 777 لسنة 2020 بإصدار اللائحة التنفيذية للقانون رقم 151 لسنة 2019",
+      "document_type": "executive_regulation",
+      "law_number": "777",
+      "law_year": 2020,
+      "source_id": "EG-EDA-REGULATORY-REFERENCE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official EDA index identifies this as executive regulation to Law 151/2019; Gazette text and later amendments not checked. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.edaegypt.gov.eg/en/the-regulatory-reference-of-the-egyptian-drug-authority-eda/laws-and-executive-regulations/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EDA-LAW-127-1955",
+      "official_title": "القانون رقم 127 لسنة 1955 بشأن مزاولة مهنة الصيدلة",
+      "document_type": "law",
+      "law_number": "127",
+      "law_year": 1955,
+      "source_id": "EG-EDA-REGULATORY-REFERENCE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed in EDA regulatory reference; verify consolidated amendments and current schedules. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.edaegypt.gov.eg/en/the-regulatory-reference-of-the-egyptian-drug-authority-eda/laws-and-executive-regulations/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EDA-LAW-182-1960",
+      "official_title": "القانون رقم 182 لسنة 1960 بشأن مكافحة المخدرات وتنظيم استعمالها والاتجار فيها",
+      "document_type": "law",
+      "law_number": "182",
+      "law_year": 1960,
+      "source_id": "EG-EDA-REGULATORY-REFERENCE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed in EDA reference; highly amendment- and schedule-sensitive; do not answer controlled-substance schedule questions without current official schedules. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.edaegypt.gov.eg/en/the-regulatory-reference-of-the-egyptian-drug-authority-eda/laws-and-executive-regulations/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EDA-LAW-214-2020",
+      "official_title": "القانون رقم 214 لسنة 2020 بإصدار قانون تنظيم البحوث الطبية الإكلينيكية",
+      "document_type": "law",
+      "law_number": "214",
+      "law_year": 2020,
+      "source_id": "EG-EDA-REGULATORY-REFERENCE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "EDA index lists law and Prime Minister Decree 927/2022 executive regulation. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.edaegypt.gov.eg/en/the-regulatory-reference-of-the-egyptian-drug-authority-eda/laws-and-executive-regulations/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EDA-PRIME-MINISTER-DECREE-927-2022",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 927 لسنة 2022 بإصدار اللائحة التنفيذية للقانون رقم 214 لسنة 2020 بشأن تنظيم البحوث الطبية الإكلينيكية",
+      "document_type": "executive_regulation",
+      "law_number": "927",
+      "law_year": 2022,
+      "source_id": "EG-EDA-REGULATORY-REFERENCE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Executive regulation listed by EDA; Gazette text and subsequent amendments not checked. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.edaegypt.gov.eg/en/the-regulatory-reference-of-the-egyptian-drug-authority-eda/laws-and-executive-regulations/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EDA-LAW-8-2021",
+      "official_title": "القانون رقم 8 لسنة 2021 بتنظيم عمليات الدم وتجميع البلازما لتصنيع مشتقاتها وتصديرها",
+      "document_type": "law",
+      "law_number": "8",
+      "law_year": 2021,
+      "source_id": "EG-EDA-REGULATORY-REFERENCE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "EDA index lists Law 8/2021 and its executive regulation. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.edaegypt.gov.eg/en/the-regulatory-reference-of-the-egyptian-drug-authority-eda/laws-and-executive-regulations/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EDA-PRIME-MINISTER-DECREE-2603-2021",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 2603 لسنة 2021 بإصدار اللائحة التنفيذية للقانون رقم 8 لسنة 2021",
+      "document_type": "executive_regulation",
+      "law_number": "2603",
+      "law_year": 2021,
+      "source_id": "EG-EDA-REGULATORY-REFERENCE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Executive regulation listed by EDA; capture official Gazette original. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.edaegypt.gov.eg/en/the-regulatory-reference-of-the-egyptian-drug-authority-eda/laws-and-executive-regulations/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EDA-PRESIDENT-DECREE-343-2021",
+      "official_title": "قرار رئيس الجمهورية رقم 343 لسنة 2021 بشأن قواعد تسجيل المستحضرات البيولوجية",
+      "document_type": "presidential_decree",
+      "law_number": "343",
+      "law_year": 2021,
+      "source_id": "EG-EDA-REGULATORY-REFERENCE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by EDA; exact operative scope, schedules and amendments require primary text review. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.edaegypt.gov.eg/en/the-regulatory-reference-of-the-egyptian-drug-authority-eda/laws-and-executive-regulations/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EDA-PRESIDENT-DECREE-150-2022",
+      "official_title": "قرار رئيس الجمهورية رقم 150 لسنة 2022 بشأن إعادة تنظيم قواعد وإجراءات إعادة تسجيل المستحضرات الصيدلية البشرية",
+      "document_type": "presidential_decree",
+      "law_number": "150",
+      "law_year": 2022,
+      "source_id": "EG-EDA-REGULATORY-REFERENCE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by EDA; determine subsequent amendments and current registration requirements. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.edaegypt.gov.eg/en/the-regulatory-reference-of-the-egyptian-drug-authority-eda/laws-and-executive-regulations/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EDA-MOH-DECREE-44-2026",
+      "official_title": "قرار وزير الصحة والسكان رقم 44 لسنة 2026 بشأن استبدال الجداول الملحقة بالقانون رقم 182 لسنة 1960",
+      "document_type": "ministerial_decision",
+      "law_number": "44",
+      "law_year": 2026,
+      "source_id": "EG-EDA-REGULATORY-REFERENCE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "EDA lists issue date 17 February 2026; schedule text must be checked against Gazette issue and later replacement by Decision 242/2026. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.edaegypt.gov.eg/en/the-regulatory-reference-of-the-egyptian-drug-authority-eda/laws-and-executive-regulations/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EDA-MOH-DECREE-242-2026",
+      "official_title": "قرار وزير الصحة والسكان رقم 242 لسنة 2026 بشأن تعديل الجداول الملحقة بالقانون رقم 182 لسنة 1960 والمستبدلة بالقرار رقم 44 لسنة 2026",
+      "document_type": "ministerial_decision",
+      "law_number": "242",
+      "law_year": 2026,
+      "source_id": "EG-EDA-REGULATORY-REFERENCE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "EDA lists issue date 20 July 2026; schedule-sensitive instrument, obtain exact annexes and commencement. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.edaegypt.gov.eg/en/the-regulatory-reference-of-the-egyptian-drug-authority-eda/laws-and-executive-regulations/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EDA-MINISTERIAL-DECREE-4042-2026",
+      "official_title": "قرار وزير الصحة والسكان رقم 4042 لسنة 2026 بمنح بعض العاملين بالهيئة المصرية للدواء صفة مأموري الضبط القضائي",
+      "document_type": "ministerial_decision",
+      "law_number": "4042",
+      "law_year": 2026,
+      "source_id": "EG-EDA-REGULATORY-REFERENCE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "EDA index lists issue date 26 July 2026; verify named employees, scope and Gazette publication. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.edaegypt.gov.eg/en/the-regulatory-reference-of-the-egyptian-drug-authority-eda/laws-and-executive-regulations/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EDA-PRIME-MINISTER-DECREE-869-2010",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 869 لسنة 2010 بشأن تنظيم بعض المسائل المتعلقة بالمنتجات والمستحضرات",
+      "document_type": "prime_minister_decision",
+      "law_number": "869",
+      "law_year": 2010,
+      "source_id": "EG-EDA-REGULATORY-REFERENCE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "EDA lists this decree and later replacement of Article 2 by Decree 1818/2019; exact title and text need verification. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.edaegypt.gov.eg/en/the-regulatory-reference-of-the-egyptian-drug-authority-eda/laws-and-executive-regulations/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EDA-PRIME-MINISTER-DECREE-1818-2019",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 1818 لسنة 2019 باستبدال نص المادة الثانية من القرار رقم 869 لسنة 2010",
+      "document_type": "prime_minister_decision",
+      "law_number": "1818",
+      "law_year": 2019,
+      "source_id": "EG-EDA-REGULATORY-REFERENCE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "EDA index describes this as replacing Article 2 of Decree 869/2010; retrieve both texts and consolidate. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.edaegypt.gov.eg/en/the-regulatory-reference-of-the-egyptian-drug-authority-eda/laws-and-executive-regulations/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EDA-LAW-48-1941",
+      "official_title": "القانون رقم 48 لسنة 1941 بشأن قمع التدليس والغش",
+      "document_type": "law",
+      "law_number": "48",
+      "law_year": 1941,
+      "source_id": "EG-EDA-REGULATORY-REFERENCE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by EDA as amended by Laws 106/1980 and 281/1994; later amendments/currentness not checked. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.edaegypt.gov.eg/en/the-regulatory-reference-of-the-egyptian-drug-authority-eda/laws-and-executive-regulations/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EDA-LAW-15-2017",
+      "official_title": "القانون رقم 15 لسنة 2017 بشأن تيسير إجراءات منح تراخيص المنشآت الصناعية",
+      "document_type": "law",
+      "law_number": "15",
+      "law_year": 2017,
+      "source_id": "EG-EDA-REGULATORY-REFERENCE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Cross-listed in EDA framework; industrial authority source already exists; maintain one canonical instrument record and link sector indexes. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.edaegypt.gov.eg/en/the-regulatory-reference-of-the-egyptian-drug-authority-eda/laws-and-executive-regulations/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-UHIA-LAW-2-2018",
+      "official_title": "القانون رقم 2 لسنة 2018 بإصدار قانون نظام التأمين الصحي الشامل",
+      "document_type": "law",
+      "law_number": "2",
+      "law_year": 2018,
+      "source_id": "EG-UHIA-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "UHIA hosts a PDF labelled Official Gazette issue 2 bis (B), 11 January 2018; compare exact pages and capture executive regulation. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://uhia.gov.eg/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-UHIA-LAW-AMENDMENT-155-2026",
+      "official_title": "القانون رقم 155 لسنة 2026 بتعديل بعض أحكام قانون نظام التأمين الصحي الشامل الصادر بالقانون رقم 2 لسنة 2018",
+      "document_type": "law_amendment",
+      "law_number": "155",
+      "law_year": 2026,
+      "source_id": "EG-UHIA-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "SIS reports presidential signature and Official Gazette publication on 4 August 2026; exact Gazette issue/pages and full amendment text must be captured. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://uhia.gov.eg/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-GOEIC-LAW-4-2026",
+      "official_title": "القانون رقم 4 لسنة 2026 بتعديل بعض أحكام القانون رقم 121 لسنة 1982 بشأن سجل المستوردين",
+      "document_type": "law_amendment",
+      "law_number": "4",
+      "law_year": 2026,
+      "source_id": "EG-GOEIC-LAWS-DECISIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "GOEIC official index lists this 2026 amendment; obtain Gazette text and map changes to Law 121/1982. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.goeic.gov.eg/ar/laws-and-decisions/list",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-GOEIC-MIFT-DECREE-271-2026",
+      "official_title": "قرار وزير الاستثمار والتجارة الخارجية رقم 271 لسنة 2026 بإصدار اللائحة التنفيذية للقانون رقم 121 لسنة 1982 بشأن سجل المستوردين",
+      "document_type": "ministerial_decision",
+      "law_number": "271",
+      "law_year": 2026,
+      "source_id": "EG-GOEIC-LAWS-DECISIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official GOEIC index lists it as executive regulation; verify commencement, repeal/supersession of prior rules and Gazette text. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.goeic.gov.eg/ar/laws-and-decisions/list",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-GOEIC-MIFT-DECREE-340-2026",
+      "official_title": "قرار وزير الاستثمار والتجارة الخارجية رقم 340 لسنة 2026 بإلغاء القرارات الوزارية أرقام 190 و203 و258 لسنة 2026 اعتباراً من 1 أغسطس 2026",
+      "document_type": "ministerial_decision",
+      "law_number": "340",
+      "law_year": 2026,
+      "source_id": "EG-GOEIC-LAWS-DECISIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official GOEIC index lists express cancellation effective 1 August 2026; critical status relationship to Decisions 190/203/258. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.goeic.gov.eg/ar/laws-and-decisions/list",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-GOEIC-MIFT-DECREE-501-2026",
+      "official_title": "قرار وزير الاستثمار والتجارة الخارجية رقم 501 لسنة 2026 بتعديل بعض أحكام لائحة القواعد المنفذة للقانون رقم 118 لسنة 1975 بشأن الاستيراد والتصدير",
+      "document_type": "ministerial_decision",
+      "law_number": "501",
+      "law_year": 2026,
+      "source_id": "EG-GOEIC-LAWS-DECISIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "GOEIC index lists this amendment to import/export implementing rules; verify underlying regulation number discrepancy in portal metadata and Gazette. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.goeic.gov.eg/ar/laws-and-decisions/list",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-GOEIC-MIFT-DECREE-273-2026",
+      "official_title": "قرار وزير الاستثمار والتجارة الخارجية رقم 273 لسنة 2026 بفرض رسم صادر على أتربة ومساحيق ورقائق الزنك (البند 79.03)",
+      "document_type": "ministerial_decision",
+      "law_number": "273",
+      "law_year": 2026,
+      "source_id": "EG-GOEIC-LAWS-DECISIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official index lists export duty instrument; obtain rate, tariff scope, effective period and repeal/extension chain. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.goeic.gov.eg/ar/laws-and-decisions/list",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-GOEIC-MIFT-DECREE-258-2026",
+      "official_title": "قرار وزير الاستثمار والتجارة الخارجية رقم 258 لسنة 2026 بفرض رسم صادر على صادرات الأسمدة الأزوتية بنسبة 10%",
+      "document_type": "ministerial_decision",
+      "law_number": "258",
+      "law_year": 2026,
+      "source_id": "EG-GOEIC-LAWS-DECISIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Index also lists later Decision 340/2026 cancelling this and other decisions from 1 August 2026; treat as superseded candidate, not current law. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.goeic.gov.eg/ar/laws-and-decisions/list",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-GOEIC-MIFT-DECREE-189-2026",
+      "official_title": "قرار وزير الاستثمار والتجارة الخارجية رقم 189 لسنة 2026 بمد حظر تصدير السكر لمدة ثلاثة أشهر إضافية",
+      "document_type": "ministerial_decision",
+      "law_number": "189",
+      "law_year": 2026,
+      "source_id": "EG-GOEIC-LAWS-DECISIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official index lists time-limited extension; establish prior order, exact start/end dates and later extensions. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.goeic.gov.eg/ar/laws-and-decisions/list",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-GOEIC-MIFT-DECREE-190-2026",
+      "official_title": "قرار وزير الاستثمار والتجارة الخارجية رقم 190 لسنة 2026 بفرض رسم صادر على صادرات الأسمدة الأزوتية",
+      "document_type": "ministerial_decision",
+      "law_number": "190",
+      "law_year": 2026,
+      "source_id": "EG-GOEIC-LAWS-DECISIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official index lists export duty at USD 90/tonne or EGP equivalent; GOEIC also lists Decision 340/2026 cancelling it effective 1 August 2026. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.goeic.gov.eg/ar/laws-and-decisions/list",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-GOEIC-MIFT-DECREE-77-2026",
+      "official_title": "قرار وزير الاستثمار والتجارة الخارجية رقم 77 لسنة 2026 بشأن حظر تصدير بعض أنواع الخردة والخامات وورق الدشت",
+      "document_type": "ministerial_decision",
+      "law_number": "77",
+      "law_year": 2026,
+      "source_id": "EG-GOEIC-LAWS-DECISIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official GOEIC index lists this export prohibition; verify product codes, exceptions, term and later changes. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.goeic.gov.eg/ar/laws-and-decisions/list",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-GOEIC-MIFT-DECREE-72-2026",
+      "official_title": "قرار وزير الاستثمار والتجارة الخارجية رقم 72 لسنة 2026 باستمرار فرض رسم على صادرات قصاصات وفضلات الأقمشة القطنية والمخلوطة",
+      "document_type": "ministerial_decision",
+      "law_number": "72",
+      "law_year": 2026,
+      "source_id": "EG-GOEIC-LAWS-DECISIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official GOEIC index lists continuation of export duty; retrieve predecessor and tariff details. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.goeic.gov.eg/ar/laws-and-decisions/list",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-GOEIC-MIFT-DECREE-71-2026",
+      "official_title": "قرار وزير الاستثمار والتجارة الخارجية رقم 71 لسنة 2026 باستمرار فرض رسم على صادرات بعض الخامات التعدينية",
+      "document_type": "ministerial_decision",
+      "law_number": "71",
+      "law_year": 2026,
+      "source_id": "EG-GOEIC-LAWS-DECISIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official GOEIC index lists continuation of export duty; exact goods, rates and predecessor chain require text. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.goeic.gov.eg/ar/laws-and-decisions/list",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-GOEIC-MIFT-DECREE-266-2026",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 266 لسنة 2026 بتعديل بعض أحكام قرار رئيس الجمهورية رقم 1770 لسنة 1971 بإنشاء الهيئة العامة للرقابة على الصادرات والواردات",
+      "document_type": "prime_minister_decision",
+      "law_number": "266",
+      "law_year": 2026,
+      "source_id": "EG-GOEIC-LAWS-DECISIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official GOEIC index lists amendment to authority-establishing decree; retrieve full amendment and consolidated organization provisions. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.goeic.gov.eg/ar/laws-and-decisions/list",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-GOEIC-EXPORT-CIRCULAR-9-2026",
+      "official_title": "منشور تصدير رقم 9 لسنة 2026 بشأن تطبيق قرار وزير الاستثمار والتجارة الخارجية رقم 58 لسنة 2026",
+      "document_type": "administrative_circular",
+      "law_number": "9",
+      "law_year": 2026,
+      "source_id": "EG-GOEIC-LAWS-DECISIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Operational circular listed by GOEIC; not a statute. Retrieve attached decision 58/2026, circular text, legal basis and currentness. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.goeic.gov.eg/ar/laws-and-decisions/list",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-GOEIC-EXPORT-CIRCULAR-8-2026",
+      "official_title": "منشور تصديري رقم 8 لسنة 2026 بشأن حظر تصدير بعض أنواع الخردة والخامات وورق الدشت",
+      "document_type": "administrative_circular",
+      "law_number": "8",
+      "law_year": 2026,
+      "source_id": "EG-GOEIC-LAWS-DECISIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Operational circular listed by GOEIC; relate to Ministerial Decision 77/2026 and verify covered tariff codes. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.goeic.gov.eg/ar/laws-and-decisions/list",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-GOEIC-EXPORT-CIRCULAR-1-2026",
+      "official_title": "منشور رقابي تصدير رقم 1 لسنة 2026 بشأن عدم سريان القرار الوزاري رقم 269 لسنة 2025 بشأن حظر تصدير خام الرمال البيضاء",
+      "document_type": "administrative_circular",
+      "law_number": "1",
+      "law_year": 2026,
+      "source_id": "EG-GOEIC-LAWS-DECISIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official GOEIC index indicates non-applicability of Decision 269/2025; reconcile with Customs export circular 1/2026 and Decision 582/2025. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.goeic.gov.eg/ar/laws-and-decisions/list",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-GOEIC-EXPORT-CIRCULAR-2-2026",
+      "official_title": "منشور تصدير رقم 2 لسنة 2026 بشأن استمرار فرض رسم صادر على أجزاء وفواصل بطاريات الرصاص",
+      "document_type": "administrative_circular",
+      "law_number": "2",
+      "law_year": 2026,
+      "source_id": "EG-GOEIC-LAWS-DECISIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Operational circular; link to prior export duty decisions and Customs circular, not a stand-alone statute. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.goeic.gov.eg/ar/laws-and-decisions/list",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-GOEIC-IMPORT-EXPORT-DECREE-33-2026",
+      "official_title": "قرار وزير الاستثمار والتجارة الخارجية رقم 33 لسنة 2026 بشأن تعديل قواعد الاستيراد والتصدير",
+      "document_type": "ministerial_decision",
+      "law_number": "33",
+      "law_year": 2026,
+      "source_id": "EG-GOEIC-LAWS-DECISIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official index places this under amendments to implementing rules; title/scope need exact source text. Full text, Gazette issue/pages, commencement, amendment/repeal chain, currentness and reuse rights are not verified; do not present as verified law.",
+      "source_urls": [
+        {
+          "url": "https://www.goeic.gov.eg/ar/laws-and-decisions/list",
+          "source_role": "official authority legislation index",
           "status": "listed_2026-11-17"
         }
       ]
