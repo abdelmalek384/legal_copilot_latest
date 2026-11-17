@@ -144,3 +144,17 @@ Published in the Official Gazette and effective the day after publication.
 - Locate the Fund board-chair decision setting actual fee/contribution categories and payment dates under Article 2.
 - Check whether the fund has issued implementing regulations, service procedures or beneficiary eligibility rules since August 2026.
 - Confirm the Fund's actual operational launch and first programmes; the 16 September 2026 Ministry report said preparations were underway.
+
+
+## Official Ministry implementation update — 2 November 2026
+
+The Ministry reported that the Fund's Board held its second meeting and discussed completing its institutional, administrative and financial infrastructure. The Board considered:
+- forming a committee to select the Fund's Secretary-General;
+- forming a Board-member committee to prepare financial and administrative regulations;
+- the Fund's revenue-collection system;
+- a services regulation;
+- setting the amounts of emergency financial assistance, eligibility controls, duration, suspension cases, supporting documents and payment mechanisms.
+
+Official Ministry report: https://www.labour.gov.eg/ar/الأخبار/مستمرون-في-تقديم-الدعم-والحماية-للعمالة-غير-المنتظمة-والتوسع-في-قواعد-بياناتها-تنفيذ-ا-لتوجيهات-فخامة-الرئيس-السيسي-وزير-العمل-يترأس-اجتماع-مجلس-إدارة-صندوق-إعانات-الطوارئ-والخدمات-الاجتماعية-والصحية-للعمالة-غير-المنتظمة/
+
+**Operational status implication:** as of the Ministry's 2 Nov report, the detailed services/eligibility/benefit amounts and financial/administrative rules were still being prepared. No final Board regulations or Ministerial Article80 rules have been located in this harvest as of 17 Nov. Do not present the 16-article secondary PM Decision2403 text as a complete operational eligibility schedule; distinguish the Fund's enabling framework from the still-pending detailed rules.
