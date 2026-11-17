@@ -111,3 +111,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 54. [Commercial, Customs and Social Insurance acquisition](egypt_commercial_customs_social_insurance_acquisition_2026-11-17.md) — Commercial Code17/1999 reprint; Customs Law207/2020; official Gazette Executive Regulation430/2021; NOSI library and 2026 contribution parameters.
 
 55. [Commercial, Customs and Social Insurance acquisition](egypt_commercial_customs_social_insurance_acquisition_2026-11-17.md) — full Commercial Code17/1999 government reprint; Customs Law207/2020 annotated compilation; Gazette Executive Regulation430/2021; Customs amendment chain; NOSI library and 2026 insured-wage/pension parameters.
+
+56. [Companies and insolvency acquisition](egypt_companies_insolvency_economic_courts_acquisition_2026-11-17.md) — Companies Law159/1981 official reprint; Law11/2021 amendment to Bankruptcy Law11/2018; secondary base-law text lead; GPO Decision3715/2026 on Economic Courts bankruptcy experts.
+
+57. [Companies, Insolvency and Economic Courts acquisition](egypt_companies_insolvency_economic_courts_acquisition_2026-11-17.md) — Companies Law159/1981 official government reprint; Law11/2021 official amendment to Bankruptcy Law11/2018; secondary base-law text; official GPO Decision3715/2026 modifying Economic Courts bankruptcy expert fees.
