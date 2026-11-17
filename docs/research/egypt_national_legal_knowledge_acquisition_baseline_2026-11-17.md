@@ -409,3 +409,50 @@ A dedicated note has been added at `egypt_asylum_law_164_2024_pm_decision_1568_2
 ## 18. Supreme Constitutional Court public docket index tranche
 
 A 19-row public docket/disposition register has been added at `data/research/egypt_scc_public_case_index_harvest_2026-11-17.csv`. It records visible SCC session-index entries from 3 January, 9 September and 7 November 2026, including constitutional cases, conflict-of-jurisdiction matters and execution disputes. The register preserves only what the public court page exposes: docket number, session/publication date and disposition. Most entries do not identify challenged provisions or reasoning. The January 2026 featured anti-terrorism summary has no docket number in the indexed snippet and is deliberately kept separate from the docket list. None of these records is treated as a full judgment or legal ratio. Full judgments, exact legal issues, Gazette publication and lawyer review remain outstanding.
+
+
+## 19. Progress dashboard — 17 November 2026, after current acquisition pass
+
+### National legal knowledge completion
+
+**Overall nationwide legal-content completion: approximately 1.5% (rounded to 2% for reporting).** This is a conservative project-management estimate, not a statistically measured percentage of every Egyptian statute, regulation, circular, judgment, opinion or historical version. The complete denominator remains unknown and the 936/522 MoF catalogue counters are only partial catalogue denominators.
+
+### Measurable sub-progress
+
+| Workstream | Current result | What it means |
+|---|---:|---|
+| Legal-domain scope map | 30/30 (100%) | All planned domains have been named; this is scope mapping only |
+| Initial source register | 17 source records | Core official and discovery sources registered; not all institutions identified |
+| Initial anchor statute register | 40 records | Seed statutes/amendments with acquisition states |
+| FRA/CBE register | 19 records | Regulatory decisions and collection leads; CBE 405 circulars are index records, not full-text acquisitions |
+| IDA/MOHP/SCC sector register | 19 records | Construction, industrial, health and constitutional source/instrument leads |
+| MoF catalogue register | 19 records | Cross-domain law and decision leads; MoF portal reports 936 general and 522 financial catalogue records |
+| Asylum/telecom/data protection register | 12 records | Includes PM Decision 1568/2026 and NTRA/data-protection/cybercrime leads |
+| SCC public docket register | 19 records | Public docket/date/disposition records; not full judgments |
+| Full national domains complete | 0/30 | No domain yet has all base laws, amendments, regulations, decisions, case law and currentness checks complete |
+| Full SCC/Cassation/State Council judgment corpus | 0 | Public summaries and docket indexes only; no nationwide full judgment corpus |
+| National-corpus lawyer sign-off | 0% | Human review remains outstanding |
+
+### Actual text acquisition versus discovery
+
+- **Primary/official legal text opened or inspected in the initial tranche:** Civil Code 131/1948; tax amendments Laws 150–153/2026; Capital Market Law 95/1992 consolidated text; Criminal Procedure Law 174/2025; Law 160/2026 commencement text; Consumer Protection Law 181/2018 (text-layer issues); FRA AML Law 80/2002; FRA Decisions 145/2021 and 173/2014; Law 187/2023; PM Decision 1568/2026 executive regulation text.
+- **Official PDF links opened but not yet text-extracted:** Building Law 119/2008; Industrial Licensing Law 15/2017; Environment Executive Regulation Decision 338/1995; Industrial Licensing Executive Regulation Decision 1082/2017.
+- **Official administrative guide extracted:** MOHP 2025 Health Investment Guide (1,155 lines), containing legal extracts and cross-reference lists but not a substitute for primary Gazette copies.
+- **Index-only queues:** MoF general/financial catalogue, FRA 61-page index, CBE 405 circular index, SCC docket calendar, State Council principle-series leads, and IDA law/decision listings.
+
+The exact list above is a status snapshot; it is not a claim that every listed text is complete, current, Gazette-matched, reusable or lawyer-approved.
+
+### Repository integration
+
+- PR #1855 merged: national FRA/CBE, sectoral, MoF and baseline/index expansion.
+- PR #1856 merged: focused asylum-law note index.
+- PR #1857 merged: SCC public docket register.
+- PR #1854 closed as a stale diverged draft superseded by #1855.
+- GitHub Actions billing issue remains external; no CI success is claimed. Structural CSV checks were run through the available tooling for the 19-row FRA/CBE, 19-row sectoral and 19-row MoF CSV files: all had 11 columns per row, no malformed row lengths and no duplicate record IDs. This is structural validation only, not legal validation.
+
+### Next work priority
+
+1. Acquire and article-map the complete official Gazette texts for Laws 164/2024 and Decision 1568/2026, Civil Procedure Law 13/1968 with Law 157/2024, Evidence Law 25/1968 and Companies Law 159/1981 with its current regulation.
+2. Harvest the NTRA 16 November 2026 rules and the CBE circular archive as dated individual instruments.
+3. Expand SCC public full judgments and Cassation public headnotes with case numbers, challenged provisions, holding and Gazette publication.
+4. Start article-level consolidation of the highest-priority core codes; no domain is counted complete until amendment and currentness checks pass.

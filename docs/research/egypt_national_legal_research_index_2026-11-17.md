@@ -48,3 +48,5 @@ This is the cross-domain research entry point for the Legal Copilot national Egy
 - [Foreign Asylum Law 164/2024 and PM Decision 1568/2026 acquisition note](egypt_asylum_law_164_2024_pm_decision_1568_2026.md) — Official Gazette issue 21 supplement (B), 21 May 2026; selected articles, commencement clause and outstanding full-file/hash/currentness checks.
 
 - [Supreme Constitutional Court public docket index harvest](../../data/research/egypt_scc_public_case_index_harvest_2026-11-17.csv) — 19 public docket/disposition records from January, September and November 2026; summaries and docket outcomes only, not full judgment acquisition.
+
+- [Latest progress dashboard](egypt_national_legal_knowledge_acquisition_baseline_2026-11-17.md#19-progress-dashboard--17-november-2026-after-current-acquisition-pass) — approximately 1.5% national legal-content completion (rounded to 2%), with separate source discovery, actual text acquisition, court collection and lawyer-review measures.
