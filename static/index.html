@@ -3256,7 +3256,14 @@ async function law(){
    const head=h('div',{className:'research-list-head'},h('b',{textContent:LANG==='ar'?'جلسات البحث':'Research sessions'}),h('div',{className:'research-list-head-actions'},historyToggle,makeBtn(LANG==='ar'?'محادثة جديدة':'New conversation',newChat,'primary')));
    sidebar.replaceChildren(head,conversationFilter);
    const needle=conversationFilter.value.trim().toLocaleLowerCase();
-   const list=conversationItems.filter(c=>!needle||String(c.title||'').toLocaleLowerCase().includes(needle));
+   const seenPlaceholderTitles=new Set();
+   const list=conversationItems.filter(c=>{
+     const title=String(c.title||'').trim();
+     const normalized=title.toLocaleLowerCase();
+     const isUntitledPlaceholder=['محادثة جديدة','محادثة جديدة (جديدة)','new conversation','new chat'].includes(normalized);
+     if(isUntitledPlaceholder){if(seenPlaceholderTitles.has(normalized))return false;seenPlaceholderTitles.add(normalized)}
+     return !needle||normalized.includes(needle);
+   });
    if(!conversationItems.length)sidebar.append(h('p',{className:'mut',textContent:copy('لا توجد محادثات بعد')}));
    else if(!list.length)sidebar.append(h('p',{className:'mut',textContent:LANG==='ar'?'لا توجد محادثات مطابقة.':'No matching conversations.'}));
    for(const c of list){
@@ -4510,5 +4517,27 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 @media(max-width:800px){
  #main .research-layout:dir(ltr){grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"main" "history" "inspector"!important}
 }
+</style>
+
+<style>
+/* Keep the page-level memo actions visually distinct instead of running
+   together when the research header is narrow. */
+#main:has(.research-layout)>.research-page-actions{
+ display:flex!important;align-items:center!important;justify-content:flex-start!important;
+ flex-wrap:wrap!important;gap:8px!important;margin:10px 0 12px!important;
+}
+#main:has(.research-layout)>.research-page-actions>button{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ flex:0 0 auto!important;min-width:max-content!important;min-height:36px!important;
+ padding:8px 12px!important;white-space:nowrap!important;line-height:1.25!important;
+}
+#main:has(.research-layout)>.research-page-actions>button+button{margin-inline-start:0!important}
+#main .research-list-head-actions{gap:7px!important;align-items:center!important}
+#main .research-list-head-actions>button{min-height:34px!important;padding:7px 9px!important;white-space:nowrap!important}
+#main .research-conversation-row{gap:6px!important}
+#main .research-conversation-row .research-delete{width:30px!important;min-width:30px!important;min-height:34px!important;padding:4px!important}
+#main .research-saved-searches-heading{flex-wrap:wrap!important}
+#main .research-saved-searches-heading>button{white-space:nowrap!important;flex:0 0 auto!important}
+#main .research-saved-search-empty{line-height:1.45!important;margin:6px 0!important}
 </style>
 </html>
