@@ -92,3 +92,8 @@ These are useful precedents but explicitly concern the previous labour-law regim
 4. Obtain the full Gazette issue containing Decision 346/2025.
 5. Obtain Gazette issue 225(A), 12 October 2026, and extract Decisions 248–252/2026 separately.
 6. Continue Court of Cassation labour-principle retrieval, recording complete case identifiers, date, chamber, headnote/full-text distinction, and governing statute version.
+
+
+## 311-row supplied Gazette alignment audit (17 November 2026)
+
+The user's November 13 archive was located in the Library and inspected. It contains law_rows_ar.jsonl (311 rows) and a 112-page PDF of Official Gazette issue 18 dated 3 May 2025. The structural audit confirms 13 promulgation provisions plus 298 attached-law articles, with no numbering gaps or duplicates. Automated Arabic text alignment found strong word-set overlap for all 311 rows; the five lowest sequence-score rows were manually checked at their Gazette page locations. The comparison deliberately excludes numeric tokens because the PDF text layer reverses/fragments RTL digits. The 120 quantitative articles still require a dedicated numeric comparison. The PDF watermark says it is not valid for official circulation and its metadata disables copying; no raw JSONL/PDF was committed. Keep verified=0, lawyer_reviewed=false and rights_cleared=false. See [full alignment audit](law14_2025_user_archive_gazette_alignment_audit_2026-11-17.md).
