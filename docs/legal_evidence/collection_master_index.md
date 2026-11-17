@@ -342,6 +342,8 @@
 
 | [collection_checkpoint_71_ip_law_82_2002.md](collection_checkpoint_71_ip_law_82_2002.md) | IP Law 82/2002 four books, amendments 26/2015, 144/2019, 178/2020 and two separate Executive Regulations |
 
+| [collection_checkpoint_81_income_tax_law_151_2026.md](collection_checkpoint_81_income_tax_law_151_2026.md) | Official 10-page Law 151/2026 PDF extracted: bad debts, real-estate disposal, unlisted gains, dividends, interest deductions, IPO tax credit and small-enterprise settlement |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
