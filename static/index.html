@@ -3164,7 +3164,7 @@ async function law(){
      }});
      sidebar.append(h('div',{className:'research-conversation-row'},openButton,renameButton,deleteButton));
    }
-   const savedSearchKey='legal-copilot-research-saved-searches-v1';
+   const savedSearchKey='legal-copilot-research-saved-searches-v1-'+String(ME.firm_id||'0')+'-'+String(ME.id||'0');
    const readSavedSearches=()=>{try{const value=JSON.parse(localStorage.getItem(savedSearchKey)||'[]');return Array.isArray(value)?value.filter(item=>item&&typeof item.label==='string'&&typeof item.query==='string').slice(0,20):[]}catch(_){return[]}};
    const savedSearches=readSavedSearches();
    const savedSearchList=h('div',{className:'research-saved-search-list'});
