@@ -24,6 +24,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 18. [Decision 74/2026 — labour-market observatories](decision_74_2026_labour_market_observatories.md) — 17-article indexed-text extraction covering the central board, regional observatories, labour-market data confidentiality, partner responsibilities and funding.
 19. [Decision 75/2026 — women’s work, maternity and OSH](decision_75_2026_women_work_maternity_osh.md) — 15-article map covering equal pay, pregnancy/breastfeeding risk restrictions, night work, alternative daytime work, transport and inspection safeguards.
 20. [Decision 2652/2026 — recruitment-agency regularization extension](decision_2652_2026_recruitment_agencies_compliance_extension.md) — six-month extension for specified previously licensed private recruitment agencies; individual deadlines need fact-specific calculation.
+21. [Ministry Q&A and compliance guidance](ministry_labour_q_and_a_guidance_sources_2026-11-17.md) — official Q&A Parts 1–2, Better Work Labour Law guide, inspection/OSH bulletins and the 14 Nov 2026 Ministry implementation statement.
 
 ## Structured inventory
 
@@ -40,6 +41,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 - Gazette 291 and 295(D) DSpace originals are restricted; SIS provides a public issue 291 facsimile, but that file is marked not valid for dealings. DSpace item-specific licenses and End User Agreement must be checked before reuse.
 - Decision 214 contains an unresolved preamble discrepancy: the searchable Gazette text reads Law 4/2025 instead of Law 14/2025. Do not silently correct it.
 - On 15 November 2026 the National Wages Council approved an EGP 8,500 monthly minimum wage from 1 January 2027 and an EGP 350 minimum periodic increment. The formal implementing wage decision had not yet been located as of 17 November 2026; do not apply the future rate early.
+- On 14 November 2026 the Ministry publicly stated that the executive decisions for Labour Law 14/2025 had been completed and described current enforcement priorities. The statement does not enumerate the instruments; reconcile the current 42-record register against every statutory delegation before calling the inventory exhaustive.
 - Decisions 259, 264 and 299 have article-level text cross-checked against the SIS-hosted issue 291 facsimile; Decision 294 has a complete Ministry-hosted four-article text. The SIS facsimile disclaimer and rights/counsel gates remain.
 - All 42 formal instruments and seven circulars remain lawyer_reviewed=false and rights_cleared=false. No production database import performed.
 - No original-Gazette SHA-256 hash captured for the Labour Law 14/2025 candidate; no legal data has been promoted to verified.
