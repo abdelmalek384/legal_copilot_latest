@@ -3033,7 +3033,7 @@ async function law(){
 
    for(const [messageIndex,m] of messages.entries()){
      const bubble=h('div',{className:'research-message '+(m.role==='user'?'user':'assistant')});
-     let answerAnalysisPanel=null,answerAuthoritiesPanel=null,answerNotesPanel=null;
+     let answerAnalysisPanel=null,answerAuthoritiesPanel=null,answerNotesPanel=null,answerTabBar=null;
      if(m.role==='assistant'){
       const tabPrefix='research-answer-'+messageIndex;
       answerAnalysisPanel=h('section',{className:'research-answer-tab-panel research-answer-analysis',id:tabPrefix+'-analysis','aria-label':LANG==='ar'?'التحليل':'Analysis'});
@@ -3048,7 +3048,7 @@ async function law(){
        tabs.push([name,button,panel]);return button;
       };
       const sourceCount=Array.isArray(m.sources)?m.sources.length:0;
-      const answerTabBar=h('div',{className:'research-answer-tabs',role:'tablist','aria-label':LANG==='ar'?'أقسام الإجابة':'Answer sections'});
+      answerTabBar=h('div',{className:'research-answer-tabs',role:'tablist','aria-label':LANG==='ar'?'أقسام الإجابة':'Answer sections'});
       answerTabBar.append(makeAnswerTab('analysis',LANG==='ar'?'التحليل':'Analysis',answerAnalysisPanel),makeAnswerTab('authorities',(LANG==='ar'?'المراجع الرئيسية':'Key authorities')+(sourceCount?' '+sourceCount:''),answerAuthoritiesPanel),makeAnswerTab('notes',LANG==='ar'?'ملاحظات البحث':'Research notes',answerNotesPanel));
       answerTabBar.addEventListener('keydown',event=>{
        if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
@@ -3056,7 +3056,6 @@ async function law(){
        const next=event.key==='Home'?0:event.key==='End'?tabs.length-1:(current+(event.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;
        tabs[next][1].focus();selectAnswerTab(tabs[next][0]);
       });
-      bubble.append(answerTabBar,answerAnalysisPanel,answerAuthoritiesPanel,answerNotesPanel);
      }
      bubble.append(h('div',{className:'research-role',textContent:m.role==='user'?(LANG==='ar'?'أنت':'You'):(LANG==='ar'?'المساعد القانوني':'Legal assistant')}));
      if(m.role==='assistant'){
@@ -3064,6 +3063,7 @@ async function law(){
       const timeLabel=answerTime&&Number.isFinite(answerTime.getTime())?answerTime.toLocaleString(LANG==='ar'?'ar':'en-GB',{dateStyle:'medium',timeStyle:'short'}):'';
       bubble.append(h('div',{className:'research-answer-meta'},pill(LANG==='ar'?'تحليل بمساعدة الذكاء الاصطناعي':'AI-assisted analysis','soon'),timeLabel?h('span',{className:'research-answer-time',textContent:(LANG==='ar'?'تم التحديث ':'Updated ')+timeLabel}):null));
      }
+     if(m.role==='assistant')bubble.append(answerTabBar,answerAnalysisPanel,answerAuthoritiesPanel,answerNotesPanel);
      const answerContent=h('div',{className:'research-content'});renderResearchAnswer(answerContent,m.content||m.answer||'');(answerAnalysisPanel||bubble).append(answerContent);
      const answerTier=m.trust_tier||(m.result&&m.result.trust_tier);if(m.role==='assistant')answerAnalysisPanel.append(trustTierBadge(answerTier||'unreviewed'));
      if(m.role==='assistant'&&(m.sources||[]).length){
