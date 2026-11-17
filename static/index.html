@@ -1497,6 +1497,13 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
 #main .research-evidence-heading{font-size:12px;color:#334b67}
 #main .research-evidence-heading .mut{font-size:10px}
 @media(max-width:600px){#main .research-page-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}#main .research-page-actions button.primary{grid-column:1/-1}}
+
+#main .calendar-view-switch{display:flex;gap:4px;margin-inline-start:auto;padding:3px;border:1px solid #e5ebf2;border-radius:8px;background:#f8fafc}
+#main .calendar-view-switch button{min-height:29px;padding:4px 10px;border:0;background:transparent;color:#64748b;font-size:10px}
+#main .calendar-view-switch button.active{background:#fff;color:#1f5fae;box-shadow:0 1px 4px rgba(20,40,70,.12)}
+#main .calendar-filters{grid-template-columns:minmax(0,1.5fr) minmax(150px,.8fr) minmax(150px,.8fr)}
+#main .calendar-agenda-mode{position:static;max-height:none}
+@media(max-width:760px){#main .calendar-filters{grid-template-columns:minmax(0,1fr)}#main .calendar-view-switch{margin-inline-start:0}}
 </style>
 <link rel="stylesheet" href="/static/design-tokens.css">
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
@@ -2170,12 +2177,12 @@ async function tasksPage(){PAGE='tasks';const d=await api('/dashboard'),q=h('inp
 async function calendarPage(){
  PAGE='calendar';
  const d=await api('/dashboard'),items=[];
- (d.tasks||[]).filter(x=>x.due).forEach(x=>items.push({kind:'task',title:x.title,date:x.due,meta:x.case_title||'',id:x.id}));
- (d.deadlines||[]).forEach(x=>items.push({kind:'deadline',title:x.title,date:x.due,meta:x.case_title||'',id:x.id}));
- (d.sessions||[]).forEach(x=>items.push({kind:'session',title:x.title||x.note||uiText('جلسة','Hearing'),date:x.date,meta:x.case_title||x.note||'',id:x.id}));
+ (d.tasks||[]).filter(x=>x.due).forEach(x=>items.push({kind:'task',title:x.title,date:x.due,meta:x.case_title||'',caseTitle:x.case_title||'',id:x.id,assignee:x.assignee_name||x.assignee||x.owner_name||''}));
+ (d.deadlines||[]).forEach(x=>items.push({kind:'deadline',title:x.title,date:x.due,meta:x.case_title||'',caseTitle:x.case_title||'',id:x.id,assignee:x.assignee_name||x.assignee||x.owner_name||''}));
+ (d.sessions||[]).forEach(x=>items.push({kind:'session',title:x.title||x.note||uiText('جلسة','Hearing'),date:x.date,meta:x.case_title||x.note||'',caseTitle:x.case_title||'',id:x.id,assignee:x.assignee_name||x.assignee||x.owner_name||''}));
  items.sort((a,b)=>(a.date||'').localeCompare(b.date||''));
  const q=h('input',{placeholder:uiText('ابحث بالعنوان أو اسم القضية','Search title or case name')});
- const kind=h('select',{'aria-label':uiText('تصفية الأجندة حسب النوع','Filter calendar by type')},new Option(uiText('كل العناصر','All items'),''),new Option(uiText('الجلسات','Hearings'),'session'),new Option(uiText('المواعيد القانونية','Legal deadlines'),'deadline'),new Option(uiText('المهام','Tasks'),'task'));
+ const kind=h('select',{'aria-label':uiText('تصفية الأجندة حسب النوع','Filter calendar by type')},new Option(uiText('كل العناصر','All items'),''),new Option(uiText('الجلسات','Hearings'),'session'),new Option(uiText('المواعيد القانونية','Legal deadlines'),'deadline'),new Option(uiText('المهام','Tasks'),'task'));const matterFilter=h('select',{'aria-label':uiText('تصفية حسب ملف القضية','Filter by matter')},new Option(uiText('كل ملفات القضايا','All matters'),''),...[...new Set(items.map(x=>x.caseTitle).filter(Boolean))].sort().map(name=>new Option(name,name)));
  const list=h('aside',{className:'calendar-day-agenda card calendar-detail-panel','aria-label':uiText('تفاصيل اليوم المحدد','Selected day details')});
  const info=h('p',{className:'mut',textContent:uiText('تعرض هذه الأجندة الجلسات المسجلة والمواعيد والمهام ذات تواريخ الاستحقاق. تحقق من الملف والمصدر القانوني قبل الاعتماد على أي ميعاد طعن.','This calendar combines recorded hearings, deadlines and tasks with due dates. Verify the case file and legal source before relying on any appeal deadline.')});
  const localKey=value=>value.getFullYear()+'-'+String(value.getMonth()+1).padStart(2,'0')+'-'+String(value.getDate()).padStart(2,'0');
@@ -2187,14 +2194,14 @@ async function calendarPage(){
  const monthTitle=h('b',{className:'calendar-month-title',textContent:monthLabel()});
  const grid=h('div',{className:'calendar-month-grid','aria-label':uiText('التقويم الشهري','Monthly calendar')});
  const weekdays=(LANG==='ar'?['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت']:['Sun','Mon','Tue','Wed','Thu','Fri','Sat']);
- const filtered=()=>{const needle=q.value.trim().toLocaleLowerCase();return items.filter(x=>(!kind.value||x.kind===kind.value)&&(x.title+' '+x.meta).toLocaleLowerCase().includes(needle))};
+ let calendarView='month';const filtered=()=>{const needle=q.value.trim().toLocaleLowerCase();return items.filter(x=>(!kind.value||x.kind===kind.value)&&(!matterFilter.value||x.caseTitle===matterFilter.value)&&(x.title+' '+x.meta).toLocaleLowerCase().includes(needle))};
  const drawAgenda=()=>{
-  const rows=filtered().filter(x=>itemDay(x)===selectedDay);
-  const dateText=new Date(selectedDay+'T12:00:00').toLocaleDateString(LANG==='ar'?'ar-EG':'en-US',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const rows=filtered().filter(x=>calendarView==='agenda'?itemDay(x)>=todayKey:itemDay(x)===selectedDay);
+  const dateText=calendarView==='agenda'?uiText('الأجندة القادمة','Upcoming agenda'):new Date(selectedDay+'T12:00:00').toLocaleDateString(LANG==='ar'?'ar-EG':'en-US',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
   list.replaceChildren(h('div',{className:'calendar-agenda-heading'},h('b',{textContent:dateText}),h('span',{className:'mut',textContent:rows.length+' '+uiText('عنصر','items')})),info,...(rows.length?rows.map(x=>{
    const label=x.kind==='session'?uiText('جلسة','Hearing'):x.kind==='deadline'?uiText('موعد قانوني','Legal deadline'):uiText('مهمة','Task');
    const action=x.kind==='task'?btn(uiText('إنجاز','Complete'),async()=>{await api('/tasks/'+x.id+'/done','POST');calendarPage()},'g'):x.kind==='deadline'?btn(uiText('إنجاز','Complete'),async()=>{await api('/deadlines/'+x.id+'/done','POST');calendarPage()},'g'):null;
-   return h('div',{className:'workspace-list-item calendar-agenda-item'},h('div',{className:'item-main'},h('b',{textContent:x.title}),h('div',{className:'item-meta',textContent:label+' · '+(x.meta||'')})),h('div',{className:'calendar-agenda-actions'},h('b',{textContent:fd(x.date)}),action));
+   return h('div',{className:'workspace-list-item calendar-agenda-item'},h('div',{className:'item-main'},h('b',{textContent:x.title}),h('div',{className:'item-meta',textContent:label+' · '+(x.meta||'')}),x.assignee?h('div',{className:'item-meta',textContent:uiText('المسند إليه: ','Assigned to: ')+x.assignee}):null),h('div',{className:'calendar-agenda-actions'},h('b',{textContent:fd(x.date)}),action));
   }):[empty(uiText('لا توجد عناصر لهذا اليوم. اختر يوماً آخر أو غيّر عوامل التصفية.','No items on this day. Choose another date or adjust the filters.'))]));
  };
  const drawMonth=()=>{
@@ -2221,10 +2228,10 @@ async function calendarPage(){
  const prev=btn(uiText('السابق','Previous month'),()=>{shownMonth=new Date(shownMonth.getFullYear(),shownMonth.getMonth()-1,1);selectedDay=localKey(shownMonth);drawMonth();drawAgenda()},'g');
  const next=btn(uiText('التالي','Next month'),()=>{shownMonth=new Date(shownMonth.getFullYear(),shownMonth.getMonth()+1,1);selectedDay=localKey(shownMonth);drawMonth();drawAgenda()},'g');
  const today=btn(uiText('اليوم','Today'),()=>{shownMonth=new Date(todayDate.getFullYear(),todayDate.getMonth(),1);selectedDay=todayKey;drawMonth();drawAgenda()},'g');
- const monthNav=h('div',{className:'calendar-month-toolbar'},prev,monthTitle,next,today);
- const filters=h('div',{className:'filter-bar calendar-filters'},q,kind);
- q.oninput=()=>{drawMonth();drawAgenda()};kind.onchange=()=>{drawMonth();drawAgenda()};
- const inNextWeek=items.filter(x=>{const date=new Date(String(x.date||'').slice(0,10)+'T00:00:00');const delta=(date-todayDate)/86400000;return delta>=0&&delta<7}).length;const overdue=items.filter(x=>String(x.date||'').slice(0,10)&&String(x.date||'').slice(0,10)<todayKey&&x.kind!=='session').length;const thisMonthHearings=items.filter(x=>x.kind==='session'&&String(x.date||'').slice(0,7)===localKey(shownMonth).slice(0,7)).length;const statCard=(label,value,detail,kind)=>h('article',{className:'card calendar-stat-card '+(kind||'')},h('span',{className:'mut',textContent:label}),h('b',{textContent:String(value)}),h('small',{className:'mut',textContent:detail}));const calendarStats=h('div',{className:'calendar-stats'},statCard(uiText('مواعيد متأخرة','Overdue deadlines'),overdue,uiText('تحتاج إلى مراجعة','Require attention'),'warning'),statCard(uiText('الأسبوع القادم','Upcoming this week'),inNextWeek,uiText('مهام وجلسات ومواعيد','Tasks, hearings and deadlines'),'blue'),statCard(uiText('جلسات هذا الشهر','Hearings this month'),thisMonthHearings,uiText('جلسات مسجلة','Recorded hearings'),'green'));const calendarLayout=h('div',{className:'calendar-reference-layout'},h('section',{className:'calendar-workspace card'},monthNav,grid),list);shell(uiText('المهام والجلسات','Tasks & hearings'),h('p',{className:'workspace-subtitle',textContent:uiText('تابع الجلسات والمهام والمواعيد القانونية في تقويم واحد.','Track hearings, tasks and legal deadlines in one calendar.')}),h('div',{className:'workspace-actions calendar-page-actions'},btn(uiText('عرض قائمة المهام','View task list'),()=>openPage('tasks',tasksPage),'g'),btn(uiText('تصدير إلى التقويم','Export to calendar'),()=>{window.location.href='/calendar.ics'},'g')),calendarStats,filters,calendarLayout);
+ const monthMode=btn(uiText('الشهر','Month'),()=>{calendarView='month';grid.hidden=false;list.classList.remove('calendar-agenda-mode');monthMode.classList.add('active');agendaMode.classList.remove('active');drawMonth();drawAgenda()},'g');const agendaMode=btn(uiText('الأجندة','Agenda'),()=>{calendarView='agenda';grid.hidden=true;list.classList.add('calendar-agenda-mode');agendaMode.classList.add('active');monthMode.classList.remove('active');drawAgenda()},'g');const viewSwitch=h('div',{className:'calendar-view-switch'},monthMode,agendaMode);const monthNav=h('div',{className:'calendar-month-toolbar'},prev,monthTitle,next,today,viewSwitch);
+ const filters=h('div',{className:'filter-bar calendar-filters'},q,matterFilter,kind);
+ q.oninput=()=>{drawMonth();drawAgenda()};kind.onchange=matterFilter.onchange=()=>{drawMonth();drawAgenda()};
+ const inNextWeek=items.filter(x=>{const date=new Date(String(x.date||'').slice(0,10)+'T00:00:00');const delta=(date-todayDate)/86400000;return delta>=0&&delta<7}).length;const overdue=items.filter(x=>String(x.date||'').slice(0,10)&&String(x.date||'').slice(0,10)<todayKey&&x.kind!=='session').length;const thisMonthHearings=items.filter(x=>x.kind==='session'&&String(x.date||'').slice(0,7)===localKey(shownMonth).slice(0,7)).length;const assignedCount=items.filter(x=>String(x.assignee||'').trim()).length;const statCard=(label,value,detail,kind)=>h('article',{className:'card calendar-stat-card '+(kind||'')},h('span',{className:'mut',textContent:label}),h('b',{textContent:String(value)}),h('small',{className:'mut',textContent:detail}));const calendarStats=h('div',{className:'calendar-stats'},statCard(uiText('مواعيد متأخرة','Overdue deadlines'),overdue,uiText('تحتاج إلى مراجعة','Require attention'),'warning'),statCard(uiText('الأسبوع القادم','Upcoming this week'),inNextWeek,uiText('مهام وجلسات ومواعيد','Tasks, hearings and deadlines'),'blue'),statCard(uiText('عناصر مسندة','Assigned events'),assignedCount,uiText('من إجمالي العناصر ذات التاريخ','Of dated calendar items'),'green'));const calendarLayout=h('div',{className:'calendar-reference-layout'},h('section',{className:'calendar-workspace card'},monthNav,grid),list);shell(uiText('المهام والجلسات','Tasks & hearings'),h('p',{className:'workspace-subtitle',textContent:uiText('تابع الجلسات والمهام والمواعيد القانونية في تقويم واحد.','Track hearings, tasks and legal deadlines in one calendar.')}),h('div',{className:'workspace-actions calendar-page-actions'},btn(uiText('عرض قائمة المهام','View task list'),()=>openPage('tasks',tasksPage),'g'),btn(uiText('تصدير إلى التقويم','Export to calendar'),()=>{window.location.href='/calendar.ics'},'g')),calendarStats,filters,calendarLayout);
  drawMonth();drawAgenda();
 }
 const caseRow=c=>h('div',{className:'row',style:'cursor:pointer',onclick:()=>{TAB='sum';view(c.id)}},h('div',{},h('b',{textContent:c.title}),h('div',{className:'mut',textContent:c.stage||uiText('بدون مرحلة','No stage')})),
