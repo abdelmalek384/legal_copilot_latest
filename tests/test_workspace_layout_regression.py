@@ -44,6 +44,10 @@ class WorkspaceLayoutRegressionTests(unittest.TestCase):
         self.assertIn('#main .research-layout:dir(ltr){grid-template-areas:"history main inspector"!important}', HTML)
         self.assertIn('@media(max-width:1180px){\n #main .research-layout:dir(ltr){grid-template-areas:"main main" "history inspector"!important}', HTML)
 
+    def test_mobile_shell_media_query_is_a_real_css_rule(self):
+        self.assertIn('}\n@media(max-width:800px){#main:has(.research-layout){width:100%!important;flex:1 1 auto!important}}', HTML)
+        self.assertNotIn('}\\\\n@media(max-width:800px){#main:has(.research-layout)', HTML)
+
 
 if __name__ == "__main__":
     unittest.main()
