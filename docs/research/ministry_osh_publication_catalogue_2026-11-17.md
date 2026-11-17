@@ -72,3 +72,37 @@ For every guide:
 4. Retrieve earthquake evacuation Bulletin 20 and compare with current Civil Defence / building-code requirements.
 5. Retrieve ergonomics Bulletin 24 and OSH management-system Bulletin 25.
 6. Extract all diagrams and tables from the original PDF pages; the text layer alone may omit critical labels.
+
+
+## 6. Professional Classification Guide — Volume II (2026)
+
+The official Ministry publications index lists Professional Classification Guide volumes I and II. Volume II is divided into eight sections. Two direct Ministry-hosted section PDFs were located in this pass:
+
+- **Section IV:** https://www.labour.gov.eg/media/kdxpiszp/القسم-الرابع.pdf
+- **Section VI:** https://www.labour.gov.eg/media/hgueotbv/القسم-السادس.pdf
+
+Both PDF text layers identify the document as **دليل التصنيف المهني – المجلد الثاني ٢٠٢٦**. The sections contain structured occupational classification data: major group, sub-group, occupational unit, chapter code, occupation code, Arabic code, occupation title and job duties.
+
+### Examples visible in the extracted text
+
+- **Section IV:** major group “الكتبة” (clerks), sub-group “كتبة خدمات العملاء” (customer-service clerks), occupational unit “كتبة معلومات استعلامات العملاء”; one visible occupation code is 422699 for reception clerks not elsewhere classified. The duty text includes reception work, patient arrival/departure records and monitoring OSH instructions.
+- **Section VI:** major group “العمال المهرة في الزراعة والغابات والصيد”; a visible occupation code is 611299 for skilled tree/shrub cultivation workers not elsewhere classified. The duty text includes grafting, climbing palms and applying occupational/general safety instructions.
+
+These are examples only, not a complete section extraction. The other six section PDFs and Volume I's direct links were not recovered in this pass.
+
+### Relationship to skill measurement
+
+Use the guide as a current Ministry occupational-classification reference when reconciling:
+- Decision 111/2023 (occupations subject to skill measurement, updated according to the professional classification guide);
+- Decision 266/2025 (updated skill-measurement occupation lists);
+- the legacy serial occupation additions in 2004–2018.
+
+Do not assume that every occupation in the classification guide requires a skill test. The classification guide is not itself the legal schedule of tested occupations. A product record should preserve both the classification code and the exact decision/schedule that makes the occupation subject to skill measurement.
+
+### Acquisition status
+
+- Ministry index confirms Volume I and Volume II and lists eight Volume II sections.
+- Direct Ministry PDFs: sections IV and VI only in this pass.
+- Article/occupation data: text layer is searchable; page-image review still required for code/Arabic-title alignment and table integrity.
+- Rights/reuse: no commercial licence established; do not bulk ingest or redistribute without clearance.
+- Currentness: document says 2026, but exact publication date/version history and any corrigenda were not captured.
