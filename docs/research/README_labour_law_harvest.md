@@ -138,3 +138,5 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 69. [Court of Cassation public headnotes harvest](egypt_court_of_cassation_public_headnotes_harvest_2026-11-17.md) — 18 public headnotes across labour, social insurance, customs, banking, commercial, criminal and family law; full judgment subscription boundary documented.
 70. [Court of Cassation public principles register](../../data/research/egypt_cassation_public_principles_register_2026-11-17.csv) — 18 case numbers, dates, headnotes, legal topics and limitations.
+
+71. [SCC 2026 recent invalidity watchlist](egypt_scc_2026_recent_unconstitutionality_watchlist.md) — five recent invalidity notices affecting Law117/1958, Decree316/1994, Law110/1975, Law148/2019 and Agriculture Decision1432/1991; full judgments pending.
