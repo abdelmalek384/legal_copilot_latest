@@ -178,6 +178,8 @@
 
 | [collection_checkpoint_37_environment_law_and_regulation_2024.md](collection_checkpoint_37_environment_law_and_regulation_2024.md) | Official Environment Law 4/1994 source index, Executive Regulation 338/1995 and full Gazette text of 2024 Decision 2466 with annex updates |
 
+| [collection_checkpoint_50_november_2026_current_decisions.md](collection_checkpoint_50_november_2026_current_decisions.md) | PM Decisions 3530/2026 public-spending restrictions; 3531/2026 maritime company share transfer; 2807/2026 residence regularization extension; 89/2026 alternative-housing deadline to 12 Jan 2027 |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
