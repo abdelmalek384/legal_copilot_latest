@@ -1827,5 +1827,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("if(q.startsWith('>')){renderCommandPalette(q.slice(1));return}", search)
         self.assertIn("globalSearchInput.placeholder=uiText(", navigation)
 
+    def test_global_search_command_palette_supports_arrow_navigation_and_escape(self):
+        results = HTML[HTML.index("const globalSearchResults=h('div'" ):HTML.index("const globalSearchButton=", HTML.index("const globalSearchResults=h('div'"))]
+        navigation = HTML[HTML.index("const allNavItems="):HTML.index("function mfaFirmSwitcher()", HTML.index("const allNavItems="))]
+        self.assertIn("globalSearchResults.addEventListener('keydown',event=>", results)
+        self.assertIn("event.key==='ArrowDown'||event.key==='ArrowUp'", results)
+        self.assertIn("buttons[(index+direction+buttons.length)%buttons.length]?.focus()", results)
+        self.assertIn("event.key==='Escape'", results)
+        self.assertIn("globalSearchInput.focus()", results)
+        self.assertIn("value.startsWith('>')&&e.key==='ArrowDown'", navigation)
+
 if __name__ == "__main__":
     unittest.main()
