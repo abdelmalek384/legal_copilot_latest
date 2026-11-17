@@ -6,6 +6,8 @@ Source class: official Ministry publication index and Ministry-hosted technical/
 
 ## 1. Direct Ministry-hosted PDFs located
 
+Fifteen unique direct Ministry-hosted PDF URLs are now recorded below. The pressure/explosion row later in the table is a cross-reference to the same canonical file, not a sixteenth unique PDF.
+
 | Publication | Direct Ministry URL | Collection status / use |
 |---|---|---|
 | Climate and workplace heat responsibility | https://www.labour.gov.eg/media/yggf04x5/نشرة-المناخ-مسئوليتى.pdf | Guidance; cross-references Law 12/2003 Art.208 and Decision 211/2003 |
@@ -17,6 +19,9 @@ Source class: official Ministry publication index and Ministry-hosted technical/
 | Work in confined spaces | https://www.labour.gov.eg/media/2tdjden4/العمل-فى-الاماكن-المغلقة.pdf | Guidance; work-permit and atmospheric testing; cites Decision 134/2003 |
 | Manual lifting and handling | https://www.labour.gov.eg/media/5ixjpl0f/اعمال-الرفع-والتداول-اليدوى-نشرة-5.pdf | Risk-management guide; inspector role and safe lifting/handling |
 | Scaffolding safety | https://www.labour.gov.eg/media/c35hrus5/السقالات.pdf | Risk-management guide; direct PDF located |
+| Forklift safety | https://www.labour.gov.eg/media/5jmdy4a1/الرافعة-الشوكية-6.pdf | Risk-management guide; safe load handling, visibility and worker-lifting precautions |
+| Hazardous-waste management — Bulletin 18 | https://www.labour.gov.eg/media/guenfyo4/نشرة-ادارة-المخلفات-الخطرة-18.pdf | Guidance on segregation, storage and safe disposal of hazardous waste |
+| Earthquake emergency/evacuation — Bulletin 20 | https://www.labour.gov.eg/media/n01kp5is/نشرة-20-الزلازل-الطوارئ.pdf | Guidance; cites Law 12/2003 Article 215 for risk assessment and emergency plans |
 | Personal protective equipment (PPE) — Bulletin 22 | https://www.labour.gov.eg/media/zzfdjdsm/مهمات-الوقاية-الشخصية-نشرة-22.pdf | Guidance; PPE selection/usage overview; not a substitute for task-specific standards |
 | Chemical health effects — Bulletin 23 | https://www.labour.gov.eg/media/2kppyusg/التأثيرات-الضارة-للمواد-الكيميائية.pdf | Guidance; summarizes Law 12/2003 Art.211 chemical-risk duties |
 | Accident investigation | https://www.labour.gov.eg/media/gtze4upx/التحقيق-فى-الحوادث.pdf | Guidance; pre-incident prevention and post-incident investigation |
@@ -30,10 +35,10 @@ The Ministry index lists these further free publications. Keep them as index-onl
 - Physical hazards — vibration (المخاطر الفيزيائية-الاهتزازات).
 - Safety in storage operations (السلامة فى اعمال التخزين).
 - Ladders and stairs (السلالم والدرج).
-- Forklift safety (الرافعة الشوكية).
+- Forklift safety (الرافعة الشوكية) — direct PDF now located above.
 - Welding and cutting (اللحام والقطع).
-- Hazardous-waste management Bulletin 18 (نشرة إدارة المخلفات الخطرة 18).
-- Earthquake emergency and evacuation plan, Bulletin 20.
+- Hazardous-waste management Bulletin 18 (نشرة إدارة المخلفات الخطرة 18) — direct PDF now located above.
+- Earthquake emergency and evacuation plan, Bulletin 20 — direct PDF now located above.
 - Safety in pressure vessels, Bulletin 21.
 - Ergonomics, Bulletin 24.
 - Phases of planning and implementing an establishment OSH management system, Bulletin 25.
