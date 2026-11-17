@@ -24,5 +24,15 @@ class WorkspaceLayoutRegressionTests(unittest.TestCase):
         self.assertIn("#main .research-layout{grid-template-columns:minmax(0,1fr)!important}", HTML)
 
 
+    def test_research_reference_layout_keeps_history_answer_and_evidence_visible(self):
+        self.assertIn('grid-template-areas:"inspector main history"!important', HTML)
+        self.assertIn('#main .research-layout>.research-list{', HTML)
+        self.assertIn('display:block!important;visibility:visible!important', HTML)
+        self.assertIn('#main .research-layout>.research-main>.research-thread', HTML)
+        self.assertIn('#main .research-layout>.research-evidence-panel', HTML)
+        self.assertIn('grid-template-areas:"main main" "history inspector"!important', HTML)
+        self.assertIn('grid-template-areas:"main" "history" "inspector"!important', HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
