@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -80,6 +80,9 @@
 | [collection_checkpoint_20_consumer_older_persons_investment.md](collection_checkpoint_20_consumer_older_persons_investment.md) | Consumer Protection 181/2018 and amendment 20/2024, Older Persons' Rights 19/2024 and Investment Law 72/2017 source chains |
 
 | [collection_checkpoint_26_source_reconciliation_2026-11-17.md](collection_checkpoint_26_source_reconciliation_2026-11-17.md) | Reconciles earlier primary-source extractions; corrects Cybercrime Executive Regulation to PM Decision 635/2020; records prior 2026 FRA, budget, evidence and family-law collection work |
+
+
+| [collection_checkpoint_21_disability_conciliation_noncash.md](collection_checkpoint_21_disability_conciliation_noncash.md) | Full official texts: Disability Rights Law 10/2018, Public-entity Conciliation Law 7/2000 and Non-Cash Payments Executive Regulation 1776/2020 |
 
 ## High-value primary-source portals
 
