@@ -131,3 +131,5 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 65. [Supreme Constitutional Court first case-law harvest](egypt_supreme_constitutional_court_first_case_law_harvest_2026-11-17.md) — full official judgments 2/44 (2026) and115/25 (2026), plus operative holdings quoted for 99/43 (2025) and16/24 (2025).
 66. [Constitutional case-law register](../../data/research/egypt_constitutional_case_law_register_2026-11-17.csv) — docket, dates, statutes, holdings, publication effects and source status for four SCC decisions.
+
+67. [SCC public-service salary and social-insurance judgments](egypt_scc_public_service_salary_and_social_insurance_judgments_2026-11-17.md) — cases98/43 (2026),100/43 (2023),188/35 (2023), covering half-salary during pretrial detention and early-retirement pension actuarial factors.
