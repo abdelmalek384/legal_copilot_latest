@@ -121,3 +121,5 @@ This folder contains free/public source discovery, metadata registers and extrac
 59. [Investment, Commercial Registry and Public Finance acquisition](egypt_investment_commercial_registry_public_finance_acquisition_2026-11-17.md) — Investment Law72/2017, PM2310/2017 regulation, mortgage finance and finance leasing PDFs, Commercial Registry Law34/1976, and 2026 Laws148/154 public-finance updates.
 
 60. [VAT Law149/2026 amendment extraction](egypt_vat_law149_2026_amendment_extraction.md) — official Gazette text for 2026 VAT changes, industrial machinery conditional suspension/exemption, exempt supplies and natural gas schedule.
+
+61. [Real-estate and historical tax-law acquisition](egypt_real_estate_and_historical_tax_law_acquisition_2026-11-17.md) — Law196/2008 and Law103/2012 PDFs with OCR caveats; historical Sales Tax Law11/1991 and Law102/2012; unresolved base Law147/1984 and Stamp Tax Law111/1980 copies.
