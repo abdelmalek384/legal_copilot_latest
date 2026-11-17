@@ -88,6 +88,8 @@
 
 | [collection_checkpoint_28_aml_law_regulation_2026.md](collection_checkpoint_28_aml_law_regulation_2026.md) | Official FRA updated AML Law 80/2002 and Executive Regulation 951/2003; amendment chains; Decision 161/2024 and September 2026 CDD procedure leads |
 
+| [collection_checkpoint_29_capital_microfinance_realestate_2026.md](collection_checkpoint_29_capital_microfinance_realestate_2026.md) | Official FRA updated Capital Market Law 95/1992 and Executive Regulation 135/1993 amendment chain; Microfinance Law 141/2014; Real Estate Finance Regulation 1/2001 |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
