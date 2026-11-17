@@ -19,7 +19,7 @@ A title-based harvest cannot establish completeness. The law itself delegates do
 
 ### A. Prime Minister decisions not yet located
 
-1. **Article 18 — Higher Council for Human Resource Skills.** Cabinet approved a draft on 28 October 2026. The official Gazette issue 44 bis (A) lists Decision 3356/2026 for the Training Fund, but no final PM decision establishing the Human Resource Skills Council was found by 17 November. The Council's final constitution, powers, operating rules and executive secretariat remain a specific gap.
+1. **Article 18 — Higher Council for Human Resource Skills.** Cabinet approved a draft on 28 October 2026 (see [draft extraction](cabinet_draft_human_resource_skills_council_2026-10-28.md)). The official Gazette issue 44 bis (A) lists Decision 3356/2026 for the Training Fund, but no final PM decision establishing the Human Resource Skills Council was found by 17 November. The Council's final constitution, powers, operating rules and executive secretariat remain a specific gap.
 2. **Article 32 — Higher Council for Planning and Operating Domestic/Overseas Workforce.** The Law requires a PM decision within six months. No final decision number or Gazette text was located in this pass.
 3. **Article 234 — vital establishments and essential services where strike is prohibited.** No PM decision identifying the covered facilities/services was located.
 4. **Article 237 — economic closure/reduction committees.** No PM decision was located for the two committees, their composition, powers, representation, procedures and grievance timetable.
