@@ -105,3 +105,5 @@ This folder contains free/public source discovery, metadata registers and extrac
 51. [National judicial collection register](../../data/research/egypt_national_judicial_collection_register_2026-11-17.csv) — selected Constitutional Court summary/bulletin leads and State Council Supreme Administrative Court principle series.
 
 52. [Expanded initial statute register](../../data/research/egypt_initial_statute_acquisition_register_2026-11-17.csv) — 40 anchor laws and amendments with official PDF, official listing, and secondary-only status distinguished.
+
+53. [Constitution and election-law acquisition](egypt_constitution_and_election_law_acquisition_2026-11-17.md) — official 2014/2019 Constitution and six core election statutes/amendment PDFs from the National Elections Authority.
