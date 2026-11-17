@@ -8176,6 +8176,158 @@
           "status": "listed_2026-11-17"
         }
       ]
+    },
+    {
+      "document_id": "EG-BUDGET-LAW-85-2022",
+      "official_title": "القانون رقم 85 لسنة 2022 بربط الموازنة العامة للدولة للسنة المالية 2022/2023",
+      "document_type": "annual_budget_law",
+      "law_number": "85",
+      "law_year": 2022,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_catalogue_entry_seen",
+      "text_verification_note": "Listed on page 8 of official Ministry of Finance laws catalogue. Gazette PDF and operative text/schedules not yet extracted; SHA-256 and legal effect/currentness outstanding. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws?page=8",
+          "source_role": "official Ministry of Finance legislation catalogue",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-UHIA-BUDGET-LAW-130-2022",
+      "official_title": "القانون رقم 130 لسنة 2022 بربط موازنة الهيئة العامة للتأمين الصحي الشامل للسنة المالية 2022/2023",
+      "document_type": "annual_budget_law",
+      "law_number": "130",
+      "law_year": 2022,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_catalogue_entry_seen",
+      "text_verification_note": "Listed on page 8 of official Ministry of Finance laws catalogue. Gazette PDF and operative text/schedules not yet extracted; SHA-256 and legal effect/currentness outstanding. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws?page=8",
+          "source_role": "official Ministry of Finance legislation catalogue",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-RED-SEA-PORTS-BUDGET-107-2022",
+      "official_title": "القانون رقم 107 لسنة 2022 بربط موازنة الهيئة العامة لموانئ البحر الأحمر للسنة المالية 2022/2023",
+      "document_type": "annual_budget_law",
+      "law_number": "107",
+      "law_year": 2022,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_catalogue_entry_seen",
+      "text_verification_note": "Listed on page 8 of official Ministry of Finance laws catalogue. Gazette PDF and operative text/schedules not yet extracted; SHA-256 and legal effect/currentness outstanding. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws?page=8",
+          "source_role": "official Ministry of Finance legislation catalogue",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LAND-TAX-SUSPENSION-EXTENSION-152-2022",
+      "official_title": "القانون رقم 152 لسنة 2022 بشأن مد مدة إيقاف العمل بالقانون رقم 113 لسنة 1939 الخاص بضريبة الأطيان",
+      "document_type": "tax_law_extension",
+      "law_number": "152",
+      "law_year": 2022,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_catalogue_entry_seen",
+      "text_verification_note": "Listed on page 8 of official Ministry of Finance laws catalogue. Gazette PDF and operative text/schedules not yet extracted; SHA-256 and legal effect/currentness outstanding. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws?page=8",
+          "source_role": "official Ministry of Finance legislation catalogue",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-SPECIAL-FUNDS-TREASURY-TRANSFER-4-2022",
+      "official_title": "القانون رقم 4 لسنة 2022 بأيلولة نسبة من أرصدة الصناديق والحسابات الخاصة وفوائض الهيئات العامة إلى الخزانة العامة",
+      "document_type": "public_finance_law",
+      "law_number": "4",
+      "law_year": 2022,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_catalogue_entry_seen",
+      "text_verification_note": "Listed on page 8 of official Ministry of Finance laws catalogue. Gazette PDF and operative text/schedules not yet extracted; SHA-256 and legal effect/currentness outstanding. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws?page=8",
+          "source_role": "official Ministry of Finance legislation catalogue",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-STATE-EMPLOYEE-ALLOWANCES-16-2022",
+      "official_title": "القانون رقم 16 لسنة 2022 بتعجيل العلاوات الدورية ومنح علاوة خاصة وزيادة الحافز الإضافي والمعاشات",
+      "document_type": "public_employment_and_pensions_law",
+      "law_number": "16",
+      "law_year": 2022,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_catalogue_entry_seen",
+      "text_verification_note": "Listed on page 8 of official Ministry of Finance laws catalogue. Gazette PDF and operative text/schedules not yet extracted; SHA-256 and legal effect/currentness outstanding. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws?page=8",
+          "source_role": "official Ministry of Finance legislation catalogue",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EGYPTAIR-GUARANTEE-LAW-20-2022",
+      "official_title": "القانون رقم 20 لسنة 2022 بالإذن لوزير المالية في ضمان الشركة القابضة لمصر للطيران وشركة مصر للطيران للخطوط الجوية",
+      "document_type": "state_guarantee_law",
+      "law_number": "20",
+      "law_year": 2022,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_catalogue_entry_seen",
+      "text_verification_note": "Listed on page 8 of official Ministry of Finance laws catalogue. Gazette PDF and operative text/schedules not yet extracted; SHA-256 and legal effect/currentness outstanding. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws?page=8",
+          "source_role": "official Ministry of Finance legislation catalogue",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-ADDITIONAL-BUDGET-CREDIT-27-2022",
+      "official_title": "القانون رقم 27 لسنة 2022 بفتح اعتماد إضافي بالموازنة العامة للدولة للسنة المالية 2021/2022",
+      "document_type": "budget_amendment_law",
+      "law_number": "27",
+      "law_year": 2022,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_catalogue_entry_seen",
+      "text_verification_note": "Listed on page 8 of official Ministry of Finance laws catalogue. Gazette PDF and operative text/schedules not yet extracted; SHA-256 and legal effect/currentness outstanding. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws?page=8",
+          "source_role": "official Ministry of Finance legislation catalogue",
+          "status": "listed_2026-11-17"
+        }
+      ]
     }
   ]
 }
