@@ -161,16 +161,16 @@ Additional statutes indexed include Laws 46/1972, 47/1972, 54/1964 as amended by
 
 | Measure | Result | Meaning |
 |---|---:|---|
-| Legal-domain scope mapped | 32/32 (100%) | Scope definition only; not full legal coverage |
+| Legal-domain scope mapped | 33/33 (100%) | Scope definition only; not full legal coverage |
 | Source institutions/platforms registered | 27 | Government, courts, regulators and discovery sources |
-| Seed anchor instruments inventoried | 62 | Starter set, not the total universe of Egyptian laws and decisions |
-| Source PDFs opened | 18/62 (29.0% of seed list) | Includes some government reprints/annotated compilations; not all are bare Gazette originals |
-| Nationwide consolidated statute domains | 0/32 | No domain yet has all base laws, amendments, executive regulations and currentness fully consolidated |
+| Seed anchor instruments inventoried | 66 | Starter set, not the total universe of Egyptian laws and decisions |
+| Source PDFs opened | 20/66 (30.3% of seed list) | Includes government reprints and annotated compilations; not all are bare Gazette originals |
+| Nationwide consolidated statute domains | 0/33 | No domain yet has all base laws, amendments, executive regulations and currentness fully consolidated |
 | Full judicial judgments acquired in this national tranche | 0 | One Constitutional Court press-summary lead and a bulletin; 23 State Council series targets are bibliographic leads |
 | Lawyer-reviewed national instruments | 0 | Human legal review remains mandatory |
 
 **Overall nationwide legal knowledge collection estimate: 4%.** This is a cautious project-management estimate, not a count of all Egyptian laws or judicial decisions. It reflects the still-small share of actual full-text acquisition, amendment consolidation, currentness verification, judicial corpus collection and lawyer review. It must rise only when the underlying documents and legal relationships are acquired and checked—not when source URLs are merely discovered.
- 
+
 
 
 ## Constitution and election-law tranche
