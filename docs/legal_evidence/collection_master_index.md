@@ -267,6 +267,8 @@
 
 | [collection_checkpoint_56_judicial_authorities_laws.md](collection_checkpoint_56_judicial_authorities_laws.md) | Judicial Authority Law 46/1972, Administrative Prosecution Law 117/1958 and State Lawsuits Authority Law 75/1963 source map |
 
+| [collection_checkpoint_66_central_bank_law_2026.md](collection_checkpoint_66_central_bank_law_2026.md) | Central Bank Law 194/2020 official CBE index and Gazette promulgation PDF; 241-article structure; customer complaints, payment systems, bank resolution and 2025 CBE oversight rules |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
