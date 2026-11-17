@@ -339,6 +339,14 @@ body{background:#f3f6fa;color:var(--figma-ink);font-family:Inter,"Noto Sans Arab
 .settings-checkbox-row>input[type="checkbox"]{flex:0 0 18px;width:18px;height:18px;min-height:18px;margin:0}
 .settings-checkbox-row>span{display:block;flex:1;min-width:0}
 .document-review-split{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;align-items:start}.document-review-split.is-previewing{grid-template-columns:minmax(0,1fr) minmax(0,1fr);direction:ltr}.document-original-preview{min-width:0;margin:12px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:#F8FAFC}.document-original-preview iframe{display:block;width:100%;max-width:100%}.document-review-group{min-width:0}.document-review-group .row{flex-wrap:wrap}@media(max-width:900px){.document-review-split.is-previewing{grid-template-columns:minmax(0,1fr)}}
+#main .research-saved-search-list{display:grid;gap:5px;min-width:0}
+#main .research-saved-search-row{display:grid;grid-template-columns:minmax(0,1fr) 28px;gap:4px;align-items:center;min-width:0}
+#main .research-saved-search{text-align:start;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+#main .research-saved-search-remove{min-width:28px;min-height:28px;padding:2px;border:0;background:transparent;color:#8a98a9;border-radius:5px}
+#main .research-saved-search-remove:hover{background:#fff0f0;color:#b64b4b}
+#main .research-saved-search-empty{margin:0;padding:5px 2px;font-size:11px;line-height:1.5}
+#main .research-saved-searches-heading button{min-height:27px;padding:4px 7px;font-size:10px;white-space:nowrap}
+@media(max-width:800px){#main .research-saved-searches{margin-top:10px}}
 </style>
 <style>
 /* Legal Copilot — premium workspace polish
@@ -3156,8 +3164,31 @@ async function law(){
      }});
      sidebar.append(h('div',{className:'research-conversation-row'},openButton,renameButton,deleteButton));
    }
-   const savedSearches=[['Commercial contracts','commercial contracts'],['Regulatory updates','regulatory updates'],['Statutory interpretation','statutory interpretation']];
-   sidebar.append(h('section',{className:'research-saved-searches'},h('div',{className:'research-saved-searches-heading'},h('b',{textContent:LANG==='ar'?'عمليات بحث محفوظة':'Saved searches'}),h('span',{className:'mut',textContent:'+'})),...savedSearches.map(([label,query])=>h('button',{type:'button',className:'research-saved-search',textContent:label,onclick:()=>{composer.value=query;composer.focus()}}))));
+   const savedSearchKey='legal-copilot-research-saved-searches-v1';
+   const readSavedSearches=()=>{try{const value=JSON.parse(localStorage.getItem(savedSearchKey)||'[]');return Array.isArray(value)?value.filter(item=>item&&typeof item.label==='string'&&typeof item.query==='string').slice(0,20):[]}catch(_){return[]}};
+   const savedSearches=readSavedSearches();
+   const savedSearchList=h('div',{className:'research-saved-search-list'});
+   const renderSavedSearches=()=>{
+    savedSearchList.replaceChildren();
+    if(!savedSearches.length)savedSearchList.append(h('p',{className:'mut research-saved-search-empty',textContent:LANG==='ar'?'لم تحفظ عمليات بحث بعد. أضف سؤالاً متكرراً للوصول إليه بسرعة.':'No saved searches yet. Save a recurring query for quick access.'}));
+    savedSearches.forEach((item,index)=>{
+     const run=h('button',{type:'button',className:'research-saved-search',textContent:item.label,title:item.query,onclick:()=>{composer.value=item.query;composer.focus()}});
+     const remove=h('button',{type:'button',className:'research-saved-search-remove','aria-label':(LANG==='ar'?'حذف البحث المحفوظ: ':'Remove saved search: ')+item.label,title:LANG==='ar'?'حذف':'Remove',textContent:'×',onclick:()=>{savedSearches.splice(index,1);try{localStorage.setItem(savedSearchKey,JSON.stringify(savedSearches))}catch(_){}renderSavedSearches()}});
+     savedSearchList.append(h('div',{className:'research-saved-search-row'},run,remove));
+    });
+   };
+   const addSavedSearch=()=>{
+    const query=String(composer.value||'').trim().slice(0,2000);
+    if(!query){toast(LANG==='ar'?'اكتب سؤال البحث أولاً.':'Enter a research query first.');composer.focus();return}
+    if(savedSearches.some(item=>item.query===query)){toast(LANG==='ar'?'هذا البحث محفوظ بالفعل.':'This query is already saved.');return}
+    if(savedSearches.length>=20){toast(LANG==='ar'?'يمكن حفظ 20 عملية بحث كحد أقصى.':'You can save up to 20 searches.');return}
+    const label=query.replace(/\s+/g,' ').slice(0,64);
+    savedSearches.push({label,query});
+    try{localStorage.setItem(savedSearchKey,JSON.stringify(savedSearches));toast(LANG==='ar'?'تم حفظ البحث في هذا المتصفح.':'Search saved in this browser.')}catch(_){savedSearches.pop();toast(LANG==='ar'?'تعذر الحفظ في مساحة تخزين المتصفح.':'Browser storage is unavailable.')}
+    renderSavedSearches();
+   };
+   renderSavedSearches();
+   sidebar.append(h('section',{className:'research-saved-searches'},h('div',{className:'research-saved-searches-heading'},h('b',{textContent:LANG==='ar'?'عمليات بحث محفوظة':'Saved searches'}),btn(uiText('حفظ السؤال الحالي','Save current query'),addSavedSearch,'g')),savedSearchList));
  };
  conversationFilter.oninput=renderList;
  const drawList=async()=>{conversationItems=await api('/research/conversations');renderList()};
