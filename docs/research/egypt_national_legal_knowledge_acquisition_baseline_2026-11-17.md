@@ -120,16 +120,16 @@ Policy:
 
 ## 8. Initial progress measurement
 
-A defensible percentage needs a denominator. The first denominator is now **32 legal domains**, not an estimate of all individual laws/cases:
-- 32/32 domains have been named in the national inventory (scope definition only; this is not 100% coverage).
+A defensible percentage needs a denominator. The first denominator is now **33 legal domains**, not an estimate of all individual laws/cases:
+- 33/33 domains have been named in the national inventory (scope definition only; this is not 100% coverage).
 - 27 source institutions/platforms are registered, including the Supreme Constitutional Court, State Council, Consumer Protection Agency, NOSI, Administrative Control Authority, National Elections Authority, Customs Authority and Economic Courts.
-- 62 anchor instruments have acquisition records with their source/access status.
-- 18 source PDFs have been opened across the tranches (not all are bare Gazette originals: Commercial Code is a government-published reprint and Customs Law is an authority-annotated compilation); Law160/2026 official HTML text was also opened. Several more have only official listing metadata.
+- 66 anchor instruments have acquisition records with their source/access status.
+- 20 source PDFs have been opened across the tranches (not all are bare Gazette originals: Commercial Code is a government-published reprint and Customs Law is an authority-annotated compilation); Law160/2026 official HTML text was also opened. Several more have only official listing metadata.
 - No nationwide article-by-article consolidated statute corpus has been produced. A public judicial collection register now includes 25 leads (one Constitutional Court press summary, one recent bulletin and 23 State Council principle-series targets); the underlying judgments/volumes are mostly not yet acquired.
 - No nationwide court judgment corpus has been acquired.
 - No lawyer-reviewed national corpus exists.
 
-Do not turn the 32-domain planning inventory into a false legal-coverage percentage. Report separate metrics for domain mapping, source acquisition, primary-source matching, amendment/currentness validation, judicial collection and lawyer review.
+Do not turn the 33-domain planning inventory into a false legal-coverage percentage. Report separate metrics for domain mapping, source acquisition, primary-source matching, amendment/currentness validation, judicial collection and lawyer review.
 
 ## 9. Next acquisition priorities
 
@@ -188,3 +188,14 @@ New official source discoveries:
 - Customs Authority has a public export control notice for Circular19/2026 concerning controlled pharmaceutical preparations to Kuwait; the 22 MB attachment and schedules remain unacquired.
 
 See [Commercial, Customs and Social Insurance tranche](egypt_commercial_customs_social_insurance_acquisition_2026-11-17.md).
+
+
+## Companies and insolvency tranche
+
+- Companies Law159/1981: official ETA-hosted PDF opened (993 extracted lines). It records amendments by Law3/1998 and Law94/2005 and cites a 2001 Supreme Constitutional Court ruling invalidating part of Article17. It is not a consolidated 2026 text; Law17/2015 and GAFI rules remain to integrate.
+- Insolvency Law11/2018: 279-article secondary full text located; primary Gazette issue7 bis(D), 19 Feb 2018 still outstanding.
+- Law11/2021: official government-hosted Gazette PDF (issue16 bis(W), 28 Apr 2021) acquired; it adds electronic litigation under Article3 bis and amends numerous insolvency provisions.
+- Ministry of Justice Decision3715/2026: official GPO text page located; amends Decision2208/2019 on Bankruptcy Administration expert fees/deposits. Exact Gazette metadata and effective date still need capture.
+- Insolvency, restructuring and bankruptcy are now a dedicated 33rd domain.
+
+See [Companies and Insolvency acquisition](egypt_companies_insolvency_economic_courts_acquisition_2026-11-17.md).
