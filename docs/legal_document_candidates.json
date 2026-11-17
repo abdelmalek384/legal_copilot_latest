@@ -283,6 +283,28 @@
       "terms_url": null,
       "terms_checked_on": null,
       "permission_evidence": "The Authority's portal lists customs legislation and numbered import/export circulars with issue dates, including 2026 entries. Portal discovery does not establish Gazette status, complete coverage, bulk extraction rights or commercial reuse permission. Distinguish binding legislation from administrative circulars and operational notices."
+    },
+    {
+      "source_id": "EG-CBE-REGULATIONS",
+      "authority": "Central Bank of Egypt",
+      "source_page": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+      "access_status": "official Arabic circular index observed 2026-11-17: 404 circulars; English index displays 405; regulations book has 19 results; banking laws index lists core statute and related instruments",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Official CBE portal exposes searchable circulars, topic filters and downloadable circular PDFs; it describes ongoing review and update of banking regulations. Public availability does not establish bulk extraction or commercial reuse permission. Preserve each circular's authority, recipient scope, date, attachment and supersession status."
+    },
+    {
+      "source_id": "EG-MCIT-LEGISLATION",
+      "authority": "Ministry of Communications and Information Technology",
+      "source_page": "https://mcit.gov.eg/ar/TeleCommunications/Regulations/Laws_and_Legislations",
+      "access_status": "official laws and legislation index observed 2026-11-17; core telecommunications law and ministerial decisions listed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Official Ministry index lists Telecommunications Regulation Law 10/2003, ministerial decisions 258/2003, 259/2003, 128/2006, 667/2017, Cybercrime Law 175/2018 and its executive regulations. NTRA licensing materials are adjacent regulatory material. No bulk extraction/reuse grant established."
     }
   ],
   "documents": [
@@ -1922,6 +1944,512 @@
         {
           "url": "https://customs.gov.eg/Legislations/Documents",
           "source_role": "official authority index or updated regulatory guide",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-11-03",
+      "official_title": "كتاب دوري بتاريخ 3 نوفمبر 2026 بشأن القواعد المنظمة للوكلاء المصرفيين",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-11-03",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. Financial inclusion; agent banking rules. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-10-27",
+      "official_title": "كتاب دوري بتاريخ 27 أكتوبر 2026 بشأن الحصول على موافقة البنك المركزي قبل إجراء أي تعديل على سياسة صناديق الاستثمار التابعة للبنوك",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-10-27",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. Prior CBE approval for amendments to bank investment-fund policies. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-10-12",
+      "official_title": "كتاب دوري بتاريخ 12 أكتوبر 2026 بشأن عدم منح شركات التمويل الاستهلاكي تسهيلات ائتمانية لتمويل العمليات المدرجة بتعميم الهيئة العامة للرقابة المالية المؤرخ 16 سبتمبر 2026",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-10-12",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. Credit restriction referencing FRA circular dated 16 September 2026; cross-regulator dependency. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-09-28-BANK-KYC",
+      "official_title": "كتاب دوري بتاريخ 28 سبتمبر 2026 بشأن إجراءات العناية الواجبة بعملاء البنوك",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-09-28",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. AML/CFT customer due diligence for banks. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-09-28-MONEY-TRANSFER-KYC",
+      "official_title": "كتاب دوري بتاريخ 28 سبتمبر 2026 بشأن إجراءات العناية الواجبة بعملاء شركات تحويل الأموال",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-09-28",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. AML/CFT customer due diligence for money-transfer companies. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-09-28-EXCHANGE-KYC",
+      "official_title": "كتاب دوري بتاريخ 28 سبتمبر 2026 بشأن إجراءات العناية الواجبة بعملاء شركات الصرافة",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-09-28",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. AML/CFT customer due diligence for exchange companies. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-09-24-CREDIT-GUARANTEE",
+      "official_title": "كتاب دوري بتاريخ 24 سبتمبر 2026 بشأن قواعد الترخيص والرقابة والإشراف على شركات ضمان الائتمان",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-09-24",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. Licensing and supervision framework for credit-guarantee companies. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-09-24-BANK-SERVICES",
+      "official_title": "كتاب دوري بتاريخ 24 سبتمبر 2026 بشأن تعديل ضوابط تقديم خدمات السجل التجاري والتوثيق من خلال البنوك",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-09-24",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. Amends bank-provided commercial-register and notarization service rules. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-08-23-EKYC",
+      "official_title": "كتاب دوري بتاريخ 23 أغسطس 2026 بشأن القواعد المنظمة لخدمات منظومة الهوية المالية الرقمية للتعرف على عملاء البنوك والتحقق من هوياتهم إلكترونياً",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-08-23",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. Digital financial identity / eKYC platform rules. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-08-17-FINANCIAL-LITERACY",
+      "official_title": "كتاب دوري بتاريخ 17 أغسطس 2026 بشأن تعزيز التثقيف المالي للأفراد والشركات والمنشآت متناهية الصغر والصغيرة والمتوسطة",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-08-17",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. Financial literacy and inclusion. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-08-04-COMPANY-DATA",
+      "official_title": "كتاب دوري بتاريخ 4 أغسطس 2026 بشأن قاعدة بيانات الشمول المالي للشركات",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-08-04",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. Corporate financial-inclusion data hub. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-07-01-CORPORATE-BONDS",
+      "official_title": "كتاب دوري بتاريخ 1 يوليو 2026 بشأن ضوابط استثمارات البنوك في سندات الشركات وسندات التوريق",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-07-01",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. Bank investments in corporate and securitization bonds. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-06-30-ESG",
+      "official_title": "كتاب دوري بتاريخ 30 يونيو 2026 بشأن تطبيق البنوك نظام إدارة المخاطر البيئية والاجتماعية ضمن سياسة التمويل المستدام والدليل الاسترشادي للتطبيق",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-06-30",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. Environmental/social risk management in sustainable finance. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-06-25-FRAUD",
+      "official_title": "كتاب دوري بتاريخ 25 يونيو 2026 إلحاقاً للكتاب الدوري بشأن إنشاء إدارة متخصصة لإدارة ومكافحة الاحتيال بالبنوك",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-06-25",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. Supplement to bank fraud-management unit circular. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-06-21-CREDIT",
+      "official_title": "كتاب دوري بتاريخ 21 يونيو 2026 بشأن عدم منح تسهيلات ائتمانية بغرض تمويل زيادة رأس المال أو توزيعات الأرباح",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-06-21",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. Credit restrictions for capital increases/dividend financing. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-05-24-TOURISM",
+      "official_title": "كتاب دوري بتاريخ 24 مايو 2026 بشأن موافقة مجلس الوزراء على تعديل مبادرة دعم القطاع السياحي",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-05-24",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. Tourism-sector support initiative update. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-05-12-GOVERNANCE",
+      "official_title": "كتاب دوري بتاريخ 12 مايو 2026 بشأن التأكيد على ما ورد بتعليمات الحوكمة والرقابة الداخلية فيما يخص خبرات أعضاء مجلس الإدارة",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-05-12",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. Board-member experience requirements under governance/internal-control rules. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-04-22-MARGIN",
+      "official_title": "كتاب دوري بتاريخ 22 أبريل 2026 بشأن ضوابط تمويل عمليات شراء الأوراق المالية بالهامش",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-04-22",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. Financing margin-trading transactions. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-02-12-RESERVE",
+      "official_title": "كتاب دوري بتاريخ 12 فبراير 2026 بشأن خفض نسبة الاحتياطي الإلزامي من 18% إلى 16%",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-02-12",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. Reserve ratio reduction; verify subsequent monetary policy changes. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CBE-CIRCULAR-2026-06-25-OTHER",
+      "official_title": "كتاب دوري بتاريخ 25 يونيو 2026 بشأن إلحاق لاحق بتعليمات البنك المركزي",
+      "document_type": "central_bank_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "issue_date": "2026-06-25",
+      "source_id": "EG-CBE-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official CBE circular index lists this dated instrument. Search-indexed CBE circular; exact title and document PDF must be captured before treating as substantive. Full PDF, recipients, commencement, amendments/supersession and legal effect require capture and review.",
+      "source_urls": [
+        {
+          "url": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+          "source_role": "official CBE circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MCIT-TELECOM-LAW-10-2003",
+      "official_title": "قانون تنظيم الاتصالات رقم 10 لسنة 2003",
+      "document_type": "law",
+      "law_number": "10",
+      "law_year": 2003,
+      "source_id": "EG-MCIT-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Core telecommunications statute listed by MCIT; obtain Gazette original, amendments and current consolidated text.",
+      "source_urls": [
+        {
+          "url": "https://mcit.gov.eg/ar/TeleCommunications/Regulations/Laws_and_Legislations",
+          "source_role": "official MCIT legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MCIT-MINISTERIAL-DECISION-258-2003",
+      "official_title": "القرار الوزاري رقم 258 لسنة 2003",
+      "document_type": "ministerial_decision_or_executive_regulation",
+      "law_number": "258",
+      "law_year": 2003,
+      "source_id": "EG-MCIT-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed in MCIT telecommunications legislation index; exact title, full text and currentness need retrieval.",
+      "source_urls": [
+        {
+          "url": "https://mcit.gov.eg/ar/TeleCommunications/Regulations/Laws_and_Legislations",
+          "source_role": "official MCIT legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MCIT-MINISTERIAL-DECISION-259-2003",
+      "official_title": "القرار الوزاري رقم 259 لسنة 2003",
+      "document_type": "ministerial_decision_or_executive_regulation",
+      "law_number": "259",
+      "law_year": 2003,
+      "source_id": "EG-MCIT-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed in MCIT telecommunications legislation index; exact title, full text and currentness need retrieval.",
+      "source_urls": [
+        {
+          "url": "https://mcit.gov.eg/ar/TeleCommunications/Regulations/Laws_and_Legislations",
+          "source_role": "official MCIT legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MCIT-MINISTERIAL-DECISION-128-2006",
+      "official_title": "القرار الوزاري رقم 128 لسنة 2006",
+      "document_type": "ministerial_decision_or_executive_regulation",
+      "law_number": "128",
+      "law_year": 2006,
+      "source_id": "EG-MCIT-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed in MCIT telecommunications legislation index; exact title, full text and currentness need retrieval.",
+      "source_urls": [
+        {
+          "url": "https://mcit.gov.eg/ar/TeleCommunications/Regulations/Laws_and_Legislations",
+          "source_role": "official MCIT legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MCIT-MINISTERIAL-DECISION-667-2017",
+      "official_title": "القرار الوزاري رقم 667 لسنة 2017 بشأن تنظيم الجزاءات التأديبية",
+      "document_type": "ministerial_decision_or_executive_regulation",
+      "law_number": "667",
+      "law_year": 2017,
+      "source_id": "EG-MCIT-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by MCIT as regulating disciplinary sanctions; exact scope, Gazette issue and amendments need checking.",
+      "source_urls": [
+        {
+          "url": "https://mcit.gov.eg/ar/TeleCommunications/Regulations/Laws_and_Legislations",
+          "source_role": "official MCIT legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MCIT-CYBERCRIME-LAW-175-2018",
+      "official_title": "قانون رقم 175 لسنة 2018 بشأن مكافحة جرائم تقنية المعلومات",
+      "document_type": "law",
+      "law_number": "175",
+      "law_year": 2018,
+      "source_id": "EG-MCIT-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by MCIT; capture Gazette text, executive regulations, subsequent amendments and relationship to Penal Code.",
+      "source_urls": [
+        {
+          "url": "https://mcit.gov.eg/ar/TeleCommunications/Regulations/Laws_and_Legislations",
+          "source_role": "official MCIT legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MCIT-CYBERCRIME-EXECUTIVE-REGULATIONS",
+      "official_title": "اللائحة التنفيذية لقانون مكافحة جرائم تقنية المعلومات رقم 175 لسنة 2018",
+      "document_type": "ministerial_decision_or_executive_regulation",
+      "law_number": null,
+      "law_year": 2018,
+      "source_id": "EG-MCIT-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by MCIT as executive regulations; exact issuing decision number and Gazette metadata need retrieval.",
+      "source_urls": [
+        {
+          "url": "https://mcit.gov.eg/ar/TeleCommunications/Regulations/Laws_and_Legislations",
+          "source_role": "official MCIT legislation index",
           "status": "listed_2026-11-17"
         }
       ]
