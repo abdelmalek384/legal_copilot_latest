@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 44) (expanded through checkpoint 43) (expanded through checkpoint 42) (expanded through checkpoint 41) (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 45) (expanded through checkpoint 44) (expanded through checkpoint 43) (expanded through checkpoint 42) (expanded through checkpoint 41) (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -214,6 +214,9 @@
 | [collection_checkpoint_44_labour_law_14_2025_implementation.md](collection_checkpoint_44_labour_law_14_2025_implementation.md) | Labour Law 14/2025 official texts, commencement, ministerial-decision implementation model and 2025–2026 decision/circular leads |
 
 | [collection_checkpoint_57_scc_defamation_agriculture_2026.md](collection_checkpoint_57_scc_defamation_agriculture_2026.md) | SCC case 244/23 (defamation/insult) and case 19/44 (agricultural possession-card administrative jurisdiction) full official judgments |
+
+
+| [collection_checkpoint_45_trade_union_law_2017.md](collection_checkpoint_45_trade_union_law_2017.md) | Trade Union Law 213/2017, amendment 142/2019, Executive Regulation 35/2018 and model bylaws Decision 36/2018 |
 
 ## High-value primary-source portals
 
