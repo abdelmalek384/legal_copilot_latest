@@ -1595,7 +1595,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.login(self.state["owner_a_email"])
 
         language_switch = self.page.locator('[data-lang-switch="1"]').first
-        if language_switch.inner_text().strip() == "English":
+        if language_switch.inner_text().strip() == "العربية":
             language_switch.click()
 
         research_nav = self.page.locator("#side").get_by_role("button", name="البحث القانوني")
