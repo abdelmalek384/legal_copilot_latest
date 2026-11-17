@@ -4378,7 +4378,7 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 <style>
 /* Final screenshot acceptance: preserve all three panes and restore their intended order.
    The document is RTL, so the first grid track is the visual right-hand column. */
-#main:has(.research-layout){width:calc(100% - 248px)!important;max-width:none!important;min-width:0!important}
+#main:has(.research-layout){width:auto!important;flex:1 1 0%!important;max-width:none!important;min-width:0!important}
 #main .research-layout{
  display:grid!important;
  grid-template-columns:minmax(250px,300px) minmax(0,1fr) minmax(210px,245px)!important;
@@ -4455,4 +4455,12 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 }
 </style>
 
+
+<style>
+/* Legal Research is a focused workspace: remove the global search strip and let
+   the content column consume the space left by the fixed 206px app navigation. */
+#main:has(.research-layout)>.workspace-topbar{display:none!important}
+#main:has(.research-layout){width:auto!important;flex:1 1 0%!important;min-width:0!important;max-width:none!important;box-sizing:border-box!important}
+@media(max-width:1180px){#main:has(.research-layout){width:100%!important;flex:1 1 auto!important}}
+</style>
 </html>
