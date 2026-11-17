@@ -448,7 +448,7 @@ The exact list above is a status snapshot; it is not a claim that every listed t
 - PR #1856 merged: focused asylum-law note index.
 - PR #1857 merged: SCC public docket register.
 - PR #1854 closed as a stale diverged draft superseded by #1855.
-- GitHub Actions billing issue remains external; no CI success is claimed. Structural CSV checks were run through the available tooling for the 19-row FRA/CBE, 19-row sectoral and 19-row MoF CSV files: all had 11 columns per row, no malformed row lengths and no duplicate record IDs. This is structural validation only, not legal validation.
+- GitHub Actions billing issue remains external; no CI success is claimed. Structural CSV checks were run through the available tooling for the 19-row FRA/CBE, 19-row sectoral, 19-row MoF, 8-row PDPL, 12-row clinical-research, 13-row asylum/telecom and 19-row SCC registers: all rows matched their headers, with no malformed row lengths or duplicate record IDs. The SCC register has 12 columns; the other checked registers have 11. This is structural validation only, not legal validation.
 
 ### Next work priority
 
@@ -493,3 +493,13 @@ The Official Government Printing Office's indexed text identifies PM Decision 92
 High-priority provisions visible in the official text include Article 2 (informed consent, good research practice, participant withdrawal and treatment of side effects); Articles 5–9 (protocol approval routes and review periods); Articles 20–21 (participant withdrawal, confidentiality, consent in the participant's mother tongue and limits on inducements); Articles 22–29 (investigator/sponsor duties, 24-hour serious-adverse-event notification, retention and insurance); and Article 30 (human sample consent, trade/storage restrictions and limits on storage/export outside Egypt).
 
 The regulation's preamble creates a broad cross-reference queue including medical practice, pharmacy, universities, medical facilities, child protection, intellectual property, competition, organ transplantation, industrial licensing, disability rights, university hospitals, science/technology incentives, unified procurement/medical supply, personal data protection and blood/plasma statutes. The full Gazette issue, Law 214/2020 base text, article-by-article comparison and later EDA/Supreme Council instruments remain outstanding.
+
+
+## 23. Progress update after PDPL, clinical-research and NTRA tranches
+
+The national corpus registers now additionally include:
+- **PDPL/PDPC:** 8 records for Law 151/2020, Decision 816/2025, the official PDPC consent/privacy-notice guidelines and unresolved compliance-window currentness.
+- **Clinical research:** 12 records for Law 214/2020 and PM Decision 927/2022, including participant rights, protocol approvals, EDA/Supreme Council functions, serious adverse events, sponsor duties and human samples.
+- **NTRA currentness:** the telecom register now has 13 records and captures the 16 November 2026 commencement notice for new wireless-device/spectrum rules and the stated 15 February 2027 regularization deadline.
+
+PRs #1858, #1859, #1860 and #1861 have now merged. The overall national legal-content estimate remains approximately 1.5% (rounded to 2%): these passes have materially expanded source discovery and sector-specific acquisition, but no full domain is complete and the denominator for the entire Egyptian legal system remains unknown.
