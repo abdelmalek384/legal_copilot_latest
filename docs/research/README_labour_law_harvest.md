@@ -65,3 +65,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 
 32. [Expanded OSH legacy framework and training amendments](osh_legacy_framework_134_232_263_74_11_216_2026-11-17.md) — full research map for Decisions 134/2003, 25/2010, 232/2010, 263/2010, 74/2013, 31/2004, 11/2014 and 216/2016; includes repeal leads 98/2006 and unresolved 20/2008 vs 202/2008.
+
+
+33. [Decisions 187, 194 and 214/2025 — expanded extraction](decisions_187_194_214_2025_expanded_extraction_2026-11-17.md) — nine-article resignation approval text, six-article temporary foreign-worker regularization decision plus Instruction 20/2025, and nine-article employment-contract deposit rules.
