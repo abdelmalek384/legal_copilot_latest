@@ -34,7 +34,7 @@ The Ministry index currently exposes the following labour-related instruments. T
 | 2013 | 126 | تعديل القرار الوزاري رقم 292 لسنة 2010 | Retrieve; determine exact target text and link amendment chain |
 | 2015 | 414 | القواعد والاجراءات المنظمة للتدرج المهني | Retrieve; compare with Decision 267/2025; record express repeals of predecessors where shown |
 | 2015 | 391 | إضافة مهن جديدة خاضعة لقياس مستوى المهارة | Retrieve schedule; compare with Decision 266/2025 |
-| 2016 | 216 | تحديد المنشآت التي تلتزم بإنشاء أجهزة ولجان السلامة والصحة المهنية | Retrieve; compare with 232/2010, 134/2003 and Decision 249/2026 |
+| 2016 | 216 | تحديد المنشآت التي تلتزم بإنشاء أجهزة ولجان السلامة والصحة المهنية | Three-article Gazette transcription found; actual text amends the first paragraph of Art.18 of Decision 134/2003 on OSH training providers/training levels. See the focused OSH predecessor note; establishment thresholds require the base text/schedules |
 | 2016 | 150 | تشكيل لجنة البت في منح تراخيص عمل للأجانب | Retrieve; compare with foreign-worker permit framework and Decision 279/2025 |
 | 2018 | 52 | اعتماد قائمة الوسطاء في مجال فض المنازعات | Retrieve; check later mediation/conciliation framework |
 | 2018 | 39 | إضافة مهن خاضعة لقياس مستوى المهارة | Retrieve schedule; compare with Decision 266/2025 |
