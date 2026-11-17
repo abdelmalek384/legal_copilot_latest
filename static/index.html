@@ -3101,7 +3101,7 @@ async function law(){
          const pin=[(s.law_number||s.provenance?.law_number)&&((LANG==='ar'?'القانون رقم ':'Law No. ')+(s.law_number||s.provenance.law_number)+(s.law_year||s.provenance?.law_year?'/'+(s.law_year||s.provenance.law_year):'')),s.article&&(LANG==='ar'?'المادة ':'Article ')+s.article,s.page&&(LANG==='ar'?'الصفحة ':'Page ')+s.page].filter(Boolean).join(' · ');
          if(pin)src.append(h('div',{className:'research-pin',textContent:pin}));
          const sourceQuestion=messages.slice(0,messageIndex).reverse().find(x=>x.role==='user')?.content||'';
-         src.append(h('div',{className:'research-exact-passage'},...highlightTerms(s.text||'',sourceQuestion,s.matched_terms)),h('div',{className:'mut',textContent:(s.source||'')+(s.as_of?' · '+fd(s.as_of):'')}));
+         src.append(h('div',{className:'research-exact-passage'},...highlightTerms(s.text||'',sourceQuestion,s.matched_terms)),h('div',{className:'mut',textContent:[s.court,s.source,s.as_of&&fd(s.as_of)].filter(Boolean).join(' · ')}));
          const sourceActions=h('div',{className:'research-source-actions'});
          sourceActions.append(makeBtn(LANG==='ar'?'نسخ الاستشهاد':'Copy citation',()=>copyText(s.citation||s.ref||'Unresolved citation')));
          sourceActions.append(makeBtn(LANG==='ar'?'نسخ المقطع الحرفي':'Copy exact passage',()=>copyText(s.text||'')));
