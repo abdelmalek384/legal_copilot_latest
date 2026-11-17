@@ -122,10 +122,10 @@ Policy:
 
 A defensible percentage needs a denominator. The first denominator is now **30 legal domains**, not an estimate of all individual laws/cases:
 - 30/30 domains have been named in the national inventory (scope definition only; this is not 100% coverage).
-- 18 source institutions/platforms are registered (including the Supreme Constitutional Court and State Council).
-- 25 anchor instruments have acquisition records with their source/access status.
-- 7 instruments have official PDF text actually opened in this tranche; several more have only official listing metadata.
-- No nationwide article-by-article consolidated statute corpus has been produced.
+- 23 source institutions/platforms are registered, including the Supreme Constitutional Court, State Council, Consumer Protection Agency, NOSI and Administrative Control Authority.
+- 40 anchor instruments have acquisition records with their source/access status.
+- 8 instruments have official PDF text actually opened in this tranche (including the Consumer Protection Law PDF, whose text layer has encoding issues); Law160/2026 official HTML text was also opened. Several more have only official listing metadata.
+- No nationwide article-by-article consolidated statute corpus has been produced. A public judicial collection register now includes 25 leads (one Constitutional Court press summary, one recent bulletin and 23 State Council principle-series targets); the underlying judgments/volumes are mostly not yet acquired.
 - No nationwide court judgment corpus has been acquired.
 - No lawyer-reviewed national corpus exists.
 
@@ -144,3 +144,14 @@ Do not turn the 30-domain planning inventory into a false legal-coverage percent
 ## 10. Trust and rights defaults
 
 Every newly discovered record starts as `unverified` or `source_matched` only when exact source comparison has actually been done. Keep `lawyer_reviewed=false` and `rights_cleared=false` unless supported by explicit evidence. Do not commit source PDFs or bulk transcriptions unless repository policy, source terms and copyright/reuse rights have been assessed.
+
+
+## Additional public legal sources and anchor laws
+
+The acquisition register has been expanded to 40 anchor instruments. Newly located official public sources include:
+- Consumer Protection Agency's 32-page Law181/2018 PDF (text layer has character-encoding problems in portions and needs page-image checking).
+- National Organization for Social Insurance announcement confirming Law148/2019 and its original commencement structure; full law text remains to acquire.
+- Administrative Control Authority's official legislative-framework page, which identifies a broad set of criminal, administrative, judicial, public procurement, AML, competition and public-integrity statutes, and expressly labels Civilian State Employees Law47/1978 repealed while identifying Civil Service Law81/2016.
+- GAFI and ITIDA as official discovery portals for investment/company and intellectual-property/e-signature legislation.
+
+Additional statutes indexed include Laws 46/1972, 47/1972, 54/1964 as amended by 207/2017, 75/1963, 80/2002, 81/2016, 109/1971, 117/1958, 182/2018, 3/2005, 11/1968 and 47/1973. These are source-index leads, not full text acquisitions.
