@@ -183,6 +183,8 @@
 
 | [collection_checkpoint_38_waste_management_law_2020.md](collection_checkpoint_38_waste_management_law_2020.md) | Waste Management Law 202/2020 (86 articles), Executive Regulation 722/2022 and Decision 1113/2024 amendment source chain |
 
+| [collection_checkpoint_51_november_gazette_privacy.md](collection_checkpoint_51_november_gazette_privacy.md) | Official Gazette issues 46/2026 and Al-Waqa'i 254–255 (15–16 Nov); classifies individual nationality/parcel decisions and protects personal data |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
