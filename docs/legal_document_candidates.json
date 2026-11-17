@@ -393,6 +393,17 @@
       "terms_url": "https://pdpc.gov.eg/",
       "terms_checked_on": "2026-11-17",
       "permission_evidence": "Site footer states all rights reserved; no affirmative licence for bulk extraction, indexing, commercial use or redistribution identified."
+    },
+    {
+      "source_id": "EG-MOSS-LEGISLATION",
+      "authority": "Ministry of Social Solidarity, Arab Republic of Egypt",
+      "source_page": "https://www.moss.gov.eg/الاصدارات/القوانين-والتشريعات/?page=1",
+      "access_status": "official laws-and-legislation index observed 2026-11-17; lists social insurance, social guarantee, family, child and related legislation; linked full texts not yet inspected",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Public index is a discovery source only. No affirmative bulk collection, indexing, commercial use or redistribution licence established."
     }
   ],
   "documents": [
@@ -3864,6 +3875,275 @@
       "source_urls": [
         {
           "url": "https://pdpc.gov.eg/en/laws-regulations",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MOSS-SOCIAL-INSURANCE-LAW-148-2019",
+      "official_title": "القانون رقم 148 لسنة 2019 بإصدار قانون التأمينات الاجتماعية والمعاشات",
+      "document_type": "law",
+      "law_number": "148",
+      "law_year": 2019,
+      "source_id": "EG-MOSS-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by Ministry of Social Solidarity; obtain original Gazette text, executive regulations and all amendment/implementation decisions. Full text, commencement, amendments/repeals, currentness and reuse rights are not fully verified; no lawyer review.",
+      "source_urls": [
+        {
+          "url": "https://www.moss.gov.eg/الاصدارات/القوانين-والتشريعات/?page=1",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MOSS-SOCIAL-GUARANTEE-LAW-12-2025",
+      "official_title": "القانون رقم 12 لسنة 2025 بإصدار قانون الضمان الاجتماعي",
+      "document_type": "law",
+      "law_number": "12",
+      "law_year": 2025,
+      "source_id": "EG-MOSS-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Ministry index lists law; July 2026 Ministry news says executive regulation issued and repeals 2010 regulation. Capture exact ministerial decision number and Gazette copy. Full text, commencement, amendments/repeals, currentness and reuse rights are not fully verified; no lawyer review.",
+      "source_urls": [
+        {
+          "url": "https://www.moss.gov.eg/الاصدارات/القوانين-والتشريعات/?page=1",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MOSS-SOCIAL-GUARANTEE-EXEC-REGS-2026",
+      "official_title": "قرار وزيرة التضامن الاجتماعي بإصدار اللائحة التنفيذية للقانون رقم 12 لسنة 2025 بشأن الضمان الاجتماعي",
+      "document_type": "executive_regulation",
+      "law_year": 2026,
+      "source_id": "EG-MOSS-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Ministry news confirms publication in الوقائع المصرية and repeal of the 2010 executive regulation; decision number and issue/pages still need retrieval. Full text, commencement, amendments/repeals, currentness and reuse rights are not fully verified; no lawyer review.",
+      "source_urls": [
+        {
+          "url": "https://www.moss.gov.eg/الاصدارات/القوانين-والتشريعات/?page=1",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MOSS-CHILD-LAW-12-1996",
+      "official_title": "القانون رقم 12 لسنة 1996 بإصدار قانون الطفل",
+      "document_type": "law",
+      "law_number": "12",
+      "law_year": 1996,
+      "source_id": "EG-MOSS-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Ministry index lists Law 12/1996 and amendments 126/2008 and 7/2015; consolidate all amendments and related regulations. Full text, commencement, amendments/repeals, currentness and reuse rights are not fully verified; no lawyer review.",
+      "source_urls": [
+        {
+          "url": "https://www.moss.gov.eg/الاصدارات/القوانين-والتشريعات/?page=1",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MOSS-CHILD-AMENDMENT-126-2008",
+      "official_title": "القانون رقم 126 لسنة 2008 بتعديل بعض أحكام قانون الطفل رقم 12 لسنة 1996",
+      "document_type": "law_amendment",
+      "law_number": "126",
+      "law_year": 2008,
+      "source_id": "EG-MOSS-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by Ministry index; verify Gazette text and article-level changes. Full text, commencement, amendments/repeals, currentness and reuse rights are not fully verified; no lawyer review.",
+      "source_urls": [
+        {
+          "url": "https://www.moss.gov.eg/الاصدارات/القوانين-والتشريعات/?page=1",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MOSS-CHILD-AMENDMENT-7-2015",
+      "official_title": "القانون رقم 7 لسنة 2015 بتعديل بعض أحكام قانون الطفل",
+      "document_type": "law_amendment",
+      "law_number": "7",
+      "law_year": 2015,
+      "source_id": "EG-MOSS-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by Ministry index; exact amended provisions and later amendments need mapping. Full text, commencement, amendments/repeals, currentness and reuse rights are not fully verified; no lawyer review.",
+      "source_urls": [
+        {
+          "url": "https://www.moss.gov.eg/الاصدارات/القوانين-والتشريعات/?page=1",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FRA-INSURANCE-LAW-155-2024",
+      "official_title": "القانون رقم 155 لسنة 2024 بإصدار قانون التأمين الموحد",
+      "document_type": "law",
+      "law_number": "155",
+      "law_year": 2024,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "FRA identifies this as governing insurance; capture Gazette original, executive regulations and transition/repeal provisions. Full text, commencement, amendments/repeals, currentness and reuse rights are not fully verified; no lawyer review.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FRA-CAPITAL-MARKETS-LAW-95-1992",
+      "official_title": "القانون رقم 95 لسنة 1992 بإصدار قانون سوق رأس المال",
+      "document_type": "law",
+      "law_number": "95",
+      "law_year": 1992,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "FRA publishes a consolidated version updated in 2022; reconcile each amendment with Gazette originals. Full text, commencement, amendments/repeals, currentness and reuse rights are not fully verified; no lawyer review.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FRA-CAPITAL-MARKETS-EXEC-REGS-135-1993",
+      "official_title": "قرار وزير الاقتصاد رقم 135 لسنة 1993 بإصدار اللائحة التنفيذية لقانون سوق رأس المال",
+      "document_type": "executive_regulation",
+      "law_number": "135",
+      "law_year": 1993,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "FRA says updated version in 2025; verify exact Gazette changes and currentness. Full text, commencement, amendments/repeals, currentness and reuse rights are not fully verified; no lawyer review.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FRA-AML-LAW-80-2002",
+      "official_title": "القانون رقم 80 لسنة 2002 بإصدار قانون مكافحة غسل الأموال",
+      "document_type": "law",
+      "law_number": "80",
+      "law_year": 2002,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "FRA lists consolidated text updated in 2022 and executive regulation; connect later AML amendments and CBE/FRA rules. Full text, commencement, amendments/repeals, currentness and reuse rights are not fully verified; no lawyer review.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FRA-MORTGAGE-LAW-148-2001",
+      "official_title": "القانون رقم 148 لسنة 2001 بإصدار قانون التمويل العقاري",
+      "document_type": "law",
+      "law_number": "148",
+      "law_year": 2001,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "FRA identifies Law 148/2001 as amended by Law 55/2014; an updated text is hosted by FRA. Capture official amendments and executive regulations. Full text, commencement, amendments/repeals, currentness and reuse rights are not fully verified; no lawyer review.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FRA-MORTGAGE-AMENDMENT-55-2014",
+      "official_title": "القانون رقم 55 لسنة 2014 بتعديل بعض أحكام قانون التمويل العقاري رقم 148 لسنة 2001",
+      "document_type": "law_amendment",
+      "law_number": "55",
+      "law_year": 2014,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "FRA identifies this as amendment to mortgage finance law; map every changed article against Gazette. Full text, commencement, amendments/repeals, currentness and reuse rights are not fully verified; no lawyer review.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FRA-MICROFINANCE-LAW-141-2014",
+      "official_title": "القانون رقم 141 لسنة 2014 بتنظيم نشاط التمويل متناهي الصغر",
+      "document_type": "law",
+      "law_number": "141",
+      "law_year": 2014,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "FRA identifies itself as licensing/supervisory authority under this law; obtain current consolidated text and amendments. Full text, commencement, amendments/repeals, currentness and reuse rights are not fully verified; no lawyer review.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FRA-MOVABLE-SECURITY-LAW-115-2015",
+      "official_title": "القانون رقم 115 لسنة 2015 بتنظيم الضمانات المنقولة",
+      "document_type": "law",
+      "law_number": "115",
+      "law_year": 2015,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "FRA identifies its role as competent administrative authority; retrieve executive regulation and registry rules. Full text, commencement, amendments/repeals, currentness and reuse rights are not fully verified; no lawyer review.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FRA-LEASING-FACTORING-LAW-176-2018",
+      "official_title": "القانون رقم 176 لسنة 2018 بإصدار قانون تنظيم نشاطي التأجير التمويلي والتخصيم",
+      "document_type": "law",
+      "law_number": "176",
+      "law_year": 2018,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "FRA identifies this as core non-bank financial legislation; obtain current consolidated text and implementing decisions. Full text, commencement, amendments/repeals, currentness and reuse rights are not fully verified; no lawyer review.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
           "source_role": "official authority legislation index",
           "status": "listed_2026-11-17"
         }
