@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -135,6 +135,9 @@
 
 
 | [collection_checkpoint_29_tax_procedure_executive_regulation.md](collection_checkpoint_29_tax_procedure_executive_regulation.md) | Full 838-line secondary transcription of Executive Regulation 286/2021 reviewed, selected articles captured, official Gazette access and amendment graph recorded |
+
+
+| [collection_checkpoint_30_unified_tax_procedure_law_206_2020.md](collection_checkpoint_30_unified_tax_procedure_law_206_2020.md) | 93-article Unified Tax Procedures Law 206/2020 article map and amendments 211/2020, 176/2022, 7/2025 and 150/2026 |
 
 ## High-value primary-source portals
 
