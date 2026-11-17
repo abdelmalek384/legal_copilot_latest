@@ -52,7 +52,7 @@ No separate Ministry of Health decision expressly implementing Labour Law 14/202
 
 ## 4A. Statutory delegation matrix now available
 
-The companion [49-row statutory delegation matrix](../../data/research/labour_law_14_2025_delegation_matrix_2026-11-17.csv) maps the explicit Law 14/2025 delegations surfaced from the official Amiri Press text. The [delegation gap analysis](labour_law_14_2025_statutory_delegation_gap_analysis.md) identifies concrete missing instruments, including:
+The companion [50-row statutory delegation matrix](../../data/research/labour_law_14_2025_delegation_matrix_2026-11-17.csv) maps the explicit Law 14/2025 delegations surfaced from the official Amiri Press text. The [delegation gap analysis](labour_law_14_2025_statutory_delegation_gap_analysis.md) identifies concrete missing instruments, including:
 - PM decisions under Articles 18 (Human Resource Skills Council; Cabinet-approved draft only), 32 (domestic/overseas workforce council), 234 (vital establishments/essential services), 237 (economic closure committees) and 273–274 (Social/Health/Cultural Services Fund).
 - Ministry or joint decisions under Articles 14 (fine allocation), 80 (Unorganized Workers Fund regulations), 254 (workplace code of conduct/complaints), 263 (OSH research centre procedures), 265 (governorate OSH committees), 266 (joint Labour/Health medical-fitness standards), 272 (minimum social/cultural services), 275 (joint Justice/Labour judicial-police designation) and 276 (night/out-of-hours inspection).
 - Follow-up rules still not located under Article 3 of PM Decision 3356/2026 (Training Fund contribution exemptions) and Article 3 of Ministerial Decision 269/2025 (labour-market data/occupational-classification procedural manual).
