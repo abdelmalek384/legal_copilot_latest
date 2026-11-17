@@ -1792,7 +1792,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("chosen.onchange=()=>{clearVersionError();", review)
         self.assertIn("chosen.removeAttribute('aria-invalid')", review)
 
-        def test_research_document_workspace_and_save_to_matter_share_accessible_matter_validation(self):
+    def test_research_document_workspace_and_save_to_matter_share_accessible_matter_validation(self):
         start = HTML.index("async function law(){")
         research = HTML[start:HTML.index("\nfunction documentIntelligencePanel(", start)]
         self.assertIn("const showResearchMatterError=()=>{matterSelect.setAttribute('aria-invalid','true')", research)
@@ -1800,3 +1800,6 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Save to matter", research)
         self.assertIn("matterSelect.onchange=()=>{matterSelect.removeAttribute('aria-invalid')", research)
         self.assertIn("matterSelectError.hidden=true", research)
+
+if __name__ == "__main__":
+    unittest.main()
