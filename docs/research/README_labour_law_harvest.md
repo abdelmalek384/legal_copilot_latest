@@ -48,14 +48,15 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 ## Current harvest snapshot
 
-- 35 distinct Ministry of Labour decision numbers, 3 Ministry of Justice decisions and 12 Prime Minister decisions (50 identified formal instruments) identified in the current 2025–2026 register, plus seven circular/implementation instruments, for 57 total data rows.
-- **Substantial article-level text or structured extracts:** 50/50 identified formal instruments have at least a substantive text extract, structured summary or article map. This is a collection-coverage metric only; it does not mean every instrument has a complete official text, primary-source match, currentness check, rights clearance or lawyer review.
+- 36 distinct Ministry of Labour decision numbers, 3 Ministry of Justice decisions and 12 Prime Minister decisions (51 identified formal instruments) identified in the current 2025–2026 register, plus seven circulars and one operational instruction, for 59 total data rows.
+- **Substantial article-level text or structured extracts:** 51/51 identified formal instruments have at least a substantive text extract, structured summary or article map. This is a collection-coverage metric only; it does not mean every instrument has a complete official text, primary-source match, currentness check, rights clearance or lawyer review.
+- **Primary-source comparison:** 3/51 formal instruments (Decisions 259, 264 and 299/2025) have article-level comparison against the public SIS Gazette facsimile for issue 291. The SIS electronic copy expressly says it is not valid for dealings; qualified-lawyer review remains outstanding.
 - **Primary-source comparison:** article-level comparison has begun for three ministerial decisions against the public SIS Gazette facsimile for issue 291 (259, 264 and 299). The SIS PDF expressly says the electronic image is not valid for dealings.
 - **Official Gazette scan locators:** issue 291 facsimile covers Decisions 259, 260, 264, 271, 272, 292, 294, 299, 319 and 320; issue 290(B) metadata/facsimile covers 266, 279, 300 and 301; issue 295(D) metadata identifies 267, 270, 288, 289, 290 and 291.
-- **Court of Cassation:** nine additional case records structured, in addition to earlier leads. Most apply predecessor legislation; no full judgment corpus acquired.
+- **Court of Cassation:** nine case records in the current structured register. Most apply predecessor legislation; no full judgment corpus acquired.
 - All 50 formal instruments and seven circulars remain lawyer_reviewed=false and rights_cleared=false. No production database import performed.
 - No original-Gazette SHA-256 hash captured for the Labour Law 14/2025 candidate; no legal data promoted to verified.
-- CSV structural validation previously passed: 57 data rows, 11 columns each, no duplicate document keys. This does not validate source authenticity or legal currentness.
+- CSV structural validation passed locally: 59 data rows, 11 columns each, no duplicate document keys. This does not validate source authenticity or legal currentness.
 
 ## Non-negotiable status rules
 
@@ -66,7 +67,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 - Treat Ministry FAQs, ILO datasets, law-firm articles and secondary transcriptions as guidance/discovery sources, not as controlling primary law.
 
 
-32. [Expanded OSH legacy framework and training amendments](osh_legacy_framework_134_232_263_74_11_216_2026-11-17.md) — full research map for Decisions 134/2003, 25/2010, 232/2010, 263/2010, 74/2013, 31/2004, 11/2014 and 216/2016; includes repeal leads 98/2006 and unresolved 20/2008 vs 202/2008.
+36. [Expanded OSH legacy framework and training amendments](osh_legacy_framework_134_232_263_74_11_216_2026-11-17.md) — full research map for Decisions 134/2003, 25/2010, 232/2010, 263/2010, 74/2013, 31/2004, 11/2014 and 216/2016; includes repeal leads 98/2006 and unresolved 20/2008 vs 202/2008.
 
 
-35. [Decisions 187, 194 and 214/2025 — expanded extraction](decisions_187_194_214_2025_expanded_extraction_2026-11-17.md) — nine-article resignation approval text, six-article temporary foreign-worker regularization decision plus Instruction 20/2025, and nine-article employment-contract deposit rules.
+37. [Decisions 187, 194 and 214/2025 — expanded extraction](decisions_187_194_214_2025_expanded_extraction_2026-11-17.md) — nine-article resignation approval text, six-article temporary foreign-worker regularization decision plus Instruction 20/2025, and nine-article employment-contract deposit rules.
