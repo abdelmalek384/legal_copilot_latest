@@ -652,11 +652,16 @@
         {
           "url": "https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf",
           "source_role": "official full-text PDF",
-          "status": "pdf_opened_text_layer_parsed_2026-11-17"
+          "status": "official_pdf_text_layer_parsed_2026-11-17"
+        },
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/qanwn_aleml_2025_14_f8e36d8b4f.pdf",
+          "source_role": "official Ministry of Finance Official Gazette PDF",
+          "status": "official_pdf_text_layer_parsed_2026-11-17"
         }
       ],
       "text_acquisition_status": "official_pdf_text_layer_parsed_partial",
-      "text_verification_note": "Official Gazette PDF; 1,768 parsed text lines surfaced, issue 18 (تابع), 3 May 2025. Parsed through the document reader; no local complete-text artifact or SHA-256 deposited yet. Not lawyer-reviewed."
+      "text_verification_note": "MoF-hosted Official Gazette issue 18 (تابع), 3 May 2025, 110-page PDF; 2,729 text lines surfaced. This is an independent official-hosted copy in addition to ETA PDF. Complete local extracted artifact, SHA-256, lawyer review and amendment/currentness mapping remain outstanding."
     },
     {
       "document_id": "EG-INCOME-TAX-91-2005",
@@ -7244,6 +7249,63 @@
           "status": "located_2026-11-17"
         }
       ]
+    },
+    {
+      "document_id": "EG-TAX-SETTLEMENT-LAW-5-2025",
+      "official_title": "قانون رقم 5 لسنة 2025 فى شأن تسوية أوضاع بعض الممولين والمكلفين",
+      "document_type": "tax_law",
+      "law_number": "5",
+      "law_year": 2025,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "source_urls": [
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/qanwn_rqm_5_lsnt_2025_0349d5d277.pdf",
+          "source_role": "official Ministry of Finance hosted PDF",
+          "status": "official_pdf_opened_2026-11-17"
+        }
+      ],
+      "text_acquisition_status": "official_pdf_opened_page_count_known",
+      "text_verification_note": "MoF official legislation page marks law in force and links a 7-page PDF. Web PDF reader exposed only page count, not body text. Need extract text, Gazette issue/page and currentness; not lawyer-reviewed."
+    },
+    {
+      "document_id": "EG-TAX-INCENTIVES-LAW-6-2025",
+      "official_title": "قانون رقم 6 لسنة 2025 بشأن بعض الحوافز والتيسيرات الضريبية للمشروعات التي لا يتجاوز حجم أعمالها السنوي عشرين مليون جنيه",
+      "document_type": "tax_law",
+      "law_number": "6",
+      "law_year": 2025,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "source_urls": [
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/qanwn_rqm_6_lsnt_2025_be1d9db29b.pdf",
+          "source_role": "official Ministry of Finance hosted PDF",
+          "status": "official_pdf_opened_2026-11-17"
+        }
+      ],
+      "text_acquisition_status": "official_pdf_opened_page_count_known",
+      "text_verification_note": "MoF official legislation page marks law in force and links a 5-page PDF. Web PDF reader exposed only page count, not body text. Need extract text and map implementing decisions; not lawyer-reviewed."
+    },
+    {
+      "document_id": "EG-SHIP-REGISTRY-AMEND-4-2025",
+      "official_title": "القانون رقم 4 لسنة 2025 بتعديل بعض أحكام القانون رقم 84 لسنة 1949 بشأن تسجيل السفن التجارية",
+      "document_type": "maritime_law_amendment",
+      "law_number": "4",
+      "law_year": 2025,
+      "source_id": "EG-MTS-MARITIME-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "source_urls": [
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/qanwn_tedyl_bed_ahkam_alqanwn_rqm_84_lsnt_1949_bshan_tsjyl_alsfn_altjaryt_2025_4_91236388c5.pdf",
+          "source_role": "official Ministry of Finance hosted Gazette PDF",
+          "status": "official_pdf_text_layer_parsed_2026-11-17"
+        }
+      ],
+      "text_acquisition_status": "official_pdf_text_layer_parsed_partial",
+      "text_verification_note": "Official Gazette PDF, 5 pages, 126 parsed text lines; amendment to Ship Registration Law 84/1949. Full article mapping and currentness remain outstanding; not lawyer-reviewed."
     }
   ]
 }
