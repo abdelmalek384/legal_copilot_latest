@@ -204,3 +204,63 @@ The official Court of Cassation homepage exposes public civil and criminal princ
 - The Court of Cassation's public principle interface is not equivalent to the full judgment corpus.
 - All newly added rows retain `lawyer_reviewed=false` and `rights_cleared=false`.
 - This pass improves discovery and the number of identified instruments; it does not yet justify a large increase in the overall national legal-knowledge completion percentage.
+
+
+## 13. Construction, industrial licensing, health and constitutional acquisition — 17 November 2026
+
+A second sectoral register is added at `data/research/egypt_sectoral_law_harvest_2026-11-17.csv` with 19 source/instrument records.
+
+### Construction and industrial regulation — Industrial Development Authority (IDA)
+
+The IDA official legislative page lists:
+- Law 95/2018 establishing the IDA.
+- Environment Law 4/1994.
+- Industrial Licensing Facilitation Law 15/2017 and Executive Regulation Decision 1082/2017.
+- Building Law 119/2008.
+- Reconciliation Law 187/2023 and Executive Regulation Decision 1121/2024.
+- Industry Law 21/1958; Industrial Register Law 24/1977.
+- Environment Executive Regulation Decision 338/1995.
+- Hazardous-materials Decision 7/1999; hazardous-waste Decision 165/2002.
+- Heavy-industry licensing Decisions 47/2020 and 45/2021.
+- Licensing conditions Decision 461/2018; industrial register Decision 497/2018; Cabinet Decision 1670/2024.
+
+Official files opened:
+- Building Law 119/2008: official 59-page PDF link.
+- Industrial Licensing Law 15/2017: official 19-page PDF link.
+- Law 187/2023: official Gazette facsimile, issue 50 bis (A), 17 December 2023; 11 pages with readable text. The promulgation provisions repeal Law 17/2019 and transfer pending applications/objections under transitional rules. The statute's own Article 4 requires an executive regulation; IDA lists Decision 1121/2024.
+- Environment Executive Regulation Decision 338/1995: official 113-page PDF link.
+- Industrial Licensing Executive Regulation Decision 1082/2017: official 27-page PDF link.
+- Decision 1121/2024 link was found but retrieval timed out; it remains a lead, not acquired text.
+
+For 119/2008, 15/2017, 338/1995 and 1082/2017 the PDFs were opened by page count but the web text parser did not expose readable text. Do not count them as extracted legal text until local text extraction and quality checks are completed.
+
+### Health and medical-profession legislation — Ministry of Health and Population
+
+The Ministry's 2025 Health Investment Guide was opened and its text layer extracted (1,155 lines). It is a secondary/administrative guide, but it reproduces substantial text from Law 87/2024 and indexes many primary laws. It identifies:
+- Law 87/2024 on granting public-utility concessions for establishing, managing, operating and developing health facilities; the guide cites Prime Minister Decision 2856/2024 as its Executive Regulation.
+- Medical Facilities Law 51/1981, amended by Law 153/2004; Ministerial Decision 216/1982 is cited as its implementing regulation.
+- Medical Practice Law 415/1954.
+- Physical Therapy Practice Law 3/1985 and Ministerial Decision 150/1986.
+- Dentistry Practice Law 537/1954.
+- Pharmacy Practice Law 127/1955.
+- Blood and Plasma Law 8/2021.
+- Mental Health Care Law 71/2009, amended by Law 210/2020.
+- Medical laboratory professions Law 367/1954 and additional licensing/health instruments.
+
+The guide is not a substitute for Gazette texts. Acquire each base statute, amendment, executive regulation and professional licensing/disciplinary instrument from primary sources before treating the list as complete.
+
+### Supreme Constitutional Court — actual case-collection pathway
+
+The official SCC portal provides distinct search categories for legislation, case status, principles, substantive and formal constitutional judgments, jurisdiction conflicts, execution disputes and legislative interpretation decisions. The homepage shows featured sessions dated 7 November, 10 October, 9 September, 1 August, 1 July and 6 June 2026. The court dashboard is indexed with counters including 7,848 judgments and 1,080 substantive judgments; these are portal counters, not acquired case records.
+
+One specific official case summary was identified for 3 January 2026: the Court rejected a constitutional challenge to Penal Code Articles 86, 86 bis (paragraphs 2 and 3), 86 bis A and 88 bis C, and specified provisions of Anti-Terrorism Law 94/2015. The summary discusses the Court's constitutional jurisdiction under Constitution Article 192. Full judgment and docket locator still need acquisition. The new register separately records the 7 November 2026 featured session and docket numbers visible in the court's indexed page; each case must be individually captured.
+
+### Acquisition accounting
+
+This pass adds 19 sectoral records. Among the new materials:
+- One Official Gazette facsimile for Law 187/2023 has readable extracted text.
+- One official Ministry guide (1,155 extracted lines) contains substantive statutory extracts and an index of health statutes.
+- Four other IDA PDFs were opened and page-count verified but did not yield readable text in the web parser.
+- Multiple SCC individual-case and dashboard leads are indexed, but full judgments are not yet acquired.
+
+All remain `lawyer_reviewed=false` and `rights_cleared=false`. No national domain is complete end-to-end.
