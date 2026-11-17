@@ -231,6 +231,8 @@
 
 | [collection_checkpoint_48_maintenance_inheritance_wills.md](collection_checkpoint_48_maintenance_inheritance_wills.md) | Maintenance Law 25/1920, Inheritance Law 77/1943 and Wills Law 71/1946 with foundational rules and source links |
 
+| [collection_checkpoint_60_civil_code_text_extraction.md](collection_checkpoint_60_civil_code_text_extraction.md) | Official ETA Civil Code 131/1948 100-page/4,162-line searchable PDF; extracts Articles 1–5, 10–53, 89–161, 163–180, 181–202, 203–215, 371–379, 447–495 and lease provisions |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
