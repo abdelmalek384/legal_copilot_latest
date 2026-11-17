@@ -16,6 +16,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 10. [Expanded Cassation case leads](cassation_labour_case_leads_expanded_2026-11-17.md) and [additional 25 August 2026 metadata](cassation_additional_labour_metadata_2026-08-25.md).
 11. [Gas Egypt appeal 5280/87](cassation_appeal_5280_87_gas_egypt_2026-08-25.md) — a detailed secondary summary of a prior-law absenteeism/termination dispute.
 12. [Additional ministerial decision harvest](ministerial_decisions_214_259_266_279_299_300_301_75_346_harvest_2026-11-17.md) — Gazette text/page maps for Decisions 214, 259, 260, 264, 266, 271, 272, 279, 292, 294, 299, 300, 301, 319 and 320; official indexed text for Decisions 74 and 75/2026; government-newsletter text for 346.
+13. [Further Decisions 187, 267, 270, 288–292](decisions_187_267_270_288_289_290_291_2025_harvest_2026-11-17.md) — resignation, apprenticeship, workforce reporting, rest-break exceptions, industrial hours, intermittent work, overtime.
 
 ## Structured inventory
 
@@ -30,6 +31,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 - Newly located 290(B) Gazette bundle metadata names Decisions 266, 279, 300 and 301; third-party-hosted searchable facsimile has article text and page locators, but an authorized original and SHA-256 comparison are still needed.
 - SIS hosts a public Gazette 291 supplement facsimile containing Decisions 259, 260, 264, 271, 272, 292, 294, 299, 319 and 320. The PDF repeatedly states that the electronic image is not valid for dealings; use as a research locator, not a certified trading copy.
 - Decision 74/2026 is indexed in the official Amiri Press text service and catalogued in the official DSpace issue 108 bundle; it establishes the Labour Market Observatory framework.
+- Gazette 295(D) official SIS catalogue identifies Decisions 267, 270, 288, 289, 290 and 291. Article-level secondary text has been extracted for these; primary Gazette PDF comparison remains pending. Decision 289 also has a Ministry-hosted PDF.
 - Decision 214 Gazette text contains a possible preamble discrepancy reading Law 4/2025 rather than Law 14/2025; preserve unresolved pending inspection of the printed page and counsel review.
 - Decision 259 and 299 remain secondary full-text transcriptions pending primary Gazette comparison.
 - No original-Gazette hash captured for the existing Labour Law 14/2025 candidate in this harvest.
