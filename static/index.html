@@ -4609,4 +4609,35 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
  #main .research-layout>.research-main>.research-composer{padding:12px!important}
 }
 </style>
+
+<style>
+/* Give the three answer tabs equal visual weight and use the full answer
+   column, instead of leaving narrow labels clustered at the start. */
+#main .research-thread .research-answer-tabs{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ gap:6px!important;align-items:stretch!important;width:100%!important;
+ margin:2px 0 14px!important;padding:4px!important;
+ border:1px solid #e5ebf2!important;border-radius:9px!important;
+ background:#f7f9fc!important;box-sizing:border-box!important;
+}
+#main .research-thread .research-answer-tabs [role=tab]{
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ width:100%!important;min-width:0!important;min-height:42px!important;
+ padding:8px 10px!important;border:1px solid transparent!important;
+ border-radius:7px!important;background:transparent!important;
+ color:#68788d!important;font-size:12px!important;font-weight:650!important;
+ line-height:1.35!important;text-align:center!important;white-space:normal!important;
+ overflow-wrap:anywhere!important;box-sizing:border-box!important;
+}
+#main .research-thread .research-answer-tabs [role=tab].active{
+ border-color:#d8e4f2!important;background:#fff!important;color:#2869ad!important;
+ box-shadow:0 1px 3px rgba(24,48,78,.08)!important;
+}
+#main .research-thread .research-answer-tabs [role=tab].active::after{display:none!important}
+#main .research-thread .research-answer-tab-panel{width:100%!important;min-width:0!important}
+@media(max-width:480px){
+ #main .research-thread .research-answer-tabs{gap:4px!important;padding:3px!important}
+ #main .research-thread .research-answer-tabs [role=tab]{min-height:40px!important;padding:7px 4px!important;font-size:11px!important}
+}
+</style>
 </html>

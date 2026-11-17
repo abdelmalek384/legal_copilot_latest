@@ -96,6 +96,17 @@ class WorkspaceLayoutRegressionTests(unittest.TestCase):
         self.assertIn('@media(max-width:1180px){\n #main .research-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:12px!important}', HTML)
         self.assertIn('@media(max-width:800px){\n #main .research-layout{grid-template-columns:minmax(0,1fr)!important;gap:10px!important}', HTML)
 
+    def test_answer_tabs_share_the_available_width_evenly(self):
+        self.assertIn('grid-template-columns:repeat(3,minmax(0,1fr))!important;', HTML)
+        self.assertIn('width:100%!important;min-width:0!important;min-height:42px!important;', HTML)
+        self.assertIn('justify-content:center!important;', HTML)
+        self.assertIn('white-space:normal!important;', HTML)
+        self.assertIn('#main .research-thread .research-answer-tabs [role=tab].active::after{display:none!important}', HTML)
+
+    def test_answer_tabs_remain_balanced_on_small_screens(self):
+        self.assertIn('@media(max-width:480px){\n #main .research-thread .research-answer-tabs{gap:4px!important;padding:3px!important}', HTML)
+        self.assertIn('min-height:40px!important;padding:7px 4px!important;font-size:11px!important', HTML)
+
 
 if __name__ == "__main__":
     unittest.main()
