@@ -117,3 +117,23 @@ Counsel should obtain the signed instruments, check publication/effective dates 
 - Signed review-record reference: ______________________________
 
 **Current status:** source_matched_not_lawyer_reviewed; lawyer_reviewed=false; authoritative=false; retrieval_eligible=false. All 311 candidate rows remain verified=0.
+
+
+
+## Additional visual review — Gazette issue 18, printed page 99 (17 November 2026)
+
+The user-supplied 112-page PDF was materialized from the uploaded archive and its file identity was checked against the existing project record:
+- File: `العدد-18-تابع-مومن-1.pdf`
+- Size: 665,047 bytes
+- Pages: 112
+- SHA-256: `b0a47cefe18722d3f23e004ac7e78e6e309010e13124413e7e7018820c9581be`
+- PDF security metadata: AES-encrypted; copy/print/change/add-notes permissions are false. No decryption or text extraction was used for the visual review.
+
+The rendered image of PDF page 99 (printed Gazette page 99) was visually inspected. It contains Articles 260, 261 and 262. The text visibly confirms:
+- **Article260:** establishments with 30 or more workers submit truthful semiannual statistics for ordinary/chronic diseases, serious accidents and injuries during the first half of July and January; all covered establishments notify the competent administrative authority of each serious accident or the appearance of occupational-disease symptoms within 24 hours; the Minister issues the required forms; covered establishments also provide data/reports/statistics electronically through the designated platform.
+- **Article261:** Ministry, the National Centre for OSH studies and licensed entities provide basic, advanced, qualitative and specialized OSH training; ministerial rules govern licensing/training systems and fees, with a statutory fee ceiling of EGP50,000 and exemption cases.
+- **Article262:** OSH expertise/consultancy requires a Ministry licence; a ministerial decision sets conditions, procedures, term, register and fees, with a statutory ceiling of EGP50,000 and exemption cases.
+
+This is an assistant visual reading of the user-supplied scan and should be independently repeated by counsel. It does not resolve source-owner authority, reproduction rights, amendments/currentness or legal interpretation. All 311 JSONL rows remain `verified=0`; no searchable import is authorized.
+
+**Important cross-instrument issue:** Article260's statutory 24-hour text is broader in wording than the secondary Decision248 report's 24-hour inside / 48-hour outside distinction. The reported 48-hour outside rule must be reconciled against the complete signed Decision248, Article260 and any subsequent circular. Do not implement either a 48-hour or 72-hour outside deadline until that review is complete.
