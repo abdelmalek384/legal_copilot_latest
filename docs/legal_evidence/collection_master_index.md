@@ -146,6 +146,8 @@
 
 | [collection_checkpoint_42_judiciary_courts_2026.md](collection_checkpoint_42_judiciary_courts_2026.md) | Judicial Authority/State Council/SCC/Administrative Prosecution/State Lawsuits source map; Law 15/2025 court restructuring; 2026 judicial venue and appointment decisions |
 
+| [collection_checkpoint_43_agriculture_fisheries_2026.md](collection_checkpoint_43_agriculture_fisheries_2026.md) | Agriculture Law 53/1966 official PDF and 127-decision index; Fisheries/Lakes Law 146/2021; Executive Regulation 706/2023; Lake Nasser/Nile licensing decisions |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
