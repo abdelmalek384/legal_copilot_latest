@@ -123,8 +123,8 @@ Policy:
 A defensible percentage needs a denominator. The first denominator is now **33 legal domains**, not an estimate of all individual laws/cases:
 - 33/33 domains have been named in the national inventory (scope definition only; this is not 100% coverage).
 - 27 source institutions/platforms are registered, including the Supreme Constitutional Court, State Council, Consumer Protection Agency, NOSI, Administrative Control Authority, National Elections Authority, Customs Authority and Economic Courts.
-- 76 anchor instruments have acquisition records with their source/access status.
-- 29 source PDFs have been opened across the tranches (not all are bare Gazette originals: Commercial Code is a government-published reprint and Customs Law is an authority-annotated compilation); Law160/2026 official HTML text was also opened. Several more have only official listing metadata.
+- 82 anchor instruments have acquisition records with their source/access status.
+- 34 source PDFs have been opened across the tranches (not all are bare Gazette originals: Commercial Code is a government-published reprint and Customs Law is an authority-annotated compilation); Law160/2026 official HTML text was also opened. Several more have only official listing metadata.
 - No nationwide article-by-article consolidated statute corpus has been produced. A public judicial collection register now includes 25 leads (one Constitutional Court press summary, one recent bulletin and 23 State Council principle-series targets); the underlying judgments/volumes are mostly not yet acquired.
 - No nationwide court judgment corpus has been acquired.
 - No lawyer-reviewed national corpus exists.
@@ -218,3 +218,15 @@ See [Investment, Commercial Registry and Public Finance acquisition](egypt_inves
 ## VAT Law149/2026 amendment extraction
 
 The official ETA-hosted Gazette PDF for Law149/2026 (issue30 bis(A), 28 July 2026) has been opened and extracted. It amends VAT Law67/2016 Articles3,5,28 bis and30, updates six exempt-list items, adds a new Article22 rule for machinery/equipment/medical devices under Article28 bis, adds natural gas at EGP20 per 1,000 cubic feet, and repeals two prior schedule entries. It commenced 29 July 2026. A four-page article-by-article extraction with conditions and product safeguards is recorded in [VAT Law149/2026 extraction](egypt_vat_law149_2026_amendment_extraction.md).
+
+
+## Real-estate and historic tax-law tranche
+
+- Real Estate Tax Law196/2008: official 12-page ETA PDF opened; OCR is materially corrupted and requires page-image transcription.
+- Law103/2012 amending Real Estate Tax Law196/2008: official 8-page PDF opened; extracted dates/article numbers are corrupted, so no substantive values are accepted from OCR.
+- General Sales Tax Law11/1991: official 38-page PDF opened without text layer; historical only after VAT Law67/2016.
+- Law102/2012 amendment to Sales Tax Law11/1991: official 6-page PDF opened without text layer; historical only.
+- State Financial Resources Development Fee Law147/1984: ETA index lead; base PDF retrieval failed; Law148/2026 is only a narrow amendment.
+- Stamp Tax Law111/1980: base law PDF retrieval failed; Law153/2026 confirms the base law identifier; ETA filename incorrectly appears to say 1981 and must be reconciled against Gazette.
+
+See [Real-estate and historical tax acquisition](egypt_real_estate_and_historical_tax_law_acquisition_2026-11-17.md).
