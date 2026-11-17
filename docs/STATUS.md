@@ -1363,3 +1363,6 @@ The following focused UI changes were merged to `main` during this continuation:
 Validation performed independently in this batch: the complete inline frontend JavaScript parsed with V8 after the final merged UI changes; focused source assertions were added to `tests/test_frontend_ux_contract.py`. GitHub Actions runner allocation continued to fail before test steps, so the Python suite and browser acceptance are not claimed as passing. No live screen-reader, zoom/reflow, device or lawyer-usability acceptance was performed.
 
 The previously recorded estimates remain unchanged pending exact-head automated and manual evidence: whole project 75.3%; Legal Research Phase 5 85%; UI/accessibility scorecard 45.3%. These are engineering estimates, not runtime-test or production-readiness percentages.
+
+
+- PR #1759 extends the global-search `>` command palette with ArrowDown entry, wrapped ArrowUp/ArrowDown focus movement and Escape-to-close/focus-return. Command results continue to come only from the current role/permission-filtered navigation collection. Inline JavaScript syntax parsing passed; the browser keyboard interaction remains unexecuted because Actions runners are unavailable.
