@@ -277,6 +277,8 @@
 
 | [collection_checkpoint_58_terrorism_and_asset_laws.md](collection_checkpoint_58_terrorism_and_asset_laws.md) | Counter-Terrorism Law 94/2015, Terrorist Lists Law 8/2015 and Asset Management Law 22/2018 source and amendment map |
 
+| [collection_checkpoint_68_tax_procedures_2026.md](collection_checkpoint_68_tax_procedures_2026.md) | Official 43-page Unified Tax Procedures Law 206/2020 PDF; amendments 7/2025 and 150/2026; small-business Laws 5/2025 and 6/2025; Decisions 420/2025 and 450/2026 |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
