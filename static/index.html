@@ -4333,4 +4333,45 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 #main .research-evidence-cards .research-source-actions a{display:none}
 #main .research-evidence-cards .research-source{padding:9px 10px}
 #main .research-evidence-cards .research-pin{font-size:9px;color:#7c8da1}
-</style></html>
+</style>
+<style>
+/* Legal Research: match the supplied three-pane Lexora workspace reference. */
+#main .research-layout{
+ display:grid!important;
+ grid-template-columns:minmax(210px,245px) minmax(0,1fr) minmax(250px,300px)!important;
+ grid-template-areas:"history main inspector"!important;
+ gap:12px!important;
+ align-items:start!important;
+ width:100%!important;
+ max-width:none!important;
+}
+#main .research-layout>.research-list{grid-area:history!important;position:sticky!important;top:76px!important;max-height:calc(100vh - 100px)!important;overflow:auto!important;min-width:0!important}
+#main .research-layout>.research-main{grid-area:main!important;display:flex!important;flex-direction:column!important;gap:12px!important;min-width:0!important}
+#main .research-layout>.research-evidence-panel{grid-area:inspector!important;min-width:0!important;position:sticky!important;top:76px!important;max-height:calc(100vh - 100px)!important;overflow:auto!important}
+#main .research-composer{order:1!important;width:100%!important;min-width:0!important;padding:16px!important;border:1px solid var(--line)!important;border-top:3px solid var(--gold)!important;border-radius:12px!important;background:#fff!important;box-shadow:0 2px 8px rgba(20,40,75,.05)!important}
+#main .research-thread{order:2!important;width:100%!important;min-width:0!important;min-height:320px!important;max-height:none!important;padding:16px!important;background:#fff!important;border:1px solid var(--line)!important;border-radius:12px!important;overflow:visible!important}
+#main #research-source-inspector{margin-top:10px!important;border:1px solid #e3eaf1!important;border-radius:9px!important;background:#fff!important}
+#main .research-evidence-panel{padding:13px!important;background:#fff!important;border:1px solid var(--line)!important;border-radius:12px!important;box-shadow:0 2px 8px rgba(20,40,75,.04)!important}
+#main .research-evidence-heading{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important}
+#main .research-evidence-cards{display:grid!important;gap:8px!important}
+#main .research-status-banner{font-size:12px!important}
+#main .research-composer textarea{width:100%!important;min-height:90px!important;resize:vertical!important}
+#main .research-composer-heading{display:flex!important;flex-wrap:wrap!important;align-items:flex-start!important;justify-content:space-between!important;gap:8px!important}
+#main .research-composer-heading h2{font-size:16px!important;margin:0!important}
+#main .research-answer-tabs [role=tab]{font-size:11px!important}
+#main .research-source{border-radius:8px!important}
+@media(max-width:1180px){
+ #main .research-layout{grid-template-columns:minmax(190px,220px) minmax(0,1fr)!important;grid-template-areas:"history main" "inspector inspector"!important}
+ #main .research-layout>.research-evidence-panel{position:static!important;max-height:none!important}
+}
+@media(max-width:760px){
+ #main .research-layout{grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"main" "history" "inspector"!important;gap:10px!important}
+ #main .research-layout>.research-list{position:static!important;max-height:190px!important}
+ #main .research-layout>.research-evidence-panel{position:static!important;max-height:none!important}
+ #main .research-thread{min-height:280px!important;padding:12px!important}
+ #main .research-composer{padding:12px!important}
+ #main .research-composer-heading{display:block!important}
+}
+</style>
+
+</html>
