@@ -208,6 +208,8 @@
 
 | [collection_checkpoint_43_universal_health_insurance_2018.md](collection_checkpoint_43_universal_health_insurance_2018.md) | Universal Health Insurance Law 2/2018, Executive Regulation 909/2018, institutions, financing and phased rollout |
 
+| [collection_checkpoint_56_scc_judgments_2026.md](collection_checkpoint_56_scc_judgments_2026.md) | Official SCC judgments: case 98/43 on pretrial detention salary; case 35/45 jurisdiction conflict; 3 Jan 2026 terrorism-law constitutional ruling |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
