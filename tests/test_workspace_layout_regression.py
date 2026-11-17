@@ -61,6 +61,16 @@ class WorkspaceLayoutRegressionTests(unittest.TestCase):
     def test_ltr_research_reverses_rail_track_widths_with_semantic_panes(self):
         self.assertIn('#main .research-layout:dir(ltr){grid-template-columns:minmax(160px,180px) minmax(0,1fr) minmax(225px,245px)!important}', HTML)
 
+    def test_research_page_actions_have_separation_and_do_not_compress_labels(self):
+        self.assertIn('#main:has(.research-layout)>.research-page-actions{', HTML)
+        self.assertIn('flex-wrap:wrap!important;gap:8px!important', HTML)
+        self.assertIn('min-width:max-content!important;min-height:36px!important', HTML)
+
+    def test_duplicate_generic_empty_conversation_titles_are_not_repeated(self):
+        self.assertIn('const seenPlaceholderTitles=new Set();', HTML)
+        self.assertIn("['محادثة جديدة','محادثة جديدة (جديدة)','new conversation','new chat']", HTML)
+        self.assertIn('if(seenPlaceholderTitles.has(normalized))return false;', HTML)
+
     def test_ltr_tablet_and_mobile_grids_override_desktop_track_widths(self):
         self.assertIn('@media(max-width:1180px){\n #main .research-layout:dir(ltr){grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;grid-template-areas:"main main" "history inspector"!important}', HTML)
         self.assertIn('@media(max-width:800px){\n #main .research-layout:dir(ltr){grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"main" "history" "inspector"!important}', HTML)
