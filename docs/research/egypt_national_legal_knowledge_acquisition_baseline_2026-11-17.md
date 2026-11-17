@@ -427,7 +427,7 @@ A 19-row public docket/disposition register has been added at `data/research/egy
 | FRA/CBE register | 19 records | Regulatory decisions and collection leads; CBE 405 circulars are index records, not full-text acquisitions |
 | IDA/MOHP/SCC sector register | 19 records | Construction, industrial, health and constitutional source/instrument leads |
 | MoF catalogue register | 19 records | Cross-domain law and decision leads; MoF portal reports 936 general and 522 financial catalogue records |
-| Asylum/telecom/data protection register | 12 records | Includes PM Decision 1568/2026 and NTRA/data-protection/cybercrime leads |
+| Asylum/telecom/data protection register | 13 records | Includes PM Decision 1568/2026 and NTRA/data-protection/cybercrime leads |
 | SCC public docket register | 19 records | Public docket/date/disposition records; not full judgments |
 | Full national domains complete | 0/30 | No domain yet has all base laws, amendments, regulations, decisions, case law and currentness checks complete |
 | Full SCC/Cassation/State Council judgment corpus | 0 | Public summaries and docket indexes only; no nationwide full judgment corpus |
@@ -456,3 +456,8 @@ The exact list above is a status snapshot; it is not a claim that every listed t
 2. Harvest the NTRA 16 November 2026 rules and the CBE circular archive as dated individual instruments.
 3. Expand SCC public full judgments and Cassation public headnotes with case numbers, challenged provisions, holding and Gazette publication.
 4. Start article-level consolidation of the highest-priority core codes; no domain is counted complete until amendment and currentness checks pass.
+
+
+## 20. NTRA wireless-device and radio-spectrum rules — effective-operation notice
+
+A focused update is added to the asylum/telecom/data-protection register as AMT-013. The official NTRA digital portal notice states that new rules governing wireless communication devices and radio spectrum began operating on **16 November 2026**, pursuant to an NTRA Board decision. Existing licensees are instructed to regularize their position within three months, with the stated deadline **15 February 2027**, before the rules' sanctions and penalties begin to apply. The public notice does not expose the Board Decision number in the indexed text, and the linked full Arabic rules have not yet been acquired. This is a time-sensitive regulatory lead: the exact instrument, scope, transitional protection, penalties and Gazette status must be retrieved before the rules are used in legal answers.
