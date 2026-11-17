@@ -2843,7 +2843,28 @@ async function law(){
  const sourceInspector=h('aside',{id:'research-source-inspector',className:'research-inspector card',role:'region',tabIndex:0,'aria-label':LANG==='ar'?'فحص المصدر':'Source inspector','aria-live':'polite',onkeydown:e=>{if(e.key==='Escape'&&sourceInspector.__focusReturn){e.preventDefault();resetInspector(true)}}},h('div',{className:'research-inspector-empty'},h('div',{textContent:'⌕',style:'font-size:28px'}),h('b',{textContent:LANG==='ar'?'فحص المصدر':'Source inspector'}),h('p',{className:'mut',textContent:LANG==='ar'?'اختر مصدراً من الإجابة لعرض بياناته ومقطعه الحرفي هنا.':'Select a source from an answer to inspect its metadata and exact passage here.'})));
  sourceInspector.hidden=true;
  const evidenceCards=h('div',{className:'research-evidence-cards','aria-live':'polite'}),evidenceCount=h('span',{className:'mut',textContent:LANG==='ar'?'0 مصدر':'0 sources'});
- const evidencePanel=h('aside',{className:'research-evidence-panel card','aria-label':LANG==='ar'?'الأدلة والمصادر':'Evidence and sources'},h('div',{className:'research-evidence-heading'},h('b',{textContent:LANG==='ar'?'الأدلة':'Evidence'}),evidenceCount),h('p',{className:'mut',textContent:LANG==='ar'?'المصادر الداعمة لهذه الإجابة':'Sources supporting this answer'}),evidenceCards,sourceInspector);
+ let evidenceFilter='all';
+ const evidenceCoverageLabel=h('b',{textContent:LANG==='ar'?'لا توجد مصادر':'No sources'});
+ const evidenceCoverageCount=h('span',{textContent:'0 / 0'});
+ const evidenceCoverageFill=h('span',{className:'research-evidence-coverage-fill'});
+ const evidenceCoverage=h('div',{className:'research-evidence-coverage',role:'status','aria-live':'polite'},h('div',{className:'research-evidence-coverage-head'},evidenceCoverageLabel,evidenceCoverageCount),h('div',{className:'research-evidence-coverage-track','aria-hidden':'true'},evidenceCoverageFill),h('small',{textContent:LANG==='ar'?'التغطية تعكس حالة المصدر المسجلة، لا اليقين القانوني':'Coverage reflects recorded source status, not legal certainty'}));
+ const evidenceFilterAll=h('button',{type:'button',className:'active','aria-pressed':'true',textContent:LANG==='ar'?'كل المصادر':'All sources',onclick:()=>setEvidenceFilter('all')});
+ const evidenceFilterPrimary=h('button',{type:'button','aria-pressed':'false',textContent:LANG==='ar'?'المصادر الأولية':'Primary only',onclick:()=>setEvidenceFilter('primary')});
+ const evidenceFilters=h('div',{className:'research-evidence-filters',role:'group','aria-label':LANG==='ar'?'تصفية المصادر':'Filter sources'},evidenceFilterAll,evidenceFilterPrimary);
+ const updateEvidenceCoverage=()=>{
+  const cards=Array.from(evidenceCards.children),total=cards.length,verified=cards.filter(card=>card.dataset.verified==='true').length;
+  evidenceCount.textContent=LANG==='ar'?total+' مصدر':total+' sources';
+  evidenceCoverageCount.textContent=verified+' / '+total;
+  evidenceCoverageLabel.textContent=!total?(LANG==='ar'?'لا توجد مصادر':'No sources'):verified===total?(LANG==='ar'?'تغطية المصادر قوية':'Strong source coverage'):(LANG==='ar'?'تحتاج المصادر إلى مراجعة':'Source review needed');
+  evidenceCoverageFill.style.width=(total?Math.round(verified/total*100):0)+'%';
+ };
+ const setEvidenceFilter=filter=>{
+  evidenceFilter=filter;
+  evidenceFilterAll.classList.toggle('active',filter==='all');evidenceFilterAll.setAttribute('aria-pressed',String(filter==='all'));
+  evidenceFilterPrimary.classList.toggle('active',filter==='primary');evidenceFilterPrimary.setAttribute('aria-pressed',String(filter==='primary'));
+  Array.from(evidenceCards.children).forEach(card=>{card.hidden=filter==='primary'&&card.dataset.primary!=='true'});
+ };
+ const evidencePanel=h('aside',{className:'research-evidence-panel card','aria-label':LANG==='ar'?'الأدلة والمصادر':'Evidence and sources'},h('div',{className:'research-evidence-heading'},h('b',{textContent:LANG==='ar'?'الأدلة':'Evidence'}),evidenceCount),h('p',{className:'mut',textContent:LANG==='ar'?'المصادر الداعمة لهذه الإجابة':'Sources supporting this answer'}),evidenceCoverage,evidenceFilters,evidenceCards,sourceInspector);
  let activeId=null, sending=false, conversationItems=[],lastResearchMessages=[];
  const conversationFilter=h('input',{type:'search',placeholder:LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations','aria-label':LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations'});
  const historyToggle=h('button',{type:'button',className:'g research-history-toggle','aria-controls':'research-history-pane','aria-expanded':'true',textContent:LANG==='ar'?'إخفاء السجل':'Hide history',onclick:()=>{const collapsed=sidebar.classList.toggle('history-collapsed');historyToggle.setAttribute('aria-expanded',String(!collapsed));historyToggle.textContent=collapsed?(LANG==='ar'?'إظهار السجل':'Show history'):(LANG==='ar'?'إخفاء السجل':'Hide history')}});
@@ -2958,7 +2979,7 @@ async function law(){
  const researchEmptyState=h('p',{className:'research-empty-state',textContent:LANG==='ar'?'ابدأ بسؤال بحثي؛ ستظهر الإجابات هنا بعد إرسال السؤال.':'Start with a research question. Answers will appear here after you send it.'});
  const renderMessages=(messages)=>{
    lastResearchMessages=Array.isArray(messages)?messages:[];
-   resetInspector();evidenceCards.replaceChildren();thread.replaceChildren();
+   resetInspector();evidenceCards.replaceChildren();evidenceFilter='all';evidenceFilterAll.classList.add('active');evidenceFilterAll.setAttribute('aria-pressed','true');evidenceFilterPrimary.classList.remove('active');evidenceFilterPrimary.setAttribute('aria-pressed','false');updateEvidenceCoverage();thread.replaceChildren();
    const header=h('div',{className:'research-heading'},h('div',{},h('b',{textContent:copy('بحث قانوني مدعوم بالمصادر')}),h('div',{className:'mut',textContent:copy('نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.')})));
    thread.append(header);
    researchEmptyState.hidden=messages.length>0;researchExamples.hidden=messages.length>0;
@@ -3057,7 +3078,7 @@ async function law(){
          }else if(p.status==='registry_record_missing'){
            src.append(pill(LANG==='ar'?'سجل الإصدار غير موجود':'Version registry record missing','late'));
          }
-         evidenceCards.append(src);
+         src.dataset.verified=String(status==='verified_operative_text');src.dataset.primary=String(String(s.source_type||s.provenance?.source_type||'').toLowerCase()==='primary');evidenceCards.append(src);updateEvidenceCoverage();if(evidenceFilter==='primary')src.hidden=src.dataset.primary!=='true';
        }
      }
      if(m.role==='assistant'){
@@ -4093,4 +4114,17 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 #main .research-inspector{padding:10px}
 @media(max-width:1120px){#main .research-layout{grid-template-columns:minmax(145px,175px) minmax(0,1fr)}#main .research-layout>.research-list{grid-column:1/-1;grid-row:2;position:static;max-height:230px;order:3}#main .research-layout>.research-main{grid-column:2;grid-row:1}#main .research-layout>.research-evidence-panel{grid-column:1;grid-row:1;position:static;max-height:none}}
 @media(max-width:800px){#side{width:100%;flex-basis:auto}#main{padding:0 12px 18px}#main .workspace-topbar{margin-inline:-12px;padding-inline:12px}#main .research-layout{display:flex;flex-direction:column}#main .research-list,#main .research-main,#main .research-evidence-panel{width:100%;max-height:none;position:static}#main .research-main{order:1}#main .research-evidence-panel{order:2}#main .research-list{order:3}#main .research-composer{grid-template-columns:minmax(0,1fr) auto}#main .research-composer button{width:auto}}
-@media(prefers-reduced-motion:reduce){#main .research-layout *{scroll-behavior:auto!important;transition:none!important}}</style></html>
+@media(prefers-reduced-motion:reduce){#main .research-layout *{scroll-behavior:auto!important;transition:none!important}}</style><style>
+/* Evidence controls aligned to the Lexora reference, with provenance-driven counts. */
+#main .research-evidence-coverage{padding:9px 0 10px;border-bottom:1px solid #edf0f4}
+#main .research-evidence-coverage-head{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:10px;color:#35516e}
+#main .research-evidence-coverage-head span{font-size:10px;font-weight:700;color:#647b91}
+#main .research-evidence-coverage-track{height:4px;margin:8px 0 5px;background:#e8edf2;border-radius:99px;overflow:hidden}
+#main .research-evidence-coverage-fill{display:block;height:100%;width:0;background:#26966f;border-radius:99px;transition:width .18s ease}
+#main .research-evidence-coverage small{display:block;font-size:9px;line-height:1.4;color:#8a97a7}
+#main .research-evidence-filters{display:flex;gap:5px;padding:3px;background:#f4f7fa;border-radius:6px}
+#main .research-evidence-filters button{flex:1;min-width:0;min-height:28px;padding:4px 6px;border:1px solid transparent;border-radius:5px;background:transparent;color:#738399;font-size:9px;font-weight:650}
+#main .research-evidence-filters button.active{background:#fff;border-color:#e3e9f0;color:#275a91;box-shadow:0 1px 3px rgba(20,40,70,.06)}
+#main .research-evidence-cards .research-source[hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){#main .research-evidence-coverage-fill{transition:none}}
+</style></html>
