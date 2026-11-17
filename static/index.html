@@ -4324,4 +4324,13 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 #main .research-page-actions button{min-height:30px;padding:5px 10px;font-size:10px;border-radius:6px}
 #main .research-page-actions button.primary{min-height:30px}
 @media(max-width:800px){#side{width:100%;flex-basis:auto}}
+</style><style>
+/* Keep evidence cards compact; full passages and secondary actions stay in the inspector. */
+#main .research-evidence-cards .research-exact-passage{display:none}
+#main .research-evidence-cards .research-source-caution{display:none}
+#main .research-evidence-cards .research-source-actions{margin:6px 0 0}
+#main .research-evidence-cards .research-source-actions button:not(.research-inspect-action),
+#main .research-evidence-cards .research-source-actions a{display:none}
+#main .research-evidence-cards .research-source{padding:9px 10px}
+#main .research-evidence-cards .research-pin{font-size:9px;color:#7c8da1}
 </style></html>
