@@ -6275,12 +6275,17 @@
       "language": "ar",
       "candidate_status": "discovery_only",
       "text_acquisition_status": "official_source_index_lists_pdf",
-      "text_verification_note": "Unified Tax Procedures Law 206/2020 expressly amended it; later amendments and executive regulation need full chain. Official ETA locator; full PDF extraction, Gazette metadata, hash, currentness and lawyer review outstanding.",
+      "text_verification_note": "ETA official income-tax index links Law 91/2005 PDF. The PDF URL is confirmed but the research document reader timed out fetching the 2005 file. The separate 2026 amendment Law 151/2026 has been transcribed locally; this 2005 base law remains a priority for extraction and amendment consolidation. Not lawyer-reviewed.",
       "source_urls": [
         {
           "url": "https://www.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
           "source_role": "official Egyptian Tax Authority legislation index",
           "status": "listed_2026-11-17"
+        },
+        {
+          "url": "https://eta.gov.eg/sites/default/files/2024-03/law_no.91-2005.pdf",
+          "source_role": "official Egyptian Tax Authority full-text PDF",
+          "status": "link_confirmed_2026-11-17_pdf_fetch_timeout"
         }
       ]
     },
