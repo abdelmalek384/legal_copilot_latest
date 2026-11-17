@@ -5,11 +5,12 @@
 - **Instrument:** Prime Minister Decision No. 3165/2026 on the operating system and powers of the National Council for Wages (قرار رئيس مجلس الوزراء رقم 3165 لسنة 2026 بشأن نظام عمل المجلس القومي للأجور وتحديد اختصاصاته).
 - **Signed:** 12 October 2026.
 - **Gazette:** Official Gazette issue 41 bis (و), dated 12 October 2026. News coverage of the Gazette publication appeared on 26 October 2026.
-- **Official Amiri Press searchable text:** https://www.alamiria.com/Sec/TashTxt?id=EreMgz%2FNoYY%3D
 - **Full secondary transcription:** https://lawhub.info/eg/?p=19918
+- **Official Gazette locator:** Gazette issue 41 bis (و), dated 12 October 2026; publication reports: https://www.almasdar.com/keyword/443
+- An Amiri Press URL was not independently verified and direct retrieval returned HTTP 502; do not label the secondary text as an official Amiri Press copy.
 - **Official Gazette publication report:** https://business.ahram.org.eg/UI/Front/Inner.aspx?NewsContentID=134866
 - **Legal basis:** Labour Law 14/2025, particularly Articles 101–102; also Social Insurance and Pensions Law 148/2019 and Trade Union Law 213/2017.
-- Eight articles. The full text is indexed by the Amiri Press search service; the secondary transcription provides a readable article-by-article copy.
+- Eight articles. The readable article-by-article text available in this pass is a secondary transcription; the official Gazette issue/date is reported, but the signed Gazette PDF and direct Amiri Press text page were not successfully retrieved.
 
 ### Article map
 
