@@ -161,11 +161,11 @@ Additional statutes indexed include Laws 46/1972, 47/1972, 54/1964 as amended by
 
 | Measure | Result | Meaning |
 |---|---:|---|
-| Legal-domain scope mapped | 34/34 (100%) | Scope definition only; not full legal coverage |
+| Legal-domain scope mapped | 36/36 (100%) | Scope definition only; not full legal coverage |
 | Source institutions/platforms registered | 29 | Government, courts, regulators and discovery sources |
-| Seed anchor instruments inventoried | 135 | Starter set, not the total universe of Egyptian laws and decisions |
-| Source PDFs opened | 35/135 (25.9% of seed list) | Includes government reprints, official agency copies and files with unreadable/garbled text layers; not all are bare Gazette originals |
-| Nationwide consolidated statute domains | 0/34 | No domain yet has all base laws, amendments, executive regulations and currentness fully consolidated |
+| Seed anchor instruments inventoried | 139 | Starter set, not the total universe of Egyptian laws and decisions |
+| Source PDFs opened | 35/139 (25.2% of seed list) | Includes government reprints, official agency copies and files with unreadable/garbled text layers; not all are bare Gazette originals |
+| Nationwide consolidated statute domains | 0/36 | No domain yet has all base laws, amendments, executive regulations and currentness fully consolidated |
 | Full judicial judgments acquired in this national tranche | 0 | One Constitutional Court press-summary lead and a bulletin; 23 State Council series targets are bibliographic leads |
 | Lawyer-reviewed national instruments | 0 | Human legal review remains mandatory |
 
