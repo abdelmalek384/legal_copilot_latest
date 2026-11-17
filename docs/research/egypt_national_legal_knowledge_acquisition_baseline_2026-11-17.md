@@ -264,3 +264,42 @@ This pass adds 19 sectoral records. Among the new materials:
 - Multiple SCC individual-case and dashboard leads are indexed, but full judgments are not yet acquired.
 
 All remain `lawyer_reviewed=false` and `rights_cleared=false`. No national domain is complete end-to-end.
+
+
+## 14. Ministry of Finance national law catalogue and cross-domain statutory queue — 17 November 2026
+
+A third structured tranche is added at `data/research/egypt_mof_general_law_catalogue_harvest_2026-11-17.csv` with 19 catalogue and instrument records.
+
+### Catalogue scale and limitations
+
+The Ministry of Finance portal's search-indexed general laws page reports **10 of 936 laws** in its general catalogue view. Its financial-law category reports **10 of 522 laws**. These are portal catalogue counters, not proof that Egypt has only 936 laws, not proof of completeness, and not full-text acquisition. They provide a measurable enumeration queue that can be paginated and reconciled against Official Gazette indexes. The Ministry expressly warns that its online texts are for guidance and that the sole legal reference is publication in the Official Gazette / الوقائع المصرية.
+
+### New high-priority statutory and amendment leads
+
+The official catalogue identifies:
+- Law 157/2024 amending Civil and Commercial Procedure Law 13/1968, Gazette issue 27 bis (D), 10 July 2024; portal labels it in force.
+- Evidence Law 25/1968, labelled in force.
+- Civil Code Law 131/1948, labelled in force; related-legislation links include Law 55/1970 amending Civil Code Article 970 and other historical amendment references.
+- Companies Law 159/1981 and Executive Regulation Decision 96/1982, both labelled in force; Decision 1212/2004 is listed as an amendment to the regulation.
+- Unified Public Finance Law 6/2022, amendment Law 18/2024, a correction and related PM decisions 4498/2023, 4499/2023, 77/2023 and 80/2026.
+- Law 148/2026 amending Law 147/1984 on development-resource fees.
+- Law 154/2026 on remittance of a portion of net profits by state-owned/public-entity companies to the Treasury.
+- Law 47/2026 establishing the Egypt Future Development Agency and defining its powers.
+- Law 149/2026 amending VAT Law 67/2016.
+- Law 157/2025 also amending VAT Law 67/2016.
+- Ministerial Decision 262/2026 amending Customs Executive Regulation Decision 430/2021.
+- Law 156/2024 amending Economic Courts Law 120/2008, Gazette issue 27 bis (D), 10 July 2024.
+- Law 15/2025 changing the establishment/name/jurisdiction of specified first-instance courts.
+- Constitution 2014 as amended in 2019, listed in the MoF portal as Constitution Law 1/2019.
+
+These entries are official catalogue leads unless a separate primary PDF/text acquisition is expressly recorded. In particular, do not apply a 2026 catalogue entry as a legal rule until the Gazette text, effective date, amendments and currentness have been checked.
+
+### Next acquisition sequence
+
+1. Enumerate the MoF portal's general catalogue pages and capture every record (not only first-page examples).
+2. Separate primary instruments from amendment laws, corrections, executive regulations and administrative decisions.
+3. Build a graph linking base law → amendments → executive regulation → amending decisions → current article version.
+4. Prioritize the new 2026 statutes and the procedural/economic-court amendments because they affect current practice.
+5. Compare every downloaded text to the relevant Gazette issue and record hashes only for lawfully acquired files.
+
+The 936/522 catalogue counters improve denominator discovery; they do not increase actual text coverage by themselves.
