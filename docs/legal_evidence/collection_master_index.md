@@ -347,6 +347,8 @@
 
 | [collection_checkpoint_72_competition_law_3_2005.md](collection_checkpoint_72_competition_law_3_2005.md) | Competition Law 3/2005, official 2024 consolidated ECA text, merger-control Law 175/2022 and PM Decision 1120/2024 |
 
+| [collection_checkpoint_82_stamp_tax_law_153_2026.md](collection_checkpoint_82_stamp_tax_law_153_2026.md) | Official 2-page Law 153/2026 PDF; replaces Stamp Tax Law Article 83 bis; listed securities and same-day rates, market-maker exemption and settlement withholding |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
