@@ -352,3 +352,50 @@ New catalogue leads recorded include:
 - A public case summary is not a full reasoned judgment.
 - All new records retain `lawyer_reviewed=false` and `rights_cleared=false`.
 - No domain is yet complete end-to-end with all base laws, amendments, executive instruments, currentness and judicial interpretation.
+
+
+## 16. Asylum, migration, telecoms and data-protection acquisition — 17 November 2026
+
+A new 12-record register is added at `data/research/egypt_asylum_migration_telecom_data_protection_harvest_2026-11-17.csv`.
+
+### Foreign Asylum Law and executive regulation
+
+The Official Gazette publisher's indexed text identifies Prime Minister Decision 1568/2026 as the Executive Regulation of Foreign Asylum Law 164/2024. DSpace metadata identifies Official Gazette issue 21 supplement (B), dated 21 May 2026, with a 404.03 KB file. The decision states that it takes effect after three months from publication. The exact effective date should be computed and recorded under the applicable statutory time-computation rules before use.
+
+The regulation defines the competent ministry as the Ministry of Interior and the competent committee as the Permanent Committee for Refugee Affairs. The indexed text includes:
+- Definitions of refugee, asylum seeker and priority/vulnerable groups.
+- Application and legal representation procedures, including a free qualified representative where a person lacking capacity has no legal representative.
+- Family applications and written consent for adult family members.
+- Registration, preliminary medical screening, classification and referrals.
+- Case-management, health, psychological and social support duties.
+- A decision deadline of up to six months for applicants who entered lawfully and up to one year for those who entered unlawfully.
+- Temporary measures, including prior permission for travel between governorates or outside Egypt, with proportionality safeguards and challenge procedures.
+- Registration cards, refugee documents and travel documents.
+- Cessation/termination grounds.
+
+This is a high-priority current legal domain. Acquire the Gazette PDF, compare the full GPO text to the scan and extract every article; the index snippets are not a substitute for full text. The regulation's preamble also points to Law 89/1960 (foreigners' entry/residence), Nationality Law 26/1975, Child Law 12/1996, Anti-Trafficking Law 64/2010, Illegal Migration Law 82/2016, Persons with Disabilities Law 10/2018, Personal Data Protection Law 151/2020 and other related laws. These are now in the cross-reference queue.
+
+### Telecommunications and spectrum
+
+NTRA's official digital services portal displays a notice that new rules for wireless communication devices and radio spectrum began on **16 November 2026** under an NTRA Board decision. The exact decision number and linked instrument still need acquisition. NTRA also publishes:
+- Telecommunications Regulation Law 10/2003 (the located English translation expressly says Arabic prevails and prohibits republication without prior permission; do not copy the translation into the corpus).
+- General Rules for Protection of Telecommunications Service Users (official Arabic PDF lead).
+- Radio Spectrum Fees rules, with the located Arabic PDF stating application from 1 July 2020.
+- Additional service-specific rules and licensing frameworks.
+
+The next step is to acquire the Arabic Gazette text of Law 10/2003, current NTRA board decisions and the 16 November 2026 wireless/spectrum rules. A public official portal notice is a discovery lead, not the decision text.
+
+### Data protection, cybercrime and electronic transactions
+
+The official MCIT Digital Egypt legislative framework identifies:
+- Personal Data Protection Law 151/2020.
+- Anti-Cyber and Information Technology Crimes Law 175/2018.
+- Electronic Signature Law 15/2004.
+
+MCIT describes Law 151/2020 as regulating personal-data collection and processing, Law 175/2018 as addressing crimes directed at networks and information systems, and the e-signature law as granting legal validity to digital transactions. The primary Gazette texts, executive regulations and regulator decisions remain to be acquired. A 2024 MCIT fintech report is only a secondary explanatory source and must not substitute for the law.
+
+An official GPO decision, PM Decision 2564/2024 on the unified government complaints system, cites Laws 151/2020 and 175/2018 alongside Civil Service Law 81/2016 and Local Administration Law 43/1979. It is a useful cross-reference for public-sector data handling and secure digital complaints, but the full instrument and implementation details still require extraction.
+
+### Rights and status
+
+The NTRA English Law 10/2003 translation carries an explicit restriction against publication without prior permission. The corpus should prioritize Arabic official Gazette texts and store the English translation only as a locator/reference unless permission is obtained. All new records remain lawyer-unreviewed and rights-un-cleared.
