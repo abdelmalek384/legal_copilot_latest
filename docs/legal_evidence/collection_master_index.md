@@ -252,6 +252,8 @@
 
 | [collection_checkpoint_53_penal_code_58_1937.md](collection_checkpoint_53_penal_code_58_1937.md) | Penal Code 58/1937 full-text sources, general criminal-law structure and conflicting 2021 amendment candidates |
 
+| [collection_checkpoint_63_penal_code_text_extraction.md](collection_checkpoint_63_penal_code_text_extraction.md) | Full 1,878-line searchable Penal Code 58/1937 text (reported updated through Law 141/2021); excerpts Articles 1–76, 302–309 bis and 336–341; SCC case-law links |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
