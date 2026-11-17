@@ -1813,5 +1813,19 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("citationAccuracy.onchange=()=>clearRatingError(citationAccuracy)", rating)
         self.assertIn("expected.oninput=()=>clearRatingError(expected)", rating)
 
+    def test_global_search_command_palette_filters_permission_scoped_navigation(self):
+        start = HTML.index("const allNavItems=")
+        navigation = HTML[start:HTML.index("function mfaFirmSwitcher()", start)]
+        search_start = HTML.index("async function runGlobalSearch()")
+        search = HTML[search_start:start]
+        self.assertIn("const renderCommandPalette=query=>", navigation)
+        self.assertIn("allNavItems.filter(([id,label])", navigation)
+        self.assertIn("role:'list'", navigation)
+        self.assertIn("role:'listitem'", navigation)
+        self.assertIn("globalSearchInput.oninput=()=>{const value=globalSearchInput.value.trim();if(value.startsWith('>'))", navigation)
+        self.assertIn("globalSearchInput.onkeydown=e=>{if(e.key!=='Enter')return", navigation)
+        self.assertIn("if(q.startsWith('>')){renderCommandPalette(q.slice(1));return}", search)
+        self.assertIn("globalSearchInput.placeholder=uiText(", navigation)
+
 if __name__ == "__main__":
     unittest.main()
