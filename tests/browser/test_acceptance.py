@@ -1644,6 +1644,12 @@ class BrowserAcceptanceTests(unittest.TestCase):
         }""")
         self.assertLess(desktop_geometry["history"]["right"], desktop_geometry["answer"]["left"])
         self.assertGreater(desktop_geometry["evidence"]["left"], desktop_geometry["answer"]["right"])
+        history_width = desktop_geometry["history"]["right"] - desktop_geometry["history"]["left"]
+        evidence_width = desktop_geometry["evidence"]["right"] - desktop_geometry["evidence"]["left"]
+        self.assertGreaterEqual(history_width, 160)
+        self.assertLessEqual(history_width, 180)
+        self.assertGreaterEqual(evidence_width, 225)
+        self.assertLessEqual(evidence_width, 245)
 
 
         all_sources = self.page.get_by_role("button", name="كل المصادر", exact=True)
