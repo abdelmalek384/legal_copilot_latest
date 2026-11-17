@@ -198,6 +198,8 @@
 
 | [collection_checkpoint_41_civil_society_law_2019.md](collection_checkpoint_41_civil_society_law_2019.md) | Civil Society Work Law 149/2019, 188-article Executive Regulation 104/2021 and related administrative decision sources |
 
+| [collection_checkpoint_54_criminal_procedure_health_2026.md](collection_checkpoint_54_criminal_procedure_health_2026.md) | Law 160/2026 postpones Criminal Procedure Law 174/2025 commencement to 1 Oct 2027; Law 155/2026 amends Universal Health Insurance Law 2/2018; CC legal index updates |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
