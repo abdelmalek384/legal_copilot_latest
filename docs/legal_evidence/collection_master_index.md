@@ -84,6 +84,8 @@
 
 | [collection_checkpoint_21_disability_conciliation_noncash.md](collection_checkpoint_21_disability_conciliation_noncash.md) | Full official texts: Disability Rights Law 10/2018, Public-entity Conciliation Law 7/2000 and Non-Cash Payments Executive Regulation 1776/2020 |
 
+| [collection_checkpoint_27_water_law_article_excerpts.md](collection_checkpoint_27_water_law_article_excerpts.md) | Preserves searchable Arabic excerpts from Water Law 147/2021 Articles 26, 27, 59 and 87–89 with OCR validation warnings |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
