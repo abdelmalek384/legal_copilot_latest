@@ -226,6 +226,8 @@
 
 | [collection_checkpoint_47_personal_status_law_25_1929.md](collection_checkpoint_47_personal_status_law_25_1929.md) | Personal Status Law 25/1929, amendment chain through 2017 and Constitutional Court invalidation relationships |
 
+| [collection_checkpoint_59_water_law_text_extraction.md](collection_checkpoint_59_water_law_text_extraction.md) | Expanded searchable Arabic extraction from Water Law 147/2021: promulgation, Articles 5–12, 51–57, 68–70 and 96–109; OCR validation warnings |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
