@@ -27,20 +27,21 @@ A title-based harvest cannot establish completeness. The law itself delegates do
    - PM Decision 2403/2026: Unorganized Workers Emergency Aid/Social/Health Services Fund; or
    - PM Decision 3356/2026: Training and Qualification Fund.
 
-### B. Ministry of Labour decisions or joint rules not yet located
+### B. Ministry of Labour decisions or joint rules not yet located / partially located
 
 1. **Article 14:** allocation and spending of one-third of fines collected under the Law.
 2. **Article 80:** Ministerial financial/administrative rules, revenue collection, services and emergency-aid eligibility/payment rules for the Unorganized Workers Fund established by Article 78 and PM Decision 2403/2026.
-3. **Article 254:** model workplace code of conduct and procedures for complaints and resolution of harassment, bullying and violence.
-4. **Article 263:** National OSH Research Centre plans, studies and operating procedures.
-5. **Article 265:** governorate-level subcommittees of the Supreme OSH Council.
-6. **Article 266:** joint Labour/Health standards for medical fitness and physical, mental and psychological capability examinations.
-7. **Article 272:** minimum social and cultural services for establishments with 50 or more workers.
-8. **Article 276:** Ministerial Decision 320/2025 now supplies night/out-of-hours inspection triggers, reporting and statistics; Article 6 still defers the actual allowance amounts/controls to a separate authority decision not located.
-9. **Article 121:** Decisions 291/2025 and 292/2025 supply overtime grounds/rates and category-specific caps, but Decision 291 delegates annual sectoral overtime maxima to the Supreme Council for Social Dialogue; that follow-up decision was not located.
-10. **Article 100:** no general new-work-pattern decision located. The Ministry was still discussing remote, flexible, freelance and platform-work frameworks on 26 September 2026; PM Decision 982 is only a temporary Sunday scheme and Decision 162 only requires internal bylaw clauses.
-9. **Article 3 of PM Decision 3356/2026:** separate Ministerial decision for full exemption from the Training Fund contribution where an establishment trains its workers according to its needs/approved bylaws.
-10. **Article 3 of Ministerial Decision 269/2025:** the labour-market information/occupational-classification procedural manual due within three months; the manual was not located.
+3. **Article 245:** optional licensing of OSH/work-environment compliance offices (legal form, staffing, licence terms and fee up to EGP 100,000); no decision located. Decision 251/2026 licenses OSH experts/consultants and is not the same category.
+4. **Article 254:** Decision 162/2026 partially requires workplace bylaws to define conduct, prohibit harassment/bullying/violence and set complaint/investigation mechanisms; the separate ministerial model code, model complaint forms and standard settlement procedures required by Article 254 remain unlocated.
+5. **Article 263:** National OSH Research Centre plans, studies and operating procedures.
+6. **Article 265:** governorate-level subcommittees of the Supreme OSH Council.
+7. **Article 266:** joint Labour/Health standards for medical fitness and physical, mental and psychological capability examinations.
+8. **Article 272:** minimum social and cultural services for establishments with 50 or more workers.
+9. **Article 276:** Decision 320/2025 supplies night/out-of-hours inspection triggers, reporting and statistics; Article 6 still defers the actual allowance amounts/controls to a separate authority decision not located.
+10. **Article 121:** Decisions 291/2025 and 292/2025 supply overtime grounds/rates and category-specific caps, but Decision 291 delegates annual sectoral overtime maxima to the Supreme Council for Social Dialogue; that follow-up decision was not located.
+11. **Article 100:** no general new-work-pattern decision located. The Ministry was still discussing remote, flexible, freelance and platform-work frameworks on 26 September 2026; PM Decision 982 is only a temporary Sunday scheme and Decision 162 only requires internal bylaw clauses.
+12. **Article 3 of PM Decision 3356/2026:** separate Ministerial decision for full exemption from the Training Fund contribution where an establishment trains its workers according to its needs/approved bylaws.
+13. **Article 3 of Ministerial Decision 269/2025:** the labour-market information/occupational-classification procedural manual due within three months; the manual was not located.
 
 ### C. Ministry of Justice / joint inspector instruments
 
