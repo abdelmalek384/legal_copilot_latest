@@ -36,12 +36,14 @@ A title-based harvest cannot establish completeness. The law itself delegates do
 5. **Article 263:** National OSH Research Centre plans, studies and operating procedures.
 6. **Article 265:** governorate-level subcommittees of the Supreme OSH Council.
 7. **Article 266:** joint Labour/Health standards for medical fitness and physical, mental and psychological capability examinations.
-8. **Article 272:** minimum social and cultural services for establishments with 50 or more workers.
-9. **Article 276:** Decision 320/2025 supplies night/out-of-hours inspection triggers, reporting and statistics; Article 6 still defers the actual allowance amounts/controls to a separate authority decision not located.
-10. **Article 121:** Decisions 291/2025 and 292/2025 supply overtime grounds/rates and category-specific caps, but Decision 291 delegates annual sectoral overtime maxima to the Supreme Council for Social Dialogue; that follow-up decision was not located.
-11. **Article 100:** no general new-work-pattern decision located. The Ministry was still discussing remote, flexible, freelance and platform-work frameworks on 26 September 2026; PM Decision 982 is only a temporary Sunday scheme and Decision 162 only requires internal bylaw clauses.
-12. **Article 3 of PM Decision 3356/2026:** separate Ministerial decision for full exemption from the Training Fund contribution where an establishment trains its workers according to its needs/approved bylaws.
-13. **Article 3 of Ministerial Decision 269/2025:** the labour-market information/occupational-classification procedural manual due within three months; the manual was not located.
+8. **Article 270:** joint Labour/Health decision setting procedures/standards for medical-treatment, medicine and hospital-accommodation expenses; no decision located.
+9. **Article 271:** joint decision defining remote areas, worker-housing standards, food types/quantities and employer contributions; Decision 49/2026 only partially identifies remote areas for extra annual leave and does not establish the full housing/food regime.
+10. **Article 272:** minimum social and cultural services for establishments with 50 or more workers.
+11. **Article 276:** Decision 320/2025 supplies night/out-of-hours inspection triggers, reporting and statistics; Article 6 still defers the actual allowance amounts/controls to a separate authority decision not located.
+12. **Article 121:** Decisions 291/2025 and 292/2025 supply overtime grounds/rates and category-specific caps, but Decision 291 delegates annual sectoral overtime maxima to the Supreme Council for Social Dialogue; that follow-up decision was not located.
+13. **Article 100:** no general new-work-pattern decision located. The Ministry was still discussing remote, flexible, freelance and platform-work frameworks on 26 September 2026; PM Decision 982 is only a temporary Sunday scheme and Decision 162 only requires internal bylaw clauses.
+14. **Article 3 of PM Decision 3356/2026:** separate Ministerial decision for full exemption from the Training Fund contribution where an establishment trains its workers according to its needs/approved bylaws.
+15. **Article 3 of Ministerial Decision 269/2025:** the labour-market information/occupational-classification procedural manual due within three months; the manual was not located.
 
 ### C. Ministry of Justice / joint inspector instruments
 
@@ -52,6 +54,7 @@ A title-based harvest cannot establish completeness. The law itself delegates do
 - **Arts.9, 13, 20, 27, 28, 38, 40–44, 48, 51–52, 71–72, 101–102, 129, 137, 215, 239, 255, 259–262:** corresponding decisions are identified in the register, but each must be checked against its exact delegation, all annexes, commencement clauses and amendments.
 - **Arts.23–26:** Decision 264/2025 and OSH-specific Decision 252/2026 address different training regimes; do not treat them as interchangeable.
 - **Art.254:** Decision 162/2026 contains workplace-bylaw requirements on conduct and complaint/investigation processes, but it does not yet establish that the separate Article 254 Ministry model code and standard procedure have been issued.
+- **Art.269:** the Law itself imposes daily workplace inspection, complaint review and periodic health-check duties; no separate implementing decision is specified in the article, but the required registers/health-insurance procedures need operational source review.
 - **Arts.33–37:** Decisions 270 and 271/2025 are only partially cross-mapped to registration/disability data and require exact article-level mapping.
 - **Art.53:** Decision 75/2026 is the women's prohibited-work/maternity/OSH instrument; verify the complete Article 3 risk schedule and signed Gazette text.
 - **Art.59:** Decision 162/2026 partially addresses workplace rules and flexible/remote work, but a specific women-work system for carers of children with disabilities/dwarfs and the general Article 100 framework remain to be verified.
@@ -85,4 +88,4 @@ A title-based harvest cannot establish completeness. The law itself delegates do
 
 ## 6. Progress measure
 
-The companion CSV contains **50 explicit statutory delegation rows**. This is a mapping of the delegations surfaced from the accessible Law 14/2025 text, not proof that all possible delegations have been captured. The formal-instrument register contains 51 identified instruments; 35 Ministry of Labour decision numbers are identified against the 68 Ministry decisions cited in official 2025 announcements. Corpus completeness remains open.
+The companion CSV contains **52 explicit statutory delegation rows**. This is a mapping of the delegations surfaced from the accessible Law 14/2025 text, not proof that all possible delegations have been captured. The formal-instrument register contains 51 identified instruments; 35 Ministry of Labour decision numbers are identified against the 68 Ministry decisions cited in official 2025 announcements. Corpus completeness remains open.
