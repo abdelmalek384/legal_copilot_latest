@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -96,6 +96,9 @@
 | [collection_checkpoint_30_environment_tourism_electricity_2026.md](collection_checkpoint_30_environment_tourism_electricity_2026.md) | Official Nature Reserves Law 102/1983; Nile protection Law 48/1982; Tourism Law 8/2022 and Executive Regulation 705/2023; Electricity Law 87/2015 enforcement leads |
 
 | [collection_checkpoint_31_public_shops_food_safety_2026.md](collection_checkpoint_31_public_shops_food_safety_2026.md) | Public Shops Law 154/2019; Executive Regulation 590/2020 and Decision 10/2025; licensing classification decisions; NFSA Law 1/2017; historical opening-hours decision |
+
+
+| [collection_checkpoint_23_unified_procurement_drug_authority.md](collection_checkpoint_23_unified_procurement_drug_authority.md) | Official 25-page Gazette scan of Law 151/2019 establishing Unified Procurement and Egyptian Drug Authorities; first five pages visually inspected |
 
 ## High-value primary-source portals
 
