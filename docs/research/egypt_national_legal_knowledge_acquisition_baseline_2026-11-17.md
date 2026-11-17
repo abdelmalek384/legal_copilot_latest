@@ -120,10 +120,10 @@ Policy:
 
 ## 8. Initial progress measurement
 
-A defensible percentage needs a denominator. The first denominator is now **34 legal domains**, not an estimate of all individual laws/cases:
-- 34/34 domains have been named in the national inventory (scope definition only; this is not 100% coverage).
+A defensible percentage needs a denominator. The first denominator is now **36 legal domains**, not an estimate of all individual laws/cases:
+- 36/36 domains have been named in the national inventory (scope definition only; this is not 100% coverage).
 - 29 source institutions/platforms are registered, including the Supreme Constitutional Court, State Council, Consumer Protection Agency, NOSI, Administrative Control Authority, National Elections Authority, Customs Authority and Economic Courts.
-- 135 anchor instruments have acquisition records with their source/access status.
+- 139 anchor instruments have acquisition records with their source/access status.
 - 35 source PDFs have been opened across the tranches (not all are bare Gazette originals: Commercial Code is a government-published reprint and Customs Law is an authority-annotated compilation); Law160/2026 official HTML text was also opened. Several more have only official listing metadata.
 - No nationwide article-by-article consolidated statute corpus has been produced. A public judicial collection register now includes 25 leads (one Constitutional Court press summary, one recent bulletin and 23 State Council principle-series targets); the underlying judgments/volumes are mostly not yet acquired.
 - No nationwide court judgment corpus has been acquired.
@@ -242,3 +242,14 @@ See [Real-estate and historical tax acquisition](egypt_real_estate_and_historica
 - **Identity discrepancy:** an EEAA search-result extract appears to label Law152/2021 as medical-waste regulation, but Official Gazette DSpace metadata identifies Law152/2021 as the Epidemics and Health Pandemics Law. This conflict is flagged; the law is not classified as a medical-waste statute pending source reconciliation.
 
 See [Environmental and Waste Law acquisition](egypt_environmental_and_waste_law_acquisition_2026-11-17.md) and [dedicated environmental instruments register](../../data/research/egypt_environmental_instruments_register_2026-11-17.csv).
+
+
+## 2026 strategic development authority and budget tranche
+
+- GPO full text for Law147/2026 reorganizing the Future of Egypt Sustainable Development Agency was located. It creates sustainable development zones, an Ahramat Al Nile sovereign wealth fund and a Daem service fund, and contains special licensing, asset-transfer, governance and financial rules.
+- **Identifier discrepancy:** Ministry of Finance's public index labels a same-title instrument Law47/2026, while the GPO primary text and secondary text identify Law147/2026. This is flagged for Gazette cover/issue reconciliation; no duplicate law is created.
+- Law77/2026 State General Budget for FY2026/2027: GPO full text located; effective from 1 July 2026; budget tables remain to be structured.
+- PM Decision2034/2026: MOF listing says Cotton Arbitration and Testing Authority becomes a service public authority from FY2027/2028; full text pending.
+- Cabinet Decision80/2026: MOF listing shows 50% of inspection/examination fees allocated for specified purposes under an incompletely displayed Law168 reference; full title/text pending.
+
+See [2026 Future Egypt authority and budget acquisition](egypt_2026_future_egypt_authority_and_budget_law_acquisition.md).
