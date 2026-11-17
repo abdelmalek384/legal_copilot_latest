@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 16) (expanded through checkpoint 15) (expanded through checkpoint 14) (expanded through checkpoint 13) (expanded through checkpoint 11) (expanded through new FRA checkpoint) (expanded through checkpoint 9)  
+**Last updated:** 2026-11-17 (expanded through checkpoint 17) (expanded through checkpoint 16) (expanded through checkpoint 15) (expanded through checkpoint 14) (expanded through checkpoint 13) (expanded through checkpoint 11) (expanded through new FRA checkpoint) (expanded through checkpoint 9)  
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -52,6 +52,9 @@
 
 
 | [collection_checkpoint_16_evidence_law_25_1968_scan.md](collection_checkpoint_16_evidence_law_25_1968_scan.md) | Official 12-page scanned Gazette PDF for Evidence Law 25/1968 located; first three pages visually inspected; OCR backlog recorded |
+
+
+| [collection_checkpoint_17_family_courts_procedure_2024.md](collection_checkpoint_17_family_courts_procedure_2024.md) | Official Family Courts Law 10/2004 text, Family Insurance Fund Law 11/2004 source and Civil/Commercial Procedure amendment 157/2024 text |
 
 ## High-value primary-source portals
 
