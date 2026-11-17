@@ -36,7 +36,7 @@ A title-based harvest cannot establish completeness. The law itself delegates do
 5. **Article 265:** governorate-level subcommittees of the Supreme OSH Council.
 6. **Article 266:** joint Labour/Health standards for medical fitness and physical, mental and psychological capability examinations.
 7. **Article 272:** minimum social and cultural services for establishments with 50 or more workers.
-8. **Article 276:** rules/procedures for night and out-of-hours labour inspection and inspector allowances.
+8. **Article 276:** Ministerial Decision 320/2025 now supplies night/out-of-hours inspection triggers, reporting and statistics; Article 6 still defers the actual allowance amounts/controls to a separate authority decision not located.
 9. **Article 3 of PM Decision 3356/2026:** separate Ministerial decision for full exemption from the Training Fund contribution where an establishment trains its workers according to its needs/approved bylaws.
 10. **Article 3 of Ministerial Decision 269/2025:** the labour-market information/occupational-classification procedural manual due within three months; the manual was not located.
 
