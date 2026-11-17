@@ -27,7 +27,7 @@ The Ministry index currently exposes the following labour-related instruments. T
 | 2008 | 49 | شروط واجراءات الترخيص بالعمل للاجانب | Retrieve; compare with Decisions 136/2003, 146/2019 and 279/2025 |
 | 2010 | 232 | تحديد المنشآت التي تلتزم بإنشاء أجهزة للسلامة والصحة المهنية | Retrieve; compare with Decisions 134/2003, 216/2016 and 249/2026 |
 | 2003 | 211 | Cited by the Ministry climate presentation (Arts. 5–6) for workplace thermal conditions; not displayed in the retrieved index excerpt | Retrieve the exact 2003 instrument; do not confuse it with Decision 211/2009 on financial/administrative rules for irregular-worker units |
-| 2010 | 306 | تشكيل لجنة إعداد دليل معايير السلامة والصحة المهنية | Retrieve; establish whether committee output remains operative or was superseded |
+
 | 2010 | 25 | تعديل المادة 18 من القرار 134/2003 | Retrieve; attach to 134/2003 amendment chain |
 | 2013 | 416 | اللائحة المنظمة لمزاولة عمليات إلحاق العمالة المصرية بالخارج والداخل | Retrieve; compare with 135/2003 amendment chain and Decision 272/2025 |
 | 2013 | 394 | إضافة مهن جديدة خاضعة لقياس مستوى المهارة | Retrieve schedule; compare with Decision 266/2025 |
@@ -39,10 +39,10 @@ The Ministry index currently exposes the following labour-related instruments. T
 | 2018 | 52 | اعتماد قائمة الوسطاء في مجال فض المنازعات | Retrieve; check later mediation/conciliation framework |
 | 2018 | 39 | إضافة مهن خاضعة لقياس مستوى المهارة | Retrieve schedule; compare with Decision 266/2025 |
 | 2019 | 146 | تراخيص عمل الأجانب | Retrieve; compare with Decisions 136/2003, 79/2006, 700/2006, 485/2010 and 279/2025 |
-| 2021 | 43 | تحديد الأعمال التي لا يجوز تشغيل النساء بها | Retrieve; compare with Decision 75/2026 |
-| 2021 | 44 | تنظيم تشغيل النساء ليلاً | Retrieve; compare with Decision 75/2026 |
+
+
 | 2021 | 172 | استمرار العمل بأحكام القرار 106/2021 بشأن تحديث قواعد بيانات المنظمات النقابية | Retrieve; likely separate union-law track, do not classify as Law 14/2025 implementation without a statutory link |
-| 2023 | 80 | تنظيم مزاولة عمليات التدريب المهني وتطوير مستوياته | Retrieve; compare with Decision 264/2025 |
+
 | 2023 | 111 | المهن الخاضعة لقياس مستوى المهارة بعد تحديثها وفقا لدليل التصنيف المهني | Retrieve schedule; compare with Decision 266/2025 |
 
 The Ministry index also displays other instruments (including union-law instruments and administrative/financial rules). The table above is a selected labour-law and Article 11 discovery queue, not a complete transcription of the Ministry page.
@@ -168,15 +168,15 @@ A second crawl of the Ministry's Arabic page exposed further records omitted fro
 | 2015 | 397 | القواعد والإجراءات المنظمة للتدرج المهني | Retrieve; compare with 414/2015 and 267/2025; resolve status |
 | 2015 | 391 | إضافة مهن جديدة خاضعة لقياس مستوى المهارة | Retrieve schedule; skill-measurement chain |
 | 2015 | 329 | اللائحة المالية والإدارية لتشغيل ورعاية العمالة غير المنتظمة | Retrieve; compare with later fund rules |
-| 2016 | 216 | تحديد المنشآت التي تلتزم بإنشاء أجهزة ولجان السلامة والصحة المهنية | High priority OSH predecessor to Decision 249/2026 |
+
 | 2016 | 150 | تشكيل لجنة البت في منح تراخيص عمل الأجانب | Retrieve; compare with current foreign-worker permit administration |
 | 2018 | 52 | اعتماد قائمة الوسطاء في مجال فض المنازعات | Retrieve; dispute-resolution chain |
 | 2018 | 39 | إضافة مهن خاضعة لقياس مستوى المهارة | Retrieve schedule; skill-measurement chain |
-| 2019 | 146 | تراخيص عمل الأجانب | Retrieve; compare with Decision 279/2025 |
+
 | 2021 | 43 | تحديد الأعمال التي لا يجوز تشغيل النساء بها | Retrieve; compare with Decision 75/2026 |
 | 2021 | 44 | تنظيم تشغيل النساء ليلاً | Retrieve; compare with Decision 75/2026 |
 | 2023 | 80 | تنظيم مزاولة عمليات التدريب المهني وتطوير مستوياته | Retrieve; compare with Decision 264/2025 |
-| 2023 | 111 | المهن الخاضعة لقياس مستوى المهارة بعد تحديثها وفقا لدليل التصنيف المهني | Retrieve; compare with Decision 266/2025 |
+
 
 The same number can occur in different years and can refer to unrelated subjects. Preserve the compound key (issuer, number, year), not number alone. The Ministry index also contains entries explicitly marked repealed, suspended, amended or unissued; capture those labels as leads, then inspect the actual instrument.
 
