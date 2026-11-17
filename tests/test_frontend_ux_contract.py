@@ -1801,5 +1801,17 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("matterSelect.onchange=()=>{matterSelect.removeAttribute('aria-invalid')", research)
         self.assertIn("matterSelectError.hidden=true", research)
 
+    def test_research_answer_rating_validation_is_inline_accessible_and_recovers(self):
+        start = HTML.index("const ratingChoices=h('div'", HTML.index("async function law(){"))
+        rating = HTML[start:HTML.index("ratingPanel.append", start)]
+        self.assertIn("id:'answer-rating-error',className:'notice danger',role:'alert',hidden:true", rating)
+        self.assertIn("field.setAttribute('aria-invalid','true')", rating)
+        self.assertIn("field.setAttribute('aria-describedby','answer-rating-error')", rating)
+        self.assertIn("missing.focus()", rating)
+        self.assertIn("expected.focus()", rating)
+        self.assertIn("overall.onchange=()=>clearRatingError(overall)", rating)
+        self.assertIn("citationAccuracy.onchange=()=>clearRatingError(citationAccuracy)", rating)
+        self.assertIn("expected.oninput=()=>clearRatingError(expected)", rating)
+
 if __name__ == "__main__":
     unittest.main()
