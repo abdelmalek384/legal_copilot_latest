@@ -1300,6 +1300,101 @@
       "language": "ar",
       "candidate_status": "discovery_only",
       "notes": "Official SCC portal search-result metadata observed 2026-11-17. Listed outcome: انقطاع سير الخصومة. Full judgment text, procedural finality, publication, precedential treatment and reuse permission remain unchecked. Do not use the short result as a substitute for the judgment."
+    },
+    {
+      "document_id": "EG-UNIFIED-INSURANCE-155-2024",
+      "official_title": "قانون رقم 155 لسنة 2024 بإصدار قانون التأمين الموحد",
+      "document_type": "insurance_law",
+      "law_number": "155",
+      "law_year": 2024,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Amiri Press text page located: https://www.alamiria.com/Sec/TashTxt?id=fm2OTbFbwLU%3D. The Ministry of Finance lists the law as published 2024-07-10 in Official Gazette issue 27 bis (C) and labels it in force, but the Ministry expressly warns its electronic texts are guidance and the Official Gazette is the sole legal reference. Important express repeal/transition links: Law 155/2024 repeals Laws 54/1975, 10/1981, and 72/2007, and repeals Civil Code Articles 747–771. Gazette original, full annex, amendments, implementing regulations/decisions, currentness and reuse permissions remain to be verified.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=fm2OTbFbwLU%3D",
+          "source_role": "official Amiri Press full-text page",
+          "status": "text_page_located"
+        },
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/qanwn_rqm_155_lsnt_2024_3abd2a8ae7.pdf",
+          "source_role": "Ministry of Finance-hosted Gazette PDF copy",
+          "status": "official-ministry-copy_locator; Gazette issue 27 bis C dated 2024-07-10; primary Gazette hash not locally computed"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FUTURE-EGYPT-47-2026",
+      "official_title": "قانون رقم 47 لسنة 2026 بتنظيم جهاز مستقبل مصر للتنمية المستدامة واختصاصاته في إدارة مناطق التنمية والاستثمار",
+      "document_type": "administrative_law",
+      "law_number": "47",
+      "law_year": 2026,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by the official Ministry of Finance index; page labels status 'سارٍ'. The index warns online texts are guidance and the Official Gazette is the legal reference. The law creates/organizes a national authority with development/investment-zone management functions; exact Gazette text, institutional scope, related decisions and amendments remain to be checked.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-6a731db063496600085dd853",
+          "source_role": "official Ministry of Finance law page",
+          "status": "listed_and_index_labels_in_force_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-COUNCIL-OF-MINISTERS-DECISION-80-2026",
+      "official_title": "قرار مجلس الوزراء رقم 80 لسنة 2026 بشأن أغراض وحدود صرف نسبة 50٪ من رسوم الفحص والمعاينة المحصلة وفقًا لأحكام القانون رقم 168 لسنة 2025",
+      "document_type": "cabinet_decision",
+      "law_number": "80",
+      "law_year": 2026,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed in the Ministry of Finance official decisions index on 2026-11-17. Related to Law 168/2025 on state private property. Full text, exact Gazette issue/pages, legal authority, commencement, relationship with Prime Minister Decision 200/2026 and reuse permission remain unchecked.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/decisions",
+          "source_role": "official Ministry of Finance discovery index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-JUSTICE-MINISTER-DECISION-1729-2026",
+      "official_title": "قرار وزير العدل رقم 1729 لسنة 2026 بإنشاء وحدة حوكمة وإدارة واستثمار الأصول والموارد وعوائد مشروعات وزارة العدل",
+      "document_type": "ministerial_decision",
+      "law_number": "1729",
+      "law_year": 2026,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed in the Ministry of Finance official decisions index on 2026-11-17 as a decision of the Minister of Justice. Cross-domain public administration/asset governance. Exact text, Gazette issue/pages, legal basis, commencement and reuse permission remain unchecked.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/decisions",
+          "source_role": "official Ministry of Finance discovery index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FRA-DECISION-42-2025-VEHICLE-INSURANCE-POOL",
+      "official_title": "قرار مجلس إدارة الهيئة العامة للرقابة المالية رقم 42 لسنة 2025 بشأن تعديل النظام الأساسي للمجمعة المصرية للتأمين الإجباري عن المسئولية المدنية الناشئة عن حوادث مركبات النقل السريع",
+      "document_type": "regulatory_board_decision",
+      "law_number": "42",
+      "law_year": 2025,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Amiri Press text page located: https://www.alamiria.com/Sec/TashTxt?id=I14AW6US8+Y%3D. Text cites Unified Insurance Law 155/2024 and requires publication in Egyptian Proceedings; it states effectiveness from the day after publication. Gazette issue/date/pages not yet pinned. Verify full text, subsequent amendments, and regulator reuse terms.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=I14AW6US8+Y%3D",
+          "source_role": "official Amiri Press text page",
+          "status": "text_page_located"
+        }
+      ]
     }
   ]
 }
