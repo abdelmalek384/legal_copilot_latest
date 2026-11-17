@@ -8727,6 +8727,44 @@
           "status": "listed_2026-11-17"
         }
       ]
+    },
+    {
+      "document_id": "EG-WASTE-MANAGEMENT-REGULATOR-BUDGET-96-2022",
+      "official_title": "القانون رقم 96 لسنة 2022 بربط موازنة جهاز تنظيم إدارة المخلفات للسنة المالية 2022/2023",
+      "document_type": "annual_budget_law",
+      "law_number": "96",
+      "law_year": 2022,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_catalogue_entry_seen",
+      "text_verification_note": "Listed on page 12 of official Ministry of Finance legislation catalogue. Full Gazette PDF and budget schedules not yet extracted; SHA-256 and legal effect/currentness outstanding. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws?page=12",
+          "source_role": "official Ministry of Finance legislation catalogue",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-DAMIETTA-PORT-BUDGET-108-2022",
+      "official_title": "القانون رقم 108 لسنة 2022 بربط موازنة هيئة ميناء دمياط للسنة المالية 2022/2023",
+      "document_type": "annual_budget_law",
+      "law_number": "108",
+      "law_year": 2022,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_catalogue_entry_seen",
+      "text_verification_note": "Listed on page 12 of official Ministry of Finance legislation catalogue. Full Gazette PDF and budget schedules not yet extracted; SHA-256 and legal effect/currentness outstanding. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws?page=12",
+          "source_role": "official Ministry of Finance legislation catalogue",
+          "status": "listed_2026-11-17"
+        }
+      ]
     }
   ]
 }
