@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 54) (expanded through checkpoint 53) (expanded through checkpoint 52) (expanded through checkpoint 51) (expanded through checkpoint 50) (expanded through checkpoint 49) (expanded through checkpoint 48) (expanded through checkpoint 47) (expanded through checkpoint 46) (expanded through checkpoint 45) (expanded through checkpoint 44) (expanded through checkpoint 43) (expanded through checkpoint 42) (expanded through checkpoint 41) (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 55) (expanded through checkpoint 54) (expanded through checkpoint 53) (expanded through checkpoint 52) (expanded through checkpoint 51) (expanded through checkpoint 50) (expanded through checkpoint 49) (expanded through checkpoint 48) (expanded through checkpoint 47) (expanded through checkpoint 46) (expanded through checkpoint 45) (expanded through checkpoint 44) (expanded through checkpoint 43) (expanded through checkpoint 42) (expanded through checkpoint 41) (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -260,6 +260,9 @@
 | [collection_checkpoint_64_commercial_code_text.md](collection_checkpoint_64_commercial_code_text.md) | Official ETA Commercial Code 17/1999 searchable PDF (3,759 lines); excerpts Articles 1–61; technology transfer, negotiable instruments and bankruptcy-book repeal by Law 11/2018 mapped |
 
 | [collection_checkpoint_65_insolvency_law_text.md](collection_checkpoint_65_insolvency_law_text.md) | Full 279-article Insolvency Law 11/2018 text; 2021 amendment 11/2021 and e-litigation; repeal of Commercial Code Book V; 2026 expert-fee Decision 3715 |
+
+
+| [collection_checkpoint_55_state_council_scc_laws.md](collection_checkpoint_55_state_council_scc_laws.md) | State Council Law 47/1972 (141 articles) and Supreme Constitutional Court Law 48/1979 (57 articles), amendments and judicial-review relationships |
 
 ## High-value primary-source portals
 
