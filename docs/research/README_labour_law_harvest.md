@@ -135,3 +135,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 67. [SCC public-service salary and social-insurance judgments](egypt_scc_public_service_salary_and_social_insurance_judgments_2026-11-17.md) — cases98/43 (2026),100/43 (2023),188/35 (2023), covering half-salary during pretrial detention and early-retirement pension actuarial factors.
 
 68. [SCC case244/23 public-official criticism judgment](egypt_scc_public_official_criticism_case_244_23_2026.md) — official 7 March 2026 decision upholding Penal Code Art185 and Art302(2) safe-harbor conditions and Art307 publication multiplier.
+
+69. [Court of Cassation public headnotes harvest](egypt_court_of_cassation_public_headnotes_harvest_2026-11-17.md) — 18 public headnotes across labour, social insurance, customs, banking, commercial, criminal and family law; full judgment subscription boundary documented.
+70. [Court of Cassation public principles register](../../data/research/egypt_cassation_public_principles_register_2026-11-17.csv) — 18 case numbers, dates, headnotes, legal topics and limitations.
