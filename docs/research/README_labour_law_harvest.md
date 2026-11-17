@@ -29,6 +29,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 23. [Executive-decisions completeness gap](executive_decisions_completeness_gap_2026-11-17.md) — reconciles the Ministry's original 87-decision estimate (68 Ministry decisions in several official reports) with the currently identified inventory; explains why the corpus is not yet exhaustive.
 24. [Prime Minister Decisions 562/2025, 2402/2026 and 2403/2026](prime_minister_decisions_562_2025_2402_2403_2026.md) — Social Dialogue Council (including repeal of the 2025 predecessor) and the 16-article Unorganized Workers Emergency Aid/Social/Health Fund.
 25. [Prime Minister Decision 3356/2026 — Training and Qualification Fund](decision_3356_2026_training_qualification_fund.md) — 18-article fund reorganization, employer contribution formula, quarterly payment, Board governance, audit and missing exemption rules.
+26. [Ministry Decision 269/2025 — central labour-market databases](decision_269_2025_labour_market_central_databases.md) — mandatory selected-establishment data form (30-day response), central database and a procedural manual; the form and manual remain missing.
 
 ## Structured inventory
 
@@ -36,8 +37,8 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 ## Current harvest snapshot
 
-- 34 distinct Ministry of Labour decision numbers, 3 Ministry of Justice decisions and 13 Prime Minister decisions (50 identified formal instruments) identified in the current 2025–2026 register, plus seven circular/implementation instruments (Circulars 3, 15, 16 and 19/2025; Circulars 9 and 22/2026; and one unnumbered April 2026 remote-work monitoring circular).
-- **Substantial article-level text or structured extracts:** 50/50 identified formal instruments (100% of the currently identified register) have at least a substantive text extract, structured summary or article map. This is a collection-coverage metric only; it does not mean every instrument has a complete official text, primary-source match, currentness check, rights clearance or lawyer review. Several remain secondary-only or partial.
+- 35 distinct Ministry of Labour decision numbers, 3 Ministry of Justice decisions and 13 Prime Minister decisions (51 identified formal instruments) identified in the current 2025–2026 register, plus seven circular/implementation instruments (Circulars 3, 15, 16 and 19/2025; Circulars 9 and 22/2026; and one unnumbered April 2026 remote-work monitoring circular).
+- **Substantial article-level text or structured extracts:** 51/51 identified formal instruments (100% of the currently identified register) have at least a substantive text extract, structured summary or article map. This is a collection-coverage metric only; it does not mean every instrument has a complete official text, primary-source match, currentness check, rights clearance or lawyer review. Several remain secondary-only or partial.
 - **Primary-source comparison:** article-level comparison has begun for three ministerial decisions against the public SIS Gazette facsimile for issue 291 (259, 264 and 299); 982/2026 and its extensions have separate article-level extracts, but are not counted as formal Gazette comparisons. This is not a certified legal copy: the SIS PDF expressly says the electronic image is not valid for dealings.
 - **Official Gazette scan locators:** issue 291 facsimile covers Decisions 259, 260, 264, 271, 272, 292, 294, 299, 319 and 320; issue 290(B) metadata and third-party-hosted facsimile cover 266, 279, 300 and 301; issue 295(D) metadata identifies 267, 270, 288, 289, 290 and 291.
 - **Court of Cassation:** nine additional case records structured (Appeals 12226/92, 12946/92, 6130/87, 16587/86, 16664/93, 25116/93, 4085/93, 15513/94 and 11438/86), in addition to the earlier case leads. Most apply predecessor legislation; no full corpus of judgments acquired.
@@ -47,9 +48,9 @@ This folder contains free/public source discovery, metadata registers and extrac
 - On 15 November 2026 the National Wages Council approved an EGP 8,500 monthly minimum wage from 1 January 2027 and an EGP 350 minimum periodic increment. The formal implementing wage decision had not yet been located as of 17 November 2026; do not apply the future rate early.
 - On 14 November 2026 the Ministry publicly stated that the executive decisions for Labour Law 14/2025 had been completed and described current enforcement priorities. The statement does not enumerate the instruments; reconcile the current 42-record register against every statutory delegation before calling the inventory exhaustive.
 - Decisions 259, 264 and 299 have article-level text cross-checked against the SIS-hosted issue 291 facsimile; Decision 294 has a complete Ministry-hosted four-article text. The SIS facsimile disclaimer and rights/counsel gates remain.
-- All 50 identified formal instruments and seven circulars remain lawyer_reviewed=false and rights_cleared=false. No production database import performed.
+- All 51 identified formal instruments and seven circulars remain lawyer_reviewed=false and rights_cleared=false. No production database import performed.
 - No original-Gazette SHA-256 hash captured for the Labour Law 14/2025 candidate; no legal data has been promoted to verified.
-- CSV structural validation passed: 57 data rows, 11 columns each, no duplicate document keys.
+- CSV structural validation passed: 58 data rows, 11 columns each, no duplicate document keys.
 
 ## Non-negotiable status rules
 
