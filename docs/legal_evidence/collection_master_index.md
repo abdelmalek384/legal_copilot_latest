@@ -163,6 +163,8 @@
 
 | [collection_checkpoint_34_vat_law_67_2016_consolidated.md](collection_checkpoint_34_vat_law_67_2016_consolidated.md) | 87-article VAT Law 67/2016 consolidated transcription, schedules and amendments 3/2022, 157/2025 and 149/2026 |
 
+| [collection_checkpoint_47_building_realestate_tax_2026.md](collection_checkpoint_47_building_realestate_tax_2026.md) | Building Law 119/2008 official Gazette PDF; Law 187/2023 Regulation 1121/2024 number resolved; Real Estate Tax Law 3/2026 major amendment; Architectural Heritage compensation Decision 2557/2026 |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
