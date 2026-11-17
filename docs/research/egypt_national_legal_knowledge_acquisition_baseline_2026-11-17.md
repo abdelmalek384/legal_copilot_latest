@@ -166,7 +166,7 @@ Additional statutes indexed include Laws 46/1972, 47/1972, 54/1964 as amended by
 | Seed anchor instruments inventoried | 139 | Starter set, not the total universe of Egyptian laws and decisions |
 | Source PDFs opened | 35/139 (25.2% of seed list) | Includes government reprints, official agency copies and files with unreadable/garbled text layers; not all are bare Gazette originals |
 | Nationwide consolidated statute domains | 0/36 | No domain yet has all base laws, amendments, executive regulations and currentness fully consolidated |
-| Full official SCC judgment texts acquired/indexed | 6 | Cases2/44 (2026), 115/25 (2026), 98/43 (2026), 100/43 (2023) and188/35 (2023); cases99/43 and16/24 remain cited-holding leads |
+| Full official SCC judgment texts acquired/indexed | 6 | Five additional 2026 invalidity notices are registered as public homepage summaries only, not full judgments. Cases2/44 (2026), 115/25 (2026), 98/43 (2026), 100/43 (2023) and188/35 (2023); cases99/43 and16/24 remain cited-holding leads |
 | Lawyer-reviewed national instruments | 0 | Human legal review remains mandatory |
 
 **Overall nationwide legal knowledge collection estimate: 5%.** This is a cautious project-management estimate, not a count of all Egyptian laws or judicial decisions. It reflects the still-small share of actual full-text acquisition, amendment consolidation, currentness verification, judicial corpus collection and lawyer review. It must rise only when the underlying documents and legal relationships are acquired and checked—not when source URLs are merely discovered.
@@ -286,3 +286,17 @@ See [SCC case244/23 analysis](egypt_scc_public_official_criticism_case_244_23_20
 ## Court of Cassation public headnotes tranche
 
 The Court of Cassation official homepage yielded 18 public headnotes across labour, social insurance, customs, commercial/insolvency, banking, criminal procedure/sentencing, family and civil procedure. These are headnotes only, not full judgments. The Court's official subscription page states full judgments, advanced search, legislative database and stamped PDF downloads require subscription; it lists EGP1,080/year for Egyptian subscribers. No subscription restrictions were bypassed. The public headnotes and their exact access boundary are recorded in [Court of Cassation public headnotes harvest](egypt_court_of_cassation_public_headnotes_harvest_2026-11-17.md).
+
+
+## 2026 SCC invalidity watchlist
+
+The official Court of Cassation homepage lists five recent SCC invalidity notices:
+- Case71/37: fourth paragraph of Article39, Law117/1958 (Administrative Prosecution), published 11 Oct 2026.
+- Case46/46: final paragraph of Article41, Presidential Decree316/1994 (National Water Research Center), published 11 Oct 2026.
+- Case47/46: fourth paragraph of Article45, Law110/1975 (Productive Cooperation), published 10 Sep 2026.
+- Case49/42: final paragraph of Article78, Law148/2019 (Social Insurance and Pensions), published 10 Sep 2026.
+- Case25/43: second paragraph of item(b) of Article1, Agriculture Decision1432/1991, published 5 Apr 2026.
+
+These are public invalidity notices only; full judgments, exact Gazette issue/pages and effective dates remain outstanding. Case49/42 is the highest priority because it concerns current Law148/2019. The statutory register now flags Article78 for non-application pending the full operative judgment.
+
+See [2026 SCC invalidity watchlist](egypt_scc_2026_recent_unconstitutionality_watchlist.md).
