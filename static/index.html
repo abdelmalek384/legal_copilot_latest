@@ -2851,6 +2851,7 @@ async function law(){
  const evidenceFilterAll=h('button',{type:'button',className:'active','aria-pressed':'true',textContent:LANG==='ar'?'كل المصادر':'All sources',onclick:()=>setEvidenceFilter('all')});
  const evidenceFilterPrimary=h('button',{type:'button','aria-pressed':'false',textContent:LANG==='ar'?'المصادر الأولية':'Primary only',onclick:()=>setEvidenceFilter('primary')});
  const evidenceFilters=h('div',{className:'research-evidence-filters',role:'group','aria-label':LANG==='ar'?'تصفية المصادر':'Filter sources'},evidenceFilterAll,evidenceFilterPrimary);
+ const evidenceFilterEmpty=h('p',{className:'research-evidence-filter-empty',hidden:true,textContent:LANG==='ar'?'لا توجد مصادر مصنفة صراحةً كمصادر أولية في هذه الإجابة.':'No sources are explicitly classified as primary for this answer.'});
  const updateEvidenceCoverage=()=>{
   const cards=Array.from(evidenceCards.children),total=cards.length,verified=cards.filter(card=>card.dataset.verified==='true').length;
   evidenceCount.textContent=LANG==='ar'?total+' مصدر':total+' sources';
@@ -2862,9 +2863,11 @@ async function law(){
   evidenceFilter=filter;
   evidenceFilterAll.classList.toggle('active',filter==='all');evidenceFilterAll.setAttribute('aria-pressed',String(filter==='all'));
   evidenceFilterPrimary.classList.toggle('active',filter==='primary');evidenceFilterPrimary.setAttribute('aria-pressed',String(filter==='primary'));
-  Array.from(evidenceCards.children).forEach(card=>{card.hidden=filter==='primary'&&card.dataset.primary!=='true'});
+  const cards=Array.from(evidenceCards.children);
+  cards.forEach(card=>{card.hidden=filter==='primary'&&card.dataset.primary!=='true'});
+  evidenceFilterEmpty.hidden=filter!=='primary'||!cards.length||cards.some(card=>card.dataset.primary==='true');
  };
- const evidencePanel=h('aside',{className:'research-evidence-panel card','aria-label':LANG==='ar'?'الأدلة والمصادر':'Evidence and sources'},h('div',{className:'research-evidence-heading'},h('b',{textContent:LANG==='ar'?'الأدلة':'Evidence'}),evidenceCount),h('p',{className:'mut',textContent:LANG==='ar'?'المصادر الداعمة لهذه الإجابة':'Sources supporting this answer'}),evidenceCoverage,evidenceFilters,evidenceCards,sourceInspector);
+ const evidencePanel=h('aside',{className:'research-evidence-panel card','aria-label':LANG==='ar'?'الأدلة والمصادر':'Evidence and sources'},h('div',{className:'research-evidence-heading'},h('b',{textContent:LANG==='ar'?'الأدلة':'Evidence'}),evidenceCount),h('p',{className:'mut',textContent:LANG==='ar'?'المصادر الداعمة لهذه الإجابة':'Sources supporting this answer'}),evidenceCoverage,evidenceFilters,evidenceFilterEmpty,evidenceCards,sourceInspector);
  let activeId=null, sending=false, conversationItems=[],lastResearchMessages=[];
  const conversationFilter=h('input',{type:'search',placeholder:LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations','aria-label':LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations'});
  const historyToggle=h('button',{type:'button',className:'g research-history-toggle','aria-controls':'research-history-pane','aria-expanded':'true',textContent:LANG==='ar'?'إخفاء السجل':'Hide history',onclick:()=>{const collapsed=sidebar.classList.toggle('history-collapsed');historyToggle.setAttribute('aria-expanded',String(!collapsed));historyToggle.textContent=collapsed?(LANG==='ar'?'إظهار السجل':'Show history'):(LANG==='ar'?'إخفاء السجل':'Hide history')}});
@@ -4247,4 +4250,7 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 #main .research-conversation{overflow-wrap:anywhere}
 #main .research-conversation-row{display:flex;align-items:center;gap:2px}
 #main .research-conversation-row .research-conversation{flex:1}
+</style><style>
+#main .research-evidence-filter-empty{margin:0;padding:9px;border:1px dashed #dce5ef;border-radius:6px;color:#7a899b;font-size:9px;line-height:1.5;background:#fafbfd}
+#main .research-evidence-filter-empty[hidden]{display:none}
 </style></html>
