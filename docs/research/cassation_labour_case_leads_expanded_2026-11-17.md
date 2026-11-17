@@ -47,3 +47,8 @@ This is a research index, not a legal opinion. Most of the decisions below apply
 4. The 11438/86 decision concerns Social Insurance Law 79/1975. Do not apply its statutory articles to current social-insurance disputes without checking Law 148/2019 and its regulations.
 5. The 10075/89 and 5242/94 decisions include leave and termination issues that may be affected by the new law and related legislation; never transplant their formulas without current-law analysis.
 6. Do not use any of these records as production legal evidence until the full official source, rights position, and currentness are checked and qualified Egyptian counsel approves the extracted principle.
+
+
+## Additional case-law harvest (17 November 2026)
+
+See [additional 2024–2025 Court of Cassation labour case leads](cassation_additional_labour_cases_2024_2025_2026-11-17.md) and [structured case register](../../data/research/cassation_labour_case_register_2026-11-17.csv). Newly indexed Appeals 12226/92 (General Assembly; official technical-office PDF), 12946/92, 6130/87, 16587/86, 16664/93, 25116/93, 4085/93, 15513/94 and 11438/86. The new note distinguishes official headnotes, official technical-office PDFs and secondary unpublished-judgment records. All cases interpreting Law 12/2003 or Law 79/1975 remain historical and are not direct interpretations of Labour Law 14/2025 or current social-insurance law.
