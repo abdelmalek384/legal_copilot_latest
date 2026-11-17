@@ -5996,7 +5996,7 @@
       "language": "ar",
       "candidate_status": "discovery_only",
       "text_acquisition_status": "official_pdf_opened_text_extracted",
-      "text_verification_note": "Ministry of Justice-hosted Official Gazette PDF opened; 2,386 text lines surfaced. Law 174/2025, Gazette issue 45 مكرر (د), 12 Nov 2025. Promulgation text repeals Law 150/1950 and Law 140/2014; states commencement 1 October following publication (1 Oct 2026). Text layer parsed in the web document reader; complete local extracted .txt/.jsonl and SHA-256 still not deposited. Source-matched only, not lawyer-reviewed.",
+      "text_verification_note": "Ministry of Justice Official Gazette issue 45 مكرر (د), 12 Nov 2025. Law 174/2025 repeals Law 150/1950 and Law 140/2014. CRITICAL CURRENTNESS UPDATE: Article 6 was amended by Law 160/2026 dated 30 Sep 2026; commencement is 1 Oct 2027, not 1 Oct 2026. The 2026 amending law and Gazette must be linked and checked. The 2025 PDF alone is not a current consolidated text. Not lawyer-reviewed.",
       "source_urls": [
         {
           "url": "https://moj.gov.eg/backend/api/documents/download/20F3150C-29F1-487E-A0F0-FCCE10CB207B",
@@ -6923,6 +6923,177 @@
         {
           "url": "https://mof.gov.eg/ar/legislation/legislation-5fe86ada7bfc600007cc03c7",
           "source_role": "official government/court source or secondary text locator",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CRIMINAL-PROCEDURE-COMMENCEMENT-AMEND-160-2026",
+      "official_title": "القانون رقم 160 لسنة 2026 بتعديل المادة السادسة من قانون الإجراءات الجنائية رقم 174 لسنة 2025",
+      "document_type": "law_or_regulation",
+      "law_number": "160",
+      "law_year": 2026,
+      "source_id": "EG-MINISTRY-OF-JUSTICE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_or_amendment_locator_found",
+      "text_verification_note": "Officially reported amendment to Article 6, dated 30 September 2026; changes commencement to 1 October 2027. Retrieve its own Gazette issue/PDF and verify. Gazette original, complete extraction, SHA-256, commencement/currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://www.manshurat.org/content/qnwn-ljrt-ljnyy-rqm-174-lsn-2025-0",
+          "source_role": "official Ministry of Finance index or official-linked legal text",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-STATE-ENTERPRISE-PROFITS-LAW-154-2026",
+      "official_title": "القانون رقم 154 لسنة 2026 بشأن توريد نسبة من صافي أرباح الشركات المملوكة للدولة للخزانة العامة",
+      "document_type": "law_or_regulation",
+      "law_number": "154",
+      "law_year": 2026,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_or_amendment_locator_found",
+      "text_verification_note": "MoF legislation index identifies Law 154/2026 and its subject; original Gazette PDF and operative provisions need acquisition. Gazette original, complete extraction, SHA-256, commencement/currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws",
+          "source_role": "official Ministry of Finance index or official-linked legal text",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MINISTRY-FUTURE-EGYPT-LAW-47-2026",
+      "official_title": "القانون رقم 47 لسنة 2026 بتنظيم جهاز مستقبل مصر للتنمية المستدامة واختصاصاته",
+      "document_type": "law_or_regulation",
+      "law_number": "47",
+      "law_year": 2026,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_or_amendment_locator_found",
+      "text_verification_note": "MoF index lists Law 47/2026; locate original Gazette and map powers, geographic scope and investment provisions. Gazette original, complete extraction, SHA-256, commencement/currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws",
+          "source_role": "official Ministry of Finance index or official-linked legal text",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-BUDGET-LAW-77-2026",
+      "official_title": "القانون رقم 77 لسنة 2026 بربط الموازنة العامة للدولة للسنة المالية 2026/2027",
+      "document_type": "law_or_regulation",
+      "law_number": "77",
+      "law_year": 2026,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_or_amendment_locator_found",
+      "text_verification_note": "MoF index lists Law 77/2026 for FY 2026/27; annual budget law, retain for public finance corpus. Gazette original, complete extraction, SHA-256, commencement/currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws",
+          "source_role": "official Ministry of Finance index or official-linked legal text",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FINANCE-PUBLIC-LAW-AMEND-18-2024",
+      "official_title": "القانون رقم 18 لسنة 2024 بتعديل قانون المالية العامة الموحد رقم 6 لسنة 2022",
+      "document_type": "law_or_regulation",
+      "law_number": "18",
+      "law_year": 2024,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_or_amendment_locator_found",
+      "text_verification_note": "MoF record supplies Gazette issue and identifies amendment of Unified Public Finance Law 6/2022. Gazette original, complete extraction, SHA-256, commencement/currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-14",
+          "source_role": "official Ministry of Finance index or official-linked legal text",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-REAL-ESTATE-TAX-AMEND-23-2020",
+      "official_title": "القانون رقم 23 لسنة 2020 بتعديل بعض أحكام قانون الضريبة على العقارات المبنية رقم 196 لسنة 2008",
+      "document_type": "law_or_regulation",
+      "law_number": "23",
+      "law_year": 2020,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_or_amendment_locator_found",
+      "text_verification_note": "MoF financial-law listing identifies amendment; retrieve Gazette and connect to Law 196/2008. Gazette original, complete extraction, SHA-256, commencement/currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws",
+          "source_role": "official Ministry of Finance index or official-linked legal text",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-EXEC-REGS-AMEND-50-2024",
+      "official_title": "قرار وزير المالية رقم 50 لسنة 2024 بتعديل اللائحة التنفيذية لقانون الجمارك رقم 207 لسنة 2020",
+      "document_type": "law_or_regulation",
+      "law_number": "50",
+      "law_year": 2024,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_or_amendment_locator_found",
+      "text_verification_note": "MoF decision page lists this amendment to Executive Regulation 430/2021; exact affected provisions require extraction. Gazette original, complete extraction, SHA-256, commencement/currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-3",
+          "source_role": "official Ministry of Finance index or official-linked legal text",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PUBLIC-FINANCE-EXEC-REGS-73-2024",
+      "official_title": "قرار وزير المالية رقم 73 لسنة 2024 بإصدار اللائحة التنفيذية لقانون المالية العامة الموحد",
+      "document_type": "law_or_regulation",
+      "law_number": "73",
+      "law_year": 2024,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_or_amendment_locator_found",
+      "text_verification_note": "MoF index identifies implementing regulation; amended by Decision 94/2025. Gazette original, complete extraction, SHA-256, commencement/currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-28",
+          "source_role": "official Ministry of Finance index or official-linked legal text",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PUBLIC-FINANCE-EXEC-REGS-AMEND-94-2025",
+      "official_title": "قرار وزير المالية رقم 94 لسنة 2025 بتعديل اللائحة التنفيذية لقانون المالية العامة الموحد",
+      "document_type": "law_or_regulation",
+      "law_number": "94",
+      "law_year": 2025,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_or_amendment_locator_found",
+      "text_verification_note": "MoF index identifies amendment to Decision 73/2024; map amended clauses. Gazette original, complete extraction, SHA-256, commencement/currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-28",
+          "source_role": "official Ministry of Finance index or official-linked legal text",
           "status": "located_2026-11-17"
         }
       ]
