@@ -129,6 +129,8 @@
 
 | [collection_checkpoint_38_tourism_transport_aviation_2026.md](collection_checkpoint_38_tourism_transport_aviation_2026.md) | Tourism Law 8/2022 and Regulation 705/2023; River Transport 167/2022; Civil Aviation 28/1981; maritime commerce/ports and transport authority instruments |
 
+| [collection_checkpoint_39_sports_media_tourism_2026.md](collection_checkpoint_39_sports_media_tourism_2026.md) | Sports Law 71/2017; Youth Bodies 218/2017; Media Law 180/2018; Tourism Companies 38/1977; Umrah 72/2021; Hajj 84/2022; tourism governance |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
