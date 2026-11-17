@@ -1744,5 +1744,17 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Global search across accessible matters, clients and documents", shell)
         self.assertIn("workspace-search-group", shell)
 
+    def test_conflict_check_short_query_has_inline_accessible_error_and_recovers(self):
+        start = HTML.index("async function clients(initialQuery='')")
+        clients = HTML[start:HTML.index("\nasync function ", start + 10)]
+        self.assertIn("id:'conflict-check-query'", clients)
+        self.assertIn("id:'conflict-check-query-error',className:'notice danger',role:'alert',hidden:true", clients)
+        self.assertIn("cq.setAttribute('aria-invalid','true')", clients)
+        self.assertIn("cq.setAttribute('aria-describedby','conflict-check-query-error')", clients)
+        self.assertIn("cq.focus()", clients)
+        self.assertIn("cqError.hidden=false", clients)
+        self.assertIn("cq.oninput=()=>{if(cq.value.trim().length>=2)", clients)
+        self.assertIn("cqError.hidden=true", clients)
+
 if __name__ == "__main__":
     unittest.main()
