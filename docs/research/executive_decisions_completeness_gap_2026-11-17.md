@@ -28,6 +28,14 @@ The structured register CSV now contains **57 data rows: 50 formal instruments p
 
 This is a **discovery inventory**, not a claim that all 87 originally announced executive decisions have been identified. The 35 Ministry of Labour decision numbers are only about half of the 68 Ministry decisions cited in the official July/August 2025 announcements, if the figures are directly comparable. The other issuers' decisions are also not fully enumerated; the twelve Prime Minister instruments identified here include later remote-work extensions and later wage/recruitment decisions, which may not all belong to the original 87-count package.
 
+
+
+## 2A. Legacy decisions under Enactment Article 11
+
+A separate 44-row [legacy decision transition register](../../data/research/legacy_decision_transition_register_2026-11-17.csv) now records predecessor decisions from 2003–2023 that may continue until replaced, subject to Article 11's non-conflict rule. It includes medical examinations, injury forms, OSH units/Council, workplace regulations, apprenticeship, women/child work, recruitment, foreign permits, skill measurement, holidays, remote areas, fines and social/health services.
+
+This is not a list of decisions confirmed as current. For each row, the successor/repeal chain and conflict with Law 14/2025 must be checked. The most important continuing candidates are Decision153/2003 (medical fitness), PM Decision3093/2010 (OSH Council), Decision200/2003 (remote areas), Decision114/2003 (OSH research), Decisions122/128/2003 and 127/2014 (fine proceeds), Decisions215/217/2003 and 16/2012 (social services/fund), and Decision705/2014 (human-resource development council). Do not treat them as current legal authority without review.
+
 ## 3. Why the count is not yet reconcilable
 
 1. **Count conflict:** Ministry reports cite 68 Ministry decisions; other contemporaneous reports quote 62. The November 2026 completion statement does not resolve the count.
