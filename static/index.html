@@ -3036,16 +3036,16 @@ async function law(){
      let answerAnalysisPanel=null,answerAuthoritiesPanel=null,answerNotesPanel=null,answerTabBar=null;
      if(m.role==='assistant'){
       const tabPrefix='research-answer-'+messageIndex;
-      answerAnalysisPanel=h('section',{className:'research-answer-tab-panel research-answer-analysis',id:tabPrefix+'-analysis','aria-label':LANG==='ar'?'التحليل':'Analysis'});
-      answerAuthoritiesPanel=h('section',{className:'research-answer-tab-panel research-answer-authorities',id:tabPrefix+'-authorities','aria-label':LANG==='ar'?'المراجع الرئيسية':'Key authorities',hidden:true});
-      answerNotesPanel=h('section',{className:'research-answer-tab-panel research-answer-notes',id:tabPrefix+'-notes','aria-label':LANG==='ar'?'ملاحظات البحث':'Research notes',hidden:true});
+      answerAnalysisPanel=h('section',{className:'research-answer-tab-panel research-answer-analysis',id:tabPrefix+'-analysis',role:'tabpanel',tabIndex:0,'aria-label':LANG==='ar'?'التحليل':'Analysis'});
+      answerAuthoritiesPanel=h('section',{className:'research-answer-tab-panel research-answer-authorities',id:tabPrefix+'-authorities',role:'tabpanel',tabIndex:0,'aria-label':LANG==='ar'?'المراجع الرئيسية':'Key authorities',hidden:true});
+      answerNotesPanel=h('section',{className:'research-answer-tab-panel research-answer-notes',id:tabPrefix+'-notes',role:'tabpanel',tabIndex:0,'aria-label':LANG==='ar'?'ملاحظات البحث':'Research notes',hidden:true});
       const tabs=[];
       const selectAnswerTab=selected=>{
        for(const [name,button,panel] of tabs){const active=name===selected;button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;button.classList.toggle('active',active);panel.hidden=!active}
       };
       const makeAnswerTab=(name,label,panel)=>{
-       const button=h('button',{type:'button',role:'tab','aria-controls':panel.id,'aria-selected':name==='analysis'?'true':'false',tabIndex:name==='analysis'?0:-1,textContent:label,onclick:()=>selectAnswerTab(name)});
-       tabs.push([name,button,panel]);return button;
+       const button=h('button',{type:'button',id:tabPrefix+'-tab-'+name,role:'tab','aria-controls':panel.id,'aria-selected':name==='analysis'?'true':'false',tabIndex:name==='analysis'?0:-1,textContent:label,onclick:()=>selectAnswerTab(name)});
+       panel.setAttribute('aria-labelledby',button.id);tabs.push([name,button,panel]);return button;
       };
       const sourceCount=Array.isArray(m.sources)?m.sources.length:0;
       answerTabBar=h('div',{className:'research-answer-tabs',role:'tablist','aria-label':LANG==='ar'?'أقسام الإجابة':'Answer sections'});
@@ -3053,7 +3053,7 @@ async function law(){
       answerTabBar.addEventListener('keydown',event=>{
        if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
        event.preventDefault();const current=tabs.findIndex(([,button])=>button===event.target);if(current<0)return;
-       const next=event.key==='Home'?0:event.key==='End'?tabs.length-1:(current+(event.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;
+       const forward=LANG==='ar'?event.key==='ArrowLeft':event.key==='ArrowRight';const next=event.key==='Home'?0:event.key==='End'?tabs.length-1:(current+(forward?1:-1)+tabs.length)%tabs.length;
        tabs[next][1].focus();selectAnswerTab(tabs[next][0]);
       });
      }
