@@ -4496,4 +4496,9 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
  line-height:1.4!important;
 }
 </style>
+
+<style>
+/* The desktop track widths must follow semantic rails when direction changes. */
+#main .research-layout:dir(ltr){grid-template-columns:minmax(160px,180px) minmax(0,1fr) minmax(225px,245px)!important}
+</style>
 </html>
