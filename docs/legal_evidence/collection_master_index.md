@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 19) (expanded through checkpoint 18) (expanded through checkpoint 17) (expanded through checkpoint 16) (expanded through checkpoint 15) (expanded through checkpoint 14) (expanded through checkpoint 13) (expanded through checkpoint 11) (expanded through new FRA checkpoint) (expanded through checkpoint 9)  
+**Last updated:** 2026-11-17 (expanded through 25 additional research checkpoints in this session) (expanded through checkpoint 19) (expanded through checkpoint 18) (expanded through checkpoint 17) (expanded through checkpoint 16) (expanded through checkpoint 15) (expanded through checkpoint 14) (expanded through checkpoint 13) (expanded through checkpoint 11) (expanded through new FRA checkpoint) (expanded through checkpoint 9)  
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -61,6 +61,20 @@
 
 
 | [collection_checkpoint_19_commercial_child_penal_personal_status.md](collection_checkpoint_19_commercial_child_penal_personal_status.md) | Full searchable Commercial Code 17/1999 text plus Child Law, Personal Status Procedures and Penal Code source/amendment leads |
+
+| [collection_checkpoint_13_cybercrime_consumer_2026-11-17.md](collection_checkpoint_13_cybercrime_consumer_2026-11-17.md) | Cybercrime Law 175/2018 and Decision 1699/2020 secondary text; official MCIT index; Consumer Law 181/2018 and Decision 822/2019 leads |
+| [collection_checkpoint_14_rent_child_family_2026-11-17.md](collection_checkpoint_14_rent_child_family_2026-11-17.md) | Official Amiri Press Law 164/2025 rent reform text; Child Law 12/1996 sources; family-law amendment leads; Social Security Regulation index |
+| [collection_checkpoint_15_social_family_public_law_2026-11-17.md](collection_checkpoint_15_social_family_public_law_2026-11-17.md) | Four-page Ministry of Social Solidarity legislation index; Child Law amendment 186/2023; child/social-security regulations; disability, civil service, State Council and other leads |
+| [collection_checkpoint_16_child_elder_disability_2026-11-17.md](collection_checkpoint_16_child_elder_disability_2026-11-17.md) | Official Amiri Press text for Child Law amendment 186/2023; Older Persons Law 19/2024 and Disability Rights Law 10/2018 implementation leads |
+| [collection_checkpoint_17_elder_disability_consumer_2026-11-17.md](collection_checkpoint_17_elder_disability_consumer_2026-11-17.md) | Older Persons Law 19/2024 Gazette PDF locator; Disability Regulation 2733/2018 and Decision 3500/2024; Consumer Law 181/2018 and amendment 20/2024 |
+| [collection_checkpoint_18_civil_service_ngo_disability_2026-11-17.md](collection_checkpoint_18_civil_service_ngo_disability_2026-11-17.md) | Civil Service 81/2016, Civil Status 143/1994, NGO Law 149/2019, disability amendments and State Council/local administration leads |
+| [collection_checkpoint_19_waste_ppp_insolvency_2026-11-17.md](collection_checkpoint_19_waste_ppp_insolvency_2026-11-17.md) | Waste Law 202/2020 and Decision 722/2022; 2024–2025 waste implementation instruments; PPP Decision 3217/2022; insolvency expert-fee Decision 3715/2026 |
+| [collection_checkpoint_20_environment_water_building_property_2026-11-17.md](collection_checkpoint_20_environment_water_building_property_2026-11-17.md) | Environment Law 4/1994 and 2024 regulation amendment; Water Law 147/2021; Nuclear Law amendment 10/2026; Building Reconciliation 187/2023; State Property Law 168/2025 and Regulation 200/2026 |
+| [collection_checkpoint_21_water_law_amendment_2025.md](collection_checkpoint_21_water_law_amendment_2025.md) | Opened full searchable Water Law 147/2021; Executive Regulation 81/2023; Law 167/2025 replacement Article 107 and penalty update |
+| [collection_checkpoint_22_industrial_sme_2026-11-17.md](collection_checkpoint_22_industrial_sme_2026-11-17.md) | IDA official legislation index; Industrial Licensing 15/2017 and 1082/2017; IDA 95/2018; industrial decisions; SME Law 152/2020 leads |
+| [collection_checkpoint_23_investment_land_industry_2026-11-17.md](collection_checkpoint_23_investment_land_industry_2026-11-17.md) | MIFT investment/trade legislation index; Investment Law 72/2017; Law 141/2019; Executive Regulation Decision 2562/2024; industrial decisions 16/2025 and 378/2024 |
+| [collection_checkpoint_24_migration_cybercrime_aml_2026-11-17.md](collection_checkpoint_24_migration_cybercrime_aml_2026-11-17.md) | Migration Law 82/2016 and Fund Decision 2528/2026; cybercrime judicial-officer Decision 8256/2022; tax/customs prosecution Decision 6261/2022; AML/trafficking leads |
+| [collection_checkpoint_25_civil_code_lease_2025.md](collection_checkpoint_25_civil_code_lease_2025.md) | Official Civil Code 131/1948 PDF and opening text; Law 165/2025 inserting urgent eviction mechanism into Law 4/1996; tenancy scope distinctions |
 
 ## High-value primary-source portals
 
