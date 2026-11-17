@@ -166,7 +166,7 @@ Additional statutes indexed include Laws 46/1972, 47/1972, 54/1964 as amended by
 | Seed anchor instruments inventoried | 139 | Starter set, not the total universe of Egyptian laws and decisions |
 | Source PDFs opened | 35/139 (25.2% of seed list) | Includes government reprints, official agency copies and files with unreadable/garbled text layers; not all are bare Gazette originals |
 | Nationwide consolidated statute domains | 0/36 | No domain yet has all base laws, amendments, executive regulations and currentness fully consolidated |
-| Full judicial judgments acquired in this national tranche | 2 | Full official SCC judgments 2/44 (2026) and115/25 (2026); earlier cases99/43 and16/24 are quoted holdings pending original pages |
+| Full official SCC judgment texts acquired/indexed | 5 | Cases2/44 (2026), 115/25 (2026), 98/43 (2026), 100/43 (2023) and188/35 (2023); cases99/43 and16/24 remain cited-holding leads |
 | Lawyer-reviewed national instruments | 0 | Human legal review remains mandatory |
 
 **Overall nationwide legal knowledge collection estimate: 5%.** This is a cautious project-management estimate, not a count of all Egyptian laws or judicial decisions. It reflects the still-small share of actual full-text acquisition, amendment consolidation, currentness verification, judicial corpus collection and lawyer review. It must rise only when the underlying documents and legal relationships are acquired and checked—not when source URLs are merely discovered.
@@ -264,3 +264,13 @@ Official Gazette DSpace metadata now resolves the earlier Law47/147 discrepancy:
 - Article14 commencement is the day after publication: 27 July 2026.
 - Ministry of Finance's Law47/2026 listing is treated as a catalogue-number error for this same title unless a separate Gazette instrument is produced.
 - The DSpace original PDF has not yet been downloaded/hashed, so primary metadata is matched but file-byte verification remains pending.
+
+
+## Additional SCC case-law tranche — salary and social insurance
+
+Three further official SCC judgment texts were located:
+- Case98/43 (7 March 2026): declares Law18/2015 Art61 unconstitutional insofar as it withholds half salary during pretrial detention where criminal responsibility is finally excluded; concerns the historical 18/2015 validity period (12 Mar 2015–20 Jan 2016).
+- Case100/43 (4 Nov 2023): declares Law81/2016 Art64(1) unconstitutional in the same limited scope; Official Gazette issue44 (repeated), 4 Nov 2023; effects from 5 Nov 2023.
+- Case188/35 (8 July 2023): declares Law79/1975 Art20(2) (as amended by Law130/2009) and attached Table9 unconstitutional for early-retirement pension actuarial factor inequality. Law79/1975 was later repealed by Law148/2019, so the judgment is historical-period relevant. Exact Gazette publication/effective date still pending.
+
+See [SCC salary and social-insurance judgments](egypt_scc_public_service_salary_and_social_insurance_judgments_2026-11-17.md).
