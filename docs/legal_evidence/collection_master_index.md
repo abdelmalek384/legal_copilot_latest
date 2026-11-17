@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -174,6 +174,9 @@
 | [collection_checkpoint_36_customs_law_and_regulations_2026.md](collection_checkpoint_36_customs_law_and_regulations_2026.md) | Full 734-line Customs Law 207/2020, official 5,778-line 2024 Executive Regulation compilation and 2026 Decisions 262/328/531 with source conflict |
 
 | [collection_checkpoint_49_asylum_refugee_law_2026.md](collection_checkpoint_49_asylum_refugee_law_2026.md) | Asylum Law 164/2024 official Gazette record; Executive Regulation Decision 1568/2026; registration, status determination, appeals, transitional UNHCR cards and travel-document fee update |
+
+
+| [collection_checkpoint_37_environment_law_and_regulation_2024.md](collection_checkpoint_37_environment_law_and_regulation_2024.md) | Official Environment Law 4/1994 source index, Executive Regulation 338/1995 and full Gazette text of 2024 Decision 2466 with annex updates |
 
 ## High-value primary-source portals
 
