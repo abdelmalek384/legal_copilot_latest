@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -169,6 +169,9 @@
 | [collection_checkpoint_35_real_estate_tax_exec_reg_493_2009.md](collection_checkpoint_35_real_estate_tax_exec_reg_493_2009.md) | 24-article Real Estate Tax Executive Regulation 493/2009 transcription, valuation, 10% tax calculation and amendment backlog |
 
 | [collection_checkpoint_48_social_security_insurance_2026.md](collection_checkpoint_48_social_security_insurance_2026.md) | Social Security Law 12/2025 Executive Regulation Decision 522/2026; Social Insurance 148/2019 and Regulation 2437/2021; alternative schemes and 2026 Decision 2900/2026 |
+
+
+| [collection_checkpoint_36_customs_law_and_regulations_2026.md](collection_checkpoint_36_customs_law_and_regulations_2026.md) | Full 734-line Customs Law 207/2020, official 5,778-line 2024 Executive Regulation compilation and 2026 Decisions 262/328/531 with source conflict |
 
 ## High-value primary-source portals
 
