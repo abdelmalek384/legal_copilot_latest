@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 9)  
+**Last updated:** 2026-11-17 (expanded through new FRA checkpoint) (expanded through checkpoint 9)  
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -33,6 +33,10 @@
 
 | [collection_checkpoint_8_fra_november_2026_and_new_laws.md](collection_checkpoint_8_fra_november_2026_and_new_laws.md) | FRA Circular 8/2026, Decision 133/2026, recent Ministry of Finance law/decision index and FRA regulatory categories |
 | [collection_checkpoint_9_2026_gazette_company_stamp_customs_future_egypt.md](collection_checkpoint_9_2026_gazette_company_stamp_customs_future_egypt.md) | Full-text inspections of Laws 154/2026 and 153/2026, Customs Decision 262/2026, and the Law 47/147 metadata discrepancy |
+
+
+| [collection_checkpoint_9_2026_gazette_company_stamp_customs_future_egypt.md](collection_checkpoint_9_2026_gazette_company_stamp_customs_future_egypt.md) | Official Gazette text inspections: Laws 154/2026 and 153/2026, Customs Decision 262/2026, and catalogue/PDF law-number conflict |
+| [collection_checkpoint_10_fra_fintech_nonbank_2026.md](collection_checkpoint_10_fra_fintech_nonbank_2026.md) | FRA Decision 87/2026 full text and 2026 non-bank finance/fintech regulatory decision inventory |
 
 ## High-value primary-source portals
 
