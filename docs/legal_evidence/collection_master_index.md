@@ -337,6 +337,8 @@
 
 | [collection_checkpoint_70_renewable_energy_law_203_2014.md](collection_checkpoint_70_renewable_energy_law_203_2014.md) | Renewable Energy Law 203/2014, amendment 11/2022, land-usufruct Decision 54/2023 and 2025 sludge/biogas feed-in tariff |
 
+| [collection_checkpoint_80_state_land_fee_allocation.md](collection_checkpoint_80_state_land_fee_allocation.md) | Cabinet Decision 80/2026 allocates 50% of examination/inspection fees under Law 168/2025; recipient percentages, separate fee bases and quarterly spending approvals |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
