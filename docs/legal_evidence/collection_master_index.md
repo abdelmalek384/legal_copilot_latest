@@ -110,6 +110,8 @@
 
 | [collection_checkpoint_25_law_6_2025_full_text.md](collection_checkpoint_25_law_6_2025_full_text.md) | Full article-structured extraction of official ETA PDF for Law 6/2025, simplified turnover-based tax regime and cross-law links |
 
+| [collection_checkpoint_34_labour_implementation_2026.md](collection_checkpoint_34_labour_implementation_2026.md) | Labour Law 14/2025 official text; Decision 162/2026 workplace regulations; PM Decision 3165/2026 wages council; labour courts/legal aid; temporary remote-work extensions |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
