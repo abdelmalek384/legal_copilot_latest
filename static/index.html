@@ -4463,4 +4463,13 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 #main:has(.research-layout){width:auto!important;flex:1 1 0%!important;min-width:0!important;max-width:none!important;box-sizing:border-box!important}
 @media(max-width:1180px) and (min-width:801px){#main:has(.research-layout){width:auto!important;flex:1 1 0%!important}}\n@media(max-width:800px){#main:has(.research-layout){width:100%!important;flex:1 1 auto!important}}
 </style>
+
+<style>
+/* Keep the research history and evidence rails on the same semantic sides
+   in both writing directions. Grid's first track follows the inline direction. */
+#main .research-layout:dir(ltr){grid-template-areas:"history main inspector"!important}
+@media(max-width:1180px){
+ #main .research-layout:dir(ltr){grid-template-areas:"main main" "history inspector"!important}
+}
+</style>
 </html>
