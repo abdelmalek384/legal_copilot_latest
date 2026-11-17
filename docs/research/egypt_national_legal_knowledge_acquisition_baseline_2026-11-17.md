@@ -253,3 +253,14 @@ See [Environmental and Waste Law acquisition](egypt_environmental_and_waste_law_
 - Cabinet Decision80/2026: MOF listing shows 50% of inspection/examination fees allocated for specified purposes under an incompletely displayed Law168 reference; full title/text pending.
 
 See [2026 Future Egypt authority and budget acquisition](egypt_2026_future_egypt_authority_and_budget_law_acquisition.md).
+
+
+### Law147/2026 identifier and commencement correction
+
+Official Gazette DSpace metadata now resolves the earlier Law47/147 discrepancy:
+- Gazette issue30 (repeated), 26 July 2026.
+- DSpace record identifies Law147/2026 reorganizing the Future of Egypt Sustainable Development Agency; original 426.95 KB PDF is listed.
+- Official GPO text also identifies Law147/2026.
+- Article14 commencement is the day after publication: 27 July 2026.
+- Ministry of Finance's Law47/2026 listing is treated as a catalogue-number error for this same title unless a separate Gazette instrument is produced.
+- The DSpace original PDF has not yet been downloaded/hashed, so primary metadata is matched but file-byte verification remains pending.
