@@ -294,6 +294,8 @@
 
 | [collection_checkpoint_61_capital_market_law_1992.md](collection_checkpoint_61_capital_market_law_1992.md) | Capital Market Law 95/1992, 8 statutory amendments and 23 Executive Regulation 135/1993 decisions through 2025 |
 
+| [collection_checkpoint_72_investment_importers_register_2026.md](collection_checkpoint_72_investment_importers_register_2026.md) | Investment Law 72/2017, Law 160/2023 and Executive Regulation 2310/2017/Decision 2562/2024; Importers Register Law 121/1982 and Decision 846/2017 |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
