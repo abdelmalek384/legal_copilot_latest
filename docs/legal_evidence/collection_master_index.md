@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 47) (expanded through checkpoint 46) (expanded through checkpoint 45) (expanded through checkpoint 44) (expanded through checkpoint 43) (expanded through checkpoint 42) (expanded through checkpoint 41) (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 48) (expanded through checkpoint 47) (expanded through checkpoint 46) (expanded through checkpoint 45) (expanded through checkpoint 44) (expanded through checkpoint 43) (expanded through checkpoint 42) (expanded through checkpoint 41) (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -227,6 +227,9 @@
 | [collection_checkpoint_47_personal_status_law_25_1929.md](collection_checkpoint_47_personal_status_law_25_1929.md) | Personal Status Law 25/1929, amendment chain through 2017 and Constitutional Court invalidation relationships |
 
 | [collection_checkpoint_59_water_law_text_extraction.md](collection_checkpoint_59_water_law_text_extraction.md) | Expanded searchable Arabic extraction from Water Law 147/2021: promulgation, Articles 5–12, 51–57, 68–70 and 96–109; OCR validation warnings |
+
+
+| [collection_checkpoint_48_maintenance_inheritance_wills.md](collection_checkpoint_48_maintenance_inheritance_wills.md) | Maintenance Law 25/1920, Inheritance Law 77/1943 and Wills Law 71/1946 with foundational rules and source links |
 
 ## High-value primary-source portals
 
