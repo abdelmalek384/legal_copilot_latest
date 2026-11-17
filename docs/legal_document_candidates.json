@@ -1127,6 +1127,28 @@
       "language": "ar",
       "candidate_status": "discovery_only",
       "notes": "Official Amiri Press text page located: https://www.alamiria.com/Sec/TashTxt?id=Aalg37zxdcU%3D; the official Parliament record also reports final approval on 2026-09-30: https://www.parliament.gov.eg/News_Show.aspx?frm=5874. Keep discovery-only; verify the exact Official Gazette issue/pages, publication date, amendment wording, transition effects, and source-specific collection/commercial reuse terms before acquisition or retrieval."
+    },
+    {
+      "document_id": "EG-SOCIAL-INSURANCE-AMENDMENT-11-2026",
+      "official_title": "قانون رقم 11 لسنة 2026 بتعديل بعض أحكام قانون التأمينات الاجتماعية والمعاشات الصادر بالقانون رقم 148 لسنة 2019",
+      "document_type": "amending_law",
+      "law_number": "11",
+      "law_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Amiri Press text page observed 2026-11-17: https://www.alamiria.com/Sec/TashTxt?id=s6iZUpH%2FRi4%3D. The displayed text replaces Article 111 of Law 148/2019 and states commencement is the day after publication in the Official Gazette. The promulgation line is dated 4 June 2026, but the Gazette issue/publication date and page range have not yet been independently established. Do not infer the effective date from the promulgation date; obtain and compare the Gazette original, check subsequent amendments and implementing decisions, and review legal status. No collection or commercial-reuse permission is inferred from public visibility."
+    },
+    {
+      "document_id": "EG-SOCIAL-INSURANCE-DECISION-2-2026",
+      "official_title": "قرار الهيئة القومية للتأمين الاجتماعي رقم 2 لسنة 2026 بشأن تحديد سندات الخزانة العامة المشار إليها بالبند (8) من المادة (111) من قانون التأمينات الاجتماعية والمعاشات",
+      "document_type": "implementing_decision",
+      "law_number": "2",
+      "law_year": 2026,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Amiri Press text page observed 2026-11-17: https://www.alamiria.com/Sec/TashTxt?id=oJEcvk0M32w%3D. The page states the decision was issued 17 June 2026 and identifies Law 11/2026 as the amendment to Article 111 of Law 148/2019; it specifies Treasury bonds with aggregate nominal value EGP 100 billion. The Egyptian Proceedings issue/page range and annex integrity remain to be checked against the original publication. No collection or commercial-reuse permission is inferred from public visibility."
     }
   ]
 }
