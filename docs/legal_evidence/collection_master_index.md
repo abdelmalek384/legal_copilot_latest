@@ -151,6 +151,8 @@
 
 | [collection_checkpoint_32_income_tax_executive_regulation_991_2005.md](collection_checkpoint_32_income_tax_executive_regulation_991_2005.md) | 177-article Income Tax Executive Regulation 991/2005 transcription, selected articles and ministerial amendment graph through April 2023 |
 
+| [collection_checkpoint_44_public_business_sector_2026.md](collection_checkpoint_44_public_business_sector_2026.md) | Public Business Sector Law 203/1991, amendment 185/2020, Executive Regulation 1590/1991 and Decision 948/2021; public sector employees and public authorities |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
