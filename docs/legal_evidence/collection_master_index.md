@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -101,6 +101,9 @@
 | [collection_checkpoint_23_unified_procurement_drug_authority.md](collection_checkpoint_23_unified_procurement_drug_authority.md) | Official 25-page Gazette scan of Law 151/2019 establishing Unified Procurement and Egyptian Drug Authorities; first five pages visually inspected |
 
 | [collection_checkpoint_32_antiquities_sinai_expropriation_2026.md](collection_checkpoint_32_antiquities_sinai_expropriation_2026.md) | Antiquities Law 117/1983; Sinai Law 14/2012 and Decision 128/2022; Expropriation Law 10/1990; Desert Lands 143/1981; Public Roads 84/1968 leads |
+
+
+| [collection_checkpoint_24_tax_laws_150_152_2026.md](collection_checkpoint_24_tax_laws_150_152_2026.md) | Full official Gazette text inspections of Laws 150/2026 (tax recordkeeping and temporary tax card) and 152/2026 (tax dispute settlement extension) |
 
 ## High-value primary-source portals
 
