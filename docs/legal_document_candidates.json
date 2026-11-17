@@ -5860,6 +5860,158 @@
           "status": "listed_2026-11-17"
         }
       ]
+    },
+    {
+      "document_id": "EG-PUBLIC-CONTRACTS-LAW-182-2018",
+      "official_title": "قانون تنظيم التعاقدات التي تبرمها الجهات العامة رقم 182 لسنة 2018",
+      "document_type": "law",
+      "law_number": "182",
+      "law_year": 2018,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_full_text_url_located",
+      "text_verification_note": "Official Gazette issue 39 مكرر (د), 3 October 2018. Official locator found; complete extraction, SHA-256, article segmentation, amendment audit and lawyer review remain outstanding.",
+      "source_urls": [
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/1948_8a91b8ae46.pdf",
+          "source_role": "official full-text PDF",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PUBLIC-CONTRACTS-AMEND-188-2020",
+      "official_title": "القانون رقم 188 لسنة 2020 بتعديل بعض أحكام قانون تنظيم التعاقدات التي تبرمها الجهات العامة",
+      "document_type": "law",
+      "law_number": "188",
+      "law_year": 2020,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_full_text_url_located",
+      "text_verification_note": "MoF official legislation page links related amendment; Gazette original still required. Official locator found; complete extraction, SHA-256, article segmentation, amendment audit and lawyer review remain outstanding.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-5fe868cd7bfc600007cbed73",
+          "source_role": "official legislation catalogue",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PUBLIC-CONTRACTS-EXEC-REGS-692-2019",
+      "official_title": "قرار وزير المالية رقم 692 لسنة 2019 بإصدار اللائحة التنفيذية لقانون تنظيم التعاقدات العامة",
+      "document_type": "law",
+      "law_number": "692",
+      "law_year": 2019,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_full_text_url_located",
+      "text_verification_note": "MoF official page lists current implementing regulation; its amendment Decision 28/2020 must be mapped. Official locator found; complete extraction, SHA-256, article segmentation, amendment audit and lawyer review remain outstanding.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-5fe868c87bfc600007cbecd3",
+          "source_role": "official legislation catalogue",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PUBLIC-CONTRACTS-EXEC-REGS-AMEND-28-2020",
+      "official_title": "قرار وزير المالية رقم 28 لسنة 2020 بتعديل اللائحة التنفيذية لقانون تنظيم التعاقدات العامة",
+      "document_type": "law",
+      "law_number": "28",
+      "law_year": 2020,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_full_text_url_located",
+      "text_verification_note": "MoF official related-instruments listing. Official locator found; complete extraction, SHA-256, article segmentation, amendment audit and lawyer review remain outstanding.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-5fe868c87bfc600007cbecd3",
+          "source_role": "official legislation catalogue",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-VAT-LAW-67-2016",
+      "official_title": "قانون الضريبة على القيمة المضافة رقم 67 لسنة 2016",
+      "document_type": "law",
+      "law_number": "67",
+      "law_year": 2016,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_full_text_url_located",
+      "text_verification_note": "Official Gazette issue 35 مكرر (ج), 7 September 2016; ETA hosts Arabic PDF. Official locator found; complete extraction, SHA-256, article segmentation, amendment audit and lawyer review remain outstanding.",
+      "source_urls": [
+        {
+          "url": "https://www.eta.gov.eg/sites/default/files/2024-02/Law-arabic-no.67-2016.pdf",
+          "source_role": "official full-text PDF",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-TAX-PROCEDURES-LAW-206-2020",
+      "official_title": "قانون الإجراءات الضريبية الموحد رقم 206 لسنة 2020",
+      "document_type": "law",
+      "law_number": "206",
+      "law_year": 2020,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_full_text_url_located",
+      "text_verification_note": "Official Gazette issue 42 مكرر (ج), 19 October 2020; ETA hosts Arabic PDF. Official locator found; complete extraction, SHA-256, article segmentation, amendment audit and lawyer review remain outstanding.",
+      "source_urls": [
+        {
+          "url": "https://www.eta.gov.eg/sites/default/files/2024-03/law_no.206-2020.pdf",
+          "source_role": "official full-text PDF",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CRIMINAL-PROCEDURE-NEW-2025",
+      "official_title": "قانون الإجراءات الجنائية (القانون الجديد المنشور في 2025)",
+      "document_type": "law",
+      "law_number": "",
+      "law_year": 2025,
+      "source_id": "EG-MINISTRY-OF-JUSTICE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_full_text_url_located",
+      "text_verification_note": "Official Gazette issue 45 مكرر (د), 12 November 2025; full-text PDF hosted by Ministry of Justice. Instrument number and commencement must be resolved from promulgation pages. Official locator found; complete extraction, SHA-256, article segmentation, amendment audit and lawyer review remain outstanding.",
+      "source_urls": [
+        {
+          "url": "https://moj.gov.eg/backend/api/documents/download/20F3150C-29F1-487E-A0F0-FCCE10CB207B",
+          "source_role": "official legislation catalogue",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FINANCIAL-LEASING-FACTORING-LAW-176-2018",
+      "official_title": "قانون تنظيم نشاطي التأجير التمويلي والتخصيم رقم 176 لسنة 2018",
+      "document_type": "law",
+      "law_number": "176",
+      "law_year": 2018,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_full_text_url_located",
+      "text_verification_note": "FRA-hosted updated text, Arabic, amendment/currentness chain needs confirmation. Official locator found; complete extraction, SHA-256, article segmentation, amendment audit and lawyer review remain outstanding.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/wp-content/uploads/2025/02/قانون-تنظيم-نشاطي-التأجير-التمويلي-والتخصيم-1.pdf",
+          "source_role": "official full-text PDF",
+          "status": "located_2026-11-17"
+        }
+      ]
     }
   ]
 }
