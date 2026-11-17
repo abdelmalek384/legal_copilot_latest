@@ -7,7 +7,7 @@
 **Official Government Printing Office full text:**  
 https://alamiria.com/Sec/TashTxt?id=oHXoEUHb8y0%3D
 
-The GPO text is titled **Law147/2026 issuing the law reorganizing the Future of Egypt Sustainable Development Agency**. It was signed on 26 July 2026. The promulgating Article14 states it takes effect on the day after publication in the Official Gazette; the exact Gazette issue/date/page still needs to be recorded.
+The GPO text is titled **Law147/2026 issuing the law reorganizing the Future of Egypt Sustainable Development Agency**. It was signed on 26 July 2026. The promulgating Article14 states it takes effect on the day after publication in the Official Gazette; Official Gazette DSpace metadata confirms issue30 (repeated), dated 26 July 2026; the original 426.95 KB PDF is listed in DSpace but has not yet been downloaded or hashed.
 
 The attached law establishes a national agency of a special nature, reporting to the President, with legal personality and technical/financial/administrative independence. The text includes at least 95 attached articles and creates:
 - Sustainable development zones for strategic national and economic projects.
@@ -31,13 +31,13 @@ This law has broad implications for land allocation, permits, public asset trans
 
 ### Critical identifier discrepancy
 
-The Ministry of Finance public legal index lists an instrument with the same title as **Law47/2026**:
+The Ministry of Finance public legal index lists an instrument with the same title as **Law47/2026**, which is inconsistent with the primary Gazette record:
 https://mof.gov.eg/ar/legislation/legislation-6a731db063496600085dd853
 
 The Official Government Printing Office text page says **Law147/2026**:
 https://alamiria.com/Sec/TashTxt?id=oHXoEUHb8y0%3D
 
-A secondary publisher also identifies the instrument as Law147/2026. This may be a Ministry of Finance catalogue typo, but the discrepancy must be resolved against the Official Gazette cover/issue before the identifier is normalized. Do not create two separate laws or silently change the number.
+A secondary publisher also identifies the instrument as Law147/2026. The Official Gazette DSpace record resolves the identifier as **Law147/2026**, Gazette issue30 (repeated), 26 July 2026. The Ministry listing is therefore treated as a catalogue-number error unless a separate Gazette instrument is produced. Do not create a second Law47/2026 record for the same title. The law took effect on 27 July 2026 under Article14.
 
 ## 2. State General Budget Law77/2026 — FY2026/2027
 
