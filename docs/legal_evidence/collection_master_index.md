@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 18) (expanded through checkpoint 17) (expanded through checkpoint 16) (expanded through checkpoint 15) (expanded through checkpoint 14) (expanded through checkpoint 13) (expanded through checkpoint 11) (expanded through new FRA checkpoint) (expanded through checkpoint 9)  
+**Last updated:** 2026-11-17 (expanded through checkpoint 19) (expanded through checkpoint 18) (expanded through checkpoint 17) (expanded through checkpoint 16) (expanded through checkpoint 15) (expanded through checkpoint 14) (expanded through checkpoint 13) (expanded through checkpoint 11) (expanded through new FRA checkpoint) (expanded through checkpoint 9)  
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -58,6 +58,9 @@
 
 
 | [collection_checkpoint_18_traffic_law_66_1973.md](collection_checkpoint_18_traffic_law_66_1973.md) | Official scanned Gazette Law 66/1973, Law 121/2008 amendment PDF and Traffic Law implementing-regulation links |
+
+
+| [collection_checkpoint_19_commercial_child_penal_personal_status.md](collection_checkpoint_19_commercial_child_penal_personal_status.md) | Full searchable Commercial Code 17/1999 text plus Child Law, Personal Status Procedures and Penal Code source/amendment leads |
 
 ## High-value primary-source portals
 
