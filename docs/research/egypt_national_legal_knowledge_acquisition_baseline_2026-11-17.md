@@ -42,7 +42,7 @@ See `data/research/egypt_initial_statute_acquisition_register_2026-11-17.csv` fo
 - **Official government listing/metadata only:** Evidence Law25/1968; Civil and Commercial Procedure Law13/1968 and amendment Law157/2024; Companies Law159/1981; VAT Law67/2016 and amendment lead Law149/2026; Customs Law207/2020 and executive regulation/Decision262/2026; Social Insurance Law148/2019; Banking Law194/2020; Unified Insurance Law155/2024; Environment Law4/1994 and Natural Reserves Law102/1983; Child Law12/1996.
 - **Secondary-only lead or candidate source:** Personal Status Law25/1929; Penal Code Law58/1937; Investment Law72/2017; IP Law82/2002; Consumer Protection Law181/2018. These are not primary-source verified in this tranche.
 
-The 31-domain matrix is in `data/research/egypt_national_legal_domain_inventory_2026-11-17.csv`.
+The 32-domain matrix is in `data/research/egypt_national_legal_domain_inventory_2026-11-17.csv`.
 
 ## 4. New high-value 2026 tax tranche — Official Gazette PDFs opened
 
@@ -120,16 +120,16 @@ Policy:
 
 ## 8. Initial progress measurement
 
-A defensible percentage needs a denominator. The first denominator is now **30 legal domains**, not an estimate of all individual laws/cases:
-- 31/31 domains have been named in the national inventory (scope definition only; this is not 100% coverage).
-- 24 source institutions/platforms are registered, including the Supreme Constitutional Court, State Council, Consumer Protection Agency, NOSI, Administrative Control Authority and National Elections Authority.
-- 48 anchor instruments have acquisition records with their source/access status.
-- 15 instruments have official PDF text actually opened across the first two tranches; Law160/2026 official HTML text was also opened. The seven new official PDFs cover the amended Constitution and core election laws. Several more have only official listing metadata.
+A defensible percentage needs a denominator. The first denominator is now **32 legal domains**, not an estimate of all individual laws/cases:
+- 32/32 domains have been named in the national inventory (scope definition only; this is not 100% coverage).
+- 27 source institutions/platforms are registered, including the Supreme Constitutional Court, State Council, Consumer Protection Agency, NOSI, Administrative Control Authority, National Elections Authority, Customs Authority and Economic Courts.
+- 62 anchor instruments have acquisition records with their source/access status.
+- 18 source PDFs have been opened across the tranches (not all are bare Gazette originals: Commercial Code is a government-published reprint and Customs Law is an authority-annotated compilation); Law160/2026 official HTML text was also opened. Several more have only official listing metadata.
 - No nationwide article-by-article consolidated statute corpus has been produced. A public judicial collection register now includes 25 leads (one Constitutional Court press summary, one recent bulletin and 23 State Council principle-series targets); the underlying judgments/volumes are mostly not yet acquired.
 - No nationwide court judgment corpus has been acquired.
 - No lawyer-reviewed national corpus exists.
 
-Do not turn the 30-domain planning inventory into a false legal-coverage percentage. Report separate metrics for domain mapping, source acquisition, primary-source matching, amendment/currentness validation, judicial collection and lawyer review.
+Do not turn the 32-domain planning inventory into a false legal-coverage percentage. Report separate metrics for domain mapping, source acquisition, primary-source matching, amendment/currentness validation, judicial collection and lawyer review.
 
 ## 9. Next acquisition priorities
 
@@ -161,17 +161,30 @@ Additional statutes indexed include Laws 46/1972, 47/1972, 54/1964 as amended by
 
 | Measure | Result | Meaning |
 |---|---:|---|
-| Legal-domain scope mapped | 30/30 (100%) | The national scope has been enumerated; this is planning coverage only |
-| Source institutions/platforms registered | 23 | Includes government, courts, regulators and public discovery sources |
-| Seed anchor instruments inventoried | 40 | A starter list, not the total universe of Egyptian legislation |
-| Official PDF texts opened in this tranche | 8/40 (20% of seed list) | Civil Code, four 2026 tax laws, Capital Market Law, Criminal Procedure Law174/2025 and Consumer Protection Law181/2018; Law160/2026 official HTML text also opened |
-| Nationwide consolidated statute domains | 0/30 | No domain is yet complete end-to-end with all amendments and currentness |
-| Full judicial judgments acquired in this national tranche | 0 | One SCC press-summary lead and a bulletin were registered; State Council series are bibliographic targets |
+| Legal-domain scope mapped | 32/32 (100%) | Scope definition only; not full legal coverage |
+| Source institutions/platforms registered | 27 | Government, courts, regulators and discovery sources |
+| Seed anchor instruments inventoried | 62 | Starter set, not the total universe of Egyptian laws and decisions |
+| Source PDFs opened | 18/62 (29.0% of seed list) | Includes some government reprints/annotated compilations; not all are bare Gazette originals |
+| Nationwide consolidated statute domains | 0/32 | No domain yet has all base laws, amendments, executive regulations and currentness fully consolidated |
+| Full judicial judgments acquired in this national tranche | 0 | One Constitutional Court press-summary lead and a bulletin; 23 State Council series targets are bibliographic leads |
 | Lawyer-reviewed national instruments | 0 | Human legal review remains mandatory |
 
-**Overall nationwide legal knowledge collection estimate: 3%.** This is a cautious project-management estimate, not a count of all Egyptian laws or judicial decisions. It reflects that the domain map and source discovery are ahead of actual full-text acquisition, consolidation, judicial corpus collection and lawyer review. It should rise only when primary text and amendment chains are actually acquired—not when a source URL is merely found.
+**Overall nationwide legal knowledge collection estimate: 4%.** This is a cautious project-management estimate, not a count of all Egyptian laws or judicial decisions. It reflects the still-small share of actual full-text acquisition, amendment consolidation, currentness verification, judicial corpus collection and lawyer review. It must rise only when the underlying documents and legal relationships are acquired and checked—not when source URLs are merely discovered.
+ 
 
 
 ## Constitution and election-law tranche
 
 The National Elections Authority public library yielded seven further official Arabic PDFs: the 2014 Constitution as amended in 2019 (63 pages), Law198/2017 (15 pages), Political Rights Law45/2014 (23 pages), House Law46/2014 (18 pages), Senate Law141/2020 (21 pages), House district Law174/2020 (21 pages), and amendment Law140/2020 (9 pages). The consolidated Law46 PDF records Law85/2025 amendments; standalone Law85/2025 and Law84/2025 primary Gazette copies remain pending. Full acquisition notes are in [Constitution and election-law tranche](egypt_constitution_and_election_law_acquisition_2026-11-17.md).
+
+
+## Commercial, customs and social insurance tranche
+
+New official source discoveries:
+- Commercial Code Law17/1999: government-published second-edition PDF hosted by ETA; 3,759 extracted lines. It records Gazette issue19 bis, 17 May 1999 and amendment Law168/2000's changes to cheque dates.
+- Customs Law207/2020: 70-page Customs Authority compilation reproducing Gazette issue45 bis (D), 11 Nov 2020, with commentary; separately retain its annotated status.
+- Customs Executive Regulation Decision430/2021: official Egyptian Gazette supplement issue193, 31 Aug 2021; 4,482 extracted lines. Amendment leads include Decisions52/2023, 347/2023, 50/2024, 54/2024 and 262/2026.
+- NOSI library: 168 public legal/decision records across 34 pages. NOSI's 30 Nov 2025 announcement states that from 1 Jan 2026 insured contribution wage limits are EGP2,700 minimum and EGP16,700 maximum; minimum new pension EGP1,755 and maximum EGP13,360. These are dated operational parameters, not amendments to Law148/2019.
+- Customs Authority has a public export control notice for Circular19/2026 concerning controlled pharmaceutical preparations to Kuwait; the 22 MB attachment and schedules remain unacquired.
+
+See [Commercial, Customs and Social Insurance tranche](egypt_commercial_customs_social_insurance_acquisition_2026-11-17.md).
