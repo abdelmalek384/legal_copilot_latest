@@ -79,6 +79,8 @@
 
 | [collection_checkpoint_20_consumer_older_persons_investment.md](collection_checkpoint_20_consumer_older_persons_investment.md) | Consumer Protection 181/2018 and amendment 20/2024, Older Persons' Rights 19/2024 and Investment Law 72/2017 source chains |
 
+| [collection_checkpoint_26_source_reconciliation_2026-11-17.md](collection_checkpoint_26_source_reconciliation_2026-11-17.md) | Reconciles earlier primary-source extractions; corrects Cybercrime Executive Regulation to PM Decision 635/2020; records prior 2026 FRA, budget, evidence and family-law collection work |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
