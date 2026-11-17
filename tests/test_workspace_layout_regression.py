@@ -61,6 +61,10 @@ class WorkspaceLayoutRegressionTests(unittest.TestCase):
     def test_ltr_research_reverses_rail_track_widths_with_semantic_panes(self):
         self.assertIn('#main .research-layout:dir(ltr){grid-template-columns:minmax(160px,180px) minmax(0,1fr) minmax(225px,245px)!important}', HTML)
 
+    def test_ltr_tablet_and_mobile_grids_override_desktop_track_widths(self):
+        self.assertIn('@media(max-width:1180px){\n #main .research-layout:dir(ltr){grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;grid-template-areas:"main main" "history inspector"!important}', HTML)
+        self.assertIn('@media(max-width:800px){\n #main .research-layout:dir(ltr){grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"main" "history" "inspector"!important}', HTML)
+
 
 if __name__ == "__main__":
     unittest.main()
