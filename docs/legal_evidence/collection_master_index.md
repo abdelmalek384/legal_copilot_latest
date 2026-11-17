@@ -218,6 +218,8 @@
 
 | [collection_checkpoint_45_trade_union_law_2017.md](collection_checkpoint_45_trade_union_law_2017.md) | Trade Union Law 213/2017, amendment 142/2019, Executive Regulation 35/2018 and model bylaws Decision 36/2018 |
 
+| [collection_checkpoint_58_scc_constitutional_principles.md](collection_checkpoint_58_scc_constitutional_principles.md) | Official SCC digest of 20 constitutional principles; eight identified case-linked principles including separation of powers, pretrial detention, State Council jurisdiction and binding judgments |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
