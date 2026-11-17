@@ -30,14 +30,15 @@ class WorkspaceLayoutRegressionTests(unittest.TestCase):
         self.assertIn('display:block!important;visibility:visible!important', HTML)
         self.assertIn('#main .research-layout>.research-main>.research-thread', HTML)
         self.assertIn('#main .research-layout>.research-evidence-panel', HTML)
-        self.assertIn('grid-template-areas:"main main" "history inspector"!important', HTML)
+        self.assertIn('grid-template-areas:"main main" "inspector history"!important', HTML)
         self.assertIn('grid-template-areas:"main" "history" "inspector"!important', HTML)
 
 
     def test_legal_research_hides_global_search_and_uses_remaining_shell_width(self):
         self.assertIn('#main:has(.research-layout)>.workspace-topbar{display:none!important}', HTML)
         self.assertIn('#main:has(.research-layout){width:auto!important;flex:1 1 0%!important', HTML)
-        self.assertIn('@media(max-width:1180px){#main:has(.research-layout){width:100%!important', HTML)
+        self.assertIn('@media(max-width:1180px) and (min-width:801px){#main:has(.research-layout){width:auto!important;flex:1 1 0%!important}', HTML)
+        self.assertIn('@media(max-width:800px){#main:has(.research-layout){width:100%!important;flex:1 1 auto!important}', HTML)
 
 
 if __name__ == "__main__":
