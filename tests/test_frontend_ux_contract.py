@@ -1769,5 +1769,16 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("outcome.onchange=()=>{if(outcome.value!=='pass')", review)
         self.assertIn("evidenceError.hidden=true", review)
 
+    def test_ai_brief_requires_accessible_firm_and_client_consent(self):
+        start = HTML.index("if(TAB==='brief'){")
+        brief = HTML[start:HTML.index("if(TAB==='tasks')", start)]
+        self.assertIn("id:'brief-consent-error',className:'notice danger',role:'alert',hidden:true", brief)
+        self.assertIn("field.setAttribute('aria-invalid','true')", brief)
+        self.assertIn("field.setAttribute('aria-describedby','brief-consent-error')", brief)
+        self.assertIn("(!firmConsent.checked?firmConsent:clientConsent).focus()", brief)
+        self.assertIn("firmConsent.onchange=()=>{if(firmConsent.checked&&clientConsent.checked)clearConsentError()}", brief)
+        self.assertIn("clientConsent.onchange=()=>{if(firmConsent.checked&&clientConsent.checked)clearConsentError()}", brief)
+        self.assertIn("consentError,run,result)", brief)
+
 if __name__ == "__main__":
     unittest.main()
