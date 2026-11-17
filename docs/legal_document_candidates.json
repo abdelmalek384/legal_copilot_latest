@@ -6206,15 +6206,16 @@
       "source_id": "EG-ETA-TAX-LAWS",
       "language": "ar",
       "candidate_status": "discovery_only",
-      "text_acquisition_status": "official_source_pdf_or_index_located",
-      "text_verification_note": "ETA index lists official PDF; current settlement window and dates require careful parsing. Full text extraction, Gazette metadata, SHA-256, amendment mapping and lawyer review outstanding.",
+      "text_acquisition_status": "full_text_transcribed_to_repository",
+      "text_verification_note": "Official Gazette issue 30 مكرر (أ), 28 July 2026; one-page official MoF PDF; complete text transcribed to repository. Requires PDF binary archive/hash, visual comparison, integration with Law 79/2016 and prior extensions, and lawyer review.",
       "source_urls": [
         {
           "url": "https://www.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
           "source_role": "official legislation index or Gazette PDF",
           "status": "located_2026-11-17"
         }
-      ]
+      ],
+      "text_file_path": "data/legal_texts/2026/law_152_2026_tax_dispute_settlement_extension_ar.md"
     },
     {
       "document_id": "EG-CRIMINAL-PROCEDURE-TRANSITION-AMEND-1-2024",
@@ -8547,15 +8548,16 @@
       "source_id": "EG-MOF-LEGISLATION",
       "language": "ar",
       "candidate_status": "discovery_only",
-      "text_acquisition_status": "official_mof_index_or_gazette_pdf_located",
-      "text_verification_note": "Official Ministry of Finance catalogue identifies this instrument. Gazette issue, commencement, full article text, amendment map and currentness must be independently recorded; the Ministry warns its electronic copies are guidance and Official Gazette is controlling. Not lawyer-reviewed.",
+      "text_acquisition_status": "full_text_transcribed_to_repository",
+      "text_verification_note": "Official Gazette issue 30 مكرر (أ), 28 July 2026; 2-page official MoF PDF; complete text transcribed to repository. Requires PDF binary archive/hash, visual comparison, integration with Law 206/2020 and executive regulation, and lawyer review.",
       "source_urls": [
         {
           "url": "https://mof.gov.eg/ar/legislation/legislation-63cd142f79394f000815481a",
           "source_role": "official Ministry of Finance legislation index or Gazette PDF",
           "status": "located_2026-11-17"
         }
-      ]
+      ],
+      "text_file_path": "data/legal_texts/2026/law_150_2026_unified_tax_procedures_amendment_ar.md"
     },
     {
       "document_id": "EG-INCOME-TAX-AMEND-151-2026",
