@@ -84,4 +84,4 @@ A title-based harvest cannot establish completeness. The law itself delegates do
 
 ## 6. Progress measure
 
-The companion CSV contains **49 explicit statutory delegation rows**. This is a mapping of the delegations surfaced from the accessible Law 14/2025 text, not proof that all possible delegations have been captured. The formal-instrument register contains 51 identified instruments; 35 Ministry of Labour decision numbers are identified against the 68 Ministry decisions cited in official 2025 announcements. Corpus completeness remains open.
+The companion CSV contains **50 explicit statutory delegation rows**. This is a mapping of the delegations surfaced from the accessible Law 14/2025 text, not proof that all possible delegations have been captured. The formal-instrument register contains 51 identified instruments; 35 Ministry of Labour decision numbers are identified against the 68 Ministry decisions cited in official 2025 announcements. Corpus completeness remains open.
