@@ -332,6 +332,8 @@
 
 | [collection_checkpoint_78_customs_decision_262_2026.md](collection_checkpoint_78_customs_decision_262_2026.md) | Official Decision 262/2026 replaces Customs Regulation 430/2021 Article 232; bill of lading, delivery order, invoice/packing list and proof-of-origin documents |
 
+| [collection_checkpoint_79_goeic_decision_266_2026.md](collection_checkpoint_79_goeic_decision_266_2026.md) | PM Decision 266/2026 replaces GOEIC establishment Decision 1770/1971 Articles 2 and 4; expands/clarifies import-export, importer-register and inspection functions |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
