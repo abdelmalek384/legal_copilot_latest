@@ -71,6 +71,16 @@ class WorkspaceLayoutRegressionTests(unittest.TestCase):
         self.assertIn("['محادثة جديدة','محادثة جديدة (جديدة)','new conversation','new chat']", HTML)
         self.assertIn('if(seenPlaceholderTitles.has(normalized))return false;', HTML)
 
+    def test_evidence_panel_explains_zero_source_state_and_hides_it_when_populated(self):
+        self.assertIn('className:\'research-evidence-empty-state\'', HTML)
+        self.assertIn('Sources will appear here when research returns supporting material.', HTML)
+        self.assertIn('evidenceEmptyState.hidden=total>0;', HTML)
+        self.assertIn('evidenceCoverage,evidenceFilters,evidenceFilterEmpty,evidenceEmptyState,evidenceCards,sourceInspector', HTML)
+
+    def test_evidence_filters_and_scope_tabs_have_clear_spacing(self):
+        self.assertIn('#main .research-evidence-filters{display:flex!important;flex-wrap:wrap!important;gap:6px!important}', HTML)
+        self.assertIn('#main .research-composer-controls .research-scope-tabs{gap:6px!important;padding:5px!important}', HTML)
+
     def test_ltr_tablet_and_mobile_grids_override_desktop_track_widths(self):
         self.assertIn('@media(max-width:1180px){\n #main .research-layout:dir(ltr){grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;grid-template-areas:"main main" "history inspector"!important}', HTML)
         self.assertIn('@media(max-width:800px){\n #main .research-layout:dir(ltr){grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"main" "history" "inspector"!important}', HTML)
