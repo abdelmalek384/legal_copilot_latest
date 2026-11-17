@@ -6421,6 +6421,310 @@
       ],
       "text_acquisition_status": "official_arabic_copy_located",
       "text_verification_note": "MoF index identifies 2014 Constitution amended in 2019 and warns its online copies are guidance only; Gazette remains controlling."
+    },
+    {
+      "document_id": "EG-COMMERCIAL-CODE-LAW-17-1999",
+      "official_title": "قانون التجارة رقم 17 لسنة 1999",
+      "document_type": "law_or_amendment",
+      "law_number": "17",
+      "law_year": 1999,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_full_text_pdf_url_located",
+      "text_verification_note": "ETA-hosted full Arabic PDF; contents cover commercial acts, merchants, books, commercial register, contracts, banking operations, negotiable instruments and bankruptcy. Promulgation page identifies Gazette issue 19 مكرر, 17 May 1999 and amendments to commencement dates by Law 168/2000. Do not rely on this entry as consolidated current law until Gazette original, amendments, commencement, repeal/transition and SHA-256 are checked. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.eta.gov.eg/sites/default/files/2024-10/law-17-1999.pdf",
+          "source_role": "official government-hosted full-text PDF",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-COMPANIES-LAW-159-1981",
+      "official_title": "قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسؤولية المحدودة رقم 159 لسنة 1981",
+      "document_type": "law_or_amendment",
+      "law_number": "159",
+      "law_year": 1981,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_full_text_pdf_url_located",
+      "text_verification_note": "ETA-hosted official Arabic PDF. Currentness and amendments need separate article-by-article chain; related Law 17/2015 appears in ETA index. Do not rely on this entry as consolidated current law until Gazette original, amendments, commencement, repeal/transition and SHA-256 are checked. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.eta.gov.eg/sites/default/files/2024-10/law-159-1981.pdf",
+          "source_role": "official government-hosted full-text PDF",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-REAL-ESTATE-TAX-LAW-196-2008",
+      "official_title": "قانون الضريبة على العقارات المبنية رقم 196 لسنة 2008",
+      "document_type": "law_or_amendment",
+      "law_number": "196",
+      "law_year": 2008,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_lists_downloadable_pdf",
+      "text_verification_note": "ETA official laws index lists downloadable law-196-2008.pdf; exact PDF URL and amendments to resolve. Do not rely on this entry as consolidated current law until Gazette original, amendments, commencement, repeal/transition and SHA-256 are checked. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.eta.gov.eg/en/node/837",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-COMMERCIAL-REGISTER-LAW-34-1976",
+      "official_title": "القانون رقم 34 لسنة 1976 بشأن السجل التجاري",
+      "document_type": "law_or_amendment",
+      "law_number": "34",
+      "law_year": 1976,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_lists_downloadable_pdf",
+      "text_verification_note": "ETA official index lists law-34-1976.pdf; verify amendments and executive regulations. Do not rely on this entry as consolidated current law until Gazette original, amendments, commencement, repeal/transition and SHA-256 are checked. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.eta.gov.eg/en/node/837",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-INVESTMENT-GUARANTEES-LAW-8-1997",
+      "official_title": "قانون ضمانات وحوافز الاستثمار رقم 8 لسنة 1997",
+      "document_type": "law_or_amendment",
+      "law_number": "8",
+      "law_year": 1997,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_lists_downloadable_pdf",
+      "text_verification_note": "ETA official index lists the historical law; check repeal/supersession by Investment Law 72/2017 and surviving transitional provisions before use. Do not rely on this entry as consolidated current law until Gazette original, amendments, commencement, repeal/transition and SHA-256 are checked. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.eta.gov.eg/en/node/837",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-STATE-FINANCE-LAW-6-2022",
+      "official_title": "قانون المالية العامة الموحد رقم 6 لسنة 2022",
+      "document_type": "law_or_amendment",
+      "law_number": "6",
+      "law_year": 2022,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_lists_downloadable_pdf",
+      "text_verification_note": "ETA official index lists Law 6/2022 and related amendment Law 18/2024; retrieve full text and current implementing regulations. Do not rely on this entry as consolidated current law until Gazette original, amendments, commencement, repeal/transition and SHA-256 are checked. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://eta.gov.eg/ar/content/qwanyn-aldrybt-ly-aldkhl",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-STAMP-TAX-AMEND-153-2026",
+      "official_title": "القانون رقم 153 لسنة 2026 بتعديل بعض أحكام قانون ضريبة الدمغة رقم 111 لسنة 1980",
+      "document_type": "law_or_amendment",
+      "law_number": "153",
+      "law_year": 2026,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_lists_downloadable_pdf",
+      "text_verification_note": "ETA current index lists this 2026 amendment and downloadable PDF; map amendments against Law 111/1980 and Law 3/2022. Do not rely on this entry as consolidated current law until Gazette original, amendments, commencement, repeal/transition and SHA-256 are checked. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.eta.gov.eg/en/node/837",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-STATE-OWNED-COMPANY-PROFITS-LAW-154-2026",
+      "official_title": "القانون رقم 154 لسنة 2026 بشأن أيلولة نسبة من الأرباح الصافية للشركات المملوكة للدولة أو الأشخاص الاعتبارية العامة إلى الخزانة العامة",
+      "document_type": "law_or_amendment",
+      "law_number": "154",
+      "law_year": 2026,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_lists_downloadable_pdf",
+      "text_verification_note": "ETA current index lists this new 2026 law; extract covered entities, profit calculation, remittance deadline and commencement. Do not rely on this entry as consolidated current law until Gazette original, amendments, commencement, repeal/transition and SHA-256 are checked. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.eta.gov.eg/en/node/837",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-INCOME-TAX-AMEND-7-2024",
+      "official_title": "القانون رقم 7 لسنة 2024 بتعديل بعض أحكام قانون الضريبة على الدخل رقم 91 لسنة 2005",
+      "document_type": "law_or_amendment",
+      "law_number": "7",
+      "law_year": 2024,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_lists_downloadable_pdf",
+      "text_verification_note": "ETA income-tax index lists official PDF. Do not rely on this entry as consolidated current law until Gazette original, amendments, commencement, repeal/transition and SHA-256 are checked. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://eta.gov.eg/ar/content/qwanyn-aldrybt-ly-aldkhl",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-INCOME-TAX-AMEND-175-2023",
+      "official_title": "القانون رقم 175 لسنة 2023 بتعديل بعض أحكام قانون الضريبة على الدخل",
+      "document_type": "law_or_amendment",
+      "law_number": "175",
+      "law_year": 2023,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_lists_downloadable_pdf",
+      "text_verification_note": "ETA income-tax index lists official PDF. Do not rely on this entry as consolidated current law until Gazette original, amendments, commencement, repeal/transition and SHA-256 are checked. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://eta.gov.eg/ar/content/qwanyn-aldrybt-ly-aldkhl",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-INCOME-TAX-AMEND-30-2023",
+      "official_title": "القانون رقم 30 لسنة 2023 بتعديل بعض أحكام قانون الضريبة على الدخل وبعض أحكام قانون تنمية المشروعات رقم 152 لسنة 2020",
+      "document_type": "law_or_amendment",
+      "law_number": "30",
+      "law_year": 2023,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_lists_downloadable_pdf",
+      "text_verification_note": "ETA income-tax index lists official PDF; map its two-law amendments separately. Do not rely on this entry as consolidated current law until Gazette original, amendments, commencement, repeal/transition and SHA-256 are checked. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://eta.gov.eg/ar/content/qwanyn-aldrybt-ly-aldkhl",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-INCOME-TAX-AMEND-29-2018",
+      "official_title": "القانون رقم 29 لسنة 2018 بتعديل بعض أحكام قانون الضريبة على الدخل",
+      "document_type": "law_or_amendment",
+      "law_number": "29",
+      "law_year": 2018,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_lists_downloadable_pdf",
+      "text_verification_note": "ETA income-tax index lists official PDF. Do not rely on this entry as consolidated current law until Gazette original, amendments, commencement, repeal/transition and SHA-256 are checked. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://eta.gov.eg/ar/content/qwanyn-aldrybt-ly-aldkhl",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-INCOME-TAX-AMEND-82-2017",
+      "official_title": "القانون رقم 82 لسنة 2017 بتعديل بعض أحكام قانون الضريبة على الدخل",
+      "document_type": "law_or_amendment",
+      "law_number": "82",
+      "law_year": 2017,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_lists_downloadable_pdf",
+      "text_verification_note": "ETA income-tax index lists official PDF. Do not rely on this entry as consolidated current law until Gazette original, amendments, commencement, repeal/transition and SHA-256 are checked. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://eta.gov.eg/ar/content/qwanyn-aldrybt-ly-aldkhl",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-INCOME-TAX-AMEND-76-2017",
+      "official_title": "القانون رقم 76 لسنة 2017 بتعديل بعض أحكام قانون الضريبة على الدخل وقانون ضريبة الدمغة",
+      "document_type": "law_or_amendment",
+      "law_number": "76",
+      "law_year": 2017,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_lists_downloadable_pdf",
+      "text_verification_note": "ETA income-tax index lists official PDF; dual statute amendments must be separately mapped. Do not rely on this entry as consolidated current law until Gazette original, amendments, commencement, repeal/transition and SHA-256 are checked. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://eta.gov.eg/ar/content/qwanyn-aldrybt-ly-aldkhl",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-INCOME-TAX-AMEND-201-2014",
+      "official_title": "القانون رقم 201 لسنة 2014 بتعديل بعض أحكام قانون الضريبة على الدخل",
+      "document_type": "law_or_amendment",
+      "law_number": "201",
+      "law_year": 2014,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_lists_downloadable_pdf",
+      "text_verification_note": "ETA income-tax index lists official PDF. Do not rely on this entry as consolidated current law until Gazette original, amendments, commencement, repeal/transition and SHA-256 are checked. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://eta.gov.eg/ar/content/qwanyn-aldrybt-ly-aldkhl",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-INCOME-TAX-AMEND-53-2014",
+      "official_title": "القانون رقم 53 لسنة 2014 بتعديل بعض أحكام قانوني الضريبة على الدخل وضريبة الدمغة",
+      "document_type": "law_or_amendment",
+      "law_number": "53",
+      "law_year": 2014,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_index_lists_downloadable_pdf",
+      "text_verification_note": "ETA income-tax index lists official PDF; dual statute amendments must be separately mapped. Do not rely on this entry as consolidated current law until Gazette original, amendments, commencement, repeal/transition and SHA-256 are checked. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://eta.gov.eg/ar/content/qwanyn-aldrybt-ly-aldkhl",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "located_2026-11-17"
+        }
+      ]
     }
   ]
 }
