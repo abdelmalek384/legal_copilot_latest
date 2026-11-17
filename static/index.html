@@ -2865,7 +2865,7 @@ async function law(){
   evidenceFilterPrimary.classList.toggle('active',filter==='primary');evidenceFilterPrimary.setAttribute('aria-pressed',String(filter==='primary'));
   const cards=Array.from(evidenceCards.children);
   cards.forEach(card=>{card.hidden=filter==='primary'&&card.dataset.primary!=='true'});
-  evidenceFilterEmpty.hidden=filter!=='primary'||!cards.length||cards.some(card=>card.dataset.primary==='true');
+  evidenceFilterEmpty.hidden=filter!=='primary'||cards.some(card=>card.dataset.primary==='true');
  };
  const evidencePanel=h('aside',{className:'research-evidence-panel card','aria-label':LANG==='ar'?'الأدلة والمصادر':'Evidence and sources'},h('div',{className:'research-evidence-heading'},h('b',{textContent:LANG==='ar'?'الأدلة':'Evidence'}),evidenceCount),h('p',{className:'mut',textContent:LANG==='ar'?'المصادر الداعمة لهذه الإجابة':'Sources supporting this answer'}),evidenceCoverage,evidenceFilters,evidenceFilterEmpty,evidenceCards,sourceInspector);
  let activeId=null, sending=false, conversationItems=[],lastResearchMessages=[];
