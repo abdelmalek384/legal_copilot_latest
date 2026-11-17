@@ -430,7 +430,7 @@ A 19-row public docket/disposition register has been added at `data/research/egy
 | Asylum/telecom/data protection register | 13 records | Includes PM Decision 1568/2026 and NTRA/data-protection/cybercrime leads |\n| Dedicated PDPL/PDPC register | 8 records | Law 151/2020, Decision 816/2025, official PDPC guidance and currentness gaps |\n| Clinical research register | 12 records | Law 214/2020, PM Decision 927/2022, participant safeguards and EDA/Supreme Council leads |
 | SCC public docket register | 19 records | Public docket/date/disposition records; not full judgments |
 | Full national domains complete | 0/30 | No domain yet has all base laws, amendments, regulations, decisions, case law and currentness checks complete |
-| Full SCC/Cassation/State Council judgment corpus | 0 | Public summaries and docket indexes only; no nationwide full judgment corpus |
+| Judicial acquisition | 4 full SCC judgments + 18 public Cassation headnotes/principles (from earlier tranche); additional SCC docket records and State Council volume leads | Partial public material only; no nationwide full judgment corpus or complete currentness map |
 | National-corpus lawyer sign-off | 0% | Human review remains outstanding |
 
 ### Actual text acquisition versus discovery
@@ -503,3 +503,8 @@ The national corpus registers now additionally include:
 - **NTRA currentness:** the telecom register now has 13 records and captures the 16 November 2026 commencement notice for new wireless-device/spectrum rules and the stated 15 February 2027 regularization deadline.
 
 PRs #1858, #1859, #1860 and #1861 have now merged. The overall national legal-content estimate remains approximately 1.5% (rounded to 2%): these passes have materially expanded source discovery and sector-specific acquisition, but no full domain is complete and the denominator for the entire Egyptian legal system remains unknown.
+
+
+### Judicial acquisition count clarification
+
+The table distinguishes a **complete nationwide court corpus** from individual acquired items. The earlier judicial tranche already contains four full Supreme Constitutional Court judgments and 18 public Court of Cassation headnotes/principles. The new SCC public docket register adds 19 docket/date/disposition records, not 19 full judgments. The State Council portal lists 23 Supreme Administrative Court principle collections/parts, but PDF retrieval timed out in this pass, so those volumes remain acquisition leads. No court's full nationwide judgment corpus is complete.
