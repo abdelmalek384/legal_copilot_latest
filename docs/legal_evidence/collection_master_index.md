@@ -257,6 +257,8 @@
 
 | [collection_checkpoint_54_economic_courts_law_120_2008.md](collection_checkpoint_54_economic_courts_law_120_2008.md) | Economic Courts Law 120/2008 (39 articles), amendments 146/2019 and 156/2024, jurisdiction and circuit structure |
 
+| [collection_checkpoint_64_commercial_code_text.md](collection_checkpoint_64_commercial_code_text.md) | Official ETA Commercial Code 17/1999 searchable PDF (3,759 lines); excerpts Articles 1–61; technology transfer, negotiable instruments and bankruptcy-book repeal by Law 11/2018 mapped |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
