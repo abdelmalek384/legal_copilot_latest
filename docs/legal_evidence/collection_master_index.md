@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -106,6 +106,9 @@
 | [collection_checkpoint_24_tax_laws_150_152_2026.md](collection_checkpoint_24_tax_laws_150_152_2026.md) | Full official Gazette text inspections of Laws 150/2026 (tax recordkeeping and temporary tax card) and 152/2026 (tax dispute settlement extension) |
 
 | [collection_checkpoint_33_health_pharmacy_professions_2026.md](collection_checkpoint_33_health_pharmacy_professions_2026.md) | Pharmacy Law 127/1955 and amendment 90/2025; private medical facilities; blood/plasma; mental health; health professions and EDA decisions |
+
+
+| [collection_checkpoint_25_law_6_2025_full_text.md](collection_checkpoint_25_law_6_2025_full_text.md) | Full article-structured extraction of official ETA PDF for Law 6/2025, simplified turnover-based tax regime and cross-law links |
 
 ## High-value primary-source portals
 
