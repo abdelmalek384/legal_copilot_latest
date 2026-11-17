@@ -6073,13 +6073,13 @@
       "source_id": "EG-ETA-TAX-LAWS",
       "language": "ar",
       "candidate_status": "discovery_only",
-      "text_acquisition_status": "official_source_pdf_or_index_located",
-      "text_verification_note": "ETA index lists downloadable PDF; an official erratum also lists correction of amendments to Laws 149, 150 and 151/2026. Full text extraction, Gazette metadata, SHA-256, amendment mapping and lawyer review outstanding.",
+      "text_acquisition_status": "official_pdf_text_layer_parsed_partial",
+      "text_verification_note": "Official Gazette issue 30 مكرر (أ), 28 July 2026; official MoF-hosted PDF, 4 pages and 91 extracted text lines. Partial text inspected: Article 3 VAT rate and exceptions; Article 5 transitional input-tax suspension for certain medical equipment; Article 30 bad-credit balance rule; amendments to exempt goods/services list. Full 4-page transcription and exact schedule mapping not yet completed. Not lawyer-reviewed.",
       "source_urls": [
         {
-          "url": "https://www.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
-          "source_role": "official legislation index or Gazette PDF",
-          "status": "located_2026-11-17"
+          "url": "https://media.mof.gov.eg/mof-prd/qanwn_rqm_149_lsnt_2026_tedyl_bed_ahkam_aldrybt_ela_alqymt_almdaft_alsadr_balqanwn_67_ls_2016_3bb8c6e5bb.pdf",
+          "source_role": "official Ministry of Finance Gazette PDF",
+          "status": "pdf_opened_text_layer_parsed_2026-11-17"
         }
       ]
     },
