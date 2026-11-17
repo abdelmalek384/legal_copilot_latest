@@ -38,3 +38,26 @@
 - Catalogue issue date: September 2025. It concerns implementation of National Wages Council Decision 15/2025, setting the private-sector minimum wage at EGP 7,000 effective 1 March 2025, calculated on the wage basis referenced in Labour Law Article 1(c).
 - DSpace lists PDF and DOCX copies and an item-specific license. The full circular's detailed procedures/exemptions have not yet been extracted; do not infer them from the short catalogue abstract.
 - **Historical/currentness caution:** this circular's wage amount and effective date predate the 1 September 2025 commencement of Labour Law 14/2025. Preserve it as a historical wage instrument linked to Decision 15/2025, not as the current minimum wage. Later National Wages Council decisions and amendments must be checked before any present-day wage answer.
+
+
+## Circular No. 22/2026 — paid Armed Forces Day holiday for private-sector workers
+
+- Official Ministry announcement: https://www.labour.gov.eg/ar/الأخبار/لتوحيد-مواعيد-الإجازات-الرسمية-في-قطاعات-الدولة-المختلفة-وزير-العمل-الخميس-المقبل-إجازة-مدفوعة-الأجر-للعاملين-بالقطاع-الخاص-بمناسبة-ذكرى-نصر-أكتوبر-المجيد/
+- Official SIS publication: https://sis.gov.eg/ar/المركز-الإعلامي/الأخبار/وزير-العمل-الخميس-المقبل-إجازة-مدفوعة-الأجر-للعاملين-بالقطاع-الخاص-بمناسبة-ذكرى-نصر-أكتوبر-المجيد/
+- Announced 1 October 2026. Circular No. 22/2026 grants private-sector workers covered by Law 14/2025 a paid holiday on Thursday 8 October 2026 instead of Tuesday 6 October 2026 for Armed Forces Day.
+- Employer may require work if business conditions require it; the worker receives double pay or a substitute day based on a written request kept in the worker's file.
+- It implements Labour Law Article 129 and Decision 294/2025 (which includes 6 October as a paid-holiday occasion). This is a one-time 2026 date instruction, not a standing annual holiday schedule. No DSpace circular PDF or full instrument has been located in this pass.
+
+## Circular No. 15/2025 — July 23 Revolution holiday under predecessor Labour Law 12/2003
+
+- DSpace record: https://dspace.id.com.eg/items/7e9ce162-1edf-4275-bd36-7becc5dfce02
+- Issued 17 July 2025 by the Ministry of Manpower. The record identifies it as a circular granting a paid holiday for the July 23 Revolution to workers covered by Labour Law 12/2003. The corresponding Ministry/SIS announcement says the holiday was shifted to Thursday 24 July 2025 and that employers could require work for operational reasons with the statutory premium.
+- **Historical-law tag:** this circular expressly refers to Law 12/2003, before Law 14/2025 commenced on 1 September 2025. Retain it only as a predecessor-law historical instrument; do not apply it as a current interpretation of Law 14/2025.
+
+## Unnumbered Ministry circular — private-sector remote-work monitoring during April 2026
+
+- Official Ministry announcement: https://www.labour.gov.eg/ar/الأخبار/للتنظيم-والمتابعة-وتنفيذ-ا-لقرار-رئيس-مجلس-الوزراء-وزارة-العمل-ت-صدر-كتاب-ا-دوري-ا-لمديرياتها-بالمحافظات-لمتابعة-تطبيق-العمل-عن-ب-عد-بالقطاع-الخاص/
+- Official SIS item: https://mediadr.sis.gov.eg/xmlui/handle/123456789/124579
+- Announced 5 April 2026. The Ministry said it circulated a circular to Labour Directorate heads to monitor private-sector implementation of Prime Minister Decree 982/2026, which introduced Sunday remote work during April 2026 for the entities covered by that decree, without disrupting operations.
+- The Ministry's public announcement says the circular instructed directorates to monitor compliance and report barriers/questions. An IDSC newsletter summary adds collection of data on sectors with higher/lower compliance and reasons.
+- The circular's number was not exposed in the public announcement/catalogue record reviewed. Do not invent one. Treat it as an unnumbered, time-limited implementation/monitoring instruction, not an independent permanent remote-work entitlement.
