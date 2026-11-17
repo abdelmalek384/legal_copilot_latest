@@ -93,6 +93,8 @@
 
 | [collection_checkpoint_22_noncash_payment_law_18_2019.md](collection_checkpoint_22_noncash_payment_law_18_2019.md) | Six-page official Gazette scan of Non-Cash Payment Law 18/2019, visually inspected and manually summarized Articles 1–9 |
 
+| [collection_checkpoint_30_environment_tourism_electricity_2026.md](collection_checkpoint_30_environment_tourism_electricity_2026.md) | Official Nature Reserves Law 102/1983; Nile protection Law 48/1982; Tourism Law 8/2022 and Executive Regulation 705/2023; Electricity Law 87/2015 enforcement leads |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
