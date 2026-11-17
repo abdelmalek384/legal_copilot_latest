@@ -50,3 +50,5 @@ This is the cross-domain research entry point for the Legal Copilot national Egy
 - [Supreme Constitutional Court public docket index harvest](../../data/research/egypt_scc_public_case_index_harvest_2026-11-17.csv) — 19 public docket/disposition records from January, September and November 2026; summaries and docket outcomes only, not full judgment acquisition.
 
 - [Latest progress dashboard](egypt_national_legal_knowledge_acquisition_baseline_2026-11-17.md#19-progress-dashboard--17-november-2026-after-current-acquisition-pass) — approximately 1.5% national legal-content completion (rounded to 2%), with separate source discovery, actual text acquisition, court collection and lawyer-review measures.
+
+- [Personal Data Protection Law 151/2020 and PDPC guidance acquisition](egypt_personal_data_protection_law_151_2020_acquisition_note.md) plus [8-row PDPL acquisition register](../../data/research/egypt_personal_data_protection_law_151_2020_acquisition_2026-11-17.csv) — official MCIT Law PDF, PDPC Decision 816/2025 source, two extracted PDPC guidelines, and unresolved compliance-window date/currentness.

@@ -427,7 +427,7 @@ A 19-row public docket/disposition register has been added at `data/research/egy
 | FRA/CBE register | 19 records | Regulatory decisions and collection leads; CBE 405 circulars are index records, not full-text acquisitions |
 | IDA/MOHP/SCC sector register | 19 records | Construction, industrial, health and constitutional source/instrument leads |
 | MoF catalogue register | 19 records | Cross-domain law and decision leads; MoF portal reports 936 general and 522 financial catalogue records |
-| Asylum/telecom/data protection register | 13 records | Includes PM Decision 1568/2026 and NTRA/data-protection/cybercrime leads |
+| Asylum/telecom/data protection register | 13 records | Includes PM Decision 1568/2026 and NTRA/data-protection/cybercrime leads |\n| Dedicated PDPL/PDPC register | 8 records | Law 151/2020, Decision 816/2025, official PDPC guidance and currentness gaps |
 | SCC public docket register | 19 records | Public docket/date/disposition records; not full judgments |
 | Full national domains complete | 0/30 | No domain yet has all base laws, amendments, regulations, decisions, case law and currentness checks complete |
 | Full SCC/Cassation/State Council judgment corpus | 0 | Public summaries and docket indexes only; no nationwide full judgment corpus |
@@ -461,3 +461,22 @@ The exact list above is a status snapshot; it is not a claim that every listed t
 ## 20. NTRA wireless-device and radio-spectrum rules — effective-operation notice
 
 A focused update is added to the asylum/telecom/data-protection register as AMT-013. The official NTRA digital portal notice states that new rules governing wireless communication devices and radio spectrum began operating on **16 November 2026**, pursuant to an NTRA Board decision. Existing licensees are instructed to regularize their position within three months, with the stated deadline **15 February 2027**, before the rules' sanctions and penalties begin to apply. The public notice does not expose the Board Decision number in the indexed text, and the linked full Arabic rules have not yet been acquired. This is a time-sensitive regulatory lead: the exact instrument, scope, transitional protection, penalties and Gazette status must be retrieved before the rules are used in legal answers.
+
+
+## 21. Personal Data Protection Law 151/2020 and PDPC guidance acquisition
+
+A dedicated 8-record register and legal-source note have been added:
+- `data/research/egypt_personal_data_protection_law_151_2020_acquisition_2026-11-17.csv`
+- `egypt_personal_data_protection_law_151_2020_acquisition_note.md`
+
+The official MCIT-hosted Law 151/2020 PDF link was opened and reports 31 pages, but the text parser exposed no readable lines. The official PDPC-hosted Executive Regulation PDF URL for Ministerial Decision 816/2025 was identified but could not be retrieved in this pass. Secondary legal publishers identify publication in Gazette issue 244 (A) on 1 November 2025 and commencement on 2 November 2025; the Arabic Gazette copy remains required for verification.
+
+Two official PDPC guideline PDFs were successfully text-extracted:
+- Data Subject Consent Guidelines v1.1, 26 January 2026 (233 extracted lines).
+- Privacy Notice Guidelines v1.1, 26 January 2026 (79 extracted lines).
+
+The consent guideline lists six lawful bases under Article 6 of Law 151/2020 and sets conditions for valid consent, sensitive data, Arabic-first requests, granular/affirmative design, withdrawal and consent records. The privacy-notice guideline distinguishes notices from consent requests and internal privacy policies; it lists minimum notice contents and says direct collection requires notice at collection, while indirect collection generally requires notice within 30 days. Both guidelines state that they are not binding administrative/regulatory decisions and do not replace the Law or Executive Regulation.
+
+**Currentness warning:** secondary legal sources report a one-year reconciliation period under Decision 816/2025 ending around 31 October/1 November 2026. The exact date varies by source. As of this snapshot the period appears to have elapsed, but the Arabic promulgation article, Gazette date-counting and any PDPC extension must be checked before asserting a deadline or enforcement consequence. MCIT's official 4 November 2026 news confirms PDPC implementation activity and a forum held on 26 October 2026; it is not itself a binding compliance circular.
+
+The PDPC public portal and guideline suite are now a continuing source stream. Next: retrieve the full Arabic Executive Regulation, obtain the remaining PDPC guidelines (lawful bases, DPO, breach notification, security, data-subject rights, cross-border transfers and licensing), and capture all post-November 2026 decisions and forms.
