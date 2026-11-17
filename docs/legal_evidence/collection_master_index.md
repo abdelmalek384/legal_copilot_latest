@@ -122,6 +122,8 @@
 
 | [collection_checkpoint_36_trade_union_law_2026.md](collection_checkpoint_36_trade_union_law_2026.md) | Trade Union Law 213/2017; amendment 142/2019; Executive Regulation 35/2018; model bylaws and 2017–2023 implementation decisions; 2026 proposed amendment status |
 
+| [collection_checkpoint_37_education_universities_2026.md](collection_checkpoint_37_education_universities_2026.md) | Education Law 139/1981 official PDF; teacher chapter and amendments; University Law 49/1972 and private/national university framework; Al-Azhar cross-links |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
