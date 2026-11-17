@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -89,6 +89,9 @@
 | [collection_checkpoint_28_aml_law_regulation_2026.md](collection_checkpoint_28_aml_law_regulation_2026.md) | Official FRA updated AML Law 80/2002 and Executive Regulation 951/2003; amendment chains; Decision 161/2024 and September 2026 CDD procedure leads |
 
 | [collection_checkpoint_29_capital_microfinance_realestate_2026.md](collection_checkpoint_29_capital_microfinance_realestate_2026.md) | Official FRA updated Capital Market Law 95/1992 and Executive Regulation 135/1993 amendment chain; Microfinance Law 141/2014; Real Estate Finance Regulation 1/2001 |
+
+
+| [collection_checkpoint_22_noncash_payment_law_18_2019.md](collection_checkpoint_22_noncash_payment_law_18_2019.md) | Six-page official Gazette scan of Non-Cash Payment Law 18/2019, visually inspected and manually summarized Articles 1–9 |
 
 ## High-value primary-source portals
 
