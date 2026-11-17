@@ -307,6 +307,8 @@
 
 | [collection_checkpoint_64_companies_law_159_1981_regulation.md](collection_checkpoint_64_companies_law_159_1981_regulation.md) | Companies Law 159/1981 and 361-article Executive Regulation 96/1982, with 21 amendment/attachment records through 2022 |
 
+| [collection_checkpoint_74_coastal_management_2026.md](collection_checkpoint_74_coastal_management_2026.md) | PM Decision 3536/2026 creates National Higher Committee for Integrated Mediterranean Coastal Management; preserves coastal licensing committee 987/2023 |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
