@@ -4473,4 +4473,11 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
  #main .research-layout:dir(ltr){grid-template-areas:"main main" "history inspector"!important}
 }
 </style>
+
+<style>
+/* Match the app navigation rail to the 206px reference frame.
+   Earlier shell rules used !important, so override them explicitly here. */
+#side{width:206px!important;min-width:206px!important;flex:0 0 206px!important;box-sizing:border-box!important}
+@media(max-width:800px){#side{width:100%!important;min-width:0!important;flex:0 0 auto!important}}
+</style>
 </html>
