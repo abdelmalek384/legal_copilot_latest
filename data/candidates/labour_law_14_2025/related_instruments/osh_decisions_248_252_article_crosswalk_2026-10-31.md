@@ -46,3 +46,12 @@ The card IDs and rendered review-report headings have been aligned to the record
 - Retrieval eligibility: **false**.
 
 The mapping is intended to improve the review queue and prevent decision titles from being attached to the wrong statutory topic. It does not prove legal effect, amendment, commencement, currentness or applicability.
+
+
+## 17 November 2026 follow-up — Decision248 and Ministry transition clarification
+
+Decision248/2026 secondary transcription/report now gives a fuller operational map: Art2 serious-accident categories; Art4 24-hour notice inside / 48-hour outside and occupational disease within 24h of the Health Insurance report; Art6 30+ worker semiannual statistics in the first half of January and July, with requested certified copies within 15 days; Art7 contemporaneous paper/electronic registers retained at least three years; false statistics may trigger accountability after the filing period. The statutory Article260 independently supports the 30-worker/semiannual-statistics obligation. This remains secondary text, not a Gazette page match.
+
+Official Ministry 27 Oct 2026 clarification on Decision249: https://www.labour.gov.eg/ar/الأخبار/بيان-توضيحي-هام-بشأن-القرار-الوزاري-رقم-249-لسنة-2026-الخاص-بالسلامة-والصحة-المهنية-وزارة-العمل-لن-ي-ضار-أي-عامل-يعمل-بمهنة-أخصائي-السلامة-والصحة-المهنية-ولا-مساس-بالمراكز-القانونية-المكتسبة-وأهمية-المهنة-تستوجب-منتهى-الدقة-في-اختيار-شاغليها/. Ministry says currently employed OSH specialists will not be harmed/acquired legal positions not disturbed; specialized postgrad diplomas, extended experience and accredited certificates may be considered for other university-degree holders under level-specific controls; A/B professional classification; periodic circulars to unify transitional procedures. This is official explanatory guidance, not a formal amendment and not a substitute for promised circulars.
+
+Conflict to resolve: Ministry's public OSH services page https://www.labour.gov.eg/ar/الخدمات/خدمات-اصحاب-الاعمال/السلامة-والصحة-المهنية/ still says 24h inside / 72h outside for serious accidents, while Decision248 secondary text/report says 24h / 48h. Treat the web service text as potentially stale and do not implement the 72h value without original Gazette/circular review.

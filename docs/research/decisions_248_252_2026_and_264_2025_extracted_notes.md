@@ -84,3 +84,47 @@
 3. Verify all numerical deadlines, fees, thresholds, exposure limits, forms, annexes and schedules directly against the original publication.
 4. Resolve whether Decisions 232/2010 and 216/2016 are superseded by Decision 249/2026 and identify any savings/transition language.
 5. Keep all summaries `source_matched_pending`, never `verified`, until qualified Egyptian counsel signs off.
+
+
+### Additional cross-source acquisition update — 17 November 2026
+
+**Official Ministry announcement (20 October 2026):**  
+https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يصدر-5-قرارات-تنفيذية-لتعزيز-منظومة-السلامة-والصحة-المهنية-وتأمين-بيئة-العمل/
+
+The Ministry confirms that Decisions248–252/2026 were issued as an implementation package under Labour Law14/2025, covering incident/disease reporting, OSH units/committees, workplace safety standards, consultant licensing and training licensing. This corroborates the existence, issuing authority and broad subject of the package, not the exact text of the decisions.
+
+**Additional secondary full-text/reporting detail for Decision248:**  
+https://www.youm7.com/story/2026/10/28/حماية-أرواح-العمال-أولوية-وزارة-العمل-تحدد-مهلة-24-ساعة/7590406  
+https://www.mohamedabdelfattah.com/library/d/decree-2026-248  
+The report states:
+- Serious accident: death; expected permanent disability of at least 35%; third-degree-or-higher burns; more than one person injured at the same worksite/time; fire, collapse, explosion or hazardous leak stopping work for one or more shifts; specified work-related transport and motorcycle-delivery road accidents.
+- Notification: within 24 hours for incidents inside the establishment/branch/worksite; 48 hours for incidents outside those boundaries.
+- Occupational disease: 24-hour notification after receipt of the Health Insurance authority report confirming the occupational disease.
+- Semiannual statistics: establishments with 30+ workers submit actual data on ordinary/chronic/occupational diseases, serious accidents and work injuries during the first half of January and July.
+- Requested certified statistical copies: two certified copies within 15 days of request; retain a third copy.
+- Registers: paper/electronic, contemporaneous entries, OSH-unit supervision, minimum three-year retention.
+- False statistical data may trigger legal accountability even if discovered after the filing window.
+- The decision's Article10 is reported to commence the day after Gazette publication (13 October 2026).
+
+These are secondary transcription/report details and are not a primary Gazette comparison. Keep the original 10-article structure and forms as previously recorded; do not mark the decision primary-matched.
+
+**Statutory cross-check:** Labour Law14/2025 Article260 is the underlying source for the 30-worker semiannual-statistics duty and its first-half-of-January/July timing. Decision248 appears to prescribe the forms, incident categories, operational deadlines and recordkeeping mechanics. The crosswalk remains provisional pending article-by-article Gazette comparison.
+
+**Important stale-official-page discrepancy:** the Ministry's OSH services page (https://www.labour.gov.eg/ar/الخدمات/خدمات-اصحاب-الاعمال/السلامة-والصحة-المهنية/) still describes serious-accident reporting as 24 hours inside the establishment and 72 hours outside. Decision248's secondary text/report states 24 hours inside and 48 hours outside. Treat the services page as potentially stale operational content; do not silently harmonize or rely on the 72-hour value. Resolve against the original Gazette text and any later Ministry circular before compliance automation.
+
+### Decision249/2026 — official Ministry clarification added
+
+**Official clarification published 27 October 2026:**  
+https://www.labour.gov.eg/ar/الأخبار/بيان-توضيحي-هام-بشأن-القرار-الوزاري-رقم-249-لسنة-2026-الخاص-بالسلامة-والصحة-المهنية-وزارة-العمل-لن-ي-ضار-أي-عامل-يعمل-بمهنة-أخصائي-السلامة-والصحة-المهنية-ولا-مساس-بالمراكز-القانونية-المكتسبة-وأهمية-المهنة-تستوجب-منتهى-الدقة-في-اختيار-شاغليها/
+
+The Ministry states, in substance:
+- No currently employed OSH specialist is to be harmed and acquired legal positions are not to be disturbed.
+- Holders of other university qualifications may be considered where they have completed specialized postgraduate OSH diplomas, have extended practical experience, and hold accredited certificates authorizing work in the field, subject to the decision's level-specific controls.
+- The Ministry describes two professional classification levels: OSH Specialist A and OSH Specialist B, with classification reflecting education, specialist qualification and practical experience rather than an assessment that practical experience is worthless.
+- The competent central OSH administration was directed to issue periodic circulars to unify the executive concepts and procedures, including transitional regularization.
+
+**Legal boundary:** this is an official Ministry explanatory statement, not the signed text of Decision249 and not itself a formal amendment. It is important evidence of the Ministry's stated transitional approach, but does not supply the promised circulars, exact equivalence criteria, or all grandfathering conditions. Preserve a separate source record and do not overwrite the decision's literal qualification clauses.
+
+### Official Ministry OSH services page — stale operational content watch
+
+The Ministry's service page lists licensing requirements for training centres, establishment time extensions, work-injury notifications, serious-accident notices, occupational-disease notices, and eight statistical forms. It currently describes serious-accident notice as 24 hours inside / 72 hours outside. Since Decision248's later secondary transcription says 24 / 48 hours, this is a live source-conflict candidate. The service page may describe an older procedure and must not be treated as a substitute for the new Gazette decision.
