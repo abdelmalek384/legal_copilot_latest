@@ -62,3 +62,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 - Do not treat public access or free reading as permission for commercial reuse, systematic retrieval, embedding, display or redistribution.
 - Store historical case law with exact governing statute version; decisions under Law 12/2003 are not direct interpretations of Law 14/2025.
 - Treat Ministry FAQs, ILO datasets, law-firm articles and secondary transcriptions as guidance/discovery sources, not as controlling primary law.
+
+
+32. [Expanded OSH legacy framework and training amendments](osh_legacy_framework_134_232_263_74_11_216_2026-11-17.md) — full research map for Decisions 134/2003, 25/2010, 232/2010, 263/2010, 74/2013, 31/2004, 11/2014 and 216/2016; includes repeal leads 98/2006 and unresolved 20/2008 vs 202/2008.
