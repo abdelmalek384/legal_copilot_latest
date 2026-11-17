@@ -14,7 +14,7 @@ class WorkspaceLayoutRegressionTests(unittest.TestCase):
         self.assertIn("background:#14284b!important", HTML)
 
     def test_research_workspace_has_three_column_desktop_layout(self):
-        self.assertIn('grid-template-columns:minmax(250px,300px) minmax(0,1fr) minmax(210px,245px)!important;', HTML)
+        self.assertIn('grid-template-columns:minmax(225px,245px) minmax(0,1fr) minmax(160px,180px)!important;', HTML)
         self.assertIn('#main .research-layout>.research-main>.research-composer', HTML)
         self.assertIn('#main .research-composer textarea{grid-column:1/-1!important;width:100%', HTML)
 
