@@ -193,6 +193,8 @@
 
 | [collection_checkpoint_40_lakes_fisheries_law_2021.md](collection_checkpoint_40_lakes_fisheries_law_2021.md) | Lakes and Fisheries Law 146/2021 (68 articles), Executive Regulation 706/2023 and licensing/protection rules |
 
+| [collection_checkpoint_53_state_wages_development_plan_2026.md](collection_checkpoint_53_state_wages_development_plan_2026.md) | Law 75/2026 public-sector raises/incentives; PM Decision 2170/2026 State minimum wage table; Law 78/2026 development plan FY 2026/27 |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
