@@ -1756,5 +1756,18 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("cq.oninput=()=>{if(cq.value.trim().length>=2)", clients)
         self.assertIn("cqError.hidden=true", clients)
 
+    def test_legal_review_pass_requires_accessible_evidence_url_error_and_recovers(self):
+        start = HTML.index("async function reviewWorkbench()")
+        review = HTML[start:HTML.index("\nasync function ", start + 10)]
+        self.assertIn("id:'legal-review-evidence-url',type:'url'", review)
+        self.assertIn("id:'legal-review-evidence-error',className:'notice danger',role:'alert',hidden:true", review)
+        self.assertIn("evidence.setAttribute('aria-invalid','true')", review)
+        self.assertIn("evidence.setAttribute('aria-describedby','legal-review-evidence-error')", review)
+        self.assertIn("evidence.focus()", review)
+        self.assertIn("evidenceError.hidden=false", review)
+        self.assertIn("evidence.oninput=()=>{if(evidence.value.trim())", review)
+        self.assertIn("outcome.onchange=()=>{if(outcome.value!=='pass')", review)
+        self.assertIn("evidenceError.hidden=true", review)
+
 if __name__ == "__main__":
     unittest.main()
