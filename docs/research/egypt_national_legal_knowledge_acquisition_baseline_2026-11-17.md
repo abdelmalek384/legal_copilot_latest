@@ -448,7 +448,7 @@ The exact list above is a status snapshot; it is not a claim that every listed t
 - PR #1856 merged: focused asylum-law note index.
 - PR #1857 merged: SCC public docket register.
 - PR #1854 closed as a stale diverged draft superseded by #1855.
-- GitHub Actions billing issue remains external; no CI success is claimed. Structural CSV checks were run through the available tooling for the 19-row FRA/CBE, 19-row sectoral and 19-row MoF CSV files: all had 11 columns per row, no malformed row lengths and no duplicate record IDs. This is structural validation only, not legal validation.
+- GitHub Actions billing issue remains external; no CI success is claimed. Structural CSV checks were run through the available tooling for the 19-row FRA/CBE, 19-row sectoral, 19-row MoF, 8-row PDPL, 12-row clinical-research, 13-row asylum/telecom and 19-row SCC registers: all rows matched their headers, with no malformed row lengths or duplicate record IDs. The SCC register has 12 columns; the other checked registers have 11. This is structural validation only, not legal validation.
 
 ### Next work priority
 
