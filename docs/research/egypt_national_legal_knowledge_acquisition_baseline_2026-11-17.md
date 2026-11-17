@@ -122,7 +122,7 @@ Policy:
 
 A defensible percentage needs a denominator. The first denominator is now **36 legal domains**, not an estimate of all individual laws/cases:
 - 36/36 domains have been named in the national inventory (scope definition only; this is not 100% coverage).
-- 29 source institutions/platforms are registered, including the Supreme Constitutional Court, State Council, Consumer Protection Agency, NOSI, Administrative Control Authority, National Elections Authority, Customs Authority and Economic Courts.
+- 30 source institutions/platforms are registered, including the Supreme Constitutional Court, State Council, Consumer Protection Agency, NOSI, Administrative Control Authority, National Elections Authority, Customs Authority and Economic Courts.
 - 139 anchor instruments have acquisition records with their source/access status.
 - 35 source PDFs have been opened across the tranches (not all are bare Gazette originals: Commercial Code is a government-published reprint and Customs Law is an authority-annotated compilation); Law160/2026 official HTML text was also opened. Several more have only official listing metadata.
 - No nationwide article-by-article consolidated statute corpus has been produced. A public judicial collection register now includes 25 leads (one Constitutional Court press summary, one recent bulletin and 23 State Council principle-series targets); the underlying judgments/volumes are mostly not yet acquired.
@@ -281,3 +281,8 @@ See [SCC salary and social-insurance judgments](egypt_scc_public_service_salary_
 The official SCC full judgment for case244/23 (session 7 March 2026) was acquired. It rejects the constitutional challenge to Penal Code Art185 (insulting public officials), Art302(2) (public-interest criticism), and Art307 insofar as applied to Art185. It confirms that the Art302(2) safe harbor requires **good faith, connection to official duties, and proof of truth**. It records Art185 fine range EGP10,000–20,000 and the Art307 newspaper-publication multiplier of EGP20,000–40,000 in the statutory version before the Court. The judgment also confirms that earlier challenges to Arts302/303/306/307 were already resolved by cases60/22 (2024) and16/24 (2025).
 
 See [SCC case244/23 analysis](egypt_scc_public_official_criticism_case_244_23_2026.md).
+
+
+## Court of Cassation public headnotes tranche
+
+The Court of Cassation official homepage yielded 18 public headnotes across labour, social insurance, customs, commercial/insolvency, banking, criminal procedure/sentencing, family and civil procedure. These are headnotes only, not full judgments. The Court's official subscription page states full judgments, advanced search, legislative database and stamped PDF downloads require subscription; it lists EGP1,080/year for Egyptian subscribers. No subscription restrictions were bypassed. The public headnotes and their exact access boundary are recorded in [Court of Cassation public headnotes harvest](egypt_court_of_cassation_public_headnotes_harvest_2026-11-17.md).
