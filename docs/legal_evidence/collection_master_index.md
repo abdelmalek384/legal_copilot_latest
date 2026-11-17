@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -189,6 +189,9 @@
 | [collection_checkpoint_39_water_resources_irrigation_2021.md](collection_checkpoint_39_water_resources_irrigation_2021.md) | Water Resources and Irrigation Law 147/2021 (130 articles), Executive Regulation 81/2023 and provisional Article 107 amendment 167/2025 |
 
 | [collection_checkpoint_52_2026_finance_state_authority_laws.md](collection_checkpoint_52_2026_finance_state_authority_laws.md) | Law 147/2026 Future of Egypt Authority (corrects MoF 47/2026 index label); Laws 154/2026 (5% profits), 153/2026 stamp duty and 152/2026 tax-dispute extension |
+
+
+| [collection_checkpoint_40_lakes_fisheries_law_2021.md](collection_checkpoint_40_lakes_fisheries_law_2021.md) | Lakes and Fisheries Law 146/2021 (68 articles), Executive Regulation 706/2023 and licensing/protection rules |
 
 ## High-value primary-source portals
 
