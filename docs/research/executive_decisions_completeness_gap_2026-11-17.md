@@ -20,13 +20,13 @@ On 14 November 2026, the Ministry said that it had completed issuing the executi
 
 ## 2. What is currently identified in this repository
 
-The structured register CSV now contains **58 data rows: 51 formal instruments plus 7 circular/implementation instruments**:
+The structured register CSV now contains **57 data rows: 50 formal instruments plus 7 circular/implementation instruments**:
 - 35 distinct Ministry of Labour ministerial decision numbers (2025–2026);
 - 3 Ministry of Justice implementation decisions (4621, 4693 and 5614/2025);
 - 13 Prime Minister decisions (562/2025; remote-work series 982, 1305, 1572, 2033, 2377 and 2590/2026; and 2402/2026, 2403/2026, 2652/2026, 3165/2026 and 3356/2026);
 - 7 circular/implementation instruments (Circulars 3, 15, 16 and 19/2025; Circulars 9 and 22/2026; and the unnumbered April 2026 remote-work monitoring circular), included as rows in the same CSV.
 
-This is a **discovery inventory**, not a claim that all 87 originally announced executive decisions have been identified. The 35 Ministry of Labour decision numbers are only about half of the 68 Ministry decisions cited in the official July/August 2025 announcements, if the figures are directly comparable. The other issuers' decisions are also not fully enumerated; the thirteen Prime Minister instruments identified here include later remote-work extensions and later wage/recruitment decisions, which may not all belong to the original 87-count package.
+This is a **discovery inventory**, not a claim that all 87 originally announced executive decisions have been identified. The 35 Ministry of Labour decision numbers are only about half of the 68 Ministry decisions cited in the official July/August 2025 announcements, if the figures are directly comparable. The other issuers' decisions are also not fully enumerated; the twelve Prime Minister instruments identified here include later remote-work extensions and later wage/recruitment decisions, which may not all belong to the original 87-count package.
 
 ## 3. Why the count is not yet reconcilable
 
@@ -107,7 +107,7 @@ For every located instrument:
 ## 6. Correct progress reporting
 
 Report separate percentages:
-- **Identified-source extraction coverage:** 51/51 currently identified formal instruments have substantive extracts or structured maps.
+- **Identified-source extraction coverage:** 50/50 currently identified formal instruments have substantive extracts or structured maps.
 - **Original announced Ministry decision universe:** 35/68 identified (about 51.5% if the 68 figure is comparable); this is not a verified completeness percentage.
 - **Original announced total universe:** 87 announced, but no reliable comparable total denominator yet because later Prime Minister decisions are included in the current inventory and the original count is approximate.
 - **Primary-source Gazette comparison:** only the three ministerial decisions (259, 264 and 299/2025) have the current SIS issue-291 article-level comparison recorded; other instruments have varying levels of official indexed text, metadata or secondary text.
