@@ -122,7 +122,7 @@ Policy:
 
 A defensible percentage needs a denominator. The first denominator is now **30 legal domains**, not an estimate of all individual laws/cases:
 - 30/30 domains have been named in the national inventory (scope definition only; this is not 100% coverage).
-- 16 source institutions/platforms are registered.
+- 18 source institutions/platforms are registered (including the Supreme Constitutional Court and State Council).
 - 25 anchor instruments have acquisition records with their source/access status.
 - 7 instruments have official PDF text actually opened in this tranche; several more have only official listing metadata.
 - No nationwide article-by-article consolidated statute corpus has been produced.
