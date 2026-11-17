@@ -239,6 +239,8 @@
 
 | [collection_checkpoint_50_civil_code_131_1948.md](collection_checkpoint_50_civil_code_131_1948.md) | Civil Code 131/1948 (1,149 articles), official ETA full-text PDF, preliminary title and amendment/currentness reconciliation |
 
+| [collection_checkpoint_61_criminal_procedure_amendment_2024.md](collection_checkpoint_61_criminal_procedure_amendment_2024.md) | Law 1/2024 33-article amendment to Criminal Procedure Law 150/1950; nine-page Gazette scan; felony two-tier trial and transition provisions |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
