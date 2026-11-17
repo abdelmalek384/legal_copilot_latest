@@ -156,6 +156,8 @@
 
 | [collection_checkpoint_33_vat_executive_regulation_66_2017.md](collection_checkpoint_33_vat_executive_regulation_66_2017.md) | 92-article VAT Executive Regulation 66/2017 searchable transcription, e-services, imports, zero-rating and amendment leads through 2025 |
 
+| [collection_checkpoint_45_nationality_immigration_2026.md](collection_checkpoint_45_nationality_immigration_2026.md) | Nationality Law 26/1975 and amendment 28/2023; investment naturalization Decisions 3099/2019 and 876/2023; Foreigners' Entry/Residence 89/1960 and Decision 977/2023; passports lead |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
