@@ -6202,6 +6202,139 @@
           "status": "located_2026-11-17"
         }
       ]
+    },
+    {
+      "document_id": "EG-INCOME-TAX-LAW-91-2005",
+      "official_title": "قانون الضريبة على الدخل رقم 91 لسنة 2005",
+      "document_type": "law_or_regulation",
+      "law_number": "91",
+      "law_year": 2005,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_source_index_lists_pdf",
+      "text_verification_note": "Unified Tax Procedures Law 206/2020 expressly amended it; later amendments and executive regulation need full chain. Official ETA locator; full PDF extraction, Gazette metadata, hash, currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://www.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-STAMP-TAX-LAW-111-1980",
+      "official_title": "قانون ضريبة الدمغة رقم 111 لسنة 1980",
+      "document_type": "law_or_regulation",
+      "law_number": "111",
+      "law_year": 1980,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_source_index_lists_pdf",
+      "text_verification_note": "Law 206/2020 expressly repealed multiple provisions; Law 3/2022 amended it. Retrieve consolidated current text. Official ETA locator; full PDF extraction, Gazette metadata, hash, currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://www.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-VAT-AMEND-13-2020",
+      "official_title": "القانون رقم 13 لسنة 2020 بتعديل بعض أحكام قانون الضريبة على القيمة المضافة رقم 67 لسنة 2016",
+      "document_type": "law_or_regulation",
+      "law_number": "13",
+      "law_year": 2020,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_source_index_lists_pdf",
+      "text_verification_note": "ETA index lists official PDF; article-by-article amendment mapping required. Official ETA locator; full PDF extraction, Gazette metadata, hash, currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://www.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-VAT-AMEND-208-2017",
+      "official_title": "القانون رقم 208 لسنة 2017 بتعديل بعض أحكام قانون الضريبة على القيمة المضافة رقم 67 لسنة 2016",
+      "document_type": "law_or_regulation",
+      "law_number": "208",
+      "law_year": 2017,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_source_index_lists_pdf",
+      "text_verification_note": "ETA index lists official PDF; map changes and effective dates. Official ETA locator; full PDF extraction, Gazette metadata, hash, currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://www.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-VAT-EXEC-REGS-AMEND-329-2017",
+      "official_title": "قرار وزير المالية رقم 329 لسنة 2017 بتعديل اللائحة التنفيذية لقانون الضريبة على القيمة المضافة",
+      "document_type": "law_or_regulation",
+      "law_number": "329",
+      "law_year": 2017,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_source_index_lists_pdf",
+      "text_verification_note": "ETA index lists official PDF; later Decision 24/2023 and 417/2025 also need consolidation. Official ETA locator; full PDF extraction, Gazette metadata, hash, currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://www.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-STAMP-TAX-AMEND-3-2022",
+      "official_title": "القانون رقم 3 لسنة 2022 بتعديل بعض أحكام قانوني الضريبة على القيمة المضافة وضريبة الدمغة",
+      "document_type": "law_or_regulation",
+      "law_number": "3",
+      "law_year": 2022,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_source_index_lists_pdf",
+      "text_verification_note": "ETA index lists official PDF; dual amendments to VAT and stamp tax must be separated into article-level relations. Official ETA locator; full PDF extraction, Gazette metadata, hash, currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://www.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-VAT-EXEC-REGS-AMEND-24-2023",
+      "official_title": "قرار وزير المالية رقم 24 لسنة 2023 بتعديل اللائحة التنفيذية لقانون الضريبة على القيمة المضافة",
+      "document_type": "law_or_regulation",
+      "law_number": "24",
+      "law_year": 2023,
+      "source_id": "EG-ETA-TAX-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_source_index_lists_pdf",
+      "text_verification_note": "ETA index lists official PDF; reconcile with later Decision 417/2025. Official ETA locator; full PDF extraction, Gazette metadata, hash, currentness and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://www.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+          "source_role": "official Egyptian Tax Authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
     }
   ]
 }
