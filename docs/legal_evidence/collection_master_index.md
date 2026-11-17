@@ -247,6 +247,8 @@
 
 | [collection_checkpoint_52_evidence_law_25_1968.md](collection_checkpoint_52_evidence_law_25_1968.md) | Evidence Law 25/1968 (117 articles), full text sources, documentary proof, testimony and amendment leads |
 
+| [collection_checkpoint_62_criminal_procedure_174_text.md](collection_checkpoint_62_criminal_procedure_174_text.md) | Full 540-article future Criminal Procedure Code 174/2025 searchable transcription (3,167 lines); selected provisions on complaints, arrest, search, detention, digital surveillance, nullity and appeals; effective 1 Oct 2027 |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
