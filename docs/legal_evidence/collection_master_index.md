@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -147,6 +147,9 @@
 | [collection_checkpoint_42_judiciary_courts_2026.md](collection_checkpoint_42_judiciary_courts_2026.md) | Judicial Authority/State Council/SCC/Administrative Prosecution/State Lawsuits source map; Law 15/2025 court restructuring; 2026 judicial venue and appointment decisions |
 
 | [collection_checkpoint_43_agriculture_fisheries_2026.md](collection_checkpoint_43_agriculture_fisheries_2026.md) | Agriculture Law 53/1966 official PDF and 127-decision index; Fisheries/Lakes Law 146/2021; Executive Regulation 706/2023; Lake Nasser/Nile licensing decisions |
+
+
+| [collection_checkpoint_32_income_tax_executive_regulation_991_2005.md](collection_checkpoint_32_income_tax_executive_regulation_991_2005.md) | 177-article Income Tax Executive Regulation 991/2005 transcription, selected articles and ministerial amendment graph through April 2023 |
 
 ## High-value primary-source portals
 
