@@ -1707,11 +1707,14 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 return {left:r.left,right:r.right,top:r.top,bottom:r.bottom};
             };
             return {
+                answer: rect(".research-main"),
                 history: rect(".research-list"),
                 evidence: rect(".research-evidence-panel")
             };
         }""")
         self.assertLess(tablet_geometry["history"]["right"], tablet_geometry["evidence"]["left"])
+        self.assertLessEqual(tablet_geometry["answer"]["bottom"], tablet_geometry["history"]["top"])
+        self.assertLessEqual(tablet_geometry["answer"]["bottom"], tablet_geometry["evidence"]["top"])
 
         self.page.set_viewport_size({"width": 800, "height": 900})
         self.page.wait_for_function(

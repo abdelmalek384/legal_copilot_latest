@@ -4501,4 +4501,14 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 /* The desktop track widths must follow semantic rails when direction changes. */
 #main .research-layout:dir(ltr){grid-template-columns:minmax(160px,180px) minmax(0,1fr) minmax(225px,245px)!important}
 </style>
+
+<style>
+/* Direction-specific desktop sizing must yield to the tablet/mobile grid. */
+@media(max-width:1180px){
+ #main .research-layout:dir(ltr){grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;grid-template-areas:"main main" "history inspector"!important}
+}
+@media(max-width:800px){
+ #main .research-layout:dir(ltr){grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"main" "history" "inspector"!important}
+}
+</style>
 </html>
