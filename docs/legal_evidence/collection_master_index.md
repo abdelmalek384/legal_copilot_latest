@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 14) (expanded through checkpoint 13) (expanded through checkpoint 11) (expanded through new FRA checkpoint) (expanded through checkpoint 9)  
+**Last updated:** 2026-11-17 (expanded through checkpoint 15) (expanded through checkpoint 14) (expanded through checkpoint 13) (expanded through checkpoint 11) (expanded through new FRA checkpoint) (expanded through checkpoint 9)  
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -46,6 +46,9 @@
 
 
 | [collection_checkpoint_14_fra_consumer_finance_data_rules_2026.md](collection_checkpoint_14_fra_consumer_finance_data_rules_2026.md) | FRA Decisions 2863/2026 and 2864/2026 full texts, Circular 7/2026 visual transcription, branch-rule summary and further FRA decision inventory |
+
+
+| [collection_checkpoint_15_evidence_family_admin_justice.md](collection_checkpoint_15_evidence_family_admin_justice.md) | Evidence Law official catalogue record and family/administrative justice source leads with primary-source retrieval backlog |
 
 ## High-value primary-source portals
 
