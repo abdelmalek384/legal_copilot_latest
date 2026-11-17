@@ -88,3 +88,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 42. [Social/Health/Cultural Services Fund transition](labour_law_14_2025_statutory_delegation_gap_analysis.md) — maps legacy Decisions214/216/2003 repealed by Ministerial Decision16/2012; Decision310/2009 derivative; Decisions215/217/2003 still need full-text/currentness review; new PM Board/regulation under Law14 Art273 not located.
 43. [PM Decisions 3356/2026 and 2403/2026 implementation status](decision_3356_2026_training_qualification_fund.md) and [Fund governance notes](prime_minister_decisions_562_2025_2402_2403_2026.md) — 3356 repeals PM1543/2003 and requires separate ministerial exemption rules; 2403's 2 Nov Ministry update shows detailed operational regulations/benefit schedules were still being prepared.
+
+
+44. [Decision249 predecessor transition clarification](osh_decisions_249_250_251_252_expanded_2026-11-17.md) — Decision216/2016's full text only amends Article18 of repealed Decision134/2003; Decision232/2010 amends Articles18–19 of that base. Neither is named in Decision249 Art21; describe their effect as derivative/review pending, not as separately expressly repealed or freestanding current thresholds.
