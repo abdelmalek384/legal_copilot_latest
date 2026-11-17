@@ -1689,6 +1689,12 @@ class BrowserAcceptanceTests(unittest.TestCase):
         }""")
         self.assertLess(ltr_geometry["history"]["right"], ltr_geometry["answer"]["left"])
         self.assertGreater(ltr_geometry["evidence"]["left"], ltr_geometry["answer"]["right"])
+        ltr_history_width = ltr_geometry["history"]["right"] - ltr_geometry["history"]["left"]
+        ltr_evidence_width = ltr_geometry["evidence"]["right"] - ltr_geometry["evidence"]["left"]
+        self.assertGreaterEqual(ltr_history_width, 160)
+        self.assertLessEqual(ltr_history_width, 180)
+        self.assertGreaterEqual(ltr_evidence_width, 225)
+        self.assertLessEqual(ltr_evidence_width, 245)
 
         self.page.set_viewport_size({"width": 1024, "height": 900})
         self.page.wait_for_function(
