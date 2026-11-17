@@ -1504,6 +1504,12 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
 #main .calendar-filters{grid-template-columns:minmax(0,1.5fr) minmax(150px,.8fr) minmax(150px,.8fr)}
 #main .calendar-agenda-mode{position:static;max-height:none}
 @media(max-width:760px){#main .calendar-filters{grid-template-columns:minmax(0,1fr)}#main .calendar-view-switch{margin-inline-start:0}}
+
+#main .document-library-view-tabs{display:flex;align-items:center;gap:20px;padding:0 14px;border-bottom:1px solid #e8edf3;background:#fff}
+#main .document-library-view-tabs button{position:relative;border:0;border-radius:0;background:transparent;color:#7b899b;padding:13px 3px;font-size:11px}
+#main .document-library-view-tabs button.active{color:#1f5fae;font-weight:700}
+#main .document-library-view-tabs button.active:after{content:"";position:absolute;inset-inline:0;bottom:-1px;height:2px;background:#1f5fae}
+#main .document-library-view-tabs button:focus-visible{outline:2px solid #6ea6df;outline-offset:2px}
 </style>
 <link rel="stylesheet" href="/static/design-tokens.css">
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
@@ -2652,7 +2658,7 @@ async function documentsPage(){
   uploadSubmit.disabled=!matterSelect.value||!(uploadInput.files?.length);
  };
  uploadInput.onchange=()=>{const count=uploadInput.files?.length||0;uploadSubmit.disabled=!matterSelect.value||!count;uploadStatus.textContent=count?count+' '+uiText('ملفات محددة؛ اضغط رفع وفهرسة للمتابعة.','file(s) selected; choose Upload and index to continue.') :uiText('لم يتم اختيار ملفات.','No files selected.')};
- let matters=[],currentDocuments=[],matterOffset=0,matterTotal=0,globalMode=false,globalOffset=0,globalTotal=0;
+ let matters=[],currentDocuments=[],matterOffset=0,matterTotal=0,globalMode=false,globalOffset=0,globalTotal=0,documentView='all';
  const matterLimit=50,matterPageLabel=h('span',{className:'mut',role:'status','aria-live':'polite'});
  const previousMatter=btn(uiText('السابق','Previous'),async()=>{if(matterOffset>0){matterOffset=Math.max(0,matterOffset-matterLimit);await loadMatters()}},'g');
  const nextMatter=btn(uiText('التالي','Next'),async()=>{if(matterOffset+matterLimit<matterTotal){matterOffset+=matterLimit;await loadMatters()}},'g');
@@ -2700,7 +2706,8 @@ async function documentsPage(){
   const normalizeLibrarySearch=value=>String(value||'').normalize('NFKC').replace(/[ًٌٍَُِّْٰـ]/g,'').replace(/[أإآٱ]/g,'ا').replace(/ى/g,'ي').replace(/[٠-٩]/g,d=>String('٠١٢٣٤٥٦٧٨٩'.indexOf(d))).toLocaleLowerCase().trim();
   const needle=normalizeLibrarySearch(documentFilter.value);
   const classificationValue=documentClassificationFilter.value;
-  const filtered=docs.filter(doc=>(!needle||[doc.name,doc.content_type,doc.document_id,doc.saved_classification].some(value=>normalizeLibrarySearch(value).includes(needle)))&&(!documentTypeFilter.value||(documentTypeFilter.value==='pdf'?String(doc.content_type||'').toLowerCase().includes('pdf')||/\.pdf$/i.test(String(doc.name||'')):String(doc.content_type||'').toLowerCase().includes('wordprocessingml')||/\.docx$/i.test(String(doc.name||''))))&&(!documentStatusFilter.value||doc.extraction_status===documentStatusFilter.value)&&(!classificationValue||(classificationValue==='saved'?!!doc.saved_classification:classificationValue==='unsaved'?!doc.saved_classification:doc.saved_classification===classificationValue)));
+  const matchesDocumentView=doc=>documentView==='all'||(documentView==='needs_review'&&(Boolean(doc.ocr_used)||!['text_extracted','complete'].includes(doc.extraction_status)||!doc.saved_classification))||(documentView==='processing'&&!['text_extracted','complete'].includes(doc.extraction_status));
+  const filtered=docs.filter(doc=>matchesDocumentView(doc)&&(!needle||[doc.name,doc.content_type,doc.document_id,doc.saved_classification].some(value=>normalizeLibrarySearch(value).includes(needle)))&&(!documentTypeFilter.value||(documentTypeFilter.value==='pdf'?String(doc.content_type||'').toLowerCase().includes('pdf')||/\.pdf$/i.test(String(doc.name||'')):String(doc.content_type||'').toLowerCase().includes('wordprocessingml')||/\.docx$/i.test(String(doc.name||''))))&&(!documentStatusFilter.value||doc.extraction_status===documentStatusFilter.value)&&(!classificationValue||(classificationValue==='saved'?!!doc.saved_classification:classificationValue==='unsaved'?!doc.saved_classification:doc.saved_classification===classificationValue)));
   summary.textContent=filtered.length+' / '+docs.length+' '+uiText('مستندات مطابقة','matching documents');
   const noDocumentsYet=docs.length===0&&!globalMode&&Number(matterSelect.value)>0&&!uploadButton.disabled;
   documentRows.replaceChildren(...(filtered.length?filtered.map(doc=>h('article',{className:'document-library-item'},
@@ -2716,6 +2723,10 @@ async function documentsPage(){
  documentTypeFilter.onchange=()=>{if(globalMode){globalOffset=0;loadAllAccessibleDocs()}else renderDocuments(currentDocuments)};
  documentStatusFilter.onchange=()=>{if(globalMode){globalOffset=0;loadAllAccessibleDocs()}else renderDocuments(currentDocuments)};
  documentClassificationFilter.onchange=()=>{if(globalMode){globalOffset=0;loadAllAccessibleDocs()}else renderDocuments(currentDocuments)};
+ const documentTabs=h('div',{className:'document-library-view-tabs','role':'tablist','aria-label':uiText('تصفية مكتبة المستندات','Filter document library')});
+ const setDocumentView=value=>{documentView=value;for(const tab of documentTabs.querySelectorAll('button')){const active=tab.dataset.view===value;tab.classList.toggle('active',active);tab.setAttribute('aria-selected',String(active))}if(globalMode){globalOffset=0;loadAllAccessibleDocs()}else renderDocuments(currentDocuments)};
+ [['all',uiText('كل المستندات','All documents')],['needs_review',uiText('تحتاج مراجعة','Needs review')],['processing',uiText('قيد المعالجة','Processing')]].forEach(([value,label])=>documentTabs.append(h('button',{type:'button',role:'tab','aria-selected':String(value==='all'),className:value==='all'?'active':'',dataset:{view:value},textContent:label,onclick:()=>setDocumentView(value)})));
+ documentList.prepend(documentTabs);
  const loadAllAccessibleDocs=async()=>{
   globalMode=true;
   list.hidden=true;
@@ -2745,7 +2756,8 @@ async function documentsPage(){
    previousGlobal.disabled=globalOffset<=0;
    nextGlobal.disabled=globalOffset+items.length>=globalTotal;
    const categoryNames={unclassified:uiText('غير مصنف','Unclassified'),court_judgment:uiText('حكم قضائي','Court judgment'),contract:uiText('عقد','Contract'),pleading:uiText('مذكرة أو صحيفة دعوى','Pleading'),correspondence:uiText('مراسلات أو إخطار','Correspondence / notice'),evidence_or_receipt:uiText('دليل أو إيصال','Evidence / receipt')};
-   documentRows.replaceChildren(...(items.length?items.map(doc=>h('article',{className:'document-library-item'},
+   const visibleItems=items.filter(doc=>documentView==='all'||(documentView==='needs_review'&&(Boolean(doc.ocr_used)||!['text_extracted','complete'].includes(doc.extraction_status)||!doc.saved_classification))||(documentView==='processing'&&!['text_extracted','complete'].includes(doc.extraction_status)));
+   documentRows.replaceChildren(...(visibleItems.length?items.map(doc=>h('article',{className:'document-library-item'},
     h('div',{className:'document-library-file'},h('span',{className:'document-library-file-icon',textContent:String(doc.name||'').toLowerCase().endsWith('.pdf')?'PDF':String(doc.name||'').toLowerCase().endsWith('.docx')?'DOCX':'FILE'}),h('div',{},h('b',{textContent:doc.name||uiText('مستند دون اسم','Unnamed document')}),h('p',{className:'mut',textContent:(doc.case_title||uiText('ملف القضية','Matter'))+' · '+(doc.case_number||'#'+doc.case_id)+(doc.case_year?' / '+doc.case_year:'')}),h('p',{className:'mut',textContent:[doc.content_type,doc.byte_size!=null?(Number(doc.byte_size)/1048576).toFixed(2)+' MB':''].filter(Boolean).join(' · ')}),doc.original_available?btn(uiText('الأصل','Original'),()=>downloadOriginal(doc),'g'):null,btn(uiText('فتح ملف القضية','Open matter'),async()=>{const value=String(doc.case_id);if(!Array.from(matterSelect.options).some(option=>option.value===value))matterSelect.add(new Option((doc.case_title||uiText('ملف القضية','Matter'))+' (#'+value+')',value));matterSelect.value=value;window.DOCUMENT_MATTER_ID=Number(doc.case_id);await loadMatter()},'primary'))),
     h('div',{className:'document-library-cell document-uploaded-cell'},h('b',{textContent:doc.added?String(doc.added).slice(0,10):'—'}),h('small',{className:'mut',textContent:doc.added?String(doc.added).slice(11,16):uiText('غير متاح','Not available')})),
     h('div',{className:'document-library-cell'},pill(doc.saved_classification?(categoryNames[doc.saved_classification]||doc.saved_classification):uiText('غير مصنف','Unclassified'),doc.saved_classification?'done':'soon')),
@@ -2809,7 +2821,7 @@ async function documentsPage(){
  };
  query.onkeydown=e=>{if(e.key==='Enter'){matterOffset=0;loadMatters()}};
  matterSelect.onchange=loadMatter;
- const uploadHeaderAction=btn(uiText('رفع المستندات','Upload documents'),()=>{if(!matterSelect.value){summary.textContent=uiText('اختر ملف قضية أولاً لرفع المستندات إليه.','Choose a matter before uploading documents.');matterSelect.focus();return}uploadButton.click()},'primary');shell(uiText('ذكاء المستندات','Document intelligence'),h('p',{className:'workspace-subtitle',textContent:uiText('راجع وصنّف وحلّل المستندات داخل ملفات القضايا المصرح بها.','Review, classify and analyze documents in matters you are authorized to access.')}),h('div',{className:'workspace-actions document-page-actions'},uploadHeaderAction),h('div',{className:'filter-bar'},query,searchMatter,matterSelect,previousMatter,matterPageLabel,nextMatter,allAccessibleDocsButton),summary,list,documentList,stats,workspace);
+ const uploadHeaderAction=btn(uiText('رفع المستندات','Upload documents'),()=>{if(!matterSelect.value){summary.textContent=uiText('اختر ملف قضية أولاً لرفع المستندات إليه.','Choose a matter before uploading documents.');matterSelect.focus();return}uploadButton.click()},'primary');shell(uiText('ذكاء المستندات','Document intelligence'),h('p',{className:'workspace-subtitle',textContent:uiText('راجع وصنّف وحلّل المستندات داخل ملفات القضايا المصرح بها.','Review, classify and extract key facts from case documents.')}),h('div',{className:'workspace-actions document-page-actions'},uploadHeaderAction),h('div',{className:'filter-bar'},query,searchMatter,matterSelect,previousMatter,matterPageLabel,nextMatter,allAccessibleDocsButton),summary,list,documentList,stats,workspace);
  await loadMatters();
  if(!matterSelect.value)await loadAllAccessibleDocs();
 }
