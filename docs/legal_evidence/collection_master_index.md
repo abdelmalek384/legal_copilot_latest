@@ -289,6 +289,8 @@
 
 | [collection_checkpoint_60_pharmacy_medical_transplant_laws.md](collection_checkpoint_60_pharmacy_medical_transplant_laws.md) | Pharmacy Practice Law 127/1955 and 2025 amendment, Organ Transplantation Law 5/2010 and Medical Practice Law 415/1954 |
 
+| [collection_checkpoint_71_import_export_law_2026.md](collection_checkpoint_71_import_export_law_2026.md) | Import/Export Law 118/1975 and Regulation 770/2005; Decisions 228, 273 and 395/2025; 2026 Article 41 bis and current import/export notices |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
