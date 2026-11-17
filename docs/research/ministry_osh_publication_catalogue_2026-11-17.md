@@ -6,6 +6,8 @@ Source class: official Ministry publication index and Ministry-hosted technical/
 
 ## 1. Direct Ministry-hosted PDFs located
 
+Fifteen unique direct Ministry-hosted PDF URLs are now recorded below. The pressure/explosion row later in the table is a cross-reference to the same canonical file, not a sixteenth unique PDF.
+
 | Publication | Direct Ministry URL | Collection status / use |
 |---|---|---|
 | Climate and workplace heat responsibility | https://www.labour.gov.eg/media/yggf04x5/نشرة-المناخ-مسئوليتى.pdf | Guidance; cross-references Law 12/2003 Art.208 and Decision 211/2003 |
