@@ -404,3 +404,8 @@ The NTRA English Law 10/2003 translation carries an explicit restriction against
 ## 17. Focused asylum-law instrument note
 
 A dedicated note has been added at `egypt_asylum_law_164_2024_pm_decision_1568_2026.md`. It records the Official Gazette issue 21 supplement (B), 21 May 2026, DSpace metadata, the three-month commencement clause, selected articles on legal representation, family applications, screening/case management, decision periods, temporary measures, registration cards and cessation grounds. It preserves the distinction between the indexed official publisher text, repository metadata and the still-pending full-file hash/article-by-article scan comparison. The source note is not lawyer-reviewed.
+
+
+## 18. Supreme Constitutional Court public docket index tranche
+
+A 19-row public docket/disposition register has been added at `data/research/egypt_scc_public_case_index_harvest_2026-11-17.csv`. It records visible SCC session-index entries from 3 January, 9 September and 7 November 2026, including constitutional cases, conflict-of-jurisdiction matters and execution disputes. The register preserves only what the public court page exposes: docket number, session/publication date and disposition. Most entries do not identify challenged provisions or reasoning. The January 2026 featured anti-terrorism summary has no docket number in the indexed snippet and is deliberately kept separate from the docket list. None of these records is treated as a full judgment or legal ratio. Full judgments, exact legal issues, Gazette publication and lawyer review remain outstanding.
