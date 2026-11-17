@@ -30,6 +30,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 24. [Prime Minister Decisions 562/2025, 2402/2026 and 2403/2026](prime_minister_decisions_562_2025_2402_2403_2026.md) — Social Dialogue Council (including repeal of the 2025 predecessor) and the 16-article Unorganized Workers Emergency Aid/Social/Health Fund.
 25. [Prime Minister Decision 3356/2026 — Training and Qualification Fund](decision_3356_2026_training_qualification_fund.md) — 18-article fund reorganization, employer contribution formula, quarterly payment, Board governance, audit and missing exemption rules.
 26. [Ministry Decision 269/2025 — central labour-market databases](decision_269_2025_labour_market_central_databases.md) — mandatory selected-establishment data form (30-day response), central database and a procedural manual; the form and manual remain missing.
+27. [Statutory delegation gap analysis](labour_law_14_2025_statutory_delegation_gap_analysis.md) and [42-row delegation matrix](../../data/research/labour_law_14_2025_delegation_matrix_2026-11-17.csv) — article-by-article mapping of explicit Law 14/2025 delegations, instruments found and missing rules.
 
 ## Structured inventory
 
