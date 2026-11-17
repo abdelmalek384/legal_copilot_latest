@@ -302,6 +302,8 @@
 
 | [collection_checkpoint_63_financial_leasing_consumer_finance.md](collection_checkpoint_63_financial_leasing_consumer_finance.md) | Financial Leasing and Factoring Law 176/2018, Consumer Finance Law 18/2020 and FRA implementation-decision map |
 
+| [collection_checkpoint_73_state_private_property_2026.md](collection_checkpoint_73_state_private_property_2026.md) | State Private Property Law 168/2025; PM Decision 200/2026 Executive Regulation; Presidential Decision 480/2026 extends application period by six months |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
