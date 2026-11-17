@@ -338,7 +338,7 @@ body{background:#f3f6fa;color:var(--figma-ink);font-family:Inter,"Noto Sans Arab
 .settings-checkbox-row{display:flex;align-items:center;justify-content:flex-start;flex-wrap:nowrap;gap:10px;min-width:0}
 .settings-checkbox-row>input[type="checkbox"]{flex:0 0 18px;width:18px;height:18px;min-height:18px;margin:0}
 .settings-checkbox-row>span{display:block;flex:1;min-width:0}
-.document-review-split{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;align-items:start}.document-review-split.is-previewing{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.document-original-preview{min-width:0;margin:12px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:#F8FAFC}.document-original-preview iframe{display:block;width:100%;max-width:100%}.document-review-group{min-width:0}.document-review-group .row{flex-wrap:wrap}@media(max-width:900px){.document-review-split.is-previewing{grid-template-columns:minmax(0,1fr)}}
+.document-review-split{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;align-items:start}.document-review-split.is-previewing{grid-template-columns:minmax(0,1fr) minmax(0,1fr);direction:ltr}.document-original-preview{min-width:0;margin:12px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:#F8FAFC}.document-original-preview iframe{display:block;width:100%;max-width:100%}.document-review-group{min-width:0}.document-review-group .row{flex-wrap:wrap}@media(max-width:900px){.document-review-split.is-previewing{grid-template-columns:minmax(0,1fr)}}
 </style>
 <style>
 /* Legal Copilot — premium workspace polish
@@ -3869,7 +3869,7 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
       previewOriginal.disabled=true;
       originalPreview.replaceChildren(h('p',{className:'mut',role:'status','aria-live':'polite',textContent:uiText('جارٍ تحميل النسخة الأصلية بأمان...','Loading the original securely...')}));
       originalPreview.hidden=false;
-      if(originalPreview.parentNode)originalPreview.parentNode.classList.add('is-previewing');
+      if(originalPreview.parentNode)originalPreview.parentNode.classList.add('is-previewing');originalPreview.style.direction=document.documentElement.dir||'ltr';reviewPanel.style.direction=document.documentElement.dir||'ltr';
       try{
         const response=await fetch('/cases/'+id+'/docs/'+d.document_id+'/original',{credentials:'same-origin'});
         if(!response.ok){const problem=await response.json().catch(()=>({}));throw new Error(err(problem))}
