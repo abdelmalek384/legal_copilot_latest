@@ -123,8 +123,8 @@ Policy:
 A defensible percentage needs a denominator. The first denominator is now **33 legal domains**, not an estimate of all individual laws/cases:
 - 33/33 domains have been named in the national inventory (scope definition only; this is not 100% coverage).
 - 27 source institutions/platforms are registered, including the Supreme Constitutional Court, State Council, Consumer Protection Agency, NOSI, Administrative Control Authority, National Elections Authority, Customs Authority and Economic Courts.
-- 66 anchor instruments have acquisition records with their source/access status.
-- 20 source PDFs have been opened across the tranches (not all are bare Gazette originals: Commercial Code is a government-published reprint and Customs Law is an authority-annotated compilation); Law160/2026 official HTML text was also opened. Several more have only official listing metadata.
+- 75 anchor instruments have acquisition records with their source/access status.
+- 28 source PDFs have been opened across the tranches (not all are bare Gazette originals: Commercial Code is a government-published reprint and Customs Law is an authority-annotated compilation); Law160/2026 official HTML text was also opened. Several more have only official listing metadata.
 - No nationwide article-by-article consolidated statute corpus has been produced. A public judicial collection register now includes 25 leads (one Constitutional Court press summary, one recent bulletin and 23 State Council principle-series targets); the underlying judgments/volumes are mostly not yet acquired.
 - No nationwide court judgment corpus has been acquired.
 - No lawyer-reviewed national corpus exists.
@@ -163,13 +163,13 @@ Additional statutes indexed include Laws 46/1972, 47/1972, 54/1964 as amended by
 |---|---:|---|
 | Legal-domain scope mapped | 33/33 (100%) | Scope definition only; not full legal coverage |
 | Source institutions/platforms registered | 27 | Government, courts, regulators and discovery sources |
-| Seed anchor instruments inventoried | 66 | Starter set, not the total universe of Egyptian laws and decisions |
-| Source PDFs opened | 20/66 (30.3% of seed list) | Includes government reprints and annotated compilations; not all are bare Gazette originals |
+| Seed anchor instruments inventoried | 75 | Starter set, not the total universe of Egyptian laws and decisions |
+| Source PDFs opened | 28/75 (37.3% of seed list) | Includes government reprints, official agency copies and some unreadable PDFs; not all are bare Gazette originals |
 | Nationwide consolidated statute domains | 0/33 | No domain yet has all base laws, amendments, executive regulations and currentness fully consolidated |
 | Full judicial judgments acquired in this national tranche | 0 | One Constitutional Court press-summary lead and a bulletin; 23 State Council series targets are bibliographic leads |
 | Lawyer-reviewed national instruments | 0 | Human legal review remains mandatory |
 
-**Overall nationwide legal knowledge collection estimate: 4%.** This is a cautious project-management estimate, not a count of all Egyptian laws or judicial decisions. It reflects the still-small share of actual full-text acquisition, amendment consolidation, currentness verification, judicial corpus collection and lawyer review. It must rise only when the underlying documents and legal relationships are acquired and checked—not when source URLs are merely discovered.
+**Overall nationwide legal knowledge collection estimate: 5%.** This is a cautious project-management estimate, not a count of all Egyptian laws or judicial decisions. It reflects the still-small share of actual full-text acquisition, amendment consolidation, currentness verification, judicial corpus collection and lawyer review. It must rise only when the underlying documents and legal relationships are acquired and checked—not when source URLs are merely discovered.
 
 
 
@@ -199,3 +199,17 @@ See [Commercial, Customs and Social Insurance tranche](egypt_commercial_customs_
 - Insolvency, restructuring and bankruptcy are now a dedicated 33rd domain.
 
 See [Companies and Insolvency acquisition](egypt_companies_insolvency_economic_courts_acquisition_2026-11-17.md).
+
+
+## Investment and public-finance tranche
+
+- Law72/2017 Investment Law: official 924-line ETA PDF opened; Article8 expressly repeals Law8/1997; it establishes four investment regimes and requires PM executive regulation.
+- Law8/1997: official PDF acquired as historical/superseded only.
+- PM Decision2310/2017 Investment Executive Regulation: official 89-page PDF located; non-circulation watermark and unreadable text layer mean article extraction is still pending.
+- Mortgage Finance Law148/2001 and Finance Leasing Law95/1995: official ETA-hosted PDFs opened (16 and 10 pages) but no readable text layer.
+- Commercial Registry Law34/1976: official six-page PDF with 173 extracted lines; Article4 records Law98/1996 amendment.
+- Law148/2026 amending Law147/1984: official Gazette PDF sets EGP100 departure fee (with stated exemptions) and EGP35 per ton cement levy, effective 29 July 2026.
+- Law154/2026: official Gazette PDF imposes 5% distributable net profit allocation for wholly state/public-owned companies and 4% for state/public ownership above 50%, capped at state share; transferred within four months, effective 29 July 2026.
+- Law12/2003 is recorded as a historical predecessor expressly repealed by Labour Law14/2025 Article12.
+
+See [Investment, Commercial Registry and Public Finance acquisition](egypt_investment_commercial_registry_public_finance_acquisition_2026-11-17.md).
