@@ -81,3 +81,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 39. [Decision 250 Table 23/24 secondary-source inventory](../../data/candidates/labour_law_14_2025/decision_250_table24_secondary_source_inventory_2026-10-31.md) — additional search-indexed excerpts for Table23 threshold quantities and Table24 chemical TLV rows; Article52 control obligations; corrected Table24 page span pp.249–360. All remain secondary-only, 0/781 original Gazette matches and 0 counsel-approved.
 
 40. [Law 14/2025 Articles 260–262 visual review update](../legal_evidence/law_14_2025_lawyer_review_packet.md) — user-supplied issue18 PDF page99 visually reviewed for Art260 semiannual stats/24-hour notice/e-platform duties, Art261 OSH training/licensing, Art262 OSH consultant licence and EGP50,000 fee cap; assistant review only, lawyer sign-off pending.
+
+
+38. [Law 14/2025 supplied-corpus / Gazette issue 18 alignment audit](law14_2025_user_archive_gazette_alignment_audit_2026-11-17.md) — 311-row structural coverage and Arabic fuzzy alignment against the user's supplied 112-page Gazette copy; numeric values, authenticity certification, rights and lawyer sign-off remain outstanding.
