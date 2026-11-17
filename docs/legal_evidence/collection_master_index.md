@@ -105,6 +105,8 @@
 
 | [collection_checkpoint_24_tax_laws_150_152_2026.md](collection_checkpoint_24_tax_laws_150_152_2026.md) | Full official Gazette text inspections of Laws 150/2026 (tax recordkeeping and temporary tax card) and 152/2026 (tax dispute settlement extension) |
 
+| [collection_checkpoint_33_health_pharmacy_professions_2026.md](collection_checkpoint_33_health_pharmacy_professions_2026.md) | Pharmacy Law 127/1955 and amendment 90/2025; private medical facilities; blood/plasma; mental health; health professions and EDA decisions |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
