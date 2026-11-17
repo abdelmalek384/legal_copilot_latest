@@ -153,3 +153,13 @@ Published in the Official Gazette and effective the day after publication. Signe
 - Confirm the minimum insured wage in force for each contribution year and how it is updated.
 - Confirm whether Board/Minister decisions or circulars have amended implementation since 2 November 2026.
 - No lawyer review, rights clearance or production database import has occurred.
+
+
+## Additional cross-source check — 17 November 2026
+
+- **Official Gazette catalogue evidence:** the Amiri Press Official Gazette 2026 collection lists issue 44 bis (A), dated 1 November 2026, and identifies PM Decision3356/2026 in the issue abstract: https://dspace.id.com.eg/collections/bb4a4122-9215-48e2-a8a5-b622ffa5eeb6. This is official issue metadata, not a downloaded/hashed PDF.
+- **Secondary full-text confirmation:** Law Hub's public text reproduces all 18 articles and gives the issue number, publication date and candidate commencement date: https://lawhub.info/eg/?p=20271. The page confirms Article17 expressly repeals PM Decision1543/2003.
+- **Law 14 cross-check:** Article21 of Law14 itself contains the same 0.25% of minimum insured wage, 30+ worker threshold, EGP10–30 per-worker floor/cap and full-exemption delegation. The 3356 Article2 restates the contribution and Article3 sets quarterly instalments while leaving full-exemption criteria to a separate Ministerial decision.
+- **Search result:** no separate Ministerial full-exemption decision was located in targeted searches of the Ministry domain, DSpace, or public web results through 17 November 2026. This is a search-limited negative result, not proof that no decision exists.
+- **Transition:** Decision3356 Article17 repeals PM Decision1543/2003. Keep 1543 historical/superseded for this Fund Board subject; do not infer that the repeal affects unrelated Fund rules or the distinct Article273–274 Social/Health/Cultural Services Fund.
+- **Operational cautions:** do not calculate an establishment's liability without the applicable minimum insured wage, employee-count method, quarterly due-date implementation and any valid exemption decision. No contribution has been encoded into product logic.
