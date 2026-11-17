@@ -5120,11 +5120,13 @@
       "notes": "Official Gazette issue 31 مكرر (و), 7 August 2019; official Petroleum Ministry PDF available. Build article-level amendment map. Candidate record only: preserve official source as locator; exact Gazette metadata, complete text, amendments/currentness, and reuse permission must be checked; not lawyer-reviewed.",
       "source_urls": [
         {
-          "url": "https://emra.gov.eg/ar/mineral-resources-law",
-          "source_role": "official authority legislation index or Gazette-hosted source",
-          "status": "located_2026-11-17"
+          "url": "https://www.petroleum.gov.eg/en/mineral-resources/lstmineralresourceslawandregulations/Law%20No.%20145%20of%202019.pdf",
+          "source_role": "official full-text PDF",
+          "status": "pdf_fetched_and_text_parsed_2026-11-17"
         }
-      ]
+      ],
+      "text_acquisition_status": "text_layer_accessible_partial_extraction",
+      "text_verification_note": "Official PDF opened and its embedded text layer was parsed through the web document reader. This catalogue status does not mean a complete local text file has been deposited; full extraction, article segmentation, SHA-256 and lawyer review remain outstanding."
     },
     {
       "document_id": "EG-MINERAL-RESOURCES-EXEC-REGS-108-2020",
@@ -5138,11 +5140,13 @@
       "notes": "EMRA index lists executive regulation; verify amendments approved in 2026 and exact Gazette issue/pages. Candidate record only: preserve official source as locator; exact Gazette metadata, complete text, amendments/currentness, and reuse permission must be checked; not lawyer-reviewed.",
       "source_urls": [
         {
-          "url": "https://emra.gov.eg/ar/mineral-resources-law",
-          "source_role": "official authority legislation index or Gazette-hosted source",
-          "status": "located_2026-11-17"
+          "url": "https://www.petroleum.gov.eg/en/mineral-resources/lstmineralresourceslawandregulations/Prime%20Minister%E2%80%99s%20Decree%20NO.%20108%20of%202020.pdf",
+          "source_role": "official full-text PDF",
+          "status": "pdf_fetched_and_text_parsed_2026-11-17"
         }
-      ]
+      ],
+      "text_acquisition_status": "text_layer_accessible_partial_extraction",
+      "text_verification_note": "Official PDF opened and its embedded text layer was parsed through the web document reader. This catalogue status does not mean a complete local text file has been deposited; full extraction, article segmentation, SHA-256 and lawyer review remain outstanding."
     },
     {
       "document_id": "EG-MINERAL-RESOURCES-LAW-87-2025",
@@ -5192,11 +5196,13 @@
       "notes": "FRA hosts updated consolidated copy (2022) and original Official Gazette issue 11 مكرر (ك), 17 March 2020; map amendment Law 158/2022. Candidate record only: preserve official source as locator; exact Gazette metadata, complete text, amendments/currentness, and reuse permission must be checked; not lawyer-reviewed.",
       "source_urls": [
         {
-          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
-          "source_role": "official authority legislation index or Gazette-hosted source",
-          "status": "located_2026-11-17"
+          "url": "https://fra.gov.eg/wp-content/uploads/2020/12/%D9%82%D8%A7%D9%86%D9%88%D9%86-%D9%86%D8%B4%D8%A7%D8%B7-%D8%A7%D9%84%D8%AA%D9%85%D9%88%D9%8A%D9%84-%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%87%D9%84%D8%A7%D9%83%D9%8A-3.pdf",
+          "source_role": "official full-text PDF",
+          "status": "pdf_fetched_and_text_parsed_2026-11-17"
         }
-      ]
+      ],
+      "text_acquisition_status": "text_layer_accessible_partial_extraction",
+      "text_verification_note": "Official PDF opened and its embedded text layer was parsed through the web document reader. This catalogue status does not mean a complete local text file has been deposited; full extraction, article segmentation, SHA-256 and lawyer review remain outstanding."
     },
     {
       "document_id": "EG-CONSUMER-FINANCE-AMEND-158-2022",
