@@ -155,3 +155,18 @@ The acquisition register has been expanded to 40 anchor instruments. Newly locat
 - GAFI and ITIDA as official discovery portals for investment/company and intellectual-property/e-signature legislation.
 
 Additional statutes indexed include Laws 46/1972, 47/1972, 54/1964 as amended by 207/2017, 75/1963, 80/2002, 81/2016, 109/1971, 117/1958, 182/2018, 3/2005, 11/1968 and 47/1973. These are source-index leads, not full text acquisitions.
+
+
+## 11. Progress dashboard — explicit denominator and no false 100%
+
+| Measure | Result | Meaning |
+|---|---:|---|
+| Legal-domain scope mapped | 30/30 (100%) | The national scope has been enumerated; this is planning coverage only |
+| Source institutions/platforms registered | 23 | Includes government, courts, regulators and public discovery sources |
+| Seed anchor instruments inventoried | 40 | A starter list, not the total universe of Egyptian legislation |
+| Official PDF texts opened in this tranche | 8/40 (20% of seed list) | Civil Code, four 2026 tax laws, Capital Market Law, Criminal Procedure Law174/2025 and Consumer Protection Law181/2018; Law160/2026 official HTML text also opened |
+| Nationwide consolidated statute domains | 0/30 | No domain is yet complete end-to-end with all amendments and currentness |
+| Full judicial judgments acquired in this national tranche | 0 | One SCC press-summary lead and a bulletin were registered; State Council series are bibliographic targets |
+| Lawyer-reviewed national instruments | 0 | Human legal review remains mandatory |
+
+**Overall nationwide legal knowledge collection estimate: 3%.** This is a cautious project-management estimate, not a count of all Egyptian laws or judicial decisions. It reflects that the domain map and source discovery are ahead of actual full-text acquisition, consolidation, judicial corpus collection and lawyer review. It should rise only when primary text and amendment chains are actually acquired—not when a source URL is merely found.
