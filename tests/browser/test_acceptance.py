@@ -1637,11 +1637,14 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 return {left:r.left,right:r.right,top:r.top,bottom:r.bottom};
             };
             return {
+                nav: rect("#side"),
                 history: rect(".research-list"),
                 answer: rect(".research-main"),
                 evidence: rect(".research-evidence-panel")
             };
         }""")
+        nav_width = desktop_geometry["nav"]["right"] - desktop_geometry["nav"]["left"]
+        self.assertEqual(nav_width, 206, "app navigation rail must match the reference width")
         self.assertLess(desktop_geometry["history"]["right"], desktop_geometry["answer"]["left"])
         self.assertGreater(desktop_geometry["evidence"]["left"], desktop_geometry["answer"]["right"])
         history_width = desktop_geometry["history"]["right"] - desktop_geometry["history"]["left"]
