@@ -1618,7 +1618,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         research_nav.click()
         self.page.locator(".research-layout").wait_for(state="visible", timeout=10000)
 
-        self.assertTrue(self.page.locator(".workspace-topbar").is_visible())
+        self.assertFalse(self.page.locator(".workspace-topbar").is_visible(), "global search must be removed from the focused Legal Research workspace")
         self.assertTrue(self.page.get_by_text("ابحث في القانون مع مساعدة ذكية مدعومة بالمصادر", exact=True).is_visible())
         self.assertTrue(self.page.get_by_role("heading", name="ما الذي تحتاج إلى إثباته؟").is_visible())
 
@@ -1626,6 +1626,20 @@ class BrowserAcceptanceTests(unittest.TestCase):
             "(el) => getComputedStyle(el).gridTemplateColumns.split(' ').length"
         )
         self.assertEqual(grid_columns, 3, "desktop research view must retain three distinct columns")
+        desktop_geometry = self.page.evaluate("""() => {
+            const rect = (selector) => {
+                const r = document.querySelector(selector).getBoundingClientRect();
+                return {left:r.left,right:r.right,top:r.top,bottom:r.bottom};
+            };
+            return {
+                history: rect(".research-list"),
+                answer: rect(".research-main"),
+                evidence: rect(".research-evidence-panel")
+            };
+        }""")
+        self.assertLess(desktop_geometry["history"]["right"], desktop_geometry["answer"]["left"])
+        self.assertGreater(desktop_geometry["evidence"]["left"], desktop_geometry["answer"]["right"])
+
 
         all_sources = self.page.get_by_role("button", name="كل المصادر", exact=True)
         primary_only = self.page.get_by_role("button", name="المصادر الأولية", exact=True)
@@ -1648,6 +1662,37 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertTrue(self.page.get_by_text("Research UK law with source-backed AI assistance.", exact=True).is_visible())
         self.assertTrue(self.page.get_by_role("heading", name="What do you need to establish?").is_visible())
         self.assertEqual(self.page.locator("html").get_attribute("dir"), "ltr")
+        ltr_geometry = self.page.evaluate("""() => {
+            const rect = (selector) => {
+                const r = document.querySelector(selector).getBoundingClientRect();
+                return {left:r.left,right:r.right};
+            };
+            return {
+                history: rect(".research-list"),
+                answer: rect(".research-main"),
+                evidence: rect(".research-evidence-panel")
+            };
+        }""")
+        self.assertLess(ltr_geometry["history"]["right"], ltr_geometry["answer"]["left"])
+        self.assertGreater(ltr_geometry["evidence"]["left"], ltr_geometry["answer"]["right"])
+
+        self.page.set_viewport_size({"width": 1024, "height": 900})
+        self.page.wait_for_function(
+            "() => document.documentElement.scrollWidth <= window.innerWidth",
+            timeout=8000,
+        )
+        tablet_geometry = self.page.evaluate("""() => {
+            const rect = (selector) => {
+                const r = document.querySelector(selector).getBoundingClientRect();
+                return {left:r.left,right:r.right,top:r.top,bottom:r.bottom};
+            };
+            return {
+                history: rect(".research-list"),
+                evidence: rect(".research-evidence-panel")
+            };
+        }""")
+        self.assertLess(tablet_geometry["history"]["right"], tablet_geometry["evidence"]["left"])
+
 
         self.page.wait_for_function(
             "() => document.documentElement.scrollWidth <= window.innerWidth",
