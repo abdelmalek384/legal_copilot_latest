@@ -3048,8 +3048,10 @@ async function law(){
        panel.setAttribute('aria-labelledby',button.id);tabs.push([name,button,panel]);return button;
       };
       const sourceCount=Array.isArray(m.sources)?m.sources.length:0;
+      const answerScope=(m.result&&m.result.scope)||m.scope||scopeSelect.value;
+      const authorityTabLabel=answerScope==='firm_documents'?(LANG==='ar'?'مصادر ملف القضية':'Matter sources'):(LANG==='ar'?'المراجع الرئيسية':'Key authorities');
       answerTabBar=h('div',{className:'research-answer-tabs',role:'tablist','aria-label':LANG==='ar'?'أقسام الإجابة':'Answer sections'});
-      answerTabBar.append(makeAnswerTab('analysis',LANG==='ar'?'التحليل':'Analysis',answerAnalysisPanel),makeAnswerTab('authorities',(LANG==='ar'?'المراجع الرئيسية':'Key authorities')+(sourceCount?' '+sourceCount:''),answerAuthoritiesPanel),makeAnswerTab('notes',LANG==='ar'?'ملاحظات البحث':'Research notes',answerNotesPanel));
+      answerTabBar.append(makeAnswerTab('analysis',LANG==='ar'?'التحليل':'Analysis',answerAnalysisPanel),makeAnswerTab('authorities',authorityTabLabel+(sourceCount?' '+sourceCount:''),answerAuthoritiesPanel),makeAnswerTab('notes',LANG==='ar'?'ملاحظات البحث':'Research notes',answerNotesPanel));
       answerTabBar.addEventListener('keydown',event=>{
        if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
        event.preventDefault();const current=tabs.findIndex(([,button])=>button===event.target);if(current<0)return;
