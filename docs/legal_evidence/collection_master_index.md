@@ -139,6 +139,8 @@
 
 | [collection_checkpoint_30_unified_tax_procedure_law_206_2020.md](collection_checkpoint_30_unified_tax_procedure_law_206_2020.md) | 93-article Unified Tax Procedures Law 206/2020 article map and amendments 211/2020, 176/2022, 7/2025 and 150/2026 |
 
+| [collection_checkpoint_41_evidence_law_visual_inspection.md](collection_checkpoint_41_evidence_law_visual_inspection.md) | Expanded Evidence Law 25/1968 scan inspection to 11/12 Gazette PDF pages; OCR/article validation and amendments remain outstanding |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
