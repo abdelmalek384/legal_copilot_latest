@@ -3271,7 +3271,7 @@ async function law(){
    finally{sending=false;send.disabled=false;composer.disabled=false;composer.focus()}
  },'primary');
  composer.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send.click()}});
- const composerArea=h('section',{className:'research-composer card'},h('div',{className:'research-composer-heading'},h('h2',{textContent:LANG==='ar'?'ما الذي تريد البحث عنه؟':'What would you like to research?'}),h('span',{className:'research-assistance-label',textContent:LANG==='ar'?'مساعدة بحثية وليست استشارة قانونية':'Research assistance, not legal advice'})),researchCorpusStatus,researchTrustStatus,researchEmptyState,composer,paperclipButton,send,uploadPanel,h('div',{className:'mut',textContent:LANG==='ar'?'Enter للإرسال · Shift+Enter لسطر جديد':'Enter to send · Shift+Enter for a new line'}),h('div',{className:'research-composer-controls'},scopeTabs,scopeSelect,matterLabel,openDocumentWorkspace),researchExamples);
+ const composerArea=h('section',{className:'research-composer card'},h('div',{className:'research-composer-heading'},h('h2',{textContent:LANG==='ar'?'ما الذي تحتاج إلى إثباته؟':'What do you need to establish?'}),h('span',{className:'research-assistance-label',textContent:LANG==='ar'?'اطرح سؤالاً قانونياً دقيقاً للحصول على أقوى تغطية للمصادر':'Ask one precise legal question for the strongest source coverage'})),researchCorpusStatus,researchTrustStatus,researchEmptyState,composer,paperclipButton,send,uploadPanel,h('div',{className:'mut',textContent:LANG==='ar'?'Enter للإرسال · Shift+Enter لسطر جديد':'Enter to send · Shift+Enter for a new line'}),h('div',{className:'research-composer-controls'},scopeTabs,scopeSelect,matterLabel,openDocumentWorkspace),researchExamples);
  const loadResearchCorpusStatus=async()=>{
   if(!ME.can_review_legal){researchCorpusStatus.textContent=LANG==='ar'?'عدد المستندات المتحقق منها متاح للمراجعين القانونيين فقط.':'Verified-document count is available to legal reviewers only.';return}
   try{
@@ -4170,4 +4170,10 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 #main .research-followup input{flex:1;min-width:0;height:34px;padding:6px 4px;border:0;outline:0;background:transparent;font-size:11px}
 #main .research-followup button{flex:0 0 32px;width:32px;height:32px;min-height:32px;padding:0;border:0;border-radius:6px;background:#1d5eaa;color:#fff;font-size:17px}
 @media(max-width:600px){#main .research-message{max-width:100%}#main .research-followup{position:sticky;bottom:8px;z-index:3;box-shadow:0 3px 12px rgba(20,40,70,.08)}}
+</style><style>
+/* Reference copy hierarchy for the question-first research composer. */
+#main .research-composer-heading{align-items:flex-start;flex-direction:column;gap:3px}
+#main .research-composer-heading h2{font-size:14px;line-height:1.45;font-weight:700;color:#263f5c}
+#main .research-assistance-label{font-size:10px;line-height:1.5;font-weight:450;color:#8594a7}
+#main .research-composer textarea{font-family:Inter,"Noto Sans Arabic","Segoe UI",sans-serif}
 </style></html>
