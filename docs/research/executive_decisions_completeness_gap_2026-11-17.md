@@ -23,7 +23,7 @@ On 14 November 2026, the Ministry said that it had completed issuing the executi
 The structured register CSV now contains **57 data rows: 50 formal instruments plus 7 circular/implementation instruments**:
 - 35 distinct Ministry of Labour ministerial decision numbers (2025–2026);
 - 3 Ministry of Justice implementation decisions (4621, 4693 and 5614/2025);
-- 13 Prime Minister decisions (562/2025; remote-work series 982, 1305, 1572, 2033, 2377 and 2590/2026; and 2402/2026, 2403/2026, 2652/2026, 3165/2026 and 3356/2026);
+- 12 Prime Minister decisions (562/2025; remote-work series 982, 1305, 1572, 2033, 2377 and 2590/2026; and 2402/2026, 2403/2026, 2652/2026, 3165/2026 and 3356/2026);
 - 7 circular/implementation instruments (Circulars 3, 15, 16 and 19/2025; Circulars 9 and 22/2026; and the unnumbered April 2026 remote-work monitoring circular), included as rows in the same CSV.
 
 This is a **discovery inventory**, not a claim that all 87 originally announced executive decisions have been identified. The 35 Ministry of Labour decision numbers are only about half of the 68 Ministry decisions cited in the official July/August 2025 announcements, if the figures are directly comparable. The other issuers' decisions are also not fully enumerated; the twelve Prime Minister instruments identified here include later remote-work extensions and later wage/recruitment decisions, which may not all belong to the original 87-count package.
