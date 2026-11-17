@@ -25,8 +25,9 @@ The following list combines (i) a secondary editorial index updated 2026-09-28, 
 
 | Decision | Subject / discovery note | Evidence found | Current collection status |
 |---:|---|---|---|
-| 187/2025 | Approval and procedures for employee resignations | Ministry announcement and SIS-hosted PDF excerpt; 9 articles reported | Ministry announcement + excerpt located; complete Gazette issue/citation still required |
-| 214/2025 | Basic particulars and copies of employment contracts | IDSC catalogue record with Arabic and English PDFs | Metadata and file listing located; item rights need review |
+| 194/2025 | Temporary regularization of foreign workers in small establishments | Signed six-article decision images + EastLaws metadata + related Ministry Instruction 20/2025 image | Time-limited three-month initiative text captured from secondary-hosted signed pages; Gazette issue/page and official copy still missing |
+| 187/2025 | Approval and procedures for employee resignations | Official Ministry announcement + SIS excerpt + all nine articles reproduced by Youm7 | Full nine-article secondary article map captured; signed Gazette original/issue/page and hash still required |
+| 214/2025 | Employment-contract definition, writing, deposit, renewal/termination notices and mandatory data | Official DSpace item and issue 249 metadata + full nine-article Riwaq transcription | Full article map captured; verify Law 4/2025 vs Law 14/2025 preamble discrepancy against Gazette scan; rights review pending |
 | 259/2025 | Rules, procedures and deadlines for payment of workers' entitlements | IDSC catalogue record; Gazette 291 bundle | Metadata and file listing located; full text/rights review required |
 | 260/2025 | Competent administrative authority under Law 14/2025 | IDSC catalogue record and independent full-text secondary copy; Gazette 291 | Metadata and secondary text located; Gazette page and rights review required |
 | 264/2025 | Conduct and regulation of training operations | Gazette 291 bundle and IDSC record | Metadata/file listing located |
