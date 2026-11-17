@@ -4148,6 +4148,256 @@
           "status": "listed_2026-11-17"
         }
       ]
+    },
+    {
+      "document_id": "EG-MOF-INCOME-TAX-AMEND-151-2026",
+      "official_title": "القانون رقم 151 لسنة 2026 بتعديل بعض أحكام قانون الضريبة على الدخل الصادر بالقانون رقم 91 لسنة 2005",
+      "document_type": "law_amendment",
+      "law_number": "151",
+      "law_year": 2026,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Ministry of Finance index labels this current; capture Gazette text and map all changes to Income Tax Law 91/2005. Candidate metadata only; full primary text, publication issue/pages, commencement, amendments/repeals, currentness and reuse rights require verification. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation",
+          "source_role": "official government legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MOF-TAX-DISPUTES-152-2026",
+      "official_title": "القانون رقم 152 لسنة 2026 بتجديد العمل بأحكام وإجراءات إنهاء المنازعات الضريبية ومد سريانها حتى 31 ديسمبر 2026",
+      "document_type": "law",
+      "law_number": "152",
+      "law_year": 2026,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official MoF index labels current and specifies extension through 31 December 2026; time-sensitive, confirm Gazette publication and any subsequent extension. Candidate metadata only; full primary text, publication issue/pages, commencement, amendments/repeals, currentness and reuse rights require verification. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation",
+          "source_role": "official government legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MOF-UNIFIED-TAX-PROCEDURES-AMEND-150-2026",
+      "official_title": "القانون رقم 150 لسنة 2026 بتعديل بعض أحكام قانون الإجراءات الضريبية الموحد الصادر بالقانون رقم 206 لسنة 2020",
+      "document_type": "law_amendment",
+      "law_number": "150",
+      "law_year": 2026,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official MoF index labels current; obtain Gazette text and article-level amendment map to Law 206/2020. Candidate metadata only; full primary text, publication issue/pages, commencement, amendments/repeals, currentness and reuse rights require verification. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation",
+          "source_role": "official government legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MOF-CUSTOMS-EXEC-REGS-AMEND-262-2026",
+      "official_title": "قرار وزير المالية رقم 262 لسنة 2026 بتعديل بعض أحكام اللائحة التنفيذية لقانون الجمارك الصادرة بقرار وزير المالية رقم 430 لسنة 2021",
+      "document_type": "ministerial_decision",
+      "law_number": "262",
+      "law_year": 2026,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official MoF decisions index lists this as a 2026 amendment; retrieve Gazette/وقائع text and consolidate against Decision 430/2021. Candidate metadata only; full primary text, publication issue/pages, commencement, amendments/repeals, currentness and reuse rights require verification. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation",
+          "source_role": "official government legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MOF-CONSUMER-AMEND-20-2024",
+      "official_title": "القانون رقم 20 لسنة 2024 بتعديل بعض أحكام قانون حماية المستهلك الصادر بالقانون رقم 181 لسنة 2018",
+      "document_type": "law_amendment",
+      "law_number": "20",
+      "law_year": 2024,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "MoF index identifies Gazette issue 14 مكرر dated 5 April 2024; retrieve Gazette text and update Law 181/2018 consolidated version. Candidate metadata only; full primary text, publication issue/pages, commencement, amendments/repeals, currentness and reuse rights require verification. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation",
+          "source_role": "official government legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CONSUMER-LAW-181-2018",
+      "official_title": "القانون رقم 181 لسنة 2018 بإصدار قانون حماية المستهلك",
+      "document_type": "law",
+      "law_number": "181",
+      "law_year": 2018,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "MoF index cross-reference confirms amended by Law 20/2024; identify executive regulations and later decisions. Candidate metadata only; full primary text, publication issue/pages, commencement, amendments/repeals, currentness and reuse rights require verification. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation",
+          "source_role": "official government legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-DIGITAL-SIGNATURE-LAW-15-2004",
+      "official_title": "القانون رقم 15 لسنة 2004 بتنظيم التوقيع الإلكتروني وبإنشاء هيئة تنمية صناعة تكنولوجيا المعلومات",
+      "document_type": "law",
+      "law_number": "15",
+      "law_year": 2004,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Economic Courts legislation index includes this law; obtain Gazette original and current executive regulation/ITIDA licensing rules. Candidate metadata only; full primary text, publication issue/pages, commencement, amendments/repeals, currentness and reuse rights require verification. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation",
+          "source_role": "official government legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-ECONOMIC-COURTS-LAW-120-2008",
+      "official_title": "القانون رقم 120 لسنة 2008 بإصدار قانون إنشاء المحاكم الاقتصادية",
+      "document_type": "law",
+      "law_number": "120",
+      "law_year": 2008,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Core procedural/jurisdictional statute; capture amendments, especially jurisdictional changes and current court structure. Candidate metadata only; full primary text, publication issue/pages, commencement, amendments/repeals, currentness and reuse rights require verification. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation",
+          "source_role": "official government legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-ECONOMIC-COURTS-AMEND-146-2019",
+      "official_title": "القانون رقم 146 لسنة 2019 بتعديل بعض أحكام قانون إنشاء المحاكم الاقتصادية رقم 120 لسنة 2008",
+      "document_type": "law_amendment",
+      "law_number": "146",
+      "law_year": 2019,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Economic Courts law amendment candidate; exact Gazette issue/pages and full change map required. Candidate metadata only; full primary text, publication issue/pages, commencement, amendments/repeals, currentness and reuse rights require verification. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation",
+          "source_role": "official government legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-ECONOMIC-COURTS-LEGISLATION-CATALOGUE",
+      "official_title": "فهرس التشريعات المعروضة بمنصة التقاضي الإلكتروني للمحاكم الاقتصادية",
+      "document_type": "legislation_catalogue",
+      "law_year": 2026,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Economic Courts e-litigation portal lists subject laws including digital signature, competition, central banking, maritime trade, civil aviation, consumer protection, movable security, special economic zones, microfinance, investment and cybercrime; catalogue is a discovery map, not a source of full legal texts. Candidate metadata only; full primary text, publication issue/pages, commencement, amendments/repeals, currentness and reuse rights require verification. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://elec.eecourts.gov.eg/legislation",
+          "source_role": "official government legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MOF-EDUCATION-LAW-139-1981",
+      "official_title": "القانون رقم 139 لسنة 1981 بإصدار قانون التعليم",
+      "document_type": "law",
+      "law_number": "139",
+      "law_year": 1981,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Ministry of Finance index lists the law; consolidate amendments and executive decisions before answering. Candidate metadata only; full primary text, publication issue/pages, commencement, amendments/repeals, currentness and reuse rights require verification. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation",
+          "source_role": "official government legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MOF-UNIVERSITIES-LAW-49-1972",
+      "official_title": "القانون رقم 49 لسنة 1972 بشأن تنظيم الجامعات",
+      "document_type": "law",
+      "law_number": "49",
+      "law_year": 1972,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "MoF index is a secondary official-hosted locator; consolidate amendments and executive regulations. Candidate metadata only; full primary text, publication issue/pages, commencement, amendments/repeals, currentness and reuse rights require verification. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation",
+          "source_role": "official government legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MOF-UNIVERSITIES-DECREE-3005-2024",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 3005 لسنة 2024 بتعديل بعض أحكام اللائحة التنفيذية لقانون تنظيم الجامعات",
+      "document_type": "prime_minister_decision",
+      "law_number": "3005",
+      "law_year": 2024,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Ministry of Finance catalogue identifies Gazette issue 37 supplement; retrieve original and map amendment to Presidential Decree 809/1975. Candidate metadata only; full primary text, publication issue/pages, commencement, amendments/repeals, currentness and reuse rights require verification. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation",
+          "source_role": "official government legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MOF-CONSTITUTION-2014-2019",
+      "official_title": "دستور جمهورية مصر العربية الصادر عام 2014 والمعدل عام 2019",
+      "document_type": "constitution",
+      "law_year": 2019,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "MoF legislation portal provides a locator but Presidency/Official Gazette originals remain authoritative; confirm 2019 amendment Gazette issue and all subsequent constitutional developments. Candidate metadata only; full primary text, publication issue/pages, commencement, amendments/repeals, currentness and reuse rights require verification. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation",
+          "source_role": "official government legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
     }
   ]
 }
