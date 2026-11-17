@@ -34,5 +34,11 @@ class WorkspaceLayoutRegressionTests(unittest.TestCase):
         self.assertIn('grid-template-areas:"main" "history" "inspector"!important', HTML)
 
 
+    def test_legal_research_hides_global_search_and_uses_remaining_shell_width(self):
+        self.assertIn('#main:has(.research-layout)>.workspace-topbar{display:none!important}', HTML)
+        self.assertIn('#main:has(.research-layout){width:auto!important;flex:1 1 0%!important', HTML)
+        self.assertIn('@media(max-width:1180px){#main:has(.research-layout){width:100%!important', HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
