@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 46) (expanded through checkpoint 45) (expanded through checkpoint 44) (expanded through checkpoint 43) (expanded through checkpoint 42) (expanded through checkpoint 41) (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 47) (expanded through checkpoint 46) (expanded through checkpoint 45) (expanded through checkpoint 44) (expanded through checkpoint 43) (expanded through checkpoint 42) (expanded through checkpoint 41) (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -222,6 +222,9 @@
 
 
 | [collection_checkpoint_46_personal_status_procedure_2000.md](collection_checkpoint_46_personal_status_procedure_2000.md) | Personal Status Litigation Procedures Law 1/2000 (86 articles), amendment 91/2000 and links to Family Courts Law 10/2004 |
+
+
+| [collection_checkpoint_47_personal_status_law_25_1929.md](collection_checkpoint_47_personal_status_law_25_1929.md) | Personal Status Law 25/1929, amendment chain through 2017 and Constitutional Court invalidation relationships |
 
 ## High-value primary-source portals
 
