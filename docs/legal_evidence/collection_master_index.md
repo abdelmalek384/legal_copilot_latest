@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 48) (expanded through checkpoint 47) (expanded through checkpoint 46) (expanded through checkpoint 45) (expanded through checkpoint 44) (expanded through checkpoint 43) (expanded through checkpoint 42) (expanded through checkpoint 41) (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 49) (expanded through checkpoint 48) (expanded through checkpoint 47) (expanded through checkpoint 46) (expanded through checkpoint 45) (expanded through checkpoint 44) (expanded through checkpoint 43) (expanded through checkpoint 42) (expanded through checkpoint 41) (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -232,6 +232,9 @@
 | [collection_checkpoint_48_maintenance_inheritance_wills.md](collection_checkpoint_48_maintenance_inheritance_wills.md) | Maintenance Law 25/1920, Inheritance Law 77/1943 and Wills Law 71/1946 with foundational rules and source links |
 
 | [collection_checkpoint_60_civil_code_text_extraction.md](collection_checkpoint_60_civil_code_text_extraction.md) | Official ETA Civil Code 131/1948 100-page/4,162-line searchable PDF; extracts Articles 1–5, 10–53, 89–161, 163–180, 181–202, 203–215, 371–379, 447–495 and lease provisions |
+
+
+| [collection_checkpoint_49_guardianship_hisba_laws.md](collection_checkpoint_49_guardianship_hisba_laws.md) | Guardianship over Property Law 119/1952 (91 articles) and Hisba Procedure Law 3/1996 (8 articles) |
 
 ## High-value primary-source portals
 
