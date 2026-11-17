@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_on": "2026-11-01",
+  "generated_on": "2026-11-17",
   "purpose": "Seed discovery candidates into the local registry. These are metadata leads, not downloaded legal texts, verified current law, or permission to collect/reuse content.",
   "sources": [
     {
@@ -261,6 +261,28 @@
         "finance_minister_decisions_url": "https://mof.gov.eg/ar/legislation/decisions/cat-5fe2a21f7bfc600007cbce3c",
         "prime_minister_decisions_url": "https://mof.gov.eg/ar/legislation/decisions/cat-5fe2a20d7bfc600007cbce3a"
       }
+    },
+    {
+      "source_id": "EG-FRA-REGULATIONS",
+      "authority": "Financial Regulatory Authority of Egypt",
+      "source_page": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+      "access_status": "official regulatory index observed 2026-11-17; category-specific listings and linked updated texts; bulk access and reuse terms not established",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Official FRA pages list board, chairperson and Prime Minister decisions and updated regulatory texts. Public listing does not establish bulk collection, indexing, storage or commercial reuse permission. Gazette publication and amendments must be checked independently."
+    },
+    {
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "authority": "Egyptian Customs Authority, Ministry of Finance",
+      "source_page": "https://customs.gov.eg/Legislations/Documents",
+      "access_status": "official searchable legislation, import/export circular and customs publication indexes observed 2026-11-17; individual document downloads and historical coverage require enumeration",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "The Authority's portal lists customs legislation and numbered import/export circulars with issue dates, including 2026 entries. Portal discovery does not establish Gazette status, complete coverage, bulk extraction rights or commercial reuse permission. Distinguish binding legislation from administrative circulars and operational notices."
     }
   ],
   "documents": [
@@ -1417,6 +1439,258 @@
       "language": "ar",
       "candidate_status": "discovery_only",
       "notes": "Historical instrument expressly repealed by Article 2 of Unified Insurance Law 155/2024. Preserve for historical claims and transitional analysis; do not present as current operative law. Original Gazette text, amendments, transitional effects and Gazette verification remain outstanding. Official Amiri Press copy of Law 155/2024: https://www.alamiria.com/Sec/TashTxt?id=fm2OTbFbwLU%3D."
+    },
+    {
+      "document_id": "EG-FRA-PM-DECISION-3183-2026",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 3183 لسنة 2026 بشأن تشكيل مجلس إدارة الهيئة العامة للرقابة المالية لمدة أربع سنوات",
+      "document_type": "prime_minister_decision",
+      "law_number": "3183",
+      "law_year": 2026,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "FRA official index and dedicated decision page list this instrument; Gazette issue/pages and full text not checked.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+          "source_role": "official authority discovery index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FRA-PRESIDENTIAL-DECISION-116-2026",
+      "official_title": "قرار رئيس جمهورية مصر العربية رقم 116 لسنة 2026 بتكليف رئيس مجلس إدارة الهيئة العامة للرقابة المالية",
+      "document_type": "presidential_decision",
+      "law_number": "116",
+      "law_year": 2026,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "FRA official index and news page identify the decision; operative text and Gazette details remain unchecked.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+          "source_role": "official authority discovery index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FRA-PM-DECISION-4049-2025",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 4049 لسنة 2025 بإنشاء فروع ومكاتب تمثيل للهيئة العامة للرقابة المالية",
+      "document_type": "prime_minister_decision",
+      "law_number": "4049",
+      "law_year": 2025,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed in FRA official general-legislation index; full text and Gazette details not checked.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+          "source_role": "official authority discovery index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FRA-PM-DECISION-3723-2025",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 3723 لسنة 2025 بتعديل النظام الأساسي للمركز المصري للتحكيم الاختياري وتسوية المنازعات المالية غير المصرفية",
+      "document_type": "prime_minister_decision",
+      "law_number": "3723",
+      "law_year": 2025,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed in FRA official index; full text, publication and currentness not checked.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+          "source_role": "official authority discovery index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FRA-BOARD-DECISION-87-2026",
+      "official_title": "قرار مجلس إدارة الهيئة العامة للرقابة المالية رقم 87 لسنة 2026 بشأن إنشاء وتنظيم القوائم التحذيرية والسلبية والتدابير الإدارية",
+      "document_type": "regulatory_board_decision",
+      "law_number": "87",
+      "law_year": 2026,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Named in FRA regulatory guide references; verify operative text, publication and amendments.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+          "source_role": "official authority discovery index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FRA-BOARD-DECISION-45-2026",
+      "official_title": "قرار مجلس إدارة الهيئة العامة للرقابة المالية رقم 45 لسنة 2026 بشأن ضوابط الترخيص واستمراره للوظائف الرئيسية بالشركات العاملة في أنشطة التمويل غير المصرفي",
+      "document_type": "regulatory_board_decision",
+      "law_number": "45",
+      "law_year": 2026,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Named in FRA regulatory guide references; verify full decision and applicable entities.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+          "source_role": "official authority discovery index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FRA-BOARD-DECISION-44-2026",
+      "official_title": "قرار مجلس إدارة الهيئة العامة للرقابة المالية رقم 44 لسنة 2026 بشأن ضوابط قيد ونقل وغلق فروع الشركات العاملة في أنشطة التمويل غير المصرفي",
+      "document_type": "regulatory_board_decision",
+      "law_number": "44",
+      "law_year": 2026,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Named in FRA regulatory guide references as amended; obtain consolidated text and amendment chain.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+          "source_role": "official authority discovery index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FRA-BOARD-DECISION-43-2026",
+      "official_title": "قرار مجلس إدارة الهيئة العامة للرقابة المالية رقم 43 لسنة 2026 بشأن وقف قبول طلبات التأسيس والحصول على الترخيص بمزاولة نشاط التمويل الاستهلاكي",
+      "document_type": "regulatory_board_decision",
+      "law_number": "43",
+      "law_year": 2026,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Named in FRA regulatory guide references; verify current effect and duration.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+          "source_role": "official authority discovery index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FRA-CHAIR-DECISION-1321-2026",
+      "official_title": "قرار رئيس الهيئة العامة للرقابة المالية رقم 1321 لسنة 2026 بشأن وقف نشاط شركة تداول أوراق مالية لمدة ثلاثين يومًا",
+      "document_type": "regulatory_chair_decision",
+      "law_number": "1321",
+      "law_year": 2026,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed in FRA official capital-market enforcement index; verify full text and procedural status.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+          "source_role": "official authority discovery index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FRA-BOARD-DECISION-92-2026",
+      "official_title": "قرار مجلس إدارة الهيئة العامة للرقابة المالية رقم 92 لسنة 2026 بإلغاء ترخيص شركة أوراق مالية",
+      "document_type": "regulatory_board_decision",
+      "law_number": "92",
+      "law_year": 2026,
+      "source_id": "EG-FRA-REGULATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed in FRA official enforcement index; verify entity, full text, publication and finality.",
+      "source_urls": [
+        {
+          "url": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+          "source_role": "official authority discovery index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-CIRCULAR-EXPORT-2026-02-12",
+      "official_title": "منشور جمركي صادر في 12 فبراير 2026 بشأن إحكام الرقابة لمنع التحايل لتهريب بعض الخامات وخردة المعادن",
+      "document_type": "customs_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by official Customs Authority index; circular number and full text unresolved. Not presumed statute or Gazette regulation.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Documents",
+          "source_role": "official authority discovery index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-CIRCULAR-EXPORT-2026-05-06",
+      "official_title": "منشور جمركي صادر في 6 مايو 2026 بشأن استمرار العمل بالقرار الوزاري 88 لسنة 2023 لمدة ثلاثة أشهر",
+      "document_type": "customs_circular",
+      "law_number": null,
+      "law_year": 2026,
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by official Customs Authority index; exact instrument and later extensions need checking.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Documents",
+          "source_role": "official authority discovery index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-CIRCULAR-IMPORT-2026-06-22",
+      "official_title": "منشور استيراد رقم 18 لسنة 2026 بشأن أصناف المخلفات والخردة المفرج عنها طبقًا للمادة 13 من لائحة الاستيراد والتصدير",
+      "document_type": "customs_circular",
+      "law_number": "18",
+      "law_year": 2026,
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by Customs Authority index dated 2026-06-22; linked to joint circular 16/2026; full text and currentness unresolved.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Documents",
+          "source_role": "official authority discovery index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-CIRCULAR-IMPORT-2026-08-24",
+      "official_title": "منشور استيراد رقم 24 لسنة 2026 بشأن إضافة فقرة إلى شروط الاستيراد بملحق 3 من لائحة القانون 118 لسنة 1975",
+      "document_type": "customs_circular",
+      "law_number": "24",
+      "law_year": 2026,
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by Customs Authority index dated 2026-08-24; underlying amendment and currentness unresolved.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Documents",
+          "source_role": "official authority discovery index",
+          "status": "listed_2026-11-17"
+        }
+      ]
     }
   ]
 }
