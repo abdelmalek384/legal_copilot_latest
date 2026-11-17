@@ -168,6 +168,8 @@
 
 | [collection_checkpoint_35_real_estate_tax_exec_reg_493_2009.md](collection_checkpoint_35_real_estate_tax_exec_reg_493_2009.md) | 24-article Real Estate Tax Executive Regulation 493/2009 transcription, valuation, 10% tax calculation and amendment backlog |
 
+| [collection_checkpoint_48_social_security_insurance_2026.md](collection_checkpoint_48_social_security_insurance_2026.md) | Social Security Law 12/2025 Executive Regulation Decision 522/2026; Social Insurance 148/2019 and Regulation 2437/2021; alternative schemes and 2026 Decision 2900/2026 |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
