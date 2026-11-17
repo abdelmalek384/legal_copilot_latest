@@ -1780,5 +1780,17 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("clientConsent.onchange=()=>{if(firmConsent.checked&&clientConsent.checked)clearConsentError()}", brief)
         self.assertIn("consentError,run,result)", brief)
 
+    def test_legal_review_requires_accessible_version_selection(self):
+        start = HTML.index("async function reviewWorkbench()")
+        review = HTML[start:HTML.index("\nasync function ", start + 10)]
+        self.assertIn("id:'legal-review-version'", review)
+        self.assertIn("id:'legal-review-version-error',className:'notice danger',role:'alert',hidden:true", review)
+        self.assertIn("chosen.setAttribute('aria-invalid','true')", review)
+        self.assertIn("chosen.setAttribute('aria-describedby','legal-review-version-error')", review)
+        self.assertIn("chosen.focus()", review)
+        self.assertIn("if(!chosen.value){showVersionError();return}", review)
+        self.assertIn("chosen.onchange=()=>{clearVersionError();", review)
+        self.assertIn("chosen.removeAttribute('aria-invalid')", review)
+
 if __name__ == "__main__":
     unittest.main()
