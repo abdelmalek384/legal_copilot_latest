@@ -305,6 +305,28 @@
       "terms_url": null,
       "terms_checked_on": null,
       "permission_evidence": "Official Ministry index lists Telecommunications Regulation Law 10/2003, ministerial decisions 258/2003, 259/2003, 128/2006, 667/2017, Cybercrime Law 175/2018 and its executive regulations. NTRA licensing materials are adjacent regulatory material. No bulk extraction/reuse grant established."
+    },
+    {
+      "source_id": "EG-IDA-INDUSTRIAL-LAWS",
+      "authority": "Industrial Development Authority of Egypt",
+      "source_page": "https://www.ida.gov.eg/ar/laws",
+      "access_status": "official industrial legislation index observed 2026-11-17; lists core industrial, environmental, building and licensing statutes and executive decisions",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Official IDA page lists laws and decisions relevant to industrial licensing, industrial registry, environmental compliance and building reconciliation. It is a discovery index; Gazette originals, amendments, currentness and bulk reuse rights require independent review."
+    },
+    {
+      "source_id": "EG-EEAA-ENVIRONMENT-LAWS",
+      "authority": "Egyptian Environmental Affairs Agency",
+      "source_page": "https://www.eeaa.gov.eg/laws/55/index",
+      "access_status": "official law page with Arabic original, English translation and amendment attachments observed 2026-11-17",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "EEAA page identifies Arabic original as official version and lists Law 4/1994 as amended by Law 9/2009 and Law 105/2015. The page is useful for discovery and version relations; full Gazette page verification and reuse terms remain outstanding."
     }
   ],
   "documents": [
@@ -2450,6 +2472,541 @@
         {
           "url": "https://mcit.gov.eg/ar/TeleCommunications/Regulations/Laws_and_Legislations",
           "source_role": "official MCIT legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-IDA-LAW-95-2018",
+      "official_title": "قانون رقم 95 لسنة 2018 بإصدار قانون الهيئة العامة للتنمية الصناعية",
+      "document_type": "law",
+      "law_number": "95",
+      "law_year": 2018,
+      "source_id": "EG-IDA-INDUSTRIAL-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by IDA as its establishing law; Gazette original, amendments and implementing regulations need checking.",
+      "source_urls": [
+        {
+          "url": "https://www.ida.gov.eg/ar/laws",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-IDA-LAW-15-2017",
+      "official_title": "قانون رقم 15 لسنة 2017 بشأن تيسير إجراءات منح تراخيص المنشآت الصناعية",
+      "document_type": "law",
+      "law_number": "15",
+      "law_year": 2017,
+      "source_id": "EG-IDA-INDUSTRIAL-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by IDA; check executive regulations, amendments and interaction with Law 95/2018.",
+      "source_urls": [
+        {
+          "url": "https://www.ida.gov.eg/ar/laws",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-IDA-LAW-21-1958",
+      "official_title": "قانون رقم 21 لسنة 1958 في شأن تنظيم الصناعة وتشجيعها",
+      "document_type": "law",
+      "law_number": "21",
+      "law_year": 1958,
+      "source_id": "EG-IDA-INDUSTRIAL-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Historical industrial statute listed by IDA; current/repealed provisions and later amendments require review.",
+      "source_urls": [
+        {
+          "url": "https://www.ida.gov.eg/ar/laws",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-IDA-LAW-24-1977",
+      "official_title": "قانون رقم 24 لسنة 1977 في شأن السجل الصناعي",
+      "document_type": "law",
+      "law_number": "24",
+      "law_year": 1977,
+      "source_id": "EG-IDA-INDUSTRIAL-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by IDA; capture current consolidated text and amendments.",
+      "source_urls": [
+        {
+          "url": "https://www.ida.gov.eg/ar/laws",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-IDA-EXEC-DECISION-1082-2017",
+      "official_title": "قرار رقم 1082 لسنة 2017 باللائحة التنفيذية لقانون تيسير إجراءات منح تراخيص المنشآت الصناعية",
+      "document_type": "executive_regulation",
+      "law_number": "1082",
+      "law_year": 2017,
+      "source_id": "EG-IDA-INDUSTRIAL-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by IDA; verify issuer, Gazette publication, amendments and currentness.",
+      "source_urls": [
+        {
+          "url": "https://www.ida.gov.eg/ar/laws",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-IDA-EXEC-DECISION-1121-2024",
+      "official_title": "قرار رقم 1121 لسنة 2024 باللائحة التنفيذية لقانون التصالح في بعض مخالفات البناء",
+      "document_type": "executive_regulation",
+      "law_number": "1121",
+      "law_year": 2024,
+      "source_id": "EG-IDA-INDUSTRIAL-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by IDA; verify issuing authority, full text and amendments.",
+      "source_urls": [
+        {
+          "url": "https://www.ida.gov.eg/ar/laws",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-IDA-MINISTERIAL-DECISION-7-1999",
+      "official_title": "القرار الوزاري رقم 7 لسنة 1999 بشأن المواد الخطرة المحظورة",
+      "document_type": "ministerial_decision",
+      "law_number": "7",
+      "law_year": 1999,
+      "source_id": "EG-IDA-INDUSTRIAL-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by IDA; verify schedules, subsequent amendments and current prohibitions.",
+      "source_urls": [
+        {
+          "url": "https://www.ida.gov.eg/ar/laws",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-IDA-DECISION-45-2021",
+      "official_title": "القرار رقم 45 لسنة 2021 لقواعد طرح تراخيص الصناعات الثقيلة",
+      "document_type": "ministerial_or_authority_decision",
+      "law_number": "45",
+      "law_year": 2021,
+      "source_id": "EG-IDA-INDUSTRIAL-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by IDA; exact issuing authority and currentness require verification.",
+      "source_urls": [
+        {
+          "url": "https://www.ida.gov.eg/ar/laws",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-IDA-DECISION-47-2020",
+      "official_title": "القرار رقم 47 لسنة 2020 بشأن قواعد الصناعات الثقيلة",
+      "document_type": "ministerial_or_authority_decision",
+      "law_number": "47",
+      "law_year": 2020,
+      "source_id": "EG-IDA-INDUSTRIAL-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by IDA; exact issuer, Gazette publication and amendment chain require verification.",
+      "source_urls": [
+        {
+          "url": "https://www.ida.gov.eg/ar/laws",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-IDA-MINISTERIAL-DECISION-165-2002",
+      "official_title": "القرار الوزاري رقم 165 لسنة 2002 بشأن النفايات الخطرة",
+      "document_type": "ministerial_decision",
+      "law_number": "165",
+      "law_year": 2002,
+      "source_id": "EG-IDA-INDUSTRIAL-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by IDA; environmental schedules, later amendments and currentness require review.",
+      "source_urls": [
+        {
+          "url": "https://www.ida.gov.eg/ar/laws",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-IDA-MINISTERIAL-DECISION-461-2018",
+      "official_title": "القرار الوزاري رقم 461 لسنة 2018 بشأن اشتراطات منح التراخيص",
+      "document_type": "ministerial_decision",
+      "law_number": "461",
+      "law_year": 2018,
+      "source_id": "EG-IDA-INDUSTRIAL-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by IDA; determine exact licensing scope and superseding provisions.",
+      "source_urls": [
+        {
+          "url": "https://www.ida.gov.eg/ar/laws",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-IDA-MINISTERIAL-DECISION-497-2018",
+      "official_title": "قرار وزير التجارة والصناعة رقم 497 لسنة 2018 بشأن السجل الصناعي",
+      "document_type": "ministerial_decision",
+      "law_number": "497",
+      "law_year": 2018,
+      "source_id": "EG-IDA-INDUSTRIAL-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by IDA; capture full text, amendments and relationship to Law 24/1977.",
+      "source_urls": [
+        {
+          "url": "https://www.ida.gov.eg/ar/laws",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-IDA-CABINET-DECISION-1670-2024",
+      "official_title": "قرار مجلس الوزراء رقم 1670 لسنة 2024",
+      "document_type": "cabinet_decision",
+      "law_number": "1670",
+      "law_year": 2024,
+      "source_id": "EG-IDA-INDUSTRIAL-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by IDA; exact title, full text and legal subject must be retrieved before use.",
+      "source_urls": [
+        {
+          "url": "https://www.ida.gov.eg/ar/laws",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EEAA-ENVIRONMENT-LAW-4-1994",
+      "official_title": "قانون رقم 4 لسنة 1994 بإصدار قانون في شأن البيئة",
+      "document_type": "law",
+      "law_number": "4",
+      "law_year": 1994,
+      "source_id": "EG-EEAA-ENVIRONMENT-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "EEAA states Arabic original is official; page identifies amendments by Law 9/2009 and Law 105/2015. Need Gazette verification and subsequent amendment/currentness search.",
+      "source_urls": [
+        {
+          "url": "https://www.eeaa.gov.eg/laws/55/index",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EEAA-ENVIRONMENT-AMENDMENT-9-2009",
+      "official_title": "القانون رقم 9 لسنة 2009 بتعديل بعض أحكام قانون البيئة رقم 4 لسنة 1994",
+      "document_type": "law_amendment",
+      "law_number": "9",
+      "law_year": 2009,
+      "source_id": "EG-EEAA-ENVIRONMENT-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed by EEAA as amendment to Environment Law 4/1994; capture Gazette text and article-level change map.",
+      "source_urls": [
+        {
+          "url": "https://www.eeaa.gov.eg/laws/55/index",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EEAA-ENVIRONMENT-AMENDMENT-105-2015",
+      "official_title": "القانون رقم 105 لسنة 2015 بتعديل بعض أحكام قانون البيئة رقم 4 لسنة 1994",
+      "document_type": "law_amendment",
+      "law_number": "105",
+      "law_year": 2015,
+      "source_id": "EG-EEAA-ENVIRONMENT-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "EEAA lists Arabic attachment; capture Gazette text and article-level change map.",
+      "source_urls": [
+        {
+          "url": "https://www.eeaa.gov.eg/laws/55/index",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-PROCEDURE-CIRCULAR-4-2026",
+      "official_title": "منشور الإجراءات رقم 4 لسنة 2026 بشأن حالات الترانزيت غير المباشر وعدم وجود إذن تسليم",
+      "document_type": "customs_circular",
+      "law_number": "4",
+      "law_year": 2026,
+      "issue_date": "2026-03-31",
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Customs index lists this procedure circular; obtain text and verify later amendments. Full text and legal authority/currentness not verified; administrative circular is not automatically a statute or Gazette-published regulation.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Documents",
+          "source_role": "official Customs circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-PROCEDURE-CIRCULAR-4-2026-DETENTION",
+      "official_title": "منشور التعليمات رقم 4 لسنة 2026 بمد العمل بآليات رفع الحجز عن المتعاملين حتى 31 ديسمبر 2026",
+      "document_type": "customs_circular",
+      "law_number": "4",
+      "law_year": 2026,
+      "issue_date": "2026-04-02",
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Index lists continuation of instructions; distinguish from similarly numbered procedure circular and confirm instrument identity. Full text and legal authority/currentness not verified; administrative circular is not automatically a statute or Gazette-published regulation.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Documents",
+          "source_role": "official Customs circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-PROCEDURE-CIRCULAR-9-2026",
+      "official_title": "منشور إجراءات رقم 9 لسنة 2026 إلحاقًا بمنشورات 1 و2 لسنة 2026",
+      "document_type": "customs_circular",
+      "law_number": "9",
+      "law_year": 2026,
+      "issue_date": "2026-06-03",
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official index lists supplementary instructions; identify underlying circulars and operative scope. Full text and legal authority/currentness not verified; administrative circular is not automatically a statute or Gazette-published regulation.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Documents",
+          "source_role": "official Customs circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-EXPORT-CIRCULAR-1-2026-SAND",
+      "official_title": "منشور تصدير رقم 1 لسنة 2026 بشأن حظر تصدير خام الرمال البيضاء لبعض الرسائل",
+      "document_type": "customs_circular",
+      "law_number": "1",
+      "law_year": 2026,
+      "issue_date": "2026-01-05",
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Customs index lists export restriction with conditions tied to free-zone projects and GAFI approval; verify underlying ministerial decision and time scope. Full text and legal authority/currentness not verified; administrative circular is not automatically a statute or Gazette-published regulation.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Documents",
+          "source_role": "official Customs circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-EXPORT-CIRCULAR-2-2026-LEAD",
+      "official_title": "منشور تصدير رقم 2 لسنة 2026 بشأن استمرار فرض رسم صادر على أجزاء وفواصل بطاريات الرصاص",
+      "document_type": "customs_circular",
+      "law_number": "2",
+      "law_year": 2026,
+      "issue_date": "2026-01-10",
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official index lists export duty of EGP 3,000 per tonne for specified tariff code and producer limitation; verify underlying decision and subsequent changes. Full text and legal authority/currentness not verified; administrative circular is not automatically a statute or Gazette-published regulation.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Documents",
+          "source_role": "official Customs circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-EXPORT-CIRCULAR-18-2026-SCRAP",
+      "official_title": "منشور تصدير رقم 18 لسنة 2026 بشأن أصناف المخلفات والخردة المفرج عنها طبقًا للمادة 13 من اللائحة الاستيرادية",
+      "document_type": "customs_circular",
+      "law_number": "18",
+      "law_year": 2026,
+      "issue_date": "2026-06-22",
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Index labels shared circular 16/2026 and links import circular 1/2008 and 25/2013; verify exact instrument type and text. Full text and legal authority/currentness not verified; administrative circular is not automatically a statute or Gazette-published regulation.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Documents",
+          "source_role": "official Customs circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-EXPORT-CIRCULAR-18-2026-SUGAR",
+      "official_title": "منشور تصدير رقم 18 لسنة 2026 بشأن تصدير السكر في حدود الكميات الفائضة عن احتياج السوق المحلي",
+      "document_type": "customs_circular",
+      "law_number": "18",
+      "law_year": 2026,
+      "issue_date": "2026-07-20",
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Time-limited export allowance reportedly ends 2026-12-31; exact circular number may collide with another series, verify before merging. Full text and legal authority/currentness not verified; administrative circular is not automatically a statute or Gazette-published regulation.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Documents",
+          "source_role": "official Customs circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-EXPORT-CIRCULAR-13-2026-ELECTRONIC",
+      "official_title": "منشور تصدير رقم 13 لسنة 2026 بشأن اعتماد النسخة الإلكترونية للمنشورات الجمركية",
+      "document_type": "customs_circular",
+      "law_number": "13",
+      "law_year": 2026,
+      "issue_date": "2026-08-05",
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official index says electronic circular versions are the approved copies from the date of this notice; preserve exact source PDF. Full text and legal authority/currentness not verified; administrative circular is not automatically a statute or Gazette-published regulation.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Documents",
+          "source_role": "official Customs circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-EXPORT-CIRCULAR-14-2026-HS",
+      "official_title": "منشور تصدير رقم 14 لسنة 2026 بشأن العمل بالدليل الاسترشادي للأحكام المنسقة",
+      "document_type": "customs_circular",
+      "law_number": "14",
+      "law_year": 2026,
+      "issue_date": "2026-09-15",
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official index says Customs departments/ports must apply attached HS explanatory guide; determine whether interpretive or binding. Full text and legal authority/currentness not verified; administrative circular is not automatically a statute or Gazette-published regulation.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Documents",
+          "source_role": "official Customs circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-IMPORT-CIRCULAR-3-2026-TEA",
+      "official_title": "منشور استيراد رقم 3 لسنة 2026 بشأن بعض الضوابط الخاصة باستيراد الشاي الخام",
+      "document_type": "customs_circular",
+      "law_number": "3",
+      "law_year": 2026,
+      "issue_date": "2026-01-19",
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official index refers to controls issued 31 December 2025; capture attachment and source decision. Full text and legal authority/currentness not verified; administrative circular is not automatically a statute or Gazette-published regulation.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Documents",
+          "source_role": "official Customs circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-IMPORT-CIRCULAR-17-2026-PRINTERS",
+      "official_title": "منشور استيراد رقم 17 لسنة 2026 إلحاقًا بمنشور رقم 18 لسنة 2015 بشأن التلاعب بطمس بيانات الطابعات ثلاثية الأبعاد",
+      "document_type": "customs_circular",
+      "law_number": "17",
+      "law_year": 2026,
+      "issue_date": "2026-06-02",
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official index lists supplementary import controls; verify underlying circular and enforcement basis. Full text and legal authority/currentness not verified; administrative circular is not automatically a statute or Gazette-published regulation.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Documents",
+          "source_role": "official Customs circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-IMPORT-CIRCULAR-20-2026-MIXTURES",
+      "official_title": "منشور استيراد رقم 20 لسنة 2026 بشأن تطبيق القرار الوزاري المشترك رقم 232 لسنة 2026 على المخاليط الخاضعة للرقابة",
+      "document_type": "customs_circular",
+      "law_number": "20",
+      "law_year": 2026,
+      "issue_date": "2026-07-09",
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Index refers to joint ministerial decision 232/2026 effective 1 July 2026; retrieve both decision and circular. Full text and legal authority/currentness not verified; administrative circular is not automatically a statute or Gazette-published regulation.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Documents",
+          "source_role": "official Customs circular index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-IMPORT-CIRCULAR-29-2026-TRADE",
+      "official_title": "منشور استيراد رقم 29 لسنة 2026 بشأن تطبيق كتاب قطاع الاتفاقيات والتجارة الخارجية رقم 1446 المؤرخ 12 سبتمبر 2026",
+      "document_type": "customs_circular",
+      "law_number": "29",
+      "law_year": 2026,
+      "issue_date": "2026-10-01",
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official index lists an October 2026 supplement; exact content and relationship to joint circulars 10/2010 and 2/2010 require capture. Full text and legal authority/currentness not verified; administrative circular is not automatically a statute or Gazette-published regulation.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Documents",
+          "source_role": "official Customs circular index",
           "status": "listed_2026-11-17"
         }
       ]
