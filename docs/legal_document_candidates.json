@@ -1395,6 +1395,28 @@
           "status": "text_page_located"
         }
       ]
+    },
+    {
+      "document_id": "EG-INSURANCE-SUPERVISION-10-1981",
+      "official_title": "القانون رقم 10 لسنة 1981 بإصدار قانون الإشراف والرقابة على التأمين في مصر",
+      "document_type": "insurance_law_historical",
+      "law_number": "10",
+      "law_year": 1981,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Historical instrument expressly repealed by Article 2 of Unified Insurance Law 155/2024. Preserve for historical disputes, contracts, transitional provisions and pre-repeal events; do not present as current operative insurance statute without temporal/legal analysis. Original Gazette text, amendment history before repeal, transition provisions and Gazette verification remain outstanding. Official Amiri Press copy of Law 155/2024: https://www.alamiria.com/Sec/TashTxt?id=fm2OTbFbwLU%3D."
+    },
+    {
+      "document_id": "EG-SPECIAL-INSURANCE-FUNDS-54-1975",
+      "official_title": "القانون رقم 54 لسنة 1975 بإصدار قانون صناديق التأمين الخاصة",
+      "document_type": "insurance_law_historical",
+      "law_number": "54",
+      "law_year": 1975,
+      "source_id": "EG-AMIRI-PRESS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Historical instrument expressly repealed by Article 2 of Unified Insurance Law 155/2024. Preserve for historical claims and transitional analysis; do not present as current operative law. Original Gazette text, amendments, transitional effects and Gazette verification remain outstanding. Official Amiri Press copy of Law 155/2024: https://www.alamiria.com/Sec/TashTxt?id=fm2OTbFbwLU%3D."
     }
   ]
 }
