@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 53) (expanded through checkpoint 52) (expanded through checkpoint 51) (expanded through checkpoint 50) (expanded through checkpoint 49) (expanded through checkpoint 48) (expanded through checkpoint 47) (expanded through checkpoint 46) (expanded through checkpoint 45) (expanded through checkpoint 44) (expanded through checkpoint 43) (expanded through checkpoint 42) (expanded through checkpoint 41) (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 54) (expanded through checkpoint 53) (expanded through checkpoint 52) (expanded through checkpoint 51) (expanded through checkpoint 50) (expanded through checkpoint 49) (expanded through checkpoint 48) (expanded through checkpoint 47) (expanded through checkpoint 46) (expanded through checkpoint 45) (expanded through checkpoint 44) (expanded through checkpoint 43) (expanded through checkpoint 42) (expanded through checkpoint 41) (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -253,6 +253,9 @@
 | [collection_checkpoint_53_penal_code_58_1937.md](collection_checkpoint_53_penal_code_58_1937.md) | Penal Code 58/1937 full-text sources, general criminal-law structure and conflicting 2021 amendment candidates |
 
 | [collection_checkpoint_63_penal_code_text_extraction.md](collection_checkpoint_63_penal_code_text_extraction.md) | Full 1,878-line searchable Penal Code 58/1937 text (reported updated through Law 141/2021); excerpts Articles 1–76, 302–309 bis and 336–341; SCC case-law links |
+
+
+| [collection_checkpoint_54_economic_courts_law_120_2008.md](collection_checkpoint_54_economic_courts_law_120_2008.md) | Economic Courts Law 120/2008 (39 articles), amendments 146/2019 and 156/2024, jurisdiction and circuit structure |
 
 ## High-value primary-source portals
 
