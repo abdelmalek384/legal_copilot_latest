@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -164,6 +164,9 @@
 | [collection_checkpoint_34_vat_law_67_2016_consolidated.md](collection_checkpoint_34_vat_law_67_2016_consolidated.md) | 87-article VAT Law 67/2016 consolidated transcription, schedules and amendments 3/2022, 157/2025 and 149/2026 |
 
 | [collection_checkpoint_47_building_realestate_tax_2026.md](collection_checkpoint_47_building_realestate_tax_2026.md) | Building Law 119/2008 official Gazette PDF; Law 187/2023 Regulation 1121/2024 number resolved; Real Estate Tax Law 3/2026 major amendment; Architectural Heritage compensation Decision 2557/2026 |
+
+
+| [collection_checkpoint_35_real_estate_tax_exec_reg_493_2009.md](collection_checkpoint_35_real_estate_tax_exec_reg_493_2009.md) | 24-article Real Estate Tax Executive Regulation 493/2009 transcription, valuation, 10% tax calculation and amendment backlog |
 
 ## High-value primary-source portals
 
