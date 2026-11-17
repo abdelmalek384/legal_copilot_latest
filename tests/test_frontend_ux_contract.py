@@ -1792,5 +1792,16 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("chosen.onchange=()=>{clearVersionError();", review)
         self.assertIn("chosen.removeAttribute('aria-invalid')", review)
 
+    def test_research_document_workspace_requires_accessible_matter_selection(self):
+        start = HTML.index("async function law(){")
+        research = HTML[start:HTML.index("\nfunction documentIntelligencePanel(", start)]
+        self.assertIn("id:'research-matter-selection-error',className:'notice danger',role:'alert',hidden:true", research)
+        self.assertIn("matterSelect.setAttribute('aria-invalid','true')", research)
+        self.assertIn("matterSelect.setAttribute('aria-describedby','research-matter-selection-error')", research)
+        self.assertIn("matterSelectError.hidden=false", research)
+        self.assertIn("matterSelect.focus()", research)
+        self.assertIn("matterSelect.removeAttribute('aria-invalid')", research)
+        self.assertIn("matterSelectError.hidden=true", research)
+
 if __name__ == "__main__":
     unittest.main()
