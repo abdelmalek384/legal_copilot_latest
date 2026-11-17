@@ -1,7 +1,7 @@
 # Legacy Labour Decisions — Transitional Effect under Enactment Article 11
 
 Research date: 17 November 2026  
-Companion register: data/research/labour_law_legacy_decisions_transition_2026-11-17.csv
+Companion register: data/research/legacy_decision_transition_register_2026-11-17.csv
 
 ## 1. Transitional rule
 
