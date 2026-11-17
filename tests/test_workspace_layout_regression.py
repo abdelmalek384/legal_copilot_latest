@@ -40,6 +40,10 @@ class WorkspaceLayoutRegressionTests(unittest.TestCase):
         self.assertIn('@media(max-width:1180px) and (min-width:801px){#main:has(.research-layout){width:auto!important;flex:1 1 0%!important}', HTML)
         self.assertIn('@media(max-width:800px){#main:has(.research-layout){width:100%!important;flex:1 1 auto!important}', HTML)
 
+    def test_research_panes_keep_semantic_sides_in_ltr_and_rtl(self):
+        self.assertIn('#main .research-layout:dir(ltr){grid-template-areas:"history main inspector"!important}', HTML)
+        self.assertIn('@media(max-width:1180px){\n #main .research-layout:dir(ltr){grid-template-areas:"main main" "history inspector"!important}', HTML)
+
 
 if __name__ == "__main__":
     unittest.main()
