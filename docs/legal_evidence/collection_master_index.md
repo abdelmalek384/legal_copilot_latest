@@ -86,6 +86,8 @@
 
 | [collection_checkpoint_27_water_law_article_excerpts.md](collection_checkpoint_27_water_law_article_excerpts.md) | Preserves searchable Arabic excerpts from Water Law 147/2021 Articles 26, 27, 59 and 87–89 with OCR validation warnings |
 
+| [collection_checkpoint_28_aml_law_regulation_2026.md](collection_checkpoint_28_aml_law_regulation_2026.md) | Official FRA updated AML Law 80/2002 and Executive Regulation 951/2003; amendment chains; Decision 161/2024 and September 2026 CDD procedure leads |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
