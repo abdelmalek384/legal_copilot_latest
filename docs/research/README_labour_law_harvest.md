@@ -15,7 +15,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 9. [Ministry guidance, ILO resources and legacy instruments](labour_related_free_materials_and_case_law_2026-11-17.md) — Ministry Q&A/inspection guide leads, NATLEX/EPLex/Child Labour Observatory and legacy 2003 decisions.
 10. [Expanded Cassation case leads](cassation_labour_case_leads_expanded_2026-11-17.md) and [additional 25 August 2026 metadata](cassation_additional_labour_metadata_2026-08-25.md).
 11. [Gas Egypt appeal 5280/87](cassation_appeal_5280_87_gas_egypt_2026-08-25.md) — a detailed secondary summary of a prior-law absenteeism/termination dispute.
-12. [Additional ministerial decision harvest](ministerial_decisions_214_259_266_279_299_300_301_75_346_harvest_2026-11-17.md) — newly located Gazette text/page maps for Decisions 214, 266, 279, 300 and 301; secondary full text for 259 and 299; official-source leads for 75 and 346.
+12. [Additional ministerial decision harvest](ministerial_decisions_214_259_266_279_299_300_301_75_346_harvest_2026-11-17.md) — Gazette text/page maps for Decisions 214, 259, 260, 264, 266, 271, 272, 279, 292, 294, 299, 300, 301, 319 and 320; official indexed text for Decisions 74 and 75/2026; government-newsletter text for 346.
 
 ## Structured inventory
 
@@ -28,6 +28,8 @@ This folder contains free/public source discovery, metadata registers and extrac
 - Court of Cassation labour-related appeal identifiers and headnote leads recorded, mostly under predecessor legislation.
 - No full corpus of Court of Cassation judgments acquired.
 - Newly located 290(B) Gazette bundle metadata names Decisions 266, 279, 300 and 301; third-party-hosted searchable facsimile has article text and page locators, but an authorized original and SHA-256 comparison are still needed.
+- SIS hosts a public Gazette 291 supplement facsimile containing Decisions 259, 260, 264, 271, 272, 292, 294, 299, 319 and 320. The PDF repeatedly states that the electronic image is not valid for dealings; use as a research locator, not a certified trading copy.
+- Decision 74/2026 is indexed in the official Amiri Press text service and catalogued in the official DSpace issue 108 bundle; it establishes the Labour Market Observatory framework.
 - Decision 214 Gazette text contains a possible preamble discrepancy reading Law 4/2025 rather than Law 14/2025; preserve unresolved pending inspection of the printed page and counsel review.
 - Decision 259 and 299 remain secondary full-text transcriptions pending primary Gazette comparison.
 - No original-Gazette hash captured for the existing Labour Law 14/2025 candidate in this harvest.
