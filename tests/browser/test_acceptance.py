@@ -858,14 +858,6 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertIn(sentinel, body)
         self.assertIn("مستند مكتب غير متحقق", body)
 
-        self.page.get_by_role("button", name="نسخ الاستشهاد").click()
-        copied_citation = self.read_clipboard()
-        self.assertTrue(copied_citation.strip())
-
-        self.page.get_by_role("button", name="نسخ المقطع الحرفي").click()
-        copied_passage = self.read_clipboard()
-        self.assertIn(sentinel, copied_passage)
-
         inspect_trigger = self.page.locator(".research-inspect-action").first
         self.assertEqual(inspect_trigger.get_attribute("aria-expanded"), "false")
         inspect_trigger.click()
@@ -874,6 +866,12 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertTrue(inspector.get_by_text(sentinel, exact=False).is_visible())
         self.assertIn("مستند مكتب غير متحقق", inspector.inner_text())
         self.assertEqual(self.page.evaluate("document.activeElement.className"), "research-inspector card")
+        self.page.get_by_role("button", name="نسخ الاستشهاد").click()
+        copied_citation = self.read_clipboard()
+        self.assertTrue(copied_citation.strip())
+        self.page.get_by_role("button", name="نسخ المقطع الحرفي").click()
+        copied_passage = self.read_clipboard()
+        self.assertIn(sentinel, copied_passage)
         self.page.get_by_role("button", name="إغلاق").click()
         self.assertEqual(inspect_trigger.get_attribute("aria-expanded"), "false")
         self.assertTrue(inspector.get_by_text("اختر مصدراً", exact=False).is_visible())
