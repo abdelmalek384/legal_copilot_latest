@@ -74,3 +74,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 
 37. [OSH Decisions 249–252 expanded research](osh_decisions_249_250_251_252_expanded_2026-11-17.md) — Decision249 22 articles/3 annexes; Decision250 full 63-article text and tables1–24 mapped (chemical Table24 pp.249–361); Decision251 11 articles; Decision252 36 articles. Gazette page images for 250 are partial (pp.45–209); later chemical/record annex pages are text-indexed but not image-acquired. Official DSpace bundle remains request-copy restricted.
+
+
+38. [Decision248/2026 and Ministry OSH clarifications](decisions_248_252_2026_and_264_2025_extracted_notes.md) — expanded serious-accident categories, 24h/48h notice, occupational-disease reporting, 30+ worker semiannual statistics, 3-year registers; adds official 27 Oct Ministry clarification on Decision249 transition and flags stale Ministry service-page 24h/72h discrepancy.
