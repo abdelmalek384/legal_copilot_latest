@@ -1366,6 +1366,28 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
 :root[data-density="compact"] .research-message{padding:9px;margin:8px 0}
 
 :root[data-motion="reduce"] *,:root[data-motion="reduce"] *::before,:root[data-motion="reduce"] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+
+/* Legal Research three-column workspace refresh */
+.research-layout{display:grid;grid-template-columns:minmax(190px,230px) minmax(0,1fr) minmax(270px,330px);gap:14px;align-items:start;min-width:0;}
+.research-layout>.research-list,.research-layout>.research-main,.research-layout>.research-evidence-panel{min-width:0;grid-column:auto;grid-row:auto;}
+.research-layout>.research-list{position:sticky;top:12px;max-height:calc(100vh - 24px);}
+.research-layout>.research-main{min-width:0;}
+.research-evidence-panel{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto;display:flex;flex-direction:column;gap:10px;}
+.research-evidence-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-bottom:8px;border-bottom:1px solid var(--line);}
+.research-evidence-cards{display:grid;gap:9px;min-width:0;}
+.research-evidence-cards .research-source{margin:0;min-width:0;overflow-wrap:anywhere;}
+.research-evidence-cards .research-exact-passage{max-height:110px;overflow:auto;}
+.research-evidence-cards .research-source-actions{display:flex;flex-wrap:wrap;gap:6px;}
+.research-evidence-cards .research-source-actions>*{min-width:0;max-width:100%;}
+.research-evidence-panel .research-inspector{position:static;max-height:none;overflow:visible;}
+.research-composer-controls{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-items:end;padding-top:10px;border-top:1px solid var(--line);min-width:0;}
+.research-composer-controls>*{min-width:0;max-width:100%;}
+.research-composer-controls label{min-width:0;}
+.research-list-head>b{white-space:nowrap;word-break:keep-all;overflow-wrap:normal;flex-shrink:0;}
+[dir=rtl] .research-list-head{direction:rtl;}
+@media(max-width:1120px){.research-layout{grid-template-columns:minmax(170px,210px) minmax(0,1fr);}.research-layout>.research-evidence-panel{grid-column:1/-1;position:static;max-height:none;}}
+@media(max-width:800px){.research-layout{grid-template-columns:minmax(0,1fr);gap:12px;}.research-layout>.research-list,.research-layout>.research-main,.research-layout>.research-evidence-panel{grid-column:1;grid-row:auto;position:static;max-height:none;}.research-layout>.research-list{max-height:none;}.research-composer-controls{grid-template-columns:minmax(0,1fr);}.research-evidence-panel{overflow:visible;}.research-evidence-cards{grid-template-columns:minmax(0,1fr);}}
+@media(max-width:420px){.research-layout,.research-main,.research-evidence-panel,.research-composer,.research-thread{min-width:0;max-width:100%;}.research-list-head{gap:6px;}.research-list-head>b{font-size:13px;white-space:nowrap;word-break:keep-all;overflow-wrap:normal;}.research-list-head-actions{gap:4px;}.research-list-head-actions button{padding-inline:7px;font-size:11px;}.research-evidence-cards .research-source-actions{display:grid;grid-template-columns:minmax(0,1fr);}.research-composer-controls select{width:100%;max-width:100%;}}
 </style>
 <link rel="stylesheet" href="/static/design-tokens.css">
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
@@ -2675,6 +2697,8 @@ async function law(){
  const researchStatus=h('div',{className:'research-status-banner',role:'status','aria-live':'polite','aria-atomic':'true'});const researchCorpusStatus=h('div',{className:'research-corpus-status',role:'status','aria-live':'polite'});const researchTrustStatus=h('div',{className:'research-trust-status',role:'status','aria-live':'polite',hidden:true});const thread=h('div',{className:'research-thread card'});
  const sourceInspector=h('aside',{id:'research-source-inspector',className:'research-inspector card',role:'region',tabIndex:0,'aria-label':LANG==='ar'?'فحص المصدر':'Source inspector','aria-live':'polite',onkeydown:e=>{if(e.key==='Escape'&&sourceInspector.__focusReturn){e.preventDefault();resetInspector(true)}}},h('div',{className:'research-inspector-empty'},h('div',{textContent:'⌕',style:'font-size:28px'}),h('b',{textContent:LANG==='ar'?'فحص المصدر':'Source inspector'}),h('p',{className:'mut',textContent:LANG==='ar'?'اختر مصدراً من الإجابة لعرض بياناته ومقطعه الحرفي هنا.':'Select a source from an answer to inspect its metadata and exact passage here.'})));
  sourceInspector.hidden=true;
+ const evidenceCards=h('div',{className:'research-evidence-cards','aria-live':'polite'});
+ const evidencePanel=h('aside',{className:'research-evidence-panel card','aria-label':LANG==='ar'?'الأدلة والمصادر':'Evidence and sources'},h('div',{className:'research-evidence-heading'},h('b',{textContent:LANG==='ar'?'الأدلة':'Evidence'}),h('span',{className:'mut',textContent:LANG==='ar'?'مصادر الإجابة':'Answer sources'})),evidenceCards,sourceInspector);
  let activeId=null, sending=false, conversationItems=[];
  const conversationFilter=h('input',{type:'search',placeholder:LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations','aria-label':LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations'});
  const historyToggle=h('button',{type:'button',className:'g research-history-toggle','aria-controls':'research-history-pane','aria-expanded':'false',textContent:LANG==='ar'?'إظهار السجل':'Show history',onclick:()=>{const collapsed=sidebar.classList.toggle('history-collapsed');historyToggle.setAttribute('aria-expanded',String(!collapsed));historyToggle.textContent=collapsed?(LANG==='ar'?'إظهار السجل':'Show history'):(LANG==='ar'?'إخفاء السجل':'Hide history')}});
@@ -2758,7 +2782,7 @@ async function law(){
 
  function copy(v){return LANG==='ar'?v:({ 'محادثة جديدة':'New chat','ابدأ محادثة بحث قانوني':'Start a legal research chat','اسأل عن القانون المصري':'Ask about Egyptian law','اكتب سؤالك هنا…':'Type your question…','إرسال':'Send','مصادر الإجابة':'Answer sources','لا توجد محادثات بعد':'No conversations yet','ابدأ محادثة جديدة':'Start a new chat','بحث قانوني مدعوم بالمصادر':'Source-grounded legal research','لا توجد إجابة مولدة. راجع المصادر أدناه.':'No generated answer. Review the sources below.','نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.':'Research assistance, not legal advice. Always verify against the official source.','مصدر غير متحقق':'Unverified source','غير سارٍ':'Not in force','لم يُتحقق من سريانه':'Current status unverified'}[v]||v)}
  function makeBtn(label,fn,cl='g'){return btn(copy(label),fn,cl)}
- const trustTierBadge=tier=>{const labels={verified:[LANG==='ar'?'موثّق':'Verified','done'],source_matched:[LANG==='ar'?'مطابق للمصدر — غير متحقق منه':'Source-matched — not verified','soon'],unreviewed:[LANG==='ar'?'غير مُراجع':'Unreviewed','late']};const item=labels[tier]||labels.unreviewed;return pill(item[0],item[1])};
+ const trustTierBadge=tier=>{const labels={lawyer_verified:[LANG==='ar'?'مراجع من محامٍ':'Lawyer-verified','done'],verified:[LANG==='ar'?'مراجع من محامٍ':'Lawyer-verified','done'],source_matched:[LANG==='ar'?'مطابق للمصدر، غير مُراجع':'Source-matched, not reviewed','soon'],unreviewed:[LANG==='ar'?'غير متحقق منه':'Unverified','late'],unverified:[LANG==='ar'?'غير متحقق منه':'Unverified','late']};const item=labels[tier]||labels.unverified;return pill(item[0],item[1])};
  const resetInspector=(returnFocus=false)=>{sourceInspector.hidden=true;const returnTo=sourceInspector.__focusReturn;sourceInspector.__focusReturn=null;if(returnTo&&returnTo.isConnected)returnTo.setAttribute('aria-expanded','false');sourceInspector.replaceChildren(h('div',{className:'research-inspector-empty'},h('div',{textContent:'⌕',style:'font-size:28px'}),h('b',{textContent:LANG==='ar'?'فحص المصدر':'Source inspector'}),h('p',{className:'mut',textContent:LANG==='ar'?'اختر مصدراً من الإجابة لعرض بياناته ومقطعه الحرفي هنا.':'Select a source from an answer to inspect its metadata and exact passage here.'})));if(returnFocus&&returnTo&&returnTo.isConnected)returnTo.focus();};
  const inspectSource=(source,status,pin,provenance,trigger)=>{
   sourceInspector.hidden=false;
@@ -2788,7 +2812,7 @@ async function law(){
  const suggestCorrection=async(question,message)=>{const note=window.prompt(LANG==='ar'?'اكتب التصحيح المقترح. سيظل داخل المكتب ولن يُستخدم للتدريب افتراضياً.':'Describe the suggested correction. It stays within this firm and is not used for training by default.');if(!note||!note.trim())return;const excerpt=String(message.content||message.answer||'').slice(0,4000);if(!excerpt.trim()){toast(LANG==='ar'?'لا توجد إجابة لإرفاق التصحيح بها':'No answer text to attach the correction to');return}try{await api('/answers/corrections','POST',{case_id:matterSelect.value?Number(matterSelect.value):null,answer_id:message.answer_id||'',question:String(question||'').slice(0,1000),answer_excerpt:excerpt,correction_note:note.trim()});toast(LANG==='ar'?'تم إرسال التصحيح إلى قائمة مراجعة المكتب':'Correction sent to the firm review queue')}catch(e){toast(String(e.message||e))}};
  const researchEmptyState=h('p',{className:'research-empty-state',textContent:LANG==='ar'?'ابدأ بسؤال بحثي؛ ستظهر الإجابات هنا بعد إرسال السؤال.':'Start with a research question. Answers will appear here after you send it.'});
  const renderMessages=(messages)=>{
-   resetInspector();thread.replaceChildren();
+   resetInspector();evidenceCards.replaceChildren();thread.replaceChildren();
    const header=h('div',{className:'research-heading'},h('div',{},h('b',{textContent:copy('بحث قانوني مدعوم بالمصادر')}),h('div',{className:'mut',textContent:copy('نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.')})));
    thread.append(header);
    researchEmptyState.hidden=messages.length>0;researchExamples.hidden=messages.length>0;
@@ -2835,7 +2859,7 @@ async function law(){
          src.append(pill(statusLabels[status]||statusLabels.outdated_or_under_review,status==='verified_operative_text'?'done':(status==='user_supplied_unverified'?'late':'soon')));
          if(s.trust_tier)src.append(trustTierBadge(s.trust_tier));
          src.append(h('div',{className:'research-source-caution '+(status==='verified_operative_text'?'verified':'warning'),role:'note'},h('strong',{textContent:status==='verified_operative_text'?(LANG==='ar'?'حالة المصدر المسجلة: نص ساري متحقق':'Recorded source status: verified operative text'):(LANG==='ar'?'تنبيه التحقق من المصدر':'Source verification warning')}),h('p',{textContent:statusDescriptions[status]||statusDescriptions.outdated_or_under_review})));
-         const pin=[s.article&&(LANG==='ar'?'المادة ':'Article ')+s.article,s.page&&(LANG==='ar'?'الصفحة ':'Page ')+s.page].filter(Boolean).join(' · ');
+         const pin=[(s.law_number||s.provenance?.law_number)&&((LANG==='ar'?'القانون رقم ':'Law No. ')+(s.law_number||s.provenance.law_number)+(s.law_year||s.provenance?.law_year?'/'+(s.law_year||s.provenance.law_year):'')),s.article&&(LANG==='ar'?'المادة ':'Article ')+s.article,s.page&&(LANG==='ar'?'الصفحة ':'Page ')+s.page].filter(Boolean).join(' · ');
          if(pin)src.append(h('div',{className:'research-pin',textContent:pin}));
          const sourceQuestion=messages.slice(0,messageIndex).reverse().find(x=>x.role==='user')?.content||'';
          src.append(h('div',{className:'research-exact-passage'},...highlightTerms(s.text||'',sourceQuestion,s.matched_terms)),h('div',{className:'mut',textContent:(s.source||'')+(s.as_of?' · '+fd(s.as_of):'')}));
@@ -2886,7 +2910,7 @@ async function law(){
          }else if(p.status==='registry_record_missing'){
            src.append(pill(LANG==='ar'?'سجل الإصدار غير موجود':'Version registry record missing','late'));
          }
-         bubble.append(src);
+         evidenceCards.append(src);
        }
      }
      if(m.role==='assistant'){
@@ -3024,7 +3048,7 @@ async function law(){
    finally{sending=false;send.disabled=false;composer.disabled=false;composer.focus()}
  },'primary');
  composer.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send.click()}});
- const composerArea=h('section',{className:'research-composer card'},h('div',{className:'research-composer-heading'},h('h2',{textContent:LANG==='ar'?'ما الذي تريد البحث عنه؟':'What would you like to research?'}),h('span',{className:'research-assistance-label',textContent:LANG==='ar'?'مساعدة بحثية وليست استشارة قانونية':'Research assistance, not legal advice'})),researchCorpusStatus,researchTrustStatus,researchExamples,researchEmptyState,composer,paperclipButton,send,uploadPanel,h('div',{className:'mut',textContent:LANG==='ar'?'Enter للإرسال · Shift+Enter لسطر جديد':'Enter to send · Shift+Enter for a new line'}));
+ const composerArea=h('section',{className:'research-composer card'},h('div',{className:'research-composer-heading'},h('h2',{textContent:LANG==='ar'?'ما الذي تريد البحث عنه؟':'What would you like to research?'}),h('span',{className:'research-assistance-label',textContent:LANG==='ar'?'مساعدة بحثية وليست استشارة قانونية':'Research assistance, not legal advice'})),researchCorpusStatus,researchTrustStatus,researchExamples,researchEmptyState,composer,paperclipButton,send,uploadPanel,h('div',{className:'mut',textContent:LANG==='ar'?'Enter للإرسال · Shift+Enter لسطر جديد':'Enter to send · Shift+Enter for a new line'}),h('div',{className:'research-composer-controls'},scopeTabs,scopeSelect,matterLabel,openDocumentWorkspace));
  const loadResearchCorpusStatus=async()=>{
   if(!ME.can_review_legal){researchCorpusStatus.textContent=LANG==='ar'?'عدد المستندات المتحقق منها متاح للمراجعين القانونيين فقط.':'Verified-document count is available to legal reviewers only.';return}
   try{
@@ -3035,7 +3059,7 @@ async function law(){
    if(count===0)researchCorpusStatus.append(h('span',{className:'mut',textContent:LANG==='ar'?'لا توجد مستندات قانونية متحققة متاحة؛ سيمتنع المساعد عن التخمين.':'No verified legal documents are available; the assistant will abstain rather than guess.'}));
   }catch(_){researchCorpusStatus.textContent=LANG==='ar'?'تعذر تحميل عدد المستندات المتحقق منها.':'Verified-document count is unavailable.'}
  };
- shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-scope-guidance',role:'note'},h('b',{textContent:LANG==='ar'?'كيف يعمل البحث القانوني':'How legal research works'}),h('details',{className:'research-help-details'},h('summary',{textContent:LANG==='ar'?'اعرف المزيد':'Learn more'}),h('p',{textContent:LANG==='ar'?'يبحث النطاق الافتراضي في النصوص القانونية المتحقق منها فقط. إذا لم يوجد نص مستوفٍ لشروط المصدر والمراجعة، سيمتنع النظام عن الإجابة بدلاً من التخمين. استخدم اكتشاف فهرس المصادر للعثور على بيانات وصفية فقط، أو اختر مستندات المكتب وحدد ملف قضية.':'The default scope searches verified legal text only. If no source meets provenance and review requirements, the assistant abstains rather than guessing. Use source-catalog discovery for metadata only, or choose firm documents and select a matter.'}))),h('div',{className:'research-controls'},scopeTabs,scopeSelect,matterLabel,openDocumentWorkspace),documentWorkspace,h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},researchStatus,composerArea,thread),sourceInspector));
+ shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-scope-guidance',role:'note'},h('b',{textContent:LANG==='ar'?'كيف يعمل البحث القانوني':'How legal research works'}),h('details',{className:'research-help-details'},h('summary',{textContent:LANG==='ar'?'اعرف المزيد':'Learn more'}),h('p',{textContent:LANG==='ar'?'يبحث النطاق الافتراضي في النصوص القانونية المتحقق منها فقط. إذا لم يوجد نص مستوفٍ لشروط المصدر والمراجعة، سيمتنع النظام عن الإجابة بدلاً من التخمين. استخدم اكتشاف فهرس المصادر للعثور على بيانات وصفية فقط، أو اختر مستندات المكتب وحدد ملف قضية.':'The default scope searches verified legal text only. If no source meets provenance and review requirements, the assistant abstains rather than guessing. Use source-catalog discovery for metadata only, or choose firm documents and select a matter.'}))),documentWorkspace,h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},researchStatus,composerArea,thread),evidencePanel));
  try{
   await drawList();
   await loadResearchCorpusStatus();
