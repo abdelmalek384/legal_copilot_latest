@@ -126,3 +126,5 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 62. [Environmental and Waste Law acquisition](egypt_environmental_and_waste_law_acquisition_2026-11-17.md) — Environment Law4/1994 amendment chain; Natural Reserves Law102/1983 full PDF; Waste Law202/2020 and PM722/2022; 39 EEAA index-listed decisions plus PM662/2025; Law152/2021 identity discrepancy.
 63. [Environmental instruments register](../../data/research/egypt_environmental_instruments_register_2026-11-17.csv) — 51 instrument entries covering environmental amendments, executive regulations and EEAA decisions.
+
+64. [2026 Future Egypt Authority and budget acquisition](egypt_2026_future_egypt_authority_and_budget_law_acquisition.md) — GPO full texts for Law147/2026 and Budget Law77/2026; Ministry leads for PM2034/2026 and Cabinet Decision80/2026; Law47/147 identifier discrepancy flagged.
