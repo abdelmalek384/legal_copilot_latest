@@ -3033,19 +3033,44 @@ async function law(){
 
    for(const [messageIndex,m] of messages.entries()){
      const bubble=h('div',{className:'research-message '+(m.role==='user'?'user':'assistant')});
+     let answerAnalysisPanel=null,answerAuthoritiesPanel=null,answerNotesPanel=null,answerTabBar=null;
+     if(m.role==='assistant'){
+      const tabPrefix='research-answer-'+messageIndex;
+      answerAnalysisPanel=h('section',{className:'research-answer-tab-panel research-answer-analysis',id:tabPrefix+'-analysis',role:'tabpanel',tabIndex:0,'aria-label':LANG==='ar'?'التحليل':'Analysis'});
+      answerAuthoritiesPanel=h('section',{className:'research-answer-tab-panel research-answer-authorities',id:tabPrefix+'-authorities',role:'tabpanel',tabIndex:0,'aria-label':LANG==='ar'?'المراجع الرئيسية':'Key authorities',hidden:true});
+      answerNotesPanel=h('section',{className:'research-answer-tab-panel research-answer-notes',id:tabPrefix+'-notes',role:'tabpanel',tabIndex:0,'aria-label':LANG==='ar'?'ملاحظات البحث':'Research notes',hidden:true});
+      const tabs=[];
+      const selectAnswerTab=selected=>{
+       for(const [name,button,panel] of tabs){const active=name===selected;button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;button.classList.toggle('active',active);panel.hidden=!active}
+      };
+      const makeAnswerTab=(name,label,panel)=>{
+       const button=h('button',{type:'button',id:tabPrefix+'-tab-'+name,role:'tab','aria-controls':panel.id,'aria-selected':name==='analysis'?'true':'false',tabIndex:name==='analysis'?0:-1,textContent:label,onclick:()=>selectAnswerTab(name)});
+       panel.setAttribute('aria-labelledby',button.id);tabs.push([name,button,panel]);return button;
+      };
+      const sourceCount=Array.isArray(m.sources)?m.sources.length:0;
+      answerTabBar=h('div',{className:'research-answer-tabs',role:'tablist','aria-label':LANG==='ar'?'أقسام الإجابة':'Answer sections'});
+      answerTabBar.append(makeAnswerTab('analysis',LANG==='ar'?'التحليل':'Analysis',answerAnalysisPanel),makeAnswerTab('authorities',(LANG==='ar'?'المراجع الرئيسية':'Key authorities')+(sourceCount?' '+sourceCount:''),answerAuthoritiesPanel),makeAnswerTab('notes',LANG==='ar'?'ملاحظات البحث':'Research notes',answerNotesPanel));
+      answerTabBar.addEventListener('keydown',event=>{
+       if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
+       event.preventDefault();const current=tabs.findIndex(([,button])=>button===event.target);if(current<0)return;
+       const forward=LANG==='ar'?event.key==='ArrowLeft':event.key==='ArrowRight';const next=event.key==='Home'?0:event.key==='End'?tabs.length-1:(current+(forward?1:-1)+tabs.length)%tabs.length;
+       tabs[next][1].focus();selectAnswerTab(tabs[next][0]);
+      });
+     }
      bubble.append(h('div',{className:'research-role',textContent:m.role==='user'?(LANG==='ar'?'أنت':'You'):(LANG==='ar'?'المساعد القانوني':'Legal assistant')}));
      if(m.role==='assistant'){
       const answerTime=typeof m.created_at==='string'?new Date(m.created_at):null;
       const timeLabel=answerTime&&Number.isFinite(answerTime.getTime())?answerTime.toLocaleString(LANG==='ar'?'ar':'en-GB',{dateStyle:'medium',timeStyle:'short'}):'';
       bubble.append(h('div',{className:'research-answer-meta'},pill(LANG==='ar'?'تحليل بمساعدة الذكاء الاصطناعي':'AI-assisted analysis','soon'),timeLabel?h('span',{className:'research-answer-time',textContent:(LANG==='ar'?'تم التحديث ':'Updated ')+timeLabel}):null));
      }
-     const answerContent=h('div',{className:'research-content'});renderResearchAnswer(answerContent,m.content||m.answer||'');bubble.append(answerContent);
-     const answerTier=m.trust_tier||(m.result&&m.result.trust_tier);if(m.role==='assistant')bubble.append(trustTierBadge(answerTier||'unreviewed'));
+     if(m.role==='assistant')bubble.append(answerTabBar,answerAnalysisPanel,answerAuthoritiesPanel,answerNotesPanel);
+     const answerContent=h('div',{className:'research-content'});renderResearchAnswer(answerContent,m.content||m.answer||'');(answerAnalysisPanel||bubble).append(answerContent);
+     const answerTier=m.trust_tier||(m.result&&m.result.trust_tier);if(m.role==='assistant')answerAnalysisPanel.append(trustTierBadge(answerTier||'unreviewed'));
      if(m.role==='assistant'&&(m.sources||[]).length){
        const sourceItems=m.sources||[];
        const cautionCount=sourceItems.filter(source=>!source||source.source_status!=='verified_operative_text').length;
-       bubble.append(h('div',{className:'research-sources-title',textContent:copy('مصادر الإجابة')}));
-       bubble.append(h('div',{className:'research-source-caution '+(cautionCount?'warning':'verified'),role:'note'},
+       answerAnalysisPanel.append(h('div',{className:'research-sources-title',textContent:copy('مصادر الإجابة')}));
+       answerAnalysisPanel.append(h('div',{className:'research-source-caution '+(cautionCount?'warning':'verified'),role:'note'},
         h('strong',{textContent:cautionCount?(LANG==='ar'?'تنبيه التحقق من المصادر':'Source verification required'):(LANG==='ar'?'حالة التحقق المسجلة':'Recorded verification status')}),
         h('p',{textContent:cautionCount?(LANG==='ar'?'يحتاج '+cautionCount+' من أصل '+sourceItems.length+' مصادر إلى تحقق قبل الاعتماد. راجع النص الرسمي والحالة القانونية الحالية.':cautionCount+' of '+sourceItems.length+' sources need verification before reliance. Check the official text and current legal status.'):(LANG==='ar'?'تحمل المصادر حالة نص ساري متحقق وفق البيانات المسجلة؛ تحقق من النشر الرسمي والتاريخ قبل الاعتماد.':'All sources carry the recorded verified-operative-text status; confirm official publication and dates before relying on them.')})));
        const verifiedSourceCount=sourceItems.filter(source=>source&&source.source_status==='verified_operative_text').length;
@@ -3054,7 +3079,7 @@ async function law(){
        const coverageDetail=primaryAuthorityCount
         ? (LANG==='ar'?primaryAuthorityCount+' من المصادر مصنفة صراحةً كمراجع أولية':primaryAuthorityCount+' explicitly classified primary authorities support this answer')
         : (LANG==='ar'?verifiedSourceCount+' من أصل '+sourceItems.length+' مصادر تحمل حالة النص الساري المتحقق':verifiedSourceCount+' of '+sourceItems.length+' sources carry verified-operative-text status');
-       bubble.append(h('section',{className:'research-answer-coverage '+(coverageStrong?'strong':'review'),role:'status'},
+       answerAnalysisPanel.append(h('section',{className:'research-answer-coverage '+(coverageStrong?'strong':'review'),role:'status'},
         h('span',{className:'research-answer-coverage-icon','aria-hidden':'true',textContent:coverageStrong?'✓':'!'}),
         h('div',{className:'research-answer-coverage-copy'},
          h('b',{textContent:coverageStrong?(LANG==='ar'?'تغطية مصادر قوية':'Strong source coverage'):(LANG==='ar'?'تغطية المصادر تحتاج إلى مراجعة':'Source coverage needs review')}),
@@ -3174,7 +3199,7 @@ async function law(){
            }catch(_){ }finally{saveRating.disabled=false}
          },'g');
          const clearRatingError=field=>{field.removeAttribute('aria-invalid');field.removeAttribute('aria-describedby');if(!overall.hasAttribute('aria-invalid')&&!citationAccuracy.hasAttribute('aria-invalid')&&!expected.hasAttribute('aria-invalid'))ratingError.hidden=true};overall.onchange=()=>clearRatingError(overall);citationAccuracy.onchange=()=>clearRatingError(citationAccuracy);expected.oninput=()=>clearRatingError(expected);ratingPanel.append(ratingTitle,ratingChoices,h('div',{className:'answer-rating-fields'},overall,citationAccuracy,expected,answerable,notes),ratingError,saveRating,ratingStatus);
-         bubble.append(ratingPanel);
+         answerNotesPanel.append(ratingPanel);
          api('/research/answers/'+encodeURIComponent(m.answer_id)+'/rating').then(result=>{
            const saved=result.rating;if(!saved)return;
            overall.value=saved.rating||'';ratingChoiceButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.rating===overall.value)));citationAccuracy.value=saved.cited_article_accuracy||'';
@@ -3193,10 +3218,23 @@ async function law(){
              : messageScope==='verified_corpus'
                ? (LANG==='ar'?'لم يُعثر على نص قانوني متحقق ذي صلة في بحث المجموعة القانونية.':'No relevant verified legal text was returned by this verified-corpus search.')
                : (LANG==='ar'?'لم تُسجل مصادر لهذا البحث ولم يُسجل نطاقه.':'No source records were returned; the search scope was not recorded.');
-         bubble.append(pill(emptyScope,'soon'));
+         answerAnalysisPanel.append(pill(emptyScope,'soon'));
          const messageQuestion=messages.slice(0,messageIndex).reverse().find(x=>x.role==='user')?.content||priorQuestion||'';
          if(messageScope!=='metadata_only')actions.append(makeBtn(LANG==='ar'?'اكتشاف بيانات وصفية للمصادر':'Discover source metadata',async()=>{if(!messageQuestion.trim())return;scopeSelect.value='metadata_only';try{renderDiscovery(await api('/research/discover','POST',{q:messageQuestion}),messageQuestion)}catch(_){}},'g'));
        }
+     }
+     if(m.role==='assistant'){
+      const authoritySources=Array.isArray(m.sources)?m.sources:[];
+      if(!authoritySources.length)answerAuthoritiesPanel.append(h('p',{className:'research-answer-tab-empty',textContent:LANG==='ar'?'لا توجد مراجع مسترجعة لهذه الإجابة.':'No retrieved authorities are available for this answer.'}));
+      authoritySources.forEach((source,index)=>{
+       const status=source?.source_status||'outdated_or_under_review',provenance=source?.provenance||{};
+       const pin=[(source?.law_number||provenance.law_number)&&((LANG==='ar'?'القانون رقم ':'Law No. ')+(source.law_number||provenance.law_number)+(source.law_year||provenance.law_year?'/'+(source.law_year||provenance.law_year):'')),source?.article&&(LANG==='ar'?'المادة ':'Article ')+source.article,source?.page&&(LANG==='ar'?'الصفحة ':'Page ')+source.page].filter(Boolean).join(' · ');
+       const title=source?.ref||source?.citation||((LANG==='ar'?'مرجع ':'Authority ')+(index+1));
+       const meta=[source?.citation,source?.court,source?.source,source?.article&&(LANG==='ar'?'المادة ':'Article ')+source.article].filter(Boolean).join(' · ');
+       const row=h('article',{className:'research-answer-authority-row'},h('div',{className:'research-answer-authority-number',textContent:String(index+1)}),h('div',{className:'research-answer-authority-copy'},h('b',{textContent:title}),h('p',{textContent:meta|| (LANG==='ar'?'بيانات المرجع المسجلة':'Recorded authority metadata')}),pill(status==='verified_operative_text'?(LANG==='ar'?'نص ساري متحقق':'Verified operative text'):(LANG==='ar'?'يتطلب التحقق':'Verification required'),status==='verified_operative_text'?'done':'soon')),h('button',{type:'button',className:'research-authority-inspect',textContent:LANG==='ar'?'فحص المقطع ←':'Inspect passage →','aria-controls':'research-source-inspector','aria-expanded':'false',onclick:event=>inspectSource(source,status,pin,provenance,event.currentTarget)}));
+       answerAuthoritiesPanel.append(row);
+      });
+      if(!answerNotesPanel.childElementCount)answerNotesPanel.append(h('p',{className:'research-answer-tab-empty',textContent:LANG==='ar'?'ملاحظات المراجع متاحة عند وجود إجابة مؤهلة للتقييم داخل المكتب.':'Reviewer notes are available when an answer is eligible for firm assessment.'}));
      }
      thread.append(bubble);
    }
@@ -4255,4 +4293,22 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 #main .research-evidence-filter-empty[hidden]{display:none}
 </style><style>
 #main .research-answer-meta .pill{background:#edf4ff;color:#316aa7;border:1px solid #dce9f8;font-weight:700}
+</style><style>
+#main .research-answer-tabs{display:flex;gap:18px;align-items:center;margin:2px 0 12px;padding:0 4px;border-bottom:1px solid #e7edf3}
+#main .research-answer-tabs [role=tab]{position:relative;min-height:34px;padding:5px 3px;border:0;border-radius:0;background:transparent;color:#77869a;font-size:10px;font-weight:650}
+#main .research-answer-tabs [role=tab].active{color:#2869ad}
+#main .research-answer-tabs [role=tab].active::after{position:absolute;inset-inline:0;bottom:-1px;height:2px;background:#2869ad;content:""}
+#main .research-answer-tab-panel[hidden]{display:none!important}
+#main .research-answer-tab-panel{min-width:0}
+#main .research-answer-authorities{display:grid;gap:8px}
+#main .research-answer-authority-row{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:9px;align-items:center;padding:10px;border:1px solid #e3eaf1;border-radius:7px;background:#fff}
+#main .research-answer-authority-number{display:grid;place-items:center;width:22px;height:22px;border-radius:6px;background:#edf3fa;color:#416b95;font-size:10px;font-weight:700}
+#main .research-answer-authority-copy{min-width:0}
+#main .research-answer-authority-copy>b{display:block;font-size:11px;color:#2d425c;overflow-wrap:anywhere}
+#main .research-answer-authority-copy>p{margin:3px 0;font-size:9px;color:#8492a3;overflow-wrap:anywhere}
+#main .research-answer-authority-copy .pill{font-size:8px;padding:2px 6px}
+#main .research-authority-inspect{min-height:28px;padding:4px 7px;background:transparent;border:0;color:#2d6cad;font-size:9px;white-space:nowrap}
+#main .research-answer-tab-empty{padding:18px 10px;color:#7d8b9d;font-size:11px}
+#main .research-answer-notes .answer-rating-panel{margin:0;padding:12px}
+@media(max-width:600px){#main .research-answer-tabs{gap:12px}#main .research-answer-authority-row{grid-template-columns:22px minmax(0,1fr)}#main .research-authority-inspect{grid-column:2;justify-self:start}}
 </style></html>
