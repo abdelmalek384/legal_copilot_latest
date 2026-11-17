@@ -15,6 +15,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 9. [Ministry guidance, ILO resources and legacy instruments](labour_related_free_materials_and_case_law_2026-11-17.md) — Ministry Q&A/inspection guide leads, NATLEX/EPLex/Child Labour Observatory and legacy 2003 decisions.
 10. [Expanded Cassation case leads](cassation_labour_case_leads_expanded_2026-11-17.md) and [additional 25 August 2026 metadata](cassation_additional_labour_metadata_2026-08-25.md).
 11. [Gas Egypt appeal 5280/87](cassation_appeal_5280_87_gas_egypt_2026-08-25.md) — a detailed secondary summary of a prior-law absenteeism/termination dispute.
+12. [Additional ministerial decision harvest](ministerial_decisions_214_259_266_279_299_300_301_75_346_harvest_2026-11-17.md) — newly located Gazette text/page maps for Decisions 214, 266, 279, 300 and 301; secondary full text for 259 and 299; official-source leads for 75 and 346.
 
 ## Structured inventory
 
@@ -23,9 +24,12 @@ This folder contains free/public source discovery, metadata registers and extrac
 ## Current harvest snapshot
 
 - 33 distinct ministerial decision numbers identified across the 2025–2026 discovery inventory (including five OSH decisions 248–252/2026).
-- Full/partial secondary text or extracted Gazette notes prepared for Decisions 48, 49, 50, 162, 187, 248, 250 and 264; other decisions remain metadata/secondary discovery leads with varying completeness.
+- Full/partial text or extracted notes now include Decisions 48, 49, 50, 75, 162, 187, 214, 248, 250, 259, 260, 264, 266, 279, 299, 300, 301 and 346, with important source-quality differences: some are secondary transcriptions, and Gazette 290(B) searchable facsimile is hosted on a third-party CDN.
 - Court of Cassation labour-related appeal identifiers and headnote leads recorded, mostly under predecessor legislation.
 - No full corpus of Court of Cassation judgments acquired.
+- Newly located 290(B) Gazette bundle metadata names Decisions 266, 279, 300 and 301; third-party-hosted searchable facsimile has article text and page locators, but an authorized original and SHA-256 comparison are still needed.
+- Decision 214 Gazette text contains a possible preamble discrepancy reading Law 4/2025 rather than Law 14/2025; preserve unresolved pending inspection of the printed page and counsel review.
+- Decision 259 and 299 remain secondary full-text transcriptions pending primary Gazette comparison.
 - No original-Gazette hash captured for the existing Labour Law 14/2025 candidate in this harvest.
 - No source rights clearance or Egyptian lawyer sign-off obtained.
 - No production database import performed.
