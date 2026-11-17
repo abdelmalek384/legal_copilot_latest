@@ -120,7 +120,7 @@ Policy:
 
 ## 8. Initial progress measurement
 
-A defensible percentage needs a denominator. The first denominator is now **30 legal domains**, not an estimate of all individual laws/cases:
+A defensible percentage needs a denominator. The first denominator is now **32 legal domains**, not an estimate of all individual laws/cases:
 - 32/32 domains have been named in the national inventory (scope definition only; this is not 100% coverage).
 - 27 source institutions/platforms are registered, including the Supreme Constitutional Court, State Council, Consumer Protection Agency, NOSI, Administrative Control Authority, National Elections Authority, Customs Authority and Economic Courts.
 - 62 anchor instruments have acquisition records with their source/access status.
@@ -129,7 +129,7 @@ A defensible percentage needs a denominator. The first denominator is now **30 l
 - No nationwide court judgment corpus has been acquired.
 - No lawyer-reviewed national corpus exists.
 
-Do not turn the 30-domain planning inventory into a false legal-coverage percentage. Report separate metrics for domain mapping, source acquisition, primary-source matching, amendment/currentness validation, judicial collection and lawyer review.
+Do not turn the 32-domain planning inventory into a false legal-coverage percentage. Report separate metrics for domain mapping, source acquisition, primary-source matching, amendment/currentness validation, judicial collection and lawyer review.
 
 ## 9. Next acquisition priorities
 
@@ -161,15 +161,16 @@ Additional statutes indexed include Laws 46/1972, 47/1972, 54/1964 as amended by
 
 | Measure | Result | Meaning |
 |---|---:|---|
-| Legal-domain scope mapped | 30/30 (100%) | The national scope has been enumerated; this is planning coverage only |
-| Source institutions/platforms registered | 23 | Includes government, courts, regulators and public discovery sources |
-| Seed anchor instruments inventoried | 40 | A starter list, not the total universe of Egyptian legislation |
-| Official PDF texts opened in this tranche | 8/40 (20% of seed list) | Civil Code, four 2026 tax laws, Capital Market Law, Criminal Procedure Law174/2025 and Consumer Protection Law181/2018; Law160/2026 official HTML text also opened |
-| Nationwide consolidated statute domains | 0/30 | No domain is yet complete end-to-end with all amendments and currentness |
-| Full judicial judgments acquired in this national tranche | 0 | One SCC press-summary lead and a bulletin were registered; State Council series are bibliographic targets |
+| Legal-domain scope mapped | 32/32 (100%) | Scope definition only; not full legal coverage |
+| Source institutions/platforms registered | 27 | Government, courts, regulators and discovery sources |
+| Seed anchor instruments inventoried | 62 | Starter set, not the total universe of Egyptian laws and decisions |
+| Source PDFs opened | 18/62 (29.0% of seed list) | Includes some government reprints/annotated compilations; not all are bare Gazette originals |
+| Nationwide consolidated statute domains | 0/32 | No domain yet has all base laws, amendments, executive regulations and currentness fully consolidated |
+| Full judicial judgments acquired in this national tranche | 0 | One Constitutional Court press-summary lead and a bulletin; 23 State Council series targets are bibliographic leads |
 | Lawyer-reviewed national instruments | 0 | Human legal review remains mandatory |
 
-**Overall nationwide legal knowledge collection estimate: 3%.** This is a cautious project-management estimate, not a count of all Egyptian laws or judicial decisions. It reflects that the domain map and source discovery are ahead of actual full-text acquisition, consolidation, judicial corpus collection and lawyer review. It should rise only when primary text and amendment chains are actually acquired—not when a source URL is merely found.
+**Overall nationwide legal knowledge collection estimate: 4%.** This is a cautious project-management estimate, not a count of all Egyptian laws or judicial decisions. It reflects the still-small share of actual full-text acquisition, amendment consolidation, currentness verification, judicial corpus collection and lawyer review. It must rise only when the underlying documents and legal relationships are acquired and checked—not when source URLs are merely discovered.
+ 
 
 
 ## Constitution and election-law tranche
