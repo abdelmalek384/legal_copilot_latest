@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17  
+**Last updated:** 2026-11-17 (expanded through checkpoint 9)  
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -29,6 +29,10 @@
 | [collection_checkpoint_10_digital_consumer_finance_2026-11-17.md](collection_checkpoint_10_digital_consumer_finance_2026-11-17.md) | Official ITIDA e-signature texts, MCIT cybercrime index, CPA consumer-law index, FRA consumer-finance Law 18/2020 and 2026 guide |
 | [collection_checkpoint_11_personal_data_protection_2026-11-17.md](collection_checkpoint_11_personal_data_protection_2026-11-17.md) | Official-hosted Law 151/2020 Gazette PDF; Executive Regulation Decision 816/2025; official 2026 confirmation and Gazette-matching tasks |
 | [collection_checkpoint_12_digital_regulatory_updates_2026-11-17.md](collection_checkpoint_12_digital_regulatory_updates_2026-11-17.md) | PDPL regulation currentness; e-signature Decision 361/2020; cybercrime official index; 2026 FRA fintech and consumer-finance regulatory updates |
+
+
+| [collection_checkpoint_8_fra_november_2026_and_new_laws.md](collection_checkpoint_8_fra_november_2026_and_new_laws.md) | FRA Circular 8/2026, Decision 133/2026, recent Ministry of Finance law/decision index and FRA regulatory categories |
+| [collection_checkpoint_9_2026_gazette_company_stamp_customs_future_egypt.md](collection_checkpoint_9_2026_gazette_company_stamp_customs_future_egypt.md) | Full-text inspections of Laws 154/2026 and 153/2026, Customs Decision 262/2026, and the Law 47/147 metadata discrepancy |
 
 ## High-value primary-source portals
 
