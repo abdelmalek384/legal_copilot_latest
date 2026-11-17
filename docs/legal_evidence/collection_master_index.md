@@ -284,6 +284,8 @@
 
 | [collection_checkpoint_69_vat_law_2026.md](collection_checkpoint_69_vat_law_2026.md) | VAT Law 67/2016 and Regulation 66/2017; Laws 157/2025 and 149/2026; 2026 correction notice; digital-services guidance and consumer-finance interest instruction |
 
+| [collection_checkpoint_70_customs_law_2026.md](collection_checkpoint_70_customs_law_2026.md) | Customs Law 207/2020 official Customs PDF; Executive Regulation 430/2021 and amendments through Decision 328/2026; 2026 procedure notices and import/export instructions |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
