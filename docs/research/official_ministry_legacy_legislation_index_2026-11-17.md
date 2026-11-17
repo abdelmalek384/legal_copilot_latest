@@ -193,3 +193,14 @@ Source for this expanded discovery: Ministry of Labour Arabic *Laws and Legislat
 https://www.labour.gov.eg/ar/القوانين-والتشريعات/
 
 This expanded table remains index-only. It is not yet a verified count of unique, operative, Law 14/2025 implementing decisions.
+
+
+## 9. Newly acquired training-regulation text — Decision 11/2014
+
+A public Gazette transcription now supplies all 22 articles of Decision 11/2014 on the National OSH Centre's training regulations (Gazette issue 226, 8 October 2014; signed 3 August 2014). See [the focused extraction](decision_11_2014_osh_centre_training_regulations.md).
+
+This text creates two important cross-reference checks:
+- Its preamble cites Decision 25/2003 as an Article 18 amendment to Decision 134/2003, while the Ministry index separately lists Decision 25/2010 with a similar description. Preserve both year-number keys until the actual texts are compared.
+- Its preamble and Article 6 cite Decision 263/2010, but Article 1's training-fee table repeatedly prints Decision 623/2010 as the trainee-condition reference. Preserve the mismatch; do not silently correct it.
+
+Decision 11/2014 contains historical training fees and staff remuneration. These are not current fees. Its transcription is a third-party Gazette portal copy, not the original signed PDF; rights and lawyer-review status remain unknown.
