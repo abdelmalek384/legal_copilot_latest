@@ -8632,6 +8632,101 @@
           "status": "located_2026-11-17"
         }
       ]
+    },
+    {
+      "document_id": "EG-INVESTMENT-INDUSTRIAL-INCENTIVE-DECISION-77-2023",
+      "official_title": "قرار مجلس الوزراء رقم 77 لسنة 2023 بشأن قواعد استحقاق الحافز للمشروعات الاستثمارية في قطاع الصناعة أو توسعاتها",
+      "document_type": "prime_minister_decision",
+      "law_number": "77",
+      "law_year": 2023,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_catalogue_entry_seen",
+      "text_verification_note": "MoF page 10 lists rules for eligibility for investment incentive for industrial projects; exact decree PDF and conditions/eligible products to be extracted. Official Ministry of Finance catalogue page 10; full PDF, Gazette issue, text extraction, SHA-256 and currentness remain outstanding. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws?page=10",
+          "source_role": "official Ministry of Finance legislation catalogue",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MOF-EMPLOYEE-CONFLICT-DECISION-90-2023",
+      "official_title": "قرار وزير المالية رقم 90 لسنة 2023 بشأن الحظر على موظفي قطاعات ديوان عام وزارة المالية ومصالحها وجهاتها التابعة",
+      "document_type": "ministerial_decision",
+      "law_number": "90",
+      "law_year": 2023,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_catalogue_entry_seen",
+      "text_verification_note": "MoF page 10 lists ministerial decision imposing a prohibition on certain ministry employees; scope and operative text need extraction. Official Ministry of Finance catalogue page 10; full PDF, Gazette issue, text extraction, SHA-256 and currentness remain outstanding. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws?page=10",
+          "source_role": "official Ministry of Finance legislation catalogue",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-VAT-EXEC-REGS-AMEND-57-2023",
+      "official_title": "قرار وزير المالية رقم 57 لسنة 2023 بتعديل المادة 72 من اللائحة التنفيذية لقانون الضريبة على القيمة المضافة",
+      "document_type": "tax_executive_regulation_amendment",
+      "law_number": "57",
+      "law_year": 2023,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_catalogue_entry_seen",
+      "text_verification_note": "MoF page 10 lists amendment replacing Article 72 of VAT Executive Regulation 66/2017. Official Ministry of Finance catalogue page 10; full PDF, Gazette issue, text extraction, SHA-256 and currentness remain outstanding. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws?page=10",
+          "source_role": "official Ministry of Finance legislation catalogue",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-VAT-EXEC-REGS-AMEND-188-2023",
+      "official_title": "قرار وزير المالية رقم 188 لسنة 2023 بتعديل اللائحة التنفيذية لقانون الضريبة على القيمة المضافة",
+      "document_type": "tax_executive_regulation_amendment",
+      "law_number": "188",
+      "law_year": 2023,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_catalogue_entry_seen",
+      "text_verification_note": "MoF page 10 lists amendment to VAT executive regulation; identify exact amended clauses from official PDF. Official Ministry of Finance catalogue page 10; full PDF, Gazette issue, text extraction, SHA-256 and currentness remain outstanding. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws?page=10",
+          "source_role": "official Ministry of Finance legislation catalogue",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-VAT-EXEC-REGS-AMEND-249-2023",
+      "official_title": "قرار وزير المالية رقم 249 لسنة 2023 بتعديل بعض أحكام اللائحة التنفيذية لقانون الضريبة على القيمة المضافة",
+      "document_type": "tax_executive_regulation_amendment",
+      "law_number": "249",
+      "law_year": 2023,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_mof_catalogue_entry_seen",
+      "text_verification_note": "MoF page 10 lists amendment to VAT executive regulation; map exact provisions and commencement. Official Ministry of Finance catalogue page 10; full PDF, Gazette issue, text extraction, SHA-256 and currentness remain outstanding. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/laws?page=10",
+          "source_role": "official Ministry of Finance legislation catalogue",
+          "status": "listed_2026-11-17"
+        }
+      ]
     }
   ]
 }
