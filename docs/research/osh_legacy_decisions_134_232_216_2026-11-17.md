@@ -75,6 +75,15 @@ A Ministry-hosted climate presentation cites Article 208 of Law 12/2003 and Arti
 
 - Decision 216/2016: substantive three-article text captured from a public Gazette transcription; not primary-source matched in this pass.
 - Decision 232/2010: official PDF URL and publication metadata found; only partial secondary article snippets captured.
-- Decision 134/2003: base instrument identified; complete official text/schedules not captured in this pass.
+- Decision 134/2003: substantive Articles 1–21 and parts of Schedules 1–3 are reproduced in a 2019 GHWSC trainee legal-reference guide; Article 2 is truncated and some Schedule 2 rows are garbled. See the focused extraction; the signed Gazette original, issue/page and hash remain missing.
 - Decision 211/2003: technical subject confirmed by Ministry presentation; complete signed text and exact limits not captured.
 - No legal text promoted to verified; no lawyer approval or reuse licence asserted.
+
+
+## 7. Decision 134/2003 — substantive transcription now located
+
+A 2019 government-company-hosted trainee legal-reference guide reproduces the OSH Decision 134/2003 text, including Articles 1–21 and parts of the schedules: https://ghwsc.com.eg/Image_Pdf/TraininEducationDocument/14/153.PDF
+
+The focused extract is in [Decision 134/2003 — OSH establishment thresholds and committees](decision_134_2003_osh_establishment_thresholds_and_committees.md). It captures the 50-worker threshold, Article 3 functional-unit duties, OSH committee composition/meeting rules, qualification and training provisions, and the legible industrial staffing rows.
+
+Limitations: the guide copy truncates Article 2 and its non-industrial Schedule 2 staffing rows are not fully legible. It is not the signed Gazette original. The Ministry index's 2003/134 title also conflicts with the OSH title used by the guide and later amending decisions; preserve the identity discrepancy until the Gazette original is checked.
