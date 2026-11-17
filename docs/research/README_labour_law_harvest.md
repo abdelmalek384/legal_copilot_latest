@@ -22,6 +22,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 16. [National Council for Wages and minimum-wage updates](labour_wage_council_and_minimum_wage_updates_2026-11-17.md) — Prime Minister Decision 3165/2026 and the 15 Nov 2026 approval of a future EGP 8,500 wage floor (formal implementing decision pending).
 17. [Remote-work Decision 982/2026 and extensions](remote_work_decisions_982_2026_and_extensions.md) — six Prime Minister decisions covering April–September 2026, sectoral scope, exclusions, private-sector monitoring circular and Cabinet-approved draft cessation.
 18. [Decision 74/2026 — labour-market observatories](decision_74_2026_labour_market_observatories.md) — 17-article indexed-text extraction covering the central board, regional observatories, labour-market data confidentiality, partner responsibilities and funding.
+19. [Decision 75/2026 — women’s work, maternity and OSH](decision_75_2026_women_work_maternity_osh.md) — 15-article map covering equal pay, pregnancy/breastfeeding risk restrictions, night work, alternative daytime work, transport and inspection safeguards.
 
 ## Structured inventory
 
