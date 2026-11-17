@@ -259,6 +259,8 @@
 
 | [collection_checkpoint_64_commercial_code_text.md](collection_checkpoint_64_commercial_code_text.md) | Official ETA Commercial Code 17/1999 searchable PDF (3,759 lines); excerpts Articles 1–61; technology transfer, negotiable instruments and bankruptcy-book repeal by Law 11/2018 mapped |
 
+| [collection_checkpoint_65_insolvency_law_text.md](collection_checkpoint_65_insolvency_law_text.md) | Full 279-article Insolvency Law 11/2018 text; 2021 amendment 11/2021 and e-litigation; repeal of Commercial Code Book V; 2026 expert-fee Decision 3715 |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
