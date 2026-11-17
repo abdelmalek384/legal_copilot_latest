@@ -330,6 +330,8 @@
 
 | [collection_checkpoint_69_electricity_gas_laws.md](collection_checkpoint_69_electricity_gas_laws.md) | Electricity Law 87/2015 and amendments 192/2020, 70/2021; Gas Market Law 196/2017 and Executive Regulation 239/2018 |
 
+| [collection_checkpoint_78_customs_decision_262_2026.md](collection_checkpoint_78_customs_decision_262_2026.md) | Official Decision 262/2026 replaces Customs Regulation 430/2021 Article 232; bill of lading, delivery order, invoice/packing list and proof-of-origin documents |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
