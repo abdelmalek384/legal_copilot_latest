@@ -111,3 +111,27 @@ The 2026-08-25 Gas Egypt labour principle (termination, dismissal and warning) r
 4. Obtain the full Court of Cassation judgments for the appeal identifiers above, preserving statute-version tags and full citation details.
 5. Add ILO Convention records and ratification/status data relevant to minimum age, forced labour, equal remuneration, discrimination, OSH, working time, weekly rest, and collective bargaining.
 6. Keep the ILO/EPLex and Ministry Q&A material as secondary/official explanatory evidence, never as a replacement for Gazette text.
+
+
+## Ministry of Labour practical guidance — Q&A booklets and inspection guide
+
+### Question and Answer in Labour Law 14/2025 — Part 1
+
+- The Ministry of Labour publications index lists “سؤال وجواب في قانون العمل رقم 14 لسنة 2025” and identifies Part 1 and Part 2 as downloadable Ministry publications: https://www.labour.gov.eg/ar/الإصدارات/
+- A Directorate of Labour post (6 September 2026) reproduces the official Ministry-hosted Part 1 PDF URL: https://www.labour.gov.eg/media/laxaoisu/الجزء-الأول-سؤال-وجواب-في-قانون-العمل.pdf
+- The direct PDF URL returned HTTP 502 in this acquisition pass. Do not substitute social-media reposts or rehosted copies as official. Retry from the Ministry's publications page or obtain the Ministry file through an authorized channel.
+- Treat the booklet as official administrative guidance/educational material, not a statute, regulation or binding interpretation unless a competent authority confirms its status. Record the author/editor and edition metadata from the booklet when acquired.
+
+### Question and Answer in Labour Law 14/2025 — Part 2
+
+- The Ministry publications index lists Part 2 under the same Q&A publication.
+- A 10 October 2026 article describes Part 2 as a Ministry of Labour booklet prepared by Dr. Sherif Mohamed Nour El-Din, labour attaché/head of the Egyptian Labour Representation Office in Kuwait, under the Minister's sponsorship; it covers employment/recruitment agencies, licensing, obligations and penalties.
+- Secondary report for discovery only: https://www.youm7.com/story/2026/10/10/كيف-تحمي-نفسك-من-شركات-التوظيف-الوهمية-قانون-العمل-يغلق-الباب-أمام-السماسرة-والمنصات-غير-المرخصة-ويحدد-شروط-صارمة-لإلحاق-المصريين-بالداخل-والخارج-وترخيص-سنوى-وضمانة-مليون-جنيه-وعقوبات-تصل-للحبس/7574322
+- Do not treat the newspaper summary as the official booklet text. Obtain the Ministry-hosted PDF before extracting its Q&A answers.
+
+### Labour Inspection Guide — 2026
+
+- Prior Ministry announcement identified a Labour Inspection Guide intended to support compliance with Law 14/2025. The official publication/download link has not been recovered in this pass.
+- Continue searching the Ministry publications index, ministry announcements, and Labour Directorate channels. Keep the guide as a pending official acquisition lead; do not infer its rules from news reports.
+
+**Reuse caution:** Ministry publication does not automatically mean the booklet/guide may be copied into a commercial retrieval corpus. Check copyright and terms for each PDF before text ingestion, embedding or display.
