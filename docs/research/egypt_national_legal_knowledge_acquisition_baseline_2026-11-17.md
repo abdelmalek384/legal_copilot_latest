@@ -399,3 +399,8 @@ An official GPO decision, PM Decision 2564/2024 on the unified government compla
 ### Rights and status
 
 The NTRA English Law 10/2003 translation carries an explicit restriction against publication without prior permission. The corpus should prioritize Arabic official Gazette texts and store the English translation only as a locator/reference unless permission is obtained. All new records remain lawyer-unreviewed and rights-un-cleared.
+
+
+## 17. Focused asylum-law instrument note
+
+A dedicated note has been added at `egypt_asylum_law_164_2024_pm_decision_1568_2026.md`. It records the Official Gazette issue 21 supplement (B), 21 May 2026, DSpace metadata, the three-month commencement clause, selected articles on legal representation, family applications, screening/case management, decision periods, temporary measures, registration cards and cessation grounds. It preserves the distinction between the indexed official publisher text, repository metadata and the still-pending full-file hash/article-by-article scan comparison. The source note is not lawyer-reviewed.

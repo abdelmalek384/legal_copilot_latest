@@ -44,3 +44,5 @@ This is the cross-domain research entry point for the Legal Copilot national Egy
 - No national-corpus lawyer validation is recorded.
 
 - [Asylum, migration, telecom and data-protection harvest](../../data/research/egypt_asylum_migration_telecom_data_protection_harvest_2026-11-17.csv) — PM Decision 1568/2026 (Executive Regulation of Law 164/2024), NTRA 16 Nov 2026 wireless/spectrum rule notice, Telecommunications Law 10/2003 rights caveat, Data Protection Law 151/2020 and Cybercrime Law 175/2018 acquisition leads.
+
+- [Foreign Asylum Law 164/2024 and PM Decision 1568/2026 acquisition note](egypt_asylum_law_164_2024_pm_decision_1568_2026.md) — Official Gazette issue 21 supplement (B), 21 May 2026; selected articles, commencement clause and outstanding full-file/hash/currentness checks.
