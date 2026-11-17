@@ -480,3 +480,16 @@ The consent guideline lists six lawful bases under Article 6 of Law 151/2020 and
 **Currentness warning:** secondary legal sources report a one-year reconciliation period under Decision 816/2025 ending around 31 October/1 November 2026. The exact date varies by source. As of this snapshot the period appears to have elapsed, but the Arabic promulgation article, Gazette date-counting and any PDPC extension must be checked before asserting a deadline or enforcement consequence. MCIT's official 4 November 2026 news confirms PDPC implementation activity and a forum held on 26 October 2026; it is not itself a binding compliance circular.
 
 The PDPC public portal and guideline suite are now a continuing source stream. Next: retrieve the full Arabic Executive Regulation, obtain the remaining PDPC guidelines (lawful bases, DPO, breach notification, security, data-subject rights, cross-border transfers and licensing), and capture all post-November 2026 decisions and forms.
+
+
+## 22. Clinical Medical Research Law 214/2020 and Executive Regulation 927/2022
+
+A new 12-record register and dedicated acquisition note have been added:
+- `data/research/egypt_clinical_research_law_214_2020_harvest_2026-11-17.csv`
+- `egypt_clinical_research_law_214_2020_acquisition_note.md`
+
+The Official Government Printing Office's indexed text identifies PM Decision 927/2022 as the Executive Regulation of Law 214/2020, signed 12 March 2022 and effective the day after publication. The text exposes at least 32 articles across definitions, ethical principles, protocol approvals, the Supreme Council, institutional ethics committees, Egyptian Drug Authority, clinical-trial phases, participant rights, investigator/sponsor duties, adverse-event reporting, insurance and human samples.
+
+High-priority provisions visible in the official text include Article 2 (informed consent, good research practice, participant withdrawal and treatment of side effects); Articles 5–9 (protocol approval routes and review periods); Articles 20–21 (participant withdrawal, confidentiality, consent in the participant's mother tongue and limits on inducements); Articles 22–29 (investigator/sponsor duties, 24-hour serious-adverse-event notification, retention and insurance); and Article 30 (human sample consent, trade/storage restrictions and limits on storage/export outside Egypt).
+
+The regulation's preamble creates a broad cross-reference queue including medical practice, pharmacy, universities, medical facilities, child protection, intellectual property, competition, organ transplantation, industrial licensing, disability rights, university hospitals, science/technology incentives, unified procurement/medical supply, personal data protection and blood/plasma statutes. The full Gazette issue, Law 214/2020 base text, article-by-article comparison and later EDA/Supreme Council instruments remain outstanding.
