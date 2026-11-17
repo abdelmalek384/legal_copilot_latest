@@ -839,7 +839,10 @@ class BrowserAcceptanceTests(unittest.TestCase):
         answer_tabs = self.page.locator(".research-answer-tabs")
         self.assertTrue(answer_tabs.is_visible())
         authority_tab = answer_tabs.locator("[role='tab']").nth(1)
-        authority_tab.click()
+        analysis_tab = answer_tabs.locator("[role='tab']").first
+        analysis_tab.focus()
+        analysis_tab.press("ArrowLeft")  # RTL: move to the next tab
+        self.assertEqual(authority_tab.get_attribute("aria-selected"), "true")
         authority_panel = self.page.locator(".research-answer-authorities")
         self.assertTrue(authority_panel.is_visible())
         self.assertGreater(authority_panel.locator(".research-answer-authority-row").count(), 0)
