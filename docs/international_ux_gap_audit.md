@@ -129,3 +129,19 @@ Static CSS inspection found control borders and focus indicators too faint for r
 - Native browser constraint validation now also triggers the inline accessible error state through per-field `invalid` listeners for sign-in and new-case title controls (commit `cc8199a`); contract test `0b82340` guards the listeners. This closes the gap where browser-native required validation prevents the form submit handler from running.
 
 - Follow-up status-palette calculation (current effective tokens): open 5.71:1, done 6.45:1, soon 4.61:1, late 5.76:1 and closed 4.74:1 against their respective backgrounds; sampled normal-text status pairs now clear 4.5:1. Continue browser sampling of actual component surfaces and hover/disabled states.
+
+
+## UI implementation continuation — 2026-11-17
+
+The following code-level gaps have now been addressed in the frontend:
+
+- Research upload disclosure state is exposed to assistive technology and reset when the user leaves Firm documents.
+- Research upload results are announced as a polite list; individual errors retain assertive alert semantics.
+- Conflict-check minimum-query validation is inline, associated to the input and recoverable without a toast-only error.
+- Legal-review evidence and version selection use associated inline errors and focus management.
+- AI brief generation requires both firm and client attestations and now identifies/focuses missing consent controls without weakening the consent gate.
+- Research document workspace opening and save-to-matter reuse the same accessible matter-selection feedback.
+- Research answer rating validation identifies missing ratings and out-of-range expected article IDs inline.
+- Global search has a `>` command mode that filters the existing role/permission-gated navigation list. The ordinary permission-scoped matter/client/document search path is preserved.
+
+These changes have frontend source-contract coverage and the complete inline JavaScript parses with V8. They are not a substitute for executing the repository Python suite, Chromium acceptance, keyboard-only tests, screen-reader testing, 200% zoom/reflow, device-width checks, contrast review or Egyptian-lawyer usability sessions. The manual acceptance runbooks remain open, and no WCAG conformance or production-readiness claim is made from these static checks.
