@@ -69,3 +69,14 @@ This maps subjects and apparent operational relationships; it does not conclude 
 - Authoritative retrieval eligibility: **false**.
 
 No text from the secondary transcription is promoted into the legal corpus. This note focuses the next primary-source and counsel review and prevents the instrument from being missed by existing Labour Law 14/2025 evidence cards.
+
+
+## 17 November 2026 source cross-check
+
+Official Ministry announcements (29 Aug and 5 Sep 2026) frame Decision162 as the Law14/2025 implementation for private-sector employers with 10+ workers and identify ten broad themes; they are policy summaries, not operative text. Links: https://www.labour.gov.eg/ar/الأخبار/تنفيذ-ا-لتوجيهات-الرئيس-السيسي-بتوفير-بيئة-عمل-لائقة-ومنتجة-وزير-العمل-يعقد-مؤتمر-ا-صحفي-ا-وي-طلق-القواعد-العامة-للائحة-تنظيم-العمل-بشركات-القطاع-الخاص/ and https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يعلن-نص-القواعد-العامة-للائحة-تنظيم-العمل-بالقطاع-الخاص/.
+
+Separate MELES bilingual DSpace item: https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full (publisher MELES; English PDF 369.2KB, Arabic PDF 321.3KB). Do not confuse it with the official Gazette issue176 Amiri Press bundle https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full (2.26MB). The item licences/terms must be reviewed separately; no rights or byte identity inferred.
+
+Independent secondary cross-checks: Riwaq https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html; Sada al-Qanun https://sadaalqanun.com/مدونة-العمل/; Laeha-Misr https://laeha-misr.vercel.app/decree-162/; Cairo24 https://www.cairo24.com/2485622. These corroborate 10+ worker threshold, six-part/66-article structure and broad topics but are not Gazette verification.
+
+Article46/Statute Art141 investigation-duration reconciliation remains open; preserve it as a counsel question, not an assumed conflict or an override. Article47 must be read with statutory union-representative attendance safeguards.

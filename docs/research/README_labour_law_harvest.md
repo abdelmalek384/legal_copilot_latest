@@ -81,3 +81,10 @@ This folder contains free/public source discovery, metadata registers and extrac
 39. [Decision 250 Table 23/24 secondary-source inventory](../../data/candidates/labour_law_14_2025/decision_250_table24_secondary_source_inventory_2026-10-31.md) — additional search-indexed excerpts for Table23 threshold quantities and Table24 chemical TLV rows; Article52 control obligations; corrected Table24 page span pp.249–360. All remain secondary-only, 0/781 original Gazette matches and 0 counsel-approved.
 
 40. [Law 14/2025 Articles 260–262 visual review update](../legal_evidence/law_14_2025_lawyer_review_packet.md) — user-supplied issue18 PDF page99 visually reviewed for Art260 semiannual stats/24-hour notice/e-platform duties, Art261 OSH training/licensing, Art262 OSH consultant licence and EGP50,000 fee cap; assistant review only, lawyer sign-off pending.
+
+
+41. [Decision 162/2026 cross-source and approval review](decision_162_2026_extracted_structure_and_notes.md) — official Gazette issue176 metadata, separate MELES Arabic/English catalogue copies, Ministry 29 Aug/5 Sep announcements, and four secondary cross-checks. 66 articles/six parts remain secondary text only; original Gazette PDF/hash/page review and counsel review pending; Art46/Art141 reconciliation remains open.
+
+
+42. [Social/Health/Cultural Services Fund transition](labour_law_14_2025_statutory_delegation_gap_analysis.md) — maps legacy Decisions214/216/2003 repealed by Ministerial Decision16/2012; Decision310/2009 derivative; Decisions215/217/2003 still need full-text/currentness review; new PM Board/regulation under Law14 Art273 not located.
+43. [PM Decisions 3356/2026 and 2403/2026 implementation status](decision_3356_2026_training_qualification_fund.md) and [Fund governance notes](prime_minister_decisions_562_2025_2402_2403_2026.md) — 3356 repeals PM1543/2003 and requires separate ministerial exemption rules; 2403's 2 Nov Ministry update shows detailed operational regulations/benefit schedules were still being prepared.

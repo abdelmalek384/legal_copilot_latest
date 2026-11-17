@@ -89,3 +89,26 @@ A title-based harvest cannot establish completeness. The law itself delegates do
 ## 6. Progress measure
 
 The companion CSV contains **52 explicit statutory delegation rows**. This is a mapping of the delegations surfaced from the accessible Law 14/2025 text, not proof that all possible delegations have been captured. The formal-instrument register contains 51 identified instruments; 35 Ministry of Labour decision numbers are identified against the 68 Ministry decisions cited in official 2025 announcements. Corpus completeness remains open.
+
+
+## 17 November 2026 follow-up — Prime Minister fund/council delegations
+
+- **Article18 / Higher Council for Human Resource Skills:** Cabinet approved a *draft* PM decision on 28 October 2026 (official Cabinet meeting 11912: https://cabinet.gov.eg/Meeting/Details/11912). The draft summary specifies a four-year membership term, quarterly meetings, ministerial/employer/worker representation, disability-council representation, skills policy, education/training alignment and a national skills programme. The Official Gazette 2026 collection's visible issues through 12 November (issues 44, 44 bis A, 45 and 46) did not surface a final PM decision for this Council; no final number is assigned. Law Article18 required the PM decision within six months of the Law's commencement. With the general commencement candidate of 1 September 2025, the six-month date is 1 March 2026; the Cabinet draft approval is later. This is a timeline lead for counsel, not a finding about legal validity or compliance.
+- **Article20 / Training and Qualification Fund:** PM Decision3356/2026 was published in Official Gazette issue44 bis(A) on 1 November 2026 and takes effect the next day under Article18 of the secondary text. It maps the Fund's 18-article governance and contribution framework. It expressly repeals PM Decision1543/2003 by Article17. The separate Ministerial full-exemption decision under PM Decision3356 Article3 remains unlocated.
+- **Articles78–80 / Unorganized Workers Fund:** PM Decision2403/2026 supplies the Fund's 16-article framework. The Ministry's 2 November 2026 report confirms that its second Board meeting was still preparing the Fund's financial/administrative regulations, revenue collection, service rules and detailed emergency-benefit eligibility/amount/duration/suspension/payment rules. The Article80 Ministerial rules and final operational schedules remain unlocated.
+- **Articles273–274 / Social, Health and Cultural Services Fund:** remains a distinct statutory Fund. Do not confuse it with Decision2403 (unorganized workers) or Decision3356 (training and qualification); no separate PM Board/baseline regulation was found in this pass.
+
+
+## 17 November 2026 follow-up — Social, Health and Cultural Services Fund (Law Arts.272–274)
+
+A new historical-instrument chain was recovered:
+
+- **Decision215/2003:** Official Ministry laws index lists it as the minimum social/cultural services decision at establishment level. Law14 Article272 now applies to establishments with 50+ workers, requires participation with the labour organization and directs the Minister to issue minimum-service rules after consultation with employer/worker organizations. Full 215 text and currentness comparison remain outstanding.
+- **Decision217/2003:** Official Ministry index lists it as the national social/health/cultural services decision. The 2012 Decision16 text expressly refers to 217/2003 as the services basis. Law14 Article274 now lists ten service categories and permits the Minister, with the Fund Board, to add related services. Full 217 text and later amendments remain outstanding.
+- **Decision214/2003:** old Board-formation decision. Ministerial Decision16/2012 Article14 expressly repeals it.
+- **Decision216/2003:** old financial/administrative bylaw. Ministerial Decision16/2012 Article14 expressly repeals it.
+- **Decision310/2009:** secondary PDF says it amended Article2(1) of Decision216/2003; because 216/2003 was expressly repealed in 2012, treat 310/2009 as historical derivative pending counsel review.
+- **Ministerial Decision16/2012:** full 15-article secondary text is available at https://www.laweg.net/framePlain.aspx?ItemID=76003&NID=93978&Type=6&action=ViewActivePages. It was published in Egyptian Gazette issue43 on 22 February 2012; Article14 repeals 214/2003 and216/2003; Article2 adopts Decision217/2003 services; Articles8–9 set the old contribution at at least EGP8 per worker for establishments with 20+ and quarterly payment.
+- **Current gap:** Law14 Article273 now requires a Prime Minister decision to form the Fund Board, specify its powers/system and accounting rules; it also specifies EGP8–16 per worker/year for establishments with 20+ and permits deductions where the employer supplies services or a better benefit. No new PM Article273 decision was found in this pass. The old Ministerial Decision16/2012's composition/payment rules must not be assumed to satisfy the new PM-level delegation.
+
+**Source hierarchy:** Decision16/2012 is a secondary transcription at Laweg, not a retrieved Gazette binary. The Ministry's current legislation index is an official locator for Decisions215/2003 and217/2003 but did not expose their full texts in this pass. No instrument is lawyer-reviewed or promoted to verified.
