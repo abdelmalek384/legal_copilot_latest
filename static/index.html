@@ -1490,6 +1490,13 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
 #main .document-library-item .document-library-file .g{min-height:26px;padding:3px 8px;font-size:10px}
 @media(max-width:1050px){#main .document-library-table-head,#main .document-library-item{grid-template-columns:minmax(180px,1.5fr) minmax(90px,.8fr) minmax(110px,1fr) minmax(110px,1fr)}#main .document-library-table-head>*:last-child{display:none}#main .document-library-item>.document-reviewer-cell{display:none}}
 @media(max-width:760px){#main .document-library-table-head{display:none}#main .document-library-item{grid-template-columns:minmax(0,1fr)!important;gap:9px;padding:13px!important}#main .document-library-cell{padding-inline-start:44px}}
+
+#main .research-page-actions{display:flex;justify-content:flex-end;gap:8px;margin:-5px 0 14px}
+#main .research-page-actions button{min-height:36px;padding:7px 13px;font-size:11px;border-radius:7px}
+#main .research-page-actions button.primary{background:#1d5eaa;border-color:#1d5eaa}
+#main .research-evidence-heading{font-size:12px;color:#334b67}
+#main .research-evidence-heading .mut{font-size:10px}
+@media(max-width:600px){#main .research-page-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}#main .research-page-actions button.primary{grid-column:1/-1}}
 </style>
 <link rel="stylesheet" href="/static/design-tokens.css">
 <div id="app"></div><div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
@@ -2807,7 +2814,7 @@ async function law(){
  sourceInspector.hidden=true;
  const evidenceCards=h('div',{className:'research-evidence-cards','aria-live':'polite'});
  const evidencePanel=h('aside',{className:'research-evidence-panel card','aria-label':LANG==='ar'?'الأدلة والمصادر':'Evidence and sources'},h('div',{className:'research-evidence-heading'},h('b',{textContent:LANG==='ar'?'الأدلة':'Evidence'}),h('span',{className:'mut',textContent:LANG==='ar'?'مصادر الإجابة':'Answer sources'})),evidenceCards,sourceInspector);
- let activeId=null, sending=false, conversationItems=[];
+ let activeId=null, sending=false, conversationItems=[],lastResearchMessages=[];
  const conversationFilter=h('input',{type:'search',placeholder:LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations','aria-label':LANG==='ar'?'ابحث في المحادثات المحفوظة':'Search saved conversations'});
  const historyToggle=h('button',{type:'button',className:'g research-history-toggle','aria-controls':'research-history-pane','aria-expanded':'true',textContent:LANG==='ar'?'إخفاء السجل':'Hide history',onclick:()=>{const collapsed=sidebar.classList.toggle('history-collapsed');historyToggle.setAttribute('aria-expanded',String(!collapsed));historyToggle.textContent=collapsed?(LANG==='ar'?'إظهار السجل':'Show history'):(LANG==='ar'?'إخفاء السجل':'Hide history')}});
   const scopeSelect=h('select',{tabIndex:0,'aria-label':LANG==='ar'?'نطاق البحث':'Research scope'},
@@ -2920,6 +2927,7 @@ async function law(){
  const suggestCorrection=async(question,message)=>{const note=window.prompt(LANG==='ar'?'اكتب التصحيح المقترح. سيظل داخل المكتب ولن يُستخدم للتدريب افتراضياً.':'Describe the suggested correction. It stays within this firm and is not used for training by default.');if(!note||!note.trim())return;const excerpt=String(message.content||message.answer||'').slice(0,4000);if(!excerpt.trim()){toast(LANG==='ar'?'لا توجد إجابة لإرفاق التصحيح بها':'No answer text to attach the correction to');return}try{await api('/answers/corrections','POST',{case_id:matterSelect.value?Number(matterSelect.value):null,answer_id:message.answer_id||'',question:String(question||'').slice(0,1000),answer_excerpt:excerpt,correction_note:note.trim()});toast(LANG==='ar'?'تم إرسال التصحيح إلى قائمة مراجعة المكتب':'Correction sent to the firm review queue')}catch(e){toast(String(e.message||e))}};
  const researchEmptyState=h('p',{className:'research-empty-state',textContent:LANG==='ar'?'ابدأ بسؤال بحثي؛ ستظهر الإجابات هنا بعد إرسال السؤال.':'Start with a research question. Answers will appear here after you send it.'});
  const renderMessages=(messages)=>{
+   lastResearchMessages=Array.isArray(messages)?messages:[];
    resetInspector();evidenceCards.replaceChildren();thread.replaceChildren();
    const header=h('div',{className:'research-heading'},h('div',{},h('b',{textContent:copy('بحث قانوني مدعوم بالمصادر')}),h('div',{className:'mut',textContent:copy('نتائج بحثية مساعدة وليست استشارة قانونية. تحقق دائما من المصدر الرسمي.')})));
    thread.append(header);
@@ -3170,7 +3178,11 @@ async function law(){
    else researchCorpusStatus.replaceChildren(pill((LANG==='ar'?'مستندات ذات نص قانوني متحقق: ':'Verified legal documents: ')+count,'done'));
   }catch(_){researchCorpusStatus.textContent=LANG==='ar'?'تعذر تحميل عدد المستندات المتحقق منها.':'Verified-document count is unavailable.'}
  };
- shell(LANG==='ar'?'البحث القانوني':'Legal Research',h('div',{className:'research-scope-guidance',role:'note'},h('b',{textContent:LANG==='ar'?'كيف يعمل البحث القانوني':'How legal research works'}),h('details',{className:'research-help-details'},h('summary',{textContent:LANG==='ar'?'اعرف المزيد':'Learn more'}),h('p',{textContent:LANG==='ar'?'يبحث النطاق الافتراضي في النصوص القانونية المتحقق منها فقط. إذا لم يوجد نص مستوفٍ لشروط المصدر والمراجعة، سيمتنع النظام عن الإجابة بدلاً من التخمين. استخدم اكتشاف فهرس المصادر للعثور على بيانات وصفية فقط، أو اختر مستندات المكتب وحدد ملف قضية.':'The default scope searches verified legal text only. If no source meets provenance and review requirements, the assistant abstains rather than guessing. Use source-catalog discovery for metadata only, or choose firm documents and select a matter.'}))),documentWorkspace,h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},researchStatus,composerArea,thread),evidencePanel));
+ const latestAssistantMessage=()=>{for(let i=lastResearchMessages.length-1;i>=0;i--)if(lastResearchMessages[i].role==='assistant'&&(lastResearchMessages[i].content||lastResearchMessages[i].answer))return {message:lastResearchMessages[i],question:[...lastResearchMessages.slice(0,i)].reverse().find(x=>x.role==='user')?.content||''};return null};
+ const exportCurrentMemo=()=>{const latest=latestAssistantMessage();if(!latest){toast(LANG==='ar'?'لا توجد إجابة لتصديرها بعد.':'There is no answer to export yet.');return}const m=latest.message;exportMemo(latest.question,m.result||{answer:m.content||m.answer||'',sources:m.sources||[],requested_as_of:new Date().toISOString().slice(0,10),scope:scopeSelect.value})};
+ const saveCurrentMemo=async()=>{const latest=latestAssistantMessage();if(!latest){toast(LANG==='ar'?'لا توجد إجابة لحفظها بعد.':'There is no answer to save yet.');return}if(!matterSelect.value){showResearchMatterError();return}if(!latest.message.id){toast(LANG==='ar'?'لا يتوفر معرّف الإجابة للحفظ.':'This answer has no saveable message ID.');return}try{await api('/research/conversations/'+activeId+'/save-to-matter','POST',{case_id:Number(matterSelect.value),message_id:latest.message.id});toast(LANG==='ar'?'تم حفظ مذكرة البحث في ملاحظات القضية':'Research memo saved to matter notes')}catch(_){toast(LANG==='ar'?'تعذر حفظ مذكرة البحث.':'Could not save the research memo.')}};
+ const researchPageActions=h('div',{className:'workspace-actions research-page-actions'},btn(uiText('حفظ','Save'),saveCurrentMemo,'g'),btn(uiText('تصدير مذكرة','Export memo'),exportCurrentMemo,'g'),btn(uiText('بحث جديد','New research'),newChat,'primary'));
+ shell(LANG==='ar'?'البحث القانوني':'Legal Research',researchPageActions,h('div',{className:'research-scope-guidance',role:'note'},h('b',{textContent:LANG==='ar'?'كيف يعمل البحث القانوني':'How legal research works'}),h('details',{className:'research-help-details'},h('summary',{textContent:LANG==='ar'?'اعرف المزيد':'Learn more'}),h('p',{textContent:LANG==='ar'?'يبحث النطاق الافتراضي في النصوص القانونية المتحقق منها فقط. إذا لم يوجد نص مستوفٍ لشروط المصدر والمراجعة، سيمتنع النظام عن الإجابة بدلاً من التخمين. استخدم اكتشاف فهرس المصادر للعثور على بيانات وصفية فقط، أو اختر مستندات المكتب وحدد ملف قضية.':'The default scope searches verified legal text only. If no source meets provenance and review requirements, the assistant abstains rather than guessing. Use source-catalog discovery for metadata only, or choose firm documents and select a matter.'}))),documentWorkspace,h('div',{className:'research-layout'},sidebar,h('section',{className:'research-main'},researchStatus,composerArea,thread),evidencePanel));
  try{
   await drawList();
   await loadResearchCorpusStatus();
