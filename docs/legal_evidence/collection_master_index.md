@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 11) (expanded through new FRA checkpoint) (expanded through checkpoint 9)  
+**Last updated:** 2026-11-17 (expanded through checkpoint 13) (expanded through checkpoint 11) (expanded through new FRA checkpoint) (expanded through checkpoint 9)  
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -40,6 +40,9 @@
 
 
 | [collection_checkpoint_11_2026_budget_and_fees.md](collection_checkpoint_11_2026_budget_and_fees.md) | Full one-page Law 148/2026 fee amendment and 19-page Law 77/2026 budget PDF, partial searchable extraction and annex OCR backlog |
+
+
+| [collection_checkpoint_13_escc_data_cyber_civil_service.md](collection_checkpoint_13_escc_data_cyber_civil_service.md) | Official Gazette texts: Personal Data Protection 151/2020, Cybercrime 175/2018, Executive Regulation 635/2020 and Civil Service 81/2016 |
 
 ## High-value primary-source portals
 
