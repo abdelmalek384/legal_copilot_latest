@@ -70,3 +70,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 
 35. [Decisions 187, 194 and 214/2025 — expanded extraction](decisions_187_194_214_2025_expanded_extraction_2026-11-17.md) — nine-article resignation approval text, six-article temporary foreign-worker regularization decision plus Instruction 20/2025, and nine-article employment-contract deposit rules.
+
+
+36. [OSH Decisions 249–252 expanded research](osh_decisions_249_250_251_252_expanded_2026-11-17.md) — Decisions 251/2026 (11 articles, Gazette pages 371–377) and 252/2026 (36 articles, pages 378–398) now mapped from all available secondary-hosted page images; official DSpace Gazette bundle remains request-copy restricted and exact tables require second-reader QA.
