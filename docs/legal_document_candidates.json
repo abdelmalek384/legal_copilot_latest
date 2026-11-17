@@ -404,6 +404,39 @@
       "terms_url": null,
       "terms_checked_on": null,
       "permission_evidence": "Public index is a discovery source only. No affirmative bulk collection, indexing, commercial use or redistribution licence established."
+    },
+    {
+      "source_id": "EG-MTS-MARITIME-LEGISLATION",
+      "authority": "Maritime Transport and Logistics Sector, Ministry of Transport, Arab Republic of Egypt",
+      "source_page": "https://www.mts.gov.eg/ar/الخدمات-المقدمة-من-خلال-قطاع-النقل-البحري/التشريعات-البحرية/",
+      "access_status": "official maritime legislation database/index located; claims to classify effective maritime legislation and related international agreements using Official Gazette and Egyptian Gazette sources; individual records not yet downloaded",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Public availability does not establish bulk collection or commercial reuse permission."
+    },
+    {
+      "source_id": "EG-CIVIL-AVIATION-LAWS",
+      "authority": "Egyptian Civil Aviation Authority / Ministry of Civil Aviation, Arab Republic of Egypt",
+      "source_page": "https://www.civilaviation.gov.eg/ECAA/Laws",
+      "access_status": "official laws index observed 2026-11-17; lists Civil Aviation Law 28/1981 and amendments 92/2003 and 136/2010, plus Law 3/1997",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Official index locator only; Gazette originals and reuse rights not yet checked."
+    },
+    {
+      "source_id": "EG-MHUC-HOUSING-LEGISLATION",
+      "authority": "Ministry of Housing, Utilities and Urban Communities, Arab Republic of Egypt",
+      "source_page": "https://mhuc.gov.eg/قطاع_الإسكان_والمرافق",
+      "access_status": "official housing legislation index observed; lists Building Law 119/2008, amendment 23/2015, executive regulations and ministerial decisions",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Official index locator only; no affirmative bulk or commercial reuse permission established."
     }
   ],
   "documents": [
@@ -4395,6 +4428,473 @@
         {
           "url": "https://mof.gov.eg/ar/legislation/legislation",
           "source_role": "official government legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MARITIME-COMMERCE-LAW-8-1990",
+      "official_title": "القانون رقم 8 لسنة 1990 بإصدار قانون التجارة البحرية",
+      "document_type": "law",
+      "law_number": "8",
+      "law_year": 1990,
+      "source_id": "EG-MTS-MARITIME-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Sector report identifies this as the Maritime Commerce Law; retrieve Gazette original, amendments and international treaty interactions. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.mts.gov.eg/ar/الخدمات-المقدمة-من-خلال-قطاع-النقل-البحري/التشريعات-البحرية/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-SHIP-SAFETY-LAW-232-1989",
+      "official_title": "القانون رقم 232 لسنة 1989 في شأن سلامة السفن",
+      "document_type": "law",
+      "law_number": "232",
+      "law_year": 1989,
+      "source_id": "EG-MTS-MARITIME-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "MoF index identifies Law 2/2025 as amendment; consolidate both and check implementing maritime safety decisions. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.mts.gov.eg/ar/الخدمات-المقدمة-من-خلال-قطاع-النقل-البحري/التشريعات-البحرية/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-SHIP-SAFETY-AMEND-2-2025",
+      "official_title": "القانون رقم 2 لسنة 2025 بتعديل بعض أحكام القانون رقم 232 لسنة 1989 في شأن سلامة السفن",
+      "document_type": "law_amendment",
+      "law_number": "2",
+      "law_year": 2025,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "MoF catalogue marks current; verify Gazette issue/pages and exact article changes. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Manshorat?categoryId=2",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-SHIP-REGISTRY-LAW-84-1949",
+      "official_title": "القانون رقم 84 لسنة 1949 بشأن تسجيل السفن",
+      "document_type": "law",
+      "law_number": "84",
+      "law_year": 1949,
+      "source_id": "EG-MTS-MARITIME-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Maritime Sector 2024 report lists this law; check if superseded by later registration legislation or bills. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.mts.gov.eg/ar/الخدمات-المقدمة-من-خلال-قطاع-النقل-البحري/التشريعات-البحرية/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MARITIME-INSPECTION-FEES-LAW-156-1980",
+      "official_title": "القانون رقم 156 لسنة 1980 بشأن رسوم التفتيش البحري",
+      "document_type": "law",
+      "law_number": "156",
+      "law_year": 1980,
+      "source_id": "EG-MTS-MARITIME-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Sector report lists this statute; fees and later amendments/currentness need verification. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.mts.gov.eg/ar/الخدمات-المقدمة-من-خلال-قطاع-النقل-البحري/التشريعات-البحرية/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MARITIME-ACTIVITIES-DECREE-800-2016",
+      "official_title": "قرار وزير النقل رقم 800 لسنة 2016 بإصدار لائحة تنظيم مزاولة الأنشطة والأعمال المرتبطة بالنقل البحري ومقابلات الانتفاع بها",
+      "document_type": "ministerial_decision",
+      "law_number": "800",
+      "law_year": 2016,
+      "source_id": "EG-MTS-MARITIME-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Gazette issue 282 تابع (ب), 15 December 2016; official-hosted Gazette PDF locator found. Need full-text extraction, amendments and fee schedules. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.mts.gov.eg/ar/الخدمات-المقدمة-من-خلال-قطاع-النقل-البحري/التشريعات-البحرية/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MARITIME-ACTIVITIES-AMEND-417-2019",
+      "official_title": "قرار وزير النقل رقم 417 لسنة 2019 بتعديل بعض أحكام القرار الوزاري رقم 800 لسنة 2016",
+      "document_type": "ministerial_decision",
+      "law_number": "417",
+      "law_year": 2019,
+      "source_id": "EG-MTS-MARITIME-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Maritime Sector official index lists full version; consolidate against Decision 800/2016. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.mts.gov.eg/ar/الخدمات-المقدمة-من-خلال-قطاع-النقل-البحري/التشريعات-البحرية/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MARITIME-TARIFF-AMEND-416-2019",
+      "official_title": "قرار وزير النقل رقم 416 لسنة 2019 بتعديل بعض أحكام القرار الوزاري رقم 488 لسنة 2015",
+      "document_type": "ministerial_decision",
+      "law_number": "416",
+      "law_year": 2019,
+      "source_id": "EG-MTS-MARITIME-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official sector index lists full version; retrieve base Decision 488/2015 and consolidate. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.mts.gov.eg/ar/الخدمات-المقدمة-من-خلال-قطاع-النقل-البحري/التشريعات-البحرية/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MARITIME-TARIFF-488-2015",
+      "official_title": "القرار الوزاري رقم 488 لسنة 2015 بشأن تنظيم وتسعير خدمات النقل البحري",
+      "document_type": "ministerial_decision",
+      "law_number": "488",
+      "law_year": 2015,
+      "source_id": "EG-MTS-MARITIME-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official sector index lists full version and amendment 416/2019; exact title and scope need Gazette verification. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.mts.gov.eg/ar/الخدمات-المقدمة-من-خلال-قطاع-النقل-البحري/التشريعات-البحرية/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-YACHT-TOURISM-REGS-2721-2022",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 2721 لسنة 2022 بإصدار لائحة تنظيم سياحة اليخوت الأجنبية",
+      "document_type": "executive_regulation",
+      "law_number": "2721",
+      "law_year": 2022,
+      "source_id": "EG-MTS-MARITIME-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official maritime sector index lists this regulation; verify amendments, fees, and relationship to port-specific rules. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.mts.gov.eg/ar/الخدمات-المقدمة-من-خلال-قطاع-النقل-البحري/التشريعات-البحرية/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MARITIME-STRUCTURE-DECREE-754-2023",
+      "official_title": "قرار وزير النقل رقم 754 لسنة 2023 بشأن اختصاصات قطاع النقل البحري واللوجستيات",
+      "document_type": "ministerial_decision",
+      "law_number": "754",
+      "law_year": 2023,
+      "source_id": "EG-MTS-MARITIME-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official sector page quotes Articles 1-2 and organizational scope; obtain complete decision and Gazette publication. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.mts.gov.eg/ar/الخدمات-المقدمة-من-خلال-قطاع-النقل-البحري/التشريعات-البحرية/",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CIVIL-AVIATION-LAW-28-1981",
+      "official_title": "القانون رقم 28 لسنة 1981 بإصدار قانون الطيران المدني",
+      "document_type": "law",
+      "law_number": "28",
+      "law_year": 1981,
+      "source_id": "EG-CIVIL-AVIATION-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Civil Aviation Authority identifies this as core aviation statute, amended by Laws 92/2003 and 136/2010; obtain Gazette originals and consolidated text. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.civilaviation.gov.eg/ECAA/Laws",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CIVIL-AVIATION-AMEND-92-2003",
+      "official_title": "القانون رقم 92 لسنة 2003 بتعديل بعض أحكام قانون الطيران المدني رقم 28 لسنة 1981",
+      "document_type": "law_amendment",
+      "law_number": "92",
+      "law_year": 2003,
+      "source_id": "EG-CIVIL-AVIATION-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Civil Aviation Authority lists amendment; map article changes to Law 28/1981. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.civilaviation.gov.eg/ECAA/Laws",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CIVIL-AVIATION-AMEND-136-2010",
+      "official_title": "القانون رقم 136 لسنة 2010 بتعديل بعض أحكام قانون الطيران المدني رقم 28 لسنة 1981",
+      "document_type": "law_amendment",
+      "law_number": "136",
+      "law_year": 2010,
+      "source_id": "EG-CIVIL-AVIATION-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Civil Aviation Authority lists amendment; verify Gazette and any later changes. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.civilaviation.gov.eg/ECAA/Laws",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-AIRPORT-CONCESSION-LAW-3-1997",
+      "official_title": "القانون رقم 3 لسنة 1997 بشأن منح التزام المرافق العامة لإنشاء وإدارة واستغلال المطارات وأراضي النزول",
+      "document_type": "law",
+      "law_number": "3",
+      "law_year": 1997,
+      "source_id": "EG-CIVIL-AVIATION-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Civil Aviation Authority lists this statute; identify concession agreements and subsequent amendments separately. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.civilaviation.gov.eg/ECAA/Laws",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-BUILDING-LAW-119-2008",
+      "official_title": "القانون رقم 119 لسنة 2008 بإصدار قانون البناء",
+      "document_type": "law",
+      "law_number": "119",
+      "law_year": 2008,
+      "source_id": "EG-MHUC-HOUSING-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Housing Ministry index lists law, executive regulations and decisions; check amendments and relationship to reconciliation law 187/2023. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mhuc.gov.eg/قطاع_الإسكان_والمرافق",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-BUILDING-AMEND-23-2015",
+      "official_title": "القانون رقم 23 لسنة 2015 بتعديل بعض أحكام قانون البناء رقم 119 لسنة 2008",
+      "document_type": "law_amendment",
+      "law_number": "23",
+      "law_year": 2015,
+      "source_id": "EG-MHUC-HOUSING-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official housing index lists amendment; retrieve Gazette and consolidated version. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mhuc.gov.eg/قطاع_الإسكان_والمرافق",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-BUILDING-EXEC-REGS",
+      "official_title": "اللائحة التنفيذية لقانون البناء رقم 119 لسنة 2008 وتعديلاتها",
+      "document_type": "executive_regulation",
+      "law_year": 2009,
+      "source_id": "EG-MHUC-HOUSING-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Housing index links executive regulation and several ministerial decisions; identify original decree number and all amendments before use. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mhuc.gov.eg/قطاع_الإسكان_والمرافق",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-BUILDING-MINISTERIAL-DECREE-774-2014",
+      "official_title": "القرار الوزاري رقم 774 لسنة 2014 بشأن اللائحة التنفيذية لقانون البناء",
+      "document_type": "ministerial_decision",
+      "law_number": "774",
+      "law_year": 2014,
+      "source_id": "EG-MHUC-HOUSING-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed among amendments/implementing decisions; confirm whether it modifies regulation and identify exact provisions. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mhuc.gov.eg/قطاع_الإسكان_والمرافق",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-RECONCILIATION-LAW-187-2023",
+      "official_title": "القانون رقم 187 لسنة 2023 بإصدار قانون التصالح في بعض مخالفات البناء وتقنين أوضاعها",
+      "document_type": "law",
+      "law_number": "187",
+      "law_year": 2023,
+      "source_id": "EG-MHUC-HOUSING-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Housing authority page links law and implementing regulation; track later amendment or replacement instruments. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mhuc.gov.eg/قطاع_الإسكان_والمرافق",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-RECONCILIATION-EXEC-REGS-1121-2024",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 1121 لسنة 2024 بإصدار اللائحة التنفيذية للقانون رقم 187 لسنة 2023 بشأن التصالح في بعض مخالفات البناء",
+      "document_type": "executive_regulation",
+      "law_number": "1121",
+      "law_year": 2024,
+      "source_id": "EG-MHUC-HOUSING-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Gazette page observed in SIS media record cites this regulation; capture full Gazette text and later amendments. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mhuc.gov.eg/قطاع_الإسكان_والمرافق",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CUSTOMS-LAW-207-2020",
+      "official_title": "القانون رقم 207 لسنة 2020 بإصدار قانون الجمارك",
+      "document_type": "law",
+      "law_number": "207",
+      "law_year": 2020,
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Customs Authority lists complete amended version and original law; reconcile all amendments and executive regulation 430/2021. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Manshorat?categoryId=2",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FOOD-SAFETY-LAW-1-2017",
+      "official_title": "القانون رقم 1 لسنة 2017 بإصدار قانون الهيئة القومية لسلامة الغذاء",
+      "document_type": "law",
+      "law_number": "1",
+      "law_year": 2017,
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Customs index lists executive regulation and PM Decision 2338/2019; locate NFSA official portal and Gazette originals. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Manshorat?categoryId=2",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FOOD-SAFETY-EXEC-REGS-412-2019",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 412 لسنة 2019 بإصدار اللائحة التنفيذية لقانون الهيئة القومية لسلامة الغذاء",
+      "document_type": "executive_regulation",
+      "law_number": "412",
+      "law_year": 2019,
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Customs index lists executive regulation; verify exact number and Gazette copy. Treat as candidate until primary text checked. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Manshorat?categoryId=2",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FOOD-SAFETY-RELATED-LAWS-2338-2019",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 2338 لسنة 2019 بإضافة بعض التشريعات ذات الصلة بسلامة الغذاء لقانون سلامة الغذاء",
+      "document_type": "prime_minister_decision",
+      "law_number": "2338",
+      "law_year": 2019,
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Customs index lists this decision; retrieve its annex and statutory cross-references. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://customs.gov.eg/Legislations/Manshorat?categoryId=2",
+          "source_role": "official authority legislation index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-TRANSPORT-MARITIME-SERVICE-503-2024",
+      "official_title": "قرار وزير النقل رقم 503 لسنة 2024 بشأن مقابل الخدمات الإلكترونية المقدمة للسفن على النافذة البحرية الموحدة",
+      "document_type": "ministerial_decision",
+      "law_number": "503",
+      "law_year": 2024,
+      "source_id": "EG-MTS-MARITIME-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official maritime index lists issue date 30 July 2024; retrieve full fee schedule, legal basis and subsequent revisions. Full text, commencement, amendment/repeal chain, currentness and reuse rights require verification; not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.mts.gov.eg/ar/الخدمات-المقدمة-من-خلال-قطاع-النقل-البحري/التشريعات-البحرية/",
+          "source_role": "official authority legislation index",
           "status": "listed_2026-11-17"
         }
       ]
