@@ -8566,15 +8566,16 @@
       "source_id": "EG-MOF-LEGISLATION",
       "language": "ar",
       "candidate_status": "discovery_only",
-      "text_acquisition_status": "official_mof_index_or_gazette_pdf_located",
-      "text_verification_note": "Official Ministry of Finance catalogue identifies this instrument. Gazette issue, commencement, full article text, amendment map and currentness must be independently recorded; the Ministry warns its electronic copies are guidance and Official Gazette is controlling. Not lawyer-reviewed.",
+      "text_acquisition_status": "full_text_transcribed_to_repository",
+      "text_verification_note": "Official Gazette issue 30 مكرر (أ), 28 July 2026; official MoF-hosted 19-page PDF. PDF text layer exposed 191 lines. Full transcription committed to data/legal_texts/2026/law_151_2026_income_tax_amendment_ar.md. Commences day after publication. Still requires PDF binary archival/SHA-256, visual page-image comparison, amendment/currentness audit and Egyptian lawyer sign-off. Ministry warns portal copies are guidance and Gazette is controlling.",
       "source_urls": [
         {
           "url": "https://media.mof.gov.eg/mof-prd/qanwn_rqm_151_lsnt_2026_tedyl_bed_ahkam_aldrybt_ela_aldkhl_alsadr_balqanwn_rqm_91_ls_2005_4caa326413.pdf",
           "source_role": "official Ministry of Finance legislation index or Gazette PDF",
           "status": "located_2026-11-17"
         }
-      ]
+      ],
+      "text_file_path": "data/legal_texts/2026/law_151_2026_income_tax_amendment_ar.md"
     },
     {
       "document_id": "EG-STAMP-DUTY-AMEND-153-2026",
