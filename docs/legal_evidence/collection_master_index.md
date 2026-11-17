@@ -213,6 +213,8 @@
 
 | [collection_checkpoint_44_labour_law_14_2025_implementation.md](collection_checkpoint_44_labour_law_14_2025_implementation.md) | Labour Law 14/2025 official texts, commencement, ministerial-decision implementation model and 2025–2026 decision/circular leads |
 
+| [collection_checkpoint_57_scc_defamation_agriculture_2026.md](collection_checkpoint_57_scc_defamation_agriculture_2026.md) | SCC case 244/23 (defamation/insult) and case 19/44 (agricultural possession-card administrative jurisdiction) full official judgments |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
