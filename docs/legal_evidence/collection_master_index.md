@@ -100,6 +100,8 @@
 
 | [collection_checkpoint_23_unified_procurement_drug_authority.md](collection_checkpoint_23_unified_procurement_drug_authority.md) | Official 25-page Gazette scan of Law 151/2019 establishing Unified Procurement and Egyptian Drug Authorities; first five pages visually inspected |
 
+| [collection_checkpoint_32_antiquities_sinai_expropriation_2026.md](collection_checkpoint_32_antiquities_sinai_expropriation_2026.md) | Antiquities Law 117/1983; Sinai Law 14/2012 and Decision 128/2022; Expropriation Law 10/1990; Desert Lands 143/1981; Public Roads 84/1968 leads |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
