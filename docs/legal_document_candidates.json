@@ -177,6 +177,30 @@
       "terms_checked_on": null,
       "permission_evidence": null,
       "required_next_action": "Use as a public source locator for manual comparison only. Review applicable site terms and source-specific rights with qualified Egyptian counsel. Do not infer collection, indexing, display, or commercial-reuse permission from public accessibility."
+    },
+    {
+      "source_id": "EG-IDSC-ELP",
+      "authority": "Egyptian Legislation Portal, Information and Decision Support Center, Cabinet of Egypt",
+      "source_page": "https://elpai.idsc.gov.eg/GeneralSearch/LegalDatabases?tab=legislation",
+      "access_status": "official_portal_and_about_page_observed_2026-11-17; searchable legislation and multiple judicial databases; individual record acquisition and bulk access terms not established",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "The portal About page describes a database established in 1998 with Egyptian judicial rulings dating from 1828, more than 290,000 legislative records and more than 100,000 varied judgments. The search interface exposes legislation, Supreme Constitutional Court, Court of Cassation, Supreme Administrative Court, Administrative Judiciary, economic court, and State Council opinion databases. These are portal-level institutional claims and search categories, not an inventory of individually acquired records, and do not grant permission for bulk extraction, indexing, storage, or commercial reuse. Treat as a priority discovery and manual lookup source until its terms and permissions are established.",
+      "rights_notice_checked_on": "2026-11-17"
+    },
+    {
+      "source_id": "EG-MOF-LEGISLATION",
+      "authority": "Ministry of Finance, Arab Republic of Egypt",
+      "source_page": "https://mof.gov.eg/ar/legislation/legislation-1",
+      "access_status": "official tax and financial legislation index observed 2026-11-17; includes laws, decisions, constitutional opinions, General Assembly opinions and international agreements; individual entries provide text/preview/download links",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "The Ministry's own notice states electronically published texts are for guidance and that the sole legal reference is publication in the Official Gazette (الوقائع المصرية). Use this portal to discover and cross-reference tax/financial laws and ministerial decisions, not as a substitute for Gazette originals or as evidence of collection/reuse permission.",
+      "rights_notice_checked_on": "2026-11-17"
     }
   ],
   "documents": [
