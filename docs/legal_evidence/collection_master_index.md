@@ -144,6 +144,8 @@
 
 | [collection_checkpoint_31_income_tax_law_91_2005.md](collection_checkpoint_31_income_tax_law_91_2005.md) | 179-article Income Tax Law 91/2005 searchable transcription, source structure, amendment series and 2026 currentness notes |
 
+| [collection_checkpoint_42_judiciary_courts_2026.md](collection_checkpoint_42_judiciary_courts_2026.md) | Judicial Authority/State Council/SCC/Administrative Prosecution/State Lawsuits source map; Law 15/2025 court restructuring; 2026 judicial venue and appointment decisions |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
