@@ -188,6 +188,8 @@
 
 | [collection_checkpoint_39_water_resources_irrigation_2021.md](collection_checkpoint_39_water_resources_irrigation_2021.md) | Water Resources and Irrigation Law 147/2021 (130 articles), Executive Regulation 81/2023 and provisional Article 107 amendment 167/2025 |
 
+| [collection_checkpoint_52_2026_finance_state_authority_laws.md](collection_checkpoint_52_2026_finance_state_authority_laws.md) | Law 147/2026 Future of Egypt Authority (corrects MoF 47/2026 index label); Laws 154/2026 (5% profits), 153/2026 stamp duty and 152/2026 tax-dispute extension |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
