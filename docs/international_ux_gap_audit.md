@@ -145,3 +145,6 @@ The following code-level gaps have now been addressed in the frontend:
 - Global search has a `>` command mode that filters the existing role/permission-gated navigation list. The ordinary permission-scoped matter/client/document search path is preserved.
 
 These changes have frontend source-contract coverage and the complete inline JavaScript parses with V8. They are not a substitute for executing the repository Python suite, Chromium acceptance, keyboard-only tests, screen-reader testing, 200% zoom/reflow, device-width checks, contrast review or Egyptian-lawyer usability sessions. The manual acceptance runbooks remain open, and no WCAG conformance or production-readiness claim is made from these static checks.
+
+
+- **Command-palette keyboard follow-up — 2026-11-17:** the `>` navigation command suggestions now support ArrowDown from the input, wrapped ArrowUp/ArrowDown between suggestions, and Escape to close and return focus. Suggestions are sourced from the existing role/permission-filtered navigation collection. This has source-contract coverage and JavaScript syntax validation; real-browser keyboard acceptance remains pending.
