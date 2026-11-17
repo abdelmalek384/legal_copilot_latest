@@ -77,3 +77,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 
 38. [Decision248/2026 and Ministry OSH clarifications](decisions_248_252_2026_and_264_2025_extracted_notes.md) — expanded serious-accident categories, 24h/48h notice, occupational-disease reporting, 30+ worker semiannual statistics, 3-year registers; adds official 27 Oct Ministry clarification on Decision249 transition and flags stale Ministry service-page 24h/72h discrepancy.
+
+39. [Decision 250 Table 23/24 secondary-source inventory](../../data/candidates/labour_law_14_2025/decision_250_table24_secondary_source_inventory_2026-10-31.md) — additional search-indexed excerpts for Table23 threshold quantities and Table24 chemical TLV rows; Article52 control obligations; corrected Table24 page span pp.249–360. All remain secondary-only, 0/781 original Gazette matches and 0 counsel-approved.
+
+40. [Law 14/2025 Articles 260–262 visual review update](../legal_evidence/law_14_2025_lawyer_review_packet.md) — user-supplied issue18 PDF page99 visually reviewed for Art260 semiannual stats/24-hour notice/e-platform duties, Art261 OSH training/licensing, Art262 OSH consultant licence and EGP50,000 fee cap; assistant review only, lawyer sign-off pending.
