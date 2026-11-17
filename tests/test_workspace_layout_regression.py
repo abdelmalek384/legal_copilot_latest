@@ -52,6 +52,12 @@ class WorkspaceLayoutRegressionTests(unittest.TestCase):
         self.assertIn('#side{width:206px!important;min-width:206px!important;flex:0 0 206px!important', HTML)
         self.assertIn('@media(max-width:800px){#side{width:100%!important;min-width:0!important;flex:0 0 auto!important}}', HTML)
 
+    def test_demo_safety_notice_remains_visible_but_compact_in_research(self):
+        self.assertIn('#main:has(.research-layout)>.demo-banner{', HTML)
+        self.assertIn('border-inline-start:3px solid #c48a35!important;', HTML)
+        self.assertIn('font-size:10px!important;', HTML)
+        self.assertNotIn('#main:has(.research-layout)>.demo-banner{display:none', HTML)
+
 
 if __name__ == "__main__":
     unittest.main()
