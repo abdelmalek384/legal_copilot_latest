@@ -21,12 +21,12 @@ On 14 November 2026, the Ministry said that it had completed issuing the executi
 ## 2. What is currently identified in this repository
 
 The structured register now contains **52 distinct legal-instrument records**:
-- 34 distinct Ministry of Labour ministerial decision numbers (2025–2026);
+- 35 distinct Ministry of Labour ministerial decision numbers (2025–2026);
 - 3 Ministry of Justice implementation decisions (4621, 4693 and 5614/2025);
 - 8 Prime Minister decisions (the six remote-work series decisions 982, 1305, 1572, 2033, 2377 and 2590/2026, plus 2652/2026 and 3165/2026);
 - 7 circular/implementation instruments are separately catalogued in the research notes and are not all represented as rows in the formal-decision CSV.
 
-This is a **discovery inventory**, not a claim that all 87 originally announced executive decisions have been identified. The 34 Ministry of Labour decision numbers are only about half of the 68 Ministry decisions cited in the official July/August 2025 announcements, if the figures are directly comparable. The other issuers' decisions are also not fully enumerated; the eight Prime Minister instruments identified here include later remote-work extensions and later wage/recruitment decisions, which may not all belong to the original 87-count package.
+This is a **discovery inventory**, not a claim that all 87 originally announced executive decisions have been identified. The 35 Ministry of Labour decision numbers are only about half of the 68 Ministry decisions cited in the official July/August 2025 announcements, if the figures are directly comparable. The other issuers' decisions are also not fully enumerated; the eight Prime Minister instruments identified here include later remote-work extensions and later wage/recruitment decisions, which may not all belong to the original 87-count package.
 
 ## 3. Why the count is not yet reconcilable
 
@@ -91,7 +91,7 @@ For every located instrument:
 
 Report separate percentages:
 - **Identified-source extraction coverage:** 45/45 currently identified formal instruments have substantive extracts or structured maps.
-- **Original announced Ministry decision universe:** 34/68 identified (about 50% if the 68 figure is comparable); this is not a verified completeness percentage.
+- **Original announced Ministry decision universe:** 35/68 identified (about 51.5% if the 68 figure is comparable); this is not a verified completeness percentage.
 - **Original announced total universe:** 87 announced, but no reliable comparable total denominator yet because later Prime Minister decisions are included in the current inventory and the original count is approximate.
 - **Primary-source Gazette comparison:** only the three ministerial decisions (259, 264 and 299/2025) have the current SIS issue-291 article-level comparison recorded; other instruments have varying levels of official indexed text, metadata or secondary text.
 - **Lawyer review and rights clearance:** 0 promoted to verified; no production import.
