@@ -1707,6 +1707,26 @@ class BrowserAcceptanceTests(unittest.TestCase):
         }""")
         self.assertLess(tablet_geometry["history"]["right"], tablet_geometry["evidence"]["left"])
 
+        self.page.set_viewport_size({"width": 800, "height": 900})
+        self.page.wait_for_function(
+            "() => document.documentElement.scrollWidth <= window.innerWidth",
+            timeout=8000,
+        )
+        mobile_shell_geometry = self.page.evaluate("""() => {
+            const rect = (selector) => {
+                const r = document.querySelector(selector).getBoundingClientRect();
+                return {top:r.top,bottom:r.bottom};
+            };
+            return {
+                answer: rect(".research-main"),
+                history: rect(".research-list"),
+                evidence: rect(".research-evidence-panel")
+            };
+        }""")
+        self.assertLessEqual(mobile_shell_geometry["answer"]["bottom"], mobile_shell_geometry["history"]["top"])
+        self.assertLessEqual(mobile_shell_geometry["history"]["bottom"], mobile_shell_geometry["evidence"]["top"])
+
+
 
         self.page.wait_for_function(
             "() => document.documentElement.scrollWidth <= window.innerWidth",
