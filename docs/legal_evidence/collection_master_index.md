@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -159,6 +159,9 @@
 | [collection_checkpoint_45_nationality_immigration_2026.md](collection_checkpoint_45_nationality_immigration_2026.md) | Nationality Law 26/1975 and amendment 28/2023; investment naturalization Decisions 3099/2019 and 876/2023; Foreigners' Entry/Residence 89/1960 and Decision 977/2023; passports lead |
 
 | [collection_checkpoint_46_family_inheritance_wills_2026.md](collection_checkpoint_46_family_inheritance_wills_2026.md) | Family Courts Law 10/2004 official Gazette PDF; Personal Status Procedure 1/2000; Family Insurance Fund 11/2004; Personal Status, Inheritance 77/1943 and Wills 71/1946 sources |
+
+
+| [collection_checkpoint_34_vat_law_67_2016_consolidated.md](collection_checkpoint_34_vat_law_67_2016_consolidated.md) | 87-article VAT Law 67/2016 consolidated transcription, schedules and amendments 3/2022, 157/2025 and 149/2026 |
 
 ## High-value primary-source portals
 
