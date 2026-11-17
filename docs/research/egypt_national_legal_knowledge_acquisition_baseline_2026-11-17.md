@@ -123,8 +123,8 @@ Policy:
 A defensible percentage needs a denominator. The first denominator is now **33 legal domains**, not an estimate of all individual laws/cases:
 - 33/33 domains have been named in the national inventory (scope definition only; this is not 100% coverage).
 - 27 source institutions/platforms are registered, including the Supreme Constitutional Court, State Council, Consumer Protection Agency, NOSI, Administrative Control Authority, National Elections Authority, Customs Authority and Economic Courts.
-- 75 anchor instruments have acquisition records with their source/access status.
-- 28 source PDFs have been opened across the tranches (not all are bare Gazette originals: Commercial Code is a government-published reprint and Customs Law is an authority-annotated compilation); Law160/2026 official HTML text was also opened. Several more have only official listing metadata.
+- 76 anchor instruments have acquisition records with their source/access status.
+- 29 source PDFs have been opened across the tranches (not all are bare Gazette originals: Commercial Code is a government-published reprint and Customs Law is an authority-annotated compilation); Law160/2026 official HTML text was also opened. Several more have only official listing metadata.
 - No nationwide article-by-article consolidated statute corpus has been produced. A public judicial collection register now includes 25 leads (one Constitutional Court press summary, one recent bulletin and 23 State Council principle-series targets); the underlying judgments/volumes are mostly not yet acquired.
 - No nationwide court judgment corpus has been acquired.
 - No lawyer-reviewed national corpus exists.
@@ -163,8 +163,8 @@ Additional statutes indexed include Laws 46/1972, 47/1972, 54/1964 as amended by
 |---|---:|---|
 | Legal-domain scope mapped | 33/33 (100%) | Scope definition only; not full legal coverage |
 | Source institutions/platforms registered | 27 | Government, courts, regulators and discovery sources |
-| Seed anchor instruments inventoried | 75 | Starter set, not the total universe of Egyptian laws and decisions |
-| Source PDFs opened | 28/75 (37.3% of seed list) | Includes government reprints, official agency copies and some unreadable PDFs; not all are bare Gazette originals |
+| Seed anchor instruments inventoried | 76 | Starter set, not the total universe of Egyptian laws and decisions |
+| Source PDFs opened | 29/76 (38.2% of seed list) | Includes government reprints, official agency copies and some unreadable PDFs; not all are bare Gazette originals |
 | Nationwide consolidated statute domains | 0/33 | No domain yet has all base laws, amendments, executive regulations and currentness fully consolidated |
 | Full judicial judgments acquired in this national tranche | 0 | One Constitutional Court press-summary lead and a bulletin; 23 State Council series targets are bibliographic leads |
 | Lawyer-reviewed national instruments | 0 | Human legal review remains mandatory |
@@ -213,3 +213,8 @@ See [Companies and Insolvency acquisition](egypt_companies_insolvency_economic_c
 - Law12/2003 is recorded as a historical predecessor expressly repealed by Labour Law14/2025 Article12.
 
 See [Investment, Commercial Registry and Public Finance acquisition](egypt_investment_commercial_registry_public_finance_acquisition_2026-11-17.md).
+
+
+## VAT Law149/2026 amendment extraction
+
+The official ETA-hosted Gazette PDF for Law149/2026 (issue30 bis(A), 28 July 2026) has been opened and extracted. It amends VAT Law67/2016 Articles3,5,28 bis and30, updates six exempt-list items, adds a new Article22 rule for machinery/equipment/medical devices under Article28 bis, adds natural gas at EGP20 per 1,000 cubic feet, and repeals two prior schedule entries. It commenced 29 July 2026. A four-page article-by-article extraction with conditions and product safeguards is recorded in [VAT Law149/2026 extraction](egypt_vat_law149_2026_amendment_extraction.md).
