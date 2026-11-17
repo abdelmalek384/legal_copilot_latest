@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -140,6 +140,9 @@
 | [collection_checkpoint_30_unified_tax_procedure_law_206_2020.md](collection_checkpoint_30_unified_tax_procedure_law_206_2020.md) | 93-article Unified Tax Procedures Law 206/2020 article map and amendments 211/2020, 176/2022, 7/2025 and 150/2026 |
 
 | [collection_checkpoint_41_evidence_law_visual_inspection.md](collection_checkpoint_41_evidence_law_visual_inspection.md) | Expanded Evidence Law 25/1968 scan inspection to 11/12 Gazette PDF pages; OCR/article validation and amendments remain outstanding |
+
+
+| [collection_checkpoint_31_income_tax_law_91_2005.md](collection_checkpoint_31_income_tax_law_91_2005.md) | 179-article Income Tax Law 91/2005 searchable transcription, source structure, amendment series and 2026 currentness notes |
 
 ## High-value primary-source portals
 
