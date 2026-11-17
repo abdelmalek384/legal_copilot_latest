@@ -37,6 +37,7 @@ A title-based harvest cannot establish completeness. The law itself delegates do
 6. **Article 266:** joint Labour/Health standards for medical fitness and physical, mental and psychological capability examinations.
 7. **Article 272:** minimum social and cultural services for establishments with 50 or more workers.
 8. **Article 276:** Ministerial Decision 320/2025 now supplies night/out-of-hours inspection triggers, reporting and statistics; Article 6 still defers the actual allowance amounts/controls to a separate authority decision not located.
+9. **Article 121:** Decisions 291/2025 and 292/2025 supply overtime grounds/rates and category-specific caps, but Decision 291 delegates annual sectoral overtime maxima to the Supreme Council for Social Dialogue; that follow-up decision was not located.
 9. **Article 3 of PM Decision 3356/2026:** separate Ministerial decision for full exemption from the Training Fund contribution where an establishment trains its workers according to its needs/approved bylaws.
 10. **Article 3 of Ministerial Decision 269/2025:** the labour-market information/occupational-classification procedural manual due within three months; the manual was not located.
 
@@ -49,7 +50,7 @@ A title-based harvest cannot establish completeness. The law itself delegates do
 - **Arts.9, 13, 20, 27, 28, 38, 40–44, 48, 51–52, 71–72, 101–102, 129, 137, 215, 239, 255, 259–262:** corresponding decisions are identified in the register, but each must be checked against its exact delegation, all annexes, commencement clauses and amendments.
 - **Arts.23–26:** Decision 264/2025 and OSH-specific Decision 252/2026 address different training regimes; do not treat them as interchangeable.
 - **Arts.33–37:** Decisions 270 and 271/2025 are only partially cross-mapped to registration/disability data and require exact article-level mapping.
-- **Arts.117–120:** Decisions 288–291/2025 are a working-time/rest package, but the precise provision-to-decision mapping remains to be completed.
+- **Arts.117–120:** Decisions 288–292/2025 are a working-time/rest/overtime package, but the precise provision-to-decision mapping remains to be completed.
 - **Art.150:** Decision 299/2025 appears related to individual labour-dispute settlement; confirm the exact delegation and procedure. Decision 300/2025 is the collective-dispute conciliation instrument under Article 215.
 - **Women's-work chapter:** Decision 75/2026 is mapped to maternity/night-work protections, but its exact statutory article crosswalk and complete Article 3 hazard schedule still require Gazette verification.
 - **Child-work chapter:** Decision 50/2026 is the child-employment instrument; compare all occupation annexes, age bands, hours and medical controls against the Gazette.
@@ -75,4 +76,4 @@ A title-based harvest cannot establish completeness. The law itself delegates do
 
 ## 6. Progress measure
 
-The companion CSV contains **42 explicit statutory delegation rows**. This is a mapping of the delegations surfaced from the accessible Law 14/2025 text, not proof that all possible delegations have been captured. The formal-instrument register contains 51 identified instruments; 35 Ministry of Labour decision numbers are identified against the 68 Ministry decisions cited in official 2025 announcements. Corpus completeness remains open.
+The companion CSV contains **43 explicit statutory delegation rows**. This is a mapping of the delegations surfaced from the accessible Law 14/2025 text, not proof that all possible delegations have been captured. The formal-instrument register contains 51 identified instruments; 35 Ministry of Labour decision numbers are identified against the 68 Ministry decisions cited in official 2025 announcements. Corpus completeness remains open.
