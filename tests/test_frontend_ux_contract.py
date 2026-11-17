@@ -1837,5 +1837,16 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("globalSearchInput.focus()", results)
         self.assertIn("value.startsWith('>')&&e.key==='ArrowDown'", navigation)
 
+    def test_global_search_command_palette_includes_create_actions_with_role_gating(self):
+        start = HTML.index("const allNavItems=")
+        navigation = HTML[start:HTML.index("function mfaFirmSwitcher()", start)]
+        self.assertIn("const commandItems=[...allNavItems,['new-case'", navigation)
+        self.assertIn("()=>newCase()", navigation)
+        self.assertIn("...(ME.role==='admin'?[['new-client'", navigation)
+        self.assertIn("()=>clientProfileForm()", navigation)
+        self.assertIn("const runCommand=item=>", navigation)
+        self.assertIn("commandItems.filter(([id,label])", navigation)
+        self.assertIn("commandItems.find(([id,label])", navigation)
+
 if __name__ == "__main__":
     unittest.main()
