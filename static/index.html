@@ -3074,7 +3074,7 @@ async function law(){
          const sourceActions=h('div',{className:'research-source-actions'});
          sourceActions.append(makeBtn(LANG==='ar'?'نسخ الاستشهاد':'Copy citation',()=>copyText(s.citation||s.ref||'Unresolved citation')));
          sourceActions.append(makeBtn(LANG==='ar'?'نسخ المقطع الحرفي':'Copy exact passage',()=>copyText(s.text||'')));
-         sourceActions.append(h('button',{type:'button','aria-controls':'research-source-inspector','aria-expanded':'false',className:'g research-inspect-action',textContent:LANG==='ar'?'فحص المصدر':'Inspect source',onclick:e=>inspectSource(s,status,pin,p,e.currentTarget)}));
+         sourceActions.append(h('button',{type:'button','aria-controls':'research-source-inspector','aria-expanded':'false',className:'g research-inspect-action',textContent:LANG==='ar'?'فحص المقطع ←':'Inspect passage →',onclick:e=>inspectSource(s,status,pin,p,e.currentTarget)}));
          const recordedSource=safeHttpsUrl((s.provenance||{}).source_url||s.source_url);
          if(recordedSource)sourceActions.append(h('a',{className:'research-source-link',href:recordedSource,target:'_blank',rel:'noopener noreferrer',textContent:LANG==='ar'?'فتح المصدر الأصلي ('+sourceHostLabel(recordedSource)+')':'Open original source ('+sourceHostLabel(recordedSource)+')'}));
          src.append(sourceActions);
@@ -4236,4 +4236,7 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 #main .research-answer-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px}
 #main .research-answer-meta .pill{font-size:9px;padding:3px 8px;line-height:1.3}
 #main .research-answer-time{font-size:9px;color:#8997a8}
+</style><style>
+#main .research-inspect-action{font-size:9px;font-weight:700;color:#2765a8;background:transparent;border:0;padding:3px 0;min-height:24px}
+#main .research-inspect-action:hover{text-decoration:underline;background:transparent}
 </style></html>
