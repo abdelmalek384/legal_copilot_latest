@@ -17,7 +17,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 11. [Gas Egypt appeal 5280/87](cassation_appeal_5280_87_gas_egypt_2026-08-25.md) — a detailed secondary summary of a prior-law absenteeism/termination dispute.
 12. [Additional ministerial decision harvest](ministerial_decisions_214_259_266_279_299_300_301_75_346_harvest_2026-11-17.md) — Gazette text/page maps for Decisions 214, 259, 260, 264, 266, 271, 272, 279, 292, 294, 299, 300, 301, 319 and 320; official indexed text for Decisions 74 and 75/2026; government-newsletter text for 346.
 13. [Further Decisions 187, 267, 270, 288–292](decisions_187_267_270_288_289_290_291_2025_harvest_2026-11-17.md) — resignation, apprenticeship, workforce reporting, rest-break exceptions, industrial hours, intermittent work, overtime.
-14. [Labour circulars 2025–2026](labour_circulars_2026_harvest_2026-11-17.md) — Circulars 3, 16 and 19/2025 and Circular 9/2026, including one-time holiday instructions and historical minimum-wage implementation.
+14. [Labour circulars 2025–2026](labour_circulars_2026_harvest_2026-11-17.md) — Circulars 3, 15, 16 and 19/2025; Circulars 9 and 22/2026; and an unnumbered April 2026 remote-work monitoring circular.
 
 ## Structured inventory
 
@@ -25,7 +25,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 ## Current harvest snapshot
 
-- 34 distinct ministerial decision numbers identified in the current 2025–2026 register, plus four Ministry circulars (Circulars 3, 16 and 19/2025 and 9/2026).
+- 34 distinct ministerial decision numbers identified in the current 2025–2026 register, plus seven circular/implementation instruments (Circulars 3, 15, 16 and 19/2025; Circulars 9 and 22/2026; and one unnumbered April 2026 remote-work monitoring circular).
 - **Substantial article-level text or structured extracts:** 24/34 decisions (about 71%). This counts substantial text/transcriptions and article maps, not metadata-only discoveries or a single isolated snippet. The other 10 remain partial, summary-only, or page-locator leads.
 - **Primary-source comparison:** article-level comparison has begun for three decisions against the public SIS Gazette facsimile for issue 291 (259, 264 and 299). This is not a certified legal copy: the SIS PDF expressly says the electronic image is not valid for dealings.
 - **Official Gazette scan locators:** issue 291 facsimile covers Decisions 259, 260, 264, 271, 272, 292, 294, 299, 319 and 320; issue 290(B) metadata and third-party-hosted facsimile cover 266, 279, 300 and 301; issue 295(D) metadata identifies 267, 270, 288, 289, 290 and 291.
@@ -36,7 +36,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 - Decision 259 and 299 are now cross-checkable against the SIS-hosted issue 291 facsimile, but the facsimile disclaimer and rights/counsel gates remain.
 - All 34 decisions and four circulars remain lawyer_reviewed=false and rights_cleared=false. No production database import performed.
 - No original-Gazette SHA-256 hash captured for the Labour Law 14/2025 candidate; no legal data has been promoted to verified.
-- CSV structural validation passed: 38 data rows, 11 columns each, no duplicate document keys.
+- CSV structural validation passed: 41 data rows, 11 columns each, no duplicate document keys.
 
 ## Non-negotiable status rules
 
