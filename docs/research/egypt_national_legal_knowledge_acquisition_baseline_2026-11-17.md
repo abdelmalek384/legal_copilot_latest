@@ -123,7 +123,7 @@ Policy:
 A defensible percentage needs a denominator. The first denominator is now **34 legal domains**, not an estimate of all individual laws/cases:
 - 34/34 domains have been named in the national inventory (scope definition only; this is not 100% coverage).
 - 29 source institutions/platforms are registered, including the Supreme Constitutional Court, State Council, Consumer Protection Agency, NOSI, Administrative Control Authority, National Elections Authority, Customs Authority and Economic Courts.
-- 134 anchor instruments have acquisition records with their source/access status.
+- 135 anchor instruments have acquisition records with their source/access status.
 - 35 source PDFs have been opened across the tranches (not all are bare Gazette originals: Commercial Code is a government-published reprint and Customs Law is an authority-annotated compilation); Law160/2026 official HTML text was also opened. Several more have only official listing metadata.
 - No nationwide article-by-article consolidated statute corpus has been produced. A public judicial collection register now includes 25 leads (one Constitutional Court press summary, one recent bulletin and 23 State Council principle-series targets); the underlying judgments/volumes are mostly not yet acquired.
 - No nationwide court judgment corpus has been acquired.
@@ -161,11 +161,11 @@ Additional statutes indexed include Laws 46/1972, 47/1972, 54/1964 as amended by
 
 | Measure | Result | Meaning |
 |---|---:|---|
-| Legal-domain scope mapped | 33/33 (100%) | Scope definition only; not full legal coverage |
-| Source institutions/platforms registered | 27 | Government, courts, regulators and discovery sources |
-| Seed anchor instruments inventoried | 82 | Starter set, not the total universe of Egyptian laws and decisions |
-| Source PDFs opened | 34/82 (41.5% of seed list) | Includes government reprints, official agency copies and files with unreadable/garbled text layers; not all are bare Gazette originals |
-| Nationwide consolidated statute domains | 0/33 | No domain yet has all base laws, amendments, executive regulations and currentness fully consolidated |
+| Legal-domain scope mapped | 34/34 (100%) | Scope definition only; not full legal coverage |
+| Source institutions/platforms registered | 29 | Government, courts, regulators and discovery sources |
+| Seed anchor instruments inventoried | 135 | Starter set, not the total universe of Egyptian laws and decisions |
+| Source PDFs opened | 35/135 (25.9% of seed list) | Includes government reprints, official agency copies and files with unreadable/garbled text layers; not all are bare Gazette originals |
+| Nationwide consolidated statute domains | 0/34 | No domain yet has all base laws, amendments, executive regulations and currentness fully consolidated |
 | Full judicial judgments acquired in this national tranche | 0 | One Constitutional Court press-summary lead and a bulletin; 23 State Council series targets are bibliographic leads |
 | Lawyer-reviewed national instruments | 0 | Human legal review remains mandatory |
 
