@@ -1659,6 +1659,9 @@ class BrowserAcceptanceTests(unittest.TestCase):
         primary_only = self.page.get_by_role("button", name="المصادر الأولية", exact=True)
         self.assertTrue(all_sources.is_visible())
         self.assertTrue(primary_only.is_visible())
+        self.assertTrue(self.page.get_by_text(
+            "ستظهر المصادر هنا بعد اكتمال البحث. لا توجد مصادر مرتبطة بهذه المحادثة حتى الآن.", exact=True
+        ).is_visible(), "empty evidence panel should explain why no source cards are shown")
         primary_only.click()
         self.assertEqual(primary_only.get_attribute("aria-pressed"), "true")
         self.assertEqual(all_sources.get_attribute("aria-pressed"), "false")
