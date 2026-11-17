@@ -2921,11 +2921,11 @@ async function law(){
            h('option',{value:'true',textContent:LANG==='ar'?'نعم':'Yes'}),
            h('option',{value:'false',textContent:LANG==='ar'?'لا':'No'}));
          const notes=h('textarea',{maxLength:2000,rows:2,placeholder:LANG==='ar'?'ملاحظات المراجع (اختياري، 2000 حرف كحد أقصى)':'Reviewer notes (optional, max 2,000 characters)','aria-label':LANG==='ar'?'ملاحظات المراجع':'Reviewer notes'});
-         const ratingStatus=h('p',{className:'mut',role:'status','aria-live':'polite'});
+         const ratingError=h('div',{id:'answer-rating-error',className:'notice danger',role:'alert',hidden:true}),ratingStatus=h('p',{className:'mut',role:'status','aria-live':'polite'});
          const saveRating=btn(LANG==='ar'?'حفظ التقييم':'Save rating',async()=>{
-           if(!overall.value||!citationAccuracy.value){toast(LANG==='ar'?'اختر التقييم العام ودقة الاستشهاد':'Choose an overall rating and citation accuracy');return}
+           if(!overall.value||!citationAccuracy.value){const missing=!overall.value?overall:citationAccuracy;ratingError.textContent=LANG==='ar'?'اختر التقييم العام ودقة الاستشهاد':'Choose an overall rating and citation accuracy';ratingError.hidden=false;for(const field of [overall,citationAccuracy]){if(!field.value){field.setAttribute('aria-invalid','true');field.setAttribute('aria-describedby','answer-rating-error')}}missing.focus();return}
            const expectedIds=expected.value.split(',').map(x=>x.trim()).filter(Boolean);
-           if(expectedIds.length>100||expectedIds.some(x=>x.length>256)){toast(LANG==='ar'?'تحقق من معرّفات المواد':'Check article IDs');return}
+           if(expectedIds.length>100||expectedIds.some(x=>x.length>256)){expected.setAttribute('aria-invalid','true');expected.setAttribute('aria-describedby','answer-rating-error');ratingError.textContent=LANG==='ar'?'تحقق من معرّفات المواد (حتى 100 معرّف، و256 حرفاً لكل معرّف)':'Check article IDs (up to 100 IDs, 256 characters each)';ratingError.hidden=false;expected.focus();return}
            saveRating.disabled=true;
            try{
              const saved=await api('/research/answers/'+encodeURIComponent(m.answer_id)+'/rating','PUT',{
@@ -2937,7 +2937,7 @@ async function law(){
              toast(LANG==='ar'?'تم حفظ تقييمك داخل المكتب':'Your rating was saved within this firm');
            }catch(_){ }finally{saveRating.disabled=false}
          },'g');
-         ratingPanel.append(ratingTitle,ratingChoices,h('div',{className:'answer-rating-fields'},overall,citationAccuracy,expected,answerable,notes),saveRating,ratingStatus);
+         const clearRatingError=field=>{field.removeAttribute('aria-invalid');field.removeAttribute('aria-describedby');if(!overall.hasAttribute('aria-invalid')&&!citationAccuracy.hasAttribute('aria-invalid')&&!expected.hasAttribute('aria-invalid'))ratingError.hidden=true};overall.onchange=()=>clearRatingError(overall);citationAccuracy.onchange=()=>clearRatingError(citationAccuracy);expected.oninput=()=>clearRatingError(expected);ratingPanel.append(ratingTitle,ratingChoices,h('div',{className:'answer-rating-fields'},overall,citationAccuracy,expected,answerable,notes),ratingError,saveRating,ratingStatus);
          bubble.append(ratingPanel);
          api('/research/answers/'+encodeURIComponent(m.answer_id)+'/rating').then(result=>{
            const saved=result.rating;if(!saved)return;
