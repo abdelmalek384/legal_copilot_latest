@@ -53,7 +53,48 @@
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
       "terms_checked_on": null,
-      "permission_evidence": null
+      "permission_evidence": null,
+      "coverage_observation_2026_11_17": {
+        "search_capabilities": [
+          "legislative search",
+          "case-status search",
+          "judgments by principles",
+          "substantive constitutional judgments",
+          "formal/procedural judgments",
+          "jurisdiction disputes",
+          "execution disputes",
+          "legislative interpretation decisions",
+          "inadmissibility"
+        ],
+        "recent_judgment_metadata": [
+          {
+            "case": "61 لسنة 40 دستورية",
+            "date": "2026-09-09",
+            "outcome": "عدم قبول الدعوى، ومصادرة الكفالة، وإلزام المدعي المصروفات"
+          },
+          {
+            "case": "16 لسنة 46 دستورية",
+            "date": "2026-09-09",
+            "outcome": "عدم قبول الدعوى، ومصادرة الكفالة، وإلزام المدعي المصروفات"
+          },
+          {
+            "case": "228 لسنة 20 دستورية",
+            "date": "2026-09-09",
+            "outcome": "انقطاع سير الخصومة"
+          },
+          {
+            "case": "30 لسنة 26 دستورية",
+            "date": "2026-09-09",
+            "outcome": "انقطاع سير الخصومة"
+          },
+          {
+            "case": "149 لسنة 37 دستورية",
+            "date": "2026-09-09",
+            "outcome": "انقطاع سير الخصومة"
+          }
+        ],
+        "caution": "Official portal result metadata only. Full judgment text, procedural history, precedential treatment and reuse terms remain unverified."
+      }
     },
     {
       "source_id": "EG-ETA-TAX-LAWS",
@@ -200,7 +241,26 @@
       "terms_url": null,
       "terms_checked_on": null,
       "permission_evidence": "The Ministry's own notice states electronically published texts are for guidance and that the sole legal reference is publication in the Official Gazette (الوقائع المصرية). Use this portal to discover and cross-reference tax/financial laws and ministerial decisions, not as a substitute for Gazette originals or as evidence of collection/reuse permission.",
-      "rights_notice_checked_on": "2026-11-17"
+      "rights_notice_checked_on": "2026-11-17",
+      "coverage_observation_2026_11_17": {
+        "laws_index": "936 laws listed across financial, budget/accounts, treasury assets, taxes/fees, customs, economic, public service and miscellaneous categories",
+        "decisions_index": "2,037 decisions listed in the general decisions index; category pages show 972 Ministry of Finance decisions and 449 Prime Minister decisions",
+        "current_examples": [
+          "Law 148/2026",
+          "Law 154/2026",
+          "Law 149/2026",
+          "Law 150/2026",
+          "Law 152/2026",
+          "Law 153/2026",
+          "Minister of Finance Decision 262/2026",
+          "Prime Minister Decision 2034/2026"
+        ],
+        "caution": "Dynamic portal index counts observed 2026-11-17, not unique valid instruments, a complete national inventory, or proof of access/reuse. Portal warns texts are guidance and the Official Gazette is the legal reference.",
+        "decisions_index_url": "https://mof.gov.eg/ar/legislation/decisions",
+        "laws_index_url": "https://mof.gov.eg/ar/legislation/laws",
+        "finance_minister_decisions_url": "https://mof.gov.eg/ar/legislation/decisions/cat-5fe2a21f7bfc600007cbce3c",
+        "prime_minister_decisions_url": "https://mof.gov.eg/ar/legislation/decisions/cat-5fe2a20d7bfc600007cbce3a"
+      }
     }
   ],
   "documents": [
@@ -1149,6 +1209,97 @@
       "language": "ar",
       "candidate_status": "discovery_only",
       "notes": "Official Amiri Press text page observed 2026-11-17: https://www.alamiria.com/Sec/TashTxt?id=oJEcvk0M32w%3D. The page states the decision was issued 17 June 2026 and identifies Law 11/2026 as the amendment to Article 111 of Law 148/2019; it specifies Treasury bonds with aggregate nominal value EGP 100 billion. The Egyptian Proceedings issue/page range and annex integrity remain to be checked against the original publication. No collection or commercial-reuse permission is inferred from public visibility."
+    },
+    {
+      "document_id": "EG-MOF-FINANCE-MINISTER-DECISION-262-2026",
+      "official_title": "قرار وزير المالية رقم 262 لسنة 2026 بتعديل بعض أحكام اللائحة التنفيذية لقانون الجمارك الصادرة بقرار وزير المالية رقم 430 لسنة 2021",
+      "document_type": "amending_ministerial_decision",
+      "law_number": "262",
+      "law_year": 2026,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed in the official Ministry of Finance decisions index on 2026-11-17. Ministry index warns that online texts are guidance and the Official Gazette is the legal reference. Exact text, Gazette issue/pages, commencement, related customs decisions and reuse permission remain unverified.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/decisions",
+          "source_role": "official Ministry of Finance discovery index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PRIME-MINISTER-DECISION-2034-2026",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 2034 لسنة 2026 باعتبار الهيئة العامة للتحكيم واختبارات القطن من الهيئات العامة الخدمية اعتبارًا من موازنة العام المالي 2027-2028",
+      "document_type": "prime_minister_decision",
+      "law_number": "2034",
+      "law_year": 2026,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Listed in the official Ministry of Finance index on 2026-11-17. Cross-sector administrative/public-finance instrument. Exact text, Gazette issue/pages, commencement and currentness remain unverified.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/decisions",
+          "source_role": "official Ministry of Finance discovery index",
+          "status": "listed_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-SCC-JUDGMENT-61-40-2026-09-09",
+      "official_title": "حكم المحكمة الدستورية العليا في الدعوى رقم 61 لسنة 40 دستورية بتاريخ 9 سبتمبر 2026",
+      "document_type": "constitutional_court_judgment",
+      "law_number": null,
+      "law_year": 2026,
+      "source_id": "EG-SCC",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official SCC portal search-result metadata observed 2026-11-17. Listed outcome: عدم قبول الدعوى، ومصادرة الكفالة، وإلزام المدعي المصروفات. Full judgment text, procedural finality, publication, precedential treatment and reuse permission remain unchecked. Do not use the short result as a substitute for the judgment."
+    },
+    {
+      "document_id": "EG-SCC-JUDGMENT-16-46-2026-09-09",
+      "official_title": "حكم المحكمة الدستورية العليا في الدعوى رقم 16 لسنة 46 دستورية بتاريخ 9 سبتمبر 2026",
+      "document_type": "constitutional_court_judgment",
+      "law_number": null,
+      "law_year": 2026,
+      "source_id": "EG-SCC",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official SCC portal search-result metadata observed 2026-11-17. Listed outcome: عدم قبول الدعوى، ومصادرة الكفالة، وإلزام المدعي المصروفات. Full judgment text, procedural finality, publication, precedential treatment and reuse permission remain unchecked. Do not use the short result as a substitute for the judgment."
+    },
+    {
+      "document_id": "EG-SCC-JUDGMENT-228-20-2026-09-09",
+      "official_title": "حكم المحكمة الدستورية العليا في الدعوى رقم 228 لسنة 20 دستورية بتاريخ 9 سبتمبر 2026",
+      "document_type": "constitutional_court_judgment",
+      "law_number": null,
+      "law_year": 2026,
+      "source_id": "EG-SCC",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official SCC portal search-result metadata observed 2026-11-17. Listed outcome: انقطاع سير الخصومة. Full judgment text, procedural finality, publication, precedential treatment and reuse permission remain unchecked. Do not use the short result as a substitute for the judgment."
+    },
+    {
+      "document_id": "EG-SCC-JUDGMENT-30-26-2026-09-09",
+      "official_title": "حكم المحكمة الدستورية العليا في الدعوى رقم 30 لسنة 26 دستورية بتاريخ 9 سبتمبر 2026",
+      "document_type": "constitutional_court_judgment",
+      "law_number": null,
+      "law_year": 2026,
+      "source_id": "EG-SCC",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official SCC portal search-result metadata observed 2026-11-17. Listed outcome: انقطاع سير الخصومة. Full judgment text, procedural finality, publication, precedential treatment and reuse permission remain unchecked. Do not use the short result as a substitute for the judgment."
+    },
+    {
+      "document_id": "EG-SCC-JUDGMENT-149-37-2026-09-09",
+      "official_title": "حكم المحكمة الدستورية العليا في الدعوى رقم 149 لسنة 37 دستورية بتاريخ 9 سبتمبر 2026",
+      "document_type": "constitutional_court_judgment",
+      "law_number": null,
+      "law_year": 2026,
+      "source_id": "EG-SCC",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official SCC portal search-result metadata observed 2026-11-17. Listed outcome: انقطاع سير الخصومة. Full judgment text, procedural finality, publication, precedential treatment and reuse permission remain unchecked. Do not use the short result as a substitute for the judgment."
     }
   ]
 }
