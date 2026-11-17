@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -132,6 +132,9 @@
 | [collection_checkpoint_39_sports_media_tourism_2026.md](collection_checkpoint_39_sports_media_tourism_2026.md) | Sports Law 71/2017; Youth Bodies 218/2017; Media Law 180/2018; Tourism Companies 38/1977; Umrah 72/2021; Hajj 84/2022; tourism governance |
 
 | [collection_checkpoint_40_elections_political_rights_2026.md](collection_checkpoint_40_elections_political_rights_2026.md) | Election Laws 45/2014, 46/2014, 198/2017, 174/2020, 141/2020, Presidential Law 22/2014; NEA 2025 decisions; political parties Law 40/1977 |
+
+
+| [collection_checkpoint_29_tax_procedure_executive_regulation.md](collection_checkpoint_29_tax_procedure_executive_regulation.md) | Full 838-line secondary transcription of Executive Regulation 286/2021 reviewed, selected articles captured, official Gazette access and amendment graph recorded |
 
 ## High-value primary-source portals
 
