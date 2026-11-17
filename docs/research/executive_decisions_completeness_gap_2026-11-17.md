@@ -48,6 +48,17 @@ See [Justice decisions extraction](justice_decisions_labour_courts_4621_4693_561
 
 No separate Ministry of Health decision expressly implementing Labour Law 14/2025 was verified in this pass. Do not infer that none exists. Search and compare every health-related delegation and joint OSH/medical standard before closing that issuer category.
 
+
+
+## 4A. Statutory delegation matrix now available
+
+The companion [42-row statutory delegation matrix](../../data/research/labour_law_14_2025_delegation_matrix_2026-11-17.csv) maps the explicit Law 14/2025 delegations surfaced from the official Amiri Press text. The [delegation gap analysis](labour_law_14_2025_statutory_delegation_gap_analysis.md) identifies concrete missing instruments, including:
+- PM decisions under Articles 18 (Human Resource Skills Council; Cabinet-approved draft only), 32 (domestic/overseas workforce council), 234 (vital establishments/essential services), 237 (economic closure committees) and 273–274 (Social/Health/Cultural Services Fund).
+- Ministry or joint decisions under Articles 14 (fine allocation), 80 (Unorganized Workers Fund regulations), 254 (workplace code of conduct/complaints), 263 (OSH research centre procedures), 265 (governorate OSH committees), 266 (joint Labour/Health medical-fitness standards), 272 (minimum social/cultural services), 275 (joint Justice/Labour judicial-police designation) and 276 (night/out-of-hours inspection).
+- Follow-up rules still not located under Article 3 of PM Decision 3356/2026 (Training Fund contribution exemptions) and Article 3 of Ministerial Decision 269/2025 (labour-market data/occupational-classification procedural manual).
+
+These are not assumed non-existent; they are specific search targets. The Ministry's 14 November 2026 statement that the executive decisions are complete makes the absence of their identifiers from the current register a high-priority reconciliation problem.
+
 ## 5. Priority acquisition plan to reconcile the 87-decision announcement
 
 ### Priority A — obtain the Ministry's actual 68-decision list
