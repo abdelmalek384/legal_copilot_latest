@@ -2854,7 +2854,7 @@ async function law(){
  const evidenceFilterEmpty=h('p',{className:'research-evidence-filter-empty',hidden:true,textContent:LANG==='ar'?'لا توجد مصادر مصنفة صراحةً كمصادر أولية في هذه الإجابة.':'No sources are explicitly classified as primary for this answer.'});
  const updateEvidenceCoverage=()=>{
   const cards=Array.from(evidenceCards.children),total=cards.length,verified=cards.filter(card=>card.dataset.verified==='true').length;
-  evidenceCount.textContent=LANG==='ar'?total+' مصدر':total+' sources';
+  evidenceCount.textContent=!total?(LANG==='ar'?'0 مصدر':'0 sources'):(verified===total?(LANG==='ar'?verified+' متحقق':' '+verified+' verified'):(LANG==='ar'?verified+' / '+total+' متحقق':' '+verified+'/'+total+' verified'));
   evidenceCoverageCount.textContent=verified+' / '+total;
   evidenceCoverageLabel.textContent=!total?(LANG==='ar'?'لا توجد مصادر':'No sources'):verified===total?(LANG==='ar'?'تغطية المصادر قوية':'Strong source coverage'):(LANG==='ar'?'تحتاج المصادر إلى مراجعة':'Source review needed');
   evidenceCoverageFill.style.width=(total?Math.round(verified/total*100):0)+'%';
@@ -3248,7 +3248,7 @@ async function law(){
     thread.append(h('form',{className:'research-followup',onsubmit:event=>{event.preventDefault();followupButton.click()}},h('span',{className:'research-followup-spark',textContent:'✧','aria-hidden':'true'}),followupInput,followupButton));
    }
    updateEvidenceCoverage();
-   evidenceCount.textContent=evidenceCards.childElementCount+' '+(LANG==='ar'?'مصدر':'sources');
+   updateEvidenceCoverage();
    thread.scrollTop=thread.scrollHeight;
  };
  const loadConversation=async id=>{const data=await api('/research/conversations/'+id);activeId=id;renderMessages(data.messages||[]);drawList()};
