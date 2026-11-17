@@ -87,3 +87,10 @@ A 2019 government-company-hosted trainee legal-reference guide reproduces the OS
 The focused extract is in [Decision 134/2003 — OSH establishment thresholds and committees](decision_134_2003_osh_establishment_thresholds_and_committees.md). It captures the 50-worker threshold, Article 3 functional-unit duties, OSH committee composition/meeting rules, qualification and training provisions, and the legible industrial staffing rows.
 
 Limitations: the guide copy truncates Article 2 and its non-industrial Schedule 2 staffing rows are not fully legible. It is not the signed Gazette original. The Ministry index's 2003/134 title also conflicts with the OSH title used by the guide and later amending decisions; preserve the identity discrepancy until the Gazette original is checked.
+
+
+## 8. Ministry inspector guidance crosswalk for Decision 211/2003
+
+The Ministry's own inspector bulletins now identify Decision 211/2003 articles by hazard: thermal stress (Arts.5–6), radiation (Arts.10–13), electricity (Art.32), and emergency planning/fire (Art.3). The thermal bulletin includes a table of temperature values; the radiation bulletin includes a UV exposure table; the confined-space bulletin gives H2S/CO/oxygen/flammability values and refers to Articles 3–4 of Decision 134/2003 for work permits.
+
+See [the detailed Ministry guidance crosswalk](ministry_osh_inspector_guidance_and_decision_211_2003_crosswalk_2026-11-17.md). It preserves the repeated 75%/25% thermal work/rest labels and radiation unit mismatch rather than guessing corrections. These are Ministry guidance values, not yet matched to Decision 211/2003's signed text or current standards.
