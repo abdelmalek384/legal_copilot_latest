@@ -100,3 +100,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 47. [National legal source register](../../data/research/egypt_national_legal_sources_register_2026-11-17.csv) — 16 government, court, regulator and discovery sources with access tiers and collection restrictions.
 48. [Initial statute acquisition register](../../data/research/egypt_initial_statute_acquisition_register_2026-11-17.csv) — 25 instruments; separates opened official PDFs from official catalogue leads and secondary-only candidates.
 49. [Criminal Procedure Law 174/2025 status after Law 160/2026](egypt_criminal_procedure_law_174_2025_status_after_law_160_2026.md) — official commencement amendment establishes 1 October 2027; new Code remains enacted but not yet in force at this snapshot.
+
+50. [Constitutional Court and State Council collection leads](egypt_constitutional_and_state_council_collection_leads_2026-11-17.md) — official SCC public decision-summary lead and 23 State Council principle-series bibliographic targets.
+51. [National judicial collection register](../../data/research/egypt_national_judicial_collection_register_2026-11-17.csv) — selected Constitutional Court summary/bulletin leads and State Council Supreme Administrative Court principle series.
