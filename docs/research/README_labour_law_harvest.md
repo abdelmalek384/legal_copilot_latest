@@ -108,3 +108,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 
 53. [FRA/CBE regulatory and judicial source harvest](../../data/research/egypt_regulatory_instrument_harvest_2026-11-17.csv) — 19 regulator/court records including FRA consolidated PDFs for AML Law 80/2002, Board Decision 145/2021 (amended 8 July 2026), microfinance Decision 173/2014 (updated 8 Oct 2025), Unified Insurance Law 155/2024 and the CBE 405-record circular index; full-text acquisition and Gazette matching remain item-specific.
+
+
+54. [Construction, industrial, health and constitutional law harvest](../../data/research/egypt_sectoral_law_harvest_2026-11-17.csv) — IDA official texts/links for Building Law 119/2008, Industrial Licensing Law 15/2017, Reconciliation Law 187/2023, Environment Executive Regulation 338/1995 and Industrial Licensing Executive Regulation 1082/2017; MOHP 2025 Health Investment Guide and health-law leads; SCC public judgment/case portal leads.
