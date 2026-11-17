@@ -109,3 +109,5 @@ This folder contains free/public source discovery, metadata registers and extrac
 53. [Constitution and election-law acquisition](egypt_constitution_and_election_law_acquisition_2026-11-17.md) — official 2014/2019 Constitution and six core election statutes/amendment PDFs from the National Elections Authority.
 
 54. [Commercial, Customs and Social Insurance acquisition](egypt_commercial_customs_social_insurance_acquisition_2026-11-17.md) — Commercial Code17/1999 reprint; Customs Law207/2020; official Gazette Executive Regulation430/2021; NOSI library and 2026 contribution parameters.
+
+55. [Commercial, Customs and Social Insurance acquisition](egypt_commercial_customs_social_insurance_acquisition_2026-11-17.md) — full Commercial Code17/1999 government reprint; Customs Law207/2020 annotated compilation; Gazette Executive Regulation430/2021; Customs amendment chain; NOSI library and 2026 insured-wage/pension parameters.
