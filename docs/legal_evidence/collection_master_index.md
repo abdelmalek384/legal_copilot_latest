@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 41) (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -194,6 +194,9 @@
 | [collection_checkpoint_40_lakes_fisheries_law_2021.md](collection_checkpoint_40_lakes_fisheries_law_2021.md) | Lakes and Fisheries Law 146/2021 (68 articles), Executive Regulation 706/2023 and licensing/protection rules |
 
 | [collection_checkpoint_53_state_wages_development_plan_2026.md](collection_checkpoint_53_state_wages_development_plan_2026.md) | Law 75/2026 public-sector raises/incentives; PM Decision 2170/2026 State minimum wage table; Law 78/2026 development plan FY 2026/27 |
+
+
+| [collection_checkpoint_41_civil_society_law_2019.md](collection_checkpoint_41_civil_society_law_2019.md) | Civil Society Work Law 149/2019, 188-article Executive Regulation 104/2021 and related administrative decision sources |
 
 ## High-value primary-source portals
 
