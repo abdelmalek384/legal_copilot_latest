@@ -349,6 +349,8 @@
 
 | [collection_checkpoint_82_stamp_tax_law_153_2026.md](collection_checkpoint_82_stamp_tax_law_153_2026.md) | Official 2-page Law 153/2026 PDF; replaces Stamp Tax Law Article 83 bis; listed securities and same-day rates, market-maker exemption and settlement withholding |
 
+| [collection_checkpoint_83_law_154_2026_full_text.md](collection_checkpoint_83_law_154_2026_full_text.md) | Official Law 154/2026 full text: 5% contribution for wholly State-owned companies; 4% for companies with >50% State/public ownership, capped by State profit share; Cabinet temporary exemption |
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
