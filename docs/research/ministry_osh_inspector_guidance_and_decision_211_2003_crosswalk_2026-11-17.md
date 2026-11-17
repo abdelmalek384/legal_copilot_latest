@@ -133,3 +133,10 @@ The bulletin does not identify the legal instrument/source standard for every eg
 3. Inspect the original PDF images for the thermal work/rest rows and radiation units.
 4. Locate the technical appendices/standards underlying the Ministry figures; confirm measurement method, averaging period, exposure duration and revision date.
 5. Compare currentness against Law 14/2025, Decision 249/2026, Decision 250/2026 and relevant OSH implementing decisions; do not assume all older thresholds continue unchanged.
+
+
+## 9. Chemical-risk numbering distinction
+
+A separate Ministry chemical-hazards presentation cites **Article 211 of Labour Law 12/2003**, not Ministerial Decision 211/2003. It summarizes the employer duties to control maximum chemical/carcinogen concentrations, hazardous-chemical threshold quantities, storage/transport/handling/disposal, inventory and exposure records, chemical labels and worker training.
+
+See [the dedicated chemical-hazards extraction](ministry_chemical_hazards_guidance_law_12_2003_article_211_2026-11-17.md). It preserves the Ministry's gas/oxygen/dust tables and flags the unit and respirator-table limitations. Do not merge those values into the Decision 211/2003 hazard rules.
