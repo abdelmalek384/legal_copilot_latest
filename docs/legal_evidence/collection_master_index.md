@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-17 (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-17 (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -184,6 +184,9 @@
 | [collection_checkpoint_38_waste_management_law_2020.md](collection_checkpoint_38_waste_management_law_2020.md) | Waste Management Law 202/2020 (86 articles), Executive Regulation 722/2022 and Decision 1113/2024 amendment source chain |
 
 | [collection_checkpoint_51_november_gazette_privacy.md](collection_checkpoint_51_november_gazette_privacy.md) | Official Gazette issues 46/2026 and Al-Waqa'i 254–255 (15–16 Nov); classifies individual nationality/parcel decisions and protects personal data |
+
+
+| [collection_checkpoint_39_water_resources_irrigation_2021.md](collection_checkpoint_39_water_resources_irrigation_2021.md) | Water Resources and Irrigation Law 147/2021 (130 articles), Executive Regulation 81/2023 and provisional Article 107 amendment 167/2025 |
 
 ## High-value primary-source portals
 
