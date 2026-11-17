@@ -7167,14 +7167,20 @@
       "language": "ar",
       "candidate_status": "discovery_only",
       "text_acquisition_status": "official_judicial_locator_found",
-      "text_verification_note": "EMRA official index lists PM Decision 1440/2026; exact title, instrument type, provisions and relationship to Decision 108/2020 must be verified from Gazette. Full decision/text, court citation, legal effect, finality, subsequent treatment and reuse permission remain unverified. Not lawyer-reviewed.",
+      "text_verification_note": "EMRA official index lists PM Decision 1440/2026; exact title, instrument type, provisions and relationship to Decision 108/2020 must be verified from Gazette. Full decision/text, court citation, legal effect, finality, subsequent treatment and reuse permission remain unverified. Not lawyer-reviewed. EMRA index lists Decision 1440/2026; exact official title and legal effect need Gazette confirmation. Gazette original, full text extraction, SHA-256, legal effect/currentness and lawyer review outstanding.",
       "source_urls": [
         {
           "url": "https://emra.gov.eg/ar/mineral-resources-law",
           "source_role": "official court / authority portal or publication",
           "status": "located_2026-11-17"
+        },
+        {
+          "url": "https://emra.gov.eg/ar/mineral-resources-law",
+          "source_role": "official Ministry of Finance or competent authority index/PDF",
+          "status": "located_2026-11-17"
         }
-      ]
+      ],
+      "notes": "\nMerged duplicate locator EG-MINERAL-RESOURCES-EXEC-DECISION-1440-2026. EMRA index lists Decision 1440/2026; exact official title and legal effect need Gazette confirmation. Gazette original, full text extraction, SHA-256, legal effect/currentness and lawyer review outstanding."
     },
     {
       "document_id": "EG-SCC-PRINCIPLES-2024",
@@ -7266,10 +7272,16 @@
           "url": "https://media.mof.gov.eg/mof-prd/qanwn_rqm_5_lsnt_2025_0349d5d277.pdf",
           "source_role": "official Ministry of Finance hosted PDF",
           "status": "official_pdf_opened_2026-11-17"
+        },
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/qanwn_rqm_5_lsnt_2025_0349d5d277.pdf",
+          "source_role": "official Ministry of Finance or competent authority index/PDF",
+          "status": "located_2026-11-17"
         }
       ],
       "text_acquisition_status": "official_pdf_opened_page_count_known",
-      "text_verification_note": "MoF official legislation page marks law in force and links a 7-page PDF. Web PDF reader exposed only page count, not body text. Need extract text, Gazette issue/page and currentness; not lawyer-reviewed."
+      "text_verification_note": "MoF official legislation page marks law in force and links a 7-page PDF. Web PDF reader exposed only page count, not body text. Need extract text, Gazette issue/page and currentness; not lawyer-reviewed. Official 7-page PDF opened from MoF. Reader returned page count but not body text; extract and verify operative relief, eligibility and deadlines. Gazette original, full text extraction, SHA-256, legal effect/currentness and lawyer review outstanding.",
+      "notes": "\nMerged duplicate locator EG-TAX-SETTLEMENT-EXTENSION-5-2025. Official 7-page PDF opened from MoF. Reader returned page count but not body text; extract and verify operative relief, eligibility and deadlines. Gazette original, full text extraction, SHA-256, legal effect/currentness and lawyer review outstanding."
     },
     {
       "document_id": "EG-TAX-INCENTIVES-LAW-6-2025",
@@ -7367,25 +7379,6 @@
       ]
     },
     {
-      "document_id": "EG-MINERAL-RESOURCES-EXEC-DECISION-1440-2026",
-      "official_title": "قرار رئيس مجلس الوزراء رقم 1440 لسنة 2026 بشأن الثروة المعدنية",
-      "document_type": "ministerial_or_prime_minister_decision",
-      "law_number": "1440",
-      "law_year": 2026,
-      "source_id": "EG-EMRA-MINERAL-LEGISLATION",
-      "language": "ar",
-      "candidate_status": "discovery_only",
-      "text_acquisition_status": "official_index_or_pdf_locator_found",
-      "text_verification_note": "EMRA index lists Decision 1440/2026; exact official title and legal effect need Gazette confirmation. Gazette original, full text extraction, SHA-256, legal effect/currentness and lawyer review outstanding.",
-      "source_urls": [
-        {
-          "url": "https://emra.gov.eg/ar/mineral-resources-law",
-          "source_role": "official Ministry of Finance or competent authority index/PDF",
-          "status": "located_2026-11-17"
-        }
-      ]
-    },
-    {
       "document_id": "EG-TAX-SETTLEMENT-LAW-79-2016",
       "official_title": "القانون رقم 79 لسنة 2016 بشأن إنهاء المنازعات الضريبية",
       "document_type": "law_or_amendment",
@@ -7399,25 +7392,6 @@
       "source_urls": [
         {
           "url": "https://mof.gov.eg/ar/legislation/laws",
-          "source_role": "official Ministry of Finance or competent authority index/PDF",
-          "status": "located_2026-11-17"
-        }
-      ]
-    },
-    {
-      "document_id": "EG-TAX-SETTLEMENT-EXTENSION-5-2025",
-      "official_title": "القانون رقم 5 لسنة 2025 فى شأن تسوية أوضاع بعض الممولين والمكلفين",
-      "document_type": "law_or_amendment",
-      "law_number": "5",
-      "law_year": 2025,
-      "source_id": "EG-MOF-LEGISLATION",
-      "language": "ar",
-      "candidate_status": "discovery_only",
-      "text_acquisition_status": "official_index_or_pdf_locator_found",
-      "text_verification_note": "Official 7-page PDF opened from MoF. Reader returned page count but not body text; extract and verify operative relief, eligibility and deadlines. Gazette original, full text extraction, SHA-256, legal effect/currentness and lawyer review outstanding.",
-      "source_urls": [
-        {
-          "url": "https://media.mof.gov.eg/mof-prd/qanwn_rqm_5_lsnt_2025_0349d5d277.pdf",
           "source_role": "official Ministry of Finance or competent authority index/PDF",
           "status": "located_2026-11-17"
         }
