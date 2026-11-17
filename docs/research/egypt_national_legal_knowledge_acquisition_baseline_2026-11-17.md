@@ -120,11 +120,11 @@ Policy:
 
 ## 8. Initial progress measurement
 
-A defensible percentage needs a denominator. The first denominator is now **33 legal domains**, not an estimate of all individual laws/cases:
-- 33/33 domains have been named in the national inventory (scope definition only; this is not 100% coverage).
-- 27 source institutions/platforms are registered, including the Supreme Constitutional Court, State Council, Consumer Protection Agency, NOSI, Administrative Control Authority, National Elections Authority, Customs Authority and Economic Courts.
-- 82 anchor instruments have acquisition records with their source/access status.
-- 34 source PDFs have been opened across the tranches (not all are bare Gazette originals: Commercial Code is a government-published reprint and Customs Law is an authority-annotated compilation); Law160/2026 official HTML text was also opened. Several more have only official listing metadata.
+A defensible percentage needs a denominator. The first denominator is now **34 legal domains**, not an estimate of all individual laws/cases:
+- 34/34 domains have been named in the national inventory (scope definition only; this is not 100% coverage).
+- 29 source institutions/platforms are registered, including the Supreme Constitutional Court, State Council, Consumer Protection Agency, NOSI, Administrative Control Authority, National Elections Authority, Customs Authority and Economic Courts.
+- 135 anchor instruments have acquisition records with their source/access status.
+- 35 source PDFs have been opened across the tranches (not all are bare Gazette originals: Commercial Code is a government-published reprint and Customs Law is an authority-annotated compilation); Law160/2026 official HTML text was also opened. Several more have only official listing metadata.
 - No nationwide article-by-article consolidated statute corpus has been produced. A public judicial collection register now includes 25 leads (one Constitutional Court press summary, one recent bulletin and 23 State Council principle-series targets); the underlying judgments/volumes are mostly not yet acquired.
 - No nationwide court judgment corpus has been acquired.
 - No lawyer-reviewed national corpus exists.
@@ -161,11 +161,11 @@ Additional statutes indexed include Laws 46/1972, 47/1972, 54/1964 as amended by
 
 | Measure | Result | Meaning |
 |---|---:|---|
-| Legal-domain scope mapped | 33/33 (100%) | Scope definition only; not full legal coverage |
-| Source institutions/platforms registered | 27 | Government, courts, regulators and discovery sources |
-| Seed anchor instruments inventoried | 82 | Starter set, not the total universe of Egyptian laws and decisions |
-| Source PDFs opened | 34/82 (41.5% of seed list) | Includes government reprints, official agency copies and files with unreadable/garbled text layers; not all are bare Gazette originals |
-| Nationwide consolidated statute domains | 0/33 | No domain yet has all base laws, amendments, executive regulations and currentness fully consolidated |
+| Legal-domain scope mapped | 34/34 (100%) | Scope definition only; not full legal coverage |
+| Source institutions/platforms registered | 29 | Government, courts, regulators and discovery sources |
+| Seed anchor instruments inventoried | 135 | Starter set, not the total universe of Egyptian laws and decisions |
+| Source PDFs opened | 35/135 (25.9% of seed list) | Includes government reprints, official agency copies and files with unreadable/garbled text layers; not all are bare Gazette originals |
+| Nationwide consolidated statute domains | 0/34 | No domain yet has all base laws, amendments, executive regulations and currentness fully consolidated |
 | Full judicial judgments acquired in this national tranche | 0 | One Constitutional Court press-summary lead and a bulletin; 23 State Council series targets are bibliographic leads |
 | Lawyer-reviewed national instruments | 0 | Human legal review remains mandatory |
 
@@ -230,3 +230,15 @@ The official ETA-hosted Gazette PDF for Law149/2026 (issue30 bis(A), 28 July 202
 - Stamp Tax Law111/1980: base law PDF retrieval failed; Law153/2026 confirms the base law identifier; ETA filename incorrectly appears to say 1981 and must be reconciled against Gazette.
 
 See [Real-estate and historical tax acquisition](egypt_real_estate_and_historical_tax_law_acquisition_2026-11-17.md).
+
+
+## Environmental and waste-management tranche
+
+- Natural Reserves Law102/1983: official EEAA six-page Arabic PDF opened; Articles1–2 define reserves and prohibit harmful/unauthorized activity.
+- Environment Law4/1994: EEAA official law library lists Law9/2009 and Law105/2015 amendments, PM338/1995 Executive Regulation and eight amendments through PM2466/2024.
+- Waste Management Law202/2020: official EEAA index; PM722/2022 full official GPO text page located. Annexes6–11 and18 are identified as containing healthcare-waste standards, tracking forms and records; Articles65–78 contain penalties.
+- PM662/2025: official EEAA 2026 page confirms extended producer responsibility for single-use plastic shopping bags; Articles27, 18 and19 are relevant.
+- EEAA decision register: 39 official index-listed decisions plus PM662/2025 (40 rows) covering coal, charcoal, EIA, protected areas, climate, waste, fees and environmental consultants.
+- **Identity discrepancy:** an EEAA search-result extract appears to label Law152/2021 as medical-waste regulation, but Official Gazette DSpace metadata identifies Law152/2021 as the Epidemics and Health Pandemics Law. This conflict is flagged; the law is not classified as a medical-waste statute pending source reconciliation.
+
+See [Environmental and Waste Law acquisition](egypt_environmental_and_waste_law_acquisition_2026-11-17.md) and [dedicated environmental instruments register](../../data/research/egypt_environmental_instruments_register_2026-11-17.csv).

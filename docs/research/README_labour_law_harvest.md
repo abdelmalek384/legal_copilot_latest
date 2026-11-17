@@ -123,3 +123,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 60. [VAT Law149/2026 amendment extraction](egypt_vat_law149_2026_amendment_extraction.md) — official Gazette text for 2026 VAT changes, industrial machinery conditional suspension/exemption, exempt supplies and natural gas schedule.
 
 61. [Real-estate and historical tax-law acquisition](egypt_real_estate_and_historical_tax_law_acquisition_2026-11-17.md) — Law196/2008 and Law103/2012 PDFs with OCR caveats; historical Sales Tax Law11/1991 and Law102/2012; unresolved base Law147/1984 and Stamp Tax Law111/1980 copies.
+
+62. [Environmental and Waste Law acquisition](egypt_environmental_and_waste_law_acquisition_2026-11-17.md) — Environment Law4/1994 amendment chain; Natural Reserves Law102/1983 full PDF; Waste Law202/2020 and PM722/2022; 39 EEAA index-listed decisions plus PM662/2025; Law152/2021 identity discrepancy.
+63. [Environmental instruments register](../../data/research/egypt_environmental_instruments_register_2026-11-17.csv) — 51 instrument entries covering environmental amendments, executive regulations and EEAA decisions.
