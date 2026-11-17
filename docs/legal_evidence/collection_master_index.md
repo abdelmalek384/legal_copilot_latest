@@ -24,6 +24,7 @@
 | [collection_checkpoint_5_civil_companies_procurement_2026-11-17.md](collection_checkpoint_5_civil_companies_procurement_2026-11-17.md) | Search-indexed Arabic Civil Code 131/1948 text and verbatim opening provisions; Companies 159/1981 latest displayed text and amendment list; Public Contracts 182/2018 text excerpts; Procedure 13/1968 and 157/2024 amendment; Income Tax source route |
 | [collection_checkpoint_6_commercial_family_criminal_2026-11-17.md](collection_checkpoint_6_commercial_family_criminal_2026-11-17.md) | Commercial Code 17/1999, Trade Register 34/1976, family statutes, Penal Code 58/1937, procedural amendment mapping |
 | [collection_checkpoint_7_criminal_finance_fra_2026-11-17.md](collection_checkpoint_7_criminal_finance_fra_2026-11-17.md) | Official Criminal Procedure 174/2025 text and transitional provisions; Evidence 25/1968; Public Finance 6/2022, regulations and discrepancy; FRA 10/2009; Economic Courts 120/2008 amendment |
+| [collection_checkpoint_8_customs_tax_fra_2026-11-17.md](collection_checkpoint_8_customs_tax_fra_2026-11-17.md) | Customs 207/2020 and regulation amendment leads; Tax Procedures 206/2020 text; Economic Courts 120/2008 amendment; Financial Leasing/Factoring 176/2018 text; FinTech 5/2022 and FRA decisions |
 
 ## High-value primary-source portals
 
