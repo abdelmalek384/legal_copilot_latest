@@ -59,3 +59,21 @@ This record isolates the provisions of two multi-purpose amendment statutes that
 ## Accounting
 - Laws 68/2009 and 17/2015 were already present in Agent 3's amendment-chain inventory; this is text-depth/provenance expansion only.
 - No new instrument/article-unit increment. Aggregate remains 190 documents / 1,927 normalized units; assigned-domain estimate 55% provisional; lawyer review 0%.
+
+
+## Primary-source upgrade — Law 17/2015
+
+The original Gazette PDF is now available from the Egyptian Tax Authority:
+https://www.eta.gov.eg/sites/default/files/2026-03/law.no_.17.of_.2015.pdf
+
+The PDF identifies Official Gazette issue 11 (تابع), 12 March 2015, and has been text-extracted through 670 lines. It is a primary-hosted Gazette reproduction. The Companies Law amendment is exactly Article 1:
+> يضاف بند جديد (هـ) إلى الفقرة الأولى من المادة (17) من قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة الصادر بالقانون رقم 159 لسنة 1981، نصه الآتي:
+>
+> (هـ) شهادة تفيد إيداع الأوراق المالية للشركة لدى شركة إيداع مركزي.
+
+The remainder of Law 17/2015 amends Sales Tax Law 11/1991, Investment Guarantees and Incentives Law 8/1997 and Income Tax Law 91/2005. Those provisions are outside this Companies Law amendment record and should be indexed separately under the relevant Agent.
+
+The earlier statement that Law 17/2015 was available only from a secondary legal transcription is superseded. Status: official ETA-hosted Gazette PDF text; original Amiri Press signed binary/hash and page-image comparison are not yet recorded.
+
+## Law 68/2009 source status remains
+The exact Article 116(1) replacement is captured from a secondary-hosted PDF/transcription. The original Gazette issue 14 bis PDF remains outstanding.
