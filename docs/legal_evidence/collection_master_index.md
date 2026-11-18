@@ -12,7 +12,7 @@
 - Decision 144/2009 has a full text reproduction with 185 base numbered articles; a secondary consolidated text claims 198 current provisions after amendments, a count still to be reconciled.
 - Do not increase overall coverage based on number of URLs, catalogue records, or checkpoint files.
 - Lawyer-verified legal content: 0% under the project's current sign-off rule.
-- **Agent 3 commercial/corporate/investment assignment: 53% provisional; 186 documents/instruments surfaced; 1,869 normalized statutory/regulation units; 13/13 families touched, 0/13 currentness-complete, lawyer review 0%.** Detailed checkpoint and blockers: [agent3_progress_checkpoint_2026-11-18_4.md](agent3_progress_checkpoint_2026-11-18_4.md).
+- **Agent 3 commercial/corporate/investment assignment: 55% provisional; 209 documents/instruments surfaced; 2,049 normalized statutory/regulation units; 13/13 families touched, 0/13 currentness-complete, lawyer review 0%.** Detailed checkpoint and blockers: [agent3_progress_checkpoint_2026-11-18_4.md](agent3_progress_checkpoint_2026-11-18_4.md).
 - Legal-source rights/permission: not presumed. Official public accessibility does not automatically establish commercial indexing, excerpt-display or redistribution rights.
 - Machine labels must remain `source-matched, not lawyer-reviewed` where applicable; no `verified` label without qualified Egyptian lawyer approval.
 
