@@ -258,7 +258,7 @@ Article 4 limits the law to non-residential premises governed by Laws 49/1977 an
 - New base rent statutes discovered: 0 (Laws 49/1977, 136/1981 and 4/1996 were already referenced in project checkpoints).
 - Additional full searchable Arabic legal texts retrieved from secondary sources: 6 (Laws 49/1977, 136/1981, 6/1997, 14/2001, 4/1996 and Decision 237/1997).
 - New amendment instruments identified and text-retrieved: 3 (Law 6/1997, Law 14/2001, Law 137/2006); Law 165/2025 already collected in checkpoint 14.
-- Article-level provisions newly quoted or substantively extracted: at least 22 (including Law 49 Article 29; Law 136 Articles 18 and 19; Law 6 Articles 1, 2, 3, 4, 5; Law 4 Articles 1–4; Law 137/2006 Article 1; and Decision 237/1997 Article 1 definitions).
+- Article-level provisions newly quoted or substantively extracted: at least 13 (including Law 49 Article 29; Law 136 Articles 18 and 19; Law 6 provisions 1, 3–5; Law 4 Articles 1–4; Law 137/2006 Article 1; and Decision 237/1997 Article 1 definitions).
 - Judicial invalidation/interpretation events newly indexed: at least 12, with official primary judgments still missing for several.
 - No complete official Gazette PDFs for the older rent statutes were saved in this checkpoint.
 
