@@ -954,3 +954,11 @@
 - Selected operative text transcribed in Agent 3 file: concentration definition, material influence threshold (25%, with below-25% qualitative factors and under-10% general safe harbor), substantive assessment factors, who must notify, complete filing documents, 15-day public comment period, remedies/commitments, filing fee bands, failing-firm/efficiency/national-security exemptions, below-threshold review and FRA/ECA coordination for NBFI transactions.
 - Critical version point: the 2024 amendment is binding from 1 Jun 2024 and operationalizes Law 175/2022's pre-merger control provisions. Do not use the 2005/2010/2016 regulation alone.
 - **Updated Agent 3 minimum:** 87 distinct instruments with some Arabic text surfaced; 1,125 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Consumer Protection amendment Law 20/2024
+
+- Law 20/2024: Official Gazette issue 14 مكرر, 5 Apr 2024; effective 6 Apr 2024. MOF official record marks it in force; official Gazette DSpace and Amiri Press text obtained.
+- Replaces Consumer Protection Law 181/2018 Article 71 for Article 8 strategic-products offences. Current penalty: imprisonment at least one year and fine EGP 150,000–3 million or value of goods (whichever greater); recidivism 2–5 years and doubled fine limits; confiscation, possible closure up to six months, publication in two daily newspapers, possible licence cancellation.
+- Both replacement Article 71 and commencement Article 2 transcribed in Agent 3 file. Original Article 71 text is historical only.
+- **Updated Agent 3 minimum:** 88 distinct instruments with some Arabic text surfaced; 1,127 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
