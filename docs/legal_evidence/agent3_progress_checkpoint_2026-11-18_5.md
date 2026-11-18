@@ -61,3 +61,12 @@ The percentage is a planning estimate, not a denominator-validated measure. A UR
 - [Capital Market Law 95/1992](agent3_capital_market_law95_1992_fra_updated_text_audit_2026-11-18.md)
 
 No legal instrument or provision is marked lawyer-verified. Continue with exact Arabic text, primary Gazette acquisition, amendment overlays, and rights metadata.
+
+
+## Commercial Agency primary-source upgrade
+- GOEIC official-hosted original Gazette PDF of Law 120/1982 acquired (Official Gazette issue 31, 5 Aug 1982, 24 statutory articles). Original text captured for agent/intermediary definitions, mandatory registry, eligibility, five-year renewal, 30-day update notice, accounting/commission records, public-sector contracts and historical penalties.
+- Ministry of Investment official portal current consolidated Law 120/1982 acquired (570 extracted lines), with original and final wording side by side for Law 21/2022 changes. It confirms the real-estate brokerage registry and training regime, expanded obligations and current Article 16 penalty up to two years' imprisonment and EGP 50,000–1,000,000, with disqualification and closure.
+- Decision 593/2025 source chain checked: GOEIC official catalogue plus Amiri Press DSpace Gazette metadata, issue 20 supplement (أ), 25 Jan 2026, effective 26 Jan 2026. Original bundle is request-only; complete secondary text exists and remains page-image unverified.
+- Search false positive excluded: Kuwait Law 13/2016 and Ministerial Decision 565/2017 are not Egyptian legislation.
+- Updated record: [commercial agency text and amendment chain](agent3_commercial_agency_law120_1982_law21_2022_reg342_1982_dec593_2025_arabic_text.md).
+- Text/source-quality expansion only; no new unique-instrument count. Last reconciled baseline remains **209 documents / 2,049 provisional units**; assigned-domain **55% provisional**, whole corpus **2%**, lawyer review **0%**.
