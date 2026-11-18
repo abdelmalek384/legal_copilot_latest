@@ -54,3 +54,7 @@
 - Ministry of Finance page and direct official-hosted 12-page Gazette reproduction located for Law 25/1968; issue 22, 30 May 1968. Eleven of twelve pages visually inspected; page index 4 failed to render. No local bytes/hash.
 - The PDF is a Gazette reproduction and the Ministry page says the Official Gazette is the legal reference. It does not itself establish commercial reuse or bulk-collection permission.
 - Full source and visual-inspection details are in checkpoint 93. No additional Evidence Law articles are counted in this supplement.
+
+## Supplement — Evidence Law full statutory range
+
+The complete Evidence Law extends through Article 163, not Article 117. A consolidated secondary PDF exposes the full law and amendment history; the official Ministry of Finance 12-page Gazette reproduction remains the primary source for comparison. Amendment chain: Laws 54/1974, 23/1992, 18/1999 and 76/2007. Only 11 of 12 Gazette PDF pages were visually inspected; page index 4 remains an extraction failure. See checkpoint 93.
