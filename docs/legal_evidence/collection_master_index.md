@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 142)
+**Last updated:** 2026-11-18 (expanded through checkpoint 143)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1166,3 +1166,6 @@
 - **Case 24/20:** 14-page printed Gazette judgment scan visually inspected, issue45 bis (A), 10 November 2024, printed pp.17–30. Declares the first paragraphs of Law136/1981 Articles1 and2 unconstitutional insofar as fixing annual residential rent; effect deferred to the day after the end of the then-current ordinary parliamentary session.
 - Both are secondary-hosted reproductions of original printed Gazette pages, not Amiri Press digital originals. The 24/20 temporal effect must be reconciled with the parliamentary session-end date and Laws164/2025 and165/2025; do not treat the judgment as a blanket invalidation.
 - Register rows EG-0192–EG-0193 added. Full provenance and outstanding Case42/17/101/26 scan gaps: [constitutional_court_gazette_scan_acquisition_cases_10_35_and_24_20_2026-11-18.md](constitutional_court_gazette_scan_acquisition_cases_10_35_and_24_20_2026-11-18.md).
+
+
+| checkpoint 124 — Agent 3 Movable Collateral Law 115/2015 | Added official FRA Arabic Law 115/2015 and full Executive Regulation Decision 108/2016; captured PM Decision 908/2020 amendment adding natural persons as secured creditors and repealing bank no-objection requirement for account/deposit security; PM Decision 4666/2022 retained as uncounted fee-amendment lead; cumulative Agent 3 minimum 139 instruments / 1,322 provision units |
