@@ -501,3 +501,10 @@
 - Agent 3 file now includes official Ministry of Finance-hosted Gazette PDF/text for Law 67/2010, Official Gazette issue 19 bis (أ), 18 May 2010, substantive Articles 1–39.
 - Executive Regulation Decision 238/2011 (Official Gazette issue 3 bis (ب), 23 January 2011) full searchable text located via secondary reproductions; original Gazette scan still pending.
 - Official Amiri Press indexed text identifies PM Decision 3217/2022 amending Decision 238/2011. It replaces numerous provisions (including Articles 2–4, 27, 31–39, 42–56, 62–63, 72, 74, 77–78, 81 and 89), adds unsolicited/innovative private-sector proposal Articles 62 bis 4–7, and repeals Articles 40–41. Gazette issue/page image verification remains pending.
+
+
+### Research Agent 3 — Trade Register current amendments and beneficial ownership (2026-11-18)
+
+- ITDA official index confirms current Executive Regulation Decision 106/2018 and provides a direct 14.9 MB PDF. The web reader and direct download attempt could not retrieve its bytes; text extraction remains outstanding.
+- Law 198/2020: official ITDA-hosted 2-page Gazette PDF visually inspected and Articles 3, 8(1) and 9(1) fully transcribed. Gazette issue 39 bis (ز), 30 Sep 2020; effective the following day.
+- Ministerial Decision 41/2020: official ITDA-hosted 3-page الوقائع المصرية scan visually inspected, dated 8 March 2020; inserts Articles 13 bis/1, 13 bis/2 and 13 bis/3 concerning the beneficial-owner register, updating, retention and register form. Text transcribed in Agent 3 file.
