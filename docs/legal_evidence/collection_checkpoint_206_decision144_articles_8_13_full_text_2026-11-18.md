@@ -5,6 +5,8 @@
 **Source:** LAW HUB searchable Arabic text of Decision 144/2009, https://lawhub.info/eg/?p=12146, lines 681–752 as opened on 18 November 2026.  
 **Source tier:** secondary legal-text transcription; not an original Gazette binary. The page interleaves current and historical wording elsewhere. These six article bodies are captured as source-page text snapshots and must be compared with the 2009 Gazette and all amendments before use as current law.
 
+**Superseding note (checkpoint 207):** Articles 14–19 have now also been captured. Cumulative Decision 144 status is 45/185 base articles (140 remain) plus three inserted bis provisions. See checkpoint 207.
+
 ## 1. Article bodies transcribed
 
 ### Article 8
