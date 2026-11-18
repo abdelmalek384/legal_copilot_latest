@@ -57,7 +57,7 @@ Retrieved the official MIFT consolidated PDF (3,416 extracted lines), explicitly
 - Law 159/1998: captured exact Article 46 replacement.
 - Law 212/1994: confirmed it inserted Article 21 bis, later repealed by Law 3/1998; full historic text remains unavailable and was not reconstructed.
 - Detailed files: [Laws 3/1998 and 94/2005](agent3_companies_law_amendments_3_1998_94_2005_text.md), [Laws 212/1994 and 159/1998](agent3_companies_law_amendments_212_1994_159_1998_text.md).
-- These are text-depth/versioning expansions of already-counted amendment instruments; no count change. Agent 3 remains **194 documents / 1,940 provisional units**, assigned completion **55% provisional**, lawyer review 0%.
+- These are text-depth/versioning expansions of already-counted amendment instruments; no count change. Agent 3 remains **196 documents / 1,950 provisional units**, assigned completion **55% provisional**, lawyer review 0%.
 
 
 ## Primary-source upgrades to the Companies Law amendment chain
@@ -74,3 +74,13 @@ Retrieved the official MIFT consolidated PDF (3,416 extracted lines), explicitly
 Added four unique amendment laws to Commercial Code 17/1999: 168/2000, 150/2001, 158/2003 and 156/2004. Captured operative Arabic text for effective dates, cheque provisions, limitation periods, commercial-register protest notices, bill attachment and cheque-signature endorsement. The 2004 amendment has a numbering conflict: MIFT text page says 152/2004, while the original Gazette page images visibly say 156/2004; counted once as Law 156 pending official issue-level confirmation. Law 11/2018 issuing Article 5 repeal of Commercial Code Book V (Articles 550–772) is also recorded; bankruptcy questions must use Law 11/2018 as amended by 11/2021, not the old Code provisions. See [commercial code amendment record](agent3_commercial_code_amendments_2000_2004_and_law11_2018_repeal.md).
 
 Updated aggregate: **194 documents / 1,940 provisional numbered units**; assigned-domain completion remains **55% provisional**; whole corpus 2%; lawyer review 0%.
+
+
+## Capital Market Executive Regulation 2025 updates
+
+Acquired official Gazette text for two PM amendments to Executive Regulation 135/1993:
+- Decision 1529/2025 (Gazette issue 18 bis, 4 May 2025) inserts Article 35 bis 9: renewable-energy source certificates are tradable financial instruments. **Number conflict:** the PDF filename/FRA catalogue says 1539/2025, but the Gazette page itself says 1529/2025; counted once as 1529.
+- Decision 2482/2025 (Gazette issue 29 bis (أ), 20 July 2025) replaces Article 148, inserts Article 148 bis for installment payments/default notices/FRA review for private-placement private-equity and real-estate fund units, and adds an Article 156 private-placement closing rule.
+- Full Arabic text and legal effect: [2025 Capital Market amendments](agent3_capital_market_exec_reg_135_amendments_2025_arabic_text.md).
+
+Updated aggregate: **196 documents / 1,950 provisional numbered units**; assigned-domain estimate remains **55% provisional**; lawyer review 0%.
