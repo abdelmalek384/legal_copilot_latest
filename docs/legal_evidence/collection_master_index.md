@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 124)
+**Last updated:** 2026-11-18 (expanded through checkpoint 125)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1061,3 +1061,6 @@
 
 
 | checkpoint 105 — Agent 3 Companies Law amendment-chain expansion | Added Arabic operative text for Laws 3/1998, 159/1998, 94/2005 and 68/2009; official MIFT/ETA copies distinguished from secondary Gazette transcriptions; cumulative Agent 3 minimum 99 instruments / 1,203 provision units |
+
+
+| checkpoint 106 — Agent 3 Companies Law inserted articles | Captured official Gazette text for Law 4/2018 inserted Companies Law Articles 1 bis, 4 bis, 9 bis and 156 bis; clarified annual GAFI filing duty originates in 2018 statute, not 2026 announcement; cumulative Agent 3 minimum 99 instruments / 1,207 provision units |
