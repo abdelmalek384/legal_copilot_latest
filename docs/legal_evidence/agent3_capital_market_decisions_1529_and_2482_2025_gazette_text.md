@@ -1,9 +1,9 @@
-# Agent 3 — Capital Market Executive Regulation amendments: PM Decisions 1529/2025 and 2482/2025
+# Agent 3 — Capital Market Executive Regulation amendments: PM Decisions 1539/2025 and 2482/2025
 
 ## Why this record exists
-The FRA's Decision 135/1993 page lists a 2025 predecessor as "1539/2025". The Official Gazette PDF hosted by the Egyptian Electric Utility and Consumer Protection Regulatory Agency clearly prints **1529/2025**, while the Energy Regulator PDF filename and English text label it 1539/2025. This is a source-number discrepancy, not two independently verified decisions. Use the Official Gazette heading **1529/2025** as the operative instrument number pending written clarification from the issuing authority. Keep the FRA catalogue entry "1539/2025" as a catalogue metadata error/candidate alias, not as an additional unique decision.
+The FRA's Decision 135/1993 page lists a 2025 predecessor as "1539/2025". The Official Gazette PDF hosted by the Egyptian Electric Utility and Consumer Protection Regulatory Agency clearly prints **1539/2025**, while the Energy Regulator PDF filename and English text label it 1539/2025. This is a source-number discrepancy, not two independently verified decisions. Use the Official Gazette heading **1539/2025** as the operative instrument number pending written clarification from the issuing authority. Keep the FRA catalogue entry "1539/2025" as a catalogue metadata error/candidate alias, not as an additional unique decision.
 - Official Gazette issue 18 bis, 4 May 2025, Arabic PDF (official energy regulator host): https://www.egyptera.org/ar/download/DecreeNo1539Year2025.pdf
-- Official Gazette full text lines show heading 1529/2025 and insertion of Article 35 bis 9.
+- Official Gazette full text lines show heading 1539/2025 and insertion of Article 35 bis 9.
 - Secondary/English variant labelled 1539/2025: https://www.egyptera.org/en/download/DecreeNo1539Year2025.pdf
 - FRA's 2025-updated Decision 135 page lists 1539/2025: https://fra.gov.eg/regulations/تعديلات-اللائحة-التنفيذية-لقانون-سوق-رأس-المال/
 - EGA official Gazette metadata record for issue 18 bis, 4 May 2025: https://mediadr.sis.gov.eg/xmlui/handle/123456789/96983
@@ -11,7 +11,7 @@ The FRA's Decision 135/1993 page lists a 2025 predecessor as "1539/2025". The Of
 - Amiri Press DSpace record for Decision 2482: https://dspace.id.com.eg/items/ef6d8672-29d8-477c-9043-a0a118714665
 - FRA consolidated Regulation 135/1993 page labels the version updated 2025; current 2025 PDF text includes amended Article 148: https://fra.gov.eg/wp-content/uploads/2025/01/لائحة-التنفيذية-من-قانون-سوق-المال-بصيغة-نهائية-للموقع.pdf
 
-## PM Decision 1529/2025 — exact text
+## PM Decision 1539/2025 — exact text
 
 **Gazette metadata**
 - Issue 18 (مكرر), 4 May 2025.
@@ -86,18 +86,18 @@ The FRA's Decision 135/1993 page lists a 2025 predecessor as "1539/2025". The Of
 ## Page-image / OCR corrections
 - Decision 2482 pages 3–4 visually inspected. Page 4 confirms the four-business-day standstill after complete notice to FRA, objection process and final decision mechanics; page 5 confirms Article 156 final paragraph and commencement.
 - PDF text extraction contains apparent OCR/typographical noise in the Article 148 bis paragraphs, including the phrase rendered as "شريطة عدم مناعته الهيئة" and "مناعاً من البدء". The page image must be used to establish the exact intended wording; likely extraction error for the regulatory non-objection formulation. Preserve the source transcription separately and do not silently correct without image transcription.
-- Decision 1529 primary Gazette PDF is text-extracted but not visually inspected in this pass. Its number is unequivocally printed 1529 in the Gazette PDF; the filename/English version's 1539 label is the conflicting metadata.
-- The FRA consolidated PDF updated in 2025 contains the replacement Article 148 and amendment footnote to Decision 2482, corroborating integration. Its portal's list should be corrected to show Decision 1529/2025 rather than 1539/2025 unless FRA provides evidence of a distinct second decision.
+- Decision 1539 primary Gazette PDF is text-extracted but not visually inspected in this pass. Its number is unequivocally printed 1529 in the Gazette PDF; the filename/English version's 1539 label is the conflicting metadata.
+- The FRA consolidated PDF updated in 2025 contains the replacement Article 148 and amendment footnote to Decision 2482, corroborating integration. Its portal's list should be corrected to show Decision 1539/2025 rather than 1539/2025 unless FRA provides evidence of a distinct second decision.
 
 ## Legal significance
-- Decision 1529/2025 adds renewable-energy source certificates under Electricity Law 87/2015 as a tradable financial instrument on Egyptian exchanges.
+- Decision 1539/2025 adds renewable-energy source certificates under Electricity Law 87/2015 as a tradable financial instrument on Egyptian exchanges.
 - Decision 2482/2025 establishes installment subscription for privately offered private-equity and real-estate investment funds, defines the payment-default notice process, requires notice to FRA, creates a four-business-day non-objection window before forced sale, regulates objection/reply, sale valuation and notification of the Central Securities Depository, and permits private placement subscription to close once fully covered.
 - The two instruments are independent amendments and should be separately versioned.
 
 ## Accounting / status
 - Both amendment decisions are already represented in the earlier Agent 3 currentness inventory; this record upgrades exact operative text and resolves a numbering discrepancy. Do not add a new unique instrument or provision-unit increment until the acquisition index is reconciled.
 - Decision 2482: primary Gazette PDF obtained and pages 3–4 visually inspected.
-- Decision 1529: primary Gazette PDF obtained; page-image check pending.
+- Decision 1539: primary Gazette PDF obtained; page-image check pending.
 - Neither instrument is lawyer-reviewed; no reuse permission inferred.
 
 
@@ -106,3 +106,8 @@ The Gazette page images on printed pages 4–5 have now been inspected. Correct 
 - "شريطة عدم مناعته الهيئة" is **"شريطة عدم ممانعة الهيئة"**.
 - "ومناعاً من البدء في إجراءات التنفيذ" is **"ومانعاً من البدء في إجراءات التنفيذ"**.
 These corrections are based on the page image, not contextual inference. Keep a raw extracted-text version in source diagnostics if needed, but ingest the visually corrected Gazette wording.
+
+
+## Official number verification correction — 18 November 2026
+
+The official Gazette PDF hosted by the Egyptian Electric Utility and Consumer Protection Regulatory Agency was opened and text-extracted at https://www.egyptera.org/ar/download/DecreeNo1539Year2025.pdf. Page 1 expressly prints «قرار رئيس مجلس الوزراء رقم ١٥٣٩ لسنة ٢٠٢٥» (Official Gazette issue 18 bis, 4 May 2025); page 2 inserts Article 35 bis 9. This resolves the prior apparent 1529 reading: **1539/2025 is the correct instrument number**. The filename, FRA catalogue and actual Gazette heading all align. Any earlier 1529/2025 text is withdrawn; this is one decision only.
