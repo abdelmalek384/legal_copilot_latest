@@ -8,14 +8,14 @@
 
 The earlier version of `alternate_source_article_text_capture_laws_114_142_68_70_2026-11-18.md` repeated text already present in the canonical alternate-source file and checkpoint 188. The file has been rewritten to retain only:
 - Law 142/1964 substantive Articles 9 and 10 (two additional provision texts).
-- Original Gazette versions of Law 68/1947 Articles 12–14 (three historical-version snapshots, not new article numbers).
+- Original Gazette version of Law 68/1947 Article 12 (one historical-version snapshot, not a new article number).
 
 Removed duplicate blocks:
 - Law 114/1946 Articles 1, 4–7 and 9–11 (already captured in checkpoint 188 and/or the canonical file).
 - Law 142/1964 Articles 1, 2, 8, 11 and 26–30 (already captured in the canonical file and checkpoint 165).
 - Law 68/1947 Articles 1, 2 and 4–6 (already captured in the canonical file).
 - Law 70/1964 Articles 1–4 (already captured in the canonical file).
-- Law 70/1964 Article 19 wording was also removed from the fee-chain file because the canonical file already contains it; the new historical Article 21(9) paragraph remains.
+- Law 70/1964 Article 19 wording was also removed from the fee-chain file because the canonical file already contains it; the Article 21(9) paragraph is now included in checkpoint 190's full Article 21 text and is not separately duplicated.
 
 **Total duplicate article-text blocks removed: 29 (26 from the four-statute supplemental file, two unchanged Law 68 Articles 13–14, and the Law 70 Article 21(9) paragraph now included in the full Article 21 text in checkpoint 190).** No legal instrument was deleted. The acquisition register and instrument IDs are unchanged by this text deduplication.
 
@@ -25,19 +25,19 @@ Removed duplicate blocks:
 |---|---|---:|
 | Law 114/1946 | 33 unique article IDs have text bodies/segments. Checkpoint 188 adds 16 complete bodies; 10 article IDs overlap prior text, 6 are new IDs (1,4,8,10 bis,15,22 bis). Earlier canonical file contains Articles 5–13,20–22,30–35,41–49. | 33/70 = 47.1% of known headings |
 | Law 142/1964 | 30 unique article IDs/provisions have text bodies or segments, including checkpoint165 additions and Articles 9–10 in the deduplicated text file. Full 72-numbered searchable text exists. | 30/66 substantive = 45.5% |
-| Law 68/1947 | Full 14-article searchable text; Articles 2–14 captured, Article1 text preserved with repeal marker. Original Gazette versions of Articles12–14 separately preserved. | 13/14 non-repealed = 92.9% |
+| Law 68/1947 | Full 14-article searchable text; Articles 2–14 captured, Article1 text preserved with repeal marker. Original Gazette version of Article12 separately preserved; Articles13–14 are unchanged. | 13/14 non-repealed = 92.9% |
 | Law 70/1964 | Full searchable consolidated text exists; 30 earlier article bodies plus 20 checkpoint190 article bodies/provisions (including bis series); some article IDs overlap and version diffs remain. | No single percentage assigned pending version normalization |
-| Law 168/2025 | Nine complete provisions plus one partial provision in the supplemental text file. Full 18-provision searchable text and a 20-page Gazette scan reproduction are available. | 12/18 complete = 66.7% |
+| Law 168/2025 | Twelve complete provisions plus one partial provision in the supplemental text file. Full 18-provision searchable text and a 20-page Gazette scan reproduction are available. | 12/18 complete = 66.7% |
 | PM Decision 200/2026 | Fifteen complete regulation articles (2–10, 13–18) plus partial Article20 first paragraph and issuing Article4; all three attached forms mapped. Official SIS full-issue Gazette PDF opened. | 15/20 regulation articles = 75% complete, plus one partial |
 | Presidential Decision 480/2026 | Both operative articles transcribed from secondary reproductions; original Amiri Press DSpace bundle remains request-copy only. | 2/2 = 100% text capture |
 
 These percentages measure text presence/coverage, not Gazette authentication, completeness of amendment history, legal currentness or lawyer verification. A heading count is not a count of unique operative provisions.
 
-## 3. New unique text additions from checkpoints 185–188
+## 3. New unique text additions from checkpoints 185–190
 
-- 34 additional unique article/provision text entries in the state-land/property supplements: Law 142/1964 Articles 9–10 (2); Law 168/2025 (10 entries, including one partial); PM Decision 200/2026 (17 entries: issuing Article4, 15 complete regulation articles and partial Article20); Presidential Decision 480/2026 (2 entries). The 10 Law 168 entries include 12 complete and one partial; the 17 Decision 200 entries include issuing Article4, 15 complete regulation articles and partial Article20.
-- Three original Law 68/1947 Gazette-version snapshots (Articles12–14) are separate historical versions of existing article numbers.
-- One historical paragraph snapshot for Law 70/1964 Article21(9) is retained in the Law70 amendment-chain file; it is not counted as a complete article body.
+- 34 additional unique article/provision text entries in the state-land/property supplements: Law 142/1964 Articles 9–10 (2); Law 168/2025 (13 entries, including one partial); PM Decision 200/2026 (17 entries: issuing Article4, 15 complete regulation articles and partial Article20); Presidential Decision 480/2026 (2 entries). The 13 Law 168 entries include 12 complete and one partial; the 17 Decision 200 entries include issuing Article4, 15 complete regulation articles and partial Article20.
+- One original Law 68/1947 Gazette-version snapshot (Article12) are separate historical versions of existing article numbers.
+- Law 70 Article21(9) is included in checkpoint190's full Article21 text and is not separately duplicated in the amendment-chain file.
 - Checkpoint 188 added 16 Law 114 article bodies, of which six have article IDs not present in earlier captured ranges and ten overlap earlier article IDs (version-diff required).
 - Checkpoint 165 added 16 Law 142 article text entries, some full and some excerpts; the unique article-ID total is reflected in FT-0005 (30).
 - Checkpoint 187 captured two SCC operative orders (Cases 42/17 and 101/26); these are judicial texts, not article provisions.
