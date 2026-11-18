@@ -248,3 +248,16 @@ The current text contains further paragraph(s) and must be imported in full from
 - Article/provision text units: 1,137 (1,133 + 4 additional Article texts).
 - Assigned families touched: 13/13; amendment/currentness-complete: 0/13; lawyer-reviewed: 0%.
 - Whole corpus coverage remains approximately 2% as recorded by the master index; no percentage increase is justified.
+
+
+## 10. Companies Law 159/1981 — current MIFT source catalogue and reporting lead
+
+- MIFT official legislation record identifies Companies Law 159/1981 as **in force** and identifies the current subject scope as joint-stock, partnership limited by shares, limited-liability and one-person companies: https://mift.gov.eg/legislation/details/252
+- The record lists seven historical amendment instruments: Laws 212/1994, 3/1998, 159/1998, 94/2005, 68/2009, 17/2015 and 4/2018. Treat this as the ministry's catalogue list, not proof that no later instrument affects a particular provision.
+- The same MIFT record lists the Executive Regulation Decision 96/1982 with 21 regulation attachments, including Decision 2928/2022 and earlier amendments/attachments. This supports the prior master-index finding that the executive regulation must be processed as a chain, not a single static 1982 document.
+- MIFT press release dated 20 July 2026 states that Companies Law Article 156 bis requires all companies subject to the law to submit annual financial statements to GAFI after general-assembly approval: https://www.mift.gov.eg/Blog/Details/300
+- The same release states that Investment Law Article 74 and Investment Regulation Article 126 bis (أ) require foreign-investment data to be submitted to GAFI within 45 days after each quarter. This is regulator/ministry guidance about operative obligations; the actual consolidated statutory and regulatory text still must be ingested and checked.
+- **Currentness warning:** Article 156 bis and the 2026 reporting statement should be reconciled against the current official Companies Law text and Gazette amendment history before product use. The press release is not itself a law or executive decision.
+- The MIFT record exposes the current law download and the latest Executive Regulation download. The actual download bytes and full current texts were not captured in this checkpoint; obtain them next rather than substituting the old ETA base PDF.
+
+**Counts:** no additional unique legal instrument or new verbatim provision counted from this catalogue/news confirmation. Existing Companies Law and amendment records are already part of the 89-instrument baseline.
