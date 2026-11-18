@@ -1,4 +1,4 @@
-# Collection checkpoint 233 — Law 114/1946 Articles 51–61 and inserted Article 53 bis
+# Collection checkpoint 233 — Law 114/1946 Articles 51–61 ; Article 53 bis was already captured in checkpoint158 and is not duplicated here
 
 **Date:** 18 November 2026  
 **Source:** Court of Cassation Information Centre PDF reproduction hosted by Al-Hasswa, https://alhasswalawfirm.com/uploads/files/law-114-1946-1789186916244-431326360.pdf, pages 17–20 of 22 (PDF text lines 416–482). The PDF identifies Egyptian Proceedings issue 85, 24 August 1946 and says it is updated through Law 9/2022. This is a secondary-hosted reproduction, not an Amiri Press digital original binary.
@@ -13,11 +13,6 @@
 
 ## Article 53
 تطبق المواد 48 وما يليها على حقوق الإرث التي تنشأ ابتداء من تاريخ العمل بأحكام هذا القانون. أما حقوق الإرث السابقة على هذا التاريخ فلا تطبق في شأنها المواد المذكورة إلا اختيارا.
-
-## Article 53 bis — inserted provision
-يجب على الموظفين المختصين، في أية جهة كانت، تقديم البيانات والأوراق التي تطلبها جهات الشهر العقاري خلال عشرين يوما من تاريخ طلبها.
-ويجوز لأمين مكتب الشهر في الحالات التي يتعين فيها الحصول على بيانات لا تتصل بالملكية أو الحقوق العينية الأخرى، من جهة إدارية أو استطلاع رأيها قبل إجراء الشهر، أن يأذن بالمضي في الإجراءات بعد فوات شهر من تاريخ وصول إخطار إلى تلك الجهة بكتاب موصى عليه بعلم الوصول، ويجوز مد هذا الأجل إذا قامت أسباب تبرر ذلك.
-**Source footnote:** added by Law 9/2022, Official Gazette issue 9 bis (أ), 6 March 2022.
 
 ## Article 54
 لا يسرى هذا القانون على المحررات التي ثبت تاريخها ثبوتا رسميا قبل أول يناير سنة 1924 ولا على الأحكام التي صدرت قبل هذا التاريخ، بل تظل هذه المحررات والأحكام خاضعة من حيث الآثار التي تترتب عليها لأحكام القوانين التي كانت سارية عليها.
