@@ -126,3 +126,10 @@ Corrected the Decision 467/2024 record: three issuing articles + 49 regulation a
 - **CBE payment-service rules:** additional Arabic excerpts captured for capital thresholds, application documents, approval timetables, cyber/incident reporting, foreign providers and fees; full PDF mirror is secondary, with CBE official landing page/press release corroboration. Existing record: [CBE payment licensing rules](agent3_cbe_payment_institution_licensing_rules_2025_arabic_text_2026-11-18.md).
 
 These are text-depth/source-quality upgrades to already inventoried instruments. Keep the last reconciled baseline at **189 documents / 1,924 normalized units**, assigned-domain estimate **55% provisional**, whole corpus **2% provisional**, lawyer review **0%**. Do not add excerpt counts until normalized deduplication.
+
+
+## CBE bank-branch registry / notarization services — text-delta record
+- Captured the full 2021 base instruction from Hapi's reproduction and the 24 September 2026 amendment effect from BankyGate/Al-Mal reports, cross-checked against CBE's official circular catalogue and current Chapter 5, Chapter 10 entry.
+- The 2026 change broadens service-provider eligibility from the state-owned-bank initial phase to CBE-registered banks, subject to prior CBE approval and designated branches. Commercial Register services remain available to the public; notarization remains limited to the bank's customers. Remaining 2021 controls continue unless amended.
+- The CBE PDF and updated rulebook page reject automated opening; the 2026 exact signed paragraph remains unverified. Full record: [CBE Circular 24 Sep 2026 bank registry/notary services](agent3_cbe_circular_24_sep_2026_bank_registry_notary_services_amendment_arabic_text.md).
+- This is text/version-detail for an already-counted circular; no instrument or article-unit count change. Assigned completion remains **55% provisional**, whole corpus **2% provisional**, lawyer review **0%**.
