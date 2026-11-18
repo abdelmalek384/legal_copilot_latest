@@ -2041,6 +2041,22 @@
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "Individual source page and linked documents; no bulk/API permission established",
       "required_next_action": "Acquire official Gazette/legislation PDF binaries and hashes; inspect site terms and request written permission if commercial redistribution is intended."
+    },
+    {
+      "source_id": "EG-ASA-LEGISLATIVE-INDEX-2026",
+      "authority": "Accountability State Authority (الجهاز المركزي للمحاسبات), Egypt",
+      "source_page": "https://www.asa.gov.eg/extras/news/47/2026111038.pdf",
+      "material_types": [
+        "Official legislative index for Laws, Presidential/Cabinet/ministerial decisions, SCC judgments and State Council opinions published 1 Jan–30 Jun 2026"
+      ],
+      "access_status": "Official Authority PDF opened and extracted; confirms Law10/2026 Gazette issue20 مكرر, 16 May 2026, and other first-half 2026 legal publications.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Publicly accessible official Authority PDF; no express licence for commercial reuse, bulk extraction or redistribution identified.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "Single public PDF; no bulk/API permission established",
+      "required_next_action": "Use as official discovery/index source; obtain underlying original Gazette issues for page-image and binary verification."
     }
   ]
 }
