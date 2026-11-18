@@ -2034,3 +2034,20 @@ No lawyer verification or commercial reuse permission is claimed. See checkpoint
 - Decision 138/2018 and Decision 139/2018 were already present as dedicated records; this pass verified that and did not count them again.
 - Conditional count update from the last Agent 3 checkpoint: +2 unique instruments (80/2018 and 177/2019), +12 article-level units (8 from Decision 195/2018, 2 from Decision 80/2018, 2 from Decision 177/2019), pending normalized-ID deduplication. Decision 195/2018 is not a new unique document.
 - All content remains `source-matched, not lawyer-reviewed`; official access does not establish commercial republication permission.
+
+
+## New 2026 acquisition and Arabic-text tranche — 18 November 2026
+
+[Arabic text tranche: 14 new instruments, with operative Arabic text and Gazette/source metadata](2026_new_acquisitions_arabic_text_tranche_2026-11-18.md).
+
+**New instruments registered:** EG-0290 through EG-0303 (14 unique instruments). The canonical acquisition register and type ledger are updated. The full-text inventory now has 70 records. The 14 additions represent 143 numbered operative units: Law 147/2026 has a 112-article full searchable Arabic transcription located but only selected provisions locally mirrored; the other 13 instruments have their operative Arabic texts transcribed in the tranche.
+
+**New type classification:** +2 base laws (Law 147/2026 and Law 154/2026); +2 amending laws (Laws 148/2026 and 11/2026); +1 executive-regulation amendment (Finance Minister Decision 262/2026); +9 other decisions (PM Decisions 982, 1305, 1572, 2033, 2377, 2590, 89, 2807 and 2170/2026). No executive regulation or judicial decision added in this tranche.
+
+**Newly identified related instrument chain:** PM Decision 982/2026 (remote work) plus monthly continuations 1305, 1572, 2033, 2377 and 2590 are six separate instruments. The Cabinet's later proposal to halt Decision 982 is not itself treated as a published repeal until the actual published decision is acquired. PM Decision 89/2026 extends the state alternative-housing application window under Law 164/2025 to 12 January 2027; this is distinct from the unresolved Decision 480/2026 state-land deadline.
+
+**Numbering discrepancy:** the Ministry of Finance catalogue has a card labelled “Law 47/2026” with a Future of Egypt subject. The Official Gazette DSpace record and Amiri Press indexed text identify the actual instrument as Law 147/2026 (Gazette issue 30 repeated, 26 July 2026). Do not create a separate Law 47 instrument without independent Gazette evidence.
+
+**Current live register counts after this tranche:** 287 acquisition records / 287 unique instrument IDs; 287 type classifications; 70 full-text inventory records; 104 source-permission records. Provisional type counts: 73 base laws, 56 amending laws, 18 executive regulations, 39 executive-regulation amendments, 21 judicial decisions, 67 other decisions/circulars and 13 other/unclassified. The core unique operative-provision count rises from 1,370 to 1,513 if all 143 newly transcribed/located units are counted; the Law 147 subset is externally searchable but not yet fully mirrored locally, so maintain a separate “locally mirrored full-text provisions” measure before treating all 143 as locally acquired text.
+
+No original Gazette binary hashes were added; no lawyer verification or commercial reuse permission is claimed.
