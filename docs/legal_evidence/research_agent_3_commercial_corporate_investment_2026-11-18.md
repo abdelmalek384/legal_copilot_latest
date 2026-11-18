@@ -3285,3 +3285,227 @@ The resulting dates are:
 The Supreme Constitutional Court's official portal judgment in constitutional case 29/34, hearing 11 June 2006, recites the full sequence of Laws 168/2000, 150/2001 and 158/2003 and holds the constitutional challenge inadmissible for lack of direct interest after the commencement obstacle had been removed. The court judgment is primary judicial source material and should be indexed separately from the statutes.
 
 **Collection status:** Law 150/2001 official Gazette PDF acquired; Law 168/2000 and Law 158/2003 full text surfaced through official/secondary indexed sources, with Gazette issue/date verified. Six issuing/article units transcribed. The Law 168 and Law 158 Gazette scans still need direct primary PDF acquisition.
+
+
+## 33. Investment Law 72/2017 — Law 160/2023, 2023 correction and 2022–2025 implementing decision chain
+
+### A. Law 160/2023 — full amendment and new industrial cash incentive
+
+**Amending statute:** Law 160/2023, Official Gazette issue 29 bis, 25 July 2023; effective 26 July 2023.  
+**Searchable full Arabic text:** https://mksegypt.org/public/ar/laws/17335  
+**Official consolidated Law 72/2017 PDF with amendment footnotes:** https://www.investinegypt.gov.eg/PublishingImages/Lists/ContentPageDetails/AllItems/قانون%20الاستثمار%2072%20لسنة%202017%20وفق%20التعديلات%20الأخيرة%20(1).pdf  
+**FRA consolidated text:** https://fra.gov.eg/wp-content/uploads/2020/12/قانون-الاستثمار.pdf
+
+Law 160/2023:
+- Replaces the definition of "special incentives" in Article 1.
+- Replaces Articles 9, 11(1)(1), 12(1)(2), 13, 14(1), 17, 20, 34 and 40 (second/third paragraphs).
+- Adds new Article 11 bis establishing a cash investment incentive for qualifying industrial projects.
+- The incentive is 35%–55% of income tax actually paid on the project's income, subject to at least 50% foreign-source funding and start-of-operation conditions; Ministry of Finance must disburse within 45 days after the tax-return deadline.
+- Extends the deadline for establishing companies/establishments for special incentives to a maximum total of nine years by PM decision.
+- Expands additional incentives and revises the one-approval mechanism and free-zone rules.
+
+**Verbatim — Law 160/2023 Article 1 (new special-incentive definition):**
+
+> مادة (1):
+>
+> (تعريف الحوافز الخاصة)
+>
+> الحوافز الخاصة: الحوافز المنصوص عليها في المادتين (11 و11 مكرراً) من هذا القانون.
+
+**Verbatim — Law 160/2023 Article 2 / new Article 11 bis (cash incentive):**
+
+> مادة (11 مكرراً):
+>
+> مع عدم الإخلال بالحوافز والمزايا والإعفاءات المنصوص عليها في هذا الفصل، تمنح المشروعات الاستثمارية التي تزاول أحد الأنشطة الصناعية التي يتم تحديدها وفقاً لهذه المادة، وتوسعاتها وفقاً لحكم الفقرة الأخيرة من المادة (12) من هذا القانون، حافزاً استثمارياً نقدياً لا يقل عن نسبة (٣٥٪) ولا يجاوز نسبة (٥٥٪) من قيمة الضريبة المسددة مع الإقرار الضريبي على الدخل المتحقق من مباشرة النشاط في المشروع الاستثماري، أو توسعاته بحسب الأحوال، وتلتزم وزارة المالية بصرف الحافز خلال خمسة وأربعين يوماً من نهاية الأجل المحدد لتقديم الإقرار الضريبي، وإلا استحق عليها مقابل تأخير يحسب على أساس سعر الائتمان والخصم المعلن من البنك المركزي في الأول من يناير السابق على تاريخ استحقاق الحافز مع استبعاد كسور الشهر والجنيه، ولا يعد هذا الحافز دخلاً خاضعاً للضريبة.
+>
+> ويشترط لمنح الحافز المنصوص عليه في هذه المادة أن يعتمد المشروع، أو توسعاته، بحسب الأحوال، في تمويله حتى تاريخ بدء مزاولة النشاط، على النقد الأجنبي من الخارج بنسبة (٥٠٪) على الأقل من أمواله، وأن يبدأ مزاولة النشاط خلال ست سنوات من تاريخ العمل بهذه المادة، ويجوز مد هذه المدة بحد أقصى ست سنوات بقرار من مجلس الوزراء، بناءً على عرض مشترك من الوزير المختص والوزير المعني بشئون الصناعة ووزير المالية.
+>
+> ويصدر مجلس الوزراء، بناءً على عرض مشترك من الوزير المختص والوزير المعني بشئون الصناعة ووزير المالية، قراراً يتضمن الصناعات والمناطق التي تتمتع بالحافز المنصوص عليه في هذه المادة، ومدد منح الحافز لكل منها بما لا يجاوز عشر سنوات، وكذا شروط وقواعد وفئات منح الحافز وآليات صرفه.
+
+**Verbatim — Law 160/2023 Article 3 (commencement):**
+
+> (المادة الثالثة)
+>
+> ينشر هذا القانون في الجريدة الرسمية، ويعمل به اعتباراً من اليوم التالي لتاريخ نشره.
+
+### B. Correction / erratum — PM Decision 1/2023
+
+**Decision:** Prime Minister Decision 1/2023 (استدراك/تصحيح خطأ) concerning Law 160/2023.  
+**Gazette:** Official Gazette issue 32, 10 August 2023.  
+**Secondary source record:** https://egyptianlaws.com/?p=153501  
+**Law 160/2023 amendment record showing corrected final text:** https://www.eastlaws.com/legislation-full-text/ar/egypt/law/25-07-2023/no-160?id=2094459&type=1
+
+EastLaws' consolidated Law 160/2023 record expressly marks Article 1's final text as affected by Article 1 of an erratum published in issue 32 on 10 August 2023. The correction itself must be acquired and compared; do not use the original 25 July print copy without the 10 August correction. The complete correction text was not exposed in the reader in this pass.
+
+### C. PM Decision 77/2023 — implementing industrial cash incentive under Article 11 bis
+
+**Decision:** Prime Minister Decision 77/2023, 28 December 2023.  
+**Official GAFI guide/source:** https://www.gafi.gov.eg/Arabic/Documents/الاصدار%20الأول%20-%20دليل%20الحافز%20النقدي.pdf  
+**Searchable full Arabic decision:** https://mksegypt.org/ar/decisions/17226  
+**Official GAFI 2025 guide:** The 42-page guide references Decision 77/2023 Articles 2, 3, 4, 6, 7, 8 and 9 and explains filing/approval mechanics.
+
+The decision establishes the eligible industrial activities, geographic zones, foreign funding criteria, incentive rates, application process, committee, annual payment, and 7-year incentive period.
+
+**Verbatim — Article 1 (definitions):**
+
+> المادة (1)
+>
+> في تطبيق أحكام هذا القرار يقصد بالألفاظ والعبارات التالية المعنى المبين أمام كل منها:
+>
+> القانون: قانون الاستثمار الصادر بالقانون رقم 72 لسنة 2017.
+>
+> اللائحة التنفيذية: اللائحة التنفيذية للقانون الصادرة بقرار رئيس مجلس الوزراء رقم 2310 لسنة 2017.
+>
+> الهيئة: الهيئة العامة للاستثمار والمناطق الحرة.
+>
+> الحافز: الحافز الاستثماري النقدي المنصوص عليه بالمادة (11 مكرراً) من القانون، والمنظم بأحكام هذا القرار.
+>
+> المشروع: المشروع الاستثماري أو التوسع في المشروع القائم، بحسب الأحوال، المخاطب بأحكام هذا القرار.
+
+**Verbatim — Article 2 (eligible activity and project scope):**
+
+> المادة (2)
+>
+> تستحق المشروعات الاستثمارية التي تزاول أحد الأنشطة الصناعية المحددة بالجدول المرافق لهذا القرار، وتوسعاتها وفقاً لحكم الفقرة الأخيرة من المادة (12) من القانون، الحافز المنصوص عليه بالمادة (11 مكرراً) من القانون، وذلك وفقاً للشروط والضوابط الواردة بهذا القرار.
+
+**Verbatim — Article 3 (eligibility conditions):**
+
+> المادة (3)
+>
+> يشترط لاستحقاق الحافز الشروط الآتية:
+>
+> 1- أن يبدأ المشروع في مزاولة النشاط خلال المدة المنصوص عليها بالفقرة الثانية من المادة (11 مكرراً) من القانون، ويتحدد تاريخ بدء مزاولة النشاط وفقاً للمادة (13) من اللائحة التنفيذية.
+>
+> 2- أن يقام المشروع داخل إحدى مناطق القطاع (أ) المحدد بالمادة (11) من القانون، أو المناطق النائية التي يصدر بتحديدها قرار من مجلس الوزراء أو المجتمعات العمرانية الجديدة، أو المناطق الصناعية، أو المناطق الاستثمارية أو المناطق التكنولوجية.
+>
+> 3- أن يعتمد المشروع في تمويله حتى تاريخ بدء مزاولة النشاط على النقد الأجنبي المحول من الخارج بنسبة (٥٠٪) على الأقل من أمواله وفقاً لتعريف "الأموال" الوارد بالقانون.
+
+**Verbatim — Article 4 (incentive rates):**
+
+> المادة (4)
+>
+> يستحق الحافز بأحد الفئات التالية وفقاً لنسبة التمويل الخارجي للمشروع، على النحو الآتي:
+>
+> - بفئة (٣٥٪) من قيمة الضريبة المسددة مع الإقرار الضريبي على الدخل المتحقق من مباشرة النشاط في المشروع، إذا اعتمد في تمويله حتى تاريخ بدء مزاولة النشاط على النقد الأجنبي المحول من الخارج بنسبة (٥٠٪) أو أكثر ولا تصل إلى (٧٥٪) من أمواله.
+>
+> - بفئة (٤٥٪) من قيمة الضريبة المسددة مع الإقرار الضريبي على الدخل المتحقق من مباشرة النشاط في المشروع، إذا اعتمد في تمويله حتى تاريخ بدء مزاولة النشاط على النقد الأجنبي المحول من الخارج بنسبة (٧٥٪) أو أكثر ولا تصل إلى (٩٠٪) من أمواله.
+>
+> - بفئة (٥٥٪) من قيمة الضريبة المسددة مع الإقرار الضريبي على الدخل المتحقق من مباشرة النشاط في المشروع، إذا اعتمد في تمويله حتى تاريخ بدء مزاولة النشاط على النقد الأجنبي المحول من الخارج بنسبة (٩٠٪) أو أكثر من أمواله.
+
+**Verbatim — Article 6 (committee):**
+
+> المادة (6)
+>
+> تنشأ لجنة برئاسة ممثل عن الهيئة، يصدر بتشكيلها، ونظام عملها، قرار من الرئيس التنفيذي للهيئة، على أن يكون من بين أعضائها ممثلون عن وزارة المالية، ووزارة التجارة والصناعة، والبنك المركزي، والهيئة العامة للتنمية الصناعية، ومركز تحديث الصناعة، ومصلحة الضرائب المصرية، وتتولى اللجنة، على الأخص، فحص طلبات المستثمرين الراغبين في التمتع بالحافز، وتقرير مدى توفر مناط استحقاق الحافز في المشروعات المقدم عنها طلبات الاستحقاق، ومتابعة التزام المشروع بالشروط والأحكام المقررة لصرف الحافز.
+
+**Verbatim — Article 8 (decision timeline):**
+
+> المادة (8)
+>
+> تتولى اللجنة فحص الطلب المشار إليه في المادة (7) من هذا القرار، ويعرض قرارها المتضمن نتيجة الفحص على الرئيس التنفيذي للهيئة لاعتماده خلال 45 يوماً من تاريخ تقديم الطلب، ويعلن للمستثمر خلال سبعة أيام عمل من تاريخ اعتماده، ويكون قرارها برفض الاستحقاق مسبباً.
+
+**Verbatim — Article 9 (certificate and duration):**
+
+> المادة (9)
+>
+> يصدر الرئيس التنفيذي للهيئة أو من يفوضه - حال الموافقة على الطلب المنصوص عليه في المادة (7) من هذا القرار - شهادة استحقاق المشروع للحافز، على أن يكون مبيناً بها كافة البيانات الأساسية للمشروع ورقم حسابه البنكي، وفئة الحافز، وبداية ونهاية سنوات الاستحقاق.
+>
+> ويكون استحقاق الحافز بأحد الفئات المشار إليها في المادة (4) من هذا القرار لمدة سبع سنوات متتالية، وتعتبر الشهادة المشار إليها في الفقرة الأولى نهائية ونافذة بذاتها دون حاجة إلى موافقة جهات أخرى، ويتعين على جميع الجهات بالدولة العمل بموجبها والالتزام بما ورد بها من بيانات.
+
+**Verbatim — Article 10 (annual disbursement):**
+
+> المادة (10)
+>
+> يتقدم المستثمر إلى اللجنة بطلب صرف الحافز عن كل سنة من سنوات الاستحقاق قبل نهاية الأجل المحدد لتقديم الإقرار الضريبي على الدخل المتحقق من مباشرة النشاط في المشروع عن تلك السنة، وذلك على النموذج المعد لهذا الغرض، مرفقاً به ما يفيد قيامه بتقديم إقراره الضريبي السنوي وسداد الضريبة المستحقة عليه، وصورة ضوئية من شهادة استحقاق الحافز الصادرة وفقاً لأحكام المادة (9) من هذا القرار.
+>
+> وتصدر اللجنة الموافقة على الصرف، وتبلغها إلى مصلحة الضرائب المصرية، خلال ثلاثين يوماً من تاريخ تقديم الطلب، بعد التحقق من أن رقم الأعمال في المنتج أو المنتجات الصناعية المبينة في الجدول المرافق يتجاوز نسبة (٥٠٪) من إجمالي رقم أعمال المشروع ككل خلال السنة الضريبية محل المحاسبة، وأنه تم إفراد حسابات وقوائم دخل مستقلة للمشروع، وأن الممول موفٍ بالتزاماته الضريبية.
+
+### D. PM Decision 1203/2024 — major Executive Regulation amendment
+
+**Decision:** Prime Minister Decision 1203/2024, dated 17 April 2024.  
+**Gazette:** Official Gazette issue 15 bis (أ), 17 April 2024.  
+**Official Gazette repository:** https://mediadr.sis.gov.eg/xmlui/handle/123456789/58817  
+**Full searchable Arabic text:** https://mksegypt.org/ar/decisions/21951
+
+Decision 1203/2024 amends PM Decision 2310/2017 (Investment Law Executive Regulation). It:
+- Replaces Regulation Article 10, second paragraph (sector A definition/criteria).
+- Replaces Articles 41, 42 and 43 governing the single approval for strategic/national projects under Law 72/2017 Article 20.
+- Adds a final paragraph to Article 76 bis allowing a limited industrial sub-project within certain service free zones established under state PPP/investment contracts, subject to one-million-square-meter minimum area and coordination/conditions.
+
+**Verbatim — Article 1 of Decision 1203/2024 (amendments):**
+
+> (المادة الأولى)
+>
+> يستبدل بنص الفقرة الثانية من مادة (١٠) ونصوص المواد (٤١)، و(٤٢)، و(٤٣) من اللائحة التنفيذية لقانون الاستثمار المشار إليها النصوص الآتية:
+
+**Verbatim — amended Regulation Article 41 (single approval):**
+
+> مادة (٤١):
+>
+> يجوز بقرار من مجلس الوزراء منح الشركات المشار إليها بالمادة (٢٠) من قانون الاستثمار، موافقة واحدة على إقامة المشروع وتشغيله وإدارته بما في ذلك تراخيص البناء، وتخصيص العقارات اللازمة له، وتكون هذه الموافقة نافذة بذاتها دون حاجة إلى اتخاذ أي إجراء آخر، على أن يصدر بتحديد مجالات ومعايير المشروعات الاستراتيجية والقومية قرار من مجلس الوزراء بناءً على عرض مشترك من الوزير المختص والوزير المعني، ويراعى تعديل وتحديث هذه المجالات والمعايير بصفة دورية في ضوء خطة التنمية الاقتصادية للدولة.
+
+**Verbatim — amended Regulation Article 42 (application documents):**
+
+> مادة (٤٢):
+>
+> يقدم طلب الحصول على الموافقة الواحدة على النموذج الذي تعده الهيئة لهذا الغرض، مرفقاً به المستندات والإقرارات الآتية:
+>
+> 1- ما يفيد تمتع الشركة بالملاءة المالية اللازمة لتنفيذ المشروع طبقاً للمعايير التي يضعها مجلس إدارة الهيئة في هذا الشأن.
+>
+> 2- دراسة جدوى مبدئية للمشروع يعدها أحد بيوت الخبرة الوطنية أو العالمية المرخص لها.
+>
+> 3- برنامج زمني لتنفيذ المشروع.
+>
+> 4- إقرار من الشركة بالالتزام بتوفير كافة المرافق الخاصة بالبنية التحتية للمشروع (طرق - مياه - صرف صحي - كهرباء - اتصالات - معالجة المخلفات).
+>
+> 5- إقرار من الشركة بالالتزام بكافة الاشتراطات والضوابط المتعلقة بنشاطها وفقاً للقوانين واللوائح المنظمة له.
+>
+> 6- إقرار من الشركة بأن تؤدي إلى الهيئة جميع الرسوم وغيرها من المبالغ التي تفرضها القوانين لحساب الجهات المختصة وذلك خلال ثلاثين يوماً من تاريخ إخطارها بتلك الرسوم والمبالغ.
+
+**Verbatim — amended Regulation Article 43 (monitoring and enforcement):**
+
+> مادة (٤٣):
+>
+> تنشأ بالهيئة لجنة أو أكثر برئاسة ممثل عن الهيئة وعضوية ممثلين عن الجهات المختصة تتولى متابعة التزام الشركات الحاصلة على الموافقة الواحدة باشتراطات وضوابط إقامة المشروع وتشغيله وإدارته وفقاً للقوانين واللوائح المنظمة، والتزامها بتنفيذ الإقرارات المقدمة منها واستكمال تنفيذ المشروعات وفقاً للبرنامج الزمني المقرر.
+>
+> ويصدر بتشكيل كل لجنة قرار من الرئيس التنفيذي للهيئة يعتمده الوزير المختص، ويحدد القرار الصادر بتشكيل اللجنة نظام عملها والمكافأة المقررة لأعضائها.
+
+### E. PM Decision 2562/2024 — further Executive Regulation amendment
+
+**Decision:** Prime Minister Decision 2562/2024, dated 11 August 2024.  
+**Gazette:** Official Gazette issue 32 bis (ط), 12 August 2024.  
+**Official Gazette repository:** https://dspace.id.com.eg/items/9717c079-615b-492a-8330-8a1b44f78cc1  
+**Searchable full text:** https://www.eastlaws.com/legislation-full-text/ar/egypt/prime-minister-decision/12-08-2024/no-2562?id=2139307&type=1
+
+Decision 2562/2024:
+- Replaces Executive Regulation Article 63 (composition/mandate of each investment-zone board).
+- Adds a final paragraph to Article 10, item "First — Sector A", specifying additional characteristics/criteria and sector-A areas.
+- Publication/commencement article makes it effective the day after publication.
+
+**Verbatim — Article 1 / amended Regulation Article 63 (opening):**
+
+> مادة (٦٣):
+>
+> يكون لكل منطقة استثمارية مجلس إدارة يصدر بتشكيله لمدة ثلاث سنوات قرار من الوزير المختص بالاتفاق مع الوزير المعني بنشاط المنطقة، ويضم المجلس في عضويته ممثلي الهيئات المعنية بالنشاط أو الأنشطة الرئيسية المرخص بمزاولتها في المنطقة، وجهة الولاية على الأرض، ووزارة المالية، وممثلي الجهات المرخص لها بالتنمية في المنطقة والمستثمرين فيها، ويجوز أن يتضمن التشكيل عضواً أو أكثر من ذوي الخبرة، أو ممثلين عن جهات الدعم والتمويل للمشروعات بالمنطقة أو أية جهات أخرى يرى الوزير المختص والوزير المعني ضمها للمجلس.
+
+### F. PM Decision 4427/2022 — addition to industrial incentive schedule
+
+**Official Amiri Press text:** https://alamiria.com/Sec/TashTxt?id=HahVuRgveOc%3D
+
+Decision 4427/2022 adds to each of tables (1) and (2) annexed to PM Decision 104/2022 a new item (5) under industrial sub-sector 2: "research centres and accreditation laboratories associated with the automotive industry". It takes effect the day after publication.
+
+**Verbatim — Article 1:**
+
+> (المادة الأولى)
+>
+> يضاف إلى كل من الجدولين (1) و(2) المرافقين لقرار رئيس مجلس الوزراء رقم 104 لسنة 2022 المشار إليه، قرين القطاع الفرعي رقم (2) المنبثق عن "أولاً: قطاع الصناعة"، بند جديد برقم (5)، نصه الآتي:
+>
+> "5- المراكز البحثية ومعامل الاعتماد المرتبطة بصناعة السيارات".
+
+### G. GAFI Decision 675/2025 — industrial cash incentive committee
+
+GAFI's 7 December 2025 announcement says GAFI issued Decision 675/2025 forming the committee to grant the industrial cash incentive under Law 160/2023 and PM Decision 77/2023. The committee includes GAFI, IDA, Industrial Modernisation Centre, Ministry of Finance, Ministry of Industry, CBE and Egyptian Tax Authority representatives. The full text of Decision 675/2025 and any subsequent committee amendment must be retrieved from GAFI's official document library. Source: https://business.ahram.org.eg/News/26421.aspx and GAFI guide above.
+
+**Investment amendment chain now surfaced:** Law 72/2017 → Law 141/2019 → Law 160/2023 + correction PM Decision 1/2023 → Executive Regulation PM Decision 2310/2017 → PM Decisions 1203/2024 and 2562/2024 → industrial incentive Decision 77/2023 → sector tables Decision 104/2022, amended by Decisions 4427/2022 and 503/2026 → GAFI committee Decision 675/2025.
+
+**Collection status:** Law 160/2023 full searchable text, Decision 77/2023 full searchable text, Decision 1203/2024 full searchable text, Decision 2562/2024 full searchable text, Decision 4427/2022 full Amiri Press text captured. Correction Decision 1/2023 metadata/source identified but exact corrected wording remains outstanding; Decision 675/2025 source lead only. No lawyer approval or rights clearance claimed.
