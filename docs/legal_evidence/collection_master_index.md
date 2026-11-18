@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 94)
+**Last updated:** 2026-11-18 (expanded through checkpoint 95)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -14,6 +14,8 @@
 - Machine labels must remain `source-matched, not lawyer-reviewed` where applicable; no `verified` label without qualified Egyptian lawyer approval.
 
 ## Collection checkpoints
+
+| [agent3_commercial_corporate_investment_checkpoint_2026-11-18.md](agent3_commercial_corporate_investment_checkpoint_2026-11-18.md) | Agent 3 source re-check: Commercial Code 17/1999, Leasing/Factoring 176/2018, FRA Decision 7/2019 2026 consolidation, Competition amendment chain, and GOEIC Law 4/2026 currentness lead; no duplicate corpus-count increase |
 
 | File | Main contents |
 |---|---|
