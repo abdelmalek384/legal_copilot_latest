@@ -57,6 +57,8 @@
 
 ## Collection checkpoints
 
+| checkpoint 14 — Agent 3 Decision 45 annex and Decision 44 consolidated text | Added structured map of 14 key roles/qualifications from Decision 45 Annexes 1–2 and official current consolidated Decision 44/2026 text cross-checking Decision 100/2026; no new instrument count | [Agent 3 checkpoint 14](agent3_progress_checkpoint_2026-11-18_14.md) |
+
 | checkpoint 13 — Agent 3 FRA Decisions 87, 156 and 175/2026 plus Decision 45 primary-source upgrade | Added three new official FRA-hosted Gazette texts (14 articles total) and upgraded Decision 45/2026 from 2 to 14 main articles (+12); Annex 1/2 detailed normalization remains pending | [Agent 3 checkpoint 13](agent3_progress_checkpoint_2026-11-18_13.md) |
 
 | checkpoint 12 — Agent 3 FRA Decision 191/2026 valuation standards | Added official 140-page Arabic standards attachment: 7 general and 3 asset standards; Gazette operative pages still outstanding | [Agent 3 checkpoint 12](agent3_progress_checkpoint_2026-11-18_12.md) |
