@@ -1957,6 +1957,24 @@
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "Individual catalogue records; no bulk/API permission established",
       "required_next_action": "Acquire original Gazette PDF through official publisher or permitted channel; inspect GOEIC terms and preserve source metadata; do not treat public catalogue as commercial reuse permission."
+    },
+    {
+      "source_id": "EG-CUSTOMS-AUTHORITY-IMPORT-CIRCULARS",
+      "authority": "Egyptian Customs Authority, Ministry of Finance, Egypt",
+      "source_page": "https://customs.gov.eg/Upload/ECAAdminace/ECAAdminace026153585.pdf",
+      "material_types": [
+        "Ministerial Decision501/2026 reproduced Gazette issue225 supplement",
+        "Egyptian Customs Import Circular30/2026",
+        "Annex2 item7 metal-scrap release conditions"
+      ],
+      "access_status": "Official Egyptian Customs Authority / Ministry of Finance PDF inspected 18 Nov 2026. The PDF reproduces Decision501/2026 and the relevant Gazette pages, plus full Customs Circular30/2026 and Annex release conditions. PDF text layer and page images inspected.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Official government-hosted PDF at customs.gov.eg. Public access does not itself establish a licence for commercial reuse, bulk extraction or redistribution. No express licence found in this pass.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "Single PDF URL; no bulk/API permission established",
+      "required_next_action": "Archive permitted PDF bytes and SHA-256; inspect terms; keep Gazette reproduction and administrative circular as separate legal instruments."
     }
   ]
 }
