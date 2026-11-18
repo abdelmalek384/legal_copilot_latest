@@ -1219,3 +1219,14 @@
 
 
 | checkpoint 131 — Agent 3 FRA factoring Decision 51/2026 | Added official FRA-hosted Official Gazette text, Egyptian Gazette issue 45 supplement (ب), 24 Feb 2026, page 11; Decision 51/2026 inserts Article 3 bis into Decision 163/2018 requiring invoice-system checks, duplicate-factoring prevention and movable-collateral registration clauses; +1 instrument / +3 provision units; cumulative Agent 3 minimum 152 instruments / 1,365 provision units; assignment estimate 31%, lawyer review 0%. Full text and caveats: [agent3_commercial_corporate_investment_continuation_2026-11-18.md](agent3_commercial_corporate_investment_continuation_2026-11-18.md) |
+
+
+### Research Agent 1 — checkpoint 148: Law 70/1964 tariff decisions and cumulative status (18 November 2026)
+
+- Added [collection_checkpoint_148_law_70_1964_current_tariff_decisions_and_cumulative_status_2026-11-18.md](collection_checkpoint_148_law_70_1964_current_tariff_decisions_and_cumulative_status_2026-11-18.md).
+- Added two previously unregistered subordinate tariff decisions to the acquisition register: **EG-0194, Justice Minister Decision 278/2025** (2025 vehicle-value schedule, valid through 31 Dec 2025) and **EG-0195, Justice Minister Decision 7657/2025** (2026 schedule, effective 1 Jan–31 Dec 2026). These are implementation/valuation decisions under Law 70/1964 Article 21(II), not amendments to the statute.
+- The 2025 Decision 278 Gazette issue 39 PDF is located through SIS. Decision 7657 operative text is located on the official Amiri Press portal; issue 16 PDF and annexed value table remain outstanding. No specific minimum vehicle value is certified until the annex is obtained and visually checked.
+- Corrected the Law 70/1964 amendment chain to include Law **163/2019** (Table B addition) alongside Law 67/2021 (terminology substitution). Decisions 278/2025 and 7657/2025 remain annual schedules, not statutory amendments.
+- Acquisition register now contains **191 data rows**, 191 unique IDs and zero duplicate IDs. Missing numeric IDs EG-0076–EG-0079 remain unresolved. Source-permission register now contains **53 unique source records**, with collection/commercial reuse permissions unknown for the new SIS source.
+- Core complete article provisions remain **1,370** (Civil Code 1,093; Evidence Law 163; Building Law 114). Core extraction remains 100% at article-number level, subject to source-image and version validation. Broader civil/property/contract breadth remains **15% provisional**; whole Egyptian legal corpus remains **2% provisional**. No unsupported percentage increase made.
+- No lawyer verification or commercial reuse permission is claimed; new register records keep both flags false.
