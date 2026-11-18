@@ -1149,3 +1149,6 @@
 
 
 | checkpoint 120 — Agent 3 PPP amendment completion tranche | Added government-hosted Official Gazette PDF for Law 153/2021 (replacing 15 provisions in PPP Law 67/2010 and adding Sovereign Fund exclusion authority) and Amiri Press text for PM Decision 3217/2022 (broad Executive Regulation procurement/award amendment schedule); Gazette metadata for 3217/2022 remains to be verified; cumulative Agent 3 minimum 130 instruments / 1,292 provision units |
+
+
+| checkpoint 121 — Agent 3 Bankruptcy Law 11/2021 amendment | Added government-hosted Official Gazette PDF for Law 11/2021 amending Law 11/2018; captures 2021 substitutions across restructuring, preventive composition, bankruptcy, creditor information and financing priority, including new Articles 57 bis/57 bis (1) and repeal of Article 179; cumulative Agent 3 minimum 131 instruments / 1,296 provision units |
