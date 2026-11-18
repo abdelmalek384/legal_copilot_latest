@@ -162,3 +162,54 @@ The CBE catalogue page last updated 23 March 2023 lists Law 194/2020 and a gener
 - Clause-based rulebook; no normalized statute-article increment.
 - Cumulative Agent 3 minimum: **164 instruments / 1,821 normalized numbered units**.
 - Assigned-domain completion: **37% provisional**; whole corpus: **2% provisional**.
+
+
+## Additional text recovered from the full June 2025 PDF (32 pages / 707 extracted lines)
+
+**Scope — exact enumerated payment activities**
+> أولاً: تشغيل نظم الدفع.
+> ثانياً: تقديم خدمات الدفع، وذلك بعد الحصول على ترخيص بموجب قرار من مجلس إدارة البنك المركزي، وتشمل: الإيداع والسحب النقدي من حساب الدفع؛ تنفيذ معاملات الدفع والتحويل؛ الخصم المباشر؛ أدوات الدفع الرقمية؛ الإضافة المباشرة والأوامر المستديمة؛ إصدار أدوات الدفع وقنوات القبول الإلكتروني؛ القبول الإلكتروني والتحصيل النقدي؛ إرسال وصرف الحوالات بالجنيه المصري؛ خدمات إنشاء أوامر الدفع؛ خدمات معلومات حساب الدفع؛ خدمات حساب الدفع؛ إصدار النقود الإلكترونية.
+
+**Capital requirements — exact amounts**
+> أ. مقدم خدمة الدفع فئة (أ): 30,000,000 جنيه مصري.
+> ب. مقدم خدمة الدفع فئة (ب): 10,000,000 جنيه مصري.
+> ج. مقدم خدمة معلومات الحساب و/أو خدمة إنشاء أوامر الدفع: 20,000,000 جنيه مصري.
+> د. مشغل نظام الدفع: 500,000,000 جنيه مصري.
+Where a provider combines payment services and payment-system operation, the respective capital requirements are aggregated. Providers must be Egyptian joint-stock companies with registered shares and generally have payment services/payment-system operation as their sole object, subject to the CBE's limited exception for related technology/infrastructure/value-added businesses.
+
+**Licence file — exact evidence requirements extracted**
+> خطط توعية العاملين والعملاء بأمن المعلومات ومخاطر الأمن السيبراني.
+> سياسة التعامل مع شكاوى العملاء.
+> سياسة وترتيبات حماية أموال العملاء لمقدمي خدمات الدفع في الحالات التي تستدعي ذلك.
+> سياسات مراقبة ومتابعة الحوادث التشغيلية والأمنية والأمن السيبراني، بما يشمل إجراءات اكتشاف والإبلاغ عن هذه الحوادث وطرق الاستجابة السريعة والتعافي.
+> سياسات مكافحة الاحتيال ومكافحة غسل الأموال وتمويل الإرهاب.
+> خطط استمرارية الأعمال، وإجراءات اختبار الخطط والمراجعة الدورية لها.
+> سياسة وخطة التعهيد، بما في ذلك قائمة مقدمي الخدمة والعقود ونطاقها.
+> استخدامات تكنولوجيا الحوسبة السحابية، ونوعها (SaaS/PaaS/IaaS)، والتطبيقات والبيانات ومواقع تخزينها ومعالجتها.
+> آليات حوكمة التعهيد وإدارة المخاطر، وضمان سرية وسلامة البيانات في النقل والمعالجة والتخزين والنسخ الاحتياطي.
+> خطة اختبارات الثغرات والاختراق لجميع الأنظمة والتطبيقات، واستراتيجية أمن المعلومات والأمن السيبراني، وخريطة تدفق البيانات.
+> مستخرج حديث من السجل التجاري، والنظام الأساسي، وبطاقة ضريبية سارية، والقوائم المالية، وبيان الفروع والوكلاء، والهيكل التنظيمي، وخطة التدريب، وإثبات رأس المال، وسياسات الحوكمة والرقابة الداخلية والمخاطر، ونماذج الجدارة والصلاحية، وبيان مراقبي الحسابات، والضمان المالي وهيكل الملكية والمستفيد النهائي.
+> تعهد مشغلي نظم الدفع بالالتزام بمبادئ البنية التحتية للأسواق المالية (PFMI) الصادرة عن بنك التسويات الدولية، وفقاً لحجم الأعمال وطبيعة النشاط.
+
+**Decision timetable**
+> يُعرض طلب الترخيص على مجلس إدارة البنك المركزي، ويتم البت فيه خلال تسعين يوماً من تاريخ اعتبار الطلب مستوفياً المستندات المطلوبة، ويجوز مد هذه المهلة لمدة أخرى مماثلة.
+> ويتعين على مقدم الطلب موافاة البنك المركزي بالمعلومات أو الإيضاحات أو المستندات الإضافية التي يطلبها خلال ثلاثين يوماً، ما لم يمنح فترة أطول.
+> وتصدر الموافقة المسبقة على التأسيس/تعديل النشاط خلال 90 يوماً، وتسري لمدة ستة أشهر، ويجب خلالها تقديم طلب الترخيص.
+
+**Material changes / incident notice**
+Prior CBE approval is required for changes to safeguarding arrangements, key officers, restructuring/expansion, ownership/control, foreign outsourcing/agency and certain related activities. Other material changes must be notified promptly. The PDF sets a maximum six-hour initial notice and a detailed report within 24 hours for reputation/continuity/customer-impact, fraud and cyber incidents; a shorter reporting deadline in another CBE rule prevails.
+
+**Cancellation, foreign institutions and guarantee**
+- Licence suspension/cancellation and register deletion grounds include serious/repeated breach, non-cooperation with inspectors, public/economic/financial harm, cessation, false application information, loss of licence conditions and unnotified material change. Written defence period: 15 days; publication within 10 working days.
+- Foreign PSPs serving Egyptian residents must be licensed by their home regulator and satisfy either PFMI supervision (for a payment-system operator) or three continuous years' operation abroad; regional manager appointment requires prior CBE Governor approval.
+- Financial guarantee: unconditional, irrevocable, automatically renewable bank guarantee equal to 2% of paid-up issued capital or capital allocated to the activity.
+
+**Fees**
+- Application review: EGP 30,000 per payment service (cap EGP 100,000); EGP 100,000 per payment system (cap EGP 500,000).
+- Inspection fees use the same bands.
+- Annual supervision: up to EGP 2 per EGP 10,000 average monthly balances, capped at EGP 100,000 for category A PSPs, EGP 70,000 for account-information/payment-initiation providers, EGP 30,000 for category B PSPs and EGP 100,000 for payment-system operators. Fees non-refundable; late fee accrues at CBE basic interest rate.
+
+**Source-integrity notes**
+- CBE official landing page and 19 June 2025 press release corroborate the June 2025 rulebook, scope and 12-month transition. Full PDF obtained from HapiJournal mirror because CBE direct PDF host rejects automated access.
+- The 12-month transition expired in June 2026; do not describe it as open at the current research date.
+- PDF extraction contains typographical/numbering defects (e.g. the page-4 string "النفود الإلكترونية"); preserve the source transcription and flag for visual page review. No official circular number or SHA-256 yet acquired.
