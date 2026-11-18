@@ -105,3 +105,8 @@
 - +2 distinct amendment statutes with operative text surfaced: Law 141/2019 (official MIFT full text) and Law 160/2023 (official FRA consolidation and GAFI reproduction).
 - +11 amendment provision units: four additions under Law 141/2019 (Articles 12, 48, 74 and new 91 bis); seven changes under Law 160/2023 (Article 1 definition, Articles 9, 11(1), 12(2), 13, 14(1) substitutions, and insertion of Article 11 bis).
 - PM Decision 77/2023 and GAFI guide are not counted as full-text instrument acquisition until original decision text is captured.
+
+
+## Currentness update — PM Decision 503/2026 (18 November 2026)
+
+The earlier note that Decision 503/2026's operative text was still outstanding is superseded. The official Amiri Press text page/search index was located and Article 1–2 were captured; secondary MKSEgypt table images for Sector A and B were transcribed in [agent3_investment_pm_decision_503_2026_industrial_incentive_schedules_arabic_text.md](agent3_investment_pm_decision_503_2026_industrial_incentive_schedules_arabic_text.md). Remaining: obtain original Gazette issue/page and signed official PDF/hash, and visually verify several technical terms in the schedules. Decision 503/2026 replaces the industrial sub-sector tables in PM Decision 104/2022; it is separate from the Article 11 bis cash incentive under Law 160/2023.
