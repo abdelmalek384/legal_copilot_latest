@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 144)
+**Last updated:** 2026-11-18 (expanded through checkpoint 145)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1172,3 +1172,6 @@
 
 
 | checkpoint 125 — Agent 3 Capital Market Law amendment tranche | Added Gazette text for Laws 27/2014, 17/2018 and 13/2022, including registered-share conversion, disclosure/tender-offer reforms, sukuk issuance framework, remote shareholder meetings and future-cash-flow securitization; recorded 2025 consolidated Law 95/1992 and 23 regulation amendment attachments; cumulative Agent 3 minimum 142 instruments / 1,329 provision units |
+
+
+| checkpoint 126 — Agent 3 Capital Market Regulation 2024–2025 tranche | Added Decisions 2423/2024 (hedge funds, 60% fund borrowing cap, sukuk reporting), 1539/2025 (energy-origin certificates as tradable financial instruments) and 2482/2025 (installment-funded PE/real-estate fund units); full Decision 2482 Article 148 bis still requires Gazette page verification; cumulative Agent 3 minimum 145 instruments / 1,337 provision units |
