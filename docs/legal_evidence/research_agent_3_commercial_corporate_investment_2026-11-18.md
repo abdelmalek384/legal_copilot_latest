@@ -3203,3 +3203,82 @@ The operative result is six months for a cheque drawn in Egypt and payable in Eg
 **Critical version note:** Law 156/2004 does not change every cheque provision; it specifically changes Articles 449, 482, 503, 504, 531, 537 and 544 of Commercial Code 17/1999 and Article 52 of Stamp Tax Law 111/1980. The 2004 amendment must be overlaid on the Commercial Code 1999 edition, with effective date linked to Law 158/2003. Do not treat the original 1999 three-/four-month presentation periods or six-month recourse periods as current.
 
 **Collection status:** full searchable Arabic amendment text surfaced via secondary publisher and official legislative index; Gazette issue/date confirmed; original Amiri Press Gazette PDF still needs capture. Eight amendment provision units transcribed. No lawyer approval or rights clearance claimed.
+
+
+## 32. Commercial Code 17/1999 — transitional cheque amendments 168/2000, 150/2001 and 158/2003
+
+These three amendments are essential to the effective-date history of the cheque provisions. They do not amend the substantive negotiable-instrument chapters in the same way as Law 156/2004; they progressively postpone commencement and adjust transitional treatment.
+
+### A. Law 168/2000
+
+**Gazette:** Official Gazette issue 30 (تابع), 27 July 2000.  
+**Official Egyptian legislation index:** https://www.laweg.net/Default.aspx?Year=2000&action=LegsYears  
+**Official ETA consolidated Commercial Code footnote:** https://www.eta.gov.eg/sites/default/files/2024-10/law-17-1999.pdf
+
+**Verbatim — Article 1:**
+
+> (المادة الأولى)
+>
+> تستبدل عبارة (أول أكتوبر سنة 2001) بعبارة (أول أكتوبر سنة 2000) الواردة بكل من نص الفقرة الثانية من المادة الأولى من القانون رقم 17 لسنة 1999 بإصدار قانون التجارة، ونص الفقرة الأولى من المادة الثالثة من ذات القانون.
+
+**Verbatim — Article 2:**
+
+> (المادة الثانية)
+>
+> ينشر هذا القانون في الجريدة الرسمية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+### B. Law 150/2001
+
+**Gazette:** Official Gazette issue 25 bis (أ), 24 June 2001.  
+**Official Customs-hosted Gazette PDF:** https://customs.gov.eg/Upload/ECAAdminace/b3190c1b-f8c5-401b-8d6c-b7b65b92d7ae.pdf  
+**Official legislative index:** https://www.laweg.net/Default.aspx?Year=2001&action=LegsYears
+
+**Verbatim — Article 1:**
+
+> (المادة الأولى)
+>
+> تستبدل عبارة "أول أكتوبر سنة 2003" بعبارة "أول أكتوبر سنة 2001" الواردة بكل من نص الفقرة الثانية من المادة الأولى من القانون رقم 17 لسنة 1999 بإصدار قانون التجارة، ونص الفقرة الأولى من المادة الثالثة من ذات القانون.
+>
+> ومع ذلك يعمل بأحكام المادة (536) من قانون التجارة المشار إليه اعتباراً من تاريخ العمل بهذا القانون.
+>
+> كما تستبدل عبارة "أول أكتوبر سنة 2004" بعبارة "أول أكتوبر سنة 2002" الواردة بنص الفقرة الثانية من المادة الثالثة المشار إليها.
+
+**Verbatim — Article 2:**
+
+> (المادة الثانية)
+>
+> ينشر هذا القانون في الجريدة الرسمية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+### C. Law 158/2003
+
+**Gazette:** Official Gazette issue 27, 3 July 2003.  
+**Official Customs legislative archive entry:** https://al-rouby.com/legislation/laws/  
+**Searchable full Arabic amendment text:** https://qadaya.net/?p=9749  
+**Official Egyptian Supreme Constitutional Court judgment discussing the amendment chain:** https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/2879_29_34_1_2.html
+
+**Verbatim — Article 1:**
+
+> (المادة الأولى)
+>
+> تستبدل عبارة "أول أكتوبر سنة 2005" بعبارة "أول أكتوبر سنة 2003" الواردة بكل من نص الفقرة الثانية من المادة الأولى من القانون رقم 17 لسنة 1999 بإصدار قانون التجارة، ونص الفقرة الأولى من المادة الثالثة من ذات القانون.
+>
+> كما تستبدل عبارة "المادتين (535، 536)" بعبارة "المادة (536)" الواردة في الفقرة الثانية من المادة الثالثة المشار إليها، وعبارة "أول أكتوبر سنة 2006" بعبارة "أول أكتوبر سنة 2004" الواردة بنص الفقرة الثالثة من المادة ذاتها.
+
+**Verbatim — Article 2:**
+
+> (المادة الثانية)
+>
+> ينشر هذا القانون في الجريدة الرسمية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+### D. Effective-date consolidation
+
+The resulting dates are:
+- General Commercial Code commencement: 1 October 1999.
+- Cheque provisions: 1 October 2005 (after sequential postponements by Laws 168/2000, 150/2001 and 158/2003).
+- Article 536 (provisional measures relating to cheque): Law 150/2001 made it effective from 24 June 2001; Law 158/2003 subsequently amended the transition reference to Articles 535 and 536.
+- Pre-commencement cheque transition cutoff: 1 October 2006 (Law 158/2003 replaced 1 October 2004).
+- Law 156/2004 cheque amendments are tied to the cheque commencement date under Law 158/2003.
+
+The Supreme Constitutional Court's official portal judgment in constitutional case 29/34, hearing 11 June 2006, recites the full sequence of Laws 168/2000, 150/2001 and 158/2003 and holds the constitutional challenge inadmissible for lack of direct interest after the commencement obstacle had been removed. The court judgment is primary judicial source material and should be indexed separately from the statutes.
+
+**Collection status:** Law 150/2001 official Gazette PDF acquired; Law 168/2000 and Law 158/2003 full text surfaced through official/secondary indexed sources, with Gazette issue/date verified. Six issuing/article units transcribed. The Law 168 and Law 158 Gazette scans still need direct primary PDF acquisition.
