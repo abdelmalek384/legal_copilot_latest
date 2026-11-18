@@ -130,3 +130,13 @@ The cumulative Civil Code extraction stream is now **366 distinct provisions** (
 - Cumulative Civil Code extraction stream: **438 distinct provisions** (67 previously recorded + 371 newly transcribed in this continuation). This is not a consecutive range or current consolidated code.
 - Article 651 is particularly relevant to construction claims: the base text establishes a ten-year joint architect/contractor warranty for specified collapse/serious structural defects, subject to statutory conditions; Article 653 invalidates a contractual waiver/limitation; Article 654 gives a three-year claim period from collapse or discovery of the defect. This base text must be reconciled with later special legislation and amendments before legal use.
 
+## 11. Further Civil Code extraction — Articles 674–698 and 716–738
+
+Checkpoint 97 adds **48 distinct provisions**:
+- Articles 674–698: employment contract formation, wages, worker/employer obligations, termination and limitation (25 articles). Article 675 expressly subordinates these provisions to special labour legislation.
+- Articles 716–717: termination of agency (2 articles); Articles 699–715 were already extracted and not duplicated.
+- Articles 718–728: deposit and hotelkeeper liability (11 articles).
+- Articles 729–738: contractual/judicial custody of disputed movable/immovable assets, including waqf property (10 articles).
+
+The cumulative Civil Code extraction stream is now **486 distinct provisions** (67 prior + 419 newly transcribed in this continuation). This remains a non-consecutive base-text extraction set, not a current consolidated Civil Code. Special legislation and amendment histories remain to be reconciled.
+
