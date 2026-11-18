@@ -1497,6 +1497,24 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Review site terms and obtain written permission for archiving, extraction, indexing, commercial display and redistribution; verify the Article20 text against a visually authenticated Gazette page."
+    },
+    {
+      "source_id": "EG-SIS-GAZETTE-2025-08-13-LAW168",
+      "authority": "Egyptian State Information Service digital repository; item metadata identifies Amiri Press (مطابع الأميرية) as issuing entity",
+      "source_page": "https://mediadr.sis.gov.eg/handle/123456789/105925; https://mediadr.sis.gov.eg/xmlui/handle/123456789/105925; https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/105925/OG32_20250813_5008.pdf?isAllowed=y&sequence=1",
+      "material_types": [
+        "Official Gazette full-issue PDF",
+        "Law 168/2025",
+        "Law 169/2025"
+      ],
+      "access_status": "SIS search-indexed item metadata says public viewing, Gazette issue32 bis (و), 13 Aug2025, file OG32_20250813_5008.pdf, 295.3 KB. Item page returned 502 and direct PDF route was inaccessible in this pass; no bytes/hash.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Official repository metadata identifies the issuing authority as Amiri Press and the item abstract as Laws 168 and 169 of 2025. The listed PDF file was not retrievable due 502/URL access failure. Public item metadata does not establish bulk download, local archiving, OCR, commercial use or redistribution permission.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established; retry SIS repository item/PDF route or request authorized copy",
+      "required_next_action": "Retry official SIS PDF route or request the 295.3 KB file through the repository; obtain bytes and SHA-256 if access is granted; compare Law168 pages to VetoGate secondary scan and Diwan searchable text; seek written rights clarification."
     }
   ]
 }
