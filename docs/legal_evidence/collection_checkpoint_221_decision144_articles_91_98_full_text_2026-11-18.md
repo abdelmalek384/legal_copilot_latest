@@ -1,5 +1,7 @@
 # Collection checkpoint 221 — Decision 144/2009 Articles 91–98 and 98 bis extraction
 
+**Deduplication note (checkpoint 225):** Articles 91–93 are duplicated by the complete Articles 77–93 capture in `collection_checkpoint_220_decision144_articles_77_93_full_text_2026-11-18.md`; Articles 94–98 are duplicated by the complete Articles 94–108 capture in `collection_checkpoint_221_decision144_articles_94_108_full_text_2026-11-18.md`. Retain this file as an audit trail only; it contributes no incremental unique article IDs or full-text count.
+
 **Date:** 18 November 2026  
 **Source:** LAW HUB searchable Arabic text, https://lawhub.info/eg/?p=12146, lines 1734–1844 as opened on 18 November 2026.  
 **Source tier:** secondary transcription. Articles 94, 95 and 98 bis carry Decision 109/2013 amendment/insertion annotations; current and original wording are preserved where displayed.
