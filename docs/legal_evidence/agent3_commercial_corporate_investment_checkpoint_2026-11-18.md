@@ -917,3 +917,53 @@ The MIFT consolidated regulation text (amended through 21 August 2022) includes,
 - Families amendment/currentness-complete: 0/13.
 - Lawyer-reviewed: 0%.
 - Whole-corpus coverage remains approximately 2%; no validated denominator exists.
+
+
+## 26. Companies Law statutory amendments — Law 4/2018 and Law 17/2015 Gazette text
+
+### Law 4/2018 — official Gazette copy acquired
+
+- Official Gazette issue 2 bis (ط), 16 January 2018; official Amiri Press Gazette copy hosted by the National Investment Bank: https://www.nib.gov.eg/PDF/library/القانون-4-لسنة-2018.pdf%20تعديل%20قانون%20159.pdf
+- MIFT official downloadable copy: https://www.mift.gov.eg/legislation/download/230
+- Gazette Article 1 changes the statutory short title to remove “one-person companies” from the long title while the substantive scope includes one-person companies.
+- Gazette Article 2 replaces issuing Article 1 paragraph 1 and Article 5: the law applies to joint-stock, partnerships limited by shares, LLCs and one-person companies; “competent minister” means the investment minister and “administrative authority” means GAFI.
+- Gazette Article 3 replaces numerous operative provisions, including Articles 1, 2, 8, 17, 25, 33, 35, 45, 48, 59, 67, 69, 70, 80, 85, 120, 122, 128, 130, 137, 161 and 175. Key captured rules include:
+  - Article 8: minimum founder/partner counts (three for joint-stock, two for other covered forms except one-person companies), six-month cure period, or conversion to one-person company.
+  - Article 17: incorporation notice to GAFI with constitutive documents, sector approvals where required, bank subscription certificate (with LLC exception), fee receipt, and central-depository certificate for joint-stock/partnership-limited-by-shares securities.
+  - Article 25: GAFI committee valuation of in-kind contributions, chaired by a judicial authority member and including up to four specialists; report within 60 days.
+  - Article 33: ordinary general assembly may increase issued capital by majority of shares represented, subject to the listed exception for exchange-listed companies.
+  - Article 45: founders' shares and shares issued for in-kind contributions are subject to a two-full-financial-year lock-up, subject to Investment Law Article 53.
+  - Article 48: treasury-share ceiling of 10%, notice to GAFI within three business days, disposal within one year or capital reduction; such shares carry no voting/dividend rights while held.
+  - Article 69: losses reaching half of shareholders' equity require an extraordinary general assembly to consider dissolution or continuation.
+  - Article 80: board meeting convening rights and electronic/modern communications subject to executive regulation.
+- A later 8 March 2018 correction/corrigendum is flagged by secondary legal indexing. The Gazette copy itself must be visually checked against that correction before article-level normalization. Do not silently assume every extracted word is final.
+
+### Law 17/2015 — official Gazette PDF acquired
+
+- Official Gazette issue 11 (تابع), 12 March 2015; ETA-hosted Gazette PDF: https://www.eta.gov.eg/sites/default/files/2026-03/law.no_.17.of_.2015.pdf
+- Article 1 adds a new item (هـ) to Companies Law 159/1981 Article 17 requiring a certificate evidencing deposit of the company's securities with a central depository.
+- This is an amendment instrument covering several other statutes as well; only its Companies Law amendment is in Agent 3's scope.
+- Currentness interaction: Law 4/2018 later rewrites Article 17 and restates a central-depository certificate requirement for joint-stock companies and partnerships limited by shares. Treat the 2015 wording as historical amendment text and use the 2018 replacement for the current wording, subject to any later amendment.
+- The ETA-hosted PDF is a Gazette issue reproduction and includes the law's complete text; only the Companies Law clause is counted here.
+
+### Selected exact Arabic text
+
+**Law 17/2015, Article 1:**
+> يضاف بند جديد (هـ) إلى الفقرة الأولى من المادة (17) من قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة الصادر بالقانون رقم 159 لسنة 1981، نصه الآتي:
+>
+> (هـ) شهادة تفيد إيداع الأوراق المالية للشركة لدى شركة إيداع مركزي.
+
+**Law 4/2018, Article 2 — replacement issuing Article 1, first paragraph:**
+> تسرى أحكام القانون المرافق على شركات المساهمة، وشركات التوصية بالأسهم، والشركات ذات المسئولية المحدودة، وشركات الشخص الواحد.
+
+**Law 4/2018, Article 2 — replacement issuing Article 5:**
+> في تطبيق أحكام القانون المرافق، يقصد بالوزير المختص الوزير المختص بشئون الاستثمار، ويشار إليه بالوزير المختص أينما ورد في القانون المرافق، كما يقصد بالجهة الإدارية المختصة الهيئة العامة للاستثمار والمناطق الحرة، ويشار إليها بالهيئة أينما وردت في القانون المرافق.
+
+**Law 4/2018, Article 3 — replacement Companies Law Article 8:**
+> فيما عدا شركات الشخص الواحد، لا يجوز أن يقل عدد الشركاء المؤسسين في شركات المساهمة عن ثلاثة، كما لا يجوز أن يقل هذا العدد عن اثنين بالنسبة لباقي الشركات الخاضعة لأحكام هذا القانون، فإذا قل عدد الشركاء عن هذا النصاب اعتبرت الشركة منحلة بحكم القانون، ما لم تبادر خلال ستة أشهر على الأكثر إلى استكمال هذا النصاب أو يطلب من بقى من الشركاء خلال هذا الأجل تحويلها إلى شركة من شركات الشخص الواحد، ويكون من بقى من الشركاء مسئولاً في جميع أمواله عن التزامات الشركة خلال هذه المدة.
+
+### Count treatment and remaining work
+
+- Law 4/2018 and Law 17/2015 are each counted as one instrument with Arabic operative text surfaced.
+- Four provision units are counted in this increment: Law 17/2015 Article 1 (Companies Law clause); Law 4/2018 Articles 1–3 (the third article contains multiple replacement provisions and is counted as one amending article, not as every underlying substituted article).
+- This does not complete the Companies Law chain. Law 3/1998, 159/1998, 94/2005, 68/2009 and 212/1994 still need primary Gazette acquisition and provision-by-provision reconciliation; the 2020 consolidated statute, Article 156 bis/2026 reporting basis, and any later Gazette instruments also need verification.
