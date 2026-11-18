@@ -57,7 +57,7 @@ Retrieved the official MIFT consolidated PDF (3,416 extracted lines), explicitly
 - Law 159/1998: captured exact Article 46 replacement.
 - Law 212/1994: confirmed it inserted Article 21 bis, later repealed by Law 3/1998; full historic text remains unavailable and was not reconstructed.
 - Detailed files: [Laws 3/1998 and 94/2005](agent3_companies_law_amendments_3_1998_94_2005_text.md), [Laws 212/1994 and 159/1998](agent3_companies_law_amendments_212_1994_159_1998_text.md).
-- These are text-depth/versioning expansions of already-counted amendment instruments; no count change. Agent 3 remains **202 documents / 1,996 provisional units**, assigned completion **55% provisional**, lawyer review 0%.
+- These are text-depth/versioning expansions of already-counted amendment instruments; no count change. Agent 3 remains **203 documents / 1,999 provisional units**, assigned completion **55% provisional**, lawyer review 0%.
 
 
 ## Primary-source upgrades to the Companies Law amendment chain
@@ -116,3 +116,10 @@ Updated aggregate: **202 documents / 1,996 provisional numbered units**; assigne
 - Decision 1109/2022: full text on official Amiri Press page, including Article 358 bis.
 - Updated record: [Capital Market 2022–2023 amendments](agent3_capital_market_exec_reg_135_amendments_2022_2023_arabic_text.md).
 - No new instrument count. Aggregate remains **202 documents / 1,996 provisional units**; assigned-domain estimate 55% provisional; lawyer review 0%.
+
+
+## New 2026 FRA decision — hedge funds
+
+Added FRA Board Decision 154/2026 (Gazette issue 210 supplement (ج), 23 Sep 2026; effective 24 Sep) on permission for investment funds to conduct hedge-fund activity. The EastLaws record exposes the metadata and opening text of all three articles; the official FRA LinkedIn post provides detailed regulator-authored summaries of eligible investments, investor eligibility checks, investment-policy disclosure, leverage/counterparty/liquidity/concentration limits, stress testing, stop-loss, performance measures and manager duties. The official FRA news page times out and the Gazette body remains partially inaccessible; the file is explicitly marked partial, not a verbatim complete law. [Record](agent3_fra_decision_154_2026_hedge_funds_arabic_text_partial.md).
+
+Updated aggregate: **203 documents / 1,999 provisional units**; assigned-domain estimate remains **55% provisional**; lawyer review 0%.
