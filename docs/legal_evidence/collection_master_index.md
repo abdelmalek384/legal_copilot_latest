@@ -6,30 +6,30 @@
 
 ## Current progress — consolidated acquisition dashboard (18 November 2026)
 
-<badge color="success">329 instruments indexed</badge> <badge color="success">30.7% have a text-inventory record</badge>
+<badge color="success">331 instruments indexed</badge> <badge color="success">31.1% have a text-inventory record</badge>
 
 ### Audited register totals
 
 | Measure | Current audited value |
 |---|---:|
-| Acquisition register | **329 / 329 unique instrument IDs** |
+| Acquisition register | **331 / 331 unique instrument IDs** |
 | Base laws | 74 |
 | Amending laws | 65 |
 | Executive regulations | 19 |
 | Executive-regulation amendments | 43 |
 | Judicial decisions | 21 |
-| Other decisions | 94 |
+| Other decisions | 96 |
 | Other / unclassified | 13 |
 | Source-permission register | **111 unique source records** |
-| Full-text inventory | **105 rows / 101 unique instruments** |
-| Full/complete text-source records | **82 unique instruments (24.9%)** |
-| Any text-inventory coverage | **101/329 (30.7%)** |
+| Full-text inventory | **107 rows / 103 unique instruments** |
+| Full/complete text-source records | **83 unique instruments (25.1%)** |
+| Any text-inventory coverage | **103/331 (31.1%)** |
 
-The 24.9% figure means an instrument has a full/complete text-source record in the inventory; it does **not** mean that every such instrument has a complete local transcription, authenticated Gazette page images, or current-law verification. The 22 remaining inventory rows are partial, external-only or incomplete; four duplicate IDs are source/version rows.
+The 25.1% figure means an instrument has a full/complete text-source record in the inventory; it does **not** mean every such instrument has a complete local transcription, authenticated Gazette page images, or current-law verification. The 23 remaining inventory rows are partial, external-only or incomplete; four duplicate IDs are source/version rows.
 
 ### Substantive acquisition work in the latest pass
 
-Newly registered instruments include Laws 10, 11, 149, 155, 156, 160 and 161/2026; the official corrigendum to Laws149–151; PM Decision95/2026; PM Decisions3127,3128,3130,3131,3308,3531,3536; Presidential Decision448/2026; Finance Decision450/2026; Finance Decision638/2026; Aviation Decisions895,896,1049,1162/2026; Housing Decision1056/2026; and other November instruments already registered in the previous tranche.
+Newly registered instruments include Laws 10, 11, 149, 155, 156, 160 and 161/2026; the official corrigendum to Laws149–151; PM Decision95/2026; PM Decisions3127,3128,3130,3131,3308,3531,3536; Presidential Decision448/2026; Finance Decisions450,635,636,638/2026; Aviation Decisions895,896,1049,1162/2026; Housing Decision1056/2026; and other November instruments already registered in the previous tranche.
 
 New or expanded Arabic text files:
 - [Laws10, 11, 155, 156, 160 and 161; Decision3536](acquisition_tranche_2026_laws10_11_155_156_160_161_pm3536_2026-11-18.md)
@@ -44,6 +44,7 @@ New or expanded Arabic text files:
 - [PM Decision3531/2026 and Presidential Decision448/2026](acquisition_tranche_pm3531_2026_and_presidential448_2026_arabic_text.md)
 - [Five PM land/public-purpose decisions in Gazette issue46](acquisition_tranche_gazette_issue46_land_decisions_3127_3128_3130_3131_3308_2026-11-12.md)
 - [Finance, aviation and housing ministerial decisions 638,895,896,1049,1056,1162](acquisition_tranche_aviation_finance_housing_decisions_638_895_896_1049_1056_1162_2026.md)
+- [Finance Decisions635/636 — customs zones](acquisition_tranche_finance_decisions635_636_2026_customs_zones_arabic.md)
 
 ### Corpus depth and verification boundaries
 
