@@ -102,3 +102,52 @@ The provision governs the annual approval and technical/financial review process
 ## Currentness update — PM Decision 503/2026 (18 November 2026)
 
 The earlier note that Decision 503/2026's operative text was still outstanding is superseded. The official Amiri Press text page/search index was located and Article 1–2 were captured; secondary MKSEgypt table images for Sector A and B were transcribed in [agent3_investment_pm_decision_503_2026_industrial_incentive_schedules_arabic_text.md](agent3_investment_pm_decision_503_2026_industrial_incentive_schedules_arabic_text.md). Remaining: obtain original Gazette issue/page and signed official PDF/hash, and visually verify several technical terms in the schedules. Decision 503/2026 replaces the industrial sub-sector tables in PM Decision 104/2022; it is separate from the Article 11 bis cash incentive under Law 160/2023.
+
+
+## Primary-source upgrade — Decision 2310/2017 and Decision 2562/2024
+
+### Original Decision 2310/2017 Gazette pages
+- Official ETA-hosted PDF: https://portal.eta.gov.eg/sites/default/files/2024-10/qarar-2310-2017.pdf
+- Gazette issue 43 bis (أ), 28 October 2017, 89-page file. PDF text extraction has severe Arabic encoding corruption in parts, so the source was inspected through page images.
+- Page images 5–8 were visually inspected: page 7 contains issuing Articles 1–4; page 8 opens the regulation and Article 1; pages 9–10 continue the activity sectors. This confirms the primary Gazette layout, issue/date and initial operative provisions.
+- Issuing Article 3 expressly repeals PM Decision 1820/2005 (old Investment Guarantees and Incentives Executive Regulation) and any conflicting provision.
+- This PDF is an original Gazette reproduction for Decision 2310/2017, but does not consolidate subsequent amendments.
+
+### Decision 2562/2024 — primary official Gazette text now acquired
+- Official Invest in Egypt PDF: https://www.investinegypt.gov.eg/Documents/قرار%20مجلس%20الوزراء%20رقم%202562%20لسنة%202024.pdf
+- Also GAFI-hosted PDF: https://gafiadmin.gafi.gov.eg/media/km4n0ct0/قرار-رئيس-مجلس-الوزراء-رقم-٢٥٦٢-لسنة-٢٠٢٤.pdf
+- Gazette: issue 32 bis (ط), 12 August 2024, pages 3–4. Amiri Press DSpace record: https://dspace.id.com.eg/items/9717c079-615b-492a-8330-8a1b44f78cc1
+- Decision dated 11 August 2024; published 12 August 2024. Article 3 requires publication; no separate commencement delay stated, so preserve commencement as an effective-date candidate pending general-rule review.
+- Full three-article text from the official PDF:
+
+**Preamble**
+> بعد الاطلاع على الدستور؛
+> وعلى قانون الاستثمار الصادر بالقانون رقم ٧٢ لسنة ٢٠١٧؛
+> وعلى قرار رئيس الجمهورية رقم ٢٥٨ لسنة ٢٠٢٤ بتشكيل الحكومة؛
+> وعلى اللائحة التنفيذية لقانون الاستثمار الصادرة بقرار رئيس مجلس الوزراء رقم ٢٣١٠ لسنة ٢٠١٧؛
+> وبناءً على ما عرضه وزير الاستثمار والتجارة الخارجية؛
+> وبعد موافقة مجلس الوزراء؛
+> قــــرر:
+
+**Article 1 — replacement of Executive Regulation Article 63**
+> يستبدل بنص المادة (٦٣) من اللائحة التنفيذية لقانون الاستثمار المشار إليها النص الآتي:
+> "يكون لكل منطقة استثمارية مجلس إدارة يصدر بتشكيله لمدة ثلاث سنوات قرار من الوزير المختص بالاتفاق مع الوزير المعنى بنشاط المنطقة.
+> ويضم المجلس في عضويته ممثلي الهيئات المعنية بالنشاط أو الأنشطة الرئيسية المرخص بمزاولتها في المنطقة، وجهة الولاية على الأرض، ووزارة المالية، وممثلي الجهات المرخص لها بالتنمية في المنطقة والمستثمرين فيها.
+> ويجوز أن يتضمن التشكيل عضواً أو أكثر من ذوي الخبرة، أو ممثلين عن جهات الدعم والتمويل للمشروعات بالمنطقة أو أية جهات أخرى يرى الوزير المختص والوزير المعنى ضمها للمجلس.
+> ويحدد قرار تشكيل المجلس نظام انعقاده وبدلات ومكافآت أعضائه، على أن يجتمع المجلس مرة كل شهر على الأقل أو كلما دعت حاجة تسيير العمل لانعقاده."
+
+**Article 2 — insertion into Article 10, First — Sector A**
+> تضاف إلى نص المادة (١٠) - بند أولاً - القطاع (أ) من اللائحة التنفيذية لقانون الاستثمار المشار إليها فقرة جديدة نصها الآتي:
+> "كما يشمل القطاع (أ) محافظات القاهرة الكبرى فيما يخص قطاع السياحة دون غيره، وذلك في أنشطة الاستثمار الفرعية التي يصدر بتحديدها وبيان شروط وضوابط منحها الحوافز الخاصة قرار من رئيس مجلس الوزراء بناءً على عرض مشترك من الوزير المختص ووزير المالية والوزير المعني طبقاً لنص المادة (١١) من القانون".
+
+**Article 3**
+> ينشر هذا القرار في الجريدة الرسمية.
+
+- This is not a general extension of Sector A benefits to all Cairo/Giza activities: it is limited to tourism-sector activities in Greater Cairo and requires a later PM decision to specify sub-activities and incentive conditions.
+- DSpace confirms Gazette issue 32 bis (ط), date 12 August 2024, PM authorship and the original 307.09 KB issue PDF. Separate Invest in Egypt and GAFI PDFs provide the full decision text.
+
+### Currentness reconciliation
+- PM Decision 2562/2024 replaces Article 63 and inserts the Greater Cairo tourism paragraph into Article 10, Sector A.
+- PM Decision 503/2026 subsequently replaces industrial sub-sector tables in PM Decision 104/2022. It is a separate industrial activity schedule and does not undo the 2024 tourism-sector addition.
+- The 140-article transcription remains secondary consolidated text through August 2024; use primary Decision 2562/2024 text for these two deltas and Decision 503/2026 separately for later industrial schedules.
+- No lawyer review; public PDF access does not imply commercial reuse rights.
