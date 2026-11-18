@@ -4,6 +4,8 @@
 **Source:** LAW HUB searchable Arabic text, https://lawhub.info/eg/?p=12146, lines 754–790 as opened on 18 November 2026.  
 **Source tier:** secondary transcription; not an original Gazette binary. Article 19 explicitly carries a 2010 amendment annotation and its pre-amendment wording. Preserve the two versions separately.
 
+**Superseding note (checkpoint 208):** The 45/185 figure in this checkpoint included summaries and partial excerpts. The complete Arabic-body count is 28/185 (157 remain); see checkpoint 208.
+
 ## Article 14
 يقوم المركز الإقليمي للتخطيط والتنمية باستلام مشروع المخطط الاستراتيجي العام للمدينة أو القرية ومراجعته على كراسة الشروط المرجعية ودلائل الأعمال وغير ذلك مما تتطلبه أعمال المراجعة. ثم يتم إرساله إلى الإدارة العامة للتخطيط والتنمية العمرانية لتقوم بدورها بعرضه على المواطنين والجهات المعنية والمجلس الشعبي المحلي وفقا للإجراءات التالية:
 
