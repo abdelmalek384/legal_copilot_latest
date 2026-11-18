@@ -2237,3 +2237,12 @@ Added six additional 2026 laws and their Arabic operative text:
 **Text tranche:** [2026 laws 10, 11, 155, 156, 160, 161 and Decision3536](acquisition_tranche_2026_laws10_11_155_156_160_161_pm3536_2026-11-18.md).
 
 **Immediate follow-on acquisition leads:** Finance Minister decisions under Law155 Article3 (60-day deadline); PM fee-category decision required by Law10 Article32; PM implementation decision required by Law11 Article111; university bylaws and Defence Ministry decisions under Law161; and the full text of PM Decision3536 (already registered as EG-0318; no duplicate instrument ID added).
+
+
+### VAT acquisition and official corrigendum — EG-0329
+
+Added **Law149/2026**, amending VAT Law67/2016, from the Egyptian Tax Authority's four-page Gazette reproduction. The full five-article text is transcribed in [the Law149 acquisition tranche](acquisition_tranche_law149_2026_vat_amendment_corrigendum.md).
+
+Crucially, I also acquired the **official corrigendum** published in Official Gazette issue32 bis, 8 August 2026. Customs Authority Circular48/2026 reproduces the Cabinet Council of Advisers correction to Article28 bis: (i) remove the extra «و» in «مد هذه المدة» and (ii) correct «في الأجهزة الطبية» to «في حكم الأجهزة الطبية». The local transcript uses corrected wording, not the uncorrected first print. Circular48/2026 also records Circular45/2026 as the original transmission of Law149 to customs administrations.
+
+The Ministry of Finance lists Law149 as in force but cautions that online text is advisory and the Official Gazette is the legal reference. The ETA-hosted PDF is government-hosted; local binary/hash and separate Amiri Press original remain outstanding. Follow-up: locate executive-regulation amendments and ETA instructions implementing Article28 bis.
