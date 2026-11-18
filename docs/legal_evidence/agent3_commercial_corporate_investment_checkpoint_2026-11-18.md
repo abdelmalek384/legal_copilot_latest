@@ -2324,3 +2324,70 @@ FRA's official financial-leasing/factoring legislation catalogue and contemporan
 - Three unique instruments with Arabic operative text surfaced: Laws 27/2014, 17/2018 and 13/2022.
 - Seven issuing provision units counted: Law 27/2014 Articles 1–2; Law 17/2018 Articles 1–3; Law 13/2022 Articles 1, 8 and 3 (the source PDF presents Article 8 before Article 3; preserve source numbering rather than renumbering).
 - Cumulative Agent 3 minimum: 142 unique instruments / 1,329 provision units.
+
+
+## 46. Capital Market Executive Regulation 135/1993 — Decisions 2423/2024, 1539/2025 and 2482/2025
+
+### PM Decision 2423/2024 — hedge funds, fund leverage and sukuk disclosures
+
+- Instrument: PM Decision 2423/2024 amending Executive Regulation 135/1993.
+- Official Gazette issue 30 bis (A), 28 July 2024.
+- Full Arabic text transcription with Gazette metadata: https://alberonsy.com/قرار-مجلس-الوزراء-رقم-۲٤۲۳-لسنة-۲۰۲٤-المنشور-بالجريدة-الرسمية-بتاريخ-۲۸-۷-۲۰۲٤-بتعديل-بعض-أحكام-اللائحة-التنفيذية-لقانون-سوق-رأس-المال/
+- Article 1 replaces ten provisions/paragraphs, including Regulation Articles 16 bis 4, 31, 34(2)(2–3), 156(2)(5), 160(2), 167(2)(a), 178(2)(2), 183(4), 308 and 315 bis(2).
+- Article 2 adds a “hedge fund” definition to Article 141, adds a final paragraph to Article 142 and inserts Article 179 bis 2 governing hedge funds.
+- Article 3 publication/commencement the day after publication.
+- Main effects:
+  - Requires monthly reporting by sukuk payment agents to FRA and sukuk holders, with auditor report and data on project returns, payments, fees, surplus funds, defaults and material events.
+  - Sets old-shareholder subscription priority for capital increases at a minimum 15 days, ending earlier if fully subscribed.
+  - Requires disclosure of complete credit-rating data and annual updated rating certificates for bonds/sukuk.
+  - Allows private-equity, real-estate and venture-capital funds to borrow up to 60% of net fund-unit value, subject to disclosure and FRA controls.
+  - Adds safeguards for related-party investments by funds, including disclosure, conflicted-party abstention and periodic profit/loss reporting.
+  - Creates the hedge-fund regulatory category and authorizes specified listed securities, funds, futures/options and other FRA-approved financial instruments.
+- **Exact Arabic text — 60% fund borrowing ceiling:**
+> ويجوز لصناديق الملكية الخاصة وصناديق الاستثمار العقارى وصناديق رأس المال المخاطر أن تقترض بما لا يجاوز (60٪) من صافى قيمة وثائق الصندوق فى الحدود ووفقًا للضوابط الواردة بنشرة الاكتتاب أو مذكرة المعلومات، ويجوز بقرار من مجلس إدارة الهيئة تعديل النسبة المشار إليها بهذه الفقرة فى ضوء أوضاع السوق .
+- **Exact Arabic text — hedge-fund definition:**
+> صندوق التحوط : هو أحد أنواع صناديق الاستثمار فى الأسهم وأدوات الدين والأدوات المالية أو أحدهم ، ويهدف للاستثمار فى الأسهم وأدوات الدين وغيرها من الأوراق والأدوات المالية ذات معدلات التداول المرتفعة ويجوز له التعامل من خلال آليات التداول المتخصصة بالبورصات ، وذلك وفقًا للسياسة الاستثمارية الواردة بنشرة الاكتتاب أو مذكرة المعلومات ، ويتم طرح وثائقه طرحًَا عامًا أو خاصًا .
+
+### PM Decision 1539/2025 — energy-origin certificates as tradable financial instruments
+
+- Instrument: PM Decision 1539/2025 amending Executive Regulation 135/1993.
+- Official Gazette issue 18 bis, 4 May 2025.
+- Official Gazette archive record: https://mediadr.sis.gov.eg/xmlui/handle/123456789/96983 (Amiri Press, Gazette issue/date and PDF are recorded).
+- Full Arabic text transcription: https://lawhub.info/eg/?p=11907
+- Article 1 adds Regulation Article 35 bis 9:
+> تعد شهادة مصدر الطاقة المنصوص عليها بقانون الكهرباء الصادر بالقانون رقم 87 لسنة 2015 ، أداة مالية قابلة للتداول بالبورصات المصرية .
+- Article 2 publication/commencement the day after publication.
+- Legal effect: an energy-source certificate under Electricity Law 87/2015 is expressly classified as a tradable financial instrument on Egyptian exchanges. This cross-links capital-market rules with the electricity/renewable-energy certificate regime.
+- Source note: Gazette issue record is official SIS/Amiri Press metadata; the complete operative wording is secondary transcription until the official Gazette PDF page is inspected.
+
+### PM Decision 2482/2025 — installment-funded private equity and real-estate fund units
+
+- Instrument: PM Decision 2482/2025 amending Executive Regulation 135/1993.
+- Official Gazette issue 29 bis (A), 20 July 2025; effective 21 July 2025.
+- Official Gazette archive record: https://dspace.id.com.eg/items/8de2b5e3-22b8-4bf2-aeb9-3994ae6e96e4
+- FRA official Decision 135/1993 record lists Decision 2482/2025 as a current amendment: https://fra.gov.eg/regulations/تعديلات-اللائحة-التنفيذية-لقانون-سوق/
+- Article 1 replaces Regulation Article 148. It permits private-equity funds and privately offered real-estate investment funds to issue units payable in instalments, provided the information memorandum discloses instalment payment method and consequences of default, and the fund complies with new Article 148 bis.
+- Article 2 adds new Article 148 bis and a final paragraph to Article 156. The new Article 148 bis requires unit holders to pay instalments on the dates disclosed in the information memorandum; if overdue (including any grace period), the company must serve notice through registered email, SMS and any other FRA-prescribed means, specifying amount, original due date and consequences, and giving the holder two business days to respond. Further consequences and collection/realization mechanics must be ingested from the full Gazette PDF.
+- Article 3 repeals inconsistent provisions and provides publication/commencement.
+- **Exact Arabic text — replacement Article 148:**
+> يجوز لصناديق الملكية الخاصة وصناديق الاستثمار العقاري ذات الطرح الخاص إصدار وثائق تسدد قيمتها على دفعات على أن تنص مذكرة المعلومات على كيفية سداد قيمة دفعات الوثائق، وما يترتب على الإخلال بالسداد، مع الالتزام بالأحكام الواردة في المادة (148 مكرراً) من هذه اللائحة.
+- **Exact Arabic text — new Article 148 bis (opening):**
+> يجب على حامل الوثيقة أن يسدد الدفعات المستحقة من قيمة الوثائق التي اكتتب فيها في المواعيد المفصح عنها بمذكرة المعلومات .
+>
+> وإذا لم يسدد حامل الوثيقة هذه المبالغ في مواعيدها مضافًا إليها مهلة السداد – إن وجدت – وجهت إليه الشركة إعذارًا على بريده الإلكتروني المسجل بسجلات الشركة ، وباستخدام الرسائل النصية على رقم هاتفه المسجل لديها، وبما تقرره الهيئة من وسائل لهذا الغرض .
+>
+> على أن يتضمن الإعذار قيمة المبلغ المتأخر في سداده ، والميعاد الذي كان مقررًا للسداد ، وكافة الآثار المترتبة على التأخر في السداد بصيغة واضحة الدلالة ، ويكون لحامل الوثيقة الرد على الشركة خلال يومي عمل من تاريخ وصول الإعذار إليه .
+
+### Consolidated currentness notes
+
+- FRA's official Decision 135/1993 page now identifies the consolidated Executive Regulation as updated in 2025 and lists the amendment sequence through Decision 2482/2025, including 1539/2025 and 2423/2024.
+- The current consolidated PDF is at https://fra.gov.eg/wp-content/uploads/2024/07/لائحة-التنفيذية-من-قانون-سوق-المال-بصيغة-WORD-3.pdf (the page is updated and may be re-hosted under later URLs).
+- PM Decisions 3045/2023, 4664/2022, 3456/2022 and 1109/2022 remain high-priority text acquisitions.
+- Decision 2482/2025's detailed late-payment enforcement and unit forfeiture/transfer rules require inspection of the Gazette page images before the new Article 148 bis is considered fully ingested.
+- Do not overwrite old Article 148: retain the pre-2025 wording and the amended 2025 version with effective dates.
+
+### Count increment
+
+- Three unique instruments with Arabic operative text surfaced: PM Decisions 2423/2024, 1539/2025 and 2482/2025.
+- Eight issuing provision units counted: Decision 2423/2024 Articles 1–3; Decision 1539/2025 Articles 1–2; Decision 2482/2025 Articles 1–3.
+- Cumulative Agent 3 minimum: 145 unique instruments / 1,337 provision units.
