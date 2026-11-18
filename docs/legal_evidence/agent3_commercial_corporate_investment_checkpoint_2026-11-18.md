@@ -1217,3 +1217,12 @@ The same Article 240 bis further permits electronic remote agenda presentation a
 - Seven issuing articles are counted as provision units (Articles 1–7), consistent with the project rule of counting amendment decisions at the issuing-instrument article level rather than double-counting every nested regulation article.
 - Underlying replacement/new regulation provisions are indexed in the content notes above, but not added again to the numeric unit count.
 - Cumulative Agent 3 minimum: 104 unique instruments / 1,220 provision units.
+
+
+### Follow-up source lead — Companies Executive Regulation Decision 32/2019 (not yet counted)
+
+- Decision 32/2019 amends Executive Regulation 96/1982; contemporaneous press coverage reports publication in الوقائع المصرية issue 44, 23 February 2019, and identifies the amendment as confined to Regulation Article 99 bis: https://www.almasdar.com/89452
+- A separate contemporaneous report says the same decision modified Article 99 bis only: https://hapijournal.com/2019/07/28/92-قرارا-لتيسير-مناخ-الأعمال-وتسهيل-الإجراءات-للمستثمرين/
+- The official MIFT Law 159 record lists Decision 32/2019 among its Executive Regulation attachments.
+- The issuing instrument's scanned pages were not text-extractable from the accessible press page, and the operative amended Article 99 bis text has not yet been obtained from a Gazette image or reliable full transcription. Therefore Decision 32/2019 is retained as a high-priority acquisition lead and is **not counted** among instruments with Arabic operative text.
+- Do not confuse Ministerial Decision 32/2019 with GAFI circular 32/2019, which was a separate administrative instruction concerning supporting evidence for valuation during conversion to one-person-company form.
