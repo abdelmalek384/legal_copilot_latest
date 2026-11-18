@@ -153,3 +153,14 @@ The cumulative Civil Code extraction stream is now **518 fully transcribed uniqu
 - The cumulative Civil Code extraction stream is now **573 fully transcribed unique article provisions** (67 prior + 506 newly transcribed in this continuation). Article 766(2) remains one partial/quarantined provision and is excluded.
 - The extracted sequence is non-consecutive; Articles 389–417 are repealed in the base text, and other gaps remain. The set is not a current consolidated code and still needs amendments, special-law displacement and constitutional judgments mapped.
 
+## 14. Further Civil Code extraction — Articles 854–917
+
+Checkpoint 101 adds **64 distinct provisions**, Articles 854–917:
+- Articles 854–855: family property administration.
+- Articles 856–869: condominium/floor ownership, common parts, maintenance contributions, structural repairs, owners' union and secured association advances.
+- Articles 870–874: occupation and state ownership of ownerless uncultivated land.
+- Articles 875–914: estate administrator, inventory, creditor notice, estate debts, sale of estate assets, distribution and partition.
+- Articles 915–917: wills and gifts/dispositions made in contemplation of death.
+
+Cumulative Civil Code extraction stream: **637 fully transcribed unique provisions** (67 prior + 570 new in this continuation). This is a non-consecutive base-text extraction, not a consolidated current code. Article 875 refers heir identification and shares to Sharia and relevant special laws; no inheritance-share rules are inferred from this Civil Code text.
+
