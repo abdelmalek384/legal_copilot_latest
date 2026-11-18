@@ -81,7 +81,7 @@ The 2010 SCC interpretation case states that the 2008 judgment's operative langu
 
 | Case | Current source status | Precise scope |
 |---|---|---|
-| 11/23 (5 May 2018) | Official SCC subject page plus secondary full-text/PDF lead | Article18(1) Law136/1981, non-residential premises leased to legal persons; eviction after agreed term |
+| 11/23 (5 May 2018) | Official SCC subject page is JS-only; EastLaws returns 403; Manshurat PDF is later Case32/43/2023 and quotes the operative order only; original full judgment not acquired | Article18(1) Law136/1981, non-residential premises leased to legal persons; eviction after agreed term |
 | 24/20 (9 Nov 2024) | Official SCC original judgment page in checkpoint90 | First paragraphs of Articles1 and2 Law136/1981; residential rent formula; deferred effect |
 | 81/19 and 108/19 | Full judgment/source records in checkpoint187 | Existing rent-law constitutional decisions; retain each case's separate text and effect |
 | 144/20 and 6/20 | Official later SCC corroboration; original judgment pages missing | Article19(1) and Article17(4) Law136/1981 |
@@ -94,7 +94,7 @@ The 2010 SCC interpretation case states that the 2008 judgment's operative langu
 - Case116/27: judgment date 4 May 2008 is verified; exact Official Gazette issue/date has not been authenticated in this pass.
 - Case144/20: Gazette publication 20 March 2000 is corroborated by official later SCC decisions.
 - Case6/20: Gazette issue17 تابع, 27 April 2002 is recorded; original Gazette page not obtained.
-- No original SCC signed judgment PDF or original Gazette judgment scan was acquired for Cases4/23,14/23,47/21,116/27,144/20 or6/20 in this pass.
+- No original SCC signed judgment PDF or original Gazette judgment scan was acquired for Cases4/23,14/23,47/21,116/27,144/20,6/20 or11/23 in this pass.
 
 ## 5. Register changes
 
