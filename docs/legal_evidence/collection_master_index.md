@@ -2332,3 +2332,10 @@ The official Amiri Press TashTxt search result returned the complete annex, so t
 
 Added complete preamble and both operative articles from the official Amiri Press TashTxt source. Decision95/2026 amends Decision67/2024's single-approval project timetable for MAFI Agricultural Crops Manufacturing Co.; completion and commencement are now due by **31 March 2027**. Gazette issue46 (تابع), 12 November 2026; effective 13 November 2026.
 [Decision95/2026 full Arabic text](acquisition_tranche_cabinet_decision95_2026_mafi_project_timetable_arabic.md)
+
+
+### Decisions3531/2026 and 448/2026 — two further full-text acquisitions
+
+- **PM Decision3531/2026**: full preamble and both articles transcribed from official Amiri Press TashTxt. Transfers all shares of the Canal Mooring and Lighthouse Company and the Port Said Engineering and Marine Construction Company from the maritime holding company to the Suez Canal Authority; Companies Law159/1981 applies. Gazette issue45 bis (ب), 9 Nov 2026.
+- **Presidential Decision448/2026**: all three operative articles transcribed from secondary reproductions of Gazette issue44 bis (ج), 1 Nov 2026. Replaces Article1 of Decision222/2026 and allocates 26,690.45 feddans (112,122,142 m²) in Red Sea Governorate to the Ministry of Finance for public-debt reduction and sovereign sukuk. The preamble and coordinate map/table remain missing; some press headlines contain a decimal-place error, so the quoted operative figure is retained pending original page/annex verification.
+[Arabic text tranche](acquisition_tranche_pm3531_2026_and_presidential448_2026_arabic_text.md)
