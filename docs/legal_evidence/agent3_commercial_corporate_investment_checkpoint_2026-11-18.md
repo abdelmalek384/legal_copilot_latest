@@ -2428,3 +2428,51 @@ FRA's official financial-leasing/factoring legislation catalogue and contemporan
 - One unique instrument with Gazette-page-image Arabic text surfaced: Law 55/1951.
 - Twelve statutory provision units counted (Articles 1–12); exact full-text transcription remains pending manual/OCR extraction from the inspected scan.
 - Cumulative Agent 3 minimum: 146 unique instruments / 1,349 provision units.
+
+
+## 48. Primary-source full-text acquisition tranche — Commercial Code, Companies Regulation, Investment Law
+
+### A. Commercial Code 17/1999 — corrected article range and official full-text source
+
+- Official ETA Arabic PDF: https://www.eta.gov.eg/sites/default/files/2024-10/law-17-1999.pdf
+- Alternative official government URL: https://portal.eta.gov.eg/sites/default/files/2024-10/law-17-1999.pdf
+- Gazette: Official Gazette issue 19 (bis), 17 May 1999.
+- The searchable government-hosted edition exposes the promulgating articles and Commercial Code **Articles 1–772**, followed by the retained historical chapter on partnerships from the 1883 Code (old Articles 19–58). This corrects the earlier checkpoint shorthand that stated Articles 1–771.
+- The PDF itself records Law 168/2000, Official Gazette issue 30 (supplement), 27 July 2000, which changed the cheque commencement dates. The amended dates must control; do not rely on the original printed dates in isolation.
+- The 1883 partnership chapter is expressly preserved by the issuing Article 1; it is not part of the new 1999 article sequence. The bankruptcy/compulsory composition provisions in the 1999 Code must be treated as historical/superseded to the extent displaced by Law 11/2018 and its amendments.
+- Acquisition status: complete searchable Arabic source located and opened (3,759 extracted lines); full provision-by-provision normalization, amendment overlay and currentness review remain pending. No new instrument count: Law 17/1999 was already in the inventory.
+
+### B. Companies Law 159/1981 — Executive Regulation Decision 96/1982
+
+- Official MIFT full-text consolidated PDF: https://www.mift.gov.eg/legislation/download/253
+- MIFT Law 159 record: https://mift.gov.eg/legislation/details/252
+- The ministry labels the Decision 96/1982 text as **“according to the latest amendment issued on 21 August 2022”**. The PDF is searchable Arabic and contains 3,416 extracted lines.
+- The ministry's Law 159 record identifies seven historical statutory amendments: Laws 212/1994, 3/1998, 159/1998, 94/2005, 68/2009, 17/2015 and 4/2018.
+- The same official record lists 21 attachments/amendment instruments for Decision 96/1982. The visible chain includes Decision 2928/2022, Ministerial Decisions 144/2019, 32/2019, 256/2018, 85/2010, 16/2010, 90/2009, 11/2008, 282/2005, PM Decision 1212/2004, and earlier decisions from 1987–1998. Duplicate attachment entries in the page are not separate instruments unless Gazette evidence establishes separate instruments.
+- Exact provision examples in the consolidated text include Article 2 bis (shareholder/partner agreement and when it binds other shareholders), and amended Articles 1–6 on founder eligibility, incorporation documents, company names and capital. Do not use the displayed minimum-capital amounts without checking the relevant sector-specific laws and later FRA/GAFI requirements.
+- Critical limitation: this is a consolidated text current only to the stated 21 August 2022 amendment. The 2026 MIFT statement about Companies Law Article 156 bis and annual financial statements is a later official administrative notice and must be reconciled against the amending Gazette instrument before treating it as a binding updated provision. Ministry record: https://www.mift.gov.eg/Blog/Details/300
+- Acquisition status: full searchable consolidated Arabic regulation obtained; individual 21 amendments still require Gazette-by-Gazette verification and provision-level source mapping. Law 159 and Decision 96 were already inventoried; no new unique instrument count.
+
+### C. Investment Law 72/2017 — complete official Arabic statute
+
+- Official ETA Arabic PDF: https://www.eta.gov.eg/sites/default/files/2024-10/law-72-2017.pdf
+- Gazette: Official Gazette issue 21 bis (ج), 31 May 2017; issuing Article 10 provides commencement on the day after publication.
+- Searchable Arabic source opened (1,073 extracted lines). It contains the issuing provisions and substantive Investment Law. The Law 141/2019 amendment already captured in this checkpoint adds to Articles 12 and 48, adds item 14 to Article 74, and adds Article 91 bis. Law 160/2023 is a further amendment lead concerning the golden-licence framework and must remain in the amendment reconciliation queue.
+- Acquisition status: complete Arabic statute source obtained; amendment overlay, exact current consolidated rendering, and full article-level normalization remain outstanding. Law 72/2017 was already inventoried; no new unique instrument count.
+
+### D. Executive Regulation of Investment Law 72/2017 — Decision 2310/2017
+
+- Official ETA Arabic PDF: https://www.eta.gov.eg/sites/default/files/2024-10/qarar-2310-2017.pdf
+- Gazette: Official Gazette issue 43 bis (أ), 28 October 2017.
+- Searchable Arabic text opened (1,476 extracted lines); it contains 133 numbered articles. This is the original 2017 regulation, not a current consolidated text.
+- The FRA page also points to a “updated version”: https://fra.gov.eg/wp-content/uploads/2020/12/5-1.pdf (89-page PDF; text extraction unavailable through the current browser route).
+- Official GAFI/ETA amendment chain is not yet complete. OECD's 2024 review warned that the publicly available GAFI consolidated regulation reflected only two of six amendments then made; treat any older consolidated copy as incomplete until all six amendment instruments are reconciled. The 2023 amendment concerning investor residence/banking procedures and PM Decision 104/2022 (sectoral geographic distribution) are leads requiring exact official text and legal classification.
+- Acquisition status: full original Arabic regulation acquired; 133 articles indexed structurally, but currentness remains incomplete. Decision 2310/2017 was already inventoried; no new unique instrument count.
+
+### Count and progress treatment
+
+- No additional unique instruments added by this tranche: these four principal instruments were already represented in the assignment inventory.
+- No article/provision-unit increment is claimed merely because full PDFs were acquired; exact provision normalization and amendment overlays are separate ingestion work.
+- The Commercial Code source range is corrected from 771 to 772 articles. Do not increase cumulative provision totals on that correction alone.
+- Updated working assignment completion estimate: **31%** (up from 30%) to reflect acquisition of full searchable Arabic primary texts for Companies Regulation 96/1982 and Investment Law 72/2017 plus the full 133-article original Investment Regulation, and correction of Commercial Code structure. This remains a non-denominator estimate, not a percentage of all Egyptian legal instruments.
+- Lawyer-reviewed / legally verified: **0%**. All machine-collected text remains unverified pending Egyptian lawyer review.
