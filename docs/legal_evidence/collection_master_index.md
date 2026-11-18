@@ -2490,13 +2490,14 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 - Three additional unique instruments. Source-matched to official FRA publications; not lawyer-reviewed; commercial reuse permissions not established.
 
 
-### Agent 3 — FRA Decisions 139, 140, 152, 133 of 2026 (18 Nov 2026 acquisition pass)
+### Agent 3 — FRA Decision 83, 152 and partial Decision 133 of 2026 (18 Nov 2026 acquisition pass)
 
-- Added [Decision 139/2026](agent3_fra_decision_139_2026_debt_collection_transition_extension_arabic_text.md): complete one-page official Gazette text, issue 158 تابع, 22 July 2026. Extends the Decision 278/2025 registration/compliance period for receivables-collection service providers by six months from expiry of the original period. Underlying Decision 278/2025 and its exact original expiry date must be read together; no calendar deadline inferred here.
-- Added [Decision 140/2026](agent3_fra_decision_140_2026_investment_fund_auditor_limit_arabic_text.md): complete two-page official Gazette text, issue 163 تابع (أ), 29 July 2026. Amends Decision 58/2018: one auditor may audit no more than five investment funds at once without prior FRA approval, subject to FRA criteria and conflict-of-interest safeguards.
+- **Decision 139/2026:** rediscovered during this pass but already has canonical full-text records at [transition-extension capture](agent3_fra_decision_139_2026_debt_collection_transition_extension_arabic_text.md) and [compliance-extension capture](agent3_fra_decision_139_2026_debt_collection_compliance_extension_arabic_text.md). No new instrument counted.
+- **Decision 140/2026:** rediscovered during this pass but already has a canonical full-text record at [Decision 140/2026](agent3_fra_decision_140_2026_investment_fund_auditor_limit_arabic_text.md). No new instrument counted.
+- Added [Decision 83/2026](agent3_fra_decision83_2026_charitable_open_ended_funds_redemption_arabic_text.md): complete two-article official Gazette text, issue 100 تابع (أ), 6 May 2026. Amends Decision 31/2018: open-ended charitable fund redemptions are normally limited by same-day purchase orders; oversubscribed redemption requests are allocated proportionally, with permitted prospectus/MoI exceptions subject to investment-manager reasons and board/supervisory approval.
 - Added [Decision 152/2026](agent3_fra_decision152_2026_private_insurance_funds_bylaws_deadline_extension_arabic_text.md): complete one-page official Gazette text, issue 191 تابع (أ), 1 September 2026. Extends the deadline for private insurance funds to amend bylaws under Decision 236/2024 until 31 December 2026.
 - Added [Decision 133/2026](agent3_fra_decision133_2026_client_data_verification_otp_amendment_secondary_partial_arabic_text.md): partial operative amendment clauses transcribed from two secondary reports; official FRA PDF endpoint returned access denied. It adds OTP at contract execution/renewal and financing use, requires proof/retention, amends wording in Decision 186/2024, and grants six months to regularize. Not a complete official-source text; treat as secondary-source partial pending Gazette verification.
-- Four distinct instruments captured in this pass; three full official Gazette transcriptions and one partial secondary-source transcription. No lawyer review or commercial reuse permission asserted.
+- **Three new distinct instrument records in this pass:** two complete official Gazette transcriptions (83 and 152) and one partial secondary-source transcription (133). No lawyer review or commercial reuse permission asserted.
 
 ### Newly identified gaps / alternate-source queue (not counted as text acquisitions)
 
