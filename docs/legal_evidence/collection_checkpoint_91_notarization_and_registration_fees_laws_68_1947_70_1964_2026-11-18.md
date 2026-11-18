@@ -187,3 +187,41 @@ The quoted Article 30 must be read subject to SCC Case 2/24 (constitutional), 14
 5. Collect the current Executive Regulation of Law 68/1947 and its amendment chain.
 6. Retrieve and normalize all tariff decisions, fee tables, reductions and presidential extensions; date them rather than hardcoding current fee values.
 7. Link the fee and notarial rules to Law 114/1946, Law 142/1964, Law 9/2022 and Decision 2332/2022 without merging their distinct legal effects.
+
+
+## 8. Follow-up: current vehicle valuation schedules under Law 70/1964 (18 November 2026)
+
+A later primary-source search found two annual ministerial valuation decisions missing from the initial checkpoint and the acquisition register. They are subordinate tariff/valuation decisions under Article 21(II), not amendments to Law 70/1964 itself.
+
+### Decision 278/2025 — 2025 schedule
+
+- Official Gazette reproduction: Egyptian Proceedings issue 39, 17 February 2025, SIS-hosted PDF:
+  https://mediadr.sis.gov.eg/bitstream/handle/123456789/89851/WQ39_20250217_4123.pdf?isAllowed=y&sequence=2
+- Decision date: 15 January 2025.
+- Article 1: vehicle values for the rapid-transport-vehicle instruments referred to in Article 21(II) are set by the attached tables, with the instrument value not below the schedule value.
+- Article 2: the schedule applies through **31 December 2025**.
+- Article 3: effective from date of issuance, **15 January 2025**.
+- This is a time-limited valuation schedule. It is not the 2026 schedule and must not be carried forward.
+
+### Decision 7657/2025 — 2026 schedule
+
+- Official Amiri Press searchable text portal:
+  https://www.alamiria.com/Sec/TashTxt?id=99IsDvXE8+o%3D
+- Decision date: **25 November 2025**.
+- Article 1: sets minimum values for rapid-transport-vehicle instruments under Article 21(II) of Law 70/1964 by attached schedule.
+- Article 2: applies for one year, **1 January–31 December 2026**.
+- Article 3: effective **1 January 2026**.
+- A secondary report identifies publication in Egyptian Proceedings issue 16, **20 January 2026**: https://www.cairo24.com/2356386
+- Use the Amiri Press heading and body, both of which identify Decision 7657/2025. The secondary report has an inconsistent reference to Decision 7656 in one body passage; this is a transcription/reporting discrepancy, not grounds to change the official decision number.
+- The official publisher page exposes the operative text, but the attached table values and full issue PDF bytes were not acquired in this pass. Do not quote a specific minimum value until the annex is obtained and visually checked.
+
+### Other amendment-chain correction — Law 70/1964
+
+The 44-article consolidated secondary transcription identifies **Law 163/2019** as adding an item to Table B (non-registrable instruments), published in Official Gazette issue 50 supplement, 12 December 2019. This was omitted from the earlier enumerated amendment list. Law 67/2021 then substituted the word “companies” for “contracting companies” in the item preceding the final item of Table B, published issue 23 bis, 13 June 2021. Both are distinct statutory amendments; Decisions 278/2025 and 7657/2025 are annual implementing valuation schedules, not amendments.
+
+### Provenance / permissions
+
+- Decision 278/2025's issue PDF is a search-indexed SIS-hosted official Gazette reproduction; the local binary and hash have not been archived.
+- Decision 7657/2025 is displayed on the Amiri Press official searchable text portal; the issue PDF and schedule annex have not been obtained.
+- The SIS source permission register now has a specific source record for issue 39/2025. Collection and commercial reuse permissions remain **unknown**.
+- The acquisition register now records Decisions 278/2025 and 7657/2025 as EG-0194 and EG-0195. Both retain `lawyer_reviewed=false` and `rights_cleared=false`.
