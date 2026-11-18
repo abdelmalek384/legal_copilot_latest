@@ -1233,3 +1233,9 @@
 
 
 | checkpoint 132 — Agent 3 FRA Decision 44/2026 full Gazette acquisition | Acquired official FRA-hosted Official Gazette issue 45 supplement (أ), 24 Feb 2026, pp. 5–15; captured 17 articles covering branch registration, supervision, transfers, closure, fees and transition; confirms repeal of Decision 7/2019 Articles 7–12 (correcting earlier incomplete 10–12 note); Decision 100/2026 amendment text still outstanding; +1 instrument / +17 provision units; cumulative Agent 3 minimum 153 instruments / 1,382 provision units; assignment estimate 31%, lawyer review 0%. Full text: [agent3_fra_decision_44_2026_branch_controls_2026-11-18.md](agent3_fra_decision_44_2026_branch_controls_2026-11-18.md) |
+
+
+#### Checkpoint 148 follow-up — Case 42/17 publication metadata
+
+- Resolved the earlier Gazette issue-number conflict for SCC Case 42/17. Egyptian State Council General Assembly Opinion 512 (file 58/1/595, session 10 March 2021) quotes the SCC holding and expressly cites Official Gazette **issue 25 (تابع), 18 June 1998**. Treat the competing issue 35 reference as a likely secondary metadata error.
+- The State Council opinion is a judicial-advisory cross-reference, not the original SCC judgment or Gazette scan. Those primary originals remain outstanding.
