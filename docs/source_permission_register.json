@@ -2282,6 +2282,54 @@
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "No bulk/API permission established; manual page access only",
       "required_next_action": "Preserve attribution and CC BY 4.0 notice for the displayed text; obtain Gazette page images from an authorized source; do not assume the site licence covers third-party scans or bulk extraction."
+    },
+    {
+      "source_id": "EG-CAIRO24-OLDRENT-CASE21-48-2026",
+      "authority": "Cairo24 news report",
+      "source_page": "https://www.cairo24.com/250742",
+      "material_types": [
+        "secondary procedural reporting on SCC Case 21/48 of Judicial Year 48 concerning Law 164/2025"
+      ],
+      "access_status": "Public news report dated 8 Nov 2026; reports adjournment to 13 Dec 2026; not a court docket or judgment",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used only as a locator for reported procedural status. No source licence or written permission was reviewed or established; public accessibility does not establish archiving, extraction, commercial reuse or redistribution permission.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public article; no bulk/API permission established",
+      "required_next_action": "Verify the hearing date and procedural status against an official SCC docket/court record; review site terms and obtain permission before reuse beyond citation."
+    },
+    {
+      "source_id": "EG-ELWATAN-OLDRENT-CASE21-48-2026",
+      "authority": "Al-Watan news report",
+      "source_page": "https://www.elwatannews.com/news/details/8392899",
+      "material_types": [
+        "secondary procedural reporting on SCC Case 21/48 of Judicial Year 48 concerning Law 164/2025"
+      ],
+      "access_status": "Public news report dated 9 Nov 2026; reports adjournment to 13 Dec 2026 and no final judgment",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used only as a secondary corroborating report of procedural status. No source licence or written permission was reviewed or established; public accessibility does not establish archiving, extraction, commercial reuse or redistribution permission.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public article; no bulk/API permission established",
+      "required_next_action": "Verify procedural status against an official SCC docket/court record; review site terms and obtain permission before reuse beyond citation."
+    },
+    {
+      "source_id": "EG-ALEQARIA-OLDRENT-CASE44-48-2026",
+      "authority": "Al-Aqaria news report",
+      "source_page": "https://www.aleqaria.com.eg/post/details/353182/",
+      "material_types": [
+        "secondary reporting of newly filed SCC Case 44/48 of Judicial Year 48 challenging Law 164/2025"
+      ],
+      "access_status": "Public news report dated 6 Oct 2026; reports filing of Case 44/48; no judgment or official docket record obtained",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used only as a secondary discovery lead for a newly reported docket entry. No source licence or written permission was reviewed or established; public accessibility does not establish archiving, extraction, commercial reuse or redistribution permission.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public article; no bulk/API permission established",
+      "required_next_action": "Verify case number, filing date and relief sought against official SCC docket/registry; review site terms and obtain permission before reuse beyond citation."
     }
   ]
 }
