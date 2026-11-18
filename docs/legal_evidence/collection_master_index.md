@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 95)
+**Last updated:** 2026-11-18 (expanded through checkpoint 96)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -15,7 +15,7 @@
 
 ## Collection checkpoints
 
-| [agent3_commercial_corporate_investment_checkpoint_2026-11-18.md](agent3_commercial_corporate_investment_checkpoint_2026-11-18.md) | Agent 3 source re-check: Commercial Code 17/1999, Leasing/Factoring 176/2018, FRA Decision 7/2019 2026 consolidation, Competition amendment chain, and GOEIC Law 4/2026 currentness lead; no duplicate corpus-count increase |
+| [agent3_commercial_corporate_investment_checkpoint_2026-11-18.md](agent3_commercial_corporate_investment_checkpoint_2026-11-18.md) | Agent 3 source re-check plus Arabic text acquisition: Commercial Code 17/1999, Leasing/Factoring 176/2018, FRA Decision 7/2019 2026 consolidation, Competition amendment chain, and full inserted text of Importers Register Law 4/2026 |
 
 | File | Main contents |
 |---|---|
@@ -973,4 +973,4 @@
 - Law 20/2024: Official Gazette issue 14 مكرر, 5 Apr 2024; effective 6 Apr 2024. MOF official record marks it in force; official Gazette DSpace and Amiri Press text obtained.
 - Replaces Consumer Protection Law 181/2018 Article 71 for Article 8 strategic-products offences. Current penalty: imprisonment at least one year and fine EGP 150,000–3 million or value of goods (whichever greater); recidivism 2–5 years and doubled fine limits; confiscation, possible closure up to six months, publication in two daily newspapers, possible licence cancellation.
 - Both replacement Article 71 and commencement Article 2 transcribed in Agent 3 file. Original Article 71 text is historical only.
-- **Updated Agent 3 minimum:** 88 distinct instruments with some Arabic text surfaced; 1,127 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+- **Updated Agent 3 minimum:** 89 distinct instruments with some Arabic text surfaced; 1,133 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
