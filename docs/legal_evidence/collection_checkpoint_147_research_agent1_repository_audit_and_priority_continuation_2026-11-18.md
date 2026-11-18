@@ -216,3 +216,11 @@ Additional amendment and implementation relationships:
 | Existing-source audits / provenance reconciliations | 1 batch |
 
 This is intentionally a zero-addition checkpoint: the work updated status and source distinctions without creating duplicate legal-instrument or article-text records. Cumulative instrument-type totals require a normalized instrument-type field and repository-wide deduplication; the 189-row catalogue count must not be presented as a count of base laws or full texts.
+
+
+## 14. Case 42/17 Gazette issue number resolved by official judicial-advisory cross-reference
+
+The earlier note recorded a conflict between issue 35 supplement and issue 25 supplement. A full published General Assembly opinion of the Egyptian State Council (Opinion 512, file 58/1/595, session 10 March 2021) was opened and inspected. It quotes the controlling passage from SCC Case 42/17 and expressly cites **Official Gazette issue 25 (تابع), 18 June 1998**. Source:
+https://www.elmodawanaeg.com/الفتوى-رقم-512-،-ملف-رقم-58-1-595-،-بتاريخ-جلسة-2021-3-10/
+
+Accordingly, issue 25 supplement is now the better-supported publication reference. The earlier issue 35 reference should be treated as a secondary metadata error unless an original Gazette page disproves it. The full SCC Case 42/17 original judgment and the Gazette scan are still not acquired; the State Council opinion is an official judicial-advisory reproduction/cross-reference, not a substitute for the SCC judgment.
