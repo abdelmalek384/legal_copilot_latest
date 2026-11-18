@@ -1986,3 +1986,102 @@ The 2020 Gazette scan is 22 printed pages and fully searchable. It replaces the 
 ITIDA's official website confirms it is the authority responsible for licensing and regulating IT activities and the electronic signature trust ecosystem under Law 15/2004 and its Executive Regulation. The official 2020 Gazette PDF is sufficient to count the 2020 amended regulation as text obtained, but the original 2005 Regulation 109/2005 and full amending decision chain still require a consolidated source package.
 
 **Collection status:** Law 15/2004 base statute was previously captured in part (Articles 1–13); Decision 109/2005 is officially confirmed as original Executive Regulation (24 articles + annex), but original Gazette text not yet acquired; official Decision 331/2020 Gazette scan and amended regulation through Article 27 plus technical annex acquired. Conflicting secondary reference to Decision 361/2020 remains unresolved. No lawyer approval or rights clearance claimed.
+
+
+## 21. Consumer Protection Law 181/2018 — Executive Regulation 822/2019 and Gazette amendment Law 20/2024
+
+### A. Law 181/2018 and official CPA source
+
+**Official CPA PDF (32 pages):** https://cpa.gov.eg/Portals/0/Law/CPA-Newlaw.pdf  
+**Official CPA legislation page:** https://cpa.gov.eg/ar-eg/تشريعات  
+**Searchable Arabic text (secondary legal publisher):** https://lawhub.info/eg/?p=11330
+
+The CPA's official PDF is the primary source locator but has corrupted Arabic extraction in the web reader. The secondary searchable text contains issuing provisions and a broad set of substantive provisions; use it as a transcription aid only and compare against the CPA PDF page images before product ingestion. The law's effective date was 14 December 2018 (three months after publication on 13 September 2018).
+
+### B. Executive Regulation — PM Decision 822/2019
+
+**Decision:** Prime Minister Decision 822/2019 issuing the Executive Regulation of Law 181/2018.  
+**Gazette:** Official Gazette issue 13 bis (أ), 1 April 2019.  
+**Effective:** 2 April 2019.  
+**Searchable full Arabic text (secondary publisher):** https://lawhub.info/eg/?p=12689  
+**Gazette metadata:** WIPO Lex record https://www.wipo.int/wipolex/ar/legislation/details/19958
+
+The searchable text returned in this session contains the issuing provisions and Executive Regulation Articles 1–23, but the page stops after Article 23; do not claim that the full regulation was extracted. It identifies consumer/product definitions, supplier and advertiser duties, Arabic labelling, price display, invoices, unfair/deceptive conduct, distance contracting, contests, returns, warranties, defect reporting, product recalls, repair and after-sales service.
+
+**Verbatim — Regulation Article 1 (selected definitions):**
+
+> المادة 1
+>
+> فى تطبيق أحكام هذه اللائحة يقصد بالكلمات والعبارات التالية المعنى المبين قرين كل منها:
+>
+> 1 – القانون: قانون حماية المستهلك الصادر بالقانون رقم 181 لسنة 2018.
+>
+> 2 – اللائحة: اللائحة التنفيذية لقانون حماية المستهلك المشار إليه.
+>
+> 3 – الجهاز: جهاز حماية المستهلك.
+>
+> 4 – الوزير المختص: رئيس مجلس الوزراء.
+>
+> 5 – المستهلك: كل شخص طبيعى أو اعتبارى يقدم إليه أحد المنتجات لإشباع حاجاته غير المهنية أو غير الحرفية أو غير التجارية، أو يجرى التعامل أو التعاقد معه بهذا الخصوص.
+>
+> 7 – المنتجات: السلع والخدمات المقدمة من أشخاص القانون العام أو الخاص، وتشمل السلع المستعملة التى يتم التعاقد عليها من خلال مورد، عدا الخدمات المالية والمصرفية المنظمة بأحكام قانون البنك المركزى والجهاز المصرفى، وقانون تنظيم الرقابة على الأسواق والأدوات المالية غير المصرفية.
+
+**Verbatim — Regulation Article 13 (14-day return right):**
+
+> المادة 13
+>
+> للمستهلك الحق في استبدال السلعة أو إعادتها مع استرداد قيمتها النقدية، دون إبداء أى أسباب ودون تحمل أية نفقات خلال أربعة عشر يومًا من تسلمها، وذلك دون الإخلال بأى ضمانات أو شروط قانونية أو اتفاقية أفضل للمستهلك، وللجهاز أن يحدد مددًا أقل بالنظر إلى طبيعة السلع.
+
+**Verbatim — Regulation Article 15 (defect reporting):**
+
+> المادة 15
+>
+> يلتزم المورد خلال مدة أقصاها سبعة أيام من اكتشافه أو علمه بوجود عيب في المنتج أن يبلغ الجهاز بهذا العيب وبأضراره المحتملة.
+>
+> فإذا كان من شأن العيب الإضرار بصحة المستهلك أو سلامته، يلتزم المورد بأن يبلغ الجهاز بهذا العيب فور اكتشافه أو علمه به، وأن يعلن توقفه عن الإنتاج المعيب محل الإخطار أو التعامل عليه ويحذر المستهلكين من استخدامه.
+
+**Verbatim — Regulation Article 17 (durable-goods warranty):**
+
+> المادة 17
+>
+> يلتزم المورد بضمان السلع المعمرة ضد عيوب الصناعة لمدة عامين على الأقل من تاريخ استلام المستهلك للسلعة، وذلك مع عدم الإخلال بأية ضمانات أو شروط قانونية أو اتفاقية أفضل للمستهلك.
+
+**Verbatim — Regulation Article 19 (repeated defect):**
+
+> المادة 19
+>
+> يلتزم المورد باستبدال السلعة بأخرى جديدة من ذات النوع والمواصفات أو استردادها مع رد قيمتها، دون أى تكلفة على المستهلك إذا تكرر في السلعة العيب ذاته أكثر من مرتين خلال العام الأول من تاريخ استلام المستهلك لها بما يؤثر جوهريًا على جودة أدائها الوظيفى طبقًا لطبيعتها والعرف التجارى.
+
+### C. Law 20/2024 — official Gazette amendment
+
+**Official Ministry of Finance record:** https://mof.gov.eg/ar/legislation/legislation-6643253a8897b900092f6319  
+**Official Gazette repository item:** https://dspace.id.com.eg/items/a574ba86-9011-4375-b8eb-c59f8966e194  
+**Gazette:** issue 14 bis, 5 April 2024.  
+**Official Arabic PDF listed by the Gazette repository:** العدد 14 مكرر - مؤمن.pdf (174.88 KB).
+
+The Ministry of Finance identifies Law 20/2024 as **سارٍ** and describes it as amending Law 181/2018. The Gazette repository metadata identifies the Amiri Press as publisher and the item as public.
+
+**Verbatim — Law 20/2024 Article 1 replacement of Article 71:**
+
+> (المادة الأولى)
+>
+> يستبدل بنص المادة (71) من قانون حماية المستهلك الصادر بالقانون رقم 181 لسنة 2018، النص الآتي:
+>
+> مادة (71):
+>
+> يعاقب بالحبس مدة لا تقل عن سنة وبغرامة لا تقل عن مائة وخمسين ألف جنيه ولا تجاوز ثلاثة ملايين جنيه أو ما يعادل قيمة البضاعة موضوع الجريمة أيهما أكبر، كل من خالف حكم المادة (8) من هذا القانون.
+>
+> وفي حالة العود، يعاقب بالحبس مدة لا تقل عن سنتين ولا تجاوز خمس سنوات وتضاعف قيمة الغرامة بحديها.
+>
+> وفي جميع الأحوال، تضبط الأشياء موضوع الجريمة، ويحكم بمصادرتها وبإغلاق المحل أو المكان الذي وقعت فيه الجريمة مدة لا تجاوز ستة أشهر، وينشر الحكم في جريدتين يوميتين واسعتي الانتشار على نفقة المحكوم عليه.
+>
+> ويجوز الحكم بإلغاء رخصة المحل أو المكان الذي وقعت فيه الجريمة.
+
+Law 20/2024 Article 2 provides publication and commencement from the day following Gazette publication. It changes Article 71 only in the text captured here; do not describe it as a comprehensive amendment of Law 181/2018.
+
+### D. Rights and currentness
+
+- CPA's official Law 181/2018 PDF is public-access but extraction quality is poor.
+- PM Decision 822/2019 searchable text is a secondary reproduction and only Articles 1–23 were surfaced in this pass; full text and amendment chain still required.
+- Law 20/2024 has Ministry of Finance current-law metadata and Amiri Press Gazette issue/date evidence; full Arabic amendment PDF listed in DSpace but page-image transcription still required.
+- No lawyer approval or rights clearance claimed.
