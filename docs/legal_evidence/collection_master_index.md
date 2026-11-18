@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 121)
+**Last updated:** 2026-11-18 (expanded through checkpoint 122)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1052,3 +1052,6 @@
 - Replaces Consumer Protection Law 181/2018 Article 71 for Article 8 strategic-products offences. Current penalty: imprisonment at least one year and fine EGP 150,000–3 million or value of goods (whichever greater); recidivism 2–5 years and doubled fine limits; confiscation, possible closure up to six months, publication in two daily newspapers, possible licence cancellation.
 - Both replacement Article 71 and commencement Article 2 transcribed in Agent 3 file. Original Article 71 text is historical only.
 - **Updated Agent 3 minimum:** 92 distinct instruments with some Arabic text surfaced; 1,186 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+| checkpoint 103 — Agent 3 Companies Law Decision 2928/2022 | Official Amiri Press text of PM Decision 2928/2022 and MIFT consolidated Executive Regulation 96/1982 (amended through 21 Aug 2022); two operative provisions transcribed; Companies Law amendment/currentness work remains open; cumulative Agent 3 minimum 93 instruments / 1,188 provision units |
