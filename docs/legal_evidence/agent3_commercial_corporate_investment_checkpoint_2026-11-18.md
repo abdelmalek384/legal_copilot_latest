@@ -553,3 +553,146 @@ The ITDA official PDF establishes the primary-source file. The text below is tra
 - Families amendment/currentness-complete: 0/13.
 - Lawyer-reviewed: 0%.
 - Whole-corpus estimate remains approximately 2%; no denominator-based recalculation is available.
+
+
+## 18. Electronic Signature Law 15/2004 — Gazette text and 2020 amendment
+
+**Primary-source correction:** The ITIDA-hosted Gazette reproduction identifies the 2020 amendment as Ministerial Decision **331/2020**, dated 19 April 2020, published in Egyptian Gazette/وقائع مصرية issue 95 (تابع), 23 April 2020. Some secondary/press pages refer to 361/2020. Treat 331/2020 as the Gazette-confirmed number unless a separate official Gazette instrument numbered 361/2020 is located.
+
+### Primary sources and provenance
+- Law 15/2004, Official Gazette issue 17 (تابع د), 22 April 2004: https://itida.gov.eg/English/Documents/1.pdf (Arabic text layer).
+- Original Executive Regulation Decision 109/2005, Government Bulletin issue 115 (supplement), 25 May 2005: https://www.itida.gov.eg/English/Documents/4.pdf (English translation); MCIT publication notice: https://mcit.gov.eg/Ar/Media_Center/Press_Room/Press_Releases/1158
+- Decision 331/2020 and amended Arabic regulation, Gazette issue 95 (تابع), 23 April 2020: https://itida.gov.eg/English/Documents/3.pdf
+- ITIDA overview and service pages are administrative guidance, not legislation: https://itida.gov.eg/Arabic/Pages/E-Signature.aspx
+
+### Exact Arabic text — Law 15/2004, Articles 14–21
+
+**Article 14:**
+> للتوقيع الإلكتروني، في نطاق المعاملات المدنية والتجارية والإدارية، ذات الحجية المقررة للتوقيعات في أحكام قانون الإثبات في المواد المدنية والتجارية، إذا روعي في إنشائه وإتمامه الشروط المنصوص عليها في هذا القانون والضوابط الفنية والتقنية التي تحددها اللائحة التنفيذية لهذا القانون.
+
+**Article 15:**
+> للكتابة الإلكترونية وللمحررات الإلكترونية، في نطاق المعاملات المدنية والتجارية والإدارية، ذات الحجية المقررة للكتابة والمحررات الرسمية والعرفية في أحكام قانون الإثبات في المواد المدنية والتجارية، متى استوفت الشروط المنصوص عليها في هذا القانون وفقاً للضوابط الفنية والتقنية التي تحددها اللائحة التنفيذية لهذا القانون.
+
+**Article 16:**
+> الصورة المنسوخة على الورق من المحرر الإلكتروني الرسمي حجة على الكافة بالقدر الذي تكون فيها مطابقة لأصل هذا المحرر، وذلك ما دام المحرر الإلكتروني الرسمي والتوقيع الإلكتروني الموجودين على الدعامة الإلكترونية.
+
+**Article 17:**
+> تسري في شأن إثبات صحة المحررات الإلكترونية الرسمية والعرفية والتوقيع الإلكتروني والكتابة الإلكترونية، فيما لم يرد بشأنه نص في هذا القانون أو في لائحته التنفيذية الأحكام المنصوص عليها في قانون الإثبات في المواد المدنية والتجارية.
+
+**Article 18:**
+> يتمتع التوقيع الإلكتروني والكتابة الإلكترونية والمحررات الإلكترونية بالحجية في إثبات إذا ما توافرت فيها الشروط الآتية:
+>
+> (أ) ارتباط التوقيع الإلكتروني بالموقع وحده دون غيره.
+>
+> (ب) سيطرة الموقع وحده دون غيره على الوسيط الإلكتروني.
+>
+> (ج) إمكانية كشف أي تعديل أو تبديل في بيانات المحرر الإلكتروني أو التوقيع الإلكتروني.
+>
+> وتحدد اللائحة التنفيذية لهذا القانون الضوابط الفنية والتقنية اللازمة لذلك.
+
+**Article 19 (licensing):**
+> لا يجوز مزاولة نشاط إصدار شهادات التصديق الإلكتروني إلا بترخيص من الجهة، وذلك نظير مقابل يحدده مجلس إدارتها وفقاً للإجراءات والقواعد والضمانات التي تقررها اللائحة التنفيذية لهذا القانون ودون التقيد بأحكام القانون رقم 129 لسنة 1947 بالتزامات المرافق العامة، ومع مراعاة ما يأتي:
+>
+> (أ) أن يتم اختيار المرخص له في إطار من المنافسة والعلانية.
+>
+> (ب) أن يحدد مجلس إدارة الهيئة مدة الترخيص بحيث لا تزيد على تسعة وتسعين عاماً.
+>
+> (ج) أن تحدد وسائل الإشراف والمتابعة الفنية والمالية التي تكفل حسن سير المرفق بانتظام واطراد.
+>
+> ولا يجوز التوقف عن مزاولة النشاط المرخص به أو الاندماج في جهة أخرى أو التنازل عن الترخيص للغير إلا بعد الحصول على موافقة كتابية مسبقة من الهيئة.
+
+**Article 20:**
+> تحدد اللائحة التنفيذية لهذا القانون البيانات التي يجب أن تشتمل عليها شهادة التصديق الإلكتروني.
+
+**Article 21:**
+> بيانات التوقيع الإلكتروني والوسائط الإلكترونية والمعلومات التي تقدم إلى الجهة المرخص لها بإصدار شهادات التصديق الإلكتروني سرية، ولا يجوز لمن قدمت إليه أو اتصل بها بحكم عمله إفشاؤها للغير أو استخدامها في غير الغرض الذي قدمت من أجله.
+
+### Exact Arabic text — Decision 331/2020 amended Executive Regulation, Articles 1–8
+
+**Article 1 (new definitions of electronic seal and timestamp):**
+> ٩- الختم الإلكتروني: Electronic seal
+>
+> هو توقيع إلكتروني يسمح بتحديد – الشخص الاعتباري – منشئ الختم ويميزه عن غيره.
+>
+> ١٠- منشئ الختم: الشخص الاعتباري الحائز على بيانات إنشاء الختم الإلكتروني واستخدامه.
+>
+> ١١- بيانات إنشاء الختم الإلكتروني: عناصر منفردة خاصة بمنشئ الختم الإلكتروني وتميزه عن غيره، ومنها على الأخص مفاتيح الشفرة الخاصة به، والتي تستخدم في إنشاء الختم الإلكتروني.
+>
+> ١٢- شهادة الختم الإلكتروني: الشهادة التي تصدر من الجهة المرخص لها بالتصديق، وتثبت الارتباط بين منشئ الختم وبيانات إنشاء الختم الإلكتروني.
+>
+> ١٣- البصمة الزمنية الإلكترونية: ما يوضع على محرر إلكتروني ويتخذ شكل حروف أو أرقام أو رموز أو إشارات أو غيرها والتي تربط تلك البيانات بوقت محدد لإثبات وجود هذا المحرر الإلكتروني في ذلك الوقت.
+
+**Article 2 (security controls):**
+> تكون منظومة تكوين بيانات إنشاء التوقيع الإلكتروني مؤمنة متى استوفت الضوابط الآتية:
+>
+> (أ) الطابع المنفرد لبيانات إنشاء التوقيع الإلكتروني.
+>
+> (ب) سرية بيانات إنشاء التوقيع الإلكتروني.
+>
+> (ج) عدم قابلية الاستنتاج أو الاستنباط لبيانات إنشاء التوقيع الإلكتروني.
+>
+> (د) حماية التوقيع الإلكتروني من التزوير، أو التقليد، أو التحريف، أو الاصطناع أو غير ذلك من صور التلاعب.
+>
+> (هـ) عدم إحداث أي إتلاف بمحتوى أو مضمون المحرر الإلكتروني المراد توقيعه.
+>
+> (و) ألا تحول هذه المنظومة دون علم الموقع علماً تاماً بمضمون المحرر الإلكتروني قبل توقيعه له.
+>
+> (ز) أن تربط التوقيع الإلكتروني بالمحرر الإلكتروني، بطريقة متفردة تمنع إجراء أي تعديل بعد عملية التوقيع دون اكتشافه.
+
+**Article 3 (technical control, selected clauses):**
+> يجب أن تتضمن منظومة تكوين بيانات إنشاء التوقيع الإلكتروني المؤمنة الضوابط الفنية والتقنية اللازمة، وعلى الأخص ما يلي:
+>
+> (أ) أن تكون المنظومة مستندة إلى تقنية شفرة المفاتيح العام والخاص وإلى المفتاح الشفري الجذري الخاص بالجهة المرخص لها والتي تصدر لها الهيئة، وذلك كله وفقاً للمعايير الفنية والتقنية المشار إليها في الفقرة (أ) من الملحق الفني والتقني المرفق بهذه اللائحة.
+>
+> (ب) أن تكون التقنية المستخدمة في إنشاء مفاتيح الشفرة الجذرية لجهات التصديق الإلكتروني من التي تستعمل مفاتيح تشفير بأطوال لا تقل عن ٤٠٩٦ bit.
+
+**Article 4 (timestamp integrity):**
+> يشترط لإثبات البصمة الزمنية الإلكترونية توافر ما يلي:
+>
+> (أ) أن تربط التاريخ والوقت بالمحرر الإلكتروني بطريقة تمنع إمكانية تغيير البيانات دون اكتشافها.
+>
+> (ب) أن يستند إلى مصدر زمني دقيق معتمد من السلطة الجذرية العليا للتصديق الإلكتروني.
+>
+> (ج) يجرى إنشاؤه بواسطة السلطة الجذرية العليا للتصديق الإلكتروني أو من إحدى الجهات المرخص لها من قبل الهيئة، وفقاً للضوابط الفنية والتقنية المنصوص عليها في الفقرة (أ) من الملحق الفني والتقني المرفق بهذه اللائحة.
+
+**Article 5:**
+> لمجلس إدارة الهيئة أن يضع نظم وقواعد أخرى لمنظومة تكوين بيانات إنشاء التوقيع الإلكتروني، لمواكبة التطورات التقنية والتكنولوجية.
+
+**Article 6:**
+> الهيئة هي السلطة الجذرية العليا للتصديق الإلكتروني في جمهورية مصر العربية، وتتولى إصدار المفاتيح الشفرية الجذرية الخاصة بالجهات المرخص لها بإصدار شهادات التصديق الإلكتروني.
+>
+> وتتحقق الهيئة قبل منح ترخيص مزاولة نشاط تقديم خدمات التوقيع الإلكتروني من أن منظومة تكوين بيانات إنشاء التوقيع الإلكتروني لدى الجهة المرخص لها مؤمنة طبقاً للمادة (٢) من هذه اللائحة، ومتضمنة الضوابط الفنية والتقنية والنظم والقواعد المبينة في المادتين (٣، ٥) من هذه اللائحة.
+>
+> وتعتبر المنظومة بعد منح الترخيص وطوال مدة نفاذ مفعوله، مؤمنة وفعالة ما لم يثبت العكس.
+
+**Article 7:**
+> تقدم الهيئة، بناءً على طلب كل ذي شأن، خدمة الفحص والتحقق من صحة بيانات إنشاء التوقيع الإلكتروني والختم الإلكتروني نظير مقابل يحدد فئاته مجلس إدارة الهيئة، ويجوز للهيئة أن تعهد للغير بتقديم هذه الخدمة تحت إشرافها. وفي جميع الأحوال، تصدر الهيئة شهادة فحص بيانات إنشاء التوقيع الإلكتروني.
+
+**Article 8:**
+> تقدم الهيئة، بناءً على طلب كل ذي شأن، خدمة فحص التوقيع الإلكتروني، الختم الإلكتروني، البصمة الزمنية الإلكترونية، نظير مقابل يحدد فئاته مجلس إدارة الهيئة، وتتحقق الهيئة في سبيل القيام بذلك مما يأتي:
+>
+> (أ) سلامة شهادة التصديق الإلكتروني وتوافقها مع بيانات إنشاء التوقيع الإلكتروني أو الختم الإلكتروني.
+>
+> (ب) إمكان تحديد مضمون المحرر الإلكتروني محل الفحص بدقة.
+>
+> (ج) سهولة العلم بشخص الموقع أو منشئ الختم.
+>
+> (د) توافر الشروط الواردة في المادة (4) من هذه اللائحة؛ وذلك لفحص البصمة الزمنية الإلكترونية.
+
+### Currentness and legal classification
+- Law 15/2004 is a statute; Decision 109/2005 is the original executive regulation; Decision 331/2020 is the Gazette-confirmed amending ministerial decision and replacement amended regulation.
+- The 2020 Gazette issue 95 text adds electronic seal and timestamp concepts and related technical controls. The full technical annex is not captured in these excerpts and must be acquired.
+- The 4096-bit requirement is present in Article 3(b) of this 2020 regulation text. Do not treat it as a current universal cryptographic recommendation without checking later ITIDA technical standards and decisions.
+- ITIDA pages describing services, FAQs and licensed providers are guidance, not legislation.
+- Government-hosted legal text remains subject to the project's source-rights policy; public access does not automatically authorize bulk redistribution.
+- The 361/2020 reference in earlier notes is now a discrepancy lead, not a confirmed amendment number. Use 331/2020 for the Gazette text unless another distinct official instrument proves otherwise.
+
+**Incremental counts:** 1 newly confirmed amendment instrument (Decision 331/2020) and 16 additional provision-level texts (Law Articles 14–21 = 8; amended regulation Articles 1–8 = 8). Law 15/2004 and Decision 109/2005 were already counted.
+
+## 19. Revised counts after electronic-signature text capture
+- Unique instruments with Arabic text surfaced: 91 (90 + Decision 331/2020).
+- Article/provision text units: 1,173 (1,157 + 16).
+- Assigned families touched: 13/13.
+- Families amendment/currentness-complete: 0/13.
+- Lawyer-reviewed: 0%.
+- Whole-corpus estimate remains approximately 2%; no validated denominator exists for a more precise figure.
