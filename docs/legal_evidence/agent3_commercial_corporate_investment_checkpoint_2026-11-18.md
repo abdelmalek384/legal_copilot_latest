@@ -1113,3 +1113,18 @@ Primary catalogue record: https://www.mift.gov.eg/legislation/details/252
 - Three provision units counted: Law 212/1994 Articles 1–2 and Law 230/1989 Article 2 (the clause repealing Companies Law Article 183).
 - The 1994 fee rule is historical/repealed; it is included as amendment-chain evidence, not current law.
 - Cumulative Agent 3 count: 101 unique instruments / 1,210 provision units.
+
+
+## 30. Executive Regulation Decision 144/2019 — Companies Law Article 205
+
+- Instrument: Minister of Investment and International Cooperation Decision 144/2019, amending Executive Regulation Decision 96/1982.
+- Official MIFT Law 159/1981 record lists Decision 144/2019 among the regulation's attached amendment instruments. MIFT record: https://www.mift.gov.eg/legislation/details/252
+- Secondary contemporaneous report dated 28 July 2019 confirms Decision 144/2019 was issued in June 2019 and its amendment was limited to Executive Regulation Article 205: https://hapijournal.com/2019/07/28/92-قرارا-لتيسير-مناخ-الأعمال-وتسهيل-الإجراءات-للمستثمرين/
+- Current Arabic text of Executive Regulation Article 205, with amendment footnote, is reproduced at https://lawhub.info/eg/?p=11388 and independently in the current consolidated regulation copy surfaced by legal-library search.
+- **Text of Article 205 as amended:**
+> مع عدم الإخلال بالقواعد والأحكام المنظمة للشركات المقيد لها أوراق مالية بالبورصة المصرية وأحكام كل من القانون رقم 95 لسنة 1992 والقانون رقم 93 لسنة 2000، لا يجوز قيد أي نقل لملكية الأسهم في سجلات الشركة من تاريخ نشر الدعوة إلى الاجتماع أو من تاريخ إرسالها لأصحاب الشأن، حتى تاريخ انفضاض الجمعية العامة.
+- Legal effect: freezes registration of share transfers in the company's books from publication/sending of the general-assembly invitation until the general assembly adjourns, subject to the stated listed-company and statutory qualifications.
+- **Source status:** amendment identity and scope corroborated by MIFT catalogue plus contemporaneous secondary reporting; operative text is current consolidated regulation wording, not a separately inspected Gazette original of Decision 144/2019. Do not misrepresent this as Gazette-original verification.
+- Gazette issue/date, exact issuing clauses, and any later modification to Article 205 remain to be checked.
+
+**Incremental count:** one unique amendment instrument and one provision unit (Decision 144/2019, amendment to Regulation Article 205). Cumulative Agent 3 minimum: 102 instruments / 1,211 provision units.
