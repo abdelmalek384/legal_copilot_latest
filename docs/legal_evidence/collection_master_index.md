@@ -599,3 +599,11 @@
 - It amends Commercial Code 17/1999 Articles 449, 482, 503, 504, 531, 537 and 544, and Stamp Tax Law 111/1980 Article 52. It changes cheque presentation periods (three/four months to six/eight months), recourse limitation periods (six months to one year), early-presentment treatment, and other cheque/negotiable-instrument rules. Effective date is tied to cheque commencement under Law 158/2003 (1 Oct 2005).
 - Eight provision units transcribed in Agent 3 file; original Gazette PDF still needs capture.
 - **Updated cumulative Agent 3 minimum:** 39 distinct instruments with some Arabic text surfaced; 270 article/provision text units surfaced; 13/13 law families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Commercial Code cheque commencement amendments 168/2000, 150/2001, 158/2003
+
+- Laws 168/2000 (Official Gazette issue 30 تابع, 27 Jul 2000), 150/2001 (issue 25 bis أ, 24 Jun 2001) and 158/2003 (issue 27, 3 Jul 2003) are now transcribed in Agent 3 file. Law 150 Gazette PDF was retrieved from the official Customs domain; the other two full texts were surfaced through official indexed consolidated sources/secondary reproductions.
+- These laws sequentially postponed cheque-law commencement to 1 Oct 2005, adjusted the transitional cheque cutoff to 1 Oct 2006, and adjusted the commencement of Commercial Code Article 536 and then Articles 535/536. Six issuing/article units transcribed.
+- The Official Supreme Constitutional Court portal judgment in constitutional case 29/34, hearing 11 Jun 2006, recites the amendment chain and is indexed as primary judicial authority.
+- **Updated Agent 3 minimum:** 42 distinct legal instruments with some Arabic text surfaced; 276 article/provision text units surfaced; 13/13 law families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
