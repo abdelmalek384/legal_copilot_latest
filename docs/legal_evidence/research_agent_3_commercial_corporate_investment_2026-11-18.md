@@ -4592,3 +4592,68 @@ The consolidated 2310/2017 text's footnotes identify these subsequent PM decisio
 The full texts of Decisions 1199/2020, 2467/2020, 910/2021, 2300/2022, 4426/2022 and 2140/2023 remain to be retrieved individually. The 140-article consolidated regulation is a substantial acquisition, but it must not be treated as complete/current until these instruments, Decision 2731/2019 and all annexes are Gazette-matched.
 
 **Collection status:** full searchable 140-article Decision 2310/2017 consolidated text through 12 August 2024 surfaced; selected provisions transcribed. Decision 2731/2019 and its two FDI-reporting articles identified, with current 45-day obligation confirmed by MIFT in July 2026. Six further amendment decisions (1199/2020, 2467/2020, 910/2021, 2300/2022, 4426/2022, 2140/2023) identified from consolidated footnotes but not individually downloaded. No lawyer approval or rights clearance claimed.
+
+
+## 41. Investment Executive Regulation amendment Decision 2140/2023 — private free zones and service free zones
+
+**Decision:** Prime Minister Decision 2140/2023, dated 4 June 2023.  
+**Official searchable Arabic text:** https://mksegypt.org/public/ar/decisions/16887  
+**Status:** The source record marks the decision **ساري** and reproduces the complete three-article decision.
+
+Decision 2140/2023 replaces Article 76 of Executive Regulation 2310/2017 (private free-zone project conditions) and adds Article 76 bis (service private free zones).
+
+**Verbatim — Article 1 / replacement Article 76:**
+
+> (المادة الأولى)
+>
+> يُستبدل بنص المادة (76) من اللائحة التنفيذية لقانون الاستثمار المشار إليها النص الآتى:
+>
+> "يجوز لمجلس الوزراء الموافقة على إقامة مشروعات المناطق الحرة الخاصة، بناءً على عرض الوزير المختص، وبعد الدراسة والتقييم من جانب الهيئة، وذلك وفقًا للشروط والضوابط الآتية:
+>
+> 1- أن يتخذ المشروع شكل شركة مساهمة أو شركة ذات مسئولية محدودة.
+>
+> 2- ألا تقل نسبة المكون المحلى عن (30٪) خلال مدة أقصاها ثلاث سنوات من بدء التشغيل.
+>
+> 3- ألا تقل نسبة التصدير إلى خارج البلاد عن (80٪) ويجوز الاستثناء من هذه النسبة فى حالة المشروعات الاستراتيجية ذات الأهمية الخاصة.
+>
+> 4- تلتزم مشروعات المناطق الحرة الخاصة بشروط الأمن الصناعى والدفاع المدنى والحريق وفقًا للكود المصرى المتبع فى هذا الشأن، أو وفقًا للقرارات الصادرة من الوزير المختص بشئون الصناعة بشأن المنشآت الصناعية، كما تلتزم بتأمين منشآتها وحدودها بأبراج حراسة وكاميرات مراقبة وتواجد أفراد من أمن الهيئة وأمن الموانئ وعلى نفقة المشروع.
+>
+> 5- تلتزم الهيئة بمتابعة أنشطة مشروعات المناطق الحرة الخاصة بما يضمن حسن قيامها بأعمالها والتأكد من سلامة الإجراءات المتبعة لمزاولة النشاط، وذلك وفق الآليات التى يضعها مجلس إدارة الهيئة وتعتمد من مجلس الوزراء، على أن تقوم إدارة المنطقة المختصة بعرض تقارير دورية على مجلس إدارتها للنظر فى مدى جدوى استمرار المشروع للعمل بنظام المناطق الحرة الخاصة من عدمه، وعلى كافة مشروعات المناطق الحرة وضع كافة السجلات والدفاتر تحت تصرف الهيئة أثناء عمليات الفحص والمتابعة، وللهيئة أن تستعين بمن تراه من الجهات المعنية فى هذا الشأن، وتسقط الموافقة النهائية على المشروع إذا لم يقم المستثمر باتخاذ إجراءات جدية تنفيذية ومن ذلك البدء فى إجراءات التأسيس، تقديم الرسومات الهندسية، الحصول على الموافقات اللازمة لإقامة المشروع من الجهات المعنية، الجدول الزمنى للبدء فى مزاولة النشاط وذلك خلال ستة أشهر من تاريخ إخطاره بقرار الموافقة على المشروع، ويجوز مد هذه الفترة لمدة أو لمدد أخرى فى ضوء المبررات التى يقدمها أصحاب الشأن ويقدرها مجلس إدارة المنطقة الحرة.
+>
+> ويجوز لمجلس الوزراء للاعتبارات التى يقدرها فى كل حالة على حدة، وبناءً على عرض الوزير المختص، وبعد موافقة مجلس إدارة الهيئة، استثناء أحد المشروعات من شرط أو أكثر من تلك الشروط."
+
+**Verbatim — Article 2 / new Article 76 bis (service private free zone):**
+
+> (المادة الثانية)
+>
+> تُضاف إلى اللائحة التنفيذية المشار إليها مادة جديدة برقم (٧٦ مكررًا)، نصها الآتى:
+>
+> "استثناء من الشروط والضوابط المنصوص عليها بالمادة (76) من هذه اللائحة عدا ما ورد بالبند (5) منها، يجوز لمجلس الوزراء بناءً على عرض الوزير المختص، وبعد الدراسة والتقييم من جانب الهيئة، الموافقة على إنشاء منطقة حرة خاصة خدمية تتكون من مشروع خدمى رئيسى يقوم على إنشاء، وتطوير، وإدارة، وإتاحة حيز مكانى لبعض المشروعات الخدمية الفرعية التى تزاول أنشطة مماثلة، تندرج تحت أى من القطاعات الواردة بالمادة (1) من هذه اللائحة بنظام المناطق الحرة الخاصة، وذلك وفقًا للشروط والضوابط الآتية:
+>
+> 1- أن يتخذ المشروع الرئيسى بالمنطقة الحرة الخاصة الخدمية شكل شركة مساهمة أو شركة ذات مسئولية محدودة.
+>
+> 2- أن يلتزم المشروع الرئيسى بالمنطقة الحرة الخاصة الخدمية بشروط الدفاع المدنى والحريق وفقًا للكود المصرى المتبع فى هذا الشأن.
+>
+> 3- يصدر مجلس إدارة الهيئة بإجراءات واشتراطات إقامة المشروعات الخدمية الفرعية داخل المنطقة الحرة الخاصة قرارًا يعتمد من مجلس الوزراء بناءً على عرض الوزير المختص.
+>
+> 4- يختص مجلس إدارة المنطقة الحرة العامة التى تقع المنطقة الحرة الخاصة الخدمية فى نطاقها الجغرافى بالموافقة على إقامة المشروعات داخل المنطقة الحرة الخاصة الخدمية كما يختص بإلغائها، ويختص رئيس مجلس إدارة المنطقة الحرة العامة المشار إليها بالترخيص لتلك المشروعات بمزاولة أنشطتها والنظر فى تجديد الترخيص وتعديله، ويجب أن يتضمن الترخيص بيانًا بأغراض المشروع ومدة سريانه وحدوده وقيمة الضمان المالى الذى يقدم لمقابلة ما قد يستحق على المشروع من التزامات."
+
+**Verbatim — Article 3 (commencement):**
+
+> (المادة الثالثة)
+>
+> ينشر هذا القرار فى الجريدة الرسمية، ويعمل به من اليوم التالى لتاريخ نشره.
+>
+> صدر برئاسة مجلس الوزراء فى 15 ذى القعدة سنة 1444هـ (الموافق 4 يونيه سنة 2023م).
+
+### B. Related but not yet text-extracted Investment Regulation amendments
+
+The current 140-article consolidated Decision 2310/2017 identifies these additional amendments; their original Gazette text must still be obtained:
+- Decision 1199/2020 — adds a final paragraph to Article 76.
+- Decision 2467/2020 — replaces the second paragraph of Article 10 (Sector A).
+- Decision 910/2021 — adds a paragraph to Article 36(3), item 4.
+- Decision 2300/2022 — replaces Article 42 and the second paragraph of Article 43 (single approval).
+- Decision 4426/2022 — replaces Article 42(1) (single approval documentation), Official Gazette issue 49 (تابع), 8 December 2022. The official Gazette record page is mirrored at https://egyptianlaws.com/?p=153061; its PDF is embedded in an iframe and was not extracted.
+- Decision 4427/2022 — adds research centres/accreditation laboratories associated with automotive industry to sector schedules (full text captured in section 33).
+
+**Collection status:** Decision 2140/2023 full three-article text captured; it adds service private free zones and replaces private free-zone conditions. Other amendment records remain in the consolidated regulation's footnotes and are not yet individually text-verified.
