@@ -1163,16 +1163,16 @@
     {
       "source_id": "EG-ALHASSWA-COURT-CASSATION-TEXTS",
       "authority": "Alhasswa Law Firm legal library (secondary host; pages attribute source text to the Egyptian Court of Cassation legal portal)",
-      "source_page": "https://alhasswalawfirm.com/law-library/",
+      "source_page": "https://alhasswalawfirm.com/law-library/; https://alhasswalawfirm.com/law-library/law-143-1981; https://alhasswalawfirm.com/uploads/files/law-143-1981-1789186662928-97104762.pdf",
       "material_types": [
         "Searchable consolidated statutory texts for Laws 114/1946, 142/1964, 68/1947 and 70/1964",
         "PDF attachments and article-by-article statutory transcriptions"
       ],
-      "access_status": "Publicly accessible searchable text pages; the pages attribute the underlying text to the Court of Cassation legislative portal; no independent original Gazette binary authentication",
+      "access_status": "Public searchable 29-article Law143/1981 consolidated text and 16-page PDF inspected 2026-11-18; source attributes text to Court of Cassation legislation portal and includes amendment footnotes through Law11/2024; site terms not reviewed",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": "Checked 2026-11-18. The law-library pages for Laws 114/1946, 142/1964, 68/1947 and 70/1964 provide searchable consolidated texts and describe the underlying text as transcribed from the Court of Cassation legislative portal. These are secondary-hosted reproductions, not original Amiri Press Gazette PDFs. No specific licence for bulk collection, OCR, indexing, commercial use, public display or redistribution was identified.",
+      "permission_evidence": "Checked 2026-11-18. The law-library pages for Laws 114/1946, 142/1964, 68/1947 and 70/1964 provide searchable consolidated texts and describe the underlying text as transcribed from the Court of Cassation legislative portal. These are secondary-hosted reproductions, not original Amiri Press Gazette PDFs. No specific licence for bulk collection, OCR, indexing, commercial use, public display or redistribution was identified. The Law143/1981 PDF is a consolidated secondary-hosted text, not an original Gazette issue binary. Public access does not establish permission for bulk archiving, commercial reuse or redistribution.",
       "terms_checked_on": null,
       "bulk_download_or_api": "Individual pages/PDF attachments; no bulk/API permission established",
       "required_next_action": "Obtain original Amiri Press Gazette files where available; compare all article text and historical footnotes; review site terms and keep commercial reuse unknown absent affirmative permission."
