@@ -121,7 +121,7 @@
 
 **مادة 766**
 > (1) في التأمين من الحريق يكون المؤمن مسؤولاً عن كافة الأضرار الناشئة عن حريق، أو عن بداية حريق يمكن أن يصبح حريقاً كاملاً، أو عن خطر حريق يمكن أن يتحقق.
-> (2) ولا يقتصر التزامه على الأضرار الناشئة مباشرة عن الحريق بل يتناول أيضاً الأضرار التي تكون نتيجة حتمية له، وبالأخص ما يلحق الأشياء المؤمن عليها من ضرر بسبب اتخاذ وسائل الإنقاذ أو منع امتداد الحريق.
+> (2) The available PDF text extraction truncates the second paragraph after: «ولا يقتصر التزامه على الأضرار الناشئة مباشرة عن الحريق بل يتناول أيضاً الأضرار». The remainder is not transcribed here pending page-image verification.
 
 **مادة 767**
 > يضمن المؤمن تعويض الأضرار الناجمة عن الحريق ولو نشأ هذا الحريق عن عيب في الشيء المؤمن عليه.
@@ -145,5 +145,5 @@
 
 - **33 distinct article texts:** Articles 739–771 inclusive.
 - Articles 772–779 (suretyship) were already extracted in checkpoint 86 and are not duplicated.
-- The PDF text layer has OCR errors in Articles 750, 758, 760–762, 766 and 771. Article 766's second paragraph was completed by reference to the PDF text layer; page-image verification is required before production.
+- The PDF text layer has OCR errors in Articles 750, 758, 760–762, 766 and 771. Article 766(2) is explicitly incomplete in the current PDF text extraction and is not counted as a complete article transcription until page-image verification.
 - These are base Civil Code provisions. Insurance special legislation and subsequent amendments govern where applicable; no currentness is implied.
