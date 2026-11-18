@@ -2,7 +2,7 @@
 
 **Capture date:** 18 November 2026  
 **Parent framework:** Law 118/1975 and Ministerial Decision 770/2005 (implementing import/export rules and inspection/control procedures).  
-**Method:** visually inspected two-page Gazette scan reproductions hosted by Al-Masdar, cross-checked against GOEIC official catalogue and Egyptian Customs circular listings. These are secondary-hosted page images, not publisher-hosted Amiri Press originals. No local file bytes/hash, lawyer verification or commercial reuse permission claimed.
+**Method:** the Egyptian Customs Authority official website hosts a PDF reproducing the two relevant Gazette pages (issue 225 supplement) and the attached Import Circular 30/2026. Both Gazette page images were visually inspected; the text layer was cross-checked against Al-Masdar and GOEIC. This is an official-government-hosted reproduction, not a direct Amiri Press repository binary. No local file bytes/hash, lawyer verification or commercial reuse permission claimed.
 
 ## 1. Decision 547/2025 — replacement of Article 69(1)
 
@@ -43,6 +43,7 @@ The Gazette page identifies the underlying regulation as Ministerial Decision **
 **Gazette:** الوقائع المصرية، العدد 225 تابع، 12 October 2026.  
 **Effective date:** the precise operative commencement clause is visible in the second page image; Article 2 says publication and application from the day following publication. Therefore, 13 October 2026, subject to original Gazette verification.  
 **Parent regulation:** Decision 770/2005, implementing Law 118/1975.  
+**Official Customs-hosted PDF (Decision 501/2026 + Import Circular 30/2026 + Gazette Annex page):** https://customs.gov.eg/Upload/ECAAdminace/ECAAdminace026153585.pdf
 **Page-image reproduction:** https://www.almasdar.com/WebP/libfiles/46/2/576.webp and https://www.almasdar.com/WebP/libfiles/46/2/577.webp  
 **Text page:** https://www.almasdar.com/174913  
 **GOEIC official listing:** https://www.goeic.gov.eg/ar/laws-and-decisions/list  
@@ -92,3 +93,41 @@ The Gazette page identifies the underlying regulation as Ministerial Decision **
 - Decision 547's source page confirms Gazette issue 277 supplement (ب), 9 Dec 2025, and the next-day commencement clause.
 - Decision 501's page images show issue 225 supplement, 12 Oct 2026, and the next-day commencement clause; Article 1's replacement Annex 2 item 7 is visually available. The two long release-condition lines need higher-resolution review.
 - No original Amiri Press PDF bytes, publisher certificate, SHA-256 hash or explicit commercial/bulk reuse licence has been acquired.
+
+
+## 4. Egyptian Customs Authority Import Circular 30/2026 — full Arabic text
+
+**Official source:** Egyptian Customs Authority / Ministry of Finance PDF: https://customs.gov.eg/Upload/ECAAdminace/ECAAdminace026153585.pdf  
+**Date:** 18 October 2026.  
+**Purpose:** implements Ministerial Decision 501/2026. The same PDF reproduces the Official Gazette issue 225 supplement and the full Annex 2 item 7 release-condition page.
+
+**منشور استيراد رقم (30) لسنة 2026**
+
+**إشارة إلى:**
+> - قانون الاستيراد والتصدير رقم 118 لسنة 1975 ولائحته التنفيذية الصادرة بالقرار الوزارى رقم 770 لسنة 2005 وتعديلاتهما.
+> - أحكام الملحق رقم (2) الخاص بالسلع المسموح باستيرادها مستعملة والمرفق باللائحة التنفيذية لقانون الاستيراد والتصدير وتعديلاته.
+
+**بناء على:**
+> كتاب السيد المهندس/ رئيس مجلس إدارة الهيئة العامة للرقابة على الصادرات والواردات رقم 1529 المؤرخ فى 12/1/2026 والوارد إلينا فى 18/1/2026 والمرفق به صورة قرار وزير الاستثمار والتجارة الخارجية رقم 501 لسنة 2026.
+
+**يراعى اتباع ما يلى:**
+> يطبق قرار السيد الدكتور/ وزير الاستثمار والتجارة الخارجية رقم 501 لسنة 2026 والصادر فى 11/10/2026، والموضح عاليه، بشأن استبدال البند رقم (7) من الملحق رقم (2) الخاص بالسلع المسموح باستيرادها مستعملة بلائحة القواعد المنفذة لأحكام القانون رقم 118 لسنة 1975 فى شأن الاستيراد والتصدير الصادرة بالقرار الوزارى رقم 770 لسنة 2005 وتعديلاته بالبند الوارد على النحو المذكور بالقرار، والمنشور فى الوقائع المصرية بالعدد 225 (تابع) بتاريخ 12/10/2026، والذى يعمل به من اليوم التالى لتاريخ نشره.
+
+> للعلم به ومراعاة تنفيذه بكل دقة.
+
+**Issuing offices / signatories shown on the official PDF**
+> مدير إدارة البحوث الفنية ودعم القطاعات  
+> رئيس الإدارة المركزية للسياسات والإجراءات الجمركية  
+> مدير عام  
+> حنان السيد فراج  
+> محمود الله بيك
+
+**الإسكندرية فى 7 جمادى الأول 1448 هـ، الموافق 18 أكتوبر 2026.**
+
+### Full-text capture note
+The official Customs PDF has 134 extracted lines and visually inspectable page images. It includes:
+1. Decision 501/2026, including the operative substitution of Annex 2 item 7.
+2. Import Circular 30/2026, which instructs customs offices to apply Decision 501.
+3. The reproduced Official Gazette Annex page containing all four release conditions, now transcribed verbatim above.
+
+This resolves the earlier low-resolution transcription blocker for Decision 501's release-condition subparagraphs. It does not provide a local archived copy or SHA-256 hash; the original Amiri Press repository binary remains unacquired.
