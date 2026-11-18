@@ -2825,9 +2825,9 @@ The official CBE circulars database is a live index and should be queried by top
 
 ### A. Unique instruments with at least some Arabic text surfaced
 
-**Current minimum: 37 distinct legal instruments** with at least some Arabic legal text surfaced in this Agent 3 collection. This includes statutes, executive regulations, ministerial/prime-minister decisions and CBE circulars; a few are represented by selected provisions or secondary searchable reproductions rather than a full primary Gazette text. Publication-only source leads and unreadable official PDFs are excluded.
+**Current minimum: 38 distinct legal instruments** with at least some Arabic legal text surfaced in this Agent 3 collection. This includes statutes, executive regulations, ministerial/prime-minister decisions and CBE circulars; a few are represented by selected provisions or secondary searchable reproductions rather than a full primary Gazette text. Publication-only source leads and unreadable official PDFs are excluded.
 
-The 37 are:
+The 38 are:
 1. Competition Law 3/2005
 2. Executive Regulation Decision 1316/2005
 3. E-Signature Law 15/2004
@@ -2865,12 +2865,13 @@ The 37 are:
 35. Real-Estate Broker classification Decision 578/2025
 36. Investment sector-schedule amendment Decision 503/2026
 37. Investment establishment-deadline extension Decision 1/2024
+38. Companies amendment Law 4/2018
 
 **Source-only / not counted as text obtained:** Trade Register Executive Regulation Decision 106/2018 (14.9 MB official PDF locator, download failed); original E-Signature Executive Regulation Decision 109/2005 (official publication confirmation only); PM Decision 104/2022 (parent schedules identified, full schedules not extracted); Consumer Protection Law 181/2018 (official PDF OCR unusable); CBE eKYC circular 23 August 2026 and CBE PSO/PSP 2025 licensing/governance PDFs (official locators but reader blocked).
 
 ### B. Article/provision text units
 
-**Current minimum: 242 article/provision text units surfaced.** This reconciles the previous 111-unit baseline with 131 additional individually surfaced article or regulatory-section texts in this checkpoint. It is a manual minimum, not a count of unique operative provisions after amendment normalization. It includes some regulatory sections (e.g., CBE Agent Banking numbered sections) and selected provisions, and does not count every article merely because a full searchable PDF spans a larger numbering range.
+**Current minimum: 262 article/provision text units surfaced.** This reconciles the previous 111-unit baseline with 151 additional individually surfaced article or regulatory-section texts in this checkpoint, including 20 provisions from Law 4/2018. It is a manual minimum, not a count of unique operative provisions after amendment normalization. It includes some regulatory sections (e.g., CBE Agent Banking numbered sections) and selected provisions, and does not count every article merely because a full searchable PDF spans a larger numbering range.
 
 ### C. Assigned-domain coverage
 
@@ -3110,4 +3111,4 @@ The same official Gazette PDF exposes the following additional operative texts, 
 >
 > يجوز للوزير المختص التصالح مع المتهم في الجرائم المنصوص عليها في المادة (١٦٣) من هذا القانون في أي مرحلة من مراحل الدعوى الجنائية، مقابل أداء مبلغ لا يقل عن مثلي قيمة الحد الأدنى للغرامة المقررة وبحسب جسامة المخالفة، ويترتب على التصالح انقضاء الدعوى الجنائية بالنسبة للجريمة التي تم التصالح في شأنها، وتأمر النيابة العامة بوقف تنفيذ العقوبة إذا تم التصالح أثناء تنفيذها العقوبة ولو كان ذلك بعد صيرورة الحكم باتاً.
 
-**Count update for this amendment:** 12 additional provisions transcribed from Law 4/2018. The 2018 correction notice remains a separate Gazette item to retrieve and compare.
+**Count update for this amendment:** 13 additional provisions transcribed from Law 4/2018. The 2018 correction notice remains a separate Gazette item to retrieve and compare.
