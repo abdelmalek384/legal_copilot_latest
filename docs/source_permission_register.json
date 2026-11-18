@@ -2362,6 +2362,38 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "Single public PDF endpoint; no bulk/API permission established",
       "required_next_action": "Visually inspect pages 20–23, resolve Article 143/43 numbering discrepancy and archive/hash the source only if authorized."
+    },
+    {
+      "source_id": "EG-FRA-LAW148-CONSOLIDATED-2018",
+      "authority": "Financial Regulatory Authority (Egypt), official regulator legislation portal",
+      "source_page": "https://fra.gov.eg/wp-content/uploads/2001/06/قانون-التمويل-العقاري-1.pdf",
+      "material_types": [
+        "Searchable consolidated Arabic text of Law148/2001 reflecting amendments and repeals through at least Law93/2018; 13-page PDF; article-level historical footnotes"
+      ],
+      "access_status": "Public official FRA-hosted PDF. It is a regulator consolidated text, not the original Gazette issue 25 bis page-image file.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used as an official regulator text source for research and text extraction. No source-specific licence or commercial reuse permission was established; regulator hosting does not itself establish a reuse licence.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public PDF; no bulk/API permission established",
+      "required_next_action": "Obtain original Gazette issue25 bis PDF/pages and hash; compare consolidated article versions against Laws143/2004,55/2014,93/2018 and later decisions."
+    },
+    {
+      "source_id": "EG-FRA-PM1-2001-MORTGAGE-REGULATION",
+      "authority": "Financial Regulatory Authority (Egypt), official regulator legislation portal",
+      "source_page": "https://fra.gov.eg/wp-content/uploads/2020/12/اللائحة-التنفيذية-للقانون-التمويل-العقاري.pdf",
+      "material_types": [
+        "Full searchable Arabic consolidated text of PM Decision1/2001 Executive Regulation of Law148/2001, including amendment markers through Decision32/2024"
+      ],
+      "access_status": "Public official FRA-hosted PDF, 694 extracted text lines. Original Gazette issue282 supplement page images not verified.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used as an official regulator text source for research and text extraction. No source-specific licence or commercial reuse permission was established; public access is not a reuse licence.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public PDF; no bulk/API permission established",
+      "required_next_action": "Obtain original Gazette issue282 supplement pages and hash; complete article-by-article transcription and reconcile amendment decisions 465/2005,1864/2008,1/2015,2/2015,32/2024."
     }
   ]
 }
