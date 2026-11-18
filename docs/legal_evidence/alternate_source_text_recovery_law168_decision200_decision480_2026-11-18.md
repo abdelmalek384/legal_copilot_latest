@@ -137,3 +137,33 @@ Source: https://lawhub.info/eg/?p=17395 . This is an independent full searchable
 3 – بالنسبة للأراضى الواقعة داخل عواصم المحافظات: خمسة آلاف جنيه للأراضى التى لا تزيد مساحتها على مائة متر، وعشرة آلاف جنيه للأراضى التى تزيد مساحتها على مائة متر.
 
 **Count update:** this addendum adds six complete article texts: Law 168/2025 Articles 2, 4 and 6; PM Decision 200/2026 Executive Regulation Articles 4, 5 and 7. These are additional text captures, not new instruments. Fee amounts in Regulation Article 7 are transcribed from the 2026 regulation and should be verified against any later amending decision before live product use.
+
+
+## Further text from the directly accessible SIS Gazette PDF — Decision 200/2026
+
+**Primary-source locator:** https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/118973/OG3_20260118_2885.pdf?isAllowed=y&sequence=2 . The opened PDF is the Official Gazette issue 3 bis (أ), 18 January 2026. The following are additional complete provisions transcribed from that PDF, not from the earlier secondary mirrors.
+
+### Executive Regulation Article 10 — committee formation
+تُشكَّل لجان في كل جهة إدارية مختصة بقرار يصدر من الوزير أو المحافظ أو رئيس الهيئة أو رئيس الجهاز، بحسب الأحوال، برئاسة موظف لا يقل مستواه الوظيفي عن مدير عام أو ما يعادله، وعضوية عناصر فنية ومالية وقانونية من ذوي الخبرة والكفاءة من بينهم ممثلين عن كل من الوزارة المختصة بالموارد المائية والري والهيئة المصرية العامة للمساحة.
+
+وللجنة أن تستعين بمن تراه لازماً لمعاونتها في أداء مهامها، وذلك دون أن يكون له صوت معدود.
+
+### Executive Regulation Article 17 — registration of final dispositions
+تلتزم الجهة الإدارية المختصة بموافاة مكتب الشهر العقاري المختص بجميع المستندات اللازمة لشهر وقيد التصرفات التي تتم على الأراضي المتعاقد عليها، وفقاً لأحكام القانون رقم ١١٤ لسنة ١٩٤٦ بتنظيم الشهر العقاري، وذلك فور الانتهاء من جميع الإجراءات الخاصة بالتصرفات وتحرير العقد النهائي وبما يضمن سرعة إتمام إجراءات شهر وقيد هذه التصرفات.
+
+### Executive Regulation Article 18 — delegation to governor
+يجوز للجهة الإدارية المختصة تفويض المحافظ المختص في التصرف واتخاذ جميع الإجراءات الخاصة بالتقنين نيابة عنها في الأراضي المملوكة للدولة ملكية خاصة والخاضعة لولايتها، على أن يكون من بين أعضاء اللجان المشار إليها بالمادة (١٠) من هذه اللائحة ممثل عن تلك الجهة، وفي هذه الحالة تؤول نسبة (٢٠٪) من إجمالي المبالغ المحصلة للمحافظة، تخصص للمشروعات العامة والقومية داخل المحافظة.
+
+ويكون للمحافظ المختص ولاية التصرف لواضعي اليد بالنسبة للأراضي الواقعة في النطاق الجغرافي لمحافظته وليس لها جهة ولاية.
+
+## Forms and annexes in the SIS Gazette PDF
+
+The full issue contains three attached model forms:
+
+1. **Form 1 — application for regularization**, with two variants: agricultural/reclaimed/cultivated land and land with buildings. Fields include applicant identity and capacity, contact address, land location and area, activity/use, boundary descriptions, WGS84 coordinate table, supporting documents, fees and applicant declaration.
+2. **Form 2 — inspection report.** Captures inspection committee members, applicant and land details, boundaries, WGS84 coordinates, site inspection outcome and signatures.
+3. **Form 3 — periodic administrative report.** Captures application volumes, examination and inspection fees, applications examined/accepted/rejected, grievances, contracts, removals/recoveries, criminal reports and collected amounts.
+
+**Drafting discrepancy requiring confirmation:** Regulation Article 20 in the PDF says the authority prepares **annual** reports (تقارير سنوية), while Form 3 is headed **quarterly** report (تقرير ربع سنوي). Preserve both source readings; do not silently normalize one into the other.
+
+**Coverage update:** this adds three complete regulation articles (10, 17, 18) from the opened SIS Gazette PDF. The repository now contains complete text for Regulation Articles 3–10 except Article 11, plus Articles 12? (not transcribed), 17 and 18 only where specifically listed; the exact capture count is maintained in the inventory/checkpoint rather than inferred from the full PDF availability. Forms are structurally mapped, not transcribed field-by-field in full.
