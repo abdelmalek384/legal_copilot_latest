@@ -1,8 +1,8 @@
-# Law114/1946 — Recovery of Five Missing Historical Article Texts
+# Law114/1946 — Recovery of Four Missing Historical Article Texts
 
 **Instrument:** Law114/1946 on Real Estate Registration.  
 **Text layer:** Historical Arabic wording reproduced by the Official Union of Egyptian Notaries (secondary professional-association transcription), dated 17 February 2021.  
-**Purpose:** Recover the historical wording of Articles3,24,26,29 and58, which was missing from the repository's historical-version inventory.  
+**Purpose:** Recover the historical wording of Articles3,24,26 and29, which was missing from the repository's historical-version inventory. Article58 was already represented in the repository and is deliberately not duplicated here.  
 **Status:** These are historical text captures, not current operative text. The source page contains duplicate article-number labels elsewhere; the five passages below are transcribed as displayed. Original Gazette page images remain the verification target.
 
 ## Article 3 — Historical text
@@ -37,20 +37,10 @@
 
 **Status note:** Historical text recovered. Later repeal/current status is recorded in the master inventory.
 
-## Article 58 — Historical text
-
-المادة (٥٨):
-
-على أصحاب رهن الحيازة العقاري وحقوق الامتياز العقارية السابقة أن يقوموا بقيد حقوقهم في خلال عشر سنوات من تاريخ تسجيل العقود المرتبة لها أو في خلال سنة من تاريخ العمل بهذا القانون أي المدتين أطول فإذا لم يتم القيد في خلال المدة المتقدمة لا يكون الحق بعد انقضائها نافذا بالنسبة إلى الغير ويترتب على إجراء القيد المذكور حفظ مرتبة الحق في تاريخ تسجيل العقد المرتب له.
-
-ويكتفى في إجراء هذا القيد بصورة طبق الأصل من العقد تستخرج من دفاتر التسجيل وإذا لم يكن العقد مشتملاً على جميع البيانات المنصوص عليها في المادة ٣٠ استكملها صاحب الشأن في قائمة القيد. ويجب في جميع الأحوال التصديق على توقيع صاحب الشأن في القائمة.
-
-**Status note:** Historical transitional provision recovered. Law157/1947 is reported in secondary case-law material as extending the relevant period to the end of December 1948; the full original Law157 text remains outstanding. Do not treat Article58's original period as the current filing deadline.
-
 ## Source and quality
 
 - Official Union of Egyptian Notaries, Law114/1946 page: https://notariesofegypt.org/article.php?id=485
 - The source page is a secondary transcription by a professional association, not an original 1946 Gazette PDF.
-- The source page contains duplicate article-number labels elsewhere (including Articles12,19,23,27,36 and53) and apparent transcription/numbering anomalies. The five passages above should be checked against the original 1946 Gazette issue85 page images.
+- The source page contains duplicate article-number labels elsewhere (including Articles12,19,23,27,36 and53) and apparent transcription/numbering anomalies. The four passages above should be checked against the original 1946 Gazette issue85 page images.
 - The repository's existing 1946 Gazette scan copy remains a secondary-hosted image reproduction; it has not been replaced by an authenticated Amiri Press binary/hash.
 - No lawyer verification or commercial reuse permission is claimed.
