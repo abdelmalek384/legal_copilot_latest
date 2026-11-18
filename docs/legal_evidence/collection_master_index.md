@@ -547,7 +547,7 @@
 - Inspected the existing national source register, Phase 2 metadata-only document inventory, source-evidence register, source-permission register and initial statute acquisition register before updating.
 - Extended `data/research/egypt_initial_statute_acquisition_register_2026-11-17.csv` with 29 unique instrument records (EG-0144–EG-0172) for civil/property registration, notarization, desert land, expropriation, irrigation and mortgage-finance texts.
 - Upgraded existing EG-0070 Law 148/2001 from the earlier ETA PDF with no readable text layer to the official FRA-hosted Gazette reproduction with searchable Arabic text.
-- CSV validation: 189 instrument rows, 12 columns per row, no duplicate instrument IDs, and no malformed rows (latest validation after EG-0189–EG-0191 additions). This is a register count, not a count of unique full legal texts or articles.
+- CSV validation: 189 instrument rows, 12 columns per row, no duplicate instrument IDs, and no malformed rows (latest validation after EG-0189–EG-0193 additions). This is a register count, not a count of unique full legal texts or articles.
 - All new rows retain `lawyer_reviewed=false` and `rights_cleared=false`; no collection or commercial reuse permission is inferred. Phase 2 production inventory and source-permission register were not promoted or altered because their permission/review gates remain unknown.
 
 ### Research Agent 1 — desert-land amendment and jurisdiction supplement
@@ -1100,7 +1100,7 @@
 - Government-bank-hosted NIB copy of Egyptian Proceedings issue 82 supplement (A), 8 April 2009, located for Decision 144/2009; full regulation runs through Articles 1–185 and includes forms/schedules to page 163. This supersedes a truncated third-party PDF that appeared to end at Article 154.
 - Later amendment texts/source routes expanded: Decision 954/2022 (Articles 135 bis/139 bis; repeals Decisions 272/2013 and 296/2021); Decision 943/2024 (Articles 110 bis, 112 bis 1, 117 bis; repeals Decision410 forms); Decision120/2025 (Article26(5)); Decision1505/2025 (Articles43/50; effective 28 Jan 2026).
 - Decision943/2024 appears in two SIS-hosted Gazette issue PDFs: issue216 (1 Oct 2024) and issue240 (30 Oct 2024), with identical decision text and conflicting publication/effective-date implications. Preserve both; official clarification required.
-- Acquisition register updated to 189 rows (EG-0189–EG-0193 added for Decisions954/2022,120/2025,1505/2025); original-Gazette byte/hash acquisition and lawyer/rights review remain open.
+- Acquisition register updated to 189 rows (EG-0189–EG-0191 for Building Law amendments; EG-0192–EG-0193 for SCC Cases10/35 and24/20); original-Gazette byte/hash acquisition and lawyer/rights review remain open.
 - Full evidence: [building_law_119_2008_decision_144_2009_official_gazette_sources_and_amendment_chain_2026-11-18.md](building_law_119_2008_decision_144_2009_official_gazette_sources_and_amendment_chain_2026-11-18.md).
 
 
