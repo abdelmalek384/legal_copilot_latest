@@ -228,7 +228,7 @@ This checkpoint upgrades that existing lead with the full 14-article Law 168/202
 - New base statutes discovered: 0 (Law 168/2025 was already indexed as a related statute in checkpoint 89).
 - Existing base statute upgraded to full 14-article text: 1.
 - New subordinate instruments: 2 (Decision 200/2026, 20 regulation articles; Decision 480/2026, 2 articles).
-- Selected Arabic article/provision extracts preserved: at least 15 (Law 168/2025 Articles 1–14 and selected Decision 200/2026/480/2026 provisions).
+- Selected Arabic article/provision extracts preserved: 24 (14 Law 168/2025 articles, 8 selected Decision 200/2026 regulation articles, and 2 Decision 480/2026 articles).
 - Next actions:
   1. Request official DSpace copies of Gazette issue 32 bis (و), 13 August 2025 and issue 45 bis (ج), 10 November 2026.
   2. Archive and hash the original Law 168/2025 and Decision 480/2026 PDFs once authorized access is obtained.
