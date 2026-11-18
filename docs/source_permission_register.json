@@ -2107,6 +2107,38 @@
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "Single direct PDF URL; no bulk/API permission established",
       "required_next_action": "Archive the original PDF bytes and SHA-256; verify exact page images; review portal terms and preserve official-publication provenance. Do not infer commercial reuse permission."
+    },
+    {
+      "source_id": "EG-LAWHUB-2026",
+      "authority": "LAW HUB legal encyclopedia",
+      "source_page": "https://lawhub.info/eg/",
+      "material_types": [
+        "Egyptian legislation full-text transcriptions including Laws155/2026 and161/2026"
+      ],
+      "access_status": "Full searchable Arabic text pages observed; page footer displays Creative Commons Attribution 4.0 notice.",
+      "collection_permission": "cc_by_4_0_attributed_use_subject_to_license_scope",
+      "commercial_reuse_permission": "cc_by_4_0_applies_to_site_text_as_displayed_only; embedded third_party_scans_and_materials_not_cleared",
+      "terms_url": "https://creativecommons.org/licenses/by/4.0/",
+      "permission_evidence": "Individual LAW HUB pages for Laws155/2026 and161/2026 display a CC BY 4.0 notice. Do not assume the license covers linked Gazette scans or third-party material.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "No bulk/API permission established; manual page access only",
+      "required_next_action": "Preserve attribution and license notice; verify license scope for each page and exclude third-party attachments unless independently cleared."
+    },
+    {
+      "source_id": "EG-MKSEGYPT-2026",
+      "authority": "MKSEgypt legal memory / legislation database",
+      "source_page": "https://www.mksegypt.org/ar/laws/24665",
+      "material_types": [
+        "Arabic full-text transcriptions Laws10/2026 and11/2026"
+      ],
+      "access_status": "Full searchable Arabic text pages observed; page footer displays Creative Commons Attribution 4.0 notice.",
+      "collection_permission": "cc_by_4_0_attributed_use_subject_to_license_scope",
+      "commercial_reuse_permission": "cc_by_4_0_applies_to_site_text_as_displayed_only; embedded third_party_scans_and_materials_not_cleared",
+      "terms_url": "https://creativecommons.org/licenses/by/4.0/",
+      "permission_evidence": "MKSEgypt pages for Laws10/2026 and11/2026 display CC BY 4.0. License applies to the site's text only as represented; not necessarily source Gazette scans or third-party content.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "No bulk/API permission established; manual page access only",
+      "required_next_action": "Preserve attribution and license notice; verify page-specific license scope before redistribution."
     }
   ]
 }
