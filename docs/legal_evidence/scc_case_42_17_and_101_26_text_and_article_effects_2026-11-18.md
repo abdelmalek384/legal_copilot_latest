@@ -46,3 +46,10 @@ The official SCC HTML judgment is available. The original printed Gazette page/i
 - Both are classified as judicial decisions.
 - No base law or amendment count changes.
 - No lawyer verification, commercial reuse permission or original Gazette PDF authentication is claimed.
+
+
+### Gazette publication metadata reconciliation
+
+- The later Court of Cassation digest at https://sadanykhalifa.com/ar/section-data/%D8%A7%D8%AD%D9%83%D8%A7%D9%85%20%D8%A7%D9%84%D8%AF%D9%88%D8%A7%D8%A6%D8%B1%20%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A%D8%A9%20%D8%A8%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6/28 cites Official Gazette issue 35 تابع dated 18 June 1998.
+- CRCICA Library's catalogue https://library.crcica.org/cgi-bin/koha/opac-detail.pl?biblionumber=1314&viewallitems=1 lists issue 25 تابع (ب) on the same date.
+- These may be distinct same-day supplements, but the original printed page for Case 42/17 has not been located. Preserve both metadata leads; do not resolve the issue number from secondary catalogue/digest evidence alone.
