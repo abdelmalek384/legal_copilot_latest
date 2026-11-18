@@ -57,7 +57,7 @@ Retrieved the official MIFT consolidated PDF (3,416 extracted lines), explicitly
 - Law 159/1998: captured exact Article 46 replacement.
 - Law 212/1994: confirmed it inserted Article 21 bis, later repealed by Law 3/1998; full historic text remains unavailable and was not reconstructed.
 - Detailed files: [Laws 3/1998 and 94/2005](agent3_companies_law_amendments_3_1998_94_2005_text.md), [Laws 212/1994 and 159/1998](agent3_companies_law_amendments_212_1994_159_1998_text.md).
-- These are text-depth/versioning expansions of already-counted amendment instruments; no count change. Agent 3 remains **207 documents / 2,039 provisional units**, assigned completion **55% provisional**, lawyer review 0%.
+- These are text-depth/versioning expansions of already-counted amendment instruments; no count change. Agent 3 remains **209 documents / 2,049 provisional units**, assigned completion **55% provisional**, lawyer review 0%.
 
 
 ## Primary-source upgrades to the Companies Law amendment chain
@@ -143,3 +143,12 @@ Updated aggregate: **205 documents / 2,035 provisional numbered units**; assigne
 - Full record: [FRA Decisions 108 and 109/2026](agent3_fra_decisions_108_109_2026_audit_and_reit_fees_arabic_text_partial.md).
 
 Updated aggregate: **207 documents / 2,039 provisional units**; assigned-domain completion remains **55% provisional**; lawyer review 0%.
+
+
+## FRA enforcement-list and sustainability disclosure texts
+
+- **Decision 87/2026**: official FRA-hosted Gazette PDF, issue 111 supplement, 20 May 2026, all five articles. Creates warning/negative/administrative-measure lists for NBFI violations, due-process protections, urgent temporary listing, grievance committee, periodic review and removal.
+- **Circular 9/2026**: official FRA-hosted three-page PDF dated 3 January 2026. Requires covered companies under Decisions 107/2021 and 108/2021 to publish accessible, current, accurate and balanced sustainability statements, update annually and upon material changes, retain evidence, align with FRA filings, notify material updates and hold actual management responsible.
+- Full Arabic text: [Decision 87 and Circular 9](agent3_fra_decision87_2026_and_circular9_2026_arabic_text.md).
+
+Updated aggregate: **209 documents / 2,049 provisional units**; assigned-domain completion remains **55% provisional**; lawyer review 0%.
