@@ -1034,3 +1034,35 @@ The MIFT consolidated regulation text (amended through 21 August 2022) includes,
 - Families amendment/currentness-complete: 0/13.
 - Lawyer-reviewed: 0%.
 - Whole-corpus coverage remains approximately 2%; no validated denominator exists.
+
+
+### Law 4/2018 — additional inserted statutory provisions confirmed from Gazette pages 20–27
+
+The Gazette text's Article 5 adds multiple new provisions. These are separate operative statutory provisions and should not be lost by recording only the amending Article 5 as a single unit.
+
+**Companies Law Article 1 bis — GAFI incorporation and post-incorporation services:**
+> مع عدم الإخلال بأحكام قانون سوق رأس المال الصادر بالقانون رقم ٩٥ لسنة ١٩٩٢، وقانون المناطق الاقتصادية ذات الطبيعة الخاصة الصادر بالقانون رقم ٨٣ لسنة ٢٠٠٢، وقانون الاستثمار رقم ٧٢ لسنة ٢٠١٧ المشار إليها، تتولى الهيئة تقديم خدمات التأسيس وما بعد التأسيس للشركات الخاضعة لأحكام هذا القانون.
+>
+> وتلتزم الهيئة بميكنة هذه الخدمات وتوحيد إجراءاتها وفقاً لأحكام المادة (٥٠) من قانون الاستثمار الصادر بالقانون رقم ٧٢ لسنة ٢٠١٧، وتسري إجراءات التأسيس الإلكتروني دون غيرها من الإجراءات الواردة في أي قانون آخر فور تفعيلها.
+>
+> وتحدد اللائحة التنفيذية لهذا القانون ضوابط العمل بنظام التأسيس والخدمات الإلكترونية للشركات والمنشآت الخاضعة لأحكامه.
+
+**Companies Law Article 4 bis — one-person company:**
+> شركة الشخص الواحد هي شركة يملكها بالكامل شخص واحد، سواء كان طبيعياً أو اعتبارياً، وذلك بما لا يتعارض مع أغراضها، ولا يسأل مؤسس الشركة عن التزاماتها إلا في حدود رأس المال المخصص لها.
+>
+> وتتخذ الشركة اسماً خاصاً لها يستمد من أغراضها أو من اسم مؤسسها، ويجب أن يتبع اسمها بما يفيد أنها شركة من شركات الشخص الواحد ذات مسؤولية محدودة، ويوضع على مركزها الرئيس وفروعها - إن وجدت - وفي جميع مكاتباتها.
+
+**Companies Law Article 9 bis — shareholders' agreements:**
+> مع عدم الإخلال بحكم المادة (٩) من هذا القانون، يجوز للمساهمين أو الشركاء، عند تأسيس الشركة أو بعد ذلك، إبرام اتفاق ينظم العلاقة فيما بينهم.
+>
+> ولا يسري هذا الاتفاق في حق باقي المساهمين أو الشركاء ما لم توافق عليه الجمعية العامة غير العادية للشركة بأغلبية لا تقل عن ثلاثة أرباع رأس المال، أو بأغلبية أكبر في الحالات التي تحددها اللائحة التنفيذية لهذا القانون.
+
+**Companies Law Article 156 bis — annual financial-statement delivery:**
+> تلتزم الشركات الخاضعة لأحكام هذا القانون بتسليم الهيئة سنوياً صورة من قوائمها المالية بعد اعتمادها من الجمعية العامة ونموذج بيانات، وتنظم اللائحة التنفيذية لهذا القانون وسائل تسليم القوائم المالية للهيئة وقواعد إعداد النموذج المشار إليه وما يتضمنه من بيانات.
+
+**Companies Law Article 157 bis — information rights for 10% shareholders/partners:**
+> يكون للمساهمين أو الشركاء المالكين لنسبة (١٠٪) على الأقل من أسهم الشركة أو حصصها الحق في الحصول على المعلومات وصور المستندات المتعلقة بعقود المعاوضة أو الصفقات التي تبرمها الشركة مع الأطراف المرتبطة بها، فإذا رفضت الشركة ذلك يجوز لهم تقديم طلب للهيئة للحصول عليها، ويكون قرار الهيئة بالإتاحة ملزماً للشركة وواجب التنفيذ.
+
+**Currentness correction:** Article 156 bis (المادة 156 مكرراً) was inserted by Law 4/2018, not created by a 2026 announcement. The MIFT 20 July 2026 announcement is a reminder/operational reporting communication about an existing statutory duty. The exact reporting form, method, deadlines and sanctions still require the applicable current Executive Regulation and GAFI instruments. Do not cite the announcement as the legal source for the obligation.
+
+**Incremental provision count:** four new inserted provisions (Articles 1 bis, 4 bis, 9 bis and 156 bis) are added to the cumulative provision-unit count here. Article 157 bis is recorded in the text but excluded from the numeric increment pending confirmation of the exact provision-numbering and text in the Gazette page image, because the extracted PDF sequence and secondary renderings show inconsistent punctuation/Arabic numbering. Do not count Article 157 bis until that check is complete.
