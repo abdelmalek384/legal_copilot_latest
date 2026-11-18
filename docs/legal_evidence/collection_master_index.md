@@ -6,7 +6,7 @@
 
 ## Current progress — consolidated acquisition dashboard (18 November 2026)
 
-<badge color="success">336 instruments indexed</badge> <badge color="success">31.0% have a text-inventory record</badge>
+<badge color="success">355 instruments indexed</badge> <badge color="success">35.8% have a text-inventory record</badge>
 
 ### Audited register totals
 
