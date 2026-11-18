@@ -91,3 +91,16 @@ Percentages are conservative planning estimates, not denominator-validated measu
 ## Latest checkpoint — PM Decision 503/2026
 
 Official Amiri Press text page/search index and secondary images of its Sector A/B schedules were acquired and recorded in [agent3_investment_pm_decision_503_2026_industrial_incentive_schedules_arabic_text.md](agent3_investment_pm_decision_503_2026_industrial_incentive_schedules_arabic_text.md). Gazette issue/page and official PDF/hash remain outstanding; some schedule technical terms require image verification.
+
+
+## Latest acquisition — FRA Circular 10/2026
+
+Added official one-page Arabic text for FRA Chairman Circular 10/2026 (3 Nov 2026) on NBFI beneficial-owner records, Commercial Register notification/update, AML identification methodology and CSDR reporting. Also captured ITDA's official December 2022 beneficial-owner register form. See [agent3_fra_circular_10_2026_beneficial_owner_records_arabic_text.md](agent3_fra_circular_10_2026_beneficial_owner_records_arabic_text.md). Count: 189 documents; 1,924 numbered units. Circular directions are tracked separately. Assigned completion remains 55% provisional.
+
+## Trade Register text expansion
+
+Added official Tax Authority PDF text and original Gazette amendment text for Law 198/2020 to [agent3_trade_register_law34_law198_2020_text_expansion_2026-11-18.md](agent3_trade_register_law34_law198_2020_text_expansion_2026-11-18.md). The ITDA Executive Regulation 106/2018 PDF is identified but its 14.9 MB download exceeds the current web extractor's size limit; it remains an acquisition blocker, not a legal-text absence.
+
+## Electronic Signature source correction
+
+Corrected the Decision 467/2024 record: three issuing articles + 49 regulation articles (52 total numbered provisions), plus a technical annex; it does not expressly name Decision 109/2005 as repealed. Unsupported cyber-security quotations from the earlier draft were withdrawn. The original Gazette PDF/hash is still outstanding.
