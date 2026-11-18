@@ -1128,3 +1128,21 @@ Primary catalogue record: https://www.mift.gov.eg/legislation/details/252
 - Gazette issue/date, exact issuing clauses, and any later modification to Article 205 remain to be checked.
 
 **Incremental count:** one unique amendment instrument and one provision unit (Decision 144/2019, amendment to Regulation Article 205). Cumulative Agent 3 minimum: 102 instruments / 1,211 provision units.
+
+
+## 31. Companies Executive Regulation Decision 256/2018 — general-assembly notice and LLC manager qualification
+
+- Instrument: Minister of Investment and International Cooperation Decision 256/2018 amending Executive Regulation Decision 96/1982.
+- Publication: Egyptian Gazette / الوقائع المصرية, issue 295, 30 December 2018 (metadata and full text in the secondary reproduction).
+- Full Arabic issuing text: https://sadanykhalifa.com/ar/section-data/قرار%20وزير%20الاستثمار256%20لسنة%202018%20بتعديل%20اللائحة%20التنفيذية%20لقانون%20شركات%20المساهمة/74
+- MIFT's official Law 159/1981 catalogue lists Decision 256/2018 among the regulation attachments (duplicate attachment entries appear in the rendered list; deduplicate by instrument number).
+- Article 1 replaces the first paragraph of Executive Regulation Article 203 and the first paragraph of Article 281.
+- **Replacement Article 203, first paragraph:**
+> يجب نشر الإخطار بدعوة الجمعية العامة للاجتماع مرتين في صفحتين يوميتين إحداهما على الأقل باللغة العربية، على أن يتم النشر في المرة الثانية بعد انقضاء خمسة أيام على الأقل من تاريخ نشر الإخطار الأول.
+- **Replacement Article 281, first paragraph:**
+> ويجب أن تتوافر في مديري الشركة الشروط المبينة بالمادة (89) من القانون.
+- Article 2 provides for publication in الوقائع المصرية and commencement on the day following publication.
+- Effect: changes general-assembly notice publication timing (second publication no earlier than five days after the first) and imports statutory Article 89 qualification requirements for LLC managers.
+- Source status: full Arabic text and Gazette issue metadata from a secondary legal-library reproduction; official MIFT attachment listing corroborates instrument identity, but an official Gazette scan is still required before treating the transcription as primary-source verified.
+
+**Incremental count:** one unique amendment instrument and two operative provision units (Decision 256/2018 Articles 1–2). Cumulative Agent 3 minimum: 103 instruments / 1,213 provision units.
