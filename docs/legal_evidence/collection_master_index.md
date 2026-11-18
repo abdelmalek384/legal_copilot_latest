@@ -2255,3 +2255,14 @@ Completed the previously missing local Arabic transcription for **Articles11–3
 - [Continuation: Articles11–32 and39–46](acquisition_tranche_law161_2026_kayan_university_articles11_32_39_46.md)
 
 This is now a complete local searchable text transcription sourced from LAW HUB's complete page, but not yet line-by-line authenticated against the Official Gazette issue43 bis page images. The original Gazette binary and later implementing university bylaws remain outstanding.
+
+
+### Acquisition audit — 18 November 2026, after EG-0329 and Law161 text completion
+
+- Acquisition register: **313 rows / 313 unique instrument IDs**.
+- Classification ledger: **313 rows / 313 unique IDs** — 74 base laws; 65 amending laws; 19 executive regulations; 43 executive-regulation amendments; 21 judicial decisions; 78 other decisions; 13 other/unclassified.
+- Full-text inventory: **88 rows / 84 unique instruments**. Four duplicate IDs are source/version rows. **73 unique instruments (23.3%)** have at least one inventory row marked full/complete; **14 rows** remain partial, external-only or incomplete. Total inventory-source coverage is **84/313 = 26.8%**. These are instrument-level source indicators, not guarantees of Gazette authentication or legal currency.
+- Source-permission register: **111 source records**. Two additional source records document CC BY 4.0 text terms at LAW HUB and MKSEgypt; ETA and Customs official source records were updated for Law149/2026 and its corrigendum.
+- Law161/2026 now has a complete local searchable Arabic transcription of all 50 articles across two text files. Gazette page-image comparison remains outstanding.
+- Law149/2026 is captured from the ETA-hosted Gazette PDF, including the official issue32 bis corrigendum; original Amiri Press binary/hash not stored.
+- No newly acquired original Amiri Press PDF binary/hash was stored locally during this pass.
