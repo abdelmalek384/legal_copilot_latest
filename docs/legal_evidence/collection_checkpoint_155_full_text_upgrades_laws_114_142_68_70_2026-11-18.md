@@ -97,3 +97,8 @@ The percentage remains unchanged because the four full-text source upgrades do n
 ## 8. Rights and verification
 
 No lawyer verification, commercial reuse permission, publisher-certified original authentication or bulk retrieval permission is claimed. The searchable text sources are secondary-hosted reproductions attributed to the Court of Cassation portal; the printed-Gazette scans are secondary-hosted reproductions of printed pages.
+
+
+## 9. Correction: Law 114 article-heading count
+
+The Alhasswa full text's “70 articles” is **70 article headings/provision units**, not 70 consecutively numbered base articles. The consolidated text contains 61 ordinary numbered articles (1–61) plus nine inserted bis provisions: Articles 10 bis, 12 bis, 19 bis, 22 bis, 23 bis, 27 bis, 35 bis, 36 bis and 53 bis. Several ordinary articles are repealed or have been replaced; this is a current consolidated-heading count, not a count of operative provisions. The acquisition register EG-0144 has been corrected accordingly. The 200 additional article entries for Laws 114/142/68/70 remain a source-navigation count and not a current-operative-provision total.
