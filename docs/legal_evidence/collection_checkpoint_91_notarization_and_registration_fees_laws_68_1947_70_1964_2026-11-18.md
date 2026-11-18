@@ -9,7 +9,7 @@ The master index and checkpoints 85–90 were inspected. Checkpoint 85 had alrea
 **Full text transcriptions:** 2 (Law 68/1947, 14 articles; Law 70/1964, 44 articles including schedules, current transcription through Law 67/2021).  
 **Amendment instruments identified:** at least 7 (Law 629/1955, Law 5/1964, Law 103/1976, Law 94/1980, Law 6/1991, Law 83/2006, Law 67/2021); full standalone text acquired in this pass for none of these.  
 **Judicial invalidity records:** 2 principal lines affecting Law 70/1964 Article 21 (historical pre-1991 version) and Article 30 (partial invalidity).  
-**New statutory article text units quoted here:** 10 distinct current/historical article provisions (selected, not full 58 article bodies). Full searchable text sources remain linked below.
+**Selected article/provision text units quoted here:** 23 (17 statutory article provisions and 6 Executive Regulation provisions; selected extracts, not all 58 statutory article bodies or the full 35-article regulation). Full searchable text sources remain linked below.
 
 No original Gazette bytes or hashes were archived in this pass. No lawyer verification, reuse permission or commercial clearance is claimed.
 
