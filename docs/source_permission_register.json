@@ -2522,6 +2522,70 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "Single public PDF endpoint; no bulk/API permission established",
       "required_next_action": "Review FRA terms and obtain written permission if required for commercial ingestion/display; archive and hash original Amiri Press issue PDF if authorized; check later amendments to Law93."
+    },
+    {
+      "source_id": "EG-EGYLAWSITE-PM1-2001-HISTORICAL-SNAPSHOT",
+      "authority": "Egyptian Law Site / egylawsite.wordpress.com (secondary historical transcription)",
+      "source_page": "https://egylawsite.wordpress.com/2016/02/29/اللائحة-التنفيذية-لقانون-التمويل-العقارى/",
+      "material_types": [
+        "Historical 61-numbered-article Arabic transcription of PM Decision1/2001 Executive Regulation with Decision465/2005 amendment annotations"
+      ],
+      "access_status": "Public secondary transcription published online 29 February 2016. Text reflects older Decision465/2005 layer; Article6 is pre-2015 and later bis provisions are omitted.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used to capture historical article wording and amendment annotations. No source licence or written permission was reviewed or established; public accessibility does not establish commercial reuse permission.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public blog page; no bulk/API permission established",
+      "required_next_action": "Review site terms and obtain permission before redistribution; visually compare all provisions with original Gazette issues and later FRA consolidated versions."
+    },
+    {
+      "source_id": "EG-SHMFF-GAZETTE-PM-DECISION2-2015",
+      "authority": "Social Housing and Mortgage Finance Fund (SHMFF), government-hosted Official Gazette PDF repository",
+      "source_page": "https://www.shmff.gov.eg/wps/wcm/connect/5733de1e-94a3-4713-abc4-c88062b7cbcc/تعديلات+اللائحة+التنفيذية+لقانون+رقم+148.pdf?CACHEID=ROOTWORKSPACE-5733de1e-94a3-4713-abc4-c88062b7cbcc-nkWWomC&CONVERT_TO=url&MOD=AJPERES",
+      "material_types": [
+        "Full 17-page Official Gazette issue13 bis (ب), 1 April 2015; Cabinet Decision2/2015 amending PM Decision1/2001 Executive Regulation"
+      ],
+      "access_status": "Publicly accessible government-hosted PDF reproduction with searchable text layer. Original Amiri Press binary/hash not archived.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used for legal text extraction and Gazette metadata. No source-specific licence or written permission for bulk ingestion, commercial display or redistribution was established. Government hosting/public access is not treated as a reuse grant.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public PDF endpoint; no bulk/API permission established",
+      "required_next_action": "Review SHMFF terms and obtain permission if required for commercial ingestion/display; archive source bytes/hash if authorized; visually verify OCR-corrupted clauses against Gazette pages."
+    },
+    {
+      "source_id": "EG-EGYPTIANLAWS-DEC465-2005-METADATA",
+      "authority": "Egyptianlaws.com legal information site (secondary Gazette metadata/index)",
+      "source_page": "https://egyptianlaws.com/?p=11265",
+      "material_types": [
+        "Metadata for PM Decision465/2005 amending Mortgage Finance Executive Regulation; Gazette issue64 تابع (أ), 22 March 2005"
+      ],
+      "access_status": "Public metadata/index page; original decision page image and full text not verified in this pass.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used only to corroborate instrument identity and Gazette issue/date; no source licence or written permission was reviewed or established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public metadata page; no bulk/API permission established",
+      "required_next_action": "Acquire original issue64 تابع (أ) Gazette page images; review site terms before reuse beyond citation."
+    },
+    {
+      "source_id": "EG-EGYPTIANLAWS-DEC1864-2008-METADATA",
+      "authority": "Egyptianlaws.com legal information site (secondary Gazette metadata/index)",
+      "source_page": "https://egyptianlaws.com/?p=144297",
+      "material_types": [
+        "Metadata for PM Decision1864/2008 amending Mortgage Finance Executive Regulation; Gazette issue28 تابع (أ), 10 July 2008"
+      ],
+      "access_status": "Public metadata/index page; decision content is image-only in the source view.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used to corroborate instrument identity and Gazette issue/date. No source licence or written permission was reviewed or established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public metadata page; no bulk/API permission established",
+      "required_next_action": "Acquire original issue28 تابع (أ) page images and transcribe complete decision; review site terms before reuse beyond citation."
     }
   ]
 }
