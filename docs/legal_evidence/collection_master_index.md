@@ -591,3 +591,11 @@
 - A separate 2018 correction/استدراك was published in Official Gazette issue 10 on 8 March 2018; the record is identified but its original Gazette scan/full corrected wording remains to be captured.
 - Court of Cassation appeal 2100/92, hearing 18 Oct 2023, is reported to hold that Regulation Article 136 conflicts with amended Law 159 Article 45 on founders' shares and is ineffective to the extent of conflict. Secondary judgment transcription is recorded; official court copy still needed.
 - **Updated Agent 3 minimum:** 38 distinct legal instruments with some Arabic text surfaced; 262 article/provision text units surfaced. These are manual research counts, not deduplicated current operative provisions. 13/13 law families touched; 0/13 fully amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Commercial Code cheque amendment Law 156/2004
+
+- Law 156/2004: Official Gazette issue 28 bis (أ), 14 July 2004; official Egyptian legislative index entry and searchable full Arabic amendment text located.
+- It amends Commercial Code 17/1999 Articles 449, 482, 503, 504, 531, 537 and 544, and Stamp Tax Law 111/1980 Article 52. It changes cheque presentation periods (three/four months to six/eight months), recourse limitation periods (six months to one year), early-presentment treatment, and other cheque/negotiable-instrument rules. Effective date is tied to cheque commencement under Law 158/2003 (1 Oct 2005).
+- Eight provision units transcribed in Agent 3 file; original Gazette PDF still needs capture.
+- **Updated cumulative Agent 3 minimum:** 39 distinct instruments with some Arabic text surfaced; 270 article/provision text units surfaced; 13/13 law families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
