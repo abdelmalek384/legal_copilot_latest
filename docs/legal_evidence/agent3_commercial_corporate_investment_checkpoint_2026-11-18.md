@@ -1842,3 +1842,62 @@ The same Article 240 bis further permits electronic remote agenda presentation a
 - This is the key statutory update to Law 148/2001. Use Law 55/2014 replacement text for affected articles, not the original 2001 version. The 2014 amendment is not a separate mortgage-finance code; it amends the 2001 law directly.
 
 **Incremental count:** one unique instrument and five issuing provisions (Articles 1–5). Cumulative Agent 3 minimum: 139 instruments / 1,335 provision units.
+
+
+### Further mortgage-finance Executive Regulation amendments — Decisions 2/2015 and 32/2024
+
+#### PM Decision 2/2015 — broad amendment to Executive Regulation 1/2001
+
+- Instrument: PM Decision 2/2015 amending the Executive Regulation of Law 148/2001.
+- Official Gazette: issue 13 bis (ب), 1 April 2015.
+- Full Gazette PDF from the Social Housing and Mortgage Finance Fund: https://www.shmff.gov.eg/wps/wcm/connect/5733de1e-94a3-4713-abc4-c88062b7cbcc/تعديلات+اللائحة+التنفيذية+لقانون+رقم+148.pdf?CACHEID=ROOTWORKSPACE-5733de1e-94a3-4713-abc4-c88062b7cbcc-nkWWomC&CONVERT_TO=url&MOD=AJPERES
+- Full text extracted (344 lines). Article 1 replaces 37 listed regulation provisions, including Articles 1,2,3,4 bis,5,7,8,11,14,16,22,26,27–30,32–33,35 bis(1),(4),(6),36,38–43,46,48,53–58 and61. Article 2 renames chapters and updates the regulator terminology; Article 3 adds seven provisions; Article 4 repeals eleven listed provisions; Article 5 gives existing companies three months to regularize; Article 6 publication/commencement.
+- The amendment modernizes permitted financing products (lease-to-own, usufruct, murabaha, participation), security alternatives, refinancing, assignment/securitization, company licensing/capital, capital adequacy, liquidity, corporate governance, client confidentiality, registration of real-estate brokers/valuers/intermediaries, support-fund rules, enforcement and complaints.
+- It sets, in the then-applicable Executive Regulation Article 27, mortgage-finance company capital at EGP 50m and refinancing company capital at EGP 250m. The mortgage-finance company minimum is later increased by PM Decision 32/2024 (below).
+- Article 3 inserts Regulation Articles 1 bis, 2 bis, 21 bis-1, 26 bis, 27 bis, 52 bis and 54 bis (the Gazette text contains a numbering inconsistency in the 27 bis/21 bis-1 sequence; retain the literal Gazette number and verify against the consolidated regulation).
+- Article 4 expressly repeals the listed old regulation articles; preserve them as historical rather than current.
+- **Selected exact Arabic text — Decision 2/2015 Article 1, replacement Regulation Article 27:**
+> يجب أن تتخذ الشركة التي يرخص لها بمزاولة نشاط التمويل العقاري شكل شركة المساهمة المصرية، وألا يقل رأسمالها المصدر عن خمسين مليون جنيه، ولا يقل المدفوع منه عند التأسيس عن الربع نقدًا وأن تلتزم خلال سنة من تاريخ قيدها بالسجل التجاري بزيادة رأس مالها المدفوع ليصبح خمسين مليون جنيه على الأقل.
+>
+> كما يجب ألا يقل رأس مال شركات إعادة التمويل عن مائتين وخمسين مليون جنيه ولا يقل المدفوع منه عند التأسيس عن النصف نقدًا، وأن تلتزم الشركة خلال ثلاث سنوات على الأكثر من تاريخ قيدها بالسجل التجاري باستكمال رأس مالها المدفوع ليصبح مائتين وخمسين مليون جنيه على الأقل.
+- **Selected exact Arabic text — new Regulation Article 35 bis-6 (client confidentiality):**
+> تلتزم الشركة بالمحافظة على السرية التامة لبيانات عملائها وعدم إفشاء أية معلومات عنهم أو عن معاملاتهم إلى الغير بدون موافقتهم الكتابية المسبقة وفي حدود هذه الموافقة، وذلك باستثناء الحالات التي يلزم فيها تقديم معلومات محددة للهيئة أو الجهات الرقابية أو القضائية أو شركة إعادة التمويل أو شركات التصنيف أو الاستعلام الائتماني أو الجهات التي تباشر نشاط التوريق وفقاً لما تفرضه القوانين.
+- Source quality: official Gazette PDF page text extracted; the original Gazette copy is preserved. This is a high-confidence amendment source.
+
+#### PM Decision 32/2024 — capital increase and accelerated mortgage-collateral enforcement
+
+- Instrument: PM Decision 32/2024 amending Executive Regulation 1/2001.
+- Official Gazette: issue 20 bis, 21 May 2024.
+- Official FRA Arabic Gazette PDF: https://fra.gov.eg/wp-content/uploads/2024/05/قرار-رئيس-الوزراء-رقم-32-لسنة-2024-بشأن-بتعديل-بعض-أحكام-اللائحة-التنفيذية-لقانون-التمويل-العقارى.pdf
+- Ministry of Finance official record: https://mof.gov.eg/ar/legislation/decisions/cat-5fe2a20d7bfc600007cbce3a?page=4
+- FRA current Decision 1/2001 record lists Decision 32/2024 as the latest executive-regulation amendment: https://fra.gov.eg/regulations/اللائحة-التنفيذية-للقانون-رقم-148-لسنة-2001-و/
+- All three Gazette pages visually/textually inspected.
+- Article 1 replaces Executive Regulation Article 27 first paragraph and Article 35 item 4:
+  - Mortgage-finance companies must be Egyptian joint-stock companies with issued and paid-up capital of at least EGP 100m, in cash or foreign-currency equivalent at CBE exchange rate on incorporation.
+  - Liquidity assets must be at least 100% of net cash outflows over 30 days.
+- Article 2 adds two paragraphs to Regulation Article 26 bis:
+  - If no registered mortgage security is entered for the lender, a temporary assignment of land allocation is made to the lender, or financing uses lease/participation/murabaha arrangements, the lender may, after 30 days from due date, notify the investor to pay within 60 days using the notice data specified in Regulation Article 17.
+  - If the investor does not pay within the 60-day notice period, the lender may ask the competent execution judge to order execution against the secured property and appoint an FRA-registered real-estate agent to sell under the execution judge's direct supervision. Two FRA-registered valuation experts determine market value; the property is sold at the best available price; the lender receives principal, late charges, expenses and costs, and any remaining proceeds must be returned to the investor.
+- Article 3 requires existing mortgage-finance companies to increase capital to the new threshold within one year from commencement; FRA Board may extend for further periods not exceeding two years in light of serious reasons presented by the company.
+- Article 4 publication and commencement the day after publication.
+- **Exact Arabic text — replacement Regulation Article 27 first paragraph:**
+> يجب أن تتخذ الشركة التي يرخص لها بمزاولة نشاط التمويل العقاري شكل شركة مساهمة مصرية، وألا يقل رأس مالها المصدر والمدفوع عن مائة مليون جنيه نقدًا أو ما يعادلها بالعملات الأجنبية بسعر الصرف المعلن من البنك المركزي المصري في تاريخ تأسيس الشركة.
+- **Exact Arabic text — Decision 32/2024 added Article 26 bis paragraph 3 (core):**
+> وفي حالة عدم قيد الضمان العقاري الوارد باتفاق التمويل لصالح الممول، وحالات التنازل المؤقت عن التخصيص لصالح الممول وفقًا للمادة (2) من هذه اللائحة، وكذا حالات الإجارة والمشاركة والمرابحة، يجوز للممول في حال عدم وفاء المستثمر بالمبالغ المستحقة عليه ومضي ثلاثين يومًا من تاريخ استحقاقها أن يقوم بإنذار المستثمر بالوفاء خلال ستين يومًا، على أن يتضمن الإنذار البيانات المنصوص عليها بالمادة (17) من هذه اللائحة.
+- **Exact Arabic text — added Article 26 bis paragraph 4 (core):**
+> ويكون للممول في حالة عدم سداد المستثمر للمبالغ المستحقة خلال المدة المشار إليها بالفقرة السابقة أن يطلب من قاضي التنفيذ الذي يقع العقار الضامن في دائرة اختصاصه الأمر بالتنفيذ على ذلك العقار وتعيين وكيل عقاري من بين الوكلاء المقيدين لدى الهيئة، وذلك لمباشرة إجراءات بيع العقار تحت الإشراف المباشر لقاضي التنفيذ.
+- This is a major 2024 update. Do not apply the old EGP 50m threshold in Decision 2/2015/2015-era regulation to new licensing or capital-compliance questions after Decision 32/2024.
+
+#### Other mortgage-finance regulation amendment leads
+
+- PM Decision 465/2005, Gazette issue 64 تابع (أ), 22 March 2005, amends the Executive Regulation. Secondary full-text metadata: https://egyptianlaws.com/?p=144454. Official consolidated FRA text footnotes amendments by this decision; acquire the Gazette PDF before primary-source status.
+- PM Decision 1864/2008 is listed by the FRA consolidated Executive Regulation as an amendment; full Gazette text still to be acquired.
+- PM Decision 1/2015 is listed in the FRA current regulation history and cited in the preamble to Decision 2/2015; its own operative Gazette text has not yet been separately acquired. Do not merge it into Decision 2/2015.
+- FRA Board Decision 109/2024 amended Decision 64/2015 licensing conditions to align with the EGP 100m capital threshold; Decision 110/2024 amended Decision 158/2020 liquidity standards; Decision 139/2024 amended Decision 111/2015 mortgage-finance practice rules. These are binding FRA Board regulatory decisions and require separate acquisition.
+
+### Count increment
+
+- Two unique instruments with Gazette Arabic text surfaced: PM Decision 2/2015 and PM Decision 32/2024.
+- Ten issuing provision units counted: Decision 2/2015 Articles 1–6; Decision 32/2024 Articles 1–4.
+- The full amendment to Decision 2/2015 and the three-page Gazette text of Decision 32/2024 are now linked and summarized; the latter supersedes the EGP 50m mortgage-finance company capital threshold with EGP 100m.
+- Cumulative Agent 3 minimum: 141 instruments / 1,345 provision units.
