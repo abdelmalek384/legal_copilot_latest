@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 143)
+**Last updated:** 2026-11-18 (expanded through checkpoint 144)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1169,3 +1169,6 @@
 
 
 | checkpoint 124 — Agent 3 Movable Collateral Law 115/2015 | Added official FRA Arabic Law 115/2015 and full Executive Regulation Decision 108/2016; captured PM Decision 908/2020 amendment adding natural persons as secured creditors and repealing bank no-objection requirement for account/deposit security; PM Decision 4666/2022 retained as uncounted fee-amendment lead; cumulative Agent 3 minimum 139 instruments / 1,322 provision units |
+
+
+| checkpoint 125 — Agent 3 Capital Market Law amendment tranche | Added Gazette text for Laws 27/2014, 17/2018 and 13/2022, including registered-share conversion, disclosure/tender-offer reforms, sukuk issuance framework, remote shareholder meetings and future-cash-flow securitization; recorded 2025 consolidated Law 95/1992 and 23 regulation amendment attachments; cumulative Agent 3 minimum 142 instruments / 1,329 provision units |
