@@ -1074,6 +1074,23 @@
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "metadata only; original PDF request-only; no API/bulk permission established",
       "required_next_action": "Request official PDF through DSpace and review any supplied conditions before OCR, bulk collection or display."
+    },
+    {
+      "source_id": "EG-SIS-GAZETTE-039-2025-MOJ-DECISION-278",
+      "authority": "Egyptian State Information Service digital repository; item identifies Amiri Press as Gazette publisher",
+      "source_page": "https://mediadr.sis.gov.eg/bitstream/handle/123456789/89851/WQ39_20250217_4123.pdf?isAllowed=y&sequence=2",
+      "material_types": [
+        "Egyptian Proceedings Gazette issue 39, 17 February 2025",
+        "Justice Minister Decision 278/2025 setting temporary vehicle values under Law 70/1964"
+      ],
+      "access_status": "Search-indexed public direct PDF locator; extracted text exposes the decision and issue masthead; local bytes/hash not archived",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-11-18. The search-indexed SIS PDF reproduces Egyptian Proceedings issue 39 dated 17 February 2025 and Justice Minister Decision 278/2025. The decision sets minimum values for rapid-transport-vehicle instruments under Article 21(II) of Law 70/1964 and applies through 31 December 2025. No source-specific licence or permission for bulk retrieval, local archiving, OCR, indexing, commercial use, public display or redistribution was identified. Public government hosting does not establish reuse permission.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "one issue-level PDF locator; no bulk/API permission established",
+      "required_next_action": "Review SIS repository terms, obtain authorized local issue PDF and hash, inspect all attached valuation tables, and keep collection/reuse permissions unknown absent affirmative evidence."
     }
   ]
 }
