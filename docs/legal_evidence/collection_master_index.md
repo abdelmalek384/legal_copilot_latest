@@ -2461,3 +2461,11 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 - Priority text inventory: **129 entries** covering 125 unique instrument IDs (four repeated cross-references).
 - Within those 129 inventory entries: **57 (44.2%)** report full/complete searchable text or operative transcription; **26 (20.2%)** are partial local captures; **46 (35.7%)** are locator-only or unclear. This is a text-inventory progress measure, not a percentage of all Egyptian legislation; some full-text sources are searchable externally but not yet mirrored locally.
 - Permission register: **111 source records**; no blanket commercial-reuse permission is claimed.
+
+
+### Agent 3 — FRA Decisions 154/2026, 155/2026 and 2863/2026 (18 Nov 2026)
+
+- Added [Decision 154/2026](agent3_fra_decision154_2026_hedge_funds_arabic_text.md): complete preamble and all seven articles from the official FRA-hosted four-page Gazette PDF, issue 210 (تابع ج), 23 September 2026. Establishes hedge-fund eligibility, permitted investment classes, prospectus disclosures, manager controls, risk/stress testing, collateral monitoring, periodic disclosure and 15-day FRA review period.
+- Added [Decision 155/2026](agent3_fra_decision155_2026_securities_borrowing_lending_arabic_text.md): 19 operative articles from official FRA-hosted 16-page Gazette PDF, issue 191 (تابع أ), 1 September 2026. Regulates securities borrowing for short selling, broker authorization and capital conditions, central lending system, margin/collateral, limits, close-out, client rights, safeguards and transition; expressly repeals Decision 365/2026. OCR/page-image QA remains outstanding and the catalogue labels the item as updated in 2026.
+- Added [Decision 2863/2026](agent3_fra_decision2863_2026_digital_verification_behavioral_scoring_arabic_text.md): all three articles from official FRA-hosted two-page Gazette PDF, issue 210 (تابع أ), 23 September 2026. Requires digital verification before consumer finance is granted/renewed and consideration of alternative-data behavioral scores; scoring requirement begins 1 April 2027 subject to credit-bureau system readiness.
+- Three new unique instrument IDs added. Text is source-matched to official FRA Gazette PDFs; no lawyer review or commercial reuse rights asserted.
