@@ -238,7 +238,7 @@ The official PDF text includes Articles 1–61 and covers:
 
 - Law 83/2006 replaced Article 30 (Official Gazette issue 22 bis, 6 June 2006).
 - Supreme Constitutional Court Case 10/35 (constitutional) dated 2 June 2018: Articles 21 and 24 unconstitutional; Article 23 falls; Decision 553/1976 on procedures before the Article 21 committee also falls. The SCC source confirms the judgment and its effect.
-- Supreme Constitutional Court Case 42/17 (constitutional), published Official Gazette issue 25 supplement, 18 June 1998: Article 37 unconstitutional. The secondary consolidated text records this note; obtain the actual SCC judgment/Gazette before treating it as fully source-matched.
+- Supreme Constitutional Court Case 42/17 (constitutional), published Official Gazette issue 35 supplement, 18 June 1998: Article 37 unconstitutional. The secondary consolidated text records this note; obtain the actual SCC judgment/Gazette before treating it as fully source-matched.
 - The 2018 constitutional judgment invalidates the old cadastral-section committee framework in Articles 21/23/24. Do not rely on those former committees as an extant remedy.
 - The consolidated transcription is described as updated through 6 June 2018; subsequent amendments, if any, require a new Gazette search.
 - Law 142/1964 is territorially phased. Article 2 of its promulgation provisions requires ministerial designation of cadastral sections and commencement dates; until it applies in a section, the ordinary personal-registration system remains operative there under the transitional rule.
