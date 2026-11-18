@@ -7504,3 +7504,95 @@ This is the missing 2024 amendment previously noted in the collection. It insert
 - The former 2018 fine floor/ceiling (EGP 100,000–2 million) and earlier wording on mandatory publication/confiscation must be retained as historical text only.
 
 **Collection status:** official MOF in-force record, official Gazette DSpace record and Amiri Press text obtained; replacement Article 71 and commencement provision transcribed. No lawyer review or rights clearance claimed.
+
+
+## 56. PPP Law 67/2010 — Law 153/2021 amendment: current operative provisions and planning gateway
+
+### A. Amendment identity and Gazette
+
+**Amending Law:** Law 153/2021 amending Law 67/2010 on private-sector participation in infrastructure, services and public utilities projects.  
+**Gazette:** Official Gazette issue 50 مكرر (أ), 18 December 2021.  
+**Effective:** 19 January 2022 (first day of the month following 30 days after publication).  
+**Official Gazette DSpace record:** https://dspace.id.com.eg/items/15259052-39d6-44d5-b420-4909ade920d0  
+**Arabic amending text record:** https://dspace.id.com.eg/items/922f0e44-2c97-4d26-850e-809aefe85ada  
+**Official Amiri Press text of Law 67/2010:** https://media.mof.gov.eg/mof-prd/1490_c21c703414.pdf  
+**Current searchable consolidated Arabic text with amendment footnotes:** https://lawhub.info/eg/?p=11536
+
+Law 153/2021 replaces 16 provisions of Law 67/2010, changes ministerial titles throughout, adds the planning/annual-project-list mechanism and modifies the PPP Supreme Committee's approval and procurement functions. This is a substantive reform, not a mere terminology update.
+
+### B. Verbatim current operative provisions (as amended by Law 153/2021)
+
+**Verbatim — promulgating Article 1 (sovereign-fund exception):**
+
+> المادة 1 إصدار
+>
+> تسري أحكام القانون المرافق على عقود المشاركة مع القطاع الخاص وعقود الاستشارات الخاصة المتعلقة بها والتي تبرمها الجهات الإدارية، لتنفيذ مشروعات البنية الأساسية والخدمات والمرافق العامة وإتاحة خدماتها.
+>
+> ولا تسري على هذه العقود أحكام القانون رقم 129 لسنة 1947 بالتزامات المرافق العامة، والقرار بالقانون رقم 61 لسنة 1958 في شأن منح الامتيازات المتعلقة باستثمار موارد الثروة الطبيعية والمرافق العامة وتعديل شروط الامتياز، وقانون تنظيم المناقصات والمزايدات الصادر بالقانون رقم 89 لسنة 1998، وغيرها من القوانين الخاصة بمنح التزامات المرافق العامة.
+>
+> ولمجلس الوزراء أن يستثني من أحكام القانون المرافق عقود مشروعات البنية الأساسية والخدمات والمرافق العامة التي تتم بنظام المشاركة والتى تبرمها الجهات الإدارية الخاضعة لأحكامه مع صندوق مصر السيادي للاستثمار والتنمية المنشأ بالقانون رقم ١٧٧ لسنة ٢٠١٨ بإنشاء صندوق مصر، أو أحد الصناديق الفرعية، أو أي من الشركات التابعة لأي منها.
+
+**Verbatim — Article 3 bis (annual plan and project pipeline):**
+
+> المادة ٣ مكرراً
+>
+> تعد الوحدة المركزية للمشاركة بالتنسيق مع الوزارة المعنية بشئون التخطيط نموذجاً بالبيانات والمتطلبات الأساسية الخاصة بنظام المشاركة مع القطاع الخاص وترسله إلى جميع الجهات الإدارية الخاضعة لأحكام هذا القانون.
+>
+> ويتعين على الجهات الإدارية عند تقديمها لخطتها السنوية إلى الوزارة المعنية بشئون التخطيط أن ترفق بها دراسات الجدوى التنموية والدراسات الفنية والقانونية المبدئية لمشروعات البنية الأساسية والخدمات والمرافق العامة المدرجة بها، مشتملة على النموذج المشار إليه في الفقرة الأولى من هذه المادة بعد استيفاء ما به من بيانات ومتطلبات.
+>
+> وتحيل الوزارة المعنية بشئون التخطيط ما تراه من هذه المشروعات متفقاً مع خطة الدولة للتنمية المستدامة إلى اللجنة المنصوص عليها في المادة (٤) من هذا القانون لدراسة ما بها من مشروعات للبنية الأساسية والخدمات والمرافق العامة، واختيار المتفق منها مع متطلبات نظام المشاركة مع القطاع الخاص، وتصدر بهذه المشروعات قائمة تسمى قائمة المشروعات التي تنفذ بنظام المشاركة مع القطاع الخاص تدخل ضمن الخطة العامة للتنمية الاقتصادية والاجتماعية للدولة بعد اعتمادها من اللجنة العليا لشئون المشاركة.
+>
+> ولا يجوز أن تدرج اعتمادات مالية بموازنة أي من الجهات الإدارية التي تشملها الموازنة العامة للدولة أو غيرها من الموازنات المستقلة لتنفيذ مشروع لها تم إدراجه بقائمة المشروعات التي تنفذ بنظام المشاركة مع القطاع الخاص، وذلك ما لم تقم اللجنة العليا لشئون المشاركة بحذف المشروع من القائمة المشار إليها.
+
+**Verbatim — Article 17 (central unit pre-review and project approval):**
+
+> المادة ١٧
+>
+> لا يجوز البدء في إجراءات أي من طرق التعاقد المنصوص عليها في المادة (٢٠) من هذا القانون على مشروع مدرج بقائمة المشروعات التي تنفذ بنظام المشاركة مع القطاع الخاص إلا بعد مراجعة الوحدة المركزية للمشاركة، بالاشتراك مع الاستشاريين المعينين للمشروع للدراسات المبدئية المعدة من الجهة الإدارية صاحبة المشروع، للتأكد من استيفائها للبيانات والمستندات والتراخيص والتصاريح والموافقات اللازمة للمشروع، وكذا التأكد من تخصيص الأرض اللازمة للمشروع في المشروعات التي تستلزم ذلك، وذلك قبل العرض على اللجنة العليا لشئون المشاركة.
+>
+> وتصدر اللجنة العليا لشئون المشاركة قرارها بالموافقة على المشروع، وطريق التعاقد عليه، والبدء في إجراءات التعاقد عليه، بناءً على توصية ترفع إليها من الوحدة المركزية للمشاركة.
+
+**Verbatim — Article 19 (contracting principles):**
+
+> المادة ١٩
+>
+> يخضع التعاقد على المشروعات التي تنفذ بنظام المشاركة مع القطاع الخاص لمبادئ التوازن الاقتصادي والمالي لأحكامه، والمكاسب المشتركة لأطرافه، وشفافية طرق التعاقد، وتكافؤ الفرص والمساواة بين المتماثلين في المراكز في أحوال التنافس على التعاقد على هذه المشروعات، وذلك كله وفقاً للأحكام التي ينظمها العقد والقواعد والإجراءات المنصوص عليها في هذا القانون ولائحته التنفيذية.
+
+**Verbatim — Article 21 (market sounding and confidentiality):**
+
+> المادة ٢١
+>
+> للجهة الإدارية، بالتنسيق مع الوحدة المركزية للمشاركة، أن تدعو إلى عقد لقاءات واجتماعات تمهيدية خاصة مع المستثمرين المتقدمين على مشروع من المشروعات التي تنفذ بنظام المشاركة مع القطاع الخاص، وجهات التمويل المختصة، يتم فيها مناقشة الأمور المتعلقة بمواصفات المشروع وشروطه التمهيدية على أن تتاح جميع الاستفسارات والإجابات عنها لجميع هؤلاء المستثمرين.
+>
+> ولهؤلاء المستثمرين أن يشترطوا على السلطة المختصة بالجهة الإدارية الالتزام بعدم إفشاء سرية أي من البيانات الخاصة بتحفظاتهم أو توقعاتهم الاقتصادية أو الفنية أو المالية، ويكون التعامل مع هؤلاء المستثمرين بما يضمن تكافؤ الفرص والمساواة بينهم.
+>
+> وتحدد اللائحة التنفيذية لهذا القانون الأسس التي يتعين اتباعها عند وضع كل من القيمة التقديرية والمقارن الحكومي.
+
+**Verbatim — Article 29 (tender evaluation and grievance committee):**
+
+> المادة ٢٩
+>
+> تشكل بقرار من السلطة المختصة بالجهة الإدارية لجنة لتلقي العطاءات ودراستها فنياً ومالياً من عناصر فنية ومالية وقانونية مناسبة، وتنظم اللائحة التنفيذية لهذا القانون اختصاص اللجنة ونظام عملها وترتيب العطاءات المقبولة فنياً وتحديد العطاءات المستبعدة.
+>
+> ويجب أن تضم اللجنة في عضويتها ممثلاً عن كل من إدارة الفتوى المختصة بمجلس الدولة، ووزارة المالية، والوحدة المركزية للمشاركة.
+>
+> وتشكل لجنة للتظلمات برئاسة أحد نواب رئيس مجلس الدولة وعضوية ممثل عن وزارة المالية، ورئيس الوحدة المركزية للمشاركة، وأحد ذوي الخبرة من غير العاملين بالدولة يختاره رئيس اللجنة.
+>
+> وتختص اللجنة بالنظر في التظلمات من القرارات التي تصدر خلال مرحلة الإجراءات السابقة على التعاقد. ويكون ميعاد التظلم خلال خمسة عشر يوماً من تاريخ الإخطار أو العلم بالقرار، ولا تقبل دعوى إلغاء تلك القرارات قبل التظلم منها.
+
+**Verbatim — Article 39 (commencement of amendment):**
+
+> المادة الرابعة من القانون رقم ١٥٣ لسنة ٢٠٢١
+>
+> ينشر هذا القانون في الجريدة الرسمية، ويعمل به اعتباراً من أول الشهر التالي لمرور ثلاثين يوماً على تاريخ نشره.
+
+### C. Main effects of Law 153/2021
+
+- Requires an annual PPP project pipeline linked to national planning and development priorities, with preliminary development, technical and legal feasibility studies.
+- Projects must be listed and approved by the Supreme PPP Committee before procurement begins; Central PPP Unit reviews the project studies, permits, approvals and land allocation.
+- Reframes procurement around economic/financial balance, shared gains, transparency, equal opportunity and equality among similarly situated bidders.
+- Adds market-sounding meetings with equal access to questions/answers and permits confidentiality protections for investor-specific economic/technical/financial assumptions.
+- Changes the Supreme Committee's powers and replaces its former role in approving the selected contractor with a more structured project-list/route approval process.
+- Allows Cabinet exceptions for PPP contracts with the Sovereign Fund of Egypt, its sub-funds or subsidiaries.
+
+**Collection status:** Official Gazette DSpace record, official MOF Gazette PDF of Law 67/2010 and full searchable consolidated Arabic text located. Seven current provisions transcribed above, including the new Article 3 bis. Law 153/2021 is already counted in the master instrument inventory; this section expands its article-level text, not the unique-instrument count. No lawyer review or rights clearance claimed.
