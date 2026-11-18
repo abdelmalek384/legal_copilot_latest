@@ -44,7 +44,7 @@ All 18 provisions of Law 168/2025 are now captured in searchable Arabic text fro
 
 | Source route | Status |
 |---|---|
-| SIS official item metadata | <badge>Public</badge> Item and 295.3 KB file identified; page/PDF currently 502/inaccessible |
+| SIS official item metadata | Public Item and 295.3 KB file identified; page/PDF currently 502/inaccessible |
 | DSpace Amiri Press original bundle | Request-copy workflow; not obtained |
 | Diwan Google Drive original-PDF link | Preview/sign-in placeholder; not obtained |
 | VetoGate scan reproduction | Opened, 20 pages; non-circulation notice; not authenticated binary |
