@@ -57,4 +57,4 @@
 
 ## Supplement — Evidence Law full statutory range
 
-The complete Evidence Law extends through Article 163, not Article 117. A consolidated secondary PDF exposes the full law and amendment history; the official Ministry of Finance 12-page Gazette reproduction remains the primary source for comparison. Amendment chain: Laws 54/1974, 23/1992, 18/1999 and 76/2007. Only 11 of 12 Gazette PDF pages were visually inspected; page index 4 remains an extraction failure. See checkpoint 93.
+The complete Evidence Law extends through Article 162, not Article 117. A consolidated secondary PDF exposes the full law and amendment history; the official Ministry of Finance 12-page Gazette reproduction remains the primary source for comparison. Amendment chain: Laws 54/1974, 23/1992, 18/1999 and 76/2007. Only 11 of 12 Gazette PDF pages were visually inspected; page index 4 remains an extraction failure. See checkpoint 93.
