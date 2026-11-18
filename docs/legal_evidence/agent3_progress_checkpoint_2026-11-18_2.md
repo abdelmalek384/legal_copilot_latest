@@ -106,3 +106,13 @@ Added four decisions using the official FRA consolidated 2025 text and official 
 - Detailed Arabic text: [2022–2023 Capital Market amendments](agent3_capital_market_exec_reg_135_amendments_2022_2023_arabic_text.md). Original Gazette PDFs still outstanding for 3456/2022, 4664/2022 and 345/2023.
 
 Updated aggregate: **202 documents / 1,996 provisional numbered units**; assigned-domain completion remains **55% provisional**; lawyer review 0%.
+
+
+## Capital Market primary-source upgrade and correction
+
+- Decision 3456/2022: obtained the original 11-page official FRA-hosted Gazette scan, issue 38 bis (أ), 28 Sep 2022, pp. 3–13. Corrected the article IDs: it inserts **35 bis 4, 35 bis 5 and 35 bis 6** (not 35 bis 3–4). The first lists six sustainable-bond classes, the second sets issuance procedures, the third governs related sustainable securitization/sukuk. It also amends fund provisions and adds Article 167(1)(5).
+- Decision 4664/2022: obtained the original two-page official FRA-hosted Gazette PDF, issue 51 bis (د), 25 Dec 2022, pp. 5–6. Full text confirms Articles 35 bis 7–8 and issuing Articles 1–2.
+- Decision 345/2023: the official FRA July 2024 consolidated PDF provides the current and former wording of Article 154 (fund-unit promotion and marketing register), Article 170(3)(1)–(2) (semiannual reporting) and Article 171 (fund governance). Original Gazette copy still open.
+- Decision 1109/2022: full text on official Amiri Press page, including Article 358 bis.
+- Updated record: [Capital Market 2022–2023 amendments](agent3_capital_market_exec_reg_135_amendments_2022_2023_arabic_text.md).
+- No new instrument count. Aggregate remains **202 documents / 1,996 provisional units**; assigned-domain estimate 55% provisional; lawyer review 0%.
