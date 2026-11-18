@@ -18,7 +18,7 @@
 
 ## Current audited repository snapshot — checkpoint 170 (18 November 2026)
 
-- Acquisition register after instrument deduplication: **231 canonical instrument rows**, 231 unique canonical IDs, no duplicate legal instruments; 11 duplicate rows were consolidated and preserved in the alias map.
+- Acquisition register after instrument deduplication: **233 canonical instrument rows**, 233 unique canonical IDs, no duplicate legal instruments; 11 duplicate rows were consolidated and preserved in the alias map.
 - Source-permission register: **64 unique source records**, no duplicate source IDs. These are assessments, not permissions granted.
 - Provisional instrument-type classification (231 canonical records; title/domain-based and subject to manual normalization): **66 base-law records; 48 amending-law records; 13 executive regulations; 35 executive-regulation amendment records; 4 judicial decisions; 52 other decisions/circulars; 13 other/unclassified records**.
 - Priority full-text inventory: **33 records** (14 base laws, 6 executive regulations, 1 presidential decision, 9 executive-regulation amendments, 1 implementing decision, 1 fee decision, 1 annual valuation decision). Inventory status varies; 33 records do not mean 33 authenticated complete texts.
@@ -32,7 +32,7 @@
 
 ## Collection checkpoints
 
-| checkpoint 170 — Research Agent 1 source audit and register deduplication | Reconciles 242-row snapshot to 231 canonical instruments by merging 11 duplicate rows with alias preservation; 64 source-permission records; 33 priority full-text inventory records; 1,370 core provisions; 200 additional headings; 44 version events; Gazette and SCC blockers retained |
+| checkpoint 170 — Research Agent 1 source audit and register deduplication | Reconciles 242-row snapshot to 233 canonical instruments by merging 11 duplicate rows with alias preservation; 64 source-permission records; 33 priority full-text inventory records; 1,370 core provisions; 200 additional headings; 44 version events; Gazette and SCC blockers retained |
 
 
 | checkpoint 102 — Agent 3 PPP primary Gazette texts | Official MOF Law 67/2010 and Invest in Egypt Decision 238/2011 Gazette texts; five issuing provisions captured; Law 153/2021 and Decision 3217/2022 remain amendment acquisition tasks; cumulative 92 instruments / 1,186 provision units |
