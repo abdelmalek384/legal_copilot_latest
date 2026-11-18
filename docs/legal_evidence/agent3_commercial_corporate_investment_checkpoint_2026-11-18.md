@@ -1486,3 +1486,71 @@ The same Article 240 bis further permits electronic remote agenda presentation a
 - One unique instrument with Arabic Gazette text surfaced: Law 194/2020.
 - Three issuing provisions counted (Articles 1–3); the full 115-page substantive law remains pending article-by-article extraction.
 - Cumulative Agent 3 minimum: 117 unique instruments / 1,256 provision units.
+
+
+## 37. Competition Law 3/2005 — ex-ante merger control amendment chain
+
+### Core statute and Executive Regulation
+
+- Core instrument: Law 3/2005 on Protection of Competition and Prevention of Monopolistic Practices. Official ECA Arabic law page: https://eca.org.eg/ar-eg/جهاز-حماية-المنافسة/القانون/قانون-حماية-المنافسة
+- Full current Arabic article transcription: https://lawhub.info/eg/?p=11528 (secondary text; match against Official Gazette and the ECA's official PDF of the 2022 amendment before production use).
+- The ECA official FAQ confirms issuance on 15 February 2005, commencement 16 May 2005, and amendment history: Laws 190/2008 and 193/2008; Law 56/2014; Law 15/2019; and Law 175/2022. It identifies the original Executive Regulation as PM Decision 1316/2005, amended by PM Decisions 2957/2010, 2509/2016 and 1120/2024.
+- Official ECA FAQ (Arabic): https://eca.org.eg/ar-eg/جهاز-حماية-المنافسة/الأسئلة-الأكثر-شيوعًا
+- Official ECA Executive Regulation page identifies PM Decision 1316/2005, dated 16 August 2005, and provides attachment links for the regulation and 2010/2016 amendment decisions: https://eca.org.eg/ar-eg/جهاز-حماية-المنافسة/القانون/اللائحة-التنفيذية
+- Ministry of Finance's official English PDF of the 2005 Executive Regulation: https://media.mof.gov.eg/mof-prd/1056_ff659961a2.pdf. The ECA official Arabic page is preferred for Arabic source ingestion.
+- The direct ECA law page and FAQ are official authority records; they are not themselves Gazette scans. Obtain original Gazette copies of Laws 3/2005 and its pre-2022 amendments.
+
+### Law 175/2022 — statutory ex-ante merger-control regime
+
+- Instrument: Law 175/2022 amending Law 3/2005.
+- Official Gazette issue 52 تابع (أ), 29 December 2022; effective 30 December 2022.
+- Official Amiri Press full Arabic text: https://alamiria.com/Sec/TashTxt?id=fS+Yv1+FkoI%3D
+- ECA-hosted official PDF: https://eca.org.eg/getattachment/ff331345-8276-43ec-9096-3fb3dfd281e7/نص-قانون-حماية-المنافسة.pdf
+- Full Arabic text and Gazette metadata also at https://www.eastlaws.com/legislation-full-text/ar/egypt/law/29-12-2022/no-175?id=2073151&sub=10528539&type=1
+- Article 1 replaces Law 3/2005 Article 11(2), Article 18 and Article 20(1), adding notification review to ECA functions, filing-fee rules and the relevant procedural powers.
+- Article 2 adds the economic-concentration framework, including Articles 19 bis, 19 bis (a)–(e) and related sanctions provisions. Article 19 bis sets jurisdictional thresholds; Article 19 bis (a) requires pre-implementation notification and prohibits closing before ECA approval; Article 19 bis (b) prohibits concentrations that restrict or harm competition; Articles 19 bis (c)–(d) establish first- and second-phase review and decision paths; Article 19 bis (e) excludes financial-sector concentrations under FRA supervision from specified ECA procedures.
+- Article 3 repeals the second paragraph of Article 19 and Article 22 bis(1) of the prior law.
+- Article 4 publication and commencement.
+- **Exact Arabic text — new Article 19 bis (a):**
+> يجب إخطار الجهاز بأى تركز اقتصادى يستوفى الشروط الموضحة فى المادة (19 مكررًا) من هذا القانون، ولا يجوز تنفيذ التركز الاقتصادى قبل الحصول على موافقة الجهاز.
+>
+> ولا يخل الالتزام بالإخطار المشار إليه بالفقرة الأولى من هذه المادة بواجب الإخطار المنصوص عليه فى أى قانون آخر أو فى الاتفاقات الدولية التى تكون جمهورية مصر العربية طرفًا فيها.
+- **Exact Arabic text — new Article 19 bis (b):**
+> يحظر التركز الاقتصادى إذا كان من شأنه الحد من حرية المنافسة أو تقييدها أو الإضرار بها، وتبين اللائحة التنفيذية لهذا القانون العناصر التى تؤخذ فى الاعتبار عند تقييم آثار التركز الاقتصادى على حرية المنافسة فى السوق.
+- Law 175/2022 changed the regime from predominantly post-event review to ex-ante review; the statutory amendments were not operationalized until the 2024 Executive Regulation amendment and 1 June 2024 commencement date.
+
+### PM Decision 1120/2024 — implementing regulations for merger control
+
+- Instrument: PM Decision 1120/2024 amending Executive Regulation 1316/2005.
+- Gazette: Official Gazette issue 14 تابع (أ), 4 April 2024. Effective 1 June 2024.
+- Official Gazette DSpace record and bundle: https://dspace.id.com.eg/items/ad17d638-6e99-43c4-9ad3-adcda03d6ef1
+- Full Arabic text transcription: https://www.mksegypt.org/ar/decisions/21943
+- Eastlaws full-text record: https://www.eastlaws.com/legislation-full-text/ar/egypt/prime-minister-decision/04-04-2024/no-1120?id=2129663&type=1
+- Article 1 replaces Executive Regulation Articles 30 and 41(1); the replacement provisions include new Article 54, which prohibits concentrations that restrict or harm competition and requires ECA to evaluate market structure, actual/potential competition, market position and financial strength, supplier/customer/consumer alternatives and access to production resources.
+- Article 2 adds a new chapter governing economic-concentration review, including notification and assessment procedures, filing documents, deadlines, fees, relevant parties and review factors.
+- Article 3 repeals former Executive Regulation Articles 44, 44 bis and 45.
+- Article 4 publication and commencement on 1 June 2024.
+- ECA annual report and official FAQ confirm the new regime commenced on 1 June 2024. Official ECA ex-ante page: https://eca.org.eg/en-us/جهاز-حماية-المنافسة/economic-concentrations/ex-ante-control-of-economic-concentrations
+- **Source discrepancy to resolve:** an ECA compliance-guide PDF search result refers to PM Decision 1122/2023, whereas ECA's official FAQ/annual report, Ministry of Finance catalogue, Official Gazette DSpace record and the full legal text identify Decision 1120/2024. Do not silently harmonize these numbers; retain 1122/2023 as a possible typo/other instrument lead and verify its Gazette identity separately.
+
+### 2026 amendment bill — not treated as enacted law
+
+- Ahram reported on 24 April 2026 that Parliament had given preliminary approval to a draft competition-law amendment bill. White & Case reported on 11 May 2026 that the final text had not yet been officially published and remained subject to presidential approval.
+- Sources: https://english.ahram.org.eg/UI/Front/Inner.aspx?NewsContentID=566453 and https://www.whitecase.com/insight-alert/egypt-set-major-competition-law-amendments
+- A legal-data service with a 30 September 2026 research cut-off still described the 2026 bill as not promulgated or in force: https://www.infralex.co/laws-regulations/egypt-competition-law
+- **Status caution:** no Gazette-original enactment of the 2026 bill was located in this pass. Treat it as proposed/pending pending a fresh Gazette and presidential promulgation check; never apply proposed higher thresholds or sanctions as operative law.
+
+### Competition-law source inventory still required
+
+- Laws 190/2008 and 193/2008: ECA FAQ confirms amendments, but original Gazette text and precise affected articles remain to be captured.
+- Law 56/2014: ECA FAQ confirms amendment; Gazette text still required.
+- Law 15/2019: ECA FAQ confirms amendment; Gazette text still required.
+- PM Decision 2957/2010 and PM Decision 2509/2016: ECA FAQ confirms regulation amendments; original decision text still required.
+- PM Decision 1122/2023 reference in the ECA compliance-guide material needs a separate identity/Gazette check; do not count it as the 1120/2024 decision.
+
+### Count increment
+
+- Four unique instruments with Arabic text/source text surfaced: Law 3/2005, PM Decision 1316/2005, Law 175/2022 and PM Decision 1120/2024.
+- Fourteen issuing provision units counted: Law 3/2005 Articles 1–4; Decision 1316/2005 Articles 1–2; Law 175/2022 Articles 1–4; Decision 1120/2024 Articles 1–4.
+- Full substantive Law 3/2005 and the 1316/2005 regulation text have source routes but still require article-by-article ingestion and amendment overlay. The four pre-2022 amendment laws and two 2010/2016 regulation amendments remain pending source acquisition.
+- Cumulative Agent 3 minimum: 121 unique instruments / 1,270 provision units.
