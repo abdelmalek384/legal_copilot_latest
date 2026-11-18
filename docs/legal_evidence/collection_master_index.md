@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 214; Agent 3 continuation separately indexed)
+**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 215; Agent 3 continuation separately indexed)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -103,6 +103,8 @@
 
 | checkpoint 6 — Agent 3 FRA Decision 43/2026 fintech consumer-finance licensing pause | Added one distinct FRA Board decision and exact Arabic text of Articles 1–2; original Gazette binary/page-image check remains outstanding | [Agent 3 checkpoint 6](agent3_progress_checkpoint_2026-11-18_6.md) |
 
+| checkpoint 215 — Decision 67/2014 amendment events | Added five version events for Decision 67/2014 Articles 51, 53(1)(6), 57, 58 and 60; historical event register rises to 53 | [checkpoint 215](collection_checkpoint_215_decision67_2014_amendment_events_2026-11-18.md) |
+| checkpoint 211 — Decision 200/2010 and Decision 120/2025 amendment events | Added four version events for Decision 144 Articles 19, 26 and 27 and Article 26(5); historical event register rises from 44 to 48 | [checkpoint 211](collection_checkpoint_211_decision144_amendment_version_events_2026-11-18.md) |
 | checkpoint 214 — Decision 144/2009 Articles 51–52 extraction | Added full Arabic Articles 51–52; preserved Article 51 pre/post Decision 67/2014 text; cumulative coverage rises to 60/185 (125 remain) | [checkpoint 214](collection_checkpoint_214_decision144_articles_51_52_full_text_2026-11-18.md) |
 | checkpoint 213 — Decision 144/2009 Articles 46–50 extraction | Added five complete Arabic base article bodies (Arts 46–50); cumulative Decision 144 coverage rises to 58/185 (127 remain) | [checkpoint 213](collection_checkpoint_213_decision144_articles_46_50_full_text_2026-11-18.md) |
 | checkpoint 212 — Decision 144/2009 Articles 41–45 extraction | Added five complete Arabic base article bodies (Arts 41–45); cumulative Decision 144 coverage rises to 53/185 (132 remain) | [checkpoint 212](collection_checkpoint_212_decision144_articles_41_45_full_text_2026-11-18.md) |
