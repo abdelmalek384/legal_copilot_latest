@@ -1,10 +1,12 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 236; Agent 3 continuation separately indexed)
+**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 237; Agent 3 continuation separately indexed)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
 ## Current progress
+
+- **Research Agent 1 checkpoint 237:** Reconciled the live 250-row acquisition CSV and 97-record source-permission register; recorded the direct official Amiri Press text route for PM Decision 200/2026 (effective 19 Jan 2026), and reaffirmed that the four 1946/1947/1964 Gazette scans are secondary-hosted copies, not Amiri Press originals. Decision 480/2026 was published 10 Nov 2026, but its text specifies no commencement or calendar deadline; 18 Jan 2027 and 9/10 May 2027 remain conditional calculations only. No new instrument/article counts or register rows added. See [checkpoint 237](collection_checkpoint_237_research_agent1_source_verification_and_deadline_2026-11-18.md).
 
 - **Latest register counts (checkpoint 236):** 250 canonical acquisition records; 66 base laws; 48 amending laws; 13 executive regulations; 35 executive-regulation amendments; 21 judicial decisions; 54 other decisions/circulars; 13 other/unclassified records; 97 unique source-permission records; 31 full-text inventory records. Seven pending rent-law dockets are separately recorded and are not counted as final judicial decisions. These are provisional title-based instrument classes and are maintained separately.
 - **Priority full-text inventory:** 27 unique instruments after merging six duplicate inventory rows; historical IDs and reasons are preserved in the inventory alias map. Full-text source availability is distinct from complete extraction, Gazette authentication and currentness.
