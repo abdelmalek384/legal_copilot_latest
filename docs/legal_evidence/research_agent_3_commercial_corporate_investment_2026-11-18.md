@@ -245,3 +245,116 @@ Public accessibility is not permission for automated collection, commercial inde
 ## 7. Safeguards
 
 Keep original bytes immutable; record SHA-256, retrieval timestamp, exact URL, Gazette issue/date/page, extraction method and quality warnings. Preserve amendments as separate instruments. Keep law text, regulations, binding decisions, circulars and non-binding guidance distinct. Unknown commencement/currentness fields stay unknown. No record becomes `verified` until a qualified Egyptian lawyer signs off. Use `source-matched, not lawyer-reviewed` only after actual source matching.
+
+
+## 8. Additional collection — Trade Register and commercial agency (18 November 2026)
+
+### A. Trade Register Law 34/1976 — official ITDA Gazette scan visually inspected
+
+**Official source:** Internal Trade Development Authority (ITDA), 16-page PDF:  
+https://www.itda.gov.eg/pdf/CR_WorkGuide34.pdf  
+Official legislation index: https://www.itda.gov.eg/sgl.aspx
+
+The PDF's first page identifies **قانون رقم 34 لسنة 1976 في شأن السجل التجاري** and the Gazette footer reads **الجريدة الرسمية العدد 19 (تابع) في 6 مايو سنة 1976**. This is an official government-hosted Gazette scan. Searchable text extraction returned zero lines, so pages 1–3 were visually inspected instead. The following is a manual transcription of the visible Arabic, requiring second-person page-image verification before machine ingestion.
+
+**Verbatim transcription — Article 1 (page 1):**
+
+> مادة 1 - يعد فى كل محافظة أو مدينة يصدر بتعيينها قرار من وزير سجل تجارى أو أكثر يقيد فيه أسماء الخاضعين لأحكام هذا القانون.
+
+**Verbatim transcription — Article 2 (page 1 and continuation page 2):**
+
+> مادة 2 - يجب أن يقيد فى السجل التجارى:
+>
+> (1) الأفراد الذين يرغبون فى مزاولة التجارة فى محل تجارى.
+>
+> (2) شركات الأشخاص وشركات المساهمة والتوصية بالأسهم وذات المسئولية المحدودة مهما كان غرضها.
+>
+> (3) الأشخاص الاعتبارية العامة التى تباشر بنفسها نشاطا تجاريا.
+>
+> (4) الجمعيات التعاونية التى تباشر نشاطا تجاريا.
+>
+> (5) الأشخاص الطبيعيون والاعتباريون الذين يزاولون أعمال الوكالة التجارية بأنواعها المختلفة عن المنشآت الأجنبية.
+>
+> ويتعدد القيد بالنسبة للمحل الرئيسى أو الفرع أو الوكالة أو المركز العام للشركة حسب موقع كل منها.
+
+**Verbatim transcription — Articles 3–6 (page 2):**
+
+> مادة 3 - يشترط فيمن يقيد فى السجل التجارى أن يكون مصريا حاصلا على ترخيص بمزاولة التجارة من الغرفة التجارية المختصة.
+>
+> مادة 4 - استثناء من أحكام المادة السابقة، ومع مراعاة حكم المادة 33 ودون إخلال بأحكام القانون المنظم للقيام بأعمال الوكالة التجارية، يتعين على الأجانب القيد فى السجل التجارى فى الحالات الآتية:
+>
+> (1) موافقة الهيئة العامة لاستثمار المال العربى والأجنبى والمناطق الحرة فى حالة المشروعات التى تنشأ وفقا لأحكام القانون رقم 43 لسنة 1974 بإصدار نظام استثمار المال العربى والأجنبى والمناطق الحرة.
+>
+> (2) إذا كان الأجنبى شريكا فى شركة من شركات الأشخاص بشرط أن يكون أحد الشركاء المتضامنين على الأقل مصريا وأن يكون للشريك المصرى المتضامن حق الإدارة والتوقيع وأن تكون حصة الشركاء المصريين 51% على الأقل من رأس مال الشركة.
+>
+> (3) كل شركة - أيا كان شكلها القانونى - يوجد مركزها الرئيسى أو مركز إدارتها فى الخارج إذا زاولت فى مصر أعمالا تجارية أو مالية أو صناعية أو قامت بعملية مقاولة بشرط موافقة هيئة الاستثمار.
+>
+> (4) الأجانب المزاولون لنشاط التصدير وفى حدود هذا النشاط سواء أكانوا أفرادا أو شركاء فى شركات أشخاص أو أموال أيا كانت أنصبتهم فى رأس المال.
+>
+> مادة 5 - على كل من قيد فى السجل التجارى أن يكتب على واجهة محله وفى جميع المراسلات والمطبوعات والأوراق المتعلقة بتجارته اسم التاجر مشفوعا ببيان مكتب السجل المقيد به ورقم القيد.
+>
+> مادة 6 - على كل من تم قيده فى السجل التجارى أن يطلب التأشير فى السجل التجارى بأى تغيير أو تعديل يطرأ على بيانات القيد خلال شهر من تاريخ العقد أو الحكم أو الواقعة التى تستلزم ذلك.
+
+**Important transcription caveat:** this transcription follows the visible pages in the hosted scan. Article 3/4 contain legacy references and should not be treated as current eligibility rules without checking later amendments, especially Law 198/2020 and later foreign-investment/company rules.
+
+**Official ITDA index confirms the related instruments:**
+- Law 34/1976 and amendments.
+- Executive Regulation, Minister of Supply and Internal Trade Decision 106/2018.
+- Law 198/2020 amending Law 34/1976.
+- Ministerial Decision 41/2020 on registration in the beneficial-owner register.
+- Commercial Names Law 55/1951.
+The PDF attachment links for the Executive Regulation and Decision 41/2020 were listed by ITDA; the Executive Regulation PDF is large (14.9 MB) and could not be retrieved by the web reader in this session. Acquire bytes via the official link and compare the whole instrument article-by-article.
+
+### B. Commercial Agency Law 120/1982 — amendment Law 21/2022
+
+**Official Amiri Press text result:** https://alamiria.com/Sec/TashTxt?id=rYbr7ZR6Bdo%3D  
+The official result identifies Law 21/2022 as amending Law 120/1982 regulating commercial agency and certain commercial mediation activities. Full page opening failed in the web reader, but the official search-indexed text exposed the following amendment content.
+
+**Verbatim surfaced amendment text:**
+
+> قـانون رقـم 21 لسنـة 2022
+>
+> بتعديل بعض أحكام القانون رقم 120 لسنة 1982 بإصدار قانون تنظيم أعمال الوكالة التجارية وبعض أعمال الوساطة التجارية والقانون المرافق له
+>
+> **(المادة الأولى)**  
+> يستبدل مسمي "قانون تنظيم أعمال الوكالة التجارية وبعض أعمال الوساطة التجارية أو السمسرة العقارية" بمسمي "قانون تنظيم أعمال الوكالة التجارية وبعض أعمال الوساطة التجارية" أينما ورد في القانون رقم 120 لسنة 1982 بإصدار قانون تنظيم أعمال الوكالة التجارية وبعض أعمال الوساطة التجارية والقانون المرافق له وفي أي قانون آخر.
+>
+> وفيما عدا المادتين (1، 3) من قانون تنظيم أعمال الوكالة التجارية وبعض أعمال الوساطة التجارية المشار إليه، تستبدل بالعبارات والكلمات التالية العبارات والكلمات المبينة قرين كل منها أينما ورد ذكرها في القانون رقم 120 لسنة 1982 المشار إليه والقانون المرافق له وفي أي قانون آخر:
+>
+> عبارة "الوسطاء التجاريون أو السماسرة العقاريين" بعبارة "الوسطاء التجاريون".
+>
+> عبارة "الوساطة التجارية أو السمسرة العقارية" بعبارة "الوساطة التجارية".
+>
+> عبارة "الوسيط التجاري أو السمسار العقاري" بعبارة "الوسيط التجاري".
+>
+> عبارة "وسطاء التجارة أو سماسرة العقارات" بعبارة "وسطاء التجارة".
+>
+> **مادة (1) — تعريفات (النص المعدل كما ظهر في المصدر):**
+>
+> الوكيل التجاري: كل شخص طبيعي أو اعتباري يقوم بصفة معتادة، دون أن يكون مرتبطًا بعقد عمل أو عقد تأجير خدمات، بتقديم العطاءات أو بإبرام عمليات الشراء أو البيع أو التأجير أو تقديم الخدمات باسم ولحساب المنتجين أو التجار أو الموزعين أو باسمه ولحساب أحد هؤلاء.
+>
+> الوسيط التجاري: كل شخص طبيعي أو اعتباري اقتصر نشاطه، ولو عن صفقة واحدة، على البحث عن متعاقد أو التفاوض معه لإقناعه بالتعاقد، وكذلك كل من قام بأي عمل من أعمال الوكالة التجارية ولو على غير اعتياد ولمرة واحدة، أو كان مرتبطًا مع المنتج أو التاجر أو الموزع بعقد عمل.
+>
+> **مادة (2) — القيد:**
+>
+> مع عدم الإخلال بأحكام القانون رقم 34 لسنة 1976 في شأن السجل التجاري، تحظر مزاولة أي عمل من أعمال الوكالة التجارية أو الوساطة التجارية أو السمسرة العقارية، إلا لمن يكون اسمه مقيدًا في سجل الوكلاء والوسطاء التجاريين أو السماسرة العقاريين، بحسب الأحوال، المعدين لذلك الغرض بالوزارة المختصة.
+
+The same source exposes a replacement for Article 16: imprisonment up to two years and a fine from EGP 50,000 to EGP 1,000,000, or either penalty, for specified unregistered practice, plus possible activity prohibition and closure. This is a partial search-indexed excerpt; retrieve the original Gazette PDF and verify the exact final text, commencement date and all replaced articles.
+
+**Official implementing/enforcement lead:** Justice Minister Decision 4202/2024 (Amiri Press text) cites Laws 120/1982 and 121/1982 and grants specified Ministry/GOEIC staff judicial-officer status for offences under the agency and importers-register laws: https://alamiria.com/Sec/TashTxt?id=0yKtbDrM9do%3D. This is an enforcement authorization decision, not an amendment to Law 120/1982.
+
+### C. Consumer Protection Law 181/2018 — official full PDF locator, extraction warning
+
+**Official CPA source:** https://cpa.gov.eg/Portals/0/Law/CPA-Newlaw.pdf  
+CPA legislation index: https://cpa.gov.eg/ar-eg/تشريعات  
+The PDF is 32 pages and is hosted by the Consumer Protection Agency. The PDF reader returned badly garbled Arabic glyphs/OCR, so I am **not** copying its extracted text as if accurate. This requires page-image inspection/manual transcription or a better official text export. CPA's official website separately confirms Law 181/2018 and PM Decision 822/2019; the repository already has checkpoint 73 for Law 181/2018, Regulation 822/2019 and amendment Law 20/2024. Do not count this as a new unique law.
+
+## 9. Updated session counts (including Trade Register)
+
+- Additional official base statute text inspected: Law 34/1976, Articles 1–6 (manual transcription from Gazette scan pages 1–3; second-person verification pending).
+- Additional amendment text surfaced: Law 21/2022 amending Commercial Agency Law 120/1982 (partial indexed text; Gazette PDF verification pending).
+- Additional official source inventory: ITDA index confirms Executive Regulation Decision 106/2018, amendment Law 198/2020 and Decision 41/2020 on beneficial-owner register.
+- Consumer Law 181/2018: official 32-page PDF opened but OCR unusable; no article count added.
+- **Unique legal text instruments surfaced in the session now: 10** if Law 21/2022 and Law 34/1976 are added to the earlier eight. Decision 109/2005 remains a publication-confirmed source lead only, not counted as text obtained.
+- **Minimum provision/article units now: 39** (previous 33 plus six manually transcribed Trade Register articles). These manual transcriptions remain subject to page-image verification.
+- No lawyer approval or rights clearance has been obtained.
