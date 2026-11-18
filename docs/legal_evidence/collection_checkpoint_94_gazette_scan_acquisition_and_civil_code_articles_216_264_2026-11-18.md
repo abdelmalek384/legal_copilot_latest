@@ -123,3 +123,10 @@ Two additional base-text batches were added to checkpoint 86:
 
 The cumulative Civil Code extraction stream is now **366 distinct provisions** (67 prior + 299 new in this continuation). It remains a non-consecutive, base-text extraction set; special rent laws and later amendments may displace these default lease provisions. OCR/page-image verification and historical versioning remain open.
 
+## 10. Further Civil Code extraction — Articles 602–673
+
+- Checkpoint 95 adds **44 provisions**, Articles 602–645: lease succession/transfer, agricultural leases, sharecropping, waqf leases and loan for use.
+- Checkpoint 96 adds **28 provisions**, Articles 646–673: construction contracts, architect/contractor structural warranty, subcontracting, termination and public-utility concessions.
+- Cumulative Civil Code extraction stream: **438 distinct provisions** (67 previously recorded + 371 newly transcribed in this continuation). This is not a consecutive range or current consolidated code.
+- Article 651 is particularly relevant to construction claims: the base text establishes a ten-year joint architect/contractor warranty for specified collapse/serious structural defects, subject to statutory conditions; Article 653 invalidates a contractual waiver/limitation; Article 654 gives a three-year claim period from collapse or discovery of the defect. This base text must be reconciled with later special legislation and amendments before legal use.
+
