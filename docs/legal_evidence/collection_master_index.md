@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 202; Agent 3 continuation separately indexed)
+**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 203; Agent 3 continuation separately indexed)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -73,6 +73,7 @@
 
 | checkpoint 6 — Agent 3 FRA Decision 43/2026 fintech consumer-finance licensing pause | Added one distinct FRA Board decision and exact Arabic text of Articles 1–2; original Gazette binary/page-image check remains outstanding | [Agent 3 checkpoint 6](agent3_progress_checkpoint_2026-11-18_6.md) |
 
+| checkpoint 203 — Research Agent 1 continuation: Gazette access, deadline and judgment provenance | Re-audited checkpoints 85–92 and live registers; confirmed 250 canonical acquisition rows/86 permission assessments; added Case 11/23 Gazette reproduction provenance; documented original Gazette access blockers and Decision 480 deadline ambiguity; no duplicate instruments/articles | [checkpoint 203](collection_checkpoint_203_research_agent1_continuation_2026-11-18.md) |
 | checkpoint 202 — Building Law 119/2008 additional article text | Added eight full substantive article bodies (Arts 2, 4–10) from a 1 Dec 2020 searchable consolidation; kept as historical/source-version snapshots pending comparison with original Gazette and amendments | [checkpoint 202](collection_checkpoint_202_building_law_119_2008_additional_article_text_2020_consolidation_2026-11-18.md) |
 
 | checkpoint 201 — deadline reconciliation and assigned-workstream progress | Verified the original application window's last day as 18 July 2026; Decision 480/2026 extends by an equivalent period, with 18 January 2027 marked as calculated, not express text; assigned ten-workstream progress 45% provisional | [checkpoint 201](collection_checkpoint_201_deadline_and_assigned_workstream_progress_2026-11-18.md) |
