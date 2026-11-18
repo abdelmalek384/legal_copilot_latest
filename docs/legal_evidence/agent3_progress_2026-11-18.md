@@ -104,3 +104,13 @@ Added official Tax Authority PDF text and original Gazette amendment text for La
 ## Electronic Signature source correction
 
 Corrected the Decision 467/2024 record: three issuing articles + 49 regulation articles (52 total numbered provisions), plus a technical annex; it does not expressly name Decision 109/2005 as repealed. Unsupported cyber-security quotations from the earlier draft were withdrawn. The original Gazette PDF/hash is still outstanding.
+
+
+## Further text recovery — Trade Register and Commercial Code
+
+- Decision 946/1976: 28-article secondary Arabic transcription and annexes recovered, marked updated through 8 March 2020; Articles 13 bis 1–3 added by Decision 41/2020 captured verbatim. See [agent3_trade_register_exec_reg_946_1976_amendments_2020_arabic_text.md](agent3_trade_register_exec_reg_946_1976_amendments_2020_arabic_text.md).
+- **Unresolved discrepancy:** ITDA's official current page calls its 14.9 MB file "Executive Regulation 106/2018", while public legal transcription identifies Decision 946/1976 as the base executive regulation, amended through Decision 41/2020. The large official file exceeds the web extractor's 14,898,711-byte limit and local direct download was blocked by network DNS. Its cover/issuing text must be inspected before deciding whether it is a new regulation, work guide or mislabelled file.
+- Identified three 2023 Trade Register decisions from the September Gazette index: Decision 119/2023 (Alexandria Egypt Services digital/remote registry office), 120/2023 (15-digit unified electronic Commercial Register number), and 121/2023 (authorized-agent registration service). Only index metadata was found; their full Gazette text is still outstanding.
+- Law 198/2020 amendment text is captured from an original Gazette PDF hosted by Invest in Egypt and the Tax Authority/ITDA sources. It replaces Article 3, Article 8(1) and Article 9(1).
+- Commercial Code 17/1999: official Tax Authority PDF audited through Article 772, then separate preserved 1883 partnership chapter Articles 19–65. Exact Articles 768–772 captured; bankruptcy provisions require Law 11/2018 overlay. See [agent3_commercial_code_17_1999_official_eta_text_audit_2026-11-18.md](agent3_commercial_code_17_1999_official_eta_text_audit_2026-11-18.md).
+- These are text-depth expansions, so the aggregate count remains **189 documents / 1,924 normalized numbered units**, assigned-domain completion **55% provisional**.
