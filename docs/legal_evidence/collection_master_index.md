@@ -18,7 +18,7 @@
 
 ## Current audited repository snapshot — checkpoint 170 (18 November 2026)
 
-- Acquisition register after instrument deduplication: **233 canonical instrument rows**, 233 unique canonical IDs, no duplicate legal instruments; 11 duplicate rows were consolidated and preserved in the alias map.
+- Acquisition register after instrument deduplication: **233 canonical instrument rows**, 233 unique canonical IDs, no duplicate legal instruments; 11 duplicate rows were consolidated and preserved in [the acquisition-ID alias map](../data/research/egypt_acquisition_register_aliases_2026-11-18.csv). The [provisional instrument-type ledger](../data/research/egypt_instrument_type_classification_2026-11-18.csv) provides the separate category counts.
 - Source-permission register: **64 unique source records**, no duplicate source IDs. These are assessments, not permissions granted.
 - Provisional instrument-type classification (233 canonical records; title/domain-based and subject to manual normalization): **66 base-law records; 48 amending-law records; 13 executive regulations; 35 executive-regulation amendment records; 6 judicial decisions; 52 other decisions/circulars; 13 other/unclassified records**.
 - Priority full-text inventory: **33 records** (14 base laws, 6 executive regulations, 1 presidential decision, 9 executive-regulation amendments, 1 implementing decision, 1 fee decision, 1 annual valuation decision). Inventory status varies; 33 records do not mean 33 authenticated complete texts.
