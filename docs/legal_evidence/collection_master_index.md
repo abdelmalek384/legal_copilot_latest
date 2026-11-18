@@ -447,7 +447,7 @@
 
 - Full 14-article searchable Arabic text of Law 168/2025 acquired; the statute was already identified in checkpoint 89 and is not counted as a new base-law discovery. Official Gazette issue 32 bis (و), 13 August 2025; Law 168/2025 repeals Law 144/2017.
 - Full 20-article Executive Regulation of Law 168/2025 located in PM Decision 200/2026; Official Gazette issue 3 bis (A), 18 January 2026, effective 19 January 2026. Official Amiri Press full-text portal is indexed; secondary full transcription is archived in checkpoint 92.
-- Presidential Decision 480/2026 extends the Article 3 application period for another equivalent period. Official DSpace metadata confirms Official Gazette issue 45 bis (ج), 10 November 2026; original 178.37 KB Gazette PDF is request-only. Exact commencement/final deadline is not computed pending the original text and date-counting review.
+- Presidential Decision 480/2026 extends the Article 3 application period for another equivalent period. Official DSpace metadata confirms Official Gazette issue 45 bis (ج), 10 November 2026; original 178.37 KB Gazette PDF is request-only. 19 January 2027 is the conditional consecutive-extension candidate; the retrospective/prospective effect and 20 July–10 November 2026 gap remain unresolved.
 - Critical scope distinction: Decision 480/2026 extends the Article 3 filing period on its face; it does not expressly extend the separate Article 11 six-month criminal-action extinction/surrender period.
 - Acquisition register expanded by 3 records EG-0173–EG-0175; all retain lawyer_reviewed=false and rights_cleared=false. The project does not treat catalogue metadata as downloaded legal text.
 
