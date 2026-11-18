@@ -108,3 +108,26 @@
 
 - Working assigned-domain completion estimate remains **31% provisional** in this continuation ledger. The newer master-index dashboard's Agent 3 estimates should govern after reconciliation; no percentage increase is justified by one amendment alone.
 - Whole-corpus estimate remains approximately **2% provisional**.
+
+
+## Checkpoint 133 — FRA Decision 110/2026: futures clearing and settlement fees
+
+**Incremental acquisition:** one distinct FRA Board decision; three operative issuing articles. Full Arabic preamble, Articles 1–3 and the 12-row service-fee schedule are captured in [Decision 110/2026 text record](agent3_fra_decision110_2026_futures_clearing_settlement_fees_arabic_text.md).
+
+- Gazette: الوقائع المصرية, issue 140 supplement, 30 June 2026, printed pages 2–3.
+- Official FRA-hosted two-page PDF: https://fra.gov.eg/wp-content/uploads/2026/07/alamiria_2026_110.pdf
+- Article 1 sets maximum fees for 12 clearing/settlement service categories. Article 2 waives items 7–12 for one year from commencement; items 1–6 are not included in that waiver. Article 3 provides publication and next-day commencement.
+- Derived commencement date: 1 July 2026 (Gazette date 30 June 2026 plus the express next-day rule).
+- PDF text layers on both pages inspected. RTL extraction/table alignment requires visual QA; original Amiri Press issue binary/hash remain outstanding. No commercial reuse permission or lawyer sign-off is claimed.
+
+## Counts and progress after checkpoint 133
+
+| Measure | Previous checkpoint | Increment | Current |
+|---|---:|---:|---:|
+| Distinct instruments in this continuation-local baseline | 153 | +1 | 154 |
+| Provision units in this continuation-local baseline | 1,367 | +3 | 1,370 |
+| Assigned legal families touched | 13/13 | 0 | 13/13 |
+| Families currentness-complete | 0/13 | 0 | 0/13 |
+| Lawyer-reviewed content | 0% | 0 | 0% |
+
+**Count caveat:** cumulative 154/1,370 remains continuation-local only. Older master-index and checkpoint snapshots contain larger totals; do not treat this stale continuation counter as the globally reconciled Agent 3 acquisition-register total. The verified new increments are +1 distinct instrument and +3 articles.
