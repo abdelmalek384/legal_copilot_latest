@@ -2142,3 +2142,10 @@ Added **EG-0305 Law 10/2026** (amending Nuclear and Radiation Activities Law 7/2
 - **+1 distinct instrument; +17 operative article text units**, subject to article-ID deduplication.
 - Conditional Agent 3 minimum: **266 unique instruments / at least 2,430 normalized units** (previous 265 / 2,413 + 1 / 17).
 - Assigned-domain completion remains **55% provisional**; 0/13 families currentness-complete; lawyer review 0%; commercial reuse permission 0.
+
+
+### Acquisition additions — EG-0317 and EG-0318
+
+Added PM Decision3356/2026 (18 articles; Training and Qualification Financing Fund) and PM Decision3536/2026 (National Higher Committee for Integrated Mediterranean Coastal Areas). Decision3356's full 18-article Arabic operative text is captured in [the acquisition tranche](acquisition_tranche_training_fund_decision3356_and_november_gazette_2026-11-18.md); it creates the fund, sets a 0.25% annual contribution for establishments with 30 or more workers (EGP10 minimum/EGP30 maximum per worker), allows full exemption where employers train workers under approved rules, and repeals PM Decision1543/2003. Gazette issue44 bis (أ), 1 Nov 2026; effective 2 Nov. Decision3536 appears in Official Gazette issue45 bis (د), 11 Nov 2026; secondary sources report a 14-minister committee chaired by the Prime Minister/delegate, but the complete operative text remains to be extracted. Original binary/hash for neither new Gazette item is locally archived.
+
+**Deadline note retained for Decision480/2026:** Decision200/2026 commencement is 19 Jan 2026; original six-month application deadline is confirmed by Cairo Governorate as 18 Jul 2026. Decision480/2026 does not print a new date. The consecutive-period calculation suggests 18 Jan 2027, while a period counted from the extension decision's effective date suggests approximately 10 May 2027. Do not treat either as confirmed without an authoritative post-extension circular; the gap concerns applications received after 18 Jul and before 10 Nov 2026.
