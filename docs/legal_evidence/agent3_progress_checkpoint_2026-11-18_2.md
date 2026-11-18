@@ -79,7 +79,7 @@ Updated aggregate: **194 documents / 1,940 provisional numbered units**; assigne
 ## Capital Market Executive Regulation 2025 updates
 
 Acquired official Gazette text for two PM amendments to Executive Regulation 135/1993:
-- Decision 1529/2025 (Gazette issue 18 bis, 4 May 2025) inserts Article 35 bis 9: renewable-energy source certificates are tradable financial instruments. **Number conflict:** the PDF filename/FRA catalogue says 1539/2025, but the Gazette page itself says 1529/2025; counted once as 1529.
+- Decision 1539/2025 (Gazette issue 18 bis, 4 May 2025) inserts Article 35 bis 9: renewable-energy source certificates are tradable financial instruments. **Number conflict:** the PDF filename/FRA catalogue says 1539/2025, but the Gazette page itself says 1539/2025; counted once as 1529.
 - Decision 2482/2025 (Gazette issue 29 bis (أ), 20 July 2025) replaces Article 148, inserts Article 148 bis for installment payments/default notices/FRA review for private-placement private-equity and real-estate fund units, and adds an Article 156 private-placement closing rule.
 - Full Arabic text and legal effect: [2025 Capital Market amendments](agent3_capital_market_exec_reg_135_amendments_2025_arabic_text.md).
 
@@ -152,3 +152,8 @@ Updated aggregate: **207 documents / 2,039 provisional units**; assigned-domain 
 - Full Arabic text: [Decision 87 and Circular 9](agent3_fra_decision87_2026_and_circular9_2026_arabic_text.md).
 
 Updated aggregate: **209 documents / 2,049 provisional units**; assigned-domain completion remains **55% provisional**; lawyer review 0%.
+
+
+## Official number verification correction — 18 November 2026
+
+The official Gazette PDF hosted by the Egyptian Electric Utility and Consumer Protection Regulatory Agency was opened and text-extracted at https://www.egyptera.org/ar/download/DecreeNo1539Year2025.pdf. Page 1 expressly prints «قرار رئيس مجلس الوزراء رقم ١٥٣٩ لسنة ٢٠٢٥» (Official Gazette issue 18 bis, 4 May 2025); page 2 inserts Article 35 bis 9. This resolves the prior apparent 1529 reading: **1539/2025 is the correct instrument number**. The filename, FRA catalogue and actual Gazette heading all align. Any earlier 1529/2025 text is withdrawn; this is one decision only.
