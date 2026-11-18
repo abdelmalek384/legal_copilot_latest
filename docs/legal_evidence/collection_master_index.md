@@ -522,3 +522,10 @@
 - CPA official 32-page Law 181/2018 PDF locator preserved; web OCR is unusable. Secondary searchable text used only as transcription aid.
 - Executive Regulation PM Decision 822/2019: Gazette issue 13 bis (أ), 1 April 2019, effective 2 April 2019; searchable secondary text Articles 1–23 surfaced and selected Articles 1, 13, 15, 17 and 19 transcribed. Full regulation beyond Article 23 remains uncollected.
 - Law 20/2024: official MOF record marks it in force; Amiri Press Gazette issue 14 bis, 5 April 2024, public DSpace item and Arabic PDF locator found. It replaces Consumer Protection Law Article 71 with increased penalties for Article 8 violations; full text transcribed in Agent 3 file.
+
+
+### Research Agent 3 — Financial Leasing and Factoring expansion (2026-11-18)
+
+- Official FRA 2025-hosted searchable Law 176/2018 full text through Article 84 added to Agent 3 research file; key Articles 2, 3, 5, 28, 37, 55 and 60 transcribed.
+- FRA Board implementation package mapped: Decision 137/2018 licensing (updated by Decision 91/2023); 138/2018 financial statements; 139/2018 contract registry; 163/2018 factoring controls (amendments 197/2018, 95/2019, 25/2021, 84/2021); 164/2018 governance (amended by 93/2020, later superseded/repealed within Decision 100/2020 cross-sector governance); 195/2018 cessation/liquidation/merger/acquisition; Decision 100/2020 governance (updated 2024); Decisions 294/2024 and 38/2025 administrative deadline/association items.
+- No omnibus Executive Regulation was located; Law 176/2018 delegates rulemaking to FRA Board decisions. This is recorded explicitly to avoid inventing a single executive regulation.
