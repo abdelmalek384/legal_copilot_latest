@@ -142,3 +142,31 @@ The earlier publication is also identified in the official SIS press release dat
 
 **OCR/verification note:** The Decision1505 text above is transcribed from the SIS-hosted Gazette PDF. The PDF has encoding/OCR defects in several words; compare all punctuation, numerals, percentage thresholds and line breaks with the page images before production use. The exact content of the replacements is preserved here as extracted; no legal opinion on planning approval is implied.
 
+
+
+## 9. Early implementation and amendment instruments now registered (checkpoint 154)
+
+The official MHUC building-law inventory lists Decisions 200/2009, 188/2010, 200/2010, 397/2010, 109/2013, 67/2014 and 774/2014. Their legal character differs; do not count every item as a general amendment to the Executive Regulation.
+
+| Decision | Gazette / date | Effect and legal character |
+|---|---|---|
+| 200/2009 | Egyptian Proceedings issue 128, 3 Jun 2009; effective 4 Jun 2009 | Adopts the model occupants' association system and repeals Decision 109/1979. Separate implementation decision, not a general amendment to Decision 144/2009. Official MHUC-hosted Gazette page 5: https://img.mhuc.gov.eg/images/350672b8-26df-4398-9aaa-ba78891220a3.pdf |
+| 188/2010 | Issue 91, 20 Apr 2010; effective 21 Apr 2010 | Sets fees under Law 119/2008 Articles 19 and 45. A fee/implementation decision, not a textual amendment to the regulation. |
+| 200/2010 | Issue 98, 29 Apr 2010; effective on publication | Replaces Articles 19, 26, 27, 57, 58, 103(5), 108, 115, 116 and 175; adds Article 135 bis. |
+| 397/2010 | Exact Gazette issue/date still unverified; decision dated 28 Dec 2010 | Permits limited tolerance from removal for specified executed violations in new urban communities and delegates decisions to heads of new-city authorities. Separate enforcement/tolerance decision; not a general regulation amendment. |
+| 109/2013 | Issue 66, 20 Mar 2013 | Adds definitions, replaces numerous regulatory provisions (including Articles 94, 95, 100, 101, 104, 108, 110–117, 121–126, 128–131, 135, 140 and 142) and adds Articles 98 bis, 108 bis, 112 bis and 124 bis. DSpace metadata identifies Arabic and English original-bundle files. |
+| 67/2014 | Issue 31, 9 Feb 2014; effective 10 Feb 2014 | Replaces Articles 51, 53(1)(6), 57, 58 and 60. |
+| 774/2014 | Issue 288, 21 Dec 2014; effective on publication | Replaces Article 134. |
+
+### Decision 74/2014 — unresolved ministry publication lead
+
+A 2015 MHUC-hosted updated Q&A publication refers to Decisions 67 and **74/2014** among the changes to the Executive Regulation. Decision 74/2014 is not listed in the current MHUC web inventory and an exact Gazette issue, subject, or authoritative text was not found in this pass. It is not assigned an acquisition-register ID until the number/title and operative effect are verified. Preserve it as an unresolved official-ministry lead, not a confirmed general amendment.
+
+### Primary/secondary source separation
+
+- Decision 200/2009 has an official MHUC-hosted Gazette page reproduction.
+- Decision 109/2013 has an official DSpace metadata item with Arabic and English PDFs, but original Amiri Press file access remains unverified.
+- Decisions 188/2010, 200/2010, 67/2014 and 774/2014 have searchable secondary full-text reproductions and Gazette metadata; original issue scans remain outstanding.
+- Decision 397/2010 has only a secondary full-text reproduction plus inclusion in the MHUC official inventory; exact Gazette publication metadata remains open.
+
+These instruments were added to the acquisition register as EG-0229–EG-0235. The source permission register already contains the MHUC, DSpace, Laweg and EastLaws source families; no permission state was upgraded.
