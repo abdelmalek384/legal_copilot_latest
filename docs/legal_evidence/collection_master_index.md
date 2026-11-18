@@ -469,3 +469,10 @@
 - The law's issuing Article 2 expressly applies Law 159/1981 residually to banks and covered companies, makes CBE the competent administrative authority and its Governor the competent minister for company-law purposes, and applies Commercial Code 17/1999 to banks' customer transactions whether commercial or not.
 - CBE's official index lists a generic "Executive Regulation" entry, but it may be Decision 101/2004 under repealed Law 88/2003. Law 194/2020 issuing Article 5 directs CBE Board implementing regulations/decisions and continues prior rules only insofar as non-conflicting. The instrument identity/current status remains unresolved; do not conflate it with a new 194/2020 regulation.
 - CBE's official site also identifies payment-system licensing rules (2025), governance/fit-and-proper instructions (2025), digital-bank rules (2023), exchange-company rules (2023), and auditor-registration rules (2024); each underlying instrument must be retrieved separately.
+
+
+### Research Agent 3 — Investment Law full-text acquisition (2026-11-18)
+
+- Agent 3 research file now includes the full searchable FRA-hosted Arabic Law 72/2017 PDF, through Article 94, with substantive text transcribed for Articles 2–7 and Article 74(14)/91 bis.
+- Consolidated PDF footnotes identify Law 141/2019 amendments and Law 160/2023 amendments (Article 1 special-incentives definition; Article 9 general incentives). Full Gazette capture of Law 160/2023 remains pending.
+- FRA officially confirms Prime Minister Decision 2310/2017 as the Executive Regulation. Its "updated version" link returned access denied in the web reader; full regulation text not counted as obtained. MIFT's 20 July 2026 notice says Law 72/2017 Article 74 and Executive Regulation Article 126 bis (أ) require quarterly FDI data reporting within 45 days after each quarter; underlying exact regulation and amendment Gazette chain remain to be retrieved.
