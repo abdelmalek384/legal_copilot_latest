@@ -268,8 +268,12 @@ Critical legal scope:
 ## 19. Further Civil Code extraction — Articles 1030–1068
 
 - Checkpoint 110 adds **20 provisions**, Articles 1030–1049: official mortgage definition, form, mortgagor capacity, collateral scope, mortgage over undivided shares, future/conditional debt and initial effects.
-- Checkpoint 111 adds **19 provisions**, Articles 1050–1068: enforcement, third-party effectiveness, registration, priority, right of pursuit, third-party acquirer and mortgage purging. Articles 1069–1070 are explicit source-text gaps and are not counted.
-- Cumulative Civil Code extraction stream: **802 distinct provisions** (67 previously recorded + 735 newly transcribed in this continuation). This is not a consecutive or verified current consolidation.
+- Checkpoint 111 adds **21 provisions**, Articles 1050–1070: enforcement, third-party effectiveness, registration, priority, right of pursuit, third-party acquirer and mortgage purging. Articles 1069–1070 were recovered from the same ETA PDF text layer after targeted search.
+- Cumulative Civil Code extraction stream: **804 distinct provisions** (67 previously recorded + 737 newly transcribed in this continuation). This is not a consecutive or verified current consolidation.
 - Core conveyancing/security rules captured: Article 1031 requires a formal instrument; Article 1035 requires specific immovable identification; Article 1053 requires registration for third-party effectiveness; Article 1057 ranks from registration; Articles 1064–1068 govern purging mechanics.
 - These must be reconciled with Law 114/1946 and amendments, execution procedure, insolvency rules and any later mortgage-specific legislation. OCR/image verification remains open.
 
+
+
+## 20. Recovery of Civil Code Articles 1069–1070
+A targeted search of the same ETA-hosted PDF text layer recovered both provisions. Article 1069 governs the forced-sale procedure and repayment of the third-party acquirer's title/registration/notice expenses; Article 1070 provides that if no sale request is made in time and manner, title settles finally with the acquirer free of registered rights upon payment/deposit of the valuation amount for creditors entitled by rank. The checkpoint 111 file has been corrected; the two articles now count toward the 804 total. This remains OCR-derived and requires image verification.
