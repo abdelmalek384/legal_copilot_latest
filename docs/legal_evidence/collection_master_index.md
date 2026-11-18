@@ -2450,3 +2450,14 @@ Added the full five-article census amendment (Decision2448), a clearly marked pa
 - **Latest acquisition batch:** 15 additional instruments registered across Laws 1/2026, 2/2026, 74/2026; PM Decisions 37, 2402, 1966, 2652, 2448, 2552, 3168, 3486, 3487, 3488 and 3489 of 2026; and Transport Minister Decision430/2026.
 
 **Text-first priorities still open:** complete PM Decision1966 staff regulation and salary/job annexes; complete PM Decision2402 verbatim; Decision2552 complete company terms; Decision3168 coordinate annex; acquire original Gazette binaries and compare page images for the new tranche; capture ministerial implementing circulars for Decisions3486–3488.
+
+
+### Additional fiscal/public-finance tranche — EG-0364 to EG-0369
+Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 (FY2026/27 state budget), Law78/2026 (development plan), PM Decision2170/2026 (state minimum wage), Finance Minister Decision351/2026 (Law75 implementation), and PM Decision3530/2026 (three-month expenditure controls). Arabic operative text and explicit missing annex/source gaps are in [the fiscal acquisition tranche](acquisition_tranche_2026_laws75_77_78_pm2170_fm351_pm3530_2026-11-18.md).
+
+## Dashboard refresh — 18 November 2026
+- Acquisition register: **353 unique instruments**, with no duplicate acquisition IDs.
+- Classification: **353 records** — 76 base laws, 69 amending laws, 19 executive regulations, 44 executive-regulation amendments, 110 other decisions, 21 judicial decisions, 14 other.
+- Priority text inventory: **129 entries** covering 125 unique instrument IDs (four repeated cross-references).
+- Within those 129 inventory entries: **57 (44.2%)** report full/complete searchable text or operative transcription; **26 (20.2%)** are partial local captures; **46 (35.7%)** are locator-only or unclear. This is a text-inventory progress measure, not a percentage of all Egyptian legislation; some full-text sources are searchable externally but not yet mirrored locally.
+- Permission register: **111 source records**; no blanket commercial-reuse permission is claimed.
