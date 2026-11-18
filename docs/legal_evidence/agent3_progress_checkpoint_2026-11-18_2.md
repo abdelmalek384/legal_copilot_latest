@@ -57,7 +57,7 @@ Retrieved the official MIFT consolidated PDF (3,416 extracted lines), explicitly
 - Law 159/1998: captured exact Article 46 replacement.
 - Law 212/1994: confirmed it inserted Article 21 bis, later repealed by Law 3/1998; full historic text remains unavailable and was not reconstructed.
 - Detailed files: [Laws 3/1998 and 94/2005](agent3_companies_law_amendments_3_1998_94_2005_text.md), [Laws 212/1994 and 159/1998](agent3_companies_law_amendments_212_1994_159_1998_text.md).
-- These are text-depth/versioning expansions of already-counted amendment instruments; no count change. Agent 3 remains **190 documents / 1,927 provisional units**, assigned completion **55% provisional**, lawyer review 0%.
+- These are text-depth/versioning expansions of already-counted amendment instruments; no count change. Agent 3 remains **194 documents / 1,940 provisional units**, assigned completion **55% provisional**, lawyer review 0%.
 
 
 ## Primary-source upgrades to the Companies Law amendment chain
@@ -67,3 +67,10 @@ Retrieved the official MIFT consolidated PDF (3,416 extracted lines), explicitly
 - Law 159/1998: Article 46 replacement captured from secondary transcription; official MIFT catalogue lists it in the amendment chain, original Gazette PDF still outstanding.
 - Law 212/1994: insertion of Article 21 bis confirmed; full wording not retrieved; it was later repealed by Law 3/1998.
 - No new instrument count; the amendment laws were already counted. Aggregate remains **190 documents / 1,927 provisional units**, assigned-domain estimate **55% provisional**, lawyer review 0%.
+
+
+## Commercial Code amendment chain acquired
+
+Added four unique amendment laws to Commercial Code 17/1999: 168/2000, 150/2001, 158/2003 and 156/2004. Captured operative Arabic text for effective dates, cheque provisions, limitation periods, commercial-register protest notices, bill attachment and cheque-signature endorsement. The 2004 amendment has a numbering conflict: MIFT text page says 152/2004, while the original Gazette page images visibly say 156/2004; counted once as Law 156 pending official issue-level confirmation. Law 11/2018 issuing Article 5 repeal of Commercial Code Book V (Articles 550–772) is also recorded; bankruptcy questions must use Law 11/2018 as amended by 11/2021, not the old Code provisions. See [commercial code amendment record](agent3_commercial_code_amendments_2000_2004_and_law11_2018_repeal.md).
+
+Updated aggregate: **194 documents / 1,940 provisional numbered units**; assigned-domain completion remains **55% provisional**; whole corpus 2%; lawyer review 0%.
