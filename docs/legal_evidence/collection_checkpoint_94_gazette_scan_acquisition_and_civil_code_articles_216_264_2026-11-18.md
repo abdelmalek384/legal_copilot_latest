@@ -184,3 +184,7 @@ Cumulative Civil Code extraction stream: **637 fully transcribed unique provisio
 
 Checkpoint 114 records a new Ministry of Justice / Real Estate Publicity Authority PDF (317 extracted lines) and a Court of Cassation Information Center-attributed consolidated reproduction hosted externally. The government-hosted PDF is an official text reproduction but not an original 1946 Gazette scan and does not reflect the 2022 Law 9/2022 amendments. The externally hosted Court of Cassation-attributed copy reflects amendments through 6 March 2022 but is not a direct court-domain source. The original Gazette issue 85 (24 August 1946) scan remains outstanding; Law 9/2022's original Gazette issue 9 bis (A) metadata is official but its DSpace bundle remains request-only.
 
+## 18. Civil Code cumulative-count correction after deduplication
+
+Checkpoint 116 performed a repository-wide audit of explicit Arabic article headings across checkpoint 86 and checkpoints 95–106. It found **836 unique article numbers**, comprising **835 complete article texts plus partial Article 766(2)**. The previous cumulative count of 849 was provisional and overcounted 13 repeated/non-distinct headings. There are 313 article-number gaps through Article 1149, of which 29 (Articles 389–417) are repealed in the base text and 284 are not yet transcribed. See checkpoint 116 for the exact gap ranges and audit method.
+
