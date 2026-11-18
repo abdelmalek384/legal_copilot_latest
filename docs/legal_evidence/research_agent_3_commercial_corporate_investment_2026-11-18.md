@@ -13,7 +13,7 @@
 - **Contribution to whole corpus:** do not revise the master index's approximate 2% estimate from URL or checkpoint counts. No validated total unique-article denominator exists. Incremental whole-corpus percentage is therefore **not calculable**.
 - **Lawyer approval:** 0%; no lawyer review claimed.
 
-**Latest Agent 3 running totals (after the appended Commercial Code checkpoint):** 78 distinct instruments with some Arabic text surfaced across the assigned domain; 1,068 article/provision text units captured across all Agent 3 checkpoints. The complete Commercial Code PDF contains 771 numbered Code articles, but only 17 selected Commercial Code/promulgation provisions are transcribed verbatim in this file; the remaining article text is available in the cited full PDF and has not been separately normalized into repository JSONL. Whole-corpus incremental percentage remains not calculable.
+**Latest Agent 3 running totals (after the appended Commercial Code checkpoint):** 80 distinct instruments with some Arabic text surfaced across the assigned domain; 1,085 article/provision text units captured across all Agent 3 checkpoints. The complete Commercial Code PDF contains 771 numbered Code articles, but only 17 selected Commercial Code/promulgation provisions are transcribed verbatim in this file; the remaining article text is available in the cited full PDF and has not been separately normalized into repository JSONL. Whole-corpus incremental percentage remains not calculable.
 
 ## 2. Verbatim Arabic primary-text excerpts
 
