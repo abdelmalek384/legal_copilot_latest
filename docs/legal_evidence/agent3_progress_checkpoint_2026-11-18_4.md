@@ -60,3 +60,11 @@ See [collection_master_index.md](collection_master_index.md), with new checkpoin
 
 ## Legal-data handling
 All new material remains machine-collected and not lawyer-reviewed. Do not mark any law or article verified. Use source-matched, not lawyer-reviewed only after the exact provision has actually been compared to a primary source. Preserve source type, Gazette issue/date/pages, URL, exact Arabic, amendments, version history, file hash and rights assessment.
+
+
+## Latest Capital Market Gazette delta recovery
+- Decision 2482/2025: obtained official FRA-hosted Gazette PDF (issue 29 bis (أ), 20 July 2025) and visually inspected pages 4–5; Article 148 bis installment-payment default notices, FRA review/objection process, four-business-day no-sale standstill, forced-sale valuation, CSD notification, and Article 156 private-placement close-out provision captured. Corrected OCR phrases against image.
+- Decision 1529/2025: obtained Official Gazette issue 18 (مكرر), 4 May 2025 PDF; Article 35 bis 9 treats energy-source certificates under Electricity Law 87/2015 as tradable financial instruments.
+- Number discrepancy: FRA list and English file name say 1539/2025, but Arabic Gazette PDF prints 1529/2025. Preserve the mismatch; Gazette number controls pending authority clarification. Do not create two instrument records.
+- Record: [agent3_capital_market_decisions_1529_and_2482_2025_gazette_text.md](agent3_capital_market_decisions_1529_and_2482_2025_gazette_text.md).
+- Aggregate counts and 55% provisional estimate remain unchanged pending deduplication; no lawyer review.
