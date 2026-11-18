@@ -87,3 +87,28 @@ The first two pages were visually opened on 18 November 2026. The heading confir
 - Pages 3–4: access denied by FRA server in this pass. Their remaining articles/commencement must be recovered from an alternate copy or the official 2021 guide.
 - Currentness: FRA catalogue still lists Decision 138/2018; the standalone Gazette scan is the original publication, while the guide remains a secondary official compilation aid.
 - Machine status: `source-matched, not lawyer-reviewed`; page-image validation partial, not complete.
+
+
+## Newly reconciled provisions from FRA's 2021 guide (pp. 70–71)
+
+**Article 1(6) — separate accounts:** «في حالة الترخيص للشركة بمزاولة نشاطي التأجير التمويلي والتخصيم والخدمات المرتبطة به وأية أنشطة مالية غير مصرفية أخرى مرتبطة بنشاطها يجب عليها إعداد حسابات مستقلة لكل نشاط وبمراعاة معايير المحاسبة المصرية.»
+
+**Article 1(7) — operating leasing:** «تقوم شركات التأجير التمويلي لدى ممارسة نشاط التأجير التشغيلي بإعداد حسابات وقوائم مالية مستقلة للتأجير التشغيلي.»
+
+**Annual filing:** Annual statements issued by the board, with board report and auditor's audit report, must be sent to FRA within three months of year-end and at least 21 days before the general assembly. The annual statements must be approved by the general assembly within three months of year-end. If amended by the assembly, the revised statements and auditor's report must be sent within ten working days.
+
+**Quarterly filing:** Board-issued quarterly/periodic statements with the auditor's limited-review report must be submitted within 45 days after period-end.
+
+**Consolidated statements:** Entities required to prepare consolidated accounts must submit approved annual separate and consolidated statements with board and auditor reports within the annual deadline; quarterly statements with auditor report are due within 60 days after period-end.
+
+**Micro-leasing:** The guide says microfinance associations and NGOs conducting micro-leasing are subject to the referenced provisions of FRA Board Decision 31/2015 and FRA Chairman Decision 489/2015.
+
+Source: official FRA guide, pp. 70–71, https://fra.gov.eg/wp-content/uploads/2021/12/Takhseem2021.pdf (searchable lines 1410–1441 in the opened PDF).
+
+## Page-image verification progress
+
+- Official Gazette reproduction: الوقائع المصرية، العدد 213 تابع، 23 September 2018, pp. 15–18.
+- Pages 1–2 visually inspected; Articles 1(1)–(5) and the decision's preamble are image-matched.
+- Pages 3–4 were denied by the FRA image service in this pass. The guide provides the remaining paragraphs (6)–(7) and filing deadlines, but is not treated as the original Gazette.
+- No amendment/repeal identified in this pass; re-check FRA current listing before operational reliance.
+- Status: source-matched, not lawyer-reviewed; partial original Gazette page-image authentication; no rights clearance.
