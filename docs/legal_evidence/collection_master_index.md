@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 146)
+**Last updated:** 2026-11-18 (expanded through checkpoint 147)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1184,3 +1184,17 @@
 
 
 | checkpoint 129 — Agent 3 Investment Law 160/2023 and Companies Regulation amendment provenance | Upgraded Law 160/2023 to full Arabic secondary transcription; recorded Gazette issue 32 corrigendum as mandatory final-text reconciliation; verified Decision 2928/2022's amendment target via MIFT consolidated Decision 96/1982 and DSpace metadata; classified PM Decision 104/2022 as investment-zone implementation and Decision 876/2023 as an unacquired lead; cumulative 146 instruments / 1,349 provision units, completion estimate 31%, lawyer review 0% |
+
+
+### Research Agent 1 — checkpoint 147 repository audit and priority continuation (18 November 2026)
+
+- Added [collection_checkpoint_147_research_agent1_repository_audit_and_priority_continuation_2026-11-18.md](collection_checkpoint_147_research_agent1_repository_audit_and_priority_continuation_2026-11-18.md).
+- Audited the live acquisition CSV: **189 data rows**, 12 columns, 189 unique IDs, no duplicate IDs; EG-0076–EG-0079 are missing from the numeric sequence. This supersedes earlier snapshot counts of 172/182/184/187. No new instrument rows were added.
+- Audited the source-permission register: **52 source records**, assessment date 2026-11-18. No permission state was upgraded.
+- Reconciled four historical statute Gazette scans (Laws 114/1946, 142/1964, 68/1947 and 70/1964): all 26 printed pages visually inspected, but scans are secondary-hosted reproductions, not authenticated Amiri Press digital originals.
+- Confirmed Law 168/2025 and Decision 480/2026 original DSpace bundles remain request-only; PM Decision 200/2026 has a publicly readable official SIS full-issue PDF. Decision 480 deadline remains unresolved: 19 Jan 2027 is only the conditional consecutive-extension candidate; 10/11 May 2027 are alternative publication-based constructions.
+- Confirmed Constitutional Case 10/35 and rent Case 24/20 Gazette scan reproductions visually inspected; official SCC-hosted Case 101/26 judgment page located; Case 42/17 and rent Cases 81/19 and 108/19 original Gazette scans remain outstanding.
+- Civil Code extraction audit: 1,093 unique non-repealed article provisions fully transcribed; repealed base-text ranges are Articles 54–80 and 389–417. This is not a consolidated/current code.
+- Evidence Law extraction covers Articles 1–162 plus inserted Article 148 bis (163 provision units); Gazette scan visual inspection remains 11/12 pages, and original amendment Gazette scans remain outstanding.
+- Building Law 119/2008 official Ministry Gazette reproduction and Decision 144/2009 secondary full-regulation text remain in the corpus; amendment and visual-verification work continues.
+- No lawyer verification, commercial reuse permission, or original Amiri Press binary acquisition is claimed. All lawyer/reuse flags remain false.
