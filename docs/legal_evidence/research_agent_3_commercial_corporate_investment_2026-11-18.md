@@ -2658,3 +2658,22 @@ GAFI-hosted Gazette PDF: https://www.gafi.gov.eg/Arabic/StartaBusiness/Laws-and-
 Official Gazette issue 3, 18 January 2024. It extended the period for establishing companies and establishments under Article 12(1) of Law 72/2017 until 28 October 2026. This extension has expired as of 29 October 2026 unless a later instrument extended it again; no further extension was identified in this collection pass. Do not present it as currently available.
 
 **Collection status:** Decision 503/2026 full searchable operative text and Gazette issue/effective date obtained; Decision 104/2022 identified as the parent schedule instrument; full base schedules and complete Gazette image reconciliation still outstanding. Decision 1/2024 captured as an expired temporary extension.
+
+
+## 27. Capital Market Executive Regulation — PM Decision 1539/2025 (energy-origin certificates)
+
+**Official Gazette repository record:** Official Gazette issue 18 bis, 4 May 2025; Amiri Press; PDF OG18_20250504_3265.pdf (216.2 KB): https://mediadr.sis.gov.eg/xmlui/handle/123456789/96983  
+**FRA current amendment register:** https://fra.gov.eg/regulations/تعديلات-اللائحة-التنفيذية-لقانون-سوق/  
+**Searchable full Arabic text:** https://lawhub.info/eg/?p=11907
+
+Prime Minister Decision 1539/2025 amends Executive Regulation Decision 135/1993 by adding Article 35 bis/9. It was issued 4 May 2025 and takes effect the day after publication.
+
+**Verbatim — new Regulation Article 35 bis/9:**
+
+> مادة (٣٥ مكرراً ٩):
+>
+> تعد شهادة مصدر الطاقة المنصوص عليها بقانون الكهرباء الصادر بالقانون رقم ٨٧ لسنة ٢٠١٥، أداة مالية قابلة للتداول بالبورصات المصرية.
+
+This treats an energy-origin certificate under Electricity Law 87/2015 as a tradable financial instrument on Egyptian exchanges. It is an implementing-regulation amendment, not a change to the text of Capital Market Law 95/1992.
+
+**Version note:** FRA's 2025 consolidated Regulation page lists Decision 1539/2025 alongside Decision 2482/2025 and the 2024/2023/2022/2020 amendment chain. The 1539 Gazette PDF is held by the government media repository and is publicly viewable; its full 216.2 KB PDF should be saved and hashed in the source archive when repository binary ingestion is available.
