@@ -22,10 +22,10 @@
 | Other / unclassified | 14 |
 | Source-permission register | **111 unique source records** |
 | Full-text inventory | **108 rows / 104 unique instruments** |
-| Full/complete text-source records | **84 unique instruments (25.0%)** |
+| Full/complete text-source records | **85 unique instruments (25.3%)** |
 | Any text-inventory coverage | **104/336 (31.0%)** |
 
-The 25.0% figure means an instrument has a full/complete text-source record in the inventory; it does **not** mean every such instrument has a complete local transcription, authenticated Gazette page images, or current-law verification. The 23 remaining inventory rows are partial, external-only or incomplete; four duplicate IDs are source/version rows.
+The 25.3% figure means an instrument has a full/complete text-source record in the inventory; it does **not** mean every such instrument has a complete local transcription, authenticated Gazette page images, or current-law verification. The 23 remaining inventory rows are partial, external-only or incomplete; four duplicate IDs are source/version rows.
 
 ### Substantive acquisition work in the latest pass
 
@@ -41,6 +41,7 @@ New or expanded Arabic text files:
 - [PM Decision2170/2026 — minimum-wage decision](acquisition_tranche_pm_decision2170_2026_minimum_wage_arabic_text.md)
 - [Finance Decision450/2026 — tax/customs dispute forms](acquisition_tranche_finance_decision450_2026_tax_customs_dispute_forms_arabic.md)
 - [PM Decision3536/2026 — official Cabinet text expansion](acquisition_tranche_pm_decision3536_2026_coastal_committee_official_cabinet_text.md)
+- [PM Decision1568/2026 — remaining articles; complete 35-article regulation](acquisition_tranche_pm_decision1568_2026_foreign_asylum_remaining_articles.md)
 - [Cabinet Decision95/2026 — MAFI project timetable](acquisition_tranche_cabinet_decision95_2026_mafi_project_timetable_arabic.md)
 - [PM Decision3531/2026 and Presidential Decision448/2026](acquisition_tranche_pm3531_2026_and_presidential448_2026_arabic_text.md)
 - [Five PM land/public-purpose decisions in Gazette issue46](acquisition_tranche_gazette_issue46_land_decisions_3127_3128_3130_3131_3308_2026-11-12.md)
