@@ -167,16 +167,17 @@
         "VAT Law67/2016 amendment text",
         "Official Gazette issue32 bis corrigendum dated 8 Aug 2026 correcting Laws149,150,151/2026",
         "ETA official two-page Gazette PDF and Customs Circular48/2026 copy",
-        "Finance Minister Decision450/2026 and two tax/customs dispute application forms, four-page PDF"
+        "Finance Minister Decision450/2026 and two tax/customs dispute application forms, four-page PDF",
+        "Law153/2026 — Stamp Tax Law111/1980 amendment, official ETA PDF"
       ],
-      "access_status": "Direct ETA-hosted four-page Official Gazette reproduction opened; issue30 bis (أ), 28 July 2026; text layer extracted. Ministry legislation portal labels Law149 in force but warns online legislation pages are guidance and Gazette is legal reference. Corrigendum PDF visually inspected page-by-page; Customs Circular48/2026 text layer parsed for corrections to Laws149 and150; Law151 page2 visually inspected. Official four-page ETA scan for Decision450/2026 visually inspected; full issuing provisions and forms transcribed locally; exact Egyptian Proceedings issue/date still to verify.",
+      "access_status": "Direct ETA-hosted four-page Official Gazette reproduction opened; issue30 bis (أ), 28 July 2026; text layer extracted. Ministry legislation portal labels Law149 in force but warns online legislation pages are guidance and Gazette is legal reference. Corrigendum PDF visually inspected page-by-page; Customs Circular48/2026 text layer parsed for corrections to Laws149 and150; Law151 page2 visually inspected. Official four-page ETA scan for Decision450/2026 visually inspected; full issuing provisions and forms transcribed locally; exact Egyptian Proceedings issue/date still to verify. ETA official page lists Law153/2026 PDF (law.no_.153.of_.2026.pdf); full text source and official Ministry of Finance record located; local PDF bytes/hash not archived.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": " Public government-hosted PDF; no explicit bulk/republication/commercial reuse permission located.  Public government-hosted PDF; no bulk/republication/commercial reuse permission established. Government-hosted PDF public access; no bulk or commercial reuse permission established.",
+      "permission_evidence": " Public government-hosted PDF; no explicit bulk/republication/commercial reuse permission located.  Public government-hosted PDF; no bulk/republication/commercial reuse permission established. Government-hosted PDF public access; no bulk or commercial reuse permission established. Government-hosted official PDF public access; no bulk/republication/commercial reuse permission established.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Find original Egyptian Proceedings publication and hash official source bytes; verify exact form checkboxes and fields."
+      "required_next_action": "Archive/hash PDF; verify Gazette issue30 bis (أ) page image; preserve official publication version and any subsequent corrections."
     },
     {
       "source_id": "EG-MOF-TAX-LEGISLATION-INDEX-2026",
