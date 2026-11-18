@@ -383,11 +383,13 @@
 
 - New distinct legal instruments recorded in checkpoint 81: 8 (base/amending laws, executive regulation and ministerial decisions counted separately).
 - Full searchable Arabic text retrieved for 6 instruments; 2 additional instruments have partial text only.
-- At least 39 distinct article/provision texts are quoted or substantively extracted in checkpoint 81; this is an article-level excerpt count, not a claim that the full 8 instruments have been transcribed.\n- Checkpoint 82 adds 48 distinct Civil Code article provisions from a government-hosted PDF, without counting Law 131/1948 again as a newly discovered instrument.
+- At least 39 distinct article/provision texts are quoted or substantively extracted in checkpoint 81; this is an article-level excerpt count, not a claim that the full 8 instruments have been transcribed.\n- Checkpoint 82 adds 48 distinct Civil Code article provisions from a government-hosted PDF, without counting Law 131/1948 again as a newly discovered instrument.\n- Checkpoint 83 adds full/current Arabic texts for Law 148/2001, its PM Decision 1/2001 Executive Regulation and Law 93/2018; it also captures the full 2014 and 2024 amendment texts. Law 148/2001 is not counted as a new discovery because checkpoint 29 already recorded it.
 - Overall corpus coverage remains approximately 2% (provisional). No reliable total denominator of unique Egyptian legal article texts is recorded, so the incremental percentage contribution cannot responsibly be calculated or used to revise the rounded whole-corpus estimate.
 - Checkpoint 81 adds material not previously recorded in the master index; it does not duplicate the Civil Code, Evidence, Building, rent or State-property checkpoints.
 
 | [collection_checkpoint_82_civil_code_property_contract_article_extraction_2026-11-18.md](collection_checkpoint_82_civil_code_property_contract_article_extraction_2026-11-18.md) | Government-hosted Arabic Civil Code extracts: sale, lease, agency, suretyship, easements and official mortgage (42 unique article provisions; no duplicate base instrument) |
+
+| [collection_checkpoint_83_mortgage_finance_law_148_2001_and_regulations_2026-11-18.md](collection_checkpoint_83_mortgage_finance_law_148_2001_and_regulations_2026-11-18.md) | Official FRA updated text for Mortgage Finance Law 148/2001 and PM Decision 1/2001 regulation; Gazette amendments Law 55/2014, Law 93/2018 and PM Decision 32/2024; missing amendment instruments and commencement discrepancy recorded |
 
 ## High-value primary-source portals
 
