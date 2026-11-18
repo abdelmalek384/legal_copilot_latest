@@ -4,6 +4,8 @@
 **Source:** LAW HUB searchable Arabic text, https://lawhub.info/eg/?p=12146, lines 1498–1532 as opened on 18 November 2026.  
 **Source tier:** secondary transcription. Article 60 is annotated as amended by Decision 67/2014; current and pre-amendment text are preserved separately.
 
+**Superseding note (checkpoint 219):** Articles 64–76 have now also been transcribed. Cumulative complete Arabic-body coverage is 83/185 (102 remain). See checkpoint 219.
+
 ## Article 60 — current wording shown after Decision 67/2014
 **الإعلان عن مشروعات التقسيم:**
 
