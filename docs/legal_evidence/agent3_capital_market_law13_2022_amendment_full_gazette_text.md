@@ -50,7 +50,7 @@ Effective 15 March 2022.
 
 ## Implementation/currentness
 - FRA official page lists Law 13/2022 as the latest statutory amendment to Law 95/1992. It is integrated into the 2022 updated Law 95 consolidation.
-- Executive Regulation Decision 135/1993 must be read with separate later implementing amendments. The 2025 PM Decisions 1529/2025 and 2482/2025 are distinct regulation amendments, not amendments to Law 95 itself.
+- Executive Regulation Decision 135/1993 must be read with separate later implementing amendments. The 2025 PM Decisions 1539/2025 and 2482/2025 are distinct regulation amendments, not amendments to Law 95 itself.
 - Law 13/2022 creates an enabling rule for remote shareholder meetings; the actual systems, technical controls, proof of attendance and voting must be read with FRA Board decisions, exchange rules and issuer bylaws.
 - Article 41 bis future-cash-flow securitization needs separate implementing rules and alignment with the 2025 Executive Regulation text and securitization-company controls.
 - No lawyer review. No commercial reuse rights inferred.
@@ -58,3 +58,8 @@ Effective 15 March 2022.
 ## Counting
 - Law 13/2022 already appears in Agent 3 inventory. This is full operative text and page-image verification, not a new unique instrument count.
 - Four statutory insertions plus Article 2 transition and Article 3 commencement; de-duplicate against the Law 95 consolidated article rows before changing the normalized total.
+
+
+## Official number verification correction — 18 November 2026
+
+The official Gazette PDF hosted by the Egyptian Electric Utility and Consumer Protection Regulatory Agency was opened and text-extracted at https://www.egyptera.org/ar/download/DecreeNo1539Year2025.pdf. Page 1 expressly prints «قرار رئيس مجلس الوزراء رقم ١٥٣٩ لسنة ٢٠٢٥» (Official Gazette issue 18 bis, 4 May 2025); page 2 inserts Article 35 bis 9. This resolves the prior apparent 1529 reading: **1539/2025 is the correct instrument number**. The filename, FRA catalogue and actual Gazette heading all align. Any earlier 1529/2025 text is withdrawn; this is one decision only.
