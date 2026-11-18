@@ -1008,19 +1008,19 @@
     {
       "source_id": "EG-SIS-GAZETTE-2026-01-18",
       "authority": "State Information Service / Media Digital Repository",
-      "source_page": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/118973",
+      "source_page": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/118973; https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/118973/OG3_20260118_2885.pdf?isAllowed=y&sequence=2",
       "file_url": "https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/118973/OG3_20260118_2885.pdf?isAllowed=y&sequence=2",
       "material_types": [
         "Official Gazette issue 3 bis (A), 18 January 2026",
         "PM Decision 200/2026",
         "20-article Executive Regulation of Law 168/2025"
       ],
-      "access_status": "Public official-hosted full Gazette PDF; 562 extracted lines; official DSpace catalogue also records a separate 1.89 MB original bundle as restricted/request-only",
+      "access_status": "Public official-hosted full Gazette PDF opened 2026-11-18; 562 extracted lines; contains Decision200/2026, all 20 regulation articles and Forms1–3; local bytes/hash not archived; page-image screenshot for Article20 failed",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": "https://mediadr.sis.gov.eg",
       "terms_checked_on": null,
-      "permission_evidence": "Checked 2026-11-18. Public full Gazette issue PDF served from SIS Media Digital Repository; page content begins with the Republic/Presidency/Official Gazette masthead and issue/date metadata. The PDF text layer includes Decision 200/2026 and all regulation articles. This establishes access to an official government-hosted Gazette reproduction, not an explicit licence for bulk collection, commercial indexing, public display or redistribution. The DSpace original bundle is separately restricted.",
+      "permission_evidence": "Checked 2026-11-18. Public full Gazette issue PDF served from SIS Media Digital Repository; page content begins with the Republic/Presidency/Official Gazette masthead and issue/date metadata. The PDF text layer includes Decision 200/2026 and all regulation articles. This establishes access to an official government-hosted Gazette reproduction, not an explicit licence for bulk collection, commercial indexing, public display or redistribution. The DSpace original bundle is separately restricted. Full text and forms extracted. Article20 PDF text layer says annual reports, while Form3 says quarterly and Law168 Article14 says quarterly; page-image verification unresolved. No commercial reuse permission or redistribution permission inferred.",
       "bulk_download_or_api": "single public issue PDF URL; no bulk/API licence established",
       "required_next_action": "Archive/hash exact PDF; inspect page images; compare against restricted DSpace original when authorized; seek explicit reuse terms."
     },
@@ -1386,11 +1386,11 @@
         "Law 168/2025",
         "Law 169/2025"
       ],
-      "access_status": "20-page PDF opened 2026-11-18; printed masthead/issue/date verified; scan says electronic copy is not valid for circulation",
+      "access_status": "20-page PDF opened 2026-11-18; Gazette issue32 bis (W), 13 Aug2025, and Law168 pages3–10 identified; scan bears notice that electronic copy is not valid for circulation; secondary-hosted reproduction, not Amiri Press binary",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": "The PDF reproduces Official Gazette issue 32 bis (و), 13 August 2025, including Law 168/2025 and Law 169/2025. It is hosted on a third-party CDN and its own printed notice says the electronic copy is not valid for circulation. This is a scan reproduction, not an authenticated Amiri Press digital binary. Public access does not establish permission to archive, extract, index, commercially display or redistribute.",
+      "permission_evidence": "The PDF reproduces Official Gazette issue 32 bis (و), 13 August 2025, including Law 168/2025 and Law 169/2025. It is hosted on a third-party CDN and its own printed notice says the electronic copy is not valid for circulation. This is a scan reproduction, not an authenticated Amiri Press digital binary. Public access does not establish permission to archive, extract, index, commercially display or redistribute. Full text scan is a secondary reproduction with a non-circulation notice. Do not redistribute the PDF or infer any commercial reuse permission.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Seek an authenticated Amiri Press copy and written permission for local archiving, text extraction, indexing, commercial display and redistribution. Do not treat this electronic scan as valid for official circulation."
