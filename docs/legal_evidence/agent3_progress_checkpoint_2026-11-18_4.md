@@ -91,3 +91,11 @@ All new material remains machine-collected and not lawyer-reviewed. Do not mark 
 - Amiri Press DSpace confirms Official Gazette issue 52 supplement (أ), 29 Dec 2022; original 320.09 KB bundle is request-a-copy only. The searchable Amiri Press Law 175 text is accessible, but the binary was not downloaded and page images were not inspected.
 - Operative worldwide threshold remains EGP 7.5bn from the Law 175 text. The ECA June 2024 PDF's 7.2bn and Law 15/2022 footnote are retained as a conflicting consolidated-source passage and quarantined, not treated as current law.
 - The competition-law file records the request-only blocker and does not claim Gazette page-image verification.
+
+
+## Commercial agency and real-estate brokerage text recovery
+- Full searchable Arabic Law 120/1982 text recovered from GOEIC official-hosted Gazette PDF and LawHub consolidated text; Law 21/2022 amendment text recovered from Amiri Press. The amended law adds electronic real-estate-broker registry, registration criteria, written brokerage contracts, property-data verification, confidentiality, non-cash commission/payment rule (cash amounts over EGP 10,000 prohibited), transaction records, and higher penalties/corporate liability.
+- Full searchable Executive Regulation 342/1982 text recovered (32 numbered provisions), with amendments by Decisions 84/1988, 111/2000 and 362/2005.
+- Decision 593/2025: MIFT official catalogue identifies latest regulation amendment; EastLaws text covers 8 issuing articles; Al-Waqa'i issue 20 supplement (أ), 25 Jan 2026, effective 26 Jan 2026. Adds real-estate broker registry implementation, replaces 11 regulation provisions, adds 3 bis/15 bis series/18 bis, repeals Arts 26–27, six-month regularization. DSpace item page errors in current access; original Gazette image comparison remains blocked.
+- Record: [agent3_commercial_agency_law120_1982_law21_2022_reg342_1982_dec593_2025_arabic_text.md](agent3_commercial_agency_law120_1982_law21_2022_reg342_1982_dec593_2025_arabic_text.md).
+- No new unique instrument count; text-depth expansion only. 209 / 2,049 remains last reconciled inventory; assigned-domain 55% provisional; lawyer review 0%.
