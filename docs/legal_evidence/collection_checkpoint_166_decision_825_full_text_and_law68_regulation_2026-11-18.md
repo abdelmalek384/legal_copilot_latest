@@ -45,7 +45,7 @@
 ## Open blockers
 1. Original Amiri Press binaries for Decision 825/1975 and later amendments remain unacquired; use searchable full text as fallback, but keep the source tier explicit.
 2. Decision 825/1975 amendments 948/1976, 8171/2009, 2645/2015 and 11264/2016 require full redline. Decision 2332/2022 reference also needs exact identification and text.
-3. Law 142 Article 37 constitutional annotation conflict remains unresolved (Case 42/1998 on LAW HUB vs previously identified Case 42/17 and narrower invalidity of Article 37(2)); retrieve the judgments.
+3. Law 142 Article 37 scope has now been resolved from the full Case 42/17 judgment: only Article 37(2)'s prohibition on acquisitive prescription contrary to the register is invalid, and Article 38 fell consequentially. LAW HUB's shorthand that Article 37 is unconstitutional is overbroad. Separately, Case 10/35 (decided 2 June 2018; published 6 June 2018) invalidated Articles 21 and 24 and caused Article 23 and Decision 553/1976 to fall. Official SCC text: https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/12158_41_14_3_2.html; Case 42/17 text: https://mksegypt.org/ar/judgments-of-the-supreme-constitutional-court/15553.
 4. Decision 480/2026 deadline remains unresolved pending original Gazette text, commencement clause and any administrative circular.
 5. Public access is not commercial reuse permission; no rights clearance is inferred.
 
