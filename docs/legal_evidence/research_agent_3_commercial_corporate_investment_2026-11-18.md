@@ -356,5 +356,54 @@ The PDF is 32 pages and is hosted by the Consumer Protection Agency. The PDF rea
 - Additional official source inventory: ITDA index confirms Executive Regulation Decision 106/2018, amendment Law 198/2020 and Decision 41/2020 on beneficial-owner register.
 - Consumer Law 181/2018: official 32-page PDF opened but OCR unusable; no article count added.
 - **Unique legal text instruments surfaced in the session now: 10** if Law 21/2022 and Law 34/1976 are added to the earlier eight. Decision 109/2005 remains a publication-confirmed source lead only, not counted as text obtained.
-- **Minimum provision/article units now: 41** (previous 35, including Investment Law Articles 71–72, plus six manually transcribed Trade Register articles). These manual transcriptions remain subject to page-image verification.
+- **Minimum provision/article units now: 47** (previous 35, including Investment Law Articles 71–72, plus six manually transcribed Trade Register articles). These manual transcriptions remain subject to page-image verification.
 - No lawyer approval or rights clearance has been obtained.
+
+
+### Trade Register Law 34/1976 — additional page-image transcription (Gazette scan pages 4–5)
+
+The same ITDA-hosted 16-page official scan was visually inspected through pages 4–5. The following text is manually transcribed from the rendered page images; the original scan remains the controlling source.
+
+**Article 8 (page 4):**
+
+> مادة 8 - يقدم طلب القيد أو التأشير خلال المدة التي تحددها اللائحة التنفيذية لهذا القانون من التاجر أو المديرين أو الممثلين القانونيين للشخص الاعتباري أو مدير الفرع حسب الأحوال، إلى مكتب السجل التجاري الذي يقع في دائرته المركز الرئيسي أو الفرع.
+>
+> ولمكتب السجل التجاري أن يكلف الطالب بتقديم ما يراه من مستندات تؤيد صحة بيانات الطلب وللمكتب أن يرفض الطلب إذا لم يتوافر فيه الشروط المنصوص عليها في هذا القانون والقرارات الصادرة تنفيذا له، ويجب أن يكون قرار الرفض مسببا، وأن يبلغ إلى صاحب الشأن بكتاب موصى عليه مصحوبا بعلم الوصول خلال شهرين من تاريخ تقديمه.
+>
+> ويجوز لصاحب الشأن الطعن في هذا القرار أمام محكمة القضاء الإداري في المواعيد المقررة للطعن في القرارات الإدارية.
+
+**Article 9 (page 4; transcription requires legal reviewer/page image check):**
+
+> مادة 9 - يجدد القيد في السجل التجاري كل خمس سنوات من تاريخ القيد أو من تاريخ آخر تجديد، ويقدم الطلب من أصحاب الشأن الموضحين في المادة السابقة خلال الشهر السابق لانتهاء المدة، ويقبل الطلب إذا قدم خلال التسعين يوما التالية لانتهائها، على أن يؤدي الرسم في هذه الحالة مضاعفا.
+>
+> ويمحى القيد في حالة عدم تقديم طلب التجديد بعد مضي تسعين يوما من تاريخ إنذاره بكتاب موصى عليه مصحوبا بعلم الوصول.
+
+**Article 11 (page 5):**
+
+> مادة 11 - يجب تقديم طلب محو القيد المنصوص عليه في المادة السابقة خلال شهر من تاريخ الواقعة التي تستوجبه، فإذا لم يقدم صاحب الشأن طلب المحو كان على مكتب السجل التجاري أن يمحو القيد من تلقاء نفسه بعد التحقق من السبب الموجب له.
+>
+> وعلى المكتب في هذه الحالة أن يبلغ ذلك إلى صاحب الشأن خلال العشرة الأيام التالية بكتاب موصى عليه بعلم الوصول وأن يخطر الجهات الإدارية المختصة لاتخاذ الإجراءات المترتبة عليه.
+
+**Article 12 (page 5):**
+
+> مادة 12 - لكل شخص أن يحصل من مكتب السجل التجاري على صورة مستخرجة من صفحة القيد أو شهادة ببعض البيانات أو شهادة سلبية في حالة عدم القيد.
+>
+> ولا يجوز أن تشمل الصور المستخرجة على ما يأتي:
+>
+> (1) أحكام إشهار الإفلاس إذا حكم بإلغائها أو رد الاعتبار.
+>
+> (2) أحكام وقرارات الحجز إذا قضى برفع الحجز.
+>
+> وللشريك أن يحصل على صورة طبق الأصل مستخرجة من عقد تأسيس الشركة وكل اتفاق لاحق سواء بتعديل شروط العقد أو إطالة أجل الشركة أو حلها أو وضعها تحت التصفية.
+
+**Article 13 (page 5):**
+
+> مادة 13 - تصدر وزارة التجارة صحيفة خاصة تسمى جريدة الأسماء التجارية تنشر فيها البيانات التي تحددها اللائحة التنفيذية.
+
+**Article 14 (page 5):**
+
+> مادة 14 - تصدر اللائحة التنفيذية لهذا القانون بقرار من وزير التجارة وتشمل على الأخص.
+
+Article 10 appears across the page break and is not transcribed here because the full wording was not visible in the inspected extract. Articles 15 onward, schedules and later pages remain to be inspected. The base statute is therefore **partially visually transcribed, not fully extracted**.
+
+**Updated provision count:** add six further article texts (8, 9, 11, 12, 13, 14) to the prior 41; the minimum count is now **47 provision/article units**. Article 10 is intentionally excluded.
