@@ -389,7 +389,10 @@
 - Checkpoint 86 adds 48 distinct Civil Code article provisions from the government-hosted Arabic PDF; Law 131/1948 is not counted again as a newly discovered instrument.
 - Checkpoint 87 adds current/full Arabic texts for Mortgage Finance Law 148/2001, its PM Decision 1/2001 Executive Regulation and Law 93/2018; it also captures the full Law 55/2014 and PM Decision 32/2024 amendment texts.
 - Checkpoint 88 adds 6 full searchable predecessor-rent texts from secondary sources, 3 amendment instruments and at least 13 article-level extracts, plus a judicial invalidation map.
+- Checkpoint 89 supplements the previously indexed Expropriation Law 10/1990 and Desert Lands Law 143/1981 with government-hosted/full searchable texts, three amendment texts and two executive-regulation records; no base-law duplicate is counted.
 - Overall whole-corpus coverage remains approximately 2% as recorded in the existing index. This is provisional. The project does not yet record a denominator of all unique Egyptian legal article texts, so the incremental percentage contribution of these checkpoints cannot responsibly be calculated. Counts are based on unique instruments and article provisions, not URLs or catalogue entries.
+
+| [collection_checkpoint_89_expropriation_and_desert_land_property_laws_2026-11-18.md](collection_checkpoint_89_expropriation_and_desert_land_property_laws_2026-11-18.md) | Full text sources and amendment graph for Expropriation Law 10/1990, Laws 24/2018 and 187/2020, Desert Lands Law 143/1981, Law 11/2024 and executive regulations 20/2019 and 198/1982; Gazette gaps and exact-version cautions recorded |
 
 ## High-value primary-source portals
 
