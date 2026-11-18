@@ -2410,6 +2410,22 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "Single public text page; no bulk/API permission established",
       "required_next_action": "Acquire official Gazette issue288 page images and seven forms; review Laweg terms and obtain permission before reuse beyond citation."
+    },
+    {
+      "source_id": "EG-LAWEG-LAWHUB-DECISION67-2014-BUILDING",
+      "authority": "LAW HUB consolidated regulation, cross-referenced with Laweg Gazette publisher archive and official Ministry of Housing amendment list",
+      "source_page": "https://lawhub.info/eg/?p=12146",
+      "material_types": [
+        "Post-amendment Arabic wording for Building Regulation Articles51, 53(1)(6),57,58 and60 attributed to Decision67/2014; Laweg archive identifies original Decision67"
+      ],
+      "access_status": "Public searchable consolidated Arabic text. Laweg issue31 archive identifies Decision67/2014; decision page is image-only and MELES original bundle is request-copy restricted.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used as a secondary consolidated legal text to capture the five post-amendment provisions. No source-specific licence or written commercial reuse permission was established; public accessibility does not establish commercial reuse permission.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public consolidated-text page; no bulk/API permission established",
+      "required_next_action": "Obtain issue31 original scan and compare the five replacements; review source terms before any redistribution."
     }
   ]
 }
