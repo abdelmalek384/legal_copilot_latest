@@ -2677,3 +2677,145 @@ Prime Minister Decision 1539/2025 amends Executive Regulation Decision 135/1993 
 This treats an energy-origin certificate under Electricity Law 87/2015 as a tradable financial instrument on Egyptian exchanges. It is an implementing-regulation amendment, not a change to the text of Capital Market Law 95/1992.
 
 **Version note:** FRA's 2025 consolidated Regulation page lists Decision 1539/2025 alongside Decision 2482/2025 and the 2024/2023/2022/2020 amendment chain. The 1539 Gazette PDF is held by the government media repository and is publicly viewable; its full 216.2 KB PDF should be saved and hashed in the source archive when repository binary ingestion is available.
+
+
+## 28. Central Bank Law 194/2020 — 2025–2026 CBE circulars and new agent-banking rules
+
+### A. Circular of 3 November 2026 — Agent Banking Regulations (full official Arabic PDF)
+
+**Official CBE 10-page circular PDF:**  
+https://www.cbe.org.eg/-/media/project/cbe/listing/circulars/2026/november/circular-dated-3-november-2026-regarding-agent-banking-regulations.pdf  
+**CBE regulatory-book chapter:** https://www.cbe.org.eg/ar/laws-regulations/regulations/regulations-book/book-10/chapter-9
+
+The PDF is fully searchable in the web reader. CBE Board approved the rules at its meeting of 28 October 2026. The circular is dated 3 November 2026 and provides the regulatory framework for agents delivering specified banking services on behalf of banks. It applies to all banks operating in Egypt, including foreign bank branches, and any agent contracted through them.
+
+**Verbatim — opening circular and authority:**
+
+> القاهرة في: ٣ نوفمبر ٢٠٢٦
+>
+> في ضوء الاهتمام الذي يوليه البنك المركزي المصري لتعزيز الشمول المالي بهدف تضمين كافة فئات المجتمع بالنظام المالي الرسمي، وحيث أن نشر الخدمات المصرفية من خلال إتاحة المنتجات والخدمات المصرفية خارج نطاق شبكة فروع البنوك التقليدية يُعد أحد ركائز استراتيجية الشمول المالي، فقد وافق مجلس إدارة البنك المركزي المصري بجلسته المنعقدة في ٢٨ أكتوبر ٢٠٢٦ على إصدار التعليمات المرفقة الخاصة "بالقواعد المنظمة للوكلاء المصرفيين"، وذلك بهدف وضع الإطار الرقابي لهم لتقديم بعض الخدمات المصرفية نيابة عن البنوك.
+
+**Verbatim — definitions and scope (sections 2–3):**
+
+> ٢-١ الوكالة المصرفية: عملية تقديم الخدمات المصرفية الموضحة بهذه القواعد نيابة عن البنوك من خلال الاستعانة بوكلاء يتم التعاقد معهم.
+>
+> ٢-٢ الوكلاء المصرفيين: كيان قانوني يتم التعاقد معه لتقديم خدمة أو أكثر من الخدمات المصرفية - الواردة بهذه القواعد - من خلال مركزه الرئيسي، أو أحد فروعه، أو منافذه الثابتة، أو المتنقلة، وذلك بموجب عقود قانونية معتمدة من الإدارة القانونية بالبنك وملزمة لكلا الطرفين، وبعد حصول البنوك على الموافقات اللازمة من البنك المركزي، على أن تتضمن تلك العقود المعايير المنصوص عليها بهذه التعليمات كحد أدنى.
+>
+> تسري هذه القواعد على جميع البنوك العاملة في جمهورية مصر العربية بما في ذلك فروع البنوك الأجنبية، وأي وكيل مصرفي يتم التعاقد معه من خلال البنوك.
+
+**Verbatim — permitted activities (section 4):**
+
+> يقتصر عمل الوكلاء المصرفيين على الأنشطة التالية:
+>
+> ٤-١ التعرف على العملاء والتحقق من هوياتهم، وكذا تحديث البيانات والمعلومات والمستندات وذلك وفقاً لكافة إجراءات العناية الواجبة الصادرة عن وحدة مكافحة غسل الأموال وتمويل الإرهاب.
+>
+> ٤-٢ التعرف على العملاء والتحقق من هوياتهم إلكترونياً وكذا تحديث البيانات والمعلومات والمستندات إلكترونياً من خلال منظومة الهوية المالية الرقمية، وذلك وفقاً لإجراءات التعرف على عملاء البنوك والتحقق من هوياتهم إلكترونياً الصادرة عن وحدة مكافحة غسل الأموال وتمويل الإرهاب، وكذا القواعد المنظمة لخدمات منظومة الهوية المالية الرقمية للتعرف على عملاء البنوك والتحقق من هوياتهم إلكترونياً الصادرة عن البنك المركزي المصري.
+>
+> ٤-٣ تلقي واستيفاء الطلبات الخاصة بالمعاملات المصرفية المختلفة (على سبيل المثال: فتح الحسابات، تحديث بيانات العملاء، إصدار البطاقات المصرفية، التحويلات، طلبات إصدار الشيكات) وإرسالها للإدارات المختصة بالبنك لاستكمال إجراءاتها، على أن يضع البنك ضوابط استيفاء تلك النماذج.
+>
+> ٤-٤ استيفاء نماذج طلبات الحصول على القروض والبطاقات الائتمانية من العملاء (غير متضمنة العقود أو الشيكات أو السندات).
+>
+> ٤-٥ تسليم جميع أنواع البطاقات المصرفية شريطة أن تكون غير مفعلة.
+>
+> ٤-٦ توفير قنوات لحملات التثقيف والتوعية المالية.
+>
+> ٤-٧ التسويق والترويج لمنتجات البنك عن طريق وسائل دعائية مطبوعة من قبل البنك.
+
+**Verbatim — eligible entities (section 5):**
+
+> ٥-١ المؤسسات المالية الخاضعة لرقابة وإشراف البنك المركزي، على ألا يكون قد صدر بحقها أي جزاءات أو عقوبات خلال عامين قبل بدء سريان الترخيص بمزاولة النشاط.
+>
+> ٥-٢ المؤسسات المالية غير المصرفية الخاضعة لرقابة وإشراف الهيئة العامة للرقابة المالية شريطة حصول البنك على خطاب من الهيئة يفيد الموافقة على مزاولة تلك الجهات لخدمة الوكالة المصرفية، فضلاً عن سلامة أدائها والتزامها بمعايير وقواعد ممارسة النشاط المحددة من قبل الهيئة، على ألا يكون قد صدر بحقها جزاءات أو عقوبات خلال عامين.
+>
+> ٥-٣ الوزارات والجهات الحكومية، وأي جهات أخرى تخضع لرقابتهم وإشرافهم وذلك بعد الحصول على موافقة تلك الوزارات والجهات الحكومية.
+>
+> ٥-٤ السفارات والقنصليات، والجاليات الدبلوماسية لجمهورية مصر العربية بالخارج شريطة حصول البنك على موافقة وزارة الخارجية والتعاون الدولي والمصريين بالخارج.
+>
+> ٥-٥ أي جهة أخرى ترغب في مزاولة نشاط الوكالة المصرفية شريطة الالتزام بمحددات هذه القواعد، على أن يتوافر ما يلي:
+>
+> ٥-٥-١ أن يكون للجهة سجل تجاري ساري وبطاقة ضريبية سارية.
+
+**Verbatim — bank duties / responsibility (section 7):**
+
+> ٧-٥ الحصول على موافقة البنك المركزي المصري قبل التعاقد مع الوكيل المصرفي وعند تجديده أو تعديل أي من البنود الواردة فيه، على أن يتم إعداد سجل بالوكلاء المصرفيين المعتمدين طرف البنك المركزي.
+>
+> ٧-٦ متابعة عمليات الوكالة المصرفية والتأكد من الحفاظ على سرية بيانات العملاء مع ضرورة ضمان حماية البيانات والمعلومات الخاصة بالعملاء وفقاً لسياسات وإجراءات أمن المعلومات الخاصة بالبنك والمتطلبات التشريعية والتنظيمية ذات الصلة.
+>
+> ٧-٨ تقع المسؤولية النهائية الكاملة عن الاستعانة بالوكيل المصرفي على عاتق البنك، ويكون صاحب عقد الوكالة مسؤولاً مسؤولية كاملة عن تنفيذ هذه التعليمات، وكذلك القواعد والإجراءات الصادرة في شأن مكافحة غسل الأموال وتمويل الإرهاب، كما يتحمل المسؤولية عن جميع ما يصدر من وكلائه الذين تم التعاقد معهم لتقديم الخدمات المصرفية.
+
+**Verbatim — CBE prior approval (section 8):**
+
+> ٨-٢ لدى كل تعاقد جديد مع وكيل مصرفي يجب على البنوك التقدم بطلب للحصول على موافقة كتابية من البنك المركزي، مع موافاة البنك المركزي بما يلي:
+>
+> ٨-٢-١ إقرار من الوكيل والبنك المتعاقد معه بعدم وجود تعارض في المصالح بينهما.
+>
+> ٨-٢-٢ البيانات والمستندات الخاصة بالوكيل، بما في ذلك الشكل القانوني، طبيعة النشاط، العنوان، سجل تجاري حديث، البطاقة الضريبية، بيانات المالكين والمديرين، صحيفة الحالة الجنائية، الملاءة المالية، السير الذاتية، المالكين ذوي الحصص المسيطرة (٢٥٪ فأكثر)، المستفيدين النهائيين، نسخة عقد الوكالة، وتقرير الاستعلام الائتماني.
+>
+> ٨-٢-٣ تعتبر موافقة البنك المركزي على التعاقد مع وكيل لاغية في حالة عدم مزاولة الوكيل أعماله خلال ستة أشهر من تاريخ صدور الموافقة.
+>
+> ٨-٢-٤ يجب الحصول على موافقة مسبقة من البنك المركزي على أي تعديل في أي بند من البنود السابقة، كما يجب إخطار البنك المركزي مسبقاً بمدة لا تقل عن شهر قبل إنهاء التعاقد مع الوكيل المصرفي مع تحديد الأسباب.
+
+**Verbatim — reporting (section 9):**
+
+> يجب على كل بنك تقديم تقرير ربع سنوي لقطاع الشمول المالي بالبنك المركزي، على أن يتضمن التقرير ما يلي كحد أدنى:
+>
+> ٩-١ العدد الإجمالي للوكلاء المتعاقد معهم وتوزيعهم الجغرافي.
+>
+> ٩-٢ عدد المعاملات التي ينفذها كل وكيل على حدة وفقاً لنوع المنتج أو الخدمة، والتوزيع الجغرافي، والنوع، والشرائح العمرية.
+>
+> ٩-٣ إجمالي عدد الشكاوى وموقف التعامل معها.
+
+**Verbatim — contract controls (section 10):**
+
+> يتعين ألا تزيد مدة العقود المبرمة بين البنك والوكيل المصرفي عن ثلاث سنوات، على أن يتم تجديدها لفترات أخرى مماثلة بعد إخطار البنك المركزي قبل تاريخ انتهاء العقد بفترة زمنية لا تقل عن ثلاثة أشهر.
+>
+> ١٠-٢٠ لا يجوز للوكيل إجراء المعاملات نيابة عن العميل دون التواجد الفعلي للعميل والتحقق من هويته والاطلاع على مستند تحقيق الشخصية الساري.
+
+### B. CBE 2026 digital financial identity / eKYC circular
+
+**Circular dated 23 August 2026:** "القواعد المنظمة لخدمات منظومة الهوية المالية الرقمية للتعرف على عملاء البنوك والتحقق من هوياتهم إلكترونياً".  
+**Official CBE PDF locator:**  
+https://www.cbe.org.eg/-/media/project/cbe/listing/circulars/2026/august/circular-dated-23-august-2026--regarding-the-rules-of-digital-financial-identity-system-for-the-ekyc.pdf  
+**CBE digital financial identity overview:** https://www.cbe.org.eg/en/payment-systems-and-services/digital-financial-identity  
+**Regulatory-book entry:** CBE search index identifies the rules in Chapter 4 of Book 17 (AML/CFT), updated 10 September 2026.
+
+CBE's official page/search index describes the rules as a framework for all banks operating in Egypt and licensed entities that may join the digital financial identity platform. The PDF link was blocked by the web reader, so this is a source locator/official catalogue record, not a text acquisition. It is directly cross-referenced by the November 2026 agent-banking rules (section 4-2).
+
+### C. CBE 2025–2026 related circular inventory (official source locators)
+
+The CBE official circulars database reports 405 circulars and is updated through November 2026. The following instruments are directly relevant to Law 194/2020 regulated institutions and/or corporate/banking operations:
+
+1. **19 June 2025 — PSO/PSP licensing and registration rules.** CBE announcement and PDF locator:  
+   https://www.cbe.org.eg/en/news-publications/news/2025/06/19/08/20/psos-and-psps-licensing-rules  
+   https://www.cbe.org.eg/-/media/project/cbe/listing/circulars/2025/june-2025/regulations-on-licensing-and-registration-for-payment-system-operators-and-payment-service-provider.pdf  
+   CBE gave existing payment institutions 12 months to apply for a license, through June 2026. Full PDF access was blocked by the reader.
+
+2. **27 August / 1 September 2025 — Governance and Internal Control Regulations for PSOs/PSPs and Fit-and-Proper Criteria.** CBE PDF:  
+   https://www.cbe.org.eg/-/media/project/cbe/listing/circulars/2025/september-2025/governance-,-a-,-internal-control-regulations-for-psps-,-a-,-psos.pdf  
+   The CBE release says these rules cover board/senior-management responsibilities, board committees, internal audit, compliance and risk-management independence, and fit-and-proper standards for key officials. The PDF was blocked by the reader.
+
+3. **12 July 2023 — Digital Bank Licensing and Regulatory Framework.** Official CBE press release and Arabic circular PDF locator:  
+   https://www.cbe.org.eg/en/news-publications/news/2023/07/12/14/38/press-release-12-july-23  
+   https://www.cbe.org.eg/-/media/project/cbe/listing/circulars/july/كتاب-دوري-بتاريخ-12-يوليو-2023-بشأن-قواعد-ترخيص-البنوك-الرقمية-والرقابة-والاشراف-عليها.pdf
+
+4. **2 May 2024 — Rules of banks' ownership, mergers, divestitures and acquisitions.** Listed in CBE's official circular database; retrieve the underlying circular and appendices.
+
+5. **19 September 2024 — Updated bank governance and internal-control instructions.** Official CBE PDF locator:  
+   https://www.cbe.org.eg/-/media/project/cbe/listing/circulars/sept/circular-dated-19-september-2024-regarding-updated-banks-governance-and-internal-control.pdf
+
+6. **27 March 2025 — Code of Conduct for Banks.** Official CBE PDF locator:  
+   https://www.cbe.org.eg/-/media/project/cbe/listing/circulars/2025/march-2025/circular-dated-27-march-2025-regarding-code-of-conduct-for-banks.pdf
+
+7. **30 November 2025 — Amendment to bank governance/internal-control rules concerning board meetings.** Official CBE search result identifies the circular and PDF in the 2025 November circular folder.
+
+8. **23 August 2026 — eKYC/Digital Financial Identity Rules** (see subsection B).
+
+9. **24 September 2026 — Licensing and regulatory framework of Credit Guarantee Companies.** Official CBE circular catalogue lists the instrument under "Licensing and Regulatory Framework for Other Licensed Entities"; retrieve the PDF and exact capital/ownership/prudential terms.
+
+10. **3 November 2026 — Agent Banking Regulations** (full Arabic PDF transcribed above).
+
+11. **28 September 2026 — KYC circulars for banks, money-transfer companies and foreign-exchange companies.** Official CBE circular database lists separate instruments; collect each separately and do not treat one circular as applying to all entity types.
+
+The official CBE circulars database is a live index and should be queried by topic/date for each new release; it is not itself a consolidated law or a substitute for the underlying circular PDFs.
+
+**Collection status:** 3 November 2026 Agent Banking circular fully searchable and selected sections transcribed; 2025 licensing and governance rules, 2023 digital bank framework and 2024 M&A/bank-ownership circulars are official source locators but full text retrieval blocked/not yet completed; 23 August 2026 eKYC circular official PDF locator confirmed but text inaccessible. No lawyer approval or rights clearance claimed.
