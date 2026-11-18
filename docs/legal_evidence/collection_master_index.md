@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 137)
+**Last updated:** 2026-11-18 (expanded through checkpoint 138)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1111,3 +1111,6 @@
 
 
 | checkpoint 118 — Agent 3 Consumer Protection Law 181/2018 | Added Arabic full-law and Executive Regulation source routes, PM Decision 822/2019 and Gazette-derived Law 20/2024 replacement of Article 71 penalties for Article 8 violations; cumulative Agent 3 minimum 124 instruments / 1,278 provision units |
+
+
+| checkpoint 119 — Agent 3 FRA / leasing / factoring | Added official Gazette Law 10/2009 text and FRA official Arabic full text for Law 176/2018; captured FRA jurisdiction, licensing, registered leasing contracts, factoring assignments, repeal of Law 95/1995 and PM Decision 1446/2003; cumulative Agent 3 minimum 126 instruments / 1,286 provision units |
