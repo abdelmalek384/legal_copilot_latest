@@ -551,3 +551,10 @@
 - Official Gazette metadata: issue 14 bis (ج), 11 April 2022; effective 12 April 2022; official State Information Service confirms signature/publication.
 - Full searchable consolidated Law 120/1982 with Law 21/2022 amendment footnotes now recorded in Agent 3 file. Law 21/2022 inserts Article 2 bis (electronic real-estate broker register), Article 3 bis (broker eligibility), Article 10 bis (data updates), Article 11 bis (transaction ledger), Articles 12 bis / 12 bis A / 12 bis B (written brokerage contract, due diligence/confidentiality, non-cash payments), Articles 16 bis and 16 bis A (penalties), Article 20 bis (settlement), and amends numerous existing provisions including Article 16 penalties and Article 22.
 - Correction: Law 21/2022 changed the statute's short title/terminology but retained explicit statutory provisions on real-estate brokers and created their register and eligibility requirements. The 2025/2026 Decisions 593/2025 and 578/2025 implement that statutory framework; the earlier note implying real-estate brokerage was simply removed from the statute has been corrected.
+
+
+### Research Agent 3 — Investment incentive schedule updates
+
+- PM Decision 104/2022 identified as the parent sector/sub-sector allocation schedule under Law 72/2017 for zones (A)/(B); full schedules still need acquisition.
+- PM Decision 503/2026: Official Amiri Press searchable text; Official Gazette issue 7 bis (أ), 16 Feb 2026; effective 17 Feb 2026. Replaces only industrial sub-sector schedules (1) and (2) of Decision 104/2022. MIFT confirms automotive and feeder industries added to incentive-eligible activities in both zones A and B.
+- PM Decision 1/2024: GAFI-hosted Gazette PDF; temporary extension of establishment period under Law 72/2017 Article 12(1) until 28 Oct 2026; expired on 29 Oct 2026 absent later extension (none identified in this pass).
