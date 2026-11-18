@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 163)
+**Last updated:** 2026-11-18 (expanded through checkpoint 170)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -16,19 +16,24 @@
 - Legal-source rights/permission: not presumed. Official public accessibility does not automatically establish commercial indexing, excerpt-display or redistribution rights.
 - Machine labels must remain `source-matched, not lawyer-reviewed` where applicable; no `verified` label without qualified Egyptian lawyer approval.
 
-## Current audited repository snapshot — checkpoint 162 (18 November 2026)
+## Current audited repository snapshot — checkpoint 170 (18 November 2026)
 
-- Acquisition register: **241 non-header rows**, 241 unique IDs, no duplicate IDs; EG-0076–EG-0079 remain unresolved historical gaps.
-- Source-permission register: **63 unique source records**. These are assessments, not permissions granted; collection and commercial reuse remain source-specific.
-- Completed core unique article provisions: **1,370** (Law 131/1948: 1,093; Law 25/1968: 163; Law 119/2008: 114).
-- Additional searchable article-heading counts: Law 114/1946: 70 (61 ordinary + 9 bis); Law 142/1964: 72 (6 issuing + 66 substantive); Law 68/1947: 14; Law 70/1964: 44. These 200 entries are not fully versioned or validated.
-- Building Law Executive Regulation Decision 144/2009: 185 base numbered articles; later consolidated count of 198 provisions remains unverified.
-- Priority full-text inventory: **25 instrument/text records**. Historical scan reproductions visually inspected: 26 pages across Laws 114/1946, 142/1964, 68/1947 and 70/1964. Original Amiri Press digital binaries obtained for those four statutes: **0**. Historical version event register: **44 events**.
-- Lawyer verification: **0**. Commercial reuse permissions established by this research: **0**.
-- Provisional completion estimates: defined core article extraction **100%** at article-number level; broader civil/property/contract corpus **15%**; whole Egyptian legal corpus **2%**.
-- Instrument-category cumulative totals remain separate from the 241-row catalogue count; no claim that 241 rows equal 241 base laws, amendments, regulations or full texts.
+- Acquisition register after instrument deduplication: **231 canonical instrument rows**, 231 unique canonical IDs, no duplicate legal instruments; 11 duplicate rows were consolidated and preserved in the alias map.
+- Source-permission register: **64 unique source records**, no duplicate source IDs. These are assessments, not permissions granted.
+- Provisional instrument-type classification (231 canonical records; title/domain-based and subject to manual normalization): **66 base-law records; 48 amending-law records; 13 executive regulations; 35 executive-regulation amendment records; 4 judicial decisions; 52 other decisions/circulars; 13 other/unclassified records**.
+- Priority full-text inventory: **33 records** (14 base laws, 6 executive regulations, 1 presidential decision, 9 executive-regulation amendments, 1 implementing decision, 1 fee decision, 1 annual valuation decision). Inventory status varies; 33 records do not mean 33 authenticated complete texts.
+- Completed core unique article provisions: **1,370** (Civil Code 1,093; Evidence Law 163; Building Law 114).
+- Additional searchable article-heading entries: **200** (Laws 114/1946: 70; 142/1964: 72; 68/1947: 14; 70/1964: 44); not fully extracted/versioned.
+- Historical article-version events: **44**; pre/post Arabic text snapshots are not normalized for every event.
+- Historical Gazette scan reproductions visually inspected: **26 pages** across Laws 114/1946, 142/1964, 68/1947 and 70/1964; all secondary-hosted. Original Amiri Press digital binaries for those four statutes: **0**.
+- Law 168/2025 and Presidential Decision 480/2026 original Amiri Press DSpace bundles are request-only; Decision 200/2026 has a publicly listed SIS full-issue PDF (1.893 MB), but no local PDF/hash was archived in this pass.
+- Lawyer verification: **0**. Commercial reuse permissions established by this research: **0**. All canonical acquisition records retain lawyer_reviewed=false and rights_cleared=false.
+- Coverage estimates remain provisional: core article-number extraction **100%** for the three defined core statutes (not source-image/currentness complete); broader civil/property/contract corpus **18% provisional** per checkpoint 169; whole Egyptian legal corpus **2% provisional**.
 
 ## Collection checkpoints
+
+| checkpoint 170 — Research Agent 1 source audit and register deduplication | Reconciles 242-row snapshot to 231 canonical instruments by merging 11 duplicate rows with alias preservation; 64 source-permission records; 33 priority full-text inventory records; 1,370 core provisions; 200 additional headings; 44 version events; Gazette and SCC blockers retained |
+
 
 | checkpoint 102 — Agent 3 PPP primary Gazette texts | Official MOF Law 67/2010 and Invest in Egypt Decision 238/2011 Gazette texts; five issuing provisions captured; Law 153/2021 and Decision 3217/2022 remain amendment acquisition tasks; cumulative 92 instruments / 1,186 provision units |
 
