@@ -265,5 +265,5 @@ The amendment adds an obligation to notify the Central Depository and Registry C
 ## Accounting
 - +2 unique Prime Minister decisions; Decision 3045 has 4 issuing articles, 12 replaced provisions, 4 inserted/amended provisions, and 1 repeal; Decision 2423 has 3 issuing articles, 10 replaced provisions and 3 inserted provisions.
 - Counted **2 instruments / 37 normalized numbered units**.
-- Cumulative Agent 3 minimum: **200 documents / 1,987 normalized units**.
+- Cumulative Agent 3 minimum: **198 documents / 1,987 normalized units**.
 - Assigned-domain completion remains **55% provisional**; whole corpus **2% provisional**; lawyer review 0%.
