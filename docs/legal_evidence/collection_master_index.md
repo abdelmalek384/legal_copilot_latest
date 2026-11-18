@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 90) (expanded through checkpoint 79) (expanded through checkpoint 78) (expanded through checkpoint 77) (expanded through checkpoint 76) (expanded through checkpoint 75) (expanded through checkpoint 74) (expanded through checkpoint 73) (expanded through checkpoint 72) (expanded through checkpoint 71) (expanded through checkpoint 70) (expanded through checkpoint 69) (expanded through checkpoint 68) (expanded through checkpoint 67) (expanded through checkpoint 66) (expanded through checkpoint 65) (expanded through checkpoint 64) (expanded through checkpoint 63) (expanded through checkpoint 62) (expanded through checkpoint 61) (expanded through checkpoint 60) (expanded through checkpoint 59) (expanded through checkpoint 58) (expanded through checkpoint 57) (expanded through checkpoint 56) (expanded through checkpoint 55) (expanded through checkpoint 54) (expanded through checkpoint 53) (expanded through checkpoint 52) (expanded through checkpoint 51) (expanded through checkpoint 50) (expanded through checkpoint 49) (expanded through checkpoint 48) (expanded through checkpoint 47) (expanded through checkpoint 46) (expanded through checkpoint 45) (expanded through checkpoint 44) (expanded through checkpoint 43) (expanded through checkpoint 42) (expanded through checkpoint 41) (expanded through checkpoint 40) (expanded through checkpoint 39) (expanded through checkpoint 38) (expanded through checkpoint 37) (expanded through checkpoint 36) (expanded through checkpoint 35) (expanded through checkpoint 34) (expanded through checkpoint 33) (expanded through checkpoint 32) (expanded through checkpoint 31) (expanded through checkpoint 30) (expanded through checkpoint 29) (expanded through checkpoint 28) (expanded through checkpoint 27) (expanded through checkpoint 26) (expanded through checkpoint 25) (expanded through checkpoint 24) (expanded through checkpoint 23) (expanded through checkpoint 22) (expanded through checkpoint 21) (reconciled through checkpoint 26)
+**Last updated:** 2026-11-18 (expanded through checkpoint 91)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -411,13 +411,22 @@
 - No national completion percentage recalculated: the corpus still lacks a validated denominator of all unique Egyptian legal article texts.
 
 
+### Research Agent 1 — desert-land amendment and jurisdiction supplement
+
+- Supplemental checkpoint 89 acquisition: full searchable text of Law 12/1984 (FAOLEX secondary reproduction) and official Ministry of Water Resources and Irrigation PDF for Law 147/2021. Law 147/2021 repealed Law 12/1984 from 17 October 2021; it does not expressly revive the 1984 repeal of Law 143/1981 Article 21.
+- Full searchable secondary texts acquired for Laws 205/1991, 96/1995 and 72/1996, completing the known Law 143/1981 amendment provisions for Articles 11(2) and 4(1). Law 55/1988 standalone full text remains missing.
+- PM Decision 81/2023 (Executive Regulation of Law 147/2021) located; Gazette issue 52 bis (هـ), 4 January 2023, full secondary text metadata available; original Gazette PDF and article count remain outstanding.
+- Official SCC Case 17/43 (منازعة تنفيذ), 2 April 2022, confirms the effect of Case 101/26 (constitutional), 1 February 2009: ordinary courts hear civil possession/ownership disputes; administrative disputes arising from administrative decisions under Law 143/1981 fall to the State Council. The original 2009 judgment and Gazette scan remain outstanding.
+- Corrected Law 12/1984 Gazette issue date provisionally to 1 March 1984 (issue 9 supplement); source scan is still required. Do not use the prior 1 January date.
+- This supplement adds source upgrades and legal texts; no overall corpus percentage is recalculated because the unique-article denominator remains unvalidated.
+
 ### Research Agent 1 — Notarization and registration fee laws (checkpoint 91)
 
 - Checkpoint 91 upgrades two previously identified related statutes to full searchable Arabic text sources: Law 68/1947 (14 articles, secondary transcription; amendment chain includes Laws 629/1955, 5/1964 and 103/1976) and Law 70/1964 (44 articles plus schedules, secondary consolidated transcription through Law 67/2021). It also retrieves the 35-article 1947 Executive Regulation and identifies Decisions 820/1963, 1532/1976, 712/2008, 9200/2015 and 4730/2020 as regulation amendments.
 - Amendment chain leads for Law 70/1964: Laws 94/1980, 6/1991, 83/2006 and 67/2021; fee-table decisions 2936/1992 and 5424/2006.
 - Judicial currentness: SCC Case 2/24 (14 Dec 2003) invalidated Article 30 only insofar as it absolutely barred refunds after the applicant abandoned the requested service; Case 65/17 (1 Feb 1997) addressed specified provisions of the pre-1991 Article 21/26 valuation regime. Both direct SCC judgment pages/Gazette scans remain outstanding.
 - Checkpoint 85 source upgrades: IDSC DSpace Gazette metadata records found for Law 9/2022 issue 9 bis (A), 6 March 2022 and Decision 2332/2022 issue 75 supplement (C), 30 March 2022. The DSpace PDF bundles are request-only; accessible Gazette reproduction/secondary full text sources are retained separately. Full searchable secondary text of Decision 11264/2016 obtained; issue 30, 6 February 2017.
-- No new base-law discoveries counted; no URL or catalogue item is counted as a legal instrument or article. Checkpoint 91 adds 23 selected article/provision extracts (17 statutory and 6 regulatory); full searchable transcriptions are identified as source documents, not all reprinted in the checkpoint file.
+- No duplicate base-law texts counted; no URL or catalogue item is counted as a legal instrument or article. Checkpoint 91 adds 23 selected article/provision extracts (17 statutory and 6 regulatory); full searchable transcriptions are identified as source documents, not all reprinted in the checkpoint file. The checkpoint 89 supplement adds Law 12/1984 and Law 147/2021 as distinct related statutes, plus PM Decision 81/2023; Laws 205/1991, 96/1995 and 72/1996 now have full searchable text sources.
 
 ## High-value primary-source portals
 
