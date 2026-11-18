@@ -77,3 +77,11 @@ All new material remains machine-collected and not lawyer-reviewed. Do not mark 
 - Amendment list: Laws 10/1995, 89/1996, 158/1998, 13/2004, 143/2004, 123/2008, 27/2014, 17/2018 and 13/2022. Full Gazette-by-Gazette overlay and post-2022 statutory currentness remain outstanding.
 - Record: [agent3_capital_market_law95_1992_fra_updated_2022_full_text_expansion.md](agent3_capital_market_law95_1992_fra_updated_2022_full_text_expansion.md).
 - No new unique instrument count; existing Law 95 inventory record was expanded. Cumulative counts remain 209 / 2,049 pending deduplication; assigned-domain estimate remains 55% provisional; lawyer review 0%.
+
+
+## Competition Law statutory threshold reconciliation — final text controls
+- Law 175/2022 full Amiri Press text states Article 19 bis worldwide statutory threshold as **EGP 7.5bn**, with at least one concerned person exceeding EGP 200m Egypt turnover. Domestic combined threshold is EGP 900m with two concerned persons each exceeding EGP 200m local turnover.
+- ECA June 2024 consolidated PDF shows EGP 7.2bn and attributes the insertion to Law 15/2022; that passage conflicts with the later Law 175 Gazette text and is quarantined as stale/editorial error. Do not use 7.2bn as the current threshold.
+- Decision 1120/2024 Article 59 has a separate EGP 7.5bn fee band. Same amount, distinct legal function; keep fields separate.
+- Corrected records: [ECA consolidated text](agent3_eca_law3_2005_june2024_official_consolidated_text_and_thresholds.md) and [Law 175/2022 / Decision 1120/2024](agent3_competition_law_175_2022_and_decision_1120_2024_merger_control_arabic_text.md).
+- Counts remain 209 / 2,049 pending deduplication; 55% provisional assigned-domain completion; lawyer review 0%.
