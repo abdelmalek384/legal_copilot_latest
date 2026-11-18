@@ -1554,3 +1554,56 @@ The same Article 240 bis further permits electronic remote agenda presentation a
 - Fourteen issuing provision units counted: Law 3/2005 Articles 1–4; Decision 1316/2005 Articles 1–2; Law 175/2022 Articles 1–4; Decision 1120/2024 Articles 1–4.
 - Full substantive Law 3/2005 and the 1316/2005 regulation text have source routes but still require article-by-article ingestion and amendment overlay. The four pre-2022 amendment laws and two 2010/2016 regulation amendments remain pending source acquisition.
 - Cumulative Agent 3 minimum: 121 unique instruments / 1,270 provision units.
+
+
+## 38. Consumer Protection Law 181/2018 — full Arabic source, Executive Regulation and 2024 penalty amendment
+
+### Core statute
+
+- Instrument: Law 181/2018 on Consumer Protection.
+- Official Gazette issue 37 bis (ج), 13 September 2018; effective 14 December 2018 (three months after publication).
+- Full Arabic law PDF hosted by WIPO Lex: https://www.wipo.int/wipolex/ar/legislation/details/19866
+- Current Arabic full-text transcription: https://lawhub.info/eg/?p=11330
+- WIPO Lex confirms Law 181/2018 repealed Consumer Protection Law 67/2006 and is implemented by PM Decision 822/2019.
+- Article 1 states the law applies without prejudice to Competition Law 3/2005 and National Food Safety Authority Law 1/2017. This is an important cross-law instruction for consumer/business disputes.
+- Core scope: consumer rights to health/safety/information/choice, supplier and advertiser obligations, invoices and disclosure, misleading advertisements, warranties, replacement/refund, distance contracting/e-commerce, consumer-protection agency powers, complaint and enforcement procedures.
+- Selected substantive provisions for indexing:
+  - Article 8: prohibition of specified deceptive or misleading practices/representations.
+  - Article 15: real-estate marketing/sale controls, including prohibition on advertising/contracting before required licences and restrictions on certain resale-percentage clauses.
+  - Article 36: distance-contracting pre-contract disclosure obligations concerning supplier identity, product/service, warranty, after-sales service and delivery.
+  - Article 71: criminal penalties for Article 8 violations, as replaced by Law 20/2024 below.
+- The WIPO PDF includes the full Arabic statute; its English translation is reference-only and Arabic controls.
+
+### PM Decision 822/2019 — Executive Regulation
+
+- Instrument: PM Decision 822/2019 issuing the Executive Regulation of Law 181/2018.
+- Gazette: Official Gazette issue 13 bis (أ), 1 April 2019; effective 2 April 2019.
+- Full Arabic text source: https://www.wipo.int/wipolex/en/legislation/details/19958
+- Full Arabic transcription: https://lawhub.info/eg/?p=12689
+- Article 1 issues the attached Executive Regulation; Article 2 publication and commencement on the day after publication.
+- The regulation operationalizes supplier disclosures, invoices, warranty and after-sales obligations, complaint handling, CPA procedures, distance sales and enforcement. Article-by-article ingestion and any later regulatory amendments remain pending.
+
+### Law 20/2024 — Article 71 penalty amendment
+
+- Instrument: Law 20/2024 amending Law 181/2018.
+- Official Gazette issue 14 (مكرر), 5 April 2024; effective the day after publication.
+- Ministry of Finance official record marks the law in force and provides the Arabic Gazette-derived PDF: https://mof.gov.eg/ar/legislation/legislation-6643253a8897b900092f6319
+- Official PDF: https://media.mof.gov.eg/mof-prd/qanwn_rqm_20_lsnt_2024_585ed690d6.pdf
+- Official Gazette DSpace bundle: https://dspace.id.com.eg/items/a574ba86-9011-4375-b8eb-c59f8966e194
+- Article 1 replaces Consumer Protection Law Article 71; Article 2 publication and commencement.
+- **Exact Arabic replacement Article 71:**
+> يعاقب بالحبس مدة لا تقل عن سنة وبغرامة لا تقل عن مائة وخمسين ألف جنيه ولا تجاوز ثلاثة ملايين جنيه أو ما يعادل قيمة البضاعة موضوع الجريمة أيهما أكبر، كل من خالف حكم المادة (8) من هذا القانون.
+>
+> وفي حالة العود، يعاقب بالحبس مدة لا تقل عن سنتين ولا تجاوز خمس سنوات وتضاعف قيمة الغرامة المحددة.
+>
+> وفي جميع الأحوال، تضبط الأشياء موضوع الجريمة، ويحكم بمصادرتها وبإغلاق المحل أو المكان الذى وقعت فيه الجريمة لمدة لا تجاوز ستة أشهر، وينشر الحكم فى جريدتين يوميتين واسعتي الانتشار على نفقة المحكوم عليه.
+>
+> ويجوز الحكم بإلغاء رخصة المحل أو المكان الذى وقعت فيه الجريمة.
+- This amendment materially raises the penalty for Article 8 violations. Use the post-5 April 2024 text for current queries; retain the pre-amendment Article 71 only as historical text.
+
+### Count increment
+
+- Three unique instruments with Arabic operative text surfaced: Law 181/2018, PM Decision 822/2019 and Law 20/2024.
+- Eight issuing provision units counted: Law 181/2018 Articles 1–4; Decision 822/2019 Articles 1–2; Law 20/2024 Articles 1–2.
+- Full Law 181 Arabic PDF and full Regulation text are located, but article-by-article extraction and amendment overlay remain incomplete.
+- Cumulative Agent 3 minimum: 124 unique instruments / 1,278 provision units.
