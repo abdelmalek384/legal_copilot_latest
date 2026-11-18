@@ -68,3 +68,12 @@ All new material remains machine-collected and not lawyer-reviewed. Do not mark 
 - Number discrepancy: FRA list and English file name say 1539/2025, but Arabic Gazette PDF prints 1529/2025. Preserve the mismatch; Gazette number controls pending authority clarification. Do not create two instrument records.
 - Record: [agent3_capital_market_decisions_1529_and_2482_2025_gazette_text.md](agent3_capital_market_decisions_1529_and_2482_2025_gazette_text.md).
 - Aggregate counts and 55% provisional estimate remain unchanged pending deduplication; no lawyer review.
+
+
+## Capital Market Law 95/1992 full text recovered
+- FRA official 35-page updated consolidation acquired; 1,545 extracted lines; main statute through Article 75 and five issuing articles; FRA labels updated in 2022.
+- Captured text on securities issuance, public offering/private placement, disclosure, bonds and sukuk, securitization, exchange and non-bank financial licensing, FRA intervention, insider/confidentiality offences, sanctions, mandatory tender offers and employee shareholder associations.
+- Critical legal-effect overlay: Supreme Constitutional Court judgment 55/2002 invalidated Article 52 and caused Articles 53–62 and Executive Regulation Articles 210 and 212 to fall. The FRA consolidated PDF marks those provisions as unconstitutional/repealed. They must not be treated as current operative law.
+- Amendment list: Laws 10/1995, 89/1996, 158/1998, 13/2004, 143/2004, 123/2008, 27/2014, 17/2018 and 13/2022. Full Gazette-by-Gazette overlay and post-2022 statutory currentness remain outstanding.
+- Record: [agent3_capital_market_law95_1992_fra_updated_2022_full_text_expansion.md](agent3_capital_market_law95_1992_fra_updated_2022_full_text_expansion.md).
+- No new unique instrument count; existing Law 95 inventory record was expanded. Cumulative counts remain 209 / 2,049 pending deduplication; assigned-domain estimate remains 55% provisional; lawyer review 0%.
