@@ -547,7 +547,7 @@
 - Inspected the existing national source register, Phase 2 metadata-only document inventory, source-evidence register, source-permission register and initial statute acquisition register before updating.
 - Extended `data/research/egypt_initial_statute_acquisition_register_2026-11-17.csv` with 29 unique instrument records (EG-0144–EG-0172) for civil/property registration, notarization, desert land, expropriation, irrigation and mortgage-finance texts.
 - Upgraded existing EG-0070 Law 148/2001 from the earlier ETA PDF with no readable text layer to the official FRA-hosted Gazette reproduction with searchable Arabic text.
-- CSV validation: 187 instrument rows, 12 columns per row, no duplicate instrument IDs, and no malformed rows (latest validation after EG-0189–EG-0191 additions). This is a register count, not a count of unique full legal texts or articles.
+- CSV validation: 189 instrument rows, 12 columns per row, no duplicate instrument IDs, and no malformed rows (latest validation after EG-0189–EG-0191 additions). This is a register count, not a count of unique full legal texts or articles.
 - All new rows retain `lawyer_reviewed=false` and `rights_cleared=false`; no collection or commercial reuse permission is inferred. Phase 2 production inventory and source-permission register were not promoted or altered because their permission/review gates remain unknown.
 
 ### Research Agent 1 — desert-land amendment and jurisdiction supplement
@@ -1100,7 +1100,7 @@
 - Government-bank-hosted NIB copy of Egyptian Proceedings issue 82 supplement (A), 8 April 2009, located for Decision 144/2009; full regulation runs through Articles 1–185 and includes forms/schedules to page 163. This supersedes a truncated third-party PDF that appeared to end at Article 154.
 - Later amendment texts/source routes expanded: Decision 954/2022 (Articles 135 bis/139 bis; repeals Decisions 272/2013 and 296/2021); Decision 943/2024 (Articles 110 bis, 112 bis 1, 117 bis; repeals Decision410 forms); Decision120/2025 (Article26(5)); Decision1505/2025 (Articles43/50; effective 28 Jan 2026).
 - Decision943/2024 appears in two SIS-hosted Gazette issue PDFs: issue216 (1 Oct 2024) and issue240 (30 Oct 2024), with identical decision text and conflicting publication/effective-date implications. Preserve both; official clarification required.
-- Acquisition register updated to 187 rows (EG-0189–EG-0191 added for Decisions954/2022,120/2025,1505/2025); original-Gazette byte/hash acquisition and lawyer/rights review remain open.
+- Acquisition register updated to 189 rows (EG-0189–EG-0193 added for Decisions954/2022,120/2025,1505/2025); original-Gazette byte/hash acquisition and lawyer/rights review remain open.
 - Full evidence: [building_law_119_2008_decision_144_2009_official_gazette_sources_and_amendment_chain_2026-11-18.md](building_law_119_2008_decision_144_2009_official_gazette_sources_and_amendment_chain_2026-11-18.md).
 
 
@@ -1158,3 +1158,11 @@
 
 
 | checkpoint 123 — Agent 3 Competition Law 2008–2019 amendment chain | Added Arabic text for Laws 190/2008, 193/2008, 56/2014 and 15/2019; captured ECA institutional/enforcement reforms, leniency, economic-efficiency exemption and Article 22 bis(c) price-control penalty; documented source footnote discrepancy Law 56/2014 vs erroneous Law 9/2014 reference; cumulative Agent 3 minimum 136 instruments / 1,313 provision units |
+
+
+### Constitutional Court Gazette scan upgrades — Cases 10/35 and 24/20
+
+- **Case 10/35:** 10-page printed Gazette judgment scan visually inspected, issue 22 bis (ط), 6 June 2018, printed pp.16–25. Declares Law142/1964 Articles21 and24 unconstitutional, consequential fall of Article23 and Decision553/1976.
+- **Case 24/20:** 14-page printed Gazette judgment scan visually inspected, issue45 bis (A), 10 November 2024, printed pp.17–30. Declares the first paragraphs of Law136/1981 Articles1 and2 unconstitutional insofar as fixing annual residential rent; effect deferred to the day after the end of the then-current ordinary parliamentary session.
+- Both are secondary-hosted reproductions of original printed Gazette pages, not Amiri Press digital originals. The 24/20 temporal effect must be reconciled with the parliamentary session-end date and Laws164/2025 and165/2025; do not treat the judgment as a blanket invalidation.
+- Register rows EG-0192–EG-0193 added. Full provenance and outstanding Case42/17/101/26 scan gaps: [constitutional_court_gazette_scan_acquisition_cases_10_35_and_24_20_2026-11-18.md](constitutional_court_gazette_scan_acquisition_cases_10_35_and_24_20_2026-11-18.md).
