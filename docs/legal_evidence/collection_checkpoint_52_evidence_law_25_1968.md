@@ -1,4 +1,4 @@
-# Collection checkpoint 52 — Evidence Law 25/1968 (117 articles) and amendment chain
+# Collection checkpoint 52 — Evidence Law 25/1968: original 117-article scope corrected to 162 articles
 
 ## Sources
 - Ministry of Finance official record:
@@ -15,7 +15,7 @@
 - Ministry portal labels Law 25/1968 in force but warns the Official Gazette is the legal reference.
 
 ## 1. Structure and foundational rules
-- 117 articles in the full-text transcription.
+- **Correction:** the earlier 117-article scope was incomplete. The LawHub consolidated text and WIPO Lex OCR show the statute continues through Article 162, with inserted Article 148 bis under Law 54/1974. WIPO's final OCR line labelled Article 163 duplicates Article 153 and is not a separate provision.
 - Article 1: creditor proves the obligation; debtor proves discharge.
 - Article 2: facts to be proved must be relevant, productive in the dispute and legally admissible.
 - Articles 3–9: court's evidence-management powers, judicially delegated evidence procedures, time limits, expert/judge delegation, proof procedure modification and reasoning.
@@ -61,6 +61,10 @@
 5. Link evidence rules to Civil Procedure 13/1968, Civil Code 131/1948, Commercial Code 17/1999, Electronic Signature Law 15/2004, Criminal Procedure 174/2025 and special statutes.
 
 ## Status
-- Full 117-article text sources located; official Gazette scan and WIPO PDF located.
-- First three Gazette scan pages visually inspected earlier; complete OCR and amendment reconciliation remain.
+- Full searchable text source located; original official Gazette reproduction and WIPO PDF located. Checkpoints 107, 112 and 113 now transcribe Articles 1–162 and inserted Article 148 bis. The Ministry of Finance Gazette reproduction was visually inspected on 11 of 12 pages; page index 4 failed to render.
+- Article-by-article amendment comparison and visual verification of all pages remain outstanding.
 - No lawyer review or rights clearance claimed.
+
+## Correction and subsequent extraction status (18 November 2026)
+
+The heading's former “117 articles” was an incomplete count. Law 25/1968 extends through Article 162, and Law 54/1974 inserted Article 148 bis. The current extracted range is Articles 1–162 plus Article 148 bis. Full Arabic article texts are now preserved in checkpoints 107, 112 and 113. The Ministry of Finance Gazette PDF remains the primary comparator; LawHub and WIPO are secondary text/OCR sources. Do not treat this as a fully amended consolidated text until Laws 54/1974, 23/1992, 18/1999 and 76/2007 are mapped article by article and original amendment Gazettes are compared.
