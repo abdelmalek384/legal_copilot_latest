@@ -2095,3 +2095,13 @@ Added **EG-0305 Law 10/2026** (amending Nuclear and Radiation Activities Law 7/2
 
 
 **Count correction after direct file audit (18 November 2026):** the current full-text inventory contains 77 rows corresponding to 73 unique instrument IDs (four duplicated inventory IDs represent source/version records, not duplicate acquisition instruments). The source-permission register contains 108 unique source IDs. The 294-row acquisition CSV and 294-row classification ledger each contain 294 unique instrument IDs. Use these audited values in preference to any earlier count snapshot in this index.
+
+
+### Research Agent 3 — Decision 3715/2026 insolvency expert-fee text expansion (18 November 2026)
+
+- Added [complete Arabic text of Justice Minister Decision 3715/2026](agent3_justice_decision3715_2026_insolvency_expert_fees_full_arabic_text.md), including preamble and all eight operative articles. The full transcription was recovered from a legal-library reproduction explicitly attributed to the Court of Cassation legislation portal; the Official Government Printing Office page independently confirms the instrument and reproduces its opening operative text.
+- Gazette metadata cross-check: *الوقائع المصرية* issue 162, 28 July 2026; decision signed 29 June 2026; Article 8 makes it effective the day after Gazette publication (29 July 2026), subject to original page-image verification.
+- The decision changes specified expert-fee/deposit amounts and percentage bands in Articles 1–7 of Justice Minister Decision 2208/2019. It is an implementing fee decision, **not** an amendment to Insolvency Law 11/2018.
+- The source page heading says “7 مادة” while the body contains eight numbered articles; this discrepancy is recorded in the text file.
+- No new unique instrument is counted because Decision 3715/2026 was already present as a source lead. **+8 article/provision text units are provisionally added**, subject to article-ID deduplication against the normalized corpus.
+- Evidence label remains `source-matched, not lawyer-reviewed`; no rights clearance is implied by public availability.
