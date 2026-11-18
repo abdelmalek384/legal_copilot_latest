@@ -1256,3 +1256,11 @@
 - Decision 5208/2026 has a separate mirror discrepancy: official Amiri Press text and DSpace metadata identify 5208, while a third-party mirror's extracted issue text labels it 5280. Do not create a separate 5280 instrument from that mirror alone.
 - Acquisition register now contains **193 rows**, 193 unique IDs, zero duplicate IDs. Source-permission register now contains **54 unique source records**, with reuse permissions unknown for the new SIS issue source.
 - Core provisions remain **1,370**; completion estimates remain core extraction 100% at article-number level, civil/property/contract 15% provisional, and whole Egyptian corpus 2% provisional. No percentage increase is justified by two new territorial decisions.
+
+
+#### Checkpoint 149 follow-up — Decision 6909/2025 and issue 244/248 number distinction
+
+- Added **EG-0198, Justice Minister Decision 6909/2025**, for specified Assiut and Aswan cadastral sections under the Decision 2456/2003 designation track. Amiri Press text states 1 Dec 2025–30 Nov 2026; successor decision for those exact sections remains to be located.
+- Acquisition register now has **194 data rows**, 194 unique IDs, no duplicate IDs. Source-permission register remains 54 unique source records.
+- Clarified that Decision **5208/2026** (issue 244; cadastral postponement) is distinct from genuine Decisions **5280/2026 and 5281/2026** in issue 248 (new notarization branches). A third-party issue 244 mirror's extracted “5280” heading is a likely mirror/OCR misattribution, not grounds to relabel Decision 5208.
+- Core article provisions remain 1,370; completion estimates remain core article extraction 100% (three defined core statutes), broader civil/property/contract 15% provisional, whole Egyptian corpus 2% provisional.
