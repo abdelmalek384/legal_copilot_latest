@@ -377,6 +377,16 @@
 
 | [collection_checkpoint_80_electronic_signature_law_15_2004.md](collection_checkpoint_80_electronic_signature_law_15_2004.md) | Electronic Signature Law 15/2004, Executive Regulation 361/2020 and trust-services amendment Decision 467/2024 |
 
+| [collection_checkpoint_81_property_registration_land_registry_2026-11-18.md](collection_checkpoint_81_property_registration_land_registry_2026-11-18.md) | Law 114/1946, Law 9/2022, Law 142/1964, Decision 825/1975, Decision 2332/2022, Decision 11264/2016 and current 2026 cadastral commencement postponements 5207/2026 and 5208/2026; official/secondary source distinctions and extraction failures recorded |
+
+## 2026-11-18 domain checkpoint
+
+- New distinct legal instruments recorded in checkpoint 81: 8 (base/amending laws, executive regulation and ministerial decisions counted separately).
+- Full searchable Arabic text retrieved for 6 instruments; 2 additional instruments have partial text only.
+- At least 39 distinct article/provision texts are quoted or substantively extracted in checkpoint 81; this is an article-level excerpt count, not a claim that the full 8 instruments have been transcribed.
+- Overall corpus coverage remains approximately 2% (provisional). No reliable total denominator of unique Egyptian legal article texts is recorded, so the incremental percentage contribution cannot responsibly be calculated or used to revise the rounded whole-corpus estimate.
+- Checkpoint 81 adds material not previously recorded in the master index; it does not duplicate the Civil Code, Evidence, Building, rent or State-property checkpoints.
+
 ## High-value primary-source portals
 
 - Ministry of Finance legislation and decisions: https://mof.gov.eg/ar/legislation/legislation
