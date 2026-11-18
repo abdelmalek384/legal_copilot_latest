@@ -917,3 +917,11 @@
 - Inserted Articles 35 bis/7 and 35 bis/8 transcribed from FRA's official consolidated 2025 Executive Regulation PDF: voluntary carbon-reduction certificates are tradable financial instruments (one unit = one tonne CO2e reduced); project approval and disclosure duties; inter-agency supervisory committee, registry and Exchange trading rules subject to FRA approval.
 - **Number-collision warning:** a separate Cabinet Decision 4664/2022 also establishes the national voluntary carbon trading system. Keep separate records by title, issuing authority and Gazette metadata; do not merge solely by decision number.
 - **Updated Agent 3 minimum:** 81 distinct instruments with some Arabic text surfaced; 1,087 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — PM Decision 3456/2022 sustainability instruments
+
+- FRA official decision record confirms Decision 3456/2022 amending Capital Market Executive Regulation 135/1993. Gazette metadata located as issue 38 bis (أ), 2 Oct 2022; effective 3 Oct 2022 (original Gazette image still needs verification).
+- FRA's official 2025 consolidated regulation annotates Articles 35 bis/4 and 35 bis/5 as added by Decision 3456/2022: sustainability-linked securitization/sukuk and issuance procedures; Article 148's installment-payment mechanism was also amended by 3456/2022 but later replaced by Decision 2482/2025.
+- Three regulatory provisions transcribed in Agent 3 file. Keep the 2022 Article 148 wording as historical only; current version is the 2025 replacement.
+- **Updated Agent 3 minimum:** 82 distinct instruments with some Arabic text surfaced; 1,090 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
