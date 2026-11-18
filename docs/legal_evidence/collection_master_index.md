@@ -1146,3 +1146,6 @@
 
 
 | checkpoint 119 — Agent 3 Financial Leasing and Factoring Law 176/2018 | Added FRA-hosted full Arabic Law 176/2018 (issuing and substantive provisions), FRA Decisions 137/2018 and 163/2018, and Gazette-published Decision 91/2023 amending licensing capital threshold to EGP 75m; other FRA decisions retained as uncounted source leads; cumulative Agent 3 minimum 128 instruments / 1,285 provision units |
+
+
+| checkpoint 120 — Agent 3 PPP amendment completion tranche | Added government-hosted Official Gazette PDF for Law 153/2021 (replacing 15 provisions in PPP Law 67/2010 and adding Sovereign Fund exclusion authority) and Amiri Press text for PM Decision 3217/2022 (broad Executive Regulation procurement/award amendment schedule); Gazette metadata for 3217/2022 remains to be verified; cumulative Agent 3 minimum 130 instruments / 1,292 provision units |
