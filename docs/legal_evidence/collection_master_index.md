@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 232; Agent 3 continuation separately indexed)
+**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 233; Agent 3 continuation separately indexed)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -38,7 +38,7 @@
 - Legal-source rights/permission: not presumed. Official public accessibility does not automatically establish commercial indexing, excerpt-display or redistribution rights.
 - Machine labels must remain `source-matched, not lawyer-reviewed` where applicable; no `verified` label without qualified Egyptian lawyer approval.
 
-## Current audited repository snapshot — checkpoint 230 (18 November 2026)
+## Current audited repository snapshot — checkpoint 233 (18 November 2026)
 - Decision 144/2009 full-text extraction: **184/185 base article bodies** captured; Article 127 is repealed. Nine inserted bis provisions are identified separately with varying text completeness; four issuing provisions are separate. The regulation is not a lawyer-reviewed or image-authenticated current consolidation.
 
 - Acquisition register after instrument deduplication: **250 canonical instrument rows**, 250 unique canonical IDs, no duplicate legal instruments; 11 duplicate rows were consolidated and preserved in [the acquisition-ID alias map](../data/research/egypt_acquisition_register_aliases_2026-11-18.csv). The [provisional instrument-type ledger](../data/research/egypt_instrument_type_classification_2026-11-18.csv) provides the separate category counts.
@@ -113,6 +113,7 @@
 | checkpoint 227 — Decision 480/2026 commencement and deadline re-analysis | Confirmed DSpace metadata for all three original-bundle records; no explicit commencement or expiry in Decision480; 10 May 2027 leading publication-based calculation vs 18 Jan 2027 consecutive-extension alternative; neither certified | [checkpoint 227](collection_checkpoint_227_decision480_commencement_deadline_reanalysis_2026-11-18.md) |
 | checkpoint 228 — SCC original judgment acquisition and rent-law docket refresh | Updated primary-source gaps for Cases 10/35, 42/17, 101/26 and 11/23; added separate docket tracker for seven pending rent-law cases; no final judgments or original PDFs newly acquired | [checkpoint 228](collection_checkpoint_228_scc_original_judgment_gaps_and_rent_docket_refresh_2026-11-18.md) |
 | checkpoint 231 — Law 142/1964 Articles 40–66 | Added 27 full Arabic substantive article bodies (Arts 40–66); source corrigenda and constitutional effects preserved; original Amiri Press binary remains outstanding | [checkpoint 231](collection_checkpoint_231_law142_articles_40_66_full_text_2026-11-18.md) |
+| checkpoint 231 — Research Agent 1 session handoff | Consolidated 250 acquisition records, 93 source-permission records, 86 version events, 1,370 core unique provisions, 184/185 Decision144 base bodies and outstanding Gazette/judgment/deadline blockers | [checkpoint 231](collection_checkpoint_231_research_agent1_session_handoff_2026-11-18.md) |
 | checkpoint 232 — Law 142/1964 missing Articles 4–6, 31, 33 and 36 | Added six previously missing substantive article bodies; Law 142/1964 now has 66/66 article bodies or explicit legal-effect markers; issuing provisions tracked separately | [checkpoint 232](collection_checkpoint_232_law142_missing_articles_4_6_31_33_36_full_text_2026-11-18.md) |
 | checkpoint 230 — Civil Code repealed Articles 54–80 and 389–417 | Transcribed all 56 historical repealed article bodies from secondary full-text sources; complete numbered range 1–1,149 (1,093 operative + 56 repealed) now has text/status coverage | [checkpoint 230](collection_checkpoint_230_civil_code_repealed_articles_54_80_389_417_historical_texts_2026-11-18.md) |
 | checkpoint 229 — SCC Cases 42/17 and 101/26 full judgment text | Added full Arabic text for Case 42/17 from MKSEgypt and complete official SCC HTML text for Case 101/26; Case 11/23 order/reasons cross-referenced; original binaries remain outstanding | [checkpoint 229](collection_checkpoint_229_case42_17_and_case101_26_full_judgment_texts_2026-11-18.md) |
