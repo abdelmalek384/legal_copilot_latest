@@ -1226,3 +1226,84 @@ The same Article 240 bis further permits electronic remote agenda presentation a
 - The official MIFT Law 159 record lists Decision 32/2019 among its Executive Regulation attachments.
 - The issuing instrument's scanned pages were not text-extractable from the accessible press page, and the operative amended Article 99 bis text has not yet been obtained from a Gazette image or reliable full transcription. Therefore Decision 32/2019 is retained as a high-priority acquisition lead and is **not counted** among instruments with Arabic operative text.
 - Do not confuse Ministerial Decision 32/2019 with GAFI circular 32/2019, which was a separate administrative instruction concerning supporting evidence for valuation during conversion to one-person-company form.
+
+
+## 33. Commercial Code 17/1999 — complete official text and four amendment instruments
+
+### Primary consolidated/base text acquired
+
+- Egyptian Tax Authority official PDF (second edition prepared/reviewed by the Amiri Press authority): https://www.eta.gov.eg/sites/default/files/2024-10/law-17-1999.pdf
+- The PDF contains the full Commercial Code, 3,759 extracted lines, plus the retained Chapter I of Part II of the repealed 1883 Commercial Code on partnerships.
+- Original publication: Official Gazette issue 19 (مكرر), 17 May 1999; general commencement 1 October 1999. The 1999 issuing provisions originally deferred cheque provisions and repeal of Penal Code Article 337; those commencement dates were subsequently shifted by Laws 168/2000, 150/2001 and 158/2003.
+- Scope includes commercial acts/trader status/books/register/enterprise, commercial obligations/contracts, technology transfer, sale, commercial pledge, public warehouses, commercial agency, brokerage, carriage, banking transactions, negotiable instruments, cheques and bankruptcy/arrangements. The latter bankruptcy title must be read with Law 11/2018, which repealed/overhauled the former bankruptcy regime.
+- **Selected exact Arabic text — issuing Article 1:**
+> يلغى قانون التجارة الصادر بالأمر العالي في ١٣ من نوفمبر سنة ١٨٨٣، عدا الفصل الأول من الباب الثاني منه والخاص بشركات الأشخاص، ويستعاض عنه بالقانون المرافق.
+>
+> ويلغى نص المادة (٣٣٧) من قانون العقوبات اعتباراً من أول أكتوبر سنة ٢٠٠١ كما يلغى كل حكم يتعارض مع أحكام القانون المرافق.
+- **Selected exact Arabic text — Commercial Code Article 10 (trader):**
+> يكون تاجراً:
+> ١- كل من يزاول على وجه الاحتراف باسمه ولحسابه عملاً تجارياً.
+> ٢- كل شركة تتخذ أحد الأشكال المنصوص عليها في القوانين المتعلقة بالشركات أياً كان الغرض الذي أنشئت الشركة من أجله.
+- **Selected exact Arabic text — Commercial Code Article 21 (commercial books):**
+> على كل تاجر يجاوز رأس ماله المستثمر في التجارة عشرين ألف جنيه أن يمسك الدفاتر التي تستلزمها طبيعة تجارته وأهميتها وعلى وجه الخصوص دفتري اليومية والجرد بطريقة تكفل بيان مركزه المالي وما له من حقوق وما عليه من ديون متعلقة بالتجارة.
+- **Selected exact Arabic text — Commercial Code Article 47 (commercial solidarity):**
+> يكون الملتزمون معاً بدين تجاري متضامنين في هذا الدين ما لم ينص القانون أو الاتفاق على غير ذلك.
+> ويسري هذا الحكم في حالة تعدد الكفلاء في الدين التجاري.
+
+### Amendment instrument 1 — Law 168/2000
+
+- Full operative text surfaced in the Laweg year index: https://www.laweg.net/Default.aspx?Year=2000&action=LegsYears
+- Gazette issue 30 (تابع), 27 July 2000.
+- It replaced the October 2001 dates in Law 17/1999 issuing Article 1 (Penal Code Article 337 repeal) and Article 3 (cheque provisions commencement) with 1 October 2000; it also changed the cheque prior-date proof cutoff from 1 October 2002 to 1 October 2001.
+- The ETA second-edition official PDF reproduces the amendment footnote at its page 4, confirming the change.
+- Counted as one amendment instrument; two operative provisions (Articles 1–2).
+
+### Amendment instrument 2 — Law 150/2001
+
+- Official Gazette reproduction hosted by Egyptian Customs Authority: https://customs.gov.eg/Upload/ECAAdminace/b3190c1b-f8c5-401b-8d6c-b7b65b92d7ae.pdf
+- Gazette issue 25 bis (A), 24 June 2001.
+- Article 1 moved the relevant dates from 1 October 2001 to 1 October 2003 in issuing Article 1 and Article 3 of Law 17/1999; made Commercial Code Article 536 effective from the 2001 amendment's commencement; and changed the pre-dated cheque proof cutoff from 1 October 2002 to 1 October 2004.
+- Article 2 publication and commencement the day after publication.
+- **Exact Arabic text — Article 1:**
+> تستبدل عبارة «أول أكتوبر سنة 2003» بعبارة «أول أكتوبر سنة 2001» الواردة بكل من نص الفقرة الثانية من المادة الأولى من القانون رقم 17 لسنة 1999 بإصدار قانون التجارة، ونص الفقرة الأولى من المادة الثالثة من ذات القانون.
+>
+> ومع ذلك يعمل بأحكام المادة (536) من قانون التجارة المشار إليه اعتباراً من تاريخ العمل بهذا القانون.
+>
+> كما تستبدل عبارة «أول أكتوبر سنة 2004» بعبارة «أول أكتوبر سنة 2002» الواردة بنص الفقرة الثانية من المادة الثالثة المشار إليها.
+
+### Amendment instrument 3 — Law 158/2003
+
+- Full Arabic operative text: https://qadaya.net/?p=9749
+- Gazette issue 27, 3 July 2003; commencement on the day after publication.
+- Article 1 moved the cheque regime date from 1 October 2005 to 1 October 2003 in issuing Article 1 and Article 3 of Law 17/1999; changed the reference from Articles 535 and 536 to Article 536 only; and moved the cheque prior-date proof cutoff from 1 October 2006 to 1 October 2004.
+- Article 2 publication/commencement.
+- Note: some secondary sources state the cheque provisions ultimately commenced 1 October 2005, while the 2003 law text and subsequent case law clarify the final date sequence; the operative final date must be read from the amended issuing provisions and court application, not a shorthand source label.
+
+### Amendment instrument 4 — Law 156/2004
+
+- Full Arabic text: https://lawyeregypt.net/القانون-رقم-156-لسنة-2004-بتعديل-بعض-أحكام-القانون-رقم-17-لسنة-1999/
+- Gazette issue 28 bis (A), 14 July 2004.
+- Amends Commercial Code provisions on post-dated cheque payment, cheque presentment periods, recourse limitation, publication of cheque convictions and commercial-register data relating to cheque offences; also modifies bill-of-exchange provisional attachment and bank cheque signature verification.
+- It also amends Stamp Duty Law 111/1980 Article 52. That stamp-duty amendment is recorded as a cross-statute provision and is not a substantive Commercial Code article.
+- **Exact Arabic text — replacement Commercial Code Article 503(2):**
+> وإذا قدم الشيك للوفاء قبل اليوم المبين فيه كتاريخ لإصداره وجب وفاؤه فى يوم تقديمه، وذلك باستثناء الشيكات المسطرة المنصوص عليها فى المادة (515) من هذا القانون والشيكات الحكومية فلا تكون مستحقة الوفاء إلا فى التاريخ المبين فيها كتاريخ لإصدارها.
+- **Exact Arabic text — Commercial Code Article 504 periods:** the law replaces “six months” with “three months” in paragraph 1 and “eight months” with “four months” in paragraph 2.
+- **Exact Arabic text — Commercial Code Article 531:** it replaces each “six months” period in paragraphs 1 and 3 with “one year”.
+- **Exact Arabic text — new Commercial Code Article 482(5):**
+> ومع ذلك يجوز للمسحوب عليه التأشير على الشيك بما يفيد مطابقة توقيع الساحب الوارد عليه لتوقيعه المودع لدى المسحوب عليه ولا يفيد هذا التأشير وجود مقابل الوفاء لدى المسحوب عليه وقت التأشير.
+- Article 7 provides publication and commencement from the date the cheque provisions of Law 17/1999 became effective under Law 158/2003.
+
+### Currentness / integration warnings
+
+- Do not treat the cheque provisions as effective from 1 October 1999; their commencement was postponed and adjusted several times. Preserve each issuing-law version and the final amended date.
+- Law 11/2018 on Restructuring, Preventive Composition and Bankruptcy superseded the Commercial Code's old bankruptcy title provisions. Former Commercial Code bankruptcy provisions, including Articles 597 and 598, are marked repealed in later consolidated texts. Preserve historical text only as repealed/historical and route current insolvency answers to the newer statute.
+- Law 156/2004 contains a Stamp Duty Law amendment in Article 6. Do not merge that clause into the Commercial Code; store it as a cross-reference to Law 111/1980.
+- The ETA PDF is a later official-publication-agency edition, not the original 1999 Gazette page image. It is strong primary-government publication evidence for the full text but its footnotes and editorial preparation must be distinguished from the original Gazette.
+- Full amendment reconciliation remains open for any subsequent Commercial Code amendments, including the exact extent of the Law 11/2018 repeals and any later cheque or insolvency amendments.
+
+### Count increment
+
+- Five unique instruments with Arabic operative text surfaced: Law 17/1999, Laws 168/2000, 150/2001, 158/2003 and 156/2004.
+- Sixteen issuing provision units counted: Law 17/1999 Articles 1–3; Laws 168/2000, 150/2001 and 158/2003 Articles 1–2 each; Law 156/2004 Articles 1–7.
+- The Stamp Duty Law amendment within Law 156/2004 remains a clause of that single multi-statute instrument and is not double-counted.
+- Cumulative Agent 3 minimum: 109 unique instruments / 1,236 provision units.
