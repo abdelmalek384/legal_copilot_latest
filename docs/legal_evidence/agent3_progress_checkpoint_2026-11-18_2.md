@@ -58,3 +58,12 @@ Retrieved the official MIFT consolidated PDF (3,416 extracted lines), explicitly
 - Law 212/1994: confirmed it inserted Article 21 bis, later repealed by Law 3/1998; full historic text remains unavailable and was not reconstructed.
 - Detailed files: [Laws 3/1998 and 94/2005](agent3_companies_law_amendments_3_1998_94_2005_text.md), [Laws 212/1994 and 159/1998](agent3_companies_law_amendments_212_1994_159_1998_text.md).
 - These are text-depth/versioning expansions of already-counted amendment instruments; no count change. Agent 3 remains **190 documents / 1,927 provisional units**, assigned completion **55% provisional**, lawyer review 0%.
+
+
+## Primary-source upgrades to the Companies Law amendment chain
+
+- Law 68/2009: upgraded from secondary text to official MIFT/Amiri Press reproduction; Article 116(1) replacement captured.
+- Law 17/2015: upgraded from secondary text to ETA-hosted Official Gazette PDF, issue 11 (تابع), 12 March 2015; Article 1 adds Article 17(1)(هـ), central-depository certificate.
+- Law 159/1998: Article 46 replacement captured from secondary transcription; official MIFT catalogue lists it in the amendment chain, original Gazette PDF still outstanding.
+- Law 212/1994: insertion of Article 21 bis confirmed; full wording not retrieved; it was later repealed by Law 3/1998.
+- No new instrument count; the amendment laws were already counted. Aggregate remains **190 documents / 1,927 provisional units**, assigned-domain estimate **55% provisional**, lawyer review 0%.
