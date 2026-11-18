@@ -2080,15 +2080,18 @@ Added **EG-0305 Law 10/2026** (amending Nuclear and Radiation Activities Law 7/2
 
 ### Latest progress snapshot — after EG-0310 (18 November 2026)
 
-**Live canonical counts:** 294 acquisition records / 294 unique IDs; 294 type classifications; 75 full-text inventory rows representing 71 unique instruments; 107 unique source-permission records.
+**Live canonical counts:** 294 acquisition records / 294 unique IDs; 294 type classifications; 77 full-text inventory rows representing 73 unique instruments; 108 unique source-permission records.
 
 **Provisional type totals:** 73 base laws; 58 amending laws; 18 executive regulations; 43 executive-regulation amendments; 21 judicial decisions; 68 other decisions/circulars; 13 other/unclassified.
 
 **Text coverage metrics:**
-- Full-text inventory has text/source records for **71/294 instruments = 24.1%**. This is inventory coverage, not a claim that all 71 texts are complete or current.
+- Full-text inventory has text/source records for **73/294 instruments = 24.8%**. This is inventory coverage, not a claim that all 71 texts are complete or current.
 - New acquisition batch now contains **21 distinct new instruments** (EG-0290–EG-0310); **19/21 (90.5%)** have complete operative text locally mirrored. Law147/2026 has a full 112-article external searchable transcription but only selected provisions mirrored; Labour Decision162/2026 has 24/66 articles mirrored locally and the full searchable source linked.
 - Core unique provision units locally mirrored: **1,444** (prior 1,370 plus 74 local units in new tranches). A further 154 units are source-located but not fully mirrored locally (112 Law147 + 42 remaining articles of Decision162), giving **1,598 source-located units**. Do not merge these two measures.
 - Defined-code representation remains: Civil Code 1,149/1,149 article/status entries; Evidence Law 163/163 provision units; Building Law 119/2008 114/114 substantive articles; Decision144/2009 184/185 extant base articles. Historical version and amendment completeness remains below these representation ratios.
 - Broader assigned-domain completion remains **55% provisional**, inherited from an unvalidated denominator. It is not comparable to the 24.1% full-text-inventory coverage. A single whole-Egyptian-corpus completion percentage is not supportable yet.
 
 **New executive-regulation acquisition depth:** Decision1440/2026 (Mineral Resources Regulation), Decision1509/2026 (Civil Service Regulation), Decision267/2026 (Universities Regulation), Decision430/2026 (Roads Regulation), and Decision262/2026 (Customs Regulation) now have Arabic operative text in the tranche files. The Law 14/2025 workstream also gained 66-article Ministerial Decision162/2026, of which 24 articles are mirrored locally.
+
+
+**Count correction after direct file audit (18 November 2026):** the current full-text inventory contains 77 rows corresponding to 73 unique instrument IDs (four duplicated inventory IDs represent source/version records, not duplicate acquisition instruments). The source-permission register contains 108 unique source IDs. The 294-row acquisition CSV and 294-row classification ledger each contain 294 unique instrument IDs. Use these audited values in preference to any earlier count snapshot in this index.
