@@ -57,7 +57,7 @@ Retrieved the official MIFT consolidated PDF (3,416 extracted lines), explicitly
 - Law 159/1998: captured exact Article 46 replacement.
 - Law 212/1994: confirmed it inserted Article 21 bis, later repealed by Law 3/1998; full historic text remains unavailable and was not reconstructed.
 - Detailed files: [Laws 3/1998 and 94/2005](agent3_companies_law_amendments_3_1998_94_2005_text.md), [Laws 212/1994 and 159/1998](agent3_companies_law_amendments_212_1994_159_1998_text.md).
-- These are text-depth/versioning expansions of already-counted amendment instruments; no count change. Agent 3 remains **203 documents / 1,999 provisional units**, assigned completion **55% provisional**, lawyer review 0%.
+- These are text-depth/versioning expansions of already-counted amendment instruments; no count change. Agent 3 remains **205 documents / 2,035 provisional units**, assigned completion **55% provisional**, lawyer review 0%.
 
 
 ## Primary-source upgrades to the Companies Law amendment chain
@@ -123,3 +123,14 @@ Updated aggregate: **202 documents / 1,996 provisional numbered units**; assigne
 Added FRA Board Decision 154/2026 (Gazette issue 210 supplement (ج), 23 Sep 2026; effective 24 Sep) on permission for investment funds to conduct hedge-fund activity. The EastLaws record exposes the metadata and opening text of all three articles; the official FRA LinkedIn post provides detailed regulator-authored summaries of eligible investments, investor eligibility checks, investment-policy disclosure, leverage/counterparty/liquidity/concentration limits, stress testing, stop-loss, performance measures and manager duties. The official FRA news page times out and the Gazette body remains partially inaccessible; the file is explicitly marked partial, not a verbatim complete law. [Record](agent3_fra_decision_154_2026_hedge_funds_arabic_text_partial.md).
 
 Updated aggregate: **203 documents / 1,999 provisional units**; assigned-domain estimate remains **55% provisional**; lawyer review 0%.
+
+
+## FRA short-selling / securities-lending decisions — major 2026 acquisition
+
+- **Current Decision 155/2026**: official FRA-hosted 16-page Gazette PDF, issue 191 supplement (أ), 1 Sep 2026, effective 2 Sep; all 19 articles captured. It regulates securities borrowing for short-selling, brokerage authorization, borrower/lender accounts, CSDR system duties, limits, collateral and margin calls, position closure, lender rights, direct contracts, technical links and FRA protective measures.
+- Important current limits: total lendable free float **40%** (up from 25% in prior decision), 5% direct-contract allocation cap, 2% per borrower and related parties, 50% initial cash margin, margin call at 140% to restore 150%, forced close at 130%; brokerage net equity minimum EGP 5m (EGP 10m if also margin trading), net liquid capital average 15% over six months.
+- **Superseded Decision 365/2026**: full 17-article EastLaws transcription preserved as historical; Gazette issue 45 supplement (ب), 24 Feb 2026; effective 25 Feb; repealed by Article 18 of Decision 155. It had repealed earlier FRA Decisions 268/2019 and 1601/2019.
+- Full Arabic text/version comparison: [Decisions 365 and 155/2026](agent3_fra_short_selling_decisions_365_and_155_2026_arabic_text.md).
+- Added 2 instruments / 36 articles.
+
+Updated aggregate: **205 documents / 2,035 provisional numbered units**; assigned-domain completion remains **55% provisional**; lawyer review 0%.
