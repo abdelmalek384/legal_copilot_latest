@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 114)
+**Last updated:** 2026-11-18 (expanded through checkpoint 115)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -249,7 +249,7 @@
 | [collection_checkpoint_51_civil_commercial_procedure_13_1968.md](collection_checkpoint_51_civil_commercial_procedure_13_1968.md) | 523-article Civil/Commercial Procedure Law 13/1968, amendment graph and correction of 2024 monetary-threshold direction |
 
 
-| [collection_checkpoint_52_evidence_law_25_1968.md](collection_checkpoint_52_evidence_law_25_1968.md) | Evidence Law 25/1968 (117 articles), full text sources, documentary proof, testimony and amendment leads |
+| [collection_checkpoint_52_evidence_law_25_1968.md](collection_checkpoint_52_evidence_law_25_1968.md) | Evidence Law 25/1968 (corrected statutory range: Articles 1–162 plus inserted Article 148 bis), source and amendment leads |
 
 | [collection_checkpoint_62_criminal_procedure_174_text.md](collection_checkpoint_62_criminal_procedure_174_text.md) | Full 540-article future Criminal Procedure Code 174/2025 searchable transcription (3,167 lines); selected provisions on complaints, arrest, search, detention, digital surveillance, nullity and appeals; effective 1 Oct 2027 |
 
@@ -383,7 +383,7 @@
 
 | [collection_checkpoint_85_property_registration_land_registry_2026-11-18.md](collection_checkpoint_85_property_registration_land_registry_2026-11-18.md) | Law 114/1946, Law 9/2022, Law 142/1964, Decision 825/1975, Decision 2332/2022, Decision 11264/2016 and current 2026 cadastral commencement postponements 5207/2026 and 5208/2026; official/secondary source distinctions and extraction failures recorded |
 
-| [collection_checkpoint_86_civil_code_property_contract_article_extraction_2026-11-18.md](collection_checkpoint_86_civil_code_property_contract_article_extraction_2026-11-18.md) | Government-hosted Arabic Civil Code extracts: sale, lease, agency, suretyship, easements and official mortgage (734 fully transcribed unique article provisions after the ownership/co-ownership additions and 667 further provisions in Articles 216–370, 380–388, 418–446, 496–698, 716–765, 767–801, 806, 814–825 and 834–1014; Article 766(2) remains quarantined; no duplicate base instrument) |
+| [collection_checkpoint_86_civil_code_property_contract_article_extraction_2026-11-18.md](collection_checkpoint_86_civil_code_property_contract_article_extraction_2026-11-18.md) | Government-hosted Arabic Civil Code extracts: sale, lease, agency, suretyship, easements and official mortgage (849 fully transcribed unique article provisions in the cumulative set; Article 766(2) remains quarantined; non-consecutive and not a current consolidated code) |
 | [collection_checkpoint_87_mortgage_finance_law_148_2001_and_regulations_2026-11-18.md](collection_checkpoint_87_mortgage_finance_law_148_2001_and_regulations_2026-11-18.md) | Official FRA updated text for Mortgage Finance Law 148/2001 and PM Decision 1/2001 regulation; Gazette amendments Law 55/2014, Law 93/2018 and PM Decision 32/2024; missing amendment instruments and commencement discrepancy recorded |
 | [collection_checkpoint_88_legacy_rent_laws_and_judicial_amendments_2026-11-18.md](collection_checkpoint_88_legacy_rent_laws_and_judicial_amendments_2026-11-18.md) | Full searchable secondary texts and article extracts for Laws 49/1977, 136/1981, 6/1997, 14/2001, 4/1996, 137/2006 and Decision 237/1997; judicial invalidation map and missing Gazette sources |
 
@@ -404,6 +404,7 @@
 | [collection_checkpoint_109_building_law_articles_33_37_40_59_2026-11-18.md](collection_checkpoint_109_building_law_articles_33_37_40_59_2026-11-18.md) | Building Law Articles 33–37 and 40–59: distinguished areas, signage, building permits, insurance, supervision and stop-work controls |
 | [collection_checkpoint_110_building_law_articles_60_88_90_97_99_101_103_113_2026-11-18.md](collection_checkpoint_110_building_law_articles_60_88_90_97_99_101_103_113_2026-11-18.md) | Building Law Articles 60–88, 90–97, 99–101, 103–113: removal, occupancy, owners' unions, dangerous buildings, appeals and penalties |
 | [collection_checkpoint_112_evidence_law_articles_1_59_full_text_2026-11-18.md](collection_checkpoint_112_evidence_law_articles_1_59_full_text_2026-11-18.md) | Evidence Law Articles 1–59: burden of proof, official/private instruments, document production, authenticity, handwriting and forgery |
+| [collection_checkpoint_115_2026_real_property_register_postponement_decisions_5207_5208_and_official_gazette_metadata.md](collection_checkpoint_115_2026_real_property_register_postponement_decisions_5207_5208_and_official_gazette_metadata.md) | Minister of Justice Decisions 5207/2026 and 5208/2026: territorial postponement of real-property-register commencement in Qena, Luxor, Sohag, Aswan and Damietta; original PDFs request-only/unavailable |
 | [collection_checkpoint_114_law_114_1946_official_ministry_of_justice_text_and_version_reconciliation_2026-11-18.md](collection_checkpoint_114_law_114_1946_official_ministry_of_justice_text_and_version_reconciliation_2026-11-18.md) | Law 114/1946 official Ministry of Justice text source and version reconciliation through Law 9/2022; original 1946 Gazette scan still outstanding |
 | [collection_checkpoint_113_evidence_law_articles_60_117_full_text_2026-11-18.md](collection_checkpoint_113_evidence_law_articles_60_117_full_text_2026-11-18.md) | Evidence Law Articles 60–117: testimony, presumptions, res judicata, admissions, interrogation and decisive oath |
 | [collection_checkpoint_111_building_law_articles_1_5_2026-11-18.md](collection_checkpoint_111_building_law_articles_1_5_2026-11-18.md) | Building Law substantive Articles 1–5: scope, definitions, Supreme Council and General Organization for Urban Planning |
@@ -451,9 +452,16 @@
 - Full searchable Arabic source texts newly located or upgraded: 23. This includes secondary transcriptions, official GPO text pages and official government/judiciary-hosted PDFs; it does not mean 23 original Amiri Press PDF files were downloaded.
 - Unique article/provision extracts added in the continuation: 58 (23 in checkpoint 91, 24 in checkpoint 92 and at least 11 in the checkpoint 89 supplements). These counts exclude duplicate URLs and duplicate article texts.
 - Judicial research: five official SCC-hosted judgment pages/records reviewed in checkpoint 90; additional full secondary judgment transcription and official later-case references for Case 42/17 and Case 101/26 recorded.
-- Acquisition register now has 182 instrument records, 12 columns per row, no duplicate IDs or malformed rows. This is a register count, not a legal-text/article count. All lawyer-review and rights-clearance flags remain false.
+- Acquisition register now has 184 instrument records, 12 columns per row, no duplicate IDs or malformed rows. This is a register count, not a legal-text/article count. All lawyer-review and rights-clearance flags remain false.
 - Assigned civil/property domain estimate remains approximately 15%; whole Egyptian legal collection remains approximately 2%. Both are provisional; no validated national denominator exists, so no exact incremental percentage is claimed.
 - Material access blockers: several DSpace original Gazette bundles require a request-a-copy workflow; the official GPO Decision 200/2026 page returned 502 on direct open; original Gazette PDFs and some direct SCC judgment pages remain missing. GitHub repository writes and register validation succeeded.
+
+### Research Agent 1 — checkpoint 115: 2026 cadastral postponement decisions
+
+- Added two unique subordinate instruments to the acquisition register: EG-0187 (Minister of Justice Decision 5207/2026, Gazette issue 243, 2 November 2026) and EG-0188 (Decision 5208/2026, Gazette supplement issue 244, 3 November 2026).
+- Decision 5207's official Amiri Press text portal is indexed but direct retrieval returned 502; the original issue PDF was not acquired. Decision 5208's official DSpace metadata identifies the 6.02 MB Gazette PDF, but the file is restricted/request-a-copy.
+- The decisions postpone cadastral registration commencement in specified sections across Qena, Luxor, Sohag, Aswan and Damietta. They also provide a separate two-month Article 19 settlement-form period from the issue date. Exact last day and full section schedules remain subject to original text verification.
+- Acquisition register now has 184 instrument rows (12 columns, no duplicate IDs); source-permission register has 52 source entries. Both original Gazette bundles remain unacquired/request-only. No lawyer or reuse permission claimed.
 
 ### Research Agent 1 — checkpoint 114 source-provenance update (18 November 2026)
 
@@ -506,7 +514,7 @@
 - Located official Amiri Press full text of Decision 3866/2026 postponing real-property-register commencement in City of Mansha'a to 1 July 2027.
 - Upgraded SCC Case 101/26 (1 February 2009) and Case 24/20 (9 November 2024) to direct official full judgment pages. Case 24/20's deferred effect is calculated as 10 July 2025 based on the judgment and Presidential Decision 368/2025 closure date.
 - Decision 480/2026: 19 January 2027 is the conditional consecutive-extension candidate; retrospective/prospective effect and applications during the 20 July–10 November 2026 gap remain unresolved.
-- Acquisition register: 182 instrument rows, 12 columns per row, no duplicate IDs or malformed rows. Source-permission register: 50 source entries. All lawyer-review and commercial-rights flags remain false.
+- Acquisition register: 184 instrument rows, 12 columns per row, no duplicate IDs or malformed rows. Source-permission register: 52 source entries. All lawyer-review and commercial-rights flags remain false.
 - New article extracts: 19 Civil Code provisions (Articles 802–805, 807–813 and 826–833) in the checkpoint 86 supplement; nine selected Law 119/2008 provisions in checkpoint 93, with three OCR-corrupted provisions quarantined; and seven provisional Evidence Law provisions (Articles 118–124) transcribed from secondary consolidated text pending Gazette image comparison. Evidence Law ends at Article 162; WIPO Lex's final line labelled 163 duplicates Article 153 and is not counted.
 - Domain and whole-corpus estimates remain approximately 15% and 2%, respectively; no percentage increase is justified without a validated unique-article denominator.
 
