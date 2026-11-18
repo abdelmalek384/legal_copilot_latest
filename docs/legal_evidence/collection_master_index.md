@@ -607,3 +607,15 @@
 - These laws sequentially postponed cheque-law commencement to 1 Oct 2005, adjusted the transitional cheque cutoff to 1 Oct 2006, and adjusted the commencement of Commercial Code Article 536 and then Articles 535/536. Six issuing/article units transcribed.
 - The Official Supreme Constitutional Court portal judgment in constitutional case 29/34, hearing 11 Jun 2006, recites the amendment chain and is indexed as primary judicial authority.
 - **Updated Agent 3 minimum:** 42 distinct legal instruments with some Arabic text surfaced; 276 article/provision text units surfaced; 13/13 law families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Investment Law 160/2023 and 2022–2025 implementing package
+
+- Law 160/2023: Official Gazette issue 29 bis, 25 Jul 2023; effective 26 Jul 2023. Full searchable Arabic text located. It amends Law 72/2017 Articles 1, 9, 11, 12, 13, 14, 17, 20, 34, 40 and inserts Article 11 bis (industrial cash incentive 35–55% of paid income tax, foreign funding ≥50%, up to 10-year incentive duration). A correction/استدراك is identified in Official Gazette issue 32, 10 Aug 2023 (PM Decision 1/2023); exact correction text still to be acquired.
+- PM Decision 77/2023 (28 Dec 2023): full searchable Arabic text and official GAFI 2025 guide. Implements Law 160 Article 11 bis, with eligibility, 35/45/55% incentive rates, committee, application, certificate, annual payment and seven-year duration.
+- PM Decision 1203/2024 (17 Apr 2024; Gazette issue 15 bis أ): amends Investment Executive Regulation 2310/2017 Articles 10, 41, 42, 43 and adds final paragraph to Article 76 bis. Full searchable text transcribed.
+- PM Decision 2562/2024 (12 Aug 2024; Gazette issue 32 bis ط): replaces Regulation Article 63 and adds to Article 10 Sector A criteria. Official Gazette DSpace record and full searchable text located.
+- PM Decision 4427/2022: adds research centres/accreditation labs associated with automotive industry to sectoral schedules of PM Decision 104/2022. Full Amiri Press text located.
+- GAFI Decision 675/2025 forming the cash-incentive committee is a source lead only; full official decision text remains outstanding.
+- Investment schedule chain: PM Decision 104/2022 → Decision 4427/2022 → Decision 503/2026 (replaces industrial sector schedules). Decision 77/2023 is the separate cash incentive implementation instrument.
+- **Updated Agent 3 minimum:** 47 distinct instruments with some Arabic text surfaced; 295 article/provision text units; 13/13 law families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
