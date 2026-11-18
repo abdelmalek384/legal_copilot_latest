@@ -33,7 +33,7 @@
 - **Per-instrument text coverage (repository text bodies/known article IDs; not an authentication/currentness score):** Law 114/1946: 43/70 article IDs (61.4%); Law 142/1964: 30/66 substantive articles (45.5%); Law 68/1947: 13/14 non-repealed articles (92.9%); Law 70/1964: 30 earlier bodies plus 20 checkpoint190 bodies (overlapping article IDs and inserted bis provisions require version normalization; no single percentage assigned); Law 168/2025: 18/18 provisions complete (100% text capture); PM Decision 200/2026: 24/24 provisions complete (100% text capture); Presidential Decision 480/2026: 2/2 operative articles (100% text capture; original PDF request-only).
 - **Text-capture qualifications:** Law 114's 16 bodies in checkpoint 188 overlap ten earlier article IDs; Law 142's 30-ID count includes some excerpts; Law 68's Article 1 is repealed and the original-Gazette version of Article 12 is retained separately; Law 70's 30 transcribed bodies do not include fully normalized Schedules A/B/C. These are text-presence measures, not current-law certification.
 - Lawyer-verified legal content: 0% under the project's current sign-off rule.
-- **Agent 3 commercial/corporate/investment assignment: 55% provisional; 209 documents/instruments surfaced; 2,049 normalized statutory/regulation units; 13/13 families touched, 0/13 currentness-complete, lawyer review 0%.** Detailed checkpoint and blockers: [agent3_progress_checkpoint_2026-11-18_4.md](agent3_progress_checkpoint_2026-11-18_4.md).
+- **Agent 3 commercial/corporate/investment assignment: 55% provisional; 210 documents/instruments surfaced; 2,051 normalized statutory/regulation units; 13/13 families touched, 0/13 currentness-complete, lawyer review 0%.** Latest incremental acquisition: FRA Decision 43/2026 (+1 instrument, +2 provisions; secondary Arabic text with official FRA cross-reference; original Gazette binary pending). See [checkpoint 6](agent3_progress_checkpoint_2026-11-18_6.md) and [Decision 43/2026 text record](agent3_fra_decision_43_2026_fintech_consumer_finance_application_suspension_arabic_text.md).
 - Legal-source rights/permission: not presumed. Official public accessibility does not automatically establish commercial indexing, excerpt-display or redistribution rights.
 - Machine labels must remain `source-matched, not lawyer-reviewed` where applicable; no `verified` label without qualified Egyptian lawyer approval.
 
@@ -55,6 +55,8 @@
 - SCC Case 42/17 and Case 101/26 operative Arabic text: [judgment capture](scc_case_42_17_and_101_26_text_and_article_effects_2026-11-18.md).
 
 ## Collection checkpoints
+
+| checkpoint 6 — Agent 3 FRA Decision 43/2026 fintech consumer-finance licensing pause | Added one distinct FRA Board decision and exact Arabic text of Articles 1–2; original Gazette binary/page-image check remains outstanding | [Agent 3 checkpoint 6](agent3_progress_checkpoint_2026-11-18_6.md) |
 
 | checkpoint 201 — deadline reconciliation and assigned-workstream progress | Verified the original application window's last day as 18 July 2026; Decision 480/2026 extends by an equivalent period, with 18 January 2027 marked as calculated, not express text; assigned ten-workstream progress 45% provisional | [checkpoint 201](collection_checkpoint_201_deadline_and_assigned_workstream_progress_2026-11-18.md) |
 
