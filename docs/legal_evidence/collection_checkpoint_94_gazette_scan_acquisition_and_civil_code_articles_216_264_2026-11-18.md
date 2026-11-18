@@ -277,3 +277,12 @@ Critical legal scope:
 
 ## 20. Recovery of Civil Code Articles 1069–1070
 A targeted search of the same ETA-hosted PDF text layer recovered both provisions. Article 1069 governs the forced-sale procedure and repayment of the third-party acquirer's title/registration/notice expenses; Article 1070 provides that if no sale request is made in time and manner, title settles finally with the acquirer free of registered rights upon payment/deposit of the valuation amount for creditors entitled by rank. The checkpoint 111 file has been corrected; the two articles now count toward the 804 total. This remains OCR-derived and requires image verification.
+
+## 21. Further Civil Code extraction — Articles 1071–1084
+
+Checkpoint 112 adds **14 distinct provisions**, Articles 1071–1084, covering the third-party acquirer's abandonment, mortgage execution notice, defenses, auction participation, surplus, fruits, recourse against the debtor/transferor and extinction of the official mortgage.
+
+Cumulative Civil Code extraction stream: **818 distinct provisions** (67 previously recorded + 751 newly transcribed in this continuation). This is not a consecutive or verified current consolidation.
+
+Articles 1082–1084 specify extinction by discharge of the secured debt, completed purge, and forced sale/deposit or payment of the proceeds to registered creditors in rank. These rules must be applied with the current registration and execution statutes.
+
