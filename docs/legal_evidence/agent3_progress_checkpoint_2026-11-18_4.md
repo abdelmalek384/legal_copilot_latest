@@ -106,3 +106,12 @@ All new material remains machine-collected and not lawyer-reviewed. Do not mark 
 - Important classification correction: Decision 7/2019 is an FRA Board rules-and-controls decision for licensed leasing/factoring companies, not a single Executive Regulation. Current consolidated PDF (8 pages) shows amendments by Decisions 82/2019, 38/2020 and 44/2026; Articles 7–12 repealed by Decision 44/2026. PDF text extraction is poor and screenshot service denies access; full Decision 7 text still requires manual page-image or alternate source.
 - Record: [agent3_financial_leasing_factoring_law176_2018_fra_full_text_expansion.md](agent3_financial_leasing_factoring_law176_2018_fra_full_text_expansion.md).
 - No new unique instrument count; 209 / 2,049 remains last reconciled baseline; assigned-domain estimate 55% provisional; lawyer review 0%.
+
+
+## Commercial Register Law 34/1976 full text and amendment overlays
+- Acquired the ETA official base PDF (21 articles extracted) plus the full searchable 25-article Arabic text from LawHub; official ITDA/GOEIC copies corroborate the base statute. The ETA PDF omits Articles 22–25, so those four provisions remain secondary-source text pending original Gazette page check.
+- Law 75/2017 official Gazette PDF replaces Article 3 with trade-chamber / industrial-chamber approval requirements.
+- Law 198/2020 official ITDA Gazette PDF (issue 39 bis (ز), 30 Sep 2020) replaces Articles 3, 8(1) and 9(1); full text extracted.
+- Decision 106/2018 Executive Regulation still blocked: ITDA page explicitly names it, but its 14,898,711-byte file exceeds the extractor limit; old Decision 946/1976 is not a substitute.
+- Record: [agent3_trade_register_law34_1976_full_text_law75_2017_law198_2020.md](agent3_trade_register_law34_1976_full_text_law75_2017_law198_2020.md).
+- No new unique-instrument count; text-depth upgrade only. 209 / 2,049 remains last reconciled baseline; assigned-domain 55% provisional; lawyer review 0%.
