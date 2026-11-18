@@ -47,3 +47,39 @@ The decision directly affects licensed financial-leasing and factoring companies
 - +1 distinct instrument with Arabic operative text surfaced.
 - +2 provision units transcribed (Articles 1–2 only); do not count the remaining provisions or Annex 1 until transcribed.
 - Cumulative Agent 3 minimum: **155 instruments / 1,386 provision units**.
+
+## Primary-source acquisition update — 18 November 2026
+
+**Correction to the earlier source-status note:** the original 31-page Official Gazette reproduction is now directly accessible from the FRA website:
+- Official FRA-hosted PDF: https://fra.gov.eg/wp-content/uploads/2026/03/alamiria_2026_45.pdf
+- Gazette header in the PDF: الوقائع المصرية، العدد 45 تابع (أ)، 24 February 2026; printed pages 16–46.
+- The FRA PDF contains the complete decision, Articles 1–14, Annex 1 role/activity matrix, and Annex 2 job descriptions/qualification requirements. This supersedes the earlier statement that the original Gazette bundle was request-only. The earlier DSpace item may still be request-only, but the FRA copy is directly downloadable.
+- PDF has 31 pages and a searchable Arabic text layer. The web extraction exposes the complete main decision and annex text; page-image QA is still needed for table cells, OCR defects and the full qualification annex.
+
+## Main operative provisions — primary-source text reviewed
+- Articles 1–2: scope, required key positions and shared-role rules for multi-activity companies.
+- Article 3: individual licensing eligibility, including good reputation, legal capacity, suitable university qualification, Annex 2 requirements, no incompatible concurrent employment, specified recent disciplinary/professional disqualifications, and specified criminal convictions within the preceding three years.
+- Article 4: application on FRA form with supporting documents (national ID, CV and fee payment evidence).
+- Article 5: ordinary licence term is three years, renewable for similar periods; FRA may require tests/training and continuing professional education; renewal may be refused for serious failure to perform duties; application/renewal service fee stated as EGP 5,000 or foreign-currency equivalent.
+- Article 6: renewal application during the three months before expiry, with documents and fee; FRA may request additional information and treat the application as if not submitted if the applicant fails to provide it within the specified period.
+- Article 7: licensed persons notify FRA on engagement, termination, transfer to another company and relevant criminal judgments; notice within 15 days; FRA may interview on transfer/termination and companies may not appoint candidates before FRA approval.
+- Article 8: covered companies maintain paper/electronic register of key-position holders, licence dates, employment dates, addresses and relevant actions/judgments; annual January reporting to FRA; changes reported within 15 days; supporting records retained at least five years after employment ends.
+- Article 9: vacancy replacement within at most three months; FRA notified of vacancy and replacement steps; special interim arrangement applies if the managing director/seconded board member role becomes vacant.
+- Article 10: companies maintain a board-approved succession plan for key roles and provide it to FRA annually or when amended; HR is responsible for preparing and implementing it.
+- Article 11: licence cancellation on licensee request, loss of a licensing condition, or invalidity of a supporting document.
+- Article 12: FRA may impose warning, suspension for up to one year, or cancellation with a one-to-five-year bar on re-obtaining the licence; training may be required.
+- Article 13: companies and current role holders must regularize positions and apply for licences within six months of commencement; FRA may extend the period on accepted reasons.
+- Article 14: publication in Official Gazette and FRA website; commencement the day after Gazette publication; inconsistent provisions are repealed.
+
+## Annexes — operative content and extraction status
+- Annex 1 is a matrix of 14 key positions against seven NBFI activity categories: real-estate finance, financial leasing, factoring, microfinance, MSME finance, consumer-finance companies and consumer-finance providers. The 14 roles are: managing director/CEO; internal audit director; risk director; internal controller/compliance officer; finance director; credit director; AML/CFT officer; regional credit-risk officer (branch networks); regional credit officer (branch networks); operations director; financing-branch manager; HR officer; legal affairs officer; information-systems and security officer.
+- Annex 1 notes: (i) internal control and AML/CFT functions may be combined subject to separate duties/workflows and required qualifications; (ii) HR may be outsourced to a specialist provider or supplied by a holding company owning at least 50%, subject to FRA approval and qualification requirements; (iii) real-estate finance statutory/executive-regulation role requirements remain unaffected; (iv) certain non-board executive directors may be appointed if they meet the managing director requirements; (v) consumer-finance providers require a dedicated executive director with at least ten years' relevant experience and FRA tests/interview.
+- Annex 2 describes responsibilities, qualifications, experience and exemptions for each of the 14 roles. It contains detailed text across printed pages 26–46. The searchable PDF text is available, but the full Annex 2 row-by-row/role-by-role normalized transcription and Annex 1 cell-level matrix QA remain to be completed before declaring the decision fully normalized.
+- Because the matrix OCR layout can shift check marks between activity columns, do not ingest guessed cell values. Transcribe table positions from page images and verify each role/activity cell.
+
+## Count and quality correction
+- This is the same instrument previously counted once, not an additional decision.
+- Main decision now has 14 operative articles surfaced from the official FRA PDF, replacing the earlier two-article secondary-only capture (+12 article bodies).
+- Add Annex 1 as one structured matrix and Annex 2 as 14 role-description units only after row-level/page-image normalization is complete; they are not yet included in the normalized unit count.
+- Source quality is upgraded to `official FRA-hosted Official Gazette reproduction; searchable Arabic PDF; image/table QA pending`.
+- Not lawyer-reviewed; no commercial reuse permission established.
