@@ -1473,9 +1473,9 @@
 ### Research Agent 1 — checkpoint 161: Law 143/1981 Arabic extraction and Law 12/1984 metadata correction (18 November 2026)
 
 - Added [collection_checkpoint_161_law_143_1981_article_extraction_and_law12_1984_metadata_2026-11-18.md](collection_checkpoint_161_law_143_1981_article_extraction_and_law12_1984_metadata_2026-11-18.md).
-- Added [law_143_1981_articles_1_29_arabic_extraction_v1_2026-11-18.md](law_143_1981_articles_1_29_arabic_extraction_v1_2026-11-18.md), extracting 27 complete article texts, one partial Article 2, and one Article 21 repeal marker from the official Ministry of Agriculture PDF. Eight of nine rendered page images were visually inspected; page index 4 (Articles 12–13) remains image-unverified.
+- Added [law_143_1981_articles_1_29_arabic_extraction_v1_2026-11-18.md](law_143_1981_articles_1_29_arabic_extraction_v1_2026-11-18.md), extracting 28 complete article texts, one partial Article 2, and one Article 21 repeal marker from the official Ministry of Agriculture PDF. Eight of nine rendered page images were visually inspected; page index 4 (Articles 12–13) remains image-unverified.
 - The official MOA footnote states Law 12/1984 was published in Official Gazette issue 9 on **1 March 1984**, conflicting with an earlier secondary snippet saying 1 January 1984. EG-0236 and event EV-0020 now preserve the MOA metadata; effective date remains uncertified pending original Law 12/1984.
-- Law 143 article text count: 27 complete source-version texts + 1 partial + 1 repealed marker. The completed core count remains **1,370**; the source-version count across core + Law143 is **1,397**. These are not all current operative provisions.
+- Law 143 article text count: 28 complete source-version texts + 1 partial + 1 repealed marker. The completed core count remains **1,370**; the source-version count across core + Law143 is **1,398**. These are not all current operative provisions.
 - Acquisition register remains **241 rows**, 241 unique IDs; source-permission register remains **63 unique records**. Completion estimates remain core 100%, broader civil/property/contract 15% provisional, whole Egyptian corpus 2% provisional.
 
 
