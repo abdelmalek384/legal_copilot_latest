@@ -1159,6 +1159,23 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "single public HTML announcement; no bulk/API permission established",
       "required_next_action": "Preserve as official government information, not a substitute for the Gazette text or binding deadline interpretation; keep reuse permission unknown."
+    },
+    {
+      "source_id": "EG-ALHASSWA-COURT-CASSATION-TEXTS",
+      "authority": "Alhasswa Law Firm legal library (secondary host; pages attribute source text to the Egyptian Court of Cassation legal portal)",
+      "source_page": "https://alhasswalawfirm.com/law-library/",
+      "material_types": [
+        "Searchable consolidated statutory texts for Laws 114/1946, 142/1964, 68/1947 and 70/1964",
+        "PDF attachments and article-by-article statutory transcriptions"
+      ],
+      "access_status": "Publicly accessible searchable text pages; the pages attribute the underlying text to the Court of Cassation legislative portal; no independent original Gazette binary authentication",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-11-18. The law-library pages for Laws 114/1946, 142/1964, 68/1947 and 70/1964 provide searchable consolidated texts and describe the underlying text as transcribed from the Court of Cassation legislative portal. These are secondary-hosted reproductions, not original Amiri Press Gazette PDFs. No specific licence for bulk collection, OCR, indexing, commercial use, public display or redistribution was identified.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Individual pages/PDF attachments; no bulk/API permission established",
+      "required_next_action": "Obtain original Amiri Press Gazette files where available; compare all article text and historical footnotes; review site terms and keep commercial reuse unknown absent affirmative permission."
     }
   ]
 }
