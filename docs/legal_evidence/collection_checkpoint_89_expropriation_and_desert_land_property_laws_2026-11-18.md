@@ -263,7 +263,82 @@ The 2024 amendment changes ownership-composition restrictions for companies hold
 7. The desert-land ownership composition restrictions in Law 143/1981 Articles 11–12 as amended by Law 11/2024 must be evaluated with the specific investment/land-allocation exception, not treated as a universal foreign-ownership ban.
 8. Public-benefit declaration decisions are project-specific subordinate instruments; they do not replace the base Law 10/1990 procedure or extend its three-year deposit deadline unless a valid new/reissued declaration exists.
 
-## 8. Extraction failures and missing documents
+## 8. Supplemental acquisition — historical amendments and constitutional jurisdiction (18 November 2026)
+
+This supplement adds full searchable text sources for previously identified amendments and corrects the historical Law 12/1984 Gazette date. It does not duplicate Laws 143/1981 or 11/2024.
+
+### A. Law 12/1984 — Irrigation and Drainage Law (cross-statute repeal)
+
+- Law No. 12/1984 issuing the Irrigation and Drainage Law.
+- Issued 22 February 1984; full text source:
+  https://faolex.fao.org/docs/pdf/egy121428.pdf
+- Full searchable text is reproduced in FAOLEX, an international legal database; this is not an Official Gazette scan.
+- Gazette metadata: Official Gazette issue 9 supplement, 1 March 1984 (correcting the 1 January 1984 date in one secondary footnote). Article 4 provides commencement two months after publication.
+- Article 2 expressly repeals Article 21 of Law 143/1981:
+  > يلغي القانون رقم 74 لسنة 1971 بشأن الري والصرف والمادة 21 من القانون رقم 143 لسنة 1981 في شأن الأراضي الصحراوية كما يلغي كل حكم يخالف أحكام هذا القانون.
+- Article 4:
+  > ينشر هذا القانون في الجريدة الرسمية ويعمل به بعد شهرين من تاريخ نشره.
+- The irrigation statute was later repealed/replaced by Law 147/2021 according to secondary legislative references. The repeal of Law 12/1984 should not be assumed to revive the previously repealed Article 21 of Law 143/1981; verify Law 147/2021's repeal and savings provisions before making a definitive current-law assertion.
+- Law 12/1984 is a distinct related legal instrument and is counted as one newly collected statute in this research batch.
+
+### B. Law 205/1991 — Article 11(2)
+
+- Law No. 205/1991 amending Law 143/1981.
+- Official Gazette issue 26, 27 June 1991; issued 19 June 1991.
+- Full searchable text: https://qadaya.net/?p=10818
+- Article 1 substitutes the second paragraph of Article 11:
+  > وفي جميع الأحوال يجب ألا تقل ملكية المصريين عن 51% من رأس مال الشركة وألا تزيد ملكية الفرد على 20% من رأس مالها، ولا يجوز أن تؤول أراضى الجمعيات التعاونية والشركات عند انقضائها إلى غير المصريين.
+- Article 2 provides commencement on the day following publication. This is the 1991 version; the 2024 investor exception must be read from Law 11/2024.
+
+### C. Law 96/1995 — first substitution of Article 4(1)
+
+- Law No. 96/1995 amending Law 143/1981.
+- Official Gazette issue 22 bis, 2 June 1995; issued 1 June 1995.
+- Full searchable text:
+  https://mksegypt.org/ar/laws/23903
+  https://lawyeregypt.net/قانون-رقم-96-لسنة-1995-بتعديل-بعض-أحكام-القانون/
+- Article 1 substituted the first paragraph of Article 4 to apply New Urban Communities Law 59/1979 rules, facilities, exemptions and procedures to reclamation/cultivation projects on covered desert land.
+- This version was superseded by Law 72/1996 and is retained for historical version reconstruction.
+
+### D. Law 72/1996 — second substitution of Article 4(1)
+
+- Law No. 72/1996 amending Law 143/1981.
+- Official Gazette issue 15 bis, 16 April 1996; issued 14 April 1996.
+- Full text: https://www.mksegypt.org/public/index.php/ar/laws/23929
+- Article 1 substitutes Article 4(1) to include tourism development projects and reclamation/cultivation projects on covered lands, and extends the referenced Law 59/1979 rules to specified reclamation/cultivation projects outside the zamam up to two kilometres, in areas designated by Presidential decision after Cabinet approval.
+- Article 2 provides commencement on the day following publication.
+
+### E. Law 55/1988 — Article 12(2), status clarification
+
+- Amendment confirmed by the consolidated Law 143/1981 and its footnotes:
+  https://lawhub.info/eg/?p=11556
+  https://alhasswalawfirm.com/law-library/law-143-1981
+- Gazette metadata: Official Gazette issue 14 bis, 9 April 1988.
+- The second paragraph of Article 12 was substituted. The resulting rule remained that only Egyptians could acquire under the law, with a Presidential exception for nationals of Arab states subject to stated reasons and Cabinet approval, until the 2024 replacement.
+- A standalone full text of Law 55/1988 was not found. Do not mark the amendment instrument itself as a full-text acquisition merely because the consolidated provision is visible.
+
+### F. SCC Case 101/26 (constitutional), judgment 1 February 2009 — Article 22(1)
+
+- The original Case 101/26 direct judgment page was not found in this pass.
+- An official SCC-hosted later judgment reproduces its operative holding and legal jurisdictional effect:
+  https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/12215_43_17_6_2.html
+- Later judgment: Case 17/43 (منازعة تنفيذ), decided 2 April 2022. It confirms that Case 101/26 held unconstitutional the first paragraph of Article 22 of Law 143/1981, which assigned exclusive jurisdiction to ordinary courts for all disputes arising under the law.
+- Official SCC statement of effect:
+  > أضحت ... جهة القضاء العادى هى المختصة بنظر المنازعات المدنية من حيازة وملكية ونحو ذلك، واختصاص جهة القضاء الإدارى بنظر المنازعات الإدارية الناشئة عن تطبيق أحكام ذلك القانون.
+- Original Case 101/26 judgment date: 1 February 2009. Gazette publication: issue 7 bis (A), 15 February 2009.
+- Case 17/43/2022 further holds that disputes over administrative allocation and pre-contractual steps are administrative disputes within the jurisdiction of the State Council, while civil possession/ownership disputes remain within ordinary courts. It ordered continuation of execution of the 2009 judgment and non-recognition of the ordinary-court judgments obstructing its effect.
+- This is a jurisdictional invalidation, not an invalidation of Law 143/1981 as a whole or of all ordinary-court jurisdiction over land disputes.
+
+### G. Corrections and source-quality notes
+
+1. Correct Law 12/1984 Gazette date: issue 9 supplement, 1 March 1984; the earlier 1 January date was a secondary-transcription error.
+2. Law 12/1984 is a distinct irrigation statute that repealed Law 143/1981 Article 21; it is not itself an amendment law titled "amending Law 143/1981".
+3. The original Case 101/26 judgment has not been retrieved. Case 17/43/2022 is an official primary SCC judgment that quotes/reaffirms the 2009 ruling, not the 2009 ruling itself.
+4. Law 55/1988 full standalone text and original Gazette scan remain missing.
+5. Original Gazette PDFs for Laws 205/1991, 96/1995 and 72/1996 remain missing; full searchable secondary transcriptions are acquired.
+6. No lawyer verification, reuse permission or commercial reuse permission is claimed.
+
+## 9. Extraction failures and missing documents
 
 - Original Official Gazette scan of Law 10/1990 (issue 22 supplement, 31 May 1990): not retrieved; full text obtained from official Court of Cassation publication and secondary transcriptions.
 - Original Official Gazette scan of Law 24/2018: not retrieved; official Court of Cassation PDF contains the full amendment.
@@ -278,7 +353,7 @@ The 2024 amendment changes ownership-composition restrictions for companies hold
 - Full project-specific public-benefit declaration and expiry inventory under Law 10/1990: not collected; this requires parcel-level and Gazette issue matching.
 - No lawyer verification, currentness certification or commercial reuse permission is claimed.
 
-## 9. Metrics for this checkpoint
+## 10. Metrics for this checkpoint
 
 - New base statutes in the original checkpoint 89 batch: 1 (Law 7/1991); supplemental research adds Law 12/1984 as a distinct related irrigation statute.
 - Full searchable Arabic texts retrieved: 5 from official government/judicial hosts (Laws 10/1990, 24/2018, 143/1981, 7/1991 and 11/2024); Law 187/2020, Decision 20/2019 and Decision 198/1982 are also full searchable reproductions from secondary/Gazette-scan sources.
@@ -287,7 +362,7 @@ The 2024 amendment changes ownership-composition restrictions for companies hold
 - At least 27 distinct statutory/regulatory article provisions quoted or substantively extracted in original checkpoint 89; supplemental research adds at least 6 further amendment/judgment provisions (Law 12/1984 Article 2, Laws 205/1991, 96/1995, 72/1996 and SCC Case 101/26 jurisdictional holding).
 - No new base-law discovery counted and no duplicate URL counted as a new instrument.
 
-## 10. Next actions
+## 11. Next actions
 
 1. Retrieve original Gazette PDFs for Laws 10/1990, 24/2018, 187/2020, 143/1981 and 11/2024.
 2. Obtain Decision 20/2019 original Gazette PDF with all annexes; validate its article count and every form/schedule.
