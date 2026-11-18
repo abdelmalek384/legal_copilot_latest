@@ -1798,18 +1798,18 @@
       "source_page": "https://lawhub.info/eg/?p=11319",
       "file_url": "https://lawhub.info/eg/?p=11319",
       "material_types": [
-        "Historical Civil Code text",
-        "Repealed Articles 389–417",
-        "Law 131/1948"
+        "Law131/1948 Civil Code searchable text",
+        "Historical repealed Articles389–417 (29 pre-repeal article bodies)",
+        "Article-level repeal notes for Civil Code Articles54–80 and389–417"
       ],
-      "access_status": "Public searchable text; pre-repeal article bodies displayed; not original Gazette scan.",
+      "access_status": "Public searchable full Civil Code page. Historical pre-repeal text is explicitly displayed for Articles389–417 (29 bodies), while Articles54–80 show repeal status and repeal chain without original wording. Not an original Gazette scan.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": "https://lawhub.info/",
       "terms_checked_on": null,
-      "permission_evidence": "Checked 2026-11-18. Publicly searchable text does not establish permission for bulk acquisition, commercial database reuse, public display or redistribution.",
+      "permission_evidence": "Used to capture 29 pre-repeal article bodies (Articles389–417) and the repeal status/chain for Articles54–80. Public access does not establish permission for bulk acquisition, commercial database reuse, public display or redistribution.",
       "bulk_download_or_api": "No bulk/API permission established.",
-      "required_next_action": "Retain source-level provenance and compare each article against the 1948 edition; obtain explicit permission before bulk/commercial reuse."
+      "required_next_action": "Compare the 29 historical bodies against the 1948 printed edition; seek alternate source for the 27 missing historical Articles54–80; obtain explicit permission before bulk/commercial reuse."
     },
     {
       "source_id": "EG-NYU-COLUMBIA-CIVILCODE-1948-PRINT",
