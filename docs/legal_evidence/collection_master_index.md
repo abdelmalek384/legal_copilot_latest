@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 138)
+**Last updated:** 2026-11-18 (expanded through checkpoint 139)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1114,3 +1114,6 @@
 
 
 | checkpoint 119 — Agent 3 FRA / leasing / factoring | Added official Gazette Law 10/2009 text and FRA official Arabic full text for Law 176/2018; captured FRA jurisdiction, licensing, registered leasing contracts, factoring assignments, repeal of Law 95/1995 and PM Decision 1446/2003; cumulative Agent 3 minimum 126 instruments / 1,286 provision units |
+
+
+| checkpoint 120 — Agent 3 FRA FinTech / consumer / MSME finance | Captured Law 5/2022 full Arabic Gazette text and Companies Law supplementary cross-reference; Law 18/2020 consumer-finance regime and Law 158/2022 Article 6 bis paid-guarantee amendment; Law 141/2014 with Laws 201/2020 and 155/2022 MSME-finance amendments; catalogued FRA implementation-decision leads; cumulative Agent 3 minimum 132 instruments / 1,308 provision units |
