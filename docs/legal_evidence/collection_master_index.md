@@ -2382,3 +2382,9 @@ Added Decision635 (Port Said temporary customs zone for Suez Canal Auto Trading)
 - Creates a unique investor identifier and a unified database at the Egyptian Exchange; governs participating intermediaries, AML/KYC and eKYC, signature checks, fraud reporting, five-business-day application processing, cybersecurity, quarterly logs, FRA access and six-month review of special-purpose identifiers.
 - The PDF text layer was used; the page itself cautions that the electronic image is not the legally relied-upon copy. Image QA, currentness, local binary/hash, lawyer review and commercial reuse rights remain outstanding.
 - This is a new full-text acquisition; no percentage increase is claimed until the canonical acquisition and text-inventory ledgers are reconciled.
+
+
+### Law153/2026 — full Arabic text acquired
+
+Added the three-article stamp-tax amendment to Law111/1980. It replaces Article83 bis: 0.5 per thousand on each side of listed-securities sales; 0.25 per thousand on each side for same-day trades; excludes listed investment-fund units and licensed market makers; and requires the settlement entity to withhold and remit within five days from the start of the following month. It also repeals Article5 of Law199/2020. MCDR reported implementation from the 29 July 2026 trading session.
+[Law153/2026 full Arabic text](acquisition_tranche_law153_2026_stamp_tax_listed_securities_arabic.md)
