@@ -2490,6 +2490,22 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "Single public text page; no bulk/API permission established",
       "required_next_action": "Acquire full original Gazette issue25 تابع (أ), verify Article11 replacement against page image and capture remaining amendments to Laws95/1992 and93/2000; review site terms before reuse beyond citation."
+    },
+    {
+      "source_id": "EG-FRA-DECISION1-2015-ARTICLE6",
+      "authority": "Financial Regulatory Authority (Egypt) official consolidated regulation; Manshurat and MELES catalogue metadata",
+      "source_page": "https://fra.gov.eg/wp-content/uploads/2020/12/اللائحة-التنفيذية-للقانون-التمويل-العقاري.pdf",
+      "material_types": [
+        "Article6 first-paragraph replacement wording attributed to PM Decision1/2015; official FRA consolidated regulation PDF and source metadata"
+      ],
+      "access_status": "Public official FRA consolidated PDF. Original PM Decision1/2015 PDF in Manshurat catalogue timed out; MELES DSpace bilingual file 1428.pdf is request-copy restricted.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used to capture the replacement wording from the official regulator's consolidated text. No separate licence or written permission for reuse/bulk extraction was established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public consolidated PDF; no bulk/API permission established",
+      "required_next_action": "Acquire original issue8 bis (د) PDF/page images and bilingual PDF through authorized request; verify text and review source terms."
     }
   ]
 }
