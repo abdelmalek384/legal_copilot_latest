@@ -2277,3 +2277,10 @@ Added a dedicated tranche containing all four issuing articles, all 12 general c
 
 Added a complete three-article Arabic transcription of PM Decision2170/2026, including the revised minimum-wage table (EGP14,500 to EGP8,000 by grade) and the replacement complementary-incentive rule. Official Gazette issue28 bis, 13 July 2026; the wage schedule is expressly effective from 1 July 2026. The text also flags a secondary-source discrepancy in the preceding amendment number: the Amiri Press indexed text says Decision2594/2025.
 [Decision2170 full Arabic tranche](acquisition_tranche_pm_decision2170_2026_minimum_wage_arabic_text.md)
+
+
+### Official Gazette issue46 — five additional land/public-utility decisions
+
+Registered five PM decisions (EG-0330 to EG-0334) from Official Gazette issue46, 12 November 2026: Decisions3127,3128,3130,3131 (amending prior school expropriation/public-utility decisions) and 3308 (free state-land allocation for a school in Fayoum). Partial Arabic operative text is captured in [the issue46 tranche](acquisition_tranche_gazette_issue46_land_decisions_3127_3128_3130_3131_3308_2026-11-12.md).
+
+**Material discrepancy:** Decision3127's official Amiri Press home-page snippet and a secondary report give substantially different area figures. The discrepancy is explicitly flagged; neither figure is accepted pending Gazette page image and cadastral annex. The other four decisions also require their original Gazette pages and attached plans.
