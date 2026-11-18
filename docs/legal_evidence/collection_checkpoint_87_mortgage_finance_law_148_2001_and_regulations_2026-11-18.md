@@ -1,5 +1,15 @@
 # Collection checkpoint 87 — Mortgage Finance Law 148/2001 and executive regulation (2026-11-18)
 
+## Source upgrade — checkpoint 90 (18 November 2026)
+
+The following official FRA-hosted searchable PDF reproductions were subsequently located and opened:
+
+- **Law 148/2001 Gazette reproduction:** https://fra.gov.eg/wp-content/uploads/2025/03/alamiria_2001_148.pdf. The PDF itself displays Official Gazette issue 25 bis (مكرر), 24 June 2001, and the full text beginning with the promulgation provisions and substantive Article 1. This is a Gazette reproduction hosted by FRA, not a file served by the Official Amiri Press archive. It supersedes the earlier statement that no Gazette reproduction had been retrieved; original Amiri Press archive bytes and SHA-256 remain outstanding.
+- **PM Decision 1/2001 Executive Regulation PDF:** https://fra.gov.eg/wp-content/uploads/2020/12/اللائحة-التنفيذية-للقانون-التمويل-العقاري.pdf. Official FRA-hosted searchable PDF with 694 extracted lines. It reproduces the full regulation; it is not yet verified against original Gazette issue 282 supplement.
+- **FRA regulation amendment history:** https://fra.gov.eg/regulations/اللائحة-التنفيذية-للقانون-رقم-148-لسنة-2001-و/ lists PM Decisions 465/2005, 1864/2008, 1/2015, 2/2015 and 32/2024. This confirms the source's known chain but does not establish that no later instruments exist.
+
+The new sources upgrade provenance and extraction confidence. They do not add new instruments or alter the instrument/article counts in this checkpoint. No PDF bytes or hashes have yet been committed to the repository.
+
 ## 1. Deduplication and scope
 
 The master index and existing checkpoint 29 (capital markets, microfinance and real-estate finance) were searched first. Law 148/2001 and PM Decision 1/2001 were already discovered there, but their official/current full Arabic texts, amendment chain and key property-security articles were not fully transcribed. This checkpoint supplements rather than duplicates those records.
@@ -204,8 +214,8 @@ This seven-year text is part of the regulation's earlier regime and must be read
 
 ## 6. Extraction failures and missing materials
 
-- Original Official Gazette PDF for Law 148/2001: not retrieved from the Gazette publisher; official FRA and ETA government copies are available.
-- Original Gazette PDF for PM Decision 1/2001: not retrieved; official FRA updated text is available.
+- Original Amiri Press archive PDF for Law 148/2001: not retrieved directly. A full searchable Gazette reproduction with visible issue/date was later opened from the official FRA host (see source upgrade above); PDF bytes/hash not yet archived.
+- Original Gazette issue 282 supplement PDF for PM Decision 1/2001: not retrieved directly. A full searchable regulation PDF is available from the official FRA host (see source upgrade above); comparison with the original issue remains pending.
 - Law 143/2004: amendment identified in FRA's official legislative history, but full Gazette text/affected articles are missing.
 - Law 55/2014: full Gazette text retrieved from GAFI-hosted scan; IDSC record also exists; official Amiri Press-hosted bytes were not obtained.
 - Law 93/2018: full Gazette PDF retrieved from FRA host; Article 4 has an OCR discrepancy (25 vs 35) requiring visual verification.
