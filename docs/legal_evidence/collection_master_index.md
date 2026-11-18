@@ -2071,3 +2071,8 @@ Cabinet approved a *draft* decision to halt PM Decision 982/2026 at its 30 Septe
 ### Further acquisition — PM Decision 1440/2026 (mineral resources regulation)
 
 Added **EG-0304**, Prime Minister Decision 1440/2026, as an executive-regulation amendment to PM Decision 108/2020 (Mineral Resources Executive Regulation). Official Gazette issue 18 مكرر (ج), 6 May 2026; effective 7 May 2026. The Amiri Press DSpace issue record identifies the official Gazette publisher and lists a 309.01 KB bundle; the Egyptian Mineral Resources Authority portal also lists the decision. Full five-article Arabic text, 14 replacement regulation provisions, inserted definition/application/register entries, new Article107 for assay laboratories, and repeal of Article44 are transcribed in the Arabic text tranche. The mineral royalty table is transcribed but requires page-image verification. No original binary/hash archived.
+
+
+### Further 2026 acquisitions — Law 10/2026 and PM Decision 267/2026
+
+Added **EG-0305 Law 10/2026** (amending Nuclear and Radiation Activities Law 7/2010) and **EG-0306 PM Decision 267/2026** (amending Universities Executive Regulation 809/1975). Both full Arabic texts are transcribed in [the additional amendments text file](2026_additional_amendments_text_law10_decision267_decision36_2026-11-18.md). Law10 Gazette issue20 مكرر, 16 May 2026, effective 17 May; PM267 Gazette issue4 مكرر, 25 January 2026, effective 26 January. PM Decision36/2026 building-reconciliation amendment is also transcribed in that file as a text-depth upgrade to existing EG-0270; no duplicate instrument count.
