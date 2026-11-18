@@ -22,7 +22,7 @@ The DSpace metadata for Decision 200/2026 contains an apparent catalogue-descrip
 - Cairo Governorate's public notice dated 21 June 2026 states 18 July 2026 as the last application date. The State Lands Recovery Committee coordinator, in a Shorouk interview dated 21 August 2026, likewise described the first period as ending 18 July and stated that a further six-month extension had been approved.
 - The procedural time-computation rule points to a possible one-day difference: Article 15 of the Civil and Commercial Procedure Law excludes the triggering day and a 19 January trigger can be argued to expire on 19 July. Preserve the contemporaneous administrative date (18 July) and the statutory calculation discrepancy separately.
 
-## 3. Presidential Decision 480/2026 and working final deadline
+## 3. Presidential Decision 480/2026 and final deadline — not expressly fixed
 
 Decision 480/2026 was issued on 10 November 2026 and published in Official Gazette issue 45 bis (ج) the same date. Its Article 1 states:
 
@@ -32,10 +32,18 @@ Article 2 states:
 
 ينشر هذا القرار في الجريدة الرسمية.
 
-The decision does not print a new calendar commencement or expiry date. The committee coordinator's August statement that an additional six months had been approved, read with the official 18 July initial expiry, supports a **working final deadline of 18 January 2027** (19 July 2026 through 18 January 2027). This is a reasoned working interpretation, not an express date in Decision 480. It requires authoritative confirmation by a post-decision government circular or formal legal interpretation.
+The decision does **not** print a calendar start date, say that the extension runs from the original expiry, or specify a new terminal date. No official post-decision circular fixing a final day was located in this research pass.
 
-Do not instead calculate six months from 10 November 2026 without a legal basis. Equally, do not describe 18 January 2027 as a date expressly printed in Decision 480.
+**Verified dates and competing constructions:**
+- PM Decision 200/2026 took effect 19 January 2026.
+- The original six-month application period was publicly administered as ending 18 July 2026 (Cairo Governorate notice and the State Lands Recovery Committee coordinator's 21 August 2026 statement).
+- A further six-month extension was approved by Cabinet on 7 October 2026, before Presidential Decision 480 was issued/published on 10 November 2026.
+- If the new period runs consecutively from the original period's expiry, the candidate window is 19 July 2026 through 18 January 2027.
+- If the new period begins when Decision 480 becomes effective upon publication (or the day after publication, depending the applicable commencement rule), the candidate expiry is around 9–10 May 2027.
 
+**Conclusion:** the exact final filing deadline cannot responsibly be certified from Decision 480's two articles alone. The earlier 18 January 2027 calculation is a consecutive-extension construction; the publication-based construction yields a May 2027 date. Neither date is expressly printed in Decision 480. Treat both as candidate calculations only. The authoritative answer requires a written circular or legal interpretation from the competent authority stating the commencement and final application date, including treatment of applications filed between 19 July and 10 November 2026.
+
+The Law 168 Article 5 prohibition on considering applications after the Article 3 deadline makes this material. Article 4 also measures a separate six-month period for the authority's processing obligations from expiry of the application period; do not conflate that processing period with the public application deadline.
 ## 4. Deduplication and text-source references
 
 - Law 168/2025 text already resides in `alternate_source_text_recovery_law168_decision200_decision480_2026-11-18.md`; this checkpoint is not an additional Law 168 article-text source.
