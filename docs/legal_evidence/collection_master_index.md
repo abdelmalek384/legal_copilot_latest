@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 135)
+**Last updated:** 2026-11-18 (expanded through checkpoint 136)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1105,3 +1105,6 @@
 
 
 | checkpoint 116 — Agent 3 CBE Law 194/2020 | Captured official Ministry of Finance Gazette PDF and issuing Articles 1–3; key Article 2 cross-links Companies Law 159/1981 as supplementary corporate law and Commercial Code 17/1999 for all bank-customer transactions; 115-page substantive law still needs article extraction; cumulative Agent 3 minimum 117 instruments / 1,256 provision units |
+
+
+| checkpoint 117 — Agent 3 Competition Law ex-ante merger-control framework | Captured Law 3/2005 and Executive Regulation 1316/2005 source routes, Law 175/2022 statutory ex-ante regime and PM Decision 1120/2024 implementing chapter; flagged unresolved ECA-guide 1122/2023 reference and unpromulgated 2026 bill status; cumulative Agent 3 minimum 121 instruments / 1,270 provision units |
