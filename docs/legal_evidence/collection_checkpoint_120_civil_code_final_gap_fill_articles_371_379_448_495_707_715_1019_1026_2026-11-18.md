@@ -245,6 +245,7 @@ This checkpoint fills **69 previously untranscribed, non-repealed article number
 **مادة 715**
 > (1) يجوز للموكل في أي وقت أن ينهي الوكالة أو يقيدها، ولو وجد اتفاق يخالف ذلك.
 > (2) فإذا كانت الوكالة بأجر، فإن الموكل يكون ملزماً بتعويض الوكيل عن الضرر الذي لحقه من جراء عزله في وقت غير مناسب أو بغير عذر مقبول.
+> (3) على أنه إذا كانت الوكالة بأجر، فإن الوكيل يكون ملزماً بتعويض الموكل عن الضرر الذي لحقه من جراء تنازل الوكيل عن الوكالة في وقت غير مناسب وبغير عذر مقبول.
 
 ## Easements — missing provisions
 
@@ -253,12 +254,11 @@ This checkpoint fills **69 previously untranscribed, non-repealed article number
 
 **مادة 1021**
 > لا يلزم مالك العقار المرتفق به أن يقوم بأي عمل لمصلحة العقار المرتفق إلا أن يكون عملاً إضافياً يقتضيه استعمال الارتفاق على الوجه المألوف، ما لم يشترط غير ذلك.
-> (2) فإذا كان مالك العقار المرتفق به هو المكلف بأن يقوم بتلك الأعمال على نفقته، كان له دائماً أن يتخلص من هذا التكليف بالتخلي عن العقار المرتفق به كله أو بعضه لمالك العقار المرتفق.
-> (3) وإذا كانت الأعمال نافعة أيضاً لمالك العقار المرتفق به، كانت نفقة الصيانة على الطرفين كل بنسبة ما يعود عليه من الفائدة.
 
 **مادة 1022**
-> لا يجوز لمالك العقار المرتفق به أن يعمل شيئاً يؤدي إلى الانتقاص من استعمال حق الارتفاق أو جعله أكثر مشقة، ولا يجوز له بوجه خاص أن يغير من الوضع القائم أو أن يبدل بالوضع المعين أصلاً لاستعمال حق الارتفاق موضعاً آخر.
-> (2) ومع ذلك إذا كان الموضع الذي عين أصلاً قد أصبح من شأنه أن يزيد في عبء الارتفاق، أو أصبح الارتفاق مانعاً من إحداث تحسينات في العقار المرتفق به، فمالك هذا العقار أن يطلب نقل الارتفاق إلى موضع آخر من العقار، أو إلى عقار آخر يملكه هو أو يملكه أجنبي إذا قبل الأجنبي ذلك. كل هذا متى كان استعمال الارتفاق في وضعه الجديد ميسوراً لمالك العقار المرتفق بالقدر الذي كان ميسوراً به في وضعه السابق.
+> (1) نفقة الأعمال اللازمة لاستعمال حق الارتفاق والمحافظة عليه تكون على مالك العقار المرتفق، ما لم يشترط غير ذلك.
+> (2) فإذا كان مالك العقار المرتفق به هو المكلف بأن يقوم بتلك الأعمال على نفقته، كان له دائماً أن يتخلص من هذا التكليف بالتخلي عن العقار المرتفق به كله أو بعضه لمالك العقار المرتفق.
+> (3) وإذا كانت الأعمال نافعة أيضاً لمالك العقار المرتفق به، كانت نفقة الصيانة على الطرفين كل بنسبة ما يعود عليه من الفائدة.
 
 **مادة 1024**
 > (1) إذا جزئ العقار المرتفق به بقي الارتفاق لكل جزء منه، على ألا يزيد ذلك في العبء الواقع على العقار المرتفق به.
@@ -275,5 +275,5 @@ This checkpoint fills **69 previously untranscribed, non-repealed article number
 
 - **69 distinct article texts added:** Articles 371–379 (9), 448–451 and 453–495 (47; Article 452 already extracted), Article 707 (1), Articles 709–713 (5), Article 715 (1), Article 1019 (1), Articles 1021–1022 (2), and Articles 1024–1026 (3).
 - OCR defects in Articles 375, 377–379, 457–459, 469–472, 477–480, 494–495, 707, 715 and 1021–1026 require page-image verification.
-- The exact text of Article 1022 is particularly sensitive because the source PDF labels the following provision as Article 1023; the article heading is not reproduced in this gap fill and must be checked visually before production.
+- Article 1022 has been checked against the text of the Civil Code provision on expenses necessary for use and preservation of an easement. Article 1023 (prohibition on increasing the burden and conditions for relocation) was already extracted in checkpoint 86 and is not duplicated here.
 - Base Civil Code text only. The one-year sale warranty limitation in Article 452, tax limitation periods in Article 377 and agency termination in Article 715 may be affected by special statutes and later case law.
