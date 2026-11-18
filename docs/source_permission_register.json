@@ -2021,6 +2021,26 @@
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "Article-by-article HTML; no bulk/API permission established",
       "required_next_action": "Prefer direct ETA official PDF; confirm terms for any further extraction or redistribution."
+    },
+    {
+      "source_id": "EG-EMRA-MINERAL-RESOURCES-PORTAL",
+      "authority": "Egyptian Mineral Resources Authority, Ministry of Petroleum and Mineral Resources",
+      "source_page": "https://emra.gov.eg/ar/mineral-resources-law",
+      "material_types": [
+        "Mineral Resources Law 198/2014",
+        "Law 145/2019",
+        "Executive Regulation 108/2020",
+        "Law 87/2025",
+        "PM Decision 1440/2026"
+      ],
+      "access_status": "Official authority legislation page opened; lists base law, amendments and implementing regulation including Decision1440/2026.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Official government portal provides public legal-source access; no express licence for bulk text extraction, commercial indexing or redistribution identified.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "Individual source page and linked documents; no bulk/API permission established",
+      "required_next_action": "Acquire official Gazette/legislation PDF binaries and hashes; inspect site terms and request written permission if commercial redistribution is intended."
     }
   ]
 }
