@@ -15,6 +15,8 @@
 
 ## Collection checkpoints
 
+| checkpoint 102 — Agent 3 PPP primary Gazette texts | Official MOF Law 67/2010 and Invest in Egypt Decision 238/2011 Gazette texts; five issuing provisions captured; Law 153/2021 and Decision 3217/2022 remain amendment acquisition tasks; cumulative 92 instruments / 1,186 provision units |
+
 | checkpoint 101 — Agent 3 Commercial Agency Decision 593/2025 | Captured Gazette metadata and eight operative decision articles; nested amendments to regulation 342/1982; 2026 effective date; full Gazette image verification pending; cumulative 92 instruments / 1,181 provision units |
 
 | checkpoint 100 — Agent 3 e-signature Gazette text | Law 15/2004 Arts 14–21 and amended Executive Regulation Arts 1–8 captured; official Gazette confirms Decision 331/2020 (not the 361/2020 number in some secondary pages); cumulative 91 instruments / 1,173 provision units |
@@ -1049,4 +1051,4 @@
 - Law 20/2024: Official Gazette issue 14 مكرر, 5 Apr 2024; effective 6 Apr 2024. MOF official record marks it in force; official Gazette DSpace and Amiri Press text obtained.
 - Replaces Consumer Protection Law 181/2018 Article 71 for Article 8 strategic-products offences. Current penalty: imprisonment at least one year and fine EGP 150,000–3 million or value of goods (whichever greater); recidivism 2–5 years and doubled fine limits; confiscation, possible closure up to six months, publication in two daily newspapers, possible licence cancellation.
 - Both replacement Article 71 and commencement Article 2 transcribed in Agent 3 file. Original Article 71 text is historical only.
-- **Updated Agent 3 minimum:** 92 distinct instruments with some Arabic text surfaced; 1,181 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+- **Updated Agent 3 minimum:** 92 distinct instruments with some Arabic text surfaced; 1,186 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
