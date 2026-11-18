@@ -133,3 +133,13 @@ These are text-depth/source-quality upgrades to already inventoried instruments.
 - The 2026 change broadens service-provider eligibility from the state-owned-bank initial phase to CBE-registered banks, subject to prior CBE approval and designated branches. Commercial Register services remain available to the public; notarization remains limited to the bank's customers. Remaining 2021 controls continue unless amended.
 - The CBE PDF and updated rulebook page reject automated opening; the 2026 exact signed paragraph remains unverified. Full record: [CBE Circular 24 Sep 2026 bank registry/notary services](agent3_cbe_circular_24_sep_2026_bank_registry_notary_services_amendment_arabic_text.md).
 - This is text/version-detail for an already-counted circular; no instrument or article-unit count change. Assigned completion remains **55% provisional**, whole corpus **2% provisional**, lawyer review **0%**.
+
+
+## Companies Executive Regulation 96/1982 — full official text recovered
+- Acquired the MIFT-hosted consolidated Arabic PDF (3,416 extracted lines), labelled updated through 21 August 2022. It contains the full regulation sequence through base Article 299 and inserted bis provisions through Article 299 bis/12, plus annexes and amendment footnotes.
+- Captured key provisions on founder eligibility, company formation documents, shareholder agreements (Article 2 bis), capital, public subscription/prospectus, in-kind valuation, electronic incorporation (Article 45 bis), share classes/transfer, bondholder representation, LLC oversight/auditors, one-person companies (Articles 287 bis series), merger/division and grievances (299 bis series).
+- Confirmed PM Decision 2928/2022 replaces Article 287 bis/2(1): minimum one-person-company capital EGP 1,000, fully paid at incorporation. Do not use the superseded higher historic minimum.
+- MIFT lists 21 amendment attachments. The PDF has footnote history through Decision 2928/2022; exact attachment IDs and original Gazette binaries still require reconciliation.
+- Data-quality issue: one extracted duplicate Article 22 passage citing Trade and Industry Decision 444/2022 appears to belong to the separate Industrial Licensing Executive Regulation 1082/2017, not Companies Regulation 96/1982. It is flagged as likely concatenation contamination and excluded pending page-image confirmation.
+- Full record: [Companies Executive Regulation 96/1982 text audit](agent3_companies_exec_reg96_1982_mift_2022_full_text_audit.md).
+- Text-depth/source-quality upgrade only; no new unique instrument count. Last reconciled Agent 3 baseline remains **189 documents / 1,924 normalized units**, assigned-domain completion **55% provisional**, whole corpus **2% provisional**, lawyer review **0%**.
