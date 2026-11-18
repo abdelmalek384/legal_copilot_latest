@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 229; Agent 3 continuation separately indexed)
+**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 230; Agent 3 continuation separately indexed)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -111,6 +111,7 @@
 | checkpoint 220 — Decision 144/2009 Articles 77–90 extraction | Superseded subset capture; Articles 77–90 are duplicated in the complete Articles 77–93 capture at checkpoint 220; contributes no incremental unique article IDs | [subset checkpoint](collection_checkpoint_220_decision144_articles_77_90_full_text_2026-11-18.md) |
 | checkpoint 226 — Law 168/2025, PM Decision 200/2026 and Presidential Decision 480/2026 | Identified three Amiri Press Gazette original-bundle records; reconciled commencement and working Article 3 filing deadline (18 Jan 2027, subject to official confirmation); text is cross-referenced to canonical file, no duplicate article bodies | [checkpoint 226](collection_checkpoint_226_law168_pm200_presidential480_full_text_deadline_and_gazette_metadata_2026-11-18.md) |
 | checkpoint 228 — SCC original judgment acquisition and rent-law docket refresh | Updated primary-source gaps for Cases 10/35, 42/17, 101/26 and 11/23; added separate docket tracker for seven pending rent-law cases; no final judgments or original PDFs newly acquired | [checkpoint 228](collection_checkpoint_228_scc_original_judgment_gaps_and_rent_docket_refresh_2026-11-18.md) |
+| checkpoint 230 — Civil Code repealed Articles 54–80 and 389–417 | Transcribed all 56 historical repealed article bodies from secondary full-text sources; complete numbered range 1–1,149 (1,093 operative + 56 repealed) now has text/status coverage | [checkpoint 230](collection_checkpoint_230_civil_code_repealed_articles_54_80_389_417_historical_texts_2026-11-18.md) |
 | checkpoint 229 — SCC Cases 42/17 and 101/26 full judgment text | Added full Arabic text for Case 42/17 from MKSEgypt and complete official SCC HTML text for Case 101/26; Case 11/23 order/reasons cross-referenced; original binaries remain outstanding | [checkpoint 229](collection_checkpoint_229_case42_17_and_case101_26_full_judgment_texts_2026-11-18.md) |
 | checkpoint 227 — PM Decision 200/2026 missing article bodies | Added issuing Articles 1–3 and regulation Articles 1, 11, 12, 19 and full Article 20; earlier captured Articles 2–10 and 13–18 are not duplicated; all 20 regulation articles now represented | [checkpoint 227](collection_checkpoint_227_pm_decision200_2026_full_arabic_text_2026-11-18.md) |
 | checkpoint 224 — Decision 144 article-version text status | Updated event text status for Articles 94, 95, 100, 101 and 104; added Decision 200/2010 Article 103 event; event register rises to 86 | [checkpoint 224](collection_checkpoint_224_decision144_article_version_text_status_2026-11-18.md) |
