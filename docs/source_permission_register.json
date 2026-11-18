@@ -1280,19 +1280,21 @@
     {
       "source_id": "EG-NOTARIES-UNION-TEXT",
       "authority": "Egypt Notaries Union",
-      "source_page": "https://notariesofegypt.org/article.php?id=312; https://www.notariesofegypt.org/article.php?id=430",
+      "source_page": "https://notariesofegypt.org/article.php?id=312; https://www.notariesofegypt.org/article.php?id=430; https://notariesofegypt.org/article.php?id=485",
       "material_types": [
-        "statutory text",
-        "notarization and real-estate registration laws"
+        "Egypt Notaries Union full-text statutory reproductions",
+        "Law 114/1946 full text",
+        "Evidence Law 25/1968 full text",
+        "Law 114/1946 article-level text capture"
       ],
-      "access_status": "Public searchable full Arabic text pages inspected 2026-11-18 (including Evidence Law 25/1968 Articles1–117); site terms not reviewed; rights unknown.",
+      "access_status": "Public searchable statutory text inspected 2026-11-18; Law114 page id485 exposes 281 lines and articles 1–59 with duplicate article numbering; Evidence Law pages remain separate.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": "Public visibility is not permission for bulk collection, commercial reuse, excerpt display or redistribution.",
+      "permission_evidence": "Law114 page id485 transcribed four additional article bodies (Articles2,14,16,17) within source word limits. The page has duplicate article numbering for some inserted/amended provisions and is dated 17 Feb 2021; it is not an original Gazette scan or current consolidated text. Public accessibility does not grant commercial reuse permission.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Review applicable terms and seek written authorization for local archiving, Arabic extraction, indexing, commercial use, excerpt display and redistribution. Obtain original files through authorized access where applicable."
+      "required_next_action": "Compare Law114 page id485 against original Gazette and amendments Law157/1947, Law25/1976, Law9/2022; request written reuse permission before commercial redistribution."
     },
     {
       "source_id": "EG-SHOROUK-STATE-LAND-EXTENSION",
