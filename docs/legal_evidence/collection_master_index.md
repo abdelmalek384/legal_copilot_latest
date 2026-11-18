@@ -1092,3 +1092,13 @@
 
 
 | checkpoint 115 — Agent 3 Law 198/2020 primary-source upgrade | Visually verified all three replacement provisions (Trade Register Law Articles 3, 8(1), 9(1)) against ITDA-hosted Official Gazette issue 39 bis (ز), 30 Sep 2020; existing count unchanged at 116 instruments / 1,253 provision units |
+
+
+### Research Agent 1 — Building Law 119/2008 and Executive Regulation 144/2009 primary-source acquisition
+
+- Official MHUC-hosted Gazette PDF for Law 119/2008 located: Official Gazette issue 19 bis (A), 11 May 2008; 114 numbered substantive articles.
+- Government-bank-hosted NIB copy of Egyptian Proceedings issue 82 supplement (A), 8 April 2009, located for Decision 144/2009; full regulation runs through Articles 1–185 and includes forms/schedules to page 163. This supersedes a truncated third-party PDF that appeared to end at Article 154.
+- Later amendment texts/source routes expanded: Decision 954/2022 (Articles 135 bis/139 bis; repeals Decisions 272/2013 and 296/2021); Decision 943/2024 (Articles 110 bis, 112 bis 1, 117 bis; repeals Decision410 forms); Decision120/2025 (Article26(5)); Decision1505/2025 (Articles43/50; effective 28 Jan 2026).
+- Decision943/2024 appears in two SIS-hosted Gazette issue PDFs: issue216 (1 Oct 2024) and issue240 (30 Oct 2024), with identical decision text and conflicting publication/effective-date implications. Preserve both; official clarification required.
+- Acquisition register updated to 191 rows (EG-0189–EG-0191 added for Decisions954/2022,120/2025,1505/2025); original-Gazette byte/hash acquisition and lawyer/rights review remain open.
+- Full evidence: [building_law_119_2008_decision_144_2009_official_gazette_sources_and_amendment_chain_2026-11-18.md](building_law_119_2008_decision_144_2009_official_gazette_sources_and_amendment_chain_2026-11-18.md).
