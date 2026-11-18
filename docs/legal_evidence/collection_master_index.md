@@ -1308,3 +1308,13 @@
 
 
 | checkpoint 140 — Agent 3 Commercial Agency Law 120/1982 text-depth expansion | Duplicate audit against prior Agent 3 checkpoint 20 confirmed Law 120/1982, Law 21/2022, Decision 342/1982 and Decision 593/2025 were already counted; no duplicate instrument/provision increment. Expanded the record with full searchable 28-article GOEIC Law 120 Gazette reproduction, full 32-article secondary transcription of Executive Regulation 342/1982, and current Law 21/2022 real-estate-broker additions. Identified commencement discrepancy: GOEIC PDF extraction says six months; secondary text and Decision 342 Article 32 point to nine months / 5 May 1983; original Gazette image visual check required. Full text: [agent3_commercial_agency_law120_reg342_law21_2022_full_text_reconciliation_2026-11-18.md](agent3_commercial_agency_law120_reg342_law21_2022_full_text_reconciliation_2026-11-18.md). Cumulative counts unchanged: **163 instruments / 1,821 normalized units**; assigned-domain completion **36% provisional**; whole corpus **2% provisional**; lawyer review 0%. |
+
+
+### Research Agent 1 — checkpoint 152: Constitutional Court decisions affecting Law 70/1964 (18 November 2026)
+
+- Added [collection_checkpoint_152_constitutional_cases_law_70_1964_2026-11-18.md](collection_checkpoint_152_constitutional_cases_law_70_1964_2026-11-18.md).
+- Added **EG-0227, SCC Case 2/24** (14 Dec 2003; invalidated Article 30 of Law 70/1964; secondary Qadaya full text; Gazette issue 52 bis, 31 Dec 2003).
+- Added **EG-0228, SCC Case 10/16** (18 May 2014; invalidated Law 70 Article 21(9) and consequentially removed item 3 of Table 2 to Decision 2936/1992; direct official SCC HTML; Gazette issue 21 bis (A), 24 May 2014).
+- Added one source-specific Qadaya permission record; source-permission register now has **55 unique records**. Qadaya collection/commercial reuse permissions remain unknown.
+- Acquisition register now has **224 non-header rows**, 224 unique IDs and zero duplicate IDs. Core article provisions remain **1,370**. Completion estimates remain core article extraction 100% (three defined statutes), broader civil/property/contract 15% provisional, whole Egyptian corpus 2% provisional.
+- No original Gazette judgment scans were acquired and no article text was added in checkpoint 152.
