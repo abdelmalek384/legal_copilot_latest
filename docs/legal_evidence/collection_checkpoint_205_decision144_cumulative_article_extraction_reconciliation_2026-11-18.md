@@ -4,6 +4,8 @@
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** reconcile cumulative Decision 144/2009 article extraction against checkpoints 164, 170 and 189 and the full-text working file.
 
+**Superseding note (checkpoint 206):** Articles 8–13 were subsequently transcribed from the LAW HUB searchable source. Cumulative coverage is now 39/185 base articles (146 remain) plus three inserted bis provisions. See checkpoint 206.
+
 ## 1. Correction to checkpoint 204
 
 Checkpoint 204's 13/185 figure was incomplete because it counted checkpoints 164 and 189 but omitted the article bodies already captured in the Decision 144 working file and summarized in checkpoint 170. This checkpoint supersedes the Decision 144 extraction count in checkpoint 204.
