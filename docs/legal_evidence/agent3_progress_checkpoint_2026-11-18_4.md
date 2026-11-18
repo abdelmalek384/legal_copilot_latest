@@ -85,3 +85,9 @@ All new material remains machine-collected and not lawyer-reviewed. Do not mark 
 - Decision 1120/2024 Article 59 has a separate EGP 7.5bn fee band. Same amount, distinct legal function; keep fields separate.
 - Corrected records: [ECA consolidated text](agent3_eca_law3_2005_june2024_official_consolidated_text_and_thresholds.md) and [Law 175/2022 / Decision 1120/2024](agent3_competition_law_175_2022_and_decision_1120_2024_merger_control_arabic_text.md).
 - Counts remain 209 / 2,049 pending deduplication; 55% provisional assigned-domain completion; lawyer review 0%.
+
+
+## Law 175/2022 primary publication access
+- Amiri Press DSpace confirms Official Gazette issue 52 supplement (أ), 29 Dec 2022; original 320.09 KB bundle is request-a-copy only. The searchable Amiri Press Law 175 text is accessible, but the binary was not downloaded and page images were not inspected.
+- Operative worldwide threshold remains EGP 7.5bn from the Law 175 text. The ECA June 2024 PDF's 7.2bn and Law 15/2022 footnote are retained as a conflicting consolidated-source passage and quarantined, not treated as current law.
+- The competition-law file records the request-only blocker and does not claim Gazette page-image verification.
