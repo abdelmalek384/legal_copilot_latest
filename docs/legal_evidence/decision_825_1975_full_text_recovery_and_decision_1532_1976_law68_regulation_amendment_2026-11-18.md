@@ -119,3 +119,69 @@ The 825/1975 regulation is not merely a bibliographic lead: its searchable text 
 2. Retrieve and transcribe full amendment decisions 948/1976, 8171/2009, 2645/2015 and 11264/2016; create before/after redlines.
 3. Locate full original text of the 1946 implementing regulation for Law114 and its amendments; Manshurat scan metadata is available but searchable full text is not yet confirmed.
 4. Continue to distinguish secondary searchable transcriptions from official Gazette issue scans and Amiri Press original binaries.
+
+
+## Justice Minister Decision 2645/2015 — complete Arabic amendment text
+
+**Publication:** الوقائع المصرية, issue 91, 21 April 2015. **Decision date:** 31 March 2015. **Effect:** date of publication.  
+**Source:** Laweg searchable full text, https://www.laweg.net/framePlain.aspx?ItemID=95396&NID=115972&Type=6&action=ViewActivePages. Secondary full text; original Amiri Press PDF not acquired.
+
+وزارة العدل  
+قرار وزير العدل رقم 2645 لسنة 2015  
+بتعديل بعض أحكام اللائحة التنفيذية للقرار بقانون رقم 142 لسنة 1964 بنظام السجل العينى.
+
+وزير العدل  
+بعد الاطلاع على قرار رئيس الجمهورية بقانون رقم 142 لسنة 1964 بنظام السجل العينى؛  
+وعلى قرار وزير العدل رقم 825 لسنة 1975 باللائحة التنفيذية للقانون رقم 142 لسنة 1964 بنظام السجل العينى؛  
+وعلى قرار وزير العدل رقم 8171 لسنة 2009 بتعديل بعض أحكام اللائحة التنفيذية لقانون السجل العينى؛  
+وعلى ما ارتأته اللجنة المشكلة بقرار السيد الأستاذ المستشار مساعد وزير العدل لشئون الشهر العقارى والتوثيق رقم 74 لسنة 2015؛  
+قرر:
+
+**المادة الأولى** — يُستبدل بنصوص المواد أرقام (83، 88، 104، 116) من اللائحة التنفيذية للقرار بقانون رقم 142 لسنة 1964 بنظام السجل العينى، النصوص الآتية:
+
+**مادة (83):** «تقدم طلبات القيد من ثلاث نسخ متطابقة إلى مأمورية السجل العينى التى يقع العقار فى دائرة اختصاصها ويجب أن يكون موقعًا عليها من المتصرف أو المتصرف إليه فى العقود والإشهادات أو ممن يكون المحرر لصالحه فى غير ذلك من المحررات كأوراق الإجراءات وصحف الدعاوى والأحكام. ولا يتطلب تصرف أحد الشركاء على الشيوع فى نصيبه أو جزء منه محدد ومفرز توقيع باقى الشركاء. وإذا كان محل التعامل فى طلبات قيد الدعاوى وأوراق الإجراءات جزء مفرز من وحدة عقارية وكانت مملوكة لعدة شركاء فيتعين اختصامهم جميعًا فى هذه الطلبات».
+
+**مادة (88):** «إذا لم يكن من شأن الطلب إجراء تغيير فى البيانات المساحية للوحدة العقارية محل الطلب وكان مستوفيًا للبيانات المقررة أشرت المأمورية على مشروع المحرر بالصلاحية للقيد فى السجل دون المطالبة بتحرير كشف تحديد مساحى. أما إذا كان من شأن الطلب إجراء تغيير فى البيانات المساحية للوحدة العقارية فعلى المكتب الهندسى مراجعته من الناحية المساحية ومعاينة العقار على الطبيعة وإجراء التغيير المطلوب وما يتطلبه ذلك من تطبيق المستندات اللازمة لإجراء القيد وتحديد العقار بوضع علامات عند الاقتضاء وموافاة المأمورية كتابة بما انتهى إليه فى هذا الشأن (تحرير كشف تحديد مساحى) ثم تقوم المأمورية بالتأشير على مشروع المحرر بالصلاحية للقيد فى السجل العينى متى استوفى الطلب البيانات والمستندات المقررة. وتستثنى طلبات قيد صحف الدعاوى وأوراق الإجراءات من إجراء التغييرات المشار إليها فى المراجع المساحية على أن يتضمن كشف التحديد المساحى البيانات اللازمة لذلك حتى قيد الأحكام النهائية الصادرة فيها وما يستتبعه ذلك من إجراء التغييرات المساحية اللازمة».
+
+**مادة (104):** «لا تنفذ بصفة نهائية على الخرائط والمراجع المساحية التغييرات المتعلقة بالوحدات العقارية والمترتبة على التصرفات والأحكام النهائية المطلوب قيدها فى السجل إلا بعد قيد أى منهما فيه. وإذا انقضت المدة القانونية للطلب دون قيد مشروع المحرر الخاص به فى السجل العينى فيتعين على المأمورية إخطار المكتب الهندسى للتأشير فى الخرائط والمراجع المساحية بإلغاء التغييرات التى أدخلت على الوحدة العقارية بعد التأكد من عدم وجود طلبات أخرى قائمة مقدمة على ذات الوحدة العقارية».
+
+**مادة (116):** «يدون فى قسم الصحيفة الخاص بالقيود الواردة على حق الملكية شرط منع التصرف وحق الانتفاع وحق الحكر والإيجارات والسندات التى ترد على منفعة العقار إذا زادت مدتها على تسع سنوات والمخالصات والحوالات بأكثر من أجرة ثلاث سنوات مقدمًا، وكذلك الأحكام النهائية المثبتة لشئ من ذلك وإعلان الرغبة فى الأخذ بالشفعة والتنازل عن حق الشفعة وصحف الدعاوى التى يكون الغرض منها الطعن فى الحقوق المقيدة فى السجل وجودًا أو صحة أو نفاذًا وصحف الدعاوى المتعلقة بأى حق من الحقوق العينية العقارية كدعاوى صحة التعاقد ودعاوى تثبيت الملكية ودعاوى الاستحقاق والديون التى على التركة وكافة القيود القانونية والاتفاقية الأخرى».
+
+**المادة الثانية** — تضاف مادة جديدة للائحة التنفيذية للقرار بقانون رقم 142 لسنة 1964 بنظام السجل العينى برقم (123 مكررًا)، نصها الآتى:
+
+**مادة (123 مكررًا):** «إذا تصرف أحد الشركاء فى نصيبه كاملاً أو جزءًا منه (محدد ومفرز) فى الوحدة العقارية فيتعين على مكتب السجل عند إثبات مضمون المحرر الخاص بهذا التصرف فى السجل إلغاء صحيفة السجل المخصصة لهذه الوحدة والاستعاضة عنها بصحف عقارية تخصص إحداها للجزء محل التصرف والأخرى للباقى يسكن بها أسماء باقى الملاك بعد استبعاد القدر محل التصرف».
+
+**المادة الثالثة** — يُنشر هذا القرار فى الوقائع المصرية، ويُعمل به اعتبارًا من تاريخ نشره. صدر فى 31/3/2015.
+
+## Justice Minister Decision 4476/2014 — original Gazette page-image capture and Arabic text
+
+**Publication:** الوقائع المصرية, issue 159, 12 July 2014. **Decision date:** 9 June 2014. **Effect:** day after publication.  
+**Source tier:** Library of Congress Cairo Field Office scan of the printed Official Egyptian Proceedings issue, with visible Library of Congress purchase stamp on cover. This is a primary Gazette page-image reproduction, not the Amiri Press source binary. PDF: https://tile.loc.gov/storage-services/service/ll/llscd/79646495_20140712/79646495_20140712.pdf. The contents page identifies Minister of Justice Decisions 4457 and 4476/2014 on pages 3–14; Decision4476 begins at printed page 6.
+
+وزارة العدل  
+قرار وزير العدل رقم 4476 لسنة 2014  
+بتعديل بعض أحكام اللائحة التنفيذية للقانون رقم 142 لسنة 1964 بنظام السجل العينى.
+
+وزير العدل  
+بعد الاطلاع على القانون رقم 142 لسنة 1964 بنظام السجل العينى؛  
+وعلى قرار وزير العدل رقم 825 لسنة 1975 باللائحة التنفيذية للقانون رقم 142 لسنة 1964 بنظام السجل العينى؛  
+قرر:
+
+**المادة الأولى** — يحل النموذج رقم (11 مكرر عيني) للمبنى والأرض الفضاء والنموذج رقم (50 عيني) للشقة أو المحل أو غيرهما المرفقان بالقرار محل النموذج الوارد باللائحة التنفيذية لقانون السجل العينى والمعنون (صحيفة وحدة عقارية لمبنى أو أرض فضاء).
+
+**المادة الثانية** — تضاف إلى اللائحة التنفيذية للقانون رقم 142 لسنة 1964 بنظام السجل العينى مادة برقم (114 مكررًا) تنص على أن: «يقيد فى قسم الصحيفة الخاص بالأجزاء المشتركة أسماء الأجزاء المشتركة للمبنى وبوجه خاص المداخل والأفنية والأسطح والمصاعد والممرات والدهاليز ومسقط كل جزء وحدوده مع رسم كروكى لكل جزء يبين شكله حسب الطبيعة».
+
+**المادة الثالثة** — ينشر هذا القرار فى الوقائع المصرية، ويعمل به من اليوم التالى لنشره. صدر فى 9/6/2014.
+
+**Attached forms:** The Gazette PDF includes two model forms:
+- Form 11 bis (عيني): صحيفة وحدة عقارية (لأرض فضاء / مبنى), with cadastral identity, unit description, ownership, restrictions, easements, ancillary rights, common parts and valuation sections.
+- Form 50 (عيني): صحيفة وحدة عقارية (شقة / محل / غيرهما), with building/unit identity, ownership, supporting title, rights, shared areas and valuation sections.
+
+The form page images are preserved in the linked issue PDF (printed pages 7–10). The PDF text extraction exposes the form fields and tables, but the page images remain the authoritative layout source.
+
+## Amendment-version implications
+
+- Decision2645/2015 changes Executive Regulation 825/1975 Articles83,88,104,116 and inserts Article123 bis. It is a substantive procedural amendment, not a mere administrative delay decision.
+- Decision4476/2014 replaces two prescribed forms and inserts Article114 bis on recording common parts of a building. The inserted article and attached forms must be versioned together.
+- Decision11264/2016 subsequently cites Decision2645/2015 in its preamble and further amends Decision825/1975; it does not silently erase the need to preserve the 2015 text as a historical version.
+- Original Amiri Press binaries and SHA-256 hashes for these two decisions are not archived. Decision4476's Library of Congress Gazette scan is the strongest primary page-image source presently located.
