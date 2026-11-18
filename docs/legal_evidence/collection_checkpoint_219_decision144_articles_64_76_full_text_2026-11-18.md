@@ -4,6 +4,8 @@
 **Source:** LAW HUB searchable Arabic text, https://lawhub.info/eg/?p=12146, lines 1534–1638 as opened on 18 November 2026.  
 **Source tier:** secondary transcription; compare with the 2009 Gazette and later amendments before legal reliance.
 
+**Superseding note (checkpoint 220):** Articles 77–90 have now also been transcribed. Cumulative complete Arabic-body coverage is 97/185 (88 remain). See checkpoint 220.
+
 ## Article 64
 تحدد مناطق إعادة التخطيط التي ينطبق عليها الحالات المنصوص عليها في القانون والتي يقرها المجلس بناء على عرض المحافظ المختص كمناطق تخضع لتعديل استخدامات الأراضي عند إعداد المخطط الاستراتيجي العام للمدينة أو القرية أو المخطط التفصيلي ووفقا للأسس والمعايير التالية:
 
