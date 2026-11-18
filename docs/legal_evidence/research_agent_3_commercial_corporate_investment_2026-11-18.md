@@ -2616,3 +2616,45 @@ The complete searchable Law 120/1982 text with Law 21/2022 amendments exposes th
 > يجوز للوزير المختص التصالح عن أي من الجرائم المنصوص عليها في هذا القانون قبل إقامة الدعوى الجنائية، مقابل أداء مبلغ لا يقل عن مثلي الحد الأدنى ولا يجاوز الحد الأقصى للغرامة المقررة، ويجوز التصالح بعد إقامة الدعوى الجنائية وقبل صدور حكم فيها مقابل أداء مبلغ لا يقل عن أربعة أمثال الحد الأدنى ولا يجاوز الحد الأقصى للغرامة المقررة، كما يجوز التصالح بعد صدور الحكم الجنائي مقابل أداء مبلغ لا يقل عن الحد الأقصى للغرامة المقررة ولا يجاوز مثليه، ويترتب على التصالح انقضاء الدعوى الجنائية بالنسبة للجريمة التي تم التصالح في شأنها، وتأمر النيابة العامة بوقف تنفيذ العقوبة إذا حصل التصالح أثناء تنفيذ العقوبة ولو كان ذلك بعد صيرورة الحكم باتاً.
 
 **Important legal distinction:** Law 21/2022's Article 2 bis and Article 3 bis are the statutory basis for a separate electronic register and special eligibility for real-estate brokers. The later Executive Regulation Decision 593/2025 adds detailed register, training and transaction-ledger mechanics; Decision 578/2025 supplies the types/classes delegated by Article 2 bis and Article 3 bis. These instruments should be linked as statute → implementing regulation → classification decision.
+
+
+## 26. Investment Law 72/2017 — 2022 sector classification decision and 2026 industrial incentive schedule update
+
+### A. PM Decision 104/2022 — investment activity sector/subsector allocation
+
+**Decision:** Prime Minister Decision 104/2022.  
+**Official Amiri Press / MIFT references:** the decision allocates sub-sectors of investment activities in industry, tourism, communications and information technology, petroleum and natural resources, agriculture/animal/poultry/fisheries production and transport across geographic zones (A) and (B). It is the baseline schedule used to determine which projects qualify for the additional investment incentives under Law 72/2017, including the geographic/sector eligibility conditions in Article 11 bis.
+**Source:** referenced in the official Amiri Press preamble to Decision 503/2026: https://www.alamiria.com/Sec/TashTxt?id=AAWyD55BtvA%3D
+
+The full 104/2022 Gazette PDF and its schedules should be collected and normalized; it is a key implementing instrument for Law 72/2017 incentive eligibility, not just a descriptive classification.
+
+### B. PM Decision 503/2026 — replacement of industrial sub-sector schedules
+
+**Official Amiri Press searchable text:** https://www.alamiria.com/Sec/TashTxt?id=AAWyD55BtvA%3D  
+**Gazette:** Official Gazette issue 7 bis (أ), 16 February 2026.  
+**Effective:** 17 February 2026.  
+**Official searchable text confirms the full decision and two replacement schedules.**
+
+**Verbatim — Decision Article 1:**
+
+> (المادة الأولى)
+>
+> يستبدل بتوزيع القطاعات الفرعية لأنشطة الاستثمار الوارد قرين البند "أولاً: قطاع الصناعة" بالجدولين رقمي (1) و(2) المرافقين لقرار رئيس مجلس الوزراء رقم 104 لسنة 2022 المشار إليه، توزيع القطاعات الفرعية لأنشطة الاستثمار بقطاع الصناعة الوارد بالجدولين رقمي (1) و(2) المرافقين لهذا القرار.
+
+**Verbatim — Decision Article 2:**
+
+> (المادة الثانية)
+>
+> ينشر هذا القرار في الجريدة الرسمية، ويعمل به اعتباراً من اليوم التالي لتاريخ نشره.
+
+Decision 503/2026 replaces only the industrial sector sub-sector distributions in schedules (1) and (2) of Decision 104/2022; it does not replace the entire 104/2022 decision. The new schedules include, among other categories, renewable-energy components/green hydrogen inputs, electric vehicles and charging stations, pharmaceuticals, food processing, engineering and metal industries. MIFT's official notice confirms the automotive sector and its feeder industries were added to eligible investment incentive activities in both zones (A) and (B).
+
+**Source for the official policy explanation:** MIFT: https://mift.gov.eg/Blog/Details/93  
+**Searchable schedule text:** https://www.eastlaws.com/legislation-full-text/ar/egypt/prime-minister-decision/16-02-2026/no-503?id=5386638&type=1
+
+### C. PM Decision 1/2024 — temporary extension of establishment deadline (expired)
+
+GAFI-hosted Gazette PDF: https://www.gafi.gov.eg/Arabic/StartaBusiness/Laws-and-Regulations/SiteAssets/Pages/BusinessLaws/قرار%20رقم%201%20لسنة%202024.pdf  
+Official Gazette issue 3, 18 January 2024. It extended the period for establishing companies and establishments under Article 12(1) of Law 72/2017 until 28 October 2026. This extension has expired as of 29 October 2026 unless a later instrument extended it again; no further extension was identified in this collection pass. Do not present it as currently available.
+
+**Collection status:** Decision 503/2026 full searchable operative text and Gazette issue/effective date obtained; Decision 104/2022 identified as the parent schedule instrument; full base schedules and complete Gazette image reconciliation still outstanding. Decision 1/2024 captured as an expired temporary extension.
