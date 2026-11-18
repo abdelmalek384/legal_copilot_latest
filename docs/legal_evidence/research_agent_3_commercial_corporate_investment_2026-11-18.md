@@ -2825,9 +2825,9 @@ The official CBE circulars database is a live index and should be queried by top
 
 ### A. Unique instruments with at least some Arabic text surfaced
 
-**Current minimum: 58 distinct legal instruments** with at least some Arabic legal text surfaced in this Agent 3 collection. This includes statutes, executive regulations, ministerial/prime-minister decisions and CBE circulars; a few are represented by selected provisions or secondary searchable reproductions rather than a full primary Gazette text. Publication-only source leads and unreadable official PDFs are excluded.
+**Current minimum: 60 distinct legal instruments** with at least some Arabic legal text surfaced in this Agent 3 collection. This includes statutes, executive regulations, ministerial/prime-minister decisions and CBE circulars; a few are represented by selected provisions or secondary searchable reproductions rather than a full primary Gazette text. Publication-only source leads and unreadable official PDFs are excluded.
 
-The 58 are:
+The 60 are:
 1. Competition Law 3/2005
 2. Executive Regulation Decision 1316/2005
 3. E-Signature Law 15/2004
@@ -2886,12 +2886,14 @@ The 58 are:
 56. Trade Register amendment Law 98/1996
 57. Trade Register amendment Law 75/2017
 58. Consumer Protection Law 181/2018
+59. Investment Executive Regulation Decision 2310/2017
+60. Investment Executive Regulation amendment Decision 2731/2019
 
 **Source-only / not counted as text obtained:** Trade Register Executive Regulation Decision 106/2018 (14.9 MB official PDF locator, download failed); original E-Signature Executive Regulation Decision 109/2005 (official publication confirmation only); PM Decision 104/2022 (parent schedules identified, full schedules not extracted); Consumer Protection Law 181/2018 (official PDF OCR unusable); CBE eKYC circular 23 August 2026 and CBE PSO/PSP 2025 licensing/governance PDFs (official locators but reader blocked).
 
 ### B. Article/provision text units
 
-**Current minimum: 407 article/provision text units surfaced.** This reconciles the previous 111-unit baseline with 296 additional individually surfaced article or regulatory-section texts in this checkpoint, including 20 provisions from Law 4/2018, eight provisions from Law 156/2004, six provisions from Laws 168/2000, 150/2001 and 158/2003, 19 investment-law/regulation provisions, 18 provisions from the 2024 e-signature regulation, 19 Capital Market amendment provisions, 41 provisions across four bankruptcy implementation decisions, two earlier Trade Register amendment provisions, 23 Consumer Protection Law provisions, and nine additional Consumer Executive Regulation provisions. It is a manual minimum, not a count of unique operative provisions after amendment normalization. It includes some regulatory sections (e.g., CBE Agent Banking numbered sections) and selected provisions, and does not count every article merely because a full searchable PDF spans a larger numbering range.
+**Current minimum: 549 article/provision text units surfaced.** This reconciles the previous 111-unit baseline with 438 additional individually surfaced article or regulatory-section texts in this checkpoint, including the 140 articles of the consolidated Investment Executive Regulation 2310/2017 and two inserted FDI-reporting provisions (126 bis and 126 bis A), alongside the previously listed amendment and statutory provisions. Counts are not deduplicated across consolidated and amending texts. It is a manual minimum, not a count of unique operative provisions after amendment normalization. It includes some regulatory sections (e.g., CBE Agent Banking numbered sections) and selected provisions, and does not count every article merely because a full searchable PDF spans a larger numbering range.
 
 ### C. Assigned-domain coverage
 
