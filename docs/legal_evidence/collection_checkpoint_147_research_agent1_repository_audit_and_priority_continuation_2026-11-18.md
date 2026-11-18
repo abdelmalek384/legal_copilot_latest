@@ -176,3 +176,43 @@ These are source-tier upgrades to already indexed judicial authorities, not new 
 ### Case 42/17 Gazette metadata discrepancy
 
 The full text remains available only through secondary legal repositories; no direct official SCC Case 42/17 page or original Gazette scan was found in this follow-up. The reported Gazette publication is 18 June 1998, but issue numbering conflicts: checkpoint 90 and some references state issue 35 supplement, while a secondary scanned consolidation points to issue 25 supplement. Keep the issue number unresolved pending the actual Gazette page. The operative holding remains: invalidation of Law 142/1964 Article 37(2)'s bar on acquisitive prescription contrary to the register, with Article 38 falling consequentially; Article 37(1)'s evidentiary rule was not invalidated.
+
+
+## 12. Additional amendment-chain source leads confirmed
+
+### Law 143/1981
+
+Law 11/2024 is an amending statute to Law 143/1981. It replaces Article 11(2) and Article 12(2), and the secondary legislation record gives commencement as 25 February 2024. The official Ministry of Agriculture PDF for the base Law 143/1981 is available. Record Law 11/2024 as a distinct amending instrument only if it is not already present in the instrument catalogue; do not count it twice. The Law 143 amendment graph also needs all earlier amendment instruments and the Case 101/26 constitutional invalidation.
+
+### Law 114/1946
+
+Key chain components already identified:
+- Law 223/1996: amendment to Article 21 (as annotated in the government-hosted Ministry of Justice text).
+- Law 186/2020: inserted Article 35 bis; official government-hosted Gazette reproduction is available.
+- Law 5/2021: deferred the operation of Law 186/2020 to 30 June 2023 (the statutory deferral itself must be versioned separately from the substantive amendment).
+- Law 9/2022: materially amended multiple procedural/application provisions; commencement calculated as 6 May 2022.
+- Justice Minister Decision 2332/2022: amends the Executive Regulation, effective with Law 9/2022.
+
+This is a confirmed key chain, not yet a claim that every historical amendment/correction/repeal has been found. Preserve the pre-2022 and post-2022 versions of affected provisions rather than overwriting them.
+
+### Law 142/1964
+
+Additional amendment and implementation relationships:
+- Law 83/2006 amended Law 142/1964 and Law 70/1964; its Gazette metadata is issue 22 bis, 6 June 2006. It must be mapped as a statutory amendment, including its fee provisions and the post-amendment Article 30 wording.
+- Executive Regulation Decision 825/1975 is amended by Justice Minister Decision 11264/2016 (published in Egyptian Proceedings issue 30, 6 February 2017; instrument number 11264/2016).
+- Territorial commencement postponement decisions are a separate implementing-decision series, not amendments to the substantive statute. Recent Gazette examples include Decisions 7173/2024, 7175/2024, 6512/2024, 739/2025, 5207/2026 and 5208/2026, each with its own cadastral sections and date schedule. The official SIS PDFs for Decisions 7175/2024 and 739/2025 are available; retain all territorial sections and dates in a temporal schedule rather than a single nationwide commencement flag.
+- Constitutional Cases 42/17 and 10/35 affect Articles 37(2), 38, 21, 23 and 24 and Decision 553/1976, as separately mapped above.
+
+## 13. Checkpoint 147 incremental category counts
+
+| Category | New records/texts added in checkpoint 147 |
+|---|---:|
+| Base laws | 0 |
+| Amending laws | 0 |
+| Executive regulations | 0 |
+| Judicial decisions | 0 |
+| Full legal texts newly acquired | 0 |
+| Unique article provisions newly transcribed | 0 |
+| Existing-source audits / provenance reconciliations | 1 batch |
+
+This is intentionally a zero-addition checkpoint: the work updated status and source distinctions without creating duplicate legal-instrument or article-text records. Cumulative instrument-type totals require a normalized instrument-type field and repository-wide deduplication; the 189-row catalogue count must not be presented as a count of base laws or full texts.
