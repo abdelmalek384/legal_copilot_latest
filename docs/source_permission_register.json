@@ -1176,6 +1176,86 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "Individual pages/PDF attachments; no bulk/API permission established",
       "required_next_action": "Obtain original Amiri Press Gazette files where available; compare all article text and historical footnotes; review site terms and keep commercial reuse unknown absent affirmative permission."
+    },
+    {
+      "source_id": "EG-MOA-DESERT-LAND-LAW143",
+      "authority": "Ministry of Agriculture and Land Reclamation, Egypt",
+      "source_page": "https://moa.gov.eg/media/sf1heyme/143.pdf",
+      "material_types": [
+        "Law 143/1981 full statute text"
+      ],
+      "access_status": "Public official ministry PDF; original Gazette binary not established.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-11-18. Public access does not establish permission for bulk download, OCR, indexing, commercial use, public display or redistribution. No source-specific affirmative permission identified.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review source terms; obtain original Gazette copies through authorized channels; keep rights unknown absent documentary permission."
+    },
+    {
+      "source_id": "EG-LAWYEREGYPT-LEGAL-CORPUS",
+      "authority": "LawyerEgypt legal information website (secondary legal publisher)",
+      "source_page": "https://lawyeregypt.net/",
+      "material_types": [
+        "Consolidated statutes and executive regulations"
+      ],
+      "access_status": "Public secondary text; no bulk or commercial reuse licence identified.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-11-18. Public access does not establish permission for bulk download, OCR, indexing, commercial use, public display or redistribution. No source-specific affirmative permission identified.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review source terms; obtain original Gazette copies through authorized channels; keep rights unknown absent documentary permission."
+    },
+    {
+      "source_id": "EG-LAWEG-LEGAL-ARCHIVE",
+      "authority": "Legal and Administrative Legislation website (Laweg)",
+      "source_page": "https://www.laweg.net/",
+      "material_types": [
+        "Full-text ministerial decisions and executive regulation amendments"
+      ],
+      "access_status": "Public secondary legal text archive; no reuse licence identified.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-11-18. Public access does not establish permission for bulk download, OCR, indexing, commercial use, public display or redistribution. No source-specific affirmative permission identified.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review source terms; obtain original Gazette copies through authorized channels; keep rights unknown absent documentary permission."
+    },
+    {
+      "source_id": "EG-LAWHUB-STATUTE-TEXTS",
+      "authority": "Law Hub / Al-Mawsoua al-Qanuniya (secondary legal information site)",
+      "source_page": "https://lawhub.info/eg/",
+      "material_types": [
+        "Consolidated statute texts and amendment notes"
+      ],
+      "access_status": "Public secondary legal text; no reuse licence identified.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-11-18. Public access does not establish permission for bulk download, OCR, indexing, commercial use, public display or redistribution. No source-specific affirmative permission identified.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review source terms; obtain original Gazette copies through authorized channels; keep rights unknown absent documentary permission."
+    },
+    {
+      "source_id": "EG-EASTLAWS-LEGAL-DATABASE",
+      "authority": "EastLaws legal database",
+      "source_page": "https://www.eastlaws.com/",
+      "material_types": [
+        "Searchable Egyptian statutes and ministerial decisions"
+      ],
+      "access_status": "Public/searchable database; no general bulk or commercial reuse licence identified.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-11-18. Public access does not establish permission for bulk download, OCR, indexing, commercial use, public display or redistribution. No source-specific affirmative permission identified.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review source terms; obtain original Gazette copies through authorized channels; keep rights unknown absent documentary permission."
     }
   ]
 }
