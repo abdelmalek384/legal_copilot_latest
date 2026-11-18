@@ -81,3 +81,30 @@
 - Working assigned-domain completion estimate remains **31%**. It is a planning estimate without a validated denominator, not an article-count percentage.
 - Whole-corpus estimate remains **approximately 2%** per the master index; one new regulator decision does not justify changing that estimate.
 - No source reuse permission or lawyer sign-off is claimed.
+
+
+## Checkpoint 132 — FRA Decision 166/2026 amending insurance contract forms
+
+**Incremental acquisition:** one distinct FRA Board decision; two operative issuing articles. Full preamble and exact operative Arabic captured in [Decision 166/2026 text record](agent3_fra_decision166_2026_amend_group_insurance_contracts_arabic_text.md).
+
+- Gazette: الوقائع المصرية, issue 191 supplement (أ), 1 September 2026, printed pages 21–22.
+- Official FRA-hosted PDF: https://www.fra.gov.eg/wp-content/uploads/2026/09/alamiria_2026_166.pdf
+- Article 1 replaces item six in each group-insurance contract form attached to Decisions 27/2026 and 28/2026. The replacement enumerates exclusions for beneficiary crime, nuclear/chemical/biological risks, pre-existing AIDS, and active participation in war/hostile/insurrectionary/civil-disturbance events.
+- Article 2 states commencement on the day following Gazette publication (derived calendar date: 2 September 2026).
+- Official FRA Decision 28/2026 page links Decision 166/2026 as its amendment history: https://fra.gov.eg/regulations/قرار-مجلس-إدارة-الهيئة-رقم-28-لسنة-2026-نسخة/.
+- Text was captured from the official FRA-hosted Gazette PDF text layer; visual page-image QA and original Amiri Press binary/hash remain outstanding. No commercial reuse permission or lawyer sign-off is claimed.
+
+## Counts and progress after checkpoint 132
+
+| Measure | Previous checkpoint | Increment | Current |
+|---|---:|---:|---:|
+| Distinct instruments in this continuation's reconciled baseline | 152 | +1 | 153 |
+| Provision units in this continuation's reconciled baseline | 1,365 | +2 | 1,367 |
+| Assigned legal families touched | 13/13 | 0 | 13/13 |
+| Families currentness-complete | 0/13 | 0 | 0/13 |
+| Lawyer-reviewed content | 0% | 0 | 0% |
+
+**Count caveat:** the 152/1,365 continuation baseline is older than some master-index checkpoints and conflicts with larger interim Agent 3 notes found in repository search. The +1/+2 increment is independently verified; the cumulative totals above are continuation-local, not asserted as the globally reconciled Agent 3 total. Do not use them to overwrite the acquisition register without a full ID-level reconciliation.
+
+- Working assigned-domain completion estimate remains **31% provisional** in this continuation ledger. The newer master-index dashboard's Agent 3 estimates should govern after reconciliation; no percentage increase is justified by one amendment alone.
+- Whole-corpus estimate remains approximately **2% provisional**.
