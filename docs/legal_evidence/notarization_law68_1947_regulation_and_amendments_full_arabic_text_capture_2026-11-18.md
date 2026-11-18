@@ -313,3 +313,17 @@
 **مادة (34) مكررا** — «في مكاتب وفروع التوثيق المميكنة يستغنى عن الدفاتر المشار إليها في المواد (14، 25، 32) وتجمع أصول المحررات الموثقة بعد ترقيمها بأرقام متتابعة وتجلد وتحفظ بمرفقاتها، ويستعاض عن دفتري التصديق على التوقيعات وإثبات التاريخ بصور المسح الضوئي غير القابلة للتعديل المحفوظة على جهاز الكمبيوتر بعد توقيع صاحب الشأن عليها».
 
 **Verification gap:** the consolidated source identifies the amendment but does not supply the standalone Decision 6199/2007 preamble, operative article, issue/date or commencement. Treat this as an attributed article-version note, not a complete acquired instrument.
+
+
+## L. Justice Minister Decision 9200/2015 — amendment concerning foreign marriage to an Egyptian woman
+
+**Publication:** الوقائع المصرية, issue 278, 8 December 2015.  
+**Source tier:** partial secondary transcription from Lawyer Egypt; the Egyptianlaws catalogue confirms title and issue metadata but its embedded text iframe did not expose the Gazette article bodies. Sources: https://lawyeregypt.net/قرار-وزير-العدل-رقــم-9200-لسنة-2015-بشأن-ايداع-شهادات/ and https://egyptianlaws.com/?p=161543.
+
+**بعد الاطلاع على الدستور؛ وعلى القانون رقم 68 لسنة 1947 بشأن التوثيق؛**
+
+**المادة (1)** — «يكلف طالب الزواج الأجنبي من طالبة الزواج المصرية بتقديم شهادات استثمار ذات عائد دوري بالبنك الأهلي المصري بمبلغ 50 ألف جنيه باسم طالبة الزواج المصرية، واستيفاء المستندات المطلوبة لدى مكتب التوثيق، وذلك إذا ما جاوز السن بينهما 25 سنة عند توثيق العقد».
+
+**المادة (2)** — The secondary transcription begins: «يُنشر هذا القرار في الوقائع المصرية، و…» and is truncated. Do not reconstruct the missing operative/commencement wording.
+
+**Verification gap:** obtain the complete issue 278 page image or standalone decision; establish whether Article 2 provides commencement on publication or the following day; check subsequent amendments, repeal or judicial review of the investment-certificate condition.
