@@ -1914,3 +1914,6 @@ Latest Agent 3 continuation: [checkpoint 5](agent3_progress_checkpoint_2026-11-1
 
 
 - Decision 191/2018 source anomaly resolved: all eight pages of the official FRA consolidated PDF (updated 16 Nov 2022) were visually inspected. Printed page 1 clearly reads Decision **191/2018**; the prior OCR output «91/2018» was an extraction error, not a discrepancy in the PDF. Visual review confirms the current «في كل وقت» Article 1 wording, the annex Articles 1–9, and the Decision 69/2020 / 161/2022 amendment footnotes. The standalone Decision 161/2022 Gazette redline remains outstanding. [Visual verification addendum](agent3_fra_decision_191_2018_official_consolidated_2022_arabic_text_upgrade.md).
+
+
+- Decision 138/2018 Gazette page-image validation improved: official FRA scan confirms Gazette issue 213 تابع, 23 Sep 2018, and the exact Article 1 text on accounting standards, auditor oversight, impairment/provisions, record retention and tax deductibility. First two pages were visually inspected; pages 3–4 were access-denied, so remaining articles/commencement still need alternate-source recovery. The guide-based text record now includes a distinct Gazette wording supplement; do not treat the full decision as page-image authenticated. [Updated Decision 138/2018 record](agent3_fra_decision_138_2018_financial_statements_arabic_text.md).
