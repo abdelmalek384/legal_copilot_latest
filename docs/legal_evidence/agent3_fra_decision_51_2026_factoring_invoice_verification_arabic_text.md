@@ -53,3 +53,10 @@
 - This decision was not previously listed in the current master index's Agent 3 progress summary.
 - Prior Agent 3 baseline after Decision 43/2026: 210 instruments / 2,051 normalized units.
 - Updated Agent 3 cumulative minimum: **211 instruments / 2,054 units**, pending acquisition-register reconciliation. Assigned-domain estimate remains 55% provisional; whole corpus approximately 2%; lawyer review 0%; commercial reuse permissions 0.
+## Primary-source upgrade — 18 November 2026
+
+- The original Official Gazette reproduction is now directly acquired from FRA: https://fra.gov.eg/wp-content/uploads/2026/03/alamiria_2026_51.pdf
+- Gazette issue 45 supplement (ب), 24 February 2026. The official PDF contains the full two operative articles and the inserted Article 3 bis in Decision 163/2018.
+- This supersedes the earlier secondary-text-only source status. The original Gazette page image is now available for direct verification; the transcription above should be checked against the official scan before ingestion.
+- Updated source status: `official FRA-hosted Official Gazette PDF captured; image QA pending; not lawyer-reviewed`.
+- Base text of Decision 163/2018 now separately captured: [Decision 163/2018 factoring executive controls](agent3_fra_decision_163_2018_factoring_executive_controls_arabic_text.md).
