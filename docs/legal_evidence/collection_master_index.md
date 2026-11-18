@@ -887,3 +887,11 @@
 - Adds Regulation Article 35 مكرراً 9: energy-source certificates under Electricity Law 87/2015 are financial instruments tradable on Egyptian exchanges. This amends Executive Regulation Decision 135/1993, not Capital Market Law 95/1992 itself.
 - Two issuing provisions and the inserted regulatory provision transcribed in Agent 3 file.
 - **Updated Agent 3 minimum:** 78 distinct instruments with some Arabic text surfaced; 1,068 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Capital Market Executive Regulation Decisions 2423/2024 and 3045/2023
+
+- PM Decision 2423/2024: Official Gazette issue 30 bis (أ), 28 Jul 2024; FRA official record. Replaces 10 provisions of Decision 135/1993 and adds hedge-fund definition and Article 179 bis/2. Selected text includes sukuk paying-agent monthly disclosure, 15-day shareholder pre-emption, 60% fund borrowing cap for private-equity/real-estate/VC funds, related-party property investment controls, hedge-fund investment scope.
+- PM Decision 3045/2023: Official Gazette issue 31 bis (و), 8 Aug 2023; effective 9 Aug 2023; FRA official record. Replaces multiple provisions on sukuk, fund disclosure/governance and securitization; adds ETF and ESG fund definitions, Article 179 bis/1 sustainable-development funds and Article 308 bis securitization programs. Selected provisions transcribed.
+- Both amend Executive Regulation Decision 135/1993, not Law 95/1992 itself. Read with 1539/2025 and 2482/2025.
+- **Updated Agent 3 minimum:** 80 distinct instruments with some Arabic text surfaced; 1,085 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
