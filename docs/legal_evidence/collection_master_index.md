@@ -2438,3 +2438,15 @@ Added complete two-article Arabic transcription of PM Decision2652/2026 extendin
 
 ### November and August 2026 PM decision tranche — EG-0357 to EG-0363
 Added the full five-article census amendment (Decision2448), a clearly marked partial extract for Suez University company Decision2552, four operative articles for Shark Bay tourist seaport Decision3168 (coordinates annex outstanding), and complete searchable Arabic texts for Decisions3486–3489 (teacher competency incentive, medical benefits, university teaching incentive and academic quality incentive). See [Arabic text tranche](acquisition_tranche_2026_pm2448_2552_3168_3486_3489_2026-11-18.md).
+
+
+## Acquisition dashboard — 18 November 2026 (rolling; no new checkpoint)
+
+- **Acquisition register:** 347 unique instrument records; no duplicate instrument IDs.
+- **Classification:** 347 classified records — 74 base laws, 68 amending laws, 19 executive regulations, 44 executive-regulation amendments, 107 other decisions, 21 judicial decisions, 14 other.
+- **Priority text inventory:** 123 entries, covering 119 unique instrument IDs (four repeated source/inventory entries are cross-links, not extra instruments).
+- **Text-capture progress within this priority inventory:** 55 / 123 (44.7%) entries report a complete/full searchable text or complete operative transcription; 25 / 123 (20.3%) are partial/local excerpts; 43 / 123 (35.0%) are reference-only or capture status is unclear. This is **not** a percentage of all Egyptian legislation: no finite national universe has yet been defined, and some "full text" records refer to searchable external copies rather than a fully mirrored local transcription.
+- **Source-permission register:** 111 source records. Site-level CC BY notices are not treated as permission for third-party Gazette scans; no blanket commercial-reuse permission is asserted.
+- **Latest acquisition batch:** 15 additional instruments registered across Laws 1/2026, 2/2026, 74/2026; PM Decisions 37, 2402, 1966, 2652, 2448, 2552, 3168, 3486, 3487, 3488 and 3489 of 2026; and Transport Minister Decision430/2026.
+
+**Text-first priorities still open:** complete PM Decision1966 staff regulation and salary/job annexes; complete PM Decision2402 verbatim; Decision2552 complete company terms; Decision3168 coordinate annex; acquire original Gazette binaries and compare page images for the new tranche; capture ministerial implementing circulars for Decisions3486–3488.
