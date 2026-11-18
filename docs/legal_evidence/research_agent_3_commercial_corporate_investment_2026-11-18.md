@@ -6910,3 +6910,159 @@ The 2025 FRA consolidated regulation annotates Articles 35 bis/4 and 35 bis/5 as
 Decision 3456/2022 is part of the legal basis for sustainability bonds, climate/transition bonds, sustainable-development instruments and related securitization/sukuk. It should be read with Decisions 3045/2023 (ESG/ETF and securitization programs), 2423/2024 (hedge funds and fund governance), 1539/2025 (energy certificates) and 2482/2025 (installment-paid fund units).
 
 **Collection status:** official FRA decision record and FRA consolidated Executive Regulation PDF located; three regulatory provisions transcribed, with the Article 148 version explicitly marked historical. Gazette issue/date is from secondary legal metadata and requires original issue-image confirmation. No lawyer review or rights clearance claimed.
+
+
+## 52. Financial Leasing and Factoring Law 176/2018 — full FRA consolidated Arabic statute
+
+### A. Primary regulator text and extent
+
+**Instrument:** Law 176/2018 issuing the Law Regulating Financial Leasing and Factoring.  
+**Gazette:** Official Gazette issue 32 bis (ج), 14 August 2018; effective 15 August 2018.  
+**FRA official consolidated PDF (February 2025):** https://fra.gov.eg/wp-content/uploads/2025/02/قانون-تنظيم-نشاطي-التأجير-التمويلي-والتخصيم-1.pdf  
+**FRA original publication PDF:** https://www.fra.gov.eg/wp-content/uploads/2018/08/قانون-رقم-176-لسنة-2018-بتاريخ-14.pdf  
+**FRA current law record:** https://fra.gov.eg/en/regulations/قانون-رقم-176-لسنة-2018-بإصدار-قانون-تنظيم-نش-2/  
+**Full searchable Arabic text (secondary):** https://alhasswalawfirm.com/law-library/law-176-2018
+
+The FRA-hosted February 2025 consolidated PDF contains the issuing provisions and the attached statute through Article 84 (84 numbered statutory articles). The PDF includes the full text of the leasing and factoring regimes, licensing, governance, capital, confidentiality, assignment, supervision, administrative measures, offences and penalties. It is a regulator-hosted consolidation, but the Gazette remains the authoritative legal publication. The currentness of every FRA Board decision made under Articles 2, 5, 55, 60 and 72 must be mapped separately.
+
+### B. Additional verbatim provisions
+
+**Verbatim — Article 37 (factoring receivable eligibility):**
+
+> مادة ٣٧
+>
+> يجب أن يتوافر في الحق المبيع للمخصم الشروط الآتية:
+>
+> ١- أن يكون ناشئاً عن معاملات تجارية مرتبطة بنشاط كل من البائع والمدين، وليست ناشئة عن عمليات إقراض نقدي.
+>
+> ٢- أن يكون خالياً من أي حقوق حالية أو مستقبلية للغير.
+>
+> ٣- ألا يكون مقيداً أو مشروطاً، ما لم يتفق المخصم والبائع على غير ذلك.
+>
+> ويجوز أن يكون المدين مستهلكاً نهائياً إذا توفرت الشروط الواردة بالبندين رقمي (٢، ٣) من هذه المادة وذلك وفقاً للضوابط التي يضعها مجلس إدارة الهيئة.
+
+**Verbatim — Article 38 (assignment of receivables):**
+
+> مادة ٣٨
+>
+> تنتقل الحقوق المالية من البائع إلى المخصم وفقاً لأحكام القانون المدني، مع الالتزام بالأحكام الواردة في هذا القانون وما يصدره مجلس إدارة الهيئة من قرارات في هذا الشأن.
+
+**Verbatim — Article 39 (debtor notice):**
+
+> مادة ٣٩
+>
+> يكون إخطار المدين بانتقال الحقوق المالية للمخصم وفقاً للطرق والضوابط التي يضعها مجلس إدارة الهيئة، بما يكفل علم المدين بانتقال الحقوق المالية للمخصم، على أن يتضمن الإخطار بيانات كل من البائع والمخصم والحقوق المالية المخصصة، ولا يكون الإخطار نافذاً إلا إذا كان بذات لغة عقد البيع أو اللغة الرسمية لدولة المدين.
+>
+> ويجوز أن يكون الإخطار بانتقال الحقوق المالية متعلقاً بحقوق تنشأ بعد الإخطار.
+>
+> وفي جميع الأحوال، يكون انتقال الحقوق نافذاً ومنتجاً لأثره من تاريخ إبرام اتفاق انتقال الحقوق.
+
+**Verbatim — Article 40 (debtor disclosure duties):**
+
+> مادة ٤٠
+>
+> يجب أن يتضمن الإخطار بانتقال الحقوق التنبيه على المدين بإبلاغ المخصم بأي مانع قد يحول بينه وبين الوفاء بالحقوق وبظروف الحق وما يحيط به من مخاطر وصعوبات قد تحول دون استيفائه، وذلك وفقاً للضوابط التي يضعها مجلس إدارة الهيئة، وإلا سقط حقه حيال المخصم في التمسك بالدفع الناشئة عن تلك الظروف.
+
+**Verbatim — Article 43 (seller recourse/guarantees):**
+
+> مادة ٤٣
+>
+> يجوز الاتفاق على أن يكون البائع ضامناً لوفاء المدين بالتزاماته عند حلول أجل الوفاء، وفي جميع الأحوال يكون البائع مسئولاً عن أفعاله الشخصية التي يكون من شأنها الانتقاص من الحق المبيع أو زواله.
+>
+> كما يجوز الاتفاق بين المخصم والبائع على ضمانات لاستيفاء حقوقه، ويجوز أن يقوم هو أو مدينه بتقرير رهن سواء كان رسمياً أو حيازياً، أو من خلال إشهار الحقوق على بعض المنقولات بسجل الضمانات المنقولة المنشأ وفقاً لقانون تنظيم الضمانات المنقولة الصادر بالقانون رقم ١١٥ لسنة ٢٠١٥، أو من خلال تقديم كفالة تضامنية.
+
+**Verbatim — Article 55 (company licensing prerequisites):**
+
+> مادة ٥٥
+>
+> يجب أن تتوافر في الشركات التي ترغب في الحصول على ترخيص من الهيئة بممارسة نشاط التأجير التمويلي أو نشاط التخصيم الشروط الآتية:
+>
+> ١- أن تتخذ شكل شركة مساهمة مصرية.
+>
+> ٢- ألا يقل رأس المال المصدر والمدفوع عند التأسيس عن الحد الذي يقرره مجلس إدارة الهيئة وبما لا يقل عن عشرة ملايين جنيه نقداً، أو ما يعادلها بالعملات الأجنبية.
+>
+> ٣- أن يقتصر غرض الشركة على ممارسة نشاط التأجير التمويلي أو نشاط التخصيم والخدمات المرتبطة به، وللهيئة الترخيص للشركة بممارسة نشاطي التأجير التمويلي والتخصيم معاً، أو ممارسة أنشطة مالية غير مصرفية أخرى مرتبطة بنشاطها وفقاً للضوابط التي يضعها مجلس إدارة الهيئة.
+>
+> ٤- عدم صدور حكم بعقوبة جناية أو بعقوبة مقيدة للحرية في جريمة مخلة بالشرف أو الأمانة أو الحكم بشهر الإفلاس ضد أي من مساهمي الشركة الذين تزيد مساهمتهم على (١٠٪) من رأسمالها أو أعضاء مجلس إدارتها أو مديريها خلال السنوات الخمس السابقة على تقديم طلب الترخيص، ما لم يكن قد رد إليه اعتباره.
+>
+> ٥- أن يتوافر فيما لا يقل عن ثلثي أعضاء مجلس الإدارة خبرة عملية مناسبة في أحد مجالات العمل التمويلي والمصرفي والمالي والقانوني وفقاً للمعايير التي يحددها مجلس إدارة الهيئة، وعلى أن يتضمن تشكيل مجلس الإدارة عضوين على الأقل من المستقلين وفقاً للقواعد التي يحددها مجلس إدارة الهيئة.
+
+**Verbatim — Article 60 (regulatory rulemaking subjects):**
+
+> مادة ٦٠
+>
+> يشترط لمباشرة نشاط التأجير التمويلي أو نشاط التخصيم الالتزام بالقواعد والضوابط التي يضعها مجلس إدارة الهيئة والتي يجب أن تتضمن على الأقل ما يأتي:
+>
+> ١- متطلبات الحوكمة من حيث تشكيل مجلس الإدارة، واللجان المنبثقة عنه، والإفصاحات المطلوبة من الشركة، وتوقيتها.
+>
+> ٢- الحد الأدنى الواجب توافره في الهيكل التنظيمي للشركة، ومتطلبات الخبرة العملية والكفاءة المهنية والمؤهل الدراسي في شاغلي الوظائف الرئيسية بها.
+>
+> ٣- الحد الأدنى لمتطلبات حسن سير أعمال الشركة وضمان حقوق الدائنين والعملاء.
+>
+> ٤- الحد الأدنى من الأحكام التي يجب أن يتضمنها عقد التأجير التمويلي أو عقد التخصيم.
+>
+> ٥- الحد الأدنى الواجب توافره في نظم عمل الرقابة الداخلية والائتمان وإدارة المخاطر.
+>
+> ٦- معايير الملاءة المالية والسيولة والحد الأقصى لنسب التركيز والتمويل للعميل الواحد والعملاء المرتبطين.
+>
+> ٧- الحد الأدنى لمعايير حساب الاضمحلال والمخصصات للتمويلات المشكوك في تحصيلها.
+>
+> ٨- الحد الأدنى من الإمكانات الواجب توافرها في نظم معلومات وشبكة اتصالات الشركة ووسائل حمايتها وتأمينها.
+>
+> ٩- ضوابط فتح ونقل وغلق فروع الشركة.
+>
+> ١٠- ضوابط مكافحة غسل الأموال وتمويل الإرهاب، بعد التنسيق مع الجهات المعنية ذات الصلة.
+>
+> ١١- التقارير الدورية والإحصاءات التي يجب أن تقدمها الشركة للهيئة، وتوقيتها.
+
+**Verbatim — Article 64 (customer confidentiality and exceptions):**
+
+> مادة ٦٤
+>
+> تلتزم الشركة بالمحافظة على السرية التامة لبيانات عملائها، وعدم إفشاء أي معلومات عنهم أو عن معاملاتهم إلى الغير بدون موافقتهم الكتابية المسبقة، وفي جميع الأحوال لا يجوز استثناء من ذلك إلا في الحالات التي يلزم تقديم معلومات محددة، وفقاً لما تفرضه القوانين لكل من الهيئة أو الجهات القضائية أو جهات التمويل أو المحصلين أو شركات التصنيف أو الاستعلام الائتماني أو الجهات التي تباشر نشاط التوريق، وعلى الشركة أن تتخذ الإجراءات التي تكفل التزام المديرين والعاملين بها بالحفاظ على سرية هذه البيانات والمعلومات.
+
+**Verbatim — Article 69 (industry associations):**
+
+> مادة ٦٩
+>
+> ينشأ اتحاد للشركات العاملة في نشاط التأجير التمويلي، وآخر لتلك العاملة في نشاط التخصيم، ويتمتع كل اتحاد بالشخصية الاعتبارية المستقلة، ويخضع لإشراف ورقابة الهيئة، ويجوز بقرار من مجلس إدارة الهيئة بعد موافقة الجمعية العامة لكل اتحاد دمجهما ليكونا اتحاداً واحداً يمثل نشاطي التأجير التمويلي والتخصيم.
+>
+> ويصدر مجلس إدارة الهيئة النظام الأساسي لكل اتحاد، وينشر في الوقائع المصرية على نفقة الاتحاد، ويسجل في سجل خاص لدى الهيئة بعد سداد رسم قيمته خمسة آلاف جنيه.
+>
+> وتلتزم جميع الشركات العاملة في نشاط التأجير التمويلي أو التخصيم بالانضمام إلى الاتحاد المعني، والالتزام بمراعاة نظامه الأساسي.
+
+**Verbatim — Article 72 (FRA enforcement measures):**
+
+> مادة ٧٢
+>
+> لمجلس إدارة الهيئة في حال مخالفة الشركة أو الاتحاد أحكام هذا القانون أو القرارات الصادرة تنفيذاً له، أو إذا فقدت شرطاً من شروط الترخيص أو إذا قامت بما من شأنه تهديد استقرار السوق أو مصالح المساهمين فيها أو المتعاملين معها، أن يتخذ تدبيراً أو أكثر من التدابير الآتية:
+>
+> ١- توجيه تنبيه إلى الشركة بإزالة المخالفة خلال المدة وبالشروط المحددة في التنبيه.
+>
+> ٢- دعوة مجلس الإدارة أو الجمعية العامة للانعقاد، بحضور أحد ممثلي الهيئة، للنظر في أمر المخالفات المنسوبة إليها واتخاذ اللازم نحو إزالتها.
+>
+> ٣- دعوة الجمعية العامة لعزل رئيس مجلس إدارة الشركة أو العضو المنتدب أو كليهما.
+>
+> ٤- حل مجلس إدارة الشركة وتعيين مفوض لإدارة الشركة لمدة لا تجاوز ستة أشهر ويجوز مدها لمدة ستة أشهر أخرى.
+>
+> ٥- المنع من إبرام عقود تمويل جديدة لمدة لا تزيد على ستة أشهر.
+>
+> ٦- المنع من ممارسة كل الأنشطة المرخص بممارستها أو بعضها لفترة محددة.
+
+**Verbatim — Article 82 (corporate and de facto management liability):**
+
+> مادة ٨٢
+>
+> يعاقب المسئول عن الإدارة الفعلية للشركة أو المدير المسئول للجمعية أو المؤسسة الأهلية بذات العقوبات المقررة عن الأفعال التي ترتكب بالمخالفة لأحكام هذا القانون إذا ثبت علمه بها أو كان إغفاله أو إهماله للواجبات التي تفرضها عليه تلك الإدارة قد أسهم في وقوع الجريمة.
+>
+> وتكون الشركة أو الجمعية أو المؤسسة الأهلية ضامنة للوفاء بما يحكم به من عقوبات مالية إذا كانت المخالفة قد ارتكبت من أحد العاملين بها باسمها أو لمصلحتها.
+
+### C. Cross-law routing rules
+
+- Article 5 requires recording financial-leasing contracts and linked sale contracts with FRA; the register is separate from the movable-collateral registry under Law 115/2015.
+- Articles 37–40 govern factoring receivable eligibility, assignment effectiveness and debtor notice; do not import the general Civil Code rules without these special statutory provisions.
+- Article 55 requires Egyptian joint-stock company form and a statutory minimum capital floor, with detailed regulatory requirements delegated to FRA Board decisions.
+- Article 64 creates a confidentiality regime with enumerated legal exceptions. CBE Law 194/2020 separately governs banking secrecy; do not conflate the two.
+- Article 72 empowers FRA to intervene with warnings, governance directions, board dissolution, restrictions on new financing and suspension of licensed activities.
+
+**Collection status:** full FRA consolidated Arabic law PDF through Article 84 surfaced; ten additional articles transcribed in this section. The statute itself delegates many operative requirements to FRA Board decisions; the complete decision/circular register under Articles 2, 5, 55, 60 and 72 remains a separate outstanding collection task. No lawyer review or rights clearance claimed.
