@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 224; Agent 3 continuation separately indexed)
+**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 225; Agent 3 continuation separately indexed)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -108,6 +108,7 @@
 | checkpoint 6 — Agent 3 FRA Decision 43/2026 fintech consumer-finance licensing pause | Added one distinct FRA Board decision and exact Arabic text of Articles 1–2; original Gazette binary/page-image check remains outstanding | [Agent 3 checkpoint 6](agent3_progress_checkpoint_2026-11-18_6.md) |
 
 | checkpoint 220 — Decision 144/2009 Articles 77–90 extraction | Added 14 complete Arabic base article bodies (Arts 77–90); cumulative coverage rises to 97/185 (88 remain) | [checkpoint 220](collection_checkpoint_220_decision144_articles_77_90_full_text_2026-11-18.md) |
+| checkpoint 225 — Decision 144/2009 Articles 147–185 extraction | Added 34 complete Arabic base article bodies (Arts 147–174, 177–178, 181–183, 185); Articles 175–176, 179–180 and 184 not duplicated; cumulative coverage 184/185 (99.5%), with Article 127 repealed | [checkpoint 225](collection_checkpoint_225_decision144_articles_147_185_full_text_2026-11-18.md) |
 | checkpoint 224 — Decision 144/2009 Articles 131–146 extraction | Added 15 complete base article bodies (Arts 131–143, 145–146); separately captured inserted Arts 135 bis and 139 bis; cumulative coverage 150/185 (35 remain) | [checkpoint 224](collection_checkpoint_224_decision144_articles_131_146_full_text_2026-11-18.md) |
 | checkpoint 223 — Decision 144/2009 Articles 118–130 extraction | Added 12 complete base article bodies (Arts 118–126, 128–130); captured inserted 117 bis and 124 bis; Article 127 repealed and excluded; cumulative coverage 135/185 (50 remain) | [checkpoint 223](collection_checkpoint_223_decision144_articles_118_130_full_text_2026-11-18.md) |
 | checkpoint 222 — Decision 144/2009 Articles 109–117 extraction | Added nine complete Arabic base article bodies (Arts 109–117); captured inserted 110 bis, 112 bis and 112 bis 1 separately; cumulative coverage 123/185 (62 remain) | [checkpoint 222](collection_checkpoint_222_decision144_articles_109_117_full_text_2026-11-18.md) |
