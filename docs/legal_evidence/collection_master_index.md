@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 145)
+**Last updated:** 2026-11-18 (expanded through checkpoint 146)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1175,3 +1175,6 @@
 
 
 | checkpoint 126 — Agent 3 Capital Market Regulation 2024–2025 tranche | Added Decisions 2423/2024 (hedge funds, 60% fund borrowing cap, sukuk reporting), 1539/2025 (energy-origin certificates as tradable financial instruments) and 2482/2025 (installment-funded PE/real-estate fund units); full Decision 2482 Article 148 bis still requires Gazette page verification; cumulative Agent 3 minimum 145 instruments / 1,337 provision units |
+
+
+| checkpoint 127 — Agent 3 Trade Names Law 55/1951 | Added ITDA catalogue source and two-page scanned Law 55/1951; visually inspected Gazette page images and captured Articles 1–2 exact Arabic text; twelve statutory article units indexed, remaining text awaits manual/OCR transcription; cumulative Agent 3 minimum 146 instruments / 1,349 provision units |
