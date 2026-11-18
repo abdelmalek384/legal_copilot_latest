@@ -114,3 +114,8 @@ The source-permission register now has 71 unique records after adding the VetoGa
 - Egyptian Bar Association digest of Cassation Appeal 14335/85: https://egyls.com/%D9%85%D9%86-%D8%A3%D8%AD%D9%83%D8%A7%D9%85-%D8%A7%D9%84%D9%86%D9%82%D8%B6-%D8%A8%D8%B4%D8%A3%D9%86-%D8%AD%D8%B3%D8%A7%D8%A8-%D8%A7%D9%84%D9%85%D9%88%D8%A7%D8%B9%D9%8A%D8%AF-%D9%88%D8%A7%D9%84%D9%85/ — reports that the Article15 rule is applied in other branches of law and that a month-period runs from the end of the trigger day to the end of the corresponding day in the final month.
 
 Applying that reported rule to the 19 January 2026 commencement trigger yields a 19 July 2026 endpoint, while the official Cairo notice and the committee coordinator's interview state 18 July 2026. This strengthens, rather than removes, the one-day discrepancy. The sources are now recorded in the permission register; their collection and commercial reuse fields remain unknown.
+
+
+## Subsequent deduplication correction — checkpoint 189
+
+The earlier 56-entry total was a raw text-block count across several overlapping captures. After deduplication, the state-land text file retains 25 distinct text-bearing entries (Law 168/2025: 10, including one partial; PM Decision 200/2026: 13; Presidential Decision 480/2026: 2). These are 27 additional unique article/provision IDs when combined with the two new Law 142/1964 provisions in checkpoint 185; the Law 68/1947 Articles 12–14 are three separate original-version snapshots, not new article numbers. Duplicate Law 114/142/68/70 blocks were removed. See checkpoint 189 for the canonical current counts.
