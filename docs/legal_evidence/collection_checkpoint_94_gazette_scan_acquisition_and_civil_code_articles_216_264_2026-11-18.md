@@ -180,3 +180,7 @@ Cumulative Civil Code extraction stream: **637 fully transcribed unique provisio
 - This includes the final enacted article number, 1149, but does not mean every article 1–1149 is transcribed. Earlier gaps remain; Articles 389–417 are repealed in the base text and are not treated as operative provisions.
 - Article 1148 provides a statutory privilege for contractors and architects on the constructed/reconstructed/repaired/maintained works, to the extent the works increased the property's value at sale; the privilege must be registered and ranks from registration. Reconcile this with Building Law 119/2008, Law 114/1946 and subsequent amendments.
 
+## 17. Law 114/1946 official source upgrade
+
+Checkpoint 114 records a new Ministry of Justice / Real Estate Publicity Authority PDF (317 extracted lines) and a Court of Cassation Information Center-attributed consolidated reproduction hosted externally. The government-hosted PDF is an official text reproduction but not an original 1946 Gazette scan and does not reflect the 2022 Law 9/2022 amendments. The externally hosted Court of Cassation-attributed copy reflects amendments through 6 March 2022 but is not a direct court-domain source. The original Gazette issue 85 (24 August 1946) scan remains outstanding; Law 9/2022's original Gazette issue 9 bis (A) metadata is official but its DSpace bundle remains request-only.
+
