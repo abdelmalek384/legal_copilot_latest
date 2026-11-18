@@ -84,3 +84,31 @@ These estimates remain unchanged: two territorial decisions and one provenance r
 ## 7. Rights and verification
 
 No lawyer verification, commercial reuse permission, certified original publisher authentication, or permission for bulk retrieval is claimed. Official publisher text, official repository metadata, and third-party Gazette mirrors remain distinct source tiers.
+
+
+## 8. Follow-up: Decision 6909/2025 and correction of the 5208/5280 mirror anomaly
+
+### Decision 6909/2025 — Assiut and Aswan
+
+- Added to acquisition register as **EG-0198**.
+- Official Amiri Press searchable text: https://www.alamiria.com/Sec/TashTxt?id=rM0p75C16KY%3D
+- Gazette issue 295/2025 SIS PDF: https://mediadr.sis.gov.eg/bitstream/handle/123456789/117440/WQ295_20251230_9062.pdf?isAllowed=y&sequence=2
+- Issued 19 November 2025; issue 295 dated 30 December 2025.
+- Postpones the Decision 2456/2003 cadastral sections in Assiut (El-Ghanayem, El-Badari, El-Motiea, Abnoub) and Aswan from **1 December 2025 to 30 November 2026**; Article 19 settlement forms accepted for two months from 1 December 2025; effective 1 December 2025.
+- A successor 2026 decision for these exact Decision 2456/2003 areas has not yet been located. Decisions 5207/5208/2026 relate to different designation tracks and section lists; do not assume they renew the 6909 areas.
+
+### Corrected interpretation of the 5208/5280 anomaly
+
+The Amiri Press searchable text and DSpace issue 244 metadata both identify the cadastral postponement instrument as **Decision 5208/2026**. A third-party mirror of issue 244 had extracted text that labelled the heading “5280/2026”. A separate official DSpace item for issue 248, dated 8 November 2026, identifies genuine Decisions **5280/2026 and 5281/2026** as different Ministry of Justice instruments. Secondary reports identify those two as establishing new notarization branches (Suez Canal Club, Ismailia; and Gezira Club, 6 October), not cadastral postponements.
+
+Therefore:
+- Do not relabel the issue 244 cadastral postponement as 5280.
+- Do not treat the issue 248 branch-establishment Decision 5280 as the same act as Decision 5208.
+- Preserve the issue 244 mirror's 5280 heading as a likely source/OCR/mirror misattribution pending the original DSpace page image.
+- Decision 5281/2026 in issue 248 is also a distinct branch-establishment decision, not the 2025 cadastral Decision 5281/2025.
+
+### Updated register totals
+
+- Acquisition register: **194 data rows**, 194 unique IDs, zero duplicate IDs.
+- Source-permission register: **54 unique source records** (unchanged; issue 295 source record already covers Decisions 6909–6911).
+- Core article provisions remain 1,370; no article text was added.
