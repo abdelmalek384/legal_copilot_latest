@@ -6,26 +6,26 @@
 
 ## Current progress — consolidated acquisition dashboard (18 November 2026)
 
-<badge color="success">358 confirmed instruments + 1 provisional candidate</badge> <badge color="success">38.0% confirmed text-source coverage</badge>
+<badge color="success">360 confirmed instruments + 1 provisional candidate</badge> <badge color="success">38.3% confirmed text-source coverage</badge>
 
 ### Audited register totals
 
 | Measure | Current audited value |
 |---|---:|
-| Acquisition register | **359 records: 358 confirmed + 1 provisional candidate** |
+| Acquisition register | **361 records: 360 confirmed + 1 provisional candidate** |
 | Base laws | 76 |
 | Amending laws | 69 |
 | Executive regulations | 19 |
-| Executive-regulation amendments | **47 confirmed + 1 provisional candidate** |
+| Executive-regulation amendments | **49 confirmed + 1 provisional candidate** |
 | Judicial decisions | 21 |
 | Other decisions | 112 |
 | Other / unclassified | 14 |
-| Source-permission register | **113 unique source records** |
-| Full-text inventory | **141 rows / 137 unique instruments** |
+| Source-permission register | **114 unique source records** |
+| Full-text inventory | **143 rows / 139 unique instruments** |
 | Full/complete text-source records | **85 unique instruments (legacy tally; status recode pending)** |
-| Confirmed instrument text-source coverage | **136/358 (38.0%)** |
+| Confirmed instrument text-source coverage | **138/360 (38.3%)** |
 
-The 85-instrument full/complete tally is a legacy status classification and requires a field-by-field recode against the live inventory. The 141 inventory rows cover 137 distinct IDs; four rows are duplicate source/version entries. This includes one provisional candidate (Decision 6199/2007) whose standalone instrument identity and Gazette metadata are unverified. Excluding that candidate, 136 confirmed instruments have a text-inventory entry out of 358 confirmed instruments. Text-inventory coverage means a record exists, not that every instrument has a complete local transcription, authenticated Gazette page images, or current-law verification. The live acquisition CSV and type ledger agree at 359 unique IDs (358 confirmed plus one provisional candidate); earlier dashboard/checkpoint counts of 355, 336, 273, 250 and 172 are historical snapshots.
+The 85-instrument full/complete tally is a legacy status classification and requires a field-by-field recode against the live inventory. The 143 inventory rows cover 139 distinct IDs; four rows are duplicate source/version entries. This includes one provisional candidate (Decision 6199/2007) whose standalone instrument identity and Gazette metadata are unverified. Excluding that candidate, 138 confirmed instruments have a text-inventory entry out of 360 confirmed instruments. Text-inventory coverage means a record exists, not that every instrument has a complete local transcription, authenticated Gazette page images, or current-law verification. The live acquisition CSV and type ledger agree at 361 unique IDs (360 confirmed plus one provisional candidate); earlier dashboard/checkpoint counts of 355, 336, 273, 250 and 172 are historical snapshots.
 
 ### Substantive acquisition work in the latest pass
 
@@ -52,12 +52,12 @@ New or expanded Arabic text files:
 
 ### Latest acquisition-first tranche — notarization amendment chain
 
-Three previously unregistered amendments now have acquisition records: Decisions 712/2008 and 4807/2008 (complete secondary Arabic operative text), and Decision 9200/2015 (Article1 complete; Article2 incomplete). A separate Decision 6199/2007 record is provisional only: Article 34 bis is attributed in one secondary consolidation, but the standalone decision and Gazette metadata are missing; exclude it from confirmed-instrument subtotals. Decision 1532/1976 was merged into its existing FT-0025 record rather than duplicated. The acquisition and classification registers now each contain 359 unique IDs (358 confirmed plus one candidate); the text inventory contains 141 rows for 137 distinct IDs. The 1947 regulation and amendment texts are in [the Arabic capture file](notarization_law68_1947_regulation_and_amendments_full_arabic_text_capture_2026-11-18.md). Law83/2006 and Decision5424/2006 full Arabic texts and fee tables have also been added to [the Law70/1964 text file](law_70_1964_full_text_schedules_and_amendment_chain_2026-11-18.md).
+Five previously unregistered amendments now have acquisition records: Decisions 712/2008 and 4807/2008 (complete secondary Arabic operative text), Decision9200/2015 (Article1 complete; Article2 incomplete), Decision2645/2015 (complete secondary text of four substituted and one inserted regulation provision), and Decision4476/2014 (complete three-article text and attached forms from a Library of Congress Gazette scan). A separate Decision 6199/2007 record is provisional only: Article 34 bis is attributed in one secondary consolidation, but the standalone decision and Gazette metadata are missing; exclude it from confirmed-instrument subtotals. Decision 1532/1976 was merged into its existing FT-0025 record rather than duplicated. The acquisition and classification registers now each contain 361 unique IDs (360 confirmed plus one candidate); the text inventory contains 143 rows for 139 distinct IDs. The 1947 regulation and amendment texts are in [the Arabic capture file](notarization_law68_1947_regulation_and_amendments_full_arabic_text_capture_2026-11-18.md). Law83/2006 and Decision5424/2006 full Arabic texts and fee tables have also been added to [the Law70/1964 text file](law_70_1964_full_text_schedules_and_amendment_chain_2026-11-18.md).
 
 ### Corpus depth and verification boundaries
 
 - Core unique article provisions previously validated: **1,370** (Civil Code 1,093; Evidence Law 163; Building Law 114).
-- Additional unique Arabic article/provision bodies captured in the 18 November notarization tranche: **61 complete** plus **8 incomplete/quarantined** (29 bodies from the 1947 notarization executive regulation; 15 operative provisions from Laws629/1955 and103/1976 and Decisions820/1963,1532/1976,11264/2016; 5 provisions from Decisions712/2008 and4807/2008, plus Article1 of Decision9200/2015; 5 articles from Law83/2006 and 6 from Decision5424/2006). These are outside the 1,370 core-code metric and are not added to it. Decision11264/2016 and Decision1532/1976 were merged into their existing inventory records, not duplicated.
+- Additional unique Arabic article/provision bodies captured in the 18 November notarization tranche: **67 complete** plus **8 incomplete/quarantined** (29 bodies from the 1947 notarization executive regulation; 15 operative provisions from Laws629/1955 and103/1976 and Decisions820/1963,1532/1976,11264/2016; 5 provisions from Decisions712/2008 and4807/2008, plus Article1 of Decision9200/2015; 5 articles from Law83/2006 and 6 from Decision5424/2006; 3 issuing articles each from Decisions2645/2015 and4476/2014). These are outside the 1,370 core-code metric and are not added to it. Decision11264/2016 and Decision1532/1976 were merged into their existing inventory records, not duplicated.
 - Additional searchable article-heading entries: **200** (Laws114/1946: 70; 142/1964: 72; 68/1947: 14; 70/1964: 44), not fully extracted/versioned.
 - Historical article-version events: 127; pre/post Arabic text snapshots are not normalized for every event.
 - Secondary-hosted Gazette scan reproductions visually inspected: 26 pages across Laws114/1946,142/1964,68/1947,70/1964. Original Amiri Press binaries for those four statutes: **0**.
@@ -68,7 +68,7 @@ Three previously unregistered amendments now have acquisition records: Decisions
 
 ## Collection checkpoints
 
-| checkpoint 239 — Research Agent 1 live-register audit, source provenance and continuation | Reconciles the live 355-record acquisition/type ledgers, 113 source assessments and 141-row text inventory; records Gazette/judgment blockers, Decision 480 deadline qualifications and current article/version coverage | [Research Agent 1 checkpoint 239](collection_checkpoint_239_research_agent1_session_update_2026-11-18.md) |
+| checkpoint 239 — Research Agent 1 live-register audit, source provenance and continuation | Reconciles the live 355-record acquisition/type ledgers, 114 source assessments and 143-row text inventory; records Gazette/judgment blockers, Decision 480 deadline qualifications and current article/version coverage | [Research Agent 1 checkpoint 239](collection_checkpoint_239_research_agent1_session_update_2026-11-18.md) |
 
 
 | checkpoint 31 — Agent 3 licensing, solvency and governance capture | Added current FRA Decision 137/2018 partial text, 191/192 solvency rule captures and Decision 100/2020 governance scope; amendments/currentness caveats recorded | [Agent 3 checkpoint 31](agent3_progress_checkpoint_2026-11-18_31.md) |
