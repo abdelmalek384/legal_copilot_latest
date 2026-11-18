@@ -1307,3 +1307,88 @@ The same Article 240 bis further permits electronic remote agenda presentation a
 - Sixteen issuing provision units counted: Law 17/1999 Articles 1–3; Laws 168/2000, 150/2001 and 158/2003 Articles 1–2 each; Law 156/2004 Articles 1–7.
 - The Stamp Duty Law amendment within Law 156/2004 remains a clause of that single multi-statute instrument and is not double-counted.
 - Cumulative Agent 3 minimum: 109 unique instruments / 1,236 provision units.
+
+
+## 34. Investment Law 72/2017 — primary Arabic text routes and 2022–2024 amendment chain
+
+### Core law and executive regulation — Arabic source acquisition
+
+- Investment Law 72/2017 official Arabic PDF route at ETA: https://eta.gov.eg/sites/default/files/2024-10/law-72-2017.pdf
+- GAFI official Arabic PDF route: https://gafiadmin.gafi.gov.eg/media/p5edrscs/investmentlaw72_ar-final.pdf
+- Executive Regulation PM Decision 2310/2017 official Arabic PDF route at ETA: https://eta.gov.eg/sites/default/files/2024-10/qarar-2310-2017.pdf
+- FRA official catalogue record for Decision 2310/2017 and its updated version: https://fra.gov.eg/en/regulations/اللائحة-التنفيذية-لقانون-الاستثمار/
+- SIS official overview states the Executive Regulation comprises 133 articles in five parts; this is a catalogue/overview aid, not a substitute for the Arabic legal text: https://sis.gov.eg/en/economy-investment/economy/investment/legislation-governing-the-investment-climate/
+- Law 72/2017 Official Gazette issue 21 bis (ج), 31 May 2017. The statute governs domestic and foreign investment and four investment systems: inland, investment zones, technological zones and free zones. It establishes investment guarantees/incentives, investor service/licensing processes, competent investment bodies and dispute resolution.
+- The Arabic PDFs are identified as official-government sources, but the current consolidated text must still be built by overlaying Law 141/2019, Law 160/2023 and the corrigendum, and all later executive-regulation decisions. The official PDF links are recorded now; complete article-by-article extraction is a separate ingestion task.
+
+### PM Decision 2300/2022 — one-stop approval criteria
+
+- Instrument: PM Decision 2300/2022 amending Executive Regulation 2310/2017.
+- Gazette: Official Gazette issue 25 bis (ج), 27 June 2022.
+- Full Arabic text transcription: https://ahmedazimelgamel.blogspot.com/2022/10/2300-2022-2310-2017.html
+- Article 1 replaces Executive Regulation Article 42 and the second paragraph of Article 43. The amended Article 42 requires the applicant to use a joint-stock or LLC form, have issued/LLC capital at least 20% of project investment costs, demonstrate financial solvency, submit a preliminary feasibility study by a reputable licensed national/international expert house, provide a project timetable and commit to providing infrastructure facilities. The replacement Article 43(2) places presentation of the one-approval request to Cabinet with the competent investment minister in coordination with the relevant minister.
+- Article 2 publication and commencement on the day after publication.
+- Source status: full transcription and Gazette issue metadata from a secondary legal repository; obtain the Gazette original before marking as primary-source matched.
+
+### PM Decision 2140/2023 — private free zones and service private free zones
+
+- Instrument: PM Decision 2140/2023 amending Executive Regulation 2310/2017.
+- Gazette: Official Gazette issue 22 bis, 4 June 2023; effective 5 June 2023.
+- Full Arabic operative text: https://www.mksegypt.org/ar/decisions/16887
+- MELES Arabic/English record: https://dspace.id.com.eg/items/46a6941f-8210-44a5-bd9c-90c0e1ba5fb1
+- Article 1 replaces Regulation Article 76. Cabinet may approve a private free-zone project after ministerial proposal and GAFI study/evaluation, with conditions including corporate form (joint-stock or LLC), local content at least 30% within three years of operation, exports at least 80% (with possible strategic-project exception), industrial/civil-defence/fire/security safeguards, GAFI monitoring and serious implementation steps within six months (extendable). Cabinet may grant exceptions from one or more conditions on a case-by-case basis.
+- Article 2 adds Regulation Article 76 bis for a service private free zone: a principal service project creates/develops/manages space for similar sub-projects; it must take joint-stock or LLC form, satisfy civil-defence/fire requirements, and follow Cabinet-approved GAFI procedures. The competent public-free-zone board approves sub-projects and their licensing.
+- Article 3 publication/commencement the day after publication.
+
+### PM Decision 1203/2024 — strategic/national project approval and monitoring
+
+- Instrument: PM Decision 1203/2024 amending Executive Regulation 2310/2017.
+- Gazette: Official Gazette issue 15 bis (A), 17 April 2024.
+- Primary Ministry of Finance page identifies it as in force and provides the legal text download: https://mof.gov.eg/ar/legislation/legislation-66cc64be42fa310008e240dd
+- Official Gazette PDF: https://media.mof.gov.eg/mof-prd/qrar_ryys_alwzrae_rqm_1203_lsnt_2024_b59247d574.pdf
+- Article 1 replaces Regulation Article 10 second paragraph and Articles 41, 42 and 43:
+  - Article 10 updates the geographic/sector criteria for Sector A, including Suez Canal Economic Zone, Golden Triangle, New Administrative Capital and Ras El Hekma, plus other designated development areas based on socioeconomic indicators.
+  - Article 41 makes Cabinet responsible for setting strategic/national project criteria, updated periodically.
+  - Article 42 sets the application package for single approval: company financial solvency, preliminary feasibility study, implementation timetable, infrastructure undertaking and regulatory compliance undertaking, plus fee/payment commitments.
+  - Article 43 establishes GAFI committee monitoring of the project, its representations and timetable; inspection and documentary review powers; warning and a cure period not exceeding 60 days (renewable for a similar period); possible suspension of works/activity or incentives for up to one year; and notice/appeal before the statutory grievance committee.
+- Article 2 adds a final paragraph to Regulation Article 76 bis allowing service private-free-zone projects established under investment/participation contracts with state entities to include one or more industrial sub-projects in light industries, subject to a minimum one-million-square-metre principal zone and GAFI/Finance Ministry procedures.
+- Article 3 publication; issued 17 April 2024.
+- The Ministry of Finance explicitly warns that its online legal texts are for guidance and the Gazette is the legal reference. The linked PDF is a Gazette issue reproduction and should be retained with that warning.
+
+### Law 160/2023 — Investment Law statutory amendment
+
+- Instrument: Law 160/2023 amending Law 72/2017.
+- Gazette: Official Gazette issue 29 bis, 25 July 2023; effective 26 July 2023.
+- Full Arabic operative text: https://www.mksegypt.org/public/ar/laws/17335
+- Official/archival Arabic PDF record: https://dspace.id.com.eg/items/3e94a60e-9dd2-4803-82b4-5b594e25930f
+- Article 1 replaces the definition of “special incentives” and Investment Law Articles 9, 11(1)(1), 12(1)(2), 13, 14(1), 17, 20, 34 and 40(2)–(3).
+- Article 2 adds Article 11 bis, introducing a cash investment incentive of 35%–55% of corporate income tax paid for qualifying industrial projects and their qualifying expansions; at least 50% of project funding through foreign currency from abroad by commencement; start activity within six years (extendable up to six more years); Cabinet defines industries/areas, duration (maximum ten years), rules, rates and disbursement.
+- Article 3 publication and commencement the day after publication.
+- **Selected exact Arabic text — new Article 11 bis:**
+> مع عدم الإخلال بالحوافز والمزايا والإعفاءات المنصوص عليها فى هذا الفصل، تمنح المشروعات الاستثمارية التي تزاول أحد الأنشطة الصناعية التي يتم تحديدها وفقًا لهذه المادة، وتوسعاتها وفقًا لحكم الفقرة الأخيرة من المادة (12) من هذا القانون، حافزًا استثماريًا نقديًا لا يقل عن نسبة (٣٥٪) ولا يجاوز نسبة (55٪) من قيمة الضريبة المسددة مع الإقرار الضريبي على الدخل المتحقق من مباشرة النشاط فى المشروع الاستثمارى ، أو توسعاته بحسب الأحوال، وتلتزم وزارة المالية بصرف الحافز خلال خمسة وأربعين يومًا من نهاية الأجل المحدد لتقديم الإقرار الضريبى.
+- The amendment expands the general incentives to all Investment Law projects, whether established before or after commencement, except free-zone projects; revises the special-incentive sectors/period; broadens additional incentives; expands the single-approval mechanism to existing as well as newly established companies of any legal form; and enables qualifying energy-intensive/industrial activities in free zones.
+- Article 20 single approval now expressly covers existing companies and companies established for new investment, strategic/national and qualifying PPP projects, including utilities/infrastructure, renewable energy, roads, transport and ports.
+
+### Corrigendum to Law 160/2023 — must be retained with the amended law
+
+- A correction was published in Official Gazette issue 32, 10 August 2023, and is indexed as PM Decision 1/2023 correcting Law 160/2023.
+- Metadata and correction title: https://egyptianlaws.com/?p=153501
+- Eastlaws current-text view explicitly flags the corrected final version of Law 160 Article 1 as affected by this corrigendum: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/25-07-2023/no-160?id=2094459&type=1
+- The corrigendum's page image/operative correction wording has not yet been extracted. Do not ingest the uncorrected Law 160 Article 1 as final without comparing the correction. PM Decision 1/2023 is a separate correction instrument and is not counted as Arabic operative text until the correction wording is acquired.
+
+### Currentness leads
+
+- PM Decision 56/2022 sets strategic/national project criteria for Article 20 single approval. The official Cabinet has subsequently approved amendments/additions to those criteria; capture each amending decision and sector schedule.
+- PM Decision 4251/2022 established the high committee reviewing single-approval requests; later decisions may change its composition/mandate.
+- PM Decision 24/2023, 9/2024 and 44/2023 are examples of project-specific single-approval decisions, not amendments to the general law; classify them separately from general rules.
+- PM Decision 1889/2023 sets a 10-working-day deadline for approvals and permits and needs its own full text and scope analysis.
+- PM Decision 1203/2024 is the latest executive-regulation amendment captured in this pass; check later Gazette amendments through the current date before asserting it is the latest.
+- PM Decision 2140/2023 and Decision 1203/2024 interact with the 2023 statutory Law 160 amendment. Store each version temporally rather than overwriting the historical Regulation Articles 41–43/76/76 bis.
+
+### Count increment
+
+- Six unique instruments with Arabic text/source text surfaced: Law 72/2017; PM Decision 2310/2017; PM Decision 2300/2022; PM Decision 2140/2023; Law 160/2023; PM Decision 1203/2024.
+- Fifteen issuing provision units counted: Law 72/2017 Articles I–III; Decision 2310/2017 issuing provision; Decision 2300/2022 Articles 1–2; Decision 2140/2023 Articles 1–3; Law 160/2023 Articles 1–3; Decision 1203/2024 Articles 1–3.
+- Full Law 72 and 133-article Regulation PDFs are located but not yet fully ingested article-by-article in this checkpoint. Their complete ingestion is a substantial next task; the count above does not pretend all 227 substantive articles have been parsed.
+- The corrigendum PM Decision 1/2023 is recorded as a lead, not counted until its operative correction text is extracted.
+- Cumulative Agent 3 minimum: 115 unique instruments / 1,251 provision units.
