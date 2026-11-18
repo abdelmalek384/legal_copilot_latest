@@ -141,3 +141,10 @@ All new material remains machine-collected and not lawyer-reviewed. Do not mark 
 - Law 212/1994 added Article 21 bis but its full text is still unavailable and it was expressly repealed by Law 3/1998. Constitutional Court Judgment 25/22 separately invalidates Article17(b) newspaper approval requirement.
 - Record: [agent3_companies_law159_amendments_1994_2015_primary_texts.md](agent3_companies_law159_amendments_1994_2015_primary_texts.md).
 - No new unique law count; text/version-history upgrade. 209 / 2,049 remains last reconciled baseline; 55% provisional; lawyer review 0%.
+
+## Capital Market Law 13/2022 — original Gazette text visually checked
+- FRA-hosted two-page Official Gazette PDF acquired (issue 10 bis (ز), 14 March 2022). Page 15 visually inspected.
+- Captured Article 10 bis (remote electronic general assemblies and voting), Article 41 bis paragraphs 4–5 (securitization bonds backed by future cash flows), Article 41 bis(1) paragraph 4 (portfolio valuation/auditor report and bondholder priority), Article 65 bis paragraph 2 (EGP 20,000–100,000 fine), Article 2 transition period and Article 3 commencement.
+- OCR correction: extractor rendered Article 2 as Article 8; page image clearly reads Article 2. Use image-verified text.
+- Record: [agent3_capital_market_law13_2022_amendment_full_gazette_text.md](agent3_capital_market_law13_2022_amendment_full_gazette_text.md).
+- No new unique instrument count; text/page-image upgrade only. 209 / 2,049 last reconciled baseline; 55% provisional; lawyer review 0%.
