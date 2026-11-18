@@ -7066,3 +7066,180 @@ The FRA-hosted February 2025 consolidated PDF contains the issuing provisions an
 - Article 72 empowers FRA to intervene with warnings, governance directions, board dissolution, restrictions on new financing and suspension of licensed activities.
 
 **Collection status:** full FRA consolidated Arabic law PDF through Article 84 surfaced; ten additional articles transcribed in this section. The statute itself delegates many operative requirements to FRA Board decisions; the complete decision/circular register under Articles 2, 5, 55, 60 and 72 remains a separate outstanding collection task. No lawyer review or rights clearance claimed.
+
+
+## 53. FRA implementing decisions under Law 176/2018 — core licensing, factoring, solvency and governance texts
+
+### A. Decision 27/2018 — licensing and continuing authorization
+
+**Decision:** FRA Board Decision 27/2018, 13 September 2018, on licensing and continued licensing conditions for financial-leasing and factoring companies.  
+**Official PDF:** https://fra.gov.eg/portals/microfinance/unit/137-2018.pdf  
+**Full extracted text:** 314 lines; complete decision text is readable in the PDF.
+
+**Verbatim — Article 1 (scope):**
+
+> المادة الأولى
+>
+> تسري أحكام هذا القرار على الموافقة المبدئية لتأسيس الشركات الراغبة في ممارسة أنشطة التأجير التمويلي أو التخصيم أو الجمع بين أكثر من نشاط تمويلي، وكذلك على منح الترخيص واستمراره والترخيص بمزاولة أكثر من نشاط من الأنشطة التمويلية الخاضعة لرقابة الهيئة.
+
+**Verbatim — Article 2 (founding-stage conditions):**
+
+> المادة الثانية
+>
+> يجب على الشركات (تحت التأسيس) الراغبة في الحصول على الموافقة المبدئية لتأسيس شركة لمزاولة أي من أنشطة التأجير التمويلي أو التخصيم أو أكثر من نشاط تمويلي، الالتزام بالشروط الآتية:
+>
+> ١- أن يتم تأسيس الشركة في شكل شركة مساهمة مصرية.
+>
+> ٢- أن يكون رأس مال الشركة المصدر والمدفوع عند التأسيس لا يقل عن الحد الأدنى المقرر للحصول على ترخيص مزاولة النشاط وفقاً لأحكام هذا القرار.
+>
+> ٣- أن يقتصر غرض الشركة على مزاولة أي من أنشطة التأجير التمويلي أو التخصيم، ويجوز أن يكون غرض الشركة مزاولة أكثر من نشاط تمويلي (تأجير تمويلي، تخصيم، تمويل عقاري).
+>
+> ٤- أن يكون من ضمن مؤسسي الشركة أشخاص اعتبارية بنسبة لا تقل عن ٥٠٪ من رأس مال الشركة، وألا تقل نسبة مساهمة المؤسسات المالية عن ٢٥٪ من رأس مال الشركة.
+>
+> ٥- ألا يكون قد صدر حكم بعقوبة جنائية أو بعقوبة مقيدة للحرية في جريمة مخلة بالشرف أو الأمانة أو الحكم بشهر الإفلاس على أي من مؤسسي أو مساهمي الشركة الذين تزيد مساهمتهم على ١٠٪ من رأس مالها خلال الخمس سنوات السابقة على تقديم طلب التأسيس ما لم يكن قد رد إليه اعتباره.
+
+**Verbatim — Article 4 (licensing capital and governance qualifications):**
+
+> المادة الرابعة
+>
+> يجب على الشركات الراغبة في الحصول على ترخيص بمزاولة أي من أنشطة التأجير التمويلي أو التخصيم الالتزام بالشروط الآتية:
+>
+> ١- أن يكون الشكل القانوني للشركة شركة مساهمة مصرية.
+>
+> ٢- ألا يقل رأس مال الشركة المصدر والمدفوع عند التأسيس عن عشرة ملايين جنيه نقداً أو ما يعادلها بالعملات الأجنبية.
+>
+> ٣- أن يقتصر غرض الشركة على ممارسة نشاط التأجير التمويلي أو نشاط التخصيم.
+>
+> ٤- عدم صدور حكم بعقوبة جنائية أو بعقوبة مقيدة للحرية في جريمة مخلة بالشرف أو الأمانة أو الحكم بشهر الإفلاس لأي من مساهمي الشركة الذين تزيد مساهمتهم على ١٠٪ من رأس مالها أو أعضاء مجلس إدارتها أو مديريها خلال الخمس سنوات السابقة على تقديم طلب الترخيص ما لم يكن قد رد إليه اعتباره.
+>
+> ٥- أن يتوافر فيما لا يقل عن ثلثي أعضاء مجلس الإدارة خبرة عملية في مجال العمل التمويلي المصرفي أو التمويلي غير المصرفي أو القانوني لا تقل عن خمس سنوات.
+>
+> ٦- أن يكون عضو مجلس الإدارة حاصلاً على مؤهل عال مناسب.
+>
+> ٧- أن يتضمن تشكيل مجلس الإدارة عضوين على الأقل من المستقلين.
+
+### B. Decision 163/2018 — factoring operating rules, as amended through 84/2021
+
+**Decision:** FRA Board Decision 163/2018, 31 October 2018, on the executive rules for factoring.  
+**Official consolidated PDF (last amendment 6 June 2021):** https://fra.gov.eg/wp-content/uploads/2021/04/163-2018-الضوابط-التنفيذية-لممارسة-نشاط-التخصيم.pdf  
+**FRA announcement confirming Decision 163/2018 and Decision 164/2018:** https://fra.gov.eg/fra_news/efsa_715/  
+**Amendment chain printed in the PDF:** Decisions 197/2018 (31 Dec 2018), 95/2019 (4 Aug 2019), 25/2021 (28 Feb 2021), and 84/2021 (6 Jun 2021).
+
+**Verbatim — Article 1 (scope and non-recourse factoring):**
+
+> المادة الأولى
+>
+> تسري أحكام الضوابط التنفيذية الواردة بهذا القرار على نشاط التخصيم، ويقصد بهذا النشاط قيام شركة التخصيم بشراء الحقوق المالية الحالية والمستقبلية الناشئة عن بيع البضائع وتقديم الخدمات مع قيامها بتقديم بعض الخدمات المرتبطة بإدارة تلك الحقوق، ويتم ذلك عن طريق قيام البائع بإحالة حقوقه المالية موضوع العقد إلى المخصم.
+>
+> وتنتقل ملكية الحقوق المالية المخصمة إلى المخصم بموجب عقد التخصيم، وذلك بما لها من ضمانات كما تنتقل إلى المخصم المخاطر المرتبطة بتحصيل تلك الحقوق بدون حق الرجوع على البائع.
+>
+> وللمخصم أن يقوم بتمويل العملاء وذلك عن طريق قيامه بتقديم تمويل للبائع بضمان الحقوق المالية التي لم يقم بتخصيمها، ويكون ذلك التمويل بضمان تلك الحقوق، مع حق الرجوع على البائع في حالة عدم قيام المدين بالسداد.
+
+**Verbatim — Article 2 (ancillary services):**
+
+> المادة الثانية
+>
+> يجوز للمخصم القيام بكل أو أي من الخدمات الأخرى التكميلية والمرتبطة بنشاط ومجالات التخصيم، وتتمثل تلك الخدمات فيما يلي:
+>
+> ١- الضمان ويشمل الحماية ضد مخاطر عدم سداد المدين في مواعيد استحقاق الدين.
+>
+> ٢- الخدمات المالية والإدارية بما في ذلك إدارة الحسابات وإمساك الدفاتر المتعلقة بالحقوق التي يقوم بتخصيمها.
+>
+> ٣- تقديم الاستشارات والمعلومات عن المدينين المحتملين.
+>
+> ٤- تحصيل الحقوق من المدينين في مواعيد استحقاقها ويجوز للمخصم أن يعهد إلى البائع بتحصيلها لحساب المخصم.
+
+**Verbatim — Article 3 (eligible debtor):**
+
+> المادة الثالثة
+>
+> يجب أن يكون المدين تاجراً، وأن تتوافر عنه بيانات تجارية كافية، ويجوز أن يكون المدين أحد الأشخاص الاعتبارية العامة أو من بين المستثمرين في عمليات شراء الأوراق المالية بالهامش في البورصة المصرية طبقاً للشروط التي تعتمدها الهيئة.
+>
+> ويجوز أن يكون المدين مستهلكاً نهائياً وفقاً للضوابط الواردة بالمادة السابعة من هذا القرار.
+
+**Verbatim — Article 4 (seller disclosure):**
+
+> المادة الرابعة
+>
+> يلتزم البائع تجاه المخصم بما يلي:
+>
+> ١- تزويده بكافة البيانات والمعلومات حول العمليات التي نشأت عنها هذه الديون وكافة البيانات المتعلقة بالحقوق المبيعة وضماناتها وكافة البيانات والمعلومات التي تعطي صورة واضحة عن المخاطر أو العقبات التي قد تعترض عملية تحصيل الحقوق.
+>
+> ٢- تزويده بكافة المستندات المؤيدة للحق المبيع وضماناته مثل أوامر الشراء الصادرة من المدين والفواتير وأذون التسليم وكذلك كافة وسائل إثبات هذا الحق وضماناته وكل ما هو ضروري لتمكين المخصم من حقه.
+>
+> ٣- الإقرار للمخصم بأن الحقوق المبيعة لم يسبق له نقلها إلى أي جهة أخرى، على أن يتم تضمينها في عقود التخصيم.
+
+**Verbatim — new Article 4 bis (margin-trading receivables):**
+
+> المادة الرابعة مكرراً
+>
+> تلتزم شركات التخصيم عند تخصيم الحقوق المالية الناشئة عن عمليات الشراء بالهامش بالالتزام بأحكام الباب الثالث (الخاص بنشاط التخصيم) من القانون رقم ١٧٦ لسنة ٢٠١٨ وبقرار مجلس إدارة الهيئة رقم ١٦٣ لسنة ٢٠١٨ بشأن الضوابط التنفيذية لممارسة نشاط التخصيم، وأن تكون شركات السمسرة محل التعاقد من بين الشركات الصادر لها موافقة من الهيئة بمزاولة عمليات الشراء بالهامش، مع الالتزام بالقواعد المنظمة لذلك النشاط.
+
+The PDF footnotes confirm Article 3 was replaced and Article 4 bis was added by Decision 25/2021.
+
+### C. Decision 191/2018 — financial-solvency standards for leasing companies
+
+**Decision:** FRA Board Decision 191/2018 (the PDF heading/OCR body has a discrepancy: the filename and FRA catalogue call it 191/2018, while the scanned heading appears as 91/2018).  
+**Date:** 31 December 2018.  
+**Official FRA updated PDF:** https://fra.gov.eg/wp-content/uploads/2021/04/191-2018.pdf  
+**Amendments:** Decision 69/2020 amended concentration/liquidity/provision provisions; Decision 161/2022 amended Article 1 capital-adequacy threshold.
+
+**Verbatim — Article 1 (capital adequacy):**
+
+> مادة (١)
+>
+> يجب ألا تقل نسبة الملاءة المالية للشركة في كل وقت عن (١٠٪)، تستكمل تدريجياً حتى تصل إلى (١٢٪) خلال ثلاث سنوات على الأكثر من تاريخ العمل بهذا القرار، على أن تقوم الشركة بموافاة الهيئة بتقارير نصف سنوية بما اتخذته من إجراءات في هذا الشأن.
+>
+> ويحسب معيار كفاية رأس المال وفقاً للمعادلة الآتية:
+>
+> القاعدة الرأسمالية ÷ (الأصول مرجحة بأوزان المخاطر + هامش تغطية مخاطر التشغيل).
+
+**Verbatim — Article 2 (individual and sector concentration):**
+
+> مادة (٢)
+>
+> تلتزم الشركة بحساب رأس مال إضافي لمقابلة مخاطر التركيز التي تواجهها، ويتم قياس وحساب رأس المال الإضافي لها على النحو الآتي:
+>
+> أولاً: مخاطر التركيز الفردي:
+>
+> يتم حساب مخاطر التركيز الفردي من خلال قسمة قيمة رصيد أكبر ١٠ عملاء على قيمة إجمالي محفظة التمويل، فإذا تجاوزت النسبة المحسوبة (٣٠٪) يتم حساب مطلوب رأس مال إضافي بنسبة (٤٪) من الحد الأدنى لكفاية رأس المال لمقابلة مخاطر الائتمان (١٢٪ من قيمة الأصول المرجحة بأوزان المخاطر).
+>
+> وفي جميع الأحوال لا يجوز أن يزيد حجم تعاملات الشركة مع العميل الواحد عن (٥٠٪) من القاعدة الرأسمالية للشركة، وذلك بعد استبعاد الأرصدة التي لا تتحمل الشركة مخاطرها.
+
+**Verbatim — Article 3 (leverage):**
+
+> مادة (٣)
+>
+> يجب ألا تتجاوز إجمالي القروض والتمويلات - عدا القروض المساندة - التي تحصل عليها الشركة عن تسعة أمثال القاعدة الرأسمالية لها، بعد استبعاد أرصدة القروض والتمويلات التي لا تتحمل الشركة مخاطرها.
+
+**Version warning:** Decision 191/2018 is specifically for leasing companies. Factoring companies are subject to separate solvency Decision 192/2018, updated in 2022 and amended by Decision 70/2020 and Decision 161/2022. Do not apply Decision 191 to factoring firms.
+
+### D. Decision 100/2020 — general governance regime supersedes Decision 164/2018
+
+**Decision:** FRA Board Decision 100/2020 on governance rules for companies operating in non-bank financial activities.  
+**Official FRA PDF:** https://fra.gov.eg/portals/microfinance/unit/1002020.pdf  
+**Status:** The decision expressly repeals Decision 164/2018 (the dedicated leasing/factoring governance decision) and other older sector-specific governance rules. It includes financial-leasing and factoring companies among covered entities.
+
+**Verbatim — Article 2 (repeal):**
+
+> المادة الثانية
+>
+> تلغى القرارات الآتية:
+>
+> ١- قرار مجلس إدارة الهيئة رقم (١٠٧) لسنة ٢٠١٦ بشأن قواعد حوكمة الشركات العاملة في مجال الأوراق المالية.
+>
+> ٢- قرار مجلس إدارة الهيئة رقم (١٦٤) لسنة ٢٠١٨ بشأن القواعد التنفيذية لحوكمة الشركات المرخص لها بمزاولة نشاطي التأجير التمويلي والتخصيم.
+>
+> ٣- قرار مجلس إدارة الهيئة رقم (٦١) لسنة ٢٠٢٠ بشأن القواعد التنفيذية لحوكمة شركات التمويل الاستهلاكي.
+
+**Currentness consequence:** Decision 164/2018 is historical/repealed by Decision 100/2020. The current governance framework for leasing/factoring companies is Decision 100/2020 as amended/updated through the FRA's 2024 version. Decision 93/2020 amended the former Decision 164/2018 before its repeal; preserve it as part of the historical version chain only.
+
+### E. FRA currentness leads — not all text yet acquired
+
+- Decision 7/2019 (updated 2026): operating rules for licensed leasing/factoring companies. FRA's current page lists its prior amendments: Decisions 82/2019, 38/2020 and 44/2026. The 2026 update PDF is linked from the official page but access was rejected by the web reader.
+- Decision 44/2026: branch registration, transfer and closure rules for non-bank financial activities; FRA's official page identifies it as current and lists Decisions 179/2020 and 142/2018 as repealed predecessors.
+- Decision 163/2018 factoring operating rules are consolidated through 84/2021; do not use the original 2018 PDF without applying amendments 197/2018, 95/2019, 25/2021 and 84/2021.
+- Decision 191/2018 leasing solvency standards are amended by Decisions 69/2020 and 161/2022; Decision 192/2018 separately governs factoring solvency.
+- Decision 27/2018 licensing requirements and the Decision 137/2018 license conditions are related but distinct; do not collapse them into a single instrument.
+
+**Collection status:** four official FRA instruments with substantive Arabic text surfaced (Decisions 27/2018, 163/2018, 191/2018 and 100/2020); 11 provisions transcribed. Official FRA catalogues identify the current Decision 7/2019 and Decision 44/2026 framework, but their complete 2026 PDF text remains to be acquired. No lawyer review or rights clearance claimed.
