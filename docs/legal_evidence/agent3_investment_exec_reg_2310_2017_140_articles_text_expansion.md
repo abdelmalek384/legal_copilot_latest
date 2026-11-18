@@ -97,3 +97,8 @@ The provision governs the annual approval and technical/financial review process
 ## Accounting
 - Decision 2310/2017 and PM Decision 2562/2024 were already counted in the Agent 3 inventory. No new instrument or article-unit increment.
 - Assigned-domain completion remains 53% provisional; whole corpus 2% provisional.
+
+
+## Currentness update — PM Decision 503/2026 (18 November 2026)
+
+The earlier note that Decision 503/2026's operative text was still outstanding is superseded. The official Amiri Press text page/search index was located and Article 1–2 were captured; secondary MKSEgypt table images for Sector A and B were transcribed in [agent3_investment_pm_decision_503_2026_industrial_incentive_schedules_arabic_text.md](agent3_investment_pm_decision_503_2026_industrial_incentive_schedules_arabic_text.md). Remaining: obtain original Gazette issue/page and signed official PDF/hash, and visually verify several technical terms in the schedules. Decision 503/2026 replaces the industrial sub-sector tables in PM Decision 104/2022; it is separate from the Article 11 bis cash incentive under Law 160/2023.
