@@ -1358,6 +1358,24 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Review applicable terms and seek written authorization for local archiving, Arabic extraction, indexing, commercial use, excerpt display and redistribution. Obtain original files through authorized access where applicable."
+    },
+    {
+      "source_id": "EG-DIWAN-ALOMRAN-LEGAL-DB",
+      "authority": "Diwan Al-Omran (ديوان العمران) legal database",
+      "source_page": "https://diwanalomran.com/legal/2026-200/",
+      "material_types": [
+        "statutory text",
+        "executive regulations",
+        "legal metadata"
+      ],
+      "access_status": "public searchable Arabic legal text inspected 2026-11-18; website terms not reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Public searchable full text pages for Law 168/2025 and PM Decision 200/2026 were inspected; selected provisions transcribed into supplemental repository files. Public accessibility does not establish permission for bulk collection, local archiving, commercial indexing, excerpt display or redistribution.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review terms and seek written permission for local archiving, Arabic text extraction, indexing, commercial product use, excerpt display and redistribution."
     }
   ]
 }
