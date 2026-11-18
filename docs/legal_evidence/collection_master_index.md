@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 122)
+**Last updated:** 2026-11-18 (expanded through checkpoint 123)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1055,3 +1055,6 @@
 
 
 | checkpoint 103 — Agent 3 Companies Law Decision 2928/2022 | Official Amiri Press text of PM Decision 2928/2022 and MIFT consolidated Executive Regulation 96/1982 (amended through 21 Aug 2022); two operative provisions transcribed; Companies Law amendment/currentness work remains open; cumulative Agent 3 minimum 93 instruments / 1,188 provision units |
+
+
+| checkpoint 104 — Agent 3 Companies Law statutory amendments | Official Gazette text of Laws 4/2018 and 17/2015 acquired; selected operative amendments and precedence relationship for Companies Law Article 17 captured; cumulative Agent 3 minimum 95 instruments / 1,192 provision units |
