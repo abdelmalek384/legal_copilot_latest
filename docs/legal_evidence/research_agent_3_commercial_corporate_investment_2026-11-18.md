@@ -3112,3 +3112,93 @@ The same official Gazette PDF exposes the following additional operative texts, 
 > يجوز للوزير المختص التصالح مع المتهم في الجرائم المنصوص عليها في المادة (١٦٣) من هذا القانون في أي مرحلة من مراحل الدعوى الجنائية، مقابل أداء مبلغ لا يقل عن مثلي قيمة الحد الأدنى للغرامة المقررة وبحسب جسامة المخالفة، ويترتب على التصالح انقضاء الدعوى الجنائية بالنسبة للجريمة التي تم التصالح في شأنها، وتأمر النيابة العامة بوقف تنفيذ العقوبة إذا تم التصالح أثناء تنفيذها العقوبة ولو كان ذلك بعد صيرورة الحكم باتاً.
 
 **Count update for this amendment:** 13 additional provisions transcribed from Law 4/2018. The 2018 correction notice remains a separate Gazette item to retrieve and compare.
+
+
+## 31. Commercial Code 17/1999 — Law 156/2004 cheque and negotiable-instrument amendment
+
+**Amending Law:** Law 156/2004, amending selected provisions of Commercial Code 17/1999 and Stamp Tax Law 111/1980.  
+**Gazette:** Official Gazette issue 28 bis (أ), 14 July 2004.  
+**Official legislative index:** Egyptian legislative portal lists Law 156/2004 among 2004 statutes: https://www.laweg.net/Default.aspx?Year=2004&action=LegsYears  
+**Searchable full Arabic amendment text:** https://lawyeregypt.net/القانون-رقم-156-لسنة-2004-بتعديل-بعض-أحكام-الق/  
+**Secondary full text:** https://egyptianlaws.com/?p=186049  
+**Current consolidated Commercial Code text with amendment footnotes:** https://lawhub.info/eg/?p=11582
+
+Law 156/2004 changes the cheque regime in Commercial Code 17/1999 and also modifies Stamp Tax Law 111/1980. It takes effect on the date cheque provisions became operative under Law 158/2003 (1 October 2005, subject to verification against the Gazette date provisions).
+
+**Verbatim — Article 1 (Article 503(2) replacement):**
+
+> (المادة الأولى)
+>
+> يستبدل بنص البند (2) من المادة (503) من قانون التجارة الصادر بالقانون رقم 17 لسنة 1999، النص الآتي:
+>
+> مادة (503) بند (2):
+>
+> وإذا قدم الشيك للوفاء قبل اليوم المبين فيه كتاريخ لإصداره وجب وفاؤه في يوم تقديمه، وذلك باستثناء الشيكات المسطرة المنصوص عليها في المادة (515) من هذا القانون والشيكات الحكومية فلا تكون مستحقة الوفاء إلا في التاريخ المبين فيها كتاريخ لإصدارها.
+
+**Verbatim — Article 2 (presentation periods and limitation periods):**
+
+> (المادة الثانية)
+>
+> تستبدل عبارة "ستة أشهر" بعبارة "ثلاثة أشهر" الواردة في البند (1)، وعبارة "ثمانية أشهر" بعبارة "أربعة أشهر" الواردة في البند (2) من المادة (504) من قانون التجارة المشار إليه.
+>
+> وتستبدل كلمة "سنة" بكل من عبارتي "ستة أشهر" الواردتين في كل من البندين (1) و(3) من المادة (531) من القانون ذاته.
+
+The operative result is six months for a cheque drawn in Egypt and payable in Egypt; eight months for a cheque drawn abroad and payable in Egypt; and one year for the relevant recourse limitation periods, as reflected in the amended text.
+
+**Verbatim — Article 3 (Article 537(1) replacement):**
+
+> (المادة الثالثة)
+>
+> يستبدل بنص البند (1) من المادة (537) من قانون التجارة المشار إليه، النص الآتي:
+>
+> مادة (537) بند (1):
+>
+> إذا قضت المحكمة بالإدانة في إحدى جرائم الشيك المنصوص عليها في المادة (534) من هذا القانون، جاز لها أن تأمر بنشر الحكم على نفقة المحكوم عليه في مجلة الأحكام التي يصدرها الاتحاد العام للغرف التجارية المصرية، ويجب أن يتضمن هذا النشر اسم المحكوم عليه وموطنه ومهنته والعقوبة المحكوم عليه بها.
+
+**Verbatim — Article 4 (Article 544(3) replacement):**
+
+> (المادة الرابعة)
+>
+> يستبدل بنص البند (3) من المادة (544) من قانون التجارة المشار إليه، النص الآتي:
+>
+> مادة (544) بند (3):
+>
+> يمسك مكتب السجل التجاري دفتراً لقيد البيانات المذكورة في الفقرة السابقة، ويجوز لكل شخص الاطلاع عليها مقابل الرسوم المقررة، ويقوم مكتب السجل التجاري بعمل نشرة تتضمن تلك البيانات ويقوم الاتحاد العام للغرف التجارية المصرية بنشر هذه البيانات في مجلة الأحكام التي يصدرها.
+
+**Verbatim — Article 5 (two additional amendments):**
+
+> (المادة الخامسة)
+>
+> يضاف إلى المادة (449) من قانون التجارة المشار إليه فقرة ثانية، نصها الآتي:
+>
+> مادة (449) فقرة ثانية:
+>
+> ويصدر القاضي أمره بالحجز التحفظي بغير كفالة متى قدم حامل الكمبيالة الطلب مصحوباً بأصل الكمبيالة وباحتجاج عدم الوفاء.
+>
+> كما يضاف إلى المادة (482) من القانون ذاته بند جديد برقم (5)، نصه الآتي:
+>
+> مادة (482) بند (5):
+>
+> ومع ذلك يجوز للمسحوب عليه التأشير على الشيك بما يفيد مطابقة توقيع الساحب الوارد عليه لتوقيعه المودع لدى المسحوب عليه ولا يفيد هذا التأشير وجود مقابل الوفاء لدى المسحوب عليه وقت التأشير.
+
+**Verbatim — Article 6 (Stamp Tax amendment):**
+
+> (المادة السادسة)
+>
+> يستبدل بنص المادة (52) من قانون ضريبة الدمغة الصادر بالقانون رقم 111 لسنة 1980، النص الآتي:
+>
+> مادة (52):
+>
+> تستحق ضريبة نوعية مقدارها ثلاثة جنيهات على كل من الكمبيالات والسندات لأمر أو لحاملها أياً كانت قيمتها.
+>
+> ويتحمل الضريبة على الكمبيالة ساحب الكمبيالة وعلى السند لأمر مصدر السند.
+
+**Verbatim — Article 7 (effective date):**
+
+> (المادة السابعة)
+>
+> ينشر هذا القانون في الجريدة الرسمية، ويعمل به اعتباراً من تاريخ العمل بأحكام الشيك على النحو المنصوص عليه في القانون رقم 158 لسنة 2003.
+
+**Critical version note:** Law 156/2004 does not change every cheque provision; it specifically changes Articles 449, 482, 503, 504, 531, 537 and 544 of Commercial Code 17/1999 and Article 52 of Stamp Tax Law 111/1980. The 2004 amendment must be overlaid on the Commercial Code 1999 edition, with effective date linked to Law 158/2003. Do not treat the original 1999 three-/four-month presentation periods or six-month recourse periods as current.
+
+**Collection status:** full searchable Arabic amendment text surfaced via secondary publisher and official legislative index; Gazette issue/date confirmed; original Amiri Press Gazette PDF still needs capture. Seven amendment provision units transcribed. No lawyer approval or rights clearance claimed.
