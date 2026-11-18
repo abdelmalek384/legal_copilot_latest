@@ -1515,6 +1515,57 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established; retry SIS repository item/PDF route or request authorized copy",
       "required_next_action": "Retry official SIS PDF route or request the 295.3 KB file through the repository; obtain bytes and SHA-256 if access is granted; compare Law168 pages to VetoGate secondary scan and Diwan searchable text; seek written rights clarification."
+    },
+    {
+      "source_id": "EG-UMN-SCC-JUDGMENTS",
+      "authority": "University of Minnesota Human Rights Library — archived Egyptian Supreme Constitutional Court judgments",
+      "source_page": "https://hrlibrary.umn.edu/arabic/Egypt-SCC-SC/Egypt-SCC-4-Y23.html; https://hrlibrary.umn.edu/arabic/Egypt-SCC-SC/Egypt-SCC-47-Y21.html",
+      "material_types": [
+        "secondary archive of full Constitutional Court judgments",
+        "rent-law judgments"
+      ],
+      "access_status": "Public archived Arabic full judgment pages inspected 2026-11-18; archive says it stopped updating in 2023; terms not reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Full Arabic judgment transcriptions for Cases 4/23 (13 Apr 2003) and 47/21 (4 Apr 2004) were inspected. Public access and archived status do not establish bulk extraction, local archiving, commercial indexing, excerpt display or redistribution permission.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Compare both judgment texts against original SCC judgment copies and Gazette publication scans; review archive terms and seek written permission before commercial reuse."
+    },
+    {
+      "source_id": "EG-RIWAQ-SCC-JUDGMENTS",
+      "authority": "Riwaq Al-Jamal Egyptian legal archive",
+      "source_page": "https://ahmedazimelgamel.blogspot.com/2025/11/14-23-4-4-2004-11-1-95-580.html",
+      "material_types": [
+        "secondary reproduction of Constitutional Court judgment",
+        "rent-law judgments"
+      ],
+      "access_status": "Public searchable Arabic judgment text inspected 2026-11-18; site terms not reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Full Arabic judgment text for SCC Case 14/23 (4 Apr 2004) inspected. The text includes the operative order invalidating part of Article16 of Law136/1981 concerning furnished hospitals and annexes. Public visibility does not grant reuse rights.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Compare against original SCC judgment and Gazette scan; review terms and seek written permission for commercial extraction or redistribution."
+    },
+    {
+      "source_id": "EG-EGYLAW-SCC-JUDGMENTS",
+      "authority": "Egylaw legal information site",
+      "source_page": "https://egylawsite.wordpress.com/2013/10/02/عدم-دستورية-عدم-اشتراط-موافقة-المؤجرعند-تغيير-المستأجراستعمال-العين-المؤجرة-إلى-غيرغرض-السكنى/",
+      "material_types": [
+        "secondary reproduction of Constitutional Court judgment",
+        "rent-law judgments"
+      ],
+      "access_status": "Public searchable Arabic judgment text inspected 2026-11-18; terms not reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Full Arabic judgment text for SCC Case116/27 (4 May 2008) inspected. The text includes the operative order invalidating Article19(2) of Law136/1981 insofar as it did not require landlord consent for changing part of leased premises to non-residential use. Public visibility does not grant reuse rights.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Compare against original SCC judgment and Gazette scan; review terms and seek written permission for commercial extraction or redistribution."
     }
   ]
 }
