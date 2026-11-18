@@ -266,7 +266,7 @@ No attempt was made to bypass restricted DSpace access. No original PDF bytes or
 ### New unique legal instruments
 
 - Base laws: 1 (Law 119/2008).
-- Amending laws: 1 (Law 23/2015).
+- Amending laws: 5 (Laws 23/2015, 54/1974, 23/1992, 18/1999 and 76/2007).
 - Executive regulations: 1 (Decision 144/2009).
 - Ministerial/implementing decisions: 3 (Decision 410/2021, Decision 943/2024, Decision 3866/2026).
 - New judicial decisions: 0 new case instruments (Case 101/26 and Case 24/20 are existing identified judgments upgraded to direct official full-text source).
