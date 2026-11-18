@@ -4482,3 +4482,111 @@ The previous checkpoint only surfaced Articles 1–23 from the LawHub page. The 
 The full secondary transcription identifies 47 numbered regulation articles. The current text should still be compared against the Official Gazette issue 13 bis (أ) scan and any subsequent PM or CPA decisions. The official CPA website does not expose a clear consolidated 2025/2026 regulation PDF in the catalogue, so this remains an open currentness check.
 
 **Collection status:** Decision 822/2019 full searchable 47-article Arabic text now surfaced; nine additional article provisions transcribed in this section. Earlier "23 articles only" limitation is superseded. No lawyer approval or rights clearance claimed.
+
+
+## 40. Investment Executive Regulation 2310/2017 — full 140-article consolidated text and 2019 FDI reporting amendment
+
+### A. Full consolidated Executive Regulation 2310/2017
+
+**Decision:** Prime Minister Decision 2310/2017, dated 28 October 2017.  
+**Gazette:** Official Gazette issue 43 bis (أ), 28 October 2017.  
+**Full searchable Arabic text — 140 articles, consolidated through 12 August 2024:**  
+https://alhasswalawfirm.com/law-library/decree-2310-2017  
+**FRA official record and updated-PDF locator:** https://fra.gov.eg/en/regulations/اللائحة-التنفيذية-لقانون-الاستثمار/  
+**Original FRA PDF link (reader access denied):** https://fra.gov.eg/wp-content/uploads/2020/12/5-1.pdf
+
+This resolves the earlier text-extraction blocker: the complete 140-article regulation is now available as searchable Arabic text, reproduced from the Official Gazette / Court of Cassation legislation portal, with footnotes identifying amendments through 12 August 2024. The official FRA page confirms Decision 2310/2017 as the Executive Regulation; the linked official PDF still cannot be retrieved by the reader, so the searchable transcription is a secondary copy of the Gazette text.
+
+The full text includes rules on:
+- Covered investment activities and eligibility;
+- investor service centres and accreditation offices;
+- company incorporation and post-incorporation services;
+- prior and single approvals;
+- land allocation, pricing and usufruct;
+- investment zones;
+- free zones and private free zones;
+- investor grievances and dispute mechanisms;
+- investment statistics and reporting.
+
+**Verbatim — issuing Article 1:**
+
+> مادة (الأولى)
+>
+> مع عدم الإخلال بأحكام القانون رقم ٧ لسنة ١٩٩١ بشأن أملاك الدولة الخاصة، وقانون المناطق الاقتصادية ذات الطبيعة الخاصة الصادر بالقانون رقم ٨٣ لسنة ٢٠٠٢، والقانون رقم ١٤ لسنة ٢٠١٢ في شأن التنمية المتكاملة في شبه جزيرة سيناء، وقانون تيسير إجراءات منح تراخيص المنشآت الصناعية الصادر بالقانون رقم ١٥ لسنة ٢٠١٧، يعمل بأحكام اللائحة التنفيذية لقانون الاستثمار الصادر بالقانون رقم ٧٢ لسنة ٢٠١٧ المرافقة لهذا القرار.
+
+**Verbatim — issuing Article 3 (repeal of 2015 regulation):**
+
+> مادة (الثالثة)
+>
+> تلغى اللائحة التنفيذية لقانون ضمانات وحوافز الاستثمار الصادرة بقرار رئيس مجلس الوزراء رقم ١٨٢٠ لسنة ٢٠١٥ المشار إليه، كما يلغى كل حكم يخالف أحكام اللائحة المرافقة.
+
+**Verbatim — Regulation Article 8 (withdrawal/cancellation safeguards):**
+
+> مادة (٨)
+>
+> لا يجوز للجهات الإدارية المختصة إلغاء التراخيص الصادرة للمشروع الاستثماري أو وقفها أو سحب العقارات التي تم تخصيصها للمشروع إلا بعد إنذار المستثمر بموجب خطاب مسجل مصحوب بعلم الوصول بالمخالفات المنسوبة إليه، وسماع وجهة نظره، وإعطائه مهلة لا تتجاوز ستين يوماً من تاريخ إنذاره لإزالتها، فإذا انقضت هذه المهلة دون قيام المستثمر بإزالتها، وجب على الجهات الإدارية المختصة قبل إصدار قرارها في هذا الشأن أخذ رأي الهيئة بموجب كتاب يتضمن كافة الإجراءات القانونية التي اتخذت قبل المستثمر، ويتعين على الهيئة إبداء رأيها خلال سبعة أيام من تاريخ وروده.
+
+**Verbatim — Regulation Article 32 (electronic incorporation):**
+
+> مادة (٣٢)
+>
+> لذوي الشأن من راغبي التأسيس اتباع الخطوات الآتية:
+>
+> ١- إنشاء حساب على البوابة الإلكترونية للهيئة يحصل من خلاله على خدمات التأسيس الإلكتروني.
+>
+> ٢- استيفاء نموذج التأسيس الذي يحدد من خلاله الشكل القانوني والنظام القانوني الخاضع له، وكافة البيانات والمستندات اللازمة للحصول على الخدمة.
+>
+> ٣- تقديم طلب التأسيس إلكترونياً أو استيفاء كافة التعديلات (إن وجدت).
+>
+> ٤- سداد رسوم التأسيس إلكترونياً دفعة واحدة لحساب الجهات المتصلة بتقديم خدمات التأسيس وما بعد التأسيس.
+>
+> ٥- التوقيع الإلكتروني على كافة النماذج.
+
+**Verbatim — Regulation Article 41 (single approval):** see Decision 1203/2024 text in section 33 above; the current consolidated Article 41 incorporates that replacement.
+
+**Verbatim — Regulation Article 43 (monitoring):** see Decision 1203/2024 text in section 33 above; the current consolidated Article 43 incorporates that replacement.
+
+**Verbatim — Regulation Article 58 (termination of land allocation):**
+
+> مادة (٥٨)
+>
+> لا يجوز للجهات الإدارية المعنية فسخ التعاقد مع المستثمر إلا بعد الحصول على موافقة مجلس إدارة الهيئة؛ ويتولى الرئيس التنفيذي للهيئة عرض تقارير المتابعة المنصوص عليها في المادة (٦٧) من قانون الاستثمار على مجلس إدارة الهيئة، على أن تتضمن تلك التقارير الالتزامات التي أخل بها المستثمر بشكل تفصيلي، وبيان ما إذا كان هذا الإخلال يعتبر من الأحوال المنصوص عليها في تلك المادة، ويرفق بالتقرير المستندات الداعمة لذلك.
+>
+> ويكون لمجلس إدارة الهيئة في هذه الحالة إما الموافقة على قيام الجهة الإدارية المعنية بفسخ العقد، وإما الرد بعدم توافر مبررات الفسخ خلال ثلاثين يوماً من تاريخ تسلم الهيئة لتقرير المتابعة، وفي هذه الحالة يكون للجهة الإدارية المعنية إذا ما أصرت على الفسخ اللجوء إلى اللجنة الوزارية لتسوية منازعات عقود الاستثمار المنصوص عليها في المادة (٨٨) من قانون الاستثمار خلال خمسة عشر يوماً، وإلا عد ذلك تنازلاً من جانبها عن التمسك بمبررات الفسخ الواردة بتقرير المتابعة، وتنظر اللجنة الوزارية الأمر في مدة أقصاها ستون يوماً.
+
+### B. Decision 2731/2019 — foreign direct investment data reporting (Articles 126 bis and 126 bis A)
+
+**Decision:** Prime Minister Decision 2731/2019, dated 12 November 2019.  
+**Purpose:** adds Articles 126 bis and 126 bis A to Executive Regulation 2310/2017 to collect data for direct and indirect foreign investment statistics.  
+**Contemporaneous Ministry announcement:** https://gate.ahram.org.eg/News/2324268.aspx  
+**MIFT current 20 July 2026 confirmation:** https://mift.gov.eg/Blog/Details/300
+
+The 2019 decision requires public and private entities to provide GAFI with information and data needed to calculate direct and indirect foreign-investment assets, on forms/surveys determined by PM decision, through GAFI's electronic system or other means.
+
+The 2026 MIFT notice confirms that Article 126 bis A requires companies and establishments with foreign participation to submit FDI data to GAFI within **45 days after the end of each quarter**. The ministry describes this as a current statutory/regulatory obligation.
+
+**Article 126 bis A — current operative obligation (summary, not a verbatim transcription):**
+- Foreign-invested companies/establishments must submit quarterly FDI data to GAFI.
+- Deadline: no later than 45 days after each quarter ends.
+- This is separate from the annual financial-statement filing obligation under Companies Law 159/1981 and Regulation Article 156 bis.
+- Public entities have separate quarterly reporting obligations, including 30-day reporting for company/investor data and 45-day reporting for international agreements/contracts with foreign investors, as described in the 2019 amendment announcement.
+
+The full official Gazette text of Decision 2731/2019 and exact verbatim Articles 126 bis / 126 bis A remain to be retrieved. The 140-article consolidated Decision 2310/2017 reproduction does not clearly display these inserted provisions in its article index/footnotes, despite the current MIFT notice relying on Article 126 bis A. Preserve this as a version-gap rather than assuming the 2024 consolidated text contains the 2019 additions.
+
+### C. Executive Regulation amendment chain — all identified amendments
+
+The consolidated 2310/2017 text's footnotes identify these subsequent PM decisions:
+- **Decision 2731/2019:** adds Articles 126 bis and 126 bis A (FDI data reporting); not clearly incorporated in the 140-article text copy.
+- **Decision 1199/2020:** adds a final paragraph to Regulation Article 76 (free-zone-related provision).
+- **Decision 2467/2020:** replaces second paragraph of Regulation Article 10 (Sector A criteria).
+- **Decision 910/2021:** adds a paragraph to Article 36(3), item 4.
+- **Decision 2300/2022:** replaces Article 42 and second paragraph of Article 43 (single approval application/monitoring); later superseded by Decision 1203/2024 for those provisions.
+- **Decision 4426/2022:** replaces Article 42(1) (single approval application documentation); later superseded by Decision 1203/2024.
+- **Decision 2140/2023:** replaces Article 76 and adds Article 76 bis (special industrial sub-projects in certain free zones); Decision 1203/2024 adds a final paragraph to Article 76 bis.
+- **Decision 1203/2024:** replaces Article 10 second paragraph and Articles 41–43; adds a final paragraph to Article 76 bis.
+- **Decision 2562/2024:** replaces Article 63 (investment-zone board) and adds a paragraph to Article 10, Sector A.
+- **Decision 503/2026:** replaces the industrial sub-sector schedules (1) and (2) annexed to PM Decision 104/2022; it is a separate schedule decision, not an amendment to Decision 2310/2017 itself.
+
+The full texts of Decisions 1199/2020, 2467/2020, 910/2021, 2300/2022, 4426/2022 and 2140/2023 remain to be retrieved individually. The 140-article consolidated regulation is a substantial acquisition, but it must not be treated as complete/current until these instruments, Decision 2731/2019 and all annexes are Gazette-matched.
+
+**Collection status:** full searchable 140-article Decision 2310/2017 consolidated text through 12 August 2024 surfaced; selected provisions transcribed. Decision 2731/2019 and its two FDI-reporting articles identified, with current 45-day obligation confirmed by MIFT in July 2026. Six further amendment decisions (1199/2020, 2467/2020, 910/2021, 2300/2022, 4426/2022, 2140/2023) identified from consolidated footnotes but not individually downloaded. No lawyer approval or rights clearance claimed.
