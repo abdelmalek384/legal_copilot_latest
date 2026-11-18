@@ -1216,3 +1216,6 @@
 - Confirmed Law 83/2006 as an amendment to Laws 142/1964 and 70/1964; Decision 11264/2016 as an amendment to the Law 142/1964 Executive Regulation; recent territorial postponement decisions remain implementing decisions, not substantive statutory amendments.
 - Reconfirmed the key Law 114/1946 chain: Law 223/1996, Law 186/2020, Law 5/2021 deferral, Law 9/2022 and Decision 2332/2022. Reconfirmed Law 143/1981 amendment Law 11/2024 (Articles 11(2), 12(2)) and Case 101/26 separately.
 - Cumulative instrument-type totals remain unreported pending normalization of instrument types and deduplication; 189 acquisition rows are catalogue records, not 189 base laws or 189 full texts.
+
+
+| checkpoint 131 — Agent 3 FRA factoring Decision 51/2026 | Added official FRA-hosted Official Gazette text, Egyptian Gazette issue 45 supplement (ب), 24 Feb 2026, page 11; Decision 51/2026 inserts Article 3 bis into Decision 163/2018 requiring invoice-system checks, duplicate-factoring prevention and movable-collateral registration clauses; +1 instrument / +3 provision units; cumulative Agent 3 minimum 152 instruments / 1,365 provision units; assignment estimate 31%, lawyer review 0%. Full text and caveats: [agent3_commercial_corporate_investment_continuation_2026-11-18.md](agent3_commercial_corporate_investment_continuation_2026-11-18.md) |
