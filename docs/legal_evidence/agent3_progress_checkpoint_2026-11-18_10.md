@@ -1,7 +1,7 @@
 # Agent 3 progress checkpoint — 18 November 2026 (continuation 10)
 
 ## Latest cumulative position
-- **214 unique Agent 3 instruments/documents surfaced; 2,064 normalized statutory/regulation units** (previous 213/2,061 plus FRA Decision 168/2026, three transcribed provisions).
+- **214 unique Agent 3 instruments/documents surfaced; 2,060 fully normalized text units, plus 1 partially transcribed provision and 3 identified provisions whose exact text is still outstanding.** Decision 168/2026 adds three transcribed provisions.
 - Assigned-domain completion: **55% provisional**; whole Egyptian legal corpus approximately **2% provisional**.
 - 13/13 families touched; 0/13 currentness-complete; lawyer review 0%; commercial reuse permissions 0.
 
