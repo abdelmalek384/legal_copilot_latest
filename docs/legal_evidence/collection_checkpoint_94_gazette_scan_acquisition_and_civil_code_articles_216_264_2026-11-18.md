@@ -109,3 +109,9 @@ The three sets are stored in checkpoint 86. Articles 371–379 were excluded bec
 
 **Checkpoint 94 cumulative Civil Code increment:** 164 new distinct article texts (Articles 216–370, except no skipped article in this interval; plus 380–388). **Civil Code property/contract extraction stream: 231 distinct provisions** (67 prior + 164 newly added). This is not a consecutive 1–231 extraction and does not establish that all provisions are current. It is a base-text extraction from the ETA government-hosted PDF; amendment/currentness reconciliation and page-image checking remain necessary, especially where OCR is defective.
 
+## 8. Further Civil Code extraction — Articles 418–446
+
+A further **29 distinct provisions** (Articles 418–446) were transcribed from the ETA government-hosted PDF and added to checkpoint 86. These cover the general sale contract, price determination, delivery, seller obligations, eviction warranty and remedies. Articles 447–495 were not duplicated because checkpoint 60 already contains those provisions.
+
+The cumulative Civil Code extraction stream is now **260 distinct article provisions** (67 prior + 193 new in this continuation: 216–370, 380–388 and 418–446). This is a deduplicated set of extracted provisions, not a consecutive range and not a statement that all are current. OCR and amendment verification remain outstanding.
+
