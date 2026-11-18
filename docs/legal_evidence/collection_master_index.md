@@ -453,3 +453,11 @@
 - Executive Regulation 96/1982: official searchable text through numbered Article 324, with appendices; MIFT reports 21 regulatory attachments/versions and consolidation through 21 Aug 2022. Decision 2928/2022 Article 287 bis-2 single-person-company capital amendment is transcribed in the research file.
 - Commercial Code 17/1999: official government-hosted searchable edition through Article 772 plus the preserved first chapter of Book II of the 1883 Code on partnerships. Issuing-date amendment chain includes Laws 168/2000, 150/2001 and 158/2003; Law 156/2004 cheque amendments require Gazette capture. **Do not use former bankruptcy provisions Articles 550–772 as current**: Law 11/2018 established the separate restructuring/bankruptcy regime; exact official repeal text and Law 11/2021 amendment package still require Gazette reconciliation.
 - No article-number maximum was added to the corpus's unique article count. Counts will be increased only after article-by-article normalization, deduplication and amendment-state mapping. The earlier whole-corpus estimate remains ~2% provisional; no complete denominator exists.
+
+
+### Research Agent 3 — Capital Market Law and regulation acquisition (2026-11-18)
+
+- Agent 3 research file now includes official FRA-hosted consolidated Arabic text for Capital Market Law 95/1992 (FRA version current through 2022; through numbered Article 75), Executive Regulation Decision 135/1993 (FRA consolidated PDF updated 2025; through numbered Article 362), and Gazette-matched PM Decision 2482/2025 (Official Gazette issue 29 bis A, 20 July 2025).
+- FRA amendment register for Law 95/1992 identifies Laws 10/1995, 89/1996, 158/1998, 13/2004, 143/2004, 123/2008, 27/2014, 17/2018 and 13/2022.
+- FRA's current regulation page identifies PM Decisions 2482/2025, 1539/2025, 2423/2024, 3045/2023, 4664/2022, 3456/2022, 1109/2022 and 1760/2020 among the Executive Regulation amendment chain. Decision 2482/2025 replaces Article 148, adds Article 148 bis and adds a final paragraph to Article 156; full Gazette text is preserved in Agent 3 file.
+- These are full-text acquisitions / amendment leads, not a claim that every historic amendment is Gazette reconciled or that the full FRA regulatory universe is complete. Whole-corpus estimate remains ~2% provisional.
