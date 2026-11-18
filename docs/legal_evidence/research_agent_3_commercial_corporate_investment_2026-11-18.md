@@ -4938,3 +4938,177 @@ The full searchable Executive Regulation 238/2011 reproduction now exposes the r
 > 1 – حق مقدم المبادرة في التعاقد معه إذا كان الفرق بين عطائه المالي والعطاء المالي الأفضل لا يجاوز النسبة المنصوص عليها بكراسة الشروط والمواصفات والتي لا يجاوز حدها الأقصى (10%)، وعدل سعر عطائه إلى سعر العطاء الأفضل، وفي هذه الحالة يعوض مقدم المبادرة صاحب العطاء الأفضل بالمبلغ المحدد لذلك بكراسة الشروط والمواصفات.
 
 **Text-completeness note:** The searchable reproduction's Article 62 bis/7 continues beyond the excerpt shown above with the alternative preference mechanism; acquire the complete Gazette PDF of Decision 3217/2022 and inspect the full article before operationalizing this preference. The primary Amiri Press indexed text is also a source lead, but the Gazette PDF remains required for exact final wording.
+
+
+## 47. Central Bank and Banking Sector Law 194/2020 — full 249-article Arabic text now retrieved
+
+### A. Full statutory text
+
+**Law:** Law 194/2020 issuing the Central Bank and Banking Sector Law.  
+**Official Gazette:** issue 37 bis (و), 15 September 2020.  
+**Official CBE banking-laws index:** https://www.cbe.org.eg/ar/laws-regulations/laws/banking-laws  
+**Official FRA source record / updated version locator:** https://fra.gov.eg/regulations/قانون-رقم-194-لسنة-2020/  
+**Full searchable Arabic text, 249 articles:** https://alhasswalawfirm.com/law-library/law-194-2020  
+**Alternate full text:** https://www.abdelazizandpartners.com/legal-library/central-bank-banking-194-2020/
+
+The full searchable text contains eight issuing provisions and substantive Articles 1–241 (249 numbered provisions total), with the Official Gazette issue/date identified. The secondary legal publisher says the text is copied from the Official Gazette and Court of Cassation legislation portal and reviewed article-by-article against Gazette page images, with a second independent FRA copy used to resolve OCR discrepancies. It records no amending law found through 14 October 2026. The official CBE page confirms Law 194/2020 as the governing banking statute and links it in the Banking Laws catalogue.
+
+This resolves the earlier source gap: the 115-page Official Gazette scan had been located but was not text-extractable; a complete searchable Arabic text is now available. The searchable reproduction remains a secondary transcription and should be page-image compared before machine ingestion.
+
+### B. Key provisions transcribed
+
+**Verbatim — issuing Article 1 (scope):**
+
+> (المادة الأولى)
+>
+> تسري أحكام القانون المرافق على البنك المركزي والجهاز المصرفي وشركات الصرافة وشركات تحويل الأموال وشركات الاستعلام والتصنيف الائتماني وشركات ضمان الائتمان ومشغلي نظم الدفع ومقدمي خدمات الدفع.
+
+**Verbatim — issuing Article 2 (Companies Law interface):**
+
+> (المادة الثانية)
+>
+> تسري على البنوك والشركات المخاطبة بأحكام القانون المرافق، فيما لم يرد في شأنه نص فيه أو في اللوائح والقرارات الصادرة تنفيذاً له، أحكام قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة وشركات الشخص الواحد الصادر بالقانون رقم 159 لسنة 1981، ويكون البنك المركزي هو الجهة الإدارية المختصة، ومحافظ البنك المركزي هو الوزير المختص في تطبيق أحكام قانون الشركات المشار إليه بالنسبة للجهات الخاضعة لإشرافه طبقاً لأحكام القانون المرافق.
+
+**Verbatim — substantive Article 36 (CBE auditor review):**
+
+> مادة (٣٦)
+>
+> يتولى مراجعة حسابات البنك المركزي اثنان من مراقبي الحسابات، يعين أحدهما الجهاز المركزي للمحاسبات من بين أعضائه، ويعين الآخر مجلس الإدارة بناءً على ترشيح لجنة المراجعة من بين المسجلين بسجل مراقبي الحسابات بالبنك المركزي، وذلك طبقاً للقواعد التي يحددها مجلس الإدارة في هذا الشأن، وتحدد أتعابهما بالاتفاق بين البنك المركزي والجهاز المركزي للمحاسبات.
+>
+> وتتم المراجعة طبقاً لمعايير المراجعة المصرية وطبيعة نشاط البنوك المركزية، وتقوم مقام مراجعة الجهاز المركزي للمحاسبات.
+>
+> وعلى البنك المركزي أن يضع تحت تصرف مراقبي الحسابات جميع السجلات والأوراق والبيانات التي يراها المراقبان ضرورية للقيام بالمراجعة للاطلاع عليها.
+
+**Verbatim — Article 144 (corrective measures and sanctions):**
+
+> مادة (١٤٤)
+>
+> لمجلس الإدارة حال ثبوت مخالفة أي من البنوك أو المسئولين الرئيسيين لأحكام هذا القانون أو اللوائح أو القرارات الصادرة تنفيذاً له اتخاذ واحد أو أكثر من الإجراءات أو الجزاءات التالية بما يتناسب مع طبيعة المخالفة وجسامتها وظروف ارتكابها:
+>
+> (أ) توجيه تنبيه.
+>
+> (ب) إلزام البنك بإزالة المخالفة واتخاذ إجراءات تصحيحية خلال مدة محددة.
+>
+> وذلك كله طبقاً للقواعد والإجراءات التي يصدرها مجلس الإدارة.
+
+**Verbatim — Article 146 (early intervention triggers):**
+
+> مادة (١٤٦)
+>
+> للبنك المركزي اتخاذ أي من الإجراءات أو الجزاءات المنصوص عليها بالمادة (١٤٧) من هذا القانون حال تحقق أي من الحالات الآتية:
+>
+> (أ) قيام البنك بممارسات مصرفية غير سليمة.
+>
+> (ب) عدم التزام البنك بأي من الإجراءات المتخذة في شأنه عملاً بنص المادة (١٤٤) من هذا القانون.
+>
+> (ج) التباين الكبير بين آجال استحقاق أصول البنك والتزاماته.
+>
+> (د) ارتفاع تكلفة السيولة لدى البنك نتيجة الاعتماد على التمويل الاستثنائي أو غيره من الموارد المكلفة.
+>
+> (هـ) انخفاض جودة أصول البنك بما من شأنه المساس بالسلامة المالية للبنك أو بمصالح المودعين.
+>
+> (و) انخفاض مستوى الأرباح المحققة بما من شأنه تهديد استمرارية البنك على المدى المتوسط أو البعيد.
+>
+> (ز) تراجع مؤشرات السلامة المالية للبنك.
+>
+> (ح) وجود قصور في نظم الحوكمة أو إدارة المخاطر أو الرقابة الداخلية أو السياسات المحاسبية.
+
+**Verbatim — Article 156 (resolution asset/liability valuation):**
+
+> مادة (١٥٦)
+>
+> يلتزم البنك المركزي بإعداد تقرير يتضمن حصر أصول والتزامات البنك الخاضع للتسوية وتقييمها طبقاً للمنهجية والفرضيات التي يحددها بالنظر لحالة البنك، وذلك بمراعاة ألا تقع المقاصة بين ما للبنك من حقوق وما عليه من التزامات إلا إذا وجد ارتباط بينهما، ويوجد الارتباط على وجه الخصوص إذا نشأت الحقوق والالتزامات عن سبب واحد أو شملها حساب جار.
+>
+> ويهدف هذا التقرير إلى تحديد صافي أصوله في تاريخ اعتباره متعثراً، وحساب تكلفة تسوية أوضاعه، وتحديد أنسب الطرق لتنفيذها، وحساب الخسائر المتوقعة.
+
+**Verbatim — Article 159 (FRA consent in bank resolution):**
+
+> مادة (١٥٩)
+>
+> إذا تطلبت إجراءات تسوية أوضاع البنك المتعثر الحصول على موافقة الهيئة العامة للرقابة المالية أو غيرها من الجهات المختصة، فيتعين البت في الطلب خلال ثلاثة أيام عمل من تاريخ تقديم الطلب، وفي حالة عدم الرد خلال هذه المدة، يعتبر ذلك موافقة ضمنية على الطلب.
+>
+> ويجوز للهيئة العامة للرقابة المالية، بناءً على طلب من البنك المركزي، الإعفاء من شروط الإفصاح المنصوص عليها في قانون سوق رأس المال أو تأجيلها إذا كان الإفصاح سيؤثر سلباً على عملية تسوية أوضاع البنك المتعثر.
+
+**Verbatim — Article 194 (payment-system access):**
+
+> مادة (١٩٤)
+>
+> يلتزم مشغلو نظم الدفع بالسماح للبنوك ومقدمي خدمات الدفع بالمشاركة في نظم الدفع التي يديرونها على أساس موضوعي دون تمييز بشرط ألا يترتب على ذلك التأثير سلباً على الاستقرار المالي والتشغيلي للنظام.
+>
+> كما تلتزم البنوك بالسماح لمشغل نظم الدفع ومقدمي خدمات الدفع بفتح حساب مصرفي يمكنها من ممارسة أعمالها بفاعلية طبقاً لذات الضوابط المنصوص عليها في الفقرة الأولى من هذه المادة.
+
+**Verbatim — Article 200 (direct debit):**
+
+> مادة (٢٠٠)
+>
+> يجوز لأي شخص إصدار تفويض بالخصم المباشر وفاءً لمدفوعات مستقبلية.
+>
+> ويضمن من أصدر تفويض الخصم المباشر الوفاء بقيمة أوامر الخصم المباشر الواردة به طبقاً للتعليمات المبينة به، ويبطل كل اتفاق يخالف ذلك.
+>
+> ولا يجوز الامتناع عن الوفاء بقيمة أمر الخصم المباشر متى كان لدى الجهة المسحوب عليها مقابل وفاء ولو انقضى ميعاد تقديمه، وفي حالة امتناع الجهة المسحوب عليها عن الوفاء بقيمة أمر الخصم المباشر يجب عليها إثبات الامتناع عن الدفع وسببه ببيان مكتوب يصدر عنها يتضمن قيمته وتوقيت تقديمه.
+>
+> وتسري على أمر الخصم المباشر فيما لم يرد في شأنه حكم خاص في هذه المادة، أحكام الفصل الثالث من الباب الرابع من قانون التجارة الصادر بالقانون رقم 17 لسنة 1999 بالقدر الذي لا تتعارض فيه مع طبيعته.
+
+**Verbatim — Article 224 (penalty chapter general clause):**
+
+> مادة (٢٢٤)
+>
+> مع عدم الإخلال بأي عقوبة أشد منصوص عليها في قانون العقوبات أو أي قانون آخر، يعاقب على الجرائم المبينة في المواد التالية بالعقوبات المنصوص عليها فيها.
+
+**Verbatim — Article 228 (ownership violations):**
+
+> مادة (٢٢٨)
+>
+> يعاقب بغرامة لا تقل عن مليون جنيه ولا تجاوز مليوني جنيه كل من خالف أياً من أحكام التملك في رؤوس أموال البنوك المنصوص عليها في المواد (٧٤، ٧٦، ٧٨) من هذا القانون.
+
+**Verbatim — Article 229 (failure to provide information):**
+
+> مادة (٢٢٩)
+>
+> يعاقب بغرامة لا تقل عن مائتي ألف جنيه ولا تجاوز خمسمائة ألف جنيه كل من امتنع عن تقديم البيانات أو التقارير أو المعلومات المشار إليها في المواد (١٢٩، ١٣٠، ١٣٢) من هذا القانون.
+>
+> ويعاقب بذات العقوبة كل من امتنع عن تقديم السجلات أو الأوراق أو المستندات لمن لهم حق الاطلاع عليها فضلاً عن الحكم بالتمكين من الاطلاع.
+
+**Verbatim — Article 230 (false information and credit-information fraud):**
+
+> مادة (٢٣٠)
+>
+> يعاقب بالحبس وبغرامة لا تقل عن خمسمائة ألف جنيه ولا تجاوز مليون جنيه، أو بإحدى هاتين العقوبتين، كل من تعمد بقصد الغش ذكر وقائع غير صحيحة أو أخفى بعض الوقائع في البيانات أو في المحاضر أو في الأوراق الأخرى التي تقدم من الجهات المرخص لها إلى البنك المركزي بالتطبيق لأحكام هذا القانون.
+>
+> ويعاقب بغرامة لا تقل عن مائة ألف جنيه ولا تجاوز مليون جنيه كل من ارتكب غشاً أو تدليساً في تقديم خدمات الاستعلام أو التصنيف الائتماني بقصد تيسير الحصول على الائتمان، وذلك فضلاً عن الحكم عليه لصالح مانح الائتمان بمبلغ يعادل قيمة ما لم يتم الوفاء به من الائتمان الممنوح بناءً على ما أصاب مانح الائتمان من ضرر بسبب ما ارتكبه من غش أو تدليس.
+
+**Verbatim — Article 237 (judicial officers):**
+
+> مادة (٢٣٧)
+>
+> يكون لموظفي البنك المركزي الذين يصدر بتحديدهم قرار من وزير العدل بالاتفاق مع المحافظ صفة مأموري الضبط القضائي بالنسبة إلى الجرائم التي تقع بالمخالفة لأحكام هذا القانون واللوائح والقرارات الصادرة تنفيذاً له وتكون متعلقة بأعمال وظائفهم.
+
+**Verbatim — Article 238 (prosecution request):**
+
+> مادة (٢٣٨)
+>
+> في غير حالات التلبس، لا يجوز رفع الدعوى الجنائية أو اتخاذ أي إجراء من إجراءات التحقيق في الجرائم المنصوص عليها في هذا القانون، والقرارات الصادرة تنفيذاً له، وفي الجرائم المنصوص عليها في الباب الرابع من الكتاب الثاني من قانون العقوبات في نطاق تطبيق أحكام هذا القانون، إلا بناءً على طلب كتابي من المحافظ.
+
+**Verbatim — Article 240 (settlement):**
+
+> مادة (٢٤٠)
+>
+> للبنوك الخاضعة لأحكام هذا القانون التصالح في الجرائم المشار إليها في المادة (٢٣٨) منه ولو كان قد صدر في شأنها الطلب المنصوص عليه في هذه المادة، وذلك في أي حالة تكون عليها الدعوى، فإذا تم التصالح قبل صدور حكم بات فيها، يشترط لنفاذه إتمام الوفاء بحقوق البنك طبقاً لشروط التصالح، وفي حالة صيرورة الحكم باتاً لا يكون التصالح نافذاً إلا إذا قام المحكوم عليه بالوفاء المسبق بمستحقات البنك.
+>
+> وفي جميع الأحوال، يشترط موافقة مجلس إدارة البنك الدائن على التصالح، ويحرر عنه محضر يوقعه أطرافه، ويعرض على المحافظ مؤيداً بالمستندات للنظر في اعتماده، ولا يكون التصالح نافذاً إلا بهذا الاعتماد وتوثيقه، ويكون التوثيق بدون رسوم.
+
+**Verbatim — Article 241 (reward for informants):**
+
+> مادة (٢٤١)
+>
+> للمحافظ حق تخصيص نسبة لا تجاوز (١٠٪) من المبالغ المصادرة والغرامات الإضافية توزع على كل من أرشد أو عاون في ضبط إحدى الجرائم المرتكبة بالمخالفة لأحكام الباب السابع من هذا القانون أو اكتشافها أو في استيفاء الإجراءات المتصلة بها، وذلك طبقاً للقواعد التي يضعها مجلس الإدارة.
+
+### C. Corporate-law interface and scope
+
+- Issuing Article 2 expressly imports Companies Law 159/1981 for banks and covered companies where Law 194/2020 or its regulations/decisions are silent; CBE is the competent administrative authority and the Governor is the competent minister for Companies Law purposes for supervised entities.
+- Article 1 expressly covers banks, exchange companies, money-transfer companies, credit-information/rating companies, credit-guarantee companies, payment-system operators and payment-service providers.
+- The law repeals Law 88/2003.
+- The official CBE Banking Laws index lists Law 194/2020, but no separate comprehensive Executive Regulation of Law 194/2020 was listed in the index. The framework is supplemented by CBE Board rules, circulars and sector-specific regulations; do not invent a single Executive Regulation number.
+- The searchable 249-article text's metadata states no amending law had been found through 14 October 2026. The CBE 2025–2026 circulars collected in section 28 are subordinate instruments, not amendments to Law 194/2020 itself.
+
+**Collection status:** full searchable 249-article Arabic text now surfaced; 15 additional substantive articles transcribed in this section. The official Gazette scan remains the controlling source and should be hash-preserved/page-compared. No lawyer approval or rights clearance claimed.
