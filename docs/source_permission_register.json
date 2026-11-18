@@ -2184,6 +2184,24 @@
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "Not established",
       "required_next_action": "Locate standalone Decision6199/2007 and Gazette publication metadata; review site terms and seek written authorization before bulk/local archiving or commercial redistribution."
+    },
+    {
+      "source_id": "EG-LOC-GAZETTE-ISSUE159-2014",
+      "authority": "Library of Congress Cairo Field Office — scanned Egyptian Proceedings issue",
+      "source_page": "https://tile.loc.gov/storage-services/service/ll/llscd/79646495_20140712/79646495_20140712.pdf",
+      "material_types": [
+        "Egyptian Proceedings issue159, 12 July 2014",
+        "Justice Minister Decision4476/2014",
+        "Forms11 bis and50 under Law142/1964 Executive Regulation"
+      ],
+      "access_status": "Direct PDF opened; cover shows الوقائع المصرية issue159, 12 July 2014 and Library of Congress Cairo Field Office purchase stamp dated 2 Aug 2014; printed pages6–10 contain Decision4476/2014 and attached forms.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://www.loc.gov/legal/",
+      "permission_evidence": "The Library of Congress provides public access to a scanned copy of the printed Egyptian Proceedings issue. The visible purchase stamp and Gazette masthead support primary page-image provenance, but do not establish the scan's legal authenticity as an Amiri Press original binary or grant local archiving, OCR, commercial reuse, redistribution or republication rights. No licence specific to this scan was identified.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "Single direct PDF URL; no bulk/API permission established",
+      "required_next_action": "Review Library of Congress terms and any restrictions attached to the Cairo Field Office scan; obtain permission before republication or commercial reuse; preserve issue/page citations; do not remove stamps or watermarks."
     }
   ]
 }
