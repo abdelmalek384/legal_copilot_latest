@@ -2469,3 +2469,9 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 - Added [Decision 155/2026](agent3_fra_decision155_2026_securities_borrowing_lending_arabic_text.md): 19 operative articles from official FRA-hosted 16-page Gazette PDF, issue 191 (تابع أ), 1 September 2026. Regulates securities borrowing for short selling, broker authorization and capital conditions, central lending system, margin/collateral, limits, close-out, client rights, safeguards and transition; expressly repeals Decision 365/2026. OCR/page-image QA remains outstanding and the catalogue labels the item as updated in 2026.
 - Added [Decision 2863/2026](agent3_fra_decision2863_2026_digital_verification_behavioral_scoring_arabic_text.md): all three articles from official FRA-hosted two-page Gazette PDF, issue 210 (تابع أ), 23 September 2026. Requires digital verification before consumer finance is granted/renewed and consideration of alternative-data behavioral scores; scoring requirement begins 1 April 2027 subject to credit-bureau system readiness.
 - Three new unique instrument IDs added. Text is source-matched to official FRA Gazette PDFs; no lawyer review or commercial reuse rights asserted.
+
+
+### Agent 3 — FRA Decision 2864/2026 (18 Nov 2026)
+
+- Added [Decision 2864/2026](agent3_fra_decision2864_2026_consumer_finance_fra_database_integration_arabic_text.md): all three articles from the official FRA-hosted two-page Gazette PDF, issue 210 (تابع أ), 23 September 2026; effective 24 September. Requires consumer-finance companies to connect their databases to FRA and provide approved-client, real-time transaction, financed-product classification, repayment regularity and company solvency data; FRA implementing controls are due within six months.
+- One additional unique instrument ID. Current implementing controls and any later amendments remain to be acquired; source-matched, not lawyer-reviewed.
