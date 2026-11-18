@@ -5928,3 +5928,137 @@ Commercial Code Book V, Articles 550 onward, originally governed bankruptcy and 
 The PDF is hosted on an Egyptian government tax-authority domain and identifies the Government Printing Authority as publisher. The file itself contains a full legal text, but no separate licence for commercial redistribution was found. Preserve the source URL and access date; do not infer a right to redistribute the full PDF or bulk text in a commercial corpus. For the authoritative publication, cross-check the Official Gazette issue 19 (مكرر), 17 May 1999, and the Law 168/2000 amendment in issue 30 تابع, 27 July 2000.
 
 **Collection status:** full Arabic PDF and its 3,759-line searchable extraction obtained; all 771 code articles are present in the edition (plus retained 1883 partnerships chapter); 17 selected provisions transcribed here. Law 168/2000 cheque commencement amendment identified in the printed footnote. No lawyer review or rights clearance claimed.
+
+
+## 41. Companies Law 159/1981 — complete government-hosted Arabic text surfaced; version caveat
+
+### A. Source and completeness
+
+**Instrument:** Law 159/1981 on joint-stock companies, partnerships limited by shares and limited liability companies.  
+**Government-hosted Arabic PDF:** https://www.eta.gov.eg/sites/default/files/2024-10/law-159-1981.pdf  
+**Alternative ETA legislation catalogue:** https://www.eta.gov.eg/en/node/837  
+**PDF extraction:** 993 searchable lines; text runs from Article 1 through Article 184, with repeal notes and amendment footnotes.
+
+This is an official Egyptian Tax Authority-hosted copy. The title page says "قانون الشركات 159 لسنة 1981 المعدل بالقانون 3 لسنة 1998"; the text also carries selected later amendment notes (including Law 94/2005) and a constitutional judgment note. **It is not a complete current consolidated text** and must not be used alone as the operative 2026 version. In particular, it does not incorporate all of Law 4/2018 (including single-person companies) or the later amendments and regulations. It is a strong base-text source to be versioned against the later amending statutes already listed in this collection.
+
+### B. Verbatim provisions
+
+**Verbatim — Article 1 (scope and registered office):**
+
+> المادة ١
+>
+> تسرى أحكام هذا القانون على شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة التى تتخذ مركزها الرئيسى فى جمهورية مصر العربية أو تزاول فيها نشاطها الرئيسى.
+>
+> وعلى كل شركة تؤسس فى جمهورية مصر العربية أن تتخذ فى مصر مركزاً رئيسياً لها.
+
+**Verbatim — Article 2 (joint-stock company and limited shareholder liability):**
+
+> المادة ٢
+>
+> شركة المساهمة هى شركة ينقسم رأس مالها إلى أسهم متساوية القيمة يمكن تداولها على الوجه المبين فى القانون، وتقتصر مسئولية المساهم على أداء قيمة الأسهم التى اكتتب فيها، ولا يسأل عن ديون الشركة إلا فى حدود ما اكتتب فيه من أسهم.
+>
+> ويكون للشركة اسم تجارى يشتق من الغرض من إنشائها ولا يجوز للشركة أن تتخذ من أسماء الشركاء أو اسم أحدهم عنواناً لها.
+
+**Verbatim — Article 4 (LLC definition and restrictions):**
+
+> المادة ٤
+>
+> الشركة ذات المسؤولية المحدودة هي شركة لا يزيد عدد الشركاء فيها على خمسين شريكاً لا يكون كل منهم مسؤولاً إلا بقدر حصته.
+>
+> ولا يجوز تأسيس الشركة أو زيادة رأس مالها أو الاقتراض لحسابها عن طريق الاكتتاب العام ولا يجوز لها إصدار أسهم أو سندات قابلة للتداول ويكون انتقال حصة الشركاء فيها خاضعاً لاسترداد الشركاء طبقاً للشروط الخاصة التي يتضمنها عقد الشركة فضلاً عن الشروط المقررة في هذا القانون.
+
+**Verbatim — Article 7 (founder definition):**
+
+> المادة ٧
+>
+> يعتبر مؤسسا للشركة كل من يشترك اشتراكا فعليا في تأسيسها بنية تحمل المسؤولية الناشئة عن ذلك ويسرى عليه حكم المادة ٨٩ من هذا القانون.
+>
+> ويعتبر مؤسسا على الخصوص كل من وقع العقد الابتدائي او طلب الترخيص في تأسيس الشركة او قدم حصة عينية عند تأسيسها.
+>
+> ولا يعتبر مؤسسا من يشترك في التأسيس لحساب المؤسسين من اصحاب المهن الحرة وغيرهم.
+
+**Verbatim — Article 8 (minimum founders):**
+
+> المادة ٨
+>
+> لا يجوز ان يقل عدد الشركاء المؤسسين في شركات المساهمة عن ثلاثة كما لا يجوز ان يقل هذا العدد عن اثنين بالنسبة لباقي الشركات الخاضعة لاحكام هذا القانون.
+>
+> واذا قل عدد الشركاء عن النصاب المذكور في الفترة السابقة اعتبرت الشركة منحلّة بحكم القانون ان لم تبادر خلال ستة اشهر على الاكثر الى استكمال هذا النصاب ويكون من يبقى من الشركاء مسؤولا في جميع امواله عن التزامات الشركة خلال هذه المدة.
+
+**Verbatim — Article 11 (founder duty of care):**
+
+> المادة ١١
+>
+> يجب على المؤسس ان يبذل في تعاملاته مع الشركة تحت التأسيس او لحسابها عناية الرجل الحريص ويلتزم المؤسسون - على سبيل التضامن - بأية اضرار قد تصيب الشركة او الغير نتيجة مخالفة هذا النظام.
+>
+> واذا تلقى المؤسس اية اموال او معلومات تخص الشركة تحت التأسيس كان عليه ان يرد الى الشركة تلك الاموال واية ارباح يكون قد حصل عليها نتيجة استعماله لتلك الاموال او المعلومات.
+
+**Verbatim — Article 17 (notification and incorporation mechanics in this edition):**
+
+> المادة ١٧
+>
+> على المؤسسين أو من ينوب عنهم إخطار الجهة الإدارية المختصة بإنشاء الشركة ويجب أن يرفق بالإخطار المحررات الآتية:
+>
+> أ - العقد الابتدائي ونظام الشركة بالنسبة إلى شركات المساهمة وشركات التوصية بالأسهم، أو عقد التأسيس بالنسبة إلى الشركات ذات المسؤولية المحدودة.
+>
+> ب - موافقة مجلس الوزراء على تأسيس الشركة إذا كان غرضها أو من بين أغراضها العمل في مجال نشاط الأقمار الصناعية أو إصدار الصحف أو أنظمة الاستشعار عن بعد أو أي نشاط يتناول غرضا أو عملا من الأغراض أو الأعمال المنصوص عليها في قانون الجمعيات والمؤسسات الخاصة.
+>
+> ج - شهادة من أحد البنوك المرخص لها بذلك تفيد تمام الاكتتاب في جميع أسهم الشركة أو حصصها وان القيمة الواجب سدادها على الأقل من الأسهم أو الحصص النقدية قد تم أداؤها ووضع تحت تصرف الشركة إلى أن يتم اكتساب شخصيتها الاعتبارية.
+>
+> د - إيصال سداد رسم بواقع واحد في الألف من رأس مال الشركة المصدر بالنسبة إلى شركات المساهمة وشركات التوصية بالأسهم ومن رأس المال المدفوع بالنسبة إلى الشركات ذات المسؤولية المحدودة، وذلك بحد أدنى مقداره مائة جنيه وحد أقصى مقداره ألف جنيه.
+>
+> وعلى الجهة الإدارية المختصة إعطاء مقدم الأخطار شهادة بذلك متى كان مرفقا به جميع المحررات المنصوص عليها في البنود السابقة مستوفاة، ويتم قيد الشركة في السجل التجاري بموجب تلك الشهادة دون حاجة لشرط أو لإجراء آخر، وأيا كانت نسبة مشاركة غير المصريين فيها.
+>
+> وتشهر الشركة وتكتسب الشخصية الاعتبارية بعد مضي خمسة عشر يوما من تاريخ قيدها في السجل التجاري.
+
+**Verbatim — Article 25 (in-kind contributions):**
+
+> المادة ٢٥
+>
+> إذا دخل في تكوين رأس مال شركة المساهمة أو شركة التوصية بالأسهم أو عند زيادة رأس المال حصة عينية مادية أو معنوية وجب على المؤسسين أو مجلس الإدارة بحسب الأحوال أن يطلبوا إلى الجهة الإدارية المختصة التحقق مما إذا كانت هذه الحصص قد قدرت تقديراً صحيحاً، وتخصص بهذا التقدير لجنة تشكل بالجهة الإدارية المختصة برئاسة مستشار بأحد الهيئات القضائية وعضوية أربعة على الأكثر من الخبراء في التخصصات الاقتصادية والمحاسبية والقانونية والفنية تختارهم تلك الجهة.
+
+**Verbatim — Article 157 (shareholder access and inspection):**
+
+> المادة ١٥٧
+>
+> يكون للمساهمين حق الاطلاع على سجلات الشركة وللحصول على صور مستخرجات من وثائقها وبالشروط والأوضاع التي تحددها اللائحة التنفيذية.
+>
+> ويكون لكل ذي مصلحة طلب الاطلاع لدى الجهة الإدارية المختصة على الوثائق والسجلات والمحاضر والتقارير المتعلقة بالشركة والحصول على بيانات منها مصدقاً عليها من هذه الجهة ويرفض الطلب إذا كان من شأن إذاعة البيانات المطلوبة إلحاق الضرر بالشركة أو بأية هيئة أخرى أو الإخلال بمصلحة عامة.
+
+**Verbatim — Article 158 (minority inspection threshold in this edition):**
+
+> المادة ١٥٨
+>
+> يكون للجهة الإدارية المختصة وللشركاء الحائزين على ٢٠٪ من رأس المال على الأقل بالنسبة إلى البنوك و١٠٪ من رأس المال على الأقل بالنسبة إلى غيرها من شركات المساهمة أن يطلبوا التفتيش على الشركة فيما ينسب إلى أعضاء مجلس الإدارة أو مراقبي الحسابات من مخالفات جسيمة في أداء واجباتهم التي يقررها القانون أو النظام متى وجد من الأسباب ما يرجح وجود هذه المخالفات.
+
+**Verbatim — Article 161 (invalidity of unlawful corporate acts):**
+
+> المادة ١٦١
+>
+> مع عدم الإخلال بحق المطالبة بالتعويض عند الاقتضاء يقع باطلا كل تصرف أو تعامل أو قرار يصدر على خلاف القواعد المقررة في هذا القانون أو يصدر من مجلس إدارة شركات المساهمة أو جمعياتها العامة المشكلة على خلاف أحكامه، وذلك دون إخلال بحق الغير حسن النية.
+
+**Verbatim — Article 165 (foreign company branches):**
+
+> المادة ١٦٥
+>
+> تسرى أحكام هذا الباب على الشركات الأجنبية التي لا تتخذ في مصر مركز إدارتها أو مركز نشاطها الرئيسي ويكون لها في مصر مركز لمزاولة الأعمال سواء أكان هذا المركز فرعاً أو بيتاً صناعياً أو مكتباً للإدارة أو غير ذلك.
+>
+> ويكون للوكلاء التي تديرها هذه الشركات في مصر حكم الفروع أو البيوت أو المكاتب المشار إليها إذا كانت الشركات الأجنبية تديرها بنفسها أو تكل إدارتها إلى مستخدميها، أو كان للوكيل سلطة إبرام العقد نيابة عن الشركة، أو كانت تحت يد الوكيل بضائع أو منتجات الشركة يتصرف فيها طبقاً لأوامر الشركة وتنفيذ تعاقداتها. ولا يعتبر الوكلاء التجاريون في غير هذه الحالات فروعاً للشركات الأجنبية.
+
+**Verbatim — Article 166 (commercial registration of foreign branches):**
+
+> المادة ١٦٦
+>
+> يجب على الشركات الأجنبية التي يكون لها مركز لمزاولة الأعمال في مصر أن تتبع إجراءات التسجيل التجاري المقررة، وعليها أن تخطر الجهات التي تحددها اللائحة التنفيذية بالبيانات وتبين الأوراق التي تحددها تلك اللائحة، ويشترط أن يكون لفروع الشركات الأجنبية مراقب للحسابات بالشروط والأوضاع التي تبينها اللائحة التنفيذية.
+
+**Verbatim — Article 173 (representative offices):**
+
+> المادة ١٧٣
+>
+> يجوز للشركات الأجنبية أن تنشئ في مصر مكاتب تمثيل أو اتصال أو خدمات أو مكاتب فنية أو علمية وغيرها أو يقتصر هدفها على دراسة الأسواق وإمكانات الإنتاج دون ممارسة أي نشاط تجاري بما في ذلك نشاط الوكلاء التجاريين، وينشأ سجل خاص لقيد هذه المكاتب لدى الجهة الإدارية المختصة ويتم القيد بالسجل وكذلك الشطب منه طبقاً للشروط والأوضاع التي تحددها اللائحة التنفيذية.
+
+### C. Amendment and version warning
+
+This source itself marks Article 14 as amended by Law 3/1998, Article 16 amended by Law 3/1998, Article 17 replaced by Law 3/1998 and partly supplemented by Law 94/2005, and Article 31 amended by Law 94/2005. The opening note also references Law 94/2005. It does not show the complete current effect of Law 4/2018 or later changes. The amendment sequence and current text must be reconstructed article-by-article from each amending Gazette instrument and the current GAFI version. The minimum count above is selected provisions, not a claim that the full 184-article PDF is the current consolidated law.
+
+**Collection status:** full Arabic text PDF (Articles 1–184, 993 extracted lines) retrieved from ETA government domain; 13 selected articles transcribed above. Source is a historical/partially amended compilation, not current consolidation. No lawyer review or rights clearance claimed.
