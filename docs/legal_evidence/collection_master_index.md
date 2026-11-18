@@ -1178,3 +1178,6 @@
 
 
 | checkpoint 127 — Agent 3 Trade Names Law 55/1951 | Added ITDA catalogue source and two-page scanned Law 55/1951; visually inspected Gazette page images and captured Articles 1–2 exact Arabic text; twelve statutory article units indexed, remaining text awaits manual/OCR transcription; cumulative Agent 3 minimum 146 instruments / 1,349 provision units |
+
+
+| checkpoint 128 — Agent 3 official full-text acquisition tranche | Acquired searchable official Arabic primary texts for Companies Executive Regulation Decision 96/1982 (MIFT consolidated to 21 Aug 2022), Investment Law 72/2017 and original Executive Regulation Decision 2310/2017 (133 articles); re-opened Commercial Code 17/1999 and corrected article range to 1–772 plus separately preserved 1883 partnership chapter; no new unique instruments or provision-unit count claimed pending normalization; assignment estimate 31%, lawyer-reviewed 0% |
