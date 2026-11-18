@@ -141,3 +141,69 @@ The source marks Article 6 as replaced by Law 103/1976.
 - 20 distinct article provisions now have actual Arabic text captured in this supplemental file: Law 114/1946 (5), Law 142/1964 (6), Law 68/1947 (5 including an explicit repealed marker), and Law 70/1964 (4).
 - This is a supplemental text-capture count, not yet a normalized corpus-wide unique-article count. Repealed markers are not operative provisions. The text must be compared with the Gazette scans and amendment chain before it is promoted into the production article store.
 - No new legal instrument is created by this file. No lawyer verification or commercial reuse permission is claimed.
+
+
+## Additional recovery — later articles from independent full-text mirrors
+
+### Law 114/1946 — Court of Cassation-attributed PDF mirror
+Source: https://alhasswalawfirm.com/uploads/files/law-114-1946-1789186916244-431326360.pdf . The PDF identifies itself as a Court of Cassation Information Centre reproduction of Egyptian Proceedings issue 85, 24 August 1946, and labels its text as amended through 6 March 2022. It is still a secondary-hosted PDF reproduction, not the Amiri Press digital original.
+
+#### Article 9 — registration of original real rights
+جميع التصرفات التي من شأنها إنشاء حق من الحقوق العينية العقارية الأصلية أو نقله أو تغييره أو زواله وكذلك الأحكام النهائية المثبتة لشيء من ذلك يجب شهرها بطريق التسجيل ويدخل في هذه التصرفات الوقف والوصية ويترتب على عدم التسجيل أن الحقوق المشار إليها لا تنشأ ولا تنتقل ولا تتغير ولا تزول لا بين ذوي الشأن ولا بالنسبة إلى غيرهم.
+
+ولا يكون للتصرفات غير المسجلة من الأثر سوى الالتزامات الشخصية بين ذوي الشأن.
+
+The PDF shows the 2022 amendment wording for later paragraphs and a repealed-paragraph marker; this excerpt captures only the opening operative paragraphs.
+
+#### Article 10 — registration of declaratory acts and judgments
+جميع التصرفات والأحكام النهائية المقررة لحق من الحقوق العينية العقارية الأصلية يجب كذلك تسجيلها ويترتب على عدم التسجيل أن هذه الحقوق لا تكون حجة على الغير.
+
+ويسرى هذا الحكم على القسمة العقارية ولو كان محلها أموالاً موروثة.
+
+#### Article 11 — long leases and advance receipts
+يجب تسجيل الإيجارات والسندات التي ترد على منفعة العقار إذا زادت مدتها على تسع سنوات، والمخالصات والحوالات بأكثر من أجرة ثلاث سنوات مقدماً، وكذلك الأحكام النهائية المثبتة لشيء من ذلك.
+
+ويترتب على عدم تسجيلها أنها لا تكون نافذة في حق الغير فيما زاد على مدة تسع سنوات بالنسبة إلى الإيجارات والسندات، وفيما زاد على أجرة ثلاث سنوات بالنسبة إلى المخالصات والحوالة.
+
+### Law 142/1964 — Articles 26–30 from the 72-article text mirror
+Source: https://alhasswalawfirm.com/law-library/law-142-1964 . The page identifies the text as copied verbatim from the Official Gazette through the Court of Cassation legislative portal and consolidated through 6 June 2018. It is a secondary-hosted transcription; Gazette scan comparison remains necessary.
+
+#### Article 26
+جميع التصرفات التي من شأنها إنشاء حق من الحقوق العينية العقارية الأصلية أو نقله أو تغييره أو زواله وكذلك الأحكام النهائية المثبتة لشيء من ذلك يجب قيدها في السجل العيني. ويدخل في هذه التصرفات الوقف والوصية.
+
+ويترتب على عدم القيد أن الحقوق المشار اليها لا تنشأ ولا تنتقل ولا تتغير ولا تزول لا بين ذوي الشأن ولا بالنسبة إلى غيرهم.
+
+ولا يكون للتصرفات غير المقيدة من الأثر سوى الالتزامات الشخصية بين ذوي الشأن.
+
+#### Article 27
+يجب كذلك قيد جميع التصرفات والاحكام النهائية المقررة لحق من الحقوق العينية العقارية الأصلية. ويترتب على عدم القيد أن هذه الحقوق لا تكون حجة لا بين ذوي الشأن ولا بالنسبة إلى غيرهم.
+
+ويسرى هذا الحكم على القسمة العقارية ولو كان محلها أموالا موروثة.
+
+#### Article 28
+يجب قيد الإيجارات والسندات التي ترد على منفعة العقار إذا زادت مدتها على تسع سنوات والمخالصات والحوالات بأكثر من أجرة ثلاث سنوات مقدما وكذلك الأحكام النهائية المثبتة لشيء من ذلك.
+
+ويترتب على عدم قيدها أنها لا تكون نافذة فى حق الغير فيما زاد على مدة تسع سنوات بالنسبة إلى الإيجارات والسندات وفيما زاد على أجرة ثلاث سنوات بالنسبة إلى المخالصات والحوالات.
+
+#### Article 29
+يجب قيد جميع التصرفات المنشئة أو المقررة أو الناقلة أو التي من شأنها زوال أي حق من الحقوق العينية العقارية التبعية وكذلك الأحكام النهائية المثبتة لشيء من ذلك والإقرارات بالتنازل عن مرتبة قيدها.
+
+ويترتب على عدم القيد أن هذه الحقوق لا تكون حجة لا بين ذوي الشأن ولا بالنسبة إلى غيرهم.
+
+#### Article 30
+يجب على الوارث قيد حق الإرث إذا اشتملت التركة على حقوق عينية عقارية وذلك بقيد السند المثبت لحق الإرث مع قوائم جرد التركة التي يجب أن تتضمن نصيب كل وارث.
+
+ولا يجوز قيد أي تصرف يصدر من الوارث في حق من هذه الحقوق إلا بعد إتمام القيد المنصوص عليه في الفقرة السابقة.
+
+ويجوز أن يقتصر قيد حق الإرث على جزء من عقارات التركة، وفى هذه الحالة يعتبر هذا الجزء وحدة عقارية تبنى على أساسها تصرفات الورثة.
+
+ولا يجوز قيد أي تصرف من الوارث طبقًا لأحكام الفقرة السابقة إلا في حدود نصيبه الشرعي في كل وحدة.
+
+ولا يجوز قيد أي تصرف في أي عين من الأعيان التي انتهى فيها الوقف إلا بعد قيد إلغائه. وفى جميع الحالات السابقة يكون القيد بدون رسم.
+
+## Updated count treatment
+
+- 28 distinct article provisions now have actual Arabic text captured in this supplemental file: Law 114/1946 (8), Law 142/1964 (11), Law 68/1947 (5 including one repealed marker), and Law 70/1964 (4).
+- The eight new provisions in this addendum are Law 114 Articles 9–11 and Law 142 Articles 26–30.
+- These remain secondary-source text captures. The 2018 and 2022 consolidated cut-off dates are source claims, not independent Gazette-by-Gazette validation. Law 142 Articles 21 and 24 are unconstitutional and Article 23 fell consequentially under SCC Case 10/35; do not treat those provisions as operative. Article 37(2) and Article 38 are affected by SCC Case 42/17; article status must be represented from the exact judgment order.
+- No new instrument or duplicate acquisition record is created. No lawyer verification or commercial reuse permission is claimed.
