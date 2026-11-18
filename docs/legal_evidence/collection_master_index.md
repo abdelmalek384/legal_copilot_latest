@@ -1574,3 +1574,12 @@ Current Agent 3 progress checkpoint (18 Nov 2026, continued): [agent3_progress_c
 - Progress estimates: broader civil/property/contract corpus **18% provisional** (up from 17%); whole Egyptian legal corpus **2% provisional**; lawyer verification and commercial reuse clearance **0%**.
 - Decree2/1946 LAW HUB source: https://lawhub.info/eg/?p=12044; original scan catalogue: https://manshurat.org/node/72161. Decision2332/2022 metadata: https://dspace.id.com.eg/items/1afd9674-9b20-4812-bdb6-f0c7cd0dda1e/full.
 
+### Research Agent — checkpoint 169: Law168/2025 Article3 / Decision480 deadline clarification (18 November 2026)
+
+- Added collection_checkpoint_169_law168_article3_decision480_2026_deadline_analysis_2026-11-18.md.
+- Confirmed PM Decision200/2026 was published 18 Jan 2026 and takes effect 19 Jan 2026; Law168/2025 Article3 gives a six-month application period from the Executive Regulation's effective date.
+- Preserved the initial expiry discrepancy: the literal corresponding six-month date is 19 July 2026, while multiple official Cairo Governorate district notices publicly stated 18 July 2026.
+- Presidential Decision480/2026 (issue45 bis ج, 10 Nov 2026) extends the Article3 period for another equivalent period but does not specify its new start date or calendar endpoint. Conditional end-date constructions (consecutive extension vs running from publication) remain unverified; no definitive deadline certified.
+- Disambiguated an unrelated Housing Minister Decision480/2026 (issue106, 14 May 2026) under Law144/2006, which removes two heritage-listed properties; do not conflate the two instruments.
+- Counts unchanged: acquisition **242**, priority full-text inventory **31**, sources **64**, version events **44**, core normalized provisions **1,370**; broader corpus **18% provisional**, whole corpus **2% provisional**.
+
