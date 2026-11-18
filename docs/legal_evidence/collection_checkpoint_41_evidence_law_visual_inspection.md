@@ -48,3 +48,9 @@
 - 11/12 pages visually inspected; one page remains inaccessible in the current browser rendering.
 - Text extraction is incomplete; do not claim the Evidence Law is fully collected or consolidated.
 - Lawyer verification and rights/currentness checks remain outstanding.
+
+## Checkpoint 93 supplement — 2026 official-source upgrade
+
+- Ministry of Finance page and direct official-hosted 12-page Gazette reproduction located for Law 25/1968; issue 22, 30 May 1968. Eleven of twelve pages visually inspected; page index 4 failed to render. No local bytes/hash.
+- The PDF is a Gazette reproduction and the Ministry page says the Official Gazette is the legal reference. It does not itself establish commercial reuse or bulk-collection permission.
+- Full source and visual-inspection details are in checkpoint 93. No additional Evidence Law articles are counted in this supplement.
