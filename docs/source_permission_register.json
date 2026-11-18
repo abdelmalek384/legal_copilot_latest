@@ -1479,6 +1479,24 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Review applicable terms and seek written permission for archiving, extraction, indexing, commercial display and redistribution. Preserve distinction between official notice, statutory text and secondary case-law digest."
+    },
+    {
+      "source_id": "EG-ALHASSWA-DECISION200-2026",
+      "authority": "Al-Hasswa Law Firm legal library",
+      "source_page": "https://alhasswalawfirm.com/law-library/decree-200-2026",
+      "material_types": [
+        "full text of executive regulation",
+        "Decision 200/2026",
+        "attached forms"
+      ],
+      "access_status": "public searchable full text inspected 2026-11-18; site states text is transcribed from Official Gazette/Court of Cassation portal; terms not reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "The page presents the 24 provisions of PM Decision 200/2026 and attached forms. Selected Articles2,8,14 and part of Article20 were transcribed. Its Article20 reporting frequency says quarterly, while SIS PDF text extraction says annual; Form3 heading is quarterly. Public access does not grant reuse permission.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review site terms and obtain written permission for archiving, extraction, indexing, commercial display and redistribution; verify the Article20 text against a visually authenticated Gazette page."
     }
   ]
 }
