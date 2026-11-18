@@ -167,3 +167,48 @@ The full issue contains three attached model forms:
 **Drafting discrepancy requiring confirmation:** Regulation Article 20 in the PDF says the authority prepares **annual** reports (تقارير سنوية), while Form 3 is headed **quarterly** report (تقرير ربع سنوي). Preserve both source readings; do not silently normalize one into the other.
 
 **Coverage update:** this adds three complete regulation articles (10, 17, 18) from the opened SIS Gazette PDF. The repository now contains complete text for Regulation Articles 3–10 except Article 11, plus Articles 12? (not transcribed), 17 and 18 only where specifically listed; the exact capture count is maintained in the inventory/checkpoint rather than inferred from the full PDF availability. Forms are structurally mapped, not transcribed field-by-field in full.
+
+
+## Additional Law 168/2025 provisions from the 20-page Gazette scan reproduction
+
+**Source:** https://cdn.vetogate.com/UploadCache/libfiles/556/3/0x0o/540.pdf — the 20-page reproduction of Official Gazette issue 32 bis (و), 13 August 2025. The source is a secondary-hosted scan and carries a printed notice that its electronic copy is not valid for circulation; the following text is transcribed from the scan and remains subject to original Amiri Press verification.
+
+### Substantive Article 7 — purpose covenant in contracts
+يجب أن تتضمن العقود المحررة وفقًا لأحكام هذا القانون النص على شرط بالتزام المتعاقد باستخدام الأرض واستغلالها فى الغرض الذى تم التصرف إليه من أجله. ويقع باطلاً بطلانًا مطلقًا أى عقد يبرم بالمخالفة لهذا الشرط، ويعتبر مفسوخًا من تلقاء نفسه دون الحاجة إلى اتخاذ أى إجراء، مع التعويض إن كان له مقتض. ولكل ذى شأن التمسك بالبطلان، وعلى المحكمة أن تحكم به من تلقاء نفسها، ولا يجوز شهر هذا التصرف.
+
+### Substantive Article 11 — extinguishment of criminal action on regularization or surrender
+تنقضى الدعوى الجنائية لجريمة التعدى على الأراضى المملوكة للدولة ملكية خاصة لكل من يتم التصرف له وفق أحكام هذا القانون، ولكل من قام بتسليم الأرض المتعدى عليها خلال مدة ستة أشهر من تاريخ العمل باللائحة التنفيذية لهذا القانون.
+
+وفى جميع الأحوال، تأمر النيابة العامة بوقف تنفيذ العقوبة إذا تم التصرف أو التسليم أثناء تنفيذ العقوبة.
+
+### Substantive Article 12 — penalty for breach of Article 8
+مع عدم الإخلال بأية عقوبة أشد يُنص عليها فى قانون آخر، يُعاقب كل من يخالف حكم المادة (8) من هذا القانون بغرامة لا تقل عن مائتين وخمسين ألف جنيه ولا تزيد على مليون جنيه، ويُحكم برد الأرض بما عليها من مبان أو غراس، أو إزالة ما عليها من تلك التعديات على نفقة المخالف، فضلاً عن دفع قيمة ما عاد عليه من منفعة. وفى حالة العود تضاعف عقوبة الغرامة بحديها.
+
+## Additional PM Decision 200/2026 provisions from the official SIS Gazette PDF
+
+**Source:** https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/118973/OG3_20260118_2885.pdf?isAllowed=y&sequence=2 — Official Gazette issue 3 bis (أ), 18 January 2026. These provisions were transcribed from the opened official-hosted Gazette PDF.
+
+### Executive Regulation Article 13 — sale price payment schedule
+في الحالات التي يكون التصرف فيها بالبيع، يتم سداد (٢٥٪) من قيمة الأرض وذلك خلال شهر من تاريخ إخطار مقدم الطلب بسداد هذه القيمة بخطاب موصى عليه مصحوب بعلم الوصول على عنوانه المبين بالطلب، على أن يتم سداد باقي الثمن على ثلاث دفعات سنوية خلال ثلاث سنوات من تاريخ سداد النسبة المشار إليها، مع استحقاق عائد قيمته (٧٪) عن الفترة من تاريخ التعاقد حتى تاريخ السداد لكل قسط.
+
+وفي حالة سداد كامل الثمن عند تحرير العقد يخصم نسبة (١٠٪) من قيمة الأرض.
+
+وفي حالة سداد المتعاقد باقي الأقساط خلال سنة من تاريخ تحرير العقد يُعفى من الفائدة المستحقة على الأقساط.
+
+ويجوز في حالات الضرورة بموافقة الجهة الإدارية المختصة، تخفيض نسبة مقدم الثمن لعقود الأراضي المقام عليها بناء، ليكون (١٥٪)، على أن يتم سداد باقي الثمن على أقساط سنوية خلال المدة التي تحددها الجهة الإدارية المختصة وبما لا يجاوز سبع سنوات، مع استحقاق العائد المشار إليه بالفقرة الأولى من هذه المادة.
+
+وفي حالة تأخر المتعاقد عن سداد أي قسط يلتزم بسداد فائدة عن فترة التأخير تعادل الفائدة المعلنة بالبنك المركزي.
+
+وفي جميع الأحوال لا تنقل ملكية العقار إلا بعد سداد كامل الثمن للجهة الإدارية المختصة، وتلتزم هذه الجهة بتحرير عقد نهائي للمتعاقد عقب تمام السداد.
+
+### Executive Regulation Article 15 — default and recovery
+تلتزم الجهة الإدارية المختصة باتخاذ الإجراءات القانونية المقررة في حالة إخلال المتعاقد بالتزامه بسداد كامل الثمن أو سداد الأقساط في المواعيد المحددة في العقد، ومنها فسخ العقد واسترداد الأرض موضوع العقد، واتخاذ الإجراءات المطلوبة نحو تحرير المحاضر اللازمة، بحسب الأحوال.
+
+### Executive Regulation Article 16 — annual use compensation
+تلتزم الجهة الإدارية المختصة في الحالات التي لا يتم فيها تقنين وضع اليد لأي سبب، وكذا في حالات تعذر إزالة التعدي مؤقتًا، بتحصيل مقابل انتفاع من واضع اليد، وفقًا للضوابط والفئات والإعفاءات التي يصدر بها قرار من رئيس مجلس الوزراء، وذلك لحين إتمام إزالة التعدي.
+
+وفي حالة عدم قيام الجهة الإدارية المختصة بتحصيل المقابل المشار إليه خلال شهرين من تاريخ العمل بأحكام هذه اللائحة، تلتزم المحافظة المختصة بتحصيله على أن تؤول إليها نسبة (٢٠٪) من إجمالي المبالغ المحصلة مقابل إجراءات التحصيل، تخصص لمشروعات المحافظة.
+
+ولا يترتب على تحصيل المقابل المشار إليه أي حقوق لواضع اليد.
+
+**Count update:** six additional complete provisions were captured in this addendum: Law 168/2025 Articles 7, 11 and 12; PM Decision 200/2026 Executive Regulation Articles 13, 15 and 16. These are text additions to existing instrument IDs, not new legal instruments.
