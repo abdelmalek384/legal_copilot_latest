@@ -43,3 +43,8 @@ These are planning estimates, not denominator-validated completeness percentages
 
 ## Rules
 All material remains machine-collected. Do not label any provision verified until qualified Egyptian lawyer sign-off. Preserve source type, Gazette metadata, URLs, exact Arabic text, amendment event, file hash and rights status. Official public hosting is not a commercial republication licence.
+
+
+## Major source upgrade — Companies Executive Regulation 96/1982
+
+Retrieved the official MIFT consolidated PDF (3,416 extracted lines), explicitly updated through 21 August 2022. It contains the issuing text, consolidated regulation, Annexes 1–5 and amendment footnotes. Sequential numbered articles reach **324**, plus inserted bis provisions. This supersedes the earlier secondary-source label of 361 articles and the earlier report that the MIFT PDF was inaccessible. Captured Arabic text for one-person companies, merger, division, related-party information, inspection, foreign branches and transitional provisions. See [agent3_companies_exec_reg_96_1982_official_mift_consolidated_text_2022.md](agent3_companies_exec_reg_96_1982_official_mift_consolidated_text_2022.md). Original Gazette PDFs for all amendment events still need page-image comparison. No new instrument count; the 1,927 provision-unit aggregate remains provisional pending article-unit reconciliation.
