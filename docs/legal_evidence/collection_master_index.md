@@ -461,3 +461,11 @@
 - FRA amendment register for Law 95/1992 identifies Laws 10/1995, 89/1996, 158/1998, 13/2004, 143/2004, 123/2008, 27/2014, 17/2018 and 13/2022.
 - FRA's current regulation page identifies PM Decisions 2482/2025, 1539/2025, 2423/2024, 3045/2023, 4664/2022, 3456/2022, 1109/2022 and 1760/2020 among the Executive Regulation amendment chain. Decision 2482/2025 replaces Article 148, adds Article 148 bis and adds a final paragraph to Article 156; full Gazette text is preserved in Agent 3 file.
 - These are full-text acquisitions / amendment leads, not a claim that every historic amendment is Gazette reconciled or that the full FRA regulatory universe is complete. Whole-corpus estimate remains ~2% provisional.
+
+
+### Research Agent 3 — Central Bank Law acquisition (2026-11-18)
+
+- Agent 3 research file now records the official Ministry of Finance 115-page Gazette scan of Law 194/2020, Official Gazette issue 37 bis (و), 15 September 2020. The Gazette PDF first page and final page were visually inspected; final Gazette page 116 contains Article 241. Issuing Articles 1–2 were manually transcribed from the official scan.
+- The law's issuing Article 2 expressly applies Law 159/1981 residually to banks and covered companies, makes CBE the competent administrative authority and its Governor the competent minister for company-law purposes, and applies Commercial Code 17/1999 to banks' customer transactions whether commercial or not.
+- CBE's official index lists a generic "Executive Regulation" entry, but it may be Decision 101/2004 under repealed Law 88/2003. Law 194/2020 issuing Article 5 directs CBE Board implementing regulations/decisions and continues prior rules only insofar as non-conflicting. The instrument identity/current status remains unresolved; do not conflate it with a new 194/2020 regulation.
+- CBE's official site also identifies payment-system licensing rules (2025), governance/fit-and-proper instructions (2025), digital-bank rules (2023), exchange-company rules (2023), and auditor-registration rules (2024); each underlying instrument must be retrieved separately.
