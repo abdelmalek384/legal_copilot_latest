@@ -60,3 +60,18 @@ The FRA page identifies the text as updated in 2022 and lists Decisions 69/2020 
 - **Identity discrepancy:** the PDF text-layer heading reads «رقم (٩١) لسنة ٢٠١٨», while the FRA catalogue, URL and PDF filename identify Decision 191/2018. Preserve the anomaly for Gazette/page-image validation; do not silently normalize the OCR.
 - The 192/2018 PDF (https://fra.gov.eg/wp-content/uploads/2021/04/192-201888.pdf) timed out. Its 2021 FRA guide text remains historical/discovery only; do not transfer Decision 191's amendments or detailed clauses to Decision 192.
 - Machine status: `source-matched, not lawyer-reviewed`. Decision 191 consolidated PDF extracted; image/OCR validation and 161/2022 amendment redline incomplete. Public availability does not establish commercial republication rights.
+
+
+## Page-image verification addendum (all 8 pages visually inspected)
+
+On 18 November 2026, all eight pages of the official FRA-hosted consolidated PDF were opened and visually inspected. This resolves the earlier text-layer identity anomaly:
+
+- **The heading on printed page 1 clearly identifies Decision 191/2018**, dated 31 December 2018. The earlier extracted-text-layer string «٩١» was an OCR/character-order error; it is not an actual source discrepancy. Remove the prior warning that the decision number itself is uncertain.
+- Printed page 1 shows the consolidated update date **16 November 2022**, Article 1 and issuing Articles 2–3.
+- Printed page 2 shows issuing Articles 4–5.
+- Printed pages 3–8 visually confirm the annex sequence: capital adequacy (Article 1), concentration (Article 2), leverage (Article 3), asset/liability matching (Article 4), liquidity (Article 5), impairment/provisions and debt write-off (Article 6), creditworthiness (Article 7), disclosure (Article 8), and periodic reports (Article 9).
+- The page-3 footnote confirms Decision 161/2022 amended Article 1; page-5 footnote confirms Decision 69/2020 amended Article 2's final paragraph; page-6 footnotes confirm Decision 69/2020 amended Article 5's final paragraph and Article 6(2)(1).
+- The text «في كل وقت» is visible in the current Article 1 image. The 10% minimum / phased 12% target, capital-tier structure, 5-year subordinated-debt criteria, risk weights and 15% operational-risk margin are all visually legible.
+- Page 4 visually confirms the 0%/100%/150% risk-weight table; page 5 confirms 30% individual concentration and 40% sector concentration thresholds, 4% additional capital and 50% single-customer cap; page 6 confirms 100% liquidity threshold over 30 days; page 7 confirms the arrears buckets and collateral values; page 8 confirms credit review, disclosure and reporting duties.
+
+**Status correction:** Decision 191/2018 is now visually source-matched across all eight pages of the official current consolidated PDF. The previous OCR-number discrepancy is resolved. Decision 161/2022's exact standalone Gazette amendment redline remains separately outstanding, but the operative consolidated wording is clear. Machine status remains `source-matched, not lawyer-reviewed`.
