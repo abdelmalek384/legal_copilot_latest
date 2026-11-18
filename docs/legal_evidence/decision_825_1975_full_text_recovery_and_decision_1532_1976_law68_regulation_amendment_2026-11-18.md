@@ -185,3 +185,60 @@ The form page images are preserved in the linked issue PDF (printed pages 7–10
 - Decision4476/2014 replaces two prescribed forms and inserts Article114 bis on recording common parts of a building. The inserted article and attached forms must be versioned together.
 - Decision11264/2016 subsequently cites Decision2645/2015 in its preamble and further amends Decision825/1975; it does not silently erase the need to preserve the 2015 text as a historical version.
 - Original Amiri Press binaries and SHA-256 hashes for these two decisions are not archived. Decision4476's Library of Congress Gazette scan is the strongest primary page-image source presently located.
+
+
+## Justice Minister Decision 739/2025 — cadastral commencement postponement (complete Arabic text)
+
+**Publication:** الوقائع المصرية, issue 13, 17 January 2026. **Decision date:** 8 December 2025. **Stated effect:** 2 January 2026.  
+**Source:** official SIS-hosted Gazette issue PDF, https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/118949/WQ13_20260117_10015.pdf?isAllowed=y&sequence=2 (printed pages 5–6; PDF text extraction lines 108–152). This is an official Gazette reproduction; no local PDF bytes/hash archived.
+
+وزارة العدل  
+قرار وزير العدل رقم 739 لسنة 2025
+
+وزير العدل  
+بعد الاطلاع على قرار رئيس الجمهورية بالقانون رقم 142 لسنة 1964 بنظام السجل العينى؛  
+وعلى قرار وزير العدل رقم 825 لسنة 1975 باللائحة التنفيذية لقانون السجل العينى المعدلة؛  
+وعلى قرار وزير العدل رقم 2333 لسنة 2004 بتعيين أقسام مساحية يسرى عليها نظام الشهر على أساس إثبات المحررات فى السجل العينى بمحافظات: المنيا، سوهاج، قنا، اعتبارًا من 1/1/2006؛  
+وعلى قرارات وزير العدل أرقام 35 لسنة 2006، 111 لسنة 2007، 11400 لسنة 2007، 11907 لسنة 2008، 13845 لسنة 2009، 15377 لسنة 2010، 12487 لسنة 2011، 110 لسنة 2013، 117 لسنة 2014، 70 لسنة 2015، 739 لسنة 2016، 554 لسنة 2017، 10972 لسنة 2017، 11645 لسنة 2018، 1064 لسنة 2019، 920 لسنة 2020، 8903 لسنة 2021، 9079 لسنة 2022، 7430 لسنة 2023، وأخيرًا القرار رقم 8260 لسنة 2024 بتأجيل ميعاد سريان نظام السجل العينى على الأقسام المساحية بمحافظات سوهاج وقنا والأقصر من 1/2/2025 إلى 1/1/2026 مع قبول استمارات التسوية بها لمدة شهرين؛  
+وعلى مذكرة رئيس قطاع الشهر العقارى والتوثيق المؤرخة 29/11/2025؛  
+قرر:
+
+**المادة الأولى** — يؤجل ميعاد سريان نظام السجل العينى على الأقسام المساحية بمحافظة قنا وهي البحرى قبليًا (مركز نقادة)، أبو دياب غرب، أبو مناع قبلي، أبو مناع بحري، السمطا قبلي، فاوجري، فاوجري قبلي (مركز دشنا)، الخلافية قبلي، الدرب، هو، السلمية، الخياط، الشاورية، الشرقي بهجورة، الغربي السلامية، الغربي بهجورة، القصر، الصياد، القناوية البحرية، الصالحية، الهيشة (مركز نجع حمادي)، وعلى محافظة الأقصر بالقسمين المساحيين الريانية والرئيس (مركز أرمنت)، وعلى محافظة سوهاج بالقسمين المساحيين مدينة جرجا ومدينة دار السلام، الصادر بها قرار وزير العدل رقم 2333 لسنة 2004، من 2/1/2026 حتى 1/1/2027.
+
+**المادة الثانية** — تقبل استمارات التسوية المنصوص عليها فى المادة (19) من قانون السجل العينى فى الأقسام المساحية بالمحافظات المحددة بالمادة السابقة، وذلك لمدة شهرين تبدأ من 2/1/2026.
+
+**المادة الثالثة** — ينشر هذا القرار فى الوقائع المصرية، ويعمل به اعتبارًا من 2/1/2026.
+
+**المادة الرابعة** — على رئيس قطاع الشهر العقارى والتوثيق تنفيذ هذا القرار.
+
+صدر فى 8/12/2025.  
+وزير العدل — المستشار/ عدنان فنجري.
+
+## Justice Minister Decision 6910/2025 — complete Gazette-text extraction; date conflict unresolved
+
+**Publication:** الوقائع المصرية, issue 295, 30 December 2025. **Decision date:** 19 November 2025.  
+**Source:** official SIS-hosted Gazette issue PDF, https://mediadr.sis.gov.eg/bitstream/handle/123456789/117440/WQ295_20251230_9062.pdf?isAllowed=y&sequence=2 (PDF text extraction lines 78–120). The Amiri Press searchable-text route is https://www.alamiria.com/Sec/TashTxt?id=TRqav4vXATE%3D, but returned 502 during this retrieval.
+
+وزارة العدل  
+قرار وزير العدل رقم 6910 لسنة 2025
+
+وزير العدل  
+بعد الاطلاع على قرار رئيس الجمهورية بالقانون رقم 142 لسنة 1964 بنظام السجل العينى؛  
+وعلى قرار وزير العدل رقم 825 لسنة 1975 باللائحة التنفيذية لقانون السجل العينى المعدلة؛  
+وعلى قرار وزير العدل رقم 2134 لسنة 2001 بتعيين أقسام مساحية يسرى عليها نظام الشهر على أساس إثبات المحررات فى السجل العينى بمحافظات الدقهلية والغربية والشرقية والإسماعيلية وكفر الشيخ والجيزة وأسيوط وسوهاج اعتبارًا من 1/12/2002؛  
+وعلى قرارات وزير العدل أرقام 6237 لسنة 2002، 6144 لسنة 2003، 6868 لسنة 2004، 8247 لسنة 2005، 9710 لسنة 2006، 11127 لسنة 2007، 11338 لسنة 2008، 12918 لسنة 2009، 13937 لسنة 2010، 11322 لسنة 2011، 9428 لسنة 2012، 9619 لسنة 2012، 10546 لسنة 2013، 10734 لسنة 2015، 9698 لسنة 2014، 10254 لسنة 2016، 10975 لسنة 2017، 10250 لسنة 2018، 92180 لسنة 2019، 8330 لسنة 2021، 7455 لسنة 2022، 7173 لسنة 2023، 7733 لسنة 2024 بتأجيل ميعاد سريان نظام السجل العينى على القسمين المساحيين الشرقية وكوم بدار؛  
+وعلى مذكرة رئيس قطاع الشهر العقارى والتوثيق المؤرخة 13/11/2025؛  
+قرر:
+
+**المادة الأولى — Gazette PDF text layer:** يؤجل ميعاد سريان نظام السجل العينى على الأقسام المساحية بمحافظة سوهاج بالنسبة للأقسام المساحية الشرقية وكوم بدار، الصادر بها قرار وزير العدل رقم 2134 لسنة 2001، من 2/2/2025 إلى 1/6/2026.
+
+**المادة الثانية — Gazette PDF text layer:** تقبل استمارات التسوية المنصوص عليها فى المادة (19) من قانون السجل العينى على الأقسام المساحية بالمحافظة المحددة بالمادة السابقة، وذلك لمدة شهرين تبدأ من 2/2/2025.
+
+**المادة الثالثة — Gazette PDF text layer:** ينشر هذا القرار فى الوقائع المصرية، ويعمل به اعتبارًا من 2/2/2025.
+
+**المادة الرابعة** — على رئيس قطاع الشهر العقارى والتوثيق تنفيذ هذا القرار.
+
+صدر فى 19/11/2025.  
+وزير العدل — المستشار/ عدنان فنجري.
+
+**Critical source conflict:** the SIS Gazette PDF text layer states 2 February 2025 → 1 June 2026 and settlement forms for two months from 2 February 2025. The separately indexed official Amiri Press TashTxt version previously captured in the acquisition register states 2 December 2025 → 1 December 2026 and settlement forms for two months from 2 December 2025. These dates cannot both be correct. The Gazette page image was not visually accessible in this retrieval. Do not choose either date or calculate an operative period until the printed issue page is visually inspected or the Amiri Press supplies a certified copy/correction. This is a territorial commencement/postponement decision, not a substantive amendment to Law142/1964.
