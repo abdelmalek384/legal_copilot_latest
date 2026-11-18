@@ -38,7 +38,7 @@ Source-permission register now contains **64 unique source records**.
 
 Law 143/1981 extraction remains:
 - 29 article headings.
-- **27 complete article texts**.
+- **28 complete article texts**.
 - 1 partial text (Article 2 is now text-complete, but Article 2 punctuation/image comparison remains; the partial status is retained pending final visual review).
 - 1 repealed marker (Article 21).
 
@@ -51,12 +51,12 @@ The count is deliberately conservative: the full Article 2 text is now reconstru
 - Historical article-version event register: **44 rows**.
 - Priority full-text inventory: **25 records**.
 - Completed core unique article provisions: **1,370**.
-- Law 143 complete source-version texts: **27**; combined complete source-version count across the core set and Law143: **1,397**.
+- Law 143 complete source-version texts: **27**; combined complete source-version count across the core set and Law143: **1,398**.
 
 ## 6. Completion estimate
 
 - Core article-number extraction: **100%** for the three defined core statutes, subject to OCR/source-image and historical-version validation.
-- Law 143/1981: 27 complete article texts, one partial/image-validation status and one repealed marker.
+- Law 143/1981: 28 complete article texts, one partial/image-validation status and one repealed marker.
 - Broader civil/property/contract corpus: **15% provisional**.
 - Whole Egyptian legal corpus: **2% provisional**.
 
