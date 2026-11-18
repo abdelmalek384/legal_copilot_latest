@@ -431,3 +431,64 @@ The regulation PDF includes subsequent amendments and marked provisions; Article
 - Families amendment/currentness-complete: 0/13.
 - Lawyer-reviewed: 0%.
 - Whole-corpus coverage: retain approximately 2%; no denominator-based recalculation is available.
+
+
+## 14. Investment Law amendment texts — Law 141/2019 and PM Decision 2562/2024
+
+**Incremental verbatim text capture. Both instruments were already present in the prior Agent 3 inventory; no unique-instrument increase.**
+
+### A. Law 141/2019 amending Investment Law 72/2017
+
+- Official MIFT Arabic PDF: https://www.mift.gov.eg/legislation/download/169
+- Issued 31 July 2019; the law's issuing Article 2 provides commencement on the day following publication in the Official Gazette.
+- This amendment adds final paragraphs to Articles 12 and 48, item 14 to Article 74 and Article 91 bis.
+
+**Article 12 — added final paragraph:**
+> ويجوز أن تتمتع توسعات المشروعات الاستثمارية القائمة بالفعل بالحوافز المنصوص عليها في المادتين 11، 13 من هذا القانون، ويقصد بالتوسعات في حكم هذه المادة زيادة رأس المال المستخدم بإضافة أصول جديدة تؤدي إلى زيادة الطاقة الإنتاجية للمشروع، وذلك كله طبقاً للقواعد والشروط التي يصدر بتحديدها قرار من مجلس الوزراء.
+
+**Article 48 — added final paragraph:**
+> وفي جميع الأحوال، يتعين التصديق على توقيعات الشركاء أو من ينوب عنهم، على عقود الشركات أياً كان نظام الاستثمار الخاضعة له مقابل رسم تصديق مقداره ربع في المائة من قيمة رأس المال المدفوع بحد أقصى مقداره عشرة آلاف جنيه أو ما يعادله من النقد الأجنبي، بحسب الأحوال، سواء تم التصديق في مصر أو لدى السلطات المصرية في الخارج، وتسري هذه الأحكام على كل تعديل في نظام الشركة.
+
+**Article 74 — added item 14:**
+> 14- طلب المعلومات والبيانات اللازمة لحساب أصول الاستثمار الأجنبي المباشر وغير المباشر من الجهات العامة والخاصة للأغراض الإحصائية، وفقاً للممارسات الدولية المعمول بها، وذلك دون الإخلال باعتبارات الأمن القومي أو الحق في الخصوصية وسرية المعلومات وحماية حقوق الغير، ويكون للهيئة في سبيل ذلك إعداد نماذج واستبيانات لاستيفاء تلك المعلومات والبيانات وتطبيقها بجميع الوسائل بما فيها الوسائل الإلكترونية، على أن يصدر بها قرار من رئيس مجلس الوزراء، وتلتزم الجهات المشار إليها بموافاة الهيئة بهذه البيانات خلال الأجل الذي تحدده اللائحة التنفيذية لهذا القانون.
+
+**Article 91 bis — inserted:**
+> يعاقب المسئول عن الإدارة الفعلية للشخص الاعتباري على مخالفة حكم البند رقم 14 من المادة 74 من هذا القانون بالغرامة التي لا تجاوز خمسين ألف جنيه، إذا ثبت علمه بالمخالفة وكان إخلاله بالواجبات التي تفرضها عليه تلك الإدارة قد أسهم في وقوع الجريمة.
+
+**Issuing Article 2:**
+> ينشر هذا القانون في الجريدة الرسمية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+### B. PM Decision 2562/2024 — amendment to Investment Executive Regulation 2310/2017
+
+- Official GAFI-hosted Gazette PDF: https://gafiadmin.gafi.gov.eg/media/km4n0ct0/قرار-رئيس-مجلس-الوزراء-رقم-٢٥٦٢-لسنة-٢٠٢٤.pdf
+- Gazette issue 32 bis (ط), 12 August 2024.
+- The decision substitutes Executive Regulation Article 63 and adds a paragraph to Article 10, First, Sector (A).
+
+**Article 63 — replacement text (investment-zone board):**
+> يكون لكل منطقة استثمارية مجلس إدارة يصدر بتشكيله لمدة ثلاث سنوات قرار من الوزير المختص بالاتفاق مع الوزير المعني بنشاط المنطقة.
+>
+> ويضم المجلس في عضويته ممثلي الهيئات المعنية بالنشاط أو الأنشطة الرئيسية المرخص بمزاولتها في المنطقة، وجهة الولاية على الأرض، ووزارة المالية، وممثلي الجهات المرخص لها بالتنمية في المنطقة والمستثمرين فيها.
+>
+> ويجوز أن يتضمن التشكيل عضواً أو أكثر من ذوي الخبرة، أو ممثلين عن جهات الدعم والتمويل للمشروعات بالمنطقة أو أية جهات أخرى يرى الوزير المختص والوزير المعني ضمها للمجلس.
+>
+> ويحدد قرار تشكيل المجلس نظام انعقاده وبدلات ومكافآت أعضائه، على أن يجتمع المجلس مرة كل شهر على الأقل أو كلما دعت حاجة تسيير العمل لانعقاده.
+
+**Article 10, First, Sector (A) — added paragraph:**
+> كما يشمل القطاع (أ) محافظات القاهرة الكبرى فيما يخص قطاع السياحة دون غيره، وذلك في أنشطة الاستثمار الفرعية التي يصدر بتحديدها وبيان شروط وضوابط منحها الحوافز الخاصة قرار من رئيس مجلس الوزراء بناءً على عرض مشترك من الوزير المختص ووزير المالية والوزير المعني طبقاً لنص المادة (١١) من القانون.
+
+**Source and currentness notes:**
+- Decision 2562/2024 is a Gazette-published executive-regulation amendment, not a guidance document.
+- The official Gazette text gives the amended provisions directly; it should be merged into Decision 2310/2017 as versioned text while retaining the former Article 63 and Article 10 wording in the amendment history.
+- This checkpoint does not claim to have the entire base Arabic Investment Law 72/2017 or the entire Decision 2310/2017 Arabic regulation. Their full Arabic Gazette texts remain priority acquisition tasks.
+- The GAFI French translations are discovery aids only and must never be treated as controlling Arabic statutory text.
+
+**Incremental provision units added:** 6 (four Law 141/2019 amendment provisions plus two Decision 2562/2024 regulation amendments). Issuing Article 2 is captured but excluded from the incremental unit count.
+
+## 15. Revised counts after Investment amendment text capture
+
+- Unique legal instruments with Arabic text: 89 (unchanged; both instruments were already counted).
+- Article/provision text units: 1,154 (1,148 + 6).
+- Assigned families touched: 13/13.
+- Families amendment/currentness-complete: 0/13.
+- Lawyer-reviewed: 0%.
+- Overall corpus estimate remains approximately 2%; denominator-based recalculation is unavailable.
