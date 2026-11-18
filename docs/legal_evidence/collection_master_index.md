@@ -508,3 +508,10 @@
 - ITDA official index confirms current Executive Regulation Decision 106/2018 and provides a direct 14.9 MB PDF. The web reader and direct download attempt could not retrieve its bytes; text extraction remains outstanding.
 - Law 198/2020: official ITDA-hosted 2-page Gazette PDF visually inspected and Articles 3, 8(1) and 9(1) fully transcribed. Gazette issue 39 bis (ز), 30 Sep 2020; effective the following day.
 - Ministerial Decision 41/2020: official ITDA-hosted 3-page الوقائع المصرية scan visually inspected, dated 8 March 2020; inserts Articles 13 bis/1, 13 bis/2 and 13 bis/3 concerning the beneficial-owner register, updating, retention and register form. Text transcribed in Agent 3 file.
+
+
+### Research Agent 3 — Electronic Signature legislation (2026-11-18)
+
+- Official MCIT source confirms original Executive Regulation Decision 109/2005 for Law 15/2004 was published in الوقائع المصرية issue 115, 25 May 2005, with 24 articles plus a technical annex.
+- Official ITIDA-hosted Gazette PDF (وقائع مصرية issue 95 تابع, 23 April 2020) contains Ministerial Decision **331/2020** amending the Executive Regulation of Law 15/2004, with revised text through Article 27 and a technical annex. Selected Articles 1, 4, 9 and 13 transcribed in Agent 3 file.
+- There is a decision-number discrepancy: secondary database references Decision 361/2020 for the same subject/publication date, while the official ITIDA Gazette scan clearly shows Decision 331/2020. Both records are preserved; do not merge until original Gazette issue and separate decision records are checked.
