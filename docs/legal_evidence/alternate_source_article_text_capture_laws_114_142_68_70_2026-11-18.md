@@ -41,11 +41,7 @@ Earlier versions of this file repeated those texts. The duplicate text blocks ha
 ### Original Article 12
 يصدر بمرسوم لائحة تنفيذية تشتمل على بيان عملية التوثيق وتنظيم دفاتره ودفاتر الفهارس والصور وعلى التنظيم الداخلي لمكاتب التوثيق وسير العمل فيها.
 
-### Original Article 13
-يلغى كل نص يتعارض مع أحكام هذا القانون.
-
-### Original Article 14
-على وزير العدل تنفيذ هذا القانون ويعمل به من أول يناير التالي لتاريخ نشره بالجريدة الرسمية.
+Articles 13 and 14 are not repeated here because their wording is unchanged and is already captured in the canonical text file. Only original Article 12 is retained as a distinct pre-Law 103/1976 historical version.
 
 **Scan validation:** Gazette masthead, issue number/date and the three closing provisions are visible in the two-page scan. Manual transcription requires a second human comparison before production use. Do not confuse original 1947 wording with later replacement annotations in Law 68/1947 (notably Law 103/1976).
 
