@@ -2819,3 +2819,97 @@ The CBE official circulars database reports 405 circulars and is updated through
 The official CBE circulars database is a live index and should be queried by topic/date for each new release; it is not itself a consolidated law or a substitute for the underlying circular PDFs.
 
 **Collection status:** 3 November 2026 Agent Banking circular fully searchable and selected sections transcribed; 2025 licensing and governance rules, 2023 digital bank framework and 2024 M&A/bank-ownership circulars are official source locators but full text retrieval blocked/not yet completed; 23 August 2026 eKYC circular official PDF locator confirmed but text inaccessible. No lawyer approval or rights clearance claimed.
+
+
+## 29. Agent 3 progress reconciliation — 18 November 2026
+
+### A. Unique instruments with at least some Arabic text surfaced
+
+**Current minimum: 37 distinct legal instruments** with at least some Arabic legal text surfaced in this Agent 3 collection. This includes statutes, executive regulations, ministerial/prime-minister decisions and CBE circulars; a few are represented by selected provisions or secondary searchable reproductions rather than a full primary Gazette text. Publication-only source leads and unreadable official PDFs are excluded.
+
+The 37 are:
+1. Competition Law 3/2005
+2. Executive Regulation Decision 1316/2005
+3. E-Signature Law 15/2004
+4. Financial Leasing and Factoring Law 176/2018
+5. Investment amendment Law 141/2019
+6. Investment Law 72/2017
+7. PPP amendment Decision 3217/2022
+8. Bankruptcy expert-fee Decision 3715/2026
+9. Trade Register Law 34/1976
+10. Original Trade Register Executive Regulation Decision 946/1976
+11. Commercial Agency Law 120/1982
+12. Commercial Agency amendment Law 21/2022
+13. Importers Register amendment Law 4/2026
+14. Companies Law 159/1981
+15. Companies Executive Regulation Decision 96/1982
+16. Commercial Code 17/1999
+17. Capital Market Law 95/1992
+18. Capital Market Executive Regulation Decision 135/1993
+19. Central Bank and Banking Sector Law 194/2020
+20. PM Decision 2482/2025 (Capital Market Executive Regulation)
+21. PM Decision 1539/2025 (Capital Market Executive Regulation)
+22. Consumer Protection Executive Regulation Decision 822/2019
+23. Consumer Protection amendment Law 20/2024
+24. Restructuring/Preventive Composition/Bankruptcy Law 11/2018
+25. Bankruptcy amendment Law 11/2021
+26. PPP Law 67/2010
+27. PPP Executive Regulation Decision 238/2011
+28. Trade Register amendment Law 198/2020
+29. Trade Register Decision 41/2020 (beneficial-owner register)
+30. E-Signature Executive Regulation amendment Decision 331/2020
+31. Importers Register Law 121/1982
+32. Importers Register amendment Law 173/2023
+33. Importers Register Executive Regulation Decision 271/2026
+34. Commercial Agency Executive Regulation amendment Decision 593/2025
+35. Real-Estate Broker classification Decision 578/2025
+36. Investment sector-schedule amendment Decision 503/2026
+37. Investment establishment-deadline extension Decision 1/2024
+
+**Source-only / not counted as text obtained:** Trade Register Executive Regulation Decision 106/2018 (14.9 MB official PDF locator, download failed); original E-Signature Executive Regulation Decision 109/2005 (official publication confirmation only); PM Decision 104/2022 (parent schedules identified, full schedules not extracted); Consumer Protection Law 181/2018 (official PDF OCR unusable); CBE eKYC circular 23 August 2026 and CBE PSO/PSP 2025 licensing/governance PDFs (official locators but reader blocked).
+
+### B. Article/provision text units
+
+**Current minimum: 242 article/provision text units surfaced.** This reconciles the previous 111-unit baseline with 131 additional individually surfaced article or regulatory-section texts in this checkpoint. It is a manual minimum, not a count of unique operative provisions after amendment normalization. It includes some regulatory sections (e.g., CBE Agent Banking numbered sections) and selected provisions, and does not count every article merely because a full searchable PDF spans a larger numbering range.
+
+### C. Assigned-domain coverage
+
+All 13 named legal families have now been touched by at least one primary or secondary Arabic text source:
+1. Companies
+2. Commercial Code
+3. Trade Register
+4. Investment
+5. Bankruptcy/restructuring
+6. Capital markets
+7. Central banking/banking
+8. Competition
+9. Consumer protection
+10. Financial leasing/factoring
+11. Electronic signature
+12. Commercial agency/distribution
+13. Public-private partnership
+
+**Family touch coverage: 13/13 = 100%.** This does **not** mean the assigned task is complete.
+
+**Full amendment/currentness-complete families: 0/13.** Each family still has unresolved Gazette reconciliation, later amendments, regulator decisions, access restrictions, or text extraction/verification gaps.
+
+**Lawyer-reviewed material: 0%.** All extracted text remains machine/source matched only, not lawyer verified.
+
+### D. Whole-project contribution
+
+The whole Legal Copilot corpus has no validated denominator of all operative Egyptian laws, executive regulations, amendments, circulars, decisions, Gazette corrections and judicial principles. Therefore, a precise percentage contribution to the whole corpus cannot responsibly be calculated. The prior project-wide estimate of ~2% remains provisional and is not recalculated from this Agent 3 subset.
+
+### E. Next highest-value tasks
+
+1. Acquire and transcribe the official current Trade Register Executive Regulation Decision 106/2018 and all appendices.
+2. Acquire the Official Gazette PDF for Law 11/2018 and Law 11/2021 (Arabic attachment is restricted in the current DSpace record).
+3. Obtain and Gazette-match Decision 238/2011 and 3217/2022 PPP regulation package.
+4. Obtain the full Decision 593/2025 and 578/2025 commercial agency/real-estate broker Gazette PDFs and verify thresholds/annexes.
+5. Obtain the full Decision 271/2026 Importers Register Gazette PDF (restricted DSpace) and verify the 17 regulation articles.
+6. Obtain the full Executive Regulation Decision 2310/2017 for Investment Law 72/2017 and compare all amendments.
+7. Complete CBE 2025–2026 circular archive, starting with eKYC, payment institution licensing/governance, credit guarantee companies and bank agent rules.
+8. Complete the full CPA Law 181/2018 and Decision 822/2019 text; resolve unreadable official PDF OCR.
+9. Gazette-match every Companies Law 159/1981 and Decision 96/1982 amendment and all appendices.
+10. Reconcile all Commercial Code cheque amendments and build the operative/historical boundary after repeal of Book V by Law 11/2018.
+
+No lawyer approval, currentness certification, or rights clearance is claimed.
