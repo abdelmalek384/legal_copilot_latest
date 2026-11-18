@@ -57,7 +57,7 @@ Retrieved the official MIFT consolidated PDF (3,416 extracted lines), explicitly
 - Law 159/1998: captured exact Article 46 replacement.
 - Law 212/1994: confirmed it inserted Article 21 bis, later repealed by Law 3/1998; full historic text remains unavailable and was not reconstructed.
 - Detailed files: [Laws 3/1998 and 94/2005](agent3_companies_law_amendments_3_1998_94_2005_text.md), [Laws 212/1994 and 159/1998](agent3_companies_law_amendments_212_1994_159_1998_text.md).
-- These are text-depth/versioning expansions of already-counted amendment instruments; no count change. Agent 3 remains **198 documents / 1,987 provisional units**, assigned completion **55% provisional**, lawyer review 0%.
+- These are text-depth/versioning expansions of already-counted amendment instruments; no count change. Agent 3 remains **202 documents / 1,996 provisional units**, assigned completion **55% provisional**, lawyer review 0%.
 
 
 ## Primary-source upgrades to the Companies Law amendment chain
@@ -94,3 +94,15 @@ Updated aggregate: **196 documents / 1,950 provisional numbered units**; assigne
 - Added 2 instruments / 37 normalized units. Original Gazette PDF/page-image comparison remains outstanding.
 
 Updated aggregate: **198 documents / 1,987 provisional units**; assigned-domain completion remains **55% provisional**; lawyer review 0%.
+
+
+## Capital Market Executive Regulation — 2022/2023 amendments
+
+Added four decisions using the official FRA consolidated 2025 text and official Amiri Press where available:
+- PM Decision 3456/2022: sustainable-development bond taxonomy, issue/verification/reporting requirements; inserts Articles 35 bis 3–4 and amends fund reporting.
+- PM Decision 4664/2022: voluntary carbon-credit trading market; inserts Articles 35 bis 7–8, carbon credits as tradable financial instruments, project reporting and FRA/Environment oversight committee.
+- PM Decision 1109/2022: official Amiri Press full text; inserts Article 358 bis with special acquisition approvals/disclosures for listed companies in Sharm El-Sheikh, Dahab and Gulf of Aqaba.
+- PM Decision 345/2023: amends fund reporting under Article 170 and adds FRA fund-company governance rules in Article 171.
+- Detailed Arabic text: [2022–2023 Capital Market amendments](agent3_capital_market_exec_reg_135_amendments_2022_2023_arabic_text.md). Original Gazette PDFs still outstanding for 3456/2022, 4664/2022 and 345/2023.
+
+Updated aggregate: **202 documents / 1,996 provisional numbered units**; assigned-domain completion remains **55% provisional**; lawyer review 0%.
