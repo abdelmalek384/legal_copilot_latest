@@ -2211,3 +2211,14 @@ Added **PM Decision1568/2026**, issuing the Executive Regulation of Foreign Asyl
 - **+2 distinct instruments** (Law 4/2026 and Decision 271/2026). Do not increment the normalized full-provision baseline yet: the Law 4 clauses are captured verbatim, but Decision 271 is incomplete (Articles 18–20 missing) and the transcription contains OCR defects requiring Gazette-image reconciliation.
 - Current audited master baseline immediately before this tranche: 306 unique acquisition-register IDs; 306 classified IDs; 77 unique instruments with at least one full-text inventory record. Provisional next register count: **308 unique IDs**, subject to ledger-row reconciliation. This is not the older Agent 3 running count used in conversational checkpoints.
 - Status: source-matched, not lawyer-reviewed. Original Gazette PDF bytes/hash and commercial reuse rights have not been cleared.
+
+
+### Research Agent 3 — Investment Executive Regulation Decision 1203/2024 text-depth expansion
+
+- Added [full Arabic transcription of PM Decision 1203/2024](agent3_investment_decision1203_2024_amendment_exec_reg2310_arabic_text.md), amending Executive Regulation 2310/2017: replaces Article 10's second paragraph and Articles 41–43, and adds a final paragraph to Article 76 bis.
+- The text expands Sector A to expressly include the Suez Canal Economic Zone, Golden Triangle, New Administrative Capital and Ras El-Hekma; rewrites the single-approval route for strategic/national projects; sets application evidence, monitoring committee, cure period and suspension/grievance procedure; and permits a narrowly conditioned light-industrial subproject in qualifying service private free zones.
+- Gazette locator: Official Gazette issue 15 bis (أ), 17 April 2024; SIS Amiri Press record and PDF (201.6 KB): https://mediadr.sis.gov.eg/xmlui/handle/123456789/58817. MELES DSpace separately lists Arabic and English PDFs. Page-image comparison remains to be completed.
+- Decision 1203/2024 was already present as a known instrument: **no new unique instrument**. **+8 provision/issuing units captured** as text depth, pending provision-ID deduplication.
+- Decision 271/2026 correction: full 16-page Gazette reproduction confirms **17 regulation articles**, with Article 17 final; the previous website description “20 articles” was wrong. The new regulation is complete as to numbered articles and repeals Decision 846/2017.
+- Conditional acquisition register after the previous 2 new instruments: 308 unique IDs (306 audited baseline + Law 4/2026 + Decision 271/2026), pending ledger-row reconciliation. No normalized-provision baseline change claimed from Decision 271 until OCR/text comparison is reconciled.
+- Status: source-matched, not lawyer-reviewed; original PDF binary/hash and commercial reuse rights not cleared.
