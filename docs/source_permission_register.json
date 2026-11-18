@@ -1023,6 +1023,23 @@
       "permission_evidence": "Checked 2026-11-18. Public full Gazette issue PDF served from SIS Media Digital Repository; page content begins with the Republic/Presidency/Official Gazette masthead and issue/date metadata. The PDF text layer includes Decision 200/2026 and all regulation articles. This establishes access to an official government-hosted Gazette reproduction, not an explicit licence for bulk collection, commercial indexing, public display or redistribution. The DSpace original bundle is separately restricted.",
       "bulk_download_or_api": "single public issue PDF URL; no bulk/API licence established",
       "required_next_action": "Archive/hash exact PDF; inspect page images; compare against restricted DSpace original when authorized; seek explicit reuse terms."
+    },
+    {
+      "source_id": "EG-MOJ-LAW114-1946",
+      "authority": "Egyptian Ministry of Justice / Real Estate Publicity and Notarization Authority via Invest in Egypt",
+      "source_page": "https://www.investinegypt.gov.eg/PublishingImages/Lists/LawsAndRegulations/AllItems/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%B1%D9%82%D9%85%20114%20%D9%84%D8%B3%D9%86%D8%A9%201946%20%D8%A8%D8%AA%D9%86%D8%B8%D9%8A%D9%85%20%D8%A7%D9%84%D8%B4%D9%87%D8%B1%20%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%89.pdf",
+      "material_types": [
+        "Law 114/1946 official text reproduction",
+        "Registration procedures and historical provisions"
+      ],
+      "access_status": "public government-hosted PDF; 317 extracted lines; text is an older mixed-version reproduction and not an original Gazette scan",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-11-18. The URL is hosted on the Invest in Egypt portal and the PDF identifies the Ministry of Justice and Real Estate Publicity and Notarization Authority. It reproduces Law 114/1946 through Article 61 and exposes older amended wording, but it is not an image of Official Gazette issue 85/1946 and does not include the Law 9/2022 amendments. No terms granting bulk collection, OCR, commercial use, display or redistribution were established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "single public PDF locator; no bulk/API permission established",
+      "required_next_action": "Use as an official government-hosted text comparator; reconcile with original Gazette issue 85/1946, Law 25/1976, Law 223/1996, Law 186/2020, Law 5/2021 and Law 9/2022. Request permission before systematic or commercial reuse."
     }
   ]
 }
