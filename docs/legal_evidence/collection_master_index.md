@@ -418,6 +418,17 @@
 - DSpace's 245.51 KB original Gazette bundle is request-only; full text was acquired from the official Amiri Press text portal and secondary transcription.
 - Added acquisition register record EG-0176. All review and rights flags remain false.
 
+### Research Agent 1 — continuation totals (checkpoints 85–92 supplements, 18 November 2026)
+
+- Newly identified statutory instruments in this continuation: 2 base statutes (Law 12/1984 and Law 147/2021) and 1 amending statute (Law 167/2025). Law 168/2025 was already indexed as a related statute and is not counted as a new base-law discovery.
+- Newly identified subordinate instruments: 9 (1947 Notarization Executive Regulation; Decisions 820/1963, 1532/1976, 712/2008, 9200/2015, 4730/2020, PM Decision 81/2023, PM Decision 200/2026 and Presidential Decision 480/2026). Three are currently metadata-only/without full text; source status is recorded in checkpoints 89, 91 and 92.
+- Full searchable Arabic source texts newly located or upgraded: 23. This includes secondary transcriptions, official GPO text pages and official government/judiciary-hosted PDFs; it does not mean 23 original Amiri Press PDF files were downloaded.
+- Unique article/provision extracts added in the continuation: 58 (23 in checkpoint 91, 24 in checkpoint 92 and at least 11 in the checkpoint 89 supplements). These counts exclude duplicate URLs and duplicate article texts.
+- Judicial research: five official SCC-hosted judgment pages/records reviewed in checkpoint 90; additional full secondary judgment transcription and official later-case references for Case 42/17 and Case 101/26 recorded.
+- Acquisition register now has 172 instrument records, 12 columns per row, no duplicate IDs or malformed rows. This is a register count, not a legal-text/article count. All lawyer-review and rights-clearance flags remain false.
+- Assigned civil/property domain estimate remains approximately 15%; whole Egyptian legal collection remains approximately 2%. Both are provisional; no validated national denominator exists, so no exact incremental percentage is claimed.
+- Material access blockers: several DSpace original Gazette bundles require a request-a-copy workflow; the official GPO Decision 200/2026 page returned 502 on direct open; original Gazette PDFs and some direct SCC judgment pages remain missing. GitHub repository writes and register validation succeeded.
+
 ### Research Agent 1 — State private property regularization update (checkpoint 92)
 
 - Full 14-article searchable Arabic text of Law 168/2025 acquired; the statute was already identified in checkpoint 89 and is not counted as a new base-law discovery. Official Gazette issue 32 bis (و), 13 August 2025; Law 168/2025 repeals Law 144/2017.
