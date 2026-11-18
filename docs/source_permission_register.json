@@ -2586,6 +2586,86 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "Single public metadata page; no bulk/API permission established",
       "required_next_action": "Acquire original issue28 تابع (أ) page images and transcribe complete decision; review site terms before reuse beyond citation."
+    },
+    {
+      "source_id": "EG-LAWEG-LAW83-2006",
+      "authority": "Laweg legal publisher archive",
+      "source_page": "https://www.laweg.net/framePlain.aspx?ItemID=18398&NID=18429&Type=6&action=ViewActivePages",
+      "material_types": [
+        "Full searchable Arabic text of Law83/2006 amending Law70/1964 and Law142/1964; Official Gazette issue22 bis, 6 June 2006"
+      ],
+      "access_status": "Public searchable text reproduction. The two fee tables A/B referred to by Article4 are not present in the HTML extraction.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used to transcribe the law text and Gazette metadata. No source-specific licence or written permission was reviewed or established; public access is not treated as commercial reuse permission.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public HTML page; no bulk/API permission established",
+      "required_next_action": "Obtain original Gazette pages and fee tables A/B; review site terms before redistribution."
+    },
+    {
+      "source_id": "EG-INVESTINEGYPT-LAW186-2020",
+      "authority": "Invest in Egypt government portal / GAFI",
+      "source_page": "https://www.investinegypt.gov.eg/PublishingImages/Lists/LawsAndRegulations/AllItems/تعديل%20بعض%20أحكام%20قانون%20الشهر%20العقاري%20بالقانون%20186%20لسنة%202020.pdf",
+      "material_types": [
+        "Government-hosted Official Gazette PDF reproduction of Law186/2020, issue36 bis (ب), 5 September 2020"
+      ],
+      "access_status": "Public PDF reproduction with searchable text; original Amiri Press binary/hash not archived.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used for statutory text acquisition. No source-specific licence or written permission for bulk ingestion, commercial display or redistribution was established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public PDF endpoint; no bulk/API permission established",
+      "required_next_action": "Review portal terms and obtain written permission if needed for commercial ingestion/display; archive original bytes/hash if authorized."
+    },
+    {
+      "source_id": "EG-LAWYEREGYPT-LAW5-2021",
+      "authority": "Lawyer Egypt legal-information site (secondary transcription)",
+      "source_page": "https://lawyeregypt.net/إرجاء-العمل-بالقانون-186-لسنة-2020/",
+      "material_types": [
+        "Full Arabic text of Law5/2021 deferring Law186/2020 and repealing Income Tax Law91 Article42 paragraphs4 and8"
+      ],
+      "access_status": "Public searchable secondary transcription; Manshurat catalogue independently confirms issue/date/effective date.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used as a secondary text source. No licence or written commercial reuse permission was reviewed or established; public accessibility does not establish commercial reuse permission.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public article; no bulk/API permission established",
+      "required_next_action": "Compare with original issue9 bis Gazette PDF and review site terms before reuse beyond citation."
+    },
+    {
+      "source_id": "EG-LAWYEREGYPT-LAW9-2022",
+      "authority": "Lawyer Egypt legal-information site (secondary transcription)",
+      "source_page": "https://lawyeregypt.net/تسجيل-المحررات-العرفية-فى-الشهر-العقارى/",
+      "material_types": [
+        "Full five-article Arabic text of Law9/2022 amending Law114/1946, issue9 bis (أ), 6 March 2022"
+      ],
+      "access_status": "Public searchable secondary full text; original Gazette page images not archived.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used to capture operative text. No licence or written commercial reuse permission was reviewed or established; public access is not a reuse licence.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public HTML page; no bulk/API permission established",
+      "required_next_action": "Compare all provisions against Official Gazette issue9 bis (أ); review site terms before redistribution."
+    },
+    {
+      "source_id": "EG-YOUM7-DECISION2332-2022",
+      "authority": "Youm7 news/legal text transcription; decision number corroborated by NCLawyerNews",
+      "source_page": "https://www.youm7.com/story/2022/4/14/تسهيلات-غير-مسبوقة-بقانون-الشهر-العقارى-الجديد",
+      "material_types": [
+        "Full secondary transcription of Minister of Justice Decision2332/2022 amending the Executive Regulation of Law114/1946; issue75 bis (ج), 30 March 2022"
+      ],
+      "access_status": "Public secondary full text; decision number is blank in the article heading but issue notice corroborates 2332. Original Gazette pages not archived.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used to capture actual article wording. No source licence or written commercial reuse permission was reviewed or established; public access is not a reuse licence.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public article; no bulk/API permission established",
+      "required_next_action": "Acquire Gazette issue75 bis (ج) and compare; verify Decision number and Article14 bis OCR; review terms before redistribution."
     }
   ]
 }
