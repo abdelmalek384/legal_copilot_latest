@@ -99,3 +99,10 @@ All new material remains machine-collected and not lawyer-reviewed. Do not mark 
 - Decision 593/2025: MIFT official catalogue identifies latest regulation amendment; EastLaws text covers 8 issuing articles; Al-Waqa'i issue 20 supplement (أ), 25 Jan 2026, effective 26 Jan 2026. Adds real-estate broker registry implementation, replaces 11 regulation provisions, adds 3 bis/15 bis series/18 bis, repeals Arts 26–27, six-month regularization. DSpace item page errors in current access; original Gazette image comparison remains blocked.
 - Record: [agent3_commercial_agency_law120_1982_law21_2022_reg342_1982_dec593_2025_arabic_text.md](agent3_commercial_agency_law120_1982_law21_2022_reg342_1982_dec593_2025_arabic_text.md).
 - No new unique instrument count; text-depth expansion only. 209 / 2,049 remains last reconciled inventory; assigned-domain 55% provisional; lawyer review 0%.
+
+
+## Financial Leasing and Factoring Law 176/2018 full text recovered
+- FRA official updated Arabic PDF acquired (510 extracted lines), with four issuing provisions and substantive Articles 1–87. Captured leasing/factoring definitions, exclusive licensing, contract registry, purchase option, asset disposal, termination/enforcement, factoring assignment and debtor notice, recourse, licensing capital/governance, microfinance leasing, prudential controls, confidentiality, pricing and industry federations.
+- Important classification correction: Decision 7/2019 is an FRA Board rules-and-controls decision for licensed leasing/factoring companies, not a single Executive Regulation. Current consolidated PDF (8 pages) shows amendments by Decisions 82/2019, 38/2020 and 44/2026; Articles 7–12 repealed by Decision 44/2026. PDF text extraction is poor and screenshot service denies access; full Decision 7 text still requires manual page-image or alternate source.
+- Record: [agent3_financial_leasing_factoring_law176_2018_fra_full_text_expansion.md](agent3_financial_leasing_factoring_law176_2018_fra_full_text_expansion.md).
+- No new unique instrument count; 209 / 2,049 remains last reconciled baseline; assigned-domain estimate 55% provisional; lawyer review 0%.
