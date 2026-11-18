@@ -111,3 +111,8 @@ The text carries amendment footnotes referencing PM Decision 2479/2018 and Minis
 - Main Law 95 article numbering reaches Article 75 with inserted/mukarrar provisions; report 75 base article numbers and retain inserted article IDs separately.
 - Executive Regulation 135/1993 numbering reaches Article 349 in the extracted PDF; report 349 numbered regulation units pending duplicate/omitted-article normalization.
 - For a conservative numeric progress tally, add **424 numbered units** (75 + 349), with inserted articles separately represented in the final normalized register.
+
+
+## Official Gazette number verification — corrected 18 November 2026
+
+The official two-page Gazette PDF hosted by the Egyptian Electric Utility and Consumer Protection Regulatory Agency was opened and text-extracted: https://www.egyptera.org/ar/download/DecreeNo1539Year2025.pdf. Its first page expressly prints «قرار رئيس مجلس الوزراء رقم ١٥٣٩ لسنة ٢٠٢٥» (Official Gazette issue 18 bis, 4 May 2025), and its second page inserts Article 35 bis 9. Therefore **1539/2025 is the correct decision number**. The earlier apparent 1529 reading was an OCR/reading error and is withdrawn. FRA's updated Regulation 135/1993 page also lists 1539/2025. Do not maintain a numbering conflict or separate 1529 instrument.
