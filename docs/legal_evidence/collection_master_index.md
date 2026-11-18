@@ -2303,3 +2303,13 @@ Added the two-page Official Gazette corrigendum, issue32 bis (8 Aug 2026), corre
 
 Added Decision450/2026 and both attached forms from the official four-page ETA scan. The decision prescribes separate forms for tax and customs dispute applications under Law152/2026 and permits free electronic filing through the competent authority portal. The local transcription includes the issuing provisions and form fields. The Egyptian Proceedings issue/date and exact original Amiri Press bundle remain to be confirmed.
 [Decision450/2026 Arabic text and forms](acquisition_tranche_finance_decision450_2026_tax_customs_dispute_forms_arabic.md)
+
+
+### Audited register snapshot — 18 November 2026, after EG-0336
+
+- Acquisition register: **320 rows / 320 unique instrument IDs**.
+- Classification ledger: **320 rows / 320 unique IDs** — 74 base laws; 65 amending laws; 19 executive regulations; 43 executive-regulation amendments; 21 judicial decisions; 85 other decisions; 13 other/unclassified.
+- Full-text inventory: **96 rows / 92 unique instruments**. Four duplicate IDs are source/version rows. **75 unique instruments (23.4%)** have an inventory record marked full/complete; **20 rows** remain partial, external-only or incomplete. Inventory-source coverage is **92/320 = 28.8%**. These percentages are instrument-level indicators, not authenticated Gazette coverage or full legal currency.
+- Source-permission register: **111 source records**.
+- New complete local text additions in this pass: Law149/2026 plus its official corrigendum; full local text of Law161/2026 (all 50 articles); PM Decision2170/2026; Finance Minister Decision450/2026 and both forms; and the official corrigendum for Laws149–151. Decision3530 and the five issue46 land decisions remain partial locally.
+- No new Amiri Press original PDF bytes/hash were stored locally. Official ETA-hosted PDFs were opened and visually inspected where noted; public accessibility is not treated as permission for bulk redistribution or commercial reuse.
