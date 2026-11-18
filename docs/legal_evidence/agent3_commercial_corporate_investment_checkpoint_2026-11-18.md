@@ -188,3 +188,63 @@ Law 121/1982 (Importers Register) → Law 7/2017 → Law 173/2023 → **Law 4/20
 - **Lawyer-reviewed:** 0%.
 - **Whole corpus coverage:** retain the master index estimate of approximately 2%; this one instrument does not justify a percentage change.
 - **Rights:** Law 4/2026 full text source page reports CC BY 4.0; official Gazette scan remains to be checked. Do not bulk redistribute the secondary-hosted scan.
+
+
+## 8. Insolvency text expansion — Law 11/2018 and 2021 amendments
+
+**Instrument already present in earlier Agent 3 inventory; this is an incremental text capture, not a new unique instrument.**
+
+- Law 11/2018 promulgates the Law Regulating Restructuring, Preventive Composition and Bankruptcy.
+- Gazette metadata: Official Gazette, issue 7 bis (د), 19 February 2018.
+- A full 279-article current-text transcription through amendments dated 28 April 2021 is available from a secondary legal research site: https://alhasswalawfirm.com/law-library/law-11-2018
+- An additional searchable transcription and article-by-article amendment footnotes are available at: https://lawhub.info/eg/?p=11442
+- Official government-hosted Gazette PDF for the 2021 amendment: https://www.investinegypt.gov.eg/PublishingImages/Lists/LawsAndRegulations/AllItems/تعديل%20بعض%20أحكام%20قانون%20تنظيم%20إعادة%20الهيكلة%20والصلح%20الواقي%20من%20الإفلاس%20بالقانون%20رقم%2011%20لسنة%202021.pdf
+- The 2021 amending Law 11/2021 changes procedural and substantive provisions, including electronic litigation, additional restructuring/financing rules, and creditor approval mechanisms. Do not use an unamended 2018 transcription as current.
+- The secondary consolidated source expressly identifies the 2021 amendments, but its whole 279-article text must still be checked against Gazette sources before product ingestion. The 2021 government PDF is primary for that amending instrument, not a substitute for the 2018 base Gazette.
+
+### Exact Arabic text — issuing Article 1
+
+> يعمل بأحكام القانون المرافق في شأن إعادة الهيكلة والإفلاس والصلح الواقي منه.
+>
+> وتسري أحكامه على التاجر وفقا للتعريف الوارد في المادة (١٠) من قانون التجارة الصادر بالقانون رقم ١٧ لسنة ١٩٩٩، وذلك فيما عدا شركات المحاصة وشركات القطاع العام وشركات قطاع الأعمال العام.
+
+### Exact Arabic text — Article 15 (eligibility for restructuring)
+
+> لكل تاجر، لا يقل رأسماله عن مليون جنيه، وزاول التجارة بصفة مستمرة خلال السنتين السابقتين على تقديم الطلب ولم يرتكب غشا أن يطلب إعادة الهيكلة.
+>
+> ولا تجوز إعادة هيكلة الشركة وهي في دور التصفية.
+
+### Exact Arabic text — Article 16 (death of trader; current amended wording)
+
+> تجوز إعادة هيكلة نشاط أو أموال التاجر بعد وفاته بناء على طلب ورثته والموصى إليهم خلال السنة التالية للوفاة، شريطة موافقتهم جميعًا.
+
+The secondary consolidated source attributes the addition of the testamentary successors to Law 11/2021. Preserve the pre-amendment wording as historical, not current.
+
+### Exact Arabic text — Article 17 (effect of restructuring petition)
+
+> لا يجوز التقدم بطلب إعادة الهيكلة في حالة صدور حكم بشهر إفلاس التاجر أو الحكم بافتتاح إجراءات الصلح الواقي منه.
+>
+> ويترتب على تقديم طلب إعادة الهيكلة وقف طلبي ودعويي شهر الإفلاس والصلح الواقي منه إلى حين البت في طلب إعادة الهيكلة.
+
+The current text contains further paragraph(s) and must be imported in full from the consolidated source after Gazette verification; the quotation above is only the verified opening portion.
+
+### Exact Arabic text — Article 18 (purpose of restructuring)
+
+> تهدف إعادة الهيكلة إلى وضع خطة لإعادة تنظيم أعمال التاجر المالية والإدارية تتضمن كيفية خروجه من مرحلة الاضطراب المالي والإداري وسداد ديونه مع بيان مصادر التمويل المقترحة، ويكون ذلك بعدة طرق منها إعادة تقييم الأصول، وإعادة هيكلة الديون ومنها ديون الدولة، وزيادة رأس المال، وزيادة التدفقات النقدية الداخلية، وخفض التدفقات النقدية الخارجية، وإعادة الهيكلة الإدارية.
+
+### Currentness and scope controls
+
+- Law 11/2018 applies to traders within the definition in Commercial Code Article 10, with statutory exclusions for joint ventures (شركة المحاصة), public-sector companies and public business-sector companies.
+- Keep the three procedures distinct: restructuring (إعادة الهيكلة), preventive composition (الصلح الواقي من الإفلاس), and bankruptcy (شهر الإفلاس).
+- Law 11/2021 amends Law 11/2018; do not count the amendment as a separate substantive law family, but retain it as a distinct instrument in the amendment graph.
+- Article 16's inclusion of testamentary successors and other changed provisions must be tagged with their 2021 amendment source.
+- The old Commercial Code bankruptcy provisions in Articles 550 onward remain superseded; use Law 11/2018 for current insolvency procedure, subject to current amendments.
+
+**Incremental article/provision units added in this checkpoint:** 4 (Articles 15–18). The issuing Article 1 is also captured as text but excluded from the incremental provision count here because issuing provisions were already part of the prior Law 11/2018 text inventory.
+
+## 9. Revised counts after insolvency text expansion
+
+- Unique legal instruments: 89 (no additional unique instrument; Law 11/2018 was already in the Agent 3 inventory).
+- Article/provision text units: 1,137 (1,133 + 4 additional Article texts).
+- Assigned families touched: 13/13; amendment/currentness-complete: 0/13; lawyer-reviewed: 0%.
+- Whole corpus coverage remains approximately 2% as recorded by the master index; no percentage increase is justified.
