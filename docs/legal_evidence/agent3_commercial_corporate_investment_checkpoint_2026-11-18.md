@@ -301,3 +301,133 @@ The current text contains further paragraph(s) and must be imported in full from
 - This corroborates the previously captured current amendment chain. Keep the MIFT record as the official catalogue and GOEIC's detailed register as the operational registration source.
 
 **Count treatment:** these are additional primary-source provenance confirmations and selected regulation text excerpts for instruments already counted. They do not increase the unique-instrument or provision totals.
+
+
+## 12. Capital Market Law 95/1992 — additional primary Arabic text captured
+
+**This is incremental text capture for an instrument already counted in the Agent 3 baseline. No new unique instrument is added.**
+
+### Official FRA source versions
+
+1. FRA statute PDF (Arabic, amendment footnotes): https://www.fra.gov.eg/wp-content/uploads/2024/06/قانون-سوق-المال-بصيغة-WORD.pdf
+   - Searchable Arabic text; source identifies Law 95/1992 and displays amendment footnotes including Laws 123/2008, 13/2004, 11/2018 and 17/2018.
+   - FRA catalogue labels the current statute version "updated in 2022": https://fra.gov.eg/regulations/قانون-سوق-رأس-المال-رقم-95-لسنة-1992/
+   - The source file is not a Gazette facsimile; use Gazette images for final punctuation, exact publication and article-by-article legal validation.
+2. FRA Executive Regulation Decision 135/1993, Arabic PDF: https://fra.gov.eg/wp-content/uploads/2025/03/alamiria_1993_135.pdf
+   - The PDF's issuing decision cites Egyptian Gazette/وقائع مصرية, 8 April 1993, issue 81 (تابع).
+   - FRA labels its current consolidated regulation "updated in 2025" and lists amendment instruments including PM Decisions 2482/2025, 1539/2025, 2423/2024, 3045/2023, 4664/2022 and earlier decisions: https://fra.gov.eg/regulations/تعديلات-اللائحة-التنفيذية-لقانون-سوق-رأس-المال/
+   - The PDF is a long consolidated text with amendment marks/footnote symbols. The 2025 update page and exact amending decisions must be cross-checked before treating any particular paragraph as the latest operative text.
+
+### Exact Arabic statute text captured
+
+**Issuing Article 1 (opening):**
+> يعمل بأحكام القانون المرافق في شأن تنظيم سوق رأس المال.
+>
+> وتسرى أحكام قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة الصادر بالقانون رقم ١٥٩ لسنة ١٩٨١ فيما لم يرد به نص خاص في هذا القانون.
+
+**Issuing Article 2 (current terminology in the FRA text):**
+> يقصد في تطبيق أحكام القانون المرافق بالهيئة أو الجهة الإدارية أينما وردتا في هذا القانون ولائحته التنفيذية أو القانون رقم ١٥٩ لسنة ١٩٨١، ولائحته التنفيذية العامة للرقابة المالية يقصد برئيس الهيئة رئيس مجلس إدارة الهيئة العامة للرقابة المالية، ويقصد بالوزير وزير الاقتصاد والتجارة الخارجية.
+
+The PDF notes this provision was amended by Law 10/2009; its pre-amendment wording must be retained only as historical text.
+
+**Statutory Article 2 (issue of securities notification):**
+> يلتزم كل شخص اعتباري يرغب في إصدار أوراق مالية أن يخطر الهيئة، فإذا لم تعترض الهيئة خلال سبعة أيام عمل من تاريخ إخطارها يتم السير في إجراءات الإصدار، وتحدد اللائحة التنفيذية لهذا القانون بيانات الإخطار والمستندات التي ترفق به.
+
+The PDF's amendment note attributes the current seven-working-day rule to Law 123/2008; the former three-week wording is historical.
+
+**Statutory Article 4 (public offering):**
+> لا يجوز لأي شخص اعتباري مصري أو غير مصري، أياً كانت طبيعته أو النظام القانوني الخاضع له، طرح أوراق أو أدوات مالية في اكتتاب عام للجمهور إلا بناءً على نشرة اكتتاب معتمدة من الهيئة، وعلى النماذج التي تعدها الهيئة، ووفقاً للشروط والإجراءات التي تحددها اللائحة التنفيذية لهذا القانون، ويجب نشر ملخص لنشرة الاكتتاب أو نشرة الطرح أو تقرير الإفصاح.
+>
+> بغرض الطرح وفقاً لوسائل النشر التي يحددها مجلس إدارة الهيئة.
+>
+> ومع عدم الإخلال بحكم الفقرة السابقة، يصدر مجلس إدارة الهيئة الضوابط التي يجب الالتزام بها عند طرح أي أوراق أو أدوات مالية في اكتتاب عام أو طرح عام أو طرح خاص، وذلك بحسب نوع الورقة أو الأداة المالية.
+
+The PDF attributes this formulation to Law 11/2018; the pre-amendment publication-in-two-newspapers text is not the current formulation.
+
+**Statutory Article 4 bis (definitions, added by Law 17/2018):**
+> في تطبيق أحكام هذا القانون والقرارات الصادرة تنفيذاً له، يقصد بالعبارات التالية المعنى المبين قرين كل منها:
+>
+> الاكتتاب العام: عرض أوراق مالية أو أدوات مالية على أشخاص طبيعيين أو اعتباريين غير محددين سلفاً عند إصدار هذه الأوراق أو الأدوات.
+>
+> الطرح العام: عرض أوراق مالية أو أدوات مالية مصدرة على أشخاص طبيعيين أو اعتباريين غير محددين سلفاً.
+>
+> الطرح الخاص: عرض أوراق مالية أو أدوات مالية على أشخاص طبيعيين، أو اعتباريين تتوافر فيهم شروط معينة سواء عند إصدار هذه الأوراق أو الأدوات أو بعد ذلك.
+>
+> الأدوات المالية: وثائق تغير الأوراق المالية، وتكون قابلة للقيد والتداول ببورصات الأوراق المالية.
+
+**Statutory Article 5 (prospectus disclosures at incorporation, opening list):**
+> يجب أن تتضمن نشرة الاكتتاب في أسهم الشركة عند تأسيسها الإفصاح عن البيانات الآتية:
+>
+> (أ) غرض الشركة ومدتها.
+>
+> (ب) رأس مال الشركة المصدر والمدفوع.
+>
+> (ج) مواصفات الأسهم المطروحة ومميزاتها وشروط طرحها.
+>
+> (د) أسماء المؤسسين ومقدار مساهمة كل منهم وبيان الحصص إن وجدت.
+>
+> (هـ) خطة الشركة في استخدام الأموال المتحصلة من الاكتتاب في الأسهم المطروحة وتوقعاتها بالنسبة لنتائج استخدام الأموال.
+>
+> (و) أماكن الحصول على نشرة الاكتتاب المعتمدة من الهيئة.
+>
+> (ز) أية بيانات تحددها اللائحة التنفيذية.
+
+### Exact Arabic Executive Regulation text captured — Decision 135/1993
+
+**Issuing Article 1:**
+> يعمل بأحكام اللائحة التنفيذية لقانون تنظيم سوق رأس المال الصادر بالقانون رقم 95 لسنة 1992، المرافقة لهذا القرار ويعمل فيما لم يرد فيه نص خاص باللائحة التنفيذية للقانون رقم 159 لسنة 1981 المشار إليه.
+
+**Regulation Article 1 (opening):**
+> يكون للشركة رأس مال مصدر، ويجوز أن يحدد النظام الأساسي للشركة رأس مال مرخصاً به.
+>
+> ويقسم رأس مال شركة المساهمة وحصة الشركاء غير المتضامنين في شركات التوصية بالأسهم إلى أسهم اسمية متساوية القيمة في كل إصدار.
+
+**Regulation Article 2 (opening):**
+> يحدد نظام الشركة القيمة الاسمية للسهم بحيث لا تقل عن خمسة جنيهات ولا تزيد على ألف جنيه، ويشترط أن يكون رأس المال المصدر مكتتباً فيه بالكامل، وبمراعاة أحكام الفحص المبدئية، يصعب على كل مكتتب أن يدفع نقداً أو بواسطة دفع أخرى مقبولة قانوناً الربع على الأقل من القيمة الاسمية للأسهم النقدية فور الاكتتاب بالإضافة إلى مصروفات الإصدار.
+
+The PDF text extraction appears to contain OCR/transcription errors in this paragraph (for example, "يصعب" and "مقولات"); preserve the PDF as evidence but correct nothing silently. Compare the Gazette image before product ingestion.
+
+**Regulation Article 3 (subscription validity conditions):**
+> يشترط لصحة الاكتتاب سواء كان عاماً أو غير عام الشروط الآتية:
+>
+> ١- أن يكون كاملاً بأن يغطي جميع أسهم الشركة التي تمثل رأس المال المصدر في شركات المساهمة، أو الحصص والأسهم في شركات التوصية بالأسهم.
+>
+> ٢- أن يكون باتاً غير معلق على شرط وفورياً غير مضاف إلى أجل، فإذا علق الاكتتاب على شرط بطل الشرط وصح الاكتتاب ولزم المكتتب به، وإذا كان مضافاً إلى أجل بطل الأجل وكان الاكتتاب فورياً.
+>
+> ٣- أن يكون جدياً لا صورياً.
+>
+> ٤- ألا يقل ما يدفعه المكتتب عند التأسيس من القيمة الاسمية للأسهم النقدية عن ربع القيمة.
+>
+> ٥- أن تكون الأسهم التي تمثل الحصص العينية قد تم الوفاء بقيمتها كاملة.
+
+**Regulation Article 4:**
+> يجوز أن تستخرج شهادات الأسهم من فئة سهم واحد أو خمسة أسهم مضاعفاتها.
+
+**Regulation Article 5 (opening):**
+> تستخرج شهادات الأسهم من دفتر ذي قسائم، وتعطى أرقاماً مسلسلة، ويوقع عليها عضو من أعضاء مجلس الإدارة يبينهما المجلس أو أحد الشركاء، لمديرين في شركات التوصية بالأسهم، وتختم بخاتم الشركة.
+
+**Regulation Article 6 (opening):**
+> يتم قيد المبالغ المدفوعة من المكتتبين على صكوك الأسهم.
+
+**Regulation Article 7 (opening):**
+> على كل شركة ترغب في إصدار أوراق مالية أن تخطر الهيئة بذلك، فإذا لم تعرض الهيئة خلال ثلاثة أسابيع من تاريخ الإخطار كان للشركة السير في إجراءات الإصدار.
+
+The regulation PDF includes subsequent amendments and marked provisions; Article 7's three-week period must not be substituted for the statute's amended seven-working-day period without analyzing the regulation's amendment status and hierarchy. Flag this as an apparent stale/conflicting text issue for Gazette reconciliation, not as a valid override of the statute.
+
+### Amendment/currentness findings
+
+- Statute amendment chain visible on FRA current law page: Laws 10/1995, 89/1996, 158/1998, 143/2004, 123/2008, 27/2014, 17/2018 and 13/2022; the 2024-06 PDF itself includes additional footnotes for Laws 13/2004 and 11/2018, so compare the full source rather than relying on a short amendment list.
+- Regulation amendment chain visible on FRA updated page includes Decisions 2482/2025 and 1539/2025, plus 2423/2024, 3045/2023, 4664/2022 and other earlier instruments.
+- Do not assume the statute PDF is the latest after its June 2024 upload; FRA's current catalogue labels the law version updated in 2022. Do not assume the March 2025 regulation PDF includes every 2025 change without checking Decision 2482/2025 and Decision 1539/2025 against the consolidated file.
+- Law 95/1992 Article 1's issuing clause applies Companies Law 159/1981 subsidiarily where the Capital Market Law has no special rule. Preserve this cross-reference in legal retrieval.
+
+**Incremental text units added:** 11 provision-level units (statutory Articles 2, 4, 4 bis and 5 = 4; Executive Regulation issuing Article 1 and regulation Articles 1–7 = 7). Issuing statute Articles 1–5 were already represented in the earlier corpus count and are not added again.
+
+## 13. Revised counts after Capital Market text capture
+
+- Unique legal instruments with Arabic text: 89 (unchanged; Law 95/1992 and Decision 135/1993 were already counted).
+- Article/provision text units: 1,148 (1,137 + 11).
+- Assigned families touched: 13/13.
+- Families amendment/currentness-complete: 0/13.
+- Lawyer-reviewed: 0%.
+- Whole-corpus coverage: retain approximately 2%; no denominator-based recalculation is available.
