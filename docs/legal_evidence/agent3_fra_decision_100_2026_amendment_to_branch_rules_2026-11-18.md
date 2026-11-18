@@ -51,3 +51,11 @@
 - +2 replacement provision units (Decision 44/2026 Article 6(1) and Article 7(2)).
 - This is not a primary-Gazette binary acquisition. Keep source tier explicitly secondary-text / official metadata.
 - Cumulative Agent 3 minimum: **154 instruments / 1,384 provision units**.
+
+## Current consolidated primary-source cross-check — 18 November 2026
+
+- The official FRA six-page consolidated Decision 44/2026 PDF is now directly accessible: https://fra.gov.eg/wp-content/uploads/2026/03/44-2026-%D9%88%D9%81%D9%82%D8%A7-%D9%84%D8%A7%D8%AE%D8%B1-%D8%AA%D8%B9%D8%AF%D9%8A%D9%84.pdf
+- It identifies Decision 100/2026 as the amendment dated 20 May 2026 and reproduces the current wording of both replacement provisions (Decision 44/2026 Article 6(1) and Article 7(2)).
+- Thus the two replacement texts already captured from the secondary source are now corroborated against an official FRA consolidated primary regulator text. The separate Gazette original for Decision 100/2026, page number and SHA-256 remain outstanding.
+- Keep Decision 100/2026 as a distinct amending instrument and preserve the source-tier distinction: `official consolidated current text; original amendment Gazette binary pending`.
+- This does not add a new instrument or provision count; it upgrades the source provenance and currentness cross-check.
