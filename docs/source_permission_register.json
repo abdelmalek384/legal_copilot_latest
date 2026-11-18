@@ -1040,6 +1040,40 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "single public PDF locator; no bulk/API permission established",
       "required_next_action": "Use as an official government-hosted text comparator; reconcile with original Gazette issue 85/1946, Law 25/1976, Law 223/1996, Law 186/2020, Law 5/2021 and Law 9/2022. Request permission before systematic or commercial reuse."
+    },
+    {
+      "source_id": "EG-AMIRIA-DECISION-5207-2026",
+      "authority": "Amiri Press official text portal",
+      "source_page": "https://alamiria.com/Sec/TashTxt?id=rEOlBjl474g%3D",
+      "material_types": [
+        "Minister of Justice Decision 5207/2026",
+        "Egyptian Proceedings issue 243 metadata/reference"
+      ],
+      "access_status": "official portal indexed result; direct retrieval returned HTTP 502; original Gazette PDF not acquired",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-11-18. The Amiri Press text portal is the official publisher source for Decision 5207/2026, but direct page retrieval returned 502. Gazette issue 243 dated 2 November 2026 is corroborated by contemporaneous press sources. No reuse licence or bulk-access permission established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "single text portal URL; unavailable at direct retrieval; no bulk/API permission established",
+      "required_next_action": "Retry official text portal and obtain issue243 PDF from Amiri Press/DSpace; request permission before systematic reuse."
+    },
+    {
+      "source_id": "EG-DSpace-GAZETTE-244-2026-DECISION-5208",
+      "authority": "Egyptian DSpace / Amiri Press Gazette repository",
+      "source_page": "https://dspace.id.com.eg/items/61d7f7e7-685b-4f9a-a276-95b86229a9f9",
+      "material_types": [
+        "Egyptian Proceedings supplement issue244 dated 3 November 2026",
+        "Minister of Justice Decision 5208/2026"
+      ],
+      "access_status": "official metadata public; original 6.02 MB PDF restricted/request-a-copy",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://dspace.id.com.eg/items/61d7f7e7-685b-4f9a-a276-95b86229a9f9",
+      "permission_evidence": "Checked 2026-11-18. DSpace metadata identifies the 6.02 MB file 'العدد 244 - مؤمن.pdf', date 2026-11-03, authors including Ministry of Justice and publisher Amiri Press. Clicking the file opens a request-a-copy page and confirms all files are in restricted access. No bulk collection, OCR, commercial use, display or redistribution permission established.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "metadata only; original PDF request-only; no API/bulk permission established",
+      "required_next_action": "Request official PDF through DSpace and review any supplied conditions before OCR, bulk collection or display."
     }
   ]
 }
