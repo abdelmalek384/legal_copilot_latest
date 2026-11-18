@@ -81,15 +81,16 @@
 > (1) يكون الطلب بإعلان يوجه إلى الحائز وإلى المالك السابق ويوقعه الطالب أو من يوكله في ذلك توكيلاً خاصاً، ويجب أن يودع الطالب خزانة المحكمة مبلغاً كافياً لتغطية مصروفات البيع بالمزاد، ولا يجوز أن يسترد ما استغرق منه في المصروفات إذا لم يرس المزاد بثمن أعلى من المبلغ الذي عرضه الحائز، ويكون الطلب باطلاً إذا لم تستوف هذه الشروط.
 
 **مادة 1069**
-> [Article text not visible in the source excerpt captured for this checkpoint; deliberately not reconstructed.]
+> (1) إذا طلب بيع العقار وجب اتباع الإجراءات المقررة في البيع الجبري، ويتم البيع بناء على طلب صاحب المصلحة في التعجيل من طالب أو حائز. وعلى من يباشر الإجراءات أن يذكر في إعلانات البيع المبلغ الذي قوم به العقار.
+> (2) ويلتزم الراسي عليه المزاد أن يرد إلى الحائز الذي نزعت ملكيته المصروفات التي أنفقها في سند ملكيته، وفي تسجيل هذا السند، وفيما قام به من الإعلانات، وذلك إلى جانب التزاماته بالثمن الذي رسا به المزاد وبالمصروفات التي اقتضتها إجراءات التطهير.
 
 **مادة 1070**
-> [Article text not visible in the source excerpt captured for this checkpoint; deliberately not reconstructed.]
+> إذا لم يطلب بيع العقار في الميعاد وبالأوضاع المقررة استقرت نهائياً ملكية العقار للحائز خالصة من كل حق مقيد، إذا هو دفع المبلغ الذي قوم به العقار للدائنين الذين تسمح مرتبتهم باستيفاء حقوقهم منه، أو إذا أودع هذا المبلغ خزانة المحكمة.
 
 ## Verification and count
 
-- **19 distinct article texts transcribed:** Articles 1050–1068. Articles 1069–1070 are explicitly recorded as source-text gaps and are not counted.
+- **21 distinct article texts:** Articles 1050–1070 inclusive. Articles 1069–1070 were recovered by targeted search in the same ETA-hosted PDF text layer after the initial checkpoint draft.
 - Articles 1053–1058 establish third-party effectiveness, registration, priority and interest/cost coverage; Article 1057 makes ranking run from registration.
 - Articles 1061–1068 govern third-party acquirer payment and purging of mortgages, including formal notice and a 30-day creditor request to force sale.
 - Article 1052 invalidates pactum commissorium / private appropriation clauses made before maturity, while allowing a post-maturity transfer agreement under its conditions.
-- The ETA PDF text layer shows OCR defects in Articles 1053–1068. Articles 1069–1070 need a fresh source lookup/page-image extraction; no text has been invented. Current procedural steps must be checked against Law 114/1946, Civil and Commercial Procedure Law and amendments.
+- The ETA PDF text layer shows OCR defects in Articles 1053–1068. Articles 1069–1070 were recovered from the PDF text layer; OCR/page-image review remains necessary. Current procedural steps must be checked against Law 114/1946, Civil and Commercial Procedure Law and amendments.
