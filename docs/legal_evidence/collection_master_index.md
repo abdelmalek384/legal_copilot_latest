@@ -1155,3 +1155,6 @@
 
 
 | checkpoint 122 — Agent 3 Commercial Agency Law 21/2022 | Added Gazette metadata and Arabic text for Law 21/2022 expanding Law 120/1982 to real-estate brokerage, establishing broker registration/qualification framework and new offence/liability provisions; linked to Decision 593/2025 implementation; cumulative Agent 3 minimum 132 instruments / 1,300 provision units |
+
+
+| checkpoint 123 — Agent 3 Competition Law 2008–2019 amendment chain | Added Arabic text for Laws 190/2008, 193/2008, 56/2014 and 15/2019; captured ECA institutional/enforcement reforms, leniency, economic-efficiency exemption and Article 22 bis(c) price-control penalty; documented source footnote discrepancy Law 56/2014 vs erroneous Law 9/2014 reference; cumulative Agent 3 minimum 136 instruments / 1,313 provision units |
