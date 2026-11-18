@@ -1,0 +1,232 @@
+instrument_id,legal_domain,instrument,instrument_class,classification_basis
+EG-0001,Civil,Law 131/1948 Civil Code,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0002,Evidence,Civil and Commercial Evidence Law 25/1968,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0003,Civil Procedure,Civil and Commercial Procedure Law 13/1968,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0004,Companies,Companies Law 159/1981,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0005,Capital markets,Capital Market Law 95/1992,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0006,Income tax,Income Tax Law 91/2005,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0007,Income tax,Law 151/2026 amending Income Tax Law 91/2005,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0008,Unified tax procedure,Law 206/2020 and Law 150/2026,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0009,Tax disputes,Law 152/2026 renewing Law79/2016,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0010,Stamp tax / securities,Law 153/2026 amending Stamp Tax Law111/1980,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0011,VAT,Value Added Tax Law 67/2016,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0012,Customs,Customs Law 207/2020,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0013,Social insurance,Social Insurance and Pensions Law 148/2019,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0014,Banking,Banking and Central Bank Law 194/2020,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0015,Insurance,Unified Insurance Law 155/2024,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0016,Environment,Environment Law 4/1994,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0017,Environment,Natural Reserves Law 102/1983,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0018,Criminal procedure,Criminal Procedure Law 174/2025,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0019,Criminal procedure,Law 160/2026 amending commencement of Law174/2025,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0020,Personal status,Personal Status Law 25/1929,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0021,Criminal substantive law,Penal Code Law 58/1937,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0022,Child protection,Child Law 12/1996,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0023,Investment,Investment Law 72/2017,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0024,Intellectual property,Intellectual Property Rights Law 82/2002,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0025,Consumer protection,Consumer Protection Law 181/2018,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0029,Administrative and public employment,Civil Service Law 81/2016,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0030,State Council / administrative justice,State Council Law 47/1972,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0031,Judicial organization,Judicial Authority Law 46/1972,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0032,Public procurement,Public Contracts Law 182/2018,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0033,Anti-money laundering,Anti-Money Laundering Law 80/2002,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0034,Competition law,Competition Protection Law 3/2005,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0035,Administrative accountability,Illicit Gain Law 11/1968,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0036,Administrative accountability,Administrative Prosecution and Disciplinary Courts Law 117/1958,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0037,Public integrity,Administrative Control Authority Law 54/1964 as amended by Law207/2017,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0038,Police and criminal enforcement,Police Authority Law 109/1971,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0039,State litigation,State Lawsuits Authority Law 75/1963,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0040,Legal departments,Legal Departments in Public Entities Law 47/1973,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0041,Constitutional law,"Constitution of Egypt 2014, amended by 2019 referendum",other,No reliable type token in title/domain; manual normalization required
+EG-0042,Election law,National Elections Authority Law 198/2017,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0043,Election law,Political Rights Law 45/2014,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0044,Parliamentary law,House of Representatives Law 46/2014,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0045,Parliamentary law,Senate Law 141/2020,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0046,Election districts,House of Representatives electoral districts Law 174/2020,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0047,Election law amendment,Law 140/2020 amending political rights and NEA law,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0048,Parliamentary law amendment,Law 85/2025 amending House Law46/2014 and district Law174/2020,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0049,Commercial law,Commercial Code Law 17/1999,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0051,Customs executive regulations,Minister of Finance Decision 430/2021 — Customs Executive Regulation,executive_regulation,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0052,Customs executive regulation amendment,Finance Decision 52/2023 amending Decision430/2021,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0053,Customs executive regulation amendment,Finance Decision 347/2023 amending Decision430/2021,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0054,Customs executive regulation amendment,Finance Decision 50/2024 amending Decision430/2021,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0055,Customs executive regulation amendment,Finance Decision 54/2024 amending Decision430/2021,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0056,Customs executive regulation amendment,Finance Decision 262/2026 amending Decision430/2021,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0057,Public procurement,Law 188/2020 amending Public Contracts Law182/2018,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0058,Public procurement,Finance Decision 692/2019 — Executive Regulation of Law182/2018,executive_regulation,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0059,Commercial law / insolvency,"Restructuring, Preventive Composition and Bankruptcy Law 11/2018",base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0060,Food safety,National Food Safety Authority Law 1/2017,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0061,Customs export controls,Export Control Circular 19/2026 — controlled pharmaceutical preparations to Kuwait,other_decision,Decision/decree/circular instrument title
+EG-0062,Social insurance annual parameters,NOSI announcement of 2026 insured-wage and pension minimum/maximum limits,other,No reliable type token in title/domain; manual normalization required
+EG-0064,Insolvency,Law 11/2021 amending Restructuring and Bankruptcy Law 11/2018,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0065,Economic courts / insolvency,Minister of Justice Decision 3715/2026 amending Decision2208/2019 — fees/deposits of Economic Courts Bankruptcy Administration experts,other_decision,Decision/decree/circular instrument title
+EG-0067,Investment / historical law,Investment Guarantees and Incentives Law 8/1997,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0069,Investment executive regulation,Prime Minister Decision 2310/2017 — Executive Regulation of Investment Law72/2017,executive_regulation,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0070,Mortgage finance,Mortgage Finance Law 148/2001,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0071,Finance leasing,Finance Leasing Law 95/1995,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0072,Commercial registry,Commercial Registry Law 34/1976,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0073,Public finance / development fee,Law 148/2026 amending State Financial Resources Development Fee Law147/1984,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0074,Public finance / state-owned companies,Law 154/2026 on transfer of a percentage of net profits of state-owned/public-entity-owned companies to Treasury,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0075,Historical labour law,Labour Law 12/2003,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0080,Value Added Tax,Law149/2026 amending VAT Law67/2016,other,No reliable type token in title/domain; manual normalization required
+EG-0081,Real estate taxation,Real Estate Tax Law 196/2008,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0082,Real estate taxation,Law103/2012 amending Real Estate Tax Law196/2008,other,No reliable type token in title/domain; manual normalization required
+EG-0083,Historical indirect taxation,General Sales Tax Law11/1991,other,No reliable type token in title/domain; manual normalization required
+EG-0084,Historical indirect taxation,Law102/2012 amending General Sales Tax Law11/1991,other,No reliable type token in title/domain; manual normalization required
+EG-0085,Public finance / development fee,State Financial Resources Development Fee Law147/1984,other,No reliable type token in title/domain; manual normalization required
+EG-0086,Stamp tax,Stamp Tax Law111/1980,other,No reliable type token in title/domain; manual normalization required
+EG-0087,Environment,Law9/2009 amending Environment Law4/1994,other,No reliable type token in title/domain; manual normalization required
+EG-0088,Environment,Law105/2015 amending Environment Law4/1994,other,No reliable type token in title/domain; manual normalization required
+EG-0089,Waste management,Prime Minister Decision722/2022 — Executive Regulation of Waste Management Law202/2020,executive_regulation,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0090,Environment executive regulation,Prime Minister Decision1741/2005 amending Environment Executive Regulation338/1995,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0091,Environment executive regulation,Prime Minister Decision1095/2011 amending Environment Executive Regulation338/1995,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0092,Environment executive regulation,Prime Minister Decision710/2012 amending Environment Executive Regulation338/1995,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0093,Environment executive regulation,Prime Minister Decision964/2015 amending Environment Executive Regulation338/1995,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0094,Environment executive regulation,Prime Minister Decision544/2016 amending Environment Executive Regulation338/1995,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0095,Environment executive regulation,Prime Minister Decision618/2017 amending Environment Executive Regulation338/1995,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0096,Environment executive regulation,Prime Minister Decision1963/2017 amending Environment Executive Regulation338/1995,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0097,Environment executive regulation,Prime Minister Decision2466/2024 amending Environment Executive Regulation338/1995,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0098,Environmental decisions,Minister of Environment Decision 61/2016 — fees and expenses for coal shipments,other_decision,Decision/decree/circular instrument title
+EG-0099,Environmental decisions,Minister of Environment Decision 365/2019 — adds paragraph to Ministerial Decision61/2016,other_decision,Decision/decree/circular instrument title
+EG-0100,Environmental decisions,Minister of Environment Decision 161/2017 — committee for performance reports,other_decision,Decision/decree/circular instrument title
+EG-0101,Environmental decisions,Minister of Environment Decision 49/2021 — cement companies using coal must use at least 10% refuse-derived fuel,other_decision,Decision/decree/circular instrument title
+EG-0102,Environmental decisions,Minister of Environment Decision 99/2021 — expenses for performance reports,other_decision,Decision/decree/circular instrument title
+EG-0103,Environmental decisions,Minister of Environment Decision 161/2022 — adds to table in Ministerial Decision61/2016,other_decision,Decision/decree/circular instrument title
+EG-0104,Environmental decisions,EEAA Executive Director Decision 185/2018 — document workflow for no-objection letters for coal shipments,other_decision,Decision/decree/circular instrument title
+EG-0105,Environmental decisions,EEAA Executive Director Decision 1042/2022 — amends coal-shipment no-objection document workflow,other_decision,Decision/decree/circular instrument title
+EG-0106,Environmental decisions,Minister of Environment Decision 256/2023 — adds to Article1 of Ministerial Decision49/2021,other_decision,Decision/decree/circular instrument title
+EG-0107,Environmental decisions,EEAA Executive Director Decision 15/2025 — amends basis and procedures for submission/review of environmental performance reports,other_decision,Decision/decree/circular instrument title
+EG-0108,Environmental decisions,Prime Minister Decision 2914/2016 — regularization of charcoal kilns,other_decision,Decision/decree/circular instrument title
+EG-0109,Environmental decisions,Prime Minister Decision 821/2017 — extends period for environmental regularization applications for charcoal kilns until 8 June 2017,other_decision,Decision/decree/circular instrument title
+EG-0110,Environmental decisions,Prime Minister Decision 921/2018 — extends charcoal kiln regularization application period by six months,other_decision,Decision/decree/circular instrument title
+EG-0111,Environmental decisions,Prime Minister Decision 1060/2019 — extends charcoal kiln regularization application period by six months,other_decision,Decision/decree/circular instrument title
+EG-0112,Environmental decisions,Prime Minister Decision 1961/2019 — allows additional period for completing environmental regularization plan,other_decision,Decision/decree/circular instrument title
+EG-0113,Environmental decisions,Minister of Environment Decision 85/2017 — fees for approvals/permits to export charcoal quantities,other_decision,Decision/decree/circular instrument title
+EG-0114,Environmental decisions,Minister of Environment Decision 318/2017 — administrative review fees for environmental compliance plan,other_decision,Decision/decree/circular instrument title
+EG-0115,Environmental decisions,EEAA Executive Director Decision 880/2016 — standards for testing external laboratories,other_decision,Decision/decree/circular instrument title
+EG-0116,Environmental decisions,EEAA Executive Director Decision 1365/2020 — procedures to approve developed environmentally compliant charcoal production models,other_decision,Decision/decree/circular instrument title
+EG-0117,Environmental decisions,Minister of Local Development Decision 404/2017 — grievance committee,other_decision,Decision/decree/circular instrument title
+EG-0118,Environmental decisions,EEAA Executive Director Decision 518/2023 — environmental classification lists for projects subject to environmental impact assessment; dated 30 May 2023,other_decision,Decision/decree/circular instrument title
+EG-0119,Environmental decisions,"Minister of Environment Decision 71/2023 — ministerial decision listed by EEAA; index date 2 March 2023, title requires retrieval",other_decision,Decision/decree/circular instrument title
+EG-0120,Environmental decisions,"Minister of Environment Decision 75/2017 — ministerial decision listed by EEAA; index date 30 March 2017, title requires retrieval",other_decision,Decision/decree/circular instrument title
+EG-0121,Environmental decisions,"Minister of Environment Decision 19/2016 — ministerial decision listed by EEAA; index date 31 January 2016, title requires retrieval",other_decision,Decision/decree/circular instrument title
+EG-0122,Environmental decisions,"EEAA Executive Director Decision 26/2016 — executive decision listed by EEAA; index date 4 February 2016, title requires retrieval",other_decision,Decision/decree/circular instrument title
+EG-0123,Environmental decisions,Prime Minister Decision 264/1994 — conditions/rules/procedures for activities in natural protected areas,other_decision,Decision/decree/circular instrument title
+EG-0124,Environmental decisions,Prime Minister Decision 2728/2015 — protected-area decision listed by EEAA; exact title and scope require retrieval,other_decision,Decision/decree/circular instrument title
+EG-0125,Environmental decisions,Minister of Environment Decision 204/2019 — fees for visits to natural protected areas in South Sinai and Red Sea,other_decision,Decision/decree/circular instrument title
+EG-0126,Environmental decisions,Minister of Environment Decision 204/2019 interpretive circular — interpretive circular for protected-area visit fee decision204/2019,other_decision,Decision/decree/circular instrument title
+EG-0127,Environmental decisions,Minister of Environment Decision 202/2019 — system for issuing permits to conduct activities in natural protected areas,other_decision,Decision/decree/circular instrument title
+EG-0128,Environmental decisions,EEAA Executive Director Decision 33/2018 — calculation of permit fees for economic activities inside natural protected areas,other_decision,Decision/decree/circular instrument title
+EG-0129,Environmental decisions,Minister of Environment Decision 125/2021 — fees for approvals and permits issued by EEAA,other_decision,Decision/decree/circular instrument title
+EG-0130,Environmental decisions,Prime Minister Decision 1912/2015 — National Council for Climate Change decision; exact title to retrieve,other_decision,Decision/decree/circular instrument title
+EG-0131,Environmental decisions,Prime Minister Decision 1129/2019 — new formation and powers of National Council for Climate Change,other_decision,Decision/decree/circular instrument title
+EG-0132,Environmental decisions,"Minister of Environment Decision 415/2023 — working group supporting national monitoring, reporting and verification system; dated 28 Dec 2023",other_decision,Decision/decree/circular instrument title
+EG-0133,Environmental decisions,Prime Minister Decision 3005/2015 — establishes Waste Management Regulatory Agency,other_decision,Decision/decree/circular instrument title
+EG-0134,Environmental decisions,Minister of Environment Decision 34/2023 — Environmental and Climate Investment Unit; dated 7 Feb 2023,other_decision,Decision/decree/circular instrument title
+EG-0135,Environmental decisions,Minister of Environment Decision 80/2023 — Higher Compensation Committee; dated 6 Mar 2023,other_decision,Decision/decree/circular instrument title
+EG-0136,Environmental decisions,Minister of Environment Decision 342/2025 — rules/procedures for registration and accreditation committee for environmental specialists/consultants,other_decision,Decision/decree/circular instrument title
+EG-0137,Environmental decisions,Prime Minister Decision 662/2025 — extended producer responsibility for single-use plastic shopping bags,other_decision,Decision/decree/circular instrument title
+EG-0138,Public health / emergency powers,Law152/2021 on Measures to Confront Epidemics and Health Pandemics,other,No reliable type token in title/domain; manual normalization required
+EG-0139,Waste management,Waste Management Law 202/2020,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0140,Strategic development authority / state investment,Law147/2026 reorganizing the Future of Egypt Sustainable Development Agency,other,No reliable type token in title/domain; manual normalization required
+EG-0141,Annual budget / public finance,Law77/2026 approving the State General Budget for FY2026/2027,other,No reliable type token in title/domain; manual normalization required
+EG-0142,Public administration / cotton sector,Prime Minister Decision2034/2026 classifying the General Authority for Cotton Arbitration and Testing as a service public authority,other_decision,Decision/decree/circular instrument title
+EG-0143,Public finance / inspection fees,Cabinet Decision80/2026 on purposes and limits for spending 50% of inspection/examination fees,other_decision,Decision/decree/circular instrument title
+EG-0144,Real-estate registration,Law 114/1946 regulating real-estate publicity,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0145,Real-estate registration,Law 142/1964 establishing the Real-Estate Register system,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0146,Real-estate registration,Law 9/2022 amending Law 114/1946,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0147,Real-estate registration,Justice Minister Decision 2332/2022 amending the Executive Regulation of Law 114/1946,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0148,Real-estate registration / cadastral system,Justice Minister Decision 825/1975 — Executive Regulation of Law 142/1964,executive_regulation,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0149,Real-estate registration,Justice Minister Decision 11264/2016 amending Decision 825/1975,other_decision,Decision/decree/circular instrument title
+EG-0150,Notarization,Law 68/1947 — Notarization Law,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0151,Notarization / registration fees,Law 70/1964 — Notarization and Registration Fees Law,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0152,Notarization,Royal Decree of 3 November 1947 — Executive Regulation of Law 68/1947,executive_regulation,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0153,Irrigation / desert land cross-statute,Law 12/1984 — Irrigation and Drainage Law; also repeals Article 21 of Law 143/1981,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0154,Water resources / irrigation,Law 147/2021 — Water Resources and Irrigation Law,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0155,Water resources / irrigation,Prime Minister Decision 81/2023 — Executive Regulation of Law 147/2021,executive_regulation,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0156,State property / desert land,Law 7/1991 — Certain Provisions Concerning Private State Property,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0157,Expropriation,Law 10/1990 — Expropriation of Real Estate for Public Benefit,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0158,Expropriation,Law 24/2018 amending Law 10/1990,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0159,Expropriation,Law 187/2020 amending Law 10/1990,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0160,Desert land / ownership,Law 143/1981 — Desert Lands Law,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0161,Desert land / ownership,Law 205/1991 amending Law 143/1981,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0162,Desert land / ownership,Law 96/1995 amending Law 143/1981,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0163,Desert land / ownership,Law 72/1996 amending Law 143/1981,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0164,Desert land / ownership,Law 11/2024 amending Law 143/1981,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0165,Expropriation,Minister of Water Resources and Irrigation Decision 20/2019 — Executive Regulation of Law 10/1990,executive_regulation,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0166,Desert land / ownership,Ministerial Decision 198/1982 — Executive Regulation of Law 143/1981,executive_regulation,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0167,Mortgage finance,Prime Minister Decision 1/2001 — Executive Regulation of Law 148/2001,executive_regulation,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0168,Notarization,Law 629/1955 amending Law 68/1947,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0169,Notarization,Law 103/1976 amending Law 68/1947,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0170,Notarization,Presidential Decision 820/1963 amending Executive Regulation of Law 68/1947,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0171,Executive regulation amendment,Justice Minister Decision 1532/1976 amending Executive Regulation of Law 68/1947,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0172,Notarization / registration fees,Justice Minister Decision 2936/1992 — valuation tables under Law 70/1964 Article 21,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0173,State private property / land regularization,Law 168/2025 — Certain Rules and Procedures for Disposal of Private State Property,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0174,State private property / land regularization,PM Decision 200/2026 — Executive Regulation of Law 168/2025,executive_regulation,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0175,State private property / land regularization,Presidential Decision 480/2026 extending Law 168/2025 Article 3 application period,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0176,Water resources / irrigation,Law 167/2025 amending Article 107 of Law 147/2021,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0177,Building / urban planning,Law 119/2008 — Building Law,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0178,Building / urban planning,Law 23/2015 amending Law 119/2008,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0179,Building / urban planning,Ministerial Decision 144/2009 — Executive Regulation of Law 119/2008,executive_regulation,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0180,Building / urban planning,Ministerial Decision 410/2021 amending Building Law Executive Regulation,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0181,Building / urban planning,Ministerial Decision 943/2024 amending Building Law Executive Regulation,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0182,Real-estate registration / territorial rollout,"Justice Minister Decision 3866/2026 postponing land-register commencement in City of Mansha'a, Sohag",other_decision,Decision/decree/circular instrument title
+EG-0183,Evidence / civil procedure,Law 54/1974 amending Evidence Law 25/1968 — expert provisions,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0184,Evidence / civil procedure,Law 23/1992 amending Evidence Law 25/1968 among procedural statutes,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0185,Evidence / civil procedure,Law 18/1999 amending Evidence Law 25/1968 among procedural statutes,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0186,Evidence / civil procedure,Law 76/2007 amending Evidence Law 25/1968 and Civil/Commercial Procedure Law,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0187,Real estate registration / cadastral system,Minister of Justice Decision 5207/2026 — postponement in Qena and Luxor cadastral sections,other_decision,Decision/decree/circular instrument title
+EG-0188,Real estate registration / cadastral system,"Minister of Justice Decision 5208/2026 — postponement in Sohag, Aswan and Damietta cadastral sections",other_decision,Decision/decree/circular instrument title
+EG-0189,Building / urban planning,Ministerial Decision 954/2022 amending Executive Regulation of Building Law 119/2008,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0190,Building / urban planning,Ministerial Decision 120/2025 amending Article 26(5) of Executive Regulation 144/2009,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0191,Building / urban planning,Ministerial Decision 1505/2025 amending Articles 43 and 50 of Executive Regulation 144/2009,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0192,Constitutional litigation / real-estate register,SCC Case 10/35 — Law 142/1964 Articles 21 and 24; consequential fall of Article 23 and Decision 553/1976,judicial_decision,Court/case identifier in title or constitutional-litigation domain
+EG-0193,Constitutional litigation / rent law,SCC Case 24/20 — Law 136/1981 Articles 1 and 2 residential-rent freeze,judicial_decision,Court/case identifier in title or constitutional-litigation domain
+EG-0194,Notarization / registration fees,Justice Minister Decision 278/2025 — annual minimum values for rapid-transport-vehicle instruments under Law 70/1964,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0195,Notarization / registration fees,Justice Minister Decision 7657/2025 — 2026 minimum values for rapid-transport-vehicle instruments under Law 70/1964,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0196,Real-estate register / cadastral commencement,"Justice Minister Decision 6910/2025 — postponement for Al-Saqriya and Kom Badar cadastral sections, Sohag",other_decision,Decision/decree/circular instrument title
+EG-0197,Real-estate register / cadastral commencement,"Justice Minister Decision 6911/2025 — postponement for specified cadastral sections in Sohag, Aswan, Damietta and Ismailia",other_decision,Decision/decree/circular instrument title
+EG-0198,Real-estate register / cadastral commencement,Justice Minister Decision 6909/2025 — postponement for specified cadastral sections in Assiut and Aswan,other_decision,Decision/decree/circular instrument title
+EG-0199,Real-estate registration amendment,Law 69/1950 — Article 24 amendment,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0200,Real-estate registration amendment,Law 222/1956 — insertion of Article 3 (later repealed),amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0201,Real-estate registration amendment,Law 136/1957 — Article 24(1) amendment,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0202,Real-estate registration amendment,Law 82/1957 — historical insertion lead,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0203,Real-estate registration amendment,Law 181/1957 — repeal of Article 3 inserted by Law 222/1956,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0204,Real-estate registration / notarization framework,Law 5/1964 — organization of Real Estate Publicity and Notarization Authority; cross-statute repeals,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0205,Real-estate registration amendment,Law 25/1976 — amendments to Law 114/1946,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0206,Real-estate registration amendment,Law 223/1996 — replacement of Article 21(1),amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0207,Real-estate registration amendment,Law 186/2020 — insertion of Article 35 bis,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0208,Real-estate registration commencement / deferral,Law 5/2021 — postpones Law 186/2020 operation,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0211,Executive regulation amendment,Justice Minister Decision 948/1976 — amends Law 114/1946 Executive Regulation,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0212,Executive regulation amendment,Justice Minister Decision 9310/2020 — amends Law 114/1946 Executive Regulation,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0213,Executive regulation amendment,Justice Minister Decision 4730/2020 — amends Law 68/1947 Executive Regulation,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0215,Notarization / registration fees amendment,Law 94/1980 — amends Articles 21–22 and fee tables of Law 70/1964,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0216,Notarization / registration fees amendment,Law 6/1991 — amendments to Law 70/1964,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0217,Notarization / registration fees amendment,Law 224/1996 — amends Articles 24 bis(1) and 34 bis of Law 70/1964,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0218,Notarization / registration fees amendment,Law 225/1996 — repeals Article 21(8) of Law 70/1964,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0219,Notarization / registration fees amendment,Law 9/2003 — adds Article 34 bis(2) to Law 70/1964,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0220,Notarization / registration fees amendment,Law 3/2004 — adds Article 34 bis(3) to Law 70/1964,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0221,Notarization / registration fees and land registry amendment,Law 83/2006 — amends Law 70/1964 Article 19 and Law 142/1964,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0222,Notarization / registration fees amendment,Law 163/2019 — adds item to Table B of Law 70/1964,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0223,Notarization / registration fees amendment,Law 67/2021 — changes Table B terminology in Law 70/1964,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0224,Annual vehicle valuation decision,Justice Minister Decision 8656/2013 — annual valuation schedule under Law 70/1964 Article 21(II),base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0225,Annual vehicle valuation decision,Justice Minister Decision 176/2019 — rapid-transport vehicle valuation schedule under Law 70/1964 Article 21(II),base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0226,Annual vehicle valuation decision,Justice Minister Decision 8073/2023 — successor annual valuation schedule under Law 70/1964 Article 21(II),base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0227,Judicial decision / constitutional review,"Supreme Constitutional Court Case 2/24 — invalidation of Article 30, Law 70/1964",judicial_decision,Court/case identifier in title or constitutional-litigation domain
+EG-0228,Judicial decision / constitutional review,"Supreme Constitutional Court Case 10/16 — invalidation of Article 21(9), Law 70/1964",judicial_decision,Court/case identifier in title or constitutional-litigation domain
+EG-0229,Occupants' association implementing decision,Housing Minister Decision 200/2009 — adopts model occupants' association system under Law 119/2008,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0230,Building law fee decision,Housing Minister Decision 188/2010 — fees under Law 119/2008 Articles 19 and 45,base_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0231,Executive regulation amendment,Housing Minister Decision 200/2010 — replaces multiple articles and adds Article 135 bis to Decision 144/2009,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0232,Building enforcement tolerance decision,Housing Minister Decision 397/2010 — limited tolerances from removal for specified violations in new urban communities,other_decision,Decision/decree/circular instrument title
+EG-0233,Executive regulation amendment,Housing Minister Decision 109/2013 — extensive amendments to Decision 144/2009,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0234,Executive regulation amendment,Housing Minister Decision 67/2014 — replacement of several articles in Decision 144/2009,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0235,Executive regulation amendment,Housing Minister Decision 774/2014 — replacement of Article 134 of Decision 144/2009,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0237,Desert land amendment,Law 55/1988 — replacement of Article 12(2) of Law 143/1981,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0238,Executive regulation amendment,Minister of Reconstruction Decision 305/1983 — repeal of Articles 27–30 of Executive Regulation 198/1982,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0239,Executive regulation amendment,Ministerial Decision 105/1986 — replacement of Article 45 of Executive Regulation 198/1982,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0240,Executive regulation amendment,Ministerial Decision 1230/1990 — replacement of Article 45 of Executive Regulation 198/1982,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0241,Executive regulation amendment,Ministerial Decision 139/1990 — replacement of Article 50 of Executive Regulation 198/1982,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0242,Executive regulation amendment,Ministerial Decision 305/1990 — replacement of Article 41 of Executive Regulation 198/1982,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0243,Executive regulation amendment,Ministerial Decision 1057/1995 — replacement of Article 42 of Executive Regulation 198/1982,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0244,Executive regulation amendment,Ministerial Decision 1012/2009 — replacement of Article 15 of Executive Regulation 198/1982,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0245,Real-estate registration transitional commencement extension,Law 157/1947 — extension of transitional period under Article 58 of Law 114/1946,amending_law,Law number/title and legal-domain wording; provisional title-based classification
+EG-0246,Real-estate registration,Decree 2/1946 — Executive Regulation of Law 114/1946,executive_regulation,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
