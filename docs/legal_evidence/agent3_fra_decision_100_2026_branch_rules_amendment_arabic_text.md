@@ -33,7 +33,7 @@
 
 ## Legal effect / changes
 
-1. **Regional oversight:** replaces the prior separate risk-manager and credit-manager wording in Decision 44/2026 with a regional credit-risk officer arrangement. The revised text requires a regional credit-risk officer for each region and allows each such officer to supervise up to four regional areas. The region remains one per five financing branches.
+1. **Regional oversight:** replaces Decision 44/2026 Article 6(1). The official PDF text layer reads «تعيين مسئول مخاطر ائتمان لكل منطقة إقليمية مع السماح لكل منهما بالإشراف على أربع مناطق إقليمية بحد أقصى». Because the phrase «لكل منهما» is grammatically ambiguous in the extracted text and the page image was not accessible, do not infer whether it refers to a combined risk-credit role or two separate role-holders until the Gazette image is visually checked. The regional-area ratio remains one area per five financing branches.
 2. **Branch-registration fitness test:** broadens the negative-history test. A company is ineligible if there are judicial judgments or requests to initiate criminal proceedings for violations of NBFI laws, or administrative measures under those laws, unless the judgment has been executed, the violation settled, or the measure's cause removed and three months have passed. If the measure's cause cannot be removed, a waiting period of at least three months and up to three years applies, as FRA assesses based on seriousness.
 3. The amendment replaces only Article 6(1) and Article 7(2) of Decision 44/2026; all other branch registration, transfer, closure, fees and transition provisions remain unless separately amended.
 
