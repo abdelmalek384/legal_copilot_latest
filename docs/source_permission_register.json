@@ -2859,6 +2859,22 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "Single public three-page PDF; no bulk/API permission established",
       "required_next_action": "Retry page2 retrieval, transcribe full law, verify Article19 bis repeal effect against operative text, and review site terms before redistribution."
+    },
+    {
+      "source_id": "EG-MANSHURAT-LAW25-1976-GAZETTE",
+      "authority": "Manshurat legal archive",
+      "source_page": "https://manshurat.org/node/30197",
+      "material_types": [
+        "Four-page Gazette scan copy of Law25/1976 amending Law114/1946; Official Gazette issue14, 1 April 1976"
+      ],
+      "access_status": "Public four-page image-only PDF scan copy. All four pages opened and visually inspected; Law25/1976 amendment text spans pages0–2. Not an authenticated Amiri Press digital binary.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used to transcribe and verify the 1976 amendment provisions. No source-specific licence or written permission for bulk ingestion, commercial display or redistribution was established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public four-page PDF scan; no bulk/API permission established",
+      "required_next_action": "Acquire original Amiri Press binary/hash; review Manshurat terms and obtain permission before commercial redistribution; reconcile Article9 attribution against LawHub."
     }
   ]
 }
