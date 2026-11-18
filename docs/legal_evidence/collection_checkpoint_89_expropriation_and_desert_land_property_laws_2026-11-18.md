@@ -133,7 +133,7 @@ The 2020 amendment changes the deposit deadline and makes the 20% addition to cu
 
 ### Amendment history recorded in consolidated source
 
-1. Law 12/1984: repealed Article 21; Official Gazette issue 9 supplement, 1 January 1984.
+1. Law 12/1984: repealed Article 21; Gazette issue 9 supplement, publication date provisionally identified as 1 March 1984 (original scan still required); it took effect after two months under Article 4.
 2. Law 55/1988: replaced the second paragraph of Article 12; Official Gazette issue 14 bis, 9 April 1988.
 3. Law 205/1991: replaced the second paragraph of Article 11; Official Gazette issue 26, 27 June 1991.
 4. Law 96/1995: replaced the first paragraph of Article 4; Official Gazette issue 22 bis, 2 June 1995.
@@ -278,7 +278,7 @@ This supplement adds full searchable text sources for previously identified amen
   > يلغي القانون رقم 74 لسنة 1971 بشأن الري والصرف والمادة 21 من القانون رقم 143 لسنة 1981 في شأن الأراضي الصحراوية كما يلغي كل حكم يخالف أحكام هذا القانون.
 - Article 4:
   > ينشر هذا القانون في الجريدة الرسمية ويعمل به بعد شهرين من تاريخ نشره.
-- The irrigation statute was later repealed/replaced by Law 147/2021 according to secondary legislative references. The repeal of Law 12/1984 should not be assumed to revive the previously repealed Article 21 of Law 143/1981; verify Law 147/2021's repeal and savings provisions before making a definitive current-law assertion.
+- The irrigation statute was repealed by Law 147/2021 from 17 October 2021; the official Ministry of Water Resources and Irrigation PDF was retrieved. The repeal of Law 12/1984 should not be assumed to revive the previously repealed Article 21 of Law 143/1981; Law 147/2021 expressly repeals Law 12/1984; it does not expressly revive the separately repealed Article 21 of Law 143/1981.
 - Law 12/1984 is a distinct related legal instrument and is counted as one newly collected statute in this research batch.
 
 ### B. Law 205/1991 — Article 11(2)
@@ -329,6 +329,30 @@ This supplement adds full searchable text sources for previously identified amen
 - Case 17/43/2022 further holds that disputes over administrative allocation and pre-contractual steps are administrative disputes within the jurisdiction of the State Council, while civil possession/ownership disputes remain within ordinary courts. It ordered continuation of execution of the 2009 judgment and non-recognition of the ordinary-court judgments obstructing its effect.
 - This is a jurisdictional invalidation, not an invalidation of Law 143/1981 as a whole or of all ordinary-court jurisdiction over land disputes.
 
+### H. Law 147/2021 — Water Resources and Irrigation Law (repeal and replacement)
+
+- Law No. 147/2021 issuing the Water Resources and Irrigation Law.
+- Official Gazette issue 41 bis, 16 October 2021; effective 17 October 2021.
+- Full official Ministry of Water Resources and Irrigation PDF:
+  https://www.mwri.gov.eg/spa/wp-content/uploads/2021/11/قانون-147-لسنة-2021.pdf
+- Article 2 of the promulgation provisions expressly repeals Law 12/1984:
+  > يلغى القانون رقم ١٢ لسنة ١٩٨٤ بإصدار قانون الري والصرف، كما يلغى كل حكم يخالف أحكام هذا القانون.
+- Official source confirms the repeal and commencement:
+  https://www.mwri.gov.eg/spa/wp-content/uploads/2021/11/قانون-147-لسنة-2021.pdf
+- This is a distinct current related statute. It replaces the 1984 irrigation statute; it does not expressly revive Article 21 of Law 143/1981, which was expressly repealed in 1984. Do not assume revival without an express legislative provision.
+- Law 147/2021 is amended by Law 167/2025 (Official Gazette issue 32 supplement (A), 7 August 2025) according to the updated text inventory; full amendment Gazette bytes should be separately acquired.
+
+### I. Executive Regulation of Law 147/2021 — PM Decision 81/2023
+
+- Prime Minister Decision No. 81/2023 issuing the Executive Regulation of Law 147/2021.
+- Issued/published 4 January 2023; Official Gazette issue 52 bis (هـ); effective 5 January 2023.
+- Full searchable text metadata/source:
+  https://www.eastlaws.com/legislation-full-text/ar/egypt/prime-minister-decision/04-01-2023/no-81?id=2074242&type=1
+- Secondary legal full-text transcription:
+  https://www.mksegypt.org/ar/decisions/...
+- This regulation is relevant to irrigation permissions, water resources, wells, drainage and land reclamation, but is not an amendment to Law 143/1981. The original Official Gazette PDF and complete article count remain outstanding.
+- Decision 81/2023 is a new related subordinate instrument discovered in this supplemental research.
+
 ### G. Corrections and source-quality notes
 
 1. Correct Law 12/1984 Gazette date: issue 9 supplement, 1 March 1984; the earlier 1 January date was a secondary-transcription error.
@@ -355,10 +379,10 @@ This supplement adds full searchable text sources for previously identified amen
 
 ## 10. Metrics for this checkpoint
 
-- New base statutes in the original checkpoint 89 batch: 1 (Law 7/1991); supplemental research adds Law 12/1984 as a distinct related irrigation statute.
+- New base statutes in the original checkpoint 89 batch: 1 (Law 7/1991); supplemental research adds Law 12/1984 and Law 147/2021 as distinct related irrigation statutes.
 - Full searchable Arabic texts retrieved: 5 from official government/judicial hosts (Laws 10/1990, 24/2018, 143/1981, 7/1991 and 11/2024); Law 187/2020, Decision 20/2019 and Decision 198/1982 are also full searchable reproductions from secondary/Gazette-scan sources.
 - New amendment instruments with full text retrieved in checkpoint 89: 3 (Laws 24/2018, 187/2020 and 11/2024); supplemental research adds full searchable texts of Laws 205/1991, 96/1995 and 72/1996. Law 55/1988 remains a metadata/consolidated-text-only record.
-- Executive regulation texts located: 2 (Decision 20/2019 under Law 10/1990, and Decision 198/1982 under Law 143/1981); Decision 20/2019 full searchable text, Decision 198/1982 secondary full text.
+- Executive regulation texts located: 3 in original checkpoint 89 (Decisions 20/2019 and 198/1982 plus PM Decision 81/2023 under Law 147/2021); original Gazette PDFs remain outstanding for all three.
 - At least 27 distinct statutory/regulatory article provisions quoted or substantively extracted in original checkpoint 89; supplemental research adds at least 6 further amendment/judgment provisions (Law 12/1984 Article 2, Laws 205/1991, 96/1995, 72/1996 and SCC Case 101/26 jurisdictional holding).
 - No new base-law discovery counted and no duplicate URL counted as a new instrument.
 
@@ -367,7 +391,7 @@ This supplement adds full searchable text sources for previously identified amen
 1. Retrieve original Gazette PDFs for Laws 10/1990, 24/2018, 187/2020, 143/1981 and 11/2024.
 2. Obtain Decision 20/2019 original Gazette PDF with all annexes; validate its article count and every form/schedule.
 3. Obtain Decision 198/1982 original Gazette PDF and the full amendment instruments 105/1986, 1057/1995 and 1012/2009.
-4. Obtain official Gazette scans for Laws 12/1984, 55/1988, 205/1991, 96/1995 and 72/1996.
+4. Obtain official Gazette scans for Laws 12/1984, 55/1988, 205/1991, 96/1995, 72/1996 and Law 147/2021 amendments; acquire original PM Decision 81/2023 Gazette PDF.
 5. Obtain SCC Case 101/26 judgment and the Gazette publication page.
 6. Build a parcel-specific public-benefit declaration tracker with publication date, deposited transfer forms/decision, three-year lapse date under Law 187/2020, renewals/reissues and compensation deposits.
 7. Collect Law 7/1991 and the full executive/ministerial decisions governing private State property and desert-land allocation.
