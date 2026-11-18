@@ -2193,3 +2193,64 @@ FRA's official financial-leasing/factoring legislation catalogue and contemporan
 - Four unique instruments with Arabic operative text surfaced: Laws 190/2008, 193/2008, 56/2014 and 15/2019.
 - Thirteen issuing provision units counted: Laws 190/2008 and 193/2008 Articles 1–2 each; Law 56/2014 Articles 1–5; Law 15/2019 Articles 1–4.
 - Cumulative Agent 3 minimum: 136 unique instruments / 1,313 provision units.
+
+
+## 44. Movable Collateral Law 115/2015 — secured-transactions framework, Executive Regulation and amendments
+
+### Law 115/2015 — official FRA Arabic text
+
+- Instrument: Law 115/2015 promulgating the Law Regulating Movable Collateral.
+- Issued 14 November 2015; published 15 November 2015; effective 16 February 2016.
+- Official FRA-hosted Arabic PDF: https://fra.gov.eg/wp-content/uploads/2021/01/قرار-رئيس-الجمهورية-رقم-115-لسنة-2015-بتاريخ-بشأن-تنظيم-الضمانات-المنقولة.pdf
+- FRA official legislation page: https://fra.gov.eg/regulations/قرار-رئیس-الجمھوریة-رقم-115-لسنة-2015/
+- The statute creates a public electronic register for security rights in movable assets, including present/future tangible movables and specified intangible property, receivables, bank accounts, negotiable instruments, inventory, equipment, crops, animals, fixtures and IP rights.
+- Article 2 extends the statute's third-party effectiveness, priority and enforcement rules to specified transactions, including conditional sale/title-retention, buy-back, IP-use rights, receivables pledges, leasing longer than six months, sale-on-consignment and registered commercial-asset pledges; it excludes specified securities and personal entitlements.
+- Article 4 requires an electronic public register for security rights, amendments and cancellations; the competent administrative authority may entrust operation to a specialized operator under its supervision.
+- The law establishes rules for creation, publicity, priority, enforcement and insolvency interaction of security interests in movable property. It is important to cross-link it with Commercial Code 17/1999, Financial Leasing/Factoring Law 176/2018, Companies Law 159/1981 and the bankruptcy framework.
+- **Exact Arabic text — Article 2 (scope):**
+> تسري الأحكام الواردة في هذا القانون على الحقوق المضمونة بمنقول في حيازة المدين أو مقدم الضمان يتفق أطراف عقد الضمان على شهره وفقاً لأحكام هذا القانون، بما في ذلك:
+> 1- الحقوق المرتبة على بيع المنقول المشروط تأجيل نقل ملكيته لحين استيفاء الثمن.
+> 2- الحقوق المرتبة على بيع المنقول المشروط استرداده أو إعادة شرائه عند إخلال المدين بالوفاء بالتزاماته.
+> 3- الحقوق المرتبة على استخدام أو الترخيص باستخدام حقوق الملكية الفكرية.
+- **Exact Arabic text — Article 4 (public register):**
+> تقوم الجهة الإدارية المختصة بإنشاء سجل إلكتروني عام لشهر حقوق الضمان، أو أي تعديل أو شطب عليها، وذلك تطبيقاً لأحكام هذا القانون.
+> ويجوز للجهة الإدارية المختصة أن تعهد بإنشاء وتشغيل هذا السجل لإحدى الجهات أو الشركات المتخصصة تحت رقابتها، وذلك وفقاً للقواعد والضوابط التي تحددها اللائحة التنفيذية.
+> وفي جميع الأحوال، تكون البيانات والمعلومات الموجودة بالسجل ملكاً للجهة الإدارية المختصة.
+
+### Ministerial Decision 108/2016 — Executive Regulation
+
+- Instrument: Minister of Investment Decision 108/2016 issuing the Executive Regulation of Law 115/2015.
+- Decision dated 15 February 2016; Gazette publication metadata for الوقائع المصرية issue 282 تابع (أ), 15 December 2016, is recorded in the secondary legal index and needs official page-image verification.
+- Official FRA full Arabic regulation PDF (current consolidated version): https://www.fra.gov.eg/wp-content/uploads/2025/02/لائحة-التنفيذية-لقانون-الضمانات-المنقولة-الاصدار.pdf
+- FRA record labels it the 108/2016 Executive Regulation, updated in 2022: https://fra.gov.eg/regulations/اللائحة-التنفيذية-للضمانات-المنقوله-2/
+- The 497-line full Arabic PDF includes definitions, eligible collateral, secured-party and debtor rules, electronic filing, amendments/cancellations, search, priority, enforcement and special procedures for specified assets/rights.
+- Regulation Article 1 defines “security collateral” and includes commercial enterprise components such as goodwill, trade name, trademark, patents, designs, copyright, exploitation licences, inventory, furniture, machinery and equipment. This means the security-interest register can cover more than physical inventory; it includes important intangible commercial assets.
+- The current consolidated Regulation includes amendment footnotes for PM Decision 908/2020 and PM Decision 4666/2022. Preserve the original 2016 text and later amendments as separate temporal layers.
+
+### PM Decision 908/2020 — individual secured-creditor eligibility and bank-account rule
+
+- Instrument: PM Decision 908/2020 amending Executive Regulation 108/2016.
+- Official Gazette issue 15 bis (ب), 15 April 2020.
+- FRA official record: https://fra.gov.eg/regulations/قرار-مجلس-الوزراء-رقم-908-لسنة-2020-بتاريخ-2020-04-15/
+- FRA official news announcement dated 21 April 2020 confirms the change enabled natural persons, alongside legal persons, to provide financing to productive/service projects against movable collateral: https://fra.gov.eg/fra_news/efsa_877/
+- The amended consolidated Regulation Article 1 expressly adds natural persons to the definition/list of secured creditors.
+- PM Decision 908/2020 also repealed Regulation Article 23, which had required a recent bank-issued no-objection letter to register security over a debtor's bank account, certificate or deposit. The current consolidated Regulation marks Article 23 as repealed by Decision 908/2020.
+- **Exact Arabic current Article 1 creditor categories (opening):**
+> الدائن: المضمون له من البنوك أو الجهات التي تمارس نشاط التمويل وغيرها من الجهات والأشخاص المانحة للتمويل أو الائتمان وتشمل:
+> 1- الأشخاص الطبيعيين.
+> 2- البنوك ومؤسسات التمويل المرخص لها بالعمل في مصر.
+- **Source limitation:** the FRA official record and updated full Regulation confirm the amendment's effect; the Gazette issue/date is independently corroborated by contemporaneous reporting, but the original Decision 908 PDF itself has not yet been page-image inspected. Do not claim Gazette-page verification.
+
+### PM Decision 4666/2022 — registry fee amendment (source lead only)
+
+- The Egyptian Movable Collateral Registry official laws page lists PM Decision 4666/2022 as amending the Executive Regulation: https://portal.ecr.gov.eg/laws
+- FRA's official 2022 annual report says the decision reduced registration/publicity fees for security rights to a rate per EGP 1,000 of the secured obligation, capped at EGP 200, for natural persons and entities financing MSMEs/consumer finance: https://fra.gov.eg/wp-content/uploads/2023/05/Report2022-2.pdf
+- FRA's official 2023 directory contains a PDF named "قرار-مجلس-الوزراء-رقم-4666-لسنة-2022-بتعديل-اللائحة-التنفيذية-لقانون-الضمانات-المنقولة.pdf", but the PDF endpoint returned an authorization error during this pass.
+- Therefore PM Decision 4666/2022 remains a source lead, not an instrument counted as having Arabic operative text. Its exact Gazette issue/date, full article wording and commencement must be acquired before ingestion.
+
+### Count increment
+
+- Three unique instruments with Arabic operative text surfaced: Law 115/2015, Ministerial Decision 108/2016 and PM Decision 908/2020.
+- Nine issuing provision units counted: Law 115/2015 Articles 1–5; Decision 108/2016 Articles 1–2; Decision 908/2020 Articles 1–2. The full substantive law and regulation articles are separately indexed from their full texts but not double-counted as issuing articles.
+- PM Decision 4666/2022 is retained as a pending source lead and is not counted.
+- Cumulative Agent 3 minimum: 139 unique instruments / 1,322 provision units.
