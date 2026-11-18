@@ -1205,3 +1205,6 @@
 - Confirmed the direct official SCC HTML judgment pages for **Case 81/19** (6 Feb 1999; Law 136/1981 Article 18(b), only the requirement to execute in the tenant's presence invalidated) and **Case 108/19** (19 Dec 2004; challenge inadmissible, relying on prior Case 203/20). Original Gazette scans remain outstanding; these official SCC pages are full court-text sources.
 - Case 42/17 remains a secondary full-text source with no direct SCC page/original Gazette scan located. Gazette publication date 18 Jun 1998 is reported, but issue number conflicts between issue 35 supplement and issue 25 supplement; leave the issue field unresolved pending the Gazette page.
 - These are source-tier/metadata clarifications only; no new instrument rows or article-provision counts.
+
+
+| checkpoint 130 — Agent 3 investment incentive geographic-allocation decisions | Added PM Decisions 104/2022, 981/2022, 983/2022, 4427/2022 and 503/2026; recorded 2026 replacement of industrial schedules attached to Decision 104/2022; corrected misattribution of Decision 876/2023 (citizenship, not investor residence); cumulative 151 instruments / 1,362 provision units; assignment estimate 31%, lawyer review 0% |
