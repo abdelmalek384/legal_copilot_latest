@@ -1930,6 +1930,24 @@
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "Single PDF locator; no bulk/API permission established",
       "required_next_action": "Use guide only as corroboration/discovery; compare reproduced law text against Amiri Press and Gazette originals; inspect Ministry terms and do not infer commercial reuse permission."
+    },
+    {
+      "source_id": "EG-GOEIC-LAWS-DECISIONS",
+      "authority": "General Organization for Export and Import Control (GOEIC), Ministry of Investment and Foreign Trade, Egypt",
+      "source_page": "https://www.goeic.gov.eg/ar/laws-and-decisions/list",
+      "material_types": [
+        "Law4/2026 amending Importers Register Law121/1982",
+        "Ministerial Decision271/2026 issuing replacement executive regulation to Law121/1982",
+        "current foreign-trade and import/export decisions"
+      ],
+      "access_status": "Official GOEIC legislation catalogue inspected 18 Nov 2026; lists Law4/2026 and Decision271/2026. Catalogue is a legal locator and not itself the Gazette binary.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Official agency list at https://www.goeic.gov.eg/ar/laws-and-decisions/list identifies Law4/2026 and Decision271/2026 and categorizes Decision271 as the executive regulation for Law121/1982. No explicit licence authorizing bulk collection, commercial use, excerpt display or redistribution was identified.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "Individual catalogue records; no bulk/API permission established",
+      "required_next_action": "Acquire original Gazette PDF through official publisher or permitted channel; inspect GOEIC terms and preserve source metadata; do not treat public catalogue as commercial reuse permission."
     }
   ]
 }
