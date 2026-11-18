@@ -164,3 +164,7 @@ https://www.eastlaws.com/legislation-full-text/ar/egypt/law/16-01-2018/no-4?id=1
 - Erratum of 8 March 2018: metadata/correction notice identified; operative correction text outstanding.
 - No lawyer review; no commercial reuse permission claimed.
 - Count unchanged: Law 4/2018 remains one instrument already counted; this is a source-quality/text-depth upgrade only.
+
+
+## Corrigendum source update — 8 March 2018
+A separate corrigendum to Law 4/2018 is now positively identified: Gazette issue 10, published 8 March 2018. EastLaws explicitly flags the final text of Law 4/2018 Article 3 as affected by Article 1 of this corrigendum and separately exposes the original text; Sada Al-Qanun lists the same corrigendum as a separate 2018 publication. The original Law 4/2018 Gazette remains issue 2 bis (ط), 16 January 2018. The exact issue-10 corrigendum PDF/page and corrected Article 3 text remain outstanding because the EastLaws article pane is client-rendered and search indexing only exposes a partial Article 3 heading. Do not merge or overwrite the original Gazette text. Version-history record: [agent3_law4_2018_corrigendum_2018_03_08_provenance.md](agent3_law4_2018_corrigendum_2018_03_08_provenance.md).
