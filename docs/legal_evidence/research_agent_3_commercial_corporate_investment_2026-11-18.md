@@ -1809,3 +1809,74 @@ The official text identifies Decision 3217/2022 as amending the Executive Regula
 **Version control:** Decision 3217/2022 is an amendment to Decision 238/2011, not a new law or a replacement of Law 67/2010. The Amiri Press page could not be opened by the web reader in this session, but its search-indexed text exposes the amendment preamble and inserted provisions. Obtain the Gazette issue and PDF, record its date/page, and verify the complete replaced article set against the current consolidated 238/2011 regulation.
 
 **Collection status:** full official Gazette scan/text of Law 67/2010 obtained; searchable text of Decision 238/2011 obtained from secondary legal publisher; official Amiri Press indexed amendment text for Decision 3217/2022 obtained, but Gazette scan/page-image QA outstanding. No lawyer approval or rights clearance claimed.
+
+
+## 19. Trade Register Law — current 2018 Executive Regulation locator, Law 198/2020 and Decision 41/2020 beneficial-owner register
+
+### A. Current Executive Regulation — Ministerial Decision 106/2018
+
+**Official ITDA legislation index:** https://www.itda.gov.eg/sgl.aspx  
+**Direct official PDF (14.9 MB):** https://www.itda.gov.eg/pdf/CR_WorkGuide106-2018.pdf
+
+ITDA expressly identifies Minister of Supply and Internal Trade Decision 106/2018 as the Executive Regulation of Law 34/1976. The official PDF is 14.9 MB and the web reader refused it for exceeding its content-size limit; direct download through the current tool also failed. The file is therefore a verified official source locator, not a text acquisition. The 1976 Decision 946/1976 transcribed above is historical and must not be substituted for Decision 106/2018 in current-law answers. Obtain the 2018 PDF by an alternate download path and extract all articles/appendices.
+
+### B. Law 198/2020 — official 2-page Gazette PDF visually inspected
+
+**Official ITDA-hosted Gazette PDF:**  
+https://www.itda.gov.eg/pdf/القانون%20رقم%20198%20لسنة%202020.pdf  
+**Official ITDA legislation page:** https://www.itda.gov.eg/sgl.aspx
+
+The PDF is two pages and was visually inspected. It identifies Official Gazette issue 39 bis (ز), 30 September 2020, pages 3–4. It amends Articles 3, 8 (first paragraph) and 9 (first paragraph) of Law 34/1976 and takes effect the day following publication.
+
+**Verbatim — Article 3 replacement:**
+
+> مادة (٣):
+>
+> يشترط فيمن يقيد في السجل التجاري الآتي:
+>
+> ١- أن يكون مصري الجنسية.
+>
+> ٢- أن يكون حاصلاً على موافقة بمزاولة التجارة من الغرفة التجارية المختصة بالنسبة للأفراد والشركات المنشأة لممارسة نشاط تجاري.
+>
+> ٣- أن يكون حاصلاً على موافقة بمزاولة النشاط الصناعي من الغرفة الصناعية المختصة بالنسبة للمنشآت الصناعية، أياً كان شكلها فردية أو شركة أو محلاً صناعياً وأياً كان حجمها المنشأة لممارسة نشاط صناعي.
+
+**Verbatim — Article 8, first paragraph replacement:**
+
+> مادة (٨/ فقرة أولى):
+>
+> يقدم طلب القيد أو التأشير خلال المدة التي تحددها اللائحة التنفيذية لهذا القانون من التاجر أو المديرين أو الممثلين القانونيين للمنشأة الصناعية أو الشخص الاعتباري أو مدير الفرع بحسب الأحوال إلى مكتب السجل التجاري الذي يقع في دائرته المركز الرئيسي أو الفرع.
+
+**Verbatim — Article 9, first paragraph replacement:**
+
+> مادة (٩/ فقرة أولى):
+>
+> يجدد القيد في السجل التجاري كل خمس سنوات من تاريخ القيد أو من تاريخ آخر تجديد، ويقدم الطلب من أصحاب الشأن المشار إليهم في الفقرة الأولى من المادة (٨) من هذا القانون خلال الشهر السابق لانتهاء المدة، ولا يجدد القيد إلا بعد سداد الرسوم المقررة، ويقبل الطلب إذا قدم خلال التسعين يوماً التالية لانتهاء المدة، على أن يؤدي الرسم في هذه الحالة مضاعفاً.
+
+### C. Ministerial Decision 41/2020 — beneficial ownership register
+
+**Official ITDA-hosted PDF (3 pages):** https://www.itda.gov.eg/pdf/41.pdf  
+**Official ITDA index label:** "قرار وزير التموين والتجارة الداخلية رقم 41 لسنة 2020 بشأن القيد في سجل المستفيد الحقيقي".
+
+The PDF was visually inspected. It is published in الوقائع المصرية issue 56 (تابع), 8 March 2020, pages 2–4. The decision amends the Executive Regulation of Law 34/1976 by adding Articles 13 bis/1, 13 bis/2 and 13 bis/3 (the third article appears on the final page; numbering in the PDF is 13 مكرراً/3).
+
+**Verbatim — inserted Article 13 bis/1:**
+
+> مادة رقم ١٣ مكرراً/١:
+>
+> يلتزم كل من يتم قيده في السجل التجاري بأن ينشئ لديه سجل خاص يسمى سجل المستفيدين الحقيقيين - تقيد فيه أسماء وبيانات المستفيدين الحقيقيين لديه ممن لهم فعلياً ملكية المنشأة التجارية أو السيطرة عليها سواء كانوا أشخاصاً اعتباريين أو ترتيباً قانونياً، على أن يتم تحديث بياناته بمجرد نشوء الواقعة الموجبة لتحديثها ويتم إخطار السجل التجاري بها فور وقوعها، ولمأموري الضبط القضائي الاطلاع على ذلك السجل حال طلبه.
+
+**Verbatim — inserted Article 13 bis/2:**
+
+> مادة رقم ١٣ مكرراً/٢:
+>
+> تدرج ببيانات السجل التجاري بند خاص يثبت به أسماء المستفيدين الحقيقيين وجنسيتهم والرقم القومي أو جواز السفر للأجنبي وذلك من واقع سجل المستفيدين الحقيقيين، وعلى المقيدين بالسجل التجاري الاحتفاظ بهذا السجل طوال فترة مزاولة النشاط ولمدة خمس سنوات من تاريخ توقف النشاط أو محو السجل التجاري، وتعد البيانات موضوع القيد في سجل المستفيدين الحقيقيين من البيانات الجوهرية في طلبات القيد أو التأشير في السجل التجاري.
+
+**Verbatim — inserted Article 13 bis/3 (recordkeeping form):**
+
+> مادة رقم ١٣ مكرراً/٣:
+>
+> يتبع في مسك سجل المستفيدين الحقيقيين الأحكام الخاصة بالدفاتر التجارية، وخاصة من حيث وجوب أن تكون هذه الدفاتر خالية من كل فراغ أو بياض أو كتابة في الحواشي أو كشط أو تحشير، ويجب أن تكون صفحات هذه السجلات مرقومة بالتسلسل ويتعين قبل استعمالها أن تختم كل ورقة منها بخاتم مكتب السجل التجاري المختص، ولا يجوز تسجيل دفتر جديد إلا بعد تقديم الدفتر السابق للمؤشر بانتهائه بعد آخر قيد.
+
+The decision's second article states it is published in الوقائع المصرية and takes effect the day after publication. This is a ministerial implementing decision, not a new statute. Its obligations should be linked to the Executive Regulation version and any later beneficial-owner guidance/AML amendments.
+
+**Version/rights status:** the current Decision 106/2018 PDF is officially located but not text-extracted; Law 198/2020 is fully visually transcribed from the official PDF; Decision 41/2020 is fully transcribed from its official 3-page Gazette publication. No lawyer verification or redistribution rights clearance claimed.
