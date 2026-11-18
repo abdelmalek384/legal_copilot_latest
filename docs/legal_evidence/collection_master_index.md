@@ -2159,3 +2159,8 @@ Added PM Decision3356/2026 (18 articles; Training and Qualification Financing Fu
 - **Source-permission register:** 108 unique source records. Permission status remains unknown or restricted where recorded; no commercial reuse permission is implied.
 - **Unique provision count:** no increase claimed from Decision3356 because its locally mirrored tranche is a normalized digest rather than a verbatim article transcription. Do not count paraphrased summaries as unique article texts.
 - **Original Gazette binaries locally archived and hashed in this tranche:** 0. Official Amiri Press metadata is identified for new items, but several DSpace downloads require request-a-copy; metadata discovery is not PDF acquisition.
+
+
+### Same-day new amending law — EG-0319
+
+Added **Law162/2026**, amending Law16/2018 on the Martyrs, Victims, Missing and Injured Persons Fund. Gazette issue46 مكرر (أ), 15 Nov 2026; effective 16 Nov. The amendments: exempt all transport tickets and specified public/teaching-hospital medical services/documents from the fund levy; prescribe top-up compensation where partial disability progresses to permanent total disability or death; specify military medical, police medical or forensic authorities for disability proof; add special presidential patronage; disqualify beneficiaries with final terrorism convictions; and extend Article14 compensation treatment to pre-existing beneficiaries. Full operative amendment clauses are in [the Law162 text tranche](acquisition_tranche_law162_2026_martyrs_fund_amendment_2026-11-18.md). The Article14 historical date differs between secondary transcriptions and remains flagged for Gazette-image verification.
