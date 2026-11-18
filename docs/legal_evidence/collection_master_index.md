@@ -1143,3 +1143,6 @@
 - **Presidential Decision 480/2026:** DSpace confirms issue 45 bis (ج), 10 November 2026, and 178.37 KB Amiri Press original bundle, but download opens request-a-copy; only secondary press reproductions of its two operative articles located. No Gazette scan PDF bytes obtained.
 - **Decision 480 deadline:** initial Article 3 period provisionally ends 19 July 2026 under CPC Article15; the extension's start date remains unresolved. Conditional constructions are 19 January 2027 (consecutive extension) or 10/11 May 2027 (reopening from publication/effectiveness); no final date certified.
 - Detailed calculation: [state_private_property_law_168_2025_decision_200_2026_decision_480_2026_deadline_computation_2026-11-18.md](state_private_property_law_168_2025_decision_200_2026_decision_480_2026_deadline_computation_2026-11-18.md).
+
+
+| checkpoint 119 — Agent 3 Financial Leasing and Factoring Law 176/2018 | Added FRA-hosted full Arabic Law 176/2018 (issuing and substantive provisions), FRA Decisions 137/2018 and 163/2018, and Gazette-published Decision 91/2023 amending licensing capital threshold to EGP 75m; other FRA decisions retained as uncounted source leads; cumulative Agent 3 minimum 128 instruments / 1,285 provision units |
