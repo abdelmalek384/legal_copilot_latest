@@ -4917,3 +4917,24 @@ Decision 983/2022 implements Article 13 of Law 72/2017 by requiring GAFI to coor
 - The separate industrial cash incentive under Law 160/2023 and Decision 77/2023 is not the same as the additional incentives under Law 72/2017 Article 13; keep these two incentive regimes separate in retrieval.
 
 **Collection status:** Decision 104/2022 full operative Articles 1–3 and schedule locators obtained; Decision 981/2022 full five-article text and key amendments transcribed; Decision 983/2022 full operative Article 1 text captured. The schedule tables should be downloaded and normalized as separate datasets; Decision 503/2026's replacement industrial schedules are current for the industrial sector. No lawyer approval or rights clearance claimed.
+
+
+### E. Decision 3217/2022 — remaining unsolicited-proposal provisions
+
+The full searchable Executive Regulation 238/2011 reproduction now exposes the remaining new Articles 62 bis/6 and 62 bis/7 inserted by PM Decision 3217/2022.
+
+**Verbatim — Regulation Article 62 bis/6 (approval and route to contract):**
+
+> المادة 62 مكرر 6
+>
+> تصدر اللجنة العليا، حال موافقتها على المشروع المقدم بمبادرة من القطاع الخاص في ضوء التقرير المقدم من اللجنة المنصوص عليها في المادة (62 مكررا 5) من هذه اللائحة، قرارا بالموافقة على المشروع، وإدراجه بقائمة المشروعات التي تنفذ بنظام المشاركة مع القطاع الخاص، والإذن للجهة الإدارية بالبدء في إجراءات التعاقد عليه، إما من خلال طريق التعاقد المباشر مع مقدمه حال كونه صاحب حق ملكية فكرية حصرية على التكنولوجيا القائم عليها المشروع، وإما من خلال طرحه للمنافسة العامة عليه عن طريق المناقصة أو المزايدة العامة، وذلك كله طبقا للقواعد والإجراءات المنصوص عليها في هذه اللائحة بالنسبة لأي من هذه الطرق.
+
+**Verbatim — Regulation Article 62 bis/7 (preferential treatment for originator):**
+
+> المادة 62 مكرر 7
+>
+> يتعين على الجهة الإدارية، عند طرحها للمشروع المقدم بمبادرة من القطاع الخاص للتنافس عليه، أن تنص في الإعلان عنه أن المشروع مقدم بمبادرة من القطاع الخاص، وأن مقدمه سيتمتع عند مشاركته في هذه المنافسة بالميزة التفضيلية المحددة بالإعلان، والتي يتم اختيارها بعد موافقة الوحدة من بين الميزتين الآتيتين:
+>
+> 1 – حق مقدم المبادرة في التعاقد معه إذا كان الفرق بين عطائه المالي والعطاء المالي الأفضل لا يجاوز النسبة المنصوص عليها بكراسة الشروط والمواصفات والتي لا يجاوز حدها الأقصى (10%)، وعدل سعر عطائه إلى سعر العطاء الأفضل، وفي هذه الحالة يعوض مقدم المبادرة صاحب العطاء الأفضل بالمبلغ المحدد لذلك بكراسة الشروط والمواصفات.
+
+**Text-completeness note:** The searchable reproduction's Article 62 bis/7 continues beyond the excerpt shown above with the alternative preference mechanism; acquire the complete Gazette PDF of Decision 3217/2022 and inspect the full article before operationalizing this preference. The primary Amiri Press indexed text is also a source lead, but the Gazette PDF remains required for exact final wording.
