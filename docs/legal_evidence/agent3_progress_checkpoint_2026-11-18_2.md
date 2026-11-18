@@ -57,7 +57,7 @@ Retrieved the official MIFT consolidated PDF (3,416 extracted lines), explicitly
 - Law 159/1998: captured exact Article 46 replacement.
 - Law 212/1994: confirmed it inserted Article 21 bis, later repealed by Law 3/1998; full historic text remains unavailable and was not reconstructed.
 - Detailed files: [Laws 3/1998 and 94/2005](agent3_companies_law_amendments_3_1998_94_2005_text.md), [Laws 212/1994 and 159/1998](agent3_companies_law_amendments_212_1994_159_1998_text.md).
-- These are text-depth/versioning expansions of already-counted amendment instruments; no count change. Agent 3 remains **196 documents / 1,950 provisional units**, assigned completion **55% provisional**, lawyer review 0%.
+- These are text-depth/versioning expansions of already-counted amendment instruments; no count change. Agent 3 remains **198 documents / 1,987 provisional units**, assigned completion **55% provisional**, lawyer review 0%.
 
 
 ## Primary-source upgrades to the Companies Law amendment chain
@@ -84,3 +84,13 @@ Acquired official Gazette text for two PM amendments to Executive Regulation 135
 - Full Arabic text and legal effect: [2025 Capital Market amendments](agent3_capital_market_exec_reg_135_amendments_2025_arabic_text.md).
 
 Updated aggregate: **196 documents / 1,950 provisional numbered units**; assigned-domain estimate remains **55% provisional**; lawyer review 0%.
+
+
+## Capital Market Executive Regulation 2023–2024 amendment expansion
+
+- **PM Decision 3045/2023**: full Arabic text captured from MKSEgypt and corroborated by FRA's official amendment catalogue. It revises sukuk issuance/application and beneficiary disclosures, fund governance, securitization prospectus/cash controls and mandatory takeover exceptions; inserts ETF and ESG-fund definitions and new ESG/sukuk provisions; repeals Article 163(2). Gazette issue 31 bis (و), 8 Aug 2023.
+- **PM Decision 2423/2024**: full Arabic text captured from secondary transcription and corroborated by FRA's official record. It updates payment-agent reporting, pre-emption, credit rating, fund leverage, related-party real-estate investment and securitization; creates hedge-fund definition and Article 179 bis 2. Gazette issue 30 bis (أ), 28 Jul 2024.
+- Detailed Arabic text: [Capital Market 3045/2023 and 2423/2024](agent3_capital_market_exec_reg_135_amendments_2023_2024_arabic_text.md).
+- Added 2 instruments / 37 normalized units. Original Gazette PDF/page-image comparison remains outstanding.
+
+Updated aggregate: **198 documents / 1,987 provisional units**; assigned-domain completion remains **55% provisional**; lawyer review 0%.
