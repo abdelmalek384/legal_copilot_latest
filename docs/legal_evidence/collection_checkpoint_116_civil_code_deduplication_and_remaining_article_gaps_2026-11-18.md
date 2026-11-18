@@ -90,3 +90,13 @@ Updated untranscribed ranges:
 
 The non-repealed universe remains 1,093 numbered positions (1,149 total less 56 repealed); 949 are identified, leaving 144 without an article text.
 
+## Final re-audit after checkpoint 120
+
+The repository-wide deduplication audit was rerun after checkpoints 117–120. It found:
+- **1,093 non-repealed article numbers identified** through Article 1149;
+- **1,092 complete article texts** plus partial/quarantined Article 766(2);
+- **56 repealed article numbers**: Articles 54–80 and 389–417;
+- **No remaining non-repealed article-number gaps**.
+
+The only article numbers without an operative base-text transcription are the repealed ranges 54–80 and 389–417. This is base-code extraction coverage, not amendment consolidation, page-image verification, legal validation, lawyer review or reuse clearance. OCR/source defects and historical/current version reconciliation remain open.
+
