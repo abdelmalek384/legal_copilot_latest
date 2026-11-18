@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 141)
+**Last updated:** 2026-11-18 (expanded through checkpoint 142)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1131,3 +1131,6 @@
 - The page scans display the original Gazette mastheads, issue/date and page numbers. They are secondary-hosted reproductions of printed Gazette pages, not digital originals obtained from Amiri Press; no publisher hash, formal authentication or commercial reuse permission is claimed.
 - Acquisition register rows EG-0144, EG-0145, EG-0150 and EG-0151 upgraded with the scan routes, page counts, exact issue metadata and remaining authenticity/amendment caveats. Register remains 187 data rows, 12 columns; latest validation found no malformed rows or duplicate IDs.
 - Full visual-verification record: [primary_gazette_scan_visual_verification_laws_114_1946_142_1964_68_1947_70_1964_2026-11-18.md](primary_gazette_scan_visual_verification_laws_114_1946_142_1964_68_1947_70_1964_2026-11-18.md).
+
+
+| checkpoint 123 — Agent 3 Mortgage Finance Executive Regulation amendments | Added Gazette-original PM Decision 2/2015 (six issuing articles, broad 37-article regulation rewrite) and PM Decision 32/2024 (four issuing articles, EGP 100m minimum paid-up capital, 100% 30-day liquidity, 30-day delinquency + 60-day notice and supervised collateral-sale procedure); recorded PM 465/2005, 1864/2008, 1/2015 and FRA 109/110/139 of 2024 as pending amendment leads; cumulative Agent 3 minimum 141 instruments / 1,345 provision units |
