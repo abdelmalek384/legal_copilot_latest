@@ -183,7 +183,76 @@ The 2024 amendment changes ownership-composition restrictions for companies hold
 - Full official text begins with Article 1 applying the law to private State property and Article 2 prescribing management and disposal rules for desert lands under Law 143/1981.
 - Its later amendments and implementing decisions require a separate acquisition checkpoint.
 
-## 6. Cross-law legal relationships
+## 6. Law 7/1991 — Private State Property (related property statute)
+
+### Official-source retrieval
+
+- Law No. 7/1991, قانون رقم ٧ لسنة ١٩٩١ في شأن بعض الأحكام المتعلقة بأملاك الدولة الخاصة.
+- Official Gazette issue 10 bis, 13 March 1991; issued 13 March 1991; effective the day after publication (14 March 1991).
+- Full nine-article Arabic PDF hosted by the Tourism Development Authority:
+  https://www.tda.gov.eg/StaticFiles/Files/RulesPDF/7-91.pdf
+- The PDF is an official government-hosted searchable text. It is not the original Official Gazette scan.
+- Law 7/1991 is a separate statute from Law 143/1981; it allocates management and disposal powers for State private property and cross-refers to desert lands, new urban communities and tourism zones.
+
+### Verbatim Arabic — all nine provisions
+
+**المادة الأولى:**
+> تسرى أحكام هذا القانون على أملاك الدولة الخاصة.
+
+**المادة الثانية:**
+> تكون إدارة واستغلال والتصرف فى الأراضى الصحراوية الخاضعة لأحكام القانون رقم ١٤٣ لسنة ١٩٨١ فى شأن الأراضى الصحراوية وفقاً للأوضاع والإجراءات الآتية:
+>
+> (أ) يصدر رئيس الجمهورية بعد موافقة مجلس الوزراء بناء على عرض وزير الدفاع قراراً بتحديد المناطق الاستراتيجية ذات الأهمية العسكرية من الأراضى الصحراوية التى لا يجوز تملكها ويتضمن القرار بيان القواعد الخاصة بهذه المناطق.
+>
+> (ب) وفيما عدا الأراضى المنصوص عليها فى البند (أ) يصدر رئيس الجمهورية بعد موافقة مجلس الوزراء بناء على عرض الوزير المختص - حسب الأحوال - قراراً بتحديد المناطق التى تشملها خطة مشروعات استصلاح الأراضى، أو مناطق إقامة المجتمعات العمرانية الجديدة، أو المناطق السياحية.
+>
+> وتنشأ هيئة عامة تسمى "الهيئة العامة للتنمية السياحية" يصدر بتنظيمها قرار من رئيس الجمهورية، وتتولى إدارة واستغلال والتصرف فى الأراضى التى تخصص لأغراض إقامة المناطق السياحية.
+>
+> وتتولى الهيئة العامة لمشروعات التعمير والتنمية الزراعية إدارة واستغلال والتصرف فى الأراضى التى تخصص لأغراض الاستصلاح والاستزراع. كما تتولى هيئة المجتمعات العمرانية الجديدة إدارة واستغلال والتصرف فى الأراضى التى تخصص لأغراض إقامة المجتمعات العمرانية الجديدة.
+>
+> وتمارس كل هيئة من الهيئات المشار إليها سلطات المالك فى كل ما يتعلق بالأملاك التى يعهد إليها بها. وتباشر مهامها فى شأنها بالتنسيق مع وزارة الدفاع وبمراعاة ما تقرره من شروط وقواعد تتطلبها شئون الدفاع عن الدولة.
+
+**المادة الثالثة:**
+> فى جميع الأحوال تكون أراضى البحيرات والمساحات التى يتم تجفيفها مناطق استصلاح واستزراع، وتتولى الهيئة العامة لمشروعات التعمير والتنمية الزراعية إدارة واستغلال والتصرف فى هذه الأراضى وفى أراضى طرح النهر، وتمارس سلطات المالك فى كل ما يتعلق بشئونها، وبالتنسيق مع وزارة الأشغال العامة والموارد المائية بالنسبة لأراضى طرح النهر.
+
+**المادة الرابعة:**
+> تتولى وحدات الإدارة المحلية كل فى نطاق اختصاصها إدارة واستغلال والتصرف فى الأراضى المعدة للبناء المملوكة لها أو للدولة، والأراضى القابلة للاستزراع داخل الزمام. ويضع المحافظ بعد موافقة المجلس الشعبى المحلى للمحافظة طبقاً للقواعد العامة التى يقررها مجلس الوزراء قواعد التصرف فى هذه الأراضى على أن تعطى الأولوية فى هذا التصرف لأبناء المحافظة المقيمين فيها العاملين فى دائرتها، ويجوز أن تنظم هذه القواعد الحالات التى تم فيها التصرف فى هذه الأراضى دون مقابل لأغراض التعمير والإسكان والاستزراع وتهيئتها للزراعة أو لأى أغراض يقررها مجلس الوزراء.
+>
+> وفيما يتعلق بالأراضى المتاخمة والممتدة إلى خارج الزمام إلى مسافة كيلو مترين يكون استصلاحها وفق خطة قومية تضعها وزارة استصلاح الأراضى وتتولى تنفيذها بنفسها أو عن طريق الجهات التى تحددها بالتنسيق مع المحافظة المختصة، وتتولى الهيئة العامة لمشروعات التعمير والتنمية الزراعية إدارة هذه الأراضى واستغلالها والتصرف فيها. ويحدد مجلس الوزراء نصيب المحافظة فى حصيلة إدارة واستغلال والتصرف فى هذه الأراضى.
+>
+> وتسرى أحكام المادة (٣٦) من قانون نظام الإدارة المحلية الصادر بالقانون رقم ٤٣ لسنة ١٩٧٩ على ما يؤول إلى المحافظة وغيرها من وحدات الإدارة المحلية من حصيلة إدارة واستغلال والتصرف فى الأراضى المشار إليها فى الفقرتين السابقتين.
+
+**المادة الخامسة:**
+> يحظر استخدام الأراضى الخاضعة لأحكام هذا القانون فى غير الأغراض المخصصة من أجلها، ومع ذلك يجوز بقرار من رئيس الجمهورية بعد موافقة مجلس الوزراء بناء على عرض الوزير المختص - حسب الأحوال - إعادة تخصيصها لأية جهة أخرى أو لأى غرض آخر.
+>
+> وعند الخلاف بين الوزارات والهيئات العامة ووحدات الإدارة المحلية أو بين هذه الجهات أو بعضها البعض حول تحديد الجهة المختصة بإدارة واستغلال والتصرف فى أية أراض أو عقارات من المشار إليها، يعرض الأمر على مجلس الوزراء، ويكون قراره فى هذا الشأن ملزماً للجميع ويسرى هذا الحكم على الخلافات القائمة بين الجهات المذكورة عند العمل بهذا القانون.
+
+**المادة السادسة:**
+> تكون قرارات مجالس إدارة الهيئات العامة المشار إليها فى المادة الثانية من هذا القانون نافذة وفقاً للقواعد المقررة فى القوانين والقرارات الخاصة بإنشائها وتنظيمها وذلك عدا:
+>
+> (أ) القرارات التى تتعلق باختصاصات أكثر من وزارة أو هيئة عامة أو أية جهة إدارية أخرى فيتعين إبلاغها إلى رئيس مجلس الوزراء فى موعد غايته عشرة أيام من تاريخ صدورها لاعتمادها، وتصبح نافذة بانقضاء ثلاثين يوماً من تاريخ إبلاغه بها دون الاعتراض عليها.
+>
+> (ب) القرارات الصادرة بالقواعد والشروط المنظمة لإدارة واستغلال والتصرف فى الأراضى والعقارات المخصصة للهيئات المذكورة، فلا تكون نافذة إلا بعد موافقة مجلس الوزراء عليها.
+
+**المادة السابعة:**
+> تعد حصيلة إدارة واستغلال والتصرف فى الأراضى والعقارات المخصصة وفق أحكام هذا القانون لكل من الهيئة العامة لمشروعات التعمير والتنمية الزراعية وهيئة المجتمعات العمرانية الجديدة والهيئة العامة للتنمية السياحية أموالاً عامة ومورداً من موارد هذه الهيئة، ويصدر بتحديد الأغراض التى تخصص لها وقواعد وإجراءات وحدود الصرف منها قرار من مجلس الوزراء بناء على عرض الوزير المختص، ويؤول فائض هذه الأموال سنوياً إلى الخزانة العامة للدولة.
+
+**المادة الثامنة:**
+> يلغى كل نص يخالف أحكام هذا القانون.
+
+**المادة التاسعة:**
+> ينشر هذا القانون فى الجريدة الرسمية، ويعمل به من اليوم التالى لتاريخ نشره.
+
+### Currentness / amendment status
+
+- The official TDA PDF reproduces the nine-article statute and publication metadata.
+- A complete amendment/repeal/correction history for Law 7/1991 has not yet been verified.
+- PM Decision 2906/1995 on rules for managing, exploiting and disposing of lands allocated to the General Authority for Reconstruction Projects and Agricultural Development is a related implementing instrument, not a substitute for Law 7/1991:
+  https://www.mksegypt.org/ar/decisions/26900
+- Law 168/2025 on private State property governs a different modern regularization framework; do not assume it repeals Law 7/1991 without an express repeal provision.
+- No original Gazette scan or SHA-256 recorded.
+
+## 7. Cross-law legal relationships
 
 1. Civil Code Law 131/1948 Article 805 protects private ownership against deprivation except under law and with fair compensation; Article 1030 onward governs official mortgages.
 2. Law 10/1990 provides the general public-benefit expropriation procedure; Law 187/2020 establishes the current three-year deadline in Article 12 and 20% addition to valuation in Article 6.
@@ -194,7 +263,7 @@ The 2024 amendment changes ownership-composition restrictions for companies hold
 7. The desert-land ownership composition restrictions in Law 143/1981 Articles 11–12 as amended by Law 11/2024 must be evaluated with the specific investment/land-allocation exception, not treated as a universal foreign-ownership ban.
 8. Public-benefit declaration decisions are project-specific subordinate instruments; they do not replace the base Law 10/1990 procedure or extend its three-year deposit deadline unless a valid new/reissued declaration exists.
 
-## 7. Extraction failures and missing documents
+## 8. Extraction failures and missing documents
 
 - Original Official Gazette scan of Law 10/1990 (issue 22 supplement, 31 May 1990): not retrieved; full text obtained from official Court of Cassation publication and secondary transcriptions.
 - Original Official Gazette scan of Law 24/2018: not retrieved; official Court of Cassation PDF contains the full amendment.
@@ -209,16 +278,16 @@ The 2024 amendment changes ownership-composition restrictions for companies hold
 - Full project-specific public-benefit declaration and expiry inventory under Law 10/1990: not collected; this requires parcel-level and Gazette issue matching.
 - No lawyer verification, currentness certification or commercial reuse permission is claimed.
 
-## 8. Metrics for this checkpoint
+## 9. Metrics for this checkpoint
 
-- New base statutes: 0 (Laws 10/1990 and 143/1981 were already indexed in checkpoint 32).
-- Full searchable Arabic texts retrieved: 4 (Law 10/1990, Law 24/2018, Law 143/1981, Law 11/2024); Law 187/2020 and Decision 20/2019 are also full text but hosted as secondary/Gazette-scan reproductions.
+- New base statutes: 1 (Law 7/1991; Laws 10/1990 and 143/1981 were already indexed in checkpoint 32).
+- Full searchable Arabic texts retrieved: 5 from official government/judicial hosts (Laws 10/1990, 24/2018, 143/1981, 7/1991 and 11/2024); Law 187/2020, Decision 20/2019 and Decision 198/1982 are also full searchable reproductions from secondary/Gazette-scan sources.
 - New amendment instruments with full text retrieved: 3 (Law 24/2018, Law 187/2020 and Law 11/2024); historical amendment instruments for Law 143/1981 identified but not all collected in full.
 - Executive regulation texts located: 2 (Decision 20/2019 under Law 10/1990, and Decision 198/1982 under Law 143/1981); Decision 20/2019 full searchable text, Decision 198/1982 secondary full text.
-- At least 18 distinct statutory/regulatory article provisions quoted or substantively extracted.
+- At least 27 distinct statutory/regulatory article provisions quoted or substantively extracted, including all nine articles of Law 7/1991.
 - No new base-law discovery counted and no duplicate URL counted as a new instrument.
 
-## 9. Next actions
+## 10. Next actions
 
 1. Retrieve original Gazette PDFs for Laws 10/1990, 24/2018, 187/2020, 143/1981 and 11/2024.
 2. Obtain Decision 20/2019 original Gazette PDF with all annexes; validate its article count and every form/schedule.
