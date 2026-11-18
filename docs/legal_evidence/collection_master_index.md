@@ -1405,3 +1405,9 @@
 - Updated the Law 114 article-status map for repeals by Law5/1964 and Law9/2022, Law222/1956 / Law181/1957 Article3 history, Law82/1957 Article12 bis, Law186/2020 / Law5/2021 Article35 bis commencement, and Article58 transitional extension.
 - Acquisition register now has **241 rows**, 241 unique IDs, zero duplicates. Source-permission register remains **63 unique records**. Core completed article provisions remain **1,370**.
 - Completion estimates unchanged: core article extraction 100% for three defined statutes; broader civil/property/contract 15% provisional; whole Egyptian corpus 2% provisional.
+
+
+#### Checkpoint 155 follow-up — Law 114 article-count correction
+
+- Corrected EG-0144 and checkpoint 155: Law 114/1946's “70 articles” means **70 article headings/provision units** in the current consolidated text, comprising 61 ordinary numbered articles plus nine inserted bis provisions (10 bis, 12 bis, 19 bis, 22 bis, 23 bis, 27 bis, 35 bis, 36 bis, 53 bis). It is not 70 consecutively numbered base articles or 70 currently operative provisions.
+- The four-statute 200-entry count remains a searchable article-heading/navigation count, not a current-operative-provision count.
