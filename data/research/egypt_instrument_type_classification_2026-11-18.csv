@@ -230,3 +230,5 @@ EG-0243,Executive regulation amendment,Ministerial Decision 1057/1995 — replac
 EG-0244,Executive regulation amendment,Ministerial Decision 1012/2009 — replacement of Article 15 of Executive Regulation 198/1982,executive_regulation_amendment,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
 EG-0245,Real-estate registration transitional commencement extension,Law 157/1947 — extension of transitional period under Article 58 of Law 114/1946,amending_law,Law number/title and legal-domain wording; provisional title-based classification
 EG-0246,Real-estate registration,Decree 2/1946 — Executive Regulation of Law 114/1946,executive_regulation,Executive-regulation wording/domain; amendment verbs distinguish amendment instruments
+EG-0247,Constitutional litigation / rent law,"SCC Case 81/19 — invalidation of final phrase of Article 18(b), Law 136/1981",judicial_decision,Official SCC full judgment page; case identifier in title
+EG-0248,Constitutional litigation / rent law,SCC Case 108/19 — inadmissibility of challenge to Law 6/1997 and Law 136/1981,judicial_decision,Official SCC full judgment page; case identifier in title
