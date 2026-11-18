@@ -103,5 +103,5 @@
 
 ## Count treatment
 - +2 distinct amendment statutes with operative text surfaced: Law 141/2019 (official MIFT full text) and Law 160/2023 (official FRA consolidation and GAFI reproduction).
-- +10 amendment provision units: four additions under Law 141/2019; six changes under Law 160/2023 (five substitutions and one inserted Article 11 bis; Article 1 definition and Article 14 replacement included among the six? Count the operative list as six replacements plus one insertion = **7** Law 160 changes; therefore total amendment units = **11**). Use the detailed list above as the canonical breakdown.
+- +11 amendment provision units: four additions under Law 141/2019 (Articles 12, 48, 74 and new 91 bis); seven changes under Law 160/2023 (Article 1 definition, Articles 9, 11(1), 12(2), 13, 14(1) substitutions, and insertion of Article 11 bis).
 - PM Decision 77/2023 and GAFI guide are not counted as full-text instrument acquisition until original decision text is captured.
