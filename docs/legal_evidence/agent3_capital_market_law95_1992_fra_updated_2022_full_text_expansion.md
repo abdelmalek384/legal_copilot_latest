@@ -167,3 +167,6 @@ The FRA consolidated text marks Article 52 and Articles 53–62 as unconstitutio
 ## Counting
 - Law 95/1992 was already in Agent 3's inventory. This is a full-text and source-quality expansion, not a new unique instrument.
 - Do not add all 75 article headings to the normalized total until deduplicating against prior Law 95 partial records and the constitutional judgment overlay.
+
+## Law 13/2022 amendment — full Gazette text and visual correction
+Law 13/2022 original FRA-hosted Gazette PDF has now been acquired and page 15 visually inspected. It inserts Article 10 bis (remote electronic general assemblies), new fourth/fifth paragraphs in Article 41 bis (future cash-flow securitization bonds), a new fourth paragraph in Article 41 bis (1) (portfolio valuation and bondholder priority), and Article 65 bis second paragraph (EGP 20,000–100,000 fine for breach of Article 10 bis). Article 2 requires FRA implementing rules within six months and issuer regularization within six months after those rules or before the next general assembly, whichever is later. Critical extraction correction: the PDF text extractor misread Article 2 as 'المادة الثامنة'; the Gazette page image clearly reads **المادة الثانية**. Full record: [agent3_capital_market_law13_2022_amendment_full_gazette_text.md](agent3_capital_market_law13_2022_amendment_full_gazette_text.md).
