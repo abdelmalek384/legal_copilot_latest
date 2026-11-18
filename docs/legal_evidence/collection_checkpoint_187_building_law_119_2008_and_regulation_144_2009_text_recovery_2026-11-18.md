@@ -169,7 +169,7 @@ The list is not asserted to be exhaustive. The full pre/post text of every amend
 - New amending laws: 0.
 - New executive regulation decisions: 0.
 - Full source texts located: Law 119/2008 (official Gazette PDF text layer) and Decision 144/2009 (full secondary searchable text).
-- Text captured verbatim in this checkpoint: 8 complete statutory provisions from Law 119/2008 (4 issuing + 4 substantive) and 8 complete provisions from Decision 144/2009 (4 issuing + 4 regulation provisions), total 16.
+- Text captured verbatim in this checkpoint: 9 complete statutory provisions from Law 119/2008 (4 issuing + 5 substantive) and 8 complete provisions from Decision 144/2009 (4 issuing + 4 regulation provisions), total 17.
 - Article count: Law 119/2008 = 114 substantive articles plus 5 promulgation articles; Decision 144/2009 = 185 regulation articles plus 4 issuing articles.
 - No new unique instruments are added to the master instrument total. Text units are not added to the core Civil Code/Evidence/Buildings 1,370 provision count until article/version IDs are normalized and deduplicated.
 
