@@ -1208,3 +1208,11 @@
 
 
 | checkpoint 130 — Agent 3 investment incentive geographic-allocation decisions | Added PM Decisions 104/2022, 981/2022, 983/2022, 4427/2022 and 503/2026; recorded 2026 replacement of industrial schedules attached to Decision 104/2022; corrected misattribution of Decision 876/2023 (citizenship, not investor residence); cumulative 151 instruments / 1,362 provision units; assignment estimate 31%, lawyer review 0% |
+
+
+#### Checkpoint 147 — amendment-chain leads and explicit incremental counts
+
+- Added a distinct incremental category table to checkpoint 147: base laws 0; amending laws 0; executive regulations 0; judicial decisions 0; newly acquired full legal texts 0; newly transcribed unique article provisions 0. This checkpoint is an audit/source-reconciliation batch, not a new acquisition batch.
+- Confirmed Law 83/2006 as an amendment to Laws 142/1964 and 70/1964; Decision 11264/2016 as an amendment to the Law 142/1964 Executive Regulation; recent territorial postponement decisions remain implementing decisions, not substantive statutory amendments.
+- Reconfirmed the key Law 114/1946 chain: Law 223/1996, Law 186/2020, Law 5/2021 deferral, Law 9/2022 and Decision 2332/2022. Reconfirmed Law 143/1981 amendment Law 11/2024 (Articles 11(2), 12(2)) and Case 101/26 separately.
+- Cumulative instrument-type totals remain unreported pending normalization of instrument types and deduplication; 189 acquisition rows are catalogue records, not 189 base laws or 189 full texts.
