@@ -967,3 +967,70 @@ The MIFT consolidated regulation text (amended through 21 August 2022) includes,
 - Law 4/2018 and Law 17/2015 are each counted as one instrument with Arabic operative text surfaced.
 - Four provision units are counted in this increment: Law 17/2015 Article 1 (Companies Law clause); Law 4/2018 Articles 1–3 (the third article contains multiple replacement provisions and is counted as one amending article, not as every underlying substituted article).
 - This does not complete the Companies Law chain. Law 3/1998, 159/1998, 94/2005, 68/2009 and 212/1994 still need primary Gazette acquisition and provision-by-provision reconciliation; the 2020 consolidated statute, Article 156 bis/2026 reporting basis, and any later Gazette instruments also need verification.
+
+
+## 27. Further Companies Law amendment-chain text — Laws 3/1998, 159/1998, 94/2005 and 68/2009
+
+### Law 3/1998 — official MIFT/Amiri Press text
+
+- Official MIFT/Amiri Press-hosted Arabic text: https://www.mift.gov.eg/legislation/download/225
+- The PDF is Law 3/1998 amending Law 159/1981; Gazette issue 3 bis, 18 January 1998.
+- Article 1 replaces Companies Law Articles 17, 18, 19, first paragraph of 21, and Articles 32, 33, 37, 39, 48 and 64. This is the foundational move from prior licensing/committee incorporation procedure to a notification-based process, subject to administrative objection.
+- Article 2 adds to Companies Law Article 40 the possibility of distributing interim profits disclosed by periodic financial statements, accompanied by an auditor's report.
+- Article 4 repeals Articles 21 bis, 22, 23, 36, 92 and related approval phrases in Articles 16, 130 and 136.
+- Important: Law 94/2005 later amended Article 17 and added Article 48 bis; do not rely on the 1998 wording as the final current text.
+- **Selected exact Arabic text — Article 2:**
+> تضاف إلى المادة ٤٠ من قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة المشار إليه، فقرة جديدة، نصها الآتي:
+>
+> "ويجوز أن ينص نظام الشركة على أن يكون للجمعية العامة الحق في توزيع كل أو بعض الأرباح التي تكشف عنها القوائم المالية الدورية التي تعدها الشركة على أن يكون مرفقاً بها تقرير عنها من مراقب الحسابات."
+
+### Law 159/1998 — Article 46 amendment
+
+- Gazette metadata and complete Arabic transcription located: Official Gazette issue 24 تابع (أ), 11 June 1998; effective 12 June 1998.
+- Source: https://mksegypt.org/ar/laws/24099 (secondary legal-library transcription; Gazette issue/date and issuing text displayed, but official Gazette scan not yet acquired).
+- Article 1 replaces Companies Law Article 46. It restricts trading subscription certificates before commercial-register entry and shares after entry until publication of financial statements for one full financial year, except under conditions/procedures issued by the competent minister.
+- Article 2 publication and commencement.
+- **Exact Arabic text — replacement Article 46:**
+> مع عدم الإخلال بأحكام المادة السابقة، لا يجوز تداول شهادات الاكتتاب ولا الأسهم بأزيد من القيمة التي صدرت بها مضافاً إليها - عند الاقتضاء - مقابل نفقات الإصدار، وذلك في الفترة السابقة على قيد الشركة في السجل التجاري بالنسبة إلى شهادات الاكتتاب أو في الفترة التالية لتاريخ القيد حتى نشر القوائم المالية عن سنة مالية كاملة بالنسبة إلى الأسهم إلا وفقاً للشروط والإجراءات التي يصدر بها قرار من وزير الاقتصاد.
+- Treat as secondary transcription pending official Gazette page-image verification.
+
+### Law 94/2005 — Companies Law clauses
+
+- Gazette issue 24 bis, 21 June 2005; effective 22 June 2005.
+- Source: https://www.laweg.net/framePlain.aspx?ItemID=18509&NID=18569&Type=6&action=ViewActivePages (full text transcription explicitly headed with Official Gazette issue/date; official Gazette scan not yet acquired).
+- Article 2 replaces Companies Law Article 31 paragraph 2 (share nominal value range: at least EGP 1 and at most EGP 1,000 or equivalent in freely convertible currencies) and Article 77 paragraph 4 (written delegation between board members, certified by the chair).
+- Article 4 adds a qualification to the final paragraph of Article 17, including special approval/registration treatment for companies and establishments operating in Sinai.
+- Article 5 adds Companies Law Article 48 bis, allowing the articles of association to establish employee/manager incentive schemes through direct or indirect ownership of company shares, subject to executive-regulation rules and FRA model/contract review.
+- Article 8 removes the word “فردى” from Article 77 first paragraph.
+- Article 9 repeals Companies Law Articles 83, 91 and 93.
+- **Exact Arabic text — Article 5 (new Article 48 bis):**
+> مع عدم الإخلال بالنظام القانوني لتوزيع الأرباح، يجوز أن يتضمن النظام الأساسي للشركة نظاماً أو أكثر لإثابة أو تحفيز العاملين والمديرين بالشركة من خلال تملكهم بطريق مباشر أو غير مباشر لجزء من أسهمها، وذلك وفقاً للطرق والقواعد والإجراءات التي تحددها اللائحة التنفيذية لهذا القانون، وتتولى الهيئة العامة لسوق المال إعداد النماذج ومراجعة العقود التي تبرمها في هذا الشأن.
+- Treat this as a secondary transcription until compared with the official Gazette scan. Article 48 bis's later implementation/continuing validity should be checked against the amended executive regulation and any later amendments.
+
+### Law 68/2009 — LLC capital
+
+- Secondary Arabic transcription: https://www.be-tax.com/uploads/images/60/12.pdf and https://qadaya.net/?p=9276
+- Gazette issue 14 bis, 8 April 2009; effective 9 April 2009 (metadata shown in the secondary transcription).
+- Article 1 replaces the first paragraph of Companies Law Article 116: LLC capital is determined by the partners in the articles of incorporation and divided into equal quotas; this rule does not apply to companies existing when the law commenced.
+- Article 2 publication/commencement.
+- **Exact Arabic text — replacement Article 116 first paragraph:**
+> يكون للشركة ذات المسؤولية المحدودة رأس مال يحدد بمعرفة الشركاء في عقد تأسيس الشركة ويقسم إلى حصص متساوية، ولا يسري هذا الحكم على الشركات القائمة وقت العمل بهذا القانون.
+- No official Gazette scan acquired in this pass; preserve as source-matched pending Gazette scan and do not use the secondary PDF as a legal-original substitute.
+
+### Amendment-chain synthesis
+
+- The Companies Law amendment chronology now has Arabic text surfaced for Laws 3/1998, 159/1998, 94/2005, 68/2009, 17/2015 and 4/2018, plus the base statute and Executive Regulation Decision 96/1982.
+- The text quality is mixed: Law 3/1998 and Law 4/2018 have official MIFT/Amiri Press copies; Law 17/2015 has an ETA-hosted Gazette PDF; Laws 159/1998, 94/2005 and 68/2009 currently rely on secondary transcriptions and require official Gazette scans.
+- This pass does not yet reconcile Law 212/1994, nor verify all amendment effects against the full 2020 consolidated Law 159 text. Article 156 bis/2026 annual filing and the alleged post-2022 regulation amendments remain open currentness tasks.
+- A correction/corrigendum to Law 4/2018 published in Official Gazette issue 10, 8 March 2018, is flagged by secondary indexing; retrieve the original scan and compare it before marking Law 4/2018 normalized.
+
+**Incremental count:** four additional unique instruments with Arabic operative text surfaced (Laws 3/1998, 159/1998, 94/2005 and 68/2009). Eleven provision units counted: Law 3/1998 Articles 1, 2 and 4; Law 159/1998 Articles 1–2; Law 94/2005 Articles 2, 4, 5, 8 and 9; Law 68/2009 Articles 1–2. The multi-statute Law 94/2005 is counted once, and only its Companies Law provisions are included in this Agent 3 count.
+
+## 28. Revised counts after Companies Law amendment-chain expansion
+
+- Unique instruments with Arabic text surfaced: 99 (95 + 4).
+- Article/provision text units: 1,203 (1,192 + 11).
+- Assigned families touched: 13/13.
+- Families amendment/currentness-complete: 0/13.
+- Lawyer-reviewed: 0%.
+- Whole-corpus coverage remains approximately 2%; no validated denominator exists.
