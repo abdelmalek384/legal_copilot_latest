@@ -161,3 +161,8 @@ FRA/MIFT lists Executive Regulation Decision 135/1993 with 23 amendment attachme
 - Law 95/1992 was already in Agent 3 inventory. This is a primary regulator-published text expansion and Law 13/2022 overlay, not a new instrument count.
 - Do not increase the 190-document aggregate based on this text expansion.
 - No lawyer review; currentness is not fully reconciled because Executive Regulation Decision 135/1993 has 23 amendment attachments, including 2025 instruments.
+
+
+## Official Gazette number verification — corrected 18 November 2026
+
+The official two-page Gazette PDF hosted by the Egyptian Electric Utility and Consumer Protection Regulatory Agency was opened and text-extracted: https://www.egyptera.org/ar/download/DecreeNo1539Year2025.pdf. Its first page expressly prints «قرار رئيس مجلس الوزراء رقم ١٥٣٩ لسنة ٢٠٢٥» (Official Gazette issue 18 bis, 4 May 2025), and its second page inserts Article 35 bis 9. Therefore **1539/2025 is the correct decision number**. The earlier apparent 1529 reading was an OCR/reading error and is withdrawn. FRA's updated Regulation 135/1993 page also lists 1539/2025. Do not maintain a numbering conflict or separate 1529 instrument.
