@@ -33,6 +33,7 @@ Newly registered instruments include Laws 10, 11, 149, 153, 155, 156, 160 and 16
 
 New or expanded Arabic text files:
 - [Laws10, 11, 155, 156, 160 and 161; Decision3536](acquisition_tranche_2026_laws10_11_155_156_160_161_pm3536_2026-11-18.md)
+- [Law147/2026 — Future of Egypt Sustainable Development Agency (selected articles; 112-article source located)](acquisition_tranche_law147_2026_future_egypt_agency_arabic_text.md)
 - [Law161/2026 continuation — Articles11–32 and39–46](acquisition_tranche_law161_2026_kayan_university_articles11_32_39_46.md); combined with the initial tranche this provides all 50 articles locally.
 - [Law149/2026 VAT amendment and corrigendum](acquisition_tranche_law149_2026_vat_amendment_corrigendum.md)
 - [Law153/2026 Stamp Tax amendment](acquisition_tranche_law153_2026_stamp_tax_listed_securities_arabic.md)
