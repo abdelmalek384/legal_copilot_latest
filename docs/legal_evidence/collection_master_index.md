@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 161)
+**Last updated:** 2026-11-18 (expanded through checkpoint 162)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1480,3 +1480,13 @@
 
 
 | checkpoint 157 — Agent 3 Bankruptcy Law 11/2021 official amendment Gazette upgrade | Acquired government-hosted Official Gazette reproduction of Law 11/2021, Gazette issue 16 bis (و), 28 Apr 2021, 15 pages/428 extracted lines; supersedes the earlier secondary-text-only source. Captured exact amendments on definitions, 60-day handling of bankruptcy/preventive-composition applications, 6-month reorganisation report, max 5-year plan (extendable 2 years), 2-year trading condition, creditor class voting, 10-day appeals, new electronic litigation Article 3 bis, new financing priority Article 20 bis, trustee duties to notify CBE/FRA/EGX/MCDR and 90-day stay for certain financial-leasing assets. Law 11/2021 was already counted; no new instrument/article increment. Cumulative Agent 3 **186 documents / 1,869 normalized units**; assigned-domain estimate **53% provisional**; whole corpus **2% provisional**; lawyer review 0%. Full text: [agent3_bankruptcy_law11_2021_official_amendment_text.md](agent3_bankruptcy_law11_2021_official_amendment_text.md) |
+
+
+### Research Agent 1 — checkpoint 162: priority full-text inventory (18 November 2026)
+
+- Added [collection_checkpoint_162_priority_full_text_inventory_2026-11-18.md](collection_checkpoint_162_priority_full_text_inventory_2026-11-18.md).
+- Created `data/research/egypt_full_text_inventory_priority_2026-11-18.csv` with **25 priority instrument/text records**, separating text extraction, source availability, original Gazette PDF status and annex/forms status.
+- Inventory covers eight principal statutes, Law168/2025, Decisions 200/2026 and 480/2026, and 14 executive regulation/ministerial decision sources.
+- The 25-record inventory is a subset of the 241 acquisition records; it is not an additional instrument count and does not imply 25 original Gazette PDFs.
+- Acquisition register remains **241 rows**, 241 unique IDs; source-permission register remains **63 unique records**. Completed core provisions remain **1,370**; Law143 source-version extraction adds 27 complete texts, one partial and one repealed marker; 200 additional headings across Laws114/142/68/70 remain unnormalized.
+- Completion estimates unchanged: core extraction 100% for three defined statutes; broader civil/property/contract 15% provisional; whole Egyptian corpus 2% provisional.
