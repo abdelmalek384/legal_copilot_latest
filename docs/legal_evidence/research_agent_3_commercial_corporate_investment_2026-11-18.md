@@ -1590,3 +1590,112 @@ The CPA page identifies Law 181/2018 as the new Consumer Protection Law, dated 1
 **CPA legal source caution:** the official CPA legislation page lists the Law 181/2018, but current amendments and the complete Executive Regulation 822/2019 plus later decisions still need to be collected and matched.
 
 **Collection classification:** Law 3/2005 — official ECA updated booklet, full searchable statute; Executive Regulation 1316/2005 — official ECA searchable PDF; PM Decision 1120/2024 — Gazette issue/date and added Chapter 9 source verified, with Articles 48, 54, 55, 61 and 62 transcribed; 2026 replacement-law bill — legislative status lead only; Law 181/2018 — official CPA PDF acquired but OCR unusable. No lawyer approval or rights clearance claimed.
+
+
+## 17. Restructuring, Preventive Composition and Bankruptcy Law 11/2018 — full searchable Arabic text and 2021 amendment map
+
+### A. Base Law 11/2018 — full searchable Arabic text
+
+**Searchable consolidated Arabic text (secondary legal publisher; use as transcription aid, not Gazette authority):**  
+https://lawhub.info/eg/?p=11442
+
+The source contains the issuing provisions and statute through Article 243, with amendment footnotes from Law 11/2021. It is searchable and supplies the full text, but the underlying base Law Gazette PDF (Official Gazette issue 7 bis (د), 19 February 2018) must still be acquired from an official Gazette repository and compared page-by-page. This source is not an official government host.
+
+**Verbatim — issuing Article 1:**
+
+> المادة 1 إصدار
+>
+> يُعمل بأحكام القانون المرافق فى شأن إعادة الهيكلة والإفلاس والصلح الواقى منه.
+>
+> وتسرى على التاجر وفقاً للتعريف الوارد فى المادة (10) من قانون التجارة الصادر بالقانون رقم 17 لسنة 1999، وذلك فيما عدا شركات المحاصة وشركات القطاع العام وشركات قطاع الأعمال العام.
+
+**Verbatim — issuing Article 2:**
+
+> المادة 2 إصدار
+>
+> يصدر وزير العدل اللوائح والقرارات اللازمة لتطبيق أحكام القانون المرافق خلال ثلاثة أشهر من تاريخ العمل به.
+
+**Verbatim — issuing Article 5 (repeal of Commercial Code bankruptcy book):**
+
+> المادة 5 إصدار
+>
+> يُلغى الباب الخامس من قانون التجارة الصادر بالقانون رقم 17 لسنة 1999، كما يلغى كل حكم يخالف أحكام القانون المرافق.
+
+This is the express repeal provision for former Commercial Code Book V (Articles 550–772). **Correction to the earlier Commercial Code status note:** the earlier note correctly warned that Articles 550–772 were historical, but the exact repeal is now located in issuing Article 5 of Law 11/2018. Do not ingest Articles 550–772 as current Commercial Code provisions.
+
+**Verbatim — substantive Article 3 (Bankruptcy Administration):**
+
+> المادة 3
+>
+> استثناء من حكم المادة (8) من قانون المحاكم الاقتصادية الصادر بالقانون رقم 120 لسنة 2008 تنشأ بكل محكمة اقتصادية إدارة تسمى (إدارة الإفلاس)، تشكل برئاسة قاض بمحكمة الاستئناف على الأقل وعضوية عدد كاف من قضاتها بدرجة رئيس محكمة يسمون (قضاة الإفلاس) تختارهم جمعيتها العامة فى بداية كل عام قضائى، ويلحق بها عدد كاف من خبراء إدارة الإفلاس والإداريين والكتابيين.
+
+**Verbatim — Article 15 (restructuring eligibility):**
+
+> المادة 15
+>
+> لكل تاجر، لا يقل رأسماله عن مليون جنيه، وزاول التجارة بصفة مستمرة خلال السنتين السابقتين على تقديم الطلب ولم يرتكب غشاً أن يطلب إعادة الهيكلة.
+>
+> ولا تجوز إعادة هيكلة الشركة وهى فى دور التصفية.
+
+**Verbatim — Article 18 (restructuring purpose):**
+
+> المادة 18
+>
+> تهدف إعادة الهيكلة إلى وضع خطة لإعادة تنظيم أعمال التاجر المالية والإدارية تتضمن كيفية خروجه من مرحلة الاضطراب المالى والإدارى وسداد ديونه مع بيان مصادر التمويل المقترحة، ويكون ذلك بعدة طرق منها إعادة تقييم الأصول، وإعادة هيكلة الديون ومنها ديون الدولة، وزيادة رأس المال، وزيادة التدفقات النقدية الداخلية، وخفض التدفقات النقدية الخارجية، وإعادة الهيكلة الإدارية.
+
+### B. Law 11/2021 — Official Gazette amendment and extensive changes
+
+**Official Gazette:** issue 16 bis (و), 28 April 2021.  
+**Amending statute:** Law 11/2021, amending Law 11/2018.  
+**Amiri Press / Official Gazette repository record:** https://dspace.id.com.eg/items/3d7dbaa2-5da8-4263-acd5-c2bdff1c857d/full  
+**Separate item record for the Arabic/English amendment file:** https://dspace.id.com.eg/items/591c443b-cfe4-44a0-87dd-fbe1057ff502/full
+
+The Gazette repository identifies the publisher as Amiri Press, issue 16 bis (و), date 28 April 2021. The separate bilingual item lists the Arabic PDF as restricted access, so the Gazette bundle metadata and the full searchable LawHub consolidation are currently the available evidence. Do not state the restricted Arabic attachment was downloaded.
+
+The 2021 amendment:
+- Replaces provisions in Articles 1, 4, 10, 16, 17, 20, 27, 31, 35, 41, 42, 55, 57, 60, 63, 64, 66, 70, 72, 87, 143, 163, 176, 191 and 218.
+- Adds Article 3 bis to the issuing provisions (electronic litigation).
+- Adds definitions 18 and 19 to Article 1.
+- Adds Articles 20 bis, 34 (second paragraph), 36 (first paragraph item j), 36 bis, 40 (first paragraph item c), 57 bis, 57 bis/1, 60 bis, 65 bis, 67 (third paragraph), 70 bis, 74 bis, 77 (first paragraph items h and i), 96 (fourth and fifth paragraphs), 176 item f, 178 (third paragraph), 191 bis, 191 bis/1 and 209 (first paragraph item f and second paragraph).
+- Repeals Articles 58, 59 and 179 (as shown in the consolidated text).
+
+**Verbatim — Article 3 bis of issuing provisions (electronic litigation; added by Law 11/2021):**
+
+> المادة 3 إصدار مكرر
+>
+> يجوز التقاضى إلكترونيًا على النحو المبين بالمواد من (13) إلى (22) من قانون إنشاء المحاكم الاقتصادية الصادر بالقانون رقم 120 لسنة 2008 وذلك فى جميع الإجراءات المنصوص عليها فى هذا القانون، وعلى الأخص فى الأحوال الآتية:
+>
+> 1 – الطلبات.
+>
+> 2 – الدعاوى.
+>
+> 3 – الإجراءات.
+>
+> 4 – المنازعات.
+>
+> 5 – الاعتراضات.
+>
+> 6 – الطعون.
+>
+> 7 – التظلمات.
+
+**Verbatim — Article 20 bis (rescue financing; added by Law 11/2021):**
+
+> المادة 20 مكرر
+>
+> يجوز أن تتضمن خطة إعادة الهيكلة حصول المدين على تمويل للمشروع، على أن ينص فيها على مبلغ التمويل، ومدته، والفوائد المستحقة، وطريقة السداد وجهة التمويل، سواء أكانت من الدائنين أم غيرهم.
+>
+> فإذا فشلت الخطة وترتب على ذلك شهر إفلاس المدين، تستوفى الجهة مقدمة التمويل حقوقها بمقدار تمويلها قبل استيفاء المبالغ المستحقة من غرامات جنائية أو ضرائب أو رسوم أو تأمينات اجتماعية، وبعد استيفاء الدائنين أصحاب التأمينات العينية حقوقهم المقررة على أموال المدين، ومع ذلك يجوز للجهة مقدمة التمويل الاتفاق معهم على منحها الأولوية عليهم فى استيداء ديونها.
+
+### C. Related implementing instruments — fee update 2026
+
+**Justice Minister Decision 3715/2026:** official Amiri Press searchable text:  
+https://alamiria.com/Sec/TashTxt?id=hQXViw+FAPU%3D
+
+The 2026 decision amends Justice Minister Decision 2208/2019 on fees and deposits for Bankruptcy Administration experts in Economic Courts, including multiple fixed fee amounts and percentage bands. It is a fee decision, not a substantive amendment to Law 11/2018. The full text is reproduced in the earlier section of this Agent 3 research file.
+
+**Justice Minister Decision 3067/2021** is cited as a separate decision on rules for estimating fees and expenses of Economic Court experts. Retrieve its full text and determine its relationship to Decision 2208/2019 and 3715/2026.
+
+**Unresolved executive regulation question:** issuing Article 2 of Law 11/2018 directs the Justice Minister to issue implementing regulations and decisions within three months. This collection pass did not identify one comprehensive Executive Regulation. It is likely implemented through multiple Justice Minister decisions, Economic Court rules and expert schedules. Do not invent a single executive regulation number; build the implementing instrument inventory from the Ministry of Justice, Economic Courts and Amiri Press.
+
+**Collection classification:** full searchable text through Article 243 surfaced via secondary publisher; official Gazette metadata for Law 11/2021 and the 2026 expert-fee decision text located. The 2018 base Gazette PDF and full Arabic 2021 amendment Gazette scan need repository capture and verification. No lawyer review or rights clearance claimed.
