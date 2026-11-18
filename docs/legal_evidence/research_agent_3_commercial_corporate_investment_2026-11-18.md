@@ -6637,3 +6637,167 @@ FRA's official updated Decision 135/1993 page lists Decision 1539/2025 among the
 The decision gives the statutory energy-source certificate under Electricity Law 87/2015 the character of a financial instrument tradable on Egyptian exchanges by inserting Regulation Article 35 bis/9. It does not amend the text of Capital Market Law 95/1992 itself; it amends the 135/1993 Executive Regulation. This is a cross-sector instrument linking electricity-market certificates with the capital-market regulatory perimeter.
 
 **Collection status:** official FRA amendment register and official Gazette DSpace record found; full searchable Arabic decision text surfaced; two issuing provisions plus inserted Regulation provision transcribed. No lawyer review or rights clearance claimed.
+
+
+## 48. Capital Market Executive Regulation — PM Decision 2423/2024
+
+### A. Gazette provenance
+
+**Decision:** Prime Minister Decision 2423/2024 amending Executive Regulation Decision 135/1993 under Capital Market Law 95/1992.  
+**Gazette:** Official Gazette issue 30 bis (أ), 28 July 2024.  
+**Official FRA record:** https://fra.gov.eg/regulations/قرار-رئيس-مجلس-الوزراء-رقم-2423-لسنة-2024/  
+**Full searchable Arabic text:** https://alberonsy.com/قرار-مجلس-الوزراء-رقم-۲٤۲۳-لسنة-۲۰۲٤-ال/
+
+### B. Provisions transcribed
+
+Decision Article 1 replaces Regulation provisions 16 bis/4, 31, 34(2)(2–3), 156(2)(5), 160(2), 167(2)(أ), 178(2)(2), 183(4), 308 and 315 bis (2). Article 2 adds a definition to Article 141, a final paragraph to Article 142 and new Article 179 bis/2; Article 3 is publication/commencement.
+
+**Verbatim — replacement Article 16 bis/4 (sukuk paying agent monthly report):**
+
+> مادة (١٦ مكرراً ٤):
+>
+> التزامات الإفصاح لوكيل السداد:
+>
+> يجب أن يعد وكيل السداد تقريراً شهرياً بشأن عائد المشروعات المستثمر بها الصكوك، وعليه إخطار الهيئة وحملة الصكوك أو من يمثلهم بالتقرير مرفقاً به تقرير مراقب الحسابات.
+>
+> ويجب أن يتضمن التقرير الشهري ما يأتي:
+>
+> (أ) العوائد التي تم تحقيقها والمُحصل منها في الفترة المُعد عنها التقرير.
+>
+> (ب) ما تم سداده من مستحقات حملة الصكوك.
+>
+> (ج) العمولات والمصروفات التي تم خصمها.
+>
+> (د) فائض الأموال المودعة لديه ومجالات استثماره وفقاً لنشرة الاكتتاب أو مذكرة المعلومات.
+>
+> (هـ) حالات التأخير أو الامتناع عن السداد والإجراءات التي تمت بشأنها.
+>
+> (و) كل ما يؤثر على حقوق حملة الصكوك تأثيراً جوهرياً.
+>
+> (ز) أي تغيير بشأن الاتفاق مع وكيل السداد أو أطراف عملية التصكيك.
+
+**Verbatim — replacement Article 31 (shareholder pre-emption period):**
+
+> مادة (٣١):
+>
+> لا يجوز أن تقل المدة التي يكون للمساهمين القدامى فيها حق الأولوية في الاكتتاب في أسهم الزيادة في حالة تقريره عن خمسة عشر يوماً تبدأ من تاريخ فتح باب الاكتتاب في تلك الأسهم.
+>
+> ومع ذلك تنتهي المدة المشار إليها - قبل مضي الخمسة عشر يوماً - بتمام اكتتاب المساهمين القدامى في أسهم الزيادة كل بحسب نصيبه فيها.
+
+**Verbatim — replacement Article 160(2) (private equity/real-estate/venture-capital fund borrowing):**
+
+> مادة (١٦٠ / الفقرة الثانية):
+>
+> ويجوز لصناديق الملكية الخاصة وصناديق الاستثمار العقاري وصناديق رأس المال المخاطر أن تقترض بما لا يجاوز (٦٠٪) من صافي قيمة وثائق الصندوق في الحدود ووفقاً للضوابط الواردة بنشرة الاكتتاب أو مذكرة المعلومات، ويجوز بقرار من مجلس إدارة الهيئة تعديل النسبة المشار إليها بهذه الفقرة في ضوء أوضاع السوق.
+
+**Verbatim — replacement Article 183(4) (related-party real-estate assets):**
+
+> مادة (١٨٣ / الفقرة الرابعة):
+>
+> ويجوز توجيه أموال الصندوق في أي من الاستثمارات أو الأصول العقارية المملوكة بشكل مباشر أو غير مباشر لأي من الأشخاص المرتبطة أو الأطراف ذوي العلاقة بالصندوق، مع عدم تصويت الطرف المعني في اجتماع جماعة حملة الوثائق على القرارات المتعلقة بذلك، وبمراعاة أن يرفق بالدعوة لاجتماع جماعة حملة الوثائق ملخص دراسة الجدوى المعدة من مدير الاستثمار بشأن الاستثمارات المستهدفة.
+>
+> ولا يجوز أن يكون مدير استثمار الصندوق من ذوي العلاقة في الحالات التي يتم فيها توجيه أموال الصندوق في أي من الاستثمارات أو الأصول العقارية المشار إليها إلا وفقاً للضوابط الآتية:
+>
+> ١- الإفصاح بنشرة الاكتتاب أو مذكرة المعلومات عن أن مدير الاستثمار أحد الأطراف ذوي العلاقة.
+>
+> ٢- عدم تصويت الطرف المعني بالاستثمارات أو الأصول المشار إليها في اجتماع جماعة حملة الوثائق على القرارات المتعلقة بذلك الأمر.
+>
+> ٣- الإفصاح بشكل دوري لحملة الوثائق عن حساب الأرباح والخسائر معتمداً من مراقب الحسابات لكل أصل مستثمر فيه لحساب الصندوق.
+
+**Verbatim — new Article 141 definition (hedge fund):**
+
+> مادة (١٤١):
+>
+> صندوق التحوط: هو أحد أنواع صناديق الاستثمار في الأسهم وأدوات الدين والأدوات المالية أو أحدهم، ويهدف للاستثمار في الأسهم وأدوات الدين وغيرها من الأوراق والأدوات المالية ذات معدلات التداول المرتفعة، ويجوز له التعامل من خلال آليات التداول المتخصصة بالبورصات، وذلك وفقاً للسياسة الاستثمارية الواردة بنشرة الاكتتاب أو مذكرة المعلومات، ويتم طرح وثائقه طرحاً عاماً أو خاصاً.
+
+**Verbatim — new Article 179 bis/2 (hedge funds):**
+
+> مادة (١٧٩ مكرراً ٢):
+>
+> صناديق التحوط:
+>
+> يجوز الترخيص بتأسيس صناديق استثمار في الأسهم وأدوات الدين أو أحدهما (صناديق التحوط) تقوم بالاستثمار في الأسهم وأدوات الدين وغيرها من الأوراق والأدوات المالية وفقاً للحدود والضوابط الواردة بنشرة الاكتتاب أو مذكرة المعلومات، ويتكون هيكل استثمار الصندوق من كل أو بعض مما يأتي:
+>
+> ١- الأوراق والأدوات المالية المقيدة بالبورصات المصرية.
+>
+> ٢- وثائق صناديق الاستثمار المفتوحة أو المقيدة بالبورصة.
+>
+> ٣- العقود الآجلة والمستقبلية وعقود الخيارات المتداولة بالبورصات المصرية.
+>
+> ٤- الأدوات المالية الأخرى التي يوافق عليها مجلس إدارة الهيئة.
+
+**Verbatim — Decision Article 3 (commencement):**
+
+> (المادة الثالثة)
+>
+> ينشر هذا القرار في الجريدة الرسمية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+### C. Legal effect
+
+Decision 2423/2024 updates sukuk servicing/reporting, shareholder pre-emption rights, private equity/real estate/venture capital fund leverage, related-party property investment safeguards and creates a defined hedge-fund category with a new regulatory article. It is an amendment to Executive Regulation 135/1993, not to Law 95/1992 itself.
+
+## 49. Capital Market Executive Regulation — PM Decision 3045/2023
+
+### A. Gazette provenance
+
+**Decision:** Prime Minister Decision 3045/2023 amending Executive Regulation Decision 135/1993.  
+**Gazette:** Official Gazette issue 31 bis (و), 8 August 2023.  
+**Effective:** 9 August 2023.  
+**Official FRA record:** https://fra.gov.eg/en/regulations/قرار-رئيس-مجلس-الوزراء-رقم-3045-لسنة-2023/  
+**Full searchable text:** https://www.mksegypt.org/ar/decisions/16959
+
+Decision Article 1 replaces provisions including Articles 16 (sukuk), 16 bis and 16 bis/2, 124, 154, 163, 170, 171, 256, 304, 310 and 356. Article 2 adds two definitions to Article 141 and new Articles 179 bis/1, 269 (final paragraph), 295 (final paragraph) and 308 bis. Article 3 repeals Article 163(2); Article 4 publication/commencement.
+
+### B. Selected verbatim provisions
+
+**Verbatim — new Article 141 definitions (ETF and sustainable-development funds):**
+
+> مادة (١٤١):
+>
+> صندوق الاستثمار المتداول: هو صندوق استثمار مفتوح يصدر وثائق مقابل استثمار أمواله في محفظة تستثمر في أي من الأوراق أو الأصول أو السلع، ويكون لها مؤشر مرجعي تتبعه، ويجوز قيد وتداول وثائقه في البورصات المصرية وفقاً للضوابط التي يصدرها مجلس إدارة الهيئة.
+>
+> صندوق استثمار التنمية المستدامة (ESG Funds): هو صندوق استثمار يهدف إلى الاستثمار في الأنشطة الاقتصادية المتعلقة بالمشروعات الخضراء أو المشروعات التي تراعي الأبعاد البيئية والاجتماعية، ويجوز طرح وثائقه طرحاً عاماً أو خاصاً.
+
+**Verbatim — new Article 179 bis/1 (sustainable-development funds):**
+
+> مادة (١٧٩ مكرراً ١):
+>
+> صناديق التنمية المستدامة (ESG Funds):
+>
+> يجوز الترخيص بتأسيس صندوق استثمار تنمية مستدامة، تقوم بالاستثمار في المشروعات الخضراء أو المشروعات التي تراعي الأبعاد البيئية والاجتماعية.
+>
+> ويتكون هيكل استثمارات الصندوق على الأخص مما يأتي:
+>
+> ١- أسهم وصكوك تمويل للشركات والمشروعات التي تعمل في مجالات التنمية المستدامة وغيرها من الأدوات المالية التي تدعم التنمية المستدامة.
+>
+> ٢- أدوات الدين الصادرة عن شركات تعمل في مشروعات التنمية المستدامة، على ألا يقل التصنيف الائتماني لها عن الحد الأدنى الذي يحدده مجلس إدارة الهيئة.
+>
+> ٣- وثائق صناديق استثمار التنمية المستدامة الأخرى التي تتوافق مع أغراض الصندوق.
+>
+> ٤- الودائع البنكية وتحت الطلب وأذون الخزانة وغيرها من أدوات السيولة طبقاً للنسب المحددة بنشرة الاكتتاب أو مذكرة المعلومات.
+
+**Verbatim — new Article 308 bis (securitization issuance programs):**
+
+> مادة (٣٠٨ مكرراً):
+>
+> مع مراعاة المادتين (٣٥ مكرراً) و(٣٥ مكرراً ٢) من هذه اللائحة، يجوز لشركات التوريق إصدار برنامج إجمالي للتوريق يتم طرحه على عدة إصدارات وفقاً للضوابط التي يصدر بها قرار من مجلس إدارة الهيئة.
+
+**Verbatim — replacement Article 171 (fund-company governance):**
+
+> مادة (١٧١):
+>
+> يضع مجلس إدارة الهيئة قواعد حوكمة شركات الصناديق.
+>
+> ويكون للهيئة الاطلاع وطلب البيانات والمستندات وغيرها من المعلومات اللازمة للتحقق من التزام الصندوق بأحكام القانون ولائحته التنفيذية والقرارات الصادرة تنفيذاً لهما.
+
+**Verbatim — Article 4 (commencement):**
+
+> (المادة الرابعة)
+>
+> ينشر هذا القرار في الجريدة الرسمية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+### C. Legal effect
+
+Decision 3045/2023 is a major regulation update: sukuk issuance programs and disclosure; ETF and ESG fund definitions; sustainable-development funds; governance and reporting duties; and multi-issuance securitization programs. It must be read with subsequent Decisions 2423/2024, 1539/2025 and 2482/2025, and the FRA consolidated 2025 Executive Regulation text.
+
+**Collection status for Decisions 2423/2024 and 3045/2023:** official FRA records confirm both instruments; searchable Arabic texts and Gazette metadata located; selected operative provisions transcribed above. No lawyer review or rights clearance claimed.
