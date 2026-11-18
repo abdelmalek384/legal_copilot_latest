@@ -1256,6 +1256,23 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Review source terms; obtain original Gazette copies through authorized channels; keep rights unknown absent documentary permission."
+    },
+    {
+      "source_id": "EG-FAOLEX-LAW143-1981",
+      "authority": "FAOLEX — Food and Agriculture Organization of the United Nations legal database",
+      "source_page": "https://faolex.fao.org/docs/pdf/egy208069.pdf",
+      "material_types": [
+        "Law 143/1981 full Arabic text",
+        "Historical statute reproduction and Gazette metadata"
+      ],
+      "access_status": "Public PDF; identifies Law143/1981 issued 30 Aug 1981, published Official Gazette issue35 bis on 31 Aug 1981, effective 1 Sep 1981",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-11-18. FAOLEX provides public full text of Law143/1981 and corroborates original publication metadata. No source-specific bulk extraction or commercial reuse licence identified.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "single public PDF; no bulk/API permission established",
+      "required_next_action": "Compare against official Ministry PDF and Gazette page images; review FAOLEX terms before bulk extraction or redistribution."
     }
   ]
 }
