@@ -2171,3 +2171,14 @@ Added **Law162/2026**, amending Law16/2018 on the Martyrs, Victims, Missing and 
 - **Finance Minister Decision634/2026** (Egyptian Proceedings issue244 تابع (ج), 3 Nov 2026): full three-article Arabic text captured; extends the temporary customs-zone status of the El Dabaa Nuclear Power Plant specialized port for one year from expiry of Decision43/2026 and incorporates Nuclear Power Plants Authority letter 6782/1 dated 20 Oct 2026. The incorporated letter and original Gazette PDF remain outstanding.
 - **PM Decision3561/2026** (Official Gazette issue46 مكرر (ج), 15 Nov 2026): creates the Supreme Council for Human Resource Skills Development. Partial text captured; membership includes the labour minister as chair, representatives from 11 ministries, seven employer representatives and seven labour representatives; secondary sources report four-year terms, quarterly reporting to the PM and repeal of PM Decision705/2014. Full Gazette text still required.
 - Text file: [Finance Decision634 and PM Decision3561 tranche](acquisition_tranche_finance634_and_hr_skills3561_2026-11-18.md).
+
+
+### Audited register snapshot — 18 November 2026, after EG-0321
+
+Direct CSV audit (IDs unique in both acquisition and classification ledgers):
+- **Acquisition register:** 305 rows / 305 unique IDs.
+- **Type classification:** 305 rows / 305 unique IDs: 73 base laws; 59 amending laws; 18 executive regulations; 43 executive-regulation amendments; 21 judicial decisions; 78 other decisions; 13 other/unclassified.
+- **Full-text inventory:** 80 rows / 76 unique instruments; four duplicate inventory IDs are source/version rows, not extra instruments. Unique-instrument coverage **76/305 = 24.9%**. This is the presence of a full-text source/inventory record, not a statement that all text is verbatim, authenticated or current.
+- **Source-permission register:** 108 unique source records.
+- **Original Gazette PDF bytes/hash newly archived in this acquisition pass:** 0. Several official DSpace records expose restricted/request-a-copy access; official metadata is not equivalent to obtaining the file.
+- **Normalized unique provision count:** not recalculated in this pass. Do not add paraphrased summaries or partial article extracts to the unique-provision count. Decision634/2026 has three full operative articles from a secondary text source; Law162/2026 amendment clauses are captured with a historical-date discrepancy flagged; Decision3561/2026 is only partially extracted; Decision3356/2026 repository copy is explicitly a normalized digest rather than verbatim.
