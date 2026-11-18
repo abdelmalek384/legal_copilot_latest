@@ -91,3 +91,17 @@ Across the two supplemental text files:
 ## 7. Rights and verification
 
 No lawyer verification, commercial reuse permission, authenticated local Amiri Press original PDF, or bulk-collection permission is claimed. The alternate full-text sources are not represented as original Gazette binaries.
+
+
+## 8. Gazette PDF access upgrade (after initial checkpoint draft)
+
+### Law 168/2025
+A 20-page PDF was opened at https://cdn.vetogate.com/UploadCache/libfiles/556/3/0x0o/540.pdf . Its first pages identify Official Gazette issue 32 bis (و), 13 August 2025; Law 168/2025 appears on printed pages 3–10 and Law 169/2025 follows. This is a secondary-hosted scan reproduction of printed Gazette pages. The scan itself carries a notice that the electronic copy is not valid for circulation. It is not the authenticated Amiri Press digital binary. The Amiri Press DSpace original bundle remains request-only; the Court of Cassation register PDF locator timed out during this pass.
+
+### PM Decision 200/2026
+The full SIS-hosted Official Gazette PDF is directly accessible and was opened: https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/118973/OG3_20260118_2885.pdf?isAllowed=y&sequence=2 . It identifies issue 3 bis (أ), 18 January 2026, and includes the full issuing decision, all 20 articles of the Executive Regulation and the attached forms: Form 1 (two variants: agricultural/reclaimed land and built land), Form 2 (inspection report), and Form 3 (periodic report). PDF text extraction covers the 562-line source. This upgrades the status from a metadata-only PDF locator to an opened official-hosted full-issue PDF; bytes/hash have not yet been archived locally. The DSpace original-bundle item remains an additional Amiri Press metadata route.
+
+### Decision 480/2026
+The Amiri Press DSpace item remains request-copy only. Its metadata identifies Gazette issue 45 bis (ج), 10 November 2026, 178.37 KB original bundle. The alternate reproductions expose both operative articles, but no direct official Amiri Press HTML text locator was found; the Amiri Press search for decision number 480 returned an unrelated Ministry of Housing decision 480/2026, which must not be conflated with the Presidential Decision.
+
+The source-permission register now has 71 unique records after adding the VetoGate-hosted Law 168 Gazette scan. Collection and commercial reuse permissions remain unknown.
