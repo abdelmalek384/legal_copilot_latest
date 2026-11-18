@@ -1134,3 +1134,12 @@
 
 
 | checkpoint 123 — Agent 3 Mortgage Finance Executive Regulation amendments | Added Gazette-original PM Decision 2/2015 (six issuing articles, broad 37-article regulation rewrite) and PM Decision 32/2024 (four issuing articles, EGP 100m minimum paid-up capital, 100% 30-day liquidity, 30-day delinquency + 60-day notice and supervised collateral-sale procedure); recorded PM 465/2005, 1864/2008, 1/2015 and FRA 109/110/139 of 2024 as pending amendment leads; cumulative Agent 3 minimum 141 instruments / 1,345 provision units |
+
+
+### State private-property Gazette source acquisition status — Law 168/2025, Decision 200/2026, Decision 480/2026
+
+- **Law 168/2025:** visually inspected ten-page printed Gazette scan reproduction hosted by Vetogate (issue 32 bis (و), 13 August 2025, pages 1–10); DSpace Amiri Press original bundle (294.4 KB) remains request-only; separate Court of Cassation-hosted text PDF is available.
+- **PM Decision 200/2026:** complete official SIS-hosted Official Gazette PDF for issue 3 bis (A), 18 January 2026 is publicly readable (562 extracted lines; issuing provisions, 20 regulation articles and forms); Article 4 makes it effective 19 January 2026. DSpace's separate Amiri Press original bundle remains request-only.
+- **Presidential Decision 480/2026:** DSpace confirms issue 45 bis (ج), 10 November 2026, and 178.37 KB Amiri Press original bundle, but download opens request-a-copy; only secondary press reproductions of its two operative articles located. No Gazette scan PDF bytes obtained.
+- **Decision 480 deadline:** initial Article 3 period provisionally ends 19 July 2026 under CPC Article15; the extension's start date remains unresolved. Conditional constructions are 19 January 2027 (consecutive extension) or 10/11 May 2027 (reopening from publication/effectiveness); no final date certified.
+- Detailed calculation: [state_private_property_law_168_2025_decision_200_2026_decision_480_2026_deadline_computation_2026-11-18.md](state_private_property_law_168_2025_decision_200_2026_decision_480_2026_deadline_computation_2026-11-18.md).
