@@ -4,6 +4,8 @@
 **Source:** LAW HUB searchable Arabic text of Decision 144/2009, https://lawhub.info/eg/?p=12146, lines 792–844 as opened on 18 November 2026.  
 **Source tier:** secondary legal-text transcription; not an original Gazette binary. Preserve as a source-page text snapshot pending Gazette-image comparison.
 
+**Superseding note (checkpoint 210):** Articles 26–40 have subsequently been transcribed. Cumulative complete Arabic-body coverage is now 48/185 (137 remain). See checkpoint 210.
+
 ## Article 20
 يهدف المخطط التفصيلي إلى تحقيق التنمية الاجتماعية والاقتصادية والعمرانية بالمدينة أو القرية وتوفير بيئة صحية وآمنة ويكون من ضمن مكوناته ما يلي:
 
