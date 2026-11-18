@@ -6588,3 +6588,52 @@ The Ministry of Investment and Foreign Trade published an official announcement 
 **Classification:** official ministry announcement / policy lead only, not a published ministerial decision, Cabinet decision, Gazette amendment or operative law. No legal effects should be attributed to these proposals unless and until the final amending decision is published in الوقائع المصرية. The source page is the Ministry's official blog, title: "وزير الاستثمار والتجارة الخارجية يشارك في قمة انطلاق لريادة الأعمال..." (MIFT Blog ID 369; search result indexed September 2026). URL: https://www.mift.gov.eg/Blog/Details/369
 
 This is a currentness watch item for the 361-article Companies Law Executive Regulation 96/1982 consolidation already held in the master index. It must not be counted as a legal instrument or amendment.
+
+
+## 47. Capital Market Executive Regulation — PM Decision 1539/2025 (energy-source certificates)
+
+### A. Official Gazette identity
+
+**Decision:** Prime Minister Decision 1539/2025 amending the Executive Regulation of Capital Market Law 95/1992 (Decision 135/1993).  
+**Gazette:** Official Gazette issue 18 مكرر, 4 May 2025.  
+**Effective:** 5 May 2025 (day following publication).  
+**Official FRA amendment register:** https://fra.gov.eg/regulations/تعديلات-اللائحة-التنفيذية-لقانون-سوق/  
+**Official Gazette archive record (State Information Service DSpace):** https://mediadr.sis.gov.eg/xmlui/handle/123456789/96983  
+**Gazette PDF filename in the archive:** OG18_20250504_3265.pdf (216.2 KB).  
+**Full searchable Arabic text:** https://lawhub.info/eg/?p=11907
+
+FRA's official updated Decision 135/1993 page lists Decision 1539/2025 among the regulation's amendment chain. The DSpace record identifies the Official Gazette issue 18 مكرر, date 4 May 2025, Amiri Press publisher and the decision number.
+
+### B. Verbatim provisions
+
+**Verbatim — Article 1 (new Regulation Article 35 bis/9):**
+
+> (المادة الأولى)
+>
+> يُضاف إلى اللائحة التنفيذية لقانون سوق المال مادة جديدة برقم (٣٥ مكرراً ٩) نصها الآتي:
+>
+> مادة (٣٥ مكرراً ٩):
+>
+> تعد شهادة مصدر الطاقة المنصوص عليها بقانون الكهرباء الصادر بالقانون رقم ٨٧ لسنة ٢٠١٥، أداة مالية قابلة للتداول بالبورصات المصرية.
+
+**Verbatim — Article 2 (publication and commencement):**
+
+> (المادة الثانية)
+>
+> يُنشر هذا القرار في الجريدة الرسمية، ويُعمل به من اليوم التالي لتاريخ نشره.
+
+**Decision signature/date:**
+
+> صدر برئاسة مجلس الوزراء ٦ ذي القعدة سنة ١٤٤٦ هـ
+>
+> (الموافق ٤ مايو سنة ٢٠٢٥ م).
+>
+> رئيس مجلس الوزراء
+>
+> دكتور/ مصطفى كمال مدبولي
+
+### C. Legal effect
+
+The decision gives the statutory energy-source certificate under Electricity Law 87/2015 the character of a financial instrument tradable on Egyptian exchanges by inserting Regulation Article 35 bis/9. It does not amend the text of Capital Market Law 95/1992 itself; it amends the 135/1993 Executive Regulation. This is a cross-sector instrument linking electricity-market certificates with the capital-market regulatory perimeter.
+
+**Collection status:** official FRA amendment register and official Gazette DSpace record found; full searchable Arabic decision text surfaced; two issuing provisions plus inserted Regulation provision transcribed. No lawyer review or rights clearance claimed.
