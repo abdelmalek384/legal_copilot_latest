@@ -850,3 +850,19 @@
 - Cross-law rules: CBE Law issuing Article 2 makes Companies Law 159/1981 subsidiary and applies Commercial Code 17/1999 to bank-customer transactions. Article 221 disapplies Competition Law 3/2005 to CBE-licensed entities and substitutes a CBE competition regime. These are important retrieval routing rules.
 - The MOF PDF is official but was not text-extractable in the web reader; verbatim transcriptions above are from a secondary searchable page and require page-image comparison against the Gazette. No lawyer review.
 - **Updated Agent 3 minimum:** 74 distinct instruments with some Arabic text surfaced; 1,031 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Importers Register Executive Regulation 271/2026 (current)
+
+- MIFT official record identifies Minister of Investment and Foreign Trade Decision 271/2026 dated 21 Jul 2026; Gazette issue 157 تابع, 21 Jul 2026; effective 22 Jul 2026.
+- Full searchable 20-provision Arabic text surfaced. Decision Article 2 expressly repeals Ministerial Decision 846/2017 and conflicting rules. Therefore Decision 846/2017 is historical/repealed from 22 Jul 2026 and must no longer be used as the current regulation.
+- New 17-article regulation introduces electronic register/platform, updated importer eligibility and documentation, training certificates, capital/turnover thresholds, security deposits, electronic linkage, warehouse coordinates and electronic sales/distribution invoice reporting, annual/quarterly accounts, five-year registration and suspension/deregistration.
+- Twelve provisions transcribed in Agent 3 file. Official Gazette page-image verification and reconciliation with Law 173/2023 and Law 4/2026 remain.
+ 
+### Research Agent 3 — Commercial Agency Executive Regulation Decision 593/2025
+
+- GOEIC official current legislation catalogue lists Decision 593/2025 amending Executive Regulation Decision 342/1982 under Law 120/1982. Gazette issue 20 تابع (أ), 25 Jan 2026; effective 26 Jan 2026. Official DSpace Gazette record identifies Ministry of Investment and Foreign Trade as author and Amiri Press as publisher.
+- Decision 593/2025 changes the regulation title, replaces 12 existing provisions, adds seven new provisions (including Articles 3 bis, 15 bis, 16 bis and sub-articles, 18 bis), repeals old Articles 26–27, and grants a six-month regularization period for real estate brokers.
+- The amended framework expressly creates the real estate brokers register, requires electronic/temporary paper records of broker transactions, commission amounts and client/property details, and updates commercial agent/mediator registration and ownership documents.
+- Twelve selected provisions transcribed in Agent 3 file. Current chain: Law 120/1982 as amended by Law 21/2022; Executive Regulation Decision 342/1982 as amended by Decisions 84/1988, 111/2000, 362/2005 and 593/2025.
+- **Updated Agent 3 minimum:** 76 distinct instruments with some Arabic text surfaced; 1,063 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
