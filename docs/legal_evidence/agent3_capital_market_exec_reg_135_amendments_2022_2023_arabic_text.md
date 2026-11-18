@@ -9,11 +9,11 @@ https://alamiria.com/Sec/TashTxt?id=aw+khWaLqVU%3D
 
 ## Decision 3456/2022 — sustainable-development bonds and fund reporting
 - Prime Minister Decision 3456/2022 amending Executive Regulation 135/1993.
-- The official FRA consolidated text attributes Articles 35 bis 3 and 35 bis 4, and amendments to Article 170, to Decision 3456/2022.
-- Original Gazette issue/page and signed PDF/hash still need acquisition; full operative provision text below is taken from the official FRA consolidated regulation, not the issuing decision.
+- The official FRA consolidated text and original Gazette page images attribute new Articles 35 bis 4, 35 bis 5 and 35 bis 6, plus amendments to several fund provisions including Article 170, to Decision 3456/2022.
+- Original Gazette issue 38 bis (أ), 28 September 2022, pp. 3–13. Official FRA-hosted Gazette PDF (11 pages): https://fra.gov.eg/wp-content/uploads/2024/10/قرار-رئيس-الوزراء-رقم-3456-لسنة-2022.pdf . The PDF is a page-image scan; pages 0–10 were visually inspected. The text below is now supported by the original Gazette page images and the FRA consolidated regulation.
 - Type: Prime Minister decision.
 
-**New Article 35 bis 3 — sustainable-development bond types**
+**New Article 35 bis 4 — sustainable-development bond types**
 > يجوز إصدار السندات التالية لتمويل المشروعات والأنشطة المتعلقة بمجالات التنمية المستدامة:
 >
 > ١. سندات التنمية المستدامة: أحد أنواع السندات المخصصة لتمويل أهداف التنمية المستدامة فقط، وتستخدم حصيلتها في تمويل المشروعات الخضراء ومشروعات التنمية الاجتماعية التي تهدف إلى تحقيق الاستدامة من خلال الأهداف التنموية المراعية للأبعاد البيئية والاجتماعية.
@@ -28,7 +28,7 @@ https://alamiria.com/Sec/TashTxt?id=aw+khWaLqVU%3D
 >
 > ٦. السندات البيئية (الانتقالية): أحد أنواع السندات التي تهدف لتمويل الأنشطة الملوثة للبيئة والتي ترغب في الانتقال بأنشطتها وتطويرها لتكون أقل تأثيراً على البيئة، وتصدر هذه السندات عن الجهات غير المؤهلة لإصدار السندات الخضراء بسبب ممارستها لأنشطة ملوثة للبيئة، كالأنشطة الصناعية، والطيران والشحن، والصناعات الكيميائية، والنفط والغاز، ومشروعات استدامة الحد من التلوث وتقليل انبعاثات الغازات المسببة للاحتباس الحراري وتغير المناخ وتخفيف تلوث الهواء ومشروعات الحد من المخلفات الملوثة للمياه والمشروعات المستفيدة للطاقة، وذلك بمراعاة وضع المصدر لخطة واضحة وأهداف محددة تجاه الحد من التلوث البيئي على أن يلتزم بدفع فائدة إضافية على التمويل تحدد بمقدار ما حققته من نفع بإصدارها للسندات في حال عدم تحقيق هذه الأهداف.
 
-**New Article 35 bis 4 — issuance procedure and eligible issuers**
+**New Article 35 bis 5 — issuance procedure and eligible issuers**
 > مع عدم الإخلال بالأحكام والإجراءات المنظمة لإصدار السندات الواردة بهذا القانون وهذه اللائحة، يجوز إصدار السندات المشار إليها بالمادة (٣٥ مكرراً ٣) من هذه اللائحة، وفق القواعد والإجراءات الآتية:
 >
 > أولاً - إجراءات إصدار السندات:
@@ -68,9 +68,9 @@ The current text carries amendment footnotes for both Decision 3456/2022 and Dec
 
 ## Decision 4664/2022 — voluntary carbon-credit market
 - Prime Minister Decision 4664/2022.
-- Official FRA consolidated text attributes Articles 35 bis 7 and 35 bis 8 to this decision.
+- Official FRA-hosted original Gazette PDF: https://fra.gov.eg/wp-content/uploads/2022/12/قرار-رئيس-الوزاراء-رقم-4664-لسنة-2022.pdf . It identifies Official Gazette issue 51 bis (د), 25 December 2022, pages 5–6, and was text-extracted in full. The official consolidated regulation also attributes Articles 35 bis 7 and 35 bis 8 to this decision.
 - Official environmental authority news and secondary legal records corroborate the carbon-market initiative.
-- Original Gazette issue/page and issuing clauses not yet acquired; text below is from official FRA consolidated regulation.
+- Original Gazette text obtained from the official FRA-hosted two-page PDF; issuing Articles 1–2 and Articles 35 bis 7–8 are available as primary text.
 
 **New Article 35 bis 7 — carbon-reduction certificates**
 > تنشأ بالبورصة المصرية سوق طوعية لتداول "شهادات خفض الانبعاثات الكربونية". وتعد تلك الشهادات أدوات مالية قابلة للتداول، ويقصد بها "وحدات خفض انبعاثات غازات الاحتباس الحراري"، وتصدر لصالح أية جهة تنفذ مشروعات خفض انبعاثات غازات الاحتباس الحراري بعد الحصول على موافقة الجهات المعنية ذات الاختصاص، وتمثل كل "وحدة" طناً من ثاني أكسيد الكربون المكافئ تم تخفيضه.
@@ -146,3 +146,52 @@ The current text carries amendment footnotes for both Decision 3456/2022 and Dec
 - Minimum newly normalized units counted here: 9 substantive regulation provisions (35 bis 3, 35 bis 4, 35 bis 7, 35 bis 8, 358 bis, 170(3)(1), 170(3)(2), 171, plus one additional provision-level governance/reporting event counted once). Issuing articles are not added where their full text was not acquired.
 - Cumulative Agent 3 minimum: **202 documents / 1,996 normalized numbered units**.
 - Assigned-domain completion remains **55% provisional**; whole corpus **2% provisional**; lawyer review 0%.
+
+
+## Primary Gazette verification and article-number correction — 18 November 2026
+
+### Decision 3456/2022 — original Gazette copy obtained
+The original 11-page official FRA-hosted Gazette scan is now available at:
+https://fra.gov.eg/wp-content/uploads/2024/10/قرار-رئيس-الوزراء-رقم-3456-لسنة-2022.pdf
+
+The page header identifies Official Gazette issue 38 bis (أ), 28 September 2022, pages 3–13. Page images confirm:
+- Article 2 adds **Articles 35 bis 4, 35 bis 5 and 35 bis 6**, plus Article 167(1)(5). It does not add the six sustainable-bond types as Article 35 bis 3.
+- Correct article numbering in this record:
+  - **Article 35 bis 4** = sustainable-development bond types (sustainability, sustainability-linked, social, women-empowerment, climate and transitional/environmental bonds).
+  - **Article 35 bis 5** = issuance procedures, eligible issuers, targeted projects and issuer obligations.
+  - **Article 35 bis 6** = securitization bonds and sukuk in sustainable-development fields.
+- The former headings "Article 35 bis 3" and "Article 35 bis 4" in the earlier draft are corrected above. The 35 bis 3 label is withdrawn for this decision.
+
+**Decision Article 1 (replacement provisions — list as printed)**
+> يُستبدل بنصوص المواد (١٤١/ تعريف صندوق الاستثمار المفتوح وصندوق الاستثمار المغلق)، (١٤٢/ الفقرة الأولى)، (١٤٧/ الفقرة الأولى)، (١٥٧/ الفقرة الثانية)، (١٦٣/ الفقرة الثالثة - البند ١١)، (١٧٠/ ثالثاً - البند ٣)، (١٨٣ مكرراً ٧) من اللائحة التنفيذية لقانون سوق رأس المال المشار إليها، النصوص الآتية:
+
+**Decision Article 2 (insertions)**
+> يُضاف إلى اللائحة التنفيذية لقانون سوق رأس المال المشار إليها مواد وبنود جديدة بأرقام (٣٥ مكرراً ٤)، (٣٥ مكرراً ٥)، (٣٥ مكرراً ٦)، (١٦٧/ الفقرة الأولى - بند ٥)، نصوصها الآتية:
+
+**New Article 35 bis 6 — securitization and sukuk**
+> يجوز إصدار سندات توريق في المجالات المرتبطة بالسندات المشار إليها بالمادة (٣٥ مكرراً ٤) من هذه اللائحة، بشرط اتفاق سياسات الجهة المحيلة مع مبادئ التنمية المستدامة، أو أن تتوافر فيها أحد المعايير المتعلقة بأهداف التنمية المستدامة، أو أن تكون الحقوق المالية المحالة مرتبطة بمشروعات تستهدف تحقيق أهداف التنمية المستدامة، كما يجوز إصدار صكوك في المجالات المشار إليها لتمويل الجهات المستفيدة التي تستهدف تحقيق أهداف التنمية المستدامة.
+>
+> ويسري في شأن إصدار سندات التوريق والصكوك المشار إليها بالفقرة السابقة القواعد والإجراءات المنصوص عليها في المادة (٣٥ مكرراً ٥) من هذه اللائحة.
+
+**New Article 167(1)(5) — fund financial statements**
+> إعداد القوائم المالية للصندوق وفقاً لمعايير المحاسبة المصرية وتقديمها إلى مجلس إدارة شركة الصندوق قبل شهر من التاريخ المحدد لانعقاد الجمعية العامة للصندوق، على أن يتم مراجعتها بمعرفة مراقبي حسابات الصندوق المقيدين بالسجل المعد لذلك بالهيئة.
+
+**Decision Article 3 — repeal**
+> تُلغى الفقرة الثالثة من المادة (١٥٧) والبند (٥) من الفقرة الأولى من المادة (١٦٧) من اللائحة التنفيذية لقانون سوق رأس المال المشار إليها.
+
+**Decision Article 4 — publication/effectiveness**
+> يُنشر هذا القرار في الجريدة الرسمية، ويُعمل به من اليوم التالي لتاريخ نشره، فيما عدا البند (٥) من الفقرة الأولى من المادة (١٦٧) فيُعمل بها اعتباراً من السنة المالية التالية لتاريخ العمل بهذا القرار.
+
+### Decision 4664/2022 — original Gazette copy obtained
+The official FRA-hosted two-page PDF is:
+https://fra.gov.eg/wp-content/uploads/2022/12/قرار-رئيس-الوزاراء-رقم-4664-لسنة-2022.pdf
+
+It identifies Official Gazette issue 51 bis (د), 25 December 2022, pages 5–6. Full text extraction confirms:
+- Article 1 inserts new Articles 35 bis 7 and 35 bis 8.
+- Article 2 publication and effectiveness from the day after publication.
+- Article 35 bis 7: voluntary exchange market in carbon-reduction certificates; each unit represents one tonne of CO2-equivalent reduced; projects require approvals; public/private/government entities and developers notify FRA and Environment; issuers disclose changes in project approvals.
+- Article 35 bis 8: FRA/Environment committee sets issuance/trading rules; FRA maintains project database and sends monthly reports to Environment; EGX issues trading rules subject to FRA approval.
+This supersedes the earlier status that the original Gazette decision was outstanding.
+
+### Source correction
+The prior record's phrase "Decision 3456 adds Articles 35 bis 3 and 35 bis 4" is incorrect. The original Gazette page image establishes 35 bis 4, 35 bis 5 and 35 bis 6. The 2025 consolidated PDF and this Gazette scan must be used as the controlling sources for the provision IDs.
