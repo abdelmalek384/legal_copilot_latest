@@ -2089,6 +2089,24 @@
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "Single article HTML; no bulk/API permission established",
       "required_next_action": "Use only for cross-check; prefer Amiri Press text and original Gazette scan."
+    },
+    {
+      "source_id": "EG-SIS-REFUGEE-REG-1568",
+      "authority": "State Information Service — Human Rights Studies Portal / Official Gazette reproduction",
+      "source_page": "https://hrightsstudies.sis.gov.eg/media/30890/اللائحة-التنفيذية-لقانون-لجوء-الأجانب.pdf",
+      "material_types": [
+        "Original Official Gazette issue21 supplement B, 21 May 2026",
+        "PM Decision1568/2026",
+        "Executive Regulation of Foreign Asylum Law164/2024"
+      ],
+      "access_status": "Directly accessible PDF opened and text-extracted in browser; identifies Gazette masthead, issue21 تابع (ب), date 21 May 2026 and Decision1568/2026. No local PDF bytes/hash archived.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://sis.gov.eg/",
+      "permission_evidence": "The SIS portal provides public access to a PDF reproduction of the Official Gazette. Public accessibility does not establish permission for bulk extraction, republication, commercial reuse or redistribution. The original Gazette itself is an official publication; portal reproduction and any annotations/metadata must be assessed separately.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "Single direct PDF URL; no bulk/API permission established",
+      "required_next_action": "Archive the original PDF bytes and SHA-256; verify exact page images; review portal terms and preserve official-publication provenance. Do not infer commercial reuse permission."
     }
   ]
 }
