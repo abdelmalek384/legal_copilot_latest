@@ -2164,3 +2164,10 @@ Added PM Decision3356/2026 (18 articles; Training and Qualification Financing Fu
 ### Same-day new amending law — EG-0319
 
 Added **Law162/2026**, amending Law16/2018 on the Martyrs, Victims, Missing and Injured Persons Fund. Gazette issue46 مكرر (أ), 15 Nov 2026; effective 16 Nov. The amendments: exempt all transport tickets and specified public/teaching-hospital medical services/documents from the fund levy; prescribe top-up compensation where partial disability progresses to permanent total disability or death; specify military medical, police medical or forensic authorities for disability proof; add special presidential patronage; disqualify beneficiaries with final terrorism convictions; and extend Article14 compensation treatment to pre-existing beneficiaries. Full operative amendment clauses are in [the Law162 text tranche](acquisition_tranche_law162_2026_martyrs_fund_amendment_2026-11-18.md). The Article14 historical date differs between secondary transcriptions and remains flagged for Gazette-image verification.
+
+
+### Additional November instruments — EG-0320 and EG-0321
+
+- **Finance Minister Decision634/2026** (Egyptian Proceedings issue244 تابع (ج), 3 Nov 2026): full three-article Arabic text captured; extends the temporary customs-zone status of the El Dabaa Nuclear Power Plant specialized port for one year from expiry of Decision43/2026 and incorporates Nuclear Power Plants Authority letter 6782/1 dated 20 Oct 2026. The incorporated letter and original Gazette PDF remain outstanding.
+- **PM Decision3561/2026** (Official Gazette issue46 مكرر (ج), 15 Nov 2026): creates the Supreme Council for Human Resource Skills Development. Partial text captured; membership includes the labour minister as chair, representatives from 11 ministries, seven employer representatives and seven labour representatives; secondary sources report four-year terms, quarterly reporting to the PM and repeal of PM Decision705/2014. Full Gazette text still required.
+- Text file: [Finance Decision634 and PM Decision3561 tranche](acquisition_tranche_finance634_and_hr_skills3561_2026-11-18.md).
