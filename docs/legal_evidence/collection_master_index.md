@@ -652,3 +652,11 @@
 - Law 75/2017: Official Gazette issue 24 تابع, 15 Jun 2017; replaced Article 3 of Law 34/1976 with Egyptian nationality and Chamber of Commerce/Industry licensing criteria. This version was later superseded by Law 198/2020. Text transcribed in Agent 3 file.
 - Current Article 3 must be the Law 198/2020 version; preserve Law 75/2017 as historical version, not current text.
 - **Updated Agent 3 minimum:** 57 distinct instruments with some Arabic text surfaced; 375 article/provision text units; 13/13 law families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Consumer Protection Law 181/2018 full text resolved
+
+- Full Arabic Official Gazette reproduction of Law 181/2018 now retrieved through WIPO Lex: Official Gazette issue 37 تابع, 13 Sep 2018; PDF shows official Gazette header/date and substantive Articles 1–76. This resolves the earlier CPA PDF OCR failure; CPA's own official PDF remains the primary government locator.
+- 23 provisions transcribed in Agent 3 file, including definitions, consumer rights, supplier disclosure/Arabic language, price display, strategic goods, 14-day return, defect notification/recall, 30-day defective-goods remedy, 2-year durable-goods warranty, product liability, unfair terms, confidentiality, distance contracts, enforcement, penalties and corporate liability.
+- Law 20/2024 remains the current replacement of Article 71; the 2018 original Article 71 is historical and must not be used for current penalties. The law excludes financial/banking services from "products" and the distance-contract chapter excludes banking/financial services and capital-market-related services.
+- **Updated Agent 3 minimum:** 58 distinct instruments with some Arabic text surfaced; 398 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
