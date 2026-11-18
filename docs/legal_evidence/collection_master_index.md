@@ -377,21 +377,15 @@
 
 | [collection_checkpoint_80_electronic_signature_law_15_2004.md](collection_checkpoint_80_electronic_signature_law_15_2004.md) | Electronic Signature Law 15/2004, Executive Regulation 361/2020 and trust-services amendment Decision 467/2024 |
 
-| [collection_checkpoint_81_property_registration_land_registry_2026-11-18.md](collection_checkpoint_81_property_registration_land_registry_2026-11-18.md) | Law 114/1946, Law 9/2022, Law 142/1964, Decision 825/1975, Decision 2332/2022, Decision 11264/2016 and current 2026 cadastral commencement postponements 5207/2026 and 5208/2026; official/secondary source distinctions and extraction failures recorded |
+| [collection_checkpoint_85_property_registration_land_registry_2026-11-18.md](collection_checkpoint_81_property_registration_land_registry_2026-11-18.md) | Law 114/1946, Law 9/2022, Law 142/1964, Decision 825/1975, Decision 2332/2022, Decision 11264/2016 and current 2026 cadastral commencement postponements 5207/2026 and 5208/2026; official/secondary source distinctions and extraction failures recorded |
 
-## 2026-11-18 domain checkpoint
+## 2026-11-18 civil, property, registration and rent checkpoint
 
-- New distinct legal instruments recorded in checkpoint 81: 8 (base/amending laws, executive regulation and ministerial decisions counted separately).
-- Full searchable Arabic text retrieved for 6 instruments; 2 additional instruments have partial text only.
-- At least 39 distinct article/provision texts are quoted or substantively extracted in checkpoint 81; this is an article-level excerpt count, not a claim that the full 8 instruments have been transcribed.\n- Checkpoint 82 adds 48 distinct Civil Code article provisions from a government-hosted PDF, without counting Law 131/1948 again as a newly discovered instrument.\n- Checkpoint 83 adds full/current Arabic texts for Law 148/2001, its PM Decision 1/2001 Executive Regulation and Law 93/2018; it also captures the full 2014 and 2024 amendment texts. Law 148/2001 is not counted as a new discovery because checkpoint 29 already recorded it.\n- Checkpoint 84 supplements existing rent-law records with searchable predecessor texts, amendments and judicial-invalidity notes; these are not new base-law discoveries.
-- Overall corpus coverage remains approximately 2% (provisional). No reliable total denominator of unique Egyptian legal article texts is recorded, so the incremental percentage contribution cannot responsibly be calculated or used to revise the rounded whole-corpus estimate.
-- Checkpoint 81 adds material not previously recorded in the master index; it does not duplicate the Civil Code, Evidence, Building, rent or State-property checkpoints.
-
-| [collection_checkpoint_82_civil_code_property_contract_article_extraction_2026-11-18.md](collection_checkpoint_82_civil_code_property_contract_article_extraction_2026-11-18.md) | Government-hosted Arabic Civil Code extracts: sale, lease, agency, suretyship, easements and official mortgage (42 unique article provisions; no duplicate base instrument) |
-
-| [collection_checkpoint_83_mortgage_finance_law_148_2001_and_regulations_2026-11-18.md](collection_checkpoint_83_mortgage_finance_law_148_2001_and_regulations_2026-11-18.md) | Official FRA updated text for Mortgage Finance Law 148/2001 and PM Decision 1/2001 regulation; Gazette amendments Law 55/2014, Law 93/2018 and PM Decision 32/2024; missing amendment instruments and commencement discrepancy recorded |
-
-| [collection_checkpoint_84_legacy_rent_laws_and_judicial_amendments_2026-11-18.md](collection_checkpoint_84_legacy_rent_laws_and_judicial_amendments_2026-11-18.md) | Full searchable secondary texts and article extracts for Laws 49/1977, 136/1981, 6/1997, 14/2001, 4/1996, 137/2006 and Decision 237/1997; judicial invalidation map and missing Gazette sources |
+- Checkpoint 85 records 8 distinct legal instruments not previously recorded in the project index: 6 full searchable Arabic texts and 2 partial texts; 39 article/provision extracts.
+- Checkpoint 86 adds 48 distinct Civil Code article provisions from the government-hosted Arabic PDF; Law 131/1948 is not counted again as a newly discovered instrument.
+- Checkpoint 87 adds current/full Arabic texts for Mortgage Finance Law 148/2001, its PM Decision 1/2001 Executive Regulation and Law 93/2018; it also captures the full Law 55/2014 and PM Decision 32/2024 amendment texts.
+- Checkpoint 88 adds 6 full searchable predecessor-rent texts from secondary sources, 3 amendment instruments and at least 13 article-level extracts, plus a judicial invalidation map.
+- Overall whole-corpus coverage remains approximately 2% as recorded in the existing index. This is provisional. The project does not yet record a denominator of all unique Egyptian legal article texts, so the incremental percentage contribution of these checkpoints cannot responsibly be calculated. Counts are based on unique instruments and article provisions, not URLs or catalogue entries.
 
 ## High-value primary-source portals
 
