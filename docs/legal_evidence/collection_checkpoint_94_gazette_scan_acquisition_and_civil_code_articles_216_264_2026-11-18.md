@@ -196,3 +196,11 @@ Checkpoint 116 performed a repository-wide audit of explicit Arabic article head
 - Agency provisions 701–702 distinguish general management authority from special authority for acts such as sale, mortgage, gifts, settlement and litigation. Receivership provisions 729–738 regulate preservation and administration of disputed movable/immovable assets and judicial appointment of a receiver.
 - Employment rules are expressly subject to special employment legislation under Article 675; do not apply the Civil Code chapter without checking the relevant labour-law version.
 
+## 12. Further Civil Code extraction — Articles 739–771 and 802–824
+
+- Checkpoint 99 adds **33 provisions**, Articles 739–771: life annuity, general insurance and fire insurance.
+- Checkpoint 100 adds **23 provisions**, Articles 802–824: ownership scope, neighbour relations, drainage/irrigation, landlocked access, party walls, openings and restraints on disposition.
+- Cumulative Civil Code extraction stream: **559 distinct provisions** (67 previously recorded + 492 newly transcribed in this continuation). This is not a consecutive range or verified current consolidation.
+- Property-relevant provisions include Article 803 (vertical extent and possible separation of surface ownership), Article 807 (neighbour nuisance), Article 812 (right of passage for landlocked land), Articles 814–818 (party walls), Articles 819–822 (openings and harmful premises), and Articles 823–824 (restraints on alienation).
+- Insurance provisions in checkpoint 99 are historical base text; Article 748 expressly directs other insurance rules to special legislation. The current Insurance Law and FRA rules require separate reconciliation.
+
