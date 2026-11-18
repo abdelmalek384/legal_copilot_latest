@@ -91,3 +91,6 @@ The percentages are estimates of completion against each workstream's deliverabl
 5. Archive original Law 168/2025 and Decision 480/2026 Gazette files with hashes; obtain official circular confirming the extended application window endpoint.
 
 **No lawyer review or commercial reuse permission is claimed.**
+
+
+**Superseding deadline analysis (checkpoint 227):** the 18 January 2027 figure is retained only as the consecutive-extension alternative. The leading publication-based calculation is 10 May 2027 if the new six-month period begins after Decision 480/2026 publication on 10 November 2026. The decision states no express commencement date or expiry, so neither date is certified. See checkpoint 227.
