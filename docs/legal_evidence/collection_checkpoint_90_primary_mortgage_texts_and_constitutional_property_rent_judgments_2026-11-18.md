@@ -188,3 +188,33 @@ No lawyer verification, commercial reuse permission, or official-Gazette-origina
 - House source: https://www.parliament.gov.eg/News_Show.aspx?frm=5532
 - Presidential closure report/source: https://www.shorouknews.com/news/view.aspx?cdate=16072025&id=28863f40-2e3c-4984-b3aa-2458c0acb422
 - Current rent treatment must be cross-read with subsequent Law 164/2025 and later legislation; do not treat the judgment alone as a current rent schedule.
+
+## Supplement — primary SCC cross-references for Law 142/1964 Cases 10/35 and 42/17
+
+### Case 10/35 (constitutional), judgment 2 June 2018 — Articles 21, 23 and 24
+
+- Case: الدعوى رقم 10 لسنة 35 قضائية "دستورية".
+- Judgment date: 2 June 2018.
+- Gazette publication: Official Gazette issue 22 bis (ط), 6 June 2018 (the original issue scan remains to be acquired).
+- Direct official SCC page for a later Case 14/41 judgment (16 January 2022) that reproduces the complete operative result and discusses its retroactive effect:
+  https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/12158_41_14_3_2.html
+- The official SCC text confirms:
+  > بعدم دستورية نصى المادتين (21) و(24) من قانون السجل العينى الصادر بقرار رئيس الجمهورية بالقانون رقم 142 لسنة 1964، وبسقوط نص المادة (23) من القانون ذاته، وقرار وزير العدل رقم (553) لسنة 1976 بشأن لائحة الإجراءات التى تتبع أمام اللجنة المنصوص عليها فى المادة (21) من قانون السجل العينى المشار إليه.
+- The 2022 SCC page explains that the judicial committees constituted under Article 21 and the appeals structure in Article 24 became void from inception, subject to the finality of settled legal positions. It is an official SCC source reproducing the earlier judgment, not the original 2018 case page.
+- The original 2018 judgment page/PDF and Gazette issue scan remain missing.
+
+### Case 42/17 (constitutional), judgment 6 June 1998 — Article 37 and Article 38
+
+- Case: الدعوى رقم 42 لسنة 17 قضائية "دستورية".
+- Judgment date: 6 June 1998.
+- Official Gazette publication: issue 25 (تابع), 18 June 1998.
+- Direct original SCC judgment page was not located in this retrieval.
+- Official State Council General Assembly opinion dated 10 March 2021 reproduces the controlling passage from the Constitutional Court judgment and cites the Gazette publication:
+  https://www.elmodawanaeg.com/الفتوى-رقم-512-،-ملف-رقم-58-1-595-،-بتاريخ-جلسة-2021-3-10/
+- The reproduced constitutional principle states that the register's absolute evidentiary force does not sever the registered right from the legally recognized cause of acquisition; Article 11 requires the registered real right to have arisen from a legally recognized cause. The Court invalidated the prohibition in Article 37 against acquisitive prescription contrary to the register and the consequential Article 38.
+- Secondary full judgment transcription and Gazette issue reference:
+  https://azizavocate.com/التملك-العقاري-بوضع-اليد-سجل-عيني-2023/
+- A later official State Council opinion dated 27 October 2021 again identifies Article 37's invalidity under Case 42/17:
+  https://www.elmodawanaeg.com/الفتوى-رقم-1695-،-ملف-رقم-32-2-5296-،-بتاريخ-جلسة-2021-10-27/
+- The 2021 State Council opinions are official judicial-advisory materials but are not the original SCC judgment. Do not label the original Case 42/17 judgment as directly acquired. Obtain the SCC original judgment and Gazette issue 25 (تابع) scan.
+
