@@ -81,7 +81,7 @@
       "terms_checked_on": "2026-10-24",
       "bulk_download_or_api": "not established",
       "required_next_action": "Review WIPO site/database terms; use as a discovery and cross-reference source unless intended reuse is clearly permitted.",
-      "permission_evidence": "Terms reviewed 2026-10-24. WIPO's open-access policy generally licenses WIPO-owned online publications/content under CC BY 4.0 unless more restrictive terms apply, but expressly excludes third-party content. WIPO Lex includes national legal materials; item-level ownership and service-specific terms are not established here. Keep collection and commercial reuse unknown until rights for each record are confirmed."
+      "permission_evidence": "Terms reviewed 2026-10-24. WIPO's open-access policy generally licenses WIPO-owned online publications/content under CC BY 4.0 unless more restrictive terms apply, but expressly excludes third-party content. WIPO Lex includes national legal materials; item-level ownership and service-specific terms are not established here. Keep collection and commercial reuse unknown until rights for each record are confirmed. Evidence Law source upgrade checked 2026-11-18: WIPO Lex hosts an Arabic PDF of Law 25/1968 with extracted text through Article 163 (not 117). This is a useful comparative full-text source but not a substitute for the Egyptian Official Gazette; no separate commercial/bulk reuse permission is established by its availability."
     },
     {
       "source_id": "EG-ILO-NATLEX",
@@ -916,6 +916,26 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "one issue-level PDF locator; no bulk/API permission established",
       "required_next_action": "Review SIS repository terms, acquire authorized local PDF and hash, inspect page 19 and all associated pages, and keep collection/reuse permissions unknown absent affirmative evidence."
+    },
+    {
+      "source_id": "EG-KANONMISR-EVIDENCE-CONSOLIDATED",
+      "authority": "Kanonmisr secondary legal archive",
+      "source_page": "https://kanonmisr.com/ar/wp-content/uploads/2021/08/قانون-الاثبات-المصري-رقم-25-وتعديلاته-في-ملف-واحد-pdf-1_compressed.pdf",
+      "material_types": [
+        "Evidence Law 25/1968 consolidated text",
+        "Law 54/1974 amendment",
+        "Law 23/1992 amendment",
+        "Law 18/1999 amendment",
+        "Law 76/2007 amendment"
+      ],
+      "access_status": "public PDF search result; 1,736 extracted text lines; full base law and amendment texts visible, with OCR defects and some partially illegible 1974 amendment lines",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-11-18. The PDF is hosted on a private legal-research site and contains the Evidence Law text plus amendment materials. It identifies the 1974 Official Gazette issue 27 (4 July 1974), the 1992 issue 22 bis, the 1999 issue 19 bis (A), and the 2007 issue 22 bis. It is not an Official Gazette source itself. Some extracted OCR is corrupted and the 1974 amendment text is partly illegible. No licence or terms granting bulk collection, OCR, commercial use, display or redistribution were established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "one public PDF locator; no bulk/API permission established",
+      "required_next_action": "Use only as secondary comparison and amendment index; obtain original Gazette instruments; review site terms and request permission before systematic extraction or commercial display."
     }
   ]
 }
