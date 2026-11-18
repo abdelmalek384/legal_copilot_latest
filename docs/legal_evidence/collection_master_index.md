@@ -2187,3 +2187,13 @@ Direct CSV audit (IDs unique in both acquisition and classification ledgers):
 ### Executive regulation acquisition — EG-0322
 
 Added **PM Decision1568/2026**, issuing the Executive Regulation of Foreign Asylum Law164/2024. The original Official Gazette PDF is directly accessible through the State Information Service portal (issue21 تابع (ب), 21 May 2026); the Amiri Press DSpace item separately lists the original bundle at 404.03 KB. The regulation contains 35 articles and five issuing provisions. Partial Arabic text extracts are stored in [the Decision1568 tranche](acquisition_tranche_pm_decision1568_2026_foreign_asylum_regulation.md); full searchable text is available from MKSEgypt. Key rules include 45 days for certain irregular entrants to apply; decision deadlines of six months for lawful entry and one year for irregular entry; 15-day administrative grievance period and 30-day decision period; access to specified public health services; six-month asylum registration cards and three-year refugee documents. The issuing provisions allow extensions of the transitional six-month periods by PM decision. The decision itself operates after three months from Gazette publication; exact commencement day and any extension decision require verification. Original PDF not yet stored/hashed locally.
+
+
+### Audited register snapshot — 18 November 2026, after EG-0322
+
+- **Acquisition register:** 306 rows / 306 unique instrument IDs.
+- **Type classification ledger:** 306 rows / 306 unique IDs: 73 base laws; 59 amending laws; 19 executive regulations; 43 executive-regulation amendments; 21 judicial decisions; 78 other decisions; 13 other/unclassified.
+- **Full-text inventory:** 81 rows / 77 unique instruments. Four duplicate inventory IDs remain source/version rows. Unique-instrument text-source coverage **77/306 = 25.2%**. This is inventory/source availability, not complete locally mirrored authenticated text.
+- **Source-permission register:** 109 unique source records.
+- **Original Gazette PDF leads:** PM Decision1568/2026 has a direct original Gazette PDF at the SIS government portal and an Amiri Press DSpace item; bytes/hash are not yet stored locally. No new original binary was archived in this tranche.
+- **Unique normalized article provision count:** not recalculated. Partial extracts and summaries are not counted as complete unique provisions. The asylum regulation's complete 35-article searchable source is available; local extract remains partial.
