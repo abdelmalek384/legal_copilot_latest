@@ -42,3 +42,6 @@ Do not instead calculate six months from 10 November 2026 without a legal basis.
 - Decision 480/2026 Articles 1–2 already reside in that same alternate-source file; no duplicate article bodies are added here.
 - PM Decision 200/2026 original-bundle metadata and partial article coverage are in the same file and checkpoint 186; checkpoint 227 adds only the previously missing complete article bodies and issuing provisions.
 - No lawyer verification, commercial reuse permission, bulk collection permission or redistribution permission is claimed.
+
+
+**Superseding deadline analysis (checkpoint 227):** Decision 480/2026 contains no express commencement date or calendar expiry. The 10 May 2027 publication-based calculation is now the leading working interpretation; 18 January 2027 remains the consecutive-extension alternative. Neither is confirmed. See checkpoint 227.
