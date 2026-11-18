@@ -2366,3 +2366,10 @@ Added six 2026 decisions from the Egyptian Proceedings:
 
 Added Decision635 (Port Said temporary customs zone for Suez Canal Auto Trading) with its preamble and all three articles; the incorporated Customs Administration letter, company letter and engineering drawing remain missing. Added Decision636 (Egypt Free Shops customs zone relocation to Meraki Hotel, Sharm El Sheikh) with all three operative articles and boundary description; preamble, signature/publication clause and drawing remain outstanding.
 [Decisions635/636 Arabic text](acquisition_tranche_finance_decisions635_636_2026_customs_zones_arabic.md)
+
+
+### Agent 3 — FRA Decision 87/2026 and Circular 9/2026 Arabic text acquisition
+
+- Added [FRA Board Decision 87/2026](agent3_fra_decision87_2026_warning_negative_lists_arabic_text.md): full five-article operative text from the FRA-hosted Gazette PDF, Official Gazette issue111 (تابع), 20 May 2026. It establishes warning, final-judgment negative, and administrative-measure lists; sets listing safeguards, emergency temporary listing, 60-day grievance filing, a 30-day committee review period, periodic review and removal rules. Gazette image QA and local PDF hash remain outstanding.
+- Added [FRA Circular 9/2026](agent3_fra_circular9_2026_sustainability_disclosure_arabic_text.md): full two-page Arabic text from the FRA-hosted PDF. It requires covered NBFI firms and listed companies to publish an accessible, accurate sustainability statement, refresh it at least annually and when material changes occur, retain supporting records, align public statements with regulatory filings, and notify FRA of material new information. The circular's face date is 3 January 2026, although its URL is in the FRA November 2026 upload directory; this date/path mismatch is explicitly preserved. No Gazette publication is asserted.
+- Both texts are marked **source-matched, not lawyer-reviewed**. Neither public availability nor regulator hosting is treated as commercial reuse permission. Page-image/OCR reconciliation, currentness, and any later amendments remain open.
