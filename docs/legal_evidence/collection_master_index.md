@@ -413,11 +413,11 @@
 
 ### Research Agent 1 — Notarization and registration fee laws (checkpoint 91)
 
-- Checkpoint 91 upgrades two previously identified related statutes to full searchable Arabic text sources: Law 68/1947 (14 articles, secondary transcription; amendment chain includes Laws 629/1955, 5/1964 and 103/1976) and Law 70/1964 (44 articles plus schedules, secondary consolidated transcription through Law 67/2021).
+- Checkpoint 91 upgrades two previously identified related statutes to full searchable Arabic text sources: Law 68/1947 (14 articles, secondary transcription; amendment chain includes Laws 629/1955, 5/1964 and 103/1976) and Law 70/1964 (44 articles plus schedules, secondary consolidated transcription through Law 67/2021). It also retrieves the 35-article 1947 Executive Regulation and identifies Decisions 820/1963, 1532/1976, 712/2008, 9200/2015 and 4730/2020 as regulation amendments.
 - Amendment chain leads for Law 70/1964: Laws 94/1980, 6/1991, 83/2006 and 67/2021; fee-table decisions 2936/1992 and 5424/2006.
 - Judicial currentness: SCC Case 2/24 (14 Dec 2003) invalidated Article 30 only insofar as it absolutely barred refunds after the applicant abandoned the requested service; Case 65/17 (1 Feb 1997) addressed specified provisions of the pre-1991 Article 21/26 valuation regime. Both direct SCC judgment pages/Gazette scans remain outstanding.
 - Checkpoint 85 source upgrades: IDSC DSpace Gazette metadata records found for Law 9/2022 issue 9 bis (A), 6 March 2022 and Decision 2332/2022 issue 75 supplement (C), 30 March 2022. The DSpace PDF bundles are request-only; accessible Gazette reproduction/secondary full text sources are retained separately. Full searchable secondary text of Decision 11264/2016 obtained; issue 30, 6 February 2017.
-- No new base-law discoveries counted; no URL or catalogue item is counted as a legal instrument or article. Checkpoint 91 adds selected article extracts only; full transcriptions are identified as source documents, not all reprinted in the checkpoint file.
+- No new base-law discoveries counted; no URL or catalogue item is counted as a legal instrument or article. Checkpoint 91 adds 23 selected article/provision extracts (17 statutory and 6 regulatory); full searchable transcriptions are identified as source documents, not all reprinted in the checkpoint file.
 
 ## High-value primary-source portals
 
