@@ -7457,3 +7457,50 @@ This is the missing 2024 amendment previously noted in the collection. It insert
 7. Article 56 requires the notification file in Arabic or with Arabic translations and allows a 15-day third-party comment period after publication of a summary.
 
 **Collection status:** Official Gazette DSpace record, MOF catalogue and complete searchable Arabic decision text obtained; 13 provisions transcribed (two replacement provisions, ten selected new regulatory articles and commencement/repeal provisions). The new Chapter 9 contains all 15 Articles 48–62 in the full searchable text. No lawyer review or rights clearance claimed.
+
+
+## 55. Consumer Protection Law amendment — Law 20/2024 replacing Article 71
+
+### A. Gazette provenance and official sources
+
+**Amending Law:** Law 20/2024 amending Consumer Protection Law 181/2018.  
+**Gazette:** Official Gazette issue 14 مكرر, 5 April 2024.  
+**Effective:** 6 April 2024 (day following publication).  
+**Official Ministry of Finance record (status: in force):** https://mof.gov.eg/ar/legislation/legislation-6643253a8897b900092f6319  
+**Official Gazette DSpace record:** https://dspace.id.com.eg/items/a574ba86-9011-4375-b8eb-c59f8966e194/full  
+**Official Amiri Press text:** https://alberonsy.com/قانون-رقم-۲۰-لسنة-۲۰۲٤-المنشور-بالجريدة/  
+**ECA/CPA official Consumer Law page:** https://cpa.gov.eg/ar-eg/تشريعات
+
+### B. Verbatim replacement Article 71
+
+**Verbatim — Article 1 of Law 20/2024 (replacement of Article 71):**
+
+> (المادة الأولى)
+>
+> يستبدل بنص المادة (٧١) من قانون حماية المستهلك الصادر بالقانون رقم ١٨١ لسنة ٢٠١٨، النص الآتي:
+>
+> مادة (٧١):
+>
+> يعاقب بالحبس مدة لا تقل عن سنة وبغرامة لا تقل عن مائة وخمسين ألف جنيه ولا تجاوز ثلاثة ملايين جنيه أو ما يعادل قيمة البضاعة موضوع الجريمة أيهما أكبر، كل من خالف حكم المادة (٨) من هذا القانون.
+>
+> وفي حالة العود، يعاقب بالحبس مدة لا تقل عن سنتين ولا تجاوز خمس سنوات وتضاعف قيمة الغرامة بحديها.
+>
+> وفي جميع الأحوال، تضبط الأشياء موضوع الجريمة، ويحكم بمصادرتها وبإغلاق المحل أو المكان الذي وقعت فيه الجريمة مدة لا تجاوز ستة أشهر، وينشر الحكم في جريدتين يوميتين واسعتي الانتشار على نفقة المحكوم عليه.
+>
+> ويجوز الحكم بإلغاء رخصة المحل أو المكان الذي وقعت فيه الجريمة.
+
+**Verbatim — Article 2 (publication/commencement):**
+
+> (المادة الثانية)
+>
+> ينشر هذا القانون في الجريدة الرسمية، ويعمل به اعتباراً من اليوم التالي لتاريخ نشره.
+
+### C. Current penalty rule and version control
+
+- Law 20/2024 replaces the original 2018 Article 71. The current provision applies to violations of Consumer Law Article 8 (withholding strategic products).
+- The current penalty is imprisonment for at least one year and a fine of EGP 150,000–3,000,000 or the value of the goods, whichever is greater.
+- On recidivism: imprisonment from two to five years and double the fine limits.
+- The court must seize/confiscate the goods, may close the premises for up to six months and publish the judgment in two widely circulated daily newspapers; it may also cancel the premises' licence.
+- The former 2018 fine floor/ceiling (EGP 100,000–2 million) and earlier wording on mandatory publication/confiscation must be retained as historical text only.
+
+**Collection status:** official MOF in-force record, official Gazette DSpace record and Amiri Press text obtained; replacement Article 71 and commencement provision transcribed. No lawyer review or rights clearance claimed.
